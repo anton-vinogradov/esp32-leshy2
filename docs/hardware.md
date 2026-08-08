@@ -58,7 +58,7 @@ Leshy2 has **7 onboard antennas**, one per RF chain, plus the plug-in cap's own 
 
 **Placement:** antennas go **on top**; expander connectors sit on the sides or the back.
 
-**Si4732 HF input protection:** the HF input has a **disconnect + ground switch** and **ESD protection**, so the front-end can be safely isolated and grounded.
+**Si4732 HF input protection:** a passive **ESD/clamp** (optionally a back-to-back diode limiter) on the HF input. There is **no manual disconnect switch** — de-sense from our own transmitters is avoided by mode-exclusive operation (Si4732 is not listening while another radio transmits), and the antenna is removed by unscrewing its SMA.
 
 **The 27 MHz antenna is large.** A quarter-wave at 27 MHz is about **2.75 m**, so a full-size whip is impractical on a handheld. The plan is a **telescopic 1–1.7 m whip**, or a **shortened / loaded whip**.
 

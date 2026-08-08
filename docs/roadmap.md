@@ -31,7 +31,7 @@ Built sheet by sheet. Start with power, then the MCU and its buses, then each RF
 - [ ] **C5 + buses:** ESP32-C5 (PSRAM variant), SPI (microSD + cap + CC1101 + 3× nRF24, separate CS lines), QSPI (AMOLED display), I2C (Grove port 1 through a PCA9548 mux), UART, GPIO, rotary encoder + buttons
 - [ ] **RF chain — 3x nRF24L01+PA/LNA:** brownout fix = 100-220 uF bulk + 100 nF at each module VCC
 - [ ] **RF chain — CC1101** sub-GHz (300-928 MHz OOK/FSK; optional RF switch to fold its bands into one SMA)
-- [ ] **RF chain — Si4732** receiver (HF input with a disconnect+ground switch and ESD protection; analog line-out)
+- [ ] **RF chain — Si4732** receiver (HF input with an ESD/clamp protector — no manual disconnect switch; isolation is handled by mode-exclusive sleep; analog line-out)
 - [ ] **RF chain — SA868-U** walkie (UART control, PTT, analog audio)
 - [ ] **Audio:** PAM8302 amp + speaker (the MCU is not in the audio path)
 - [ ] **Expansion:** cap slot (14P, 1:1 replica of the Cardputer ADV EXT bus) + 2x Grove ports
