@@ -78,6 +78,8 @@ Legal LoRa power caps enforced in firmware: EU433 +10 dBm, EU868 +14 dBm, 869.4�
 
 ## 🧩 Architecture at a glance
 
+![Leshy2 system architecture](docs/img/system-diagram.svg)
+
 - **One brain:** ESP32-C5 (RISC-V) — native Wi-Fi 2.4 + 5 GHz and BLE in a single MCU. Firmware is ported from the ESP32-S3 (leshy) codebase.
 - **All onboard RF** sits on shielded u.FL modules — chosen to de-risk the first PCB spin.
 - **Shared buses:** SPI (microSD + cap + CC1101 + 3× nRF24, each with its own CS), QSPI (the AMOLED display), I2C (both Grove ports + PCA9548 mux), UART (SA868 + cap).
@@ -102,7 +104,6 @@ Leshy2 stands on the shoulders of [ESP32-DIV](https://github.com/cifertech/ESP32
 ## 📚 Docs
 
 - [docs/hardware.md](docs/hardware.md) — full hardware breakdown.
-- [docs/architecture.html](docs/architecture.html) — visual block diagrams (signal buses, audio path, power tree); open in a browser.
 - [docs/roadmap.md](docs/roadmap.md) — where this is heading.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to get involved.
 

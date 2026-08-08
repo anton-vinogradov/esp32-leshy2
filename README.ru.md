@@ -78,6 +78,8 @@ Leshy2 стоит на двух проектах:
 
 ## 🧩 Архитектура вкратце
 
+![Системная архитектура Leshy2](docs/img/system-diagram.svg)
+
 - **Один мозг:** ESP32-C5 (RISC-V) — нативный Wi-Fi 2.4 + 5 GHz и BLE в одном MCU. Прошивка портируется с кодовой базы ESP32-S3 (leshy).
 - **Весь бортовой РЧ** — на экранированных модулях с u.FL, выбрано ради снижения рисков первой итерации PCB.
 - **Общие шины:** SPI (microSD + капп + CC1101 + 3× nRF24, у каждого свой CS), QSPI (AMOLED-дисплей), I2C (оба Grove-порта + мультиплексор PCA9548), UART (SA868 + капп).
@@ -102,7 +104,6 @@ Leshy2 стоит на плечах [ESP32-DIV](https://github.com/cifertech/ESP
 ## 📚 Документация
 
 - [docs/hardware.md](docs/hardware.ru.md) — полный разбор железа.
-- [docs/architecture.html](docs/architecture.html) — визуальные блок-схемы (сигнальные шины, аудиотракт, дерево питания); открыть в браузере.
 - [docs/roadmap.md](docs/roadmap.ru.md) — куда всё движется.
 - [CONTRIBUTING.md](CONTRIBUTING.ru.md) — как подключиться.
 
