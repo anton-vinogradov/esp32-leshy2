@@ -1,0 +1,84 @@
+# Leshy2 — Roadmap
+
+*Read this in: **English** · [Русский](roadmap.ru.md)*
+
+A pragmatic plan for **Leshy2** — an open-source portable multiband RF handheld (a "field tool"). It is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp32-leshy), which is a firmware fork of [ESP32-DIV](https://github.com/cifertech/ESP32-DIV). The reason for a new board: ESP32-DIV v2 has no 5 GHz Wi-Fi. Goal: as capable as reasonable at a fair price, target BOM about **115-150 USD**.
+
+## Where we are
+
+- **Architecture is locked (2026-08-08).** This is still the **design stage** — **no hardware has been built yet**.
+- The brain is the **ESP32-C5** (a single RISC-V MCU with native Wi-Fi 2.4 + 5 GHz and BLE). The firmware will be ported from the ESP32-S3 (leshy) codebase.
+- The next concrete step is the **KiCad schematic**.
+
+## Phases
+
+### 1. Architecture — done
+
+- [x] Pick the brain: **ESP32-C5** (one chip, native 2.4 + 5 GHz Wi-Fi + BLE)
+- [x] Lock the onboard RF set: **3x nRF24L01+PA/LNA**, **CC1101**, **Si4732**, **SA868-U**
+- [x] Lock the audio path: analog line-out (Si4732 / SA868) -> **PAM8302** class-D amp -> small speaker
+- [x] Lock long-range TX: **Meshtastic over LoRa SX1262** on the plug-in cap
+- [x] Lock the display: direct **SPI-TFT (ST7789 / ILI9341)**
+- [x] Lock expansion: **1x Cardputer ADV EXT-14P cap slot** + **2x Grove HY2.0-4P** ports
+- [x] Lock power: **2S 18650**, own PMIC (BQ25xxx charger + CH224K USB-C PD + power-path, buck 5V/3A, LDO 3.3V)
+- [x] Lock antennas: **7 onboard** + the cap's own LoRa RP-SMA and internal GPS ceramic; two LEDs per antenna (RX blue / TX amber)
+
+### 2. KiCad schematic — next
+
+Built sheet by sheet. Start with power, then the MCU and its buses, then each RF chain.
+
+- [ ] **Power first:** 2S 18650 -> BQ25xxx charger + CH224K USB-C PD + power-path -> buck 5V/3A -> LDO 3.3V
+- [ ] **C5 + buses:** ESP32-C5, SPI (TFT + microSD + cap on a shared bus, separate CS lines), I2C (Grove port 1 through a PCA9548 mux), UART, GPIO, rotary encoder + buttons
+- [ ] **RF chain — 3x nRF24L01+PA/LNA:** brownout fix = 100-220 uF bulk + 100 nF at each module VCC
+- [ ] **RF chain — CC1101** sub-GHz (300-928 MHz OOK/FSK; optional RF switch to fold its bands into one SMA)
+- [ ] **RF chain — Si4732** receiver (HF input with a disconnect+ground switch and ESD protection; analog line-out)
+- [ ] **RF chain — SA868-U** walkie (UART control, PTT, analog audio)
+- [ ] **Audio:** PAM8302 amp + speaker (the MCU is not in the audio path)
+- [ ] **Expansion:** cap slot (14P, 1:1 replica of the Cardputer ADV EXT bus) + 2x Grove ports
+- [ ] **Indicators + I/O:** WS2812 RX LEDs, hardware TX-live envelope detectors (transmit chains only), buzzer, IR TX/RX, microSD
+
+### 3. PCB layout
+
+- [ ] **4-layer** board (JLCPCB JLC7628, impedance +-10%)
+- [ ] **All RF on shielded u.FL modules** — this de-risks the first spin
+- [ ] Impedance-controlled RF traces
+- [ ] Placement: **antennas on top**, expander connectors on the sides or back
+- [ ] Power and RF grounding; bulk caps placed right next to the nRF24 modules
+
+### 4. First PCB spin
+
+- [ ] Order the PCB (maker step)
+- [ ] Solder and assemble (maker step)
+- [ ] Bring-up: check power rails, C5 boot, and each bus
+- [ ] **Honest expectation: 1 working spin + 1 refinement spin**
+
+### 5. Firmware port (S3 -> C5)
+
+- [ ] Port the leshy codebase from ESP32-S3 (Xtensa) to **ESP32-C5 (RISC-V)**
+- [ ] Wi-Fi 2.4 + 5 GHz — 5 GHz is **Marauder-class** (scan, deauth, beacon / probe flood, sniff management frames)
+- [ ] Drivers for each RF chain: 3x nRF24, CC1101, Si4732, SA868-U
+- [ ] Per-region LoRa power caps: EU433 +10 dBm, EU868 +14 dBm, 869.4-869.65 MHz +27 dBm at 10% duty cycle, US915 +30 dBm with frequency hopping
+- [ ] Cap driver (LoRa-1262 + GNSS), microSD PCAP logging, Grove units (RFID2 NFC, RTC, IMU / compass)
+- [ ] BLE text entry (long text is typed on a phone in the Meshtastic app)
+
+### 6. Antenna tuning (VNA)
+
+- [ ] Tune each of the 7 onboard antennas with a **VNA** (manual maker step)
+
+### 7. Field testing
+
+- [ ] Runtime check (light about 9 h, active about 3.6 h, TX peaks about 2.5 h)
+- [ ] Range check: SA868 voice (about 3-5 km open terrain), Meshtastic (city 2-5 km, line of sight 10-15 km)
+- [ ] Real-world validation of every RF chain
+
+## What is deliberately out of scope
+
+- **5 GHz WPA handshake capture / injection / Pineapple-class.** That needs Linux, which we avoid on purpose to keep battery life. 5 GHz stays Marauder-class only.
+- **Full-spectrum SDR voice listening.** The voice gaps at about 108-430 MHz and 480-860 MHz (airband AM 118-137, VHF/UHF NFM outside 433/446) would need an RTL-SDR plus a mini-Linux.
+- **Wideband jamming.** It is illegal (US Communications Act section 333, EU RED).
+- **27 MHz TX.** The Si4732 is receive-only.
+- This is **not a HackRF** — no continuous 1 MHz-6 GHz coverage with arbitrary TX.
+
+## How you can help
+
+Leshy2 is built openly and credits ESP32-DIV; the aim is collaborative development with the DIV community. If you want to help with the schematic, the PCB, the firmware port, or testing, start with **[CONTRIBUTING](../CONTRIBUTING.md)**.
