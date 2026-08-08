@@ -18,7 +18,7 @@ Pins: **SPI 12 / QSPI 16** (of 19)
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -32,7 +32,7 @@ Pins: **SPI 12 / QSPI 16** (of 19)
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → microSD (PCAP) |
 | `74HC138 A/B/C` (3) | chip-select decoder → SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -48,7 +48,7 @@ Pins: **SPI 13 / QSPI 17** (of 19)
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → nRF24 ×3 + microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → nRF24 ×3, SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -62,7 +62,7 @@ Pins: **SPI 15 / QSPI 19** (of 19) ⚠️
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → nRF24 ×3 + microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → nRF24 ×3, SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -78,7 +78,7 @@ Pins: **SPI 14 / QSPI 18** (of 19) ⚠️
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → CC1101 + microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → CC1101, SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -93,7 +93,7 @@ Pins: **SPI 14 / QSPI 18** (of 19) ⚠️
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -110,7 +110,7 @@ Pins: **SPI 16 / QSPI 20** (of 19) ❌
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → LoRa SX1262 (cap) + microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → LoRa cap, SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -127,7 +127,7 @@ Pins: **SPI 12 / QSPI 16** (of 19)
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | Si4732 tuning/control · buttons (hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -143,7 +143,7 @@ Pins: **SPI 12 / QSPI 16** (of 19)
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | RFID2 reader · buttons (hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
@@ -159,7 +159,7 @@ Pins: **SPI 14 / QSPI 18** (of 19) ⚠️
 |---|---|
 | `SPI SCK/MOSI/MISO` (3) | SPI bus → microSD |
 | `74HC138 A/B/C` (3) | chip-select decoder → SD |
-| `I²C SDA/SCL` (2) | sensors · RTC · RFID · buttons (via hub) |
+| `I²C SDA/SCL` (2) | buttons (via hub) |
 | `Encoder A/B` (2) | menu navigation |
 | `WS2812` (1) | per-antenna status LEDs |
 | `Display` (SPI +1 / QSPI +5) | draw this mode's UI |
