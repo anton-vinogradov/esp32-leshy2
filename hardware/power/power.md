@@ -1,5 +1,7 @@
 # Leshy2 — Power sheet (Sheet 1)
 
+*Read this in: **English** · [Русский](power.ru.md)*
+
 Design of the power subsystem. This is a **transcribe-ready schematic design**: exact parts,
 net-by-net connections, and passive values. See [power-schematic.svg](power-schematic.svg) for the drawing.
 
