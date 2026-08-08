@@ -104,6 +104,7 @@ Leshy2 stands on the shoulders of [ESP32-DIV](https://github.com/cifertech/ESP32
 ## 📚 Docs
 
 - [docs/hardware.md](docs/hardware.md) — full hardware breakdown.
+- [docs/pin-budget.md](docs/pin-budget.md) — GPIO budget and pin roles per usage mode.
 - [docs/roadmap.md](docs/roadmap.md) — where this is heading.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to get involved.
 

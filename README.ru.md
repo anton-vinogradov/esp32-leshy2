@@ -104,6 +104,7 @@ Leshy2 стоит на плечах [ESP32-DIV](https://github.com/cifertech/ESP
 ## 📚 Документация
 
 - [docs/hardware.md](docs/hardware.ru.md) — полный разбор железа.
+- [docs/pin-budget.md](docs/pin-budget.ru.md) — бюджет ног и роль каждой ноги по режимам.
 - [docs/roadmap.md](docs/roadmap.ru.md) — куда всё движется.
 - [CONTRIBUTING.md](CONTRIBUTING.ru.md) — как подключиться.
 

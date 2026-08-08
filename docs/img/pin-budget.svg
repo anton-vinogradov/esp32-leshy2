@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 818 604" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+  <style>
+    .bg{fill:#ffffff}
+    .zebra{fill:#f5f7f8}
+    .title{fill:#152220;font-size:16px;font-weight:700}
+    .sub{fill:#5c6f6c;font-size:11.5px}
+    .hd{fill:#5c6f6c;font-size:11px;font-weight:700;letter-spacing:.04em}
+    .nm{fill:#152220;font-size:12.5px}
+    .acc{fill:#e6f1fb;stroke:#85b7eb;stroke-width:1} .acct{fill:#0c447c;font-size:11px}
+    .free{fill:none;stroke:#d7e0dd;stroke-width:1;stroke-dasharray:4 3}
+    .ok{fill:#eaf3de} .okt{fill:#27500a;font-size:12px;font-weight:700}
+    .warn{fill:#faeeda} .warnt{fill:#633806;font-size:12px;font-weight:700}
+    .over{fill:#fcebeb} .overt{fill:#791f1f;font-size:12px;font-weight:700}
+    .lg{fill:#5c6f6c;font-size:11.5px}
+    @media (prefers-color-scheme: dark){
+      .bg{fill:#0d1518} .zebra{fill:#141f24}
+      .title{fill:#e7eff0} .sub{fill:#90a6ab} .hd{fill:#90a6ab} .nm{fill:#e7eff0} .lg{fill:#90a6ab}
+      .acc{fill:#042c53;stroke:#185fa5} .acct{fill:#b5d4f4}
+      .free{stroke:#33505a}
+      .ok{fill:#173404} .okt{fill:#c0dd97}
+      .warn{fill:#412402} .warnt{fill:#fac775}
+      .over{fill:#501313} .overt{fill:#f7c1c1}
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="818" height="604"/>
+  <text class="title" x="24" y="34">Leshy2 — GPIO budget by usage mode</text>
+  <text class="sub" x="24" y="54">One radio mode at a time — radios share a pool, so the peak is the heaviest single mode, not the sum.</text>
+  <text class="sub" x="24" y="72">Base 11 pins always (SPI x3, 74HC138 x3, I2C x2, encoder x2, WS2812 x1) + display (SPI +1 / QSPI +5) + mode pool.</text>
+  <text class="sub" x="24" y="90">Ceiling: 19 usable GPIO on ESP32-C5 (after flash/PSRAM + USB).</text>
+  <text class="hd" x="28" y="98">Mode</text>
+  <text class="hd" x="244" y="98">mode pool (4 shared GPIO)</text>
+  <text class="hd" x="646.0" y="98" text-anchor="middle">SPI</text>
+  <text class="hd" x="748.0" y="98" text-anchor="middle">QSPI</text>
+  <rect class="zebra" x="24" y="112" width="770" height="40" rx="5"/>
+  <text class="nm" x="32" y="136.0">Menu / idle</text>
+  <rect class="free" x="245" y="119" width="80" height="26" rx="5"/>
+  <rect class="free" x="331" y="119" width="80" height="26" rx="5"/>
+  <rect class="free" x="417" y="119" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="119" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="118" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="137.0" text-anchor="middle">12 / 19</text>
+  <rect class="ok" x="702" y="118" width="92" height="28" rx="6"/>
+  <text class="okt" x="748.0" y="137.0" text-anchor="middle">16 / 19</text>
+  <text class="nm" x="32" y="176.0">WiFi 2.4/5</text>
+  <rect class="free" x="245" y="159" width="80" height="26" rx="5"/>
+  <rect class="free" x="331" y="159" width="80" height="26" rx="5"/>
+  <rect class="free" x="417" y="159" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="159" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="158" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="177.0" text-anchor="middle">12 / 19</text>
+  <rect class="ok" x="702" y="158" width="92" height="28" rx="6"/>
+  <text class="okt" x="748.0" y="177.0" text-anchor="middle">16 / 19</text>
+  <rect class="zebra" x="24" y="192" width="770" height="40" rx="5"/>
+  <text class="nm" x="32" y="216.0">2.4 scan (nRF24x3)</text>
+  <rect class="acc" x="245" y="199" width="80" height="26" rx="5"/>
+  <text class="acct" x="285.0" y="216.0" text-anchor="middle">CE</text>
+  <rect class="free" x="331" y="199" width="80" height="26" rx="5"/>
+  <rect class="free" x="417" y="199" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="199" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="198" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="217.0" text-anchor="middle">13 / 19</text>
+  <rect class="ok" x="702" y="198" width="92" height="28" rx="6"/>
+  <text class="okt" x="748.0" y="217.0" text-anchor="middle">17 / 19</text>
+  <text class="nm" x="32" y="256.0">Mousejack (nRF24x3 TX)</text>
+  <rect class="acc" x="245" y="239" width="80" height="26" rx="5"/>
+  <text class="acct" x="285.0" y="256.0" text-anchor="middle">CE1</text>
+  <rect class="acc" x="331" y="239" width="80" height="26" rx="5"/>
+  <text class="acct" x="371.0" y="256.0" text-anchor="middle">CE2</text>
+  <rect class="acc" x="417" y="239" width="80" height="26" rx="5"/>
+  <text class="acct" x="457.0" y="256.0" text-anchor="middle">CE3</text>
+  <rect class="free" x="503" y="239" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="238" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="257.0" text-anchor="middle">15 / 19</text>
+  <rect class="warn" x="702" y="238" width="92" height="28" rx="6"/>
+  <text class="warnt" x="748.0" y="257.0" text-anchor="middle">19 / 19</text>
+  <rect class="zebra" x="24" y="272" width="770" height="40" rx="5"/>
+  <text class="nm" x="32" y="296.0">Sub-GHz (CC1101)</text>
+  <rect class="acc" x="245" y="279" width="80" height="26" rx="5"/>
+  <text class="acct" x="285.0" y="296.0" text-anchor="middle">GDO0</text>
+  <rect class="acc" x="331" y="279" width="80" height="26" rx="5"/>
+  <text class="acct" x="371.0" y="296.0" text-anchor="middle">GDO2</text>
+  <rect class="free" x="417" y="279" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="279" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="278" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="297.0" text-anchor="middle">14 / 19</text>
+  <rect class="warn" x="702" y="278" width="92" height="28" rx="6"/>
+  <text class="warnt" x="748.0" y="297.0" text-anchor="middle">18 / 19</text>
+  <text class="nm" x="32" y="336.0">Walkie (SA868)</text>
+  <rect class="acc" x="245" y="319" width="80" height="26" rx="5"/>
+  <text class="acct" x="285.0" y="336.0" text-anchor="middle">TX</text>
+  <rect class="acc" x="331" y="319" width="80" height="26" rx="5"/>
+  <text class="acct" x="371.0" y="336.0" text-anchor="middle">RX</text>
+  <rect class="free" x="417" y="319" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="319" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="318" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="337.0" text-anchor="middle">14 / 19</text>
+  <rect class="warn" x="702" y="318" width="92" height="28" rx="6"/>
+  <text class="warnt" x="748.0" y="337.0" text-anchor="middle">18 / 19</text>
+  <rect class="zebra" x="24" y="352" width="770" height="40" rx="5"/>
+  <text class="nm" x="32" y="376.0">LoRa + GPS</text>
+  <rect class="acc" x="245" y="359" width="80" height="26" rx="5"/>
+  <text class="acct" x="285.0" y="376.0" text-anchor="middle">BUSY</text>
+  <rect class="acc" x="331" y="359" width="80" height="26" rx="5"/>
+  <text class="acct" x="371.0" y="376.0" text-anchor="middle">DIO1</text>
+  <rect class="acc" x="417" y="359" width="80" height="26" rx="5"/>
+  <text class="acct" x="457.0" y="376.0" text-anchor="middle">GPS-TX</text>
+  <rect class="acc" x="503" y="359" width="80" height="26" rx="5"/>
+  <text class="acct" x="543.0" y="376.0" text-anchor="middle">GPS-RX</text>
+  <rect class="ok" x="600" y="358" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="377.0" text-anchor="middle">16 / 19</text>
+  <rect class="over" x="702" y="358" width="92" height="28" rx="6"/>
+  <text class="overt" x="748.0" y="377.0" text-anchor="middle">20 / 19</text>
+  <text class="nm" x="32" y="416.0">Listen HF/FM</text>
+  <rect class="free" x="245" y="399" width="80" height="26" rx="5"/>
+  <rect class="free" x="331" y="399" width="80" height="26" rx="5"/>
+  <rect class="free" x="417" y="399" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="399" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="398" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="417.0" text-anchor="middle">12 / 19</text>
+  <rect class="ok" x="702" y="398" width="92" height="28" rx="6"/>
+  <text class="okt" x="748.0" y="417.0" text-anchor="middle">16 / 19</text>
+  <rect class="zebra" x="24" y="432" width="770" height="40" rx="5"/>
+  <text class="nm" x="32" y="456.0">Keys (RFID2)</text>
+  <rect class="free" x="245" y="439" width="80" height="26" rx="5"/>
+  <rect class="free" x="331" y="439" width="80" height="26" rx="5"/>
+  <rect class="free" x="417" y="439" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="439" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="438" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="457.0" text-anchor="middle">12 / 19</text>
+  <rect class="ok" x="702" y="438" width="92" height="28" rx="6"/>
+  <text class="okt" x="748.0" y="457.0" text-anchor="middle">16 / 19</text>
+  <text class="nm" x="32" y="496.0">IR remotes</text>
+  <rect class="free" x="245" y="479" width="80" height="26" rx="5"/>
+  <rect class="free" x="331" y="479" width="80" height="26" rx="5"/>
+  <rect class="free" x="417" y="479" width="80" height="26" rx="5"/>
+  <rect class="free" x="503" y="479" width="80" height="26" rx="5"/>
+  <rect class="ok" x="600" y="478" width="92" height="28" rx="6"/>
+  <text class="okt" x="646.0" y="497.0" text-anchor="middle">12 / 19</text>
+  <rect class="ok" x="702" y="478" width="92" height="28" rx="6"/>
+  <text class="okt" x="748.0" y="497.0" text-anchor="middle">16 / 19</text>
+  <text class="lg" x="24" y="566">green = margin   amber = at ceiling   red = over budget</text>
+  <text class="lg" x="24" y="584">blue cell = GPIO used by this mode    dashed = free for other modes</text>
+</svg>
