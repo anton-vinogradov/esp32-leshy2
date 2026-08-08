@@ -18,7 +18,7 @@ A pragmatic plan for **Leshy2** — an open-source portable multiband RF handhel
 - [x] Lock the onboard RF set: **3x nRF24L01+PA/LNA**, **CC1101**, **Si4732**, **SA868-U**
 - [x] Lock the audio path: analog line-out (Si4732 / SA868) -> **PAM8302** class-D amp -> small speaker
 - [x] Lock long-range TX: **Meshtastic over LoRa SX1262** on the plug-in cap
-- [x] Lock the display: direct **SPI-TFT (ST7789 / ILI9341)**
+- [x] Lock the display: **QSPI AMOLED (RM67162, 1.91″ 240×536)** on its own QSPI bus
 - [x] Lock expansion: **1x Cardputer ADV EXT-14P cap slot** + **2x Grove HY2.0-4P** ports
 - [x] Lock power: **2S 18650**, own PMIC (BQ25xxx charger + CH224K USB-C PD + power-path, buck 5V/3A, LDO 3.3V)
 - [x] Lock antennas: **7 onboard** + the cap's own LoRa RP-SMA and internal GPS ceramic; two LEDs per antenna (RX blue / TX amber)
@@ -28,7 +28,7 @@ A pragmatic plan for **Leshy2** — an open-source portable multiband RF handhel
 Built sheet by sheet. Start with power, then the MCU and its buses, then each RF chain.
 
 - [ ] **Power first:** 2S 18650 -> BQ25xxx charger + CH224K USB-C PD + power-path -> buck 5V/3A -> LDO 3.3V
-- [ ] **C5 + buses:** ESP32-C5, SPI (TFT + microSD + cap on a shared bus, separate CS lines), I2C (Grove port 1 through a PCA9548 mux), UART, GPIO, rotary encoder + buttons
+- [ ] **C5 + buses:** ESP32-C5 (PSRAM variant), SPI (microSD + cap + CC1101 + 3× nRF24, separate CS lines), QSPI (AMOLED display), I2C (Grove port 1 through a PCA9548 mux), UART, GPIO, rotary encoder + buttons
 - [ ] **RF chain — 3x nRF24L01+PA/LNA:** brownout fix = 100-220 uF bulk + 100 nF at each module VCC
 - [ ] **RF chain — CC1101** sub-GHz (300-928 MHz OOK/FSK; optional RF switch to fold its bands into one SMA)
 - [ ] **RF chain — Si4732** receiver (HF input with a disconnect+ground switch and ESD protection; analog line-out)

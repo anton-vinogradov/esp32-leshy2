@@ -45,7 +45,7 @@ Grouped by what you actually do with it. Everything is meant for your own equipm
 - Meshtastic over LoRa (SX1262 on the plug-in cap): encrypted text mesh at kilometer range (+22 dBm). Legal power caps are enforced per region in firmware.
 
 **Spectrum view**
-- Direct SPI-TFT (ST7789 / ILI9341) — fast enough for a real waterfall / spectrum.
+- QSPI AMOLED (RM67162, 1.91″ 240×536) — per-pixel black saves power on a dark waterfall; QSPI is ~4× faster than SPI.
 - 2.4 GHz raw spectrum via the nRF24 chain; sub-GHz waterfall via CC1101.
 - Per-antenna LEDs: blue RX (WS2812, firmware-driven) and amber TX (hardware envelope detector — honest "on air" even if firmware hangs).
 
@@ -80,7 +80,7 @@ Legal LoRa power caps enforced in firmware: EU433 +10 dBm, EU868 +14 dBm, 869.4�
 
 - **One brain:** ESP32-C5 (RISC-V) — native Wi-Fi 2.4 + 5 GHz and BLE in a single MCU. Firmware is ported from the ESP32-S3 (leshy) codebase.
 - **All onboard RF** sits on shielded u.FL modules — chosen to de-risk the first PCB spin.
-- **Shared buses:** SPI (TFT + microSD + cap, each with its own CS), I2C (both Grove ports + PCA9548 mux), UART (SA868 + cap).
+- **Shared buses:** SPI (microSD + cap + CC1101 + 3× nRF24, each with its own CS), QSPI (the AMOLED display), I2C (both Grove ports + PCA9548 mux), UART (SA868 + cap).
 - **7 onboard antennas:** C5 2.4/5 dual-band, 3× nRF24, CC1101, Si4732 telescopic whip, SA868 UHF. Antennas go on top; expander connectors on the sides or back. There is no shared RF switch, so each chain has its own antenna. (The plug-in cap adds its own LoRa RP-SMA + internal GPS ceramic.)
 - **Expansion:** 1 cap slot + 2 Grove ports.
 - **Power:** 2× 18650 in 2S (~7.4 V, ~18 Wh) with an onboard PMIC — BQ25xxx charger + USB-C PD (CH224K) + power-path (works while charging), buck 5 V/3 A + LDO 3.3 V. Runtime: light ~9 h, active ~3.6 h, TX peaks ~2.5 h.

@@ -18,7 +18,7 @@ Grouped by subsystem. **Prices are approximate.** The source spec only fixes the
 | HF / CB / FM receiver | Si4732 | Receive-only: CB 27 MHz, full HF/shortwave, MW/LW (AM/SSB/CW), FM broadcast 64–108 MHz; analog line-out | I2C (control) | — |
 | UHF voice | SA868-U | 433/446 MHz NBFM voice walkie, RX + TX up to 2 W, PTT (drop-in upgrade over SA818 1 W) | UART + PTT | — |
 | Audio | PAM8302 + small speaker | Class-D amplifier; drives the speaker from the analog line-out | analog | — |
-| Display | ST7789 / ILI9341 TFT | Direct SPI TFT — fast enough for a real waterfall/spectrum | SPI | — |
+| Display | QSPI AMOLED (RM67162) | 1.91″ 240×536; dark UI saves power, QSPI ~4× SPI; needs a PSRAM-equipped C5 | QSPI | — |
 | Storage | microSD | PCAP logging, profiles | SPI | — |
 | IR | IR TX/RX | Clone/replay remotes | GPIO | — |
 | Indicators | WS2812 RGB LEDs | Status + per-antenna RX (blue) indicators | GPIO (1-wire) | — |
@@ -85,7 +85,9 @@ Every antenna gets **two LEDs**, so you can see at a glance which chain is recei
 
 The digital peripherals share three buses off the ESP32-C5. Because the C5 is a 3.3 V part, no level shifter is needed on the 3.3 V signals.
 
-**SPI** — TFT display, microSD, the 3× nRF24, the CC1101, and the plug-in cap's SX1262. Each device has its own chip-select (CS). The **cap's SPI shares the onboard microSD SPI bus** (the same trick the Cardputer uses), on a **separate CS**.
+**SPI** — microSD, the 3× nRF24, the CC1101, and the plug-in cap's SX1262. Each device has its own chip-select (CS). The **cap's SPI shares the onboard microSD SPI bus** (the same trick the Cardputer uses), on a **separate CS**.
+
+**QSPI** — the AMOLED display sits on its own 4-bit QSPI bus (~4× SPI), off the shared SPI. A PSRAM-equipped C5 module holds the framebuffer.
 
 **I2C** — the Si4732 control interface, the PCA9548 mux on Grove Port 1, and the I2C Grove units behind the mux (RFID2 NFC at 0x28, RTC, IMU / compass). Grove Port 2 can also carry I2C.
 
