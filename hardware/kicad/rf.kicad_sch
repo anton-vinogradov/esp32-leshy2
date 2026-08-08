@@ -1,0 +1,22 @@
+(kicad_sch
+	(version 20260306)
+	(generator "leshy2")
+	(generator_version "10.0")
+	(uuid "20089d80-2ed6-4e05-a43b-1697352c7394")
+	(paper "A3")
+	(title_block
+		(title "Leshy2 — 3 · RF front-ends")
+		(rev "A")
+		(comment 1 "Design stage — see docs/ for full nets and values")
+	)
+	(lib_symbols)
+	(text "3x nRF24L01+PA/LNA, CC1101, Si4732 (RX), SA868-U. Each own antenna + RX/TX LEDs."
+		(exclude_from_sim no)
+		(at 30 40 0)
+		(effects (font (size 2 2)) (justify left bottom))
+		(uuid "d4318b57-c618-4db2-b294-a9f0d3de37c4")
+	)
+	(sheet_instances
+		(path "/" (page "1"))
+	)
+)

@@ -1,0 +1,22 @@
+(kicad_sch
+	(version 20260306)
+	(generator "leshy2")
+	(generator_version "10.0")
+	(uuid "c862c451-32bc-4e60-8edb-233708cb8496")
+	(paper "A3")
+	(title_block
+		(title "Leshy2 — 5 · Expansion")
+		(rev "A")
+		(comment 1 "Design stage — see docs/ for full nets and values")
+	)
+	(lib_symbols)
+	(text "Cap slot (Cardputer ADV EXT-14P) + 2x Grove (I2C+PCA9548 / flexible)."
+		(exclude_from_sim no)
+		(at 30 40 0)
+		(effects (font (size 2 2)) (justify left bottom))
+		(uuid "1258a1f3-9672-49e4-a1a4-c5a780e93562")
+	)
+	(sheet_instances
+		(path "/" (page "1"))
+	)
+)
