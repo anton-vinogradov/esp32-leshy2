@@ -1,138 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 808 620" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 358" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
   <style>
-    .bg{fill:#ffffff} .zebra{fill:#f5f7f8}
+    .bg{fill:#ffffff}
     .title{fill:#152220;font-size:16px;font-weight:700} .sub{fill:#5c6f6c;font-size:11.5px}
-    .hd{fill:#5c6f6c;font-size:11px;font-weight:700;letter-spacing:.04em} .nm{fill:#152220;font-size:12.5px}
-    .acc{fill:#e6f1fb;stroke:#85b7eb;stroke-width:1} .acct{fill:#0c447c;font-size:11px}
-    .free{fill:none;stroke:#d7e0dd;stroke-width:1;stroke-dasharray:4 3}
-    .ok{fill:#eaf3de} .okt{fill:#27500a;font-size:12px;font-weight:700}
-    .warn{fill:#faeeda} .warnt{fill:#633806;font-size:12px;font-weight:700}
-    .over{fill:#fcebeb} .overt{fill:#791f1f;font-size:12px;font-weight:700}
+    .rowlbl{fill:#152220;font-size:13px;font-weight:700} .tick{fill:#8a9aa0;font-size:11px}
+    .grid{stroke:#e1e0d9;stroke-width:1} .ceil{stroke:#c0392f;stroke-width:1.5;stroke-dasharray:4 3}
+    .ceillbl{fill:#c0392f;font-size:11px;font-weight:700}
+    .core{fill:#e6f1fb} .coret{fill:#0c447c;font-size:11px;font-weight:700}
+    .rad{fill:#e1f5ee} .radt{fill:#0f6e56;font-size:11px;font-weight:700}
+    .i2c{fill:#faeeda} .i2ct{fill:#854f0b;font-size:11px;font-weight:700}
+    .hc{fill:#f1efe8} .hct{fill:#5f5e5a;font-size:11px;font-weight:700}
+    .tot{font-size:12px;font-weight:700} .gtot{fill:#27500a} .otot{fill:#791f1f}
     .lg{fill:#5c6f6c;font-size:11.5px}
     @media (prefers-color-scheme: dark){
-      .bg{fill:#0d1518} .zebra{fill:#141f24}
-      .title{fill:#e7eff0} .sub{fill:#90a6ab} .hd{fill:#90a6ab} .nm{fill:#e7eff0} .lg{fill:#90a6ab}
-      .acc{fill:#042c53;stroke:#185fa5} .acct{fill:#b5d4f4} .free{stroke:#33505a}
-      .ok{fill:#173404} .okt{fill:#c0dd97} .warn{fill:#412402} .warnt{fill:#fac775} .over{fill:#501313} .overt{fill:#f7c1c1}
+      .bg{fill:#0d1518} .title{fill:#e7eff0} .sub{fill:#90a6ab} .rowlbl{fill:#e7eff0} .tick{fill:#90a6ab} .lg{fill:#90a6ab}
+      .grid{stroke:#2c2c2a} .ceil{stroke:#e46a60} .ceillbl{fill:#e46a60}
+      .core{fill:#042c53} .coret{fill:#b5d4f4} .rad{fill:#04342c} .radt{fill:#5dcaa5}
+      .i2c{fill:#412402} .i2ct{fill:#fac775} .hc{fill:#2c2c2a} .hct{fill:#b4b2a9}
+      .gtot{fill:#c0dd97} .otot{fill:#f7c1c1}
     }
   </style>
-  <rect class="bg" x="0" y="0" width="808" height="620"/>
-  <text class="title" x="24" y="34">Leshy2 — GPIO budget by usage mode (no hub)</text>
-  <text class="sub" x="24" y="54">One radio mode at a time — radios share a pool, so the peak is the heaviest single mode, not the sum.</text>
-  <text class="sub" x="24" y="72">Common 12 always: encoder A/B/SW x3, WS2812 x1, SPI bus x3, 74HC138 CS x3, I2C x2.</text>
-  <text class="sub" x="24" y="90">Display: 1-bit SPI +1 / QSPI +5. Mode pool: reused GPIO, only the peak counts.</text>
-  <text class="sub" x="24" y="108">Ceiling: 19 usable GPIO on ESP32-C5. Peak = LoRa+GPS. SPI fits; QSPI overflows.</text>
-  <text class="hd" x="28" y="114">Mode</text>
-  <text class="hd" x="234" y="114">mode pool (reused GPIO)</text>
-  <text class="hd" x="636.0" y="114" text-anchor="middle">SPI</text>
-  <text class="hd" x="738.0" y="114" text-anchor="middle">QSPI</text>
-  <rect class="zebra" x="24" y="128" width="760" height="40" rx="5"/>
-  <text class="nm" x="32" y="152.0">Menu / idle</text>
-  <rect class="free" x="235" y="135" width="80" height="26" rx="5"/>
-  <rect class="free" x="321" y="135" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="135" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="135" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="134" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="153.0" text-anchor="middle">13 / 19</text>
-  <rect class="ok" x="692" y="134" width="92" height="28" rx="6"/>
-  <text class="okt" x="738.0" y="153.0" text-anchor="middle">17 / 19</text>
-  <text class="nm" x="32" y="192.0">WiFi 2.4/5</text>
-  <rect class="free" x="235" y="175" width="80" height="26" rx="5"/>
-  <rect class="free" x="321" y="175" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="175" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="175" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="174" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="193.0" text-anchor="middle">13 / 19</text>
-  <rect class="ok" x="692" y="174" width="92" height="28" rx="6"/>
-  <text class="okt" x="738.0" y="193.0" text-anchor="middle">17 / 19</text>
-  <rect class="zebra" x="24" y="208" width="760" height="40" rx="5"/>
-  <text class="nm" x="32" y="232.0">2.4 scan (nRF24x3)</text>
-  <rect class="free" x="235" y="215" width="80" height="26" rx="5"/>
-  <rect class="free" x="321" y="215" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="215" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="215" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="214" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="233.0" text-anchor="middle">13 / 19</text>
-  <rect class="ok" x="692" y="214" width="92" height="28" rx="6"/>
-  <text class="okt" x="738.0" y="233.0" text-anchor="middle">17 / 19</text>
-  <text class="nm" x="32" y="272.0">Mousejack (nRF24 TX)</text>
-  <rect class="acc" x="235" y="255" width="80" height="26" rx="5"/>
-  <text class="acct" x="275.0" y="272.0" text-anchor="middle">CE</text>
-  <rect class="free" x="321" y="255" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="255" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="255" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="254" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="273.0" text-anchor="middle">14 / 19</text>
-  <rect class="warn" x="692" y="254" width="92" height="28" rx="6"/>
-  <text class="warnt" x="738.0" y="273.0" text-anchor="middle">18 / 19</text>
-  <rect class="zebra" x="24" y="288" width="760" height="40" rx="5"/>
-  <text class="nm" x="32" y="312.0">Sub-GHz (CC1101)</text>
-  <rect class="acc" x="235" y="295" width="80" height="26" rx="5"/>
-  <text class="acct" x="275.0" y="312.0" text-anchor="middle">GDO0</text>
-  <rect class="free" x="321" y="295" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="295" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="295" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="294" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="313.0" text-anchor="middle">14 / 19</text>
-  <rect class="warn" x="692" y="294" width="92" height="28" rx="6"/>
-  <text class="warnt" x="738.0" y="313.0" text-anchor="middle">18 / 19</text>
-  <text class="nm" x="32" y="352.0">Walkie (SA868)</text>
-  <rect class="acc" x="235" y="335" width="80" height="26" rx="5"/>
-  <text class="acct" x="275.0" y="352.0" text-anchor="middle">U-TX</text>
-  <rect class="acc" x="321" y="335" width="80" height="26" rx="5"/>
-  <text class="acct" x="361.0" y="352.0" text-anchor="middle">U-RX</text>
-  <rect class="acc" x="407" y="335" width="80" height="26" rx="5"/>
-  <text class="acct" x="447.0" y="352.0" text-anchor="middle">PTT</text>
-  <rect class="free" x="493" y="335" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="334" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="353.0" text-anchor="middle">16 / 19</text>
-  <rect class="over" x="692" y="334" width="92" height="28" rx="6"/>
-  <text class="overt" x="738.0" y="353.0" text-anchor="middle">20 / 19</text>
-  <rect class="zebra" x="24" y="368" width="760" height="40" rx="5"/>
-  <text class="nm" x="32" y="392.0">LoRa + GPS</text>
-  <rect class="acc" x="235" y="375" width="80" height="26" rx="5"/>
-  <text class="acct" x="275.0" y="392.0" text-anchor="middle">BUSY</text>
-  <rect class="acc" x="321" y="375" width="80" height="26" rx="5"/>
-  <text class="acct" x="361.0" y="392.0" text-anchor="middle">DIO1</text>
-  <rect class="acc" x="407" y="375" width="80" height="26" rx="5"/>
-  <text class="acct" x="447.0" y="392.0" text-anchor="middle">GPS-TX</text>
-  <rect class="acc" x="493" y="375" width="80" height="26" rx="5"/>
-  <text class="acct" x="533.0" y="392.0" text-anchor="middle">GPS-RX</text>
-  <rect class="ok" x="590" y="374" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="393.0" text-anchor="middle">17 / 19</text>
-  <rect class="over" x="692" y="374" width="92" height="28" rx="6"/>
-  <text class="overt" x="738.0" y="393.0" text-anchor="middle">21 / 19</text>
-  <text class="nm" x="32" y="432.0">Listen HF/FM</text>
-  <rect class="acc" x="235" y="415" width="80" height="26" rx="5"/>
-  <text class="acct" x="275.0" y="432.0" text-anchor="middle">Si4732 RST</text>
-  <rect class="free" x="321" y="415" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="415" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="415" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="414" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="433.0" text-anchor="middle">14 / 19</text>
-  <rect class="warn" x="692" y="414" width="92" height="28" rx="6"/>
-  <text class="warnt" x="738.0" y="433.0" text-anchor="middle">18 / 19</text>
-  <rect class="zebra" x="24" y="448" width="760" height="40" rx="5"/>
-  <text class="nm" x="32" y="472.0">Keys (RFID2)</text>
-  <rect class="free" x="235" y="455" width="80" height="26" rx="5"/>
-  <rect class="free" x="321" y="455" width="80" height="26" rx="5"/>
-  <rect class="free" x="407" y="455" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="455" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="454" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="473.0" text-anchor="middle">13 / 19</text>
-  <rect class="ok" x="692" y="454" width="92" height="28" rx="6"/>
-  <text class="okt" x="738.0" y="473.0" text-anchor="middle">17 / 19</text>
-  <text class="nm" x="32" y="512.0">IR remotes</text>
-  <rect class="acc" x="235" y="495" width="80" height="26" rx="5"/>
-  <text class="acct" x="275.0" y="512.0" text-anchor="middle">IR-TX</text>
-  <rect class="acc" x="321" y="495" width="80" height="26" rx="5"/>
-  <text class="acct" x="361.0" y="512.0" text-anchor="middle">IR-RX</text>
-  <rect class="free" x="407" y="495" width="80" height="26" rx="5"/>
-  <rect class="free" x="493" y="495" width="80" height="26" rx="5"/>
-  <rect class="ok" x="590" y="494" width="92" height="28" rx="6"/>
-  <text class="okt" x="636.0" y="513.0" text-anchor="middle">15 / 19</text>
-  <rect class="warn" x="692" y="494" width="92" height="28" rx="6"/>
-  <text class="warnt" x="738.0" y="513.0" text-anchor="middle">19 / 19</text>
-  <text class="lg" x="24" y="582">green = margin   amber = at ceiling   red = over budget</text>
-  <text class="lg" x="24" y="600">blue cell = GPIO used by this mode    dashed = free for other modes</text>
+  <rect class="bg" x="0" y="0" width="820" height="358"/>
+  <text class="title" x="20" y="34">Leshy2 — GPIO budget, stacked by tier</text>
+  <text class="sub" x="20" y="54">One mode at a time; peak mode = LoRa+GPS. Core can't be cut; I²C and 74HC138 are options.</text>
+  <text class="sub" x="20" y="72">Core = encoder + SPI bus + SD-CS + display. Radios = per-mode peak pool. I²C = Si4732/RFID2/Grove bus.</text>
+  <line class="grid" x1="140" y1="122" x2="140" y2="266"/><text class="tick" x="140" y="116" text-anchor="middle">0</text><line class="grid" x1="290" y1="122" x2="290" y2="266"/><text class="tick" x="290" y="116" text-anchor="middle">5</text><line class="grid" x1="440" y1="122" x2="440" y2="266"/><text class="tick" x="440" y="116" text-anchor="middle">10</text><line class="grid" x1="590" y1="122" x2="590" y2="266"/><text class="tick" x="590" y="116" text-anchor="middle">15</text><line class="grid" x1="710" y1="122" x2="710" y2="266"/><text class="tick" x="710" y="116" text-anchor="middle">19</text><line class="grid" x1="740" y1="122" x2="740" y2="266"/><text class="tick" x="740" y="116" text-anchor="middle">20</text>
+  <line class="ceil" x1="710" y1="122" x2="710" y2="266"/><text class="ceillbl" x="710" y="284" text-anchor="middle">ceiling 19</text>
+  <text class="rowlbl" x="128" y="159.0" text-anchor="end">SPI display</text><rect class="core" x="140" y="132" width="240" height="46" rx="3"/><text class="coret" x="260.0" y="153.0" text-anchor="middle">Core</text><text class="coret" x="260.0" y="167.0" text-anchor="middle" font-size="10">+8</text><rect class="rad" x="380" y="132" width="150" height="46" rx="3"/><text class="radt" x="455.0" y="153.0" text-anchor="middle">Radios</text><text class="radt" x="455.0" y="167.0" text-anchor="middle" font-size="10">+5</text><rect class="i2c" x="530" y="132" width="60" height="46" rx="3"/><text class="i2ct" x="560.0" y="153.0" text-anchor="middle">I2C</text><text class="i2ct" x="560.0" y="167.0" text-anchor="middle" font-size="10">+2</text><rect class="hc" x="590" y="132" width="30" height="46" rx="3"/><text class="hct" x="605.0" y="153.0" text-anchor="middle">138</text><text class="hct" x="605.0" y="167.0" text-anchor="middle" font-size="10">+1</text><text class="tot gtot" x="628" y="159.0">16/19 (fits)</text><text class="rowlbl" x="128" y="237.0" text-anchor="end">QSPI display</text><rect class="core" x="140" y="210" width="360" height="46" rx="3"/><text class="coret" x="320.0" y="231.0" text-anchor="middle">Core</text><text class="coret" x="320.0" y="245.0" text-anchor="middle" font-size="10">+12</text><rect class="rad" x="500" y="210" width="150" height="46" rx="3"/><text class="radt" x="575.0" y="231.0" text-anchor="middle">Radios</text><text class="radt" x="575.0" y="245.0" text-anchor="middle" font-size="10">+5</text><rect class="i2c" x="650" y="210" width="60" height="46" rx="3"/><text class="i2ct" x="680.0" y="231.0" text-anchor="middle">I2C</text><text class="i2ct" x="680.0" y="245.0" text-anchor="middle" font-size="10">+2</text><rect class="hc" x="710" y="210" width="30" height="46" rx="3"/><text class="hct" x="725.0" y="231.0" text-anchor="middle">138</text><text class="hct" x="725.0" y="245.0" text-anchor="middle" font-size="10">+1</text><text class="tot otot" x="748" y="237.0">20/19 (over 1)</text>
+  <g>
+    <rect class="core" x="20" y="318" width="12" height="12" rx="2"/><text class="lg" x="38" y="328">core</text>
+    <rect class="rad" x="86" y="318" width="12" height="12" rx="2"/><text class="lg" x="104" y="328">radios</text>
+    <rect class="i2c" x="176" y="318" width="12" height="12" rx="2"/><text class="lg" x="194" y="328">I²C option</text>
+    <rect class="hc" x="288" y="318" width="12" height="12" rx="2"/><text class="lg" x="306" y="328">74HC138 option</text>
+  </g>
 </svg>
