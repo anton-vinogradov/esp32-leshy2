@@ -4,7 +4,7 @@
 
 **An open-source, portable, multiband RF handheld — a field tool you build yourself.**
 
-Leshy2 is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp32-leshy), which is a firmware fork of [ESP32-DIV](https://github.com/cifertech/ESP32-DIV). The reason for a new device is simple: ESP32-DIV v2 has no 5 GHz Wi-Fi. Leshy2 fixes that by moving the whole design to a single **ESP32-C5** brain (native 2.4 **and** 5 GHz Wi-Fi + BLE) and adding a lot more radio around it. The goal is to be as capable as is reasonable at a fair price — target BOM about **115–150 USD**. It keeps the DIV-style handheld shape, just modernized. It is built in the open so people can join in.
+Leshy2 is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp32-leshy), which is a firmware fork of [ESP32-DIV](https://github.com/cifertech/ESP32-DIV). The reason for a new device is simple: ESP32-DIV v2 has no 5 GHz Wi-Fi. Leshy2 fixes that by moving the whole design to a single **ESP32-C5** brain (native 2.4 **and** 5 GHz Wi-Fi + BLE) and adding a lot more radio around it. The goal is to be as capable as is reasonable at a fair price — about **$120–150 built** (~$105 in electronics; see the [cost breakdown](docs/bom.md)). It keeps the DIV-style handheld shape, just modernized. It is built in the open so people can join in.
 
 > 🛑 **Your own gear only.** This is an educational security-research and radio tool. Use it only on networks, devices, and radios you own or are explicitly authorized in writing to test. Radio law differs by country — it is on you to check and obey it.
 
@@ -107,8 +107,20 @@ Leshy2 stands on the shoulders of [ESP32-DIV](https://github.com/cifertech/ESP32
 
 ## 📚 Docs
 
-- [docs/hardware.md](docs/hardware.md) — full hardware breakdown.
-- [docs/pin-budget.md](docs/pin-budget.md) — GPIO budget and pin roles per usage mode.
+**Overview**
+- [docs/hardware.md](docs/hardware.md) — full hardware breakdown (BOM, antennas, buses, power).
+- [docs/bom.md](docs/bom.md) — **cost & bill of materials** (what it's made of, ~$105 electronics).
+- [docs/pin-budget.md](docs/pin-budget.md) — the GPIO budget (20/20) and every pin's role.
+
+**Schematic — drawn sheet by sheet** (transcribe-ready specs + drawings)
+1. [Power](hardware/power/power.md) — 2S, BQ25887 boost charger, rails, master switch
+2. [ESP32-C5 + buses](hardware/c5-buses/c5-buses.md) — pin map, 74HC138, PCA9555, USB
+3. [RF chains](hardware/rf/rf.md) — 3× nRF24, CC1101, SX1262 (LoRa)
+4. [Audio](hardware/audio/audio.md) — Si4732, SA868, analog path → PAM8302
+5. [Expansion + GPS](hardware/expansion/expansion.md) — I²C bus, u-blox GPS, Grove
+6. [Indicators / IO](hardware/indicators/indicators.md) — TX-live LEDs, IR, microSD, encoder
+
+**More**
 - [docs/roadmap.md](docs/roadmap.md) — where this is heading.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to get involved.
 
