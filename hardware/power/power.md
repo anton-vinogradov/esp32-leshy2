@@ -35,6 +35,7 @@ Power-path means the system runs from `VSYS` **even with no battery / while char
 | U4 | **MP2315** | +5 V / 3 A buck | Vref 0.8 V; L2 4.7 µH |
 | U5 | **TLV62569** | +3.3 V / 2 A buck | Vref 0.6 V; L3 2.2 µH |
 | U6 | Low-noise LDO (**TPS7A2033** or AP2112K-3.3) | +3V3A analog | From +5 V; feeds Si4732 / SA868 audio |
+| SW_PWR | Momentary power button | Power-on = ship-mode wake | to **U2.QON** (works with the MCU fully off) |
 
 ## Key nets
 
@@ -51,7 +52,8 @@ SW1      : U2.SW ── L1(2.2µH) ── VSYS
 FB_5V    : +5V ── R1(52.3k) ── U4.FB ── R2(10k) ── GND      (0.8·(1+52.3/10)=4.98 V)
 FB_3V3   : +3V3 ── R3(45.3k) ── U5.FB ── R4(10k) ── GND      (0.6·(1+45.3/10)=3.32 V)
 I2C      : U2.SDA/SCL ── (system I²C to ESP32-C5)
-IRQ/CE   : U2.INT, U2.CE, U2.QON ── ESP32-C5 GPIO
+CTRL     : U2.INT, U2.CE, U2.QON ── PCA9555 (Sheet 2)
+PWR_BTN  : SW_PWR ── U2.QON ── GND    (hardware power-on / ship-mode wake ; off = I²C BATFET_DIS)
 VMON     : VBAT ── R(200k)/R(100k) divider ── ESP32-C5 ADC (coarse gauge)
 GND      : common
 ```
@@ -83,6 +85,7 @@ GND      : common
 - **Charging needs PD.** With plain 5 V USB (no PD), a 2S buck charger cannot reach 8.4 V — CH224K must negotiate 9–12 V. The device still **runs** from battery on 5 V-only input.
 - **Don't use IP5306-class power banks** here — weak boost and auto-shutdown at low load. This is why we roll our own PMIC.
 - **TX power is a firmware concern, not a rail concern** — per-region caps are enforced in software, but the +5V rail is sized to *allow* the legal maximum (e.g., SA868 2 W) without sagging.
+- **Power on/off.** The power button pulls BQ25887 `/QON` to wake from ship mode with the MCU fully off; power-off is a firmware I²C ship-mode command (menu), and a forced cutoff is a long `/QON` press per the BQ timer. RESET (EN) and BOOT are separate buttons on the C5 (Sheet 2).
 
 ---
 

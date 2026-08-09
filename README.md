@@ -20,7 +20,8 @@ Leshy2 stands on two projects:
 **Design-stage open project. No hardware exists yet.**
 
 - Architecture is **locked** (2026-08-08).
-- **Next step:** the KiCad schematic.
+- **Schematic designed sheet-by-sheet** — power · C5+buses · RF · audio · expansion · indicators — as transcribe-ready specs + drawings in [hardware/](hardware/).
+- **Next:** capture the sheets in KiCad, then PCB layout.
 - Nothing has been built or tested on real hardware. Follow along, comment, and contribute while it takes shape.
 
 ## 🧰 What it does

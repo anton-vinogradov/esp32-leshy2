@@ -12,7 +12,7 @@ The ESP32-C5 and how every bus fans out from it: the shared SPI bus with its **7
 
 ## GPIO map (proposed)
 
-~20 usable GPIO (GPIO0–28 minus flash/PSRAM 16–22 minus USB 13/14). Direct pins = **19**, one spare.
+~20 usable GPIO (GPIO0–28 minus flash/PSRAM 16–22 minus USB 13/14). Direct signal pins = **19**; **GPIO28 = BOOT button**, **EN = RESET button**, power button on the PMIC (Sheet 1).
 
 | C5 GPIO | Net | Dir | Peripheral / note |
 |:--:|------|:--:|-------|
@@ -23,7 +23,7 @@ The ESP32-C5 and how every bus fans out from it: the shared SPI bus with its **7
 | GPIO1 | `I2C_SCL` | o-d | ext 4.7 kΩ pull-up |
 | GPIO11 | `UART_TX` → SA868 | out | UART0 console repurposed (flash over USB) |
 | GPIO15 | `UART_RX` ← SA868 | in | UART0 |
-| GPIO2 | `HC138_A` | out | ⚠ strapping — add datasheet pull |
+| GPIO2 | `HC138_A` | out | ⚠ strap: crystal-freq select — boot pull to match module xtal (40 MHz = low) |
 | GPIO3 | `HC138_B` | out | ⚠ strapping — add pull |
 | GPIO25 | `HC138_C` | out | ⚠ strapping — add pull |
 | GPIO12 | `LCD_DC` | out | UART0-RX console repurposed |
@@ -34,10 +34,10 @@ The ESP32-C5 and how every bus fans out from it: the shared SPI bus with its **7
 | GPIO5 | `ENC_B` | in | pull-up; quadrature |
 | GPIO26 | `nRF24_CE` | out | ⚠ strapping — add pull; 3 modules tied |
 | GPIO7 | `IR_TX` | out | ⚠ strapping — add pull; RMT/LEDC carrier |
-| GPIO27 | `WS2812` | out | ⚠ strapping — add pull; RMT (status LED) |
+| GPIO27 | `WS2812` | out | ⚠ boot strap: **must be high** at reset → pull-up; RMT (status LED) |
 | GPIO13 | `USB_D−` | — | native USB (flashing + data) |
 | GPIO14 | `USB_D+` | — | native USB |
-| GPIO28 | — | — | **spare** (strapping) |
+| GPIO28 | `BOOT` button | in | boot strap: low → serial download; internal + external pull-up |
 
 **Not on a direct pin:** `LoRa_DIO1` is **polled** over SPI (SX1262 `GetIrqStatus`). All slow control lines are on the **PCA9555** (below).
 
@@ -84,6 +84,16 @@ Only one Y is low at a time, so only one device is ever selected — the natural
 
 Battery gauge is read from the **BQ25887's own I²C ADC**, so no dedicated ADC pin is needed.
 
+### Reset, boot & power buttons
+
+Three physical buttons, none of which needs a general-purpose GPIO:
+
+- **RESET (SW_RST)** — momentary across **EN**–GND. EN carries a power-on-reset RC (10 kΩ pull-up to `+3V3` + 1 µF to GND).
+- **BOOT (SW_BOOT)** — momentary from **GPIO28** to GND. GPIO28 is the C5 download strap (low at reset → serial bootloader) with an internal pull-up; add an external pull-up too. Hold BOOT and tap RESET to force download. Normal flashing is over USB-JTAG, so this is the recovery path.
+- **POWER (SW_PWR)** — to the **BQ25887 `/QON`** pin (ship-mode wake), on the power sheet — so it works with the MCU fully off. Press to turn on; power-off is an I²C ship-mode command.
+
+**Strap levels to honour at reset** (all sampled only at reset, then free): GPIO28 high = normal boot (pull-up). **GPIO27 must be high** for a valid download, so its WS2812 line gets a pull-up (`GPIO27=0` with `GPIO28=0` is invalid). GPIO2 selects the crystal frequency — set its boot pull to match the module (40 MHz = low). Confirm GPIO26's boot-config level. Drive all strap-shared signals only after reset.
+
 ## Key nets
 
 ```
@@ -95,7 +105,9 @@ UART     : TX(11) → SA868.RX ; RX(15) ← SA868.TX
 ENC      : A(4) B(5) pulled-up ; SW → PCA9555.P0.0
 IR       : RX(10, RMT) ; TX(7, RMT/LEDC)
 WS2812   : DIN(27, RMT) ; +5V ; kept dim
-EN/BOOT  : EN → RC (100k + 1µF) + button ; GPIO9-class strap → boot button (see gotchas)
+RESET    : EN → RC (10k pull-up + 1µF) + SW_RST to GND
+BOOT     : GPIO28 (int + ext pull-up) → SW_BOOT to GND ; GPIO27 pull-up keeps download valid
+POWER    : SW_PWR → BQ25887 /QON (ship-mode wake, power sheet)
 USB      : D−(13) D+(14) → J1 CC-side data pair ; ESD array
 ```
 

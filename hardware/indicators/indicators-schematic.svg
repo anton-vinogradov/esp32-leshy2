@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 470" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+  <style>
+    :root{ color-scheme: light dark; }
+    .bg{fill:#ffffff}
+    .box{fill:#f2f6f7;stroke:#4a5b62;stroke-width:1.6}
+    .foc{fill:#fbe9e2;stroke:#a4670f;stroke-width:1.8}
+    .wire{stroke:#4a5b62;stroke-width:1.5;fill:none}
+    .sym{stroke:#4a5b62;stroke-width:1.6;fill:none}
+    .led{fill:#a4670f;stroke:#a4670f}
+    .gnd{stroke:#4a5b62;stroke-width:1.4;fill:none}
+    .t{fill:#152220;font-size:12.5px;font-weight:700;text-anchor:middle}
+    .tl{fill:#152220;font-size:12.5px;font-weight:700;text-anchor:start}
+    .s{fill:#5c6f6c;font-size:10.5px;text-anchor:middle}
+    .sl{fill:#5c6f6c;font-size:10.5px;text-anchor:start}
+    .pin{fill:#0c447c;font-size:10.5px;font-weight:700;text-anchor:start}
+    .rail{fill:#0f8f84;font-size:11px;font-weight:700}
+    .title{fill:#152220;font-size:16px;font-weight:700}
+    .sub{fill:#5c6f6c;font-size:11.5px}
+    @media (prefers-color-scheme: dark){
+      .bg{fill:#0d1518}
+      .box{fill:#17262b;stroke:#33505a}.foc{fill:#3d1a0c;stroke:#f0a583}
+      .wire{stroke:#5b6f77}.sym{stroke:#8fa3ab}.led{fill:#f4ab3d;stroke:#f4ab3d}.gnd{stroke:#5b6f77}
+      .t{fill:#e7eff0}.tl{fill:#e7eff0}.s{fill:#90a6ab}.sl{fill:#90a6ab}.pin{fill:#8fc0f0}.rail{fill:#2bb3a6}
+      .title{fill:#e7eff0}.sub{fill:#90a6ab}
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="1150" height="470"/>
+  <text class="title" x="28" y="30">Leshy2 — Sheet 6 · Indicators &amp; I/O</text>
+  <text class="sub" x="28" y="50">Per-antenna TX-live LEDs = RF envelope detectors (0 GPIO) · WS2812 · buzzer · IR · microSD · encoder</text>
+
+  <!-- TX-live detector panel -->
+  <rect class="foc" x="28" y="72" width="540" height="252" rx="9"/>
+  <text class="tl" x="46" y="96">TX-live LED — RF envelope detector · ×7 TX chains · 0 GPIO</text>
+
+  <!-- whip -->
+  <path class="sym" d="M70 170 V128 M63 140 h14 M63 132 h14"/>
+  <text class="s" x="70" y="188">ant. feed</text>
+  <!-- feed to coupling cap -->
+  <path class="wire" d="M70 170 H120"/>
+  <!-- coupling cap -->
+  <path class="sym" d="M120 156 V184 M132 156 V184"/>
+  <text class="s" x="126" y="204">couple</text>
+  <path class="wire" d="M132 170 H180"/>
+  <!-- schottky diode -->
+  <path class="sym" d="M180 158 L206 170 L180 182 Z M206 158 V182"/>
+  <text class="s" x="193" y="204">Schottky</text>
+  <path class="wire" d="M206 170 H262"/>
+  <!-- node: bleed R + cap to GND -->
+  <circle class="led" cx="262" cy="170" r="3"/>
+  <path class="sym" d="M262 170 V196"/><rect class="sym" x="254" y="196" width="16" height="24"/><path class="gnd" d="M262 220 V232 M250 232 h24 M254 238 h16 M258 244 h8"/>
+  <text class="s" x="262" y="260">R + C</text>
+  <!-- to NPN base -->
+  <path class="wire" d="M262 170 H310"/>
+  <!-- NPN -->
+  <circle class="sym" cx="336" cy="170" r="22"/>
+  <path class="sym" d="M314 170 H326 M326 158 V182 M326 164 L352 150 M326 176 L352 190"/>
+  <text class="s" x="336" y="210">NPN</text>
+  <!-- collector up to LED -->
+  <path class="wire" d="M352 150 V126 H420"/>
+  <!-- amber LED -->
+  <path class="led" d="M420 114 L446 126 L420 138 Z"/><path class="sym" d="M446 114 V138"/>
+  <path class="led" d="M452 118 l10 -8 M456 122 l10 -8"/>
+  <text class="s" x="433" y="156">amber</text>
+  <!-- LED to Rdim to +3V3 -->
+  <path class="wire" d="M446 126 H480"/><rect class="sym" x="480" y="118" width="26" height="16"/><path class="wire" d="M506 126 H532"/>
+  <text class="s" x="493" y="150">Rdim</text>
+  <text class="rail" x="524" y="118">+3V3</text>
+  <!-- emitter to GND -->
+  <path class="wire" d="M352 190 V210"/><path class="gnd" d="M340 210 h24 M344 216 h16 M348 222 h8"/>
+  <text class="sl" x="46" y="308">Fires from real RF emission — lights even if firmware hangs. RX-only Si4732 has none (detector would spoil sensitivity).</text>
+
+  <!-- IO column -->
+  <rect class="box" x="600" y="72" width="522" height="40" rx="7"/>
+  <text class="tl" x="616" y="97">WS2812 status LED</text><text class="pin" x="960" y="97">DIN ← GPIO27 (RMT) · +5V · boot pull-up</text>
+  <rect class="box" x="600" y="120" width="522" height="40" rx="7"/>
+  <text class="tl" x="616" y="145">Buzzer (active)</text><text class="pin" x="960" y="145">← PCA9555.P0.5 via Q · +5V</text>
+  <rect class="box" x="600" y="168" width="522" height="40" rx="7"/>
+  <text class="tl" x="616" y="193">IR TX (IR LED + Q)</text><text class="pin" x="960" y="193">← GPIO7 · 38 kHz carrier</text>
+  <rect class="box" x="600" y="216" width="522" height="40" rx="7"/>
+  <text class="tl" x="616" y="241">IR RX (TSOP38238)</text><text class="pin" x="960" y="241">→ GPIO10 (RMT) · +3V3</text>
+  <rect class="box" x="600" y="264" width="522" height="40" rx="7"/>
+  <text class="tl" x="616" y="289">microSD (SPI)</text><text class="pin" x="960" y="289">CS = 74HC138 Y0 · 3V3</text>
+  <rect class="box" x="600" y="312" width="522" height="40" rx="7"/>
+  <text class="tl" x="616" y="337">Rotary encoder</text><text class="pin" x="960" y="337">A/B = GPIO4/5 · SW = PCA9555</text>
+
+  <rect class="box" x="600" y="366" width="522" height="60" rx="9"/>
+  <text class="sl" x="616" y="388">System buttons live on other sheets: RESET (EN) + BOOT (GPIO28) → Sheet 2 · POWER → Sheet 1 (BQ /QON).</text>
+  <text class="sl" x="616" y="408">Keep every indicator dim — this is a battery receiver. WS2812 is the only software LED; TX LEDs are pure hardware.</text>
+</svg>
