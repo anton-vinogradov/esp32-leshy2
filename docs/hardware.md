@@ -102,11 +102,11 @@ Meshtastic long-range mesh is a **raw SX1262 module on the board** (E22-900M cla
 
 ### GPS (u-blox, I²C)
 
-Position comes from a small **u-blox GPS** (SAM-M8Q class) on the Grove **I²C** bus, with its own integrated antenna. Speaking I²C (DDC/NMEA) instead of UART lets it ride the existing bus for **0 extra GPIO** — one of the moves that keeps the tight pin budget in range (see [pin-budget.md](pin-budget.md)).
+Position comes from a small **u-blox GPS** (SAM-M8Q class) **onboard** on the **I²C** bus, with its own integrated antenna. Speaking I²C (DDC/NMEA) instead of UART lets it ride the existing bus for **0 extra GPIO** — one of the moves that keeps the tight pin budget in range (see [pin-budget.md](pin-budget.md)).
 
 ### Grove port (1× I²C)
 
-One **Grove HY2.0-4P** port, wired as the **I²C** bus (5 V power, 3.3 V signals). It hosts the u-blox GPS plus any M5 I²C Units — RFID2 NFC, RTC, IMU / compass, sensors — addressed individually, with a **Grove I²C hub** when several are plugged at once. A second, independent Grove port was dropped: it would cost 2 more GPIO the tight budget can't spare, and all our expansion is I²C anyway.
+One **Grove HY2.0-4P** port, wired as the **I²C** bus (5 V power, 3.3 V signals). It hosts any M5 I²C Units — RFID2 NFC, RTC, IMU / compass, sensors — addressed individually, with a **Grove I²C hub** when several are plugged at once. (The u-blox GPS is onboard on the same bus, so it needs no port.) A second, independent Grove port was dropped: it would cost 2 more GPIO the tight budget can't spare, and all our expansion is I²C anyway.
 
 **Units reachable over Grove:**
 

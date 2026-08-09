@@ -35,7 +35,7 @@ Built sheet by sheet. Start with power, then the MCU and its buses, then each RF
 - [x] **Audio — Si4732** receiver (Sheet 4, [hardware/audio](../hardware/audio/audio.md)): HF input with an ESD/clamp protector, no manual disconnect (mode-exclusive sleep), analog line-out, RST on the PCA9555
 - [x] **Audio — SA868-U** walkie (Sheet 4): UART control, PTT/PD on the PCA9555, analog AF-out, electret mic + 1 µF
 - [x] **Audio path** (Sheet 4): 2:1 analog mux → PAM8302 class-D → speaker; the MCU is not in the audio path
-- [ ] **Expansion:** 1× Grove I²C port (M5 I²C Units; Grove I²C hub for several at once)
+- [x] **Expansion** (Sheet 5, [hardware/expansion](../hardware/expansion/expansion.md)): onboard u-blox GPS on I²C + 1× Grove I²C port (M5 I²C Units; Grove I²C hub for several, TCA9548A only on address clash) + full I²C address map
 - [ ] **Indicators + I/O:** WS2812 status LED, hardware TX-live envelope detectors (transmit chains only, 0 GPIO), buzzer, IR TX/RX, microSD
 
 ### 3. PCB layout
