@@ -62,7 +62,7 @@
   <!-- Grove focus -->
   <line class="wire" x1="980" y1="150" x2="980" y2="200"/><circle class="tap" cx="980" cy="150" r="4"/>
   <rect class="foc" x="895" y="200" width="170" height="76" rx="7"/>
-  <text class="t" x="980" y="224">Grove I²C · J40</text><text class="s" x="980" y="242">+5V·GND·SDA·SCL</text><text class="s" x="980" y="260">ESD · hub for several</text>
+  <text class="t" x="980" y="224">Grove I²C · J40</text><text class="s" x="980" y="242">+3V3·GND·SDA·SCL</text><text class="s" x="980" y="260">ESD · hub for several</text>
   <path class="wire" d="M980 276 V322"/><circle class="tap" cx="980" cy="322" r="3"/>
   <rect class="box" x="895" y="322" width="170" height="60" rx="7"/>
   <text class="t" x="980" y="346">M5 units (plug-in)</text><text class="s" x="980" y="364">RFID2 0x28 · sensors · RTC</text>

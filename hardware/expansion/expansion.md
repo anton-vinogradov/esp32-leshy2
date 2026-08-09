@@ -12,7 +12,7 @@ The I²C bus and everything on it: the onboard **u-blox GPS**, the single **Grov
 |-----|------|------|-----------|
 | U40 | **u-blox SAM-M8Q** (onboard) | GNSS with **integrated** antenna; position + time for Meshtastic | I²C (DDC) `0x42` |
 | BT40 | Supercap + Schottky | GPS backup (hot-start) from `+3V3` | V_BCKP |
-| J40 | **Grove HY2.0-4P** (I²C) | one plug-in port for M5 I²C units | `+5V` · GND · SDA · SCL |
+| J40 | **Grove HY2.0-4P** (I²C) | one plug-in port for M5 I²C units | `+3V3` · GND · SDA · SCL (5 V via jumper) |
 | U41 (opt.) | Grove I²C hub (passive) | fan several units onto the one port | I²C |
 | U42 (opt.) | **TCA9548A** mux | only if two units share an address | I²C `0x70` |
 | — | RFID2 Unit (WS1850S) | example M5 unit: NFC 13.56 MHz | Grove I²C `0x28` |
@@ -23,7 +23,7 @@ The I²C bus and everything on it: the onboard **u-blox GPS**, the single **Grov
 
 | Address | Device | Sheet |
 |:--:|------|:--:|
-| `0x11` / `0x63` | Si4732 receiver | 4 |
+| `0x11` | Si4732 receiver (SEN = GND) | 4 |
 | `0x20` | PCA9555 slow-line expander | 2 |
 | `0x28` | RFID2 NFC (Grove) | 5 |
 | `0x42` | u-blox SAM-M8Q GPS | 5 |
@@ -39,13 +39,13 @@ The **SAM-M8Q** carries its own **integrated antenna**, so it solders straight t
 
 ## Grove I²C port — the one expansion socket
 
-A single **Grove HY2.0-4P** brings out `+5V`, GND, and the `+3V3` I²C pair with an ESD array. It accepts M5 **I²C** units — RFID2 NFC, RTC, IMU/compass, environmental sensors — each at its own address. To plug several at once, a passive **Grove I²C hub** fans the one port out; only if two units clash on an address does a **TCA9548A** mux (U42) become necessary. A second, independent Grove port was deliberately dropped — it would cost 2 GPIO the budget can't spare, and every unit we use is I²C anyway.
+A single **Grove HY2.0-4P** brings out **`+3V3`**, GND, and the I²C pair with an ESD array — the C5 is not 5 V-tolerant, so the port is 3.3 V by default (most M5/Grove I²C units run at 3.3 V). A `+5V` supply is a separate jumper option, and only behind a bidirectional I²C translator (PCA9306/TCA9517) so a 5 V unit can never pull SDA/SCL above 3.3 V. It accepts M5 **I²C** units — RFID2 NFC, RTC, IMU/compass, environmental sensors — each at its own address. To plug several at once, a passive **Grove I²C hub** fans the one port out; only if two units clash on an address does a **TCA9548A** mux (U42) become necessary. A second, independent Grove port was deliberately dropped — it would cost 2 GPIO the budget can't spare, and every unit we use is I²C anyway.
 
 ## Gotchas
 
-- **Power is 5 V, signals are 3.3 V.** Grove carries `+5V` for units that need it, but SDA/SCL stay at `+3V3` (the C5 is not 5 V-tolerant). Do not let a 5 V unit pull the I²C lines to 5 V.
+- **3.3 V port by default.** SDA/SCL are `+3V3` (the C5 is not 5 V-tolerant). Grove power is `+3V3`; a `+5V` unit needs the jumper **and** an I²C translator so it can't pull the lines above 3.3 V.
 - **One set of pull-ups.** Adding a unit that also pulls up SDA/SCL over-loads the bus; prefer units with no pull-ups, or account for the parallel value.
-- **Address collisions → mux, not pins.** Two 0x28 units (say two RFID2) need the TCA9548A; there is no pin budget for a second bus.
+- **Address collisions → mux, not pins.** Two 0x28 units (say two RFID2) need the TCA9548A; there is no pin budget for a second bus. **Each used TCA9548A downstream channel needs its own pull-up pair** — the mux's FET switches isolate the channels, so the single bus pull-ups don't reach them.
 - **DAC-output units do not work** — the C5 has no DAC; nothing on Grove can restore that.
 - **Hot-plug with care.** The Grove port is not hot-swap-rated; power down before plugging a unit, or add series resistors on SDA/SCL to survive it.
 
