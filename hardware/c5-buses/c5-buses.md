@@ -1,60 +1,135 @@
-# Leshy2 — C5 + buses sheet (Sheet 2)
+# Leshy2 — MCU + buses sheet (Sheet 2)
 
 *Read this in: **English** · [Русский](c5-buses.ru.md)*
 
-The ESP32-C5 and how every bus fans out from it: the shared SPI bus with its **74HC138** chip-select decoder, I²C (with the **PCA9555** slow-signal expander), UART to the SA868, the display `DC`/`CS`/`RESX`, the rotary encoder, USB, and the reset/boot circuit. See [c5-buses-schematic.svg](c5-buses-schematic.svg) for the drawing, and [../../docs/pin-budget.md](../../docs/pin-budget.md) for the pin logic.
+The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** design: an **ESP32-S3** main brain that runs the UI, the display, all wired radios, the SD card and every bus; and an **ESP32-C5** co-processor that adds the one thing the S3 lacks — native **5 GHz Wi-Fi** (plus 2.4 GHz, BLE and **802.15.4** / Zigbee / Thread). A physical **slider** flips the device between *S3-main* (normal) and *C5-standalone* (run any firmware on the C5 by itself).
 
-> ⚠️ Design stage. The **GPIO numbers below are a proposed map**, not yet confirmed against the ESP32-C5 datasheet. Before capture, confirm: strapping-pin boot levels (add the datasheet-recommended pulls), which pins reach the RMT/FSPI/I²C peripherals, and USB/UART-console reuse. Functions are fixed; exact pin numbers may shift.
+> ⚠️ Design stage. **GPIO numbers are a proposed map**, not yet confirmed against the ESP32-S3 / ESP32-C5 datasheets. Before capture, confirm: strapping-pin boot levels on both chips, which pins reach FSPI/SPI3/RMT/I²C through the GPIO matrix, that the C5 module actually bonds out the pins used for the link, and the N8R2 (quad-PSRAM) part number. Functions are fixed; exact pin numbers may shift.
 
-## The MCU
+> 🗂️ *The folder is named `c5-buses/` for historical reasons (the earlier single-chip design). It now covers both MCUs.* The transcribe-ready schematic drawing for this sheet is being redrawn for the two-chip layout.
 
-**U10 — ESP32-C5-WROOM-1U-N8R4** (or -N16R8): single RISC-V core, native Wi-Fi 2.4 **and** 5 GHz + BLE + 802.15.4, **8/16 MB flash + 4/8 MB PSRAM in-package**. The PSRAM holds the 320×480×2 ≈ 300 KB display framebuffer and the firmware-port working set. In-package flash/PSRAM occupies GPIO16–22 (not brought out); native USB is on GPIO13/14.
+## The two MCUs
 
-**Antenna: the -1U variant brings the RF out on a u.FL connector** → an external dual-band SMA on top (this is the 8th onboard antenna). Keep a copper keep-out under the u.FL/coax, and tune 2.4 / 5 GHz on real hardware. A hardware TX-live LED taps this feed (Sheet 6).
+**U10 — ESP32-S3-WROOM-1U-N8R2** (main brain): dual-core Xtensa, 8 MB flash + **2 MB quad PSRAM**, native 2.4 GHz Wi-Fi + BLE, u.FL → external SMA.
 
-## GPIO map (proposed)
+- **Quad PSRAM is deliberate.** Octal PSRAM (the `R8` parts) steals GPIO33–37 for its extra data lines; **quad PSRAM leaves 33–37 free**, and that is exactly where the C5-link block sits. We only need ~300 KB for the 320×480×16 framebuffer, so 2 MB quad is plenty — the pin budget, not the RAM size, drives the choice.
+- Native USB is on GPIO19/20. The serial **console runs over the USB-Serial-JTAG** peripheral (not a UART), which frees UART0 for the C5 flash bridge.
 
-~20 usable GPIO (GPIO0–28 minus flash/PSRAM 16–22 minus USB 13/14). **Direct signal pins = 19; GPIO28 = BOOT button, EN = RESET**; power on/off is the **master switch** (Sheet 1). That is the full 20 — no spare direct pin (LoRa `DIO1` is polled to stay within it).
+**U20 — ESP32-C5-WROOM-1U** (co-processor): single RISC-V core, in-package flash + PSRAM, native **2.4 + 5 GHz Wi-Fi + BLE + 802.15.4**, u.FL → its own external dual-band SMA. It is the *only* ESP32 with native 5 GHz. In-package flash/PSRAM occupies **GPIO15,16,17,18,20,21,22** (so **GPIO19 is free, GPIO15 is not** — the opposite of what earlier drafts said); native USB is on GPIO13/14.
 
-| C5 GPIO | Net | Dir | Peripheral / note |
+## Two modes, one slider
+
+| | S3-main (normal) | C5-standalone |
+|---|---|---|
+| USB-C routes to | S3 | C5 (via TS3USB221 mux) |
+| Display, SD, wired radios | S3 owns them | S3 held in reset; **C5 drives display + SD** |
+| C5's role | co-processor (5 GHz/15.4 over the link) | full owner of the shared bus |
+| C5's SPI (one controller) | slave on the private link | master on the shared bus (via 74CBTLV3257 mux) |
+
+**What C5-standalone can and cannot reach.** It can drive the **display**, the **microSD**, and its own **internal radios** (5 GHz / Zigbee / BLE). It **cannot** operate the external analog/sub-GHz radios (nRF24, CC1101, SX1262, SA868): those need direct timing pins (`CE`, `GDO0`, `BUSY`, `PTT`) that live on the S3 and that the C5 has no spare pins to replicate. The C5 can *select* them on the bus but not run their real-time protocols. A "full second brain" is not physically possible on the C5's ~20 pins versus the S3's ~36.
+
+## S3 GPIO map (proposed)
+
+38 usable GPIO (0–21, 33–48, minus USB pair use). **Used: 36 / 38.** The two survivors (GPIO45/46) are strap pins usable only as pulldown-side reserves.
+
+| S3 GPIO | Net | Dir | Peripheral / note |
 |:--:|------|:--:|-------|
-| GPIO23 | `SPI_SCK` | out | FSPI (via GPIO matrix) |
-| GPIO24 | `SPI_MOSI` | out | FSPI |
-| GPIO6 | `SPI_MISO` | in | FSPI |
-| GPIO0 | `I2C_SDA` | o-d | ext 4.7 kΩ pull-up; I²C idle-high = normal boot |
-| GPIO1 | `I2C_SCL` | o-d | ext 4.7 kΩ pull-up |
-| GPIO11 | `UART_TX` → SA868 | out | UART0 console repurposed (flash over USB) |
-| GPIO15 | `UART_RX` ← SA868 | in | UART0 |
-| GPIO2 | `HC138_A` | out | ⚠ strap: crystal-freq select — boot pull to match module xtal (40 MHz = low) |
-| GPIO3 | `HC138_B` | out | ⚠ strapping — add pull |
-| GPIO25 | `HC138_C` | out | ⚠ strapping — add pull |
-| GPIO12 | `LCD_DC` | out | UART0-RX console repurposed |
-| GPIO8 | `CC1101_GDO0` | i/o | RMT (raw OOK): RX capture and TX-replay drive |
-| GPIO9 | `LoRa_BUSY` | in | polled before each SX1262 command |
-| GPIO10 | `IR_RX` | in | RMT (demod capture) |
-| GPIO4 | `ENC_A` | in | pull-up; quadrature |
-| GPIO5 | `ENC_B` | in | pull-up; quadrature |
-| GPIO26 | `nRF24_CE` | out | ⚠ strapping — add pull; 3 modules tied |
-| GPIO7 | `IR_TX` | out | ⚠ strapping — add pull; RMT/LEDC carrier |
-| GPIO27 | `WS2812` | out | ⚠ boot strap: **must be high** at reset → pull-up; RMT; **5 V level shifter** (Sheet 6) |
-| GPIO13 | `USB_D−` | — | native USB (flashing + data) |
-| GPIO14 | `USB_D+` | — | native USB |
-| GPIO28 | `BOOT` button | in | boot strap: low → serial download; internal + external pull-up |
+| GPIO0 | `S3_BOOT` (button) | in | ⚠ strap, pull-up; recovery button |
+| GPIO1 | `WS2812` | out | RMT; 3.3→5 V buffer 74AHCT1G125 (Sheet 6) |
+| GPIO2 | `IR_TX` | out | RMT/LEDC 38 kHz carrier (not a strap on S3) |
+| GPIO3 | `SLIDER_SENSE` | in | ⚠ strap (JTAG-sel, boot don't-care); read early, before the bus starts; ext pull + RC |
+| GPIO4 | `I2C_SDA` | o-d | 4.7 kΩ; Si4732 / PCA9555 / BQ25887 / Grove |
+| GPIO5 | `I2C_SCL` | o-d | 4.7 kΩ |
+| GPIO6 | `nRF24_CE` | out | shared across all 3× nRF24 (timing → direct) |
+| GPIO7 | `CC1101_GDO0` | i/o | RMT: raw OOK RX / replay |
+| GPIO8 | `HC138_A` | out | CS decoder 3→8 |
+| GPIO9 | `HC138_B` | out | |
+| GPIO10 | `HC138_C` | out | |
+| GPIO11 | `SPI_MOSI` | out | **FSPID, IOMUX 80 MHz**: SD + CC1101 + 3× nRF24 + SX1262 + ST7796 |
+| GPIO12 | `SPI_SCK` | out | FSPICLK, IOMUX |
+| GPIO13 | `SPI_MISO` | in | FSPIQ, IOMUX; 8+ dummy clocks after SD deselect |
+| GPIO14 | `LCD_DC` | out | per-byte data/command (timing → direct) |
+| GPIO15 | `LoRa_BUSY` | in | polled before each SX1262 command |
+| GPIO16 | `SA868_UART_TX` | out | UART1 → walkie |
+| GPIO17 | `SA868_UART_RX` | in | UART1 ← walkie |
+| GPIO18 | `GPS_UART_RX` | in | UART2, NMEA (required) |
+| GPIO19 | `USB_D−` | io | native USB + **console via USB-Serial-JTAG** |
+| GPIO20 | `USB_D+` | io | native USB |
+| GPIO21 | `LCD_TE` | in | tearing/vsync from ST7796 (timing → direct) |
+| GPIO33 | `C5_EN` | out | *(quad-freed)* C5 reset, open-drain; not gated in normal use |
+| GPIO34 | `C5_BOOT` | out | *(quad-freed)* → C5 GPIO26 **and** GPIO28 (download strap combo) |
+| GPIO35 | `C5LINK_SCK` | out | *(quad-freed)* **SPI3** dedicated link, S3 = master |
+| GPIO36 | `C5LINK_MOSI` | out | SPI3 |
+| GPIO37 | `C5LINK_MISO` | in | SPI3; carries the whole C5→S3 stream |
+| GPIO38 | `C5LINK_CS` | out | select C5 slave + wake it from light-sleep |
+| GPIO39 | `C5LINK_DRDY` | in | C5→S3 interrupt **and** ready-strobe (see link section) |
+| GPIO40 | `ENC_A` | in | pull-up, quadrature |
+| GPIO41 | `ENC_B` | in | pull-up (encoder `SW` → PCA9555) |
+| GPIO42 | `IR_RX` | in | RMT; TSOP38238 |
+| GPIO43 | `C5_FLASH_TX` | out | U0TXD → C5 U0RXD (C5 flash bridge) |
+| GPIO44 | `C5_FLASH_RX` | in | U0RXD ← C5 U0TXD |
+| GPIO47 | `GPS_UART_TX` | out | UART2, optional (config only) |
+| GPIO48 | `PCA9555_INT` | in | expander interrupt |
+| GPIO45 | — reserve | — | ⚠ strap VDD_SPI: hold **LOW** (high = brick); pulldown line only |
+| GPIO46 | — reserve | — | ⚠ strap: LOW at boot |
 
-**Not on a direct pin:** `LoRa_DIO1` is **polled** over SPI (`GetIrqStatus`); `nRF24 IRQ` is polled over SPI too. All slow control lines are on the **PCA9555** (below), including the ones the review added — display `RESX`, backlight enable, LoRa T/R, audio mux, amp shutdown, and the 74HC138 enable.
+The 16 slow control lines (radio resets, backlight/amp/decoder enables, PTT, audio mux, CC1101 band switch, LoRa T/R, buzzer, charger `CD`, encoder `SW`, SD card-detect) ride the **PCA9555 (0x20)** — 0 host GPIO. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
 
-## Blocks and parts
+## C5 GPIO map (proposed — confirm against datasheet)
 
-| Ref | Part | Role | Key notes |
-|-----|------|------|-----------|
-| U10 | **ESP32-C5-WROOM-1U** (PSRAM) | Brain + all radios' bus master | `+3V3`; EN + boot circuit; USB on 13/14; u.FL antenna |
-| U11 | **74HC138** | 3→8 chip-select decoder | `A/B/C` = GPIO2/3/25; `G1`=+3V3, `G2B`=GND; **`G2A` = `HC138_EN`** from PCA9555 (pulled high = disabled at boot) |
-| U12 | **PCA9555** | I²C GPIO expander for slow lines | I²C `0x20`; carries the 16 low-speed signals below |
-| SW10 | Rotary encoder + push | Navigation | `A/B` = GPIO4/5 (direct); `SW` = PCA9555 |
-| J10 | USB-C data tap | Flash + data + console | `D−/D+` = GPIO13/14; shares the J1 receptacle on the power sheet |
-| — | Decoupling | C5 rails | 10 µF + 0.1 µF at each `+3V3` pin; 1 µF on EN |
+~20 usable GPIO. **Used ~18**, ~2 spare. Every pin that touches the shared bus (SCK/MOSI/MISO reused, A/B/C, DC) **must be a non-strap pin** so a warm C5 reboot cannot mis-read its boot mode from a bus the S3 is driving.
 
-### 74HC138 — chip-select map
+| C5 GPIO | Net (normal / standalone) | Dir | Note |
+|:--:|------|:--:|-------|
+| EN (pin) | `C5_EN` ← S3 | in | reset + RC; not gated in normal use |
+| GPIO26 + GPIO28 | `C5_BOOT` ← S3 | in | ⚠ strap: **both = 0 → download, both = 1 → normal**; tie together to S3 GPIO34 |
+| GPIO27 | (strap) | — | ⚠ must be pulled **high** for a valid boot; not driven |
+| GPIO23 | `LINK_SCK` / `BUS_SCK` | io | slave clock ← S3 / master → bus (via mux) |
+| GPIO24 | `LINK_MOSI` / `BUS_MOSI` | io | via mux |
+| GPIO6 | `LINK_MISO` / `BUS_MISO` | io | data → S3 / MISO from bus (via mux) |
+| GPIO8 | `LINK_CS` ← S3 | in | slave select (normal only) |
+| GPIO9 | `DRDY` → S3 | out | the one async line C5→S3 |
+| GPIO10 | `HC138_A` (standalone) | out | Hi-Z in normal |
+| GPIO19 | `HC138_B` (standalone) | out | Hi-Z in normal (GPIO19 is free — not PSRAM) |
+| GPIO1 | `HC138_C` (standalone) | out | Hi-Z in normal |
+| GPIO25 | `LCD_DC` (standalone) | out | Hi-Z in normal *(confirm non-strap)* |
+| GPIO4 | `I2C_SDA` (standalone) | o-d | released in normal *(this is JTAG MTCK — costs C5 SWD if used)* |
+| GPIO5 | `I2C_SCL` (standalone) | o-d | released in normal *(JTAG MTDO)* |
+| GPIO11 | `U0TXD` → S3 | out | UART0, flash path |
+| GPIO12 | `U0RXD` ← S3 | in | UART0, flash path |
+| GPIO13 / GPIO14 | `USB_D− / D+` | io | native USB → TS3USB221 slider mux |
+
+In standalone the C5 drives `HC138 A/B/C` itself, so the decoder produces the right `LCD_CS` / `SD_CS` for whichever device the C5 selects — **no power-gating of the 74HC138 is needed** (that hack was only for a display-only handover). The C5 reaches the backlight enable and `LCD_RESX` over the PCA9555 on the shared I²C.
+
+## The S3↔C5 link — dedicated SPI3
+
+The link is on the S3's **second free SPI host (SPI3)**, kept off the shared radio/SD/display bus so the C5's 5 GHz capture stream never competes with radio or display traffic, and so there is never a two-master contention on the main bus.
+
+| Signal | Direction | S3 / C5 |
+|---|---|---|
+| `C5LINK_SCK` | **S3 → C5** | 35 / 23 |
+| `C5LINK_MOSI` | **S3 → C5** | 36 / 24 |
+| `C5LINK_MISO` | **C5 → S3** | 37 / 6 |
+| `C5LINK_CS` | **S3 → C5** | 38 / 8 (+ wake) |
+| `C5LINK_DRDY` | **C5 → S3** | 39 / 9 |
+| `C5_EN` | **S3 → C5** | 33 / EN |
+| `C5_BOOT` | **S3 → C5** | 34 / 26+28 |
+
+**No reverse wire beyond DRDY is needed.** The whole C5→S3 payload rides `MISO` (the S3 always clocks); `DRDY` is the single asynchronous "I have data / an event" line. One catch the audit surfaced: an ESP32 SPI-slave must pre-load its TX buffer before the master starts clocking, so **`DRDY` doubles as a ready-strobe** — the S3 begins the clock only after the C5 raises `DRDY`. No separate `ACK`/`HOST_READY` line.
+
+## The standalone SPI mux (74CBTLV3257)
+
+The C5 has **one** general SPI controller, but it must be a *slave on the private link* in normal mode and a *master on the shared bus* in standalone — two different net sets. A small quad bus-switch routes the C5's three SPI lines between them, selected by the same slider:
+
+```
+                 ┌── link side  → S3 SPI3 (GPIO35/36/37)
+C5 SCK/MOSI/MISO ─┤  (74CBTLV3257, slider = S3-main)
+                 └── bus side   → shared SPI (SD/radios/ST7796)   (slider = C5-standalone)
+```
+
+`A/B/C` and `LCD_DC` need no mux — they are single-duty (C5 drives them only in standalone), so they wire straight to the shared nets and sit Hi-Z in normal mode. The slider also drives the **TS3USB221** USB mux (USB-C → S3 or C5) and **holds the inactive MCU in reset** (its shared-bus pins go Hi-Z). Use **break-before-make** on the slider and default the shared nets to pulled-inactive so cold-start has no contention.
+
+## 74HC138 — chip-select map
 
 | Output | Chip-select | On the SPI sheet |
 |:--:|------|------|
@@ -65,65 +140,39 @@ The ESP32-C5 and how every bus fans out from it: the shared SPI bus with its **7
 | Y4 | `nRF24_3_CSN` | 2.4 raw #3 |
 | Y5 | `LoRa_NSS` | SX1262 |
 | Y6 | `LCD_CS` | ST7796 display |
-| Y7 | (none) | **idle / deselect-all address** |
+| Y7 | (none) | idle / deselect-all address |
 
-Only one Y is low at a time, so only one device is ever selected. **`G2A` is gated by `HC138_EN`** (a PCA9555 output, pulled **high** at boot): the decoder stays fully disabled through the boot/strap window, and the firmware enables it only after the address lines are stable — this kills the spurious CS the always-enabled version would have asserted at reset. To talk to none (bus idle), the firmware parks `A/B/C` on **Y7**; a brief address-change transient is harmless because no SCK toggles during the switch.
+`G1` = +3V3, `G2B` = GND, **`G2A` = `HC138_EN`** (a PCA9555 output, pulled high = disabled at boot) — it stays disabled through the strap window and is a boot-gate only, not a per-transaction gate (I²C is too slow for that). Fast deselect = park `A/B/C` on **Y7**; step through Y7 between any two selects to avoid a glitch on an intermediate address.
 
-### PCA9555 — slow-signal map (I²C, 0 host GPIO)
+## PCA9555 — slow-signal map (I²C 0x20, 0 host GPIO)
 
-| Port | Signal | Dir | Goes to |
-|:--:|------|:--:|------|
-| P0.0 | `ENC_SW` | in | encoder push |
-| P0.1 | `SA868_PTT` | out | walkie push-to-talk |
-| P0.2 | `SA868_PD` | out | walkie power-down |
-| P0.3 | `Si4732_RST` | out | HF receiver reset |
-| P0.4 | `LoRa_NRESET` | out | SX1262 reset |
-| P0.5 | `BUZZER` | out | active buzzer (on/off) |
-| P0.6 | `LCD_RESX` | out | ST7796 reset |
-| P0.7 | `MUX_SEL` | out | audio 2:1 source mux (Sheet 4) |
-| P1.0 | `BQ_INT` | in | charger interrupt (Sheet 1) |
-| P1.1 | `BQ_CD` | out | charger disable / pause (Sheet 1) |
-| P1.2 | `LoRa_TR` | out | E22 T/R select → RXEN direct + TXEN via inverter (Sheet 3) |
-| P1.3 | `PAM_SD` | out | speaker-amp shutdown (Sheet 4) |
-| P1.4 | `LCD_BL_EN` | out | backlight driver enable (on/off) |
-| P1.5 | `RFSW_CTL` | out | CC1101 band RF switch (Sheet 3) |
-| P1.6 | `HC138_EN` | out | 74HC138 `G2A` gate (pulled high at boot) |
-| P1.7 | — | — | spare (e.g. jack-detect) |
+| Port | Signal | Dir | Port | Signal | Dir |
+|:--:|------|:--:|:--:|------|:--:|
+| P0.0 | `ENC_SW` | in | P1.0 | `BQ_INT` | in |
+| P0.1 | `SA868_PTT` | out | P1.1 | `BQ_CD` | out |
+| P0.2 | `SA868_PD` | out | P1.2 | `LoRa_TR` | out |
+| P0.3 | `Si4732_RST` | out | P1.3 | `PAM_SD` | out |
+| P0.4 | `LoRa_NRESET` | out | P1.4 | `LCD_BL_EN` | out |
+| P0.5 | `BUZZER` | out | P1.5 | `RFSW_CTL` | out |
+| P0.6 | `LCD_RESX` | out | P1.6 | `HC138_EN` | out |
+| P0.7 | `MUX_SEL` | out | P1.7 | `SD_CD` | in |
 
-All 16 ports mapped, 1 spare. Timing-critical lines never go here — only resets, enables, PTT, buttons and mux selects. Battery gauge is read from the **BQ25887's own I²C ADC**, so no dedicated ADC pin is needed.
+Timing-critical lines never go here — only resets, enables, PTT, mux selects and buttons. In standalone the C5 (as I²C master) drives the display-related ports (`LCD_RESX`, `LCD_BL_EN`, `HC138_EN`).
 
-### Reset & boot buttons
+## Flashing both chips
 
-Two physical buttons on the C5; the power on/off is the **master switch** (Sheet 1) — there is **no soft power button** (BQ25887 has no ship mode).
-
-- **RESET (SW_RST)** — momentary across **EN**–GND. EN carries a power-on-reset RC (10 kΩ pull-up to `+3V3` + 1 µF to GND).
-- **BOOT (SW_BOOT)** — momentary from **GPIO28** to GND. GPIO28 is the C5 download strap (low at reset → serial bootloader) with an internal pull-up; add an external pull-up too. Hold BOOT and tap RESET to force download. Normal flashing is over USB-JTAG, so this is the recovery path.
-
-**Strap levels to honour at reset** (all sampled only at reset, then free): GPIO28 high = normal boot (pull-up). **GPIO27 must be high** for a valid download, so its WS2812 line gets a pull-up (`GPIO27=0` with `GPIO28=0` is invalid). GPIO2 selects the crystal frequency — set its boot pull to match the module (40 MHz = low). Confirm GPIO26's boot-config level. Drive all strap-shared signals only after reset.
-
-## Key nets
-
-```
-SPI      : SCK(23) · MOSI(24) · MISO(6) → microSD, CC1101, 3× nRF24, SX1262, ST7796  (CS via U11)
-LCD      : SPI + LCD_CS(U11.Y6) + LCD_DC(12) + LCD_RESX(PCA9555.P0.6) ; backlight driver EN = PCA9555.P1.4
-I2C      : SDA(0) · SCL(1) → Si4732, u-blox GPS(0x42), PCA9555(0x20), BQ25887 ; Grove units (e.g. RFID2 0x28) plug in
-UART     : TX(11) → SA868.RX ; RX(15) ← SA868.TX
-138      : A(2) B(3) C(25) → U11 ; G1=+3V3, G2B=GND, G2A=HC138_EN(PCA9555.P1.6, boot=high/disabled)
-ENC      : A(4) B(5) pulled-up ; SW → PCA9555.P0.0
-IR       : RX(10, RMT) ; TX(7, RMT/LEDC)
-WS2812   : DIN(27, RMT) → 5 V level shifter → DS1 ; kept dim
-RESET    : EN → RC (10k pull-up + 1µF) + SW_RST to GND
-BOOT     : GPIO28 (int + ext pull-up) → SW_BOOT to GND ; GPIO27 pull-up keeps download valid
-USB      : D−(13) D+(14) → J1 CC-side data pair ; ESD array
-```
+- **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download.
+- **C5, in the field:** the **S3 flashes it** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD`, with `C5_BOOT` (26+28) low and an `EN` pulse. OTA-gated: reflash the C5 only on a version/CRC mismatch.
+- **C5, on the bench / standalone:** flip the slider → USB-C routes to the C5's native USB → flash any firmware from a PC directly.
 
 ## Gotchas
 
-- **Strapping pins carry outputs on purpose.** GPIO2/3/7/25/26/27 are sampled only at reset, then are free. Each gets the datasheet-recommended pull so the board always powers up in normal boot mode; the driven load must not fight that pull at t=0.
-- **74HC138 disabled through boot.** `G2A` is held high (disabled) by a pull-up until the firmware brings up the PCA9555 and drives `HC138_EN` low — no CS is asserted during the strap window.
-- **Flashing is over USB** (GPIO13/14). That frees the UART0 console pins (GPIO11/12) for the SA868 UART and `LCD_DC`. Keep USB test pads; OTA is the field path.
-- **PCA9555 is not for timing.** Anything edge-timed (`GDO0`, `BUSY`, IR, WS2812, encoder A/B) stays on a direct GPIO; the expander only carries resets, enables, PTT, mux and buttons. LoRa T/R is half-duplex and switches per-packet, so its I²C latency is fine.
-- **I²C on GPIO0/1:** external pull-ups hold them high at boot (the normal-boot level); keep them modest (4.7 kΩ) and verify GPIO0 boot behaviour on the C5 before committing.
+- **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO33–37; an octal-PSRAM S3 does not fit the link.
+- **Strap discipline.** S3 straps {0, 3, 45, 46} — keep GPIO45 low (high bricks VDD_SPI). C5 straps {26, 27, 28} (+ the JTAG group) — tie 26+28 to `C5_BOOT`, pull 27 high. Any C5 pin on the shared bus must be non-strap, or a warm C5 reboot could read a bogus boot mode from the bus.
+- **One-at-a-time on the shared bus.** In normal mode only the S3 drives it; in standalone only the C5 does. The inactive MCU is held in reset (Hi-Z). Cold-start relies on both chips' shared-bus pins defaulting to input.
+- **Polled IRQs.** `LoRa_DIO1` and the nRF24 IRQs are polled over SPI to save pins; heavy LoRa-RX during a full-screen redraw competes on the 80 MHz bus — keep a per-CS clock and batch.
+- **Tight S3 budget.** Only two strap-reserve pins remain. A new fast signal means a second PCA9555 or dropping an existing direct line.
+- **Confirm before KiCad:** the S3 is really an `N8R2`; the C5 module bonds out GPIO23/24; the exact C5 strap table; RMT/FSPI/SPI3/UART matrix routing.
 
 ---
 
