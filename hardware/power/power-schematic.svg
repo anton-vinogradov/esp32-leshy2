@@ -20,7 +20,7 @@
   </style>
   <rect class="bg" x="0" y="0" width="1180" height="660"/>
   <text class="t" x="30" y="34" font-size="16">Leshy2 · Sheet 1 — Power</text>
-  <text class="s" x="30" y="52">2S 18650 · USB-C PD · power-path · +5V / +3V3 / +3V3A</text>
+  <text class="s" x="30" y="52">2S 18650 · USB-C 5V · BOOST charger · master switch · +5V / +3V3 / +3V3A</text>
 
   <!-- J1 USB-C -->
   <rect class="box" x="30" y="90" width="105" height="96" rx="6"/>
@@ -35,24 +35,24 @@
 
   <!-- U1 CH224K sits on CC lines -->
   <rect class="ic" x="185" y="132" width="105" height="58" rx="6"/>
-  <text class="ref" x="194" y="150">U1</text>
-  <text class="t" x="194" y="167">CH224K</text>
-  <text class="s" x="194" y="183">PD → 12V req</text>
+  <text class="ref" x="194" y="150">J1</text>
+  <text class="t" x="194" y="167">USB-C 5V</text>
+  <text class="s" x="194" y="183">CC 5.1k↓ · no PD</text>
   <line class="w" x1="240" y1="132" x2="240" y2="120"/><!-- U1 senses VBUS -->
 
   <!-- U2 BQ25887 -->
   <rect class="ic" x="330" y="92" width="180" height="150" rx="7"/>
   <text class="ref" x="342" y="112">U2</text>
   <text class="t" x="342" y="130">BQ25887</text>
-  <text class="s" x="342" y="148">2S charger, I²C</text>
-  <text class="s" x="342" y="164">cell balance</text>
-  <text class="s" x="342" y="180">power-path</text>
+  <text class="s" x="342" y="148">2S BOOST chg, I²C</text>
+  <text class="s" x="342" y="164">cell balance · ADC</text>
+  <text class="s" x="342" y="180">boost 5V→8.4V</text>
   <text class="s" x="342" y="210">TS ← NTC</text>
-  <text class="s" x="342" y="228">SDA/SCL/INT → C5</text>
+  <text class="s" x="342" y="228">SDA/SCL/CD/INT → C5</text>
   <line class="w" x1="510" y1="128" x2="560" y2="128"/><!-- SW -->
   <text class="s" x="512" y="122">SW</text>
-  <line class="w" x1="510" y1="176" x2="560" y2="176"/><!-- SYS -->
-  <text class="s" x="512" y="170">SYS</text>
+  <line class="w" x1="510" y1="176" x2="560" y2="176"/><!-- BAT to bucks -->
+  <text class="s" x="512" y="170">BAT</text>
 
   <!-- L1 to VSYS -->
   <path class="coil" d="M513 128 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0"/>
@@ -76,7 +76,7 @@
   <!-- VSYS bus -->
   <line class="vsys" x1="560" y1="128" x2="560" y2="300"/>
   <line class="w" x1="545" y1="176" x2="560" y2="176"/>
-  <text class="vsys" x="566" y="124" fill="#6b7280" font-size="12" font-weight="700">VSYS 6.0–8.4V</text>
+  <text class="vsys" x="566" y="124" fill="#6b7280" font-size="12" font-weight="700">BAT 6.0–8.4V</text>
 
   <!-- U4 MP2315 +5V -->
   <rect class="ic" x="610" y="128" width="150" height="70" rx="6"/>
@@ -151,5 +151,5 @@
   </g>
 
   <text class="s" x="30" y="600">Refs map 1:1 to power.md. Values are datasheet starting points — confirm at bring-up.</text>
-  <text class="s" x="30" y="618">Charging needs PD 9–12V (2S buck can't reach 8.4V from plain 5V); device still runs from battery on 5V-only.</text>
+  <text class="s" x="30" y="618">BQ25887 boosts 5V→8.4V (no PD needed). No power-path: bucks sit on BAT. Master switch = only true-off.</text>
 </svg>
