@@ -13,6 +13,7 @@ The last sheet: the per-antenna **hardware TX-live LEDs** (RF envelope detectors
 | D50–D56 | 7× amber LED + envelope detector | **TX-live** — honest "on air" per transmit chain | **hardware, 0 GPIO** |
 | Q50–Q56 | 7× NPN (or Schottky + comparator) | detector output → LED | analog |
 | DS1 | **WS2812** RGB | general device / status LED | `WS2812` = GPIO27 (RMT), +5V |
+| U51 | **74AHCT1G125** buffer | WS2812 DIN level shift 3V3→5V | 5 V, TTL input |
 | LS2 | Active buzzer + Q57 | alerts / proximity "geiger" | `BUZZER` = PCA9555.P0.5, +5V |
 | D57 + Q58 | IR LED + drive transistor | clone / replay remotes (TX) | `IR_TX` = GPIO7 (38 kHz carrier), +5V |
 | U50 | **TSOP38238** IR receiver | read remotes (RX) | `IR_RX` = GPIO10 (RMT), +3V3 |
@@ -37,7 +38,7 @@ antenna feed ─┤├─ (light coupling cap / directional tap)
 
 ## WS2812 status LED
 
-One addressable RGB (DS1) on `GPIO27` (RMT timing), powered from `+5V`, kept dim. It shows overall device state (mode, battery, alerts) — the display carries the detail, so one LED is enough. If more are ever wanted, chain `DOUT → DIN`.
+One addressable RGB (DS1) on `GPIO27` (RMT timing), powered from `+5V`, kept dim. **Its DIN needs a 3.3 V→5 V level shift:** at VDD 5 V the WS2812 logic-high threshold is ~3.5 V — above the C5's 3.3 V — so DIN goes through a **74AHCT1G125** (U51, 5 V rail, TTL input). Alternatives: a 3.3 V-native part (SK6812) or dropping the LED VDD to ~4.3 V with a series diode. It shows overall device state (mode, battery, alerts) — the display carries the detail, so one LED is enough. If more are ever wanted, chain `DOUT → DIN`.
 
 ## Buzzer
 
@@ -50,11 +51,11 @@ An **active** (self-oscillating) buzzer on `PCA9555.P0.5` through a transistor �
 
 ## microSD
 
-Standard **SPI-mode** microSD (J50) on the shared bus, chip-select from the 74HC138 (**Y0**). 3.3 V native (no level shift on the C5). Add a 10 µF + 100 nF at the socket and, on longer traces, small series resistors on CLK/CMD/DAT. Being on the shared bus, logging interleaves with radio SPI under one-radio-at-a-time.
+Standard **SPI-mode** microSD (J50) on the shared bus, chip-select from the 74HC138 (**Y0**). 3.3 V native (no level shift on the C5). Add a 10 µF + 100 nF at the socket and, on longer traces, small series resistors on CLK/CMD/DAT. Being on the shared bus, logging interleaves with radio SPI under one-radio-at-a-time — **issue 8+ dummy clocks after deselecting the card** before addressing a radio, since some cards hold MISO for a few clocks after CS releases. The socket's optional **card-detect** switch goes on a spare PCA9555 port.
 
 ## Rotary encoder
 
-The sole onboard input: quadrature `A`/`B` on `GPIO4`/`GPIO5` (pulled up, direct for clean stepping), push `SW` on the PCA9555. Long text is entered from the phone over BLE. Extra buttons, if wanted, also go on the PCA9555. The three **system** buttons — RESET and BOOT (Sheet 2), POWER (Sheet 1) — live on their own sheets, not here.
+The sole onboard input: quadrature `A`/`B` on `GPIO4`/`GPIO5` (pulled up, direct for clean stepping), push `SW` on the PCA9555. Long text is entered from the phone over BLE. Extra buttons, if wanted, also go on the PCA9555. The system controls — RESET and BOOT buttons (Sheet 2) and the POWER **master switch** (Sheet 1) — live on their own sheets, not here.
 
 ## Gotchas
 
