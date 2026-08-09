@@ -57,7 +57,7 @@
     <text class="band" x="760" y="86">300–928</text>
     <path class="ant" d="M760 95 V132 M760 95 l-9 -10 M760 95 l9 -10"/>
     <rect class="box" x="680" y="140" width="160" height="86" rx="7"/>
-    <text class="t" x="760" y="166">CC1101</text><text class="s" x="760" y="184">E07-900M · u.FL</text><text class="s" x="760" y="201">CS Y1 · GDO0 8</text><text class="s" x="760" y="218">opt. 1-SMA switch</text>
+    <text class="t" x="760" y="166">CC1101</text><text class="s" x="760" y="184">E07-900M · u.FL</text><text class="s" x="760" y="201">CS Y1 · GDO0 8</text><text class="s" x="760" y="218">band RF switch (U25)</text>
     <path class="wire" d="M760 226 V300"/><circle class="tap" cx="760" cy="300" r="4"/><text class="cs" x="760" y="292">Y1</text>
   </g>
   <!-- SX1262 -->
@@ -65,7 +65,7 @@
     <text class="band" x="980" y="86">868 / 915</text>
     <path class="ant" d="M980 95 V132 M980 95 l-9 -10 M980 95 l9 -10"/>
     <rect class="lora" x="900" y="140" width="160" height="86" rx="7"/>
-    <text class="t" x="980" y="166">SX1262 (LoRa)</text><text class="s" x="980" y="184">E22-900M22S +22dBm</text><text class="s" x="980" y="201">NSS Y5 · BUSY 9</text><text class="s" x="980" y="218">DIO1 poll · NRESET exp</text>
+    <text class="t" x="980" y="166">SX1262 (LoRa)</text><text class="s" x="980" y="184">E22-900M22S +22dBm</text><text class="s" x="980" y="201">NSS Y5 · BUSY 9</text><text class="s" x="980" y="218">DIO1 poll · RXEN/TXEN</text>
     <path class="wire" d="M980 226 V300"/><circle class="tap" cx="980" cy="300" r="4"/><text class="cs" x="980" y="292">Y5</text>
   </g>
 
