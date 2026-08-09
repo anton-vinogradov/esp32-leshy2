@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 720" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+  <style>
+    :root{ color-scheme: light dark; }
+    .bg{fill:#ffffff}
+    .mcu{fill:#e2f0ed;stroke:#0f8f84;stroke-width:2}
+    .box{fill:#f2f6f7;stroke:#4a5b62;stroke-width:1.6}
+    .dec{fill:#e6f1fb;stroke:#0c447c;stroke-width:1.6}
+    .exp{fill:#faeeda;stroke:#854f0b;stroke-width:1.6}
+    .bus{stroke:#4a5b62;stroke-width:3;fill:none}
+    .wire{stroke:#4a5b62;stroke-width:1.4;fill:none}
+    .tap{fill:#4a5b62}
+    .t{fill:#152220;font-size:13px;font-weight:700;text-anchor:middle}
+    .s{fill:#5c6f6c;font-size:11px;text-anchor:middle}
+    .sl{fill:#5c6f6c;font-size:11px;text-anchor:start}
+    .buslbl{fill:#0f8f84;font-size:12px;font-weight:700}
+    .pin{fill:#0c447c;font-size:10.5px;font-weight:700}
+    .title{fill:#152220;font-size:16px;font-weight:700}
+    .sub{fill:#5c6f6c;font-size:11.5px}
+    @media (prefers-color-scheme: dark){
+      .bg{fill:#0d1518}
+      .mcu{fill:#10312e;stroke:#2bb3a6}
+      .box{fill:#17262b;stroke:#33505a}
+      .dec{fill:#042c53;stroke:#5b9bd8}
+      .exp{fill:#412402;stroke:#d69a3c}
+      .bus{stroke:#5b6f77}.wire{stroke:#33505a}.tap{fill:#5b6f77}
+      .t{fill:#e7eff0}.s{fill:#90a6ab}.sl{fill:#90a6ab}.buslbl{fill:#2bb3a6}.pin{fill:#8fc0f0}
+      .title{fill:#e7eff0}.sub{fill:#90a6ab}
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="1120" height="720"/>
+  <text class="title" x="28" y="32">Leshy2 — Sheet 2 · ESP32-C5 + buses</text>
+  <text class="sub" x="28" y="52">One shared SPI bus (CS via 74HC138) · I²C (with PCA9555 slow-line expander) · UART → SA868 · direct timing GPIO · native USB</text>
+
+  <!-- MCU -->
+  <rect class="mcu" x="40" y="110" width="180" height="470" rx="10"/>
+  <text class="t" x="130" y="330" font-size="17">ESP32-C5</text>
+  <text class="s" x="130" y="351">+PSRAM</text>
+  <text class="s" x="130" y="367">bus master</text>
+  <text class="s" x="130" y="392">flash/PSRAM</text>
+  <text class="s" x="130" y="407">GPIO16–22</text>
+
+  <!-- SPI bus -->
+  <line class="bus" x1="220" y1="150" x2="900" y2="150"/>
+  <circle class="tap" cx="220" cy="150" r="4"/>
+  <text class="buslbl" x="228" y="142">SPI</text>
+  <text class="pin" x="228" y="168" text-anchor="start">SCK 23 · MOSI 24 · MISO 6</text>
+
+  <rect class="dec" x="430" y="185" width="170" height="86" rx="7"/>
+  <text class="t" x="515" y="212">74HC138</text>
+  <text class="s" x="515" y="230">A2 · B3 · C25 → 8 CS</text>
+  <text class="s" x="515" y="248">G1=+3V3 · G2A/B=GND</text>
+  <text class="s" x="515" y="264">Y7 = deselect-all</text>
+  <line class="wire" x1="515" y1="150" x2="515" y2="185"/><circle class="tap" cx="515" cy="150" r="4"/>
+
+  <rect class="box" x="640" y="100" width="250" height="100" rx="7"/>
+  <text class="t" x="765" y="122">SPI devices — CS from 138</text>
+  <text class="sl" x="654" y="142">Y0 microSD   Y1 CC1101</text>
+  <text class="sl" x="654" y="160">Y2·Y3·Y4 nRF24 ×3</text>
+  <text class="sl" x="654" y="178">Y5 SX1262 (LoRa)   Y6 ST7796</text>
+  <text class="sl" x="654" y="196">+ LCD_DC 12 · LoRa_DIO1 polled</text>
+  <line class="wire" x1="600" y1="228" x2="765" y2="228" /><line class="wire" x1="765" y1="228" x2="765" y2="200"/>
+
+  <!-- I2C bus -->
+  <line class="bus" x1="220" y1="330" x2="900" y2="330"/>
+  <circle class="tap" cx="220" cy="330" r="4"/>
+  <text class="buslbl" x="228" y="322">I²C</text>
+  <text class="pin" x="228" y="348" text-anchor="start">SDA 0 · SCL 1 (4.7k pull-ups)</text>
+
+  <rect class="exp" x="430" y="360" width="170" height="86" rx="7"/>
+  <text class="t" x="515" y="387">PCA9555</text>
+  <text class="s" x="515" y="405">0x20 · 16 slow lines</text>
+  <text class="s" x="515" y="421">ENC_SW·PTT·PD·RST</text>
+  <text class="s" x="515" y="437">NRESET·buzzer·BQ×3</text>
+  <line class="wire" x1="515" y1="330" x2="515" y2="360"/><circle class="tap" cx="515" cy="330" r="4"/>
+
+  <rect class="box" x="640" y="290" width="250" height="72" rx="7"/>
+  <text class="t" x="765" y="312">I²C devices</text>
+  <text class="sl" x="654" y="332">Si4732 · u-blox GPS 0x42</text>
+  <text class="sl" x="654" y="350">RFID2 0x28 · BQ25887 · Grove</text>
+  <line class="wire" x1="765" y1="330" x2="765" y2="362"/><circle class="tap" cx="765" cy="330" r="4"/>
+
+  <!-- UART -->
+  <line class="bus" x1="220" y1="500" x2="560" y2="500"/>
+  <circle class="tap" cx="220" cy="500" r="4"/>
+  <text class="buslbl" x="228" y="492">UART</text>
+  <text class="pin" x="228" y="518" text-anchor="start">TX 11 · RX 15</text>
+  <rect class="box" x="430" y="472" width="150" height="56" rx="7"/>
+  <text class="t" x="505" y="497">SA868-U</text>
+  <text class="s" x="505" y="515">walkie control</text>
+  <line class="wire" x1="430" y1="500" x2="430" y2="500"/>
+
+  <!-- Direct GPIO band -->
+  <rect class="box" x="40" y="600" width="850" height="96" rx="9"/>
+  <text class="t" x="465" y="624">Direct timing GPIO (RMT / edge)</text>
+  <text class="sl" x="60" y="646">CC1101_GDO0 8 · LoRa_BUSY 9 · nRF24_CE 26 · IR_RX 10 · IR_TX 7</text>
+  <text class="sl" x="60" y="666">WS2812 27 · ENC_A 4 · ENC_B 5 · LCD_DC 12</text>
+  <text class="sl" x="60" y="686">USB D− 13 / D+ 14 (native, flash+data) · spare: GPIO28 · gauge via BQ I²C</text>
+  <line class="wire" x1="130" y1="580" x2="130" y2="600"/>
+
+  <rect class="box" x="910" y="472" width="180" height="56" rx="7"/>
+  <text class="t" x="1000" y="497">USB-C data</text>
+  <text class="s" x="1000" y="515">D−13 / D+14 · ESD</text>
+</svg>

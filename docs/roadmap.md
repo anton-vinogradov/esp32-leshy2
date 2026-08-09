@@ -17,25 +17,26 @@ A pragmatic plan for **Leshy2** — an open-source portable multiband RF handhel
 - [x] Pick the brain: **ESP32-C5** (one chip, native 2.4 + 5 GHz Wi-Fi + BLE)
 - [x] Lock the onboard RF set: **3x nRF24L01+PA/LNA**, **CC1101**, **Si4732**, **SA868-U**
 - [x] Lock the audio path: analog line-out (Si4732 / SA868) -> **PAM8302** class-D amp -> small speaker
-- [x] Lock long-range TX: **Meshtastic over LoRa SX1262** on the plug-in cap
-- [x] Lock the display: **QSPI AMOLED (RM67162, 1.91″ 240×536)** on its own QSPI bus
-- [x] Lock expansion: **1x Cardputer ADV EXT-14P cap slot** + **2x Grove HY2.0-4P** ports
+- [x] Lock long-range TX: **Meshtastic over LoRa SX1262**, onboard
+- [x] Lock the display: **3.5″ IPS TFT (ST7796, 320×480) over SPI** (shares the radio SPI bus, CS via 138 + DC)
+- [x] Lock expansion: **1× Grove HY2.0-4P (I²C)** port (M5 I²C Units)
 - [x] Lock power: **2S 18650**, own PMIC (BQ25xxx charger + CH224K USB-C PD + power-path, buck 5V/3A, LDO 3.3V)
-- [x] Lock antennas: **7 onboard** + the cap's own LoRa RP-SMA and internal GPS ceramic; two LEDs per antenna (RX blue / TX amber)
+- [x] Lock antennas: **8 onboard** (LoRa now on the board); one hardware TX-live LED per transmit chain (no RX LED); the GPS antenna sits on the u-blox module
 
 ### 2. KiCad schematic — next
 
 Built sheet by sheet. Start with power, then the MCU and its buses, then each RF chain.
 
 - [ ] **Power first:** 2S 18650 -> BQ25xxx charger + CH224K USB-C PD + power-path -> buck 5V/3A -> LDO 3.3V
-- [ ] **C5 + buses:** ESP32-C5 (PSRAM variant), SPI (microSD + cap + CC1101 + 3× nRF24, separate CS lines), QSPI (AMOLED display), I2C (Grove port 1 through a PCA9548 mux), UART, GPIO, rotary encoder + buttons
-- [ ] **RF chain — 3x nRF24L01+PA/LNA:** brownout fix = 100-220 uF bulk + 100 nF at each module VCC
-- [ ] **RF chain — CC1101** sub-GHz (300-928 MHz OOK/FSK; optional RF switch to fold its bands into one SMA)
+- [x] **C5 + buses** (Sheet 2, [hardware/c5-buses](../hardware/c5-buses/c5-buses.md)): ESP32-C5 (PSRAM), SPI (microSD + SX1262 + CC1101 + 3× nRF24 + ST7796, chip-selects via a 74HC138 decoder), I2C (Si4732 + u-blox GPS + PCA9555 expander + Grove), UART (SA868), rotary encoder + buttons, native USB
+- [x] **RF chain — 3x nRF24L01+PA/LNA** (Sheet 3, [hardware/rf](../hardware/rf/rf.md)): brownout fix = 100-220 µF bulk + 100 nF at each module VCC; CSN via 138, tied CE, IRQ polled
+- [x] **RF chain — CC1101** sub-GHz (Sheet 3): 300-928 MHz OOK/FSK; CS via 138, GDO0 direct; optional RF switch to fold its bands into one SMA
+- [x] **RF chain — SX1262 (LoRa)** onboard (Sheet 3): E22-900M22S +22 dBm; NSS via 138, BUSY direct, DIO1 polled, NRESET on the PCA9555
 - [ ] **RF chain — Si4732** receiver (HF input with an ESD/clamp protector — no manual disconnect switch; isolation is handled by mode-exclusive sleep; analog line-out)
 - [ ] **RF chain — SA868-U** walkie (UART control, PTT, analog audio)
 - [ ] **Audio:** PAM8302 amp + speaker (the MCU is not in the audio path)
-- [ ] **Expansion:** cap slot (14P, 1:1 replica of the Cardputer ADV EXT bus) + 2x Grove ports
-- [ ] **Indicators + I/O:** WS2812 RX LEDs, hardware TX-live envelope detectors (transmit chains only), buzzer, IR TX/RX, microSD
+- [ ] **Expansion:** 1× Grove I²C port (M5 I²C Units; Grove I²C hub for several at once)
+- [ ] **Indicators + I/O:** WS2812 status LED, hardware TX-live envelope detectors (transmit chains only, 0 GPIO), buzzer, IR TX/RX, microSD
 
 ### 3. PCB layout
 
@@ -58,12 +59,12 @@ Built sheet by sheet. Start with power, then the MCU and its buses, then each RF
 - [ ] Wi-Fi 2.4 + 5 GHz — 5 GHz is **Marauder-class** (scan, deauth, beacon / probe flood, sniff management frames)
 - [ ] Drivers for each RF chain: 3x nRF24, CC1101, Si4732, SA868-U
 - [ ] Per-region LoRa power caps: EU433 +10 dBm, EU868 +14 dBm, 869.4-869.65 MHz +27 dBm at 10% duty cycle, US915 +30 dBm with frequency hopping
-- [ ] Cap driver (LoRa-1262 + GNSS), microSD PCAP logging, Grove units (RFID2 NFC, RTC, IMU / compass)
+- [ ] Onboard SX1262 LoRa driver, u-blox GPS (I²C NMEA), microSD PCAP logging, Grove units (RFID2 NFC, RTC, IMU / compass)
 - [ ] BLE text entry (long text is typed on a phone in the Meshtastic app)
 
 ### 6. Antenna tuning (VNA)
 
-- [ ] Tune each of the 7 onboard antennas with a **VNA** (manual maker step)
+- [ ] Tune each of the 8 onboard antennas with a **VNA** (manual maker step)
 
 ### 7. Field testing
 
