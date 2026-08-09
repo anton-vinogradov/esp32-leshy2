@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 752" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
   <style>
     :root{ color-scheme: light dark; }
     .bg{fill:#ffffff}
@@ -28,7 +28,7 @@
     }
   </style>
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#8a9aa0"/></marker></defs>
-  <rect class="bg" x="0" y="0" width="1000" height="700"/>
+  <rect class="bg" x="0" y="0" width="1000" height="752"/>
   <text class="title" x="30" y="34">Leshy2 — system architecture</text>
   <text class="sub" x="30" y="52">ESP32-C5 hub · shared SPI/I²C/UART · SPI display · 8 antennas · 1 Grove I²C</text>
 
@@ -98,8 +98,6 @@
   <path class="wire" d="M115 590 V628"/>
   <rect class="box" x="40" y="630" width="430" height="56" rx="9"/><text class="t" x="255" y="656">SPI display · GPIO · RMT · PWM</text><text class="s" x="255" y="675">ST7796 · IR · WS2812 · buzzer · encoder + buttons</text>
 
-  <circle class="rx" cx="512" cy="634" r="5"/><text class="s" x="524" y="638" text-anchor="start">RX</text>
-  <circle class="tx" cx="566" cy="634" r="5"/><text class="s" x="578" y="638" text-anchor="start">TX (amber LED = hardware on-air)</text>
-  <circle class="off" cx="512" cy="662" r="5"/><text class="s" x="524" y="666" text-anchor="start">no TX (Si4732, GPS = receive only)</text>
-  <text class="s" x="512" y="690" text-anchor="start">All RF self-built · C5 = 2.4/5 GHz · no shared RF switch → separate antennas</text>
+  <text class="sub" x="58" y="714">Antenna dots (above): blue = RX · amber = TX (hardware on-air) · none = receive-only (Si4732, GPS).</text>
+  <text class="sub" x="58" y="736">All RF self-built · no shared RF switch, separate antenna per chain.</text>
 </svg>

@@ -63,7 +63,7 @@
   <text class="ref" x="342" y="352">BT1</text>
   <text class="t" x="342" y="370">2S · 2×18650</text>
   <text class="s" x="342" y="386">≈7.4 V · 18 Wh</text>
-  <text class="s" x="342" y="404">U3 S-8254A + Q1</text>
+  <text class="s" x="342" y="404">U3 S-8252A + Q1</text>
   <text class="s" x="342" y="420">F1 PPTC · RT1 NTC</text>
   <line class="w" x1="380" y1="330" x2="380" y2="306"/><!-- BAT+ lower -->
   <line class="w" x1="380" y1="306" x2="393" y2="280"/><!-- master switch lever -->
@@ -76,7 +76,7 @@
   <!-- VSYS bus -->
   <line class="vsys" x1="560" y1="128" x2="560" y2="300"/>
   <line class="w" x1="545" y1="176" x2="560" y2="176"/>
-  <text class="vsys" x="566" y="124" fill="#6b7280" font-size="12" font-weight="700">BAT 6.0–8.4V</text>
+  <text class="vsys" x="566" y="124" fill="#6b7280" font-size="12" font-weight="700">BAT</text>
 
   <!-- U4 MP2315 +5V -->
   <rect class="ic" x="610" y="128" width="150" height="70" rx="6"/>
@@ -103,10 +103,10 @@
 
   <!-- +5V rail -->
   <line class="r5" x1="825" y1="150" x2="1000" y2="150"/>
-  <text class="r5t" x="828" y="142">+5V</text>
+  <text class="r5t" x="1005" y="142">+5V</text>
   <!-- +3V3 rail -->
   <line class="r33" x1="825" y1="280" x2="1000" y2="280"/>
-  <text class="r33t" x="828" y="272">+3V3</text>
+  <text class="r33t" x="1005" y="272">+3V3</text>
 
   <!-- U6 LDO fed from +5V, makes +3V3A -->
   <line class="r5" x1="900" y1="150" x2="900" y2="392"/>
