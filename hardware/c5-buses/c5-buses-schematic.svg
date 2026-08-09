@@ -69,8 +69,8 @@
   <rect class="exp" x="430" y="360" width="170" height="86" rx="7"/>
   <text class="t" x="515" y="387">PCA9555</text>
   <text class="s" x="515" y="405">0x20 · 16 slow lines</text>
-  <text class="s" x="515" y="421">ENC_SW·PTT·PD·RST</text>
-  <text class="s" x="515" y="437">NRESET·buzzer·BQ×3</text>
+  <text class="s" x="515" y="421">ENC_SW·PTT·PD·resets</text>
+  <text class="s" x="515" y="437">RESX·BL·mux·T/R·138_EN·BQ</text>
   <line class="wire" x1="515" y1="330" x2="515" y2="360"/><circle class="tap" cx="515" cy="330" r="4"/>
 
   <rect class="box" x="640" y="290" width="250" height="72" rx="7"/>
@@ -94,7 +94,7 @@
   <text class="t" x="465" y="624">Direct timing GPIO (RMT / edge)</text>
   <text class="sl" x="60" y="646">CC1101_GDO0 8 · LoRa_BUSY 9 · nRF24_CE 26 · IR_RX 10 · IR_TX 7</text>
   <text class="sl" x="60" y="666">WS2812 27 · ENC_A 4 · ENC_B 5 · LCD_DC 12</text>
-  <text class="sl" x="60" y="686">USB D− 13 / D+ 14 (native, flash+data) · spare: GPIO28 · gauge via BQ I²C</text>
+  <text class="sl" x="60" y="686">USB D− 13 / D+ 14 (native, flash+data) · GPIO28 = BOOT · gauge via BQ I²C</text>
   <line class="wire" x1="130" y1="580" x2="130" y2="600"/>
 
   <rect class="box" x="910" y="472" width="180" height="56" rx="7"/>
