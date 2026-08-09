@@ -31,6 +31,7 @@ Power-path means the system runs from `VSYS` **even with no battery / while char
 | BT1 | 2× 18650 (2S) | Pack | ~7.4 V nom, ~18 Wh; cell mid-tap wired for balancing |
 | U3 + Q1 | **S-8254A** + dual N-MOSFET | 2S protection | OV / UV / OC / short; low-side FETs |
 | F1 | PPTC fuse | Pack over-current | In series with pack + |
+| SW_MASTER | Hard SPST master switch (≥3 A) | True-off / storage kill — breaks the pack line | in series, pack → U2.BAT |
 | RT1 | 10 kΩ NTC | Pack temperature | To BQ25887 `TS` pin |
 | U4 | **MP2315** | +5 V / 3 A buck | Vref 0.8 V; L2 4.7 µH |
 | U5 | **TLV62569** | +3.3 V / 2 A buck | Vref 0.6 V; L3 2.2 µH |
@@ -43,7 +44,8 @@ Power-path means the system runs from `VSYS` **even with no battery / while char
 USB_VBUS : J1.VBUS ── U1.VBUS ── U2.VBUS ── C1(10µF) ── D1(TVS)
 USB_CC1  : J1.CC1  ── U1.CC1
 USB_CC2  : J1.CC2  ── U1.CC2
-VBAT     : BT1+ ── F1 ── Q1(protection) ── U2.BAT ; BATM = cell mid-tap ── U2.VC / U3
+VBAT     : BT1+ ── Q1(protection) ── F1 ── SW_MASTER ── U2.BAT (power-path) ; BATM = mid-tap ── U2.VC / U3
+           (master open = battery fully disconnected, ~0 draw ; USB still powers SYS via power-path)
 VSYS     : U2.SYS ── U4.IN ── U5.IN ── C6(22µF bulk)
 SW1      : U2.SW ── L1(2.2µH) ── VSYS
 +5V      : U4.SW ── L2(4.7µH) ── +5V ── U6.IN ── C_out(2×22µF)
@@ -85,7 +87,7 @@ GND      : common
 - **Charging needs PD.** With plain 5 V USB (no PD), a 2S buck charger cannot reach 8.4 V — CH224K must negotiate 9–12 V. The device still **runs** from battery on 5 V-only input.
 - **Don't use IP5306-class power banks** here — weak boost and auto-shutdown at low load. This is why we roll our own PMIC.
 - **TX power is a firmware concern, not a rail concern** — per-region caps are enforced in software, but the +5V rail is sized to *allow* the legal maximum (e.g., SA868 2 W) without sagging.
-- **Power on/off.** The power button pulls BQ25887 `/QON` to wake from ship mode with the MCU fully off; power-off is a firmware I²C ship-mode command (menu), and a forced cutoff is a long `/QON` press per the BQ timer. RESET (EN) and BOOT are separate buttons on the C5 (Sheet 2).
+- **Power on/off — two layers.** *Daily:* the power button pulls BQ25887 `/QON` to wake from ship mode (MCU off); power-off is a firmware I²C ship-mode command that first parks TX and flushes the SD, then opens the BATFET (~µA). A long `/QON` press is a hardware **reset** (reboots a hung MCU), **not** an off. *True-off / storage:* the hard **master switch** breaks the pack line — firmware-independent, zero battery draw (USB can still run the system via power-path). RESET (EN) and BOOT are on the C5 (Sheet 2).
 
 ---
 

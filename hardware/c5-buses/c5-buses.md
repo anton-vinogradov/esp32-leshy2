@@ -90,7 +90,7 @@ Three physical buttons, none of which needs a general-purpose GPIO:
 
 - **RESET (SW_RST)** — momentary across **EN**–GND. EN carries a power-on-reset RC (10 kΩ pull-up to `+3V3` + 1 µF to GND).
 - **BOOT (SW_BOOT)** — momentary from **GPIO28** to GND. GPIO28 is the C5 download strap (low at reset → serial bootloader) with an internal pull-up; add an external pull-up too. Hold BOOT and tap RESET to force download. Normal flashing is over USB-JTAG, so this is the recovery path.
-- **POWER (SW_PWR)** — to the **BQ25887 `/QON`** pin (ship-mode wake), on the power sheet — so it works with the MCU fully off. Press to turn on; power-off is an I²C ship-mode command.
+- **POWER (SW_PWR)** — to the **BQ25887 `/QON`** pin (ship-mode wake), on the power sheet — so it works with the MCU fully off. Press to turn on; power-off is an I²C ship-mode command (clean shutdown). A hard **master switch** (Sheet 1) is the firmware-independent true-off.
 
 **Strap levels to honour at reset** (all sampled only at reset, then free): GPIO28 high = normal boot (pull-up). **GPIO27 must be high** for a valid download, so its WS2812 line gets a pull-up (`GPIO27=0` with `GPIO28=0` is invalid). GPIO2 selects the crystal frequency — set its boot pull to match the module (40 MHz = low). Confirm GPIO26's boot-config level. Drive all strap-shared signals only after reset.
 

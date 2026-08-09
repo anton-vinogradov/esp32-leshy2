@@ -65,8 +65,11 @@
   <text class="s" x="342" y="386">≈7.4 V · 18 Wh</text>
   <text class="s" x="342" y="404">U3 S-8254A + Q1</text>
   <text class="s" x="342" y="420">F1 PPTC · RT1 NTC</text>
-  <line class="w" x1="380" y1="330" x2="380" y2="242"/><!-- BAT+ to U2 -->
-  <text class="s" x="386" y="300">BAT</text>
+  <line class="w" x1="380" y1="330" x2="380" y2="306"/><!-- BAT+ lower -->
+  <line class="w" x1="380" y1="306" x2="393" y2="280"/><!-- master switch lever -->
+  <line class="w" x1="380" y1="276" x2="380" y2="242"/><!-- BAT+ upper to U2 -->
+  <text class="s" x="399" y="292" text-anchor="start">SW_MASTER</text>
+  <text class="s" x="372" y="262" text-anchor="end">BAT</text>
   <line class="w" x1="440" y1="330" x2="440" y2="242"/><!-- mid tap -->
   <text class="s" x="446" y="320">BATM</text>
 
