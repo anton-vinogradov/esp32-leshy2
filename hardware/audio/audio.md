@@ -25,20 +25,20 @@ Volume is set **inside each radio** — Si4732 by an I²C register, SA868 by a U
 ```
 Si4732 (U30)
   I2C     : SDA(0) · SCL(1)                         RST → PCA9555.P0.3
-  clock   : 32.768 kHz crystal on RCLK/GPO3         VDD → +3V3A
+  clock   : 32.768 kHz crystal on RCLK/GPO3 + 2×~22 pF load caps   VDD → +3V3A ; SEN → GND (addr 0x11)
   antenna : HF/CB telescopic whip → AMI via match + ESD clamp ; FM tap → FMI (series cap)
   audio   : LOUT + ROUT → (L+R sum) → mux U33.A
 
 SA868-U (U31)
   UART    : TX(11) → U31.RXD · RX(15) ← U31.TXD     PTT → PCA9555.P0.1 · PD → PCA9555.P0.2
-  power   : module Vin = +5V (2 W PA) ; logic 3V3
+  power   : module Vin = +5V + local 220–470µF + 100nF bulk (2 W PA burst) ; logic 3V3
   antenna : 433/446 UHF → SMA
   RX audio: U31.AF_OUT → mux U33.B
   TX audio: MK1 electret → 1 µF → U31.MIC_IN        (see gotcha)
 
 Audio out
   mux     : U33 select = PCA9555.P0.7 (Si4732 vs SA868, one active at a time)
-  amp     : U33.OUT → R_in → PAM8302.IN+ ; PAM8302.SD → PCA9555 ; +5V
+  amp     : U33.OUT → R_in → PAM8302.IN+ ; MUX_SEL → PCA9555.P0.7 ; PAM_SD → PCA9555.P1.3 ; +5V
   speaker : PAM8302 OUT± → LS1 (4–8 Ω, BTL, no ground reference)
   opt jack: J30 tip = pre-amp line tap ; sleeve-switch → mute PAM8302
 ```
@@ -50,14 +50,15 @@ Because a radio mode is exclusive, only one audio source is ever live, so a tiny
 ## Si4732 — receiver front end
 
 - **Clean supply:** `+3V3A` (low-noise LDO, power sheet) keeps switching noise off the receiver.
-- **RCLK:** a 32.768 kHz watch crystal is the reference; keep its traces short.
+- **RCLK:** a 32.768 kHz watch crystal is the reference — add **two ~22 pF load caps** (per the crystal's CL) or it may not start; keep traces short.
+- **I²C address:** tie **SEN → GND** for address `0x11` (SEN → VIO = 0x63); fix it so the address is deterministic.
 - **HF input protection:** the big telescopic whip feeds `AMI` through a matching network with a **passive ESD/clamp** (back-to-back diodes). There is **no manual antenna disconnect** — de-sense from our own transmitters is handled by mode-exclusive sleep, and the whip unscrews.
 - **Line-out:** `LOUT`/`ROUT` are real analog audio; sum L+R to mono for the single speaker.
 
 ## SA868-U — voice walkie
 
 - **Control over UART** (frequency, squelch, volume); **PTT** keys TX, **PD** sleeps the module. Both are slow → on the PCA9555.
-- **PA on `+5V`** for the 2 W burst; the +5V rail is sized for it (power sheet).
+- **PA on `+5V`** for the 2 W burst; add **local bulk (220–470 µF + 100 nF at the module Vin)** so a PTT burst doesn't sag the rail and distort TX. The +5V rail is sized for it (power sheet).
 - **Legal power** is capped per region in firmware (446 PMR ≤ 0.5 W ERP; 5 W only on ham 70 cm with a licence).
 
 ## PAM8302 — speaker amp
