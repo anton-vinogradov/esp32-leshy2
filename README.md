@@ -42,24 +42,24 @@ Grouped by what you actually do with it. Everything is meant for your own equipm
 
 **Transmit**
 - SA868-U walkie: talk on 433 / 446 MHz, RX and TX up to 2 W (PTT, UART control). TX power is region / licence limited — 446 PMR max 0.5 W ERP; 5 W only on ham 70 cm with a licence.
-- Meshtastic over LoRa (SX1262 on the plug-in cap): encrypted text mesh at kilometer range (+22 dBm). Legal power caps are enforced per region in firmware.
+- Meshtastic over LoRa (onboard SX1262): encrypted text mesh at kilometer range (+22 dBm). Legal power caps are enforced per region in firmware.
 
 **Spectrum view**
-- QSPI AMOLED (RM67162, 1.91″ 240×536) — per-pixel black saves power on a dark waterfall; QSPI is ~4× faster than SPI.
+- 3.5″ IPS TFT (ST7796, 320×480) over SPI — a large color waterfall with a bright backlight that stays readable outdoors.
 - 2.4 GHz raw spectrum via the nRF24 chain; sub-GHz waterfall via CC1101.
-- Per-antenna LEDs: blue RX (WS2812, firmware-driven) and amber TX (hardware envelope detector — honest "on air" even if firmware hangs).
+- Per-antenna amber TX LED — a hardware envelope detector, honest "on air" even if firmware hangs, 0 GPIO. No RX LED (a detector would hurt receive sensitivity); the display shows the active chain.
 
 **Aux (onboard)**
 - microSD (SPI) for PCAP logging.
 - IR TX / RX.
-- WS2812 RGB + buzzer.
+- WS2812 RGB status LED + buzzer.
 - Buttons + rotary encoder.
+- GPS (u-blox on the I²C Grove bus) for position / time.
 - Long text is typed on your phone over BLE (Meshtastic app) — there is no onboard keyboard.
 
 **Expandability (M5-compatible)**
-- **1× cap slot** — a faithful 1:1 replica of the Cardputer ADV EXT 2.54-14P bus. Hosts the M5 Cap LoRa-1262 (SX1262 +22 dBm + GNSS with internal ceramic antenna) for Meshtastic **and** GPS in one cap (~14.50 USD).
-- **2× Grove HY2.0-4P** ports. Port 1 = I2C bus with a PCA9548 mux (RFID2 NFC + RTC + IMU / compass + future I2C units, no address clashes). Port 2 = flexible I2C / UART / GPIO / ADC.
-- Supports M5 **Units** and **Caps** only. M5 Modules and StickC HATs use different connectors and are **not** supported. DAC-output units do not work (the C5 has no DAC).
+- **1× Grove HY2.0-4P port (I²C).** Hosts the u-blox GPS plus any M5 I²C Units — RFID2 NFC (0x28), RTC, IMU / compass, sensors — addressed individually, with a Grove I²C hub when several are plugged at once.
+- Supports M5 **Grove I²C Units** only. M5 **Caps**, **Modules** and StickC **HATs** use different connectors and are **not** supported. DAC-output units do not work (the C5 has no DAC).
 
 ## 📻 Frequency map
 
@@ -72,7 +72,8 @@ Grouped by what you actually do with it. Everything is meant for your own equipm
 | 433 / 446 MHz NBFM | SA868-U | ✓ | ✓ (≤2 W) | listen and talk (voice walkie, PTT) |
 | 27 MHz CB + HF / MW / LW | Si4732 | ✓ | — | listen AM / SSB / CW shortwave and CB |
 | 64–108 MHz FM | Si4732 | ✓ | — | listen to FM broadcast radio |
-| LoRa (EU433 / EU868 / US915) | SX1262 (cap) | ✓ | ✓ (+22 dBm) | Meshtastic encrypted text mesh, km range |
+| LoRa (EU433 / EU868 / US915) | SX1262 (onboard) | ✓ | ✓ (+22 dBm) | Meshtastic encrypted text mesh, km range |
+| GPS L1 ~1.575 GHz | u-blox (I²C) | ✓ | — | position / time (NMEA over I²C) |
 
 Legal LoRa power caps enforced in firmware: EU433 +10 dBm, EU868 +14 dBm, 869.4–869.65 MHz sub-band +27 dBm at 10% duty, US915 +30 dBm with frequency hopping.
 
@@ -80,13 +81,15 @@ Legal LoRa power caps enforced in firmware: EU433 +10 dBm, EU868 +14 dBm, 869.4�
 
 ![Leshy2 system architecture](docs/img/system-diagram.svg)
 
-- **One brain:** ESP32-C5 (RISC-V) — native Wi-Fi 2.4 + 5 GHz and BLE in a single MCU. Firmware is ported from the ESP32-S3 (leshy) codebase.
+- **One brain:** ESP32-C5 (RISC-V) — native Wi-Fi 2.4 + 5 GHz and BLE in a single MCU, and the only ESP32 with native 5 GHz. Firmware is ported from the ESP32-S3 (leshy) codebase.
 - **All onboard RF** sits on shielded u.FL modules — chosen to de-risk the first PCB spin.
-- **Shared buses:** SPI (microSD + cap + CC1101 + 3× nRF24, each with its own CS), QSPI (the AMOLED display), I2C (both Grove ports + PCA9548 mux), UART (SA868 + cap).
-- **7 onboard antennas:** C5 2.4/5 dual-band, 3× nRF24, CC1101, Si4732 telescopic whip, SA868 UHF. Antennas go on top; expander connectors on the sides or back. There is no shared RF switch, so each chain has its own antenna. (The plug-in cap adds its own LoRa RP-SMA + internal GPS ceramic.)
-- **Expansion:** 1 cap slot + 2 Grove ports.
+- **Shared buses:** SPI (microSD + onboard SX1262 + CC1101 + 3× nRF24 + the ST7796 display, chip-selects via a 74HC138 decoder), I2C (Si4732 + u-blox GPS + a PCA9555 expander + the Grove port), UART (SA868).
+- **8 onboard antennas:** C5 2.4/5 dual-band, 3× nRF24, CC1101, Si4732 telescopic whip, SA868 UHF, SX1262 LoRa. Antennas go on top; expander connectors on the sides or back. There is no shared RF switch, so each chain has its own antenna. (The u-blox GPS carries its own integrated antenna on its module.)
+- **Expansion:** 1 Grove I²C port (M5 I²C Units).
 - **Power:** 2× 18650 in 2S (~7.4 V, ~18 Wh) with an onboard PMIC — BQ25xxx charger + USB-C PD (CH224K) + power-path (works while charging), buck 5 V/3 A + LDO 3.3 V. Runtime: light ~9 h, active ~3.6 h, TX peaks ~2.5 h.
 - **PCB:** 4-layer (JLCPCB JLC7628), designed in KiCad. Antennas are tuned by hand with a VNA.
+
+One radio runs at a time, so the SPI/I²C/UART buses are shared and idle radios sleep; the low-speed control lines ride an I²C expander (PCA9555). That is what fits this much radio into the C5's ~20 usable GPIO. See [docs/pin-budget.md](docs/pin-budget.md).
 
 ## ⚖️ Honest limits
 

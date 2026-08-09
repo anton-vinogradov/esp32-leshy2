@@ -15,7 +15,7 @@ net-by-net connections, and passive values. See [power-schematic.svg](power-sche
 | `VBUS` | USB-C | 5 V, or **12 V** via PD | input | charger only |
 | `VBAT` | 2S pack | 6.0–8.4 V | — | charger / power-path |
 | `VSYS` | charger power-path | 6.0–8.4 V | ~3 A | the two bucks |
-| `+5V` | buck from VSYS | 5.0 V | 3 A | SA868 PA, LoRa cap, WS2812, audio amp, Grove/cap 5V |
+| `+5V` | buck from VSYS | 5.0 V | 3 A | SA868 PA, onboard LoRa, WS2812, audio amp, Grove 5V |
 | `+3V3` | buck from VSYS | 3.3 V | 2 A | C5, CC1101, 3× nRF24, microSD, display logic, sensors |
 | `+3V3A` | low-noise LDO from +5V | 3.3 V | 0.3 A | Si4732, SA868 audio front-end (clean analog/RF) |
 
@@ -67,7 +67,7 @@ GND      : common
 
 ## Rail budget (why these sizes)
 
-- **+5V / 3 A:** SA868 at 2 W TX pulls the biggest bursts (~1 A @ 5 V), plus LoRa-cap peaks, WS2812 (kept dim), and PAM8302. Peak ~2–2.5 A → 3 A buck with margin.
+- **+5V / 3 A:** SA868 at 2 W TX pulls the biggest bursts (~1 A @ 5 V), plus onboard LoRa peaks, WS2812 (kept dim), and PAM8302. Peak ~2–2.5 A → 3 A buck with margin.
 - **+3V3 / 2 A:** C5 Wi-Fi TX bursts (~0.5 A) + 3× nRF24 PA (bursty) + CC1101 + SD + display logic + sensors → ~1–1.5 A peak.
 - **+3V3A / 0.3 A:** Si4732 (~25 mA) and the SA868 audio front-end; separated to keep switching noise off the analog/RF supply.
 

@@ -119,9 +119,9 @@
   <!-- load boxes -->
   <rect class="box" x="1005" y="108" width="170" height="86" rx="6"/>
   <text class="r5t" x="1015" y="126">+5V loads</text>
-  <text class="s" x="1015" y="143">SA868 PA · LoRa cap</text>
+  <text class="s" x="1015" y="143">SA868 PA · onboard LoRa</text>
   <text class="s" x="1015" y="159">WS2812 · PAM8302</text>
-  <text class="s" x="1015" y="175">cap/Grove 5V</text>
+  <text class="s" x="1015" y="175">Grove 5V</text>
   <line class="r5" x1="1000" y1="150" x2="1005" y2="150"/>
 
   <rect class="box" x="1005" y="238" width="170" height="100" rx="6"/>

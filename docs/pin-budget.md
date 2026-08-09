@@ -2,74 +2,76 @@
 
 *Read this in: **English** · [Русский](pin-budget.ru.md)*
 
-The device runs **one radio mode at a time**. That splits its GPIO into three honest groups — pins used **every** mode, pins **reserved for radio** (wired to the radios, reused per mode), and the **I²C bus**. Add the optional 74HC138 and you have the whole budget. No hub; the per-antenna "on-air" LEDs are pure hardware (0 GPIO). The ESP32-C5 has about **19 usable GPIO**.
+The ESP32-C5 exposes GPIO0–28. In-package flash/PSRAM takes GPIO16–22 and native USB takes GPIO13–14, leaving about **20 usable GPIO** (repurposing the UART-console pins for I/O and using the strapping pins with care). That is tight for this much radio, so the budget rests on one rule:
+
+> **Buses and the CS decoder reuse across modes; per-chip control lines do not.** Every SPI radio shares one 3-wire bus, and one 74HC138 turns 3 pins into 8 chip-selects — genuinely shared. But each radio's own control/interrupt line (CC1101 `GDO0`, LoRa `BUSY`/`DIO1`, nRF24 `CE`, IR TX/RX) runs to a different chip on its own trace, so those pins **add up** — they are not a reusable pool.
+
+A slow-signal **I²C GPIO expander (PCA9555)** carries the low-speed control lines (resets, PTT, power-downs, the encoder button) for **0 host GPIO** — it rides the I²C bus. That is what makes the whole thing fit.
 
 ![GPIO budget tiers](img/pin-budget.svg)
 
-## 1. Used in every mode
-
-Lit no matter what you're doing.
+## 1. Core direct pins — buses, decoder, encoder (12)
 
 | Line | Pins | Why |
 |---|:--:|---|
-| `Encoder A/B/SW` | 3 | navigation — turn (A/B) and press (SW) |
-| `SPI SCK/MOSI/MISO` | 3 | shared data highway for every SPI radio and the SD card |
-| `SD chip-select` | 1 | picks the SD card on that highway (PCAP logs, profiles) |
-| **Subtotal** | **7** | + display |
+| `SPI SCK/MOSI/MISO` | 3 | one shared bus: microSD + CC1101 + 3× nRF24 + LoRa |
+| `I²C SDA/SCL` | 2 | Si4732, u-blox GPS, RFID2, the PCA9555 expander, Grove |
+| `UART TX/RX` | 2 | SA868 walkie control |
+| `74HC138 A/B/C` | 3 | 3→8 chip-selects (SD, CC1101, 3× nRF24, LoRa, display) |
+| `Encoder A/B` | 2 | quadrature (the SW button goes on the expander) |
 
-**Display** adds **+1** (1-bit SPI: DC only, shares the bus) or **+5** (QSPI: its own 4-bit bus) → **SPI 8 / QSPI 12**.
+## 2. Per-chip radio lines — direct, and they SUM (7)
 
-## 2. Reserved for radio (reused per mode)
+Each runs to a **different chip**, so none can share a pin with another.
 
-These GPIO are **soldered to the radios' control lines** (CS, CE, BUSY, DIO1, …). In menu they sit idle on the sleeping radios, but they **can't be used for anything else** — so they're reserved. The trick of "one radio at a time" is that the **same** pins serve different radios in different modes, so you reserve the **heaviest single mode**, not the sum of all radios.
+| Line | Pins | Chip / why |
+|---|:--:|---|
+| CC1101 `GDO0` | 1 | raw OOK data (RMT) — timing-critical |
+| nRF24 `CE` | 1 | fast TX/RX enable (3 modules tied) |
+| LoRa `DIO1` | 1 | TX/RX-done IRQ (*lever:* can be polled) |
+| LoRa `BUSY` | 1 | poll before each command (*lever:* can be a fixed delay) |
+| IR `RX` | 1 | demod capture (RMT) |
+| IR `TX` | 1 | carrier out (RMT) |
+| `WS2812` status | 1 | addressable-LED timing (RMT) (*lever:* drop, use the screen) |
 
-| Mode | Use case | Uses from the radio pins | Pins |
-|---|---|---|:--:|
-| Menu / idle | browse menus, settings, status | — | 0 |
-| WiFi 2.4/5 | scan / deauth / sniff (radio inside the C5) | — | 0 |
-| 2.4 scan (nRF24×3) | 3 nRF24 sniff 2.4 GHz in parallel | 3× nRF24 CS | 3 |
-| Mousejack (nRF24 TX) | inject on 2.4 GHz (one module TXes) | 3× CS + CE | 4 |
-| Sub-GHz (CC1101) | capture/replay remotes; RSSI geiger | CS + GDO0 | 2 |
-| Walkie (SA868) | listen/talk on 433/446 (PTT) | UART + PTT | 3 |
-| LoRa + GPS | Meshtastic text + position — the peak | CS + BUSY + DIO1 + GPS-UART | 5 |
-| Listen HF/FM (Si4732) | receive CB/HF/FM (AM/SSB) | RST (+ I²C bus) | 1 |
-| Keys (RFID2) | read/emulate 13.56 MHz cards | — (I²C bus) | 0 |
-| IR remotes | clone/replay IR remotes | IR TX + RX | 2 |
-| | | **peak = LoRa + GPS** | **5** |
+## 3. Slow controls — on the PCA9555 expander (0 host GPIO)
 
-So this group reserves **5 pins** — not ~15 (the sum), because they're reused; and not fewer, because LoRa+GPS needs 5 at once.
+`Encoder SW` · `SA868 PTT` · `SA868 PD` · `Si4732 RST` · `LoRa NRESET` · `buzzer` · `nRF24 IRQ`. All low-speed, so the expander (already on the I²C bus) carries them for free. Timing-critical lines (group 2) **cannot** go here — an I²C round-trip is too slow — which is exactly why they stay direct.
 
-## 3. The I²C bus
+## 4. Display — chosen: ST7796 over SPI (+1)
 
-**2 pins.** SDA/SCL is a *bus* (pull-ups + Si4732 + RFID2 + Grove connectors on the same copper), so it **can't be reused** like the radio pins above — its 2 pins are held whenever you want **HF/CB/FM listening (Si4732), the RFID reader, or M5 Grove units**. Drop all three → drop the I²C bus.
+The display rides the **main SPI bus** (write-only), takes its CS from the 74HC138, and adds one **DC** line — a single GPIO.
 
-## Optional: 74HC138 CS decoder — +1 pin
-
-Turns 3 pins into 8 clean point-to-point chip-selects. Under "one mode at a time" it only helps the nRF24 mode; the pin peak (LoRa) has just 2 CS, so it costs **+1** overall. Without it, direct CS share nets across chips (a sleeping chip must release the line — a small first-spin SI risk). Keep for clean routing; drop for the pin.
+| Display | Pins | Note |
+|---|:--:|---|
+| **ST7796 IPS TFT, 3.5″ 320×480, SPI** ✓ | **+1** | shares the radio SPI bus; large color waterfall, bright/outdoor-readable |
+| any AMOLED over QSPI | +5 | own 4-bit bus (`CLK`+`D0..D3`) — would blow the budget (below) |
 
 ## Totals
 
 ```
-Used every mode (encoder+SPI+SD+display) .. SPI 8  / QSPI 12
-Reserved for radio (peak = LoRa) .......... +5
-I²C bus (listen / RFID / Grove) ........... +2
-                                            = SPI 15 / QSPI 19
-+ 74HC138 (optional, clean CS) ............ +1  = SPI 16 / QSPI 20
+Core (buses + 74HC138 + encoder A/B) ...... 12
+Per-chip radio lines (they sum) ........... +7
+Display  SPI +1  /  QSPI +5
+                                            = SPI 20 / QSPI 24   (ceiling ~20)
 ```
 
-| Configuration | SPI | QSPI |
+| Config | Direct pins | vs ~20 |
 |---|:--:|:--:|
-| radio only (no I²C, no 138) | 13 | 17 |
-| + I²C (listen / RFID / Grove) | 15 | 19 |
-| + I²C + 138 (everything) | 16 | 20 |
+| **ST7796 / SPI (chosen)** | **20 → 18** with two levers | ✅ fits |
+| any display / QSPI | 24 | ❌ over by ~4 |
 
-## The premium (QSPI) screen — yes, it fits
+**Levers (each frees 1 pin):** poll LoRa `DIO1` over SPI · replace LoRa `BUSY` with a fixed delay · drop the `WS2812` (show status on the screen). Two of these bring the build to a comfortable **18/20**.
 
-**QSPI with everything you'd actually use (listen, RFID, Grove, LoRa) = 19 → exactly the 19 ceiling.** The 74HC138 is the *only* thing that pushes it over (to 20). So the premium AMOLED is on the table — just **skip the optional 138** and wire chip-selects directly. No USB-pin reclaim needed. The one trade is direct CS on shared nets (careful routing).
+A **QSPI** panel would only fit by reclaiming the USB data pins (+2, then flash over UART/OTA) **and** applying the levers — landing ~21/22 with real compromises, so it was not taken. The **ST7796 over SPI** fits at a single pin, with room to spare.
+
+## Why buses reuse but control lines don't
+
+A **bus** is one set of wires every device taps (SPI, I²C, UART); mode-exclusivity means only one device talks at a time, so 3 SPI wires serve five chips. A **control line** is point-to-point to one chip's pin — a second chip needs its own trace. Wiring one MCU pin to two chips' control pins and hoping the idle chip releases the line (high-Z) is not guaranteed, so it is avoided. Control lines are therefore counted one by one.
 
 ## Switching modes — latency and no freezes
 
-A switch = sleep the old radio → re-mux the reserved GPIO (µs) → start the new radio. The wait is startup; it never freezes the UI (radios wait on a timer, the CPU is free).
+Mode-exclusivity still buys two things: the shared buses, and a radio that is **truly off** (asleep, not radiating) when another is active. Switching = sleep the old radio → start the new one. The wait is startup, and it never freezes the UI (radios wait on a timer while the CPU is free).
 
 | Enter mode | From sleep | Feel |
 |---|:--:|---|
@@ -78,7 +80,7 @@ A switch = sleep the old radio → re-mux the reserved GPIO (µs) → start the 
 | SA868 walkie | ~0.3–1 s | short spinner |
 | Si4732 **SSB** (patch) | ~1.2 s | spinner + progress bar |
 
-Firmware: non-blocking init on the single-core C5 (background task); keep **nRF24 warm**, **sleep CC1101 and Si4732** between uses; **pre-warm on menu focus**; SA868 mic cap **1 µF (not 10 µF)** cuts TX fade-in.
+Firmware: non-blocking init on the single-core C5 (background task); keep **nRF24 warm**, **sleep CC1101 and Si4732** between uses; **pre-warm on menu focus**; SA868 mic cap **1 µF (not 10 µF)** cuts TX fade-in. "Always-on Meshtastic" is background RX only while no other radio mode is engaged — switching to another radio suspends LoRa.
 
 ---
 *Interactive version (click a mode) is in chat; GitHub renders the static page above.*
