@@ -32,9 +32,9 @@ Built sheet by sheet. Start with power, then the MCU and its buses, then each RF
 - [x] **RF chain — 3x nRF24L01+PA/LNA** (Sheet 3, [hardware/rf](../hardware/rf/rf.md)): brownout fix = 100-220 µF bulk + 100 nF at each module VCC; CSN via 138, tied CE, IRQ polled
 - [x] **RF chain — CC1101** sub-GHz (Sheet 3): 300-928 MHz OOK/FSK; CS via 138, GDO0 direct; optional RF switch to fold its bands into one SMA
 - [x] **RF chain — SX1262 (LoRa)** onboard (Sheet 3): E22-900M22S +22 dBm; NSS via 138, BUSY direct, DIO1 polled, NRESET on the PCA9555
-- [ ] **RF chain — Si4732** receiver (HF input with an ESD/clamp protector — no manual disconnect switch; isolation is handled by mode-exclusive sleep; analog line-out)
-- [ ] **RF chain — SA868-U** walkie (UART control, PTT, analog audio)
-- [ ] **Audio:** PAM8302 amp + speaker (the MCU is not in the audio path)
+- [x] **Audio — Si4732** receiver (Sheet 4, [hardware/audio](../hardware/audio/audio.md)): HF input with an ESD/clamp protector, no manual disconnect (mode-exclusive sleep), analog line-out, RST on the PCA9555
+- [x] **Audio — SA868-U** walkie (Sheet 4): UART control, PTT/PD on the PCA9555, analog AF-out, electret mic + 1 µF
+- [x] **Audio path** (Sheet 4): 2:1 analog mux → PAM8302 class-D → speaker; the MCU is not in the audio path
 - [ ] **Expansion:** 1× Grove I²C port (M5 I²C Units; Grove I²C hub for several at once)
 - [ ] **Indicators + I/O:** WS2812 status LED, hardware TX-live envelope detectors (transmit chains only, 0 GPIO), buzzer, IR TX/RX, microSD
 
