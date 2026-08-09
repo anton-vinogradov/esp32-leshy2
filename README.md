@@ -55,11 +55,11 @@ Grouped by what you actually do with it. Everything is meant for your own equipm
 - IR TX / RX.
 - WS2812 RGB status LED + buzzer.
 - Buttons + rotary encoder.
-- GPS (u-blox on the I²C Grove bus) for position / time.
+- GPS (u-blox onboard on the I²C bus) for position / time.
 - Long text is typed on your phone over BLE (Meshtastic app) — there is no onboard keyboard.
 
 **Expandability (M5-compatible)**
-- **1× Grove HY2.0-4P port (I²C).** Hosts the u-blox GPS plus any M5 I²C Units — RFID2 NFC (0x28), RTC, IMU / compass, sensors — addressed individually, with a Grove I²C hub when several are plugged at once.
+- **1× Grove HY2.0-4P port (I²C, 3.3 V).** Hosts M5 I²C Units — RFID2 NFC (0x28), RTC, IMU / compass, sensors — addressed individually, with a Grove I²C hub when several are plugged at once. (The u-blox GPS is onboard on the same bus.)
 - Supports M5 **Grove I²C Units** only. M5 **Caps**, **Modules** and StickC **HATs** use different connectors and are **not** supported. DAC-output units do not work (the C5 has no DAC).
 
 ## 📻 Frequency map

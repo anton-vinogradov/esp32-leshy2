@@ -20,7 +20,7 @@ A slow-signal **I²C GPIO expander (PCA9555)** carries the low-speed control lin
 | `74HC138 A/B/C` | 3 | 3→8 chip-selects (SD, CC1101, 3× nRF24, LoRa, display) |
 | `Encoder A/B` | 2 | quadrature (the SW button goes on the expander) |
 
-## 2. Per-chip radio lines — direct, and they SUM (7)
+## 2. Per-chip radio lines — direct, and they SUM (6)
 
 Each runs to a **different chip**, so none can share a pin with another.
 
@@ -28,15 +28,16 @@ Each runs to a **different chip**, so none can share a pin with another.
 |---|:--:|---|
 | CC1101 `GDO0` | 1 | raw OOK data (RMT) — timing-critical |
 | nRF24 `CE` | 1 | fast TX/RX enable (3 modules tied) |
-| LoRa `DIO1` | 1 | TX/RX-done IRQ (*lever:* can be polled) |
 | LoRa `BUSY` | 1 | poll before each command (*lever:* can be a fixed delay) |
 | IR `RX` | 1 | demod capture (RMT) |
 | IR `TX` | 1 | carrier out (RMT) |
-| `WS2812` status | 1 | addressable-LED timing (RMT) (*lever:* drop, use the screen) |
+| `WS2812` status | 1 | addressable-LED timing (RMT); needs a 5 V level shifter (Sheet 6) |
+
+**Polled, not on a pin:** LoRa `DIO1` (TX/RX-done via SPI `GetIrqStatus`) and nRF24 `IRQ` (via SPI STATUS) — polling both is what keeps the build inside 20 GPIO.
 
 ## 3. Slow controls — on the PCA9555 expander (0 host GPIO)
 
-`Encoder SW` · `SA868 PTT` · `SA868 PD` · `Si4732 RST` · `LoRa NRESET` · `buzzer` · `nRF24 IRQ`. All low-speed, so the expander (already on the I²C bus) carries them for free. Timing-critical lines (group 2) **cannot** go here — an I²C round-trip is too slow — which is exactly why they stay direct.
+The expander (already on the I²C bus) carries **16 low-speed lines** for free: `Encoder SW` · `SA868 PTT/PD` · `Si4732 RST` · `LoRa NRESET` · `LoRa T/R` (drives RXEN/TXEN via an inverter) · `buzzer` · `LCD RESX` · `LCD backlight EN` · `audio MUX_SEL` · `PAM shutdown` · `CC1101 band switch` · `74HC138 enable` · `BQ25887 INT/CD`. Timing-critical lines (group 2) **cannot** go here — an I²C round-trip is too slow — which is why they stay direct.
 
 ## 4. Display — chosen: ST7796 over SPI (+1)
 
@@ -51,19 +52,21 @@ The display rides the **main SPI bus** (write-only), takes its CS from the 74HC1
 
 ```
 Core (buses + 74HC138 + encoder A/B) ...... 12
-Per-chip radio lines (they sum) ........... +7
-Display  SPI +1  /  QSPI +5
-                                            = SPI 20 / QSPI 24   (ceiling ~20)
+Per-chip radio lines (they sum) ........... +6   (DIO1 & nRF24-IRQ polled)
+Display (ST7796 SPI: DC) .................. +1
+Signal pins ............................... 19
+BOOT button (GPIO28) ...................... +1
+                                            = 20 / 20 usable — no spare
 ```
 
 | Config | Direct pins | vs ~20 |
 |---|:--:|:--:|
-| **ST7796 / SPI (chosen)** | **20 → 18** with two levers | ✅ fits |
-| any display / QSPI | 24 | ❌ over by ~4 |
+| **ST7796 / SPI (chosen)** | **20 / 20** (19 signals + BOOT) | ✅ fits, no spare |
+| any display / QSPI | +4 | ❌ over |
 
-**Levers (each frees 1 pin):** poll LoRa `DIO1` over SPI · replace LoRa `BUSY` with a fixed delay · drop the `WS2812` (show status on the screen). Two of these bring the build to a comfortable **18/20**.
+`DIO1` and the nRF24 IRQ are **polled** as part of this baseline — that is what makes 20 fit. If a spare pin is ever needed, one more lever frees one: a fixed-delay `BUSY`, or dropping the `WS2812` (status on the screen).
 
-A **QSPI** panel would only fit by reclaiming the USB data pins (+2, then flash over UART/OTA) **and** applying the levers — landing ~21/22 with real compromises, so it was not taken. The **ST7796 over SPI** fits at a single pin, with room to spare.
+A **QSPI** panel would only fit by reclaiming the USB data pins (+2, flash over UART/OTA) **and** more shaving — landing ~21/22 with real compromises, so it was not taken. The **ST7796 over SPI** fits at a single pin.
 
 ## Why buses reuse but control lines don't
 
