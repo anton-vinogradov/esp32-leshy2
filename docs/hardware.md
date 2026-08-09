@@ -21,7 +21,7 @@ Grouped by subsystem. **Prices are approximate** and not pinned at the design st
 | Positioning | u-blox GPS (SAM-M8Q class) | GNSS with integrated ceramic antenna; rides the I²C bus (DDC/NMEA) — no UART needed | I2C (0x42) | ~14 |
 | Audio | PAM8302 + small speaker | Class-D amplifier; drives the speaker from the analog line-out | analog | — |
 | Display | IPS TFT (ST7796; ILI9488 alt) | 3.5″ 320×480 color; SPI, shares the radio bus (CS via 138, one DC line); PSRAM-equipped C5 holds the framebuffer | SPI | — |
-| I/O expander | PCA9555 | 16 slow control lines over I²C (resets, PTT, power-downs, encoder button, charger INT/CE/QON) — 0 host GPIO | I2C | — |
+| I/O expander | PCA9555 | 16 slow control lines over I²C (resets, PTT/PD, encoder button, display RESX + backlight, LoRa T/R, audio mux, 74HC138 enable, charger INT/CD) — 0 host GPIO | I2C | — |
 | Storage | microSD | PCAP logging, profiles | SPI | — |
 | IR | IR TX/RX | Clone/replay remotes | GPIO | — |
 | CS decode | 74HC138 | 3-to-8 decoder: 3 GPIO become 8 chip-selects (SD, CC1101, 3× nRF24, LoRa, display) | GPIO (3) | — |
@@ -34,9 +34,9 @@ Grouped by subsystem. **Prices are approximate** and not pinned at the design st
 | Grove unit (opt.) | RTC | Timestamp for PCAP logs | I2C | — |
 | Grove unit (opt.) | IMU + compass | Direction finding | I2C | — |
 | Power | 2× 18650 (2S) | Battery pack, ~7.4 V, ~18 Wh | power | — |
-| Power | BQ25xxx | 2S battery charger | power | — |
-| Power | CH224K | USB-C PD sink | power | — |
-| Power | Buck 5 V/3 A + LDO 3.3 V + power-path | Rails; runs while charging | power | — |
+| Power | **BQ25887** | 2S **boost** charger (5 V→8.4 V, no PD), I²C, cell balance, ADC gauge | power | — |
+| Power | Master switch (≥3 A) | The only on/off — breaks the pack line | power | — |
+| Power | Buck 5 V/3 A + LDO 3.3 V | Rails off the BAT node (no power-path) | power | — |
 
 ## Antennas
 
@@ -90,7 +90,7 @@ The digital peripherals share the buses off the ESP32-C5, all at 3.3 V — no le
 
 **UART** — the SA868-U (control). The SA868's **PTT** rides the PCA9555 expander. (GPS no longer uses a UART — it is on I²C.)
 
-**GPIO (direct)** — IR TX/RX, the WS2812 status LED, encoder A/B, the CC1101 GDO0, the nRF24 CE, the LoRa BUSY line, the display DC, and the 74HC138 address lines. Slow control lines (encoder button, SA868 PTT / PD, Si4732 RST, LoRa NRESET, charger INT/CE/QON, buzzer) sit on the **PCA9555** over I²C, for 0 host GPIO; LoRa DIO1 is polled over SPI. See [pin-budget.md](pin-budget.md).
+**GPIO (direct)** — IR TX/RX, the WS2812 status LED, encoder A/B, the CC1101 GDO0, the nRF24 CE, the LoRa BUSY line, the display DC, and the 74HC138 address lines. Slow control lines (encoder button, SA868 PTT / PD, Si4732 RST, LoRa NRESET + T/R, display RESX + backlight, audio mux, 74HC138 enable, charger INT/CD, buzzer) sit on the **PCA9555** over I²C, for 0 host GPIO; LoRa DIO1 and nRF24 IRQ are polled over SPI. See [pin-budget.md](pin-budget.md).
 
 ## Expansion
 
@@ -128,9 +128,9 @@ The Si4732 and the SA868-U produce real analog voice/audio on a line-out, which 
 
 Leshy2 runs on **2× 18650 cells in 2S** (about **7.4 V**, about **18 Wh**) with its **own PMIC**:
 
-- **BQ25xxx** battery charger
-- **USB-C PD** sink (**CH224K**)
-- **Power-path**, so the device works while charging
+- **BQ25887** 2S **boost** battery charger — charges from plain **5 V** USB (no PD), I²C with cell balancing and an ADC fuel gauge
+- **USB-C 5 V input** (CC pull-downs; no PD chip)
+- **No power-path** — the bucks sit on the BAT node; a hard **master switch** is the only on/off
 - **Buck converter 5 V / 3 A** + **LDO 3.3 V** for the rails
 
 **Why a custom PMIC:** off-the-shelf **M5 single-cell modules do not fit** — the design needs 2S and a PD sink. The **IP5306 was rejected** (weak boost, and it auto-shuts-down under a low load).

@@ -87,7 +87,7 @@ Legal LoRa power caps enforced in firmware: EU433 +10 dBm, EU868 +14 dBm, 869.4�
 - **Shared buses:** SPI (microSD + onboard SX1262 + CC1101 + 3× nRF24 + the ST7796 display, chip-selects via a 74HC138 decoder), I2C (Si4732 + u-blox GPS + a PCA9555 expander + the Grove port), UART (SA868).
 - **8 onboard antennas:** C5 2.4/5 dual-band, 3× nRF24, CC1101, Si4732 telescopic whip, SA868 UHF, SX1262 LoRa. Antennas go on top; expander connectors on the sides or back. There is no shared RF switch, so each chain has its own antenna. (The u-blox GPS carries its own integrated antenna on its module.)
 - **Expansion:** 1 Grove I²C port (M5 I²C Units).
-- **Power:** 2× 18650 in 2S (~7.4 V, ~18 Wh) with an onboard PMIC — BQ25xxx charger + USB-C PD (CH224K) + power-path (works while charging), buck 5 V/3 A + LDO 3.3 V. Runtime: light ~9 h, active ~3.6 h, TX peaks ~2.5 h.
+- **Power:** 2× 18650 in 2S (~7.4 V, ~18 Wh) with an onboard PMIC — **BQ25887 boost charger** (charges 2S from plain 5 V USB, no PD), buck 5 V/3 A + LDO 3.3 V. A hard master switch is the only on/off. Runtime: light ~9 h, active ~3.6 h, TX peaks ~2.5 h.
 - **PCB:** 4-layer (JLCPCB JLC7628), designed in KiCad. Antennas are tuned by hand with a VNA.
 
 One radio runs at a time, so the SPI/I²C/UART buses are shared and idle radios sleep; the low-speed control lines ride an I²C expander (PCA9555). That is what fits this much radio into the C5's ~20 usable GPIO. See [docs/pin-budget.md](docs/pin-budget.md).

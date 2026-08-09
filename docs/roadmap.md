@@ -20,14 +20,14 @@ A pragmatic plan for **Leshy2** — an open-source portable multiband RF handhel
 - [x] Lock long-range TX: **Meshtastic over LoRa SX1262**, onboard
 - [x] Lock the display: **3.5″ IPS TFT (ST7796, 320×480) over SPI** (shares the radio SPI bus, CS via 138 + DC)
 - [x] Lock expansion: **1× Grove HY2.0-4P (I²C)** port (M5 I²C Units)
-- [x] Lock power: **2S 18650**, own PMIC (BQ25xxx charger + CH224K USB-C PD + power-path, buck 5V/3A, LDO 3.3V)
+- [x] Lock power: **2S 18650**, own PMIC (**BQ25887 boost charger** 5V→8.4V no PD, buck 5V/3A, LDO 3.3V, **master switch** on/off)
 - [x] Lock antennas: **8 onboard** (LoRa now on the board); one hardware TX-live LED per transmit chain (no RX LED); the GPS antenna sits on the u-blox module
 
 ### 2. KiCad schematic — next
 
 Built sheet by sheet. Start with power, then the MCU and its buses, then each RF chain.
 
-- [ ] **Power first:** 2S 18650 -> BQ25xxx charger + CH224K USB-C PD + power-path -> buck 5V/3A -> LDO 3.3V
+- [x] **Power** (Sheet 1, [hardware/power](../hardware/power/power.md)): 2S 18650 -> BQ25887 boost charger (5V, no PD) -> bucks on the BAT node (5V/3A, 3V3) -> LDO 3V3A; master switch
 - [x] **C5 + buses** (Sheet 2, [hardware/c5-buses](../hardware/c5-buses/c5-buses.md)): ESP32-C5 (PSRAM), SPI (microSD + SX1262 + CC1101 + 3× nRF24 + ST7796, chip-selects via a 74HC138 decoder), I2C (Si4732 + u-blox GPS + PCA9555 expander + Grove), UART (SA868), rotary encoder + buttons, native USB
 - [x] **RF chain — 3x nRF24L01+PA/LNA** (Sheet 3, [hardware/rf](../hardware/rf/rf.md)): brownout fix = 100-220 µF bulk + 100 nF at each module VCC; CSN via 138, tied CE, IRQ polled
 - [x] **RF chain — CC1101** sub-GHz (Sheet 3): 300-928 MHz OOK/FSK; CS via 138, GDO0 direct; optional RF switch to fold its bands into one SMA
@@ -36,7 +36,7 @@ Built sheet by sheet. Start with power, then the MCU and its buses, then each RF
 - [x] **Audio — SA868-U** walkie (Sheet 4): UART control, PTT/PD on the PCA9555, analog AF-out, electret mic + 1 µF
 - [x] **Audio path** (Sheet 4): 2:1 analog mux → PAM8302 class-D → speaker; the MCU is not in the audio path
 - [x] **Expansion** (Sheet 5, [hardware/expansion](../hardware/expansion/expansion.md)): onboard u-blox GPS on I²C + 1× Grove I²C port (M5 I²C Units; Grove I²C hub for several, TCA9548A only on address clash) + full I²C address map
-- [x] **Indicators + I/O** (Sheet 6, [hardware/indicators](../hardware/indicators/indicators.md)): 7× hardware TX-live envelope detectors (0 GPIO), WS2812 status LED, active buzzer, IR TX/RX, microSD, rotary encoder; system buttons RESET/BOOT (Sheet 2) + POWER on BQ /QON (Sheet 1)
+- [x] **Indicators + I/O** (Sheet 6, [hardware/indicators](../hardware/indicators/indicators.md)): 7× hardware TX-live envelope detectors (0 GPIO), WS2812 status LED, active buzzer, IR TX/RX, microSD, rotary encoder; system buttons RESET/BOOT (Sheet 2) + POWER master switch (Sheet 1)
 
 ### 3. PCB layout
 
