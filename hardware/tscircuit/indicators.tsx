@@ -163,9 +163,9 @@ export default () => (
 
     {/* --- microSD --- */}
     <trace from=".J50 > .CS" to="net.SD_CS" />
-    <trace from=".J50 > .MOSI" to="net.SPI2_MOSI" />
-    <trace from=".J50 > .MISO" to="net.SPI2_MISO" />
-    <trace from=".J50 > .SCK" to="net.SPI2_SCK" />
+    <trace from=".J50 > .MOSI" to="net.SPI_MOSI" />
+    <trace from=".J50 > .MISO" to="net.SPI_MISO" />
+    <trace from=".J50 > .SCK" to="net.SPI_SCK" />
     <trace from=".J50 > .VDD" to="net.V3V3" />
     <trace from=".J50 > .GND" to="net.GND" />
     <trace from=".J50 > .CD" to="net.SD_CD" />
@@ -188,7 +188,7 @@ export default () => (
     <trace from=".Ren > .pin2" to="net.S3_EN" />
     <trace from=".Cen > .pin1" to="net.S3_EN" />
     <trace from=".Cen > .pin2" to="net.GND" />
-    <trace from=".SW12 > .pin1" to="net.BOOT" />
+    <trace from=".SW12 > .pin1" to="net.S3_BOOT" />
     <trace from=".SW12 > .pin2" to="net.GND" />
     <trace from=".SW13 > .pin1" to="net.PTT_BTN" />
     <trace from=".SW13 > .pin2" to="net.GND" />

@@ -65,7 +65,7 @@ export default () => (
     <trace from=".U30 > .SDA" to="net.I2C_SDA" />
     <trace from=".U30 > .SCL" to="net.I2C_SCL" />
     <trace from=".U30 > .SEN" to="net.GND" />        {/* SEN->GND = addr 0x11 */}
-    <trace from=".U30 > .RST" to="net.SI_RST" />     {/* PCA #1 P0.3 */}
+    <trace from=".U30 > .RST" to="net.Si4732_RST" />  {/* PCA #1 P0.3 */}
 
     {/* --- Si4732 RCLK from dedicated 32.768 kHz oscillator --- */}
     <trace from=".U30 > .RCLK" to=".Y1 > .pin1" />
@@ -94,10 +94,10 @@ export default () => (
     <trace from=".Cbulk31 > .pin2" to="net.GND" />
     <trace from=".Cbyp31 > .pin1" to="net.V5" />
     <trace from=".Cbyp31 > .pin2" to="net.GND" />
-    <trace from=".U31 > .RXD" to="net.SA_TXD" />   {/* S3 TX GPIO16 -> U31.RXD */}
-    <trace from=".U31 > .TXD" to="net.SA_RXD" />   {/* U31.TXD -> S3 RX GPIO17 */}
-    <trace from=".U31 > .PTT" to="net.SA_PTT" />   {/* PCA #1 P0.1 */}
-    <trace from=".U31 > .PD" to="net.SA_PD" />     {/* PCA #1 P0.2 */}
+    <trace from=".U31 > .RXD" to="net.SA868_UART_TX" />  {/* S3 TX GPIO16 -> U31.RXD */}
+    <trace from=".U31 > .TXD" to="net.SA868_UART_RX" />  {/* U31.TXD -> S3 RX GPIO17 */}
+    <trace from=".U31 > .PTT" to="net.SA868_PTT" />      {/* PCA #1 P0.1 */}
+    <trace from=".U31 > .PD" to="net.SA868_PD" />        {/* PCA #1 P0.2 */}
     <trace from=".U31 > .ANT" to="net.ANT_UHF" />
 
     {/* --- SA868 RX audio -> mux B --- */}

@@ -103,25 +103,25 @@
   " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_35" x="544.270947224064" y="169.70802222373" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SD_CS</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_36" d="
     M 545.990586566865,173.52944298551
     L 544.9588029611843,175.4401533664
-    L 524.8606773680627,175.4401533664
-    L 524.8606773680627,171.61873260462
+    L 526.7229830859702,175.4401533664
+    L 526.7229830859702,171.61873260462
     L 544.9588029611843,171.61873260462
     Z
-  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_36" x="544.270947224064" y="173.52944298551" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SPI2_MOSI</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_37" d="
+  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_36" x="544.270947224064" y="173.52944298551" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SPI_MOSI</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_37" d="
     M 545.990586566865,177.35086374729002
     L 544.9588029611843,179.26157412818003
-    L 524.8606773680627,179.26157412818003
-    L 524.8606773680627,175.4401533664
+    L 526.7229830859702,179.26157412818003
+    L 526.7229830859702,175.4401533664
     L 544.9588029611843,175.4401533664
     Z
-  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_37" x="544.270947224064" y="177.35086374729002" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SPI2_MISO</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_38" d="
+  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_37" x="544.270947224064" y="177.35086374729002" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SPI_MISO</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_38" d="
     M 545.990586566865,181.17228450907
     L 544.9588029611843,183.08299488996002
-    L 526.7229830859702,183.08299488996002
-    L 526.7229830859702,179.26157412818
+    L 528.5852888038777,183.08299488996002
+    L 528.5852888038777,179.26157412818
     L 544.9588029611843,179.26157412818
     Z
-  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_38" x="544.270947224064" y="181.17228450907" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SPI2_SCK</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_39" d="
+  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_38" x="544.270947224064" y="181.17228450907" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">SPI_SCK</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_39" d="
     M 589.9369253273351,173.52944298551
     L 590.9687089330157,171.61873260462
     L 604.2545151148041,171.61873260462
@@ -166,11 +166,11 @@
   " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_44" x="570.7788692416113" y="108.76909914254495" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">S3_EN</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_45" d="
     M 523.7117035256877,268.47264181193407
     L 522.679919920007,270.3833521928241
-    L 511.0016580720074,270.3833521928241
-    L 511.0016580720074,266.56193143104406
+    L 505.032598842107,270.3833521928241
+    L 505.032598842107,266.56193143104406
     L 522.679919920007,266.56193143104406
     Z
-  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_45" x="521.9920641828867" y="268.47264181193407" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">BOOT</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_46" d="
+  " fill="rgba(255, 255, 255, 0.6)" stroke="rgb(132, 0, 0)" stroke-width="0.382142076178px"/><text class="net-label-text sch-net-label-text" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_45" x="521.9920641828867" y="268.47264181193407" fill="rgb(132, 0, 0)" text-anchor="end" dominant-baseline="central" font-family="sans-serif" font-variant-numeric="tabular-nums" font-size="3.439278685602px" transform="">S3_BOOT</text><path class="net-label sch-net-label" data-circuit-json-type="schematic_net_label" data-schematic-net-label-id="schematic_net_label_46" d="
     M 523.7117035256877,213.7307893994356
     L 522.679919920007,215.6414997803256
     L 505.54212161034434,215.6414997803256
