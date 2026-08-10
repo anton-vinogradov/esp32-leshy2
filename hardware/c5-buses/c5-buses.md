@@ -2,7 +2,7 @@
 
 *Read this in: **English** · [Русский](c5-buses.ru.md)*
 
-The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** design: an **ESP32-S3** main brain that runs the UI, the display, all wired radios, the SD card and every bus; and an **ESP32-C5** co-processor that adds the one thing the S3 lacks — native **5 GHz Wi-Fi** (plus 2.4 GHz, BLE and **802.15.4** / Zigbee / Thread). A physical **slider** flips the device between *S3-main* (normal) and *C5-standalone* (run any firmware on the C5 by itself).
+The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** design: an **ESP32-S3** main brain that runs the UI, the display, all wired radios, the SD card and every bus; and an **ESP32-C5** **co-processor** that adds the one thing the S3 lacks — native **5 GHz Wi-Fi** (plus 2.4 GHz, BLE and **802.15.4** / Zigbee / Thread). The C5 is a *pure co-processor*: it talks to the S3 over a dedicated link and never touches the shared bus. There is **no mode switch** — the S3 always owns the device.
 
 > ⚠️ Design stage. **GPIO numbers are a proposed map**, not yet confirmed against the ESP32-S3 / ESP32-C5 datasheets. Before capture, confirm: strapping-pin boot levels on both chips, which pins reach FSPI/SPI3/RMT/I²C through the GPIO matrix, that the C5 module actually bonds out the pins used for the link, and the N8R2 (quad-PSRAM) part number. Functions are fixed; exact pin numbers may shift.
 
@@ -12,32 +12,21 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 **U10 — ESP32-S3-WROOM-1U-N8R2** (main brain): dual-core Xtensa, 8 MB flash + **2 MB quad PSRAM**, native 2.4 GHz Wi-Fi + BLE, u.FL → external SMA.
 
-- **Quad PSRAM is deliberate.** Octal PSRAM (the `R8` parts) steals GPIO33–37 for its extra data lines; **quad PSRAM leaves 33–37 free**, and that is exactly where the C5-link block sits. We only need ~300 KB for the 320×480×16 framebuffer, so 2 MB quad is plenty — the pin budget, not the RAM size, drives the choice.
+- **Quad PSRAM is deliberate.** Octal PSRAM (the `R8` parts) steals GPIO33–37 for its extra data lines; **quad PSRAM leaves 33–37 free**, and that is exactly where the C5-link block sits. We only need ~300 KB for the 320×480×16 framebuffer (double-buffered ~600 KB), so 2 MB quad is plenty — the pin budget, not the RAM size, drives the choice.
 - Native USB is on GPIO19/20. The serial **console runs over the USB-Serial-JTAG** peripheral (not a UART), which frees UART0 for the C5 flash bridge.
 
-**U20 — ESP32-C5-WROOM-1U** (co-processor): single RISC-V core, in-package flash + PSRAM, native **2.4 + 5 GHz Wi-Fi + BLE + 802.15.4**, u.FL → its own external dual-band SMA. It is the *only* ESP32 with native 5 GHz. In-package flash/PSRAM occupies **GPIO15,16,17,18,20,21,22** (so **GPIO19 is free, GPIO15 is not** — the opposite of what earlier drafts said); native USB is on GPIO13/14.
-
-## Two modes, one slider
-
-| | S3-main (normal) | C5-standalone |
-|---|---|---|
-| USB-C routes to | S3 | C5 (via TS3USB221 mux) |
-| Display, SD, wired radios | S3 owns them | S3 held in reset; **C5 drives display + SD** |
-| C5's role | co-processor (5 GHz/15.4 over the link) | full owner of the shared bus |
-| C5's SPI (one controller) | slave on the private link | master on the shared bus (via 74CBTLV3257 mux) |
-
-**What C5-standalone can and cannot reach.** It can drive the **display**, the **microSD**, and its own **internal radios** (5 GHz / Zigbee / BLE). It **cannot** operate the external analog/sub-GHz radios (nRF24, CC1101, SX1262, SA868): those need direct timing pins (`CE`, `GDO0`, `BUSY`, `PTT`) that live on the S3 and that the C5 has no spare pins to replicate. The C5 can *select* them on the bus but not run their real-time protocols. A "full second brain" is not physically possible on the C5's ~20 pins versus the S3's ~36.
+**U20 — ESP32-C5-WROOM-1U** (co-processor): single RISC-V core, in-package flash, native **2.4 + 5 GHz Wi-Fi + BLE + 802.15.4**, u.FL → its own external dual-band SMA. It is the *only* ESP32 with native 5 GHz. In-package flash occupies **GPIO15,16,17,18,20,21,22** (so **GPIO19 is free, GPIO15 is not** — the opposite of what earlier drafts said); native USB is on GPIO13/14. All of the C5's radios are on-chip; it never uses the external SPI bus.
 
 ## S3 GPIO map (proposed)
 
-38 usable GPIO (0–21, 33–48, minus USB pair use). **Used: 36 / 38.** The two survivors (GPIO45/46) are strap pins usable only as pulldown-side reserves.
+38 usable GPIO (0–21, 33–48, minus USB pair use). **Used: 36 / 38**, with GPIO45/46 as strap-only pulldown reserves.
 
 | S3 GPIO | Net | Dir | Peripheral / note |
 |:--:|------|:--:|-------|
 | GPIO0 | `S3_BOOT` (button) | in | ⚠ strap, pull-up; recovery button |
 | GPIO1 | `WS2812` | out | RMT; 3.3→5 V buffer 74AHCT1G125 (Sheet 6) |
 | GPIO2 | `IR_TX` | out | RMT/LEDC 38 kHz carrier (not a strap on S3) |
-| GPIO3 | `SLIDER_SENSE` | in | ⚠ strap (JTAG-sel, boot don't-care); read early, before the bus starts; ext pull + RC |
+| GPIO3 | `LoRa_DIO1` | in | ⚠ strap (JTAG-sel, boot don't-care); SX1262 RxDone/timeout IRQ → **LoRa RX is interrupt-driven** |
 | GPIO4 | `I2C_SDA` | o-d | 4.7 kΩ; Si4732 / PCA9555 / BQ25887 / Grove |
 | GPIO5 | `I2C_SCL` | o-d | 4.7 kΩ |
 | GPIO6 | `nRF24_CE` | out | shared across all 3× nRF24 (timing → direct) |
@@ -75,35 +64,31 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 The 16 slow control lines (radio resets, backlight/amp/decoder enables, PTT, audio mux, CC1101 band switch, LoRa T/R, buzzer, charger `CD`, encoder `SW`, SD card-detect) ride the **PCA9555 (0x20)** — 0 host GPIO. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
 
+*Dropping the C5-standalone-display capability freed GPIO3 (formerly the mode-slider sense); it now carries `LoRa_DIO1`, so LoRa RX is interrupt-driven instead of polled — less traffic on the shared bus.*
+
 ## C5 GPIO map (proposed — confirm against datasheet)
 
-~20 usable GPIO. **Used ~18**, ~2 spare. Every pin that touches the shared bus (SCK/MOSI/MISO reused, A/B/C, DC) **must be a non-strap pin** so a warm C5 reboot cannot mis-read its boot mode from a bus the S3 is driving.
+~20 usable GPIO. **Used ~11**, roomy — the C5 is only a co-processor now (no shared-bus role, no mux, no standalone mode).
 
-| C5 GPIO | Net (normal / standalone) | Dir | Note |
+| C5 GPIO | Net | Dir | Note |
 |:--:|------|:--:|-------|
 | EN (pin) | `C5_EN` ← S3 | in | reset + RC; not gated in normal use |
 | GPIO26 + GPIO28 | `C5_BOOT` ← S3 | in | ⚠ strap: **both = 0 → download, both = 1 → normal**; tie together to S3 GPIO34 |
 | GPIO27 | (strap) | — | ⚠ must be pulled **high** for a valid boot; not driven |
-| GPIO23 | `LINK_SCK` / `BUS_SCK` | io | slave clock ← S3 / master → bus (via mux) |
-| GPIO24 | `LINK_MOSI` / `BUS_MOSI` | io | via mux |
-| GPIO6 | `LINK_MISO` / `BUS_MISO` | io | data → S3 / MISO from bus (via mux) |
-| GPIO8 | `LINK_CS` ← S3 | in | slave select (normal only) |
+| GPIO23 | `LINK_SCK` ← S3 | in | SPI slave clock (dedicated SPI3 link) |
+| GPIO24 | `LINK_MOSI` ← S3 | in | |
+| GPIO6 | `LINK_MISO` → S3 | out | carries the C5→S3 data stream |
+| GPIO8 | `LINK_CS` ← S3 | in | slave select |
 | GPIO9 | `DRDY` → S3 | out | the one async line C5→S3 |
-| GPIO10 | `HC138_A` (standalone) | out | Hi-Z in normal |
-| GPIO19 | `HC138_B` (standalone) | out | Hi-Z in normal (GPIO19 is free — not PSRAM) |
-| GPIO1 | `HC138_C` (standalone) | out | Hi-Z in normal |
-| GPIO25 | `LCD_DC` (standalone) | out | Hi-Z in normal *(confirm non-strap)* |
-| GPIO4 | `I2C_SDA` (standalone) | o-d | released in normal *(this is JTAG MTCK — costs C5 SWD if used)* |
-| GPIO5 | `I2C_SCL` (standalone) | o-d | released in normal *(JTAG MTDO)* |
-| GPIO11 | `U0TXD` → S3 | out | UART0, flash path |
-| GPIO12 | `U0RXD` ← S3 | in | UART0, flash path |
-| GPIO13 / GPIO14 | `USB_D− / D+` | io | native USB → TS3USB221 slider mux |
+| GPIO11 | `U0TXD` → S3 | out | UART0, flash path + bench test-pad |
+| GPIO12 | `U0RXD` ← S3 | in | UART0, flash path + bench test-pad |
+| GPIO13 / GPIO14 | `USB_D− / D+` | io | native USB → **bench test-pads** (flash/debug custom firmware) |
 
-In standalone the C5 drives `HC138 A/B/C` itself, so the decoder produces the right `LCD_CS` / `SD_CS` for whichever device the C5 selects — **no power-gating of the 74HC138 is needed** (that hack was only for a display-only handover). The C5 reaches the backlight enable and `LCD_RESX` over the PCA9555 on the shared I²C.
+The C5 is a clean SPI slave on the dedicated link plus its flash/USB paths — nothing on the shared bus, so there is no non-strap constraint to juggle and no bus-contention risk from the C5 side. ~9 GPIO spare for future co-processor duties.
 
 ## The S3↔C5 link — dedicated SPI3
 
-The link is on the S3's **second free SPI host (SPI3)**, kept off the shared radio/SD/display bus so the C5's 5 GHz capture stream never competes with radio or display traffic, and so there is never a two-master contention on the main bus.
+The link is on the S3's **second free SPI host (SPI3)**, kept off the shared radio/SD/display bus so the C5's 5 GHz capture stream never competes with radio or display traffic, and so there is never a two-master contention on the main bus. The C5's single SPI controller is dedicated to this link (there is no mux — the standalone-display capability that once needed one was dropped).
 
 | Signal | Direction | S3 / C5 |
 |---|---|---|
@@ -115,19 +100,13 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 | `C5_EN` | **S3 → C5** | 33 / EN |
 | `C5_BOOT` | **S3 → C5** | 34 / 26+28 |
 
-**No reverse wire beyond DRDY is needed.** The whole C5→S3 payload rides `MISO` (the S3 always clocks); `DRDY` is the single asynchronous "I have data / an event" line. One catch the audit surfaced: an ESP32 SPI-slave must pre-load its TX buffer before the master starts clocking, so **`DRDY` doubles as a ready-strobe** — the S3 begins the clock only after the C5 raises `DRDY`. No separate `ACK`/`HOST_READY` line.
+**No reverse wire beyond DRDY is needed.** The whole C5→S3 payload rides `MISO` (the S3 always clocks); `DRDY` is the single asynchronous "I have data / an event" line. One catch: an ESP32 SPI-slave must pre-load its TX buffer before the master starts clocking, so **`DRDY` doubles as a ready-strobe** — the S3 begins the clock only after the C5 raises `DRDY`. No separate `ACK`/`HOST_READY` line.
 
-## The standalone SPI mux (74CBTLV3257)
+## Flashing both chips
 
-The C5 has **one** general SPI controller, but it must be a *slave on the private link* in normal mode and a *master on the shared bus* in standalone — two different net sets. A small quad bus-switch routes the C5's three SPI lines between them, selected by the same slider:
-
-```
-                 ┌── link side  → S3 SPI3 (GPIO35/36/37)
-C5 SCK/MOSI/MISO ─┤  (74CBTLV3257, slider = S3-main)
-                 └── bus side   → shared SPI (SD/radios/ST7796)   (slider = C5-standalone)
-```
-
-`A/B/C` and `LCD_DC` need no mux — they are single-duty (C5 drives them only in standalone), so they wire straight to the shared nets and sit Hi-Z in normal mode. The slider also drives the **TS3USB221** USB mux (USB-C → S3 or C5) and **holds the inactive MCU in reset** (its shared-bus pins go Hi-Z). Use **break-before-make** on the slider and default the shared nets to pulled-inactive so cold-start has no contention.
+- **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download. The USB-C connector wires **only to the S3** — there is no USB mux.
+- **C5, in the field / OTA:** the **S3 flashes it** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD` (GPIO11/12), with `C5_BOOT` (26+28) low and an `EN` pulse. Version/CRC-gated: reflash the C5 only on a mismatch.
+- **C5, on the bench / custom firmware:** the C5's native USB (D−/D+, GPIO13/14) is brought out to **castellated test-pads** (with GND and 3V3, plus optional `EN`/`BOOT` pads for hard recovery). Attach a cable or pogo-jig to flash, console and JTAG-debug any C5 firmware directly from a PC — this is how you run your own 5 GHz / Zigbee experiments on the C5.
 
 ## 74HC138 — chip-select map
 
@@ -157,21 +136,31 @@ C5 SCK/MOSI/MISO ─┤  (74CBTLV3257, slider = S3-main)
 | P0.6 | `LCD_RESX` | out | P1.6 | `HC138_EN` | out |
 | P0.7 | `MUX_SEL` | out | P1.7 | `SD_CD` | in |
 
-Timing-critical lines never go here — only resets, enables, PTT, mux selects and buttons. In standalone the C5 (as I²C master) drives the display-related ports (`LCD_RESX`, `LCD_BL_EN`, `HC138_EN`).
+Timing-critical lines never go here — only resets, enables, PTT, mux selects and buttons.
 
-## Flashing both chips
+## Reset & boot buttons
 
-- **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download.
-- **C5, in the field:** the **S3 flashes it** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD`, with `C5_BOOT` (26+28) low and an `EN` pulse. OTA-gated: reflash the C5 only on a version/CRC mismatch.
-- **C5, on the bench / standalone:** flip the slider → USB-C routes to the C5's native USB → flash any firmware from a PC directly.
+Two physical buttons on the S3; power on/off is the **master switch** (Sheet 1) — there is no soft power button and no mode switch.
+
+- **RESET** — momentary across S3 **EN**–GND (10 kΩ pull-up + 1 µF RC).
+- **BOOT** — momentary from S3 **GPIO0** to GND; hold BOOT and tap RESET to force USB download.
+
+The C5 has no buttons — the S3 drives its `EN`/`BOOT`; the bench test-pads are the manual recovery path.
+
+## Shared-bus notes (firmware, not hardware)
+
+The one SPI2 bus is shared by SD + radios + display, serviced one device at a time. Measured worst-case utilisation is ~11–21% (almost all of it bursty SD writes; radios + waterfall < 0.5%), so contention is not a hardware problem — it is handled in firmware:
+
+- **DMA + double-buffer** the full-frame blits (the only real cost: a 30–60 ms CPU busy-wait) so the UI never stalls. DMA unloads the CPU; the bus stays serial, and smoothness rides the radios' own FIFOs.
+- **Bus arbiter:** one mutex, radio reads and waterfall scroll take priority over full redraws; preempt SD/display transfers at a CS/chunk boundary (deassert, service the radio, resume).
+- **Watchdog the SD transactions:** a card stuck in a GC stall could hold the shared `MISO` and break radio reads — time out and re-init the card.
 
 ## Gotchas
 
 - **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO33–37; an octal-PSRAM S3 does not fit the link.
-- **Strap discipline.** S3 straps {0, 3, 45, 46} — keep GPIO45 low (high bricks VDD_SPI). C5 straps {26, 27, 28} (+ the JTAG group) — tie 26+28 to `C5_BOOT`, pull 27 high. Any C5 pin on the shared bus must be non-strap, or a warm C5 reboot could read a bogus boot mode from the bus.
-- **One-at-a-time on the shared bus.** In normal mode only the S3 drives it; in standalone only the C5 does. The inactive MCU is held in reset (Hi-Z). Cold-start relies on both chips' shared-bus pins defaulting to input.
-- **Polled IRQs.** `LoRa_DIO1` and the nRF24 IRQs are polled over SPI to save pins; heavy LoRa-RX during a full-screen redraw competes on the 80 MHz bus — keep a per-CS clock and batch.
-- **Tight S3 budget.** Only two strap-reserve pins remain. A new fast signal means a second PCA9555 or dropping an existing direct line.
+- **Strap discipline.** S3 straps {0, 3, 45, 46} — keep GPIO45 low (high bricks VDD_SPI); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT`, pull 27 high.
+- **Tight S3 budget.** 36/38, two strap-reserve pins. A new fast signal means a second PCA9555 or dropping an existing direct line.
+- **Polled vs interrupt.** `LoRa_DIO1` is now a real interrupt (GPIO3); `LoRa_BUSY` and the nRF24 IRQs stay polled over SPI to save pins.
 - **Confirm before KiCad:** the S3 is really an `N8R2`; the C5 module bonds out GPIO23/24; the exact C5 strap table; RMT/FSPI/SPI3/UART matrix routing.
 
 ---
