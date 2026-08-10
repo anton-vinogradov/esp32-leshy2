@@ -2,149 +2,91 @@
 
 *Read this in: **English** · [Русский](hardware.ru.md)*
 
-A detailed hardware reference for **Leshy2** — an open-source portable multiband RF handheld (a "field tool"). It is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp32-leshy), which is a firmware fork of [ESP32-DIV](https://github.com/cifertech/ESP32-DIV). The whole design moves to a single **ESP32-C5** brain (native Wi-Fi 2.4 **and** 5 GHz + BLE) with a lot more radio around it.
+A hardware overview for **Leshy2** — an open-source portable multiband RF handheld (a "field tool"). It is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp32-leshy), a firmware fork of [ESP32-DIV](https://github.com/cifertech/ESP32-DIV). Leshy2 is a **two-chip** design: a mature **ESP32-S3** brain that runs everything, plus an **ESP32-C5** co-processor bolted on for the one thing the S3 cannot do — native **5 GHz** Wi-Fi.
 
-> 📌 **Design stage. No hardware exists yet.** Architecture is locked (2026-08-08); the next step is the KiCad schematic. Pin maps and exact values land once verified on real hardware. All onboard RF sits on shielded u.FL modules to de-risk the first PCB spin. The board is 4-layer (JLCPCB JLC7628), designed in KiCad; antennas are tuned by hand with a VNA.
+This page is the **map**, not the detail. Each subsystem has its own transcribe-ready sheet under [hardware/](../hardware/); the links point there.
 
-## Bill of materials
+> 📌 **Design stage. No hardware exists yet.** Architecture is locked (2026-08-10); the next step is capturing the sheets in KiCad. Pin maps are a proposed map, not yet confirmed against the datasheets. All onboard RF sits on shielded modules to de-risk the first PCB spin.
 
-Grouped by subsystem. **Prices are approximate** and not pinned at the design stage (shown as `—`); the two ballpark figures are the onboard LoRa module (~7 USD) and the I²C GPS module (~14 USD). The whole-build target BOM is about **115–150 USD**.
+## Why two chips
 
-| Subsystem | Part | Role | Interface | Approx price (USD) |
-|-----------|------|------|-----------|:--:|
-| Brain | ESP32-C5 | Single RISC-V MCU; native Wi-Fi 2.4 + 5 GHz + BLE; runs all firmware. The **only** ESP32 with native 5 GHz. 5 GHz is Marauder-class (scan, deauth, beacon/probe flood, sniff mgmt frames) | native radios | — |
-| 2.4 GHz raw | 3× nRF24L01+PA/LNA | Parallel whole-band scan, mousejack, channel analyzer | SPI | — |
-| Sub-GHz | CC1101 | 300–928 MHz OOK/FSK: capture/replay remotes & sensors, RSSI activity "geiger" | SPI | — |
-| Long-range mesh | SX1262 module (E22-900M class), **onboard** | Meshtastic text mesh 868/915 MHz, +22 dBm | SPI (own CS via 74HC138) + BUSY/DIO1 | ~7 |
-| HF / CB / FM receiver | Si4732 | Receive-only: CB 27 MHz, full HF/shortwave, MW/LW (AM/SSB/CW), FM broadcast 64–108 MHz; analog line-out | I2C (control) | — |
-| UHF voice | SA868-U | 433/446 MHz NBFM voice walkie, RX + TX up to 2 W, PTT (drop-in upgrade over SA818 1 W) | UART + PTT | — |
-| Positioning | u-blox GPS (SAM-M8Q class) | GNSS with integrated ceramic antenna; rides the I²C bus (DDC/NMEA) — no UART needed | I2C (0x42) | ~14 |
-| Audio | PAM8302 + small speaker | Class-D amplifier; drives the speaker from the analog line-out | analog | — |
-| Display | IPS TFT (ST7796; ILI9488 alt) | 3.5″ 320×480 color; SPI, shares the radio bus (CS via 138, one DC line); PSRAM-equipped C5 holds the framebuffer | SPI | — |
-| I/O expander | PCA9555 | 16 slow control lines over I²C (resets, PTT/PD, encoder button, display RESX + backlight, LoRa T/R, audio mux, 74HC138 enable, charger INT/CD) — 0 host GPIO | I2C | — |
-| Storage | microSD | PCAP logging, profiles | SPI | — |
-| IR | IR TX/RX | Clone/replay remotes | GPIO | — |
-| CS decode | 74HC138 | 3-to-8 decoder: 3 GPIO become 8 chip-selects (SD, CC1101, 3× nRF24, LoRa, display) | GPIO (3) | — |
-| Indicators | WS2812 RGB LED | General device / status indicator | GPIO (1-wire) | — |
-| Indicators | TX-live LEDs (amber) | Hardware envelope detector — honest "on air" per transmit chain, **0 GPIO** | hardware (analog) | — |
-| Alerts | Buzzer | Audible alerts / proximity "geiger" | GPIO | — |
-| Input | Rotary encoder + buttons | Navigation and input (no onboard keyboard) | GPIO | — |
-| Expansion | 1× Grove HY2.0-4P (I²C) | One expansion port for M5 I²C Units; several at once via a Grove I²C hub | I2C | — |
-| Grove unit (opt.) | RFID2 Unit (WS1850S) | NFC 13.56 MHz, MIFARE / NTAG | I2C (0x28) | — |
-| Grove unit (opt.) | RTC | Timestamp for PCAP logs | I2C | — |
-| Grove unit (opt.) | IMU + compass | Direction finding | I2C | — |
-| Power | 2× 18650 (2S) | Battery pack, ~7.4 V, ~18 Wh | power | — |
-| Power | **BQ25887** | 2S **boost** charger (5 V→8.4 V, no PD), I²C, cell balance, ADC gauge | power | — |
-| Power | Master switch (≥3 A) | The only on/off — breaks the pack line | power | — |
-| Power | Buck 5 V/3 A + LDO 3.3 V | Rails off the BAT node (no power-path) | power | — |
+esp32-leshy (and DIV before it) were single **ESP32-S3** builds. The S3 is a proven brain — two cores, native 2.4 GHz Wi-Fi + BLE, and enough I/O for the whole wired-radio stack — but it has **no 5 GHz radio**. Rather than throw that mature design away, Leshy2 keeps the S3 as the brain and adds the **ESP32-C5** — the only ESP32 with native 5 GHz — as a dedicated **co-processor**.
 
-## Antennas
+| MCU | Role | Radios | I/O |
+|-----|------|--------|-----|
+| **ESP32-S3-WROOM-1U-N8R2** (quad-PSRAM, dual-core) | **Main brain** — UI, display, all wired radios, SD, every bus | native 2.4 GHz Wi-Fi + BLE | **38 / 38** GPIO — full |
+| **ESP32-C5-WROOM-1U** (single RISC-V) | **Co-processor** — 5 GHz recon offload | native **2.4 + 5 GHz** Wi-Fi, BLE, **802.15.4** (Zigbee / Thread) | ~11 / 20 GPIO |
 
-Leshy2 has **8 onboard antennas**, one per RF chain. There is **no RF switch shared between chains**, so every chain keeps its own separate antenna — no folding of different chains onto one connector. The GPS module carries its **own** integrated antenna, separate from these eight.
-
-**Onboard (8):**
-
-1. **ESP32-C5** — 2.4 / 5 GHz dual-band Wi-Fi + BLE (one dual-band antenna; the C5 has a single RF port and uses one band at a time).
-2. **nRF24 #1** — 2.4 GHz.
-3. **nRF24 #2** — 2.4 GHz.
-4. **nRF24 #3** — 2.4 GHz.
-5. **CC1101** — sub-GHz 300–928 MHz. (An optional RF switch, the idea borrowed from the M5 Cap CC1101, can fold *the CC1101's own* bands into a single SMA — this is within one chain, not shared across chains.)
-6. **Si4732** — large telescopic whip for HF / CB (receive only).
-7. **SA868-U** — 433 / 446 MHz UHF.
-8. **SX1262 (LoRa)** — 868 / 915 MHz, onboard.
-
-**GPS:** the u-blox module's **integrated ceramic antenna** — on the module itself; the module is onboard on the I²C bus (Sheet 5).
-
-**Placement:** the eight antennas go **on top**; expander connectors sit on the sides or the back.
-
-**Si4732 HF input protection:** a passive **ESD/clamp** (optionally a back-to-back diode limiter) on the HF input. There is **no manual disconnect switch** — de-sense from our own transmitters is avoided by mode-exclusive operation (Si4732 is not listening while another radio transmits), and the antenna is removed by unscrewing its SMA.
-
-**The 27 MHz antenna is large.** A quarter-wave at 27 MHz is about **2.75 m**, so a full-size whip is impractical on a handheld. The plan is a **telescopic 1–1.7 m whip**, or a **shortened / loaded whip**.
-
-## Per-antenna indicators
-
-Every **transmit** chain gets **one hardware TX-live LED** so you can see at a glance which antenna is actually radiating:
-
-- **TX — amber (hardware envelope detector).** An **honest "on air" light**: it fires from the real RF emission, so it lights **even if the firmware hangs**. It is **not driven by software** and costs **0 GPIO**. Kept deliberately dim.
-
-There is **no per-antenna RX LED** — a detector on a receive input would degrade its sensitivity, and the display already shows the active chain. Receive-only chains (Si4732) therefore have no LED at all. Overall device state is shown by the single general **WS2812** status LED and on the display.
-
-| Chain | TX-live LED (amber) |
-|-------|:--:|
-| ESP32-C5 (Wi-Fi/BLE) | ✓ |
-| nRF24 #1 | ✓ |
-| nRF24 #2 | ✓ |
-| nRF24 #3 | ✓ |
-| CC1101 (sub-GHz) | ✓ |
-| SA868-U (UHF voice) | ✓ |
-| SX1262 (LoRa) | ✓ |
-| Si4732 (HF/CB/FM, RX only) | — |
+The C5 is a **pure co-processor**: it owns only its own on-chip radios and never touches the shared bus. There is **no mode switch** — the S3 always owns the device. Quad-PSRAM on the S3 is deliberate: octal PSRAM would steal the GPIOs the C5 link needs. Details on [Sheet 2](../hardware/c5-buses/c5-buses.md).
 
 ## Buses
 
-The digital peripherals share the buses off the ESP32-C5, all at 3.3 V — no level shifter on the SPI / I²C / UART lines. Two exceptions: the **WS2812** (its 5 V logic-high threshold needs a 3.3→5 V buffer) and any **5 V Grove unit** (behind an I²C translator).
+Everything digital hangs off the **S3** at 3.3 V. See [Sheet 2](../hardware/c5-buses/c5-buses.md) for the full pin map.
 
-**SPI** — microSD, the 3× nRF24, the CC1101, the onboard SX1262 (LoRa), and the **ST7796 display**. Each device's chip-select is generated by a **74HC138** decoder (3 GPIO → 8 CS lines) instead of one GPIO each; the display adds one **DC** line. Because only one radio is active at a time, the display and a radio never contend for the bus. A PSRAM-equipped C5 holds the framebuffer (320×480×2 ≈ 300 KB).
+- **SPI2 (shared, FSPI @ 80 MHz)** — microSD, CC1101, 3× nRF24, SX1262 (LoRa) and the ST7796 display all ride one bus. Chip-selects come from a **74HC138** (3 GPIO → 8 CS) instead of one GPIO each. Only one radio is active at a time, so a radio and the display never fight for the bus. See [Sheet 3](../hardware/rf/rf.md) for the RF devices, [Sheet 6](../hardware/indicators/indicators.md) for the SD.
+- **I²C** — Si4732 control, the **two PCA9555** expanders, the BQ25887 charger, and the Grove ports. **PCA9555 #1 (0x20)** carries radio + display slow control; **#2 (0x21)** carries PTT, the rail gates, the SP4T band select and the headphone-jack detect.
+- **UART ×3** — SA868 walkie control (UART1), u-blox **GPS** (UART2), and **UART0** as the field flash bridge to the C5. See [Sheet 5](../hardware/expansion/expansion.md) for GPS.
+- **S3 ↔ C5 link** — a dedicated **SPI3** plus a **DRDY** ready-strobe. The C5 is flashed by the S3 over UART0 (auto-OTA in the field) and has its own USB-C for brick-safe recovery on the bench.
+- **Direct interrupts** — the four timing-critical lines stay on real GPIO, not the expanders: **LoRa DIO1**, the wired-OR **nRF24 IRQ** (through a 74AHC gate), **CC1101 GDO2** carrier-sense, and **CC1101 GDO0**.
 
-**I2C** — the Si4732 control interface, the **u-blox GPS** (0x42), the **PCA9555 I/O expander** (slow control lines, see below), and the Grove port: RFID2 NFC (0x28), RTC, IMU / compass, and future units, addressed individually. Several units at once plug into a **Grove I²C hub** on the single port.
+## RF chains
 
-**UART** — the SA868-U (control). The SA868's **PTT** rides the PCA9555 expander. (GPS no longer uses a UART — it is on I²C.)
+Detail lives on the [RF sheet](../hardware/rf/rf.md) (data radios) and the [audio sheet](../hardware/audio/audio.md) (voice radios); this is the roster.
 
-**GPIO (direct)** — IR TX/RX, the WS2812 status LED, encoder A/B, the CC1101 GDO0, the nRF24 CE, the LoRa BUSY line, the display DC, and the 74HC138 address lines. Slow control lines (encoder button, SA868 PTT / PD, Si4732 RST, LoRa NRESET + T/R, display RESX + backlight, audio mux, 74HC138 enable, charger INT/CD, buzzer) sit on the **PCA9555** over I²C, for 0 host GPIO; LoRa DIO1 and nRF24 IRQ are polled over SPI. See [pin-budget.md](pin-budget.md).
+| Chain | Part | Band / use | Sheet |
+|-------|------|-----------|:--:|
+| 2.4 GHz raw | 3× nRF24L01+PA/LNA | parallel whole-band scan, mousejack, channel analyzer | [3](../hardware/rf/rf.md) |
+| Sub-GHz | bare CC1101 + balun + **SP4T (PE42440)** + 4 matched nets | 315 / 433 / 868 / 915 MHz OOK/FSK capture & replay | [3](../hardware/rf/rf.md) |
+| Long-range mesh | SX1262 / E22-900M22S, onboard | Meshtastic 868 / 915, +22 dBm | [3](../hardware/rf/rf.md) |
+| HF / CB / FM | Si4732-A10 | **RX only**: CB 27 MHz, full HF/SW, MW/LW (AM/SSB/CW), FM 64–108 | [4](../hardware/audio/audio.md) |
+| UHF voice | SA868-U | 433 / 446 MHz NBFM walkie, RX + TX up to 2 W (PTT) | [4](../hardware/audio/audio.md) |
 
-## Expansion
+Audio is **fully analog** — the MCU is not in the path. Si4732 / SA868 line-out → 2:1 analog mux → **PAM8302** class-D amp → speaker + headphone jack. See [Sheet 4](../hardware/audio/audio.md).
 
-Leshy2 is **M5-compatible** for **M5 Grove I²C Units**. M5 **Caps** (Cardputer EXT bus), **Modules** (the M5Bus 16-pin stack) and **StickC HATs** use different connectors and are **not supported**. Two hard limits on the port: it is **I²C only**, and **DAC-output units do not work** because the C5 has no DAC.
+## Display
 
-### Onboard LoRa (SX1262)
+A **3.5″ ST7796 320×480 IPS TFT over SPI**, sharing the radio bus (CS via the 138, one DC line). It is **SPI, not 8080/AMOLED** — the C5 has no `LCD_CAM` peripheral, and keeping the panel on plain SPI keeps it on the S3's shared bus. The waterfall scrolls on the ST7796's **hardware vertical scroll**; the S3's quad-PSRAM holds the double-buffered framebuffer. See [Sheet 2](../hardware/c5-buses/c5-buses.md).
 
-Meshtastic long-range mesh is a **raw SX1262 module on the board** (E22-900M class, u.FL): the shared SPI bus, its **own CS via the 74HC138**, and two control lines — **BUSY** and **DIO1**. Being on the board, the mesh is always available, at the cost of one permanent antenna in the top array. GPS is kept off this chain and put on I²C (below) so it costs no extra GPIO; see [pin-budget.md](pin-budget.md).
+## Antennas (9)
 
-### GPS (u-blox, I²C)
+Nine onboard antennas, **one per RF chain — there is no RF switch shared between chains**. The u-blox GPS carries its own antenna on the module, separate from these nine.
 
-Position comes from a small **u-blox GPS** (SAM-M8Q class) **onboard** on the **I²C** bus, with its own integrated antenna. Speaking I²C (DDC/NMEA) instead of UART lets it ride the existing bus for **0 extra GPIO** — one of the moves that keeps the tight pin budget in range (see [pin-budget.md](pin-budget.md)).
-
-### Grove port (1× I²C)
-
-One **Grove HY2.0-4P** port, wired as the **I²C** bus (5 V power, 3.3 V signals). It hosts any M5 I²C Units — RFID2 NFC, RTC, IMU / compass, sensors — addressed individually, with a **Grove I²C hub** when several are plugged at once. (The u-blox GPS is onboard on the same bus, so it needs no port.) A second, independent Grove port was dropped: it would cost 2 more GPIO the tight budget can't spare, and all our expansion is I²C anyway.
-
-**Units reachable over Grove:**
-
-- **NFC:** RFID2 Unit (WS1850S, 13.56 MHz, MIFARE / NTAG, I2C address 0x28).
-- **RTC:** timestamps for PCAP logs.
-- **IMU + compass:** direction finding.
-
-## Audio path
-
-Audio is **fully analog** and the MCU is **not in the path**:
-
-```
-Si4732 / SA868-U  →  line-out (analog)  →  PAM8302 class-D amp  →  small speaker
-```
-
-The Si4732 and the SA868-U produce real analog voice/audio on a line-out, which feeds a **PAM8302** class-D amplifier driving a small speaker. The ESP32-C5 has **no analog DAC**, so any MCU-generated sound could only come out over **I2S** — it is deliberately kept out of the receive audio chain.
+1. **ESP32-S3** — 2.4 GHz Wi-Fi + BLE (external SMA).
+2. **ESP32-C5** — dual-band 2.4 / 5 GHz.
+3–5. **nRF24 ×3** — 2.4 GHz.
+6. **CC1101** — sub-GHz (the SP4T folds its own four bands onto this one antenna).
+7. **Si4732** — telescopic whip for HF / CB (RX only; a ¼-wave at 27 MHz is ~2.75 m, so a 1–1.7 m telescopic is the plan).
+8. **SA868-U** — 433 / 446 MHz UHF.
+9. **SX1262** — 868 / 915 MHz LoRa.
 
 ## Power
 
-Leshy2 runs on **2× 18650 cells in 2S** (about **7.4 V**, about **18 Wh**) with its **own PMIC**:
+**2S 2× 18650** (~7.4 V, ~18 Wh) with its own PMIC. A **BQ25887** boost charger takes plain 5 V USB to 8.4 V (no PD). Rails: **MP2315** +5 V, **TLV62569** +3V3, and a separate **TPS7A2033** +3V3A for the analog side (fed from +5 V, interlocked). A hard **master toggle** is the only on/off; rails are gated in idle. Two USB-C ports: **J1 → S3** (charge + data), **J2 → C5** (data-only). See [Sheet 1](../hardware/power/power.md).
 
-- **BQ25887** 2S **boost** battery charger — charges from plain **5 V** USB (no PD), I²C with cell balancing and an ADC fuel gauge
-- **USB-C 5 V input** (CC pull-downs; no PD chip)
-- **No power-path** — the bucks sit on the BAT node; a hard **master switch** is the only on/off
-- **Buck converter 5 V / 3 A** + **LDO 3.3 V** for the rails
+## Indicators & I/O
 
-**Why a custom PMIC:** off-the-shelf **M5 single-cell modules do not fit** — the design needs 2S and a PD sink. The **IP5306 was rejected** (weak boost, and it auto-shuts-down under a low load).
+Per-transmit-chain **hardware TX-live LEDs** (amber RF envelope detectors — honest "on air" even if firmware hangs, **0 GPIO**), one **WS2812** status LED, a buzzer, **IR** TX/RX, microSD, a rotary encoder, and the physical **RESET / BOOT / PTT** buttons. Receive-only chains (Si4732) get no LED. See [Sheet 6](../hardware/indicators/indicators.md).
 
-**nRF24 brownout fix:** the PA/LNA modules draw pulsed current, so each module gets **100–220 µF bulk + 100 nF at its VCC** to stop the supply from browning out.
+## Expansion
 
-**Runtime (approximate):**
+M5-compatible for **I²C Grove Units** only (M5 Caps / Modules / HATs use other connectors and are not supported). **Two Grove HY2.0-4P ports** on the I²C bus (5 V power, 3.3 V signals), plus an onboard **RFID2** NFC unit (WS1850S, 0x28). Units are addressed individually. See [Sheet 5](../hardware/expansion/expansion.md).
 
-| Use | Runtime |
-|-----|--------|
-| Light | ~9 h |
-| Active | ~3.6 h |
-| TX peaks | ~2.5 h |
+## Honest ceilings
+
+Deliberate limits, chosen with eyes open:
+
+- **5 GHz is recon only** — scan, sniff, beacon/probe flood; deauth is a PoC question. No inject / handshake capture / monitor+inject (that needs Linux).
+- **2.4 GHz deauth works** — on the S3.
+- **HF / CB / FM is receive-only** (Si4732).
+- **One radio at a time** — the shared SPI bus and single-antenna-per-chain design mean chains take turns.
+- **Audio is mono.**
+- **Not a HackRF** — no raw wideband capture and no arbitrary TX.
+- **No wideband jamming** — it is illegal, and the hardware does not do it.
+
+## Cost
+
+Whole-build target BOM **~135–160 USD** (~108–125 USD in electronics). See the [cost breakdown](bom.md) and the [pin budget](pin-budget.md).
 
 ---
 
-*License: [MIT](../LICENSE), same as upstream ESP32-DIV. Copyright © Anton Vinogradov ([anton-vinogradov](https://github.com/anton-vinogradov)).*
+*Back to the [README](../README.md). License: [MIT](../LICENSE), same as upstream ESP32-DIV. Copyright © Anton Vinogradov ([anton-vinogradov](https://github.com/anton-vinogradov)).*

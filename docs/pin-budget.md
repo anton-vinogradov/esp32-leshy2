@@ -1,90 +1,94 @@
-# Leshy2 — GPIO budget by usage mode
+# Leshy2 — GPIO budget
 
 *Read this in: **English** · [Русский](pin-budget.ru.md)*
 
-The ESP32-C5 exposes GPIO0–28. In-package flash/PSRAM takes GPIO16–22 and native USB takes GPIO13–14, leaving about **20 usable GPIO** (repurposing the UART-console pins for I/O and using the strapping pins with care). That is tight for this much radio, so the budget rests on one rule:
+Leshy2 is a **two-chip** design, and the two chips sit at opposite ends of the pin-pressure scale:
 
-> **Buses and the CS decoder reuse across modes; per-chip control lines do not.** Every SPI radio shares one 3-wire bus, and one 74HC138 turns 3 pins into 8 chip-selects — genuinely shared. But each radio's own control/interrupt line (CC1101 `GDO0`, LoRa `BUSY`/`DIO1`, nRF24 `CE`, IR TX/RX) runs to a different chip on its own trace, so those pins **add up** — they are not a reusable pool.
+- **ESP32-S3-WROOM-1U-N8R2** — the main brain. It runs the UI, the display, **every wired radio**, the SD card and all the buses, plus native 2.4 GHz Wi-Fi + BLE. Its 38 usable GPIO are **all spoken for — 38 / 38, zero direct-pin spare.**
+- **ESP32-C5-WROOM-1U** — the co-processor. It adds the one thing the S3 lacks (native **5 GHz** Wi-Fi, plus 802.15.4 / Zigbee / Thread) and talks to the S3 over a dedicated link. It uses only **~11 of ~20** GPIO — roomy.
 
-A slow-signal **I²C GPIO expander (PCA9555)** carries the low-speed control lines (resets, PTT, power-downs, the encoder button) for **0 host GPIO** — it rides the I²C bus. That is what makes the whole thing fit.
+Fitting this much radio onto the S3's 38 pins rests on one rule:
 
-![GPIO budget tiers](img/pin-budget.svg)
+> **Buses and the CS decoder reuse across radios; per-chip timing lines do not.** Every SPI radio shares one 3-wire bus, and one 74HC138 turns 3 pins into 8 chip-selects — genuinely shared. But each radio's own timing-critical line (CC1101 `GDO0`, LoRa `BUSY`/`DIO1`, nRF24 `CE`/`IRQ`, IR TX/RX, encoder) runs to a different chip on its own trace, so those pins **add up** — they are not a reusable pool.
 
-## 1. Core direct pins — buses, decoder, encoder (12)
+Two slow-signal **I²C expanders (PCA9555 ×2)** carry the low-speed control lines (resets, PTT, power-downs, rail gates, the band switch, the encoder button) for **0 host GPIO** — they ride the I²C bus. That is what lets 30-plus control signals live on a chip with no free pins.
 
-| Line | Pins | Why |
+> ⚠️ **Design stage. The GPIO numbers are a proposed map**, not yet confirmed against the datasheets. Functions are fixed; exact pin numbers may shift. The authoritative pin-by-pin table is [Sheet 2 — MCU + buses](../hardware/c5-buses/c5-buses.md).
+
+## Why so much radio fits on one full chip
+
+Nine antennas and seven radios do **not** cost seven radios' worth of pins, because most of the wiring is shared or offloaded:
+
+| Mechanism | Pins it costs | What it carries |
 |---|:--:|---|
-| `SPI SCK/MOSI/MISO` | 3 | one shared bus: microSD + CC1101 + 3× nRF24 + LoRa |
-| `I²C SDA/SCL` | 2 | Si4732, u-blox GPS, RFID2, the PCA9555 expander, Grove |
-| `UART TX/RX` | 2 | SA868 walkie control |
-| `74HC138 A/B/C` | 3 | 3→8 chip-selects (SD, CC1101, 3× nRF24, LoRa, display) |
-| `Encoder A/B` | 2 | quadrature (the SW button goes on the expander) |
+| One shared **SPI2** bus | 3 | SD + CC1101 + 3× nRF24 + SX1262 + ST7796 display — six devices, three wires |
+| **74HC138** CS decoder | 3 | 8 chip-selects from 3 pins (SD, CC1101, 3× nRF24, LoRa, display, spare) |
+| One shared **I²C** bus | 2 | Si4732 · BQ25887 · both PCA9555 · 2× Grove · RFID2 |
+| **2× PCA9555** slow-line expanders | **0** | ~30 resets / enables / PTT / T-R / rail gates / band-switch / buttons |
+| The **C5 co-processor** | 7 (link block) | offloads all of 5 GHz / Zigbee to a second chip over one SPI3 link |
 
-## 2. Per-chip radio lines — direct, and they SUM (6)
+Only genuinely **timing-critical** lines get a dedicated host pin. Everything slow is either on a bus or on an expander.
 
-Each runs to a **different chip**, so none can share a pin with another.
+## S3 budget — 38 / 38 (the ceiling)
 
-| Line | Pins | Chip / why |
+The 38 usable pins (GPIO0–21, 33–48) split into five groups:
+
+| Group | Pins | Lines |
 |---|:--:|---|
-| CC1101 `GDO0` | 1 | raw OOK data (RMT) — timing-critical |
-| nRF24 `CE` | 1 | fast TX/RX enable (3 modules tied) |
-| LoRa `BUSY` | 1 | poll before each command (*lever:* can be a fixed delay) |
-| IR `RX` | 1 | demod capture (RMT) |
-| IR `TX` | 1 | carrier out (RMT) |
-| `WS2812` status | 1 | addressable-LED timing (RMT); needs a 5 V level shifter (Sheet 6) |
-
-**Polled, not on a pin:** LoRa `DIO1` (TX/RX-done via SPI `GetIrqStatus`) and nRF24 `IRQ` (via SPI STATUS) — polling both is what keeps the build inside 20 GPIO.
-
-## 3. Slow controls — on the PCA9555 expander (0 host GPIO)
-
-The expander (already on the I²C bus) carries **16 low-speed lines** for free: `Encoder SW` · `SA868 PTT/PD` · `Si4732 RST` · `LoRa NRESET` · `LoRa T/R` (drives RXEN/TXEN via an inverter) · `buzzer` · `LCD RESX` · `LCD backlight EN` · `audio MUX_SEL` · `PAM shutdown` · `CC1101 band switch` · `74HC138 enable` · `BQ25887 INT/CD`. Timing-critical lines (group 2) **cannot** go here — an I²C round-trip is too slow — which is why they stay direct.
-
-## 4. Display — chosen: ST7796 over SPI (+1)
-
-The display rides the **main SPI bus** (write-only), takes its CS from the 74HC138, and adds one **DC** line — a single GPIO.
-
-| Display | Pins | Note |
-|---|:--:|---|
-| **ST7796 IPS TFT, 3.5″ 320×480, SPI** ✓ | **+1** | shares the radio SPI bus; large color waterfall, bright/outdoor-readable |
-| any AMOLED over QSPI | +5 | own 4-bit bus (`CLK`+`D0..D3`) — would blow the budget (below) |
-
-## Totals
+| **Shared buses** | 12 | SPI2 `SCK/MOSI/MISO` (3) · I²C `SDA/SCL` (2) · `74HC138 A/B/C` (3) · SA868 `UART1 TX/RX` (2) · GPS `UART2 RX/TX` (2) |
+| **Timing-critical direct** (they sum) | 11 | `WS2812` · `IR_TX` · `IR_RX` · `LoRa_DIO1` · `nRF24_CE` · `CC1101_GDO0` · `LoRa_BUSY` · `LCD_DC` · `LCD_TE` · `ENC_A` · `ENC_B` |
+| **Two interrupts at the ceiling** | 2 | `CC1101_GDO2` (GPIO45) · `nRF24_IRQ` (GPIO46) — the last two pins, both straps (see below) |
+| **C5-link block** (quad-PSRAM-freed 33–39) | 7 | `C5_EN` · `C5_BOOT` · SPI3 `SCK/MOSI/MISO/CS` · `DRDY` |
+| **USB · C5-flash bridge · boot · expander INT** | 6 | `USB D−/D+` (2) · `C5_FLASH TX/RX` (2) · `S3_BOOT` (1) · `PCA9555_INT` (1) |
 
 ```
-Core (buses + 74HC138 + encoder A/B) ...... 12
-Per-chip radio lines (they sum) ........... +6   (DIO1 & nRF24-IRQ polled)
-Display (ST7796 SPI: DC) .................. +1
-Signal pins ............................... 19
-BOOT button (GPIO28) ...................... +1
-                                            = 20 / 20 usable — no spare
+Shared buses ...................... 12
+Timing-critical direct ............ 11   (these add up, one per chip)
+Interrupts at the ceiling ......... +2   (GPIO45/46, both straps)
+C5-link block ..................... +7   (fits exactly in the 33–39 window)
+USB + flash bridge + boot + INT ... +6
+                                    = 38 / 38 — no direct-pin spare
 ```
 
-| Config | Direct pins | vs ~20 |
-|---|:--:|:--:|
-| **ST7796 / SPI (chosen)** | **20 / 20** (19 signals + BOOT) | ✅ fits, no spare |
-| any display / QSPI | +4 | ❌ over |
+**Why the last two pins are strapping pins.** GPIO45 and GPIO46 are the only pins left, and both are boot straps — handled at the root, not worked around:
 
-`DIO1` and the nRF24 IRQ are **polled** as part of this baseline — that is what makes 20 fit. If a spare pin is ever needed, one more lever frees one: a fixed-delay `BUSY`, or dropping the `WS2812` (status on the screen).
+- **GPIO45** carries `CC1101_GDO2` (carrier-sense wake). It is **de-strapped by an eFuse** (`espefuse.py set_flash_voltage 3.3V`, burned once before first boot), so the ROM ignores its level at power-on — GDO2's idle state is then harmless. Only valid on the 3.3 V N8R2 part; never on a 1.8 V octal-PSRAM S3.
+- **GPIO46** carries `nRF24_IRQ`. The three nRF24 IRQ outputs are combined by a **74AHC 3-input gate** into one **idle-low** interrupt, which is exactly what the GPIO46 boot strap wants to see.
 
-A **QSPI** panel would only fit by reclaiming the USB data pins (+2, flash over UART/OTA) **and** more shaving — landing ~21/22 with real compromises, so it was not taken. The **ST7796 over SPI** fits at a single pin.
+The **quad-PSRAM** choice is load-bearing here: octal PSRAM (`R8`) steals GPIO33–37 for its data lines, but **quad PSRAM leaves 33–37 free** — and that is precisely the window the 7-wire C5-link block sits in. The pin budget, not the RAM size, drives the N8R2 choice.
 
-## Why buses reuse but control lines don't
+## C5 budget — ~11 / ~20 (roomy)
 
-A **bus** is one set of wires every device taps (SPI, I²C, UART); mode-exclusivity means only one device talks at a time, so 3 SPI wires serve five chips. A **control line** is point-to-point to one chip's pin — a second chip needs its own trace. Wiring one MCU pin to two chips' control pins and hoping the idle chip releases the line (high-Z) is not guaranteed, so it is avoided. Control lines are therefore counted one by one.
+The C5 is a pure co-processor: an SPI slave on the dedicated link, plus its own flash and USB paths. Nothing touches the shared bus.
 
-## Switching modes — latency and no freezes
-
-Mode-exclusivity still buys two things: the shared buses, and a radio that is **truly off** (asleep, not radiating) when another is active. Switching = sleep the old radio → start the new one. The wait is startup, and it never freezes the UI (radios wait on a timer while the CPU is free).
-
-| Enter mode | From sleep | Feel |
+| Use | Pins | Lines |
 |---|:--:|---|
-| nRF24 / CC1101 / LoRa / WiFi | ≤5 ms | instant |
-| Si4732 AM/FM | ~200 ms | brief "tuning…" |
-| SA868 walkie | ~0.3–1 s | short spinner |
-| Si4732 **SSB** (patch) | ~1.2 s | spinner + progress bar |
+| Dedicated **SPI3 link** to S3 | 5 | `SCK` · `MOSI` · `MISO` · `CS` · `DRDY` |
+| **Reset / boot** from S3 | 2 | `EN` (pin) · `BOOT` (GPIO26+28 strap combo) |
+| **Flash bridge** (auto-OTA from S3) | 2 | `U0TXD / U0RXD` |
+| Own **USB-C** (brick-safe recovery) | 2 | `USB D− / D+` |
 
-Firmware: non-blocking init on the single-core C5 (background task); keep **nRF24 warm**, **sleep CC1101 and Si4732** between uses; **pre-warm on menu focus**; SA868 mic cap **1 µF (not 10 µF)** cuts TX fade-in. "Always-on Meshtastic" is background RX only while no other radio mode is engaged — switching to another radio suspends LoRa.
+That is ~11 GPIO used, leaving ~9 spare for future co-processor duties. In-package flash occupies GPIO15–22 (minus 19), so the map is drawn around those; but with no shared-bus role and no mux, the C5 has no crowding to solve.
+
+## The trade that made 38 fit
+
+An earlier draft gave the C5 a **standalone display** (its own screen with a mode-slider mux). That was the most fragile node in the design, and it cost pins on both chips. Dropping it:
+
+- removed both analog muxes and the slider, turning the C5 into a clean co-processor;
+- freed S3 **GPIO3**, which now carries `LoRa_DIO1` — so **LoRa RX is interrupt-driven** instead of polled, cutting traffic on the shared bus.
+
+Everything else that could be slow was pushed onto the **second PCA9555** (0x21) — PTT button, rail-enable gates, SP4T band-switch bit, headphone-jack detect — none of which cost a host pin. Direct GPIO is full at 38 / 38, but slow-line headroom is now generous.
+
+## If a spare pin is ever needed
+
+Direct GPIO is exhausted, but two levers each free a host pin without touching the radios:
+
+- **Drop the C5 flash bridge** (GPIO43/44) — the C5 already has its own USB-C for flashing, so the S3-side UART bridge is optional. Frees **2 pins**.
+- **Fixed-delay `LoRa_BUSY`** — poll a timer instead of the pin. Frees **1 pin**.
+
+Neither is needed for the locked design; they are headroom, not compromises.
 
 ---
-*Interactive version (click a mode) is in chat; GitHub renders the static page above.*
+
+*The authoritative pin-by-pin tables (S3 map, C5 map, 74HC138, both PCA9555, the S3↔C5 link) live in [Sheet 2 — MCU + buses](../hardware/c5-buses/c5-buses.md).*
 *Part of [Leshy2](../README.md) · MIT.*
