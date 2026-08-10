@@ -1,10 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 752" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
   <style>
     :root{ color-scheme: light dark; }
     .bg{fill:#ffffff}
     .box{fill:#f2f6f7;stroke:#4a5b62;stroke-width:1.6}
     .hub{fill:#e2f0ed;stroke:#0f8f84;stroke-width:2}
     .bus{stroke:#4a5b62;stroke-width:2.5;fill:none}
+    .link{stroke:#0f8f84;stroke-width:2.5;fill:none;stroke-dasharray:2 3}
     .wire{stroke:#4a5b62;stroke-width:1.5;fill:none}
     .analog{stroke:#8a9aa0;stroke-width:1.6;stroke-dasharray:5 3;fill:none}
     .tap{fill:#4a5b62}
@@ -21,6 +22,7 @@
       .box{fill:#17262b;stroke:#33505a}
       .hub{fill:#10312e;stroke:#2bb3a6}
       .bus{stroke:#33505a}.wire{stroke:#33505a}.tap{fill:#33505a}
+      .link{stroke:#2bb3a6}
       .analog{stroke:#90a6ab}.ant{stroke:#90a6ab}
       .rx{fill:#43c7ea}.tx{fill:#f4ab3d}.off{stroke:#90a6ab}
       .t{fill:#e7eff0}.s{fill:#90a6ab}.band{fill:#2bb3a6}.buslbl{fill:#2bb3a6}
@@ -28,48 +30,65 @@
     }
   </style>
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#8a9aa0"/></marker></defs>
-  <rect class="bg" x="0" y="0" width="1000" height="752"/>
+  <rect class="bg" x="0" y="0" width="1000" height="760"/>
   <text class="title" x="30" y="34">Leshy2 — system architecture</text>
-  <text class="sub" x="30" y="52">ESP32-C5 hub · shared SPI/I²C/UART · SPI display · 8 antennas · 1 Grove I²C</text>
+  <text class="sub" x="30" y="52">ESP32-S3 brain + ESP32-C5 5 GHz co-processor · shared SPI/I²C/UART · SPI display · 9 antennas · 2× Grove I²C</text>
 
-  <rect class="hub" x="40" y="150" width="150" height="440" rx="10"/>
-  <text class="t" x="115" y="350" font-size="17">ESP32-C5</text>
-  <text class="s" x="115" y="371">RISC-V · +PSRAM</text>
-  <text class="s" x="115" y="387">bus hub</text>
-  <text class="band" x="115" y="418">WiFi 2.4+5</text><text class="band" x="115" y="434">BLE 5</text>
-  <path class="ant" d="M115 112 V60 M115 60 l-11 -12 M115 60 l11 -12"/>
-  <circle class="rx" cx="100" cy="130" r="5.5"/><circle class="tx" cx="130" cy="130" r="5.5"/>
-  <path class="wire" d="M115 112 V150"/>
-  <text class="band" x="150" y="70" text-anchor="start">2.4 + 5 GHz</text>
-  <text class="s" x="150" y="86" text-anchor="start">on-chip PHY</text>
+  <!-- C5 co-processor -->
+  <path class="ant" d="M115 42 l-10 -11 M115 42 l10 -11 M115 42 V80"/>
+  <circle class="rx" cx="100" cy="72" r="5"/><circle class="tx" cx="130" cy="72" r="5"/>
+  <path class="wire" d="M115 80 V90"/>
+  <rect class="hub" x="40" y="90" width="150" height="60" rx="10"/>
+  <text class="t" x="115" y="114">ESP32-C5</text>
+  <text class="s" x="115" y="130">5 GHz co-proc</text>
+  <text class="band" x="115" y="145" font-size="10">2.4/5 · BLE · 15.4</text>
 
+  <!-- dedicated link -->
+  <line class="link" x1="115" y1="150" x2="115" y2="194" marker-end="url(#ar)" marker-start="url(#ar)"/>
+  <text class="buslbl" x="127" y="176" text-anchor="start">SPI3 link<tspan x="127" dy="14">+ DRDY</tspan></text>
+
+  <!-- S3 brain -->
+  <rect class="hub" x="40" y="194" width="150" height="402" rx="10"/>
+  <text class="t" x="115" y="374" font-size="17">ESP32-S3</text>
+  <text class="s" x="115" y="395">dual-core · brain</text>
+  <text class="s" x="115" y="411">bus master</text>
+  <text class="band" x="115" y="438">WiFi 2.4 + BLE</text>
+  <path class="ant" d="M40 262 H12 M12 262 l11 -9 M12 262 l11 9"/>
+  <circle class="rx" cx="27" cy="246" r="4.5"/><circle class="tx" cx="27" cy="278" r="4.5"/>
+  <text class="band" x="24" y="300" font-size="10">2.4</text>
+
+  <!-- buses -->
   <line class="bus" x1="190" y1="250" x2="930" y2="250"/>
-  <line class="bus" x1="190" y1="420" x2="960" y2="420"/>
-  <line class="bus" x1="190" y1="580" x2="420" y2="580"/>
-  <text class="buslbl" x="198" y="242">SPI</text><text class="buslbl" x="198" y="412">I²C</text><text class="buslbl" x="198" y="572">UART</text>
-  <circle class="tap" cx="190" cy="250" r="4"/><circle class="tap" cx="190" cy="420" r="4"/><circle class="tap" cx="190" cy="580" r="4"/>
+  <line class="bus" x1="190" y1="420" x2="810" y2="420"/>
+  <line class="bus" x1="190" y1="560" x2="620" y2="560"/>
+  <text class="buslbl" x="198" y="242">SPI2 · CS via 74HC138</text>
+  <text class="buslbl" x="198" y="412">I²C</text>
+  <text class="buslbl" x="198" y="552">UART ×3</text>
+  <circle class="tap" cx="190" cy="250" r="4"/><circle class="tap" cx="190" cy="420" r="4"/><circle class="tap" cx="190" cy="560" r="4"/>
 
+  <!-- SPI2 devices -->
   <text class="band" x="295" y="90">sub-GHz</text>
   <path class="ant" d="M295 150 V100 M295 100 l-10 -11 M295 100 l10 -11"/>
   <circle class="rx" cx="282" cy="160" r="5"/><circle class="tx" cx="308" cy="160" r="5"/>
-  <rect class="box" x="235" y="172" width="120" height="60" rx="7"/><text class="t" x="295" y="199">CC1101</text><text class="s" x="295" y="218">300–928 · RX+TX</text>
+  <rect class="box" x="235" y="172" width="120" height="60" rx="7"/><text class="t" x="295" y="196">CC1101</text><text class="s" x="295" y="216">300–928 · SP4T 4-band</text>
   <path class="wire" d="M295 232 V250"/><circle class="tap" cx="295" cy="250" r="4"/>
 
   <text class="band" x="472" y="90">2.4 GHz ×3</text>
   <path class="ant" d="M420 150 V102 M420 102 l-9 -10 M420 102 l9 -10"/><path class="ant" d="M472 150 V102 M472 102 l-9 -10 M472 102 l9 -10"/><path class="ant" d="M524 150 V102 M524 102 l-9 -10 M524 102 l9 -10"/>
   <circle class="rx" cx="459" cy="160" r="5"/><circle class="tx" cx="485" cy="160" r="5"/>
-  <rect class="box" x="385" y="172" width="175" height="60" rx="7"/><text class="t" x="472" y="199" font-size="12">3× nRF24L01+PA/LNA</text><text class="s" x="472" y="218">2.4 raw · RX+TX</text>
+  <rect class="box" x="385" y="172" width="175" height="60" rx="7"/><text class="t" x="472" y="196" font-size="12">3× nRF24L01+PA/LNA</text><text class="s" x="472" y="216">2.4 raw · RX+TX</text>
   <path class="wire" d="M472 232 V250"/><circle class="tap" cx="472" cy="250" r="4"/>
 
   <rect class="box" x="590" y="172" width="160" height="60" rx="7"/><text class="t" x="670" y="196">microSD + display</text><text class="s" x="670" y="216">both on SPI · ST7796 TFT</text>
   <path class="wire" d="M660 232 V250"/><circle class="tap" cx="660" cy="250" r="4"/>
 
-  <text class="band" x="855" y="90">LoRa 868</text>
+  <text class="band" x="855" y="90">LoRa 868/915</text>
   <path class="ant" d="M855 150 V100 M855 100 l-10 -11 M855 100 l10 -11"/>
   <circle class="rx" cx="842" cy="160" r="5"/><circle class="tx" cx="868" cy="160" r="5"/>
-  <rect class="box" x="780" y="172" width="150" height="60" rx="7"/><text class="t" x="855" y="196">SX1262 (LoRa)</text><text class="s" x="855" y="216">868/915 · onboard · RX+TX</text>
+  <rect class="box" x="780" y="172" width="150" height="60" rx="7"/><text class="t" x="855" y="196">SX1262 (LoRa)</text><text class="s" x="855" y="216">E22 +22 dBm · onboard</text>
   <path class="wire" d="M855 232 V250"/><circle class="tap" cx="855" cy="250" r="4"/>
 
+  <!-- I²C devices -->
   <text class="band" x="310" y="292">HF / CB / FM</text>
   <path class="ant" d="M310 342 V302 M303 334 h14 M303 324 h14 M303 314 h14"/>
   <circle class="rx" cx="292" cy="352" r="5"/><circle class="off" cx="318" cy="352" r="5"/>
@@ -77,27 +96,33 @@
   <path class="wire" d="M310 406 V420"/><circle class="tap" cx="310" cy="420" r="4"/>
   <text class="s" x="310" y="326" fill="#c0392f">ESD clamp</text>
 
-  <rect class="box" x="600" y="344" width="170" height="62" rx="7"/><text class="t" x="685" y="371">Grove I²C port</text><text class="s" x="685" y="390">RFID2 · RTC · IMU · hub</text>
-  <path class="wire" d="M685 406 V420"/><circle class="tap" cx="685" cy="420" r="4"/>
+  <rect class="box" x="430" y="346" width="150" height="58" rx="7"/><text class="t" x="505" y="371">2× PCA9555</text><text class="s" x="505" y="390">slow I/O · 0x20 / 0x21</text>
+  <path class="wire" d="M505 404 V420"/><circle class="tap" cx="505" cy="420" r="4"/>
 
-  <text class="band" x="875" y="292">GPS</text>
-  <path class="ant" d="M875 342 V302 M875 302 l-10 -11 M875 302 l10 -11"/>
-  <circle class="rx" cx="862" cy="352" r="5"/><circle class="off" cx="888" cy="352" r="5"/>
-  <rect class="box" x="800" y="344" width="150" height="62" rx="7"/><text class="t" x="875" y="371">u-blox GPS</text><text class="s" x="875" y="390">I²C · NMEA · RX</text>
-  <path class="wire" d="M875 406 V420"/><circle class="tap" cx="875" cy="420" r="4"/>
+  <rect class="box" x="628" y="344" width="176" height="62" rx="7"/><text class="t" x="716" y="371">2× Grove I²C</text><text class="s" x="716" y="390">RFID2 · RTC · IMU · hub</text>
+  <path class="wire" d="M716 406 V420"/><circle class="tap" cx="716" cy="420" r="4"/>
 
+  <!-- UART devices -->
   <text class="band" x="310" y="440">UHF walkie</text>
-  <path class="ant" d="M310 510 V450 M310 450 l-10 -11 M310 450 l10 -11"/>
-  <circle class="rx" cx="292" cy="500" r="5"/><circle class="tx" cx="318" cy="500" r="5"/>
-  <rect class="box" x="235" y="510" width="150" height="62" rx="7"/><text class="t" x="310" y="537">SA868-U</text><text class="s" x="310" y="556">433/446 NFM · RX+TX 2W</text>
-  <path class="wire" d="M310 572 V580"/><circle class="tap" cx="310" cy="580" r="4"/>
+  <path class="ant" d="M310 500 V450 M310 450 l-10 -11 M310 450 l10 -11"/>
+  <circle class="rx" cx="292" cy="490" r="5"/><circle class="tx" cx="318" cy="490" r="5"/>
+  <rect class="box" x="235" y="500" width="150" height="60" rx="7"/><text class="t" x="310" y="525">SA868-U</text><text class="s" x="310" y="544">433/446 NFM · RX+TX 2W</text>
+  <path class="wire" d="M310 560 V560"/><circle class="tap" cx="310" cy="560" r="4"/>
 
-  <path class="analog" d="M385 392 H430 V616 H470" marker-end="url(#ar)"/><path class="analog" d="M385 554 H452 V616 H470" marker-end="url(#ar)"/>
-  <text class="s" x="474" y="608" text-anchor="start">analog audio → amp</text>
+  <text class="band" x="510" y="440">GPS L1</text>
+  <path class="ant" d="M510 500 V450 M510 450 l-10 -11 M510 450 l10 -11"/>
+  <circle class="rx" cx="497" cy="490" r="5"/><circle class="off" cx="523" cy="490" r="5"/>
+  <rect class="box" x="430" y="500" width="160" height="60" rx="7"/><text class="t" x="510" y="525">u-blox GPS</text><text class="s" x="510" y="544">UART · NMEA · onboard</text>
+  <path class="wire" d="M510 560 V560"/><circle class="tap" cx="510" cy="560" r="4"/>
 
-  <path class="wire" d="M115 590 V628"/>
-  <rect class="box" x="40" y="630" width="430" height="56" rx="9"/><text class="t" x="255" y="656">SPI display · GPIO · RMT · PWM</text><text class="s" x="255" y="675">ST7796 · IR · WS2812 · buzzer · encoder + buttons</text>
+  <!-- analog audio -->
+  <path class="analog" d="M385 392 H415 V612 H455" marker-end="url(#ar)"/><path class="analog" d="M385 540 H440 V612 H455" marker-end="url(#ar)"/>
+  <text class="s" x="459" y="606" text-anchor="start">analog audio → amp → speaker</text>
 
-  <text class="sub" x="58" y="714">Antenna dots (above): blue = RX · amber = TX (hardware on-air) · none = receive-only (Si4732, GPS).</text>
-  <text class="sub" x="58" y="736">All RF self-built · no shared RF switch, separate antenna per chain.</text>
+  <!-- S3 direct GPIO block -->
+  <path class="wire" d="M115 596 V632"/>
+  <rect class="box" x="40" y="634" width="440" height="56" rx="9"/><text class="t" x="260" y="660">S3 direct GPIO · RMT · SPI display</text><text class="s" x="260" y="679">ST7796 · IR · WS2812 · buzzer · encoder · RESET / BOOT / PTT</text>
+
+  <text class="sub" x="58" y="720">Antenna dots (above): blue = RX · amber = TX (hardware on-air) · none = receive-only (Si4732, GPS).</text>
+  <text class="sub" x="58" y="742">All RF self-built · no shared RF switch, one antenna per chain · 9 antennas · S3 flashes C5 over the link + its own USB-C.</text>
 </svg>
