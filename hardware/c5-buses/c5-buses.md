@@ -82,7 +82,7 @@ The 16 slow control lines (radio resets, backlight/amp/decoder enables, PTT, aud
 | GPIO9 | `DRDY` → S3 | out | the one async line C5→S3 |
 | GPIO11 | `U0TXD` → S3 | out | UART0, flash path + bench test-pad |
 | GPIO12 | `U0RXD` ← S3 | in | UART0, flash path + bench test-pad |
-| GPIO13 / GPIO14 | `USB_D− / D+` | io | native USB → **bench test-pads** (flash/debug custom firmware) |
+| GPIO13 / GPIO14 | `USB_D− / D+` | io | native USB → **dedicated C5 USB-C port** (brick-safe recovery/flash/debug) |
 
 The C5 is a clean SPI slave on the dedicated link plus its flash/USB paths — nothing on the shared bus, so there is no non-strap constraint to juggle and no bus-contention risk from the C5 side. ~9 GPIO spare for future co-processor duties.
 
@@ -104,9 +104,9 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 
 ## Flashing both chips
 
-- **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download. The USB-C connector wires **only to the S3** — there is no USB mux.
-- **C5, in the field / OTA:** the **S3 flashes it** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD` (GPIO11/12), with `C5_BOOT` (26+28) low and an `EN` pulse. Version/CRC-gated: reflash the C5 only on a mismatch.
-- **C5, on the bench / custom firmware:** the C5's native USB (D−/D+, GPIO13/14) is brought out to **castellated test-pads** (with GND and 3V3, plus optional `EN`/`BOOT` pads for hard recovery). Attach a cable or pogo-jig to flash, console and JTAG-debug any C5 firmware directly from a PC — this is how you run your own 5 GHz / Zigbee experiments on the C5.
+- **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download. The **main USB-C** connector serves the S3 (charging + S3 flash/console); the C5 has its own separate port (below). There is no USB mux.
+- **C5 has its own USB-C port** (the simplest recovery path): the C5's native USB (D−/D+, GPIO13/14) wires to a **dedicated connector**. **Brick-safe** — the C5's USB-Serial-JTAG lives in mask ROM, so this port reflashes the C5 even if its firmware is dead. Flash, console and JTAG-debug any C5 firmware straight from a PC — this is how you run your own 5 GHz / Zigbee experiments and rescue a bad flash. VBUS on this port is used only for USB-detect + ESD, **not** as a power/charge input.
+- **C5 automatic OTA (optional):** the **S3 can also flash the C5** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD` (GPIO11/12), `C5_BOOT` (26+28) low + an `EN` pulse — so an S3 update carries a matched C5 image and keeps both chips in sync without plugging in. Version/CRC-gated. *(Now optional given the C5 USB port; dropping this bridge would free 2 S3 pins.)*
 
 ## 74HC138 — chip-select map
 
@@ -145,7 +145,7 @@ Two physical buttons on the S3; power on/off is the **master switch** (Sheet 1) 
 - **RESET** — momentary across S3 **EN**–GND (10 kΩ pull-up + 1 µF RC).
 - **BOOT** — momentary from S3 **GPIO0** to GND; hold BOOT and tap RESET to force USB download.
 
-The C5 has no buttons — the S3 drives its `EN`/`BOOT`; the bench test-pads are the manual recovery path.
+The C5 has no buttons — the S3 drives its `EN`/`BOOT`; its own USB-C port is the manual recovery path (mask-ROM USB-JTAG, brick-safe).
 
 ## Shared-bus notes (firmware, not hardware)
 
@@ -161,6 +161,7 @@ The one SPI2 bus is shared by SD + radios + display, serviced one device at a ti
 - **Strap discipline.** S3 straps {0, 3, 45, 46} — keep GPIO45 low (high bricks VDD_SPI); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT`, pull 27 high.
 - **Tight S3 budget.** 36/38, two strap-reserve pins. A new fast signal means a second PCA9555 or dropping an existing direct line.
 - **Polled vs interrupt.** `LoRa_DIO1` is now a real interrupt (GPIO3); `LoRa_BUSY` and the nRF24 IRQs stay polled over SPI to save pins.
+- **Two USB-C ports, one power source.** The C5 port is data-only (VBUS → USB-detect/ESD, not the system rail); the pack charges only through the S3 port's BQ25887. No two-source conflict.
 - **Confirm before KiCad:** the S3 is really an `N8R2`; the C5 module bonds out GPIO23/24; the exact C5 strap table; RMT/FSPI/SPI3/UART matrix routing.
 
 ---
