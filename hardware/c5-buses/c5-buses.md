@@ -19,7 +19,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 ## S3 GPIO map (proposed)
 
-38 usable GPIO (0–21, 33–48, minus USB pair use). **Used: 36 / 38**, with GPIO45/46 as strap-only pulldown reserves.
+38 usable GPIO (0–21, 33–48, minus USB pair use). **Used: 38 / 38 — zero direct-pin spare.** The last two pins (GPIO45/46, both straps) carry the nRF24 wired-OR IRQ and the CC1101 carrier-sense; direct-GPIO headroom is exhausted — future *slow* signals go on the second PCA9555.
 
 | S3 GPIO | Net | Dir | Peripheral / note |
 |:--:|------|:--:|-------|
@@ -59,10 +59,10 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 | GPIO44 | `C5_FLASH_RX` | in | U0RXD ← C5 U0TXD |
 | GPIO47 | `GPS_UART_TX` | out | UART2, optional (config only) |
 | GPIO48 | `PCA9555_INT` | in | expander interrupt |
-| GPIO45 | — reserve | — | ⚠ strap VDD_SPI: hold **LOW** (high = brick); pulldown line only |
-| GPIO46 | — reserve | — | ⚠ strap: LOW at boot |
+| GPIO45 | `CC1101_CS` | in | CC1101 `GDO2` carrier-sense → wake-on-sub-GHz; ⚠ strap VDD_SPI must be LOW at boot — GDO2 idle-low satisfies it |
+| GPIO46 | `nRF24_IRQ` | in | wired-OR of 3× nRF24 IRQ (open-drain) → interrupt instead of STATUS-poll; ⚠ strap — idles high via pull-up, **verify GPIO46 tolerates that at boot** (else weak pulldown/buffer) |
 
-The 16 slow control lines (radio resets, backlight/amp/decoder enables, PTT, audio mux, CC1101 band switch, LoRa T/R, buzzer, charger `CD`, encoder `SW`, SD card-detect) ride the **PCA9555 (0x20)** — 0 host GPIO. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
+The slow control lines ride **two PCA9555 expanders** (0x20 + 0x21) — 0 host GPIO, one shared wired-OR `INT`. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
 
 *Dropping the C5-standalone-display capability freed GPIO3 (formerly the mode-slider sense); it now carries `LoRa_DIO1`, so LoRa RX is interrupt-driven instead of polled — less traffic on the shared bus.*
 
@@ -123,7 +123,9 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 
 `G1` = +3V3, `G2B` = GND, **`G2A` = `HC138_EN`** (a PCA9555 output, pulled high = disabled at boot) — it stays disabled through the strap window and is a boot-gate only, not a per-transaction gate (I²C is too slow for that). Fast deselect = park `A/B/C` on **Y7**; step through Y7 between any two selects to avoid a glitch on an intermediate address.
 
-## PCA9555 — slow-signal map (I²C 0x20, 0 host GPIO)
+## PCA9555 expanders — slow-signal map (I²C, 0 host GPIO)
+
+**U12 — PCA9555 #1 (0x20)** — radio/display control:
 
 | Port | Signal | Dir | Port | Signal | Dir |
 |:--:|------|:--:|:--:|------|:--:|
@@ -132,18 +134,30 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 | P0.2 | `SA868_PD` | out | P1.2 | `LoRa_TR` | out |
 | P0.3 | `Si4732_RST` | out | P1.3 | `PAM_SD` | out |
 | P0.4 | `LoRa_NRESET` | out | P1.4 | `LCD_BL_EN` | out |
-| P0.5 | `BUZZER` | out | P1.5 | `RFSW_CTL` | out |
+| P0.5 | `BUZZER` | out | P1.5 | `RFSW_A` | out |
 | P0.6 | `LCD_RESX` | out | P1.6 | `HC138_EN` | out |
 | P0.7 | `MUX_SEL` | out | P1.7 | `SD_CD` | in |
 
-Timing-critical lines never go here — only resets, enables, PTT, mux selects and buttons.
+**U13 — PCA9555 #2 (0x21)** — user I/O + power gating + SP4T:
+
+| Port | Signal | Dir | Role |
+|:--:|------|:--:|------|
+| P0.0 | `PTT_BTN` | in | physical push-to-talk button (INT-driven) |
+| P0.1 | `RAIL_EN_5V` | out | gate MP2315 +5V in idle (SA868/PAM/IR leakage) |
+| P0.2 | `RAIL_EN_3V3A` | out | gate TPS7A2033 +3V3A when not listening HF |
+| P0.3 | `JACK_DET` | in | headphone jack detect |
+| P0.4 | `RFSW_B` | out | SP4T band-switch 2nd select bit (with `RFSW_A`) |
+| P0.5–P1.7 | — spare | — | future slow lines |
+
+Both `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. Direct GPIO is full (38/38), but slow-line headroom is now generous.
 
 ## Reset & boot buttons
 
-Two physical buttons on the S3; power on/off is the **master switch** (Sheet 1) — there is no soft power button and no mode switch.
+Physical buttons: S3 **RESET** + **BOOT**, plus a **PTT** (push-to-talk) button for the walkie. Power on/off is the **master switch** (Sheet 1) — no soft power button, no mode switch.
 
 - **RESET** — momentary across S3 **EN**–GND (10 kΩ pull-up + 1 µF RC).
 - **BOOT** — momentary from S3 **GPIO0** to GND; hold BOOT and tap RESET to force USB download.
+- **PTT** — momentary to GND on PCA9555 #2 `P0.0`; the INT wakes the S3, which keys the SA868 and switches the audio mux to the mic.
 
 The C5 has no buttons — the S3 drives its `EN`/`BOOT`; its own USB-C port is the manual recovery path (mask-ROM USB-JTAG, brick-safe).
 
@@ -159,8 +173,9 @@ The one SPI2 bus is shared by SD + radios + display, serviced one device at a ti
 
 - **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO33–37; an octal-PSRAM S3 does not fit the link.
 - **Strap discipline.** S3 straps {0, 3, 45, 46} — keep GPIO45 low (high bricks VDD_SPI); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT`, pull 27 high.
-- **Tight S3 budget.** 36/38, two strap-reserve pins. A new fast signal means a second PCA9555 or dropping an existing direct line.
-- **Polled vs interrupt.** `LoRa_DIO1` is now a real interrupt (GPIO3); `LoRa_BUSY` and the nRF24 IRQs stay polled over SPI to save pins.
+- **S3 direct GPIO is FULL (38/38).** No spare fast pins — a new timing-critical signal would force dropping an existing direct line. Slow signals still have room on PCA9555 #2.
+- **Interrupts on strap pins.** `CC1101_CS` (GDO2, idle-low) is safe on GPIO45 (VDD_SPI must-be-low). `nRF24_IRQ` idles high on GPIO46 — confirm GPIO46's strap tolerates that at boot, or add a weak pulldown/buffer so the board always powers up in normal boot.
+- **Polled vs interrupt.** `LoRa_DIO1` (GPIO3), `nRF24_IRQ` (GPIO46) and `CC1101` carrier-sense (GPIO45) are now real interrupts; `LoRa_BUSY` stays polled over SPI.
 - **Two USB-C ports, one power source.** The C5 port is data-only (VBUS → USB-detect/ESD, not the system rail); the pack charges only through the S3 port's BQ25887. No two-source conflict.
 - **Confirm before KiCad:** the S3 is really an `N8R2`; the C5 module bonds out GPIO23/24; the exact C5 strap table; RMT/FSPI/SPI3/UART matrix routing.
 
