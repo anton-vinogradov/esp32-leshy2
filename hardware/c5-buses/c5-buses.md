@@ -57,10 +57,10 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 | GPIO42 | `IR_RX` | in | RMT; TSOP38238 |
 | GPIO43 | `C5_FLASH_TX` | out | U0TXD → C5 U0RXD (C5 flash bridge) |
 | GPIO44 | `C5_FLASH_RX` | in | U0RXD ← C5 U0TXD |
+| GPIO45 | `CC1101_GDO2` | in | CC1101 GDO2 carrier-sense → wake-on-sub-GHz; **GPIO45 de-strapped via eFuse** (`set_flash_voltage 3.3V`) → ROM ignores it at POR, so GDO2's boot level is harmless |
+| GPIO46 | `nRF24_IRQ` | in | 3× nRF24 IRQ (push-pull) combined by a **74AHC 3-input gate** → one idle-**low** interrupt (satisfies the GPIO46 boot strap) |
 | GPIO47 | `GPS_UART_TX` | out | UART2, optional (config only) |
 | GPIO48 | `PCA9555_INT` | in | expander interrupt |
-| GPIO45 | `CC1101_CS` | in | CC1101 `GDO2` carrier-sense → wake-on-sub-GHz; ⚠ strap VDD_SPI must be LOW at boot — GDO2 idle-low satisfies it |
-| GPIO46 | `nRF24_IRQ` | in | wired-OR of 3× nRF24 IRQ (open-drain) → interrupt instead of STATUS-poll; ⚠ strap — idles high via pull-up, **verify GPIO46 tolerates that at boot** (else weak pulldown/buffer) |
 
 The slow control lines ride **two PCA9555 expanders** (0x20 + 0x21) — 0 host GPIO, one shared wired-OR `INT`. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
 
@@ -105,7 +105,7 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 ## Flashing both chips
 
 - **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download. The **main USB-C** connector serves the S3 (charging + S3 flash/console); the C5 has its own separate port (below). There is no USB mux.
-- **C5 has its own USB-C port** (the simplest recovery path): the C5's native USB (D−/D+, GPIO13/14) wires to a **dedicated connector**. **Brick-safe** — the C5's USB-Serial-JTAG lives in mask ROM, so this port reflashes the C5 even if its firmware is dead. Flash, console and JTAG-debug any C5 firmware straight from a PC — this is how you run your own 5 GHz / Zigbee experiments and rescue a bad flash. VBUS on this port is used only for USB-detect + ESD, **not** as a power/charge input.
+- **C5 has its own USB-C port** (the simplest recovery path): the C5's native USB (D−/D+, GPIO13/14) wires to a **dedicated connector**. **Brick-safe** — the C5's USB-Serial-JTAG lives in mask ROM, so this port reflashes the C5 even if its firmware is dead (needs battery power / master ON — there is no USB power-path, so "brick-safe" means dead firmware, not a dead pack). Flash, console and JTAG-debug any C5 firmware straight from a PC — this is how you run your own 5 GHz / Zigbee experiments and rescue a bad flash. VBUS on this port is used only for USB-detect + ESD, **not** as a power/charge input.
 - **C5 automatic OTA (optional):** the **S3 can also flash the C5** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD` (GPIO11/12), `C5_BOOT` (26+28) low + an `EN` pulse — so an S3 update carries a matched C5 image and keeps both chips in sync without plugging in. Version/CRC-gated. *(Now optional given the C5 USB port; dropping this bridge would free 2 S3 pins.)*
 
 ## 74HC138 — chip-select map
@@ -144,7 +144,7 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 |:--:|------|:--:|------|
 | P0.0 | `PTT_BTN` | in | physical push-to-talk button (INT-driven) |
 | P0.1 | `RAIL_EN_5V` | out | gate MP2315 +5V in idle (SA868/PAM/IR leakage) |
-| P0.2 | `RAIL_EN_3V3A` | out | gate TPS7A2033 +3V3A when not listening HF |
+| P0.2 | `RAIL_EN_3V3A` | out | gate TPS7A2033 +3V3A (fed from +5V → needs `RAIL_EN_5V` on) |
 | P0.3 | `JACK_DET` | in | headphone jack detect |
 | P0.4 | `RFSW_B` | out | SP4T band-switch 2nd select bit (with `RFSW_A`) |
 | P0.5–P1.7 | — spare | — | future slow lines |
@@ -172,10 +172,12 @@ The one SPI2 bus is shared by SD + radios + display, serviced one device at a ti
 ## Gotchas
 
 - **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO33–37; an octal-PSRAM S3 does not fit the link.
-- **Strap discipline.** S3 straps {0, 3, 45, 46} — keep GPIO45 low (high bricks VDD_SPI); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT`, pull 27 high.
+- **Strap discipline.** S3 straps {0, 3, 45, 46}: GPIO45 is eFuse-freed (above); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT` with an **external pull-up to 3V3** (default = normal boot while S3 GPIO34 is Hi-Z; S3 drives it low only to flash C5), and pull 27 high.
 - **S3 direct GPIO is FULL (38/38).** No spare fast pins — a new timing-critical signal would force dropping an existing direct line. Slow signals still have room on PCA9555 #2.
-- **Interrupts on strap pins.** `CC1101_CS` (GDO2, idle-low) is safe on GPIO45 (VDD_SPI must-be-low). `nRF24_IRQ` idles high on GPIO46 — confirm GPIO46's strap tolerates that at boot, or add a weak pulldown/buffer so the board always powers up in normal boot.
-- **Polled vs interrupt.** `LoRa_DIO1` (GPIO3), `nRF24_IRQ` (GPIO46) and `CC1101` carrier-sense (GPIO45) are now real interrupts; `LoRa_BUSY` stays polled over SPI.
+- **Straps handled at the root.** GPIO45 (VDD_SPI) is **de-strapped by an eFuse** (see the provisioning step below), so `CC1101_GDO2` sits there as a normal interrupt with no brick risk. GPIO46's boot strap is satisfied because the 74AHC gate makes `nRF24_IRQ` idle-**low**.
+- **eFuse provisioning (mandatory, irreversible).** Burn `espefuse.py set_flash_voltage 3.3V` once before first boot, in ROM download mode (entered via GPIO0 — a separate strap; the stub loads to IRAM, so the 1.8 V flash-read during the burn is irrelevant). This frees GPIO45 for good. **Only for 3.3 V modules — N8R2 qualifies; never on a 1.8 V octal-PSRAM part** (it would brick). Verify with `espefuse summary`.
+- **Rail-gating interlocks (firmware).** +3V3A is derived from +5V, so `RAIL_EN_5V` off also kills +3V3A **and HF listen** — keep +5V on whenever +3V3A is needed. Before gating +5V off, drive `WS2812` (GPIO1) and `IR_TX` (GPIO2) low/Hi-Z, or their high output back-powers the dead rail through the buffer/driver input clamp.
+- **Polled vs interrupt.** `LoRa_DIO1` (GPIO3), `nRF24_IRQ` (GPIO46) and `CC1101_GDO2` (GPIO45) are real interrupts; `LoRa_BUSY` stays polled over SPI.
 - **Two USB-C ports, one power source.** The C5 port is data-only (VBUS → USB-detect/ESD, not the system rail); the pack charges only through the S3 port's BQ25887. No two-source conflict.
 - **Confirm before KiCad:** the S3 is really an `N8R2`; the C5 module bonds out GPIO23/24; the exact C5 strap table; RMT/FSPI/SPI3/UART matrix routing.
 
