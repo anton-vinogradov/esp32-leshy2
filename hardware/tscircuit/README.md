@@ -9,9 +9,15 @@ and a **KiCad export** — so nothing is drawn by hand.
 
 | File | Sheet | Source doc |
 |------|-------|------------|
-| `power.tsx` | 1 · Power | [hardware/power/power.md](../power/power.md) |
+| `power.tsx` | 1 · Power | [power.md](../power/power.md) |
+| `c5-buses.tsx` | 2 · MCU + buses | [c5-buses.md](../c5-buses/c5-buses.md) |
+| `rf.tsx` | 3 · RF chains | [rf.md](../rf/rf.md) |
+| `audio.tsx` | 4 · Audio | [audio.md](../audio/audio.md) |
+| `expansion.tsx` | 5 · Expansion + GPS | [expansion.md](../expansion/expansion.md) |
+| `indicators.tsx` | 6 · Indicators / IO | [indicators.md](../indicators/indicators.md) |
 
-*(RF, MCU + buses, audio, expansion, indicators to follow.)*
+All six sheets are captured. Next: assign real footprints/part numbers, then
+combine the sheets into one board (a top-level `.tsx`) for the actual PCB layout.
 
 ## Render / export
 
