@@ -12,10 +12,10 @@ You do not need to be an RF expert to help. There is room for hardware people, f
 
 ## Ways to help
 
-- **Review the KiCad schematic.** The brain is an ESP32-C5 (RISC-V, native WiFi 2.4 + 5 GHz + BLE). All RF is self-built on shielded u.FL modules (3x nRF24L01+PA/LNA, CC1101, Si4732 RX-only, SA868-U). Extra eyes on nets, power, and pin choices are valuable.
-- **Help port the firmware S3 -> C5.** The firmware comes from the ESP32-S3 (leshy) codebase and is being ported to the ESP32-C5. Help with drivers, peripheral bring-up, and C5-specific fixes is welcome.
+- **Review the KiCad schematic.** Two MCUs: an **ESP32-S3** brain (Xtensa, native 2.4 GHz WiFi + BLE) that runs everything, plus an **ESP32-C5** co-processor (RISC-V) for native 5 GHz WiFi (and 2.4 / BLE / 802.15.4). All RF is self-built on shielded modules (3× nRF24L01+PA/LNA, CC1101, SX1262/LoRa, Si4732 RX-only, SA868-U). Extra eyes on nets, power, and pin choices are valuable.
+- **Help with the firmware.** The main firmware is ported from the ESP32-S3 (leshy) codebase and stays on the S3; the C5 runs a small 5 GHz agent that talks to the S3 over the link. Help with drivers, peripheral bring-up, and the S3↔C5 protocol is welcome.
 - **Review the PCB layout / RF layout.** The board is 4-layer (JLCPCB JLC7628, +-10% impedance), designed in KiCad. Good RF layout, grounding, and shielding review helps a lot.
-- **Antenna tuning / VNA.** There are 8 onboard antennas, plus the GPS module's own antenna. Tuning each chain with a VNA is a manual step. If you know antenna matching, please share.
+- **Antenna tuning / VNA.** There are 9 onboard antennas, plus the GPS module's own antenna. Tuning each chain with a VNA is a manual step. If you know antenna matching, please share.
 - **Testing.** Build it, run it, and report what works and what does not. Bug reports with clear steps are gold.
 - **Docs.** Improve setup guides, wiring notes, and user docs. Simple, clear writing helps everyone.
 - **Translations.** Help translate docs into more languages so more people can join.
@@ -26,7 +26,7 @@ Leshy2 builds on and credits **ESP32-DIV** (by cifertech, MIT license). We want 
 
 The main reason Leshy2 exists: ESP32-DIV v2 has **no 5 GHz WiFi**. The goals are to move the DIV idea toward:
 
-- **5 GHz WiFi** (Marauder-class: scan, deauth, beacon/probe flood, sniff management frames), and
+- **5 GHz WiFi** (recon-class: scan, sniff management frames, beacon/probe flood; deauth is a PoC question before the board), and
 - **legal long-range TX** (Meshtastic over onboard LoRa).
 
 Where something we build is useful upstream, we want to **feed it back and collaborate** rather than split the community. If you are a DIV maintainer or user, please tell us how to keep the two projects friendly and compatible.

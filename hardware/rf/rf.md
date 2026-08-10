@@ -51,7 +51,7 @@ The CC1101 tunes 300–928 MHz, but a single matching network only covers one ba
 
 The **E22-900M22S** carries the SX1262, an external **PA/LNA to +22 dBm**, the TCXO and the matching. Its T/R front-end is **not** switched by DIO2 alone — the module brings out **RXEN** and **TXEN** on the header, and both must be driven or the receiver is deaf and TX never reaches the antenna. We drive them **complementarily from one PCA9555 line** (`LoRa_TR`, PCA#1 P1.2) through a **74LVC1G04** inverter: TX asserts TXEN and drops RXEN, RX the reverse. Mesh is half-duplex, so the I²C-paced switch is fast enough. The board wires SPI + NSS (Y5) + BUSY + NRESET + RXEN/TXEN + antenna; runs on **`+3V3`** (not +5V). Unlike Sheet-2's earlier polled scheme, `DIO1` is a **real interrupt** (GPIO3) so LoRa RX is event-driven; `BUSY` (GPIO15) stays **polled** before each command; per-region power caps are in firmware.
 
-**Deep-idle catch.** A single inverter makes RXEN/TXEN *complementary* — one is always high, so the E22 is never fully off. The idle state "both RXEN and TXEN low" is unreachable with one inverter, so **deep idle of the E22 = dropping the RF rail** (the +3V3A gate, Sheet 1), not toggling a control line. In normal use the module simply sits in RX.
+**Deep-idle catch.** A single inverter makes RXEN/TXEN *complementary* — one is always high, so the E22's LNA/PA bias is never fully zeroed. Put the SX1262 to sleep with an SPI command; a few mA of LNA bias remain because the E22 sits on the **non-gated `+3V3`** (there is no rail to drop, and `RAIL_EN_3V3A` feeds only Si4732/audio, not the E22). Truly powering the E22 down would need a gated E22 rail or a second T/R line — not wired. In normal use the module simply sits in RX.
 
 ## Antennas
 
@@ -64,7 +64,7 @@ Five of the nine onboard antennas live here: **3× 2.4 GHz** (nRF24), **1 sub-GH
 - **nRF24 IRQ is gated, not wire-OR.** Push-pull outputs need the 74AHC gate; it also fixes the GPIO46 boot-strap level. Don't try to pull-up wire-OR three totem-pole drivers.
 - **Keep PA supplies stiff.** nRF24 brownout caps are mandatory; CC1101 and the E22 PA want local bulk too. A sagging PA rail shows up as range loss and packet errors, not as an obvious failure.
 - **SP4T select is slow.** `RFSW_A/B` cross two PCA9555 devices over I²C — settle the switch before keying CC1101, and never change bands mid-transaction.
-- **E22 is never truly off via GPIO.** Complementary RXEN/TXEN means "off" only comes from cutting +3V3A. Cutting +3V3A also kills HF listen (shared rail interlock, Sheet 1).
+- **E22 is never truly off via GPIO.** Complementary RXEN/TXEN leave the LNA/PA biased; the E22 is on the non-gated `+3V3`, so a few mA idle draw is accepted (SX1262 SPI-sleep handles the chip). `RAIL_EN_3V3A` does **not** reach the E22 — it gates only Si4732/audio.
 - **Shared SPI clock ceiling.** The bus clock must suit the slowest device (nRF24 ≤ 10 MHz on some clones); set a per-CS clock in firmware, or the display (fast) and nRF24 (slow) will fight the common rate.
 
 ---

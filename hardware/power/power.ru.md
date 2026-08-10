@@ -45,7 +45,7 @@
 USB_VBUS : J1.VBUS ── U2.VBUS ── C1(10µF) ── D1(TVS)
 USB_CC1/2: J1.CC1/CC2 ── подтяжки-вниз 5.1k (sink 5 В)
 USB_D±_S3: J1.D+/D− ── ESP32-S3 GPIO19/20 (Лист 2) ── ESD
-USB_D±_C5: J2.D+/D− ── ESP32-C5 GPIO13/14 (Лист 3) ── ESD
+USB_D±_C5: J2.D+/D− ── ESP32-C5 GPIO13/14 (Лист 2) ── ESD
 J2_VBUS  : J2.VBUS ── только ESD-кламп   ; НИ в один рейл (C5 детектит USB сам)
 BAT      : BT1+ ── F1 ── SW_MASTER ── узел BAT ── U2.BAT ── U4.IN ── U5.IN ── C6(22µF bulk)
            защита: BT1− ── Q1(low-side charge/discharge FET-ы, S-8252A) ── PACK−

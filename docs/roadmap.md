@@ -9,7 +9,7 @@ Where **Leshy2** is going — an open-source portable multiband RF handheld (a "
 - **Architecture is locked (2026-08-10): two chips.** This is still the **design stage** — **no hardware has been built yet**.
 - The six schematic sheets exist as **transcribe-ready specs (Markdown)**; the SVG drawings are being redrawn to the two-chip layout.
 - **Next:** capture the sheets in **KiCad**, then **PCB layout**.
-- 🔴 **Gate before ordering any PCB:** prove **5 GHz deauth on a bare ESP32-C5 devkit**. If it can't deauth, the C5's headline feature shrinks to passive recon — we want that answered on a $10 board, not a $130 build.
+- 🔴 **Gate before ordering any PCB:** prove **5 GHz deauth on a bare ESP32-C5 devkit**. If it can't deauth, the C5's headline feature shrinks to passive recon — we want that answered on a $10 board, not a $140 build.
 
 ## 🧠 The two-chip split
 

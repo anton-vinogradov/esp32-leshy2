@@ -81,4 +81,5 @@ A radio mode is exclusive, so only one audio source is ever live. The tiny **2:1
 
 ---
 
+*Next sheets: (5) [expansion](../expansion/expansion.md), (6) [indicators/IO](../indicators/indicators.md). Previous: (3) [RF](../rf/rf.md).*
 *Part of [Leshy2](../../README.md) · MIT.*

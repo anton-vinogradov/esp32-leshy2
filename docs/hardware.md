@@ -69,7 +69,7 @@ Per-transmit-chain **hardware TX-live LEDs** (amber RF envelope detectors — ho
 
 ## Expansion
 
-M5-compatible for **I²C Grove Units** only (M5 Caps / Modules / HATs use other connectors and are not supported). **Two Grove HY2.0-4P ports** on the I²C bus (5 V power, 3.3 V signals), plus an onboard **RFID2** NFC unit (WS1850S, 0x28). Units are addressed individually. See [Sheet 5](../hardware/expansion/expansion.md).
+M5-compatible for **I²C Grove Units** only (M5 Caps / Modules / HATs use other connectors and are not supported). **Two Grove HY2.0-4P ports** on the I²C bus (3.3 V default; 5 V via a jumper behind an I²C level translator), with e.g. an **RFID2** NFC unit (WS1850S, 0x28) as an example plug-in unit. Units are addressed individually. See [Sheet 5](../hardware/expansion/expansion.md).
 
 ## Honest ceilings
 

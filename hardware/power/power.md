@@ -45,7 +45,7 @@ The two bucks hang directly on the **BAT** node. With no battery there is no sys
 USB_VBUS : J1.VBUS ── U2.VBUS ── C1(10µF) ── D1(TVS)
 USB_CC1/2: J1.CC1/CC2 ── 5.1k pull-downs (5 V sink)
 USB_D±_S3: J1.D+/D− ── ESP32-S3 GPIO19/20 (Sheet 2) ── ESD array
-USB_D±_C5: J2.D+/D− ── ESP32-C5 GPIO13/14 (Sheet 3) ── ESD array
+USB_D±_C5: J2.D+/D− ── ESP32-C5 GPIO13/14 (Sheet 2) ── ESD array
 J2_VBUS  : J2.VBUS ── ESD clamp only   ; NOT into any rail (C5 senses USB internally)
 BAT      : BT1+ ── F1 ── SW_MASTER ── BAT node ── U2.BAT ── U4.IN ── U5.IN ── C6(22µF bulk)
            protection: BT1− ── Q1(low-side charge/discharge FETs, S-8252A) ── PACK−
