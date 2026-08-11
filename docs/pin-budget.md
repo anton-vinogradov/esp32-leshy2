@@ -29,25 +29,25 @@ Nine antennas and seven radios do **not** cost seven radios' worth of pins, beca
 
 Only genuinely **timing-critical** lines get a dedicated host pin. Everything slow is either on a bus or on an expander.
 
-## S3 budget — 38 / 38 (the ceiling)
+## S3 budget — 36 / 36 (the ceiling)
 
-The 38 usable pins (GPIO0–21, 33–48) split into five groups:
+The 36 usable pins (GPIO0–21, 35–48 — **GPIO33/34 are not bonded out on the WROOM-1U module**) split into five groups:
 
 | Group | Pins | Lines |
 |---|:--:|---|
 | **Shared buses** | 12 | SPI2 `SCK/MOSI/MISO` (3) · I²C `SDA/SCL` (2) · `74HC138 A/B/C` (3) · SA868 `UART1 TX/RX` (2) · GPS `UART2 RX/TX` (2) |
 | **Timing-critical direct** (they sum) | 11 | `WS2812` · `IR_TX` · `IR_RX` · `LoRa_DIO1` · `nRF24_CE` · `CC1101_GDO0` · `LoRa_BUSY` · `LCD_DC` · `LCD_TE` · `ENC_A` · `ENC_B` |
 | **Two interrupts at the ceiling** | 2 | `CC1101_GDO2` (GPIO45) · `nRF24_IRQ` (GPIO46) — the last two pins, both straps (see below) |
-| **C5-link block** (quad-PSRAM-freed 33–39) | 7 | `C5_EN` · `C5_BOOT` · SPI3 `SCK/MOSI/MISO/CS` · `DRDY` |
+| **C5-link block** (quad-freed 35–39) | 5 | SPI3 `SCK/MOSI/MISO/CS` · `DRDY` — `C5_EN`/`C5_BOOT` → **PCA9555 #2** (GPIO33/34 not bonded) |
 | **USB · C5-flash bridge · boot · expander INT** | 6 | `USB D−/D+` (2) · `C5_FLASH TX/RX` (2) · `S3_BOOT` (1) · `PCA9555_INT` (1) |
 
 ```
 Shared buses ...................... 12
 Timing-critical direct ............ 11   (these add up, one per chip)
 Interrupts at the ceiling ......... +2   (GPIO45/46, both straps)
-C5-link block ..................... +7   (fits exactly in the 33–39 window)
+C5-link block ..................... +5   (SPI3 + DRDY on 35–39; C5_EN/C5_BOOT → expander)
 USB + flash bridge + boot + INT ... +6
-                                    = 38 / 38 — no direct-pin spare
+                                    = 36 / 36 — no direct-pin spare
 ```
 
 **Why the last two pins are strapping pins.** GPIO45 and GPIO46 are the only pins left, and both are boot straps — handled at the root, not worked around:
@@ -55,7 +55,7 @@ USB + flash bridge + boot + INT ... +6
 - **GPIO45** carries `CC1101_GDO2` (carrier-sense wake). It is **de-strapped by an eFuse** (`espefuse.py set_flash_voltage 3.3V`, burned once before first boot), so the ROM ignores its level at power-on — GDO2's idle state is then harmless. Only valid on the 3.3 V N8R2 part; never on a 1.8 V octal-PSRAM S3.
 - **GPIO46** carries `nRF24_IRQ`. The three nRF24 IRQ outputs are combined by a **74AHC 3-input gate** into one **idle-low** interrupt, which is exactly what the GPIO46 boot strap wants to see.
 
-The **quad-PSRAM** choice is load-bearing here: octal PSRAM (`R8`) steals GPIO33–37 for its data lines, but **quad PSRAM leaves 33–37 free** — and that is precisely the window the 7-wire C5-link block sits in. The pin budget, not the RAM size, drives the N8R2 choice.
+The **quad-PSRAM** choice is load-bearing here: octal PSRAM (`R8`) steals GPIO33–37 for its data lines, but **quad PSRAM frees 35–37** — the window the SPI3 link sits in. (GPIO33/34 are *not bonded out on the WROOM-1U* at all, so the two C5-control lines ride PCA9555 #2.) The pin budget, not the RAM size, drives the N8R2 choice.
 
 ## C5 budget — ~11 / ~20 (roomy)
 

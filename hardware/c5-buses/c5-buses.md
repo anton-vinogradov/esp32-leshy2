@@ -12,7 +12,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 **U10 — ESP32-S3-WROOM-1U-N8R2** (main brain): dual-core Xtensa, 8 MB flash + **2 MB quad PSRAM**, native 2.4 GHz Wi-Fi + BLE, u.FL → external SMA.
 
-- **Quad PSRAM is deliberate.** Octal PSRAM (the `R8` parts) steals GPIO33–37 for its extra data lines; **quad PSRAM leaves 33–37 free**, and that is exactly where the C5-link block sits. We only need ~300 KB for the 320×480×16 framebuffer (double-buffered ~600 KB), so 2 MB quad is plenty — the pin budget, not the RAM size, drives the choice.
+- **Quad PSRAM is deliberate.** Octal PSRAM (the `R8` parts) steals GPIO33–37 for its extra data lines; **quad PSRAM frees 35–37** — GPIO33/34 are *not bonded out on the WROOM-1U module at all* (see the pin table), so the C5-link block sits on 35–39 and the two C5-control lines move to the expander. We only need ~300 KB for the 320×480×16 framebuffer (double-buffered ~600 KB), so 2 MB quad is plenty — the pin budget, not the RAM size, drives the choice.
 - Native USB is on GPIO19/20. The serial **console runs over the USB-Serial-JTAG** peripheral (not a UART), which frees UART0 for the C5 flash bridge.
 
 **U20 — ESP32-C5-WROOM-1U** (co-processor): single RISC-V core, in-package flash, native **2.4 + 5 GHz Wi-Fi + BLE + 802.15.4**, u.FL → its own external dual-band SMA. It is the *only* ESP32 with native 5 GHz. In-package flash occupies **GPIO15,16,17,18,20,21,22** (so **GPIO19 is free, GPIO15 is not** — the opposite of what earlier drafts said); native USB is on GPIO13/14. All of the C5's radios are on-chip; it never uses the external SPI bus.
@@ -45,8 +45,8 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 | GPIO19 | `USB_D−` | io | native USB + **console via USB-Serial-JTAG** |
 | GPIO20 | `USB_D+` | io | native USB |
 | GPIO21 | `LCD_TE` | in | tearing/vsync from ST7796 (timing → direct) |
-| GPIO33 | `C5_EN` | out | *(quad-freed)* C5 reset, open-drain; not gated in normal use |
-| GPIO34 | `C5_BOOT` | out | *(quad-freed)* → C5 GPIO26 **and** GPIO28 (download strap combo) |
+| — → **PCA9555 #2 P05** | `C5_EN` | out | GPIO33/34 are **not bonded out on WROOM-1U** → C5 reset moved to the expander (slow, set-once) |
+| — → **PCA9555 #2 P06** | `C5_BOOT` | out | download-strap combo (→ C5 GPIO26 **and** GPIO28) driven from the expander |
 | GPIO35 | `C5LINK_SCK` | out | *(quad-freed)* **SPI3** dedicated link, S3 = master |
 | GPIO36 | `C5LINK_MOSI` | out | SPI3 |
 | GPIO37 | `C5LINK_MISO` | in | SPI3; carries the whole C5→S3 stream |
@@ -97,8 +97,8 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 | `C5LINK_MISO` | **C5 → S3** | 37 / 6 |
 | `C5LINK_CS` | **S3 → C5** | 38 / 8 (+ wake) |
 | `C5LINK_DRDY` | **C5 → S3** | 39 / 9 |
-| `C5_EN` | **S3 → C5** | 33 / EN |
-| `C5_BOOT` | **S3 → C5** | 34 / 26+28 |
+| `C5_EN` | **PCA9555 #2 → C5** | P05 / EN |
+| `C5_BOOT` | **PCA9555 #2 → C5** | P06 / 26+28 |
 
 **No reverse wire beyond DRDY is needed.** The whole C5→S3 payload rides `MISO` (the S3 always clocks); `DRDY` is the single asynchronous "I have data / an event" line. One catch: an ESP32 SPI-slave must pre-load its TX buffer before the master starts clocking, so **`DRDY` doubles as a ready-strobe** — the S3 begins the clock only after the C5 raises `DRDY`. No separate `ACK`/`HOST_READY` line.
 
@@ -149,7 +149,7 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 | P0.4 | `RFSW_B` | out | SP4T band-switch 2nd select bit (with `RFSW_A`) |
 | P0.5–P1.7 | — spare | — | future slow lines |
 
-Both `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. Direct GPIO is full (38/38), but slow-line headroom is now generous.
+Both `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. Direct GPIO is full (36/36), but slow-line headroom is now generous.
 
 ## Reset & boot buttons
 
@@ -171,9 +171,9 @@ The one SPI2 bus is shared by SD + radios + display, serviced one device at a ti
 
 ## Gotchas
 
-- **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO33–37; an octal-PSRAM S3 does not fit the link.
+- **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO35–37 (GPIO33/34 aren't bonded out on the module either way); an octal-PSRAM S3 does not fit the link.
 - **Strap discipline.** S3 straps {0, 3, 45, 46}: GPIO45 is eFuse-freed (above); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT` with an **external pull-up to 3V3** (default = normal boot while S3 GPIO34 is Hi-Z; S3 drives it low only to flash C5), and pull 27 high.
-- **S3 direct GPIO is FULL (38/38).** No spare fast pins — a new timing-critical signal would force dropping an existing direct line. Slow signals still have room on PCA9555 #2.
+- **S3 direct GPIO is FULL (36/36).** No spare fast pins — a new timing-critical signal would force dropping an existing direct line. Slow signals still have room on PCA9555 #2.
 - **Straps handled at the root.** GPIO45 (VDD_SPI) is **de-strapped by an eFuse** (see the provisioning step below), so `CC1101_GDO2` sits there as a normal interrupt with no brick risk. GPIO46's boot strap is satisfied because the 74AHC gate makes `nRF24_IRQ` idle-**low**.
 - **eFuse provisioning (mandatory, irreversible).** Burn `espefuse.py set_flash_voltage 3.3V` once before first boot, in ROM download mode (entered via GPIO0 — a separate strap; the stub loads to IRAM, so the 1.8 V flash-read during the burn is irrelevant). This frees GPIO45 for good. **Only for 3.3 V modules — N8R2 qualifies; never on a 1.8 V octal-PSRAM part** (it would brick). Verify with `espefuse summary`.
 - **Rail-gating interlocks (firmware).** +3V3A is derived from +5V, so `RAIL_EN_5V` off also kills +3V3A **and HF listen** — keep +5V on whenever +3V3A is needed. Before gating +5V off, drive `WS2812` (GPIO1) and `IR_TX` (GPIO2) low/Hi-Z, or their high output back-powers the dead rail through the buffer/driver input clamp.

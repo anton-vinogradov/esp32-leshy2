@@ -1,192 +1,161 @@
-// Leshy2 — Sheet 2: MCU + buses  (transcribed from hardware/c5-buses/c5-buses.md)
-// NOTE: MCUs/expanders/decoder are generic <chip> with our logical pinout from the
-// GPIO maps; real footprints/part numbers get assigned before PCB. Peripherals of
-// other sheets are NOT placed here — only MCUs + PCA9555 expanders + 74HC138, plus
-// bus/rail labels (net.NAME). Footprints are pin-count placeholders (see issues).
+// Leshy2 — Sheet 2: MCU + buses  (FAB-READY draft, engine-pulled footprints by LCSC number)
+//
+// METHOD: every module/IC uses footprint="jlcpcb:C<number>". The parts engine supplies
+// the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers
+// are typed by hand. Traces reference those engine pad names (verified via
+// `tsci export -f readable-netlist`, WITHOUT --disable-parts-engine).
+//
+// Pad-name sources of truth (engine probe of each footprint):
+//   U10  ESP32-S3-WROOM-1U-N8R2  -> jlcpcb:C3013944
+//        Module pads: GND1, 3V3, EN, IO0..IO21, IO35..IO42, IO45..IO48, TXD0(=GPIO43),
+//        RXD0(=GPIO44), GND2, GND3..GND11 (EP thermal copies).
+//   U20  ESP32-C5-WROOM-1U-N8R4  -> jlcpcb:C49308183  (alt: C48533540 "…-1U", same pads)
+//        Module pads: GND1, 3V3, EN, IO0..IO10, IO13, IO14, IO23..IO28, TX0(=GPIO11 U0TXD),
+//        RX0(=GPIO12 U0RXD), NC1/NC2, ANT2 (u.FL feed), GND2/3/12/13, GND4..GND11 (EP copies).
+//   U11  SN74HC138PWR TSSOP-16   -> jlcpcb:C157527
+//        Pads: A,B,C,#G2A(pin4),#G2B(pin5),G1,Y0..Y7,GND,VCC.  (#G2A/#G2B referenced by pin#.)
+//   U12/U13 PCA9555PW,118 TSSOP-24 -> jlcpcb:C128392
+//        Pads: INT,A0,A1,A2,SCL,SDA,VDD,VSS, IO0_0..IO0_7 (=P00..P07), IO1_0..IO1_7 (=P10..P17).
+//
+// GPIO->pad mapping rule: every S3/C5 signal sits on the module pad matching ITS GPIO number
+// (net names unchanged; only the physical pad changes). Datasheet-confirmed:
+//   S3 TXD0=GPIO43=U0TXD, RXD0=GPIO44=U0RXD.  C5 U0TXD=GPIO11 (pad TX0), U0RXD=GPIO12 (pad RX0).
+//
+// DESIGN CORRECTION (found by realizing against the real module): the ESP32-S3-WROOM-1U does NOT
+//    bond out GPIO33 or GPIO34 (module pin table jumps IO21 -> IO35), so the base plan of
+//    C5_EN=GPIO33 / C5_BOOT=GPIO34 is invalid — those pads do not exist (independent of PSRAM;
+//    "quad frees 33-37" holds only for 35-37). Every other freed pad (IO35..IO48) is already used.
+//    RESOLVED: C5_EN and C5_BOOT are driven from PCA9555 #2 (U13.P05/P06) instead — both are slow,
+//    set-once lines, and the existing pull-ups (R_C5EN/R_C5BOOT) hold safe defaults at C5 power-on.
 export default () => (
   <board width="120mm" height="90mm">
     {/* ===================== U10 — ESP32-S3-WROOM-1U-N8R2 (main brain) ===================== */}
-    <chip name="U10" footprint="qfn48" pinLabels={{
-      pin1: "S3_BOOT",     // GPIO0  strap, recovery button
-      pin2: "WS2812",      // GPIO1  RMT
-      pin3: "IR_TX",       // GPIO2
-      pin4: "LoRa_DIO1",   // GPIO3  strap, SX1262 IRQ
-      pin5: "I2C_SDA",     // GPIO4
-      pin6: "I2C_SCL",     // GPIO5
-      pin7: "nRF24_CE",    // GPIO6
-      pin8: "CC1101_GDO0", // GPIO7
-      pin9: "HC138_A",     // GPIO8
-      pin10: "HC138_B",    // GPIO9
-      pin11: "HC138_C",    // GPIO10
-      pin12: "SPI_MOSI",   // GPIO11 FSPID
-      pin13: "SPI_SCK",    // GPIO12 FSPICLK
-      pin14: "SPI_MISO",   // GPIO13 FSPIQ
-      pin15: "LCD_DC",     // GPIO14
-      pin16: "LoRa_BUSY",  // GPIO15
-      pin17: "SA868_TX",   // GPIO16 UART1
-      pin18: "SA868_RX",   // GPIO17 UART1
-      pin19: "GPS_RX",     // GPIO18 UART2
-      pin20: "USB_DM_S3",  // GPIO19
-      pin21: "USB_DP_S3",  // GPIO20
-      pin22: "LCD_TE",     // GPIO21
-      pin23: "C5_EN",      // GPIO33
-      pin24: "C5_BOOT",    // GPIO34
-      pin25: "C5LINK_SCK", // GPIO35 SPI3
-      pin26: "C5LINK_MOSI",// GPIO36 SPI3
-      pin27: "C5LINK_MISO",// GPIO37 SPI3
-      pin28: "C5LINK_CS",  // GPIO38
-      pin29: "C5LINK_DRDY",// GPIO39
-      pin30: "ENC_A",      // GPIO40
-      pin31: "ENC_B",      // GPIO41
-      pin32: "IR_RX",      // GPIO42
-      pin33: "C5_FLASH_TX",// GPIO43 U0TXD
-      pin34: "C5_FLASH_RX",// GPIO44 U0RXD
-      pin35: "CC1101_GDO2",// GPIO45 strap (eFuse-freed)
-      pin36: "nRF24_IRQ",  // GPIO46 strap (gate idle-low)
-      pin37: "GPS_TX",     // GPIO47 UART2 optional
-      pin38: "PCA9555_INT",// GPIO48 expander INT
-      pin39: "V3V3",       // supply (Sheet 1)
-      pin40: "GND",
-      pin41: "EN",         // CHIP_PU — reset + RC from Sheet 6 (net.S3_EN)
-    }} />
+    <chip name="U10" footprint="jlcpcb:C3013944" />
 
     {/* ===================== U20 — ESP32-C5-WROOM-1U (co-processor) ===================== */}
-    <chip name="U20" footprint="soic16" pinLabels={{
-      pin1: "C5_EN",       // EN pin  ← S3 GPIO33
-      pin2: "C5_BOOT_26",  // GPIO26  ← S3 GPIO34 (download strap)
-      pin3: "C5_BOOT_28",  // GPIO28  ← S3 GPIO34 (tied to 26)
-      pin4: "STRAP27",     // GPIO27  pull-high for valid boot
-      pin5: "LINK_SCK",    // GPIO23  ← S3
-      pin6: "LINK_MOSI",   // GPIO24  ← S3
-      pin7: "LINK_MISO",   // GPIO6   → S3
-      pin8: "LINK_CS",     // GPIO8   ← S3
-      pin9: "LINK_DRDY",   // GPIO9   → S3
-      pin10: "U0TXD",      // GPIO11  → S3 (flash path)
-      pin11: "U0RXD",      // GPIO12  ← S3 (flash path)
-      pin12: "USB_DM_C5",  // GPIO13
-      pin13: "USB_DP_C5",  // GPIO14
-      pin14: "V3V3",       // supply
-      pin15: "GND",
-    }} />
+    <chip name="U20" footprint="jlcpcb:C49308183" />
 
-    {/* ===================== U11 — 74HC138 3→8 chip-select decoder ===================== */}
-    <chip name="U11" footprint="soic16" pinLabels={{
-      pin1: "A", pin2: "B", pin3: "C",
-      pin4: "G2A", pin5: "G2B", pin6: "G1",
-      pin7: "Y7", pin8: "GND",
-      pin9: "Y6", pin10: "Y5", pin11: "Y4", pin12: "Y3",
-      pin13: "Y2", pin14: "Y1", pin15: "Y0", pin16: "VCC",
-    }} />
+    {/* ===================== U11 — 74HC138 3->8 chip-select decoder ===================== */}
+    <chip name="U11" footprint="jlcpcb:C157527" />
 
     {/* ===================== U12 — PCA9555 #1 (0x20) radio/display control ===================== */}
-    <chip name="U12" footprint="ssop24" pinLabels={{
-      pin1: "P00", pin2: "P01", pin3: "P02", pin4: "P03",
-      pin5: "P04", pin6: "P05", pin7: "P06", pin8: "P07",
-      pin9: "GND", pin10: "P10", pin11: "P11", pin12: "P12",
-      pin13: "P13", pin14: "P14", pin15: "P15", pin16: "P16",
-      pin17: "P17", pin18: "INT", pin19: "SCL", pin20: "SDA",
-      pin21: "A0", pin22: "A1", pin23: "A2", pin24: "VCC",
-    }} />
+    <chip name="U12" footprint="jlcpcb:C128392" />
 
     {/* ===================== U13 — PCA9555 #2 (0x21) user I/O + power gating + SP4T ===================== */}
-    <chip name="U13" footprint="ssop24" pinLabels={{
-      pin1: "P00", pin2: "P01", pin3: "P02", pin4: "P03",
-      pin5: "P04", pin6: "P05", pin7: "P06", pin8: "P07",
-      pin9: "GND", pin10: "P10", pin11: "P11", pin12: "P12",
-      pin13: "P13", pin14: "P14", pin15: "P15", pin16: "P16",
-      pin17: "P17", pin18: "INT", pin19: "SCL", pin20: "SDA",
-      pin21: "A0", pin22: "A1", pin23: "A2", pin24: "VCC",
-    }} />
+    <chip name="U13" footprint="jlcpcb:C128392" />
 
     {/* I2C pull-ups live on Sheet 5 (single pair R40/R41 for the whole bus) */}
-    {/* C5 boot strap pull-up (26+28 high = normal boot while S3 GPIO34 is Hi-Z) */}
     <resistor name="R_C5BOOT" resistance="10k" footprint="0402" />
-    {/* C5 GPIO27 pull-high for valid boot */}
     <resistor name="R_C5S27" resistance="10k" footprint="0402" />
-    {/* 74HC138 G2A boot-gate default-disabled pull-up (to +3V3) */}
     <resistor name="R_HC138EN" resistance="10k" footprint="0402" />
-    {/* C5 EN pull-up + RC — reset well-defined regardless of S3 GPIO33 (open-drain) */}
     <resistor name="R_C5EN" resistance="10k" footprint="0402" />
     <capacitor name="C_C5EN" capacitance="1uF" footprint="0402" />
 
     {/* ============================== NETS ============================== */}
-    {/* --- S3 direct GPIO → bus/rail labels --- */}
-    <trace from=".U10 > .S3_BOOT" to="net.S3_BOOT" />
-    <trace from=".U10 > .WS2812" to="net.WS2812" />
-    <trace from=".U10 > .IR_TX" to="net.IR_TX" />
-    <trace from=".U10 > .LoRa_DIO1" to="net.LoRa_DIO1" />
-    <trace from=".U10 > .I2C_SDA" to="net.I2C_SDA" />
-    <trace from=".U10 > .I2C_SCL" to="net.I2C_SCL" />
-    <trace from=".U10 > .nRF24_CE" to="net.nRF24_CE" />
-    <trace from=".U10 > .CC1101_GDO0" to="net.CC1101_GDO0" />
-    <trace from=".U10 > .SPI_MOSI" to="net.SPI_MOSI" />
-    <trace from=".U10 > .SPI_SCK" to="net.SPI_SCK" />
-    <trace from=".U10 > .SPI_MISO" to="net.SPI_MISO" />
-    <trace from=".U10 > .LCD_DC" to="net.LCD_DC" />
-    <trace from=".U10 > .LoRa_BUSY" to="net.LoRa_BUSY" />
-    <trace from=".U10 > .SA868_TX" to="net.SA868_UART_TX" />
-    <trace from=".U10 > .SA868_RX" to="net.SA868_UART_RX" />
-    <trace from=".U10 > .GPS_RX" to="net.GPS_UART_RX" />
-    <trace from=".U10 > .GPS_TX" to="net.GPS_UART_TX" />
-    <trace from=".U10 > .USB_DM_S3" to="net.USB_DM_S3" />
-    <trace from=".U10 > .USB_DP_S3" to="net.USB_DP_S3" />
-    <trace from=".U10 > .LCD_TE" to="net.LCD_TE" />
-    <trace from=".U10 > .ENC_A" to="net.ENC_A" />
-    <trace from=".U10 > .ENC_B" to="net.ENC_B" />
-    <trace from=".U10 > .IR_RX" to="net.IR_RX" />
-    <trace from=".U10 > .CC1101_GDO2" to="net.CC1101_GDO2" />
-    <trace from=".U10 > .nRF24_IRQ" to="net.nRF24_IRQ" />
-    <trace from=".U10 > .V3V3" to="net.V3V3" />
-    <trace from=".U10 > .GND" to="net.GND" />
+    {/* --- S3 direct GPIO -> bus/rail labels (pad = IO<gpio>) --- */}
+    <trace from=".U10 > .IO0" to="net.S3_BOOT" />       {/* GPIO0 */}
+    <trace from=".U10 > .IO1" to="net.WS2812" />        {/* GPIO1 */}
+    <trace from=".U10 > .IO2" to="net.IR_TX" />         {/* GPIO2 */}
+    <trace from=".U10 > .IO3" to="net.LoRa_DIO1" />     {/* GPIO3 */}
+    <trace from=".U10 > .IO4" to="net.I2C_SDA" />       {/* GPIO4 */}
+    <trace from=".U10 > .IO5" to="net.I2C_SCL" />       {/* GPIO5 */}
+    <trace from=".U10 > .IO6" to="net.nRF24_CE" />      {/* GPIO6 */}
+    <trace from=".U10 > .IO7" to="net.CC1101_GDO0" />   {/* GPIO7 */}
+    <trace from=".U10 > .IO8" to="net.HC138_A" />       {/* GPIO8 */}
+    <trace from=".U10 > .IO9" to="net.HC138_B" />       {/* GPIO9 */}
+    <trace from=".U10 > .IO10" to="net.HC138_C" />      {/* GPIO10 */}
+    <trace from=".U10 > .IO11" to="net.SPI_MOSI" />     {/* GPIO11 */}
+    <trace from=".U10 > .IO12" to="net.SPI_SCK" />      {/* GPIO12 */}
+    <trace from=".U10 > .IO13" to="net.SPI_MISO" />     {/* GPIO13 */}
+    <trace from=".U10 > .IO14" to="net.LCD_DC" />       {/* GPIO14 */}
+    <trace from=".U10 > .IO15" to="net.LoRa_BUSY" />    {/* GPIO15 */}
+    <trace from=".U10 > .IO16" to="net.SA868_UART_TX" />{/* GPIO16 */}
+    <trace from=".U10 > .IO17" to="net.SA868_UART_RX" />{/* GPIO17 */}
+    <trace from=".U10 > .IO18" to="net.GPS_UART_RX" />  {/* GPIO18 */}
+    <trace from=".U10 > .IO19" to="net.USB_DM_S3" />    {/* GPIO19 */}
+    <trace from=".U10 > .IO20" to="net.USB_DP_S3" />    {/* GPIO20 */}
+    <trace from=".U10 > .IO21" to="net.LCD_TE" />       {/* GPIO21 */}
+    {/* GPIO33 C5_EN / GPIO34 C5_BOOT are NOT bonded out on the WROOM-1U module — relocated
+       to PCA9555 #2 (U13.P05/P06); see the C5-control block below and the header note. */}
+    <trace from=".U10 > .IO35" to="net.C5LINK_SCK" />   {/* GPIO35 */}
+    <trace from=".U10 > .IO36" to="net.C5LINK_MOSI" />  {/* GPIO36 */}
+    <trace from=".U10 > .IO37" to="net.C5LINK_MISO" />  {/* GPIO37 */}
+    <trace from=".U10 > .IO38" to="net.C5LINK_CS" />    {/* GPIO38 */}
+    <trace from=".U10 > .IO39" to="net.C5LINK_DRDY" />  {/* GPIO39 */}
+    <trace from=".U10 > .IO40" to="net.ENC_A" />        {/* GPIO40 */}
+    <trace from=".U10 > .IO41" to="net.ENC_B" />        {/* GPIO41 */}
+    <trace from=".U10 > .IO42" to="net.IR_RX" />        {/* GPIO42 */}
+    {/* TXD0(GPIO43)/RXD0(GPIO44) -> C5 flash bridge, wired in the flash-bridge block below */}
+    <trace from=".U10 > .IO45" to="net.CC1101_GDO2" />  {/* GPIO45 */}
+    <trace from=".U10 > .IO46" to="net.nRF24_IRQ" />    {/* GPIO46 */}
+    <trace from=".U10 > .IO47" to="net.GPS_UART_TX" />  {/* GPIO47 */}
+    <trace from=".U10 > .IO48" to="net.PCA9555_INT" />  {/* GPIO48 */}
+    <trace from=".U10 > .3V3" to="net.V3V3" />
     <trace from=".U10 > .EN" to="net.S3_EN" />
+    {/* all module GND pads + EP thermal copies -> GND */}
+    <trace from=".U10 > .GND1" to="net.GND" />
+    <trace from=".U10 > .GND2" to="net.GND" />
+    <trace from=".U10 > .GND3" to="net.GND" />
+    <trace from=".U10 > .GND4" to="net.GND" />
+    <trace from=".U10 > .GND5" to="net.GND" />
+    <trace from=".U10 > .GND6" to="net.GND" />
+    <trace from=".U10 > .GND7" to="net.GND" />
+    <trace from=".U10 > .GND8" to="net.GND" />
+    <trace from=".U10 > .GND9" to="net.GND" />
+    <trace from=".U10 > .GND10" to="net.GND" />
+    <trace from=".U10 > .GND11" to="net.GND" />
 
-    {/* --- S3 ↔ C5 dedicated SPI3 link (via nets) --- */}
-    <trace from=".U10 > .C5LINK_SCK" to="net.C5LINK_SCK" />
-    <trace from=".U20 > .LINK_SCK" to="net.C5LINK_SCK" />
-    <trace from=".U10 > .C5LINK_MOSI" to="net.C5LINK_MOSI" />
-    <trace from=".U20 > .LINK_MOSI" to="net.C5LINK_MOSI" />
-    <trace from=".U10 > .C5LINK_MISO" to="net.C5LINK_MISO" />
-    <trace from=".U20 > .LINK_MISO" to="net.C5LINK_MISO" />
-    <trace from=".U10 > .C5LINK_CS" to="net.C5LINK_CS" />
-    <trace from=".U20 > .LINK_CS" to="net.C5LINK_CS" />
-    <trace from=".U10 > .C5LINK_DRDY" to="net.C5LINK_DRDY" />
-    <trace from=".U20 > .LINK_DRDY" to="net.C5LINK_DRDY" />
-    <trace from=".U10 > .C5_EN" to="net.C5_EN" />
-    <trace from=".U20 > .C5_EN" to="net.C5_EN" />
+    {/* --- S3 <-> C5 dedicated SPI3 link (via nets) --- */}
+    <trace from=".U20 > .IO23" to="net.C5LINK_SCK" />   {/* C5 GPIO23 LINK_SCK */}
+    <trace from=".U20 > .IO24" to="net.C5LINK_MOSI" />  {/* C5 GPIO24 LINK_MOSI */}
+    <trace from=".U20 > .IO6" to="net.C5LINK_MISO" />   {/* C5 GPIO6 LINK_MISO */}
+    <trace from=".U20 > .IO8" to="net.C5LINK_CS" />     {/* C5 GPIO8 LINK_CS */}
+    <trace from=".U20 > .IO9" to="net.C5LINK_DRDY" />   {/* C5 GPIO9 DRDY */}
+    <trace from=".U20 > .EN" to="net.C5_EN" />          {/* C5 EN pad */}
     <trace from=".R_C5EN > .pin1" to="net.C5_EN" />
     <trace from=".R_C5EN > .pin2" to="net.V3V3" />
     <trace from=".C_C5EN > .pin1" to="net.C5_EN" />
     <trace from=".C_C5EN > .pin2" to="net.GND" />
-    <trace from=".U10 > .C5_BOOT" to="net.C5_BOOT" />
-    <trace from=".U20 > .C5_BOOT_26" to="net.C5_BOOT" />
-    <trace from=".U20 > .C5_BOOT_28" to="net.C5_BOOT" />
+    <trace from=".U20 > .IO26" to="net.C5_BOOT" />      {/* C5 GPIO26 (download strap) */}
+    <trace from=".U20 > .IO28" to="net.C5_BOOT" />      {/* C5 GPIO28 (tied to 26) */}
     <trace from=".R_C5BOOT > .pin1" to="net.C5_BOOT" />
     <trace from=".R_C5BOOT > .pin2" to="net.V3V3" />
-    <trace from=".U20 > .STRAP27" to=".R_C5S27 > .pin1" />
+    <trace from=".U20 > .IO27" to=".R_C5S27 > .pin1" /> {/* C5 GPIO27 strap pull-high */}
     <trace from=".R_C5S27 > .pin2" to="net.V3V3" />
 
-    {/* --- S3 ↔ C5 flash bridge UART0 --- */}
-    <trace from=".U10 > .C5_FLASH_TX" to="net.C5_FLASH_TX" />
-    <trace from=".U20 > .U0RXD" to="net.C5_FLASH_TX" />
-    <trace from=".U10 > .C5_FLASH_RX" to="net.C5_FLASH_RX" />
-    <trace from=".U20 > .U0TXD" to="net.C5_FLASH_RX" />
+    {/* --- S3 <-> C5 flash bridge UART0 --- */}
+    <trace from=".U10 > .TXD0" to="net.C5_FLASH_TX" />
+    <trace from=".U20 > .RX0" to="net.C5_FLASH_TX" />   {/* C5 U0RXD (GPIO12) */}
+    <trace from=".U10 > .RXD0" to="net.C5_FLASH_RX" />
+    <trace from=".U20 > .TX0" to="net.C5_FLASH_RX" />   {/* C5 U0TXD (GPIO11) */}
 
     {/* --- C5 own USB-C (data-only, Sheet 1) --- */}
-    <trace from=".U20 > .USB_DM_C5" to="net.USB_DM_C5" />
-    <trace from=".U20 > .USB_DP_C5" to="net.USB_DP_C5" />
-    <trace from=".U20 > .V3V3" to="net.V3V3" />
-    <trace from=".U20 > .GND" to="net.GND" />
+    <trace from=".U20 > .IO13" to="net.USB_DM_C5" />    {/* C5 GPIO13 */}
+    <trace from=".U20 > .IO14" to="net.USB_DP_C5" />    {/* C5 GPIO14 */}
+    <trace from=".U20 > .3V3" to="net.V3V3" />
+    {/* all C5 module GND pads + EP thermal copies -> GND */}
+    <trace from=".U20 > .GND1" to="net.GND" />
+    <trace from=".U20 > .GND2" to="net.GND" />
+    <trace from=".U20 > .GND3" to="net.GND" />
+    <trace from=".U20 > .GND4" to="net.GND" />
+    <trace from=".U20 > .GND5" to="net.GND" />
+    <trace from=".U20 > .GND6" to="net.GND" />
+    <trace from=".U20 > .GND7" to="net.GND" />
+    <trace from=".U20 > .GND8" to="net.GND" />
+    <trace from=".U20 > .GND9" to="net.GND" />
+    <trace from=".U20 > .GND10" to="net.GND" />
+    <trace from=".U20 > .GND11" to="net.GND" />
+    <trace from=".U20 > .GND12" to="net.GND" />
+    <trace from=".U20 > .GND13" to="net.GND" />
+    {/* ANT2 (u.FL antenna feed) left for RF sheet; NC1/NC2 unused */}
 
     {/* --- 74HC138 decoder --- */}
     <trace from=".U11 > .A" to="net.HC138_A" />
     <trace from=".U11 > .B" to="net.HC138_B" />
     <trace from=".U11 > .C" to="net.HC138_C" />
-    <trace from=".U10 > .HC138_A" to="net.HC138_A" />
-    <trace from=".U10 > .HC138_B" to="net.HC138_B" />
-    <trace from=".U10 > .HC138_C" to="net.HC138_C" />
     <trace from=".U11 > .G1" to="net.V3V3" />
-    <trace from=".U11 > .G2B" to="net.GND" />
-    <trace from=".U11 > .G2A" to="net.HC138_EN" />
+    <trace from=".U11 > .pin5" to="net.GND" />          {/* #G2B */}
+    <trace from=".U11 > .pin4" to="net.HC138_EN" />     {/* #G2A */}
     <trace from=".U11 > .VCC" to="net.V3V3" />
     <trace from=".U11 > .GND" to="net.GND" />
     <trace from=".U11 > .Y0" to="net.SD_CS" />
@@ -197,7 +166,6 @@ export default () => (
     <trace from=".U11 > .Y5" to="net.LoRa_NSS" />
     <trace from=".U11 > .Y6" to="net.LCD_CS" />
     {/* Y7 = deselect-all address, no chip; left unconnected */}
-    {/* HC138 boot-gate default-disabled pull-up */}
     <trace from=".R_HC138EN > .pin1" to="net.HC138_EN" />
     <trace from=".R_HC138EN > .pin2" to="net.V3V3" />
 
@@ -205,45 +173,50 @@ export default () => (
     <trace from=".U12 > .SDA" to="net.I2C_SDA" />
     <trace from=".U12 > .SCL" to="net.I2C_SCL" />
     <trace from=".U12 > .INT" to="net.PCA9555_INT" />
-    <trace from=".U12 > .VCC" to="net.V3V3" />
-    <trace from=".U12 > .GND" to="net.GND" />
+    <trace from=".U12 > .VDD" to="net.V3V3" />
+    <trace from=".U12 > .VSS" to="net.GND" />
     <trace from=".U12 > .A0" to="net.GND" />
     <trace from=".U12 > .A1" to="net.GND" />
     <trace from=".U12 > .A2" to="net.GND" />
-    <trace from=".U12 > .P00" to="net.ENC_SW" />
-    <trace from=".U12 > .P01" to="net.SA868_PTT" />
-    <trace from=".U12 > .P02" to="net.SA868_PD" />
-    <trace from=".U12 > .P03" to="net.Si4732_RST" />
-    <trace from=".U12 > .P04" to="net.LoRa_NRESET" />
-    <trace from=".U12 > .P05" to="net.BUZZER" />
-    <trace from=".U12 > .P06" to="net.LCD_RESX" />
-    <trace from=".U12 > .P07" to="net.MUX_SEL" />
-    <trace from=".U12 > .P10" to="net.BQ_INT" />
-    <trace from=".U12 > .P11" to="net.BQ_CD" />
-    <trace from=".U12 > .P12" to="net.LoRa_TR" />
-    <trace from=".U12 > .P13" to="net.PAM_SD" />
-    <trace from=".U12 > .P14" to="net.LCD_BL_EN" />
-    <trace from=".U12 > .P15" to="net.RFSW_A" />
-    <trace from=".U12 > .P16" to="net.HC138_EN" />
-    <trace from=".U12 > .P17" to="net.SD_CD" />
+    <trace from=".U12 > .IO0_0" to="net.ENC_SW" />
+    <trace from=".U12 > .IO0_1" to="net.SA868_PTT" />
+    <trace from=".U12 > .IO0_2" to="net.SA868_PD" />
+    <trace from=".U12 > .IO0_3" to="net.Si4732_RST" />
+    <trace from=".U12 > .IO0_4" to="net.LoRa_NRESET" />
+    <trace from=".U12 > .IO0_5" to="net.BUZZER" />
+    <trace from=".U12 > .IO0_6" to="net.LCD_RESX" />
+    <trace from=".U12 > .IO0_7" to="net.MUX_SEL" />
+    <trace from=".U12 > .IO1_0" to="net.BQ_INT" />
+    <trace from=".U12 > .IO1_1" to="net.BQ_CD" />
+    <trace from=".U12 > .IO1_2" to="net.LoRa_TR" />
+    <trace from=".U12 > .IO1_3" to="net.PAM_SD" />
+    <trace from=".U12 > .IO1_4" to="net.LCD_BL_EN" />
+    <trace from=".U12 > .IO1_5" to="net.RFSW_A" />
+    <trace from=".U12 > .IO1_6" to="net.HC138_EN" />
+    <trace from=".U12 > .IO1_7" to="net.SD_CD" />
 
     {/* --- PCA9555 #2 (0x21) --- */}
     <trace from=".U13 > .SDA" to="net.I2C_SDA" />
     <trace from=".U13 > .SCL" to="net.I2C_SCL" />
     <trace from=".U13 > .INT" to="net.PCA9555_INT" />
-    <trace from=".U13 > .VCC" to="net.V3V3" />
-    <trace from=".U13 > .GND" to="net.GND" />
+    <trace from=".U13 > .VDD" to="net.V3V3" />
+    <trace from=".U13 > .VSS" to="net.GND" />
     <trace from=".U13 > .A0" to="net.V3V3" />
     <trace from=".U13 > .A1" to="net.GND" />
     <trace from=".U13 > .A2" to="net.GND" />
-    <trace from=".U13 > .P00" to="net.PTT_BTN" />
-    <trace from=".U13 > .P01" to="net.RAIL_EN_5V" />
-    <trace from=".U13 > .P02" to="net.RAIL_EN_3V3A" />
-    <trace from=".U13 > .P03" to="net.JACK_DET" />
-    <trace from=".U13 > .P04" to="net.RFSW_B" />
-    {/* P05..P17 spare */}
+    <trace from=".U13 > .IO0_0" to="net.PTT_BTN" />
+    <trace from=".U13 > .IO0_1" to="net.RAIL_EN_5V" />
+    <trace from=".U13 > .IO0_2" to="net.RAIL_EN_3V3A" />
+    <trace from=".U13 > .IO0_3" to="net.JACK_DET" />
+    <trace from=".U13 > .IO0_4" to="net.RFSW_B" />
+    {/* C5 control relocated here: GPIO33/34 are NOT bonded out on the WROOM-1U module.
+        Both are slow, set-once lines; the pull-ups (R_C5EN / R_C5BOOT) hold safe
+        power-on defaults regardless of the expander, so I2C-driven control is fine. */}
+    <trace from=".U13 > .IO0_5" to="net.C5_EN" />   {/* P05 -> C5 reset/enable */}
+    <trace from=".U13 > .IO0_6" to="net.C5_BOOT" /> {/* P06 -> C5 download strap */}
+    {/* P07..P17 spare */}
 
     {/* --- S3 expander INT input --- */}
-    <trace from=".U10 > .PCA9555_INT" to="net.PCA9555_INT" />
+    <trace from=".U10 > .IO48" to="net.PCA9555_INT" />
   </board>
 )
