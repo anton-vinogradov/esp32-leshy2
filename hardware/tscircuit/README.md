@@ -18,21 +18,23 @@ and a **KiCad export** — so nothing is drawn by hand.
 
 All six sheets are captured **and merged into one board** — see below.
 
-## Combined board
+## Combined board — fab-drafted
 
-`board.tsx` merges all six sheets into a single `<board>`: the sheets stitch
-together by shared `net.NAME` — the whole `SPI_MOSI`/`SPI_SCK`/`SPI_MISO` bus,
-`I2C`, the power rails, the chip-selects and the interrupts all connect across
-sheets automatically. Colliding refdes are renamed on merge
-(`U20`→`m_U20`/`rf_U20`, `Y1`→`rf_Y1`/`a_Y1`). 133 components, 131 nets.
+All six sheets are realized with **real parts**: every IC/module/connector pulls its
+manufacturer-verified footprint + pinout from the LCSC/JLCPCB database
+(`footprint="jlcpcb:C…"`); only mechanical/placeholder parts stay geometric.
+`board.tsx` merges them into one `<board>` — the sheets stitch by shared `net.NAME`
+(the whole SPI/I²C bus, the power rails, the chip-selects, the interrupts, the C5 link,
+the SP4T select). Colliding refdes are renamed on merge (`U20`→`m_U20`/`rf_U20`,
+`Y1`→`rf_Y1`/`a_Y1`, `Rbias`→`rf_Rbias`/`a_Rbias`). **169 components.**
 
 | File | What |
 |------|------|
 | `board.tsx` | the whole device in one board — edit the sheets, then re-merge |
 | `board-sch.svg` | whole-board schematic image |
-| `board.kicad_pcb` | **KiCad PCB with full net connectivity — the layout target** |
+| `board.kicad_pcb` | **KiCad PCB — the layout target (connectivity carried; not yet routed)** |
 
-Next: assign real footprints/part numbers, then place & route in KiCad.
+Next: **place & route in KiCad** (RF feeds / ground / antenna keep-outs by hand), then gerbers.
 
 ## Render / export
 
@@ -40,20 +42,25 @@ Needs Node + [Bun](https://bun.sh) (the tscircuit CLI runs on Bun):
 
 ```bash
 npm install           # once, installs @tscircuit/cli locally (runs on Bun)
-npx tsci export power.tsx -f schematic-svg -o power-schematic.svg  # schematic image (of record)
-npx tsci export power.tsx -f kicad_pcb     -o power.kicad_pcb      # KiCad PCB — full net connectivity, layout target
-npx tsci export board.tsx -f kicad_pcb     -o board.kicad_pcb      # the MERGED whole-board PCB (layout target)
+# Sheets use footprint="jlcpcb:C…" -> the parts engine (network) must be ON.
+# Do NOT pass --disable-parts-engine, or the real footprints won't resolve:
+npx tsci export board.tsx -f kicad_pcb     -o board.kicad_pcb      # whole-board PCB (layout target)
+npx tsci export board.tsx -f schematic-svg -o board-sch.svg       # whole-board schematic
 # also: pcb-svg, gerbers, kicad_zip, readable-netlist, STEP, glTF …
 ```
 
-**Verify connectivity** with KiCad's own checker on the PCB / netlist, e.g.
-`kicad-cli pcb drc power.kicad_pcb`.
+**Verify connectivity** with KiCad's DRC. On a routed board `unconnected_items` should be 0;
+on the *un-routed* merged board use **`schematic_parity` = 0** (the PCB netlist matches the
+schematic) — its `unconnected_items` is just the ratsnest of the yet-to-route board:
+`kicad-cli pcb drc --format json -o board.drc.json board.kicad_pcb`.
 
 ## Notes
 
-- **ICs/connectors** are generic `<chip>` with our logical pinout; 2-pin
-  passive-ish parts (PPTC fuse, master switch, NTC) are resistor proxies.
-  Real footprints / part numbers are assigned before the PCB.
+- **Real footprints** are engine-pulled by LCSC part number (the parts engine /
+  network must be on to export). Remaining **placeholders** to swap before fab: the
+  18650 holder, 3.5 mm jack, electret mic, speaker, buzzer, RESET/BOOT/PTT buttons,
+  the nRF24 / SA868 module lands and the CC1101 balun; LEDs are plain 0603 (pick the
+  real amber part at BOM time). Each sheet's header comment lists its exact parts + `⚠`.
 - **Still to draw before the PCB** — endpoints intentionally off-sheet today:
   the 7 RF envelope detectors that feed the TX-live LEDs (`TXDET_*`), the
   external display-module connector (`LCD_*`), the antenna feeds (`ANT_*`),
