@@ -87,6 +87,31 @@ GND      : common
 - **Fuel gauge = the BQ25887's own I²C 16-bit ADC** (VBUS/BAT/cell voltages, charge current, temperature) — no dedicated MCU ADC pin.
 - Test points: `TP_BAT`, `TP_5V`, `TP_3V3`, `TP_3V3A`, `TP_GND`.
 
+## Fab realization (real parts)
+
+`hardware/tscircuit/power.tsx` is now **fab-drafted**: every IC/connector pulls its
+real, manufacturer-verified footprint and pinout from the LCSC/JLCPCB database
+(`footprint="jlcpcb:C…"`), so pinouts are authoritative, not hand-typed. KiCad DRC on
+the export reports **0 unconnected, 0 shorts, 0 schematic-parity** (the remaining
+violations are placement/routing only — nothing is laid out yet).
+
+| Ref | Part | LCSC |
+|-----|------|------|
+| J1, J2 | USB-C 16P GT-USB-7010ASV | C2988369 |
+| U2 | BQ25887 | C2761614 |
+| U3 | S-8252AAS-M6T1U | C468224 |
+| Q1, Q2 | AO3400A N-FET | C20917 |
+| U4, U5 | MP2315 | C45889 |
+| U6 | TPS7A2033 | C2862740 |
+
+Realized per datasheet: **BQ25887 wired as the boost it is** — inductor `PMID↔SW`,
+boost output `SNS→BAT` — with its full support network (PMID/REGN/BTST/SNS/ILIM/MID
+caps + the **TS thermistor divider from REGN**, without which charging is blocked);
+MP2315 `VCC`/`AAM`; S-8252A reference sides (`VSS`=B−, `VM`=EB−). The 2S protection
+FETs use the standard back-to-back **common-drain** pair (Q1 discharge / Q2 charge,
+drains tied) — a single FS8205-class dual-FET may replace the two AO3400A. Values to
+confirm at bring-up: the TS divider (per the exact NTC), cell-balance `Rcbset`, `Raam`.
+
 ## Gotchas
 
 - **Charges from plain 5 V — no PD.** BQ25887 is a **boost** charger: it makes 8.4 V from 5 V USB. Charge current scales with the input current the source offers (set ICHG / input-limit over I²C). A 5 V / ≥2 A source is the target.
