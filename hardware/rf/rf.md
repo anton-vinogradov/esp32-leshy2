@@ -57,6 +57,33 @@ The **E22-900M22S** carries the SX1262, an external **PA/LNA to +22 dBm**, the T
 
 Five of the nine onboard antennas live here: **3× 2.4 GHz** (nRF24), **1 sub-GHz** (CC1101, fed through the SP4T), **1 LoRa** (SX1262). Each chain keeps its **own** antenna — there is **no RF switch shared between chains** (the PE42440 only multiplexes CC1101's four *band matches* onto CC1101's single antenna). All are external SMA connectors, tuned by hand with a VNA.
 
+## Fab realization (real parts)
+
+`hardware/tscircuit/rf.tsx` is fab-drafted: real footprints/pinouts are engine-pulled
+from LCSC by part number. KiCad DRC = **0 unconnected / 0 shorts / 0 schematic-parity**.
+
+| Ref | Part | LCSC | Note |
+|-----|------|------|------|
+| U23 | CC1101RGPR (QFN-20) | C29953 | bare IC |
+| U25 | E22-900M22S (SX1262) | C411293 | module footprint |
+| U27 | SN74LVC1G04 inverter (T/R) | C7827 | |
+| U28 | SN74LVC1G10 3-input NAND (IRQ combiner) | C485078 | |
+| U20–U22 | nRF24L01+PA/LNA module | — | 2×4 header placeholder |
+| U24 | SP4T switch | — | **not stocked — see below** |
+
+Realized per datasheet: the CC1101 gains its bare-IC support (all AVDD/DVDD → `+3V3`,
+`DGUARD` → `+3V3`, `DCOUPL` 100 nF → GND, `RBIAS` 56 kΩ 1 % → GND, EP → GND). The nRF24
+IRQ combiner is a **3-input NAND** (74LVC1G10): three idle-HIGH active-low IRQs give a
+NAND output that is idle-LOW and asserts HIGH on any interrupt — matching the GPIO46
+strap. nRF24/E22 are shielded modules (header/module footprints); the balun and per-band
+matching are placeholders tuned by hand on a VNA.
+
+**🔴 Open BOM item — the SP4T (`U24`).** The intended **PE42440** (2-bit binary decode,
+`RFSW_A/RFSW_B`) is **not stocked at JLCPCB/LCSC**. Options: (a) source PE42440 from a
+broker and keep the 2-bit control; (b) use an in-stock SP4T (e.g. SKY13414-485LF, C255353)
+— those use one-hot control, so they need a **3rd select line** (`RFSW_C` off a PCA9555 #2
+spare — a small Sheet-2 edit). Kept as a placeholder until chosen.
+
 ## Gotchas
 
 - **Only one CS low at a time.** The 74HC138 guarantees a single selected device; firmware parks the address on Y7 before switching. microSD (also on SPI2, Sheet 6) can hold `MISO` for a few clocks after deselect — issue **8+ dummy clocks** before addressing a radio.
