@@ -12,7 +12,7 @@ The data radios that hang off the shared **SPI2** bus and the two PCA9555 expand
 |-----|--------|------|------|-----------|
 | U20–U22 | 3× **nRF24L01+PA/LNA** module | 2.4 GHz | parallel band scan, mousejack, channel analyzer | SPI + CSN (138 Y2/Y3/Y4) + shared `CE` + `IRQ` (gated → GPIO46) |
 | U23 | **CC1101** bare IC + 26 MHz xtal + balun | 300–928 MHz | capture/replay OOK-FSK, RSSI "geiger", carrier-sense wake | SPI + CS (138 Y1) + `GDO0` (GPIO7 RMT) + `GDO2` (GPIO45) |
-| U24 | RF switch **PE42440** (SP4T) + 4× matched networks | 315/433/868/915 | fold four sub-GHz bands onto one CC1101 antenna | `RFSW_A` + `RFSW_B` (2-bit, PCA9555) |
+| U24 | RF switch **SKY13414-485LF** (SP4T) + 4× matched networks | 315/433/868/915 | fold four sub-GHz bands onto one CC1101 antenna | `RFSW_A/B/C` (V1/V2/V3, PCA9555) |
 | U25 | **SX1262** / Ebyte **E22-900M22S**, +22 dBm | 868 / 915 MHz | Meshtastic text mesh | SPI + NSS (138 Y5) + `BUSY` (poll) + `DIO1` (IRQ) + `NRESET` + `RXEN/TXEN` |
 
 All logic runs on **`+3V3`**. Only one device drives `MISO` at a time (74HC138 asserts a single CS), so the four chains share SPI2 without contention.
@@ -26,7 +26,7 @@ nRF24 CE : GPIO6  → CE of U20/U21/U22 (tied)
 nRF24 IRQ: 3× push-pull → 74AHC 3-input gate (idle-LOW) → GPIO46 (interrupt)
 CC1101   : GDO0 → GPIO7  (RMT: raw OOK RX / replay)
            GDO2 → GPIO45 (carrier-sense / wake-on-sub-GHz)
-           band : PE42440 SP4T ← RFSW_A (PCA#1 P1.5) + RFSW_B (PCA#2 P0.4)   [00/01/10/11 = 315/433/868/915]
+           band : SKY13414 SP4T ← RFSW_A/RFSW_B/RFSW_C (V1/V2/V3; PCA#1 P1.5, PCA#2 P0.4, PCA#2 P07) → 315/433/868/915
 SX1262   : BUSY → GPIO15 (polled before each command)
            DIO1 → GPIO3  (RxDone/TxDone/timeout interrupt)
            NRESET ← PCA#1 P0.4
@@ -69,7 +69,7 @@ from LCSC by part number. KiCad DRC = **0 unconnected / 0 shorts / 0 schematic-p
 | U27 | SN74LVC1G04 inverter (T/R) | C7827 | |
 | U28 | SN74LVC1G10 3-input NAND (IRQ combiner) | C485078 | |
 | U20–U22 | nRF24L01+PA/LNA module | — | 2×4 header placeholder |
-| U24 | SP4T switch | — | **not stocked — see below** |
+| U24 | SP4T SKY13414-485LF | C255353 | 3-line V1/V2/V3 |
 
 Realized per datasheet: the CC1101 gains its bare-IC support (all AVDD/DVDD → `+3V3`,
 `DGUARD` → `+3V3`, `DCOUPL` 100 nF → GND, `RBIAS` 56 kΩ 1 % → GND, EP → GND). The nRF24
@@ -78,11 +78,11 @@ NAND output that is idle-LOW and asserts HIGH on any interrupt — matching the 
 strap. nRF24/E22 are shielded modules (header/module footprints); the balun and per-band
 matching are placeholders tuned by hand on a VNA.
 
-**🔴 Open BOM item — the SP4T (`U24`).** The intended **PE42440** (2-bit binary decode,
-`RFSW_A/RFSW_B`) is **not stocked at JLCPCB/LCSC**. Options: (a) source PE42440 from a
-broker and keep the 2-bit control; (b) use an in-stock SP4T (e.g. SKY13414-485LF, C255353)
-— those use one-hot control, so they need a **3rd select line** (`RFSW_C` off a PCA9555 #2
-spare — a small Sheet-2 edit). Kept as a placeholder until chosen.
+**SP4T (`U24`) = SKY13414-485LF (C255353), in stock.** The originally-planned PE42440 is not
+stocked at JLCPCB, so the in-stock SKY13414 is used. It takes **3-line control** (`V1/V2/V3`
+= `RFSW_A/RFSW_B/RFSW_C`); the added `RFSW_C` rides **PCA9555 #2 P07** (Sheet 2). Its common
+pad drives the CC1101 radio; RF1..RF4 fan the four per-band matches onto the shared antenna.
+Ground the EP + unused pads per the SKY13414 layout.
 
 ## Gotchas
 

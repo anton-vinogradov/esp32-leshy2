@@ -214,7 +214,8 @@ export default () => (
         power-on defaults regardless of the expander, so I2C-driven control is fine. */}
     <trace from=".U13 > .IO0_5" to="net.C5_EN" />   {/* P05 -> C5 reset/enable */}
     <trace from=".U13 > .IO0_6" to="net.C5_BOOT" /> {/* P06 -> C5 download strap */}
-    {/* P07..P17 spare */}
+    <trace from=".U13 > .IO0_7" to="net.RFSW_C" />  {/* P07 -> SP4T 3rd select (SKY13414 V3, RF sheet) */}
+    {/* P10..P17 spare */}
 
     {/* --- S3 expander INT input --- */}
     <trace from=".U10 > .IO48" to="net.PCA9555_INT" />

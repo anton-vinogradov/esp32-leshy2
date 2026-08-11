@@ -32,11 +32,10 @@
 //        No SMD JLC part exists for the shielded PA/LNA module (own antenna/SMA). Header pads
 //        pin1..pin8 mapped to the module's 2x4 order: 1 GND,2 VCC,3 CE,4 CSN,5 SCK,6 MOSI,
 //        7 MISO,8 IRQ.  ** placeholder footprint — swap for the real module land before fab **
-//   U24  PE42440 SP4T (315/433/868/915 band fold)  -> qfn16 placeholder + explicit pinLabels.
-//        ** BLOCKER: PE42440 is NOT stocked at JLC/LCSC (parts-engine returns empty). Kept as a
-//        placeholder to preserve the 2-bit RFSW_A/RFSW_B decode contract and the net names.
-//        In-stock swap = SKY13414-485LF (C255353) but it is 3-line (V1/V2/V3) control, so it
-//        needs a 3rd select net (RFSW_C on a spare PCA9555 pin) — a Sheet-2 change, out of scope. **
+//   U24  SP4T RF switch SKY13414-485LF (315/433/868/915 band fold) -> jlcpcb:C255353 (in stock).
+//        Chosen over PE42440 (not stocked at JLC). 3-line control V1/V2/V3 = RFSW_A/RFSW_B/RFSW_C;
+//        RFSW_C is added on PCA9555 #2 P07 (Sheet 2). Common pad ANT -> CC1101 radio; RF1..RF4 ->
+//        per-band matches -> the shared CC1101 antenna. EP + unnamed pads = RF ground.
 //   BL1  CC1101 RF balun (RF_P/RF_N -> single-ended)  -> soic6 placeholder + pinLabels.
 //        Real part is a discrete LC balun/match tuned on a VNA; modelled as a 4-net proxy.
 //
@@ -83,13 +82,10 @@ export default () => (
     <capacitor name="Cb23" capacitance="100uF" footprint="1210" />
     <capacitor name="Cd23" capacitance="100nF" footprint="0402" />
 
-    {/* ===================== SP4T PE42440 placeholder + 4x band matches ===================== */}
-    <chip name="U24" footprint="qfn16" pinLabels={{
-      pin1: "RFC", pin2: "RF1", pin3: "RF2", pin4: "RF3", pin5: "RF4",
-      pin6: "V1", pin7: "V2", pin8: "VDD",
-      pin9: "GND1", pin10: "GND2", pin11: "GND3", pin12: "GND4",
-      pin13: "GND5", pin14: "GND6", pin15: "GND7", pin16: "GND8",
-    }} />
+    {/* ===================== SP4T SKY13414-485LF + 4x band matches ===================== */}
+    {/* In-stock SP4T (C255353). Engine pads: ANT(common), RF1..RF4, V1/V2/V3 (3-line select),
+        VDD, EP + unnamed pads = RF ground. Needs RFSW_C (3rd select) — added on PCA9555 #2 P07. */}
+    <chip name="U24" footprint="jlcpcb:C255353" />
     {/* per-band matched networks (proxy: one inductor each) */}
     <inductor name="Lm315" inductance="1nH" footprint="0402" />
     <inductor name="Lm433" inductance="1nH" footprint="0402" />
@@ -189,19 +185,19 @@ export default () => (
     <trace from=".Cd23 > .pin1" to="net.V3V3" />
     <trace from=".Cd23 > .pin2" to="net.GND" />
 
-    {/* --- SP4T band switch (placeholder): one antenna, four matches --- */}
-    <trace from=".U24 > .RFC" to="net.CC1101_RF" />
+    {/* --- SP4T band switch (SKY13414): common ANT -> CC1101 radio, 4 throws -> per-band matches --- */}
+    <trace from=".U24 > .ANT" to="net.CC1101_RF" />    {/* switch common -> CC1101 RF_P/N (via balun) */}
     <trace from=".U24 > .V1" to="net.RFSW_A" />
     <trace from=".U24 > .V2" to="net.RFSW_B" />
+    <trace from=".U24 > .V3" to="net.RFSW_C" />        {/* 3rd select -> PCA9555 #2 P07 (Sheet 2) */}
     <trace from=".U24 > .VDD" to="net.V3V3" />
-    <trace from=".U24 > .GND1" to="net.GND" />
-    <trace from=".U24 > .GND2" to="net.GND" />
-    <trace from=".U24 > .GND3" to="net.GND" />
-    <trace from=".U24 > .GND4" to="net.GND" />
-    <trace from=".U24 > .GND5" to="net.GND" />
-    <trace from=".U24 > .GND6" to="net.GND" />
-    <trace from=".U24 > .GND7" to="net.GND" />
-    <trace from=".U24 > .GND8" to="net.GND" />
+    {/* EP + unnamed pads = RF ground (⚠ confirm ground pinout vs SKY13414 datasheet at layout) */}
+    <trace from=".U24 > .EP" to="net.GND" />
+    <trace from=".U24 > .pin1" to="net.GND" />
+    <trace from=".U24 > .pin8" to="net.GND" />
+    <trace from=".U24 > .pin11" to="net.GND" />
+    <trace from=".U24 > .pin12" to="net.GND" />
+    <trace from=".U24 > .pin14" to="net.GND" />
     <trace from=".U24 > .RF1" to=".Lm315 > .pin1" />
     <trace from=".Lm315 > .pin2" to="net.ANT_CC1101" />
     <trace from=".U24 > .RF2" to=".Lm433 > .pin1" />
