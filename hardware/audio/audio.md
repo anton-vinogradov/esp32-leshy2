@@ -34,7 +34,7 @@ Si4732 (U30)  — analog front end, all on +3V3A
 SA868-U (U31)
   UART1   : TX=GPIO16 → U31.RXD · RX=GPIO17 ← U31.TXD
   control : PTT → PCA #1 P0.1 · PD → PCA #1 P0.2
-  power   : Vin = +5V + local bulk 220–470 µF + 100 nF (2 W PA burst) ; logic 3V3
+  power   : VBAT = +5V + local bulk 220–470 µF + 100 nF (2 W PA burst)   ; single-supply module
   antenna : UHF → SMA
   RX audio: U31.AF_OUT → mux U33.B
   TX audio: MK1 electret → 1 µF → U31.MIC_IN   (see gotcha)
@@ -62,13 +62,38 @@ A radio mode is exclusive, so only one audio source is ever live. The tiny **2:1
 ## SA868-U — voice walkie
 
 - **Control over UART1** (frequency, squelch, volume); **PTT** keys TX, **PD** sleeps the module. Both are slow → on **PCA #1** (P0.1 / P0.2).
-- **PA on `+5V`** for the 2 W burst; add **local bulk (220–470 µF + 100 nF at the module Vin)** so a PTT burst doesn't sag the rail and distort TX. The +5V rail is sized for it (power sheet).
+- **Single-supply `VBAT` on `+5V`** for the 2 W burst; add **local bulk (220–470 µF + 100 nF at the module VBAT)** so a PTT burst doesn't sag the rail and distort TX. The +5V rail is sized for it (power sheet).
 - **Legal power** is capped per region in firmware (446 PMR ≤ 0.5 W ERP; 5 W only on ham 70 cm with a licence).
 
 ## PAM8302 — speaker amp
 
 - Single-ended input from the mux, gain fixed by the input resistor; **SD** (shutdown, PCA #1 P1.3) mutes the amp and saves power between sounds.
 - **BTL output** drives the speaker directly — do **not** ground either speaker terminal.
+
+## Fab realization (real parts)
+
+`hardware/tscircuit/audio.tsx` is fab-drafted: real footprints/pinouts are engine-pulled
+from LCSC. KiCad DRC = **0 unconnected / 0 shorts / 0 schematic-parity**.
+
+| Ref | Part | LCSC |
+|-----|------|------|
+| U30 | Si4732-A10-GS (16-SOIC) | C1526102 |
+| U31 | SA868-U walkie module | C3001507 |
+| U32 | PAM8302AASCR (8-pin MSOP) | C113367 |
+| U33 | SN74LVC1G3157 analog mux | C10426 |
+| Y1 | 32.768 kHz crystal NX3215SA | C280830 |
+
+Corrections found by realizing against the real parts:
+- **SA868-U is single-supply.** The real module has one **`VBAT`** pin (3.3–5.5 V), not the
+  separate `VIN`+`VCC3V3` the base assumed — `VBAT` → `+5V`, the 3V3 pin is dropped. Its
+  internal audio-amp enable `AudioON` (active-low) is tied to GND.
+- **PAM8302A is 8-pin MSOP**, not SOT-23-6.
+- Si4732 gained its `RFGND` → GND and a 100 nF VDD HF decoupling cap.
+
+To confirm at layout: **SA868 `H/L` (pin 7) is left open = 2 W high power** — pull it low
+(or wire a control line) for regions capped at ≤0.5 W (UART power-set is available too);
+Si4732 pins 1/2/3/16 (engine-unnamed → ROUT/LOUT/NC); the 3.5 mm jack and mic/speaker are
+placeholders; crystal load caps (12 pF) per the final crystal.
 
 ## Gotchas
 
