@@ -86,6 +86,28 @@ Power on/off is the **master toggle switch** (Sheet 1) — there is no soft powe
 | `SD_CS` | 74HC138 Y0 | microSD on shared SPI2 |
 | TX-live LEDs | none | 7× analog envelope detectors, 0 GPIO |
 
+## Fab realization (real parts)
+
+`hardware/tscircuit/indicators.tsx` is fab-drafted (engine-pulled LCSC footprints);
+KiCad DRC = **0 unconnected / 0 shorts / 0 schematic-parity**.
+
+| Ref | Part | LCSC |
+|-----|------|------|
+| Q50–Q58 | MMBT3904 NPN | C20526 |
+| DS1 | WS2812B RGB | C2761795 |
+| U51 | SN74AHCT1G125 buffer | C7484 |
+| U50 | TSOP38238 IR RX | C141632 |
+| J50 | microSD socket | C961683 |
+| SW10 | EC11 rotary encoder | C361165 |
+
+Correction found by realizing against the real part: **U51's pinout was wrong** in the
+logical sheet — the real SOT-23-5 is `1 OE, 2 A, 3 GND, 4 Y, 5 VCC` (remapped). It must be
+**AHCT, not AHC** — AHCT's TTL input threshold sees the S3's 3.3 V as logic-high at VCC = 5 V;
+plain AHC (identical land) would not. Added WS2812 / buffer VDD decaps.
+Before fab: real lands for the buzzer, the RESET/BOOT/PTT buttons; pick the amber LED; verify
+the microSD detect-switch polarity; add ~1 kΩ base resistors on the BUZZER / IR-TX driver
+transistors (`Q57`/`Q58`).
+
 ## Gotchas
 
 - **TX-LED is not a software LED.** Do not try to drive it from a GPIO — its value is that it reports physics, not code. The only software indicator is the WS2812.

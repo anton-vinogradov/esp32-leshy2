@@ -59,6 +59,27 @@ The **SAM-M8Q** carries its **own patch antenna**, so it solders straight to the
 
 **Two** identical **Grove HY2.0-4P** connectors (J40, J41) each bring out **`+3V3`**, GND and the I²C pair with an ESD array — the S3 is not 5 V-tolerant, so the ports are 3.3 V by default (most M5/Grove I²C units run at 3.3 V). A `+5V` supply is a separate jumper option, and only behind a bidirectional I²C translator (PCA9306 / TCA9517, U43) so a 5 V unit can never pull SDA/SCL above 3.3 V. Both ports sit on the **same** I²C bus — the second one is a convenience socket, not a second bus, so it costs no extra GPIO. They accept M5 **I²C** units — RFID2 NFC, RTC, IMU/compass, environmental sensors — each at its own address. To plug several onto one connector, a passive **Grove I²C hub** (U41) fans it out; only if two units clash on an address does a **TCA9548A** mux (U42) become necessary.
 
+## Fab realization (real parts)
+
+`hardware/tscircuit/expansion.tsx` is fab-drafted (engine-pulled LCSC footprints);
+KiCad DRC = **0 unconnected / 0 shorts / 0 schematic-parity**.
+
+| Ref | Part | LCSC |
+|-----|------|------|
+| U40 | u-blox SAM-M8Q GNSS | C5447387 |
+| J40/J41 | Grove HY2.0-4P | C722729 |
+| D40/D41 | PESD5V0S2UAT ESD | C552572 |
+| D42 | BAT54 Schottky | C466635 |
+| BT40 | 0.22 F supercap | C3019760 |
+
+Correction found by realizing against the real module: the SAM-M8Q has a **separate `VCC_IO`
+supply pad** the logical placeholder lacked — tied to +3V3, plus the datasheet GPS decoupling
+(100 nF + 10 µF + VCC_IO 100 nF). The DDC (`SDA`/`SCL`) pins are left open on purpose (UART-only,
+to keep NMEA off the shared I2C bus).
+Before fab: confirm the Grove pin-1 orientation / signal order against the plugged unit; the
+Grove "5 V" pin carries **+3V3** (the S3 is not 5 V-tolerant — a 5 V unit needs a level
+translator); the RFID2 (`U44`) is an external plug-in unit, not a populated part.
+
 ## Gotchas
 
 - **3.3 V ports by default.** SDA/SCL are `+3V3` (the S3 is not 5 V-tolerant). Grove power is `+3V3`; a `+5V` unit needs the jumper **and** the I²C translator (U43) so it can't pull the lines above 3.3 V.
