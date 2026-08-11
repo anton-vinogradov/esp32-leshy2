@@ -18,7 +18,7 @@ The charger is a **boost** 2S device: it steps **5 V USB up** to charge the 8.4 
 | `VBUS_C5` | USB-C **J2** | 5 V | ESD only | ESD clamp — **not routed into the system**; C5 senses USB via its own peripheral |
 | `BAT` | 2S pack (after protection + master switch) | 6.0–8.4 V | — | the two bucks |
 | `+5V` | MP2315 buck from `BAT`, **EN = RAIL_EN_5V** | 5.0 V | 3 A | SA868 PA, WS2812 (via level shifter), PAM8302, IR, Grove 5V (opt.), **+3V3A LDO input** |
-| `+3V3` | TLV62569 buck from `BAT` | 3.3 V | 2 A | **S3**, **C5**, CC1101, 3× nRF24, **SX1262 (LoRa)**, microSD, u-blox GPS, PCA9555 ×2, ST7796 logic, sensors |
+| `+3V3` | **MP2315** buck from `BAT` (wide Vin) | 3.3 V | 2 A | **S3**, **C5**, CC1101, 3× nRF24, **SX1262 (LoRa)**, microSD, u-blox GPS, PCA9555 ×2, ST7796 logic, sensors |
 | `+3V3A` | TPS7A2033 LDO from `+5V`, **EN = RAIL_EN_3V3A** | 3.3 V | 0.3 A | Si4732, SA868 audio front-end (clean analog/RF) |
 
 The two bucks hang directly on the **BAT** node. With no battery there is no system power — this charger has no power-path.
@@ -36,7 +36,7 @@ The two bucks hang directly on the **BAT** node. With no battery there is no sys
 | SW_MASTER | Hard SPST master switch (≥3 A) | **The only on/off** — breaks the pack + line | pack + → BAT node |
 | RT1 | 10 kΩ NTC | Pack temperature | to BQ25887 `TS` |
 | U4 | **MP2315** | +5 V / 3 A buck | Vref 0.8 V; L2 4.7 µH; **EN = RAIL_EN_5V** (PCA #2 P0.1) |
-| U5 | **TLV62569** | +3.3 V / 2 A buck | Vref 0.6 V; L3 2.2 µH; enabled at power-up (feeds both MCUs) |
+| U5 | **MP2315** | +3.3 V / 2 A buck | Vref 0.8 V; L3 2.2 µH; **wide Vin** — sits on 8.4 V BAT; EN auto-on via 100k/47k divider from BAT; feeds both MCUs |
 | U6 | **TPS7A2033** low-noise LDO | +3V3A analog | from **+5 V**; **EN = RAIL_EN_3V3A** (PCA #2 P0.2); feeds Si4732 / SA868 audio |
 
 ## Key nets
@@ -51,13 +51,14 @@ BAT      : BT1+ ── F1 ── SW_MASTER ── BAT node ── U2.BAT ── 
            protection: BT1− ── Q1(low-side charge/discharge FETs, S-8252A) ── PACK−
            BATM = cell mid-tap ── U2.VCELL(balance) / U3.VC
 SW1      : U2.SW ── L1(2.2µH) ── (boost node)
-+5V      : U4.SW ── L2(4.7µH) ── +5V ── U6.IN ── C_out(2×22µF)
-+3V3     : U5.SW ── L3(2.2µH) ── +3V3 ── C_out(22µF)   ; feeds S3 + C5 + radios + SD + logic
++5V      : U4.SW ── L2(4.7µH) ── +5V ── U6.IN ── C_out(2×22µF)   ; C_bst(100nF) U4.BST──U4.SW
++3V3     : U5.SW ── L3(2.2µH) ── +3V3 ── C_out(22µF)   ; C_bst(100nF) U5.BST──U5.SW ; feeds S3 + C5 + radios + SD + logic
 +3V3A    : U6.OUT ── C(1µF‖2.2µF)
-EN_5V    : U4.EN  ── RAIL_EN_5V   (PCA #2 P0.1)
-EN_3V3A  : U6.EN  ── RAIL_EN_3V3A (PCA #2 P0.2)         ; interlock — needs +5V up first
+EN_5V    : U4.EN  ── RAIL_EN_5V   (PCA #2 P0.1) ── 100k pull-down (default off)
+EN_3V3   : U5.EN  ── 100k/47k divider from BAT → auto-on at a safe level (never raw 8.4 V)
+EN_3V3A  : U6.EN  ── RAIL_EN_3V3A (PCA #2 P0.2) ── 100k pull-down ; interlock — needs +5V up first
 FB_5V    : +5V ── R1(52.3k) ── U4.FB ── R2(10k) ── GND      (0.8·(1+52.3/10)=4.98 V)
-FB_3V3   : +3V3 ── R3(45.3k) ── U5.FB ── R4(10k) ── GND      (0.6·(1+45.3/10)=3.32 V)
+FB_3V3   : +3V3 ── R3(31.6k) ── U5.FB ── R4(10k) ── GND      (0.8·(1+31.6/10)=3.33 V)
 I2C      : U2.SDA/SCL ── system I²C, S3 GPIO4/5 (Sheet 2) ; fuel gauge via U2 ADC
 CTRL     : U2.BQ_CD, U2.BQ_INT ── PCA9555 #1 (Sheet 2)   (CD = pause charging ; INT = status)
 GND      : common
@@ -67,8 +68,8 @@ GND      : common
 
 - **VBUS in:** 10 µF X5R + 0.1 µF; TVS/ESD array on VBUS, both CC lines and D± — on **both** J1 and J2.
 - **BQ25887:** L1 2.2 µH (Isat > 3 A), 10 µF at BAT, 47 nF bootstrap, ICHG/input-current-limit set over I²C.
-- **MP2315 (+5V):** L2 4.7 µH (Isat > 4 A), Cin 22 µF, Cout 2× 22 µF.
-- **TLV62569 (+3V3):** L3 2.2 µH (Isat > 3 A), Cin 22 µF, Cout 22 µF.
+- **MP2315 (+5V):** L2 4.7 µH (Isat > 4 A), Cin 22 µF, Cout 2× 22 µF, **100 nF bootstrap (BST→SW)**.
+- **MP2315 (+3V3):** L3 2.2 µH (Isat > 3 A), Cin 22 µF, Cout 22 µF, **100 nF bootstrap (BST→SW)**; wide-Vin part (BAT direct), EN via 100k/47k divider from BAT.
 - **LDO (+3V3A):** Cin 1 µF, Cout 2.2 µF (low-ESR).
 - **nRF24 brown-out (critical):** **100–220 µF + 100 nF right at each of the 3 module VCC pins** on `+3V3`.
 - **SX1262 (LoRa) & SA868:** local bulk at each PA supply — SX1262 47–100 µF on +3V3; SA868 220–470 µF + 100 nF on +5V (2 W TX burst).
@@ -94,6 +95,7 @@ GND      : common
 - **Two USB-C jacks, one power path.** Only **J1** (→ S3) carries charge into BQ25887. **J2** (→ C5) is data/flash only — its VBUS reaches ESD and a detect tap, never a rail. Plugging J2 alone will **not** power or charge the device; C5 re-flash is brick-safe through its mask-ROM.
 - **RESET (EN) and BOOT are on the S3, not the C5** — the boot straps and reset button live on the brain (Sheet 2). The C5 is flashed over its own USB (J2) with no external boot control.
 - **+3V3A is interlocked to +5V.** The analog LDO takes its input from +5V and its enable from `RAIL_EN_3V3A`; cutting `RAIL_EN_5V` collapses +5V and therefore the whole HF-receive front-end (Si4732 + audio) as well.
+- **The +3V3 buck must be wide-Vin.** It sits directly on the 8.4 V `BAT` node, so a 5.5 V-max part (e.g. TLV62569) would be destroyed — use a wide-input buck (**MP2315**, same as +5V). Its enable is a **divider off `BAT`**, never raw 8.4 V on the EN pin. Both bucks need a **100 nF bootstrap cap (BST→SW)** or they will not switch.
 - **eFuse `set_flash_voltage 3.3V` is a production step.** Burning it de-straps **GPIO45** so it can serve as the CC1101 carrier-sense IRQ; skip it and the flash-voltage strap fights that net.
 - **Don't use IP5306-class power banks** — weak boost and auto-shutdown at low load.
 - **TX power is a firmware concern** — per-region caps in software; the rails are sized to *allow* the legal maximum (SA868 2 W) without sagging.

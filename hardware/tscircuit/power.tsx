@@ -1,7 +1,7 @@
 // Leshy2 — Sheet 1: Power  (transcribed from hardware/power/power.md)
 // NOTE: ICs/connectors are generic <chip> with our logical pinout; real
 // footprints/part numbers get assigned before PCB. 2-pin passive-ish parts
-// (PPTC fuse, master switch, NTC) are modeled as resistor proxies for capture.
+// (PPTC fuse, master switch, NTC, TVS) are modeled as resistor proxies for capture.
 export default () => (
   <board width="90mm" height="70mm">
     {/* ===================== USB-C inputs ===================== */}
@@ -12,6 +12,9 @@ export default () => (
     }} />
     <resistor name="Rcc1" resistance="5.1k" footprint="0402" />
     <resistor name="Rcc2" resistance="5.1k" footprint="0402" />
+    {/* VBUS bulk (C1) + TVS/ESD (D1) on the J1 5 V input, per power.md Key nets */}
+    <capacitor name="Cvbus" capacitance="10uF" footprint="0805" />
+    <resistor name="D1" resistance="1M" footprint="0603" /> {/* TVS proxy on VBUS_S3 */}
     {/* J2 -> C5 : data only, VBUS = ESD stub */}
     <chip name="J2" footprint="soic8" pinLabels={{
       pin1: "VBUS", pin2: "GND", pin3: "CC1", pin4: "CC2",
@@ -42,18 +45,23 @@ export default () => (
     <inductor name="L2" inductance="4.7uH" footprint="1210" />
     <capacitor name="Cin5" capacitance="22uF" footprint="0805" />
     <capacitor name="Cout5" capacitance="22uF" footprint="0805" />
+    <capacitor name="Cbst4" capacitance="100nF" footprint="0402" /> {/* MP2315 bootstrap BST->SW */}
     <resistor name="R1" resistance="52.3k" footprint="0402" />
     <resistor name="R2" resistance="10k" footprint="0402" />
 
-    {/* ===================== +3V3 buck : TLV62569 ===================== */}
+    {/* ===================== +3V3 buck : MP2315 (wide Vin — sits on 8.4 V BAT) ===================== */}
     <chip name="U5" footprint="soic8" pinLabels={{
-      pin1: "SW", pin2: "GND", pin3: "FB", pin4: "EN", pin5: "IN",
+      pin1: "BST", pin2: "IN", pin3: "SW", pin4: "GND",
+      pin5: "FB", pin6: "EN", pin7: "SS", pin8: "NC",
     }} />
     <inductor name="L3" inductance="2.2uH" footprint="1210" />
     <capacitor name="Cin3" capacitance="22uF" footprint="0805" />
     <capacitor name="Cout3" capacitance="22uF" footprint="0805" />
-    <resistor name="R3" resistance="45.3k" footprint="0402" />
+    <capacitor name="Cbst5" capacitance="100nF" footprint="0402" /> {/* MP2315 bootstrap BST->SW */}
+    <resistor name="R3" resistance="31.6k" footprint="0402" /> {/* FB top: 0.8*(1+31.6/10)=3.33V */}
     <resistor name="R4" resistance="10k" footprint="0402" />
+    <resistor name="R_EN3H" resistance="100k" footprint="0402" /> {/* EN divider top (BAT) */}
+    <resistor name="R_EN3L" resistance="47k" footprint="0402" />  {/* EN divider bottom (GND) */}
 
     {/* ===================== +3V3A LDO : TPS7A2033 (from +5V) ===================== */}
     <chip name="U6" footprint="soic8" pinLabels={{
@@ -61,10 +69,16 @@ export default () => (
     }} />
     <capacitor name="Cin3a" capacitance="1uF" footprint="0402" />
     <capacitor name="Cout3a" capacitance="2.2uF" footprint="0402" />
+    <resistor name="R_RE5" resistance="100k" footprint="0402" />  {/* RAIL_EN_5V default off */}
+    <resistor name="R_RE3A" resistance="100k" footprint="0402" /> {/* RAIL_EN_3V3A default off */}
 
     {/* ============================== NETS ============================== */}
     {/* --- USB J1 -> S3 --- */}
     <trace from=".J1 > .VBUS" to="net.VBUS_S3" />
+    <trace from=".Cvbus > .pin1" to="net.VBUS_S3" />
+    <trace from=".Cvbus > .pin2" to="net.GND" />
+    <trace from=".D1 > .pin1" to="net.VBUS_S3" />
+    <trace from=".D1 > .pin2" to="net.GND" />
     <trace from=".J1 > .GND" to="net.GND" />
     <trace from=".J1 > .DP" to="net.USB_DP_S3" />
     <trace from=".J1 > .DM" to="net.USB_DM_S3" />
@@ -112,6 +126,8 @@ export default () => (
     <trace from=".Cin5 > .pin2" to="net.GND" />
     <trace from=".U4 > .GND" to="net.GND" />
     <trace from=".U4 > .SW" to=".L2 > .pin1" />
+    <trace from=".Cbst4 > .pin1" to=".U4 > .BST" />
+    <trace from=".Cbst4 > .pin2" to=".U4 > .SW" />
     <trace from=".L2 > .pin2" to="net.V5" />
     <trace from=".Cout5 > .pin1" to="net.V5" />
     <trace from=".Cout5 > .pin2" to="net.GND" />
@@ -120,6 +136,8 @@ export default () => (
     <trace from=".R2 > .pin1" to=".U4 > .FB" />
     <trace from=".R2 > .pin2" to="net.GND" />
     <trace from=".U4 > .EN" to="net.RAIL_EN_5V" />
+    <trace from=".R_RE5 > .pin1" to="net.RAIL_EN_5V" />
+    <trace from=".R_RE5 > .pin2" to="net.GND" />
 
     {/* --- +3V3 buck --- */}
     <trace from=".U5 > .IN" to="net.BAT" />
@@ -127,6 +145,8 @@ export default () => (
     <trace from=".Cin3 > .pin2" to="net.GND" />
     <trace from=".U5 > .GND" to="net.GND" />
     <trace from=".U5 > .SW" to=".L3 > .pin1" />
+    <trace from=".Cbst5 > .pin1" to=".U5 > .BST" />
+    <trace from=".Cbst5 > .pin2" to=".U5 > .SW" />
     <trace from=".L3 > .pin2" to="net.V3V3" />
     <trace from=".Cout3 > .pin1" to="net.V3V3" />
     <trace from=".Cout3 > .pin2" to="net.GND" />
@@ -134,7 +154,11 @@ export default () => (
     <trace from=".R3 > .pin2" to=".U5 > .FB" />
     <trace from=".R4 > .pin1" to=".U5 > .FB" />
     <trace from=".R4 > .pin2" to="net.GND" />
-    <trace from=".U5 > .EN" to="net.BAT" />
+    {/* EN auto-on via divider from BAT (safe level, never raw 8.4 V) */}
+    <trace from=".R_EN3H > .pin1" to="net.BAT" />
+    <trace from=".R_EN3H > .pin2" to=".U5 > .EN" />
+    <trace from=".R_EN3L > .pin1" to=".U5 > .EN" />
+    <trace from=".R_EN3L > .pin2" to="net.GND" />
 
     {/* --- +3V3A LDO from +5V --- */}
     <trace from=".U6 > .IN" to="net.V5" />
@@ -145,5 +169,7 @@ export default () => (
     <trace from=".Cout3a > .pin1" to="net.V3V3A" />
     <trace from=".Cout3a > .pin2" to="net.GND" />
     <trace from=".U6 > .EN" to="net.RAIL_EN_3V3A" />
+    <trace from=".R_RE3A > .pin1" to="net.RAIL_EN_3V3A" />
+    <trace from=".R_RE3A > .pin2" to="net.GND" />
   </board>
 )

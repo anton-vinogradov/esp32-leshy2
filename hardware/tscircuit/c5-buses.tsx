@@ -47,6 +47,7 @@ export default () => (
       pin38: "PCA9555_INT",// GPIO48 expander INT
       pin39: "V3V3",       // supply (Sheet 1)
       pin40: "GND",
+      pin41: "EN",         // CHIP_PU — reset + RC from Sheet 6 (net.S3_EN)
     }} />
 
     {/* ===================== U20 — ESP32-C5-WROOM-1U (co-processor) ===================== */}
@@ -97,15 +98,16 @@ export default () => (
       pin21: "A0", pin22: "A1", pin23: "A2", pin24: "VCC",
     }} />
 
-    {/* I2C pull-ups (4.7k, Sheet-2 side of the shared bus) */}
-    <resistor name="R_SDA" resistance="4.7k" footprint="0402" />
-    <resistor name="R_SCL" resistance="4.7k" footprint="0402" />
+    {/* I2C pull-ups live on Sheet 5 (single pair R40/R41 for the whole bus) */}
     {/* C5 boot strap pull-up (26+28 high = normal boot while S3 GPIO34 is Hi-Z) */}
     <resistor name="R_C5BOOT" resistance="10k" footprint="0402" />
     {/* C5 GPIO27 pull-high for valid boot */}
     <resistor name="R_C5S27" resistance="10k" footprint="0402" />
     {/* 74HC138 G2A boot-gate default-disabled pull-up (to +3V3) */}
     <resistor name="R_HC138EN" resistance="10k" footprint="0402" />
+    {/* C5 EN pull-up + RC — reset well-defined regardless of S3 GPIO33 (open-drain) */}
+    <resistor name="R_C5EN" resistance="10k" footprint="0402" />
+    <capacitor name="C_C5EN" capacitance="1uF" footprint="0402" />
 
     {/* ============================== NETS ============================== */}
     {/* --- S3 direct GPIO → bus/rail labels --- */}
@@ -136,6 +138,7 @@ export default () => (
     <trace from=".U10 > .nRF24_IRQ" to="net.nRF24_IRQ" />
     <trace from=".U10 > .V3V3" to="net.V3V3" />
     <trace from=".U10 > .GND" to="net.GND" />
+    <trace from=".U10 > .EN" to="net.S3_EN" />
 
     {/* --- S3 ↔ C5 dedicated SPI3 link (via nets) --- */}
     <trace from=".U10 > .C5LINK_SCK" to="net.C5LINK_SCK" />
@@ -150,6 +153,10 @@ export default () => (
     <trace from=".U20 > .LINK_DRDY" to="net.C5LINK_DRDY" />
     <trace from=".U10 > .C5_EN" to="net.C5_EN" />
     <trace from=".U20 > .C5_EN" to="net.C5_EN" />
+    <trace from=".R_C5EN > .pin1" to="net.C5_EN" />
+    <trace from=".R_C5EN > .pin2" to="net.V3V3" />
+    <trace from=".C_C5EN > .pin1" to="net.C5_EN" />
+    <trace from=".C_C5EN > .pin2" to="net.GND" />
     <trace from=".U10 > .C5_BOOT" to="net.C5_BOOT" />
     <trace from=".U20 > .C5_BOOT_26" to="net.C5_BOOT" />
     <trace from=".U20 > .C5_BOOT_28" to="net.C5_BOOT" />
@@ -169,12 +176,6 @@ export default () => (
     <trace from=".U20 > .USB_DP_C5" to="net.USB_DP_C5" />
     <trace from=".U20 > .V3V3" to="net.V3V3" />
     <trace from=".U20 > .GND" to="net.GND" />
-
-    {/* --- I2C pull-ups --- */}
-    <trace from=".R_SDA > .pin1" to="net.I2C_SDA" />
-    <trace from=".R_SDA > .pin2" to="net.V3V3" />
-    <trace from=".R_SCL > .pin1" to="net.I2C_SCL" />
-    <trace from=".R_SCL > .pin2" to="net.V3V3" />
 
     {/* --- 74HC138 decoder --- */}
     <trace from=".U11 > .A" to="net.HC138_A" />
