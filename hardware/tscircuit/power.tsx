@@ -64,6 +64,7 @@ export default () => (
     <resistor name="Rcbset" resistance="10" footprint="0402" /> {/* cell-balance current limit (~9.5R) */}
     <resistor name="Rts_top" resistance="5.23k" footprint="0402" /> {/* TS divider top REGN->TS */}
     <resistor name="RT1" resistance="10k" footprint="0603" /> {/* 103AT NTC to GND (TS bottom) */}
+    <resistor name="RT2" resistance="30.1k" footprint="0402" /> {/* TS: parallel to 103AT NTC (BQ25887 ref) */}
 
     {/* ===================== 2S pack + protection (S-8252A, low-side, common-drain) ===================== */}
     <chip name="BT1" footprint="pinrow3" pinLabels={{ pin1: "P_PLUS", pin2: "MID", pin3: "P_MINUS" }} />
@@ -87,6 +88,7 @@ export default () => (
     <capacitor name="Cin5" capacitance="22uF" footprint="0805" />
     <capacitor name="Cout5" capacitance="22uF" footprint="0805" />
     <capacitor name="Cbst4" capacitance="100nF" footprint="0402" /> {/* bootstrap BST->SW */}
+    <resistor name="Rbst4" resistance="20" footprint="0402" /> {/* MP2315 bootstrap series R (datasheet-required) */}
     <capacitor name="Cvcc4" capacitance="0.1uF" footprint="0402" /> {/* VCC decouple */}
     <resistor name="Raam4" resistance="100k" footprint="0402" /> {/* AAM light-load set */}
     <resistor name="R1" resistance="52.3k" footprint="0402" />
@@ -98,6 +100,7 @@ export default () => (
     <capacitor name="Cin3" capacitance="22uF" footprint="0805" />
     <capacitor name="Cout3" capacitance="22uF" footprint="0805" />
     <capacitor name="Cbst5" capacitance="100nF" footprint="0402" /> {/* bootstrap BST->SW */}
+    <resistor name="Rbst5" resistance="20" footprint="0402" /> {/* MP2315 bootstrap series R (datasheet-required) */}
     <capacitor name="Cvcc5" capacitance="0.1uF" footprint="0402" /> {/* VCC decouple */}
     <resistor name="Raam5" resistance="100k" footprint="0402" /> {/* AAM light-load set */}
     <resistor name="R3" resistance="31.6k" footprint="0402" /> {/* FB top: 0.8*(1+31.6/10)=3.33V */}
@@ -167,11 +170,13 @@ export default () => (
     {/* REGN gate-drive LDO */}
     <trace from=".Cregn > .pin1" to=".U2 > .REGN" />
     <trace from=".Cregn > .pin2" to="net.GND" />
-    {/* SNS = boost output (sense), 44uF at pin, ties to battery rail; do NOT load SNS */}
-    <trace from=".Csns > .pin1" to=".U2 > .SNS1" />
+    {/* SNS = charge-current-sense / boost-output pad: ONLY the 44uF cap to GND here.
+        The SNS<->BAT shunt is INTERNAL (ICHG set over I2C); tying SNS to BAT externally
+        shorts the sense element and defeats charge-current regulation — SNS is its own net. */}
+    <trace from=".Csns > .pin1" to="net.SNS" />
     <trace from=".Csns > .pin2" to="net.GND" />
-    <trace from=".U2 > .SNS1" to="net.BAT" />
-    <trace from=".U2 > .SNS2" to="net.BAT" />
+    <trace from=".U2 > .SNS1" to="net.SNS" />
+    <trace from=".U2 > .SNS2" to="net.SNS" />
     {/* BAT power connection + decoupling */}
     <trace from=".U2 > .BAT1" to="net.BAT" />
     <trace from=".U2 > .BAT2" to="net.BAT" />
@@ -197,6 +202,8 @@ export default () => (
     <trace from=".U2 > .TS" to="net.TS" />
     <trace from=".RT1 > .pin1" to="net.TS" />
     <trace from=".RT1 > .pin2" to="net.GND" />
+    <trace from=".RT2 > .pin1" to="net.TS" />
+    <trace from=".RT2 > .pin2" to="net.GND" />
     {/* control + I2C */}
     <trace from=".U2 > .SDA" to="net.I2C_SDA" />
     <trace from=".U2 > .SCL" to="net.I2C_SCL" />
@@ -237,7 +244,8 @@ export default () => (
     <trace from=".U4 > .GND" to="net.GND" />
     <trace from=".U4 > .SW" to=".L2 > .pin1" />
     <trace from=".Cbst4 > .pin1" to=".U4 > .BST" />
-    <trace from=".Cbst4 > .pin2" to=".U4 > .SW" />
+    <trace from=".Cbst4 > .pin2" to=".Rbst4 > .pin1" />
+    <trace from=".Rbst4 > .pin2" to=".U4 > .SW" />
     <trace from=".L2 > .pin2" to="net.V5" />
     <trace from=".Cout5 > .pin1" to="net.V5" />
     <trace from=".Cout5 > .pin2" to="net.GND" />
@@ -260,7 +268,8 @@ export default () => (
     <trace from=".U5 > .GND" to="net.GND" />
     <trace from=".U5 > .SW" to=".L3 > .pin1" />
     <trace from=".Cbst5 > .pin1" to=".U5 > .BST" />
-    <trace from=".Cbst5 > .pin2" to=".U5 > .SW" />
+    <trace from=".Cbst5 > .pin2" to=".Rbst5 > .pin1" />
+    <trace from=".Rbst5 > .pin2" to=".U5 > .SW" />
     <trace from=".L3 > .pin2" to="net.V3V3" />
     <trace from=".Cout3 > .pin1" to="net.V3V3" />
     <trace from=".Cout3 > .pin2" to="net.GND" />

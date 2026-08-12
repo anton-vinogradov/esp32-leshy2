@@ -35,7 +35,8 @@
 //   U24  SP4T RF switch SKY13414-485LF (315/433/868/915 band fold) -> jlcpcb:C255353 (in stock).
 //        Chosen over PE42440 (not stocked at JLC). 3-line control V1/V2/V3 = RFSW_A/RFSW_B/RFSW_C;
 //        RFSW_C is added on PCA9555 #2 P07 (Sheet 2). Common pad ANT -> CC1101 radio; RF1..RF4 ->
-//        per-band matches -> the shared CC1101 antenna. EP + unnamed pads = RF ground.
+//        per-band matches -> the shared CC1101 antenna. EP paddle = RF ground; the 5 unnamed
+//        pads are N/C (datasheet) and left open.
 //   BL1  CC1101 RF balun (RF_P/RF_N -> single-ended)  -> soic6 placeholder + pinLabels.
 //        Real part is a discrete LC balun/match tuned on a VNA; modelled as a 4-net proxy.
 //
@@ -193,11 +194,8 @@ export default () => (
     <trace from=".U24 > .VDD" to="net.V3V3" />
     {/* EP + unnamed pads = RF ground (⚠ confirm ground pinout vs SKY13414 datasheet at layout) */}
     <trace from=".U24 > .EP" to="net.GND" />
-    <trace from=".U24 > .pin1" to="net.GND" />
-    <trace from=".U24 > .pin8" to="net.GND" />
-    <trace from=".U24 > .pin11" to="net.GND" />
-    <trace from=".U24 > .pin12" to="net.GND" />
-    <trace from=".U24 > .pin14" to="net.GND" />
+    {/* pins 1/8/11/12/14 are N/C per the SKY13414 datasheet (the Skyworks EVB leaves them
+        floating) — left unconnected, only the EP paddle is the RF ground. */}
     <trace from=".U24 > .RF1" to=".Lm315 > .pin1" />
     <trace from=".Lm315 > .pin2" to="net.ANT_CC1101" />
     <trace from=".U24 > .RF2" to=".Lm433 > .pin1" />

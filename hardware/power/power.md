@@ -105,7 +105,7 @@ violations are placement/routing only — nothing is laid out yet).
 | U6 | TPS7A2033 | C2862740 |
 
 Realized per datasheet: **BQ25887 wired as the boost it is** — inductor `PMID↔SW`,
-boost output `SNS→BAT` — with its full support network (PMID/REGN/BTST/SNS/ILIM/MID
+boost output on its own `SNS` node (44 µF to GND — the SNS↔BAT shunt is **internal**, so SNS is *not* tied to BAT externally) — with its full support network (PMID/REGN/BTST/SNS/ILIM/MID
 caps + the **TS thermistor divider from REGN**, without which charging is blocked);
 MP2315 `VCC`/`AAM`; S-8252A reference sides (`VSS`=B−, `VM`=EB−). The 2S protection
 FETs use the standard back-to-back **common-drain** pair (Q1 discharge / Q2 charge,

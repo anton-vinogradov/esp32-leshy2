@@ -30,9 +30,11 @@
 //        pin1 GND, pin2 5V, pin3 SDA, pin4 SCL -> here pin2 (the "5V" position) carries +3V3
 //        (3.3 V ports by default; the S3 is not 5 V-tolerant). See ⚠ on pad-1 orientation below.
 //   D40/D41  PESD5V0S2UAT double ESD diode, common cathode, SOT-23  -> jlcpcb:C552572
-//        Engine pads: 1 A1, 2 A2, 3 C.  A1/A2 = the two protected lines, C = common (to GND).
-//        Reverse standoff 5 V / VBR 6 V -> transparent to a 3.3 V I2C signal, clamps ESD.
-//        Maps the base's IO1/IO2/GND: A1 -> I2C_SDA, A2 -> I2C_SCL, C -> GND.
+//        Engine pads: 1 A1, 2 A2, 3 C. Unidirectional COMMON-CATHODE array: A1/A2 = the two
+//        protected lines (anodes), C = shared cathode. For a positive 0..3.3 V rail-referenced
+//        signal the common cathode MUST go to the supply (+3V3), NOT to GND — with C on GND every
+//        I2C logic-high forward-biases the diode and clamps the line to ~0.6 V (whole bus dead).
+//        So: A1 -> I2C_SDA, A2 -> I2C_SCL, C -> +3V3 (clamps overshoot above the rail).
 //   D42  BAT54 single Schottky, SOT-23  -> jlcpcb:C466635
 //        Engine pads: 1 A, 2 NC, 3 K.  Backup diode: A -> +3V3, K -> V_BCKP (charges the supercap,
 //        blocks back-feed when +3V3 collapses). pin2 NC left open.
@@ -115,7 +117,7 @@ export default () => (
     <trace from=".J40 > .pin6" to="net.GND" />
     <trace from=".D40 > .A1" to="net.I2C_SDA" />
     <trace from=".D40 > .A2" to="net.I2C_SCL" />
-    <trace from=".D40 > .C" to="net.GND" />
+    <trace from=".D40 > .C" to="net.V3V3" />
 
     {/* --- Grove port J41 --- */}
     <trace from=".J41 > .pin1" to="net.GND" />
@@ -126,7 +128,7 @@ export default () => (
     <trace from=".J41 > .pin6" to="net.GND" />
     <trace from=".D41 > .A1" to="net.I2C_SDA" />
     <trace from=".D41 > .A2" to="net.I2C_SCL" />
-    <trace from=".D41 > .C" to="net.GND" />
+    <trace from=".D41 > .C" to="net.V3V3" />
 
     {/* --- RFID2 example unit @0x28 on I2C (external plug-in placeholder) --- */}
     <trace from=".U44 > .V" to="net.V3V3" />

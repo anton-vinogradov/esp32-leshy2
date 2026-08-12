@@ -30,7 +30,8 @@
 //   U32  PAM8302AASCR  8-pin MSOP  -> jlcpcb:C113367
 //        Engine pads: 1 SD, 2 IN_NEG, 3 IN_POS, 4 (NC, engine-unnamed), 5 VO_POS, 6 VDD,
 //        7 GND, 8 VO_NEG.  DESIGN NOTE: the real PAM8302A is 8-pin MSOP, not SOT-23-6 as the
-//        base sheet guessed. Single-ended drive: MUX_OUT -> Rin32 -> IN_POS; IN_NEG -> GND.
+//        base sheet guessed. Inputs are internally biased to VDD/2 -> AC-couple BOTH:
+//        MUX_OUT -> Rin32 -> Cinp(0.1uF) -> IN_POS ; IN_NEG -> Cinn(0.1uF) -> GND.
 //   U33  SN74LVC1G3157DBVR  SOT-23-6  -> jlcpcb:C10426   (2:1 analog switch)
 //        Engine pads: 1 B2, 2 GND, 3 B1, 4 A(common), 5 VCC, 6 S(select).
 //        Map: A=COM->MUX_OUT, B1->SI_AUDIO (Si4732), B2->SA_AF (SA868), S->MUX_SEL.
@@ -75,6 +76,8 @@ export default () => (
     {/* ===================== PAM8302A class-D amp (U32) ===================== */}
     <chip name="U32" footprint="jlcpcb:C113367" />
     <resistor name="Rin32" resistance="10k" footprint="0402" /> {/* input series R */}
+    <capacitor name="Cinp" capacitance="0.1uF" footprint="0402" /> {/* AC-couple IN+ (PAM8302 biases inputs to VDD/2) */}
+    <capacitor name="Cinn" capacitance="0.1uF" footprint="0402" /> {/* matching AC-couple on IN- to GND */}
     <capacitor name="Cvcc32" capacitance="10uF" footprint="0805" />
 
     {/* speaker (BTL, no ground reference) */}
@@ -156,10 +159,14 @@ export default () => (
     <trace from=".U33 > .GND" to="net.GND" />
     <trace from=".U33 > .A" to="net.MUX_OUT" />
 
-    {/* --- Amp: mux out -> Rin -> PAM8302 IN_POS; IN_NEG -> GND (single-ended) --- */}
+    {/* --- Amp: mux out -> Rin -> AC-couple -> PAM8302 IN_POS; IN_NEG AC-coupled to GND.
+        PAM8302 biases both inputs internally to VDD/2 via 10k, so a series cap on each input
+        is required — hard-grounding IN- (or DC-coupling IN+) breaks the bias and rails the output. */}
     <trace from=".Rin32 > .pin1" to="net.MUX_OUT" />
-    <trace from=".Rin32 > .pin2" to=".U32 > .IN_POS" />
-    <trace from=".U32 > .IN_NEG" to="net.GND" />     {/* added: single-ended input reference */}
+    <trace from=".Rin32 > .pin2" to=".Cinp > .pin1" />
+    <trace from=".Cinp > .pin2" to=".U32 > .IN_POS" />
+    <trace from=".U32 > .IN_NEG" to=".Cinn > .pin1" />
+    <trace from=".Cinn > .pin2" to="net.GND" />
     <trace from=".U32 > .SD" to="net.PAM_SD" />      {/* PCA #1 P1.3 */}
     <trace from=".U32 > .VDD" to="net.V5" />
     <trace from=".U32 > .GND" to="net.GND" />

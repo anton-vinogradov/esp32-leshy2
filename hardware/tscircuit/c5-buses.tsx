@@ -86,7 +86,7 @@ export default () => (
     <trace from=".U10 > .IO41" to="net.ENC_B" />        {/* GPIO41 */}
     <trace from=".U10 > .IO42" to="net.IR_RX" />        {/* GPIO42 */}
     {/* TXD0(GPIO43)/RXD0(GPIO44) -> C5 flash bridge, wired in the flash-bridge block below */}
-    <trace from=".U10 > .IO45" to="net.CC1101_GDO2" />  {/* GPIO45 */}
+    <trace from=".U10 > .IO45" to="net.CC1101_GDO2" />  {/* GPIO45 = VDD_SPI strap; de-strapped by the eFuse `espefuse set_flash_voltage 3.3V` (production step, see power.md) so CC1101 GDO2 driving it HIGH at POR is harmless */}
     <trace from=".U10 > .IO46" to="net.nRF24_IRQ" />    {/* GPIO46 */}
     <trace from=".U10 > .IO47" to="net.GPS_UART_TX" />  {/* GPIO47 */}
     <trace from=".U10 > .IO48" to="net.PCA9555_INT" />  {/* GPIO48 */}
