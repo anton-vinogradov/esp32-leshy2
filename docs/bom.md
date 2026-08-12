@@ -47,7 +47,7 @@ Add only what you need. Each line is a self-contained radio (module + its own tu
 | **Walkie (voice TX/RX)** | SA868-U 2 W 433/446 NBFM + UHF antenna | 13 |
 | **2.4 GHz raw** | 3× nRF24L01+PA/LNA + 3 antennas — parallel band scan, mousejack | 10 |
 | **LoRa / Meshtastic** | SX1262 (E22-900M22S, +22 dBm) + antenna | 9 |
-| **Sub-GHz 315/433/868/915** | CC1101 (bare + xtal + balun) + SP4T PE42440 + 4 matching networks + antenna | 8 |
+| **Sub-GHz 315/433/868/915** | CC1101 (bare + xtal + balun) + SP4T SKY13414-485LF + 4 matching networks + antenna | 8 |
 | **GPS** | u-blox module over UART, onboard + antenna | 6 |
 | **HF/CB/FM listen + audio** | Si4732-A10 (RX only) + PAM8302 amp + speaker + headphone jack + telescopic whip | 8 |
 | **GPIO45 de-strap** | eFuse `set_flash_voltage 3.3V` — frees the pin for CC1101 carrier-sense | 0 |

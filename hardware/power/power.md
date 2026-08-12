@@ -72,6 +72,7 @@ GND      : common
 - **MP2315 (+3V3):** L3 2.2 µH (Isat > 3 A), Cin 22 µF, Cout 22 µF, **100 nF bootstrap (BST→SW)**; wide-Vin part (BAT direct), EN via 100k/47k divider from BAT.
 - **LDO (+3V3A):** Cin 1 µF, Cout 2.2 µF (low-ESR).
 - **nRF24 brown-out (critical):** **100–220 µF + 100 nF right at each of the 3 module VCC pins** on `+3V3`.
+- **LCD backlight (bring-up item, not yet budgeted):** the 4.0″ panel's white-LED string wants a small boost / constant-current LED driver (~9–12 V, ~20–60 mA off `+5V` or `BAT`) — it is **not** on the logic `+3V3` rail. `LCD_BL_EN` (PCA9555 P1.4) is **on/off only**, so the roadmap's auto-dim needs a PWM-capable control line. Decide at bring-up: fixed-brightness on/off, or add the boost driver + one PWM pin for dimming.
 - **SX1262 (LoRa) & SA868:** local bulk at each PA supply — SX1262 47–100 µF on +3V3; SA868 220–470 µF + 100 nF on +5V (2 W TX burst).
 
 ## Rail budget (why these sizes)
