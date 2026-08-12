@@ -26,7 +26,7 @@ manufacturer-verified footprint + pinout from the LCSC/JLCPCB database
 `board.tsx` merges them into one `<board>` — the sheets stitch by shared `net.NAME`
 (the whole SPI/I²C bus, the power rails, the chip-selects, the interrupts, the C5 link,
 the SP4T select). Colliding refdes are renamed on merge (`U20`→`m_U20`/`rf_U20`,
-`Y1`→`rf_Y1`/`a_Y1`, `Rbias`→`rf_Rbias`/`a_Rbias`). **169 components.**
+`Y1`→`rf_Y1`/`a_Y1`, `Rbias`→`rf_Rbias`/`a_Rbias`). **174 components.**
 
 | File | What |
 |------|------|
@@ -49,9 +49,11 @@ npx tsci export board.tsx -f schematic-svg -o board-sch.svg       # whole-board 
 # also: pcb-svg, gerbers, kicad_zip, readable-netlist, STEP, glTF …
 ```
 
-**Verify connectivity** with KiCad's DRC. On a routed board `unconnected_items` should be 0;
-on the *un-routed* merged board use **`schematic_parity` = 0** (the PCB netlist matches the
-schematic) — its `unconnected_items` is just the ratsnest of the yet-to-route board:
+**Verify connectivity** with KiCad's DRC. On the *un-placed / un-routed* merged board the
+connectivity signal is **`schematic_parity` = 0** (the PCB netlist matches the schematic — no
+accidental merges or breaks). Its `unconnected_items` (ratsnest) and `shorting_items` (pads of
+different nets physically overlapping because nothing is placed yet) are **both artifacts of the
+pre-layout board**, not real defects — they clear once parts are placed and routed:
 `kicad-cli pcb drc --format json -o board.drc.json board.kicad_pcb`.
 
 ## Notes

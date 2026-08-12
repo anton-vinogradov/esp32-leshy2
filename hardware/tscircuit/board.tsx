@@ -1,14 +1,16 @@
 // Leshy2 - MERGED board (all 6 REALIZED sheets in one <board>)
-// Sources: power / c5-buses / rf / audio / expansion / indicators (.tsx)
+// Sources: power / c5-buses / rf / audio / expansion / indicators (.tsx), post self-review.
 // Real engine footprints (jlcpcb:C...) + a few geometric placeholders, unchanged.
 // Refdes collisions resolved so every name= is unique across the whole board:
 //   c5-buses U20 (ESP32-C5)     -> m_U20
 //   rf       U20 (nRF24 #1)     -> rf_U20
 //   rf       Y1  (26 MHz xtal)  -> rf_Y1
 //   audio    Y1  (32.768 kHz)   -> a_Y1
-//   rf       Rbias (56k CC1101) -> rf_Rbias   [NEW collision vs realized sheets]
-//   audio    Rbias (4.7k mic)   -> a_Rbias    [NEW collision vs realized sheets]
-// Net names (net.NAME) kept verbatim: identical names across sheets join = stitching.
+//   rf       Rbias (56k CC1101) -> rf_Rbias
+//   audio    Rbias (4.7k mic)   -> a_Rbias
+// New self-review parts (power RT2/Rbst4/Rbst5, net.SNS; audio Cinp/Cinn) are single-sheet,
+// no new cross-sheet collisions. Net names (net.NAME) kept verbatim: identical names across
+// sheets join = inter-sheet stitching (SPI/I2C/rails/RFSW_C/...).
 export default () => (
   <board width="400mm" height="300mm">
 
@@ -40,6 +42,7 @@ export default () => (
     <resistor name="Rcbset" resistance="10" footprint="0402" /> {/* cell-balance current limit (~9.5R) */}
     <resistor name="Rts_top" resistance="5.23k" footprint="0402" /> {/* TS divider top REGN->TS */}
     <resistor name="RT1" resistance="10k" footprint="0603" /> {/* 103AT NTC to GND (TS bottom) */}
+    <resistor name="RT2" resistance="30.1k" footprint="0402" /> {/* TS: parallel to 103AT NTC (BQ25887 ref) */}
 
     {/* ===================== 2S pack + protection (S-8252A, low-side, common-drain) ===================== */}
     <chip name="BT1" footprint="pinrow3" pinLabels={{ pin1: "P_PLUS", pin2: "MID", pin3: "P_MINUS" }} />
@@ -63,6 +66,7 @@ export default () => (
     <capacitor name="Cin5" capacitance="22uF" footprint="0805" />
     <capacitor name="Cout5" capacitance="22uF" footprint="0805" />
     <capacitor name="Cbst4" capacitance="100nF" footprint="0402" /> {/* bootstrap BST->SW */}
+    <resistor name="Rbst4" resistance="20" footprint="0402" /> {/* MP2315 bootstrap series R (datasheet-required) */}
     <capacitor name="Cvcc4" capacitance="0.1uF" footprint="0402" /> {/* VCC decouple */}
     <resistor name="Raam4" resistance="100k" footprint="0402" /> {/* AAM light-load set */}
     <resistor name="R1" resistance="52.3k" footprint="0402" />
@@ -74,6 +78,7 @@ export default () => (
     <capacitor name="Cin3" capacitance="22uF" footprint="0805" />
     <capacitor name="Cout3" capacitance="22uF" footprint="0805" />
     <capacitor name="Cbst5" capacitance="100nF" footprint="0402" /> {/* bootstrap BST->SW */}
+    <resistor name="Rbst5" resistance="20" footprint="0402" /> {/* MP2315 bootstrap series R (datasheet-required) */}
     <capacitor name="Cvcc5" capacitance="0.1uF" footprint="0402" /> {/* VCC decouple */}
     <resistor name="Raam5" resistance="100k" footprint="0402" /> {/* AAM light-load set */}
     <resistor name="R3" resistance="31.6k" footprint="0402" /> {/* FB top: 0.8*(1+31.6/10)=3.33V */}
@@ -143,11 +148,13 @@ export default () => (
     {/* REGN gate-drive LDO */}
     <trace from=".Cregn > .pin1" to=".U2 > .REGN" />
     <trace from=".Cregn > .pin2" to="net.GND" />
-    {/* SNS = boost output (sense), 44uF at pin, ties to battery rail; do NOT load SNS */}
-    <trace from=".Csns > .pin1" to=".U2 > .SNS1" />
+    {/* SNS = charge-current-sense / boost-output pad: ONLY the 44uF cap to GND here.
+        The SNS<->BAT shunt is INTERNAL (ICHG set over I2C); tying SNS to BAT externally
+        shorts the sense element and defeats charge-current regulation — SNS is its own net. */}
+    <trace from=".Csns > .pin1" to="net.SNS" />
     <trace from=".Csns > .pin2" to="net.GND" />
-    <trace from=".U2 > .SNS1" to="net.BAT" />
-    <trace from=".U2 > .SNS2" to="net.BAT" />
+    <trace from=".U2 > .SNS1" to="net.SNS" />
+    <trace from=".U2 > .SNS2" to="net.SNS" />
     {/* BAT power connection + decoupling */}
     <trace from=".U2 > .BAT1" to="net.BAT" />
     <trace from=".U2 > .BAT2" to="net.BAT" />
@@ -173,6 +180,8 @@ export default () => (
     <trace from=".U2 > .TS" to="net.TS" />
     <trace from=".RT1 > .pin1" to="net.TS" />
     <trace from=".RT1 > .pin2" to="net.GND" />
+    <trace from=".RT2 > .pin1" to="net.TS" />
+    <trace from=".RT2 > .pin2" to="net.GND" />
     {/* control + I2C */}
     <trace from=".U2 > .SDA" to="net.I2C_SDA" />
     <trace from=".U2 > .SCL" to="net.I2C_SCL" />
@@ -213,7 +222,8 @@ export default () => (
     <trace from=".U4 > .GND" to="net.GND" />
     <trace from=".U4 > .SW" to=".L2 > .pin1" />
     <trace from=".Cbst4 > .pin1" to=".U4 > .BST" />
-    <trace from=".Cbst4 > .pin2" to=".U4 > .SW" />
+    <trace from=".Cbst4 > .pin2" to=".Rbst4 > .pin1" />
+    <trace from=".Rbst4 > .pin2" to=".U4 > .SW" />
     <trace from=".L2 > .pin2" to="net.V5" />
     <trace from=".Cout5 > .pin1" to="net.V5" />
     <trace from=".Cout5 > .pin2" to="net.GND" />
@@ -236,7 +246,8 @@ export default () => (
     <trace from=".U5 > .GND" to="net.GND" />
     <trace from=".U5 > .SW" to=".L3 > .pin1" />
     <trace from=".Cbst5 > .pin1" to=".U5 > .BST" />
-    <trace from=".Cbst5 > .pin2" to=".U5 > .SW" />
+    <trace from=".Cbst5 > .pin2" to=".Rbst5 > .pin1" />
+    <trace from=".Rbst5 > .pin2" to=".U5 > .SW" />
     <trace from=".L3 > .pin2" to="net.V3V3" />
     <trace from=".Cout3 > .pin1" to="net.V3V3" />
     <trace from=".Cout3 > .pin2" to="net.GND" />
@@ -272,7 +283,7 @@ export default () => (
     {/* ===================== U10 — ESP32-S3-WROOM-1U-N8R2 (main brain) ===================== */}
     <chip name="U10" footprint="jlcpcb:C3013944" />
 
-    {/* ===================== U20 — ESP32-C5-WROOM-1U (co-processor) ===================== */}
+    {/* ===================== m_U20 — ESP32-C5-WROOM-1U (co-processor) ===================== */}
     <chip name="m_U20" footprint="jlcpcb:C49308183" />
 
     {/* ===================== U11 — 74HC138 3->8 chip-select decoder ===================== */}
@@ -326,7 +337,7 @@ export default () => (
     <trace from=".U10 > .IO41" to="net.ENC_B" />        {/* GPIO41 */}
     <trace from=".U10 > .IO42" to="net.IR_RX" />        {/* GPIO42 */}
     {/* TXD0(GPIO43)/RXD0(GPIO44) -> C5 flash bridge, wired in the flash-bridge block below */}
-    <trace from=".U10 > .IO45" to="net.CC1101_GDO2" />  {/* GPIO45 */}
+    <trace from=".U10 > .IO45" to="net.CC1101_GDO2" />  {/* GPIO45 = VDD_SPI strap; de-strapped by the eFuse `espefuse set_flash_voltage 3.3V` (production step, see power.md) so CC1101 GDO2 driving it HIGH at POR is harmless */}
     <trace from=".U10 > .IO46" to="net.nRF24_IRQ" />    {/* GPIO46 */}
     <trace from=".U10 > .IO47" to="net.GPS_UART_TX" />  {/* GPIO47 */}
     <trace from=".U10 > .IO48" to="net.PCA9555_INT" />  {/* GPIO48 */}
@@ -520,7 +531,7 @@ export default () => (
     <chip name="U27" footprint="jlcpcb:C7827" />
 
     {/* ============================== NETS ============================== */}
-    {/* --- nRF24 U20 --- */}
+    {/* --- nRF24 rf_U20 --- */}
     <trace from=".rf_U20 > .GND" to="net.GND" />
     <trace from=".rf_U20 > .VCC" to="net.V3V3" />
     <trace from=".rf_U20 > .CE" to="net.nRF24_CE" />
@@ -613,11 +624,8 @@ export default () => (
     <trace from=".U24 > .VDD" to="net.V3V3" />
     {/* EP + unnamed pads = RF ground (⚠ confirm ground pinout vs SKY13414 datasheet at layout) */}
     <trace from=".U24 > .EP" to="net.GND" />
-    <trace from=".U24 > .pin1" to="net.GND" />
-    <trace from=".U24 > .pin8" to="net.GND" />
-    <trace from=".U24 > .pin11" to="net.GND" />
-    <trace from=".U24 > .pin12" to="net.GND" />
-    <trace from=".U24 > .pin14" to="net.GND" />
+    {/* pins 1/8/11/12/14 are N/C per the SKY13414 datasheet (the Skyworks EVB leaves them
+        floating) — left unconnected, only the EP paddle is the RF ground. */}
     <trace from=".U24 > .RF1" to=".Lm315 > .pin1" />
     <trace from=".Lm315 > .pin2" to="net.ANT_CC1101" />
     <trace from=".U24 > .RF2" to=".Lm433 > .pin1" />
@@ -691,6 +699,8 @@ export default () => (
     {/* ===================== PAM8302A class-D amp (U32) ===================== */}
     <chip name="U32" footprint="jlcpcb:C113367" />
     <resistor name="Rin32" resistance="10k" footprint="0402" /> {/* input series R */}
+    <capacitor name="Cinp" capacitance="0.1uF" footprint="0402" /> {/* AC-couple IN+ (PAM8302 biases inputs to VDD/2) */}
+    <capacitor name="Cinn" capacitance="0.1uF" footprint="0402" /> {/* matching AC-couple on IN- to GND */}
     <capacitor name="Cvcc32" capacitance="10uF" footprint="0805" />
 
     {/* speaker (BTL, no ground reference) */}
@@ -772,10 +782,14 @@ export default () => (
     <trace from=".U33 > .GND" to="net.GND" />
     <trace from=".U33 > .A" to="net.MUX_OUT" />
 
-    {/* --- Amp: mux out -> Rin -> PAM8302 IN_POS; IN_NEG -> GND (single-ended) --- */}
+    {/* --- Amp: mux out -> Rin -> AC-couple -> PAM8302 IN_POS; IN_NEG AC-coupled to GND.
+        PAM8302 biases both inputs internally to VDD/2 via 10k, so a series cap on each input
+        is required — hard-grounding IN- (or DC-coupling IN+) breaks the bias and rails the output. */}
     <trace from=".Rin32 > .pin1" to="net.MUX_OUT" />
-    <trace from=".Rin32 > .pin2" to=".U32 > .IN_POS" />
-    <trace from=".U32 > .IN_NEG" to="net.GND" />     {/* added: single-ended input reference */}
+    <trace from=".Rin32 > .pin2" to=".Cinp > .pin1" />
+    <trace from=".Cinp > .pin2" to=".U32 > .IN_POS" />
+    <trace from=".U32 > .IN_NEG" to=".Cinn > .pin1" />
+    <trace from=".Cinn > .pin2" to="net.GND" />
     <trace from=".U32 > .SD" to="net.PAM_SD" />      {/* PCA #1 P1.3 */}
     <trace from=".U32 > .VDD" to="net.V5" />
     <trace from=".U32 > .GND" to="net.GND" />
@@ -867,7 +881,7 @@ export default () => (
     <trace from=".J40 > .pin6" to="net.GND" />
     <trace from=".D40 > .A1" to="net.I2C_SDA" />
     <trace from=".D40 > .A2" to="net.I2C_SCL" />
-    <trace from=".D40 > .C" to="net.GND" />
+    <trace from=".D40 > .C" to="net.V3V3" />
 
     {/* --- Grove port J41 --- */}
     <trace from=".J41 > .pin1" to="net.GND" />
@@ -878,7 +892,7 @@ export default () => (
     <trace from=".J41 > .pin6" to="net.GND" />
     <trace from=".D41 > .A1" to="net.I2C_SDA" />
     <trace from=".D41 > .A2" to="net.I2C_SCL" />
-    <trace from=".D41 > .C" to="net.GND" />
+    <trace from=".D41 > .C" to="net.V3V3" />
 
     {/* --- RFID2 example unit @0x28 on I2C (external plug-in placeholder) --- */}
     <trace from=".U44 > .V" to="net.V3V3" />
@@ -1077,5 +1091,6 @@ export default () => (
     <trace from=".SW13 > .pin1" to="net.PTT_BTN" />
     <trace from=".SW13 > .pin2" to="net.GND" />
   
+
   </board>
 )
