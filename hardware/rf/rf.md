@@ -55,7 +55,11 @@ The **E22-900M22S** carries the SX1262, an external **PA/LNA to +22 dBm**, the T
 
 ## Antennas
 
-Five of the nine onboard antennas live here: **3× 2.4 GHz** (nRF24), **1 sub-GHz** (CC1101, fed through the SP4T), **1 LoRa** (SX1262). Each chain keeps its **own** antenna — there is **no RF switch shared between chains** (the PE42440 only multiplexes CC1101's four *band matches* onto CC1101's single antenna). All are external SMA connectors, tuned by hand with a VNA.
+Five of the nine onboard antennas live here: **3× 2.4 GHz** (nRF24), **1 sub-GHz** (CC1101, fed through the SP4T), **1 LoRa** (SX1262). Each chain keeps its **own** antenna — there is **no RF switch shared between chains** (the SP4T only multiplexes CC1101's four *band matches* onto CC1101's single antenna).
+
+**Mounting: u.FL → pigtail → panel SMA, not board-edge SMA.** Six of the nine radios are u.FL/IPEX modules (S3, C5, 3× nRF24, E22 LoRa); their ports run by short coax pigtail to bulkhead SMA on the enclosure panel, in two staggered rows. CC1101 (bare) and SA868 take a u.FL there too; Si4732 is a fold-out telescopic whip. Nine end-launch SMA will not fit an 80 mm edge (they need 72–90 mm), and pigtails let the antennas spread to opposite corners for isolation — the 2 W SA868 and the 2.4 GHz cluster at one end, Si4732 / GPS and the 2.4/5 GHz scan RX at the other. All matching is tuned by hand on a VNA.
+
+**RF coexistence (the real isolation levers, all on one board).** With nine radiators in one shell, over-the-air antenna-to-antenna coupling (~10–25 dB) dominates — splitting the design across boards would not change it. Isolation is bought instead by: **TDD arbitration in firmware** (never receive on Si4732 / GPS while the SA868 keys — its +33 dBm through ~20 dB of coupling is +13 dBm at a neighbour's port, enough to block or damage a front-end); a **PIN-diode limiter + RX blanking on the Si4732 HF input**; **shield cans at source** (30–60 dB) over the aggressive PA sections; a continuous 4-layer ground plane; and separate LC-filtered feeds with a star-point return for the PA rails.
 
 ## Fab realization (real parts)
 
