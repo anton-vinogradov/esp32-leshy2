@@ -44,12 +44,13 @@ converted to a **4-layer** stack (JLC7628, `In1` = GND plane, `In2` + outer = si
 with a real design-rule floor in the sibling `.kicad_pro`.
 
 The digital + power nets are **auto-routed with [Freerouting](https://github.com/freerouting/freerouting)**
-(board → Specctra DSN → freerouting → SES → back into KiCad via `pcbnew`). Result:
-**~85 % of nets routed automatically** (75 of 499 connections left, 4 DRC clearance
-nits), 2960 track segments + 457 vias over the GND plane. The remaining nets — the RF
-feeds and the tightest spots — are finished **by hand in KiCad** (RF wants
-impedance-controlled, coplanar-ground, antenna-keep-out routing regardless of any
-auto-router).
+(board → Specctra DSN → freerouting → SES → back into KiCad via `pcbnew`), then the GND
+pads are **welded to the `In1` plane** by [KiCadRoutingTools](https://github.com/drandyhaas/KiCadRoutingTools)'
+plane-finalize. Result: **424 of 425 connections routed** on 4 layers — 3304 track
+segments + 715 vias over a filled GND plane (0.003 Ω, ~15 A) — leaving only **one net
+(the encoder B channel) + 4 DRC clearance nits**. The RF traces exist but still want an
+impedance-controlled, coplanar-ground, antenna-keep-out **hand-redo in KiCad** (as RF
+always does); finish those few touches → gerbers.
 
 | File | What |
 |------|------|
