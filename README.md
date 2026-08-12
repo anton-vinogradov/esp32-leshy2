@@ -67,7 +67,7 @@ Grouped by what you actually do with it. Everything is meant for your own equipm
 **Aux (onboard)**
 - microSD (SPI) for PCAP logging.
 - WS2812 RGB status LED + buzzer.
-- **Controls:** front D-pad (5-way) + BACK + OPTIONS; side PTT + panic STOP; side encoder wheel (volume / value) + F1 / F2; RESET / BOOT + USB + microSD on the bottom edge; a hard master toggle is the only on/off.
+- **Controls:** front D-pad (5-way) + BACK + OPTIONS; side PTT + panic STOP; side encoder wheel (volume / value) + F1 / F2; RESET / BOOT + USB + microSD on the bottom edge; a hard master toggle is the only on/off. See [controls & firmware conventions](docs/firmware-controls.md).
 - GPS (u-blox onboard over UART) for position / time.
 - Long text is typed on your phone over BLE (Meshtastic app) — there is no onboard keyboard.
 
