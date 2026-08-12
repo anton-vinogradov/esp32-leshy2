@@ -17,12 +17,20 @@ Leshy2 stands on two projects:
 
 ## 📌 Status
 
-**Design-stage open project. No hardware exists yet.**
+**Design-stage open project — the full schematic is done on real parts; no hardware built yet.**
 
-- Architecture is **locked** (2026-08-10) — two chips: ESP32-S3 brain + ESP32-C5 co-processor.
-- **Schematic designed sheet-by-sheet** — power · MCU+buses · RF · audio · expansion · indicators — as transcribe-ready specs + drawings in [hardware/](hardware/).
-- **Next:** capture the sheets in KiCad, then PCB layout. A 5 GHz-deauth proof-of-concept runs on a C5 dev-kit **before** the PCB is ordered.
-- Nothing has been built or tested on real hardware. Follow along, comment, and contribute while it takes shape.
+The hardware has been taken from idea to a **complete, real-parts schematic**, in stages:
+
+1. **✅ Architecture locked** — two chips: ESP32-S3 brain + ESP32-C5 5 GHz co-processor.
+2. **✅ Design docs** — all six sheets (power · MCU+buses · RF · audio · expansion · indicators) plus the [pin budget](docs/pin-budget.md), [BOM](docs/bom.md) and [hardware breakdown](docs/hardware.md), bilingual, in [hardware/](hardware/).
+3. **✅ Schematic captured as code** — every sheet is [tscircuit](https://tscircuit.com) `.tsx` in [hardware/tscircuit/](hardware/tscircuit/) (one source → schematic image + netlist + KiCad PCB, nothing hand-drawn), then merged into a single [`board.tsx`](hardware/tscircuit/board.tsx).
+4. **✅ Self-review #1 (logic)** — a multi-agent adversarial review; **8 fixes**, including a blocker (the +3V3 buck couldn't sit on the 8.4 V pack → swapped to a wide-Vin part).
+5. **✅ Realized with real parts** — every IC/module now carries its **manufacturer-verified footprint + pinout**, pulled by LCSC part number. Going to real parts caught hardware bugs the ideal schematic can't show: a charger wired for the wrong topology, two MCU pins that aren't bonded out on the module, a single-supply walkie, a wrong level-shifter pinout, missing support networks. Each sheet passes KiCad DRC.
+6. **✅ Self-review #2 (real board)** — **6 more fixes**, including 2 blockers (the charger's current-sense was shorted to the battery; the I²C ESD array was reversed).
+7. **✅ One board** — all six sheets merged: **174 real components, connectivity proven** (KiCad `schematic_parity = 0`), ready to lay out. See [hardware/tscircuit/](hardware/tscircuit/).
+8. **⏭ Next:** **PCB layout** in KiCad (placement, ground planes, RF feeds by hand) → gerbers → fab. A 5 GHz-deauth proof-of-concept on a C5 dev-kit precedes ordering the board.
+
+Across the two reviews **~14 real defects were caught and fixed — 4 of them board-killers.** Nothing has been built or tested on real hardware yet. Follow along, comment, and contribute while it takes shape.
 
 ## 🧰 What it does
 
@@ -88,7 +96,7 @@ Legal LoRa power caps enforced in firmware: EU433 +10 dBm, EU868 +14 dBm, 869.4�
 - **9 antennas:** S3 2.4 GHz (external SMA), C5 dual-band 2.4 / 5, 3× nRF24, CC1101, Si4732 telescopic whip, SA868 UHF, SX1262 LoRa. There is no shared RF switch, so each chain has its own antenna (the sub-GHz band-select uses an SP4T + four matching networks behind the single CC1101 antenna).
 - **Display:** ST7796 320×480 IPS over SPI (not 8080 / AMOLED — the C5 has no LCD_CAM), waterfall on hardware vertical scroll.
 - **Two USB-C ports:** J1 → S3 (charge + data), J2 → C5 (data-only, brick-safe). One power source — the pack charges only through J1.
-- **Power:** 2× 18650 in 2S with an onboard PMIC — **BQ25887 boost charger** (charges 2S from plain 5 V USB, no PD), MP2315 buck +5 V, TLV62569 +3V3, a separate TPS7A2033 +3V3 analog rail, and rail gates that cut idle radios. A hard master toggle is the only on/off.
+- **Power:** 2× 18650 in 2S with an onboard PMIC — **BQ25887 boost charger** (charges 2S from plain 5 V USB, no PD), MP2315 buck +5 V, a second wide-Vin MP2315 buck +3V3, a separate TPS7A2033 +3V3 analog rail, and rail gates that cut idle radios. A hard master toggle is the only on/off.
 
 One radio runs at a time, so the shared SPI bus and the slow control lines fit this much radio into the pin budget. See [docs/pin-budget.md](docs/pin-budget.md).
 
@@ -112,7 +120,7 @@ Leshy2 stands on the shoulders of [ESP32-DIV](https://github.com/cifertech/ESP32
 - [docs/bom.md](docs/bom.md) — **cost & bill of materials** (~$108–125 electronics).
 - [docs/pin-budget.md](docs/pin-budget.md) — the GPIO budget for both chips and every pin's role.
 
-**Schematic — drawn sheet by sheet** (transcribe-ready specs + drawings)
+**Schematic** — each sheet is a design doc (below) **and** live [tscircuit](https://tscircuit.com) code in [hardware/tscircuit/](hardware/tscircuit/) (real parts, LCSC part numbers, exports to KiCad). The whole device is one merged board: [`board.tsx`](hardware/tscircuit/board.tsx) → [`board.kicad_pcb`](hardware/tscircuit/board.kicad_pcb).
 1. [Power](hardware/power/power.md) — 2S, BQ25887 boost charger, rails, master toggle
 2. [MCU + buses](hardware/c5-buses/c5-buses.md) — S3 + C5, the SPI3 link, 74HC138, 2× PCA9555, USB
 3. [RF chains](hardware/rf/rf.md) — 3× nRF24, CC1101 + SP4T, SX1262 (LoRa)
