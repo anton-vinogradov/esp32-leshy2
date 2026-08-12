@@ -34,7 +34,29 @@ the SP4T select). Colliding refdes are renamed on merge (`U20`→`m_U20`/`rf_U20
 | `board-sch.svg` | whole-board schematic image |
 | `board.kicad_pcb` | **KiCad PCB — the layout target (connectivity carried; not yet routed)** |
 
-Next: **place & route in KiCad** (RF feeds / ground / antenna keep-outs by hand), then gerbers.
+## Placement — auto-drafted (routing = KiCad by hand)
+
+From `board.kicad_pcb` an **auto-placement draft** groups the 174 parts into floorplan
+zones — RF up near the antenna edge, power at the bottom, MCU + buses in the centre —
+with the cable/slot connectors pinned to their board edges (USB-C at the bottom,
+microSD on the left, Grove on the right) and **zero courtyard overlaps**. It is
+converted to a **4-layer** stack (JLC7628, `In1` = GND plane) with a real design-rule
+floor carried in the sibling `.kicad_pro`.
+
+| File | What |
+|------|------|
+| `board-placed-4layer.kicad_pcb` | **routing start** — 4-layer, edge-aware placement, GND-plane zone |
+
+**Routing is done in KiCad by hand.** A headless auto-router (KiCadRoutingTools) was
+tried end-to-end; on a board this dense (174 parts, 9 radios, mixed-signal) it tops out
+around ~45 % of nets with clearance/short violations — expected, boards like this are
+routed interactively. The RF feeds (impedance, coplanar ground, antenna keep-outs) are
+hand-routed regardless. Open the file in KiCad, fill the GND zone, route power/digital,
+then the RF chains → gerbers.
+
+> The placement is a **draft**: single-sided at ~80 × 175 mm to open routing channels.
+> Moving the small decoupling caps to the back shrinks it toward ~80 × 140 mm — a
+> hand-placement step.
 
 ## Render / export
 
