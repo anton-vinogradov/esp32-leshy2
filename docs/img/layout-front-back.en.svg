@@ -1,6 +1,6 @@
 <svg viewBox="0 0 640 580" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif">
   <rect width="640" height="580" fill="#f5f7fa"/>
-  <text x="320" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Leshy2 — front & back (to scale, 80 × 170 mm)</text>
+  <text x="320" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">Leshy2 — front &amp; back (to scale, 80 × 170 mm)</text>
 
   <!-- ============ FRONT ============ -->
   <text x="165" y="56" text-anchor="middle" font-size="14" font-weight="700" fill="#0369a1">FRONT</text>
