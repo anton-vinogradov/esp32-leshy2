@@ -54,7 +54,7 @@ Grouped by what you actually do with it. Everything is meant for your own equipm
 - Meshtastic over LoRa (onboard SX1262 / E22-900M22S, +22 dBm): encrypted text mesh at kilometer range. Legal power caps are enforced per region in firmware.
 
 **Spectrum view**
-- 3.5″ IPS TFT (ST7796, 320×480) over SPI — a large color waterfall on hardware vertical scroll, with a bright backlight that stays readable outdoors.
+- 4.0″ IPS TFT (ST7796, 320×480) over SPI — a large color waterfall on hardware vertical scroll, with a bright backlight that stays readable outdoors.
 - 2.4 GHz raw spectrum via the nRF24 chain; sub-GHz waterfall via CC1101.
 - Per-antenna amber TX LED — a hardware envelope detector, honest "on air" even if firmware hangs, 0 GPIO. No RX LED (a detector would hurt receive sensitivity); the display shows the active chain.
 

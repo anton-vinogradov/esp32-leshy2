@@ -29,7 +29,7 @@ Always present. This is the tool you get before adding a single extra radio.
 | Part | Role | ≈ $ |
 |------|------|:--:|
 | ESP32-S3-WROOM-1U-N8R2 | **main brain** — UI, display, all wired radios, SD, buses; native **2.4 GHz Wi-Fi + BLE**; 38/38 pins | 4 |
-| ST7796 3.5″ IPS TFT (320×480, SPI) | color display + hardware-scroll waterfall | 9 |
+| ST7796 4.0″ IPS TFT (320×480, SPI) | color display + hardware-scroll waterfall | 9 |
 | Power (sheet 1) | 2S 2×18650, BQ25887 boost-charge, S-8252A, MP2315/TLV62569/TPS7A2033 rails, master switch | 23 |
 | 2× PCA9555 · 74HC138 · 74AHC1G gate | slow-line expanders (0x20/0x21) · CS decoder · nRF24-IRQ gate | 1.3 |
 | microSD · RESET/BOOT/PTT buttons · encoder · WS2812 · buzzer · amber TX LEDs | onboard I/O + PCAP log + honest "on-air" LEDs | 9 |
@@ -63,7 +63,7 @@ A handful of lines are most of the electronics cost — worth knowing where the 
 1. **Power (~$23)** — cells + 2S boost-charger + three rails. Quality 18650s alone are ~$10.
 2. **Walkie SA868-U (~$13)** — the only 2 W voice transceiver here.
 3. **3× nRF24L01+PA/LNA (~$10)** — three modules for parallel 2.4 GHz coverage.
-4. **Display ST7796 (~$9)** — the 3.5″ IPS panel. *(This line was missing from the earlier single-chip BOM — it is now counted.)*
+4. **Display ST7796 (~$9)** — the 4.0″ IPS panel. *(This line was missing from the earlier single-chip BOM — it is now counted.)*
 5. **LoRa SX1262 (~$9)** and **ESP32-C5 (~$7)** — the mesh radio and the 5 GHz coprocessor.
 
 ## Honest caveats
