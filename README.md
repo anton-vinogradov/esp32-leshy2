@@ -44,7 +44,9 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **HF / CB / FM receiver + real analog audio** — Si4732 + a PAM8302 amp → speaker + headphone jack.
 - **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
 - **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
-- **2S 18650 power** with an on-board balancing boost-charger, and a **4.0″ color spectrum display**.
+- **2S 18650 power** with an on-board balancing boost-charger.
+- **A far more readable display** — a **4.0″ 320×480 IPS color** panel with a bright backlight and a color spectrum waterfall on hardware vertical scroll: bigger *and* sharper than DIV's small basic screen.
+- **A proper control set** — a **5-way D-pad + BACK + OPTIONS + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
 
 The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi + BLE); the C5 is a pure 5 GHz co-processor. DIV handheld shape, fair price (~$135–160), open so people can join in.
 
