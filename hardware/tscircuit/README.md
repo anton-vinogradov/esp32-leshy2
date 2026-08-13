@@ -31,7 +31,7 @@ wrapper, renames the three cross-sheet refdes collisions (`U20`→`m_U20`/`rf_U2
 `Y1`→`rf_Y1`/`a_Y1`, `Rbias`→`rf_Rbias`/`a_Rbias`), and concatenates the six sheets +
 `integration.tsx` into one `<board>`. The sheets stitch by shared `net.NAME` (the whole
 SPI/I²C bus, the power rails, the chip-selects, the interrupts, the C5 link, the SP4T
-select). **191 components.** Never hand-edit `board.tsx` — edit a sheet (or
+select). **223 components.** Never hand-edit `board.tsx` — edit a sheet (or
 `integration.tsx`), then re-run `python3 merge.py`.
 
 | File | What |

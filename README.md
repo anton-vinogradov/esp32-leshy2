@@ -192,20 +192,19 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 
 **🟡 Spec.** Merge the six sheets into one board on real, manufacturer-verified parts; review it adversarially; and finish the missing pieces so the schematic is complete before layout.
 
-**Artifacts.** [`board.tsx`](hardware/tscircuit/board.tsx) — **generated** by [`merge.py`](hardware/tscircuit/merge.py) from the six sheets + [`integration.tsx`](hardware/tscircuit/integration.tsx) (191 parts) → [`board.kicad_pcb`](hardware/tscircuit/board.kicad_pcb) (connectivity proven, `schematic_parity = 0`).
+**Artifacts.** [`board.tsx`](hardware/tscircuit/board.tsx) — **generated** by [`merge.py`](hardware/tscircuit/merge.py) from the six sheets + [`integration.tsx`](hardware/tscircuit/integration.tsx) (223 parts) → [`board.kicad_pcb`](hardware/tscircuit/board.kicad_pcb) (connectivity proven, `schematic_parity = 0`).
 
 Done:
 
 - **✅ Merge** — `board.tsx` is *generated* from the sheets (single source of truth: edit a sheet or `integration.tsx`, then re-run `merge.py`). A parts+nets diff-guard proves it byte-identical to the hand-merged board it replaced.
 - **✅ Realize** — every IC / module / connector rides a real LCSC footprint (tscircuit parts engine); only mechanical placeholders stay geometric.
-- **✅ Review** — two adversarial whole-board self-reviews + a per-sheet artifact review (electrical + `.md`↔`.tsx`). Confirmed defects feed the list below.
+- **✅ Review** — two adversarial whole-board self-reviews + a per-sheet artifact review (electrical + `.md`↔`.tsx`). Confirmed defects fed the fixes below.
+- **✅ Electrical fixes (review)** — pull-ups on every PCA9555 switch input (10 UI buttons + encoder / card-detect / jack-detect / PTT — the part has **no** internal pull-ups); **J2 CC 5.1 kΩ** (C5 flash-over-USB); a pull-up on the wired-OR `PCA9555_INT`; **local decoupling** (100 nF per IC/module power pin + bulk); ~1 kΩ base resistors on the buzzer / IR drivers. TX-live LEDs set to minimal power (10 kΩ, ~0.1 mA). `.md`↔`.tsx` wording synced; netlist verified clean.
 
 Remaining (🟡) — the completion list:
-
-- **Electrical fixes (from review).** External **pull-ups** on every PCA9555 switch input (10 UI buttons + encoder / card-detect / jack-detect / PTT — the part has **no** internal pull-ups) 🔴; **J2 CC 5.1 kΩ** so the C5 flashes over its own USB-C; a pull-up on the wired-OR `PCA9555_INT`; **local decoupling** (100 nF per IC/module power pin + bulk); one ~12 pF Si4732 RCLK load cap (not two); ~1 kΩ base resistors on the buzzer / IR drivers.
 - **Part swaps (placeholder → real).** TVS/ESD, PPTC fuse, electret mic, speaker, buzzer, 3.5 mm jack, an 18650 holder with a reachable mid-point (the BQ25887 balances the 2S pack), RF balun, per-band matching networks, and one 5-way nav switch under the D-pad.
 - **Stage-3 sub-circuits to draw.** The 7 RF envelope detectors (TX-live LEDs), the backlight driver (+ PWM dim), the Si4732 HF PIN-limiter.
-- **Doc sync + fab-verify.** A few `.md`↔`.tsx` wording fixes, plus a set of "confirm at layout" items (Grove pin-1 orientation, supercap polarity / inrush, Si4732 bus-mode strap, boot-state pull-downs).
+- **Fab-verify.** "Confirm at layout / bring-up" items: Grove pin-1 orientation, supercap polarity / inrush, Si4732 bus-mode strap **and RCLK load-cap count** (AN383 — why the crystal cap wasn't blindly changed), boot-state pull-downs.
 
 *Detail lands here as each item is done.*
 
