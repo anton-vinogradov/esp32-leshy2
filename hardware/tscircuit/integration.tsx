@@ -36,23 +36,39 @@ export default () => (
     <trace from=".J_LCD > .pin25" to="net.GND" /> {/* mounting tab */}
     <trace from=".J_LCD > .pin26" to="net.GND" /> {/* mounting tab */}
 
-    {/* --- Antenna u.FL/IPEX connectors (C2987682): pin2 = signal (center), pin1/3/4 = GND shell --- */}
-    {/* Only the bare-chip radios need a board u.FL (module radios carry their own). Pigtail -> panel SMA/RP-SMA. */}
-    <chip name="J_ANT_CC" footprint="jlcpcb:C2987682" />
-    <trace from=".J_ANT_CC > .pin2" to="net.ANT_CC1101" />
-    <trace from=".J_ANT_CC > .pin1" to="net.GND" />
-    <trace from=".J_ANT_CC > .pin3" to="net.GND" />
-    <trace from=".J_ANT_CC > .pin4" to="net.GND" />
-    <chip name="J_ANT_UHF" footprint="jlcpcb:C2987682" />
-    <trace from=".J_ANT_UHF > .pin2" to="net.ANT_UHF" />
-    <trace from=".J_ANT_UHF > .pin1" to="net.GND" />
-    <trace from=".J_ANT_UHF > .pin3" to="net.GND" />
-    <trace from=".J_ANT_UHF > .pin4" to="net.GND" />
-    <chip name="J_ANT_SI" footprint="jlcpcb:C2987682" />
-    <trace from=".J_ANT_SI > .pin2" to="net.ANT_FM" /> {/* telescopic whip on the FM input */}
-    <trace from=".J_ANT_SI > .pin1" to="net.GND" />
-    <trace from=".J_ANT_SI > .pin3" to="net.GND" />
-    <trace from=".J_ANT_SI > .pin4" to="net.GND" />
+    {/* --- Antenna bank: 9 board-mounted vertical SMA jacks (C2987686 SMA-KE): pin5 = signal (centre), pin1-4 = GND. All removable. --- */}
+    {/* Bare radios (CC1101, SA868, Si4732) route their 50R straight to the SMA; module radios (nRF24 x3, LoRa, S3, C5) reach theirs
+        by a short internal u.FL->SMA jumper (the module carries the u.FL), so their SMA centre is a jumper-point net (single PCB endpoint). */}
+    {/* Placement order on the 80mm top (isolation): nRF#1 . Si4732 . SA868 . CC1101 . nRF#2 . LoRa . S3 . C5 . nRF#3
+        -> 3x nRF spread to ends+centre (~40mm), freq-diverse spacers between, 2W SA868 away from GPS. Tuned at layout/VNA. */}
+    <chip name="J_ANT_CC" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_CC > .pin5" to="net.ANT_CC1101" />
+    <trace from=".J_ANT_CC > .pin1" to="net.GND" /><trace from=".J_ANT_CC > .pin2" to="net.GND" /><trace from=".J_ANT_CC > .pin3" to="net.GND" /><trace from=".J_ANT_CC > .pin4" to="net.GND" />
+    <chip name="J_ANT_UHF" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_UHF > .pin5" to="net.ANT_UHF" />
+    <trace from=".J_ANT_UHF > .pin1" to="net.GND" /><trace from=".J_ANT_UHF > .pin2" to="net.GND" /><trace from=".J_ANT_UHF > .pin3" to="net.GND" /><trace from=".J_ANT_UHF > .pin4" to="net.GND" />
+    <chip name="J_ANT_SI" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_SI > .pin5" to="net.ANT_FM" /> {/* Si4732 HF/CB, removable telescopic (RX) */}
+    <trace from=".J_ANT_SI > .pin1" to="net.GND" /><trace from=".J_ANT_SI > .pin2" to="net.GND" /><trace from=".J_ANT_SI > .pin3" to="net.GND" /><trace from=".J_ANT_SI > .pin4" to="net.GND" />
+    {/* module-radio SMAs: centre = jumper point to the module's u.FL via short internal coax (off-PCB) */}
+    <chip name="J_ANT_LORA" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_LORA > .pin5" to="net.ANT_LoRa" />
+    <trace from=".J_ANT_LORA > .pin1" to="net.GND" /><trace from=".J_ANT_LORA > .pin2" to="net.GND" /><trace from=".J_ANT_LORA > .pin3" to="net.GND" /><trace from=".J_ANT_LORA > .pin4" to="net.GND" />
+    <chip name="J_ANT_S3" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_S3 > .pin5" to="net.ANT_S3" />
+    <trace from=".J_ANT_S3 > .pin1" to="net.GND" /><trace from=".J_ANT_S3 > .pin2" to="net.GND" /><trace from=".J_ANT_S3 > .pin3" to="net.GND" /><trace from=".J_ANT_S3 > .pin4" to="net.GND" />
+    <chip name="J_ANT_C5" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_C5 > .pin5" to="net.ANT_C5" />
+    <trace from=".J_ANT_C5 > .pin1" to="net.GND" /><trace from=".J_ANT_C5 > .pin2" to="net.GND" /><trace from=".J_ANT_C5 > .pin3" to="net.GND" /><trace from=".J_ANT_C5 > .pin4" to="net.GND" />
+    <chip name="J_ANT_N1" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_N1 > .pin5" to="net.ANT_nRF1" />
+    <trace from=".J_ANT_N1 > .pin1" to="net.GND" /><trace from=".J_ANT_N1 > .pin2" to="net.GND" /><trace from=".J_ANT_N1 > .pin3" to="net.GND" /><trace from=".J_ANT_N1 > .pin4" to="net.GND" />
+    <chip name="J_ANT_N2" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_N2 > .pin5" to="net.ANT_nRF2" />
+    <trace from=".J_ANT_N2 > .pin1" to="net.GND" /><trace from=".J_ANT_N2 > .pin2" to="net.GND" /><trace from=".J_ANT_N2 > .pin3" to="net.GND" /><trace from=".J_ANT_N2 > .pin4" to="net.GND" />
+    <chip name="J_ANT_N3" footprint="jlcpcb:C2987686" />
+    <trace from=".J_ANT_N3 > .pin5" to="net.ANT_nRF3" />
+    <trace from=".J_ANT_N3 > .pin1" to="net.GND" /><trace from=".J_ANT_N3 > .pin2" to="net.GND" /><trace from=".J_ANT_N3 > .pin3" to="net.GND" /><trace from=".J_ANT_N3 > .pin4" to="net.GND" />
     {/* Si4732 AM/HF (ANT_HF_CB) shares the whip via a coupling cap; value tuned in Stage 2 / on a VNA */}
     <capacitor name="Ccpl_si" capacitance="100pF" footprint="0402" />
     <trace from=".Ccpl_si > .pin1" to="net.ANT_FM" />

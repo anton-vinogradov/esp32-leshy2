@@ -55,9 +55,11 @@ Nine onboard antennas, **one per RF chain — there is no RF switch shared betwe
 2. **ESP32-C5** — dual-band 2.4 / 5 GHz.
 3–5. **nRF24 ×3** — 2.4 GHz.
 6. **CC1101** — sub-GHz (the SP4T folds its own four bands onto this one antenna).
-7. **Si4732** — telescopic whip for HF / CB (RX only; a ¼-wave at 27 MHz is ~2.75 m, so a 1–1.7 m telescopic is the plan).
+7. **Si4732** — removable SMA with a long **telescopic** for HF / CB (RX only; a ¼-wave at 27 MHz is ~2.75 m, so a 1–1.7 m telescopic — or a wire — is the plan).
 8. **SA868-U** — 433 / 446 MHz UHF.
 9. **SX1262** — 868 / 915 MHz LoRa.
+
+**All nine are removable board-mounted SMA jacks along the top edge** — screw on a whip, telescopic or wire. The three nRF24 are spread (ends + centre, ~40 mm) so the parallel 2.4 GHz scan does not self-desense; frequency-diverse radios sit between them and the 2 W SA868 is at one end, away from GPS. Bare radios (CC1101, SA868) trace straight to their SMA; module radios (3× nRF24, LoRa, S3, C5) use a short internal u.FL → SMA jumper. See [Sheet 3](../hardware/rf/rf.md).
 
 ## Power
 

@@ -146,7 +146,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - **Shared bus (S3 FSPI):** microSD + CC1101 + 3× nRF24 + SX1262 + the display — chip-selects via a 74HC138. Three I²C **PCA9555** expanders carry the slow lines (radio/display control, rail gates, and the UI buttons); interrupts stay on direct pins.
 - **Display:** the ST7796 **4.0″ 320×480 IPS** panel is on that shared SPI — the C5 has no `LCD_CAM` and there are no spare pins for a parallel / QSPI panel, so SPI it is; the waterfall rides the panel's **hardware vertical scroll** to keep per-frame updates tiny.
 - **Human interface:** the D-pad, BACK / OPTIONS / STOP / F1 / F2 and the encoder push all read through the I²C **PCA9555** expanders (S3 GPIO is full and buttons are slow); only the encoder's A/B quadrature keeps two direct S3 pins (timing-critical). All buttons share one INT.
-- **9 antennas** (S3 2.4, C5 2.4/5, 3× nRF24, CC1101, Si4732 whip, SA868, LoRa) — each chain its own antenna, mounted via **u.FL pigtails to panel SMA/RP-SMA**, spread for isolation (details in stage 5).
+- **9 antennas** (S3 2.4, C5 2.4/5, 3× nRF24, CC1101, Si4732 whip, SA868, LoRa) — each chain its own antenna, on **9 removable board-mounted SMA jacks** along the top edge, the 3× nRF24 spread for isolation (details in stage 5).
 - **Two USB-C:** J1 → S3 (charge + data), J2 → C5 (data-only). The pack charges only through J1.
 - **Power:** 2× 18650 in 2S — **BQ25887 boost charger** (charges 2S from plain 5 V USB), MP2315 +5 V and +3V3 bucks, a TPS7A2033 +3V3 analog rail, rail gates that cut idle radios. A hard master toggle is the only on/off.
 

@@ -30,7 +30,7 @@ The two bucks hang directly on the **BAT** node. With no battery there is no sys
 | J1 | USB-C receptacle (16P) → **S3** | 5 V charge input + S3 data/console | Feeds BQ25887 `VBUS`; D+/D− → S3 native USB GPIO19/20 (Sheet 2). CC1/CC2 via 5.1 kΩ pull-downs (accept 5 V); ESD array on VBUS + CC + D± |
 | J2 | USB-C receptacle (16P) → **C5** | C5 data/flash only | D+/D− → C5 USB GPIO13/14 (Sheet 2). **VBUS is not routed into the system** — only an ESD clamp. C5 flashing is brick-safe via its mask-ROM |
 | U2 | **BQ25887** | 2S **boost** charger, I²C, **cell balancing**, 16-bit ADC | Charges 8.4 V from **plain 5 V** USB; no PD needed. Control via `BQ_CD` (disable) + `BQ_INT` on PCA9555 #1. Fuel gauge read from its I²C ADC (~0x6A) |
-| BT1 | 2× 18650 (2S) | Pack | ~7.4 V nom, ~18 Wh; cell mid-tap wired for balancing |
+| BT1 | 2× 18650 (2S) | Pack | ~7.4 V nom, ~18 Wh; **plastic 2-cell holder (or 2× single)**, cell mid-tap wired for balancing |
 | U3 + Q1/Q2 | **S-8252A** (2S AFE) + 2× N-MOSFET | 2S protection | OV / UV / OC / short; **FETs in the pack negative return (low-side)** |
 | F1 | PPTC fuse | Pack over-current | in series with pack + |
 | SW_MASTER | Hard SPDT master switch, ON-OFF (≥3 A) | **The only on/off** — breaks the pack + line | pack + → BAT node |
