@@ -70,7 +70,7 @@
   <text class="band" x="295" y="90">sub-GHz</text>
   <path class="ant" d="M295 150 V100 M295 100 l-10 -11 M295 100 l10 -11"/>
   <circle class="rx" cx="282" cy="160" r="5"/><circle class="tx" cx="308" cy="160" r="5"/>
-  <rect class="box" x="235" y="172" width="120" height="60" rx="7"/><text class="t" x="295" y="196">CC1101</text><text class="s" x="295" y="216">300–928 · SP4T 4-band</text>
+  <rect class="box" x="230" y="172" width="130" height="60" rx="7"/><text class="t" x="295" y="196">CC1101</text><text class="s" x="295" y="216">300–928 · SP4T ×4</text>
   <path class="wire" d="M295 232 V250"/><circle class="tap" cx="295" cy="250" r="4"/>
 
   <text class="band" x="472" y="90">2.4 GHz ×3</text>
@@ -79,7 +79,7 @@
   <rect class="box" x="385" y="172" width="175" height="60" rx="7"/><text class="t" x="472" y="196" font-size="12">3× nRF24L01+PA/LNA</text><text class="s" x="472" y="216">2.4 raw · RX+TX</text>
   <path class="wire" d="M472 232 V250"/><circle class="tap" cx="472" cy="250" r="4"/>
 
-  <rect class="box" x="590" y="172" width="160" height="60" rx="7"/><text class="t" x="670" y="196">microSD + display</text><text class="s" x="670" y="216">both on SPI · ST7796 TFT</text>
+  <rect class="box" x="590" y="172" width="160" height="60" rx="7"/><text class="t" x="670" y="196">microSD + display</text><text class="s" x="670" y="216">SPI · ST7796 4.0″ TFT</text>
   <path class="wire" d="M660 232 V250"/><circle class="tap" cx="660" cy="250" r="4"/>
 
   <text class="band" x="855" y="90">LoRa 868/915</text>
@@ -96,7 +96,7 @@
   <path class="wire" d="M310 406 V420"/><circle class="tap" cx="310" cy="420" r="4"/>
   <text class="s" x="310" y="326" fill="#c0392f">ESD clamp</text>
 
-  <rect class="box" x="430" y="346" width="150" height="58" rx="7"/><text class="t" x="505" y="371">2× PCA9555</text><text class="s" x="505" y="390">slow I/O · 0x20 / 0x21</text>
+  <rect class="box" x="430" y="346" width="150" height="58" rx="7"/><text class="t" x="505" y="371">3× PCA9555</text><text class="s" x="505" y="390">0x20/21/22 · +buttons</text>
   <path class="wire" d="M505 404 V420"/><circle class="tap" cx="505" cy="420" r="4"/>
 
   <rect class="box" x="628" y="344" width="176" height="62" rx="7"/><text class="t" x="716" y="371">2× Grove I²C</text><text class="s" x="716" y="390">RFID2 · RTC · IMU · hub</text>
@@ -121,7 +121,7 @@
 
   <!-- S3 direct GPIO block -->
   <path class="wire" d="M115 596 V632"/>
-  <rect class="box" x="40" y="634" width="440" height="56" rx="9"/><text class="t" x="260" y="660">S3 direct GPIO · RMT · SPI display</text><text class="s" x="260" y="679">ST7796 · IR · WS2812 · buzzer · encoder · RESET / BOOT / PTT</text>
+  <rect class="box" x="40" y="634" width="440" height="56" rx="9"/><text class="t" x="260" y="660">S3 direct GPIO · RMT · SPI display</text><text class="s" x="260" y="679">ST7796 · IR · WS2812 · buzzer · encoder A/B · RESET / BOOT</text>
 
   <text class="sub" x="58" y="720">Antenna dots (above): blue = RX · amber = TX (hardware on-air) · none = receive-only (Si4732, GPS).</text>
   <text class="sub" x="58" y="742">All RF self-built · no shared RF switch, one antenna per chain · 9 antennas · S3 flashes C5 over the link + its own USB-C.</text>
