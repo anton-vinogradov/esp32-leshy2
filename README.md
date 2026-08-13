@@ -67,7 +67,7 @@ The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi 
 - **HF / CB / shortwave transmit.** The Si4732 is receive-only and physically cannot transmit. *(chip limit)*
 - **Continuous wideband SDR capture / arbitrary TX (HackRF-class).** No wideband IQ front end — a different, far pricier class of device. *(scope / budget)*
 - **Cellular / GSM.** No modem. *(cost + legality)*
-- **True simultaneous multi-radio.** With nine antennas in one small volume, keying every TX chain at once desenses the receivers, so the chains are time-shared (TDD arbitration in firmware; the 3× nRF24 parallel scan aside). *(RF coexistence — not the SPI bus, which sits at ~11–21 %.)*
+- **True simultaneous multi-radio.** With nine antennas in one small volume, keying every TX chain at once desenses the receivers, so the different-band chains are time-shared (TDD arbitration in firmware); the 3× nRF24, one coordinated 2.4 GHz set, run in parallel — scan **and** multi-channel TX alike. *(RF coexistence — not the SPI bus, which sits at ~11–21 %.)*
 - **Wideband jamming.** Deliberately not built — it is illegal (US §333, EU RED). *(legal — a "won't", not a "couldn't")*
 
 **Artifacts.** This section, and the lineage it builds on:
@@ -87,7 +87,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 
 - **Marauder-class Wi-Fi, not Pineapple-class.** Both bands do the useful management-frame work — scan, sniff, deauth, beacon / probe flood — because that runs on the ESP32 radio directly. Full monitor + injection (WPA-handshake capture, aircrack) needs a Linux Wi-Fi stack no ESP32 has, so we don't claim it.
 - **Analog receive audio, no MCU in the path.** No ESP32 has a real DAC, so sound never touches the chip: the radio's line-out goes through an analog mux into a PAM8302 class-D amp to the speaker / headphone jack. Clean audio, and the CPU stays free for the UI.
-- **One TX chain at a time, not all radios at once.** Nine antennas share one small volume, so keying every transmitter together desenses the receivers. Firmware time-shares the TX chains; the only parallel exception is the 3× nRF24 receive-only band scan, which transmits nothing.
+- **Different-band chains are time-shared, not all keyed at once.** Nine antennas share one small volume, so firing every transmitter together desenses the receivers. Firmware time-shares the *different-band* chains (SA868 2 W, LoRa, CC1101, Wi-Fi). The **3× nRF24 are the parallel set** — one coordinated 2.4 GHz sub-system that runs three channels at once, both to scan the band **and** to transmit across several channels together (the leshy-style multi-channel test message / mousejack / jam).
 
 **Artifacts.** The capability list + the frequency map below.
 
