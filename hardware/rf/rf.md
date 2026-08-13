@@ -39,7 +39,7 @@ ANT      : ANT_nRF24_1/2/3 (2.4) · ANT_CC1101 (sub-GHz, via SP4T) · ANT_LoRa (
 
 ## nRF24 ×3 — the brownout rule
 
-The PA/LNA modules pull **pulsed** current on TX (~115 mA bursts) and will sag their own and their neighbours' supply. Each of U20/U21/U22 gets **100–220 µF bulk + 100 nF right at its VCC pin** on `+3V3`; keep the three grounds short and stitched. `CE` is **tied across all three** (timing-critical, so a direct S3 pin, GPIO6): in scan mode all three receive in parallel; in mousejack the one configured for TX transmits while the others stay RX — only its CSN is addressed for the FIFO writes.
+The PA/LNA modules pull **pulsed** current on TX (~115 mA bursts) and will sag their own and their neighbours' supply. Each of U20/U21/U22 gets **100–220 µF bulk + 100 nF right at its VCC pin** on `+3V3`; keep the three grounds short and stitched. `CE` is **tied across all three** (timing-critical, so a direct S3 pin, GPIO6): in scan mode all three receive in parallel; in mousejack the one configured for TX transmits while the others stay RX — only its CSN is addressed for the FIFO writes. And to blast one message across several channels at once (the leshy-style multi-channel test broadcast), all three are pre-loaded as TX on their own channels via CSN, then a single `CE` pulse fires them together.
 
 The three `IRQ` lines are **push-pull** (active-low), so they cannot simply wire-OR. They are combined by a **SN74LVC1G10 3-input NAND** into one signal that is **idle-LOW** — which both gives the S3 a single interrupt on GPIO46 and satisfies that pin's boot strap (GPIO46 must be low at POR). Firmware reads each radio's STATUS register to find which one fired.
 
