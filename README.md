@@ -50,6 +50,16 @@ The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi 
 
 **This peripheral wishlist is the driver for everything downstream** — it sets the capabilities (stage 2), which pick the components (stage 3), which shape the architecture (stage 4) and the physical device (stage 5).
 
+**Wanted, but out of scope (and why).** Some capabilities were dropped for reasons beyond our control or because they'd blow up the budget — the boundary is set here so the later stages don't chase them:
+
+- **Full 5 GHz Wi-Fi (monitor + injection, WPA-handshake capture, Pineapple-class).** The C5 does only Marauder-class recon (scan / deauth / beacon / probe / sniff); raw monitor+inject on 5 GHz needs a Linux Wi-Fi stack no ESP32 has. *(chip / SDK limit)*
+- **On-device Linux-class analytics (aircrack-ng, Kismet, WiFi Pineapple, handshake cracking).** Would need a Raspberry-Pi-class Linux SBC bolted on — blowing up budget, size, power and battery life. The point is a lean, all-day ESP32 handheld, not a Linux box: log PCAPs to SD and crunch them on a laptop. *(budget / complexity)*
+- **HF / CB / shortwave transmit.** The Si4732 is receive-only and physically cannot transmit. *(chip limit)*
+- **Continuous wideband SDR capture / arbitrary TX (HackRF-class).** No wideband IQ front end — a different, far pricier class of device. *(scope / budget)*
+- **Cellular / GSM.** No modem. *(cost + legality)*
+- **True simultaneous multi-radio.** The chains share one SPI bus and a tight pin budget, so one radio runs at a time (the 3× nRF24 parallel scan is the exception). *(pin / bus budget)*
+- **Wideband jamming.** Deliberately not built — it is illegal (US §333, EU RED). *(legal — a "won't", not a "couldn't")*
+
 **Artifacts.** This section, and the lineage it builds on:
 
 - **[ESP32-DIV](https://github.com/cifertech/ESP32-DIV)** by CiferTech (MIT) — the hardware concept and the origin of the whole line.
@@ -107,7 +117,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 | LoRa (EU433 / EU868 / US915) | SX1262 | ✓ | ✓ (+22 dBm) | Meshtastic encrypted text mesh |
 | GPS L1 ~1.575 GHz | u-blox (UART) | ✓ | — | position / time |
 
-**Honest limits.** 5 GHz is **recon-only** (no injection / handshake capture — that needs Linux, avoided for battery life). All Si4732 HF is **receive-only**. **One radio at a time** (the chains share the SPI bus). **Not a HackRF** — no wideband capture, no arbitrary TX. **No wideband jamming** — illegal (US §333, EU RED), will not be built.
+**Honest limits.** 5 GHz is **recon-only**, all Si4732 HF is **receive-only**, and **one radio runs at a time** (the chains share the SPI bus). For the full list of what's deliberately **out of scope and why** (raw 5 GHz, Linux-class analytics, wideband SDR, jamming…), see stage 1.
 
 ---
 
