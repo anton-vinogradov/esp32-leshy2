@@ -44,10 +44,10 @@
   <rect x="375" y="66" width="200" height="425" rx="20" fill="#fbfaf8" stroke="#0f172a" stroke-width="2.5"/>
   <text x="475" y="84" text-anchor="middle" font-size="8.5" font-weight="600" fill="#b91c1c">▲ antennas (shared top) ▲</text>
   <!-- 2x 18650 vertical (18.5x65mm = 46x162) -->
-  <rect x="408" y="104" width="46" height="162" rx="22" fill="#fde68a" stroke="#b45309" stroke-width="1.6"/>
-  <rect x="466" y="104" width="46" height="162" rx="22" fill="#fde68a" stroke="#b45309" stroke-width="1.6"/>
-  <text x="431" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="#7c2d12" transform="rotate(-90 431 188)">18650</text>
-  <text x="489" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="#7c2d12" transform="rotate(-90 489 188)">18650</text>
+  <rect x="423" y="104" width="46" height="162" rx="22" fill="#fde68a" stroke="#b45309" stroke-width="1.6"/>
+  <rect x="481" y="104" width="46" height="162" rx="22" fill="#fde68a" stroke="#b45309" stroke-width="1.6"/>
+  <text x="446" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="#7c2d12" transform="rotate(-90 446 188)">18650</text>
+  <text x="504" y="188" text-anchor="middle" font-size="9" font-weight="700" fill="#7c2d12" transform="rotate(-90 504 188)">18650</text>
   <text x="475" y="286" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">2S 18650 (holder)</text>
   <!-- decaps + RF modules region -->
   <g fill="#94a3b8"><rect x="392" y="310" width="8" height="7"/><rect x="406" y="310" width="8" height="7"/><rect x="392" y="324" width="8" height="7"/><rect x="540" y="310" width="8" height="7"/><rect x="554" y="310" width="8" height="7"/></g>

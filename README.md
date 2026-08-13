@@ -46,7 +46,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
 - **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
 - **2S 18650 power** with an on-board balancing boost-charger.
-- **A far more readable display** — a **4.0″ 320×480 IPS color** panel with a bright backlight and a color spectrum waterfall on hardware vertical scroll: bigger *and* sharper than DIV's small basic screen.
+- **A bigger, higher-res display** — a **4.0″ 320×480 IPS** panel vs DIV's 2.8″ 240×320 (ILI9341): same SPI interface, but **~2× the area and 2× the pixels** (much more waterfall on screen) and IPS for wider viewing angles. Same ~143 ppi — bigger and roomier, not sharper.
 - **A proper control set** — a **5-way D-pad + BACK + OPTIONS + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
 - **Honest "on-air" indicators** — a per-antenna amber TX LED (a passive hardware envelope detector, 0 GPIO) that shows a chain is transmitting even if the firmware hangs.
 
@@ -190,54 +190,31 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 
 ## 7. Merge, realize, review, complete
 
-**🟡 Spec.** Merge the six sheets into one board, put it on **real, manufacturer-verified parts**, review it hard, and complete every missing piece before layout.
-
-**Artifacts.** [`board.tsx`](hardware/tscircuit/board.tsx) (merged, **191 components**) → [`board.kicad_pcb`](hardware/tscircuit/board.kicad_pcb) (connectivity proven, KiCad `schematic_parity = 0`).
-
-Done so far:
-
-- **✅ Merged** — all six sheets into one board.
-- **✅ Two adversarial self-reviews** — **~14 real defects fixed, 4 board-killers** (wrong charger topology, two unbonded MCU pins, a single-supply walkie, a reversed I²C ESD array, a shorted current-sense).
-- **✅ Completeness audit + first completion pass** — the audit found the merged board still carried **placeholders and off-sheet stubs**. Added: the **display FPC connector**, the **antenna u.FL connectors**, the **full control set** (D-pad + BACK + OPTIONS + STOP + F1 + F2 on a third PCA9555) and the **real master switch**.
-
-Still to finish (🟡):
-
-- **Part swaps** — TVS, PPTC fuse, mic, speaker, buzzer, 3.5 mm jack, 18650 holder (with cell midpoint for the balancing charger), RF balun, band-matching networks, and a single 5-way nav switch for the D-pad.
-- **Subcircuits to draw** — the 7 TX-live envelope detectors, the backlight LED driver (+ PWM dim), the Si4732 RX PIN-limiter.
+**🟡 WIP.** Merge the sheets into one board on real, verified parts; review it; and finish the missing pieces (part swaps + the envelope detectors / backlight driver / Si4732 limiter). *Detail is filled in as this stage is worked.*
 
 ---
 
 ## 8. PCB layout
 
-**🟡 Spec.** From the complete board: place it (edge-aware zones, connectors to the right edges, two-sided) on a **4-layer** stack with a GND plane, route it (auto-route what's routable + hand-route the RF), add the mechanical (mounting holes, fiducials) → **gerbers**.
-
-**Artifacts.** [`board-autorouted.kicad_pcb`](hardware/tscircuit/board-autorouted.kicad_pcb) · gerbers (pending).
-
-The toolchain is proven: placement + **[Freerouting](https://github.com/freerouting/freerouting)** auto-route (via Specctra DSN/SES) reached **424 / 425 nets** on the 4-layer board over a filled GND plane, 4 DRC nits. It runs on the **pre-completion** board, so it re-places + re-routes once stage 7 is finished. RF feeds get impedance-controlled, coplanar-ground, antenna-keep-out hand routing regardless.
+**🟡 WIP.** Place the complete board (edge-aware zones, two-sided) on a 4-layer stack with a GND plane, route it (auto + hand-RF), add the mechanical → gerbers. *Detail is filled in as this stage is worked.*
 
 ---
 
 ## 9. Firmware
 
-**⏳ Spec.** Port the ESP32-S3 [leshy](https://github.com/anton-vinogradov/esp32-leshy) codebase (most of the S3 side is done), write the **C5 5 GHz agent** + the S3↔C5 protocol, and implement the control conventions + the two safety blockers (orderly shutdown, panic stop-all-TX).
-
-**Artifacts.** [**controls & firmware conventions**](docs/firmware-controls.md) — the physical controls, the two firmware-only safety blockers, the 14 usability conventions, and the phone-keyboard text path (BLE / Wi-Fi captive portal). Code: later.
+**⏳ WIP.** Port the S3 leshy code, write the C5 5 GHz agent + the S3↔C5 protocol, implement the [control conventions](docs/firmware-controls.md) + the two safety blockers. *Detail is filled in as this stage is worked.*
 
 ---
 
 ## 10. Validation gate — 5 GHz PoC
 
-**⏳ Spec.** Before ordering a board, prove the riskiest premise: **5 GHz-deauth / recon on a C5 dev-kit**. The whole dual-chip bet rests on the C5's 5 GHz being useful; learning that cheaply, early, gates the fab spend.
-
-**Artifacts.** PoC notes (pending).
+**⏳ WIP.** Prove 5 GHz-deauth / recon on a C5 dev-kit before ordering — the riskiest premise, gated cheaply. *Detail is filled in as this stage is worked.*
 
 ---
 
 ## 11. Fabrication & bring-up
 
-**⏳ Spec.** Order the PCB (JLCPCB via a reshipper to Russia, or Rezonit), assemble, bring it up, and **tune the antennas on a VNA**.
-
-**Artifacts.** Finished boards. Direction and open questions: [roadmap](docs/roadmap.md).
+**⏳ WIP.** Order (JLCPCB via a reshipper, or Rezonit), assemble, bring up, tune antennas on a VNA. *Detail is filled in as this stage is worked.* See [roadmap](docs/roadmap.md).
 
 ---
 
