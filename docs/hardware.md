@@ -59,7 +59,7 @@ Nine onboard antennas, **one per RF chain — there is no RF switch shared betwe
 8. **SA868-U** — 433 / 446 MHz UHF.
 9. **SX1262** — 868 / 915 MHz LoRa.
 
-**All nine are removable board-mounted SMA jacks along the top edge** — screw on a whip, telescopic or wire. The three nRF24 are spread (ends + centre, ~40 mm) so the parallel 2.4 GHz scan does not self-desense; frequency-diverse radios sit between them and the 2 W SA868 is at one end, away from GPS. Bare radios (CC1101, SA868) trace straight to their SMA; module radios (3× nRF24, LoRa, S3, C5) use a short internal u.FL → SMA jumper. See [Sheet 3](../hardware/rf/rf.md).
+**All nine are removable board-mounted SMA jacks along the top edge** — screw on a whip, telescopic or wire. The three nRF24 are spread (ends + centre, ~40 mm) so the parallel 2.4 GHz operation (scan and multi-channel TX) doesn't self-desense; frequency-diverse radios sit between them and the 2 W SA868 is at one end, away from GPS. Bare radios (CC1101, SA868) trace straight to their SMA; module radios (3× nRF24, LoRa, S3, C5) use a short internal u.FL → SMA jumper. See [Sheet 3](../hardware/rf/rf.md).
 
 ## Power
 
