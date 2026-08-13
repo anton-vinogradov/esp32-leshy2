@@ -32,7 +32,7 @@ GPS (U40, onboard)
 
 I²C bus (shared, S3 host)
   lines   : SDA = GPIO4 · SCL = GPIO5 ; one pair of 4.7 kΩ pull-ups → +3V3 (R40/R41)
-  onboard : Si4732 0x11 · PCA9555 #1 0x20 · PCA9555 #2 0x21 · PCA9555 #3 0x22 · BQ25887 0x6A
+  onboard : Si4732 0x11 · PCA9555 #1 0x20 · PCA9555 #2 0x21 · PCA9555 #3 0x22 · touch ~0x38 · BQ25887 0x6A
   Grove   : J40 + J41 → SDA/SCL/GND/+3V3 + ESD (D40/D41)
   opt     : TCA9548A 0x70 only for address collisions ; PCA9306 for a 5 V unit
 ```

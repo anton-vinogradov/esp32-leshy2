@@ -46,13 +46,19 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
 - **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
 - **2S 18650 power** with an on-board balancing boost-charger.
-- **A bigger, higher-res display** — a **4.0″ 320×480 IPS** panel vs DIV's 2.8″ 240×320 (ILI9341): same SPI interface, but **~2× the area and 2× the pixels** (~2× the waterfall on screen) and IPS for wider viewing angles. Same ~143 ppi — bigger and roomier, not sharper.
+- **A bigger, higher-res display** — a **4.0″ 320×480 IPS** panel vs DIV's 2.8″ 240×320 (ILI9341): same SPI interface, but **~2× the area and 2× the pixels** (~2× the waterfall on screen) and IPS for wider viewing angles. Same ~143 ppi — bigger and roomier, not sharper. Plus **capacitive touch** (DIV is button-only).
 - **A proper control set** — a **5-way D-pad + BACK + OPTIONS + PTT + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
 - **Honest "on-air" indicators** — a per-TX-chain amber TX LED (7 chains; a passive hardware envelope detector, 0 GPIO) that shows a chain is transmitting even if the firmware hangs.
 
 The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi + BLE); the C5 is a pure 5 GHz co-processor. DIV handheld shape, fair price (~$135–160), open so people can join in.
 
 **This peripheral wishlist is the driver for everything downstream** — it sets the capabilities (stage 2), which pick the components (stage 3), which shape the architecture (stage 4) and the physical device (stage 5).
+
+**Decisions.**
+
+- **Two chips, not one.** The earlier single-**ESP32-C5** plan lost to its pin crunch (20/20) — and 5 GHz is the *only* thing the C5 does better than the S3. So the **S3** (mature, ~36 GPIO, the leshy firmware already runs on it) is the brain and the **C5** is a pure 5 GHz co-processor.
+- **Extend DIV, don't reinvent it.** Keep DIV's proven S3 base and the firmware lineage; bolt radios and peripherals around it rather than a clean-sheet design.
+- **Draw the scope boundary here** (the *out-of-scope* list below) so the later stages don't chase full-5 GHz monitor+inject, Linux-class analytics, HF-TX, wideband SDR, cellular or jamming — chip, budget and legal limits.
 
 **Wanted, but out of scope (and why).** Some capabilities were dropped for reasons beyond our control or because they'd blow up the budget — the boundary is set here so the later stages don't chase them:
 
@@ -97,7 +103,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - Meshtastic over LoRa (SX1262 / E22-900M22S, +22 dBm): encrypted text mesh at kilometer range; power caps enforced per region in firmware.
 
 **Spectrum view**
-- 4.0″ IPS TFT (ST7796, 320×480) over SPI — a large color waterfall on hardware vertical scroll.
+- 4.0″ IPS TFT (ST7796, 320×480) over SPI, **capacitive touch** — a large color waterfall on hardware vertical scroll.
 - 2.4 GHz raw spectrum via the nRF24 chain; sub-GHz waterfall via CC1101.
 - Per-TX-chain amber TX LED (7) — a hardware envelope detector, honest "on air" even if firmware hangs, 0 GPIO.
 
@@ -144,7 +150,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - **Two chips.** **ESP32-S3-WROOM-1U-N8R2** (dual-core, quad PSRAM) is the **main brain** — UI, display, all wired radios, SD, every bus, native 2.4 GHz Wi-Fi + BLE. **ESP32-C5-WROOM-1U** is a **pure co-processor** — the only ESP32 with native 5 GHz — on its own dual-band antenna.
 - **Chip-to-chip link:** a dedicated **SPI3 + DRDY** strobe (the C5 is a clean SPI slave; it never touches the shared bus). The S3 flashes the C5 over UART0; the C5 also has its own USB-C for brick-safe recovery.
 - **Shared bus (S3 FSPI):** microSD + CC1101 + 3× nRF24 + SX1262 + the display — chip-selects via a 74HC138. Three I²C **PCA9555** expanders carry the slow lines (radio/display control, rail gates, and the UI buttons); interrupts stay on direct pins.
-- **Display:** the ST7796 **4.0″ 320×480 IPS** panel is on that shared SPI — the C5 has no `LCD_CAM` and there are no spare pins for a parallel / QSPI panel, so SPI it is; the waterfall rides the panel's **hardware vertical scroll** to keep per-frame updates tiny.
+- **Display:** the ST7796 **4.0″ 320×480 IPS** panel is on that shared SPI — the C5 has no `LCD_CAM` and there are no spare pins for a parallel / QSPI panel, so SPI it is; the waterfall rides the panel's **hardware vertical scroll** to keep per-frame updates tiny. The panel's **capacitive touch** rides the shared I²C bus (INT on the UI expander U14 — no host pin), a complement to the physical controls.
 - **Human interface:** the D-pad, BACK / OPTIONS / STOP / F1 / F2 and the encoder push all read through the I²C **PCA9555** expanders (S3 GPIO is full and buttons are slow); only the encoder's A/B quadrature keeps two direct S3 pins (timing-critical). All buttons share one INT.
 - **9 antennas** (S3 2.4, C5 2.4/5, 3× nRF24, CC1101, Si4732 whip, SA868, LoRa) — each chain its own antenna, on **9 removable board-mounted SMA jacks** along the top edge, the 3× nRF24 spread for isolation (details in stage 5).
 - **Two USB-C:** J1 → S3 (charge + data), J2 → C5 (data-only). The pack charges only through J1.
@@ -162,7 +168,7 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 
 ![Leshy2 front & back layout](docs/img/layout-front-back.en.svg)
 
-- **Front:** 4.0″ display + D-pad (5-way) + BACK + OPTIONS.
+- **Front:** 4.0″ **capacitive-touch** display + D-pad (5-way) + BACK + OPTIONS.
 - **Left edge:** IR TX/RX (top), encoder wheel (volume / value), F1 / F2, 3.5 mm jack.
 - **Right edge:** PTT + panic STOP, 2× Grove (I²C).
 - **Front (lower):** speaker + mic.

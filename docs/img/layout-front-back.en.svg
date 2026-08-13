@@ -11,7 +11,7 @@
   <!-- display 62x92mm = 155x230 -->
   <rect x="88" y="98" width="155" height="230" rx="5" fill="#1e293b" stroke="#334155" stroke-width="1.4"/>
   <rect x="95" y="108" width="141" height="210" rx="3" fill="#0b1220"/>
-  <text x="165" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">Display 4.0″</text>
+  <text x="165" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">Display 4.0″ · touch</text>
   <text x="165" y="223" text-anchor="middle" font-size="10" fill="#94a3b8">320×480 · 2:3</text>
   <circle cx="101" cy="119" r="3" fill="#22c55e"/>
   <!-- D-pad -->

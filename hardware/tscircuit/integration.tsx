@@ -24,7 +24,13 @@ export default () => (
     <trace from=".J_LCD > .pin11" to="net.LCD_TE" />
     <trace from=".J_LCD > .pin12" to="net.LCD_BL_EN" />
     <trace from=".J_LCD > .pin13" to="net.GND" />
-    {/* pins 14-16 = capacitive-touch INT/SDA/SCL — left NC (optional touch module) */}
+    {/* Capacitive touch on the panel FPC (controller lives on the display module, I2C): pin14 = INT, pin15 = SDA, pin16 = SCL.
+        SDA/SCL join the shared I2C bus (no new host pin); INT rides the UI expander U14 (shares PCA9555_INT). Verify address / whether an RST is needed vs the chosen panel datasheet. */}
+    <trace from=".J_LCD > .pin14" to="net.TOUCH_INT" />
+    <trace from=".J_LCD > .pin15" to="net.I2C_SDA" />
+    <trace from=".J_LCD > .pin16" to="net.I2C_SCL" />
+    <resistor name="Rpu_touch" resistance="10k" footprint="0402" /><trace from=".Rpu_touch > .pin1" to="net.TOUCH_INT" /><trace from=".Rpu_touch > .pin2" to="net.V3V3" />
+    <trace from=".U14 > .IO1_2" to="net.TOUCH_INT" />
     <trace from=".J_LCD > .pin17" to="net.GND" />
     <trace from=".J_LCD > .pin18" to="net.LCD_LEDK" /> {/* backlight cathode -> Stage 3 driver */}
     <trace from=".J_LCD > .pin19" to="net.LCD_LEDK" />

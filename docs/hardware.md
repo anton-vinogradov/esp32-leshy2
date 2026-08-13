@@ -45,7 +45,7 @@ Audio is **fully analog** — the MCU is not in the path. Si4732 / SA868 line-ou
 
 ## Display
 
-A **4.0″ ST7796 320×480 IPS TFT over SPI**, sharing the radio bus (CS via the 138, one DC line). It is **SPI, not 8080/AMOLED** — the C5 has no `LCD_CAM` peripheral, and keeping the panel on plain SPI keeps it on the S3's shared bus. The waterfall scrolls on the ST7796's **hardware vertical scroll**; the S3's quad-PSRAM holds the double-buffered framebuffer. See [Sheet 2](../hardware/c5-buses/c5-buses.md).
+A **4.0″ ST7796 320×480 IPS TFT over SPI**, sharing the radio bus (CS via the 138, one DC line). It is **SPI, not 8080/AMOLED** — the C5 has no `LCD_CAM` peripheral, and keeping the panel on plain SPI keeps it on the S3's shared bus. The waterfall scrolls on the ST7796's **hardware vertical scroll**; the S3's quad-PSRAM holds the double-buffered framebuffer. The panel also carries **capacitive touch** on the shared I²C bus (INT on U14) — verify the controller/address vs the chosen module. See [Sheet 2](../hardware/c5-buses/c5-buses.md).
 
 ## Antennas (9)
 
