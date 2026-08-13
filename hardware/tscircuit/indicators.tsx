@@ -126,6 +126,13 @@ export default () => (
     {/* SW13 PTT: -> GND on PCA9555 #2 P0.0 */}
     <resistor name="SW13" resistance="0.01" footprint="1210" /> {/* PTT button proxy */}
 
+    {/* NPN base resistors (limit GPIO/expander base drive) + PCA9555 input pull-ups (part has NO internal pull-ups) */}
+    <resistor name="Rb57" resistance="1k" footprint="0402" />      {/* Q57 buzzer base */}
+    <resistor name="Rb58" resistance="1k" footprint="0402" />      {/* Q58 IR base */}
+    <resistor name="Rpu_enc"  resistance="10k" footprint="0402" /> {/* ENC_SW pull-up */}
+    <resistor name="Rpu_sdcd" resistance="10k" footprint="0402" /> {/* SD_CD pull-up */}
+    <resistor name="Rpu_ptt"  resistance="10k" footprint="0402" /> {/* PTT_BTN pull-up */}
+
     {/* ============================== NETS ============================== */}
     {/* --- TX-live LED chains (analog, no GPIO) --- */}
     <trace from=".D50 > .pin1" to=".Rd50 > .pin1" />
@@ -188,14 +195,14 @@ export default () => (
     <trace from=".LS2 > .pin1" to="net.V5" />
     <trace from=".LS2 > .pin2" to=".Q57 > .C" />
     <trace from=".Q57 > .E" to="net.GND" />
-    <trace from=".Q57 > .B" to="net.BUZZER" />
+    <trace from=".Rb57 > .pin1" to="net.BUZZER" /><trace from=".Rb57 > .pin2" to=".Q57 > .B" />
 
     {/* --- IR TX --- */}
     <trace from=".D57 > .pin1" to=".Rir > .pin1" />
     <trace from=".Rir > .pin2" to="net.V5" />
     <trace from=".D57 > .pin2" to=".Q58 > .C" />
     <trace from=".Q58 > .E" to="net.GND" />
-    <trace from=".Q58 > .B" to="net.IR_TX" />
+    <trace from=".Rb58 > .pin1" to="net.IR_TX" /><trace from=".Rb58 > .pin2" to=".Q58 > .B" />
 
     {/* --- IR RX (TSOP38238 engine pads OUT/GND/VS) --- */}
     <trace from=".U50 > .OUT" to="net.IR_RX" />
@@ -240,5 +247,10 @@ export default () => (
     <trace from=".SW12 > .pin2" to="net.GND" />
     <trace from=".SW13 > .pin1" to="net.PTT_BTN" />
     <trace from=".SW13 > .pin2" to="net.GND" />
+
+    {/* PCA9555 input pull-ups to +3V3 (encoder push, card-detect, PTT) */}
+    <trace from=".Rpu_enc > .pin1" to="net.ENC_SW" /><trace from=".Rpu_enc > .pin2" to="net.V3V3" />
+    <trace from=".Rpu_sdcd > .pin1" to="net.SD_CD" /><trace from=".Rpu_sdcd > .pin2" to="net.V3V3" />
+    <trace from=".Rpu_ptt > .pin1" to="net.PTT_BTN" /><trace from=".Rpu_ptt > .pin2" to="net.V3V3" />
   </board>
 )

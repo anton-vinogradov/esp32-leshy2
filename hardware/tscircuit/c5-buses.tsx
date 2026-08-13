@@ -49,6 +49,8 @@ export default () => (
     <resistor name="R_C5S27" resistance="10k" footprint="0402" />
     <resistor name="R_HC138EN" resistance="10k" footprint="0402" />
     <resistor name="R_C5EN" resistance="10k" footprint="0402" />
+    <resistor name="R_PCA_INT" resistance="10k" footprint="0402" /> {/* pull-up for the wired-OR open-drain PCA9555 INT (3 expanders -> GPIO48) */}
+    <trace from=".R_PCA_INT > .pin1" to="net.PCA9555_INT" /><trace from=".R_PCA_INT > .pin2" to="net.V3V3" />
     <capacitor name="C_C5EN" capacitance="1uF" footprint="0402" />
 
     {/* ============================== NETS ============================== */}

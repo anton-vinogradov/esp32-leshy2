@@ -56,6 +56,8 @@ export default () => (
     <capacitor name="CL2" capacitance="12pF" footprint="0402" />
     <capacitor name="Cvdd30" capacitance="1uF" footprint="0402" />
     <capacitor name="Cvdd30b" capacitance="100nF" footprint="0402" /> {/* added: VDD HF decap */}
+    <resistor name="Rpu_jack" resistance="10k" footprint="0402" /> {/* JACK_DET pull-up (PCA9555 input has no internal pull-up) */}
+    <trace from=".Rpu_jack > .pin1" to="net.JACK_DET" /><trace from=".Rpu_jack > .pin2" to="net.V3V3" />
     {/* L+R -> mono summing resistor pair */}
     <resistor name="RsumL" resistance="10k" footprint="0402" />
     <resistor name="RsumR" resistance="10k" footprint="0402" />

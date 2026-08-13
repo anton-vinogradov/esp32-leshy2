@@ -19,6 +19,10 @@ export default () => (
     <resistor name="D1" resistance="1M" footprint="0603" /> {/* TVS proxy on VBUS_S3 */}
     {/* J2 -> C5 : data only, VBUS = ESD stub */}
     <chip name="J2" footprint="jlcpcb:C2988369" />
+    <resistor name="Rcc3" resistance="5.1k" footprint="0402" /> {/* J2 CC1 Rd -> Type-C UFP attach (C5 flash-over-USB, incl. C-to-C) */}
+    <resistor name="Rcc4" resistance="5.1k" footprint="0402" /> {/* J2 CC2 Rd */}
+    <trace from=".Rcc3 > .pin1" to=".J2 > .CC1" /><trace from=".Rcc3 > .pin2" to="net.GND" />
+    <trace from=".Rcc4 > .pin1" to=".J2 > .CC2" /><trace from=".Rcc4 > .pin2" to="net.GND" />
 
     {/* ===================== BQ25887 2S BOOST charger ===================== */}
     <chip name="U2" footprint="jlcpcb:C2761614" />
@@ -291,6 +295,8 @@ export default () => (
     <resistor name="R_C5S27" resistance="10k" footprint="0402" />
     <resistor name="R_HC138EN" resistance="10k" footprint="0402" />
     <resistor name="R_C5EN" resistance="10k" footprint="0402" />
+    <resistor name="R_PCA_INT" resistance="10k" footprint="0402" /> {/* pull-up for the wired-OR open-drain PCA9555 INT (3 expanders -> GPIO48) */}
+    <trace from=".R_PCA_INT > .pin1" to="net.PCA9555_INT" /><trace from=".R_PCA_INT > .pin2" to="net.V3V3" />
     <capacitor name="C_C5EN" capacitance="1uF" footprint="0402" />
 
     {/* ============================== NETS ============================== */}
@@ -668,6 +674,8 @@ export default () => (
     <capacitor name="CL2" capacitance="12pF" footprint="0402" />
     <capacitor name="Cvdd30" capacitance="1uF" footprint="0402" />
     <capacitor name="Cvdd30b" capacitance="100nF" footprint="0402" /> {/* added: VDD HF decap */}
+    <resistor name="Rpu_jack" resistance="10k" footprint="0402" /> {/* JACK_DET pull-up (PCA9555 input has no internal pull-up) */}
+    <trace from=".Rpu_jack > .pin1" to="net.JACK_DET" /><trace from=".Rpu_jack > .pin2" to="net.V3V3" />
     {/* L+R -> mono summing resistor pair */}
     <resistor name="RsumL" resistance="10k" footprint="0402" />
     <resistor name="RsumR" resistance="10k" footprint="0402" />
@@ -963,6 +971,13 @@ export default () => (
     {/* SW13 PTT: -> GND on PCA9555 #2 P0.0 */}
     <resistor name="SW13" resistance="0.01" footprint="1210" /> {/* PTT button proxy */}
 
+    {/* NPN base resistors (limit GPIO/expander base drive) + PCA9555 input pull-ups (part has NO internal pull-ups) */}
+    <resistor name="Rb57" resistance="1k" footprint="0402" />      {/* Q57 buzzer base */}
+    <resistor name="Rb58" resistance="1k" footprint="0402" />      {/* Q58 IR base */}
+    <resistor name="Rpu_enc"  resistance="10k" footprint="0402" /> {/* ENC_SW pull-up */}
+    <resistor name="Rpu_sdcd" resistance="10k" footprint="0402" /> {/* SD_CD pull-up */}
+    <resistor name="Rpu_ptt"  resistance="10k" footprint="0402" /> {/* PTT_BTN pull-up */}
+
     {/* ============================== NETS ============================== */}
     {/* --- TX-live LED chains (analog, no GPIO) --- */}
     <trace from=".D50 > .pin1" to=".Rd50 > .pin1" />
@@ -1025,14 +1040,14 @@ export default () => (
     <trace from=".LS2 > .pin1" to="net.V5" />
     <trace from=".LS2 > .pin2" to=".Q57 > .C" />
     <trace from=".Q57 > .E" to="net.GND" />
-    <trace from=".Q57 > .B" to="net.BUZZER" />
+    <trace from=".Rb57 > .pin1" to="net.BUZZER" /><trace from=".Rb57 > .pin2" to=".Q57 > .B" />
 
     {/* --- IR TX --- */}
     <trace from=".D57 > .pin1" to=".Rir > .pin1" />
     <trace from=".Rir > .pin2" to="net.V5" />
     <trace from=".D57 > .pin2" to=".Q58 > .C" />
     <trace from=".Q58 > .E" to="net.GND" />
-    <trace from=".Q58 > .B" to="net.IR_TX" />
+    <trace from=".Rb58 > .pin1" to="net.IR_TX" /><trace from=".Rb58 > .pin2" to=".Q58 > .B" />
 
     {/* --- IR RX (TSOP38238 engine pads OUT/GND/VS) --- */}
     <trace from=".U50 > .OUT" to="net.IR_RX" />
@@ -1077,6 +1092,11 @@ export default () => (
     <trace from=".SW12 > .pin2" to="net.GND" />
     <trace from=".SW13 > .pin1" to="net.PTT_BTN" />
     <trace from=".SW13 > .pin2" to="net.GND" />
+
+    {/* PCA9555 input pull-ups to +3V3 (encoder push, card-detect, PTT) */}
+    <trace from=".Rpu_enc > .pin1" to="net.ENC_SW" /><trace from=".Rpu_enc > .pin2" to="net.V3V3" />
+    <trace from=".Rpu_sdcd > .pin1" to="net.SD_CD" /><trace from=".Rpu_sdcd > .pin2" to="net.V3V3" />
+    <trace from=".Rpu_ptt > .pin1" to="net.PTT_BTN" /><trace from=".Rpu_ptt > .pin2" to="net.V3V3" />
   
 
     {/* ================= INTEGRATION (board-level) ================= */}
@@ -1180,6 +1200,18 @@ export default () => (
     <chip name="SW_F2" footprint="jlcpcb:C318884" />
     <trace from=".SW_F2 > .pin1" to=".U14 > .IO1_1" />
     <trace from=".SW_F2 > .pin2" to="net.GND" />
+
+    {/* --- Pull-ups: PCA9555 has NO internal pull-ups -> every button input needs 10k to +3V3 to read high when released (active-low). --- */}
+    <resistor name="Rpu_up"   resistance="10k" footprint="0402" /><trace from=".Rpu_up > .pin1"   to=".U14 > .IO0_0" /><trace from=".Rpu_up > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_dn"   resistance="10k" footprint="0402" /><trace from=".Rpu_dn > .pin1"   to=".U14 > .IO0_1" /><trace from=".Rpu_dn > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_lf"   resistance="10k" footprint="0402" /><trace from=".Rpu_lf > .pin1"   to=".U14 > .IO0_2" /><trace from=".Rpu_lf > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_rt"   resistance="10k" footprint="0402" /><trace from=".Rpu_rt > .pin1"   to=".U14 > .IO0_3" /><trace from=".Rpu_rt > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_ok"   resistance="10k" footprint="0402" /><trace from=".Rpu_ok > .pin1"   to=".U14 > .IO0_4" /><trace from=".Rpu_ok > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_back" resistance="10k" footprint="0402" /><trace from=".Rpu_back > .pin1" to=".U14 > .IO0_5" /><trace from=".Rpu_back > .pin2" to="net.V3V3" />
+    <resistor name="Rpu_opt"  resistance="10k" footprint="0402" /><trace from=".Rpu_opt > .pin1"  to=".U14 > .IO0_6" /><trace from=".Rpu_opt > .pin2"  to="net.V3V3" />
+    <resistor name="Rpu_stop" resistance="10k" footprint="0402" /><trace from=".Rpu_stop > .pin1" to=".U14 > .IO0_7" /><trace from=".Rpu_stop > .pin2" to="net.V3V3" />
+    <resistor name="Rpu_f1"   resistance="10k" footprint="0402" /><trace from=".Rpu_f1 > .pin1"   to=".U14 > .IO1_0" /><trace from=".Rpu_f1 > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_f2"   resistance="10k" footprint="0402" /><trace from=".Rpu_f2 > .pin1"   to=".U14 > .IO1_1" /><trace from=".Rpu_f2 > .pin2"   to="net.V3V3" />
 
   
 

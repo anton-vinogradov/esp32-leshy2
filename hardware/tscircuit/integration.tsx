@@ -105,5 +105,17 @@ export default () => (
     <trace from=".SW_F2 > .pin1" to=".U14 > .IO1_1" />
     <trace from=".SW_F2 > .pin2" to="net.GND" />
 
+    {/* --- Pull-ups: PCA9555 has NO internal pull-ups -> every button input needs 10k to +3V3 to read high when released (active-low). --- */}
+    <resistor name="Rpu_up"   resistance="10k" footprint="0402" /><trace from=".Rpu_up > .pin1"   to=".U14 > .IO0_0" /><trace from=".Rpu_up > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_dn"   resistance="10k" footprint="0402" /><trace from=".Rpu_dn > .pin1"   to=".U14 > .IO0_1" /><trace from=".Rpu_dn > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_lf"   resistance="10k" footprint="0402" /><trace from=".Rpu_lf > .pin1"   to=".U14 > .IO0_2" /><trace from=".Rpu_lf > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_rt"   resistance="10k" footprint="0402" /><trace from=".Rpu_rt > .pin1"   to=".U14 > .IO0_3" /><trace from=".Rpu_rt > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_ok"   resistance="10k" footprint="0402" /><trace from=".Rpu_ok > .pin1"   to=".U14 > .IO0_4" /><trace from=".Rpu_ok > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_back" resistance="10k" footprint="0402" /><trace from=".Rpu_back > .pin1" to=".U14 > .IO0_5" /><trace from=".Rpu_back > .pin2" to="net.V3V3" />
+    <resistor name="Rpu_opt"  resistance="10k" footprint="0402" /><trace from=".Rpu_opt > .pin1"  to=".U14 > .IO0_6" /><trace from=".Rpu_opt > .pin2"  to="net.V3V3" />
+    <resistor name="Rpu_stop" resistance="10k" footprint="0402" /><trace from=".Rpu_stop > .pin1" to=".U14 > .IO0_7" /><trace from=".Rpu_stop > .pin2" to="net.V3V3" />
+    <resistor name="Rpu_f1"   resistance="10k" footprint="0402" /><trace from=".Rpu_f1 > .pin1"   to=".U14 > .IO1_0" /><trace from=".Rpu_f1 > .pin2"   to="net.V3V3" />
+    <resistor name="Rpu_f2"   resistance="10k" footprint="0402" /><trace from=".Rpu_f2 > .pin1"   to=".U14 > .IO1_1" /><trace from=".Rpu_f2 > .pin2"   to="net.V3V3" />
+
   </board>
 )

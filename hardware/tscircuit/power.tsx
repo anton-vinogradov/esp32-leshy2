@@ -49,6 +49,10 @@ export default () => (
     <resistor name="D1" resistance="1M" footprint="0603" /> {/* TVS proxy on VBUS_S3 */}
     {/* J2 -> C5 : data only, VBUS = ESD stub */}
     <chip name="J2" footprint="jlcpcb:C2988369" />
+    <resistor name="Rcc3" resistance="5.1k" footprint="0402" /> {/* J2 CC1 Rd -> Type-C UFP attach (C5 flash-over-USB, incl. C-to-C) */}
+    <resistor name="Rcc4" resistance="5.1k" footprint="0402" /> {/* J2 CC2 Rd */}
+    <trace from=".Rcc3 > .pin1" to=".J2 > .CC1" /><trace from=".Rcc3 > .pin2" to="net.GND" />
+    <trace from=".Rcc4 > .pin1" to=".J2 > .CC2" /><trace from=".Rcc4 > .pin2" to="net.GND" />
 
     {/* ===================== BQ25887 2S BOOST charger ===================== */}
     <chip name="U2" footprint="jlcpcb:C2761614" />
