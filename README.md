@@ -37,6 +37,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 **✅ Spec.** Take [ESP32-DIV](https://github.com/cifertech/ESP32-DIV) further: keep its mature ESP32-S3 design and **broaden what the handheld can do** — first the 5 GHz Wi-Fi DIV lacks, then a wider set of on-board radios and peripherals. Concretely, support:
 
 - **5 GHz Wi-Fi + Zigbee / 802.15.4 / Thread** — via an **ESP32-C5** co-processor (the only ESP32 with native 5 GHz).
+- **Bluetooth LE** — BLE advertising flood, and the phone-typed text keyboard / companion link (both MCUs have BLE).
 - **2.4 GHz raw** — 3× nRF24L01+PA/LNA (parallel scan, mousejack, jammer).
 - **Sub-GHz 315 / 433 / 868 / 915 MHz** — CC1101 + an SP4T multi-band front end.
 - **LoRa / Meshtastic** — SX1262 / E22-900M22S (+22 dBm).
@@ -47,6 +48,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **2S 18650 power** with an on-board balancing boost-charger.
 - **A far more readable display** — a **4.0″ 320×480 IPS color** panel with a bright backlight and a color spectrum waterfall on hardware vertical scroll: bigger *and* sharper than DIV's small basic screen.
 - **A proper control set** — a **5-way D-pad + BACK + OPTIONS + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
+- **Honest "on-air" indicators** — a per-antenna amber TX LED (a passive hardware envelope detector, 0 GPIO) that shows a chain is transmitting even if the firmware hangs.
 
 The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi + BLE); the C5 is a pure 5 GHz co-processor. DIV handheld shape, fair price (~$135–160), open so people can join in.
 
