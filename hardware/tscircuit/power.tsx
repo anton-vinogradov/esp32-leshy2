@@ -80,7 +80,7 @@ export default () => (
     <capacitor name="Cvdd" capacitance="0.1uF" footprint="0402" /> {/* C1: VDD-VSS */}
     <capacitor name="Cvc" capacitance="0.1uF" footprint="0402" />  {/* C2: VC-VSS */}
     <resistor name="F1" resistance="0.05" footprint="1210" />  {/* PPTC fuse proxy (pack +) */}
-    <resistor name="SW1" resistance="0.01" footprint="1210" /> {/* master switch proxy (pack +) */}
+    <chip name="SW1" footprint="jlcpcb:C496164" /> {/* master switch: SPDT ON-OFF, COM=pin2, throw=pin1, pin3 NC */}
 
     {/* ===================== +5 V buck : MP2315 ===================== */}
     <chip name="U4" footprint="jlcpcb:C45889" />
@@ -213,8 +213,8 @@ export default () => (
 
     {/* --- Pack + protection (S-8252A, common-drain low-side FETs) --- */}
     <trace from=".BT1 > .P_PLUS" to=".F1 > .pin1" />
-    <trace from=".F1 > .pin2" to=".SW1 > .pin1" />
-    <trace from=".SW1 > .pin2" to="net.BAT" /> {/* pack+ after fuse+switch -> BAT rail */}
+    <trace from=".F1 > .pin2" to=".SW1 > .pin2" /> {/* fuse out -> SPDT COM (pin2) */}
+    <trace from=".SW1 > .pin1" to="net.BAT" /> {/* SPDT throw (pin1) -> BAT rail (pin3 NC) */}
     <trace from=".BT1 > .MID" to="net.BATM" />
     <trace from=".BT1 > .P_MINUS" to="net.BMINUS" /> {/* B- (bottom of stack) */}
     {/* S-8252A: VDD=B+ via R1, VC=mid via R2, VSS=B-, VM=EB-/GND via R3 */}

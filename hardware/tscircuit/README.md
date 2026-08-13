@@ -15,28 +15,35 @@ and a **KiCad export** — so nothing is drawn by hand.
 | `audio.tsx` | 4 · Audio | [audio.md](../audio/audio.md) |
 | `expansion.tsx` | 5 · Expansion + GPS | [expansion.md](../expansion/expansion.md) |
 | `indicators.tsx` | 6 · Indicators / IO | [indicators.md](../indicators/indicators.md) |
+| `integration.tsx` | board-level (display FPC · antenna u.FL · UI buttons · U14) | — merged, not a design sheet |
 
-All six sheets are captured **and merged into one board** — see below.
+The six subsystem sheets — plus `integration.tsx` (the board-level parts that span
+subsystems: the display FPC, the antenna u.FL array, the UI button block and its 3rd
+PCA9555) — are **merged into one board** by `merge.py`; see below.
 
 ## Combined board — fab-drafted
 
-All six sheets are realized with **real parts**: every IC/module/connector pulls its
+All sheets are realized with **real parts**: every IC/module/connector pulls its
 manufacturer-verified footprint + pinout from the LCSC/JLCPCB database
 (`footprint="jlcpcb:C…"`); only mechanical/placeholder parts stay geometric.
-`board.tsx` merges them into one `<board>` — the sheets stitch by shared `net.NAME`
-(the whole SPI/I²C bus, the power rails, the chip-selects, the interrupts, the C5 link,
-the SP4T select). Colliding refdes are renamed on merge (`U20`→`m_U20`/`rf_U20`,
-`Y1`→`rf_Y1`/`a_Y1`, `Rbias`→`rf_Rbias`/`a_Rbias`). **174 components.**
+**`board.tsx` is GENERATED** by [`merge.py`](merge.py): it strips each sheet's `<board>`
+wrapper, renames the three cross-sheet refdes collisions (`U20`→`m_U20`/`rf_U20`,
+`Y1`→`rf_Y1`/`a_Y1`, `Rbias`→`rf_Rbias`/`a_Rbias`), and concatenates the six sheets +
+`integration.tsx` into one `<board>`. The sheets stitch by shared `net.NAME` (the whole
+SPI/I²C bus, the power rails, the chip-selects, the interrupts, the C5 link, the SP4T
+select). **191 components.** Never hand-edit `board.tsx` — edit a sheet (or
+`integration.tsx`), then re-run `python3 merge.py`.
 
 | File | What |
 |------|------|
-| `board.tsx` | the whole device in one board — edit the sheets, then re-merge |
+| `board.tsx` | **generated** — the whole device in one board (do **not** hand-edit) |
+| `merge.py` | builds `board.tsx` from the 6 sheets + `integration.tsx` |
 | `board-sch.svg` | whole-board schematic image |
 | `board.kicad_pcb` | **KiCad PCB — the layout target (connectivity carried; not yet routed)** |
 
 ## Placement & auto-routing — drafted
 
-From `board.kicad_pcb` an **auto-placement draft** groups the 174 parts into floorplan
+From `board.kicad_pcb` an **auto-placement draft** groups the parts (a pre-integration 174-part draft) into floorplan
 zones — RF up near the antenna edge, power at the bottom, MCU + buses in the centre —
 with the cable/slot connectors pinned to their board edges (USB-C at the bottom,
 microSD on the left, Grove on the right) and **zero courtyard overlaps**. It is
@@ -67,11 +74,13 @@ always does); finish those few touches → gerbers.
 Needs Node + [Bun](https://bun.sh) (the tscircuit CLI runs on Bun):
 
 ```bash
-npm install           # once, installs @tscircuit/cli locally (runs on Bun)
+npm install                       # once — installs @tscircuit/cli locally (runs on Bun)
+python3 merge.py                  # (re)generate board.tsx from the 6 sheets + integration.tsx
 # Sheets use footprint="jlcpcb:C…" -> the parts engine (network) must be ON.
-# Do NOT pass --disable-parts-engine, or the real footprints won't resolve:
-npx tsci export board.tsx -f kicad_pcb     -o board.kicad_pcb      # whole-board PCB (layout target)
-npx tsci export board.tsx -f schematic-svg -o board-sch.svg       # whole-board schematic
+# Do NOT pass --disable-parts-engine, or the real footprints won't resolve.
+# NOTE: give -o a RELATIVE path — the CLI mishandles a leading "/".
+npx tsci export board.tsx -f kicad_pcb     -o board.kicad_pcb     # whole-board PCB (layout target)
+npx tsci export board.tsx -f schematic-svg -o board-sch.svg      # whole-board schematic
 # also: pcb-svg, gerbers, kicad_zip, readable-netlist, STEP, glTF …
 ```
 
@@ -89,10 +98,13 @@ pre-layout board**, not real defects — they clear once parts are placed and ro
   18650 holder, 3.5 mm jack, electret mic, speaker, buzzer, RESET/BOOT/PTT buttons,
   the nRF24 / SA868 module lands and the CC1101 balun; LEDs are plain 0603 (pick the
   real amber part at BOM time). Each sheet's header comment lists its exact parts + `⚠`.
-- **Still to draw before the PCB** — endpoints intentionally off-sheet today:
-  the 7 RF envelope detectors that feed the TX-live LEDs (`TXDET_*`), the
-  external display-module connector (`LCD_*`), the antenna feeds (`ANT_*`),
-  and the C5 USB VBUS ESD stub (`VBUS_C5`).
+- **On the board now** (integration sheet): the display FPC (`J_LCD`, `LCD_*`), the
+  CC1101 / UHF / Si4732 antenna u.FL connectors (`J_ANT_*`, `ANT_*`), the UI button
+  block (D-pad + BACK/OPTIONS/STOP/F1/F2) and its 3rd PCA9555 (`U14`, 0x22).
+- **Still off-sheet before the PCB** — intentional dangling endpoints today:
+  the 7 RF envelope detectors that feed the TX-live LEDs (`TXDET_*`, Stage 3),
+  the C5 USB VBUS ESD stub (`VBUS_C5`), and the module-level antennas that live on
+  their own modules (the 3 nRF24 lands, the LoRa E22 IPEX).
 - **RF PCB layout** (impedance-controlled feeds, ground planes, antenna
   keep-outs) is done in **KiCad** on the exported project — the auto-router is
   not used for the RF chains.

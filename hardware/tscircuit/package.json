@@ -1,0 +1,15 @@
+{
+  "name": "leshy2-hardware-tscircuit",
+  "version": "0.0.0",
+  "private": true,
+  "description": "tscircuit schematic sources for Leshy2. merge.py builds board.tsx from the 6 sheets + integration.tsx; the tscircuit CLI exports the netlist / KiCad PCB.",
+  "scripts": {
+    "build": "python3 merge.py",
+    "netlist": "tsci export board.tsx -f readable-netlist -o board.net",
+    "pcb": "tsci export board.tsx -f kicad_pcb -o board.kicad_pcb",
+    "schematic": "tsci export board.tsx -f schematic-svg -o board-sch.svg"
+  },
+  "devDependencies": {
+    "@tscircuit/cli": "0.1.1914"
+  }
+}

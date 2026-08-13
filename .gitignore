@@ -13,6 +13,12 @@ sym-lib-table.bak
 /gerbers/
 *.zip
 
+# Node / tscircuit CLI (installed via `npm install` in hardware/tscircuit)
+node_modules/
+npm-debug.log*
+package-lock.json
+.tscircuit/
+
 # OS / editor
 .DS_Store
 Thumbs.db
