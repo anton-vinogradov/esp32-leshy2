@@ -34,7 +34,21 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 
 ## 1. Why a new device — vision
 
-**✅ Spec.** ESP32-DIV v2 has no 5 GHz Wi-Fi. Build a successor that **keeps the mature ESP32-S3 design** (UI, display, every wired radio, SD, buses, native 2.4 GHz Wi-Fi + BLE) and adds an **ESP32-C5 co-processor** for native **5 GHz** (plus 2.4 GHz, BLE and 802.15.4 / Zigbee / Thread). As capable as is reasonable at a fair price, in the DIV handheld shape, open so people can join in.
+**✅ Spec.** Take [ESP32-DIV](https://github.com/cifertech/ESP32-DIV) further: keep its mature ESP32-S3 design and **broaden what the handheld can do** — first the 5 GHz Wi-Fi DIV lacks, then a wider set of on-board radios and peripherals. Concretely, support:
+
+- **5 GHz Wi-Fi + Zigbee / 802.15.4 / Thread** — via an **ESP32-C5** co-processor (the only ESP32 with native 5 GHz).
+- **2.4 GHz raw** — 3× nRF24L01+PA/LNA (parallel scan, mousejack, jammer).
+- **Sub-GHz 315 / 433 / 868 / 915 MHz** — CC1101 + an SP4T multi-band front end.
+- **LoRa / Meshtastic** — SX1262 / E22-900M22S (+22 dBm).
+- **Voice walkie** — SA868-U, 2 W TX/RX 433 / 446 MHz NBFM.
+- **HF / CB / FM receiver + real analog audio** — Si4732 + a PAM8302 amp → speaker + headphone jack.
+- **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
+- **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
+- **2S 18650 power** with an on-board balancing boost-charger, and a **4.0″ color spectrum display**.
+
+The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi + BLE); the C5 is a pure 5 GHz co-processor. DIV handheld shape, fair price (~$135–160), open so people can join in.
+
+**This peripheral wishlist is the driver for everything downstream** — it sets the capabilities (stage 2), which pick the components (stage 3), which shape the architecture (stage 4) and the physical device (stage 5).
 
 **Artifacts.** This section, and the lineage it builds on:
 
