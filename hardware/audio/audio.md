@@ -26,7 +26,7 @@ Volume is set **inside each radio** — Si4732 by an I²C register, SA868 by a U
 Si4732 (U30)  — analog front end, all on +3V3A
   I2C     : SDA=GPIO4 · SCL=GPIO5   addr 0x11 (SEN → GND)
   reset   : RST  → PCA #1 (0x20) P0.3
-  clock   : RCLK ← dedicated 32.768 kHz oscillator (NOT from the MCU) + load caps
+  clock   : RCLK ← dedicated 32.768 kHz crystal (NOT from the MCU) + load caps
   antenna : HF/CB telescopic whip → AMI via match + ESD clamp (back-to-back diodes)
             FM tap → FMI (series cap)
   audio   : LOUT + ROUT → summing R pair (L+R → mono) → mux U33.A
@@ -36,12 +36,12 @@ SA868-U (U31)
   control : PTT → PCA #1 P0.1 · PD → PCA #1 P0.2
   power   : VBAT = +5V + local bulk 220–470 µF + 100 nF (2 W PA burst)   ; single-supply module
   antenna : UHF → SMA
-  RX audio: U31.AF_OUT → mux U33.B
+  RX audio: U31.AF_OUT → mux U33.B2
   TX audio: MK1 electret → 1 µF → U31.MIC_IN   (see gotcha)
 
 Audio out
   mux     : U33 select = MUX_SEL → PCA #1 P0.7  (Si4732 vs SA868, one live at a time)
-  amp     : U33.OUT → R_in → PAM8302.IN ; SD = PAM_SD → PCA #1 P1.3 ; Vcc = +5V
+  amp     : U33.A → R_in → PAM8302.IN ; SD = PAM_SD → PCA #1 P1.3 ; Vcc = +5V
   speaker : PAM8302 OUT± → LS1 (4–8 Ω, BTL, no ground reference)
   jack    : J30 JACK_DET → PCA #2 (0x21) P0.3 ; AC-couple both legs (see gotcha)
 ```
@@ -54,7 +54,7 @@ A radio mode is exclusive, so only one audio source is ever live. The tiny **2:1
 
 - **Revision A10, not A11.** The downloadable **SSB patch loads only on A10**; an A11 die will run FM/AM but silently refuse SSB/CW. Buy and mark A10 parts.
 - **Clean supply:** the low-noise **`+3V3A`** LDO keeps switching noise off the receiver.
-- **RCLK from a dedicated 32.768 kHz oscillator**, not the MCU — a separate watch crystal/oscillator with its load caps. Sharing an MCU clock injects digital jitter into the tuner. Keep traces short or it may not start.
+- **RCLK from a dedicated 32.768 kHz crystal**, not the MCU — a separate watch crystal with its load caps. Sharing an MCU clock injects digital jitter into the tuner. Keep traces short or it may not start.
 - **I²C address:** tie **SEN → GND** for `0x11` (SEN → VIO = 0x63); fix it so the address is deterministic.
 - **HF input protection:** the telescopic whip feeds `AMI` through a matching network with a **passive ESD clamp (back-to-back diodes)**. The FM tap feeds `FMI` through a **series cap**. There is **no manual antenna disconnect** — de-sense from our own transmitters is handled by mode-exclusive sleep, and the whip unscrews.
 - **Line-out:** `LOUT`/`ROUT` are real analog audio; a **pair of summing resistors** collapses L+R to mono for the single speaker.

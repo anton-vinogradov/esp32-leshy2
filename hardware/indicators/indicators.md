@@ -35,7 +35,7 @@ antenna feed ─┤├─ (light coupling cap / directional tap)
 - **0 GPIO.** Fully analog — it fires whenever that chain radiates, **even if the firmware hangs or crashes**. That is the whole point: a truthful transmit indicator.
 - **TX chains only (7):** C5 Wi-Fi/BLE, 3× nRF24, CC1101, SA868, SX1262 (LoRa). The **Si4732 is receive-only → no LED**; a detector on a receive input would spoil its sensitivity. The **S3's own 2.4 GHz** is the always-on phone/control link, so a TX light there would sit lit and mean nothing — it is left off deliberately.
 - **Light coupling.** The tap must barely load the RF path (a small series cap or a short coupled line), so it costs almost no transmit power.
-- **Dim by design.** A high series resistor keeps it a soft glow.
+- **Dim by design — maximally low-power.** A high series resistor (**10 kΩ, ~0.1 mA**) keeps it a bare soft glow — deliberately the least-bright indicator; raise it further at bring-up if still too visible.
 - **Cross-chip.** The C5's LED reads the C5's own antenna feed — the detector is pure analog and does not care which MCU drove the transmission.
 
 ## WS2812 status LED
@@ -55,7 +55,7 @@ An **active** (self-oscillating) buzzer on `PCA9555 #1 P0.5` through a transisto
 
 ## microSD
 
-Standard **SPI-mode** microSD (J50) on the shared SPI2 bus, chip-select from the 74HC138 (**Y0**). 3.3 V native (no level shift on the S3). Add a 10 µF + 100 nF at the socket and, on longer traces, small series resistors on CLK/CMD/DAT. Being on the shared bus, logging interleaves with radio SPI under one-device-at-a-time — **issue 8+ dummy clocks after deselecting the card** before addressing a radio, since some cards hold MISO for a few clocks after CS releases. The socket's **card-detect** switch is `SD_CD` on `PCA9555 #1 P1.7`.
+Standard **SPI-mode** microSD (J50) on the shared SPI2 bus, chip-select from the 74HC138 (**Y0**). 3.3 V native (no level shift on the S3). Add a 10 µF + 100 nF at the socket and, on longer traces, small series resistors on CLK/CMD/DAT. Being on the shared bus, logging interleaves with radio SPI under one-device-at-a-time — **issue 8+ dummy clocks after deselecting the card** before addressing a radio, since some cards hold MISO for a few clocks after CS releases. The socket's **card-detect** switch is `SD_CD` on `PCA9555 #1 P1.7`, with an **external 10 kΩ pull-up to +3V3** (the PCA9555 has no internal pull-ups).
 
 ## Rotary encoder
 

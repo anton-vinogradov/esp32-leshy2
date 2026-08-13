@@ -23,7 +23,7 @@ All logic runs on **`+3V3`**. Only one device drives `MISO` at a time (74HC138 a
 SPI2     : MOSI(GPIO11) · SCK(GPIO12) · MISO(GPIO13)  →  U20 U21 U22 U23 U25  (shared, FSPI 80 MHz)
 CS (138) : Y1 → CC1101_CS   ·   Y2/Y3/Y4 → nRF24_1/2/3 CSN   ·   Y5 → LoRa_NSS
 nRF24 CE : GPIO6  → CE of U20/U21/U22 (tied)
-nRF24 IRQ: 3× push-pull → 74AHC 3-input gate (idle-LOW) → GPIO46 (interrupt)
+nRF24 IRQ: 3× push-pull → SN74LVC1G10 3-input NAND (idle-LOW) → GPIO46 (interrupt)
 CC1101   : GDO0 → GPIO7  (RMT: raw OOK RX / replay)
            GDO2 → GPIO45 (carrier-sense / wake-on-sub-GHz)
            band : SKY13414 SP4T ← RFSW_A/RFSW_B/RFSW_C (V1/V2/V3; PCA#1 P1.5, PCA#2 P0.4, PCA#2 P07) → 315/433/868/915
@@ -41,7 +41,7 @@ ANT      : ANT_nRF24_1/2/3 (2.4) · ANT_CC1101 (sub-GHz, via SP4T) · ANT_LoRa (
 
 The PA/LNA modules pull **pulsed** current on TX (~115 mA bursts) and will sag their own and their neighbours' supply. Each of U20/U21/U22 gets **100–220 µF bulk + 100 nF right at its VCC pin** on `+3V3`; keep the three grounds short and stitched. `CE` is **tied across all three** (timing-critical, so a direct S3 pin, GPIO6): in scan mode all three receive in parallel; in mousejack the one configured for TX transmits while the others stay RX — only its CSN is addressed for the FIFO writes.
 
-The three `IRQ` lines are **push-pull** (active-low), so they cannot simply wire-OR. They are combined by a **74AHC 3-input gate** into one signal that is **idle-LOW** — which both gives the S3 a single interrupt on GPIO46 and satisfies that pin's boot strap (GPIO46 must be low at POR). Firmware reads each radio's STATUS register to find which one fired.
+The three `IRQ` lines are **push-pull** (active-low), so they cannot simply wire-OR. They are combined by a **SN74LVC1G10 3-input NAND** into one signal that is **idle-LOW** — which both gives the S3 a single interrupt on GPIO46 and satisfies that pin's boot strap (GPIO46 must be low at POR). Firmware reads each radio's STATUS register to find which one fired.
 
 ## CC1101 — bare IC, four bands on one antenna
 
@@ -92,7 +92,7 @@ Ground the EP + unused pads per the SKY13414 layout.
 
 - **Only one CS low at a time.** The 74HC138 guarantees a single selected device; firmware parks the address on Y7 before switching. microSD (also on SPI2, Sheet 6) can hold `MISO` for a few clocks after deselect — issue **8+ dummy clocks** before addressing a radio.
 - **CE is shared, CSN is not.** Independent addressing is via CSN (the 138); the tied `CE` only gates RX/TX enable, which suits parallel-scan and single-TX modes.
-- **nRF24 IRQ is gated, not wire-OR.** Push-pull outputs need the 74AHC gate; it also fixes the GPIO46 boot-strap level. Don't try to pull-up wire-OR three totem-pole drivers.
+- **nRF24 IRQ is gated, not wire-OR.** Push-pull outputs need the SN74LVC1G10 NAND; it also fixes the GPIO46 boot-strap level. Don't try to pull-up wire-OR three totem-pole drivers.
 - **Keep PA supplies stiff.** nRF24 brownout caps are mandatory; CC1101 and the E22 PA want local bulk too. A sagging PA rail shows up as range loss and packet errors, not as an obvious failure.
 - **SP4T select is slow.** `RFSW_A/B/C` cross two PCA9555 devices over I²C — settle the switch before keying CC1101, and never change bands mid-transaction.
 - **E22 is never truly off via GPIO.** Complementary RXEN/TXEN leave the LNA/PA biased; the E22 is on the non-gated `+3V3`, so a few mA idle draw is accepted (SX1262 SPI-sleep handles the chip). `RAIL_EN_3V3A` does **not** reach the E22 — it gates only Si4732/audio.

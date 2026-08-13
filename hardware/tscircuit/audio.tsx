@@ -81,6 +81,7 @@ export default () => (
     <capacitor name="Cinp" capacitance="0.1uF" footprint="0402" /> {/* AC-couple IN+ (PAM8302 biases inputs to VDD/2) */}
     <capacitor name="Cinn" capacitance="0.1uF" footprint="0402" /> {/* matching AC-couple on IN- to GND */}
     <capacitor name="Cvcc32" capacitance="10uF" footprint="0805" />
+    <capacitor name="Cd33" capacitance="100nF" footprint="0402" /><trace from=".Cd33 > .pin1" to="net.V3V3" /><trace from=".Cd33 > .pin2" to="net.GND" /> {/* mux U33 VCC bypass (was missing) */}
 
     {/* speaker (BTL, no ground reference) */}
     <resistor name="LS1" resistance="4" footprint="1210" /> {/* 4-8 ohm speaker proxy */}

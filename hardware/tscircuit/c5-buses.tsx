@@ -52,6 +52,14 @@ export default () => (
     <resistor name="R_PCA_INT" resistance="10k" footprint="0402" /> {/* pull-up for the wired-OR open-drain PCA9555 INT (3 expanders -> GPIO48) */}
     <trace from=".R_PCA_INT > .pin1" to="net.PCA9555_INT" /><trace from=".R_PCA_INT > .pin2" to="net.V3V3" />
     <capacitor name="C_C5EN" capacitance="1uF" footprint="0402" />
+    {/* Local decoupling (place next to each pin at layout): 100nF per digital IC + bulk at the two modules */}
+    <capacitor name="Cbulk_s3" capacitance="10uF" footprint="0805" /><trace from=".Cbulk_s3 > .pin1" to="net.V3V3" /><trace from=".Cbulk_s3 > .pin2" to="net.GND" />
+    <capacitor name="Cd_s3" capacitance="100nF" footprint="0402" /><trace from=".Cd_s3 > .pin1" to="net.V3V3" /><trace from=".Cd_s3 > .pin2" to="net.GND" />
+    <capacitor name="Cbulk_c5" capacitance="10uF" footprint="0805" /><trace from=".Cbulk_c5 > .pin1" to="net.V3V3" /><trace from=".Cbulk_c5 > .pin2" to="net.GND" />
+    <capacitor name="Cd_c5" capacitance="100nF" footprint="0402" /><trace from=".Cd_c5 > .pin1" to="net.V3V3" /><trace from=".Cd_c5 > .pin2" to="net.GND" />
+    <capacitor name="Cd_138" capacitance="100nF" footprint="0402" /><trace from=".Cd_138 > .pin1" to="net.V3V3" /><trace from=".Cd_138 > .pin2" to="net.GND" />
+    <capacitor name="Cd_u12" capacitance="100nF" footprint="0402" /><trace from=".Cd_u12 > .pin1" to="net.V3V3" /><trace from=".Cd_u12 > .pin2" to="net.GND" />
+    <capacitor name="Cd_u13" capacitance="100nF" footprint="0402" /><trace from=".Cd_u13 > .pin1" to="net.V3V3" /><trace from=".Cd_u13 > .pin2" to="net.GND" />
 
     {/* ============================== NETS ============================== */}
     {/* --- S3 direct GPIO -> bus/rail labels (pad = IO<gpio>) --- */}

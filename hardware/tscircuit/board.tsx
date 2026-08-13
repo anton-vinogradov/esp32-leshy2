@@ -298,6 +298,14 @@ export default () => (
     <resistor name="R_PCA_INT" resistance="10k" footprint="0402" /> {/* pull-up for the wired-OR open-drain PCA9555 INT (3 expanders -> GPIO48) */}
     <trace from=".R_PCA_INT > .pin1" to="net.PCA9555_INT" /><trace from=".R_PCA_INT > .pin2" to="net.V3V3" />
     <capacitor name="C_C5EN" capacitance="1uF" footprint="0402" />
+    {/* Local decoupling (place next to each pin at layout): 100nF per digital IC + bulk at the two modules */}
+    <capacitor name="Cbulk_s3" capacitance="10uF" footprint="0805" /><trace from=".Cbulk_s3 > .pin1" to="net.V3V3" /><trace from=".Cbulk_s3 > .pin2" to="net.GND" />
+    <capacitor name="Cd_s3" capacitance="100nF" footprint="0402" /><trace from=".Cd_s3 > .pin1" to="net.V3V3" /><trace from=".Cd_s3 > .pin2" to="net.GND" />
+    <capacitor name="Cbulk_c5" capacitance="10uF" footprint="0805" /><trace from=".Cbulk_c5 > .pin1" to="net.V3V3" /><trace from=".Cbulk_c5 > .pin2" to="net.GND" />
+    <capacitor name="Cd_c5" capacitance="100nF" footprint="0402" /><trace from=".Cd_c5 > .pin1" to="net.V3V3" /><trace from=".Cd_c5 > .pin2" to="net.GND" />
+    <capacitor name="Cd_138" capacitance="100nF" footprint="0402" /><trace from=".Cd_138 > .pin1" to="net.V3V3" /><trace from=".Cd_138 > .pin2" to="net.GND" />
+    <capacitor name="Cd_u12" capacitance="100nF" footprint="0402" /><trace from=".Cd_u12 > .pin1" to="net.V3V3" /><trace from=".Cd_u12 > .pin2" to="net.GND" />
+    <capacitor name="Cd_u13" capacitance="100nF" footprint="0402" /><trace from=".Cd_u13 > .pin1" to="net.V3V3" /><trace from=".Cd_u13 > .pin2" to="net.GND" />
 
     {/* ============================== NETS ============================== */}
     {/* --- S3 direct GPIO -> bus/rail labels (pad = IO<gpio>) --- */}
@@ -508,6 +516,12 @@ export default () => (
     {/* CC1101 local bulk */}
     <capacitor name="Cb23" capacitance="100uF" footprint="1210" />
     <capacitor name="Cd23" capacitance="100nF" footprint="0402" />
+    {/* CC1101 per-supply-pin 100nF (SWRS061: one close to each of AVDD1-4 / DVDD / DGUARD) + logic-gate bypass (U27/U28) */}
+    <capacitor name="Cd23b" capacitance="100nF" footprint="0402" /><trace from=".Cd23b > .pin1" to="net.V3V3" /><trace from=".Cd23b > .pin2" to="net.GND" />
+    <capacitor name="Cd23c" capacitance="100nF" footprint="0402" /><trace from=".Cd23c > .pin1" to="net.V3V3" /><trace from=".Cd23c > .pin2" to="net.GND" />
+    <capacitor name="Cd23d" capacitance="100nF" footprint="0402" /><trace from=".Cd23d > .pin1" to="net.V3V3" /><trace from=".Cd23d > .pin2" to="net.GND" />
+    <capacitor name="Cd27" capacitance="100nF" footprint="0402" /><trace from=".Cd27 > .pin1" to="net.V3V3" /><trace from=".Cd27 > .pin2" to="net.GND" />
+    <capacitor name="Cd28" capacitance="100nF" footprint="0402" /><trace from=".Cd28 > .pin1" to="net.V3V3" /><trace from=".Cd28 > .pin2" to="net.GND" />
 
     {/* ===================== SP4T SKY13414-485LF + 4x band matches ===================== */}
     {/* In-stock SP4T (C255353). Engine pads: ANT(common), RF1..RF4, V1/V2/V3 (3-line select),
@@ -699,6 +713,7 @@ export default () => (
     <capacitor name="Cinp" capacitance="0.1uF" footprint="0402" /> {/* AC-couple IN+ (PAM8302 biases inputs to VDD/2) */}
     <capacitor name="Cinn" capacitance="0.1uF" footprint="0402" /> {/* matching AC-couple on IN- to GND */}
     <capacitor name="Cvcc32" capacitance="10uF" footprint="0805" />
+    <capacitor name="Cd33" capacitance="100nF" footprint="0402" /><trace from=".Cd33 > .pin1" to="net.V3V3" /><trace from=".Cd33 > .pin2" to="net.GND" /> {/* mux U33 VCC bypass (was missing) */}
 
     {/* speaker (BTL, no ground reference) */}
     <resistor name="LS1" resistance="4" footprint="1210" /> {/* 4-8 ohm speaker proxy */}
@@ -904,31 +919,31 @@ export default () => (
     {/* chain 50 = C5 Wi-Fi/BLE */}
     <led name="D50" footprint="0603" />
     <chip name="Q50" footprint="jlcpcb:C20526" />
-    <resistor name="Rd50" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd50" resistance="10k" footprint="0402" />
     {/* chain 51 = nRF24 #1 */}
     <led name="D51" footprint="0603" />
     <chip name="Q51" footprint="jlcpcb:C20526" />
-    <resistor name="Rd51" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd51" resistance="10k" footprint="0402" />
     {/* chain 52 = nRF24 #2 */}
     <led name="D52" footprint="0603" />
     <chip name="Q52" footprint="jlcpcb:C20526" />
-    <resistor name="Rd52" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd52" resistance="10k" footprint="0402" />
     {/* chain 53 = nRF24 #3 */}
     <led name="D53" footprint="0603" />
     <chip name="Q53" footprint="jlcpcb:C20526" />
-    <resistor name="Rd53" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd53" resistance="10k" footprint="0402" />
     {/* chain 54 = CC1101 */}
     <led name="D54" footprint="0603" />
     <chip name="Q54" footprint="jlcpcb:C20526" />
-    <resistor name="Rd54" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd54" resistance="10k" footprint="0402" />
     {/* chain 55 = SA868 */}
     <led name="D55" footprint="0603" />
     <chip name="Q55" footprint="jlcpcb:C20526" />
-    <resistor name="Rd55" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd55" resistance="10k" footprint="0402" />
     {/* chain 56 = SX1262 (LoRa) */}
     <led name="D56" footprint="0603" />
     <chip name="Q56" footprint="jlcpcb:C20526" />
-    <resistor name="Rd56" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd56" resistance="10k" footprint="0402" />
 
     {/* ===================== WS2812 status LED + level shift ===================== */}
     {/* DS1 on S3 GPIO1 (RMT), +5V, DIN via 74AHCT1G125 (U51) 3V3->5V TTL buffer */}

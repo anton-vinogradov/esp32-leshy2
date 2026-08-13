@@ -35,8 +35,8 @@
 //        pin4 VDD, pin5 CLK, pin6 VSS, pin7 DAT0, pin8 DAT1, pin9 DETECT1, pin10 DETECT2,
 //        pin11 GND1, pin12 GND2.
 //        SPI-mode map: CS=.pin2, MOSI=CMD, MISO=DAT0, SCK=CLK, VDD=+3V3, GND=VSS+GND1+GND2.
-//        Card-detect switch: DETECT1->SD_CD, DETECT2->GND (card-in shorts SD_CD to GND, pulled
-//        up on the PCA9555 side). DAT1/DAT2 unused in SPI -> left open.
+//        Card-detect switch: DETECT1->SD_CD, DETECT2->GND (card-in shorts SD_CD to GND;
+//        external Rpu_sdcd 10k -> +3V3, since the PCA9555 has NO internal pull-ups). DAT1/DAT2 unused in SPI -> left open.
 //        ** verify the detect-switch terminals (DETECT1/DETECT2 polarity) on the real land before
 //        fab — same caution as the audio jack. **
 //   SW10  EC11 rotary encoder + push  ALPS EC11E1834403  -> jlcpcb:C361165
@@ -59,31 +59,31 @@ export default () => (
     {/* chain 50 = C5 Wi-Fi/BLE */}
     <led name="D50" footprint="0603" />
     <chip name="Q50" footprint="jlcpcb:C20526" />
-    <resistor name="Rd50" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd50" resistance="10k" footprint="0402" />
     {/* chain 51 = nRF24 #1 */}
     <led name="D51" footprint="0603" />
     <chip name="Q51" footprint="jlcpcb:C20526" />
-    <resistor name="Rd51" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd51" resistance="10k" footprint="0402" />
     {/* chain 52 = nRF24 #2 */}
     <led name="D52" footprint="0603" />
     <chip name="Q52" footprint="jlcpcb:C20526" />
-    <resistor name="Rd52" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd52" resistance="10k" footprint="0402" />
     {/* chain 53 = nRF24 #3 */}
     <led name="D53" footprint="0603" />
     <chip name="Q53" footprint="jlcpcb:C20526" />
-    <resistor name="Rd53" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd53" resistance="10k" footprint="0402" />
     {/* chain 54 = CC1101 */}
     <led name="D54" footprint="0603" />
     <chip name="Q54" footprint="jlcpcb:C20526" />
-    <resistor name="Rd54" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd54" resistance="10k" footprint="0402" />
     {/* chain 55 = SA868 */}
     <led name="D55" footprint="0603" />
     <chip name="Q55" footprint="jlcpcb:C20526" />
-    <resistor name="Rd55" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd55" resistance="10k" footprint="0402" />
     {/* chain 56 = SX1262 (LoRa) */}
     <led name="D56" footprint="0603" />
     <chip name="Q56" footprint="jlcpcb:C20526" />
-    <resistor name="Rd56" resistance="4.7k" footprint="0402" />
+    <resistor name="Rd56" resistance="10k" footprint="0402" />
 
     {/* ===================== WS2812 status LED + level shift ===================== */}
     {/* DS1 on S3 GPIO1 (RMT), +5V, DIN via 74AHCT1G125 (U51) 3V3->5V TTL buffer */}

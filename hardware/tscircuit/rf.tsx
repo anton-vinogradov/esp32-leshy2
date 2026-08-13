@@ -82,6 +82,12 @@ export default () => (
     {/* CC1101 local bulk */}
     <capacitor name="Cb23" capacitance="100uF" footprint="1210" />
     <capacitor name="Cd23" capacitance="100nF" footprint="0402" />
+    {/* CC1101 per-supply-pin 100nF (SWRS061: one close to each of AVDD1-4 / DVDD / DGUARD) + logic-gate bypass (U27/U28) */}
+    <capacitor name="Cd23b" capacitance="100nF" footprint="0402" /><trace from=".Cd23b > .pin1" to="net.V3V3" /><trace from=".Cd23b > .pin2" to="net.GND" />
+    <capacitor name="Cd23c" capacitance="100nF" footprint="0402" /><trace from=".Cd23c > .pin1" to="net.V3V3" /><trace from=".Cd23c > .pin2" to="net.GND" />
+    <capacitor name="Cd23d" capacitance="100nF" footprint="0402" /><trace from=".Cd23d > .pin1" to="net.V3V3" /><trace from=".Cd23d > .pin2" to="net.GND" />
+    <capacitor name="Cd27" capacitance="100nF" footprint="0402" /><trace from=".Cd27 > .pin1" to="net.V3V3" /><trace from=".Cd27 > .pin2" to="net.GND" />
+    <capacitor name="Cd28" capacitance="100nF" footprint="0402" /><trace from=".Cd28 > .pin1" to="net.V3V3" /><trace from=".Cd28 > .pin2" to="net.GND" />
 
     {/* ===================== SP4T SKY13414-485LF + 4x band matches ===================== */}
     {/* In-stock SP4T (C255353). Engine pads: ANT(common), RF1..RF4, V1/V2/V3 (3-line select),
