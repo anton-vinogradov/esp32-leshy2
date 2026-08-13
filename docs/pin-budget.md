@@ -4,10 +4,10 @@
 
 Leshy2 is a **two-chip** design, and the two chips sit at opposite ends of the pin-pressure scale:
 
-- **ESP32-S3-WROOM-1U-N8R2** — the main brain. It runs the UI, the display, **every wired radio**, the SD card and all the buses, plus native 2.4 GHz Wi-Fi + BLE. Its 38 usable GPIO are **all spoken for — 38 / 38, zero direct-pin spare.**
+- **ESP32-S3-WROOM-1U-N8R2** — the main brain. It runs the UI, the display, **every wired radio**, the SD card and all the buses, plus native 2.4 GHz Wi-Fi + BLE. Its 36 usable GPIO are **all spoken for — 36 / 36, zero direct-pin spare.**
 - **ESP32-C5-WROOM-1U** — the co-processor. It adds the one thing the S3 lacks (native **5 GHz** Wi-Fi, plus 802.15.4 / Zigbee / Thread) and talks to the S3 over a dedicated link. It uses only **~11 of ~20** GPIO — roomy.
 
-Fitting this much radio onto the S3's 38 pins rests on one rule:
+Fitting this much radio onto the S3's 36 pins rests on one rule:
 
 > **Buses and the CS decoder reuse across radios; per-chip timing lines do not.** Every SPI radio shares one 3-wire bus, and one 74HC138 turns 3 pins into 8 chip-selects — genuinely shared. But each radio's own timing-critical line (CC1101 `GDO0`, LoRa `BUSY`/`DIO1`, nRF24 `CE`/`IRQ`, IR TX/RX, encoder) runs to a different chip on its own trace, so those pins **add up** — they are not a reusable pool.
 
@@ -23,7 +23,7 @@ Nine antennas and seven radios do **not** cost seven radios' worth of pins, beca
 |---|:--:|---|
 | One shared **SPI2** bus | 3 | SD + CC1101 + 3× nRF24 + SX1262 + ST7796 display — six devices, three wires |
 | **74HC138** CS decoder | 3 | 8 chip-selects from 3 pins (SD, CC1101, 3× nRF24, LoRa, display, spare) |
-| One shared **I²C** bus | 2 | Si4732 · BQ25887 · both PCA9555 · 2× Grove · RFID2 |
+| One shared **I²C** bus | 2 | Si4732 · BQ25887 · 3× PCA9555 · 2× Grove · RFID2 |
 | **2× PCA9555** slow-line expanders | **0** | ~30 resets / enables / PTT / T-R / rail gates / band-switch / buttons |
 | The **C5 co-processor** | 7 (link block) | offloads all of 5 GHz / Zigbee to a second chip over one SPI3 link |
 
@@ -70,14 +70,14 @@ The C5 is a pure co-processor: an SPI slave on the dedicated link, plus its own 
 
 That is ~11 GPIO used, leaving ~9 spare for future co-processor duties. In-package flash occupies GPIO15–22 (minus 19), so the map is drawn around those; but with no shared-bus role and no mux, the C5 has no crowding to solve.
 
-## The trade that made 38 fit
+## The trade that made 36 fit
 
 An earlier draft gave the C5 a **standalone display** (its own screen with a mode-slider mux). That was the most fragile node in the design, and it cost pins on both chips. Dropping it:
 
 - removed both analog muxes and the slider, turning the C5 into a clean co-processor;
 - freed S3 **GPIO3**, which now carries `LoRa_DIO1` — so **LoRa RX is interrupt-driven** instead of polled, cutting traffic on the shared bus.
 
-Everything else that could be slow was pushed onto the **second PCA9555** (0x21) — PTT button, rail-enable gates, SP4T band-switch bit, headphone-jack detect — none of which cost a host pin. Direct GPIO is full at 38 / 38, but slow-line headroom is now generous.
+Everything else that could be slow was pushed onto the **second PCA9555** (0x21) — PTT button, rail-enable gates, SP4T band-switch bit, headphone-jack detect — none of which cost a host pin. Direct GPIO is full at 36 / 36, but slow-line headroom is now generous.
 
 ## If a spare pin is ever needed
 
@@ -90,5 +90,5 @@ Neither is needed for the locked design; they are headroom, not compromises.
 
 ---
 
-*The authoritative pin-by-pin tables (S3 map, C5 map, 74HC138, both PCA9555, the S3↔C5 link) live in [Sheet 2 — MCU + buses](../hardware/c5-buses/c5-buses.md).*
+*The authoritative pin-by-pin tables (S3 map, C5 map, 74HC138, the three PCA9555, the S3↔C5 link) live in [Sheet 2 — MCU + buses](../hardware/c5-buses/c5-buses.md).*
 *Part of [Leshy2](../README.md) · MIT.*

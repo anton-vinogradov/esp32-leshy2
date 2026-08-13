@@ -28,10 +28,10 @@ Always present. This is the tool you get before adding a single extra radio.
 
 | Part | Role | ≈ $ |
 |------|------|:--:|
-| ESP32-S3-WROOM-1U-N8R2 | **main brain** — UI, display, all wired radios, SD, buses; native **2.4 GHz Wi-Fi + BLE**; 38/38 pins | 4 |
+| ESP32-S3-WROOM-1U-N8R2 | **main brain** — UI, display, all wired radios, SD, buses; native **2.4 GHz Wi-Fi + BLE**; 36/36 pins | 4 |
 | ST7796 4.0″ IPS TFT (320×480, SPI) | color display + hardware-scroll waterfall | 9 |
 | Power (sheet 1) | 2S 2×18650, BQ25887 boost-charge, S-8252A, MP2315/TLV62569/TPS7A2033 rails, master switch | 23 |
-| 2× PCA9555 · 74HC138 · 74AHC1G gate | slow-line expanders (0x20/0x21) · CS decoder · nRF24-IRQ gate | 1.3 |
+| 3× PCA9555 · 74HC138 · 74AHC1G gate | slow-line expanders (0x20/0x21/0x22) · CS decoder · nRF24-IRQ gate | 1.3 |
 | microSD · RESET/BOOT/PTT buttons · encoder · WS2812 · buzzer · amber TX LEDs | onboard I/O + PCAP log + honest "on-air" LEDs | 9 |
 | 2× USB-C · S3 2.4 GHz SMA antenna · passives | J1→S3 (charge+data), J2→C5 (data-only) | 1 |
 

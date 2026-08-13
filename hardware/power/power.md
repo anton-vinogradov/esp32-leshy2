@@ -18,7 +18,7 @@ The charger is a **boost** 2S device: it steps **5 V USB up** to charge the 8.4 
 | `VBUS_C5` | USB-C **J2** | 5 V | ESD only | ESD clamp — **not routed into the system**; C5 senses USB via its own peripheral |
 | `BAT` | 2S pack (after protection + master switch) | 6.0–8.4 V | — | the two bucks |
 | `+5V` | MP2315 buck from `BAT`, **EN = RAIL_EN_5V** | 5.0 V | 3 A | SA868 PA, WS2812 (via level shifter), PAM8302, IR, Grove 5V (opt.), **+3V3A LDO input** |
-| `+3V3` | **MP2315** buck from `BAT` (wide Vin) | 3.3 V | 2 A | **S3**, **C5**, CC1101, 3× nRF24, **SX1262 (LoRa)**, microSD, u-blox GPS, PCA9555 ×2, ST7796 logic, sensors |
+| `+3V3` | **MP2315** buck from `BAT` (wide Vin) | 3.3 V | 2 A | **S3**, **C5**, CC1101, 3× nRF24, **SX1262 (LoRa)**, microSD, u-blox GPS, PCA9555 ×3, ST7796 logic, sensors |
 | `+3V3A` | TPS7A2033 LDO from `+5V`, **EN = RAIL_EN_3V3A** | 3.3 V | 0.3 A | Si4732, SA868 audio front-end (clean analog/RF) |
 
 The two bucks hang directly on the **BAT** node. With no battery there is no system power — this charger has no power-path.

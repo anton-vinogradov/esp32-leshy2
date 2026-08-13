@@ -177,14 +177,14 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 
 **✅ Spec.** Capture each subsystem as its own sheet, transcribed from the architecture — as design docs **and** as live [tscircuit](https://tscircuit.com) code (real parts, LCSC numbers, exports to KiCad).
 
-**Artifacts.** Six sheets in [hardware/](hardware/) — each a `.md` design doc + a `.tsx` + a schematic SVG:
+**Artifacts.** Six sheets — each a design doc in its own `hardware/<sheet>/` folder (linked below), with the live tscircuit `.tsx` and the exported schematic SVG in [`hardware/tscircuit/`](hardware/tscircuit/):
 
 1. [Power](hardware/power/power.md) — 2S, BQ25887 boost charger, rails, master toggle
 2. [MCU + buses](hardware/c5-buses/c5-buses.md) — S3 + C5, the SPI3 link, 74HC138, PCA9555, USB
 3. [RF chains](hardware/rf/rf.md) — 3× nRF24, CC1101 + SP4T, SX1262 (LoRa)
 4. [Audio](hardware/audio/audio.md) — Si4732, SA868, analog path → PAM8302
 5. [Expansion + GPS](hardware/expansion/expansion.md) — I²C, u-blox GPS, Grove
-6. [Indicators / IO](hardware/indicators/indicators.md) — TX-live LEDs, microSD, encoder
+6. [Indicators / IO](hardware/indicators/indicators.md) — TX-live LEDs, IR clone/replay, microSD, encoder
 
 ---
 

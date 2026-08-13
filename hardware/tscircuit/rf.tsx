@@ -4,7 +4,7 @@
 // the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers are
 // typed by hand for those. Traces reference the engine pad names (verified via
 // `tsci export -f readable-netlist`, WITHOUT --disable-parts-engine).
-// Placeholders (nRF24 modules, PE42440, balun) keep explicit pinLabels — same convention as
+// Placeholders (nRF24 modules, balun) keep explicit pinLabels — same convention as
 // BT1 in Sheet 1 — because JLC does not stock a drop-in engine footprint for them.
 //
 // Pad-name sources of truth (engine probe of each footprint):

@@ -2,7 +2,7 @@
 
 *Read this in: **English** · [Русский](audio.ru.md)*
 
-The two audio radios and the fully-analog path to the speaker: **Si4732** (HF / CB / FM receiver, I²C) and **SA868-U** (UHF voice walkie, UART). Their analog line-outs feed a **2:1 analog mux** into a **PAM8302** class-D amplifier; an electret mic feeds SA868 transmit. The MCU is **not** in the audio path — there is no DAC. Everything hangs off the **ESP32-S3** brain: control pins on the two **PCA9555** expanders, data on the **SA868 UART1** and **Si4732 I²C**. These are two of the nine onboard antennas.
+The two audio radios and the fully-analog path to the speaker: **Si4732** (HF / CB / FM receiver, I²C) and **SA868-U** (UHF voice walkie, UART). Their analog line-outs feed a **2:1 analog mux** into a **PAM8302** class-D amplifier; an electret mic feeds SA868 transmit. The MCU is **not** in the audio path — there is no DAC. Everything hangs off the **ESP32-S3** brain: control pins on two of the three **PCA9555** expanders, data on the **SA868 UART1** and **Si4732 I²C**. These are two of the nine onboard antennas.
 
 > ⚠️ Design stage. Analog levels, the summing resistors and the mic bias are starting points to confirm on real hardware. Si4732 and the whole analog front end run on the quiet **`+3V3A`** LDO rail (from `+5V`, [power sheet](../power/power.md)); the SA868 PA runs on **`+5V`**.
 

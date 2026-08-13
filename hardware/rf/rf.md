@@ -2,7 +2,7 @@
 
 *Read this in: **English** · [Русский](rf.ru.md)*
 
-The data radios that hang off the shared **SPI2** bus and the two PCA9555 expanders: **3× nRF24L01+PA/LNA** (2.4 GHz raw), a **bare CC1101** (sub-GHz 300–928, switched across four matched bands), and the onboard **SX1262 / E22-900M22S** (LoRa / Meshtastic 868–915). Every device shares the S3's FSPI bus and takes its chip-select from the 74HC138; slow control (resets, band-switch, T/R) rides the expanders. Pin assignments come from [Sheet 2](../c5-buses/c5-buses.md). The audio radios (Si4732, SA868) are on the [audio sheet](../audio/audio.md), not here.
+The data radios that hang off the shared **SPI2** bus and two of the three PCA9555 expanders: **3× nRF24L01+PA/LNA** (2.4 GHz raw), a **bare CC1101** (sub-GHz 300–928, switched across four matched bands), and the onboard **SX1262 / E22-900M22S** (LoRa / Meshtastic 868–915). Every device shares the S3's FSPI bus and takes its chip-select from the 74HC138; slow control (resets, band-switch, T/R) rides the expanders. Pin assignments come from [Sheet 2](../c5-buses/c5-buses.md). The audio radios (Si4732, SA868) are on the [audio sheet](../audio/audio.md), not here.
 
 > ⚠️ Design stage. The nRF24 and SX1262 are shielded modules with their own antennas; the CC1101 is a **bare IC on-board** (crystal + balun + per-band matching + SP4T). Antenna matching is tuned by hand on real hardware (VNA).
 
@@ -45,7 +45,7 @@ The three `IRQ` lines are **push-pull** (active-low), so they cannot simply wire
 
 ## CC1101 — bare IC, four bands on one antenna
 
-The CC1101 tunes 300–928 MHz, but a single matching network only covers one band. To reach the sub-GHz bands remotes and sensors actually use (**315 / 433 / 868 / 915**), the chain is a **bare CC1101 IC + a 26 MHz crystal (with load caps) + an RF balun on RF_P/RF_N + one matched network per band + an SP4T RF switch (PE42440)** that folds all four onto a single antenna — the multiband trick borrowed from the M5 Cap CC1101, taken to a 4-way switch. The two select bits `RFSW_A` + `RFSW_B` are slow, so they ride the **PCA9555** expanders (one bit on each). `GDO0` carries raw OOK data / replay on an S3 **RMT** pin (GPIO7); `GDO2` is programmed as **carrier-sense** and wired to GPIO45 as a wake / "sub-GHz geiger" interrupt. (A single-band Ebyte module like E07-433M would be simpler but drops the other three bands — not chosen, since 315/433/868/915 all matter.)
+The CC1101 tunes 300–928 MHz, but a single matching network only covers one band. To reach the sub-GHz bands remotes and sensors actually use (**315 / 433 / 868 / 915**), the chain is a **bare CC1101 IC + a 26 MHz crystal (with load caps) + an RF balun on RF_P/RF_N + one matched network per band + an SP4T RF switch (SKY13414-485LF)** that folds all four onto a single antenna — the multiband trick borrowed from the M5 Cap CC1101, taken to a 4-way switch. The three select lines `RFSW_A` / `RFSW_B` / `RFSW_C` are slow, so they ride the **PCA9555** expanders (PCA #1 P1.5, PCA #2 P0.4, PCA #2 P0.7). `GDO0` carries raw OOK data / replay on an S3 **RMT** pin (GPIO7); `GDO2` is programmed as **carrier-sense** and wired to GPIO45 as a wake / "sub-GHz geiger" interrupt. (A single-band Ebyte module like E07-433M would be simpler but drops the other three bands — not chosen, since 315/433/868/915 all matter.)
 
 ## SX1262 (LoRa) — onboard E22 module
 
@@ -94,7 +94,7 @@ Ground the EP + unused pads per the SKY13414 layout.
 - **CE is shared, CSN is not.** Independent addressing is via CSN (the 138); the tied `CE` only gates RX/TX enable, which suits parallel-scan and single-TX modes.
 - **nRF24 IRQ is gated, not wire-OR.** Push-pull outputs need the 74AHC gate; it also fixes the GPIO46 boot-strap level. Don't try to pull-up wire-OR three totem-pole drivers.
 - **Keep PA supplies stiff.** nRF24 brownout caps are mandatory; CC1101 and the E22 PA want local bulk too. A sagging PA rail shows up as range loss and packet errors, not as an obvious failure.
-- **SP4T select is slow.** `RFSW_A/B` cross two PCA9555 devices over I²C — settle the switch before keying CC1101, and never change bands mid-transaction.
+- **SP4T select is slow.** `RFSW_A/B/C` cross two PCA9555 devices over I²C — settle the switch before keying CC1101, and never change bands mid-transaction.
 - **E22 is never truly off via GPIO.** Complementary RXEN/TXEN leave the LNA/PA biased; the E22 is on the non-gated `+3V3`, so a few mA idle draw is accepted (SX1262 SPI-sleep handles the chip). `RAIL_EN_3V3A` does **not** reach the E22 — it gates only Si4732/audio.
 - **Shared SPI clock ceiling.** The bus clock must suit the slowest device (nRF24 ≤ 10 MHz on some clones); set a per-CS clock in firmware, or the display (fast) and nRF24 (slow) will fight the common rate.
 

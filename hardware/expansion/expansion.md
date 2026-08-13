@@ -2,7 +2,7 @@
 
 *Read this in: **English** · [Русский](expansion.ru.md)*
 
-Two pieces of "everything else": the onboard **u-blox GPS** on its own **UART**, and the **I²C bus** with its **address map** plus the **two Grove I²C ports** for plug-in M5/Grove units (RFID2 NFC, sensors). Both hang off the **S3** (main brain). GPS runs over UART on purpose — it keeps NMEA streaming off I²C so the shared bus stays light. The two **PCA9555** expanders ride this same I²C bus (drawn on [Sheet 2](../c5-buses/c5-buses.md)); Si4732 is on [Sheet 4](../audio/audio.md), the BQ25887 charger on [Sheet 1](../power/power.md).
+Two pieces of "everything else": the onboard **u-blox GPS** on its own **UART**, and the **I²C bus** with its **address map** plus the **two Grove I²C ports** for plug-in M5/Grove units (RFID2 NFC, sensors). Both hang off the **S3** (main brain). GPS runs over UART on purpose — it keeps NMEA streaming off I²C so the shared bus stays light. The three **PCA9555** expanders ride this same I²C bus (drawn on [Sheet 2](../c5-buses/c5-buses.md)); Si4732 is on [Sheet 4](../audio/audio.md), the BQ25887 charger on [Sheet 1](../power/power.md).
 
 > ⚠️ Design stage. One pair of bus pull-ups for the whole I²C bus, `+3V3` signalling, `+3V3` power to Grove by default. Confirm each unit's I²C address before committing; collisions are resolved with a mux, not more pins.
 
@@ -32,7 +32,7 @@ GPS (U40, onboard)
 
 I²C bus (shared, S3 host)
   lines   : SDA = GPIO4 · SCL = GPIO5 ; one pair of 4.7 kΩ pull-ups → +3V3 (R40/R41)
-  onboard : Si4732 0x11 · PCA9555 #1 0x20 · PCA9555 #2 0x21 · BQ25887 0x6A
+  onboard : Si4732 0x11 · PCA9555 #1 0x20 · PCA9555 #2 0x21 · PCA9555 #3 0x22 · BQ25887 0x6A
   Grove   : J40 + J41 → SDA/SCL/GND/+3V3 + ESD (D40/D41)
   opt     : TCA9548A 0x70 only for address collisions ; PCA9306 for a 5 V unit
 ```
@@ -44,6 +44,7 @@ I²C bus (shared, S3 host)
 | `0x11` | Si4732 receiver (SEN = GND) | 4 |
 | `0x20` | PCA9555 #1 slow-line expander | 2 |
 | `0x21` | PCA9555 #2 slow-line expander | 2 |
+| `0x22` | PCA9555 #3 (UI buttons) | 2 |
 | `0x28` | RFID2 NFC (Grove) | 5 |
 | `0x6A` | BQ25887 charger | 1 |
 | `0x70` | TCA9548A mux (only if used) | 5 |

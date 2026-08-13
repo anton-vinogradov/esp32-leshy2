@@ -18,7 +18,7 @@ The last sheet: the per-chain **hardware TX-live LEDs** (RF envelope detectors, 
 | D57 + Q58 | IR LED + drive transistor | clone / replay remotes (TX) | `IR_TX` = S3 GPIO2 (38 kHz carrier), +5V |
 | U50 | **TSOP38238** IR receiver | read remotes (RX) | `IR_RX` = S3 GPIO42 (RMT), +3V3 |
 | J50 | microSD socket (SPI mode) | PCAP logs, profiles | SPI + CS = 74HC138 **Y0**; `SD_CD` = PCA9555 #1 P1.7 |
-| SW10 | Rotary encoder + push | navigation (sole onboard input) | `ENC_A`=GPIO40, `ENC_B`=GPIO41, `ENC_SW`=PCA9555 #1 P0.0 |
+| SW10 | Rotary encoder + push | navigation (complements the D-pad/keypad on U14) | `ENC_A`=GPIO40, `ENC_B`=GPIO41, `ENC_SW`=PCA9555 #1 P0.0 |
 | SW11–SW13 | RESET / BOOT / PTT buttons | system + push-to-talk | `RESET`=EN, `BOOT`=GPIO0, `PTT_BTN`=PCA9555 #2 P0.0 |
 
 ## TX-live LED — the honest "on air" light (×7)
@@ -59,7 +59,7 @@ Standard **SPI-mode** microSD (J50) on the shared SPI2 bus, chip-select from the
 
 ## Rotary encoder
 
-The sole onboard navigation input: quadrature `ENC_A`/`ENC_B` on `GPIO40`/`GPIO41` (pulled up, direct for clean stepping), push `ENC_SW` on `PCA9555 #1 P0.0`. Long text is entered from the phone over BLE. Extra buttons, if ever wanted, also go on a PCA9555.
+Complements the physical D-pad + function keypad (on the 3rd PCA9555, U14 @0x22, expansion sheet): quadrature `ENC_A`/`ENC_B` on `GPIO40`/`GPIO41` (pulled up, direct for clean stepping), push `ENC_SW` on `PCA9555 #1 P0.0`. Long text is entered from the phone over BLE. The D-pad, BACK, OPTIONS, STOP and F1/F2 live on that third PCA9555.
 
 ## Physical buttons
 

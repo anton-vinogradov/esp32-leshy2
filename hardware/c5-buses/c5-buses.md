@@ -19,7 +19,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 ## S3 GPIO map (proposed)
 
-38 usable GPIO (0–21, 33–48, minus USB pair use). **Used: 38 / 38 — zero direct-pin spare.** The last two pins (GPIO45/46, both straps) carry the nRF24 wired-OR IRQ and the CC1101 carrier-sense; direct-GPIO headroom is exhausted — future *slow* signals go on the second PCA9555.
+36 usable GPIO (0–21, 35–48; 33/34 not bonded on WROOM-1U, minus USB pair use). **Used: 36 / 36 — zero direct-pin spare.** The last two pins (GPIO45/46, both straps) carry the nRF24 wired-OR IRQ and the CC1101 carrier-sense; direct-GPIO headroom is exhausted — future *slow* signals go on the second PCA9555.
 
 | S3 GPIO | Net | Dir | Peripheral / note |
 |:--:|------|:--:|-------|
@@ -62,7 +62,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 | GPIO47 | `GPS_UART_TX` | out | UART2, optional (config only) |
 | GPIO48 | `PCA9555_INT` | in | expander interrupt |
 
-The slow control lines ride **two PCA9555 expanders** (0x20 + 0x21) — 0 host GPIO, one shared wired-OR `INT`. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
+The slow control lines ride **two of the three PCA9555 expanders** (0x20 + 0x21; the third, 0x22, holds the UI buttons) — 0 host GPIO, one shared wired-OR `INT`. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
 
 *Dropping the C5-standalone-display capability freed GPIO3 (formerly the mode-slider sense); it now carries `LoRa_DIO1`, so LoRa RX is interrupt-driven instead of polled — less traffic on the shared bus.*
 
@@ -73,7 +73,7 @@ The slow control lines ride **two PCA9555 expanders** (0x20 + 0x21) — 0 host G
 | C5 GPIO | Net | Dir | Note |
 |:--:|------|:--:|-------|
 | EN (pin) | `C5_EN` ← S3 | in | reset + RC; not gated in normal use |
-| GPIO26 + GPIO28 | `C5_BOOT` ← S3 | in | ⚠ strap: **both = 0 → download, both = 1 → normal**; tie together to S3 GPIO34 |
+| GPIO26 + GPIO28 | `C5_BOOT` ← S3 | in | ⚠ strap: **both = 0 → download, both = 1 → normal**; tie together to `C5_BOOT` (PCA9555 #2 P06) |
 | GPIO27 | (strap) | — | ⚠ must be pulled **high** for a valid boot; not driven |
 | GPIO23 | `LINK_SCK` ← S3 | in | SPI slave clock (dedicated SPI3 link) |
 | GPIO24 | `LINK_MOSI` ← S3 | in | |
@@ -146,10 +146,13 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 | P0.1 | `RAIL_EN_5V` | out | gate MP2315 +5V in idle (SA868/PAM/IR leakage) |
 | P0.2 | `RAIL_EN_3V3A` | out | gate TPS7A2033 +3V3A (fed from +5V → needs `RAIL_EN_5V` on) |
 | P0.3 | `JACK_DET` | in | headphone jack detect |
-| P0.4 | `RFSW_B` | out | SP4T band-switch 2nd select bit (with `RFSW_A`) |
-| P0.5–P1.7 | — spare | — | future slow lines |
+| P0.4 | `RFSW_B` | out | SP4T band-switch select bit (three lines: `RFSW_A`/`RFSW_B`/`RFSW_C`) |
+| P0.5 | `C5_EN` | out | C5 reset (slow, set-once) |
+| P0.6 | `C5_BOOT` | out | C5 download-strap (→ C5 GPIO26+28) |
+| P0.7 | `RFSW_C` | out | SP4T band-switch 3rd select bit |
+| P1.0–P1.7 | — spare | — | future slow lines |
 
-Both `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. Direct GPIO is full (36/36), but slow-line headroom is now generous.
+All three `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. Direct GPIO is full (36/36), but slow-line headroom is now generous.
 
 ## Reset & boot buttons
 
@@ -172,7 +175,7 @@ The one SPI2 bus is shared by SD + radios + display, serviced one device at a ti
 ## Gotchas
 
 - **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO35–37 (GPIO33/34 aren't bonded out on the module either way); an octal-PSRAM S3 does not fit the link.
-- **Strap discipline.** S3 straps {0, 3, 45, 46}: GPIO45 is eFuse-freed (above); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT` with an **external pull-up to 3V3** (default = normal boot while S3 GPIO34 is Hi-Z; S3 drives it low only to flash C5), and pull 27 high.
+- **Strap discipline.** S3 straps {0, 3, 45, 46}: GPIO45 is eFuse-freed (above); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT` with an **external pull-up to 3V3** (default = normal boot; the expander at PCA9555 #2 P06 drives `C5_BOOT` low only to flash C5), and pull 27 high.
 - **S3 direct GPIO is FULL (36/36).** No spare fast pins — a new timing-critical signal would force dropping an existing direct line. Slow signals still have room on PCA9555 #2.
 - **Straps handled at the root.** GPIO45 (VDD_SPI) is **de-strapped by an eFuse** (see the provisioning step below), so `CC1101_GDO2` sits there as a normal interrupt with no brick risk. GPIO46's boot strap is satisfied because the 74AHC gate makes `nRF24_IRQ` idle-**low**.
 - **eFuse provisioning (mandatory, irreversible).** Burn `espefuse.py set_flash_voltage 3.3V` once before first boot, in ROM download mode (entered via GPIO0 — a separate strap; the stub loads to IRAM, so the 1.8 V flash-read during the burn is irrelevant). This frees GPIO45 for good. **Only for 3.3 V modules — N8R2 qualifies; never on a 1.8 V octal-PSRAM part** (it would brick). Verify with `espefuse summary`.

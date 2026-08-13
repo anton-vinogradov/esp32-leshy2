@@ -177,14 +177,14 @@ S3 остаётся мозгом (UI, экран, все проводные ра
 
 **✅ Постановка.** Каждый подузел — своим листом, транскрибированным из архитектуры — и как дизайн-доки, **и** как живой [tscircuit](https://tscircuit.com)-код (реальные детали, LCSC-номера, экспорт в KiCad).
 
-**Артефакты.** Шесть листов в [hardware/](hardware/) — каждый = `.md` дизайн-док + `.tsx` + schematic SVG:
+**Артефакты.** Шесть листов — каждый дизайн-док в своей папке `hardware/<лист>/` (ссылки ниже), а живой tscircuit-`.tsx` и экспортированный schematic SVG лежат в [`hardware/tscircuit/`](hardware/tscircuit/):
 
 1. [Питание](hardware/power/power.ru.md) — 2S, BQ25887 boost-зарядник, рейлы, master-тумблер
 2. [MCU + шины](hardware/c5-buses/c5-buses.ru.md) — S3 + C5, линк SPI3, 74HC138, PCA9555, USB
 3. [РЧ-тракты](hardware/rf/rf.ru.md) — 3× nRF24, CC1101 + SP4T, SX1262 (LoRa)
 4. [Аудио](hardware/audio/audio.ru.md) — Si4732, SA868, аналог-тракт → PAM8302
 5. [Расширение + GPS](hardware/expansion/expansion.ru.md) — I²C, u-blox GPS, Grove
-6. [Индикация / IO](hardware/indicators/indicators.ru.md) — TX-live LED, microSD, энкодер
+6. [Индикация / IO](hardware/indicators/indicators.ru.md) — TX-live LED, ИК клон/повтор, microSD, энкодер
 
 ---
 

@@ -19,7 +19,7 @@ The single-chip idea (one C5 doing everything) was dropped. The C5 is young sili
 |---|---|---|
 | Cores / RAM | 2× Xtensa, QUAD-PSRAM | RISC-V |
 | Owns | UI, display, **all wired radio**, SD, buses, 2.4 GHz Wi-Fi + BLE (native) | native **5 GHz** Wi-Fi (the only ESP32 that has it) + 2.4 / BLE / 802.15.4 (Zigbee/Thread) |
-| Pins | **38 / 38 — full** | ~11 / 20 |
+| Pins | **36 / 36 — full** | ~11 / 20 |
 | Flashing | USB-C **J1** (charge + data) | flashed by the S3 over UART0 (auto-OTA) **and** its own USB-C **J2** (data-only, brick-safe) |
 
 **Link:** a dedicated **SPI3 + DRDY** strobe (ready-line) between S3 and C5. The S3 stays the single point of control; the C5 is a pure 5 GHz agent.
@@ -30,9 +30,9 @@ The single-chip idea (one C5 doing everything) was dropped. The C5 is young sili
 
 - [x] Two chips: **S3 brain** + **C5 5 GHz co-processor**, linked by dedicated SPI3 + DRDY
 - [x] Shared **SPI2** bus (S3 FSPI, 80 MHz): microSD + CC1101 + 3× nRF24 + SX1262 + ST7796, chip-selects via a **74HC138** decoder
-- [x] Slow control on **two PCA9555** expanders: 0x20 (radio / display control), 0x21 (PTT / rail-gates / SP4T / headphone jack)
+- [x] Slow control on **three PCA9555** expanders: 0x20 (radio / display control), 0x21 (PTT / rail-gates / SP4T / headphone jack), 0x22 (UI buttons)
 - [x] Direct interrupt lines kept off the expanders: LoRa DIO1, nRF24 IRQ (via a 74AHC gate), CC1101 GDO2 carrier-sense (GPIO45 de-strapped via an eFuse flash-voltage set), CC1101 GDO0
-- [x] RF set: **3× nRF24L01+PA/LNA** (2.4 raw), **CC1101** (bare + crystal + balun) → **SP4T PE42440** + 4 matching networks (315 / 433 / 868 / 915), **SX1262** (E22-900M22S, +22 dBm LoRa), **Si4732-A10** (HF/CB/FM, RX only), **SA868-U** (433 / 446 voice, 2 W)
+- [x] RF set: **3× nRF24L01+PA/LNA** (2.4 raw), **CC1101** (bare + crystal + balun) → **SP4T SKY13414-485LF** + 4 matching networks (315 / 433 / 868 / 915), **SX1262** (E22-900M22S, +22 dBm LoRa), **Si4732-A10** (HF/CB/FM, RX only), **SA868-U** (433 / 446 voice, 2 W)
 - [x] Audio: analog mono → **PAM8302** class-D → speaker + headphone jack; the MCU is not in the audio path
 - [x] **ST7796 320×480 IPS** display over SPI (not 8080 / AMOLED — the C5 has no LCD_CAM; the waterfall rides the panel's hardware vertical scroll)
 - [x] **GPS** (u-blox, UART, onboard); **2× Grove I²C** + RFID2 unit
@@ -45,7 +45,7 @@ The single-chip idea (one C5 doing everything) was dropped. The C5 is young sili
 Six sheets, already written as specs; capture them in KiCad in this order.
 
 - [x] **Power** (Sheet 1, [hardware/power](../hardware/power/power.md))
-- [x] **S3 + C5 + buses** (Sheet 2, [hardware/c5-buses](../hardware/c5-buses/c5-buses.md)): both MCUs, the SPI3+DRDY link, shared SPI2 + 74HC138, two PCA9555, UART, encoder + buttons, dual USB-C
+- [x] **S3 + C5 + buses** (Sheet 2, [hardware/c5-buses](../hardware/c5-buses/c5-buses.md)): both MCUs, the SPI3+DRDY link, shared SPI2 + 74HC138, three PCA9555, UART, encoder + buttons, dual USB-C
 - [x] **RF chains** (Sheet 3, [hardware/rf](../hardware/rf/rf.md)): 3× nRF24, CC1101 + SP4T + 4 match nets, SX1262
 - [x] **Audio** (Sheet 4, [hardware/audio](../hardware/audio/audio.md)): Si4732 RX, SA868-U walkie, PAM8302 + speaker + jack
 - [x] **Expansion + GPS** (Sheet 5, [hardware/expansion](../hardware/expansion/expansion.md)): onboard u-blox GPS, 2× Grove I²C, full I²C address map
