@@ -36,7 +36,7 @@ The single-chip idea (one C5 doing everything) was dropped. The C5 is young sili
 - [x] Audio: analog mono → **PAM8302** class-D → speaker + headphone jack; the MCU is not in the audio path
 - [x] **ST7796 320×480 IPS** display over SPI (not 8080 / AMOLED — the C5 has no LCD_CAM; the waterfall rides the panel's hardware vertical scroll)
 - [x] **GPS** (u-blox, UART, onboard); **2× Grove I²C** + RFID2 unit
-- [x] Power: **2S 2×18650**, BQ25887 boost (5 V→8.4 V, no PD), S-8252A protection, MP2315 +5 V, TLV62569 +3V3, TPS7A2033 +3V3A, master toggle; rails gated in idle
+- [x] Power: **2S 2×18650**, BQ25887 boost (5 V→8.4 V, no PD), S-8252A protection, MP2315 +5 V, MP2315 +3V3, TPS7A2033 +3V3A, master toggle; rails gated in idle
 - [x] **9 antennas**, no RF switch between chains: S3 2.4 (external SMA), C5 dual 2.4/5, 3× nRF24, CC1101, Si4732 telescopic, SA868 UHF, SX1262 LoRa
 - [x] Inputs: RESET, BOOT, **PTT**, rotary encoder; master toggle = power
 

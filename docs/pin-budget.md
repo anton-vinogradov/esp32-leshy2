@@ -11,7 +11,7 @@ Fitting this much radio onto the S3's 36 pins rests on one rule:
 
 > **Buses and the CS decoder reuse across radios; per-chip timing lines do not.** Every SPI radio shares one 3-wire bus, and one 74HC138 turns 3 pins into 8 chip-selects — genuinely shared. But each radio's own timing-critical line (CC1101 `GDO0`, LoRa `BUSY`/`DIO1`, nRF24 `CE`/`IRQ`, IR TX/RX, encoder) runs to a different chip on its own trace, so those pins **add up** — they are not a reusable pool.
 
-Two slow-signal **I²C expanders (PCA9555 ×2)** carry the low-speed control lines (resets, PTT, power-downs, rail gates, the band switch, the encoder button) for **0 host GPIO** — they ride the I²C bus. That is what lets 30-plus control signals live on a chip with no free pins.
+Three slow-signal **I²C expanders (PCA9555 ×3)** carry the low-speed control lines (resets, PTT, power-downs, rail gates, the band switch, the encoder button) for **0 host GPIO** — they ride the I²C bus. That is what lets 30-plus control signals live on a chip with no free pins.
 
 > ⚠️ **Design stage. The GPIO numbers are a proposed map**, not yet confirmed against the datasheets. Functions are fixed; exact pin numbers may shift. The authoritative pin-by-pin table is [Sheet 2 — MCU + buses](../hardware/c5-buses/c5-buses.md).
 
@@ -24,7 +24,7 @@ Nine antennas and seven radios do **not** cost seven radios' worth of pins, beca
 | One shared **SPI2** bus | 3 | SD + CC1101 + 3× nRF24 + SX1262 + ST7796 display — six devices, three wires |
 | **74HC138** CS decoder | 3 | 8 chip-selects from 3 pins (SD, CC1101, 3× nRF24, LoRa, display, spare) |
 | One shared **I²C** bus | 2 | Si4732 · BQ25887 · 3× PCA9555 · 2× Grove · RFID2 |
-| **2× PCA9555** slow-line expanders | **0** | ~30 resets / enables / PTT / T-R / rail gates / band-switch / buttons |
+| **3× PCA9555** slow-line expanders | **0** | ~30 resets / enables / PTT / T-R / rail gates / band-switch / buttons |
 | The **C5 co-processor** | 7 (link block) | offloads all of 5 GHz / Zigbee to a second chip over one SPI3 link |
 
 Only genuinely **timing-critical** lines get a dedicated host pin. Everything slow is either on a bus or on an expander.

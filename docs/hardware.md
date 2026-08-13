@@ -61,7 +61,7 @@ Nine onboard antennas, **one per RF chain — there is no RF switch shared betwe
 
 ## Power
 
-**2S 2× 18650** (~7.4 V, ~18 Wh) with its own PMIC. A **BQ25887** boost charger takes plain 5 V USB to 8.4 V (no PD). Rails: **MP2315** +5 V, **TLV62569** +3V3, and a separate **TPS7A2033** +3V3A for the analog side (fed from +5 V, interlocked). A hard **master toggle** is the only on/off; rails are gated in idle. Two USB-C ports: **J1 → S3** (charge + data), **J2 → C5** (data-only). See [Sheet 1](../hardware/power/power.md).
+**2S 2× 18650** (~7.4 V, ~18 Wh) with its own PMIC. A **BQ25887** boost charger takes plain 5 V USB to 8.4 V (no PD). Rails: **MP2315** +5 V, **MP2315** +3V3, and a separate **TPS7A2033** +3V3A for the analog side (fed from +5 V, interlocked). A hard **master toggle** is the only on/off; rails are gated in idle. Two USB-C ports: **J1 → S3** (charge + data), **J2 → C5** (data-only). See [Sheet 1](../hardware/power/power.md).
 
 ## Indicators & I/O
 

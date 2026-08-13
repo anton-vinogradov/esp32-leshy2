@@ -46,9 +46,9 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
 - **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
 - **2S 18650 power** with an on-board balancing boost-charger.
-- **A bigger, higher-res display** — a **4.0″ 320×480 IPS** panel vs DIV's 2.8″ 240×320 (ILI9341): same SPI interface, but **~2× the area and 2× the pixels** (much more waterfall on screen) and IPS for wider viewing angles. Same ~143 ppi — bigger and roomier, not sharper.
-- **A proper control set** — a **5-way D-pad + BACK + OPTIONS + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
-- **Honest "on-air" indicators** — a per-antenna amber TX LED (a passive hardware envelope detector, 0 GPIO) that shows a chain is transmitting even if the firmware hangs.
+- **A bigger, higher-res display** — a **4.0″ 320×480 IPS** panel vs DIV's 2.8″ 240×320 (ILI9341): same SPI interface, but **~2× the area and 2× the pixels** (~2× the waterfall on screen) and IPS for wider viewing angles. Same ~143 ppi — bigger and roomier, not sharper.
+- **A proper control set** — a **5-way D-pad + BACK + OPTIONS + PTT + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
+- **Honest "on-air" indicators** — a per-TX-chain amber TX LED (7 chains; a passive hardware envelope detector, 0 GPIO) that shows a chain is transmitting even if the firmware hangs.
 
 The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi + BLE); the C5 is a pure 5 GHz co-processor. DIV handheld shape, fair price (~$135–160), open so people can join in.
 
@@ -61,7 +61,7 @@ The S3 stays the brain (UI, display, all wired radios, SD, buses, 2.4 GHz Wi-Fi 
 - **HF / CB / shortwave transmit.** The Si4732 is receive-only and physically cannot transmit. *(chip limit)*
 - **Continuous wideband SDR capture / arbitrary TX (HackRF-class).** No wideband IQ front end — a different, far pricier class of device. *(scope / budget)*
 - **Cellular / GSM.** No modem. *(cost + legality)*
-- **True simultaneous multi-radio.** The chains share one SPI bus and a tight pin budget, so one radio runs at a time (the 3× nRF24 parallel scan is the exception). *(pin / bus budget)*
+- **True simultaneous multi-radio.** With nine antennas in one small volume, keying every TX chain at once desenses the receivers, so the chains are time-shared (TDD arbitration in firmware; the 3× nRF24 parallel scan aside). *(RF coexistence — not the SPI bus, which sits at ~11–21 %.)*
 - **Wideband jamming.** Deliberately not built — it is illegal (US §333, EU RED). *(legal — a "won't", not a "couldn't")*
 
 **Artifacts.** This section, and the lineage it builds on:
@@ -81,7 +81,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 
 **Recon / attacks**
 - Wi-Fi 2.4 GHz (ESP32-S3): scan, **deauth**, beacon / probe flood, sniff management frames — Marauder-class.
-- Wi-Fi 5 GHz (ESP32-C5): scan, sniff, beacon / probe flood — 5 GHz recon that DIV never had.
+- Wi-Fi 5 GHz (ESP32-C5): scan, sniff, beacon / probe flood — Marauder-class on the 5 GHz band DIV never had.
 - 2.4 GHz raw (3× nRF24L01+PA/LNA): parallel whole-band scan, mousejack, channel analyzer.
 - Sub-GHz (CC1101): capture and replay OOK / FSK remotes on 315 / 433 / 868 / 915 MHz; RSSI activity "geiger".
 - BLE advertising flood + 802.15.4 / Zigbee sniff (ESP32-C5).
@@ -99,7 +99,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 **Spectrum view**
 - 4.0″ IPS TFT (ST7796, 320×480) over SPI — a large color waterfall on hardware vertical scroll.
 - 2.4 GHz raw spectrum via the nRF24 chain; sub-GHz waterfall via CC1101.
-- Per-antenna amber TX LED — a hardware envelope detector, honest "on air" even if firmware hangs, 0 GPIO.
+- Per-TX-chain amber TX LED (7) — a hardware envelope detector, honest "on air" even if firmware hangs, 0 GPIO.
 
 **Aux**
 - microSD (SPI) for PCAP logging · WS2812 RGB status LED + buzzer · GPS (u-blox, UART) · IR TX/RX.
@@ -111,17 +111,17 @@ If you like this project, please star and support the original ESP32-DIV first.
 | Band | Chip | RX | TX | What you do |
 |------|------|:--:|:--:|-------------|
 | 2.4 GHz Wi-Fi + BLE | ESP32-S3 | ✓ | ✓ | scan, **deauth**, beacon / probe flood, sniff |
-| 5 GHz Wi-Fi | ESP32-C5 | ✓ | ✓ | scan, sniff, beacon / probe flood (recon-only) |
+| 5 GHz Wi-Fi | ESP32-C5 | ✓ | ✓ | scan, sniff, beacon / probe flood |
 | 802.15.4 / Zigbee + BLE | ESP32-C5 | ✓ | ✓ | Zigbee / Thread sniff, BLE adv flood |
 | 2.4 GHz raw | 3× nRF24L01+ | ✓ | ✓ | whole-band scan, mousejack, analyzer |
 | 315 / 433 / 868 / 915 MHz | CC1101 | ✓ | ✓ | capture / replay remotes, RSSI "geiger" |
 | 433 / 446 MHz NBFM | SA868-U | ✓ | ✓ (≤2 W) | listen and talk (walkie, PTT) |
 | 27 MHz CB + HF / MW / LW | Si4732 | ✓ | — | listen AM / SSB / CW and CB |
 | 64–108 MHz FM | Si4732 | ✓ | — | listen to FM broadcast |
-| LoRa (EU433 / EU868 / US915) | SX1262 | ✓ | ✓ (+22 dBm) | Meshtastic encrypted text mesh |
+| LoRa (EU868 / US915) | SX1262 | ✓ | ✓ (+22 dBm) | Meshtastic encrypted text mesh |
 | GPS L1 ~1.575 GHz | u-blox (UART) | ✓ | — | position / time |
 
-**Honest limits.** 5 GHz is **recon-only**, all Si4732 HF is **receive-only**, and **one radio runs at a time** (the chains share the SPI bus). For the full list of what's deliberately **out of scope and why** (raw 5 GHz, Linux-class analytics, wideband SDR, jamming…), see stage 1.
+**Honest limits.** 5 GHz is **Marauder-class only** (management-frame work — no full monitor + injection), all Si4732 HF is **receive-only**, and you **can't key every radio at once** (RF coexistence time-shares the chains — not a bus limit). For the full list of what's deliberately **out of scope and why** (raw 5 GHz, Linux-class analytics, wideband SDR, jamming…), see stage 1.
 
 ---
 
@@ -156,7 +156,7 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 
 ## 5. External design & controls
 
-**✅ Spec.** From the components, settle the **physical device**: form factor (~80 × 170 mm, no case, DIV-style open frame), the control scheme, where the external interfaces sit, and the mechanical stack (display on the front over the electronics; 2× 18650 on the back; two-sided board).
+**✅ Spec.** From the components, settle the **physical device**: form factor (~80 × 170 mm, no case, DIV-style open frame), the control scheme, where the external interfaces sit, and the mechanical stack (display on the front over the electronics; 2× 18650 on the back; double-sided assembly — parts on both faces).
 
 **Artifacts.** [**front & back layout**](docs/img/layout-front-back.en.svg) · [**controls & firmware conventions**](docs/firmware-controls.md).
 
