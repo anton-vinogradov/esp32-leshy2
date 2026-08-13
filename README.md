@@ -12,7 +12,7 @@ Leshy2 is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp
 
 ## 📖 How to read this README
 
-This README is the project's **source of truth**: the pipeline from idea to finished boards, **stage by stage**. Each stage sets a **Spec** (what and why) and produces **Artifacts** (files in this repo) that become the input to the next stage — so you can read it as *spec vs. result* and check each step.
+This README is the project's **source of truth**: the pipeline from idea to finished boards, **stage by stage**. Each stage sets a **Spec** (what and why), records the **Decisions** made in it, and produces **Artifacts** (files in this repo) that become the input to the next stage — so you can read it as *spec → decisions → result* and check each step.
 
 **Status:** ✅ done · 🟡 in progress · ⏳ planned. Nothing is built on real hardware yet.
 
@@ -83,6 +83,12 @@ If you like this project, please star and support the original ESP32-DIV first.
 
 **✅ Spec.** Fix the feature set the hardware has to deliver (everything for your own equipment).
 
+**Decisions.**
+
+- **Marauder-class Wi-Fi, not Pineapple-class.** Both bands do the useful management-frame work — scan, sniff, deauth, beacon / probe flood — because that runs on the ESP32 radio directly. Full monitor + injection (WPA-handshake capture, aircrack) needs a Linux Wi-Fi stack no ESP32 has, so we don't claim it.
+- **Analog receive audio, no MCU in the path.** No ESP32 has a real DAC, so sound never touches the chip: the radio's line-out goes through an analog mux into a PAM8302 class-D amp to the speaker / headphone jack. Clean audio, and the CPU stays free for the UI.
+- **One TX chain at a time, not all radios at once.** Nine antennas share one small volume, so keying every transmitter together desenses the receivers. Firmware time-shares the TX chains; the only parallel exception is the 3× nRF24 receive-only band scan, which transmits nothing.
+
 **Artifacts.** The capability list + the frequency map below.
 
 **Recon / attacks**
@@ -135,6 +141,13 @@ If you like this project, please star and support the original ESP32-DIV first.
 
 **✅ Spec.** Choose the chips and modules that deliver the capabilities above, at a fair price.
 
+**Decisions.**
+
+- **Boost charger, not a buck or USB-PD.** The BQ25887 steps plain 5 V USB *up* to the 8.4 V a 2S pack needs, so no PD negotiation and no fragile high-voltage brick — any phone charger works. The trade-off: this chip has no power-path and no ship-mode, so a **hard master toggle is the only true off** (nothing sips the pack when it's off).
+- **ST7796 on shared SPI, not AMOLED or a parallel panel.** The C5 has no `LCD_CAM` block and no spare pins for a parallel / QSPI bus, so the display shares the S3 SPI bus like every other wired part. SPI is enough because the waterfall rides the panel's **hardware vertical scroll** — per-frame writes stay tiny.
+- **Wide-input bucks (MP2315) on both rails.** Both the +5 V and +3V3 bucks sit downstream of the 8.4 V BAT node, so each part must survive 8.4 V in. A 5.5 V-max part (e.g. TLV62569) would burn out there; the MP2315 takes the full 2S voltage.
+- **Parts from LCSC / JLCPCB stock (assembly footprints).** Every choice is a real, in-stock, machine-placeable part rather than a datasheet ideal — so the BOM can actually be sourced and the board assembled without hand-soldering scarce chips.
+
 **Artifacts.** The [**bill of materials & cost breakdown**](docs/bom.md) (~$108–125 in electronics) — every part, grouped by capability, with the biggest cost drivers.
 
 ---
@@ -142,6 +155,14 @@ If you like this project, please star and support the original ESP32-DIV first.
 ## 4. Architecture
 
 **✅ Spec.** Decide how the pieces connect: a two-chip topology, the shared bus and expanders, and a GPIO budget that fits this much radio.
+
+**Decisions.**
+
+- **S3 owns everything wired; the C5 does only 5 GHz.** All the wired radios, buses, SD, the display and native 2.4 GHz Wi-Fi hang off the S3 brain; the C5 handles only 5 GHz Wi-Fi and Zigbee / 802.15.4. There is no RF mode-switch to hand a shared antenna between chips, so splitting the radio work any other way would need parts and pins the board does not have.
+- **Quad PSRAM, not octal.** Octal PSRAM would eat GPIO35–37; quad frees those three pins for the chip-to-chip link. GPIO33/34 are not broken out on the WROOM module, so the C5's EN and BOOT lines move onto a PCA9555 expander instead of costing S3 pins.
+- **The chip-to-chip link is SPI3 + DRDY, not UART.** A dedicated SPI3 bus with a data-ready strobe keeps the C5 a clean SPI slave off the shared bus and gives real bandwidth for scan results; UART0 stays free for one job only — the S3 flashing the C5.
+- **Expanders and a decoder beat the pin crunch.** The S3 is a full 36/36 chip, so ~30 slow signals (radio/display control, rail gates, UI buttons) go onto three I²C PCA9555 expanders at zero host pins, and one 74HC138 turns 3 pins into 8 chip-selects. Only timing-critical lines (encoder A/B, interrupts) keep direct S3 pins.
+- **No standalone display on the C5.** Driving the panel from the C5 in a "C5-only" mode needed fragile Hi-Z and strapping-pin discipline on the shared bus for a low-value feature. Dropping it makes the C5 a pure co-processor and keeps the display firmly on the S3.
 
 **Artifacts.** [system diagram](docs/img/system-diagram.svg) · [pin budget](docs/pin-budget.md) · [full hardware breakdown](docs/hardware.md).
 
@@ -164,6 +185,13 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 
 **✅ Spec.** From the components, settle the **physical device**: form factor (~80 × 170 mm, no case, DIV-style open frame), the control scheme, where the external interfaces sit, and the mechanical stack (display on the front over the electronics; 2× 18650 on the back; double-sided assembly — parts on both faces).
 
+**Decisions.**
+
+- **One board, not two.** Splitting the RF and the digital halves onto separate boards buys almost no isolation — with nine antennas this close, coupling is dominated by antenna-to-antenna paths in the air, not by traces on the board. And it would cost a shared solid ground, force fast buses like SPI2 across a connector (a signal-integrity risk), and double the NRE. So everything lives on one 80 × 170 mm board.
+- **All nine antennas are board-SMA on the top edge.** Every radio ends in a removable SMA jack along the top, so antennas are swappable and stay away from the hand and the battery; the 3× nRF24 jacks are spread apart along the edge for the little isolation that physical distance does give. The Si4732 gets its own SMA plus a long telescopic whip for HF / CB.
+- **No case — open frame, DIV-style.** Follow DIV: a bare double-sided board, ~80 × 170 mm, with the 2S 18650 cells in a plastic holder on the back (a keep-out, no parts under the cells) and the wired I/O on the bottom edge. It keeps the device thin, cheap and hackable, and leaves the whole front for the display.
+- **Physical controls first, capacitive touch as a helper.** A full tactile set — D-pad + BACK / OPTIONS + PTT + panic-STOP + F1 / F2 + an encoder wheel — so the device is fully usable eyes-down and one-handed, with the buttons on a dedicated PCA9555 expander and the encoder A/B on direct GPIO for clean quadrature. The capacitive touchscreen is an addition on top, never the only way in; long text is still typed from a phone.
+
 **Artifacts.** [**front & back layout**](docs/img/layout-front-back.en.svg) · [**controls & firmware conventions**](docs/firmware-controls.md).
 
 ![Leshy2 front & back layout](docs/img/layout-front-back.en.svg)
@@ -183,6 +211,13 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 
 **✅ Spec.** Capture each subsystem as its own sheet, transcribed from the architecture — as design docs **and** as live [tscircuit](https://tscircuit.com) code (real parts, LCSC numbers, exports to KiCad).
 
+**Decisions.**
+
+- **Schematic as code, not hand-drawn KiCad.** Each subsystem is one tscircuit `.tsx`; the schematic, PCB, netlist and KiCad export are *generated* from it — nothing is drawn by hand. So the source of truth is one file per sheet, edits regenerate every view, and connectivity is proven by netlist rather than by how a drawing looks.
+- **Real footprints from the parts engine, not hand-entered pins.** Every IC pulls its manufacturer-verified footprint and pin names from its LCSC number (`jlcpcb:C…`); pins are never typed by hand. An early hand draft had wrong pin assignments — letting the engine own the pinout kills that whole class of error.
+- **One sheet per subsystem.** Six sheets (power / buses / RF / audio / expansion / indicators) split along the architecture, so each is small enough to review on its own before the whole board is merged.
+- **Realize against real modules to surface hidden blockers.** Drawing on the actual parts catches problems the logical schematic can't see: the C5's GPIO33/34 aren't broken out (so those control lines move onto a PCA9555 expander), the charger is a boost topology, and the sub-GHz SP4T needs three control lines, not one.
+
 **Artifacts.** Six sheets — each a design doc in its own `hardware/<sheet>/` folder (linked below), with the live tscircuit `.tsx` and the exported schematic SVG in [`hardware/tscircuit/`](hardware/tscircuit/):
 
 1. [Power](hardware/power/power.md) — 2S, BQ25887 boost charger, rails, master toggle
@@ -197,6 +232,14 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 ## 7. Merge, realize, review, complete
 
 **🟡 Spec.** Merge the six sheets into one board on real, manufacturer-verified parts; review it adversarially; and finish the missing pieces so the schematic is complete before layout.
+
+**Decisions.**
+
+- **`board.tsx` is generated, not hand-merged.** `merge.py` assembles it from the six sheets + `integration.tsx`, so the sheets stay the single source of truth (edit a sheet, re-run the merge). A parts+nets diff-guard proved the generated board byte-identical to the hand-merged one it replaced — no silent drift when a sheet changes.
+- **Review adversarially, before finishing.** Two whole-board self-reviews plus a per-sheet artifact pass ran *before* the completion work — they caught a real blocker (the PCA9555 has **no** internal pull-ups, so every switch input floated) and 5 major issues, all fixed. Cheaper to find on the schematic than at bring-up.
+- **Antennas go to board-edge SMA, all on top.** Nine removable SMA jacks along the top edge instead of u.FL pigtails to a panel — one board, no fragile flying leads — and the 3× nRF24 are spread apart for receiver isolation.
+- **Part swaps chosen by real stock + margin.** A 4 A PPTC (thermal headroom over the draw), a 20 mm on-board speaker, an LC balun into each SP4T arm, **two single 18650 holders** (to expose the pack mid-point the BQ25887 needs for balancing), and one 5-way nav switch under the D-pad — pick parts that are in stock and leave slack, not the tightest fit.
+- **No blind edits — defer what needs measuring.** The Si4732 RCLK load-cap count is left as-is and flagged for an AN383 check at bring-up, rather than guessing a value on paper.
 
 **Artifacts.** [`board.tsx`](hardware/tscircuit/board.tsx) — **generated** by [`merge.py`](hardware/tscircuit/merge.py) from the six sheets + [`integration.tsx`](hardware/tscircuit/integration.tsx) (223 parts) → [`board.kicad_pcb`](hardware/tscircuit/board.kicad_pcb) (connectivity proven, `schematic_parity = 0`).
 
@@ -220,11 +263,26 @@ Remaining (🟡) — the completion list:
 
 **🟡 WIP.** Place the complete board (edge-aware zones, two-sided) on a 4-layer stack with a GND plane, route it (auto + hand-RF), add the mechanical → gerbers. *Detail is filled in as this stage is worked.*
 
+**Decisions.**
+
+- **Autoroute with Freerouting, not the earlier tool.** The earlier router stalled at ~45 % of the nets; Freerouting reached 85 % in one pass and 424/425 nets through a Specctra DSN/SES pipeline — so it does the bulk of the copper and leaves only the hard cases for hand-finishing.
+- **4-layer stack with a solid GND plane (In1 = GND).** A dedicated ground layer gives short, clean return paths and one stable reference for the many radios — something a 2-layer board cannot hold on a device this dense.
+- **RF feeders routed by hand.** The antenna feed lines need controlled impedance, coplanar geometry and antenna keep-outs, which an autorouter cannot honour — so the RF traces are drawn manually while Freerouting handles the rest.
+- **Edge-aware placement.** Each connector sits on the edge it must reach and the antenna bank goes to the top — so cables and pigtails leave cleanly and the radios stay away from the digital noise.
+
 ---
 
 ## 9. Firmware
 
 **⏳ WIP.** Port the S3 leshy code, write the C5 5 GHz agent + the S3↔C5 protocol, implement the [control conventions](docs/firmware-controls.md) + the two safety blockers. *Detail is filled in as this stage is worked.*
+
+**Decisions.**
+
+- **Port the S3 leshy firmware, don't rewrite it.** Most of the S3 side already runs there (UI, display, wired radios, buses, SD, 2.4 GHz Wi-Fi + BLE); reuse that lineage and grow the new peripherals around it instead of a clean-sheet start.
+- **The C5 is a thin 5 GHz agent behind a narrow S3↔C5 protocol.** The S3 stays the brain and owns the UI; the C5 only does 5 GHz recon and answers a small command/event link over SPI3 + DRDY — keeps the two codebases decoupled and the C5 easy to bring up or replace on its own.
+- **Orderly shutdown is a firmware feature, not the master switch.** The switch cuts the pack instantly (no ship-mode), so an in-flight PCAP / log would corrupt; **OPTIONS → Shut down** (and a long-BACK) flushes SD, parks all radios, stops S3 + C5, then shows a "safe to flip" screen.
+- **long-BACK / STOP kills all TX, over any screen.** A stuck transmit (deauth, beacon spam, latched PTT, nRF24 / CC1101 / LoRa jam) with a hung UI must stop without pulling power; one core handler — reached from the hardware STOP key or a long-BACK — stops every chain.
+- **Long text is typed on a paired phone over BLE.** There's no room for an onboard keyboard; a BLE companion is the primary path (keeps Wi-Fi free during attacks), a Wi-Fi captive portal is the app-less fallback, and the D-pad char-wheel stays for short offline entry.
 
 ---
 
@@ -232,11 +290,26 @@ Remaining (🟡) — the completion list:
 
 **⏳ WIP.** Prove 5 GHz-deauth / recon on a C5 dev-kit before ordering — the riskiest premise, gated cheaply. *Detail is filled in as this stage is worked.*
 
+**Decisions.**
+
+- **Gate the whole 5 GHz bet on a bare ~$10 C5 devkit, before any copper.** The dual-chip design exists for one reason — 5 GHz usefulness. Answer that on a $10 board, not after a ~$140 build, so a bad result costs ten dollars, not a fab run.
+- **Test only the open question — deauth.** Scan / sniff / beacon / probe flood are already known-good on the ESP-IDF Wi-Fi stack; the one thing nobody can promise up front is whether the C5 will actually send a 5 GHz deauth. The gate aims at that, not at the parts we already trust.
+- **Prove the chip in isolation, not the board.** Run it on a stock devkit so the result reflects the C5's radio alone — no power rails, no SPI3 link, no our-own-layout risk mixed in. A clean yes/no on the silicon.
+- **Record one honest verdict — works / PoC-only / not at all — and let it set the claim.** Whatever the devkit says is what the C5 is allowed to advertise before we commit to a PCB; no hopeful wording ahead of the proof.
+- **A "no" here does not sink the board.** If 5 GHz deauth fails, the C5 falls back to passive recon and 2.4 GHz deauth still runs on the S3 — the gate trims what we claim, it does not cancel the build.
+
 ---
 
 ## 11. Fabrication & bring-up
 
-**⏳ WIP.** Order (JLCPCB via a reshipper, or Rezonit), assemble, bring up, tune antennas on a VNA. *Detail is filled in as this stage is worked.* See [roadmap](docs/roadmap.md).
+**⏳ WIP.** Order (JLCPCB via a reshipper, or Rezonit), assemble, bring up, tune antennas on a VNA. *Detail is filled in as this stage is worked.*
+
+**Decisions.**
+
+- **Fab at JLCPCB through a reshipper, Rezonit as the fallback.** JLCPCB has no direct shipping to Russia, so the board goes via a reshipper (jlcpost-class); the JLC7628 4-layer stack and its in-house assembly are the cheapest way to get the impedance-controlled RF board built. Rezonit is the domestic Plan B if the reshipper route stalls.
+- **Keep every part in LCSC stock.** The BOM is pinned to parts JLCPCB can actually place from the same catalog it fabs on — no chasing unobtainable substitutions mid-order, no hand-soldering surprises. Procurability wins over the "perfect" part.
+- **Tune every antenna by hand on a VNA at bring-up.** Nine antennas share one small volume and each RF chain has its own match net; that interaction can't be simulated cleanly, so the match is trimmed on real hardware with a VNA rather than trusted to the layout.
+- **Plan for two spins, not one.** Budget and schedule assume one working spin plus one refinement spin — an honest RF-board expectation, so the first order isn't treated as final copper. See [roadmap](docs/roadmap.md).
 
 ---
 
