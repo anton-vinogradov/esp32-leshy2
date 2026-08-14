@@ -27,7 +27,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 | 7 | [Merge, realize, review, complete](#7-merge-realize-review-complete) | 🟡 |
 | 8 | [PCB layout](#8-pcb-layout) | 🟡 |
 | 9 | [Firmware](#9-firmware) | ⏳ |
-| 10 | [Validation gate — 5 GHz PoC](#10-validation-gate--5-ghz-poc) | ⏳ |
+| 10 | [Firmware validation in emulation](#10-firmware-validation-in-emulation) | ⏳ |
 | 11 | [Fabrication & bring-up](#11-fabrication--bring-up) | ⏳ |
 
 ---
@@ -286,26 +286,27 @@ Remaining (🟡) — the completion list:
 
 ---
 
-## 10. Validation gate — 5 GHz PoC
+## 10. Firmware validation in emulation
 
-**⏳ WIP.** Prove 5 GHz-deauth / recon on a C5 dev-kit before ordering — the riskiest premise, gated cheaply. *Detail is filled in as this stage is worked.*
+**⏳ WIP.** Run the test firmware on emulators before committing copper — catch logic, driver, UI and link-protocol bugs while a fix still costs an edit, not a fab spin. *Detail is filled in as this stage is worked.*
 
 **Decisions.**
 
-- **Gate the whole 5 GHz bet on a bare ~$10 C5 devkit, before any copper.** The dual-chip design exists for one reason — 5 GHz usefulness. Answer that on a $10 board, not after a ~$140 build, so a bad result costs ten dollars, not a fab run.
-- **Test only the open question — deauth.** Scan / sniff / beacon / probe flood are already known-good on the ESP-IDF Wi-Fi stack; the one thing nobody can promise up front is whether the C5 will actually send a 5 GHz deauth. The gate aims at that, not at the parts we already trust.
-- **Prove the chip in isolation, not the board.** Run it on a stock devkit so the result reflects the C5's radio alone — no power rails, no SPI3 link, no our-own-layout risk mixed in. A clean yes/no on the silicon.
-- **Record one honest verdict — works / PoC-only / not at all — and let it set the claim.** Whatever the devkit says is what the C5 is allowed to advertise before we commit to a PCB; no hopeful wording ahead of the proof.
-- **A "no" here does not sink the board.** If 5 GHz deauth fails, the C5 falls back to passive recon and 2.4 GHz deauth still runs on the S3 — the gate trims what we claim, it does not cancel the build.
+- **Emulate the firmware before the board, in three free open layers.** **ESP-IDF Linux host-target + CMock** for driver and protocol unit tests in CI (the main layer, no hardware); **Wokwi** (with the headless `wokwi-cli`) for the on-screen UI and the SPI / I²C / UART buses; **Renode** (or the **Espressif QEMU fork**) to boot the real S3 binary and, in Renode, run S3 + C5 as two linked nodes. All three are open and scriptable in CI.
+- **Emulation covers the digital half only — draw that line honestly.** It validates firmware logic, the ST7796 UI, register-level drivers (nRF24 / CC1101 / SX1262 / Si4732 / PCA9555), NMEA parsing and the S3↔C5 frame protocol. It does **not** touch RF physics, analog audio, power / charging, dense-SPI2 timing or the C5's 5 GHz radio — those stay on real hardware (stage 11).
+- **No emulator ships our radios — we write them as behavioural stubs.** None of Wokwi / QEMU / Renode has nRF24 / CC1101 / SX1262 built in; each is a self-written SPI / I²C chip that answers the registers the driver actually pokes (CONFIG / STATUS / FIFO, the IRQ line). That proves the *driver*, not the over-the-air link — a virtual "packet arrived" is not a real RF channel.
+- **The C5 is emulated as firmware logic only.** It is alpha in Wokwi and absent from QEMU / Renode, and its 5 GHz radio isn't modelled anywhere — so its command / state logic runs against a stub, and the real 5 GHz proof waits for bring-up (stage 11).
+- **This replaces the old 5 GHz pre-fab gate.** 5 GHz physics can't be emulated and there is no budget plan B, so proving 5 GHz moved to bring-up on the real board (stage 11). This stage keeps the "prove it cheaply before copper" slot but aims it at what emulation *can* check — the firmware.
 
 ---
 
 ## 11. Fabrication & bring-up
 
-**⏳ WIP.** Order (JLCPCB via a reshipper, or Rezonit), assemble, bring up, tune antennas on a VNA. *Detail is filled in as this stage is worked.*
+**⏳ WIP.** Order (JLCPCB via a reshipper, or Rezonit), assemble, bring up (incl. the C5 5 GHz proof), tune antennas on a VNA. *Detail is filled in as this stage is worked.*
 
 **Decisions.**
 
+- **Prove the C5's 5 GHz here, on the real board — not as a pre-fab gate.** Emulation can't touch 5 GHz and there is no other 5 GHz part in budget, so the deauth / recon question is answered at bring-up. A miss only trims the C5 to passive recon (2.4 GHz deauth still runs on the S3) — it costs the C5 subsystem, not the board.
 - **Fab at JLCPCB through a reshipper, Rezonit as the fallback.** JLCPCB has no direct shipping to Russia, so the board goes via a reshipper (jlcpost-class); the JLC7628 4-layer stack and its in-house assembly are the cheapest way to get the impedance-controlled RF board built. Rezonit is the domestic Plan B if the reshipper route stalls.
 - **Keep every part in LCSC stock.** The BOM is pinned to parts JLCPCB can actually place from the same catalog it fabs on — no chasing unobtainable substitutions mid-order, no hand-soldering surprises. Procurability wins over the "perfect" part.
 - **Tune every antenna by hand on a VNA at bring-up.** Nine antennas share one small volume and each RF chain has its own match net; that interaction can't be simulated cleanly, so the match is trimmed on real hardware with a VNA rather than trusted to the layout.

@@ -9,7 +9,7 @@ Where **Leshy2** is going — an open-source portable multiband RF handheld (a "
 - **Architecture is locked (2026-08-10): two chips.** This is still the **design stage** — **no hardware has been built yet**.
 - The six schematic sheets exist as **transcribe-ready specs (Markdown)**; the SVG drawings are being redrawn to the two-chip layout.
 - **Next:** capture the sheets in **KiCad**, then **PCB layout**.
-- 🔴 **Gate before ordering any PCB:** prove **5 GHz deauth on a bare ESP32-C5 devkit**. If it can't deauth, the C5's headline feature shrinks to passive recon — we want that answered on a $10 board, not a $140 build.
+- 🟡 **Before copper, validate the firmware in emulation** (ESP-IDF Linux host-target + Wokwi + Renode) — logic / UI / drivers / link protocol. RF physics and the C5's **5 GHz** can't be emulated, so the 5 GHz deauth question is answered at **bring-up on the real board** — a miss only trims the C5 to passive recon, it doesn't sink the build.
 
 ## 🧠 The two-chip split
 
@@ -51,10 +51,12 @@ Six sheets, already written as specs; capture them in KiCad in this order.
 - [x] **Expansion + GPS** (Sheet 5, [hardware/expansion](../hardware/expansion/expansion.md)): onboard u-blox GPS, 2× Grove I²C, full I²C address map
 - [x] **Indicators + I/O** (Sheet 6, [hardware/indicators](../hardware/indicators/indicators.md)): per-chain hardware TX-live LEDs (0 GPIO), WS2812, buzzer, IR TX/RX, microSD
 
-### 3. 🔴 5 GHz deauth PoC — gate before PCB
+### 3. Firmware validation in emulation — before copper
 
-- [ ] On a bare **C5 devkit**: scan / sniff 5 GHz, beacon + probe flood, and **attempt deauth**
-- [ ] Record the honest answer (works / PoC-only / not at all) — it sets what the C5 is allowed to claim before we commit copper
+- [ ] **ESP-IDF Linux host-target + CMock**: driver + link-protocol unit tests in CI (no hardware)
+- [ ] **Wokwi** (+ headless `wokwi-cli`): ST7796 UI + SPI / I²C / UART buses; nRF24 / CC1101 as self-written custom chips
+- [ ] **Renode / Espressif QEMU**: boot the S3 binary; in Renode run S3 + C5 as two linked nodes
+- [ ] Boundary: emulation proves digital logic / UI / drivers / protocol — **not** RF physics, analog, power, or the C5's 5 GHz (those wait for hardware)
 
 ### 4. PCB layout
 
@@ -67,6 +69,7 @@ Six sheets, already written as specs; capture them in KiCad in this order.
 
 - [ ] Order, solder, assemble (maker steps)
 - [ ] Bring-up: power rails, S3 boot, C5 boot, the SPI3 link, then each bus
+- [ ] **Prove the C5's 5 GHz on the board**: scan / sniff, beacon + probe flood, attempt deauth — records what the C5 may claim (a miss trims it to passive recon)
 - [ ] **Honest expectation: 1 working spin + 1 refinement spin**
 
 ### 6. Firmware
@@ -74,7 +77,7 @@ Six sheets, already written as specs; capture them in KiCad in this order.
 Three pieces: port the existing brain, add the 5 GHz agent, and glue them.
 
 - [ ] **Port leshy** (the S3 codebase already runs — mostly bring-up on the new board)
-- [ ] **C5 5 GHz agent**: scan / sniff / beacon-probe flood (+ deauth if the PoC says yes)
+- [ ] **C5 5 GHz agent**: scan / sniff / beacon-probe flood (+ deauth if it works on hardware)
 - [ ] **Link protocol** over SPI3+DRDY: the S3 drives, the C5 answers
 - [ ] Drivers: 3× nRF24, CC1101 (+ SP4T band select), SX1262, Si4732, SA868-U, u-blox GPS, microSD PCAP
 - [ ] Per-region LoRa power caps enforced in firmware (EU433 +10 dBm, EU868 +14 dBm, 869.4–869.65 MHz +27 dBm @ 10 % duty, US915 +30 dBm w/ hopping)
@@ -103,7 +106,7 @@ The silicon is already paid for; these are software-only wins we plan to add ove
 
 ## 🧱 Deliberately out of scope — honest ceilings
 
-- **5 GHz is recon-class only** — scan, sniff, beacon / probe flood; **deauth is a PoC question** (see phase 3). No injection, no WPA-handshake capture, no monitor+inject — those need Linux, which we avoid for battery life. **2.4 GHz deauth works** (on the S3).
+- **5 GHz is recon-class only** — scan, sniff, beacon / probe flood; **deauth is unproven until we test it on hardware** (bring-up, phase 5). No injection, no WPA-handshake capture, no monitor+inject — those need Linux, which we avoid for battery life. **2.4 GHz deauth works** (on the S3).
 - **Si4732 is receive-only** — HF / CB / FM listening, no TX there.
 - **One radio at a time** — chains share the bus and the operator's attention; this is not a simultaneous multi-radio SDR.
 - **Mono audio.**
@@ -112,7 +115,7 @@ The silicon is already paid for; these are software-only wins we plan to add ove
 
 ## 🤝 How you can help
 
-Leshy2 is built openly and credits ESP32-DIV; the aim is collaborative development with the DIV community. To help with the schematic, the PCB, the firmware, or the 5 GHz PoC, start with **[CONTRIBUTING](../CONTRIBUTING.md)**.
+Leshy2 is built openly and credits ESP32-DIV; the aim is collaborative development with the DIV community. To help with the schematic, the PCB, the firmware, or the emulation harness, start with **[CONTRIBUTING](../CONTRIBUTING.md)**.
 
 ---
 

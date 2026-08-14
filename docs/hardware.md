@@ -77,7 +77,7 @@ M5-compatible for **I²C Grove Units** only (M5 Caps / Modules / HATs use other 
 
 Deliberate limits, chosen with eyes open:
 
-- **5 GHz is recon only** — scan, sniff, beacon/probe flood; deauth is a PoC question. No inject / handshake capture / monitor+inject (that needs Linux).
+- **5 GHz is recon only** — scan, sniff, beacon/probe flood; deauth is unproven until tested on hardware. No inject / handshake capture / monitor+inject (that needs Linux).
 - **2.4 GHz deauth works** — on the S3.
 - **HF / CB / FM is receive-only** (Si4732).
 - **One radio at a time** — the shared SPI bus and single-antenna-per-chain design mean chains take turns.

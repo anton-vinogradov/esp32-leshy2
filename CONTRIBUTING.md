@@ -26,7 +26,7 @@ Leshy2 builds on and credits **ESP32-DIV** (by cifertech, MIT license). We want 
 
 The main reason Leshy2 exists: ESP32-DIV v2 has **no 5 GHz WiFi**. The goals are to move the DIV idea toward:
 
-- **5 GHz WiFi** (recon-class: scan, sniff management frames, beacon/probe flood; deauth is a PoC question before the board), and
+- **5 GHz WiFi** (recon-class: scan, sniff management frames, beacon/probe flood; deauth is unproven until it's tested on hardware), and
 - **legal long-range TX** (Meshtastic over onboard LoRa).
 
 Where something we build is useful upstream, we want to **feed it back and collaborate** rather than split the community. If you are a DIV maintainer or user, please tell us how to keep the two projects friendly and compatible.
