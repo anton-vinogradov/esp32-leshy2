@@ -1,0 +1,32 @@
+{
+  "_comment": "Canonical doc sections one repo restates from the other. On CI the checker re-hashes each canonical section; a mismatch means the source changed and the listed mirror needs review. It flags, it does not auto-edit. After reconciling the mirror, re-baseline: python tools/docsync/check.py --update --repo esp32-leshy2=<path> --repo esp32-leshy2-firmware=<path>",
+  "canonical": [
+    {
+      "id": "hw-capabilities",
+      "repo": "esp32-leshy2",
+      "file": "README.md",
+      "heading": "2. What it must do — capabilities",
+      "sha256": "1a8c6b6dd484d7cf6c15e104f464a00d6f4c959e6a651c209fe6ecb892824ca7",
+      "mirror": "esp32-leshy2-firmware README §1 'In scope' + §2 'Capability tree'",
+      "note": "If the hardware capability set changes, review the firmware's mirrored capability claims."
+    },
+    {
+      "id": "hw-firmware-decisions",
+      "repo": "esp32-leshy2",
+      "file": "README.md",
+      "heading": "9. Firmware",
+      "sha256": "0285c28aaba346da8f472abbb4dd67473b39f0f5d321de77aeb4972d01c5f873",
+      "mirror": "esp32-leshy2-firmware README §1 'Decisions' (the firmware decisions inherited from here)",
+      "note": "If the hardware §9 firmware decisions change, review the firmware repo's §1 decisions."
+    },
+    {
+      "id": "fw-link-protocol",
+      "repo": "esp32-leshy2-firmware",
+      "file": "docs/link-protocol.md",
+      "whole_file": true,
+      "sha256": "bc0904653ed180c68c5744c29cb52753f522dfac4fba7e819e23bd50c0a077f4",
+      "mirror": "esp32-leshy2 hardware/c5-buses SPI3 + DRDY link description",
+      "note": "The firmware owns the S3<->C5 link protocol. If it changes, review the hardware's link description."
+    }
+  ]
+}

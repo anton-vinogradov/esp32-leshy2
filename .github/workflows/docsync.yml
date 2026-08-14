@@ -1,0 +1,21 @@
+name: docsync
+
+# Detects hardware <-> firmware doc divergence: dead cross-repo / in-repo anchors,
+# and canonical sections (tools/docsync/sync-map.json) that changed without their
+# mirror being reviewed. It flags — it never edits prose. See tools/docsync/check.py.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docsync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out hardware repo
+        uses: actions/checkout@v4
+      - name: Clone firmware repo (public)
+        run: git clone --depth 1 https://github.com/anton-vinogradov/esp32-leshy2-firmware fw
+      - name: Check doc sync (links + canonical tripwire)
+        run: python3 tools/docsync/check.py --repo esp32-leshy2=. --repo esp32-leshy2-firmware=fw
