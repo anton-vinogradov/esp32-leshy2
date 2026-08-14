@@ -274,11 +274,11 @@ Remaining (🟡) — the completion list:
 
 ## 9. Firmware
 
-**⏳ WIP.** The firmware has its own repo — **[esp32-leshy2-firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)** (same doc-first paradigm). Port the S3 leshy code, write the C5 5 GHz agent + the S3↔C5 protocol, implement the [control conventions](docs/firmware-controls.md) + the two safety blockers. *Detail is filled in as this stage is worked.*
+**⏳ WIP.** The firmware has its own repo — **[esp32-leshy2-firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)** (same doc-first paradigm). Design it fresh from this device's capabilities, write the C5 5 GHz agent + the S3↔C5 protocol, implement the [control conventions](docs/firmware-controls.md) + the two safety blockers, and reuse working code from leshy and other open-source where it fits. *Detail is filled in as this stage is worked.*
 
 **Decisions.**
 
-- **Port the S3 leshy firmware, don't rewrite it.** Most of the S3 side already runs there (UI, display, wired radios, buses, SD, 2.4 GHz Wi-Fi + BLE); reuse that lineage and grow the new peripherals around it instead of a clean-sheet start.
+- **Design fresh from this device's capabilities; reuse code per capability, not wholesale.** esp32-leshy was the proof that rolling your own firmware is easy — but it hit the ceiling of ESP32-DIV's fixed hardware, which is exactly why Leshy2 exists. So the firmware is built on our own terms now: top-down from a capability tree → a firmware tree, not from leshy's skeleton. For each capability we look at how open-source analogues solve it and decide — borrow the code, write it fresh, or take only the idea. Ports of leshy code are welcome and likely; leshy just doesn't dictate the structure.
 - **The C5 is a thin 5 GHz agent behind a narrow S3↔C5 protocol.** The S3 stays the brain and owns the UI; the C5 only does 5 GHz recon and answers a small command/event link over SPI3 + DRDY — keeps the two codebases decoupled and the C5 easy to bring up or replace on its own.
 - **Orderly shutdown is a firmware feature, not the master switch.** The switch cuts the pack instantly (no ship-mode), so an in-flight PCAP / log would corrupt; **OPTIONS → Shut down** (and a long-BACK) flushes SD, parks all radios, stops S3 + C5, then shows a "safe to flip" screen.
 - **long-BACK / STOP kills all TX, over any screen.** A stuck transmit (deauth, beacon spam, latched PTT, nRF24 / CC1101 / LoRa jam) with a hung UI must stop without pulling power; one core handler — reached from the hardware STOP key or a long-BACK — stops every chain.
