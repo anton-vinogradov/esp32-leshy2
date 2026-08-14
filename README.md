@@ -274,7 +274,7 @@ Remaining (🟡) — the completion list:
 
 ## 9. Firmware
 
-**⏳ WIP.** Port the S3 leshy code, write the C5 5 GHz agent + the S3↔C5 protocol, implement the [control conventions](docs/firmware-controls.md) + the two safety blockers. *Detail is filled in as this stage is worked.*
+**⏳ WIP.** The firmware has its own repo — **[esp32-leshy2-firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)** (same doc-first paradigm). Port the S3 leshy code, write the C5 5 GHz agent + the S3↔C5 protocol, implement the [control conventions](docs/firmware-controls.md) + the two safety blockers. *Detail is filled in as this stage is worked.*
 
 **Decisions.**
 

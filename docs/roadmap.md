@@ -74,7 +74,7 @@ Six sheets, already written as specs; capture them in KiCad in this order.
 
 ### 6. Firmware
 
-Three pieces: port the existing brain, add the 5 GHz agent, and glue them.
+Three pieces: port the existing brain, add the 5 GHz agent, and glue them. Developed in its own repo — [esp32-leshy2-firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware).
 
 - [ ] **Port leshy** (the S3 codebase already runs — mostly bring-up on the new board)
 - [ ] **C5 5 GHz agent**: scan / sniff / beacon-probe flood (+ deauth if it works on hardware)
