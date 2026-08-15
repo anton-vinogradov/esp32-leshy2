@@ -21,7 +21,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 | 1 | [Why a new device](#1-why-a-new-device--vision) | 🔬 |
 | 2 | [What it must do — capabilities](#2-what-it-must-do--capabilities) | ✅ |
 | 3 | [Components](#3-components) | 🔬 |
-| 4 | [Architecture](#4-architecture) | 🔬 |
+| 4 | [Architecture](#4-architecture) | ✅ |
 | 5 | [External design & controls](#5-external-design--controls) | ✅ |
 | 6 | [Schematic sheets](#6-schematic-sheets) | 🔬 |
 | 7 | [Merge, realize, review, complete](#7-merge-realize-review-complete) | 🟡 |
@@ -163,6 +163,8 @@ If you like this project, please star and support the original ESP32-DIV first.
 - **The chip-to-chip link is SPI3 + DRDY, not UART.** A dedicated SPI3 bus with a data-ready strobe keeps the C5 a clean SPI slave off the shared bus and gives real bandwidth for scan results; UART0 stays free for one job only — the S3 flashing the C5.
 - **Expanders and a decoder beat the pin crunch.** The S3 is a full 36/36 chip, so ~30 slow signals (radio/display control, rail gates, UI buttons) go onto three I²C PCA9555 expanders at zero host pins, and one 74HC138 turns 3 pins into 8 chip-selects. Only timing-critical lines (encoder A/B, interrupts) keep direct S3 pins.
 - **No standalone display on the C5.** Driving the panel from the C5 in a "C5-only" mode needed fragile Hi-Z and strapping-pin discipline on the shared bus for a low-value feature. Dropping it makes the C5 a pure co-processor and keeps the display firmly on the S3.
+- **The design is two boards (see [stage 5](#5-external-design--controls)).** Logically the S3 is still the brain and drives every wired radio; physically it is a two-board clamshell — the **C5 board** carries the C5, its 5 GHz antenna, the **3× nRF24** and their antennas, and the power; the **main board** carries the S3 and everything else. The S3↔C5 SPI3 link **and the nRF's SPI2 branch** cross the board-to-board mezzanine.
+- **Diagram conventions (system diagram).** The [system diagram](docs/img/system-diagram.svg) is theme-aware (light / dark), kept in sync with these decisions (it must show the two-board split), and redrawn whenever the architecture changes — the same discipline as the [stage-5 mockup conventions](#5-external-design--controls).
 
 **Artifacts.** [system diagram](docs/img/system-diagram.svg) · [pin budget](docs/pin-budget.md) · [full hardware breakdown](docs/hardware.md).
 
@@ -173,7 +175,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - **Shared bus (S3 FSPI):** microSD + CC1101 + 3× nRF24 + SX1262 + the display — chip-selects via a 74HC138. Three I²C **PCA9555** expanders carry the slow lines (radio/display control, rail gates, and the UI buttons); interrupts stay on direct pins.
 - **Display:** the ST7796 **4.0″ 320×480 IPS** panel is on that shared SPI — the C5 has no `LCD_CAM` and there are no spare pins for a parallel / QSPI panel, so SPI it is; the waterfall rides the panel's **hardware vertical scroll** to keep per-frame updates tiny. The panel's **capacitive touch** rides the shared I²C bus (INT on the UI expander U14 — no host pin), a complement to the physical controls.
 - **Human interface:** the D-pad, BACK / OPTIONS / STOP / F1 / F2 and the encoder push all read through the I²C **PCA9555** expanders (S3 GPIO is full and buttons are slow); only the encoder's A/B quadrature keeps two direct S3 pins (timing-critical). All buttons share one INT.
-- **9 antennas** (S3 2.4, C5 2.4/5, 3× nRF24, CC1101, Si4732 whip, SA868, LoRa) — each chain its own antenna, on **9 removable board-mounted SMA jacks** along the top edge, the 3× nRF24 spread for isolation (details in stage 5).
+- **9 antennas** — split across the two boards (stage 5): **five on the main board** (S3 2.4, CC1101, SA868, LoRa, Si4732) + IR + GPS patch, **four on the C5 board** (3× nRF24 + C5 5 GHz), the nRF spread for isolation. Each chain has its own removable board-mounted SMA.
 - **Two USB-C:** J1 → S3 (charge + data), J2 → C5 (data-only). The pack charges only through J1.
 - **Power:** 2× 18650 in 2S — **BQ25887 boost charger** (charges 2S from plain 5 V USB), MP2315 +5 V and +3V3 bucks, a TPS7A2033 +3V3 analog rail, rail gates that cut idle radios. A hard master toggle is the only on/off.
 

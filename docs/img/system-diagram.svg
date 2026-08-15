@@ -32,7 +32,7 @@
   <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#8a9aa0"/></marker></defs>
   <rect class="bg" x="0" y="0" width="1000" height="760"/>
   <text class="title" x="30" y="34">Leshy2 — system architecture</text>
-  <text class="sub" x="30" y="52">ESP32-S3 brain + ESP32-C5 5 GHz co-processor · shared SPI/I²C/UART · SPI display · 9 antennas · 2× Grove I²C</text>
+  <text class="sub" x="30" y="52">ESP32-S3 brain + ESP32-C5 5 GHz co-processor · two boards (clamshell, stage 5) · shared SPI/I²C/UART · SPI display · 9 antennas</text>
 
   <!-- C5 co-processor -->
   <path class="ant" d="M115 42 l-10 -11 M115 42 l10 -11 M115 42 V80"/>
@@ -123,6 +123,11 @@
   <path class="wire" d="M115 596 V632"/>
   <rect class="box" x="40" y="634" width="440" height="56" rx="9"/><text class="t" x="260" y="660">S3 direct GPIO · RMT · SPI display</text><text class="s" x="260" y="679">ST7796 · IR · WS2812 · buzzer · encoder A/B · RESET / BOOT</text>
 
+  <!-- two-board grouping (stage 5) -->
+  <rect x="30" y="62" width="172" height="98" rx="12" fill="none" class="link"/>
+  <text class="buslbl" x="210" y="100" text-anchor="start">C5 board</text>
+  <text class="s" x="210" y="116" text-anchor="start">C5 + 5 GHz + 3× nRF24</text>
+  <text class="sub" x="58" y="702">Two boards (clamshell, stage 5): the C5 board carries the C5, its 5 GHz antenna and the 3× nRF24; the main board carries the S3 and the rest — the link + the nRF SPI2 cross the mezzanine.</text>
   <text class="sub" x="58" y="720">Antenna dots (above): blue = RX · amber = TX (hardware on-air) · none = receive-only (Si4732, GPS).</text>
   <text class="sub" x="58" y="742">All RF self-built · no shared RF switch, one antenna per chain · 9 antennas · S3 flashes C5 over the link + its own USB-C.</text>
 </svg>
