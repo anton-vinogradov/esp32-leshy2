@@ -75,10 +75,10 @@
 <rect x="302.5" y="304.4" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="318.1" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Grv</text>
 <rect x="302.5" y="339.5" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="353.2" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Grv</text>
 <rect x="367.3" y="415.1" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="426.7" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
-<rect x="456.4" y="496.1" width="10.8" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="461.8" y="505.3" font-size="3.2" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">MIC</text>
-<rect x="407.8" y="469.1" width="40.5" height="40.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="428.1" y="490.9" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">microSD</text>
-<rect x="380.8" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="388.9" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">RESET</text>
-<rect x="359.2" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="367.3" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">BOOT</text>
+<rect x="398.4" y="496.1" width="10.8" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="403.8" y="505.3" font-size="3.2" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">MIC</text>
+<rect x="415.9" y="469.1" width="40.5" height="40.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="436.1" y="490.9" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">microSD</text>
+<rect x="375.4" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="383.5" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">RESET</text>
+<rect x="353.8" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="361.9" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">BOOT</text>
 <rect x="324.1" y="147.8" width="159.3" height="240.3" fill="#fafaf9" stroke="#a8a29e" stroke-width="1.2" stroke-dasharray="5 3" rx="2"/>
 <text x="403.8" y="255.1" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="bold">component area</text>
 <text x="403.8" y="263.7" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">placed in PCB layout (stage 8)</text>
@@ -87,10 +87,10 @@
 <path d="M298.4 277.4 L292.4 277.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M298.4 316.6 L292.4 316.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M298.4 351.6 L292.4 351.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
-<path d="M461.8 519.0 L461.8 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
-<path d="M428.1 519.0 L428.1 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
-<path d="M388.9 519.0 L388.9 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
-<path d="M367.3 519.0 L367.3 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M403.8 519.0 L403.8 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M436.1 519.0 L436.1 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M383.5 519.0 L383.5 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M361.9 519.0 L361.9 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <text x="30.0" y="572.0" font-size="11" text-anchor="start" fill="#0891b2" font-family="sans-serif" font-weight="bold">Row 2 - C5 board (co-processor)</text>
 <rect x="45.0" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="146.2" y="583.0" font-size="12" text-anchor="middle" fill="#0891b2" font-family="sans-serif" font-weight="bold">C5 - INNER</text>
@@ -115,11 +115,11 @@
 <text x="146.2" y="735.3" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">placed in PCB layout (stage 8)</text>
 <text x="146.2" y="743.9" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">C5 · 3x nRF24 · charger / power</text>
 <text x="146.2" y="752.5" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">IR driver · 74HC139 · PCA9555</text>
-<circle cx="198.9" cy="877.3" r="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
-<circle cx="198.9" cy="877.3" r="13.4" fill="none" stroke="#93b4f5" stroke-width="0.8"/>
-<circle cx="198.9" cy="877.3" r="7.3" fill="none" stroke="#93b4f5" stroke-width="0.8"/>
-<circle cx="198.9" cy="877.3" r="1.4" fill="#2563eb"/>
-<text x="198.9" y="903.4" font-size="3.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">SPK</text>
+<circle cx="146.2" cy="877.3" r="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="146.2" cy="877.3" r="13.4" fill="none" stroke="#93b4f5" stroke-width="0.8"/>
+<circle cx="146.2" cy="877.3" r="7.3" fill="none" stroke="#93b4f5" stroke-width="0.8"/>
+<circle cx="146.2" cy="877.3" r="1.4" fill="#2563eb"/>
+<text x="146.2" y="903.4" font-size="3.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">SPK</text>
 <path d="M41.0 844.9 L35.0 844.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M41.0 869.2 L35.0 869.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M205.7 1019.0 L205.7 1025.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>

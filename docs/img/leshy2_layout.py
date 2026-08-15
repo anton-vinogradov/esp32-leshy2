@@ -143,12 +143,12 @@ def gen(lang):
     # MAIN INNER (mirrored back view): S3 + wired radios/GPS/buses at real size; the connectors sit here — jack (device-left edge), 2x Grove (device-right), microSD + RESET + BOOT (bottom) — reached through case slots
     ain=[(69,56,6,12.5,T['jack'],'io',4),(69,72,6,9,'Grv','io',4.5),(69,85,6,9,'Grv','io',4.5),
      (23,113,28,7,T['mezz'],'mez',6),
-     (14,143,4,6,T['mic'],'io',3.2),(21,133,15,15,'microSD','svc',4.5),(40,143,6,6,'RESET','svc',3.4),(48,143,6,6,'BOOT','svc',3.4)]
+     (35.5,143,4,6,T['mic'],'io',3.2),(18,133,15,15,'microSD','svc',4.5),(42,143,6,6,'RESET','svc',3.4),(50,143,6,6,'BOOT','svc',3.4)]  # mic centred on the bottom edge; microSD left, RESET/BOOT right
     board(col2,ry1,T['t2'],'','#9a3412',ain,[],[],tdy=-27,mir=True)
     zone(col2,ry1,8,14,59,89,[T['zarea'],T['zstage'],T['zmain'],T['zmain2']])
     portdir(col2,ry1,76.5,62,'R',mir=True)   # jack -> main RIGHT edge, above the Grove (device-right; the C5 IR folds onto device-left, so this edge is single-board)
     portdir(col2,ry1,76.5,76.5,'R',mir=True); portdir(col2,ry1,76.5,89.5,'R',mir=True)  # 2x Grove -> device-right edge
-    portdir(col2,ry1,16,151.5,'D',mir=True); portdir(col2,ry1,28.5,151.5,'D',mir=True); portdir(col2,ry1,43,151.5,'D',mir=True); portdir(col2,ry1,51,151.5,'D',mir=True)  # mic + microSD + RESET + BOOT down
+    portdir(col2,ry1,37.5,151.5,'D',mir=True); portdir(col2,ry1,25.5,151.5,'D',mir=True); portdir(col2,ry1,45,151.5,'D',mir=True); portdir(col2,ry1,53,151.5,'D',mir=True)  # mic(centre) + microSD + RESET + BOOT down
     out.append(txt(30,ry2-38,T['r2'],11,'#0891b2','start','bold'))
     # C5 INNER (mirrored back view): C5 + 3x nRF (grouped; antennas spread on the outer) + power + IR/CS at real size; USB x2 + master + RST + BOOT on the bottom edge
     binn=[(69,84,6,6,'IR TX','io',3),(69,93,6,6,'IR RX','io',3),
@@ -156,7 +156,7 @@ def gen(lang):
      (11,143,9,7,'USB J1','io',4),(24,143,9,7,'USB J2','io',4),(37,143,9,5,T['master'],'edge',3.6),(49,143,6,6,'RST','svc',3.6),(58,143,6,6,'BOOT','svc',3.6)]
     board(col1,ry2,T['t3'],'','#0891b2',binn,[],[],tdy=-27,mir=True)
     zone(col1,ry2,5,14,65,68,[T['zarea'],T['zstage'],T['zc5'],T['zc5b']])
-    speaker(col1,ry2,57,99,8,T['spk'])
+    speaker(col1,ry2,37.5,99,8,T['spk'])  # centred on the C5 inner face
     portdir(col1,ry2,76.5,87,'R',mir=True); portdir(col1,ry2,76.5,96,'R',mir=True)  # IR TX/RX fire out the device-right side (DIV-style)
     for px in (15.5,28.5,41.5,52,61): portdir(col1,ry2,px,151.5,'D',mir=True)
     # C5 OUTER (back): 4 SMA + IR on top + a real 2x 18650 holder (40x78) with the two cells (18.6x65 cylinders). BT1 + all electronics are on the inner face.
