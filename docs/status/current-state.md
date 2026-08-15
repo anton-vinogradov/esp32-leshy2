@@ -26,6 +26,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - an NMEA baseline and a conditional per-revision advanced CASIC profile without another GNSS (`DEC-0014`);
 - an FM/RDS/ordinary-AM baseline and an open owner-imported SSB/CW patch loader without a bundled blob (`DEC-0015`);
 - a conditional SA518 dual-band analog-voice target with an honest UHF-only SA868S fallback (`DEC-0016`);
+- external M5 Unit NFC U216 as the first HF NFC backend, RFID2 as limited compatibility, and custom PN7160 as a qualification fallback (`DEC-0017`);
 - onboard mono ES8311 audio architecture with fail-safe analog bypass (`DEC-0009`);
 - C5 target ownership of 3×nRF24 and IR (`DEC-0001`), without claiming a working inter-MCU architecture.
 - owner-controlled signed S3/C5 updates with rollback and an open developer lifecycle (`DEC-0013`), without enabling irreversible hardware lockdown.
@@ -40,7 +41,6 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0011`: SA868 now has PTT receive-default, PD power-down-default, and a physical low-power H/L ceiling; independent STOP and controllable high power still require stage-3 proof.
 - `FND-0013`: VOX has no microphone-capture path and is explicitly deferred to the consolidated audio/pin budget.
 - `FND-0015`: both documented M5 NFC Units require a 5 V PORT.A power profile, while current `J40/J41` provide 3.3 V; the electrical correction awaits the consolidated port/power design.
-- `FND-0016`: a capable NFC frontend does not by itself prove universal credential emulation, a two-ended relay, key recovery, LF 125 kHz, or payment compliance.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -55,7 +55,7 @@ The Si4732 slice [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-recei
 
 The analog-voice slice [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) is **Reviewed** under `REV-0002O`. The owner accepted `IMP-0014/A` as [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 is the preferred 136–174/400–470 MHz half-duplex analog-FM target, while the current SA868S remains an explicitly UHF-only fallback until price, supply, PCB/power, and conducted-RF qualification pass. The peak 2 W-class→1 W trade is accepted and is not recorded as zero-loss saving. `FND-0012` is closed at requirement level; microphone capture/VOX (`FND-0013`), independent STOP, high-power control, exact hardware, protocol, RF, audio, and HIL proof remain for later stages.
 
-The NFC/RFID prerequisite audit is **Reviewed** under `REV-0002P`; [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) is **In review**. Current sources expose a better route than the old custom-PN7160-first idea: the external $7 M5 Unit NFC U216 provides A/B/F/V, ISO15693/FeliCa, NFC-A/F emulation, custom mode, and an MIT ESP-IDF 5.x library, while the $4.95 RFID2 saves only $2.05 and loses the advanced modes. **⚠️ Proposal [`IMP-0005`](../review/improvements/IMP-0005-pn7160-nfc-expansion.md)** recommends U216 as the first target, RFID2 as limited compatibility, and custom PN7160 only as a fallback. The exact U216 IC is NRND, the current port voltage is wrong (`FND-0015`), and universal clone/relay/key-recovery claims remain prohibited (`FND-0016`).
+The NFC/RFID slice [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) is **Reviewed** under `REV-0002Q`. The owner accepted `IMP-0005/A` as [`DEC-0017`](../review/decisions/DEC-0017-u216-hf-nfc-backend.md): the external $7 M5 Unit NFC U216 is the first HF NFC target, the $4.95 RFID2 is limited compatibility, and custom PN7160 is a fallback only after qualification failure. The $2.05 accessory delta is accepted to retain A/B/F/V, ISO15693/FeliCa, limited emulation, and custom-mode scope; it does not affect the base BOM. `FND-0016` is closed at requirement level by explicit three-tier gates and by rejecting universal clone, one-frontend relay, key-recovery, LF 125 kHz, and payment-compliance overclaims. The exact U216 IC is NRND, and exact-revision/lifecycle, 5 V `PORT.A-NFC` (`FND-0015`), driver/SBOM, protocol, and HIL proof remain open implementation work.
 
 ## Deferred architecture gate
 

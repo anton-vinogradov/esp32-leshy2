@@ -1,6 +1,6 @@
 # FND-0016 — NFC frontend не доказывает universal emulation, relay или key recovery
 
-- Статус: **Открыто до финального `REQ-NFC-0001` review**
+- Статус: **Закрыто на уровне требований: `DEC-0017`, `REQ-NFC-0001`, `REV-0002Q`**
 - Серьёзность: capability/security overclaim
 - Затрагивает: `C-NFC-02`–`C-NFC-09`, `OUT-06`, `IMP-0005`
 - Обнаружено: 2026-08-16
@@ -33,3 +33,7 @@
 - [STMicroelectronics ST25R3916 product page](https://www.st.com/en/nfc/st25r3916.html)
 - [NXP PN7160 product page](https://www.nxp.com/products/PN7160)
 - [NXP PN7160 card-emulation note](https://www.nxp.com/docs/en/application-note/AN13861.pdf)
+
+## Закрытие
+
+`DEC-0017` выбрал U216 как первый target, не превратив frontend primitives в universal capability claims. `REQ-NFC-0001` разнёс read/write, recovery, emulation, relay, LF и payment semantics по отдельным гейтам; распространение проверено `REV-0002Q`. Hardware/driver/HIL остаются implementation proof, но requirement-level неоднозначность закрыта.

@@ -156,7 +156,7 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-NFC-01 | ISO14443A detect, UID/ATQA/SAK/fingerprint | MAIN | `conditional`: exact Unit/profile; U216 first proposal, current port power fails `FND-0015` |
+| C-NFC-01 | ISO14443A detect, UID/ATQA/SAK/fingerprint | MAIN | `conditional`: `DEC-0017` U216 first target; current port power fails `FND-0015` |
 | C-NFC-02 | MIFARE dictionary, dump и write/restore | MIXED | known-key owner read separate from Controlled-Zone recovery/credential write |
 | C-NFC-03 | MIFARE nested attack | LAB-I | Controlled Zone/authorized card; runtime/provenance/corpus proof, hardnested separate |
 | C-NFC-04 | Magic-card detect и wipe/format | MIXED | read-only detect in Lab; destructive write in Controlled Zone |
@@ -234,7 +234,7 @@
 | OUT-03 | Bluetooth Classic, BLE connection-follow sniff и BLE jam | S3 radio/controller ceiling | повторно проверить datasheet/SDK |
 | OUT-04 | nRF24 как 802.11 или полноценный BLE receiver | PHY ceiling | оставить вне scope, если datasheet подтверждает |
 | OUT-05 | HF TX, VHF airband/weather, 30–64 MHz и DRM через Si4732 | tuner/DSP ceiling | оставить вне scope, если компонент сохраняется |
-| OUT-06 | NFC card emulation/relay, ISO15693, FeliCa, LF 125 kHz, hardnested/darkside | WS1850S ceiling | U216 reopens F/V/emulation/custom mode; relay needs two frontend, LF separate, recovery needs compute/license proof |
+| OUT-06 | NFC card emulation/relay, ISO15693, FeliCa, LF 125 kHz, hardnested/darkside | WS1850S ceiling | `DEC-0017` selects U216 for F/V/emulation/custom mode; relay needs two frontend, LF separate, recovery needs compute/license proof |
 | OUT-07 | SA868 full-duplex repeater и digital voice | half-duplex analog module ceiling | оставить вне scope, если компонент сохраняется |
 | OUT-08 | HackRF-class wideband SDR, arbitrary RF TX и onboard Linux analytics | иной класс hardware/compute | отдельное расширение, не базовый scope |
 | OUT-09 | Cellular/GSM | модем отсутствует | вне базового scope |

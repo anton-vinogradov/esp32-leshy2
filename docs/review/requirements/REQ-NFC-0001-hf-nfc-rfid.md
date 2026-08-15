@@ -1,15 +1,15 @@
 # REQ-NFC-0001 — HF NFC/RFID read, write, analysis and emulation contract
 
-- Статус набора: **На ревью; ожидается решение `IMP-0005`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-NFC-01`–`C-NFC-10`, `OUT-06`, пересечения `C-X-01`, `C-X-02`, `C-X-07`, `C-X-11`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`; NFC backend decision pending
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0017`
 - Находки: `FND-0015`, `FND-0016`
 - Условные входы реализации: accessory/port power, I²C timing, backend driver, storage/privacy, protocol corpus и HIL
 
 ## Граница документа
 
-Этот набор отделяет обычную работу с собственными NFC tags от security analysis и действительно опасных credential operations. Наличие radio frontend не создаёт ключ, authorization либо совместимость с произвольной картой. Exact backend/revision и доказанный support matrix всегда видимы.
+Этот набор отделяет обычную работу с собственными NFC tags от security analysis и действительно опасных credential operations. По `DEC-0017` первый target backend — внешний M5 Unit NFC U216; RFID2 является limited compatibility, а custom PN7160 — только fallback при провале qualification. Наличие radio frontend не создаёт ключ, authorization либо совместимость с произвольной картой. Exact backend/revision и доказанный support matrix всегда видимы.
 
 HF 13.56 MHz и LF 125 kHz — разные hardware paths. Payment APDU transport не означает payment application или EMVCo-certified product. Все third-level functions наследуют banner каждого входа по `DEC-0010` и затем проходят собственный target/action gate.
 
@@ -17,7 +17,7 @@ HF 13.56 MHz и LF 125 kHz — разные hardware paths. Payment APDU transpo
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-NFC-01` | все | `conditional` | Основной | Accessory manager определяет exact SKU/hardware/IC/driver revision, power profile и proven capability bitmap. Неизвестный backend остаётся RF-off; branch скрывается или показывает причину. RFID2, U216 и PN7160 не смешиваются под общим именем. |
+| `REQ-NFC-01` | все | `conditional` | Основной | По `DEC-0017` accessory manager определяет exact SKU/hardware/IC/driver revision, power profile и proven capability bitmap. U216 — first target, RFID2 — limited compatibility, PN7160/другой advanced backend — fallback только после documented trigger. Неизвестный backend остаётся RF-off; профили не смешиваются под общим именем. |
 | `REQ-NFC-02` | `C-NFC-01` | `conditional` | Основной | Poll/detect/anticollision показывает technology, UID/identifier, ATQA/SAK/ATS либо protocol-native equivalents и confidence/source без выдуманного fingerprint. Privacy-safe display скрывает identifier на lock/screenshot/export по умолчанию. |
 | `REQ-NFC-03` | `C-NFC-05`, `C-NFC-06`, `C-NFC-08` | `conditional` | Основной | Обычные owner-present Ultralight/NTAG/NDEF/Amiibo-read сценарии поддерживают bounded read, typed parse и raw view. Malformed/oversized TLV/NDEF не повреждает state. Amiibo identification не включает proprietary keys или false authenticity claim. |
 | `REQ-NFC-04` | `C-NFC-05`, `C-NFC-06` | `conditional` | Основной destructive confirmation | NDEF/ordinary user-tag write строит полный preview, перечитывает tag, проверяет capacity/lock/password state и выполняет explicit hold-to-write. Credential sector, irreversible lock/OTP/config bits и unknown tag переводят действие в `REQ-NFC-09`, а не пишутся как ordinary NDEF. |
@@ -27,7 +27,7 @@ HF 13.56 MHz и LF 125 kHz — разные hardware paths. Payment APDU transpo
 | `REQ-NFC-08` | `C-NFC-04`, `C-NFC-07` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | UID clone, magic-card format/wipe и restore доступны только для явно выбранной owned/authorized destination card. UI показывает source/destination, irreversible regions, before-image и verification; removal/mismatch aborts before next write. |
 | `REQ-NFC-09` | `C-NFC-02`, `C-NFC-05`, `C-NFC-06` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | Credential-sector restore, password/config/lock/OTP write и иные security-sensitive modifications используют per-operation allowlist, fresh preview/hold, power/removal recovery semantics и mandatory readback. Generic raw command не обходит этот gate. |
 | `REQ-NFC-10` | `C-NFC-09` | `conditional` | Лаборатория | ISO14443-4/ISO-DEP, DESFire and generic APDU diagnostic records direction, timing, status and redacted payload. Payment-card inspection is privacy-gated, stores the minimum, never requests PIN/CVC or performs payment, and never claims terminal/card authenticity or EMVCo certification. |
-| `REQ-NFC-11` | `OUT-06` A/B/F/V | `conditional` | Основной read/write | Advanced backend provides only corpus-proven NFC-A/B, NFC-F/FeliCa and NFC-V/ISO15693 discovery/read/write. A chip marketing list is not enough; exact tag families, rates, commands and known limitations are versioned. |
+| `REQ-NFC-11` | `OUT-06` A/B/F/V | `conditional` | Основной read/write | Qualified U216 profile provides only corpus-proven NFC-A/B, NFC-F/FeliCa and NFC-V/ISO15693 discovery/read/write. A product/chip marketing list is not enough; exact Unit/IC/library revisions, tag families, rates, commands and known limitations are versioned. |
 | `REQ-NFC-12` | `OUT-06` emulation | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | Card/tag emulation is restricted to explicitly modeled NFC-A/NFC-F or other backend-proven test profiles and owner-supplied non-secret data. Each session shows emulated identifiers/data, expires/disarms on exit/STOP/reset/accessory loss, and never claims to reproduce protected credential/backend state. |
 | `REQ-NFC-13` | `OUT-06` relay | `conditional`, later substage | Контролируемая зона, `AUTHORIZED_TARGET` | NFC relay requires two independently qualified frontend roles, authorization for both endpoints, visible link/latency/error state, hard session timeout and STOP. One mode-switching frontend is insufficient; implementation remains disabled until dual-unit bus/address, field isolation and real-reader latency HIL pass. |
 | `REQ-NFC-14` | `OUT-06` LF | `defer` | Future expansion | LF 125 kHz is not provided by any HF backend. It is not `exclude-proven`, but requires a separate reader/emulator/antenna, protocol list, enclosure/coexistence and cost decision before becoming product scope. |
@@ -55,7 +55,7 @@ HF 13.56 MHz и LF 125 kHz — разные hardware paths. Payment APDU transpo
 
 ## Стоимость без потери продукта
 
-NFC остаётся external accessory, поэтому base BOM не получает frontend/antenna. На дату аудита RFID2 стоит $4.95, а U216 — $7; экономия $2.05 через RFID2 теряет FeliCa/ISO15693/emulation/custom-mode и не является zero-loss. U216 может убрать custom PN7160 PCB, antenna/matching и NCI port, но требует 5 V port correction и lifecycle gate exact NRND `ST25R3916-AQWT`.
+NFC остаётся external accessory, поэтому base BOM не получает frontend/antenna. По `DEC-0017` владелец принял U216 за $7 как target вместо функционально неэквивалентной экономии $2.05 через RFID2. U216 убирает custom PN7160 PCB, antenna/matching и NCI port, но требует 5 V port correction и lifecycle gate exact NRND `ST25R3916-AQWT`.
 
 ## Первичные источники
 

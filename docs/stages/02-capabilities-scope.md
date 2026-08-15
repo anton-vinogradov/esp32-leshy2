@@ -18,6 +18,7 @@
 - `DEC-0014`: NMEA — обязательный GNSS baseline, advanced CASIC assistance/integrity условны per-revision proof и не требуют третьего GNSS;
 - `DEC-0015`: Si4732 SSB/CW использует открытый bounded loader и owner-imported patch без bundled blob; synchronous AM остаётся deferred;
 - `DEC-0016`: SA518 — preferred conditional dual-band analog-voice target, SA868S — честный UHF-only fallback до qualification;
+- `DEC-0017`: внешний M5 Unit NFC U216 — первый HF NFC backend, RFID2 — limited compatibility, custom PN7160 — fallback после qualification failure;
 - legacy capability tree обоих репозиториев — только источник кандидатов, не требований;
 - datasheet-ограничения и проверяемые safety/legal-гейты для каждого кандидата.
 
@@ -50,7 +51,7 @@
 
 ## Аудит старых исключений
 
-По решению владельца проекта `DEC-0004` все девять групп `OUT-*` проходят новый аудит `AUD-0001`. Уже найдены четыре реалистичных обхода (`IMP-0002`–`IMP-0005`); ни один из них пока не меняет scope.
+По решению владельца проекта `DEC-0004` все девять групп `OUT-*` проходят новый аудит `AUD-0001`. Уже найдены четыре реалистичных обхода (`IMP-0002`–`IMP-0005`); `IMP-0005` принят как `DEC-0017`, остальные пока не меняют scope.
 
 Сравнение audio-вариантов завершено и прошло `REV-0002E`: current analog, native ADC/sigma-delta S3, ES8311, ES8388, TLV320AIC3204 и внешний M5Stack M144 проверены вместе с GPIO, стоимостью и правовым режимом. Владелец принял `IMP-0009` как `DEC-0009`: ES8311 mono codec с существующим RX mux и двумя аппаратными default-to-analog selector.
 
@@ -70,7 +71,7 @@ Si4732 prerequisite audit прошёл `REV-0002L`. Документирован
 
 Analog voice/SA868 prerequisite audit прошёл `REV-0002N`. `FND-0011` исправил доказанный high-power/floating-control default: PTT теперь имеет RX pull-up, PD — power-down pull-down, H/L физически ограничен low до stage-3 safe control. `FND-0012` отделил UHF variant, 400–470 AT range, binary scan/raw RSSI и conditional host tone scan. `FND-0013` оставляет VOX `defer` без mic capture; `FND-0014` удаляет ложное обещание licence-free PMR446 через firmware preset. Владелец принял `IMP-0014/A` как `DEC-0016`: SA518 dual-band — preferred conditional target, SA868S — UHF-only fallback до price/AVL/RF proof, а падение peak 2 W-class→1 W принято как trade-off. Распространение прошло `REV-0002O`, `FND-0012` закрыт на requirement-level, `REQ-VHF-0001` получил статус **«Проведено ревью»**.
 
-NFC/RFID prerequisite audit прошёл `REV-0002P`. Новый готовый M5 Unit NFC U216/ST25R3916 за $7 снимает A/B/F/V, ISO15693/FeliCa и limited emulation ceiling без custom PN7160 board; официальный MIT driver уже имеет ESP-IDF 5.x examples. `FND-0015` фиксирует, что текущие `J40/J41` дают 3.3 V вместо официальных 5 V обоих M5 NFC Unit. `FND-0016` отделяет frontend primitives от universal clone, two-endpoint relay, key recovery, LF и payment compliance. `REQ-NFC-0001` остаётся **«На ревью»** до выбора `IMP-0005`; recommendation — U216 как первый target, RFID2 compatibility и PN7160 fallback.
+NFC/RFID prerequisite audit прошёл `REV-0002P`. Новый готовый M5 Unit NFC U216/ST25R3916 за $7 снимает A/B/F/V, ISO15693/FeliCa и limited emulation ceiling без custom PN7160 board; официальный MIT driver уже имеет ESP-IDF 5.x examples. `FND-0015` фиксирует, что текущие `J40/J41` дают 3.3 V вместо официальных 5 V обоих M5 NFC Unit. `FND-0016` отделяет frontend primitives от universal clone, two-endpoint relay, key recovery, LF и payment compliance. Владелец принял `IMP-0005/A` как `DEC-0017`: U216 — первый target, RFID2 — limited compatibility, custom PN7160 — fallback только после qualification failure; дополнительные $2.05 против RFID2 приняты как цена сохранения advanced scope, а не base-BOM cost. Распространение прошло `REV-0002Q`, `FND-0016` закрыт на requirement-level, `REQ-NFC-0001` получил статус **«Проведено ревью»**. Exact U216 revision/lifecycle, 5-вольтовый `PORT.A-NFC`, driver/SBOM и HIL остаются implementation gates; `FND-0015` открыт.
 
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 

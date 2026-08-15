@@ -1,6 +1,6 @@
 # IMP-0005 — снять NFC ceiling готовым M5 Unit NFC U216
 
-- Статус: **⚠️ Предложение; требуется решение владельца**
+- Статус: **Принято владельцем: вариант A, `DEC-0017`**
 - Связано: `OUT-06`, `C-NFC-*`, `FND-0015`, `FND-0016`, `REQ-NFC-0001`
 - Зона: Main для ordinary tag read/write; Lab для passive credential analysis; Controlled Zone для emulation/recovery/clone/relay
 - Первоначально открыто: 2026-08-15 как custom PN7160; переработано 2026-08-16 после появления U216
@@ -18,7 +18,7 @@ Custom PN7160 действительно снимает часть старог�
 
 То есть +$2.05 к **опциональному аксессуару**, не к base-device BOM, заменяет разработку custom PN7160 board и расширяет возможности. Это не zero-cost saving, но сильное снижение total engineering/procurement cost при заметном capability gain.
 
-## ⚠️ Предложение — варианты
+## Рассмотренные варианты
 
 ### A — U216 как первый target backend; RFID2 compatibility и PN7160 fallback (рекомендация)
 
@@ -64,3 +64,7 @@ Custom PN7160 действительно снимает часть старог�
 - [STMicroelectronics ST25R3916 features and lifecycle](https://www.st.com/en/nfc/st25r3916.html)
 - [NXP PN7160 product page](https://www.nxp.com/products/PN7160)
 - [NXP PN7160/PN7161 datasheet](https://www.nxp.com/docs/en/data-sheet/PN7160_PN7161.pdf)
+
+## Решение владельца
+
+2026-08-16 принят вариант A: U216 — первый target HF-NFC backend, RFID2 — limited compatibility, custom PN7160 — conditional fallback. Канонический контракт — `DEC-0017`.

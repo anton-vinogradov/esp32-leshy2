@@ -30,3 +30,5 @@
 Аудит пререквизитов NFC/RFID capability-среза получил статус **«Проведено ревью»**. `REQ-NFC-0001` остаётся **«На ревью»** до выбора варианта `IMP-0005`; открыт ровно один owner-level вопрос.
 
 Exact accessory target, electrical port artifact, driver integration, sensitive storage, protocol corpus и HIL не объявлены реализованными: это доказательства следующих стадий.
+
+Последующее состояние: владелец принял `IMP-0005/A` как `DEC-0017`, propagation review выполнен в `REV-0002Q`, а `REQ-NFC-0001` получил статус **«Проведено ревью»**.
