@@ -149,7 +149,7 @@
 | C-VHF-03 | Channel/tone scan и carrier/RSSI detect | MAIN | UART даёт binary carrier/raw RSSI; tone scan conditional через ES8311 host decode (`FND-0012`) |
 | C-VHF-04 | Parrot, roger beep, VOX, 1750 tone, DTMF encode | MIXED | parrot = Lab; audio TX conditional `DEC-0009`; VOX `defer` без mic capture (`FND-0013`) |
 | C-VHF-05 | DTMF decode | MAIN | `conditional`: `DEC-0009`; electrical/decoder proof |
-| C-VHF-06 | APRS/AFSK, AX.25 KISS, SSTV TX, fox-hunt beacon | MAIN | `conditional`: current SA868 UHF only; dual-band обход `IMP-0014`; licence/TX/modem proof |
+| C-VHF-06 | APRS/AFSK, AX.25 KISS, SSTV TX, fox-hunt beacon | MAIN | `conditional`: `DEC-0016` предпочитает SA518 dual-band, SA868 UHF fallback; licence/TX/modem proof |
 | C-VHF-07 | Cross-band audio relay и UHF WAV recording | MIXED | `conditional`: `DEC-0009`; relay только Lab/default-off + authorized content/legal/HIL proof |
 
 ## NFC/RFID optional unit — `FW-CAP §9`

@@ -43,10 +43,11 @@
 - [DEC-0013: открытая owner-controlled цепочка подписанных обновлений](decisions/DEC-0013-owner-controlled-signed-updates.md)
 - [DEC-0014: NMEA baseline и квалифицируемый advanced CASIC profile](decisions/DEC-0014-casic-gnss-profile.md)
 - [DEC-0015: открытый owner-imported SSB patch loader Si4732](decisions/DEC-0015-open-si4732-ssb-patch-loader.md)
+- [DEC-0016: conditional SA518 dual-band voice target с SA868S fallback](decisions/DEC-0016-conditional-sa518-dual-band-voice.md)
 - [REQ-SYS-0001: System/UI/storage platform contract — проведено ревью](requirements/REQ-SYS-0001-system-ui-storage.md)
 - [REQ-GNSS-0001: navigation/time/integrity contract — проведено ревью](requirements/REQ-GNSS-0001-navigation-integrity.md)
 - [REQ-RX-0001: Si4732 receiver/scan/record/decode contract — проведено ревью](requirements/REQ-RX-0001-si4732-receiver.md)
-- [REQ-VHF-0001: analog voice/modem/relay contract — на ревью](requirements/REQ-VHF-0001-analog-voice-modem.md)
+- [REQ-VHF-0001: analog voice/modem/relay contract — проведено ревью](requirements/REQ-VHF-0001-analog-voice-modem.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -58,7 +59,7 @@
 - [FND-0009: legacy u-blox GNSS расходится с принятым AT6668 — закрыто DEC-0014](findings/FND-0009-legacy-ublox-vs-at6668.md)
 - [FND-0010: SSB patch и synchronous-AM имеют разные proof/license состояния — закрыто DEC-0015](findings/FND-0010-si4732-ssb-patch-and-sync-am.md)
 - [FND-0011: SA868 floating TX controls и high-power hardware default — исправлено консервативно](findings/FND-0011-sa868-unsafe-tx-defaults.md)
-- [FND-0012: SA868 API/диапазон не доказывает весь legacy scope](findings/FND-0012-sa868-api-and-band-overclaims.md)
+- [FND-0012: SA868 API/диапазон не доказывает весь legacy scope — закрыто DEC-0016](findings/FND-0012-sa868-api-and-band-overclaims.md)
 - [FND-0013: VOX не имеет microphone-capture path](findings/FND-0013-sa868-vox-has-no-microphone-capture.md)
 - [FND-0014: firmware preset не создаёт licence-exempt PMR446 equipment — закрыто на уровне требований](findings/FND-0014-pmr446-preset-is-not-compliance.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
@@ -74,7 +75,7 @@
 - [IMP-0011: подписанная цепочка обновлений S3 и C5 — принято как A-open](improvements/IMP-0011-signed-update-chain.md)
 - [IMP-0012: backend-native assistance и индикатор целостности GNSS — принято](improvements/IMP-0012-casic-gnss-advanced-profile.md)
 - [IMP-0013: открытый lifecycle SSB-патча Si4732 — принято](improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)
-- [⚠️ IMP-0014: conditional migration на dual-band SA518 — предложение](improvements/IMP-0014-dual-band-sa518-voice-backend.md)
+- [IMP-0014: conditional migration на dual-band SA518 — принято](improvements/IMP-0014-dual-band-sa518-voice-backend.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -97,6 +98,7 @@
 - [REV-0002L: ревью пререквизитов Si4732 receiver](reviews/REV-0002L-si4732-prerequisites.md)
 - [REV-0002M: ревью Si4732 receiver и распространения варианта A](reviews/REV-0002M-si4732-decision-propagation.md)
 - [REV-0002N: ревью пререквизитов analog voice/SA868](reviews/REV-0002N-sa868-prerequisites.md)
+- [REV-0002O: ревью analog voice и распространения SA518/A](reviews/REV-0002O-voice-backend-decision-propagation.md)
 
 ## Статусы
 

@@ -1,6 +1,6 @@
 # IMP-0014 — заменить UHF-only SA868S на квалифицируемый dual-band SA518
 
-- Статус: **⚠️ Предложение; требуется решение владельца**
+- Статус: **Принято владельцем как вариант A; см. `DEC-0016`**
 - Этап решения: 2 — capability scope; component/BOM/RF proof — этапы 3–6 и 10
 - Связано: `FND-0012`, `FND-0013`, `FND-0014`, `REQ-VHF-0001`, `OUT-07`, `DEC-0005`
 - Обнаружено: 2026-08-16
@@ -52,6 +52,10 @@ Stage 2 принимает dual-band voice-radio result, но stage 4 обяза
 ## Рекомендация
 
 Принять A как **conditional target with fallback**, а не немедленно объявлять SA518 выбранным BOM-компонентом. Это позволяет обойти старый UHF ceiling и сохранить один radio backend, но честно удерживает SA868S до цены, availability и RF/HIL proof. Потеря 2 W peak должна быть осознанно принята владельцем как обмен на dual-band, а не названа экономией без потерь.
+
+## Решение владельца
+
+Вариант A принят 2026-08-16. Канонический контракт — `DEC-0016`: SA518 является preferred conditional target, SA868S — UHF-only fallback до stage-4 qualification; обмен 2 W-class peak на 1 W ради dual-band принят явно.
 
 ## Первичные источники
 

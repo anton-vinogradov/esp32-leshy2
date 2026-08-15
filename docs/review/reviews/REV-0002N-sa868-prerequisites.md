@@ -35,3 +35,5 @@
 Аудит пререквизитов analog voice/modem capability-среза получил статус **«Проведено ревью»**. `REQ-VHF-0001` остаётся **«На ревью»** до решения `IMP-0014`; затем требуются decision propagation, закрытие либо уточнение `FND-0012` и отдельный финальный review artifact.
 
 Final module/BOM, independent STOP, controllable H/L, RF/legal profiles, audio/VOX, protocol interoperability, storage/network и HIL не объявлены реализованными: это доказательства последующих стадий.
+
+Последующее состояние: владелец принял `IMP-0014/A` в `DEC-0016`, propagation review выполнен в `REV-0002O`, а `REQ-VHF-0001` получил статус **«Проведено ревью»**.

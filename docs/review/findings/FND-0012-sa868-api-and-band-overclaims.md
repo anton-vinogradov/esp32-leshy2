@@ -1,6 +1,6 @@
 # FND-0012 — legacy приписывает UHF SA868 режимы и диапазоны, которых его API не доказывает
 
-- Статус: **Открыто; требуется решение `IMP-0014` по voice-radio backend**
+- Статус: **Закрыто на уровне требований; `DEC-0016`, `REQ-VHF-0001`, `REV-0002O`**
 - Серьёзность: нельзя переносить `C-VHF-01`–`C-VHF-06` как готовый единый контракт
 - Затрагивает: `REQ-VHF-0001`, BOM/RF/antenna, APRS/AX.25, scan UI и firmware/HIL
 - Обнаружено: 2026-08-16
@@ -36,6 +36,12 @@
 2. Exact installed module/variant/revision и protocol profile фиксируются в BOM и production manifest.
 3. Requirement/UI отделяют vendor-relative RSSI, binary carrier scan и conditional host tone decode.
 4. Любой заявленный край диапазона проходит conducted RF/HIL и applicable regional profile.
+
+## Закрытие
+
+Владелец принял `IMP-0014/A` как `DEC-0016`. Preferred profile теперь явно SA518 dual-band 136–174/400–470 MHz; SA868S остаётся UHF-only fallback 400–470 MHz, а 470–480 MHz — conditional proof. Binary scan, raw RSSI и host tone decode разнесены в `REQ-VHF-0001`; propagation проверен `REV-0002O`.
+
+Находка закрыта только на requirement-level. Exact BOM/revision, availability, RF/antenna, protocol и HIL остаются stage-4/6/10 evidence.
 
 ## Первичные источники
 

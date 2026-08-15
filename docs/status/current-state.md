@@ -25,6 +25,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - external M5 GNSS and external U214 LoRa+GNSS (`DEC-0006`, `DEC-0008`);
 - an NMEA baseline and a conditional per-revision advanced CASIC profile without another GNSS (`DEC-0014`);
 - an FM/RDS/ordinary-AM baseline and an open owner-imported SSB/CW patch loader without a bundled blob (`DEC-0015`);
+- a conditional SA518 dual-band analog-voice target with an honest UHF-only SA868S fallback (`DEC-0016`);
 - onboard mono ES8311 audio architecture with fail-safe analog bypass (`DEC-0009`);
 - C5 target ownership of 3×nRF24 and IR (`DEC-0001`), without claiming a working inter-MCU architecture.
 - owner-controlled signed S3/C5 updates with rollback and an open developer lifecycle (`DEC-0013`), without enabling irreversible hardware lockdown.
@@ -37,7 +38,6 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0006`: the original key-matrix proposal and audio controls collide on `U13.P10..P17`.
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
 - `FND-0011`: SA868 now has PTT receive-default, PD power-down-default, and a physical low-power H/L ceiling; independent STOP and controllable high power still require stage-3 proof.
-- `FND-0012`: the UHF SA868 API does not prove VHF, 470–480 MHz control, or native tone scan; backend direction is open.
 - `FND-0013`: VOX has no microphone-capture path and is explicitly deferred to the consolidated audio/pin budget.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
@@ -51,7 +51,7 @@ The GNSS/navigation slice [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001
 
 The Si4732 slice [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) is **Reviewed** under `REV-0002M`. The owner accepted `IMP-0013/A` as [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): an open bounded loader is in the target, the SSB blob is locally imported with distinct integrity/provenance states, and synchronous AM remains deferred pending separate proof. `FND-0010` is closed at requirement level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder, and coexistence HIL remain unimplemented.
 
-The analog-voice prerequisite audit is complete under `REV-0002N`. [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) separates manual PTT, automated TX modes, modem/iGate, and Lab relay; a false licence-exempt PMR446 preset is prohibited (`FND-0014`). **⚠️ Proposal [`IMP-0014`](../review/improvements/IMP-0014-dual-band-sa518-voice-backend.md)** offers a conditional migration from UHF-only SA868S to the new 136–174/400–470 MHz SA518 with fallback pending price/AVL/RF proof. The gain is VHF through one dual-band backend; the costs are an incompatible footprint, about 40% more area, new supply risk, and a UHF peak drop from the 2 W class to 1 W. The requirement set is **In review** pending the decision.
+The analog-voice slice [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) is **Reviewed** under `REV-0002O`. The owner accepted `IMP-0014/A` as [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 is the preferred 136–174/400–470 MHz half-duplex analog-FM target, while the current SA868S remains an explicitly UHF-only fallback until price, supply, PCB/power, and conducted-RF qualification pass. The peak 2 W-class→1 W trade is accepted and is not recorded as zero-loss saving. `FND-0012` is closed at requirement level; microphone capture/VOX (`FND-0013`), independent STOP, high-power control, exact hardware, protocol, RF, audio, and HIL proof remain for later stages.
 
 ## Deferred architecture gate
 

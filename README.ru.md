@@ -25,6 +25,7 @@ Leshy2 — открытый автономный портативный all-in-o
 - Бортового LoRa на основной плате нет. M5Stack U214 — первый backend LoRa+GNSS для `EXT-RF14` и общепринятых профилей 868/915 в пределах модуля и региональных правил; другие carrier опциональны и квалифицируются отдельно.
 - Встроенный mono digital-audio prerequisite реализуется через ES8311, существующий mux RX-источника и два аппаратных default-to-analog selector. Обычное прослушивание и голос через микрофон сохраняются при reset или failure MCU либо codec.
 - Встроенный Si4732 даёт FM/RDS и обычный приём LW/MW/SW. SSB USB/LSB и CW через BFO доступны после локального импорта владельцем совместимого volatile patch через открытый bounded loader; сторонний blob не входит в release без доказанных provenance и права распространения. Synchronous-AM не обещается до отдельного proof ([`DEC-0015`](docs/review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md)).
+- Предпочтительный voice-radio backend — half-duplex analog-FM SA518 с VHF 136–174 и UHF 400–470 МГц, 0.5/1 W и явными региональными/licence-профилями. До проверки цены, поставки и RF сохраняется UHF-only SA868S fallback; он никогда не называется dual-band. Падение пика 2 W-class→1 W принято ради одного VHF+UHF модуля, а внешний SMA не выдаётся за licence-exempt PMR446 ([`DEC-0016`](docs/review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md)).
 
 ## Граница безопасности и стоимости
 

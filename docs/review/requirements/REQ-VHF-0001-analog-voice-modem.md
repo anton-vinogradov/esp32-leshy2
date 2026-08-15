@@ -1,15 +1,15 @@
 # REQ-VHF-0001 — analog voice, signalling, modem and relay contract
 
-- Статус набора: **На ревью; ожидает решение `IMP-0014`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-VHF-01`–`C-VHF-07`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-11`, `OUT-07`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0009`, `DEC-0010`, `DEC-0013`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0009`, `DEC-0010`, `DEC-0013`, `DEC-0016`
 - Находки: `FND-0003`, `FND-0007`, `FND-0011`–`FND-0014`
 - Условные входы реализации: backend/BOM, STOP/PTT, RF/legal profile, audio/modem/storage/network и HIL proof следующих этапов
 
 ## Граница документа
 
-Этот набор определяет пользовательский результат half-duplex analog-FM voice-radio backend. Пока `IMP-0014` открыт, UHF SA868S является текущим hardware fallback, а dual-band SA518 — предложенным target candidate. Нельзя смешивать их диапазоны, мощность, pinout и protocol как одну доказанную деталь.
+Этот набор определяет пользовательский результат half-duplex analog-FM voice-radio backend. По `DEC-0016` preferred conditional target — SA518 dual-band 136–174/400–470 MHz; текущий SA868S остаётся честным UHF-only 400–470 MHz fallback до stage-4 qualification. Их диапазоны, мощность, pinout и protocol никогда не смешиваются как одна доказанная деталь.
 
 Наличие перестраиваемого TX не создаёт права передачи. Без активного квалифицированного regional/operator profile subsystem работает RX-only. Этот документ не выдаёт CEPT PMR446 или amateur rules за универсальные правила другой юрисдикции.
 
@@ -17,7 +17,7 @@
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-VHF-01` | все | `conditional` | Основной | Production manifest фиксирует exact module, UHF/dual-band variant, hardware/firmware revision и protocol profile. UI показывает backend identity и доказанные RX/TX ranges; неизвестная revision не получает blanket compatibility. |
+| `REQ-VHF-01` | все | `conditional` | Основной | По `DEC-0016` production manifest фиксирует exact module, preferred SA518 либо fallback SA868S, hardware/firmware revision и protocol profile. UI показывает backend identity и доказанные RX/TX ranges; fallback всегда UHF-only, неизвестная revision не получает blanket compatibility. |
 | `REQ-VHF-02` | `C-VHF-01` | `baseline policy` | Основной | Без применимого region/licence/operator profile TX отсутствует или остаётся disabled. Profile versioned и задаёт RX/TX frequencies, spacing/bandwidth, tone/code, power ceiling, antenna/ERP assumptions, callsign/ID, duty/timeout и expiry; пользовательские частоты не обходят hardware STOP и explicit arming. |
 | `REQ-VHF-03` | `C-VHF-01` | `conditional` | Сквозной safety | По `FND-0011` reset/high-Z default: `PD=0`, `PTT=1`, `H/L=low`. Модуль включается RX-only, low-power readback/profile применяется до arming. High-power появляется только после явного выбора текущего сценария и доказанного fail-safe H/L path; module EEPROM не восстанавливает armed/high state. |
 | `REQ-VHF-04` | `C-VHF-01` | `conditional` | Основной | Manual PTT — hold-to-transmit с видимыми frequency/profile/power/callsign и actual-TX indication. Release, timeout, STOP, session exit, screen lock, watchdog, low battery, audio fault или profile expiry снимают PTT; повторное включение не происходит автоматически. |
@@ -70,7 +70,7 @@
 
 ## Стоимость без потери продукта
 
-`FND-0011` adds three passives and reduces current draft risk. ES8311 already pays the prerequisite for RX capture/TX injection, but does not pay for mic capture/VOX. `IMP-0014/A` may replace one module with one module and reduce peak power stress, yet price/stock are unknown, board area grows, and 2 W peak is lost; it is a capability trade, not proven zero-loss savings. A second voice radio is explicitly not a cost optimization.
+`FND-0011` adds three passives and reduces current draft risk. ES8311 already pays the prerequisite for RX capture/TX injection, but does not pay for mic capture/VOX. `DEC-0016` may replace one module with one module and reduce peak power stress, yet price/stock are unknown, board area grows, and 2 W peak is lost; it is an accepted capability trade, not proven zero-loss savings. A second voice radio is explicitly not a cost optimization.
 
 ## Первичные источники
 
