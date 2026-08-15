@@ -21,10 +21,14 @@
 - [DEC-0002: all-in-one, Лаборатория и акт о ненападении](decisions/DEC-0002-project-vision.md)
 - [DEC-0003: безопасный TX-дефолт](decisions/DEC-0003-safe-tx-defaults.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
+- [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
+- [FND-0003: цифровые audio-функции не поддержаны hardware](findings/FND-0003-missing-mcu-audio-path.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
+- [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [Контракт владения](../contracts/ownership.md)
 - [REV-0000: ревью этапа 0](reviews/REV-0000-stage-0.md)
 - [REV-0001: ревью этапа 1](reviews/REV-0001-stage-1.md)
+- [REV-0002A: ревью инвентаризации возможностей](reviews/REV-0002A-capability-inventory.md)
 
 ## Статусы
 
