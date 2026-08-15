@@ -39,6 +39,8 @@
 - `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
 - `FND-0011`: текущему SA868 добавлены PTT receive-default, PD power-down-default и физический low-power H/L; независимый STOP и управляемый high-power path ещё требуют stage-3 proof.
 - `FND-0013`: VOX не имеет microphone-capture path и явно отложен до общего audio/pin budget.
+- `FND-0015`: оба документированных M5 NFC Unit требуют PORT.A power profile 5 V, а текущие `J40/J41` дают 3.3 V; электрическое исправление ждёт общего port/power design.
+- `FND-0016`: capability NFC frontend сам по себе не доказывает universal credential emulation, two-ended relay, key recovery, LF 125 kHz или payment compliance.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -52,6 +54,8 @@ GNSS/navigation срез [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-
 Si4732-срез [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) получил статус **«Проведено ревью»** в `REV-0002M`. Владелец принял `IMP-0013/A` как [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): открытый bounded loader входит в target, SSB blob импортируется локально и имеет отдельные integrity/provenance состояния, а synchronous-AM остаётся deferred до отдельного proof. `FND-0010` закрыт на requirement-level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder и coexistence HIL ещё не реализованы.
 
 Analog-voice срез [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) получил статус **«Проведено ревью»** в `REV-0002O`. Владелец принял `IMP-0014/A` как [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 — предпочтительный half-duplex analog-FM target 136–174/400–470 MHz, а текущий SA868S остаётся явно UHF-only fallback до проверки цены, поставки, PCB/power и conducted RF. Компромисс 2 W-class→1 W принят и не считается экономией без потерь. `FND-0012` закрыт на requirement-level; microphone capture/VOX (`FND-0013`), независимый STOP, high-power control, точное железо, protocol, RF, audio и HIL proof остаются для следующих этапов.
+
+NFC/RFID prerequisite audit получил статус **«Проведено ревью»** в `REV-0002P`; [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) остаётся **«На ревью»**. Актуальные источники дали более сильный путь, чем прежняя custom-PN7160-first идея: внешний M5 Unit NFC U216 за $7 даёт A/B/F/V, ISO15693/FeliCa, NFC-A/F emulation, custom mode и MIT-библиотеку с ESP-IDF 5.x, тогда как RFID2 за $4.95 экономит только $2.05 и теряет advanced modes. **⚠️ Предложение [`IMP-0005`](../review/improvements/IMP-0005-pn7160-nfc-expansion.md)** рекомендует U216 как первый target, RFID2 как limited compatibility, а custom PN7160 — только fallback. Exact IC U216 имеет статус NRND, напряжение текущего порта неверно (`FND-0015`), а universal clone/relay/key-recovery claims запрещены (`FND-0016`).
 
 ## Отложенный архитектурный gate
 

@@ -16,6 +16,8 @@
 - `DEC-0012`: `IMP-0010` остаётся открытым, а выбор STOP/UI/audio pin-map переносится на этап 3 после сводного pin/GPIO/resource budget;
 - `DEC-0013`: штатные S3/C5 updates используют owner-controlled signatures, validation и rollback без обязательного hardware lockdown;
 - `DEC-0014`: NMEA — обязательный GNSS baseline, advanced CASIC assistance/integrity условны per-revision proof и не требуют третьего GNSS;
+- `DEC-0015`: Si4732 SSB/CW использует открытый bounded loader и owner-imported patch без bundled blob; synchronous AM остаётся deferred;
+- `DEC-0016`: SA518 — preferred conditional dual-band analog-voice target, SA868S — честный UHF-only fallback до qualification;
 - legacy capability tree обоих репозиториев — только источник кандидатов, не требований;
 - datasheet-ограничения и проверяемые safety/legal-гейты для каждого кандидата.
 
@@ -67,6 +69,8 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 Si4732 prerequisite audit прошёл `REV-0002L`. Документированный FM/RDS и ordinary AM baseline отделён от conditional SSB/CW, sweep-RSSI bandscope, WAV и decoder proof. `FND-0010` зафиксировал, что MIT driver не включает внешний volatile SSB patch, а synchronous-AM не подтверждена тем же Skyworks/PU2CLR API. Владелец принял `IMP-0013/A` как `DEC-0015`: открытый bounded loader входит в target, конкретный blob импортируется локально и не наследует доверие application signature, synchronous-AM остаётся deferred. Распространение прошло `REV-0002M`, `FND-0010` закрыт на requirement-level, а `REQ-RX-0001` получил статус **«Проведено ревью»**.
 
 Analog voice/SA868 prerequisite audit прошёл `REV-0002N`. `FND-0011` исправил доказанный high-power/floating-control default: PTT теперь имеет RX pull-up, PD — power-down pull-down, H/L физически ограничен low до stage-3 safe control. `FND-0012` отделил UHF variant, 400–470 AT range, binary scan/raw RSSI и conditional host tone scan. `FND-0013` оставляет VOX `defer` без mic capture; `FND-0014` удаляет ложное обещание licence-free PMR446 через firmware preset. Владелец принял `IMP-0014/A` как `DEC-0016`: SA518 dual-band — preferred conditional target, SA868S — UHF-only fallback до price/AVL/RF proof, а падение peak 2 W-class→1 W принято как trade-off. Распространение прошло `REV-0002O`, `FND-0012` закрыт на requirement-level, `REQ-VHF-0001` получил статус **«Проведено ревью»**.
+
+NFC/RFID prerequisite audit прошёл `REV-0002P`. Новый готовый M5 Unit NFC U216/ST25R3916 за $7 снимает A/B/F/V, ISO15693/FeliCa и limited emulation ceiling без custom PN7160 board; официальный MIT driver уже имеет ESP-IDF 5.x examples. `FND-0015` фиксирует, что текущие `J40/J41` дают 3.3 V вместо официальных 5 V обоих M5 NFC Unit. `FND-0016` отделяет frontend primitives от universal clone, two-endpoint relay, key recovery, LF и payment compliance. `REQ-NFC-0001` остаётся **«На ревью»** до выбора `IMP-0005`; recommendation — U216 как первый target, RFID2 compatibility и PN7160 fallback.
 
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 

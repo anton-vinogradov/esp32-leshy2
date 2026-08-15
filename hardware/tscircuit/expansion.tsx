@@ -1,4 +1,4 @@
-// Leshy2 — Sheet 5: Expansion + GPS  (FAB-READY draft, engine-pulled footprints by LCSC number)
+// Leshy2 — Sheet 5: Expansion + GPS  (LEGACY implementation draft; NOT FAB-READY)
 //
 // METHOD: every real IC/module/connector uses footprint="jlcpcb:C<number>". The parts engine
 // supplies the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers
@@ -43,8 +43,10 @@
 //
 // Placeholder (footprint geometric, NOT engine):
 //   U44  RFID2 Unit (WS1850S) — EXTERNAL M5/Grove plug-in unit @0x28, NOT a board component.
-//        Kept as an example bus member exactly like the base (soic8 + pinLabels V/GND/SDA/SCL).
-//        ⚠ this is a pluggable unit that mates through J40/J41; it is not populated on the PCB.
+//        Legacy topology placeholder only (soic8 + pinLabels V/GND/SDA/SCL).
+//        ⚠ FND-0015: official Unit power is 5 V, while J40/J41 currently provide 3.3 V.
+//        This placeholder is NOT electrically compatible and must not be built/claimed until the
+//        stage-3/6 PORT.A-NFC power/profile redesign is reviewed.
 //
 // Net names are UNCHANGED from the base sheet (V3V3, GND, I2C_SDA/SCL, GPS_UART_RX/TX, V_BCKP).
 // GPS UART orientation preserved: GPS_UART_RX = U40.TxD (S3 listens), GPS_UART_TX = U40.RxD.
@@ -130,7 +132,7 @@ export default () => (
     <trace from=".D41 > .A2" to="net.I2C_SCL" />
     <trace from=".D41 > .C" to="net.V3V3" />
 
-    {/* --- RFID2 example unit @0x28 on I2C (external plug-in placeholder) --- */}
+    {/* --- RFID2 legacy topology placeholder; NOT electrically compatible until FND-0015 closes --- */}
     <trace from=".U44 > .V" to="net.V3V3" />
     <trace from=".U44 > .GND" to="net.GND" />
     <trace from=".U44 > .SDA" to="net.I2C_SDA" />

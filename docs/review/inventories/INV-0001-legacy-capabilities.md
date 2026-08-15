@@ -156,16 +156,16 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-NFC-01 | ISO14443A detect, UID/ATQA/SAK/fingerprint | MAIN | optional WS1850S, <2 cm |
-| C-NFC-02 | MIFARE dictionary, dump и write/restore | MIXED | read own vs Lab attack/write |
-| C-NFC-03 | MIFARE nested attack | LAB-I | CPU-heavy, authorized cards |
-| C-NFC-04 | Magic-card detect и wipe/format | MIXED | detect vs destructive write |
-| C-NFC-05 | Ultralight/NTAG read/write/PWD_AUTH | MIXED | read vs write |
-| C-NFC-06 | NDEF parse/build/write | MIXED | parse vs write |
-| C-NFC-07 | UID clone to magic card | LAB-I | access-credential risk |
-| C-NFC-08 | Amiibo NTAG215 read/identify | MAIN | read only |
-| C-NFC-09 | ISO14443-4/DESFire APDU и EMV contactless read | MIXED | privacy/legal split |
-| C-NFC-10 | Card library на SD | SYS | optional app storage |
+| C-NFC-01 | ISO14443A detect, UID/ATQA/SAK/fingerprint | MAIN | `conditional`: exact Unit/profile; U216 first proposal, current port power fails `FND-0015` |
+| C-NFC-02 | MIFARE dictionary, dump и write/restore | MIXED | known-key owner read separate from Controlled-Zone recovery/credential write |
+| C-NFC-03 | MIFARE nested attack | LAB-I | Controlled Zone/authorized card; runtime/provenance/corpus proof, hardnested separate |
+| C-NFC-04 | Magic-card detect и wipe/format | MIXED | read-only detect in Lab; destructive write in Controlled Zone |
+| C-NFC-05 | Ultralight/NTAG read/write/PWD_AUTH | MIXED | ordinary tag read/write vs credential/config/lock write |
+| C-NFC-06 | NDEF parse/build/write | MIXED | ordinary NDEF Main with preview; credential/irreversible regions gated |
+| C-NFC-07 | UID clone to magic card | LAB-I | Controlled Zone `AUTHORIZED_TARGET`; clone is not identity/auth proof |
+| C-NFC-08 | Amiibo NTAG215 read/identify | MAIN | read only; no proprietary keys/authenticity claim |
+| C-NFC-09 | ISO14443-4/DESFire APDU и EMV contactless read | MIXED | privacy-gated diagnostic; no payment/compliance claim |
+| C-NFC-10 | Card library на SD | SYS | typed sensitive vault/export/redaction/factory-reset contract |
 
 ## IR — `FW-CAP §10`
 
@@ -234,7 +234,7 @@
 | OUT-03 | Bluetooth Classic, BLE connection-follow sniff и BLE jam | S3 radio/controller ceiling | повторно проверить datasheet/SDK |
 | OUT-04 | nRF24 как 802.11 или полноценный BLE receiver | PHY ceiling | оставить вне scope, если datasheet подтверждает |
 | OUT-05 | HF TX, VHF airband/weather, 30–64 MHz и DRM через Si4732 | tuner/DSP ceiling | оставить вне scope, если компонент сохраняется |
-| OUT-06 | NFC card emulation/relay, ISO15693, FeliCa, LF 125 kHz, hardnested/darkside | WS1850S ceiling | зависит от решения по optional NFC hardware |
+| OUT-06 | NFC card emulation/relay, ISO15693, FeliCa, LF 125 kHz, hardnested/darkside | WS1850S ceiling | U216 reopens F/V/emulation/custom mode; relay needs two frontend, LF separate, recovery needs compute/license proof |
 | OUT-07 | SA868 full-duplex repeater и digital voice | half-duplex analog module ceiling | оставить вне scope, если компонент сохраняется |
 | OUT-08 | HackRF-class wideband SDR, arbitrary RF TX и onboard Linux analytics | иной класс hardware/compute | отдельное расширение, не базовый scope |
 | OUT-09 | Cellular/GSM | модем отсутствует | вне базового scope |

@@ -39,6 +39,8 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
 - `FND-0011`: SA868 now has PTT receive-default, PD power-down-default, and a physical low-power H/L ceiling; independent STOP and controllable high power still require stage-3 proof.
 - `FND-0013`: VOX has no microphone-capture path and is explicitly deferred to the consolidated audio/pin budget.
+- `FND-0015`: both documented M5 NFC Units require a 5 V PORT.A power profile, while current `J40/J41` provide 3.3 V; the electrical correction awaits the consolidated port/power design.
+- `FND-0016`: a capable NFC frontend does not by itself prove universal credential emulation, a two-ended relay, key recovery, LF 125 kHz, or payment compliance.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -52,6 +54,8 @@ The GNSS/navigation slice [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001
 The Si4732 slice [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) is **Reviewed** under `REV-0002M`. The owner accepted `IMP-0013/A` as [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): an open bounded loader is in the target, the SSB blob is locally imported with distinct integrity/provenance states, and synchronous AM remains deferred pending separate proof. `FND-0010` is closed at requirement level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder, and coexistence HIL remain unimplemented.
 
 The analog-voice slice [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) is **Reviewed** under `REV-0002O`. The owner accepted `IMP-0014/A` as [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 is the preferred 136–174/400–470 MHz half-duplex analog-FM target, while the current SA868S remains an explicitly UHF-only fallback until price, supply, PCB/power, and conducted-RF qualification pass. The peak 2 W-class→1 W trade is accepted and is not recorded as zero-loss saving. `FND-0012` is closed at requirement level; microphone capture/VOX (`FND-0013`), independent STOP, high-power control, exact hardware, protocol, RF, audio, and HIL proof remain for later stages.
+
+The NFC/RFID prerequisite audit is **Reviewed** under `REV-0002P`; [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) is **In review**. Current sources expose a better route than the old custom-PN7160-first idea: the external $7 M5 Unit NFC U216 provides A/B/F/V, ISO15693/FeliCa, NFC-A/F emulation, custom mode, and an MIT ESP-IDF 5.x library, while the $4.95 RFID2 saves only $2.05 and loses the advanced modes. **⚠️ Proposal [`IMP-0005`](../review/improvements/IMP-0005-pn7160-nfc-expansion.md)** recommends U216 as the first target, RFID2 as limited compatibility, and custom PN7160 only as a fallback. The exact U216 IC is NRND, the current port voltage is wrong (`FND-0015`), and universal clone/relay/key-recovery claims remain prohibited (`FND-0016`).
 
 ## Deferred architecture gate
 

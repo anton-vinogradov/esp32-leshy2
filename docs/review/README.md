@@ -48,6 +48,7 @@
 - [REQ-GNSS-0001: navigation/time/integrity contract — проведено ревью](requirements/REQ-GNSS-0001-navigation-integrity.md)
 - [REQ-RX-0001: Si4732 receiver/scan/record/decode contract — проведено ревью](requirements/REQ-RX-0001-si4732-receiver.md)
 - [REQ-VHF-0001: analog voice/modem/relay contract — проведено ревью](requirements/REQ-VHF-0001-analog-voice-modem.md)
+- [REQ-NFC-0001: HF NFC/RFID contract — на ревью](requirements/REQ-NFC-0001-hf-nfc-rfid.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -62,11 +63,13 @@
 - [FND-0012: SA868 API/диапазон не доказывает весь legacy scope — закрыто DEC-0016](findings/FND-0012-sa868-api-and-band-overclaims.md)
 - [FND-0013: VOX не имеет microphone-capture path](findings/FND-0013-sa868-vox-has-no-microphone-capture.md)
 - [FND-0014: firmware preset не создаёт licence-exempt PMR446 equipment — закрыто на уровне требований](findings/FND-0014-pmr446-preset-is-not-compliance.md)
+- [FND-0015: Grove NFC Unit требуют 5 V, текущие порты дают 3.3 V](findings/FND-0015-nfc-unit-power-profile-mismatch.md)
+- [FND-0016: NFC frontend не доказывает universal emulation/relay/key recovery](findings/FND-0016-nfc-emulation-relay-and-attack-overclaims.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
 - [⚠️ IMP-0004: dedicated BLE connection sniffer — предложение](improvements/IMP-0004-dedicated-ble-sniffer.md)
-- [⚠️ IMP-0005: заменить NFC ceiling через PN7160 — предложение](improvements/IMP-0005-pn7160-nfc-expansion.md)
+- [⚠️ IMP-0005: снять NFC ceiling готовым M5 Unit NFC U216 — предложение](improvements/IMP-0005-pn7160-nfc-expansion.md)
 - [⚠️ IMP-0006: исходная UI-matrix конфликтует с audio — переработано в IMP-0010](improvements/IMP-0006-ui-key-matrix.md)
 - [IMP-0007: внешний Cardputer LoRa+GNSS Cap — основной профиль](improvements/IMP-0007-cardputer-lora-gnss-cap.md)
 - [IMP-0008: универсальный внешний LoRa-профиль — транспорт принят, E22 опционален](improvements/IMP-0008-modular-lora-expansion.md)
@@ -99,6 +102,7 @@
 - [REV-0002M: ревью Si4732 receiver и распространения варианта A](reviews/REV-0002M-si4732-decision-propagation.md)
 - [REV-0002N: ревью пререквизитов analog voice/SA868](reviews/REV-0002N-sa868-prerequisites.md)
 - [REV-0002O: ревью analog voice и распространения SA518/A](reviews/REV-0002O-voice-backend-decision-propagation.md)
+- [REV-0002P: ревью пререквизитов NFC/RFID](reviews/REV-0002P-nfc-prerequisites.md)
 
 ## Статусы
 
