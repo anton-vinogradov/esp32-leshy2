@@ -35,6 +35,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0003`: audio architecture is accepted, but pin/electrical/firmware/HIL proof is pending.
 - `FND-0006`: the original key-matrix proposal and audio controls collide on `U13.P10..P17`.
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
+- `FND-0010`: legacy combines the documented Si4732 baseline, an external volatile SSB patch, and unproven synchronous AM.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -44,6 +45,8 @@ The System/UI/storage capability slice is **Reviewed** under `REV-0002I`.
 The GNSS/navigation slice [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-navigation-integrity.md) is **Reviewed** under `REV-0002K`. The owner accepted `IMP-0012/A` as [`DEC-0014`](../review/decisions/DEC-0014-casic-gnss-profile.md): NMEA is the mandatory baseline of a qualified profile, while assistance and receiver-reported jamming/spoofing remain conditional on exact revision/firmware proof. Unsupported, timeout, and parser error mean `unknown`, not “no threat,” and host heuristics are kept distinct from receiver status.
 
 `FND-0009` is closed at requirement level. UART/power hardware, parser, assistance source, actual Unit/U214 advanced-message support, RF self-desense, and HIL remain unimplemented evidence for later stages.
+
+The next prerequisite audit covers Si4732 under `REV-0002L`. [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) separates the FM/RDS and ordinary-AM baseline, conditional SSB/CW, an honest sweep-RSSI bandscope, and conditional WAV/decoder features. One owner choice is required: **⚠️ Proposal [`IMP-0013`](../review/improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)** recommends keeping an open generic patch loader while not bundling a third-party blob without proven provenance and redistribution rights; synchronous AM remains deferred pending separate proof. The requirement set is **In review** until that choice.
 
 ## Deferred architecture gate
 

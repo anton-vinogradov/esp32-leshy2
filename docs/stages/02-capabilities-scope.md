@@ -64,6 +64,8 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 Следующий GNSS/navigation prerequisite audit прошёл `REV-0002J`. Он выявил `FND-0009`: legacy требует SparkFun u-blox, AssistNow и UBX flags, тогда как оба принятых M5-профиля используют AT6668. Официальный CASIC protocol предоставляет backend-native assistance/ephemeris input и receiver-reported jamming/spoofing messages, поэтому функции не исключены автоматически. Владелец принял `IMP-0012/A` как `DEC-0014`: NMEA остаётся обязательным baseline, advanced CASIC profile условен per-revision proof, а unsupported/unknown никогда не становится false-safe. Распространение прошло `REV-0002K`, `FND-0009` закрыт на requirement-level, и `REQ-GNSS-0001` получил статус **«Проведено ревью»**.
 
+Si4732 prerequisite audit прошёл `REV-0002L`. Документированный FM/RDS и ordinary AM baseline отделён от conditional SSB/CW, sweep-RSSI bandscope, WAV и decoder proof. `FND-0010` фиксирует, что MIT driver не включает внешний volatile SSB patch, а synchronous-AM не подтверждена тем же Skyworks/PU2CLR API. `REQ-RX-0001` остаётся **«На ревью»** до решения по `⚠️ IMP-0013`: открытый generic loader без bundled blob, сокращение до baseline либо замена receiver backend.
+
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 
 ## Аудит стоимости

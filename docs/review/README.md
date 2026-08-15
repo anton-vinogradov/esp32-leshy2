@@ -44,6 +44,7 @@
 - [DEC-0014: NMEA baseline и квалифицируемый advanced CASIC profile](decisions/DEC-0014-casic-gnss-profile.md)
 - [REQ-SYS-0001: System/UI/storage platform contract — проведено ревью](requirements/REQ-SYS-0001-system-ui-storage.md)
 - [REQ-GNSS-0001: navigation/time/integrity contract — проведено ревью](requirements/REQ-GNSS-0001-navigation-integrity.md)
+- [REQ-RX-0001: Si4732 receiver/scan/record/decode contract — на ревью](requirements/REQ-RX-0001-si4732-receiver.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -53,6 +54,7 @@
 - [FND-0007: STOP сейчас является только входом I²C-экспандера](findings/FND-0007-stop-is-only-i2c-input.md)
 - [FND-0008: legacy System/UI смешивал функции с реализацией — закрыто](findings/FND-0008-legacy-system-ui-contract-conflicts.md)
 - [FND-0009: legacy u-blox GNSS расходится с принятым AT6668 — закрыто DEC-0014](findings/FND-0009-legacy-ublox-vs-at6668.md)
+- [FND-0010: SSB patch и synchronous-AM имеют разные proof/license состояния](findings/FND-0010-si4732-ssb-patch-and-sync-am.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -65,6 +67,7 @@
 - [⚠️ IMP-0010: аппаратный STOP и удаление `U14` без audio-конфликта — предложение](improvements/IMP-0010-hardware-stop-and-expander-consolidation.md)
 - [IMP-0011: подписанная цепочка обновлений S3 и C5 — принято как A-open](improvements/IMP-0011-signed-update-chain.md)
 - [IMP-0012: backend-native assistance и индикатор целостности GNSS — принято](improvements/IMP-0012-casic-gnss-advanced-profile.md)
+- [⚠️ IMP-0013: открытый lifecycle SSB-патча Si4732 — предложение](improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -84,6 +87,7 @@
 - [REV-0002I: ревью System/UI/storage и распространения A-open](reviews/REV-0002I-system-ui-decision-propagation.md)
 - [REV-0002J: ревью пререквизитов GNSS/navigation](reviews/REV-0002J-gnss-prerequisites.md)
 - [REV-0002K: ревью GNSS/navigation и распространения варианта A](reviews/REV-0002K-gnss-decision-propagation.md)
+- [REV-0002L: ревью пререквизитов Si4732 receiver](reviews/REV-0002L-si4732-prerequisites.md)
 
 ## Статусы
 

@@ -35,6 +35,7 @@
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
 - `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
+- `FND-0010`: legacy объединяет документированный Si4732 baseline, внешний volatile SSB patch и недоказанную synchronous-AM.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -44,6 +45,8 @@ System/UI/storage capability-срез завершён статусом **«Пр
 GNSS/navigation срез [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-navigation-integrity.md) получил статус **«Проведено ревью»** в `REV-0002K`. Владелец принял `IMP-0012/A` как [`DEC-0014`](../review/decisions/DEC-0014-casic-gnss-profile.md): NMEA — обязательный baseline квалифицированного профиля, а assistance и receiver-reported jamming/spoofing условны proof точной revision/firmware. Unsupported/timeout/parser error означают `unknown`, не «угроз нет»; host heuristics отделяются от статуса receiver.
 
 `FND-0009` закрыт на requirement-level. UART/power hardware, parser, assistance source, поддержка advanced messages конкретными Unit/U214, RF self-desense и HIL ещё не реализованы и проверяются на последующих этапах.
+
+Следующим прошёл prerequisite audit Si4732 в `REV-0002L`. [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) разделяет FM/RDS и ordinary AM baseline, conditional SSB/CW, честный sweep-RSSI bandscope и условные WAV/decoder функции. Нужен один выбор владельца: **⚠️ Предложение [`IMP-0013`](../review/improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)** рекомендует оставить открытый generic patch loader, но не включать сторонний blob без доказанного происхождения и права распространения; synchronous-AM остаётся deferred до отдельного proof. До решения requirement set имеет статус **«На ревью»**.
 
 ## Отложенный архитектурный gate
 
