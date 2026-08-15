@@ -110,7 +110,7 @@
 
 ## LoRa/SX1262 и GPS — `FW-CAP §6`
 
-Аппаратный scope уточнён `DEC-0006` и `DEC-0008`: бортовых LoRa и GNSS нет; U214 — первый LoRa+GNSS-модуль `EXT-RF14`, другие LoRa carrier опциональны. GNSS доступен через отдельный M5 Unit GPS v1.1 либо встроенный AT6668 U214. Одновременно активен один LoRa backend и один GNSS backend.
+Аппаратный scope уточнён `DEC-0006` и `DEC-0008`: бортовых LoRa и GNSS нет; U214 — первый LoRa+GNSS-модуль `EXT-RF14`, другие LoRa carrier опциональны. GNSS доступен через отдельный M5 Unit GPS v1.1 либо встроенный AT6668 U214. Одновременно активен один LoRa backend и один GNSS backend. Декомпозиция GNSS ведётся в `REQ-GNSS-0001`; `FND-0009` отделяет ошибочную legacy-привязку к u-blox от возможного advanced CASIC profile `IMP-0012`.
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
@@ -123,10 +123,10 @@
 | C-LORA-07 | (G)FSK, RTTY, CW и AX.25 beacon | MAIN | licence/band limits |
 | C-LORA-08 | LoRa OTA и file transfer | MAIN | duty/скорость |
 | C-LORA-09 | Одноцелевой carrier/reactive jam | LAB-D | narrow target, duty и STOP |
-| C-GPS-01 | Position/navigation, module config, time sync | MAIN | внешний M5Stack Unit GPS v1.1 или GNSS U214 по `DEC-0006`/`DEC-0008`; только при подключении |
-| C-GPS-02 | Track log, waypoints и geofences | MAIN | — |
-| C-GPS-03 | AssistNow offline assistance | SYS | нужен эпизодический интернет |
-| C-GPS-04 | GNSS jamming/spoofing indicator | MAIN | защитный readout, не attack tool |
+| C-GPS-01 | Position/navigation, module config, time sync | MAIN | внешний M5Stack Unit GPS v1.1 или GNSS U214; NMEA baseline, профильные команды только после proof |
+| C-GPS-02 | Track log, waypoints и geofences | MAIN | privacy, fix-quality и storage-recovery gates в `REQ-GNSS-0001` |
+| C-GPS-03 | AssistNow offline assistance | SYS | торговое имя u-blox неприменимо; backend-native assistance предложена `IMP-0012`, интернет не обязателен |
+| C-GPS-04 | GNSS jamming/spoofing indicator | MAIN | защитный readout; CASIC status возможен, но conditional per-profile proof и никогда не false-safe |
 
 ## Si4732 Radio RX — `FW-CAP §7`
 

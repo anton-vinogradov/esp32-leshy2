@@ -60,6 +60,8 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 Владелец принял `IMP-0011` как открытый `A-open` в `DEC-0013`: штатные S3/C5 update paths требуют owner-authorized signatures и rollback, но ключи, offline build/signing и developer firmware остаются у владельца; необратимый hardware lockdown не принят. Распространение прошло `REV-0002I`, `FND-0008` закрыт на requirement-level, а System/UI/storage capability-срез получил статус **«Проведено ревью»**.
 
+Следующий GNSS/navigation prerequisite audit прошёл `REV-0002J`. Он выявил `FND-0009`: legacy требует SparkFun u-blox, AssistNow и UBX flags, тогда как оба принятых M5-профиля используют AT6668. Официальный CASIC protocol предоставляет backend-native assistance/ephemeris input и receiver-reported jamming/spoofing messages, поэтому функции не исключены автоматически. `REQ-GNSS-0001` сохраняет базовую NMEA-навигацию и выносит advanced profile в `⚠️ IMP-0012`; набор остаётся **«На ревью»** до решения владельца и последующей проверки распространения.
+
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 
 ## Аудит стоимости
@@ -74,4 +76,4 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 ## Следующий артефакт
 
-Продолжение `AUD-0001` и декомпозиция следующей capability-группы в `include` / `conditional` / `defer` / `exclude-proven` с проверяемыми гейтами и стоимостным драйвером.
+Решение `IMP-0012`, затем propagation review `REQ-GNSS-0001`. После него — продолжение `AUD-0001` и декомпозиция следующей capability-группы в `include` / `conditional` / `defer` / `exclude-proven` с проверяемыми гейтами и стоимостным драйвером.
