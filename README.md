@@ -15,10 +15,12 @@ The Leshy2 design documentation is being rebuilt from first principles, one revi
 |---|---|
 | 0. Review system and baseline | Reviewed |
 | 1. Vision and scope | Reviewed |
-| 2. Capabilities and exclusions | Decision required |
+| 2. Capabilities and exclusions | In progress |
 | Later stages | Not started |
 
 Accepted so far: Leshy2 is an all-in-one field tool whose security-research functions live only in **Lab** and progress from low-impact observation to the most serious authorized tests. Initial setup requires acceptance of the non-aggression pledge.
+
+All transmitters boot off, every Lab tool starts disarmed, and initial TX uses a conservative profile. Maximum TX power is available only after an explicit user choice; it is never the global default.
 
 For the three nRF24 radios and IR, only the **target C5-ownership constraint** is accepted—not a working architecture. Its feasibility remains unproven: the legacy topology assigns the C5's sole general-purpose SPI controller two incompatible roles. The inter-MCU transport must be replaced or independently proven at stage 3; see `FND-0001`.
 
