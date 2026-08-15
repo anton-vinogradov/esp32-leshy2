@@ -14,9 +14,10 @@ The Leshy2 design documentation is being rebuilt from first principles, one revi
 | Stage | Status |
 |---|---|
 | 0. Review system and baseline | Reviewed |
-| 1. Vision and scope | Decision required |
+| 1. Vision and scope | Reviewed |
+| 2. Capabilities and exclusions | Decision required |
 | Later stages | Not started |
 
-Accepted so far: the ESP32-C5 owns the three nRF24 radios and IR. The inter-MCU transport is deliberately unresolved because the ESP32-C5 has only one general-purpose SPI controller.
+Accepted so far: Leshy2 is an all-in-one field tool whose security-research functions live only in **Lab** and progress from low-impact observation to the most serious authorized tests. Initial setup requires acceptance of the non-aggression pledge. The ESP32-C5 owns the three nRF24 radios and IR. The inter-MCU transport is deliberately unresolved because the ESP32-C5 has only one general-purpose SPI controller.
 
 *Русская версия: [README.ru.md](README.ru.md).*
