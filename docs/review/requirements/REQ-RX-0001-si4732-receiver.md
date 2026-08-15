@@ -1,10 +1,10 @@
 # REQ-RX-0001 — Si4732 broadcast/HF receiver, scan, record and decode contract
 
-- Статус набора: **На ревью; ожидает решение `IMP-0013`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-RX-01`–`C-RX-07`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-08`, `C-X-11`
-- Обязательные решения: `DEC-0002`, `DEC-0005`, `DEC-0009`, `DEC-0010`, `DEC-0013`
-- Открытое несоответствие: `FND-0010`
+- Обязательные решения: `DEC-0002`, `DEC-0005`, `DEC-0009`, `DEC-0010`, `DEC-0013`, `DEC-0015`
+- Закрытое несоответствие: `FND-0010`
 - Условные входы реализации: RF/frontend, audio, storage, decoder, coexistence и HIL proof следующих этапов
 
 ## Граница документа
@@ -21,7 +21,7 @@
 | `REQ-RX-02` | `C-RX-01` | `baseline` | Основной | FM broadcast profile покрывает документированный 64–108 MHz диапазон с региональными spacing/de-emphasis/band limits, manual tune и seek. Аппаратный product output остаётся mono по `DEC-0009`; UI не обещает stereo output. |
 | `REQ-RX-03` | `C-RX-01` | `baseline` | Основной | RDS/RBDS показывает только валидированные PI/PS/PTY/RT/clock поля, учитывает block errors, очищает stale text и не использует непроверенное эфирное время как безусловный RTC authority. Отсутствие RDS явно отлично от parser/I²C fault. |
 | `REQ-RX-04` | `C-RX-02` | `baseline` | Основной | Обычная AM поддерживает только квалифицированные региональные LW/MW/SW band profiles внутри документированных возможностей receiver/frontend. Частоты, шаг, полоса, antenna path и units видимы; расширение за доказанную RF/front-end границу не обещается. |
-| `REQ-RX-05` | часть `C-RX-03` | `conditional` | Основной | USB/LSB и CW listening через BFO доступны только после успешной загрузки совместимого SSB patch по принятому варианту `IMP-0013`. Patch status, BFO sign/offset и filter width видимы; ordinary AM не маркируется как SSB. |
+| `REQ-RX-05` | часть `C-RX-03` | `conditional` | Основной | По `DEC-0015` USB/LSB и CW listening через BFO доступны только после успешной загрузки локально импортированного совместимого SSB patch. Patch status, BFO sign/offset и filter width видимы; ordinary AM не маркируется как SSB. |
 | `REQ-RX-06` | часть `C-RX-03` | `defer` | Основной | Synchronous-AM не входит в обещанный baseline до отдельного primary-source и on-target proof. Ordinary AM, SSB/BFO или host audio post-processing нельзя называть synchronous-AM без измеримого carrier-lock contract. |
 | `REQ-RX-07` | `C-RX-04` | `baseline/conditional` | Основной | Manual tune, seek, presets и regional band plans работают транзакционно; supported bandwidth, AGC/attenuation, soft-mute, AVC, AFC/calibration и BFO показываются только для применимого mode/component. Ошибка mode switch восстанавливает последний валидный receive state. |
 | `REQ-RX-08` | `C-RX-04` | `baseline` | Основной | S-meter/diagnostics показывает frequency, tune-valid, RSSI, SNR и доступные multipath/AFC indicators с units, update age и saturation/unknown state; значения не выдаются за calibrated field strength до fixture calibration. |
@@ -51,7 +51,7 @@
 
 ### Patch и декодеры
 
-- все negative patch cases из `IMP-0013`, если принят вариант с SSB;
+- все negative patch cases и trust/provenance separation из `DEC-0015`;
 - USB/LSB/BFO/filter fixtures; synchronous-AM отдельно до снятия `defer`;
 - versioned clean/noisy/off-frequency corpora для каждого принятого CW/RTTY/SSTV/WEFAX mode;
 - CPU/RAM/storage/thermal budget при одновременных UI, audio capture и decoder tasks.
@@ -64,7 +64,7 @@
 
 ## Стоимость без потери продукта
 
-Документированный FM/AM baseline не добавляет BOM. Вариант `IMP-0013/A` сохраняет SSB/CW также без изменения BOM, но добавляет loader/UI/HIL NRE. Запись и декодеры используют уже принятый ES8311, однако требуют firmware/test effort и не считаются реализованными самим фактом наличия codec. Замена receiver допустима только как отдельное решение с доказанной дополнительной ценностью.
+Документированный FM/AM baseline не добавляет BOM. `DEC-0015` сохраняет SSB/CW также без изменения BOM, но добавляет loader/UI/HIL NRE. Запись и декодеры используют уже принятый ES8311, однако требуют firmware/test effort и не считаются реализованными самим фактом наличия codec. Замена receiver допустима только как отдельное решение с доказанной дополнительной ценностью.
 
 ## Первичные источники
 

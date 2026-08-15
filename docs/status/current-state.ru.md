@@ -24,6 +24,7 @@
 - оптимизация полной стоимости без потери продукта (`DEC-0005`);
 - внешний M5 GNSS и внешний U214 LoRa+GNSS (`DEC-0006`, `DEC-0008`);
 - NMEA baseline и условный per-revision advanced CASIC profile без дополнительного GNSS (`DEC-0014`);
+- FM/RDS/ordinary AM baseline и открытый owner-imported SSB/CW patch loader без bundled blob (`DEC-0015`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
 - целевое владение C5 для 3×nRF24 и IR (`DEC-0001`) без заявления о готовом межпроцессорном транспорте.
 - owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
@@ -35,7 +36,6 @@
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
 - `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
-- `FND-0010`: legacy объединяет документированный Si4732 baseline, внешний volatile SSB patch и недоказанную synchronous-AM.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -46,7 +46,7 @@ GNSS/navigation срез [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-
 
 `FND-0009` закрыт на requirement-level. UART/power hardware, parser, assistance source, поддержка advanced messages конкретными Unit/U214, RF self-desense и HIL ещё не реализованы и проверяются на последующих этапах.
 
-Следующим прошёл prerequisite audit Si4732 в `REV-0002L`. [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) разделяет FM/RDS и ordinary AM baseline, conditional SSB/CW, честный sweep-RSSI bandscope и условные WAV/decoder функции. Нужен один выбор владельца: **⚠️ Предложение [`IMP-0013`](../review/improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)** рекомендует оставить открытый generic patch loader, но не включать сторонний blob без доказанного происхождения и права распространения; synchronous-AM остаётся deferred до отдельного proof. До решения requirement set имеет статус **«На ревью»**.
+Si4732-срез [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) получил статус **«Проведено ревью»** в `REV-0002M`. Владелец принял `IMP-0013/A` как [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): открытый bounded loader входит в target, SSB blob импортируется локально и имеет отдельные integrity/provenance состояния, а synchronous-AM остаётся deferred до отдельного proof. `FND-0010` закрыт на requirement-level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder и coexistence HIL ещё не реализованы.
 
 ## Отложенный архитектурный gate
 

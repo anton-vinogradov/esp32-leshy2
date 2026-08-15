@@ -1,6 +1,6 @@
 # FND-0010 — legacy смешивает доказанный Si4732 baseline, внешний SSB-патч и недоказанную синхронную AM
 
-- Статус: **Открыто; требуется решение `IMP-0013`**
+- Статус: **Закрыто на уровне требований; `DEC-0015`, `REQ-RX-0001`, `REV-0002M`**
 - Серьёзность: нельзя переносить `C-RX-03` как единый готовый firmware-контракт
 - Затрагивает: `C-RX-01`–`C-RX-07`, `REQ-RX-0001`, supply-chain обновлений, storage/import UI, firmware/HIL
 - Обнаружено: 2026-08-16
@@ -30,6 +30,12 @@ Legacy одновременно обещает `SSB (USB/LSB) + CW + synchronous
 2. `REQ-RX-0001` разделяет baseline, conditional SSB/CW и deferred synchronous-AM.
 3. Целевые страницы обещают только принятое, а current-state сохраняет открытые implementation proofs.
 4. Для выбранного patch lifecycle определены отрицательные тесты: отсутствующий, повреждённый, слишком большой и несовместимый blob, а также потеря patch state после reset/power-cycle.
+
+## Закрытие
+
+Владелец принял `IMP-0013/A` как `DEC-0015`. Generic loader и manifest schema остаются открытыми, конкретный blob импортируется локально и не смешивается с доверием к подписанному application image. `REQ-RX-0001` разделяет baseline FM/AM, conditional SSB/CW и deferred synchronous-AM; propagation проверен в `REV-0002M`.
+
+Находка закрыта только на requirement-level. Реальные права/доступность blob, совместимость конкретных revision, bounded loader и HIL являются проверками последующих стадий.
 
 ## Первичные источники
 

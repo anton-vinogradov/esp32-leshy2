@@ -134,7 +134,7 @@
 |---|---|---|---|
 | C-RX-01 | FM broadcast и RDS | MAIN | RX-only |
 | C-RX-02 | AM LW/MW/SW | MAIN | RX-only |
-| C-RX-03 | SSB/CW и заявленная synchronous AM | MAIN | `FND-0010`: SSB требует внешнего volatile patch; synchronous AM не доказана тем же API; выбор `IMP-0013` открыт |
+| C-RX-03 | SSB/CW и заявленная synchronous AM | MAIN | `DEC-0015`: SSB/CW conditional через открытый owner-imported loader; synchronous AM `defer` до отдельного proof |
 | C-RX-04 | Tuning/DSP/AGC/BFO/presets/band plans | MAIN | — |
 | C-RX-05 | Bandscope и sweep-RSSI spectrum | MAIN | не FFT |
 | C-RX-06 | Scanner log на SD | MAIN | — |

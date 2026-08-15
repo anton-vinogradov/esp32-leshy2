@@ -24,6 +24,7 @@ Leshy2 — открытый автономный портативный all-in-o
 - Бортового GNSS на основной плате нет. Навигация работает с поддерживаемым внешним M5Stack Unit GPS v1.1 либо с GNSS поддерживаемого комбинированного расширения. Квалифицированный профиль обязан давать NMEA baseline; assistance и receiver-reported индикатор помех/подмены включаются только после проверки точной revision/firmware, а unsupported/unknown не выдаётся за отсутствие угроз ([`DEC-0014`](docs/review/decisions/DEC-0014-casic-gnss-profile.md)).
 - Бортового LoRa на основной плате нет. M5Stack U214 — первый backend LoRa+GNSS для `EXT-RF14` и общепринятых профилей 868/915 в пределах модуля и региональных правил; другие carrier опциональны и квалифицируются отдельно.
 - Встроенный mono digital-audio prerequisite реализуется через ES8311, существующий mux RX-источника и два аппаратных default-to-analog selector. Обычное прослушивание и голос через микрофон сохраняются при reset или failure MCU либо codec.
+- Встроенный Si4732 даёт FM/RDS и обычный приём LW/MW/SW. SSB USB/LSB и CW через BFO доступны после локального импорта владельцем совместимого volatile patch через открытый bounded loader; сторонний blob не входит в release без доказанных provenance и права распространения. Synchronous-AM не обещается до отдельного proof ([`DEC-0015`](docs/review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md)).
 
 ## Граница безопасности и стоимости
 

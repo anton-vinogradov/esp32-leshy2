@@ -24,6 +24,7 @@ Initial setup separately requires acceptance of the non-aggression pledge. Neith
 - GNSS is not populated on the base board. Navigation uses a supported external M5Stack Unit GPS v1.1, or the GNSS included in a supported combined expansion. A qualified profile must provide the NMEA baseline; assistance and receiver-reported interference/spoofing status are enabled only after exact revision/firmware proof, and unsupported/unknown is never presented as no threat ([`DEC-0014`](docs/review/decisions/DEC-0014-casic-gnss-profile.md)).
 - LoRa is not populated on the base board. M5Stack U214 is the first `EXT-RF14` LoRa+GNSS backend for common 868/915 profiles within the module and regional limits; other carriers are optional and separately qualified.
 - The onboard mono digital-audio prerequisite uses ES8311, the existing RX-source mux, and two hardware-default-to-analog selectors. Ordinary listening and microphone voice remain available across MCU or codec reset and failure.
+- The onboard Si4732 provides FM/RDS and ordinary LW/MW/SW reception. SSB USB/LSB and CW via BFO become available after the owner locally imports a compatible volatile patch through an open bounded loader; no third-party blob ships without proven provenance and redistribution rights. Synchronous AM is not promised pending separate proof ([`DEC-0015`](docs/review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md)).
 
 ## Safety and cost boundary
 

@@ -26,3 +26,5 @@
 Аудит пререквизитов Si4732 capability-среза получил статус **«Проведено ревью»**. `REQ-RX-0001` остаётся **«На ревью»** до решения `IMP-0013`; затем требуются decision propagation, закрытие либо уточнение `FND-0010` и отдельный финальный review artifact.
 
 RF/front-end performance, patch availability/rights, electrical protection, audio quality, storage recovery, decoder corpora и HIL не объявлены реализованными: это доказательства последующих стадий.
+
+Последующее состояние: владелец принял `IMP-0013/A` в `DEC-0015`, propagation review выполнен в `REV-0002M`, а `REQ-RX-0001` получил статус **«Проведено ревью»**.
