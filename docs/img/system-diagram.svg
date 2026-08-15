@@ -34,18 +34,19 @@
   <text class="title" x="30" y="34">Leshy2 — system architecture</text>
   <text class="sub" x="30" y="52">ESP32-S3 brain + ESP32-C5 5 GHz co-processor · two boards (clamshell, stage 5) · shared SPI/I²C/UART · SPI display · 9 antennas</text>
 
-  <!-- C5 co-processor -->
+  <!-- C5 board: C5 drives 5 GHz + the 3× nRF24 + IR -->
   <path class="ant" d="M115 42 l-10 -11 M115 42 l10 -11 M115 42 V80"/>
   <circle class="rx" cx="100" cy="72" r="5"/><circle class="tx" cx="130" cy="72" r="5"/>
   <path class="wire" d="M115 80 V90"/>
-  <rect class="hub" x="40" y="90" width="150" height="60" rx="10"/>
-  <text class="t" x="115" y="114">ESP32-C5</text>
-  <text class="s" x="115" y="130">5 GHz co-proc</text>
-  <text class="band" x="115" y="145" font-size="10">2.4/5 · BLE · 15.4</text>
+  <rect class="hub" x="40" y="90" width="150" height="74" rx="10"/>
+  <text class="t" x="115" y="112">ESP32-C5</text>
+  <text class="s" x="115" y="128">5 GHz co-proc</text>
+  <text class="band" x="115" y="144" font-size="10">2.4/5 · BLE · 15.4</text>
+  <text class="s" x="115" y="159">drives 3× nRF24 + IR</text>
 
   <!-- dedicated link -->
-  <line class="link" x1="115" y1="150" x2="115" y2="194" marker-end="url(#ar)" marker-start="url(#ar)"/>
-  <text class="buslbl" x="127" y="176" text-anchor="start">SPI3 link<tspan x="127" dy="14">+ DRDY</tspan></text>
+  <line class="link" x1="115" y1="164" x2="115" y2="194" marker-end="url(#ar)" marker-start="url(#ar)"/>
+  <text class="buslbl" x="127" y="182" text-anchor="start">SPI3 link + DRDY</text>
 
   <!-- S3 brain -->
   <rect class="hub" x="40" y="194" width="150" height="402" rx="10"/>
@@ -73,11 +74,7 @@
   <rect class="box" x="230" y="172" width="130" height="60" rx="7"/><text class="t" x="295" y="196">CC1101</text><text class="s" x="295" y="216">300–928 · SP4T ×4</text>
   <path class="wire" d="M295 232 V250"/><circle class="tap" cx="295" cy="250" r="4"/>
 
-  <text class="band" x="472" y="90">2.4 GHz ×3</text>
-  <path class="ant" d="M420 150 V102 M420 102 l-9 -10 M420 102 l9 -10"/><path class="ant" d="M472 150 V102 M472 102 l-9 -10 M472 102 l9 -10"/><path class="ant" d="M524 150 V102 M524 102 l-9 -10 M524 102 l9 -10"/>
-  <circle class="rx" cx="459" cy="160" r="5"/><circle class="tx" cx="485" cy="160" r="5"/>
-  <rect class="box" x="385" y="172" width="175" height="60" rx="7"/><text class="t" x="472" y="196" font-size="12">3× nRF24L01+PA/LNA</text><text class="s" x="472" y="216">2.4 raw · RX+TX</text>
-  <path class="wire" d="M472 232 V250"/><circle class="tap" cx="472" cy="250" r="4"/>
+  <rect class="box" x="385" y="176" width="175" height="52" rx="7" stroke-dasharray="4 3"/><text class="s" x="472" y="199">3× nRF24 →</text><text class="s" x="472" y="216">on the C5 board</text>
 
   <rect class="box" x="590" y="172" width="160" height="60" rx="7"/><text class="t" x="670" y="196">microSD + display</text><text class="s" x="670" y="216">SPI · ST7796 4.0″ TFT</text>
   <path class="wire" d="M660 232 V250"/><circle class="tap" cx="660" cy="250" r="4"/>
@@ -121,13 +118,13 @@
 
   <!-- S3 direct GPIO block -->
   <path class="wire" d="M115 596 V632"/>
-  <rect class="box" x="40" y="634" width="440" height="56" rx="9"/><text class="t" x="260" y="660">S3 direct GPIO · RMT · SPI display</text><text class="s" x="260" y="679">ST7796 · IR · WS2812 · buzzer · encoder A/B · RESET / BOOT</text>
+  <rect class="box" x="40" y="634" width="440" height="56" rx="9"/><text class="t" x="260" y="660">S3 direct GPIO · RMT · SPI display</text><text class="s" x="260" y="679">ST7796 · WS2812 · buzzer · encoder A/B · RESET / BOOT</text>
 
-  <!-- two-board grouping (stage 5) -->
-  <rect x="30" y="62" width="172" height="98" rx="12" fill="none" class="link"/>
-  <text class="buslbl" x="210" y="100" text-anchor="start">C5 board</text>
-  <text class="s" x="210" y="116" text-anchor="start">C5 + 5 GHz + 3× nRF24</text>
-  <text class="sub" x="58" y="702">Two boards (clamshell, stage 5): the C5 board carries the C5, its 5 GHz antenna and the 3× nRF24; the main board carries the S3 and the rest — the link + the nRF SPI2 cross the mezzanine.</text>
+  <!-- two-board grouping (stage 5): C5 board = the whole 2.4/5 GHz + IR block -->
+  <rect x="30" y="62" width="176" height="108" rx="12" fill="none" class="link"/>
+  <text class="buslbl" x="210" y="102" text-anchor="start">C5 board</text>
+  <text class="s" x="210" y="118" text-anchor="start">C5-driven</text>
+  <text class="sub" x="58" y="702">Two boards (clamshell, stage 5): the C5 board carries the C5, its 5 GHz antenna, the 3× nRF24 and the IR — all C5-driven; the main board carries the S3 and the rest. Only the link + power cross the mezzanine — every radio stays on its own board.</text>
   <text class="sub" x="58" y="720">Antenna dots (above): blue = RX · amber = TX (hardware on-air) · none = receive-only (Si4732, GPS).</text>
-  <text class="sub" x="58" y="742">All RF self-built · no shared RF switch, one antenna per chain · 9 antennas · S3 flashes C5 over the link + its own USB-C.</text>
+  <text class="sub" x="58" y="742">All RF self-built · no shared RF switch, one antenna per chain · 9 antennas · the C5 flashes over its own USB-C, OTA over the link.</text>
 </svg>

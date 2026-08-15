@@ -8,6 +8,8 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 > 🗂️ *The folder is named `c5-buses/` for historical reasons (the earlier single-chip design). It now covers both MCUs.* The transcribe-ready schematic drawing for this sheet is being redrawn for the two-chip layout.
 
+> 🔀 **Stage-5 split.** The **3× nRF24 and the IR are now driven by the C5**, not the S3 — they leave the S3's SPI2 / 74HC138 / RMT for the C5's own SPI (CS via a 74HC139) and RMT, and the **S3→C5 UART flash bridge is dropped** (the C5 flashes over its own USB-C and takes OTA over the link). This takes the S3 to **30 / 36** and the C5 to **~17 / 20** — see the [pin budget](../../docs/pin-budget.md). The S3 rows below are the **pre-split map**: `nRF24_CE`/`nRF24_IRQ`, the IR pins and `C5_FLASH_TX/RX` re-home to the C5 map when this sheet is re-captured with the board split.
+
 ## The two MCUs
 
 **U10 — ESP32-S3-WROOM-1U-N8R2** (main brain): dual-core Xtensa, 8 MB flash + **2 MB quad PSRAM**, native 2.4 GHz Wi-Fi + BLE, u.FL → external SMA.
@@ -19,7 +21,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 ## S3 GPIO map (proposed)
 
-36 usable GPIO (0–21, 35–48; 33/34 not bonded on WROOM-1U, minus USB pair use). **Used: 36 / 36 — zero direct-pin spare.** The last two pins (GPIO45/46, both straps) carry the nRF24 wired-OR IRQ and the CC1101 carrier-sense; direct-GPIO headroom is exhausted — future *slow* signals go on the second PCA9555.
+36 usable GPIO (0–21, 35–48; 33/34 not bonded on WROOM-1U, minus USB pair use). After the stage-5 split (nRF24 + IR → C5, flash bridge dropped) the S3 sits at **30 / 36 — six direct-pin spare**, and neither remaining timing line is forced onto a boot strap. The table below is the **pre-split map** (see the stage-5 note above); future *slow* signals still go on the second PCA9555.
 
 | S3 GPIO | Net | Dir | Peripheral / note |
 |:--:|------|:--:|-------|
@@ -106,7 +108,7 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 
 - **S3:** over its native USB (GPIO19/20). Console shares the same port via USB-Serial-JTAG. `S3_BOOT` (GPIO0) + `RESET` (EN) buttons force download. The **main USB-C** connector serves the S3 (charging + S3 flash/console); the C5 has its own separate port (below). There is no USB mux.
 - **C5 has its own USB-C port** (the simplest recovery path): the C5's native USB (D−/D+, GPIO13/14) wires to a **dedicated connector**. **Brick-safe** — the C5's USB-Serial-JTAG lives in mask ROM, so this port reflashes the C5 even if its firmware is dead (needs battery power / master ON — there is no USB power-path, so "brick-safe" means dead firmware, not a dead pack). Flash, console and JTAG-debug any C5 firmware straight from a PC — this is how you run your own 5 GHz / Zigbee experiments and rescue a bad flash. VBUS on this port is used only for USB-detect + ESD, **not** as a power/charge input.
-- **C5 automatic OTA (optional):** the **S3 can also flash the C5** over UART0 — `C5_FLASH_TX/RX` (GPIO43/44) → C5 `U0RXD/U0TXD` (GPIO11/12), `C5_BOOT` (26+28) low + an `EN` pulse — so an S3 update carries a matched C5 image and keeps both chips in sync without plugging in. Version/CRC-gated. *(Now optional given the C5 USB port; dropping this bridge would free 2 S3 pins.)*
+- **C5 automatic OTA (over the link):** an S3 update carries a matched C5 image and pushes it to the C5 **over the SPI3 link**; the C5 self-flashes from the link, keeping both chips in sync without plugging in. Version/CRC-gated. *(The old S3→C5 UART bridge on GPIO43/44 is dropped — the stage-5 split spent those pins on the nRF / IR side, and the C5's own USB-C covers manual flashing.)*
 
 ## 74HC138 — chip-select map
 
@@ -152,7 +154,7 @@ The link is on the S3's **second free SPI host (SPI3)**, kept off the shared rad
 | P0.7 | `RFSW_C` | out | SP4T band-switch 3rd select bit |
 | P1.0–P1.7 | — spare | — | future slow lines |
 
-All three `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. Direct GPIO is full (36/36), but slow-line headroom is now generous.
+All three `INT` pins wire-OR to S3 GPIO48. Timing-critical lines never go on an expander — only resets, enables, PTT, mux selects and buttons. After the stage-5 split the S3's direct GPIO sits at 30 / 36, and slow-line headroom is generous.
 
 ## Reset & boot buttons
 
@@ -176,7 +178,7 @@ The one SPI2 bus is shared by SD + radios + display, serviced one device at a ti
 
 - **Quad PSRAM is load-bearing.** Only the N8R2 (quad) frees GPIO35–37 (GPIO33/34 aren't bonded out on the module either way); an octal-PSRAM S3 does not fit the link.
 - **Strap discipline.** S3 straps {0, 3, 45, 46}: GPIO45 is eFuse-freed (above); GPIO3 is JTAG-sel (boot don't-care), fine for `LoRa_DIO1`. C5 straps {26, 27, 28} — tie 26+28 to `C5_BOOT` with an **external pull-up to 3V3** (default = normal boot; the expander at PCA9555 #2 P06 drives `C5_BOOT` low only to flash C5), and pull 27 high.
-- **S3 direct GPIO is FULL (36/36).** No spare fast pins — a new timing-critical signal would force dropping an existing direct line. Slow signals still have room on PCA9555 #2.
+- **S3 direct GPIO after the split: 30 / 36.** Six spare fast pins (the nRF24 / IR / flash-bridge lines left for the C5). Slow signals still have room on PCA9555 #2.
 - **Straps handled at the root.** GPIO45 (VDD_SPI) is **de-strapped by an eFuse** (see the provisioning step below), so `CC1101_GDO2` sits there as a normal interrupt with no brick risk. GPIO46's boot strap is satisfied because the 74AHC gate makes `nRF24_IRQ` idle-**low**.
 - **eFuse provisioning (mandatory, irreversible).** Burn `espefuse.py set_flash_voltage 3.3V` once before first boot, in ROM download mode (entered via GPIO0 — a separate strap; the stub loads to IRAM, so the 1.8 V flash-read during the burn is irrelevant). This frees GPIO45 for good. **Only for 3.3 V modules — N8R2 qualifies; never on a 1.8 V octal-PSRAM part** (it would brick). Verify with `espefuse summary`.
 - **Rail-gating interlocks (firmware).** +3V3A is derived from +5V, so `RAIL_EN_5V` off also kills +3V3A **and HF listen** — keep +5V on whenever +3V3A is needed. Before gating +5V off, drive `WS2812` (GPIO1) and `IR_TX` (GPIO2) low/Hi-Z, or their high output back-powers the dead rail through the buffer/driver input clamp.
