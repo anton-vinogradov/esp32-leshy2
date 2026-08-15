@@ -25,6 +25,7 @@
 - внешний M5 GNSS и внешний U214 LoRa+GNSS (`DEC-0006`, `DEC-0008`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
 - целевое владение C5 для 3×nRF24 и IR (`DEC-0001`) без заявления о готовом межпроцессорном транспорте.
+- owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
 
 ## Открытое инженерное состояние
 
@@ -33,16 +34,13 @@
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
 - `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
-- `FND-0008`: legacy System/UI привязывает функции к неподтверждённым SPI-, hot-plug-, USB- и update-security реализациям.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
 
-Аудит пререквизитов System/UI прошёл `REV-0002H`. Draft [`REQ-SYS-0001`](../review/requirements/REQ-SYS-0001-system-ui-storage.md) раскладывает все одиннадцать legacy-групп в проверяемые требования платформы без выбора окончательной pin-map.
+[`REQ-SYS-0001`](../review/requirements/REQ-SYS-0001-system-ui-storage.md) раскладывает все одиннадцать legacy-групп System/UI/storage в проверяемые требования платформы без выбора окончательной pin-map. Owner-controlled подписанные обновления приняты в [`DEC-0013`](../review/decisions/DEC-0013-owner-controlled-signed-updates.md); распространение прошло `REV-0002I`, capability-срез получил статус **«Проведено ревью»**.
 
-## Текущий decision gate
-
-[`IMP-0011`](../review/improvements/IMP-0011-signed-update-chain.md) спрашивает, должны ли все устанавливаемые S3/C5 images проходить проверку подписи и rollback validation, тогда как необратимая политика hardware Secure Boot/Flash Encryption выбирается позже — после доказанной recovery/lifecycle architecture. Набор требований остаётся **«На ревью»** до этого решения.
+Этап 2 продолжается со следующей группой возможностей и оставшимся аудитом legacy-исключений. Нового решения владельца по System/UI сейчас не требуется.
 
 ## Отложенный архитектурный gate
 

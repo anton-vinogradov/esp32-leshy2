@@ -30,6 +30,7 @@ Initial setup separately requires acceptance of the non-aggression pledge. Neith
 - Every transmitter starts off; Lab tools start disarmed.
 - Initial TX uses a conservative per-radio profile. Maximum available power requires an explicit choice and is never a global default.
 - Emergency stop and actual-TX indication have priority over UI and application state; their final electrical implementation must pass failure-injection review.
+- Normal S3/C5 update paths accept owner-authorized signed images with validation and rollback. Keys, offline build/signing, and developer firmware remain under owner control; irreversible hardware lockdown is a separate opt-in decision ([`DEC-0013`](docs/review/decisions/DEC-0013-owner-controlled-signed-updates.md)).
 - Total product cost is optimized only through implementations proven equivalent in capability, performance, safety, reliability, autonomy, serviceability, and testability.
 
 ## How this page grows

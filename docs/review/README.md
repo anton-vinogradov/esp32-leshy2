@@ -40,7 +40,8 @@
 - [DEC-0010: три уровня функциональности и вложенная контролируемая зона](decisions/DEC-0010-three-functional-levels.md)
 - [DEC-0011: целевой README отдельно от текущего состояния](decisions/DEC-0011-target-readme-current-state.md)
 - [DEC-0012: решение по IMP-0010 после сводного pin budget](decisions/DEC-0012-defer-imp-0010-to-pin-budget.md)
-- [REQ-SYS-0001: System/UI/storage platform contract — на ревью](requirements/REQ-SYS-0001-system-ui-storage.md)
+- [DEC-0013: открытая owner-controlled цепочка подписанных обновлений](decisions/DEC-0013-owner-controlled-signed-updates.md)
+- [REQ-SYS-0001: System/UI/storage platform contract — проведено ревью](requirements/REQ-SYS-0001-system-ui-storage.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -48,7 +49,7 @@
 - [FND-0005: неверная распиновка audio Si4732 — закрыто исправлением](findings/FND-0005-si4732-audio-pin-map.md)
 - [FND-0006: конфликт `U13` между UI matrix и audio-control](findings/FND-0006-u13-ui-audio-pin-collision.md)
 - [FND-0007: STOP сейчас является только входом I²C-экспандера](findings/FND-0007-stop-is-only-i2c-input.md)
-- [FND-0008: legacy System/UI смешивает функции с неподтверждённой реализацией](findings/FND-0008-legacy-system-ui-contract-conflicts.md)
+- [FND-0008: legacy System/UI смешивал функции с реализацией — закрыто](findings/FND-0008-legacy-system-ui-contract-conflicts.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -59,7 +60,7 @@
 - [IMP-0008: универсальный внешний LoRa-профиль — транспорт принят, E22 опционален](improvements/IMP-0008-modular-lora-expansion.md)
 - [IMP-0009: бортовой mono codec ES8311 с hardware bypass — принято](improvements/IMP-0009-onboard-mono-audio-codec.md)
 - [⚠️ IMP-0010: аппаратный STOP и удаление `U14` без audio-конфликта — предложение](improvements/IMP-0010-hardware-stop-and-expander-consolidation.md)
-- [⚠️ IMP-0011: подписанная цепочка обновлений S3 и C5 — предложение](improvements/IMP-0011-signed-update-chain.md)
+- [IMP-0011: подписанная цепочка обновлений S3 и C5 — принято как A-open](improvements/IMP-0011-signed-update-chain.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -76,6 +77,7 @@
 - [REV-0002F: ревью распространения решения ES8311](reviews/REV-0002F-es8311-decision-propagation.md)
 - [REV-0002G: ревью переноса IMP-0010 на сводный pin budget](reviews/REV-0002G-defer-imp-0010-to-pin-budget.md)
 - [REV-0002H: ревью пререквизитов System/UI/storage](reviews/REV-0002H-system-ui-prerequisites.md)
+- [REV-0002I: ревью System/UI/storage и распространения A-open](reviews/REV-0002I-system-ui-decision-propagation.md)
 
 ## Статусы
 

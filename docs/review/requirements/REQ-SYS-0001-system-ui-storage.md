@@ -1,9 +1,9 @@
 # REQ-SYS-0001 — System/UI/storage platform contract
 
-- Статус набора: **На ревью; требуется решение по `IMP-0011`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-SYS-01`–`C-SYS-11`, `C-X-01`, `C-X-02`, `C-X-09`, `C-HWX-01`, `C-HWX-03`, `C-HWX-04`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0006`, `DEC-0008`–`DEC-0012`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0006`, `DEC-0008`–`DEC-0013`
 - Открытые архитектурные входы: `FND-0001`–`FND-0003`, `FND-0006`–`FND-0008`
 
 ## Граница документа
@@ -20,7 +20,7 @@
 | `REQ-SYS-02` | `C-SYS-02` | `conditional` | Основной | Touch, физические кнопки/encoder и экранный ввод дают полное управление без телефона. Shortcut не является единственным путём; обычный выбор списка не запускает TX. Физическая схема и pins ждут этап 3/`DEC-0012`. |
 | `REQ-LAB-USB-01` | `C-SYS-03` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | USB HID/DuckyScript допускается только для явно разрешённого host. Нет autorun при boot/connect/restore; каждый запуск отдельно вооружается и подтверждается, отображает прогресс и прекращает новые HID reports по STOP/disconnect. Уже отправленные host-команды необратимы, что явно показывается до запуска. |
 | `REQ-SYS-03` | `C-SYS-04` | `include` | Основной с наследованием per-command gates | USB service предоставляет serial console и управляемый экспорт storage. CLI/deep link не обходят Main/Lab/Controlled-Zone gates. USB MSC получает эксклюзивное владение носителем либо read-only snapshot; одновременная запись host и firmware запрещена. Одновременность HID/CDC/MSC не обещается до endpoint/PHY audit этапа 3. |
-| `REQ-SYS-04` | `C-SYS-05` | `conditional`, security-choice open | Основной maintenance | Обновления S3 поддерживают проверяемые Wi-Fi и removable-media пути; C5 обновляется через выбранный этапом 3 transport, а не legacy-only `SPI3`. Update требует power margin, запрещает TX, после reboot запускает все TX off/Lab disarmed и имеет независимые validation/rollback/recovery для обоих MCU. Политика доверия образам ждёт `IMP-0011`. |
+| `REQ-SYS-04` | `C-SYS-05` | `conditional` | Основной maintenance | Обновления S3 поддерживают проверяемые Wi-Fi и removable-media пути; C5 обновляется через выбранный этапом 3 transport, а не legacy-only `SPI3`. Все штатно устанавливаемые S3/C5 images имеют owner-authorized signature/open manifest, проверяются целевым MCU и используют validation/rollback. Update требует power margin, запрещает TX и после reboot запускает все TX off/Lab disarmed. Hardware lockdown остаётся отдельным opt-in по `DEC-0013`. |
 | `REQ-SYS-05` | `C-SYS-06` | `include` | Основной | File manager, config import/export и offline databases используют versioned schemas, bounded parsing, atomic replace/recovery и явный результат ошибок. Import не может включить TX, подавить safety gates или незаметно восстановить armed state. |
 | `REQ-SYS-06` | `C-SYS-07` | `include` | Основной | Battery/charge state, sleep и управляемые peripheral states видимы и проверяемы. Sleep, brownout, low-battery shutdown, watchdog и wake сначала обеспечивают TX-off/disarm; внезапный master-off учитывается периодическим durable flush, а не обещанием всегда успеть записать данные при brownout. |
 | `REQ-SYS-07` | `C-SYS-08`, `C-X-01` | `conditional` | Сквозной safety | Display/WS2812/buzzer сообщают status/warning, но не заменяют фактическую TX-индикацию. Quiet/dim theme может отключить обычные эффекты, но не скрывает active-TX и critical safety state. Аппаратный proof actual-TX/STOP остаётся этапам 3–9 и `FND-0007`. |
@@ -54,9 +54,9 @@
 - storage fuzz/schema tests отклоняют malformed/oversized config, database и script без partial apply;
 - diagnostics test подтверждает secret redaction и полный возврат onboarding/safety state после factory reset.
 
-## Открытый gate
+## Решённый gate
 
-`⚠️ IMP-0011` предлагает обязательную подпись всех устанавливаемых S3/C5 образов и rollback baseline без немедленного выбора необратимого production Secure Boot/Flash Encryption profile. До решения владельца `REQ-SYS-04` и весь набор не получают статус **«Проведено ревью»**.
+`IMP-0011` принят как `A-open` в `DEC-0013`: штатные S3/C5 updates подписаны и откатываемы, ключи контролирует владелец, build/signing остаются offline/open, developer firmware разрешена, а необратимый production Secure Boot/Flash Encryption profile требует отдельного будущего решения.
 
 ## Первичные технические источники
 

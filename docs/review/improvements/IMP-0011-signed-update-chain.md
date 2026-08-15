@@ -1,6 +1,6 @@
 # IMP-0011 — подписанная цепочка обновлений S3 и C5
 
-- Статус: **⚠️ Предложение; требуется решение владельца проекта**
+- Статус: **Принято владельцем как `A-open`; см. `DEC-0013`**
 - Этап решения: 2 — product security baseline; concrete lifecycle — этапы 3 и 7–10
 - Связано: `C-SYS-05`, `REQ-SYS-04`, `DEC-0003`, `DEC-0010`, `FND-0001`, `FND-0008`
 - Обнаружено: 2026-08-16
@@ -11,9 +11,9 @@ Legacy обещает OTA S3 по Wi-Fi/SD и OTA C5 по старому `SPI3`,
 
 ESP-IDF поддерживает проверку подписанного OTA без hardware Secure Boot, rollback после первого boot и anti-rollback. Полный Secure Boot v2 проверяет bootloader/application при каждом boot, но production eFuse/Flash Encryption profile ограничивает debug и recovery и требует отдельного lifecycle design.
 
-## ⚠️ Предложение — вариант A, рекомендуется
+## Принятый вариант `A-open`
 
-Сейчас принять обязательный **signed-update baseline**, а необратимый production-lockdown решить позже:
+Принят обязательный **signed-update baseline**, а необратимый production-lockdown решается позже:
 
 1. Любой устанавливаемый S3 и C5 application/data image имеет manifest с target, hardware revision, version/security version, size/hash и cryptographic signature.
 2. S3 проверяет package/manifest до доставки C5 image, но это не заменяет проверку подписи самим C5 перед activation.
@@ -22,8 +22,9 @@ ESP-IDF поддерживает проверку подписанного OTA �
 5. Private signing keys не находятся в репозитории или на устройстве; проект документирует owner-controlled key generation, backup, rotation and revocation.
 6. Hardware Secure Boot v2, Flash Encryption, debug policy, eFuse programming и anti-rollback activation выбираются на этапах 3/7 после threat model и доказанного brick-safe recovery.
 7. Developer builds остаются возможны через отдельный lifecycle/profile и явно показывают `DEVELOPMENT / UNTRUSTED`; они не маскируются под production image.
+8. Build/signing tools и manifest открыты, owner может использовать собственные offline keys; vendor-only key/cloud запрещены.
 
-Плюс: блокирует случайную или сетевую установку неподписанного образа уже без немедленного необратимого eFuse-решения. Минус: появляется key-management process; от физического перепрограммирования flash этот baseline без hardware Secure Boot не защищает.
+Плюс: блокирует случайную или сетевую установку неподписанного образа уже без немедленного необратимого eFuse-решения и без закрытия owner firmware. Минус: появляется key-management process; от физического перепрограммирования flash этот baseline без hardware Secure Boot не защищает.
 
 ## Вариант B — сразу обязать production Secure Boot v2 + Flash Encryption
 

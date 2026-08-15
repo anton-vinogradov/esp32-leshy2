@@ -25,6 +25,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - external M5 GNSS and external U214 LoRa+GNSS (`DEC-0006`, `DEC-0008`);
 - onboard mono ES8311 audio architecture with fail-safe analog bypass (`DEC-0009`);
 - C5 target ownership of 3×nRF24 and IR (`DEC-0001`), without claiming a working inter-MCU architecture.
+- owner-controlled signed S3/C5 updates with rollback and an open developer lifecycle (`DEC-0013`), without enabling irreversible hardware lockdown.
 
 ## Open engineering state
 
@@ -33,16 +34,13 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0003`: audio architecture is accepted, but pin/electrical/firmware/HIL proof is pending.
 - `FND-0006`: the original key-matrix proposal and audio controls collide on `U13.P10..P17`.
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
-- `FND-0008`: legacy System/UI promises bind capabilities to unproven SPI, hot-plug, USB, and update-security implementations.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
 
-The System/UI prerequisite audit passed `REV-0002H`. Draft [`REQ-SYS-0001`](../review/requirements/REQ-SYS-0001-system-ui-storage.md) decomposes all eleven legacy groups into testable platform requirements without selecting a final pin map.
+[`REQ-SYS-0001`](../review/requirements/REQ-SYS-0001-system-ui-storage.md) decomposes all eleven legacy System/UI/storage groups into testable platform requirements without selecting a final pin map. Owner-controlled signed updates were accepted in [`DEC-0013`](../review/decisions/DEC-0013-owner-controlled-signed-updates.md); propagation passed `REV-0002I`, and this capability slice is **Reviewed**.
 
-## Current decision gate
-
-[`IMP-0011`](../review/improvements/IMP-0011-signed-update-chain.md) asks whether every installable S3/C5 image must pass signature verification and rollback validation, while deferring irreversible hardware Secure Boot/Flash Encryption policy until the recovery and lifecycle architecture is proven. The requirement set remains **In review** until this choice is resolved.
+Stage 2 now continues with the next capability group and the remaining legacy-exclusion audit. No new owner decision is currently requested for System/UI.
 
 ## Deferred architecture gate
 

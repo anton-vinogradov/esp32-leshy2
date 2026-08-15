@@ -1,6 +1,6 @@
 # FND-0008 — legacy System/UI смешивает функции с неподтверждённой реализацией
 
-- Статус: **Открыто; requirement-level исправления подготовлены в `REQ-SYS-0001`**
+- Статус: **Закрыто на уровне требований; `DEC-0013`, `REQ-SYS-0001`, `REV-0002I`**
 - Серьёзность: не позволяет переносить `FW-CAP §11` как готовый контракт
 - Затрагивает: `C-SYS-02`–`C-SYS-11`, `C-X-01`, hardware/firmware и recovery
 - Обнаружено: 2026-08-16
@@ -17,6 +17,6 @@
 | OTA/SD update достаточно доставить до flash | Legacy не задаёт authenticity, key ownership, rollback и first-boot validation | Открыто `IMP-0011`; update trust становится отдельным обязательным контрактом после решения |
 | RTOS task management — пользовательская функция | Произвольное убийство safety/radio tasks может нарушить инварианты и является implementation detail | В продукт входят health/self-test; task control остаётся dev/service tooling этапа 7 |
 
-## Условие закрытия
+## Закрытие
 
-Находка закрывается после решения `IMP-0011`, ревью `REQ-SYS-0001` и переноса его условий в последующие architecture/firmware/HIL artifacts. Она не требует сейчас выбирать pins, USB descriptors или S3↔C5 transport.
+`DEC-0013` принял owner-controlled signed-update baseline, а `REQ-SYS-0001` прошёл `REV-0002I`. Legacy assumptions больше не являются требованиями. Оставшиеся pin, USB descriptor, S3↔C5 transport, recovery и HIL proof явно сохранены как входы последующих этапов, а не как открытая неоднозначность scope.

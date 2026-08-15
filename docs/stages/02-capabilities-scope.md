@@ -56,7 +56,9 @@
 
 `⚠️ IMP-0010` предлагает объединённое исправление: аппаратный STOP с аварийной безопасной перезагрузкой, девять остальных кнопок в `3×3` matrix, touch на `U13`, а audio-control — на оставшейся линии `U13` и двух линиях `U12`, освобождённых удалением onboard LoRa. По `DEC-0012` выбор варианта отложен до сводного pin/GPIO/resource budget этапа 3. Предложение и находки остаются открытыми, но не блокируют ревью корректно условных System/UI capability-требований этапа 2.
 
-Prerequisite audit `REV-0002H` дополнительно обнаружил `FND-0008`: legacy привязывает C5 OTA к заблокированному `SPI3`, обещает hot-plug на одновременно названных non-hot-swap Grove-портах, смешивает разные M5 electrical profiles и не задаёт trust/rollback update chain. Draft `REQ-SYS-0001` исправляет эти границы, сохраняет все одиннадцать групп `C-SYS-*` и выносит BadUSB только в Controlled Zone. Набор ждёт одного owner decision — `⚠️ IMP-0011` о signed-update baseline.
+Prerequisite audit `REV-0002H` дополнительно обнаружил `FND-0008`: legacy привязывает C5 OTA к заблокированному `SPI3`, обещает hot-plug на одновременно названных non-hot-swap Grove-портах, смешивает разные M5 electrical profiles и не задаёт trust/rollback update chain. `REQ-SYS-0001` исправляет эти границы, сохраняет все одиннадцать групп `C-SYS-*` и выносит BadUSB только в Controlled Zone.
+
+Владелец принял `IMP-0011` как открытый `A-open` в `DEC-0013`: штатные S3/C5 update paths требуют owner-authorized signatures и rollback, но ключи, offline build/signing и developer firmware остаются у владельца; необратимый hardware lockdown не принят. Распространение прошло `REV-0002I`, `FND-0008` закрыт на requirement-level, а System/UI/storage capability-срез получил статус **«Проведено ревью»**.
 
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 
@@ -72,4 +74,4 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 ## Следующий артефакт
 
-После решения `IMP-0011` — propagation review и финальный статус `REQ-SYS-0001`; затем продолжение `AUD-0001` и декомпозиция следующей capability-группы в `include` / `conditional` / `defer` / `exclude-proven` с проверяемыми гейтами и стоимостным драйвером.
+Продолжение `AUD-0001` и декомпозиция следующей capability-группы в `include` / `conditional` / `defer` / `exclude-proven` с проверяемыми гейтами и стоимостным драйвером.
