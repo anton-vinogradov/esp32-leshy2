@@ -21,15 +21,15 @@
 <path d="M80.1 93.8 l-3 5 M80.1 93.8 l3 5 M80.1 93.8 V119.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="80.1" cy="119.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="80.1" cy="119.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="80.1" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">WiFi</text>
+<text x="80.1" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Wi-Fi</text>
 <path d="M113.9 93.8 l-3 5 M113.9 93.8 l3 5 M113.9 93.8 V119.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="113.9" cy="119.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="113.9" cy="119.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="113.9" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">CC</text>
+<text x="113.9" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">CC1101</text>
 <path d="M147.6 93.8 l-3 5 M147.6 93.8 l3 5 M147.6 93.8 V119.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="147.6" cy="119.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="147.6" cy="119.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="147.6" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">SA</text>
+<text x="147.6" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">SA868</text>
 <path d="M181.4 93.8 l-3 5 M181.4 93.8 l3 5 M181.4 93.8 V119.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="181.4" cy="119.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="181.4" cy="119.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
@@ -37,7 +37,7 @@
 <path d="M215.1 93.8 l-3 5 M215.1 93.8 l3 5 M215.1 93.8 V119.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="215.1" cy="119.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="215.1" cy="119.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="215.1" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Si</text>
+<text x="215.1" y="137.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Si4732</text>
 <circle cx="66.6" cy="420.5" r="1.7" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.8"/>
 <text x="66.6" y="436.7" font-size="3.2" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nRF1</text>
 <circle cx="89.6" cy="420.5" r="1.7" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.8"/>
@@ -74,7 +74,7 @@
 <rect x="302.5" y="261.2" width="16.2" height="33.8" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="279.5" font-size="4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">JACK</text>
 <rect x="302.5" y="304.4" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="318.1" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Grv</text>
 <rect x="302.5" y="339.5" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="353.2" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Grv</text>
-<rect x="367.3" y="415.1" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="426.7" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
+<rect x="367.3" y="420.5" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="432.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
 <rect x="398.4" y="496.1" width="10.8" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="403.8" y="505.3" font-size="3.2" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">MIC</text>
 <rect x="415.9" y="469.1" width="40.5" height="40.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="436.1" y="490.9" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">microSD</text>
 <rect x="375.4" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="383.5" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">RESET</text>
@@ -104,7 +104,7 @@
 <circle cx="234.0" cy="1001.5" r="1.6" fill="#6b7280"/>
 <rect x="45.0" y="836.8" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="845.9" font-size="3" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">IR TX</text>
 <rect x="45.0" y="861.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="870.2" font-size="3" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">IR RX</text>
-<rect x="107.1" y="934.0" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="144.9" y="945.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
+<rect x="107.1" y="920.5" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="144.9" y="932.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
 <rect x="193.5" y="996.1" width="24.3" height="18.9" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="205.7" y="1007.0" font-size="4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">USB J1</text>
 <rect x="158.4" y="996.1" width="24.3" height="18.9" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="170.6" y="1007.0" font-size="4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">USB J2</text>
 <rect x="123.3" y="996.1" width="24.3" height="13.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="135.5" y="1004.1" font-size="3.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">master</text>
@@ -151,19 +151,19 @@
 <path d="M337.6 593.8 l-3 5 M337.6 593.8 l3 5 M337.6 593.8 V619.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="337.6" cy="619.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="337.6" cy="619.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="337.6" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nR1</text>
+<text x="337.6" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nRF1</text>
 <path d="M371.4 593.8 l-3 5 M371.4 593.8 l3 5 M371.4 593.8 V619.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="371.4" cy="619.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="371.4" cy="619.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="371.4" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">5G</text>
+<text x="371.4" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">5GHz</text>
 <path d="M405.1 593.8 l-3 5 M405.1 593.8 l3 5 M405.1 593.8 V619.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="405.1" cy="619.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="405.1" cy="619.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="405.1" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nR2</text>
+<text x="405.1" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nRF2</text>
 <path d="M472.6 593.8 l-3 5 M472.6 593.8 l3 5 M472.6 593.8 V619.5" stroke="#4b5563" stroke-width="1" fill="none"/>
 <circle cx="472.6" cy="619.5" r="8.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
 <circle cx="472.6" cy="619.5" r="3.5" fill="none" stroke="#2563eb" stroke-width="0.7"/>
-<text x="472.6" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nR3</text>
+<text x="472.6" y="637.0" font-size="4.6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">nRF3</text>
 <text x="30.0" y="1061.0" font-size="11" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">Row 3 - side view + antennas</text>
 <text x="113.1" y="1077.0" font-size="8" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="bold">FRONT</text>
 <rect x="70.0" y="1085.0" width="86.2" height="7.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="113.1" y="1090.8" font-size="6" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">DISPLAY 4.0" + touch</text>

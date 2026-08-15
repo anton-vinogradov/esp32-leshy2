@@ -69,7 +69,7 @@ def gen(lang):
             a0=math.radians(i*120-90); a1=math.radians(i*120+30)
             out.append(f'<path d="M{X:.1f} {Y:.1f} L{X+r*math.cos(a0):.1f} {Y+r*math.sin(a0):.1f} A{r} {r} 0 0 1 {X+r*math.cos(a1):.1f} {Y+r*math.sin(a1):.1f} Z" fill="{c}"/>')
         out.append(f'<circle cx="{X:.1f}" cy="{Y:.1f}" r="{r}" fill="none" stroke="#111" stroke-width="0.6"/>')
-    arrows=[]
+    arrows=[]; antc=[]  # direction-arrow bboxes ; antenna centres (mm, board frame) for the mounting-hole check
     def portdir(ox,oy,cx,cy,d,L=6,mir=False):  # red arrow in the margin just outside a port, pointing OUT (from the component); mir mirrors it with the inner face; bbox recorded so the checker confirms it never lands on a label
         if mir: cx=BW-cx; d={'L':'R','R':'L'}.get(d,d)
         X=ox+cx*S; Y=oy+cy*S; dx,dy={'L':(-1,0),'R':(1,0),'U':(0,-1),'D':(0,1)}[d]
@@ -85,7 +85,7 @@ def gen(lang):
             else:
                 out.append(f'<circle cx="{ax:.1f}" cy="{yc:.1f}" r="{3.175*S:.1f}" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>')
                 out.append(f'<circle cx="{ax:.1f}" cy="{yc:.1f}" r="{1.3*S:.1f}" fill="none" stroke="#2563eb" stroke-width="0.7"/>')
-            out.append(silk(ax,oy+10*S,lab,4.6))
+            out.append(silk(ax,oy+10*S,lab,4.6)); antc.append((cx,3.5))  # record the SMA/emitter centre for the hole check
     def led(ox,oy,xl,yl,cat,r=1.9):
         f,st=COL[cat]; out.append(f'<circle cx="{ox+xl*S:.1f}" cy="{oy+yl*S:.1f}" r="{r:.1f}" fill="{f}" stroke="{st}" stroke-width="0.8"/>')
     def dpad(ox,oy,cx,cy,rr):
@@ -134,15 +134,15 @@ def gen(lang):
      (22,130,6,6,'BACK','ctrl',3.8),(47,130,6,6,'OPT','ctrl',3.8)]
     board(col1,ry1,T['t1'],'','#1e40af',aout,[(37.5,64,T['disp'],7,'#1e40af')],[])
     out.append(f'<rect x="{col1+9.5*S:.1f}" y="{ry1+19*S:.1f}" width="{56*S:.1f}" height="{84*S:.1f}" fill="#cfe3fb" stroke="#3b82f6" stroke-width="0.8" rx="1"/>')  # active area 56x84
-    antface(col1,ry1,[('WiFi',13,False),('CC',25.5,False),('SA',38,False),('LoRa',50.5,False),('Si',63,False)])
+    antface(col1,ry1,[('Wi-Fi',13,False),('CC1101',25.5,False),('SA868',38,False),('LoRa',50.5,False),('Si4732',63,False)])
     LEDLAB=['nRF1','nRF2','nRF3','CC1101','SA868','LoRa','IR']  # the 7 discrete-radio TX chains (3x nRF + CC1101 + SA868 + LoRa + IR); WiFi/5G are internal to the ESP modules
     for i,xx in enumerate((8,16.5,25,33.5,42,50.5,59)):
         led(col1,ry1,xx,115,'io',1.7); out.append(silk(col1+xx*S,ry1+121*S,LEDLAB[i],3.2))
     rgbled(col1,ry1,68,115,2.3); out.append(silk(col1+68*S,ry1+121*S,'RGB',3.2))
     dpad(col1,ry1,37.5,133,6)
-    # MAIN INNER (mirrored back view): S3 + wired radios/GPS/buses at real size; the connectors sit here — jack (device-left edge), 2x Grove (device-right), microSD + RESET + BOOT (bottom) — reached through case slots
+    # MAIN INNER (mirrored back view): component area; connectors here — jack + 2x Grove on the device-RIGHT edge (jack above Grove), and mic/microSD/RESET/BOOT on the bottom. device-LEFT is kept free (the C5 IR folds onto it)
     ain=[(69,56,6,12.5,T['jack'],'io',4),(69,72,6,9,'Grv','io',4.5),(69,85,6,9,'Grv','io',4.5),
-     (23,113,28,7,T['mezz'],'mez',6),
+     (23,115,28,7,T['mezz'],'mez',6),
      (35.5,143,4,6,T['mic'],'io',3.2),(18,133,15,15,'microSD','svc',4.5),(42,143,6,6,'RESET','svc',3.4),(50,143,6,6,'BOOT','svc',3.4)]  # mic centred on the bottom edge; microSD left, RESET/BOOT right
     board(col2,ry1,T['t2'],'','#9a3412',ain,[],[],tdy=-27,mir=True)
     zone(col2,ry1,8,14,59,89,[T['zarea'],T['zstage'],T['zmain'],T['zmain2']])
@@ -152,7 +152,7 @@ def gen(lang):
     out.append(txt(30,ry2-38,T['r2'],11,'#0891b2','start','bold'))
     # C5 INNER (mirrored back view): C5 + 3x nRF (grouped; antennas spread on the outer) + power + IR/CS at real size; USB x2 + master + RST + BOOT on the bottom edge
     binn=[(69,84,6,6,'IR TX','io',3),(69,93,6,6,'IR RX','io',3),
-     (24,120,28,7,T['mezz'],'mez',6),
+     (24,115,28,7,T['mezz'],'mez',6),  # same device X+Y as the main mezz half so they mate after the fold (check 7)
      (11,143,9,7,'USB J1','io',4),(24,143,9,7,'USB J2','io',4),(37,143,9,5,T['master'],'edge',3.6),(49,143,6,6,'RST','svc',3.6),(58,143,6,6,'BOOT','svc',3.6)]
     board(col1,ry2,T['t3'],'','#0891b2',binn,[],[],tdy=-27,mir=True)
     zone(col1,ry2,5,14,65,68,[T['zarea'],T['zstage'],T['zc5'],T['zc5b']])
@@ -168,7 +168,7 @@ def gen(lang):
     for i,cxm in enumerate((28,47)):
         out.append(f'<rect x="{col2+(cxm-9.3)*S:.1f}" y="{ry2+44*S:.1f}" width="{18.6*S:.1f}" height="{65*S:.1f}" rx="{9*S:.1f}" fill="#dcfce7" stroke="#16a34a" stroke-width="1.1"/>')
         out.append(txt(col2+cxm*S,ry2+78*S,'18650',6,'#166534','middle','bold'))
-    antface(col2,ry2,[('nR1',13,False),('5G',25.5,False),('nR2',38,False),('nR3',63,False)])  # 5-slot grid (13/25.5/38/50.5/63) with slot-4 skipped -> the 3 nRF sit at 13/38/63, maximally spread
+    antface(col2,ry2,[('nRF1',13,False),('5GHz',25.5,False),('nRF2',38,False),('nRF3',63,False)])  # 5-slot grid (13/25.5/38/50.5/63) with slot-4 skipped -> the 3 nRF sit at 13/38/63, maximally spread
     # ROW 3: cross-section (left) + antenna table (right)
     ry3=ry2+BH*S+70
     out.append(txt(30,ry3-24,T['r3'],11,'#166534','start','bold'))
@@ -251,7 +251,7 @@ def gen(lang):
             if cat in IFACE and lab!=T['spk'] and not near_edge(x,y,w,h): n+=1; print('  ACCESS',name,repr(lab),'- interface buried, not at an edge')
     # cross-board (clamshell) conflict: the C5 board folds X-MIRRORED onto the main board -- device_X of a C5 part = BW - part_x, so its interval [x,x+w] flips to [BW-x-w, BW-x].
     # A C5 RIGHT-edge exit therefore lands on the device's LEFT edge, sharing that case-slot band with a main LEFT-edge exit (spec 2a / check 6).
-    #   SIDE edges (L/R): both exits fire into the narrow ~11 mm gap window -> overlap is HARD (counted). BOTTOM edge: the two boards' exits sit ~11 mm apart in depth on the ~36 mm-deep bottom face -> overlap is allowed via staggered cutouts (reported as info, not counted). Speaker/mic are forward grilles (exempt).
+    #   SIDE edges (L/R): both exits fire into the narrow ~11 mm gap window -> overlap is HARD (counted). BOTTOM edge: the two boards' exits sit ~11 mm apart in depth on the ~36 mm-deep bottom face -> overlap is allowed via staggered cutouts (reported as info, not counted). ONLY the round speaker is a forward grille (exempt); the mic exits the bottom edge and is a normal port.
     def dev_exits(parts,flip):
         side,bot=[],[]
         for x,y,w,h,lab,cat,fs in parts:
@@ -269,11 +269,20 @@ def gen(lang):
     for xa0,xa1,la in mb:                                   # SOFT/info: bottom exits are depth-staggered, allowed; report so the PCB gives each its own staggered cutout
         for xb0,xb1,lb in cb:
             if min(xa1,xb1)-max(xa0,xb0)>1: print('  cross-board(bottom, ok via ~11mm depth-stagger): MAIN',repr(la),'vs C5',repr(lb),'- give each its own cutout')
-    # no part may overlap a corner M2.5 mounting hole
+    # no part may overlap a corner M2.5 mounting hole (part boxes + the antenna SMA / emitters drawn by antface)
     for parts,name in [(aout,'MAIN-out'),(ain,'MAIN-in'),(binn,'C5-in'),(bout,'C5-out')]:
         for x,y,w,h,lab,cat,fs in parts:
             for hx,hy in HOLES:
                 if x<hx+2.6 and x+w>hx-2.6 and y<hy+2.6 and y+h>hy-2.6: n+=1; print('  HOLE-HIT',name,repr(lab))
+    for cx,cy in antc:
+        for hx,hy in HOLES:
+            if math.hypot(cx-hx,cy-hy)<3.175+2.6: n+=1; print('  HOLE-HIT antenna @x=',cx)
+    # mezzanine mate (check 7): the two board-to-board halves must land on the SAME device X and Y after the fold, else they cannot connect
+    def mezz_dev(parts,flip):
+        for x,y,w,h,lab,cat,fs in parts:
+            if cat=='mez': return (BW-(x+w),BW-x,y,y+h) if flip else (x,x+w,y,y+h)
+    md_a,md_c=mezz_dev(ain,False),mezz_dev(binn,True)
+    if md_a and md_c and any(abs(a-b)>0.5 for a,b in zip(md_a,md_c)): n+=1; print('  MEZZ-MATE main',md_a,'vs C5',md_c,'- halves misaligned after the fold')
     # mezzanine gap check: the cross-section gap must clear the two boards' opposing inner parts (main ~3 mm + C5 nRF ~6 mm) <= 11 mm
     GAP,H_MAIN,H_C5=11,3,6
     if H_MAIN+H_C5>GAP: n+=1; print('  GAP',H_MAIN,'+',H_C5,'>',GAP)
@@ -281,5 +290,7 @@ def gen(lang):
 import os
 DST=os.path.dirname(os.path.abspath(__file__))+'/'  # write the SVGs next to this script (docs/img/)
 for lang in ('en','ru'):
-    svg,n=gen(lang); open(DST+f'layout-clamshell.{lang}.svg','w').write(svg); print(lang,'overlaps=',n)
+    svg,n=gen(lang)
+    if n: raise SystemExit(f'{lang}: {n} check failure(s) -- render NOT written')  # gate: never ship a render that fails a check (spec 8)
+    open(DST+f'layout-clamshell.{lang}.svg','w').write(svg); print(lang,'overlaps=',n)
 print('ok')
