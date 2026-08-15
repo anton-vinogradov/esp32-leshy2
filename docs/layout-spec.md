@@ -14,7 +14,7 @@ The fixed spec for (re)drawing the two-board clamshell layout render ([`layout-c
 
 - **Board size: ~75 × 150 mm each; ~34 mm total clamshell thickness.**
 - **Clamshell.** Inner faces face each other — components live in the gap, protected. Outer faces carry only the display + controls (front) and the battery (back), **plus the antenna SMA across the top of each**.
-- **Mezzanine gap.** The standoff height is **≥ the tallest inner-face component**, so the two boards' inner parts clear each other: `h_A(x,y) + h_B(x,y) ≤ gap` everywhere. The **3× nRF24 on 2×4 headers are the tallest (~12–15 mm)** and set the gap; the standoffs are also **no shorter than the DIV's**.
+- **Mezzanine gap.** The standoff height is **≥ the tallest inner-face component**, so the two boards' inner parts clear each other: `h_A(x,y) + h_B(x,y) ≤ gap` everywhere. The **nRF24 modules are the tallest inner parts** — mounted **low** (soldered / short pins, DIV-style, **not** on tall 2×4 sockets) they stand only **~5–7 mm**, so the gap follows the **DIV's proven ~11 mm** (a tall socket would add ~8 mm and blow the thickness budget — don't use one).
 - **Mounting.** Four **M2.5** corner holes, aligned on both boards; **every part and antenna is kept clear of them**.
 
 ## 3. Views & the mirror rule
@@ -84,7 +84,7 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **RESET / BOOT** | 6 × 6 | button | main · I | bottom edge | down |
 | **u.FL ×5 → outer SMA** | 2.6 × 2.6 | — | main · I | interior (to the top SMA) | — |
 | **ESP32-C5-WROOM-1U** | 18 × 21.2 | module | C5 · I | interior | — |
-| **3× nRF24 + PA/LNA** | 15.5 × 29 *(12.2 tall — sets the gap)* | module | C5 · I | interior, spread | — |
+| **3× nRF24 + PA/LNA** | 15.5 × 29 *(~5–7 mm mounted low — tallest inner part)* | module | C5 · I | interior, spread | — |
 | **IR driver** | small IC | IC | C5 · I | interior | — |
 | **74HC139** (nRF CS) | ~10 × 4 | IC | C5 · I | interior | — |
 | **PCA9555** | ~8 × 4.4 | IC | C5 · I | interior | — |
