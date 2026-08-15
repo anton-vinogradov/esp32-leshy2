@@ -14,16 +14,16 @@ Leshy2 is the successor to [esp32-leshy](https://github.com/anton-vinogradov/esp
 
 This README is the project's **source of truth**: the pipeline from idea to finished boards, **stage by stage**. Each stage sets a **Spec** (what and why), records the **Decisions** made in it, and produces **Artifacts** (files in this repo) that become the input to the next stage — so you can read it as *spec → decisions → result* and check each step.
 
-**Status:** ✅ done · 🟡 in progress · ⏳ planned. Nothing is built on real hardware yet.
+**Status:** ⏳ planned · 🟡 in progress · ✅ done · 🔬 reviewed (self-review passed; a later edit drops it back to ✅). Nothing is built on real hardware yet.
 
 | # | Stage | Status |
 |--:|-------|:------:|
-| 1 | [Why a new device](#1-why-a-new-device--vision) | ✅ |
+| 1 | [Why a new device](#1-why-a-new-device--vision) | 🔬 |
 | 2 | [What it must do — capabilities](#2-what-it-must-do--capabilities) | ✅ |
-| 3 | [Components](#3-components) | ✅ |
-| 4 | [Architecture](#4-architecture) | ✅ |
+| 3 | [Components](#3-components) | 🔬 |
+| 4 | [Architecture](#4-architecture) | 🔬 |
 | 5 | [External design & controls](#5-external-design--controls) | ✅ |
-| 6 | [Schematic sheets](#6-schematic-sheets) | ✅ |
+| 6 | [Schematic sheets](#6-schematic-sheets) | 🔬 |
 | 7 | [Merge, realize, review, complete](#7-merge-realize-review-complete) | 🟡 |
 | 8 | [PCB layout](#8-pcb-layout) | 🟡 |
 | 9 | [Firmware](#9-firmware) | ⏳ |
