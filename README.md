@@ -42,7 +42,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **Sub-GHz 315 / 433 / 868 / 915 MHz** — CC1101 + an SP4T multi-band front end.
 - **LoRa / Meshtastic** — SX1262 / E22-900M22S (+22 dBm).
 - **Voice walkie** — SA868-U, 2 W TX/RX 433 / 446 MHz NBFM.
-- **HF / CB / FM receiver + real analog audio** — Si4732 + a PAM8302 amp → speaker + headphone jack.
+- **HF / CB / FM receiver + real analog audio** — Si4732 + a PAM8302 amp → speaker + a **TRRS headset jack** (headphone out + a mic ring to the SA868 walkie for hands-free) and an on-board MEMS mic.
 - **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
 - **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
 - **2S 18650 power** with an on-board balancing boost-charger.
@@ -174,7 +174,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - **Chip-to-chip link:** a dedicated **SPI3 + DRDY** strobe (the C5 is a clean SPI slave; it never touches the shared bus). The C5 flashes over its own USB-C and takes OTA over the link — brick-safe.
 - **Shared bus (S3 FSPI):** microSD + CC1101 + SX1262 + the display — chip-selects via a 74HC138. Three I²C **PCA9555** expanders carry the slow lines (radio/display control, rail gates, and the UI buttons); interrupts stay on direct pins. (The 3× nRF24 leave this bus for the C5's own SPI — stage 5.)
 - **Display:** the ST7796 **4.0″ 320×480 IPS** panel is on that shared SPI — the C5 has no `LCD_CAM` and there are no spare pins for a parallel / QSPI panel, so SPI it is; the waterfall rides the panel's **hardware vertical scroll** to keep per-frame updates tiny. The panel's **capacitive touch** rides the shared I²C bus (INT on the UI expander U14 — no host pin), a complement to the physical controls.
-- **Human interface:** the D-pad, BACK / OPTIONS / STOP / F1 / F2 and the encoder push all read through the I²C **PCA9555** expanders (S3 GPIO is full and buttons are slow); only the encoder's A/B quadrature keeps two direct S3 pins (timing-critical). All buttons share one INT.
+- **Human interface, split by board.** The **S3 reads the front controls** — the D-pad + BACK / OPTIONS — through a **PCA9555** (slow lines, 0 host pins). The **encoder, F1 / F2 and PTT / panic-STOP sit on the C5 board** ringing the battery (stage 5); the **C5 reads them locally** — the encoder's A/B quadrature on its own GPIO — and relays their state to the S3 over the link, freeing the S3's two encoder pins and those button lines.
 - **9 antennas** — split five and five across the two boards (stage 5): **five on the main board** (S3 2.4, CC1101, SA868, LoRa, Si4732) + GPS patch, **four on the C5 board** (3× nRF24 + C5 5 GHz) + **IR**, the nRF spread for isolation. Each chain has its own removable board-mounted SMA.
 - **Two USB-C:** J1 → S3 (charge + data), J2 → C5 (data-only); both mount on the C5 board's inner face (stage 5). The pack charges only through J1.
 - **Power:** 2× 18650 in 2S — **BQ25887 boost charger** (charges 2S from plain 5 V USB), MP2315 +5 V and +3V3 bucks, a TPS7A2033 +3V3 analog rail, rail gates that cut idle radios. A hard master toggle is the only on/off.
