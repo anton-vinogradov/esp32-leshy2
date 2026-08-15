@@ -136,7 +136,7 @@
 | C-RX-04 | Tuning/DSP/AGC/BFO/presets/band plans | MAIN | — |
 | C-RX-05 | Bandscope и sweep-RSSI spectrum | MAIN | не FFT |
 | C-RX-06 | Scanner log на SD | MAIN | — |
-| C-RX-07 | WAV recording и CW/RTTY/SSTV/WEFAX decode | MAIN | `BLOCKED` отсутствующим MCU audio-path, `FND-0003` |
+| C-RX-07 | WAV recording и CW/RTTY/SSTV/WEFAX decode | MAIN | `conditional`: `DEC-0009`; electrical/firmware proof ожидается |
 
 ## SA868 UHF radio — `FW-CAP §8`
 
@@ -145,10 +145,10 @@
 | C-VHF-01 | NFM voice RX/TX | MAIN | licence/PMR profile, STOP |
 | C-VHF-02 | CTCSS/DCS/squelch/channel/band/volume | MAIN | настройки связи |
 | C-VHF-03 | Channel/tone scan и carrier/RSSI detect | MAIN | RX |
-| C-VHF-04 | Parrot, roger beep, VOX, 1750 tone, DTMF encode | MIXED | часть `BLOCKED` audio-path, `FND-0003` |
-| C-VHF-05 | DTMF decode | MAIN | `BLOCKED`, `FND-0003` |
-| C-VHF-06 | APRS/AFSK, AX.25 KISS, SSTV TX, fox-hunt beacon | MAIN | `BLOCKED`, licence + `FND-0003` |
-| C-VHF-07 | Cross-band audio relay и UHF WAV recording | MIXED | `BLOCKED`, `FND-0003` |
+| C-VHF-04 | Parrot, roger beep, VOX, 1750 tone, DTMF encode | MIXED | audio-режимы `conditional`: `DEC-0009`; TX policy/firmware proof |
+| C-VHF-05 | DTMF decode | MAIN | `conditional`: `DEC-0009`; electrical/decoder proof |
+| C-VHF-06 | APRS/AFSK, AX.25 KISS, SSTV TX, fox-hunt beacon | MAIN | `conditional`: `DEC-0009`; licence, TX gate и modem proof |
+| C-VHF-07 | Cross-band audio relay и UHF WAV recording | MIXED | `conditional`: `DEC-0009`; relay только Lab/default-off + legal/HIL proof |
 
 ## NFC/RFID optional unit — `FW-CAP §9`
 
@@ -188,7 +188,7 @@
 | C-SYS-07 | Battery status, sleep и peripheral/C5 power gating | SYS | — |
 | C-SYS-08 | WS2812 status LED и buzzer | SYS | — |
 | C-SYS-09 | Grove/M5 enumeration, hot-plug и unit drivers | SYS | only 3.3 V I2C units |
-| C-SYS-10 | Analog audio mux/amp/jack control | SYS | не даёт MCU digital audio, `FND-0003` |
+| C-SYS-10 | Analog audio mux/amp/jack control | SYS | legacy path сам не даёт MCU digital audio; расширение `conditional` по `DEC-0009` |
 | C-SYS-11 | Self-test, crash/core dump, factory reset, RTOS tasks | SYS | — |
 
 ## Cross-cutting — `FW-CAP Cross-cutting`
