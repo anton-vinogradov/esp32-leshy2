@@ -9,18 +9,18 @@ Leshy2 is priced as a **platform + capabilities**, not one flat parts list:
 - **Platform** — what is always on the board: the two brains, the display, power, buses, and the onboard I/O. Buy this and you already have a **2.4 GHz Wi-Fi + BLE** tool (native on the ESP32-S3), a screen, and an SD logger. Nothing extra needed.
 - **Capabilities** — each radio you add costs what it costs. Want a walkie? Add ~$13. Want 5 GHz recon? Add the ESP32-C5 (~$7). Skip what you don't want and the price drops with it.
 
-> **Bottom line:** electronics ≈ **$108–125**, whole build (with PCB + enclosure) ≈ **$135–160**. Two chips, nine antennas, every RF chain built from bare silicon.
+> **Bottom line:** electronics ≈ **$102–119**, whole build (with PCB + enclosure) ≈ **$130–155**. Two chips, nine antennas, every RF chain built from bare silicon.
 
 ## Cost at a glance
 
 | Block | ≈ USD |
 |------|:----:|
 | **Platform** (S3 + C5-link glue + display + power + buses + onboard I/O) | ≈ 47 |
-| **Capabilities** (every radio, GPS, audio) | ≈ 61 |
-| **Electronics total** | **≈ 108** |
+| **Capabilities** (every radio, audio; GPS now external) | ≈ 55 |
+| **Electronics total** | **≈ 102** |
 | 4-layer PCB (small run, two RF sections) | 8–15 |
 | Enclosure, connectors, antennas hardware | 15–25 |
-| **Whole build** | **≈ 135–160** |
+| **Whole build** | **≈ 130–155** |
 
 ## Platform — ≈ $47
 
@@ -37,7 +37,7 @@ Always present. This is the tool you get before adding a single extra radio.
 
 The external **SMA** antenna on the S3 (not a chip antenna) is what lets the 2.4 GHz Wi-Fi front-end actually reach. That is the free-with-platform radio.
 
-## Capabilities — ≈ $61
+## Capabilities — ≈ $55
 
 Add only what you need. Each line is a self-contained radio (module + its own tuned antenna).
 
@@ -48,11 +48,11 @@ Add only what you need. Each line is a self-contained radio (module + its own tu
 | **2.4 GHz raw** | 3× nRF24L01+PA/LNA + 3 antennas — parallel band scan, mousejack | 10 |
 | **LoRa / Meshtastic** | SX1262 (E22-900M22S, +22 dBm) + antenna | 9 |
 | **Sub-GHz 315/433/868/915** | CC1101 (bare + xtal + balun) + SP4T SKY13414-485LF + 4 matching networks + antenna | 8 |
-| **GPS** | u-blox module over UART, onboard + antenna | 6 |
+| **GPS** | *external* M5 GPS Unit (Grove-UART, own antenna) — optional accessory, not on the base board | — |
 | **HF/CB/FM listen + audio** | Si4732-A10 (RX only) + PAM8302 amp + speaker + headphone jack + telescopic whip | 8 |
 | **GPIO45 de-strap** | eFuse `set_flash_voltage 3.3V` — frees the pin for CC1101 carrier-sense | 0 |
 
-The **GPS is a plain UART module (~$6)**, onboard — no premium GPS part.
+**GPS is now an external M5 GPS Unit** (Grove-UART, its own antenna) — a plug-in accessory, not on the base board. The S3's free UART2 (GPIO18 RX / GPIO47 TX) is broken out to a Grove-UART header for it; no on-board GPS module (or its cost) remains.
 
 The **eFuse step is $0 in parts** — it is a one-time factory burn, not a component. It buys back a pin (GPIO45) for the CC1101 GDO2 carrier-sense interrupt.
 

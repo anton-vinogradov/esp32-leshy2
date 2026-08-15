@@ -35,7 +35,7 @@ The 36 usable pins (GPIO0–21, 35–48 — **GPIO33/34 are not bonded out on th
 
 | Group | Pins | Lines |
 |---|:--:|---|
-| **Shared buses** | 12 | SPI2 `SCK/MOSI/MISO` (3) · I²C `SDA/SCL` (2) · `74HC138 A/B/C` (3) · SA868 `UART1 TX/RX` (2) · GPS `UART2 RX/TX` (2) |
+| **Shared buses** | 12 | SPI2 `SCK/MOSI/MISO` (3) · I²C `SDA/SCL` (2) · `74HC138 A/B/C` (3) · SA868 `UART1 TX/RX` (2) · Grove-UART GPS `UART2 RX/TX` (2) — broken out to a Grove-UART header for an external M5 GPS Unit |
 | **Timing-critical direct** (they sum) | 8 | `WS2812` · `LoRa_DIO1` · `CC1101_GDO0` · `LoRa_BUSY` · `LCD_DC` · `LCD_TE` · `ENC_A` · `ENC_B` |
 | **One interrupt** | 1 | `CC1101_GDO2` — no longer forced onto a strap pin (see below) |
 | **C5-link block** (quad-freed 35–39) | 5 | SPI3 `SCK/MOSI/MISO/CS` · `DRDY` — `C5_EN` → **PCA9555 #2** (GPIO33/34 not bonded) |

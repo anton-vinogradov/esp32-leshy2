@@ -15,7 +15,7 @@ You do not need to be an RF expert to help. There is room for hardware people, f
 - **Review the KiCad schematic.** Two MCUs: an **ESP32-S3** brain (Xtensa, native 2.4 GHz WiFi + BLE) that runs everything, plus an **ESP32-C5** co-processor (RISC-V) for native 5 GHz WiFi (and 2.4 / BLE / 802.15.4). All RF is self-built on shielded modules (3× nRF24L01+PA/LNA, CC1101, SX1262/LoRa, Si4732 RX-only, SA868-U). Extra eyes on nets, power, and pin choices are valuable.
 - **Help with the firmware.** The main firmware is ported from the ESP32-S3 (leshy) codebase and stays on the S3; the C5 runs a small 5 GHz agent that talks to the S3 over the link. It lives in its own repo — [esp32-leshy2-firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware). Help with drivers, peripheral bring-up, and the S3↔C5 protocol is welcome.
 - **Review the PCB layout / RF layout.** The board is 4-layer (JLCPCB JLC7628, +-10% impedance), designed in KiCad. Good RF layout, grounding, and shielding review helps a lot.
-- **Antenna tuning / VNA.** There are 9 onboard antennas, plus the GPS module's own antenna. Tuning each chain with a VNA is a manual step. If you know antenna matching, please share.
+- **Antenna tuning / VNA.** There are 9 onboard antennas. (GPS is now an external M5 GPS Unit on a Grove-UART port and carries its own antenna, so it is not part of the onboard set.) Tuning each onboard chain with a VNA is a manual step. If you know antenna matching, please share.
 - **Testing.** Build it, run it, and report what works and what does not. Bug reports with clear steps are gold.
 - **Docs.** Improve setup guides, wiring notes, and user docs. Simple, clear writing helps everyone.
 - **Translations.** Help translate docs into more languages so more people can join.

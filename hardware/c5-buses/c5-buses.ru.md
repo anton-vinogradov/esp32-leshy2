@@ -43,7 +43,7 @@
 | GPIO15 | `LoRa_BUSY` | in | поллинг перед каждой командой SX1262 |
 | GPIO16 | `SA868_UART_TX` | out | UART1 → рация |
 | GPIO17 | `SA868_UART_RX` | in | UART1 ← рация |
-| GPIO18 | `GPS_UART_RX` | in | UART2, NMEA (обязателен) |
+| GPIO18 | `GPS_UART_RX` | in | UART2 → **порт Grove-UART под GPS** (внешний M5 GPS Unit), NMEA (обязателен) |
 | GPIO19 | `USB_D−` | io | нативный USB + **консоль через USB-Serial-JTAG** |
 | GPIO20 | `USB_D+` | io | нативный USB |
 | GPIO21 | `LCD_TE` | in | tearing/vsync от ST7796 (тайминг → прямая) |
@@ -61,12 +61,14 @@
 | GPIO44 | `C5_FLASH_RX` | in | U0RXD ← C5 U0TXD |
 | GPIO45 | `CC1101_GDO2` | in | carrier-sense CC1101 (GDO2) → wake-on-sub-GHz; **GPIO45 де-страплена eFuse** (`set_flash_voltage 3.3V`) → ROM не читает её на POR, уровень GDO2 безразличен |
 | GPIO46 | `nRF24_IRQ` | in | три IRQ nRF24 (push-pull) сведены **3-входовым вентилём 74AHC** → одно idle-**low** прерывание (удовлетворяет страп GPIO46) |
-| GPIO47 | `GPS_UART_TX` | out | UART2, опционально (только конфиг) |
+| GPIO47 | `GPS_UART_TX` | out | UART2 → **порт Grove-UART под GPS**, опционально (только конфиг) |
 | GPIO48 | `PCA9555_INT` | in | прерывание расширителя |
 
 Медленные управляющие линии — на **двух из трёх расширителей PCA9555** (0x20 + 0x21; третий, 0x22, держит кнопки UI), 0 ног хоста, один общий wired-OR `INT`. Топливомер — с встроенного I²C-ADC **BQ25887** (без ADC-ноги).
 
 *Отказ от автономного дисплея на C5 освободил GPIO3 (была нога слайдера режимов); теперь на ней `LoRa_DIO1`, и приём LoRa стал прерыванием вместо опроса — меньше трафика на общей шине.*
+
+> ♻️ **GPS внешний.** Бортовой u-blox **SAM-M8Q** (и его резервный суперкап) **убран**. GPS теперь — внешний **M5 GPS Unit** на порту **Grove-UART**: линии S3 `GPS_UART_RX` / `GPS_UART_TX` (UART2, GPIO18 / GPIO47) выше выведены на этот Grove-UART-разъём вместо бортового модуля. Число ног не меняется — меняется только назначение. См. [Лист 5 — расширение](../expansion/expansion.ru.md).
 
 ## Карта ног C5 (предложение — сверить с даташитом)
 

@@ -35,7 +35,7 @@
 - [x] Набор РЧ: **3× nRF24L01+PA/LNA** (2.4 raw), **CC1101** (голый + кварц + балун) → **SP4T SKY13414-485LF** + 4 матч-сети (315 / 433 / 868 / 915), **SX1262** (E22-900M22S, +22 dBm LoRa), **Si4732-A10** (HF/CB/FM, только RX), **SA868-U** (433 / 446 голос, 2 Вт)
 - [x] Аудио: аналоговое моно → **PAM8302** класса D → динамик + гнездо наушников; MCU не в аудиотракте
 - [x] Дисплей **ST7796 320×480 IPS** по SPI (не 8080 / AMOLED — у C5 нет LCD_CAM; водопад едет на аппаратном вертикальном скролле панели)
-- [x] **GPS** (u-blox, UART, на плате); **2× Grove I²C** + юнит RFID2
+- [x] **GPS** — *внешний* M5 GPS Unit (Grove-UART, своя антенна); свободный UART2 у S3 (GPIO18/47) выведен на разъём Grove-UART под него; **2× Grove I²C** + юнит RFID2
 - [x] Питание: **2S 2×18650**, boost BQ25887 (5 В→8.4 В, без PD), защита S-8252A, MP2315 +5 В, MP2315 +3V3, TPS7A2033 +3V3A, master-тумблер; рейлы гейтятся в idle
 - [x] **9 антенн**, РЧ-свитча между трактами нет: S3 2.4 (внешняя SMA), C5 dual 2.4/5, 3× nRF24, CC1101, Si4732 телескоп, SA868 UHF, SX1262 LoRa
 - [x] Органы ввода: RESET, BOOT, **PTT**, поворотный энкодер; master-тумблер = питание
@@ -48,7 +48,7 @@
 - [x] **S3 + C5 + шины** (Лист 2, [hardware/c5-buses](../hardware/c5-buses/c5-buses.ru.md)): оба MCU, линк SPI3+DRDY, общая SPI2 + 74HC138, три PCA9555, UART, энкодер + кнопки, два USB-C
 - [x] **РЧ-тракты** (Лист 3, [hardware/rf](../hardware/rf/rf.ru.md)): 3× nRF24, CC1101 + SP4T + 4 матч-сети, SX1262
 - [x] **Аудио** (Лист 4, [hardware/audio](../hardware/audio/audio.ru.md)): Si4732 RX, рация SA868-U, PAM8302 + динамик + гнездо
-- [x] **Расширение + GPS** (Лист 5, [hardware/expansion](../hardware/expansion/expansion.ru.md)): бортовой u-blox GPS, 2× Grove I²C, полная карта адресов I²C
+- [x] **Расширение** (Лист 5, [hardware/expansion](../hardware/expansion/expansion.ru.md)): разъём Grove-UART под внешний M5 GPS Unit (UART2 у S3, GPIO18/47), 2× Grove I²C, полная карта адресов I²C
 - [x] **Индикация + I/O** (Лист 6, [hardware/indicators](../hardware/indicators/indicators.ru.md)): аппаратные TX-live светодиоды на тракт (0 GPIO), WS2812, зуммер, IR TX/RX, microSD
 
 ### 3. Валидация прошивки в эмуляции — до меди
@@ -79,7 +79,7 @@
 - [ ] **Портировать leshy** (код S3 уже работает — в основном bring-up на новой плате)
 - [ ] **Агент C5 на 5 GHz**: скан / снифинг / флуд beacon-probe (+ deauth, если заработает на железе)
 - [ ] **Протокол линка** по SPI3+DRDY: S3 ведёт, C5 отвечает
-- [ ] Драйверы: 3× nRF24, CC1101 (+ выбор диапазона SP4T), SX1262, Si4732, SA868-U, u-blox GPS, PCAP на microSD
+- [ ] Драйверы: 3× nRF24, CC1101 (+ выбор диапазона SP4T), SX1262, Si4732, SA868-U, внешний M5 GPS (Grove-UART), PCAP на microSD
 - [ ] Ограничения мощности LoRa по регионам в прошивке (EU433 +10 dBm, EU868 +14 dBm, 869.4–869.65 MHz +27 dBm при 10 % duty, US915 +30 dBm с перескоком)
 - [ ] Ввод текста по BLE (длинный текст набирается на телефоне)
 

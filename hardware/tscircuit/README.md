@@ -13,7 +13,7 @@ and a **KiCad export** — so nothing is drawn by hand.
 | `c5-buses.tsx` | 2 · MCU + buses | [c5-buses.md](../c5-buses/c5-buses.md) |
 | `rf.tsx` | 3 · RF chains | [rf.md](../rf/rf.md) |
 | `audio.tsx` | 4 · Audio | [audio.md](../audio/audio.md) |
-| `expansion.tsx` | 5 · Expansion + GPS | [expansion.md](../expansion/expansion.md) |
+| `expansion.tsx` | 5 · Expansion (Grove-UART GPS port) | [expansion.md](../expansion/expansion.md) |
 | `indicators.tsx` | 6 · Indicators / IO | [indicators.md](../indicators/indicators.md) |
 | `integration.tsx` | board-level (display FPC · antenna u.FL · UI buttons · U14) | — merged, not a design sheet |
 

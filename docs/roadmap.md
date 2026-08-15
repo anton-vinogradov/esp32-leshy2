@@ -35,7 +35,7 @@ The single-chip idea (one C5 doing everything) was dropped. The C5 is young sili
 - [x] RF set: **3× nRF24L01+PA/LNA** (2.4 raw), **CC1101** (bare + crystal + balun) → **SP4T SKY13414-485LF** + 4 matching networks (315 / 433 / 868 / 915), **SX1262** (E22-900M22S, +22 dBm LoRa), **Si4732-A10** (HF/CB/FM, RX only), **SA868-U** (433 / 446 voice, 2 W)
 - [x] Audio: analog mono → **PAM8302** class-D → speaker + headphone jack; the MCU is not in the audio path
 - [x] **ST7796 320×480 IPS** display over SPI (not 8080 / AMOLED — the C5 has no LCD_CAM; the waterfall rides the panel's hardware vertical scroll)
-- [x] **GPS** (u-blox, UART, onboard); **2× Grove I²C** + RFID2 unit
+- [x] **GPS** — *external* M5 GPS Unit (Grove-UART, own antenna); the S3's free UART2 (GPIO18/47) is broken out to a Grove-UART header for it; **2× Grove I²C** + RFID2 unit
 - [x] Power: **2S 2×18650**, BQ25887 boost (5 V→8.4 V, no PD), S-8252A protection, MP2315 +5 V, MP2315 +3V3, TPS7A2033 +3V3A, master toggle; rails gated in idle
 - [x] **9 antennas**, no RF switch between chains: S3 2.4 (external SMA), C5 dual 2.4/5, 3× nRF24, CC1101, Si4732 telescopic, SA868 UHF, SX1262 LoRa
 - [x] Inputs: RESET, BOOT, **PTT**, rotary encoder; master toggle = power
@@ -48,7 +48,7 @@ Six sheets, already written as specs; capture them in KiCad in this order.
 - [x] **S3 + C5 + buses** (Sheet 2, [hardware/c5-buses](../hardware/c5-buses/c5-buses.md)): both MCUs, the SPI3+DRDY link, shared SPI2 + 74HC138, three PCA9555, UART, encoder + buttons, dual USB-C
 - [x] **RF chains** (Sheet 3, [hardware/rf](../hardware/rf/rf.md)): 3× nRF24, CC1101 + SP4T + 4 match nets, SX1262
 - [x] **Audio** (Sheet 4, [hardware/audio](../hardware/audio/audio.md)): Si4732 RX, SA868-U walkie, PAM8302 + speaker + jack
-- [x] **Expansion + GPS** (Sheet 5, [hardware/expansion](../hardware/expansion/expansion.md)): onboard u-blox GPS, 2× Grove I²C, full I²C address map
+- [x] **Expansion** (Sheet 5, [hardware/expansion](../hardware/expansion/expansion.md)): a Grove-UART port for an external M5 GPS Unit (S3 UART2, GPIO18/47), 2× Grove I²C, full I²C address map
 - [x] **Indicators + I/O** (Sheet 6, [hardware/indicators](../hardware/indicators/indicators.md)): per-chain hardware TX-live LEDs (0 GPIO), WS2812, buzzer, IR TX/RX, microSD
 
 ### 3. Firmware validation in emulation — before copper
@@ -79,7 +79,7 @@ Three pieces: port the existing brain, add the 5 GHz agent, and glue them. Devel
 - [ ] **Port leshy** (the S3 codebase already runs — mostly bring-up on the new board)
 - [ ] **C5 5 GHz agent**: scan / sniff / beacon-probe flood (+ deauth if it works on hardware)
 - [ ] **Link protocol** over SPI3+DRDY: the S3 drives, the C5 answers
-- [ ] Drivers: 3× nRF24, CC1101 (+ SP4T band select), SX1262, Si4732, SA868-U, u-blox GPS, microSD PCAP
+- [ ] Drivers: 3× nRF24, CC1101 (+ SP4T band select), SX1262, Si4732, SA868-U, external M5 GPS (Grove-UART), microSD PCAP
 - [ ] Per-region LoRa power caps enforced in firmware (EU433 +10 dBm, EU868 +14 dBm, 869.4–869.65 MHz +27 dBm @ 10 % duty, US915 +30 dBm w/ hopping)
 - [ ] BLE text entry (long text typed on a phone)
 

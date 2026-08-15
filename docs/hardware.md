@@ -25,7 +25,7 @@ Everything digital hangs off the **S3** at 3.3 V. See [Sheet 2](../hardware/c5-b
 
 - **SPI2 (shared, FSPI @ 80 MHz)** — microSD, CC1101, 3× nRF24, SX1262 (LoRa) and the ST7796 display all ride one bus. Chip-selects come from a **74HC138** (3 GPIO → 8 CS) instead of one GPIO each. Only one radio is active at a time, so a radio and the display never fight for the bus. See [Sheet 3](../hardware/rf/rf.md) for the RF devices, [Sheet 6](../hardware/indicators/indicators.md) for the SD.
 - **I²C** — Si4732 control, the **three PCA9555** expanders, the BQ25887 charger, and the Grove ports. **PCA9555 #1 (0x20)** carries radio + display slow control; **#2 (0x21)** carries PTT, the rail gates, the SP4T band select and the headphone-jack detect; **#3 (0x22)** carries the UI buttons (D-pad, BACK, OPTIONS, STOP, F1, F2).
-- **UART ×3** — SA868 walkie control (UART1), u-blox **GPS** (UART2), and **UART0** as the field flash bridge to the C5. See [Sheet 5](../hardware/expansion/expansion.md) for GPS.
+- **UART ×3** — SA868 walkie control (UART1), **UART2** broken out to a **Grove-UART** port for an external **M5 GPS Unit** (GPIO18 RX / GPIO47 TX — no on-board GPS), and **UART0** as the field flash bridge to the C5. See [Sheet 5](../hardware/expansion/expansion.md) for the GPS port.
 - **S3 ↔ C5 link** — a dedicated **SPI3** plus a **DRDY** ready-strobe. The C5 is flashed by the S3 over UART0 (auto-OTA in the field) and has its own USB-C for brick-safe recovery on the bench.
 - **Direct interrupts** — the four timing-critical lines stay on real GPIO, not the expanders: **LoRa DIO1**, the wired-OR **nRF24 IRQ** (through a 74AHC gate), **CC1101 GDO2** carrier-sense, and **CC1101 GDO0**.
 
@@ -49,7 +49,7 @@ A **4.0″ ST7796 320×480 IPS TFT over SPI**, sharing the radio bus (CS via the
 
 ## Antennas (9)
 
-Nine onboard antennas, **one per RF chain — there is no RF switch shared between chains**. The u-blox GPS carries its own antenna on the module, separate from these nine.
+Nine onboard antennas, **one per RF chain — there is no RF switch shared between chains**.
 
 1. **ESP32-S3** — 2.4 GHz Wi-Fi + BLE (external SMA).
 2. **ESP32-C5** — dual-band 2.4 / 5 GHz.
@@ -59,7 +59,7 @@ Nine onboard antennas, **one per RF chain — there is no RF switch shared betwe
 8. **SA868-U** — 433 / 446 MHz UHF.
 9. **SX1262** — 868 / 915 MHz LoRa.
 
-**All nine are removable board-mounted SMA jacks along the top edge** — screw on a whip, telescopic or wire. The three nRF24 are spread (ends + centre, ~40 mm) so the parallel 2.4 GHz operation (scan and multi-channel TX) doesn't self-desense; frequency-diverse radios sit between them and the 2 W SA868 is at one end, away from GPS. Bare radios (CC1101, SA868) trace straight to their SMA; module radios (3× nRF24, LoRa, S3, C5) use a short internal u.FL → SMA jumper. See [Sheet 3](../hardware/rf/rf.md).
+**All nine are removable board-mounted SMA jacks along the top edge** — screw on a whip, telescopic or wire. The three nRF24 are spread (ends + centre, ~40 mm) so the parallel 2.4 GHz operation (scan and multi-channel TX) doesn't self-desense; frequency-diverse radios sit between them and the 2 W SA868 is at one end. Bare radios (CC1101, SA868) trace straight to their SMA; module radios (3× nRF24, LoRa, S3, C5) use a short internal u.FL → SMA jumper. See [Sheet 3](../hardware/rf/rf.md).
 
 ## Power
 
@@ -71,7 +71,7 @@ Per-transmit-chain **hardware TX-live LEDs** (amber RF envelope detectors — ho
 
 ## Expansion
 
-M5-compatible for **I²C Grove Units** only (M5 Caps / Modules / HATs use other connectors and are not supported). **Two Grove HY2.0-4P ports** on the I²C bus (3.3 V default; 5 V via a jumper behind an I²C level translator), with e.g. an **RFID2** NFC unit (WS1850S, 0x28) as an example plug-in unit. Units are addressed individually. See [Sheet 5](../hardware/expansion/expansion.md).
+M5-compatible **Grove Units**: two **I²C** ports and one **UART** port (M5 Caps / Modules / HATs use other connectors and are not supported). **Two Grove HY2.0-4P** I²C ports (3.3 V default; 5 V via a jumper behind an I²C level translator), with e.g. an **RFID2** NFC unit (WS1850S, 0x28) as an example plug-in unit; units are addressed individually. A third **Grove-UART** port breaks out the S3's UART2 (GPIO18 RX / GPIO47 TX) for an external **M5 GPS Unit** — it carries its own antenna and is an optional accessory, not part of the base board (there is no on-board GPS). See [Sheet 5](../hardware/expansion/expansion.md).
 
 ## Honest ceilings
 

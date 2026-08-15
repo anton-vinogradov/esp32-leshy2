@@ -23,7 +23,7 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 | 3 | [Components](#3-components) | 🔬 |
 | 4 | [Architecture](#4-architecture) | ✅ |
 | 5 | [External design & controls](#5-external-design--controls) | ✅ |
-| 6 | [Schematic sheets](#6-schematic-sheets) | 🔬 |
+| 6 | [Schematic sheets](#6-schematic-sheets) | 🟡 |
 | 7 | [Merge, realize, review, complete](#7-merge-realize-review-complete) | 🟡 |
 | 8 | [PCB layout](#8-pcb-layout) | 🟡 |
 | 9 | [Firmware](#9-firmware) | ⏳ |
@@ -43,8 +43,8 @@ This README is the project's **source of truth**: the pipeline from idea to fini
 - **LoRa / Meshtastic** — SX1262 / E22-900M22S (+22 dBm).
 - **Voice walkie** — SA868-U, 2 W TX/RX 433 / 446 MHz NBFM.
 - **HF / CB / FM receiver + real analog audio** — Si4732 + a PAM8302 amp → speaker + a **TRRS headset jack** (headphone out + a mic ring to the SA868 walkie for hands-free) and an on-board MEMS mic.
-- **GPS** (u-blox), **IR TX / RX**, **microSD** (PCAP logging).
-- **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors).
+- **GPS** — an **external M5 GPS Unit** on a Grove port (its own antenna); no on-board GPS. Plus **IR TX / RX**, **microSD** (PCAP logging).
+- **2× Grove I²C** expansion for M5 Units (NFC / RFID2, RTC, IMU, sensors) + a **Grove-UART** port for the M5 GPS Unit (the S3's freed UART2).
 - **2S 18650 power** with an on-board balancing boost-charger.
 - **A bigger, higher-res display** — a **4.0″ 320×480 IPS** panel vs DIV's 2.8″ 240×320 (ILI9341): same SPI interface, but **~2× the area and 2× the pixels** (~2× the waterfall on screen) and IPS for wider viewing angles. Same ~143 ppi — bigger and roomier, not sharper. Plus **capacitive touch** (DIV is button-only).
 - **A proper control set** — a **5-way D-pad + BACK + OPTIONS + PTT + panic STOP + F1 / F2 + an encoder wheel** (DIV's buttons are minimal); long text is typed from a phone.
@@ -114,7 +114,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - Per-TX-chain amber TX LED (7) — a hardware envelope detector, honest "on air" even if firmware hangs, 0 GPIO.
 
 **Aux**
-- microSD (SPI) for PCAP logging · WS2812 RGB status LED + buzzer · GPS (u-blox, UART) · IR TX/RX.
+- microSD (SPI) for PCAP logging · WS2812 RGB status LED + buzzer · GPS = external M5 Unit (Grove-UART) · IR TX/RX.
 - **2× Grove HY2.0-4P (I²C, 3.3 V)** for M5 I²C Units (RFID2, RTC, IMU, sensors). Grove I²C Units only.
 - Long text is typed on your phone (BLE / Wi-Fi) — no onboard keyboard (see stage 9).
 
@@ -131,7 +131,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 | 27 MHz CB + HF / MW / LW | Si4732 | ✓ | — | listen AM / SSB / CW and CB |
 | 64–108 MHz FM | Si4732 | ✓ | — | listen to FM broadcast |
 | LoRa (EU868 / US915) | SX1262 | ✓ | ✓ (+22 dBm) | Meshtastic encrypted text mesh |
-| GPS L1 ~1.575 GHz | u-blox (UART) | ✓ | — | position / time |
+| GPS L1 ~1.575 GHz | external M5 GPS Unit (Grove-UART) | ✓ | — | position / time |
 
 **Honest limits.** 5 GHz is **Marauder-class only** (management-frame work — no full monitor + injection), all Si4732 HF is **receive-only**, and you **can't key every radio at once** (RF coexistence time-shares the chains — not a bus limit). For the full list of what's deliberately **out of scope and why** (raw 5 GHz, Linux-class analytics, wideband SDR, jamming…), see stage 1.
 
@@ -175,7 +175,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 - **Shared bus (S3 FSPI):** microSD + CC1101 + SX1262 + the display — chip-selects via a 74HC138. Three I²C **PCA9555** expanders carry the slow lines (radio/display control, rail gates, and the UI buttons); interrupts stay on direct pins. (The 3× nRF24 leave this bus for the C5's own SPI — stage 5.)
 - **Display:** the ST7796 **4.0″ 320×480 IPS** panel is on that shared SPI — the C5 has no `LCD_CAM` and there are no spare pins for a parallel / QSPI panel, so SPI it is; the waterfall rides the panel's **hardware vertical scroll** to keep per-frame updates tiny. The panel's **capacitive touch** rides the shared I²C bus (INT on the UI expander U14 — no host pin), a complement to the physical controls.
 - **Human interface, split by board.** The **S3 reads the front controls** — the D-pad + BACK / OPTIONS — through a **PCA9555** (slow lines, 0 host pins). The **encoder, F1 / F2 and PTT / panic-STOP sit on the C5 board** ringing the battery (stage 5); the **C5 reads them locally** — the encoder's A/B quadrature on its own GPIO — and relays their state to the S3 over the link, freeing the S3's two encoder pins and those button lines.
-- **9 antennas** — split five and five across the two boards (stage 5): **five on the main board** (S3 2.4, CC1101, SA868, LoRa, Si4732) + GPS patch, **four on the C5 board** (3× nRF24 + C5 5 GHz) + **IR**, the nRF spread for isolation. Each chain has its own removable board-mounted SMA.
+- **9 antennas** — split five and five across the two boards (stage 5): **five on the main board** (S3 2.4, CC1101, SA868, LoRa, Si4732), **four on the C5 board** (3× nRF24 + C5 5 GHz) + **IR**, the nRF spread for isolation. Each chain has its own removable board-mounted SMA. (GPS is off-board — an external M5 Unit with its own antenna.)
 - **Two USB-C:** J1 → S3 (charge + data), J2 → C5 (data-only); both mount on the C5 board's inner face (stage 5). The pack charges only through J1.
 - **Power:** 2× 18650 in 2S — **BQ25887 boost charger** (charges 2S from plain 5 V USB), MP2315 +5 V and +3V3 bucks, a TPS7A2033 +3V3 analog rail, rail gates that cut idle radios. A hard master toggle is the only on/off.
 
@@ -189,8 +189,8 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 
 **Decisions.**
 
-- **Two boards in a clamshell, split by role.** Both boards face their components inward; the outer faces carry the display + controls (front) and the battery pack (back) — plus each board's antenna SMA at the top — so the electronics live protected in the gap. The **S3 main board** holds the S3, the wired radios (CC1101 + SP4T, SA868, LoRa, Si4732 + audio), GPS, the display, microSD, the buses and every user control; the **C5 board** holds the C5 and the whole **2.4 / 5 GHz + IR radio block** — its 5 GHz, the 3× nRF24 and the IR — plus the charger, power and battery. Each board keeps its own radios local, so the board-to-board connector stays thin (below). ~75 × 150 mm per board.
-- **Antennas by board — five and five, on the outer faces (DIV-style).** The **S3 main board** carries five removable SMA — Wi-Fi 2.4, CC1101 (sub-GHz), SA868 (UHF), LoRa, Si4732 (HF/CB/FM, + telescopic whip) — plus the GPS patch; the **C5 board** carries four — 3× nRF24 + the C5 dual-band 5 GHz — plus **IR**, five interfaces per board. This splits the 2.4 GHz cluster — Wi-Fi with the S3, the three nRF with the C5 — for real isolation. The SMA **mount on the outer faces, at the top, whips up** — the inner faces are full of electronics, so (exactly as on the DIV) mounting the antennas outside is the only way they fit; the radios reach them by short u.FL pigtails. Because the main bank sits on the **front** outer face and the C5's on the **back**, the two land on **opposite outer faces and cannot collide**. The three nRF sit on a **5-slot grid with one slot skipped** — at the extremes + centre, maximally spread — and every SMA clears the corner mounting holes; the **IR (TX emitter + RX receiver) sits on the C5 board's side edge**, not the top.
+- **Two boards in a clamshell, split by role.** Both boards face their components inward; the outer faces carry the display + controls (front) and the battery pack (back) — plus each board's antenna SMA at the top — so the electronics live protected in the gap. The **S3 main board** holds the S3, the wired radios (CC1101 + SP4T, SA868, LoRa, Si4732 + audio), the display, microSD, the buses and every user control; the **C5 board** holds the C5 and the whole **2.4 / 5 GHz + IR radio block** — its 5 GHz, the 3× nRF24 and the IR — plus the charger, power and battery. Each board keeps its own radios local, so the board-to-board connector stays thin (below). ~75 × 150 mm per board.
+- **Antennas by board — five and five, on the outer faces (DIV-style).** The **S3 main board** carries five removable SMA — Wi-Fi 2.4, CC1101 (sub-GHz), SA868 (UHF), LoRa, Si4732 (HF/CB/FM, + telescopic whip); the **C5 board** carries four — 3× nRF24 + the C5 dual-band 5 GHz — plus **IR**. (GPS is off-board — an external M5 Unit carries its own antenna.) This splits the 2.4 GHz cluster — Wi-Fi with the S3, the three nRF with the C5 — for real isolation. The SMA **mount on the outer faces, at the top, whips up** — the inner faces are full of electronics, so (exactly as on the DIV) mounting the antennas outside is the only way they fit; the radios reach them by short u.FL pigtails. Because the main bank sits on the **front** outer face and the C5's on the **back**, the two land on **opposite outer faces and cannot collide**. The three nRF sit on a **5-slot grid with one slot skipped** — at the extremes + centre, maximally spread — and every SMA clears the corner mounting holes; the **IR (TX emitter + RX receiver) sits on the C5 board's side edge**, not the top.
 - **The C5 drives its own radios — the 3× nRF24 and the IR, not just hosts them.** The C5 owns the whole 2.4 / 5 GHz + IR block: it runs the nRF24 (2.4 raw — scan, ESB sniff, mousejack, multi-channel TX) and the IR TX/RX (38 kHz) on its own GPIO, and the S3 commands it over the link. Every radio line stays local to its board (thin mezzanine) and the S3's 36/36 is relieved — the nRF CE/IRQ, including the GPIO46 strap, and the IR pins all leave the S3. Cost: the C5 is native ESP-IDF, so these get **native drivers** (RMT is the idiomatic IR path on IDF; the nRF24 is an SPI-register port) rather than the Arduino RF24 / IRremote borrows the S3 would have had for free, and the link protocol grows nRF / IR opcodes (the link **pins** do not change). It fits the C5's pins once the S3→C5 UART flash bridge is dropped — the C5 flashes over its own USB-C — leaving ~2–3 spare (nRF: SPI 3 + shared CE 1 + combined IRQ 1 + CS via a 74HC139 2 = 7; IR TX/RX 2).
 - **The display stays on the S3, driven directly.** Routing pixels S3 → link → C5 → panel adds a hop and fights the C5's 5 GHz stream — slower, not faster — and both S3 SPI hosts are taken (SPI2 = wired radios, SPI3 = link), while 8080-parallel would cost 11–20 pins the 36/36 budget can't spare. So SPI2 + DMA + dirty-rect is the pin-optimum: the display costs **2 direct pins** (DC + TE); SCK/MOSI ride shared SPI2, CS via the 74HC138, RST on a PCA9555.
 - **Mezzanine: the link + power only — thin.** With every radio local to its board, only the **SPI3 link** (SCK/MOSI/MISO/CS/DRDY), the **power rails** (VBAT / 3V3 / GND), **C5_EN** (the S3 resets the C5) and the **J1 USB data** (S3 flashing / console, 2 lines) cross the board-to-board connector — of the order of a dozen lines, kept short with interleaved grounds. No radio SPI crosses; I²C, the display and every radio's SPI stay local to their board.
@@ -208,7 +208,7 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 **External interfaces & important components, by face:**
 
 - **Main board (S3) — outer front:** 4.0″ (320 × 480 portrait) capacitive-touch display + a **centred 5-way D-pad** with **BACK + OK + OPTIONS on one line**; the **7 TX-live LEDs** (3× nRF, CC1101, SA868, LoRa, IR) spread across the width **+ RGB status**; **five antenna SMA across the top** (Wi-Fi 2.4, CC1101, SA868, LoRa, Si4732, whips up). The controls, speaker and mic are **not** here — they are on the C5 board / inner faces. Only what you look at or press lives on the front. 4 corner mounting holes.
-- **Main board (S3) — inner:** ESP32-S3 + the wired radios (CC1101 + SP4T, SA868, SX1262 / LoRa, Si4732 + audio) + GPS + the buses (74HC138, 2× PCA9555) + display driver; **the connectors sit here on the inner face, at the edges** — 3.5 mm jack + 2× Grove I²C stacked on the **right** edge (jack on top), the **mic** centred on the bottom edge (microSD to its left, `RESET` / `BOOT` to its right), and microSD + `RESET` + `BOOT` (bottom edge) — reached through case slots; **u.FL pigtails up to the five outer SMA**; the mezzanine connector.
+- **Main board (S3) — inner:** ESP32-S3 + the wired radios (CC1101 + SP4T, SA868, SX1262 / LoRa, Si4732 + audio) + the buses (74HC138, 2× PCA9555) + display driver; **the connectors sit here on the inner face, at the edges** — 3.5 mm jack + 2× Grove I²C stacked on the **right** edge (jack on top), the **mic** centred on the bottom edge (microSD to its left, `RESET` / `BOOT` to its right), and microSD + `RESET` + `BOOT` (bottom edge) — reached through case slots; **u.FL pigtails up to the five outer SMA**; the mezzanine connector.
 - **C5 board — inner:** ESP32-C5 + the **C5-driven 3× nRF24** (+ 74HC139 for their CS) + a PCA9555 + the charger and power (2× buck, LDO, S-8252A protection) — all inside a single **component area** (positioned in stage 8); the **round speaker** (lower) and the **IR TX + IR RX on the right side edge** (firing into the gap, DIV-style); **the bottom edge carries both USB-C, the master slide, `C5 RESET` and `C5 BOOT`**; the mezzanine connector.
 - **C5 board — outer back:** the plain 2× 18650 holder (~40 × 78 mm, keep-out, no parts under cells) **ringed by the controls — encoder above, F1 / F2 left, PTT / panic-STOP right** (face buttons, C5-read) — plus `BT1`; **four antenna SMA across the top** (3× nRF24 + C5 5 GHz, whips up) on a **5-slot grid with one slot skipped so the nRF are maximally spread**. 4 corner mounting holes.
 
@@ -233,8 +233,12 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 2. [MCU + buses](hardware/c5-buses/c5-buses.md) — S3 + C5, the SPI3 link, 74HC138, PCA9555, USB
 3. [RF chains](hardware/rf/rf.md) — 3× nRF24, CC1101 + SP4T, SX1262 (LoRa)
 4. [Audio](hardware/audio/audio.md) — Si4732, SA868, analog path → PAM8302
-5. [Expansion + GPS](hardware/expansion/expansion.md) — I²C, u-blox GPS, Grove
+5. [Expansion](hardware/expansion/expansion.md) — I²C Grove + Grove-UART (external M5 GPS Unit)
 6. [Indicators / IO](hardware/indicators/indicators.md) — TX-live LEDs, IR clone/replay, microSD, encoder
+
+🔄 **Re-netlist for the C5-drive split (per [§4](#4-architecture)).** The RF, buses and indicators sheets still show the **S3** driving the 3× nRF24 + IR, but the decision is that the **C5 drives them**. Rework: **`rf.tsx`** — the 3× nRF24 onto the C5's own SPI + a 74HC139 for CS, CE/IRQ on C5 GPIO; **`c5-buses.tsx`** — IR TX/RX + nRF CE/CSN/IRQ on C5 GPIO, drop the UART flash-bridge (`C5_FLASH_TX/RX`) + `C5_BOOT` (the C5 flashes over its own USB-C + OTA), mezzanine = SPI3 + power + `C5_EN`; **`indicators.tsx`** — the IR TX/RX and the C5/nRF TX-live detectors move to the C5 half. The sheets catch up to the already-final [`docs/pin-budget.md`](docs/pin-budget.md) (S3 30/36, C5 ~17/20). The stale `rf` / `c5-buses` schematic exports were **dropped**; the hand-drawn `hardware/kicad/` skeleton was **dropped** too — the tscircuit `.tsx` is the only source of truth.
+
+> **How to (re)obtain a sheet:** edit its `.tsx`; pull the real footprint + pin names via `footprint="jlcpcb:C…"` (never hand-type pins — an early hand draft had wrong pins); regenerate its `schematic.svg` + `kicad_pcb` with the `package.json` scripts; prove connectivity only by netlist parity / `kicad-cli drc`, never by how it drew. Realizing against the **real module footprint** catches bonding bugs the logical schematic can't (the S3-WROOM-1U has no GPIO33/34 pads → `C5_EN`/`BOOT` moved to a PCA9555).
 
 ---
 
@@ -246,11 +250,13 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 
 - **`board.tsx` is generated, not hand-merged.** `merge.py` assembles it from the six sheets + `integration.tsx`, so the sheets stay the single source of truth (edit a sheet, re-run the merge). A parts+nets diff-guard proved the generated board byte-identical to the hand-merged one it replaced — no silent drift when a sheet changes.
 - **Review adversarially, before finishing.** Two whole-board self-reviews plus a per-sheet artifact pass ran *before* the completion work — they caught a real blocker (the PCA9555 has **no** internal pull-ups, so every switch input floated) and 5 major issues, all fixed. Cheaper to find on the schematic than at bring-up.
-- **Antennas are removable board-edge SMA, distributed across the two boards.** Per [§5](#5-external-design--controls) the nine jacks split **five (front board) + GPS patch / four (back board) + IR** around both top edges — spreading the radios and the 3× nRF24 for isolation instead of nine on one edge.
+- **Antennas are removable board-edge SMA, distributed across the two boards.** Per [§5](#5-external-design--controls) the nine jacks split **five (front board) / four (back board) + IR** around both top edges — spreading the radios and the 3× nRF24 for isolation instead of nine on one edge. (GPS is off-board — an external M5 Unit with its own antenna.)
 - **Part swaps chosen by real stock + margin.** A 4 A PPTC (thermal headroom over the draw), a 20 mm on-board speaker, an LC balun into each SP4T arm, **two single 18650 holders** (to expose the pack mid-point the BQ25887 needs for balancing), and one 5-way nav switch under the D-pad — pick parts that are in stock and leave slack, not the tightest fit.
 - **No blind edits — defer what needs measuring.** The Si4732 RCLK load-cap count is left as-is and flagged for an AN383 check at bring-up, rather than guessing a value on paper.
 
-**Artifacts.** [`board.tsx`](hardware/tscircuit/board.tsx) — **generated** by [`merge.py`](hardware/tscircuit/merge.py) from the six sheets + [`integration.tsx`](hardware/tscircuit/integration.tsx) (223 parts) → [`board.kicad_pcb`](hardware/tscircuit/board.kicad_pcb) (connectivity proven, `schematic_parity = 0`).
+**Artifacts.** The single-board `board.tsx` + its `board.kicad_pcb` / placement / routing were **dropped** (single-board topology, dead per the clamshell split). [`merge.py`](hardware/tscircuit/merge.py) + [`integration.tsx`](hardware/tscircuit/integration.tsx) + the six sheet `.tsx` stay.
+
+> **How to (re)obtain the board — as two boards.** `board.tsx` is *generated* (`merge.py`), never hand-edited. Re-split `integration.tsx` for the clamshell (5 SMA on the main top + 4 on the C5 top + IR on the C5 side, not nine on one edge) and rework `merge.py` to emit **two `<board>`s** — one per physical board (main-S3, C5) — keeping the refdes-collision resolver (`U20 → m_U20/rf_U20`). Export the netlist with a **relative** `-o` path, in the background (~2-4 min); acceptance is `schematic_parity = 0` (`unconnected` = ratsnest, **not** a defect); never commit `.kicad_sch` (broken export, 319 ERC). Adversarial multi-agent review still catches what DRC can't (BQ25887 = boost charger with a separate `SNS`; ESD arrays common-cathode to **+3V3** not GND; PAM8302 needs input coupling caps; PCA9555 has **no** internal pull-ups → 14× 10k; J2 USB-C needs CC 5.1k). eFuse `set_flash_voltage 3.3V` de-straps GPIO45.
 
 Done:
 
@@ -278,6 +284,10 @@ Remaining (🟡) — the completion list:
 - **4-layer stack with a solid GND plane (In1 = GND).** A dedicated ground layer gives short, clean return paths and one stable reference for the many radios — something a 2-layer board cannot hold on a device this dense.
 - **RF feeders routed by hand.** The antenna feed lines need controlled impedance, coplanar geometry and antenna keep-outs, which an autorouter cannot honour — so the RF traces are drawn manually while Freerouting handles the rest.
 - **Edge-aware placement.** Each connector sits on the edge it must reach and the antenna bank goes to the top — so cables and pigtails leave cleanly and the radios stay away from the digital noise.
+
+**Artifacts (regenerate).** The single-board `board-placed*` / `board-autorouted` / 4-layer files were **dropped** (single-board topology).
+
+> **How to (re)obtain — two boards, each placed + routed separately.** Edge-aware placement (each connector on the edge it exits, antenna bank on top), 4-layer with a solid GND plane (In1 = GND; **In2.Cu must be `signal`, not `power`**, or Freerouting treats it as an empty plane and loses the layer). Route headless: Temurin **JDK 25** + **Freerouting 2.3.0** for signals/RF, then `route.py` plane-finalize (obstacle-aware GND-pad → polygon; a blind via straight into a GND pad = short — don't). DSN/SES via KiCad `pcbnew`-python; **FILL the zones before exporting the DSN**; RF feeders by hand (controlled impedance, antenna keep-outs). The two **mezzanine halves must mate** at matching device coordinates. Fab: JLCPCB into RU via a re-exporter (jlcpost.ru) or Rezonit; keep parts in LCSC stock.
 
 ---
 

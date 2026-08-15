@@ -52,7 +52,7 @@ Distinct from the drawing mirror of §3. When the two boards close inner-face-to
 Interfaces are placed **exactly** (they cut the case). Internal components are **not placed individually in this artifact** — each inner face carries a single **component area** (dashed outline, labelled *"placed in PCB layout, stage 8"*), and the parts are positioned inside it during stage 8. Zones never overlap; the checks enforce it. Edges below are named in each board's **part-frame**; the C5 folds into the device frame (§7 / §2a), so a C5 edge lands on the opposite device edge.
 
 - **Main outer:** *antenna row* (top) · *display* (upper two-thirds) · *control strip* (bottom third: LED row, centred D-pad, BACK/OK/OPT on one line).
-- **Main inner:** *component area* (interior upper — S3, SA868, LoRa, CC1101, GPS, Si4732 + audio, buses, LCD driver) · *right edge* (jack **above** the 2× Grove) · *mezzanine* (interior lower, centred) · *service row* (bottom: **mic centred**, with microSD to its left and RESET / BOOT to its right). The left edge is left free (the C5's IR folds onto it).
+- **Main inner:** *component area* (interior upper — S3, SA868, LoRa, CC1101, Si4732 + audio, buses, LCD driver) · *right edge* (jack **above** the 2× Grove) · *mezzanine* (interior lower, centred) · *service row* (bottom: **mic centred**, with microSD to its left and RESET / BOOT to its right). The left edge is left free (the C5's IR folds onto it).
 - **C5 inner:** *component area* (interior upper — C5, 3× nRF24, charger + power, IR driver, 74HC139, PCA9555, BT1) · *audio* (lower: **centred** round speaker) · *right edge* (IR TX + IR RX) · *mezzanine* (centred) · *service row* (bottom: USB ×2, master, RESET, BOOT).
 - **C5 outer:** *antenna row* (top — 5-slot grid, 1 slot skipped) · *battery zone* (centre: the 2× 18650 holder) ringed by controls — *encoder* (above), *F1/F2* (left), *PTT/STOP* (right).
 
@@ -62,7 +62,7 @@ Every box ≈ its **real PCB footprint** (§7), to the one common scale — **a 
 
 | Shape | Drawn as | Examples |
 |---|---|---|
-| `module` | rounded rectangle (RF-shield hint) | WROOM, nRF24, SA868, LoRa, GPS |
+| `module` | rounded rectangle (RF-shield hint) | WROOM, nRF24, SA868, LoRa |
 | `IC` | small rectangle | CC1101, Si4732, PCA9555, chargers, LDOs |
 | `connector-rect` | small rectangle at an edge | USB-C, microSD, jack, Grove, slide |
 | `connector-round` | circle (hex hint) | SMA |
@@ -72,7 +72,6 @@ Every box ≈ its **real PCB footprint** (§7), to the one common scale — **a 
 | `led` | small dot / pie | TX-live, RGB |
 | `display` | large rectangle (active-area inset) | ST7796 |
 | `port` | tiny rectangle at an edge | MEMS mic |
-| `patch` | square (ceramic-patch hint) | GPS |
 | `grille` | circle with concentric rings | round speaker |
 | `emitter` / `receiver` | small rounded rectangle | IR TX / RX |
 | `mez` | rounded rectangle, interior | mezzanine connector |
@@ -99,13 +98,11 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **TX-live LEDs ×7** (3× nRF, CC1101, SA868, LoRa, IR) | ~1.6 (0603) | led | main · F | row below the display, spread + labelled | — |
 | **RGB status (WS2812B)** | 5 × 5 | led | main · F | end of the LED row | — |
 | **5× SMA** (Wi-Fi, CC1101, SA868, LoRa, Si4732) | 6.35 ⌀ | conn-round | main · F | top edge | up |
-| **GPS patch antenna** | ~15 × 15 | patch | main · F? | **open (stage 8)** — a patch needs sky view, but the GPS module sits in the gap; not yet placed in the render | up |
 | **ESP32-S3-WROOM-1U** | 18 × 19.2 | module | main · I | interior | — |
 | **CC1101 + SP4T** | 4 × 4 (+ switch) | IC grp | main · I | interior | — |
 | **SA868-U** | 19 × 35.6 | module | main · I | interior (long) | — |
 | **SX1262 / E22 (LoRa)** | 14 × 20 | module | main · I | interior | — |
 | **Si4732 + PAM8302** | 5.3 × 8.2 + 3 × 4.9 | IC grp | main · I | interior | — |
-| **GPS (ATGM336H)** | 15.7 × 13.1 | module | main · I | interior | — |
 | **Buses** (74HC138 + 2× PCA9555) | ~10 × 4, ~8 × 4.4 | IC grp | main · I | interior | — |
 | **Backlight driver** | small IC | IC | main · I | interior | — |
 | **3.5 mm jack (PJ-320, TRRS)** | 6 × 12.5 | conn-rect | main · I | **right** side edge, above the Grove (opposite side from the C5 IR fold, §2a) | out |
@@ -130,7 +127,7 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **Mezzanine connector** (SMD board-to-board, in the gap, no outer-face protrusion) | ~ | mez | both · I | interior-lower, centred; both halves at matching device X + Y (check 7) | — |
 | **4× M2.5 mounting holes** | ⌀ 2.7 | hole | both | four corners | — |
 
-*The internal-component rows above (MCUs, radios, ICs, decoders, power, u.FL, BT1) are **not placed individually** — they live inside the **component area** on their inner face and are positioned during PCB layout (stage 8). Only interfaces, antennas and the mezzanine have fixed positions. Rules of thumb: modules dominate the inner faces; the display and the 2× 18650 dominate the outer faces; the nRF height drives the mezzanine gap. The **3.5 mm jack is TRRS** — stereo out + a mic ring wired to the SA868 walkie (a schematic detail); the on-board **MEMS mic** is a **separate** part.*
+*The internal-component rows above (MCUs, radios, ICs, decoders, power, u.FL, BT1) are **not placed individually** — they live inside the **component area** on their inner face and are positioned during PCB layout (stage 8). Only interfaces, antennas and the mezzanine have fixed positions. Rules of thumb: modules dominate the inner faces; the display and the 2× 18650 dominate the outer faces; the nRF height drives the mezzanine gap. The **3.5 mm jack is TRRS** — stereo out + a mic ring wired to the SA868 walkie (a schematic detail); the on-board **MEMS mic** is a **separate** part. **GPS is not on the board** — it is an external **M5 GPS Unit** on a Grove port (own antenna), so it takes no board footprint or antenna.*
 
 ## 8. Automated checks — all must read 0 before the render is used
 

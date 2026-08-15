@@ -43,7 +43,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 | GPIO15 | `LoRa_BUSY` | in | polled before each SX1262 command |
 | GPIO16 | `SA868_UART_TX` | out | UART1 → walkie |
 | GPIO17 | `SA868_UART_RX` | in | UART1 ← walkie |
-| GPIO18 | `GPS_UART_RX` | in | UART2, NMEA (required) |
+| GPIO18 | `GPS_UART_RX` | in | UART2 → **Grove-UART GPS port** (external M5 GPS Unit), NMEA (required) |
 | GPIO19 | `USB_D−` | io | native USB + **console via USB-Serial-JTAG** |
 | GPIO20 | `USB_D+` | io | native USB |
 | GPIO21 | `LCD_TE` | in | tearing/vsync from ST7796 (timing → direct) |
@@ -61,12 +61,14 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 | GPIO44 | `C5_FLASH_RX` | in | U0RXD ← C5 U0TXD |
 | GPIO45 | `CC1101_GDO2` | in | CC1101 GDO2 carrier-sense → wake-on-sub-GHz; **GPIO45 de-strapped via eFuse** (`set_flash_voltage 3.3V`) → ROM ignores it at POR, so GDO2's boot level is harmless |
 | GPIO46 | `nRF24_IRQ` | in | 3× nRF24 IRQ (push-pull) combined by a **74AHC 3-input gate** → one idle-**low** interrupt (satisfies the GPIO46 boot strap) |
-| GPIO47 | `GPS_UART_TX` | out | UART2, optional (config only) |
+| GPIO47 | `GPS_UART_TX` | out | UART2 → **Grove-UART GPS port**, optional (config only) |
 | GPIO48 | `PCA9555_INT` | in | expander interrupt |
 
 The slow control lines ride **two of the three PCA9555 expanders** (0x20 + 0x21; the third, 0x22, holds the UI buttons) — 0 host GPIO, one shared wired-OR `INT`. Battery gauge is read from the **BQ25887's own I²C ADC** (no ADC pin).
 
 *Dropping the C5-standalone-display capability freed GPIO3 (formerly the mode-slider sense); it now carries `LoRa_DIO1`, so LoRa RX is interrupt-driven instead of polled — less traffic on the shared bus.*
+
+> ♻️ **GPS is external.** The on-board u-blox **SAM-M8Q** (and its backup supercap) is **removed**. GPS is now an external **M5 GPS Unit** on a **Grove-UART** port: the S3's `GPS_UART_RX` / `GPS_UART_TX` (UART2, GPIO18 / GPIO47) above are broken out to that Grove-UART header instead of an on-board module. Pin count is unchanged — only the destination. See [Sheet 5 — Expansion](../expansion/expansion.md).
 
 ## C5 GPIO map (proposed — confirm against datasheet)
 

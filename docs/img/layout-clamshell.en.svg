@@ -82,7 +82,7 @@
 <rect x="324.1" y="147.8" width="159.3" height="240.3" fill="#fafaf9" stroke="#a8a29e" stroke-width="1.2" stroke-dasharray="5 3" rx="2"/>
 <text x="403.8" y="255.1" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="bold">component area</text>
 <text x="403.8" y="263.7" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">placed in PCB layout (stage 8)</text>
-<text x="403.8" y="272.3" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">S3 · SA868 · LoRa · CC1101 · GPS</text>
+<text x="403.8" y="272.3" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">S3 · SA868 · LoRa · CC1101</text>
 <text x="403.8" y="280.9" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">Si4732 + audio · buses · LCD drv</text>
 <path d="M298.4 277.4 L292.4 277.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M298.4 316.6 L292.4 316.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -237,11 +237,6 @@
 <text x="359.0" y="1242.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">IR TX/RX</text>
 <text x="479.0" y="1242.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">38 kHz</text>
 <text x="589.0" y="1242.0" font-size="8.5" text-anchor="start" fill="#dc2626" font-family="sans-serif" font-weight="bold">C5 R-side</text>
-<rect x="330" y="1246.0" width="386" height="14" fill="#f8fafc"/>
-<text x="333.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">-</text>
-<text x="359.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">GPS</text>
-<text x="479.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">L1</text>
-<text x="589.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN patch</text>
 <rect x="30" y="1440" width="15" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/>
 <text x="49.0" y="1448.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">interface (touch)</text>
 <rect x="177" y="1440" width="15" height="10" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>

@@ -7,7 +7,7 @@ STR={
  'disp':'DISPLAY 4.0" + touch','dpad':'D-pad','spk':'SPK','mic':'MIC','jack':'JACK','mezz':'mezzanine','ufl':'u.FL -> outer SMA x5',
  'holder':'plain 2x 18650 holder','holder2':'cells clip in - no lid','pack':'-> BT1 batt conn (3-pin)','master':'master',
  'powerA':'charger + power (buck/LDO/2S-prot)','buses':'buses 138 / PCA','lcddrv':'LCD drv','si':'Si4732+audio',
- 'zarea':'component area','zstage':'placed in PCB layout (stage 8)','zmain':'S3 · SA868 · LoRa · CC1101 · GPS','zmain2':'Si4732 + audio · buses · LCD drv','zc5':'C5 · 3x nRF24 · charger / power','zc5b':'IR driver · 74HC139 · PCA9555','lg_silk':'silkscreen (on the PCB)','lg_zone':'component area (stage 8)',
+ 'zarea':'component area','zstage':'placed in PCB layout (stage 8)','zmain':'S3 · SA868 · LoRa · CC1101','zmain2':'Si4732 + audio · buses · LCD drv','zc5':'C5 · 3x nRF24 · charger / power','zc5b':'IR driver · 74HC139 · PCA9555','lg_silk':'silkscreen (on the PCB)','lg_zone':'component area (stage 8)',
  'xtitle':'Side view (thickness)','front':'FRONT','back':'BACK','outer':'outer','elec':'electronics','mainb':'MAIN board','c5b':'C5 board','batt':'2x 18650','thick':'~36 mm','gap':'gap 11 mm >= nRF ~6',
  'edgettl':'Antennas on the outer faces','allup':'all whips up','depth':'front + back on','nocol':'opposite outer faces -> clear',
  'atitle':'Top-edge interfaces - each on its driving MCU board','acol':['#','interface','band','board'],
@@ -20,7 +20,7 @@ STR={
  'disp':'ДИСПЛЕЙ 4.0" + тач','dpad':'D-pad','spk':'ДИН','mic':'МИК','jack':'ДЖЕК','mezz':'межплата','ufl':'u.FL -> внешние SMA x5',
  'holder':'обычный холдер 2x 18650','holder2':'банки защёлкиваются','pack':'-> BT1 разъём батареи (3-пин)','master':'мастер',
  'powerA':'зарядник + питание (buck/LDO/2S)','buses':'шины 138 / PCA','lcddrv':'драйв LCD','si':'Si4732+аудио',
- 'zarea':'область компонентов','zstage':'размещается в PCB layout (этап 8)','zmain':'S3 · SA868 · LoRa · CC1101 · GPS','zmain2':'Si4732 + аудио · шины · драйв LCD','zc5':'C5 · 3x nRF24 · зарядник / питание','zc5b':'драйвер IR · 74HC139 · PCA9555','lg_silk':'шелкография (на плате)','lg_zone':'область компонентов (этап 8)',
+ 'zarea':'область компонентов','zstage':'размещается в PCB layout (этап 8)','zmain':'S3 · SA868 · LoRa · CC1101','zmain2':'Si4732 + аудио · шины · драйв LCD','zc5':'C5 · 3x nRF24 · зарядник / питание','zc5b':'драйвер IR · 74HC139 · PCA9555','lg_silk':'шелкография (на плате)','lg_zone':'область компонентов (этап 8)',
  'xtitle':'Вид сбоку (толщина)','front':'ПЕРЁД','back':'ЗАД','outer':'снаружи','elec':'электроника','mainb':'ГЛАВНАЯ','c5b':'плата C5','batt':'2x 18650','thick':'~36 мм','gap':'зазор 11 мм >= nRF ~6',
  'edgettl':'Антенны на внешних гранях','allup':'все хлысты вверх','depth':'перёд + зад на','nocol':'противоположных гранях -> не мешают',
  'atitle':'Верхняя кромка - каждый на плате своего МК','acol':['#','интерфейс','диапазон','плата'],
@@ -29,7 +29,7 @@ STR={
 ANT=[('1','Wi-Fi 2.4','2.4 GHz','MAIN'),('2','CC1101','315-915','MAIN'),('3','SA868','433/446','MAIN'),
  ('4','LoRa','868/915','MAIN'),('5','Si4732','HF-FM RX','MAIN'),('6','nRF24 #1','2.4 GHz','C5'),
  ('7','nRF24 #2','2.4 GHz','C5'),('8','nRF24 #3','2.4 GHz','C5'),('9','C5 5 GHz','5 GHz','C5'),
- ('*','IR TX/RX','38 kHz','C5 R-side'),('-','GPS','L1','MAIN patch')]
+ ('*','IR TX/RX','38 kHz','C5 R-side')]  # GPS is an external M5 GPS Unit (Grove/UART), its own antenna -> not a board antenna
 COL={'display':('#dbeafe','#3b82f6'),'mcu':('#fecaca','#dc2626'),'rf':('#fed7aa','#ea580c'),
      'batt':('#bbf7d0','#16a34a'),'ctrl':('#e9d5ff','#7c3aed'),'edge':('#e5e7eb','#6b7280'),
      'stop':('#fca5a5','#b91c1c'),'pwr':('#cffafe','#0891b2'),'bus':('#f5f5f4','#78716c'),
