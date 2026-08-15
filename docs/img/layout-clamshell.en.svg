@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="900" viewBox="0 0 1240 900">
+<rect width="1240" height="900" fill="white"/>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1e40af"/></marker></defs>
+<text x="34.0" y="28.0" font-size="16" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">Leshy2 - two-board clamshell: complete layout with all external interfaces + mounting holes</text>
+<text x="34.0" y="47.0" font-size="10.5" text-anchor="start" fill="#444" font-family="sans-serif" font-weight="normal">To scale, ~75x150 mm per board. SMA = grey squares on the top edge; mounting holes = ringed dots at 4 corners (M2.5, aligned both boards).</text>
+<text x="158.1" y="143.0" font-size="10.5" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">Side view - a slice through the thickness</text>
+<text x="158.1" y="155.0" font-size="7.3" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">(the device edge-on: width across, thickness downward)</text>
+<text x="158.1" y="175.0" font-size="8.5" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="bold">FRONT - the side you look at</text>
+<line x1="158.1" y1="181.0" x2="158.1" y2="196.0" stroke="#1e40af" stroke-width="1.2" marker-end="url(#ar)"/>
+<rect x="110.8" y="191.0" width="17.1" height="11.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="119.4" y="198.2" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">btn</text>
+<rect x="172.9" y="191.0" width="21.7" height="11.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="183.7" y="198.2" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">enc</text>
+<rect x="100.0" y="205.0" width="116.2" height="14.1" fill="#dbeafe" stroke="#3b82f6" stroke-width="1" rx="1.5"/><text x="158.1" y="214.5" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">display + touch</text>
+<text x="224.2" y="214.6" font-size="7" text-anchor="start" fill="#1e40af" font-family="sans-serif" font-weight="normal">outer</text>
+<rect x="100.0" y="219.1" width="116.2" height="3.5" fill="#9ca3af" stroke="#111" stroke-width="0.7"/>
+<text x="224.2" y="222.3" font-size="7.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">Board A</text>
+<rect x="109.3" y="224.6" width="15.5" height="20.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/>
+<rect x="144.9" y="224.6" width="15.5" height="20.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/>
+<rect x="180.6" y="224.6" width="15.5" height="20.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/>
+<rect x="127.9" y="233.5" width="15.5" height="20.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/>
+<rect x="163.6" y="233.5" width="15.5" height="20.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/>
+<rect x="197.7" y="233.5" width="15.5" height="20.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/>
+<text x="224.2" y="237.0" font-size="7.3" text-anchor="start" fill="#9a3412" font-family="sans-serif" font-weight="bold">electronics</text>
+<text x="224.2" y="247.0" font-size="6.6" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">(A + B faces)</text>
+<rect x="100.0" y="255.5" width="116.2" height="3.5" fill="#9ca3af" stroke="#111" stroke-width="0.7"/>
+<text x="224.2" y="258.7" font-size="7.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">Board B</text>
+<rect x="101.5" y="259.0" width="113.2" height="89.3" fill="#bbf7d0" stroke="#16a34a" stroke-width="1" rx="1.5"/>
+<text x="158.1" y="300.6" font-size="9" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">2x 18650 battery</text>
+<text x="158.1" y="312.6" font-size="7.3" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="normal">~19 of 34 mm</text>
+<text x="224.2" y="303.6" font-size="7" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="normal">outer</text>
+<rect x="100.0" y="348.3" width="116.2" height="7.1" fill="#e5e7eb" stroke="#111" stroke-width="0.7"/>
+<text x="224.2" y="353.8" font-size="7" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">back cover</text>
+<text x="158.1" y="373.4" font-size="8" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">BACK - removable lid; pop to swap the 18650 cells</text>
+<line x1="84" y1="205" x2="84" y2="355.35" stroke="#111" stroke-width="1"/>
+<line x1="81" y1="205" x2="87" y2="205" stroke="#111"/>
+<line x1="81" y1="355.35" x2="87" y2="355.35" stroke="#111"/>
+<text x="78.0" y="280.2" font-size="10" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold" transform="rotate(-90 78.0 280.2)">~34 mm thick</text>
+<rect x="360.0" y="118.0" width="150.0" height="300.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
+<text x="435.0" y="102.0" font-size="12.5" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="bold">1) BOARD A - OUTER</text>
+<text x="435.0" y="114.0" font-size="8.5" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">user front</text>
+<circle cx="370.0" cy="128.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="370.0" cy="128.0" r="1.4" fill="#6b7280"/>
+<circle cx="500.0" cy="128.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="500.0" cy="128.0" r="1.4" fill="#6b7280"/>
+<circle cx="370.0" cy="408.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="370.0" cy="408.0" r="1.4" fill="#6b7280"/>
+<circle cx="500.0" cy="408.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="500.0" cy="408.0" r="1.4" fill="#6b7280"/>
+<rect x="376.0" y="134.0" width="118.0" height="168.0" fill="#dbeafe" stroke="#3b82f6" stroke-width="1" rx="1.5"/>
+<rect x="428.0" y="342.0" width="14.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/>
+<rect x="412.0" y="358.0" width="14.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/>
+<rect x="428.0" y="358.0" width="14.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="435.0" y="367.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">OK</text>
+<rect x="444.0" y="358.0" width="14.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/>
+<rect x="428.0" y="374.0" width="14.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/>
+<rect x="392.0" y="358.0" width="18.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="401.0" y="366.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">BACK</text>
+<rect x="460.0" y="358.0" width="18.0" height="14.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="469.0" y="366.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">OPT</text>
+<rect x="360.0" y="150.0" width="12.0" height="14.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="366.0" y="158.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">IR</text>
+<rect x="360.0" y="198.0" width="12.0" height="24.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="366.0" y="211.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">enc</text>
+<rect x="360.0" y="234.0" width="12.0" height="12.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="366.0" y="241.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F1</text>
+<rect x="360.0" y="250.0" width="12.0" height="12.0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="366.0" y="257.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F2</text>
+<rect x="360.0" y="310.0" width="12.0" height="16.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="366.0" y="319.6" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">JACK</text>
+<rect x="498.0" y="198.0" width="12.0" height="20.0" fill="#e5e7eb" stroke="#6b7280" stroke-width="1" rx="1.5"/><text x="504.0" y="209.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PTT</text>
+<rect x="498.0" y="226.0" width="12.0" height="18.0" fill="#fca5a5" stroke="#b91c1c" stroke-width="1" rx="1.5"/><text x="504.0" y="236.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">STOP</text>
+<rect x="498.0" y="290.0" width="12.0" height="16.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="504.0" y="299.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
+<rect x="498.0" y="314.0" width="12.0" height="16.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="504.0" y="323.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
+<rect x="452.0" y="394.0" width="30.0" height="18.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="467.0" y="405.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SPK</text>
+<rect x="420.0" y="398.0" width="10.0" height="10.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="425.0" y="404.6" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">MIC</text>
+<text x="434.0" y="226.0" font-size="10" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="normal">DISPLAY 4.0" + touch</text>
+<text x="434.0" y="326.0" font-size="6" text-anchor="middle" fill="#5b21b6" font-family="sans-serif" font-weight="normal">D-pad</text>
+<rect x="665.0" y="118.0" width="150.0" height="300.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
+<text x="740.0" y="102.0" font-size="12.5" text-anchor="middle" fill="#9a3412" font-family="sans-serif" font-weight="bold">2) BOARD A - INNER</text>
+<text x="740.0" y="114.0" font-size="8.5" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">faces inward</text>
+<circle cx="675.0" cy="128.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="675.0" cy="128.0" r="1.4" fill="#6b7280"/>
+<circle cx="805.0" cy="128.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="805.0" cy="128.0" r="1.4" fill="#6b7280"/>
+<circle cx="675.0" cy="408.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="675.0" cy="408.0" r="1.4" fill="#6b7280"/>
+<circle cx="805.0" cy="408.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="805.0" cy="408.0" r="1.4" fill="#6b7280"/>
+<rect x="685.0" y="115.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="721.0" y="115.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="757.0" y="115.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="785.0" y="115.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="681.0" y="138.0" width="34.0" height="50.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="698.0" y="165.4" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
+<rect x="725.0" y="138.0" width="28.0" height="52.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="739.0" y="166.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #1</text>
+<rect x="769.0" y="138.0" width="28.0" height="52.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="783.0" y="166.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #2</text>
+<rect x="681.0" y="202.0" width="40.0" height="26.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="701.0" y="216.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
+<rect x="729.0" y="202.0" width="34.0" height="20.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="746.0" y="213.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">LCD drv+exp</text>
+<rect x="771.0" y="202.0" width="30.0" height="16.0" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="786.0" y="211.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">RST/BOOT</text>
+<rect x="681.0" y="234.0" width="52.0" height="28.0" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="707.0" y="250.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">power A (bucks)</text>
+<rect x="741.0" y="234.0" width="40.0" height="28.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="761.0" y="249.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">buses / glue</text>
+<rect x="709.0" y="354.0" width="62.0" height="14.0" fill="#fbcfe8" stroke="#db2777" stroke-width="1" rx="1.5"/><text x="740.0" y="363.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
+<text x="739.0" y="394.0" font-size="6" text-anchor="middle" fill="#9a3412" font-family="sans-serif" font-weight="normal">ant: S3-2.4  nRF#1  nRF#2  CC1101</text>
+<rect x="360.0" y="463.0" width="150.0" height="300.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
+<text x="435.0" y="447.0" font-size="12.5" text-anchor="middle" fill="#9a3412" font-family="sans-serif" font-weight="bold">3) BOARD B - INNER</text>
+<text x="435.0" y="459.0" font-size="8.5" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">faces inward</text>
+<circle cx="370.0" cy="473.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="370.0" cy="473.0" r="1.4" fill="#6b7280"/>
+<circle cx="500.0" cy="473.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="500.0" cy="473.0" r="1.4" fill="#6b7280"/>
+<circle cx="370.0" cy="753.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="370.0" cy="753.0" r="1.4" fill="#6b7280"/>
+<circle cx="500.0" cy="753.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="500.0" cy="753.0" r="1.4" fill="#6b7280"/>
+<rect x="376.0" y="460.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="404.0" y="460.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="436.0" y="460.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="468.0" y="460.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="492.0" y="460.0" width="10.0" height="6" fill="#e5e7eb" stroke="#6b7280" stroke-width="0.8"/>
+<rect x="376.0" y="483.0" width="34.0" height="50.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="393.0" y="510.4" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-C5</text>
+<rect x="420.0" y="483.0" width="28.0" height="52.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="434.0" y="511.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #3</text>
+<rect x="462.0" y="483.0" width="42.0" height="30.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="483.0" y="499.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
+<rect x="462.0" y="519.0" width="30.0" height="50.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="477.0" y="545.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa E22</text>
+<rect x="376.0" y="547.0" width="48.0" height="26.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="400.0" y="561.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+audio</text>
+<rect x="428.0" y="547.0" width="30.0" height="24.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="443.0" y="560.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">138/PCA</text>
+<rect x="376.0" y="579.0" width="22.0" height="22.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="387.0" y="591.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
+<rect x="404.0" y="579.0" width="52.0" height="26.0" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="430.0" y="593.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">charger+prot</text>
+<rect x="464.0" y="575.0" width="32.0" height="26.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="480.0" y="589.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PCA x2</text>
+<rect x="404.0" y="699.0" width="62.0" height="14.0" fill="#fbcfe8" stroke="#db2777" stroke-width="1" rx="1.5"/><text x="435.0" y="708.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
+<text x="434.0" y="739.0" font-size="6" text-anchor="middle" fill="#9a3412" font-family="sans-serif" font-weight="normal">ant: C5-5G  nRF#3  SA868  LoRa  Si4732</text>
+<rect x="665.0" y="463.0" width="150.0" height="300.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
+<text x="740.0" y="447.0" font-size="12.5" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">4) BOARD B - OUTER</text>
+<text x="740.0" y="459.0" font-size="8.5" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">back: batteries</text>
+<circle cx="675.0" cy="473.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="675.0" cy="473.0" r="1.4" fill="#6b7280"/>
+<circle cx="805.0" cy="473.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="805.0" cy="473.0" r="1.4" fill="#6b7280"/>
+<circle cx="675.0" cy="753.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="675.0" cy="753.0" r="1.4" fill="#6b7280"/>
+<circle cx="805.0" cy="753.0" r="4.4" fill="none" stroke="#6b7280" stroke-width="1.2"/>
+<circle cx="805.0" cy="753.0" r="1.4" fill="#6b7280"/>
+<rect x="673.0" y="499.0" width="134.0" height="180.0" fill="#bbf7d0" stroke="#16a34a" stroke-width="1" rx="1.5"/>
+<rect x="721.0" y="695.0" width="26.0" height="12.0" fill="#e5e7eb" stroke="#6b7280" stroke-width="1" rx="1.5"/><text x="734.0" y="702.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">BT1</text>
+<rect x="757.0" y="695.0" width="16.0" height="12.0" fill="#bbf7d0" stroke="#16a34a" stroke-width="1" rx="1.5"/><text x="765.0" y="702.9" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">SC</text>
+<rect x="693.0" y="743.0" width="20.0" height="14.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="703.0" y="751.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">USB</text>
+<rect x="719.0" y="743.0" width="20.0" height="14.0" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="729.0" y="751.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">USB</text>
+<rect x="745.0" y="743.0" width="26.0" height="18.0" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="758.0" y="753.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">microSD</text>
+<rect x="777.0" y="743.0" width="20.0" height="12.0" fill="#e5e7eb" stroke="#6b7280" stroke-width="1" rx="1.5"/><text x="787.0" y="750.6" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">master</text>
+<text x="739.0" y="603.0" font-size="11" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="normal">2x 18650 holder (keep-out)</text>
+<text x="739.0" y="723.0" font-size="7" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="normal">pack -> BT1 3-pin</text>
+<rect x="34" y="801.0" width="13" height="10" fill="#dbeafe" stroke="#3b82f6"/>
+<text x="51.0" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Display</text>
+<rect x="108.80000000000001" y="801.0" width="13" height="10" fill="#fecaca" stroke="#dc2626"/>
+<text x="125.8" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">MCU</text>
+<rect x="158.0" y="801.0" width="13" height="10" fill="#fed7aa" stroke="#ea580c"/>
+<text x="175.0" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">RF</text>
+<rect x="200.8" y="801.0" width="13" height="10" fill="#bbf7d0" stroke="#16a34a"/>
+<text x="217.8" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Battery</text>
+<rect x="275.6" y="801.0" width="13" height="10" fill="#e9d5ff" stroke="#7c3aed"/>
+<text x="292.6" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Controls</text>
+<rect x="356.8" y="801.0" width="13" height="10" fill="#cffafe" stroke="#0891b2"/>
+<text x="373.8" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Power</text>
+<rect x="418.8" y="801.0" width="13" height="10" fill="#f5f5f4" stroke="#78716c"/>
+<text x="435.8" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Buses</text>
+<rect x="480.8" y="801.0" width="13" height="10" fill="#ede9fe" stroke="#6d28d9"/>
+<text x="497.8" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Service</text>
+<rect x="555.6" y="801.0" width="13" height="10" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="572.6" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">I/O port</text>
+<rect x="636.8000000000001" y="801.0" width="13" height="10" fill="#fbcfe8" stroke="#db2777"/>
+<text x="653.8" y="809.5" font-size="9" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Mezzanine</text>
+<text x="34.0" y="829.0" font-size="10" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">All external interfaces present: display+touch, 9x SMA (4 front / 5 back), USB-C x2, microSD, 3.5mm jack, 2x Grove, IR, speaker, mic, master, battery.</text>
+<text x="34.0" y="846.0" font-size="10" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Controls in their locked positions (README S5): D-pad+BACK+OPT front; encoder+F1/F2+jack+IR left edge; PTT+STOP+Grove right edge. Service (RST/BOOT/SD/USB) inside.</text>
+</svg>

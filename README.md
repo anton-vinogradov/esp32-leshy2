@@ -195,7 +195,9 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 - **Batteries on the outer back; a 3-pin connector on the board.** The 2× 18650 plastic holder mounts on the back board's outer face — a removable back lid, a keep-out with no parts under the cells — and wires to a 3-pin `BT1` (P+ / mid / P−).
 - **Four corner mounting holes, aligned on both boards.** M2.5 holes at the four corners of both boards; standoffs between them set the mezzanine gap and carry the display and battery loads. ~75 × 150 mm per board, ~34 mm total thickness (the battery pack is an outer layer).
 
-**Artifacts.** [**controls & firmware conventions**](docs/firmware-controls.md). *(The front/back layout renders are the old single-board version and are being redrawn for the clamshell.)*
+**Artifacts.** [**clamshell layout**](docs/img/layout-clamshell.en.svg) · [**controls & firmware conventions**](docs/firmware-controls.md).
+
+![Leshy2 two-board clamshell layout — all four faces, external interfaces and mounting holes](docs/img/layout-clamshell.en.svg)
 
 **External interfaces & important components, by face:**
 
