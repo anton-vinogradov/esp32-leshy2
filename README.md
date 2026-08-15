@@ -13,7 +13,7 @@ The Leshy2 design documentation is being rebuilt from first principles, one revi
 
 | Stage | Status |
 |---|---|
-| 0. Review system and baseline | In review |
+| 0. Review system and baseline | Reviewed |
 | 1. Vision and scope | Decision required |
 | Later stages | Not started |
 
