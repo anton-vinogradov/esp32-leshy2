@@ -206,11 +206,13 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
     - **antennas on the outer faces** (main on the front, C5 on the back — opposite faces so they can't collide), labelled in-place, **straight, whips up**, no staggering, **the three nRF interleaved so no two are adjacent** (isolation), **every SMA and the IR clear of the corner mounting holes**;
     - the **display drawn in its true 2:3 portrait** aspect (ST7796 320 × 480), never square;
     - the **2× 18650 holder drawn to real size** (~42 × 70 mm — about half the C5 outer face, not the whole face);
-    - **every external port carries a direction arrow** (which edge it faces) — microSD, both USB-C, the jack, the two Grove, the master switch;
+    - **interface vs component** — anything a human touches (screws an antenna, plugs a cable, presses, inserts a card, slides, speaks / listens, touches the screen) gets a **blue frame**; internal parts get a **grey frame**. The battery holder is an interface (you load the cells); its `BT1` connector is internal (grey);
+    - **external ports live at the edge they exit, with a direction arrow** — a connector / switch / button that needs outside access is placed **on the board edge it reaches** (a part mid-board can't meet the case slot). The service ports (**both USB-C, the master slide, `RESET`, `BOOT`, `C5 RESET`**) sit along the **bottom edge**; the jack on the left edge, the two Grove on the right edge, microSD on the bottom edge;
     - the **D-pad drawn as a real 5-way component**, with BACK / OPTIONS as separate keys;
-    - **all LED indicators marked** — the per-chain amber TX-live LEDs and the **RGB status shown distinct** (not a plain dot);
+    - **all LED indicators marked** — the per-chain amber TX-live LEDs and the **RGB status shown distinct** (an R/G/B pie, not a plain dot);
+    - **parts to relative scale** — each box ≈ its real footprint: the display and the 2× 18650 dominate; the WROOM modules ~18 × 25 mm, the nRF24 modules ~15 × 30 mm, USB-C ~9 × 7 mm, the slide switch ~9 × 4 mm, small ICs (PCA9555, 74HC138/139) the smallest — **a connector is never drawn larger than a module**;
     - **four M2.5 corner mounting holes**, aligned on both boards;
-    - **controls in their locked positions** (speaker front-lower-left); connectors + service parts on the inner faces, slot-accessed;
+    - **locked positions** (a redraw keeps the same map): antennas on the outer faces across the top; display outer-front upper; D-pad lower-centre with BACK / OPTIONS flanking; the LED row below the display; encoder + F1 / F2 + jack on the left edge; PTT + STOP + 2× Grove on the right edge; speaker lower-left, mic lower-right; **microSD + RESET + BOOT on the main-board bottom edge**; **USB-C ×2 + master + C5 RESET on the C5-board bottom edge**; battery centred on the C5 outer back with BT1 below; the mezzanine interior; mounting holes at the four corners;
     - **overlap-checked programmatically** before use — parse the finished SVG and confirm no rectangle / text collisions (never by eye);
     - **bilingual** (EN + RU labels);
     - **every component from the board checklist below** — so nothing is dropped between redraws:
@@ -223,9 +225,9 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 
 **External interfaces & important components, by face:**
 
-- **Main board (S3) — outer front:** 4.0″ (320 × 480 portrait) capacitive-touch display + 5-way D-pad + BACK + OPTIONS; speaker + mic (lower); the TX-live LEDs + RGB status; **five antenna SMA across the top** (Wi-Fi 2.4, CC1101, SA868, LoRa, Si4732, whips up). **Left edge:** encoder, F1 / F2, 3.5 mm jack. **Right edge:** PTT + panic STOP, 2× Grove (I²C). **Bottom edge:** microSD (one slot). 4 corner mounting holes.
-- **Main board (S3) — inner:** ESP32-S3 + the wired radios (CC1101 + SP4T, SA868, SX1262 / LoRa, Si4732 + audio) + GPS + the buses (74HC138, 2× PCA9555) + display driver + RESET / BOOT; **u.FL pigtails up to the five outer SMA**; the mezzanine connector.
-- **C5 board — inner:** ESP32-C5 + the **C5-driven 3× nRF24** (+ 74HC139 for their CS) + the **C5-driven IR TX/RX** + a PCA9555 + the charger and power (2× buck, LDO, S-8252A protection); **both USB-C + the master switch** (inner, slot-accessed) + a C5 RESET; **u.FL up to the four outer SMA + IR**; the mezzanine connector.
+- **Main board (S3) — outer front:** 4.0″ (320 × 480 portrait) capacitive-touch display + 5-way D-pad + BACK + OPTIONS; speaker + mic (lower); the TX-live LEDs + RGB status; **five antenna SMA across the top** (Wi-Fi 2.4, CC1101, SA868, LoRa, Si4732, whips up). **Left edge:** encoder, F1 / F2, 3.5 mm jack. **Right edge:** PTT + panic STOP, 2× Grove (I²C). **Bottom edge:** microSD + `RESET` + `BOOT` (pinholes). 4 corner mounting holes.
+- **Main board (S3) — inner:** ESP32-S3 + the wired radios (CC1101 + SP4T, SA868, SX1262 / LoRa, Si4732 + audio) + GPS + the buses (74HC138, 2× PCA9555) + display driver; **`RESET` + `BOOT` on the bottom edge** (pinhole); **u.FL pigtails up to the five outer SMA**; the mezzanine connector.
+- **C5 board — inner:** ESP32-C5 + the **C5-driven 3× nRF24** (+ 74HC139 for their CS) + the **C5-driven IR TX/RX** + a PCA9555 + the charger and power (2× buck, LDO, S-8252A protection); **the bottom edge carries both USB-C, the master slide and `C5 RESET`**; **u.FL up to the four outer SMA + IR**; the mezzanine connector.
 - **C5 board — outer back:** the plain 2× 18650 holder (~42 × 70 mm, keep-out, no parts under cells) + `BT1`; **four antenna SMA + IR across the top** (3× nRF24 + C5 5 GHz + IR, whips up). 4 corner mounting holes.
 
 The physical set is sufficient by a [scenario-coverage review](docs/firmware-controls.md); most of the usability lives in firmware conventions (stage 9).

@@ -13,37 +13,37 @@
 <circle cx="58.5" cy="501.5" r="1.6" fill="#6b7280"/>
 <circle cx="234.0" cy="501.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="234.0" cy="501.5" r="1.6" fill="#6b7280"/>
-<rect x="73.3" y="150.5" width="145.8" height="218.7" fill="#dbeafe" stroke="#3b82f6" stroke-width="1" rx="1.5"/>
-<rect x="74.7" y="434.0" width="24.3" height="18.9" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="86.9" y="445.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">BACK</text>
-<rect x="193.5" y="434.0" width="24.3" height="18.9" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="205.7" y="445.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">OPT</text>
-<rect x="45.0" y="228.8" width="16.2" height="32.4" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="53.1" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">ENC</text>
-<rect x="45.0" y="272.0" width="16.2" height="16.2" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="53.1" y="281.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F1</text>
-<rect x="45.0" y="293.6" width="16.2" height="16.2" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1" rx="1.5"/><text x="53.1" y="303.5" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F2</text>
-<rect x="45.0" y="382.7" width="16.2" height="21.6" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="53.1" y="395.1" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">ДЖЕК</text>
-<rect x="231.3" y="228.8" width="16.2" height="27.0" fill="#e5e7eb" stroke="#6b7280" stroke-width="1" rx="1.5"/><text x="239.4" y="244.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PTT</text>
-<rect x="231.3" y="261.2" width="16.2" height="24.3" fill="#fca5a5" stroke="#b91c1c" stroke-width="1" rx="1.5"/><text x="239.4" y="275.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">STOP</text>
-<rect x="231.3" y="342.2" width="16.2" height="21.6" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="239.4" y="354.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
-<rect x="231.3" y="374.6" width="16.2" height="21.6" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="239.4" y="387.2" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
-<rect x="55.8" y="474.5" width="32.4" height="21.6" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="72.0" y="487.4" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">ДИН</text>
-<rect x="215.1" y="477.2" width="16.2" height="16.2" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="223.2" y="486.9" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">МИК</text>
-<rect x="123.3" y="496.1" width="45.9" height="16.2" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="146.2" y="506.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">microSD</text>
+<rect x="73.3" y="150.5" width="145.8" height="218.7" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/>
+<rect x="74.7" y="434.0" width="24.3" height="18.9" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="86.9" y="445.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">BACK</text>
+<rect x="193.5" y="434.0" width="24.3" height="18.9" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="205.7" y="445.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">OPT</text>
+<rect x="45.0" y="228.8" width="16.2" height="32.4" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">ENC</text>
+<rect x="45.0" y="272.0" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="281.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F1</text>
+<rect x="45.0" y="293.6" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="303.5" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F2</text>
+<rect x="45.0" y="382.7" width="16.2" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="395.1" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">ДЖЕК</text>
+<rect x="231.3" y="228.8" width="16.2" height="27.0" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="244.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PTT</text>
+<rect x="231.3" y="261.2" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="275.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">STOP</text>
+<rect x="231.3" y="342.2" width="16.2" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="354.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
+<rect x="231.3" y="374.6" width="16.2" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="387.2" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
+<rect x="55.8" y="474.5" width="32.4" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="72.0" y="487.4" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">ДИН</text>
+<rect x="215.1" y="477.2" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="223.2" y="486.9" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">МИК</text>
+<rect x="123.3" y="496.1" width="45.9" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="146.2" y="506.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">microSD</text>
 <text x="144.9" y="266.6" font-size="9.5" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="normal">ДИСПЛЕЙ 4.0" + тач</text>
 <text x="134.1" y="382.7" font-size="5" text-anchor="middle" fill="#a16207" font-family="sans-serif" font-weight="normal">TX-live x7</text>
 <text x="207.0" y="382.7" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="normal">RGB</text>
 <path d="M80.1 96.5 l-3 5 M80.1 96.5 l3 5 M80.1 96.5 V115.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="74.2" y="115.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="74.2" y="115.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="80.1" y="134.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">WiFi</text>
 <path d="M113.9 96.5 l-3 5 M113.9 96.5 l3 5 M113.9 96.5 V115.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="107.9" y="115.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="107.9" y="115.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="113.9" y="134.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">CC</text>
 <path d="M147.6 96.5 l-3 5 M147.6 96.5 l3 5 M147.6 96.5 V115.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="141.7" y="115.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="141.7" y="115.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="147.6" y="134.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">SA</text>
 <path d="M181.4 96.5 l-3 5 M181.4 96.5 l3 5 M181.4 96.5 V115.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="175.4" y="115.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="175.4" y="115.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="181.4" y="134.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">LoRa</text>
 <path d="M215.1 96.5 l-3 5 M215.1 96.5 l3 5 M215.1 96.5 V115.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="209.2" y="115.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="209.2" y="115.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="215.1" y="134.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">Si</text>
 <circle cx="72.0" cy="393.5" r="1.9" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.8"/>
 <circle cx="90.9" cy="393.5" r="1.9" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.8"/>
@@ -56,9 +56,9 @@
 <path d="M207.0 393.5 L209.3 394.9 A2.7 2.7 0 0 1 204.7 394.9 Z" fill="#22c55e"/>
 <path d="M207.0 393.5 L204.7 394.9 A2.7 2.7 0 0 1 207.0 390.8 Z" fill="#3b82f6"/>
 <circle cx="207.0" cy="393.5" r="2.7" fill="none" stroke="#111" stroke-width="0.6"/>
-<rect x="120.6" y="420.5" width="48.6" height="48.6" rx="7.3" fill="#e9d5ff" stroke="#7c3aed" stroke-width="1.3"/>
-<path d="M144.9 429.7 l-2.6 3.6 h5.2 z M144.9 459.9 l-2.6 -3.6 h5.2 z M129.8 444.8 l3.6 -2.6 v5.2 z M160.0 444.8 l-3.6 -2.6 v5.2 z" fill="#7c3aed"/>
-<circle cx="144.9" cy="444.8" r="7.3" fill="none" stroke="#7c3aed" stroke-width="1"/>
+<rect x="120.6" y="420.5" width="48.6" height="48.6" rx="7.3" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3"/>
+<path d="M144.9 429.7 l-2.6 3.6 h5.2 z M144.9 459.9 l-2.6 -3.6 h5.2 z M129.8 444.8 l3.6 -2.6 v5.2 z M160.0 444.8 l-3.6 -2.6 v5.2 z" fill="#2563eb"/>
+<circle cx="144.9" cy="444.8" r="7.3" fill="none" stroke="#2563eb" stroke-width="1"/>
 <text x="144.9" y="446.4" font-size="4.2" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">OK</text>
 <path d="M49.0 393.5 L44.5 393.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
 <path d="M244.8 353.0 L249.3 353.0" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
@@ -74,18 +74,20 @@
 <circle cx="316.0" cy="501.5" r="1.6" fill="#6b7280"/>
 <circle cx="491.5" cy="501.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="491.5" cy="501.5" r="1.6" fill="#6b7280"/>
-<rect x="318.7" y="147.8" width="48.6" height="64.8" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="343.0" y="182.7" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
-<rect x="378.1" y="147.8" width="59.4" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="407.8" y="165.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
-<rect x="448.3" y="147.8" width="45.9" height="18.9" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="471.2" y="159.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">RESET</text>
-<rect x="448.3" y="169.4" width="45.9" height="18.9" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="471.2" y="180.6" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">BOOT</text>
-<rect x="378.1" y="185.6" width="59.4" height="32.4" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="407.8" y="203.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
-<rect x="448.3" y="196.4" width="45.9" height="27.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="471.2" y="211.7" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">шины 138 / PCA</text>
-<rect x="318.7" y="228.8" width="54.0" height="32.4" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="345.7" y="247.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa</text>
-<rect x="378.1" y="228.8" width="64.8" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="410.5" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+аудио</text>
-<rect x="448.3" y="228.8" width="45.9" height="29.7" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="471.2" y="245.6" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
-<rect x="318.7" y="272.0" width="64.8" height="27.0" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="351.1" y="287.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">драйв LCD</text>
-<rect x="356.5" y="434.0" width="91.8" height="18.9" fill="#fbcfe8" stroke="#db2777" stroke-width="1" rx="1.5"/><text x="402.4" y="445.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">межплата</text>
-<text x="402.4" y="331.4" font-size="6" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-weight="normal">u.FL -> внешние SMA x5</text>
+<rect x="318.7" y="147.8" width="48.6" height="64.8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="343.0" y="182.7" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
+<rect x="378.1" y="147.8" width="59.4" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="407.8" y="165.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
+<rect x="448.3" y="147.8" width="45.9" height="35.1" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="471.2" y="167.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">шины 138 / PCA</text>
+<rect x="378.1" y="185.6" width="59.4" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="407.8" y="203.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
+<rect x="448.3" y="188.3" width="45.9" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="471.2" y="206.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
+<rect x="318.7" y="228.8" width="54.0" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="345.7" y="247.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa</text>
+<rect x="378.1" y="228.8" width="64.8" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="410.5" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+аудио</text>
+<rect x="448.3" y="226.1" width="45.9" height="27.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="471.2" y="241.4" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">драйв LCD</text>
+<rect x="367.3" y="407.0" width="75.6" height="21.6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="419.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">межплата</text>
+<rect x="334.9" y="496.1" width="43.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="356.5" y="505.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">RESET</text>
+<rect x="386.2" y="496.1" width="43.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="407.8" y="505.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">BOOT</text>
+<text x="402.4" y="309.8" font-size="6" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-weight="normal">u.FL -> внешние SMA x5</text>
+<path d="M356.5 515.0 L356.5 519.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<path d="M407.8 515.0 L407.8 519.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
 <text x="30.0" y="572.0" font-size="11" text-anchor="start" fill="#0891b2" font-family="sans-serif" font-weight="bold">Ряд 2 - плата C5 (сопроцессор)</text>
 <rect x="45.0" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="146.2" y="583.0" font-size="12" text-anchor="middle" fill="#0891b2" font-family="sans-serif" font-weight="bold">C5 - ВНУТРИ</text>
@@ -97,23 +99,24 @@
 <circle cx="58.5" cy="1001.5" r="1.6" fill="#6b7280"/>
 <circle cx="234.0" cy="1001.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="234.0" cy="1001.5" r="1.6" fill="#6b7280"/>
-<rect x="61.2" y="647.8" width="48.6" height="59.4" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="85.5" y="680.0" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-C5</text>
-<rect x="120.6" y="647.8" width="54.0" height="64.8" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="147.6" y="682.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #1</text>
-<rect x="180.0" y="647.8" width="56.7" height="64.8" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="208.3" y="682.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #2</text>
-<rect x="120.6" y="723.4" width="54.0" height="64.8" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="147.6" y="757.7" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #3</text>
-<rect x="180.0" y="723.4" width="56.7" height="29.7" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="208.3" y="740.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">IR drv</text>
-<rect x="180.0" y="758.5" width="56.7" height="29.7" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="208.3" y="775.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">139 CS</text>
-<rect x="61.2" y="718.0" width="48.6" height="32.4" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="85.5" y="736.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">charger</text>
-<rect x="61.2" y="755.8" width="48.6" height="27.0" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="85.5" y="771.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">2S prot</text>
-<rect x="61.2" y="804.4" width="48.6" height="24.3" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="85.5" y="818.3" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PCA</text>
-<rect x="120.6" y="804.4" width="54.0" height="24.3" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="147.6" y="818.3" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">C5 RST</text>
-<rect x="180.0" y="804.4" width="56.7" height="45.9" fill="#e5e7eb" stroke="#6b7280" stroke-width="1" rx="1.5"/><text x="208.3" y="829.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">мастер</text>
-<rect x="61.2" y="858.4" width="51.3" height="24.3" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="86.9" y="872.3" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J1</text>
-<rect x="120.6" y="858.4" width="51.3" height="24.3" fill="#fef9c3" stroke="#ca8a04" stroke-width="1" rx="1.5"/><text x="146.2" y="872.3" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J2</text>
-<rect x="99.0" y="934.0" width="91.8" height="18.9" fill="#fbcfe8" stroke="#db2777" stroke-width="1" rx="1.5"/><text x="144.9" y="945.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">межплата</text>
-<path d="M86.8 884.0 L86.8 888.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M146.2 884.0 L146.2 888.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M239.4 826.0 L243.9 826.0" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="61.2" y="647.8" width="48.6" height="59.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="85.5" y="680.0" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-C5</text>
+<rect x="120.6" y="647.8" width="54.0" height="64.8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="147.6" y="682.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #1</text>
+<rect x="180.0" y="647.8" width="56.7" height="64.8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="208.3" y="682.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #2</text>
+<rect x="120.6" y="723.4" width="54.0" height="64.8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="147.6" y="757.7" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #3</text>
+<rect x="180.0" y="723.4" width="56.7" height="29.7" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="208.3" y="740.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">IR drv</text>
+<rect x="180.0" y="758.5" width="56.7" height="29.7" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="208.3" y="775.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">139 CS</text>
+<rect x="61.2" y="718.0" width="48.6" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="85.5" y="736.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">charger</text>
+<rect x="61.2" y="755.8" width="48.6" height="27.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="85.5" y="771.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">2S prot</text>
+<rect x="61.2" y="804.4" width="48.6" height="24.3" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="85.5" y="818.3" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PCA</text>
+<rect x="109.8" y="907.0" width="75.6" height="21.6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="147.6" y="919.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">межплата</text>
+<rect x="72.0" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="86.8" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J1</text>
+<rect x="109.8" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="124.7" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J2</text>
+<rect x="150.3" y="996.1" width="27.0" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="163.8" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">мастер</text>
+<rect x="185.4" y="996.1" width="27.0" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="198.9" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">C5 RST</text>
+<path d="M86.8 1015.0 L86.8 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<path d="M124.7 1015.0 L124.7 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<path d="M163.8 1015.0 L163.8 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<path d="M198.9 1015.0 L198.9 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
 <rect x="302.5" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="403.8" y="593.0" font-size="12" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">C5 - СНАРУЖИ (зад)</text>
 <circle cx="316.0" cy="623.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
@@ -124,61 +127,50 @@
 <circle cx="316.0" cy="1001.5" r="1.6" fill="#6b7280"/>
 <circle cx="491.5" cy="1001.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="491.5" cy="1001.5" r="1.6" fill="#6b7280"/>
-<rect x="345.7" y="723.4" width="116.1" height="178.2" fill="#bbf7d0" stroke="#16a34a" stroke-width="1" rx="1.5"/>
-<rect x="386.2" y="923.2" width="37.8" height="18.9" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="405.1" y="934.4" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">BT1</text>
+<rect x="345.7" y="723.4" width="116.1" height="178.2" fill="#dcfce7" stroke="#2563eb" stroke-width="2" rx="1.5"/>
+<rect x="386.2" y="923.2" width="37.8" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="934.4" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">BT1</text>
 <text x="403.8" y="788.2" font-size="9" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="normal">2x 18650</text>
 <text x="403.8" y="815.2" font-size="6" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="normal">банки защёлкиваются</text>
 <text x="403.8" y="952.9" font-size="6.5" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="normal">-> BT1 разъём батареи (3-пин)</text>
 <line x1="403.8" y1="726.1" x2="403.8" y2="898.9" stroke="#166534" stroke-width="0.9" stroke-dasharray="3 2"/>
 <path d="M334.9 596.5 l-3 5 M334.9 596.5 l3 5 M334.9 596.5 V615.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="329.0" y="615.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="329.0" y="615.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="334.9" y="634.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR1</text>
 <path d="M372.7 596.5 l-3 5 M372.7 596.5 l3 5 M372.7 596.5 V615.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="366.8" y="615.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="366.8" y="615.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="372.7" y="634.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">5G</text>
 <path d="M407.8 596.5 l-3 5 M407.8 596.5 l3 5 M407.8 596.5 V615.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="401.9" y="615.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="401.9" y="615.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="407.8" y="634.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR2</text>
 <path d="M442.9 596.5 l-3 5 M442.9 596.5 l3 5 M442.9 596.5 V615.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="437.0" y="615.9" width="11.9" height="9.7" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.9" rx="1"/>
+<rect x="437.0" y="615.9" width="11.9" height="9.7" fill="#fef9c3" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="442.9" y="634.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">IR</text>
 <path d="M472.6 596.5 l-3 5 M472.6 596.5 l3 5 M472.6 596.5 V615.9" stroke="#4b5563" stroke-width="1" fill="none"/>
-<rect x="466.7" y="615.9" width="11.9" height="9.7" fill="#d1d5db" stroke="#4b5563" stroke-width="0.9" rx="1"/>
+<rect x="466.7" y="615.9" width="11.9" height="9.7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" rx="1"/>
 <text x="472.6" y="634.3" font-size="4.6" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR3</text>
 <text x="30.0" y="1061.0" font-size="11" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">Ряд 3 - вид сбоку + антенны</text>
 <text x="113.1" y="1077.0" font-size="8" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="bold">ПЕРЁД</text>
-<rect x="70.0" y="1085.0" width="86.2" height="10.8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1" rx="1.5"/><text x="113.1" y="1092.5" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">ДИСПЛЕЙ 4.0" + тач</text>
+<rect x="70.0" y="1085.0" width="86.2" height="10.8" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="113.1" y="1092.5" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">ДИСПЛЕЙ 4.0" + тач</text>
 <rect x="70.0" y="1095.8" width="86.2" height="3" fill="#9ca3af" stroke="#111" stroke-width="0.6"/>
 <text x="163.2" y="1098.8" font-size="6.8" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">ГЛАВНАЯ</text>
-<rect x="76.9" y="1100.3" width="11.5" height="14.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/>
-<rect x="104.5" y="1100.3" width="11.5" height="14.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/>
-<rect x="132.1" y="1100.3" width="11.5" height="14.0" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/>
-<rect x="90.7" y="1104.9" width="11.5" height="14.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/>
-<rect x="118.3" y="1104.9" width="11.5" height="14.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/>
-<rect x="142.4" y="1104.9" width="11.5" height="14.0" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/>
+<rect x="76.9" y="1100.3" width="11.5" height="14.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
+<rect x="104.5" y="1100.3" width="11.5" height="14.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
+<rect x="132.1" y="1100.3" width="11.5" height="14.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
+<rect x="90.7" y="1104.9" width="11.5" height="14.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
+<rect x="118.3" y="1104.9" width="11.5" height="14.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
+<rect x="142.4" y="1104.9" width="11.5" height="14.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
 <text x="163.2" y="1109.6" font-size="6.8" text-anchor="start" fill="#9a3412" font-family="sans-serif" font-weight="normal">электроника</text>
 <rect x="70.0" y="1120.4" width="86.2" height="3" fill="#9ca3af" stroke="#111" stroke-width="0.6"/>
 <text x="163.2" y="1123.4" font-size="6.8" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">плата C5</text>
-<rect x="71.2" y="1123.4" width="83.9" height="54.0" fill="#bbf7d0" stroke="#16a34a" stroke-width="1" rx="1.5"/><text x="113.1" y="1153.2" font-size="8" text-anchor="middle" fill="#111" font-family="sans-serif">2x 18650</text>
+<rect x="71.2" y="1123.4" width="83.9" height="54.0" fill="#dcfce7" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="113.1" y="1153.2" font-size="8" text-anchor="middle" fill="#111" font-family="sans-serif">2x 18650</text>
 <text x="163.2" y="1150.4" font-size="6.8" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="normal">снаружи</text>
 <text x="113.1" y="1190.4" font-size="8" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">ЗАД</text>
 <line x1="57" y1="1085.0" x2="57" y2="1177.3999999999999" stroke="#111"/>
 <line x1="54" y1="1085.0" x2="60" y2="1085.0" stroke="#111"/>
 <line x1="54" y1="1177.3999999999999" x2="60" y2="1177.3999999999999" stroke="#111"/>
 <text x="52.0" y="1131.2" font-size="8.5" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold" transform="rotate(-90 52.0 1131.2)">~34 мм</text>
-<text x="70.0" y="1257.0" font-size="9.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">Антенны на внешних гранях</text>
-<rect x="70.0" y="1291.0" width="74" height="13" fill="#f3f4f6" stroke="#111" stroke-width="1"/>
-<rect x="72.0" y="1293.0" width="16" height="9" fill="#dbeafe" stroke="#3b82f6" stroke-width="0.7"/>
-<rect x="126.0" y="1293.0" width="16" height="9" fill="#bbf7d0" stroke="#16a34a" stroke-width="0.7"/>
-<line x1="107.0" y1="1289.0" x2="107.0" y2="1306.0" stroke="#db2777" stroke-width="1" stroke-dasharray="2 2"/>
-<text x="107.0" y="1324.0" font-size="5.5" text-anchor="middle" fill="#db2777" font-family="sans-serif" font-weight="normal">межплата</text>
-<rect x="76.0" y="1288.0" width="6" height="5" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<path d="M79.0 1272.0 l-3 5 M79.0 1272.0 l3 5 M79.0 1272.0 V1288.0" stroke="#4b5563" stroke-width="1.3" fill="none"/>
-<rect x="132.0" y="1288.0" width="6" height="5" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<path d="M135.0 1272.0 l-3 5 M135.0 1272.0 l3 5 M135.0 1272.0 V1288.0" stroke="#4b5563" stroke-width="1.3" fill="none"/>
-<text x="79.0" y="1315.0" font-size="6.5" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="bold">ПЕРЁД</text>
-<text x="135.0" y="1315.0" font-size="6.5" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">ЗАД</text>
-<text x="70.0" y="1336.0" font-size="6.8" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">все хлысты вверх · перёд + зад на противоположных гранях -> не мешают</text>
+<text x="70.0" y="1263.0" font-size="9.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">Антенны на внешних гранях</text>
+<text x="70.0" y="1280.0" font-size="7.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">Антенны — на внешних гранях обеих плат (перёд + зад), поэтому два банка не пересекаются.</text>
 <text x="330.0" y="1077.0" font-size="10" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">Верхняя кромка - каждый на плате своего МК</text>
 <text x="333.0" y="1093.0" font-size="8" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="bold">#</text>
 <text x="359.0" y="1093.0" font-size="8" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="bold">интерфейс</text>
@@ -234,24 +226,18 @@
 <text x="359.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">GPS</text>
 <text x="479.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">L1</text>
 <text x="589.0" y="1257.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN patch</text>
-<rect x="30" y="1446" width="12" height="9" fill="#dbeafe" stroke="#3b82f6"/>
-<text x="45.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Дисплей</text>
-<rect x="98" y="1446" width="12" height="9" fill="#fecaca" stroke="#dc2626"/>
-<text x="113.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">МК</text>
-<rect x="136" y="1446" width="12" height="9" fill="#fed7aa" stroke="#ea580c"/>
-<text x="151.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">РЧ</text>
-<rect x="174" y="1446" width="12" height="9" fill="#cffafe" stroke="#0891b2"/>
-<text x="189.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Питание</text>
-<rect x="242" y="1446" width="12" height="9" fill="#bbf7d0" stroke="#16a34a"/>
-<text x="257.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Батарея</text>
-<rect x="310" y="1446" width="12" height="9" fill="#e9d5ff" stroke="#7c3aed"/>
-<text x="325.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Управл.</text>
-<rect x="378" y="1446" width="12" height="9" fill="#f5f5f4" stroke="#78716c"/>
-<text x="393.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Шины</text>
-<rect x="428" y="1446" width="12" height="9" fill="#fef9c3" stroke="#ca8a04"/>
-<text x="443.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">I/O</text>
-<rect x="472" y="1446" width="12" height="9" fill="#fbcfe8" stroke="#db2777"/>
-<text x="487.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Межпл</text>
-<rect x="528" y="1446" width="12" height="9" fill="#d1d5db" stroke="#4b5563"/>
-<text x="543.0" y="1454.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">SMA / ант</text>
+<rect x="30" y="1440" width="15" height="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/>
+<text x="49.0" y="1448.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">интерфейс (контакт)</text>
+<rect x="189" y="1440" width="15" height="10" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/>
+<text x="208.0" y="1448.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">компонент</text>
+<rect x="288" y="1440" width="15" height="10" fill="#dcfce7" stroke="#2563eb" stroke-width="2" rx="1.5"/>
+<text x="307.0" y="1448.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">батарея</text>
+<circle cx="37" cy="1461" r="3.2" fill="#fef9c3" stroke="#ca8a04"/>
+<text x="45.0" y="1464.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">TX-live LED</text>
+<path d="M142 1461 L142.0 1457.8 A3.2 3.2 0 0 1 144.8 1462.6 Z" fill="#ef4444"/>
+<path d="M142 1461 L144.8 1462.6 A3.2 3.2 0 0 1 139.2 1462.6 Z" fill="#22c55e"/>
+<path d="M142 1461 L139.2 1462.6 A3.2 3.2 0 0 1 142.0 1457.8 Z" fill="#3b82f6"/>
+<text x="150.0" y="1464.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">RGB-статус</text>
+<path d="M234 1461 L245 1461" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="251.0" y="1464.5" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">направление порта</text>
 </svg>
