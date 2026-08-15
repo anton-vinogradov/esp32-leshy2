@@ -1,31 +1,37 @@
-# Leshy2
+# Leshy2 Hardware
 
-The Leshy2 design documentation is being rebuilt from first principles, one reviewed stage at a time.
+> **Target product document.** This page is assembled from accepted, reviewed decisions and describes the intended finished device—not the current implementation. See the [current engineering state](docs/status/current-state.md) for maturity, blockers, and pending proposals.
 
-## Authoritative state
+- [Русская версия](README.ru.md)
+- [Firmware target product](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
+- [Canonical review ledger](docs/review/README.md)
 
-- The review ledger lives in [`docs/review/`](docs/review/README.md).
-- Only accepted decisions and artifacts marked **Reviewed** are authoritative.
-- Earlier documentation is preserved under [`drafts/legacy-2026-08-15/`](drafts/legacy-2026-08-15/README.md) for reference only.
-- Existing tsCircuit and KiCad files are legacy implementation artifacts until their producing stage is reviewed and they are regenerated from the new design.
+## Finished product target
 
-## Current status
+Leshy2 is an open, autonomous, portable all-in-one field instrument for observation, diagnostics, communications, and authorized experiments across several radio ecosystems. It is designed as a buildable and verifiable product with explicit safety boundaries, not as an unchecked collection of maximum-capability demos.
 
-| Stage | Status |
-|---|---|
-| 0. Review system and baseline | Reviewed |
-| 1. Vision and scope | Reviewed |
-| 2. Capabilities and exclusions | In progress |
-| Later stages | Not started |
+## Three functional levels
 
-Accepted so far: Leshy2 is an all-in-one field tool whose security-research functions live only in **Lab** and progress from low-impact observation to the most serious authorized tests. Initial setup requires acceptance of the non-aggression pledge.
+1. **Main** — everyday tools, reception, diagnostics, navigation, maintenance, and legitimate communications outside a security-research scenario.
+2. **Lab** — passive, defensive, and bounded security-research tools.
+3. **Lab → Controlled Zone** — genuinely dangerous active or disruptive tools. Every entry requires a fresh non-suppressible warning and hold-to-confirm, plus an isolated environment, an explicitly authorized target, or both as required by the tool.
 
-All transmitters boot off, every Lab tool starts disarmed, and initial TX uses a conservative profile. Maximum TX power is available only after an explicit user choice; it is never the global default.
+Initial setup separately requires acceptance of the non-aggression pledge. Neither the pledge nor the Controlled-Zone banner arms a tool or overrides spectrum, licensing, privacy, or third-party constraints. The canonical contracts are [`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md) and [`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md).
 
-Full product cost is optimized under `DEC-0005`, but a cheaper implementation is accepted only after proving no loss of capability, performance, safety, reliability, autonomy, serviceability, or testability.
+## Accepted hardware direction
 
-GNSS is not populated on the base board. GPS features use an external M5Stack Unit GPS v1.1 over a dedicated protected 5 V UART Grove port under `DEC-0006`.
+- The finished architecture assigns all three nRF24 radios and IR TX/RX to ESP32-C5. The final inter-MCU transport must satisfy that ownership without overcommitting C5's single general-purpose SPI controller.
+- GNSS is not populated on the base board. Navigation uses a supported external M5Stack Unit GPS v1.1, or the GNSS included in a supported combined expansion.
+- LoRa is not populated on the base board. M5Stack U214 is the first `EXT-RF14` LoRa+GNSS backend for common 868/915 profiles within the module and regional limits; other carriers are optional and separately qualified.
+- The onboard mono digital-audio prerequisite uses ES8311, the existing RX-source mux, and two hardware-default-to-analog selectors. Ordinary listening and microphone voice remain available across MCU or codec reset and failure.
 
-For the three nRF24 radios and IR, only the **target C5-ownership constraint** is accepted—not a working architecture. Its feasibility remains unproven: the legacy topology assigns the C5's sole general-purpose SPI controller two incompatible roles. The inter-MCU transport must be replaced or independently proven at stage 3; see `FND-0001`.
+## Safety and cost boundary
 
-*Русская версия: [README.ru.md](README.ru.md).*
+- Every transmitter starts off; Lab tools start disarmed.
+- Initial TX uses a conservative per-radio profile. Maximum available power requires an explicit choice and is never a global default.
+- Emergency stop and actual-TX indication have priority over UI and application state; their final electrical implementation must pass failure-injection review.
+- Total product cost is optimized only through implementations proven equivalent in capability, performance, safety, reliability, autonomy, serviceability, and testability.
+
+## How this page grows
+
+Only accepted product contracts are summarized here. Open findings and proposals remain in the [current-state page](docs/status/current-state.md) and review ledger until resolved. As stage 2 produces reviewed `REQ-*`, this page will grow into the complete start document for the finished hardware product.
