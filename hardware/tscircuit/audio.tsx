@@ -11,9 +11,10 @@
 //   U30  Si4732-A10-GS  16-SOIC  -> jlcpcb:C1526102
 //        Engine pads: 4 GPO1, 5 NC, 6 FMI, 7 RFGND, 8 AMI, 9 RST, 10 SENB, 11 SCLK, 12 SDIO,
 //        13 RCLK, 14 VDD, 15 GND. Pads 1,2,3,16 are engine-UNNAMED -> referenced by .pin#.
-//        Per the Si4732-A10 datasheet 16-SOIC pinout: pin1 ROUT, pin2 LOUT, pin3 NC, pin16 NC
-//        (single VDD, no separate VA). ROUT/LOUT are interchangeable here — both feed identical
-//        10 k summing resistors into one mono node, so L/R swap is electrically a no-op.
+//        Per the Si4732-A10 datasheet 16-SOIC pinout: pin1 LOUT/DFS, pin2 GPO3/DCLK,
+//        pin3 GPO2/INTB, pin16 ROUT/DOUT (single VDD, no separate VA). Only pins 1 and 16
+//        are analog audio outputs in this design. They feed identical 10 k summing resistors,
+//        so L/R interchange is electrically a no-op after the deliberate mono sum.
 //        Added vs base logic (datasheet typical app): RFGND(pin7)->GND (RF ground, mandatory);
 //        Cvdd30b 100nF HF decoupling at VDD (base only had 1uF bulk).
 //   U31  SA868-U UHF walkie module  20-pad  -> jlcpcb:C3001507   (REAL module land, not a header)
@@ -119,9 +120,9 @@ export default () => (
     <trace from=".U30 > .AMI" to="net.ANT_HF_CB" />
     <trace from=".U30 > .FMI" to="net.ANT_FM" />
 
-    {/* --- Si4732 line-out -> summing pair -> mux B1 (pin2=LOUT, pin1=ROUT; L/R interchangeable) --- */}
-    <trace from=".U30 > .pin2" to=".RsumL > .pin1" />
-    <trace from=".U30 > .pin1" to=".RsumR > .pin1" />
+    {/* --- Si4732 line-out -> summing pair -> mux B1 (pin1=LOUT, pin16=ROUT) --- */}
+    <trace from=".U30 > .pin1" to=".RsumL > .pin1" />
+    <trace from=".U30 > .pin16" to=".RsumR > .pin1" />
     <trace from=".RsumL > .pin2" to="net.SI_AUDIO" />
     <trace from=".RsumR > .pin2" to="net.SI_AUDIO" />
     <trace from=".U33 > .B1" to="net.SI_AUDIO" />

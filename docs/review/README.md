@@ -33,6 +33,7 @@
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: цифровые audio-функции не поддержаны hardware](findings/FND-0003-missing-mcu-audio-path.md)
 - [FND-0004: бортовой и внешний GNSS расходятся — закрыто DEC-0006](findings/FND-0004-gnss-scope-conflict.md)
+- [FND-0005: неверная распиновка audio Si4732 — закрыто исправлением](findings/FND-0005-si4732-audio-pin-map.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -41,6 +42,7 @@
 - [⚠️ IMP-0006: убрать третий I²C-экспандер через матрицу кнопок — предложение](improvements/IMP-0006-ui-key-matrix.md)
 - [IMP-0007: внешний Cardputer LoRa+GNSS Cap — основной профиль](improvements/IMP-0007-cardputer-lora-gnss-cap.md)
 - [IMP-0008: универсальный внешний LoRa-профиль — транспорт принят, E22 опционален](improvements/IMP-0008-modular-lora-expansion.md)
+- [⚠️ IMP-0009: бортовой mono codec ES8311 с hardware bypass — предложение](improvements/IMP-0009-onboard-mono-audio-codec.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -51,6 +53,7 @@
 - [REV-0002B: ревью scope внешнего GNSS](reviews/REV-0002B-external-gnss.md)
 - [REV-0002C: историческое ревью прежнего LoRa scope](reviews/REV-0002C-modular-lora-scope.md)
 - [REV-0002D: повторное ревью U214 и общепринятых LoRa-частот](reviews/REV-0002D-u214-common-bands.md)
+- [REV-0002E: ревью вариантов цифрового audio-path](reviews/REV-0002E-audio-options.md)
 
 ## Статусы
 
