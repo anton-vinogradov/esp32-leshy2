@@ -1,6 +1,6 @@
 # FND-0009 — legacy GNSS-функции привязаны к u-blox, а принятые M5-профили используют AT6668
 
-- Статус: **Открыто до решения `IMP-0012`**
+- Статус: **Закрыто на уровне требований; `DEC-0014`, `REQ-GNSS-0001`, `REV-0002K`**
 - Серьёзность: нельзя переносить `C-GPS-01`, `C-GPS-03` и `C-GPS-04` как готовый firmware-контракт
 - Затрагивает: `DEC-0006`, `DEC-0008`, `C-GPS-*`, `C-X-06`, `C-X-07`, hardware/firmware и приёмочные испытания
 - Обнаружено: 2026-08-16
@@ -32,15 +32,17 @@ Legacy `FW-CAP §6` называет группу «GPS (u-blox)» и требу
 
 M5Stack Module GPS v2.1 также основан на AT6668. Он добавляет другой stackable form factor, внешнюю антенну и PPS, но не возвращает u-blox API и не доказывает поддержку advanced CASIC-команд для уже принятых Unit/U214. Добавлять его только ради замены названий протокола — лишние connector/mechanical/BOM и qualification work.
 
-## Gate закрытия
+## Закрытие
 
-Нужно решить `IMP-0012`, после чего:
+`DEC-0014` принял `IMP-0012/A`, а `REQ-GNSS-0001` прошёл `REV-0002K`:
 
-1. базовую навигацию отделить от необязательного advanced CASIC profile;
-2. убрать из требований торговое имя AssistNow и конкретные UBX-поля;
-3. не выдавать эвристику host за аппаратное обнаружение receiver;
-4. считать advanced capability доступной только после per-profile proof;
-5. проверить согласованность hardware/firmware target/current-state и EN/RU страниц.
+1. базовая навигация отделена от необязательного advanced CASIC profile;
+2. из требований удалены торговое имя AssistNow и конкретные UBX-поля;
+3. host-эвристика не выдаётся за аппаратное обнаружение receiver;
+4. advanced capability доступна только после per-profile proof;
+5. hardware/firmware target/current-state и EN/RU страницы проверены согласованно.
+
+Эти действия выполнены на requirement-level. Per-revision firmware support, parser/HIL и RF proof остаются входами последующих этапов, а не открытой неоднозначностью scope.
 
 ## Первичные источники
 

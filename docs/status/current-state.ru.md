@@ -23,6 +23,7 @@
 - консервативные TX-дефолты и явный выбор максимальной мощности (`DEC-0003`);
 - оптимизация полной стоимости без потери продукта (`DEC-0005`);
 - внешний M5 GNSS и внешний U214 LoRa+GNSS (`DEC-0006`, `DEC-0008`);
+- NMEA baseline и условный per-revision advanced CASIC profile без дополнительного GNSS (`DEC-0014`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
 - целевое владение C5 для 3×nRF24 и IR (`DEC-0001`) без заявления о готовом межпроцессорном транспорте.
 - owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
@@ -34,16 +35,15 @@
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
 - `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
-- `FND-0009`: legacy GNSS привязан к u-blox AssistNow/UBX, а принятые M5 Unit/U214 используют AT6668; возможный CASIC-обход ждёт решения `IMP-0012` и proof конкретных firmware.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
 
 System/UI/storage capability-срез завершён статусом **«Проведено ревью»** в `REV-0002I`.
 
-Текущий GNSS/navigation срез описан в [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-navigation-integrity.md). Prerequisite audit `REV-0002J` проведён ревью и обнаружил `FND-0009`: прежние u-blox-механизмы нельзя отправлять AT6668. При этом официальный CASIC protocol содержит собственные assistance и jamming/spoofing messages.
+GNSS/navigation срез [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-navigation-integrity.md) получил статус **«Проведено ревью»** в `REV-0002K`. Владелец принял `IMP-0012/A` как [`DEC-0014`](../review/decisions/DEC-0014-casic-gnss-profile.md): NMEA — обязательный baseline квалифицированного профиля, а assistance и receiver-reported jamming/spoofing условны proof точной revision/firmware. Unsupported/timeout/parser error означают `unknown`, не «угроз нет»; host heuristics отделяются от статуса receiver.
 
-⚠️ **Предложение `IMP-0012`:** оставить дешёвый NMEA baseline и квалифицировать advanced CASIC profile отдельно для Unit GPS v1.1 и U214; неподдерживаемое/неизвестное состояние никогда не показывать как «угроз нет». До решения владельца `REQ-GNSS-0001` остаётся **«На ревью»**.
+`FND-0009` закрыт на requirement-level. UART/power hardware, parser, assistance source, поддержка advanced messages конкретными Unit/U214, RF self-desense и HIL ещё не реализованы и проверяются на последующих этапах.
 
 ## Отложенный архитектурный gate
 

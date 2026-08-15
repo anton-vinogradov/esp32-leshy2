@@ -21,7 +21,7 @@ Initial setup separately requires acceptance of the non-aggression pledge. Neith
 ## Accepted hardware direction
 
 - The finished architecture assigns all three nRF24 radios and IR TX/RX to ESP32-C5. The final inter-MCU transport must satisfy that ownership without overcommitting C5's single general-purpose SPI controller.
-- GNSS is not populated on the base board. Navigation uses a supported external M5Stack Unit GPS v1.1, or the GNSS included in a supported combined expansion.
+- GNSS is not populated on the base board. Navigation uses a supported external M5Stack Unit GPS v1.1, or the GNSS included in a supported combined expansion. A qualified profile must provide the NMEA baseline; assistance and receiver-reported interference/spoofing status are enabled only after exact revision/firmware proof, and unsupported/unknown is never presented as no threat ([`DEC-0014`](docs/review/decisions/DEC-0014-casic-gnss-profile.md)).
 - LoRa is not populated on the base board. M5Stack U214 is the first `EXT-RF14` LoRa+GNSS backend for common 868/915 profiles within the module and regional limits; other carriers are optional and separately qualified.
 - The onboard mono digital-audio prerequisite uses ES8311, the existing RX-source mux, and two hardware-default-to-analog selectors. Ordinary listening and microphone voice remain available across MCU or codec reset and failure.
 

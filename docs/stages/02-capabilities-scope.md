@@ -14,6 +14,8 @@
 - `DEC-0009`: бортовой ES8311, существующий RX mux и два default-to-analog selector — целевая mono audio-архитектура; реализация ещё требует pin/electrical/firmware proof;
 - `DEC-0010`: три уровня функциональности; `LAB-P` по умолчанию находится в обычной «Лаборатории», `LAB-I`/`LAB-D` — во вложенной «Контролируемой зоне» с banner при каждом входе;
 - `DEC-0012`: `IMP-0010` остаётся открытым, а выбор STOP/UI/audio pin-map переносится на этап 3 после сводного pin/GPIO/resource budget;
+- `DEC-0013`: штатные S3/C5 updates используют owner-controlled signatures, validation и rollback без обязательного hardware lockdown;
+- `DEC-0014`: NMEA — обязательный GNSS baseline, advanced CASIC assistance/integrity условны per-revision proof и не требуют третьего GNSS;
 - legacy capability tree обоих репозиториев — только источник кандидатов, не требований;
 - datasheet-ограничения и проверяемые safety/legal-гейты для каждого кандидата.
 
@@ -60,7 +62,7 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 Владелец принял `IMP-0011` как открытый `A-open` в `DEC-0013`: штатные S3/C5 update paths требуют owner-authorized signatures и rollback, но ключи, offline build/signing и developer firmware остаются у владельца; необратимый hardware lockdown не принят. Распространение прошло `REV-0002I`, `FND-0008` закрыт на requirement-level, а System/UI/storage capability-срез получил статус **«Проведено ревью»**.
 
-Следующий GNSS/navigation prerequisite audit прошёл `REV-0002J`. Он выявил `FND-0009`: legacy требует SparkFun u-blox, AssistNow и UBX flags, тогда как оба принятых M5-профиля используют AT6668. Официальный CASIC protocol предоставляет backend-native assistance/ephemeris input и receiver-reported jamming/spoofing messages, поэтому функции не исключены автоматически. `REQ-GNSS-0001` сохраняет базовую NMEA-навигацию и выносит advanced profile в `⚠️ IMP-0012`; набор остаётся **«На ревью»** до решения владельца и последующей проверки распространения.
+Следующий GNSS/navigation prerequisite audit прошёл `REV-0002J`. Он выявил `FND-0009`: legacy требует SparkFun u-blox, AssistNow и UBX flags, тогда как оба принятых M5-профиля используют AT6668. Официальный CASIC protocol предоставляет backend-native assistance/ephemeris input и receiver-reported jamming/spoofing messages, поэтому функции не исключены автоматически. Владелец принял `IMP-0012/A` как `DEC-0014`: NMEA остаётся обязательным baseline, advanced CASIC profile условен per-revision proof, а unsupported/unknown никогда не становится false-safe. Распространение прошло `REV-0002K`, `FND-0009` закрыт на requirement-level, и `REQ-GNSS-0001` получил статус **«Проведено ревью»**.
 
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 
@@ -76,4 +78,4 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 ## Следующий артефакт
 
-Решение `IMP-0012`, затем propagation review `REQ-GNSS-0001`. После него — продолжение `AUD-0001` и декомпозиция следующей capability-группы в `include` / `conditional` / `defer` / `exclude-proven` с проверяемыми гейтами и стоимостным драйвером.
+Продолжение `AUD-0001` и декомпозиция следующей capability-группы в `include` / `conditional` / `defer` / `exclude-proven` с проверяемыми гейтами и стоимостным драйвером.

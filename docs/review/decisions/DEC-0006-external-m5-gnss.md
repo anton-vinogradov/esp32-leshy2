@@ -16,6 +16,8 @@
 
 `DEC-0008` дополнительно принимает комбинированный M5Stack Cap LoRa-1262 `U214`: при выбранном U214 backend его GNSS заменяет отдельный GPS Unit в конкретной конфигурации. Настоящий `PORT.C` сохраняется как альтернативный GNSS-интерфейс; одновременное GNSS sensor fusion не принято.
 
+`DEC-0014` уточняет firmware-capability contract обоих профилей: NMEA — обязательный baseline, а backend-native assistance и receiver-reported jamming/spoofing включаются только после proof точной product/revision/firmware. Это не добавляет третий GNSS и не превращает ссылку на общий CASIC protocol в blanket compatibility.
+
 ## Контракт будущего UART-порта
 
 - физический интерфейс: HY2.0-4P в формате M5Stack `PORT.C`;
