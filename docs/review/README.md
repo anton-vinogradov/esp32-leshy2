@@ -39,6 +39,7 @@
 - [DEC-0009: бортовой ES8311 с аппаратным analog bypass](decisions/DEC-0009-onboard-es8311-audio.md)
 - [DEC-0010: три уровня функциональности и вложенная контролируемая зона](decisions/DEC-0010-three-functional-levels.md)
 - [DEC-0011: целевой README отдельно от текущего состояния](decisions/DEC-0011-target-readme-current-state.md)
+- [DEC-0012: решение по IMP-0010 после сводного pin budget](decisions/DEC-0012-defer-imp-0010-to-pin-budget.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -70,6 +71,7 @@
 - [REV-0002D: повторное ревью U214 и общепринятых LoRa-частот](reviews/REV-0002D-u214-common-bands.md)
 - [REV-0002E: ревью вариантов цифрового audio-path](reviews/REV-0002E-audio-options.md)
 - [REV-0002F: ревью распространения решения ES8311](reviews/REV-0002F-es8311-decision-propagation.md)
+- [REV-0002G: ревью переноса IMP-0010 на сводный pin budget](reviews/REV-0002G-defer-imp-0010-to-pin-budget.md)
 
 ## Статусы
 

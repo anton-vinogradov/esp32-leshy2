@@ -35,11 +35,12 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
-## Current decision gate
+## Current review work
 
-[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md) is awaiting the owner's choice:
+Stage 2 continues with decomposition of capability groups into testable `include` / `conditional` / `defer` / `exclude-proven` requirements. The System/UI slice may be reviewed at the functional-requirement level without selecting a final pin map.
 
-- recommended A: independent hardware STOP, safe reboot, 3×3 matrix, remove `U14`, reuse freed LoRa controls for audio;
-- B: keep `U14` and point-to-point keys, but still add independent hardware STOP.
+## Deferred architecture gate
 
-No System/UI substep is marked Reviewed until this choice is resolved and propagated.
+[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md) remains open, but [`DEC-0012`](../review/decisions/DEC-0012-defer-imp-0010-to-pin-budget.md) defers the A/B choice to stage 3. No owner decision is requested until a consolidated pin/GPIO/resource budget covers both MCUs, expanders, fixed-function pins, inter-MCU transport, audio, UI/touch, external modules, and genuinely freed onboard GNSS/LoRa lines.
+
+`FND-0006` and `FND-0007` remain open. The deferral neither selects `U14`/the 3×3 matrix nor proves a hardware STOP.
