@@ -123,7 +123,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 | Band | Chip | RX | TX | What you do |
 |------|------|:--:|:--:|-------------|
 | 2.4 GHz Wi-Fi + BLE | ESP32-S3 | ✓ | ✓ | scan, **deauth**, beacon / probe flood, sniff |
-| 5 GHz Wi-Fi | ESP32-C5 | ✓ | ✓ | scan, sniff, deauth\*, beacon / probe flood |
+| 5 GHz Wi-Fi | ESP32-C5 | ✓ | ✓ | scan, sniff, deauth, beacon / probe flood |
 | 802.15.4 / Zigbee + BLE | ESP32-C5 | ✓ | ✓ | Zigbee / Thread sniff, BLE adv flood |
 | 2.4 GHz raw | 3× nRF24L01+ | ✓ | ✓ | whole-band scan, mousejack, analyzer |
 | 315 / 433 / 868 / 915 MHz | CC1101 | ✓ | ✓ | capture / replay remotes, RSSI "geiger" |

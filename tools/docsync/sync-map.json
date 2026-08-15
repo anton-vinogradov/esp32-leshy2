@@ -6,7 +6,7 @@
       "repo": "esp32-leshy2",
       "file": "README.md",
       "heading": "2. What it must do — capabilities",
-      "sha256": "1a8c6b6dd484d7cf6c15e104f464a00d6f4c959e6a651c209fe6ecb892824ca7",
+      "sha256": "62feb3385ef5acb4c44aa5665ca9eb93969e3c5c6b1745f3b2cd4ef75e9662fa",
       "mirror": "esp32-leshy2-firmware README §1 'In scope' + §2 'Capability tree'",
       "note": "If the hardware capability set changes, review the firmware's mirrored capability claims."
     },
