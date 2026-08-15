@@ -93,7 +93,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 
 **Recon / attacks**
 - Wi-Fi 2.4 GHz (ESP32-S3): scan, **deauth**, beacon / probe flood, sniff management frames — Marauder-class.
-- Wi-Fi 5 GHz (ESP32-C5): scan, sniff, beacon / probe flood — Marauder-class on the 5 GHz band DIV never had.
+- Wi-Fi 5 GHz (ESP32-C5): scan, sniff, deauth, beacon / probe flood — Marauder-class on the 5 GHz band DIV never had. (5 GHz deauth is a target we'll attempt; unproven on production C5 until [bring-up](#11-fabrication--bring-up).)
 - 2.4 GHz raw (3× nRF24L01+PA/LNA): parallel whole-band scan, mousejack, channel analyzer.
 - Sub-GHz (CC1101): capture and replay OOK / FSK remotes on 315 / 433 / 868 / 915 MHz; RSSI activity "geiger".
 - BLE advertising flood + 802.15.4 / Zigbee sniff (ESP32-C5).
@@ -123,7 +123,7 @@ If you like this project, please star and support the original ESP32-DIV first.
 | Band | Chip | RX | TX | What you do |
 |------|------|:--:|:--:|-------------|
 | 2.4 GHz Wi-Fi + BLE | ESP32-S3 | ✓ | ✓ | scan, **deauth**, beacon / probe flood, sniff |
-| 5 GHz Wi-Fi | ESP32-C5 | ✓ | ✓ | scan, sniff, beacon / probe flood |
+| 5 GHz Wi-Fi | ESP32-C5 | ✓ | ✓ | scan, sniff, deauth\*, beacon / probe flood |
 | 802.15.4 / Zigbee + BLE | ESP32-C5 | ✓ | ✓ | Zigbee / Thread sniff, BLE adv flood |
 | 2.4 GHz raw | 3× nRF24L01+ | ✓ | ✓ | whole-band scan, mousejack, analyzer |
 | 315 / 433 / 868 / 915 MHz | CC1101 | ✓ | ✓ | capture / replay remotes, RSSI "geiger" |
@@ -188,12 +188,21 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 **Decisions.**
 
 - **Two boards in a clamshell, split by processor (this reverses the earlier single-board plan).** Both boards face their components inward; the outer faces carry only the display + controls (front) and the battery pack (back), so the electronics live protected in the gap. **Each MCU keeps its own radios and antennas on its own board** — the **S3 main board** holds the S3, all the wired radios and their antennas, the display, controls and SD; the **C5 co-processor board** holds the C5, its 5 GHz antenna, the charger and power. Accepted cost: roughly double the fabrication, and the antennas cluster on the main board rather than spreading over two (but antenna-to-antenna coupling is air-dominated, so little is lost). We take that for the protected packaging, the C5 as a self-contained module, and a thin mezzanine.
-- **Antennas follow their driving MCU — RF never crosses the connector.** An antenna sits on the board whose chip drives it. The **S3 main board** carries eight — Wi-Fi 2.4, nRF24 ×3, CC1101 (sub-GHz), SA868 (UHF), LoRa, Si4732 (HF/CB/FM, + telescopic whip) — plus the GPS patch; the **C5 board** carries one, the C5 dual-band 5 GHz. All are removable SMA (bar the GPS patch), spread around the main board's edges for the little isolation physical distance gives.
+- **Antennas follow their driving MCU — RF never crosses the connector.** An antenna sits on the board whose chip drives it. The **S3 main board** carries eight — Wi-Fi 2.4, nRF24 ×3, CC1101 (sub-GHz), SA868 (UHF), LoRa, Si4732 (HF/CB/FM, + telescopic whip) — plus the GPS patch; the **C5 board** carries one, the C5 dual-band 5 GHz. All are removable SMA (bar the GPS patch), **staggered (checkerboard) along the top edge** for the isolation physical distance gives, and labelled in-place on the layout render.
 - **The display stays on the S3, driven directly — not moved to the C5.** Routing pixels S3 → SPI3 link → C5 → panel adds a hop and fights the C5's 5 GHz capture stream, so it would be slower, not faster. And there's no faster path anyway: both S3 SPI hosts are taken (SPI2 = radios, SPI3 = link) and 8080-parallel would cost 11–20 pins the 36/36 budget can't spare — so SPI2 + DMA + dirty-rect is the pin-optimum. The display costs just **2 direct pins** (DC + TE); SCK/MOSI ride shared SPI2, CS via the 74HC138, RST on a PCA9555.
 - **A thin mezzanine — link + power only.** Because every S3 radio stays with the S3, the fast **SPI2 bus (and I²C, and the display) never cross the connector** — the board-to-board connector carries just the SPI3 S3↔C5 link (SCK/MOSI/MISO/CS/DRDY), the power rails (3V3/GND) and a few C5 control lines — on the order of **~12 lines**. This removes the SPI2-across-a-connector signal-integrity risk the split first implied.
-- **User controls on the outer face / edges; only service parts go inside.** The user set the operator actually presses stays reachable — D-pad (5-way) + BACK + OPTIONS on the outer front; encoder + F1 / F2 + 3.5 mm jack on the left edge; PTT + panic-STOP + 2× Grove on the right edge; **IR TX/RX on the top edge** (line-of-sight, with the antennas); speaker + mic front-lower. Only the rarely-touched **service** parts — RESET / BOOT — sit on an inner face, reached through a pinhole; buttons buried inside would be unreachable, so the UI set never goes there. Buttons ride a PCA9555 expander; the encoder A/B are on direct GPIO for clean quadrature. Capacitive touch is an addition, never the only way in; long text is still typed from a phone.
+- **User controls on the outer face / edges; only service parts go inside.** The user set the operator actually presses stays reachable — D-pad (5-way) + BACK + OPTIONS on the outer front; encoder + F1 / F2 + 3.5 mm jack on the left edge; PTT + panic-STOP + 2× Grove on the right edge; **IR TX/RX on the top edge** (line-of-sight, with the antennas); the **speaker on the front-lower-left** (clear of the gripping hand, not muffled) and the mic lower-right. Only the rarely-touched **service** parts — RESET / BOOT — sit on an inner face, reached through a pinhole; buttons buried inside would be unreachable, so the UI set never goes there. Buttons ride a PCA9555 expander; the encoder A/B are on direct GPIO for clean quadrature. Capacitive touch is an addition, never the only way in; long text is still typed from a phone.
 - **Batteries on the outer back; a 3-pin connector on the board.** A **plain** 2× 18650 plastic holder on the C5 board's outer face — cells clip straight in and out, no separate lid (open frame, DIV-style) — a keep-out with no parts under the cells; it wires to a 3-pin `BT1` (P+ / mid / P−).
 - **Four corner mounting holes, aligned on both boards.** M2.5 holes at the four corners of both boards; standoffs between them set the mezzanine gap and carry the display and battery loads. ~75 × 150 mm per board, ~34 mm total thickness (the battery pack is an outer layer).
+- **Mockup drawing conventions — how the layout render is (re)drawn.** The [clamshell render](docs/img/layout-clamshell.en.svg) is generated to a fixed spec:
+    - **to scale** (~75 × 150 mm per board), **portrait, in three rows** — readable, not tiny;
+    - **all four faces** (main + C5, outer + inner) **plus the side cross-section**;
+    - **every external interface** shown: display + touch, nine SMA, USB-C ×2, microSD, 3.5 mm jack, 2× Grove, IR, speaker, mic, master toggle, battery;
+    - **antennas labelled in-place on the top view** and drawn **staggered (checkerboard)**, each on its driving MCU's board;
+    - **four M2.5 corner mounting holes**, aligned on both boards;
+    - **controls in their locked positions** — speaker front-lower-left (clear of the grip), service parts inside;
+    - **overlap-checked programmatically** before use — parse the finished SVG and confirm no rectangle / text collisions (never by eye);
+    - **bilingual** (EN + RU labels).
 
 **Artifacts.** [**clamshell layout**](docs/img/layout-clamshell.en.svg) · [**controls & firmware conventions**](docs/firmware-controls.md).
 
@@ -205,17 +214,6 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 - **Main board (S3) — inner:** ESP32-S3 + every wired radio (3× nRF24, CC1101 + SP4T, SA868, SX1262 / LoRa, Si4732 + audio) + GPS + the buses (74HC138, PCA9555s) + display driver + RESET / BOOT; the eight antennas (Wi-Fi 2.4, nRF24 ×3, CC1101, SA868, LoRa, Si4732) + GPS patch; the mezzanine connector.
 - **C5 board — inner:** ESP32-C5 + the charger and power (2× buck, LDO, 2S protection); the C5 dual-band 5 GHz antenna; the mezzanine connector.
 - **C5 board — outer back:** the plain 2× 18650 holder (keep-out, no parts under cells). **Bottom edge:** USB-C ×2, master toggle. 4 corner mounting holes.
-
-**Diagram requirements (for the [layout render](docs/img/layout-clamshell.en.svg)).** The layout diagram must:
-
-- be **to scale** (~75 × 150 mm per board) and **portrait, laid out in three rows** — readable, not tiny;
-- show **all four faces** (main + C5, outer + inner) **and the side cross-section**;
-- carry **every external interface**: display + touch, all nine SMA, USB-C ×2, microSD, 3.5 mm jack, 2× Grove, IR, speaker, mic, master toggle, battery;
-- **label every antenna** and place it on the board of its driving MCU (eight on the main board, one on the C5 board);
-- mark the **four M2.5 corner mounting holes**, aligned on both boards;
-- keep the **controls in their locked positions** (above) and **service parts inside**;
-- be **overlap-checked programmatically** before use — parse the finished SVG and confirm no rectangle/text collisions (never by eye);
-- ship **bilingual** (EN + RU labels).
 
 The physical set is sufficient by a [scenario-coverage review](docs/firmware-controls.md); most of the usability lives in firmware conventions (stage 9).
 
