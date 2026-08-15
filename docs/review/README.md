@@ -36,6 +36,7 @@
 - [IMP-0005: заменить NFC ceiling через PN7160](improvements/IMP-0005-pn7160-nfc-expansion.md)
 - [IMP-0006: убрать третий I²C-экспандер через матрицу кнопок](improvements/IMP-0006-ui-key-matrix.md)
 - [IMP-0007: внешний Cardputer LoRa+GNSS Cap вместо бортового LoRa и отдельного GPS Unit](improvements/IMP-0007-cardputer-lora-gnss-cap.md)
+- [IMP-0008: универсальный внешний LoRa-профиль и сменные radio modules](improvements/IMP-0008-modular-lora-expansion.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
