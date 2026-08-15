@@ -32,7 +32,7 @@ The fixed spec for (re)drawing the two-board clamshell layout render ([`layout-c
 ## 5. Placement rules
 
 - **Outer front — the display + a *centred* D-pad + BACK / OPTIONS (flanking it) + the LED row** (7 TX-live LEDs spread across the width, each labelled by chain, + the RGB status). Antennas across the top. Nothing else.
-- **Outer back — the battery, ringed by the controls:** the 2× 18650 holder (centred) with the **encoder above it** and **F1 / F2 to its left, PTT + STOP to its right** (side-actuated). Antennas across the top. The **C5 reads the encoder + these buttons locally and relays them to the S3 over the link** — which frees the crowded main inner and further relieves the S3. The encoder is a **scroll / side type**, not a top-shaft EC11 (its 15 mm shaft would break the 11 mm gap).
+- **Outer back — the battery, ringed by the controls:** the 2× 18650 holder (centred) with the **encoder above it** and **F1 / F2 to its left, PTT + STOP to its right** — **face buttons like BACK/OPT** (pressed from the back face, not side-actuated), inset from the edge. Antennas across the top. The **C5 reads the encoder + these buttons locally and relays them to the S3 over the link** — which frees the crowded main inner and further relieves the S3. The encoder is a **scroll / side type**, not a top-shaft EC11 (its 15 mm shaft would break the 11 mm gap).
 - **IR** on the C5 board's **right** side edge, firing out between the boards (DIV-style). **Speaker + mic** on the C5 inner face, lower (mic at the edge, firing forward).
 - **All connectors / switches / service buttons go on the INNER faces**, each **at the board edge it exits** (a part mid-board can't reach a case slot), reached through slots in the case edge.
 - **Direction arrow on every external port / side part** — a small red arrow **pointing out from the part into the margin, never onto a label** (checked). Bottom-edge → down; side-edge → out to that side. Speaker/mic are grille I/O, exempt from the edge rule.
@@ -72,8 +72,8 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **5-way D-pad** | 12 × 12 | button | main · F | lower-centre (**centred**) | — |
 | **BACK / OPTIONS** | 6 × 6 ea | button | main · F | flank the D-pad | — |
 | **Encoder** (side / scroll type) | 12 × 13.4 | button | C5 · F | above the battery | — |
-| **F1 / F2** | 6 × 6 | button | C5 · F | left of the battery | out |
-| **PTT / panic STOP** | 6 × 6 | button | C5 · F | right of the battery | out |
+| **F1 / F2** | 6 × 6 | button | C5 · F | left of the battery (face button) | — |
+| **PTT / panic STOP** | 6 × 6 | button | C5 · F | right of the battery (face button) | — |
 | **Speaker (mylar)** | 14 × 20 | grille | C5 · I | lower, fires forward | out |
 | **Mic (MEMS)** | 2.95 × 3.76 | port | C5 · I | lower, at the edge | out |
 | **TX-live LEDs ×7** | ~1.6 (0603) | led | main · F | row below the display, spread + labelled | — |
