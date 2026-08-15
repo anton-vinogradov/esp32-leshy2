@@ -180,7 +180,7 @@
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
 | C-SYS-01 | Launcher, GUI, status bar, themes/settings | SYS | — |
-| C-SYS-02 | Touch, encoder/buttons и on-screen keyboard | SYS | — |
+| C-SYS-02 | Touch, encoder/buttons и on-screen keyboard | SYS | `conditional`: UI matrix пересекается с audio/STOP, `FND-0006`/`IMP-0010` |
 | C-SYS-03 | BadUSB/DuckyScript HID injection | LAB-I | native S3 USB, authorized host |
 | C-SYS-04 | USB serial CLI и SD mass storage | SYS | — |
 | C-SYS-05 | OTA S3 over Wi-Fi/SD и OTA C5 через link | SYS | C5 path зависит от `FND-0001` |
@@ -195,7 +195,7 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-X-01 | STOP, long-BACK, TX-live, shutdown и reset safe-state | SYS | обязательный safety слой |
+| C-X-01 | STOP, long-BACK, TX-live, shutdown и reset safe-state | SYS | обязательный safety слой; hardware STOP не реализован, `FND-0007` |
 | C-X-02 | Agreement/authorization и TX settings | SYS | legacy max-default заменён `DEC-0003` |
 | C-X-03 | TDD RF coexistence arbitration | SYS | гипотеза требует RF/architecture review |
 | C-X-04 | S3↔C5 command/telemetry IPC | SYS | `BLOCKED`, `FND-0001` |
