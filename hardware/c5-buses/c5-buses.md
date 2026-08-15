@@ -8,7 +8,7 @@ The two MCUs and how every bus fans out from them. Leshy2 is a **dual-MCU** desi
 
 > 🗂️ *The folder is named `c5-buses/` for historical reasons (the earlier single-chip design). It now covers both MCUs.* The transcribe-ready schematic drawing for this sheet is being redrawn for the two-chip layout.
 
-> 🔀 **Stage-5 split.** The **3× nRF24 and the IR are now driven by the C5**, not the S3 — they leave the S3's SPI2 / 74HC138 / RMT for the C5's own SPI (CS via a 74HC139) and RMT, and the **S3→C5 UART flash bridge is dropped** (the C5 flashes over its own USB-C and takes OTA over the link). This takes the S3 to **30 / 36** and the C5 to **~17 / 20** — see the [pin budget](../../docs/pin-budget.md). The S3 rows below are the **pre-split map**: `nRF24_CE`/`nRF24_IRQ`, the IR pins and `C5_FLASH_TX/RX` re-home to the C5 map when this sheet is re-captured with the board split.
+> 🔀 **Stage-5 split.** The **3× nRF24 and the IR are now driven by the C5**, not the S3 — they leave the S3's SPI2 / 74HC138 / RMT for the C5's own SPI (CS via a 74HC139) and RMT, and the **S3→C5 UART flash bridge is dropped** (the C5 flashes over its own USB-C and takes OTA over the link). This takes the S3 to **30 / 36** and the C5 to **~17 / 20** — see the [pin budget](../../docs/pin-budget.md). The C5 also **drops `C5_BOOT`** (its native USB auto-enters download), so only `C5_EN` crosses the mezzanine. The firmware's link protocol owns the new **nRF / IR / OTA-over-link opcodes**. The S3 rows below are the **pre-split map**: `nRF24_CE`/`nRF24_IRQ`, the IR pins, `C5_FLASH_TX/RX` and `C5_BOOT` re-home / retire when this sheet is re-captured with the board split.
 
 ## The two MCUs
 

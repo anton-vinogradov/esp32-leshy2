@@ -24,7 +24,7 @@
       "repo": "esp32-leshy2-firmware",
       "file": "docs/link-protocol.md",
       "whole_file": true,
-      "sha256": "bc0904653ed180c68c5744c29cb52753f522dfac4fba7e819e23bd50c0a077f4",
+      "sha256": "8170a4ad30f375157c75647d28f174cb1f3bfa04647d11c1c26cd2b7dec111fe",
       "mirror": "esp32-leshy2 hardware/c5-buses SPI3 + DRDY link description",
       "note": "The firmware owns the S3<->C5 link protocol. If it changes, review the hardware's link description."
     }
