@@ -17,7 +17,7 @@
 
 - [Baseline](baseline.md)
 - [Этапы и статусы](stages.md)
-- [DEC-0001: C5 владеет nRF24 и IR](decisions/DEC-0001-c5-owns-nrf24-ir.md)
+- [DEC-0001: целевое владение C5 для nRF24 и IR; реализация не доказана](decisions/DEC-0001-c5-owns-nrf24-ir.md)
 - [DEC-0002: all-in-one, Лаборатория и акт о ненападении](decisions/DEC-0002-project-vision.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума](improvements/IMP-0001-safe-tx-defaults.md)
