@@ -14,8 +14,8 @@
 <circle cx="234.0" cy="501.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="234.0" cy="501.5" r="1.6" fill="#6b7280"/>
 <rect x="62.5" y="142.4" width="167.4" height="267.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/>
-<rect x="104.4" y="469.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="112.5" y="478.5" font-size="3.8" text-anchor="middle" fill="#111" font-family="sans-serif">BACK</text>
-<rect x="171.9" y="469.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="180.0" y="478.5" font-size="3.8" text-anchor="middle" fill="#111" font-family="sans-serif">OPT</text>
+<rect x="104.4" y="461.0" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="112.5" y="470.4" font-size="3.8" text-anchor="middle" fill="#111" font-family="sans-serif">BACK</text>
+<rect x="171.9" y="461.0" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="180.0" y="470.4" font-size="3.8" text-anchor="middle" fill="#111" font-family="sans-serif">OPT</text>
 <text x="146.2" y="282.8" font-size="7" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="normal">ДИСПЛЕЙ 4.0" + тач</text>
 <rect x="70.7" y="161.3" width="151.2" height="226.8" fill="#cfe3fb" stroke="#3b82f6" stroke-width="0.8" rx="1"/>
 <path d="M80.1 93.8 l-3 5 M80.1 93.8 l3 5 M80.1 93.8 V119.5" stroke="#4b5563" stroke-width="1" fill="none"/>
