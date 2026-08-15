@@ -193,6 +193,8 @@
 | C-SYS-10 | Analog audio mux/amp/jack control | SYS | legacy path сам не даёт MCU digital audio; расширение `conditional` по `DEC-0009` |
 | C-SYS-11 | Self-test, crash/core dump, factory reset, RTOS tasks | SYS | — |
 
+Декомпозиция этой группы в пользовательские и safety-требования подготовлена в `REQ-SYS-0001`. Legacy transport/pin/hot-plug/USB assumptions не перенесены автоматически; расхождения перечислены в `FND-0008`.
+
 ## Cross-cutting — `FW-CAP Cross-cutting`
 
 | ID | Группа кандидатов | Зона | Первичная пометка |

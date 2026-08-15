@@ -33,11 +33,16 @@
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
 - `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
+- `FND-0008`: legacy System/UI привязывает функции к неподтверждённым SPI-, hot-plug-, USB- и update-security реализациям.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
 
-Этап 2 продолжает декомпозицию групп возможностей в проверяемые требования `include` / `conditional` / `defer` / `exclude-proven`. System/UI-срез может пройти ревью на уровне функциональных требований без выбора окончательной pin-map.
+Аудит пререквизитов System/UI прошёл `REV-0002H`. Draft [`REQ-SYS-0001`](../review/requirements/REQ-SYS-0001-system-ui-storage.md) раскладывает все одиннадцать legacy-групп в проверяемые требования платформы без выбора окончательной pin-map.
+
+## Текущий decision gate
+
+[`IMP-0011`](../review/improvements/IMP-0011-signed-update-chain.md) спрашивает, должны ли все устанавливаемые S3/C5 images проходить проверку подписи и rollback validation, тогда как необратимая политика hardware Secure Boot/Flash Encryption выбирается позже — после доказанной recovery/lifecycle architecture. Набор требований остаётся **«На ревью»** до этого решения.
 
 ## Отложенный архитектурный gate
 

@@ -33,11 +33,16 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0003`: audio architecture is accepted, but pin/electrical/firmware/HIL proof is pending.
 - `FND-0006`: the original key-matrix proposal and audio controls collide on `U13.P10..P17`.
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
+- `FND-0008`: legacy System/UI promises bind capabilities to unproven SPI, hot-plug, USB, and update-security implementations.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
 
-Stage 2 continues with decomposition of capability groups into testable `include` / `conditional` / `defer` / `exclude-proven` requirements. The System/UI slice may be reviewed at the functional-requirement level without selecting a final pin map.
+The System/UI prerequisite audit passed `REV-0002H`. Draft [`REQ-SYS-0001`](../review/requirements/REQ-SYS-0001-system-ui-storage.md) decomposes all eleven legacy groups into testable platform requirements without selecting a final pin map.
+
+## Current decision gate
+
+[`IMP-0011`](../review/improvements/IMP-0011-signed-update-chain.md) asks whether every installable S3/C5 image must pass signature verification and rollback validation, while deferring irreversible hardware Secure Boot/Flash Encryption policy until the recovery and lifecycle architecture is proven. The requirement set remains **In review** until this choice is resolved.
 
 ## Deferred architecture gate
 
