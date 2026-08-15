@@ -183,25 +183,26 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
 
 ## 5. External design & controls
 
-**✅ Spec.** From the components, settle the **physical device**: form factor (~80 × 170 mm, no case, DIV-style open frame), the control scheme, where the external interfaces sit, and the mechanical stack (display on the front over the electronics; 2× 18650 on the back; double-sided assembly — parts on both faces).
+**✅ Spec.** From the components, settle the **physical device**: a **two-board clamshell** (DIV-inspired), the control scheme, where the external interfaces sit, how the antennas split across the two boards, the mounting, and the mechanical stack — display + controls on the outer front, 2× 18650 on the outer back, all electronics protected on the inner faces. ~75 × 150 mm per board.
 
 **Decisions.**
 
-- **One board, not two.** Splitting the RF and the digital halves onto separate boards buys almost no isolation — with nine antennas this close, coupling is dominated by antenna-to-antenna paths in the air, not by traces on the board. And it would cost a shared solid ground, force fast buses like SPI2 across a connector (a signal-integrity risk), and double the NRE. So everything lives on one 80 × 170 mm board.
-- **All nine antennas are board-SMA on the top edge.** Every radio ends in a removable SMA jack along the top, so antennas are swappable and stay away from the hand and the battery; the 3× nRF24 jacks are spread apart along the edge for the little isolation that physical distance does give. The Si4732 gets its own SMA plus a long telescopic whip for HF / CB.
-- **No case — open frame, DIV-style.** Follow DIV: a bare double-sided board, ~80 × 170 mm, with the 2S 18650 cells in a plastic holder on the back (a keep-out, no parts under the cells) and the wired I/O on the bottom edge. It keeps the device thin, cheap and hackable, and leaves the whole front for the display.
-- **Physical controls first, capacitive touch as a helper.** A full tactile set — D-pad + BACK / OPTIONS + PTT + panic-STOP + F1 / F2 + an encoder wheel — so the device is fully usable eyes-down and one-handed, with the buttons on a dedicated PCA9555 expander and the encoder A/B on direct GPIO for clean quadrature. The capacitive touchscreen is an addition on top, never the only way in; long text is still typed from a phone.
+- **Two boards in a clamshell, electronics sandwiched inside (this reverses the earlier single-board plan).** Both boards face their components inward; the outer faces carry only the display + controls (front) and the battery pack (back), so the electronics live protected in the gap between them. The reversal is deliberate and its costs are on the record: a wider board-to-board connector — the shared **SPI2 radio bus now crosses it** (kept short, ground-interleaved) — roughly double the fabrication, and only **modest** antenna isolation (with nine antennas this close, coupling is dominated by antenna-to-antenna paths in the air, not board traces). We accept those for the protected packaging, the freedom to split the antennas across two board edges, and smaller boards.
+- **Antennas distributed across both boards.** ~4 on the front board (the 2.4 GHz cluster: S3 2.4, 2× nRF24, CC1101) and ~5 on the back board (C5 5 GHz, the 3rd nRF24, SA868, LoRa, Si4732) — spread around both perimeters instead of nine jacks on one edge. Each is still a removable SMA; the Si4732 keeps its telescopic whip for HF / CB.
+- **The display stays on the S3, driven directly — not moved to the C5.** Routing pixels S3 → SPI3 link → C5 → panel adds a hop and fights the C5's 5 GHz capture stream, so it would be slower, not faster. The S3 drives the panel over its own bus (DMA + dirty-rect); the C5 stays a clean 5 GHz co-processor, its ~9 spare pins reserved for that role.
+- **Board-to-board mezzanine, ~25–30 lines.** The stacking connector carries the SPI2 radio bus (SCK / MOSI / MISO + the 74HC138 selects), the SPI3 S3↔C5 link, I²C, and power (3V3 / GND). Ground pins are interleaved and the run kept short to hold SPI2 signal integrity.
+- **User controls on the outer front; service parts soldered inside.** The tactile set stays on the front board and its edges — D-pad (5-way) + BACK + OPTIONS on the front; encoder + F1 / F2 + 3.5 mm jack + IR on the left edge; PTT + panic-STOP + 2× Grove on the right edge; speaker + mic front-lower. The **service** parts — RESET / BOOT, microSD, USB-C ×2, master toggle — are soldered on the inner faces / bottom edge and reached through case slots, keeping the front clean. Buttons ride a PCA9555 expander; the encoder A/B are on direct GPIO for clean quadrature. Capacitive touch is an addition, never the only way in; long text is still typed from a phone.
+- **Batteries on the outer back; a 3-pin connector on the board.** The 2× 18650 plastic holder mounts on the back board's outer face — a removable back lid, a keep-out with no parts under the cells — and wires to a 3-pin `BT1` (P+ / mid / P−).
+- **Four corner mounting holes, aligned on both boards.** M2.5 holes at the four corners of both boards; standoffs between them set the mezzanine gap and carry the display and battery loads. ~75 × 150 mm per board, ~34 mm total thickness (the battery pack is an outer layer).
 
-**Artifacts.** [**front & back layout**](docs/img/layout-front-back.en.svg) · [**controls & firmware conventions**](docs/firmware-controls.md).
+**Artifacts.** [**controls & firmware conventions**](docs/firmware-controls.md). *(The front/back layout renders are the old single-board version and are being redrawn for the clamshell.)*
 
-![Leshy2 front & back layout](docs/img/layout-front-back.en.svg)
+**External interfaces & important components, by face:**
 
-- **Front:** 4.0″ **capacitive-touch** display + D-pad (5-way) + BACK + OPTIONS.
-- **Left edge:** IR TX/RX (top), encoder wheel (volume / value), F1 / F2, 3.5 mm jack.
-- **Right edge:** PTT + panic STOP, 2× Grove (I²C).
-- **Front (lower):** speaker + mic.
-- **Bottom (on the back, facing down):** USB-C ×2, microSD, master toggle, RESET / BOOT.
-- **Back:** 2× 18650 in clips (a keep-out zone — no parts under the cells).
+- **Front board — outer:** 4.0″ capacitive-touch display + D-pad (5-way) + BACK + OPTIONS; speaker + mic (lower). **Left edge:** IR TX/RX, encoder wheel, F1 / F2, 3.5 mm jack. **Right edge:** PTT + panic STOP, 2× Grove (I²C). 4 corner mounting holes.
+- **Front board — inner:** ESP32-S3, 2× nRF24, CC1101, display driver + button expander, RESET / BOOT, part of power; 4 antennas (S3 2.4, nRF ×2, CC1101); the mezzanine connector.
+- **Back board — inner:** ESP32-C5, 3rd nRF24, SA868, LoRa, Si4732 + audio, GPS, charger + rest of power, 74HC138 + PCA9555s; 5 antennas (C5 5G, nRF, SA868, LoRa, Si4732); the mezzanine connector.
+- **Back board — outer:** 2× 18650 holder (keep-out, no parts under cells). **Bottom edge:** USB-C ×2, microSD, master toggle. 4 corner mounting holes.
 
 The physical set is sufficient by a [scenario-coverage review](docs/firmware-controls.md); most of the usability lives in firmware conventions (stage 9).
 
@@ -231,13 +232,13 @@ The physical set is sufficient by a [scenario-coverage review](docs/firmware-con
 
 ## 7. Merge, realize, review, complete
 
-**🟡 Spec.** Merge the six sheets into one board on real, manufacturer-verified parts; review it adversarially; and finish the missing pieces so the schematic is complete before layout.
+**🟡 Spec.** Realize the six sheets on real, manufacturer-verified parts, review adversarially, and finish the missing pieces so the schematic is complete before layout. 🔄 **Per [§5](#5-external-design--controls) the design is being re-split into two boards (front + back); the single-board merge described below predates that and is being reworked for the split.**
 
 **Decisions.**
 
 - **`board.tsx` is generated, not hand-merged.** `merge.py` assembles it from the six sheets + `integration.tsx`, so the sheets stay the single source of truth (edit a sheet, re-run the merge). A parts+nets diff-guard proved the generated board byte-identical to the hand-merged one it replaced — no silent drift when a sheet changes.
 - **Review adversarially, before finishing.** Two whole-board self-reviews plus a per-sheet artifact pass ran *before* the completion work — they caught a real blocker (the PCA9555 has **no** internal pull-ups, so every switch input floated) and 5 major issues, all fixed. Cheaper to find on the schematic than at bring-up.
-- **Antennas go to board-edge SMA, all on top.** Nine removable SMA jacks along the top edge instead of u.FL pigtails to a panel — one board, no fragile flying leads — and the 3× nRF24 are spread apart for receiver isolation.
+- **Antennas are removable board-edge SMA, distributed across the two boards.** Per [§5](#5-external-design--controls) the nine jacks split ~4 (front board) / ~5 (back board) around both perimeters — spreading the radios and the 3× nRF24 for isolation instead of nine on one edge.
 - **Part swaps chosen by real stock + margin.** A 4 A PPTC (thermal headroom over the draw), a 20 mm on-board speaker, an LC balun into each SP4T arm, **two single 18650 holders** (to expose the pack mid-point the BQ25887 needs for balancing), and one 5-way nav switch under the D-pad — pick parts that are in stock and leave slack, not the tightest fit.
 - **No blind edits — defer what needs measuring.** The Si4732 RCLK load-cap count is left as-is and flagged for an AN383 check at bring-up, rather than guessing a value on paper.
 
