@@ -66,7 +66,7 @@ The C5 is no longer a bare co-processor: it drives the whole 2.4 / 5 GHz + IR bl
 | Dedicated **SPI3 link** to S3 (slave) | 5 | `SCK` · `MOSI` · `MISO` · `CS` · `DRDY` |
 | **3× nRF24** (SPI master) | 7 | SPI `SCK/MOSI/MISO` (3) · shared `CE` (1) · combined `IRQ` (1) · 3× CS via a **74HC139** (2) |
 | **IR** TX / RX | 2 | 38 kHz carrier (RMT) + receiver |
-| **Reset** from S3 | 1 | `EN` — no BOOT line (native USB auto-enters download) |
+| **Reset / boot** | 1 | `EN` from S3, plus a physical **RESET + BOOT** button pair — no S3-driven `C5_BOOT` *line* (that was for UART flashing), but a user BOOT button on the download-strap for recovery (no usable-GPIO cost) |
 | Own **USB-C** (flash + brick-safe) | 2 | `USB D− / D+` |
 
 That is ~17 GPIO used, ~3 spare. The S3→C5 **UART flash bridge is dropped** — the C5 flashes over its own USB-C and takes firmware as OTA over the link — which is exactly what frees the two C5 pins the nRF / IR need. In-package flash occupies GPIO15–22 (minus 19), so the map is drawn around those.

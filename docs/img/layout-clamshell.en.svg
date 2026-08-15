@@ -19,14 +19,10 @@
 <rect x="45.0" y="228.8" width="16.2" height="32.4" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">ENC</text>
 <rect x="45.0" y="272.0" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="281.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F1</text>
 <rect x="45.0" y="293.6" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="303.5" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">F2</text>
-<rect x="45.0" y="382.7" width="16.2" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="395.1" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">JACK</text>
 <rect x="231.3" y="228.8" width="16.2" height="27.0" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="244.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PTT</text>
 <rect x="231.3" y="261.2" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="275.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">STOP</text>
-<rect x="231.3" y="342.2" width="16.2" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="354.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
-<rect x="231.3" y="374.6" width="16.2" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="239.4" y="387.2" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
 <rect x="55.8" y="474.5" width="32.4" height="21.6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="72.0" y="487.4" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SPK</text>
 <rect x="215.1" y="477.2" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="223.2" y="486.9" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">MIC</text>
-<rect x="123.3" y="496.1" width="45.9" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="146.2" y="506.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">microSD</text>
 <text x="144.9" y="266.6" font-size="9.5" text-anchor="middle" fill="#1e40af" font-family="sans-serif" font-weight="normal">DISPLAY 4.0" + touch</text>
 <text x="134.1" y="382.7" font-size="5" text-anchor="middle" fill="#a16207" font-family="sans-serif" font-weight="normal">TX-live x7</text>
 <text x="207.0" y="382.7" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="normal">RGB</text>
@@ -60,10 +56,6 @@
 <path d="M144.9 429.7 l-2.6 3.6 h5.2 z M144.9 459.9 l-2.6 -3.6 h5.2 z M129.8 444.8 l3.6 -2.6 v5.2 z M160.0 444.8 l-3.6 -2.6 v5.2 z" fill="#2563eb"/>
 <circle cx="144.9" cy="444.8" r="7.3" fill="none" stroke="#2563eb" stroke-width="1"/>
 <text x="144.9" y="446.4" font-size="4.2" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">OK</text>
-<path d="M49.0 393.5 L44.5 393.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M244.8 353.0 L249.3 353.0" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M244.8 385.4 L249.3 385.4" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M146.2 515.0 L146.2 519.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
 <rect x="302.5" y="110.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="403.8" y="83.0" font-size="12" text-anchor="middle" fill="#9a3412" font-family="sans-serif" font-weight="bold">MAIN - INNER</text>
 <circle cx="316.0" cy="123.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
@@ -74,20 +66,28 @@
 <circle cx="316.0" cy="501.5" r="1.6" fill="#6b7280"/>
 <circle cx="491.5" cy="501.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="491.5" cy="501.5" r="1.6" fill="#6b7280"/>
-<rect x="318.7" y="147.8" width="48.6" height="64.8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="343.0" y="182.7" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
-<rect x="378.1" y="147.8" width="59.4" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="407.8" y="165.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
-<rect x="448.3" y="147.8" width="45.9" height="35.1" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="471.2" y="167.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">buses 138 / PCA</text>
-<rect x="378.1" y="185.6" width="59.4" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="407.8" y="203.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
-<rect x="448.3" y="188.3" width="45.9" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="471.2" y="206.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
-<rect x="318.7" y="228.8" width="54.0" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="345.7" y="247.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa</text>
-<rect x="378.1" y="228.8" width="64.8" height="32.4" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="410.5" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+audio</text>
-<rect x="448.3" y="226.1" width="45.9" height="27.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="471.2" y="241.4" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">LCD drv</text>
-<rect x="367.3" y="407.0" width="75.6" height="21.6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="419.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
-<rect x="334.9" y="496.1" width="43.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="356.5" y="505.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">RESET</text>
-<rect x="386.2" y="496.1" width="43.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="407.8" y="505.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">BOOT</text>
-<text x="402.4" y="309.8" font-size="6" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-weight="normal">u.FL -> outer SMA x5</text>
-<path d="M356.5 515.0 L356.5 519.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M407.8 515.0 L407.8 519.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="324.1" y="147.8" width="48.6" height="67.5" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="348.4" y="184.0" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
+<rect x="383.5" y="147.8" width="45.9" height="43.2" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="406.4" y="171.0" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
+<rect x="437.5" y="147.8" width="43.2" height="43.2" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="459.1" y="171.3" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
+<rect x="383.5" y="199.1" width="64.8" height="40.5" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="415.9" y="221.5" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
+<rect x="459.1" y="199.1" width="27.0" height="37.8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="472.6" y="219.6" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">buses 138 / PCA</text>
+<rect x="324.1" y="228.8" width="43.2" height="54.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="345.7" y="257.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa</text>
+<rect x="383.5" y="247.7" width="59.4" height="35.1" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="413.2" y="266.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+audio</text>
+<rect x="453.7" y="245.0" width="32.4" height="29.7" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="469.9" y="261.4" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">LCD drv</text>
+<rect x="302.5" y="304.4" width="16.2" height="32.4" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="322.0" font-size="4" text-anchor="middle" fill="#111" font-family="sans-serif">JACK</text>
+<rect x="488.8" y="288.2" width="16.2" height="27.0" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="496.9" y="303.3" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
+<rect x="488.8" y="323.3" width="16.2" height="27.0" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="496.9" y="338.4" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">Grv</text>
+<rect x="367.3" y="412.4" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="424.0" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
+<rect x="334.9" y="496.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="349.8" y="505.6" font-size="4" text-anchor="middle" fill="#111" font-family="sans-serif">RESET</text>
+<rect x="370.0" y="496.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="384.9" y="505.6" font-size="4" text-anchor="middle" fill="#111" font-family="sans-serif">BOOT</text>
+<rect x="407.8" y="496.1" width="40.5" height="18.9" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="428.1" y="507.1" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">microSD</text>
+<text x="402.4" y="366.5" font-size="6" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-weight="normal">u.FL -> outer SMA x5</text>
+<path d="M298.4 320.6 L292.4 320.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M509.1 301.7 L515.0 301.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M509.1 336.8 L515.0 336.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M349.8 519.0 L349.8 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M384.9 519.0 L384.9 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M428.1 519.0 L428.1 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <text x="30.0" y="572.0" font-size="11" text-anchor="start" fill="#0891b2" font-family="sans-serif" font-weight="bold">Row 2 - C5 board (co-processor)</text>
 <rect x="45.0" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="146.2" y="583.0" font-size="12" text-anchor="middle" fill="#0891b2" font-family="sans-serif" font-weight="bold">C5 - INNER</text>
@@ -109,14 +109,16 @@
 <rect x="61.2" y="755.8" width="48.6" height="27.0" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="85.5" y="771.0" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">2S prot</text>
 <rect x="61.2" y="804.4" width="48.6" height="24.3" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="85.5" y="818.3" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">PCA</text>
 <rect x="109.8" y="907.0" width="75.6" height="21.6" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="147.6" y="919.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
-<rect x="72.0" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="86.8" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J1</text>
-<rect x="109.8" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="124.7" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J2</text>
-<rect x="150.3" y="996.1" width="27.0" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="163.8" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">master</text>
-<rect x="185.4" y="996.1" width="27.0" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="198.9" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">C5 RST</text>
-<path d="M86.8 1015.0 L86.8 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M124.7 1015.0 L124.7 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M163.8 1015.0 L163.8 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
-<path d="M198.9 1015.0 L198.9 1019.5" stroke="#dc2626" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="66.6" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="81.4" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J1</text>
+<rect x="99.0" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="113.8" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">USB J2</text>
+<rect x="131.4" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="146.2" y="1005.7" font-size="4.2" text-anchor="middle" fill="#111" font-family="sans-serif">master</text>
+<rect x="166.5" y="996.1" width="24.3" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="178.7" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">RST</text>
+<rect x="193.5" y="996.1" width="29.7" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="208.3" y="1005.8" font-size="4.5" text-anchor="middle" fill="#111" font-family="sans-serif">BOOT</text>
+<path d="M81.5 1019.0 L81.5 1025.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M113.9 1019.0 L113.9 1025.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M146.2 1019.0 L146.2 1025.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M178.7 1019.0 L178.7 1025.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M208.4 1019.0 L208.4 1025.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <rect x="302.5" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="403.8" y="593.0" font-size="12" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">C5 - OUTER (back)</text>
 <circle cx="316.0" cy="623.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
