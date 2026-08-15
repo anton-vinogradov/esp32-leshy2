@@ -22,6 +22,8 @@ Accepted so far: Leshy2 is an all-in-one field tool whose security-research func
 
 All transmitters boot off, every Lab tool starts disarmed, and initial TX uses a conservative profile. Maximum TX power is available only after an explicit user choice; it is never the global default.
 
+Full product cost is optimized under `DEC-0005`, but a cheaper implementation is accepted only after proving no loss of capability, performance, safety, reliability, autonomy, serviceability, or testability.
+
 For the three nRF24 radios and IR, only the **target C5-ownership constraint** is accepted—not a working architecture. Its feasibility remains unproven: the legacy topology assigns the C5's sole general-purpose SPI controller two incompatible roles. The inter-MCU transport must be replaced or independently proven at stage 3; see `FND-0001`.
 
 *Русская версия: [README.ru.md](README.ru.md).*
