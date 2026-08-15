@@ -108,7 +108,7 @@
 
 ## LoRa/SX1262 и GPS — `FW-CAP §6`
 
-Аппаратный scope уточнён `DEC-0006` и `DEC-0007`: бортовых LoRa и GNSS нет; LoRa доступен через U214 или сменную wideband carrier в `EXT-RF14`, GNSS — через отдельный M5 Unit GPS v1.1 либо встроенный AT6668 U214. Одновременно активен один LoRa backend и один GNSS backend.
+Аппаратный scope уточнён `DEC-0006` и `DEC-0008`: бортовых LoRa и GNSS нет; U214 — первый LoRa+GNSS-модуль `EXT-RF14`, другие LoRa carrier опциональны. GNSS доступен через отдельный M5 Unit GPS v1.1 либо встроенный AT6668 U214. Одновременно активен один LoRa backend и один GNSS backend.
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
@@ -121,7 +121,7 @@
 | C-LORA-07 | (G)FSK, RTTY, CW и AX.25 beacon | MAIN | licence/band limits |
 | C-LORA-08 | LoRa OTA и file transfer | MAIN | duty/скорость |
 | C-LORA-09 | Одноцелевой carrier/reactive jam | LAB-D | narrow target, duty и STOP |
-| C-GPS-01 | Position/navigation, module config, time sync | MAIN | внешний M5Stack Unit GPS v1.1 или GNSS U214 по `DEC-0006`/`DEC-0007`; только при подключении |
+| C-GPS-01 | Position/navigation, module config, time sync | MAIN | внешний M5Stack Unit GPS v1.1 или GNSS U214 по `DEC-0006`/`DEC-0008`; только при подключении |
 | C-GPS-02 | Track log, waypoints и geofences | MAIN | — |
 | C-GPS-03 | AssistNow offline assistance | SYS | нужен эпизодический интернет |
 | C-GPS-04 | GNSS jamming/spoofing indicator | MAIN | защитный readout, не attack tool |
