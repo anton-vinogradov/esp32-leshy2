@@ -71,10 +71,11 @@
 <circle cx="316.0" cy="501.5" r="1.6" fill="#6b7280"/>
 <circle cx="491.5" cy="501.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="491.5" cy="501.5" r="1.6" fill="#6b7280"/>
-<rect x="488.8" y="388.1" width="16.2" height="33.8" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="496.9" y="406.4" font-size="4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">ДЖЕК</text>
+<rect x="302.5" y="261.2" width="16.2" height="33.8" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="279.5" font-size="4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">ДЖЕК</text>
 <rect x="302.5" y="304.4" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="318.1" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Grv</text>
 <rect x="302.5" y="339.5" width="16.2" height="24.3" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="310.6" y="353.2" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">Grv</text>
 <rect x="367.3" y="415.1" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="405.1" y="426.7" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">межплата</text>
+<rect x="456.4" y="496.1" width="10.8" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="461.8" y="505.3" font-size="3.2" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">МИК</text>
 <rect x="407.8" y="469.1" width="40.5" height="40.5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="428.1" y="490.9" font-size="4.5" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">microSD</text>
 <rect x="380.8" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="388.9" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">RESET</text>
 <rect x="359.2" y="496.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="367.3" y="505.4" font-size="3.4" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">BOOT</text>
@@ -83,9 +84,10 @@
 <text x="403.8" y="263.7" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">размещается в PCB layout (этап 8)</text>
 <text x="403.8" y="272.3" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">S3 · SA868 · LoRa · CC1101 · GPS</text>
 <text x="403.8" y="280.9" font-size="5" text-anchor="middle" fill="#78716c" font-family="sans-serif" font-weight="normal">Si4732 + аудио · шины · драйв LCD</text>
-<path d="M509.1 404.3 L515.0 404.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M298.4 277.4 L292.4 277.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M298.4 316.6 L292.4 316.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M298.4 351.6 L292.4 351.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+<path d="M461.8 519.0 L461.8 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M428.1 519.0 L428.1 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M388.9 519.0 L388.9 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M367.3 519.0 L367.3 525.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
@@ -100,7 +102,6 @@
 <circle cx="58.5" cy="1001.5" r="1.6" fill="#6b7280"/>
 <circle cx="234.0" cy="1001.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="234.0" cy="1001.5" r="1.6" fill="#6b7280"/>
-<rect x="236.7" y="866.5" width="10.8" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="242.1" y="875.7" font-size="3.2" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">МИК</text>
 <rect x="45.0" y="836.8" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="845.9" font-size="3" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">IR TX</text>
 <rect x="45.0" y="861.1" width="16.2" height="16.2" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="1.5"/><text x="53.1" y="870.2" font-size="3" text-anchor="middle" fill="#0f766e" font-family="ui-monospace,Menlo,monospace">IR RX</text>
 <rect x="107.1" y="934.0" width="75.6" height="18.9" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.1" rx="1.5"/><text x="144.9" y="945.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">межплата</text>

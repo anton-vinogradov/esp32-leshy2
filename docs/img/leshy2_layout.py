@@ -141,18 +141,17 @@ def gen(lang):
     rgbled(col1,ry1,68,115,2.3); out.append(silk(col1+68*S,ry1+121*S,'RGB',3.2))
     dpad(col1,ry1,37.5,133,6)
     # MAIN INNER (mirrored back view): S3 + wired radios/GPS/buses at real size; the connectors sit here — jack (device-left edge), 2x Grove (device-right), microSD + RESET + BOOT (bottom) — reached through case slots
-    ain=[(0,103,6,12.5,T['jack'],'io',4),(69,72,6,9,'Grv','io',4.5),(69,85,6,9,'Grv','io',4.5),
+    ain=[(69,56,6,12.5,T['jack'],'io',4),(69,72,6,9,'Grv','io',4.5),(69,85,6,9,'Grv','io',4.5),
      (23,113,28,7,T['mezz'],'mez',6),
-     (21,133,15,15,'microSD','svc',4.5),(40,143,6,6,'RESET','svc',3.4),(48,143,6,6,'BOOT','svc',3.4)]
+     (14,143,4,6,T['mic'],'io',3.2),(21,133,15,15,'microSD','svc',4.5),(40,143,6,6,'RESET','svc',3.4),(48,143,6,6,'BOOT','svc',3.4)]
     board(col2,ry1,T['t2'],'','#9a3412',ain,[],[],tdy=-27,mir=True)
     zone(col2,ry1,8,14,59,89,[T['zarea'],T['zstage'],T['zmain'],T['zmain2']])
-    portdir(col2,ry1,-1.5,109,'L',mir=True)   # jack -> device-left edge (moved down, clear of the C5 IR which folds onto the device-left edge)
+    portdir(col2,ry1,76.5,62,'R',mir=True)   # jack -> main RIGHT edge, above the Grove (device-right; the C5 IR folds onto device-left, so this edge is single-board)
     portdir(col2,ry1,76.5,76.5,'R',mir=True); portdir(col2,ry1,76.5,89.5,'R',mir=True)  # 2x Grove -> device-right edge
-    portdir(col2,ry1,28.5,151.5,'D',mir=True); portdir(col2,ry1,43,151.5,'D',mir=True); portdir(col2,ry1,51,151.5,'D',mir=True)
+    portdir(col2,ry1,16,151.5,'D',mir=True); portdir(col2,ry1,28.5,151.5,'D',mir=True); portdir(col2,ry1,43,151.5,'D',mir=True); portdir(col2,ry1,51,151.5,'D',mir=True)  # mic + microSD + RESET + BOOT down
     out.append(txt(30,ry2-38,T['r2'],11,'#0891b2','start','bold'))
     # C5 INNER (mirrored back view): C5 + 3x nRF (grouped; antennas spread on the outer) + power + IR/CS at real size; USB x2 + master + RST + BOOT on the bottom edge
-    binn=[(0,95,4,6,T['mic'],'io',3.2),
-     (69,84,6,6,'IR TX','io',3),(69,93,6,6,'IR RX','io',3),
+    binn=[(69,84,6,6,'IR TX','io',3),(69,93,6,6,'IR RX','io',3),
      (24,120,28,7,T['mezz'],'mez',6),
      (11,143,9,7,'USB J1','io',4),(24,143,9,7,'USB J2','io',4),(37,143,9,5,T['master'],'edge',3.6),(49,143,6,6,'RST','svc',3.6),(58,143,6,6,'BOOT','svc',3.6)]
     board(col1,ry2,T['t3'],'','#0891b2',binn,[],[],tdy=-27,mir=True)
@@ -249,14 +248,14 @@ def gen(lang):
     def near_edge(x,y,w,h,m=8): return x<=m or y<=m or (x+w)>=BW-m or (y+h)>=BH-m
     for parts,name in [(ain,'MAIN-inner'),(binn,'C5-inner')]:
         for x,y,w,h,lab,cat,fs in parts:
-            if cat in IFACE and lab not in (T['spk'],T['mic']) and not near_edge(x,y,w,h): n+=1; print('  ACCESS',name,repr(lab),'- interface buried, not at an edge')
+            if cat in IFACE and lab!=T['spk'] and not near_edge(x,y,w,h): n+=1; print('  ACCESS',name,repr(lab),'- interface buried, not at an edge')
     # cross-board (clamshell) conflict: the C5 board folds X-MIRRORED onto the main board -- device_X of a C5 part = BW - part_x, so its interval [x,x+w] flips to [BW-x-w, BW-x].
     # A C5 RIGHT-edge exit therefore lands on the device's LEFT edge, sharing that case-slot band with a main LEFT-edge exit (spec 2a / check 6).
     #   SIDE edges (L/R): both exits fire into the narrow ~11 mm gap window -> overlap is HARD (counted). BOTTOM edge: the two boards' exits sit ~11 mm apart in depth on the ~36 mm-deep bottom face -> overlap is allowed via staggered cutouts (reported as info, not counted). Speaker/mic are forward grilles (exempt).
     def dev_exits(parts,flip):
         side,bot=[],[]
         for x,y,w,h,lab,cat,fs in parts:
-            if cat not in IFACE or lab in (T['spk'],T['mic']): continue  # interfaces only; forward grilles exempt
+            if cat not in IFACE or lab==T['spk']: continue  # interfaces only; the round speaker is a forward grille (exempt); the mic now exits the bottom edge, so it is a normal edge part
             dx0,dx1=(BW-(x+w),BW-x) if flip else (x,x+w)                  # fold C5 into the device frame (interval inversion)
             if (y+h)>=BH-8: bot.append((dx0,dx1,lab))                     # bottom-edge exit -> compare on X
             else:

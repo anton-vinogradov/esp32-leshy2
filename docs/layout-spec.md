@@ -42,8 +42,8 @@ Distinct from the drawing mirror of §3. When the two boards close inner-face-to
 
 - **Outer front — the display + a *centred* D-pad + BACK / OPTIONS (flanking it, on one horizontal line with the D-pad) + the LED row.** The LED row is the **7 discrete-radio TX-live LEDs** — one per chain that has a hardware envelope detector: **3× nRF24, CC1101, SA868, LoRa, IR** (Wi-Fi and 5 GHz have no discrete detector — they live inside the ESP modules, so they get no TX LED). Spread across the full width so each carries a silkscreen label, with the **RGB status** at the end. Antennas across the top. Nothing else.
 - **Outer back — the battery, ringed by the controls:** the 2× 18650 holder (centred) with the **encoder above it** and **F1 / F2 to its left, PTT + STOP to its right** — **face buttons like BACK/OPT** (pressed from the back face, not side-actuated), inset from the edge. The **C5 reads the encoder + these buttons locally and relays them to the S3 over the link** — which frees the crowded main inner and further relieves the S3. The encoder is a **scroll / side type**, not a top-shaft EC11 (its 15 mm shaft would break the 11 mm gap). Antennas across the top, on a **5-slot grid with one interior slot skipped**, so the **3 nRF antennas land at the two extremes + centre (maximally spread)** and the 5 GHz takes the remaining interior slot.
-- **IR = two parts** — an **IR TX emitter + an IR RX receiver**, both on the C5 board's **right** side edge, firing out between the boards (DIV-style). **Speaker (round mylar) + mic (MEMS)** on the C5 inner face, lower — the speaker is a **round** grille, the mic sits **at the edge**, both firing forward.
-- **All connectors / switches / service buttons go on the INNER faces**, each **at the board edge it exits** (a part mid-board can't reach a case slot), reached through slots in the case edge. **Side-edge exits on the two boards must not fold onto the same device-edge slot** (§2a, check 6): the jack sits **low** on the main's side edge, clear of the C5's IR, which folds onto that same device side.
+- **IR = two parts** — an **IR TX emitter + an IR RX receiver**, both on the C5 board's **right** side edge, firing out between the boards (DIV-style). **Speaker (round mylar)** on the C5 inner face, lower — a **round** grille firing forward. The **mic (MEMS)** lives on the **main inner bottom edge**, left of the microSD, firing **down** (moved off the C5 side so the fold stays clean — see the connectors rule below).
+- **All connectors / switches / service buttons go on the INNER faces**, each **at the board edge it exits** (a part mid-board can't reach a case slot), reached through slots in the case edge. **Side-edge exits on the two boards must not fold onto the same device-edge slot** (§2a, check 6). The clean way is to keep each device side edge **single-board**: the C5's IR owns the device-**left** edge, so the main's 3.5 mm jack sits on the main's **right** side edge (above the 2× Grove), and the mic moves off the C5 side to the main's bottom edge — no two boards share a side.
 - **Direction arrow on every external port / side part** — a small red arrow **pointing out from the part into the margin, never onto a label** (checked). Bottom-edge → down; side-edge → out to that side. Speaker/mic are grille I/O, exempt from the edge rule.
 
 ## 5a. Floorplan zones
@@ -51,8 +51,8 @@ Distinct from the drawing mirror of §3. When the two boards close inner-face-to
 Interfaces are placed **exactly** (they cut the case). Internal components are **not placed individually in this artifact** — each inner face carries a single **component area** (dashed outline, labelled *"placed in PCB layout, stage 8"*), and the parts are positioned inside it during stage 8. Zones never overlap; the checks enforce it.
 
 - **Main outer:** *antenna row* (top) · *display* (upper two-thirds) · *control strip* (bottom third: LED row, centred D-pad, BACK/OK/OPT on one line).
-- **Main inner:** *component area* (interior upper — S3, SA868, LoRa, CC1101, GPS, Si4732 + audio, buses, LCD driver) · *left edge* (jack) · *right edge* (2× Grove) · *mezzanine* (interior lower) · *service row* (bottom: microSD, RESET, BOOT).
-- **C5 inner:** *component area* (interior upper — C5, 3× nRF24, charger + power, IR driver, 74HC139, PCA9555, BT1) · *audio* (lower: round speaker + mic at the edge) · *right edge* (IR TX + IR RX) · *mezzanine* · *service row* (bottom: USB ×2, master, RESET, BOOT).
+- **Main inner:** *component area* (interior upper — S3, SA868, LoRa, CC1101, GPS, Si4732 + audio, buses, LCD driver) · *right edge* (jack **above** the 2× Grove) · *mezzanine* (interior lower) · *service row* (bottom: **mic** left of the microSD, microSD, RESET, BOOT). The left edge is left free (the C5's IR folds onto it).
+- **C5 inner:** *component area* (interior upper — C5, 3× nRF24, charger + power, IR driver, 74HC139, PCA9555, BT1) · *audio* (lower: round speaker) · *right edge* (IR TX + IR RX) · *mezzanine* · *service row* (bottom: USB ×2, master, RESET, BOOT).
 - **C5 outer:** *antenna row* (top — 5-slot grid, 1 slot skipped) · *battery zone* (centre: the 2× 18650 holder) ringed by controls — *encoder* (above), *F1/F2* (left), *PTT/STOP* (right).
 
 ## 6. Proportions — real footprints
@@ -84,7 +84,7 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **F1 / F2** | 6 × 6 | button | C5 · F | left of the battery (face button) | — |
 | **PTT / panic STOP** | 6 × 6 | button | C5 · F | right of the battery (face button) | — |
 | **Speaker (round mylar)** | ⌀ ~20 | round grille | C5 · I | lower, fires forward | out |
-| **Mic (MEMS)** | 2.95 × 3.76 | port | C5 · I | lower, at the edge | out |
+| **Mic (MEMS)** | 2.95 × 3.76 | port | main · I | bottom edge, left of the microSD, fires down | down |
 | **TX-live LEDs ×7** (3× nRF, CC1101, SA868, LoRa, IR) | ~1.6 (0603) | led | main · F | row below the display, spread + labelled | — |
 | **RGB status (WS2812B)** | 5 × 5 | led | main · F | end of the LED row | — |
 | **5× SMA** (Wi-Fi, CC1101, SA868, LoRa, Si4732) | 6.35 ⌀ | conn-round | main · F | top edge | up |
@@ -97,7 +97,7 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **GPS (ATGM336H)** | 15.7 × 13.1 | module | main · I | interior | — |
 | **Buses** (74HC138 + 2× PCA9555) | ~10 × 4, ~8 × 4.4 | IC grp | main · I | interior | — |
 | **Backlight driver** | small IC | IC | main · I | interior | — |
-| **3.5 mm jack (PJ-320, TRRS)** | 6 × 12.5 | conn-rect | main · I | side edge, **low** (clears the C5 IR fold, §2a) | out |
+| **3.5 mm jack (PJ-320, TRRS)** | 6 × 12.5 | conn-rect | main · I | **right** side edge, above the Grove (opposite side from the C5 IR fold, §2a) | out |
 | **2× Grove** | 8.6 × 5.9 | conn-rect | main · I | opposite side edge *(mirrored)* | out |
 | **microSD (push-push)** | 15 × 14.6 | conn-rect | main · I | bottom edge | down |
 | **RESET / BOOT** | 6 × 6 | button | main · I | bottom edge | down |
