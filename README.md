@@ -203,7 +203,7 @@ One radio runs at a time, so the shared bus and slow control lines fit the pin b
     - **to scale** (~75 × 150 mm per board), **portrait, in three rows** — readable, not tiny;
     - **all four faces** (main + C5, outer + inner) **plus the side cross-section**;
     - **every external interface** shown: display + touch, nine SMA, USB-C ×2, microSD, 3.5 mm jack, 2× Grove, IR, speaker, mic, master switch, battery — **and every button, encoder and switch drawn explicitly**;
-    - **antennas labelled in-place**, drawn **straight and pointing up** (front board exiting at the seam, back board at the back — no staggering), each on its driving MCU's board;
+    - **antennas labelled in-place**, drawn **straight and pointing up** (front board exiting at the seam, back board at the back — no staggering), each on its driving MCU's board, **the three nRF interleaved so no two are adjacent** (isolation), and **every antenna and the IR kept clear of the corner mounting holes**;
     - the **D-pad drawn as a real 5-way component**, with BACK / OPTIONS as separate keys;
     - **all LED indicators marked** — the per-chain amber TX-live LEDs and the RGB status;
     - **four M2.5 corner mounting holes**, aligned on both boards;
