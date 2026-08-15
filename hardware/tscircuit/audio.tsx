@@ -27,7 +27,9 @@
 //        the power sheet). The base's U31.VCC3V3 -> +3V3 connection has no real pad and is dropped.
 //        AudioON(pin1) is active-LOW enable of the module's internal audio amp -> tied to GND
 //        (RX audio at AF_OUT always available while PD keeps the module awake). H/L(pin7) is the
-//        TX power select: "open = high (2 W)" per datasheet -> left open (see gotchas).
+//        TX power select: "open = high; low level = low power" per datasheet. DEC-0003 requires
+//        a conservative hardware default, so H/L is grounded in this prerequisite-stage draft.
+//        A future controllable high-power release path requires stage-3 pin/safety proof.
 //   U32  PAM8302AASCR  8-pin MSOP  -> jlcpcb:C113367
 //        Engine pads: 1 SD, 2 IN_NEG, 3 IN_POS, 4 (NC, engine-unnamed), 5 VO_POS, 6 VDD,
 //        7 GND, 8 VO_NEG.  DESIGN NOTE: the real PAM8302A is 8-pin MSOP, not SOT-23-6 as the
@@ -68,6 +70,10 @@ export default () => (
     {/* local bulk on VBAT for the 2 W PA burst */}
     <capacitor name="Cbulk31" capacitance="330uF" footprint="1210" />
     <capacitor name="Cbyp31" capacitance="100nF" footprint="0402" />
+    {/* Hardware safe defaults independent of PCA9555 configuration/firmware. */}
+    <resistor name="Rsa_ptt_safe" resistance="10k" footprint="0402" /> {/* PTT=1 -> RX */}
+    <resistor name="Rsa_pd_safe" resistance="10k" footprint="0402" />  {/* PD=0 -> power-down */}
+    <resistor name="Rsa_hl_safe" resistance="0.01" footprint="0402" /> {/* H/L=0 -> low power */}
     {/* electret mic + bias -> 1 uF coupling into SA868 MIC (1uF, not 10uF!) */}
     <resistor name="MK1" resistance="2.2k" footprint="0603" /> {/* electret mic proxy */}
     <resistor name="Rbias" resistance="4.7k" footprint="0402" />
@@ -142,8 +148,14 @@ export default () => (
     <trace from=".U31 > .TXD" to="net.SA868_UART_RX" />  {/* U31.TXD -> S3 RX GPIO17 */}
     <trace from=".U31 > .PTT" to="net.SA868_PTT" />      {/* PCA #1 P0.1 */}
     <trace from=".U31 > .PD" to="net.SA868_PD" />        {/* PCA #1 P0.2 */}
+    <trace from=".Rsa_ptt_safe > .pin1" to="net.SA868_PTT" />
+    <trace from=".Rsa_ptt_safe > .pin2" to="net.V3V3" />
+    <trace from=".Rsa_pd_safe > .pin1" to="net.SA868_PD" />
+    <trace from=".Rsa_pd_safe > .pin2" to="net.GND" />
+    <trace from=".U31 > .pin7" to=".Rsa_hl_safe > .pin1" />
+    <trace from=".Rsa_hl_safe > .pin2" to="net.GND" />
     <trace from=".U31 > .ANT" to="net.ANT_UHF" />
-    {/* H/L (pin7) left open = high TX power (datasheet default); see gotchas */}
+    {/* High power is intentionally unavailable until a fail-safe controllable H/L path is accepted. */}
 
     {/* --- SA868 RX audio -> mux B2 --- */}
     <trace from=".U31 > .AF_OUT" to="net.SA_AF" />

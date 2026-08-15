@@ -36,6 +36,9 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0003`: audio architecture is accepted, but pin/electrical/firmware/HIL proof is pending.
 - `FND-0006`: the original key-matrix proposal and audio controls collide on `U13.P10..P17`.
 - `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
+- `FND-0011`: SA868 now has PTT receive-default, PD power-down-default, and a physical low-power H/L ceiling; independent STOP and controllable high power still require stage-3 proof.
+- `FND-0012`: the UHF SA868 API does not prove VHF, 470–480 MHz control, or native tone scan; backend direction is open.
+- `FND-0013`: VOX has no microphone-capture path and is explicitly deferred to the consolidated audio/pin budget.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -47,6 +50,8 @@ The GNSS/navigation slice [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001
 `FND-0009` is closed at requirement level. UART/power hardware, parser, assistance source, actual Unit/U214 advanced-message support, RF self-desense, and HIL remain unimplemented evidence for later stages.
 
 The Si4732 slice [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) is **Reviewed** under `REV-0002M`. The owner accepted `IMP-0013/A` as [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): an open bounded loader is in the target, the SSB blob is locally imported with distinct integrity/provenance states, and synchronous AM remains deferred pending separate proof. `FND-0010` is closed at requirement level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder, and coexistence HIL remain unimplemented.
+
+The analog-voice prerequisite audit is complete under `REV-0002N`. [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) separates manual PTT, automated TX modes, modem/iGate, and Lab relay; a false licence-exempt PMR446 preset is prohibited (`FND-0014`). **⚠️ Proposal [`IMP-0014`](../review/improvements/IMP-0014-dual-band-sa518-voice-backend.md)** offers a conditional migration from UHF-only SA868S to the new 136–174/400–470 MHz SA518 with fallback pending price/AVL/RF proof. The gain is VHF through one dual-band backend; the costs are an incompatible footprint, about 40% more area, new supply risk, and a UHF peak drop from the 2 W class to 1 W. The requirement set is **In review** pending the decision.
 
 ## Deferred architecture gate
 

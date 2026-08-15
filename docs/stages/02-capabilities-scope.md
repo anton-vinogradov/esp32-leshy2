@@ -66,6 +66,8 @@ Prerequisite audit `REV-0002H` дополнительно обнаружил `FN
 
 Si4732 prerequisite audit прошёл `REV-0002L`. Документированный FM/RDS и ordinary AM baseline отделён от conditional SSB/CW, sweep-RSSI bandscope, WAV и decoder proof. `FND-0010` зафиксировал, что MIT driver не включает внешний volatile SSB patch, а synchronous-AM не подтверждена тем же Skyworks/PU2CLR API. Владелец принял `IMP-0013/A` как `DEC-0015`: открытый bounded loader входит в target, конкретный blob импортируется локально и не наследует доверие application signature, synchronous-AM остаётся deferred. Распространение прошло `REV-0002M`, `FND-0010` закрыт на requirement-level, а `REQ-RX-0001` получил статус **«Проведено ревью»**.
 
+Analog voice/SA868 prerequisite audit прошёл `REV-0002N`. `FND-0011` исправил доказанный high-power/floating-control default: PTT теперь имеет RX pull-up, PD — power-down pull-down, H/L физически ограничен low до stage-3 safe control. `FND-0012` отделил UHF variant, 400–470 AT range, binary scan/raw RSSI и conditional host tone scan. `FND-0013` оставляет VOX `defer` без mic capture; `FND-0014` удаляет ложное обещание licence-free PMR446 через firmware preset. `REQ-VHF-0001` остаётся **«На ревью»** до решения по `⚠️ IMP-0014`: conditional migration с UHF SA868S на новый dual-band SA518 либо сохранение UHF baseline.
+
 При этом исправлено отдельное доказанное несоответствие `FND-0005`: tsCircuit ошибочно суммировал Si4732 pin 2 (`GPO3/DCLK`) вместо pin 16 (`ROUT/DOUT`). Исправление проведено ревью, но не закрывает цифровой audio blocker.
 
 ## Аудит стоимости
