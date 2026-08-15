@@ -44,40 +44,32 @@
 <circle cx="316.0" cy="501.5" r="1.6" fill="#6b7280"/>
 <circle cx="491.5" cy="501.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="491.5" cy="501.5" r="1.6" fill="#6b7280"/>
-<rect x="318.7" y="147.8" width="45.9" height="64.8" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="341.6" y="182.7" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
-<rect x="372.7" y="147.8" width="35.1" height="64.8" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="390.2" y="182.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24#1</text>
-<rect x="415.9" y="147.8" width="35.1" height="64.8" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="433.4" y="182.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24#2</text>
-<rect x="459.1" y="147.8" width="35.1" height="64.8" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="476.7" y="182.1" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24#3</text>
-<rect x="318.7" y="223.4" width="54.0" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="345.7" y="241.4" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
-<rect x="378.1" y="223.4" width="51.3" height="35.1" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="403.8" y="243.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
-<rect x="432.1" y="223.4" width="32.4" height="35.1" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="448.3" y="243.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa</text>
-<rect x="318.7" y="266.6" width="59.4" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="348.4" y="284.6" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+audio</text>
-<rect x="383.5" y="266.6" width="29.7" height="29.7" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="398.4" y="283.4" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
-<rect x="421.3" y="266.6" width="37.8" height="29.7" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="440.2" y="283.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SD</text>
-<rect x="469.9" y="223.4" width="32.4" height="70.2" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="486.1" y="260.2" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">buses 138 / PCA</text>
-<rect x="421.3" y="304.4" width="37.8" height="21.6" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="440.2" y="316.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">LCD drv</text>
+<rect x="318.7" y="147.8" width="48.6" height="64.8" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="343.0" y="182.7" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-S3</text>
+<rect x="378.1" y="147.8" width="59.4" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="407.8" y="165.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">CC1101+SP4T</text>
+<rect x="448.3" y="147.8" width="45.9" height="24.3" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="471.2" y="161.7" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">RST/BOOT</text>
+<rect x="378.1" y="185.6" width="59.4" height="32.4" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="407.8" y="203.9" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SA868</text>
+<rect x="448.3" y="180.2" width="45.9" height="37.8" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="471.2" y="200.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">buses 138 / PCA</text>
+<rect x="318.7" y="228.8" width="54.0" height="32.4" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="345.7" y="247.1" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">LoRa</text>
+<rect x="378.1" y="228.8" width="64.8" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="410.5" y="246.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">Si4732+audio</text>
+<rect x="448.3" y="228.8" width="45.9" height="29.7" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="471.2" y="245.6" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">GPS</text>
+<rect x="318.7" y="272.0" width="48.6" height="27.0" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="343.0" y="287.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">SD</text>
+<rect x="378.1" y="272.0" width="64.8" height="24.3" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="410.5" y="285.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">LCD drv</text>
 <rect x="356.5" y="434.0" width="91.8" height="18.9" fill="#fbcfe8" stroke="#db2777" stroke-width="1" rx="1.5"/><text x="402.4" y="445.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
 <rect x="302.5" y="106.0" width="10.8" height="7" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.8"/>
 <text x="307.9" y="112.5" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">IR</text>
-<rect x="318.7" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="324.8" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">WiFi</text>
-<rect x="340.3" y="107.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="346.4" y="101.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR1</text>
-<rect x="361.9" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="368.0" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR2</text>
-<rect x="383.5" y="107.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="389.6" y="101.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR3</text>
-<rect x="405.1" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="411.2" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">CC</text>
-<rect x="426.7" y="107.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="432.8" y="101.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">SA</text>
-<rect x="448.3" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="454.4" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">LoRa</text>
-<rect x="469.9" y="107.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="476.0" y="101.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">Si</text>
+<rect x="324.1" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="330.2" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">WiFi</text>
+<rect x="361.9" y="107.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="368.0" y="101.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">CC</text>
+<rect x="399.7" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="405.8" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">SA</text>
+<rect x="437.5" y="107.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="443.6" y="101.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">LoRa</text>
+<rect x="475.3" y="103.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="481.4" y="95.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">Si</text>
 <text x="30.0" y="572.0" font-size="11" text-anchor="start" fill="#0891b2" font-family="sans-serif" font-weight="bold">Row 2 - C5 board (co-processor)</text>
 <rect x="45.0" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
-<text x="146.2" y="588.0" font-size="12" text-anchor="middle" fill="#0891b2" font-family="sans-serif" font-weight="bold">C5 - INNER</text>
+<text x="146.2" y="583.0" font-size="12" text-anchor="middle" fill="#0891b2" font-family="sans-serif" font-weight="bold">C5 - INNER</text>
 <circle cx="58.5" cy="623.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="58.5" cy="623.5" r="1.6" fill="#6b7280"/>
 <circle cx="234.0" cy="623.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
@@ -86,13 +78,23 @@
 <circle cx="58.5" cy="1001.5" r="1.6" fill="#6b7280"/>
 <circle cx="234.0" cy="1001.5" r="5.9" fill="none" stroke="#6b7280" stroke-width="1.2"/>
 <circle cx="234.0" cy="1001.5" r="1.6" fill="#6b7280"/>
-<rect x="61.2" y="647.8" width="45.9" height="64.8" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="84.2" y="682.6" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-C5</text>
-<rect x="120.6" y="647.8" width="70.2" height="40.5" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="155.7" y="670.0" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">charger + power (buck/LDO/2S-prot)</text>
-<rect x="120.6" y="696.4" width="70.2" height="27.0" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="155.7" y="711.6" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">2S protect</text>
+<rect x="61.2" y="647.8" width="48.6" height="64.8" fill="#fecaca" stroke="#dc2626" stroke-width="1" rx="1.5"/><text x="85.5" y="682.6" font-size="7" text-anchor="middle" fill="#111" font-family="sans-serif">ESP32-C5</text>
+<rect x="120.6" y="647.8" width="54.0" height="70.2" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="147.6" y="684.8" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #1</text>
+<rect x="180.0" y="647.8" width="56.7" height="70.2" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="208.3" y="684.8" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #2</text>
+<rect x="120.6" y="728.8" width="54.0" height="70.2" fill="#fed7aa" stroke="#ea580c" stroke-width="1" rx="1.5"/><text x="147.6" y="765.8" font-size="5.5" text-anchor="middle" fill="#111" font-family="sans-serif">nRF24 #3</text>
+<rect x="61.2" y="728.8" width="48.6" height="35.1" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="85.5" y="748.1" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">charger</text>
+<rect x="61.2" y="772.0" width="48.6" height="24.3" fill="#cffafe" stroke="#0891b2" stroke-width="1" rx="1.5"/><text x="85.5" y="785.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">2S prot</text>
+<rect x="180.0" y="728.8" width="56.7" height="32.4" fill="#f5f5f4" stroke="#78716c" stroke-width="1" rx="1.5"/><text x="208.3" y="746.8" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">buses 138 / PCA</text>
+<rect x="180.0" y="766.6" width="56.7" height="27.0" fill="#ede9fe" stroke="#6d28d9" stroke-width="1" rx="1.5"/><text x="208.3" y="781.9" font-size="5" text-anchor="middle" fill="#111" font-family="sans-serif">C5 RST</text>
 <rect x="99.0" y="934.0" width="91.8" height="18.9" fill="#fbcfe8" stroke="#db2777" stroke-width="1" rx="1.5"/><text x="144.9" y="945.6" font-size="6" text-anchor="middle" fill="#111" font-family="sans-serif">mezzanine</text>
-<text x="144.9" y="799.0" font-size="6.5" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">(sparse - co-proc + power)</text>
-<rect x="134.1" y="603.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
-<text x="140.2" y="595.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">5G</text>
+<rect x="58.5" y="603.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="64.6" y="595.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR1</text>
+<rect x="109.8" y="607.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="115.9" y="601.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR2</text>
+<rect x="161.1" y="603.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="167.2" y="595.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">nR3</text>
+<rect x="212.4" y="607.0" width="12.2" height="6" fill="#d1d5db" stroke="#4b5563" stroke-width="0.8"/>
+<text x="218.5" y="601.0" font-size="4.8" text-anchor="middle" fill="#111" font-family="sans-serif" font-weight="bold">5G</text>
 <rect x="302.5" y="610.0" width="202.5" height="405.0" fill="#fafafa" stroke="#111" stroke-width="1.8"/>
 <text x="403.8" y="593.0" font-size="12" text-anchor="middle" fill="#166534" font-family="sans-serif" font-weight="bold">C5 - OUTER (back)</text>
 <text x="403.8" y="605.0" font-size="8.5" text-anchor="middle" fill="#555" font-family="sans-serif" font-weight="normal">batteries</text>
@@ -144,36 +146,36 @@
 <text x="479.0" y="1107.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
 <text x="589.0" y="1107.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
 <text x="333.0" y="1122.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">2</text>
-<text x="359.0" y="1122.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">nRF24 #1</text>
-<text x="479.0" y="1122.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
+<text x="359.0" y="1122.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">CC1101</text>
+<text x="479.0" y="1122.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">315-915</text>
 <text x="589.0" y="1122.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
 <rect x="330" y="1126.0" width="346" height="14" fill="#f8fafc"/>
 <text x="333.0" y="1137.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">3</text>
-<text x="359.0" y="1137.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">nRF24 #2</text>
-<text x="479.0" y="1137.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
+<text x="359.0" y="1137.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">SA868</text>
+<text x="479.0" y="1137.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">433/446</text>
 <text x="589.0" y="1137.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
 <text x="333.0" y="1152.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">4</text>
-<text x="359.0" y="1152.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">nRF24 #3</text>
-<text x="479.0" y="1152.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
+<text x="359.0" y="1152.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">LoRa</text>
+<text x="479.0" y="1152.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">868/915</text>
 <text x="589.0" y="1152.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
 <rect x="330" y="1156.0" width="346" height="14" fill="#f8fafc"/>
 <text x="333.0" y="1167.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">5</text>
-<text x="359.0" y="1167.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">CC1101</text>
-<text x="479.0" y="1167.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">315-915</text>
+<text x="359.0" y="1167.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Si4732</text>
+<text x="479.0" y="1167.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">HF-FM RX</text>
 <text x="589.0" y="1167.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
 <text x="333.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">6</text>
-<text x="359.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">SA868</text>
-<text x="479.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">433/446</text>
-<text x="589.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
+<text x="359.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">nRF24 #1</text>
+<text x="479.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
+<text x="589.0" y="1182.0" font-size="8.5" text-anchor="start" fill="#dc2626" font-family="sans-serif" font-weight="bold">C5</text>
 <rect x="330" y="1186.0" width="346" height="14" fill="#f8fafc"/>
 <text x="333.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">7</text>
-<text x="359.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">LoRa</text>
-<text x="479.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">868/915</text>
-<text x="589.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
+<text x="359.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">nRF24 #2</text>
+<text x="479.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
+<text x="589.0" y="1197.0" font-size="8.5" text-anchor="start" fill="#dc2626" font-family="sans-serif" font-weight="bold">C5</text>
 <text x="333.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">8</text>
-<text x="359.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">Si4732</text>
-<text x="479.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">HF-FM RX</text>
-<text x="589.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#166534" font-family="sans-serif" font-weight="bold">MAIN</text>
+<text x="359.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">nRF24 #3</text>
+<text x="479.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#555" font-family="sans-serif" font-weight="normal">2.4 GHz</text>
+<text x="589.0" y="1212.0" font-size="8.5" text-anchor="start" fill="#dc2626" font-family="sans-serif" font-weight="bold">C5</text>
 <rect x="330" y="1216.0" width="346" height="14" fill="#f8fafc"/>
 <text x="333.0" y="1227.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="bold">9</text>
 <text x="359.0" y="1227.0" font-size="8.5" text-anchor="start" fill="#111" font-family="sans-serif" font-weight="normal">C5 5 GHz</text>
