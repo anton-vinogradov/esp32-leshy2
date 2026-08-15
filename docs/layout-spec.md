@@ -31,10 +31,20 @@ The fixed spec for (re)drawing the two-board clamshell layout render ([`layout-c
 
 ## 5. Placement rules
 
-- **Outer front — only what you look at or press:** display, D-pad, BACK / OPTIONS, encoder + F1 / F2 (left edge), PTT + STOP (right edge), speaker + mic (lower), the LED row. Antennas across the top.
+- **Outer front — the display + a *centred* D-pad + BACK / OPTIONS (flanking it) + the LED row.** Antennas across the top. Nothing else — the side controls and the audio move to the inner faces.
 - **Outer back:** the battery holder (centred) + antennas across the top.
+- **Side controls on the inner side edges (small case protrusion):** the encoder + F1 / F2 on the main board's **left** edge, PTT + STOP on its **right** edge — side-actuated (a scroll / side encoder, **not** a top-shaft EC11, whose 15 mm shaft would break the 11 mm gap). **IR** on the C5 board's **right** side edge, firing out between the boards (DIV-style). **Speaker + mic** on the C5 inner face, lower (firing forward).
 - **All connectors / switches / service buttons go on the INNER faces**, each **at the board edge it exits** (a part mid-board can't reach a case slot), reached through slots in the case edge.
-- **Direction arrow on every external port** — a small red arrow **pointing out from the part into the margin, never onto a label** (checked). Bottom-edge ports → arrow down; side-edge ports → arrow out to that side.
+- **Direction arrow on every external port / side part** — a small red arrow **pointing out from the part into the margin, never onto a label** (checked). Bottom-edge → down; side-edge → out to that side. Speaker/mic are grille I/O, exempt from the edge rule.
+
+## 5a. Floorplan zones
+
+Each face is a set of non-overlapping zones; a part is placed in its zone and never crosses into another (the checks enforce it):
+
+- **Main outer:** *antenna row* (top) · *display* (upper two-thirds) · *control strip* (bottom third: LEDs, centred D-pad, BACK/OPT).
+- **Main inner:** *radio zone* (upper: S3, SA868, LoRa, CC1101, GPS, Si4732, buses) · *left edge* (jack, encoder, F1/F2) · *right edge* (2× Grove, PTT, STOP) · *mezzanine* (interior lower) · *service row* (bottom: microSD, RESET, BOOT).
+- **C5 inner:** *nRF zone* (top) · *C5 + decoders* (top-right) · *power zone* (mid-left: charger, protection, buck/LDO, BT1) · *audio* (lower-left: speaker, mic) · *right edge* (IR) · *mezzanine* · *service row* (bottom: USB ×2, master, RESET, BOOT).
+- **C5 outer:** *antenna row* (top) · *battery zone* (centre: the 2× 18650 holder).
 
 ## 6. Proportions — real footprints
 
@@ -59,13 +69,13 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | Component / group | Footprint mm | Shape | Board · face | Position | Dir. |
 |---|---|---|---|---|:--:|
 | **ST7796 4.0″ display + touch** | 62 × 99 *(active 56 × 84)* | display | main · F | upper, centred | — |
-| **5-way D-pad** | 12 × 12 | button | main · F | lower-centre | — |
+| **5-way D-pad** | 12 × 12 | button | main · F | lower-centre (**centred**) | — |
 | **BACK / OPTIONS** | 6 × 6 ea | button | main · F | flank the D-pad | — |
-| **Encoder (EC11)** | 12 × 13.4 | button | main · F | left edge | — |
-| **F1 / F2** | 6 × 6 | button | main · F | left edge, below encoder | — |
-| **PTT / panic STOP** | 6 × 6 | button | main · F | right edge | — |
-| **Speaker (mylar)** | 14 × 20 | grille | main · F | lower-left | out |
-| **Mic (MEMS)** | 2.95 × 3.76 | port | main · F | lower-right | out |
+| **Encoder** (side / scroll type) | 12 × 13.4 | button | main · I | left edge, side-actuated | out |
+| **F1 / F2** | 6 × 6 | button | main · I | left edge, below encoder | out |
+| **PTT / panic STOP** | 6 × 6 | button | main · I | right edge | out |
+| **Speaker (mylar)** | 14 × 20 | grille | C5 · I | lower, fires forward | out |
+| **Mic (MEMS)** | 2.95 × 3.76 | port | C5 · I | lower | out |
 | **TX-live LEDs ×7** | ~1.6 (0603) | led | main · F | row below the display | — |
 | **RGB status (WS2812B)** | 5 × 5 | led | main · F | end of the LED row | — |
 | **5× SMA** (Wi-Fi, CC1101, SA868, LoRa, Si4732) | 6.35 ⌀ | conn-round | main · F | top edge | up |
@@ -94,9 +104,9 @@ Footprints are the **real datasheet body / footprint W × H in mm** (length is t
 | **Master slide (MSK-12C02)** | 9 × 4 | conn-rect | C5 · I | bottom edge | down |
 | **C5 RESET / C5 BOOT** | 6 × 6 | button | C5 · I | bottom edge | down |
 | **2× 18650 holder** | 40 × 78 *(cells 18.6 × 65)* | holder | C5 · F | centred | — |
-| **BT1 (battery conn.)** | small | conn-rect | C5 · I | by the holder | — |
-| **4× SMA** (3× nRF24, C5 5 GHz) | 6.35 ⌀ | conn-round | C5 · F | top edge | up |
-| **IR TX / RX** | ~3 × 4 / 5 × 5 | emitter | C5 · F | top edge (with the antennas) | up |
+| **BT1 (battery conn.)** | small | conn-rect | C5 · I | with the power block | — |
+| **4× SMA** (3× nRF24, C5 5 GHz) | 6.35 ⌀ | conn-round | C5 · F | top edge (IR is no longer here) | up |
+| **IR TX / RX** | ~3 × 4 / 5 × 5 | emitter | C5 · I | right side edge, in the gap (DIV-style) | out |
 | **Mezzanine connector** | ~ | mez | both · I | interior | — |
 | **4× M2.5 mounting holes** | ⌀ 2.7 | hole | both | four corners | — |
 
@@ -110,6 +120,7 @@ The generator parses its own finished SVG and refuses to ship a render that fail
 2. **Accessibility** — every **interface** (blue) on an **inner** face sits at a board edge (a buried connector / switch / button can't reach the case).
 3. **Arrow-on-label** — no direction arrow lands on any label.
 4. **Mezzanine gap** — the cross-section gap ≥ the tallest inner-face part.
+5. **Mounting holes** — no part or antenna overlaps a corner M2.5 hole.
 
 ---
 
