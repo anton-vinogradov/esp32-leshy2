@@ -119,7 +119,7 @@
 | C-LORA-07 | (G)FSK, RTTY, CW и AX.25 beacon | MAIN | licence/band limits |
 | C-LORA-08 | LoRa OTA и file transfer | MAIN | duty/скорость |
 | C-LORA-09 | Одноцелевой carrier/reactive jam | LAB-D | narrow target, duty и STOP |
-| C-GPS-01 | Position/navigation, module config, time sync | MAIN | внешний по legacy-тексту, бортовой в tsCircuit; `FND-0004` |
+| C-GPS-01 | Position/navigation, module config, time sync | MAIN | внешний M5Stack Unit GPS v1.1 по `DEC-0006`; только при подключении |
 | C-GPS-02 | Track log, waypoints и geofences | MAIN | — |
 | C-GPS-03 | AssistNow offline assistance | SYS | нужен эпизодический интернет |
 | C-GPS-04 | GNSS jamming/spoofing indicator | MAIN | защитный readout, не attack tool |

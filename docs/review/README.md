@@ -24,10 +24,11 @@
 - [DEC-0003: безопасный TX-дефолт](decisions/DEC-0003-safe-tx-defaults.md)
 - [DEC-0004: обязательный пересмотр legacy-исключений](decisions/DEC-0004-reconsider-legacy-exclusions.md)
 - [DEC-0005: снижение стоимости без потери продукта](decisions/DEC-0005-zero-loss-cost.md)
+- [DEC-0006: внешний GNSS через M5Stack Unit GPS v1.1](decisions/DEC-0006-external-m5-gnss.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: цифровые audio-функции не поддержаны hardware](findings/FND-0003-missing-mcu-audio-path.md)
-- [FND-0004: бортовой и внешний GNSS расходятся между legacy-артефактами](findings/FND-0004-gnss-scope-conflict.md)
+- [FND-0004: бортовой и внешний GNSS расходятся — закрыто DEC-0006](findings/FND-0004-gnss-scope-conflict.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [IMP-0002: SDIO как обход GP-SPI блокера C5](improvements/IMP-0002-c5-sdio-link.md)
 - [IMP-0003: переоткрыть EAPOL/PMKID capture](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -41,6 +42,7 @@
 - [REV-0000: ревью этапа 0](reviews/REV-0000-stage-0.md)
 - [REV-0001: ревью этапа 1](reviews/REV-0001-stage-1.md)
 - [REV-0002A: ревью инвентаризации возможностей](reviews/REV-0002A-capability-inventory.md)
+- [REV-0002B: ревью scope внешнего GNSS](reviews/REV-0002B-external-gnss.md)
 
 ## Статусы
 
