@@ -25,6 +25,7 @@
 - [DEC-0004: обязательный пересмотр legacy-исключений](decisions/DEC-0004-reconsider-legacy-exclusions.md)
 - [DEC-0005: снижение стоимости без потери продукта](decisions/DEC-0005-zero-loss-cost.md)
 - [DEC-0006: внешний GNSS через M5Stack Unit GPS v1.1](decisions/DEC-0006-external-m5-gnss.md)
+- [DEC-0007: оба внешних LoRa-варианта — Cardputer Cap и сменный модуль](decisions/DEC-0007-dual-external-lora-profiles.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: цифровые audio-функции не поддержаны hardware](findings/FND-0003-missing-mcu-audio-path.md)
@@ -35,8 +36,8 @@
 - [IMP-0004: dedicated BLE connection sniffer](improvements/IMP-0004-dedicated-ble-sniffer.md)
 - [IMP-0005: заменить NFC ceiling через PN7160](improvements/IMP-0005-pn7160-nfc-expansion.md)
 - [IMP-0006: убрать третий I²C-экспандер через матрицу кнопок](improvements/IMP-0006-ui-key-matrix.md)
-- [IMP-0007: внешний Cardputer LoRa+GNSS Cap вместо бортового LoRa и отдельного GPS Unit](improvements/IMP-0007-cardputer-lora-gnss-cap.md)
-- [IMP-0008: универсальный внешний LoRa-профиль и сменные radio modules](improvements/IMP-0008-modular-lora-expansion.md)
+- [IMP-0007: внешний Cardputer LoRa+GNSS Cap — принято](improvements/IMP-0007-cardputer-lora-gnss-cap.md)
+- [IMP-0008: универсальный внешний LoRa-профиль и сменные modules — принято](improvements/IMP-0008-modular-lora-expansion.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -45,6 +46,7 @@
 - [REV-0001: ревью этапа 1](reviews/REV-0001-stage-1.md)
 - [REV-0002A: ревью инвентаризации возможностей](reviews/REV-0002A-capability-inventory.md)
 - [REV-0002B: ревью scope внешнего GNSS](reviews/REV-0002B-external-gnss.md)
+- [REV-0002C: ревью scope внешнего модульного LoRa](reviews/REV-0002C-modular-lora-scope.md)
 
 ## Статусы
 
