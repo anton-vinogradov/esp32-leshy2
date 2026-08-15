@@ -12,7 +12,7 @@ The fixed spec for (re)drawing the two-board clamshell layout render ([`layout-c
 
 ## 2. The two boards
 
-- **Board size: ~75 × 150 mm each; ~34 mm total clamshell thickness.**
+- **Board size: ~75 × 150 mm each; ~36 mm total clamshell thickness (11 mm gap + 18.6 mm battery + boards + display).**
 - **Clamshell.** Inner faces face each other — components live in the gap, protected. Outer faces carry only the display + controls (front) and the battery (back), **plus the antenna SMA across the top of each**.
 - **Mezzanine gap.** The standoff height is **≥ the tallest inner-face component**, so the two boards' inner parts clear each other: `h_A(x,y) + h_B(x,y) ≤ gap` everywhere. The **nRF24 modules are the tallest inner parts** — mounted **low** (soldered / short pins, DIV-style, **not** on tall 2×4 sockets) they stand only **~5–7 mm**, so the gap follows the **DIV-measured 11 mm gap** (a tall socket would add ~8 mm and blow the thickness budget — don't use one).
 - **Mounting.** Four **M2.5** corner holes, aligned on both boards; **every part and antenna is kept clear of them**.
