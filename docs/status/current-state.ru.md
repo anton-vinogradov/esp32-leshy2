@@ -57,9 +57,10 @@
 - `FND-0024`: 5 GHz режимы ещё не имеют реализованных country/DFS/PMF/privacy gates; DFS SoftAP исключён текущим radio contract.
 - `FND-0026`: native BLE advertising scan не является promiscuous connection-follow sniffer, rotating address не является stable identity, а RSSI не доказывает метры или направление.
 - `FND-0027`: Continuity/iBeacon/Find My и attack labels требуют versioned corpus/spec/licence/peer proof; ordinary, passive и disruptive BLE-сценарии имеют разные security gates.
-- `FND-0028`: physical owner трёх полнофункциональных nRF24 переоткрыт; S3 shared-SPI и C5+SDIO являются предварительными вариантами, решение отложено до wishlist freeze.
+- `FND-0028`: три полные static nRF ownership maps сравнены. `LAY-S3` рекомендуется условно; owner decision и measured kill gates остаются открытыми.
 - `FND-0029`: вариант памяти S3, транспорт S3↔C5 и recovery interfaces расходуют пересекающиеся scarce pins. N8R8 не является drop-in заменой N8R2, потому что Octal PSRAM занимает GPIO35–37, а 4-bit SDIO C5 конфликтует с native USB на GPIO13/14.
 - `FND-0030`: legacy voice power 5 V превышает принятый SA518 1 W profile. `DEC-0025` исправляет target отдельным rail 4.0 V; legacy schematic и conducted HIL остаются открытыми.
+- `FND-0032`: старый matrix budget ошибочно освобождал U214 RESET. Corrected candidate сохраняет `EXT_RF_RST`, переносит C5 BOOT в physical recovery и агрегирует touch IRQ; matrix/U14 всё ещё требует решения и HIL.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -88,10 +89,10 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 ## Активный архитектурный gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md), exact MCU pin/controller inventory ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), scorecard ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)), STOP topology ([`DEC-0024`](../review/decisions/DEC-0024-latched-hard-stop.md)) и полный numeric traffic/memory/power envelope ([`BUD-0001`](../review/architecture/BUD-0001-traffic-memory-power-envelope.md), [`DEC-0025`](../review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md)) прошли ревью. Генерация трёх полных layouts открыта.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md), [`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md), [`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md), STOP и полные numeric budgets прошли ревью. Теперь существуют три exact static maps: [`LAY-S3`](../review/architecture/LAY-S3-0001-shared-spi-nrf-owner.md), [`LAY-C5`](../review/architecture/LAY-C5-0001-sdio-nrf-owner.md) и [`LAY-BAL`](../review/architecture/LAY-BAL-0001-rp2040-rf-controller.md). [`CMP-0001`](../review/architecture/CMP-0001-static-layout-comparison.md) не нашёл неизбежного static pin/controller contradiction; weighted scores запрещены до measurements и comparable quotes.
 
 Base и optional expansion scope разделены. Bluetooth Classic, dedicated BLE sniffing, дополнительные SDR/RF, cellular, LF RFID, второй NFC frontend, full-duplex voice и Linux-class compute не нагружают базовую плату.
 
-Matrix/`U14`-часть [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO остаются активными layout candidates. [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md) принято как `DEC-0024`, а [`IMP-0023/A`](../review/improvements/IMP-0023-dedicated-4v-sa518-voice-rail.md) — как `DEC-0025`; exact components и HIL остаются доказательствами следующих этапов. S3-heavy, C5-heavy и balanced/modular layouts строятся на одном pin/bus/DMA/interrupt/RAM/power/recovery/coexistence model до принятия ownership.
+Corrected matrix/`U14`-часть [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md) остаётся orthogonal choice. **⚠️ [`IMP-0021/A`](../review/improvements/IMP-0021-s3-owns-three-full-function-nrf24.md)** теперь рекомендует `LAY-S3` как conditional target: минимальный structural BOM/rerouting, отсутствие raw nRF IPC и сохранение C5 recovery/GPIO margin. Принятие не отменяет kill gates N8R2 memory, shared-SPI latency/loss и independent C5 recovery.
 
-`FND-0006` остаётся открытой. `FND-0007` исправлена на architecture level, но открыта до schematic/HIL proof. `U14` и матрица 3×3 пока не выбраны.
+`FND-0006/FND-0032` остаются открытыми. `FND-0007` исправлена на architecture level, но открыта до schematic/HIL proof. nRF ownership, `U14` и matrix 3×3 пока не выбраны.

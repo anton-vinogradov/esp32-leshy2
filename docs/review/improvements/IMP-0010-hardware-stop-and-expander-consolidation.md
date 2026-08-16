@@ -24,10 +24,11 @@
 3. Для SA868, CC1101, внешнего `EXT-RF14` и остальных трактов этап 3 выбирает отдельный fail-safe inhibit/power gate; простого reset S3 недостаточно.
 4. Пока STOP удерживается, передача физически невозможна. После отпускания rails/MCU проходят нормальный power-on/reset и загружаются по `DEC-0003`: все TX off, Lab `DISARMED`, без автоматического re-arm.
 5. Девять неаварийных кнопок образуют diode-isolated `3×3` matrix на шести линиях из `U13.P10..P17`; `TOUCH_INT` занимает седьмую линию.
-6. Восьмая линия `U13` и две освободившиеся после удаления бортового LoRa линии `U12` (`LoRa_NRESET`, `LoRa_TR`) обслуживают три slow control ES8311/selectors из `DEC-0009`.
-7. `U14`, его развязка и индивидуальные pull-up большинства кнопок удаляются только после HIL proof матрицы и STOP.
+6. Corrected map по `FND-0032`: `U13.P16/P17` управляют двумя audio selectors; только действительно свободная `U12.P12=legacy LoRa_TR` управляет ES8311 enable/reset; `U12.P04` сохраняется как `EXT_RF_RST` U214.
+7. `U13.P06`, освобождённая отказом от expander-driven C5 BOOT в пользу native USB + physical BOOT/RESET recovery, получает safe-default voice H/L. Touch IRQ агрегируется с GPIO48 только через доказанный open-drain output/buffer.
+8. `U14`, его развязка и индивидуальные pull-up большинства кнопок удаляются только после matrix, C5 recovery и touch-IRQ HIL proof.
 
-Конкретное распределение трёх audio-control между этими линиями остаётся выходом этапа 3. Настоящее предложение предлагает ресурсный контракт, а не окончательную нумерацию net/pin.
+Эта нумерация является единым corrected candidate всех трёх layouts. Она не становится принятой схемой до решения владельца и exact electrical/recovery proof.
 
 ## Поведение пользователя
 

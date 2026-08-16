@@ -57,9 +57,10 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0024`: 5 GHz modes do not yet implement country/DFS/PMF/privacy gates; DFS SoftAP is excluded by the current radio contract.
 - `FND-0026`: native BLE advertising scan is not a promiscuous connection-follow sniffer, a rotating address is not stable identity, and RSSI does not prove metres or direction.
 - `FND-0027`: Continuity/iBeacon/Find My and attack labels require versioned corpus/spec/licence/peer proof; ordinary, passive, and disruptive BLE cases have distinct security gates.
-- `FND-0028`: physical ownership of the three full-function nRF24 radios is reopened; S3 shared-SPI and C5+SDIO are preliminary variants, with the decision deferred until wishlist freeze.
+- `FND-0028`: three full static nRF ownership maps have been compared. `LAY-S3` is recommended conditionally; the owner decision and measured kill gates remain open.
 - `FND-0029`: the S3 memory variant, S3↔C5 transport, and recovery interfaces consume overlapping scarce pins. N8R8 is not a drop-in replacement for N8R2 because Octal PSRAM consumes GPIO35–37, while C5 4-bit SDIO conflicts with native USB on GPIO13/14.
 - `FND-0030`: legacy 5 V voice power would exceed the accepted SA518 1 W profile. `DEC-0025` fixes the target with a dedicated 4.0 V rail; the legacy schematic and conducted HIL remain open.
+- `FND-0032`: old matrix accounting incorrectly freed U214 RESET. The corrected candidate retains `EXT_RF_RST`, moves C5 BOOT to physical recovery, and aggregates touch IRQ; matrix/U14 still needs a decision and HIL.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -88,10 +89,10 @@ The remaining stage-2 slices are now **Reviewed**: [`REQ-W24-0001`](../review/re
 
 ## Active architecture gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) freezes the complete wishlist and opens stage 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md), exact MCU pin/controller inventory ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), scorecard ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)), STOP topology ([`DEC-0024`](../review/decisions/DEC-0024-latched-hard-stop.md)), and complete numeric traffic/memory/power envelope ([`BUD-0001`](../review/architecture/BUD-0001-traffic-memory-power-envelope.md), [`DEC-0025`](../review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md)) are reviewed. Generation of the three full layouts is now open.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) freezes the complete wishlist. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md), [`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md), [`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md), STOP and complete numeric budgets are reviewed. Three exact static maps now exist: [`LAY-S3`](../review/architecture/LAY-S3-0001-shared-spi-nrf-owner.md), [`LAY-C5`](../review/architecture/LAY-C5-0001-sdio-nrf-owner.md), and [`LAY-BAL`](../review/architecture/LAY-BAL-0001-rp2040-rf-controller.md). [`CMP-0001`](../review/architecture/CMP-0001-static-layout-comparison.md) found no unavoidable static pin/controller contradiction; weighted scores remain forbidden until measurements and comparable quotes exist.
 
 Base and optional expansion scope are now separate. Bluetooth Classic, dedicated BLE sniffing, additional SDR/RF, cellular, LF RFID, a second NFC frontend, full-duplex voice and Linux-class compute do not burden the base board.
 
-The matrix/`U14` portion of [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, the CE latch, and exact GPIO remain active layout candidates. [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md) is accepted as `DEC-0024`, and [`IMP-0023/A`](../review/improvements/IMP-0023-dedicated-4v-sa518-voice-rail.md) as `DEC-0025`; exact components and HIL remain later-stage evidence. S3-heavy, C5-heavy, and balanced/modular layouts are now being built against the same pin/bus/DMA/interrupt/RAM/power/recovery/coexistence model before ownership is accepted.
+The corrected matrix/`U14` portion of [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md) remains an orthogonal choice. **⚠️ [`IMP-0021/A`](../review/improvements/IMP-0021-s3-owns-three-full-function-nrf24.md)** now recommends `LAY-S3` as the conditional target because it adds the least structural BOM/rerouting, avoids raw nRF IPC and leaves C5 recovery/GPIO margin. Acceptance does not waive its N8R2-memory, shared-SPI latency/loss or independent-C5-recovery kill gates.
 
-`FND-0006` remains open. `FND-0007` is corrected at architecture level but remains open for schematic and HIL proof. No decision selects `U14` or the 3×3 matrix yet.
+`FND-0006/FND-0032` remain open. `FND-0007` is corrected at architecture level but remains open for schematic and HIL proof. No decision selects nRF ownership, `U14`, or the 3×3 matrix yet.

@@ -1,6 +1,6 @@
 # PIN-0001 — проверенный инвентарь pin/controller ceilings S3 и C5
 
-- Статус: **Проведено ревью исходных фактов; allocation по layouts не выполнен**
+- Статус: **Проведено ревью; allocation выполнен в трёх static layouts, owner decision открыт**
 - Этап: 3 — системная архитектура и владение
 - Дата: 2026-08-16
 - Source baseline: ESP32-S3-WROOM-1/1U datasheet v1.8; ESP32-C5-WROOM-1/1U datasheet v1.2 от 2026-08-12; current legacy tsCircuit

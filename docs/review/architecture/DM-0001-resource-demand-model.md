@@ -32,7 +32,7 @@ Demand описывает нужный сервис, а не любимую ре
 | `DM-CORE-02` | ESP32-C5 radio MCU | internal Wi-Fi/802.15.4; native recovery; typed S3 link endpoint | own reset/boot; IR real-time channels | radio reset/link loss cancels TX lease; C5 is recoverable without working S3 application firmware where silicon permits |
 | `DM-LINK-01` | S3↔C5 transport | full-duplex command/event/bulk capture/update; framing, flow control, DMA/IRQ where available | bounded interrupt/wakeup and reset handshake | must coexist with every local peripheral of both MCUs; no controller double-booking; update, crash dump and passive capture loss are measured |
 | `DM-UI-01` | Display | high-bandwidth write bus, independent select/control, TE if used | predictable refresh deadline | spectrum/waterfall continues during SD write and radio IRQ; dirty rect/DMA are mechanisms only |
-| `DM-UI-02` | Touch and ordinary controls | touch data bus/IRQ; ten ordinary physical controls or proven equivalent matrix | no lost/stuck key; local navigation without phone | long-BACK and ordinary input remain available under radio/storage load; matrix scan cannot create ghost dangerous action |
+| `DM-UI-02` | Touch and ordinary controls | touch data bus/IRQ; nine ordinary physical controls or proven equivalent matrix; physical STOP is separate `DM-SAFE-01` | no lost/stuck key; local navigation without phone | long-BACK and ordinary input remain available under radio/storage load; matrix scan cannot create ghost dangerous action |
 | `DM-SAFE-01` | Physical STOP | `DEC-0024` latched `TX_KILL`: both MCU reset paths plus independent power/inhibit of every TX-capable external domain | asynchronous dominance; separate physical re-arm; own latch indicator | works with hung S3/C5, stalled bus, corrupt UI, update/reset and attached TX accessory; release does not re-arm; old TX lease never returns |
 | `DM-SAFE-02` | Actual-TX indication | hardware or independently trustworthy detectors/enable-state per TX domain | visible latency bounded independently of application screen | software intent alone is insufficient; detector unknown/fault is visible and can inhibit Controlled operation |
 | `DM-STO-01` | microSD | bulk read/write, card detect, recoverable filesystem, DMA-capable path preferred | bounded write chunks and backpressure | capture does not claim lossless; removal/full/corrupt card cannot block STOP, audio deadline or radio servicing |
@@ -74,7 +74,7 @@ Demand описывает нужный сервис, а не любимую ре
 | `SCN-07` | Contained resilience test | one armed TX path, actual-TX detector, countdown/dead-man/STOP, audit log | hardware containment and target authorization are proven before arm; hard timeout works with UI/MCU fault |
 | `SCN-08` | Failure storm | SD fault plus IPC loss or peripheral timeout during active receive/TX preparation | no unintended TX, bounded recovery, honest loss/unknown state, local control remains usable |
 
-## Numeric budgets still to fill before layout scoring
+## Budget evidence carried into every layout
 
 | Budget | Required evidence |
 |---|---|

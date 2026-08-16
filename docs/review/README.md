@@ -96,6 +96,8 @@
 - [FND-0028: владелец 3×nRF24 переоткрыт; layout после wishlist freeze](findings/FND-0028-nrf24-owner-reopened-by-full-function-resource-audit.md)
 - [FND-0029: memory variant, inter-MCU transport и recovery делят scarce pins](findings/FND-0029-memory-transport-recovery-pin-coupling.md)
 - [FND-0030: legacy 5 V voice rail — архитектурно исправлено DEC-0025, схема/HIL открыты](findings/FND-0030-sa518-legacy-5v-exceeds-accepted-1w-profile.md)
+- [FND-0031: UI count дважды включил STOP — закрыто исправлением](findings/FND-0031-ui-control-count-double-counted-stop.md)
+- [FND-0032: U214 RESET отменяет вторую «свободную» LoRa line — candidate исправлен](findings/FND-0032-u214-reset-invalidates-two-freed-lora-lines.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -127,6 +129,10 @@
 - [BUD-0001: numeric traffic/memory/power envelope — проведено ревью](architecture/BUD-0001-traffic-memory-power-envelope.md)
 - [PIN-0001: проверенная инвентаризация MCU pins/controllers](architecture/PIN-0001-mcu-controller-inventory.md)
 - [SC-0001: единая 100-point scorecard и hard-fail gates layouts](architecture/SC-0001-layout-scorecard.md)
+- [LAY-S3-0001: S3 owns 3×nRF24 on shared SPI2](architecture/LAY-S3-0001-shared-spi-nrf-owner.md)
+- [LAY-C5-0001: C5 owns 3×nRF24 with 1-bit SDIO link](architecture/LAY-C5-0001-sdio-nrf-owner.md)
+- [LAY-BAL-0001: modular RP2040 owns 3×nRF24](architecture/LAY-BAL-0001-rp2040-rf-controller.md)
+- [CMP-0001: static comparison of three layouts](architecture/CMP-0001-static-layout-comparison.md)
 - [AUD-0001: повторный аудит legacy-исключений — проведено ревью требований](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
 - [AUD-0003: сравнительный аудит владельца трёх полнофункциональных nRF24](audits/AUD-0003-three-nrf24-owner-placement.md)
@@ -170,6 +176,8 @@
 - [REV-0003C: распространение решения latched hard STOP — проведено ревью](reviews/REV-0003C-hard-stop-decision-propagation.md)
 - [REV-0003D: traffic и memory envelope — проведено ревью подшага](reviews/REV-0003D-traffic-memory-envelope.md)
 - [REV-0003E: финальное ревью power envelope и VVOICE — проведено ревью](reviews/REV-0003E-power-envelope-and-voice-rail.md)
+- [REV-0003F: повторное ревью control count перед layouts — проведено ревью](reviews/REV-0003F-layout-entry-control-count.md)
+- [REV-0003G: три static full-layout maps — проведено ревью подшага](reviews/REV-0003G-three-static-layouts.md)
 
 ## Статусы
 

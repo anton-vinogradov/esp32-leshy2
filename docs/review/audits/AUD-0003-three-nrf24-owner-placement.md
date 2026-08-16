@@ -1,6 +1,6 @@
 # AUD-0003 — сравнительный аудит владельца трёх полнофункциональных nRF24
 
-- Статус: **Проведено ревью предварительных вариантов; решение отложено до wishlist freeze (`DEC-0022`)**
+- Статус: **Проведено ревью preliminary variants; full static comparison выполнено в `CMP-0001/REV-0003G`**
 - Дата: 2026-08-16
 - Этап: 2→3 ownership prerequisite
 - Входы: actual tsCircuit net map, `DEC-0001`, `DEC-0009`, `DEC-0018`, `DEC-0021`, `FND-0001`, `FND-0019`, `REQ-N24-0001`, official S3/C5/nRF24/U214 sources

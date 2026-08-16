@@ -1,6 +1,6 @@
 # IMP-0021 — перенести целевое владение 3× полнофункциональных nRF24 на S3
 
-- Статус: **⚠️ Layout-кандидат — решение отложено до wishlist freeze по `DEC-0022`**
+- Статус: **⚠️ Предложение — full static layouts reviewed; требуется решение владельца**
 - Связано: `DEC-0001`, `DEC-0009`, `DEC-0021`, `FND-0001`, `FND-0019`, `FND-0028`, `AUD-0003`, `REQ-N24-0001`
 - Цена: без нового MCU/radio; conditional small CE-latch BOM и HIL
 - Дата: 2026-08-16
@@ -41,6 +41,10 @@
 
 После wishlist freeze сравнивать A как основной S3-heavy кандидат. На текущем известном составе он снимает single-GP-SPI blocker C5 с меньшей переделкой и меньшим IPC, сохраняя три полнофункциональных radio. Вывод должен быть пересчитан на полном demand model и остаётся conditional на consolidated resource budget и shared-bus latency/loss HIL.
 
-## Отложенное решение
+## Результат полного static comparison
 
-Сейчас вопрос владельцу не задаётся. По `DEC-0022` сначала закрывается полный реестр хотелок `INV-0002`; затем A сравнивается с C5-heavy и balanced/modular вариантами на одинаковом наборе функций, ресурсов, стоимости и HIL-критериев.
+`DEC-0023` заморозил wishlist, а `LAY-S3-0001`, `LAY-C5-0001`, `LAY-BAL-0001` и `CMP-0001` пересчитали варианты на полном `DM-0001/BUD-0001`. Все три statically feasible; weighted scores запрещены до measurements/quotes. S3-вариант остаётся рекомендуемым conditional baseline: меньше irreducible BOM/reroute, нет raw nRF IPC, C5 сохраняет GPIO и native recovery margin.
+
+## Вопрос владельцу
+
+⚠️ **Принимаем вариант A / `LAY-S3-0001` как conditional target: S3 владеет всеми тремя полнофункциональными nRF24 на shared SPI2, а провал N8R2 memory, shared-bus latency/loss или C5 independent-recovery kill gate автоматически возвращает сравнение к `LAY-C5`/`LAY-BAL` без сокращения функций?**

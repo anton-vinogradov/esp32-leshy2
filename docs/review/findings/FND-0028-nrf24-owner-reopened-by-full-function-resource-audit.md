@@ -1,6 +1,6 @@
 # FND-0028 — владелец 3×nRF24 переоткрыт full-function/resource audit
 
-- Статус: **Architecture/layout decision отложено до wishlist freeze (`DEC-0022`)**
+- Статус: **Три static layouts сравнены; owner decision открыт в `IMP-0021/CMP-0001`**
 - Серьёзность: architecture/resource/performance blocker
 - Затрагивает: `DEC-0001`, `DEC-0009`, `FND-0001`, `FND-0019`, `REQ-N24-0001`, S3↔C5 transport и stage-3 pin budget
 - Обнаружено: 2026-08-16
@@ -17,9 +17,9 @@
 
 Владелец потребовал полнофункциональные nRF24 и предложил заново проверить S3 как возможного лучшего владельца. Поэтому старое C5 ownership нельзя использовать как окончательный вход этапа 3 без повторного решения.
 
-## Критерий закрытия после wishlist freeze
+## Критерий закрытия
 
-После owner-confirmed `INV-0002` freeze несколько полных компоновок сравниваются на одном demand model. Выбранный вариант, одним из кандидатов которого является `IMP-0021`, назначает одного владельца всех трёх radio и доказывает:
+После `DEC-0023` три полные static-компоновки сравнены в `CMP-0001`. Выбранный вариант назначает одного владельца всех трёх radio и доказывает:
 
 1. независимые logical CS/CE/role/channel/rate/address для каждого тракта;
 2. bounded IRQ source identification и отсутствие packet-loss overclaim;
