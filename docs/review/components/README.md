@@ -35,6 +35,7 @@
 - [`REV-0004A`](../reviews/REV-0004A-stage4-entry-register.md) — completeness и ordering реестра; **Проведено ревью**.
 - [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md) — compute/clock/recovery primary facts; **Проведено ревью фактов**.
 - [`REV-0004C`](../reviews/REV-0004C-c5-v1.2-propagation.md) — C5 v1.2 production floor; **Проведено ревью**.
-- [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md) — availability/provenance audit critical CAD libraries; **Проведено ревью фактов**, strategy `IMP-0025` открыта.
+- [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md) — historical availability/provenance audit; **Проведено ревью фактов**.
+- [`REV-0004E`](../reviews/REV-0004E-vendored-critical-cad-libraries.md) — `DEC-0030/IMP-0025-A`, project-local critical CAD snapshot, provenance and tests; **Проведено ревью**.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

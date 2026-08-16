@@ -25,3 +25,7 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Local CAD validation caches
+__pycache__/
+*.py[cod]

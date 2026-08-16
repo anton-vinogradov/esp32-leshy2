@@ -1,12 +1,13 @@
 # LIB-0001 — compute CAD symbol/footprint audit
 
-- Статус: **Проведено ревью фактов; library strategy требует решения**
+- Статус: **Проведено ревью; DEC-0030/A реализовано**
 - Дата snapshot: 2026-08-16
 - Tool snapshot: KiCad `10.0.5`; installed official KiCad 10 libraries
 - Пререквизиты: `BOM-0002`, `DEC-0028/0029`, `PIN-0002`
 - Finding: [`FND-0036`](../findings/FND-0036-current-cad-cannot-represent-target-compute.md)
-- Proposal: [`IMP-0025`](../improvements/IMP-0025-repository-vendored-critical-cad-libraries.md)
-- Review: [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md)
+- Decision: [`DEC-0030`](../decisions/DEC-0030-vendored-critical-cad-libraries.md)
+- Reviews: [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md),
+  [`REV-0004E`](../reviews/REV-0004E-vendored-critical-cad-libraries.md)
 
 ## Stage boundary
 
@@ -51,6 +52,18 @@ Each critical symbol/footprint must provide:
 - KiCad parser/DRC/library checks in the pinned toolchain;
 - explicit requalification when manufacturer or CAD-library revision changes.
 
-## Open strategy gate
+## Implemented strategy
 
-`IMP-0025` compares a self-contained repository snapshot of all five critical rows against using installed upstream libraries for available rows and storing only missing/custom components. No geometry is copied or declared qualified until the owner selects the strategy.
+The owner selected `IMP-0025/A`. The repository now carries exact project
+symbols and footprints for all five rows, project-local library tables, pinned
+source/drawing hashes, licence attribution, a dependency-free structural/hash
+validator and a path-filtered CI job.
+
+Import review also corrected C5 N8R8 pin 19 from generic GPIO15 to no-connect,
+the upstream C5→C6 footprint-filter typo, and the S3 1U antenna description.
+The ABM8 land geometry is explicitly library-derived and terminal-compatible,
+not misrepresented as a manufacturer-published recommended land pattern.
+
+This closes `FND-0036` at CAD-representation level. It does not grant
+component `Q`, imply schematic connectivity, or replace the remaining
+electrical, 1:1, assembly, ERC/DRC, antenna/thermal and HIL gates.

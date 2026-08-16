@@ -1,8 +1,8 @@
 # ⚠️ IMP-0025 — repository-vendored critical CAD libraries
 
-- Статус: **Ожидает решения владельца**
+- Статус: **Принято вариантом A; реализовано и проведено ревью**
 - Дата: 2026-08-16
-- Основание: `LIB-0001`, `FND-0036`
+- Основание: `LIB-0001`, `FND-0036`, решение владельца A
 - Затрагивает: CAD reproducibility, review diffs, KiCad toolchain, future schematic/PCB maintenance
 
 ## Current state
@@ -37,6 +37,9 @@ Choose **A**. The product has RF modules, a new C5 variant, QFN60, recovery/safe
 
 This proposal changes the artifact-production method, not hardware functions or owners.
 
-## Decision question
+## Decision outcome
 
-Принимаем вариант **A**: хранить в репозитории проверенные snapshots symbols/footprints для всех `C-001…005`, с provenance, attribution и validation tests?
+Владелец выбрал **A**. Решение зафиксировано в
+[DEC-0030](../decisions/DEC-0030-vendored-critical-cad-libraries.md), а
+реализация и проверки — в
+[REV-0004E](../reviews/REV-0004E-vendored-critical-cad-libraries.md).

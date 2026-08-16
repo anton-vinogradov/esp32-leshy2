@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "Leshy2_Compute")(type "KiCad")(uri "${KIPRJMOD}/lib/Leshy2_Compute.pretty")(options "")(descr "Pinned critical compute footprints for Leshy2"))
+)

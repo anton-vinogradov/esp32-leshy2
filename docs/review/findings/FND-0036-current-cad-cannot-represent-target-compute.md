@@ -1,6 +1,6 @@
 # FND-0036 — current CAD source cannot represent target compute platform
 
-- Статус: **Подтверждено; correction strategy открыта в `IMP-0025`**
+- Статус: **Закрыто на уровне CAD representation решением DEC-0030; проведено ревью**
 - Дата: 2026-08-16
 - Затрагивает: `C-001…007`, stage-4 CAD evidence, future schematic implementation
 
@@ -16,12 +16,17 @@ Current `hardware/tscircuit` identifies S3 N8R2, depends on mutable `jlcpcb:` pa
 - RP clock, exposed pad and recovery cannot receive ERC/DRC evidence from the current source;
 - patching the legacy board would reintroduce owners/buses already rejected by the zero-based architecture.
 
-## Required correction
+## Applied correction
 
-1. choose the reproducible critical-library strategy in `IMP-0025`;
-2. create exact project symbol/footprint assets with primary-source provenance and validation tests;
-3. keep legacy tsCircuit outputs noncanonical;
-4. use the reviewed libraries only when stage 8 creates the new target schematic;
-5. close finding only after all five critical library rows pass pin/geometry/tool validation.
+1. owner selected repository-vendored option A in `IMP-0025`;
+2. exact project symbol/footprint assets, provenance, attribution and CI checks
+   now live under `hardware/kicad`;
+3. all five rows pass pin/type, pad/geometry, file-hash and KiCad 10.0.5 parser
+   validation in `REV-0004E`;
+4. legacy tsCircuit outputs remain noncanonical;
+5. the reviewed libraries become inputs only when stage 8 creates the new
+   target schematic.
 
-No accepted capability or owner changes. This is a CAD evidence/process defect, not an architecture reopening.
+No accepted capability or owner changed. Component Q, final schematic,
+ERC/DRC, assembly, antenna/thermal and HIL proof remain open; they are not part
+of this now-closed CAD representation defect.

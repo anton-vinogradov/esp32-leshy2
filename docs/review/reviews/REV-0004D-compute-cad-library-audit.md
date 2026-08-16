@@ -1,6 +1,6 @@
 # REV-0004D — compute CAD library audit
 
-- Статус: **Проведено ревью фактов; `IMP-0025` ожидает решения**
+- Статус: **Проведено ревью фактов; superseded by DEC-0030/REV-0004E**
 - Дата: 2026-08-16
 - Артефакт: [`LIB-0001`](../components/LIB-0001-compute-cad-library-audit.md)
 - Finding: [`FND-0036`](../findings/FND-0036-current-cad-cannot-represent-target-compute.md)
@@ -22,4 +22,7 @@
 
 ## Результат
 
-CAD-library facts receive **«Проведено ревью»**. `FND-0036` is confirmed, and library strategy remains the only decision gate at this substep. No footprint geometry is qualified and no final schematic is implied by this review.
+CAD-library facts receive **«Проведено ревью»**. At this historical checkpoint
+`FND-0036` was confirmed and strategy remained open. The owner later selected
+`IMP-0025/A`; `DEC-0030/REV-0004E` implement and review the snapshot. No
+final schematic is implied by either review.

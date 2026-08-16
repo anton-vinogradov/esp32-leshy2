@@ -5,7 +5,9 @@
 - Пререквизиты: `BOM-0001`, `DEC-0028`, `PIN-0002`, `BUD-0002`
 - Review: [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md)
 - Finding: [`FND-0035`](../findings/FND-0035-rp2354a-order-code-stock-correction.md)
-- CAD audit: [`LIB-0001`](LIB-0001-compute-cad-library-audit.md), [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md)
+- CAD evidence: [`LIB-0001`](LIB-0001-compute-cad-library-audit.md),
+  [`DEC-0030`](../decisions/DEC-0030-vendored-critical-cad-libraries.md),
+  [`REV-0004D/E`](../reviews/REV-0004E-vendored-critical-cad-libraries.md)
 
 ## Evidence boundary
 
@@ -66,6 +68,7 @@ No accepted feature currently requires irreversible flash encryption or HUK. Nev
 | RP stock contradiction resolved | yes, `FND-0035`; public qty-500 availability passes, quotes/traceability remain open |
 | clock reference is no longer generic | yes, exact manufacturer-recommended candidate and circuit recorded |
 | recovery paths remain independent and owner-accessible | yes as a schematic contract; implementation proof open |
+| exact project-local C-001…005 CAD snapshot exists and parses | yes; five bindings pass pin/pad/hash validation and KiCad 10.0.5 parser checks in `REV-0004E` |
 | any component receives `Q` | no |
 
 ## Exit gate
@@ -73,7 +76,9 @@ No accepted feature currently requires irreversible flash encryption or HUK. Nev
 `BOM-0002` can receive final **«Проведено ревью»** only after:
 
 1. ~~owner disposition of `IMP-0024` and propagation to both repositories~~ — complete in `DEC-0029/REV-0004C`;
-2. exact KiCad symbols/footprints and schematic/ERC contract for `C-001…007`; `LIB-0001` completes the availability audit, while `IMP-0025` strategy and validated repository assets remain open;
+2. ~~exact project-local KiCad symbols/footprints for `C-001…005`~~ —
+   complete in `DEC-0030/REV-0004E`; exact `C-006/007` implementation and
+   the combined schematic/ERC contract remain open;
 3. two authorised quotes/AVL entries and explicit C5 lot-revision commitment;
 4. assembly/yield quote for RP QFN60 and module/reflow constraints;
 5. recovery, boot-strap, peer-unpowered, clock startup/temperature and inter-domain link HIL.

@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-08-16",
+  "toolchain": {
+    "kicad_required": "10.0.5",
+    "format": "KiCad 10 split symbol library and s-expression footprints"
+  },
+  "sources": {
+    "espressif_kicad": {
+      "repository": "https://github.com/espressif/kicad-libraries",
+      "commit": "dd76561812ab300351234ba6e0ec1295641796f0",
+      "commit_date": "2026-07-28T08:29:28+01:00",
+      "license": "CC-BY-SA-4.0 with KiCad library exception",
+      "source_symbol_library_sha256": "5e9785368a1cccbd904f8ceeab1c9165a8ef82ab00c99bf21275dc91749356cc",
+      "c5_footprint_sha256": "82697992a3eba1eecf55a0544bd5f7ddfefcdabb04aeff82d5b535ead3d784b1",
+      "s3_footprint_sha256": "c4e002263baab84c47dbabf8df70e12990f2aadd077000a7f93969faa64a54b4"
+    },
+    "kicad_symbols": {
+      "repository": "https://gitlab.com/kicad/libraries/kicad-symbols",
+      "commit": "f0811ce7f108212a1305fce0dc1d164749cdf8c4",
+      "commit_date": "2026-08-12T12:01:01+02:00",
+      "license": "CC-BY-SA-4.0 with KiCad library exception",
+      "rp2350a_sha256": "82831578f15790b343d6f439027eade5906e2a4a385e6a5f30c654546364f226",
+      "rp2354a_sha256": "e6ebd7082dc3e2eb351ab93774beda0bd239a3b864153b6b4dc898f0afdc8c9e",
+      "tca9535pwr_sha256": "a708b670b58d3e997bd44ead4d3b3c8019ee510445d8c25d889281add58a4c57",
+      "crystal_gnd24_sha256": "84b419f45f564b391ab81579eb3c84f301ffad816f7488f98a13129a16073b3b"
+    },
+    "kicad_footprints": {
+      "repository": "https://gitlab.com/kicad/libraries/kicad-footprints",
+      "commit": "c75e8f3ddc65439a5140e7c5b8c6e5b40be0f90e",
+      "commit_date": "2026-08-12T22:43:10Z",
+      "license": "CC-BY-SA-4.0 with KiCad library exception",
+      "rp2354a_qfn_sha256": "fcd35338dc4b868b83080834995cc1817fbc3b16d8e1c6948a13126c8d105cbe",
+      "tssop24_sha256": "951159bb3a87997ba4a4f14affd963324813db13d9426715b2a29388369d74ed",
+      "abm8g_geometry_sha256": "613a2d1d0ba31b8a73ca4776c8ec685bcb3f23110956641ce3e1f298c49e8208"
+    },
+    "c5_datasheet": {
+      "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+      "version": "v1.2",
+      "sha256": "075f3a5695aa1838983a8c01c415c815703856af5545b5fa748f3262b9f76248"
+    },
+    "abm8_control_drawing": {
+      "url": "https://abracon.com/datasheets/ABM8-272-T3.pdf",
+      "drawing": "456603 Rev B",
+      "issue_date": "2024-09-16",
+      "sha256": "aead22b6bd9d6f8ad4472352f70fce3ade633e90b9772ba80fabe8fd0856ae91"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "C-001",
+      "target": "ESP32-S3-WROOM-1U-N16R2",
+      "symbol": {
+        "path": "lib/Leshy2_Compute.kicad_symdir/ESP32-S3-WROOM-1U-N16R2.kicad_sym",
+        "name": "ESP32-S3-WROOM-1U-N16R2",
+        "value": "ESP32-S3-WROOM-1U-N16R2",
+        "datasheet": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+        "sha256": "69c13f9d7b1a34a7b3c5903d5dbc72063b022cd6bf1a00edf55569189e40aa0f",
+        "pin_signature": "bedef9c0ee9c8b9932f20b65f009ffa8acc95297cf697649a76c6d49ed7866bd",
+        "pin_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
+      },
+      "footprint": {
+        "path": "lib/Leshy2_Compute.pretty/ESP32-S3-WROOM-1U-N16R2.kicad_mod",
+        "name": "ESP32-S3-WROOM-1U-N16R2",
+        "sha256": "8a3a7954b015449e82367b21d2674c466cf91b98adaa2f196588e1a2d4d61a1c",
+        "pad_signature": "aee9bd56eeb7b27023ee1dfc3295317abd6a245590d1e1fecaf3d89cb67ce27a",
+        "pad_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41],
+        "numbered_pad_count": 49
+      }
+    },
+    {
+      "id": "C-002",
+      "target": "ESP32-C5-WROOM-1U-N8R8; production silicon v1.2+",
+      "symbol": {
+        "path": "lib/Leshy2_Compute.kicad_symdir/ESP32-C5-WROOM-1U-N8R8.kicad_sym",
+        "name": "ESP32-C5-WROOM-1U-N8R8",
+        "value": "ESP32-C5-WROOM-1U-N8R8",
+        "datasheet": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+        "sha256": "af509e5fe9174bbb4f54ead58acb0829a2d0be772904b0aef2482e8a12931b9f",
+        "pin_signature": "d31aaaf068fe9b867a4a6420ed8a82622e00e715ae77519e66799234c4ed21b2",
+        "pin_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+      },
+      "footprint": {
+        "path": "lib/Leshy2_Compute.pretty/ESP32-C5-WROOM-1U-N8R8.kicad_mod",
+        "name": "ESP32-C5-WROOM-1U-N8R8",
+        "sha256": "e05f234d0ccd57af04f9622b62c4f97ca622457b0e277e5320464a2453ef4c51",
+        "pad_signature": "0c69feeee98ecfe94a03cb03b147989181c1bcdcfa7943af7728b8abdc812fab",
+        "pad_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
+        "numbered_pad_count": 40
+      }
+    },
+    {
+      "id": "C-003",
+      "target": "RP2354A A4 / SC1511-A4",
+      "symbol": {
+        "path": "lib/Leshy2_Compute.kicad_symdir/RP2354A-A4.kicad_sym",
+        "name": "RP2354A-A4",
+        "value": "RP2354A-A4 / SC1511-A4",
+        "datasheet": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+        "inherits": {
+          "path": "lib/Leshy2_Compute.kicad_symdir/RP2350A.kicad_sym",
+          "name": "RP2350A"
+        },
+        "sha256": "b24b176f1a8961816852d12a8aa6c4d0f15524aade3e96c7592e5a80f3da9a9c",
+        "pin_signature": "9f77dbbc687eabdaade5d8e2adfeb97b1b66fe9fbb4fc66544c855eeecb37ef4",
+        "pin_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61]
+      },
+      "footprint": {
+        "path": "lib/Leshy2_Compute.pretty/RP2354A-A4-QFN60.kicad_mod",
+        "name": "RP2354A-A4-QFN60",
+        "sha256": "92600d0bbcf318810d9405fd8879cb2c409f540e2d446c497270ae24a7b77bcd",
+        "pad_signature": "cea2f94f7b98abd00bf493f1726768879f96f6d4d6565f6447351907e597371a",
+        "pad_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61],
+        "numbered_pad_count": 61
+      }
+    },
+    {
+      "id": "C-004",
+      "target": "TCA9535PWR",
+      "symbol": {
+        "path": "lib/Leshy2_Compute.kicad_symdir/TCA9535PWR.kicad_sym",
+        "name": "TCA9535PWR",
+        "value": "TCA9535PWR",
+        "datasheet": "https://www.ti.com/lit/ds/symlink/tca9535.pdf",
+        "sha256": "841591b2a1bcaafa9c0aa7f9757cc05601ade41d84bd9dd31dcdce6c1e7054e5",
+        "pin_signature": "0b477aadde9ecacbd529632c6e0b30323fbae7f35c0c493eb00a3962005d85b8",
+        "pin_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+      },
+      "footprint": {
+        "path": "lib/Leshy2_Compute.pretty/TCA9535PWR.kicad_mod",
+        "name": "TCA9535PWR",
+        "sha256": "c2164115e2c0039ddab9fd134ac2f3dd86ff26f33b36f9ef14502665607e0e32",
+        "pad_signature": "6a32acdf52add093b45f913c5e4a8c8d10a564afd07add9f78d9878017a9fd3e",
+        "pad_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+        "numbered_pad_count": 24
+      }
+    },
+    {
+      "id": "C-005",
+      "target": "ABM8-272-T3 12.000 MHz / CL 10 pF",
+      "symbol": {
+        "path": "lib/Leshy2_Compute.kicad_symdir/ABM8-272-T3-12MHz.kicad_sym",
+        "name": "ABM8-272-T3-12MHz",
+        "value": "ABM8-272-T3-12MHz",
+        "datasheet": "https://abracon.com/datasheets/ABM8-272-T3.pdf",
+        "sha256": "b6ab6428cb82739653aea5949ea792651d6aa736992f1512a2b1bdb6ce131672",
+        "pin_signature": "603d8fa26740fe39f619d820fd9d2632c02c6edf414beebbd82209563fe8766f",
+        "pin_numbers": [1, 2, 3, 4]
+      },
+      "footprint": {
+        "path": "lib/Leshy2_Compute.pretty/ABM8-272-T3.kicad_mod",
+        "name": "ABM8-272-T3",
+        "sha256": "ac69441cd71c6a91bdf57cca85ab0d07a9305c0909a2a1c4eb4f24bf9da926da",
+        "pad_signature": "67f80b55f6aa32900449d73f993bedf553f1b0be0ca111ab9e73096bc03d1fe6",
+        "pad_numbers": [1, 2, 3, 4],
+        "numbered_pad_count": 4
+      }
+    }
+  ]
+}
