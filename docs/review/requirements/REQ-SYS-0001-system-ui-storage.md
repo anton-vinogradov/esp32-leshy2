@@ -3,7 +3,7 @@
 - Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-SYS-01`–`C-SYS-11`, `C-X-01`, `C-X-02`, `C-X-09`, `C-HWX-01`, `C-HWX-03`, `C-HWX-04`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0006`, `DEC-0008`–`DEC-0013`, `DEC-0038`, `DEC-0039`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0006`, `DEC-0008`–`DEC-0013`, `DEC-0038`, `DEC-0039`, `DEC-0043`
 - Открытые архитектурные входы: `FND-0001`–`FND-0003`, `FND-0006`–`FND-0008`
 
 ## Граница документа
@@ -30,7 +30,7 @@
 | `REQ-SYS-11` | `C-X-01`, `C-X-02` | `include` | Сквозной safety | STOP, long-BACK, reset, shutdown, update, lock и session expiry применяют `DEC-0003`/`DEC-0010`. Ни launcher, favorites, recent, CLI, import, USB или companion path не обходят pledge, level-entry и per-tool arming. |
 | `REQ-SYS-12` | `C-X-09` | `conditional` | Основной | Rare/long arbitrary text may require a locally paired owner phone under `DEC-0038`; the device exposes that dependency and never claims the workflow ready without it. Phone supplies characters only: full text/consequence is shown locally and local confirmation remains mandatory. Absence of phone never blocks core field/safety, pairing/revoke, service or recovery operation. Exact BLE versus other companion transport is selected at G7 without silently occupying a radio needed by an incompatible task. |
 | `REQ-SYS-13` | `C-HWX-01` | `conditional` | Основной | Backlight timeout/manual dim входят при наличии управляемого dimming path; ambient auto-brightness требует отдельного sensor/profile. Until then on/off control is not described as brightness control. |
-| `REQ-SYS-14` | `C-HWX-03`, `C-HWX-04` | `acceptance`, не feature | Сквозной | UI latency, waterfall continuity и bounded SD/radio contention задаются измеримыми budgets на этапах 7–9. Dirty rectangles, DMA, double buffering и конкретный bus arbiter — допустимые способы, но не продуктовые обещания сами по себе. |
+| `REQ-SYS-14` | `C-HWX-03`, `C-HWX-04` | `acceptance`, не feature | Сквозной | По `DEC-0043` critical state и первый menu feedback видимы за `≤100 ms`; waterfall использует bounded dirty/tiled updates, явно считает visual coalescing/drop и не отнимает raw radio/audio capture. Полный redraw публикуется как HIL result, но full-frame FPS не является product demand. Exact bus/renderer проверяются на этапах 7–9. |
 
 ## Обязательные UX/safety инварианты
 

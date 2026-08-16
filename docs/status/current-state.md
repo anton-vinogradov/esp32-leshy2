@@ -94,8 +94,10 @@ They pass contact/collision/accounting/strap/service checks, but exact nRF,
 CC RF implementation, voice/IR and several control/power devices remain
 qualification blockers. `DSP-0001/REV-0003Z` review three real display/touch
 boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
-ST7796S budget and generic 24-pin connector cannot be reused; `IMP-0036` is the
-current display-performance decision. `FND-0050` records nRF24 NRND and corrects
+ST7796S budget and generic 24-pin connector cannot be reused. `DEC-0043/REV-0004J`
+accept task/dirty-region performance with `≤100 ms` critical/menu first response
+and correct the shared-U214 display quantum from 1 KiB to 256 B; exact display,
+optics and HIL remain open. `FND-0050` records nRF24 NRND and corrects
 CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)

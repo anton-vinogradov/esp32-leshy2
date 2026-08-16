@@ -1,5 +1,10 @@
 # PKG-0001 — zero-based target architecture proposal
 
+> **Current correction:** this is a former candidate/reference. Its display
+> `10 full-frame-equivalents/s`, `≥4.5 MB/s` and `≤1 KiB` sharing claims are
+> superseded by `DEC-0043`; active qualification uses task/dirty-region HIL and
+> a `≤256 B` uninterrupted pixel quantum when U214 shares the bus.
+
 - Статус: **Superseded as target by `DEC-0032`; candidate/reference only**
 - Дата: 2026-08-16
 - Этап: 3, атомарный package по `DEC-0026/0027`
@@ -95,7 +100,7 @@ STOP, PTT, re-arm, TX gates and critical actual-TX/STOP indication never depend 
 
 | Block | Target owner/path |
 |---|---|
-| display | S3 GP-SPI2, write-only baseline, PWM backlight, ≤1 KiB preemptible chunks |
+| display | former S3 GP-SPI2 candidate, write-only baseline, PWM backlight; active shared-bus quantum is `≤256 B` per `DEC-0043` |
 | touch/local slow control | isolated S3 system I²C/TCA9535; touch does not replace physical cancel |
 | microSD | S3 SDMMC 4-bit, exclusive writer/snapshot rules |
 | ES8311 + Si4732 | S3 I²S/I²C and analog fabric; mono full-duplex, hardware-default bypass/mute |
@@ -120,7 +125,7 @@ U214 and another LoRa carrier are runtime mutually exclusive. The base board car
 | RP flash | 128 KiB verifier/recovery + 2×768 KiB images +64 KiB metadata +64 KiB HIL +256 KiB reserve |
 | 3×nRF guarantee | simultaneous full-function PRX, 200 kB/s payload per radio, aggregate 600 kB/s; 57.6% of 10 Mbit/s bus with service factor |
 | mixed nRF/CC | admitted nRF450 + CC60 kB/s; 49.2% bus |
-| display | 480×320 RGB565 interface envelope, 10 full-frame-equivalents/s; ≥4.5 MB/s measured path |
+| display | historical 480×320/10-full-frame envelope; superseded by task/dirty-region contract `DEC-0043` |
 | audio | 48 kHz mono 16-bit full-duplex =192 kB/s, zero unexplained DMA loss |
 | storage | ≤1.5 MB/s admitted records, ≥4 MB/s qualified SD, ≥512 KiB queue across 250 ms stall |
 

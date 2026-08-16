@@ -133,7 +133,7 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 - E01-ML01S is a geometry/interface reference, not the accepted three-module RF/power/antenna production choice
 - nRF24 is not recommended for new designs; CC1101RGPR is ACTIVE, but authorised sourcing, qualified alternates and protocol HIL remain unresolved
 - CC1101 crystal, balun/matching network, antenna switch/connector and regional RF proof are not represented by the bare IC pinout
-- verified display/touch and microSD references exist, but target performance/interface/optics, socket/width, codec, voice module, IR frontends, Unit protection/mux and safe IRQ aggregation are not frozen
+- task-based display performance is accepted by DEC-0043 and exact display/touch and microSD references exist, but target MPN/interface/optics and shared-bus HIL, socket/width, codec, voice module, IR frontends, Unit protection/mux and safe IRQ aggregation are not frozen
 - single-core C5 worst-case service latency for three simultaneous nRF PRX FIFOs plus CC1101, IR and native-radio work needs executable HIL
 - TCA9535 powers up as inputs; every safety-relevant output requires the stated external safe pull and cannot implement STOP
 - S3 microSD and C5-link logical slots share one SD/MMC host; required scheduling/concurrency and measured throughput are not yet proven
@@ -268,7 +268,7 @@ Reserved: none. Free: none.
 - E01-ML01S is a geometry/interface reference, not the accepted three-module RF/power/antenna production choice
 - nRF24 is not recommended for new designs; CC1101RGPR is ACTIVE, but authorised sourcing, qualified alternates and protocol HIL remain unresolved
 - CC1101 crystal, balun/matching network, antenna switch/connector and regional RF proof are not represented by the bare IC pinout
-- verified display/touch and microSD references exist, but target performance/interface/optics, socket/width, codec, voice module, IR frontends, Unit protection/mux and hard-stop implementation are not frozen
+- task-based display performance is accepted by DEC-0043 and exact display/touch and microSD references exist, but target MPN/interface/optics and shared-bus HIL, socket/width, codec, voice module, IR frontends, Unit protection/mux and hard-stop implementation are not frozen
 - RP2354A is a bare-QFN candidate: power, clock, stacked-flash order identity, land pattern and prototype SWD/USB recovery remain implementation gates
 - all 30 RP GPIO and all 36 S3 GPIO are accounted with zero general-purpose reserve; physical packaging or one new direct endpoint forces remap/consolidation
 - TCA9535 powers up as inputs; every safety-relevant output requires an external safe pull and cannot implement STOP

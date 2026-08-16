@@ -66,6 +66,11 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   no permanent text keyboard; a declared rare/long text workflow may use a
   locally paired owner phone. The phone supplies visible text, never authority
   for safety, Controlled-Zone, TX, destructive, trust or recovery actions.
+- Display performance follows product tasks, not video-like full-frame FPS:
+  dirty/tiled updates give critical and first menu feedback within 100 ms,
+  waterfall rendering remains preemptible under admitted radio/audio/storage
+  load, and any visual coalescing/drop is explicit. Exact panel and optics
+  remain architecture/product-design choices.
 - Every programmable chip ultimately selected must expose permanent,
   independent programming, recovery and diagnostic access suitable for
   prototype bring-up and owner repair. Exact connectors and pins remain open.

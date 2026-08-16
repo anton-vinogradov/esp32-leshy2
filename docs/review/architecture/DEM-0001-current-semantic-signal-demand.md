@@ -34,7 +34,7 @@ semantic logic lines. Это не обещание 12 MCU GPIO: любой ва�
 | Группа | Baseline endpoints | Варианты, которые сравниваются |
 |---|---|---|
 | removable microSD | `CLK/CMD/D0` + card/power/status slow path | 1-bit (3 timing pins) против 4-bit (`D1/D2/D3`, итого 6 timing pins) с измеренным throughput |
-| display | SPI-write `SCK/MOSI/CS`, `DC`, PWM backlight; reset-safe reset | read/TE/MISO только если exact panel даёт измеримую пользу |
+| display | SPI-write `SCK/MOSI/CS`, `DC`, PWM backlight; reset-safe reset; dirty/tiled updates; critical/menu first visible response `≤100 ms` | read/TE/MISO только если exact panel даёт измеримую пользу; full-frame rate не является demand (`DEC-0043`) |
 | touch | shared/isolated I²C; source IRQ только если polling не проходит latency/power | exact controller и glove/noise behavior открыты |
 | codec/audio | `BCLK/WS/DOUT/DIN`, shared I²C, safe enable/reset и analog-bypass selects | exact codec/package подтверждается отдельно |
 | broadcast receiver | shared I²C/control plus exact receiver IRQ/reset/audio contract | exact Si4732 orderable variant/package и patch behavior открыты |
@@ -82,4 +82,3 @@ hard fail. Нельзя объявить карту complete, пока:
 - high-throughput tier либо получает exact профиль, либо остаётся явно
   изолированным reopen gate вне base pin map;
 - memory/traffic/power/service burdens посчитаны вместе с pin map.
-

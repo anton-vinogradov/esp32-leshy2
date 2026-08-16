@@ -1,10 +1,10 @@
 # DSP-0001 — display, touch and removable-storage real-device evidence
 
-- Статус: **Проведено ревью фактов; target interface/performance не выбран**
+- Статус: **Проведено ревью фактов и performance contract; exact target не выбран**
 - Дата: 2026-08-17
 - Gate: `FLOW-0001/G2F`, exact-peripheral pass
 - Finding: [`FND-0051`](../findings/FND-0051-legacy-display-interface-and-throughput.md)
-- Proposal: [`IMP-0036`](../improvements/IMP-0036-task-based-display-performance.md)
+- Decision: [`DEC-0043`](../decisions/DEC-0043-task-based-display-performance.md)
 
 ## Проверенный function envelope
 
@@ -47,6 +47,25 @@ ST7796S и не переносится в новые G2F-карты без от�
 production proof. Аналогично, наличие QSPI в controller datasheet не доказывает,
 что этот QSPI выведен на выбранном display module/carrier.
 
+## Принятый task-based performance contract
+
+`DEC-0043` заменяет synthetic full-frame rate на проверяемые задачи:
+
+- critical safety/fault/actual-TX state и первый видимый menu feedback —
+  `≤100 ms`;
+- waterfall добавляет только новые строки/столбцы/области, допускает явное
+  coalescing/drop evidence и не отнимает raw radio/audio capture;
+- display transfers preemptible; полный redraw измеряется, но не выполняется
+  периодически ради benchmark;
+- при общем SPI с U214 pixel quantum `≤256 B`, а measured accessory
+  IRQ-to-first-transfer `≤250 µs` при datasheet-valid display clock;
+- провал scenario HIL переоткрывает interface/pin/power/cost comparison.
+
+Для ориентира одна строка `320×RGB565` равна `640 B`, а область `100×40` —
+`8,000 B`. Поэтому waterfall и меню не требуют полной пересылки `307,200 B`.
+Это арифметическая достаточность low-pin envelope, но не квалификация exact
+module, driver или shared-bus implementation.
+
 ## Legacy mismatch
 
 Legacy `hardware/tscircuit/integration.tsx` описывает generic 24-position
@@ -72,15 +91,13 @@ push-pull сравниваются отдельно.
 
 ## Открытые gates
 
-- решение `IMP-0036` по user-visible display performance против hard full-frame
-  throughput;
 - exact target display, brightness/glove/water/cover-lens and temperature;
 - exact touch interrupt/polling и ordinary-control IRQ/wake topology;
 - display/U214 shared-bus HIL с datasheet-valid clocks and bounded chunks;
 - 1-bit/4-bit microSD HIL, qualified cards, socket position and hot removal;
 - lifecycle, authorised supply, unit price, assembly and repair comparison.
 
-Ни display, ни microSD строка пока не получают target/Q status.
+Ни exact display, ни microSD строка пока не получают target/Q status.
 
 ## Первичные источники
 

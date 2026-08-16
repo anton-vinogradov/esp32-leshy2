@@ -67,6 +67,11 @@ peripheral computer. Это должен быть собираемый, ремо
   использовать локально сопряжённый owner phone. Телефон передаёт видимый текст,
   но не authority для safety, Controlled Zone, TX, destructive, trust или
   recovery actions.
+- Производительность дисплея задаётся задачами продукта, а не video-like full
+  frames/s: dirty/tiled updates показывают critical state и первый menu feedback
+  за `≤100 ms`, waterfall остаётся preemptible при admitted radio/audio/storage
+  load, а любое visual coalescing/drop явно учитывается. Exact panel и optics
+  остаются решениями architecture/product design.
 - Каждый в итоге выбранный programmable chip получает постоянные независимые
   пути прошивки, восстановления и диагностики для prototype bring-up и owner
   repair. Точные connectors и pins пока открыты.

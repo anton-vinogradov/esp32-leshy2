@@ -93,8 +93,10 @@ draft consumer: [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledg
 CC RF implementation, voice/IR и часть control/power всё ещё blockers.
 `DSP-0001/REV-0003Z` проверяют три реальные display/touch boundaries и один
 microSD socket. `FND-0051` доказывает, что старые 10 full frames/s для ST7796S
-и generic 24-pin connector переиспользовать нельзя; текущий вопрос по display
-performance — `IMP-0036`. `FND-0050` фиксирует nRF24 NRND и исправляет статус
+и generic 24-pin connector переиспользовать нельзя. `DEC-0043/REV-0004J`
+принимают task/dirty-region performance с первым critical/menu response
+`≤100 ms` и исправляют shared-U214 display quantum с 1 KiB до 256 B; exact
+display, optics и HIL остаются открыты. `FND-0050` фиксирует nRF24 NRND и исправляет статус
 CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)

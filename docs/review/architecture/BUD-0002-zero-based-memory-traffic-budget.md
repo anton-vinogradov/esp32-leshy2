@@ -10,9 +10,9 @@
 > **Current correction:** `FND-0051` proves that the display row cannot qualify
 > either verified low-cost ST7796S reference: its datasheet ceiling is 1.89
 > MB/s before overhead, below both 3.072 MB/s demand and 4.5 MB/s gate. This
-> historical arithmetic remains review evidence for the superseded candidates,
-> but the display subsection requires repeat review after `IMP-0036`; it is not
-> an active G2F prerequisite.
+> historical arithmetic remains review evidence for the superseded candidates.
+> `DEC-0043` replaces this display subsection with task/dirty-region acceptance;
+> none of the full-frame numbers below is an active G2F prerequisite.
 
 ## Метод и единицы
 
@@ -66,14 +66,20 @@ Acceptance equation for the worst overlay:
 
 Therefore every S3 build must report at least `1792 KiB` usable PSRAM after boot-time reservations; resident allocations must remain ≤`896 KiB`, a foreground overlay ≤`512 KiB`, and the minimum free/largest-allocation probes must demonstrate the reserved margin during `CS-12`. If the floor fails, switching silently to N16R8 is forbidden because it removes three mapped GPIO. The remedy is allocation reduction or a new complete `PIN/SYN` candidate.
 
-### Display envelope
+### Historical display envelope — superseded by `DEC-0043`
 
-Exact panel is not selected in stage 3. Memory and bus qualification use the conservative interface envelope `480×320 RGB565`:
+This former candidate used the following synthetic `480×320 RGB565` envelope:
 
 - one full image: `480 × 320 × 2 = 307,200 B`;
 - 10 full-frame-equivalents/s: `3.072 MB/s` pixel payload;
 - baseline renderer uses ≤`256 KiB` tiled/partial buffers and therefore cannot depend on a full 307,200-byte framebuffer;
 - a future panel above this envelope reopens `BUD/PIN`, rather than silently consuming reserve.
+
+The active contract no longer requires periodic full frames. It uses dirty/tiled
+regions, critical/menu first visible response `≤100 ms`, visible waterfall
+coalescing/drop evidence and preemptible bulk transfers. When U214 shares the
+bus, the uninterrupted pixel quantum is `≤256 B` and measured accessory
+IRQ-to-first-transfer remains `≤250 µs`.
 
 ### Internal DMA-capable memory gate
 
@@ -165,7 +171,7 @@ All three current candidates share one 10 Mbit/s nRF/CC data bus, so none can cl
 
 | Path | Derived demand | Acceptance gate |
 |---|---|---|
-| display SPI | 3.072 MB/s at the stage-3 panel envelope | ≥4.5 MB/s measured payload so the envelope remains ≤70%; ≤1 KiB chunks when U214 shares the bus; accessory wait ≤250 µs |
+| display SPI — historical | 3.072 MB/s at the former stage-3 panel envelope | superseded by `DEC-0043`; task HIL, `≤256 B` shared-bus quantum and U214 wait `≤250 µs` are active |
 | I²S audio | `48,000 × 2 B × 2 directions = 192 kB/s` | continuous full-duplex with zero unexplained DMA loss; audio gaps counted |
 | microSD | admitted aggregate record ≤1.5 MB/s | ≥4.0 MB/s sustained on qualified card; survive a measured 250 ms write stall with bounded ≥512 KiB queue |
 | S3↔C5 1-bit SDIO | `2.5 MB/s` raw at 20 MHz, not claimed as application rate | ≥1.5 MB/s framed payload; control/event priority; ≤2 ms control RTT; link loss visible and TX leases expire |
@@ -174,7 +180,11 @@ All three current candidates share one 10 Mbit/s nRF/CC data bus, so none can cl
 
 At the 70% payload-occupancy policy, either 1.5 MB/s qualified IPC link admits up to `1.05 MB/s`, above the 600 kB/s nRF guarantee plus metadata. `SYN-2B` and `SYN-3A` therefore pass the arithmetic IPC gate; only HIL latency/liveness remains. `SYN-2A` sends lower-duty U214/GNSS traffic over C5 SDIO and retains its packet payload locally on S3.
 
-Display sharing in `SYN-2B/3A` also passes arithmetically: the 3.072 MB/s envelope is 68.3% of the required measured 4.5 MB/s path, while the ≤1 KiB chunk limit bounds U214 wait. `SYN-2A` has a dedicated display SPI and receives no score for capacity it does not need.
+The former display-sharing arithmetic is not a current pass: at the ST7796S
+datasheet ceiling, a 1 KiB transfer alone takes about 541 µs and cannot bound a
+250 µs U214 wait. `DEC-0043` therefore requires scenario HIL with a `≤256 B`
+preemption quantum. `SYN-2A`'s historical dedicated display path receives no
+score for capacity it does not need.
 
 ## Candidate result after arithmetic gates
 
@@ -186,7 +196,7 @@ Display sharing in `SYN-2B/3A` also passes arithmetically: the 3.072 MB/s envelo
 | nRF/CC bus arithmetic | pass admitted / fail absolute-lossless screen | same | same |
 | local radio deadline risk | S3 native radio/UI/audio/SD stress HIL | highest: single-core C5 native+IR+packet HIL | lowest scheduling risk; still HIL-required |
 | bulk IPC arithmetic | low-duty pass | pass at admitted 600 kB/s | pass at admitted 600 kB/s |
-| display/U214 sharing | display dedicated; U214 on C5 | pass with chunking | pass with chunking |
+| display/U214 sharing | historical dedicated path | task HIL required | task HIL required |
 
 No candidate is removed by memory or admitted-throughput arithmetic. The calculation does, however, prohibit a false claim common to all three: a single 10 Mbit/s bus cannot be advertised as guaranteed lossless capture of the simultaneous theoretical maxima of 3×nRF24 plus CC1101 while retaining 30% service headroom.
 
@@ -199,7 +209,7 @@ No candidate is removed by memory or admitted-throughput arithmetic. The calcula
 | `HIL-BUD-03` | 30-minute three-radio PRX service, per-source latency/loss/overflow | all |
 | `HIL-BUD-04` | CC mixed-load FIFO deadlines and nRF coexistence | all |
 | `HIL-BUD-05` | SDIO throughput/control RTT/link-loss/lease expiry | all; bulk load in `2B` |
-| `HIL-BUD-06` | display full-frame-equivalent + U214 IRQ/chunk arbitration | `2B/3A` |
+| `HIL-BUD-06` | critical/menu/waterfall scenario load + U214 IRQ arbitration at `≤256 B` display quantum; publish full-redraw result | `2B/3A` |
 | `HIL-BUD-07` | microSD 1.5 MB/s record with injected 250 ms stalls and audio | all |
 | `HIL-BUD-08` | RP SRAM/flash A/B/update/recovery/IPC high-water and fault injection | `3A` |
 

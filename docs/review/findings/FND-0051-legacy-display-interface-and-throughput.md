@@ -1,9 +1,10 @@
 # FND-0051 — legacy display connector and throughput do not match real modules
 
-- Статус: **Несоответствие локализовано; target correction ждёт `IMP-0036`**
+- Статус: **Несоответствие исправлено `DEC-0043`; exact target остаётся открыт**
 - Дата: 2026-08-17
 - Обнаружено: exact display/touch/storage pass
 - Evidence: [`DSP-0001`](../architecture/DSP-0001-display-storage-real-device-evidence.md)
+- Correction: [`DEC-0043`](../decisions/DEC-0043-task-based-display-performance.md)
 
 ## Несоответствия
 
@@ -29,9 +30,14 @@
 - historical budget остаётся evidence snapshot, но его display row явно не
   разрешено использовать как current qualification gate.
 
-## Что нельзя исправить автоматически
+## Принятое исправление target contract
 
-Нельзя одновременно объявить обязательными low-pin ST7796S и 10 full frames/s.
-Это продуктово-архитектурный tradeoff: либо перейти к task/dirty-rectangle
-acceptance, либо сохранить full-frame ceiling и заново выделить GPIO/стоимость
-под QSPI/parallel/smart-display path. Решение вынесено в `IMP-0036`.
+Владелец выбрал task/dirty-rectangle acceptance в `DEC-0043`. Унаследованные
+10 full frames/s и 4.5 MB/s больше не являются target gates. Critical/menu
+first response проверяется в пределах 100 ms, waterfall и progress используют
+малые preemptible regions, а полный redraw публикуется только как HIL result.
+
+Дополнительная арифметическая проверка нашла, что прежний `≤1 KiB` display
+quantum также не совместим с U214 wait `≤250 µs`: на максимальной паспортной
+скорости ST7796S он занимает около `541 µs` без overhead. Нормативный shared-bus
+quantum исправлен на `≤256 B` с measured IRQ-to-first-transfer gate `≤250 µs`.

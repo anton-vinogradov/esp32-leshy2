@@ -1,9 +1,10 @@
 # ⚠️ IMP-0036 — task-based display performance instead of inherited full frames
 
-- Статус: **Требуется решение владельца**
+- Статус: **Принят вариант A как `DEC-0043`**
 - Дата: 2026-08-17
 - Finding: [`FND-0051`](../findings/FND-0051-legacy-display-interface-and-throughput.md)
 - Evidence: [`DSP-0001`](../architecture/DSP-0001-display-storage-real-device-evidence.md)
+- Decision: [`DEC-0043`](../decisions/DEC-0043-task-based-display-performance.md)
 
 ## Контекст
 
@@ -50,3 +51,9 @@ AXS15231B QSPI board доказывает технологию, но не standa
 Принять `A`: это не снижение функции, а замена непроисходящего из сценариев
 synthetic load на проверяемое пользовательское поведение. Если scenario HIL не
 проходит, интерфейс автоматически переоткрывается до выбора target display.
+
+## Решение владельца
+
+Владелец принял `A`. Нормативный task/dirty-rectangle contract и исправленный
+shared-bus quantum зафиксированы в `DEC-0043`; распространение проверено
+`REV-0004J`.
