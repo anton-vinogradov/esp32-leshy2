@@ -1,6 +1,6 @@
 # Zero-based architecture workspace
 
-- Статус: **Активно по `DEC-0027`**
+- Статус: **Этап 3 проведён; target принят по `DEC-0028`**
 - Дата перезапуска: 2026-08-16
 
 ## Канонический порядок
@@ -15,7 +15,7 @@
 8. [`PWR-0001`](PWR-0001-zero-based-power-safety-envelope.md) — scenario-derived rails, sequencing, STOP/fault и HIL envelope;
 9. [`RFQ-0001`](RFQ-0001-zero-based-rf-zoning-coexistence.md) — equal-fixture RF paths/zones/coexistence and HIL gates;
 10. [`CST-0001`](CST-0001-dated-candidate-cost-burden.md) — dated recurring-cost, sourcing and implementation-burden comparison;
-11. [`PKG-0001`](PKG-0001-zero-based-target-architecture-proposal.md) — **⚠️ единое предложение** target `SYN-3A`; ожидает owner decision.
+11. [`PKG-0001`](PKG-0001-zero-based-target-architecture-proposal.md) — принятый единый target `SYN-3A`; **Проведено ревью**.
 
 Каждый шаг получает статус **«Проведено ревью»** до того, как станет пререквизитом следующего.
 
@@ -26,6 +26,7 @@ Legacy schematic/source, прежние owner assignments, buses, GPIO, pin maps
 ## Активные находки и решения
 
 - [`DEC-0027`](../decisions/DEC-0027-zero-based-capability-driven-architecture.md) — zero-based метод;
+- [`DEC-0028`](../decisions/DEC-0028-accept-zero-based-syn-3a.md) — атомарное принятие `PKG-0001/SYN-3A`;
 - [`FND-0033`](../findings/FND-0033-legacy-layout-assumptions-leaked-into-synthesis.md) — ошибка прежнего synthesis;
 - [`REV-0003J`](../reviews/REV-0003J-zero-based-stage3-restart.md) — ревью перезапуска.
 - [`REV-0003K`](../reviews/REV-0003K-zero-based-concurrency-model.md) — ревью hardware-neutral concurrency model.
@@ -37,4 +38,5 @@ Legacy schematic/source, прежние owner assignments, buses, GPIO, pin maps
 - [`REV-0003Q`](../reviews/REV-0003Q-zero-based-power-envelope.md) — ревью scenario-derived power topology и rail floors.
 - [`REV-0003R`](../reviews/REV-0003R-zero-based-rf-zoning.md) — ревью equal-fixture RF zoning/coexistence и qualification gates.
 - [`REV-0003S`](../reviews/REV-0003S-zero-based-cost-burden.md) — ревью dated candidate cost, sourcing и non-recurring burden.
-- [`REV-0003T`](../reviews/REV-0003T-atomic-package-readiness.md) — package completeness проверена; принятие владельцем открыто.
+- [`REV-0003T`](../reviews/REV-0003T-atomic-package-readiness.md) — package completeness и owner decision проверены.
+- [`REV-0003U`](../reviews/REV-0003U-stage3-acceptance-propagation.md) — target и firmware contract распространены; этап 3 закрыт.

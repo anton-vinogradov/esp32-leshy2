@@ -1,9 +1,9 @@
 # PKG-0001 — zero-based target architecture proposal
 
-- Статус: **⚠️ Предложение — готово к единому решению владельца; не принято**
+- Статус: **Принято `DEC-0028`; проведено ревью**
 - Дата: 2026-08-16
 - Этап: 3, атомарный package по `DEC-0026/0027`
-- Рекомендация: принять `SYN-3A` с `RP2354A A4` как единую target architecture
+- Target: `SYN-3A` с `RP2354A A4` как единая target architecture
 - Нормативные входы: reviewed `CAP/CON/RES/SRC/SYN/PIN/BUD/PWR/RFQ/CST`
 - Запрет: нельзя принять отдельный owner, pin, transport или UI fragment без всего package
 
@@ -211,4 +211,4 @@ Fallback always means a complete new package/re-review. It is not a second shipp
 - [x] every unresolved physical measurement is a named kill-gate, not a guessed pass;
 - [x] `2A/2B` are not independently accepted fragments.
 
-`PKG-0001` is internally complete and ready for one owner decision. Until accepted, stage 3 and target READMEs remain unchanged.
+`PKG-0001` принят владельцем атомарно в [`DEC-0028`](../decisions/DEC-0028-accept-zero-based-syn-3a.md). Ни один subordinate fragment не имеет отдельного статуса target; распространение и закрытие этапа 3 проверяет `REV-0003U`.

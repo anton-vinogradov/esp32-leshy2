@@ -1,6 +1,6 @@
 # REV-0003T — ревью готовности atomic package
 
-- Статус: **Готово к решению владельца; не «Проведено ревью» до принятия `PKG-0001`**
+- Статус: **Проведено ревью; package принят в `DEC-0028`**
 - Дата: 2026-08-16
 - Этап: 3, final decision gate
 - Артефакт: `PKG-0001`
@@ -18,7 +18,7 @@
 | update/recovery | independent owner-signed A/B and physical recovery for all three domains |
 | cost/alternatives | dated `CST-0001`, premium/NRE/stock and reasons against `2A/2B` explicit |
 | fallback | eight named kill-gates; only whole-package re-review permitted |
-| both repositories/target pages | intentionally not changed before owner acceptance |
+| both repositories/target pages | intentionally unchanged before decision; propagated after acceptance and verified by `REV-0003U` |
 
 ## Recommendation review
 
@@ -28,10 +28,10 @@
 
 `3A` is recommended because the controlled/dangerous feature set makes independent real-time safety and fault containment a product property rather than optional polish. Its price, third target and current allocation shortfall are explicitly retained, not hidden.
 
-## Blocking decision
+## Результат решения
 
-There is exactly one open proposal:
+Единое предложение было вынесено владельцу с полным контекстом:
 
 > **⚠️ Предложение:** принять `PKG-0001/SYN-3A` целиком, включая RP2354A A4, owners/transports/pins/UI/update/power/RF/cost и `KG-01…08`.
 
-No subordinate decision is requested. After owner acceptance, the next review must create the acceptance decision, mark `PKG/REV/stage 3` **«Проведено ревью»**, update target/current-state entrypoints in both repositories and create the firmware architecture from the accepted hardware contract.
+Владелец принял предложение целиком. [`DEC-0028`](../decisions/DEC-0028-accept-zero-based-syn-3a.md) фиксирует решение; subordinate decision не создаётся. Cross-repository propagation, target entrypoints и firmware architecture проверяет `REV-0003U` до закрытия этапа 3.

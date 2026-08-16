@@ -13,8 +13,9 @@
 | 0. Система ревью и baseline | Проведено ревью |
 | 1. Видение и границы | Проведено ревью, включая трёхуровневое уточнение |
 | 2. Возможности и исключения | Проведено ревью (`REV-0002AD`) |
-| 3. Архитектура и владение | В работе |
-| 4–10 | Не начато |
+| 3. Архитектура и владение | Проведено ревью (`DEC-0028`, `REV-0003U`) |
+| 4. Компоненты и BOM | Готов к началу |
+| 5–10 | Не начато |
 
 Каноническая таблица стадий — [`docs/review/stages.md`](../review/stages.md).
 
@@ -35,10 +36,10 @@
 - S3 как единственный baseline native-BLE owner; C5 BLE default-off, полный native nRF24 scope не сокращён (`DEC-0021`);
 - сначала полный owner-confirmed реестр хотелок, затем несколько компоновок и сводный бюджет ресурсов (`DEC-0022`);
 - замороженный wishlist из 125 leaf-функций после делегированного саморевью с границами base/optional/deferred (`DEC-0023`);
-- latched physical hard STOP, который сбрасывает оба MCU, независимо inhibit/обесточивает внешние TX-домены и требует физического re-arm (`DEC-0024`);
+- latched physical hard STOP, который управляет RP `RUN` и S3/C5 reset/enable policy, независимо inhibit/обесточивает внешние TX-домены и требует физического re-arm (`DEC-0024`, `DEC-0028`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
-- IR остаётся у C5; владелец трёх полнофункциональных nRF24 открыт для сравнения этапа 3 и больше не указан как принятый C5 target (`DEC-0001`, `DEC-0023`, `FND-0028`).
-- owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
+- принят трёхдоменный target `PKG-0001/SYN-3A`: S3 N16R2 application/UI/audio/storage/native Wi-Fi/BLE, C5 N8R8 dual-band Wi-Fi/802.15.4/IR и RP2354A A4 с прямым управлением 3×nRF24/CC1101/voice (`DEC-0028`);
+- owner-controlled подписанные обновления S3/C5/RP с A/B rollback, physical recovery и открытым developer lifecycle (`DEC-0013`, `DEC-0028`) без включения необратимого hardware lockdown.
 
 ## Открытое инженерное состояние
 
@@ -79,7 +80,7 @@ NFC/RFID-срез [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rf
 
 Consumer-IR срез [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) получил статус **«Проведено ревью»** в `REV-0002S`. Владелец принял `IMP-0015/A` как [`DEC-0018`](../review/decisions/DEC-0018-dual-path-consumer-ir.md): C5 использует TSOP38238 для robust demodulated 38 kHz приёма и TSMP95000 для обучения с измерением несущей 30–60 kHz, занимая оба RX RMT channels C5; TSAL6200 — первый условный кандидат 940 nm emitter. Более дешёвые single-learning/fixed-38 варианты теряют принятую функцию и не могут подменить решение молча. `FND-0018` закрыт на requirement-level; автоматическое обучение 455 kHz/out-of-band остаётся deferred. Own remote/replay находится в Main, passive analysis — в Lab, unknown replay — в Controlled Zone `AUTHORIZED_TARGET`, а TV-B-Gone/brute-force/multi-code sweep — в Controlled Zone `BOTH`. `FND-0017`, C5 pins/transport, exact BOM, STOP, optics, licences и HIL остаются открытой реализационной работой.
 
-Capability-аудит 3×nRF24 прошёл `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) сохраняет три одновременных полнофункциональных radio и принятый [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md) — calibrated binary RPD hit-rate sector comparison, никогда не RSSI/dBm/bearing/VSWR. Physical owner остаётся полностью открытым. `REV-0002Z`/`AUD-0003`/`IMP-0021` являются только историческими источниками идей и рисков; новый synthesis не принимает их раскладки. По [`DEC-0026`](../review/decisions/DEC-0026-atomic-integrated-architecture-acceptance.md) owner/transport отдельно не принимаются. `FND-0019`/`FND-0021` остаются implementation gates.
+Capability-аудит 3×nRF24 прошёл `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) сохраняет три одновременных полнофункциональных radio и принятый [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md) — calibrated binary RPD hit-rate sector comparison, никогда не RSSI/dBm/bearing/VSWR. На этом checkpoint этапа 2 physical owner оставался открытым, а позднее `DEC-0028` назначил прямое управление RP2354A. `REV-0002Z`/`AUD-0003`/`IMP-0021` остаются историческими источниками идей/рисков; `FND-0019`/`FND-0021` — implementation gates.
 
 C5 Wi-Fi/IEEE 802.15.4 prerequisite audit прошёл `REV-0002V`, а финальное распространение [`REV-0002W`](../review/reviews/REV-0002W-c5-wifi-802154-decision-propagation.md) дало [`REQ-W5-0001`](../review/requirements/REQ-W5-0001-c5-wifi-ieee802154.md) статус **«Проведено ревью»**. Владелец принял `IMP-0018/A` как [`DEC-0020`](../review/decisions/DEC-0020-open-first-thread-conditional-zigbee.md): OpenThread — открытый baseline, Zigbee — optional conditional adapter, не требуемый core/raw/Thread build. Main/Lab/Controlled Zone разделены; C5 shared 2.4 GHz path не выдаётся за одновременные radio. `FND-0025` закрыт на requirement-level. Source candidate N8R4→N8R8, ANT1/ANT2 и EPAD исправлены, но final RF artifact остаётся открытым (`FND-0022`); public/raw/patched boundary (`FND-0023`) и DFS/country/PMF/privacy (`FND-0024`) также ждут implementation/HIL. `IMP-0003` и private patched Wi-Fi backend не приняты автоматически.
 
@@ -88,7 +89,7 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 Оставшиеся срезы этапа 2 получили статус **«Проведено ревью»**: [`REQ-W24-0001`](../review/requirements/REQ-W24-0001-s3-wifi-espnow.md), [`REQ-SUB-0001`](../review/requirements/REQ-SUB-0001-cc1101-subghz.md), [`REQ-LORA-0001`](../review/requirements/REQ-LORA-0001-external-sx1262.md) и [`REQ-X-0001`](../review/requirements/REQ-X-0001-cross-session-performance.md). [`INV-0004`](../review/inventories/INV-0004-wishlist-self-review.md) покрывает 125/125 кандидатов и двенадцать leaf-dispositions из десяти source-extras. `REV-0002AD` закрывает этап 2 на requirement-level; exact hardware/HIL остаются доказательствами следующих этапов.
 
 
-## Активный архитектурный gate
+## Проверенная архитектура и следующий gate
 
 Этап 3 перезапущен по [`DEC-0027`](../review/decisions/DEC-0027-zero-based-capability-driven-architecture.md). [`FND-0033`](../review/findings/FND-0033-legacy-layout-assumptions-leaked-into-synthesis.md) зафиксировал методическую ошибку: прежняя работа оптимизировала legacy owners/buses/pins вместо независимого вывода архитектуры из хотелок.
 
@@ -96,9 +97,9 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 Новая активная цепочка начинается с [`CAP-0001`](../review/architecture/CAP-0001-zero-based-capability-input.md). Она заново покрывает 15/15 owner invariants, 9/9 wishlist groups и 13/13 `REQ-*` без pin/bus allocation и получила статус **«Проведено ревью»** в [`REV-0003J`](../review/reviews/REV-0003J-zero-based-stage3-restart.md). Следующий аппаратно-нейтральный артефакт [`CON-0001`](../review/architecture/CON-0001-hardware-neutral-concurrency-model.md) разделил обязательную параллельность, time-sharing, qualification-only пары и взаимоисключения, покрыл все 21 capability atom и отказовые сценарии и получил тот же статус в [`REV-0003K`](../review/reviews/REV-0003K-zero-based-concurrency-model.md). [`RES-0001`](../review/architecture/RES-0001-hardware-neutral-resource-demand.md) затем вывел compute/interface/timing/memory/power/safety/recovery demand и sizing equations без назначения MCU/GPIO; `REV-0003L` провёл его ревью. [`SRC-0001`](../review/architecture/SRC-0001-primary-hardware-resource-facts.md) отделил primary package/controller/peripheral facts от layout assumptions и прошёл `REV-0003M`.
 
-Заранее фиксированы только явно принятые продуктовые границы: S3 native Wi-Fi/BLE, C5 Wi-Fi 2.4/5 GHz + IEEE 802.15.4 и dual-path IR, три полнофункциональных nRF24, onboard ES8311, внешние GNSS/LoRa/NFC profiles, hard STOP и открытые подписанные обновления. Владелец/controller/bridge трёх nRF24, MCU variants, transports, buses, pins, UI topology, memory, power и recovery полностью открыты.
+Zero-based метод сначала фиксировал только продуктовые границы. `DEC-0028` теперь разрешает весь target: RP2354A напрямую владеет тремя nRF24, CC1101 и voice real-time control; 1-bit SDIO и SPI+alert приняты как междоменные transports.
 
-[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) с нуля вывел три цельных способа закрыть один resource graph: `SYN-2A` с packet-radio service на S3 и U214/GNSS на свободных C5 interfaces, `SYN-2B` с packet-radio service на C5 и `SYN-3A` с отдельным deterministic RP2354A A4 domain. Каждый размещает весь продукт, а не только nRF; split ownership сохранён как conditional response на измеренный single-bus/load fail. `REV-0003N/3O` провели ревью набора без выбора winner.
+[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) с нуля сравнил три цельных способа закрыть один resource graph: `SYN-2A` с packet-radio service на S3 и U214/GNSS на свободных C5 interfaces, `SYN-2B` с packet-radio service на C5 и `SYN-3A` с отдельным deterministic RP2354A A4 domain. `REV-0003N/3O` проверили набор без выбора winner; последующий атомарный package выбрал `SYN-3A` в `DEC-0028`.
 
 Exact [`PIN-0002`](../review/architecture/PIN-0002-zero-based-exact-pin-maps.md) прошёл `REV-0003O`: все 36 S3 и 21 C5 pins имеют role/free/reserved state, controller collisions отсутствуют, straps/recovery и корректная latch/IRQ logic явны. `FND-0034` исправил переполнение первой формулировки `SYN-2A` без потери scope: U214 и два GNSS UART используют свободные C5 interfaces. `SYN-2A` и `SYN-2B` сошлись без безопасного generic GPIO reserve; `SYN-3A` оставляет семь обычных C5 GPIO при 30/30 GPIO RP2354 и dedicated recovery.
 
@@ -112,8 +113,6 @@ Exact [`PIN-0002`](../review/architecture/PIN-0002-zero-based-exact-pin-maps.md)
 
 [`CST-0001`](../review/architecture/CST-0001-dated-candidate-cost-burden.md) прошёл [`REV-0003S`](../review/reviews/REV-0003S-zero-based-cost-burden.md). В snapshot 2026-08-16 на 500 штук candidate-specific recurring ranges составляют `2B $0.5017…0.6517`, `2A $0.6313…0.7813` и `3A $1.7359…1.8859`. Примерно $1.10 midpoint premium `3A` над `2A` покупает direct radio controls, deterministic isolation и семь свободных C5 GPIO, а не экономию количества деталей. Он также добавляет больше всего firmware/update/HIL работы, а наблюдаемый immediate stock RP2354A меньше 500, несмотря на официальный production horizon RP2350 до 2045 года.
 
-Все prerequisite models атомарного package проверены. [`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) и readiness review [`REV-0003T`](../review/reviews/REV-0003T-atomic-package-readiness.md) объединяют capability coverage, exact pins, UI controls, memory/traffic, power, RF, recurring cost, update/recovery и sourcing.
+[`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) атомарно принят в [`DEC-0028`](../review/decisions/DEC-0028-accept-zero-based-syn-3a.md). [`REV-0003U`](../review/reviews/REV-0003U-stage3-acceptance-propagation.md) проверяет exact owners, transports, pins, controls, budgets, power, RF, update/recovery, cost, kill-gates и распространение target в оба репозитория; этап 3 получил статус **«Проведено ревью»**.
 
-**⚠️ Предложение:** принять `SYN-3A` одним package: S3 N16R2 владеет application/UI/storage/audio/native Wi-Fi/BLE и внешними M5 profiles; C5 N8R8 — dual-band Wi-Fi/802.15.4/dual IR; RP2354A A4 напрямую владеет 3×nRF24, CC1101 и analog-voice real-time safety. S3↔C5 — 1-bit SDIO; S3↔RP — SPI+alert. В предложение входят touch + encoder/BACK/HOME/OPTIONS, direct PTT, независимые STOP/re-arm, три owner-signed A/B recovery path, проверенные budgets и восемь whole-package kill-gates.
-
-Рекомендация принимает примерно $1.10 midpoint recurring premium над `2A` и максимальный firmware burden ради direct radio controls, deterministic fault isolation и семи свободных C5 GPIO. `2A` остаётся только первым полным fallback после named kill-gate; дополнительные $0.13 экономии `2B` не оправдывают его C5/RF concentration. Целевые README не меняются до принятия всего package владельцем.
+Следующий gate — этап 4: свести каждую принятую exact part, условный candidate и пока абстрактную circuit function в единый evidence register, затем квалифицировать компоненты по порядку зависимостей. Существующие schematic/source artifacts остаются legacy implementation evidence до соответствия принятому target.

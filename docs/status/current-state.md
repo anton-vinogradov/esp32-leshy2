@@ -13,8 +13,9 @@
 | 0. Review system and baseline | Reviewed |
 | 1. Vision and boundaries | Reviewed, including three-tier clarification |
 | 2. Capabilities and exclusions | Reviewed (`REV-0002AD`) |
-| 3. Architecture and ownership | In progress |
-| 4–10 | Not started |
+| 3. Architecture and ownership | Reviewed (`DEC-0028`, `REV-0003U`) |
+| 4. Components and BOM | Ready to start |
+| 5–10 | Not started |
 
 The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 
@@ -35,10 +36,10 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - S3 as the sole baseline native-BLE owner, with C5 BLE default-off and no reduction of the full native nRF24 scope (`DEC-0021`);
 - a complete owner-confirmed wishlist before multiple layouts and a consolidated resource budget (`DEC-0022`);
 - a frozen 125-leaf wishlist after delegated self-review, with base/optional/deferred boundaries (`DEC-0023`);
-- a latched physical hard STOP that resets both MCUs, independently inhibits/power-cuts external TX domains, and requires physical re-arm (`DEC-0024`);
+- a latched physical hard STOP that drives RP `RUN` and the S3/C5 reset/enable policy, independently inhibits/power-cuts external TX domains, and requires physical re-arm (`DEC-0024`, `DEC-0028`);
 - onboard mono ES8311 audio architecture with fail-safe analog bypass (`DEC-0009`);
-- IR remains on C5; ownership of the three full-function nRF24 radios is open for stage-3 comparison and no longer appears as an accepted C5 target (`DEC-0001`, `DEC-0023`, `FND-0028`).
-- owner-controlled signed S3/C5 updates with rollback and an open developer lifecycle (`DEC-0013`), without enabling irreversible hardware lockdown.
+- the accepted `PKG-0001/SYN-3A` three-domain target: S3 N16R2 application/UI/audio/storage/native Wi-Fi/BLE, C5 N8R8 dual-band Wi-Fi/802.15.4/IR, and RP2354A A4 direct 3×nRF24/CC1101/voice (`DEC-0028`);
+- owner-controlled signed S3/C5/RP updates with A/B rollback, physical recovery and an open developer lifecycle (`DEC-0013`, `DEC-0028`), without enabling irreversible hardware lockdown.
 
 ## Open engineering state
 
@@ -79,7 +80,7 @@ The NFC/RFID slice [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-r
 
 The consumer-IR slice [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) is **Reviewed** under `REV-0002S`. The owner accepted `IMP-0015/A` as [`DEC-0018`](../review/decisions/DEC-0018-dual-path-consumer-ir.md): C5 uses TSOP38238 for robust demodulated 38 kHz receive and TSMP95000 for measured-carrier learning from 30 to 60 kHz, consuming both C5 RX RMT channels; TSAL6200 is the first conditional 940 nm emitter candidate. Cheaper single-learning/fixed-38 variants lose an accepted capability and cannot be substituted silently. `FND-0018` is closed at requirement level; automatic 455 kHz/out-of-band learning remains deferred. Own remote/replay is Main, passive analysis is Lab, unknown replay is Controlled Zone `AUTHORIZED_TARGET`, and TV-B-Gone/brute-force/multi-code sweep is Controlled Zone `BOTH`. `FND-0017`, C5 pins/transport, exact BOM, STOP, optics, licences and HIL remain open implementation work.
 
-The 3×nRF24 capability audit passed `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) preserves three simultaneous full-function radios and accepted [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md), a calibrated binary RPD hit-rate sector comparison that is never RSSI/dBm/bearing/VSWR. Physical ownership is fully open. `REV-0002Z`/`AUD-0003`/`IMP-0021` are historical idea and risk sources only; the new synthesis does not inherit their layouts. [`DEC-0026`](../review/decisions/DEC-0026-atomic-integrated-architecture-acceptance.md) still forbids accepting owner/transport separately. `FND-0019` and `FND-0021` remain implementation gates.
+The 3×nRF24 capability audit passed `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) preserves three simultaneous full-function radios and accepted [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md), a calibrated binary RPD hit-rate sector comparison that is never RSSI/dBm/bearing/VSWR. Ownership remained open at this stage-2 checkpoint and was later resolved to direct RP2354A control by `DEC-0028`. `REV-0002Z`/`AUD-0003`/`IMP-0021` remain historical idea/risk sources only; `FND-0019` and `FND-0021` remain implementation gates.
 
 The C5 Wi-Fi/IEEE 802.15.4 prerequisite audit passed `REV-0002V`, and final propagation under [`REV-0002W`](../review/reviews/REV-0002W-c5-wifi-802154-decision-propagation.md) makes [`REQ-W5-0001`](../review/requirements/REQ-W5-0001-c5-wifi-ieee802154.md) **Reviewed**. The owner accepted `IMP-0018/A` as [`DEC-0020`](../review/decisions/DEC-0020-open-first-thread-conditional-zigbee.md): OpenThread is the open baseline and Zigbee is an optional conditional adapter not required by core/raw/Thread builds. Main/Lab/Controlled Zone are separated, and the shared C5 2.4 GHz path is not represented as simultaneous radios. `FND-0025` is closed at requirement level. N8R4→N8R8, ANT1/ANT2, and EPAD source corrections are complete while final RF qualification remains open (`FND-0022`); the public/raw/patched boundary (`FND-0023`) and DFS/country/PMF/privacy (`FND-0024`) still require implementation/HIL. `IMP-0003` and a private patched Wi-Fi backend were not accepted automatically.
 
@@ -88,7 +89,7 @@ The native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-
 The remaining stage-2 slices are now **Reviewed**: [`REQ-W24-0001`](../review/requirements/REQ-W24-0001-s3-wifi-espnow.md), [`REQ-SUB-0001`](../review/requirements/REQ-SUB-0001-cc1101-subghz.md), [`REQ-LORA-0001`](../review/requirements/REQ-LORA-0001-external-sx1262.md), and [`REQ-X-0001`](../review/requirements/REQ-X-0001-cross-session-performance.md). [`INV-0004`](../review/inventories/INV-0004-wishlist-self-review.md) accounts for 125/125 candidates and twelve leaf dispositions from ten source extras. `REV-0002AD` closes stage 2 at requirement level; exact hardware and HIL remain later-stage evidence.
 
 
-## Active architecture gate
+## Reviewed architecture and next gate
 
 Stage 3 was restarted under [`DEC-0027`](../review/decisions/DEC-0027-zero-based-capability-driven-architecture.md). [`FND-0033`](../review/findings/FND-0033-legacy-layout-assumptions-leaked-into-synthesis.md) records the method error: prior work optimized legacy owners, buses and pins instead of deriving hardware independently from the accepted capabilities.
 
@@ -96,9 +97,9 @@ The complete prior `DM/BUD/PIN/SC/LAY/CMP/ADR`, nRF-owner audit and `IMP-0021` t
 
 The new active chain starts with [`CAP-0001`](../review/architecture/CAP-0001-zero-based-capability-input.md). It covers 15/15 owner invariants, 9/9 wishlist groups and 13/13 requirement documents without pin/bus allocation and is **Reviewed** under [`REV-0003J`](../review/reviews/REV-0003J-zero-based-stage3-restart.md). The next hardware-neutral artifact, [`CON-0001`](../review/architecture/CON-0001-hardware-neutral-concurrency-model.md), separates mandatory parallelism, time-sharing, qualification-only pairs and exclusions, covers all 21 capability atoms plus failure scenarios, and is **Reviewed** under [`REV-0003K`](../review/reviews/REV-0003K-zero-based-concurrency-model.md). [`RES-0001`](../review/architecture/RES-0001-hardware-neutral-resource-demand.md) then derives compute/interface/timing/memory/power/safety/recovery demand and sizing equations without MCU/GPIO placement; `REV-0003L` reviews it. [`SRC-0001`](../review/architecture/SRC-0001-primary-hardware-resource-facts.md) separates primary package/controller/peripheral facts from layout assumptions and passes `REV-0003M`.
 
-Only explicitly accepted product boundaries are fixed in advance: S3 native Wi-Fi/BLE; C5 2.4/5 GHz Wi-Fi, IEEE 802.15.4 and dual-path IR; three full-function nRF24 paths; onboard ES8311; external GNSS/LoRa/NFC profiles; hard STOP; and open signed updates. The nRF owner/controller/bridge, MCU variants, transports, buses, pins, UI topology, memory, power and recovery remain fully open.
+The zero-based method initially fixed only product-level boundaries. `DEC-0028` now resolves the complete target: RP2354A directly owns all three nRF24 radios, CC1101 and voice real-time control; 1-bit SDIO and SPI+alert are the accepted inter-domain transports.
 
-[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) independently derives three whole-device ways to close the same resource graph: `SYN-2A` places packet-radio service on S3 and U214/GNSS on free C5 interfaces, `SYN-2B` places packet-radio service on C5, and `SYN-3A` adds a deterministic RP2354A A4 domain. Each places the whole product rather than only nRF; split ownership remains a conditional response to a measured single-bus/load failure. `REV-0003N/3O` review the candidate set without choosing a winner.
+[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) independently compared three whole-device ways to close the same resource graph: `SYN-2A` places packet-radio service on S3 and U214/GNSS on free C5 interfaces, `SYN-2B` places packet-radio service on C5, and `SYN-3A` adds a deterministic RP2354A A4 domain. `REV-0003N/3O` reviewed the candidate set without choosing a winner; the later atomic package selected `SYN-3A` in `DEC-0028`.
 
 Exact [`PIN-0002`](../review/architecture/PIN-0002-zero-based-exact-pin-maps.md) passes `REV-0003O`: all 36 S3 and 21 C5 pins have an assigned/free/reserved state, controller collisions are absent, and straps, recovery and correct latch/IRQ logic are explicit. `FND-0034` corrects the first `SYN-2A` overflow without losing scope by moving U214 and two GNSS UARTs to free C5 interfaces. `SYN-2A` and `SYN-2B` close with no safe generic GPIO reserve; `SYN-3A` retains seven ordinary C5 GPIO while using 30/30 RP2354 GPIO plus dedicated recovery.
 
@@ -112,8 +113,6 @@ All candidates pass paper memory and admitted-throughput arithmetic; `SYN-2A` re
 
 [`CST-0001`](../review/architecture/CST-0001-dated-candidate-cost-burden.md) passes [`REV-0003S`](../review/reviews/REV-0003S-zero-based-cost-burden.md). At the 2026-08-16 qty-500 snapshot, candidate-specific recurring ranges are `2B $0.5017…0.6517`, `2A $0.6313…0.7813`, and `3A $1.7359…1.8859`. The approximately $1.10 midpoint premium of `3A` over `2A` buys direct radio controls, deterministic isolation and seven free C5 GPIO, not a parts-count saving. It also adds the most firmware/update/HIL work and its observed RP2354A immediate stock is below 500 despite an official RP2350 production horizon through 2045.
 
-All prerequisite models for the atomic package are reviewed. [`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) and readiness review [`REV-0003T`](../review/reviews/REV-0003T-atomic-package-readiness.md) now combine capability coverage, exact pins, UI controls, memory/traffic, power, RF, recurring cost, update/recovery and sourcing.
+Hardware [`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) was accepted atomically in [`DEC-0028`](../review/decisions/DEC-0028-accept-zero-based-syn-3a.md). [`REV-0003U`](../review/reviews/REV-0003U-stage3-acceptance-propagation.md) verifies the exact owners, transports, pins, controls, budgets, power, RF, update/recovery, cost, kill-gates and cross-repository target propagation; stage 3 is **Reviewed**.
 
-**⚠️ Proposal:** accept `SYN-3A` as one package: S3 N16R2 owns application/UI/storage/audio/native Wi-Fi/BLE and external M5 profiles; C5 N8R8 owns dual-band Wi-Fi/802.15.4/dual IR; RP2354A A4 directly owns 3×nRF24, CC1101 and analog-voice real-time safety. S3↔C5 is 1-bit SDIO; S3↔RP is SPI+alert. The proposal includes touch + encoder/BACK/HOME/OPTIONS, direct PTT, independent STOP/re-arm, three owner-signed A/B recovery paths, the reviewed budgets and eight whole-package kill-gates.
-
-The recommendation accepts about a $1.10 midpoint recurring premium over `2A` and the largest firmware burden to gain direct radio controls, deterministic fault isolation and seven free C5 GPIO. `2A` remains only the first complete fallback after a named kill-gate; `2B`'s extra $0.13 saving does not justify its C5/RF concentration. Target READMEs remain unchanged until the owner accepts the whole package.
+The next gate is stage 4: convert every accepted exact part, conditional candidate and still-abstract circuit function into one evidence register, then qualify components in dependency order. Existing schematic/source artifacts remain legacy implementation evidence until they conform to the accepted target.
