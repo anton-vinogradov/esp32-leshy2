@@ -100,4 +100,4 @@ Native BLE prerequisite audit прошёл `REV-0002X`. Владелец при�
 
 ## Следующий артефакт
 
-`INV-0002` собирает все 125 известных функциональных кандидатов, owner additions и отдельно подсвеченные extras. Следующая работа — последовательно закрыть Wi-Fi 2.4, Sub-GHz/CC1101, LoRa и cross-cutting/UX/performance capability slices, затем получить решения по каждому `W-EXTRA-*` и провести owner wishlist freeze. Pin budget и выбор `IMP-0010`/`IMP-0021` до этого не выполняются как архитектурное решение.
+`INV-0002` собирает все 125 известных функциональных кандидатов, owner additions и отдельно подсвеченные extras. `INV-0003` распределяет их без дублей по девяти `WG-*`, а десять extras — по четырём `WE-*`; группировка находится на owner review в `REV-0002AB`. После её подтверждения группы последовательно проходят Main → Lab → Controlled Zone → contained disruptive → extras. Pin budget и выбор `IMP-0010`/`IMP-0021` до wishlist freeze не выполняются как архитектурное решение.

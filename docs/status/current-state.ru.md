@@ -82,6 +82,8 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 [`DEC-0022`](../review/decisions/DEC-0022-capability-first-before-layout.md) требует сначала собрать и подтвердить полный [`INV-0002`](../review/inventories/INV-0002-product-wishlist.md). Реестр уже импортирует 125 известных кандидатов, owner additions и десять отдельно подсвеченных extras, но ещё не заморожен: не завершены Wi-Fi 2.4, Sub-GHz, LoRa, cross-cutting/UX/performance slices и owner-extra decisions.
 
+[`INV-0003`](../review/inventories/INV-0003-wishlist-review-groups.md) распределяет все 125 строк без дублей по девяти пользовательским группам и собирает десять extras в четыре review-пакета. Статус — **«На ревью владельца»**: подтверждается только удобство группировки и порядок прохода, не функции оптом.
+
 [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO остаются layout candidates. После wishlist freeze для них строятся минимум S3-heavy, C5-heavy и balanced/modular компоновки на одном demand model.
 
 `FND-0006` и `FND-0007` остаются открытыми. Перенос не выбирает `U14`/матрицу 3×3 и не доказывает аппаратный STOP.

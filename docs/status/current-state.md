@@ -82,6 +82,8 @@ The native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-
 
 [`DEC-0022`](../review/decisions/DEC-0022-capability-first-before-layout.md) requires the complete [`INV-0002`](../review/inventories/INV-0002-product-wishlist.md) to be assembled and owner-confirmed first. The registry imports 125 known candidates, owner additions, and ten explicitly highlighted extras, but is not frozen: Wi-Fi 2.4, Sub-GHz, LoRa, cross-cutting/UX/performance slices and owner-extra decisions remain.
 
+[`INV-0003`](../review/inventories/INV-0003-wishlist-review-groups.md) assigns all 125 rows exactly once to nine user-facing groups and collects ten extras into four review packets. It is **In owner review**: only grouping and review order are being confirmed, not all functions in bulk.
+
 [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, the CE latch, and exact GPIO remain layout candidates. After wishlist freeze, at least S3-heavy, C5-heavy, and balanced/modular layouts will be compared against one demand model.
 
 `FND-0006` and `FND-0007` remain open. The deferral neither selects `U14`/the 3×3 matrix nor proves a hardware STOP.

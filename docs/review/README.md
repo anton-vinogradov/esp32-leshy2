@@ -110,6 +110,7 @@
 - [⚠️ IMP-0021: S3 владеет тремя полнофункциональными nRF24 — layout-кандидат после wishlist freeze](improvements/IMP-0021-s3-owns-three-full-function-nrf24.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [INV-0002: единый реестр хотелок продукта перед компоновкой — в работе](inventories/INV-0002-product-wishlist.md)
+- [INV-0003: девять групп wishlist и четыре extra-пакета — на owner review](inventories/INV-0003-wishlist-review-groups.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
 - [AUD-0003: сравнительный аудит владельца трёх полнофункциональных nRF24](audits/AUD-0003-three-nrf24-owner-placement.md)
@@ -145,6 +146,7 @@
 - [REV-0002Y: финальное ревью и распространение S3 native-BLE ownership](reviews/REV-0002Y-s3-native-ble-decision-propagation.md)
 - [REV-0002Z: ревью пререквизитов повторного выбора владельца 3×nRF24](reviews/REV-0002Z-nrf24-owner-placement-prerequisites.md)
 - [REV-0002AA: ревью capability-first порядка до компоновки](reviews/REV-0002AA-capability-first-workflow.md)
+- [REV-0002AB: owner review группировки полного wishlist — на ревью](reviews/REV-0002AB-wishlist-grouping.md)
 
 ## Статусы
 
