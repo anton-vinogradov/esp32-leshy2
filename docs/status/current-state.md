@@ -32,8 +32,8 @@ The canonical table is [`stages.md`](../review/stages.md).
 - `W-EXTRA-12` is closed by [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): open personal FIDO2/CTAP authenticator with U2F compatibility;
 - `W-EXTRA-13` is closed by [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): no product haptic, motor, dedicated profile or mount;
 - `W-EXTRA-14` is closed by [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
-- current question: [`IMP-0032`](../review/improvements/IMP-0032-keyboard-whole-product-comparison.md) for `W-EXTRA-15` physical-keyboard product archetype; then `16`
-  high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
+- `W-EXTRA-15` is closed by [`DEC-0038`](../review/decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md): no integrated keyboard, bounded phone-assisted text;
+- current question: [`IMP-0033`](../review/improvements/IMP-0033-native-high-speed-usb-host.md) for `W-EXTRA-16` native High-Speed USB host; then `17` 6 GHz/Wi-Fi 6E.
 
 No remaining item becomes part of the target before owner disposition.
 
@@ -81,9 +81,9 @@ Consequences:
 ## Active next artifact
 
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-reviews the M5 ecosystem: after rejected haptic leaves the live denominator and
-external IMU is correctly treated as partial until rigidly indexed, M5-only
-fully covers 23.5% of relevant classes and reaches 47.1% with partial/custom
+reviews the M5 ecosystem: after rejected haptic and keyboard profiles leave the
+live denominator and external IMU is correctly partial until rigidly indexed,
+M5-only fully covers 18.8% of relevant classes and reaches 43.8% with partial/custom
 iButton coverage, so the
 90% attachment goal requires a separate high-speed tier, accepted in
 `DEC-0034`. [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
@@ -92,10 +92,11 @@ the external-module coverage; `DEC-0036/REV-0002AJ` reject it from product
 scope. [`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
 and `DEC-0037/REQ-IMU-0001` close `W-EXTRA-14` as an optional external
 measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
-reviews `W-EXTRA-15`; `IMP-0032` recommends equal whole-product G3 comparison
-without silently selecting a keyboard target. Parallel G3
-research
-starts from already reviewed capabilities and defines the physical
+and `DEC-0038/REV-0002AN` close `W-EXTRA-15`: the base has no permanent
+keyboard and bounded phone-assisted text never becomes local authority.
+`AUD-0010/REV-0002AO` review `W-EXTRA-16`; `IMP-0033` recommends a native
+High-Speed host capability while leaving connector role and silicon open.
+Parallel G3 research starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and
 connector surfaces, display, battery/charging, external-module attachment,
 antenna volumes, service access, environment/repairability and target cost.

@@ -14,7 +14,7 @@
 | RFID2/UHF confused with LF 125 kHz | no |
 | Unit, Cap and M5-Bus treated as one connector | no |
 | 90% calculated by padding with irrelevant sensors | no; 18 Leshy2 external hardware classes are the denominator |
-| M5-only reaches 90% product-result coverage | no; at this review point `FND-0044` gave 27.8% full/44.4% partial/50% with custom iButton; later `DEC-0036/FND-0045` give current 23.5%/41.2%/47.1% over 17 live classes |
+| M5-only reaches 90% product-result coverage | no; at this review point `FND-0044` gave 27.8% full/44.4% partial/50% with custom iButton; later `DEC-0036/FND-0045/DEC-0038` give current 18.8%/37.5%/43.8% over 16 live classes |
 | viable improvement found | yes; M5-first plus separate high-speed tier, `IMP-0028` |
 | exact ports/pins/power selected before G3/G4 | no |
 | accepted existing U214/GPS/U216 profiles lost | no |

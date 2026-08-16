@@ -37,9 +37,10 @@ profile требует жёсткого retained mount с проверенным
 Поэтому прежняя строка `AUD-0005` исправлена с **full** на **partial until
 mounted**. At that review point direct official-result coverage changed from
 6/18 to 5/18 while full+partial remained 8/18 and 9/18 with custom iButton.
-After `DEC-0036` removes haptic from the live denominator and `FND-0045`
-corrects external-IMU framing, the current figures are 4/17 full, 7/17 with
-partial and 8/17 with custom iButton. The two-tier conclusion does not change.
+After `DEC-0036` removes haptic and later `DEC-0038` removes the physical-keyboard
+profile from the live denominator, with `FND-0045` correcting external-IMU
+framing, the current figures are 3/16 full, 6/16 with partial and 7/16 with
+custom iButton. The two-tier conclusion does not change.
 
 ## Placement alternatives
 

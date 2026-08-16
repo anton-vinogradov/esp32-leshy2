@@ -95,8 +95,8 @@ disposition они имеют состояние `needs-owner` и не вход�
 | `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main`: `DEC-0035/REQ-FIDO-0001`; open personal/exclusive mode |
 | `W-EXTRA-13` | haptic feedback | `rejected-by-owner`: `DEC-0036`; no motor/profile/mount |
 | `W-EXTRA-14` | IMU/orientation/motion | `accepted-external`: `DEC-0037/REQ-IMU-0001`; indexed measurement-pose profile, no base sensor/heading/bearing claim |
-| `W-EXTRA-15` | physical text keyboard as product archetype | `needs-owner`: facts reviewed `AUD-0009`; `IMP-0032/B` recommended for G3 |
-| `W-EXTRA-16` | dual-role/high-speed USB accessory host | `needs-owner` |
+| `W-EXTRA-15` | physical text keyboard as product archetype | `rejected-integrated / accepted-phone-assisted`: `DEC-0038`; no keyboard/U215 product profile |
+| `W-EXTRA-16` | dual-role/high-speed USB accessory host | `needs-owner`: facts reviewed `AUD-0010`; `IMP-0033/A` recommended |
 | `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` |
 
 ## Исторические идеи реализации, не входные ограничения
@@ -127,8 +127,9 @@ disposition они имеют состояние `needs-owner` и не вход�
 - [ ] current competitor delta получает owner disposition: `W-EXTRA-11`
   закрыт `DEC-0033`, infrastructure `IMP-0028` закрыт `DEC-0034`;
   `W-EXTRA-12` закрыт `DEC-0035`, `W-EXTRA-13` — `DEC-0036`;
-  `W-EXTRA-14` закрыт `DEC-0037`; `W-EXTRA-15` fact review завершён
-  `AUD-0009`, owner decision и `W-EXTRA-16..17` открыты;
+  `W-EXTRA-14` закрыт `DEC-0037`, `W-EXTRA-15` — `DEC-0038`;
+  `W-EXTRA-16` fact review завершён `AUD-0010`, owner decision и
+  `W-EXTRA-17` открыты;
 - [ ] G2 проходит новое propagation review после решений.
 
 ## Следующий этап после закрытия delta

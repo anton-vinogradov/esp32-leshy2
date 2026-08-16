@@ -1,6 +1,6 @@
 # AUD-0009 — physical keyboard as a whole-product control archetype
 
-- Статус: **Проведено ревью фактов; product-design disposition открыт**
+- Статус: **Проведено ревью; no integrated keyboard + phone-assisted text принят `DEC-0038`**
 - Дата snapshot: 2026-08-17
 - Delta: `W-EXTRA-15`
 - Предложение: [`IMP-0032`](../improvements/IMP-0032-keyboard-whole-product-comparison.md)
@@ -8,10 +8,11 @@
 
 ## Уже принятый пользовательский результат
 
-`REQ-SYS-0001` уже требует автономное локальное управление и доступный
-on-device text input без телефона. Новый вопрос не в том, «можно ли напечатать
-символ», а обязана ли permanent physical text keyboard определять корпус всего
-устройства.
+At audit time `REQ-SYS-0001` required autonomous local control and on-device
+text input without a phone. The later owner decision `DEC-0038` narrows this:
+core local authority remains autonomous, while a declared text-dependent
+scenario may use a phone. The audited question remains whether a permanent
+physical text keyboard should determine the whole enclosure.
 
 Input tasks materially different:
 
@@ -20,7 +21,7 @@ Input tasks materially different:
 | safety/immediate | STOP, PTT release, BACK/panic, re-arm ceremony | dedicated tactile physical controls independent of touch/keyboard focus |
 | frequent field instrument | menu/list, scan start/stop, tune step, mark, zoom, threshold/power/channel adjustment | eyes-on-screen navigation with reliable one-hand repeat actions |
 | sparse structured text | frequency/channel, SSID/password, callsign, filename/tag, FIDO PIN | local numeric/symbol/text editor; presets/history/scanning reduce typing but cannot remove it |
-| sustained authoring/development | scripts, CLI commands, notes, long identifiers | physical keyboard is materially faster; USB console/external accessory is acceptable for nonessential long sessions if base text input remains complete |
+| sustained authoring/development | scripts, CLI commands, notes, long identifiers | physical keyboard is materially faster; `DEC-0038` later accepts a qualified phone companion for these declared text-dependent sessions |
 
 A full keyboard does not replace STOP, PTT, BACK/cancel or positive
 confirmation. Conversely, an on-screen editor satisfies autonomy but may be
@@ -82,14 +83,16 @@ No single row decides the product. A keyboard candidate may win if real task
 frequency justifies it, but selecting it now would skip G3/G4/G5 whole-product
 comparison that the owner explicitly required.
 
-## Corrected neutral boundary
+## Corrected boundary and later owner decision
 
-- mandatory now: autonomous local navigation, all essential actions, local text
-  input, dedicated STOP/PTT and unambiguous cancel/confirm;
-- open for G3 comparison: permanent keyboard, touch, encoder, D-pad, action-key
-  count, display size/aspect, one-/two-hand posture and optional U215 profile;
-- forbidden shortcut: counting on phone/BLE/USB/external keyboard for an
-  essential action or base configuration;
+- mandatory now: autonomous core field/safety/pairing/revoke/service/recovery
+  operation, dedicated STOP/PTT and unambiguous cancel/confirm;
+- accepted by `DEC-0038`: no permanent integrated keyboard; rare/long arbitrary
+  text may require a qualified phone companion and local review;
+- open for G3 comparison: touch, encoder, D-pad, action-key count, display
+  size/aspect and one-/two-hand posture;
+- forbidden shortcut: counting on phone input as authority for safety,
+  Controlled-Zone, TX, destructive, FIDO, trust or recovery decisions;
 - forbidden inheritance: former 480×320 touch + encoder + named-button count is
   a historical candidate, not a target prerequisite.
 
@@ -108,5 +111,6 @@ comparison that the owner explicitly required.
 - [x] current compact, landscape, field-control and external examples checked;
 - [x] display/grip/RF/expansion/cost/repair/test consequences kept coupled;
 - [x] active requirements and blocked historical BOM corrected for neutrality;
-- [x] no keyboard/touch/encoder exact target selected before G3/G5;
-- [ ] owner disposition through `IMP-0032`.
+- [x] no touch/encoder exact target selected before G3/G5;
+- [x] owner selected no integrated keyboard plus phone-assisted text through
+  `DEC-0038`.

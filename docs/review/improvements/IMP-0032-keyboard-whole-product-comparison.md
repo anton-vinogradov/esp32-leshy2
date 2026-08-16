@@ -1,6 +1,6 @@
 # IMP-0032 — physical keyboard whole-product comparison, not premature freeze
 
-- Статус: **⚠️ Требуется решение владельца**
+- Статус: **Принято C с phone-assisted text — `DEC-0038`**
 - Дата: 2026-08-17
 - Delta: `W-EXTRA-15`
 - Evidence: [`AUD-0009`](../audits/AUD-0009-physical-keyboard-product-archetype.md)
@@ -60,21 +60,24 @@ external/USB paths.
 - Минусы: may reject the best autonomous terminal form before measured task
   comparison; external U215 is an active 84.7×54.3 mm accessory, not free.
 
-## ⚠️ Recommendation
+## Recommendation and decision
 
-**B**. This is not indecision: it closes the G2 delta as a G3/G5 design variable
-with mandatory equal comparison and prevents old `touch+encoder+buttons` or a
-new keyboard fashion from silently becoming architecture. The final keyboard
-choice is made only together with display, grip, antennas, battery, connectors,
-safety controls and cost.
+The audit originally recommended **B** to retain equal whole-product comparison.
+The owner instead selected **C with phone-assisted text** in
+[`DEC-0038`](../decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md):
+no permanent keyboard, while rare/long arbitrary text may use a qualified phone
+companion. The phone sends characters and never supplies local authority for
+safety, Controlled-Zone, TX, destructive, FIDO, trust or recovery decisions.
 
-## Acceptance boundary for B
+## Accepted boundary for C/phone-assisted text
 
-- `W-EXTRA-15` becomes `design-candidate`, not an accepted base capability;
-- local essential actions and text work without phone/accessory in every candidate;
+- `W-EXTRA-15` closes as `rejected-integrated / accepted-phone-assisted`;
+- core field, safety and recovery actions work without phone/accessory;
+- a text-dependent optional workflow may be unavailable without a phone and
+  must say so truthfully;
 - dedicated physical STOP/PTT and reliable cancel/confirm exist in every candidate;
-- no candidate receives a smaller capability set to make its ergonomics look better;
-- representative task fixture measures error/time with bare hand and declared
-  glove class, standing/walking/bench posture and low-light/sunlight conditions;
-- exact keyboard/touch/encoder/D-pad/count/pins/BOM remain unselected until G5;
-- optional U215 requires a separate exact wired profile before target inclusion.
+- incoming text and consequence-bearing values are reviewed locally before use;
+- local pairing, visible peer, authenticated encryption, revoke and fail-closed
+  disconnect/stale-input behavior are mandatory;
+- integrated/external physical keyboard profiles are absent until a new proposal;
+- exact touch/encoder/D-pad/action count/pins/BOM remain unselected until G5/G7.

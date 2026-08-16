@@ -18,8 +18,9 @@ profile по `DEC-0033/REQ-IBTN-0001`. M5-first Unit/Cap плюс отдельн
 high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
 `W-EXTRA-12` принят `DEC-0035/REQ-FIDO-0001`; `W-EXTRA-13` отклонён
 `DEC-0036`; `W-EXTRA-14` принят external через `DEC-0037/REQ-IMU-0001`.
-Факты `W-EXTRA-15` проверены `AUD-0009`, но owner decision и
-`W-EXTRA-16..17` открыты.
+`W-EXTRA-15` закрыт `DEC-0038`: integrated keyboard rejected, bounded
+phone-assisted text accepted. Факты `W-EXTRA-16` проверены `AUD-0010`, но owner
+decision и `W-EXTRA-17` открыты.
 
 ## Current competitor delta disposition
 
@@ -29,8 +30,9 @@ high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
 | `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main` | `DEC-0035/REQ-FIDO-0001`: exclusive open personal authenticator; device-bound/non-exportable; no certification overclaim |
 | `W-EXTRA-13` | haptic feedback through the product enclosure | `rejected-by-owner` | `DEC-0036`: no motor, special profile, mount or haptic HIL; generic Port-B remains generic |
 | `W-EXTRA-14` | IMU measurement-pose metadata | `accepted-external` | `DEC-0037/REQ-IMU-0001`: rigid indexed external profile; 6-axis ≠ heading/RF bearing; no base sensor |
-| `W-EXTRA-15` | physical-keyboard whole-product archetype | `needs-owner` | `AUD-0009` fact review complete; `IMP-0032/B` recommended for equal G3 comparison; no silent target inclusion |
-| `W-EXTRA-16..17` | remaining current competitor questions | `needs-owner` | resolved one by one through `AUD-0004`; no silent target inclusion |
+| `W-EXTRA-15` | physical-keyboard whole-product archetype | `rejected-integrated / accepted-phone-assisted` | `DEC-0038`: no permanent/U215 keyboard profile; text-dependent optional workflow may use paired phone, never as local authority |
+| `W-EXTRA-16` | native High-Speed USB host | `needs-owner` | `AUD-0010` fact review complete; `IMP-0033/A` recommended; exact connector/owner remains downstream |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` | resolved through `AUD-0004`; no silent target inclusion |
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.

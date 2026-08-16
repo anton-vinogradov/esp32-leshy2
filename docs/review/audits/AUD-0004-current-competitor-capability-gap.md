@@ -1,6 +1,6 @@
 # AUD-0004 — current competitor capability and product-design gap
 
-- Статус: **На ревью; `W-EXTRA-11..14` закрыты, факты `W-EXTRA-15` проверены, решение и `W-EXTRA-16..17` открыты**
+- Статус: **На ревью; `W-EXTRA-11..15` закрыты, факты `W-EXTRA-16` проверены, решение и `W-EXTRA-17` открыты**
 - Дата snapshot: 2026-08-16
 - Finding: [`FND-0040`](../findings/FND-0040-current-competitor-benchmark-missing.md)
 - Scope: official product/project documentation; shipping and prototype states
@@ -48,8 +48,8 @@
 | USB security key (U2F/FIDO family) | accepted `DEC-0035/REQ-FIDO-0001` open personal authenticator | **gap closed at requirement level; implementation/assurance proof open** |
 | haptic feedback | rejected by `DEC-0036`; buzzer/LED/display remain | **closed outside product scope** |
 | IMU/orientation/motion | accepted external `DEC-0037/REQ-IMU-0001` | **gap closed at requirement level; indexed mechanics/electrical/HIL open** |
-| physical keyboard/trackball/D-pad archetype | on-device input required; exact surface intentionally open | **facts reviewed by `AUD-0009`; `IMP-0032` G3 archetype decision open, not automatically a new feature** |
-| high-speed USB host/M.2-class attachment | low-speed external profiles exist; wideband/high-compute attachment has no base-host contract | **real expansion-class question** |
+| physical keyboard/trackball/D-pad archetype | core local control required; text-dependent scenarios may use phone | **closed `DEC-0038`: no integrated keyboard, bounded phone-assisted text; other field controls remain G3** |
+| high-speed USB host/M.2-class attachment | two-tier expansion is accepted but base-host result was open | **facts reviewed `AUD-0010`; `IMP-0033` owner decision open** |
 | 6 GHz Wi-Fi | accepted target stops at 5 GHz | **real scope question; not implied by “5 GHz”** |
 | sunlight/gloves/lanyard/mounts/module retention | not quantified | **mandatory G3 constraints**, not radios/features |
 | Ethernet/HDMI/power-bank outputs | absent and no reviewed use case | not silently added; remains out unless a user result is proposed |
@@ -65,8 +65,8 @@ claim completeness while hiding pending choices. They are resolved one by one.
 | `W-EXTRA-12` | modern FIDO2/CTAP authenticator + U2F compatibility | **resolved `DEC-0035`**: exclusive open personal mode, device-bound secrets, truthful assurance | accepted Main; implementation proof open |
 | `W-EXTRA-13` | haptic feedback | **resolved `DEC-0036`**: clarified instrument scope does not need consumer tactile UX | rejected; no motor/profile/mount/base burden |
 | `W-EXTRA-14` | IMU | **resolved `DEC-0037/REQ-IMU-0001`**: optional external measurement pose/motion provenance; indexed mount; 6-axis is not heading/bearing | accepted external; no base sensor or consumer gesture/fall/tamper scope |
-| `W-EXTRA-15` | physical text keyboard | `AUD-0009` finds this is a whole-product archetype: larger face/part count/openings versus faster sustained local text/CLI | recommend `IMP-0032/B`: require equal G3 comparison without silently selecting the keyboard target |
-| `W-EXTRA-16` | dual-role/high-speed USB accessory host | host-capable compute/PHY, 5 V power budget, ESD, connector role UX and drivers | compare in large/modular candidate; do not force base until use case wins |
+| `W-EXTRA-15` | physical text keyboard | **resolved `DEC-0038`**: permanent keyboard excluded; rare/long text may use locally paired phone, never as safety/authorization authority | accepted phone-assisted text; no U215/base keyboard profile |
+| `W-EXTRA-16` | dual-role/high-speed USB accessory host | `AUD-0010`: programmers fit FS, HackRF/raw-IQ genuinely needs HS; native current HS OTG is feasible but costs compute/power/attack surface | recommend `IMP-0033/A`: accept native HS host capability, leave dedicated-vs-DRP topology to G3/G7 |
 | `W-EXTRA-17` | 6 GHz/Wi-Fi 6E | different radio/antenna/regulatory/driver/compute class | keep 5 GHz base; defer 6 GHz unless owner explicitly expands scope |
 
 ## Gate result
@@ -76,7 +76,7 @@ five remaining delta decisions above and physical constraints that feed G3.
 `W-EXTRA-11` is closed by `DEC-0033`; `AUD-0005/DEC-0034` separately close the
 general M5-first/two-tier infrastructure question. `AUD-0006/DEC-0035` close
 `W-EXTRA-12` as an open personal authenticator; `AUD-0007/DEC-0036` reject
-product haptic; `AUD-0008/DEC-0037` close `W-EXTRA-14`. `AUD-0009` completes
-the fact review for `W-EXTRA-15`, while owner disposition remains open. G3 research
+product haptic; `AUD-0008/DEC-0037` close `W-EXTRA-14`; `AUD-0009/DEC-0038`
+close `W-EXTRA-15`. G3 research
 may proceed in parallel, but neither product design nor architecture can receive
 final review while any accepted delta is missing from its demand model.

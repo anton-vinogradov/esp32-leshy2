@@ -58,8 +58,12 @@ Leshy2 — открытый автономный портативный all-in-o
   motion, pitch/roll и short-term relative-rotation metadata. Device-pose claim
   требует жёсткий indexed mount и sensor-to-antenna transform. Six-axis data не
   является absolute heading или RF bearing; base IMU не требуется.
-- Локальные display/storage/controls, PTT, hard STOP и explicit re-arm остаются
-  автономными; обычная эксплуатация не требует телефона.
+- Core field operation, display/storage controls, PTT, hard STOP, explicit
+  re-arm, pairing/revoke, service и recovery остаются автономными. В base нет
+  постоянной text keyboard; заявленный редкий/длинный text workflow может
+  использовать локально сопряжённый owner phone. Телефон передаёт видимый текст,
+  но не authority для safety, Controlled Zone, TX, destructive, FIDO, trust или
+  recovery actions.
 - Каждый в итоге выбранный programmable chip получает постоянные независимые
   пути прошивки, восстановления и диагностики для prototype bring-up и owner
   repair. Точные connectors и pins пока открыты.

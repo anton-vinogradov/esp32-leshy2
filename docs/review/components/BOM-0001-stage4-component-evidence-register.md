@@ -101,7 +101,7 @@ Evidence states: `E0` — строка только идентифицирова
 | current source has no RP2354 domain | `DEC-0028` adds RP2354A A4 and direct packet/voice controls | qualify `C-003/C-005/C-006`, then regenerate schematic rather than patch legacy pin ownership |
 | generic three-nRF placeholders use legacy S3 ownership and common CE | RP directly owns three CSN/CE/IRQ paths | `RF-001..005`; old source remains noncanonical |
 | STOP is an I²C input in legacy artifact | independent latched `AON_SAFE` STOP/TX_KILL | `P-006/P-007`; no schematic readiness until fault proof |
-| old 3×3 matrix/extra expander and later touch+encoder+six-control map remain in source ideas | no exact ordinary UI surface is accepted after `DEC-0032/FND-0046`; only autonomous local control plus dedicated safety/voice semantics are fixed | return keyboard/touch/encoder/D-pad/display alternatives to G3/G5; do not carry either old map into target BOM |
+| old 3×3 matrix/extra expander and later touch+encoder+six-control map remain in source ideas | `DEC-0038` excludes the keyboard; no other exact ordinary UI surface is accepted; autonomous core control plus dedicated safety/voice semantics are fixed | return touch/encoder/D-pad/display alternatives to G3/G5; do not carry either old map into target BOM |
 | legacy NFC port is 3.3 V | accepted U216 profile requires protected 5 V | `P-005/X-003/X-005` |
 | legacy voice rail is 5 V | accepted SA518 target uses dedicated 4.0 V | `P-004/V-001`; SA868S stays separate conditional manifest |
 | onboard/legacy GNSS or LoRa assumptions | base board has neither frontend | only board-side `X-004/X-005`; external `X-001/X-002` profiles |

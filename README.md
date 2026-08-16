@@ -60,8 +60,11 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   short-term relative-rotation metadata to RF records. Device-pose claims require
   a rigid indexed mount and sensor-to-antenna transform. Six-axis data is not
   absolute heading or RF bearing; no base IMU is required.
-- Local display, storage, controls, PTT, hard STOP and explicit re-arm remain
-  autonomous; ordinary product use cannot require a phone.
+- Core field operation, display/storage controls, PTT, hard STOP, explicit
+  re-arm, pairing/revoke, service and recovery remain autonomous. The base has
+  no permanent text keyboard; a declared rare/long text workflow may use a
+  locally paired owner phone. The phone supplies visible text, never authority
+  for safety, Controlled-Zone, TX, destructive, FIDO, trust or recovery actions.
 - Every programmable chip ultimately selected must expose permanent,
   independent programming, recovery and diagnostic access suitable for
   prototype bring-up and owner repair. Exact connectors and pins remain open.

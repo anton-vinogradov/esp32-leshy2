@@ -71,9 +71,10 @@ a ready-made commercial accessory.
 ## Coverage calculation against Leshy2, not against catalog size
 
 The catalog was audited against 18 hardware additions for which external
-attachment was initially plausible. After `DEC-0036` rejects haptic, the live
-denominator is **17**. The rejected row remains visible below for traceability
-but is excluded from current percentages. Pure software rows
+attachment was initially plausible. After `DEC-0036` rejects haptic and
+`DEC-0038` rejects a physical-keyboard product profile, the live denominator is
+**16**. Both rows remain visible below for traceability but are excluded from
+current percentages. Pure software rows
 (`W-EXTRA-01/03/12`) and the separate base-radio question `W-EXTRA-17` are not
 inflated into this number.
 
@@ -95,16 +96,16 @@ inflated into this number.
 | 14 | iButton/1-Wire contact tool | no | accepted passive protected Port-B adapter |
 | 15 | haptic feedback | excluded by `DEC-0036` | historical U059 evidence retained; not in live denominator |
 | 16 | IMU/orientation | no full device-pose result | U095 is partial until rigid/indexed mount; no heading/bearing |
-| 17 | external physical keyboard | yes, U215 | active accessory firmware; does not settle the base-product archetype |
+| 17 | external physical keyboard | excluded by `DEC-0038` | historical U215 evidence retained; no product profile/live denominator |
 | 18 | high-speed USB accessory host | no | old M020 is EOL and full/low-speed only |
 
 Results:
 
-- **4/17 = 23.5%** have a current official M5 product that directly matches the
+- **3/16 = 18.8%** have a current official M5 product that directly matches the
   product result strongly enough to begin qualification.
-- **7/17 = 41.2%** if narrow cellular, the unproven dual-U216 topology and U095
+- **6/16 = 37.5%** if narrow cellular, the unproven dual-U216 topology and U095
   with a not-yet-qualified indexed enclosure mount count as partial coverage.
-- **8/17 = 47.1%** after adding our own passive M5-style iButton adapter.
+- **7/16 = 43.8%** after adding our own passive M5-style iButton adapter.
 - therefore **M5-only does not meet a 90% Leshy2 result target**.
 
 This deliberately avoids a misleading percentage over hundreds of easy
@@ -119,9 +120,9 @@ compute and high-speed USB host.
 
 If locally intelligent custom accessories are allowed to own radio timing and
 send bounded commands/results rather than raw samples, Unit/Cap signal classes
-are a plausible transport for **14/17 = 82.4%** of the live attachment classes. The
+are a plausible transport for **13/16 = 81.3%** of the live attachment classes. The
 three exceptions are wideband raw SDR/Linux, heavy external compute and the
-high-speed host path itself. This is much better than the 47.1% catalog/custom-result
+high-speed host path itself. This is much better than the 43.8% catalog/custom-result
 coverage, but still below 90% and requires custom hardware/firmware.
 
 A two-tier expansion model can cover more than 90% of the *attachment classes*:
@@ -131,7 +132,7 @@ A two-tier expansion model can cover more than 90% of the *attachment classes*:
 2. A separate native high-speed USB data/power path for SDR, external compute
    and general host devices.
 
-Together these interfaces are a plausible transport for **17/17 live attachment
+Together these interfaces are a plausible transport for **16/16 live attachment
 classes** in the current external-hardware denominator. The practical target
 is stated as `>=90%`, because exact USB classes, drivers, throughput, power and
 regional radio profiles can still fail qualification.

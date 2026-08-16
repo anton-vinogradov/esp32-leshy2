@@ -1,6 +1,6 @@
 # REV-0002AM — physical-keyboard archetype prerequisite review
 
-- Статус: **Проведено ревью фактов; product-design disposition открыт**
+- Статус: **Проведено ревью фактов; disposition later closed `DEC-0038`**
 - Дата: 2026-08-17
 - Input: `W-EXTRA-15`, `REQ-SYS-0001`, `FLOW-0001`, current official products
 - Outputs: `AUD-0009`, `FND-0046`, `IMP-0032`
@@ -23,6 +23,6 @@
 ## Result
 
 Fact/prerequisite slice receives **«Проведено ревью»**. `W-EXTRA-15` remains
-`needs-owner` through `IMP-0032`. Recommendation B moves the question to the
-correct G3/G5 whole-product comparison without silently accepting or excluding
-a permanent keyboard.
+`needs-owner` through `IMP-0032` at this review point. The later owner decision
+`DEC-0038`, propagated by `REV-0002AN`, excludes a permanent keyboard and accepts
+bounded phone-assisted text while preserving local safety and recovery authority.
