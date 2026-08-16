@@ -32,7 +32,7 @@
 | Domain | Exact target | Owned responsibilities |
 |---|---|---|
 | application | `ESP32-S3-WROOM-1U-N16R2` | product UI/policy, native 2.4 GHz Wi-Fi/BLE, display/touch/controls, microSD/files/USB, ES8311/Si4732/audio DSP, U214/selected GNSS/U216 manager, C5/RP orchestration |
-| native dual-band/IR | `ESP32-C5-WROOM-1U-N8R8`, silicon with working SDIO, minimum rev ≥1.0 | 2.4/5 GHz Wi-Fi, IEEE 802.15.4, two-path IR capture, IR TX, native radio scheduling, local safety lease, SDIO slave |
+| native dual-band/IR | `ESP32-C5-WROOM-1U-N8R8`, production silicon ≥v1.2 by `DEC-0029`; v1.0 engineering-only | 2.4/5 GHz Wi-Fi, IEEE 802.15.4, two-path IR capture, IR TX, native radio scheduling, local safety lease, SDIO slave |
 | deterministic packet/voice | `RP2354A A4`, QFN60, 2 MiB stacked flash | 3×nRF24, CC1101, voice UART/PTT/PD/H-L/squelch/TX evidence, physical PTT, local dead-man, packet timestamps/FIFOs, direct STOP observation |
 
 No nRF placement is inherited from legacy documentation. The owner follows from the complete resource/failure/cost comparison above.

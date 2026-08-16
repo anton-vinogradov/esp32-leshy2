@@ -26,11 +26,14 @@
 - abstract circuit function обязательно получает exact implementation до schematic stage;
 - external accessory не попадает в base BOM, но его connector/power/isolation обязан попасть;
 - zero-loss saving требует proof capability, performance, safety, reliability, autonomy, serviceability and testability equivalence;
+- по `DEC-0029` newest stable manufacturer-supported hardware revision предпочтительна на BOM freeze только после compatibility/errata/toolchain/supply/requalification proof; больший номер не означает automatic substitution;
 - новая лишняя функция/деталь сначала помечается и выносится владельцу как **⚠️ Предложение**, если она не является очевидным implementation prerequisite уже принятого target;
 - component mismatch создаёт finding; молчаливое изменение owner/pin/power/STOP/RF/update contract запрещено.
 
 ## Review
 
 - [`REV-0004A`](../reviews/REV-0004A-stage4-entry-register.md) — completeness и ordering реестра; **Проведено ревью**.
+- [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md) — compute/clock/recovery primary facts; **Проведено ревью фактов**.
+- [`REV-0004C`](../reviews/REV-0004C-c5-v1.2-propagation.md) — C5 v1.2 production floor; **Проведено ревью**.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

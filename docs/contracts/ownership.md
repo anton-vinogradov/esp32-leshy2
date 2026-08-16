@@ -1,8 +1,8 @@
 # Контракт владения аппаратными блоками
 
-Статус документа: **Проведено ревью** (`DEC-0028`, `REV-0003U`).
+Статус документа: **Проведено ревью** (`DEC-0028/0029`, `REV-0003U/0004C`).
 
-Вычислительные домены target: `ESP32-S3-WROOM-1U-N16R2`, `ESP32-C5-WROOM-1U-N8R8` revision ≥1.0 и `RP2354A A4` QFN60 со stacked flash 2 MiB.
+Вычислительные домены target: `ESP32-S3-WROOM-1U-N16R2`, production `ESP32-C5-WROOM-1U-N8R8` silicon ≥v1.2 и `RP2354A A4` QFN60 со stacked flash 2 MiB. C5 v1.0 допускается только как restricted engineering sample по `DEC-0029`.
 
 | Блок | Владелец | Состояние решения |
 |---|---|---|

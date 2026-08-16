@@ -12,7 +12,7 @@
 `PKG-0001/SYN-3A` принят целиком как target architecture Leshy2:
 
 1. `ESP32-S3-WROOM-1U-N16R2` — application/UI/storage/audio domain, native 2.4 GHz Wi-Fi/BLE и manager внешних M5 profiles.
-2. `ESP32-C5-WROOM-1U-N8R8`, silicon revision ≥1.0 — native 2.4/5 GHz Wi-Fi, IEEE 802.15.4 и dual-path consumer IR.
+2. `ESP32-C5-WROOM-1U-N8R8` — native 2.4/5 GHz Wi-Fi, IEEE 802.15.4 и dual-path consumer IR. Stage-4 `DEC-0029` later raises its production floor from ≥v1.0 to ≥v1.2 while retaining v1.0 only for restricted engineering samples.
 3. `RP2354A A4`, QFN60, 2 MiB stacked flash — deterministic domain трёх полнофункциональных nRF24, CC1101, analog-voice control/PTT и local dead-man.
 4. S3↔C5 использует 1-bit SDIO; S3↔RP — 20 MHz initial SPI + отдельный alert. Нормативны typed control/event/bulk/liveness/recovery channels, measured payload floor и lease-expiry behavior из package.
 5. Полностью принят exact controller/pin/recovery map `PIN-0002/SYN-3A`, включая straps, physical USB/SWD/RUN access и семь свободных generic GPIO C5.
@@ -37,3 +37,4 @@
 - этап 3 закрывается только отдельным cross-repository propagation review;
 - этап 4 может проверять exact components и BOM, но не вправе молча менять capability, owner, pin, power, recovery, STOP или RF contracts;
 - эквивалентная BOM substitution допустима только после pin/reset/electrical/AVL/HIL proof; неэквивалентность создаёт finding и переоткрывает затронутую часть архитектуры.
+- stage-4 component revision refinement `DEC-0029` is accepted when ownership/pins/function remain unchanged and cross-repository propagation passes `REV-0004C`.

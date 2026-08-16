@@ -1,6 +1,6 @@
 # BOM-0002 — compute, clock and recovery evidence
 
-- Статус: **Проведено ревью фактов; C5 production stepping требует решения; component qualification не завершена**
+- Статус: **Проведено ревью фактов и C5 stepping decision; component qualification не завершена**
 - Дата snapshot: 2026-08-16
 - Пререквизиты: `BOM-0001`, `DEC-0028`, `PIN-0002`, `BUD-0002`
 - Review: [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md)
@@ -21,13 +21,13 @@
 | ID | Exact target / order identity | Проверенные primary facts | Supply snapshot | Disposition |
 |---|---|---|---|---|
 | `C-001` | `ESP32-S3-WROOM-1U-N16R2` | [official module datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf): 16 MB Quad flash, 2 MB Quad PSRAM, external antenna connector, −40…85 °C; native USB/boot straps remain normative from `PIN-0002` | [authorised storefront](https://www.mouser.com/ProductDetail/Espressif-Systems/ESP32-S3-WROOM-1U-N16R2) shows exact MPN and qty above 500, but regional inventory is dynamic | architecture identity retained; `E1`, partial `E3`; schematic/thermal/recovery/HIL open |
-| `C-002` | `ESP32-C5-WROOM-1U-N8R8` | [official module datasheet](https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html): 8 MB Quad flash, 8 MB Quad PSRAM, external ANT1 default, dual-band Wi-Fi/802.15.4 and SDIO slave; silicon revision is not encoded in the MPN | [Mouser](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8) shows exact MPN and qty above 500, but does not promise v1.0 versus v1.2 lot | architecture identity retained; `E1`, partial `E3`; production stepping decision open |
+| `C-002` | `ESP32-C5-WROOM-1U-N8R8`, production ≥v1.2 (`MD` for v1.2) | [official module datasheet](https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html): 8 MB Quad flash, 8 MB Quad PSRAM, external ANT1 default, dual-band Wi-Fi/802.15.4 and SDIO slave; silicon revision is not encoded in the MPN | [Mouser](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8) shows exact MPN and qty above 500, but generic listing does not promise revision-committed lot | `DEC-0029` accepted; `E1`, partial `E3`; exact v1.2 lot quote/schematic/recovery/HIL open |
 | `C-003` | `SC1511-A4`; packaging-equivalent `SC1511(13)-A4` | [official RP2350 family facts](https://www.raspberrypi.com/documentation/microcontrollers/microcontroller-chips.html): RP2354A A4, QFN60 7×7 mm, 30 GPIO, 520 KB SRAM and stacked 2 MB flash; A4 identity is explicit | exact A4 public stock clears 500 at Mouser/DigiKey; see `FND-0035` | `E1`, partial `E3`; allocation claim corrected; QFN60 assembly/yield/fixture/HIL open |
 | `C-004` | `TCA9535PWR` | [TI datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf): active/production TSSOP-24, 1.65…5.5 V, 400 kHz, power-on all-I/O-input state, active-low interrupt; output latch must be loaded before changing direction where glitch-free state matters | active manufacturer status is verified; two authorised production quotes still absent | `E1`, partial `E3`; address/pulls/current and power-on sequence schematic proof open |
 
 ## C5 stepping and errata gate
 
-The accepted architecture currently says C5 silicon `≥v1.0`. Current [Espressif errata](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32c5/03-errata-description/index.html) changes the production-risk picture:
+Stage 3 originally accepted C5 silicon `≥v1.0`. Current [Espressif errata](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32c5/03-errata-description/index.html) changed the production-risk picture:
 
 | Erratum | v1.0 | v1.2 | Architecture consequence |
 |---|---:|---:|---|
@@ -41,9 +41,9 @@ The accepted architecture currently says C5 silicon `≥v1.0`. Current [Espressi
 
 No accepted feature currently requires irreversible flash encryption or HUK. Nevertheless, production v1.0 would preserve a no-workaround security defect and two fixed memory/power defects inside a new design.
 
-> **⚠️ Предложение [`IMP-0024`](../improvements/IMP-0024-c5-v1.2-production-floor.md):** raise the production floor from C5 `≥v1.0` to `≥v1.2`, require `MD`/eFuse identity in incoming and manufacturing tests, and allow v1.0 only as labelled engineering samples. On v1.0 samples HUK/Key Manager and PSRAM encryption are forbidden, peripheral-domain power-down remains disabled, TX defaults off, and no release/qualification evidence may be signed off from them. This preserves early prototyping while preventing old silicon from silently becoming the product baseline.
+> **Принято в [`DEC-0029`](../decisions/DEC-0029-c5-v1.2-production-floor.md):** production/release/qualification floor is C5 v1.2, with `MD`/eFuse identity; v1.0 remains labelled engineering-only under the recorded restrictions.
 
-`IMP-0024` is not applied by this artifact; `DEC-0028`, target READMEs and firmware contract remain `≥v1.0` until owner acceptance.
+[`REV-0004C`](../reviews/REV-0004C-c5-v1.2-propagation.md) verifies propagation to `DEC-0028/PKG-0001`, target READMEs, ownership and firmware runtime contract. This does not enable HUK, encryption or irreversible lockdown.
 
 ## Clock and recovery implementation baseline
 
@@ -71,7 +71,7 @@ No accepted feature currently requires irreversible flash encryption or HUK. Nev
 
 `BOM-0002` can receive final **«Проведено ревью»** only after:
 
-1. owner disposition of `IMP-0024` and propagation to both repositories;
+1. ~~owner disposition of `IMP-0024` and propagation to both repositories~~ — complete in `DEC-0029/REV-0004C`;
 2. exact KiCad symbols/footprints and schematic/ERC contract for `C-001…007`;
 3. two authorised quotes/AVL entries and explicit C5 lot-revision commitment;
 4. assembly/yield quote for RP QFN60 and module/reflow constraints;
