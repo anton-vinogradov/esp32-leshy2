@@ -1,6 +1,6 @@
 # SC-0001 — единая scorecard полных компоновок этапа 3
 
-- Статус: **Проведено ревью структуры; scores запрещены до numeric completion `DM-0001`**
+- Статус: **Проведено ревью; scoring полных layouts открыт после completion `DM-0001`**
 - Вход: `DEC-0023`, `DM-0001`, `PIN-0001`, open findings
 - Варианты: минимум `LAY-S3`, `LAY-C5`, `LAY-BAL`
 

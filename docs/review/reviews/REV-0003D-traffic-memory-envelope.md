@@ -1,6 +1,6 @@
 # REV-0003D — ревью traffic и memory envelope
 
-- Статус: **Проведено ревью подшага; power envelope остаётся в работе**
+- Статус: **Проведено ревью подшага; power позднее закрыт `REV-0003E`**
 - Дата: 2026-08-16
 - Входы: `DM-0001`, `PIN-0001`, `SCN-01..08`, official component ceilings
 - Выходы: `BUD-0001`, `FND-0030`, `IMP-0023`
@@ -21,4 +21,4 @@
 
 ## Вывод
 
-Traffic и memory подшаг получает статус **«Проведено ревью»**. Layout generation ещё не открывается: `IMP-0023` определяет voice rail и финальный power/pack envelope.
+Traffic и memory подшаг получает статус **«Проведено ревью»**. На момент этого review layout generation ожидал `IMP-0023`; последующее `DEC-0025/REV-0003E` закрыло power/pack envelope и открыло layouts.

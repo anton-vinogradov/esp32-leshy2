@@ -29,8 +29,8 @@ NiceRF определяет:
 
 ## Что ещё не закрыто
 
-- `FND-0007` остаётся открытым: I²C-expander не является независимым аппаратным STOP и не может гарантированно снять PTT при зависшей шине/firmware.
-- Для целевого доступа к high-power нужен fail-safe управляемый `H/L` path с аппаратным low-default, который размыкается только при явном выборе разрешённого power profile. Его control resource входит в сводный pin/GPIO/safety budget по `DEC-0012`.
+- `DEC-0024` принимает независимую STOP topology, а `DEC-0025` — STOP-dominant voice rail; exact latch/gate/PTT implementation и fault-injection HIL ещё не выполнены в legacy artifact.
+- Для целевого доступа к high-power нужен fail-safe управляемый `H/L` path с аппаратным low-default, который размыкается только при явном выборе разрешённого power profile. Его exact implementation входит в layouts/BOM/schematic review этапов 3–6.
 - Logic thresholds, power sequencing, pull strength, PTT/PD response, actual RF power и interaction аппаратного H/L с `AT+DMOSETGROUP` требуют bench/HIL proof.
 - Low output 24–26 dBm на RF-порту и внешняя SMA сами по себе не создают licence-exempt PMR446 device; legal profiles проверяются отдельно.
 

@@ -1,6 +1,6 @@
 # BUD-0001 — numeric traffic, memory and power envelope
 
-- Статус: **Traffic и memory — проведено ревью; power — в работе до решения `IMP-0023`**
+- Статус: **Проведено ревью**
 - Дата: 2026-08-16
 - Этап: 3 — системная архитектура и владение
 - Входы: `DM-0001`, `PIN-0001`, `DEC-0023`, `DEC-0024`, exact-source ceilings
@@ -70,9 +70,9 @@ Other S3 overlay ceilings:
 - Update download is streamed and hashed; no requirement assumes an extra full image in PSRAM.
 - Crash/fault metadata reserves at least 256 KiB total per MCU design, with secret redaction and bounded overwrite policy.
 
-## Provisional power envelope
+## Power envelope
 
-These are conservative architecture reservations. Exact component min/typ/max and allowed simultaneity are rechecked at stage 4. `VVOICE` remains unresolved because `FND-0030/IMP-0023` found that legacy 5 V overdrives the accepted SA518 1 W profile.
+These are conservative architecture reservations. Exact component min/typ/max and allowed simultaneity are rechecked at stage 4. `DEC-0025` resolves the voice topology without treating legacy 5 V as an SA518 1 W profile.
 
 | Domain | Evidence/reservation | Provisional rail demand |
 |---|---|---:|
@@ -81,18 +81,20 @@ These are conservative architecture reservations. Exact component min/typ/max an
 | 3× exact nRF24 PA/LNA candidate | bare IC current is not a PA-module bound; connector/domain cap | 3.3 V / 0.25 A each = 0.75 A |
 | CC1101 | 34.2 mA typical max-power TX; rounded reserve | 3.3 V / 0.05 A |
 | display logic, microSD, codec/Si4732, control and margin | class reservation until exact BOM | 3.3 V / 0.40 A |
-| **3.3 V permitted/fault-overlap load** | sum | **2.20 A; rail rating candidate ≥3.0 A** |
+| **3.3 V permitted/fault-overlap load** | sum | **2.20 A; rail rating ≥3.0 A** |
 | U214 LoRa+GNSS | documented 155.03 mA max-power TX+GNSS; rounded | 5 V / 0.20 A |
 | external Unit GPS v1.1 | documented 31.64 mA; mutually exclusive with U214 GNSS backend | 5 V / 0.05 A |
 | U216/generic qualified Unit | provisional current-limited port cap pending exact revision | 5 V / 0.30 A |
 | backlight/audio/accessory overhead | class reservation until exact panel/driver | 5 V / 0.40 A |
-| **5 V non-voice load** | allowed attached-profile combination | **≤0.90 A; rail rating candidate ≥1.5 A continuous / 2.0 A transient** |
-| SA518 | 4.0 V table: up to 0.90 A; 5 V table: up to 1.07 A and >1 W | **pending `IMP-0023`; recommended BAT-fed 4.0 V buck, ≥1.25 A continuous / 1.5 A transient** |
+| **5 V non-voice load** | allowed attached-profile combination | **≤0.90 A; rail rating ≥1.5 A continuous / 2.0 A transient** |
+| SA518 | 4.0 V table: up to 0.90 A; 5 V table: up to 1.07 A and >1 W | **`DEC-0025`: BAT-fed 4.0 V buck, ≥1.25 A continuous / 1.5 A transient** |
+
+Worst simultaneous design output is `3.3×2.20 + 5×0.90 + 4×1.25 = 16.76 W`. At the 6.0 V pack floor and conservative 85% conversion-path efficiency this is 3.29 A, so the accepted pack/protection/master path floor is 4 A continuous. Concurrent class transients use `3.3×2.20 + 5×2.0 + 4×1.5 = 23.26 W`, or 4.56 A at the same floor/efficiency; the path therefore retains a 6 A / 100 ms transient floor until exact stage-4 min/typ/max calculations replace it.
 
 Power acceptance common to either final voice choice:
 
 - regulator/switch/connector continuous load ≤80% of qualified rating at 40 °C ambient;
-- pack/protection/master path candidate floor ≥4 A continuous and ≥6 A for 100 ms until exact scenario+BOM calculation replaces the class cap;
+- pack/protection/master path floor ≥4 A continuous and ≥6 A for 100 ms until exact stage-4 scenario+BOM calculation proves an equal-or-safer rating;
 - fault overlap of normally mutually excluded transmitters must not brown out either MCU before `DEC-0024` STOP acts;
 - rail transient droop remains within ±5% and above every exact module minimum; no reset may leave a TX path active;
 - charging plus active load stays within negotiated USB/input limit by reducing or pausing charge current, never by silently relaxing the device safety margin;
@@ -114,4 +116,4 @@ Power acceptance common to either final voice choice:
 - [x] display/radio/audio/IPC/storage traffic and latency envelopes;
 - [x] S3/C5 PSRAM, internal-DMA and flash/update envelopes;
 - [x] conservative power class reservations and rail margin rules;
-- [ ] accepted voice-rail topology and resulting final 5 V/voice/pack calculation (`IMP-0023`).
+- [x] accepted voice-rail topology and final architecture-level 5 V/voice/pack calculation (`DEC-0025`, `REV-0003E`).

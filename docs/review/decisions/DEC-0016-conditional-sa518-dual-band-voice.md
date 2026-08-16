@@ -1,6 +1,6 @@
 # DEC-0016 — conditional target SA518 dual-band с SA868S fallback
 
-- Статус: **Принято владельцем**
+- Статус: **Принято владельцем; supply topology уточнена `DEC-0025`**
 - Дата: 2026-08-16
 - Источник: `IMP-0014`, вариант A
 - Закрывает на уровне требований: `FND-0012`
@@ -24,6 +24,7 @@
 5. Текущий tsCircuit SA868S с исправленными `PTT/PD/H-L` safe defaults не заменяется молча: новый footprint появляется только как отдельный stage-3/4 artifact после pin/power/RF review.
 6. Proprietary SA518 short-data mode квалифицируется отдельно и не называется AX.25/APRS. VHF лишь создаёт технический RF/audio путь; protocol interoperability, callsign/licence и modem HIL остаются обязательными.
 7. Оба backend наследуют один и тот же conservative TX contract: no-profile=RX-only, hardware low/off defaults, explicit arming, bounded PTT, independent STOP и actual-TX indication.
+8. По `DEC-0025` SA518 использует отдельный BAT-fed `VVOICE` около 4.0 V; SA868S fallback имеет отдельный stuffing/supply/manifest profile и не смешивается с SA518 как один runtime-неизвестный backend.
 
 ## Что решение не исправляет автоматически
 

@@ -1,6 +1,6 @@
 # DM-0001 — единый resource-demand model полной базовой конфигурации
 
-- Статус: **В работе — functional/pin/controller/STOP и numeric traffic/memory прошли ревью; power ждёт решения `IMP-0023`**
+- Статус: **Проведено ревью; единый неизменный input полных layouts**
 - Этап: 3 — системная архитектура и владение
 - Дата начала: 2026-08-16
 - Обязательный вход: frozen wishlist `INV-0004`, `DEC-0023`, reviewed `REQ-*`
@@ -97,8 +97,8 @@ Demand описывает нужный сервис, а не любимую ре
 - [x] mandatory concurrency/failure scenarios listed;
 - [x] exact S3/C5 pin capability and controller inventory (`PIN-0001`);
 - [x] conservative numeric traffic/memory envelopes (`BUD-0001`, `REV-0003D`);
-- [ ] final power/rail envelope after `IMP-0023`;
+- [x] final power/rail envelope (`DEC-0025`, `BUD-0001`, `REV-0003E`);
 - [x] independent STOP fan-out target architecture (`DEC-0024`);
 - [x] scoring rubric with hard-fail criteria (`SC-0001`).
 
-После решения оставшейся power/rail строки один и тот же revision `DM-0001` копируется в scorecard всех вариантов. Изменять demand внутри отдельного layout запрещено.
+Один и тот же revision `DM-0001` копируется в scorecard всех вариантов. Изменять demand внутри отдельного layout запрещено.

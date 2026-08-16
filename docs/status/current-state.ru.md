@@ -27,6 +27,7 @@
 - NMEA baseline и условный per-revision advanced CASIC profile без дополнительного GNSS (`DEC-0014`);
 - FM/RDS/ordinary AM baseline и открытый owner-imported SSB/CW patch loader без bundled blob (`DEC-0015`);
 - условный dual-band analog-voice target на SA518 с честным UHF-only fallback на SA868S (`DEC-0016`);
+- отдельный STOP-dominant `VVOICE` 4.0 V для SA518 и раздельная stuffing/supply qualification SA868S (`DEC-0025`);
 - внешний M5 Unit NFC U216 как первый HF NFC backend, RFID2 как limited compatibility и custom PN7160 как qualification fallback (`DEC-0017`);
 - двухтрактный consumer IR на C5 с robust RX TSOP38238 и TSMP95000 для измерения несущей 30–60 kHz (`DEC-0018`);
 - калиброванный трёхантенный nRF24 RPD hit-rate поиск по секторам без выдуманных RSSI/dBm, пеленга или VSWR (`DEC-0019`);
@@ -45,7 +46,7 @@
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
 - `FND-0007`: текущий артефакт всё ещё имеет только I²C-expander STOP input. `DEC-0024` исправляет target architecture, но latch/gates/rails и fault-injection HIL не реализованы.
-- `FND-0011`: текущему SA868 добавлены PTT receive-default, PD power-down-default и физический low-power H/L; независимый STOP и управляемый high-power path ещё требуют stage-3 proof.
+- `FND-0011`: текущему SA868 добавлены PTT receive-default, PD power-down-default и физический low-power H/L. `DEC-0024/0025` исправляют target STOP/power architecture; exact gates и HIL не реализованы.
 - `FND-0013`: VOX не имеет microphone-capture path и явно отложен до общего audio/pin budget.
 - `FND-0015`: оба документированных M5 NFC Unit требуют PORT.A power profile 5 V, а текущие `J40/J41` дают 3.3 V; электрическое исправление ждёт общего port/power design.
 - `FND-0017`: legacy IR source всё ещё использует S3 ownership, generic unqualified emitter/current path и не имеет доказанных STOP/TX-state/optical behavior. Ложная `FAB-READY` пометка снята, Q58 получил reset-safe pull-down.
@@ -58,7 +59,7 @@
 - `FND-0027`: Continuity/iBeacon/Find My и attack labels требуют versioned corpus/spec/licence/peer proof; ordinary, passive и disruptive BLE-сценарии имеют разные security gates.
 - `FND-0028`: physical owner трёх полнофункциональных nRF24 переоткрыт; S3 shared-SPI и C5+SDIO являются предварительными вариантами, решение отложено до wishlist freeze.
 - `FND-0029`: вариант памяти S3, транспорт S3↔C5 и recovery interfaces расходуют пересекающиеся scarce pins. N8R8 не является drop-in заменой N8R2, потому что Octal PSRAM занимает GPIO35–37, а 4-bit SDIO C5 конфликтует с native USB на GPIO13/14.
-- `FND-0030`: legacy voice power 5 V заставляет SA518 работать примерно на 31.5–31.7 dBm и до 1.07 A, что превышает принятый 1 W profile; voice rail требует отдельного решения.
+- `FND-0030`: legacy voice power 5 V превышает принятый SA518 1 W profile. `DEC-0025` исправляет target отдельным rail 4.0 V; legacy schematic и conducted HIL остаются открытыми.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -71,7 +72,7 @@ GNSS/navigation срез [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-
 
 Si4732-срез [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) получил статус **«Проведено ревью»** в `REV-0002M`. Владелец принял `IMP-0013/A` как [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): открытый bounded loader входит в target, SSB blob импортируется локально и имеет отдельные integrity/provenance состояния, а synchronous-AM остаётся deferred до отдельного proof. `FND-0010` закрыт на requirement-level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder и coexistence HIL ещё не реализованы.
 
-Analog-voice срез [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) получил статус **«Проведено ревью»** в `REV-0002O`. Владелец принял `IMP-0014/A` как [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 — предпочтительный half-duplex analog-FM target 136–174/400–470 MHz, а текущий SA868S остаётся явно UHF-only fallback до проверки цены, поставки, PCB/power и conducted RF. Компромисс 2 W-class→1 W принят и не считается экономией без потерь. `FND-0012` закрыт на requirement-level; microphone capture/VOX (`FND-0013`), независимый STOP, high-power control, точное железо, protocol, RF, audio и HIL proof остаются для следующих этапов.
+Analog-voice срез [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) получил статус **«Проведено ревью»** в `REV-0002O`. Владелец принял `IMP-0014/A` как [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 — предпочтительный half-duplex analog-FM target 136–174/400–470 MHz, а SA868S остаётся явно UHF-only fallback до qualification. [`DEC-0025`](../review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md) теперь фиксирует отдельный BAT-fed `VVOICE` 4.0 V для SA518 и отдельную stuffing/supply qualification fallback. Компромисс 2 W-class→1 W принят и не считается экономией без потерь. `FND-0012` закрыт на requirement-level; microphone capture/VOX (`FND-0013`), exact STOP/power hardware, protocol, RF, audio и HIL proof остаются для следующих этапов.
 
 NFC/RFID-срез [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) получил статус **«Проведено ревью»** в `REV-0002Q`. Владелец принял `IMP-0005/A` как [`DEC-0017`](../review/decisions/DEC-0017-u216-hf-nfc-backend.md): внешний M5 Unit NFC U216 за $7 — первый HF NFC target, RFID2 за $4.95 — limited compatibility, а custom PN7160 — fallback только после провала qualification. Дельта аксессуара $2.05 принята ради A/B/F/V, ISO15693/FeliCa, limited emulation и custom-mode scope и не влияет на base BOM. `FND-0016` закрыт на requirement-level явными трёхуровневыми гейтами и отказом от overclaim universal clone, relay с одним frontend, key recovery, LF 125 kHz и payment compliance. Exact IC U216 имеет статус NRND; proof точной revision/lifecycle, 5-вольтовый `PORT.A-NFC` (`FND-0015`), driver/SBOM, protocol и HIL остаются открытой реализационной работой.
 
@@ -87,12 +88,10 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 ## Активный архитектурный gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) является единым неизменным resource-demand model всех компоновок. Functional/concurrency demand, точная инвентаризация MCU pins/controllers ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), общая layout scorecard с hard-fail/100-point оценкой ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)) и latched STOP topology ([`DEC-0024`](../review/decisions/DEC-0024-latched-hard-stop.md)) прошли ревью. [`BUD-0001`](../review/architecture/BUD-0001-traffic-memory-power-envelope.md) закрывает numeric traffic/memory review; power открыт до решения по voice rail.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md), exact MCU pin/controller inventory ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), scorecard ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)), STOP topology ([`DEC-0024`](../review/decisions/DEC-0024-latched-hard-stop.md)) и полный numeric traffic/memory/power envelope ([`BUD-0001`](../review/architecture/BUD-0001-traffic-memory-power-envelope.md), [`DEC-0025`](../review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md)) прошли ревью. Генерация трёх полных layouts открыта.
 
 Base и optional expansion scope разделены. Bluetooth Classic, dedicated BLE sniffing, дополнительные SDR/RF, cellular, LF RFID, второй NFC frontend, full-duplex voice и Linux-class compute не нагружают базовую плату.
 
-Matrix/`U14`-часть [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO остаются активными layout candidates. [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md) принято как `DEC-0024`; exact safety components и HIL остаются доказательствами следующих этапов. Минимум S3-heavy, C5-heavy и balanced/modular варианты обязаны пройти один pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model до принятия ownership.
-
-**⚠️ [`IMP-0023/A`](../review/improvements/IMP-0023-dedicated-4v-sa518-voice-rail.md)** рекомендует отдельный STOP-dominant `VVOICE` 4.0 V для SA518. Сохранение legacy 5 V меняет принятый класс 1 W примерно на 1.5 W; 3.3 V теряет принятый 1 W result. Генерация layouts ждёт этого power-решения.
+Matrix/`U14`-часть [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO остаются активными layout candidates. [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md) принято как `DEC-0024`, а [`IMP-0023/A`](../review/improvements/IMP-0023-dedicated-4v-sa518-voice-rail.md) — как `DEC-0025`; exact components и HIL остаются доказательствами следующих этапов. S3-heavy, C5-heavy и balanced/modular layouts строятся на одном pin/bus/DMA/interrupt/RAM/power/recovery/coexistence model до принятия ownership.
 
 `FND-0006` остаётся открытой. `FND-0007` исправлена на architecture level, но открыта до schematic/HIL proof. `U14` и матрица 3×3 пока не выбраны.

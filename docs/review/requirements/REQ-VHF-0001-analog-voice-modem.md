@@ -3,7 +3,7 @@
 - Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-VHF-01`–`C-VHF-07`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-11`, `OUT-07`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0009`, `DEC-0010`, `DEC-0013`, `DEC-0016`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0009`, `DEC-0010`, `DEC-0013`, `DEC-0016`, `DEC-0024`, `DEC-0025`
 - Находки: `FND-0003`, `FND-0007`, `FND-0011`–`FND-0014`
 - Условные входы реализации: backend/BOM, STOP/PTT, RF/legal profile, audio/modem/storage/network и HIL proof следующих этапов
 
@@ -19,7 +19,7 @@
 |---|---|---|---|---|
 | `REQ-VHF-01` | все | `conditional` | Основной | По `DEC-0016` production manifest фиксирует exact module, preferred SA518 либо fallback SA868S, hardware/firmware revision и protocol profile. UI показывает backend identity и доказанные RX/TX ranges; fallback всегда UHF-only, неизвестная revision не получает blanket compatibility. |
 | `REQ-VHF-02` | `C-VHF-01` | `baseline policy` | Основной | Без применимого region/licence/operator profile TX отсутствует или остаётся disabled. Profile versioned и задаёт RX/TX frequencies, spacing/bandwidth, tone/code, power ceiling, antenna/ERP assumptions, callsign/ID, duty/timeout и expiry; пользовательские частоты не обходят hardware STOP и explicit arming. |
-| `REQ-VHF-03` | `C-VHF-01` | `conditional` | Сквозной safety | По `FND-0011` reset/high-Z default: `PD=0`, `PTT=1`, `H/L=low`. Модуль включается RX-only, low-power readback/profile применяется до arming. High-power появляется только после явного выбора текущего сценария и доказанного fail-safe H/L path; module EEPROM не восстанавливает armed/high state. |
+| `REQ-VHF-03` | `C-VHF-01` | `conditional` | Сквозной safety | По `FND-0011` reset/high-Z default: `PD=0`, `PTT=1`, `H/L=low`. По `DEC-0025` SA518 использует отдельный STOP-dominant `VVOICE` около 4.0 V, а каждый fallback имеет явный stuffing/supply manifest. Модуль включается RX-only, low-power readback/profile применяется до arming. High-power появляется только после явного выбора текущего сценария и доказанного fail-safe H/L path; module EEPROM не восстанавливает armed/high state. |
 | `REQ-VHF-04` | `C-VHF-01` | `conditional` | Основной | Manual PTT — hold-to-transmit с видимыми frequency/profile/power/callsign и actual-TX indication. Release, timeout, STOP, session exit, screen lock, watchdog, low battery, audio fault или profile expiry снимают PTT; повторное включение не происходит автоматически. |
 | `REQ-VHF-05` | `C-VHF-01` | `conditional` | Основной | Ordinary analog RX и mic voice сохраняют hardware-default bypass по `DEC-0009`. RX/TX frequency могут различаться только внутри разрешённого profile; split не называется duplex и не разрешает simultaneous RX/TX. |
 | `REQ-VHF-06` | `C-VHF-02` | `conditional` | Основной | CTCSS/CDCSS, squelch, volume и доказанная bandwidth/filter configuration применяются транзакционно и повторно после reset. Tone/code не называется encryption/privacy. Unsupported/readback-unknown состояние видно; firmware cache не выдаётся за module state. |

@@ -1,6 +1,6 @@
 # FND-0030 — legacy 5 V voice rail exceeds the accepted SA518 1 W profile
 
-- Статус: **Открыто; требуется решение `IMP-0023`**
+- Статус: **Архитектурно исправлено `DEC-0025`; открыто до схемы и conducted HIL**
 - Дата: 2026-08-16
 - Серьёзность: power/RF/legal architecture blocker
 - Затрагивает: `DEC-0016`, `DM-VHF-01`, `BUD-0001`, current `hardware/tscircuit/audio.tsx`
@@ -27,7 +27,7 @@
 
 ## Closure evidence
 
-Находка закрывается после принятия supply topology, exact regulator/load-switch/STOP dominance, per-band conducted-power/current measurement over battery/temperature/tolerance и честного profile mapping. До этого `BUD-0001` power envelope и stage-3 layouts не финализируются.
+Supply topology принята как `DEC-0025`, поэтому architecture blocker закрыт и layouts могут использовать единый power envelope. Находка остаётся implementation/HIL gate до exact regulator/load-switch/STOP implementation, per-band conducted-power/current measurement over battery/temperature/tolerance и честного profile mapping; legacy 5 V artifact не считается исправленным.
 
 ## Primary source
 
