@@ -26,11 +26,13 @@ The canonical table is [`stages.md`](../review/stages.md).
 
 ## ⚠️ Open competitor-delta proposals
 
-- current question: [`IMP-0027/W-EXTRA-11`](../review/improvements/IMP-0027-ibutton-one-wire-profile.md) — iButton/1-Wire and contact strategy;
+- `W-EXTRA-11` is closed: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
+  accepts an external passive M5-style Port-B iButton adapter and no base pad;
+- current infrastructure question: [`IMP-0028`](../review/improvements/IMP-0028-m5-first-not-m5-only-expansion.md) — an M5-first low-rate layer plus a separate high-speed tier;
 - queued one at a time: `W-EXTRA-12` U2F/FIDO, `13` haptic, `14` IMU, `15`
   physical keyboard, `16` high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
 
-None is part of the target before owner disposition.
+No remaining item becomes part of the target before owner disposition.
 
 ## What remains reviewed
 
@@ -43,7 +45,8 @@ None is part of the target before owner disposition.
 - ordinary 2.4/5 GHz Wi-Fi, IEEE 802.15.4, native BLE and 2.4 GHz/ESP-NOW
   capability requirements;
 - packet Sub-GHz, broadcast receive, analog voice, audio, IR, external
-  GNSS/LoRa/NFC and their safety/evidence boundaries;
+  GNSS/LoRa/NFC, the external iButton/1-Wire adapter and their safety/evidence
+  boundaries;
 - open owner-controlled signed updates and the requirement that every selected
   programmable chip retain independent programming/recovery/diagnostics.
 
@@ -74,8 +77,12 @@ Consequences:
 
 ## Active next artifact
 
-First, [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
-resolves seven competitor-delta decisions one by one. Parallel G3 research
+[`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
+reviews the M5 ecosystem: M5-only fully covers 33.3% of relevant external
+hardware classes and reaches 50% with partial/custom iButton coverage, so the
+90% attachment goal requires a separate high-speed tier. After `IMP-0028` is
+decided, [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
+resolves `W-EXTRA-12..17` one by one. Parallel G3 research
 starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and
 connector surfaces, display, battery/charging, external-module attachment,

@@ -23,11 +23,13 @@ buses, pins, connector counts and CAD are intentionally open.
 - reviewed stage-1 intent and safety/legal decisions;
 - reviewed `REQ-*` behavior, evidence, concurrency and failure obligations with
   owner/backend clauses reopened by `DEC-0032`;
-- `INV-0002/0004` for the prior 125 leaves, plus the open current-competitor
-  delta in [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md).
+- `INV-0002/0004` for the prior 125 leaves, the current-competitor delta in
+  [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md), and the
+  M5 expansion audit [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md).
 
-G2 currently requires repeat review while `W-EXTRA-11..17` are decided. G3
-research may proceed, but cannot receive final review until G2 closes.
+`W-EXTRA-11` is reviewed by `DEC-0033/REQ-IBTN-0001`. G2 currently requires
+repeat review while `IMP-0028` and `W-EXTRA-12..17` are decided. G3 research
+may proceed, but cannot receive final review until G2 closes.
 
 ## Candidate/reference studies
 

@@ -90,7 +90,7 @@ disposition они имеют состояние `needs-owner` и не вход�
 
 | ID | ⚠️ Возможная хотелка | Состояние |
 |---|---|---|
-| `W-EXTRA-11` | iButton/1-Wire read/emulate и bounded write | `needs-owner` |
+| `W-EXTRA-11` | iButton/1-Wire read/emulate и bounded write | `accepted-external`: `DEC-0033`, passive M5-style Port-B adapter; no base pad |
 | `W-EXTRA-12` | U2F/FIDO-style USB security key | `needs-owner` |
 | `W-EXTRA-13` | haptic feedback | `needs-owner` |
 | `W-EXTRA-14` | IMU/orientation/motion | `needs-owner` |
@@ -123,7 +123,8 @@ disposition они имеют состояние `needs-owner` и не вход�
 - [x] у каждой желаемой функции есть zero-loss acceptance boundary;
 - [x] completeness проверена по legacy, owner additions и extras;
 - [x] freeze принят по явной делегации владельца в `DEC-0023`.
-- [ ] current competitor delta `W-EXTRA-11..17` получает owner disposition;
+- [ ] current competitor delta получает owner disposition: `W-EXTRA-11`
+  закрыт `DEC-0033`; `W-EXTRA-12..17` открыты;
 - [ ] G2 проходит новое propagation review после решений.
 
 ## Следующий этап после закрытия delta

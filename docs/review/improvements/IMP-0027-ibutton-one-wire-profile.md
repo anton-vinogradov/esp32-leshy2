@@ -1,6 +1,6 @@
-# ⚠️ IMP-0027 — iButton/1-Wire capability and contact strategy
+# IMP-0027 — iButton/1-Wire capability and contact strategy
 
-- Статус: **Предложение; требуется решение владельца**
+- Статус: **Принято вариантом B, уточнённым как M5-style Port-B profile; `DEC-0033`**
 - Дата: 2026-08-16
 - Source gap: `AUD-0004/W-EXTRA-11`, `FND-0040`
 - Competitor evidence: [Flipper Zero iButton documentation](https://docs.flipper.net/zero/ibutton)
@@ -10,6 +10,11 @@
 Current Leshy2 scope has USB, external accessories and HF/LF RFID dispositions,
 but no 1-Wire/iButton user result. Это отдельная проводная технология и contact
 mechanics; ни NFC, ни Grove I²C не покрывают её автоматически.
+
+`AUD-0005` additionally established that the current official M5 catalog has no
+ready iButton/LF-125 Unit. M5 helps at the electrical/form-factor layer: our
+passive protected Port-B adapter supplies the contacts. This is not a claim
+about a purchasable official M5 accessory.
 
 Полезный честный scope:
 
@@ -57,13 +62,14 @@ No base electrical promise; a future module owns contacts and protocol timing.
 - Минусы: weakest interoperability, extra powered hardware/firmware/update
   burden and no competitor parity in the first product.
 
-## Рекомендация
+## Принятое решение
 
-**B**. It preserves the capability and open repair path without prematurely
+**B**, formalized by [`DEC-0033`](../decisions/DEC-0033-external-m5-ibutton-profile.md).
+It preserves the capability and open repair path without prematurely
 spending enclosure surface or adding a programmable target. During `G3`, an
 integrated-pad archetype may still beat the passive adapter on ergonomics and
-be promoted to A; the electrical requirement itself remains implementation-
-neutral until that comparison.
+be compared, but promotion to A would now require a new owner decision. The
+electrical implementation remains open until G3–G9.
 
 ## Acceptance boundary if retained
 

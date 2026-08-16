@@ -10,7 +10,7 @@ and physical design (`FND-0039`).
 |---:|---|---|---|
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
-| 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Требуется повторное ревью**: прежние 125 leaves сохранены, current competitor delta открыт (`FND-0040/AUD-0004`) |
+| 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Требуется повторное ревью**: прежние 125 leaves сохранены; `W-EXTRA-11` закрыт `DEC-0033`, `W-EXTRA-12..17` и `IMP-0028` открыты (`FND-0040/AUD-0004/0005`) |
 | 3 | Target product design | form factor, interaction, controls, external interfaces, battery, antenna/service/environment/cost envelopes | Research в работе; final review заблокирован этапом 2, architecture/CAD заблокированы |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |

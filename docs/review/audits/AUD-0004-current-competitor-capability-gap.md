@@ -1,6 +1,6 @@
 # AUD-0004 — current competitor capability and product-design gap
 
-- Статус: **На ревью; delta-вопросы владельцу открыты**
+- Статус: **На ревью; W-EXTRA-11 закрыт, W-EXTRA-12..17 открыты**
 - Дата snapshot: 2026-08-16
 - Finding: [`FND-0040`](../findings/FND-0040-current-competitor-benchmark-missing.md)
 - Scope: official product/project documentation; shipping and prototype states
@@ -44,7 +44,7 @@
 | wideband SDR/Linux analytics | `W-EXTRA-07`, external/defer-release | already considered; HackRF proves a different hardware class, not free base scope |
 | cellular | `W-EXTRA-08`, external/tethered | already considered |
 | Bluetooth Classic, dedicated BLE sniffer | `W-EXTRA-02/04`, optional/deferred | already considered |
-| iButton/1-Wire contact-tool behavior | absent | **real capability gap** |
+| iButton/1-Wire contact-tool behavior | accepted external by `DEC-0033/REQ-IBTN-0001` | **gap closed at capability level; electrical/HIL open** |
 | USB security key (U2F/FIDO family) | USB/HID and secret storage exist, but authentication-token result absent | **real mostly-software capability gap** |
 | haptic feedback | buzzer/LED/display exist; tactile feedback absent | **real UX gap / G3 input** |
 | IMU/orientation/motion | absent | **real optional sensor gap** |
@@ -61,7 +61,7 @@ claim completeness while hiding pending choices. They are resolved one by one.
 
 | ID | ⚠️ Candidate desire | Material consequence | Initial recommendation |
 |---|---|---|---|
-| `W-EXTRA-11` | iButton/1-Wire read/emulate and bounded write | protected contact/electrical profile, enclosure surface, ESD and access-control safety gates | retain via base electrical support + passive contact adapter unless integrated pad wins G3 |
+| `W-EXTRA-11` | iButton/1-Wire read/emulate and bounded write | **resolved `DEC-0033`**: protected M5-style Port-B profile + passive adapter; no base pad | accepted external; official M5 iButton Unit is not claimed |
 | `W-EXTRA-12` | U2F/FIDO-style USB security key | secure key lifecycle, local user-presence action, backup/recovery truth and certification boundary | include software capability; never claim certified/hardware-backed without proof |
 | `W-EXTRA-13` | haptic feedback | motor/driver/space/power and quiet-mode policy | include as G3 candidate; not a substitute for visible critical state |
 | `W-EXTRA-14` | IMU | sensor, interrupt/power/calibration/privacy and a real use case | defer unless orientation/fall/tamper gesture is explicitly desired |
@@ -72,6 +72,8 @@ claim completeness while hiding pending choices. They are resolved one by one.
 ## Gate result
 
 The old 125 leaves remain reviewed; none was lost. G2 is reopened only for the
-seven delta decisions above and physical constraints that feed G3. G3 research
+six remaining delta decisions above and physical constraints that feed G3.
+`W-EXTRA-11` is closed by `DEC-0033`; `AUD-0005` separately audits the general
+M5 ecosystem and leaves `IMP-0028` for owner decision. G3 research
 may proceed in parallel, but neither product design nor architecture can receive
 final review while any accepted delta is missing from its demand model.

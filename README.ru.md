@@ -48,6 +48,8 @@ Leshy2 — открытый автономный портативный all-in-o
 - Бортовые GNSS, LoRa и HF NFC frontends не обязательны. Product design должен
   поддержать внешние M5-style GNSS, общепринятые LoRa bands через cap и
   expansion-module strategies где это реализуемо, а также внешний NFC.
+  iButton/1-Wire реализуется заменяемым пассивным M5-style Port-B адаптером,
+  без обязательных контактов на корпусе базы.
 - Локальные display/storage/controls, PTT, hard STOP и explicit re-arm остаются
   автономными; обычная эксплуатация не требует телефона.
 - Каждый в итоге выбранный programmable chip получает постоянные независимые

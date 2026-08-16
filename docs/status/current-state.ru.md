@@ -26,11 +26,13 @@
 
 ## ⚠️ Открытые competitor-delta предложения
 
-- текущий вопрос: [`IMP-0027/W-EXTRA-11`](../review/improvements/IMP-0027-ibutton-one-wire-profile.md) — iButton/1-Wire и способ контакта;
+- `W-EXTRA-11` закрыт: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
+  принимает внешний пассивный M5-style Port-B iButton adapter без base pad;
+- текущий infrastructure-вопрос: [`IMP-0028`](../review/improvements/IMP-0028-m5-first-not-m5-only-expansion.md) — M5-first low-rate layer плюс отдельный high-speed tier;
 - затем по одному: `W-EXTRA-12` U2F/FIDO, `13` haptic, `14` IMU, `15`
   physical keyboard, `16` high-speed USB host и `17` 6 GHz/Wi-Fi 6E.
 
-Ни один пункт не добавлен в target до решения владельца.
+Ни один оставшийся пункт не добавлен в target до решения владельца.
 
 ## Что остаётся проверенным
 
@@ -43,7 +45,7 @@
 - требования обычных Wi-Fi 2.4/5 ГГц, IEEE 802.15.4, native BLE и
   Wi-Fi 2.4/ESP-NOW;
 - packet Sub-GHz, broadcast receive, analog voice, audio, IR, внешние
-  GNSS/LoRa/NFC и их safety/evidence boundaries;
+  GNSS/LoRa/NFC, внешний iButton/1-Wire adapter и их safety/evidence boundaries;
 - open owner-controlled signed updates и независимые programming/recovery/
   diagnostics каждого в итоге выбранного programmable chip.
 
@@ -73,8 +75,12 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 
 ## Следующий активный артефакт
 
-Сначала [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
-закрывает семь competitor-delta решений по одному. Параллельный G3 research
+[`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
+провёл ревью M5 ecosystem: M5-only закрывает 33.3% external hardware classes
+полностью и 50% с partial/custom iButton, поэтому 90% требует отдельного
+high-speed tier. После решения `IMP-0028`
+[`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
+закрывает `W-EXTRA-12..17` по одному. Параллельный G3 research
 отталкивается от уже проверенных capabilities и задаёт физический
 продукт без выбора electronics: form factor/use posture, control/connector
 surfaces, display, battery/charging, external-module attachment, antenna

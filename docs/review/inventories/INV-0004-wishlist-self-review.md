@@ -10,7 +10,18 @@
 
 > Этот snapshot остаётся доказательством полноты прежнего source universe, но
 > больше не является финальным completeness gate. Новые вопросы
-> `W-EXTRA-11..17` перечислены в `INV-0002/AUD-0004` и не считаются принятыми.
+> `W-EXTRA-11..17` перечислены в `INV-0002/AUD-0004`; их актуальный disposition
+> ведётся ниже и не переписывает прежний 125-leaf snapshot.
+
+Update 2026-08-16: `W-EXTRA-11` принят как external passive M5-style Port-B
+profile по `DEC-0033/REQ-IBTN-0001`; `W-EXTRA-12..17` остаются открыты.
+
+## Current competitor delta disposition
+
+| Leaf ID | Result | Decision | Product/BOM boundary |
+|---|---|---|---|
+| `W-EXTRA-11` | iButton/1-Wire contact tool | `accepted-external` | protected Port-B timing/electrical profile + replaceable passive adapter; no integrated base contacts; read/emulate/write separately qualified |
+| `W-EXTRA-12..17` | remaining current competitor questions | `needs-owner` | resolved one by one through `AUD-0004`; no silent target inclusion |
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.

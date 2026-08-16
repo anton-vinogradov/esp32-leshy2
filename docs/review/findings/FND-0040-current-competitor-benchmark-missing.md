@@ -29,6 +29,10 @@ source universe. Он не доказывает, что не пропущена 
 - 6 GHz/Wi-Fi 6E относительно уже принятого 5 GHz;
 - field mounting, lanyard, glove/sunlight use and serviceable module mechanics.
 
+Progress 2026-08-16: `W-EXTRA-11` closed through external passive iButton
+profile `DEC-0033/REQ-IBTN-0001`. `AUD-0005` completed the cross-cutting M5
+ecosystem audit and opened `IMP-0028`; `W-EXTRA-12..17` remain unresolved.
+
 Часть — новые capabilities, часть — входы `G3`, а часть уже покрыта
 `W-EXTRA-*` и не должна учитываться дважды.
 

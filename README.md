@@ -49,6 +49,8 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
 - Base-board GNSS, LoRa and HF NFC frontends are not required. The product
   design must support qualified external M5-style GNSS, common-band LoRa via
   both cap and expansion-module strategies where feasible, and external NFC.
+  iButton/1-Wire uses a replaceable passive M5-style Port-B adapter rather than
+  mandatory contact pads on the base enclosure.
 - Local display, storage, controls, PTT, hard STOP and explicit re-arm remain
   autonomous; ordinary product use cannot require a phone.
 - Every programmable chip ultimately selected must expose permanent,
