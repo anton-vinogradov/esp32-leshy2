@@ -1,12 +1,18 @@
 # LAY-0001 — first G3 form-factor and zoning candidates
 
-- Статус: **Проведено ревью артефакта; требуется выбор направления владельцем**
+- Статус: **Справочный преждевременный эксперимент; выбор больше не требуется**
 - Дата: 2026-08-17
 - Gate: `FLOW-0001/G3`
 - Inputs: [`PD-0001`](PD-0001-g3-physical-design-inputs.md)
 - Drawing: [`LAY-0001 SVG`](img/LAY-0001-form-factor-candidates.svg)
+- Superseded direction: [`DEC-0041`](../decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
 
 ![Three physical layout candidates](img/LAY-0001-form-factor-candidates.svg)
+
+> После уточнения владельца этот drawing не является active G3 choice.
+> Сначала проходит logical/electrical feasibility, затем активный макет
+> отталкивается от проверенного legacy clamshell generator. P1/P2/P3 сохранены
+> только как источник отдельных идей и сравнительных envelopes.
 
 ## Shared scope
 
@@ -67,8 +73,7 @@ BOM are worst despite identical functional scope.
 
 ## What the next artifact will add
 
-After the owner selects a direction or asks for a hybrid, G3 fixes exact control
-and connector surfaces. G4 then builds at least two complete electronics
-candidates for that same physical product. Each gets a component-level block
-diagram and a preliminary exact GPIO/bus map as feasibility evidence; those
-pin maps remain candidate-only until G5–G7 select one atomic architecture.
+`DEC-0041` меняет порядок. `G2F` сначала строит не менее двух complete
+electrical candidates и согласует рабочую owner/bus/GPIO карту. После этого G3
+адаптирует старый воспроизводимый clamshell mockup и возвращает обнаруженные
+packing/RF/power conflicts в карту. Только `G7` может принять atomic target.

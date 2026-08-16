@@ -15,8 +15,9 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 3. Target physical/product design | **Owner direction review**: `PD-0001` reviewed inputs; `LAY-0001` compares P1/P2/P3 |
-| 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started in the corrected process |
+| 2F. Logical/electrical feasibility | **In progress**: `DEM-0001`, first `SRC-0002` real-device pass and `AUD-0013` reviewed; complete candidate maps next |
+| 3. Target physical/product design | Waiting for G2F; P1/P2/P3 are reference-only, then the legacy clamshell generator is adapted |
+| 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
 | 8. Components/BOM | Blocked; previous evidence is candidate/reference only |
 | 9. Electrical/CAD/firmware architecture | Blocked; no active canonical KiCad implementation |
@@ -37,7 +38,8 @@ The canonical table is [`stages.md`](../review/stages.md).
 - `W-EXTRA-17` 6 GHz/Wi-Fi 6E is fully rejected by `DEC-0040`; accepted
   autonomous 2.4/5 GHz remains unchanged.
 
-`REV-0002AS` closes repeated G2 review. G3 target product design is active.
+`REV-0002AS` closes repeated G2 review. `DEC-0041` makes G2F active before the
+physical mockup.
 
 ## What remains reviewed
 
@@ -80,18 +82,23 @@ Consequences:
 
 `REV-0004H` reviews this correction. It does not review the new product design.
 
-## Active next artifact
+## Active artifacts
 
-[`LAY-0001`](../review/product-design/LAY-0001-form-factor-candidates.md)
-is the first visible G3 artifact. It compares compact-wide, balanced-portrait
-and field-service bodies with control, STOP/PTT, U214/Unit, RF, battery and
-service zones shown together. P2 is the current recommendation; no option has
-yet become the target.
+[`DEM-0001`](../review/architecture/DEM-0001-current-semantic-signal-demand.md)
+records all required semantic endpoints without former owners.
+[`SRC-0002`](../review/architecture/SRC-0002-real-device-pin-provenance.md)
+forbids counting a pin without the SoC→package→exact module/device→actual
+pad/header/connector chain. `REV-0003X` reviews the first pass; exact
+nRF/CC/voice/display and several control/power devices remain qualification
+blockers.
 
-[`PD-0001`](../review/product-design/PD-0001-g3-physical-design-inputs.md)
-keeps the three candidates on the same reviewed mission and explicitly removes
-physical burden from rejected or external-only capabilities.
+[`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
+accepts reuse of the old 75×150 mm two-board clamshell and its
+collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
+onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Exact electronics and preliminary candidate pin maps begin only after the G3
-direction is reviewed; they cannot consume archived target ownership or become
-KiCad before whole-device comparison and atomic selection.
+Next come at least two complete owner/bus/controller/GPIO maps with
+used/free/strap/recovery, memory/traffic/power/service and exact-device ledgers.
+After a working baseline is selected, the old physical generator is adapted.
+`LAY-0001` P1/P2/P3 is reference-only; no selection is requested. KiCad remains
+blocked until the later atomic architecture gates pass.

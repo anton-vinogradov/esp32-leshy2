@@ -1,11 +1,16 @@
 # PIN-0002 — zero-based exact pin/controller maps
 
-- Статус: **Проведено ревью**
+- Статус: **Historical candidate/reference; internal map review сохранён, full-device exactness не доказана**
 - Дата: 2026-08-16
 - Этап: 3, шаг 5a
 - Входы: reviewed `SYN-0001`, `SRC-0001`; accepted `DEC-0013/0018/0024/0026/0027`
 - Scope: `SYN-2A`, `SYN-2B`, `SYN-3A`
 - Не является: final component qualification, PCB routing proof или architecture decision
+
+> `FND-0049/DEC-0041`: эти maps корректно считали module-exposed S3/C5 GPIO,
+> но не имели exact device/carrier provenance для всей подключённой периферии.
+> Они сохраняются как полезная арифметика и источник test gates, но не являются
+> active prerequisite или доказательством реальной полной сборки.
 
 ## Mapping rules
 

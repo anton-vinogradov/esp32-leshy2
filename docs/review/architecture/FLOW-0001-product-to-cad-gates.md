@@ -12,7 +12,8 @@
 | `G0` review baseline | repository scope and working rules | evidence/decision/finding ledgers | product choice |
 | `G1` product intent | vision, users, legal/safety boundaries | ranked goals and non-negotiable constraints | MCU/module/pin choice |
 | `G2` capability model | `G1`, competitors, owner wishlist | complete capabilities, exclusions, concurrency and failure needs | physical implementation |
-| `G3` target product design | `G1/G2` | form factor, interaction/control surfaces, interfaces, battery, antenna/service/environment/cost envelopes | compute ownership or PCB routing |
+| `G2F` logical/electrical feasibility | `G2`; exact manufacturer device evidence | hardware-neutral signal demand; real-device pin provenance; ≥2 complete owner/bus/controller/GPIO candidates; owner-selected working electrical baseline | final architecture, schematic or PCB |
+| `G3` target product design | `G1/G2/G2F` working baseline | form factor, interaction/control surfaces, interfaces, battery, antenna/service/environment/cost envelopes; adapted reproducible physical mockup | treating working pins or geometry as atomic target; PCB routing |
 | `G4` whole-device candidates | `G2/G3` | at least two complete product architectures with no-loss disposition | mixing best fragments without re-synthesis |
 | `G5` optimality decision | `G4`, weighted criteria and Pareto evidence | owner-selected candidate or explicit need for another iteration | selection by pin count or one subsystem alone |
 | `G6` conceptual co-design | selected candidate | block placement, board partition, antenna/thermal/power/service feasibility and preliminary resource budgets | exact CAD as proof of fit |
@@ -42,9 +43,18 @@ candidate dominated on all material axes cannot win through narrative alone.
 
 ## Iteration rule
 
-`G3…G6` intentionally form a loop: candidate feasibility may expose a product
+`G2F…G6` intentionally form a loop: candidate feasibility may expose a product
 envelope conflict. The loop updates an upstream artifact visibly and repeats
 review; it never hides the conflict in an exact pin map or enclosure exception.
+
+`G2F` is the explicit exception to the old assumption that logical pin
+feasibility must wait for a selected enclosure. It gives physical design a
+complete, checked working net/owner hypothesis, while its provisional status
+allows later mechanical/RF/power evidence to reopen the map before `G7`.
+
+Every counted pin passes `SoC → package → exact module/device → actual exposed
+pad/header/connector`. A real dev-board is checked only when that board itself
+is in the candidate; it cannot prove a custom WROOM/QFN implementation.
 
 Feasibility probes may run early to answer bounded questions such as whether a
 radio, connector or battery class exists. Their output is labelled draft and

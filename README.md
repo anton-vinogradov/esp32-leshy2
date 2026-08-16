@@ -99,8 +99,9 @@ evidence—not silently fixed BOM components.
 ## Development state
 
 The 125 capability leaves and the competitor delta have received repeated G2
-review. G3 physical/product inputs are reviewed; three same-scope form-factor
-candidates now await owner direction. Whole-device alternatives, optimality,
-conceptual placement and a new atomic architecture decision must precede
-components and KiCad. The normative sequence is
+review. G3 physical/product inputs remain reviewed, but G2F logical/electrical
+feasibility now comes first: real device/module pin exposure and several
+complete owner/bus/GPIO maps are checked before adapting the legacy physical
+mockup. Whole-device optimality, conceptual placement and a new atomic
+architecture decision must precede components and KiCad. The normative sequence is
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

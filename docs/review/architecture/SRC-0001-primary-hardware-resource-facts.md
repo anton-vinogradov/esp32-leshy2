@@ -1,6 +1,6 @@
 # SRC-0001 — primary hardware resource facts before synthesis
 
-- Статус: **Проведено ревью**
+- Статус: **Проведено ревью прежнего candidate fact set; дополнен обязательным SRC-0002 provenance gate**
 - Дата: 2026-08-16
 - Этап: 3, пререквизит полного `SYN-*`
 - Входы: reviewed `CAP-0001`, `CON-0001`, `RES-0001`
@@ -12,6 +12,11 @@
 Этот baseline не выбирает архитектуру. Он фиксирует физические факты, которые каждый новый synthesis обязан учитывать до утверждения, что вариант «сходится»: точную module variant, выведенные наружу GPIO, memory-reserved и strapping pins, аппаратные controllers, recovery interfaces и сигналы принятых периферийных блоков.
 
 Общее количество GPIO само по себе ничего не доказывает. В `PIN-*` вывод считается доступным лишь после исключения module-internal memory, boot straps, native USB/recovery, fixed-function interfaces и электрически несовместимых ролей.
+
+`FND-0049` уточняет границу этого review: `SRC-0001` хорошо проверял compute
+module resources и semantic peripheral interfaces, но не выбирал exact
+carrier/device для всей периферии. Любой новый pin map дополнительно обязан
+закрыть [`SRC-0002`](SRC-0002-real-device-pin-provenance.md).
 
 ## ESP32-S3 application/native-2.4/BLE domain
 

@@ -99,8 +99,9 @@ peripheral computer. Это должен быть собираемый, ремо
 ## Состояние разработки
 
 125 capability leaves и competitor delta прошли повторное ревью G2. Physical/
-product inputs G3 проверены; три same-scope form-factor candidate сейчас ждут
-выбора направления владельцем. Whole-device alternatives, optimality,
-conceptual placement и новое atomic architecture decision обязаны
-предшествовать компонентам и KiCad. Нормативный порядок —
+product inputs G3 остаются проверенными, но теперь сначала проходит G2F:
+проверка реально выведенных контактов точных devices/modules и нескольких
+полных owner/bus/GPIO карт, затем адаптация legacy physical mockup.
+Whole-device optimality, conceptual placement и новое atomic architecture
+decision обязаны предшествовать компонентам и KiCad. Нормативный порядок —
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

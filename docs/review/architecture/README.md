@@ -1,34 +1,48 @@
 # Product and architecture workspace
 
-- Статус: **target product design active; architecture reopened**
+- Статус: **G2F logical/electrical feasibility active; architecture reopened**
 - Correction: [`DEC-0032`](../decisions/DEC-0032-reopen-product-design-before-cad.md)
+- Sequencing refinement: [`DEC-0041`](../decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
 - Method: [`FLOW-0001`](FLOW-0001-product-to-cad-gates.md)
 
 ## Canonical active chain
 
 1. Reviewed intent/capability inputs from stages 1–2.
-2. Target physical/product design: form factor, interaction, controls,
-   interfaces, battery, antenna/service/environment/cost envelopes.
-3. At least two complete whole-device candidates derived from those inputs.
-4. Reviewed criteria weights, score/Pareto/sensitivity and owner decision.
-5. Conceptual block/board/RF/power/thermal/service placement.
+2. Logical/electrical feasibility: neutral semantic demand, real-device pin
+   provenance and at least two complete owner/bus/GPIO candidates.
+3. Owner-selected working electrical baseline, explicitly provisional.
+4. Target physical/product design by adapting the checked legacy mockup; any
+   packing/RF/power conflict loops back to the electrical candidates.
+5. Whole-device optimality, conceptual co-design and owner decision.
 6. Atomic architecture only after all prior gates pass.
 7. Exact components, electrical CAD, schematic and PCB afterwards.
 
-The current active artifact is the product-design stage. Exact MCU ownership,
-buses, pins, connector counts and CAD are intentionally open.
+The current active artifacts are `DEM-0001` and `SRC-0002`. Exact MCU ownership,
+buses and pins are being compared, not accepted; CAD remains blocked.
 
-## Active G3 product-design artifacts
+## Active G2F artifacts
+
+- [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
+  signal demand without inheriting an owner;
+- [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
+  SoC/package/module/carrier chain and records the first verified candidates;
+- [`AUD-0013`](../audits/AUD-0013-legacy-layout-generator-reuse.md) records which
+  geometry/checks from the old drawing generator will be reused after pin review;
+- [`REV-0003X`](../reviews/REV-0003X-electrical-feasibility-entry.md) reviews the
+  sequencing correction and these inputs.
+
+## Deferred/reference G3 artifacts
 
 - [`PD-0001`](../product-design/PD-0001-g3-physical-design-inputs.md) translates
   reviewed capabilities into physical field/control/safety/RF/expansion/service
   inputs and has received input review;
 - [`LAY-0001`](../product-design/LAY-0001-form-factor-candidates.md) visualizes
-  compact, balanced and field-service same-scope candidates. The artifact is
-  reviewed; owner direction remains open before exact surfaces are frozen.
+  compact, balanced and field-service same-scope experiments. Its drawing
+  content was reviewed, but its direction is superseded by `DEC-0041`; no owner
+  choice among P1/P2/P3 is requested.
 
-No electronic zone in `LAY-0001` assigns a chip, bus or pin. Archived
-`SYN/PIN/PKG` arithmetic may later be re-derived as feasibility evidence only.
+No electronic zone in `LAY-0001` assigns a chip, bus or pin. Former
+`SYN/PIN/PKG` arithmetic may be reused only after exact-device revalidation.
 
 ## Active reviewed prerequisites
 

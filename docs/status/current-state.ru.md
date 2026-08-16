@@ -15,8 +15,9 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 3. Target physical/product design | **На ревью направления владельцем**: `PD-0001` reviewed inputs; `LAY-0001` сравнивает P1/P2/P3 |
-| 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты в исправленном процессе |
+| 2F. Logical/electrical feasibility | **В работе**: `DEM-0001`, first `SRC-0002` real-device pass и `AUD-0013` проведены ревью; complete candidate maps следующие |
+| 3. Target physical/product design | Ожидает G2F; P1/P2/P3 reference only, далее адаптируется legacy clamshell generator |
+| 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
 | 9. Electrical/CAD/firmware architecture | Заблокирован; активного canonical KiCad нет |
@@ -37,7 +38,8 @@
 - `W-EXTRA-17` 6 GHz/Wi-Fi 6E полностью отклонён `DEC-0040`; принятые
   автономные 2.4/5 GHz остаются без изменений.
 
-`REV-0002AS` закрывает повторное G2 review. Активен G3 target product design.
+`REV-0002AS` закрывает повторное G2 review. `DEC-0041` вводит активный G2F до
+физического макета.
 
 ## Что остаётся проверенным
 
@@ -78,18 +80,21 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 
 `REV-0004H` проверяет это исправление, но не новый product design.
 
-## Следующий активный артефакт
+## Текущие активные артефакты
 
-[`LAY-0001`](../review/product-design/LAY-0001-form-factor-candidates.md) —
-первый визуальный артефакт G3. Он сравнивает compact-wide,
-balanced-portrait и field-service корпуса, одновременно показывая control,
-STOP/PTT, U214/Unit, RF, battery и service zones. Текущая рекомендация — P2;
-ни один вариант ещё не стал target.
+[`DEM-0001`](../review/architecture/DEM-0001-current-semantic-signal-demand.md)
+фиксирует все обязательные semantic endpoints без старых owners.
+[`SRC-0002`](../review/architecture/SRC-0002-real-device-pin-provenance.md)
+запрещает считать вывод без цепочки SoC→package→exact module/device→реальный
+pad/header/connector. `REV-0003X` проверил первый pass; nRF/CC/voice/display и
+часть control/power exact parts остаются qualification blockers.
 
-[`PD-0001`](../review/product-design/PD-0001-g3-physical-design-inputs.md)
-удерживает одинаковый проверенный mission scope у всех трёх вариантов и явно
-убирает физическую нагрузку от rejected или external-only capabilities.
+[`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
+подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
+collision/fold/mezzanine checks после согласования pin map. Старые owners,
+onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Exact electronics и предварительные candidate pin maps начинаются только после
-review направления G3; они не могут наследовать archived target ownership или
-переходить в KiCad до whole-device comparison и atomic selection.
+Следующий результат — минимум две полные owner/bus/controller/GPIO карты с
+used/free/strap/recovery ledgers, memory/traffic/power/service burden и exact
+device provenance. После выбора рабочего baseline адаптируется старый physical
+generator. `LAY-0001` P1/P2/P3 сохранён как reference; выбирать его не нужно.
