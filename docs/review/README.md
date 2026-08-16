@@ -50,6 +50,7 @@
 - [REQ-RX-0001: Si4732 receiver/scan/record/decode contract — проведено ревью](requirements/REQ-RX-0001-si4732-receiver.md)
 - [REQ-VHF-0001: analog voice/modem/relay contract — проведено ревью](requirements/REQ-VHF-0001-analog-voice-modem.md)
 - [REQ-NFC-0001: HF NFC/RFID contract — проведено ревью](requirements/REQ-NFC-0001-hf-nfc-rfid.md)
+- [REQ-IR-0001: consumer IR contract — на ревью](requirements/REQ-IR-0001-consumer-infrared.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -66,6 +67,8 @@
 - [FND-0014: firmware preset не создаёт licence-exempt PMR446 equipment — закрыто на уровне требований](findings/FND-0014-pmr446-preset-is-not-compliance.md)
 - [FND-0015: Grove NFC Unit требуют 5 V, текущие порты дают 3.3 V](findings/FND-0015-nfc-unit-power-profile-mismatch.md)
 - [FND-0016: NFC frontend не доказывает universal emulation/relay/key recovery — закрыто DEC-0017](findings/FND-0016-nfc-emulation-relay-and-attack-overclaims.md)
+- [FND-0017: IR TX artifact не fail-safe/qualified — частично исправлено](findings/FND-0017-ir-tx-artifact-not-safe-or-qualified.md)
+- [FND-0018: fixed 38 kHz demodulator не учит carrier](findings/FND-0018-ir-fixed-demodulator-cannot-learn-carrier.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -80,6 +83,7 @@
 - [IMP-0012: backend-native assistance и индикатор целостности GNSS — принято](improvements/IMP-0012-casic-gnss-advanced-profile.md)
 - [IMP-0013: открытый lifecycle SSB-патча Si4732 — принято](improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)
 - [IMP-0014: conditional migration на dual-band SA518 — принято](improvements/IMP-0014-dual-band-sa518-voice-backend.md)
+- [⚠️ IMP-0015: dual-path consumer IR learning — предложение](improvements/IMP-0015-dual-path-consumer-ir-learning.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -105,6 +109,7 @@
 - [REV-0002O: ревью analog voice и распространения SA518/A](reviews/REV-0002O-voice-backend-decision-propagation.md)
 - [REV-0002P: ревью пререквизитов NFC/RFID](reviews/REV-0002P-nfc-prerequisites.md)
 - [REV-0002Q: ревью NFC/RFID и распространения U216/A](reviews/REV-0002Q-nfc-decision-propagation.md)
+- [REV-0002R: ревью пререквизитов consumer IR](reviews/REV-0002R-ir-prerequisites.md)
 
 ## Статусы
 

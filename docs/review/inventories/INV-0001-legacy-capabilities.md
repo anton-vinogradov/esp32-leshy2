@@ -171,11 +171,11 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-IR-01 | IR receive, protocol decode и raw capture | MAIN | транспорт C5 заблокирован `FND-0001` |
-| C-IR-02 | IR command TX, raw replay и carrier select | MAIN | своё оборудование; `FND-0001` |
-| C-IR-03 | TV-B-Gone universal power-off | LAB-D | nuisance/mass action |
-| C-IR-04 | Universal remote for appliances | MAIN | собственная база кодов |
-| C-IR-05 | IR code brute-force, import/export и SD library | MIXED | brute-force = Lab, storage = main |
+| C-IR-01 | IR receive, protocol decode и raw capture | MIXED | Main own receive; passive third-party analysis = Lab; fixed TSOP cannot learn carrier (`FND-0018`) |
+| C-IR-02 | IR command TX, raw replay и carrier select | MIXED | own-tagged replay Main; unknown/security replay Controlled Zone; `FND-0001`, `FND-0017` |
+| C-IR-03 | TV-B-Gone universal power-off | LAB-D | Controlled Zone `BOTH`: nuisance/mass action, isolated authorized targets |
+| C-IR-04 | Universal remote for appliances | MAIN | corpus-proven protocols/models only; stateful HVAC and code-DB licence gates |
+| C-IR-05 | IR code brute-force, import/export и SD library | MIXED | brute-force/sweep = Controlled Zone `BOTH`; bounded import/export/storage = Main |
 
 ## System/UI/storage — `FW-CAP §11`
 

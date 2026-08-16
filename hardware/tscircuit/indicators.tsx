@@ -1,4 +1,8 @@
-// Leshy2 — Sheet 6: Indicators & I/O  (FAB-READY draft, engine-pulled footprints by LCSC number)
+// Leshy2 — Sheet 6: Indicators & I/O
+// LEGACY IMPLEMENTATION DRAFT; NOT FAB-READY. IR TX/RX still terminates on the legacy S3 nets,
+// while DEC-0001 requires C5 ownership. D57 is also only a geometric 0603 placeholder without an
+// accepted emitter MPN, optical/current qualification, or enclosure proof. Stage 3/6/8 must rework
+// the ownership and qualify the complete IR path before fabrication.
 //
 // METHOD: every real IC/connector/switch uses footprint="jlcpcb:C<number>". The parts engine
 // supplies the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers
@@ -98,7 +102,7 @@ export default () => (
     <chip name="Q57" footprint="jlcpcb:C20526" />
 
     {/* ===================== IR ===================== */}
-    {/* TX: D57 IR LED driven by Q58 from GPIO2 (38kHz), +5V */}
+    {/* TX: unqualified placeholder D57 driven by Q58 from legacy GPIO2 (38kHz), +5V */}
     <led name="D57" footprint="0603" />
     <chip name="Q58" footprint="jlcpcb:C20526" />
     <resistor name="Rir" resistance="47" footprint="0603" />
@@ -129,6 +133,7 @@ export default () => (
     {/* NPN base resistors (limit GPIO/expander base drive) + PCA9555 input pull-ups (part has NO internal pull-ups) */}
     <resistor name="Rb57" resistance="1k" footprint="0402" />      {/* Q57 buzzer base */}
     <resistor name="Rb58" resistance="1k" footprint="0402" />      {/* Q58 IR base */}
+    <resistor name="Rpd58" resistance="100k" footprint="0402" />   {/* Q58 base-emitter safe-state: IR off at reset/high-Z */}
     <resistor name="Rpu_enc"  resistance="10k" footprint="0402" /> {/* ENC_SW pull-up */}
     <resistor name="Rpu_sdcd" resistance="10k" footprint="0402" /> {/* SD_CD pull-up */}
     <resistor name="Rpu_ptt"  resistance="10k" footprint="0402" /> {/* PTT_BTN pull-up */}
@@ -203,6 +208,7 @@ export default () => (
     <trace from=".D57 > .pin2" to=".Q58 > .C" />
     <trace from=".Q58 > .E" to="net.GND" />
     <trace from=".Rb58 > .pin1" to="net.IR_TX" /><trace from=".Rb58 > .pin2" to=".Q58 > .B" />
+    <trace from=".Rpd58 > .pin1" to=".Q58 > .B" /><trace from=".Rpd58 > .pin2" to="net.GND" />
 
     {/* --- IR RX (TSOP38238 engine pads OUT/GND/VS) --- */}
     <trace from=".U50 > .OUT" to="net.IR_RX" />
