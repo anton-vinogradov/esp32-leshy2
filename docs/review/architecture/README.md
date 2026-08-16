@@ -8,9 +8,10 @@
 1. [`CAP-0001`](CAP-0001-zero-based-capability-input.md) — что должен уметь продукт, без аппаратной раскладки;
 2. [`CON-0001`](CON-0001-hardware-neutral-concurrency-model.md) — одновременные, degraded и failure scenarios;
 3. [`RES-0001`](RES-0001-hardware-neutral-resource-demand.md) — resource demand без MCU/GPIO placement;
-4. `SYN-*` — несколько полных аппаратных синтезов;
-5. `PIN-*` — exact pin/controller maps только после полного synthesis;
-6. `PKG-*` — атомарное сравнение и выбор.
+4. [`SRC-0001`](SRC-0001-primary-hardware-resource-facts.md) — package/controller/peripheral facts из первичных источников без выбора layout;
+5. `SYN-*` — несколько полных аппаратных синтезов;
+6. `PIN-*` — exact pin/controller maps только после полного synthesis;
+7. `PKG-*` — атомарное сравнение и выбор.
 
 Каждый шаг получает статус **«Проведено ревью»** до того, как станет пререквизитом следующего.
 
@@ -25,3 +26,4 @@ Legacy schematic/source, прежние owner assignments, buses, GPIO, pin maps
 - [`REV-0003J`](../reviews/REV-0003J-zero-based-stage3-restart.md) — ревью перезапуска.
 - [`REV-0003K`](../reviews/REV-0003K-zero-based-concurrency-model.md) — ревью hardware-neutral concurrency model.
 - [`REV-0003L`](../reviews/REV-0003L-zero-based-resource-model.md) — ревью hardware-neutral resource model.
+- [`REV-0003M`](../reviews/REV-0003M-primary-hardware-fact-baseline.md) — ревью package-level facts перед synthesis.

@@ -1,8 +1,8 @@
 # FND-0029 — memory, transport and recovery consume the same scarce pins
 
-- Статус: **Открыто; обязательно для всех layouts этапа 3**
+- Статус: **Открыто; обязательно для всех zero-based syntheses этапа 3**
 - Дата: 2026-08-16
-- Артефакты: current `hardware/tscircuit/c5-buses.tsx`, `PIN-0001`, `DM-0001`
+- Артефакты: primary-source baseline `SRC-0001`; legacy example сохранён только как источник ошибки
 
 ## Несоответствие
 
@@ -19,8 +19,8 @@ Each choice is individually plausible, but combining their optimistic benefits p
 - every layout names exact S3/C5 module memory variant and unavailable pins;
 - every transport lists exact mode and pins, not only protocol name;
 - recovery is proven for both MCUs before a UART/USB path is deleted;
-- S3-heavy, C5-heavy and balanced scorecards use the same traffic and memory demand;
-- 1-bit C5 SDIO is measured before being accepted as the C5-heavy default;
+- все независимо выведенные syntheses используют один `CAP/CON/RES/SRC` input;
+- 1-bit C5 SDIO измеряется до принятия в любом candidate, а не считается default из прежней компоновки;
 - no price saving is credited for deleting a recovery path or selecting insufficient PSRAM.
 
 ## Closure evidence

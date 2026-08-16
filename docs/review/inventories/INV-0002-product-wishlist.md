@@ -82,17 +82,17 @@
 | `W-EXTRA-10A` | two-frontend NFC relay | `defer-release` | optional Controlled-Zone attachment |
 | `W-EXTRA-10B` | heavy key-recovery compute | `defer-release` | owner-controlled off-device compute |
 
-## Не хотелки, а варианты будущей реализации
+## Исторические идеи реализации, не входные ограничения
 
-Эти пункты нельзя принимать до freeze только потому, что они уже исследованы:
+Эти пункты зафиксированы только как справочный материал из прежней документации. Они не являются активными кандидатами, не задают оси сравнения и могут попасть в новую архитектуру лишь тогда, когда независимо заново выводятся из `CAP-0001`, `CON-0001` и `RES-0001`:
 
 | Вариант | Что он решает | Состояние |
 |---|---|---|
-| `IMP-0002` SDIO S3↔C5 | освобождает GP-SPI C5 | ⚠️ layout candidate |
-| `IMP-0010` key matrix/expander/STOP/audio control | цена, GPIO и независимый STOP | ⚠️ layout candidate |
-| `IMP-0021` nRF24 owner S3/C5 | ownership, bus load и IPC | ⚠️ layout candidate |
-| CE latch/direct CE/decoder | независимые CE и GPIO trade | ⚠️ component/layout candidate |
-| удаление C5 UART bridge | потенциально освобождает S3 GPIO | ⚠️ recovery-dependent candidate |
+| `IMP-0002` SDIO S3↔C5 | освобождает GP-SPI C5 | архивная идея; требуется независимый повторный вывод |
+| `IMP-0010` key matrix/expander/STOP/audio control | цена, GPIO и независимый STOP | архивная идея; требуется независимый повторный вывод |
+| `IMP-0021` nRF24 owner S3/C5 | ownership, bus load и IPC | архивная идея; прежняя постановка owner S3/C5 не ограничивает новый синтез |
+| CE latch/direct CE/decoder | независимые CE и GPIO trade | архивная идея; требуется независимый повторный вывод |
+| удаление C5 UART bridge | потенциально освобождает S3 GPIO | архивная идея; требуется независимый повторный вывод |
 
 ## Completeness gate до wishlist freeze
 
