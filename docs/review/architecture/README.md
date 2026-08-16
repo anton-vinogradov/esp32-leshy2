@@ -12,8 +12,9 @@
 5. [`SYN-0001`](SYN-0001-zero-based-whole-device-candidates.md) — несколько полных аппаратных синтезов, выведенных из resource-consolidation strategies;
 6. [`PIN-0002`](PIN-0002-zero-based-exact-pin-maps.md) — exact pin/controller/strap/recovery maps трёх zero-based candidates;
 7. [`BUD-0002`](BUD-0002-zero-based-memory-traffic-budget.md) — общий memory/traffic envelope, admission boundaries и HIL gates;
-8. `PWR/RFQ/CST-*` — одинаковые power, RF и dated-cost gates;
-9. `PKG-*` — атомарное сравнение и выбор.
+8. [`PWR-0001`](PWR-0001-zero-based-power-safety-envelope.md) — scenario-derived rails, sequencing, STOP/fault и HIL envelope;
+9. `RFQ/CST-*` — одинаковые RF и dated-cost gates;
+10. `PKG-*` — атомарное сравнение и выбор.
 
 Каждый шаг получает статус **«Проведено ревью»** до того, как станет пререквизитом следующего.
 
@@ -32,3 +33,4 @@ Legacy schematic/source, прежние owner assignments, buses, GPIO, pin maps
 - [`REV-0003N`](../reviews/REV-0003N-zero-based-candidate-set.md) — ревью полного zero-based candidate set без выбора winner.
 - [`REV-0003O`](../reviews/REV-0003O-zero-based-exact-pin-maps.md) — ревью exact module/controller maps и no-loss исправления `FND-0034`.
 - [`REV-0003P`](../reviews/REV-0003P-zero-based-memory-traffic-budget.md) — ревью zero-based memory/traffic arithmetic и admitted guarantees.
+- [`REV-0003Q`](../reviews/REV-0003Q-zero-based-power-envelope.md) — ревью scenario-derived power topology и rail floors.
