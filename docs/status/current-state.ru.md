@@ -12,8 +12,9 @@
 |---|---|
 | 0. Система ревью и baseline | Проведено ревью |
 | 1. Видение и границы | Проведено ревью, включая трёхуровневое уточнение |
-| 2. Возможности и исключения | В работе |
-| 3–10 | Не начато |
+| 2. Возможности и исключения | Проведено ревью (`REV-0002AD`) |
+| 3. Архитектура и владение | В работе |
+| 4–10 | Не начато |
 
 Каноническая таблица стадий — [`docs/review/stages.md`](../review/stages.md).
 
@@ -32,8 +33,9 @@
 - OpenThread как открытый Thread baseline и optional conditional Zigbee adapter без закрытия core product (`DEC-0020`);
 - S3 как единственный baseline native-BLE owner; C5 BLE default-off, полный native nRF24 scope не сокращён (`DEC-0021`);
 - сначала полный owner-confirmed реестр хотелок, затем несколько компоновок и сводный бюджет ресурсов (`DEC-0022`);
+- замороженный wishlist из 125 leaf-функций после делегированного саморевью с границами base/optional/deferred (`DEC-0023`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
-- IR остаётся у C5; исторически принятое владение C5 для 3×nRF24 переоткрыто и пока сохраняется только как последнее target-состояние до решения `IMP-0021` (`DEC-0001`, `FND-0028`).
+- IR остаётся у C5; владелец трёх полнофункциональных nRF24 открыт для сравнения этапа 3 и больше не указан как принятый C5 target (`DEC-0001`, `DEC-0023`, `FND-0028`).
 - owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
 
 ## Открытое инженерное состояние
@@ -72,18 +74,20 @@ NFC/RFID-срез [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rf
 
 Consumer-IR срез [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) получил статус **«Проведено ревью»** в `REV-0002S`. Владелец принял `IMP-0015/A` как [`DEC-0018`](../review/decisions/DEC-0018-dual-path-consumer-ir.md): C5 использует TSOP38238 для robust demodulated 38 kHz приёма и TSMP95000 для обучения с измерением несущей 30–60 kHz, занимая оба RX RMT channels C5; TSAL6200 — первый условный кандидат 940 nm emitter. Более дешёвые single-learning/fixed-38 варианты теряют принятую функцию и не могут подменить решение молча. `FND-0018` закрыт на requirement-level; автоматическое обучение 455 kHz/out-of-band остаётся deferred. Own remote/replay находится в Main, passive analysis — в Lab, unknown replay — в Controlled Zone `AUTHORIZED_TARGET`, а TV-B-Gone/brute-force/multi-code sweep — в Controlled Zone `BOTH`. `FND-0017`, C5 pins/transport, exact BOM, STOP, optics, licences и HIL остаются открытой реализационной работой.
 
-Capability-аудит 3×nRF24 прошёл `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) сохраняет три одновременных полнофункциональных radio и принятый [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md) — calibrated binary RPD hit-rate sector comparison, никогда не RSSI/dBm/bearing/VSWR. После уточнения «nRF24 должен быть полнофункциональным» ownership переоткрыто. `REV-0002Z` и [`AUD-0003`](../review/audits/AUD-0003-three-nrf24-owner-placement.md) сформировали предварительные S3/C5 варианты; на известном составе **⚠️ [`IMP-0021/A`](../review/improvements/IMP-0021-s3-owns-three-full-function-nrf24.md)** выглядит сильным S3-heavy кандидатом. По `DEC-0022` решения сейчас нет: сначала закрывается [`INV-0002`](../review/inventories/INV-0002-product-wishlist.md), затем варианты пересчитываются на полном demand model и проходят pin/recovery/performance HIL. `FND-0019`/`FND-0021` остаются implementation gates.
+Capability-аудит 3×nRF24 прошёл `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) сохраняет три одновременных полнофункциональных radio и принятый [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md) — calibrated binary RPD hit-rate sector comparison, никогда не RSSI/dBm/bearing/VSWR. Physical owner остаётся открытым. `REV-0002Z`/`AUD-0003` сформировали предварительные варианты, **⚠️ [`IMP-0021/A`](../review/improvements/IMP-0021-s3-owns-three-full-function-nrf24.md)** остаётся сильным кандидатом, но `DEC-0023` требует пересчитать его на полном замороженном demand model. `FND-0019`/`FND-0021` остаются implementation gates.
 
 C5 Wi-Fi/IEEE 802.15.4 prerequisite audit прошёл `REV-0002V`, а финальное распространение [`REV-0002W`](../review/reviews/REV-0002W-c5-wifi-802154-decision-propagation.md) дало [`REQ-W5-0001`](../review/requirements/REQ-W5-0001-c5-wifi-ieee802154.md) статус **«Проведено ревью»**. Владелец принял `IMP-0018/A` как [`DEC-0020`](../review/decisions/DEC-0020-open-first-thread-conditional-zigbee.md): OpenThread — открытый baseline, Zigbee — optional conditional adapter, не требуемый core/raw/Thread build. Main/Lab/Controlled Zone разделены; C5 shared 2.4 GHz path не выдаётся за одновременные radio. `FND-0025` закрыт на requirement-level. Source candidate N8R4→N8R8, ANT1/ANT2 и EPAD исправлены, но final RF artifact остаётся открытым (`FND-0022`); public/raw/patched boundary (`FND-0023`) и DFS/country/PMF/privacy (`FND-0024`) также ждут implementation/HIL. `IMP-0003` и private patched Wi-Fi backend не приняты автоматически.
 
-Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prerequisites.md) завершён решением [`DEC-0021`](../review/decisions/DEC-0021-s3-native-ble-owner.md) и распространением [`REV-0002Y`](../review/reviews/REV-0002Y-s3-native-ble-decision-propagation.md): S3 — единственный baseline native-BLE owner, C5 BLE default-off, [`REQ-BLE-0001`](../review/requirements/REQ-BLE-0001-native-ble-and-security.md) получил статус **«Проведено ревью»**, `FND-0002` закрыт. Ограничен только дополнительный experimental legacy-1M BLE-compatible subset nRF24; native PTX/PRX/Enhanced-ShockBurst/rate/channel/ACK/pipe/FIFO/IRQ/RPD функции не сокращены. Native scan не объявлен connection sniffer/идентификатором/дальномером (`FND-0026`), vendor/emulation/attack claims имеют corpus, rights и трёхуровневые gates (`FND-0027`). **⚠️ Dedicated nRF52 connection sniffer `W-EXTRA-02`** и **⚠️ Bluetooth Mesh `W-EXTRA-03`** ждут отдельных функциональных решений до wishlist freeze.
+Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prerequisites.md) завершён решением [`DEC-0021`](../review/decisions/DEC-0021-s3-native-ble-owner.md) и распространением [`REV-0002Y`](../review/reviews/REV-0002Y-s3-native-ble-decision-propagation.md): S3 — единственный baseline native-BLE owner, C5 BLE default-off, [`REQ-BLE-0001`](../review/requirements/REQ-BLE-0001-native-ble-and-security.md) получил статус **«Проведено ревью»**, `FND-0002` закрыт. Ограничен только дополнительный experimental legacy-1M BLE-compatible subset nRF24; native PTX/PRX/Enhanced-ShockBurst/rate/channel/ACK/pipe/FIFO/IRQ/RPD функции не сокращены. Native scan не объявлен connection sniffer/идентификатором/дальномером (`FND-0026`), vendor/emulation/attack claims имеют corpus, rights и трёхуровневые gates (`FND-0027`). Dedicated nRF52 connection sniffing и Bluetooth Mesh сохранены как optional deferred-release profiles, а не блокеры base board.
 
-## Отложенный архитектурный gate
+Оставшиеся срезы этапа 2 получили статус **«Проведено ревью»**: [`REQ-W24-0001`](../review/requirements/REQ-W24-0001-s3-wifi-espnow.md), [`REQ-SUB-0001`](../review/requirements/REQ-SUB-0001-cc1101-subghz.md), [`REQ-LORA-0001`](../review/requirements/REQ-LORA-0001-external-sx1262.md) и [`REQ-X-0001`](../review/requirements/REQ-X-0001-cross-session-performance.md). [`INV-0004`](../review/inventories/INV-0004-wishlist-self-review.md) покрывает 125/125 кандидатов и двенадцать leaf-dispositions из десяти source-extras. `REV-0002AD` закрывает этап 2 на requirement-level; exact hardware/HIL остаются доказательствами следующих этапов.
 
-[`DEC-0022`](../review/decisions/DEC-0022-capability-first-before-layout.md) требует сначала собрать и подтвердить полный [`INV-0002`](../review/inventories/INV-0002-product-wishlist.md). Реестр уже импортирует 125 известных кандидатов, owner additions и десять отдельно подсвеченных extras, но ещё не заморожен: не завершены Wi-Fi 2.4, Sub-GHz, LoRa, cross-cutting/UX/performance slices и owner-extra decisions.
+## Активный архитектурный gate
 
-[`INV-0003`](../review/inventories/INV-0003-wishlist-review-groups.md) распределяет все 125 строк без дублей по девяти пользовательским группам и собирает десять extras в четыре review-пакета. Статус — **«На ревью владельца»**: подтверждается только удобство группировки и порядок прохода, не функции оптом.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) начат как единый неизменный resource-demand model всех компоновок: functional/concurrency demand записан, numeric pin/controller/traffic/memory/power/STOP budgets ещё заполняются.
 
-[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO остаются layout candidates. После wishlist freeze для них строятся минимум S3-heavy, C5-heavy и balanced/modular компоновки на одном demand model.
+Base и optional expansion scope разделены. Bluetooth Classic, dedicated BLE sniffing, дополнительные SDR/RF, cellular, LF RFID, второй NFC frontend, full-duplex voice и Linux-class compute не нагружают базовую плату.
+
+[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO теперь активные layout candidates. Минимум S3-heavy, C5-heavy и balanced/modular варианты обязаны пройти один pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model до принятия ownership.
 
 `FND-0006` и `FND-0007` остаются открытыми. Перенос не выбирает `U14`/матрицу 3×3 и не доказывает аппаратный STOP.

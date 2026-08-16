@@ -1,11 +1,11 @@
 # INV-0002 — единый реестр хотелок продукта перед компоновкой
 
-- Статус: **В работе; список не заморожен**
+- Статус: **Проведено ревью; wishlist заморожен `DEC-0023`**
 - Дата: 2026-08-16
 - Основание: `DEC-0022`
 - Детальный legacy-источник: `INV-0001`
 - Назначение: отделить пользовательские функции от вариантов их аппаратной реализации
-- Группированный пакет на owner review: `INV-0003`
+- Группированный пакет: `INV-0003`; итоговое саморевью: `INV-0004`
 
 ## Правило реестра
 
@@ -46,39 +46,41 @@
 
 | Блок | Детальные ID | Количество | Текущее состояние scope |
 |---|---|---:|---|
-| Wi-Fi 2.4 GHz S3 | `C-W24-01..12` | 12 | `candidate`; отдельный capability review не завершён |
+| Wi-Fi 2.4 GHz S3 | `C-W24-01..12` | 12 | reviewed `REQ-W24-0001` |
 | 3×nRF24 | `C-N24-01..10` | 10 | capability reviewed; physical layout deferred by `DEC-0022` |
 | C5 Wi-Fi 2.4/5 GHz + IEEE 802.15.4 | `C-W5-01..09` | 9 | reviewed `REQ-W5-0001` |
 | Native BLE | `C-BLE-01..12` | 12 | reviewed `REQ-BLE-0001` |
-| Sub-GHz / CC1101 | `C-SUB-01..11` | 11 | `candidate`; capability review pending |
-| LoRa/SX1262 | `C-LORA-01..09` | 9 | hardware attachment accepted; capability review pending |
+| Sub-GHz / CC1101 | `C-SUB-01..11` | 11 | reviewed `REQ-SUB-0001` |
+| LoRa/SX1262 | `C-LORA-01..09` | 9 | reviewed `REQ-LORA-0001` |
 | GNSS | `C-GPS-01..04` | 4 | reviewed `REQ-GNSS-0001` |
 | Si4732 receiver | `C-RX-01..07` | 7 | reviewed `REQ-RX-0001` |
 | Analog voice | `C-VHF-01..07` | 7 | reviewed `REQ-VHF-0001` |
 | HF NFC/RFID | `C-NFC-01..10` | 10 | reviewed `REQ-NFC-0001` |
 | Consumer IR | `C-IR-01..05` | 5 | reviewed `REQ-IR-0001` |
 | System/UI/storage | `C-SYS-01..11` | 11 | reviewed `REQ-SYS-0001`; physical controls deferred |
-| Cross-cutting | `C-X-01..11` | 11 | частично покрыто reviewed contracts; итоговая матрица pending |
-| Составные UX sessions | `C-UX-01..03` | 3 | `candidate`; decomposition pending |
-| Performance/power candidates | `C-HWX-01..04` | 4 | `candidate`; acceptance metric pending |
+| Cross-cutting | `C-X-01..11` | 11 | reviewed `REQ-X-0001` |
+| Составные UX sessions | `C-UX-01..03` | 3 | reviewed `REQ-X-0001` |
+| Performance/power candidates | `C-HWX-01..04` | 4 | reviewed as acceptance mechanisms, `REQ-X-0001`/`REQ-LORA-0001` |
 | **Итого** |  | **125** | полный перенос legacy и независимых additions доказан `REV-0002A` |
 
-## Явно найденные дополнительные хотелки, ещё не принятые
+## Явно найденные дополнительные хотелки после саморевью
 
-Каждая строка ниже должна быть отдельно показана владельцу со знаком `⚠️`; отсутствие ответа не означает принятие или отказ.
+Десять source-строк получили решение по делегированному саморевью. Две смешанные строки декомпозированы, поэтому leaf-решений двенадцать; полные boundaries — в `INV-0004`.
 
 | ID | ⚠️ Возможная хотелка | Состояние | Почему отдельный вопрос |
 |---|---|---|---|
-| `W-EXTRA-01` | EAPOL/PMKID capture на поддерживаемом Wi-Fi path | `needs-owner` | `IMP-0003`; passive capture надо отделить от active exploit и private patch |
-| `W-EXTRA-02` | настоящий BLE connection-follow sniffer через отдельный nRF52-class accessory/onboard block | `needs-owner` | `IMP-0004`; native S3 BLE этого не даёт |
-| `W-EXTRA-03` | ordinary Bluetooth Mesh node/provisioner | `needs-owner` | `IMP-0020`; новый radio не нужен, но растут key/flash/RAM/HIL scope |
-| `W-EXTRA-04` | Bluetooth Classic через третий controller | `needs-owner` | `OUT-03`; S3/C5 LE-only |
-| `W-EXTRA-05` | дополнительные HF/VHF/30–64 MHz/DRM RX/TX возможности вне Si4732 | `needs-owner` | `OUT-05`; требуется другой RF backend |
-| `W-EXTRA-06` | full-duplex repeater или digital voice | `needs-owner` | `OUT-07`; нужен второй RF path или другой модуль |
-| `W-EXTRA-07` | wideband SDR + более мощный compute/Linux analytics | `needs-owner` | `OUT-08`; другой класс устройства/расширения |
-| `W-EXTRA-08` | cellular/GSM/LTE connectivity | `needs-owner` | `OUT-09`; modem, SIM/eSIM, certification и power budget |
-| `W-EXTRA-09` | LF 125 kHz NFC/RFID | `needs-owner` | `OUT-06`; отдельный frontend, U216 этого не добавляет |
-| `W-EXTRA-10` | двухfrontend NFC relay и тяжёлый key-recovery compute | `needs-owner` | `OUT-06`; не является бесплатной функцией U216 |
+| `W-EXTRA-01` | EAPOL/PMKID capture на поддерживаемом Wi-Fi path | `conditional` | passive Lab only; no onboard cracking |
+| `W-EXTRA-02` | BLE connection-follow sniffer | `defer-release` | optional nRF52-class accessory |
+| `W-EXTRA-03` | ordinary Bluetooth Mesh | `defer-release` | optional software profile, no new radio |
+| `W-EXTRA-04` | Bluetooth Classic | `defer-release` | optional external controller only |
+| `W-EXTRA-05` | дополнительные HF/VHF/30–64 MHz/DRM | `defer-release` | optional RF/SDR expansion |
+| `W-EXTRA-06A` | digital voice | `defer-release` | optional protocol/backend profile |
+| `W-EXTRA-06B` | full-duplex repeater | `defer-release` | optional dual-RF architecture |
+| `W-EXTRA-07` | wideband SDR + Linux analytics | `defer-release` | external SDR/compute profile |
+| `W-EXTRA-08` | cellular/GSM/LTE | `defer-release` | external/tethered certified modem profile |
+| `W-EXTRA-09` | LF 125 kHz NFC/RFID | `defer-release` | external LF frontend |
+| `W-EXTRA-10A` | two-frontend NFC relay | `defer-release` | optional Controlled-Zone attachment |
+| `W-EXTRA-10B` | heavy key-recovery compute | `defer-release` | owner-controlled off-device compute |
 
 ## Не хотелки, а варианты будущей реализации
 
@@ -97,20 +99,15 @@
 - [x] все legacy capability rows импортированы без потерь;
 - [x] owner additions из текущего диалога занесены;
 - [x] известные найденные extras вынесены отдельно;
-- [ ] владелец подтвердил группировку `INV-0003`;
-- [ ] завершены `REQ-*` для Wi-Fi 2.4, Sub-GHz/CC1101 и LoRa;
-- [ ] завершена cross-cutting/UX/performance матрица;
-- [ ] каждое `W-EXTRA-*` получило ответ владельца;
-- [ ] `AUD-0001` завершил все `OUT-01..09`;
-- [ ] у каждой желаемой функции есть zero-loss acceptance boundary;
-- [ ] владелец подтвердил, что крупных пропущенных хотелок больше нет;
-- [ ] владелец явно подтвердил wishlist freeze.
+- [x] группировка `INV-0003` прошла делегированное саморевью;
+- [x] завершены `REQ-*` для Wi-Fi 2.4, Sub-GHz/CC1101 и LoRa;
+- [x] завершена cross-cutting/UX/performance матрица;
+- [x] каждое `W-EXTRA-*` получило disposition;
+- [x] `AUD-0001` завершил product-level disposition `OUT-01..09`;
+- [x] у каждой желаемой функции есть zero-loss acceptance boundary;
+- [x] completeness проверена по legacy, owner additions и extras;
+- [x] freeze принят по явной делегации владельца в `DEC-0023`.
 
-## Порядок дальнейшего прохода
+## Следующий этап
 
-1. Сначала обычные Main-функции каждого незавершённого блока.
-2. Затем пассивные/защитные Lab-функции того же блока.
-3. Затем active/disruptive Controlled-Zone функции с legal/containment boundary.
-4. Отдельно показать каждую `W-EXTRA-*` и получить только функциональное решение — без выбора GPIO или placement.
-5. После закрытия всех строк провести owner completeness review и freeze.
-6. Только затем строить S3-heavy, C5-heavy и balanced/modular компоновки на одинаковом demand model.
+Этап 3 строит единый demand model, затем как минимум S3-heavy, C5-heavy и balanced/modular компоновки. Только после этого сравниваются ownership, transports, GPIO, recovery, cost и HIL; pin budget не используется для удаления wishlist задним числом.

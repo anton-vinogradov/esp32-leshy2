@@ -1,6 +1,6 @@
 # INV-0003 — сгруппированный пакет хотелок для owner review
 
-- Статус: **На ревью владельца — проверяется группировка, не принимаются функции оптом**
+- Статус: **Проведено ревью — группировка принята делегированным саморевью**
 - Дата: 2026-08-16
 - Основание: `DEC-0022`, `INV-0001`, `INV-0002`
 - Полнота: **125 из 125 кандидатных строк распределены ровно по одной группе**
@@ -54,8 +54,8 @@
 |---|---|---|
 | `WE-01` Дополнительное наблюдение протоколов | `W-EXTRA-01` EAPOL/PMKID, `W-EXTRA-02` BLE connection sniffer, `W-EXTRA-04` Bluetooth Classic | privacy/storage; для BLE sniff/Classic появляется дополнительный radio/accessory |
 | `WE-02` Дополнительные сети | `W-EXTRA-03` Bluetooth Mesh, `W-EXTRA-08` cellular | Mesh в основном software/resource scope; cellular добавляет modem/SIM/power/certification |
-| `WE-03` Расширенный RF и compute | `W-EXTRA-05` дополнительные HF/VHF/DRM, `W-EXTRA-06` full-duplex/digital voice, `W-EXTRA-07` wideband SDR/Linux analytics | новый RF/compute class, возможно отдельный модуль или иная версия устройства |
-| `WE-04` Расширенный RFID | `W-EXTRA-09` LF 125 kHz, `W-EXTRA-10` two-frontend relay/heavy recovery | отдельный LF frontend либо второй HF frontend/compute; не бесплатное продолжение U216 |
+| `WE-03` Расширенный RF и compute | `W-EXTRA-05`, `W-EXTRA-06A` digital voice, `W-EXTRA-06B` full-duplex, `W-EXTRA-07` | новый RF/compute class, optional module/profile |
+| `WE-04` Расширенный RFID | `W-EXTRA-09`, `W-EXTRA-10A` two-frontend relay, `W-EXTRA-10B` heavy recovery compute | LF/frontend/timing/compute — три разных resource classes |
 
 ## Почему security не вынесена в отдельную аппаратную группу
 
@@ -67,6 +67,6 @@ Security level — свойство сценария, а не radio chip. Нап
 
 Порядок идёт от платформы и обычных полевых функций к радиосетям, специализированным transceiver и дополнительным аппаратным классам. Внутри каждой группы опасность всегда возрастает от Main к contained disruptive tests.
 
-## Вопрос текущего ревью
+## Итог
 
-Подтверждает ли владелец девять `WG-*`, четыре `WE-*`, отсутствие дублей и предложенный порядок как удобную структуру дальнейшего review? Это не является принятием функций внутри групп.
+Девять `WG-*` покрывают 125/125 строк без дублей. Саморевью обнаружило две смешанные extra-строки и разложило их на независимые leaf-решения; окончательные dispositions находятся в `INV-0004`.

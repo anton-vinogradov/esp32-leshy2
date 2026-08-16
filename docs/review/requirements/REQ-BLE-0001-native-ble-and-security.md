@@ -6,7 +6,7 @@
 - Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0019`, `DEC-0020`, `DEC-0021`
 - Находки: `FND-0002`, `FND-0007`, `FND-0021`, `FND-0026`, `FND-0027`
 - Принятые предложения: `IMP-0017`, `IMP-0019`
-- Открытые предложения: `IMP-0004`, `IMP-0020`
+- Disposition extras: `IMP-0004`/`W-EXTRA-02` и `IMP-0020`/`W-EXTRA-03` сохранены `DEC-0023` как optional `defer-release`
 
 ## Граница документа
 
@@ -48,13 +48,13 @@ Native BLE controller предоставляет standard scanning, advertising,
 - universal AirTag/Find My/Continuity/Flipper emulation or Apple certification;
 - arbitrary GATT/HID action without target/preview/security gates;
 - open-air pairing/crash/connection flood или BLE jammer;
-- Bluetooth Mesh до отдельного решения `IMP-0020`.
+- Bluetooth Mesh в baseline release; он сохранён как optional later profile по `DEC-0023`.
 
 Полноценный BLE через nRF24 также не обещается: возможен только доказанный experimental legacy-1M advertising subset. Эта BLE-граница не ограничивает native nRF24L01+ PTX/PRX, Enhanced ShockBurst, rate/channel, ACK, pipe, FIFO, IRQ или RPD функции.
 
 ## Финальное ревью
 
-Распространение `DEC-0021` проведено в `REV-0002Y`: owner/native/nRF24 boundary синхронизирована в `FND-0002`, `IMP-0017`, target/current-state EN/RU обоих репозиториев и этом contract. `IMP-0004` и **⚠️ `IMP-0020`** остаются отдельными последовательными предложениями и не блокируют native BLE baseline.
+Распространение `DEC-0021` проведено в `REV-0002Y`: owner/native/nRF24 boundary синхронизирована в обоих репозиториях. `DEC-0023` закрыл functional decision по extras: dedicated nRF52 connection sniffer и Bluetooth Mesh сохранены как optional `defer-release`, Bluetooth Classic — только как возможный внешний controller. Они не блокируют native BLE baseline и не входят в base BOM/core release.
 
 ## Первичные источники
 

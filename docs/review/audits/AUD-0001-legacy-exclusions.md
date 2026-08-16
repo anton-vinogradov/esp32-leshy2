@@ -1,6 +1,6 @@
 # AUD-0001 — повторный аудит legacy-исключений
 
-- Статус: **В работе**
+- Статус: **Проведено ревью на уровне product requirements**
 - Основание: `DEC-0004`
 - Этап: 2 — возможности и исключения
 - Дата начала: 2026-08-15
@@ -19,7 +19,7 @@
 | OUT-04 | nRF24 как 802.11/full-BLE receiver | Ограничение подтверждено для nRF24: RPD даёт только energy threshold, BLE возможен лишь как limited legacy-1M advertising compatibility. Для продукта ordinary Wi-Fi/BLE уже есть на S3/C5 | RPD/compatibility RX = Main/Lab по данным; identity/security TX = Controlled Zone | `decomposed`: `REQ-N24-0001` исключает full-BLE/802.11 claim из nRF path; `IMP-0017` переносит ordinary BLE на native backend после BLE-owner review |
 | OUT-05 | HF TX, VHF airband/weather, 30–64 MHz, DRM через Si4732 | Это ceiling Si4732, не продукта; нужен другой receiver/transceiver/SDR и, для digital decode, MCU audio/IQ path | RX обычно проще; TX зависит от диапазона, лицензии и региона | `reopen`; сравнить встроенный RF-path и опциональный модуль вместе с `FND-0003` |
 | OUT-06 | NFC emulation/relay, ISO15693, FeliCa, LF 125 kHz, hardnested/darkside | Готовый M5 U216/ST25R3916 даёт A/B/F/V, emulation и custom mode дешевле custom PN7160 integration; relay требует два frontend, LF отдельный, key recovery — compute/license proof | Read-only analysis в Lab; recovery/emulation/clone/relay только Controlled Zone `AUTHORIZED_TARGET` | `reopen` декомпозировано: `DEC-0017` выбирает U216; `REQ-NFC-0001` reviewed, LF/recovery/relay сохраняют отдельные gates |
-| OUT-07 | SA868 full-duplex repeater и digital voice | Ceiling одного half-duplex analog SA868; технически требует второго RF-path/duplex isolation либо dedicated digital-voice hardware | Частоты, callsign, repeater и encryption зависят от лицензии/региона | `defer`; сначала определить пользовательскую ценность и RF/BOM цену |
+| OUT-07 | SA868 full-duplex repeater и digital voice | Исходная строка смешивала разные потолки: digital voice возможна half-duplex через иной codec/protocol/backend; full-duplex repeater требует второго RF path и duplex isolation | Частоты, callsign, repeater и encryption зависят от лицензии/региона | `decomposed/defer-release`: `W-EXTRA-06A` digital voice и `W-EXTRA-06B` full-duplex; optional profiles, не base promise |
 | OUT-08 | Wideband SDR, arbitrary RF TX, onboard Linux analytics | Технически достижимо только при добавлении SDR frontend и существенно более мощного compute | RX и анализ отделить от arbitrary TX; TX гейтовать по диапазону/лицензии | `defer/architecture option`; сравнить встроенное и внешнее расширение |
 | OUT-09 | Cellular/GSM | Технически достижимо сертифицированным modem module, которого нет в legacy design | Нужны операторские диапазоны, сертификация, SIM/eSIM и региональная проверка | `defer/architecture option`; определить продуктовый сценарий до BOM-анализа |
 
@@ -48,9 +48,11 @@
 - [Ofcom rules on jammers](https://www.ofcom.org.uk/spectrum/radio-equipment/radio-spectrum-and-the-law)
 - [ETSI shielded/anechoic test environment](https://www.etsi.org/deliver/etsi_en/300001_300099/300086/02.01.01_30/en_300086v020101v.pdf)
 
-## До завершения
+## Перенесено в implementation stages
 
-- проверить каждый technical reopening по datasheet/SDK и, где нужно, минимальным прототипом;
-- выбрать целевые юрисдикции и построить отдельные legal profiles;
-- оценить BOM/площадь/питание вариантов OUT-03, OUT-05–OUT-09;
-- не закрывать старый потолок без статуса `exclude-proven` и доказательств.
+- exact component/API reopening проверяется datasheet/prototype/HIL до появления функции в release;
+- legal profiles строятся по выбранным регионам до TX enablement;
+- optional OUT-03/05–09 не нагружают base BOM и оцениваются только при активации профиля;
+- confirmed component ceilings остаются честными, но больше не выдаются за абсолютный потолок продукта.
+
+`INV-0004` задаёт disposition каждой reopened возможности. Поэтому аудит завершён как вход архитектуры; он не утверждает, что deferred hardware уже спроектирован или испытан.
