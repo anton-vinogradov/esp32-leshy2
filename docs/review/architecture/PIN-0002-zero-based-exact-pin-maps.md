@@ -13,7 +13,7 @@
 2. GPIO matrix routing is allowed where the manufacturer supports it; fixed USB and C5 SDIO pins remain fixed.
 3. SD/MMC pull-ups never land on S3 boot straps.
 4. A strap pin is usable only with explicit reset-state proof; `strap-reserved` is not free product I/O.
-5. S3 native USB and physical `GPIO0/EN` recovery remain. C5 uses 1-bit SDIO, preserving GPIO13/14 USB and physical `GPIO26/EN` recovery.
+5. S3 native USB and physical `GPIO0/EN` recovery remain. C5 uses 1-bit SDIO, preserving GPIO13/14 USB and physical `GPIO28/CHIP_PU` recovery.
 6. STOP/reset, power gates, radio-latch `OE`, actual-TX indicator and analog safety are non-programmable dominant nets, not ordinary MCU control pins.
 7. Display/touch reset, ordinary UI inputs and slow controls may use local I²C I/O; PTT and radio deadline paths follow the direct/latch maps below.
 
@@ -148,9 +148,9 @@ All candidates require a C5 revision with working SDIO, not v0.0/v0.1. External 
 | 23 | `U214_GNSS_UART_RX` I | UART0 | U214 GPS TX→C5 |
 | 24 | `U214_GNSS_UART_TX` O | UART0 | C5→U214 GPS RX |
 | 25 | `UNIT_GPS_UART_RX` I | UART1 | rail off; external pull-down fixes SDIO edge |
-| 26 | `CAP_I2C_SDA_BOOT` I/O | I²C + boot | pull-up normal boot; recovery button overrides low |
+| 26 | `CAP_I2C_SDA` I/O | I²C | pull-up; GPIO26 is not the USB-capable download selector |
 | 27 | `CAP_I2C_SCL` I/O | I²C | pull-up; ROM-log strap documented |
-| 28 | `UNIT_GPS_UART_TX` O | UART1 | pull-up/high-Z supports USB joint-download selection |
+| 28 | `UNIT_GPS_UART_TX / BOOT_SERVICE` O/strap | UART1 + ROM recovery | pull-up normal boot; accessory rail off/high-Z while physical service control forces low for Joint Download Boot 0 |
 
 Ledger: `21 used / 21`; no spare. `U214_RST`, profile power and Cap-I²C isolation use local safe slow-control outputs; STOP directly cuts/inhibits `VEXT_RF`. U214 and Unit GPS use separate UARTs, but exactly one GNSS backend is active.
 
@@ -167,9 +167,9 @@ Ledger: `21 used / 21`; no spare. `U214_RST`, profile power and Cap-I²C isolati
 | 23 | `CC_GDO0` I | direct | FIFO/event |
 | 24 | `CC_GDO2` I | direct | event |
 | 25 | `STRAP_RESERVED_SDIO_EDGE` | — | external pull-down |
-| 26 | `BOOT_SERVICE` | ROM recovery | pull-up normal boot; button low for recovery |
+| 26 | `STRAP_RESERVED_BOOT_AUX` | — | no external runtime load; GPIO26 is any-value in SPI boot and Joint Download Boot 0 |
 | 27 | `STRAP_RESERVED_ROM_LOG` | — | no functional load |
-| 28 | `STRAP_RESERVED_BOOT` | — | pull-up supports USB joint-download |
+| 28 | `BOOT_SERVICE` | ROM recovery | pull-up normal boot; physical control low plus CHIP_PU toggle selects USB/UART Joint Download Boot 0 |
 
 Ledger: `17 used + 4 strap/recovery-reserved = 21`; no general-purpose spare. GP-SPI2 is not double-booked because S3↔C5 uses SDIO.
 
@@ -186,9 +186,9 @@ Ledger: `17 used + 4 strap/recovery-reserved = 21`; no general-purpose spare. GP
 | 23 | free | no assignment |
 | 24 | free | no assignment |
 | 25 | strap-reserved | pull-down fixes SDIO edge |
-| 26 | boot/recovery-reserved | pull-up + physical download control |
+| 26 | strap-reserved | no external runtime load; not tied to the physical BOOT control |
 | 27 | strap-reserved | deterministic ROM-log state |
-| 28 | strap/recovery-reserved | pull-up supports USB joint-download |
+| 28 | boot/recovery-reserved | pull-up normal boot; physical low plus CHIP_PU toggle selects USB/UART Joint Download Boot 0 |
 
 Ledger: `9 used + 5 strap/recovery-reserved + 7 general-purpose free = 21`. This is the only candidate with useful non-strap MCU GPIO reserve.
 
@@ -274,7 +274,7 @@ No hardware controller is double-booked. Shared buses have one local owner and b
 | S3 GPIO45/46 | GPIO45 retains 3.3 V-memory strap; GPIO46 is reserved or driven only by unpowered voice backend after sampling |
 | C5 GPIO7 | SDIO pull-up explicit; production verifies USB Serial/JTAG; no JTAG-lock eFuse assumed |
 | C5 GPIO3/25 | fixed `1/0` SDIO edge profile; HIL uses that exact state |
-| C5 GPIO26/27/28 | GPIO26/28 pull-up; GPIO26-low recovery selects USB-capable joint download; profile rails off during sampling |
+| C5 GPIO26/27/28 | GPIO27/28 pull-up; physical GPIO28-low plus CHIP_PU toggle selects USB/UART Joint Download Boot 0; GPIO26 is not tied to BOOT and profile rails are off during sampling |
 | broken peer | S3/C5 native USB/EN/boot independent; RP has USB/SWD/RUN |
 
 ## Collision and reserve result
