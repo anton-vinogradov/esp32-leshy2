@@ -35,6 +35,7 @@ Former ESP32-C5 profile — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.
 | `REQ-W5-18` | все | `conditional` | Сквозной openness/update | Public-IDF/OpenThread core build воспроизводим и owner-controlled. Любой optional proprietary/patched binary изолирован build profile, имеет provenance/rights/SBOM/version/hash/signature/rollback и не блокирует сборку, обновление или восстановление открытого core product. |
 | `REQ-W5-19` | все | `conditional` | Сквозной privacy/storage | Capture/session format versioned, bounded и fuzzed; identity/payload/location minimized, encrypted at rest where sensitive, explicit export/delete/retention/factory-reset tested. Imported records inert by default and cannot bypass zone/region/TX gates. |
 | `REQ-W5-20` | все TX | `conditional` | Сквозной safety/HIL | Conservative minimum power default, visible actual band/channel/power/region/target/time, fresh Controlled-Zone banner, local dead-man and independent STOP. Exact module/antenna matrix tests country/DFS/PMF/public frame classes/capture loss/coexistence/reset/crash/update/link loss; no result is promoted from `unknown`. |
+| `REQ-W5-21` | `W-EXTRA-17` | `exclude-by-owner` | Scope boundary | `DEC-0040`: product stops at accepted 2.4/5 GHz. No base or optional 6 GHz/Wi-Fi 6E result, hidden radio/host/antenna/driver resource or qualification gate. Incidental external-SDR reach is not advertised as Wi-Fi 6E support. |
 
 ## Явно не обещается
 

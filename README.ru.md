@@ -73,8 +73,8 @@ peripheral computer. Это должен быть собираемый, ремо
 - Owner-controlled signed updates сохраняют target validation, rollback,
   offline keys/tools и intentional physical recovery. Необратимый lockdown —
   отдельный optional decision, а не default.
-- Generic USB host и personal FIDO/U2F authenticator находятся вне product
-  mission. Конкретный принятый RF/SDR profile может позже вывести exact
+- Generic USB host, personal FIDO/U2F authenticator и 6 GHz/Wi-Fi 6E находятся
+  вне product mission. Конкретный принятый RF/SDR profile может позже вывести exact
   high-throughput transport, не превращая generic host в capability.
 - BadUSB/DuckyScript — одно явное non-core исключение: release-optional
   Controlled-Zone software profile поверх существующего USB device/service

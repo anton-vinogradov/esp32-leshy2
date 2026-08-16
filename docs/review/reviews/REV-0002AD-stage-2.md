@@ -5,6 +5,9 @@
 - Этап: 2 — возможности и исключения
 - Пререквизит: этап 1 **Проведено ревью**
 
+Later `FND-0040` reopened G2 for the current-competitor delta. The canonical
+repeat closure after `W-EXTRA-11..17` is [`REV-0002AS`](REV-0002AS-stage-2-delta-rereview.md).
+
 ## Проверка выходов
 
 | Выход этапа | Проверка | Результат |

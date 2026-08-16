@@ -1,6 +1,6 @@
 # FND-0048 — accepted 5 GHz does not imply 6 GHz/Wi-Fi 6E
 
-- Статус: **Открыто до решения владельца**
+- Статус: **Исправлено `DEC-0040`: 6 GHz rejected, 2.4/5 retained**
 - Дата: 2026-08-17
 - Обнаружено: [`AUD-0012`](../audits/AUD-0012-6ghz-wifi6e-product-scope.md)
 - Затрагивает: `W-EXTRA-17`, G2–G7, RF/regulatory/HIL
@@ -27,5 +27,5 @@ SDIO/PCIe host, RF/antenna, driver, power and regulatory-device-class burden.
 ## Exit criteria
 
 - [x] fact/prerequisite review complete;
-- [ ] owner selects `IMP-0034/A`, `B` or `C`;
-- [ ] selected disposition propagated to target, requirements and architecture gates.
+- [x] owner selected `IMP-0034/C` through `DEC-0040`;
+- [x] rejection propagated to target, requirements and architecture gates.

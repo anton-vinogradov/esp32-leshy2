@@ -34,10 +34,10 @@
 - `W-EXTRA-14` закрыт [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
 - `W-EXTRA-15` закрыт [`DEC-0038`](../review/decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md): no integrated keyboard, bounded phone-assisted text;
 - `W-EXTRA-16` generic High-Speed USB host rejected `DEC-0039`; остаётся только RF-derived transport;
-- текущий вопрос: `W-EXTRA-17` 6 GHz/Wi-Fi 6E; факты и пререквизиты проверены
-  в `AUD-0012/REV-0002AQ`, placement владельца остаётся `IMP-0034`.
+- `W-EXTRA-17` 6 GHz/Wi-Fi 6E полностью отклонён `DEC-0040`; принятые
+  автономные 2.4/5 GHz остаются без изменений.
 
-Ни один оставшийся пункт не добавлен в target до решения владельца.
+`REV-0002AS` закрывает повторное G2 review. Активен G3 target product design.
 
 ## Что остаётся проверенным
 

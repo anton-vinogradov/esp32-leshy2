@@ -1,10 +1,11 @@
 # AUD-0012 — 6 GHz/Wi-Fi 6E product scope and feasibility
 
-- Статус: **Проведено ревью фактов; решение владельца открыто**
+- Статус: **Проведено ревью; owner selected reject/C in `DEC-0040`**
 - Дата snapshot: 2026-08-17
 - Delta: `W-EXTRA-17`
 - Finding: [`FND-0048`](../findings/FND-0048-5ghz-does-not-imply-6ghz.md)
 - Предложение: [`IMP-0034`](../improvements/IMP-0034-6ghz-wifi6e-placement.md)
+- Решение: [`DEC-0040`](../decisions/DEC-0040-reject-6ghz-wifi6e.md)
 
 ## Product result
 
@@ -81,4 +82,4 @@ not weaken the already-accepted autonomous 2.4/5 GHz requirement.
 - [x] region/device-class TX boundary recorded;
 - [x] passive, ordinary active and dangerous workflows kept distinct;
 - [x] base, optional profile and rejection dispositions prepared for owner;
-- [ ] owner selects `IMP-0034/A`, `B` or `C`.
+- [x] owner selected `IMP-0034/C`; no base or optional 6E product profile.

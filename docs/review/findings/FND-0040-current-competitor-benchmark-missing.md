@@ -1,6 +1,6 @@
 # FND-0040 — current competitor benchmark was missing from the frozen wishlist
 
-- Статус: **Открыто; G2 требует повторного ревью**
+- Статус: **Исправлено; repeat G2 reviewed `REV-0002AS`**
 - Дата: 2026-08-16
 - Обнаружено при входе в corrected `FLOW-0001/G3`
 - Аудит: [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md)
@@ -38,7 +38,7 @@ profile `DEC-0033/REQ-IBTN-0001`; M5 infrastructure through `DEC-0034`; and
 `AUD-0009/DEC-0038` reject an integrated keyboard and accept bounded
 phone-assisted text. `AUD-0010/DEC-0039` reject generic High-Speed USB host
 while retaining RF-derived transport. `AUD-0012/REV-0002AQ` review the final
-6 GHz facts; only owner placement `IMP-0034` remains unresolved.
+6 GHz facts; `DEC-0040` fully rejects 6E scope. `REV-0002AS` closes the delta.
 
 Часть — новые capabilities, часть — входы `G3`, а часть уже покрыта
 `W-EXTRA-*` и не должна учитываться дважды.
@@ -54,5 +54,5 @@ while retaining RF-derived transport. `AUD-0012/REV-0002AQ` review the final
 5. Выпустить отдельный propagation review и лишь затем вернуть G2 статус
    **«Проведено ревью»**.
 
-До закрытия G2 physical-design research допустим, но target `G3` не может быть
-принят или стать входом архитектуры.
+All correction steps are complete through `REV-0002AS`. G3 target product
+design is now the active reviewed-input consumer.

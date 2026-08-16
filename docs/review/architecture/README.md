@@ -50,9 +50,9 @@ external IMU measurement pose is reviewed by `DEC-0037/REQ-IMU-0001`. G2
 also closes `W-EXTRA-15` through `DEC-0038`: no integrated keyboard, bounded
 phone-assisted text. `DEC-0039/REQ-SCOPE-0001` reject generic `W-EXTRA-16`,
 retain only RF-derived high-throughput transport and classify BadUSB as a
-software-only exception. `W-EXTRA-17` has reviewed prerequisites and remains
-an owner placement decision through `IMP-0034`. G3 research
-may proceed, but cannot receive final review until G2 closes.
+software-only exception. `DEC-0040` rejects `W-EXTRA-17` 6 GHz/Wi-Fi 6E from
+base and optional product scope. `REV-0002AS` closes repeated G2 review; G3
+target product design is now the active gate.
 
 ## Candidate/reference studies
 

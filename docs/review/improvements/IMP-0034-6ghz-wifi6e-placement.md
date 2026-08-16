@@ -1,10 +1,11 @@
 # IMP-0034 — place 6 GHz/Wi-Fi 6E in the product architecture
 
-- Статус: **⚠️ Требуется решение владельца**
+- Статус: **Закрыто: принят вариант C / `DEC-0040`**
 - Дата: 2026-08-17
 - Delta: `W-EXTRA-17`
 - Evidence: [`AUD-0012`](../audits/AUD-0012-6ghz-wifi6e-product-scope.md)
 - Finding: [`FND-0048`](../findings/FND-0048-5ghz-does-not-imply-6ghz.md)
+- Решение: [`DEC-0040`](../decisions/DEC-0040-reject-6ghz-wifi6e.md)
 
 ## Контекст
 
@@ -59,4 +60,6 @@ zero-loss base invariant before G3/G4 compare form factor, cost and host burden.
 
 ## Decision question
 
-Choose `A`, `B` or `C`. No option changes the accepted 2.4/5 GHz baseline.
+The owner selected **C**: fully reject 6 GHz/Wi-Fi 6E product scope. The
+accepted 2.4/5 GHz baseline is unchanged. The former recommendation B remains
+historical comparison evidence and imposes no expansion or architecture gate.

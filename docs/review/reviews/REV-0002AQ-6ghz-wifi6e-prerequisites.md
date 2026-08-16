@@ -1,6 +1,6 @@
 # REV-0002AQ — 6 GHz/Wi-Fi 6E prerequisite review
 
-- Статус: **Проведено ревью фактов; owner disposition open**
+- Статус: **Проведено ревью фактов; later closed C/`DEC-0040`**
 - Дата: 2026-08-17
 - Input: `W-EXTRA-17`, refined radio/key mission, current primary sources
 - Outputs: `AUD-0012`, `FND-0048`, `IMP-0034`
@@ -24,5 +24,6 @@
 
 Fact/prerequisite slice receives **«Проведено ревью»**. The remaining question
 is product placement, not technical existence. Recommendation `IMP-0034/B`
-preserves a qualified optional radio/compute profile with no base hardware
-burden; no target or architecture artifact changes until the owner decides.
+preserved a qualified optional radio/compute profile with no base hardware
+burden. The owner later selected C through `DEC-0040`; this prerequisite review
+remains evidence and imposes no current 6E target or architecture burden.

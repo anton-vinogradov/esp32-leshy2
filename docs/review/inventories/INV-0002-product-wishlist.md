@@ -98,7 +98,7 @@ disposition они имеют состояние `needs-owner` и не вход�
 | `W-EXTRA-14` | IMU/orientation/motion | `accepted-external`: `DEC-0037/REQ-IMU-0001`; indexed measurement-pose profile, no base sensor/heading/bearing claim |
 | `W-EXTRA-15` | physical text keyboard as product archetype | `rejected-integrated / accepted-phone-assisted`: `DEC-0038`; no keyboard/U215 product profile |
 | `W-EXTRA-16` | dual-role/high-speed USB accessory host | `rejected-generic`: `DEC-0039`; exact transport only when derived by concrete RF/SDR profile |
-| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` — facts reviewed `AUD-0012`, placement options `IMP-0034` |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `rejected-by-owner`: option C/`DEC-0040`; no base or optional 6E product profile |
 
 ## Исторические идеи реализации, не входные ограничения
 
@@ -125,14 +125,14 @@ disposition они имеют состояние `needs-owner` и не вход�
 - [x] у каждой желаемой функции есть zero-loss acceptance boundary;
 - [x] completeness проверена по legacy, owner additions и extras;
 - [x] freeze принят по явной делегации владельца в `DEC-0023`.
-- [ ] current competitor delta получает owner disposition: `W-EXTRA-11`
+- [x] current competitor delta получает owner disposition: `W-EXTRA-11`
   закрыт `DEC-0033`, infrastructure `IMP-0028` закрыт `DEC-0034`;
   `W-EXTRA-12` historical acceptance superseded/removed `DEC-0039`,
   `W-EXTRA-13` закрыт `DEC-0036`;
   `W-EXTRA-14` закрыт `DEC-0037`, `W-EXTRA-15` — `DEC-0038`;
-  `W-EXTRA-16` rejected generic `DEC-0039`; `W-EXTRA-17` facts reviewed
-  `AUD-0012`, owner placement открыт `IMP-0034`;
-- [ ] G2 проходит новое propagation review после решений.
+  `W-EXTRA-16` rejected generic `DEC-0039`; `W-EXTRA-17` rejected
+  `DEC-0040`;
+- [x] G2 прошло новое propagation review `REV-0002AS` после решений.
 
 ## Следующий этап после закрытия delta
 

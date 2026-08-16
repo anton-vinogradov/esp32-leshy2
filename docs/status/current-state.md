@@ -34,10 +34,10 @@ The canonical table is [`stages.md`](../review/stages.md).
 - `W-EXTRA-14` is closed by [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
 - `W-EXTRA-15` is closed by [`DEC-0038`](../review/decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md): no integrated keyboard, bounded phone-assisted text;
 - `W-EXTRA-16` generic High-Speed USB host is rejected by `DEC-0039`; only RF-derived transport remains;
-- current question: `W-EXTRA-17` 6 GHz/Wi-Fi 6E; facts/prerequisites are
-  reviewed in `AUD-0012/REV-0002AQ`, owner placement remains `IMP-0034`.
+- `W-EXTRA-17` 6 GHz/Wi-Fi 6E is fully rejected by `DEC-0040`; accepted
+  autonomous 2.4/5 GHz remains unchanged.
 
-No remaining item becomes part of the target before owner disposition.
+`REV-0002AS` closes repeated G2 review. G3 target product design is active.
 
 ## What remains reviewed
 

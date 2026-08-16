@@ -20,8 +20,8 @@ high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
 `DEC-0036`; `W-EXTRA-14` принят external через `DEC-0037/REQ-IMU-0001`.
 `W-EXTRA-15` закрыт `DEC-0038`: integrated keyboard rejected, bounded
 phone-assisted text accepted. Mission correction `DEC-0039` removes former
-FIDO target and rejects generic `W-EXTRA-16`; `AUD-0012` reviews
-`W-EXTRA-17` prerequisites and `IMP-0034` remains open.
+FIDO target and rejects generic `W-EXTRA-16`; `DEC-0040` rejects
+`W-EXTRA-17` 6 GHz/Wi-Fi 6E from base and optional product scope.
 
 ## Current competitor delta disposition
 
@@ -33,7 +33,7 @@ FIDO target and rejects generic `W-EXTRA-16`; `AUD-0012` reviews
 | `W-EXTRA-14` | IMU measurement-pose metadata | `accepted-external` | `DEC-0037/REQ-IMU-0001`: rigid indexed external profile; 6-axis ≠ heading/RF bearing; no base sensor |
 | `W-EXTRA-15` | physical-keyboard whole-product archetype | `rejected-integrated / accepted-phone-assisted` | `DEC-0038`: no permanent/U215 keyboard profile; text-dependent optional workflow may use paired phone, never as local authority |
 | `W-EXTRA-16` | generic native High-Speed USB host | `rejected-by-owner-scope` | `DEC-0039`: no base host requirement; concrete RF/SDR profile may derive exact high-throughput transport later |
-| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` | facts reviewed `AUD-0012`; choose base, qualified optional profile or reject through `IMP-0034` |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `rejected-by-owner` | option C/`DEC-0040`; no base/optional 6E result or hidden architecture burden; 2.4/5 unchanged |
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.

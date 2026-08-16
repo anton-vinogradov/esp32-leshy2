@@ -72,8 +72,8 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
 - Owner-controlled signed updates retain target validation, rollback, offline
   keys/tools and intentional physical recovery. Irreversible lockdown is a
   separate optional decision, never the default.
-- Generic USB host and personal FIDO/U2F authenticator are outside the product
-  mission. A concrete accepted RF/SDR profile may later derive an exact
+- Generic USB host, personal FIDO/U2F authenticator and 6 GHz/Wi-Fi 6E are
+  outside the product mission. A concrete accepted RF/SDR profile may later derive an exact
   high-throughput transport without making generic host support a capability.
 - BadUSB/DuckyScript is one explicit non-core exception: a release-optional
   Controlled-Zone software profile over the existing USB device/service path.

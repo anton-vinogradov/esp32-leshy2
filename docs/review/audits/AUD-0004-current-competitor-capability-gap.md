@@ -1,6 +1,6 @@
 # AUD-0004 — current competitor capability and product-design gap
 
-- Статус: **На ревью; `W-EXTRA-11..16` закрыты, только `W-EXTRA-17` открыт**
+- Статус: **Проведено ревью; `W-EXTRA-11..17` закрыты**
 - Дата snapshot: 2026-08-16
 - Finding: [`FND-0040`](../findings/FND-0040-current-competitor-benchmark-missing.md)
 - Scope: official product/project documentation; shipping and prototype states
@@ -50,7 +50,7 @@
 | IMU/orientation/motion | accepted external `DEC-0037/REQ-IMU-0001` | **gap closed at requirement level; indexed mechanics/electrical/HIL open** |
 | physical keyboard/trackball/D-pad archetype | core local control required; text-dependent scenarios may use phone | **closed `DEC-0038`: no integrated keyboard, bounded phone-assisted text; other field controls remain G3** |
 | high-speed USB host/M.2-class attachment | two-tier expansion remains result-driven; generic host rejected `DEC-0039` | **closed outside scope; concrete RF profile may derive exact transport** |
-| 6 GHz Wi-Fi | accepted target stops at 5 GHz | **real scope question; not implied by “5 GHz”** |
+| 6 GHz Wi-Fi | accepted target stops at 5 GHz | **closed `DEC-0040`: fully rejected; 2.4/5 unchanged** |
 | sunlight/gloves/lanyard/mounts/module retention | not quantified | **mandatory G3 constraints**, not radios/features |
 | Ethernet/HDMI/power-bank outputs | absent and no reviewed use case | not silently added; remains out unless a user result is proposed |
 
@@ -67,7 +67,7 @@ claim completeness while hiding pending choices. They are resolved one by one.
 | `W-EXTRA-14` | IMU | **resolved `DEC-0037/REQ-IMU-0001`**: optional external measurement pose/motion provenance; indexed mount; 6-axis is not heading/bearing | accepted external; no base sensor or consumer gesture/fall/tamper scope |
 | `W-EXTRA-15` | physical text keyboard | **resolved `DEC-0038`**: permanent keyboard excluded; rare/long text may use locally paired phone, never as safety/authorization authority | accepted phone-assisted text; no U215/base keyboard profile |
 | `W-EXTRA-16` | dual-role/high-speed USB accessory host | **resolved `DEC-0039`**: generic peripheral-host result is outside mission | rejected generic; a concrete accepted RF/SDR profile may derive transport later |
-| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E | **facts reviewed `AUD-0012/REV-0002AQ`; owner placement open `IMP-0034`** | keep 5 GHz base; preserve qualified optional 6E profile without base burden |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E | **resolved `DEC-0040`**: owner selected C | fully rejected from base and optional product scope; keep accepted 2.4/5 |
 
 ## Gate result
 
@@ -78,6 +78,5 @@ general M5-first/two-tier infrastructure question. `DEC-0039` later removes the
 former `AUD-0006/DEC-0035` FIDO target; `AUD-0007/DEC-0036` reject
 product haptic; `AUD-0008/DEC-0037` close `W-EXTRA-14`; `AUD-0009/DEC-0038`
 close `W-EXTRA-15`; `AUD-0010/DEC-0039` reject generic `W-EXTRA-16`;
-`AUD-0012` reviews the final 6 GHz facts. G3 research
-may proceed in parallel, but neither product design nor architecture can receive
-final review while any accepted delta is missing from its demand model.
+`AUD-0012/DEC-0040` close the final 6 GHz question. `REV-0002AS` repeats G2
+review; G3 target product design is now the active gate.
