@@ -27,6 +27,7 @@
 - FM/RDS/ordinary AM baseline и открытый owner-imported SSB/CW patch loader без bundled blob (`DEC-0015`);
 - условный dual-band analog-voice target на SA518 с честным UHF-only fallback на SA868S (`DEC-0016`);
 - внешний M5 Unit NFC U216 как первый HF NFC backend, RFID2 как limited compatibility и custom PN7160 как qualification fallback (`DEC-0017`);
+- двухтрактный consumer IR на C5 с robust RX TSOP38238 и TSMP95000 для измерения несущей 30–60 kHz (`DEC-0018`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
 - целевое владение C5 для 3×nRF24 и IR (`DEC-0001`) без заявления о готовом межпроцессорном транспорте.
 - owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
@@ -42,7 +43,6 @@
 - `FND-0013`: VOX не имеет microphone-capture path и явно отложен до общего audio/pin budget.
 - `FND-0015`: оба документированных M5 NFC Unit требуют PORT.A power profile 5 V, а текущие `J40/J41` дают 3.3 V; электрическое исправление ждёт общего port/power design.
 - `FND-0017`: legacy IR source всё ещё использует S3 ownership, generic unqualified emitter/current path и не имеет доказанных STOP/TX-state/optical behavior. Ложная `FAB-READY` пометка снята, Q58 получил reset-safe pull-down.
-- `FND-0018`: fixed 38 kHz TSOP38238 выдаёт demodulated envelope и не измеряет carrier исходного сигнала; receiver architecture ждёт решения по `IMP-0015`.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -59,7 +59,7 @@ Analog-voice срез [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analo
 
 NFC/RFID-срез [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) получил статус **«Проведено ревью»** в `REV-0002Q`. Владелец принял `IMP-0005/A` как [`DEC-0017`](../review/decisions/DEC-0017-u216-hf-nfc-backend.md): внешний M5 Unit NFC U216 за $7 — первый HF NFC target, RFID2 за $4.95 — limited compatibility, а custom PN7160 — fallback только после провала qualification. Дельта аксессуара $2.05 принята ради A/B/F/V, ISO15693/FeliCa, limited emulation и custom-mode scope и не влияет на base BOM. `FND-0016` закрыт на requirement-level явными трёхуровневыми гейтами и отказом от overclaim universal clone, relay с одним frontend, key recovery, LF 125 kHz и payment compliance. Exact IC U216 имеет статус NRND; proof точной revision/lifecycle, 5-вольтовый `PORT.A-NFC` (`FND-0015`), driver/SBOM, protocol и HIL остаются открытой реализационной работой.
 
-Consumer-IR prerequisite audit получил статус **«Проведено ревью»** в `REV-0002R`; [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) остаётся **«На ревью»**. Текущий TSOP38238 — robust fixed-38 kHz demodulator, но он не сохраняет и не измеряет carrier; Vishay TSMP95000 выдаёт carrier cycles 30–60 kHz для ближнего learning. У ESP32-C5 ровно два RX RMT channels, поэтому dual path возможен, но занимает оба. **⚠️ Предложение [`IMP-0015`](../review/improvements/IMP-0015-dual-path-consumer-ir-learning.md)** рекомендует сохранить robust demodulated RX, добавить carrier-learning RX и квалифицированный 940 nm emitter/driver; более дешёвые single-learning и honest fixed-38 варианты имеют явные потери. TV-B-Gone и brute-force/multi-code sweep перенесены в «Контролируемую зону» с `BOTH`. Safe-state artifact улучшен, но `FND-0017`, `FND-0018`, C5 pins/transport, exact BOM, STOP, optics, licences и HIL остаются открыты.
+Consumer-IR срез [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) получил статус **«Проведено ревью»** в `REV-0002S`. Владелец принял `IMP-0015/A` как [`DEC-0018`](../review/decisions/DEC-0018-dual-path-consumer-ir.md): C5 использует TSOP38238 для robust demodulated 38 kHz приёма и TSMP95000 для обучения с измерением несущей 30–60 kHz, занимая оба RX RMT channels C5; TSAL6200 — первый условный кандидат 940 nm emitter. Более дешёвые single-learning/fixed-38 варианты теряют принятую функцию и не могут подменить решение молча. `FND-0018` закрыт на requirement-level; автоматическое обучение 455 kHz/out-of-band остаётся deferred. Own remote/replay находится в Main, passive analysis — в Lab, unknown replay — в Controlled Zone `AUTHORIZED_TARGET`, а TV-B-Gone/brute-force/multi-code sweep — в Controlled Zone `BOTH`. `FND-0017`, C5 pins/transport, exact BOM, STOP, optics, licences и HIL остаются открытой реализационной работой.
 
 ## Отложенный архитектурный gate
 

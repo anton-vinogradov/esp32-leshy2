@@ -1,15 +1,15 @@
 # REQ-IR-0001 — consumer IR receive, learn, remote and controlled-test contract
 
-- Статус набора: **На ревью; требуется решение по `IMP-0015`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-IR-01`–`C-IR-05`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-11`
-- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`
+- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`
 - Находки: `FND-0001`, `FND-0017`, `FND-0018`
 - Условные входы реализации: C5 pin/RMT budget, S3↔C5 transport, exact optical/electrical path, STOP, storage/licence и HIL
 
 ## Граница документа
 
-Этот набор отделяет обычный пульт для собственных устройств от passive protocol analysis и disruptive multi-code actions. `Universal remote` означает только corpus-proven device/protocol/carrier profiles; это не blanket compatibility со всем оптическим оборудованием. Demodulated raw envelope, measured carrier и carrier metadata из protocol/database/import/manual input — разные типы evidence.
+Этот набор отделяет обычный пульт для собственных устройств от passive protocol analysis и disruptive multi-code actions. По `DEC-0018` C5 использует robust demodulated `TSOP38238` и отдельный `TSMP95000` carrier-learning path 30–60 kHz. `Universal remote` означает только corpus-proven device/protocol/carrier profiles; это не blanket compatibility со всем оптическим оборудованием. Demodulated raw envelope, measured carrier и carrier metadata из protocol/database/import/manual input — разные типы evidence.
 
 ## Матрица требований
 
@@ -17,7 +17,7 @@
 |---|---|---|---|---|
 | `REQ-IR-01` | все | `conditional` | Сквозной | ESP32-C5 физически и программно владеет IR TX/RX по `DEC-0001`. S3 задаёт UI/policy и получает typed records через принятый inter-MCU contract; невозможный legacy dual-SPI transport не наследуется (`FND-0001`). |
 | `REQ-IR-02` | `C-IR-01` | `conditional` | Основной | Recognized-protocol receive показывает protocol/address/command/repeat/toggle/confidence и одновременно хранит bounded raw envelope. Unknown/malformed/overflow остаётся raw/unsupported без ложного decode. |
-| `REQ-IR-03` | `C-IR-01`, `C-IR-02` | `conditional`, owner choice | Основной | Learning record хранит carrier value и provenance: `measured`, `protocol`, `database`, `imported` или `manual`. Только carrier-learning hardware может создать `measured`; fixed demodulator output не подменяет это поле (`FND-0018`). |
+| `REQ-IR-03` | `C-IR-01`, `C-IR-02` | `conditional` | Основной | По `DEC-0018` dual RX path сохраняет robust envelope и отдельно измеряет carrier 30–60 kHz. Learning record хранит carrier value и provenance: `measured`, `protocol`, `database`, `imported` или `manual`; fixed-demodulator output не подменяет `measured` (`FND-0018`). |
 | `REQ-IR-04` | `C-IR-04` | `conditional` | Основной | Universal remote покрывает только versioned corpus-proven TV/media/projector/audio/HVAC profiles. Stateful HVAC хранит полный state/checksum/model, а не отправляет произвольный stateless key. Unsupported model видим и не получает generic success. |
 | `REQ-IR-05` | `C-IR-02` | `conditional` | Основной own-device | Decoded command и own-tagged raw replay требуют явного press-to-send, выбранного target/profile и bounded repeats. Quick replay не стартует из boot/restore/import/playlist и прекращается при release/timeout/STOP. |
 | `REQ-IR-06` | `C-IR-01` | `conditional` | Лаборатория | Passive analysis неизвестного/чужого remote signal декодирует timings/carrier evidence без автоматического replay; записи получают provenance/consent label и не превращаются в Main own-tag автоматически. |
@@ -49,7 +49,7 @@
 
 ## Стоимость без потери продукта
 
-Ни single learning receiver вместо robust demodulator, ни fixed 38 kHz вместо measured-carrier learning не называются zero-loss до owner decision and HIL. Exact emitter/driver may reduce part count only after comparing electrical/optical equivalence, placement cost and safe-state components; a missing pull-down, STOP path, TX indication or optical acceptance is not an economy.
+По `DEC-0018` dual path принят ради сохранения robust receive и measured-carrier learning одновременно; дополнительный receiver/GPIO/площадь не называются экономией. Exact emitter/driver may reduce part count only after comparing electrical/optical equivalence, placement cost and safe-state components; a missing pull-down, STOP path, TX indication or optical acceptance is not an economy. Удаление одного RX path требует нового owner decision.
 
 ## Первичные источники
 

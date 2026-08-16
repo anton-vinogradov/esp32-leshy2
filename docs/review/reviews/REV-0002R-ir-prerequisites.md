@@ -27,3 +27,5 @@
 Prerequisite audit IR-среза получил статус **«Проведено ревью»**. `REQ-IR-0001` остаётся **«На ревью»**: открыт один owner-level выбор `IMP-0015` между dual-path A, single-learning B и fixed-38 C.
 
 `FND-0017` частично исправлен безопасным pull-down/маркировкой, но остаётся implementation finding. `FND-0018` закрывается requirement-level только после выбора receiver architecture. Exact C5 pins, transport, optics, BOM, protocol port and HIL не объявлены готовыми.
+
+Последующее состояние: владелец принял `IMP-0015/A` как `DEC-0018`, propagation review выполнен в `REV-0002S`, `FND-0018` закрыт на уровне требований, а `REQ-IR-0001` получил статус **«Проведено ревью»**.

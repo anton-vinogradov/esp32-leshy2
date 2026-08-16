@@ -1,6 +1,6 @@
 # IMP-0015 — dual-path consumer IR learning без ложного universal claim
 
-- Статус: **⚠️ Предложение; требуется решение владельца**
+- Статус: **Принято владельцем: вариант A, `DEC-0018`**
 - Связано: `C-IR-01`–`C-IR-05`, `FND-0017`, `FND-0018`, draft `REQ-IR-0001`
 - Зона: Main own-device remote; Lab passive analysis; Controlled Zone disruptive sweep/replay
 - Дата: 2026-08-16
@@ -11,7 +11,7 @@
 
 TX artifact также требует exact emitter/driver. `TSAL6200` — доказанный 940 nm high-power remote-control candidate с ±17° и 100 mA continuous/200 mA pulse ratings; финальные current/duty/range/eye-safety определяются схемой и HIL, не названием детали.
 
-## ⚠️ Предложение — варианты
+## Рассмотренные варианты
 
 ### A — два RX path + квалифицированный TX (рекомендация)
 
@@ -56,3 +56,7 @@ TX artifact также требует exact emitter/driver. `TSAL6200` — до�
 - [Vishay TSAL6200 datasheet](https://www.vishay.com/docs/81010/tsal6200.pdf)
 - [Arduino-IRremote MIT reference](https://github.com/Arduino-IRremote/Arduino-IRremote)
 - [IRremoteESP8266 protocol matrix](https://github.com/crankyoldgit/IRremoteESP8266/blob/master/SupportedProtocols.md)
+
+## Решение владельца
+
+2026-08-16 принят вариант A: два независимых C5 RX path (`TSOP38238` + `TSMP95000`) и квалифицируемый TX с `TSAL6200` как первым emitter candidate. Канонический контракт — `DEC-0018`; варианты B/C не могут быть применены как скрытая BOM-экономия.

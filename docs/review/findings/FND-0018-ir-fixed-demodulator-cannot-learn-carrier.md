@@ -1,6 +1,6 @@
 # FND-0018 — fixed 38 kHz demodulator не доказывает universal IR learning
 
-- Статус: **Открыто до решения по `IMP-0015`**
+- Статус: **Закрыто на уровне требований: `DEC-0018`, `REQ-IR-0001`, `REV-0002S`**
 - Серьёзность: capability overclaim
 - Затрагивает: `C-IR-01`–`C-IR-05`, raw capture/replay, universal remote, code DB и HIL
 - Обнаружено: 2026-08-16
@@ -17,7 +17,7 @@ Legacy одновременно обещает raw capture, carrier-frequency se
 
 ## Реалистичный обход
 
-Vishay `TSMP95000` выдаёт modulated carrier-out для code learning по 30–60 kHz. ESP32-C5 имеет два TX и два RX RMT channels, поэтому один robust demodulated receiver и один carrier-learning receiver технически могут работать как два независимых RX path. Это требует второго GPIO/RMT RX, нового MPN/passives, layout/window и common-capture HIL; оно не считается уже принятой архитектурой.
+Vishay `TSMP95000` выдаёт modulated carrier-out для code learning по 30–60 kHz. ESP32-C5 имеет два TX и два RX RMT channels, поэтому один robust demodulated receiver и один carrier-learning receiver технически могут работать как два независимых RX path. Это требует второго GPIO/RMT RX, нового MPN/passives, layout/window и common-capture HIL; архитектура принята в `DEC-0018`, но её реализация ещё не доказана.
 
 `TSMP95000` не закрывает out-of-band carrier вроде 455 kHz. Такой learn path остаётся отдельным future analog/wideband proposal; известный/imported out-of-band transmit также conditional до emitter/driver/timing HIL.
 
@@ -37,3 +37,7 @@ Vishay `TSMP95000` выдаёт modulated carrier-out для code learning по 
 - [Vishay TSMP95000 product page](https://www.vishay.com/en/product/82907/)
 - [Vishay TSMP95000 datasheet](https://www.vishay.com/docs/82907/tsmp95000.pdf)
 - [Espressif ESP32-C5 datasheet](https://documentation.espressif.com/esp32-c5_datasheet_en.html)
+
+## Закрытие
+
+Владелец принял dual-path вариант A в `DEC-0018`: `TSOP38238` сохраняет robust demodulated receive, а `TSMP95000` отдельно измеряет carrier 30–60 kHz. `REQ-IR-0001` запрещает называть metadata либо fixed-demodulator envelope измеренной несущей, а out-of-band learning остаётся deferred. Распространение проверено `REV-0002S`; exact pins, BOM, layout и HIL остаются implementation gates в `FND-0017`, но исходная requirement-level неоднозначность закрыта.

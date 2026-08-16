@@ -27,6 +27,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - an FM/RDS/ordinary-AM baseline and an open owner-imported SSB/CW patch loader without a bundled blob (`DEC-0015`);
 - a conditional SA518 dual-band analog-voice target with an honest UHF-only SA868S fallback (`DEC-0016`);
 - external M5 Unit NFC U216 as the first HF NFC backend, RFID2 as limited compatibility, and custom PN7160 as a qualification fallback (`DEC-0017`);
+- dual-path consumer IR on C5 with TSOP38238 robust RX and TSMP95000 measured-carrier learning from 30 to 60 kHz (`DEC-0018`);
 - onboard mono ES8311 audio architecture with fail-safe analog bypass (`DEC-0009`);
 - C5 target ownership of 3×nRF24 and IR (`DEC-0001`), without claiming a working inter-MCU architecture.
 - owner-controlled signed S3/C5 updates with rollback and an open developer lifecycle (`DEC-0013`), without enabling irreversible hardware lockdown.
@@ -42,7 +43,6 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0013`: VOX has no microphone-capture path and is explicitly deferred to the consolidated audio/pin budget.
 - `FND-0015`: both documented M5 NFC Units require a 5 V PORT.A power profile, while current `J40/J41` provide 3.3 V; the electrical correction awaits the consolidated port/power design.
 - `FND-0017`: the legacy IR source still has S3 ownership, an unqualified generic emitter/current path, and no proved STOP/TX-state/optical behavior. Its false `FAB-READY` label was removed and Q58 now has a reset-safe pull-down.
-- `FND-0018`: the fixed 38 kHz TSOP38238 yields a demodulated envelope and cannot measure the source carrier; receiver architecture awaits `IMP-0015`.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -59,7 +59,7 @@ The analog-voice slice [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-anal
 
 The NFC/RFID slice [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) is **Reviewed** under `REV-0002Q`. The owner accepted `IMP-0005/A` as [`DEC-0017`](../review/decisions/DEC-0017-u216-hf-nfc-backend.md): the external $7 M5 Unit NFC U216 is the first HF NFC target, the $4.95 RFID2 is limited compatibility, and custom PN7160 is a fallback only after qualification failure. The $2.05 accessory delta is accepted to retain A/B/F/V, ISO15693/FeliCa, limited emulation, and custom-mode scope; it does not affect the base BOM. `FND-0016` is closed at requirement level by explicit three-tier gates and by rejecting universal clone, one-frontend relay, key-recovery, LF 125 kHz, and payment-compliance overclaims. The exact U216 IC is NRND, and exact-revision/lifecycle, 5 V `PORT.A-NFC` (`FND-0015`), driver/SBOM, protocol, and HIL proof remain open implementation work.
 
-The consumer-IR prerequisite audit is **Reviewed** under `REV-0002R`; [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) is **In review**. The current TSOP38238 is a robust fixed-38 kHz demodulator but cannot preserve or measure carrier, while Vishay's TSMP95000 exposes 30–60 kHz carrier cycles for close-range learning. ESP32-C5 has exactly two RX RMT channels, so a dual path is feasible but consumes both. **⚠️ Proposal [`IMP-0015`](../review/improvements/IMP-0015-dual-path-consumer-ir-learning.md)** recommends keeping robust demodulated RX and adding carrier-learning RX plus a qualified 940 nm emitter/driver; cheaper single-learning and honest fixed-38 variants have explicit capability losses. TV-B-Gone and brute-force/multi-code sweeps are moved to the Controlled Zone with `BOTH`. The artifact safe-state was improved, but `FND-0017`, `FND-0018`, C5 pins/transport, exact BOM, STOP, optics, licences and HIL remain open.
+The consumer-IR slice [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) is **Reviewed** under `REV-0002S`. The owner accepted `IMP-0015/A` as [`DEC-0018`](../review/decisions/DEC-0018-dual-path-consumer-ir.md): C5 uses TSOP38238 for robust demodulated 38 kHz receive and TSMP95000 for measured-carrier learning from 30 to 60 kHz, consuming both C5 RX RMT channels; TSAL6200 is the first conditional 940 nm emitter candidate. Cheaper single-learning/fixed-38 variants lose an accepted capability and cannot be substituted silently. `FND-0018` is closed at requirement level; automatic 455 kHz/out-of-band learning remains deferred. Own remote/replay is Main, passive analysis is Lab, unknown replay is Controlled Zone `AUTHORIZED_TARGET`, and TV-B-Gone/brute-force/multi-code sweep is Controlled Zone `BOTH`. `FND-0017`, C5 pins/transport, exact BOM, STOP, optics, licences and HIL remain open implementation work.
 
 ## Deferred architecture gate
 

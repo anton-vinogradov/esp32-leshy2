@@ -171,8 +171,8 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-IR-01 | IR receive, protocol decode и raw capture | MIXED | Main own receive; passive third-party analysis = Lab; fixed TSOP cannot learn carrier (`FND-0018`) |
-| C-IR-02 | IR command TX, raw replay и carrier select | MIXED | own-tagged replay Main; unknown/security replay Controlled Zone; `FND-0001`, `FND-0017` |
+| C-IR-01 | IR receive, protocol decode и raw capture | MIXED | `DEC-0018`: TSOP38238 robust envelope + TSMP95000 measured carrier 30–60 kHz; Main own receive, passive third-party analysis = Lab |
+| C-IR-02 | IR command TX, raw replay и carrier select | MIXED | `DEC-0018`: provenance-aware carrier; own-tagged replay Main; unknown/security replay Controlled Zone; `FND-0001`, `FND-0017` |
 | C-IR-03 | TV-B-Gone universal power-off | LAB-D | Controlled Zone `BOTH`: nuisance/mass action, isolated authorized targets |
 | C-IR-04 | Universal remote for appliances | MAIN | corpus-proven protocols/models only; stateful HVAC and code-DB licence gates |
 | C-IR-05 | IR code brute-force, import/export и SD library | MIXED | brute-force/sweep = Controlled Zone `BOTH`; bounded import/export/storage = Main |
