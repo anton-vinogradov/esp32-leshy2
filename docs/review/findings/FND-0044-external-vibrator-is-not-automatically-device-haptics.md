@@ -1,6 +1,6 @@
 # FND-0044 — an external vibrator is not automatically on-device haptics
 
-- Статус: **Coverage исправлено; product disposition открыт `IMP-0030`**
+- Статус: **Coverage исправлено; product haptic отклонён `DEC-0036`**
 - Дата: 2026-08-16
 - Обнаружено: [`AUD-0007`](../audits/AUD-0007-haptic-product-mechanical-cost.md)
 - Затрагивает: `W-EXTRA-13`, `AUD-0005`, M5 coverage, G3 mechanics/power/UX
@@ -23,9 +23,9 @@ coupling модуль не гарантирует тактильную отда�
 
 ## Exit criteria
 
-- owner decides [`IMP-0030`](../improvements/IMP-0030-haptic-feedback-placement.md);
-- G3 models enclosure coupling/retention and simultaneous accessory conflicts;
-- G4 compares complete base/external implementations at equal user result;
-- G11 measures felt response across grip/pocket/mount, noise, power/fault and
-  future IMU interference.
+- [x] owner selected no product haptic in [`DEC-0036`](../decisions/DEC-0036-no-product-haptic.md);
+- [x] haptic mechanics/power/HIL obligations removed from the active product;
+- [x] historical 6/18 → 5/18 correction retained; later live-denominator and
+  external-IMU correction is recorded separately in `FND-0045`.
 
+No G3/G4/G11 haptic work remains unless `DEC-0036` is explicitly reopened.

@@ -30,8 +30,9 @@ The canonical table is [`stages.md`](../review/stages.md).
   accepts an external passive M5-style Port-B iButton adapter and no base pad;
 - infrastructure is closed by [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap plus a separate high-throughput class, without native M5-Bus;
 - `W-EXTRA-12` is closed by [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): open personal FIDO2/CTAP authenticator with U2F compatibility;
-- current question: [`IMP-0030`](../review/improvements/IMP-0030-haptic-feedback-placement.md) for `W-EXTRA-13` haptic feedback; then `14` IMU, `15`
-  physical keyboard, `16` high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
+- `W-EXTRA-13` is closed by [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): no product haptic, motor, dedicated profile or mount;
+- current question: [`IMP-0031`](../review/improvements/IMP-0031-external-imu-measurement-annotation.md) for `W-EXTRA-14` IMU; then `15` physical keyboard, `16`
+  high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
 
 No remaining item becomes part of the target before owner disposition.
 
@@ -79,13 +80,17 @@ Consequences:
 ## Active next artifact
 
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-reviews the M5 ecosystem: after the haptic mechanical correction, M5-only fully
-covers 27.8% of relevant external hardware classes and reaches 50% with
-partial/custom iButton coverage, so the
+reviews the M5 ecosystem: after rejected haptic leaves the live denominator and
+external IMU is correctly treated as partial until rigidly indexed, M5-only
+fully covers 23.5% of relevant classes and reaches 47.1% with partial/custom
+iButton coverage, so the
 90% attachment goal requires a separate high-speed tier, accepted in
 `DEC-0034`. [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
 now resolves the delta one by one. `AUD-0007` reviewed haptic and corrected
-the external-module coverage; `IMP-0030` awaits owner disposition. Parallel G3
+the external-module coverage; `DEC-0036/REV-0002AJ` reject it from product
+scope. [`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
+reviews `W-EXTRA-14`; `IMP-0031` recommends optional external measurement-pose
+annotation without heading/bearing claims. Parallel G3
 research
 starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and

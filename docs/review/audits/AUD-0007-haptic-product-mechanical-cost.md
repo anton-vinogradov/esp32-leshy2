@@ -1,10 +1,11 @@
 # AUD-0007 — haptic feedback product, mechanical and cost boundary
 
-- Статус: **Проведено ревью фактов; `IMP-0030` требует решения владельца**
+- Статус: **Проведено ревью; haptic отклонён `DEC-0036`**
 - Дата snapshot: 2026-08-16
 - Delta: `W-EXTRA-13`
 - Предложение: [`IMP-0030`](../improvements/IMP-0030-haptic-feedback-placement.md)
 - Finding: [`FND-0044`](../findings/FND-0044-external-vibrator-is-not-automatically-device-haptics.md)
+- Решение: [`DEC-0036`](../decisions/DEC-0036-no-product-haptic.md)
 
 ## Пользовательский результат
 
@@ -34,9 +35,11 @@ operating point указан как 5 V/424.35 mA при 10 kHz, 50% PWM. Revers
 profile требует жёсткого retained mount с проверенным mechanical coupling.
 
 Поэтому прежняя строка `AUD-0005` исправлена с **full** на **partial until
-mounted**. Direct official-result coverage M5 становится 5/18 = 27.8%, while
-the full+partial total remains 8/18 and 9/18 with custom iButton. Вывод о
-необходимости two-tier expansion не меняется.
+mounted**. At that review point direct official-result coverage changed from
+6/18 to 5/18 while full+partial remained 8/18 and 9/18 with custom iButton.
+After `DEC-0036` removes haptic from the live denominator and `FND-0045`
+corrects external-IMU framing, the current figures are 4/17 full, 7/17 with
+partial and 8/17 with custom iButton. The two-tier conclusion does not change.
 
 ## Placement alternatives
 
@@ -109,6 +112,5 @@ power burden is justified.
 - [x] prior M5 coverage overcount corrected;
 - [x] integrated ERM/LRA and external coupled alternatives retained;
 - [x] cost, power, acoustic/RF/IMU and safety interactions identified;
-- [ ] owner disposes `IMP-0030`;
-- [ ] accepted scope becomes a normative `REQ-HAP-*` contract.
-
+- [x] owner selected C in `DEC-0036`;
+- [x] no `REQ-HAP-*` created because haptic is outside product scope.

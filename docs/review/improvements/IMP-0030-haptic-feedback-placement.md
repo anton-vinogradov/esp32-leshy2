@@ -1,6 +1,6 @@
-# ⚠️ IMP-0030 — haptic feedback placement and product scope
+# IMP-0030 — haptic feedback placement and product scope
 
-- Статус: **Предложение; требуется решение владельца**
+- Статус: **Отклонён вариантами A/B; принят C — no haptic, `DEC-0036`**
 - Дата: 2026-08-16
 - Delta: `W-EXTRA-13`
 - Evidence: [`AUD-0007`](../audits/AUD-0007-haptic-product-mechanical-cost.md)
@@ -48,12 +48,13 @@ retained mount/clip that transfers vibration to Leshy2 enclosure. Base actuator
 
 ## Recommendation
 
-**B**. На текущем product-intent уровне haptic полезен, но ещё не доказан как
-настолько частый core interaction, чтобы увеличивать каждую базу. Coupled U059
-сохраняет результат и даёт измеряемый field prototype; G3 может переоткрыть
-integrated LRA только если whole-product UX score оправдает постоянный BOM.
+**Изначально рекомендован B; владелец выбрал C** в
+[`DEC-0036`](../decisions/DEC-0036-no-product-haptic.md). Уточнённый core scope
+не включает consumer tactile UX без конкретной instrument function. Поэтому
+ни coupled U059, ни integrated LRA не входят в G3/resource/BOM demand. Reopen
+требует нового целевого сценария, а не только наличия catalog module.
 
-## Acceptance boundary for B
+## Historical acceptance boundary for unselected B
 
 - exact external profile and rigid retained/coupled mount;
 - felt-pattern acceptance across grip/pocket/mount, not motor-spin evidence;
@@ -62,4 +63,3 @@ integrated LRA только если whole-product UX score оправдает �
 - haptic supplements but never replaces visible critical state;
 - audio/RF/measurement and future IMU arbitration/blanking;
 - base, field-kit and maximum-kit costs remain separate.
-

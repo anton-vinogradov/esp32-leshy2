@@ -1,6 +1,6 @@
 # REV-0002AI — haptic feedback prerequisite review
 
-- Статус: **Проведено ревью фактов; product disposition открыт**
+- Статус: **Проведено ревью фактов; product disposition позднее закрыт `DEC-0036`**
 - Дата: 2026-08-16
 - Input: `W-EXTRA-13`, `AUD-0004/0005`, M5/TI primary sources
 - Outputs: `AUD-0007`, `FND-0044`, `IMP-0030`
@@ -21,8 +21,8 @@
 
 ## Result
 
-Fact/prerequisite slice receives **«Проведено ревью»**. `W-EXTRA-13` remains
-`needs-owner` through `IMP-0030`; no haptic function is accepted into target
-yet. `AUD-0005/FND-0042/REV-0002AE/current-state` receive the corrected direct
-M5 coverage count without changing the two-tier decision.
-
+Fact/prerequisite slice receives **«Проведено ревью»**. At this review point,
+`W-EXTRA-13` remained `needs-owner` through `IMP-0030`; the later owner decision
+`DEC-0036`, propagated by `REV-0002AJ`, rejects product haptic entirely.
+`AUD-0005/FND-0042/REV-0002AE/current-state` retain the corrected direct M5
+coverage count without changing the two-tier decision.

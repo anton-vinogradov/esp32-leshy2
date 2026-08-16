@@ -20,14 +20,15 @@ USB full/low-speed, поэтому не закрывает high-speed host/SDR/c
 
 ## Измеренный разрыв
 
-Из 18 релевантных Leshy2 external-hardware classes:
+Из 18 первоначально проверенных Leshy2 external-hardware classes haptic позднее
+отклонён `DEC-0036`, поэтому live denominator равен 17:
 
-- 5 имеют сильный прямой current M5 product match;
-- 3 имеют только частичный/unqualified match, включая U059 без доказанного
-  mechanical coupling к основному enclosure (`FND-0044`);
+- 4 имеют сильный прямой current M5 product match;
+- 3 имеют только частичный/unqualified match, включая U095 без доказанного
+  indexed coupling к enclosure/antenna frame (`FND-0045`);
 - iButton становится reachable только через наш собственный passive Port-B
   adapter;
-- M5-only остаётся на 50% даже при таком custom adapter, а не на 90%.
+- M5-only остаётся на 47.1% даже при таком custom adapter, а не на 90%.
 
 ## Исправление product model
 

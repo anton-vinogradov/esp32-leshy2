@@ -5,6 +5,8 @@
 - Scope: актуальные official M5Stack Unit/Cap/Module interfaces и продукты,
   которые пересекаются с reviewed wishlist Leshy2
 - Связанные finding/decision: [`FND-0042`](../findings/FND-0042-m5-is-not-one-interface-or-ninety-percent-solution.md),
+  [`FND-0044`](../findings/FND-0044-external-vibrator-is-not-automatically-device-haptics.md),
+  [`FND-0045`](../findings/FND-0045-external-six-axis-imu-is-not-device-heading-or-rf-bearing.md),
   [`DEC-0033`](../decisions/DEC-0033-external-m5-ibutton-profile.md)
 - Предложение: [`IMP-0028`](../improvements/IMP-0028-m5-first-not-m5-only-expansion.md)
 - Решение: [`DEC-0034`](../decisions/DEC-0034-m5-first-two-tier-expansion.md)
@@ -48,8 +50,8 @@ per-profile qualification, а не одного общего «M5 mode».
 | LoRa + GNSS | Cap LoRa-1262 `U214` | Cap SPI/control + UART + I²C, 868–923 MHz, +22 dBm, LoRa 5 V/163.4 mA | сильное прямое покрытие; уже accepted first profile |
 | HF NFC | Unit NFC `U216` | Port A I²C `0x50`, 5 V/67.65 mA continuous read, A/B/F/V + emulation direction | сильное прямое покрытие; exact modes всё ещё corpus/HIL-conditional |
 | cellular | Unit CatM `U128` | Port C UART, Cat-M/NB-IoT, network peak 249 mA | частичное: не broadband LTE и не GSM/voice; country/operator/SIM/FOTA qualification отдельно |
-| haptic | Unit Vibrator `U059` | Port B PWM/GPIO, 5 V/424.35 mA at stated operating point | partial until rigid retained coupling transfers vibration into the Leshy2 enclosure; dangling Unit is only a remote alert |
-| orientation/motion | Unit Mini IMU `U095` | Port A I²C `0x68`, MPU6886 | прямое 6-axis покрытие; Mini IMU-Pro has lifecycle/magnetic-placement caveats |
+| haptic | Unit Vibrator `U059` | Port B PWM/GPIO, 5 V/424.35 mA at stated operating point | product result rejected by `DEC-0036`; catalog evidence retained but excluded from live denominator |
+| orientation/motion | Unit Mini IMU `U095` | Port A I²C `0x68`, MPU6886; U171 is EOL | partial until rigidly indexed to enclosure/antenna frame; 6-axis gives no absolute heading and no RF bearing (`FND-0045`) |
 | physical text input | Unit CardKB2 `U215` | custom HY2.0 I²C/UART; ESP32-C61, USB recovery, 19.31 mA standby | прямое optional keyboard покрытие; это active programmable accessory |
 | two same-address NFC frontends | 2×U216 + PaHub v2.1 | PCA9548A channels isolate repeated `0x50` address | electrically plausible, but relay timing, two-field coexistence and end-to-end firmware remain unqualified |
 | ordinary I²C fan-out | PaHub v2.1 | one Port A to six isolated I²C channels, address `0x70..0x77` | useful qualified topology pattern; does not expand UART/GPIO timing paths |
@@ -68,8 +70,10 @@ a ready-made commercial accessory.
 
 ## Coverage calculation against Leshy2, not against catalog size
 
-The denominator is the 18 reviewed hardware additions for which external
-attachment is a plausible product strategy. Pure software rows
+The catalog was audited against 18 hardware additions for which external
+attachment was initially plausible. After `DEC-0036` rejects haptic, the live
+denominator is **17**. The rejected row remains visible below for traceability
+but is excluded from current percentages. Pure software rows
 (`W-EXTRA-01/03/12`) and the separate base-radio question `W-EXTRA-17` are not
 inflated into this number.
 
@@ -89,18 +93,18 @@ inflated into this number.
 | 12 | second independent NFC frontend | no qualified relay | two U216 through PaHub is electrically plausible |
 | 13 | heavy recovery/analytics compute | no | separate high-throughput compute link required |
 | 14 | iButton/1-Wire contact tool | no | accepted passive protected Port-B adapter |
-| 15 | haptic feedback | no full result | U059 is partial until mechanically coupled; high current |
-| 16 | IMU/orientation | yes, U095 | — |
+| 15 | haptic feedback | excluded by `DEC-0036` | historical U059 evidence retained; not in live denominator |
+| 16 | IMU/orientation | no full device-pose result | U095 is partial until rigid/indexed mount; no heading/bearing |
 | 17 | physical keyboard | yes, U215 | active accessory firmware |
 | 18 | high-speed USB accessory host | no | old M020 is EOL and full/low-speed only |
 
 Results:
 
-- **5/18 = 27.8%** have a current official M5 product that directly matches the
+- **4/17 = 23.5%** have a current official M5 product that directly matches the
   product result strongly enough to begin qualification.
-- **8/18 = 44.4%** if narrow cellular, the unproven dual-U216 topology and U059
-  with a not-yet-qualified enclosure mount count as partial coverage.
-- **9/18 = 50.0%** after adding our own passive M5-style iButton adapter.
+- **7/17 = 41.2%** if narrow cellular, the unproven dual-U216 topology and U095
+  with a not-yet-qualified indexed enclosure mount count as partial coverage.
+- **8/17 = 47.1%** after adding our own passive M5-style iButton adapter.
 - therefore **M5-only does not meet a 90% Leshy2 result target**.
 
 This deliberately avoids a misleading percentage over hundreds of easy
@@ -115,9 +119,9 @@ compute and high-speed USB host.
 
 If locally intelligent custom accessories are allowed to own radio timing and
 send bounded commands/results rather than raw samples, Unit/Cap signal classes
-are a plausible transport for **15/18 = 83.3%** of the attachment classes. The
+are a plausible transport for **14/17 = 82.4%** of the live attachment classes. The
 three exceptions are wideband raw SDR/Linux, heavy external compute and the
-high-speed host path itself. This is much better than the 50% catalog-result
+high-speed host path itself. This is much better than the 47.1% catalog/custom-result
 coverage, but still below 90% and requires custom hardware/firmware.
 
 A two-tier expansion model can cover more than 90% of the *attachment classes*:
@@ -127,7 +131,7 @@ A two-tier expansion model can cover more than 90% of the *attachment classes*:
 2. A separate native high-speed USB data/power path for SDR, external compute
    and general host devices.
 
-Together these interfaces are a plausible transport for **18/18 attachment
+Together these interfaces are a plausible transport for **17/17 live attachment
 classes** in the current external-hardware denominator. The practical target
 is stated as `>=90%`, because exact USB classes, drivers, throughput, power and
 regional radio profiles can still fail qualification.
@@ -151,10 +155,12 @@ command/summary traffic; they cannot preserve arbitrary raw high-rate data.
 - wrong profile, short, stuck-low, overcurrent, brownout and detach fail closed;
 - no hot-plug promise until the exact Unit passes powered insertion/removal HIL.
 
-The current known sizing points are 31.64 mA GPS, 67.65 mA U216, 249 mA CatM
-network peak and 424.35 mA Vibrator. A provisional 0.5 A per active Unit-port
-class is therefore a useful G3/G4 candidate, not yet an accepted rail value.
-Actuators above the final shared battery/thermal budget require external power.
+The current live sizing points are 31.64 mA GPS, 67.65 mA U216 and 249 mA CatM
+network peak. The historical 424.35 mA Vibrator point remains catalog evidence
+but, after `DEC-0036`, must not create a hidden 0.5 A product requirement.
+G3/G4 derive the Unit-port limit from exact accepted concurrent profiles,
+cable/drop/protection margin and the battery/thermal envelope; a higher-power
+unqualified accessory uses external power or fails profile admission.
 
 ### Cap electrical contract
 

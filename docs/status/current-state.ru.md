@@ -30,8 +30,9 @@
   принимает внешний пассивный M5-style Port-B iButton adapter без base pad;
 - infrastructure закрыт [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap плюс отдельный high-throughput class, без native M5-Bus;
 - `W-EXTRA-12` закрыт [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): открытый personal FIDO2/CTAP authenticator с U2F compatibility;
-- текущий вопрос: [`IMP-0030`](../review/improvements/IMP-0030-haptic-feedback-placement.md) для `W-EXTRA-13` haptic feedback; затем `14` IMU, `15`
-  physical keyboard, `16` high-speed USB host и `17` 6 GHz/Wi-Fi 6E.
+- `W-EXTRA-13` закрыт [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): в продукте нет haptic, мотора, специального профиля или mount;
+- текущий вопрос: [`IMP-0031`](../review/improvements/IMP-0031-external-imu-measurement-annotation.md) для `W-EXTRA-14` IMU; затем `15` physical keyboard, `16`
+  high-speed USB host и `17` 6 GHz/Wi-Fi 6E.
 
 Ни один оставшийся пункт не добавлен в target до решения владельца.
 
@@ -77,13 +78,17 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 ## Следующий активный артефакт
 
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-провёл ревью M5 ecosystem: после haptic mechanical correction M5-only закрывает
-27.8% external hardware classes полностью и 50% с partial/custom iButton,
-поэтому 90% требует отдельного
+провёл ревью M5 ecosystem: после исключения rejected haptic из live denominator
+и исправления external IMU на partial до жёсткой индексации M5-only закрывает
+23.5% relevant classes полностью и 47.1% с partial/custom iButton, поэтому 90%
+требует отдельного
 high-speed tier, принятого `DEC-0034`.
 [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
 теперь закрывает delta по одному. `AUD-0007` проверил haptic и исправил
-external-module coverage; `IMP-0030` ждёт решения владельца. Параллельный G3 research
+external-module coverage; `DEC-0036/REV-0002AJ` исключают его из product scope.
+[`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
+проверил `W-EXTRA-14`; `IMP-0031` рекомендует optional external measurement-pose
+metadata без heading/bearing claims. Параллельный G3 research
 отталкивается от уже проверенных capabilities и задаёт физический
 продукт без выбора electronics: form factor/use posture, control/connector
 surfaces, display, battery/charging, external-module attachment, antenna
