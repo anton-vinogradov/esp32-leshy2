@@ -11,7 +11,9 @@
 4. [`SRC-0001`](SRC-0001-primary-hardware-resource-facts.md) — package/controller/peripheral facts из первичных источников без выбора layout;
 5. [`SYN-0001`](SYN-0001-zero-based-whole-device-candidates.md) — несколько полных аппаратных синтезов, выведенных из resource-consolidation strategies;
 6. [`PIN-0002`](PIN-0002-zero-based-exact-pin-maps.md) — exact pin/controller/strap/recovery maps трёх zero-based candidates;
-7. `PKG-*` — атомарное сравнение и выбор.
+7. [`BUD-0002`](BUD-0002-zero-based-memory-traffic-budget.md) — общий memory/traffic envelope, admission boundaries и HIL gates;
+8. `PWR/RFQ/CST-*` — одинаковые power, RF и dated-cost gates;
+9. `PKG-*` — атомарное сравнение и выбор.
 
 Каждый шаг получает статус **«Проведено ревью»** до того, как станет пререквизитом следующего.
 
@@ -29,3 +31,4 @@ Legacy schematic/source, прежние owner assignments, buses, GPIO, pin maps
 - [`REV-0003M`](../reviews/REV-0003M-primary-hardware-fact-baseline.md) — ревью package-level facts перед synthesis.
 - [`REV-0003N`](../reviews/REV-0003N-zero-based-candidate-set.md) — ревью полного zero-based candidate set без выбора winner.
 - [`REV-0003O`](../reviews/REV-0003O-zero-based-exact-pin-maps.md) — ревью exact module/controller maps и no-loss исправления `FND-0034`.
+- [`REV-0003P`](../reviews/REV-0003P-zero-based-memory-traffic-budget.md) — ревью zero-based memory/traffic arithmetic и admitted guarantees.
