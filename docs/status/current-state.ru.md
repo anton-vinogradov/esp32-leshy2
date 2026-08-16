@@ -14,8 +14,8 @@
 |---|---|
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
-| 2. Capabilities, exclusions, concurrency/failure needs | **Требуется повторное ревью**: прежние 125 leaves сохранены, competitor delta открыт (`FND-0040`) |
-| 3. Target physical/product design | Research активен; final review ждёт закрытия этапа 2 |
+| 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
+| 3. Target physical/product design | **На ревью направления владельцем**: `PD-0001` reviewed inputs; `LAY-0001` сравнивает P1/P2/P3 |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты в исправленном процессе |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
@@ -24,7 +24,7 @@
 
 Каноническая таблица — [`stages.md`](../review/stages.md).
 
-## ⚠️ Открытые competitor-delta предложения
+## Закрытие competitor delta
 
 - `W-EXTRA-11` закрыт: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
   принимает внешний пассивный M5-style Port-B iButton adapter без base pad;
@@ -80,27 +80,16 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 
 ## Следующий активный артефакт
 
-[`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-провёл ревью M5 ecosystem: после исключения rejected haptic, keyboard и generic
-host profiles из live denominator и исправления external IMU на partial
-M5-only закрывает 20.0% relevant classes полностью и 46.7% с partial/custom
-iButton, поэтому 90%
-требует отдельного
-high-speed tier, принятого `DEC-0034`.
-[`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
-теперь закрывает delta по одному. `AUD-0007` проверил haptic и исправил
-external-module coverage; `DEC-0036/REV-0002AJ` исключают его из product scope.
-[`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
-и `DEC-0037/REQ-IMU-0001` закрывают `W-EXTRA-14` как optional external
-measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
-и `DEC-0038/REV-0002AN` закрывают `W-EXTRA-15`: у base нет permanent keyboard,
-а bounded phone-assisted text не становится local authority.
-`AUD-0010/DEC-0039/REV-0002AP` закрывают `W-EXTRA-16`, не удаляя transport,
-который позже может вывести конкретный RF/SDR profile. `AUD-0011` подтверждает,
-что другое active base hardware не оправдано unrelated functionality; BadUSB
-остаётся optional software-only exception.
-Параллельный G3 research отталкивается от уже проверенных capabilities и задаёт физический
-продукт без выбора electronics: form factor/use posture, control/connector
-surfaces, display, battery/charging, external-module attachment, antenna
-volumes, service access, environment/repairability и target cost. Только после
-нового G2 review и owner review G3 строятся complete architecture alternatives.
+[`LAY-0001`](../review/product-design/LAY-0001-form-factor-candidates.md) —
+первый визуальный артефакт G3. Он сравнивает compact-wide,
+balanced-portrait и field-service корпуса, одновременно показывая control,
+STOP/PTT, U214/Unit, RF, battery и service zones. Текущая рекомендация — P2;
+ни один вариант ещё не стал target.
+
+[`PD-0001`](../review/product-design/PD-0001-g3-physical-design-inputs.md)
+удерживает одинаковый проверенный mission scope у всех трёх вариантов и явно
+убирает физическую нагрузку от rejected или external-only capabilities.
+
+Exact electronics и предварительные candidate pin maps начинаются только после
+review направления G3; они не могут наследовать archived target ownership или
+переходить в KiCad до whole-device comparison и atomic selection.

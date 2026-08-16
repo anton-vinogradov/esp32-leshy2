@@ -74,8 +74,8 @@ peripheral computer. Это должен быть собираемый, ремо
   offline keys/tools и intentional physical recovery. Необратимый lockdown —
   отдельный optional decision, а не default.
 - Generic USB host, personal FIDO/U2F authenticator и 6 GHz/Wi-Fi 6E находятся
-  вне product mission. Конкретный принятый RF/SDR profile может позже вывести exact
-  high-throughput transport, не превращая generic host в capability.
+  вне product mission. Конкретный принятый RF/SDR profile может позже вывести
+  exact high-throughput transport, не превращая generic host в capability.
 - BadUSB/DuckyScript — одно явное non-core исключение: release-optional
   Controlled-Zone software profile поверх существующего USB device/service
   path. Он не добавляет base hardware, не формирует architecture и не задерживает
@@ -98,8 +98,9 @@ peripheral computer. Это должен быть собираемый, ремо
 
 ## Состояние разработки
 
-Прежние 125 capability leaves проверены; сейчас G2 точечно переоткрыт для
-актуального competitor delta, а target physical/product design ведётся как
-research. Whole-device alternatives, optimality, conceptual placement и новое
-atomic architecture decision обязаны предшествовать компонентам и KiCad.
-Нормативный порядок — [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).
+125 capability leaves и competitor delta прошли повторное ревью G2. Physical/
+product inputs G3 проверены; три same-scope form-factor candidate сейчас ждут
+выбора направления владельцем. Whole-device alternatives, optimality,
+conceptual placement и новое atomic architecture decision обязаны
+предшествовать компонентам и KiCad. Нормативный порядок —
+[`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 3 | Target product design | form factor, interaction, controls, external interfaces, battery, antenna/service/environment/cost envelopes | **Активный gate**: visual candidate research начато; architecture/CAD заблокированы до reviewed G3 output |
+| 3 | Target product design | form factor, interaction, controls, external interfaces, battery, antenna/service/environment/cost envelopes | **На ревью направления**: `PD-0001` inputs reviewed; `LAY-0001` compares P1/P2/P3; architecture/CAD blocked until owner direction and final G3 review |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
 | 6 | Conceptual co-design | block/board/antenna/power/thermal/service placement and preliminary resource feasibility | Не начато |

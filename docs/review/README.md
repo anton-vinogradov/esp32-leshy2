@@ -173,6 +173,9 @@
 - [INV-0003: девять групп wishlist и четыре extra-пакета — проведено ревью](inventories/INV-0003-wishlist-review-groups.md)
 - [INV-0004: итоговая матрица саморевью 125/125 и dispositions extras](inventories/INV-0004-wishlist-self-review.md)
 - [Product/architecture workspace — target physical design active](architecture/README.md)
+- [PD-0001: reviewed G3 physical-product inputs](product-design/PD-0001-g3-physical-design-inputs.md)
+- [LAY-0001: first three form-factor/zoning candidates — owner direction open](product-design/LAY-0001-form-factor-candidates.md)
+- [Stage 3: target product design — current artifact and gate](../stages/03-target-product-design.md)
 - [FLOW-0001: normative product→architecture→CAD gates](architecture/FLOW-0001-product-to-cad-gates.md)
 - [CAP-0001: former capability snapshot — candidate/reference, owner-contaminated](architecture/CAP-0001-zero-based-capability-input.md)
 - [CON-0001: former concurrency/failure model — candidate/reference](architecture/CON-0001-hardware-neutral-concurrency-model.md)
@@ -282,6 +285,8 @@
 - [REV-0003E: финальное ревью power envelope и VVOICE — проведено ревью](reviews/REV-0003E-power-envelope-and-voice-rail.md)
 - [REV-0003F: повторное ревью control count перед layouts — проведено ревью](reviews/REV-0003F-layout-entry-control-count.md)
 - [REV-0003G: три static full-layout maps — проведено ревью подшага](reviews/REV-0003G-three-static-layouts.md)
+- [REV-0003V: G3 physical-product input review — проведено ревью](reviews/REV-0003V-g3-physical-inputs.md)
+- [REV-0003W: first G3 form-factor candidate review — owner direction open](reviews/REV-0003W-g3-form-factor-candidates.md)
 
 ## Статусы
 

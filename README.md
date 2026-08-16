@@ -73,8 +73,9 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   keys/tools and intentional physical recovery. Irreversible lockdown is a
   separate optional decision, never the default.
 - Generic USB host, personal FIDO/U2F authenticator and 6 GHz/Wi-Fi 6E are
-  outside the product mission. A concrete accepted RF/SDR profile may later derive an exact
-  high-throughput transport without making generic host support a capability.
+  outside the product mission. A concrete accepted RF/SDR profile may later
+  derive an exact high-throughput transport without making generic host support
+  a capability.
 - BadUSB/DuckyScript is one explicit non-core exception: a release-optional
   Controlled-Zone software profile over the existing USB device/service path.
   It adds no base hardware, cannot shape architecture or delay the radio/key
@@ -97,8 +98,9 @@ evidence—not silently fixed BOM components.
 
 ## Development state
 
-The prior 125 capability leaves are reviewed; G2 is narrowly reopened for the
-current competitor delta while target physical/product design proceeds as
-research. Whole-device alternatives, optimality, conceptual placement and a
-new atomic architecture decision must precede components and KiCad. The
-normative sequence is [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).
+The 125 capability leaves and the competitor delta have received repeated G2
+review. G3 physical/product inputs are reviewed; three same-scope form-factor
+candidates now await owner direction. Whole-device alternatives, optimality,
+conceptual placement and a new atomic architecture decision must precede
+components and KiCad. The normative sequence is
+[`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

@@ -18,6 +18,18 @@
 The current active artifact is the product-design stage. Exact MCU ownership,
 buses, pins, connector counts and CAD are intentionally open.
 
+## Active G3 product-design artifacts
+
+- [`PD-0001`](../product-design/PD-0001-g3-physical-design-inputs.md) translates
+  reviewed capabilities into physical field/control/safety/RF/expansion/service
+  inputs and has received input review;
+- [`LAY-0001`](../product-design/LAY-0001-form-factor-candidates.md) visualizes
+  compact, balanced and field-service same-scope candidates. The artifact is
+  reviewed; owner direction remains open before exact surfaces are frozen.
+
+No electronic zone in `LAY-0001` assigns a chip, bus or pin. Archived
+`SYN/PIN/PKG` arithmetic may later be re-derived as feasibility evidence only.
+
 ## Active reviewed prerequisites
 
 - reviewed stage-1 intent and safety/legal decisions;

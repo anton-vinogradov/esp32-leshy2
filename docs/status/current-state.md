@@ -14,8 +14,8 @@
 |---|---|
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
-| 2. Capabilities, exclusions, concurrency/failure needs | **Repeat review required**: prior 125 leaves retained, competitor delta open (`FND-0040`) |
-| 3. Target physical/product design | Research active; final review waits for gate 2 |
+| 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
+| 3. Target physical/product design | **Owner direction review**: `PD-0001` reviewed inputs; `LAY-0001` compares P1/P2/P3 |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started in the corrected process |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
 | 8. Components/BOM | Blocked; previous evidence is candidate/reference only |
@@ -24,7 +24,7 @@
 
 The canonical table is [`stages.md`](../review/stages.md).
 
-## ⚠️ Open competitor-delta proposals
+## Competitor-delta closure
 
 - `W-EXTRA-11` is closed: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
   accepts an external passive M5-style Port-B iButton adapter and no base pad;
@@ -82,27 +82,16 @@ Consequences:
 
 ## Active next artifact
 
-[`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-reviews the M5 ecosystem: after rejected haptic, keyboard and generic-host
-profiles leave the live denominator and external IMU remains correctly partial,
-M5-only fully covers 20.0% of relevant classes and reaches 46.7% with partial/custom
-iButton coverage, so the
-90% attachment goal requires a separate high-speed tier, accepted in
-`DEC-0034`. [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
-now resolves the delta one by one. `AUD-0007` reviewed haptic and corrected
-the external-module coverage; `DEC-0036/REV-0002AJ` reject it from product
-scope. [`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
-and `DEC-0037/REQ-IMU-0001` close `W-EXTRA-14` as an optional external
-measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
-and `DEC-0038/REV-0002AN` close `W-EXTRA-15`: the base has no permanent
-keyboard and bounded phone-assisted text never becomes local authority.
-`AUD-0010/DEC-0039/REV-0002AP` close `W-EXTRA-16` without deleting a transport
-later derived by a concrete RF/SDR profile. `AUD-0011` confirms no other active
-base hardware is justified by unrelated functionality; BadUSB remains an
-optional software-only exception.
-Parallel G3 research starts from already reviewed capabilities and defines the physical
-product without choosing electronics: form factor/use posture, control and
-connector surfaces, display, battery/charging, external-module attachment,
-antenna volumes, service access, environment/repairability and target cost.
-Complete architecture alternatives require both the new G2 review and owner-
-reviewed G3 output.
+[`LAY-0001`](../review/product-design/LAY-0001-form-factor-candidates.md)
+is the first visible G3 artifact. It compares compact-wide, balanced-portrait
+and field-service bodies with control, STOP/PTT, U214/Unit, RF, battery and
+service zones shown together. P2 is the current recommendation; no option has
+yet become the target.
+
+[`PD-0001`](../review/product-design/PD-0001-g3-physical-design-inputs.md)
+keeps the three candidates on the same reviewed mission and explicitly removes
+physical burden from rejected or external-only capabilities.
+
+Exact electronics and preliminary candidate pin maps begin only after the G3
+direction is reviewed; they cannot consume archived target ownership or become
+KiCad before whole-device comparison and atomic selection.
