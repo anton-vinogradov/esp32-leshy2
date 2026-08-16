@@ -1,6 +1,6 @@
 # FND-0025 — passive-only ceiling 802.15.4 ложен, но full-stack/coexistence не выбраны
 
-- Статус: **Требуется решение владельца (`IMP-0018`)**
+- Статус: **Закрыто на уровне требований (`DEC-0020`, `REV-0002W`)**
 - Серьёзность: scope/openness/coexistence decision
 - Затрагивает: `C-W5-09`, C5 firmware/storage/UI, 2.4 GHz arbitration и HIL
 - Обнаружено: 2026-08-16
@@ -28,10 +28,13 @@ Legacy оставлял ESP32-C5 только passive 802.15.4 sniff/energy scan
 
 Владелец выбирает `IMP-0018`; затем финальное `REQ-W5-0001` фиксирует protocol roles, open/proprietary dependency boundary, radio-time arbitration, memory/build profiles и HIL packet-loss/latency matrix. Raw active security/flood/interference functions получают отдельные Controlled-Zone gates и не смешиваются с ordinary networking.
 
+## Закрытие
+
+Владелец принял `IMP-0018/A` как `DEC-0020`: OpenThread — открытый baseline, Zigbee — optional conditional adapter, а raw passive/active и ordinary networking разделены по трём уровням. Shared-radio coexistence и binary lifecycle теперь являются явными implementation/HIL требованиями, а не неопределённостью scope. Это закрывает finding на requirement-level, но не утверждает, что scheduler, adapters или HIL уже реализованы.
+
 ## Первичные источники
 
 - [ESP-IDF IEEE 802.15.4 CLI example for ESP32-C5](https://github.com/espressif/esp-idf/tree/master/examples/ieee802154/ieee802154_cli)
 - [ESP-IDF OpenThread API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-reference/network/esp_openthread.html)
 - [Espressif Zigbee SDK for ESP32-C5](https://docs.espressif.com/projects/esp-zigbee-sdk/en/latest/esp32c5/introduction.html)
 - [ESP32-C5 RF coexistence guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-guides/coexist.html)
-

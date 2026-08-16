@@ -1,11 +1,11 @@
 # REQ-W5-0001 — C5 dual-band Wi-Fi and IEEE 802.15.4 contract
 
-- Статус набора: **На ревью — требуется решение `IMP-0018`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-W5-01`–`C-W5-09`, пересечения `C-X-01`, `C-X-02`, `C-X-03`, `C-X-04`, `C-X-06`, `C-X-07`, `C-X-11`, `OUT-01`
-- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`
+- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0020`
 - Находки: `FND-0001`, `FND-0002`, `FND-0007`, `FND-0022`–`FND-0025`
-- Открытые решения: `IMP-0003`, `IMP-0018`; arbitrary management/deauth patch backend не принят
+- Открытые решения: `IMP-0003`; arbitrary management/deauth patch backend не принят
 
 ## Граница документа
 
@@ -28,7 +28,7 @@ ESP32-C5 — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.15.4 radio, а 
 | `REQ-W5-11` | `C-W5-06` | `conditional` | Контролируемая зона, `BOTH` | Broadcast beacon/probe flood и resilience load допускаются только conducted/RF-shielded на authorized fixture с no-leakage check, minimum qualified power, packet/time ceiling, countdown, hold-to-run, hardware STOP и audit record. Open-air nuisance mode отсутствует. |
 | `REQ-W5-12` | `C-W5-07` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | Evil Twin/Portal/Karma-like authentication/portal tests используют exact owned/authorized SSID/BSSID/client fixture, non-DFS SoftAP, fresh banner и explicit content preview. Credentials/identifiers считаются sensitive; third-party branding/captive impersonation и uncontrolled nearby-client attraction запрещены. |
 | `REQ-W5-13` | `C-W5-09` | `conditional` | Лаборатория | Raw IEEE 802.15.4 passive mode предоставляет channel/ED/CCA/promiscuous frames с FCS/LQI/RSSI только если exact API действительно их выдаёт, timestamps/loss/coverage и redacted PCAP. Energy не означает Zigbee/Thread attribution. |
-| `REQ-W5-14` | `C-W5-09` | `requires IMP-0018` | Основной | Ordinary Thread/Zigbee commissioning/join/control/diagnostics scope, roles и dependency boundary выбираются `IMP-0018`. Ни passive raw, ни Thread baseline не зависят от proprietary Zigbee binary. |
+| `REQ-W5-14` | `C-W5-09` | `conditional`, accepted A | Основной | По `DEC-0020` ordinary commissioning/join/control/diagnostics собственных/администрируемых networks использует OpenThread как открытый baseline. Zigbee coordinator/router/end-device — optional adapter с отдельными version/provenance/redistribution/SBOM/hash/signature/update/rollback gates; core product, raw 802.15.4 и Thread от proprietary binary не зависят. |
 | `REQ-W5-15` | `C-W5-09` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | Raw 802.15.4 injection/replay/commissioning-security tests targeting one fixture требуют exact PAN/channel/address identity, preview, bounded frame/count/time, conservative power, dead-man и STOP. Import/capture не вооружает TX автоматически. |
 | `REQ-W5-16` | `C-W5-09` | `conditional` | Контролируемая зона, `BOTH` | 802.15.4 flood/interference/resilience test только conducted/RF-shielded с authorized endpoints, no-leakage validation, hard timeout и independent STOP. Open-air jammer отсутствует. |
 | `REQ-W5-17` | все 2.4 | `conditional` | Сквозной coexistence | C5 Wi-Fi 2.4/BLE/802.15.4 делят один RF path; scheduler не обещает одновременность и публикует active owner/preemption/loss. Cross-MCU arbiter учитывает 3×nRF24 и S3 2.4 radio; unsafe simultaneous TX prohibited до RF HIL. |
@@ -46,9 +46,9 @@ ESP32-C5 — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.15.4 radio, а 
 - simultaneous high-performance Wi-Fi+Thread/Zigbee gateway без измеренного coexistence proof;
 - open-air disruption чужих сетей или обход PMF.
 
-## Условие финального ревью
+## Итог ревью
 
-После ответа по `IMP-0018` выбранный ordinary 802.15.4 scope распространяется в матрицу и target README обоих репозиториев. `IMP-0003` и возможный patched Wi-Fi backend могут оставаться conditional/deferred: они не блокируют честный public baseline, но их UI не появляется как готовая функция до отдельного proof.
+`DEC-0020` распространяет open-first Thread и optional conditional Zigbee boundary в target/current-state обоих репозиториев; `REV-0002W` подтверждает согласованность. `IMP-0003` и возможный patched Wi-Fi backend остаются conditional/deferred: они не блокируют честный public baseline, но их UI не появляется как готовая функция до отдельного proof. Hardware, transport, country/DFS/PMF/privacy, coexistence, binary lifecycle и HIL остаются implementation gates, а не выполненными артефактами.
 
 ## Первичные источники
 
@@ -59,4 +59,3 @@ ESP32-C5 — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.15.4 radio, а 
 - [ESP-IDF IEEE 802.15.4 CLI example](https://github.com/espressif/esp-idf/tree/master/examples/ieee802154/ieee802154_cli)
 - [ESP-IDF OpenThread API](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-reference/network/esp_openthread.html)
 - [Espressif Zigbee SDK](https://github.com/espressif/esp-zigbee-sdk)
-

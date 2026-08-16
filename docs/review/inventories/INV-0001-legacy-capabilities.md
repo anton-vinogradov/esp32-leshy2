@@ -73,7 +73,7 @@
 | C-W5-06 | Beacon/probe spam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded; public frame classes bounded |
 | C-W5-07 | Evil Twin SoftAP, Evil Portal, Karma | LAB-I | Controlled Zone `AUTHORIZED_TARGET`, non-DFS, privacy/credential vault |
 | C-W5-08 | STA-подключение | MAIN | только собственные/администрируемые сети, region/credential gates |
-| C-W5-09 | 802.15.4 raw RX/TX, Zigbee и Thread | MIXED | passive-only ceiling опровергнут; ordinary full-stack scope ждёт `IMP-0018`, active tests — Controlled Zone |
+| C-W5-09 | 802.15.4 raw RX/TX, Zigbee и Thread | MIXED | `DEC-0020`: OpenThread open baseline, Zigbee optional conditional adapter; passive = Lab, active tests = Controlled Zone |
 
 ## BLE — `FW-CAP §4`
 

@@ -1,6 +1,6 @@
 # IMP-0018 — open-first Thread и условный Zigbee на встроенном C5 radio
 
-- Статус: **⚠️ Предложение — требуется решение владельца**
+- Статус: **Принято — вариант A (`DEC-0020`)**
 - Связано: `C-W5-09`, `FND-0025`, draft `REQ-W5-0001`
 - Зоны: Main ordinary networking; Lab passive analysis; Controlled Zone active security tests
 - Дата: 2026-08-16
@@ -41,5 +41,4 @@ ESP32-C5 уже содержит IEEE 802.15.4 radio. Legacy ошибочно о
 
 ## Вопрос владельцу
 
-Принимаем вариант A — open-first Thread baseline плюс условный изолированный Zigbee backend и раздельные Main/Lab/Controlled-Zone gates?
-
+Владелец принял вариант A. OpenThread становится открытым baseline; Zigbee остаётся optional conditional adapter с отдельной binary provenance boundary и не требуется для core product, raw IEEE 802.15.4 или Thread.

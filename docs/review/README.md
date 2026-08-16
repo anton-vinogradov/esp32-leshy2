@@ -47,6 +47,7 @@
 - [DEC-0017: M5 Unit NFC U216 — первый HF NFC target](decisions/DEC-0017-u216-hf-nfc-backend.md)
 - [DEC-0018: двухтрактный consumer IR на ESP32-C5](decisions/DEC-0018-dual-path-consumer-ir.md)
 - [DEC-0019: калиброванный трёхантенный RPD-hunt без ложных dBm/угла/VSWR](decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md)
+- [DEC-0020: open-first Thread и optional conditional Zigbee](decisions/DEC-0020-open-first-thread-conditional-zigbee.md)
 - [REQ-SYS-0001: System/UI/storage platform contract — проведено ревью](requirements/REQ-SYS-0001-system-ui-storage.md)
 - [REQ-GNSS-0001: navigation/time/integrity contract — проведено ревью](requirements/REQ-GNSS-0001-navigation-integrity.md)
 - [REQ-RX-0001: Si4732 receiver/scan/record/decode contract — проведено ревью](requirements/REQ-RX-0001-si4732-receiver.md)
@@ -54,7 +55,7 @@
 - [REQ-NFC-0001: HF NFC/RFID contract — проведено ревью](requirements/REQ-NFC-0001-hf-nfc-rfid.md)
 - [REQ-IR-0001: consumer IR contract — проведено ревью](requirements/REQ-IR-0001-consumer-infrared.md)
 - [REQ-N24-0001: 3×nRF24 raw 2.4 GHz contract — проведено ревью](requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
-- [⚠️ REQ-W5-0001: C5 Wi-Fi/IEEE 802.15.4 contract — на ревью, требуется IMP-0018](requirements/REQ-W5-0001-c5-wifi-ieee802154.md)
+- [REQ-W5-0001: C5 Wi-Fi/IEEE 802.15.4 contract — проведено ревью](requirements/REQ-W5-0001-c5-wifi-ieee802154.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -79,7 +80,7 @@
 - [FND-0022: C5 module/ANT1/ANT2/RF artifact — частично исправлено](findings/FND-0022-c5-module-antenna-and-radio-artifact-not-qualified.md)
 - [FND-0023: C5 public Wi-Fi API и patched binary overclaims](findings/FND-0023-c5-wifi-public-api-and-patched-blob-overclaims.md)
 - [FND-0024: 5 GHz DFS/country/PMF/privacy gates](findings/FND-0024-c5-dfs-country-privacy-and-pmf-gates.md)
-- [FND-0025: passive-only 802.15.4 ceiling и coexistence scope](findings/FND-0025-c5-802154-passive-only-ceiling-and-coexistence.md)
+- [FND-0025: passive-only 802.15.4 ceiling — закрыто DEC-0020](findings/FND-0025-c5-802154-passive-only-ceiling-and-coexistence.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -97,7 +98,7 @@
 - [IMP-0015: dual-path consumer IR learning — принято](improvements/IMP-0015-dual-path-consumer-ir-learning.md)
 - [IMP-0016: честный calibrated three-antenna RPD hunt — принят вариант A](improvements/IMP-0016-calibrated-three-antenna-2g4-hunt.md)
 - [⚠️ IMP-0017: native BLE + nRF24 compatibility — отложено до BLE-review](improvements/IMP-0017-native-ble-plus-nrf24-compatibility.md)
-- [⚠️ IMP-0018: open-first Thread + conditional Zigbee — требуется решение](improvements/IMP-0018-open-first-thread-and-zigbee-scope.md)
+- [IMP-0018: open-first Thread + conditional Zigbee — принят вариант A](improvements/IMP-0018-open-first-thread-and-zigbee-scope.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -128,6 +129,7 @@
 - [REV-0002T: ревью пререквизитов 3×nRF24](reviews/REV-0002T-nrf24-prerequisites.md)
 - [REV-0002U: финальное ревью и распространение решения 3×nRF24](reviews/REV-0002U-nrf24-decision-propagation.md)
 - [REV-0002V: ревью пререквизитов C5 Wi-Fi/IEEE 802.15.4](reviews/REV-0002V-c5-wifi-802154-prerequisites.md)
+- [REV-0002W: финальное ревью и распространение C5 Wi-Fi/802.15.4 решения](reviews/REV-0002W-c5-wifi-802154-decision-propagation.md)
 
 ## Статусы
 
