@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress**: `DEM-0001`, first `SRC-0002` real-device pass and `AUD-0013` reviewed; complete candidate maps next |
+| 2F. Logical/electrical feasibility | **In progress**: `DEC-0042/REV-0003Y` review one source and two structurally checked draft maps; exact peripheral/timing/power closure next |
 | 3. Target physical/product design | Waiting for G2F; P1/P2/P3 are reference-only, then the legacy clamshell generator is adapted |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -39,7 +39,7 @@ The canonical table is [`stages.md`](../review/stages.md).
   autonomous 2.4/5 GHz remains unchanged.
 
 `REV-0002AS` closes repeated G2 review. `DEC-0041` makes G2F active before the
-physical mockup.
+physical mockup; `DEC-0042` accepts its machine-readable exact-device/net source.
 
 ## What remains reviewed
 
@@ -88,17 +88,19 @@ Consequences:
 records all required semantic endpoints without former owners.
 [`SRC-0002`](../review/architecture/SRC-0002-real-device-pin-provenance.md)
 forbids counting a pin without the SoC→package→exact module/device→actual
-pad/header/connector chain. `REV-0003X` reviews the first pass; exact
-nRF/CC/voice/display and several control/power devices remain qualification
-blockers.
+pad/header/connector chain. `DEC-0042/REV-0003Y` add the checked source and two
+draft consumers: [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md).
+They pass contact/collision/accounting/strap/service checks, but exact nRF,
+CC RF implementation, voice/display/IR and several control/power devices remain
+qualification blockers. `FND-0050` records nRF24 NRND and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next come at least two complete owner/bus/controller/GPIO maps with
-used/free/strap/recovery, memory/traffic/power/service and exact-device ledgers.
-After a working baseline is selected, the old physical generator is adapted.
+Next, the two draft maps receive the same exact-device, controller-concurrency,
+memory/traffic/power/service and HIL closure. Only then can either become a
+reviewed working electrical baseline and feed the old physical generator.
 `LAY-0001` P1/P2/P3 is reference-only; no selection is requested. KiCad remains
 blocked until the later atomic architecture gates pass.

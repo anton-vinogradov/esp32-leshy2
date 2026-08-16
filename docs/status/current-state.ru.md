@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе**: `DEM-0001`, first `SRC-0002` real-device pass и `AUD-0013` проведены ревью; complete candidate maps следующие |
+| 2F. Logical/electrical feasibility | **В работе**: `DEC-0042/REV-0003Y` проверили единый источник и две structurally checked draft-карты; далее exact peripherals/timing/power |
 | 3. Target physical/product design | Ожидает G2F; P1/P2/P3 reference only, далее адаптируется legacy clamshell generator |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -39,7 +39,8 @@
   автономные 2.4/5 GHz остаются без изменений.
 
 `REV-0002AS` закрывает повторное G2 review. `DEC-0041` вводит активный G2F до
-физического макета.
+физического макета; `DEC-0042` принимает единый machine-readable источник
+exact devices/nets.
 
 ## Что остаётся проверенным
 
@@ -86,15 +87,18 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 фиксирует все обязательные semantic endpoints без старых owners.
 [`SRC-0002`](../review/architecture/SRC-0002-real-device-pin-provenance.md)
 запрещает считать вывод без цепочки SoC→package→exact module/device→реальный
-pad/header/connector. `REV-0003X` проверил первый pass; nRF/CC/voice/display и
-часть control/power exact parts остаются qualification blockers.
+pad/header/connector. `DEC-0042/REV-0003Y` добавили проверяемый источник и два
+draft consumer: [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md).
+Они проходят contact/collision/accounting/strap/service checks, но exact nRF,
+CC RF implementation, voice/display/IR и часть control/power всё ещё blockers.
+`FND-0050` фиксирует nRF24 NRND и исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Следующий результат — минимум две полные owner/bus/controller/GPIO карты с
-used/free/strap/recovery ledgers, memory/traffic/power/service burden и exact
-device provenance. После выбора рабочего baseline адаптируется старый physical
-generator. `LAY-0001` P1/P2/P3 сохранён как reference; выбирать его не нужно.
+Далее обе draft-карты проходят одинаковое закрытие exact-device, controller
+concurrency, memory/traffic/power/service и HIL. Только после этого одна из них
+может стать reviewed working electrical baseline и войти в старый physical
+generator. `LAY-0001` P1/P2/P3 остаётся reference; выбирать его не нужно.

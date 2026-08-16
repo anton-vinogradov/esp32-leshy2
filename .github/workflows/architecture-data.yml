@@ -1,0 +1,18 @@
+name: architecture-data
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate source and generated ledger
+        run: python3 hardware/architecture/generate.py --check
+      - name: Run architecture validator tests
+        run: python3 -m unittest discover -s hardware/architecture/tests -v

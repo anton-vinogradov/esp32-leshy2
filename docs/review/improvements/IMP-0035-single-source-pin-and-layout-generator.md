@@ -1,6 +1,6 @@
 # ⚠️ IMP-0035 — one source for device pins and physical layout
 
-- Статус: **Требуется решение владельца**
+- Статус: **Принято A; первый machine-checked milestone реализован**
 - Дата: 2026-08-17
 - Основание: [`AUD-0013`](../audits/AUD-0013-legacy-layout-generator-reuse.md),
   [`DEC-0041`](../decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
@@ -45,3 +45,21 @@ validators. Выигрыш: меньше повторной ручной раб�
 used/free ledger. Старые geometric checks подключаются после review двух
 электрических maps.
 
+## Решение владельца и реализация
+
+Владелец принял вариант `A` прямым ответом «го» 2026-08-17; решение записано
+в [`DEC-0042`](../decisions/DEC-0042-single-source-architecture-data.md).
+
+Первый milestone находится в `hardware/architecture/`:
+
+- `devices.json` хранит exact MPN/package/module contacts, lifecycle и primary
+  source identity;
+- `candidates/G2F-2R.json` и `G2F-3D.json` хранят две сравнимые draft-карты;
+- `generate.py` проверяет exposed contacts, collisions, полный GPIO accounting,
+  strap proof, controller declaration, reciprocal links и service coverage;
+- generated ledger не допускает ручного расхождения с source data;
+- unit tests и GitHub Actions проверяют источник и актуальность результата.
+
+Physical geometry и legacy drawing generator пока намеренно не подключены:
+сначала должны быть квалифицированы открытые реальные устройства и проведено
+ревью рабочих электрических кандидатов.

@@ -17,8 +17,9 @@
 6. Atomic architecture only after all prior gates pass.
 7. Exact components, electrical CAD, schematic and PCB afterwards.
 
-The current active artifacts are `DEM-0001` and `SRC-0002`. Exact MCU ownership,
-buses and pins are being compared, not accepted; CAD remains blocked.
+The current active artifacts are `DEM-0001`, `SRC-0002` and the generated
+`G2F-pin-ledger`. Exact MCU ownership, buses and pins are being compared, not
+accepted; CAD remains blocked.
 
 ## Active G2F artifacts
 
@@ -30,6 +31,11 @@ buses and pins are being compared, not accepted; CAD remains blocked.
   geometry/checks from the old drawing generator will be reused after pin review;
 - [`REV-0003X`](../reviews/REV-0003X-electrical-feasibility-entry.md) reviews the
   sequencing correction and these inputs.
+- [`DEC-0042`](../decisions/DEC-0042-single-source-architecture-data.md) accepts
+  one machine-readable device/net source; [`G2F-pin-ledger`](generated/G2F-pin-ledger.md)
+  renders the first two structurally checked draft maps;
+- [`REV-0003Y`](../reviews/REV-0003Y-single-source-and-draft-pin-maps.md) reviews
+  the generator foundation and explicitly leaves complete-candidate review open.
 
 ## Deferred/reference G3 artifacts
 

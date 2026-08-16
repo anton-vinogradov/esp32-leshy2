@@ -1,6 +1,6 @@
 # SRC-0002 — real-device pin provenance ledger
 
-- Статус: **В работе; правило и первый compute/accessory pass проведены ревью**
+- Статус: **В работе; machine-readable compute/control pass проведён ревью**
 - Дата: 2026-08-17
 - Gate: `FLOW-0001/G2F`, шаг 2
 - Решение: [`DEC-0041`](../decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
@@ -28,14 +28,16 @@
 | compact nRF reference | Ebyte `E01-ML01S`, 12×19 mm SMD, onboard antenna, 0 dBm | manufacturer product/manual expose `VCC/CE/CSN/SCK/MOSI/MISO/IRQ/GND` and identify nRF24L01P | `reference only`; lifecycle/source authenticity/RF HIL and whether 0 dBm meets product envelope open |
 | high-power nRF reference | Ebyte `E01-2G4M27D`, 18×33.4 mm through-hole, 27 dBm | manufacturer product/manual expose `GND/VCC/CE/CSN/SCK/MOSI/MISO/IRQ`; size/power/antenna burden differs materially | `reference only`; not a default stuffing choice |
 | three production nRF paths | exact module MPN/revision not selected | Nordic nRF24 interface is known, but Nordic marks nRF24 series not recommended for new designs; generic marketplace boards are not provenance | `open/blocking`; compare exact compact/PA options, authorised sourcing and qualified alternates |
-| CC1101 path | exact bare IC/module/carrier not selected | TI silicon interface alone does not prove a real carrier pinout, crystal, matching network or antenna connector | `open/blocking` |
+| CC1101 path | `CC1101RGPR` VQFN20 bare-IC candidate | official TI pin table proves exact silicon contacts `SCLK/SI/SO/GDO0/GDO2/CSn/RF_P/RF_N`; current TI order page says `ACTIVE`; it still does not prove crystal, matching network or antenna connector | `verified active silicon candidate`; RF implementation remains `open/blocking`, see lifecycle correction `FND-0050` |
 | analog voice | SA518 preferred / SA868S fallback family | command/function review exists, but exact orderable module revision/padout/body is not frozen | `open/blocking` |
 | broadcast receiver | Si4732 family | function/patch contract reviewed; exact orderable suffix/package, required pins and RF network remain open | `open/blocking` |
 | codec | ES8311 family | audio contract reviewed; exact MPN/package and accessible reset/control implementation remain open | `open/blocking` |
 | IR RX/TX | `TSOP38238`, `TSMP95000`, `TSAL6200` first discrete candidates | manufacturer part-level functions/packages are known; exact optical/electrical stuffing and driver remain conditional | `candidate facts`; finish package/driver/availability and HIL before count becomes target |
 | display/touch | no exact panel/controller/connector | interface envelope is not a real device pinout | `open/blocking` |
 | microSD | no exact socket/card-detect implementation | protocol width is known; socket pins, detect polarity and geometry are not | `open/blocking` |
-| slow control/safety/power | no accepted exact latch/expander/supervisor/converter set | semantic endpoints are known; no real-device proof yet | `open/blocking` |
+| slow control | `TCA9535PWR` TSSOP24 candidate | official TI package table exposes 16 ports, INT, address straps and I²C; power-on ports are inputs | `verified candidate`; every control needs external safe pull and STOP cannot depend on it |
+| radio output compression | `SN74HC595PWR` TSSOP16 candidate for `G2F-2R` | official TI package table exposes QA…QH, SER/SRCLK/RCLK, OE and SRCLR | `verified candidate`; OE/reset/pull truth table and shared-data timing remain schematic/HIL gates |
+| non-programmable safety/power | exact latch/supervisor/converter set not selected | semantic endpoints are known; TCA9535/SN74HC595 do not implement the accepted latched hard STOP by themselves | `open/blocking` |
 | high-throughput external tier | no exact accessory/transport/connector | current requirement intentionally rejects generic host and cannot name pins without an RF profile | `open/blocking` for final architecture, isolated reopen gate for base candidate comparison |
 
 ## Primary sources used in this pass
@@ -49,6 +51,19 @@
 - [Nordic nRF24 lifecycle page](https://www.nordicsemi.com/Products/nRF24-series)
 - [Ebyte E01-ML01S actual module page](https://www.ebyte.com/product/45.html)
 - [Ebyte E01-2G4M27D actual module page](https://www.ebyte.com/product/449.html)
+- [Raspberry Pi RP2350/RP2354 package pinout](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
+- [TI CC1101 exact silicon datasheet](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
+- [TI TCA9535 exact package datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf)
+- [TI SN74HC595 exact package datasheet](https://www.ti.com/lit/ds/symlink/sn74hc595.pdf)
+
+## Machine-readable source and draft consumers
+
+[`DEC-0042`](../decisions/DEC-0042-single-source-architecture-data.md) makes
+`hardware/architecture/devices.json` the versioned representation of verified
+rows above. The two first consumers are `G2F-2R` and `G2F-3D`; their generated
+pin ledger is [`G2F-pin-ledger`](generated/G2F-pin-ledger.md). Passing its
+validator proves contact existence/accounting only; it does not close rows that
+remain `reference only` or `open/blocking` here.
 
 ## Mandatory per-candidate evidence columns
 
@@ -58,4 +73,3 @@ internal reservation, boot/reset level, voltage/domain, owner peripheral
 instance, physical connector/net, source document/version and prototype test ID.
 Отсутствующая колонка делает строку provisional, даже если GPIO number выглядит
 свободным.
-

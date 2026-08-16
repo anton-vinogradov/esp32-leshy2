@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "generated_ledger": "docs/review/architecture/generated/G2F-pin-ledger.md",
+  "devices": {
+    "esp32_s3_wroom_1u_n16r2": {
+      "mpn": "ESP32-S3-WROOM-1U-N16R2",
+      "kind": "soldered_module",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [18.0, 19.2, 3.2],
+      "source": {
+        "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
+        "version": "v1.8",
+        "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": true,
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2S0", "SPI2", "SPI3", "UART0_OR_GPIO", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
+      "controller_notes": {
+        "SDMMC_SLOT0_1BIT/SDMMC_SLOT1_1BIT": "two logical slots share the S3 SD/MMC host; simultaneous/scheduled use is a separate concurrency gate",
+        "UART0_OR_GPIO": "one pin pair is a mutually configured UART0/custom-GPIO Unit profile, not two simultaneous controllers"
+      },
+      "contacts": {
+        "3V3": {"physical": "2", "role": "power"},
+        "EN": {"physical": "3", "role": "reset"},
+        "GPIO4": {"physical": "4", "role": "gpio"},
+        "GPIO5": {"physical": "5", "role": "gpio"},
+        "GPIO6": {"physical": "6", "role": "gpio"},
+        "GPIO7": {"physical": "7", "role": "gpio"},
+        "GPIO15": {"physical": "8", "role": "gpio"},
+        "GPIO16": {"physical": "9", "role": "gpio"},
+        "GPIO17": {"physical": "10", "role": "gpio"},
+        "GPIO18": {"physical": "11", "role": "gpio"},
+        "GPIO8": {"physical": "12", "role": "gpio"},
+        "GPIO19": {"physical": "13", "role": "gpio"},
+        "GPIO20": {"physical": "14", "role": "gpio"},
+        "GPIO3": {"physical": "15", "role": "gpio"},
+        "GPIO46": {"physical": "16", "role": "gpio"},
+        "GPIO9": {"physical": "17", "role": "gpio"},
+        "GPIO10": {"physical": "18", "role": "gpio"},
+        "GPIO11": {"physical": "19", "role": "gpio"},
+        "GPIO12": {"physical": "20", "role": "gpio"},
+        "GPIO13": {"physical": "21", "role": "gpio"},
+        "GPIO14": {"physical": "22", "role": "gpio"},
+        "GPIO21": {"physical": "23", "role": "gpio"},
+        "GPIO47": {"physical": "24", "role": "gpio"},
+        "GPIO48": {"physical": "25", "role": "gpio"},
+        "GPIO45": {"physical": "26", "role": "gpio"},
+        "GPIO0": {"physical": "27", "role": "gpio"},
+        "GPIO35": {"physical": "28", "role": "gpio"},
+        "GPIO36": {"physical": "29", "role": "gpio"},
+        "GPIO37": {"physical": "30", "role": "gpio"},
+        "GPIO38": {"physical": "31", "role": "gpio"},
+        "GPIO39": {"physical": "32", "role": "gpio"},
+        "GPIO40": {"physical": "33", "role": "gpio"},
+        "GPIO41": {"physical": "34", "role": "gpio"},
+        "GPIO42": {"physical": "35", "role": "gpio"},
+        "GPIO44": {"physical": "36", "role": "gpio"},
+        "GPIO43": {"physical": "37", "role": "gpio"},
+        "GPIO2": {"physical": "38", "role": "gpio"},
+        "GPIO1": {"physical": "39", "role": "gpio"},
+        "GND": {"physical": "1/40/41", "role": "power"},
+        "ANT": {"physical": "on-module external-antenna connector", "role": "rf"}
+      },
+      "strapping_contacts": ["GPIO0", "GPIO3", "GPIO45", "GPIO46"],
+      "service_required": ["EN", "GPIO0", "GPIO19", "GPIO20"],
+      "unavailable_gpio": {
+        "GPIO22..GPIO34": "not exposed by this module; GPIO26..GPIO32 are module-memory signals"
+      }
+    },
+    "esp32_c5_wroom_1u_n8r8": {
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "kind": "soldered_module",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_candidate_revision_floor_v1_2",
+      "dimensions_mm": [18.0, 21.2, 3.3],
+      "source": {
+        "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet",
+        "version": "v1.2",
+        "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": true,
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SPI2", "SPI2_OR_GPIO", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
+      "controller_notes": {
+        "SPI2_OR_GPIO": "the shared data pin changes between GP-SPI2 MOSI and software latch-data mode; concurrent use is not implied"
+      },
+      "contacts": {
+        "3V3": {"physical": "2", "role": "power"},
+        "EN": {"physical": "3", "role": "reset"},
+        "GPIO2": {"physical": "4", "role": "gpio"},
+        "GPIO3": {"physical": "5", "role": "gpio"},
+        "GPIO0": {"physical": "6", "role": "gpio"},
+        "GPIO1": {"physical": "7", "role": "gpio"},
+        "GPIO6": {"physical": "8", "role": "gpio"},
+        "GPIO7": {"physical": "9", "role": "gpio"},
+        "GPIO8": {"physical": "10", "role": "gpio"},
+        "GPIO9": {"physical": "11", "role": "gpio"},
+        "GPIO10": {"physical": "12", "role": "gpio"},
+        "GPIO13": {"physical": "13", "role": "gpio"},
+        "GPIO14": {"physical": "14", "role": "gpio"},
+        "GPIO28": {"physical": "15", "role": "gpio"},
+        "GPIO5": {"physical": "16", "role": "gpio"},
+        "GPIO4": {"physical": "17", "role": "gpio"},
+        "GPIO27": {"physical": "18", "role": "gpio"},
+        "GPIO23": {"physical": "21", "role": "gpio"},
+        "GPIO24": {"physical": "23", "role": "gpio"},
+        "GPIO12": {"physical": "24", "role": "gpio"},
+        "GPIO11": {"physical": "25", "role": "gpio"},
+        "GPIO25": {"physical": "26", "role": "gpio"},
+        "GPIO26": {"physical": "27", "role": "gpio"},
+        "ANT1": {"physical": "on-module U.FL-compatible connector (default path)", "role": "rf"},
+        "ANT2": {"physical": "31", "role": "rf"},
+        "GND": {"physical": "1/20/22/28/29/30/32", "role": "power"}
+      },
+      "strapping_contacts": ["GPIO2", "GPIO3", "GPIO7", "GPIO25", "GPIO26", "GPIO27", "GPIO28"],
+      "service_required": ["EN", "GPIO28", "GPIO13", "GPIO14"],
+      "unavailable_gpio": {
+        "GPIO15": "bonded to internal PSRAM as SPICS1 on the N8R8 module",
+        "GPIO16..GPIO22": "not exposed by this module variant"
+      }
+    },
+    "rp2354a_a4": {
+      "mpn": "RP2354A A4 (exact order code required before BOM freeze)",
+      "kind": "bare_qfn60",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [7.0, 7.0, 0.9],
+      "source": {
+        "document": "RP2350 Datasheet; RP2354A uses the same A-package pinout and stacked 2 MB flash",
+        "version": "build-date 2025-02-20",
+        "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": true,
+      "controller_capabilities": ["USB_DEVICE", "SWD", "PIO_RF_SPI", "UART0", "SPI1_IPC", "GPIO", "GPIO_IRQ"],
+      "controller_notes": {
+        "PIO_RF_SPI": "candidate PIO program/resource allocation; state-machine/DMA timing remains an executable proof gate"
+      },
+      "contacts": {
+        "GPIO0": {"physical": "2", "role": "gpio"}, "GPIO1": {"physical": "3", "role": "gpio"},
+        "GPIO2": {"physical": "4", "role": "gpio"}, "GPIO3": {"physical": "5", "role": "gpio"},
+        "GPIO4": {"physical": "7", "role": "gpio"}, "GPIO5": {"physical": "8", "role": "gpio"},
+        "GPIO6": {"physical": "9", "role": "gpio"}, "GPIO7": {"physical": "10", "role": "gpio"},
+        "GPIO8": {"physical": "12", "role": "gpio"}, "GPIO9": {"physical": "13", "role": "gpio"},
+        "GPIO10": {"physical": "14", "role": "gpio"}, "GPIO11": {"physical": "15", "role": "gpio"},
+        "GPIO12": {"physical": "16", "role": "gpio"}, "GPIO13": {"physical": "17", "role": "gpio"},
+        "GPIO14": {"physical": "18", "role": "gpio"}, "GPIO15": {"physical": "19", "role": "gpio"},
+        "SWCLK": {"physical": "24", "role": "service"}, "SWDIO": {"physical": "25", "role": "service"},
+        "RUN": {"physical": "26", "role": "reset"},
+        "GPIO16": {"physical": "27", "role": "gpio"}, "GPIO17": {"physical": "28", "role": "gpio"},
+        "GPIO18": {"physical": "29", "role": "gpio"}, "GPIO19": {"physical": "31", "role": "gpio"},
+        "GPIO20": {"physical": "32", "role": "gpio"}, "GPIO21": {"physical": "33", "role": "gpio"},
+        "GPIO22": {"physical": "34", "role": "gpio"}, "GPIO23": {"physical": "35", "role": "gpio"},
+        "GPIO24": {"physical": "36", "role": "gpio"}, "GPIO25": {"physical": "37", "role": "gpio"},
+        "GPIO26": {"physical": "40", "role": "gpio"}, "GPIO27": {"physical": "41", "role": "gpio"},
+        "GPIO28": {"physical": "42", "role": "gpio"}, "GPIO29": {"physical": "43", "role": "gpio"},
+        "USB_DM": {"physical": "51", "role": "service"}, "USB_DP": {"physical": "52", "role": "service"},
+        "QSPI_SS_USB_BOOT": {"physical": "60", "role": "service"}
+      },
+      "strapping_contacts": [],
+      "service_required": ["RUN", "SWCLK", "SWDIO", "USB_DM", "USB_DP", "QSPI_SS_USB_BOOT"],
+      "unavailable_gpio": {}
+    },
+    "m5_u214": {
+      "mpn": "M5Stack U214 Cap LoRa-1262",
+      "kind": "external_cap",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [84.0, 24.0, 15.2],
+      "source": {
+        "document": "M5Stack Cap LoRa-1262 product documentation",
+        "version": "live product page",
+        "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "GPS_TX": {"physical": "1", "role": "signal"}, "GPS_RX": {"physical": "2", "role": "signal"},
+        "SCL": {"physical": "3", "role": "signal"}, "SDA": {"physical": "4", "role": "signal"},
+        "5V_OUT": {"physical": "5", "role": "power"}, "GND": {"physical": "6", "role": "power"},
+        "5V_IN": {"physical": "7", "role": "power"}, "LORA_RST": {"physical": "8", "role": "signal"},
+        "LORA_IRQ": {"physical": "9", "role": "signal"}, "LORA_BUSY": {"physical": "10", "role": "signal"},
+        "SCK": {"physical": "11", "role": "signal"}, "MOSI": {"physical": "12", "role": "signal"},
+        "MISO": {"physical": "13", "role": "signal"}, "NSS": {"physical": "14", "role": "signal"}
+      }
+    },
+    "ebyte_e01_ml01s": {
+      "mpn": "Ebyte E01-ML01S",
+      "kind": "smd_radio_module",
+      "qualification": "reference_only",
+      "lifecycle": "nrf24_family_not_recommended_for_new_designs",
+      "dimensions_mm": [12.0, 19.0, null],
+      "source": {
+        "document": "E01-ML01S product page/manual",
+        "version": "live product page",
+        "url": "https://www.ebyte.com/product/45.html",
+        "checked": "2026-08-17"
+      },
+      "lifecycle_source": {
+        "document": "Nordic nRF24 Series lifecycle page",
+        "url": "https://www.nordicsemi.com/Products/nRF24-series",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "VCC": {"physical": "1", "role": "power"}, "CE": {"physical": "2", "role": "signal"},
+        "CSN": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
+        "MOSI": {"physical": "5", "role": "signal"}, "MISO": {"physical": "6", "role": "signal"},
+        "IRQ": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"}
+      }
+    },
+    "cc1101rgpr": {
+      "mpn": "CC1101RGPR",
+      "kind": "bare_vqfn20",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [4.0, 4.0, 1.0],
+      "source": {
+        "document": "CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet",
+        "version": "SWRS061I",
+        "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+        "checked": "2026-08-17"
+      },
+      "lifecycle_source": {
+        "document": "TI CC1101RGPR order page",
+        "url": "https://www.ti.com/product/CC1101/part-details/CC1101RGPR",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "SCLK": {"physical": "1", "role": "signal"}, "SO_GDO1": {"physical": "2", "role": "signal"},
+        "GDO2": {"physical": "3", "role": "signal"}, "DVDD": {"physical": "4", "role": "power"},
+        "DCOUPL": {"physical": "5", "role": "power"}, "GDO0": {"physical": "6", "role": "signal"},
+        "CSN": {"physical": "7", "role": "signal"}, "XOSC_Q1": {"physical": "8", "role": "clock"},
+        "AVDD_9": {"physical": "9", "role": "power"}, "XOSC_Q2": {"physical": "10", "role": "clock"},
+        "AVDD_11": {"physical": "11", "role": "power"}, "RF_P": {"physical": "12", "role": "rf"},
+        "RF_N": {"physical": "13", "role": "rf"}, "AVDD_14": {"physical": "14", "role": "power"},
+        "AVDD_15": {"physical": "15", "role": "power"}, "GND_16": {"physical": "16", "role": "power"},
+        "RBIAS": {"physical": "17", "role": "analog"}, "DGUARD": {"physical": "18", "role": "power"},
+        "GND_19": {"physical": "19", "role": "power"}, "SI": {"physical": "20", "role": "signal"},
+        "EPAD": {"physical": "exposed die-attach pad", "role": "power"}
+      }
+    },
+    "tca9535pwr": {
+      "mpn": "TCA9535PWR",
+      "kind": "tssop24",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [7.8, 6.4, 1.2],
+      "source": {
+        "document": "TCA9535 Remote 16-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "SCPS201E",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9535.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "INT": {"physical": "1", "role": "signal"}, "A1": {"physical": "2", "role": "strap"},
+        "A2": {"physical": "3", "role": "strap"}, "P00": {"physical": "4", "role": "signal"},
+        "P01": {"physical": "5", "role": "signal"}, "P02": {"physical": "6", "role": "signal"},
+        "P03": {"physical": "7", "role": "signal"}, "P04": {"physical": "8", "role": "signal"},
+        "P05": {"physical": "9", "role": "signal"}, "P06": {"physical": "10", "role": "signal"},
+        "P07": {"physical": "11", "role": "signal"}, "GND": {"physical": "12", "role": "power"},
+        "P10": {"physical": "13", "role": "signal"}, "P11": {"physical": "14", "role": "signal"},
+        "P12": {"physical": "15", "role": "signal"}, "P13": {"physical": "16", "role": "signal"},
+        "P14": {"physical": "17", "role": "signal"}, "P15": {"physical": "18", "role": "signal"},
+        "P16": {"physical": "19", "role": "signal"}, "P17": {"physical": "20", "role": "signal"},
+        "A0": {"physical": "21", "role": "strap"}, "SCL": {"physical": "22", "role": "signal"},
+        "SDA": {"physical": "23", "role": "signal"}, "VCC": {"physical": "24", "role": "power"}
+      }
+    },
+    "sn74hc595pwr": {
+      "mpn": "SN74HC595PWR",
+      "kind": "tssop16",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.0, 6.4, 1.2],
+      "source": {
+        "document": "SNx4HC595 8-Bit Shift Registers datasheet",
+        "version": "SCLS041J",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74hc595.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "QB": {"physical": "1", "role": "signal"}, "QC": {"physical": "2", "role": "signal"},
+        "QD": {"physical": "3", "role": "signal"}, "QE": {"physical": "4", "role": "signal"},
+        "QF": {"physical": "5", "role": "signal"}, "QG": {"physical": "6", "role": "signal"},
+        "QH": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"},
+        "QHP": {"physical": "9", "role": "signal"}, "SRCLR": {"physical": "10", "role": "reset"},
+        "SRCLK": {"physical": "11", "role": "signal"}, "RCLK": {"physical": "12", "role": "signal"},
+        "OE": {"physical": "13", "role": "safety"}, "SER": {"physical": "14", "role": "signal"},
+        "QA": {"physical": "15", "role": "signal"}, "VCC": {"physical": "16", "role": "power"}
+      }
+    }
+  }
+}

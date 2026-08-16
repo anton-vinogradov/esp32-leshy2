@@ -69,6 +69,7 @@
 - [DEC-0039: radio/key mission scope; FIDO/generic host removed, BadUSB optional](decisions/DEC-0039-radio-key-scope-correction.md)
 - [DEC-0040: 6 GHz/Wi-Fi 6E fully rejected; 2.4/5 retained](decisions/DEC-0040-reject-6ghz-wifi6e.md)
 - [DEC-0041: logical/electrical feasibility before adapted physical layout](decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
+- [DEC-0042: one machine-readable source for exact devices, pins and later layout](decisions/DEC-0042-single-source-architecture-data.md)
 - [REQ-SYS-0001: System/UI/storage platform contract — проведено ревью](requirements/REQ-SYS-0001-system-ui-storage.md)
 - [REQ-GNSS-0001: navigation/time/integrity contract — проведено ревью](requirements/REQ-GNSS-0001-navigation-integrity.md)
 - [REQ-RX-0001: Si4732 receiver/scan/record/decode contract — проведено ревью](requirements/REQ-RX-0001-si4732-receiver.md)
@@ -136,6 +137,7 @@
 - [FND-0047: Full-Speed USB is not the raw-SDR/high-throughput tier](findings/FND-0047-full-speed-usb-is-not-raw-sdr-tier.md)
 - [FND-0048: accepted 5 GHz does not imply 6 GHz/Wi-Fi 6E — fixed DEC-0040](findings/FND-0048-5ghz-does-not-imply-6ghz.md)
 - [FND-0049: exact MCU map lacked full real-device provenance — process fixed, parts open](findings/FND-0049-exact-pin-map-lacked-device-provenance.md)
+- [FND-0050: nRF24 is NRND; CC1101 is ACTIVE — lifecycle generalization corrected](findings/FND-0050-legacy-radio-lifecycle-risk.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -170,7 +172,7 @@
 - [IMP-0032: physical keyboard archetype — принято C/DEC-0038, phone-assisted text](improvements/IMP-0032-keyboard-whole-product-comparison.md)
 - [IMP-0033: generic High-Speed USB host — rejected DEC-0039](improvements/IMP-0033-native-high-speed-usb-host.md)
 - [IMP-0034: 6 GHz/Wi-Fi 6E placement — C/rejected DEC-0040](improvements/IMP-0034-6ghz-wifi6e-placement.md)
-- [⚠️ IMP-0035: one source for exact pins and physical layout — требуется решение](improvements/IMP-0035-single-source-pin-and-layout-generator.md)
+- [IMP-0035: one source for exact pins and physical layout — принято A/DEC-0042](improvements/IMP-0035-single-source-pin-and-layout-generator.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [INV-0002: единый реестр хотелок продукта — заморожен](inventories/INV-0002-product-wishlist.md)
 - [INV-0003: девять групп wishlist и четыре extra-пакета — проведено ревью](inventories/INV-0003-wishlist-review-groups.md)
@@ -181,7 +183,8 @@
 - [Stage 3: target product design — current artifact and gate](../stages/03-target-product-design.md)
 - [FLOW-0001: normative product→architecture→CAD gates](architecture/FLOW-0001-product-to-cad-gates.md)
 - [DEM-0001: current hardware-neutral semantic signal demand — проведено ревью](architecture/DEM-0001-current-semantic-signal-demand.md)
-- [SRC-0002: real-device pin provenance — first pass reviewed, exact parts open](architecture/SRC-0002-real-device-pin-provenance.md)
+- [SRC-0002: real-device pin provenance — machine-readable compute/control pass reviewed](architecture/SRC-0002-real-device-pin-provenance.md)
+- [G2F generated pin ledger: two structurally checked draft maps, not selected](architecture/generated/G2F-pin-ledger.md)
 - [CAP-0001: former capability snapshot — candidate/reference, owner-contaminated](architecture/CAP-0001-zero-based-capability-input.md)
 - [CON-0001: former concurrency/failure model — candidate/reference](architecture/CON-0001-hardware-neutral-concurrency-model.md)
 - [RES-0001: former resource demand — candidate/reference, owner-contaminated](architecture/RES-0001-hardware-neutral-resource-demand.md)
@@ -294,6 +297,7 @@
 - [REV-0003V: G3 physical-product input review — проведено ревью](reviews/REV-0003V-g3-physical-inputs.md)
 - [REV-0003W: former G3 form-factor experiment review — direction superseded](reviews/REV-0003W-g3-form-factor-candidates.md)
 - [REV-0003X: G2F entry and real-device rule — проведено ревью](reviews/REV-0003X-electrical-feasibility-entry.md)
+- [REV-0003Y: single-source foundation and draft maps — structural scope проведено ревью](reviews/REV-0003Y-single-source-and-draft-pin-maps.md)
 
 ## Статусы
 

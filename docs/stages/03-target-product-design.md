@@ -28,9 +28,11 @@ two-board clamshell generator. Его геометрия тоже рабочая
 
 ## Active prerequisite
 
-`DEM-0001` и первый `SRC-0002` pass reviewed; дальше нужны минимум две полные
-owner/bus/controller/GPIO карты с проверкой exact package/module/carrier pins.
-После согласования рабочей карты G3 переносит её в старый reproducible mockup.
+`DEM-0001` и первый `SRC-0002` pass reviewed. `DEC-0042/REV-0003Y` создали
+единый источник и две structurally checked draft owner/bus/controller/GPIO
+карты. Дальше они закрывают exact peripherals, controller concurrency,
+memory/traffic/power/service и HIL. После согласования рабочей карты G3
+переносит её в старый reproducible mockup.
 
 ## Downstream boundary
 
