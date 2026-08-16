@@ -22,9 +22,9 @@ Evidence states: `E0` — строка только идентифицирова
 |---|---:|---|---:|---|
 | `C-001` | A | `ESP32-S3-WROOM-1U-N16R2` | E1 | module revision/land pattern, flash/PSRAM identity, boot straps, antenna connector, current/thermal, AVL and recovery fixture |
 | `C-002` | A | `ESP32-C5-WROOM-1U-N8R8`, silicon rev ≥1.0 | E1 | lot/revision identity, SDIO-slave errata proof, straps, antenna path, current/thermal, AVL and native-USB fixture |
-| `C-003` | A | `RP2354A A4`, QFN60, stacked flash 2 MiB | E1 | exact orderable stepping/marking, crystal/clock network, decoupling/thermal pad, USB/SWD/RUN fixture, allocation and assembly yield |
+| `C-003` | A | `RP2354A A4`, exact `SC1511-A4` / packaging-equivalent `SC1511(13)-A4`, QFN60, stacked flash 2 MiB | E1; E3 partial | crystal/clock network, decoupling/thermal pad, USB/SWD/RUN fixture, quotes/traceability and assembly yield |
 | `C-004` | A | TI `TCA9535PWR` | E1 | address/pulls/INT, preload-before-direction reset sequence, drive/current limits, exact footprint and AVL |
-| `C-005` | F | RP crystal/oscillator and passives | E0 | tolerance/startup/temperature/EMI versus USB and packet timestamp requirements |
+| `C-005` | C | RP reference `ABM8-272-T3` 12 MHz crystal and manufacturer-recommended passives | E1; E3 partial | exact passives, placement and startup/temperature/EMI proof versus USB and packet timestamp requirements; alternate only by equivalence HIL |
 | `C-006` | F | debug/recovery connectors, series resistors and ESD for S3/C5/RP | E0 | intentional physical access without accidental boot/strap or normal-user exposure |
 | `C-007` | F | SDIO/SPI/alert inter-domain pulls, damping, test points and isolation provisions | E0 | 3.3 V compatibility, boot-safe defaults, signal integrity, fixture access and no accidental peer powering |
 

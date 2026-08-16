@@ -6,7 +6,7 @@
 | 1 | Видение и границы | этап 0 | проверенная формулировка назначения и ограничений | Проведено ревью |
 | 2 | Возможности и исключения | этап 1 | полный `INV-0002`, матрица `REQ-*`, zero-loss boundaries и owner-confirmed wishlist freeze | Проведено ревью (`DEC-0023`, `REV-0002AD`) |
 | 3 | Системная архитектура и владение | wishlist freeze этапа 2 | zero-based capability/concurrency/resource model, несколько полных hardware syntheses, затем exact owners/transports/pins/power/reset/update и атомарный package | **Проведено ревью** (`DEC-0028`, `REV-0003U`); target `PKG-0001/SYN-3A` |
-| 4 | Компоненты и BOM | этап 3 | проверенные компоненты, доступность и пределы | В работе; entry/register **Проведено ревью** (`BOM-0001`, `REV-0004A`), component qualification открыта |
+| 4 | Компоненты и BOM | этап 3 | проверенные компоненты, доступность и пределы | В работе; entry/register **Проведено ревью** (`BOM-0001`, `REV-0004A`); compute facts **Проведено ревью** (`BOM-0002`, `REV-0004B`), `IMP-0024`/schematic/qualification открыты |
 | 5 | Физическая конструкция и управление | этапы 3–4 | механика, органы управления, интерфейсы | Не начато |
 | 6 | Электрические спецификации | этапы 3–5 | проверенные схемные требования | Не начато |
 | 7 | Firmware-архитектура и toolchain | этапы 2–6 | build/runtime/HAL/test contracts | Не начато |

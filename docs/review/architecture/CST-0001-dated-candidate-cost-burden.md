@@ -23,13 +23,15 @@ Recurring delta считается в одном supplier/quantity snapshot:
 
 | Part / role | Source | Qty-500 unit price | Observed stock note |
 |---|---|---:|---|
-| RP2354A `C41378174` | [LCSC](https://www.lcsc.com/product-image/C41378174.html) | $1.2674 | localized pages show only about 95–137 immediately available; below a 500-unit build |
+| RP2354A LCSC SKU `C41378174` | [LCSC](https://www.lcsc.com/product-image/C41378174.html) | $1.2674 | one-card observation only; not valid as a global allocation conclusion |
 | SN74HC595DR `C10092` | [LCSC](https://www.lcsc.com/product-detail/Shift-Registers_Texas-Instruments-SN74HC595DR_C10092.html) | $0.1296 | tens of thousands shown in stock |
 | TS5A23157DGSR `C11133` | [LCSC](https://www.lcsc.com/product-detail/Analog-Switches_Texas-Instruments-TS5A23157DGSR_C11133.html) | $0.2721 | about 4,984 shown in stock |
 | TCA9534PWR `C783615` | [LCSC](https://www.lcsc.com/product-detail/I-O-Expanders_Texas-Instruments-TCA9534PWR_C783615.html) | $0.4017 | about 1,620 shown in stock |
 | 12 MHz crystal comparison `C7206294` | [LCSC](https://www.lcsc.com/product-detail/C7206294.html) | $0.0464 | about 2,185 shown; exact load/ESR/ppm still schematic qualification |
 
-[Raspberry Pi](https://www.raspberrypi.com/products/rp2350/) states RP2350 production through at least January 2045 and documents the RP2354A stacked-flash option. This reduces lifecycle risk but does not close the current 500-piece allocation or A4-lot traceability gate.
+[Raspberry Pi](https://www.raspberrypi.com/products/rp2350/) states RP2350 production through at least January 2045 and documents the RP2354A stacked-flash option.
+
+**Correction `FND-0035`:** exact orderable identities are `SC1511-A4` (7-inch/500) and packaging-equivalent `SC1511(13)-A4` (13-inch/3400). The 2026-08-16 authorised-distributor check found public exact-A4 stock above 500 at [Mouser](https://www.mouser.com/ProductDetail/Raspberry-Pi/SC1511-A4) and [DigiKey](https://www.digikey.com/en/products/detail/raspberry-pi/SC1511-13-A4/28172169). Therefore the former «immediate stock below 500» conclusion is withdrawn. Written quotes, lot/stepping traceability and assembly/yield evidence remain open. The historical single-supplier arithmetic below is not retroactively mixed with different currencies, exact-crystal pricing or assembly scope; stage-4 exact COGS will supersede it.
 
 ## Candidate-specific recurring delta at 500 units
 
@@ -82,7 +84,7 @@ The ranges intentionally overlap unquoted glue/assembly effects. A production qu
 | radio/voice deadline isolation | medium | weakest under C5 native/IR load | strongest |
 | paper RF route prior | medium/high risk | highest concentration | lowest, plus new oscillator gate |
 | recurring delta | middle | lowest | highest |
-| current qty-500 sourcing | quoted parts adequate | quoted parts adequate | RP immediate stock inadequate; quote/allocation required |
+| current qty-500 sourcing | quoted parts adequate | quoted parts adequate | public exact-A4 stock clears 500; quotes/traceability still required |
 
 The RP premium is therefore not justified as a parts-count saving. It buys deterministic isolation, direct controls, seven C5 reserve pins and cleaner partitioning. The two-domain variants buy lower recurring cost and one fewer signed target, but have zero GPIO reserve and greater scheduling/RF proof risk.
 
@@ -121,8 +123,8 @@ There is no new zero-loss part substitution ready for owner acceptance at this s
 | recurring candidate BOM | `2B` | `2A` (+≈$0.13) | `3A` (+≈$1.23 vs `2B` midpoint) |
 | implementation burden | `2A` | `2B` | `3A` |
 | GPIO/scheduling/RF safety margin | `3A` | `2A` | `2B` |
-| immediate qty-500 candidate-part availability | `2A/2B` | — | `3A` requires allocation/second quote |
+| immediate qty-500 candidate-part availability | `2A/2B/3A` | — | `3A` still requires two quotes/traceability, not an allocation-shortage claim |
 
-This table is not a weighted winner. The next `PKG-*` must decide whether the approximately $1.10 midpoint premium of `3A` over `2A` is justified by deterministic safety/RF margin and reserve, while treating RP allocation and third-target work as real gates.
+This table is not a weighted winner. `PKG-0001` later accepted `3A`; `FND-0035` subsequently corrected the stock conclusion while leaving exact quotes/traceability, QFN60 assembly and third-target work as real gates. The approximately $1.10 midpoint is a conservative historical comparison, not a current production quote.
 
 The supplier snapshot, recurring ranges and non-recurring burden model receive **«Проведено ревью»**. Prices remain dated evidence, not permanent facts.

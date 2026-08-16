@@ -1,0 +1,80 @@
+# BOM-0002 — compute, clock and recovery evidence
+
+- Статус: **Проведено ревью фактов; C5 production stepping требует решения; component qualification не завершена**
+- Дата snapshot: 2026-08-16
+- Пререквизиты: `BOM-0001`, `DEC-0028`, `PIN-0002`, `BUD-0002`
+- Review: [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md)
+- Finding: [`FND-0035`](../findings/FND-0035-rp2354a-order-code-stock-correction.md)
+
+## Evidence boundary
+
+`BOM-0002` разделяет:
+
+1. manufacturer primary fact — identity, package, memory, pins, reset/errata;
+2. dated authorised-distributor observation — stock/lead-time, который может измениться;
+3. unclosed implementation proof — schematic/ERC/layout/thermal/assembly/fixture/HIL.
+
+Ни одна supplier page не присваивает строке `Q`. Финальное **«Проведено ревью»** компонента возможно только после всех применимых `E1…E4` и совместного exact manifest.
+
+## Exact compute identities
+
+| ID | Exact target / order identity | Проверенные primary facts | Supply snapshot | Disposition |
+|---|---|---|---|---|
+| `C-001` | `ESP32-S3-WROOM-1U-N16R2` | [official module datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf): 16 MB Quad flash, 2 MB Quad PSRAM, external antenna connector, −40…85 °C; native USB/boot straps remain normative from `PIN-0002` | [authorised storefront](https://www.mouser.com/ProductDetail/Espressif-Systems/ESP32-S3-WROOM-1U-N16R2) shows exact MPN and qty above 500, but regional inventory is dynamic | architecture identity retained; `E1`, partial `E3`; schematic/thermal/recovery/HIL open |
+| `C-002` | `ESP32-C5-WROOM-1U-N8R8` | [official module datasheet](https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html): 8 MB Quad flash, 8 MB Quad PSRAM, external ANT1 default, dual-band Wi-Fi/802.15.4 and SDIO slave; silicon revision is not encoded in the MPN | [Mouser](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8) shows exact MPN and qty above 500, but does not promise v1.0 versus v1.2 lot | architecture identity retained; `E1`, partial `E3`; production stepping decision open |
+| `C-003` | `SC1511-A4`; packaging-equivalent `SC1511(13)-A4` | [official RP2350 family facts](https://www.raspberrypi.com/documentation/microcontrollers/microcontroller-chips.html): RP2354A A4, QFN60 7×7 mm, 30 GPIO, 520 KB SRAM and stacked 2 MB flash; A4 identity is explicit | exact A4 public stock clears 500 at Mouser/DigiKey; see `FND-0035` | `E1`, partial `E3`; allocation claim corrected; QFN60 assembly/yield/fixture/HIL open |
+| `C-004` | `TCA9535PWR` | [TI datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf): active/production TSSOP-24, 1.65…5.5 V, 400 kHz, power-on all-I/O-input state, active-low interrupt; output latch must be loaded before changing direction where glitch-free state matters | active manufacturer status is verified; two authorised production quotes still absent | `E1`, partial `E3`; address/pulls/current and power-on sequence schematic proof open |
+
+## C5 stepping and errata gate
+
+The accepted architecture currently says C5 silicon `≥v1.0`. Current [Espressif errata](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32c5/03-errata-description/index.html) changes the production-risk picture:
+
+| Erratum | v1.0 | v1.2 | Architecture consequence |
+|---|---:|---:|---|
+| `CPU-718` PSRAM read-after-write consistency | affected | fixed | v1.0 needs workload restrictions/delays for affected access patterns |
+| `SRAM-436` corruption after peripheral-domain power-down | affected | fixed | ESP-IDF disables the feature on v1.0; lower-power behavior differs |
+| `HUK-576` HUK recovery can fail at power-on | affected; no workaround | fixed | v1.0 cannot be the trustworthy base for HUK/Key Manager use |
+| `FLASH-938` manual flash encryption at 240 MHz | affected | affected | provisioning must run at ≤160 MHz on either revision |
+| `ECC-833` ECDSA_DS verification under forced ECC power-down | affected | affected | do not use ECDSA_DS under that condition; exact security design remains a later gate |
+
+[Espressif identification](https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32c5/01-chip-identification/index.html) gives module specification identifier `MC` for v1.0 and `MD` for v1.2; runtime eFuse verification is also available. [Key Manager documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-reference/peripherals/key_manager.html) explicitly supports the peripheral only on `≥v1.2`.
+
+No accepted feature currently requires irreversible flash encryption or HUK. Nevertheless, production v1.0 would preserve a no-workaround security defect and two fixed memory/power defects inside a new design.
+
+> **⚠️ Предложение [`IMP-0024`](../improvements/IMP-0024-c5-v1.2-production-floor.md):** raise the production floor from C5 `≥v1.0` to `≥v1.2`, require `MD`/eFuse identity in incoming and manufacturing tests, and allow v1.0 only as labelled engineering samples. On v1.0 samples HUK/Key Manager and PSRAM encryption are forbidden, peripheral-domain power-down remains disabled, TX defaults off, and no release/qualification evidence may be signed off from them. This preserves early prototyping while preventing old silicon from silently becoming the product baseline.
+
+`IMP-0024` is not applied by this artifact; `DEC-0028`, target READMEs and firmware contract remain `≥v1.0` until owner acceptance.
+
+## Clock and recovery implementation baseline
+
+| ID | Baseline fixed by primary guidance | Still open before `Q` |
+|---|---|---|
+| `C-005` | RP reference clock candidate becomes exact `ABM8-272-T3`, 12 MHz, with 15 pF to ground on each side and 1 kΩ series damping at 3.3 V IOVDD, following [Raspberry Pi hardware design](https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf) | exact capacitor/resistor MPN/voltage/temp; placement; startup, ppm and temperature HIL; any cheaper alternate must repeat oscillator qualification |
+| `C-006` | preserve three physically independent recovery paths: S3 USB/UART/strap, C5 native USB/strap and RP USB_BOOT + SWD + RUN; RP USB uses 27 Ω series at MCU and 90 Ω differential target | exact connectors/pads, ESD, CC/power/backfeed, accidental-user-access analysis and fixture drawing |
+| `C-007` | preserve C5 1-bit SDIO and RP SPI+alert boot-safe pulls, optional series/damping footprints and powered-peer isolation provisions | exact resistor networks, peer-unpowered leakage, SI simulation/measurement and test-point loading |
+
+`ABM8-272-T3` is the manufacturer-recommended reference, not yet a qualified zero-loss monopoly. A cheaper crystal is allowed only after equal startup/temperature/USB/timestamp evidence; catalog similarity alone is insufficient.
+
+## Prerequisite and artifact check
+
+| Check | Result |
+|---|---|
+| exact MPN/stepping or exact missing decision named | yes |
+| memory/package/antenna identities match accepted architecture | yes |
+| C5 SDIO architecture remains compatible | yes; production stepping is separate from link choice |
+| RP stock contradiction resolved | yes, `FND-0035`; public qty-500 availability passes, quotes/traceability remain open |
+| clock reference is no longer generic | yes, exact manufacturer-recommended candidate and circuit recorded |
+| recovery paths remain independent and owner-accessible | yes as a schematic contract; implementation proof open |
+| any component receives `Q` | no |
+
+## Exit gate
+
+`BOM-0002` can receive final **«Проведено ревью»** only after:
+
+1. owner disposition of `IMP-0024` and propagation to both repositories;
+2. exact KiCad symbols/footprints and schematic/ERC contract for `C-001…007`;
+3. two authorised quotes/AVL entries and explicit C5 lot-revision commitment;
+4. assembly/yield quote for RP QFN60 and module/reflow constraints;
+5. recovery, boot-strap, peer-unpowered, clock startup/temperature and inter-domain link HIL.
+
+The verified factual subset is safe input to schematic planning, but no downstream step may treat the compute platform as fully qualified yet.

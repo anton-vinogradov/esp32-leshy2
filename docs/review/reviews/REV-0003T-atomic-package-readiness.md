@@ -26,7 +26,7 @@
 
 `2A` is a credible low-cost fallback, but accepting it now would trade away direct radio controls, deterministic isolation and all generic GPIO reserve to save approximately $1.10 midpoint and one firmware target.
 
-`3A` is recommended because the controlled/dangerous feature set makes independent real-time safety and fault containment a product property rather than optional polish. Its price, third target and current allocation shortfall are explicitly retained, not hidden.
+`3A` is recommended because the controlled/dangerous feature set makes independent real-time safety and fault containment a product property rather than optional polish. Its price, third target and sourcing/traceability gate are explicitly retained, not hidden. `FND-0035` later corrected the public-stock subclaim without changing that gate.
 
 ## Результат решения
 

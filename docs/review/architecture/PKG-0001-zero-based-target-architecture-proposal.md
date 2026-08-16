@@ -177,7 +177,7 @@ Signed firmware does not turn captured/imported data into permission. Every repl
 - midpoint premium: about `$1.10` over recommended low-cost fallback `2A`;
 - eight candidate-specific firmware/update/manufacturing/HIL work packages versus four for `2A`;
 - no additional DC/DC rail; RP fits the common 3.3 V envelope;
-- RP2350 official production horizon through at least January 2045, but observed immediate RP2354A stock below 500;
+- RP2350 official production horizon through at least January 2045; `FND-0035` later corrected the initial below-500 stock claim by exact `SC1511-A4` identity, while quotes/traceability remain open;
 - production requires two independent source/allocation quotes, A4 stepping/lot traceability and QFN60 assembly/yield quote before schematic freeze.
 
 This is the cost of the recommended safety/margin architecture. Cost reductions continue only on common exact components and qualified second sources; reducing radio count, direct safety, update/recovery, antenna paths or HIL is not accepted saving.
@@ -186,7 +186,7 @@ This is the cost of the recommended safety/margin architecture. Cost reductions 
 
 | Gate | Failure consequence |
 |---|---|
-| `KG-01` RP2354A A4 allocation/traceability and second source quote unavailable by schematic freeze | package reopens; `2A` is the first whole-package fallback candidate, not an automatic substitution |
+| `KG-01` RP2354A A4 authorised quotes/lot traceability or qualified assembly supply unavailable by schematic freeze | package reopens; `2A` is the first whole-package fallback candidate, not an automatic substitution |
 | `KG-02` 600 kB/s three-nRF/latency test fails on RP shared bus | reopen split-bus/owner synthesis and every affected pin/update/cost contract |
 | `KG-03` S3/C5/RP memory or DMA floors fail | optimize bounded allocation first; if contract still fails, reopen complete package, never silently change S3 to Octal PSRAM |
 | `KG-04` SDIO or RP IPC throughput/liveness/lease proof fails | transport and pin/recovery package reopens |

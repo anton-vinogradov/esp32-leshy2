@@ -26,7 +26,7 @@
 
 - candidate-specific recurring premium составляет примерно `$1.10` midpoint относительно `SYN-2A`;
 - появляется третий firmware/update/recovery/HIL target;
-- immediate RP2354A allocation остаётся `KG-01`, а не считается доказанной серийной доступностью;
+- RP2354A authorised quotes, lot traceability and qualified assembly supply остаются `KG-01`; `FND-0035` later confirms public exact-A4 stock but does not itself prove production supply;
 - прямые nRF/CC/voice controls, local deadlines, fault containment и C5 GPIO reserve считаются оправдывающими premium;
 - legacy owner/layout artifacts остаются справочными источниками идей и рисков, а не ограничениями target.
 
