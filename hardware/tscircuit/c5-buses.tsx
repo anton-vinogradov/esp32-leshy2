@@ -1,4 +1,9 @@
-// Leshy2 — Sheet 2: MCU + buses  (FAB-READY draft, engine-pulled footprints by LCSC number)
+// Leshy2 — Sheet 2: MCU + buses
+// LEGACY IMPLEMENTATION DRAFT; NOT FAB-READY. nRF24 SPI/CE/CS/IRQ and IR TX/RX are still
+// routed to U10/ESP32-S3 despite DEC-0001 C5 ownership. The legacy SPI3 slave role also
+// conflicts with the only C5 GP-SPI needed as nRF master (FND-0001), and the accepted dual
+// IR receive path adds a third IR line/resource not represented here. Stage 3 must replace
+// this ownership/transport/pin map before fabrication.
 //
 // METHOD: every module/IC uses footprint="jlcpcb:C<number>". The parts engine supplies
 // the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers

@@ -2,7 +2,9 @@
 // LEGACY IMPLEMENTATION DRAFT; NOT FAB-READY. IR TX/RX still terminates on the legacy S3 nets,
 // while DEC-0001 requires C5 ownership. D57 is also only a geometric 0603 placeholder without an
 // accepted emitter MPN, optical/current qualification, or enclosure proof. Stage 3/6/8 must rework
-// the ownership and qualify the complete IR path before fabrication.
+// the ownership and qualify the complete IR path before fabrication. TXDET_* nets are likewise
+// unimplemented interface stubs: no RF coupling/detector components generate them in the current
+// source, so D50..D56 are not evidence of hardware TX-live indication (FND-0019).
 //
 // METHOD: every real IC/connector/switch uses footprint="jlcpcb:C<number>". The parts engine
 // supplies the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers
@@ -51,9 +53,9 @@
 // Added support (vs base): Cds1 (WS2812 VDD HF decap) and Cu51 (74AHCT1G125 VCC decap) — both
 // datasheet-standard 100nF, base sheet had none.
 //
-// Net names are UNCHANGED from the base sheet. TXDET_C5/NRF1/NRF2/NRF3/CC1101/SA868/LORA and
-// WS2812_DOUT are single-ended off-sheet (analog detector taps / next-LED daisy-chain) — expected,
-// not wiring defects. Slow control lines (WS2812, BUZZER, IR_*, SD_*, ENC_*, S3_BOOT, PTT_BTN,
+// Net names are UNCHANGED from the base sheet. TXDET_C5/NRF1/NRF2/NRF3/CC1101/SA868/LORA are
+// unimplemented detector stubs and WS2812_DOUT is an optional next-LED daisy-chain. Slow control
+// lines (WS2812, BUZZER, IR_*, SD_*, ENC_*, S3_BOOT, PTT_BTN,
 // SPI_*) leave this sheet single-ended to their owner on Sheets 1/2.
 export default () => (
   <board width="90mm" height="70mm">

@@ -50,16 +50,16 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-N24-01 | Драйвер регистров/SPI nRF24 | SYS | реализация заблокирована `FND-0001` |
-| C-N24-02 | Параллельный RPD energy sweep, waterfall, occupancy | MAIN | RPD не является RSSI |
-| C-N24-03 | Оверлей энергии Wi-Fi/Zigbee/802.15.4 | MAIN | только энергия, без демодуляции |
-| C-N24-04 | ESB sniff и поиск адресов | LAB-P | нужен software CRC |
-| C-N24-05 | MouseJack scan и инъекция | LAB-I | строку разложить на passive/active |
-| C-N24-06 | KeySniffer незашифрованных нажатий | LAB-P | только авторизованные цели |
-| C-N24-07 | ESB replay, fake device, address brute-force | LAB-I | активное воздействие |
-| C-N24-08 | BLE advertising sniff/spoof через nRF24 | MIXED | lossy adv-only |
-| C-N24-09 | Одноканальный и reactive jam | LAB-D | узкая цель, duty и STOP |
-| C-N24-10 | Sweep beacon, carrier test, VSWR aid, 3-антенный hunt | MIXED | TX-тест и пассивный hunt разложить |
+| C-N24-01 | Драйвер регистров/SPI nRF24 | SYS | C5 target; transport `FND-0001`, current artifact `FND-0019`, clean ESP-IDF/licence proof |
+| C-N24-02 | Параллельный RPD energy sweep, waterfall, occupancy | MAIN | binary hit ratio, не RSSI/dBm; `FND-0020`, `IMP-0016` |
+| C-N24-03 | Оверлей энергии Wi-Fi/Zigbee/802.15.4 | MAIN | только frequency/energy overlay без protocol attribution |
+| C-N24-04 | ESB sniff и поиск адресов | LAB-P | pseudo-promiscuous candidate → CRC/confidence-validated record, payload redacted |
+| C-N24-05 | MouseJack scan и инъекция | MIXED | passive advisory discovery = Lab; confirmation/injection = Controlled Zone `AUTHORIZED_TARGET` |
+| C-N24-06 | KeySniffer незашифрованных нажатий | LAB-I | sensitive capture = Controlled Zone `AUTHORIZED_TARGET`, vault/redaction/retention |
+| C-N24-07 | ESB replay, fake device, address brute-force | LAB-I | single target = `AUTHORIZED_TARGET`; mapper/brute-force = `BOTH` |
+| C-N24-08 | BLE advertising sniff/spoof через nRF24 | MIXED | limited legacy-1M compatibility only; normal BLE → native proposal `IMP-0017` |
+| C-N24-09 | Одноканальный и reactive jam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded only; open-air mode excluded |
+| C-N24-10 | Sweep beacon, carrier test, VSWR aid, 3-антенный hunt | MIXED | external-instrument source only, no VSWR; hunt depends on `IMP-0016` |
 
 ## 5 ГГц Wi-Fi и 802.15.4 — `FW-CAP §3`
 

@@ -1,4 +1,8 @@
-// Leshy2 — Sheet 3: RF chains  (FAB-READY draft, engine-pulled footprints by LCSC number)
+// Leshy2 — Sheet 3: RF chains
+// LEGACY IMPLEMENTATION DRAFT; NOT FAB-READY. The three generic nRF24 PA/LNA module
+// placeholders still terminate on the legacy S3 SPI/CE/CS/IRQ nets, while DEC-0001 requires
+// C5 ownership. Exact module MPN/revision, PA/LNA behavior, antenna land, power envelope,
+// regional conducted power and RF/TX-live/STOP proof remain unqualified (FND-0019).
 //
 // METHOD: every real IC/module uses footprint="jlcpcb:C<number>". The parts engine supplies
 // the REAL pads AND the REAL pad NAMES from the LCSC/EasyEDA database, so no pin numbers are
@@ -64,6 +68,7 @@ export default () => (
     <capacitor name="Cd21" capacitance="100nF" footprint="0402" />
     <capacitor name="Cb22" capacitance="150uF" footprint="1210" />
     <capacitor name="Cd22" capacitance="100nF" footprint="0402" />
+    <resistor name="Rce_off" resistance="100k" footprint="0402" /> {/* shared CE off at reset/high-Z */}
 
     {/* ===================== nRF24 IRQ combiner: SN74LVC1G10 3-input NAND ===================== */}
     <chip name="U28" footprint="jlcpcb:C485078" />
@@ -146,6 +151,8 @@ export default () => (
     <trace from=".Cb22 > .pin2" to="net.GND" />
     <trace from=".Cd22 > .pin1" to="net.V3V3" />
     <trace from=".Cd22 > .pin2" to="net.GND" />
+    <trace from=".Rce_off > .pin1" to="net.nRF24_CE" />
+    <trace from=".Rce_off > .pin2" to="net.GND" />
 
     {/* --- IRQ combiner (NAND: A/B/C in, Y out) --- */}
     <trace from=".U28 > .A" to="net.nRF24_1_IRQ" />

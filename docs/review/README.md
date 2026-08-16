@@ -52,6 +52,7 @@
 - [REQ-VHF-0001: analog voice/modem/relay contract — проведено ревью](requirements/REQ-VHF-0001-analog-voice-modem.md)
 - [REQ-NFC-0001: HF NFC/RFID contract — проведено ревью](requirements/REQ-NFC-0001-hf-nfc-rfid.md)
 - [REQ-IR-0001: consumer IR contract — проведено ревью](requirements/REQ-IR-0001-consumer-infrared.md)
+- [REQ-N24-0001: 3×nRF24 raw 2.4 GHz contract — на ревью](requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -70,6 +71,9 @@
 - [FND-0016: NFC frontend не доказывает universal emulation/relay/key recovery — закрыто DEC-0017](findings/FND-0016-nfc-emulation-relay-and-attack-overclaims.md)
 - [FND-0017: IR TX artifact не fail-safe/qualified — частично исправлено](findings/FND-0017-ir-tx-artifact-not-safe-or-qualified.md)
 - [FND-0018: fixed 38 kHz demodulator не учит carrier — закрыто DEC-0018](findings/FND-0018-ir-fixed-demodulator-cannot-learn-carrier.md)
+- [FND-0019: 3×nRF24 artifact не C5-owned/fail-safe/qualified — частично исправлено](findings/FND-0019-nrf24-artifact-not-c5-safe-or-qualified.md)
+- [FND-0020: nRF24 RPD не является RSSI/VSWR](findings/FND-0020-nrf24-rpd-is-not-rssi-or-vswr.md)
+- [FND-0021: nRF24 security/BLE/licence overclaims](findings/FND-0021-nrf24-security-ble-and-license-overclaims.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -85,6 +89,8 @@
 - [IMP-0013: открытый lifecycle SSB-патча Si4732 — принято](improvements/IMP-0013-reproducible-ssb-patch-lifecycle.md)
 - [IMP-0014: conditional migration на dual-band SA518 — принято](improvements/IMP-0014-dual-band-sa518-voice-backend.md)
 - [IMP-0015: dual-path consumer IR learning — принято](improvements/IMP-0015-dual-path-consumer-ir-learning.md)
+- [⚠️ IMP-0016: честный calibrated three-antenna RPD hunt — предложение](improvements/IMP-0016-calibrated-three-antenna-2g4-hunt.md)
+- [⚠️ IMP-0017: native BLE + nRF24 compatibility — отложено до BLE-review](improvements/IMP-0017-native-ble-plus-nrf24-compatibility.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -112,6 +118,7 @@
 - [REV-0002Q: ревью NFC/RFID и распространения U216/A](reviews/REV-0002Q-nfc-decision-propagation.md)
 - [REV-0002R: ревью пререквизитов consumer IR](reviews/REV-0002R-ir-prerequisites.md)
 - [REV-0002S: финальное ревью и распространение consumer IR решения](reviews/REV-0002S-ir-decision-propagation.md)
+- [REV-0002T: ревью пререквизитов 3×nRF24](reviews/REV-0002T-nrf24-prerequisites.md)
 
 ## Статусы
 
