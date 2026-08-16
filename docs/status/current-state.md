@@ -56,6 +56,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0026`: native BLE advertising scan is not a promiscuous connection-follow sniffer, a rotating address is not stable identity, and RSSI does not prove metres or direction.
 - `FND-0027`: Continuity/iBeacon/Find My and attack labels require versioned corpus/spec/licence/peer proof; ordinary, passive, and disruptive BLE cases have distinct security gates.
 - `FND-0028`: physical ownership of the three full-function nRF24 radios is reopened; S3 shared-SPI and C5+SDIO are preliminary variants, with the decision deferred until wishlist freeze.
+- `FND-0029`: the S3 memory variant, S3↔C5 transport, and recovery interfaces consume overlapping scarce pins. N8R8 is not a drop-in replacement for N8R2 because Octal PSRAM consumes GPIO35–37, while C5 4-bit SDIO conflicts with native USB on GPIO13/14.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -84,10 +85,10 @@ The remaining stage-2 slices are now **Reviewed**: [`REQ-W24-0001`](../review/re
 
 ## Active architecture gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) freezes the complete wishlist and opens stage 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) has started as the one resource-demand model used unchanged by every layout; functional/concurrency demand is recorded and numeric pin/controller/traffic/memory/power/STOP budgets remain in progress.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) freezes the complete wishlist and opens stage 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) has started as the one resource-demand model used unchanged by every layout. Functional/concurrency demand, the exact MCU pin/controller inventory ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), and the common hard-fail/100-point layout scorecard ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)) are recorded. Numeric traffic/memory/power budgets and the STOP decision remain in progress.
 
 Base and optional expansion scope are now separate. Bluetooth Classic, dedicated BLE sniffing, additional SDR/RF, cellular, LF RFID, a second NFC frontend, full-duplex voice and Linux-class compute do not burden the base board.
 
-[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, the CE latch, and exact GPIO are now active layout candidates. At least S3-heavy, C5-heavy, and balanced/modular layouts must pass the same pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model before ownership is accepted.
+[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, the CE latch, and exact GPIO are now active layout candidates. **⚠️ [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md)** proposes a latched hard STOP that resets both MCUs and hardware-inhibits/power-cuts every TX-capable external domain; it is not accepted until the owner decides. At least S3-heavy, C5-heavy, and balanced/modular layouts must pass the same pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model before ownership is accepted.
 
 `FND-0006` and `FND-0007` remain open. The deferral neither selects `U14`/the 3×3 matrix nor proves a hardware STOP.

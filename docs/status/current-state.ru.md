@@ -56,6 +56,7 @@
 - `FND-0026`: native BLE advertising scan не является promiscuous connection-follow sniffer, rotating address не является stable identity, а RSSI не доказывает метры или направление.
 - `FND-0027`: Continuity/iBeacon/Find My и attack labels требуют versioned corpus/spec/licence/peer proof; ordinary, passive и disruptive BLE-сценарии имеют разные security gates.
 - `FND-0028`: physical owner трёх полнофункциональных nRF24 переоткрыт; S3 shared-SPI и C5+SDIO являются предварительными вариантами, решение отложено до wishlist freeze.
+- `FND-0029`: вариант памяти S3, транспорт S3↔C5 и recovery interfaces расходуют пересекающиеся scarce pins. N8R8 не является drop-in заменой N8R2, потому что Octal PSRAM занимает GPIO35–37, а 4-bit SDIO C5 конфликтует с native USB на GPIO13/14.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -84,10 +85,10 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 ## Активный архитектурный gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) начат как единый неизменный resource-demand model всех компоновок: functional/concurrency demand записан, numeric pin/controller/traffic/memory/power/STOP budgets ещё заполняются.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) начат как единый неизменный resource-demand model всех компоновок. Functional/concurrency demand, точная инвентаризация MCU pins/controllers ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)) и общая layout scorecard с hard-fail/100-point оценкой ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)) уже записаны. Numeric traffic/memory/power budgets и решение по STOP остаются в работе.
 
 Base и optional expansion scope разделены. Bluetooth Classic, dedicated BLE sniffing, дополнительные SDR/RF, cellular, LF RFID, второй NFC frontend, full-duplex voice и Linux-class compute не нагружают базовую плату.
 
-[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO теперь активные layout candidates. Минимум S3-heavy, C5-heavy и balanced/modular варианты обязаны пройти один pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model до принятия ownership.
+[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO теперь активные layout candidates. **⚠️ [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md)** предлагает latched hard STOP, который сбрасывает оба MCU и аппаратно inhibit/обесточивает каждый внешний TX-capable domain; до решения владельца предложение не принято. Минимум S3-heavy, C5-heavy и balanced/modular варианты обязаны пройти один pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model до принятия ownership.
 
 `FND-0006` и `FND-0007` остаются открытыми. Перенос не выбирает `U14`/матрицу 3×3 и не доказывает аппаратный STOP.

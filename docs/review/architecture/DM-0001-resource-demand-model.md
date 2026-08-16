@@ -1,6 +1,6 @@
 # DM-0001 — единый resource-demand model полной базовой конфигурации
 
-- Статус: **В работе — functional demand зафиксирован, numeric MCU/pin budget проверяется**
+- Статус: **В работе — functional/pin/controller model reviewed; numeric traffic/memory/power и STOP проверяются**
 - Этап: 3 — системная архитектура и владение
 - Дата начала: 2026-08-16
 - Обязательный вход: frozen wishlist `INV-0004`, `DEC-0023`, reviewed `REQ-*`
@@ -95,9 +95,9 @@ Demand описывает нужный сервис, а не любимую ре
 - [x] fixed/open ownership boundaries stated without contradiction;
 - [x] base and optional accessory demand separated;
 - [x] mandatory concurrency/failure scenarios listed;
-- [ ] exact S3/C5 pin capability and controller inventory;
+- [x] exact S3/C5 pin capability and controller inventory (`PIN-0001`);
 - [ ] conservative numeric traffic/memory/power envelopes;
 - [ ] independent STOP fan-out target architecture;
-- [ ] scoring rubric with hard-fail criteria.
+- [x] scoring rubric with hard-fail criteria (`SC-0001`).
 
-После заполнения четырёх последних строк один и тот же revision `DM-0001` копируется в scorecard всех вариантов. Изменять demand внутри отдельного layout запрещено.
+После заполнения двух оставшихся строк один и тот же revision `DM-0001` копируется в scorecard всех вариантов. Изменять demand внутри отдельного layout запрещено.

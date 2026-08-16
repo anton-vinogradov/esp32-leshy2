@@ -92,6 +92,7 @@
 - [FND-0026: native BLE scan не является connection sniff, stable identity или дальномером](findings/FND-0026-native-ble-is-not-connection-sniff-identity-or-distance.md)
 - [FND-0027: BLE protocol/emulation/attack claims требуют corpus, rights и security gates](findings/FND-0027-ble-protocol-emulation-attack-and-license-overclaims.md)
 - [FND-0028: владелец 3×nRF24 переоткрыт; layout после wishlist freeze](findings/FND-0028-nrf24-owner-reopened-by-full-function-resource-audit.md)
+- [FND-0029: memory variant, inter-MCU transport и recovery делят scarce pins](findings/FND-0029-memory-transport-recovery-pin-coupling.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -113,11 +114,14 @@
 - [IMP-0019: S3 как единственный baseline native-BLE owner — принято](improvements/IMP-0019-s3-primary-native-ble-owner.md)
 - [⚠️ IMP-0020: ordinary Bluetooth Mesh — требуется отдельное решение](improvements/IMP-0020-ordinary-ble-mesh-scope.md)
 - [⚠️ IMP-0021: S3 владеет тремя полнофункциональными nRF24 — layout-кандидат после wishlist freeze](improvements/IMP-0021-s3-owns-three-full-function-nrf24.md)
+- [⚠️ IMP-0022: latched hard-STOP tree с перезапуском обоих MCU — предложение](improvements/IMP-0022-latched-hard-stop-tree.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [INV-0002: единый реестр хотелок продукта — заморожен](inventories/INV-0002-product-wishlist.md)
 - [INV-0003: девять групп wishlist и четыре extra-пакета — проведено ревью](inventories/INV-0003-wishlist-review-groups.md)
 - [INV-0004: итоговая матрица саморевью 125/125 и dispositions extras](inventories/INV-0004-wishlist-self-review.md)
 - [DM-0001: единый resource-demand model этапа 3 — в работе](architecture/DM-0001-resource-demand-model.md)
+- [PIN-0001: проверенная инвентаризация MCU pins/controllers](architecture/PIN-0001-mcu-controller-inventory.md)
+- [SC-0001: единая 100-point scorecard и hard-fail gates layouts](architecture/SC-0001-layout-scorecard.md)
 - [AUD-0001: повторный аудит legacy-исключений — проведено ревью требований](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
 - [AUD-0003: сравнительный аудит владельца трёх полнофункциональных nRF24](audits/AUD-0003-three-nrf24-owner-placement.md)
@@ -157,6 +161,7 @@
 - [REV-0002AC: саморевью полного wishlist — проведено ревью](reviews/REV-0002AC-wishlist-self-review.md)
 - [REV-0002AD: итоговое ревью этапа 2 — проведено ревью](reviews/REV-0002AD-stage-2.md)
 - [REV-0003A: пререквизиты единого demand model — проведено ревью](reviews/REV-0003A-demand-model-prerequisites.md)
+- [REV-0003B: MCU pin/controller inventory и layout scorecard — проведено ревью](reviews/REV-0003B-pin-inventory-and-scorecard.md)
 
 ## Статусы
 
