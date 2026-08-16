@@ -15,10 +15,10 @@
         "checked": "2026-08-17"
       },
       "programmable": true,
-      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2S0", "SPI2", "SPI3", "UART0_OR_GPIO", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
       "controller_notes": {
         "SDMMC_SLOT0_1BIT/SDMMC_SLOT1_1BIT": "two logical slots share the S3 SD/MMC host; simultaneous/scheduled use is a separate concurrency gate",
-        "UART0_OR_GPIO": "one pin pair is a mutually configured UART0/custom-GPIO Unit profile, not two simultaneous controllers"
+        "I2C1_OR_UART0_OR_GPIO": "GPIO7/8 use the S3 second hardware I2C controller, UART0 through the GPIO matrix or custom GPIO as one mutually exclusive Unit profile; this is not the ROM-default UART0 recovery route"
       },
       "contacts": {
         "3V3": {"physical": "2", "role": "power"},
@@ -422,6 +422,59 @@
         "P16": {"physical": "19", "role": "signal"}, "P17": {"physical": "20", "role": "signal"},
         "A0": {"physical": "21", "role": "strap"}, "SCL": {"physical": "22", "role": "signal"},
         "SDA": {"physical": "23", "role": "signal"}, "VCC": {"physical": "24", "role": "power"}
+      }
+    },
+    "tca6424argjr": {
+      "mpn": "TCA6424ARGJR",
+      "kind": "uqfn32",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [5.0, 5.0],
+      "source": {
+        "document": "TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "SCPS193D",
+        "url": "https://www.ti.com/lit/ds/symlink/tca6424a.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "P00": {"physical": "1", "role": "signal"}, "P01": {"physical": "2", "role": "signal"},
+        "P02": {"physical": "3", "role": "signal"}, "P03": {"physical": "4", "role": "signal"},
+        "P04": {"physical": "5", "role": "signal"}, "P05": {"physical": "6", "role": "signal"},
+        "P06": {"physical": "7", "role": "signal"}, "P07": {"physical": "8", "role": "signal"},
+        "P10": {"physical": "9", "role": "signal"}, "P11": {"physical": "10", "role": "signal"},
+        "P12": {"physical": "11", "role": "signal"}, "P13": {"physical": "12", "role": "signal"},
+        "P14": {"physical": "13", "role": "signal"}, "P15": {"physical": "14", "role": "signal"},
+        "P16": {"physical": "15", "role": "signal"}, "P17": {"physical": "16", "role": "signal"},
+        "P20": {"physical": "17", "role": "signal"}, "P21": {"physical": "18", "role": "signal"},
+        "P22": {"physical": "19", "role": "signal"}, "P23": {"physical": "20", "role": "signal"},
+        "P24": {"physical": "21", "role": "signal"}, "P25": {"physical": "22", "role": "signal"},
+        "P26": {"physical": "23", "role": "signal"}, "P27": {"physical": "24", "role": "signal"},
+        "GND": {"physical": "25", "role": "power"}, "ADDR": {"physical": "26", "role": "strap"},
+        "VCCP": {"physical": "27", "role": "power"}, "RESET": {"physical": "28", "role": "reset"},
+        "SCL": {"physical": "29", "role": "signal"}, "SDA": {"physical": "30", "role": "signal"},
+        "VCCI": {"physical": "31", "role": "power"}, "INT": {"physical": "32", "role": "signal"},
+        "EPAD": {"physical": "exposed center pad", "role": "power_or_open"}
+      }
+    },
+    "tca4307dgkr": {
+      "mpn": "TCA4307DGKR",
+      "kind": "vssop8",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [3.0, 4.9],
+      "source": {
+        "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
+        "version": "SCPS270B",
+        "url": "https://www.ti.com/lit/ds/symlink/tca4307.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "EN": {"physical": "1", "role": "signal"}, "SCLOUT": {"physical": "2", "role": "signal"},
+        "SCLIN": {"physical": "3", "role": "signal"}, "GND": {"physical": "4", "role": "power"},
+        "READY": {"physical": "5", "role": "signal"}, "SDAIN": {"physical": "6", "role": "signal"},
+        "SDAOUT": {"physical": "7", "role": "signal"}, "VCC": {"physical": "8", "role": "power"}
       }
     },
     "sn74hc595pwr": {

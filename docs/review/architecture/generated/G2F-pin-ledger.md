@@ -41,8 +41,8 @@
 | `GPIO4` | 4 | `SD_CLK` | `o` | `SDMMC_SLOT0_1BIT` | `abstract:exact microSD socket` | — |
 | `GPIO5` | 5 | `SD_CMD` | `io` | `SDMMC_SLOT0_1BIT` | `abstract:exact microSD socket` | — |
 | `GPIO6` | 6 | `SD_D0` | `io` | `SDMMC_SLOT0_1BIT` | `abstract:exact microSD socket` | — |
-| `GPIO7` | 7 | `UNIT_SIG0` | `io` | `UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
-| `GPIO8` | 12 | `UNIT_SIG1` | `io` | `UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
+| `GPIO7` | 7 | `UNIT_SIG0` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
+| `GPIO8` | 12 | `UNIT_SIG1` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
 | `GPIO9` | 17 | `PTT_BUTTON_N` | `i` | `GPIO` | `abstract:physical PTT switch` | — |
 | `GPIO10` | 18 | `S3_C5_SDIO_CLK` | `o` | `SDMMC_SLOT1_1BIT` | `c5.GPIO9` | — |
 | `GPIO11` | 19 | `S3_C5_SDIO_CMD` | `io` | `SDMMC_SLOT1_1BIT` | `c5.GPIO10` | — |
@@ -119,7 +119,7 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 
 ### Programming, recovery and diagnostics
 
-- `s3`: `EN`, `GPIO0`, `GPIO19`, `GPIO20` — native USB Serial/JTAG plus physical EN/BOOT and UART0 fixture fallback.
+- `s3`: `EN`, `GPIO0`, `GPIO19`, `GPIO20` — native USB Serial/JTAG plus physical EN/BOOT; UART0 fallback is not yet isolated or routed.
 - `c5`: `EN`, `GPIO28`, `GPIO13`, `GPIO14` — native USB Serial/JTAG plus physical CHIP_PU/BOOT; removable SDIO isolation.
 
 ### Open qualification gaps
@@ -138,6 +138,8 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 - TCA9535 powers up as inputs; every safety-relevant output requires the stated external safe pull and cannot implement STOP
 - S3 microSD and C5-link logical slots share one SD/MMC host; required scheduling/concurrency and measured throughput are not yet proven
 - U214 requires I2C initialization of its onboard PI4IOE5V6408 antenna-switch control; pin exposure alone does not prove an operational LoRa path
+- ordinary UI, display/touch/receiver/audio resets and selectors, card detect, STOP/accessory/power senses and external-I2C fault isolation are not allocated across every TCA9535 port; the current validator proves MCU accounting only
+- S3 native USB plus EN/BOOT satisfies baseline recovery, but a UART0 fallback is not isolated from current GPIO43/44 U214 use and must not be claimed without a later fixture/path proof
 
 ## G2F-3D — Three compute domains: RP2354A owns compatibility radios and voice deadlines
 
@@ -154,8 +156,8 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 | `GPIO4` | 4 | `SD_CLK` | `o` | `SDMMC_SLOT0_1BIT` | `abstract:exact microSD socket` | — |
 | `GPIO5` | 5 | `SD_CMD` | `io` | `SDMMC_SLOT0_1BIT` | `abstract:exact microSD socket` | — |
 | `GPIO6` | 6 | `SD_D0` | `io` | `SDMMC_SLOT0_1BIT` | `abstract:exact microSD socket` | — |
-| `GPIO7` | 7 | `UNIT_SIG0` | `io` | `UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
-| `GPIO8` | 12 | `UNIT_SIG1` | `io` | `UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
+| `GPIO7` | 7 | `UNIT_SIG0` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
+| `GPIO8` | 12 | `UNIT_SIG1` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
 | `GPIO9` | 17 | `S3_RP_IPC_CS_N` | `o` | `SPI3` | `rp.GPIO25` | — |
 | `GPIO10` | 18 | `S3_C5_SDIO_CLK` | `o` | `SDMMC_SLOT1_1BIT` | `c5.GPIO9` | — |
 | `GPIO11` | 19 | `S3_C5_SDIO_CMD` | `io` | `SDMMC_SLOT1_1BIT` | `c5.GPIO10` | — |
@@ -253,7 +255,7 @@ Reserved: none. Free: none.
 
 ### Programming, recovery and diagnostics
 
-- `s3`: `EN`, `GPIO0`, `GPIO19`, `GPIO20` — native USB Serial/JTAG plus physical EN/BOOT and UART0 fixture fallback.
+- `s3`: `EN`, `GPIO0`, `GPIO19`, `GPIO20` — native USB Serial/JTAG plus physical EN/BOOT; UART0 fallback is not yet isolated or routed.
 - `c5`: `EN`, `GPIO28`, `GPIO13`, `GPIO14` — native USB Serial/JTAG plus permanent UART0 and physical CHIP_PU/BOOT.
 - `rp`: `RUN`, `SWCLK`, `SWDIO`, `USB_DM`, `USB_DP`, `QSPI_SS_USB_BOOT` — independent SWD, RUN, USB and BOOTSEL fixture access.
 
@@ -274,6 +276,8 @@ Reserved: none. Free: none.
 - TCA9535 powers up as inputs; every safety-relevant output requires an external safe pull and cannot implement STOP
 - S3 microSD and C5-link logical slots share one SD/MMC host; required scheduling/concurrency and measured throughput are not yet proven
 - U214 requires I2C initialization of its onboard PI4IOE5V6408 antenna-switch control; pin exposure alone does not prove an operational LoRa path
+- ordinary UI, display/touch/receiver/audio resets and selectors, card detect, STOP/accessory/power senses and external-I2C fault isolation are not allocated across every TCA9535 port; the current validator proves MCU accounting only
+- S3 native USB plus EN/BOOT satisfies baseline recovery, but a UART0 fallback is not isolated from current GPIO43/44 U214 use and must not be claimed without a later fixture/path proof
 
 ## Machine-check result and review boundary
 

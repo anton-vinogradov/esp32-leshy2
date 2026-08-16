@@ -17,9 +17,9 @@
 6. Atomic architecture only after all prior gates pass.
 7. Exact components, electrical CAD, schematic and PCB afterwards.
 
-The current active artifacts are `DEM-0001`, `SRC-0002` and the generated
-`G2F-pin-ledger`. Exact MCU ownership, buses and pins are being compared, not
-accepted; CAD remains blocked.
+The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
+`CTL-0001` and the generated `G2F-pin-ledger`. Exact MCU ownership, buses and
+pins are being compared, not accepted; CAD remains blocked.
 
 ## Active G2F artifacts
 
@@ -36,6 +36,11 @@ accepted; CAD remains blocked.
   renders the first two structurally checked draft maps;
 - [`REV-0003Y`](../reviews/REV-0003Y-single-source-and-draft-pin-maps.md) reviews
   the generator foundation and explicitly leaves complete-candidate review open.
+- [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md) replaces the
+  inherited full-frame target with the accepted task/dirty-region contract;
+- [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md) proves that
+  current validation closes MCU accounting only, derives the open slow-control
+  envelope and records the required external-I²C fault boundary.
 
 ## Deferred/reference G3 artifacts
 

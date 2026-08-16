@@ -35,7 +35,8 @@
 | IR RX/TX | `TSOP38238`, `TSMP95000`, `TSAL6200` first discrete candidates | manufacturer part-level functions/packages are known; exact optical/electrical stuffing and driver remain conditional | `candidate facts`; finish package/driver/availability and HIL before count becomes target |
 | display/touch | Waveshare SKU 29318, Elecrow `DLS31040B1` and Riverdi `RVT35HITNWC00-B` references | exact module/FPC contacts, dimensions, controllers and power boundaries are recorded in `devices.json`; `DEC-0043` replaces the invalid historical 4.5 MB/s gate with task/dirty-region acceptance | `verified references`; performance contract reviewed, exact MPN/interface/optics and HIL remain `open/blocking`, see `DSP-0001/FND-0051/DEC-0043` |
 | microSD | Hirose `DM3AT-SF-PEJM5` exact socket reference | all 8 card contacts, detect switch and body are verified; integrated display TF slots are shared-SPI and not SDMMC-equivalent | `verified candidate boundary`; width, protection, placement, card set and HIL remain `open/blocking` |
-| slow control | `TCA9535PWR` TSSOP24 candidate | official TI package table exposes 16 ports, INT, address straps and I²C; power-on ports are inputs | `verified candidate`; every control needs external safe pull and STOP cannot depend on it |
+| slow control | `TCA9535PWR` TSSOP24 candidate; `TCA6424ARGJR` UQFN32 reference | official TI package tables expose respectively 16 and 24 ports, open-drain INT and I²C; all ports power up as inputs | exact contacts `verified`; current drafts allocate only 5/16 and 3/16 ports, so neither part nor capacity is selected; see `CTL-0001/FND-0052` |
+| external I²C fault boundary | `TCA4307DGKR` VSSOP8 reference | exact EN/SCLIN/SCLOUT/READY/SDAIN/SDAOUT contacts, powered-off high-Z and stuck-bus recovery verified from TI datasheet | `reference only`; can isolate U214/Port-A I²C, but does not qualify U214 SPI/UART/power hot-plug |
 | radio output compression | `SN74HC595PWR` TSSOP16 candidate for `G2F-2R` | official TI package table exposes QA…QH, SER/SRCLK/RCLK, OE and SRCLR | `verified candidate`; OE/reset/pull truth table and shared-data timing remain schematic/HIL gates |
 | non-programmable safety/power | exact latch/supervisor/converter set not selected | semantic endpoints are known; TCA9535/SN74HC595 do not implement the accepted latched hard STOP by themselves | `open/blocking` |
 | high-throughput external tier | no exact accessory/transport/connector | current requirement intentionally rejects generic host and cannot name pins without an RF profile | `open/blocking` for final architecture, isolated reopen gate for base candidate comparison |
@@ -54,6 +55,8 @@
 - [Raspberry Pi RP2350/RP2354 package pinout](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
 - [TI CC1101 exact silicon datasheet](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 - [TI TCA9535 exact package datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf)
+- [TI TCA6424A exact package datasheet](https://www.ti.com/lit/ds/symlink/tca6424a.pdf)
+- [TI TCA4307 hot-swap/stuck-bus buffer datasheet](https://www.ti.com/lit/ds/symlink/tca4307.pdf)
 - [TI SN74HC595 exact package datasheet](https://www.ti.com/lit/ds/symlink/sn74hc595.pdf)
 - [Display/touch/storage exact-device evidence](DSP-0001-display-storage-real-device-evidence.md)
 
@@ -64,7 +67,10 @@
 rows above. The two first consumers are `G2F-2R` and `G2F-3D`; their generated
 pin ledger is [`G2F-pin-ledger`](generated/G2F-pin-ledger.md). Passing its
 validator proves contact existence/accounting only; it does not close rows that
-remain `reference only` or `open/blocking` here.
+remain `reference only` or `open/blocking` here. In particular, it accounts
+programmable MCU contacts but does not yet prove that every semantic slow
+endpoint is allocated; [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md)
+reviews that boundary.
 
 ## Mandatory per-candidate evidence columns
 

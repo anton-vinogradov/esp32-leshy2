@@ -97,7 +97,13 @@ boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
 ST7796S budget and generic 24-pin connector cannot be reused. `DEC-0043/REV-0004J`
 accept task/dirty-region performance with `≤100 ms` critical/menu first response
 and correct the shared-U214 display quantum from 1 KiB to 256 B; exact display,
-optics and HIL remain open. `FND-0050` records nRF24 NRND and corrects
+optics and HIL remain open. `CTL-0001/REV-0004K` find that the validator closes
+MCU accounting only: one TCA9535 has only 5/16 or 3/16 ports assigned, while
+the working slow-control envelope remains `19…27`, centered on `22…24`.
+`FND-0052` also separates internal I²C from the external U214/Port-A fault
+domain and removes the unproved S3 UART0-fallback claim; native USB+EN/BOOT is
+the baseline. `⚠️ IMP-0037` awaits a decision on the `≥24`-port working
+invariant and separated I²C domains. `FND-0050` records nRF24 NRND and corrects
 CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)

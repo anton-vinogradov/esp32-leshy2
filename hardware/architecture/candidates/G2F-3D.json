@@ -16,7 +16,7 @@
     "slow_io": "tca9535pwr"
   },
   "controllers": {
-    "s3": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2S0", "SPI2", "SPI3", "UART0_OR_GPIO", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
+    "s3": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
     "c5": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0"],
     "rp": ["USB_DEVICE", "SWD", "PIO_RF_SPI", "UART0", "SPI1_IPC", "GPIO", "GPIO_IRQ"]
   },
@@ -27,8 +27,8 @@
     {"instance":"s3","contact":"GPIO4","net":"SD_CLK","direction":"o","controller":"SDMMC_SLOT0_1BIT","peers":["abstract:exact microSD socket"]},
     {"instance":"s3","contact":"GPIO5","net":"SD_CMD","direction":"io","controller":"SDMMC_SLOT0_1BIT","peers":["abstract:exact microSD socket"]},
     {"instance":"s3","contact":"GPIO6","net":"SD_D0","direction":"io","controller":"SDMMC_SLOT0_1BIT","peers":["abstract:exact microSD socket"]},
-    {"instance":"s3","contact":"GPIO7","net":"UNIT_SIG0","direction":"io","controller":"UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
-    {"instance":"s3","contact":"GPIO8","net":"UNIT_SIG1","direction":"io","controller":"UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
+    {"instance":"s3","contact":"GPIO7","net":"UNIT_SIG0","direction":"io","controller":"I2C1_OR_UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
+    {"instance":"s3","contact":"GPIO8","net":"UNIT_SIG1","direction":"io","controller":"I2C1_OR_UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
     {"instance":"s3","contact":"GPIO9","net":"S3_RP_IPC_CS_N","direction":"o","controller":"SPI3","peers":["rp.GPIO25"]},
     {"instance":"s3","contact":"GPIO10","net":"S3_C5_SDIO_CLK","direction":"o","controller":"SDMMC_SLOT1_1BIT","peers":["c5.GPIO9"]},
     {"instance":"s3","contact":"GPIO11","net":"S3_C5_SDIO_CMD","direction":"io","controller":"SDMMC_SLOT1_1BIT","peers":["c5.GPIO10"]},
@@ -100,7 +100,7 @@
   ],
   "reservations": {
     "s3": {
-      "GPIO0": "physical ROM boot control and UART fallback",
+      "GPIO0": "physical ROM boot control; native USB is the current ROM recovery data path",
       "GPIO45": "3.3 V memory/boot strap; no runtime load",
       "GPIO46": "boot strap; no runtime load"
     },
@@ -115,7 +115,7 @@
   },
   "free_gpio": {"s3": [], "c5": ["GPIO2", "GPIO4", "GPIO5", "GPIO23", "GPIO24"], "rp": []},
   "services": [
-    {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT and UART0 fixture fallback"},
+    {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT; UART0 fallback is not yet isolated or routed"},
     {"instance":"c5","contacts":["EN","GPIO28","GPIO13","GPIO14"],"method":"native USB Serial/JTAG plus permanent UART0 and physical CHIP_PU/BOOT"},
     {"instance":"rp","contacts":["RUN","SWCLK","SWDIO","USB_DM","USB_DP","QSPI_SS_USB_BOOT"],"method":"independent SWD, RUN, USB and BOOTSEL fixture access"}
   ],
@@ -134,6 +134,8 @@
     "all 30 RP GPIO and all 36 S3 GPIO are accounted with zero general-purpose reserve; physical packaging or one new direct endpoint forces remap/consolidation",
     "TCA9535 powers up as inputs; every safety-relevant output requires an external safe pull and cannot implement STOP",
     "S3 microSD and C5-link logical slots share one SD/MMC host; required scheduling/concurrency and measured throughput are not yet proven",
-    "U214 requires I2C initialization of its onboard PI4IOE5V6408 antenna-switch control; pin exposure alone does not prove an operational LoRa path"
+    "U214 requires I2C initialization of its onboard PI4IOE5V6408 antenna-switch control; pin exposure alone does not prove an operational LoRa path",
+    "ordinary UI, display/touch/receiver/audio resets and selectors, card detect, STOP/accessory/power senses and external-I2C fault isolation are not allocated across every TCA9535 port; the current validator proves MCU accounting only",
+    "S3 native USB plus EN/BOOT satisfies baseline recovery, but a UART0 fallback is not isolated from current GPIO43/44 U214 use and must not be claimed without a later fixture/path proof"
   ]
 }

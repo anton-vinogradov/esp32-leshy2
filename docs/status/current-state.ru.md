@@ -96,8 +96,14 @@ microSD socket. `FND-0051` доказывает, что старые 10 full fra
 и generic 24-pin connector переиспользовать нельзя. `DEC-0043/REV-0004J`
 принимают task/dirty-region performance с первым critical/menu response
 `≤100 ms` и исправляют shared-U214 display quantum с 1 KiB до 256 B; exact
-display, optics и HIL остаются открыты. `FND-0050` фиксирует nRF24 NRND и исправляет статус
-CC1101 на ACTIVE.
+display, optics и HIL остаются открыты. `CTL-0001/REV-0004K` обнаружили, что
+validator закрывает только MCU accounting: один TCA9535 распределён лишь на
+5/16 или 3/16 портов, а рабочий slow-control envelope остаётся `19…27` с
+центром `22…24`. `FND-0052` также отделяет internal I²C от внешнего
+U214/Port-A fault domain и снимает недоказанное обещание S3 UART0 fallback;
+native USB+EN/BOOT остаётся baseline. `⚠️ IMP-0037` ожидает решения по
+рабочему инварианту `≥24` ports и separated I²C domains. `FND-0050` фиксирует
+nRF24 NRND и исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его

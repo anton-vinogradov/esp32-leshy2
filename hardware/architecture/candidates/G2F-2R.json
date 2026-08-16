@@ -16,7 +16,7 @@
     "rf_ctrl": "sn74hc595pwr"
   },
   "controllers": {
-    "s3": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2S0", "SPI2", "UART0_OR_GPIO", "UART1", "UART2", "GPIO", "LEDC"],
+    "s3": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "UART1", "UART2", "GPIO", "LEDC"],
     "c5": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SPI2", "SPI2_OR_GPIO", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"]
   },
   "allocations": [
@@ -25,8 +25,8 @@
     {"instance":"s3","contact":"GPIO4","net":"SD_CLK","direction":"o","controller":"SDMMC_SLOT0_1BIT","peers":["abstract:exact microSD socket"]},
     {"instance":"s3","contact":"GPIO5","net":"SD_CMD","direction":"io","controller":"SDMMC_SLOT0_1BIT","peers":["abstract:exact microSD socket"]},
     {"instance":"s3","contact":"GPIO6","net":"SD_D0","direction":"io","controller":"SDMMC_SLOT0_1BIT","peers":["abstract:exact microSD socket"]},
-    {"instance":"s3","contact":"GPIO7","net":"UNIT_SIG0","direction":"io","controller":"UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
-    {"instance":"s3","contact":"GPIO8","net":"UNIT_SIG1","direction":"io","controller":"UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
+    {"instance":"s3","contact":"GPIO7","net":"UNIT_SIG0","direction":"io","controller":"I2C1_OR_UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
+    {"instance":"s3","contact":"GPIO8","net":"UNIT_SIG1","direction":"io","controller":"I2C1_OR_UART0_OR_GPIO","peers":["abstract:protected configurable M5 Unit contact"]},
     {"instance":"s3","contact":"GPIO9","net":"PTT_BUTTON_N","direction":"i","controller":"GPIO","peers":["abstract:physical PTT switch"]},
     {"instance":"s3","contact":"GPIO10","net":"S3_C5_SDIO_CLK","direction":"o","controller":"SDMMC_SLOT1_1BIT","peers":["c5.GPIO9"]},
     {"instance":"s3","contact":"GPIO11","net":"S3_C5_SDIO_CMD","direction":"io","controller":"SDMMC_SLOT1_1BIT","peers":["c5.GPIO10"]},
@@ -73,7 +73,7 @@
   ],
   "reservations": {
     "s3": {
-      "GPIO0": "physical ROM boot control and UART fallback",
+      "GPIO0": "physical ROM boot control; native USB is the current ROM recovery data path",
       "GPIO3": "strap reserved; PTT uses non-strap GPIO9",
       "GPIO45": "3.3 V memory/boot strap; no runtime load",
       "GPIO46": "boot strap; no runtime load"
@@ -87,7 +87,7 @@
   },
   "free_gpio": {"s3": [], "c5": []},
   "services": [
-    {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT and UART0 fixture fallback"},
+    {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT; UART0 fallback is not yet isolated or routed"},
     {"instance":"c5","contacts":["EN","GPIO28","GPIO13","GPIO14"],"method":"native USB Serial/JTAG plus physical CHIP_PU/BOOT; removable SDIO isolation"}
   ],
   "fixed_routes": [
@@ -115,6 +115,8 @@
     "single-core C5 worst-case service latency for three simultaneous nRF PRX FIFOs plus CC1101, IR and native-radio work needs executable HIL",
     "TCA9535 powers up as inputs; every safety-relevant output requires the stated external safe pull and cannot implement STOP",
     "S3 microSD and C5-link logical slots share one SD/MMC host; required scheduling/concurrency and measured throughput are not yet proven",
-    "U214 requires I2C initialization of its onboard PI4IOE5V6408 antenna-switch control; pin exposure alone does not prove an operational LoRa path"
+    "U214 requires I2C initialization of its onboard PI4IOE5V6408 antenna-switch control; pin exposure alone does not prove an operational LoRa path",
+    "ordinary UI, display/touch/receiver/audio resets and selectors, card detect, STOP/accessory/power senses and external-I2C fault isolation are not allocated across every TCA9535 port; the current validator proves MCU accounting only",
+    "S3 native USB plus EN/BOOT satisfies baseline recovery, but a UART0 fallback is not isolated from current GPIO43/44 U214 use and must not be claimed without a later fixture/path proof"
   ]
 }

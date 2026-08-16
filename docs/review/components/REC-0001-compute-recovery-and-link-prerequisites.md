@@ -1,6 +1,6 @@
 # REC-0001 — compute recovery and inter-domain link prerequisites
 
-- Статус: **Проведено ревью; physical-access topology принята в DEC-0031**
+- Статус: **Проведено ревью manufacturer primitives; exact topology superseded by `DEC-0032`**
 - Дата: 2026-08-16
 - Строки BOM: `C-006`, `C-007`
 - Входы: `DEC-0028`, `PIN-0002`, `PWR-0001`, `BOM-0002`
@@ -12,21 +12,25 @@
 ## Evidence boundary
 
 Этот артефакт фиксирует ROM/debug prerequisites и допустимую электрическую
-границу. Owner-facing physical access теперь выбран в `DEC-0031`, но ни этот
-выбор, ни first-target candidates не выдают Q до
-schematic/ERC/layout/fixture/HIL.
+границу. `DEC-0031` сохраняет owner requirement независимого доступа, но его
+exact three-domain topology superseded by `DEC-0032`; future active candidate
+должен заново показать все physical routes. Ни один first-target candidate не
+получает Q до schematic/ERC/layout/fixture/HIL.
 
 ## Recovery primitives that cannot depend on application firmware
 
 | Domain | Independent primitive | Required physical controls | Primary consequence |
 |---|---|---|---|
-| S3 | USB Serial/JTAG ROM download; UART0 fallback | native USB D−/D+, `GPIO0`, `EN`; UART0 TX/RX retained for RF-test/manufacturing fallback | application can disable/repurpose USB, therefore strap control remains physical |
+| S3 | USB Serial/JTAG ROM download | native USB D−/D+, physical `GPIO0` and `EN`; UART0 is an optional secondary fixture path only after active-map routing/isolation proof | strap control remains physical; current G2F GPIO43/44 use conflicts with an unisolated default UART0 route |
 | C5 | USB Serial/JTAG or UART0 Joint Download Boot 0 | native USB GPIO13/14, `GPIO28=0`, `GPIO27=1`, `CHIP_PU`; UART0 GPIO11/12 | `GPIO26` is not the USB BOOT selector; see `FND-0037` |
 | RP2354A | ROM USB BOOTSEL and independent SWD | USB DP/DM, `QSPI_SS/USB_BOOT` through 1 kΩ, `RUN`, `SWDIO`, `SWCLK` | internal 2 MiB flash does not remove the USB_BOOT requirement |
 
-S3 and C5 manufacturer guidance recommends retaining UART download because
-current RF-test firmware uses UART. The service contract therefore retains
-those signals even though normal owner recovery prefers USB.
+The superseded three-domain study retained S3 and C5 UART download for RF-test
+and manufacturing. The current G2F maps retain C5 UART where shown, but S3
+GPIO43/44 are allocated to U214. Therefore native USB plus physical EN/BOOT is
+the current S3 baseline; an S3 UART fixture is not claimed until its accessory-
+off/high-Z state, route and conflict isolation are represented and tested
+(`FND-0052`).
 
 Primary sources:
 
@@ -88,6 +92,7 @@ new control dependency of an unnecessary active mux.
 6. An open/shorted inter-domain series element produces a detected degraded
    state and safe TX-off behavior, not uncontrolled re-arm.
 
-The factual prerequisite set receives **«Проведено ревью»**. `IMP-0026/B` is
-resolved by `DEC-0031/SVC-0001`; exact CAD, resistor MPNs, placement,
-mechanics/AVL and measured values remain implementation/HIL gates.
+The manufacturer prerequisite set receives **«Проведено ревью»**. The owner
+requirement from `DEC-0031` remains; `IMP-0026/B` and `SVC-0001` exact topology
+are superseded reference. Future CAD, resistor MPNs, placement, mechanics/AVL
+and measured values remain implementation/HIL gates.
