@@ -5,6 +5,7 @@
 - Пререквизиты: `BOM-0001`, `DEC-0028`, `PIN-0002`, `BUD-0002`
 - Review: [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md)
 - Finding: [`FND-0035`](../findings/FND-0035-rp2354a-order-code-stock-correction.md)
+- CAD audit: [`LIB-0001`](LIB-0001-compute-cad-library-audit.md), [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md)
 
 ## Evidence boundary
 
@@ -72,7 +73,7 @@ No accepted feature currently requires irreversible flash encryption or HUK. Nev
 `BOM-0002` can receive final **«Проведено ревью»** only after:
 
 1. ~~owner disposition of `IMP-0024` and propagation to both repositories~~ — complete in `DEC-0029/REV-0004C`;
-2. exact KiCad symbols/footprints and schematic/ERC contract for `C-001…007`;
+2. exact KiCad symbols/footprints and schematic/ERC contract for `C-001…007`; `LIB-0001` completes the availability audit, while `IMP-0025` strategy and validated repository assets remain open;
 3. two authorised quotes/AVL entries and explicit C5 lot-revision commitment;
 4. assembly/yield quote for RP QFN60 and module/reflow constraints;
 5. recovery, boot-strap, peer-unpowered, clock startup/temperature and inter-domain link HIL.
