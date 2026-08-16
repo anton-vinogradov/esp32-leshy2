@@ -65,15 +65,15 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-W5-01 | AP scan, channel view и RSSI | LAB-P | active только non-DFS; DFS passive |
-| C-W5-02 | Частичный promiscuous sniff и probe collection | LAB-P | не полный monitor |
-| C-W5-03 | Клиенты, beacon inventory, hidden SSID | LAB-P | авторизованные цели |
-| C-W5-04 | Детект deauth и rogue/evil-twin | LAB-P | защитный security-инструмент |
-| C-W5-05 | Deauth/disassoc | LAB-D | не доказано на production C5; PMF |
-| C-W5-06 | Beacon/probe spam | LAB-D | spectrum impact |
-| C-W5-07 | Evil Twin SoftAP, Evil Portal, Karma | LAB-I | non-DFS, авторизация |
-| C-W5-08 | STA-подключение | MAIN | только авторизованные сети |
-| C-W5-09 | 802.15.4/Zigbee/Thread passive sniff и energy scan | LAB-P | без join полного стека |
+| C-W5-01 | AP scan, channel view и RSSI | MIXED | ordinary diagnostics = Main; privacy/security survey = Lab; active только non-DFS, DFS passive |
+| C-W5-02 | Promiscuous management/control/data capture | LAB-P | public RX существует, но не обещает lossless/full-monitor; EAPOL/PMKID conditional `IMP-0003` |
+| C-W5-03 | Клиенты, beacon inventory, hidden SSID | LAB-P | observed/inferred/unknown; passive DFS может не раскрыть hidden SSID |
+| C-W5-04 | Детект deauth и rogue/evil-twin | LAB-P | защитный evidence/confidence-инструмент, PMF state обязателен |
+| C-W5-05 | Deauth/disassoc | LAB-I | `defer`: public API не поддерживает; private version-locked patch требует отдельного решения/provenance/HIL; PMF |
+| C-W5-06 | Beacon/probe spam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded; public frame classes bounded |
+| C-W5-07 | Evil Twin SoftAP, Evil Portal, Karma | LAB-I | Controlled Zone `AUTHORIZED_TARGET`, non-DFS, privacy/credential vault |
+| C-W5-08 | STA-подключение | MAIN | только собственные/администрируемые сети, region/credential gates |
+| C-W5-09 | 802.15.4 raw RX/TX, Zigbee и Thread | MIXED | passive-only ceiling опровергнут; ordinary full-stack scope ждёт `IMP-0018`, active tests — Controlled Zone |
 
 ## BLE — `FW-CAP §4`
 

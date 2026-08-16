@@ -7,7 +7,7 @@
 
 ## Почему legacy ceiling больше не доказан
 
-Актуальная документация ESP32-C5 говорит, что promiscuous callback получает management, control и data frames. Официальный raw-TX API передаёт management и non-QoS data frames, хотя encrypted и QoS TX не поддерживает.
+Актуальная документация ESP32-C5 говорит, что promiscuous callback получает management, control и data frames. Официальный raw-TX API уже: он передаёт beacon, probe request, probe response, action и non-QoS data frames; arbitrary management, encrypted и QoS TX не обещаны.
 
 Это не доказывает Pineapple-class full monitor/inject, но снимает основание автоматически исключать пассивный EAPOL capture и связанный PMKID workflow.
 

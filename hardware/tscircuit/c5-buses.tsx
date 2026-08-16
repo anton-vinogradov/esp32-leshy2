@@ -14,9 +14,12 @@
 //   U10  ESP32-S3-WROOM-1U-N8R2  -> jlcpcb:C3013944
 //        Module pads: GND1, 3V3, EN, IO0..IO21, IO35..IO42, IO45..IO48, TXD0(=GPIO43),
 //        RXD0(=GPIO44), GND2, GND3..GND11 (EP thermal copies).
-//   U20  ESP32-C5-WROOM-1U-N8R4  -> jlcpcb:C49308183  (alt: C48533540 "…-1U", same pads)
+//   U20  ESP32-C5-WROOM-1U-N8R8  -> jlcpcb:C51950748
 //        Module pads: GND1, 3V3, EN, IO0..IO10, IO13, IO14, IO23..IO28, TX0(=GPIO11 U0TXD),
-//        RX0(=GPIO12 U0RXD), NC1/NC2, ANT2 (u.FL feed), GND2/3/12/13, GND4..GND11 (EP copies).
+//        RX0(=GPIO12 U0RXD), NC1/NC2, ANT2 (disabled alternate RF pad, NOT the stock
+//        connector), GND2..GND4, EPAD1..EPAD9. The stock -1U external antenna
+//        is connected to the module's integrated ANT1 IPEX connector by an off-board coax;
+//        that cable/antenna path cannot be represented or proved by this PCB netlist.
 //   U11  SN74HC138PWR TSSOP-16   -> jlcpcb:C157527
 //        Pads: A,B,C,#G2A(pin4),#G2B(pin5),G1,Y0..Y7,GND,VCC.  (#G2A/#G2B referenced by pin#.)
 //   U12/U13 PCA9555PW,118 TSSOP-24 -> jlcpcb:C128392
@@ -38,7 +41,7 @@ export default () => (
     <chip name="U10" footprint="jlcpcb:C3013944" />
 
     {/* ===================== U20 — ESP32-C5-WROOM-1U (co-processor) ===================== */}
-    <chip name="U20" footprint="jlcpcb:C49308183" />
+    <chip name="U20" footprint="jlcpcb:C51950748" />
 
     {/* ===================== U11 — 74HC138 3->8 chip-select decoder ===================== */}
     <chip name="U11" footprint="jlcpcb:C157527" />
@@ -148,21 +151,23 @@ export default () => (
     <trace from=".U20 > .IO13" to="net.USB_DM_C5" />    {/* C5 GPIO13 */}
     <trace from=".U20 > .IO14" to="net.USB_DP_C5" />    {/* C5 GPIO14 */}
     <trace from=".U20 > .3V3" to="net.V3V3" />
-    {/* all C5 module GND pads + EP thermal copies -> GND */}
+    {/* all C5 module GND pads + exposed thermal copies -> GND */}
     <trace from=".U20 > .GND1" to="net.GND" />
     <trace from=".U20 > .GND2" to="net.GND" />
     <trace from=".U20 > .GND3" to="net.GND" />
     <trace from=".U20 > .GND4" to="net.GND" />
-    <trace from=".U20 > .GND5" to="net.GND" />
-    <trace from=".U20 > .GND6" to="net.GND" />
-    <trace from=".U20 > .GND7" to="net.GND" />
-    <trace from=".U20 > .GND8" to="net.GND" />
-    <trace from=".U20 > .GND9" to="net.GND" />
-    <trace from=".U20 > .GND10" to="net.GND" />
-    <trace from=".U20 > .GND11" to="net.GND" />
-    <trace from=".U20 > .GND12" to="net.GND" />
-    <trace from=".U20 > .GND13" to="net.GND" />
-    {/* ANT2 (u.FL antenna feed) left for RF sheet; NC1/NC2 unused */}
+    <trace from=".U20 > .EPAD1" to="net.GND" />
+    <trace from=".U20 > .EPAD2" to="net.GND" />
+    <trace from=".U20 > .EPAD3" to="net.GND" />
+    <trace from=".U20 > .EPAD4" to="net.GND" />
+    <trace from=".U20 > .EPAD5" to="net.GND" />
+    <trace from=".U20 > .EPAD6" to="net.GND" />
+    <trace from=".U20 > .EPAD7" to="net.GND" />
+    <trace from=".U20 > .EPAD8" to="net.GND" />
+    <trace from=".U20 > .EPAD9" to="net.GND" />
+    {/* ANT1 is the module-integrated IPEX connector and is off-netlist. ANT2 is disabled on
+        the stock -1U module and must remain unconnected; using it requires an Espressif
+        custom T2 module. NC1/NC2 unused. */}
 
     {/* --- 74HC138 decoder --- */}
     <trace from=".U11 > .A" to="net.HC138_A" />

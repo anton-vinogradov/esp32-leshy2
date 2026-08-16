@@ -27,6 +27,8 @@ Legacy оценивает электронику примерно в `$102`, а 
 | Audio | ES8311 mono codec + два default-to-analog selector вместо stereo codec/внешнего модуля | IC subtotal около `$0.70` low-volume / `$0.43` tier 100 до passives/assembly | pin proof, analog levels, IDF regression, EMI/SNR | принято в `DEC-0009`; полная дельта требует proof |
 | IR learning | dual `TSOP38238` + `TSMP95000` против single-learning или fixed-38 RX | вариант A добавляет receiver/GPIO/passives; B/C дешевле | B теряет robust range/noise, C теряет measured carrier | вариант A принят в `DEC-0018`; дополнительная стоимость принята, B/C не являются zero-loss |
 | 3×nRF24 и hunt | exact identical qualified PA/LNA modules; calibrated RPD sector comparison; direct CS против decoder после pin budget | hunt по `DEC-0019` не добавляет measurement BOM; quote/land/decoder зависит от exact module и серии | 1 radio+RF switch теряет parallel RX; 1 PA+2 иных frontend меняет sensitivity/calibration/TX symmetry | число три и вариант A сохраняются; real-power frontend только отдельным решением; generic `$10` estimate не quote; `FND-0019`, `REQ-N24-0001` |
+| ESP32-C5 module | legacy `ESP32-C5-WROOM-1U-N8R4`/`C49308183` → текущий стандартный `ESP32-C5-WROOM-1U-N8R8`/`C51950748` | предварительно не дороже рыночного legacy-кандидата и даёт 8 MB PSRAM вместо 4 MB; точную экономию покажет AVL quote | другая variant/PSRAM qualification, availability у конкретного assembler | source candidate исправлен; считать zero-loss только после pin/footprint/flash/PSRAM, supplier stock и RF HIL (`FND-0022`) |
+| 802.15.4 stacks | использовать встроенный C5 radio: raw 802.15.4 и OpenThread; Zigbee только условным firmware backend | новый RF/BOM не нужен | shared 2.4 GHz radio, RAM/flash, coexistence и proprietary Zigbee core | hardware-saving подтверждён на уровне архитектуры, но функциональный scope ожидает `IMP-0018`; dual-SoC radio был бы улучшением производительности, а не zero-loss экономией |
 | USB | один разъём с аппаратным выбором S3/C5 | разъём, ESD/CC и отверстие корпуса минус mux/selector | потеря recovery при отказе MCU | исследовать; не предлагать без fail-safe proof |
 | Закупка | verified AVL и эквивалентные second sources | зависит от серии | скрытая деградация/контрафакт | обязательно на этапе 4 |
 | Производство | унификация пассивов, сокращение уникальных позиций и по возможности одна сторона SMT | feeder/setup/assembly cost | площадь и RF-разводка | считать по реальной котировке, не форсировать |
@@ -54,6 +56,7 @@ Legacy оценивает электронику примерно в `$102`, а 
 5. Принять только варианты, прошедшие equivalence tests из `DEC-0005`.
 6. Для `DEC-0008` построить поканальную regional matrix U214; ярлык 868/915 не заменяет проверку окна 868–923 MHz и местных правил.
 7. Сравнить котировки U214 и основной PCB с `EXT-RF14`; опциональные будущие carrier не включать в обязательный BOM.
+8. Для C5 сравнивать current standard N8R8 с legacy N8R4 по полной landed/PCBA цене и доступности, не по одной случайной карточке магазина.
 
 ## Принятая GNSS-дельта
 
