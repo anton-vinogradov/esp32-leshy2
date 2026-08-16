@@ -1,6 +1,6 @@
 # FND-0020 — nRF24 RPD не доказывает RSSI-пеленг или VSWR
 
-- Статус: **Открыто до решения по `IMP-0016`**
+- Статус: **Закрыто на уровне требований (`DEC-0019`, `REV-0002U`)**
 - Серьёзность: measurement capability overclaim
 - Затрагивает: `C-N24-02`, `C-N24-03`, `C-N24-10`, waterfall/occupancy/hunt/test UI и HIL
 - Обнаружено: 2026-08-16
@@ -30,7 +30,10 @@ Legacy обещает `RSSI`-hunt на трёх антеннах и помощь
 
 Requirement/UI/exports обязаны назвать точную величину, dwell, sample count, channel, age, radio/antenna ID, calibration и saturation/unknown state. Любой dBm, angle, direction или VSWR требует traceable fixture/calibration и соответствующего hardware; иначе поле отсутствует, а не оценивается декоративно.
 
+## Закрытие
+
+Владелец принял `IMP-0016/A` как `DEC-0019`. Reviewed `REQ-N24-0001` фиксирует calibrated binary RPD hit-rate comparison и запрещает dBm/RSSI/angle/bearing/VSWR claims без отдельного измерительного hardware. Реализация этих полей и calibration проверяется на следующих стадиях; это не отменяет открытые implementation findings `FND-0019` и `FND-0021`.
+
 ## Первичные источники
 
 - [Nordic nRF24L01+ Product Specification: RF channel, RPD and constant-carrier test](https://docs-be.nordicsemi.com/bundle/nRF24L01P_PS_v1.0/raw/resource/enus/nRF24L01P_PS_v1.0.pdf)
-

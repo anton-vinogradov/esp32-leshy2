@@ -1,9 +1,9 @@
 # REQ-N24-0001 — 3×nRF24 raw 2.4 GHz analysis and controlled-test contract
 
-- Статус набора: **На ревью; требуется решение по `IMP-0016`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-N24-01`–`C-N24-10`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-08`, `C-X-11`
-- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`
+- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`, `DEC-0019`
 - Находки: `FND-0001`, `FND-0002`, `FND-0007`, `FND-0019`, `FND-0020`, `FND-0021`
 - Условные входы реализации: C5 transport/GPIO/SPI budget, exact 3× radio module/AVL, power/antenna/TX detector/STOP, regional profiles, BLE-owner decision, storage/licence и HIL
 
@@ -18,7 +18,7 @@
 | `REQ-N24-01` | все | `conditional` | Сквозной | ESP32-C5 физически/программно владеет всеми 3×nRF24 по `DEC-0001`; S3 использует typed inter-MCU API. Legacy S3 bus не наследуется, а transport закрывает `FND-0001` и полный post-`DEC-0018` resource budget. |
 | `REQ-N24-02` | `C-N24-01` | `conditional` | Сквозной hardware | Три exact qualified module имеют manufacturer/MPN/revision/IC identity/AVL, одинаковый measured RX/TX profile либо явно раздельную calibration. Generic `PA/LNA` label не задаёт power, sensitivity, current, antenna или compliance (`FND-0019`). |
 | `REQ-N24-03` | `C-N24-01` | `conditional` | Сквозной bus | C5-local SPI имеет независимый CS каждого radio, bounded bus arbitration и доказанные shared/individual CE+IRQ semantics. Reset даёт `CSN=high`, `CE=low`, `PWR_UP=0`; отсутствующий/stuck radio не блокирует остальные. |
-| `REQ-N24-04` | `C-N24-02` | `conditional`, owner choice | Основной RX | Energy view хранит binary RPD samples, hit ratio, sample count, dwell, channel, data rate, age, radio/antenna ID и calibration. Никаких dBm/RSSI/angle fields без measurement hardware; окончательный three-antenna UX выбирается по `IMP-0016`. |
+| `REQ-N24-04` | `C-N24-02` | `conditional`, accepted A | Основной RX | По `DEC-0019` energy view хранит binary RPD samples, hit ratio, sample count, dwell, channel, data rate, common time window, age, radio/antenna ID и calibration ID/state. После fixture normalization сравниваются только синхронные сектора на одной частоте; UI даёт `stronger/comparable/unknown`, без dBm/RSSI/angle/bearing/VSWR. |
 | `REQ-N24-05` | `C-N24-02`, `C-N24-03` | `conditional` | Основной RX | Parallel sweep использует три одновременно принимающих radio после минимум documented settle, показывает actual schedule/coverage/staleness. Wi-Fi/Zigbee/802.15.4 overlays — только frequency maps энергии: protocol attribution или packet decode не выводятся из RPD. |
 | `REQ-N24-06` | `C-N24-04` | `conditional` | Лаборатория | Passive ESB discovery разделяет pseudo-promiscuous candidate, address lock/follow и validated frame. UI/record хранит channel/rate/address-width/prefix/CRC method/confidence/errors; arbitrary 2.4 signal не называется ESB packet. Payload по умолчанию redacted. |
 | `REQ-N24-07` | `C-N24-05` | `conditional` | Лаборатория | MouseJack/KeyJack passive discovery показывает только fixture-proven vendor/device/advisory match и patch/unknown state; наличие ESB traffic не означает vulnerability. |
@@ -51,7 +51,7 @@
 
 ## Стоимость без потери продукта
 
-Количество 3×nRF24 принято и не уменьшается. Один radio+RF switch теряет одновременный RX; один PA/LNA + два иных receiver меняют sensitivity/calibration/TX symmetry и не считаются zero-loss. Экономия ищется в exact common AVL, общей land/antenna strategy и direct-CS/decoder trade после pin budget, но не удалением CE safe-state, bulk/decoupling, STOP, RF detector или HIL.
+Количество 3×nRF24 принято и не уменьшается. По `DEC-0019` hunt использует существующие RPD тракты без нового measurement BOM. Один radio+RF switch теряет одновременный RX; один PA/LNA + два иных receiver меняют sensitivity/calibration/TX symmetry и не считаются zero-loss. Экономия ищется в exact common AVL, общей land/antenna strategy и direct-CS/decoder trade после pin budget, но не удалением CE safe-state, bulk/decoupling, STOP, RF detector или HIL.
 
 ## Первичные источники
 

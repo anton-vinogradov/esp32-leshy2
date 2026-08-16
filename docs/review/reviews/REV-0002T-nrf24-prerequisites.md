@@ -30,3 +30,6 @@ Prerequisite audit 3×nRF24-среза получил статус **«Пров�
 
 `FND-0019` частично исправлен маркировкой/CE pull-down, но остаётся implementation finding. `FND-0020` закрывается requirement-level после выбора `IMP-0016`; `FND-0021` остаётся до BLE/licence/security propagation и implementation proof. Exact transport/pins/module/STOP/TX detector/RF/HIL не объявлены готовыми.
 
+## Последующее состояние
+
+Владелец принял `IMP-0016/A` как `DEC-0019`. Распространение решения и финальное ревью набора требований выполнены в `REV-0002U`; `REQ-N24-0001` получил статус **«Проведено ревью»**, а `FND-0020` закрыт на requirement-level.
