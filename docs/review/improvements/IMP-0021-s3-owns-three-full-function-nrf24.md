@@ -1,6 +1,6 @@
 # IMP-0021 — перенести целевое владение 3× полнофункциональных nRF24 на S3
 
-- Статус: **⚠️ Предложение — full static layouts reviewed; требуется решение владельца**
+- Статус: **⚠️ Предложение — сравнительный вход единого architecture package; отдельно не принимается (`DEC-0026`)**
 - Связано: `DEC-0001`, `DEC-0009`, `DEC-0021`, `FND-0001`, `FND-0019`, `FND-0028`, `AUD-0003`, `REQ-N24-0001`
 - Цена: без нового MCU/radio; conditional small CE-latch BOM и HIL
 - Дата: 2026-08-16
@@ -45,6 +45,6 @@
 
 `DEC-0023` заморозил wishlist, а `LAY-S3-0001`, `LAY-C5-0001`, `LAY-BAL-0001` и `CMP-0001` пересчитали варианты на полном `DM-0001/BUD-0001`. Все три statically feasible; weighted scores запрещены до measurements/quotes. S3-вариант остаётся рекомендуемым conditional baseline: меньше irreducible BOM/reroute, нет raw nRF IPC, C5 сохраняет GPIO и native recovery margin.
 
-## Вопрос владельцу
+## Приёмка
 
-⚠️ **Принимаем вариант A / `LAY-S3-0001` как conditional target: S3 владеет всеми тремя полнофункциональными nRF24 на shared SPI2, а провал N8R2 memory, shared-bus latency/loss или C5 independent-recovery kill gate автоматически возвращает сравнение к `LAY-C5`/`LAY-BAL` без сокращения функций?**
+По `DEC-0026` отдельного вопроса о владельце nRF24 нет. Вариант A может войти только в целиком сведённый package, который одновременно фиксирует memory, transport, UI, pins, recovery, STOP/TX-state, coexistence и cost. До этого `LAY-S3`, `LAY-C5` и `LAY-BAL` остаются сравнительными черновиками.

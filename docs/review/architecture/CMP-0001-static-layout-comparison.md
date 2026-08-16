@@ -1,6 +1,6 @@
 # CMP-0001 — static comparison of `LAY-S3`, `LAY-C5` and `LAY-BAL`
 
-- Статус: **Проведено ревью static comparison; owner decision open**
+- Статус: **Проведено ревью static comparison; сравнительный вход единого package (`DEC-0026`)**
 - Дата: 2026-08-16
 - Inputs: `DM-0001`, `BUD-0001`, `PIN-0001`, `SC-0001`, `LAY-S3-0001`, `LAY-C5-0001`, `LAY-BAL-0001`
 - Rule: no weighted score before required measurements/quotes; structural facts may choose test order but cannot be mislabelled measured performance/cost
@@ -38,9 +38,9 @@ None of the three has an unavoidable pin/controller contradiction after the exac
 - `LAY-BAL` necessarily adds an active controller, external flash, clock/support network, recovery/test and module interconnect. It is a performance fallback, not a zero-loss cost candidate while a two-MCU layout passes.
 - UI matrix versus retained U14 is orthogonal and must use the same choice/quote in all three score sheets.
 
-## Recommended decision sequence
+## Recommended synthesis sequence
 
-1. Accept `LAY-S3` as the primary architecture baseline, not as fabricated proof.
+1. Use `LAY-S3` as the first synthesis candidate, not as an independently accepted target or fabricated proof.
 2. Run three kill gates before schematic commitment:
    - usable S3 N8R2 PSRAM ≥1,920 KiB in `SCN-02`;
    - shared SPI2 meets all display/nRF/CC/U214/SD throughput and IRQ/loss bounds;
@@ -48,7 +48,6 @@ None of the three has an unavoidable pin/controller contradiction after the exac
 3. If memory fails, prefer `LAY-C5` with N8R8; if only shared-bus real-time fails, compare `LAY-C5` against the RF-controller fallback with measured total cost and power.
 4. Never reduce three nRF paths, full native features, IR or safety gates to rescue the preferred layout.
 
-## ⚠️ Proposal
+## ⚠️ Предложение — только вход общего package
 
-Accept `IMP-0021/A` / `LAY-S3-0001` as the conditional target owner/transport baseline. Acceptance selects the architecture to refine; it does not waive the kill gates or mark implementation findings closed.
-
+Use `IMP-0021/A` / `LAY-S3-0001` as the first integrated synthesis candidate because it has the smallest structural BOM/reroute and avoids raw nRF IPC. By `DEC-0026`, owner/transport cannot be accepted separately: the proposal is valid only if the same final package also converges memory, UI, exact pins, recovery, safety, coexistence and cost.

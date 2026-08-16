@@ -1,6 +1,6 @@
 # FND-0028 — владелец 3×nRF24 переоткрыт full-function/resource audit
 
-- Статус: **Три static layouts сравнены; owner decision открыт в `IMP-0021/CMP-0001`**
+- Статус: **Три static layouts сравнены; ownership входит только в единый architecture package (`DEC-0026`)**
 - Серьёзность: architecture/resource/performance blocker
 - Затрагивает: `DEC-0001`, `DEC-0009`, `FND-0001`, `FND-0019`, `REQ-N24-0001`, S3↔C5 transport и stage-3 pin budget
 - Обнаружено: 2026-08-16
