@@ -1,21 +1,21 @@
 # REQ-IR-0001 — consumer IR receive, learn, remote and controlled-test contract
 
-- Статус набора: **Проведено ревью**
+- Статус набора: **Проведено ревью capability; owner/backend открыт `DEC-0032`**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-IR-01`–`C-IR-05`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-11`
 - Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`
 - Находки: `FND-0001`, `FND-0017`, `FND-0018`
-- Условные входы реализации: C5 pin/RMT budget, S3↔C5 transport, exact optical/electrical path, STOP, storage/licence и HIL
+- Условные входы реализации: selected-owner timer/GPIO budget, transport if any, exact optical/electrical path, STOP, storage/licence и HIL
 
 ## Граница документа
 
-Этот набор отделяет обычный пульт для собственных устройств от passive protocol analysis и disruptive multi-code actions. По `DEC-0018` C5 использует robust demodulated `TSOP38238` и отдельный `TSMP95000` carrier-learning path 30–60 kHz. `Universal remote` означает только corpus-proven device/protocol/carrier profiles; это не blanket compatibility со всем оптическим оборудованием. Demodulated raw envelope, measured carrier и carrier metadata из protocol/database/import/manual input — разные типы evidence.
+Этот набор отделяет обычный пульт для собственных устройств от passive protocol analysis и disruptive multi-code actions. По `DEC-0018` сохраняются robust demodulated receive и отдельный carrier-learning path 30–60 kHz; прежний C5+TSOP38238+TSMP95000 остаётся reference profile, не target owner/BOM. `Universal remote` означает только corpus-proven device/protocol/carrier profiles; это не blanket compatibility со всем оптическим оборудованием. Demodulated raw envelope, measured carrier и carrier metadata из protocol/database/import/manual input — разные типы evidence.
 
 ## Матрица требований
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-IR-01` | все | `conditional` | Сквозной | ESP32-C5 физически и программно владеет IR TX/RX по `DEC-0001`. S3 задаёт UI/policy и получает typed records через принятый inter-MCU contract; невозможный legacy dual-SPI transport не наследуется (`FND-0001`). |
+| `REQ-IR-01` | все | `conditional` | Сквозной | Physical owner располагает локальными IR TX/RX timing resources и выдаёт typed records/events. UI/policy owner может совпадать либо использовать bounded transport; невозможный legacy dual-SPI transport не наследуется (`FND-0001`). |
 | `REQ-IR-02` | `C-IR-01` | `conditional` | Основной | Recognized-protocol receive показывает protocol/address/command/repeat/toggle/confidence и одновременно хранит bounded raw envelope. Unknown/malformed/overflow остаётся raw/unsupported без ложного decode. |
 | `REQ-IR-03` | `C-IR-01`, `C-IR-02` | `conditional` | Основной | По `DEC-0018` dual RX path сохраняет robust envelope и отдельно измеряет carrier 30–60 kHz. Learning record хранит carrier value и provenance: `measured`, `protocol`, `database`, `imported` или `manual`; fixed-demodulator output не подменяет `measured` (`FND-0018`). |
 | `REQ-IR-04` | `C-IR-04` | `conditional` | Основной | Universal remote покрывает только versioned corpus-proven TV/media/projector/audio/HVAC profiles. Stateful HVAC хранит полный state/checksum/model, а не отправляет произвольный stateless key. Unsupported model видим и не получает generic success. |
@@ -26,7 +26,7 @@
 | `REQ-IR-09` | `C-IR-05` | `conditional` | Сквозной storage | Native typed record и documented `.ir` import/export сохраняют timings, carrier/provenance, protocol fields, repeats, target label, safety class, source/license and integrity. Parser bounded/fuzzed; import никогда не запускает TX и не становится trusted/own-tag сам. |
 | `REQ-IR-10` | `C-IR-03`, `C-IR-04` | `conditional` | Сквозной licence | Bundled protocol/code/AC/TV-B-Gone records входят в release только с per-source provenance, compatible licence and reproducible generator. GPL/LGPL reference implementation или database не копируется молча; owner-imported records остаются отдельным content lifecycle. |
 | `REQ-IR-11` | все TX | `conditional` | Сквозной hardware safety | Exact emitter/driver/current limit has hardware-off reset default, no back-power from dead rail, bounded peak/average current/duty/temperature and IEC 62471 assessment. `IR_TX` low/high-Z means optically off; generic D57/47 Ω is not qualification (`FND-0017`). |
-| `REQ-IR-12` | все TX | `conditional` | Сквозной STOP/state | C5 local dead-man, S3 STOP command and independent hardware STOP/power gate terminate TX across link loss, stuck task, watchdog, reset and session exit. UI distinguishes commanded electrical TX from optically verified result; selected carrier/repeat profile remains visible. |
+| `REQ-IR-12` | все TX | `conditional` | Сквозной STOP/state | Owner-local dead-man, product STOP path and independent hardware-off gate terminate TX across link loss if present, stuck task, watchdog, reset and session exit. UI distinguishes commanded electrical TX from optically verified result; selected carrier/repeat profile remains visible. |
 | `REQ-IR-13` | все | `acceptance` | Сквозной | HIL covers each claimed protocol/carrier/device class, unknown/raw overflow, ambient light, range/angle/window, self-blinding, long HVAC frame, repeats/toggles, storage full/corrupt, reset/brownout/link loss/STOP and exact electrical/optical safe state. |
 
 ## Acceptance corpus

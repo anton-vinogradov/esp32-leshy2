@@ -1,10 +1,13 @@
 # REV-0004E — vendored critical CAD libraries
 
-- Статус: **Проведено ревью**
+- Статус: **Historical snapshot review; superseded as active CAD by `REV-0004H`**
 - Дата: 2026-08-16
 - Решение: DEC-0030 / IMP-0025-A
 - Артефакты: hardware/kicad, LIB-0001
 - Finding: FND-0036 closed at CAD-representation level
+
+> The checks remain factual for the archived files, but they no longer grant
+> canonical product-library status or authorize schematic work.
 
 ## Source and licence checks
 

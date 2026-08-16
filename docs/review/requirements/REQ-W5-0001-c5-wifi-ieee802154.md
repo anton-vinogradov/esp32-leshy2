@@ -1,6 +1,6 @@
-# REQ-W5-0001 — C5 dual-band Wi-Fi and IEEE 802.15.4 contract
+# REQ-W5-0001 — dual-band Wi-Fi and IEEE 802.15.4 capability contract
 
-- Статус набора: **Проведено ревью**
+- Статус набора: **Проведено ревью capability; C5/backend ownership открыт `DEC-0032`**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-W5-01`–`C-W5-09`, пересечения `C-X-01`, `C-X-02`, `C-X-03`, `C-X-04`, `C-X-06`, `C-X-07`, `C-X-11`, `OUT-01`
 - Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0020`
@@ -9,16 +9,16 @@
 
 ## Граница документа
 
-ESP32-C5 — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.15.4 radio, а не simultaneous multi-radio monitor/inject platform. Этот контракт разделяет ordinary connectivity, passive observation, defensive detection, sensitive capture и active/disruptive testing. Public ESP-IDF baseline не подменяется undocumented binary patch; DFS/country/PMF/privacy/coexistence являются функциональными пререквизитами, а не сносками.
+Former ESP32-C5 profile — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.15.4 radio, а не simultaneous multi-radio monitor/inject platform. C5 facts остаются reference/feasibility evidence; выбранный backend обязан доказать не меньший capability contract. Ordinary connectivity, passive observation, defensive detection, sensitive capture и active/disruptive testing разделены; DFS/country/PMF/privacy/coexistence являются функциональными пререквизитами, а не сносками.
 
 ## Матрица требований
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-W5-01` | все | `conditional` | Сквозной hardware | Exact C5 module/antenna/power artifact квалифицирован по `FND-0022`. Current candidate — standard `ESP32-C5-WROOM-1U-N8R8`/`C51950748`; штатная внешняя антенна идёт через module `ANT1`, а disabled `ANT2` не используется. Supplier candidate не является final BOM. |
-| `REQ-W5-02` | все | `conditional` | Сквозной ownership | C5 владеет своими Wi-Fi/802.15.4 controllers, S3 вызывает typed bounded API. Transport закрывает `FND-0001`; reset/update/link loss не оставляют autonomous TX, а события двух MCU имеют синхронизируемые timestamps/age/owner. |
+| `REQ-W5-01` | все | `conditional` | Сквозной hardware | Exact selected module/antenna/power artifact квалифицирован. Former reference — `ESP32-C5-WROOM-1U-N8R8`/`C51950748`; его `ANT1/ANT2` facts не выбирают final BOM. |
+| `REQ-W5-02` | все | `conditional` | Сквозной ownership | Selected backend локально владеет Wi-Fi/802.15.4 controllers и предоставляет typed bounded API своему product-policy owner, локальному или удалённому. Transport, если он есть, закрывает shared-controller risks; reset/update/link loss не оставляют autonomous TX, events несут timestamp/age/owner. |
 | `REQ-W5-03` | `C-W5-01`, `C-W5-08` | `conditional` | Основной | Ordinary STA connect, saved owner networks, AP scan и channel/security/RSSI view работают на 2.4 или 5 GHz. `AUTO` означает выбор band, не simultaneous receive; UI показывает actual band/channel/time/scan schedule и stale/unknown. |
-| `REQ-W5-04` | `C-W5-01`, `C-W5-07`, `C-W5-08` | `conditional` | Сквозной regulatory | Каждая session фиксирует country/region source/revision/effective channel mask. Active scan/TX разрешены только профилем; DFS passive scan/connect отделены от TX, а C5 SoftAP на DFS запрещён. Hidden SSID на passive channel может оставаться `unknown/not observed`, не `absent`. |
+| `REQ-W5-04` | `C-W5-01`, `C-W5-07`, `C-W5-08` | `conditional` | Сквозной regulatory | Каждая session фиксирует country/region source/revision/effective channel mask. Active scan/TX разрешены только профилем; DFS passive scan/connect отделены от TX, а SoftAP на DFS запрещён до отдельного backend/regulatory proof. Hidden SSID на passive channel может оставаться `unknown/not observed`, не `absent`. |
 | `REQ-W5-05` | `C-W5-02`, `C-W5-03` | `conditional` | Лаборатория | Public promiscuous RX даёт bounded capture management/control/data с band/channel/timestamp/FCS/error/filter/loss counters и measured packet classes. BSSID/client/payload по умолчанию минимизированы/redacted; background capture выключен. Не обещаются lossless monitor, radiotap fidelity или decryption. |
 | `REQ-W5-06` | `C-W5-03` | `conditional` | Лаборатория | Beacon/probe/client inventory различает directly observed frame, inferred relation и unknown. Hidden SSID/client association не выводятся из отсутствия пакета; channel-hop coverage, dwell, age и packet loss доступны в UI/export. |
 | `REQ-W5-07` | `C-W5-04` | `conditional` | Лаборатория | Defensive deauth/rogue/evil-twin detector использует explainable bounded rules и показывает PMF/security/evidence/confidence/unknown. Одно совпадение SSID или deauth frame не доказывает атаку; alerts сохраняют redacted evidence. |
@@ -31,14 +31,14 @@ ESP32-C5 — 1T1R dual-band Wi-Fi и shared 2.4 GHz BLE/IEEE 802.15.4 radio, а 
 | `REQ-W5-14` | `C-W5-09` | `conditional`, accepted A | Основной | По `DEC-0020` ordinary commissioning/join/control/diagnostics собственных/администрируемых networks использует OpenThread как открытый baseline. Zigbee coordinator/router/end-device — optional adapter с отдельными version/provenance/redistribution/SBOM/hash/signature/update/rollback gates; core product, raw 802.15.4 и Thread от proprietary binary не зависят. |
 | `REQ-W5-15` | `C-W5-09` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | Raw 802.15.4 injection/replay/commissioning-security tests targeting one fixture требуют exact PAN/channel/address identity, preview, bounded frame/count/time, conservative power, dead-man и STOP. Import/capture не вооружает TX автоматически. |
 | `REQ-W5-16` | `C-W5-09` | `conditional` | Контролируемая зона, `BOTH` | 802.15.4 flood/interference/resilience test только conducted/RF-shielded с authorized endpoints, no-leakage validation, hard timeout и independent STOP. Open-air jammer отсутствует. |
-| `REQ-W5-17` | все 2.4 | `conditional` | Сквозной coexistence | C5 Wi-Fi 2.4/BLE/802.15.4 делят один RF path; scheduler не обещает одновременность и публикует active owner/preemption/loss. Cross-MCU arbiter учитывает 3×nRF24 и S3 2.4 radio; unsafe simultaneous TX prohibited до RF HIL. |
+| `REQ-W5-17` | все 2.4 | `conditional` | Сквозной coexistence | Shared-path Wi-Fi/BLE/802.15.4 backend не обещает физически невозможную одновременность и публикует active owner/preemption/loss. Whole-product arbiter учитывает 3×nRF24 и другие 2.4 radios; unsafe simultaneous TX prohibited до RF HIL. |
 | `REQ-W5-18` | все | `conditional` | Сквозной openness/update | Public-IDF/OpenThread core build воспроизводим и owner-controlled. Любой optional proprietary/patched binary изолирован build profile, имеет provenance/rights/SBOM/version/hash/signature/rollback и не блокирует сборку, обновление или восстановление открытого core product. |
 | `REQ-W5-19` | все | `conditional` | Сквозной privacy/storage | Capture/session format versioned, bounded и fuzzed; identity/payload/location minimized, encrypted at rest where sensitive, explicit export/delete/retention/factory-reset tested. Imported records inert by default and cannot bypass zone/region/TX gates. |
 | `REQ-W5-20` | все TX | `conditional` | Сквозной safety/HIL | Conservative minimum power default, visible actual band/channel/power/region/target/time, fresh Controlled-Zone banner, local dead-man and independent STOP. Exact module/antenna matrix tests country/DFS/PMF/public frame classes/capture loss/coexistence/reset/crash/update/link loss; no result is promoted from `unknown`. |
 
 ## Явно не обещается
 
-- simultaneous 2.4+5 GHz operation одного C5;
+- simultaneous 2.4+5 GHz operation одного shared-path backend без отдельного proof;
 - full/lossless monitor mode, arbitrary management injection или Pineapple-class stack;
 - DFS SoftAP/TX без отдельной поддержанной radar/regulatory architecture;
 - decryption/cracking captured Wi-Fi traffic на устройстве;

@@ -1,118 +1,72 @@
 # Аппаратная часть Leshy2 — текущее состояние проработки
 
-> Снимок: 2026-08-16. Эта страница описывает, что доказано сейчас. Образ готового продукта находится в [целевом hardware README](../../README.ru.md), а готового ПО — в [целевом firmware README](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md).
+> Снимок: 2026-08-16. Здесь указана доказанная зрелость. Образ готового
+> продукта — в [целевом hardware README](../../README.ru.md), software — в
+> [целевом firmware README](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md).
 
-- Канонические доказательства: [журнал ревью](../review/README.md)
+- Канонические evidence: [журнал ревью](../review/README.md)
 - English version: [current-state.md](current-state.md)
-- Legacy только для справки: [`drafts/legacy-2026-08-15/`](../../drafts/legacy-2026-08-15/README.md)
+- Исправленная gate chain: [`FLOW-0001`](../review/architecture/FLOW-0001-product-to-cad-gates.md)
 
 ## Ход ревью
 
-| Этап | Состояние |
+| Gate | Состояние |
 |---|---|
-| 0. Система ревью и baseline | Проведено ревью |
-| 1. Видение и границы | Проведено ревью, включая трёхуровневое уточнение |
-| 2. Возможности и исключения | Проведено ревью (`REV-0002AD`) |
-| 3. Архитектура и владение | Проведено ревью (`DEC-0028`, `REV-0003U`) |
-| 4. Компоненты и BOM | В работе; entry register проверен (`BOM-0001`, `REV-0004A`) |
-| 5–10 | Не начато |
+| 0. Review baseline | Проведено ревью |
+| 1. Product intent и safety/legal boundaries | Проведено ревью |
+| 2. Capabilities, exclusions, concurrency/failure needs | Проведено ревью (`REV-0002AD`) |
+| 3. Target physical/product design | **Активен; выход ещё не проверен** |
+| 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты в исправленном процессе |
+| 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
+| 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
+| 9. Electrical/CAD/firmware architecture | Заблокирован; активного canonical KiCad нет |
+| 10–11. PCB, fabrication и bring-up | Не начаты |
 
-Каноническая таблица стадий — [`docs/review/stages.md`](../review/stages.md).
+Каноническая таблица — [`stages.md`](../review/stages.md).
 
-## Принятые целевые решения, уже отражённые на продуктовой странице
+## Что остаётся проверенным
 
-- all-in-one профиль, акт о ненападении и три уровня функциональности (`DEC-0002`, `DEC-0010`);
-- консервативные TX-дефолты и явный выбор максимальной мощности (`DEC-0003`);
-- оптимизация полной стоимости без потери продукта (`DEC-0005`);
-- внешний M5 GNSS и внешний U214 LoRa+GNSS (`DEC-0006`, `DEC-0008`);
-- NMEA baseline и условный per-revision advanced CASIC profile без дополнительного GNSS (`DEC-0014`);
-- FM/RDS/ordinary AM baseline и открытый owner-imported SSB/CW patch loader без bundled blob (`DEC-0015`);
-- условный dual-band analog-voice target на SA518 с честным UHF-only fallback на SA868S (`DEC-0016`);
-- отдельный STOP-dominant `VVOICE` 4.0 V для SA518 и раздельная stuffing/supply qualification SA868S (`DEC-0025`);
-- внешний M5 Unit NFC U216 как первый HF NFC backend, RFID2 как limited compatibility и custom PN7160 как qualification fallback (`DEC-0017`);
-- двухтрактный consumer IR на C5 с robust RX TSOP38238 и TSMP95000 для измерения несущей 30–60 kHz (`DEC-0018`);
-- калиброванный трёхантенный nRF24 RPD hit-rate поиск по секторам без выдуманных RSSI/dBm, пеленга или VSWR (`DEC-0019`);
-- OpenThread как открытый Thread baseline и optional conditional Zigbee adapter без закрытия core product (`DEC-0020`);
-- S3 как единственный baseline native-BLE owner; C5 BLE default-off, полный native nRF24 scope не сокращён (`DEC-0021`);
-- сначала полный owner-confirmed реестр хотелок, затем несколько компоновок и сводный бюджет ресурсов (`DEC-0022`);
-- замороженный wishlist из 125 leaf-функций после делегированного саморевью с границами base/optional/deferred (`DEC-0023`);
-- latched physical hard STOP, который управляет RP `RUN` и S3/C5 reset/enable policy, независимо inhibit/обесточивает внешние TX-домены и требует физического re-arm (`DEC-0024`, `DEC-0028`);
-- бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
-- принят трёхдоменный target `PKG-0001/SYN-3A`: S3 N16R2 application/UI/audio/storage/native Wi-Fi/BLE, C5 N8R8 dual-band Wi-Fi/802.15.4/IR и RP2354A A4 с прямым управлением 3×nRF24/CC1101/voice (`DEC-0028`);
-- owner-controlled подписанные обновления S3/C5/RP с A/B rollback, physical recovery и открытым developer lifecycle (`DEC-0013`, `DEC-0028`) без включения необратимого hardware lockdown.
+- all-in-one автономный field-product, акт о ненападении и модель
+  Main/Lab/Controlled Zone;
+- консервативные TX defaults, явный выбор максимума, hard STOP без automatic
+  re-arm и отдельное actual-TX evidence;
+- полный self-review 125 wishlist leaves и правило снижения стоимости без потерь;
+- три полнофункциональных nRF24 с одновременным приёмом;
+- требования обычных Wi-Fi 2.4/5 ГГц, IEEE 802.15.4, native BLE и
+  Wi-Fi 2.4/ESP-NOW;
+- packet Sub-GHz, broadcast receive, analog voice, audio, IR, внешние
+  GNSS/LoRa/NFC и их safety/evidence boundaries;
+- open owner-controlled signed updates и независимые programming/recovery/
+  diagnostics каждого в итоге выбранного programmable chip.
 
-## Открытое инженерное состояние
+Это входы продукта. Exact MCU/module ownership, pins, buses, board count,
+connectors, parts и enclosure не приняты.
 
-- `FND-0001`: единственный GP-SPI C5 не может одновременно выполнять legacy-роли nRF-master и S3↔C5-slave.
-- `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
-- `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
-- `FND-0007`: текущий артефакт всё ещё имеет только I²C-expander STOP input. `DEC-0024` исправляет target architecture, но latch/gates/rails и fault-injection HIL не реализованы.
-- `FND-0011`: текущему SA868 добавлены PTT receive-default, PD power-down-default и физический low-power H/L. `DEC-0024/0025` исправляют target STOP/power architecture; exact gates и HIL не реализованы.
-- `FND-0013`: VOX не имеет microphone-capture path и явно отложен до общего audio/pin budget.
-- `FND-0015`: оба документированных M5 NFC Unit требуют PORT.A power profile 5 V, а текущие `J40/J41` дают 3.3 V; электрическое исправление ждёт общего port/power design.
-- `FND-0017`: legacy IR source всё ещё использует S3 ownership, generic unqualified emitter/current path и не имеет доказанных STOP/TX-state/optical behavior. Ложная `FAB-READY` пометка снята, Q58 получил reset-safe pull-down.
-- `FND-0019`: три generic nRF24 PA/LNA placeholder всё ещё используют S3 bus, exact modules/STOP/TX detectors отсутствуют, а post-dual-IR C5 resource budget не доказан. Ложные `FAB-READY` пометки сняты, общий CE получил reset-safe pull-down.
-- `FND-0021`: ESB/MouseJack/KeySniffer/BLE-compatible/interference claims требуют раздельных capability/security/licence/HIL gates.
-- `FND-0022`: C5 source candidate и antenna comment были неверны. Они исправлены на current-standard N8R8/`C51950748` и штатный `ANT1`; final antenna/cable/power/STOP/TX-live/EMC/AVL qualification остаётся открытой.
-- `FND-0023`: public C5 Wi-Fi raw TX не поддерживает arbitrary management/deauth, `AUTO` не simultaneous dual-band, а любой patched vendor binary требует отдельной provenance/licence/update/HIL границы.
-- `FND-0024`: 5 GHz режимы ещё не имеют реализованных country/DFS/PMF/privacy gates; DFS SoftAP исключён текущим radio contract.
-- `FND-0026`: native BLE advertising scan не является promiscuous connection-follow sniffer, rotating address не является stable identity, а RSSI не доказывает метры или направление.
-- `FND-0027`: Continuity/iBeacon/Find My и attack labels требуют versioned corpus/spec/licence/peer proof; ordinary, passive и disruptive BLE-сценарии имеют разные security gates.
-- `FND-0028`: прежние static nRF ownership maps были сравнены, но после `DEC-0027` перенесены в справочный архив и не являются входными ограничениями нового synthesis.
-- `FND-0029`: вариант памяти S3, транспорт S3↔C5 и recovery interfaces расходуют пересекающиеся scarce pins. N8R8 не является drop-in заменой N8R2, потому что Octal PSRAM занимает GPIO35–37, а 4-bit SDIO C5 конфликтует с native USB на GPIO13/14.
-- `FND-0030`: legacy voice power 5 V превышает принятый SA518 1 W profile. `DEC-0025` исправляет target отдельным rail 4.0 V; legacy schematic и conducted HIL остаются открытыми.
-- `FND-0032`: старый matrix budget ошибочно освобождал U214 RESET. Corrected candidate сохраняет `EXT_RF_RST`, переносит C5 BOOT в physical recovery и агрегирует touch IRQ; matrix/U14 всё ещё требует решения и HIL.
-- Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
+## Завершённое исправление
 
-## Текущая работа ревью
+[`FND-0039`](../review/findings/FND-0039-architecture-frozen-before-product-design.md)
+зафиксировал, что прежняя цепочка пропустила target physical design,
+whole-product optimality и conceptual placement. Владелец выбрал вариант A в
+[`DEC-0032`](../review/decisions/DEC-0032-reopen-product-design-before-cad.md).
 
-System/UI/storage capability-срез завершён статусом **«Проведено ревью»** в `REV-0002I`.
+Последствия:
 
-GNSS/navigation срез [`REQ-GNSS-0001`](../review/requirements/REQ-GNSS-0001-navigation-integrity.md) получил статус **«Проведено ревью»** в `REV-0002K`. Владелец принял `IMP-0012/A` как [`DEC-0014`](../review/decisions/DEC-0014-casic-gnss-profile.md): NMEA — обязательный baseline квалифицированного профиля, а assistance и receiver-reported jamming/spoofing условны proof точной revision/firmware. Unsupported/timeout/parser error означают `unknown`, не «угроз нет»; host heuristics отделяются от статуса receiver.
+- `DEC-0028/PKG-0001/SYN-3A` — historical candidate/reference, а не target;
+- C5 revision, compute ownership, pin и three-domain service studies являются
+  только условными candidate facts;
+- прежняя active C-001…005 KiCad library вместе с CI сохранена в
+  [`premature-compute-cad-2026-08-16`](../../drafts/premature-compute-cad-2026-08-16/README.md);
+- прерванный до коммита C-006 experiment отмечен как discarded в
+  [`premature-service-cad-2026-08-16`](../../drafts/premature-service-cad-2026-08-16/README.md), без ложного обещания воспроизводимого snapshot;
+- active [`hardware/kicad`](../../hardware/kicad/README.md) содержит только
+  upstream gate, без symbols, schematic или PCB.
 
-`FND-0009` закрыт на requirement-level. UART/power hardware, parser, assistance source, поддержка advanced messages конкретными Unit/U214, RF self-desense и HIL ещё не реализованы и проверяются на последующих этапах.
+`REV-0004H` проверяет это исправление, но не новый product design.
 
-Si4732-срез [`REQ-RX-0001`](../review/requirements/REQ-RX-0001-si4732-receiver.md) получил статус **«Проведено ревью»** в `REV-0002M`. Владелец принял `IMP-0013/A` как [`DEC-0015`](../review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md): открытый bounded loader входит в target, SSB blob импортируется локально и имеет отдельные integrity/provenance состояния, а synchronous-AM остаётся deferred до отдельного proof. `FND-0010` закрыт на requirement-level; RF/frontend, patch rights/compatibility, loader, audio/storage/decoder и coexistence HIL ещё не реализованы.
+## Следующий активный артефакт
 
-Analog-voice срез [`REQ-VHF-0001`](../review/requirements/REQ-VHF-0001-analog-voice-modem.md) получил статус **«Проведено ревью»** в `REV-0002O`. Владелец принял `IMP-0014/A` как [`DEC-0016`](../review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md): SA518 — предпочтительный half-duplex analog-FM target 136–174/400–470 MHz, а SA868S остаётся явно UHF-only fallback до qualification. [`DEC-0025`](../review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md) теперь фиксирует отдельный BAT-fed `VVOICE` 4.0 V для SA518 и отдельную stuffing/supply qualification fallback. Компромисс 2 W-class→1 W принят и не считается экономией без потерь. `FND-0012` закрыт на requirement-level; microphone capture/VOX (`FND-0013`), exact STOP/power hardware, protocol, RF, audio и HIL proof остаются для следующих этапов.
-
-NFC/RFID-срез [`REQ-NFC-0001`](../review/requirements/REQ-NFC-0001-hf-nfc-rfid.md) получил статус **«Проведено ревью»** в `REV-0002Q`. Владелец принял `IMP-0005/A` как [`DEC-0017`](../review/decisions/DEC-0017-u216-hf-nfc-backend.md): внешний M5 Unit NFC U216 за $7 — первый HF NFC target, RFID2 за $4.95 — limited compatibility, а custom PN7160 — fallback только после провала qualification. Дельта аксессуара $2.05 принята ради A/B/F/V, ISO15693/FeliCa, limited emulation и custom-mode scope и не влияет на base BOM. `FND-0016` закрыт на requirement-level явными трёхуровневыми гейтами и отказом от overclaim universal clone, relay с одним frontend, key recovery, LF 125 kHz и payment compliance. Exact IC U216 имеет статус NRND; proof точной revision/lifecycle, 5-вольтовый `PORT.A-NFC` (`FND-0015`), driver/SBOM, protocol и HIL остаются открытой реализационной работой.
-
-Consumer-IR срез [`REQ-IR-0001`](../review/requirements/REQ-IR-0001-consumer-infrared.md) получил статус **«Проведено ревью»** в `REV-0002S`. Владелец принял `IMP-0015/A` как [`DEC-0018`](../review/decisions/DEC-0018-dual-path-consumer-ir.md): C5 использует TSOP38238 для robust demodulated 38 kHz приёма и TSMP95000 для обучения с измерением несущей 30–60 kHz, занимая оба RX RMT channels C5; TSAL6200 — первый условный кандидат 940 nm emitter. Более дешёвые single-learning/fixed-38 варианты теряют принятую функцию и не могут подменить решение молча. `FND-0018` закрыт на requirement-level; автоматическое обучение 455 kHz/out-of-band остаётся deferred. Own remote/replay находится в Main, passive analysis — в Lab, unknown replay — в Controlled Zone `AUTHORIZED_TARGET`, а TV-B-Gone/brute-force/multi-code sweep — в Controlled Zone `BOTH`. `FND-0017`, C5 pins/transport, exact BOM, STOP, optics, licences и HIL остаются открытой реализационной работой.
-
-Capability-аудит 3×nRF24 прошёл `REV-0002T`/`REV-0002U`: [`REQ-N24-0001`](../review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md) сохраняет три одновременных полнофункциональных radio и принятый [`DEC-0019`](../review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md) — calibrated binary RPD hit-rate sector comparison, никогда не RSSI/dBm/bearing/VSWR. На этом checkpoint этапа 2 physical owner оставался открытым, а позднее `DEC-0028` назначил прямое управление RP2354A. `REV-0002Z`/`AUD-0003`/`IMP-0021` остаются историческими источниками идей/рисков; `FND-0019`/`FND-0021` — implementation gates.
-
-C5 Wi-Fi/IEEE 802.15.4 prerequisite audit прошёл `REV-0002V`, а финальное распространение [`REV-0002W`](../review/reviews/REV-0002W-c5-wifi-802154-decision-propagation.md) дало [`REQ-W5-0001`](../review/requirements/REQ-W5-0001-c5-wifi-ieee802154.md) статус **«Проведено ревью»**. Владелец принял `IMP-0018/A` как [`DEC-0020`](../review/decisions/DEC-0020-open-first-thread-conditional-zigbee.md): OpenThread — открытый baseline, Zigbee — optional conditional adapter, не требуемый core/raw/Thread build. Main/Lab/Controlled Zone разделены; C5 shared 2.4 GHz path не выдаётся за одновременные radio. `FND-0025` закрыт на requirement-level. Source candidate N8R4→N8R8, ANT1/ANT2 и EPAD исправлены, но final RF artifact остаётся открытым (`FND-0022`); public/raw/patched boundary (`FND-0023`) и DFS/country/PMF/privacy (`FND-0024`) также ждут implementation/HIL. `IMP-0003` и private patched Wi-Fi backend не приняты автоматически.
-
-Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prerequisites.md) завершён решением [`DEC-0021`](../review/decisions/DEC-0021-s3-native-ble-owner.md) и распространением [`REV-0002Y`](../review/reviews/REV-0002Y-s3-native-ble-decision-propagation.md): S3 — единственный baseline native-BLE owner, C5 BLE default-off, [`REQ-BLE-0001`](../review/requirements/REQ-BLE-0001-native-ble-and-security.md) получил статус **«Проведено ревью»**, `FND-0002` закрыт. Ограничен только дополнительный experimental legacy-1M BLE-compatible subset nRF24; native PTX/PRX/Enhanced-ShockBurst/rate/channel/ACK/pipe/FIFO/IRQ/RPD функции не сокращены. Native scan не объявлен connection sniffer/идентификатором/дальномером (`FND-0026`), vendor/emulation/attack claims имеют corpus, rights и трёхуровневые gates (`FND-0027`). Dedicated nRF52 connection sniffing и Bluetooth Mesh сохранены как optional deferred-release profiles, а не блокеры base board.
-
-Оставшиеся срезы этапа 2 получили статус **«Проведено ревью»**: [`REQ-W24-0001`](../review/requirements/REQ-W24-0001-s3-wifi-espnow.md), [`REQ-SUB-0001`](../review/requirements/REQ-SUB-0001-cc1101-subghz.md), [`REQ-LORA-0001`](../review/requirements/REQ-LORA-0001-external-sx1262.md) и [`REQ-X-0001`](../review/requirements/REQ-X-0001-cross-session-performance.md). [`INV-0004`](../review/inventories/INV-0004-wishlist-self-review.md) покрывает 125/125 кандидатов и двенадцать leaf-dispositions из десяти source-extras. `REV-0002AD` закрывает этап 2 на requirement-level; exact hardware/HIL остаются доказательствами следующих этапов.
-
-
-## Проверенная архитектура и следующий gate
-
-Этап 3 перезапущен по [`DEC-0027`](../review/decisions/DEC-0027-zero-based-capability-driven-architecture.md). [`FND-0033`](../review/findings/FND-0033-legacy-layout-assumptions-leaked-into-synthesis.md) зафиксировал методическую ошибку: прежняя работа оптимизировала legacy owners/buses/pins вместо независимого вывода архитектуры из хотелок.
-
-Полные тексты прежних `DM/BUD/PIN/SC/LAY/CMP/ADR`, nRF-owner audit и `IMP-0021` сохранены в [`drafts/stage3-legacy-derived-2026-08-16/`](../../drafts/stage3-legacy-derived-2026-08-16/README.md). Они являются только источником идей и отрицательных результатов. Ни один старый owner, transport, GPIO или layout больше не является входным ограничением.
-
-Новая активная цепочка начинается с [`CAP-0001`](../review/architecture/CAP-0001-zero-based-capability-input.md). Она заново покрывает 15/15 owner invariants, 9/9 wishlist groups и 13/13 `REQ-*` без pin/bus allocation и получила статус **«Проведено ревью»** в [`REV-0003J`](../review/reviews/REV-0003J-zero-based-stage3-restart.md). Следующий аппаратно-нейтральный артефакт [`CON-0001`](../review/architecture/CON-0001-hardware-neutral-concurrency-model.md) разделил обязательную параллельность, time-sharing, qualification-only пары и взаимоисключения, покрыл все 21 capability atom и отказовые сценарии и получил тот же статус в [`REV-0003K`](../review/reviews/REV-0003K-zero-based-concurrency-model.md). [`RES-0001`](../review/architecture/RES-0001-hardware-neutral-resource-demand.md) затем вывел compute/interface/timing/memory/power/safety/recovery demand и sizing equations без назначения MCU/GPIO; `REV-0003L` провёл его ревью. [`SRC-0001`](../review/architecture/SRC-0001-primary-hardware-resource-facts.md) отделил primary package/controller/peripheral facts от layout assumptions и прошёл `REV-0003M`.
-
-Zero-based метод сначала фиксировал только продуктовые границы. `DEC-0028` теперь разрешает весь target: RP2354A напрямую владеет тремя nRF24, CC1101 и voice real-time control; 1-bit SDIO и SPI+alert приняты как междоменные transports.
-
-[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) с нуля сравнил три цельных способа закрыть один resource graph: `SYN-2A` с packet-radio service на S3 и U214/GNSS на свободных C5 interfaces, `SYN-2B` с packet-radio service на C5 и `SYN-3A` с отдельным deterministic RP2354A A4 domain. `REV-0003N/3O` проверили набор без выбора winner; последующий атомарный package выбрал `SYN-3A` в `DEC-0028`.
-
-Exact [`PIN-0002`](../review/architecture/PIN-0002-zero-based-exact-pin-maps.md) прошёл `REV-0003O`: все 36 S3 и 21 C5 pins имеют role/free/reserved state, controller collisions отсутствуют, straps/recovery и корректная latch/IRQ logic явны. `FND-0034` исправил переполнение первой формулировки `SYN-2A` без потери scope: U214 и два GNSS UART используют свободные C5 interfaces. `SYN-2A` и `SYN-2B` сошлись без безопасного generic GPIO reserve. `SYN-3A` использует 30/30 GPIO RP2354 плюс dedicated recovery и оставляет пять generic C5 GPIO; ещё две ноги C5 постоянно зарезервированы под service UART0 решением [`DEC-0031`](../review/decisions/DEC-0031-permanent-three-domain-development-access.md), что исправлено в [`FND-0038`](../review/findings/FND-0038-permanent-c5-uart-reduces-generic-reserve.md).
-
-[`BUD-0002`](../review/architecture/BUD-0002-zero-based-memory-traffic-budget.md), проверенный в [`REV-0003P`](../review/reviews/REV-0003P-zero-based-memory-traffic-budget.md), задаёт всем трём maps одинаковые memory, traffic, admission и HIL-пороги. S3 N16R2 проходит при измеренном usable-PSRAM floor 1792 KiB (`896 KiB` resident + `512 KiB` worst overlay + `384 KiB` reserve). Гарантированный профиль трёх nRF — одновременные независимые PRX по 200 kB/s payload на radio; единая 10 Mbit/s шина занята на 57.6%. Теоретический максимум 3×nRF плюс CC занял бы 79.5% ещё до software margin и явно не обещается как lossless. Провал принятого 600 kB/s/latency HIL автоматически переоткрывает split ownership.
-
-Все candidates проходят paper memory и admitted-throughput arithmetic; у `SYN-2A` остаётся наибольший S3 contention risk, у `SYN-2B` — single-core C5 latency risk, у `SYN-3A` — дополнительный signed firmware target.
-
-[`PWR-0001`](../review/architecture/PWR-0001-zero-based-power-safety-envelope.md) прошёл [`REV-0003Q`](../review/reviews/REV-0003Q-zero-based-power-envelope.md). Один общий 3.3 V converter рассчитан на 2.5 A continuous/3.0 A transient с изолированными/наблюдаемыми core, packet-RF и audio branches; сохраняется принятый `VVOICE=4.0 V` 1.25/1.5 A; квалифицированные 5 V аксессуары получают 0.75 A/1.0 A; 2S power path — ≥12 W/15 W. Это floors разрешённых сценариев, а не разрешение всех TX одновременно. 100 mA allowance контроллера `SYN-3A` помещается в тот же converter: он добавляет расход энергии, но не отдельный DC/DC.
-
-[`RFQ-0001`](../review/architecture/RFQ-0001-zero-based-rf-zoning-coexistence.md) прошёл [`REV-0003R`](../review/reviews/REV-0003R-zero-based-rf-zoning.md). Все candidates сравниваются с одинаковыми независимыми S3/C5/3×nRF/CC/Si4732/voice/U214/NFC paths, sector-геометрией антенн и enclosure fixture. Three-nRF PRX остаётся обязательным и должен сохранить каждый radio в пределах 3 dB от isolated sensitivity reference; остальные cross-domain RX пары начинаются как qualification-only, а любые TX пары — как запрещённые. У `SYN-2B` максимальная native/packet RF concentration; у `SYN-3A` наиболее чистое управляемое разделение, но его дополнительный oscillator/IPC тоже проходит emission HIL.
-
-[`CST-0001`](../review/architecture/CST-0001-dated-candidate-cost-burden.md) прошёл [`REV-0003S`](../review/reviews/REV-0003S-zero-based-cost-burden.md). В исходном snapshot 2026-08-16 на 500 штук candidate-specific recurring ranges составляют `2B $0.5017…0.6517`, `2A $0.6313…0.7813` и `3A $1.7359…1.8859`. Примерно $1.10 midpoint premium `3A` над `2A` покупает direct radio controls, deterministic isolation и резерв из семи C5 GPIO; после `DEC-0031` пять остаются generic, а две постоянно заняты service UART0. Это не экономия количества деталей. [`FND-0035`](../review/findings/FND-0035-rp2354a-order-code-stock-correction.md) исправляет прежний вывод о stock RP меньше 500: public stock exact `SC1511-A4` закрывает 500 штук, но письменные quotes, lot traceability и QFN60 assembly/yield всё ещё открыты. Старый range остаётся conservative historical comparison до цельной exact production quote.
-
-[`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) атомарно принят в [`DEC-0028`](../review/decisions/DEC-0028-accept-zero-based-syn-3a.md). [`REV-0003U`](../review/reviews/REV-0003U-stage3-acceptance-propagation.md) проверяет exact owners, transports, pins, controls, budgets, power, RF, update/recovery, cost, kill-gates и распространение target в оба репозитория; этап 3 получил статус **«Проведено ревью»**.
-
-Этап 4 активен. [`BOM-0001`](../review/components/BOM-0001-stage4-component-evidence-register.md) и [`REV-0004A`](../review/reviews/REV-0004A-stage4-entry-register.md) дают полный проверенный evidence register. [`BOM-0002`](../review/components/BOM-0002-compute-clock-recovery-evidence.md) и [`REV-0004B`](../review/reviews/REV-0004B-compute-clock-recovery-evidence.md) проводят ревью compute/clock/recovery facts, exact RP order codes и manufacturer reference crystal, не присваивая ложный component `Q`. Владелец принял [`IMP-0024/A`](../review/improvements/IMP-0024-c5-v1.2-production-floor.md) как [`DEC-0029`](../review/decisions/DEC-0029-c5-v1.2-production-floor.md): production/release/qualification C5 требует ≥v1.2, а v1.0 остаётся restricted engineering-only; [`REV-0004C`](../review/reviews/REV-0004C-c5-v1.2-propagation.md) проверяет cross-repository propagation. Затем владелец принял [`IMP-0025/A`](../review/improvements/IMP-0025-repository-vendored-critical-cad-libraries.md) как [`DEC-0030`](../review/decisions/DEC-0030-vendored-critical-cad-libraries.md). [`LIB-0001`](../review/components/LIB-0001-compute-cad-library-audit.md) и [`REV-0004D/E`](../review/reviews/REV-0004E-vendored-critical-cad-libraries.md) теперь проверяют project-local symbols/footprints C-001…005, pinned provenance/licensing, CI pin/pad/hash gate и parser checks KiCad 10.0.5. `FND-0036` закрыт на уровне CAD representation. [`REC-0001/REV-0004F`](../review/components/REC-0001-compute-recovery-and-link-prerequisites.md) проводят ревью ROM/debug/link пререквизитов C-006/C-007 и закрывают [`FND-0037`](../review/findings/FND-0037-c5-usb-download-strap-misidentified.md): USB/UART Joint Download Boot C5 использует физический GPIO28-low при GPIO27-high и CHIP_PU, а не GPIO26-low. Все compute peers остаются на общем `3V3_CORE`, поэтому reset-only direct links требуют separable damping/test provisions, а не active power-domain mux; будущие индивидуальные core power gates переоткроют isolation. Владелец принял постоянный независимый доступ ко всем трём compute domains в [`DEC-0031`](../review/decisions/DEC-0031-permanent-three-domain-development-access.md): три USB-C, три одинаковых keyed DBG10 и физические BOOT/RESET controls заданы в [`SVC-0001`](../review/components/SVC-0001-three-domain-development-access.md) и проверены в [`REV-0004G`](../review/reviews/REV-0004G-three-domain-development-access.md). [`FND-0038`](../review/findings/FND-0038-permanent-c5-uart-reduces-generic-reserve.md) исправляет C5 reserve с семи generic pins на пять generic плюс две service UART pins. Exact CAD/AVL/mechanics, schematic, assembly и erased-image/multi-host HIL gates всё ещё не дают закрыть `BOM-0002` целиком.
+Следующий документ отталкивается от проверенных capabilities и задаёт физический
+продукт без выбора electronics: form factor/use posture, control/connector
+surfaces, display, battery/charging, external-module attachment, antenna
+volumes, service access, environment/repairability и target cost. Только после
+его owner review строятся complete architecture alternatives.

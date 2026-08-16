@@ -1,6 +1,6 @@
 # REQ-BLE-0001 — native Bluetooth LE connectivity, observation and controlled-test contract
 
-- Статус набора: **Проведено ревью**
+- Статус набора: **Проведено ревью capability; controller/owner открыт `DEC-0032`**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-BLE-01`–`C-BLE-12`, `C-X-03`, `C-X-06`, `C-X-09`, `C-UX-01`, `C-UX-02`, `OUT-03`, `OUT-04`
 - Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0019`, `DEC-0020`, `DEC-0021`
@@ -16,7 +16,7 @@ Native BLE controller предоставляет standard scanning, advertising,
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-BLE-01` | все | `include`, `DEC-0021` | Сквозной ownership | S3 единолично владеет baseline native BLE controller, identity, bond/key vault и scheduler; C5 BLE default-off и не создаёт параллельный product identity без отдельного requirement. Это не меняет физического владельца nRF24 и не сокращает их native feature set. |
+| `REQ-BLE-01` | все | `include` | Сквозной ownership | Выбранный native BLE controller имеет одного явного baseline owner для product identity, bond/key vault и scheduler. Второй controller не создаёт параллельный product identity без отдельного requirement. Это не меняет physical owner nRF24 и не сокращает их native feature set. Former S3 profile из `DEC-0021` — reference, не target. |
 | `REQ-BLE-02` | `C-BLE-01` | `conditional` | Сквозной feature matrix | Exact owner/profile доказывает 1M/2M/Coded PHY, legacy/extended advertising, multiple sets, simultaneous scan+advertise и central/peripheral roles до включения UI. Controller support, host support и tested peer support — разные states. |
 | `REQ-BLE-03` | все | `conditional` | Сквозной stack | NimBLE/Bluedroid и ESP-IDF version выбираются воспроизводимой profile matrix по flash/heap, GAP/GATT/SMP/HID/ext-adv/Coded needs. Preferred lightweight stack не подменяет feature/security HIL; release содержит SBOM/config/version. |
 | `REQ-BLE-04` | `C-BLE-01` | `include` | Основной | Ordinary scan показывает address+type, PHY, advertising type/set, payload length, RSSI, timestamp/age, duplicate/filter policy и scan coverage/loss. Active scan response запрашивается только в ordinary/authorized session; no-background default. |
@@ -35,13 +35,13 @@ Native BLE controller предоставляет standard scanning, advertising,
 | `REQ-BLE-17` | `C-BLE-09`, `C-BLE-10`, `C-BLE-12` | `conditional` | Контролируемая зона, `BOTH` | Pairing/notification/crash/connection/GATT flood and resilience tests run only conducted/RF-shielded on authorized fixtures with exact packet corpus/version, conservative power, rate/count/time ceiling, countdown, dead-man, STOP and no-leakage validation. Open-air nuisance/DoS mode absent. |
 | `REQ-BLE-18` | `OUT-03` | `exclude baseline` | Контролируемая зона, `BOTH` | Native BLE does not promise jamming. Any interference-resilience source uses separately qualified hardware and the same conducted/RF-shielded `BOTH` contract; protocol failure is not evidence of intentional interference. |
 | `REQ-BLE-19` | connections | `conditional` | Сквозной security | Ordinary bonds prefer LE Secure Connections, authenticated method when available, RPA/privacy and least-privilege GATT. `Just Works` is labelled without MITM proof. Bond/IRK/LTK/passkey/credential data encrypted, access-controlled, explicitly revocable/exportable only by policy and erased on factory reset. |
-| `REQ-BLE-20` | all radio | `conditional` | Сквозной coexistence | S3 Wi-Fi/BLE TDM and cross-MCU C5/802.15.4/IR/nRF24 activity are scheduled with active owner, preemption/loss/latency visibility; если nRF24 также принадлежат S3, их local scheduler входит в тот же proof. Coded/high-duty advertising и scan не подавляют принятый Thread/Zigbee; unsafe simultaneous TX запрещён до antenna/self-desense HIL. |
+| `REQ-BLE-20` | all radio | `conditional` | Сквозной coexistence | Shared Wi-Fi/BLE TDM and all 802.15.4/IR/nRF24 activity are scheduled with active owner, preemption/loss/latency visibility; locally shared resources enter the same owner proof. Coded/high-duty advertising и scan не подавляют принятый Thread/Zigbee; unsafe simultaneous TX запрещён до antenna/self-desense HIL. |
 | `REQ-BLE-21` | all records | `conditional` | Сквозной storage | Advertising/GATT/HID/session formats are versioned, bounded and fuzzed; identifiers/payload/location/keys have typed sensitivity, minimization/redaction, encrypted storage, explicit export/delete/retention and inert import. Parser/signature update follows owner-controlled signed lifecycle. |
-| `REQ-BLE-22` | all | `acceptance` | Сквозной HIL | Exact module/antenna/owner fixture tests 1M/2M/Coded, legacy/extended scan/adv, RPA rotation/resolution, RSSI variance, tracker/signature false positives, GATT/SMP/HID peers, privacy, Wi-Fi/C5/nRF coexistence, crash/reset/update/link loss, STOP and shielded active tests. Unknown never becomes success/safe. |
+| `REQ-BLE-22` | all | `acceptance` | Сквозной HIL | Exact module/antenna/owner fixture tests 1M/2M/Coded, legacy/extended scan/adv, RPA rotation/resolution, RSSI variance, tracker/signature false positives, GATT/SMP/HID peers, privacy, coexistence with every selected radio/nRF path, crash/reset/update/link loss, STOP and shielded active tests. Unknown never becomes success/safe. |
 
 ## Явно не обещается
 
-- Bluetooth Classic/BR/EDR на S3 или C5;
+- Bluetooth Classic/BR/EDR без отдельно выбранного и квалифицированного backend;
 - passive follow/decryption чужого BLE connection штатным controller;
 - stable identity из rotating address или generic advertisement;
 - distance in metres, direction/AoA or precise location from RSSI alone;

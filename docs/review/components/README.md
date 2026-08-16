@@ -1,10 +1,13 @@
-# Этап 4 — компоненты и BOM
+# Historical component/BOM workspace
 
-- Статус: **В работе**
-- Пререквизит: этап 3 **Проведено ревью** (`DEC-0028`, `REV-0003U`)
-- Target: `PKG-0001/SYN-3A`
+- Статус: **Заблокировано исправленным workflow (`DEC-0032`)**
+- Former prerequisite: superseded `DEC-0028/PKG-0001/SYN-3A`
+- Current use: candidate facts and risks only
 
-Этап 4 превращает принятые архитектурные функции в проверяемый BOM. Legacy schematic/BOM используется только как источник кандидатов, прежних ошибок и уже существующих footprints; присутствие детали в legacy artifact не даёт ей приоритета.
+This workspace preserves component facts collected for the former candidate.
+No row is a current BOM target. New component qualification begins only after
+target product design, whole-device optimality, conceptual placement and a new
+atomic architecture decision pass `FLOW-0001`.
 
 ## Каноническая цепочка
 

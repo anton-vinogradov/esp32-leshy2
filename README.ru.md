@@ -1,56 +1,80 @@
 # Аппаратная часть Leshy2
 
-> **Целевой документ продукта.** Эта страница собирается из принятых и проверенных решений и описывает будущий готовый прибор, а не текущую реализацию. Зрелость, блокеры и открытые предложения находятся в [текущем состоянии проработки](docs/status/current-state.ru.md).
+> **Целевой документ продукта.** Страница описывает проверенное поведение и
+> границы готового продукта, а не выбранную электронную архитектуру или текущую
+> реализацию. Состояние проработки — в [current state](docs/status/current-state.ru.md).
 
 - [English version](README.md)
-- [Целевой документ firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)
+- [Целевой firmware-продукт](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)
 - [Канонический журнал ревью](docs/review/README.md)
 
-## Целевой готовый продукт
+## Образ готового продукта
 
-Leshy2 — открытый автономный портативный all-in-one полевой инструмент для наблюдения, диагностики, связи и разрешённых экспериментов с несколькими радиоэкосистемами. Это практически собираемый и проверяемый продукт с явными границами безопасности, а не коллекция демонстраций максимальных возможностей.
+Leshy2 — открытый автономный портативный all-in-one инструмент для наблюдения,
+диагностики, связи, навигации, обслуживания и разрешённых экспериментов в
+нескольких радиоэкосистемах. Это должен быть собираемый, ремонтопригодный и
+измеримый продукт, а не набор maximum-capability demos.
+
+Форм-фактор, вычислительная topology, owners, buses, pin map, components,
+разбиение плат и корпус намеренно открыты. Бывший `PKG-0001/SYN-3A` после
+[`DEC-0032`](docs/review/decisions/DEC-0032-reopen-product-design-before-cad.md)
+сохранён только как один candidate study.
 
 ## Три уровня функциональности
 
-1. **Основной режим** — повседневные инструменты, приём, диагностика, навигация, обслуживание и законная связь вне security-сценария.
-2. **Лаборатория** — пассивные, защитные и ограниченные инструменты исследования безопасности.
-3. **Лаборатория → Контролируемая зона** — действительно опасные active/disruptive инструменты. Каждый вход требует нового неснимаемого предупреждения и hold-to-confirm, а конкретная функция — изолированной среды, явно авторизованной цели либо обоих оснований.
+1. **Основной режим** — повседневные инструменты, приём, диагностика,
+   навигация, обслуживание и законная связь.
+2. **Лаборатория** — пассивные, защитные и ограниченные security-инструменты.
+3. **Лаборатория → Контролируемая зона** — опасные active/disruptive функции.
+   Каждый вход показывает новое неснимаемое предупреждение, а каждое действие
+   отдельно требует авторизованной цели, изолированной/проводной среды или обоих.
 
-При первичной установке отдельно принимается акт о ненападении. Ни акт, ни banner «Контролируемой зоны» не вооружают инструмент и не отменяют spectrum/licence/privacy/third-party ограничения. Канонические контракты — [`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md) и [`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md).
+При первичной установке отдельно принимается акт о ненападении. Ни он, ни banner
+не вооружают функцию и не отменяют spectrum/licensing/privacy/third-party gates
+([`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md),
+[`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md)).
 
-## Принятая системная архитектура
+## Проверенный целевой набор возможностей
 
-- Принятый zero-based target — цельный трёхдоменный `PKG-0001/SYN-3A`, а не legacy-компоновка: `ESP32-S3-WROOM-1U-N16R2` владеет application/UI/storage/audio и native Wi-Fi 2.4 ГГц/BLE; production `ESP32-C5-WROOM-1U-N8R8` использует silicon ≥v1.2 и владеет Wi-Fi 2.4/5 ГГц, IEEE 802.15.4 и consumer IR; `RP2354A A4` — deterministic-управлением 3×nRF24, CC1101 и analog voice ([`DEC-0028`](docs/review/decisions/DEC-0028-accept-zero-based-syn-3a.md), [`DEC-0029`](docs/review/decisions/DEC-0029-c5-v1.2-production-floor.md), [`PKG-0001`](docs/review/architecture/PKG-0001-zero-based-target-architecture-proposal.md)).
-- S3↔C5 использует 1-bit SDIO; S3↔RP — SPI с отдельным alert. Каждый peer локально выдерживает deadlines и снимает TX lease при malformed/stalled/lost IPC. Точный принятый controller/pin/recovery map — [`PIN-0002/SYN-3A`](docs/review/architecture/PIN-0002-zero-based-exact-pin-maps.md).
-- Доступ для prototype bring-up, ремонта и owner development постоянно сохранён у всех трёх доменов: каждый имеет собственный direct USB-C, физические BOOT и RESET и keyed debug-header общего формата. S3/C5 выводят UART0 и native USB JTAG, RP — SWD плюс USB_BOOT/RUN. Recovery не зависит от peer MCU или USB mux ([`DEC-0031`](docs/review/decisions/DEC-0031-permanent-three-domain-development-access.md)).
-- Локальный UI состоит из touch, encoder/push, BACK, HOME и OPTIONS; direct PTT, latched STOP и recessed RE-ARM являются независимыми safety-контролами. `TCA9535PWR` обслуживает только non-safety UI/slow control и не может быть единственным TX- или isolation-барьером.
-- Каждый из трёх nRF24 сохраняет полный native transceiver feature set, прямые RP CSN/CE/IRQ, независимые PTX/PRX sessions и одновременный приём; дефицит ног не может сокращать этот target.
-- ESP32-C5 даёт обычный Wi-Fi 2.4/5 ГГц с работой в одной выбранной полосе и встроенный IEEE 802.15.4 без дополнительного RF-модуля. OpenThread — открытый baseline для Thread; Zigbee coordinator/router/end-device подключается только как optional conditional adapter и не требуется для сборки, обновления или восстановления открытого core-продукта. Обычная работа со своими сетями находится в основном режиме, пассивный raw-анализ — в «Лаборатории», active security tests — в «Контролируемой зоне». Устройство не обещает simultaneous dual-band, DFS SoftAP, полный lossless monitor или public deauth/disassoc ([`DEC-0020`](docs/review/decisions/DEC-0020-open-first-thread-conditional-zigbee.md)).
-- ESP32-S3 даёт обычные 2.4 GHz STA/AP, authenticated local SoftAP/Web UI, подписанное OTA и явно ключованные ESP-NOW links. Пассивный public-API capture и защитный detector находятся в «Лаборатории»; identity tests — в «Контролируемой зоне», а disruptive load требует одновременно авторизации и проводной либо RF-экранированной среды. Full/lossless monitor, public deauth/disassoc, arbitrary management injection и on-device password cracking не являются обещаниями продукта ([`REQ-W24-0001`](docs/review/requirements/REQ-W24-0001-s3-wifi-espnow.md)).
-- ESP32-S3 — единственный baseline-владелец native Bluetooth LE для обычных scan/advertise, GAP/GATT/SMP/HID, product identity и bond storage; BLE C5 выключен по умолчанию. Это не сокращает nRF24: ограничен только их дополнительный experimental legacy-1M BLE-compatible subset, потому что nRF24 не является полноценным BLE controller ([`DEC-0021`](docs/review/decisions/DEC-0021-s3-native-ble-owner.md)).
-- Каждый из трёх трактов nRF24 сохраняет native transceiver feature set, независимые PTX/PRX sessions и одновременный приём. Они также дают измерение энергии 2.4 ГГц и калиброванный секторный поиск по бинарной доле срабатываний RPD. Запись показывает окно выборки и состояние калибровки; устройство не выдумывает RSSI/dBm, пеленг, угол или VSWR. Пассивный ESB discovery относится к «Лаборатории», активная проверка одной авторизованной цели — к «Контролируемой зоне», а interference/carrier tests требуют одновременно разрешения и проводной либо RF-экранированной среды ([`DEC-0019`](docs/review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md), [`REQ-N24-0001`](docs/review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)).
-- Бортового GNSS на основной плате нет. Навигация работает с поддерживаемым внешним M5Stack Unit GPS v1.1 либо с GNSS поддерживаемого комбинированного расширения. Квалифицированный профиль обязан давать NMEA baseline; assistance и receiver-reported индикатор помех/подмены включаются только после проверки точной revision/firmware, а unsupported/unknown не выдаётся за отсутствие угроз ([`DEC-0014`](docs/review/decisions/DEC-0014-casic-gnss-profile.md)).
-- Бортового LoRa на основной плате нет. M5Stack U214 — первый backend LoRa+GNSS для `EXT-RF14` и общепринятых профилей 868/915 в пределах фактических 868–923 МГц модуля и региональных правил; другие carrier опциональны и квалифицируются отдельно. Цель включает P2P, условные APRS/LoRaWAN, измеряемый link test, bounded file transfer и более поздний optional Meshtastic-compatible adapter. Silicon-wide bands, universal promiscuous decode, фиксированный прирост дальности и open-air interference не обещаются ([`REQ-LORA-0001`](docs/review/requirements/REQ-LORA-0001-external-sx1262.md)).
-- Встроенный mono digital-audio prerequisite реализуется через ES8311, существующий mux RX-источника и два аппаратных default-to-analog selector. Обычное прослушивание и голос через микрофон сохраняются при reset или failure MCU либо codec.
-- Встроенный Si4732 даёт FM/RDS и обычный приём LW/MW/SW. SSB USB/LSB и CW через BFO доступны после локального импорта владельцем совместимого volatile patch через открытый bounded loader; сторонний blob не входит в release без доказанных provenance и права распространения. Synchronous-AM не обещается до отдельного proof ([`DEC-0015`](docs/review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md)).
-- Предпочтительный voice-radio backend — half-duplex analog-FM SA518 с VHF 136–174 и UHF 400–470 МГц и проведённо квалифицированными 0.5/1 W в явных региональных/licence-профилях. Он использует отдельный STOP-dominant `VVOICE` около 4.0 V через buck от `BAT`; название firmware-профиля не подменяет измерение RF output. До проверки цены, поставки и RF сохраняется UHF-only SA868S fallback с отдельным явным stuffing/supply manifest; он никогда не называется dual-band. Падение пика 2 W-class→1 W принято ради одного VHF+UHF модуля, а внешний SMA не выдаётся за licence-exempt PMR446 ([`DEC-0016`](docs/review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md), [`DEC-0025`](docs/review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md)).
-- Бортовой CC1101 даёт RSSI hunt в квалифицированных полосах, sequential waterfall, RAW OOK capture, versioned protocol decode и signal library с provenance. Он не выдаётся за SDR, realtime FFT, precision frequency counter или universal rolling-code tool. Replay своего tagged-сигнала находится в Main; unknown/security replay — в «Контролируемой зоне» с авторизованной целью, а brute-force, continuous carrier и interference-resilience требуют одновременно разрешения и проводной либо экранированной среды ([`REQ-SUB-0001`](docs/review/requirements/REQ-SUB-0001-cc1101-subghz.md)).
-- HF NFC/RFID предоставляет внешний M5 Unit NFC U216 через квалифицированный 5-вольтовый `PORT.A-NFC`, поэтому frontend не входит в base BOM. Первый target покрывает NFC-A/B/F/V и обычную работу с метками; анализ credentials относится к «Лаборатории», а recovery, credential write/clone, emulation и relay с двумя frontend — к «Контролируемой зоне» и требуют авторизованной цели. RFID2 остаётся limited compatibility, custom PN7160 — только fallback при провале qualification. Поддержка зависит от проверки точной revision/lifecycle U216 и не означает universal clone, payment compliance или LF 125 kHz ([`DEC-0017`](docs/review/decisions/DEC-0017-u216-hf-nfc-backend.md)).
-- Consumer IR использует два приёмных тракта C5: TSOP38238 для надёжного demodulated 38 kHz приёма и TSMP95000 для обучения с измерением несущей 30–60 kHz. TSAL6200 — первый условный кандидат 940 nm emitter. Пульт/replay собственного устройства находится в основном режиме, пассивный анализ — в «Лаборатории», unknown/security replay требует авторизованной цели в «Контролируемой зоне», а disruptive multi-code sweep — одновременно изоляции и авторизации. Автоматическое обучение 455 kHz/out-of-band отложено ([`DEC-0018`](docs/review/decisions/DEC-0018-dual-path-consumer-ir.md)).
+- Три независимых полнофункциональных nRF24 сохраняют native PTX/PRX,
+  одновременный приём и честные packet/drop/timestamp evidence. Их будущий
+  owner и wiring открыты.
+- Продукт даёт обычные Wi-Fi 2.4/5 ГГц, IEEE 802.15.4, native Bluetooth LE и
+  Wi-Fi 2.4/ESP-NOW profiles. Точные radios и ownership выбирает только будущая
+  whole-device architecture.
+- Packet Sub-GHz, broadcast receiver, analog voice, калиброванное 2.4 GHz
+  sector/RPD comparison, consumer IR learning/TX и digital/analog audio paths
+  остаются в scope со своими проверенными safety/evidence limits.
+- Бортовые GNSS, LoRa и HF NFC frontends не обязательны. Product design должен
+  поддержать внешние M5-style GNSS, общепринятые LoRa bands через cap и
+  expansion-module strategies где это реализуемо, а также внешний NFC.
+- Локальные display/storage/controls, PTT, hard STOP и explicit re-arm остаются
+  автономными; обычная эксплуатация не требует телефона.
+- Каждый в итоге выбранный programmable chip получает постоянные независимые
+  пути прошивки, восстановления и диагностики для prototype bring-up и owner
+  repair. Точные connectors и pins пока открыты.
+- Owner-controlled signed updates сохраняют target validation, rollback,
+  offline keys/tools и intentional physical recovery. Необратимый lockdown —
+  отдельный optional decision, а не default.
 
-## Граница опциональных расширений
+Названные в требованиях и candidate studies modules/IC являются first targets
+или evidence, но не молча зафиксированным BOM.
 
-Замороженный wishlist сохраняет будущие профили отдельного BLE connection sniffer, Bluetooth Mesh, Bluetooth Classic, дополнительных HF/VHF/DRM/SDR, digital voice, full-duplex repeater, Linux-class analytics, cellular, LF 125 kHz RFID, two-frontend NFC relay и off-device heavy key recovery. Ни один из них не добавляет radio, modem, второй NFC frontend или Linux compute в base-board BOM. Профиль появляется только после квалификации конкретного внешнего backend, питания, прав, безопасности и HIL ([`INV-0004`](docs/review/inventories/INV-0004-wishlist-self-review.md)).
+## Границы безопасности и стоимости
 
-## Граница безопасности и стоимости
+- Каждый transmitter и Lab action стартует разоружённым после power/reset/
+  update/watchdog/brownout.
+- Первая TX использует консервативный профиль; максимум требует явного выбора
+  для текущего сценария.
+- Physical STOP доминирует над firmware и communication failures. Его отпускание
+  никогда не восстанавливает прежние target, power или lease.
+- Actual-TX evidence отделено от команды и UI indication.
+- Стоимость уменьшается только при доказанной эквивалентности capabilities,
+  performance, safety, reliability, autonomy, serviceability и testability.
 
-- Все передатчики стартуют выключенными, Lab-инструменты — разоружёнными.
-- Первая передача использует консервативный профиль конкретного радиотракта. Максимальная доступная мощность требует явного выбора и никогда не является общим дефолтом.
-- Физический STOP асинхронно защёлкивает hardware kill, управляет RP `RUN` и S3/C5 reset/enable policy и независимо обесточивает либо inhibits каждый внешний TX-capable RF/IR/accessory domain. Отпускание кнопки не выполняет re-arm: отдельное физическое действие либо power cycle запускает новый TX-off boot без восстановления прежней lease. Фактическая TX-индикация остаётся независимой, а электрическая реализация обязана пройти fault-injection review ([`DEC-0024`](docs/review/decisions/DEC-0024-latched-hard-stop.md), [`PKG-0001`](docs/review/architecture/PKG-0001-zero-based-target-architecture-proposal.md)).
-- Штатные пути обновления S3, C5 и RP2354A принимают owner-authorized подписанные образы с независимой validation, A/B rollback и физическим recovery. Ключи, offline build/signing и developer firmware остаются под контролем владельца; необратимый hardware lockdown требует отдельного добровольного решения ([`DEC-0013`](docs/review/decisions/DEC-0013-owner-controlled-signed-updates.md), [`DEC-0028`](docs/review/decisions/DEC-0028-accept-zero-based-syn-3a.md)).
-- Полная стоимость снижается только реализациями с доказанным отсутствием потерь функций, характеристик, безопасности, надёжности, автономности, ремонтопригодности и тестируемости.
-- Wishlist из 125 leaf-функций заморожен после полного саморевью. Новая крупная возможность становится контролируемым change request и переводит затронутые demand-model/layout artifacts в повторное ревью.
+## Состояние разработки
 
-## Как развивается эта страница
-
-Здесь кратко отражаются только принятые продуктовые контракты. Этап 3 зафиксировал цельную target architecture; зрелость components, schematic, layout, manufacturing и HIL начиная с этапа 4 остаётся в [текущем состоянии](docs/status/current-state.ru.md) и журнале ревью до проверки.
+Product capabilities этапов 1–2 проверены. Сейчас активен target physical/product
+design; whole-device alternatives, optimality, conceptual placement и новое
+atomic architecture decision обязаны предшествовать компонентам и KiCad.
+Нормативный порядок — [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

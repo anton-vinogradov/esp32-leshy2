@@ -1,10 +1,16 @@
 # DEC-0031 — permanent three-domain development access
 
-- Статус: **Принято; проведено ревью**
+- Статус: **Requirement retained; exact three-domain implementation superseded by `DEC-0032`**
 - Дата: 2026-08-16
 - Основание: владелец выбрал `IMP-0026/B` и потребовал полный debug/recovery access каждого MCU
 - Этап: 4 — `C-006`, с зависимостями на `C-001…003/007`
 - Реализационный контракт: [`SVC-0001`](../components/SVC-0001-three-domain-development-access.md)
+
+> Retained owner requirement: every programmable chip selected by the future
+> architecture has permanent independent programming, recovery and diagnostic
+> access suitable for prototype bring-up and owner repair. The three USB-C,
+> DBG10, exact buttons, pin mappings and parts below are a candidate study, not
+> an accepted product topology.
 
 ## Решение
 

@@ -1,9 +1,12 @@
 # REV-0004G — permanent three-domain development access
 
-- Статус: **Проведено ревью**
+- Статус: **Historical candidate review; exact topology superseded by `REV-0004H`**
 - Дата: 2026-08-16
 - Решение: [`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md)
 - Artifacts: [`IMP-0026`](../improvements/IMP-0026-connectorless-owner-recovery-fixture.md), [`SVC-0001`](../components/SVC-0001-three-domain-development-access.md)
+
+> The owner need for permanent independent access is retained. The checks below
+> apply only to the archived three-domain candidate implementation.
 
 ## Acceptance and propagation
 

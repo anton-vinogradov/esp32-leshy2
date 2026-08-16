@@ -1,56 +1,81 @@
 # Leshy2 Hardware
 
-> **Target product document.** This page is assembled from accepted, reviewed decisions and describes the intended finished device—not the current implementation. See the [current engineering state](docs/status/current-state.md) for maturity, blockers, and pending proposals.
+> **Target product document.** This page describes reviewed product behavior
+> and boundaries, not a selected electronic architecture or current
+> implementation. See the [current engineering state](docs/status/current-state.md).
 
 - [Русская версия](README.ru.md)
 - [Firmware target product](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
 - [Canonical review ledger](docs/review/README.md)
 
-## Finished product target
+## Finished-product intent
 
-Leshy2 is an open, autonomous, portable all-in-one field instrument for observation, diagnostics, communications, and authorized experiments across several radio ecosystems. It is designed as a buildable and verifiable product with explicit safety boundaries, not as an unchecked collection of maximum-capability demos.
+Leshy2 is an open, autonomous, portable all-in-one field instrument for
+observation, diagnostics, communications, navigation, maintenance and
+authorized experiments across several radio ecosystems. It must become a
+buildable, repairable and measurable product rather than an unchecked
+maximum-capability demo.
+
+The physical form factor, compute topology, owners, buses, pin map, component
+set, board partition and enclosure are intentionally open. Former
+`PKG-0001/SYN-3A` is retained only as one candidate study after
+[`DEC-0032`](docs/review/decisions/DEC-0032-reopen-product-design-before-cad.md).
 
 ## Three functional levels
 
-1. **Main** — everyday tools, reception, diagnostics, navigation, maintenance, and legitimate communications outside a security-research scenario.
-2. **Lab** — passive, defensive, and bounded security-research tools.
-3. **Lab → Controlled Zone** — genuinely dangerous active or disruptive tools. Every entry requires a fresh non-suppressible warning and hold-to-confirm, plus an isolated environment, an explicitly authorized target, or both as required by the tool.
+1. **Main** — everyday tools, reception, diagnostics, navigation, maintenance
+   and legitimate communications.
+2. **Lab** — passive, defensive and bounded security-research tools.
+3. **Lab → Controlled Zone** — dangerous active or disruptive tools. Every
+   entry displays a fresh non-suppressible warning; every action separately
+   requires an authorized target, isolated/conducted environment, or both.
 
-Initial setup separately requires acceptance of the non-aggression pledge. Neither the pledge nor the Controlled-Zone banner arms a tool or overrides spectrum, licensing, privacy, or third-party constraints. The canonical contracts are [`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md) and [`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md).
+Initial setup separately requires acceptance of the non-aggression pledge.
+Neither acknowledgement arms a tool or overrides spectrum, licensing, privacy
+or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md),
+[`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md)).
 
-## Accepted system architecture
+## Reviewed capability target
 
-- The accepted zero-based target is the complete three-domain `PKG-0001/SYN-3A`, not a legacy placement: `ESP32-S3-WROOM-1U-N16R2` owns application/UI/storage/audio and native 2.4 GHz Wi-Fi/BLE; production `ESP32-C5-WROOM-1U-N8R8` uses silicon ≥v1.2 and owns 2.4/5 GHz Wi-Fi, IEEE 802.15.4 and consumer IR; `RP2354A A4` owns deterministic 3×nRF24, CC1101 and analog-voice control ([`DEC-0028`](docs/review/decisions/DEC-0028-accept-zero-based-syn-3a.md), [`DEC-0029`](docs/review/decisions/DEC-0029-c5-v1.2-production-floor.md), [`PKG-0001`](docs/review/architecture/PKG-0001-zero-based-target-architecture-proposal.md)).
-- S3↔C5 uses 1-bit SDIO; S3↔RP uses SPI plus a dedicated alert. Each peer owns local deadlines and expires TX leases on malformed, stalled or lost IPC. The accepted controller/pin/recovery map is [`PIN-0002/SYN-3A`](docs/review/architecture/PIN-0002-zero-based-exact-pin-maps.md).
-- Prototype, repair and owner development access is permanent for all three domains: each has its own direct USB-C, physical BOOT and RESET, and a keyed common-format debug header. S3/C5 expose UART0 and native USB JTAG; RP exposes SWD plus USB_BOOT/RUN. No recovery path depends on a peer MCU or USB mux ([`DEC-0031`](docs/review/decisions/DEC-0031-permanent-three-domain-development-access.md)).
-- Local UI is touch plus encoder/push, BACK, HOME and OPTIONS; direct PTT, latched STOP and recessed RE-ARM are independent safety controls. `TCA9535PWR` serves only non-safety UI/slow control and cannot be the sole TX or isolation barrier.
-- Every one of the three nRF24 paths retains the full native transceiver feature set, direct RP CSN/CE/IRQ control, independent PTX/PRX sessions and simultaneous reception; pin pressure cannot reduce this target.
-- ESP32-C5 provides ordinary 2.4/5 GHz Wi-Fi in one selected band and built-in IEEE 802.15.4 without another RF module. OpenThread is the open Thread baseline; Zigbee coordinator/router/end-device support is an optional conditional adapter and is not required to build, update, or recover the open core product. Ordinary operation on owner-administered networks is Main, passive raw analysis is Lab, and active security tests are Controlled Zone. The product does not promise simultaneous dual band, DFS SoftAP, full lossless monitor, or public deauth/disassociation support ([`DEC-0020`](docs/review/decisions/DEC-0020-open-first-thread-conditional-zigbee.md)).
-- ESP32-S3 provides ordinary 2.4 GHz STA/AP, authenticated local SoftAP/Web UI, signed OTA, and explicitly keyed ESP-NOW links. Passive public-API capture and defensive detection belong to Lab; identity tests belong to the Controlled Zone, and disruptive load tests require both authorization and conducted or RF-shielded containment. Full/lossless monitor, public deauth/disassociation, arbitrary management injection, and on-device password cracking are not product claims ([`REQ-W24-0001`](docs/review/requirements/REQ-W24-0001-s3-wifi-espnow.md)).
-- ESP32-S3 is the sole baseline native Bluetooth LE owner for ordinary scan/advertise, GAP/GATT/SMP/HID, product identity and bond storage; C5 BLE is default-off. This does not reduce the nRF24 radios: only their extra experimental legacy-1M BLE-compatible subset is limited, because nRF24 is not a complete BLE controller ([`DEC-0021`](docs/review/decisions/DEC-0021-s3-native-ble-owner.md)).
-- Each of the three nRF24 paths retains the native transceiver feature set, independent PTX/PRX sessions and simultaneous reception. They also provide 2.4 GHz energy sampling and a calibrated sector hunt based on binary RPD hit rate. Records expose the sampling window and calibration state; the product does not invent RSSI/dBm, bearing, angle, or VSWR. Passive ESB discovery is Lab, authorized single-target exploitation is Controlled Zone, and interference/carrier tests require both authorization and conducted or RF-shielded containment ([`DEC-0019`](docs/review/decisions/DEC-0019-calibrated-rpd-three-antenna-hunt.md), [`REQ-N24-0001`](docs/review/requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)).
-- GNSS is not populated on the base board. Navigation uses a supported external M5Stack Unit GPS v1.1, or the GNSS included in a supported combined expansion. A qualified profile must provide the NMEA baseline; assistance and receiver-reported interference/spoofing status are enabled only after exact revision/firmware proof, and unsupported/unknown is never presented as no threat ([`DEC-0014`](docs/review/decisions/DEC-0014-casic-gnss-profile.md)).
-- LoRa is not populated on the base board. M5Stack U214 is the first `EXT-RF14` LoRa+GNSS backend for common 868/915 profiles within the module's actual 868–923 MHz and regional limits; other carriers are optional and separately qualified. The target includes P2P, conditional APRS and LoRaWAN, measured link tests, bounded file transfer, and an optional later Meshtastic-compatible adapter. Silicon-wide bands, universal promiscuous decode, fixed range gains, and open-air interference are not promised ([`REQ-LORA-0001`](docs/review/requirements/REQ-LORA-0001-external-sx1262.md)).
-- The onboard mono digital-audio prerequisite uses ES8311, the existing RX-source mux, and two hardware-default-to-analog selectors. Ordinary listening and microphone voice remain available across MCU or codec reset and failure.
-- The onboard Si4732 provides FM/RDS and ordinary LW/MW/SW reception. SSB USB/LSB and CW via BFO become available after the owner locally imports a compatible volatile patch through an open bounded loader; no third-party blob ships without proven provenance and redistribution rights. Synchronous AM is not promised pending separate proof ([`DEC-0015`](docs/review/decisions/DEC-0015-open-si4732-ssb-patch-loader.md)).
-- The preferred voice-radio backend is a half-duplex analog-FM SA518 covering VHF 136–174 and UHF 400–470 MHz at conducted-qualified 0.5/1 W under explicit regional/licence profiles. It uses a dedicated STOP-dominant, BAT-fed `VVOICE` rail near 4.0 V; firmware labels never substitute for measured RF output. A UHF-only SA868S fallback remains until price, supply, and RF qualification pass, uses a separate explicit stuffing/supply manifest, and is never labelled dual-band. The 2 W-class→1 W peak trade is accepted for one VHF+UHF module; an external SMA is not represented as licence-exempt PMR446 equipment ([`DEC-0016`](docs/review/decisions/DEC-0016-conditional-sa518-dual-band-voice.md), [`DEC-0025`](docs/review/decisions/DEC-0025-dedicated-4v-sa518-voice-rail.md)).
-- The onboard CC1101 path provides qualified-band RSSI hunting, sequential waterfall, RAW OOK capture, versioned protocol decode, and a provenance-aware signal library. It is not represented as an SDR, realtime FFT, precision frequency counter, or universal rolling-code tool. Own tagged replay is Main; unknown/security replay is authorized-target Controlled Zone, while brute-force, continuous-carrier, and interference-resilience tests require both authorization and conducted or shielded containment ([`REQ-SUB-0001`](docs/review/requirements/REQ-SUB-0001-cc1101-subghz.md)).
-- HF NFC/RFID is provided by an external M5 Unit NFC U216 through a qualified 5 V `PORT.A-NFC`, keeping the frontend out of the base BOM. The first target covers NFC-A/B/F/V and ordinary tag operations; credential analysis belongs to Lab, while recovery, credential writing/cloning, emulation, and a two-frontend relay belong to the Controlled Zone and require an authorized target. RFID2 is limited compatibility and a custom PN7160 design is only a qualification fallback. Exact U216 revision/lifecycle support remains conditional and no universal-clone, payment-compliance, or LF 125 kHz claim is implied ([`DEC-0017`](docs/review/decisions/DEC-0017-u216-hf-nfc-backend.md)).
-- Consumer IR uses two C5 receive paths: TSOP38238 for robust demodulated 38 kHz reception and TSMP95000 for measured-carrier learning from 30 to 60 kHz. TSAL6200 is the first conditional 940 nm emitter candidate. Own-device remote/replay is Main, passive analysis is Lab, unknown/security replay requires an authorized target in the Controlled Zone, and disruptive multi-code sweeps require both isolation and authorization. Automatic 455 kHz/out-of-band learning remains deferred ([`DEC-0018`](docs/review/decisions/DEC-0018-dual-path-consumer-ir.md)).
+- Three independent full-function nRF24 paths retain native PTX/PRX features,
+  simultaneous reception and honest packet/drop/timestamp evidence. Their
+  future owner and wiring remain open.
+- The product provides ordinary 2.4/5 GHz Wi-Fi, IEEE 802.15.4, native
+  Bluetooth LE and ordinary 2.4 GHz Wi-Fi/ESP-NOW profiles. Exact radios and
+  ownership are selected only by the future whole-device architecture.
+- Packet Sub-GHz, broadcast reception, analog voice, calibrated 2.4 GHz
+  sector/RPD comparison, consumer IR learning/transmit and digital/analog audio
+  paths remain in scope with their reviewed safety and evidence limits.
+- Base-board GNSS, LoRa and HF NFC frontends are not required. The product
+  design must support qualified external M5-style GNSS, common-band LoRa via
+  both cap and expansion-module strategies where feasible, and external NFC.
+- Local display, storage, controls, PTT, hard STOP and explicit re-arm remain
+  autonomous; ordinary product use cannot require a phone.
+- Every programmable chip ultimately selected must expose permanent,
+  independent programming, recovery and diagnostic access suitable for
+  prototype bring-up and owner repair. Exact connectors and pins remain open.
+- Owner-controlled signed updates retain target validation, rollback, offline
+  keys/tools and intentional physical recovery. Irreversible lockdown is a
+  separate optional decision, never the default.
 
-## Optional expansion boundary
-
-The frozen wishlist keeps later profiles for a dedicated BLE connection sniffer, Bluetooth Mesh, Bluetooth Classic, additional HF/VHF/DRM/SDR reception, digital voice, full-duplex repeating, Linux-class analytics, cellular connectivity, LF 125 kHz RFID, two-frontend NFC relay, and off-device heavy key recovery. None adds a radio, modem, second NFC frontend, or Linux compute to the base-board BOM. Each appears only after a concrete external backend and its power, rights, security, and HIL profile are qualified ([`INV-0004`](docs/review/inventories/INV-0004-wishlist-self-review.md)).
+Named modules and ICs in requirement and candidate studies are first targets or
+evidence—not silently fixed BOM components.
 
 ## Safety and cost boundary
 
-- Every transmitter starts off; Lab tools start disarmed.
-- Initial TX uses a conservative per-radio profile. Maximum available power requires an explicit choice and is never a global default.
-- Physical STOP asynchronously latches a hardware kill, drives RP `RUN` and the S3/C5 reset/enable policy, and independently power-cuts or inhibits every external TX-capable RF/IR/accessory domain. Releasing the button does not re-arm the device: a separate physical action or power cycle starts a fresh TX-off boot without restoring the previous lease. Actual-TX indication remains independent, and the electrical implementation must pass failure-injection review ([`DEC-0024`](docs/review/decisions/DEC-0024-latched-hard-stop.md), [`PKG-0001`](docs/review/architecture/PKG-0001-zero-based-target-architecture-proposal.md)).
-- Normal S3, C5 and RP2354A update paths accept owner-authorized signed images with independent validation, A/B rollback and physical recovery. Keys, offline build/signing, and developer firmware remain under owner control; irreversible hardware lockdown is a separate opt-in decision ([`DEC-0013`](docs/review/decisions/DEC-0013-owner-controlled-signed-updates.md), [`DEC-0028`](docs/review/decisions/DEC-0028-accept-zero-based-syn-3a.md)).
-- Total product cost is optimized only through implementations proven equivalent in capability, performance, safety, reliability, autonomy, serviceability, and testability.
-- The 125-leaf product wishlist is frozen after complete self-review. A new major capability is a controlled change request and reopens every affected demand-model or layout artifact.
+- Every transmitter and Lab action starts disarmed after power, reset, update,
+  watchdog or brownout.
+- Initial TX uses a conservative per-path profile; maximum available power
+  requires an explicit current-scenario choice.
+- Physical STOP must dominate firmware and communication failures. Releasing it
+  never restores a prior TX target, power or lease.
+- Actual-TX evidence remains distinct from a command or UI indication.
+- Cost reductions are accepted only with proof of equivalent capability,
+  performance, safety, reliability, autonomy, serviceability and testability.
 
-## How this page grows
+## Development state
 
-Only accepted product contracts are summarized here. Stage 3 fixed the complete target architecture; component, schematic, layout, manufacturing and HIL maturity from stage 4 onward remains in the [current-state page](docs/status/current-state.md) and review ledger until reviewed.
+Stages 1–2 product capabilities are reviewed. Target physical/product design is
+now active; whole-device alternatives, optimality, conceptual placement and a
+new atomic architecture decision must precede components and KiCad. The
+normative sequence is [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

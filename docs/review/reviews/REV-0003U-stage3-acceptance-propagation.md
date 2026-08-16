@@ -1,10 +1,14 @@
 # REV-0003U — принятие и cross-repository propagation этапа 3
 
-- Статус: **Проведено ревью**
+- Статус: **Historical review superseded by `DEC-0032/REV-0004H`**
 - Дата: 2026-08-16
 - Этап: 3 — системная архитектура и владение
 - Decision: [`DEC-0028`](../decisions/DEC-0028-accept-zero-based-syn-3a.md)
 - Target package: [`PKG-0001/SYN-3A`](../architecture/PKG-0001-zero-based-target-architecture-proposal.md)
+
+> The propagation described below was internally consistent but its upstream
+> architecture decision lacked required product-design and optimality gates.
+> It no longer proves an accepted target.
 
 ## Проверка атомарного принятия
 

@@ -1,15 +1,19 @@
 # BOM-0001 — stage-4 component evidence register
 
-- Статус: **Проведено ревью реестра; component qualification открыта**
+- Статус: **Candidate/reference register; component stage blocked by `DEC-0032`**
 - Дата: 2026-08-16
 - Пререквизиты: `PKG-0001/SYN-3A`, `DEC-0028`, `REV-0003U`
 - Review: [`REV-0004A`](../reviews/REV-0004A-stage4-entry-register.md)
+
+> Exact rows below preserve the superseded `SYN-3A` evidence snapshot. They are
+> no longer architecture-locked targets and cannot be consumed by CAD,
+> schematic or procurement until the corrected product/architecture gates pass.
 
 ## Что означает статус строки
 
 | Code | Смысл |
 |---|---|
-| `A` | exact architecture-locked target; stage 4 проверяет полный evidence, а не заново выбирает owner/function |
+| `A` | historical architecture-locked target from the superseded package; now candidate/reference only |
 | `C` | conditional named candidate/fallback; выбор или сохранение conditional state ещё требует qualification |
 | `F` | обязательная circuit function, exact part/topology ещё не выбрана |
 | `X` | внешний qualified accessory profile; не base-BOM frontend, но board-side interface обязателен |

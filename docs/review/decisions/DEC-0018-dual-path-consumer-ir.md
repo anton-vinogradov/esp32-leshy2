@@ -1,10 +1,14 @@
-# DEC-0018 — двухтрактный consumer IR на ESP32-C5
+# DEC-0018 — двухтрактный consumer IR; former C5 implementation profile
 
-- Статус: **Принято владельцем**
+- Статус: **Capability decision retained; C5 ownership/component implementation reopened by `DEC-0032`**
 - Источник: `IMP-0015`, вариант A
 - Дата: 2026-08-16
 
 ## Решение
+
+> Нормативно сохраняются robust ordinary receive и отдельный carrier-aware
+> learning path. Назначение C5/RMT и конкретные TSOP/TSMP/TSAL являются
+> проверенным reference profile, а не принятой архитектурой или BOM.
 
 Consumer IR получает два независимых RX-тракта, физически и программно принадлежащих ESP32-C5:
 
@@ -43,4 +47,3 @@ Consumer IR получает два независимых RX-тракта, фи
 - [Vishay TSOP382/384 datasheet](https://www.vishay.com/docs/82491/tsop382.pdf)
 - [Vishay TSMP95000 datasheet](https://www.vishay.com/docs/82907/tsmp95000.pdf)
 - [Vishay TSAL6200 datasheet](https://www.vishay.com/docs/81010/tsal6200.pdf)
-

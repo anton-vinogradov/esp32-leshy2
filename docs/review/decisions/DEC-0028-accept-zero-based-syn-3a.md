@@ -1,15 +1,21 @@
 # DEC-0028 — принятие zero-based architecture `SYN-3A`
 
-- Статус: **Принято; проведено ревью**
+- Статус: **Superseded by `DEC-0032`; historical candidate decision only**
 - Дата: 2026-08-16
 - Основание: прямое подтверждение владельца «давай)» в ответ на единый вопрос о принятии `PKG-0001/SYN-3A`
 - Этап: 3 — системная архитектура и владение
 - Нормативный package: [`PKG-0001`](../architecture/PKG-0001-zero-based-target-architecture-proposal.md)
 - Метод и правило приёмки: [`DEC-0027`](DEC-0027-zero-based-capability-driven-architecture.md), [`DEC-0026`](DEC-0026-atomic-integrated-architecture-acceptance.md)
 
+> `FND-0039` established that target physical design, explicit whole-product
+> optimality and conceptual placement were missing prerequisites. This record
+> preserves what was chosen at the time, but `PKG-0001/SYN-3A` is no longer the
+> Leshy2 target and cannot authorize BOM, CAD, schematic, firmware or PCB work.
+
 ## Решение
 
-`PKG-0001/SYN-3A` принят целиком как target architecture Leshy2:
+Historically, `PKG-0001/SYN-3A` was accepted as a target architecture. Under
+`DEC-0032`, every item below is now candidate/reference evidence:
 
 1. `ESP32-S3-WROOM-1U-N16R2` — application/UI/storage/audio domain, native 2.4 GHz Wi-Fi/BLE и manager внешних M5 profiles.
 2. `ESP32-C5-WROOM-1U-N8R8` — native 2.4/5 GHz Wi-Fi, IEEE 802.15.4 и dual-path consumer IR. Stage-4 `DEC-0029` later raises its production floor from ≥v1.0 to ≥v1.2 while retaining v1.0 only for restricted engineering samples.

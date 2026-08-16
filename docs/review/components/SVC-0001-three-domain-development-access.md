@@ -1,10 +1,14 @@
 # SVC-0001 — three-domain development access
 
-- Статус: **Проведено ревью topology и first-target candidates; CAD/AVL/HIL открыты**
+- Статус: **Candidate study only; implementation superseded by `DEC-0032`**
 - Дата: 2026-08-16
 - Решение: [`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md)
 - Строки BOM: `C-006`, частично `C-001…003/007`
 - Пререквизиты: [`REC-0001`](REC-0001-compute-recovery-and-link-prerequisites.md), `FND-0037` closed
+
+> Permanent independent programming/recovery/diagnostics remains a product
+> requirement. Exact domain count, USB-C/DBG10 topology, pins and components
+> below await product design and a new architecture selection.
 
 ## Exact first-target component set
 

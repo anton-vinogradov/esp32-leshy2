@@ -1,17 +1,26 @@
 # Этапы и статусы
 
-| № | Этап | Пререквизиты | Основной выход | Статус |
-|---:|---|---|---|---|
-| 0 | Система ревью и baseline | — | правила, baseline двух SHA, реестры | Проведено ревью |
-| 1 | Видение и границы | этап 0 | проверенная формулировка назначения и ограничений | Проведено ревью |
-| 2 | Возможности и исключения | этап 1 | полный `INV-0002`, матрица `REQ-*`, zero-loss boundaries и owner-confirmed wishlist freeze | Проведено ревью (`DEC-0023`, `REV-0002AD`) |
-| 3 | Системная архитектура и владение | wishlist freeze этапа 2 | zero-based capability/concurrency/resource model, несколько полных hardware syntheses, затем exact owners/transports/pins/power/reset/update и атомарный package | **Проведено ревью** (`DEC-0028`, `REV-0003U`); target `PKG-0001/SYN-3A` |
-| 4 | Компоненты и BOM | этап 3 | проверенные компоненты, доступность и пределы | В работе; entry/register, compute facts and C5 v1.2 decision **Проведено ревью** (`BOM-0001/0002`, `DEC-0029`, `REV-0004A…C`); project-local CAD library/provenance/tests **Проведено ревью** (`DEC-0030`, `LIB-0001`, `REV-0004D/E`); three-domain recovery/debug topology and first candidates **Проведено ревью** (`DEC-0031`, `REC/SVC-0001`, `REV-0004F/G`); schematic/component qualification открыты |
-| 5 | Физическая конструкция и управление | этапы 3–4 | механика, органы управления, интерфейсы | Не начато |
-| 6 | Электрические спецификации | этапы 3–5 | проверенные схемные требования | Не начато |
-| 7 | Firmware-архитектура и toolchain | этапы 2–6 | build/runtime/HAL/test contracts | Не начато |
-| 8 | Реализация схем и firmware | этапы 6–7 | воспроизводимые исходники и тесты | Не начато |
-| 9 | PCB, эмуляция и pre-fab gate | этап 8 | проверенные платы и цифровые сценарии | Не начато |
-| 10 | Изготовление и bring-up | этап 9 | протокол измерений и результаты | Не начато |
+Нормативные gate definitions и правила итерации находятся в
+[`FLOW-0001`](architecture/FLOW-0001-product-to-cad-gates.md). Нумерация ниже
+исправлена решением [`DEC-0032`](decisions/DEC-0032-reopen-product-design-before-cad.md);
+прежняя последовательность ошибочно ставила architecture/BOM раньше product
+and physical design (`FND-0039`).
 
-Этапы могут иметь параллельные подветви, но ни одна ветвь не использует непроверенный контракт как окончательный вход.
+| № | Gate | Основной выход | Статус |
+|---:|---|---|---|
+| 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
+| 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
+| 2 | Capabilities | полный wishlist, requirements, exclusions, concurrency/failure needs | **Проведено ревью** (`DEC-0023`, `REV-0002AD`) |
+| 3 | Target product design | form factor, interaction, controls, external interfaces, battery, antenna/service/environment/cost envelopes | **В работе; архитектура и CAD заблокированы** |
+| 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
+| 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
+| 6 | Conceptual co-design | block/board/antenna/power/thermal/service placement and preliminary resource feasibility | Не начато |
+| 7 | Atomic architecture | owners, transports, exact resources/pins, reset/update/safety and reopen gates | **Переоткрыто**; former `DEC-0028/PKG-0001` superseded as target by `DEC-0032` |
+| 8 | Components and BOM | exact qualified parts, lifecycle/supply/cost/alternates | Заблокировано этапом 7; former stage-4 evidence is candidate/reference only |
+| 9 | Electrical/CAD and firmware architecture | electrical specification, canonical libraries, schematic/ERC, runtime/HAL/toolchain/test contracts | Заблокировано; active KiCad contains no canonical implementation |
+| 10 | PCB and pre-fab | placement/routing/DRC/SI/PI/RF/mechanical/manufacturing evidence | Не начато |
+| 11 | Prototype and bring-up | assembly, recovery, safety/RF/HIL measurements | Не начато |
+
+Этапы могут содержать параллельные feasibility probes, но их результаты
+остаются черновиками. Ни одна ветвь не использует непроверенный или
+candidate-only artifact как окончательный вход.

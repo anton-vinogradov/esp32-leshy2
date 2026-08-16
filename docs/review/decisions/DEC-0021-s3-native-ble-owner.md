@@ -1,12 +1,16 @@
-# DEC-0021 — ESP32-S3 владеет baseline native Bluetooth LE
+# DEC-0021 — former ESP32-S3 baseline native-BLE ownership
 
-- Статус: **Принято владельцем; проведено ревью распространения**
+- Статус: **Superseded as target ownership by `DEC-0032`; native-BLE capability retained**
 - Дата: 2026-08-16
 - Принимает: `IMP-0019/A`, уточнённый `IMP-0017`
 - Закрывает: `FND-0002` на уровне требований
 - Не решает: физического владельца 3×nRF24 (`IMP-0021`)
 
 ## Решение
+
+> Пункты ниже сохраняют историю и доказанный S3 reference profile. В новой
+> архитектуре native BLE, product identity/key-vault semantics и coexistence
+> остаются обязательными, но owner/controller выбирается заново целиком.
 
 1. ESP32-S3 — единственный baseline-владелец native Bluetooth LE: GAP/GATT/SMP/HID, ordinary scan/advertise/central/peripheral, product identity, bond/IRK/LTK vault и allowlist.
 2. BLE controller ESP32-C5 выключен в обычном profile. C5-only advanced BLE функция может появиться только через новое требование с доказанной пользой, coexistence и HIL.
@@ -27,4 +31,3 @@
 - [ESP32-S3 Bluetooth LE feature set](https://documentation.espressif.com/esp32-s3_datasheet_en.pdf)
 - [ESP32-S3 BLE hosts and profiles](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/ble/overview.html)
 - [ESP32-C5 RF coexistence](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-guides/coexist.html)
-

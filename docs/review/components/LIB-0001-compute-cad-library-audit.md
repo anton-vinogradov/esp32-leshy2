@@ -1,6 +1,6 @@
 # LIB-0001 — compute CAD symbol/footprint audit
 
-- Статус: **Проведено ревью; DEC-0030/A реализовано**
+- Статус: **Historical reproducibility review; active CAD superseded/archived by `DEC-0032`**
 - Дата snapshot: 2026-08-16
 - Tool snapshot: KiCad `10.0.5`; installed official KiCad 10 libraries
 - Пререквизиты: `BOM-0002`, `DEC-0028/0029`, `PIN-0002`
@@ -8,6 +8,9 @@
 - Decision: [`DEC-0030`](../decisions/DEC-0030-vendored-critical-cad-libraries.md)
 - Reviews: [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md),
   [`REV-0004E`](../reviews/REV-0004E-vendored-critical-cad-libraries.md)
+
+> This file records a technically valid library audit performed at the wrong
+> process stage. Its exact component assumptions are not current product input.
 
 ## Stage boundary
 

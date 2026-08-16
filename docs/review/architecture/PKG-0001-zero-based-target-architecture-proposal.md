@@ -1,11 +1,17 @@
 # PKG-0001 — zero-based target architecture proposal
 
-- Статус: **Принято `DEC-0028`; проведено ревью**
+- Статус: **Superseded as target by `DEC-0032`; candidate/reference only**
 - Дата: 2026-08-16
 - Этап: 3, атомарный package по `DEC-0026/0027`
-- Target: `SYN-3A` с `RP2354A A4` как единая target architecture
+- Former target: `SYN-3A`; retained as one electronic-placement candidate
 - Нормативные входы: reviewed `CAP/CON/RES/SRC/SYN/PIN/BUD/PWR/RFQ/CST`
 - Запрет: нельзя принять отдельный owner, pin, transport или UI fragment без всего package
+
+> This package did not consume a reviewed physical product design, explicit
+> whole-product optimality model or conceptual placement. `FND-0039` therefore
+> invalidates its target status. Numeric work and risks remain useful evidence,
+> but none of the owners, variants, buses, pins or component choices is
+> normative.
 
 ## Почему на решение выходит `SYN-3A`
 

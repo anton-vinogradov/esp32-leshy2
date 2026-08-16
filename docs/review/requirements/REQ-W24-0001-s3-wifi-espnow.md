@@ -1,6 +1,6 @@
-# REQ-W24-0001 — S3 Wi-Fi 2.4 GHz and ESP-NOW contract
+# REQ-W24-0001 — Wi-Fi 2.4 GHz and ESP-NOW capability contract
 
-- Статус набора: **Проведено ревью**
+- Статус набора: **Проведено ревью capability; S3/backend ownership открыт `DEC-0032`**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-W24-01`–`C-W24-12`, `C-X-01`–`C-X-04`, `C-X-06`–`C-X-08`, `C-X-11`, `C-UX-01`, `W-EXTRA-01`, `OUT-01`
 - Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0021`, `DEC-0022`, `DEC-0023`
@@ -8,7 +8,7 @@
 
 ## Граница документа
 
-ESP32-S3 остаётся основным application MCU, владельцем своего 2.4 GHz Wi-Fi/BLE radio и baseline native BLE. Wi-Fi scan/connect/SoftAP/ESP-NOW, passive observation, defensive detection, identity tests и disruptive resilience tests — разные режимы с разными prerequisites. Публичный ESP-IDF не представляется как произвольный monitor/injection stack.
+Прежний ESP32-S3 profile остаётся проверенным reference backend, но application MCU и radio owner заново выбираются whole-device architecture. Wi-Fi scan/connect/SoftAP/ESP-NOW, passive observation, defensive detection, identity tests и disruptive resilience tests — разные режимы с разными prerequisites. Ни один public SDK не представляется как произвольный monitor/injection stack.
 
 ## Матрица требований
 
@@ -17,7 +17,7 @@ ESP32-S3 остаётся основным application MCU, владельцем
 | `REQ-W24-01` | `C-W24-01`, `C-W24-09` | `include` | Основной | AP scan, channel/security/RSSI view, подключение к собственным/администрируемым STA/AP и opt-in MAC randomization. UI показывает actual interface/mode/channel/region и не выдаёт отсутствие наблюдения за отсутствие сети. |
 | `REQ-W24-02` | `C-W24-03` | `conditional` | Основной | Packet-rate/channel-load view публикует измеренное окно, dwell, пропуски и метод; это не абсолютная утилизация эфира и не protocol attribution. |
 | `REQ-W24-03` | `C-W24-12` | `conditional` | Основной | Локальный authenticated SoftAP/Web UI обслуживает настройку, export и recovery. Он не стартует скрыто, не занимает radio во время несовместимой session и не заменяет on-device управление. |
-| `REQ-W24-04` | `C-W24-12` | `conditional` | Основной/update | Wi-Fi OTA принимает только owner-authorized signed image, проверяет target/version/hash/signature/rollback и не снижает `DEC-0013`; firmware C5 передаётся через отдельно проверенный меж-MCU update path. |
+| `REQ-W24-04` | `C-W24-12` | `conditional` | Основной/update | Wi-Fi OTA принимает только owner-authorized signed image, проверяет target/version/hash/signature/rollback и не снижает `DEC-0013`; firmware остальных selected targets передаётся через отдельно проверенные update paths. |
 | `REQ-W24-05` | `C-W24-11` | `conditional` | Основной | ESP-NOW link предназначен для собственных peers, использует explicit provisioning, PMK/LMK lifecycle, peer allowlist, replay/freshness policy и видимый encryption state. Unencrypted broadcast не переносит secrets. |
 | `REQ-W24-06` | `C-W24-01`, `C-W24-02` | `conditional` | Лаборатория | Passive AP/client/beacon/probe/management/control/data capture через public promiscuous API сохраняет channel/timestamp/class/FCS/error/filter/loss/coverage и privacy-redacted PCAP. Full/lossless monitor и decryption не обещаются. |
 | `REQ-W24-07` | `C-W24-04` | `conditional` | Лаборатория | Deauth/rogue/evil-twin detector показывает PMF/security/evidence/confidence/unknown; единичный frame или совпавший SSID не доказывает атаку. |
@@ -30,16 +30,16 @@ ESP32-S3 остаётся основным application MCU, владельцем
 | `REQ-W24-14` | `C-W24-05` | `defer` | Контролируемая зона, `AUTHORIZED_TARGET` | Deauth/disassoc/arbitrary management TX не входят в public baseline. Version-locked private backend возможен только отдельным решением с provenance/rights/SBOM/hash/signature/rollback/HIL и честным PMF result. |
 | `REQ-W24-15` | `C-W24-06` | `conditional` | Контролируемая зона, `BOTH` | Beacon/probe/auth/assoc load tests выполняются только conducted/RF-shielded на authorized fixture: no-leakage check, minimum power, packet/time ceiling, countdown, dead-man, independent STOP. |
 | `REQ-W24-16` | `C-W24-11` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | ESP-NOW replay/spoof/security tests используют exact allowlisted peer/session corpus, bounded count/time and preview; они не наследуют ключи ordinary link автоматически. |
-| `REQ-W24-17` | все radio | `conditional` | Сквозной coexistence | S3 Wi-Fi/BLE делят radio; C5 Wi-Fi/802.15.4, три nRF24 и прочие TX входят в общий scheduler. UI показывает active owner/preemption/loss; одновременный unsafe TX запрещён до RF HIL. |
+| `REQ-W24-17` | все radio | `conditional` | Сквозной coexistence | Если Wi-Fi/BLE делят radio, scheduler показывает active owner/preemption/loss; dual-band/802.15.4 backend, три nRF24 и прочие TX входят в whole-product arbitration. Одновременный unsafe TX запрещён до RF HIL. |
 | `REQ-W24-18` | все records | `conditional` | Сквозной privacy/storage | Capture/session formats versioned, bounded и fuzzed; identifiers/payload/location/keys типизированы по чувствительности, минимизированы, шифруются где нужно и имеют явные export/delete/retention/reset tests. |
 | `REQ-W24-19` | все TX | `conditional` | Сквозной safety | Region/channel/power/target/duration preview, conservative default, fresh Controlled-Zone banner, per-tool arming, local dead-man, actual-TX indication и independent STOP обязательны; reset/crash/update не оставляют autonomous TX. |
-| `REQ-W24-20` | все | `acceptance` | Сквозной HIL | Exact S3 module/antenna/IDF fixture проверяет STA/AP/SoftAP/ESP-NOW, public capture/TX classes, PMF/privacy, loss, coexistence, update/rollback, crash/reset/STOP и contained active tests. `Unknown` не превращается в success/safe. |
+| `REQ-W24-20` | все | `acceptance` | Сквозной HIL | Exact selected module/antenna/SDK fixture проверяет STA/AP/SoftAP/ESP-NOW, public capture/TX classes, PMF/privacy, loss, coexistence, update/rollback, crash/reset/STOP и contained active tests. `Unknown` не превращается в success/safe. |
 
 ## Явно не обещается
 
 - lossless/full monitor, decryption или universal client inventory;
 - public deauth/disassoc/arbitrary management injection;
-- одновременная независимая работа S3 Wi-Fi и BLE;
+- одновременная независимая работа Wi-Fi и BLE на одном shared radio;
 - on-device password cracking;
 - open-air disruptive testing чужих сетей.
 

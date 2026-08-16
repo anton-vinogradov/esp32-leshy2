@@ -1,6 +1,6 @@
 # BOM-0002 — compute, clock and recovery evidence
 
-- Статус: **Проведено ревью фактов и C5 stepping decision; component qualification не завершена**
+- Статус: **Reviewed historical facts; exact compute selection superseded by `DEC-0032`**
 - Дата snapshot: 2026-08-16
 - Пререквизиты: `BOM-0001`, `DEC-0028`, `PIN-0002`, `BUD-0002`
 - Review: [`REV-0004B`](../reviews/REV-0004B-compute-clock-recovery-evidence.md)
@@ -13,6 +13,9 @@
 - Physical development access: [`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md),
   [`SVC-0001`](SVC-0001-three-domain-development-access.md),
   [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md)
+
+> Manufacturer facts remain useful for future candidates. No S3/C5/RP part,
+> clock, bus, recovery pin or service connector is a current product choice.
 
 ## Evidence boundary
 

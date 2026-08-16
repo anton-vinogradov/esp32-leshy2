@@ -1,10 +1,15 @@
 # DEC-0030 — repository-vendored critical CAD libraries
 
-- Статус: **Принято; проведено ревью**
+- Статус: **Superseded as active work by `DEC-0032`; snapshot archived**
 - Дата: 2026-08-16
 - Основание: владелец выбрал вариант A в IMP-0025
 - Этап: 4 — компоненты и BOM
 - Затрагивает: C-001…005, LIB-0001, FND-0036, future KiCad schematic/PCB releases
+
+> The library snapshot was reproducible, but it was created before required
+> product-design, optimality, conceptual-placement and architecture gates. It
+> is preserved under `drafts/premature-compute-cad-2026-08-16/`; no active
+> canonical C-001…005 library exists.
 
 ## Решение
 
