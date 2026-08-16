@@ -34,5 +34,4 @@
 
 ## Итог
 
-Пререквизиты проверены и draft `REQ-BLE-0001` сформирован. Сам capability contract остаётся **«На ревью»**, потому что ownership меняет IPC, coexistence, identity/key custody и test surface и не может быть автоподтверждён. Рекомендуется `IMP-0019/A`: S3 — единственный baseline native-BLE owner, C5 BLE default-off, nRF24 — только limited compatibility/research.
-
+На момент этого prerequisite review draft `REQ-BLE-0001` оставался **«На ревью»**, потому что ownership менял IPC, coexistence, identity/key custody и test surface. После ответа владельца `IMP-0019/A` принят как `DEC-0021`, а распространение проведено в `REV-0002Y`: S3 — единственный baseline native-BLE owner, C5 BLE default-off. Ограничен только experimental BLE-compatible subset nRF24, полный native nRF24 feature set сохраняется.

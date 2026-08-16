@@ -50,14 +50,14 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-N24-01 | Драйвер регистров/SPI nRF24 | SYS | C5 target; transport `FND-0001`, current artifact `FND-0019`, clean ESP-IDF/licence proof |
+| C-N24-01 | Полный native driver регистров/SPI nRF24 | SYS | owner переоткрыт `IMP-0021`; transport `FND-0001`, artifact `FND-0019`, full-function `REQ-N24-19`, clean ESP-IDF/licence proof |
 | C-N24-02 | Параллельный RPD energy sweep, waterfall, occupancy | MAIN | `DEC-0019`: calibrated binary hit ratio по трём секторам; не RSSI/dBm/bearing |
 | C-N24-03 | Оверлей энергии Wi-Fi/Zigbee/802.15.4 | MAIN | только frequency/energy overlay без protocol attribution |
 | C-N24-04 | ESB sniff и поиск адресов | LAB-P | pseudo-promiscuous candidate → CRC/confidence-validated record, payload redacted |
 | C-N24-05 | MouseJack scan и инъекция | MIXED | passive advisory discovery = Lab; confirmation/injection = Controlled Zone `AUTHORIZED_TARGET` |
 | C-N24-06 | KeySniffer незашифрованных нажатий | LAB-I | sensitive capture = Controlled Zone `AUTHORIZED_TARGET`, vault/redaction/retention |
 | C-N24-07 | ESB replay, fake device, address brute-force | LAB-I | single target = `AUTHORIZED_TARGET`; mapper/brute-force = `BOTH` |
-| C-N24-08 | BLE advertising sniff/spoof через nRF24 | MIXED | limited legacy-1M compatibility only; ordinary BLE → native boundary `IMP-0017`/`IMP-0019` |
+| C-N24-08 | BLE advertising sniff/spoof через nRF24 | MIXED | limited legacy-1M BLE compatibility only по `DEC-0021`; это не ограничивает полный native nRF24 feature set |
 | C-N24-09 | Одноканальный и reactive jam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded only; open-air mode excluded |
 | C-N24-10 | Sweep beacon, carrier test, VSWR aid, 3-антенный hunt | MIXED | `DEC-0019`: calibrated RPD sector hunt; carrier = external-instrument source only, no VSWR |
 
@@ -79,7 +79,7 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-BLE-01 | Advertising scan, ext-adv и Coded PHY | MAIN | native ESP поддерживает; owner требует `IMP-0019` |
+| C-BLE-01 | Advertising scan, ext-adv и Coded PHY | MAIN | native S3 owner принят `DEC-0021`; exact host/profile/HIL conditional |
 | C-BLE-02 | Offline device DB, OUI/company ID, RSSI proximity | MAIN | versioned/licensed DB; RPA и RSSI не дают stable identity, метры или направление |
 | C-BLE-03 | Детект AirTag/Find My и stalking trackers | MAIN | personal-safety detector conditional on signatures+temporal evidence; не доказывает owner/intent/absence |
 | C-BLE-04 | Continuity/Flipper/device-type sniff | LAB-P | passive corpus требует provenance/licence/version и confidence |
@@ -207,7 +207,7 @@
 | C-X-06 | GPS-tagged capture, Wardrive и PCAP logging | MIXED | privacy gate |
 | C-X-07 | RTC from GPS/NTP | SYS | — |
 | C-X-08 | Capture/replay storage for Sub-GHz/IR/ESB | MIXED | storage vs Lab replay |
-| C-X-09 | BLE keyboard input from phone | SYS | native owner pending `IMP-0019`; explicit pairing/allowlist/local fallback |
+| C-X-09 | BLE keyboard input from phone | SYS | native S3 owner `DEC-0021`; explicit pairing/allowlist/local fallback |
 | C-X-10 | Drone Remote-ID detection | MAIN | passive public broadcasts |
 | C-X-11 | Detection alerts by LED/buzzer/GPS | SYS | — |
 

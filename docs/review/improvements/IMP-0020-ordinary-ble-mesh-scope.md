@@ -1,7 +1,7 @@
 # IMP-0020 — ordinary Bluetooth Mesh как найденная, но не запрошенная функция
 
-- Статус: **⚠️ Предложение отложено до решения BLE owner**
-- Связано: `FND-0002`, `IMP-0019`, draft `REQ-BLE-0001`
+- Статус: **⚠️ Предложение — требуется отдельное решение после `DEC-0021`**
+- Связано: `DEC-0021`, `IMP-0019`, reviewed `REQ-BLE-0001`
 - Зона: Main ordinary owner network; Lab/Controlled Zone security cases separate
 - Дата: 2026-08-16
 
@@ -15,7 +15,7 @@ ESP-IDF официально поддерживает ESP-BLE-MESH provisioning/
 - B: не включать Mesh и сохранить только point-to-point/broadcast BLE baseline;
 - security provisioning/key tests при любом варианте проектируются отдельно по трём уровням.
 
-Вопрос будет задан после выбора BLE owner, потому что ownership/coexistence — обязательный prerequisite. До отдельного согласия target README и `REQ-BLE-0001` Mesh не обещают.
+Ownership prerequisite выполнен решением `DEC-0021`. Вопрос задаётся отдельным последовательным шагом после выбора nRF24 owner; до отдельного согласия target README и `REQ-BLE-0001` Mesh не обещают.
 
 ## Первичный источник
 

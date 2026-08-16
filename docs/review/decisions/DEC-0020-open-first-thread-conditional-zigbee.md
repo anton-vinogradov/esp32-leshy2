@@ -31,7 +31,6 @@ Optional proprietary Zigbee adapter не делает устройство за�
 
 - `REQ-W5-0001` получает статус **«Проведено ревью»**;
 - `FND-0025` закрывается на уровне требований; coexistence/build/HIL остаются implementation proof;
-- `FND-0022`–`FND-0024`, `FND-0001`, `FND-0002` и `FND-0007` остаются открытыми implementation findings;
+- `FND-0022`–`FND-0024`, `FND-0001` и `FND-0007` остаются открытыми implementation findings; `FND-0002` позднее закрыт решением `DEC-0021`;
 - `IMP-0003` и private patched Wi-Fi backend не принимаются этим решением и сохраняют собственные gates;
 - target/current-state EN/RU обоих репозиториев получают одинаковую open/proprietary boundary.
-

@@ -1,11 +1,12 @@
 # REQ-BLE-0001 — native Bluetooth LE connectivity, observation and controlled-test contract
 
-- Статус набора: **На ревью — требуется решение `IMP-0019`**
+- Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-BLE-01`–`C-BLE-12`, `C-X-03`, `C-X-06`, `C-X-09`, `C-UX-01`, `C-UX-02`, `OUT-03`, `OUT-04`
-- Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0019`, `DEC-0020`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0004`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0019`, `DEC-0020`, `DEC-0021`
 - Находки: `FND-0002`, `FND-0007`, `FND-0021`, `FND-0026`, `FND-0027`
-- Открытые предложения: `IMP-0004`, `IMP-0017`, `IMP-0019`, `IMP-0020`
+- Принятые предложения: `IMP-0017`, `IMP-0019`
+- Открытые предложения: `IMP-0004`, `IMP-0020`
 
 ## Граница документа
 
@@ -15,7 +16,7 @@ Native BLE controller предоставляет standard scanning, advertising,
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-BLE-01` | все | `requires IMP-0019` | Сквозной ownership | Ровно один MCU владеет baseline BLE controller, identity, bond/key vault и scheduler; второй не создаёт параллельный product identity без отдельного requirement. `IMP-0019/A` рекомендует S3 и не добавляет hardware BOM. |
+| `REQ-BLE-01` | все | `include`, `DEC-0021` | Сквозной ownership | S3 единолично владеет baseline native BLE controller, identity, bond/key vault и scheduler; C5 BLE default-off и не создаёт параллельный product identity без отдельного requirement. Это не меняет физического владельца nRF24 и не сокращает их native feature set. |
 | `REQ-BLE-02` | `C-BLE-01` | `conditional` | Сквозной feature matrix | Exact owner/profile доказывает 1M/2M/Coded PHY, legacy/extended advertising, multiple sets, simultaneous scan+advertise и central/peripheral roles до включения UI. Controller support, host support и tested peer support — разные states. |
 | `REQ-BLE-03` | все | `conditional` | Сквозной stack | NimBLE/Bluedroid и ESP-IDF version выбираются воспроизводимой profile matrix по flash/heap, GAP/GATT/SMP/HID/ext-adv/Coded needs. Preferred lightweight stack не подменяет feature/security HIL; release содержит SBOM/config/version. |
 | `REQ-BLE-04` | `C-BLE-01` | `include` | Основной | Ordinary scan показывает address+type, PHY, advertising type/set, payload length, RSSI, timestamp/age, duplicate/filter policy и scan coverage/loss. Active scan response запрашивается только в ordinary/authorized session; no-background default. |
@@ -34,7 +35,7 @@ Native BLE controller предоставляет standard scanning, advertising,
 | `REQ-BLE-17` | `C-BLE-09`, `C-BLE-10`, `C-BLE-12` | `conditional` | Контролируемая зона, `BOTH` | Pairing/notification/crash/connection/GATT flood and resilience tests run only conducted/RF-shielded on authorized fixtures with exact packet corpus/version, conservative power, rate/count/time ceiling, countdown, dead-man, STOP and no-leakage validation. Open-air nuisance/DoS mode absent. |
 | `REQ-BLE-18` | `OUT-03` | `exclude baseline` | Контролируемая зона, `BOTH` | Native BLE does not promise jamming. Any interference-resilience source uses separately qualified hardware and the same conducted/RF-shielded `BOTH` contract; protocol failure is not evidence of intentional interference. |
 | `REQ-BLE-19` | connections | `conditional` | Сквозной security | Ordinary bonds prefer LE Secure Connections, authenticated method when available, RPA/privacy and least-privilege GATT. `Just Works` is labelled without MITM proof. Bond/IRK/LTK/passkey/credential data encrypted, access-controlled, explicitly revocable/exportable only by policy and erased on factory reset. |
-| `REQ-BLE-20` | all radio | `conditional` | Сквозной coexistence | Owner Wi-Fi/BLE TDM and cross-MCU C5/nRF24 activity are scheduled with active owner, preemption/loss/latency visibility. Coded/high-duty advertising and scan do not starve accepted Thread/Zigbee; unsafe simultaneous TX prohibited until antenna/self-desense HIL. |
+| `REQ-BLE-20` | all radio | `conditional` | Сквозной coexistence | S3 Wi-Fi/BLE TDM and cross-MCU C5/802.15.4/IR/nRF24 activity are scheduled with active owner, preemption/loss/latency visibility; если nRF24 также принадлежат S3, их local scheduler входит в тот же proof. Coded/high-duty advertising и scan не подавляют принятый Thread/Zigbee; unsafe simultaneous TX запрещён до antenna/self-desense HIL. |
 | `REQ-BLE-21` | all records | `conditional` | Сквозной storage | Advertising/GATT/HID/session formats are versioned, bounded and fuzzed; identifiers/payload/location/keys have typed sensitivity, minimization/redaction, encrypted storage, explicit export/delete/retention and inert import. Parser/signature update follows owner-controlled signed lifecycle. |
 | `REQ-BLE-22` | all | `acceptance` | Сквозной HIL | Exact module/antenna/owner fixture tests 1M/2M/Coded, legacy/extended scan/adv, RPA rotation/resolution, RSSI variance, tracker/signature false positives, GATT/SMP/HID peers, privacy, Wi-Fi/C5/nRF coexistence, crash/reset/update/link loss, STOP and shielded active tests. Unknown never becomes success/safe. |
 
@@ -49,9 +50,11 @@ Native BLE controller предоставляет standard scanning, advertising,
 - open-air pairing/crash/connection flood или BLE jammer;
 - Bluetooth Mesh до отдельного решения `IMP-0020`.
 
-## Условие финального ревью
+Полноценный BLE через nRF24 также не обещается: возможен только доказанный experimental legacy-1M advertising subset. Эта BLE-граница не ограничивает native nRF24L01+ PTX/PRX, Enhanced ShockBurst, rate/channel, ACK, pipe, FIFO, IRQ или RPD функции.
 
-После ответа по `IMP-0019` owner/native/nRF24 boundary распространяется в `FND-0002`, `IMP-0017`, target/current-state EN/RU обоих репозиториев и этот contract. `IMP-0004` и `IMP-0020` остаются отдельными последовательными решениями и не блокируют честный native BLE baseline.
+## Финальное ревью
+
+Распространение `DEC-0021` проведено в `REV-0002Y`: owner/native/nRF24 boundary синхронизирована в `FND-0002`, `IMP-0017`, target/current-state EN/RU обоих репозиториев и этом contract. `IMP-0004` и **⚠️ `IMP-0020`** остаются отдельными последовательными предложениями и не блокируют native BLE baseline.
 
 ## Первичные источники
 
@@ -63,4 +66,3 @@ Native BLE controller предоставляет standard scanning, advertising,
 - [Nordic nRF Sniffer](https://docs.nordicsemi.com/r/bundle/nrfutil/page/nrfutil-ble-sniffer/guides/running_sniffer.html)
 - [Bluetooth SIG Security and Privacy Best Practices](https://www.bluetooth.com/download/bluetooth-security-and-privacy-best-practices-guide/)
 - [Apple unwanted-tracker guidance](https://support.apple.com/en-us/119874)
-
