@@ -27,13 +27,17 @@
 
 - число и расположение Unit-портов;
 - пассивный dock либо несколько fixed A/B/C surfaces;
-- разъём, USB generation, role, port count и power budget high-speed tier;
+- разъём, transport, role, port count и power budget high-speed tier;
 - MCU owner, bus routing, GPIO, enclosure и exact load-switch BOM;
 - какие дополнительные catalog-возможности становятся product scope.
 
 Эти пункты сравниваются в G3/G4 и затем принимаются атомарной архитектурой.
 `W-EXTRA-16` остаётся отдельным вопросом о пользовательском результате
 high-speed USB host, а не скрыто закрывается этим infrastructure-решением.
+
+Later [`DEC-0039`](DEC-0039-radio-key-scope-correction.md) rejects that generic
+host result. The second tier remains only when derived by a concrete accepted
+RF/SDR/external-analysis profile and no longer implies USB.
 
 ## Цена и граница продукта
 
@@ -51,4 +55,3 @@ candidate только вместе с доказанными use cases, power/E
   остаётся downstream;
 - G2 продолжает current competitor delta с `W-EXTRA-12`;
 - target README обоих репозиториев получают двухуровневый expansion contract.
-

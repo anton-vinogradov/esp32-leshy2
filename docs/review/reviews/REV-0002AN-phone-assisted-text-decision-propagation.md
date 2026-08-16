@@ -13,7 +13,7 @@
 | Phone made a general remote-control authority | no; text transport only |
 | Core field/safety/recovery operation requires phone | no |
 | Optional text-dependent workflow may require phone | да; explicit unavailable state without it |
-| Remote input can arm TX/CZ/destructive/FIDO/trust action | no |
+| Remote input can arm TX/CZ/destructive/trust action | no |
 | Text is reviewed locally before use | да |
 | Pairing/peer/revoke/failure behavior bounded | да |
 | U215 silently accepted as target accessory | no |

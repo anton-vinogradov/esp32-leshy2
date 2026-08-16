@@ -18,7 +18,7 @@
    требовать phone; отсутствие phone не маскируется как готовность workflow.
 4. Phone supplies characters, not authority. Remote input cannot accept the
    non-aggression pledge, enter Controlled Zone, arm/confirm TX or destructive
-   actions, confirm FIDO presence, change firmware trust, clear secrets or
+   actions, change firmware trust, clear secrets or
    authorize recovery. These decisions remain local and fresh.
 5. Переданный текст полностью показывается на Leshy2 before use. Any value that
    affects target, identity, frequency, power, credentials or external action

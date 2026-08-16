@@ -1,6 +1,6 @@
 # DEC-0035 — open personal FIDO authenticator
 
-- Статус: **Принято владельцем; проведено ревью распространения**
+- Статус: **Исторически принято; superseded для target scope решением `DEC-0039`**
 - Дата: 2026-08-16
 - Ответ владельца: **да варианту A**
 - Предложение: [`IMP-0029`](../improvements/IMP-0029-open-personal-fido-authenticator.md)
@@ -48,3 +48,10 @@
 - релиз блокируется до protocol/interoperability/fuzz/fault/update/reset and
   cross-interface isolation evidence.
 
+## Later scope correction
+
+The owner later narrowed Leshy2 to radio/communication and wireless/contact
+credential work. [`DEC-0039`](DEC-0039-radio-key-scope-correction.md) removes
+the personal FIDO authenticator from the target. The reviewed security analysis
+is retained as historical evidence but imposes no component, USB, vault,
+firmware or release requirement.

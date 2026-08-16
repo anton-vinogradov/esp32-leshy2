@@ -1,6 +1,6 @@
 # AUD-0010 — high-speed USB host use cases, feasibility and safety boundary
 
-- Статус: **Проведено ревью фактов; product disposition открыт**
+- Статус: **Проведено ревью; generic host rejected `DEC-0039`**
 - Дата snapshot: 2026-08-17
 - Delta: `W-EXTRA-16`
 - Предложение: [`IMP-0033`](../improvements/IMP-0033-native-high-speed-usb-host.md)
@@ -66,7 +66,7 @@ The product result requires:
 - profile-specific current budget and battery/runtime/thermal effects;
 - ESD, insertion/removal, short and malformed-descriptor/parser testing;
 - local consent before storage write, programmer action or external TX;
-- FIDO exclusive mode disables host VBUS and all accessory enumeration;
+- any mutually exclusive security/service mode disables host VBUS and accessory enumeration;
 - a qualified external transmitter starts safe/off, loses every lease on
   disconnect/reset/STOP and never inherits permission merely from USB attach.
 
@@ -92,5 +92,6 @@ HS host does not silently decide the connector count.
 - [x] current integrated-HS feasibility identified without selecting silicon;
 - [x] line rate separated from sustained application throughput;
 - [x] connector data/power role separated from USB speed;
-- [x] recovery, FIDO, external-TX and malformed-device boundaries recorded;
-- [ ] owner disposition through `IMP-0033`.
+- [x] recovery, mutually exclusive modes, external-TX and malformed-device boundaries recorded;
+- [x] owner rejected generic host and retained only RF-derived transport through
+  `DEC-0039`.

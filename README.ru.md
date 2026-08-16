@@ -10,10 +10,12 @@
 
 ## Образ готового продукта
 
-Leshy2 — открытый автономный портативный all-in-one инструмент для наблюдения,
-диагностики, связи, навигации, обслуживания и разрешённых экспериментов в
-нескольких радиоэкосистемах. Это должен быть собираемый, ремонтопригодный и
-измеримый продукт, а не набор maximum-capability demos.
+Leshy2 — открытый автономный портативный all-in-one инструмент для radio/
+wireless наблюдения, диагностики, связи и разрешённых исследований, включая
+беспроводные и контактные credential tools. Навигация, обслуживание и compute
+поддерживают эти результаты, а не превращают продукт в general-purpose
+peripheral computer. Это должен быть собираемый, ремонтопригодный и измеримый
+продукт, а не набор maximum-capability demos.
 
 Форм-фактор, вычислительная topology, owners, buses, pin map, components,
 разбиение плат и корпус намеренно открыты. Бывший `PKG-0001/SYN-3A` после
@@ -51,9 +53,10 @@ Leshy2 — открытый автономный портативный all-in-o
   iButton/1-Wire реализуется заменяемым пассивным M5-style Port-B адаптером,
   без обязательных контактов на корпусе базы.
 - M5 Unit A/B/C/custom и полный U214-compatible 14-pin Cap образуют основной
-  low-rate expansion tier. Для raw SDR, внешнего compute и general host
-  сохраняется отдельный high-throughput class; base не обещает native 30-pin
-  M5-Bus. Число/расположение портов и high-speed connector выбираются позже.
+  low-rate expansion tier. Принятые raw SDR и external RF/credential-analysis
+  profiles могут вывести отдельный high-throughput class; base не обещает
+  generic host или native 30-pin M5-Bus. Число/расположение портов и high-speed
+  connector выбираются позже.
 - Опциональный qualified external IMU может добавлять к RF records timestamped
   motion, pitch/roll и short-term relative-rotation metadata. Device-pose claim
   требует жёсткий indexed mount и sensor-to-antenna transform. Six-axis data не
@@ -62,7 +65,7 @@ Leshy2 — открытый автономный портативный all-in-o
   re-arm, pairing/revoke, service и recovery остаются автономными. В base нет
   постоянной text keyboard; заявленный редкий/длинный text workflow может
   использовать локально сопряжённый owner phone. Телефон передаёт видимый текст,
-  но не authority для safety, Controlled Zone, TX, destructive, FIDO, trust или
+  но не authority для safety, Controlled Zone, TX, destructive, trust или
   recovery actions.
 - Каждый в итоге выбранный programmable chip получает постоянные независимые
   пути прошивки, восстановления и диагностики для prototype bring-up и owner
@@ -70,11 +73,13 @@ Leshy2 — открытый автономный портативный all-in-o
 - Owner-controlled signed updates сохраняют target validation, rollback,
   offline keys/tools и intentional physical recovery. Необратимый lockdown —
   отдельный optional decision, а не default.
-- Основной режим включает открытый personal FIDO2/CTAP USB authenticator с U2F
-  compatibility. Он работает в exclusive minimal mode, требует нового local
-  consent и не включает device-bound credentials в обычный backup. Claims
-  FIDO Certified, hardware-backed и tamper-resistant запрещены без отдельного
-  proof; owner-controlled open firmware сохраняется.
+- Generic USB host и personal FIDO/U2F authenticator находятся вне product
+  mission. Конкретный принятый RF/SDR profile может позже вывести exact
+  high-throughput transport, не превращая generic host в capability.
+- BadUSB/DuckyScript — одно явное non-core исключение: release-optional
+  Controlled-Zone software profile поверх существующего USB device/service
+  path. Он не добавляет base hardware, не формирует architecture и не задерживает
+  radio/key core, но всё равно требует authorization, parser/security review и HIL.
 
 Названные в требованиях и candidate studies modules/IC являются first targets
 или evidence, но не молча зафиксированным BOM.

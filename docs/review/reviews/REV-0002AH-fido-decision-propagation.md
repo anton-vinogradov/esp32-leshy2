@@ -1,6 +1,6 @@
 # REV-0002AH — распространение решения open personal FIDO authenticator
 
-- Статус: **Проведено ревью**
+- Статус: **Проведено ревью historical decision; target later superseded `DEC-0039`**
 - Дата: 2026-08-16
 - Решение: [`DEC-0035`](../decisions/DEC-0035-open-personal-fido-authenticator.md)
 - Requirement: [`REQ-FIDO-0001`](../requirements/REQ-FIDO-0001-open-personal-authenticator.md)
@@ -27,3 +27,5 @@ product-requirement level. Реализация и assurance claims остают
 неподтверждёнными до downstream evidence. Следующий current competitor delta —
 `W-EXTRA-13` haptic feedback.
 
+Later `DEC-0039/REV-0002AP` remove FIDO from the current target mission; this
+artifact proves the earlier propagation only and creates no live release gate.

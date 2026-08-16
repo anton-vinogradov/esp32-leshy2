@@ -26,8 +26,8 @@ buses, pins, connector counts and CAD are intentionally open.
 - `INV-0002/0004` for the prior 125 leaves, the current-competitor delta in
   [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md), and the
   M5 expansion audit [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md),
-  plus the FIDO prerequisite audit
-  [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md) and
+  plus the former FIDO audit retained only as superseded evidence
+  [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md),
   haptic prerequisite audit
   [`AUD-0007`](../audits/AUD-0007-haptic-product-mechanical-cost.md) and IMU
   instrument-value audit
@@ -35,16 +35,23 @@ buses, pins, connector counts and CAD are intentionally open.
   physical-keyboard archetype audit
   [`AUD-0009`](../audits/AUD-0009-physical-keyboard-product-archetype.md), and
   High-Speed USB host audit
-  [`AUD-0010`](../audits/AUD-0010-high-speed-usb-host-use-cases.md).
+  [`AUD-0010`](../audits/AUD-0010-high-speed-usb-host-use-cases.md), and
+  mission-scope audit
+  [`AUD-0011`](../audits/AUD-0011-radio-key-product-scope.md), and 6 GHz/Wi-Fi
+  6E fact review
+  [`AUD-0012`](../audits/AUD-0012-6ghz-wifi6e-product-scope.md).
 
 `W-EXTRA-11` is reviewed by `DEC-0033/REQ-IBTN-0001`; M5-first Unit/Cap plus a
 separate high-throughput class without native M5-Bus is reviewed by
 `DEC-0034/REQ-EXT-0001`. `W-EXTRA-12` is reviewed by
-`DEC-0035/REQ-FIDO-0001`; product haptic is rejected by `DEC-0036`; optional
+former `DEC-0035/REQ-FIDO-0001` is removed from target by `DEC-0039`; product
+haptic is rejected by `DEC-0036`; optional
 external IMU measurement pose is reviewed by `DEC-0037/REQ-IMU-0001`. G2
 also closes `W-EXTRA-15` through `DEC-0038`: no integrated keyboard, bounded
-phone-assisted text. `W-EXTRA-16` facts are reviewed and `IMP-0033` awaits
-owner disposition; `W-EXTRA-17` remains open. G3 research
+phone-assisted text. `DEC-0039/REQ-SCOPE-0001` reject generic `W-EXTRA-16`,
+retain only RF-derived high-throughput transport and classify BadUSB as a
+software-only exception. `W-EXTRA-17` has reviewed prerequisites and remains
+an owner placement decision through `IMP-0034`. G3 research
 may proceed, but cannot receive final review until G2 closes.
 
 ## Candidate/reference studies

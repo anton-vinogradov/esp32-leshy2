@@ -1,6 +1,6 @@
 # AUD-0006 — U2F/FIDO authenticator capability and security boundary
 
-- Статус: **Проведено ревью; вариант A принят `DEC-0035`**
+- Статус: **Проведено ревью; former A superseded for target by `DEC-0039`**
 - Дата snapshot: 2026-08-16
 - Delta: `W-EXTRA-12`
 - Предложение: [`IMP-0029`](../improvements/IMP-0029-open-personal-fido-authenticator.md)
@@ -158,4 +158,6 @@ update/recovery and possibly separate locked/unlocked product profiles.
 - [x] backup, user presence, PIN, reset, attestation and certification boundaries;
 - [x] openness preserved without false hardware-token assurance;
 - [x] owner accepted option A in `DEC-0035`;
-- [x] accepted scope became `REQ-FIDO-0001`.
+- [x] historical accepted scope became `REQ-FIDO-0001` before `DEC-0039`.
+- [x] later `DEC-0039` removed the capability from current target; the audit is
+  retained only as historical security evidence.

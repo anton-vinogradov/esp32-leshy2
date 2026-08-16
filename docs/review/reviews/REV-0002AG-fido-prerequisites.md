@@ -1,6 +1,6 @@
 # REV-0002AG — U2F/FIDO prerequisite review
 
-- Статус: **Проведено ревью фактов; product disposition later closed `DEC-0035`**
+- Статус: **Проведено ревью historical facts; target later removed `DEC-0039`**
 - Дата: 2026-08-16
 - Input: `W-EXTRA-12`, `AUD-0004`, FIDO/W3C/manufacturer/project sources
 - Outputs: `AUD-0006`, `FND-0043`, `IMP-0029`
@@ -25,3 +25,5 @@
 Prerequisite/fact slice receives **«Проведено ревью»**. At this review point
 `W-EXTRA-12` remained `needs-owner`; the subsequent option-A acceptance and
 normative propagation are recorded by `DEC-0035/REQ-FIDO-0001/REV-0002AH`.
+Later `DEC-0039` removes the capability from the current radio/key mission; the
+fact review remains historical evidence only.

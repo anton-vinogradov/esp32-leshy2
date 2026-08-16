@@ -1,10 +1,10 @@
 # REQ-FIDO-0001 — open personal FIDO authenticator contract
 
-- Статус: **Проведено ревью требований; implementation proof открыт**
+- Статус: **Историческое reviewed требование; removed from target by `DEC-0039`**
 - Дата: 2026-08-16
 - Решение: [`DEC-0035`](../decisions/DEC-0035-open-personal-fido-authenticator.md)
 - Evidence: [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md)
-- Режим: **Основной / exclusive Authenticator Mode**
+- Бывший режим: **historical Main / exclusive Authenticator Mode; not active**
 
 ## Capability contract
 
@@ -38,3 +38,5 @@
 
 Transport availability or a TinyUSB HID example is not completion evidence.
 
+`DEC-0039` removes this capability from the current target. None of the rows
+above is an active architecture, implementation, assurance or release gate.

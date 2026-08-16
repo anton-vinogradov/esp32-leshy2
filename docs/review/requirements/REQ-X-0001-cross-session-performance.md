@@ -3,7 +3,7 @@
 - Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-X-01`–`C-X-11`, `C-UX-01`–`C-UX-03`, `C-HWX-01`–`C-HWX-04`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0011`, `DEC-0012`, `DEC-0013`, `DEC-0022`, `DEC-0023`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0011`, `DEC-0012`, `DEC-0013`, `DEC-0022`, `DEC-0023`, `DEC-0039`
 - Пересечения: все radio `REQ-*`; `C-X-01`, `C-X-02`, `C-X-09`, `C-HWX-01`, `C-HWX-03`, `C-HWX-04` также закрыты `REQ-SYS-0001`
 
 ## Граница документа
@@ -21,11 +21,11 @@
 | `REQ-X-05` | `C-X-06` | `conditional` | Лаборатория | Geo-tagged capture/wardrive — explicit foreground privacy session. Each record includes GNSS source/fix quality/age or `no fix`, minimizes identities and supports encrypted storage/export/delete/retention. |
 | `REQ-X-06` | `C-X-07` | `conditional` | Основной | RTC can sync from qualified GNSS/NTP with source, uncertainty, age and monotonic event ordering. Backward time jumps do not break logs, keys, rollback or replay protection. |
 | `REQ-X-07` | `C-X-08` | `conditional` | Смешанный | Unified capture library retains immutable original, provenance and exact radio profile. Decode/edit/export are separate; replay is inert until destination radio revalidates Main/Controlled gate. |
-| `REQ-X-08` | `C-X-09` | `conditional` | Основной | Phone text input uses locally initiated/accepted pairing, authenticated encryption, allowlist, visible connected peer and local disconnect/revoke. Missing/disconnected/stale companion blocks only the declared text-dependent workflow. It cannot confirm pledge, Controlled entry, TX arm, destructive write, FIDO presence, recovery or firmware-trust decisions; received text and consequences are reviewed locally. |
+| `REQ-X-08` | `C-X-09` | `conditional` | Основной | Phone text input uses locally initiated/accepted pairing, authenticated encryption, allowlist, visible connected peer and local disconnect/revoke. Missing/disconnected/stale companion blocks only the declared text-dependent workflow. It cannot confirm pledge, Controlled entry, TX arm, destructive write, recovery or firmware-trust decisions; received text and consequences are reviewed locally. |
 | `REQ-X-09` | `C-X-10` | `conditional` | Основной | Remote-ID detector passively parses versioned public standards/corpus, shows raw evidence/confidence/age and never infers ownership, intent or guaranteed aircraft absence. Location records inherit privacy policy. |
 | `REQ-X-10` | `C-X-11` | `conditional` | Сквозной alerts | LED/buzzer/location alerts name source, severity, age and confidence. Quiet/dim mode may suppress ordinary alerts, never active-TX, STOP failure, critical battery or unsafe state. |
 | `REQ-X-11` | `C-UX-01` | `conditional` | Лаборатория | One-shot wardrive orchestrates Wi-Fi/BLE/Sub-GHz/GNSS under one explicit foreground session, scheduler and privacy record; unsupported radio/position is marked missing, not silently imputed. |
-| `REQ-X-12` | `C-UX-02` | `conditional` | Main parser / Controlled execution | One bounded, fuzzed DuckyScript-compatible parser may serve BadUSB and BadBLE. Ordinary text automation and authorized injection use separate execution policies; script import cannot press consent/arm/destructive confirmation. |
+| `REQ-X-12` | `C-UX-02` | `defer-release`, split | Main parser / Controlled execution | BadBLE remains a radio profile subject to its BLE gates. BadUSB is the `DEC-0039` software-only exception: optional after radio/key core, existing USB-device path only, mutually exclusive mode, no architecture/BOM benefit or release dependency. If implemented, one bounded/fuzzed parser may share syntax, but execution policies remain separate and script import cannot press consent/arm/destructive confirmation. |
 | `REQ-X-13` | `C-UX-03` | `conditional` | Main/Controlled | Quick replay is Main only for immutable owner-tagged signal plus valid local profile. Unknown/edited/security record requires its radio's Controlled-Zone authorization; no global quick-replay bypass exists. |
 | `REQ-X-14` | `C-HWX-01` | `conditional` | Основной/power | Manual dim/timeout enter baseline when electrically supported. Auto-brightness requires a qualified sensor/profile, hysteresis, override and readability test; simple on/off is not called brightness. |
 | `REQ-X-15` | `C-HWX-02` | `conditional` | Performance | LoRa boosted gain governed exclusively by `REQ-LORA-10`; no fixed percentage is a product promise. |

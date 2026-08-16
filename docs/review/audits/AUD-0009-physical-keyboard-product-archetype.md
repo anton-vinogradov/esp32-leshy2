@@ -20,7 +20,7 @@ Input tasks materially different:
 |---|---|---|
 | safety/immediate | STOP, PTT release, BACK/panic, re-arm ceremony | dedicated tactile physical controls independent of touch/keyboard focus |
 | frequent field instrument | menu/list, scan start/stop, tune step, mark, zoom, threshold/power/channel adjustment | eyes-on-screen navigation with reliable one-hand repeat actions |
-| sparse structured text | frequency/channel, SSID/password, callsign, filename/tag, FIDO PIN | local numeric/symbol/text editor; presets/history/scanning reduce typing but cannot remove it |
+| sparse structured text | frequency/channel, SSID/password, callsign, filename/tag | local numeric/symbol/text editor; presets/history/scanning reduce typing but cannot remove it |
 | sustained authoring/development | scripts, CLI commands, notes, long identifiers | physical keyboard is materially faster; `DEC-0038` later accepts a qualified phone companion for these declared text-dependent sessions |
 
 A full keyboard does not replace STOP, PTT, BACK/cancel or positive
@@ -92,7 +92,7 @@ comparison that the owner explicitly required.
 - open for G3 comparison: touch, encoder, D-pad, action-key count, display
   size/aspect and one-/two-hand posture;
 - forbidden shortcut: counting on phone input as authority for safety,
-  Controlled-Zone, TX, destructive, FIDO, trust or recovery decisions;
+  Controlled-Zone, TX, destructive, trust or recovery decisions;
 - forbidden inheritance: former 480×320 touch + encoder + named-button count is
   a historical candidate, not a target prerequisite.
 

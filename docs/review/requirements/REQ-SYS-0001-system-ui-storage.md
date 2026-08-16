@@ -3,7 +3,7 @@
 - Статус набора: **Проведено ревью**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-SYS-01`–`C-SYS-11`, `C-X-01`, `C-X-02`, `C-X-09`, `C-HWX-01`, `C-HWX-03`, `C-HWX-04`
-- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0006`, `DEC-0008`–`DEC-0013`
+- Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0006`, `DEC-0008`–`DEC-0013`, `DEC-0038`, `DEC-0039`
 - Открытые архитектурные входы: `FND-0001`–`FND-0003`, `FND-0006`–`FND-0008`
 
 ## Граница документа
@@ -18,7 +18,7 @@
 |---|---|---|---|---|
 | `REQ-SYS-01` | `C-SYS-01` | `include` | Основной | Launcher/home, единая навигация, status bar и настройки. Экран постоянно различает текущий уровень, armed/disarmed, commanded TX и доступную actual-TX индикацию. |
 | `REQ-SYS-02` | `C-SYS-02` | `conditional` | Основной | Selected local control surfaces provide complete core field, safety, pairing/revoke, service and recovery operation without a phone. Dedicated physical safety/voice controls remain where separately required; touch, D-pad, encoder and action-key mix are G3 archetype variables. Permanent text keyboard is excluded by `DEC-0038`; ordinary list selection never starts TX. Exact mechanics and pins wait for G3–G7. |
-| `REQ-LAB-USB-01` | `C-SYS-03` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | USB HID/DuckyScript допускается только для явно разрешённого host. Нет autorun при boot/connect/restore; каждый запуск отдельно вооружается и подтверждается, отображает прогресс и прекращает новые HID reports по STOP/disconnect. Уже отправленные host-команды необратимы, что явно показывается до запуска. |
+| `REQ-LAB-USB-01` | `C-SYS-03` | `defer-release`, software-only exception | Контролируемая зона, `AUTHORIZED_TARGET` | `DEC-0039`: USB HID/DuckyScript may ship only after the radio/key core, over the already-required USB device/service path, in a mutually exclusive mode with no incremental base hardware or architecture score. Нет autorun при boot/connect/restore; каждый запуск для явно разрешённого host отдельно вооружается и подтверждается, отображает прогресс и прекращает новые HID reports по STOP/disconnect. Уже отправленные host-команды необратимы, что явно показывается до запуска. |
 | `REQ-SYS-03` | `C-SYS-04` | `include` | Основной с наследованием per-command gates | USB service предоставляет serial console и управляемый экспорт storage. CLI/deep link не обходят Main/Lab/Controlled-Zone gates. USB MSC получает эксклюзивное владение носителем либо read-only snapshot; одновременная запись host и firmware запрещена. Одновременность HID/CDC/MSC не обещается до endpoint/PHY audit этапа 3. |
 | `REQ-SYS-04` | `C-SYS-05` | `conditional` | Основной maintenance | Primary product firmware supports qualified Wi-Fi and removable-media update paths; every other selected programmable target uses its reviewed update transport rather than a legacy-only bus assumption. Every normally installable image has owner-authorized signature/open manifest, target-side verification and validation/rollback. Update requires power margin, prohibits TX and boots with all TX off/Lab disarmed. Hardware lockdown remains a separate opt-in under `DEC-0013`. |
 | `REQ-SYS-05` | `C-SYS-06` | `include` | Основной | File manager, config import/export и offline databases используют versioned schemas, bounded parsing, atomic replace/recovery и явный результат ошибок. Import не может включить TX, подавить safety gates или незаметно восстановить armed state. |

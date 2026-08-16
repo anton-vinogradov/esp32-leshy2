@@ -1,6 +1,6 @@
 # IMP-0029 — open personal FIDO authenticator, not a false certified token
 
-- Статус: **Принят вариант A; `DEC-0035`**
+- Статус: **Исторически принят A; removed from target by `DEC-0039`**
 - Дата: 2026-08-16
 - Delta: `W-EXTRA-12`
 - Evidence: [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md)
@@ -61,6 +61,10 @@ security profile почти наверняка потребует собстве
 сохраняет открытость устройства и даёт реальную современную
 аутентификацию без ложной маркетинговой надстройки. Hardware-backed/certified
 variant остаётся возможным позднейшим усилением, а не скрытым обязательным BOM.
+
+Later mission review [`DEC-0039`](../decisions/DEC-0039-radio-key-scope-correction.md)
+removes personal FIDO from the target. This proposal remains review history and
+must not shape current hardware, firmware or release gates.
 
 ## Acceptance boundary for A
 

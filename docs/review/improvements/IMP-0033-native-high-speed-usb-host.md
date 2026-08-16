@@ -1,6 +1,6 @@
 # IMP-0033 — native High-Speed USB host for qualified instruments
 
-- Статус: **⚠️ Требуется решение владельца**
+- Статус: **Generic host rejected; RF-derived transport retained `DEC-0039`**
 - Дата: 2026-08-17
 - Delta: `W-EXTRA-16`
 - Evidence: [`AUD-0010`](../audits/AUD-0010-high-speed-usb-host-use-cases.md)
@@ -46,7 +46,7 @@ a laptop/phone/external compute, not directly to Leshy2.
 
 ### C — no base USB host
 
-Product USB remains device/service/FIDO only; all USB peripherals attach to an
+Product USB remains device/service only; all USB peripherals attach to an
 external owner-controlled host.
 
 - Плюсы: smallest host stack, power-source and parser attack surface.
@@ -54,16 +54,23 @@ external owner-controlled host.
   all-in-one instrument result; another high-throughput interface still has to
   satisfy `DEC-0034` if raw external classes remain reachable.
 
-## ⚠️ Recommendation
+## Recommendation and owner decision
 
-**A**, with a strict distinction between capability and compatibility. The
+The audit recommended **A**, with a strict distinction between capability and compatibility. The
 project explicitly wants receivers, transmitters, programmers and expansion,
 and already accepted a real high-throughput tier. Native HS host is the most
 standard way to serve those classes. It should not force one dual-role connector
 or select ESP32-P4 now; G3/G4 must compare dedicated-host and DRP topologies, and
 G7 selects silicon only with the rest of the architecture.
 
-## Acceptance boundary for A
+The owner clarified that the product is about radio/communication and
+wireless/contact keys rather than a general USB peripheral computer.
+[`DEC-0039`](../decisions/DEC-0039-radio-key-scope-correction.md) therefore
+rejects generic HS host as a product capability. A concrete accepted RF/SDR
+profile may later derive a high-throughput transport, without assuming USB,
+host role, a dual-role connector or a specific MCU.
+
+## Historical acceptance boundary for unselected A
 
 - at least one native USB 2.0 HS-capable host/data path in every final candidate;
 - dedicated versus dual-role Type-C is open, clearly indicated and fault-safe;
@@ -71,6 +78,8 @@ G7 selects silicon only with the rest of the architecture.
 - host VBUS default off with per-profile power/current/backfeed/fault control;
 - no unknown USB device gets transmitter, programmer, write or trust authority;
 - external TX profiles obey STOP, explicit arm/lease and safe-off on every fault;
-- FIDO exclusive mode powers down/disables the host surface;
+- any future mutually exclusive security/service mode powers down/disables the host surface;
 - CDC/VCP, HID, MSC, SDR/vendor and modem profiles qualify independently;
 - no “lossless/max-rate/Linux-compatible” claim without measured corpus/HIL.
+
+These bullets are retained as evidence only and impose no current target gate.

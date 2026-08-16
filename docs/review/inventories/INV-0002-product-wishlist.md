@@ -40,6 +40,7 @@
 | `W-OWN-14` | OpenThread open baseline; Zigbee optional conditional | `accepted` | `DEC-0020` |
 | `W-OWN-15` | целевой готовый документ отдельно от текущей проработки в обоих репозиториях | `accepted` | `DEC-0011` |
 | `W-OWN-16` | M5-first low-rate Unit/Cap expansion плюс отдельный high-throughput class; без native M5-Bus | `accepted` | `DEC-0034`, `REQ-EXT-0001` |
+| `W-OWN-17` | radio/communication + wireless/contact credential mission; support infrastructure only, named BadUSB exception | `accepted` | `DEC-0039`, `REQ-SCOPE-0001` |
 
 ## Полный импорт известных функциональных кандидатов
 
@@ -92,12 +93,12 @@ disposition они имеют состояние `needs-owner` и не вход�
 | ID | ⚠️ Возможная хотелка | Состояние |
 |---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire read/emulate и bounded write | `accepted-external`: `DEC-0033`, passive M5-style Port-B adapter; no base pad |
-| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main`: `DEC-0035/REQ-FIDO-0001`; open personal/exclusive mode |
+| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `removed-by-owner-scope`: former `DEC-0035` superseded by `DEC-0039`; historical evidence only |
 | `W-EXTRA-13` | haptic feedback | `rejected-by-owner`: `DEC-0036`; no motor/profile/mount |
 | `W-EXTRA-14` | IMU/orientation/motion | `accepted-external`: `DEC-0037/REQ-IMU-0001`; indexed measurement-pose profile, no base sensor/heading/bearing claim |
 | `W-EXTRA-15` | physical text keyboard as product archetype | `rejected-integrated / accepted-phone-assisted`: `DEC-0038`; no keyboard/U215 product profile |
-| `W-EXTRA-16` | dual-role/high-speed USB accessory host | `needs-owner`: facts reviewed `AUD-0010`; `IMP-0033/A` recommended |
-| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` |
+| `W-EXTRA-16` | dual-role/high-speed USB accessory host | `rejected-generic`: `DEC-0039`; exact transport only when derived by concrete RF/SDR profile |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` — facts reviewed `AUD-0012`, placement options `IMP-0034` |
 
 ## Исторические идеи реализации, не входные ограничения
 
@@ -126,10 +127,11 @@ disposition они имеют состояние `needs-owner` и не вход�
 - [x] freeze принят по явной делегации владельца в `DEC-0023`.
 - [ ] current competitor delta получает owner disposition: `W-EXTRA-11`
   закрыт `DEC-0033`, infrastructure `IMP-0028` закрыт `DEC-0034`;
-  `W-EXTRA-12` закрыт `DEC-0035`, `W-EXTRA-13` — `DEC-0036`;
+  `W-EXTRA-12` historical acceptance superseded/removed `DEC-0039`,
+  `W-EXTRA-13` закрыт `DEC-0036`;
   `W-EXTRA-14` закрыт `DEC-0037`, `W-EXTRA-15` — `DEC-0038`;
-  `W-EXTRA-16` fact review завершён `AUD-0010`, owner decision и
-  `W-EXTRA-17` открыты;
+  `W-EXTRA-16` rejected generic `DEC-0039`; `W-EXTRA-17` facts reviewed
+  `AUD-0012`, owner placement открыт `IMP-0034`;
 - [ ] G2 проходит новое propagation review после решений.
 
 ## Следующий этап после закрытия delta

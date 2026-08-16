@@ -15,7 +15,7 @@
 | `REQ-EXT-04` | Native Cardputer-compatible Cap preserves U214 without reducing it. | SPI `SCK/MOSI/MISO/NSS`, `BUSY/IRQ/RESET`, GNSS UART, I²C and controlled `5VIN/5VOUT/GND` are all available concurrently as the profile requires. |
 | `REQ-EXT-05` | External power cannot backfeed or silently arm an accessory. | Both 5 V directions are controlled; reset/update/STOP/accessory fault invalidates every TX lease and leaves external transmitters safe-off. |
 | `REQ-EXT-06` | M5-Bus is not native base compatibility. | Each requested Module needs an exact carrier, host mapping, power/enable, retention, firmware identity and recovery qualification. |
-| `REQ-EXT-07` | A separate high-throughput class preserves SDR/compute/host reachability. | G3/G4 compare connector/role/power/ESD/driver alternatives; low-rate command links are never reported as raw-data equivalence. |
+| `REQ-EXT-07` | A separate high-throughput class preserves accepted SDR and RF/credential external-analysis reachability. | `DEC-0039`: a concrete profile must derive payload/latency/role/power before G3/G4 compare transport/connector/ESD/driver alternatives; no generic USB host. Low-rate command links are never reported as raw-data equivalence. |
 | `REQ-EXT-08` | Combined tiers target at least 90% of reviewed attachment classes. | Coverage is recomputed against user results, not catalog size; every result distinguishes reachability, catalog availability and qualified completion. |
 | `REQ-EXT-09` | Profiles reserve shared resources atomically. | Bus, address, pins, power, RF coexistence and latency conflicts are reported before power-up; repeated I²C addresses use isolated buses/mux qualification. |
 | `REQ-EXT-10` | Active accessories participate in the update/recovery trust model. | UI exposes accessory identity/version/compatibility and recovery limits; a programmable accessory never silently inherits trust from the connector. |
@@ -24,7 +24,7 @@
 
 ## Deferred implementation choices
 
-Port count/placement, passive docks, high-speed connector and USB role, exact
+Port count/placement, passive docks, high-throughput transport/connector/role, exact
 MCU/bus/pins, power limits and carrier construction are downstream choices.
 Deferral does not permit deleting the full U214 contract or high-throughput
 class after an accepted accessory depends on them.
@@ -36,4 +36,3 @@ class after an accepted accessory depends on them.
 - G7 exact owners/resources and simultaneous profiles converge atomically;
 - G9 electrical protection and firmware manifest/state-machine specifications;
 - G11 wrong-profile, power/backfeed/fault/STOP/update/recovery and throughput HIL.
-

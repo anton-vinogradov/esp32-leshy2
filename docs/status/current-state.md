@@ -29,11 +29,13 @@ The canonical table is [`stages.md`](../review/stages.md).
 - `W-EXTRA-11` is closed: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
   accepts an external passive M5-style Port-B iButton adapter and no base pad;
 - infrastructure is closed by [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap plus a separate high-throughput class, without native M5-Bus;
-- `W-EXTRA-12` is closed by [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): open personal FIDO2/CTAP authenticator with U2F compatibility;
+- former `W-EXTRA-12` FIDO acceptance is removed from target by [`DEC-0039`](../review/decisions/DEC-0039-radio-key-scope-correction.md);
 - `W-EXTRA-13` is closed by [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): no product haptic, motor, dedicated profile or mount;
 - `W-EXTRA-14` is closed by [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
 - `W-EXTRA-15` is closed by [`DEC-0038`](../review/decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md): no integrated keyboard, bounded phone-assisted text;
-- current question: [`IMP-0033`](../review/improvements/IMP-0033-native-high-speed-usb-host.md) for `W-EXTRA-16` native High-Speed USB host; then `17` 6 GHz/Wi-Fi 6E.
+- `W-EXTRA-16` generic High-Speed USB host is rejected by `DEC-0039`; only RF-derived transport remains;
+- current question: `W-EXTRA-17` 6 GHz/Wi-Fi 6E; facts/prerequisites are
+  reviewed in `AUD-0012/REV-0002AQ`, owner placement remains `IMP-0034`.
 
 No remaining item becomes part of the target before owner disposition.
 
@@ -81,9 +83,9 @@ Consequences:
 ## Active next artifact
 
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-reviews the M5 ecosystem: after rejected haptic and keyboard profiles leave the
-live denominator and external IMU is correctly partial until rigidly indexed,
-M5-only fully covers 18.8% of relevant classes and reaches 43.8% with partial/custom
+reviews the M5 ecosystem: after rejected haptic, keyboard and generic-host
+profiles leave the live denominator and external IMU remains correctly partial,
+M5-only fully covers 20.0% of relevant classes and reaches 46.7% with partial/custom
 iButton coverage, so the
 90% attachment goal requires a separate high-speed tier, accepted in
 `DEC-0034`. [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
@@ -94,8 +96,10 @@ and `DEC-0037/REQ-IMU-0001` close `W-EXTRA-14` as an optional external
 measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
 and `DEC-0038/REV-0002AN` close `W-EXTRA-15`: the base has no permanent
 keyboard and bounded phone-assisted text never becomes local authority.
-`AUD-0010/REV-0002AO` review `W-EXTRA-16`; `IMP-0033` recommends a native
-High-Speed host capability while leaving connector role and silicon open.
+`AUD-0010/DEC-0039/REV-0002AP` close `W-EXTRA-16` without deleting a transport
+later derived by a concrete RF/SDR profile. `AUD-0011` confirms no other active
+base hardware is justified by unrelated functionality; BadUSB remains an
+optional software-only exception.
 Parallel G3 research starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and
 connector surfaces, display, battery/charging, external-module attachment,

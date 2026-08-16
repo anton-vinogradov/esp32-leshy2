@@ -29,11 +29,13 @@
 - `W-EXTRA-11` закрыт: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
   принимает внешний пассивный M5-style Port-B iButton adapter без base pad;
 - infrastructure закрыт [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap плюс отдельный high-throughput class, без native M5-Bus;
-- `W-EXTRA-12` закрыт [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): открытый personal FIDO2/CTAP authenticator с U2F compatibility;
+- former `W-EXTRA-12` FIDO acceptance удалён из target решением [`DEC-0039`](../review/decisions/DEC-0039-radio-key-scope-correction.md);
 - `W-EXTRA-13` закрыт [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): в продукте нет haptic, мотора, специального профиля или mount;
 - `W-EXTRA-14` закрыт [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
 - `W-EXTRA-15` закрыт [`DEC-0038`](../review/decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md): no integrated keyboard, bounded phone-assisted text;
-- текущий вопрос: [`IMP-0033`](../review/improvements/IMP-0033-native-high-speed-usb-host.md) для `W-EXTRA-16` native High-Speed USB host; затем `17` 6 GHz/Wi-Fi 6E.
+- `W-EXTRA-16` generic High-Speed USB host rejected `DEC-0039`; остаётся только RF-derived transport;
+- текущий вопрос: `W-EXTRA-17` 6 GHz/Wi-Fi 6E; факты и пререквизиты проверены
+  в `AUD-0012/REV-0002AQ`, placement владельца остаётся `IMP-0034`.
 
 Ни один оставшийся пункт не добавлен в target до решения владельца.
 
@@ -79,9 +81,9 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 ## Следующий активный артефакт
 
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
-провёл ревью M5 ecosystem: после исключения rejected haptic и keyboard profiles
-из live denominator и исправления external IMU на partial до жёсткой индексации
-M5-only закрывает 18.8% relevant classes полностью и 43.8% с partial/custom
+провёл ревью M5 ecosystem: после исключения rejected haptic, keyboard и generic
+host profiles из live denominator и исправления external IMU на partial
+M5-only закрывает 20.0% relevant classes полностью и 46.7% с partial/custom
 iButton, поэтому 90%
 требует отдельного
 high-speed tier, принятого `DEC-0034`.
@@ -93,8 +95,10 @@ external-module coverage; `DEC-0036/REV-0002AJ` исключают его из p
 measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
 и `DEC-0038/REV-0002AN` закрывают `W-EXTRA-15`: у base нет permanent keyboard,
 а bounded phone-assisted text не становится local authority.
-`AUD-0010/REV-0002AO` проверяют `W-EXTRA-16`; `IMP-0033` рекомендует native
-High-Speed host capability, оставляя connector role и silicon открытыми.
+`AUD-0010/DEC-0039/REV-0002AP` закрывают `W-EXTRA-16`, не удаляя transport,
+который позже может вывести конкретный RF/SDR profile. `AUD-0011` подтверждает,
+что другое active base hardware не оправдано unrelated functionality; BadUSB
+остаётся optional software-only exception.
 Параллельный G3 research отталкивается от уже проверенных capabilities и задаёт физический
 продукт без выбора electronics: form factor/use posture, control/connector
 surfaces, display, battery/charging, external-module attachment, antenna

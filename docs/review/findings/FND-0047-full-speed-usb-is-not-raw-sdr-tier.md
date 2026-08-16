@@ -1,6 +1,6 @@
 # FND-0047 — Full-Speed USB is not the accepted raw-SDR/high-throughput tier
 
-- Статус: **Исправление определено; product disposition открыт**
+- Статус: **Исправлено scope decision `DEC-0039`**
 - Дата: 2026-08-17
 - Обнаружено: [`AUD-0010`](../audits/AUD-0010-high-speed-usb-host-use-cases.md)
 - Затрагивает: `W-EXTRA-16`, `DEC-0034/REQ-EXT-0001`, G3/G4/G7/G9
@@ -30,5 +30,6 @@ label cannot close that gap.
 
 - [x] current FS and HS controller facts documented;
 - [x] raw-IQ arithmetic and overclaim boundary documented;
-- [ ] owner chooses product disposition through `IMP-0033`;
-- if accepted, a dedicated `REQ-USBH-*` contract and propagation review follow.
+- [x] owner rejected generic host through `DEC-0039`;
+- concrete accepted RF/SDR profile must derive and qualify its exact
+  high-throughput transport before architecture reserves one.

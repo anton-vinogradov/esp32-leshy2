@@ -67,7 +67,7 @@ The owner instead selected **C with phone-assisted text** in
 [`DEC-0038`](../decisions/DEC-0038-phone-assisted-text-no-integrated-keyboard.md):
 no permanent keyboard, while rare/long arbitrary text may use a qualified phone
 companion. The phone sends characters and never supplies local authority for
-safety, Controlled-Zone, TX, destructive, FIDO, trust or recovery decisions.
+safety, Controlled-Zone, TX, destructive, trust or recovery decisions.
 
 ## Accepted boundary for C/phone-assisted text
 

@@ -20,9 +20,10 @@ absolute compass heading. Ни внешний, ни интегрированны
 
 - U095 меняется с `full` на `partial until rigidly indexed to device frame`;
 - after haptic rejection this finding produced a 17-class denominator; later
-  `DEC-0038` removes the keyboard profile and makes the current denominator 16;
-- current official direct result after both decisions: 3/16 = 18.8%;
-- full+partial: 6/16 = 37.5%; with custom iButton: 7/16 = 43.8%;
+  `DEC-0038/DEC-0039` remove keyboard and generic host, making the current
+  denominator 15;
+- current official direct result: 3/15 = 20.0%;
+- full+partial: 6/15 = 40.0%; with custom iButton: 7/15 = 46.7%;
 - external pose profile requires mount ID, axis transform, calibration,
   timestamp/sample-age and motion-validity;
 - absolute heading remains a separate magnetometer/GNSS-reference question;

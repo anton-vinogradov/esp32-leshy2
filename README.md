@@ -10,11 +10,12 @@
 
 ## Finished-product intent
 
-Leshy2 is an open, autonomous, portable all-in-one field instrument for
-observation, diagnostics, communications, navigation, maintenance and
-authorized experiments across several radio ecosystems. It must become a
-buildable, repairable and measurable product rather than an unchecked
-maximum-capability demo.
+Leshy2 is an open, autonomous, portable all-in-one field instrument for radio/
+wireless observation, diagnostics, communication and authorized research,
+including wireless and contact credential tools. Navigation, maintenance and
+compute exist to support those results rather than turn the product into a
+general-purpose peripheral computer. It must become a buildable, repairable and
+measurable product rather than an unchecked maximum-capability demo.
 
 The physical form factor, compute topology, owners, buses, pin map, component
 set, board partition and enclosure are intentionally open. Former
@@ -52,10 +53,10 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   iButton/1-Wire uses a replaceable passive M5-style Port-B adapter rather than
   mandatory contact pads on the base enclosure.
 - M5 Unit A/B/C/custom and the full U214-compatible 14-pin Cap form the primary
-  low-rate expansion tier. Raw SDR/external-compute/general-host needs retain a
-  separate high-throughput class; the base does not claim native 30-pin
-  M5-Bus compatibility. Exact port count, placement and high-speed connector
-  remain product/architecture decisions.
+  low-rate expansion tier. Accepted raw SDR and external RF/credential-analysis
+  profiles may derive a separate high-throughput class; the base does not claim
+  generic host or native 30-pin M5-Bus compatibility. Exact port count,
+  placement and high-speed connector remain product/architecture decisions.
 - An optional qualified external IMU may add timestamped motion, pitch/roll and
   short-term relative-rotation metadata to RF records. Device-pose claims require
   a rigid indexed mount and sensor-to-antenna transform. Six-axis data is not
@@ -64,18 +65,20 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   re-arm, pairing/revoke, service and recovery remain autonomous. The base has
   no permanent text keyboard; a declared rare/long text workflow may use a
   locally paired owner phone. The phone supplies visible text, never authority
-  for safety, Controlled-Zone, TX, destructive, FIDO, trust or recovery actions.
+  for safety, Controlled-Zone, TX, destructive, trust or recovery actions.
 - Every programmable chip ultimately selected must expose permanent,
   independent programming, recovery and diagnostic access suitable for
   prototype bring-up and owner repair. Exact connectors and pins remain open.
 - Owner-controlled signed updates retain target validation, rollback, offline
   keys/tools and intentional physical recovery. Irreversible lockdown is a
   separate optional decision, never the default.
-- Main includes an open personal FIDO2/CTAP USB authenticator with U2F
-  compatibility. It runs in an exclusive minimal mode, requires fresh local
-  consent, and keeps device-bound credentials out of ordinary backup. It does
-  not claim FIDO certification, hardware backing or tamper resistance without
-  separate proof; owner-controlled open firmware remains available.
+- Generic USB host and personal FIDO/U2F authenticator are outside the product
+  mission. A concrete accepted RF/SDR profile may later derive an exact
+  high-throughput transport without making generic host support a capability.
+- BadUSB/DuckyScript is one explicit non-core exception: a release-optional
+  Controlled-Zone software profile over the existing USB device/service path.
+  It adds no base hardware, cannot shape architecture or delay the radio/key
+  core, and still requires authorization, parser/security review and HIL.
 
 Named modules and ICs in requirement and candidate studies are first targets or
 evidence—not silently fixed BOM components.

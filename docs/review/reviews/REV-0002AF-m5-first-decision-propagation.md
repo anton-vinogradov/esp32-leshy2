@@ -19,10 +19,13 @@
 | Hardware/Firmware, target/current-state, EN/RU распространены | да |
 | Новые catalog-функции не приняты молча | да |
 
+Later scope correction `DEC-0039` rejects generic `W-EXTRA-16`, removes the
+former FIDO target and retains only profile-derived high-throughput transport.
+This review remains the historical propagation record of `DEC-0034`.
+
 ## Итог
 
 `IMP-0028` закрыт вариантом B, а `REQ-EXT-0001` получает статус **«Проведено
 ревью требований»**. Это закрывает infrastructure-вопрос, но не весь G2:
-`W-EXTRA-12..17` ещё требуют последовательного решения. Следующий вопрос —
-`W-EXTRA-12` U2F/FIDO.
-
+At this historical point `W-EXTRA-12..17` still required sequential decisions.
+Their current disposition is canonical in `INV-0002/INV-0004`.

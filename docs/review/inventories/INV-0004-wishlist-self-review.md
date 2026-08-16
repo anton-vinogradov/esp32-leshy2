@@ -19,20 +19,21 @@ high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
 `W-EXTRA-12` принят `DEC-0035/REQ-FIDO-0001`; `W-EXTRA-13` отклонён
 `DEC-0036`; `W-EXTRA-14` принят external через `DEC-0037/REQ-IMU-0001`.
 `W-EXTRA-15` закрыт `DEC-0038`: integrated keyboard rejected, bounded
-phone-assisted text accepted. Факты `W-EXTRA-16` проверены `AUD-0010`, но owner
-decision и `W-EXTRA-17` открыты.
+phone-assisted text accepted. Mission correction `DEC-0039` removes former
+FIDO target and rejects generic `W-EXTRA-16`; `AUD-0012` reviews
+`W-EXTRA-17` prerequisites and `IMP-0034` remains open.
 
 ## Current competitor delta disposition
 
 | Leaf ID | Result | Decision | Product/BOM boundary |
 |---|---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire contact tool | `accepted-external` | protected Port-B timing/electrical profile + replaceable passive adapter; no integrated base contacts; read/emulate/write separately qualified |
-| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main` | `DEC-0035/REQ-FIDO-0001`: exclusive open personal authenticator; device-bound/non-exportable; no certification overclaim |
+| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `removed-by-owner-scope` | former `DEC-0035/REQ-FIDO-0001` retained as history; `DEC-0039` removes all live hardware/firmware/release burden |
 | `W-EXTRA-13` | haptic feedback through the product enclosure | `rejected-by-owner` | `DEC-0036`: no motor, special profile, mount or haptic HIL; generic Port-B remains generic |
 | `W-EXTRA-14` | IMU measurement-pose metadata | `accepted-external` | `DEC-0037/REQ-IMU-0001`: rigid indexed external profile; 6-axis ≠ heading/RF bearing; no base sensor |
 | `W-EXTRA-15` | physical-keyboard whole-product archetype | `rejected-integrated / accepted-phone-assisted` | `DEC-0038`: no permanent/U215 keyboard profile; text-dependent optional workflow may use paired phone, never as local authority |
-| `W-EXTRA-16` | native High-Speed USB host | `needs-owner` | `AUD-0010` fact review complete; `IMP-0033/A` recommended; exact connector/owner remains downstream |
-| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` | resolved through `AUD-0004`; no silent target inclusion |
+| `W-EXTRA-16` | generic native High-Speed USB host | `rejected-by-owner-scope` | `DEC-0039`: no base host requirement; concrete RF/SDR profile may derive exact high-throughput transport later |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` | facts reviewed `AUD-0012`; choose base, qualified optional profile or reject through `IMP-0034` |
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.
@@ -91,7 +92,7 @@ Dedicated BLE sniffer, Bluetooth Classic controller, additional HF/VHF/SDR, seco
 ## Freeze gate
 
 - [x] 125/125 строк распределены и имеют reviewed contract;
-- [x] все owner wishes `W-OWN-01..16` сохранены как invariants;
+- [x] все owner wishes `W-OWN-01..17` сохранены как invariants;
 - [x] смешанные строки декомпозированы;
 - [x] опасные функции получили трехуровневые gates и containment;
 - [x] legacy ceilings пересмотрены на уровне продуктовых требований;
