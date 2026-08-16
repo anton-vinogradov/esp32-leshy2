@@ -22,8 +22,9 @@ USB full/low-speed, поэтому не закрывает high-speed host/SDR/c
 
 Из 18 релевантных Leshy2 external-hardware classes:
 
-- 6 имеют сильный прямой current M5 product match;
-- 2 имеют только частичный/unqualified match;
+- 5 имеют сильный прямой current M5 product match;
+- 3 имеют только частичный/unqualified match, включая U059 без доказанного
+  mechanical coupling к основному enclosure (`FND-0044`);
 - iButton становится reachable только через наш собственный passive Port-B
   adapter;
 - M5-only остаётся на 50% даже при таком custom adapter, а не на 90%.

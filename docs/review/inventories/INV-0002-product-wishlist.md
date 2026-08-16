@@ -92,8 +92,8 @@ disposition они имеют состояние `needs-owner` и не вход�
 | ID | ⚠️ Возможная хотелка | Состояние |
 |---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire read/emulate и bounded write | `accepted-external`: `DEC-0033`, passive M5-style Port-B adapter; no base pad |
-| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `needs-owner`: `AUD-0006/IMP-0029` |
-| `W-EXTRA-13` | haptic feedback | `needs-owner` |
+| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main`: `DEC-0035/REQ-FIDO-0001`; open personal/exclusive mode |
+| `W-EXTRA-13` | haptic feedback | `needs-owner`: `AUD-0007/IMP-0030` |
 | `W-EXTRA-14` | IMU/orientation/motion | `needs-owner` |
 | `W-EXTRA-15` | physical text keyboard as product archetype | `needs-owner`, G3 |
 | `W-EXTRA-16` | dual-role/high-speed USB accessory host | `needs-owner` |
@@ -126,7 +126,7 @@ disposition они имеют состояние `needs-owner` и не вход�
 - [x] freeze принят по явной делегации владельца в `DEC-0023`.
 - [ ] current competitor delta получает owner disposition: `W-EXTRA-11`
   закрыт `DEC-0033`, infrastructure `IMP-0028` закрыт `DEC-0034`;
-  `W-EXTRA-12` reviewed facts/open `IMP-0029`; `W-EXTRA-13..17` открыты;
+  `W-EXTRA-12` закрыт `DEC-0035`; `W-EXTRA-13..17` открыты;
 - [ ] G2 проходит новое propagation review после решений.
 
 ## Следующий этап после закрытия delta

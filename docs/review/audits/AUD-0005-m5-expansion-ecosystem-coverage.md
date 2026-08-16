@@ -48,7 +48,7 @@ per-profile qualification, а не одного общего «M5 mode».
 | LoRa + GNSS | Cap LoRa-1262 `U214` | Cap SPI/control + UART + I²C, 868–923 MHz, +22 dBm, LoRa 5 V/163.4 mA | сильное прямое покрытие; уже accepted first profile |
 | HF NFC | Unit NFC `U216` | Port A I²C `0x50`, 5 V/67.65 mA continuous read, A/B/F/V + emulation direction | сильное прямое покрытие; exact modes всё ещё corpus/HIL-conditional |
 | cellular | Unit CatM `U128` | Port C UART, Cat-M/NB-IoT, network peak 249 mA | частичное: не broadband LTE и не GSM/voice; country/operator/SIM/FOTA qualification отдельно |
-| haptic | Unit Vibrator `U059` | Port B PWM/GPIO, 5 V/424.35 mA at stated operating point | прямое external haptic покрытие, но высокий port-current и механическая вибрация |
+| haptic | Unit Vibrator `U059` | Port B PWM/GPIO, 5 V/424.35 mA at stated operating point | partial until rigid retained coupling transfers vibration into the Leshy2 enclosure; dangling Unit is only a remote alert |
 | orientation/motion | Unit Mini IMU `U095` | Port A I²C `0x68`, MPU6886 | прямое 6-axis покрытие; Mini IMU-Pro has lifecycle/magnetic-placement caveats |
 | physical text input | Unit CardKB2 `U215` | custom HY2.0 I²C/UART; ESP32-C61, USB recovery, 19.31 mA standby | прямое optional keyboard покрытие; это active programmable accessory |
 | two same-address NFC frontends | 2×U216 + PaHub v2.1 | PCA9548A channels isolate repeated `0x50` address | electrically plausible, but relay timing, two-field coexistence and end-to-end firmware remain unqualified |
@@ -89,17 +89,17 @@ inflated into this number.
 | 12 | second independent NFC frontend | no qualified relay | two U216 through PaHub is electrically plausible |
 | 13 | heavy recovery/analytics compute | no | separate high-throughput compute link required |
 | 14 | iButton/1-Wire contact tool | no | accepted passive protected Port-B adapter |
-| 15 | haptic feedback | yes, U059 | high current |
+| 15 | haptic feedback | no full result | U059 is partial until mechanically coupled; high current |
 | 16 | IMU/orientation | yes, U095 | — |
 | 17 | physical keyboard | yes, U215 | active accessory firmware |
 | 18 | high-speed USB accessory host | no | old M020 is EOL and full/low-speed only |
 
 Results:
 
-- **6/18 = 33.3%** have a current official M5 product that directly matches the
+- **5/18 = 27.8%** have a current official M5 product that directly matches the
   product result strongly enough to begin qualification.
-- **8/18 = 44.4%** if narrow cellular and the unproven dual-U216 topology count
-  as partial coverage.
+- **8/18 = 44.4%** if narrow cellular, the unproven dual-U216 topology and U059
+  with a not-yet-qualified enclosure mount count as partial coverage.
 - **9/18 = 50.0%** after adding our own passive M5-style iButton adapter.
 - therefore **M5-only does not meet a 90% Leshy2 result target**.
 

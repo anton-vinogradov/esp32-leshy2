@@ -64,6 +64,11 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
 - Owner-controlled signed updates retain target validation, rollback, offline
   keys/tools and intentional physical recovery. Irreversible lockdown is a
   separate optional decision, never the default.
+- Main includes an open personal FIDO2/CTAP USB authenticator with U2F
+  compatibility. It runs in an exclusive minimal mode, requires fresh local
+  consent, and keeps device-bound credentials out of ordinary backup. It does
+  not claim FIDO certification, hardware backing or tamper resistance without
+  separate proof; owner-controlled open firmware remains available.
 
 Named modules and ICs in requirement and candidate studies are first targets or
 evidence—not silently fixed BOM components.

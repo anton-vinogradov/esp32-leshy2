@@ -1,6 +1,6 @@
 # AUD-0004 — current competitor capability and product-design gap
 
-- Статус: **На ревью; W-EXTRA-11 и expansion infrastructure закрыты, W-EXTRA-12..17 открыты**
+- Статус: **На ревью; W-EXTRA-11/12 и expansion infrastructure закрыты, W-EXTRA-13..17 открыты**
 - Дата snapshot: 2026-08-16
 - Finding: [`FND-0040`](../findings/FND-0040-current-competitor-benchmark-missing.md)
 - Scope: official product/project documentation; shipping and prototype states
@@ -45,7 +45,7 @@
 | cellular | `W-EXTRA-08`, external/tethered | already considered |
 | Bluetooth Classic, dedicated BLE sniffer | `W-EXTRA-02/04`, optional/deferred | already considered |
 | iButton/1-Wire contact-tool behavior | accepted external by `DEC-0033/REQ-IBTN-0001` | **gap closed at capability level; electrical/HIL open** |
-| USB security key (U2F/FIDO family) | USB/HID and secret storage exist, but authentication-token result absent | **real mostly-software capability gap** |
+| USB security key (U2F/FIDO family) | accepted `DEC-0035/REQ-FIDO-0001` open personal authenticator | **gap closed at requirement level; implementation/assurance proof open** |
 | haptic feedback | buzzer/LED/display exist; tactile feedback absent | **real UX gap / G3 input** |
 | IMU/orientation/motion | absent | **real optional sensor gap** |
 | physical keyboard/trackball/D-pad archetype | on-device input required; exact surface intentionally open | **G3 design decision, not automatically a new feature** |
@@ -62,8 +62,8 @@ claim completeness while hiding pending choices. They are resolved one by one.
 | ID | ⚠️ Candidate desire | Material consequence | Initial recommendation |
 |---|---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire read/emulate and bounded write | **resolved `DEC-0033`**: protected M5-style Port-B profile + passive adapter; no base pad | accepted external; official M5 iButton Unit is not claimed |
-| `W-EXTRA-12` | modern FIDO2/CTAP authenticator + U2F compatibility | `AUD-0006/FND-0043/IMP-0029`: exclusive mode, secret lifecycle, presence, backup and certification boundary | current recommendation A: open personal authenticator; owner decision pending |
-| `W-EXTRA-13` | haptic feedback | motor/driver/space/power and quiet-mode policy | include as G3 candidate; not a substitute for visible critical state |
+| `W-EXTRA-12` | modern FIDO2/CTAP authenticator + U2F compatibility | **resolved `DEC-0035`**: exclusive open personal mode, device-bound secrets, truthful assurance | accepted Main; implementation proof open |
+| `W-EXTRA-13` | haptic feedback | `AUD-0007/FND-0044/IMP-0030`: motor is not felt enclosure feedback without coupling; power/mount/interference/quiet policy | current recommendation B: optional rigidly coupled U059; owner decision pending |
 | `W-EXTRA-14` | IMU | sensor, interrupt/power/calibration/privacy and a real use case | defer unless orientation/fall/tamper gesture is explicitly desired |
 | `W-EXTRA-15` | physical text keyboard | larger face/part count/openings versus faster local text/CLI | compare as a complete G3 archetype, not a button-count decision |
 | `W-EXTRA-16` | dual-role/high-speed USB accessory host | host-capable compute/PHY, 5 V power budget, ESD, connector role UX and drivers | compare in large/modular candidate; do not force base until use case wins |
@@ -72,9 +72,9 @@ claim completeness while hiding pending choices. They are resolved one by one.
 ## Gate result
 
 The old 125 leaves remain reviewed; none was lost. G2 is reopened only for the
-six remaining delta decisions above and physical constraints that feed G3.
+five remaining delta decisions above and physical constraints that feed G3.
 `W-EXTRA-11` is closed by `DEC-0033`; `AUD-0005/DEC-0034` separately close the
-general M5-first/two-tier infrastructure question. `AUD-0006` completed the
-`W-EXTRA-12` fact/prerequisite review and opened `IMP-0029`. G3 research
+general M5-first/two-tier infrastructure question. `AUD-0006/DEC-0035` close
+`W-EXTRA-12` as an open personal authenticator. G3 research
 may proceed in parallel, but neither product design nor architecture can receive
 final review while any accepted delta is missing from its demand model.

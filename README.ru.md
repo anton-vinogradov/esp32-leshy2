@@ -62,6 +62,11 @@ Leshy2 — открытый автономный портативный all-in-o
 - Owner-controlled signed updates сохраняют target validation, rollback,
   offline keys/tools и intentional physical recovery. Необратимый lockdown —
   отдельный optional decision, а не default.
+- Основной режим включает открытый personal FIDO2/CTAP USB authenticator с U2F
+  compatibility. Он работает в exclusive minimal mode, требует нового local
+  consent и не включает device-bound credentials в обычный backup. Claims
+  FIDO Certified, hardware-backed и tamper-resistant запрещены без отдельного
+  proof; owner-controlled open firmware сохраняется.
 
 Названные в требованиях и candidate studies modules/IC являются first targets
 или evidence, но не молча зафиксированным BOM.

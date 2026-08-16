@@ -1,6 +1,6 @@
-# ⚠️ IMP-0029 — open personal FIDO authenticator, not a false certified token
+# IMP-0029 — open personal FIDO authenticator, not a false certified token
 
-- Статус: **Предложение; требуется решение владельца**
+- Статус: **Принят вариант A; `DEC-0035`**
 - Дата: 2026-08-16
 - Delta: `W-EXTRA-12`
 - Evidence: [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md)
@@ -56,7 +56,9 @@ security profile почти наверняка потребует собстве
 
 ## Recommendation
 
-**A**. Это сохраняет открытость устройства и даёт реальную современную
+**Принят A** в
+[`DEC-0035`](../decisions/DEC-0035-open-personal-fido-authenticator.md). Это
+сохраняет открытость устройства и даёт реальную современную
 аутентификацию без ложной маркетинговой надстройки. Hardware-backed/certified
 variant остаётся возможным позднейшим усилением, а не скрытым обязательным BOM.
 
@@ -75,4 +77,3 @@ variant остаётся возможным позднейшим усилени�
   clone secrets or roll back a claimed non-zero counter;
 - protocol conformance, Windows/macOS/Linux/browser interoperability, fuzzing,
   power-loss/update/reset and cross-interface isolation HIL before release.
-

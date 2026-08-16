@@ -16,15 +16,16 @@
 Update 2026-08-16: `W-EXTRA-11` принят как external passive M5-style Port-B
 profile по `DEC-0033/REQ-IBTN-0001`. M5-first Unit/Cap плюс отдельный
 high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
-`W-EXTRA-12..17` остаются открыты.
+`W-EXTRA-12` принят `DEC-0035/REQ-FIDO-0001`; `W-EXTRA-13..17` открыты.
 
 ## Current competitor delta disposition
 
 | Leaf ID | Result | Decision | Product/BOM boundary |
 |---|---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire contact tool | `accepted-external` | protected Port-B timing/electrical profile + replaceable passive adapter; no integrated base contacts; read/emulate/write separately qualified |
-| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `needs-owner` | `AUD-0006` reviewed facts; `IMP-0029` compares open personal, hardware-backed-first and defer |
-| `W-EXTRA-13..17` | remaining current competitor questions | `needs-owner` | resolved one by one through `AUD-0004`; no silent target inclusion |
+| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main` | `DEC-0035/REQ-FIDO-0001`: exclusive open personal authenticator; device-bound/non-exportable; no certification overclaim |
+| `W-EXTRA-13` | haptic feedback through the product enclosure | `needs-owner` | `AUD-0007` corrected M5 coverage; `IMP-0030` compares integrated, coupled external and none |
+| `W-EXTRA-14..17` | remaining current competitor questions | `needs-owner` | resolved one by one through `AUD-0004`; no silent target inclusion |
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.

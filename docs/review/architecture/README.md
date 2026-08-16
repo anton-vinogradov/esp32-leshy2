@@ -27,12 +27,15 @@ buses, pins, connector counts and CAD are intentionally open.
   [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md), and the
   M5 expansion audit [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md),
   plus the FIDO prerequisite audit
-  [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md).
+  [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md) and
+  haptic prerequisite audit
+  [`AUD-0007`](../audits/AUD-0007-haptic-product-mechanical-cost.md).
 
 `W-EXTRA-11` is reviewed by `DEC-0033/REQ-IBTN-0001`; M5-first Unit/Cap plus a
 separate high-throughput class without native M5-Bus is reviewed by
-`DEC-0034/REQ-EXT-0001`. G2 currently requires repeat review while
-`W-EXTRA-12..17` are decided. G3 research
+`DEC-0034/REQ-EXT-0001`. `W-EXTRA-12` is reviewed by
+`DEC-0035/REQ-FIDO-0001`. G2 currently requires repeat review while
+`W-EXTRA-13..17` are decided. G3 research
 may proceed, but cannot receive final review until G2 closes.
 
 ## Candidate/reference studies

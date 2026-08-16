@@ -14,7 +14,7 @@ expansion platform is therefore materially better than one connector per
 feature.
 
 The audit also disproves an M5-only 90% claim. Official M5 products fully cover
-6 of 18 relevant external hardware classes, 8 with partial matches and 9 after
+5 of 18 relevant external hardware classes, 8 with partial matches and 9 after
 our custom iButton adapter. Remaining high-rate SDR/compute/USB needs cannot be
 preserved over low-rate Grove/Cap command links alone.
 
