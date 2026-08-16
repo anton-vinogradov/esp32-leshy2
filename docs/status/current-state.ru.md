@@ -90,8 +90,12 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 pad/header/connector. `DEC-0042/REV-0003Y` добавили проверяемый источник и два
 draft consumer: [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md).
 Они проходят contact/collision/accounting/strap/service checks, но exact nRF,
-CC RF implementation, voice/display/IR и часть control/power всё ещё blockers.
-`FND-0050` фиксирует nRF24 NRND и исправляет статус CC1101 на ACTIVE.
+CC RF implementation, voice/IR и часть control/power всё ещё blockers.
+`DSP-0001/REV-0003Z` проверяют три реальные display/touch boundaries и один
+microSD socket. `FND-0051` доказывает, что старые 10 full frames/s для ST7796S
+и generic 24-pin connector переиспользовать нельзя; текущий вопрос по display
+performance — `IMP-0036`. `FND-0050` фиксирует nRF24 NRND и исправляет статус
+CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его

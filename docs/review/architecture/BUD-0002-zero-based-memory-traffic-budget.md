@@ -7,6 +7,13 @@
 - Scope: одинаковые capability/scenario ceilings для `SYN-2A`, `SYN-2B`, `SYN-3A`
 - Не входы: archived `BUD-0001`, legacy owners/queues/throughput claims и прежние layouts
 
+> **Current correction:** `FND-0051` proves that the display row cannot qualify
+> either verified low-cost ST7796S reference: its datasheet ceiling is 1.89
+> MB/s before overhead, below both 3.072 MB/s demand and 4.5 MB/s gate. This
+> historical arithmetic remains review evidence for the superseded candidates,
+> but the display subsection requires repeat review after `IMP-0036`; it is not
+> an active G2F prerequisite.
+
 ## Метод и единицы
 
 Бюджет заново выведен из принятых сценариев и физических интерфейсных потолков. `kB/s` означает 1000 bytes/s, `KiB` — 1024 bytes. Datasheet maximum не является обещанием приложения; гарантией становится только измеренный admitted profile с bounded latency, drop/overflow counters и явным состоянием деградации.

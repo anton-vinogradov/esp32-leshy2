@@ -34,3 +34,8 @@ explicit reset proof, a service path is missing, or an exact peer endpoint is
 unknown. Provisional external contracts remain visible qualification gaps; the
 generator never silently promotes them to verified parts.
 
+The inventory also contains verified reference boundaries that are not yet
+instantiated in either map. `DSP-0001` currently covers three display/touch
+devices and one microSD socket. Their presence proves real contacts only; the
+open `IMP-0036` performance decision must close before a display can replace
+the abstract endpoint in a candidate.

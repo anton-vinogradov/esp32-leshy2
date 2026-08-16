@@ -33,8 +33,8 @@
 | broadcast receiver | Si4732 family | function/patch contract reviewed; exact orderable suffix/package, required pins and RF network remain open | `open/blocking` |
 | codec | ES8311 family | audio contract reviewed; exact MPN/package and accessible reset/control implementation remain open | `open/blocking` |
 | IR RX/TX | `TSOP38238`, `TSMP95000`, `TSAL6200` first discrete candidates | manufacturer part-level functions/packages are known; exact optical/electrical stuffing and driver remain conditional | `candidate facts`; finish package/driver/availability and HIL before count becomes target |
-| display/touch | no exact panel/controller/connector | interface envelope is not a real device pinout | `open/blocking` |
-| microSD | no exact socket/card-detect implementation | protocol width is known; socket pins, detect polarity and geometry are not | `open/blocking` |
+| display/touch | Waveshare SKU 29318, Elecrow `DLS31040B1` and Riverdi `RVT35HITNWC00-B` references | exact module/FPC contacts, dimensions, controllers and power boundaries are recorded in `devices.json`; ST7796S references fail the historical 4.5 MB/s gate by datasheet | `verified references`; target performance/interface/optics remain `open/blocking`, see `DSP-0001/FND-0051/IMP-0036` |
+| microSD | Hirose `DM3AT-SF-PEJM5` exact socket reference | all 8 card contacts, detect switch and body are verified; integrated display TF slots are shared-SPI and not SDMMC-equivalent | `verified candidate boundary`; width, protection, placement, card set and HIL remain `open/blocking` |
 | slow control | `TCA9535PWR` TSSOP24 candidate | official TI package table exposes 16 ports, INT, address straps and I²C; power-on ports are inputs | `verified candidate`; every control needs external safe pull and STOP cannot depend on it |
 | radio output compression | `SN74HC595PWR` TSSOP16 candidate for `G2F-2R` | official TI package table exposes QA…QH, SER/SRCLK/RCLK, OE and SRCLR | `verified candidate`; OE/reset/pull truth table and shared-data timing remain schematic/HIL gates |
 | non-programmable safety/power | exact latch/supervisor/converter set not selected | semantic endpoints are known; TCA9535/SN74HC595 do not implement the accepted latched hard STOP by themselves | `open/blocking` |
@@ -55,6 +55,7 @@
 - [TI CC1101 exact silicon datasheet](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 - [TI TCA9535 exact package datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf)
 - [TI SN74HC595 exact package datasheet](https://www.ti.com/lit/ds/symlink/sn74hc595.pdf)
+- [Display/touch/storage exact-device evidence](DSP-0001-display-storage-real-device-evidence.md)
 
 ## Machine-readable source and draft consumers
 
