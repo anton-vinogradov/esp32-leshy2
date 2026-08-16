@@ -14,7 +14,7 @@
 | 1. Vision and boundaries | Reviewed, including three-tier clarification |
 | 2. Capabilities and exclusions | Reviewed (`REV-0002AD`) |
 | 3. Architecture and ownership | Reviewed (`DEC-0028`, `REV-0003U`) |
-| 4. Components and BOM | Ready to start |
+| 4. Components and BOM | In progress; entry register reviewed (`BOM-0001`, `REV-0004A`) |
 | 5–10 | Not started |
 
 The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
@@ -115,4 +115,4 @@ All candidates pass paper memory and admitted-throughput arithmetic; `SYN-2A` re
 
 Hardware [`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) was accepted atomically in [`DEC-0028`](../review/decisions/DEC-0028-accept-zero-based-syn-3a.md). [`REV-0003U`](../review/reviews/REV-0003U-stage3-acceptance-propagation.md) verifies the exact owners, transports, pins, controls, budgets, power, RF, update/recovery, cost, kill-gates and cross-repository target propagation; stage 3 is **Reviewed**.
 
-The next gate is stage 4: convert every accepted exact part, conditional candidate and still-abstract circuit function into one evidence register, then qualify components in dependency order. Existing schematic/source artifacts remain legacy implementation evidence until they conform to the accepted target.
+Stage 4 is active. [`BOM-0001`](../review/components/BOM-0001-stage4-component-evidence-register.md) and [`REV-0004A`](../review/reviews/REV-0004A-stage4-entry-register.md) provide the reviewed complete evidence register, classify architecture-locked, conditional, still-abstract and external-profile rows, and preserve seven known legacy mismatches with correction stages. This review does not qualify any component. The next artifact is `BOM-0002`, starting with exact S3/C5/RP/TCA, clocks, recovery, stepping, lifecycle, AVL, assembly and compatibility identity.

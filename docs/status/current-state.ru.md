@@ -14,7 +14,7 @@
 | 1. Видение и границы | Проведено ревью, включая трёхуровневое уточнение |
 | 2. Возможности и исключения | Проведено ревью (`REV-0002AD`) |
 | 3. Архитектура и владение | Проведено ревью (`DEC-0028`, `REV-0003U`) |
-| 4. Компоненты и BOM | Готов к началу |
+| 4. Компоненты и BOM | В работе; entry register проверен (`BOM-0001`, `REV-0004A`) |
 | 5–10 | Не начато |
 
 Каноническая таблица стадий — [`docs/review/stages.md`](../review/stages.md).
@@ -115,4 +115,4 @@ Exact [`PIN-0002`](../review/architecture/PIN-0002-zero-based-exact-pin-maps.md)
 
 [`PKG-0001`](../review/architecture/PKG-0001-zero-based-target-architecture-proposal.md) атомарно принят в [`DEC-0028`](../review/decisions/DEC-0028-accept-zero-based-syn-3a.md). [`REV-0003U`](../review/reviews/REV-0003U-stage3-acceptance-propagation.md) проверяет exact owners, transports, pins, controls, budgets, power, RF, update/recovery, cost, kill-gates и распространение target в оба репозитория; этап 3 получил статус **«Проведено ревью»**.
 
-Следующий gate — этап 4: свести каждую принятую exact part, условный candidate и пока абстрактную circuit function в единый evidence register, затем квалифицировать компоненты по порядку зависимостей. Существующие schematic/source artifacts остаются legacy implementation evidence до соответствия принятому target.
+Этап 4 активен. [`BOM-0001`](../review/components/BOM-0001-stage4-component-evidence-register.md) и [`REV-0004A`](../review/reviews/REV-0004A-stage4-entry-register.md) дают полный проверенный evidence register, разделяют architecture-locked, conditional, still-abstract и external-profile rows и сохраняют семь известных legacy mismatches с точками исправления. Это review не квалифицирует ни одного component. Следующий artifact — `BOM-0002`: exact S3/C5/RP/TCA, clocks, recovery, stepping, lifecycle, AVL, assembly и compatibility identity.
