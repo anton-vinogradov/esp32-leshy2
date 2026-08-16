@@ -1,6 +1,6 @@
 # AUD-0003 — сравнительный аудит владельца трёх полнофункциональных nRF24
 
-- Статус: **Проведено ревью пререквизитов; требуется решение `IMP-0021`**
+- Статус: **Проведено ревью предварительных вариантов; решение отложено до wishlist freeze (`DEC-0022`)**
 - Дата: 2026-08-16
 - Этап: 2→3 ownership prerequisite
 - Входы: actual tsCircuit net map, `DEC-0001`, `DEC-0009`, `DEC-0018`, `DEC-0021`, `FND-0001`, `FND-0019`, `REQ-N24-0001`, official S3/C5/nRF24/U214 sources
@@ -34,7 +34,7 @@ C5-WROOM выводит существенно меньше свободных G
 
 | Вариант | Что требуется | Сильные стороны | Цена/риск | Вывод |
 |---|---|---|---|---|
-| A. S3 owner, общий SPI2 | существующая SPI/74HC138 разводка; reset-safe 3-bit CE latch/expander на текущем CE-control GPIO; существующий IRQ combiner; priority/chunked bus arbiter; убрать UART bridge только после C5 USB recovery proof | минимальная PCB-переделка; нет raw-frame IPC; `FND-0001` исчезает; BLE+nRF coexistence локально на S3; C5 освобождён для Wi-Fi/802.15.4+IR | display/SD/CC1101/U214 делят SPI; high-rate nRF capture требует latency/loss HIL; CE latch — новый малый BOM | **Рекомендованный baseline** |
+| A. S3 owner, общий SPI2 | существующая SPI/74HC138 разводка; reset-safe 3-bit CE latch/expander на текущем CE-control GPIO; существующий IRQ combiner; priority/chunked bus arbiter; убрать UART bridge только после C5 USB recovery proof | минимальная PCB-переделка; нет raw-frame IPC; `FND-0001` исчезает; BLE+nRF coexistence локально на S3; C5 освобождён для Wi-Fi/802.15.4+IR | display/SD/CC1101/U214 делят SPI; high-rate nRF capture требует latency/loss HIL; CE latch — новый малый BOM | **Предварительный S3-heavy кандидат; не выбран** |
 | B. C5 owner, dedicated GP-SPI | S3↔C5 link переносится на 1-bit SDIO; C5 exact revision; новая C5-local SPI/decode/CE/IRQ разводка | nRF не конкурирует с S3 display/SD SPI; C5 локально планирует nRF+802.15.4 | tight C5 GPIO; SDIO/recovery/NRE; raw capture IPC; полная переразводка; exact-revision dependency | рабочий fallback, но не дешевле и не проще |
 | C. S3 owner, отдельный SPI3 | inter-MCU link переносится на SDIO/UART, добавляется отдельная физическая nRF bus group | лучший bus isolation/throughput | дополнительные S3 pins конфликтуют с ES8311/U214/recovery; transport NRE | performance option только после провала A HIL |
 | D. Разделить radio между S3/C5 | два drivers/schedulers и cross-owner aggregation | теоретическая параллельность | две state machines, сложная calibration/timebase/STOP, два transport paths; нет принятого use case | не рекомендован |
@@ -56,7 +56,7 @@ Acceptance варианта A требует:
 
 ## Стоимость
 
-Вариант A сохраняет текущую сторону MCU и большую часть nets. Его новый hardware-кандидат — маленький reset-safe CE latch/expander и decoupling; цена подтверждается только BOM quote. Вариант B добавляет SDIO routing/pull-ups/revision qualification и перенос всей nRF control-side. Поэтому по инженерной и PCBA стоимости A предварительно дешевле, но zero-loss статус появляется только после HIL.
+Вариант A сохраняет текущую сторону MCU и большую часть nets. Его новый hardware-кандидат — маленький reset-safe CE latch/expander и decoupling; цена подтверждается только BOM quote. Вариант B добавляет SDIO routing/pull-ups/revision qualification и перенос всей nRF control-side. Поэтому на текущем неполном demand model A предварительно дешевле, но вывод пересчитывается после `INV-0002` freeze, а zero-loss статус появляется только после HIL.
 
 ## Первичные источники
 
@@ -66,4 +66,3 @@ Acceptance варианта A требует:
 - [ESP32-C5 SDIO 1-bit connection](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-reference/peripherals/sdio_slave.html)
 - [M5Stack U214 SPI/UART/IRQ/BUSY/RST pin map](https://docs.m5stack.com/en/cap/Cap_LoRa-1262)
 - [Nordic nRF24L01+ Product Specification](https://docs-be.nordicsemi.com/bundle/nRF24L01P_PS_v1.0/raw/resource/enus/nRF24L01P_PS_v1.0.pdf)
-

@@ -1,6 +1,6 @@
 # FND-0028 — владелец 3×nRF24 переоткрыт full-function/resource audit
 
-- Статус: **Требуется решение владельца (`IMP-0021`)**
+- Статус: **Architecture/layout decision отложено до wishlist freeze (`DEC-0022`)**
 - Серьёзность: architecture/resource/performance blocker
 - Затрагивает: `DEC-0001`, `DEC-0009`, `FND-0001`, `FND-0019`, `REQ-N24-0001`, S3↔C5 transport и stage-3 pin budget
 - Обнаружено: 2026-08-16
@@ -17,9 +17,9 @@
 
 Владелец потребовал полнофункциональные nRF24 и предложил заново проверить S3 как возможного лучшего владельца. Поэтому старое C5 ownership нельзя использовать как окончательный вход этапа 3 без повторного решения.
 
-## Критерий закрытия
+## Критерий закрытия после wishlist freeze
 
-`IMP-0021` выбирает одного владельца всех трёх radio и доказывает:
+После owner-confirmed `INV-0002` freeze несколько полных компоновок сравниваются на одном demand model. Выбранный вариант, одним из кандидатов которого является `IMP-0021`, назначает одного владельца всех трёх radio и доказывает:
 
 1. независимые logical CS/CE/role/channel/rate/address для каждого тракта;
 2. bounded IRQ source identification и отсутствие packet-loss overclaim;
@@ -34,4 +34,3 @@
 - [ESP32-C5: один GP-SPI и отдельный SDIO slave](https://documentation.espressif.com/esp32-c5_datasheet_en.html)
 - [M5Stack U214 Cap-Bus pin map](https://docs.m5stack.com/en/cap/Cap_LoRa-1262)
 - [Nordic nRF24L01+ Product Specification](https://docs-be.nordicsemi.com/bundle/nRF24L01P_PS_v1.0/raw/resource/enus/nRF24L01P_PS_v1.0.pdf)
-

@@ -29,7 +29,7 @@
 - `IMP-0019`: ровно один owner-level ответ A/B/C;
 - `IMP-0017`: native BLE vs nRF24 compatibility boundary финализируется вместе с owner;
 - `IMP-0004`: dedicated connection sniffer рассматривается следующим отдельным решением;
-- `IMP-0020`: найденный extra Bluetooth Mesh рассматривается только после ownership;
+- `IMP-0020`: найденный extra Bluetooth Mesh требует отдельного owner ответа; последующее `DEC-0022` помещает его в `W-EXTRA-03` до wishlist freeze и любого layout;
 - `FND-0007`, RF coexistence, exact host profile, storage/privacy/licence и HIL остаются implementation gates.
 
 ## Итог

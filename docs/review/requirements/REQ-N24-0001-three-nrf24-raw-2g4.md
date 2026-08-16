@@ -1,6 +1,6 @@
 # REQ-N24-0001 — 3×nRF24 raw 2.4 GHz analysis and controlled-test contract
 
-- Статус набора: **Проведено ревью capability; ownership требует повторного решения `IMP-0021`**
+- Статус набора: **Проведено ревью capability; ownership/layout отложены до wishlist freeze (`DEC-0022`)**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-N24-01`–`C-N24-10`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-08`, `C-X-11`
 - Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`, `DEC-0019`, `DEC-0021`; nRF24-часть `DEC-0001` переоткрыта
@@ -15,7 +15,7 @@
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-N24-01` | все | `requires IMP-0021` | Сквозной | Ровно один MCU физически/программно владеет всеми 3×nRF24; второй использует typed inter-MCU API. Выбранный owner/transport закрывает `FND-0001`, `FND-0028` и полный post-`DEC-0018` resource budget; legacy topology не наследуется без proof. |
+| `REQ-N24-01` | все | `post-wishlist layout` | Сквозной | Ровно один MCU физически/программно владеет всеми 3×nRF24; второй использует typed inter-MCU API. После `INV-0002` freeze выбранный owner/transport закрывает `FND-0001`, `FND-0028` и полный system resource budget; legacy topology не наследуется без proof. |
 | `REQ-N24-02` | `C-N24-01` | `conditional` | Сквозной hardware | Три exact qualified module имеют manufacturer/MPN/revision/IC identity/AVL, одинаковый measured RX/TX profile либо явно раздельную calibration. Generic `PA/LNA` label не задаёт power, sensitivity, current, antenna или compliance (`FND-0019`). |
 | `REQ-N24-03` | `C-N24-01` | `conditional` | Сквозной bus | Owner-local SPI имеет независимые logical CS и CE каждого radio, bounded bus arbitration и loss/latency proof. Shared IRQ допустим только при bounded безошибочной идентификации источника чтением каждого STATUS. Reset даёт `CSN=high`, `CE=low`, `PWR_UP=0`; отсутствующий/stuck radio не блокирует остальные. |
 | `REQ-N24-04` | `C-N24-02` | `conditional`, accepted A | Основной RX | По `DEC-0019` energy view хранит binary RPD samples, hit ratio, sample count, dwell, channel, data rate, common time window, age, radio/antenna ID и calibration ID/state. После fixture normalization сравниваются только синхронные сектора на одной частоте; UI даёт `stronger/comparable/unknown`, без dBm/RSSI/angle/bearing/VSWR. |

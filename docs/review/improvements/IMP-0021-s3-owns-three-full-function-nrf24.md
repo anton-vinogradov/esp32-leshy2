@@ -1,6 +1,6 @@
 # IMP-0021 — перенести целевое владение 3× полнофункциональных nRF24 на S3
 
-- Статус: **⚠️ Предложение — требуется решение владельца**
+- Статус: **⚠️ Layout-кандидат — решение отложено до wishlist freeze по `DEC-0022`**
 - Связано: `DEC-0001`, `DEC-0009`, `DEC-0021`, `FND-0001`, `FND-0019`, `FND-0028`, `AUD-0003`, `REQ-N24-0001`
 - Цена: без нового MCU/radio; conditional small CE-latch BOM и HIL
 - Дата: 2026-08-16
@@ -37,11 +37,10 @@
 - UART bridge не удаляется до доказанного C5 USB/BOOT/RESET recovery;
 - CE-latch part и final pin numbers не принимаются этим scope-решением — они проходят stage-3 comparison/HIL.
 
-## Рекомендация
+## Предварительная рекомендация
 
-Выбрать A как target ownership. Это снимает доказанный single-GP-SPI blocker C5 с меньшей переделкой и меньшим IPC, сохраняя три полнофункциональных radio. Финальная схема остаётся conditional на consolidated pin budget и shared-bus latency/loss HIL.
+После wishlist freeze сравнивать A как основной S3-heavy кандидат. На текущем известном составе он снимает single-GP-SPI blocker C5 с меньшей переделкой и меньшим IPC, сохраняя три полнофункциональных radio. Вывод должен быть пересчитан на полном demand model и остаётся conditional на consolidated resource budget и shared-bus latency/loss HIL.
 
-## Вопрос владельцу
+## Отложенное решение
 
-Принимаем вариант A: все три полнофункциональных nRF24 принадлежат S3, IR остаётся C5, а shared-SPI/CE-latch реализация допускается только после pin/recovery/performance HIL?
-
+Сейчас вопрос владельцу не задаётся. По `DEC-0022` сначала закрывается полный реестр хотелок `INV-0002`; затем A сравнивается с C5-heavy и balanced/modular вариантами на одинаковом наборе функций, ресурсов, стоимости и HIL-критериев.
