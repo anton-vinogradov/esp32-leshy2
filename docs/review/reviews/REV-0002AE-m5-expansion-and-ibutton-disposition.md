@@ -1,6 +1,6 @@
 # REV-0002AE — M5 ecosystem audit and iButton disposition
 
-- Статус: **Проведено ревью фактов и W-EXTRA-11; platform proposal открыт**
+- Статус: **Проведено ревью фактов и W-EXTRA-11; platform later closed by `DEC-0034`**
 - Дата: 2026-08-16
 - Inputs: `AUD-0004/W-EXTRA-11`, `AUD-0005`, `IMP-0027`, owner response
 - Outputs: `DEC-0033`, `REQ-IBTN-0001`, `FND-0042`, `IMP-0028`
@@ -24,5 +24,5 @@
 
 `W-EXTRA-11` and its capability contract receive **«Проведено ревью»** through
 `DEC-0033/REQ-IBTN-0001`. This does not close all of G2: `W-EXTRA-12..17`
-remain open. `AUD-0005` facts are reviewed, while `IMP-0028` requires one owner
-decision before M5 becomes the primary general expansion strategy.
+remain open. `AUD-0005` facts were reviewed here; the subsequent owner decision
+is recorded by `DEC-0034/REV-0002AF`.

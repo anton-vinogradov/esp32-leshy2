@@ -25,10 +25,14 @@ buses, pins, connector counts and CAD are intentionally open.
   owner/backend clauses reopened by `DEC-0032`;
 - `INV-0002/0004` for the prior 125 leaves, the current-competitor delta in
   [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md), and the
-  M5 expansion audit [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md).
+  M5 expansion audit [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md),
+  plus the FIDO prerequisite audit
+  [`AUD-0006`](../audits/AUD-0006-fido-authenticator-security-boundary.md).
 
-`W-EXTRA-11` is reviewed by `DEC-0033/REQ-IBTN-0001`. G2 currently requires
-repeat review while `IMP-0028` and `W-EXTRA-12..17` are decided. G3 research
+`W-EXTRA-11` is reviewed by `DEC-0033/REQ-IBTN-0001`; M5-first Unit/Cap plus a
+separate high-throughput class without native M5-Bus is reviewed by
+`DEC-0034/REQ-EXT-0001`. G2 currently requires repeat review while
+`W-EXTRA-12..17` are decided. G3 research
 may proceed, but cannot receive final review until G2 closes.
 
 ## Candidate/reference studies

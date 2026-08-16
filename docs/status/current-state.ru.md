@@ -28,8 +28,8 @@
 
 - `W-EXTRA-11` закрыт: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
   принимает внешний пассивный M5-style Port-B iButton adapter без base pad;
-- текущий infrastructure-вопрос: [`IMP-0028`](../review/improvements/IMP-0028-m5-first-not-m5-only-expansion.md) — M5-first low-rate layer плюс отдельный high-speed tier;
-- затем по одному: `W-EXTRA-12` U2F/FIDO, `13` haptic, `14` IMU, `15`
+- infrastructure закрыт [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap плюс отдельный high-throughput class, без native M5-Bus;
+- текущий вопрос: [`IMP-0029`](../review/improvements/IMP-0029-open-personal-fido-authenticator.md) для `W-EXTRA-12` — современный FIDO2/CTAP authenticator с U2F compatibility; затем `13` haptic, `14` IMU, `15`
   physical keyboard, `16` high-speed USB host и `17` 6 GHz/Wi-Fi 6E.
 
 Ни один оставшийся пункт не добавлен в target до решения владельца.
@@ -78,9 +78,10 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
 провёл ревью M5 ecosystem: M5-only закрывает 33.3% external hardware classes
 полностью и 50% с partial/custom iButton, поэтому 90% требует отдельного
-high-speed tier. После решения `IMP-0028`
+high-speed tier, принятого `DEC-0034`.
 [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
-закрывает `W-EXTRA-12..17` по одному. Параллельный G3 research
+теперь закрывает `W-EXTRA-12..17` по одному. `AUD-0006` завершил ревью фактов
+FIDO; `IMP-0029` ждёт решения владельца. Параллельный G3 research
 отталкивается от уже проверенных capabilities и задаёт физический
 продукт без выбора electronics: form factor/use posture, control/connector
 surfaces, display, battery/charging, external-module attachment, antenna

@@ -1,6 +1,6 @@
 # FND-0042 — M5 is neither one interface nor a 90% turnkey solution
 
-- Статус: **Product model исправлен; implementation proof открыт**
+- Статус: **Закрыто на уровне product model `DEC-0034`; implementation proof открыт**
 - Дата: 2026-08-16
 - Обнаружено: [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
 - Затрагивает: `C-SYS-09`, `REQ-SYS-08`, `W-EXTRA-02/04/05/06A/06B/07/08/09/10A/10B/11/13/14/15/16`, G3 external surfaces
@@ -42,7 +42,7 @@ USB full/low-speed, поэтому не закрывает high-speed host/SDR/c
 
 ## Exit criteria
 
-- owner disposes [`IMP-0028`](../improvements/IMP-0028-m5-first-not-m5-only-expansion.md);
+- [x] owner принял вариант B через [`DEC-0034`](../decisions/DEC-0034-m5-first-two-tier-expansion.md);
 - G3 compares physical Unit/Cap/high-speed surfaces and module retention;
 - G4 candidates budget exact ports, signals, power and concurrent profiles;
 - G7/G9 produce exact electrical/protection/STOP/update contracts;

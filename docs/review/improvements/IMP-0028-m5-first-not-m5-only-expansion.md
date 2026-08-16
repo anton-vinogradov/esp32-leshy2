@@ -1,6 +1,6 @@
-# ⚠️ IMP-0028 — M5-first, not M5-only external expansion platform
+# IMP-0028 — M5-first, not M5-only external expansion platform
 
-- Статус: **Предложение; требуется решение владельца**
+- Статус: **Принят вариант B; `DEC-0034`**
 - Дата: 2026-08-16
 - Evidence: [`AUD-0005`](../audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
 - Finding: [`FND-0042`](../findings/FND-0042-m5-is-not-one-interface-or-ninety-percent-solution.md)
@@ -50,7 +50,8 @@ Expose one Leshy2 high-density connector and use adapters for all M5 families.
 
 ## Recommendation
 
-**B**. It treats M5 as the default low-rate accessory ecosystem, not as a
+**Принят B** в [`DEC-0034`](../decisions/DEC-0034-m5-first-two-tier-expansion.md).
+It treats M5 as the default low-rate accessory ecosystem, not as a
 religion or a throughput claim. Exact number and placement of HY2.0 ports,
 whether a passive Cap-to-A/B/C dock is included, and the high-speed connector
 remain G3/G4 comparisons. The base does not promise native M5-Bus.
@@ -64,6 +65,7 @@ remain G3/G4 comparisons. The base does not promise native M5-Bus.
 - hard STOP and update/reset faults fail every external transmitter off;
 - active accessory firmware identity/recovery limitations remain visible;
 - M5-Bus support is per exact carrier, never universal;
-- high-speed tier is a separate owner decision and cannot be silently removed
-  once a reviewed external result depends on it;
+- high-speed tier is accepted as a distinct architectural class and cannot be
+  silently removed once a reviewed external result depends on it; its exact
+  USB/user-facing scope remains open in `W-EXTRA-16`;
 - base, likely-field-kit and maximum-lab-kit cost are reported separately.

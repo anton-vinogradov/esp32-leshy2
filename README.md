@@ -51,6 +51,11 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   both cap and expansion-module strategies where feasible, and external NFC.
   iButton/1-Wire uses a replaceable passive M5-style Port-B adapter rather than
   mandatory contact pads on the base enclosure.
+- M5 Unit A/B/C/custom and the full U214-compatible 14-pin Cap form the primary
+  low-rate expansion tier. Raw SDR/external-compute/general-host needs retain a
+  separate high-throughput class; the base does not claim native 30-pin
+  M5-Bus compatibility. Exact port count, placement and high-speed connector
+  remain product/architecture decisions.
 - Local display, storage, controls, PTT, hard STOP and explicit re-arm remain
   autonomous; ordinary product use cannot require a phone.
 - Every programmable chip ultimately selected must expose permanent,

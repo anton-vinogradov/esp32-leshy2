@@ -1,12 +1,13 @@
 # AUD-0005 — M5 expansion ecosystem coverage and Leshy2 attachment boundary
 
-- Статус: **Проведено ревью фактов; `IMP-0028` требует решения владельца**
+- Статус: **Проведено ревью; вариант B принят `DEC-0034`**
 - Дата snapshot: 2026-08-16
 - Scope: актуальные official M5Stack Unit/Cap/Module interfaces и продукты,
   которые пересекаются с reviewed wishlist Leshy2
 - Связанные finding/decision: [`FND-0042`](../findings/FND-0042-m5-is-not-one-interface-or-ninety-percent-solution.md),
   [`DEC-0033`](../decisions/DEC-0033-external-m5-ibutton-profile.md)
 - Предложение: [`IMP-0028`](../improvements/IMP-0028-m5-first-not-m5-only-expansion.md)
+- Решение: [`DEC-0034`](../decisions/DEC-0034-m5-first-two-tier-expansion.md)
 
 ## Вопрос аудита
 

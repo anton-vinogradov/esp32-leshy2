@@ -50,6 +50,10 @@ Leshy2 — открытый автономный портативный all-in-o
   expansion-module strategies где это реализуемо, а также внешний NFC.
   iButton/1-Wire реализуется заменяемым пассивным M5-style Port-B адаптером,
   без обязательных контактов на корпусе базы.
+- M5 Unit A/B/C/custom и полный U214-compatible 14-pin Cap образуют основной
+  low-rate expansion tier. Для raw SDR, внешнего compute и general host
+  сохраняется отдельный high-throughput class; base не обещает native 30-pin
+  M5-Bus. Число/расположение портов и high-speed connector выбираются позже.
 - Локальные display/storage/controls, PTT, hard STOP и explicit re-arm остаются
   автономными; обычная эксплуатация не требует телефона.
 - Каждый в итоге выбранный programmable chip получает постоянные независимые

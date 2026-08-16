@@ -1,6 +1,6 @@
 # AUD-0004 — current competitor capability and product-design gap
 
-- Статус: **На ревью; W-EXTRA-11 закрыт, W-EXTRA-12..17 открыты**
+- Статус: **На ревью; W-EXTRA-11 и expansion infrastructure закрыты, W-EXTRA-12..17 открыты**
 - Дата snapshot: 2026-08-16
 - Finding: [`FND-0040`](../findings/FND-0040-current-competitor-benchmark-missing.md)
 - Scope: official product/project documentation; shipping and prototype states
@@ -62,7 +62,7 @@ claim completeness while hiding pending choices. They are resolved one by one.
 | ID | ⚠️ Candidate desire | Material consequence | Initial recommendation |
 |---|---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire read/emulate and bounded write | **resolved `DEC-0033`**: protected M5-style Port-B profile + passive adapter; no base pad | accepted external; official M5 iButton Unit is not claimed |
-| `W-EXTRA-12` | U2F/FIDO-style USB security key | secure key lifecycle, local user-presence action, backup/recovery truth and certification boundary | include software capability; never claim certified/hardware-backed without proof |
+| `W-EXTRA-12` | modern FIDO2/CTAP authenticator + U2F compatibility | `AUD-0006/FND-0043/IMP-0029`: exclusive mode, secret lifecycle, presence, backup and certification boundary | current recommendation A: open personal authenticator; owner decision pending |
 | `W-EXTRA-13` | haptic feedback | motor/driver/space/power and quiet-mode policy | include as G3 candidate; not a substitute for visible critical state |
 | `W-EXTRA-14` | IMU | sensor, interrupt/power/calibration/privacy and a real use case | defer unless orientation/fall/tamper gesture is explicitly desired |
 | `W-EXTRA-15` | physical text keyboard | larger face/part count/openings versus faster local text/CLI | compare as a complete G3 archetype, not a button-count decision |
@@ -73,7 +73,8 @@ claim completeness while hiding pending choices. They are resolved one by one.
 
 The old 125 leaves remain reviewed; none was lost. G2 is reopened only for the
 six remaining delta decisions above and physical constraints that feed G3.
-`W-EXTRA-11` is closed by `DEC-0033`; `AUD-0005` separately audits the general
-M5 ecosystem and leaves `IMP-0028` for owner decision. G3 research
+`W-EXTRA-11` is closed by `DEC-0033`; `AUD-0005/DEC-0034` separately close the
+general M5-first/two-tier infrastructure question. `AUD-0006` completed the
+`W-EXTRA-12` fact/prerequisite review and opened `IMP-0029`. G3 research
 may proceed in parallel, but neither product design nor architecture can receive
 final review while any accepted delta is missing from its demand model.

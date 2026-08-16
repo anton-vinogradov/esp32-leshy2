@@ -39,6 +39,7 @@
 | `W-OWN-13` | baseline native BLE с одним явным product identity/key-vault owner | `accepted` | controller/physical owner открыт `DEC-0032`; former S3 profile — reference |
 | `W-OWN-14` | OpenThread open baseline; Zigbee optional conditional | `accepted` | `DEC-0020` |
 | `W-OWN-15` | целевой готовый документ отдельно от текущей проработки в обоих репозиториях | `accepted` | `DEC-0011` |
+| `W-OWN-16` | M5-first low-rate Unit/Cap expansion плюс отдельный high-throughput class; без native M5-Bus | `accepted` | `DEC-0034`, `REQ-EXT-0001` |
 
 ## Полный импорт известных функциональных кандидатов
 
@@ -91,7 +92,7 @@ disposition они имеют состояние `needs-owner` и не вход�
 | ID | ⚠️ Возможная хотелка | Состояние |
 |---|---|---|
 | `W-EXTRA-11` | iButton/1-Wire read/emulate и bounded write | `accepted-external`: `DEC-0033`, passive M5-style Port-B adapter; no base pad |
-| `W-EXTRA-12` | U2F/FIDO-style USB security key | `needs-owner` |
+| `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `needs-owner`: `AUD-0006/IMP-0029` |
 | `W-EXTRA-13` | haptic feedback | `needs-owner` |
 | `W-EXTRA-14` | IMU/orientation/motion | `needs-owner` |
 | `W-EXTRA-15` | physical text keyboard as product archetype | `needs-owner`, G3 |
@@ -124,7 +125,8 @@ disposition они имеют состояние `needs-owner` и не вход�
 - [x] completeness проверена по legacy, owner additions и extras;
 - [x] freeze принят по явной делегации владельца в `DEC-0023`.
 - [ ] current competitor delta получает owner disposition: `W-EXTRA-11`
-  закрыт `DEC-0033`; `W-EXTRA-12..17` открыты;
+  закрыт `DEC-0033`, infrastructure `IMP-0028` закрыт `DEC-0034`;
+  `W-EXTRA-12` reviewed facts/open `IMP-0029`; `W-EXTRA-13..17` открыты;
 - [ ] G2 проходит новое propagation review после решений.
 
 ## Следующий этап после закрытия delta

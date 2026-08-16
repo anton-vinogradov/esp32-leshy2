@@ -28,8 +28,8 @@ The canonical table is [`stages.md`](../review/stages.md).
 
 - `W-EXTRA-11` is closed: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)
   accepts an external passive M5-style Port-B iButton adapter and no base pad;
-- current infrastructure question: [`IMP-0028`](../review/improvements/IMP-0028-m5-first-not-m5-only-expansion.md) — an M5-first low-rate layer plus a separate high-speed tier;
-- queued one at a time: `W-EXTRA-12` U2F/FIDO, `13` haptic, `14` IMU, `15`
+- infrastructure is closed by [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap plus a separate high-throughput class, without native M5-Bus;
+- current question: [`IMP-0029`](../review/improvements/IMP-0029-open-personal-fido-authenticator.md) for `W-EXTRA-12` — modern FIDO2/CTAP authenticator with U2F compatibility; then `13` haptic, `14` IMU, `15`
   physical keyboard, `16` high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
 
 No remaining item becomes part of the target before owner disposition.
@@ -80,9 +80,10 @@ Consequences:
 [`AUD-0005`](../review/audits/AUD-0005-m5-expansion-ecosystem-coverage.md)
 reviews the M5 ecosystem: M5-only fully covers 33.3% of relevant external
 hardware classes and reaches 50% with partial/custom iButton coverage, so the
-90% attachment goal requires a separate high-speed tier. After `IMP-0028` is
-decided, [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
-resolves `W-EXTRA-12..17` one by one. Parallel G3 research
+90% attachment goal requires a separate high-speed tier, accepted in
+`DEC-0034`. [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
+now resolves `W-EXTRA-12..17` one by one. `AUD-0006` completed the FIDO fact
+review; `IMP-0029` awaits owner disposition. Parallel G3 research
 starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and
 connector surfaces, display, battery/charging, external-module attachment,
