@@ -14,8 +14,8 @@
 |---|---|
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
-| 2. Capabilities, exclusions, concurrency/failure needs | Reviewed (`REV-0002AD`) |
-| 3. Target physical/product design | **Active; output not yet reviewed** |
+| 2. Capabilities, exclusions, concurrency/failure needs | **Repeat review required**: prior 125 leaves retained, competitor delta open (`FND-0040`) |
+| 3. Target physical/product design | Research active; final review waits for gate 2 |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started in the corrected process |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
 | 8. Components/BOM | Blocked; previous evidence is candidate/reference only |
@@ -23,6 +23,14 @@
 | 10–11. PCB, fabrication and bring-up | Not started |
 
 The canonical table is [`stages.md`](../review/stages.md).
+
+## ⚠️ Open competitor-delta proposals
+
+- current question: [`IMP-0027/W-EXTRA-11`](../review/improvements/IMP-0027-ibutton-one-wire-profile.md) — iButton/1-Wire and contact strategy;
+- queued one at a time: `W-EXTRA-12` U2F/FIDO, `13` haptic, `14` IMU, `15`
+  physical keyboard, `16` high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
+
+None is part of the target before owner disposition.
 
 ## What remains reviewed
 
@@ -66,8 +74,11 @@ Consequences:
 
 ## Active next artifact
 
-The next artifact starts from reviewed capabilities and defines the physical
+First, [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
+resolves seven competitor-delta decisions one by one. Parallel G3 research
+starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and
 connector surfaces, display, battery/charging, external-module attachment,
 antenna volumes, service access, environment/repairability and target cost.
-Only after its owner review will complete architecture alternatives be built.
+Complete architecture alternatives require both the new G2 review and owner-
+reviewed G3 output.

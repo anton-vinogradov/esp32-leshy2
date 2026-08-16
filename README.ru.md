@@ -74,7 +74,8 @@ Leshy2 — открытый автономный портативный all-in-o
 
 ## Состояние разработки
 
-Product capabilities этапов 1–2 проверены. Сейчас активен target physical/product
-design; whole-device alternatives, optimality, conceptual placement и новое
+Прежние 125 capability leaves проверены; сейчас G2 точечно переоткрыт для
+актуального competitor delta, а target physical/product design ведётся как
+research. Whole-device alternatives, optimality, conceptual placement и новое
 atomic architecture decision обязаны предшествовать компонентам и KiCad.
 Нормативный порядок — [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

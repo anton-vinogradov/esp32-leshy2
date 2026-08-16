@@ -18,23 +18,24 @@
 The current active artifact is the product-design stage. Exact MCU ownership,
 buses, pins, connector counts and CAD are intentionally open.
 
-## Retained reviewed prerequisites
+## Active reviewed prerequisites
 
-- [`CAP-0001`](CAP-0001-zero-based-capability-input.md): capability coverage
-  without hardware placement;
-- [`CON-0001`](CON-0001-hardware-neutral-concurrency-model.md): concurrency,
-  degraded and failure needs;
-- [`RES-0001`](RES-0001-hardware-neutral-resource-demand.md): resource demand
-  equations without an owner map;
-- [`SRC-0001`](SRC-0001-primary-hardware-resource-facts.md): dated hardware
-  facts useful when candidates are synthesized.
+- reviewed stage-1 intent and safety/legal decisions;
+- reviewed `REQ-*` behavior, evidence, concurrency and failure obligations with
+  owner/backend clauses reopened by `DEC-0032`;
+- `INV-0002/0004` for the prior 125 leaves, plus the open current-competitor
+  delta in [`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md).
 
-These inputs may be corrected by a visible finding, but they do not select
-parts or topology.
+G2 currently requires repeat review while `W-EXTRA-11..17` are decided. G3
+research may proceed, but cannot receive final review until G2 closes.
 
 ## Candidate/reference studies
 
-- [`SYN-0001`](SYN-0001-zero-based-whole-device-candidates.md),
+- Former [`CAP-0001`](CAP-0001-zero-based-capability-input.md),
+  [`CON-0001`](CON-0001-hardware-neutral-concurrency-model.md),
+  [`RES-0001`](RES-0001-hardware-neutral-resource-demand.md),
+  [`SRC-0001`](SRC-0001-primary-hardware-resource-facts.md),
+  [`SYN-0001`](SYN-0001-zero-based-whole-device-candidates.md),
   [`PIN-0002`](PIN-0002-zero-based-exact-pin-maps.md),
   [`BUD-0002`](BUD-0002-zero-based-memory-traffic-budget.md),
   [`PWR-0001`](PWR-0001-zero-based-power-safety-envelope.md),

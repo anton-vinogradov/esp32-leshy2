@@ -27,7 +27,7 @@
 | 3 | `WG-03` Broadcast receiver и analog voice | `C-RX-01..07`, `C-VHF-01..07` | 14 | FM/RDS/LW/MW/SW/SSB/CW, scan/log/record/decode, NFM voice, tones, modem/APRS/SSTV и bounded relay | reviewed contracts; отдельные deferred/extras не принимаются автоматически |
 | 4 | `WG-04` Consumer IR | `C-IR-01..05` | 5 | обучение, decode, own remote/replay, universal DB и изолированные security sweeps | capability reviewed; layout позже |
 | 5 | `WG-05` HF NFC/RFID | `C-NFC-01..10` | 10 | tag read/write/NDEF/library, credential analysis, emulation/recovery/clone с разными gates | capability reviewed; extra LF/relay отдельно |
-| 6 | `WG-06` Wi-Fi и IP/local-network функции | `C-W24-01..12`, `C-W5-01..08` | 20 | AP/STA/ESP-NOW/SoftAP/OTA, scan/metrics/capture/detection и изолированные active security tests в 2.4/5 GHz | C5 slice reviewed; S3 2.4 slice и cross-owner dedup pending |
+| 6 | `WG-06` Wi-Fi и IP/local-network функции | `C-W24-01..12`, `C-W5-01..08` | 20 | AP/STA/ESP-NOW/SoftAP/OTA, scan/metrics/capture/detection и изолированные active security tests в 2.4/5 GHz | оба capability slice reviewed; backends/owner dedup reopened by `DEC-0032` |
 | 7 | `WG-07` Native BLE и IEEE 802.15.4 | `C-BLE-01..12`, `C-W5-09`, `C-UX-02` | 14 | ordinary BLE/GATT/HID/beacons, tracker safety, Thread/Zigbee/raw 802.15.4 и единый BadBLE/BadUSB script UX | baseline reviewed; extras Mesh/sniffer/Classic отдельно |
 | 8 | `WG-08` Три полнофункциональных nRF24 | `C-N24-01..10` | 10 | independent PTX/PRX, RPD hunt, ESB discovery/analysis, authorized exploitation и contained RF tests | capability reviewed; owner/bus/GPIO/layout только после freeze |
 | 9 | `WG-09` Sub-GHz CC1101 и внешний LoRa | `C-SUB-01..11`, `C-LORA-01..09`, `C-HWX-02` | 21 | receive/spectrum/decode/replay, P2P/mesh/APRS/LoRaWAN/file transfer, modulation tests и contained resilience tests | attachment direction accepted; capability contracts pending |
@@ -43,7 +43,7 @@
 - zero-loss cost review;
 - открытая owner-controlled signed-update chain;
 - внешние GNSS/LoRa paths;
-- full-function 3×nRF24, S3 native BLE, C5 IR, OpenThread/conditional Zigbee;
+- full-function 3×nRF24, native BLE, dual-path IR, OpenThread/conditional Zigbee; all physical owners open;
 - target README отдельно от current-state.
 
 ## Четыре пакета дополнительных хотелок

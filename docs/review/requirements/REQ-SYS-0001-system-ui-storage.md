@@ -8,7 +8,7 @@
 
 ## Граница документа
 
-Этот набор определяет пользовательский результат, safety-инварианты и проверяемые критерии. Он не принимает GUI toolkit, RTOS, S3↔C5 transport, USB composite layout, pin-map, количество PCA9555, файловую систему или конкретную реализацию STOP. Такие решения относятся к этапам 3–8.
+Этот набор определяет пользовательский результат, safety-инварианты и проверяемые критерии. Он не принимает GUI toolkit, RTOS, inter-target transport, USB composite layout, pin-map, expander count, файловую систему или конкретную реализацию STOP. Такие решения относятся к corrected `FLOW-0001` gates.
 
 `conditional` означает принятую целевую возможность, реализация которой зависит от явно названного hardware/accessory/architecture prerequisite. Это не заявление о готовности текущего legacy-артефакта.
 
@@ -20,7 +20,7 @@
 | `REQ-SYS-02` | `C-SYS-02` | `conditional` | Основной | Touch, физические кнопки/encoder и экранный ввод дают полное управление без телефона. Shortcut не является единственным путём; обычный выбор списка не запускает TX. Физическая схема и pins ждут этап 3/`DEC-0012`. |
 | `REQ-LAB-USB-01` | `C-SYS-03` | `conditional` | Контролируемая зона, `AUTHORIZED_TARGET` | USB HID/DuckyScript допускается только для явно разрешённого host. Нет autorun при boot/connect/restore; каждый запуск отдельно вооружается и подтверждается, отображает прогресс и прекращает новые HID reports по STOP/disconnect. Уже отправленные host-команды необратимы, что явно показывается до запуска. |
 | `REQ-SYS-03` | `C-SYS-04` | `include` | Основной с наследованием per-command gates | USB service предоставляет serial console и управляемый экспорт storage. CLI/deep link не обходят Main/Lab/Controlled-Zone gates. USB MSC получает эксклюзивное владение носителем либо read-only snapshot; одновременная запись host и firmware запрещена. Одновременность HID/CDC/MSC не обещается до endpoint/PHY audit этапа 3. |
-| `REQ-SYS-04` | `C-SYS-05` | `conditional` | Основной maintenance | Обновления S3 поддерживают проверяемые Wi-Fi и removable-media пути; C5 обновляется через выбранный этапом 3 transport, а не legacy-only `SPI3`. Все штатно устанавливаемые S3/C5 images имеют owner-authorized signature/open manifest, проверяются целевым MCU и используют validation/rollback. Update требует power margin, запрещает TX и после reboot запускает все TX off/Lab disarmed. Hardware lockdown остаётся отдельным opt-in по `DEC-0013`. |
+| `REQ-SYS-04` | `C-SYS-05` | `conditional` | Основной maintenance | Primary product firmware supports qualified Wi-Fi and removable-media update paths; every other selected programmable target uses its reviewed update transport rather than a legacy-only bus assumption. Every normally installable image has owner-authorized signature/open manifest, target-side verification and validation/rollback. Update requires power margin, prohibits TX and boots with all TX off/Lab disarmed. Hardware lockdown remains a separate opt-in under `DEC-0013`. |
 | `REQ-SYS-05` | `C-SYS-06` | `include` | Основной | File manager, config import/export и offline databases используют versioned schemas, bounded parsing, atomic replace/recovery и явный результат ошибок. Import не может включить TX, подавить safety gates или незаметно восстановить armed state. |
 | `REQ-SYS-06` | `C-SYS-07` | `include` | Основной | Battery/charge state, sleep и управляемые peripheral states видимы и проверяемы. Sleep, brownout, low-battery shutdown, watchdog и wake сначала обеспечивают TX-off/disarm; внезапный master-off учитывается периодическим durable flush, а не обещанием всегда успеть записать данные при brownout. |
 | `REQ-SYS-07` | `C-SYS-08`, `C-X-01` | `conditional` | Сквозной safety | Display/WS2812/buzzer сообщают status/warning, но не заменяют фактическую TX-индикацию. Quiet/dim theme может отключить обычные эффекты, но не скрывает active-TX и critical safety state. Аппаратный proof actual-TX/STOP остаётся этапам 3–9 и `FND-0007`. |
@@ -56,7 +56,10 @@
 
 ## Решённый gate
 
-`IMP-0011` принят как `A-open` в `DEC-0013`: штатные S3/C5 updates подписаны и откатываемы, ключи контролирует владелец, build/signing остаются offline/open, developer firmware разрешена, а необратимый production Secure Boot/Flash Encryption profile требует отдельного будущего решения.
+`IMP-0011` принят как `A-open` в `DEC-0013`: штатные updates каждого selected
+programmable target подписаны и откатываемы, ключи контролирует владелец,
+build/signing остаются offline/open, developer firmware разрешена, а
+необратимый production lockdown profile требует отдельного будущего решения.
 
 ## Первичные технические источники
 

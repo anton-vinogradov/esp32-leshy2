@@ -1,6 +1,6 @@
 # CON-0001 — hardware-neutral concurrency and failure model
 
-- Статус: **Проведено ревью**
+- Статус: **Historical candidate/reference; active prerequisite superseded by `DEC-0032/FND-0041`**
 - Дата: 2026-08-16
 - Этап: 3, шаг 2
 - Вход: reviewed `CAP-0001`
@@ -8,6 +8,11 @@
 - Не входы: legacy schematic/source, прежние owners, transports, buses, GPIO, controller counts и layouts
 
 ## Цель и граница
+
+> Relationship classes and failure questions remain useful reference. The
+> artifact depended on contaminated `CAP-0001`, so every scenario must be
+> re-derived after the competitor delta and G3 product design; no current
+> architecture may consume this status as final input.
 
 Этот документ определяет, какие capability должны работать одновременно, какие могут честно делить физический ресурс по расписанию, какие несовместимы по смыслу или безопасности и как виден отказ. Он не выбирает MCU, module variant, IPC, bus, pin, expander, RF switch, память или питание.
 

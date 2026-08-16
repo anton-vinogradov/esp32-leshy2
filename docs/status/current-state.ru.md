@@ -14,8 +14,8 @@
 |---|---|
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
-| 2. Capabilities, exclusions, concurrency/failure needs | Проведено ревью (`REV-0002AD`) |
-| 3. Target physical/product design | **Активен; выход ещё не проверен** |
+| 2. Capabilities, exclusions, concurrency/failure needs | **Требуется повторное ревью**: прежние 125 leaves сохранены, competitor delta открыт (`FND-0040`) |
+| 3. Target physical/product design | Research активен; final review ждёт закрытия этапа 2 |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты в исправленном процессе |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
@@ -23,6 +23,14 @@
 | 10–11. PCB, fabrication и bring-up | Не начаты |
 
 Каноническая таблица — [`stages.md`](../review/stages.md).
+
+## ⚠️ Открытые competitor-delta предложения
+
+- текущий вопрос: [`IMP-0027/W-EXTRA-11`](../review/improvements/IMP-0027-ibutton-one-wire-profile.md) — iButton/1-Wire и способ контакта;
+- затем по одному: `W-EXTRA-12` U2F/FIDO, `13` haptic, `14` IMU, `15`
+  physical keyboard, `16` high-speed USB host и `17` 6 GHz/Wi-Fi 6E.
+
+Ни один пункт не добавлен в target до решения владельца.
 
 ## Что остаётся проверенным
 
@@ -65,8 +73,10 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 
 ## Следующий активный артефакт
 
-Следующий документ отталкивается от проверенных capabilities и задаёт физический
+Сначала [`AUD-0004`](../review/audits/AUD-0004-current-competitor-capability-gap.md)
+закрывает семь competitor-delta решений по одному. Параллельный G3 research
+отталкивается от уже проверенных capabilities и задаёт физический
 продукт без выбора electronics: form factor/use posture, control/connector
 surfaces, display, battery/charging, external-module attachment, antenna
 volumes, service access, environment/repairability и target cost. Только после
-его owner review строятся complete architecture alternatives.
+нового G2 review и owner review G3 строятся complete architecture alternatives.

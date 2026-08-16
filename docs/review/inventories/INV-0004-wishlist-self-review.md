@@ -1,12 +1,16 @@
 # INV-0004 — итоговая матрица саморевью и freeze wishlist
 
-- Статус: **Проведено ревью**
+- Статус: **Проведено ревью прежних 125 leaves; competitor delta требует повторного ревью (`FND-0040`)**
 - Дата: 2026-08-16
 - Основание: делегированное владельцем саморевью, `DEC-0022`, `DEC-0023`
 - Входы: `INV-0001`–`INV-0003`, все reviewed `REQ-*`, `AUD-0001`
 - Полнота: **125 из 125 legacy/addition candidates получили contract; 10 source-extras декомпозированы в 12 независимых решений**
 
 ## Принцип решения
+
+> Этот snapshot остаётся доказательством полноты прежнего source universe, но
+> больше не является финальным completeness gate. Новые вопросы
+> `W-EXTRA-11..17` перечислены в `INV-0002/AUD-0004` и не считаются принятыми.
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.
@@ -46,8 +50,8 @@
 | Leaf ID | Самостоятельный пользовательский результат | Решение | Product/BOM boundary |
 |---|---|---|---|
 | `W-EXTRA-01` | passive EAPOL/PMKID capture | `conditional` | Lab, authorized network, supported Wi-Fi path and fixture proof; no onboard cracking; `REQ-W24-09`/`REQ-W5-08` |
-| `W-EXTRA-02` | BLE connection-follow sniffer | `defer-release`, optional | отдельный nRF52-class accessory; native S3 не урезается и base BOM не растёт |
-| `W-EXTRA-03` | ordinary Bluetooth Mesh | `defer-release`, optional software | S3 BLE profile after key/flash/RAM/licence/HIL proof; no new radio |
+| `W-EXTRA-02` | BLE connection-follow sniffer | `defer-release`, optional | отдельный nRF52-class accessory; selected native BLE не урезается и base BOM не растёт |
+| `W-EXTRA-03` | ordinary Bluetooth Mesh | `defer-release`, optional software | selected native-BLE profile after key/flash/RAM/licence/HIL proof; no new radio |
 | `W-EXTRA-04` | Bluetooth Classic/BR/EDR | `defer-release`, optional | только внешний controller при появлении конкретного use case; не base board |
 | `W-EXTRA-05` | дополнительные HF/VHF/30–64/DRM paths | `defer-release`, optional | отдельный qualified receiver/SDR expansion; Si4732 claims не расширяются фиктивно |
 | `W-EXTRA-06A` | digital voice | `defer-release`, optional | отдельный codec/protocol/backend может работать half-duplex; не требует автоматически второго RF path |
@@ -75,4 +79,6 @@ Dedicated BLE sniffer, Bluetooth Classic controller, additional HF/VHF/SDR, seco
 - [x] MCU/GPIO/transport/layout не зафиксированы преждевременно;
 - [x] владелец делегировал полноту и решение саморевью.
 
-**Wishlist заморожен.** Любая новая крупная функция после `DEC-0023` является change request: обновляет demand model и переводит затронутые архитектурные артефакты в повторное ревью.
+**Исторический wishlist был заморожен.** `FND-0040` применяет предусмотренный
+change-request путь: competitor delta обновляет demand model и переводит
+затронутые product/architecture artifacts в повторное ревью до нового freeze.

@@ -1,12 +1,17 @@
 # CAP-0001 — zero-based capability input
 
-- Статус: **Проведено ревью**
+- Статус: **Historical candidate/reference; superseded as an active input by `DEC-0032/FND-0041`**
 - Дата: 2026-08-16
 - Этап: 3, шаг 1
 - Входы: `INV-0004`, `W-OWN-01..15`, reviewed `REQ-*`, accepted `DEC-*`
 - Не входы: legacy source/schematic, прежние `DM/BUD/PIN/SC/LAY/CMP/ADR`, historical owner assumptions
 
 ## Цель
+
+> Несмотря на прежнее название, `CI-06/07` и зависимые atoms наследуют exact
+> S3/C5 ownership. Поэтому документ нельзя считать hardware-neutral prerequisite.
+> Capability coverage может быть использовано как checklist только после
+> сверки с новым wishlist и product design.
 
 Зафиксировать, что должен давать готовый продукт и какие физические свойства для этого нужны, не выбирая MCU owner, bus, transport, expander, GPIO или component placement. Это единственный функциональный вход `CON-0001` и `RES-0001`.
 

@@ -1,6 +1,6 @@
 # RES-0001 — hardware-neutral resource demand model
 
-- Статус: **Проведено ревью**
+- Статус: **Historical candidate/reference; active prerequisite superseded by `DEC-0032/FND-0041`**
 - Дата: 2026-08-16
 - Этап: 3, шаг 3
 - Входы: reviewed `CAP-0001`, reviewed `CON-0001`
@@ -8,6 +8,11 @@
 - Не входы: legacy schematic/source, прежние MCU variants, owner maps, transports, buses, GPIO и part placement
 
 ## Цель и граница
+
+> `RB-FIX-01/02`, `RC-NATIVE-*` and several `RI-*` rows below freeze former
+> S3/C5 owners. The document is therefore not hardware-neutral under the
+> corrected process. Its equations and safety questions are reference evidence
+> only until independently re-derived after G3.
 
 Документ переводит capabilities и обязательные scenarios в логические ресурсы. Он задаёт то, что должна вместить каждая полная архитектура, но не назначает ресурс конкретному MCU, контроллеру или выводу.
 

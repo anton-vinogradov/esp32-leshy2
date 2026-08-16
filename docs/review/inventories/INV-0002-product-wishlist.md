@@ -1,6 +1,6 @@
 # INV-0002 — единый реестр хотелок продукта перед компоновкой
 
-- Статус: **Проведено ревью; wishlist заморожен `DEC-0023`**
+- Статус: **125 прежних leaves проведено ревью; G2 точечно переоткрыт `FND-0040/AUD-0004`**
 - Дата: 2026-08-16
 - Основание: `DEC-0022`
 - Детальный legacy-источник: `INV-0001`
@@ -34,9 +34,9 @@
 | `W-OWN-08` | бортового GNSS нет; внешний M5 GPS или GNSS комбинированного expansion | `accepted` | `DEC-0006`, `DEC-0014` |
 | `W-OWN-09` | бортового LoRa нет; U214 Cap и модульный expansion path для общепринятых 868/915 profiles | `accepted` | `DEC-0008` |
 | `W-OWN-10` | onboard ES8311 mono digital audio с fail-safe analog bypass | `accepted` | `DEC-0009` |
-| `W-OWN-11` | dual-path consumer IR остаётся на C5 | `accepted` | `DEC-0018` |
+| `W-OWN-11` | dual-path consumer IR с robust receive и отдельным carrier-learning path | `accepted` | `DEC-0018`; physical owner открыт `DEC-0032` |
 | `W-OWN-12` | три одновременных полнофункциональных nRF24, без урезания native scope | `accepted` | `REQ-N24-0001`; physical owner не выбран |
-| `W-OWN-13` | S3 — baseline native-BLE owner; C5 BLE default-off | `accepted` | `DEC-0021` |
+| `W-OWN-13` | baseline native BLE с одним явным product identity/key-vault owner | `accepted` | controller/physical owner открыт `DEC-0032`; former S3 profile — reference |
 | `W-OWN-14` | OpenThread open baseline; Zigbee optional conditional | `accepted` | `DEC-0020` |
 | `W-OWN-15` | целевой готовый документ отдельно от текущей проработки в обоих репозиториях | `accepted` | `DEC-0011` |
 
@@ -46,9 +46,9 @@
 
 | Блок | Детальные ID | Количество | Текущее состояние scope |
 |---|---|---:|---|
-| Wi-Fi 2.4 GHz S3 | `C-W24-01..12` | 12 | reviewed `REQ-W24-0001` |
+| Wi-Fi 2.4 GHz / ESP-NOW | `C-W24-01..12` | 12 | reviewed capability `REQ-W24-0001`; backend открыт |
 | 3×nRF24 | `C-N24-01..10` | 10 | capability reviewed; physical layout deferred by `DEC-0022` |
-| C5 Wi-Fi 2.4/5 GHz + IEEE 802.15.4 | `C-W5-01..09` | 9 | reviewed `REQ-W5-0001` |
+| Wi-Fi 2.4/5 GHz + IEEE 802.15.4 | `C-W5-01..09` | 9 | reviewed capability `REQ-W5-0001`; backend открыт |
 | Native BLE | `C-BLE-01..12` | 12 | reviewed `REQ-BLE-0001` |
 | Sub-GHz / CC1101 | `C-SUB-01..11` | 11 | reviewed `REQ-SUB-0001` |
 | LoRa/SX1262 | `C-LORA-01..09` | 9 | reviewed `REQ-LORA-0001` |
@@ -82,6 +82,22 @@
 | `W-EXTRA-10A` | two-frontend NFC relay | `defer-release` | optional Controlled-Zone attachment |
 | `W-EXTRA-10B` | heavy key-recovery compute | `defer-release` | owner-controlled off-device compute |
 
+## Current competitor delta — решения открыты
+
+[`AUD-0004`](../audits/AUD-0004-current-competitor-capability-gap.md) добавил
+не принятые функции, а полный список отсутствовавших вопросов. До owner
+disposition они имеют состояние `needs-owner` и не входят в target молча.
+
+| ID | ⚠️ Возможная хотелка | Состояние |
+|---|---|---|
+| `W-EXTRA-11` | iButton/1-Wire read/emulate и bounded write | `needs-owner` |
+| `W-EXTRA-12` | U2F/FIDO-style USB security key | `needs-owner` |
+| `W-EXTRA-13` | haptic feedback | `needs-owner` |
+| `W-EXTRA-14` | IMU/orientation/motion | `needs-owner` |
+| `W-EXTRA-15` | physical text keyboard as product archetype | `needs-owner`, G3 |
+| `W-EXTRA-16` | dual-role/high-speed USB accessory host | `needs-owner` |
+| `W-EXTRA-17` | 6 GHz/Wi-Fi 6E beyond accepted 5 GHz | `needs-owner` |
+
 ## Исторические идеи реализации, не входные ограничения
 
 Эти пункты зафиксированы только как справочный материал из прежней документации. Они не являются активными кандидатами, не задают оси сравнения и могут попасть в новую архитектуру лишь тогда, когда независимо заново выводятся из `CAP-0001`, `CON-0001` и `RES-0001`:
@@ -94,7 +110,7 @@
 | CE latch/direct CE/decoder | независимые CE и GPIO trade | архивная идея; требуется независимый повторный вывод |
 | удаление C5 UART bridge | потенциально освобождает S3 GPIO | архивная идея; требуется независимый повторный вывод |
 
-## Completeness gate до wishlist freeze
+## Historical completeness gate and reopened delta
 
 - [x] все legacy capability rows импортированы без потерь;
 - [x] owner additions из текущего диалога занесены;
@@ -107,7 +123,13 @@
 - [x] у каждой желаемой функции есть zero-loss acceptance boundary;
 - [x] completeness проверена по legacy, owner additions и extras;
 - [x] freeze принят по явной делегации владельца в `DEC-0023`.
+- [ ] current competitor delta `W-EXTRA-11..17` получает owner disposition;
+- [ ] G2 проходит новое propagation review после решений.
 
-## Следующий этап
+## Следующий этап после закрытия delta
 
-По `DEC-0027` этап 3 сначала заново выводит hardware-neutral capability/concurrency/resource model только из этого wishlist и reviewed `REQ-*`. Затем формируются несколько полных аппаратных кандидатов без заранее назначенного nRF owner, transport или pin map. Legacy S3-heavy/C5-heavy/balanced оси сохранены только в архиве и не являются обязательными candidates. Pin budget не исользуется для удаления wishlist задним числом.
+Corrected `FLOW-0001` сначала принимает target product design, затем заново
+выводит complete whole-device candidates без заранее назначенного radio owner,
+transport или pin map. Former `CAP/CON/RES/SYN` studies сохранены только как
+reference и не являются обязательными inputs. Pin budget не используется для
+удаления wishlist задним числом.

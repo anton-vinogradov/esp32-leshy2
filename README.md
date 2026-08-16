@@ -75,7 +75,8 @@ evidence—not silently fixed BOM components.
 
 ## Development state
 
-Stages 1–2 product capabilities are reviewed. Target physical/product design is
-now active; whole-device alternatives, optimality, conceptual placement and a
+The prior 125 capability leaves are reviewed; G2 is narrowly reopened for the
+current competitor delta while target physical/product design proceeds as
+research. Whole-device alternatives, optimality, conceptual placement and a
 new atomic architecture decision must precede components and KiCad. The
 normative sequence is [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).
