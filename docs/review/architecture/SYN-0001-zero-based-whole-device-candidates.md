@@ -11,7 +11,7 @@
 
 Минимум два compute/RF domain уже следуют из принятых product capabilities: S3 нужен для application/native 2.4 GHz Wi-Fi/BLE, C5 — для native 2.4/5 GHz Wi-Fi, IEEE 802.15.4 и dual-path IR. Остальные `RC/RI-*` допускают три недоминируемых способа консолидации:
 
-1. **минимум programmable domains** — deadline-sensitive external I/O остаётся на более богатом application MCU;
+1. **минимум programmable domains** — high-rate packet-radio deadlines остаются на более богатом application MCU, а остальные interfaces распределяются по свободным ресурсам двух обязательных domains;
 2. **radio-domain consolidation** — packet radios обслуживаются существующим C5 radio-domain, освобождая S3 от их deadlines;
 3. **deadline isolation** — дешёвый третий controller заменяет remote real-time loops и часть glue logic.
 
@@ -69,11 +69,11 @@ Release does not re-arm. A physical re-arm action starts a fresh TX-off boot. Ac
 - update mode asserts global TX-off, expires all leases and cannot be exited into an armed state;
 - irreversible eFuse/OTP lockdown remains a separate owner opt-in and is not required by a production image.
 
-## Candidate `SYN-2A` — two-domain application consolidation
+## Candidate `SYN-2A` — two-domain S3 packet-radio consolidation
 
 ### Derivation
 
-Keep the minimum two programmable domains. Place external deterministic peripherals on S3 because it has two GP-SPI controllers, two cores, mature DMA-capable I/O and direct access to application/storage, while C5 remains focused on its fixed native radios and IR.
+Keep the minimum two programmable domains. Place the highest-rate external packet radios on S3 because it has two GP-SPI controllers, two cores, mature DMA-capable I/O and direct access to application/storage. Exact pin synthesis shows that putting every external interface there as well would exceed the module pin set; the lower-duty U214/GNSS expansion therefore uses C5's otherwise idle GP-SPI/UART/I²C resources without moving nRF or voice/audio deadlines over IPC.
 
 ### Complete placement
 
@@ -84,8 +84,9 @@ Keep the minimum two programmable domains. Place external deterministic peripher
 | C5 2.4/5 Wi-Fi, 802.15.4, dual-path IR | native C5/local C5 task |
 | 3×nRF24 + CC1101 register/FIFO/event service | S3 deterministic high-priority service on one local GP-SPI |
 | nRF/CC control compression | reset-safe serial output latch with STOP-dominant output-disable and per-output safe pulls; protected IRQ aggregation plus status fan-out proof |
-| display + U214 LoRa data/control | second S3 GP-SPI with priority and chunked display writes |
-| U214/Unit GPS serial, U216 NFC and accessory discovery | S3 UART plus isolated/switched I²C profile manager; qualified 5 V profiles |
+| display | second S3 GP-SPI with priority and chunked display writes |
+| U214 LoRa + its GNSS, separate Unit GPS | C5 GP-SPI, Cap I²C and two independent UARTs; only one GNSS backend active by policy |
+| U216 NFC and generic I²C accessory discovery | S3 isolated/switched I²C profile manager; qualified 5 V profiles |
 | ES8311, Si4732, audio DSP/record/modem | S3 I²S/I²C/DMA application domain |
 | SA518/SA868 command/PTT/dead-man | S3 local UART/control service plus independent hardware STOP/PTT release |
 | microSD | S3 SDMMC slot |
@@ -95,6 +96,7 @@ Keep the minimum two programmable domains. Place external deterministic peripher
 
 - S3 baseline variant: `ESP32-S3-WROOM-1U-N16R2`; 16 MB flash is retained for update/data partitions, 2 MB Quad PSRAM retains GPIO35…37 and must pass the later memory ledger.
 - C5 baseline variant: `ESP32-C5-WROOM-1U-N8R8`; 8 MB flash/PSRAM with chip revision ≥1.0 when SDIO is populated.
+- C5's two UARTs are assigned separately to U214 GNSS and Unit GPS; their switched rails remain default-off and policy exposes only one active backend, so no UART-output short or epoch merge is permitted.
 - nRF `CSN/CE` and CC select are latch outputs, not remote GPIO calls. `OE` is STOP-dominant; when disabled, external pulls force `CE=0` and active-low `CSN/CS=1` before either MCU boots. Firmware loads and verifies the complete safe vector before enabling outputs.
 - latch clock/strobe are not the selected-radio SCK. Data may share MOSI only with a separate latch clock: otherwise shifting the deassert vector would clock an unintended byte into the still-selected radio. Exact `PIN-*` reserves the independent clock/strobe rather than claiming a free shared-SPI latch.
 - nRF IRQ aggregation is acceptable only because each IRQ condition is level-retained until status clear; firmware reads all three STATUS registers before clearing. Open-drain assumptions are forbidden: exact diode/logic interface and stuck-low isolation are required.
@@ -103,9 +105,9 @@ Keep the minimum two programmable domains. Place external deterministic peripher
 
 - minimum firmware targets and likely lowest recurring BOM;
 - no raw packet IPC between nRF/CC and application storage;
-- highest S3 interrupt/bus contention: native Wi-Fi/BLE, audio, display, SD, U214, voice and four packet radios share one MCU;
+- highest S3 packet/bulk contention: native Wi-Fi/BLE, audio, display, SD, voice and four packet radios share one MCU; U214/GNSS traffic instead crosses the C5 SDIO link;
 - N16R2 memory sufficiency and ≤70% worst-case nRF/CC SPI occupancy are hard measurement gates;
-- pin map is expected to require both output-latch and local-input expander with little direct-GPIO reserve.
+- both S3 and C5 pin maps remain tight and require radio output-latch/IRQ logic plus slow-control expansion; exact map has no room to move the complete U214 profile back to S3.
 
 ## Candidate `SYN-2B` — two-domain radio-service consolidation
 

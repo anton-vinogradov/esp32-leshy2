@@ -10,7 +10,7 @@
 3. [`RES-0001`](RES-0001-hardware-neutral-resource-demand.md) — resource demand без MCU/GPIO placement;
 4. [`SRC-0001`](SRC-0001-primary-hardware-resource-facts.md) — package/controller/peripheral facts из первичных источников без выбора layout;
 5. [`SYN-0001`](SYN-0001-zero-based-whole-device-candidates.md) — несколько полных аппаратных синтезов, выведенных из resource-consolidation strategies;
-6. `PIN-*` — exact pin/controller maps только после полного synthesis;
+6. [`PIN-0002`](PIN-0002-zero-based-exact-pin-maps.md) — exact pin/controller/strap/recovery maps трёх zero-based candidates;
 7. `PKG-*` — атомарное сравнение и выбор.
 
 Каждый шаг получает статус **«Проведено ревью»** до того, как станет пререквизитом следующего.
@@ -28,3 +28,4 @@ Legacy schematic/source, прежние owner assignments, buses, GPIO, pin maps
 - [`REV-0003L`](../reviews/REV-0003L-zero-based-resource-model.md) — ревью hardware-neutral resource model.
 - [`REV-0003M`](../reviews/REV-0003M-primary-hardware-fact-baseline.md) — ревью package-level facts перед synthesis.
 - [`REV-0003N`](../reviews/REV-0003N-zero-based-candidate-set.md) — ревью полного zero-based candidate set без выбора winner.
+- [`REV-0003O`](../reviews/REV-0003O-zero-based-exact-pin-maps.md) — ревью exact module/controller maps и no-loss исправления `FND-0034`.
