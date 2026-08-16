@@ -1,6 +1,6 @@
 # FND-0002 — владелец BLE расходится между legacy-репозиториями
 
-- Статус: **Открыто**
+- Статус: **Требуется решение владельца (`IMP-0019`)**
 - Серьёзность: архитектурное несоответствие
 - Этап разрешения: 3 — системная архитектура и владение
 - Обнаружено: 2026-08-15
@@ -21,4 +21,18 @@ Hardware legacy сообщает, что BLE имеется у обоих MCU, �
 
 ## Текущее действие
 
-Все BLE-пункты `INV-0001` остаются owner-neutral. Решение отложено до этапа 3, где будут проверены ресурсы, coexistence и цена IPC каждого варианта.
+Prerequisite audit подтвердил:
+
+- S3 покрывает весь legacy BLE baseline: 1M/2M/Coded PHY, advertising extensions, multiple advertising sets, simultaneous advertising+scanning и concurrent central/peripheral roles;
+- C5 имеет дополнительные новые Link-Layer функции, не являющиеся принятыми требованиями, но его BLE делит один RF path с C5 Wi-Fi 2.4 и IEEE 802.15.4;
+- S3 BLE делит RF только с S3 Wi-Fi 2.4, оставаясь физически отдельным от C5 Thread/Zigbee и устраняя IPC для UI/phone keyboard/HID;
+- оба MCU уже входят в hardware BOM; выбор владельца меняет software/power/coexistence/HIL, а не цену radio IC.
+
+`IMP-0019` предлагает назначить S3 единственным baseline BLE owner, оставить C5 BLE выключенным в обычном profile и не закрывать будущий отдельный C5-only feature adapter. До ответа `REQ-BLE-0001` остаётся на ревью.
+
+## Первичные источники
+
+- [ESP32-S3 datasheet: Bluetooth LE PHY and Link Controller](https://documentation.espressif.com/esp32-s3_datasheet_en.pdf)
+- [ESP32-C5 datasheet: Bluetooth LE feature set](https://documentation.espressif.com/esp32-c5_datasheet_en.html)
+- [ESP32-S3 Wi-Fi/BLE coexistence](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-guides/coexist.html)
+- [ESP32-C5 Wi-Fi/BLE/802.15.4 coexistence](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/api-guides/coexist.html)

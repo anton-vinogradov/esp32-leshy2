@@ -57,7 +57,7 @@
 | C-N24-05 | MouseJack scan и инъекция | MIXED | passive advisory discovery = Lab; confirmation/injection = Controlled Zone `AUTHORIZED_TARGET` |
 | C-N24-06 | KeySniffer незашифрованных нажатий | LAB-I | sensitive capture = Controlled Zone `AUTHORIZED_TARGET`, vault/redaction/retention |
 | C-N24-07 | ESB replay, fake device, address brute-force | LAB-I | single target = `AUTHORIZED_TARGET`; mapper/brute-force = `BOTH` |
-| C-N24-08 | BLE advertising sniff/spoof через nRF24 | MIXED | limited legacy-1M compatibility only; normal BLE → native proposal `IMP-0017` |
+| C-N24-08 | BLE advertising sniff/spoof через nRF24 | MIXED | limited legacy-1M compatibility only; ordinary BLE → native boundary `IMP-0017`/`IMP-0019` |
 | C-N24-09 | Одноканальный и reactive jam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded only; open-air mode excluded |
 | C-N24-10 | Sweep beacon, carrier test, VSWR aid, 3-антенный hunt | MIXED | `DEC-0019`: calibrated RPD sector hunt; carrier = external-instrument source only, no VSWR |
 
@@ -79,18 +79,18 @@
 
 | ID | Группа кандидатов | Зона | Первичная пометка |
 |---|---|---|---|
-| C-BLE-01 | Advertising scan, ext-adv и Coded PHY | MAIN | владелец MCU открыт, `FND-0002` |
-| C-BLE-02 | Offline device DB, OUI/company ID, RSSI proximity | MAIN | `FND-0002` |
-| C-BLE-03 | Детект AirTag/Find My и stalking trackers | MAIN | функция личной защиты; `FND-0002` |
-| C-BLE-04 | Continuity/Flipper/device-type sniff | LAB-P | `FND-0002` |
-| C-BLE-05 | Wardriving, geo-log и adv PCAP | LAB-P | privacy gate; `FND-0002` |
-| C-BLE-06 | GATT service/characteristic enumeration | LAB-I | active connect; `FND-0002` |
-| C-BLE-07 | HID host и BadBLE injection | MIXED | input = SYS, injection = LAB-I |
-| C-BLE-08 | iBeacon/Eddystone/custom advertising | MIXED | legitimate beacon vs impersonation |
-| C-BLE-09 | Proximity-pairing spam | LAB-D | third-party disturbance |
-| C-BLE-10 | Sour Apple crash spam | LAB-D | explicit DoS |
-| C-BLE-11 | Find My/AirTag beacon emulation | LAB-I | impersonation/stalking risk |
-| C-BLE-12 | BLE connection flood / GATT DoS | LAB-D | explicit DoS |
+| C-BLE-01 | Advertising scan, ext-adv и Coded PHY | MAIN | native ESP поддерживает; owner требует `IMP-0019` |
+| C-BLE-02 | Offline device DB, OUI/company ID, RSSI proximity | MAIN | versioned/licensed DB; RPA и RSSI не дают stable identity, метры или направление |
+| C-BLE-03 | Детект AirTag/Find My и stalking trackers | MAIN | personal-safety detector conditional on signatures+temporal evidence; не доказывает owner/intent/absence |
+| C-BLE-04 | Continuity/Flipper/device-type sniff | LAB-P | passive corpus требует provenance/licence/version и confidence |
+| C-BLE-05 | Wardriving, geo-log и adv PCAP | LAB-P | foreground privacy vault, retention/export/delete и external-GNSS provenance |
+| C-BLE-06 | GATT service/characteristic enumeration | MIXED | ordinary paired service = Main; security enumeration = Controlled Zone `AUTHORIZED_TARGET` |
+| C-BLE-07 | HID host и BadBLE injection | MIXED | paired input = Main; scripted injection = Controlled Zone `AUTHORIZED_TARGET` |
+| C-BLE-08 | iBeacon/Eddystone/custom advertising | MIXED | own/open beacon = Main; identity imitation = Controlled Zone `AUTHORIZED_TARGET`; rights gate |
+| C-BLE-09 | Proximity-pairing spam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded only |
+| C-BLE-10 | Sour Apple crash spam | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded only |
+| C-BLE-11 | Find My/AirTag beacon emulation | LAB-I | Controlled Zone `BOTH`; protocol/rights/corpus proof and no third-party-network participation |
+| C-BLE-12 | BLE connection flood / GATT DoS | LAB-D | Controlled Zone `BOTH`, conducted/RF-shielded only |
 
 ## Sub-GHz / CC1101 — `FW-CAP §5`
 
@@ -207,7 +207,7 @@
 | C-X-06 | GPS-tagged capture, Wardrive и PCAP logging | MIXED | privacy gate |
 | C-X-07 | RTC from GPS/NTP | SYS | — |
 | C-X-08 | Capture/replay storage for Sub-GHz/IR/ESB | MIXED | storage vs Lab replay |
-| C-X-09 | BLE keyboard input from phone | SYS | `FND-0002` owner-neutral |
+| C-X-09 | BLE keyboard input from phone | SYS | native owner pending `IMP-0019`; explicit pairing/allowlist/local fallback |
 | C-X-10 | Drone Remote-ID detection | MAIN | passive public broadcasts |
 | C-X-11 | Detection alerts by LED/buzzer/GPS | SYS | — |
 
@@ -231,7 +231,7 @@
 |---|---|---|---|
 | OUT-01 | WPA PMKID/EAPOL capture и полный 5 ГГц monitor+inject | ESP32/SDK ceiling | кандидат на повторную техническую проверку, не обещание |
 | OUT-02 | Wideband/full-band jamming на любом диапазоне | legal/ethos и отсутствие wideband hardware | остаётся вне scope; узкополосные Lab-кандидаты проверяются отдельно |
-| OUT-03 | Bluetooth Classic, BLE connection-follow sniff и BLE jam | S3 radio/controller ceiling | повторно проверить datasheet/SDK |
+| OUT-03 | Bluetooth Classic, BLE connection-follow sniff и BLE jam | S3/C5 LE-only; native controller не обещает connection follow; jam требует отдельного shielded source | Classic = `exclude-proven` для текущих radio; connection sniff = `IMP-0004`; jam = `BOTH` и не baseline |
 | OUT-04 | nRF24 как 802.11 или полноценный BLE receiver | PHY ceiling | оставить вне scope, если datasheet подтверждает |
 | OUT-05 | HF TX, VHF airband/weather, 30–64 MHz и DRM через Si4732 | tuner/DSP ceiling | оставить вне scope, если компонент сохраняется |
 | OUT-06 | NFC card emulation/relay, ISO15693, FeliCa, LF 125 kHz, hardnested/darkside | WS1850S ceiling | `DEC-0017` selects U216 for F/V/emulation/custom mode; relay needs two frontend, LF separate, recovery needs compute/license proof |

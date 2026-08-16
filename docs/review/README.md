@@ -56,6 +56,7 @@
 - [REQ-IR-0001: consumer IR contract — проведено ревью](requirements/REQ-IR-0001-consumer-infrared.md)
 - [REQ-N24-0001: 3×nRF24 raw 2.4 GHz contract — проведено ревью](requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - [REQ-W5-0001: C5 Wi-Fi/IEEE 802.15.4 contract — проведено ревью](requirements/REQ-W5-0001-c5-wifi-ieee802154.md)
+- [⚠️ REQ-BLE-0001: native BLE contract — на ревью, требуется решение IMP-0019](requirements/REQ-BLE-0001-native-ble-and-security.md)
 - [FND-0001: конфликт единственного GP-SPI C5](findings/FND-0001-c5-single-gp-spi.md)
 - [FND-0002: владелец BLE расходится между legacy-репозиториями](findings/FND-0002-ble-owner-conflict.md)
 - [FND-0003: audio-архитектура принята, implementation proof ожидается](findings/FND-0003-missing-mcu-audio-path.md)
@@ -81,6 +82,8 @@
 - [FND-0023: C5 public Wi-Fi API и patched binary overclaims](findings/FND-0023-c5-wifi-public-api-and-patched-blob-overclaims.md)
 - [FND-0024: 5 GHz DFS/country/PMF/privacy gates](findings/FND-0024-c5-dfs-country-privacy-and-pmf-gates.md)
 - [FND-0025: passive-only 802.15.4 ceiling — закрыто DEC-0020](findings/FND-0025-c5-802154-passive-only-ceiling-and-coexistence.md)
+- [FND-0026: native BLE scan не является connection sniff, stable identity или дальномером](findings/FND-0026-native-ble-is-not-connection-sniff-identity-or-distance.md)
+- [FND-0027: BLE protocol/emulation/attack claims требуют corpus, rights и security gates](findings/FND-0027-ble-protocol-emulation-attack-and-license-overclaims.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)
@@ -99,6 +102,8 @@
 - [IMP-0016: честный calibrated three-antenna RPD hunt — принят вариант A](improvements/IMP-0016-calibrated-three-antenna-2g4-hunt.md)
 - [⚠️ IMP-0017: native BLE + nRF24 compatibility — отложено до BLE-review](improvements/IMP-0017-native-ble-plus-nrf24-compatibility.md)
 - [IMP-0018: open-first Thread + conditional Zigbee — принят вариант A](improvements/IMP-0018-open-first-thread-and-zigbee-scope.md)
+- [⚠️ IMP-0019: S3 как единственный baseline native-BLE owner — предложение](improvements/IMP-0019-s3-primary-native-ble-owner.md)
+- [⚠️ IMP-0020: ordinary Bluetooth Mesh — найденная extra-функция, отложено до BLE owner](improvements/IMP-0020-ordinary-ble-mesh-scope.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [AUD-0001: повторный аудит legacy-исключений](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
@@ -130,6 +135,7 @@
 - [REV-0002U: финальное ревью и распространение решения 3×nRF24](reviews/REV-0002U-nrf24-decision-propagation.md)
 - [REV-0002V: ревью пререквизитов C5 Wi-Fi/IEEE 802.15.4](reviews/REV-0002V-c5-wifi-802154-prerequisites.md)
 - [REV-0002W: финальное ревью и распространение C5 Wi-Fi/802.15.4 решения](reviews/REV-0002W-c5-wifi-802154-decision-propagation.md)
+- [REV-0002X: ревью пререквизитов native Bluetooth LE](reviews/REV-0002X-ble-prerequisites.md)
 
 ## Статусы
 
