@@ -1,6 +1,6 @@
 # IMP-0031 — optional external IMU for measurement-pose annotation
 
-- Статус: **⚠️ Требуется решение владельца**
+- Статус: **Принято A — optional external measurement-pose profile, `DEC-0037`**
 - Дата: 2026-08-16
 - Delta: `W-EXTRA-14`
 - Evidence: [`AUD-0008`](../audits/AUD-0008-imu-instrument-value-and-placement.md)
@@ -51,9 +51,11 @@ and operator markers.
 - Плюс: нулевой hardware/software/mechanical burden.
 - Минус: RF records не получают автоматического motion/pose validity context.
 
-## ⚠️ Recommendation
+## Recommendation and decision
 
-**A**. Это минимальный способ получить именно instrument benefit без роста base
+**A принято владельцем** в
+[`DEC-0037`](../decisions/DEC-0037-optional-external-imu-measurement-pose.md).
+Это минимальный способ получить именно instrument benefit без роста base
 BOM. Acceptance не обещает heading, direction finding, tamper/fall detection or
 gesture UX. Любой magnetometer/absolute-heading result остаётся отдельным
 future proposal с magnetic-placement HIL.

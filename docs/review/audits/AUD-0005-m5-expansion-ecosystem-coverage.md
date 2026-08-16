@@ -52,7 +52,7 @@ per-profile qualification, а не одного общего «M5 mode».
 | cellular | Unit CatM `U128` | Port C UART, Cat-M/NB-IoT, network peak 249 mA | частичное: не broadband LTE и не GSM/voice; country/operator/SIM/FOTA qualification отдельно |
 | haptic | Unit Vibrator `U059` | Port B PWM/GPIO, 5 V/424.35 mA at stated operating point | product result rejected by `DEC-0036`; catalog evidence retained but excluded from live denominator |
 | orientation/motion | Unit Mini IMU `U095` | Port A I²C `0x68`, MPU6886; U171 is EOL | partial until rigidly indexed to enclosure/antenna frame; 6-axis gives no absolute heading and no RF bearing (`FND-0045`) |
-| physical text input | Unit CardKB2 `U215` | custom HY2.0 I²C/UART; ESP32-C61, USB recovery, 19.31 mA standby | прямое optional keyboard покрытие; это active programmable accessory |
+| physical text input | Unit CardKB2 `U215` | custom HY2.0 I²C/UART; ESP32-C61, USB recovery, 19.31 mA standby | direct external text-entry accessory, but not evidence for an integrated keyboard base archetype; active programmable accessory |
 | two same-address NFC frontends | 2×U216 + PaHub v2.1 | PCA9548A channels isolate repeated `0x50` address | electrically plausible, but relay timing, two-field coexistence and end-to-end firmware remain unqualified |
 | ordinary I²C fan-out | PaHub v2.1 | one Port A to six isolated I²C channels, address `0x70..0x77` | useful qualified topology pattern; does not expand UART/GPIO timing paths |
 | basic GPIO fan-out | PbHub | Port A I²C to six simple GPIO channels through MCU | not transparent Port B: vendor explicitly excludes timing-dependent Units |
@@ -95,7 +95,7 @@ inflated into this number.
 | 14 | iButton/1-Wire contact tool | no | accepted passive protected Port-B adapter |
 | 15 | haptic feedback | excluded by `DEC-0036` | historical U059 evidence retained; not in live denominator |
 | 16 | IMU/orientation | no full device-pose result | U095 is partial until rigid/indexed mount; no heading/bearing |
-| 17 | physical keyboard | yes, U215 | active accessory firmware |
+| 17 | external physical keyboard | yes, U215 | active accessory firmware; does not settle the base-product archetype |
 | 18 | high-speed USB accessory host | no | old M020 is EOL and full/low-speed only |
 
 Results:
@@ -249,7 +249,7 @@ and pins that module needs and does not expose an unqualified BAT/HPWR stack.
 M5-first can lower **base-device** cost without silently removing accepted
 functions:
 
-- GNSS, LoRa, NFC, optional haptic/IMU/keyboard/cellular frontends are not paid
+- GNSS, LoRa, NFC and the accepted external IMU are not paid
   by every owner;
 - one protected port platform and reusable driver/profile framework replaces
   several one-off connectors and onboard RF frontends;

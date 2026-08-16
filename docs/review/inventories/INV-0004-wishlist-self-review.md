@@ -17,8 +17,9 @@ Update 2026-08-16: `W-EXTRA-11` принят как external passive M5-style Po
 profile по `DEC-0033/REQ-IBTN-0001`. M5-first Unit/Cap плюс отдельный
 high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
 `W-EXTRA-12` принят `DEC-0035/REQ-FIDO-0001`; `W-EXTRA-13` отклонён
-`DEC-0036`; `W-EXTRA-14` fact review завершён `AUD-0008`, owner decision и
-`W-EXTRA-15..17` открыты.
+`DEC-0036`; `W-EXTRA-14` принят external через `DEC-0037/REQ-IMU-0001`.
+Факты `W-EXTRA-15` проверены `AUD-0009`, но owner decision и
+`W-EXTRA-16..17` открыты.
 
 ## Current competitor delta disposition
 
@@ -27,8 +28,9 @@ high-throughput class без native M5-Bus принят `DEC-0034/REQ-EXT-0001`;
 | `W-EXTRA-11` | iButton/1-Wire contact tool | `accepted-external` | protected Port-B timing/electrical profile + replaceable passive adapter; no integrated base contacts; read/emulate/write separately qualified |
 | `W-EXTRA-12` | modern FIDO2/CTAP USB authenticator + U2F compatibility | `accepted-main` | `DEC-0035/REQ-FIDO-0001`: exclusive open personal authenticator; device-bound/non-exportable; no certification overclaim |
 | `W-EXTRA-13` | haptic feedback through the product enclosure | `rejected-by-owner` | `DEC-0036`: no motor, special profile, mount or haptic HIL; generic Port-B remains generic |
-| `W-EXTRA-14` | IMU measurement-pose metadata | `needs-owner` | `AUD-0008/FND-0045/IMP-0031`: optional external profile recommended; 6-axis ≠ heading/RF bearing |
-| `W-EXTRA-15..17` | remaining current competitor questions | `needs-owner` | resolved one by one through `AUD-0004`; no silent target inclusion |
+| `W-EXTRA-14` | IMU measurement-pose metadata | `accepted-external` | `DEC-0037/REQ-IMU-0001`: rigid indexed external profile; 6-axis ≠ heading/RF bearing; no base sensor |
+| `W-EXTRA-15` | physical-keyboard whole-product archetype | `needs-owner` | `AUD-0009` fact review complete; `IMP-0032/B` recommended for equal G3 comparison; no silent target inclusion |
+| `W-EXTRA-16..17` | remaining current competitor questions | `needs-owner` | resolved one by one through `AUD-0004`; no silent target inclusion |
 
 1. Полезный пользовательский результат сохраняется.
 2. Нечастая функция, требующая нового radio/compute/certification class, сохраняется как optional expansion или `defer-release`, а не увеличивает base BOM.

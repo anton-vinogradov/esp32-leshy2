@@ -1,6 +1,6 @@
 # Leshy2 Hardware — current engineering state
 
-> Snapshot: 2026-08-16. This page describes proven maturity. The intended
+> Snapshot: 2026-08-17. This page describes proven maturity. The intended
 > behavior is in the [hardware target README](../../README.md); software behavior
 > is in the [firmware target README](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.md).
 
@@ -31,7 +31,8 @@ The canonical table is [`stages.md`](../review/stages.md).
 - infrastructure is closed by [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap plus a separate high-throughput class, without native M5-Bus;
 - `W-EXTRA-12` is closed by [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): open personal FIDO2/CTAP authenticator with U2F compatibility;
 - `W-EXTRA-13` is closed by [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): no product haptic, motor, dedicated profile or mount;
-- current question: [`IMP-0031`](../review/improvements/IMP-0031-external-imu-measurement-annotation.md) for `W-EXTRA-14` IMU; then `15` physical keyboard, `16`
+- `W-EXTRA-14` is closed by [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
+- current question: [`IMP-0032`](../review/improvements/IMP-0032-keyboard-whole-product-comparison.md) for `W-EXTRA-15` physical-keyboard product archetype; then `16`
   high-speed USB host and `17` 6 GHz/Wi-Fi 6E.
 
 No remaining item becomes part of the target before owner disposition.
@@ -89,8 +90,10 @@ iButton coverage, so the
 now resolves the delta one by one. `AUD-0007` reviewed haptic and corrected
 the external-module coverage; `DEC-0036/REV-0002AJ` reject it from product
 scope. [`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
-reviews `W-EXTRA-14`; `IMP-0031` recommends optional external measurement-pose
-annotation without heading/bearing claims. Parallel G3
+and `DEC-0037/REQ-IMU-0001` close `W-EXTRA-14` as an optional external
+measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
+reviews `W-EXTRA-15`; `IMP-0032` recommends equal whole-product G3 comparison
+without silently selecting a keyboard target. Parallel G3
 research
 starts from already reviewed capabilities and defines the physical
 product without choosing electronics: form factor/use posture, control and

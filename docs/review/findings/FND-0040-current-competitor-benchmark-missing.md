@@ -32,9 +32,10 @@ source universe. Он не доказывает, что не пропущена 
 Progress 2026-08-16: `W-EXTRA-11` closed through external passive iButton
 profile `DEC-0033/REQ-IBTN-0001`; M5 infrastructure through `DEC-0034`; and
 `W-EXTRA-12` through open personal FIDO `DEC-0035/REQ-FIDO-0001`.
-`AUD-0007/DEC-0036` reviewed and rejected product haptic. `AUD-0008/REV-0002AK`
-completed the IMU fact review and opened `IMP-0031`; `W-EXTRA-14` owner
-disposition and `W-EXTRA-15..17` remain unresolved.
+`AUD-0007/DEC-0036` reviewed and rejected product haptic.
+`AUD-0008/DEC-0037/REQ-IMU-0001` accept optional external measurement pose;
+`AUD-0009` completes the physical-keyboard fact review and leaves
+`IMP-0032` for owner disposition; `W-EXTRA-16..17` remain unresolved.
 
 Часть — новые capabilities, часть — входы `G3`, а часть уже покрыта
 `W-EXTRA-*` и не должна учитываться дважды.

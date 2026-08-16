@@ -31,15 +31,17 @@ buses, pins, connector counts and CAD are intentionally open.
   haptic prerequisite audit
   [`AUD-0007`](../audits/AUD-0007-haptic-product-mechanical-cost.md) and IMU
   instrument-value audit
-  [`AUD-0008`](../audits/AUD-0008-imu-instrument-value-and-placement.md).
+  [`AUD-0008`](../audits/AUD-0008-imu-instrument-value-and-placement.md), plus
+  physical-keyboard archetype audit
+  [`AUD-0009`](../audits/AUD-0009-physical-keyboard-product-archetype.md).
 
 `W-EXTRA-11` is reviewed by `DEC-0033/REQ-IBTN-0001`; M5-first Unit/Cap plus a
 separate high-throughput class without native M5-Bus is reviewed by
 `DEC-0034/REQ-EXT-0001`. `W-EXTRA-12` is reviewed by
-`DEC-0035/REQ-FIDO-0001`; product haptic is rejected by `DEC-0036`. IMU fact
-review is complete through `AUD-0008/REV-0002AK`, while owner disposition remains
-open through `IMP-0031`. G2 currently requires repeat review while
-`W-EXTRA-14..17` are decided. G3 research
+`DEC-0035/REQ-FIDO-0001`; product haptic is rejected by `DEC-0036`; optional
+external IMU measurement pose is reviewed by `DEC-0037/REQ-IMU-0001`. G2
+currently requires repeat review: `W-EXTRA-15` facts are reviewed and
+`IMP-0032` awaits owner disposition, while `W-EXTRA-16..17` remain open. G3 research
 may proceed, but cannot receive final review until G2 closes.
 
 ## Candidate/reference studies

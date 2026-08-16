@@ -1,6 +1,6 @@
 # FND-0045 — external 6-axis IMU is not automatically device heading or RF bearing
 
-- Статус: **Исправление внесено; product disposition открыт**
+- Статус: **Исправление внесено; product boundary закрыт `DEC-0037`**
 - Дата: 2026-08-16
 - Обнаружено: [`AUD-0008`](../audits/AUD-0008-imu-instrument-value-and-placement.md)
 - Затрагивает: `W-EXTRA-14`, `AUD-0005`, M5 coverage, nRF hunt records, G3 mechanics
@@ -33,7 +33,7 @@ absolute compass heading. Ни внешний, ни интегрированны
 - [x] M5 coverage corrected without changing `DEC-0034` two-tier conclusion;
 - [x] current U095 and EOL U171 lifecycle distinction recorded;
 - [x] 6-axis/yaw/RF-bearing claims bounded;
-- [ ] owner chooses product disposition through `IMP-0031`;
-- if accepted, G3 defines indexed mechanics and G4 compares exact accessory/base
+- [x] owner selected optional external profile through `DEC-0037`;
+- G3 defines indexed mechanics and G4 compares exact accessory/base
   implementations; G11 verifies transforms, calibration, time alignment and
   interference.

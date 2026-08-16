@@ -49,9 +49,9 @@ Evidence states: `E0` — строка только идентифицирова
 
 | ID | Type | Exact/candidate function | Current evidence | Следующий обязательный proof |
 |---|---:|---|---:|---|
-| `U-001` | F | 480×320 display and controller/module | E0 | interface mode, 3.3 V logic, backlight, reset, bandwidth ≥4.5 MB/s, lifecycle/optics/mechanics |
-| `U-002` | F | touch controller/panel | E0 | I²C address/IRQ/reset, voltage, latency, noise and full non-touch fallback |
-| `U-003` | F | rotary encoder/push, BACK/HOME/OPTIONS | E0 | detent/bounce/ESD/lifetime and TCA9535 interrupt/read-rate loss test |
+| `U-001` | historical F | former 480×320 display candidate | E0 | not target; new G3 compares display/control archetypes before any exact component proof |
+| `U-002` | historical F | former touch controller/panel candidate | E0 | not mandatory; compare touch and non-touch complete candidates at G3/G5 |
+| `U-003` | historical F | former rotary encoder/push and named controls | E0 | not mandatory; exact field-control surface follows G3/G5 usability and whole-product comparison |
 | `U-004` | F | direct PTT, STOP and recessed RE-ARM mechanics | E0 | independent routing, human factors, debounce where allowed and abuse/fault behavior |
 | `U-005` | F | microSD socket, detect/protection/pulls | E0 | 4-bit SDMMC signal integrity, hot removal, endurance/profile and exclusive ownership |
 | `U-006` | F | S3 product USB connector/power/CC/ESD | E0 | device-only role, CDC/HID/MSC profiles, backfeed and recovery coexistence |
@@ -101,7 +101,7 @@ Evidence states: `E0` — строка только идентифицирова
 | current source has no RP2354 domain | `DEC-0028` adds RP2354A A4 and direct packet/voice controls | qualify `C-003/C-005/C-006`, then regenerate schematic rather than patch legacy pin ownership |
 | generic three-nRF placeholders use legacy S3 ownership and common CE | RP directly owns three CSN/CE/IRQ paths | `RF-001..005`; old source remains noncanonical |
 | STOP is an I²C input in legacy artifact | independent latched `AON_SAFE` STOP/TX_KILL | `P-006/P-007`; no schematic readiness until fault proof |
-| old 3×3 matrix/extra expander remains in source ideas | accepted UI uses touch+encoder+six named controls and one TCA9535 | `U-002..004/U-007`; do not carry old matrix/U14 into target BOM |
+| old 3×3 matrix/extra expander and later touch+encoder+six-control map remain in source ideas | no exact ordinary UI surface is accepted after `DEC-0032/FND-0046`; only autonomous local control plus dedicated safety/voice semantics are fixed | return keyboard/touch/encoder/D-pad/display alternatives to G3/G5; do not carry either old map into target BOM |
 | legacy NFC port is 3.3 V | accepted U216 profile requires protected 5 V | `P-005/X-003/X-005` |
 | legacy voice rail is 5 V | accepted SA518 target uses dedicated 4.0 V | `P-004/V-001`; SA868S stays separate conditional manifest |
 | onboard/legacy GNSS or LoRa assumptions | base board has neither frontend | only board-side `X-004/X-005`; external `X-001/X-002` profiles |

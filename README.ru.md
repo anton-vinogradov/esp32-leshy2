@@ -54,6 +54,10 @@ Leshy2 — открытый автономный портативный all-in-o
   low-rate expansion tier. Для raw SDR, внешнего compute и general host
   сохраняется отдельный high-throughput class; base не обещает native 30-pin
   M5-Bus. Число/расположение портов и high-speed connector выбираются позже.
+- Опциональный qualified external IMU может добавлять к RF records timestamped
+  motion, pitch/roll и short-term relative-rotation metadata. Device-pose claim
+  требует жёсткий indexed mount и sensor-to-antenna transform. Six-axis data не
+  является absolute heading или RF bearing; base IMU не требуется.
 - Локальные display/storage/controls, PTT, hard STOP и explicit re-arm остаются
   автономными; обычная эксплуатация не требует телефона.
 - Каждый в итоге выбранный programmable chip получает постоянные независимые

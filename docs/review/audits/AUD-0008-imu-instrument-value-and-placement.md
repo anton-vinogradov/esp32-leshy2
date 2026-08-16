@@ -1,10 +1,11 @@
 # AUD-0008 — IMU instrument value, placement and truthful measurement boundary
 
-- Статус: **Проведено ревью фактов; product disposition открыт**
+- Статус: **Проведено ревью; optional external profile принят `DEC-0037`**
 - Дата snapshot: 2026-08-16
 - Delta: `W-EXTRA-14`
 - Предложение: [`IMP-0031`](../improvements/IMP-0031-external-imu-measurement-annotation.md)
 - Finding: [`FND-0045`](../findings/FND-0045-external-six-axis-imu-is-not-device-heading-or-rf-bearing.md)
+- Решение: [`DEC-0037`](../decisions/DEC-0037-optional-external-imu-measurement-pose.md)
 
 ## Какой результат полезен прибору
 
@@ -122,4 +123,4 @@ a core measurement and beats the complete external implementation at G3/G4.
 - [x] false RF bearing, tamper and safety automation excluded;
 - [x] base, external and no-IMU alternatives compared at equal result;
 - [x] prior M5 direct-coverage overcount identified and corrected;
-- [ ] owner disposition through `IMP-0031`.
+- [x] owner accepted `IMP-0031/A` through `DEC-0037`.

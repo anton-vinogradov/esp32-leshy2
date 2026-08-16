@@ -1,6 +1,6 @@
 # Аппаратная часть Leshy2 — текущее состояние проработки
 
-> Снимок: 2026-08-16. Здесь указана доказанная зрелость. Образ готового
+> Снимок: 2026-08-17. Здесь указана доказанная зрелость. Образ готового
 > продукта — в [целевом hardware README](../../README.ru.md), software — в
 > [целевом firmware README](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md).
 
@@ -31,7 +31,8 @@
 - infrastructure закрыт [`DEC-0034/REQ-EXT-0001`](../review/decisions/DEC-0034-m5-first-two-tier-expansion.md): M5-first Unit/Cap плюс отдельный high-throughput class, без native M5-Bus;
 - `W-EXTRA-12` закрыт [`DEC-0035/REQ-FIDO-0001`](../review/decisions/DEC-0035-open-personal-fido-authenticator.md): открытый personal FIDO2/CTAP authenticator с U2F compatibility;
 - `W-EXTRA-13` закрыт [`DEC-0036`](../review/decisions/DEC-0036-no-product-haptic.md): в продукте нет haptic, мотора, специального профиля или mount;
-- текущий вопрос: [`IMP-0031`](../review/improvements/IMP-0031-external-imu-measurement-annotation.md) для `W-EXTRA-14` IMU; затем `15` physical keyboard, `16`
+- `W-EXTRA-14` закрыт [`DEC-0037`](../review/decisions/DEC-0037-optional-external-imu-measurement-pose.md)/[`REQ-IMU-0001`](../review/requirements/REQ-IMU-0001-external-measurement-pose.md);
+- текущий вопрос: [`IMP-0032`](../review/improvements/IMP-0032-keyboard-whole-product-comparison.md) для `W-EXTRA-15` physical-keyboard product archetype; затем `16`
   high-speed USB host и `17` 6 GHz/Wi-Fi 6E.
 
 Ни один оставшийся пункт не добавлен в target до решения владельца.
@@ -87,8 +88,10 @@ high-speed tier, принятого `DEC-0034`.
 теперь закрывает delta по одному. `AUD-0007` проверил haptic и исправил
 external-module coverage; `DEC-0036/REV-0002AJ` исключают его из product scope.
 [`AUD-0008`](../review/audits/AUD-0008-imu-instrument-value-and-placement.md)
-проверил `W-EXTRA-14`; `IMP-0031` рекомендует optional external measurement-pose
-metadata без heading/bearing claims. Параллельный G3 research
+и `DEC-0037/REQ-IMU-0001` закрывают `W-EXTRA-14` как optional external
+measurement-pose profile. [`AUD-0009`](../review/audits/AUD-0009-physical-keyboard-product-archetype.md)
+проверил `W-EXTRA-15`; `IMP-0032` рекомендует равное whole-product G3 comparison
+без молчаливого выбора keyboard target. Параллельный G3 research
 отталкивается от уже проверенных capabilities и задаёт физический
 продукт без выбора electronics: form factor/use posture, control/connector
 surfaces, display, battery/charging, external-module attachment, antenna

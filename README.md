@@ -56,6 +56,10 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
   separate high-throughput class; the base does not claim native 30-pin
   M5-Bus compatibility. Exact port count, placement and high-speed connector
   remain product/architecture decisions.
+- An optional qualified external IMU may add timestamped motion, pitch/roll and
+  short-term relative-rotation metadata to RF records. Device-pose claims require
+  a rigid indexed mount and sensor-to-antenna transform. Six-axis data is not
+  absolute heading or RF bearing; no base IMU is required.
 - Local display, storage, controls, PTT, hard STOP and explicit re-arm remain
   autonomous; ordinary product use cannot require a phone.
 - Every programmable chip ultimately selected must expose permanent,
