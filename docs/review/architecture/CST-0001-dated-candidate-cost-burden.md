@@ -86,7 +86,7 @@ The ranges intentionally overlap unquoted glue/assembly effects. A production qu
 | recurring delta | middle | lowest | highest |
 | current qty-500 sourcing | quoted parts adequate | quoted parts adequate | public exact-A4 stock clears 500; quotes/traceability still required |
 
-The RP premium is therefore not justified as a parts-count saving. It buys deterministic isolation, direct controls, seven C5 reserve pins and cleaner partitioning. The two-domain variants buy lower recurring cost and one fewer signed target, but have zero GPIO reserve and greater scheduling/RF proof risk.
+The RP premium is therefore not justified as a parts-count saving. At stage 3 it bought deterministic isolation, direct controls, seven C5 reserve pins and cleaner partitioning. `DEC-0031/FND-0038` later dedicates GPIO11/12 to permanent UART0 diagnostics, so the current result is five generic C5 reserve pins plus two service-reserved pins. The two-domain variants buy lower recurring cost and one fewer signed target, but have zero GPIO reserve and greater scheduling/RF proof risk.
 
 ## Firmware, update, manufacturing and HIL burden
 

@@ -1,17 +1,20 @@
 # REC-0001 — compute recovery and inter-domain link prerequisites
 
-- Статус: **Проведено ревью пререквизитов; physical-access topology ожидает owner decision**
+- Статус: **Проведено ревью; physical-access topology принята в DEC-0031**
 - Дата: 2026-08-16
 - Строки BOM: `C-006`, `C-007`
 - Входы: `DEC-0028`, `PIN-0002`, `PWR-0001`, `BOM-0002`
 - Finding: [`FND-0037`](../findings/FND-0037-c5-usb-download-strap-misidentified.md)
 - Proposal: [`IMP-0026`](../improvements/IMP-0026-connectorless-owner-recovery-fixture.md)
+- Decision/implementation contract: [`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md),
+  [`SVC-0001`](SVC-0001-three-domain-development-access.md)
 
 ## Evidence boundary
 
 Этот артефакт фиксирует ROM/debug prerequisites и допустимую электрическую
-границу. Он не выбирает owner-facing physical access без решения владельца и
-не выдаёт Q до schematic/ERC/layout/fixture/HIL.
+границу. Owner-facing physical access теперь выбран в `DEC-0031`, но ни этот
+выбор, ни first-target candidates не выдают Q до
+schematic/ERC/layout/fixture/HIL.
 
 ## Recovery primitives that cannot depend on application firmware
 
@@ -40,12 +43,13 @@ Primary sources:
 | C5 | reserve 22/33 Ω at the module | GPIO13/14 remain dedicated to recovery; no SDIO D2/D3 overlay; local two-line low-capacitance ESD at the service boundary |
 | RP | 27 Ω at the MCU | 90 Ω differential route; no external USB speed pull resistors; local two-line low-capacitance ESD at the service boundary |
 
-Service USB VBUS may not feed `3V3_CORE`. A fixture sees ground and a
-current-limited voltage-reference sense only; the board is powered through its
-normal protected input. This prevents a host cable from partially powering one
-MCU or backfeeding the common rail.
+Service USB C5/RP VBUS may not feed `3V3_CORE`. Their permanent debug headers
+expose ground and a current-limited voltage-reference sense only; the board is
+powered through its normal protected input. This prevents a host cable from
+partially powering one MCU or backfeeding the common rail. S3 product USB power
+remains a separate later-qualified protected input path.
 
-`TPD2EUSB30DRTR` is a technically compatible ESD candidate (active TI part,
+`TPD2EUSB30ADRTR` is a technically compatible ESD candidate (active TI part,
 two channels, 0.7 pF typical, ±8 kV IEC contact), but its exact AVL/cost/
 assembly disposition follows the physical-access choice and does not receive Q
 here.
@@ -84,6 +88,6 @@ new control dependency of an unnecessary active mux.
 6. An open/shorted inter-domain series element produces a detected degraded
    state and safe TX-off behavior, not uncontrolled re-arm.
 
-The factual prerequisite set receives **«Проведено ревью»**. Exact pad access,
-ESD placement and enclosure exposure remain blocked only by `IMP-0026`; exact
-resistor MPNs and measured values remain implementation/HIL gates.
+The factual prerequisite set receives **«Проведено ревью»**. `IMP-0026/B` is
+resolved by `DEC-0031/SVC-0001`; exact CAD, resistor MPNs, placement,
+mechanics/AVL and measured values remain implementation/HIL gates.

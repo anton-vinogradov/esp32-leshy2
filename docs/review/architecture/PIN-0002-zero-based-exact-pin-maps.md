@@ -181,8 +181,8 @@ Ledger: `17 used + 4 strap/recovery-reserved = 21`; no general-purpose spare. GP
 | 3 | strap-reserved | pull-up fixes SDIO edge |
 | 4 | free after boot | no assignment |
 | 5 | free after boot | no assignment |
-| 11 | free | no assignment |
-| 12 | free | no assignment |
+| 11 | `C5_UART0_TX_SERVICE` | permanent diagnostics/RF-test; DBG10 `DBG0` |
+| 12 | `C5_UART0_RX_SERVICE` | permanent diagnostics/RF-test; DBG10 `DBG1` |
 | 23 | free | no assignment |
 | 24 | free | no assignment |
 | 25 | strap-reserved | pull-down fixes SDIO edge |
@@ -190,7 +190,7 @@ Ledger: `17 used + 4 strap/recovery-reserved = 21`; no general-purpose spare. GP
 | 27 | strap-reserved | deterministic ROM-log state |
 | 28 | boot/recovery-reserved | pull-up normal boot; physical low plus CHIP_PU toggle selects USB/UART Joint Download Boot 0 |
 
-Ledger: `9 used + 5 strap/recovery-reserved + 7 general-purpose free = 21`. This is the only candidate with useful non-strap MCU GPIO reserve.
+Ledger after `DEC-0031`: `9 product-used + 2 service-reserved + 5 strap/recovery-reserved + 5 general-purpose free = 21`. This is the only candidate with useful non-strap MCU GPIO reserve. The stage-3 map originally counted GPIO11/12 among seven generic free pins; permanent UART0 diagnostics correctly reclassifies them without creating a collision (`FND-0038`).
 
 ## `SYN-3A` RP2354A A4 map
 
@@ -283,7 +283,7 @@ No hardware controller is double-booked. Shared buses have one local owner and b
 |---|---|---|---|---|
 | `SYN-2A` | 35 used, 1 strap-reserved | 21 used | none | collision-free; no general-purpose reserve |
 | `SYN-2B` | 33 used, 3 strap/recovery-reserved | 17 used, 4 strap/recovery-reserved | none | collision-free; no safe generic reserve |
-| `SYN-3A` | 34 used, 2 strap-reserved | 9 used, 5 strap/recovery-reserved, 7 free | RP 30/30 + dedicated recovery | collision-free; seven useful C5 GPIO remain |
+| `SYN-3A` | 34 used, 2 strap-reserved | 9 product-used, 2 service-reserved, 5 strap/recovery-reserved, 5 free | RP 30/30 + dedicated recovery | collision-free; five generic C5 GPIO remain plus dedicated UART0 diagnostics |
 
 All three pass the exact collision gate. `SYN-2A` required the no-loss correction `FND-0034`; `SYN-2A/2B` have effectively zero expansion margin. `SYN-3A` pays another firmware target but is the only map with non-strap MCU GPIO headroom.
 

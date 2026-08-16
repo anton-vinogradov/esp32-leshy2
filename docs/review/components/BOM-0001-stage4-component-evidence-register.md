@@ -25,8 +25,8 @@ Evidence states: `E0` — строка только идентифицирова
 | `C-003` | A | `RP2354A A4`, exact `SC1511-A4` / packaging-equivalent `SC1511(13)-A4`, QFN60, stacked flash 2 MiB | E1; E3 partial | crystal/clock network, decoupling/thermal pad, USB/SWD/RUN fixture, quotes/traceability and assembly yield |
 | `C-004` | A | TI `TCA9535PWR` | E1 | address/pulls/INT, preload-before-direction reset sequence, drive/current limits, exact footprint and AVL |
 | `C-005` | C | RP reference `ABM8-272-T3` 12 MHz crystal and manufacturer-recommended passives | E1; E3 partial | exact passives, placement and startup/temperature/EMI proof versus USB and packet timestamp requirements; alternate only by equivalence HIL |
-| `C-006` | F | debug/recovery connectors, series resistors and ESD for S3/C5/RP | E0 | intentional physical access without accidental boot/strap or normal-user exposure |
-| `C-007` | F | SDIO/SPI/alert inter-domain pulls, damping, test points and isolation provisions | E0 | 3.3 V compatibility, boot-safe defaults, signal integrity, fixture access and no accidental peer powering |
+| `C-006` | F | 3×`USB4105-GF-A`, 3×`FTSH-105-01-L-DV-K-TR` DBG10, 6×`KMR221GULCLFS`, 3×`TPD2EUSB30ADRTR`; exact service passives | E1 partial; `DEC-0031/SVC-0001` | CAD/AVL/mechanics, CC/VBUS/ESD/series network, erased-image recovery and multi-host HIL |
+| `C-007` | F | SDIO/SPI/alert inter-domain pulls, damping, test points and isolation provisions | E1 contract | 3.3 V/common-core compatibility, boot-safe defaults, signal integrity, fixture access and no accidental peer powering |
 
 ## 2. Always-on safety and power
 

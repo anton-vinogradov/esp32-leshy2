@@ -63,7 +63,7 @@ Cross-domain clocks are calibrated to common monotonic S3 time with uncertainty 
 | Domain | Fixed controllers/pins | Ledger |
 |---|---|---|
 | S3 | SDMMC0 microSD GPIO4…9; SDMMC1 C5 GPIO10…13; I²S GPIO15…18; USB19/20; SYS-I²C1/2; display+U214 GP-SPI2 GPIO35…43; selected GNSS UART44/47; RP GP-SPI3 GPIO0/14/21/48 + alert3 | 34 used + straps45/46 reserved; no generic S3 spare |
-| C5 | IR RX GPIO0/1, IR TX6; 1-bit SDIO7…10; USB13/14; fixed SDIO straps3/25 and recovery26/28 | 9 used + 5 strap/recovery reserved + 7 free GPIO2/4/5/11/12/23/24 |
+| C5 | IR RX GPIO0/1, IR TX6; 1-bit SDIO7…10; USB13/14; UART0 service11/12; fixed SDIO straps3/25, auxiliary straps26/27 and recovery28 | after `DEC-0031`: 9 product-used + 2 service-reserved + 5 strap/recovery reserved + 5 free GPIO2/4/5/23/24 |
 | RP2354A | SPI0 radio data0/2/3; direct nRF controls/events1/4…11; CC12…14; STOP15; voice16…23; SPI1 IPC24…27; alert/health28/29 | 30/30 GPIO; dedicated USB/SWD/RUN preserved |
 
 S3 GPIO0 remains pulled for normal boot; RP is held reset/high-Z during S3 strap sampling. C5 fixed edge straps are `GPIO25=0`, `GPIO3=1`; C5 v0.0/v0.1 is rejected. No irreversible JTAG/secure-boot eFuse is required by baseline.
@@ -148,18 +148,18 @@ Authorized white-hat status never replaces spectrum/containment proof. Controlle
 
 | Target | Normal update | Independent recovery | Trust boundary |
 |---|---|---|---|
-| S3 | Wi-Fi/removable media/USB package, streamed signature verification, A/B rollback | native USB + physical GPIO0/EN | owner keys/open manifest; irreversible secure boot optional only |
-| C5 | package transferred over SDIO, verified/installed by C5, A/B rollback | native USB13/14 + physical boot/EN | minimum silicon/identity reported; peer cannot bypass verification |
-| RP2354A | package transferred over S3-RP SPI, verified by first-stage loader, A/B rollback | dedicated USB/SWD/RUN access | owner-signed normal images; ROM enforcement/OTP lockdown remains optional |
+| S3 | Wi-Fi/removable media/USB package, streamed signature verification, A/B rollback | dedicated USB-C + physical GPIO0/EN + UART0 DBG10 | owner keys/open manifest; irreversible secure boot optional only |
+| C5 | package transferred over SDIO, verified/installed by C5, A/B rollback | dedicated USB-C GPIO13/14 + physical GPIO28/CHIP_PU + UART0 DBG10 | GPIO27 high for Joint Download Boot 0; peer cannot bypass verification |
+| RP2354A | package transferred over S3-RP SPI, verified by first-stage loader, A/B rollback | dedicated USB-C + USB_BOOT/RUN buttons + SWD DBG10 | owner-signed normal images; ROM enforcement/OTP lockdown remains optional |
 
 Updates are sequential, power-qualified and globally TX-off. Failed first boot rolls back. Developer images remain possible through intentional physical recovery; the device does not become closed.
 
 ## USB and storage profiles
 
-- S3 USB is the product/service interface. Baseline profiles are service `CDC` plus explicitly armed HID where allowed, and storage export via read-only snapshot or exclusive MSC ownership.
+- S3 USB is the product/service data/power interface. Baseline profiles are service `CDC` plus explicitly armed HID where allowed, and storage export via read-only snapshot or exclusive MSC ownership.
 - Autorun and import-triggered actions do not exist. HID Controlled-Zone action is per-run armed and STOP/disconnect bounded.
 - Firmware and host never write the same filesystem simultaneously.
-- C5 and RP USB are recovery/service interfaces, not extra normal user-drive claims.
+- C5 and RP have their own permanent data-only USB-C recovery/service interfaces. Every domain also has populated BOOT/RESET controls and a common-format keyed DBG10 header (`DEC-0031/SVC-0001`); these are not extra normal user-drive claims.
 
 ## Three functional levels
 

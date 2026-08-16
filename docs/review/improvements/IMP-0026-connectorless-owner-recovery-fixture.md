@@ -1,6 +1,6 @@
-# ⚠️ IMP-0026 — connectorless owner recovery fixture
+# IMP-0026 — three-domain physical development access
 
-- Статус: **Открыто; требуется решение владельца**
+- Статус: **Принято вариантом B с расширением; проведено ревью в DEC-0031/REV-0004G**
 - Дата: 2026-08-16
 - Основание: `C-006/C-007`, `REC-0001`, accepted independent recovery and zero-loss cost policy
 - Затрагивает: base BOM, enclosure openings, owner recovery UX, factory fixture, attack/failure surface
@@ -54,13 +54,24 @@ route become common recovery failure points; an active mux also needs safe
 power/default logic. This fails the accepted meaning of physically independent
 recovery and is not recommended.
 
-## Recommendation
+## Original recommendation
 
 Choose **A**. It preserves independent, owner-accessible, open recovery while
 removing two permanent connector assemblies from the base device. It also gives
 factory test one repeatable reusable fixture format without allowing any
 firmware domain to disable access.
 
-## Decision question
+## Decision outcome
 
-Принять вариант **A**, либо выбрать **B** или **C**?
+Владелец выбрал **B** и уточнил обязательный scope: на стадии прототипа
+интерфейсы будут активно использоваться, поэтому у **каждого** из S3, C5 и RP
+наружу выводятся независимые USB, physical BOOT/RESET и диагностический
+UART/SWD. Решение зафиксировано в
+[`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md),
+exact first-target topology — в
+[`SVC-0001`](../components/SVC-0001-three-domain-development-access.md), а
+propagation review — в
+[`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md).
+
+Это осознанно отвергает исходную рекомендацию A: экономия двух USB и
+board-connectors не стоит потери ежедневного удобства bring-up/diagnostics.

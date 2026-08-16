@@ -18,7 +18,7 @@
 | Latch correctness | radio SCK не shifting clock для deassert; mixed active levels задаются OE + safe pulls |
 | No-loss correction | `FND-0034` переносит U214/GNSS на C5 resources в `SYN-2A` вместо удаления функции |
 | Third-domain completeness | RP2354A maps 30 GPIO and retains non-GPIO recovery; no hidden external flash |
-| Honest reserve | strap/recovery pins не названы свободными; only `SYN-3A` retains seven useful generic C5 GPIO |
+| Honest reserve | stage-3 straps/recovery pins не названы свободными; `SYN-3A` initially retained seven useful generic C5 GPIO. Later `DEC-0031/FND-0038` honestly reclassifies GPIO11/12 as service UART and leaves five generic GPIO |
 
 ## Re-review `SYN-0001`
 

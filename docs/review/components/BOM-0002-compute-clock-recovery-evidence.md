@@ -10,6 +10,9 @@
   [`REV-0004D/E`](../reviews/REV-0004E-vendored-critical-cad-libraries.md)
 - Recovery/link prerequisites: [`REC-0001`](REC-0001-compute-recovery-and-link-prerequisites.md),
   [`REV-0004F`](../reviews/REV-0004F-compute-recovery-link-prerequisites.md)
+- Physical development access: [`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md),
+  [`SVC-0001`](SVC-0001-three-domain-development-access.md),
+  [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md)
 
 ## Evidence boundary
 
@@ -55,7 +58,7 @@ No accepted feature currently requires irreversible flash encryption or HUK. Nev
 | ID | Baseline fixed by primary guidance | Still open before `Q` |
 |---|---|---|
 | `C-005` | RP reference clock candidate becomes exact `ABM8-272-T3`, 12 MHz, with 15 pF to ground on each side and 1 kΩ series damping at 3.3 V IOVDD, following [Raspberry Pi hardware design](https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf) | exact capacitor/resistor MPN/voltage/temp; placement; startup, ppm and temperature HIL; any cheaper alternate must repeat oscillator qualification |
-| `C-006` | preserve three physically independent recovery paths: S3 USB/UART/GPIO0+EN, C5 native USB/UART/GPIO28+CHIP_PU and RP USB_BOOT + SWD + RUN; RP USB uses 27 Ω series at MCU and 90 Ω differential target | owner choice `IMP-0026`; exact pads, ESD, CC/power/backfeed, accidental-user-access analysis and fixture drawing |
+| `C-006` | `DEC-0031/SVC-0001`: three direct USB-C, three permanent common-pinout DBG10 headers and BOOT+RESET buttons for every domain; exact first targets are USB4105/FTSH/KMR221/TPD2EUSB30A; RP USB uses 27 Ω at MCU and all USB routes target 90 Ω differential | project-local CAD, exact passives/CC/VBUS isolation, AVL/assembly/mechanics, accidental access and erased/corrupt-image/multi-host HIL |
 | `C-007` | preserve C5 1-bit SDIO and RP SPI+alert boot-safe pulls, source damping, separable series elements and test points; direct links depend normatively on common `3V3_CORE` with reset-only compute domains | exact resistor MPN/values, peer-reset/rail-ramp leakage, SI measurement and test-point loading; any future individual core power gate reopens Ioff isolation |
 
 `ABM8-272-T3` is the manufacturer-recommended reference, not yet a qualified zero-loss monopoly. A cheaper crystal is allowed only after equal startup/temperature/USB/timestamp evidence; catalog similarity alone is insufficient.

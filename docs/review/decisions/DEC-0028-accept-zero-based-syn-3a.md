@@ -15,7 +15,7 @@
 2. `ESP32-C5-WROOM-1U-N8R8` — native 2.4/5 GHz Wi-Fi, IEEE 802.15.4 и dual-path consumer IR. Stage-4 `DEC-0029` later raises its production floor from ≥v1.0 to ≥v1.2 while retaining v1.0 only for restricted engineering samples.
 3. `RP2354A A4`, QFN60, 2 MiB stacked flash — deterministic domain трёх полнофункциональных nRF24, CC1101, analog-voice control/PTT и local dead-man.
 4. S3↔C5 использует 1-bit SDIO; S3↔RP — 20 MHz initial SPI + отдельный alert. Нормативны typed control/event/bulk/liveness/recovery channels, measured payload floor и lease-expiry behavior из package.
-5. Полностью принят exact controller/pin/recovery map `PIN-0002/SYN-3A`, включая straps, physical USB/SWD/RUN access и семь свободных generic GPIO C5.
+5. Полностью принят exact controller/pin/recovery map `PIN-0002/SYN-3A`, включая straps и physical USB/SWD/RUN access. На момент stage-3 acceptance C5 имел семь generic free GPIO; последующий `DEC-0031/FND-0038` резервирует GPIO11/12 для permanent UART0 diagnostics и оставляет пять generic free GPIO.
 6. Приняты touch + encoder/push + BACK/HOME/OPTIONS, direct PTT, независимые latched STOP и recessed RE-ARM, а также `TCA9535PWR` только для non-safety UI/slow control.
 7. Приняты memory/flash/traffic, power, RF/coexistence, storage/audio/display, open owner-signed A/B update/recovery и sourcing/cost contracts package.
 8. `KG-01…08` обязательны. Провал любого gate переоткрывает весь затронутый package; `SYN-2A` является первым полным fallback для нового ревью, но не вторым скрытым target.
