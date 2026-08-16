@@ -98,4 +98,6 @@ The new active chain starts with [`CAP-0001`](../review/architecture/CAP-0001-ze
 
 Only explicitly accepted product boundaries are fixed in advance: S3 native Wi-Fi/BLE; C5 2.4/5 GHz Wi-Fi, IEEE 802.15.4 and dual-path IR; three full-function nRF24 paths; onboard ES8311; external GNSS/LoRa/NFC profiles; hard STOP; and open signed updates. The nRF owner/controller/bridge, MCU variants, transports, buses, pins, UI topology, memory, power and recovery remain fully open.
 
-The next active artifacts are several complete `SYN-*` variants that independently assign compute owners, buses, transport, memory, power, safety, recovery and exact resource maps before one package comparison. Target READMEs remain unchanged until atomic acceptance of the complete architecture under `DEC-0026`.
+[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) independently derives three whole-device ways to close the same resource graph: `SYN-2A` keeps two programmable domains and places external I/O on S3, `SYN-2B` places packet-radio service on C5, and `SYN-3A` adds a deterministic RP2354A A4 domain. Each places the whole product rather than only nRF; split ownership remains a conditional response to a measured single-bus/load failure. `REV-0003N` reviews the candidate set without choosing a winner.
+
+The next active artifacts are exact `PIN-*` maps for all three: module pins, controllers, straps, recovery, latch/IRQ logic and free reserve. Target READMEs remain unchanged until atomic acceptance of the complete architecture under `DEC-0026`.

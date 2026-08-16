@@ -98,4 +98,6 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 Заранее фиксированы только явно принятые продуктовые границы: S3 native Wi-Fi/BLE, C5 Wi-Fi 2.4/5 GHz + IEEE 802.15.4 и dual-path IR, три полнофункциональных nRF24, onboard ES8311, внешние GNSS/LoRa/NFC profiles, hard STOP и открытые подписанные обновления. Владелец/controller/bridge трёх nRF24, MCU variants, transports, buses, pins, UI topology, memory, power и recovery полностью открыты.
 
-Следующий активный шаг — несколько полных `SYN-*`: с нуля назначить compute owners, buses, transport, memory, power, safety, recovery и exact resource maps каждому варианту, после чего сравнить их единым package. Целевые README не меняются до атомарной приёмки всей архитектуры по `DEC-0026`.
+[`SYN-0001`](../review/architecture/SYN-0001-zero-based-whole-device-candidates.md) с нуля вывел три цельных способа закрыть один resource graph: `SYN-2A` с минимальными двумя programmable domains и external I/O на S3, `SYN-2B` с packet-radio service на C5 и `SYN-3A` с отдельным deterministic RP2354A A4 domain. Каждый размещает весь продукт, а не только nRF; split ownership сохранён как conditional response на измеренный single-bus/load fail. `REV-0003N` провёл ревью набора без выбора winner.
+
+Следующий активный шаг — exact `PIN-*` для всех трёх: module pins, controllers, straps, recovery, latch/IRQ logic и свободный reserve. Целевые README не меняются до атомарной приёмки всей архитектуры по `DEC-0026`.
