@@ -1,6 +1,6 @@
 # DM-0001 — единый resource-demand model полной базовой конфигурации
 
-- Статус: **В работе — functional/pin/controller model reviewed; numeric traffic/memory/power и STOP проверяются**
+- Статус: **В работе — functional/pin/controller/STOP и numeric traffic/memory прошли ревью; power ждёт решения `IMP-0023`**
 - Этап: 3 — системная архитектура и владение
 - Дата начала: 2026-08-16
 - Обязательный вход: frozen wishlist `INV-0004`, `DEC-0023`, reviewed `REQ-*`
@@ -22,7 +22,7 @@ Demand описывает нужный сервис, а не любимую ре
 | Consumer IR | C5 | exact GPIO, driver and STOP/power topology |
 | 3× full-function nRF24 | **owner open** | S3-heavy, C5-heavy or balanced placement; function set fixed |
 | External GNSS/LoRa/NFC | removable qualified accessories | connector sharing, muxing and power profiles |
-| Safety authority | independent hardware STOP dominates both MCUs | exact latch/inhibit/power architecture |
+| Safety authority | `DEC-0024`: latched hardware STOP resets both MCUs and dominates every external TX domain | exact latch/gate/rail BOM and measured HIL |
 
 ## Base-board hardware demand
 
@@ -33,7 +33,7 @@ Demand описывает нужный сервис, а не любимую ре
 | `DM-LINK-01` | S3↔C5 transport | full-duplex command/event/bulk capture/update; framing, flow control, DMA/IRQ where available | bounded interrupt/wakeup and reset handshake | must coexist with every local peripheral of both MCUs; no controller double-booking; update, crash dump and passive capture loss are measured |
 | `DM-UI-01` | Display | high-bandwidth write bus, independent select/control, TE if used | predictable refresh deadline | spectrum/waterfall continues during SD write and radio IRQ; dirty rect/DMA are mechanisms only |
 | `DM-UI-02` | Touch and ordinary controls | touch data bus/IRQ; ten ordinary physical controls or proven equivalent matrix | no lost/stuck key; local navigation without phone | long-BACK and ordinary input remain available under radio/storage load; matrix scan cannot create ghost dangerous action |
-| `DM-SAFE-01` | Physical STOP | **not I²C-only**; independent hardware safety chain | asynchronous dominant deassert/inhibit of every TX-capable path | works with hung S3/C5, stalled bus, corrupt UI, update/reset and attached TX accessory; release does not re-arm |
+| `DM-SAFE-01` | Physical STOP | `DEC-0024` latched `TX_KILL`: both MCU reset paths plus independent power/inhibit of every TX-capable external domain | asynchronous dominance; separate physical re-arm; own latch indicator | works with hung S3/C5, stalled bus, corrupt UI, update/reset and attached TX accessory; release does not re-arm; old TX lease never returns |
 | `DM-SAFE-02` | Actual-TX indication | hardware or independently trustworthy detectors/enable-state per TX domain | visible latency bounded independently of application screen | software intent alone is insufficient; detector unknown/fault is visible and can inhibit Controlled operation |
 | `DM-STO-01` | microSD | bulk read/write, card detect, recoverable filesystem, DMA-capable path preferred | bounded write chunks and backpressure | capture does not claim lossless; removal/full/corrupt card cannot block STOP, audio deadline or radio servicing |
 | `DM-USB-01` | USB | native S3 device, signed update/recovery, serial; optional MSC/HID profiles | boot/recovery controls remain reachable | BadUSB execution has separate Controlled gate; normal service cannot arm it |
@@ -96,8 +96,9 @@ Demand описывает нужный сервис, а не любимую ре
 - [x] base and optional accessory demand separated;
 - [x] mandatory concurrency/failure scenarios listed;
 - [x] exact S3/C5 pin capability and controller inventory (`PIN-0001`);
-- [ ] conservative numeric traffic/memory/power envelopes;
-- [ ] independent STOP fan-out target architecture;
+- [x] conservative numeric traffic/memory envelopes (`BUD-0001`, `REV-0003D`);
+- [ ] final power/rail envelope after `IMP-0023`;
+- [x] independent STOP fan-out target architecture (`DEC-0024`);
 - [x] scoring rubric with hard-fail criteria (`SC-0001`).
 
-После заполнения двух оставшихся строк один и тот же revision `DM-0001` копируется в scorecard всех вариантов. Изменять demand внутри отдельного layout запрещено.
+После решения оставшейся power/rail строки один и тот же revision `DM-0001` копируется в scorecard всех вариантов. Изменять demand внутри отдельного layout запрещено.

@@ -34,6 +34,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - S3 as the sole baseline native-BLE owner, with C5 BLE default-off and no reduction of the full native nRF24 scope (`DEC-0021`);
 - a complete owner-confirmed wishlist before multiple layouts and a consolidated resource budget (`DEC-0022`);
 - a frozen 125-leaf wishlist after delegated self-review, with base/optional/deferred boundaries (`DEC-0023`);
+- a latched physical hard STOP that resets both MCUs, independently inhibits/power-cuts external TX domains, and requires physical re-arm (`DEC-0024`);
 - onboard mono ES8311 audio architecture with fail-safe analog bypass (`DEC-0009`);
 - IR remains on C5; ownership of the three full-function nRF24 radios is open for stage-3 comparison and no longer appears as an accepted C5 target (`DEC-0001`, `DEC-0023`, `FND-0028`).
 - owner-controlled signed S3/C5 updates with rollback and an open developer lifecycle (`DEC-0013`), without enabling irreversible hardware lockdown.
@@ -43,7 +44,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0001`: C5's single GP-SPI cannot serve the legacy nRF-master and S3↔C5-slave roles simultaneously.
 - `FND-0003`: audio architecture is accepted, but pin/electrical/firmware/HIL proof is pending.
 - `FND-0006`: the original key-matrix proposal and audio controls collide on `U13.P10..P17`.
-- `FND-0007`: the current STOP button is only an I²C-expander input, not an independent hardware TX kill.
+- `FND-0007`: the current artifact still has only an I²C-expander STOP input. `DEC-0024` fixes the target architecture, but the latch/gates/rails and fault-injection HIL are not implemented.
 - `FND-0011`: SA868 now has PTT receive-default, PD power-down-default, and a physical low-power H/L ceiling; independent STOP and controllable high power still require stage-3 proof.
 - `FND-0013`: VOX has no microphone-capture path and is explicitly deferred to the consolidated audio/pin budget.
 - `FND-0015`: both documented M5 NFC Units require a 5 V PORT.A power profile, while current `J40/J41` provide 3.3 V; the electrical correction awaits the consolidated port/power design.
@@ -57,6 +58,7 @@ The canonical stage table is [`docs/review/stages.md`](../review/stages.md).
 - `FND-0027`: Continuity/iBeacon/Find My and attack labels require versioned corpus/spec/licence/peer proof; ordinary, passive, and disruptive BLE cases have distinct security gates.
 - `FND-0028`: physical ownership of the three full-function nRF24 radios is reopened; S3 shared-SPI and C5+SDIO are preliminary variants, with the decision deferred until wishlist freeze.
 - `FND-0029`: the S3 memory variant, S3↔C5 transport, and recovery interfaces consume overlapping scarce pins. N8R8 is not a drop-in replacement for N8R2 because Octal PSRAM consumes GPIO35–37, while C5 4-bit SDIO conflicts with native USB on GPIO13/14.
+- `FND-0030`: legacy 5 V voice power would drive SA518 at about 31.5–31.7 dBm and up to 1.07 A, exceeding the accepted 1 W profile; the voice rail requires a separate decision.
 - Existing tsCircuit/KiCad files remain legacy implementation artifacts until their producing stages are reviewed and regenerated.
 
 ## Current review work
@@ -85,10 +87,12 @@ The remaining stage-2 slices are now **Reviewed**: [`REQ-W24-0001`](../review/re
 
 ## Active architecture gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) freezes the complete wishlist and opens stage 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) has started as the one resource-demand model used unchanged by every layout. Functional/concurrency demand, the exact MCU pin/controller inventory ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), and the common hard-fail/100-point layout scorecard ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)) are recorded. Numeric traffic/memory/power budgets and the STOP decision remain in progress.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) freezes the complete wishlist and opens stage 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) is the one resource-demand model used unchanged by every layout. Functional/concurrency demand, the exact MCU pin/controller inventory ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), the common hard-fail/100-point layout scorecard ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)), and the latched STOP topology ([`DEC-0024`](../review/decisions/DEC-0024-latched-hard-stop.md)) are reviewed. [`BUD-0001`](../review/architecture/BUD-0001-traffic-memory-power-envelope.md) completes numeric traffic/memory review; power remains open on the voice-rail decision.
 
 Base and optional expansion scope are now separate. Bluetooth Classic, dedicated BLE sniffing, additional SDR/RF, cellular, LF RFID, a second NFC frontend, full-duplex voice and Linux-class compute do not burden the base board.
 
-[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, the CE latch, and exact GPIO are now active layout candidates. **⚠️ [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md)** proposes a latched hard STOP that resets both MCUs and hardware-inhibits/power-cuts every TX-capable external domain; it is not accepted until the owner decides. At least S3-heavy, C5-heavy, and balanced/modular layouts must pass the same pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model before ownership is accepted.
+The matrix/`U14` portion of [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, the CE latch, and exact GPIO remain active layout candidates. [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md) is accepted as `DEC-0024`; exact safety components and HIL remain later-stage evidence. At least S3-heavy, C5-heavy, and balanced/modular layouts must pass the same pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model before ownership is accepted.
 
-`FND-0006` and `FND-0007` remain open. The deferral neither selects `U14`/the 3×3 matrix nor proves a hardware STOP.
+**⚠️ [`IMP-0023/A`](../review/improvements/IMP-0023-dedicated-4v-sa518-voice-rail.md)** recommends a dedicated STOP-dominant 4.0 V `VVOICE` rail for SA518. Keeping legacy 5 V changes the accepted 1 W class to about 1.5 W; using 3.3 V loses the accepted 1 W result. Layout generation waits for this power decision.
+
+`FND-0006` remains open. `FND-0007` is corrected at architecture level but remains open for schematic and HIL proof. No decision selects `U14` or the 3×3 matrix yet.

@@ -34,6 +34,7 @@
 - S3 как единственный baseline native-BLE owner; C5 BLE default-off, полный native nRF24 scope не сокращён (`DEC-0021`);
 - сначала полный owner-confirmed реестр хотелок, затем несколько компоновок и сводный бюджет ресурсов (`DEC-0022`);
 - замороженный wishlist из 125 leaf-функций после делегированного саморевью с границами base/optional/deferred (`DEC-0023`);
+- latched physical hard STOP, который сбрасывает оба MCU, независимо inhibit/обесточивает внешние TX-домены и требует физического re-arm (`DEC-0024`);
 - бортовая mono audio-архитектура ES8311 с fail-safe analog bypass (`DEC-0009`);
 - IR остаётся у C5; владелец трёх полнофункциональных nRF24 открыт для сравнения этапа 3 и больше не указан как принятый C5 target (`DEC-0001`, `DEC-0023`, `FND-0028`).
 - owner-controlled подписанные обновления S3/C5 с rollback и открытым developer lifecycle (`DEC-0013`) без включения необратимого hardware lockdown.
@@ -43,7 +44,7 @@
 - `FND-0001`: единственный GP-SPI C5 не может одновременно выполнять legacy-роли nRF-master и S3↔C5-slave.
 - `FND-0003`: audio-архитектура принята, но pin/electrical/firmware/HIL proof ещё не выполнен.
 - `FND-0006`: исходная матрица кнопок и audio-control конфликтуют на `U13.P10..P17`.
-- `FND-0007`: текущий STOP — только вход I²C-экспандера, а не независимый аппаратный TX-kill.
+- `FND-0007`: текущий артефакт всё ещё имеет только I²C-expander STOP input. `DEC-0024` исправляет target architecture, но latch/gates/rails и fault-injection HIL не реализованы.
 - `FND-0011`: текущему SA868 добавлены PTT receive-default, PD power-down-default и физический low-power H/L; независимый STOP и управляемый high-power path ещё требуют stage-3 proof.
 - `FND-0013`: VOX не имеет microphone-capture path и явно отложен до общего audio/pin budget.
 - `FND-0015`: оба документированных M5 NFC Unit требуют PORT.A power profile 5 V, а текущие `J40/J41` дают 3.3 V; электрическое исправление ждёт общего port/power design.
@@ -57,6 +58,7 @@
 - `FND-0027`: Continuity/iBeacon/Find My и attack labels требуют versioned corpus/spec/licence/peer proof; ordinary, passive и disruptive BLE-сценарии имеют разные security gates.
 - `FND-0028`: physical owner трёх полнофункциональных nRF24 переоткрыт; S3 shared-SPI и C5+SDIO являются предварительными вариантами, решение отложено до wishlist freeze.
 - `FND-0029`: вариант памяти S3, транспорт S3↔C5 и recovery interfaces расходуют пересекающиеся scarce pins. N8R8 не является drop-in заменой N8R2, потому что Octal PSRAM занимает GPIO35–37, а 4-bit SDIO C5 конфликтует с native USB на GPIO13/14.
+- `FND-0030`: legacy voice power 5 V заставляет SA518 работать примерно на 31.5–31.7 dBm и до 1.07 A, что превышает принятый 1 W profile; voice rail требует отдельного решения.
 - Существующие tsCircuit/KiCad остаются legacy-артефактами реализации до ревью производящих стадий и регенерации.
 
 ## Текущая работа ревью
@@ -85,10 +87,12 @@ Native BLE prerequisite audit [`REV-0002X`](../review/reviews/REV-0002X-ble-prer
 
 ## Активный архитектурный gate
 
-[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) начат как единый неизменный resource-demand model всех компоновок. Functional/concurrency demand, точная инвентаризация MCU pins/controllers ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)) и общая layout scorecard с hard-fail/100-point оценкой ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)) уже записаны. Numeric traffic/memory/power budgets и решение по STOP остаются в работе.
+[`DEC-0023`](../review/decisions/DEC-0023-wishlist-freeze.md) замораживает полный wishlist и открывает этап 3. [`DM-0001`](../review/architecture/DM-0001-resource-demand-model.md) является единым неизменным resource-demand model всех компоновок. Functional/concurrency demand, точная инвентаризация MCU pins/controllers ([`PIN-0001`](../review/architecture/PIN-0001-mcu-controller-inventory.md)), общая layout scorecard с hard-fail/100-point оценкой ([`SC-0001`](../review/architecture/SC-0001-layout-scorecard.md)) и latched STOP topology ([`DEC-0024`](../review/decisions/DEC-0024-latched-hard-stop.md)) прошли ревью. [`BUD-0001`](../review/architecture/BUD-0001-traffic-memory-power-envelope.md) закрывает numeric traffic/memory review; power открыт до решения по voice rail.
 
 Base и optional expansion scope разделены. Bluetooth Classic, dedicated BLE sniffing, дополнительные SDR/RF, cellular, LF RFID, второй NFC frontend, full-duplex voice и Linux-class compute не нагружают базовую плату.
 
-[`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO теперь активные layout candidates. **⚠️ [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md)** предлагает latched hard STOP, который сбрасывает оба MCU и аппаратно inhibit/обесточивает каждый внешний TX-capable domain; до решения владельца предложение не принято. Минимум S3-heavy, C5-heavy и balanced/modular варианты обязаны пройти один pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model до принятия ownership.
+Matrix/`U14`-часть [`IMP-0010`](../review/improvements/IMP-0010-hardware-stop-and-expander-consolidation.md), **⚠️ `IMP-0021`**, SDIO, CE latch и конкретные GPIO остаются активными layout candidates. [`IMP-0022/A`](../review/improvements/IMP-0022-latched-hard-stop-tree.md) принято как `DEC-0024`; exact safety components и HIL остаются доказательствами следующих этапов. Минимум S3-heavy, C5-heavy и balanced/modular варианты обязаны пройти один pin/bus/DMA/interrupt/RAM/power/recovery/coexistence demand model до принятия ownership.
 
-`FND-0006` и `FND-0007` остаются открытыми. Перенос не выбирает `U14`/матрицу 3×3 и не доказывает аппаратный STOP.
+**⚠️ [`IMP-0023/A`](../review/improvements/IMP-0023-dedicated-4v-sa518-voice-rail.md)** рекомендует отдельный STOP-dominant `VVOICE` 4.0 V для SA518. Сохранение legacy 5 V меняет принятый класс 1 W примерно на 1.5 W; 3.3 V теряет принятый 1 W result. Генерация layouts ждёт этого power-решения.
+
+`FND-0006` остаётся открытой. `FND-0007` исправлена на architecture level, но открыта до schematic/HIL proof. `U14` и матрица 3×3 пока не выбраны.

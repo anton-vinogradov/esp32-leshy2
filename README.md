@@ -42,7 +42,7 @@ The frozen wishlist keeps later profiles for a dedicated BLE connection sniffer,
 
 - Every transmitter starts off; Lab tools start disarmed.
 - Initial TX uses a conservative per-radio profile. Maximum available power requires an explicit choice and is never a global default.
-- Emergency stop and actual-TX indication have priority over UI and application state; their final electrical implementation must pass failure-injection review.
+- Physical STOP asynchronously latches a hardware kill, resets both MCUs, and independently power-cuts or inhibits every external TX-capable RF/IR/accessory domain. Releasing the button does not re-arm the device: a separate physical action or power cycle starts a fresh TX-off boot without restoring the previous lease. Actual-TX indication remains independent, and the final electrical implementation must pass failure-injection review ([`DEC-0024`](docs/review/decisions/DEC-0024-latched-hard-stop.md)).
 - Normal S3/C5 update paths accept owner-authorized signed images with validation and rollback. Keys, offline build/signing, and developer firmware remain under owner control; irreversible hardware lockdown is a separate opt-in decision ([`DEC-0013`](docs/review/decisions/DEC-0013-owner-controlled-signed-updates.md)).
 - Total product cost is optimized only through implementations proven equivalent in capability, performance, safety, reliability, autonomy, serviceability, and testability.
 - The 125-leaf product wishlist is frozen after complete self-review. A new major capability is a controlled change request and reopens every affected demand-model or layout artifact.
