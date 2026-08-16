@@ -5,7 +5,7 @@
 | 0 | Система ревью и baseline | — | правила, baseline двух SHA, реестры | Проведено ревью |
 | 1 | Видение и границы | этап 0 | проверенная формулировка назначения и ограничений | Проведено ревью |
 | 2 | Возможности и исключения | этап 1 | полный `INV-0002`, матрица `REQ-*`, zero-loss boundaries и owner-confirmed wishlist freeze | Проведено ревью (`DEC-0023`, `REV-0002AD`) |
-| 3 | Системная архитектура и владение | wishlist freeze этапа 2 | единый demand model, минимум три полные компоновки, MCU ownership, transport, сводный pin/GPIO/resource budget, power/reset/update contracts | В работе; вход `INV-0004`; известны `FND-0001`–`FND-0003`, `FND-0006`, `FND-0007`, `FND-0011`, `FND-0013`, `FND-0015`, `FND-0017`, `FND-0019`, `FND-0022`–`FND-0024`, `FND-0026`–`FND-0032` |
+| 3 | Системная архитектура и владение | wishlist freeze этапа 2 | zero-based capability/concurrency/resource model, несколько полных hardware syntheses, затем exact owners/transports/pins/power/reset/update и атомарный package | **Перезапущен `DEC-0027`**; шаги 1–3 `CAP/CON/RES` — Проведено ревью; активен full synthesis `SYN-*`; прежние outputs в архиве; `FND-0033` |
 | 4 | Компоненты и BOM | этап 3 | проверенные компоненты, доступность и пределы | Не начато |
 | 5 | Физическая конструкция и управление | этапы 3–4 | механика, органы управления, интерфейсы | Не начато |
 | 6 | Электрические спецификации | этапы 3–5 | проверенные схемные требования | Не начато |

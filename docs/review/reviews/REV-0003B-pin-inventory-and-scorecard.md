@@ -1,4 +1,6 @@
 # REV-0003B — ревью MCU pin/controller inventory и layout scorecard
+> **Историческая запись ревью.** `DEC-0027` архивировал её stage-3 architecture outputs; этот документ не является активным пререквизитом zero-based synthesis.
+
 
 - Статус: **Проведено ревью**
 - Дата: 2026-08-16

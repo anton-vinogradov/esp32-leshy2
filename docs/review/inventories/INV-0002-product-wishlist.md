@@ -110,4 +110,4 @@
 
 ## Следующий этап
 
-Этап 3 строит единый demand model, затем как минимум S3-heavy, C5-heavy и balanced/modular компоновки. Только после этого сравниваются ownership, transports, GPIO, recovery, cost и HIL; pin budget не используется для удаления wishlist задним числом.
+По `DEC-0027` этап 3 сначала заново выводит hardware-neutral capability/concurrency/resource model только из этого wishlist и reviewed `REQ-*`. Затем формируются несколько полных аппаратных кандидатов без заранее назначенного nRF owner, transport или pin map. Legacy S3-heavy/C5-heavy/balanced оси сохранены только в архиве и не являются обязательными candidates. Pin budget не исользуется для удаления wishlist задним числом.

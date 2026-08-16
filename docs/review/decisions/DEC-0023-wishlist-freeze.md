@@ -12,7 +12,7 @@
 3. Десять source-extras после устранения двух смешанных строк образуют двенадцать независимых dispositions.
 4. Optional/deferred функция остаётся в product roadmap, но не увеличивает base-board BOM/resource budget и не блокирует первую версию.
 5. Саморевью не выбирает MCU owner, GPIO, bus, inter-MCU transport, part placement или layout.
-6. Этап 3 обязан сравнить минимум S3-heavy, C5-heavy и balanced/modular layouts на одном demand model; «исторически принято» не даёт варианту преимущества без прохождения бюджета и HIL plan.
+6. Этап 3 сравнивает несколько полных аппаратных синтезов на одном capability/concurrency/resource model; по `DEC-0027` оси S3-heavy/C5-heavy/balanced больше не задаются заранее. «Исторически принято/разведено» не даёт варианту преимущества без прохождения hard gates, бюджета и HIL plan.
 
 ## Ключевые инженерные выводы
 

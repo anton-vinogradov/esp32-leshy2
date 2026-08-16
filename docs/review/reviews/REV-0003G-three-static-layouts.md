@@ -1,4 +1,6 @@
 # REV-0003G — review of three static full-layout maps
+> **Историческая запись ревью.** `DEC-0027` архивировал её stage-3 architecture outputs; этот документ не является активным пререквизитом zero-based synthesis.
+
 
 - Статус: **Проведено ревью подшага; layouts являются входами единого package (`DEC-0026`)**
 - Дата: 2026-08-16

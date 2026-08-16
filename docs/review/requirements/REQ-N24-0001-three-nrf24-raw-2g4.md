@@ -1,21 +1,21 @@
 # REQ-N24-0001 — 3×nRF24 raw 2.4 GHz analysis and controlled-test contract
 
-- Статус набора: **Проведено ревью capability; три layouts сравнены, ownership decision открыт (`IMP-0021`, `CMP-0001`)**
+- Статус набора: **Проведено ревью capability; physical owner/controller полностью открыт zero-based synthesis (`DEC-0027`)**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-N24-01`–`C-N24-10`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-08`, `C-X-11`
 - Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`, `DEC-0019`, `DEC-0021`; nRF24-часть `DEC-0001` переоткрыта
 - Находки: `FND-0001`, `FND-0007`, `FND-0019`, `FND-0020`, `FND-0021`, `FND-0028`
-- Условные входы реализации: physical owner (`IMP-0021`), consolidated transport/GPIO/SPI budget, exact 3× radio module/AVL, power/antenna/TX detector/STOP, regional profiles, storage/licence и HIL
+- Условные входы реализации: zero-based compute/controller/transport synthesis, exact 3× radio module/AVL, power/antenna/TX detector/STOP, regional profiles, storage/licence и HIL
 
 ## Граница документа
 
-Три nRF24 остаются отдельными одновременными полнофункциональными 2.4 GHz GFSK/Enhanced-ShockBurst transceivers одного MCU, а не SDR, Wi-Fi receiver или BLE controller. Их physical owner выбирается в **⚠️ `IMP-0021`**. `RPD` — бинарный detector threshold, pseudo-promiscuous ESB — ограниченная technique, а BLE-compatible advertising — лишь экспериментальный subset и не потолок самого nRF24. Ordinary measurement, passive security discovery, sensitive capture, active exploitation и RF interference никогда не скрываются под одним именем.
+Три nRF24 остаются отдельными одновременными полнофункциональными 2.4 GHz GFSK/Enhanced-ShockBurst transceivers, а не SDR, Wi-Fi receiver или BLE controller. Их MCU/controller/bridge placement ничем не предопределён: оно выводится из full-function timing, concurrency, safety, cost и pin/resource model по `DEC-0027`. `RPD` — бинарный detector threshold, pseudo-promiscuous ESB — ограниченная technique, а BLE-compatible advertising — лишь экспериментальный subset и не потолок самого nRF24. Ordinary measurement, passive security discovery, sensitive capture, active exploitation и RF interference никогда не скрываются под одним именем.
 
 ## Матрица требований
 
 | ID | Legacy-кандидат | Статус | Уровень | Требование и обязательный prerequisite |
 |---|---|---|---|---|
-| `REQ-N24-01` | все | `post-wishlist layout` | Сквозной | Ровно один MCU физически/программно владеет всеми 3×nRF24; второй использует typed inter-MCU API. После `INV-0002` freeze выбранный owner/transport закрывает `FND-0001`, `FND-0028` и полный system resource budget; legacy topology не наследуется без proof. |
+| `REQ-N24-01` | все | `post-wishlist architecture` | Сквозной | Architecture даёт всем 3×nRF24 coherent scheduling, common monotonic time, independent per-radio state/session и bounded command/data path. Один MCU, отдельный controller или несколько physical owners — равноправные candidates, пока concurrency/calibration/STOP/failure/cost proof не выберет один. Legacy topology не наследуется. |
 | `REQ-N24-02` | `C-N24-01` | `conditional` | Сквозной hardware | Три exact qualified module имеют manufacturer/MPN/revision/IC identity/AVL, одинаковый measured RX/TX profile либо явно раздельную calibration. Generic `PA/LNA` label не задаёт power, sensitivity, current, antenna или compliance (`FND-0019`). |
 | `REQ-N24-03` | `C-N24-01` | `conditional` | Сквозной bus | Owner-local SPI имеет независимые logical CS и CE каждого radio, bounded bus arbitration и loss/latency proof. Shared IRQ допустим только при bounded безошибочной идентификации источника чтением каждого STATUS. Reset даёт `CSN=high`, `CE=low`, `PWR_UP=0`; отсутствующий/stuck radio не блокирует остальные. |
 | `REQ-N24-04` | `C-N24-02` | `conditional`, accepted A | Основной RX | По `DEC-0019` energy view хранит binary RPD samples, hit ratio, sample count, dwell, channel, data rate, common time window, age, radio/antenna ID и calibration ID/state. После fixture normalization сравниваются только синхронные сектора на одной частоте; UI даёт `stronger/comparable/unknown`, без dBm/RSSI/angle/bearing/VSWR. |
@@ -28,10 +28,10 @@
 | `REQ-N24-11` | `C-N24-08` | `conditional` | Смешанный | По `DEC-0021` ordinary BLE принадлежит native controller S3. nRF24 BLE-compatible path не называется BLE controller: only proven legacy-1M advertising PDU/channel/payload matrix. Ограничение относится только к этому дополнительному subset; passive compatibility analysis = Lab, чужая identity/security TX = Controlled Zone. |
 | `REQ-N24-12` | `C-N24-09` | `conditional` | Контролируемая зона, `BOTH` | Interference-resilience test работает только conducted/RF-shielded, на authorized fixture и при допустимом regulatory basis. Open-air jammer отсутствует; exact channel/power/duty/duration, independent STOP и no-leakage validation обязательны. |
 | `REQ-N24-13` | `C-N24-10` | `conditional` | Контролируемая зона, `BOTH` | Constant carrier/sweep beacon — bounded external-instrument test source, не встроенный VSWR meter. Только permitted channel/power, conducted/shielded path, countdown/hold, hard timeout и STOP; `CONT_WAVE+REUSE_TX_PL` запрещён из-за documented CE-low caveat. |
-| `REQ-N24-14` | все TX | `conditional` | Сквозной TX safety | Conservative default использует минимальный qualified conducted power exact module. Raw `RF_PWR` bits не маркируются dBm PA/LNA module без measurement. C5 local dead-man, S3 STOP и independent hardware kill прекращают TX при crash/reset/update/link loss/session exit. |
+| `REQ-N24-14` | все TX | `conditional` | Сквозной TX safety | Conservative default использует минимальный qualified conducted power exact module. Raw `RF_PWR` bits не маркируются dBm PA/LNA module без measurement. Local real-time owner dead-man, global policy cancellation и independent hardware kill прекращают TX при crash/reset/update/link loss/session exit независимо от выбранного owner. |
 | `REQ-N24-15` | все | `conditional` | Сквозной RF coexistence | Один cross-MCU arbiter исключает небезопасный simultaneous TX с native 2.4 Wi-Fi/BLE/802.15.4 и учитывает desense между тремя nRF RX/TX. Parallel TX разрешается только отдельному shielded/conducted HIL profile. |
 | `REQ-N24-16` | `C-X-08` | `conditional` | Сквозной storage | Typed ESB/RPD records bounded/fuzzed and versioned; import не вооружает TX. Address/payload/keystroke identifiers имеют consent/provenance/redaction/retention/export/delete policy. |
-| `REQ-N24-17` | все | `acceptance` | Сквозной licence | C5 driver/parser/attack fixtures имеют per-file SPDX/SBOM/provenance. GPL RF24/MouseJack code не копируется в MIT target без явного совместимого решения; clean implementation доказывается tests, не отсутствием attribution. |
+| `REQ-N24-17` | все | `acceptance` | Сквозной licence | Owner-side driver/parser/attack fixtures имеют per-file SPDX/SBOM/provenance независимо от выбранного compute target. GPL RF24/MouseJack code не копируется в MIT target без явного совместимого решения; clean implementation доказывается tests, не отсутствием attribution. |
 | `REQ-N24-18` | все | `acceptance` | Сквозной HIL | Exact three-module fixture проверяет register/reset/clone quirks, SPI isolation, RPD timing/calibration/temp, parallel scheduling, ESB false positives/CRC/hop, supported vulnerable devices, BLE subset, rail transients, antenna isolation, emissions, STOP/link loss и conducted/shielded containment. |
 | `REQ-N24-19` | `C-N24-01` | `acceptance` | Сквозной full-function | Каждый exact radio/driver доказывает PTX и PRX, 250 kbit/s/1 Mbit/s/2 Mbit/s, region-gated RF_CH, Enhanced ShockBurst auto-ACK/retransmit, static/dynamic payload до 32 bytes, ACK payload, dynamic ACK, six RX pipes/address widths, CRC modes, FIFO/IRQ и RPD. Scheduler допускает разные role/channel/rate/address/session для каждого radio. |
 
@@ -61,6 +61,5 @@
 - [Bastille MouseJack tools](https://github.com/BastilleResearch/mousejack)
 - [Bastille wireless-peripheral research](https://bastille.net/research/wireless-peripherals/)
 - [pyRF24 fake-BLE limitations](https://nrf24.github.io/pyRF24/ble_api.html)
-- [ESP32-C5 datasheet](https://documentation.espressif.com/esp32-c5_datasheet_en.html)
 - [FCC jammer enforcement basis](https://docs.fcc.gov/public/attachments/DA-14-1785A1_Rcd.pdf)
 - [Ofcom: radio spectrum and the law](https://www.ofcom.org.uk/spectrum/radio-equipment/radio-spectrum-and-the-law)
