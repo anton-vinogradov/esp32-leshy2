@@ -1,9 +1,10 @@
 # IMP-0053 — 5-V Type-C power path versus USB-PD
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принято B; закрыто DEC-0063/REV-0005R**
 - Дата: 2026-08-18
 - Context: [`PWR-0003`](../architecture/PWR-0003-charge-power-path-options.md)
 - Battery behavior: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
+- Decision: [`DEC-0063`](../decisions/DEC-0063-sink-only-30w-usb-pd-power-path.md)
 
 ## Decision options
 
@@ -17,8 +18,13 @@
 - **C / `CLEG`:** repair the old BQ25887 design with external missing blocks.
   Rejected as dominated after its apparent part-count advantage disappears.
 
-## Recommendation
+## Historical recommendation and owner decision
 
 Accept **A / C5V**. It preserves ordinary charger compatibility, USB-only
 recovery and battery supplement without paying for unrequested fast charging.
 
+After the owner requested the installed-cost delta, the complete comparison
+showed approximately USD 2–3/device at the visible 100-piece tier rather than
+an order-of-magnitude penalty. The owner explicitly selected **B / CPD** and
+bounded it to sink-only 30 W. `DEC-0063/PWR-0004` supersede the historical
+recommendation and add the mandatory EEPROM/provisioning/recovery details.

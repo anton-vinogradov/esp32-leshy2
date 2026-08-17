@@ -100,6 +100,22 @@
       {"fault":"external accessory provides no qualified evidence","paper_result":"TX evidence is unknown/unavailable and proof-mandatory modes are blocked"}
     ]
   },
+  "power_contract": {
+    "decision": "DEC-0063",
+    "status": "paper_reviewed_usb_pd_front_end_i3",
+    "product_port": "one S3 USB-C receptacle carries direct S3 USB2 data and sink-only power; C5/RP service VBUS cannot power or backfeed the board",
+    "sink_pdos": ["5V fallback at advertised Type-C current (<=3A)", "9V@3A", "15V@2A"],
+    "maximum_input_power_w": 30,
+    "disabled": ["source mode", "power-bank mode", "20V PDO", "PPS", "BC1.2 on product D+/D-", "BQ25798 OTG"],
+    "usb2_data": "S3 GPIO19/20 remain direct to the product USB-C D-/D+ pair; TPS25751D GPIO4/5 and BQ25798 D+/D- are not connected to product USB data",
+    "controller_boot": "TPS25751D loads a reproducible patch/config bundle from its dedicated CAT24C512WI-GT3 at address 0x50 before S3 is required",
+    "configuration_update": "factory pads support first image and recovery; field update verifies an owner-signed manifest before selecting the alternate EEPROM region; reset-safe EEPROM WP is high except during an authorized write window",
+    "host_control": "S3 SYS_I2C0 reaches TPS25751D I2Ct; its active-low pull-up IRQ shares the existing wired-low SYS_INT_N line without consuming GPIO47",
+    "local_control": "TPS25751D I2Cc owns BQ25798 and its dedicated EEPROM; charger INT returns to I2Cc_IRQ",
+    "charge_limit": "initial charge current is capped at 2A and may only increase after exact 18650 MPN, thermal path and per-cell admission/protection HIL",
+    "failure_policy": "invalid/missing PD image must not negotiate above 5V or enable charging; bounded recovery behavior requires specimen HIL",
+    "remaining_i3": ["exact USB-C receptacle and USB2 ESD", "inductor and passive values", "per-cell admission/protection/gauge/balancing manager", "downstream rail tree", "thermal and fault HIL"]
+  },
   "instances": {
     "s3": "esp32_s3_wroom_1u_n16r2",
     "c5": "esp32_c5_wroom_1u_n8r8",
@@ -122,6 +138,10 @@
     "audio_tx_selector": "ti_ts5a63157_dckr",
     "audio_safe_gate": "ti_sn74lvc2g08_dcur",
     "speaker_amp": "diodes_pam8302a_ascr",
+    "pd_controller": "ti_tps25751d_refr",
+    "pd_config_eeprom": "onsemi_cat24c512wi_gt3",
+    "pd_vbus_tvs": "ti_tvs2200_drvr",
+    "nvdc_charger": "ti_bq25798_rqmr",
     "safe_supervisor": "ti_tps3808g33_dbvr",
     "safe_conditioner": "nexperia_74lvc2g14gw_125",
     "safe_por_or": "nexperia_74lvc1g32gv_125",
@@ -151,11 +171,12 @@
   "controllers": {
     "s3": ["USB_SERIAL_JTAG", "SDMMC_SLOT1_1BIT", "I2C0", "I2C1_OR_UART1_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART0", "GPIO", "GPIO_IRQ", "LEDC"],
     "c5": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
-    "rp": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"]
+    "rp": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"],
+    "pd_controller": ["USB_PD_SINK", "I2C_TARGET", "I2C_CONTROLLER", "GPIO"]
   },
   "allocations": [
-    {"instance":"s3","contact":"GPIO1","net":"SYS_I2C_SDA","direction":"io","controller":"I2C0","peers":["slow_io.SDA","receiver.SDIO","display.TP_I2C_SDA","codec.CDATA"]},
-    {"instance":"s3","contact":"GPIO2","net":"SYS_I2C_SCL","direction":"o","controller":"I2C0","peers":["slow_io.SCL","receiver.SCLK","display.TP_I2C_SCL","codec.CCLK"]},
+    {"instance":"s3","contact":"GPIO1","net":"SYS_I2C_SDA","direction":"io","controller":"I2C0","peers":["slow_io.SDA","receiver.SDIO","display.TP_I2C_SDA","codec.CDATA","pd_controller.I2Ct_SDA"]},
+    {"instance":"s3","contact":"GPIO2","net":"SYS_I2C_SCL","direction":"o","controller":"I2C0","peers":["slow_io.SCL","receiver.SCLK","display.TP_I2C_SCL","codec.CCLK","pd_controller.I2Ct_SCL"]},
     {"instance":"s3","contact":"GPIO3","net":"RP_ALERT_N","direction":"i","controller":"GPIO_IRQ","peers":["rp.GPIO19"],"strap_proof":"RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state"},
     {"instance":"s3","contact":"GPIO4","net":"DISPLAY_SD_SPI_D1","direction":"io","controller":"SPI2","peers":["sd.DAT0","display.QSPI_D1"],"sharing_proof":"SD DAT0/MISO and HMX035CTFT-001 QSPI D1 may share only after both specimens prove CS-high high-Z, per-device bus-mode switching and no back-power/contention"},
     {"instance":"s3","contact":"GPIO5","net":"SD_SPI_CS_N","direction":"o","controller":"SPI2","peers":["sd.CD_DAT3"]},
@@ -177,7 +198,7 @@
     {"instance":"s3","contact":"GPIO21","net":"S3_RP_IPC_MOSI","direction":"o","controller":"SPI3","peers":["rp.GPIO24"]},
     {"instance":"s3","contact":"GPIO35","net":"DISPLAY_SD_SPI_SCK","direction":"o","controller":"SPI2","peers":["sd.CLK","display.QSPI_CLK"]},
     {"instance":"s3","contact":"GPIO36","net":"DISPLAY_SD_SPI_D0","direction":"o","controller":"SPI2","peers":["sd.CMD","display.QSPI_D0"]},
-    {"instance":"s3","contact":"GPIO37","net":"SLOW_IO_INT_N","direction":"i","controller":"GPIO_IRQ","peers":["slow_io.INT"]},
+    {"instance":"s3","contact":"GPIO37","net":"SYS_INT_N","direction":"i","controller":"GPIO_IRQ","peers":["slow_io.INT","pd_controller.I2Ct_IRQ"],"sharing_proof":"both sources are active-low outputs requiring an external pull-up; firmware reads both status blocks after a shared interrupt, and wired-low behavior is verified before release"},
     {"instance":"s3","contact":"GPIO38","net":"LCD_CS_N","direction":"o","controller":"SPI2","peers":["display.QSPI_CS"]},
     {"instance":"s3","contact":"GPIO39","net":"LCD_TOUCH_INT","direction":"i","controller":"GPIO_IRQ","peers":["display.TP_INT"]},
     {"instance":"s3","contact":"GPIO40","net":"LCD_BL_PWM","direction":"o","controller":"LEDC","peers":["abstract:exact display/backlight driver"]},
@@ -249,7 +270,13 @@
     {"instance":"rp","contact":"GPIO44","net":"U214_MISO","direction":"i","controller":"PIO1_SM0_EXT_SPI","peers":["u214.MISO"]},
     {"instance":"rp","contact":"GPIO45","net":"U214_SCK","direction":"o","controller":"PIO1_SM0_EXT_SPI","peers":["u214.SCK"]},
     {"instance":"rp","contact":"GPIO46","net":"U214_MOSI","direction":"o","controller":"PIO1_SM0_EXT_SPI","peers":["u214.MOSI"]},
-    {"instance":"rp","contact":"GPIO47","net":"U214_NSS_N","direction":"o","controller":"GPIO","peers":["u214.NSS"]}
+    {"instance":"rp","contact":"GPIO47","net":"U214_NSS_N","direction":"o","controller":"GPIO","peers":["u214.NSS"]},
+
+    {"instance":"pd_controller","contact":"I2Ct_SDA","net":"SYS_I2C_SDA","direction":"io","controller":"I2C_TARGET","peers":["s3.GPIO1"]},
+    {"instance":"pd_controller","contact":"I2Ct_SCL","net":"SYS_I2C_SCL","direction":"i","controller":"I2C_TARGET","peers":["s3.GPIO2"]},
+    {"instance":"pd_controller","contact":"I2Ct_IRQ","net":"SYS_INT_N","direction":"od","controller":"I2C_TARGET","peers":["s3.GPIO37"],"sharing_proof":"active-low output with external pull-up shares the wired-low system interrupt; S3 reads TPS and TCA6424 status to identify all asserting sources"},
+    {"instance":"pd_controller","contact":"GPIO0","net":"PD_EEPROM_WP","direction":"o","controller":"GPIO","peers":["pd_config_eeprom.WP"],"reset_proof":"Hi-Z reset plus external pull-up keeps EEPROM write-protected until an authorized update window"},
+    {"instance":"pd_controller","contact":"GPIO1","net":"CHARGE_EN_N","direction":"o","controller":"GPIO","peers":["nvdc_charger.CE"],"reset_proof":"Hi-Z reset plus external pull-up keeps the active-low charger enable deasserted without a valid PD image"}
   ],
   "reservations": {
     "s3": {
@@ -265,16 +292,48 @@
       "GPIO27": "normal-boot and deterministic ROM-log strap plus fixture access",
       "GPIO28": "physical UART joint-download boot control"
     },
-    "rp": {}
+    "rp": {},
+    "pd_controller": {
+      "GPIO2": "tied low as an unused TPS25751D GPIO per datasheet",
+      "GPIO3": "tied low as an unused TPS25751D GPIO per datasheet",
+      "GPIO6": "tied low as an unused TPS25751D GPIO per datasheet",
+      "GPIO7": "tied low as an unused TPS25751D GPIO per datasheet",
+      "GPIO11": "tied low as an unused TPS25751D GPIO per datasheet"
+    }
   },
-  "free_gpio": {"s3": ["GPIO47"], "c5": ["GPIO5"], "rp": []},
+  "free_gpio": {"s3": ["GPIO47"], "c5": ["GPIO5"], "rp": [], "pd_controller": []},
   "services": [
     {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20","GPIO43","GPIO44"],"method":"native USB Serial/JTAG, permanent default UART0 RF-test/diagnostic route and physical EN/BOOT"},
     {"instance":"c5","contacts":["EN","GPIO28","GPIO27","GPIO11","GPIO12","GPIO13","GPIO14"],"method":"native USB Serial/JTAG, permanent UART0, physical CHIP_PU/BOOT and normal-boot/log strap; 1-bit SDIO leaves USB contacts independent"},
     {"instance":"rp","contacts":["RUN","SWCLK","SWDIO","USB_DM","USB_DP","QSPI_SS_USB_BOOT"],"method":"independent SWD, RUN, USB and BOOTSEL fixture access"},
+    {"instance":"pd_controller","contacts":["I2Ct_SDA","I2Ct_SCL","I2Ct_IRQ"],"method":"S3 shared SYS_I2C0 host control plus shared wired-low IRQ; same bus is exposed on protected service pads for controller status/recovery"},
+    {"instance":"pd_config_eeprom","contacts":["SDA","SCL","WP"],"method":"direct factory pads permit first-image programming and recovery independent of S3/TPS application state; GND and qualified 3.3 V accompany the fixture"},
     {"instance":"voice","contacts":["UPDATE","UART_TX","UART_RX","PD"],"method":"permanent fixture breakout for vendor update/recovery plus UART and hardware power-down; UPDATE drive remains inhibited until exact rev-1.1 direction/timing proof"}
   ],
   "fixed_routes": [
+    {"from":"abstract:product-usb-c-vbus","to":"pd_controller.VBUS_IN","net":"USB_C_VBUS_RAW","safety":"only the product S3 USB-C receptacle may power the board; current remains default-limited until a valid sink contract exists"},
+    {"from":"abstract:product-usb-c-vbus","to":"pd_vbus_tvs.IN","net":"USB_C_VBUS_RAW","safety":"TVS2200DRVR is a shunt clamp physically adjacent to the receptacle, not a series element"},
+    {"from":"pd_vbus_tvs.GND","to":"abstract:power-ground","net":"USB_C_VBUS_TVS_RETURN","safety":"short low-inductance surge return; exact placement and return geometry remain I4/layout gates"},
+    {"from":"abstract:product-usb-c-cc1","to":"pd_controller.CC1","net":"USB_C_CC1","safety":"sink-only Type-C/PD detection; source and power-bank roles are disabled"},
+    {"from":"abstract:product-usb-c-cc2","to":"pd_controller.CC2","net":"USB_C_CC2","safety":"sink-only Type-C/PD detection; source and power-bank roles are disabled"},
+    {"from":"pd_controller.PPHV","to":"nvdc_charger.VBUS","net":"PD_NEGOTIATED_VBUS","safety":"accepted profiles stop at 15 V/2 A; the integrated protected path remains off above the negotiated envelope"},
+    {"from":"pd_controller.I2Cc_SDA","to":"pd_config_eeprom.SDA","net":"PD_LOCAL_I2C_SDA","safety":"dedicated address-0x50 boot image; one EEPROM per controller"},
+    {"from":"pd_controller.I2Cc_SCL","to":"pd_config_eeprom.SCL","net":"PD_LOCAL_I2C_SCL","safety":"controller loads patch/config autonomously before S3 availability is assumed"},
+    {"from":"pd_controller.I2Cc_SDA","to":"nvdc_charger.SDA","net":"PD_LOCAL_I2C_SDA","safety":"charger is controlled through the officially supported TPS25751D local-controller topology"},
+    {"from":"pd_controller.I2Cc_SCL","to":"nvdc_charger.SCL","net":"PD_LOCAL_I2C_SCL","safety":"charger transactions never occupy an RF, display or storage bus"},
+    {"from":"nvdc_charger.INT","to":"pd_controller.I2Cc_IRQ","net":"CHARGER_INT_N","safety":"active-low charger status/fault returns to the PD controller without a new MCU contact"},
+    {"from":"pd_controller.GPIO0","to":"pd_config_eeprom.WP","net":"PD_EEPROM_WP","safety":"external pull-up protects the image at reset; TPS may drive low only inside an S3-authorized signed update window"},
+    {"from":"pd_controller.GPIO1","to":"nvdc_charger.CE","net":"CHARGE_EN_N","safety":"external pull-up disables charge while TPS configuration is absent/invalid; valid policy explicitly drives the active-low enable"},
+    {"from":"abstract:power-ground","to":"pd_config_eeprom.A0","net":"PD_EEPROM_A0_LOW","safety":"fixed 7-bit address 0x50"},
+    {"from":"abstract:power-ground","to":"pd_config_eeprom.A1","net":"PD_EEPROM_A1_LOW","safety":"fixed 7-bit address 0x50"},
+    {"from":"abstract:power-ground","to":"pd_config_eeprom.A2","net":"PD_EEPROM_A2_LOW","safety":"fixed 7-bit address 0x50"},
+    {"from":"pd_controller.GPIO4_USB_P_LD1","to":"abstract:power-ground","net":"PD_USB_P_UNUSED_LOW","safety":"BC1.2/liquid detection is disabled here so product D+ remains direct to S3; datasheet requires unused contact low"},
+    {"from":"pd_controller.GPIO5_USB_N_LD2","to":"abstract:power-ground","net":"PD_USB_N_UNUSED_LOW","safety":"BC1.2/liquid detection is disabled here so product D- remains direct to S3; datasheet requires unused contact low"},
+    {"from":"nvdc_charger.D_PLUS","to":"abstract:no-connect","net":"CHARGER_DP_NC","safety":"BQ DPDM detection is disabled and isolated from the direct S3 USB2 data pair"},
+    {"from":"nvdc_charger.D_MINUS","to":"abstract:no-connect","net":"CHARGER_DM_NC","safety":"BQ DPDM detection is disabled and isolated from the direct S3 USB2 data pair"},
+    {"from":"pd_config_eeprom.SDA","to":"abstract:pd-eeprom-factory-sda-pad","net":"PD_LOCAL_I2C_SDA","safety":"blank-device programming and recovery remain possible without booted product firmware"},
+    {"from":"pd_config_eeprom.SCL","to":"abstract:pd-eeprom-factory-scl-pad","net":"PD_LOCAL_I2C_SCL","safety":"blank-device programming and recovery remain possible without booted product firmware"},
+    {"from":"pd_config_eeprom.WP","to":"abstract:pd-eeprom-factory-wp-pad","net":"PD_EEPROM_WP","safety":"fixture can verify protected and writable states; normal reset state remains protected"},
     {"from":"u214_i2c_iso.SDAOUT","to":"u214.SDA","net":"U214_I2C_SDA_OUT","safety":"hot-swap isolation and stuck-low recovery keep the external branch off the controller-side domain"},
     {"from":"u214_i2c_iso.SCLOUT","to":"u214.SCL","net":"U214_I2C_SCL_OUT","safety":"hot-swap isolation and stuck-low recovery keep the external branch off the controller-side domain"},
     {"from":"abstract:protected-accessory-power-good","to":"u214_i2c_iso.EN","net":"U214_I2C_ISO_EN","safety":"off until protected accessory power is stable"},
@@ -493,7 +552,7 @@
     {"id":"RP_UART1_GNSS","instance":"rp","controller":"UART1","contacts":["GPIO40","GPIO41"],"proof":"RP2354B bank-0 mux pair is UART1 TX/RX"},
     {"id":"RP_I2C0_U214","instance":"rp","controller":"I2C0_EXT","contacts":["GPIO28","GPIO29"],"proof":"RP2354B bank-0 mux pair is I2C0 SDA/SCL"}
   ],
-  "required_resource_contracts": ["NRF0_SPI", "NRF1_SPI", "NRF2_SPI", "CC_SPI", "U214_SPI", "U214_UART", "U214_I2C", "DISPLAY_SD_SPI", "S3_RP_IPC", "S3_C5_IPC", "S3_INTERNAL_I2C", "S3_UNIT_PORT", "S3_I2S"],
+  "required_resource_contracts": ["NRF0_SPI", "NRF1_SPI", "NRF2_SPI", "CC_SPI", "U214_SPI", "U214_UART", "U214_I2C", "DISPLAY_SD_SPI", "S3_RP_IPC", "S3_C5_IPC", "S3_INTERNAL_I2C", "PD_LOCAL_I2C", "S3_UNIT_PORT", "S3_I2S"],
   "exclusive_resource_contracts": ["NRF0_SPI", "NRF1_SPI", "NRF2_SPI", "CC_SPI", "U214_SPI", "U214_UART", "U214_I2C", "S3_RP_IPC", "S3_C5_IPC", "S3_UNIT_PORT", "S3_I2S"],
   "resource_contracts": [
     {"id":"NRF0_SPI","owner":"rp","clients":["nrf0"],"sharing":"dedicated","deadline":"IRQ serviced before nRF FIFO/transaction deadline under simultaneous peers","proof_gate":"PIO0 SM0 plus dedicated DMA/IRQ stress HIL"},
@@ -506,7 +565,8 @@
     {"id":"DISPLAY_SD_SPI","owner":"s3","clients":["display","sd"],"sharing":"scheduled","deadline":"critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here","proof_gate":"HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL","arbitration":"separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority"},
     {"id":"S3_RP_IPC","owner":"s3","clients":["rp"],"sharing":"dedicated","deadline":"20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership","proof_gate":"SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL"},
     {"id":"S3_C5_IPC","owner":"s3","clients":["c5"],"sharing":"dedicated","deadline":"1-bit SDIO at 20 MHz raw 2.5 MB/s with qualified framed payload >=1.5 MB/s, admitted occupancy <=70% and control RTT <=2 ms; no microSD, RP or display controller ownership","proof_gate":"single-slot 1-bit SDMMC/SDIO throughput, control-priority, reset recovery and simultaneous Wi-Fi/802.15.4 load HIL; 4-bit fallback only if this gate fails"},
-    {"id":"S3_INTERNAL_I2C","owner":"s3","clients":["slow_io","display touch","codec","receiver"],"sharing":"scheduled","deadline":"ordinary UI/control first visible response <=100 ms; no radio FIFO or PTT deadline is placed here","proof_gate":"ES8311 address/readback and power-off no-backfeed, touch IRQ/reset, shortest-pulse, matrix and fault-latency HIL","arbitration":"bounded transactions; expander INT and touch IRQ only wake the service loop"},
+    {"id":"S3_INTERNAL_I2C","owner":"s3","clients":["slow_io","display touch","codec","receiver","pd_controller"],"sharing":"scheduled","deadline":"ordinary UI/control first visible response <=100 ms; PD/fault status is read after shared IRQ, and no radio FIFO or PTT deadline is placed here","proof_gate":"ES8311 address/readback and power-off no-backfeed, touch IRQ/reset, PD target-interface recovery, wired-low IRQ source identification, shortest-pulse, matrix and fault-latency HIL","arbitration":"bounded transactions; expander, PD and touch interrupts only wake the service loop; GPIO47 remains free"},
+    {"id":"PD_LOCAL_I2C","owner":"pd_controller","clients":["pd_config_eeprom","nvdc_charger"],"sharing":"scheduled","deadline":"boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses","proof_gate":"blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL","arbitration":"TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive"},
     {"id":"S3_UNIT_PORT","owner":"s3","clients":["abstract:M5 Unit"],"sharing":"dedicated","deadline":"one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C","proof_gate":"profile-switch and external-fault HIL"},
     {"id":"S3_I2S","owner":"s3","clients":["codec"],"sharing":"dedicated","deadline":"continuous DMA audio without storage/display service gaps","proof_gate":"ES8311 BCLK-derived master-clock and simultaneous full-duplex display, SD, C5 and radio event stress HIL"}
   ],
@@ -524,6 +584,7 @@
     "SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient",
     "DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO",
     "DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze",
+    "DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; exact USB-C/USB2 protection, inductor/passives, cell manager, rail tree, thermal/fault calculation and HIL remain open before schematic/BOM freeze",
     "HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; the I2 hard-stop/evidence active circuit is paper-reviewed while its AON source/hold-up is I3 and detector taps/thresholds are I6; exact IR frontends, power tree and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance"
   ]
 }

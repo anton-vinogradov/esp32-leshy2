@@ -70,6 +70,12 @@ privacy or the target owner's authorization.
 
 - Every programmable compute domain has its own programming, recovery and
   diagnostic path and does not depend on a healthy peer domain.
+- The product USB-C port keeps direct S3 USB2 data and accepts power only:
+  5-V fallback, 9 V at 3 A and 15 V at 2 A, up to 30 W. It never acts as a
+  power bank or USB-PD source.
+- The PD controller boots autonomously from a dedicated recoverable EEPROM.
+  Factory pads can program a blank device; field updates verify an
+  owner-signed image and retain a rollback region.
 - The 2S battery uses two individually replaceable 18650 cells. Reverse
   insertion is mechanically blocked; the device checks both cells before
   charge or discharge and refuses a mismatched or unsafe pair instead of
@@ -91,6 +97,14 @@ an explicit `MPN TBD`, together with its role in the finished device.
 
 ```mermaid
 flowchart TD
+  USBC["MPN TBD<br/>product USB-C receptacle: direct S3 USB2 data and sink-only power"]
+  VBUSPROT["TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection"]
+  PDCTRL["TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
+  PDCFG["CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
+  CHARGER["BQ25798RQMR<br/>2S buck-boost charger and NVDC system power path"]
+  CELL0["MPN TBD<br/>individually replaceable protected 18650 cell #0"]
+  CELL1["MPN TBD<br/>individually replaceable protected 18650 cell #1"]
+  PACKMGR["MPN TBD<br/>per-cell admission, protection, gauge and balancing manager"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -147,7 +161,9 @@ flowchart TD
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
-  S3 ~~~ SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
+  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
+  CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACKMGR ~~~ S3 ~~~ SLOW
+  SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
@@ -157,6 +173,15 @@ flowchart TD
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
+  USBC -->|"VBUS sink only"| PDCTRL
+  USBC -->|"VBUS shunt"| VBUSPROT
+  USBC <-->|"D-/D+ direct; no PD/charger tap"| S3
+  PDCTRL <-->|"local I²C boot image"| PDCFG
+  PDCTRL <-->|"protected VBUS + local I²C/IRQ"| CHARGER
+  S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL
+  CELL0 --> PACKMGR
+  CELL1 --> PACKMGR
+  PACKMGR <-->|"qualified 2S pack boundary"| CHARGER
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
@@ -242,7 +267,8 @@ flowchart TD
   `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
   and the only scheduled high-rate shared pair.
 - **Audio and Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0
-  and local I²C0.
+  and local I²C0. The PD controller also shares this bounded control bus and
+  the wired-low system IRQ; it consumes no new S3 GPIO.
 - **M5 Unit:** S3 `GPIO7,GPIO8` — separate configurable profile port.
 - **IR:** C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` — two RX, TX, power and evidence.
 - **nRF24 #0:** RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32`.

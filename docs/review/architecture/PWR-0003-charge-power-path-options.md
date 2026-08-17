@@ -1,10 +1,11 @@
 # PWR-0003 — I3 charge and system-power-path options
 
-- Статус: **Проведено ревью вариантов; `IMP-0053` owner decision открыт**
+- Статус: **Проведено ревью вариантов; owner выбрал CPD в DEC-0063**
 - Дата: 2026-08-18
 - Battery behavior: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
 - Prerequisites: [`PWR-0002`](PWR-0002-i3-power-prerequisite-audit.md)
 - Proposal: [`IMP-0053`](../improvements/IMP-0053-5v-typec-versus-pd-charge-path.md)
+- Accepted exact frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 
 ## Required result independent of option
 
@@ -72,12 +73,18 @@ accepted behavior unavailable in C5V and is rejected as dominated.
 | power/BOM/area | lowest complete option | highest | no longer lowest after repairs |
 | current requirement fit | exact | over-capable | dominated |
 
-## Recommendation
+## Historical recommendation and accepted override
 
 Choose `C5V`. It closes every accepted functional/safety gap at lower cost and
 complexity; `CPD` buys charging speed/headroom that is not presently a product
 requirement. This is a charge-input choice only: exact cell admission,
 protection/gauge, downstream rails and HIL remain mandatory.
+
+The owner selected `CPD` after reviewing the approximate USD 2–3 installed
+delta at the visible 100-piece tier. `DEC-0063` bounds that choice to sink-only
+5/9/15-V fixed profiles, 30 W maximum and no source/OTG. `PWR-0004` performs
+the exact TPS25751DREFR/BQ25798RQMR/CAT24C512WI-GT3/TVS2200DRVR fit and is the
+current implementation input; this options document preserves the comparison.
 
 Primary sources:
 
@@ -87,4 +94,3 @@ Primary sources:
 - [TI BQ25798](https://www.ti.com/product/BQ25798)
 - [TI TPS25751](https://www.ti.com/product/TPS25751)
 - [TI USB-PD-CHG-EVM-01](https://www.ti.com/product/USB-PD-CHG-EVM-01/part-details/USB-PD-CHG-EVM-01)
-

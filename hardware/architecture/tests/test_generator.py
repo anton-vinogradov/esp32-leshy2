@@ -44,6 +44,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TS5A63157DCKR<br/>electret/codec transmit-audio selector",
             "Texas Instruments SN74LVC2G08DCUR<br/>reset-safe dual selector-request gate",
             "Diodes Incorporated PAM8302AASCR<br/>mono Class-D speaker amplifier",
+            "Texas Instruments TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path",
+            "onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM",
+            "Texas Instruments TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection",
+            "Texas Instruments BQ25798RQMR<br/>2S buck-boost charger and NVDC system power path",
             "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
         )
         for label in required_labels:
@@ -153,6 +157,63 @@ class ArchitectureValidationTests(unittest.TestCase):
             normalized = " ".join(readme.split()).lower()
             for phrase in phrases:
                 self.assertIn(phrase.lower(), normalized, readme_name)
+
+    def test_sink_only_30w_pd_front_end_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0063", contract["decision"])
+        self.assertEqual(
+            ["5V fallback at advertised Type-C current (<=3A)", "9V@3A", "15V@2A"],
+            contract["sink_pdos"],
+        )
+        self.assertEqual(30, contract["maximum_input_power_w"])
+        self.assertIn("source mode", contract["disabled"])
+        self.assertIn("20V PDO", contract["disabled"])
+        self.assertIn("GPIO19/20 remain direct", contract["usb2_data"])
+        self.assertIn("GPIO47", contract["host_control"])
+
+        expected_instances = {
+            "pd_controller": "ti_tps25751d_refr",
+            "pd_config_eeprom": "onsemi_cat24c512wi_gt3",
+            "pd_vbus_tvs": "ti_tvs2200_drvr",
+            "nvdc_charger": "ti_bq25798_rqmr",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        tps = self.database["devices"]["ti_tps25751d_refr"]
+        self.assertEqual("23/24/25", tps["contacts"]["VBUS_IN"]["physical"])
+        self.assertEqual("20/21/22", tps["contacts"]["PPHV"]["physical"])
+        self.assertEqual("8 (fixed I2C target data)", tps["contacts"]["I2Ct_SDA"]["physical"])
+        charger = self.database["devices"]["ti_bq25798_rqmr"]
+        self.assertEqual("2/3", charger["contacts"]["VBUS"]["physical"])
+        self.assertEqual("22/23", charger["contacts"]["BAT"]["physical"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        self.assertIn(
+            ("pd_controller.PPHV", "nvdc_charger.VBUS", "PD_NEGOTIATED_VBUS"),
+            routes,
+        )
+        self.assertIn(
+            ("pd_controller.GPIO0", "pd_config_eeprom.WP", "PD_EEPROM_WP"),
+            routes,
+        )
+        self.assertIn(
+            ("pd_controller.GPIO1", "nvdc_charger.CE", "CHARGE_EN_N"),
+            routes,
+        )
+        s3 = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "s3"
+        }
+        self.assertIn("pd_controller.I2Ct_SDA", s3["GPIO1"]["peers"])
+        self.assertIn("pd_controller.I2Ct_SCL", s3["GPIO2"]["peers"])
+        self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO37"]["peers"])
+        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
 
     def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

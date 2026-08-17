@@ -1298,6 +1298,164 @@
         "A": {"physical": "anode land", "role": "signal"}
       }
     },
+    "ti_tps25751d_refr": {
+      "mpn": "Texas Instruments TPS25751DREFR",
+      "kind": "usb_pd_controller_integrated_20v_5a_path",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [4.0, 6.0, null],
+      "source": {
+        "document": "TPS25751 USB Type-C and USB PD Controller datasheet",
+        "version": "SLVSH93A, October 2023, revised March 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25751.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS25751DREFR product/orderable page",
+        "url": "https://www.ti.com/product/TPS25751/part-details/TPS25751DREFR",
+        "checked": "2026-08-18"
+      },
+      "programmable": true,
+      "controller_capabilities": ["USB_PD_SINK", "I2C_TARGET", "I2C_CONTROLLER", "GPIO"],
+      "service_required": ["I2Ct_SDA", "I2Ct_SCL", "I2Ct_IRQ"],
+      "contacts": {
+        "LDO_3V3": {"physical": "1", "role": "power"},
+        "ADCIN1": {"physical": "2", "role": "strap"},
+        "ADCIN2": {"physical": "3", "role": "strap"},
+        "LDO_1V5": {"physical": "4", "role": "power"},
+        "GPIO0": {"physical": "5", "role": "gpio"},
+        "GPIO1": {"physical": "6", "role": "gpio"},
+        "GPIO2": {"physical": "7", "role": "gpio"},
+        "I2Ct_SDA": {"physical": "8 (fixed I2C target data)", "role": "gpio"},
+        "I2Ct_SCL": {"physical": "9 (fixed I2C target clock)", "role": "gpio"},
+        "I2Ct_IRQ": {"physical": "10 (I2C target IRQ / GPIO10)", "role": "gpio"},
+        "GND_11": {"physical": "11", "role": "power"},
+        "GND_12": {"physical": "12", "role": "power"},
+        "GPIO11": {"physical": "13", "role": "gpio"},
+        "GND_14": {"physical": "14", "role": "power"},
+        "DRAIN_15": {"physical": "15", "role": "power"},
+        "I2Cc_SDA": {"physical": "16", "role": "signal"},
+        "I2Cc_SCL": {"physical": "17", "role": "signal"},
+        "I2Cc_IRQ": {"physical": "18", "role": "signal"},
+        "GPIO3": {"physical": "19", "role": "gpio"},
+        "PPHV": {"physical": "20/21/22", "role": "power"},
+        "VBUS_IN": {"physical": "23/24/25", "role": "power"},
+        "GPIO4_USB_P_LD1": {"physical": "26", "role": "signal"},
+        "GPIO5_USB_N_LD2": {"physical": "27", "role": "signal"},
+        "CC1": {"physical": "28", "role": "signal"},
+        "CC2": {"physical": "29", "role": "signal"},
+        "DRAIN_30": {"physical": "30", "role": "power"},
+        "GND_31": {"physical": "31", "role": "power"},
+        "VBUS": {"physical": "32/33", "role": "power"},
+        "PP5V": {"physical": "34/35", "role": "power"},
+        "GPIO7": {"physical": "36", "role": "gpio"},
+        "GPIO6": {"physical": "37", "role": "gpio"},
+        "VIN_3V3": {"physical": "38", "role": "power"},
+        "GND_PAD": {"physical": "unnumbered exposed thermal pad (GND)", "role": "power"},
+        "DRAIN_PAD": {"physical": "unnumbered exposed thermal pad (DRAIN)", "role": "power"}
+      }
+    },
+    "ti_bq25798_rqmr": {
+      "mpn": "Texas Instruments BQ25798RQMR",
+      "kind": "one_to_four_cell_5a_nvdc_buck_boost_charger",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [4.0, 4.0, null],
+      "source": {
+        "document": "BQ25798 1-to-4-cell 5-A buck-boost charger datasheet",
+        "version": "SLUSDV2C, May 2020, revised June 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "BQ25798RQMR product/orderable page",
+        "url": "https://www.ti.com/product/BQ25798/part-details/BQ25798RQMR",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "STAT": {"physical": "1", "role": "signal"},
+        "VBUS": {"physical": "2/3", "role": "power"},
+        "BTST1": {"physical": "4", "role": "power"},
+        "REGN": {"physical": "5", "role": "power"},
+        "D_PLUS": {"physical": "6", "role": "signal"},
+        "D_MINUS": {"physical": "7", "role": "signal"},
+        "VAC2": {"physical": "8", "role": "power"},
+        "VAC1": {"physical": "9", "role": "power"},
+        "ACDRV2": {"physical": "10", "role": "power"},
+        "ACDRV1": {"physical": "11", "role": "power"},
+        "QON": {"physical": "12", "role": "signal"},
+        "CE": {"physical": "13", "role": "signal"},
+        "SCL": {"physical": "14", "role": "signal"},
+        "SDA": {"physical": "15", "role": "signal"},
+        "TS": {"physical": "16", "role": "analog"},
+        "ILIM_HIZ": {"physical": "17", "role": "analog"},
+        "BATP": {"physical": "18", "role": "analog"},
+        "BTST2": {"physical": "19", "role": "power"},
+        "PROG": {"physical": "20", "role": "analog"},
+        "INT": {"physical": "21", "role": "signal"},
+        "BAT": {"physical": "22/23", "role": "power"},
+        "SDRV": {"physical": "24", "role": "power"},
+        "SYS": {"physical": "25", "role": "power"},
+        "SW2": {"physical": "26", "role": "power"},
+        "GND": {"physical": "27", "role": "power"},
+        "SW1": {"physical": "28", "role": "power"},
+        "PMID": {"physical": "29 exposed power pad", "role": "power"}
+      }
+    },
+    "onsemi_cat24c512wi_gt3": {
+      "mpn": "onsemi CAT24C512WI-GT3",
+      "kind": "512_kbit_i2c_pd_configuration_eeprom",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [4.9, 3.9, 1.75],
+      "source": {
+        "document": "CAT24C512 512-kb I2C serial EEPROM datasheet",
+        "version": "Rev. 9",
+        "url": "https://www.onsemi.com/pdf/datasheet/cat24c512-d.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "CAT24C512WI-GT3 distributor page",
+        "url": "https://www.digikey.com/en/products/detail/onsemi/CAT24C512WI-GT3/2683757",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "service_required": ["SDA", "SCL", "WP"],
+      "contacts": {
+        "A0": {"physical": "1", "role": "strap"},
+        "A1": {"physical": "2", "role": "strap"},
+        "A2": {"physical": "3", "role": "strap"},
+        "VSS": {"physical": "4", "role": "power"},
+        "SDA": {"physical": "5", "role": "service"},
+        "SCL": {"physical": "6", "role": "service"},
+        "WP": {"physical": "7", "role": "service"},
+        "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "ti_tvs2200_drvr": {
+      "mpn": "Texas Instruments TVS2200DRVR",
+      "kind": "22v_flat_clamp_vbus_tvs",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 2.0, 0.8],
+      "source": {
+        "document": "TVS2200 22-V flat-clamp surge-protection datasheet",
+        "version": "SLVSED5C, December 2017, revised August 2023; orderable addendum 2025-11-09",
+        "url": "https://www.ti.com/lit/ds/symlink/tvs2200.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TVS2200DRVR product/orderable page",
+        "url": "https://www.ti.com/product/TVS2200/part-details/TVS2200DRVR",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND": {"physical": "1/2/3 and exposed thermal pad 7", "role": "power"},
+        "IN": {"physical": "4/5/6", "role": "power"}
+      }
+    },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",
       "kind": "tssop16",

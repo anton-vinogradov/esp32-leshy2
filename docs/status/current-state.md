@@ -1,6 +1,6 @@
 # Leshy2 Hardware — current engineering state
 
-> Snapshot: 2026-08-17. This page describes proven maturity. The intended
+> Snapshot: 2026-08-18. This page describes proven maturity. The intended
 > behavior is in the [hardware target README](../../README.md); software behavior
 > is in the [firmware target README](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.md).
 
@@ -259,11 +259,17 @@ the old rails omit current safety/quiet-state branches. The owner accepted
 but they are not an arbitrary admissible pair. Mechanical reverse-insertion
 blocking and pre-admission observation of both cell voltages/temperature must
 keep charge/discharge FETs open on mismatch, removal or contact bounce.
-`REV-0005Q` reviews the propagation. **⚠️ Proposal `IMP-0053`** is now the
-explicit owner gate between a complete 5-V Type-C/NVDC path and a higher-cost
-USB-PD/buck-boost path. Exact AON source/hold-up, cell admission/protection/
-gauge, every load switch and discharge path, monitoring, reverse current and
-calculated loss/thermal/fault budgets remain active after that answer.
+`REV-0005Q` reviews the propagation. The owner then accepted `IMP-0053/B` as
+`DEC-0063`: the product port is sink-only USB-PD with 5-V fallback, 9 V/3 A
+and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
+S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
+`TPS25751DREFR`, `BQ25798RQMR`, mandatory `CAT24C512WI-GT3` boot/config EEPROM
+and `TVS2200DRVR`. S3 reuses SYS I2C0 plus the wired-low system IRQ, so GPIO47
+remains free. Blank/corrupt image recovery, reset-high EEPROM WP and
+charge-disable CE are explicit; target README diagrams and firmware contracts
+are updated. Exact AON source/hold-up, cell admission/protection/gauge, every
+load switch and discharge path, monitoring, reverse current and calculated
+loss/thermal/fault budgets remain active after the frontend review.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

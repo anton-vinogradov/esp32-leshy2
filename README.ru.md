@@ -74,6 +74,12 @@ Leshy2 — открытый автономный портативный инст
 
 - Каждый программируемый вычислительный домен имеет собственные пути прошивки,
   восстановления и диагностики, не зависящие от исправности соседнего домена.
+- Основной USB-C сохраняет прямые USB2-линии S3 и только принимает питание:
+  fallback 5 В, 9 В при 3 А и 15 В при 2 А, до 30 Вт. Режимы power bank и
+  USB-PD source отсутствуют.
+- PD-контроллер автономно загружается из отдельной восстанавливаемой EEPROM.
+  Заводские площадки позволяют прошить пустую микросхему; полевое обновление
+  проверяет подписанный владельцем образ и сохраняет rollback-регион.
 - Батарея 2S состоит из двух отдельно заменяемых 18650. Переполюсовка
   исключается механически; перед зарядом или разрядом устройство проверяет обе
   ячейки и отказывает несовместимой либо опасной паре вместо принудительной
@@ -95,6 +101,14 @@ Leshy2 — открытый автономный портативный инст
 
 ```mermaid
 flowchart TD
+  USBC["MPN TBD<br/>основной USB-C: прямые USB2-линии S3 и только приём питания"]
+  VBUSPROT["TVS2200DRVR<br/>22-В flat-clamp защита VBUS от импульсов"]
+  PDCTRL["TPS25751DREFR<br/>sink-only USB-PD политика и защищённый high-voltage тракт"]
+  PDCFG["CAT24C512WI-GT3<br/>отдельная EEPROM с patch/configuration PD"]
+  CHARGER["BQ25798RQMR<br/>2S buck-boost зарядник и NVDC системный power path"]
+  CELL0["MPN TBD<br/>отдельно заменяемая защищённая 18650 №0"]
+  CELL1["MPN TBD<br/>отдельно заменяемая защищённая 18650 №1"]
+  PACKMGR["MPN TBD<br/>контроль допуска ячеек, защита, gauge и балансировка"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -151,7 +165,9 @@ flowchart TD
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
-  S3 ~~~ SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
+  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
+  CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACKMGR ~~~ S3 ~~~ SLOW
+  SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
@@ -161,6 +177,15 @@ flowchart TD
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
+  USBC -->|"только приём VBUS"| PDCTRL
+  USBC -->|"шунтирующая защита VBUS"| VBUSPROT
+  USBC <-->|"D-/D+ напрямую, без ответвления к PD/charger"| S3
+  PDCTRL <-->|"локальная I²C, boot image"| PDCFG
+  PDCTRL <-->|"защищённый VBUS + локальные I²C/IRQ"| CHARGER
+  S3 <-->|"SYS I²C0 + общий wired-low IRQ"| PDCTRL
+  CELL0 --> PACKMGR
+  CELL1 --> PACKMGR
+  PACKMGR <-->|"квалифицированная граница 2S"| CHARGER
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
@@ -246,7 +271,8 @@ flowchart TD
   `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
   и единственная планируемая high-rate shared pair.
 - **Audio и Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0 и
-  локальная I²C0.
+  локальная I²C0. PD-контроллер также использует эту ограниченную control-шину
+  и общий wired-low system IRQ, не занимая нового GPIO S3.
 - **M5 Unit:** S3 `GPIO7,GPIO8` — отдельный конфигурируемый profile-port.
 - **IR:** C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` — два RX, TX, power и evidence.
 - **nRF24 #0:** RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32`.
