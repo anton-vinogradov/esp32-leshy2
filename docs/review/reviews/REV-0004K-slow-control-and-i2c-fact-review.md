@@ -1,6 +1,6 @@
 # REV-0004K — slow-control and external-I²C fact review
 
-- Статус: **Проведено ревью фактов и исправлений; `IMP-0037` открыт**
+- Статус: **Проведено ревью фактов; последующее `IMP-0037/A` принято `DEC-0044`**
 - Дата: 2026-08-17
 - Evidence: [`CTL-0001`](../architecture/CTL-0001-slow-control-and-external-i2c-boundary.md)
 - Finding: [`FND-0052`](../findings/FND-0052-draft-maps-do-not-close-slow-control.md)
@@ -22,5 +22,6 @@
 | active map proves S3 UART0 fallback | нет; GPIO43/44 are occupied, native USB+EN/BOOT is the current baseline |
 
 Факты, mismatch correction и source propagation получают статус
-**«Проведено ревью»**. Выбор slow-plane capacity/topology не получает этот
-статус: он остаётся `⚠️ IMP-0037` до решения владельца.
+**«Проведено ревью»**. На момент этого review capacity/topology оставалась
+открыта; последующее `DEC-0044/NIF-0001/REV-0004L` приняло 24-port envelope и
+проверило полную machine allocation без изменения исторического результата.

@@ -1,6 +1,6 @@
 # CTL-0001 — slow-control budget and external-I²C fault boundary
 
-- Статус: **Проведено ревью фактов; topology decision открыт**
+- Статус: **Проведено ревью фактов; topology subsequently closed by `DEC-0044/NIF-0001`**
 - Дата: 2026-08-17
 - Gate: `FLOW-0001/G2F`, control/peripheral pass
 - Finding: [`FND-0052`](../findings/FND-0052-draft-maps-do-not-close-slow-control.md)
@@ -107,6 +107,13 @@ U214 IRQ/GNSS. Native USB Serial/JTAG + physical EN/GPIO0 BOOT остаются
 черновиках**, пока не показаны fixture routing, accessory-off/high-Z state и
 conflict isolation. Старый three-domain UART study остаётся reference, а не
 доказательством active map.
+
+## Последующее закрытие
+
+Этот документ сохраняет снимок проблемы первых `G2F-2R/3D`. `DEC-0044`
+принял `IMP-0037/A`; `G2F-3I` и новый validator теперь проверяют 23 used + 1
+reserved slow contact, direct U214 IRQ и отдельный U214 I²C0+TCA4307 branch.
+Подробная итоговая карта находится в [`NIF-0001`](NIF-0001-digital-noninterference-layout.md).
 
 ## Первичные источники
 

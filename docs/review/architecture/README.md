@@ -18,8 +18,10 @@
 7. Exact components, electrical CAD, schematic and PCB afterwards.
 
 The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
-`CTL-0001` and the generated `G2F-pin-ledger`. Exact MCU ownership, buses and
-pins are being compared, not accepted; CAD remains blocked.
+`CTL-0001`, [`NIF-0001`](NIF-0001-digital-noninterference-layout.md) and the
+generated `G2F-pin-ledger`. `DEC-0044/REV-0004L` make `G2F-3I` the leading
+reviewed paper map under a no-neighbour-stall invariant. It is not yet target:
+physical RF, exact peripherals, power and HIL remain open; CAD stays blocked.
 
 ## Active G2F artifacts
 
@@ -33,14 +35,18 @@ pins are being compared, not accepted; CAD remains blocked.
   sequencing correction and these inputs.
 - [`DEC-0042`](../decisions/DEC-0042-single-source-architecture-data.md) accepts
   one machine-readable device/net source; [`G2F-pin-ledger`](generated/G2F-pin-ledger.md)
-  renders the first two structurally checked draft maps;
+  renders three structurally checked maps including leading `G2F-3I`;
 - [`REV-0003Y`](../reviews/REV-0003Y-single-source-and-draft-pin-maps.md) reviews
   the generator foundation and explicitly leaves complete-candidate review open.
 - [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md) replaces the
   inherited full-frame target with the accepted task/dirty-region contract;
 - [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md) proves that
   current validation closes MCU accounting only, derives the open slow-control
-  envelope and records the required external-I²C fault boundary.
+  envelope and records the required external-I²C fault boundary;
+- [`DEC-0044`](../decisions/DEC-0044-delegated-noninterference-layout.md) accepts
+  the 24-endpoint/separated-I²C invariant and delegates layout search;
+  [`NIF-0001`](NIF-0001-digital-noninterference-layout.md) records the selected
+  paper arrangement and rejected bandwidth/controller variants.
 
 ## Deferred/reference G3 artifacts
 

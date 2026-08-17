@@ -1,10 +1,11 @@
 # FND-0052 — draft maps do not close slow control or S3 UART fallback
 
-- Статус: **Несоответствие в источниках исправлено; topology остаётся открыта**
+- Статус: **Исправлено в `G2F-3I`; production parts/HIL открыты**
 - Дата: 2026-08-17
 - Обнаружено: G2F slow-control/peripheral pass
 - Evidence: [`CTL-0001`](../architecture/CTL-0001-slow-control-and-external-i2c-boundary.md)
 - Proposal: [`IMP-0037`](../improvements/IMP-0037-slow-control-and-external-i2c-isolation.md)
+- Correction: [`DEC-0044/NIF-0001`](../architecture/NIF-0001-digital-noninterference-layout.md)
 
 ## Несоответствие 1 — validator scope был шире описан, чем доказан
 
@@ -44,4 +45,12 @@ reservation text исправлены: UART0 остаётся optional later pro
   снимают недоказанное обещание UART0 fallback;
 - `SRC-0002`, recovery prerequisite/review и current-state получают ту же
   границу;
-- proposal topology не превращается в решение до ответа владельца.
+- proposal topology не превращалась в решение до ответа владельца.
+
+## Закрытие в G2F-3I
+
+`DEC-0044` принял `IMP-0037/A`. Validator теперь проверяет все allocatable
+contacts non-MCU expander, а `G2F-3I` маршрутизирует 23/24 порта и резервирует
+`P27`. U214 I²C отделён TCA4307, U214 IRQ/RST/BUSY и все radio IRQ остаются
+прямыми. C5 recovery выбирает доказанную альтернативу UART0+EN/BOOT/strap,
+поскольку GPIO13/14 заняты 4-bit SDIO.

@@ -1,8 +1,9 @@
 # Machine-checked architecture data
 
-This directory is the single source for **candidate** device contacts and
-logical pin maps. It is deliberately upstream of KiCad: passing these checks
-does not select a target architecture or authorize schematic/PCB work.
+This directory is the single source for **candidate** device contacts, logical
+pin maps, complete non-MCU contact accounting and interface-resource
+contracts. It is deliberately upstream of KiCad: passing these checks does not
+select a target architecture or authorize schematic/PCB work.
 
 ## Files
 
@@ -28,11 +29,20 @@ After an intentional source-data change:
 python3 hardware/architecture/generate.py --write
 ```
 
-`--check` fails when the generated ledger is stale, a pin is not exposed by
-the exact device, a GPIO is double-booked/unaccounted, a strap lacks an
-explicit reset proof, a service path is missing, or an exact peer endpoint is
-unknown. Provisional external contracts remain visible qualification gaps; the
-generator never silently promotes them to verified parts.
+`--check` fails when the generated ledger is stale, JSON repeats a key, a pin
+is not exposed by the exact device, a GPIO or declared expander contact is
+double-booked/unaccounted, a strap lacks an explicit reset proof, no complete
+service alternative exists, an exact peer endpoint is unknown, or a scheduled
+resource lacks its arbitration contract. For the leading B-package map it also
+rejects a PIO pin outside the selected real GPIO-base window, fixed-mux contact
+drift and controller/DMA overbooking. Provisional external contracts remain
+visible qualification gaps; the generator never silently promotes them to
+verified parts.
+
+`G2F-3I` is the leading reviewed **paper** map selected by `DEC-0044/NIF-0001`.
+Its digital non-interference/resource contracts pass these checks; physical RF,
+electrical/HIL and complete target-architecture acceptance remain upstream
+gates.
 
 The inventory also contains verified reference boundaries that are not yet
 instantiated in either map. `DSP-0001` currently covers three display/touch

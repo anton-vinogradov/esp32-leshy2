@@ -17,9 +17,18 @@ DEVICE_FILE = ARCH_DIR / "devices.json"
 CANDIDATE_DIR = ARCH_DIR / "candidates"
 
 
+def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key {key!r}")
+        result[key] = value
+    return result
+
+
 def load_json(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as stream:
-        return json.load(stream)
+        return json.load(stream, object_pairs_hook=reject_duplicate_keys)
 
 
 def load_sources() -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -79,14 +88,53 @@ def validate_sources(
         for contact, attributes in contacts.items():
             if not attributes.get("physical") or not attributes.get("role"):
                 errors.append(f"device {device_id}.{contact}: incomplete physical contact")
+        allocatable_contacts = device.get("allocatable_contacts", [])
+        if len(allocatable_contacts) != len(set(allocatable_contacts)):
+            errors.append(f"device {device_id}: duplicate allocatable contact")
+        for contact in allocatable_contacts:
+            if contact not in contacts:
+                errors.append(f"device {device_id}: unknown allocatable contact {contact}")
         for contact in device.get("strapping_contacts", []):
             if contact not in contacts:
                 errors.append(f"device {device_id}: unknown strap contact {contact}")
         for contact in device.get("service_required", []):
             if contact not in contacts:
                 errors.append(f"device {device_id}: unknown service contact {contact}")
+        for contact in device.get("service_required_all", []):
+            if contact not in contacts:
+                errors.append(f"device {device_id}: unknown mandatory service contact {contact}")
+        for alternative_number, alternative in enumerate(device.get("service_required_any", []), 1):
+            if not alternative:
+                errors.append(f"device {device_id}: empty service alternative {alternative_number}")
+            for contact in alternative:
+                if contact not in contacts:
+                    errors.append(
+                        f"device {device_id}: unknown service-alternative contact {contact}"
+                    )
         if device.get("programmable") and not device.get("controller_capabilities"):
             errors.append(f"device {device_id}: programmable device lacks controller_capabilities")
+        capabilities = set(device.get("controller_capabilities", []))
+        window_group_controllers: set[str] = set()
+        for group_number, group in enumerate(device.get("controller_gpio_window_groups", []), 1):
+            context = f"device {device_id}: GPIO-window group {group_number}"
+            group_controllers = group.get("controllers", [])
+            if not group.get("id") or not group_controllers or not group.get("allowed_windows"):
+                errors.append(f"{context}: missing id, controllers or allowed_windows")
+            unknown = set(group_controllers) - capabilities
+            if unknown:
+                errors.append(f"{context}: unknown controllers {sorted(unknown)}")
+            duplicates = set(group_controllers) & window_group_controllers
+            if duplicates:
+                errors.append(f"{context}: controllers repeated across groups {sorted(duplicates)}")
+            window_group_controllers.update(group_controllers)
+            for window in group.get("allowed_windows", []):
+                if (
+                    not isinstance(window, list)
+                    or len(window) != 2
+                    or not all(isinstance(bound, int) for bound in window)
+                    or window[0] > window[1]
+                ):
+                    errors.append(f"{context}: invalid allowed window {window!r}")
         if "not_recommended" in device.get("lifecycle", "") and not device.get("lifecycle_source"):
             errors.append(f"device {device_id}: constrained lifecycle lacks lifecycle_source")
 
@@ -170,6 +218,174 @@ def validate_sources(
                             f"{peer} does not reciprocate net {allocation.get('net')}"
                         )
 
+        selected_windows: dict[tuple[str, str], tuple[int, int]] = {}
+        for window_number, window in enumerate(candidate.get("controller_gpio_windows", []), 1):
+            context = f"controller GPIO window {window_number}"
+            instance = window.get("instance", "")
+            controllers = window.get("controllers", [])
+            gpio_min = window.get("gpio_min")
+            gpio_max = window.get("gpio_max")
+            if instance not in instances:
+                errors.append(f"{candidate_id}: {context}: unknown instance {instance!r}")
+                continue
+            if not controllers or not window.get("reason"):
+                errors.append(f"{candidate_id}: {context}: missing controllers or reason")
+            if (
+                not isinstance(gpio_min, int)
+                or not isinstance(gpio_max, int)
+                or gpio_min > gpio_max
+            ):
+                errors.append(f"{candidate_id}: {context}: invalid GPIO bounds")
+                continue
+            for controller in controllers:
+                key = (instance, controller)
+                if key in selected_windows:
+                    errors.append(
+                        f"{candidate_id}: {context}: duplicate GPIO-window selection for "
+                        f"{instance}.{controller}"
+                    )
+                selected_windows[key] = (gpio_min, gpio_max)
+                if controller not in controller_sets.get(instance, set()):
+                    errors.append(
+                        f"{candidate_id}: {context}: undeclared controller {instance}.{controller}"
+                    )
+                matched_rows = [
+                    row
+                    for row in candidate.get("allocations", [])
+                    if row.get("instance") == instance and row.get("controller") == controller
+                ]
+                if not matched_rows:
+                    errors.append(
+                        f"{candidate_id}: {context}: controller {instance}.{controller} has no allocation"
+                    )
+                for row in matched_rows:
+                    match = re.fullmatch(r"GPIO(\d+)", row.get("contact", ""))
+                    if not match or not gpio_min <= int(match.group(1)) <= gpio_max:
+                        errors.append(
+                            f"{candidate_id}: {instance}.{controller} allocation "
+                            f"{row.get('contact')} is outside GPIO{gpio_min}..GPIO{gpio_max}"
+                        )
+
+        for instance, device_id in instances.items():
+            device = devices[device_id]
+            declared = controller_sets.get(instance, set())
+            for group in device.get("controller_gpio_window_groups", []):
+                active = declared & set(group["controllers"])
+                if not active:
+                    continue
+                selections = {
+                    selected_windows[(instance, controller)]
+                    for controller in active
+                    if (instance, controller) in selected_windows
+                }
+                missing = {
+                    controller
+                    for controller in active
+                    if (instance, controller) not in selected_windows
+                }
+                if missing:
+                    errors.append(
+                        f"{candidate_id}: {instance} {group['id']} missing GPIO-window "
+                        f"selection for {sorted(missing)}"
+                    )
+                if len(selections) > 1:
+                    errors.append(
+                        f"{candidate_id}: {instance} {group['id']} controllers select "
+                        f"different shared GPIO windows {sorted(selections)}"
+                    )
+                allowed = {tuple(bounds) for bounds in group["allowed_windows"]}
+                for selection in selections:
+                    if selection not in allowed:
+                        errors.append(
+                            f"{candidate_id}: {instance} {group['id']} selects unsupported "
+                            f"GPIO window {selection}; allowed {sorted(allowed)}"
+                        )
+
+        capacity_ids: set[str] = set()
+        for capacity_number, capacity in enumerate(candidate.get("capacity_contracts", []), 1):
+            context = f"capacity contract {capacity_number}"
+            capacity_id = capacity.get("id", "")
+            available = capacity.get("available")
+            reserve = capacity.get("reserve")
+            claims = capacity.get("claims", [])
+            if not capacity_id:
+                errors.append(f"{candidate_id}: {context}: missing id")
+            elif capacity_id in capacity_ids:
+                errors.append(f"{candidate_id}: duplicate capacity contract {capacity_id}")
+            capacity_ids.add(capacity_id)
+            if capacity.get("instance") not in instances:
+                errors.append(
+                    f"{candidate_id}: {context}: unknown instance {capacity.get('instance')}"
+                )
+            if not isinstance(available, int) or available <= 0:
+                errors.append(f"{candidate_id}: {context}: invalid available capacity")
+                continue
+            if not isinstance(reserve, int) or reserve < 0:
+                errors.append(f"{candidate_id}: {context}: invalid reserve")
+                continue
+            if not claims or not capacity.get("proof"):
+                errors.append(f"{candidate_id}: {context}: missing claims or proof")
+            claimed = 0
+            consumers: set[str] = set()
+            for claim in claims:
+                consumer = claim.get("consumer", "")
+                units = claim.get("units")
+                if not consumer or not isinstance(units, int) or units <= 0:
+                    errors.append(f"{candidate_id}: {context}: invalid claim {claim!r}")
+                    continue
+                if consumer in consumers:
+                    errors.append(
+                        f"{candidate_id}: {context}: duplicate consumer {consumer!r}"
+                    )
+                consumers.add(consumer)
+                claimed += units
+            if claimed + reserve != available:
+                errors.append(
+                    f"{candidate_id}: {context}: {claimed} claimed + {reserve} reserve "
+                    f"!= {available} available"
+                )
+
+        mux_ids: set[str] = set()
+        for mux_number, mux in enumerate(candidate.get("mux_contracts", []), 1):
+            context = f"mux contract {mux_number}"
+            mux_id = mux.get("id", "")
+            instance = mux.get("instance", "")
+            controller = mux.get("controller", "")
+            contacts = mux.get("contacts", [])
+            if not mux_id:
+                errors.append(f"{candidate_id}: {context}: missing id")
+            elif mux_id in mux_ids:
+                errors.append(f"{candidate_id}: duplicate mux contract {mux_id}")
+            mux_ids.add(mux_id)
+            if instance not in instances:
+                errors.append(f"{candidate_id}: {context}: unknown instance {instance!r}")
+                continue
+            if controller not in controller_sets.get(instance, set()):
+                errors.append(
+                    f"{candidate_id}: {context}: undeclared controller {instance}.{controller}"
+                )
+            if not contacts or len(contacts) != len(set(contacts)) or not mux.get("proof"):
+                errors.append(f"{candidate_id}: {context}: incomplete contacts or proof")
+            unknown = set(contacts) - set(devices[instances[instance]].get("contacts", {}))
+            if unknown:
+                errors.append(
+                    f"{candidate_id}: {context}: contacts not exposed by exact device {sorted(unknown)}"
+                )
+            actual = {
+                row.get("contact")
+                for row in candidate.get("allocations", [])
+                if row.get("instance") == instance and row.get("controller") == controller
+            }
+            if actual != set(contacts):
+                errors.append(
+                    f"{candidate_id}: {context}: declared contacts {sorted(contacts, key=natural_contact_key)} "
+                    f"!= allocated {sorted(actual, key=natural_contact_key)}"
+                )
+
+        missing_muxes = set(candidate.get("required_mux_contracts", [])) - mux_ids
+        if missing_muxes:
+            errors.append(f"{candidate_id}: missing required mux contracts {sorted(missing_muxes)}")
+
         reservations = candidate.get("reservations", {})
         free_gpio = candidate.get("free_gpio", {})
         for instance, device_id in instances.items():
@@ -212,10 +428,21 @@ def validate_sources(
             if not service.get("method"):
                 errors.append(f"{candidate_id}: service method missing for {instance}")
         for instance, device_id in instances.items():
-            required = set(devices[device_id].get("service_required", []))
+            device = devices[device_id]
+            required = set(device.get("service_required", [])) | set(
+                device.get("service_required_all", [])
+            )
             missing_service = required - services_by_instance.get(instance, set())
             if missing_service:
                 errors.append(f"{candidate_id}: {instance} missing service contacts {sorted(missing_service)}")
+            alternatives = [set(group) for group in device.get("service_required_any", [])]
+            if alternatives and not any(
+                group <= services_by_instance.get(instance, set()) for group in alternatives
+            ):
+                errors.append(
+                    f"{candidate_id}: {instance} missing one complete service alternative "
+                    f"{[sorted(group) for group in alternatives]}"
+                )
 
         for route_number, route in enumerate(candidate.get("fixed_routes", []), 1):
             context = f"fixed route {route_number}"
@@ -224,6 +451,88 @@ def validate_sources(
                 _check_endpoint(endpoint, candidate_id, instances, devices, errors, context)
             if not route.get("net") or not route.get("safety"):
                 errors.append(f"{candidate_id}: {context}: missing net or safety note")
+
+        route_endpoints = {
+            route[endpoint_name]
+            for route in candidate.get("fixed_routes", [])
+            for endpoint_name in ("from", "to")
+            if route.get(endpoint_name)
+        }
+        for instance, accounting in candidate.get("contact_accounting", {}).items():
+            if instance not in instances:
+                errors.append(f"{candidate_id}: contact accounting for unknown instance {instance}")
+                continue
+            allocatable = set(devices[instances[instance]].get("allocatable_contacts", []))
+            used_contacts = set(accounting.get("used", []))
+            reserved_contacts = set(accounting.get("reserved", {}))
+            free_contacts = set(accounting.get("free", []))
+            for label, contacts in (
+                ("used", used_contacts),
+                ("reserved", reserved_contacts),
+                ("free", free_contacts),
+            ):
+                unknown = contacts - allocatable
+                if unknown:
+                    errors.append(
+                        f"{candidate_id}: {instance} {label} unknown allocatable contacts {sorted(unknown, key=natural_contact_key)}"
+                    )
+            overlaps = (
+                (used_contacts & reserved_contacts)
+                | (used_contacts & free_contacts)
+                | (reserved_contacts & free_contacts)
+            )
+            if overlaps:
+                errors.append(
+                    f"{candidate_id}: {instance} contact classification overlap {sorted(overlaps, key=natural_contact_key)}"
+                )
+            missing = allocatable - used_contacts - reserved_contacts - free_contacts
+            if missing:
+                errors.append(
+                    f"{candidate_id}: {instance} unaccounted allocatable contacts {sorted(missing, key=natural_contact_key)}"
+                )
+            for contact in used_contacts:
+                if f"{instance}.{contact}" not in route_endpoints:
+                    errors.append(
+                        f"{candidate_id}: {instance}.{contact} is marked used but has no fixed route"
+                    )
+
+        resource_ids: set[str] = set()
+        resources_by_id: dict[str, dict[str, Any]] = {}
+        for resource_number, resource in enumerate(candidate.get("resource_contracts", []), 1):
+            context = f"resource contract {resource_number}"
+            resource_id = resource.get("id", "")
+            if not resource_id:
+                errors.append(f"{candidate_id}: {context}: missing id")
+            elif resource_id in resource_ids:
+                errors.append(f"{candidate_id}: duplicate resource contract {resource_id}")
+            resource_ids.add(resource_id)
+            resources_by_id[resource_id] = resource
+            for required_field in ("owner", "clients", "sharing", "deadline", "proof_gate"):
+                if not resource.get(required_field):
+                    errors.append(f"{candidate_id}: {context}: missing {required_field}")
+            if resource.get("owner") not in instances:
+                errors.append(f"{candidate_id}: {context}: unknown owner {resource.get('owner')}")
+            if resource.get("sharing") not in {"dedicated", "scheduled"}:
+                errors.append(f"{candidate_id}: {context}: invalid sharing {resource.get('sharing')}")
+            if resource.get("sharing") == "scheduled" and not resource.get("arbitration"):
+                errors.append(f"{candidate_id}: {context}: scheduled resource lacks arbitration")
+
+        required_resources = set(candidate.get("required_resource_contracts", []))
+        missing_resources = required_resources - resource_ids
+        if missing_resources:
+            errors.append(
+                f"{candidate_id}: missing required resource contracts {sorted(missing_resources)}"
+            )
+        for resource_id in candidate.get("exclusive_resource_contracts", []):
+            resource = resources_by_id.get(resource_id)
+            if resource is None:
+                errors.append(
+                    f"{candidate_id}: exclusive resource {resource_id} has no contract"
+                )
+            elif resource.get("sharing") != "dedicated":
+                errors.append(
+                    f"{candidate_id}: exclusive resource {resource_id} is not dedicated"
+                )
 
     return errors
 
@@ -341,6 +650,85 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             contacts = ", ".join(f"`{contact}`" for contact in service["contacts"])
             lines.append(f"- `{service['instance']}`: {contacts} — {service['method']}.")
 
+        if candidate.get("contact_accounting"):
+            lines += [
+                "",
+                "### Non-MCU contact accounting",
+                "",
+                "| Instance | Used | Reserved | Free |",
+                "|---|---:|---:|---:|",
+            ]
+            for instance, accounting in candidate["contact_accounting"].items():
+                lines.append(
+                    f"| `{instance}` | {len(accounting.get('used', []))} | "
+                    f"{len(accounting.get('reserved', {}))} | {len(accounting.get('free', []))} |"
+                )
+
+        if candidate.get("resource_contracts"):
+            lines += [
+                "",
+                "### Interface non-interference contracts",
+                "",
+                "| Resource | Owner | Clients | Sharing | Deadline / bound | Proof gate |",
+                "|---|---|---|---|---|---|",
+            ]
+            for resource in candidate["resource_contracts"]:
+                clients = ", ".join(f"`{client}`" for client in resource["clients"])
+                sharing = resource["sharing"]
+                if resource.get("arbitration"):
+                    sharing += f"; {resource['arbitration']}"
+                lines.append(
+                    f"| `{resource['id']}` | `{resource['owner']}` | {clients} | {sharing} | "
+                    f"{resource['deadline']} | {resource['proof_gate']} |"
+                )
+
+        if candidate.get("controller_gpio_windows"):
+            lines += [
+                "",
+                "### Controller GPIO-window selections",
+                "",
+                "| Instance | Controllers | Selected window | Device constraint / reason |",
+                "|---|---|---|---|",
+            ]
+            for window in candidate["controller_gpio_windows"]:
+                controllers = ", ".join(f"`{controller}`" for controller in window["controllers"])
+                lines.append(
+                    f"| `{window['instance']}` | {controllers} | "
+                    f"`GPIO{window['gpio_min']}..GPIO{window['gpio_max']}` | {window['reason']} |"
+                )
+
+        if candidate.get("capacity_contracts"):
+            lines += [
+                "",
+                "### Controller/DMA capacity accounting",
+                "",
+                "| Capacity | Instance | Claims | Reserve / available | Basis |",
+                "|---|---|---|---:|---|",
+            ]
+            for capacity in candidate["capacity_contracts"]:
+                claims = ", ".join(
+                    f"{claim['consumer']}={claim['units']}" for claim in capacity["claims"]
+                )
+                lines.append(
+                    f"| `{capacity['id']}` | `{capacity['instance']}` | {claims} | "
+                    f"{capacity['reserve']} / {capacity['available']} | {capacity['proof']} |"
+                )
+
+        if candidate.get("mux_contracts"):
+            lines += [
+                "",
+                "### Exact fixed-mux contracts",
+                "",
+                "| Contract | Instance/controller | Exact contacts | Datasheet/device proof |",
+                "|---|---|---|---|",
+            ]
+            for mux in candidate["mux_contracts"]:
+                contacts = ", ".join(f"`{contact}`" for contact in mux["contacts"])
+                lines.append(
+                    f"| `{mux['id']}` | `{mux['instance']}.{mux['controller']}` | "
+                    f"{contacts} | {mux['proof']} |"
+                )
+
         lines += ["", "### Open qualification gaps", ""]
         automatic_gaps: list[str] = []
         for instance, device_id in candidate["instances"].items():
@@ -358,7 +746,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
         "## Machine-check result and review boundary",
         "",
-        "Both source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. It does **not** close electrical feasibility: abstract peers, reference-only nRF modules, RF networks, timing HIL, power and physical integration remain open. Therefore neither candidate receives «Проведено ревью» as a complete owner/pin architecture in this artifact.",
+        "All source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. Where declared, non-MCU contacts, interface resource contracts, controller GPIO-window selections, fixed-mux contact contracts and capacity arithmetic are also complete. It does **not** close electrical feasibility: abstract peers, reference-only modules, RF networks, timing HIL, power and physical integration remain open. Therefore no candidate receives «Проведено ревью» as a complete target architecture in this generated artifact.",
         "",
     ]
     return "\n".join(lines)

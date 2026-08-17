@@ -105,9 +105,10 @@ peripheral computer. Это должен быть собираемый, ремо
 
 125 capability leaves и competitor delta прошли повторное ревью G2. Physical/
 product inputs G3 остаются проверенными, но теперь сначала проходит G2F.
-Единый machine-readable источник и две structurally checked draft-карты уже
-есть; exact peripherals, timing/power/HIL должны закрыться до адаптации legacy
-physical mockup.
+Единый machine-readable источник содержит три structurally checked карты;
+`DEC-0044/NIF-0001/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без
+radio-bus contention. Physical RF, exact peripherals, power и HIL должны
+закрыться до адаптации legacy physical mockup.
 Whole-device optimality, conceptual placement и новое atomic architecture
 decision обязаны предшествовать компонентам и KiCad. Нормативный порядок —
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

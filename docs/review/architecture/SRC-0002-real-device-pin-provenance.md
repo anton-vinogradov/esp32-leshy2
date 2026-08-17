@@ -22,7 +22,7 @@
 |---|---|---|---|
 | application/native 2.4/BLE | `ESP32-S3-WROOM-1U-N16R2` soldered module | official module v1.8 lists exact N16R2, 41 module pads and exposed GPIO0…21/35…48; module, not SoC maximum, is counted | `verified candidate`; exact order/marking + prototype boot report later |
 | dual-band/802.15.4 | `ESP32-C5-WROOM-1U-N8R8` soldered module | official module v1.2 lists exact N8R8 and WROOM-1U pads; PSRAM consumes `GPIO15/SPICS1`, leaving GPIO0…14/23…28 before reservations | `verified candidate`; silicon revision/marking and errata floor remain lot gates |
-| optional deterministic controller | `RP2354A A4`, QFN60, exact order code required | official product table binds RP2354A to QFN60, 30 GPIO and stacked 2 MB flash; no carrier hides pins because candidate is bare IC on our PCB | `verified candidate`; exact A4 order identity/land pattern/prototype SWD+USB proof later |
+| deterministic radio controller | `RP2354B A4`, QFN80 leading; `RP2354A A4` rejected-layout reference | official datasheet binds B-package to 48 GPIO/10×10 mm and A-package to 30 GPIO/7×7 mm; RP2354 adds stacked 2 MB flash and no carrier hides pins | B `verified candidate` for `G2F-3I`; exact A4 lot identity/land pattern/prototype SWD+USB proof later |
 | external LoRa/GNSS | M5Stack Cap LoRa-1262 `U214` | actual Cap-Bus exposes GPS TX/RX, SCL/SDA, LoRa RST/IRQ/BUSY/SCK/MOSI/MISO/NSS and power; body `84×24×15.2 mm` | `verified candidate`; mating connector/retention/hot-plug HIL later |
 | generic Unit surface | actual HY2.0-4P base connector | M5 documents GND, 5V and two signals; colors are conventions, not automatic peripheral support | `verified connector class`; every advertised Unit SKU is separately blocking until checked |
 | compact nRF reference | Ebyte `E01-ML01S`, 12×19 mm SMD, onboard antenna, 0 dBm | manufacturer product/manual expose `VCC/CE/CSN/SCK/MOSI/MISO/IRQ/GND` and identify nRF24L01P | `reference only`; lifecycle/source authenticity/RF HIL and whether 0 dBm meets product envelope open |
@@ -35,7 +35,7 @@
 | IR RX/TX | `TSOP38238`, `TSMP95000`, `TSAL6200` first discrete candidates | manufacturer part-level functions/packages are known; exact optical/electrical stuffing and driver remain conditional | `candidate facts`; finish package/driver/availability and HIL before count becomes target |
 | display/touch | Waveshare SKU 29318, Elecrow `DLS31040B1` and Riverdi `RVT35HITNWC00-B` references | exact module/FPC contacts, dimensions, controllers and power boundaries are recorded in `devices.json`; `DEC-0043` replaces the invalid historical 4.5 MB/s gate with task/dirty-region acceptance | `verified references`; performance contract reviewed, exact MPN/interface/optics and HIL remain `open/blocking`, see `DSP-0001/FND-0051/DEC-0043` |
 | microSD | Hirose `DM3AT-SF-PEJM5` exact socket reference | all 8 card contacts, detect switch and body are verified; integrated display TF slots are shared-SPI and not SDMMC-equivalent | `verified candidate boundary`; width, protection, placement, card set and HIL remain `open/blocking` |
-| slow control | `TCA9535PWR` TSSOP24 candidate; `TCA6424ARGJR` UQFN32 reference | official TI package tables expose respectively 16 and 24 ports, open-drain INT and I²C; all ports power up as inputs | exact contacts `verified`; current drafts allocate only 5/16 and 3/16 ports, so neither part nor capacity is selected; see `CTL-0001/FND-0052` |
+| slow control | `TCA6424ARGJR` UQFN32 leading reference; `TCA9535PWR` TSSOP24 smaller alternative | official TI package tables expose respectively 24 and 16 ports, open-drain INT and I²C; all ports power up as inputs | `G2F-3I` accounts 23 used + 1 reserve under `DEC-0044`; exact electrical/MPN freeze remains open, see `NIF-0001/FND-0052` |
 | external I²C fault boundary | `TCA4307DGKR` VSSOP8 reference | exact EN/SCLIN/SCLOUT/READY/SDAIN/SDAOUT contacts, powered-off high-Z and stuck-bus recovery verified from TI datasheet | `reference only`; can isolate U214/Port-A I²C, but does not qualify U214 SPI/UART/power hot-plug |
 | radio output compression | `SN74HC595PWR` TSSOP16 candidate for `G2F-2R` | official TI package table exposes QA…QH, SER/SRCLK/RCLK, OE and SRCLR | `verified candidate`; OE/reset/pull truth table and shared-data timing remain schematic/HIL gates |
 | non-programmable safety/power | exact latch/supervisor/converter set not selected | semantic endpoints are known; TCA9535/SN74HC595 do not implement the accepted latched hard STOP by themselves | `open/blocking` |
@@ -64,13 +64,13 @@
 
 [`DEC-0042`](../decisions/DEC-0042-single-source-architecture-data.md) makes
 `hardware/architecture/devices.json` the versioned representation of verified
-rows above. The two first consumers are `G2F-2R` and `G2F-3D`; their generated
-pin ledger is [`G2F-pin-ledger`](generated/G2F-pin-ledger.md). Passing its
-validator proves contact existence/accounting only; it does not close rows that
-remain `reference only` or `open/blocking` here. In particular, it accounts
-programmable MCU contacts but does not yet prove that every semantic slow
-endpoint is allocated; [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md)
-reviews that boundary.
+rows above. Consumers are `G2F-2R`, `G2F-3D` and the leading paper map
+`G2F-3I`; their generated pin ledger is
+[`G2F-pin-ledger`](generated/G2F-pin-ledger.md). Passing its validator proves
+contact existence/accounting and, where declared, complete slow-contact and
+resource-contract accounting; it does not close rows that remain `reference
+only` or `open/blocking`. [`NIF-0001`](NIF-0001-digital-noninterference-layout.md)
+reviews the `G2F-3I` digital boundary and keeps physical RF/electrical/HIL open.
 
 ## Mandatory per-candidate evidence columns
 

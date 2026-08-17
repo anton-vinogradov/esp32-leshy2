@@ -105,9 +105,11 @@ evidence—not silently fixed BOM components.
 
 The 125 capability leaves and the competitor delta have received repeated G2
 review. G3 physical/product inputs remain reviewed, but G2F logical/electrical
-feasibility now comes first. One machine-readable source and two structurally
-checked draft maps exist; exact peripherals plus timing/power/HIL must close
-before adapting the legacy physical mockup. Whole-device optimality,
+feasibility now comes first. One machine-readable source contains three
+structurally checked maps; `DEC-0044/NIF-0001/REV-0004L` select `G2F-3I` as the
+leading reviewed paper map without radio-bus contention. Physical RF, exact
+peripherals, power and HIL must close before adapting the legacy physical
+mockup. Whole-device optimality,
 conceptual placement and a new atomic
 architecture decision must precede components and KiCad. The normative sequence is
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

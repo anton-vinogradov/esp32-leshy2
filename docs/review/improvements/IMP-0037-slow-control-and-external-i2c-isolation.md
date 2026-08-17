@@ -1,9 +1,11 @@
-# ⚠️ IMP-0037 — complete slow-control plane and isolate external I²C
+# IMP-0037 — complete slow-control plane and isolate external I²C
 
-- Статус: **Открыто; требуется решение владельца**
+- Статус: **Принято как A решением `DEC-0044`; machine map проведена ревью**
 - Дата: 2026-08-17
 - Finding: [`FND-0052`](../findings/FND-0052-draft-maps-do-not-close-slow-control.md)
 - Evidence: [`CTL-0001`](../architecture/CTL-0001-slow-control-and-external-i2c-boundary.md)
+- Решение: [`DEC-0044`](../decisions/DEC-0044-delegated-noninterference-layout.md)
+- Реализация в бумажной компоновке: [`NIF-0001`](../architecture/NIF-0001-digital-noninterference-layout.md)
 
 ## Контекст решения
 
@@ -55,8 +57,12 @@ zero-loss cost.
 двумя 16-port и доказанным compressed-16 будет частью единого архитектурного
 пакета, а не преждевременным выбором корпуса.
 
-## Вопрос владельцу
+## Результат решения
 
-Принимаем вариант `A` как рабочий G2F-инвариант: минимум 24 slow endpoints,
-прямой U214 IRQ и разделение internal/U214/Unit I²C domains, без выбора exact
-expander до закрытия остальных периферийных контактов?
+Владелец делегировал подбор компоновки и потребовал продолжать автоматически,
+если нет отдельного конфликта. `DEC-0044` принимает A. `G2F-3I` полностью
+классифицирует 24 порта `TCA6424ARGJR`: 23 semantic routes и один reserve;
+U214 IRQ остаётся прямым, а U214 I²C вынесен на RP I²C0 через TCA4307.
+
+Exact expander/isolation MPN остаются candidate references до electrical/HIL;
+это не делает их production BOM без atomic package.

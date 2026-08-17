@@ -88,7 +88,7 @@
   "free_gpio": {"s3": [], "c5": []},
   "services": [
     {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT; UART0 fallback is not yet isolated or routed"},
-    {"instance":"c5","contacts":["EN","GPIO28","GPIO13","GPIO14"],"method":"native USB Serial/JTAG plus physical CHIP_PU/BOOT; removable SDIO isolation"}
+    {"instance":"c5","contacts":["EN","GPIO28","GPIO27","GPIO13","GPIO14"],"method":"native USB Serial/JTAG plus physical CHIP_PU/BOOT and normal-boot/log strap; removable SDIO isolation"}
   ],
   "fixed_routes": [
     {"from":"rf_ctrl.QA","to":"nrf0.CSN","net":"NRF0_CSN_N","safety":"external pull-up; OE high until armed"},

@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress**: `DEC-0042/REV-0003Y` review one source and two structurally checked draft maps; exact peripheral/timing/power closure next |
+| 2F. Logical/electrical feasibility | **In progress**: `DEC-0044/REV-0004L` select `G2F-3I` as the leading reviewed paper map without radio-bus contention; physical RF, exact peripheral/power/HIL closure remains open |
 | 3. Target physical/product design | Waiting for G2F; P1/P2/P3 are reference-only, then the legacy clamshell generator is adapted |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -88,31 +88,37 @@ Consequences:
 records all required semantic endpoints without former owners.
 [`SRC-0002`](../review/architecture/SRC-0002-real-device-pin-provenance.md)
 forbids counting a pin without the SoC→package→exact module/device→actual
-pad/header/connector chain. `DEC-0042/REV-0003Y` add the checked source and two
-draft consumers: [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md).
-They pass contact/collision/accounting/strap/service checks, but exact nRF,
+pad/header/connector chain. `DEC-0042/REV-0003Y` add the checked source;
+[`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md) now has
+three consumers and `G2F-3I` is the leading paper map. They pass
+contact/collision/accounting/strap/service checks, but exact nRF,
 CC RF implementation, voice/IR and several control/power devices remain
 qualification blockers. `DSP-0001/REV-0003Z` review three real display/touch
 boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
 ST7796S budget and generic 24-pin connector cannot be reused. `DEC-0043/REV-0004J`
 accept task/dirty-region performance with `≤100 ms` critical/menu first response
 and correct the shared-U214 display quantum from 1 KiB to 256 B; exact display,
-optics and HIL remain open. `CTL-0001/REV-0004K` find that the validator closes
-MCU accounting only: one TCA9535 has only 5/16 or 3/16 ports assigned, while
-the working slow-control envelope remains `19…27`, centered on `22…24`.
-`FND-0052` also separates internal I²C from the external U214/Port-A fault
-domain and removes the unproved S3 UART0-fallback claim; native USB+EN/BOOT is
-the baseline. `⚠️ IMP-0037` awaits a decision on the `≥24`-port working
-invariant and separated I²C domains. `FND-0050` records nRF24 NRND and corrects
-CC1101 to ACTIVE.
+optics and HIL remain open. `CTL-0001/REV-0004K` found that the first maps
+closed MCU accounting only. The owner delegated layout search; `DEC-0044`
+accepts `IMP-0037/A`, while `NIF-0001/REV-0004L` review the leading `G2F-3I`:
+RP2354B/QFN80, five independent radio/accessory SPI paths, dedicated 4-bit
+SDIO S3↔C5, dedicated SPI3 S3↔RP, 23/24 slow endpoints and isolated U214 I²C.
+The only high-rate scheduled pair is display+SD on SPI2 with bounded quanta;
+radio FIFO/IPC never waits for it. C5 UART0+EN/BOOT/strap is the recovery path
+because GPIO13/14 carry SDIO. A repeated exact-device check found and fixed an
+RP2354B PIO GPIO-window crossing; PIO data is now on `GPIO30..46`, fixed mux
+groups are contracted, and capacity closes with seven of twelve PIO state
+machines plus three of sixteen DMA channels in reserve. Physical RF
+self-desense and named HIL remain the next gates. `FND-0050` records nRF24 NRND
+and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, the two draft maps receive the same exact-device, controller-concurrency,
-memory/traffic/power/service and HIL closure. Only then can either become a
-reviewed working electrical baseline and feed the old physical generator.
-`LAY-0001` P1/P2/P3 is reference-only; no selection is requested. KiCad remains
+Next, `G2F-3I` receives physical RF/self-desense, exact peripheral,
+signal-integrity, power and HIL closure. It can then become a working electrical
+baseline and feed the adapted legacy physical generator. `G2F-2R/3D` and
+`LAY-0001` P1/P2/P3 remain references; no selection is requested. KiCad stays
 blocked until the later atomic architecture gates pass.

@@ -15,9 +15,9 @@
         "checked": "2026-08-17"
       },
       "programmable": true,
-      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
       "controller_notes": {
-        "SDMMC_SLOT0_1BIT/SDMMC_SLOT1_1BIT": "two logical slots share the S3 SD/MMC host; simultaneous/scheduled use is a separate concurrency gate",
+        "SDMMC_SLOT0/SDMMC_SLOT1": "one S3 SD/MMC host exposes slot 0 up to 8-bit and slot 1 up to 4-bit through the GPIO matrix; two 4-bit links remain one scheduled-controller concurrency gate",
         "I2C1_OR_UART0_OR_GPIO": "GPIO7/8 use the S3 second hardware I2C controller, UART0 through the GPIO matrix or custom GPIO as one mutually exclusive Unit profile; this is not the ROM-default UART0 recovery route"
       },
       "contacts": {
@@ -81,9 +81,10 @@
         "checked": "2026-08-17"
       },
       "programmable": true,
-      "controller_capabilities": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SPI2", "SPI2_OR_GPIO", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SDIO_SLAVE_4BIT", "SPI2", "SPI2_OR_GPIO", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
       "controller_notes": {
-        "SPI2_OR_GPIO": "the shared data pin changes between GP-SPI2 MOSI and software latch-data mode; concurrent use is not implied"
+        "SPI2_OR_GPIO": "the shared data pin changes between GP-SPI2 MOSI and software latch-data mode; concurrent use is not implied",
+        "SDIO_SLAVE_4BIT": "fixed C5 signals: CLK GPIO9, CMD GPIO10, DAT0 GPIO8, DAT1 GPIO7, DAT2 GPIO14 and DAT3 GPIO13; GPIO13/14 therefore cannot simultaneously provide native USB"
       },
       "contacts": {
         "3V3": {"physical": "2", "role": "power"},
@@ -114,7 +115,8 @@
         "GND": {"physical": "1/20/22/28/29/30/32", "role": "power"}
       },
       "strapping_contacts": ["GPIO2", "GPIO3", "GPIO7", "GPIO25", "GPIO26", "GPIO27", "GPIO28"],
-      "service_required": ["EN", "GPIO28", "GPIO13", "GPIO14"],
+      "service_required_all": ["EN", "GPIO28", "GPIO27"],
+      "service_required_any": [["GPIO13", "GPIO14"], ["GPIO11", "GPIO12"]],
       "unavailable_gpio": {
         "GPIO15": "bonded to internal PSRAM as SPICS1 on the N8R8 module",
         "GPIO16..GPIO22": "not exposed by this module variant"
@@ -157,6 +159,64 @@
         "GPIO28": {"physical": "42", "role": "gpio"}, "GPIO29": {"physical": "43", "role": "gpio"},
         "USB_DM": {"physical": "51", "role": "service"}, "USB_DP": {"physical": "52", "role": "service"},
         "QSPI_SS_USB_BOOT": {"physical": "60", "role": "service"}
+      },
+      "strapping_contacts": [],
+      "service_required": ["RUN", "SWCLK", "SWDIO", "USB_DM", "USB_DP", "QSPI_SS_USB_BOOT"],
+      "unavailable_gpio": {}
+    },
+    "rp2354b_a4": {
+      "mpn": "RP2354B A4 (exact A4 order/lot identity required before BOM freeze)",
+      "kind": "bare_qfn80",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [10.0, 10.0, 0.9],
+      "source": {
+        "document": "RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash",
+        "version": "build-date 2025-02-20",
+        "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": true,
+      "controller_capabilities": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "PIO1_SM1_IPC_UART", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"],
+      "controller_notes": {
+        "PIO0_SM0_RF_SPI/PIO0_SM1_RF_SPI/PIO0_SM2_RF_SPI/PIO0_SM3_RF_SPI": "four independent physical three-wire data groups and state machines; all PIO0 state machines share one selectable 32-GPIO window on the B package; DMA/IRQ deadline proof remains a HIL gate",
+        "PIO1_SM0_EXT_SPI": "independent physical U214 SPI group; PIO1 has its own selectable 32-GPIO window and no display or compatibility-radio sharing",
+        "PIO1_SM1_IPC_UART": "independent full-duplex framed IPC UART with CTS/RTS flow control; 16 Mbaud target stays below the S3 GPIO-matrix >40 MHz direct-IO threshold",
+        "SPI1_IPC": "hardware SPI1 exact mux on GPIO24 RX, GPIO25 CSn, GPIO26 SCK and GPIO27 TX"
+      },
+      "controller_gpio_window_groups": [
+        {"id":"PIO0_GPIO_BASE","controllers":["PIO0_SM0_RF_SPI","PIO0_SM1_RF_SPI","PIO0_SM2_RF_SPI","PIO0_SM3_RF_SPI"],"allowed_windows":[[0,31],[16,47]]},
+        {"id":"PIO1_GPIO_BASE","controllers":["PIO1_SM0_EXT_SPI","PIO1_SM1_IPC_UART"],"allowed_windows":[[0,31],[16,47]]}
+      ],
+      "contacts": {
+        "GPIO0": {"physical": "77", "role": "gpio"}, "GPIO1": {"physical": "78", "role": "gpio"},
+        "GPIO2": {"physical": "79", "role": "gpio"}, "GPIO3": {"physical": "80", "role": "gpio"},
+        "GPIO4": {"physical": "1", "role": "gpio"}, "GPIO5": {"physical": "2", "role": "gpio"},
+        "GPIO6": {"physical": "3", "role": "gpio"}, "GPIO7": {"physical": "4", "role": "gpio"},
+        "GPIO8": {"physical": "6", "role": "gpio"}, "GPIO9": {"physical": "7", "role": "gpio"},
+        "GPIO10": {"physical": "8", "role": "gpio"}, "GPIO11": {"physical": "9", "role": "gpio"},
+        "GPIO12": {"physical": "11", "role": "gpio"}, "GPIO13": {"physical": "12", "role": "gpio"},
+        "GPIO14": {"physical": "13", "role": "gpio"}, "GPIO15": {"physical": "14", "role": "gpio"},
+        "GPIO16": {"physical": "16", "role": "gpio"}, "GPIO17": {"physical": "17", "role": "gpio"},
+        "GPIO18": {"physical": "18", "role": "gpio"}, "GPIO19": {"physical": "19", "role": "gpio"},
+        "GPIO20": {"physical": "20", "role": "gpio"}, "GPIO21": {"physical": "21", "role": "gpio"},
+        "GPIO22": {"physical": "22", "role": "gpio"}, "GPIO23": {"physical": "23", "role": "gpio"},
+        "GPIO24": {"physical": "25", "role": "gpio"}, "GPIO25": {"physical": "26", "role": "gpio"},
+        "GPIO26": {"physical": "27", "role": "gpio"}, "GPIO27": {"physical": "28", "role": "gpio"},
+        "SWCLK": {"physical": "33", "role": "service"}, "SWDIO": {"physical": "34", "role": "service"},
+        "RUN": {"physical": "35", "role": "reset"},
+        "GPIO28": {"physical": "36", "role": "gpio"}, "GPIO29": {"physical": "37", "role": "gpio"},
+        "GPIO30": {"physical": "38", "role": "gpio"}, "GPIO31": {"physical": "39", "role": "gpio"},
+        "GPIO32": {"physical": "40", "role": "gpio"}, "GPIO33": {"physical": "42", "role": "gpio"},
+        "GPIO34": {"physical": "43", "role": "gpio"}, "GPIO35": {"physical": "44", "role": "gpio"},
+        "GPIO36": {"physical": "45", "role": "gpio"}, "GPIO37": {"physical": "46", "role": "gpio"},
+        "GPIO38": {"physical": "47", "role": "gpio"}, "GPIO39": {"physical": "48", "role": "gpio"},
+        "GPIO40": {"physical": "49", "role": "gpio"}, "GPIO41": {"physical": "52", "role": "gpio"},
+        "GPIO42": {"physical": "53", "role": "gpio"}, "GPIO43": {"physical": "54", "role": "gpio"},
+        "GPIO44": {"physical": "55", "role": "gpio"}, "GPIO45": {"physical": "56", "role": "gpio"},
+        "GPIO46": {"physical": "57", "role": "gpio"}, "GPIO47": {"physical": "58", "role": "gpio"},
+        "USB_DM": {"physical": "66", "role": "service"}, "USB_DP": {"physical": "67", "role": "service"},
+        "QSPI_SS_USB_BOOT": {"physical": "75", "role": "service"}
       },
       "strapping_contacts": [],
       "service_required": ["RUN", "SWCLK", "SWDIO", "USB_DM", "USB_DP", "QSPI_SS_USB_BOOT"],
@@ -409,6 +469,7 @@
         "checked": "2026-08-17"
       },
       "programmable": false,
+      "allocatable_contacts": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17"],
       "contacts": {
         "INT": {"physical": "1", "role": "signal"}, "A1": {"physical": "2", "role": "strap"},
         "A2": {"physical": "3", "role": "strap"}, "P00": {"physical": "4", "role": "signal"},
@@ -437,6 +498,7 @@
         "checked": "2026-08-17"
       },
       "programmable": false,
+      "allocatable_contacts": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17", "P20", "P21", "P22", "P23", "P24", "P25", "P26", "P27"],
       "contacts": {
         "P00": {"physical": "1", "role": "signal"}, "P01": {"physical": "2", "role": "signal"},
         "P02": {"physical": "3", "role": "signal"}, "P03": {"physical": "4", "role": "signal"},

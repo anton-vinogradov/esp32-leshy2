@@ -28,11 +28,11 @@ two-board clamshell generator. Его геометрия тоже рабочая
 
 ## Active prerequisite
 
-`DEM-0001` и первый `SRC-0002` pass reviewed. `DEC-0042/REV-0003Y` создали
-единый источник и две structurally checked draft owner/bus/controller/GPIO
-карты. Дальше они закрывают exact peripherals, controller concurrency,
-memory/traffic/power/service и HIL. После согласования рабочей карты G3
-переносит её в старый reproducible mockup.
+`DEM-0001` и `SRC-0002` reviewed. `DEC-0042` создал единый источник; теперь он
+содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
+`G2F-3I` leading paper map. Дальше она закрывает physical RF, exact peripherals,
+signal integrity, memory/traffic/power/service и HIL. После квалификации
+рабочей карты G3 переносит её в старый reproducible mockup.
 
 ## Downstream boundary
 

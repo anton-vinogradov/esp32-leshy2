@@ -116,7 +116,7 @@
   "free_gpio": {"s3": [], "c5": ["GPIO2", "GPIO4", "GPIO5", "GPIO23", "GPIO24"], "rp": []},
   "services": [
     {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT; UART0 fallback is not yet isolated or routed"},
-    {"instance":"c5","contacts":["EN","GPIO28","GPIO13","GPIO14"],"method":"native USB Serial/JTAG plus permanent UART0 and physical CHIP_PU/BOOT"},
+    {"instance":"c5","contacts":["EN","GPIO28","GPIO27","GPIO13","GPIO14"],"method":"native USB Serial/JTAG plus physical CHIP_PU/BOOT and normal-boot/log strap"},
     {"instance":"rp","contacts":["RUN","SWCLK","SWDIO","USB_DM","USB_DP","QSPI_SS_USB_BOOT"],"method":"independent SWD, RUN, USB and BOOTSEL fixture access"}
   ],
   "fixed_routes": [

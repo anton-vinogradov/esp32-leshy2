@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе**: `DEC-0042/REV-0003Y` проверили единый источник и две structurally checked draft-карты; далее exact peripherals/timing/power |
+| 2F. Logical/electrical feasibility | **В работе**: `DEC-0044/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без radio-bus contention; physical RF, exact peripherals/power/HIL открыты |
 | 3. Target physical/product design | Ожидает G2F; P1/P2/P3 reference only, далее адаптируется legacy clamshell generator |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -87,30 +87,37 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 фиксирует все обязательные semantic endpoints без старых owners.
 [`SRC-0002`](../review/architecture/SRC-0002-real-device-pin-provenance.md)
 запрещает считать вывод без цепочки SoC→package→exact module/device→реальный
-pad/header/connector. `DEC-0042/REV-0003Y` добавили проверяемый источник и два
-draft consumer: [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md).
-Они проходят contact/collision/accounting/strap/service checks, но exact nRF,
-CC RF implementation, voice/IR и часть control/power всё ещё blockers.
+pad/header/connector. `DEC-0042/REV-0003Y` добавили проверяемый источник;
+[`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md) теперь
+содержит три consumer, а `G2F-3I` является ведущей paper map. Все проходят
+contact/collision/accounting/strap/service checks, но exact nRF, CC RF
+implementation, voice/IR и часть control/power всё ещё blockers.
 `DSP-0001/REV-0003Z` проверяют три реальные display/touch boundaries и один
 microSD socket. `FND-0051` доказывает, что старые 10 full frames/s для ST7796S
 и generic 24-pin connector переиспользовать нельзя. `DEC-0043/REV-0004J`
 принимают task/dirty-region performance с первым critical/menu response
 `≤100 ms` и исправляют shared-U214 display quantum с 1 KiB до 256 B; exact
 display, optics и HIL остаются открыты. `CTL-0001/REV-0004K` обнаружили, что
-validator закрывает только MCU accounting: один TCA9535 распределён лишь на
-5/16 или 3/16 портов, а рабочий slow-control envelope остаётся `19…27` с
-центром `22…24`. `FND-0052` также отделяет internal I²C от внешнего
-U214/Port-A fault domain и снимает недоказанное обещание S3 UART0 fallback;
-native USB+EN/BOOT остаётся baseline. `⚠️ IMP-0037` ожидает решения по
-рабочему инварианту `≥24` ports и separated I²C domains. `FND-0050` фиксирует
-nRF24 NRND и исправляет статус CC1101 на ACTIVE.
+первые карты закрывали только MCU accounting. Владелец делегировал перебор
+компоновки; `DEC-0044` принял `IMP-0037/A`, а `NIF-0001/REV-0004L` проверили
+ведущий `G2F-3I`: RP2354B/QFN80, пять независимых radio/accessory SPI paths,
+dedicated 4-bit SDIO S3↔C5, dedicated SPI3 S3↔RP, 23/24 slow endpoints и
+изолированный U214 I²C. Единственная high-rate scheduled pair — display+SD на
+SPI2 с bounded quantum; radio FIFO/IPC её не ждут. C5 UART0+EN/BOOT/strap
+остаётся recovery path, потому что GPIO13/14 заняты SDIO. Повторная
+exact-device проверка обнаружила и исправила crossing реального RP2354B PIO
+GPIO-window; PIO data теперь `GPIO30…46`, fixed mux закреплён контрактами, а
+capacity закрыта с резервом 7/12 PIO SM и 3/16 DMA. Physical RF self-desense и
+named HIL остаются следующими gates. `FND-0050` фиксирует nRF24 NRND и
+исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее обе draft-карты проходят одинаковое закрытие exact-device, controller
-concurrency, memory/traffic/power/service и HIL. Только после этого одна из них
-может стать reviewed working electrical baseline и войти в старый physical
-generator. `LAY-0001` P1/P2/P3 остаётся reference; выбирать его не нужно.
+Далее `G2F-3I` проходит physical RF/self-desense, exact peripheral,
+signal-integrity, power и HIL closure. После этого leading paper map может
+стать working electrical baseline и войти в адаптированный legacy physical
+generator. `G2F-2R/3D` остаются сравнимыми references; `LAY-0001` P1/P2/P3
+также reference, выбирать его не нужно.
