@@ -13,7 +13,8 @@ feasibility и некорректно для final schematic. Наиболее �
 
 - display/touch уже имеют exact current paper endpoint `HMX035CTFT-001`, но
   production orderability/drawing/connector/backlight/protection/HIL открыты;
-  mono codec всё ещё не имеет принятого exact target MPN/package;
+  mono codec now has exact `ES8311` QFN-20 contacts and digital fit, while
+  external power switching and fully differential analog conditioning remain open;
 - IR frontends/driver и actual-TX evidence не заканчиваются на exact contacts;
 - hard-STOP latch, power/current/thermal supervisor и load-switch/isolation
   circuits не выбраны;
@@ -22,7 +23,7 @@ feasibility и некорректно для final schematic. Наиболее �
 - nRF, CC, voice and receiver electrical/RF assemblies ещё требуют source,
   voltage, reset, matching and HIL closure.
 
-SA518, Si4732 and HMX035CTFT-001 exact contacts are now instantiated, including
+SA518, Si4732, HMX035CTFT-001 and ES8311 exact contacts are now instantiated, including
 SA518 update/recovery breakout and separate Si4732 FMI/AMI routes. Это
 подтверждает, что список можно сокращать по реальным devices, не меняя GPIO
 арифметику догадками.

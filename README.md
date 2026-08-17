@@ -109,6 +109,10 @@ discloses exact assembly `HMX035CTFT-001`; `DSP-0005/REV-0005A` review its
 40-contact electrical fit without consuming a new GPIO. Standalone
 orderability/drawing/lifecycle, exact connector, backlight, optics and
 protection remain explicitly open.
+`AUDIO-0001/REV-0005B` also instantiate exact `ES8311` QFN-20 contacts:
+`CE` is address strap `0x19`, P10 is external `CODEC_PWR_EN`, and the S3
+budget is unchanged. Exact differential analog routing is the open
+`IMP-0046` decision.
 
 ```mermaid
 flowchart LR
@@ -154,6 +158,9 @@ Remaining electrical boundaries are listed in
 and may change the working design after repeated review. The current display
 path already terminates on `HMX035CTFT-001`: S3 GPIO39 is touch IRQ, slow
 P06/P07 are display/touch reset, and S3 GPIO6/GPIO43 remain free.
+The audio digital path likewise terminates on exact `ES8311` contacts at S3
+GPIO1/2/15/16/17/18; codec power and differential analog conditioning remain
+open electrical blocks rather than hidden pins.
 
 ## Safety and cost boundary
 

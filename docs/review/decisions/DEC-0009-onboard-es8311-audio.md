@@ -14,14 +14,14 @@ Legacy firmware заявляет запись и цифровую обработ
 
 - на основную PCB добавляется mono ADC+DAC codec **ES8311**;
 - существующий `U33` выбирает RX-источник `SI_AUDIO` или `SA_AF`, а его выход одновременно доступен ADC кодека;
-- между `U33` и PAM8302 добавляется 2:1 analog selector, аппаратный default которого — прямой analog RX → speaker;
+- перед PAM8302 добавляется 2:1 analog selector, аппаратный default которого — прямой analog RX → speaker; digital branch проходит exact differential-to-single-ended topology из `IMP-0046`;
 - между electret mic и `MIC_IN` SA868 добавляется второй 2:1 analog selector, аппаратный default которого — прямой mic → SA868;
-- DAC кодека попадает на speaker или `MIC_IN` только после явного выбора соответствующего selector;
+- qualified DAC branch попадает на speaker или `MIC_IN` только после явного выбора соответствующего selector;
 - PTT остаётся независимым TX-гейтом и не активируется самим codec или переключением audio selector;
 - reset/crash S3 и выключенный либо неисправный codec не должны лишать устройство обычного прослушивания и голосовой связи;
 - codec использует четыре I²S-сигнала без выделенного MCLK, с BCLK как кандидатом внутреннего clock source ES8311; I²C уже существует;
 - предварительные GPIO2/6/42/46 были рассчитаны на исторический перенос 3×nRF24 и IR на C5 и больше не являются предпочтительной pin map. Четыре I²S-сигнала остаются обязательным demand; их размещает общий этап-3 budget после `DEC-0023`;
-- три медленных управляющих сигнала codec/selectors должны войти в общую pin/safety-map. Последующий аудит обнаружил конфликт исходного размещения на `U13.P10..P17` с UI matrix (`FND-0006`). `FND-0032` исправляет прежний ошибочный подсчёт: U214 сохраняет reset, поэтому `IMP-0010` теперь использует `U13.P16/P17` для selectors и только действительно свободную `U12.P12` для codec enable/reset. Это остаётся layout-кандидатом до решения matrix/U14 и recovery/touch-IRQ proof.
+- три медленных управляющих сигнала codec/selectors должны войти в общую pin/safety-map. Последующий аудит обнаружил конфликт исходного размещения на `U13.P10..P17` с UI matrix (`FND-0006`). Current `G2F-3I` closes the control count as `P10=CODEC_PWR_EN`, `P11/P12=selectors`. `FND-0065` corrects the old wording: ES8311 `CE` is an I2C-address strap, not enable/reset; `P10` controls an external codec power switch.
 
 ## Firmware-контракт
 
@@ -54,4 +54,14 @@ Legacy firmware заявляет запись и цифровую обработ
 
 ## Стоимостная граница
 
-Снимок `IMP-0009` даёт ориентир для ES8311 и двух selectors около `$0.70` по low-volume unit prices и `$0.43` на tier 100 до пассивов, размещения и теста. Это выбранная архитектура, но ещё не подтверждённая стоимость PCBA.
+Снимок `IMP-0009` давал ориентир для ES8311 и двух selectors около `$0.70` по low-volume unit prices и `$0.43` на tier 100. `FND-0065` показал, что эта оценка не включает exact differential-output conditioning; до выбора `IMP-0046` и нового BOM она историческая и не является текущей PCBA-оценкой.
+
+## Exact-contact amendment 2026-08-17
+
+[`AUDIO-0001`](../architecture/AUDIO-0001-es8311-exact-electrical-fit.md) and
+[`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md) verify
+the exact QFN-20 digital contact fit without changing GPIO budget. The scope
+decision for onboard ES8311 and hardware analog bypass remains accepted.
+`IMP-0046` is a narrower open implementation decision: how to preserve the
+fully differential `OUTP/OUTN` signal when both legacy consumers are
+single-ended.

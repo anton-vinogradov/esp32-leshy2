@@ -43,6 +43,10 @@ reproducible mockup. `DSP-0003/REV-0004Y` теперь сравнивают ст
 class. `FND-0063/DSP-0005/REV-0005A` устанавливают exact current assembly
 candidate `HMX035CTFT-001` и проводят ревью его paper electrical fit;
 production ordering/drawing/connector/backlight/optics остаются открыты.
+`AUDIO-0001/REV-0005B` likewise instantiate exact `ES8311` QFN-20 digital
+contacts without changing S3 `31/3/2`; `FND-0065` corrects `CE` to an address
+strap and P10 to external `CODEC_PWR_EN`. Analog routing remains the explicit
+owner choice `IMP-0046`.
 `FND-0060` remaining exact electrical endpoints,
 принятие profiled kit (`IMP-0043`), exact two-source assemblies и assembled RF
 HIL (`FND-0058`) закрываются параллельно. Найденный physical/RF/power/service conflict меняет

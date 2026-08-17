@@ -34,7 +34,7 @@ reviewed функций и оставшихся exact-device развилок.
 | Класс | Ожидаемые slow endpoints | Основание/вариативность |
 |---|---:|---|
 | ordinary UI | 6–9 | прежний проверенный набор — 9 обычных controls; diode-isolated `3×3` matrix сжимает его до 6 lines, direct wiring требует 9; физический target ещё не выбран |
-| принятый audio/voice control | 5 | codec enable/reset, два independent analog selectors, voice power-down, voice high/low |
+| принятый audio/voice control | 5 | external codec power-switch enable, два independent analog selectors, voice power-down, voice high/low; ES8311 `CE` is an address strap, not a control |
 | external/display reset | 2 | U214 LoRa reset и display reset |
 | status/safety observations | 3–5 | microSD detect, STOP-latch sense, voice squelch/status; receiver IRQ/status и power/fault зависят от exact devices |
 | touch/receiver/accessory control | 3–6 | touch reset/IRQ policy, receiver reset/control и isolated-I²C EN/READY зависят от exact topology |

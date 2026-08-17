@@ -50,7 +50,13 @@ flowchart LR
 - PTT остаётся отдельным гейтом и по `DEC-0003` не активируется автоматически;
 - при reset/crash/unpowered codec обычное прослушивание и голосовая связь сохраняются.
 
-Для обоих селекторов достаточно двух дополнительных 2:1 analog switch. После измерений speaker selector можно заменить пассивным суммированием только если доказаны отсутствие off-state loading, pops, взаимного влияния и ухудшения SNR. До такого доказательства более надёжный двухключевой вариант является baseline.
+Два independent 2:1 selector control остаются достаточными, но `FND-0065`
+исправляет прежнюю электрически неполную формулировку: ES8311 даёт
+дифференциальные `OUTP/OUTN`, а legacy consumers single-ended. Перед обоими
+one-pole selectors нужен принятый differential-to-single-ended conditioner,
+либо speaker branch должна переключать оба полюса. Exact topology вынесена в
+`IMP-0046`; до решения нельзя считать прежние «codec + two switches» готовой
+схемой или полной оценкой BOM.
 
 ## Почему ES8311
 
@@ -78,7 +84,7 @@ flowchart LR
 - GPS UART GPIO18/47 из `DEC-0006` не заимствуется;
 - текущие LoRa `DIO1/BUSY` кандидаты GPIO3/15 не заимствуются;
 - выбор SPI/SDIO/UART для S3↔C5 не нужен для четырёхпроводного codec-варианта;
-- codec enable и два selector control требуют три медленные линии. Первоначальный кандидат `U13.P10..P17` пересёкся с UI matrix (`FND-0006`); переработанный `IMP-0010` использует одну линию `U13` и две линии `U12`, освобождённые удалением onboard LoRa. Окончательная pin map не принята и по `DEC-0012` рассматривается после сводного pin budget этапа 3.
+- external codec power-switch enable и два selector control требуют три медленные линии. Current `G2F-3I` assigns `P10=CODEC_PWR_EN`, `P11/P12=AUDIO_SEL0/1`; ES8311 `CE` is separately strapped as an I2C-address input and must never be driven as reset/enable.
 
 ## Питание и аналоговая часть
 
@@ -100,7 +106,7 @@ Datasheet SA868 называет `MIC_IN` «microphone or line in», но не �
 |---|---|---:|---|---|---|
 | оставить текущий analog path | только live RX и mic voice | 0 | да | минимум | не закрывает `FND-0003` |
 | S3 ADC1 + 8-bit sigma-delta/PWM | потенциально basic capture/tones | 2+ | можно сохранить | минимальный IC BOM, но analog conditioning и большой proof | не считать эквивалентным: ADC2 continuous нестабилен, ADC1 pin-constrained, TX output 8-bit и качество не доказано |
-| **ES8311 + два selector** | **все перечисленные mono audio prerequisites** | **4 без MCLK** | **да, hardware default** | **рекомендуемый минимум** | **baseline предложения** |
+| **ES8311 + qualified analog conditioning + два selector** | **все перечисленные mono audio prerequisites** | **4 без MCLK** | **да, hardware default** | **topology/BOM open in `IMP-0046`** | **accepted scope; exact circuit open** |
 | ES8388 onboard | то же + stereo/extra analog inputs | 4–5 | только с внешними selector | больше корпус/обвязка; stereo не требуется | технически годится, но добавляет незапрошенный scope |
 | TI TLV320AIC3204 | то же + 2×ADC/2×DAC, 6 inputs, line/headphone outputs | 4–5 | только с внешними selector | active, но дороже и нет готового Espressif driver | premium/reference, не zero-loss minimum |
 | M5Stack Audio Module M144 | codec доступен снаружи | не экономит I²S/I²C | внутреннего bypass нет | `$7.95`, 54×54 mm, 23.53 mA | не подходит как основной internal-radio path |
@@ -161,6 +167,11 @@ Codec лишь создаёт технический audio path и сам по �
 Владелец принял бортовой ES8311, существующий RX mux/ADC tap и два default-to-analog selector как целевую audio-архитектуру. Канонический контракт и граница доказательства зафиксированы в `DEC-0009`.
 
 Связанные capability больше не `BLOCKED` отсутствием выбора архитектуры, но остаются `conditional` до pin/electrical/firmware proof и отдельных scope-решений. Это принятие не означает, что codec уже добавлен в схему или что `FND-0003` закрыта на уровне реализации.
+
+Exact-contact review `AUDIO-0001/REV-0005B` later instantiates the QFN-20
+digital boundary and corrects `CE` versus external power control. It also
+opens `IMP-0046`: the former diagram's singular `DAC` arrow is logical, not a
+license to ignore the physical differential `OUTP/OUTN` pair.
 
 ## Источники
 

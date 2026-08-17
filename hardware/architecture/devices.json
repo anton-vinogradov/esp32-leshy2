@@ -314,6 +314,49 @@
         "IM2": {"physical": "40", "role": "strap"}
       }
     },
+    "everest_es8311_qfn20": {
+      "mpn": "Everest Semiconductor ES8311",
+      "kind": "mono_audio_codec",
+      "qualification": "verified_candidate",
+      "lifecycle": "current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open",
+      "dimensions_mm": [3.0, 3.0, null],
+      "source": {
+        "document": "ES8311 Low Power Mono Audio CODEC Product Brief",
+        "version": "Revision 17.0, February 2026",
+        "url": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",
+        "checked": "2026-08-17"
+      },
+      "package_evidence": {
+        "package": "QFN-20 3x3 mm with exposed thermal pad",
+        "document": "ES8311 User Guide",
+        "version": "Rev 1.11, September 2018",
+        "url": "https://files.waveshare.com/wiki/common/ES8311.user.Guide.pdf"
+      },
+      "programmable": false,
+      "contacts": {
+        "CCLK": {"physical": "1", "role": "signal"},
+        "MCLK": {"physical": "2", "role": "signal"},
+        "PVDD": {"physical": "3", "role": "power"},
+        "DVDD": {"physical": "4", "role": "power"},
+        "DGND": {"physical": "5", "role": "power"},
+        "SCLK": {"physical": "6 (SCLK/DMIC_SCL)", "role": "signal"},
+        "ASDOUT": {"physical": "7", "role": "signal"},
+        "LRCK": {"physical": "8", "role": "signal"},
+        "DSDIN": {"physical": "9", "role": "signal"},
+        "AGND": {"physical": "10", "role": "power"},
+        "AVDD": {"physical": "11", "role": "power"},
+        "OUTP": {"physical": "12", "role": "analog"},
+        "OUTN": {"physical": "13", "role": "analog"},
+        "DACVREF": {"physical": "14", "role": "reference"},
+        "ADCVREF": {"physical": "15", "role": "reference"},
+        "VMID": {"physical": "16", "role": "reference"},
+        "MIC1N": {"physical": "17", "role": "analog"},
+        "MIC1P": {"physical": "18 (MIC1P/DMIC_SDA)", "role": "analog"},
+        "CDATA": {"physical": "19", "role": "signal"},
+        "CE": {"physical": "20", "role": "strap"},
+        "EPAD": {"physical": "21 (exposed thermal pad)", "role": "power"}
+      }
+    },
     "waveshare_29318_3_5_ct_lcd": {
       "mpn": "Waveshare 3.5inch Capacitive Touch LCD, SKU 29318",
       "kind": "display_carrier_module",

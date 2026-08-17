@@ -51,3 +51,9 @@ instantiates the exact disclosed `HMX035CTFT-001` assembly in `G2F-3I` and
 checks its 40-contact QSPI/touch fit. This remains a paper candidate: exact
 FPC mechanics/connector, standalone orderability/lifecycle, backlight,
 protection, optics and HIL must close before production acceptance.
+
+`AUDIO-0001/REV-0005B` additionally instantiate the exact Everest
+Semiconductor `ES8311` QFN-20 contact map. I2C/I2S fit consumes no new GPIO;
+`CE` is address strap `0x19`, while slow P10 is external `CODEC_PWR_EN`.
+Power switching and differential analog routing remain explicit blockers in
+`FND-0065/IMP-0046`.

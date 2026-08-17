@@ -109,6 +109,9 @@ occupancy. [`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-cla
 ревью его 40-contact electrical fit без расхода новых GPIO. Standalone
 orderability/drawing/lifecycle, exact connector, backlight, optics и protection
 остаются явно открытыми.
+`AUDIO-0001/REV-0005B` также вносят exact контакты `ES8311` QFN-20: `CE` —
+strap адреса `0x19`, P10 — внешний `CODEC_PWR_EN`, бюджет S3 не меняется.
+Exact differential analog routing остаётся открытым решением `IMP-0046`.
 
 ```mermaid
 flowchart LR
@@ -154,6 +157,9 @@ SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
 и могут изменить working design после повторного ревью. Current display path
 уже заканчивается на `HMX035CTFT-001`: S3 GPIO39 — touch IRQ, slow P06/P07 —
 display/touch reset; S3 GPIO6/GPIO43 остаются free.
+Audio digital path также заканчивается на exact ES8311 contacts через S3
+GPIO1/2/15/16/17/18; питание codec и differential analog conditioner остаются
+явными электрическими блокерами, а не скрытыми GPIO.
 
 ## Границы безопасности и стоимости
 

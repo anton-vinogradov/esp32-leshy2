@@ -40,6 +40,10 @@ feeds and measurements remain open.
 `DEC-0046/QST-0001` require unused interfaces to
 enter verified quiet states. It is not yet target: exact RF paths, power gates,
 peripherals and HIL remain open; CAD stays blocked.
+`AUDIO-0001/REV-0005B` now close the exact ES8311 QFN-20 digital/contact fit:
+S3 GPIO1/2/15/16/17/18 land on real I2C/I2S contacts, `CE` is address strap
+`0x19`, and P10 is external `CODEC_PWR_EN`. `FND-0065/IMP-0046` keep the
+fully differential analog routing and exact power circuit open.
 
 ## Active G2F artifacts
 
@@ -121,6 +125,11 @@ peripherals and HIL remain open; CAD stays blocked.
   not. `DEC-0052/REV-0004X` accept and propagate this path;
   `DEC-0053/REV-0004Z` accept the 3.5-inch display class while exact production
   assembly, optics and HIL remain open in `DSP-0004`.
+- [`AUDIO-0001`](AUDIO-0001-es8311-exact-electrical-fit.md) records every
+  ES8311 QFN-20 contact, proves the unchanged digital pin budget and corrects
+  `CE` versus external power enable. [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
+  asks how to preserve/convert differential `OUTP/OUTN` for the single-ended
+  legacy speaker and TX paths.
 
 ## Deferred/reference G3 artifacts
 

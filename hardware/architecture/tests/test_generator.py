@@ -144,6 +144,66 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("display.IM0", "abstract:display-ground", "LCD_IM0_LOW"), routes)
         self.assertIn(("display.IM2", "abstract:display-ground", "LCD_IM2_LOW"), routes)
 
+    def test_exact_es8311_digital_fit_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        self.assertEqual("everest_es8311_qfn20", candidate["instances"]["codec"])
+
+        codec = self.database["devices"][candidate["instances"]["codec"]]
+        self.assertEqual("Everest Semiconductor ES8311", codec["mpn"])
+        expected_physical = {
+            "CCLK": "1",
+            "MCLK": "2",
+            "SCLK": "6 (SCLK/DMIC_SCL)",
+            "ASDOUT": "7",
+            "LRCK": "8",
+            "DSDIN": "9",
+            "OUTP": "12",
+            "OUTN": "13",
+            "MIC1N": "17",
+            "MIC1P": "18 (MIC1P/DMIC_SDA)",
+            "CDATA": "19",
+            "CE": "20",
+            "EPAD": "21 (exposed thermal pad)",
+        }
+        for contact, physical in expected_physical.items():
+            self.assertEqual(physical, codec["contacts"][contact]["physical"])
+
+        s3 = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "s3"
+        }
+        self.assertIn("codec.CDATA", s3["GPIO1"]["peers"])
+        self.assertIn("codec.CCLK", s3["GPIO2"]["peers"])
+        self.assertEqual(["codec.SCLK"], s3["GPIO15"]["peers"])
+        self.assertEqual(["codec.LRCK"], s3["GPIO16"]["peers"])
+        self.assertEqual(["codec.DSDIN"], s3["GPIO17"]["peers"])
+        self.assertEqual(["codec.ASDOUT"], s3["GPIO18"]["peers"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        self.assertIn(
+            ("slow_io.P10", "abstract:codec-power-switch-enable", "CODEC_PWR_EN"),
+            routes,
+        )
+        self.assertNotIn("CODEC_EN", {route["net"] for route in candidate["fixed_routes"]})
+        self.assertIn(
+            ("abstract:codec-address-high-3v3", "codec.CE", "CODEC_I2C_ADDR_0X19"),
+            routes,
+        )
+        self.assertIn(("codec.MCLK", "abstract:no-connect", "CODEC_MCLK_NC"), routes)
+        self.assertIn(
+            ("codec.OUTP", "abstract:qualified-codec-differential-output-routing", "CODEC_DAC_OUT_P"),
+            routes,
+        )
+        self.assertIn(
+            ("codec.OUTN", "abstract:qualified-codec-differential-output-routing", "CODEC_DAC_OUT_N"),
+            routes,
+        )
+        self.assertEqual(["GPIO6", "GPIO43"], candidate["free_gpio"]["s3"])
+
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
             GENERATOR.reject_duplicate_keys([("GPIO0", {}), ("GPIO0", {})])
