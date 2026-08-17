@@ -125,7 +125,11 @@ generic long coax способен нарушить capacitance budget AMI. По
 self-desense и target HIL остаются открытыми. Та же exact-device проверка
 нашла `FND-0056`: у SA518 rev 1.1 нет dedicated SQ, поэтому maps теперь
 резервируют neutral `VOICE_ACTIVITY`, а pin-17 UPDATE остаётся fixture proof
-gate. `FND-0050` фиксирует nRF24 NRND и
+gate. `RFH-0001/REV-0004R` проверили module-to-panel interface: S3/C5 имеют
+явный first-generation U.FL/MHF I/AMC boundary, а Ebyte документирует только
+generic `IPX`. `FND-0057` исправляет machine source и требует specimen-fit/VNA
+gate; `IMP-0042` оставляет открытым standard SMA против mixed RP-SMA без
+преждевременного выбора mount/length. `FND-0050` фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -133,7 +137,8 @@ gate. `FND-0050` фиксирует nRF24 NRND и
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее `G2F-3I` фиксирует exact production nRF MPN/lot, SMA/feed/protection и
+Далее владелец решает `IMP-0042`; затем `G2F-3I` фиксирует exact production
+nRF MPN/lot, SMA/feed/protection и
 antenna-profile implementation
 и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
 `T1` profiles. После этого проходит quiet-state power-part, physical

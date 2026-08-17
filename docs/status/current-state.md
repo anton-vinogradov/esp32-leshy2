@@ -128,7 +128,11 @@ power parts, self-desense
 and target HIL remain the next gates. The same exact-device pass found
 `FND-0056`: SA518 rev 1.1 has no dedicated SQ pin, so maps now reserve neutral
 `VOICE_ACTIVITY`, while pin-17 UPDATE access remains a fixture proof gate.
-`FND-0050` records nRF24 NRND
+`RFH-0001/REV-0004R` review the module-to-panel interface: S3/C5 have an
+explicit first-generation U.FL/MHF I/AMC boundary, while Ebyte documents only
+generic `IPX`. `FND-0057` corrects the machine source and requires a
+specimen-fit/VNA gate; `IMP-0042` leaves standard SMA versus mixed RP-SMA open
+without prematurely choosing mount/length. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -136,7 +140,8 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, `G2F-3I` fixes the exact production nRF MPN/lot and
+Next, the owner resolves `IMP-0042`; `G2F-3I` then fixes the exact production
+nRF MPN/lot and
 SMA/feed/protection/antenna-profile implementation, then advances `N24H-0001`
 from `L0 DIV↔DIV` pre-HIL to target
 `T1` profiles. It then receives quiet-state power-part, physical

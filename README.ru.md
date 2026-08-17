@@ -117,6 +117,11 @@ nRF paths и внешний SMA для всех бортовых antenna endpoin
 AM/LW; `DEC-0049/REV-0004Q` принимают девять labelled SMA с раздельными
 `RX-FM/SW` и `RX-AM/LW`. Последний требует короткий loop/pod либо
 квалифицированный buffered profile и не является generic coax port.
+`RFH-0001/REV-0004R` дополнительно проверяют module-to-panel feeds: S3/C5
+официально совместимы с first-generation U.FL/MHF I/AMC, но Ebyte называет
+свой разъём только `IPX`, поэтому `FND-0057` требует specimen-fit gate.
+`IMP-0042` оставляет владельцу выбор standard SMA против mixed RP-SMA;
+mounting и длины кабелей остаются physical co-design.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.

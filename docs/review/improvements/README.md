@@ -14,7 +14,7 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Последнее рассмотренное предложение: [`IMP-0041`](IMP-0041-exact-external-sma-count.md)
-сравнило девять dedicated external SMA с восьмью и shared Si4732 port после
-проверки exact `FMI/AMI` pins и antenna frontends. Вариант A принят
-`DEC-0049`; открытых предложений в этом реестре сейчас нет.
+Текущее предложение в активной цепочке: [`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md)
+выбирает external SMA gender/polarity, сохраняя mount и cable length для
+physical co-design. `FND-0057` одновременно запрещает считать generic Ebyte
+`IPX` доказанным U.FL/MHF I до specimen gate.

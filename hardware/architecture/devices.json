@@ -14,6 +14,12 @@
         "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
         "checked": "2026-08-17"
       },
+      "rf_connector": {
+        "manufacturer_description": "first-generation external antenna connector",
+        "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
+        "impedance_ohm": 50,
+        "qualification": "datasheet_verified"
+      },
       "programmable": true,
       "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
       "controller_notes": {
@@ -60,7 +66,7 @@
         "GPIO2": {"physical": "38", "role": "gpio"},
         "GPIO1": {"physical": "39", "role": "gpio"},
         "GND": {"physical": "1/40/41", "role": "power"},
-        "ANT": {"physical": "on-module external-antenna connector", "role": "rf"}
+        "ANT": {"physical": "first-generation on-module receptacle compatible with U.FL/MHF I/AMC", "role": "rf"}
       },
       "strapping_contacts": ["GPIO0", "GPIO3", "GPIO45", "GPIO46"],
       "service_required": ["EN", "GPIO0", "GPIO19", "GPIO20"],
@@ -79,6 +85,13 @@
         "version": "v1.2",
         "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
         "checked": "2026-08-17"
+      },
+      "rf_connector": {
+        "manufacturer_description": "ANT1 first-generation external antenna connector",
+        "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
+        "impedance_ohm": 50,
+        "qualification": "datasheet_verified",
+        "secondary_path": "ANT2 pad default-disabled; not a second baseline external connector"
       },
       "programmable": true,
       "controller_capabilities": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SDIO_SLAVE_4BIT", "SPI2", "SPI2_OR_GPIO", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
@@ -110,7 +123,7 @@
         "GPIO11": {"physical": "25", "role": "gpio"},
         "GPIO25": {"physical": "26", "role": "gpio"},
         "GPIO26": {"physical": "27", "role": "gpio"},
-        "ANT1": {"physical": "on-module U.FL-compatible connector (default path)", "role": "rf"},
+        "ANT1": {"physical": "first-generation on-module receptacle compatible with U.FL/MHF I/AMC (default path)", "role": "rf"},
         "ANT2": {"physical": "31", "role": "rf"},
         "GND": {"physical": "1/20/22/28/29/30/32", "role": "power"}
       },
@@ -441,13 +454,20 @@
         "url": "https://www.nordicsemi.com/Products/nRF24-series",
         "checked": "2026-08-17"
       },
+      "rf_connector": {
+        "manufacturer_description": "IPX external antenna interface, approximately 50 ohm",
+        "compatible_mating_families": [],
+        "impedance_ohm": 50,
+        "qualification": "exact_mating_family_unproven_requires_specimen_gate",
+        "finding": "FND-0057"
+      },
       "programmable": false,
       "contacts": {
         "VCC": {"physical": "1", "role": "power"}, "CE": {"physical": "2", "role": "signal"},
         "CSN": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
         "MOSI": {"physical": "5", "role": "signal"}, "MISO": {"physical": "6", "role": "signal"},
         "IRQ": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"},
-        "ANT": {"physical": "on-module IPEX connector", "role": "rf"}
+        "ANT": {"physical": "manufacturer-labelled IPX receptacle; exact mating family/generation unproven", "role": "rf"}
       }
     },
     "ebyte_e01_2g4m27d": {

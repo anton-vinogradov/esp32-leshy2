@@ -77,6 +77,10 @@ peripherals and HIL remain open; CAD stays blocked.
   domains and rejects the legacy one-generic-port assumption;
   [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
   accepts nine labelled SMA with separate `RX-FM/SW` and `RX-AM/LW` paths.
+- [`RFH-0001`](RFH-0001-module-to-external-sma-interface-review.md) separates
+  five module-origin feeds from four PCB/frontend-origin feeds. It verifies
+  first-generation U.FL/MHF I/AMC compatibility for S3/C5, records Ebyte
+  `IPX` as unproven `FND-0057`, and opens external gender choice `IMP-0042`.
 
 ## Deferred/reference G3 artifacts
 

@@ -117,6 +117,11 @@ onboard antenna endpoint. `ANT-0001/REV-0004P` now prove that exact Si4732 has
 separate FM/SW and AM/LW antenna inputs; `DEC-0049/REV-0004Q` accept nine
 labelled SMA with separate `RX-FM/SW` and `RX-AM/LW`. The latter requires a
 short loop/pod or qualified buffered profile and is not a generic coax port.
+`RFH-0001/REV-0004R` additionally review module-to-panel feeds: S3/C5 have
+explicit first-generation U.FL/MHF I/AMC compatibility, while Ebyte calls its
+connector only `IPX`, so `FND-0057` requires a specimen-fit gate. `IMP-0042`
+leaves standard SMA versus mixed RP-SMA to the owner; mounting and cable
+lengths remain physical co-design.
 Physical RF/full-mix
 measurements, unused-interface quiet-state power controls,
 peripherals, power and HIL must close before adapting the legacy physical

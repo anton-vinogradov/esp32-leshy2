@@ -1,6 +1,6 @@
 # FND-0055 — legacy Si4732 SMA hides two antenna input domains
 
-- Статус: **Несоответствие подтверждено; active RF model исправлена, port decision открыт**
+- Статус: **Port decision исправлен `DEC-0049`; frontend/HIL closure открыт**
 - Серьёзность: RF sensitivity / mechanical interface / acceptance blocker
 - Обнаружено: 2026-08-17
 - Затрагивает: legacy layout generator, `RF-RX`, SMA count, enclosure labels,
@@ -39,13 +39,13 @@ Legacy mockup рисует один generic `Si4732` SMA и описывает �
   теперь описывает `RF-RX` как один receiver session с двумя input domains;
 - [`ANT-0001`](../architecture/ANT-0001-external-sma-path-inventory.md)
   пересчитывает банк по реальным устройствам;
-- legacy generator остаётся immutable draft и будет адаптирован только после
-  решения `IMP-0041`.
+- legacy generator остаётся immutable draft; `DEC-0049` требует два labelled
+  ports в его будущей active адаптации.
 
 ## Критерий закрытия
 
-Находка закрывается после решения exact endpoint count и проверки обоих
-Si4732 frontends на выбранных antennas/cables: sensitivity, tuning range,
+Exact endpoint count закрыт `DEC-0049`. Находка полностью закрывается после
+проверки обоих Si4732 frontends на выбранных antennas/cables: sensitivity, tuning range,
 noise pickup, ESD, insertion/parasitic loss, mode transition и coexistence.
 
 ## Первичные источники

@@ -99,6 +99,20 @@ class ArchitectureValidationTests(unittest.TestCase):
                 candidate["id"],
             )
 
+    def test_rf_micro_connector_provenance_stays_device_specific(self):
+        s3 = self.database["devices"]["esp32_s3_wroom_1u_n16r2"]["rf_connector"]
+        c5 = self.database["devices"]["esp32_c5_wroom_1u_n8r8"]["rf_connector"]
+        nrf = self.database["devices"]["ebyte_e01_ml01ipx"]["rf_connector"]
+        expected_families = ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"]
+        self.assertEqual(expected_families, s3["compatible_mating_families"])
+        self.assertEqual(expected_families, c5["compatible_mating_families"])
+        self.assertEqual([], nrf["compatible_mating_families"])
+        self.assertEqual(
+            "exact_mating_family_unproven_requires_specimen_gate",
+            nrf["qualification"],
+        )
+        self.assertEqual("FND-0057", nrf["finding"])
+
     def test_rejects_allocated_strap_without_proof(self):
         candidates = copy.deepcopy(self.candidates)
         candidate = next(c for c in candidates if c["id"] == "G2F-2R")
