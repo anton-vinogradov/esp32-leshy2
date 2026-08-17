@@ -1,8 +1,7 @@
 # DEC-0025 — dedicated 4.0 V `VVOICE` для SA518
 
-> `DEC-0064/PWR-0006` retain the required `4.0 V` output but reopen its
-> implementation: it is a buck in the 2S branch and a boost/buck-boost in a
-> 1S branch.
+> `DEC-0064/PWR-0006` compared the input alternatives; `DEC-0065` confirms
+> the `4.0 V` output is implemented by a buck from the accepted 2S input.
 
 - Статус: **Принято; проведено ревью**
 - Дата: 2026-08-16
@@ -12,9 +11,8 @@
 
 ## Решение
 
-1. SA518 получает отдельный rail `VVOICE`. Первоначальный собственный buck от
-   `2S BAT=6.0–8.4 V` остаётся вариантом A; для `1S` требуется доказанный
-   boost/buck-boost без изменения выходного контракта.
+1. SA518 получает отдельный buck rail `VVOICE` от принятого
+   `2S BAT=6.0–8.4 V`.
 2. Номинал `VVOICE` — 4.0 V. Окончательное производственное окно внутри 3.9–4.1 V выбирается только по conducted RF/current qualification exact SA518 revision; это не пользовательская регулировка мощности.
 3. Power stage рассчитывается не менее чем на 1.25 A continuous и 1.5 A transient, с local bulk, доступными current/voltage test points и проверкой droop/thermal margin.
 4. `VVOICE` default-off и находится под независимым `TX_KILL` решения `DEC-0024`. Hardware STOP снимает питание/enable voice PA и принудительно удерживает PTT в RX независимо от MCU, UART, I²C и UI.

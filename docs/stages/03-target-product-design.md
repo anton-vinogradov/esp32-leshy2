@@ -74,8 +74,9 @@ path, fixed-input-current, pseudo-gauge и obsolete rail sizes отклонен�
 target. Владелец принял `IMP-0052/B` как `DEC-0062`: два 18650 slots остаются
 отдельно заменяемыми, а переполюсовка, mismatch, извлечение и bounce должны
 приводить к fail-closed. `DEC-0063/PWR-0004` уже принимают exact sink-only
-USB-PD frontend. `DEC-0064/PWR-0006` переоткрывают electrical series versus
-controlled-1S topology; текущий owner gate — `IMP-0055`.
+USB-PD frontend. `DEC-0064/PWR-0006` сравнивают electrical series versus
+controlled-1S topology, а `DEC-0065` принимает supervised 2S; текущий exact
+manager gate — `IMP-0054`.
 
 ## Downstream boundary
 

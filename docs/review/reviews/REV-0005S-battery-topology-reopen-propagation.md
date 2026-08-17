@@ -1,6 +1,6 @@
 # REV-0005S — battery-topology reopen propagation
 
-- Статус: **Проведено ревью; owner choice IMP-0055 открыт**
+- Статус: **Проведено ревью; historical intermediate, A later accepted DEC-0065**
 - Дата: 2026-08-18
 - Decision: [`DEC-0064`](../decisions/DEC-0064-reopen-battery-electrical-topology.md)
 - Comparison: [`PWR-0006`](../architecture/PWR-0006-one-or-two-cell-topology-comparison.md)

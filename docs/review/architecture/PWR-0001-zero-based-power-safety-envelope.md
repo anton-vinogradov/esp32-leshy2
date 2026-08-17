@@ -1,6 +1,6 @@
 # PWR-0001 — zero-based power and safety envelope
 
-- Статус: **Проведено ревью load envelope; battery-voltage rows superseded by DEC-0064/PWR-0006**
+- Статус: **Проведено ревью load envelope; supervised 2S confirmed by DEC-0065**
 - Дата: 2026-08-16
 - Этап: 3, шаг 5c
 - Входы: reviewed `CAP/CON/RES/SRC/SYN/PIN/BUD`, accepted `DEC-0003/0024/0025`
@@ -37,7 +37,7 @@ Allowances are rail sizing ceilings, not component acceptance and not permission
 
 | Domain | Loads | Normal state | STOP/fault behavior |
 |---|---|---|---|
-| `BAT_SUPERVISED` | two qualified replaceable slots, protection, gauge, charger/power-path; series/controlled-1S choice open | always supervised | protection/ship-mode/brownout force downstream TX-off |
+| `BAT_2S_SUPERVISED` | two qualified replaceable series cells, protection, gauge, charger/power-path | always supervised; both cells required | protection/ship-mode/brownout force downstream TX-off |
 | `3V3_CORE` | selected compute domains (current candidate S3, C5, RP), supervisor, UI, storage, control logic | on while device operates | STOP does not depend on software; current hard-STOP contract resets every compute domain and does not wait to log |
 | `3V3_PKT` | 3×nRF, CC1101 and their TX-capable frontend | current-limited switched branch from common 3.3 V converter | reset default off or TX-inhibited; STOP asynchronously forces CE/PTX/TX path safe and may cut branch |
 | `3V3_AUDIO` | ES8311, Si4732/control, analog mux/amp/mic frontend | pop-safe sequenced branch | mute/bypass state defined before MCU; RF fault cannot command TX |
@@ -56,8 +56,8 @@ Allowances are rail sizing ceilings, not component acceptance and not permission
 | CC1101 local branch | 50 mA | ≥75 mA | startup/TX margin and measurable isolation |
 | `5V_EXT` | 0.75 A | 1.0 A current-limited | U214+GNSS and U216 values fit with cable/inrush/later-qualified profile margin |
 | `VVOICE=4.0 V` | 1.25 A | 1.5 A | already accepted by `DEC-0025`, above SA518 900 mA max listed TX current |
-| battery/power-path | ≥12 W | ≥15 W bounded transient | retained power envelope; topology-specific current is calculated in `PWR-0006` |
-| cell/slot protection | topology-dependent | topology-dependent | must prevent low-cell droop or contact loss from masquerading as radio/firmware fault |
+| battery/power-path | ≥12 W | ≥15 W bounded transient | 2S minimum-current arithmetic is calculated in `PWR-0006/DEC-0065` |
+| cell/slot protection | ≥3 A path target before margins | ≥4 A pulse target before exact qualification | must prevent low-cell droop or contact loss from masquerading as radio/firmware fault |
 
 These floors are not promises that every rail may be loaded simultaneously.
 Converter selection must satisfy its own input-voltage, efficiency,

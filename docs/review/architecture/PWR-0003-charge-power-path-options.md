@@ -7,9 +7,9 @@
 - Proposal: [`IMP-0053`](../improvements/IMP-0053-5v-typec-versus-pd-charge-path.md)
 - Accepted exact frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 
-> `DEC-0064/PWR-0006` later reopen the battery electrical topology. The CPD
-> frontend remains accepted because BQ25798 supports 1–4 cells; 2S-only rows
-> below are historical comparison evidence, not the configured-count decision.
+> `DEC-0064/PWR-0006` later reopened the battery electrical topology for
+> comparison; `DEC-0065` confirmed supervised 2S. The CPD frontend remains
+> accepted and BQ25798 is configured for two series cells.
 
 ## Required result independent of option
 

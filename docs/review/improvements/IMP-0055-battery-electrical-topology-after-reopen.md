@@ -1,11 +1,12 @@
 # IMP-0055 — battery electrical topology after reopen
 
-- Статус: **⚠️ Ожидает решения владельца**
+- Статус: **Принято A; закрыто `DEC-0065`**
 - Дата: 2026-08-18
 - Decision that reopened the input: [`DEC-0064`](../decisions/DEC-0064-reopen-battery-electrical-topology.md)
 - Comparison: [`PWR-0006`](../architecture/PWR-0006-one-or-two-cell-topology-comparison.md)
 - Finding: [`FND-0076`](../findings/FND-0076-parallel-cells-shift-admission-risk.md)
 - Affects: `I3`, rail topology, battery mechanics, runtime, cost and firmware state model
+- Decision: [`DEC-0065`](../decisions/DEC-0065-supervised-2s-battery-topology.md)
 
 ## Context
 
@@ -57,5 +58,5 @@ base device pay for it.
 
 ## Owner decision
 
-Open: choose `A`, `B` or `C`.
-
+Accepted **A**. Base Leshy2 uses the supervised 2S branch. Options B and C
+remain comparison evidence for possible future SKUs only.

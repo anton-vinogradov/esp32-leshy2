@@ -1,6 +1,6 @@
 # DEC-0062 — two individually replaceable 18650 cells retained
 
-- Статус: **Частично superseded `DEC-0064`: два слота и safety intent сохранены; series-specific mechanics reopened**
+- Статус: **Принято; 2S подтверждено после сравнения в `DEC-0065`**
 - Owner choice: `IMP-0052/B`
 - Дата: 2026-08-18
 - Context: [`PWR-0002`](../architecture/PWR-0002-i3-power-prerequisite-audit.md)
@@ -8,9 +8,9 @@
 
 ## Decision
 
-1. ~~Leshy2 keeps two physical 18650 slots in a 2S electrical arrangement.~~
-   The mandatory electrical arrangement is reopened by `DEC-0064`; the two
-   physical slots remain required.
+1. Leshy2 keeps two physical 18650 slots in a supervised 2S electrical
+   arrangement. `DEC-0064` reopened and compared the electrical topology;
+   `DEC-0065` subsequently confirmed 2S for the base product.
 2. Each cell is individually accessible and replaceable; the product does not
    require a welded/sealed pack assembly.
 3. This is a retained product capability, not permission to accept an arbitrary
@@ -23,10 +23,6 @@
 5. Both cell voltages/presence and temperature are observed before pack CHG/DSG
    FETs close. A large voltage/SOC/impedance/profile mismatch is refused, not
    repaired by force charging or called normal balancing.
-   Under a controlled-1S choice this means each cell is observed before its
-   own path closes, and a second cell is checked for safe sharing before it
-   joins the bus; the first admitted slot need not be disconnected merely
-   because the other is absent.
 6. Replacing only one cell is allowed only when the resulting pair passes the
    same admission envelope. Otherwise the UI requires replacing/conditioning
    the pair and keeps the power path open.
@@ -37,9 +33,6 @@
    per-cell protection/balancing/current/temperature evidence and a keyed or
    recessed retained battery compartment are required. Exact cells, contacts,
    holder/door and manager/FETs remain I3/I8 selections.
-   `DEC-0064` generalizes this to a topology-appropriate manager: series
-   balancing for 2S, or per-slot isolation, bounded precharge and cross-charge
-   prevention for controlled 1S.
 
 ## Consequences
 

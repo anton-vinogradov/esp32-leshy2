@@ -1,6 +1,6 @@
 # FND-0075 — a pack gauge is not a loose-cell admission controller
 
-- Статус: **Подтверждено для any removable-cell topology; correction moved to IMP-0055**
+- Статус: **Подтверждено; correction находится в текущем IMP-0054**
 - Дата: 2026-08-18
 - Requirement: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
 - Option review: [`PWR-0005`](../architecture/PWR-0005-replaceable-2s-manager-options.md)

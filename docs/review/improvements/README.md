@@ -14,14 +14,11 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Текущий owner gate —
-[`IMP-0055`](IMP-0055-battery-electrical-topology-after-reopen.md): после
-`DEC-0064` выбрать supervised `2S`, controlled two-slot `1S` или отдельный
-one-slot `1S` variant. `PWR-0006/FND-0076` показывают одинаковую энергию,
-удвоенный общий ток `1S`, cross-charge boundary, rail и cost consequences.
-
-Предыдущее [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md) закрыто
-без выбора и сохранено как reviewed 2S branch.
+Текущий owner gate — [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md):
+после принятого supervised `2S` в `DEC-0065` выбрать exact fail-closed manager
+и admission controller. [`IMP-0055`](IMP-0055-battery-electrical-topology-after-reopen.md)
+закрыто вариантом A; `PWR-0006/FND-0076` сохраняют альтернативы 1S как
+future-SKU evidence.
 
 Предыдущее [`IMP-0053`](IMP-0053-5v-typec-versus-pd-charge-path.md) закрыто
 выбором B в `DEC-0063`: принят sink-only USB-PD до 30 Вт с exact frontend

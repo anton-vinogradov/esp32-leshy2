@@ -27,7 +27,7 @@ source, cell and temperature limits.
 | Physical device | Package/contact facts | Role |
 |---|---|---|
 | `TPS25751DREFR` | 38-pin REF QFN, 4×6 mm; VBUS_IN 23–25, PPHV 20–22, CC1 28, CC2 29, I2Ct 8/9/10, I2Cc 16/17/18 | sink policy, CC/PD and integrated protected path |
-| `BQ25798RQMR` | 29-pin RQM VQFN-HR, 4×4 mm; VBUS 2–3, SCL/SDA 14/15, INT 21, BAT 22–23, SYS 25 | 1–4S buck-boost charger and NVDC system path; configured cell count reopened by `DEC-0064` |
+| `BQ25798RQMR` | 29-pin RQM VQFN-HR, 4×4 mm; VBUS 2–3, SCL/SDA 14/15, INT 21, BAT 22–23, SYS 25 | buck-boost charger and NVDC system path configured for the accepted 2S battery |
 | `CAT24C512WI-GT3` | SOIC-8; SDA 5, SCL 6, WP 7; 64 kB | dedicated patch/config EEPROM at 0x50 |
 | `TVS2200DRVR` | 6-pin DRV WSON, 2×2 mm; GND 1–3/pad 7, protected IN 4–6 | shunt VBUS surge clamp at receptacle |
 

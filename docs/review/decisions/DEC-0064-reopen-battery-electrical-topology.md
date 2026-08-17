@@ -1,11 +1,12 @@
 # DEC-0064 — reopen the two-cell electrical topology
 
-- Статус: **Принято владельцем; распространено без выбора новой топологии**
+- Статус: **Завершено выбором supervised 2S в `DEC-0065`**
 - Дата: 2026-08-18
 - Reopens: [`DEC-0062`](DEC-0062-individually-replaceable-2s-cells.md), item 1 only
 - Comparison: [`PWR-0006`](../architecture/PWR-0006-one-or-two-cell-topology-comparison.md)
 - Owner gate: [`IMP-0055`](../improvements/IMP-0055-battery-electrical-topology-after-reopen.md)
 - Propagation review: [`REV-0005S`](../reviews/REV-0005S-battery-topology-reopen-propagation.md)
+- Final decision: [`DEC-0065`](DEC-0065-supervised-2s-battery-topology.md)
 
 ## Decision
 
@@ -42,3 +43,9 @@
   rail, protection, loss, thermal, removal and recovery tree is reviewed.
 - The living diagram keeps two cell nodes and a generic supervised boundary;
   no speculative manager or converter MPN is added before the choice.
+
+## Closure
+
+The comparison requested here completed in `PWR-0006`; the owner selected
+option A in `DEC-0065`. The temporary topology-neutral propagation is retained
+as history, not as the current target.

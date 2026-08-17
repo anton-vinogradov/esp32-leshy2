@@ -1,16 +1,19 @@
 # PWR-0005 — replaceable-2S manager and admission options
 
-- Статус: **Проведено ревью 2S branch; owner gate superseded by DEC-0064/IMP-0055**
+- Статус: **Проведено повторное ревью exact devices; owner gate IMP-0054 открыт**
 - Дата: 2026-08-18
 - Battery decision: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
 - USB-PD/NVDC frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 - Finding: [`FND-0075`](../findings/FND-0075-pack-gauge-is-not-loose-cell-admission.md)
+- Topology decision: [`DEC-0065`](../decisions/DEC-0065-supervised-2s-battery-topology.md)
+- Revalidation: [`REV-0005U`](../reviews/REV-0005U-exact-2s-manager-revalidation.md)
 
 ## Required boundary
 
-> `DEC-0064` reopened the electrical topology after this review. Everything
-> below remains evidence for option A/2S in `PWR-0006`; it is not the current
-> selected topology.
+> `DEC-0064` temporarily reopened the electrical topology; `DEC-0065` selected
+> supervised 2S after the comparison. This document is again the current
+> exact-manager gate. It does not select option A until the owner answers
+> `IMP-0054`.
 
 The charger already selected in `PWR-0004` sees only a qualified 2S boundary.
 The cell subsystem must independently provide all of the following before that
@@ -46,24 +49,63 @@ No option may ask S3 to be alive before the battery pair has been admitted.
 | deterministic default hold-open | ALRT pin override can force both FETs off; default external pull circuit can assert it before MCU code | no separate override/alert pin; MCU command has a startup race unless another gate is added |
 | housekeeping supply | configurable 1.8/3.4-V AOLDO, specified for small loads below 2 mA | no equivalent exposed housekeeping output |
 | system event path | admission MCU polls locally and exposes status/IRQ | admission MCU polls locally; additional second-temperature and startup-gate work |
-| exact gauge availability snapshot | Mouser 7,638; DigiKey 5,218 | Mouser/DigiKey 0, backorder |
+| exact gauge availability snapshot | Mouser 6,707; DigiKey 3,891 | Mouser/DigiKey 0, backorder |
 | visible 100-piece gauge price | about $4.00 | about $2.88 |
 
-`MAX17320G20+T` is deliberately the I2C variant **without** SHA-256. Battery
-authentication is not required to make the device safe and would add a secret/
-lock-in story without proving the identity of an untagged loose cell.
+The current ADI Rev.12 ordering table confirms that `MAX17320G20+T` is the
+24-pin TQFN I2C variant with a blank SHA-256 column; the corresponding `G22`
+order code is the I2C variant with SHA-256 included. Battery authentication is
+not required to make the device safe and would add a secret/lock-in story
+without proving the identity of an untagged loose cell.
 
 The common admission controller candidate is exact
 `MSPM0C1104SDGS20R`: active 20-pin VSSOP, 16-kB flash, 1-kB SRAM, watchdog,
-CRC, ADC, UART/SPI/I2C and SWD. Its real package exposes dedicated reset at pin
-5, VDD/VSS at 6/7 and SWDIO/SWCLK at 15/16. Hardware I2C can use PA0 pin 4
-and PA11 pin 11 without consuming the reset contact; the local gauge bus may be
-bit-banged on PA2/PA4 pins 8/9. The remaining contacts cover default FET hold,
-diagnostic-load control, wired-low system event and direct service UART while
-keeping every recovery contact exposed.
+CRC, ADC, UART/SPI/I2C and SWD. Current TI Rev.D confirms the real package,
+not merely the family feature list. Hardware I2C can use `PA0` pin 4 and
+`PA11` pin 11 without consuming `PA1/NRST` pin 5; a local gauge bus can be
+bit-banged on `PA2/PA4` pins 8/9. Direct service UART is physically exposed on
+`PA17/PA18` pins 13/14, and SWDIO/SWCLK remain pins 15/16. Default FET hold,
+diagnostic-load control and the system event still fit remaining GPIO, but
+their final net allocation and any open-drain transistor enter the machine map
+only after option A is accepted.
 
-At the checked 100-piece tier the MCU is about `$0.45–0.47`, so the selected
-active pair in option A is about `$4.45–4.47` before common FETs, fuse, shunt,
+## Exact package-contact proof
+
+The `MAX17320G20+T` TQFN-24 contacts are all accounted for; the six internal
+`B3/B4/C3/C4/D3/D4` no-connect pads shown by ADI are not invented as package
+pins:
+
+| Pins | Exposed contacts | Candidate use |
+|---|---|---|
+| 1–6 | `IN`, `CP`, `CHG`, `DIS`, `ZVC`, `PCKP` | charge-pump supply, high-side FET drive, zero-volt-charge and pack-positive sensing |
+| 7–12 | `ALRT`, `SCL/OD`, `SDA/DQ`, `TH1`, `PFAIL`, `AOLDO` | reset-default FET override, I2C, cell NTC #0, permanent-failure output and admission-MCU supply |
+| 13–18 | `REG3`, `CSN`, `CSP`, `TH2`, `REG2`, `TH3` | internal rails, shunt sense, cell NTC #1 and optional additional temperature input |
+| 19–24 | `TH4`, `GND`, `CELL1`, `CELL2`, `CELL3`, `BATTS` | optional temperature input, stack cell taps and battery-stack sense |
+
+`CELL2/CELL3/BATTS` are not treated as generic unused pins. The final 2S
+schematic must follow ADI's 2S application connection/shorting rules and prove
+every cell-sense capacitor and absolute-maximum state; that passive circuit is
+the next step after manager selection.
+
+The DGS20 controller package is likewise physically complete:
+
+| Pins | Exposed contacts |
+|---|---|
+| 1–5 | `PA26/A1`, `PA27/A0`, `PA28/A5`, `PA0`, `PA1/NRST` |
+| 6–10 | `VDD`, `VSS`, `PA2`, `PA4`, `PA6` |
+| 11–15 | `PA11`, `PA16/A8`, `PA17`, `PA18/A7`, `PA19/SWDIO` |
+| 16–20 | `PA20/A6/SWCLK`, `PA22/A4`, `PA23`, `PA24/A3`, `PA25/A2` |
+
+TI specifies up to `2.45 mA` for 24-MHz RUN at 125°C and `2.5 mA` additional
+during flash programming, so the MAX17320 `<2 mA` AOLDO must not be used as a
+blanket all-mode claim. The candidate contract caps normal admission work to a
+measured low clock/duty cycle; initial programming and recovery use an
+isolated fixture supply, while any in-product update uses an admitted system
+rail. Exact source isolation/backfeed circuitry remains a required passive
+selection.
+
+At the checked 100-piece tier the MCU is about `$0.47`, so the candidate active
+pair in option A is about `$4.47` before common FETs, fuse, shunt,
 NTCs, diagnostic resistor/switch and mechanical contacts. Option B appears
 about `$1.12` cheaper in the two-IC subtotal, but its missing second autonomous
 temperature input, missing hardware override and present zero-stock state
@@ -115,7 +157,7 @@ not a blanket MCU-mode claim: boot, steady polling and watchdog current must be
 measured at the selected voltage/clock, and the SWD fixture may power VDD while
 programming a blank admission MCU.
 
-This is a topology decision, not final passive/FET selection. Exact CHG/DIS
+This is a manager proposal, not final passive/FET selection. Exact CHG/DIS
 MOSFETs, per-cell fuses, NTCs, sense resistor, diagnostic pulse network,
 default-hold transistor, thresholds, timings and thermal calculations remain
 the immediate continuation of `I3` if option A is accepted.
@@ -134,7 +176,8 @@ the immediate continuation of `I3` if option A is accepted.
 
 ## Availability sources
 
-Checked 2026-08-18 because every candidate above is an exact MPN:
+Checked 2026-08-18 because every candidate above is an exact MPN. Distributor
+counts are point-in-time evidence, not a stock guarantee:
 
 - [ADI MAX17320 product/datasheet](https://www.analog.com/en/products/max17320.html)
   and [Mouser `MAX17320G20+T`](https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT);

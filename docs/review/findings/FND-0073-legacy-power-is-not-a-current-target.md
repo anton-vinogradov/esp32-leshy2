@@ -1,6 +1,6 @@
 # FND-0073 — legacy power sheet is not a current target
 
-- Статус: **Подтверждено; physical slots fixed, electrical topology reopened by `DEC-0064`**
+- Статус: **Подтверждено; supervised 2S later confirmed by `DEC-0065`**
 - Дата: 2026-08-18
 - Artifact: [`PWR-0002`](../architecture/PWR-0002-i3-power-prerequisite-audit.md)
 - Legacy source: [`hardware/tscircuit/power.tsx`](../../../hardware/tscircuit/power.tsx)
@@ -34,5 +34,6 @@ authorize KiCad.
 `PWR-0002` re-derives loads and scenarios and preserves the valid load/rail
 requirements. `DEC-0062` retains two individually replaceable slots and the
 pre-connect/reverse/mismatch/removal safety boundary; `DEC-0064/PWR-0006`
-later reopen their electrical topology. The sink-only frontend is accepted by
-`DEC-0063`, while the current topology choice is `IMP-0055`.
+later reopened their electrical topology for comparison and `DEC-0065`
+confirmed supervised 2S. The sink-only frontend is accepted by `DEC-0063`,
+while the current exact-manager choice is `IMP-0054`.

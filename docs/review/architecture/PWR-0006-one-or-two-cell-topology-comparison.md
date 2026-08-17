@@ -1,11 +1,12 @@
 # PWR-0006 — one- or two-cell electrical-topology comparison
 
-- Статус: **Проведено ревью вариантов; owner gate IMP-0055 открыт**
+- Статус: **Проведено ревью; A принято `DEC-0065`**
 - Дата: 2026-08-18
 - Reopen decision: [`DEC-0064`](../decisions/DEC-0064-reopen-battery-electrical-topology.md)
 - Load source: [`PWR-0002`](PWR-0002-i3-power-prerequisite-audit.md)
 - USB-PD/NVDC device: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 - Finding: [`FND-0076`](../findings/FND-0076-parallel-cells-shift-admission-risk.md)
+- Decision: [`DEC-0065`](../decisions/DEC-0065-supervised-2s-battery-topology.md)
 
 ## Preserved boundary
 
@@ -143,6 +144,10 @@ MPN, protector thresholds and converter MPNs are selected.
 - B is a real product improvement only if one-cell operation/graceful removal
   is worth extra circuit and validation cost.
 - C is a separate reduced-runtime product variant, not a no-loss optimization.
+
+Owner accepted **A**. The base product therefore uses a supervised 2S pair;
+B and C remain documented future-variant comparisons rather than active I3
+inputs.
 
 ## Primary sources
 

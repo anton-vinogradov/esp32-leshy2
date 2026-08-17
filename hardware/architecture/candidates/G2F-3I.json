@@ -102,7 +102,8 @@
   },
   "power_contract": {
     "decision": "DEC-0063",
-    "status": "paper_reviewed_usb_pd_front_end_i3",
+    "battery_decision": "DEC-0065",
+    "status": "paper_reviewed_supervised_2s_and_usb_pd_front_end_i3",
     "product_port": "one S3 USB-C receptacle carries direct S3 USB2 data and sink-only power; C5/RP service VBUS cannot power or backfeed the board",
     "sink_pdos": ["5V fallback at advertised Type-C current (<=3A)", "9V@3A", "15V@2A"],
     "maximum_input_power_w": 30,
@@ -114,7 +115,8 @@
     "local_control": "TPS25751D I2Cc owns BQ25798 and its dedicated EEPROM; charger INT returns to I2Cc_IRQ",
     "charge_limit": "initial charge current is capped at 2A and may only increase after exact 18650 MPN, thermal path and per-cell admission/protection HIL",
     "failure_policy": "invalid/missing PD image must not negotiate above 5V or enable charging; bounded recovery behavior requires specimen HIL",
-    "remaining_i3": ["exact USB-C receptacle and USB2 ESD", "inductor and passive values", "per-cell admission/protection/gauge/balancing manager", "downstream rail tree", "thermal and fault HIL"]
+    "battery_topology": "two individually replaceable qualified 18650 cells in a supervised 2S arrangement; both cells required for battery operation; working boundary 6.0V to 8.4V",
+    "remaining_i3": ["exact USB-C receptacle and USB2 ESD", "inductor and passive values", "exact 2S admission/protection/gauge/balancing manager", "downstream buck rail tree", "thermal and fault HIL"]
   },
   "instances": {
     "s3": "esp32_s3_wroom_1u_n16r2",

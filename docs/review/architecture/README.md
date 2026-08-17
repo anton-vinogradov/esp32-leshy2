@@ -68,14 +68,16 @@ is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
 the accepted AON/voice/current envelope. The owner accepted `IMP-0052/B` as
 `DEC-0062`: the two 18650 slots remain individually replaceable, and admission
 is fail-closed rather than accepting arbitrary loose cells. `DEC-0064` then
-reopened only the electrical series/controlled-1S arrangement.
+reopened the electrical series/controlled-1S arrangement for comparison, and
+`DEC-0065/REV-0005T` confirm supervised 2S for the base product.
 `PWR-0003/IMP-0053` are closed by `DEC-0063`: the owner selected sink-only
 USB-PD up to 30 W. `PWR-0004/REV-0005R` review exact TPS25751DREFR,
 BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR fit while leaving the cell manager,
 rail tree, passives and HIL active in I3. `PWR-0005/FND-0075` separate ordinary
-pack gauging from fail-closed loose-cell admission for the 2S branch.
-`PWR-0006/FND-0076` compare 2S, controlled two-slot 1S and one-slot 1S; the
-current owner gate is `IMP-0055`.
+pack gauging from fail-closed loose-cell admission and are again the current
+exact-manager gate through `IMP-0054`. `PWR-0006/FND-0076` retain the
+controlled two-slot 1S and one-slot 1S alternatives as future-SKU comparison
+evidence.
 
 ## Active G2F artifacts
 
@@ -96,8 +98,8 @@ current owner gate is `IMP-0055`.
 - [`PWR-0005`](PWR-0005-replaceable-2s-manager-options.md) reviews exact
   gauge/admission candidates and reset-default behavior for the 2S branch;
 - [`PWR-0006`](PWR-0006-one-or-two-cell-topology-comparison.md) reviews the
-  reopened topology, rails, losses, one-cell behavior and cost; `IMP-0055` is
-  the current owner gate;
+  reopened topology, rails, losses, one-cell behavior and cost; supervised 2S
+  is accepted by `DEC-0065`;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

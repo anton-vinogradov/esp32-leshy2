@@ -1,10 +1,11 @@
 # IMP-0054 — fail-closed 2S admission manager
 
-- Статус: **Закрыто без выбора; сохранено как reviewed 2S branch после `DEC-0064`**
+- Статус: **⚠️ Ожидает решения владельца после `DEC-0065`**
 - Дата: 2026-08-18
 - Context: [`PWR-0005`](../architecture/PWR-0005-replaceable-2s-manager-options.md)
 - Finding: [`FND-0075`](../findings/FND-0075-pack-gauge-is-not-loose-cell-admission.md)
 - Affects: `I3`, battery startup, safety, SOC/SOH, service and firmware images
+- Revalidation: [`REV-0005U`](../reviews/REV-0005U-exact-2s-manager-revalidation.md)
 
 ## Context
 
@@ -30,7 +31,8 @@ The checked complete choices are therefore:
   the fixture may supply its VDD for initial SWD programming;
 - visible 100-piece active-pair subtotal about `$4.47`; gauge is currently
   stocked by two checked authorized distributors;
-- no authentication SKU and no irreversible lock are required.
+- exact `G20` is the I2C order code without SHA-256; no authentication secret
+  or irreversible lock is required.
 
 This option directly implements fail-closed battery-only startup. It costs
 about `$1.12` more than the superficial B two-IC subtotal, before parts common
@@ -62,6 +64,4 @@ or chemistry.
 
 ## Owner decision
 
-Closed without selecting A/B/C. `DEC-0064` reopened the electrical topology;
-the current owner gate is `IMP-0055`. This comparison resumes only if its 2S
-option is selected.
+Reopened because `DEC-0065` selected supervised 2S. Choose `A`, `B` or `C`.

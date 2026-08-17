@@ -259,11 +259,12 @@ the old rails omit current safety/quiet-state branches. The owner accepted
 but arbitrary cells/combinations are not admitted. Mechanical reverse-
 insertion blocking and pre-admission observation must keep unsafe slot paths
 open on mismatch, removal or contact bounce. `REV-0005Q` reviews propagation.
-`DEC-0064/PWR-0006/FND-0076/REV-0005S` later reopen only the electrical
-series/controlled-1S topology. They reject direct parallel, calculate the
-double common-path current and changed rail classes for 1S and open
-`IMP-0055`; `PWR-0005/IMP-0054` remain evidence for the 2S branch. The owner
-then accepted `IMP-0053/B` as
+`DEC-0064/PWR-0006/FND-0076/REV-0005S` later reopen and compare the electrical
+series/controlled-1S alternatives. They reject direct parallel and calculate
+the double common-path current and changed rail classes for 1S. The owner
+selects supervised 2S in `DEC-0065/REV-0005T`; `PWR-0005/REV-0005U` then
+revalidate the exact manager devices and reopen `IMP-0054` as the current
+owner gate. The owner also accepted `IMP-0053/B` as
 `DEC-0063`: the product port is sink-only USB-PD with 5-V fallback, 9 V/3 A
 and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
 S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact

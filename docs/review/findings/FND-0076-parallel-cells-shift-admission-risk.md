@@ -1,6 +1,6 @@
 # FND-0076 — parallel removable cells shift, not remove, admission risk
 
-- Статус: **Подтверждено; correction предложена в IMP-0055**
+- Статус: **Подтверждено; A принято в DEC-0065**
 - Дата: 2026-08-18
 - Decision: [`DEC-0064`](../decisions/DEC-0064-reopen-battery-electrical-topology.md)
 - Analysis: [`PWR-0006`](../architecture/PWR-0006-one-or-two-cell-topology-comparison.md)
@@ -58,4 +58,3 @@ path does not replace those downstream boost converters.
 - [ADI MAX17300/MAX17310 parallel-battery management and host responsibilities](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX17300-MAX17313.pdf)
 - [ADI discussion of dangerous uncontrolled current between directly paralleled batteries](https://www.analog.com/en/resources/technical-articles/monolithic-dual-battery-power-manager-increases-runtime-decreases-charge-time.html)
 - [TI BQ25798 1–4-cell charger datasheet](https://www.ti.com/lit/ds/symlink/bq25798.pdf)
-
