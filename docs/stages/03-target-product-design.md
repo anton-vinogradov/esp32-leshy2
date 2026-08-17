@@ -52,6 +52,12 @@ direct GPIO6 `AUDIO_ARM`; passive analog values and HIL remain open.
 закрываются параллельно. Найденный physical/RF/power/service conflict меняет
 рабочую карту через повторное G2F review, а не маскируется внутри макета.
 
+Первый новый physical artifact уже появился: `PHY-0001/REV-0005H` проверяют
+на масштабе U214 в заднем поперечном Cardputer-like dock над аккумуляторами.
+Paper fit сохраняет base `75×150 mm`, девять верхних SMA и battery-defined
+толщину, но явно требует переноса legacy encoder. `IMP-0048/D` ждёт owner
+choice; exact dock/specimen и installed-cap hand/GNSS/RF HIL не закрыты.
+
 ## Downstream boundary
 
 Physical packing/RF/power/service conflicts возвращаются в `G2F`; working pins

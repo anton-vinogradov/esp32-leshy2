@@ -1,0 +1,63 @@
+# PHY-0001 — U214 rear dock above the batteries
+
+- Статус: **Проведено ревью paper fit; owner decision и exact dock/HIL открыты**
+- Дата: 2026-08-17
+- Finding: [`FND-0068`](../findings/FND-0068-u214-envelope-missing-from-legacy-layout.md)
+- Proposal: [`IMP-0048`](../improvements/IMP-0048-u214-dock-versus-sma-placement.md)
+- Generator: [`u214_rear_fit.py`](../../../hardware/product-design/u214_rear_fit.py)
+- Render: [`PHY-0001-u214-rear-fit.svg`](img/PHY-0001-u214-rear-fit.svg)
+
+## Проверенный результат
+
+Official U214 and Cardputer-Adv STL use compatible product coordinates. В
+assembled-position components получены следующие paper dimensions:
+
+- Cardputer body: `84 × 54 × 19.676 mm` overall model envelope;
+- U214 assembled shell: width `84 mm`, rear strip/edge height `15.281 mm`;
+- U214 extends from host rear datum approximately `15.11 mm`;
+- bare 18650 diameter/depth is `18.6 mm`, leaving `3.49 mm` depth reserve before
+  holder walls are counted;
+- U214 is L-shaped and wraps the host edge: a flat board header is not
+  mechanically equivalent.
+
+## Наложение на legacy rear face
+
+The scaled candidate places U214 transversely above the battery holder:
+
+- `75-mm` base board remains unchanged;
+- `84-mm` U214 overhangs symmetrically by `4.5 mm` on each side;
+- rear projection starts at `y=15 mm`; five top-SMA keep-outs end at `y=9.5
+  mm`, leaving `5.5 mm` planar gap;
+- U214 projection ends at `y=30.281 mm`; battery holder starts at `y=40 mm`,
+  leaving `9.719 mm` service gap;
+- old rear encoder at `x=30…45, y=20…33` collides and must move;
+- the diagram shows the five RF-board SMA paths; four separate UI-board SMA
+  paths remain outside this face and are unaffected;
+- U214's end RP-SMA, HY2.0-4P and both screw accesses must remain outside case
+  obstruction.
+
+## Неплоское крепление
+
+Rear placement is feasible only as a Cardputer-like raised dock rail:
+
+1. recessed 2×7 female Cap-Bus header on the correct mating plane;
+2. two screw bosses matching official structure geometry;
+3. local rear-shell step/rail that the L-shaped U214 housing wraps around;
+4. no metal/battery over the U214 GNSS ceramic antenna sky-view;
+5. protected but reachable own RP-SMA and downstream Port A.
+
+The exact header MPN, boss pitch/height and enclosure wall values are not
+invented here; they remain an official-drawing/specimen measurement gate.
+
+## Вывод
+
+Rear-above-battery placement is a better first candidate than the former
+bottom extension: it preserves all nine top SMA, avoids increasing the base
+width, and stays inside the battery depth silhouette on paper. It does require
+relocating the legacy encoder and generating the non-flat rail from exact
+structure/specimen dimensions.
+
+## Sources
+
+- [M5Stack U214 official documentation](https://docs.m5stack.com/en/cap/Cap_LoRa-1262)
+- [M5Stack official U214/Cardputer-Adv STL files](https://github.com/m5stack/M5_Hardware)

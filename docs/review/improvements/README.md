@@ -33,8 +33,10 @@ quality/test scope или supply risk закупки разделяются. `MF
 
 ⚠️ Предложение [`IMP-0048`](IMP-0048-u214-dock-versus-sma-placement.md)
 открыто после `FND-0068`: реальный U214 шириной 84 mm отсутствовал в legacy
-75-mm layout. Рекомендуется нижний съёмный Cap bay с симметричным 4.5-mm
-overhang, чтобы не расширять base device и не вытеснять девять верхних SMA.
+75-mm layout. `PHY-0001/REV-0005H` проверяют задний поперечный Cardputer-like
+dock над аккумуляторами: 4.5-mm side overhang, сохранение девяти верхних SMA и
+paper depth внутри 18650 silhouette. Этот вариант D теперь рекомендуется;
+legacy encoder требуется перенести, exact dock/specimen и HIL остаются gate.
 
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,

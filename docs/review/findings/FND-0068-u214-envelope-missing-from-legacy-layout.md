@@ -5,6 +5,7 @@
 - Обнаружено: 2026-08-17
 - Device: `M5Stack U214 Cap LoRa-1262`, `84.0 × 24.0 × 15.2 mm`
 - Proposal: [`IMP-0048`](../improvements/IMP-0048-u214-dock-versus-sma-placement.md)
+- Paper fit: [`PHY-0001`](../product-design/PHY-0001-u214-rear-dock-fit.md)
 
 ## Несоответствие
 
@@ -35,8 +36,14 @@ board collision checks и всё равно быть непригодным с �
 девять onboard SMA уже приняты `DEC-0049/0050`, а U214 accessory envelope —
 отдельный обязательный G3 input.
 
+Official U214/Cardputer-Adv STL alignment и scaled `PHY-0001` уже закрывают
+первый paper-fit пробел для rear-above-battery candidate: `4.5 mm` side
+overhang, `5.5 mm` после RF-board SMA keep-outs, `9.719 mm` до holder и
+`15.11 mm` rear protrusion против `18.6 mm` bare 18650. Finding остаётся открыт
+не из-за отсутствия кандидата, а до owner choice, exact header/boss/wall
+geometry и installed-cap hand/GNSS/RF HIL.
+
 ## Источники
 
 - [M5Stack U214 official product documentation](https://docs.m5stack.com/en/cap/Cap_LoRa-1262)
 - [M5Stack official U214 structure files](https://github.com/m5stack/M5_Hardware/tree/master/Products/U214_Cap_LoRa-1262/Structures)
-

@@ -40,7 +40,8 @@ control-surface alternatives cannot delete a radio/key result.
 - exact U214 body `84 × 24 × 15.2 mm`, direct 14-pin dock, screw access, own
   RP-SMA antenna bend, GNSS ceramic sky-view and downstream HY2.0-4P cable are
   mandatory physical envelopes; legacy `75-mm` drawings omitted them
-  (`FND-0068/IMP-0048`);
+  (`FND-0068/IMP-0048`); `PHY-0001` now supplies a reviewed scaled
+  rear-above-battery paper-fit candidate, not enclosure sign-off;
 - physical STOP/actual-TX indication and RF-safe power domains cannot depend on
   a touchscreen, phone or removable accessory;
 - G3 reserves zones and user access, not antenna count/connector type or RF

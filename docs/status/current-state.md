@@ -219,9 +219,11 @@ onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
 `FND-0068/REV-0005G` find the next physical omission: the official U214 has an
 `84×24×15.2 mm` body, direct 14-pin dock, its own RP-SMA and GNSS ceramic
-antenna, while the legacy 75-mm SVG does not draw it. `IMP-0048` proposes the
-first active candidate: a removable bottom bay with 4.5-mm side overhang,
-preserving base width and all nine top SMA ports.
+antenna, while the legacy 75-mm SVG does not draw it. `PHY-0001/REV-0005H`
+review a scaled rear-above-battery candidate: Cardputer-like transverse rail,
+4.5-mm side overhang, all nine top SMA preserved and 15.11-mm protrusion inside
+the bare-18650 18.6-mm depth silhouette. `IMP-0048/D` is recommended but still
+awaits owner choice; the legacy encoder must move and exact dock/HIL stay open.
 
 The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
