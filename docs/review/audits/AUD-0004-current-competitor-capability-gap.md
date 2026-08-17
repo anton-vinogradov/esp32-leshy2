@@ -80,3 +80,6 @@ product haptic; `AUD-0008/DEC-0037` close `W-EXTRA-14`; `AUD-0009/DEC-0038`
 close `W-EXTRA-15`; `AUD-0010/DEC-0039` reject generic `W-EXTRA-16`;
 `AUD-0012/DEC-0040` close the final 6 GHz question. `REV-0002AS` repeats G2
 review; G3 target product design is now the active gate.
+
+> Subsequent sequencing: `DEC-0058` pauses the integrated G3 mockup after the
+> bounded U214 fit proof and makes `INT-0001` internal closure active first.

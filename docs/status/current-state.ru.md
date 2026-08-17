@@ -226,11 +226,16 @@ Cardputer-like rail, 4.5-mm overhang по сторонам, сохранение
 а `FND-0069` сохраняет отсутствующие exact host MPN/stack-up и installed-cap
 HIL открытыми.
 
-Принципиальная распиновка больше не отложена: current paper step завершён и
-может войти в адаптированный legacy physical generator как reopenable working
-map. Следующий проход начинает G3 physical/product mockup с реальными
-envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются `FND-0058` antenna qualification
-и оставшиеся `FND-0060/0066/0067` exact electrical/HIL endpoints. Exact production nRF,
-SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
-atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.
+Принципиальная распиновка больше не отложена, но владелец ставит integrated
+physical mockup на паузу решением `DEC-0058`. `INT-0001` требует сначала
+полного project-level review начинки: compute/service, safety, power,
+UI/storage, audio, RF/IR/voice, expansion и consolidated component evidence.
+Локальные проверки габаритов деталей разрешены; enclosure/control layout — нет.
+
+Сейчас активен `INT-0001/I1`. `FND-0070/IMP-0049` показывают первый конфликт:
+current 4-bit C5 SDIO занимает C5 native USB GPIO13/14 и S3 default UART0 RX
+GPIO44. Вариант A предлагает вернуться к ранее рассчитанному 1-bit SDIO,
+восстановив полный native service при обязательном framed-throughput HIL.
+Machine map не изменён до решения владельца. `FND-0058`,
+`FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
+заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

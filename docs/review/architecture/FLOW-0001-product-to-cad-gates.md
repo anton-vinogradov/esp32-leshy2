@@ -1,8 +1,9 @@
 # FLOW-0001 — corrected product-to-CAD development gates
 
 - Статус: **Нормативно; проведено ревью метода**
-- Дата: 2026-08-16
+- Дата: 2026-08-17
 - Решение: [`DEC-0032`](../decisions/DEC-0032-reopen-product-design-before-cad.md)
+- Owner sequencing: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Принцип: каждый downstream artifact потребляет только reviewed upstream outputs
 
 ## Gate chain
@@ -51,6 +52,20 @@ review; it never hides the conflict in an exact pin map or enclosure exception.
 feasibility must wait for a selected enclosure. It gives physical design a
 complete, checked working net/owner hypothesis, while its provisional status
 allows later mechanical/RF/power evidence to reopen the map before `G7`.
+
+## Owner-ordered internal closure before integrated mockup
+
+`DEC-0058/INT-0001` pause the integrated G3 mockup after the bounded U214
+envelope proof. The active loop deepens internal feasibility first: compute and
+service, safety, power, UI/storage electrical endpoints, audio, RF/IR/voice,
+expansion protection and consolidated component evidence. Integrated physical
+layout resumes only after their joint paper/electrical review.
+
+This does not silently promote candidate parts to `G8` or authorize KiCad.
+Exact first targets, circuit calculations and local body/footprint/keep-out
+checks are feasibility evidence until the whole-device and atomic gates pass.
+Prototype/enclosure-only HIL remains downstream with explicit fixtures and pass
+conditions; it is not an impossible prerequisite for drawing the later mockup.
 
 Every counted pin passes `SoC → package → exact module/device → actual exposed
 pad/header/connector`. A real dev-board is checked only when that board itself

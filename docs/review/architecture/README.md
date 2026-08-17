@@ -3,6 +3,7 @@
 - Статус: **G2F logical/electrical feasibility active; architecture reopened**
 - Correction: [`DEC-0032`](../decisions/DEC-0032-reopen-product-design-before-cad.md)
 - Sequencing refinement: [`DEC-0041`](../decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
+- Integrated-mockup pause: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Method: [`FLOW-0001`](FLOW-0001-product-to-cad-gates.md)
 
 ## Canonical active chain
@@ -11,11 +12,13 @@
 2. Logical/electrical feasibility: neutral semantic demand, real-device pin
    provenance and at least two complete owner/bus/GPIO candidates.
 3. Owner-selected working electrical baseline, explicitly provisional.
-4. Target physical/product design by adapting the checked legacy mockup; any
-   packing/RF/power conflict loops back to the electrical candidates.
-5. Whole-device optimality, conceptual co-design and owner decision.
-6. Atomic architecture only after all prior gates pass.
-7. Exact components, electrical CAD, schematic and PCB afterwards.
+4. Dependency-ordered internal closure through [`INT-0001`](INT-0001-internal-design-closure-sequence.md):
+   compute/service, safety, power, UI/storage, audio, RF and expansion evidence.
+5. Resume target physical/product mockup only after the joint internal paper
+   review; any packing/RF/power conflict loops back visibly.
+6. Whole-device optimality, conceptual co-design and owner decision.
+7. Atomic architecture only after all prior gates pass.
+8. Final components, electrical CAD, schematic and PCB afterwards.
 
 The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001/0002`,
 `CTL-0001`, [`NIF-0001`](NIF-0001-digital-noninterference-layout.md),
@@ -50,9 +53,15 @@ complete capture/playback/TX/reset path, add exact TAC5111IRGER reference
 contacts and expose `FND-0067`; `DEC-0054` accepts the active-buffer ES8311
 prototype plus direct arm and exact selector/gate/amp ICs. Passive analog
 values, exact power circuit and HIL remain open.
+`DEC-0058` now pauses the integrated mockup until the internal chain is jointly
+reviewed. `INT-0001/I1` is active first; `FND-0070/IMP-0049` expose the
+collision between full service access and the current 4-bit C5 SDIO allocation.
 
 ## Active G2F artifacts
 
+- [`INT-0001`](INT-0001-internal-design-closure-sequence.md) defines the
+  dependency-ordered `I0…I9` paper/electrical closure required before the
+  integrated physical mockup resumes;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
@@ -148,6 +157,9 @@ values, exact power circuit and HIL remain open.
   compact, balanced and field-service same-scope experiments. Its drawing
   content was reviewed, but its direction is superseded by `DEC-0041`; no owner
   choice among P1/P2/P3 is requested.
+- [`PHY-0001`](../product-design/PHY-0001-u214-rear-dock-fit.md) retains the
+  accepted bounded U214 rear-envelope decision; `DEC-0058` pauses further
+  integrated mockup/control/enclosure work until `INT-0001/I9`.
 
 No electronic zone in `LAY-0001` assigns a chip, bus or pin. Former
 `SYN/PIN/PKG` arithmetic may be reused only after exact-device revalidation.

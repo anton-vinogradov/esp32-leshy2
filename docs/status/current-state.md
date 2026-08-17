@@ -227,12 +227,16 @@ the bare-18650 18.6-mm depth silhouette. The owner accepts `IMP-0048/D` as
 male/female `2×7 2.54-mm` interface and two M2/56-mm retention, while
 `FND-0069` keeps the missing exact host MPN/stack-up and installed-cap HIL open.
 
-The principled pinout is no longer deferred: the current paper step is complete
-and can feed the adapted legacy physical generator as a reopenable working map.
-The next pass begins the G3 physical/product mockup with real envelopes; any
-packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `FND-0058` antenna qualification and the remaining
-`FND-0060/0066/0067` electrical/HIL endpoints stay open. Exact production nRF,
-SMA/feed/protection,
-quiet-state parts, SI/power/RF/HIL must close before the atomic target and
-KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
+The principled pinout is no longer deferred, but the owner now pauses the
+integrated physical mockup through `DEC-0058`. `INT-0001` requires complete
+project-level internal review first: compute/service, safety, power,
+UI/storage, audio, RF/IR/voice, expansion and consolidated component evidence.
+Local part-envelope checks remain allowed; enclosure/control layout does not.
+
+`INT-0001/I1` is active. `FND-0070/IMP-0049` expose the first conflict: current
+4-bit C5 SDIO consumes C5 native USB GPIO13/14 and S3 default UART0 RX GPIO44.
+Option A proposes returning to the formerly budgeted 1-bit SDIO path to restore
+complete native service, conditional on the required framed-throughput HIL.
+The machine map is unchanged pending owner choice. `FND-0058`,
+`FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
+blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

@@ -1,6 +1,6 @@
 # Stage 3 — target product design
 
-- Статус: **В работе от reviewed G2F principled-pinout baseline**
+- Статус: **Integrated mockup приостановлен DEC-0058; active internal closure**
 - Дата: 2026-08-17
 - Пререквизит: repeat G2 **Проведено ревью** (`REV-0002AS`)
 - Метод: [`FLOW-0001/G3`](../review/architecture/FLOW-0001-product-to-cad-gates.md)
@@ -36,8 +36,9 @@ two-board clamshell generator. Его геометрия тоже рабочая
 pinout diagram и exact pad/net tables; after direct-QSPI GPIO41/42 and accepted
 audio arm the current budget честно равен S3 `32/3/1`, C5 `14/6/1`, RP
 `48/0/0`, slow `24/0/0` (`DEC-0052`, `DEC-0054/REV-0005D`). Это выполняет необходимый
-working-baseline checkpoint `DEC-0041` и разрешает начать перенос в старый
-reproducible mockup. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
+working-baseline checkpoint `DEC-0041`; технически он разрешил перенос в старый
+reproducible mockup, но последующий `DEC-0058` ставит этот перенос на паузу до
+`INT-0001/I9`. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
 1-bit SPI reference, новый 3.5-inch direct-QSPI class и EVE fallback;
 `DEC-0053/REV-0004Z` принимают 3.5-inch portrait `320×480` IPS QSPI+touch
 class. `FND-0063/DSP-0005/REV-0005A` устанавливают exact current assembly
@@ -59,8 +60,17 @@ Paper fit сохраняет base `75×150 mm`, девять верхних SMA 
 `DEC-0057`. `MEC-0001/FND-0069` переносят работу на exact host receptacle,
 rail/screw stack-up и installed-cap hand/GNSS/RF HIL.
 
+По прямому указанию владельца `DEC-0058` останавливает дальнейший integrated
+mockup до полного project-level закрытия начинки. `INT-0001` задаёт порядок
+`I0…I9`; первым активен compute/recovery/service block `I1`. Его первый
+конфликт вынесен в `FND-0070/IMP-0049`: current 4-bit C5 SDIO потребляет C5
+native USB и S3 default UART0 RX. Цельный enclosure/control layout не
+продолжается до совместного internal self-review.
+
 ## Downstream boundary
 
 Physical packing/RF/power/service conflicts возвращаются в `G2F`; working pins
 могут измениться. Whole-device optimality и только затем atomic target остаются
-обязательными. KiCad по-прежнему заблокирован.
+обязательными. Local exact-part fit checks разрешены как внутренние
+feasibility inputs, но не как продолжение mockup. KiCad по-прежнему
+заблокирован.
