@@ -149,6 +149,73 @@ def validate_sources(
         if not candidate.get("decisive_open_risk"):
             errors.append(f"{candidate_id}: missing decisive_open_risk")
 
+        signal_policy = candidate.get("signal_group_policy")
+        if signal_policy is not None:
+            if not signal_policy.get("decision") or not signal_policy.get("default_group"):
+                errors.append(f"{candidate_id}: incomplete signal-group policy header")
+            if not isinstance(signal_policy.get("exclusive"), bool):
+                errors.append(f"{candidate_id}: signal-group exclusive must be boolean")
+            group_ids: set[str] = set()
+            groups_by_id: dict[str, dict[str, Any]] = {}
+            for group_number, group in enumerate(signal_policy.get("groups", []), 1):
+                context = f"signal group {group_number}"
+                group_id = group.get("id", "")
+                if not group_id:
+                    errors.append(f"{candidate_id}: {context}: missing id")
+                elif group_id in group_ids:
+                    errors.append(f"{candidate_id}: duplicate signal group {group_id}")
+                group_ids.add(group_id)
+                groups_by_id[group_id] = group
+                if not group.get("members") or not group.get("mode"):
+                    errors.append(f"{candidate_id}: {context}: missing members or mode")
+                if group.get("full_mix"):
+                    if len(group.get("members", [])) < 2:
+                        errors.append(f"{candidate_id}: {context}: full mix needs multiple members")
+                    if not group.get("required_role_mixes"):
+                        errors.append(f"{candidate_id}: {context}: full mix lacks required role mixes")
+                    if group.get("peer_standby_forbidden") is not True:
+                        errors.append(f"{candidate_id}: {context}: full mix must forbid peer standby")
+            if not signal_policy.get("groups"):
+                errors.append(f"{candidate_id}: signal-group policy has no groups")
+            for required_group in signal_policy.get("required_full_mix_groups", []):
+                group = groups_by_id.get(required_group)
+                if group is None:
+                    errors.append(
+                        f"{candidate_id}: missing required full-mix group {required_group}"
+                    )
+                elif group.get("full_mix") is not True:
+                    errors.append(
+                        f"{candidate_id}: required group {required_group} is not full mix"
+                    )
+
+        quiet_policy = candidate.get("quiet_state_policy")
+        if quiet_policy is not None:
+            if not quiet_policy.get("decision") or not quiet_policy.get("default_state"):
+                errors.append(f"{candidate_id}: incomplete quiet-state policy header")
+            quiet_ids: set[str] = set()
+            for quiet_number, quiet in enumerate(quiet_policy.get("contracts", []), 1):
+                context = f"quiet-state contract {quiet_number}"
+                quiet_id = quiet.get("id", "")
+                if not quiet_id:
+                    errors.append(f"{candidate_id}: {context}: missing id")
+                elif quiet_id in quiet_ids:
+                    errors.append(f"{candidate_id}: duplicate quiet-state contract {quiet_id}")
+                quiet_ids.add(quiet_id)
+                for required_field in ("interfaces", "inactive_state", "control", "proof_gate"):
+                    if not quiet.get(required_field):
+                        errors.append(f"{candidate_id}: {context}: missing {required_field}")
+            required_quiet = set(quiet_policy.get("required_contracts", []))
+            missing_quiet = required_quiet - quiet_ids
+            unexpected_quiet = quiet_ids - required_quiet
+            if missing_quiet:
+                errors.append(
+                    f"{candidate_id}: missing required quiet-state contracts {sorted(missing_quiet)}"
+                )
+            if unexpected_quiet:
+                errors.append(
+                    f"{candidate_id}: unrequired quiet-state contracts {sorted(unexpected_quiet)}"
+                )
+
         instances = candidate.get("instances", {})
         for instance, device_id in instances.items():
             if device_id not in devices:
@@ -602,6 +669,40 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             f"- Candidate status: `{candidate['status']}`",
             "- Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.",
         ]
+        signal_policy = candidate.get("signal_group_policy")
+        if signal_policy:
+            lines += [
+                "",
+                "### Signal-group policy",
+                "",
+                f"Decision `{signal_policy['decision']}`; default `{signal_policy['default_group']}`; "
+                f"exclusive groups: `{str(signal_policy['exclusive']).lower()}`.",
+                "",
+                "| Group | Members | Runtime mode | Required role mixes |",
+                "|---|---|---|---|",
+            ]
+            for group in signal_policy["groups"]:
+                members = ", ".join(f"`{member}`" for member in group["members"])
+                mixes = ", ".join(f"`{mix}`" for mix in group.get("required_role_mixes", [])) or "—"
+                lines.append(f"| `{group['id']}` | {members} | {group['mode']} | {mixes} |")
+
+        quiet_policy = candidate.get("quiet_state_policy")
+        if quiet_policy:
+            lines += [
+                "",
+                "### Unused-interface quiet-state policy",
+                "",
+                f"Decision `{quiet_policy['decision']}`; default `{quiet_policy['default_state']}`.",
+                "",
+                "| Contract | Interfaces | Inactive state | Control | Proof gate |",
+                "|---|---|---|---|---|",
+            ]
+            for quiet in quiet_policy["contracts"]:
+                interfaces = ", ".join(f"`{interface}`" for interface in quiet["interfaces"])
+                lines.append(
+                    f"| `{quiet['id']}` | {interfaces} | {quiet['inactive_state']} | "
+                    f"{quiet['control']} | {quiet['proof_gate']} |"
+                )
         allocations_by_instance: dict[str, list[dict[str, Any]]] = {}
         for allocation in candidate["allocations"]:
             allocations_by_instance.setdefault(allocation["instance"], []).append(allocation)
@@ -746,7 +847,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
         "## Machine-check result and review boundary",
         "",
-        "All source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. Where declared, non-MCU contacts, interface resource contracts, controller GPIO-window selections, fixed-mux contact contracts and capacity arithmetic are also complete. It does **not** close electrical feasibility: abstract peers, reference-only modules, RF networks, timing HIL, power and physical integration remain open. Therefore no candidate receives «Проведено ревью» as a complete target architecture in this generated artifact.",
+        "All source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. Where declared, non-MCU contacts, interface resource contracts, controller GPIO-window selections, fixed-mux contact contracts, capacity arithmetic, signal-group declarations and quiet-state contract coverage are also complete. It does **not** close electrical feasibility: abstract peers, reference-only modules, RF networks, quiet-state circuitry, timing/EMI HIL, power and physical integration remain open. Therefore no candidate receives «Проведено ревью» as a complete target architecture in this generated artifact.",
         "",
     ]
     return "\n".join(lines)

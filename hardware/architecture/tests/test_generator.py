@@ -126,9 +126,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             for allocation in candidate["allocations"]
             if allocation["instance"] == "rp" and allocation["net"] == "NRF0_MISO"
         )
+        power_row = next(
+            allocation
+            for allocation in candidate["allocations"]
+            if allocation["instance"] == "rp" and allocation["net"] == "NRF_GROUP_PWR_EN"
+        )
         row["contact"] = "GPIO15"
-        candidate["free_gpio"]["rp"].remove("GPIO15")
-        candidate["free_gpio"]["rp"].append("GPIO30")
+        power_row["contact"] = "GPIO30"
         errors = self.errors_for(candidates)
         self.assertTrue(
             any("NRF0" not in error and "outside GPIO16..GPIO47" in error for error in errors),
@@ -182,6 +186,35 @@ class ArchitectureValidationTests(unittest.TestCase):
         errors = self.errors_for(candidates)
         self.assertTrue(
             any("missing required mux contracts" in error and "C5_FIXED_SDIO" in error for error in errors),
+            errors,
+        )
+
+    def test_rejects_full_mix_that_allows_peer_standby(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        group = next(
+            group
+            for group in candidate["signal_group_policy"]["groups"]
+            if group["id"] == "SG-N24"
+        )
+        group["peer_standby_forbidden"] = False
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("full mix must forbid peer standby" in error for error in errors),
+            errors,
+        )
+
+    def test_rejects_missing_required_quiet_state_contract(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        candidate["quiet_state_policy"]["contracts"] = [
+            contract
+            for contract in candidate["quiet_state_policy"]["contracts"]
+            if contract["id"] != "N24_QUIET"
+        ]
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("missing required quiet-state contracts" in error and "N24_QUIET" in error for error in errors),
             errors,
         )
 

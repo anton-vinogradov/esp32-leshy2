@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress**: `DEC-0044/REV-0004L` select `G2F-3I` as the leading reviewed paper map without radio-bus contention; physical RF, exact peripheral/power/HIL closure remains open |
+| 2F. Logical/electrical feasibility | **In progress**: `G2F-3I` closes digital buses; `DEC-0045/0046` add one active group, three-nRF full mix and inactive-interface quiet states; exact nRF RF envelope, power parts and HIL remain open |
 | 3. Target physical/product design | Waiting for G2F; P1/P2/P3 are reference-only, then the legacy clamshell generator is adapted |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -48,7 +48,7 @@ physical mockup; `DEC-0042` accepts its machine-readable exact-device/net source
 - conservative TX defaults, explicit maximum-power choice, hard STOP/no
   automatic re-arm and separate actual-TX evidence;
 - the complete 125-leaf wishlist review and no-loss cost rule;
-- three full-function nRF24 paths with simultaneous reception;
+- three full-function nRF24 paths with every simultaneous PTX/PRX role mix;
 - ordinary 2.4/5 GHz Wi-Fi, IEEE 802.15.4, native BLE and 2.4 GHz/ESP-NOW
   capability requirements;
 - packet Sub-GHz, broadcast receive, analog voice, audio, IR, external
@@ -108,8 +108,12 @@ radio FIFO/IPC never waits for it. C5 UART0+EN/BOOT/strap is the recovery path
 because GPIO13/14 carry SDIO. A repeated exact-device check found and fixed an
 RP2354B PIO GPIO-window crossing; PIO data is now on `GPIO30..46`, fixed mux
 groups are contracted, and capacity closes with seven of twelve PIO state
-machines plus three of sixteen DMA channels in reserve. Physical RF
-self-desense and named HIL remain the next gates. `FND-0050` records nRF24 NRND
+machines plus three of sixteen DMA channels in reserve. `DEC-0045` accepts one
+active top-level signal group but defines `SG-N24` as all three radios active in
+every PTX/PRX mix. `DEC-0046/QST-0001` require all unused interfaces quiet and
+consume RP GPIO15/GPIO23 plus C5 GPIO4 as group-level power controls. Exact
+`IMP-0039` nRF RF acceptance, power parts, self-desense and named HIL remain the
+next gates. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -117,7 +121,8 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, `G2F-3I` receives physical RF/self-desense, exact peripheral,
+Next, `IMP-0039` selects the nRF full-mix RF envelope; then `G2F-3I` receives
+quiet-state power-part, physical RF/self-desense, exact peripheral,
 signal-integrity, power and HIL closure. It can then become a working electrical
 baseline and feed the adapted legacy physical generator. `G2F-2R/3D` and
 `LAY-0001` P1/P2/P3 remain references; no selection is requested. KiCad stays

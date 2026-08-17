@@ -3,7 +3,41 @@
   "id": "G2F-3I",
   "title": "Three domains with independent radio IPC and only bounded display/storage sharing",
   "status": "draft_non_interference_candidate",
-  "decisive_open_risk": "all radio data/control paths are controller-independent; display/microSD sharing is bounded but physical RF self-desense and same-silicon coexistence require a separate proof/decision",
+  "decisive_open_risk": "DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open",
+  "signal_group_policy": {
+    "decision": "DEC-0045",
+    "default_group": "NONE",
+    "exclusive": true,
+    "required_full_mix_groups": ["SG-N24"],
+    "groups": [
+      {"id":"SG-N24","members":["nrf0","nrf1","nrf2"],"mode":"all three active; each independently PTX or PRX in every simultaneous mix; no peer standby or hidden RX gap","full_mix":true,"required_role_mixes":["3PRX","1PTX+2PRX","2PTX+1PRX","3PTX"],"peer_standby_forbidden":true},
+      {"id":"SG-S3-24","members":["s3 Wi-Fi","s3 BLE","ESP-NOW"],"mode":"one native RF chain with visible vendor TDM"},
+      {"id":"SG-C5-NATIVE","members":["c5 Wi-Fi 2.4/5","c5 IEEE 802.15.4"],"mode":"one 1T1R native RF chain with visible vendor TDM"},
+      {"id":"SG-CC","members":["cc"],"mode":"RX or one controlled TX phase"},
+      {"id":"SG-VOICE","members":["voice"],"mode":"half-duplex RX or TX phase"},
+      {"id":"SG-BROADCAST","members":["receiver","audio support"],"mode":"receive-only"},
+      {"id":"SG-U214","members":["u214 LoRa","declared u214 GNSS support"],"mode":"one exact accessory manifest; joint HIL required"},
+      {"id":"SG-IR","members":["c5 IR"],"mode":"learn/RX or TX phase"},
+      {"id":"SG-EXT-*","members":["one exact accessory profile"],"mode":"manifest-declared members only"}
+    ]
+  },
+  "quiet_state_policy": {
+    "decision": "DEC-0046",
+    "default_state": "QUIET",
+    "required_contracts": ["N24_QUIET", "CC_QUIET", "U214_EXT_QUIET", "VOICE_QUIET", "RECEIVER_AUDIO_QUIET", "IR_QUIET", "S3_RF_QUIET", "C5_RF_QUIET", "STORAGE_QUIET", "SERVICE_IPC_QUIET"],
+    "contracts": [
+      {"id":"N24_QUIET","interfaces":["nrf0","nrf1","nrf2"],"inactive_state":"pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped","control":"RP.GPIO15 NRF_GROUP_PWR_EN with off-safe pull plus exact switched-domain I/O isolation","proof_gate":"rail discharge/current, no I/O back-power, no carrier and active-receiver desense HIL"},
+      {"id":"CC_QUIET","interfaces":["cc"],"inactive_state":"pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped","control":"RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation","proof_gate":"rail discharge/current, no SPI/GDO back-power and active-receiver desense HIL"},
+      {"id":"U214_EXT_QUIET","interfaces":["u214","external accessories"],"inactive_state":"external 5 V off; I2C isolated; SPI/UART static","control":"slow_io.P17 EXT_5V_EN plus protected power and TCA4307 isolation","proof_gate":"rail discharge, isolation, hot-plug and no-back-power HIL"},
+      {"id":"VOICE_QUIET","interfaces":["voice"],"inactive_state":"PTT hardware-off; module power-down; qualified 4 V rail off","control":"VOICE_PTT_N, VOICE_DOMAIN_EN and HARD_STOP_N-dominant power/TX gates","proof_gate":"actual-TX-off, rail/current and stuck-control fault-injection HIL"},
+      {"id":"RECEIVER_AUDIO_QUIET","interfaces":["receiver","codec","I2S"],"inactive_state":"receiver rail/reset off and isolated; codec muted/off; I2S clock/DMA stopped","control":"RX_DOMAIN_EN, CODEC_EN and S3 peripheral clock gates","proof_gate":"I2C no-back-power, clock spectrum, current and active-receiver desense HIL"},
+      {"id":"IR_QUIET","interfaces":["IR RX","IR TX"],"inactive_state":"frontend rail off; RMT stopped and pins parked; TX remains HARD_STOP_N-dominated","control":"C5.GPIO4 IR_FRONTEND_PWR_EN plus independent HARD_STOP_N TX gate","proof_gate":"dark/current/no-optical-output and active-radio desense HIL"},
+      {"id":"S3_RF_QUIET","interfaces":["S3 Wi-Fi","S3 BLE","ESP-NOW"],"inactive_state":"protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive","control":"native RF power state plus S3_RF_TX_EVIDENCE","proof_gate":"no background frame/carrier and active-receiver desense HIL"},
+      {"id":"C5_RF_QUIET","interfaces":["C5 Wi-Fi","C5 IEEE 802.15.4"],"inactive_state":"protocols stopped and native RF block off while C5 may remain alive for IR/recovery","control":"native RF power state plus C5_RF_TX_EVIDENCE","proof_gate":"no background frame/carrier and active-receiver desense HIL"},
+      {"id":"STORAGE_QUIET","interfaces":["microSD"],"inactive_state":"bounded flush then controller static and rail off when no storage session","control":"slow_io.P20 SD_PWR_EN","proof_gate":"no corruption/back-power and active-receiver desense HIL"},
+      {"id":"SERVICE_IPC_QUIET","interfaces":["USB/UART service","S3-RP SPI","S3-C5 SDIO","display SPI"],"inactive_state":"detached/suspended or static idle; clocks run only for bounded required transactions","control":"per-controller clock/DMA gates; physical recovery contacts remain available","proof_gate":"no periodic logs, measured clock spectrum, recovery and active-receiver desense HIL"}
+    ]
+  },
   "instances": {
     "s3": "esp32_s3_wroom_1u_n16r2",
     "c5": "esp32_c5_wroom_1u_n8r8",
@@ -19,7 +53,7 @@
   },
   "controllers": {
     "s3": ["USB_SERIAL_JTAG", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "GPIO", "GPIO_IRQ", "LEDC"],
-    "c5": ["SDIO_SLAVE_4BIT", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO_IRQ"],
+    "c5": ["SDIO_SLAVE_4BIT", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
     "rp": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"]
   },
   "allocations": [
@@ -55,6 +89,7 @@
 
     {"instance":"c5","contact":"GPIO0","net":"IR_RX_DEMOD","direction":"i","controller":"RMT_RX0","peers":["abstract:exact robust-demod IR receiver"]},
     {"instance":"c5","contact":"GPIO1","net":"IR_RX_CARRIER","direction":"i","controller":"RMT_RX1","peers":["abstract:exact carrier-learning IR receiver"]},
+    {"instance":"c5","contact":"GPIO4","net":"IR_FRONTEND_PWR_EN","direction":"o","controller":"GPIO","peers":["abstract:off-safe IR frontend load switch"]},
     {"instance":"c5","contact":"GPIO6","net":"IR_TX_CARRIER","direction":"o","controller":"RMT_TX0","peers":["abstract:fail-safe IR LED driver"]},
     {"instance":"c5","contact":"GPIO7","net":"S3_C5_SDIO_D1","direction":"io","controller":"SDIO_SLAVE_4BIT","peers":["s3.GPIO13"],"strap_proof":"external pull-up and documented SDIO edge profile are verified before runtime ownership"},
     {"instance":"c5","contact":"GPIO8","net":"S3_C5_SDIO_D0","direction":"io","controller":"SDIO_SLAVE_4BIT","peers":["s3.GPIO12"]},
@@ -82,6 +117,7 @@
     {"instance":"rp","contact":"GPIO12","net":"U214_BUSY","direction":"i","controller":"GPIO_IRQ","peers":["u214.LORA_BUSY"]},
     {"instance":"rp","contact":"GPIO13","net":"U214_IRQ","direction":"i","controller":"GPIO_IRQ","peers":["u214.LORA_IRQ"]},
     {"instance":"rp","contact":"GPIO14","net":"U214_RST_N","direction":"o","controller":"GPIO","peers":["u214.LORA_RST"]},
+    {"instance":"rp","contact":"GPIO15","net":"NRF_GROUP_PWR_EN","direction":"o","controller":"GPIO","peers":["abstract:off-safe common nRF load switch"]},
     {"instance":"rp","contact":"GPIO16","net":"VOICE_UART_TX","direction":"o","controller":"UART0","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO17","net":"VOICE_UART_RX","direction":"i","controller":"UART0","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO18","net":"VOICE_PTT_N","direction":"o","controller":"GPIO","peers":["abstract:exact SA518/SA868 voice module"]},
@@ -89,6 +125,7 @@
     {"instance":"rp","contact":"GPIO20","net":"VOICE_SQ","direction":"i","controller":"GPIO_IRQ","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO21","net":"PTT_BUTTON_N","direction":"i","controller":"GPIO_IRQ","peers":["abstract:physical PTT switch"]},
     {"instance":"rp","contact":"GPIO22","net":"VOICE_TX_EVIDENCE","direction":"i","controller":"GPIO_IRQ","peers":["abstract:independent actual-TX detector"]},
+    {"instance":"rp","contact":"GPIO23","net":"CC_PWR_EN","direction":"o","controller":"GPIO","peers":["abstract:off-safe CC1101 load switch"]},
     {"instance":"rp","contact":"GPIO24","net":"S3_RP_IPC_MOSI","direction":"i","controller":"SPI1_IPC","peers":["s3.GPIO21"]},
     {"instance":"rp","contact":"GPIO25","net":"S3_RP_IPC_CS_N","direction":"i","controller":"SPI1_IPC","peers":["s3.GPIO9"]},
     {"instance":"rp","contact":"GPIO26","net":"S3_RP_IPC_SCK","direction":"i","controller":"SPI1_IPC","peers":["s3.GPIO48"]},
@@ -130,7 +167,7 @@
     },
     "rp": {}
   },
-  "free_gpio": {"s3": ["GPIO6", "GPIO41", "GPIO42", "GPIO43"], "c5": ["GPIO4", "GPIO5"], "rp": ["GPIO15", "GPIO23"]},
+  "free_gpio": {"s3": ["GPIO6", "GPIO41", "GPIO42", "GPIO43"], "c5": ["GPIO5"], "rp": []},
   "services": [
     {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT"},
     {"instance":"c5","contacts":["EN","GPIO28","GPIO27","GPIO11","GPIO12"],"method":"permanent UART0 plus physical CHIP_PU, BOOT and normal-boot/log strap; native USB pins are intentionally consumed by 4-bit SDIO"},
@@ -152,9 +189,9 @@
     {"from":"slow_io.P10","to":"abstract:codec-enable","net":"CODEC_EN","safety":"external off-safe pull"},
     {"from":"slow_io.P11","to":"abstract:audio-selector-0","net":"AUDIO_SEL0","safety":"external muted-safe pull"},
     {"from":"slow_io.P12","to":"abstract:audio-selector-1","net":"AUDIO_SEL1","safety":"external muted-safe pull"},
-    {"from":"slow_io.P13","to":"abstract:voice-power-down","net":"VOICE_PD_N","safety":"external off-safe pull"},
+    {"from":"slow_io.P13","to":"abstract:voice-power-reset-domain","net":"VOICE_DOMAIN_EN","safety":"off-safe pull; exact circuit gates the qualified 4 V rail and holds the module TX-safe during sequencing"},
     {"from":"slow_io.P14","to":"abstract:voice-high-low","net":"VOICE_HL","safety":"external conservative-power pull"},
-    {"from":"slow_io.P15","to":"abstract:receiver-reset","net":"RX_RST_N","safety":"external reset-safe pull"},
+    {"from":"slow_io.P15","to":"abstract:receiver-power-reset-isolation","net":"RX_DOMAIN_EN","safety":"off-safe pull; exact circuit removes receiver power, prevents I2C back-power and supplies reset sequencing"},
     {"from":"slow_io.P17","to":"abstract:protected-external-5v-enable","net":"EXT_5V_EN","safety":"external off-safe pull and current limit"},
     {"from":"slow_io.P20","to":"abstract:microsd-load-switch","net":"SD_PWR_EN","safety":"external off-safe pull"},
     {"from":"sd.DETECT_A","to":"slow_io.P21","net":"SD_CARD_DETECT_N","safety":"read-only debounced input; socket switch return is tied to the qualified reference domain"},
@@ -217,7 +254,9 @@
     "C5 4-bit SDIO has exclusive ownership of the S3 SD/MMC host; C5 native USB is unavailable at runtime, so permanent UART0 plus EN/BOOT/strap contacts is the independent recovery path",
     "display and microSD are the only scheduled high-rate pair on one SPI2 controller; separate CS/per-device clocks and bounded transactions remove radio impact, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate",
     "PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve",
-    "physical RF coexistence is not closed by independent digital buses: co-located same/adjacent-band transmitters can still desensitize receivers and same-silicon C5 protocols may time-share RF",
+    "DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; IMP-0039 must select and HIL must prove the exact mixed-RF channel/power/sensitivity envelope",
+    "SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient",
+    "DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO",
     "exact display/touch, codec, receiver, voice module, IR frontends, power tree, antenna placement and hard-stop circuitry remain open before target-architecture acceptance"
   ]
 }

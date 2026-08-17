@@ -35,7 +35,7 @@
 | `W-OWN-09` | бортового LoRa нет; U214 Cap и модульный expansion path для общепринятых 868/915 profiles | `accepted` | `DEC-0008` |
 | `W-OWN-10` | onboard ES8311 mono digital audio с fail-safe analog bypass | `accepted` | `DEC-0009` |
 | `W-OWN-11` | dual-path consumer IR с robust receive и отдельным carrier-learning path | `accepted` | `DEC-0018`; physical owner открыт `DEC-0032` |
-| `W-OWN-12` | три одновременных полнофункциональных nRF24, без урезания native scope | `accepted` | `REQ-N24-0001`; physical owner не выбран |
+| `W-OWN-12` | три одновременных полнофункциональных nRF24, любой independent PTX/PRX mix без peer standby/gaps и без урезания native scope | `accepted` | `REQ-N24-0001`; `G2F-3I` leading owner, atomic target открыт |
 | `W-OWN-13` | baseline native BLE с одним явным product identity/key-vault owner | `accepted` | controller/physical owner открыт `DEC-0032`; former S3 profile — reference |
 | `W-OWN-14` | OpenThread open baseline; Zigbee optional conditional | `accepted` | `DEC-0020` |
 | `W-OWN-15` | целевой готовый документ отдельно от текущей проработки в обоих репозиториях | `accepted` | `DEC-0011` |

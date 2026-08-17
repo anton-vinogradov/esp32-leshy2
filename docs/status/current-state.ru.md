@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе**: `DEC-0044/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без radio-bus contention; physical RF, exact peripherals/power/HIL открыты |
+| 2F. Logical/electrical feasibility | **В работе**: `G2F-3I` закрывает digital buses; `DEC-0045/0046` добавляют одну active group, three-nRF full mix и quiet states неиспользуемых interfaces; exact nRF RF envelope, power parts и HIL открыты |
 | 3. Target physical/product design | Ожидает G2F; P1/P2/P3 reference only, далее адаптируется legacy clamshell generator |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -49,7 +49,7 @@ exact devices/nets.
 - консервативные TX defaults, явный выбор максимума, hard STOP без automatic
   re-arm и отдельное actual-TX evidence;
 - полный self-review 125 wishlist leaves и правило снижения стоимости без потерь;
-- три полнофункциональных nRF24 с одновременным приёмом;
+- три полнофункциональных nRF24 с любым одновременным PTX/PRX role mix;
 - требования обычных Wi-Fi 2.4/5 ГГц, IEEE 802.15.4, native BLE и
   Wi-Fi 2.4/ESP-NOW;
 - packet Sub-GHz, broadcast receive, analog voice, audio, IR, внешние
@@ -107,8 +107,12 @@ SPI2 с bounded quantum; radio FIFO/IPC её не ждут. C5 UART0+EN/BOOT/str
 остаётся recovery path, потому что GPIO13/14 заняты SDIO. Повторная
 exact-device проверка обнаружила и исправила crossing реального RP2354B PIO
 GPIO-window; PIO data теперь `GPIO30…46`, fixed mux закреплён контрактами, а
-capacity закрыта с резервом 7/12 PIO SM и 3/16 DMA. Physical RF self-desense и
-named HIL остаются следующими gates. `FND-0050` фиксирует nRF24 NRND и
+capacity закрыта с резервом 7/12 PIO SM и 3/16 DMA. `DEC-0045` принимает одну active top-level
+signal group, но определяет `SG-N24` как все три radio одновременно активные в
+любом PTX/PRX mix. `DEC-0046/QST-0001` требуют quiet-state всех неиспользуемых
+interfaces и отдают RP GPIO15/GPIO23 плюс C5 GPIO4 под group-level power gates.
+Exact `IMP-0039` nRF RF acceptance, power parts, self-desense и named HIL
+остаются открытыми. `FND-0050` фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -116,7 +120,8 @@ named HIL остаются следующими gates. `FND-0050` фиксиру
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее `G2F-3I` проходит physical RF/self-desense, exact peripheral,
+Далее `IMP-0039` выбирает nRF full-mix RF envelope; затем `G2F-3I` проходит
+quiet-state power-part, physical RF/self-desense, exact peripheral,
 signal-integrity, power и HIL closure. После этого leading paper map может
 стать working electrical baseline и войти в адаптированный legacy physical
 generator. `G2F-2R/3D` остаются сравнимыми references; `LAY-0001` P1/P2/P3

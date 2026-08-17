@@ -18,10 +18,16 @@
 7. Exact components, electrical CAD, schematic and PCB afterwards.
 
 The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
-`CTL-0001`, [`NIF-0001`](NIF-0001-digital-noninterference-layout.md) and the
-generated `G2F-pin-ledger`. `DEC-0044/REV-0004L` make `G2F-3I` the leading
-reviewed paper map under a no-neighbour-stall invariant. It is not yet target:
-physical RF, exact peripherals, power and HIL remain open; CAD stays blocked.
+`CTL-0001`, [`NIF-0001`](NIF-0001-digital-noninterference-layout.md),
+[`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md) and the generated
+`G2F-pin-ledger`. `DEC-0044/REV-0004L` make `G2F-3I` the leading reviewed paper
+map under a digital no-neighbour-stall invariant. `FND-0053/REV-0004M` prove
+that arbitrary cross-group co-located same-band TX↔RX cannot be promised;
+`DEC-0045` selects one active group, while `SG-N24` explicitly requires every
+simultaneous three-radio PTX/PRX mix. `FND-0054/IMP-0039` keep its exact RF
+sensitivity envelope open. `DEC-0046/QST-0001` require unused interfaces to
+enter verified quiet states. It is not yet target: exact RF paths, power gates,
+peripherals and HIL remain open; CAD stays blocked.
 
 ## Active G2F artifacts
 
@@ -47,6 +53,17 @@ physical RF, exact peripherals, power and HIL remain open; CAD stays blocked.
   the 24-endpoint/separated-I²C invariant and delegates layout search;
   [`NIF-0001`](NIF-0001-digital-noninterference-layout.md) records the selected
   paper arrangement and rejected bandwidth/controller variants.
+- [`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md) applies real
+  shared-chain/range/power facts to `G2F-3I`; [`FND-0053`](../findings/FND-0053-arbitrary-colocated-rf-concurrency-is-impossible.md)
+  separates impossible arbitrary cross-group TX↔RX concurrency from mandatory
+  three-nRF full-function concurrency,
+  and [`IMP-0038`](../improvements/IMP-0038-visible-qualified-rf-arbiter.md)
+  records the accepted group arbiter. [`FND-0054`](../findings/FND-0054-three-nrf-mix-needs-rf-acceptance.md)
+  and [`IMP-0039`](../improvements/IMP-0039-three-nrf-full-mix-acceptance.md)
+  reopen the physical acceptance envelope for all nRF PTX/PRX mixes;
+- [`QST-0001`](QST-0001-unused-interface-quiet-states.md) propagates
+  [`DEC-0046`](../decisions/DEC-0046-unused-interface-quiet-by-default.md) into
+  per-interface power-down, clock-parking and EMI proof contracts.
 
 ## Deferred/reference G3 artifacts
 

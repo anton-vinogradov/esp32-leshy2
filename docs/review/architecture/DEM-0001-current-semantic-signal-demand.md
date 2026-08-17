@@ -18,7 +18,7 @@ identity. Владелец ни одного блока здесь не выбр
 
 | Группа | Обязательные semantic endpoints | Допустимое sharing/сжатие | Нельзя потерять |
 |---|---|---|---|
-| 3× full-function nRF24 | общие либо раздельные `SCK/MOSI/MISO`; по `CE/CSN/IRQ` на каждый из трёх | общий SPI; reset-safe output latch; protected IRQ aggregation после proof | независимые mode/channel/rate/address/FIFO, одновременный PRX, source identity, bounded FIFO service |
+| 3× full-function nRF24 | общие либо раздельные `SCK/MOSI/MISO`; по `CE/CSN/IRQ` на каждый из трёх | общий SPI; reset-safe output latch; protected IRQ aggregation после proof | независимые mode/channel/rate/address/FIFO, любой одновременный `3R/1T2R/2T1R/3T` mix без peer standby/gaps, source identity, bounded FIFO service |
 | CC1101 | `SCK/MOSI/MISO`, `CSn`, `GDO0`, `GDO2` candidate endpoints | общий radio SPI после exact electrical proof | FIFO/event deadlines, выбранные modulation/RX/TX modes, safe deselect/power |
 | dual-path consumer IR | robust-demod RX, carrier-learning RX, carrier TX | owner peripheral выбирается candidate | два одновременных RX path, 30–60 kHz measurement path, hardware TX inhibit |
 | native 2.4/5 + 802.15.4 | внутренняя radio function exact candidate SoC/module | coexistence внутри одного silicon допускается только по manufacturer contract | обычные 2.4/5 Wi-Fi и reviewed 802.15.4 behavior; 6 GHz отсутствует |

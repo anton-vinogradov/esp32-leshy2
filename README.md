@@ -38,9 +38,11 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
 
 ## Reviewed capability target
 
-- Three independent full-function nRF24 paths retain native PTX/PRX features,
-  simultaneous reception and honest packet/drop/timestamp evidence. Their
-  future owner and wiring remain open.
+- Three independent full-function nRF24 paths retain native PTX/PRX features
+  and must support every simultaneous `3R/1T2R/2T1R/3T` mix without automatic
+  peer standby or hidden RX gaps. Packet/drop/timestamp and exact mixed-RF
+  profile evidence remain explicit. `G2F-3I` places them on RP2354B as the
+  leading paper candidate; atomic ownership and wiring are not yet final.
 - The product provides ordinary 2.4/5 GHz Wi-Fi, IEEE 802.15.4, native
   Bluetooth LE and ordinary 2.4 GHz Wi-Fi/ESP-NOW profiles. Exact radios and
   ownership are selected only by the future whole-device architecture.
@@ -108,8 +110,8 @@ review. G3 physical/product inputs remain reviewed, but G2F logical/electrical
 feasibility now comes first. One machine-readable source contains three
 structurally checked maps; `DEC-0044/NIF-0001/REV-0004L` select `G2F-3I` as the
 leading reviewed paper map without radio-bus contention. Physical RF, exact
+`SG-N24` full-mix acceptance, unused-interface quiet-state power controls,
 peripherals, power and HIL must close before adapting the legacy physical
-mockup. Whole-device optimality,
-conceptual placement and a new atomic
+mockup. Whole-device optimality, conceptual placement and a new atomic
 architecture decision must precede components and KiCad. The normative sequence is
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

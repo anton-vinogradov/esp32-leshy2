@@ -30,6 +30,8 @@ control-surface alternatives cannot delete a radio/key result.
 ## RF and antenna zoning inputs
 
 - three nRF24 antenna identities need stable, marked enclosure-frame geometry
+  and maximum practical mutual isolation because every simultaneous PTX/PRX
+  role mix is required without automatic peer standby or hidden RX gaps
   for simultaneous RPD comparison; one switched antenna is not equivalent;
 - 2.4/5 GHz Wi-Fi/BLE/802.15.4, Sub-GHz, analog voice and broadcast/HF receive
   need honest separate/shared-path candidates and body-shadowing evidence;

@@ -29,7 +29,7 @@
 | 5 | `WG-05` HF NFC/RFID | `C-NFC-01..10` | 10 | tag read/write/NDEF/library, credential analysis, emulation/recovery/clone с разными gates | capability reviewed; extra LF/relay отдельно |
 | 6 | `WG-06` Wi-Fi и IP/local-network функции | `C-W24-01..12`, `C-W5-01..08` | 20 | AP/STA/ESP-NOW/SoftAP/OTA, scan/metrics/capture/detection и изолированные active security tests в 2.4/5 GHz | оба capability slice reviewed; backends/owner dedup reopened by `DEC-0032` |
 | 7 | `WG-07` Native BLE и IEEE 802.15.4 | `C-BLE-01..12`, `C-W5-09`, `C-UX-02` | 14 | ordinary BLE/GATT/HID/beacons, tracker safety, Thread/Zigbee/raw 802.15.4 и единый BadBLE/BadUSB script UX | baseline reviewed; extras Mesh/sniffer/Classic отдельно |
-| 8 | `WG-08` Три полнофункциональных nRF24 | `C-N24-01..10` | 10 | independent PTX/PRX, RPD hunt, ESB discovery/analysis, authorized exploitation и contained RF tests | capability reviewed; owner/bus/GPIO/layout только после freeze |
+| 8 | `WG-08` Три полнофункциональных nRF24 | `C-N24-01..10` | 10 | any simultaneous independent PTX/PRX mix, RPD hunt, ESB discovery/analysis, authorized exploitation и contained RF tests | capability reviewed; `G2F-3I` leading digital owner, mixed-RF acceptance открыт |
 | 9 | `WG-09` Sub-GHz CC1101 и внешний LoRa | `C-SUB-01..11`, `C-LORA-01..09`, `C-HWX-02` | 21 | receive/spectrum/decode/replay, P2P/mesh/APRS/LoRaWAN/file transfer, modulation tests и contained resilience tests | attachment direction accepted; capability contracts pending |
 |  | **Итого** |  | **125** |  | каждая строка размещена один раз |
 

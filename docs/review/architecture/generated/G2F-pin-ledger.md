@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 3 | `s3 29U/3R/4F`, `c5 13U/6R/2F`, `rp 46U/0R/2F` | all radio data/control paths are controller-independent; display/microSD sharing is bounded but physical RF self-desense and same-silicon coexistence require a separate proof/decision |
+| `G2F-3I` | 3 | `s3 29U/3R/4F`, `c5 14U/6R/1F`, `rp 48U/0R/0F` | DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open |
 
 ## Exact-device provenance used by these drafts
 
@@ -289,6 +289,39 @@ Reserved: none. Free: none.
 - Candidate status: `draft_non_interference_candidate`
 - Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.
 
+### Signal-group policy
+
+Decision `DEC-0045`; default `NONE`; exclusive groups: `true`.
+
+| Group | Members | Runtime mode | Required role mixes |
+|---|---|---|---|
+| `SG-N24` | `nrf0`, `nrf1`, `nrf2` | all three active; each independently PTX or PRX in every simultaneous mix; no peer standby or hidden RX gap | `3PRX`, `1PTX+2PRX`, `2PTX+1PRX`, `3PTX` |
+| `SG-S3-24` | `s3 Wi-Fi`, `s3 BLE`, `ESP-NOW` | one native RF chain with visible vendor TDM | — |
+| `SG-C5-NATIVE` | `c5 Wi-Fi 2.4/5`, `c5 IEEE 802.15.4` | one 1T1R native RF chain with visible vendor TDM | — |
+| `SG-CC` | `cc` | RX or one controlled TX phase | — |
+| `SG-VOICE` | `voice` | half-duplex RX or TX phase | — |
+| `SG-BROADCAST` | `receiver`, `audio support` | receive-only | — |
+| `SG-U214` | `u214 LoRa`, `declared u214 GNSS support` | one exact accessory manifest; joint HIL required | — |
+| `SG-IR` | `c5 IR` | learn/RX or TX phase | — |
+| `SG-EXT-*` | `one exact accessory profile` | manifest-declared members only | — |
+
+### Unused-interface quiet-state policy
+
+Decision `DEC-0046`; default `QUIET`.
+
+| Contract | Interfaces | Inactive state | Control | Proof gate |
+|---|---|---|---|---|
+| `N24_QUIET` | `nrf0`, `nrf1`, `nrf2` | pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped | RP.GPIO15 NRF_GROUP_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no I/O back-power, no carrier and active-receiver desense HIL |
+| `CC_QUIET` | `cc` | pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped | RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no SPI/GDO back-power and active-receiver desense HIL |
+| `U214_EXT_QUIET` | `u214`, `external accessories` | external 5 V off; I2C isolated; SPI/UART static | slow_io.P17 EXT_5V_EN plus protected power and TCA4307 isolation | rail discharge, isolation, hot-plug and no-back-power HIL |
+| `VOICE_QUIET` | `voice` | PTT hardware-off; module power-down; qualified 4 V rail off | VOICE_PTT_N, VOICE_DOMAIN_EN and HARD_STOP_N-dominant power/TX gates | actual-TX-off, rail/current and stuck-control fault-injection HIL |
+| `RECEIVER_AUDIO_QUIET` | `receiver`, `codec`, `I2S` | receiver rail/reset off and isolated; codec muted/off; I2S clock/DMA stopped | RX_DOMAIN_EN, CODEC_EN and S3 peripheral clock gates | I2C no-back-power, clock spectrum, current and active-receiver desense HIL |
+| `IR_QUIET` | `IR RX`, `IR TX` | frontend rail off; RMT stopped and pins parked; TX remains HARD_STOP_N-dominated | C5.GPIO4 IR_FRONTEND_PWR_EN plus independent HARD_STOP_N TX gate | dark/current/no-optical-output and active-radio desense HIL |
+| `S3_RF_QUIET` | `S3 Wi-Fi`, `S3 BLE`, `ESP-NOW` | protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive | native RF power state plus S3_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
+| `C5_RF_QUIET` | `C5 Wi-Fi`, `C5 IEEE 802.15.4` | protocols stopped and native RF block off while C5 may remain alive for IR/recovery | native RF power state plus C5_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
+| `STORAGE_QUIET` | `microSD` | bounded flush then controller static and rail off when no storage session | slow_io.P20 SD_PWR_EN | no corruption/back-power and active-receiver desense HIL |
+| `SERVICE_IPC_QUIET` | `USB/UART service`, `S3-RP SPI`, `S3-C5 SDIO`, `display SPI` | detached/suspended or static idle; clocks run only for bounded required transactions | per-controller clock/DMA gates; physical recovery contacts remain available | no periodic logs, measured clock spectrum, recovery and active-receiver desense HIL |
+
 ### `s3` — `ESP32-S3-WROOM-1U-N16R2`
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
@@ -332,6 +365,7 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO6`, `GPIO41`, `GPIO42`, `GPIO4
 |---|---:|---|---|---|---|---|
 | `GPIO0` | 6 | `IR_RX_DEMOD` | `i` | `RMT_RX0` | `abstract:exact robust-demod IR receiver` | — |
 | `GPIO1` | 7 | `IR_RX_CARRIER` | `i` | `RMT_RX1` | `abstract:exact carrier-learning IR receiver` | — |
+| `GPIO4` | 17 | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | `abstract:off-safe IR frontend load switch` | — |
 | `GPIO6` | 8 | `IR_TX_CARRIER` | `o` | `RMT_TX0` | `abstract:fail-safe IR LED driver` | — |
 | `GPIO7` | 9 | `S3_C5_SDIO_D1` | `io` | `SDIO_SLAVE_4BIT` | `s3.GPIO13` | external pull-up and documented SDIO edge profile are verified before runtime ownership |
 | `GPIO8` | 10 | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE_4BIT` | `s3.GPIO12` | — |
@@ -344,8 +378,8 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO6`, `GPIO41`, `GPIO42`, `GPIO4
 | `GPIO23` | 21 | `C5_RF_TX_EVIDENCE` | `i` | `GPIO_IRQ` | `abstract:independent C5 actual-TX detector` | — |
 | `GPIO24` | 23 | `IR_TX_EVIDENCE` | `i` | `GPIO_IRQ` | `abstract:independent IR optical-current detector` | — |
 
-Budget: **13 used + 6 reserved + 2 free = 21 exposed GPIO**.
-Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO4`, `GPIO5`.
+Budget: **14 used + 6 reserved + 1 free = 21 exposed GPIO**.
+Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5`.
 
 ### `rp` — `RP2354B A4 (exact A4 order/lot identity required before BOM freeze)`
 
@@ -366,6 +400,7 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO4
 | `GPIO12` | 11 | `U214_BUSY` | `i` | `GPIO_IRQ` | `u214.LORA_BUSY` | — |
 | `GPIO13` | 12 | `U214_IRQ` | `i` | `GPIO_IRQ` | `u214.LORA_IRQ` | — |
 | `GPIO14` | 13 | `U214_RST_N` | `o` | `GPIO` | `u214.LORA_RST` | — |
+| `GPIO15` | 14 | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | `abstract:off-safe common nRF load switch` | — |
 | `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `abstract:exact SA518/SA868 voice module` | — |
 | `GPIO17` | 17 | `VOICE_UART_RX` | `i` | `UART0` | `abstract:exact SA518/SA868 voice module` | — |
 | `GPIO18` | 18 | `VOICE_PTT_N` | `o` | `GPIO` | `abstract:exact SA518/SA868 voice module` | — |
@@ -373,6 +408,7 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO4
 | `GPIO20` | 20 | `VOICE_SQ` | `i` | `GPIO_IRQ` | `abstract:exact SA518/SA868 voice module` | — |
 | `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `abstract:physical PTT switch` | — |
 | `GPIO22` | 22 | `VOICE_TX_EVIDENCE` | `i` | `GPIO_IRQ` | `abstract:independent actual-TX detector` | — |
+| `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `abstract:off-safe CC1101 load switch` | — |
 | `GPIO24` | 25 | `S3_RP_IPC_MOSI` | `i` | `SPI1_IPC` | `s3.GPIO21` | — |
 | `GPIO25` | 26 | `S3_RP_IPC_CS_N` | `i` | `SPI1_IPC` | `s3.GPIO9` | — |
 | `GPIO26` | 27 | `S3_RP_IPC_SCK` | `i` | `SPI1_IPC` | `s3.GPIO48` | — |
@@ -398,8 +434,8 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO4
 | `GPIO46` | 57 | `U214_MOSI` | `o` | `PIO1_SM0_EXT_SPI` | `u214.MOSI` | — |
 | `GPIO47` | 58 | `U214_NSS_N` | `o` | `GPIO` | `u214.NSS` | — |
 
-Budget: **46 used + 0 reserved + 2 free = 48 exposed GPIO**.
-Reserved: none. Free: `GPIO15`, `GPIO23`.
+Budget: **48 used + 0 reserved + 0 free = 48 exposed GPIO**.
+Reserved: none. Free: none.
 
 ### Fixed-function/control routes
 
@@ -420,9 +456,9 @@ Reserved: none. Free: `GPIO15`, `GPIO23`.
 | `CODEC_EN` | `slow_io.P10` | `abstract:codec-enable` | external off-safe pull |
 | `AUDIO_SEL0` | `slow_io.P11` | `abstract:audio-selector-0` | external muted-safe pull |
 | `AUDIO_SEL1` | `slow_io.P12` | `abstract:audio-selector-1` | external muted-safe pull |
-| `VOICE_PD_N` | `slow_io.P13` | `abstract:voice-power-down` | external off-safe pull |
+| `VOICE_DOMAIN_EN` | `slow_io.P13` | `abstract:voice-power-reset-domain` | off-safe pull; exact circuit gates the qualified 4 V rail and holds the module TX-safe during sequencing |
 | `VOICE_HL` | `slow_io.P14` | `abstract:voice-high-low` | external conservative-power pull |
-| `RX_RST_N` | `slow_io.P15` | `abstract:receiver-reset` | external reset-safe pull |
+| `RX_DOMAIN_EN` | `slow_io.P15` | `abstract:receiver-power-reset-isolation` | off-safe pull; exact circuit removes receiver power, prevents I2C back-power and supplies reset sequencing |
 | `EXT_5V_EN` | `slow_io.P17` | `abstract:protected-external-5v-enable` | external off-safe pull and current limit |
 | `SD_PWR_EN` | `slow_io.P20` | `abstract:microsd-load-switch` | external off-safe pull |
 | `SD_CARD_DETECT_N` | `sd.DETECT_A` | `slow_io.P21` | read-only debounced input; socket switch return is tied to the qualified reference domain |
@@ -509,9 +545,11 @@ Reserved: none. Free: `GPIO15`, `GPIO23`.
 - C5 4-bit SDIO has exclusive ownership of the S3 SD/MMC host; C5 native USB is unavailable at runtime, so permanent UART0 plus EN/BOOT/strap contacts is the independent recovery path
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; separate CS/per-device clocks and bounded transactions remove radio impact, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
-- physical RF coexistence is not closed by independent digital buses: co-located same/adjacent-band transmitters can still desensitize receivers and same-silicon C5 protocols may time-share RF
+- DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; IMP-0039 must select and HIL must prove the exact mixed-RF channel/power/sensitivity envelope
+- SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
+- DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
 - exact display/touch, codec, receiver, voice module, IR frontends, power tree, antenna placement and hard-stop circuitry remain open before target-architecture acceptance
 
 ## Machine-check result and review boundary
 
-All source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. Where declared, non-MCU contacts, interface resource contracts, controller GPIO-window selections, fixed-mux contact contracts and capacity arithmetic are also complete. It does **not** close electrical feasibility: abstract peers, reference-only modules, RF networks, timing HIL, power and physical integration remain open. Therefore no candidate receives «Проведено ревью» as a complete target architecture in this generated artifact.
+All source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. Where declared, non-MCU contacts, interface resource contracts, controller GPIO-window selections, fixed-mux contact contracts, capacity arithmetic, signal-group declarations and quiet-state contract coverage are also complete. It does **not** close electrical feasibility: abstract peers, reference-only modules, RF networks, quiet-state circuitry, timing/EMI HIL, power and physical integration remain open. Therefore no candidate receives «Проведено ревью» as a complete target architecture in this generated artifact.

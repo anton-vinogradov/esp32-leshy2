@@ -38,9 +38,11 @@ peripheral computer. Это должен быть собираемый, ремо
 
 ## Проверенный целевой набор возможностей
 
-- Три независимых полнофункциональных nRF24 сохраняют native PTX/PRX,
-  одновременный приём и честные packet/drop/timestamp evidence. Их будущий
-  owner и wiring открыты.
+- Три независимых полнофункциональных nRF24 сохраняют native PTX/PRX и обязаны
+  поддерживать любой одновременный mix `3R/1T2R/2T1R/3T` без automatic standby
+  соседей и скрытых RX gaps. Packet/drop/timestamp и exact mixed-RF profile
+  evidence остаются явными. Ведущий paper candidate `G2F-3I` размещает их на
+  RP2354B; atomic ownership и wiring ещё не финальны.
 - Продукт даёт обычные Wi-Fi 2.4/5 ГГц, IEEE 802.15.4, native Bluetooth LE и
   Wi-Fi 2.4/ESP-NOW profiles. Точные radios и ownership выбирает только будущая
   whole-device architecture.
@@ -107,8 +109,9 @@ peripheral computer. Это должен быть собираемый, ремо
 product inputs G3 остаются проверенными, но теперь сначала проходит G2F.
 Единый machine-readable источник содержит три structurally checked карты;
 `DEC-0044/NIF-0001/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без
-radio-bus contention. Physical RF, exact peripherals, power и HIL должны
-закрыться до адаптации legacy physical mockup.
+radio-bus contention. Physical RF, exact `SG-N24` full-mix acceptance,
+quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
+должны закрыться до адаптации legacy physical mockup.
 Whole-device optimality, conceptual placement и новое atomic architecture
 decision обязаны предшествовать компонентам и KiCad. Нормативный порядок —
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).
