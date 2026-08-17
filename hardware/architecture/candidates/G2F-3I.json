@@ -49,6 +49,8 @@
     "nrf1": "ebyte_e01_ml01ipx",
     "nrf2": "ebyte_e01_ml01ipx",
     "cc": "cc1101rgpr",
+    "voice": "nicerf_sa518_v11",
+    "receiver": "skyworks_si4732_a10_gs",
     "slow_io": "tca6424argjr",
     "sd": "hirose_dm3at_sf_pejm5"
   },
@@ -58,8 +60,8 @@
     "rp": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"]
   },
   "allocations": [
-    {"instance":"s3","contact":"GPIO1","net":"SYS_I2C_SDA","direction":"io","controller":"I2C0","peers":["slow_io.SDA","abstract:touch/codec/receiver internal I2C"]},
-    {"instance":"s3","contact":"GPIO2","net":"SYS_I2C_SCL","direction":"o","controller":"I2C0","peers":["slow_io.SCL","abstract:touch/codec/receiver internal I2C"]},
+    {"instance":"s3","contact":"GPIO1","net":"SYS_I2C_SDA","direction":"io","controller":"I2C0","peers":["slow_io.SDA","receiver.SDIO","abstract:touch/codec internal I2C"]},
+    {"instance":"s3","contact":"GPIO2","net":"SYS_I2C_SCL","direction":"o","controller":"I2C0","peers":["slow_io.SCL","receiver.SCLK","abstract:touch/codec internal I2C"]},
     {"instance":"s3","contact":"GPIO3","net":"RP_ALERT_N","direction":"i","controller":"GPIO_IRQ","peers":["rp.GPIO19"],"strap_proof":"RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state"},
     {"instance":"s3","contact":"GPIO4","net":"SD_SPI_MISO","direction":"i","controller":"SPI2","peers":["sd.DAT0"]},
     {"instance":"s3","contact":"GPIO5","net":"SD_SPI_CS_N","direction":"o","controller":"SPI2","peers":["sd.CD_DAT3"]},
@@ -119,11 +121,11 @@
     {"instance":"rp","contact":"GPIO13","net":"U214_IRQ","direction":"i","controller":"GPIO_IRQ","peers":["u214.LORA_IRQ"]},
     {"instance":"rp","contact":"GPIO14","net":"U214_RST_N","direction":"o","controller":"GPIO","peers":["u214.LORA_RST"]},
     {"instance":"rp","contact":"GPIO15","net":"NRF_GROUP_PWR_EN","direction":"o","controller":"GPIO","peers":["abstract:off-safe common nRF load switch"]},
-    {"instance":"rp","contact":"GPIO16","net":"VOICE_UART_TX","direction":"o","controller":"UART0","peers":["abstract:exact SA518/SA868 voice module"]},
-    {"instance":"rp","contact":"GPIO17","net":"VOICE_UART_RX","direction":"i","controller":"UART0","peers":["abstract:exact SA518/SA868 voice module"]},
-    {"instance":"rp","contact":"GPIO18","net":"VOICE_PTT_N","direction":"o","controller":"GPIO","peers":["abstract:exact SA518/SA868 voice module"]},
+    {"instance":"rp","contact":"GPIO16","net":"VOICE_UART_TX","direction":"o","controller":"UART0","peers":["voice.UART_RX"]},
+    {"instance":"rp","contact":"GPIO17","net":"VOICE_UART_RX","direction":"i","controller":"UART0","peers":["voice.UART_TX"]},
+    {"instance":"rp","contact":"GPIO18","net":"VOICE_PTT_N","direction":"o","controller":"GPIO","peers":["voice.PTT"]},
     {"instance":"rp","contact":"GPIO19","net":"RP_ALERT_N","direction":"od","controller":"GPIO_IRQ","peers":["s3.GPIO3"]},
-    {"instance":"rp","contact":"GPIO20","net":"VOICE_ACTIVITY","direction":"i","controller":"GPIO_IRQ","peers":["abstract:exact voice-module qualified activity/status output; SA518 has no dedicated SQ pin"]},
+    {"instance":"rp","contact":"GPIO20","net":"VOICE_ACTIVITY","direction":"i","controller":"GPIO_IRQ","peers":["voice.AUDIO_ON"]},
     {"instance":"rp","contact":"GPIO21","net":"PTT_BUTTON_N","direction":"i","controller":"GPIO_IRQ","peers":["abstract:physical PTT switch"]},
     {"instance":"rp","contact":"GPIO22","net":"VOICE_TX_EVIDENCE","direction":"i","controller":"GPIO_IRQ","peers":["abstract:independent actual-TX detector"]},
     {"instance":"rp","contact":"GPIO23","net":"CC_PWR_EN","direction":"o","controller":"GPIO","peers":["abstract:off-safe CC1101 load switch"]},
@@ -172,7 +174,8 @@
   "services": [
     {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20"],"method":"native USB Serial/JTAG plus physical EN/BOOT"},
     {"instance":"c5","contacts":["EN","GPIO28","GPIO27","GPIO11","GPIO12"],"method":"permanent UART0 plus physical CHIP_PU, BOOT and normal-boot/log strap; native USB pins are intentionally consumed by 4-bit SDIO"},
-    {"instance":"rp","contacts":["RUN","SWCLK","SWDIO","USB_DM","USB_DP","QSPI_SS_USB_BOOT"],"method":"independent SWD, RUN, USB and BOOTSEL fixture access"}
+    {"instance":"rp","contacts":["RUN","SWCLK","SWDIO","USB_DM","USB_DP","QSPI_SS_USB_BOOT"],"method":"independent SWD, RUN, USB and BOOTSEL fixture access"},
+    {"instance":"voice","contacts":["UPDATE","UART_TX","UART_RX","PD"],"method":"permanent fixture breakout for vendor update/recovery plus UART and hardware power-down; UPDATE drive remains inhibited until exact rev-1.1 direction/timing proof"}
   ],
   "fixed_routes": [
     {"from":"u214_i2c_iso.SDAOUT","to":"u214.SDA","net":"U214_I2C_SDA_OUT","safety":"hot-swap isolation and stuck-low recovery keep the external branch off the controller-side domain"},
@@ -191,14 +194,25 @@
     {"from":"slow_io.P11","to":"abstract:audio-selector-0","net":"AUDIO_SEL0","safety":"external muted-safe pull"},
     {"from":"slow_io.P12","to":"abstract:audio-selector-1","net":"AUDIO_SEL1","safety":"external muted-safe pull"},
     {"from":"slow_io.P13","to":"abstract:voice-power-reset-domain","net":"VOICE_DOMAIN_EN","safety":"off-safe pull; exact circuit gates the qualified 4 V rail and holds the module TX-safe during sequencing"},
-    {"from":"slow_io.P14","to":"abstract:voice-high-low","net":"VOICE_HL","safety":"external conservative-power pull"},
+    {"from":"abstract:voice-power-reset-domain","to":"voice.PD","net":"VOICE_PD_N","safety":"off-safe sequencer keeps the exact module in power-down until the qualified 4 V rail is valid"},
+    {"from":"slow_io.P14","to":"voice.HL","net":"VOICE_HL","safety":"external conservative-power pull"},
+    {"from":"voice.UPDATE","to":"abstract:voice-update-fixture","net":"VOICE_UPDATE","safety":"fixture-only; no runtime drive until the rev-1.1 direction/description conflict is resolved by specimen proof"},
+    {"from":"abstract:codec-voice-audio-out","to":"voice.MIC_IN","net":"VOICE_MIC_IN","safety":"AC-coupled and limited by the exact codec/selector circuit"},
+    {"from":"voice.AFOUT","to":"abstract:codec-voice-audio-in","net":"VOICE_AF_OUT","safety":"muted/isolated before voice rail transitions"},
     {"from":"slow_io.P15","to":"abstract:receiver-power-reset-isolation","net":"RX_DOMAIN_EN","safety":"off-safe pull; exact circuit removes receiver power, prevents I2C back-power and supplies reset sequencing"},
+    {"from":"abstract:receiver-power-reset-isolation","to":"receiver.RST","net":"RX_RST_N","safety":"reset remains asserted until the qualified receiver rail and I2C isolation are valid"},
+    {"from":"receiver.GPO2_INTB","to":"slow_io.P24","net":"RX_STATUS_N","safety":"exact interrupt source; bounded latency and pulse width remain HIL gates"},
+    {"from":"abstract:i2c-mode-strap","to":"receiver.SENB","net":"RX_SENB_I2C","safety":"fixed reset strap selects the reviewed two-wire control mode"},
+    {"from":"abstract:qualified-32k-clock","to":"receiver.RCLK","net":"RX_RCLK","safety":"clock source and startup remain exact electrical gates"},
+    {"from":"receiver.LOUT_DFS","to":"abstract:codec-receiver-left","net":"RX_AUDIO_L","safety":"muted/AC-coupled by the exact audio selector"},
+    {"from":"receiver.ROUT_DOUT","to":"abstract:codec-receiver-right","net":"RX_AUDIO_R","safety":"muted/AC-coupled by the exact audio selector"},
+    {"from":"receiver.FMI","to":"abstract:RX-FM-SW-SMA-front-end","net":"RX_FMI_RF","safety":"dedicated external-SMA whip path; matching/ESD stays close to FMI"},
+    {"from":"receiver.AMI","to":"abstract:RX-AM-LW-loop-pod","net":"RX_AMI_RF","safety":"dedicated short loop/pod path; generic long coax is not qualified"},
     {"from":"slow_io.P17","to":"abstract:protected-external-5v-enable","net":"EXT_5V_EN","safety":"external off-safe pull and current limit"},
     {"from":"slow_io.P20","to":"abstract:microsd-load-switch","net":"SD_PWR_EN","safety":"external off-safe pull"},
     {"from":"sd.DETECT_A","to":"slow_io.P21","net":"SD_CARD_DETECT_N","safety":"read-only debounced input; socket switch return is tied to the qualified reference domain"},
     {"from":"abstract:latched-hard-stop-sense","to":"slow_io.P22","net":"STOP_LATCH_SENSE_N","safety":"sense only; non-programmable hard-stop dominance never depends on this path"},
     {"from":"abstract:S3-actual-RF-TX-detector","to":"slow_io.P23","net":"S3_RF_TX_EVIDENCE","safety":"read-only evidence; hard-stop remains non-programmable"},
-    {"from":"abstract:receiver-status-or-irq","to":"slow_io.P24","net":"RX_STATUS_N","safety":"bounded-poll/aggregated IRQ path; capture requirements remain exact-part HIL"},
     {"from":"abstract:power-current-thermal-fault","to":"slow_io.P25","net":"POWER_FAULT_N","safety":"hardware protection acts independently; this is diagnostic evidence"},
     {"from":"abstract:accessory-present","to":"slow_io.P26","net":"ACCESSORY_PRESENT_N","safety":"read-only, protected and debounced"},
     {"from":"abstract:latched-hard-stop","to":"abstract:all-TX-enables-and-rails","net":"HARD_STOP_N","safety":"non-programmable dominance over every MCU and radio/voice/IR TX path"}
@@ -242,7 +256,7 @@
     {"id":"DISPLAY_SD_SPI","owner":"s3","clients":["abstract:display","sd"],"sharing":"scheduled","deadline":"critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here","proof_gate":"dirty/tiled display plus 1.5 MB/s record and 250 ms card-stall HIL","arbitration":"separate CS and per-device clocks; display transaction <=256 B; bounded SD command/data chunks; critical UI priority"},
     {"id":"S3_RP_IPC","owner":"s3","clients":["rp"],"sharing":"dedicated","deadline":"20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership","proof_gate":"SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL"},
     {"id":"S3_C5_IPC","owner":"s3","clients":["c5"],"sharing":"dedicated","deadline":"4-bit SDIO at up to 40 MHz with qualified framed payload >=1.5 MB/s and control RTT <=2 ms; no microSD, RP or display controller ownership","proof_gate":"single-slot SDMMC/SDIO throughput, control-priority and simultaneous Wi-Fi/802.15.4 load HIL"},
-    {"id":"S3_INTERNAL_I2C","owner":"s3","clients":["slow_io","abstract:touch","abstract:codec","abstract:receiver"],"sharing":"scheduled","deadline":"ordinary UI/control first visible response <=100 ms; no radio FIFO or PTT deadline is placed here","proof_gate":"shortest-pulse, matrix and fault-latency HIL","arbitration":"bounded transactions; expander INT only wakes the service loop"},
+    {"id":"S3_INTERNAL_I2C","owner":"s3","clients":["slow_io","abstract:touch","abstract:codec","receiver"],"sharing":"scheduled","deadline":"ordinary UI/control first visible response <=100 ms; no radio FIFO or PTT deadline is placed here","proof_gate":"shortest-pulse, matrix and fault-latency HIL","arbitration":"bounded transactions; expander INT only wakes the service loop"},
     {"id":"S3_UNIT_PORT","owner":"s3","clients":["abstract:M5 Unit"],"sharing":"dedicated","deadline":"one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C","proof_gate":"profile-switch and external-fault HIL"},
     {"id":"S3_I2S","owner":"s3","clients":["abstract:codec"],"sharing":"dedicated","deadline":"continuous DMA audio without storage/display service gaps","proof_gate":"simultaneous display, SD, C5 and radio event stress HIL"}
   ],
@@ -251,13 +265,13 @@
     "E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs",
     "CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger",
     "TCA6424ARGJR and TCA4307DGKR are real-contact planning references; voltage domains, pulls, address, reset, shortest pulses and exact endpoint MPNs remain electrical/HIL gates",
-    "S3 retains four general-purpose free GPIO; C5 and RP retain two each. New direct timing endpoints must consume this explicit reserve or trigger a remap",
+    "After DEC-0046 quiet-state controls, S3 retains four free GPIO, C5 one and RP none; slow_io retains P27. Any new direct RP endpoint requires an explicit remap and repeated review",
     "C5 4-bit SDIO has exclusive ownership of the S3 SD/MMC host; C5 native USB is unavailable at runtime, so permanent UART0 plus EN/BOOT/strap contacts is the independent recovery path",
     "display and microSD are the only scheduled high-rate pair on one SPI2 controller; separate CS/per-device clocks and bounded transactions remove radio impact, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate",
     "PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve",
     "DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points",
     "SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient",
     "DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO",
-    "exact display/touch, codec, receiver, voice module including SA518 activity and UPDATE contact proof, IR frontends, power tree, antenna placement and hard-stop circuitry remain open before target-architecture acceptance"
+    "exact display/touch and codec, IR frontends, power tree, antenna placement and hard-stop circuitry remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance"
   ]
 }

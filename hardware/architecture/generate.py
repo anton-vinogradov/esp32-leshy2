@@ -994,6 +994,155 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
     return "\n".join(lines)
 
 
+def render_principled_pinout(
+    database: dict[str, Any], candidates: list[dict[str, Any]]
+) -> str:
+    """Render a readable, machine-derived atlas for the leading paper map."""
+
+    candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
+    devices = database["devices"]
+    allocations = candidate["allocations"]
+
+    def contacts(instance: str, prefixes: tuple[str, ...]) -> str:
+        selected = sorted(
+            {
+                row["contact"]
+                for row in allocations
+                if row["instance"] == instance
+                and any(row["net"].startswith(prefix) for prefix in prefixes)
+            },
+            key=natural_contact_key,
+        )
+        return ",".join(selected) or "—"
+
+    def budget(instance: str) -> tuple[int, int, int, int]:
+        device = devices[candidate["instances"][instance]]
+        used = sum(1 for row in allocations if row["instance"] == instance)
+        reserved = len(candidate["reservations"].get(instance, {}))
+        free = len(candidate["free_gpio"].get(instance, []))
+        total = sum(1 for attributes in device["contacts"].values() if attributes["role"] == "gpio")
+        return used, reserved, free, total
+
+    abstract_endpoints = sorted(
+        {
+            endpoint.removeprefix("abstract:")
+            for row in allocations
+            for endpoint in row.get("peers", [])
+            if endpoint.startswith("abstract:")
+        }
+        | {
+            endpoint.removeprefix("abstract:")
+            for route in candidate.get("fixed_routes", [])
+            for endpoint in (route["from"], route["to"])
+            if endpoint.startswith("abstract:")
+        }
+    )
+
+    full_ledger = render_ledger(database, candidates)
+    detail_start = full_ledger.index("\n### `s3` —", full_ledger.index("\n## G2F-3I —")) + 1
+    detail_end = full_ledger.index("\n## Machine-check result and review boundary", detail_start)
+    exact_details = full_ledger[detail_start:detail_end].rstrip()
+
+    lines = [
+        "# G2F-3I — generated principled pinout atlas",
+        "",
+        "- Статус: **машинная принципиальная распиновка ведущего paper candidate; не target architecture**",
+        "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`",
+        "- Regenerate: `python3 hardware/architecture/generate.py --write`",
+        "- Verify: `python3 hardware/architecture/generate.py --check`",
+        "",
+        "> Файл сгенерирован. Ручные изменения будут отвергнуты `--check`.",
+        "",
+        "## Как читать артефакт",
+        "",
+        "Диаграмма — навигатор по owners и физически независимым interface groups.",
+        "Нормативные pin/net значения находятся в следующих за ней таблицах и",
+        "получены из того же JSON. `abstract:*` означает зарезервированную функцию,",
+        "для которой exact peripheral MPN/electrical circuit ещё не принят; это не",
+        "разрешение рисовать вымышленный pin в KiCad.",
+        "",
+        "## Принципиальная структура owners и pin groups",
+        "",
+        "```mermaid",
+        "flowchart LR",
+        "  S3[\"ESP32-S3-WROOM-1U-N16R2<br/>UI · audio · display/storage · BLE/Wi-Fi\"]",
+        "  C5[\"ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz · 802.15.4 · IR\"]",
+        "  RP[\"RP2354B A4 QFN80<br/>deterministic radio/voice owner\"]",
+        "  SLOW[\"TCA6424A<br/>24-line slow plane\"]",
+        "  DISP[\"display + separate microSD\"]",
+        "  AUDIO[\"codec + Si4732-A10-GS\"]",
+        "  UNIT[\"M5 Unit port\"]",
+        "  IR[\"dual RX + TX IR frontend\"]",
+        "  N0[\"nRF24 #0\"]",
+        "  N1[\"nRF24 #1\"]",
+        "  N2[\"nRF24 #2\"]",
+        "  CC[\"CC1101\"]",
+        "  VOICE[\"NiceRF SA518 rev 1.1\"]",
+        "  U214[\"U214 LoRa + GNSS\"]",
+        f"  S3 <-->|\"4-bit SDIO: S3 {contacts('s3', ('S3_C5_',))} ↔ C5 {contacts('c5', ('S3_C5_',))}\"| C5",
+        f"  S3 <-->|\"SPI3+alert: S3 {contacts('s3', ('S3_RP_', 'RP_ALERT_'))} ↔ RP {contacts('rp', ('S3_RP_', 'RP_ALERT_'))}\"| RP",
+        f"  S3 <-->|\"I²C0+INT: {contacts('s3', ('SYS_I2C_', 'SLOW_IO_'))}\"| SLOW",
+        f"  S3 <-->|\"SPI2: {contacts('s3', ('DISPLAY_SD_', 'SD_SPI_', 'LCD_'))}\"| DISP",
+        f"  S3 <-->|\"I²S0/I²C: {contacts('s3', ('I2S_', 'SYS_I2C_'))}\"| AUDIO",
+        f"  S3 <-->|\"profile port: {contacts('s3', ('UNIT_',))}\"| UNIT",
+        f"  C5 <-->|\"RMT/evidence/power: {contacts('c5', ('IR_',))}\"| IR",
+        f"  RP <-->|\"PIO0 SM0 + direct control: {contacts('rp', ('NRF0_',))}\"| N0",
+        f"  RP <-->|\"PIO0 SM1 + direct control: {contacts('rp', ('NRF1_',))}\"| N1",
+        f"  RP <-->|\"PIO0 SM2 + direct control: {contacts('rp', ('NRF2_',))}\"| N2",
+        f"  RP <-->|\"PIO0 SM3 + GDO/power: {contacts('rp', ('CC_',))}\"| CC",
+        f"  RP <-->|\"UART0/PTT/evidence: {contacts('rp', ('VOICE_', 'PTT_'))}\"| VOICE",
+        f"  RP <-->|\"PIO1/UART1/I²C0: {contacts('rp', ('U214_',))}\"| U214",
+        "```",
+        "",
+        "## Сводный pin budget",
+        "",
+        "| Domain | Exact exposed boundary | Used | Reserved | Free | Total |",
+        "|---|---|---:|---:|---:|---:|",
+    ]
+    for instance in ("s3", "c5", "rp"):
+        used, reserved, free, total = budget(instance)
+        lines.append(
+            f"| `{instance}` | `{devices[candidate['instances'][instance]]['mpn']}` | "
+            f"{used} | {reserved} | {free} | {total} |"
+        )
+    slow = candidate["contact_accounting"]["slow_io"]
+    lines += [
+        f"| `slow_io` | `{devices[candidate['instances']['slow_io']]['mpn']}` | "
+        f"{len(slow['used'])} | {len(slow['reserved'])} | {len(slow['free'])} | "
+        f"{len(devices[candidate['instances']['slow_io']]['allocatable_contacts'])} |",
+        "",
+        "`RP=0 free` является текущим честным результатом после direct quiet-state",
+        "controls `NRF_GROUP_PWR_EN` и `CC_PWR_EN`, а не ошибкой округления. Новый",
+        "direct RP endpoint требует явного remap/review; service pins SWD/USB/RUN/",
+        "BOOTSEL не входят в GPIO budget и остаются выведенными независимо.",
+        "",
+        "## Ещё абстрактные electrical endpoints",
+        "",
+        "Следующие функции имеют pin reservation, но не exact production MPN/circuit:",
+        "",
+    ]
+    lines.extend(f"- `{endpoint}`" for endpoint in abstract_endpoints)
+    lines += [
+        "",
+        "Эти строки блокируют final schematic/BOM, но не нарушают проверенную",
+        "арифметику MCU pins. Их нельзя молча удалить либо объявить реализованными.",
+        "",
+        "## Exact pin/net tables",
+        "",
+        exact_details,
+        "",
+        "## Граница проведённого ревью",
+        "",
+        "Validator доказывает существование реально выведенных compute contacts,",
+        "полный used/reserved/free accounting, straps, fixed mux, service paths,",
+        "PIO/DMA capacity и независимые radio/IPC resources. Exact peripheral MPN,",
+        "signal/power integrity, hard-STOP circuit, RF layout and HIL остаются",
+        "следующими gates; этот atlas не разрешает KiCad и не является frozen BOM.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
@@ -1008,24 +1157,30 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
 
-    output_path = REPO_ROOT / database["generated_ledger"]
-    rendered = render_ledger(database, candidates)
+    outputs = {
+        REPO_ROOT / database["generated_ledger"]: render_ledger(database, candidates),
+        REPO_ROOT / database["generated_principled_pinout"]: render_principled_pinout(
+            database, candidates
+        ),
+    }
     if args.write:
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(rendered, encoding="utf-8")
-        print(f"wrote {output_path.relative_to(REPO_ROOT)}")
+        for output_path, rendered in outputs.items():
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(rendered, encoding="utf-8")
+            print(f"wrote {output_path.relative_to(REPO_ROOT)}")
         return 0
 
-    if not output_path.exists():
-        print(f"ERROR: missing generated ledger {output_path.relative_to(REPO_ROOT)}", file=sys.stderr)
-        return 1
-    if output_path.read_text(encoding="utf-8") != rendered:
-        print(
-            f"ERROR: stale generated ledger {output_path.relative_to(REPO_ROOT)}; run --write",
-            file=sys.stderr,
-        )
-        return 1
-    print(f"ok: {len(candidates)} candidates, generated ledger is current")
+    for output_path, rendered in outputs.items():
+        if not output_path.exists():
+            print(f"ERROR: missing generated artifact {output_path.relative_to(REPO_ROOT)}", file=sys.stderr)
+            return 1
+        if output_path.read_text(encoding="utf-8") != rendered:
+            print(
+                f"ERROR: stale generated artifact {output_path.relative_to(REPO_ROOT)}; run --write",
+                file=sys.stderr,
+            )
+            return 1
+    print(f"ok: {len(candidates)} candidates, {len(outputs)} generated artifacts are current")
     return 0
 
 

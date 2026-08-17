@@ -62,14 +62,15 @@ flowchart LR
 | Domain | Exact device boundary | Used | Reserved | Free | Проверка |
 |---|---|---:|---:|---:|---|
 | S3 | `ESP32-S3-WROOM-1U-N16R2`, 36 exposed GPIO | 29 | 3 straps | 4 | every GPIO classified |
-| C5 | `ESP32-C5-WROOM-1U-N8R8`, 21 exposed GPIO | 13 | 6 straps/service | 2 | internal PSRAM GPIO15 не посчитан |
-| RP | `RP2354B A4`, QFN80, 48 GPIO | 46 | 0 | 2 | exact package pads 1…80 checked |
+| C5 | `ESP32-C5-WROOM-1U-N8R8`, 21 exposed GPIO | 14 | 6 straps/service | 1 | internal PSRAM GPIO15 не посчитан; GPIO4 is IR quiet-state gate |
+| RP | `RP2354B A4`, QFN80, 48 GPIO | 48 | 0 | 0 | exact package pads 1…80 checked; GPIO15/23 are nRF/CC quiet-state gates |
 | slow plane | `TCA6424ARGJR`, 24 P-ports | 23 | 1 | 0 | every allocatable contact classified and routed |
 
 Переход `RP2354A→RP2354B` добавляет 18 GPIO и увеличивает корпус с 7×7 до
-10×10 mm. Это осознанная цена физически независимых radio buses и двух
-оставленных timing-reserve GPIO; это не скрытая смена семейства или software
-model.
+10×10 mm. Это осознанная цена физически независимых radio buses. Последние два
+direct RP reserve позднее заняты принятыми `DEC-0046` quiet-state gates, поэтому
+новый direct endpoint требует remap/review; это не скрытая смена семейства или
+software model.
 
 ## Реальные peripheral windows и capacity
 
@@ -134,6 +135,10 @@ schematic/HIL.
 codec, receiver, voice/IR frontends, power/clock, antenna/filter/zoning,
 thermal/mechanics, production cost and all named stress tests. `G2F-3I` может
 стать target только внутри будущего atomic package после этих проверок.
+
+Budget presentation повторно проверена после `DEC-0046` в
+[`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)/[`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md);
+старые `C5=13/RP=46` counts исправлены как `FND-0059`.
 
 ## Первичные источники
 

@@ -127,9 +127,14 @@ RP-SMA только для native Wi-Fi S3/C5, standard SMA для осталь�
 `ANT-0002/REV-0004U` проверяют procurement candidates, но выбор kit,
 mounting, длины кабелей, two-source assemblies и target RF qualification
 остаются открытыми.
+`PIN-0003/REV-0004V` добавляют generated principled owner/net/pad atlas.
+Current exact exposed-contact budget равен S3 `29/3/4`, C5 `14/6/1`, RP
+`48/0/0`, slow I/O `23/1/0`; exact SA518 service и Si4732 control/RF contacts
+внесены, а оставшиеся electrical abstractions открыты как `FND-0060`.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
-должны закрыться до адаптации legacy physical mockup.
+закрываются параллельно адаптации legacy physical mockup и могут переоткрыть
+working pinout.
 Whole-device optimality, conceptual placement и новое atomic architecture
 decision обязаны предшествовать компонентам и KiCad. Нормативный порядок —
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

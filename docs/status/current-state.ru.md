@@ -15,8 +15,8 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе**: `G2F-3I` закрывает digital buses; `DEC-0045/0046` добавляют одну active group, three-nRF full mix и quiet states неиспользуемых interfaces; exact nRF RF envelope, power parts и HIL открыты |
-| 3. Target physical/product design | Ожидает G2F; P1/P2/P3 reference only, далее адаптируется legacy clamshell generator |
+| 2F. Logical/electrical feasibility | **В работе; current paper baseline reviewed**: `PIN-0003/REV-0004V` закрывают owners/controllers/exact compute contacts и текущий бюджет; final electrical endpoints, RF/power и HIL открыты |
+| 3. Target physical/product design | **Начинается от reviewed `PIN-0003`**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
@@ -57,8 +57,10 @@ exact devices/nets.
 - open owner-controlled signed updates и независимые programming/recovery/
   diagnostics каждого в итоге выбранного programmable chip.
 
-Это входы продукта. Exact MCU/module ownership, pins, buses, board count,
-connectors, parts и enclosure не приняты.
+Это входы продукта. `G2F-3I/PIN-0003` теперь является reviewed reopenable
+working baseline владельцев, шин и compute pins для G3, но не final atomic
+architecture. Board count, connectors, exact electrical parts и enclosure не
+приняты; physical/RF/power conflict может изменить working pins.
 
 ## Завершённое исправление
 
@@ -147,6 +149,17 @@ VOICE — отдельных VHF/UHF, а Si4732 сохраняет whip и loop/
 ревью, но two-source production assemblies и target VNA/sensitivity/EIRP/HIL
 ещё не закрыты.
 
+`PIN-0003/REV-0004V` теперь дают отдельный generated principled pinout atlas:
+owner diagram, каждый MCU GPIO с physical module/package pad, fixed mux,
+service/recovery, PIO/DMA budget и все slow routes берутся из одного JSON.
+Саморевью обнаружило `FND-0059`: старый `NIF-0001/REV-0004L` показывал
+pre-`DEC-0046` budget. Исправленный current result — S3 `29U/3R/4F`, C5
+`14U/6R/1F`, RP `48U/0R/0F`, slow plane `23U/1R/0F`; regression теперь
+проверяет эти числа. SA518 `UPDATE/UART/PD` service и exact Si4732 control/
+FMI/AMI contacts также внесены. `FND-0060` сохраняет видимыми ещё abstract
+display/codec/IR/power/STOP/protection endpoints: current paper pinout прошёл
+ревью, final electrical schematic — нет.
+
 ⚠️ Предложение `IMP-0043`: принять profiled antenna kit как architecture input
 — общие MPN только для электрически одинаковых S3/C5 и трёх nRF paths,
 combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; при
@@ -157,13 +170,11 @@ combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; 
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее требуется решение по `IMP-0043`; затем `G2F-3I` закрывает
-`FND-0058`, фиксирует exact production nRF MPN/lot,
-SMA/feed/protection и antenna-profile implementation
-и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
-`T1` profiles. После этого проходит quiet-state power-part, physical
-RF/self-desense, exact peripheral,
-signal-integrity, power и HIL closure. После этого leading paper map может
-стать working electrical baseline и войти в адаптированный legacy physical
-generator. `G2F-2R/3D` остаются сравнимыми references; `LAY-0001` P1/P2/P3
-также reference, выбирать его не нужно.
+Принципиальная распиновка больше не отложена: current paper step завершён и
+может войти в адаптированный legacy physical generator как reopenable working
+map. Следующий проход начинает G3 physical/product mockup с реальными
+envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
+маскируется. Параллельно остаются решение `IMP-0043`, `FND-0058` antenna
+qualification и `FND-0060` exact electrical endpoints. Exact production nRF,
+SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
+atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "generated_ledger": "docs/review/architecture/generated/G2F-pin-ledger.md",
+  "generated_principled_pinout": "docs/review/architecture/generated/G2F-3I-principled-pinout.md",
   "devices": {
     "esp32_s3_wroom_1u_n16r2": {
       "mpn": "ESP32-S3-WROOM-1U-N16R2",
@@ -574,7 +575,7 @@
         "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
         "checked": "2026-08-17"
       },
-      "programmable": true,
+      "programmable": false,
       "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
       "service_required": ["UPDATE", "UART_TX", "UART_RX", "PD"],
       "contacts": {

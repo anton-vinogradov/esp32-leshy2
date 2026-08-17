@@ -21,6 +21,16 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
 
+    def test_principled_pinout_is_derived_from_current_leading_budget(self):
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 29 | 3 | 4 | 36 |", rendered)
+        self.assertIn("| `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |", rendered)
+        self.assertIn("| `rp` | `RP2354B A4", rendered)
+        self.assertIn("| 48 | 0 | 0 | 48 |", rendered)
+        self.assertIn("`RP=0 free`", rendered)
+        self.assertIn("GPIO30", rendered)
+        self.assertIn("QSPI_SS_USB_BOOT", rendered)
+
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
             GENERATOR.reject_duplicate_keys([("GPIO0", {}), ("GPIO0", {})])
@@ -115,6 +125,23 @@ class ArchitectureValidationTests(unittest.TestCase):
                 any(row["net"] == "VOICE_SQ" for row in candidate["allocations"]),
                 candidate["id"],
             )
+
+    def test_leading_voice_and_receiver_paths_use_exact_exposed_contacts(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        self.assertEqual("nicerf_sa518_v11", candidate["instances"]["voice"])
+        self.assertEqual("skyworks_si4732_a10_gs", candidate["instances"]["receiver"])
+        voice_service = next(s for s in candidate["services"] if s["instance"] == "voice")
+        self.assertEqual({"UPDATE", "UART_TX", "UART_RX", "PD"}, set(voice_service["contacts"]))
+        endpoints = {
+            route[endpoint]
+            for route in candidate["fixed_routes"]
+            for endpoint in ("from", "to")
+        }
+        self.assertIn("voice.UPDATE", endpoints)
+        self.assertIn("voice.PD", endpoints)
+        self.assertIn("receiver.FMI", endpoints)
+        self.assertIn("receiver.AMI", endpoints)
+        self.assertIn("receiver.GPO2_INTB", endpoints)
 
     def test_rf_micro_connector_provenance_stays_device_specific(self):
         s3 = self.database["devices"]["esp32_s3_wroom_1u_n16r2"]["rf_connector"]

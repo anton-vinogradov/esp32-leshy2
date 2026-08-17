@@ -11,7 +11,8 @@ select a target architecture or authorize schematic/PCB work.
   contacts, straps, recovery contacts, lifecycle and primary-source identity;
 - `candidates/*.json` maps semantic nets to those exposed contacts;
 - `generate.py` validates the data and renders the human-readable ledger in
-  `docs/review/architecture/generated/G2F-pin-ledger.md`;
+  `docs/review/architecture/generated/G2F-pin-ledger.md` plus the focused
+  `docs/review/architecture/generated/G2F-3I-principled-pinout.md` atlas;
 - `tests/test_generator.py` protects the main failure modes.
 
 ## Commands

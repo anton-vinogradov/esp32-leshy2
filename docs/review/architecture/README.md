@@ -20,7 +20,11 @@
 The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
 `CTL-0001`, [`NIF-0001`](NIF-0001-digital-noninterference-layout.md),
 [`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md) and the generated
-`G2F-pin-ledger`. `DEC-0044/REV-0004L` make `G2F-3I` the leading reviewed paper
+`G2F-pin-ledger` plus focused
+[`G2F-3I principled pinout`](generated/G2F-3I-principled-pinout.md).
+`PIN-0003/REV-0004V` review the current exact owner/contact projection and
+record the honest `S3=4, C5=1, RP=0, slow=P27` free-contact state.
+`DEC-0044/REV-0004L` make `G2F-3I` the leading reviewed paper
 map under a digital no-neighbour-stall invariant. `FND-0053/REV-0004M` prove
 that arbitrary cross-group co-located same-band TX↔RX cannot be promised;
 `DEC-0045` selects one active group, while `SG-N24` explicitly requires every
@@ -46,6 +50,11 @@ peripherals and HIL remain open; CAD stays blocked.
 - [`DEC-0042`](../decisions/DEC-0042-single-source-architecture-data.md) accepts
   one machine-readable device/net source; [`G2F-pin-ledger`](generated/G2F-pin-ledger.md)
   renders three structurally checked maps including leading `G2F-3I`;
+- [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md) and the generated
+  [`pinout atlas`](generated/G2F-3I-principled-pinout.md) provide the requested
+  principled owner/net/pad diagram and exact tables. `FND-0059` fixes stale
+  pre-quiet-state budgets; `FND-0060` exposes every still-abstract electrical
+  endpoint instead of presenting it as a finished schematic;
 - [`REV-0003Y`](../reviews/REV-0003Y-single-source-and-draft-pin-maps.md) reviews
   the generator foundation and explicitly leaves complete-candidate review open.
 - [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md) replaces the

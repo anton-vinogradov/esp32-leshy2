@@ -1,6 +1,6 @@
 # REV-0004L — digital non-interference layout
 
-- Статус: **Проведено ревью бумажной цифровой компоновки**
+- Статус: **Проведено ревью исходной компоновки; current budget повторно проверен `REV-0004V`**
 - Дата: 2026-08-17
 - Decision: [`DEC-0044`](../decisions/DEC-0044-delegated-noninterference-layout.md)
 - Artifact: [`NIF-0001`](../architecture/NIF-0001-digital-noninterference-layout.md)
@@ -11,7 +11,7 @@
 | Проверка | Результат |
 |---|---|
 | exact S3/C5 module and RP2354B QFN80 contacts exist | pass |
-| every programmable exposed GPIO is used/reserved/free exactly once | pass: S3 `29/3/4`, C5 `13/6/2`, RP `46/0/2` |
+| every programmable exposed GPIO is used/reserved/free exactly once | current pass after `DEC-0046`: S3 `29/3/4`, C5 `14/6/1`, RP `48/0/0`; corrected by `FND-0059/REV-0004V` |
 | every TCA6424 allocatable contact classified | pass: `23/1/0` |
 | duplicate JSON keys fail before semantic validation | pass |
 | every strap allocation has explicit reset proof | pass |
@@ -39,6 +39,7 @@
 | first RP2354B pin map crossed the physical PIO GPIO-base window | all five PIO data groups moved into `GPIO16…GPIO47`; CS/CE/IRQ remain direct GPIO; machine regression added |
 | 16-port slow plane did not cover 19…27 demand | accepted 24-port envelope; 23 endpoints routed, one reserve |
 | old validator could not detect duplicate JSON keys or service alternatives | parser/validator and regression tests extended |
+| post-review quiet-state controls made the displayed C5/RP budget stale | counts regenerated and protected by focused pinout artifact/test in `FND-0059/REV-0004V` |
 
 ## Review boundary
 

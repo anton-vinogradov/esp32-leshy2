@@ -1,6 +1,6 @@
 # Stage 3 — target product design
 
-- Статус: **Ожидает G2F electrical candidate review**
+- Статус: **В работе от reviewed G2F principled-pinout baseline**
 - Дата: 2026-08-17
 - Пререквизит: repeat G2 **Проведено ревью** (`REV-0002AS`)
 - Метод: [`FLOW-0001/G3`](../review/architecture/FLOW-0001-product-to-cad-gates.md)
@@ -30,12 +30,14 @@ two-board clamshell generator. Его геометрия тоже рабочая
 
 `DEM-0001` и `SRC-0002` reviewed. `DEC-0042` создал единый источник; теперь он
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
-`G2F-3I` leading paper map. `ANT-0002/REV-0004U` сформировали sourcing
-shortlist; принятие profiled kit (`IMP-0043`), exact two-source assemblies и
-assembled RF HIL (`FND-0058`) остаются prerequisite. Дальше карта закрывает
-physical RF, exact peripherals, signal integrity, memory/traffic/power/service
-и HIL. После квалификации
-рабочей карты G3 переносит её в старый reproducible mockup.
+`G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
+pinout diagram и exact pad/net tables; current budget честно равен S3
+`29/3/4`, C5 `14/6/1`, RP `48/0/0`, slow `23/1/0`. Это выполняет необходимый
+working-baseline checkpoint `DEC-0041` и разрешает начать перенос в старый
+reproducible mockup. `FND-0060` exact electrical endpoints, принятие profiled
+kit (`IMP-0043`), exact two-source assemblies и assembled RF HIL (`FND-0058`)
+закрываются параллельно. Найденный physical/RF/power/service conflict меняет
+рабочую карту через повторное G2F review, а не маскируется внутри макета.
 
 ## Downstream boundary
 

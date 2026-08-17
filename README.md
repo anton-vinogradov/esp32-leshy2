@@ -126,9 +126,14 @@ is accepted by `DEC-0050/REV-0004T` as bounded `2 RP-SMA + 7 standard SMA`;
 `ANT-0002/REV-0004U` review procurement candidates, while kit selection,
 mounting, cable lengths, two-source assemblies and target RF qualification
 remain open.
+`PIN-0003/REV-0004V` add a generated principled owner/net/pad atlas. The
+current exact exposed-contact budget is S3 `29/3/4`, C5 `14/6/1`, RP
+`48/0/0` and slow I/O `23/1/0`; exact SA518 service and Si4732 control/RF
+contacts are instantiated, while remaining electrical abstractions stay open
+under `FND-0060`.
 Physical RF/full-mix
 measurements, unused-interface quiet-state power controls,
-peripherals, power and HIL must close before adapting the legacy physical
-mockup. Whole-device optimality, conceptual placement and a new atomic
+peripherals, power and HIL close in parallel with adapting the legacy physical
+mockup and may reopen the working pinout. Whole-device optimality, conceptual placement and a new atomic
 architecture decision must precede components and KiCad. The normative sequence is
 [`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).

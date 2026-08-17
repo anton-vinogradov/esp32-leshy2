@@ -15,8 +15,8 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress**: `G2F-3I` closes digital buses; `DEC-0045/0046` add one active group, three-nRF full mix and inactive-interface quiet states; exact nRF RF envelope, power parts and HIL remain open |
-| 3. Target physical/product design | Waiting for G2F; P1/P2/P3 are reference-only, then the legacy clamshell generator is adapted |
+| 2F. Logical/electrical feasibility | **In progress; current paper baseline reviewed**: `PIN-0003/REV-0004V` close owners/controllers/exact compute contacts and the current budget; final electrical endpoints, RF/power and HIL remain open |
+| 3. Target physical/product design | **Starting from reviewed `PIN-0003`**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
 | 8. Components/BOM | Blocked; previous evidence is candidate/reference only |
@@ -57,8 +57,10 @@ physical mockup; `DEC-0042` accepts its machine-readable exact-device/net source
 - open owner-controlled signed updates and the requirement that every selected
   programmable chip retain independent programming/recovery/diagnostics.
 
-These are product inputs. Exact MCU/module ownership, pins, buses, board count,
-connectors, parts and enclosure are not accepted.
+These are product inputs. `G2F-3I/PIN-0003` is now the reviewed, reopenable
+working owner/bus/compute-pin baseline for G3, not the final atomic
+architecture. Board count, connectors, exact electrical parts and enclosure
+remain unaccepted; physical/RF/power conflict may change working pins.
 
 ## Correction completed
 
@@ -149,6 +151,17 @@ separate VHF/UHF antennas, and Si4732 retains whip and loop/pod profiles.
 two-source production assemblies and target VNA/sensitivity/EIRP/HIL are not
 closed.
 
+`PIN-0003/REV-0004V` now provide a dedicated generated principled-pinout
+atlas: the owner diagram, every MCU GPIO and physical module/package pad,
+fixed mux, service/recovery, PIO/DMA budget and all slow routes come from one
+JSON source. Self-review found `FND-0059`: old `NIF-0001/REV-0004L` displayed
+the pre-`DEC-0046` budget. The corrected current result is S3 `29U/3R/4F`, C5
+`14U/6R/1F`, RP `48U/0R/0F` and slow plane `23U/1R/0F`; a regression now
+locks those counts. Exact SA518 `UPDATE/UART/PD` service and Si4732 control/
+FMI/AMI contacts are also instantiated. `FND-0060` keeps the remaining
+abstract display/codec/IR/power/STOP/protection endpoints visible: the current
+paper pinout is reviewed, while the final electrical schematic is not.
+
 ⚠️ Proposal `IMP-0043`: accept the profiled antenna kit as an architecture
 input—shared MPNs only for the electrically equivalent S3/C5 and three nRF
 paths, combined 868/915, separate 315/433, VHF/UHF, FM/SW whip and AM/LW pod;
@@ -159,13 +172,11 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, the owner decides `IMP-0043`; `G2F-3I` then closes `FND-0058`, fixes the
-exact production nRF MPN/lot and
-SMA/feed/protection/antenna-profile implementation, then advances `N24H-0001`
-from `L0 DIV↔DIV` pre-HIL to target
-`T1` profiles. It then receives quiet-state power-part, physical
-RF/self-desense, exact peripheral,
-signal-integrity, power and HIL closure. It can then become a working electrical
-baseline and feed the adapted legacy physical generator. `G2F-2R/3D` and
-`LAY-0001` P1/P2/P3 remain references; no selection is requested. KiCad stays
-blocked until the later atomic architecture gates pass.
+The principled pinout is no longer deferred: the current paper step is complete
+and can feed the adapted legacy physical generator as a reopenable working map.
+The next pass begins the G3 physical/product mockup with real envelopes; any
+packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
+In parallel, `IMP-0043`, `FND-0058` antenna qualification and `FND-0060` exact
+electrical endpoints remain open. Exact production nRF, SMA/feed/protection,
+quiet-state parts, SI/power/RF/HIL must close before the atomic target and
+KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
