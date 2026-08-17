@@ -25,7 +25,7 @@ B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
 по-прежнему требует specimen proof generic Ebyte `IPX` mating family.
 
 ⚠️ Предложение [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md)
-открыто после exact-contact review: выбрать полноценный
-differential-to-single-ended conditioner, cost-down single-leg path или
-multi-pole differential speaker switching. Рекомендован A как консервативный
-zero-functional-loss baseline.
+открыто после exact-contact review. Initial A recommendation withdrawn:
+PAM8302A already accepts differential input, while ES8311 warns that its ADC
+input is microphone-oriented and not recommended for line input. `FND-0066`
+requires a whole-path comparison before asking the owner to choose.

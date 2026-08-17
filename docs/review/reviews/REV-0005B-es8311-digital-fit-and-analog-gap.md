@@ -3,7 +3,8 @@
 - Статус: **Проведено ревью digital/contact scope; topology decision открыто**
 - Дата: 2026-08-17
 - Artifact: [`AUDIO-0001`](../architecture/AUDIO-0001-es8311-exact-electrical-fit.md)
-- Finding: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md)
+- Findings: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md),
+  [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md)
 - Proposal: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
 
 ## Проверка
@@ -21,6 +22,10 @@
   accounting.
 - Exact `OUTP/OUTN` and `MIC1P/MIC1N` expose an analog-topology gap in old
   one-wire wording. No unreviewed selector/conditioner was silently selected.
+- Complete-path follow-up corrects the initial A recommendation: PAM8302A can
+  accept differential input, while the ES8311 user guide warns against using
+  its microphone ADC input blindly as line input. Digital/contact fit remains
+  reviewed; analog suitability does not.
 - Regression coverage fixes contacts, directions, exact peers, CE/address,
   MCLK NC, differential endpoints and unchanged free pins.
 
@@ -30,4 +35,3 @@ Exact ES8311 **digital/contact fit receives «Проведено ревью»**.
 `FND-0060`, but analog/power implementation and production qualification remain
 open. `IMP-0046` is the only owner decision created by this pass; after it,
 the exact analog circuit and parts can be reviewed.
-

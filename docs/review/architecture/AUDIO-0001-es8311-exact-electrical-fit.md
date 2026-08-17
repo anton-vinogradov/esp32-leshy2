@@ -5,7 +5,8 @@
 - Scope decision: [`DEC-0009`](../decisions/DEC-0009-onboard-es8311-audio.md)
 - Machine source: [`devices.json`](../../../hardware/architecture/devices.json) /
   [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
-- Finding: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md)
+- Findings: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md),
+  [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md)
 - Open topology proposal: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
 - Review: [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 
@@ -56,8 +57,11 @@ The real converter boundary is fully differential:
 - ADC input: `MIC1P=18`, `MIC1N=17`;
 - DAC output: `OUTP=12`, `OUTN=13`.
 
-The existing receiver mux output and legacy PAM8302 input are single-ended,
-and SA518 `MIC_IN` is also represented as a single-ended module endpoint.
+The existing receiver mux output and legacy PAM8302 **wiring** are
+single-ended, and SA518 `MIC_IN` is also represented as a single-ended module
+endpoint. Physical PAM8302A itself has differential `IN+`/`IN-`, so it may
+consume both DAC legs after a two-pole source selection; this makes a central
+DAC differential-to-single-ended op-amp potentially unnecessary.
 Therefore phrases such as «DAC → one selector» are insufficient electrical
 specification. A conditioner must either convert the differential DAC signal
 to single-ended, or the speaker selector must switch both legs and the TX path
@@ -69,6 +73,12 @@ level/SNR consequence.
 qualified analog blocks rather than inventing a schematic. This does not
 change the two slow selector controls `P11/P12`; it opens the topology choice
 in `IMP-0046`.
+
+The ADC side has a separate qualification warning. The ES8311 user guide calls
+`MIC1P/MIC1N` a microphone interface and says it is not recommended for line
+input, while the product brief gives about `2 Vrms` differential full scale and
+`6 kΩ` input impedance. The selected receiver sources therefore need a proved
+passive/active line-conditioning network, or the codec choice must reopen.
 
 ## Firmware contract
 
@@ -102,7 +112,8 @@ levels.
 
 ## Remaining gates
 
-1. Choose the analog topology in `IMP-0046`.
+1. Complete the `IMP-0046/FND-0066` whole-path comparison; do not choose only
+   the DAC half.
 2. Calculate and review supplies, decoupling, address/pull-up network,
    differential input/output conditioning, mute/default states and protection.
 3. Confirm production order code, AVL/lifecycle, footprint and assembly lot.
@@ -121,3 +132,5 @@ levels.
 - [TI TMUX1136 datasheet/orderable addendum](https://www.ti.com/lit/ds/symlink/tmux1136.pdf)
 - [TI TS5A63157](https://www.ti.com/product/TS5A63157)
 - [TI TLV9061](https://www.ti.com/product/TLV9061)
+- [Diodes PAM8302A datasheet](https://www.diodes.com/datasheet/download/PAM8302A.pdf)
+- [NiceRF SA518 current product specification](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html)

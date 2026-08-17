@@ -168,6 +168,7 @@
 - [FND-0063: HMX035CTFT-001 MPN was disclosed — закрыто исправлением](findings/FND-0063-hmx035ctft-mpn-was-disclosed.md)
 - [FND-0064: stage ledger kept stale S3 budget — закрыто исправлением](findings/FND-0064-stale-s3-budget-in-stage-ledger.md)
 - [FND-0065: ES8311 CE is address strap and analog pairs are differential](findings/FND-0065-es8311-ce-and-differential-path.md)
+- [FND-0066: ES8311 line-input warning and PAM differential input reopen audio optimum](findings/FND-0066-es8311-line-input-and-pam-differential-capability.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
 - [⚠️ IMP-0002: SDIO как обход GP-SPI блокера C5 — предложение](improvements/IMP-0002-c5-sdio-link.md)
 - [⚠️ IMP-0003: переоткрыть EAPOL/PMKID capture — предложение](improvements/IMP-0003-wifi-handshake-capture.md)

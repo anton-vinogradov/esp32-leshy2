@@ -14,7 +14,7 @@ Legacy firmware заявляет запись и цифровую обработ
 
 - на основную PCB добавляется mono ADC+DAC codec **ES8311**;
 - существующий `U33` выбирает RX-источник `SI_AUDIO` или `SA_AF`, а его выход одновременно доступен ADC кодека;
-- перед PAM8302 добавляется 2:1 analog selector, аппаратный default которого — прямой analog RX → speaker; digital branch проходит exact differential-to-single-ended topology из `IMP-0046`;
+- перед PAM8302 добавляется hardware-default analog source selection, default которого — прямой analog RX → speaker; exact one- versus two-pole topology остаётся в `IMP-0046`;
 - между electret mic и `MIC_IN` SA868 добавляется второй 2:1 analog selector, аппаратный default которого — прямой mic → SA868;
 - qualified DAC branch попадает на speaker или `MIC_IN` только после явного выбора соответствующего selector;
 - PTT остаётся независимым TX-гейтом и не активируется самим codec или переключением audio selector;
@@ -62,6 +62,7 @@ Legacy firmware заявляет запись и цифровую обработ
 [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md) verify
 the exact QFN-20 digital contact fit without changing GPIO budget. The scope
 decision for onboard ES8311 and hardware analog bypass remains accepted.
-`IMP-0046` is a narrower open implementation decision: how to preserve the
-fully differential `OUTP/OUTN` signal when both legacy consumers are
-single-ended.
+`IMP-0046/FND-0066` are a narrower open implementation decision: how to
+preserve differential `OUTP/OUTN` through the physically differential
+PAM8302A while conditioning TX, and how to feed line/audio RX sources into an
+ES8311 input that its user guide characterizes as microphone-oriented.
