@@ -18,11 +18,17 @@
 [`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md) принято вариантом
 B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
 
-⚠️ Предложение [`IMP-0043`](IMP-0043-profiled-antenna-kit.md) открыто: принять
+[`IMP-0043`](IMP-0043-profiled-antenna-kit.md) принято как `DEC-0055`:
 профилированный комплект с общими MPN для S3/C5 и трёх nRF, combined 868/915,
-но отдельными 315/433, VHF/UHF и Si4732 whip/loop profiles. `FND-0058` не
-позволяет считать sourcing shortlist production qualification, а `FND-0057`
-по-прежнему требует specimen proof generic Ebyte `IPX` mating family.
+но отдельными 315/433, VHF/UHF и Si4732 whip/loop profiles. Availability теперь
+проверяется при выборе exact MPN. `FND-0058` по-прежнему не позволяет считать
+sourcing shortlist production qualification, а `FND-0057` требует specimen
+proof generic Ebyte `IPX` mating family.
+
+⚠️ Предложение [`IMP-0047`](IMP-0047-one-stop-pcba-antenna-kitting-policy.md)
+открыто: считать one-stop PCBA + antenna kitting жёстким требованием,
+предпочтением с fallback или всегда разделять закупки. `MFG-0001` подтверждает
+техническую доступность turnkey kitting, но не выбирает поставщика.
 
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,

@@ -4,6 +4,7 @@
 - Серьёзность: RF performance / TX safety / reproducible BOM blocker
 - Обнаружено: 2026-08-17
 - Evidence: [`ANT-0002`](../architecture/ANT-0002-current-orderable-antenna-shortlist.md)
+- Kit decision: [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md)
 
 ## Несоответствие
 
@@ -38,9 +39,11 @@ candidates для части sub-GHz profiles и полезный combined 868/9
   «shortlist формирует candidates; production gate остаётся открытым»;
 - `ANT-0002` получает **«Проведено ревью»** только за факты и shortlist, не за
   product qualification;
-- candidate MPN не попадают в frozen machine source/BOM до решения владельца
-  по `IMP-0043` и последующих measurements;
+- `DEC-0055` закрывает структуру profiled kit, но candidate MPN не попадают в
+  frozen BOM до exact-MPN selection и последующих measurements;
 - distributor stock сохраняется с датой и не трактуется как lifecycle promise.
+- availability не опрашивается повторно на каждом architecture pass; следующая
+  проверка выполняется при выборе exact MPN.
 
 ## Критерий закрытия
 

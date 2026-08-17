@@ -11,6 +11,7 @@
 - Evidence: [`ANT-0002`](../architecture/ANT-0002-current-orderable-antenna-shortlist.md)
 - Finding: [`FND-0058`](../findings/FND-0058-antenna-sourcing-and-qualification-gate-open.md)
 - Proposal: [`IMP-0043`](../improvements/IMP-0043-profiled-antenna-kit.md)
+- Subsequent decision: [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md)
 
 ## Проверено
 
@@ -31,6 +32,5 @@
 Fact review и формирование shortlist получают **«Проведено ревью»**. Проверка
 одновременно исправляет прежнюю слишком сильную формулировку: shortlist не
 закрывает production qualification. `FND-0058` остаётся открытым до exact
-two-source assemblies и target HIL. Следующий переход требует решения владельца
-по `IMP-0043`; machine architecture и target product contract до решения не
-меняются.
+two-source assemblies и target HIL. Последующее решение владельца принято как
+`DEC-0055`; его machine/target propagation проведено в `REV-0005E`.

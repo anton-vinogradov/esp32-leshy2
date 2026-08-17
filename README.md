@@ -243,9 +243,9 @@ connector only `IPX`, so `FND-0057` requires a specimen-fit gate.
 `RFH-0002/REV-0004S` show that RP-SMA is typical for native Wi-Fi,
 Ebyte/nRF uses standard SMA and sub-GHz has both polarities. The owner choice
 is accepted by `DEC-0050/REV-0004T` as bounded `2 RP-SMA + 7 standard SMA`;
-`ANT-0002/REV-0004U` review procurement candidates, while kit selection,
-mounting, cable lengths, two-source assemblies and target RF qualification
-remain open.
+`ANT-0002/REV-0004U` review procurement candidates; `DEC-0055/REV-0005E`
+accept the 12-item profiled kit and exact-MPN availability gate. Mounting,
+cable lengths, two-source assemblies and target RF qualification remain open.
 `PIN-0003/REV-0004V` add a generated principled owner/net/pad atlas. The
 current exact exposed-contact budget is S3 `32/3/1`, C5 `14/6/1`, RP
 `48/0/0` and slow I/O `24/0/0`; exact SA518 service and Si4732 control/RF

@@ -122,9 +122,10 @@ values, exact power circuit and HIL remain open.
 - [`ANT-0002`](ANT-0002-current-orderable-antenna-shortlist.md) reviews exact
   current commercial candidates. It finds safe SKU sharing for S3/C5 and the
   three nRF paths, a combined 868/915 candidate, but no honest universal
-  315–915 or full VHF/UHF radiator. `FND-0058` keeps production two-source and
-  assembled-HIL qualification open; `IMP-0043` asks whether to adopt the
-  profiled external kit as an architecture input.
+  315–915 or full VHF/UHF radiator. `DEC-0055/REV-0005E` accept the profiled
+  external kit and exact-MPN availability gate. `FND-0058` keeps production
+  two-source and assembled-HIL qualification open; `MFG-0001/IMP-0047` cover
+  one-stop PCBA plus loose-antenna kitting without yet constraining supplier.
 - [`DSP-0002/REV-0004W`](DSP-0002-fast-display-path-options.md) review the
   display acceleration gate against the exact current pin budget. Direct QSPI
   fits with `GPIO41/42`; current RP/C5 display ownership and direct I80/RGB do

@@ -399,6 +399,20 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertTrue(any("antenna_mate_by_path must be" in error for error in errors), errors)
         self.assertTrue(any("antenna_qualification_gate must be" in error for error in errors), errors)
 
+    def test_rejects_profiled_antenna_kit_regression(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        policy = candidate["antenna_policy"]
+        policy["kit_profile_decision"] = "IMP-0043"
+        policy["availability_check_gate"] = "continuous_stock_polling"
+        policy["full_field_kit_physical_items"] = 9
+        policy["kit_profiles"]["nrf24"]["shared_exact_mpn"] = False
+        errors = self.errors_for(candidates)
+        self.assertTrue(any("kit_profile_decision must be 'DEC-0055'" in error for error in errors), errors)
+        self.assertTrue(any("availability_check_gate must be 'exact_mpn_selection'" in error for error in errors), errors)
+        self.assertTrue(any("full_field_kit_physical_items must be 12" in error for error in errors), errors)
+        self.assertTrue(any("kit_profiles must be" in error for error in errors), errors)
+
     def test_exact_sa518_does_not_regress_to_a_fictional_sq_pin(self):
         voice = self.database["devices"]["nicerf_sa518_v11"]
         self.assertNotIn("SQ", voice["contacts"])

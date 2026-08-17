@@ -1,12 +1,13 @@
-# ⚠️ Предложение IMP-0043 — profiled external antenna kit
+# IMP-0043 — profiled external antenna kit
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принято как вариант A в DEC-0055**
 - Дата: 2026-08-17
 - Decisions: [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md),
   [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md),
   [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 - Evidence: [`ANT-0002`](../architecture/ANT-0002-current-orderable-antenna-shortlist.md)
 - Finding: [`FND-0058`](../findings/FND-0058-antenna-sourcing-and-qualification-gate-open.md)
+- Decision: [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md)
 
 ## Текущее состояние и причина решения
 
@@ -17,11 +18,9 @@ radiator не покрывает без потерь 315/433/868/915 MHz и full
 co-design: унифицировать одинаковые paths и менять antenna profile на одном
 широкодиапазонном radio port либо требовать одну компромиссную antenna.
 
-Availability recheck не меняет этот architecture choice, но ужесточает BOM
-boundary: у native-Wi-Fi `001-0012` есть датированный distributor stock, тогда
-как official TE pages для него и `MAF94051` пишут Active одновременно с `not
-currently available`. Следовательно, общий **тип/SKU внутри выбранной партии**
-доказуем, а production two-source пара ещё нет и остаётся `FND-0058`.
+Датированная availability из `ANT-0002` не меняет architecture choice.
+`DEC-0055` переносит следующую проверку наличия на момент выбора exact MPN;
+production two-source qualification остаётся `FND-0058`.
 
 ## Вариант A — profiled kit с общей SKU только там, где это доказуемо
 
@@ -79,8 +78,8 @@ candidates не дают эквивалентного результата:
 procurement candidates, не frozen BOM: все они обязаны пройти two-source и
 assembled HIL gate из `FND-0058`.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принимаем вариант **A: профилированный комплект, общий antenna MPN для S3/C5,
-общий MPN для трёх nRF, combined 868/915, но отдельные 315, 433, VHF, UHF,
-FM/SW whip и AM/LW pod с обязательным TX interlock**?
+Вариант **A** принят как [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md),
+включая обязательный TX interlock. Availability проверяется при выборе exact
+MPN, а не при каждом следующем architecture pass.

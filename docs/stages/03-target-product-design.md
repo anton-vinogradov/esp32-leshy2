@@ -47,9 +47,9 @@ production ordering/drawing/connector/backlight/optics остаются откр
 contacts; `FND-0065` corrects `CE` to an address strap and P10 to external
 `CODEC_PWR_EN`. `DEC-0054` accepts exact selector/buffer/gate/amp devices and
 direct GPIO6 `AUDIO_ARM`; passive analog values and HIL remain open.
-`FND-0060` remaining exact electrical endpoints,
-принятие profiled kit (`IMP-0043`), exact two-source assemblies и assembled RF
-HIL (`FND-0058`) закрываются параллельно. Найденный physical/RF/power/service conflict меняет
+`FND-0060` remaining exact electrical endpoints. Profiled kit уже принят
+`DEC-0055`; exact two-source assemblies и assembled RF HIL (`FND-0058`)
+закрываются параллельно. Найденный physical/RF/power/service conflict меняет
 рабочую карту через повторное G2F review, а не маскируется внутри макета.
 
 ## Downstream boundary

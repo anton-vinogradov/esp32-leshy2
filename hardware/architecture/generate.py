@@ -154,6 +154,38 @@ def validate_sources(
             "decision": "DEC-0048",
             "exact_count_decision": "DEC-0049",
             "external_connector_decision": "DEC-0050",
+            "kit_profile_decision": "DEC-0055",
+            "availability_check_gate": "exact_mpn_selection",
+            "full_field_kit_physical_items": 12,
+            "max_simultaneously_connected": 9,
+            "kit_profiles": {
+                "native_wifi": {
+                    "paths": ["S3-2G4", "C5-2G4/5"],
+                    "shared_exact_mpn": True,
+                    "physical_items": 2,
+                },
+                "nrf24": {
+                    "paths": ["N24-0", "N24-1", "N24-2"],
+                    "shared_exact_mpn": True,
+                    "physical_items": 3,
+                },
+                "cc_sub": {
+                    "path": "CC-SUB",
+                    "profiles": ["315", "433", "868_915_combined"],
+                    "physical_items": 3,
+                },
+                "voice": {
+                    "path": "VOICE-V/U",
+                    "profiles": ["VHF_136_174", "UHF_400_470"],
+                    "physical_items": 2,
+                },
+                "receiver": {
+                    "paths": ["RX-FM/SW", "RX-AM/LW"],
+                    "profiles": ["FM_SW_whip", "AM_LW_loop_or_buffered_pod"],
+                    "physical_items": 2,
+                },
+            },
+            "base_extended_packaging_decision": "deferred_to_costed_product_variants",
             "base_onboard_endpoint": "external_sma",
             "base_onboard_sma_count": 9,
             "base_onboard_sma_paths": [
@@ -799,6 +831,14 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             f"`{antenna_policy['antenna_qualification_gate']['minimum_orderable_qualified_mpns_per_group']}` "
             f"orderable qualified MPNs; native Wi-Fi fallback is "
             f"`{antenna_policy['antenna_qualification_gate']['native_wifi_fallback']}`. External accessories own their antennas.",
+            f"Kit decision `{antenna_policy['kit_profile_decision']}` defines "
+            f"`{antenna_policy['full_field_kit_physical_items']}` loose antenna items with at most "
+            f"`{antenna_policy['max_simultaneously_connected']}` connected at once. Native Wi-Fi uses "
+            f"one shared exact MPN in quantity 2, nRF24 one shared exact MPN in quantity 3, CC-SUB "
+            f"uses 315/433/combined-868+915 profiles, VOICE uses separate VHF/UHF profiles, and the "
+            f"receiver uses FM/SW whip plus AM/LW loop or buffered pod. Availability is checked at "
+            f"`{antenna_policy['availability_check_gate']}`; base/extended packaging remains "
+            f"`{antenna_policy['base_extended_packaging_decision']}`.",
         ]
         signal_policy = candidate.get("signal_group_policy")
         if signal_policy:

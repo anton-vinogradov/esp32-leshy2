@@ -178,10 +178,15 @@ paper pinout is reviewed, while the final electrical schematic is not.
 `DEC-0051` publishes this reviewed map in the target README as the principled
 working design for G3 while keeping it reopenable until atomic architecture.
 
-⚠️ Proposal `IMP-0043`: accept the profiled antenna kit as an architecture
-input—shared MPNs only for the electrically equivalent S3/C5 and three nRF
-paths, combined 868/915, separate 315/433, VHF/UHF, FM/SW whip and AM/LW pod;
-every profile change disarms TX and unknown/mismatch keeps TX disabled.
+`IMP-0043/A` is accepted as `DEC-0055`: the profiled antenna kit shares MPNs
+only across the equivalent S3/C5 and three nRF paths, combines 868/915, and
+keeps separate 315/433, VHF/UHF, FM/SW whip and AM/LW pod profiles. Every
+profile change disarms TX and unknown/mismatch keeps TX disabled. Availability
+is checked again only when an exact MPN is selected.
+
+`MFG-0001` establishes that a turnkey/kitting RFQ can combine PCBA and loose
+antennas. `IMP-0047` keeps open whether this is a hard factory constraint or a
+preference with a separate-order fallback.
 
 `IMP-0044/A` is accepted as `DEC-0052`: the QSPI-first S3 display path uses
 `GPIO41/42` for D2/D3 and a `<=1 ms` bus-occupancy contract. BT817/BT818 EVE
@@ -215,7 +220,7 @@ The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0043`, `FND-0058` antenna qualification and the remaining
+In parallel, `IMP-0047`, `FND-0058` antenna qualification and the remaining
 `FND-0060/0066/0067` electrical/HIL endpoints stay open. Exact production nRF,
 SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and

@@ -175,10 +175,15 @@ display/codec/IR/power/STOP/protection endpoints: current paper pinout прош�
 `DEC-0051` публикует эту reviewed карту в целевом README как принципиальный
 working design для G3, сохраняя её reopenable до atomic architecture.
 
-⚠️ Предложение `IMP-0043`: принять profiled antenna kit как architecture input
-— общие MPN только для электрически одинаковых S3/C5 и трёх nRF paths,
-combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; при
-каждой смене TX profile сбрасывать arm, а unknown/mismatch оставлять без TX.
+`IMP-0043/A` принято как `DEC-0055`: profiled antenna kit использует общие MPN
+только для электрически одинаковых S3/C5 и трёх nRF paths, combined 868/915,
+отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod. При смене TX profile arm
+сбрасывается, unknown/mismatch оставляет TX disabled. Availability повторно
+проверяется только при выборе exact MPN.
+
+`MFG-0001` подтверждает, что PCBA и loose antennas можно заказать одним
+turnkey/kitting RFQ; `IMP-0047` оставляет открытым, считать ли это жёстким
+ограничением фабрики или предпочтением с fallback.
 
 `IMP-0044/A` принято как `DEC-0052`: QSPI-first display path на S3 использует
 `GPIO41/42` под D2/D3 и `≤1 ms` bus-occupancy contract. BT817/BT818 EVE
@@ -213,7 +218,7 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются `IMP-0043`, `FND-0058` antenna qualification
+маскируется. Параллельно остаются `IMP-0047`, `FND-0058` antenna qualification
 и оставшиеся `FND-0060/0066/0067` exact electrical/HIL endpoints. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

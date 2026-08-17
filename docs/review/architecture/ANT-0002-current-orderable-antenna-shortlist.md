@@ -4,7 +4,7 @@
 - Дата проверки: 2026-08-17; availability перепроверена перед IMP-0043
 - Prerequisite: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 - Finding: [`FND-0058`](../findings/FND-0058-antenna-sourcing-and-qualification-gate-open.md)
-- Proposal: [`IMP-0043`](../improvements/IMP-0043-profiled-antenna-kit.md)
+- Decision: [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md)
 
 ## Цель и граница доказательства
 
@@ -108,8 +108,9 @@ SMA не сообщает firmware, какая antenna действительн�
 - **Не закрыто:** `DEC-0050` two-source production gate для каждой profile
   group, exact harness/mount, target ground plane, VNA, sensitivity, EIRP,
   coexistence, regulatory and environmental HIL.
-- **Решение владельца требуется:** принимать ли profiled kit из `IMP-0043` как
-  architecture input. До решения shortlist не является target BOM.
+- **Принято владельцем:** структура profiled kit зафиксирована в `DEC-0055`.
+  Shortlist всё ещё не является target BOM; следующая availability-проверка
+  выполняется только при выборе exact MPN.
 
 ## Первичные и procurement sources
 
