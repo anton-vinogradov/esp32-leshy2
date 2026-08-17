@@ -19,6 +19,8 @@
   [`REV-0005D`](../reviews/REV-0005D-audio-decision-propagation.md)
 - Service/IPC amendment: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md) /
   [`REV-0005L`](../reviews/REV-0005L-full-service-1bit-sdio-propagation.md)
+- Safety/evidence amendment: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md) /
+  [`SAFE-0002`](SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -136,8 +138,10 @@ lists every remaining `abstract:*` endpoint. The material groups are:
 
 - production-qualified display connector/backlight/protection/sourcing and
   exact codec power/analog conditioning; current HMX and ES8311 paper contacts are exact;
-- exact IR receiver/learning receiver/LED driver and TX evidence;
-- hard STOP latch, actual-TX detectors and power/current/thermal supervisor;
+- exact IR receiver/learning receiver/LED driver and optical front end; IR
+  evidence detector MPN/paper routing is now exact;
+- AON source/hold-up, branch power/current/thermal circuits and RF detector
+  taps/threshold values; hard STOP latch/gates/evidence active devices are now exact;
 - nRF/CC/voice/receiver load switches, isolation and level domains;
 - audio passive matching, bias, attenuation, rail partition and HIL (the
   selector/buffer/gate/amp IC order codes are instantiated by `DEC-0054`);

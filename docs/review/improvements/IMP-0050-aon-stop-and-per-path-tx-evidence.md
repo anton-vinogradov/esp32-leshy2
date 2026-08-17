@@ -1,10 +1,12 @@
 # ⚠️ Предложение IMP-0050 — AON hard STOP и per-path actual-TX evidence
 
-- Статус: **Требуется решение владельца**
+- Статус: **Принято владельцем: вариант A; реализовано как `DEC-0061`**
 - Дата: 2026-08-17
 - Internal step: [`INT-0001/I2`](../architecture/INT-0001-internal-design-closure-sequence.md)
 - Facts/options: [`SAFE-0001`](../architecture/SAFE-0001-aon-stop-and-tx-evidence-options.md)
 - Finding: [`FND-0071`](../findings/FND-0071-hard-stop-and-tx-evidence-coverage.md)
+- Decision: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md)
+- Exact circuit: [`SAFE-0002`](../architecture/SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 
 ## Текущее состояние и причина решения
 
@@ -73,9 +75,8 @@ roughly USD 20 of volume-priced evidence electronics before passives/taps, so
 the BAT15 coupon is worth doing; removing per-path proof is not a permissible
 saving.
 
-## Вопрос владельцу
+## Решение владельца
 
-**Принимаем вариант A: полный AON STOP для S3+C5+RP, семь отдельных LTC RF
-detectors + optical IR evidence в первом прототипе и параллельный BAT15
-cost-down coupon, а U214 без собственного evidence честно показывает
-`unknown/unavailable`?**
+Вариант **A принят**. Exact propagation добавила Ioff reset-buffer,
+stocked common-anode diode arrays и exact critical LEDs; это устраняет
+электрические пробелы принятого варианта без изменения его функций.

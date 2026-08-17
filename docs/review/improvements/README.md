@@ -14,10 +14,11 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Последнее закрытое предложение —
+Последние закрытые предложения —
 [`IMP-0051`](IMP-0051-target-readmes-as-product-site.md), принятое как
-`DEC-0060`. Текущее открытое engineering-предложение — `IMP-0050` по AON STOP
-и per-path actual-TX evidence.
+`DEC-0060`, и [`IMP-0050`](IMP-0050-aon-stop-and-per-path-tx-evidence.md),
+принятое вариантом A как `DEC-0061`. Следующее новое предложение ещё не
+открыто; активен fact/circuit review `I3`.
 
 [`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md) ранее принято
 вариантом B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
@@ -47,12 +48,11 @@ installed-cap HIL открытыми.
 UART0 RF-test access. 4-bit остаётся только fallback после провала measured
 framed-throughput HIL.
 
-[`IMP-0050`](IMP-0050-aon-stop-and-per-path-tx-evidence.md) — активное
-**⚠️ Предложение** для `INT-0001/I2`. Вариант A рекомендует трёхдоменный AON
-hard STOP и отдельное physical evidence для семи onboard RF paths + IR,
-используя общий `RP.GPIO22` и local-I²C source mask без новой ноги. Параллельный
-BAT15 coupon проверяет cost-down; shared/inferred evidence отклонено
-саморевью как потеря функции. Требуется решение владельца.
+[`IMP-0050`](IMP-0050-aon-stop-and-per-path-tx-evidence.md) принято вариантом A
+как `DEC-0061`: трёхдоменный AON hard STOP и отдельное physical evidence для
+семи onboard RF paths + IR используют `RP.GPIO22` aggregate и local-I²C source
+mask без новой ноги. BAT15 coupon остаётся cost-down experiment;
+shared/inferred evidence отклонено как потеря функции.
 
 [`IMP-0051`](IMP-0051-target-readmes-as-product-site.md) принято как
 `DEC-0060`: четыре корневые EN/RU страницы являются целевым GitHub product

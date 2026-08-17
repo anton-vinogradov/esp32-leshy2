@@ -67,6 +67,37 @@ flowchart TD
   IRCARRIER["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED and fail-safe driver endpoint"]
   end
+  subgraph SAFETY_STOP["AON hard-STOP devices"]
+  STOPSW["MPN TBD<br/>normally-closed physical STOP control"]
+  REARMSW["MPN TBD<br/>normally-open recessed RE-ARM control"]
+  SAFE_SUPERVISOR["TPS3808G33DBVR<br/>AON rail supervisor and power-on reset"]
+  SAFE_CONDITIONER["74LVC2G14GW,125<br/>STOP and RE-ARM Schmitt conditioner"]
+  SAFE_POR_OR["74LVC1G32GV,125<br/>STOP-dominant POR/clear combiner"]
+  SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous latched hard STOP"]
+  SAFE_RESET_BUFFER["SN74LVC3G34DCUR<br/>Ioff three-domain reset fan-out"]
+  SAFE_GATE_A["SN74LVC08APWR<br/>four STOP-dominant nRF request gates"]
+  SAFE_GATE_B["SN74LVC08APWR<br/>four STOP-dominant rail/IR/accessory gates"]
+  SAFE_PTT_OR["74LVC1G32GV,125<br/>active-low voice PTT force-RX gate"]
+  STOP_LED["LTST-C190KFKT<br/>orange physical latched-STOP indicator"]
+  end
+  subgraph TX_EVIDENCE["Per-path physical TX-evidence devices"]
+  DET_S3["LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector"]
+  DET_C5["LTC5532ES6#TRMPBF<br/>C5 2.4/5-GHz RF power detector"]
+  DET_NRF0["LTC5532ES6#TRMPBF<br/>nRF0 2.4-GHz RF power detector"]
+  DET_NRF1["LTC5532ES6#TRMPBF<br/>nRF1 2.4-GHz RF power detector"]
+  DET_NRF2["LTC5532ES6#TRMPBF<br/>nRF2 2.4-GHz RF power detector"]
+  DET_CC["LTC5507ES6#TRMPBF<br/>CC1101 sub-GHz RF power detector"]
+  DET_VOICE["LTC5507ES6#TRMPBF<br/>SA518 VHF/UHF RF power detector"]
+  DET_IR["VEMD1060X01<br/>IR optical-evidence photodiode"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR evidence thresholds"]
+  EVIDENCE_MASK["TCA9534APWR<br/>eight-bit evidence source mask on local RP I2C0"]
+  EVIDENCE_OR_0["BAT54ALT1G<br/>evidence diode-OR pair 0/1"]
+  EVIDENCE_OR_1["BAT54ALT1G<br/>evidence diode-OR pair 2/3"]
+  EVIDENCE_OR_2["BAT54ALT1G<br/>evidence diode-OR pair 4/5"]
+  EVIDENCE_OR_3["BAT54ALT1G<br/>evidence diode-OR pair 6/7"]
+  ANY_TX_LED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
+  end
   %% Layout-only invisible spine: these links are not electrical connections.
   S3 ~~~ SLOW_IO ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ MONOSUM
   MONOSUM ~~~ AUDIO_RX_MUX ~~~ CAPNET ~~~ AUDIO_CAPTURE_BUFFER ~~~ ADCNET
@@ -74,7 +105,12 @@ flowchart TD
   SPEAKER ~~~ MIC ~~~ TXATT ~~~ AUDIO_TX_SELECTOR ~~~ DISPLAY ~~~ SD ~~~ UNIT
   UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP
   RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ VOICE
-  VOICE ~~~ U214_I2C_ISO ~~~ U214
+  VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ STOPSW ~~~ REARMSW
+  REARMSW ~~~ SAFE_SUPERVISOR ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
+  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED
+  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
+  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B
+  EVIDENCE_CMP_B ~~~ EVIDENCE_MASK ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_LED
   S3 <-->|"1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
   S3 <-->|"I²C0+INT: GPIO1,GPIO2,GPIO37"| SLOW_IO
@@ -85,12 +121,11 @@ flowchart TD
   S3 <-->|"profile port: GPIO7,GPIO8"| UNIT
   C5 <-->|"RMT RX0/power: GPIO0,GPIO1,GPIO4,GPIO6,GPIO24"| IRDEMOD
   C5 <-->|"RMT RX1/power"| IRCARRIER
-  C5 -->|"RMT TX0/evidence/hard-stop"| IRTX
   RP <-->|"PIO0 SM0 + direct control: GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32"| NRF0
   RP <-->|"PIO0 SM1 + direct control: GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35"| NRF1
   RP <-->|"PIO0 SM2 + direct control: GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38"| NRF2
   RP <-->|"PIO0 SM3 + GDO/power: GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43"| CC
-  RP <-->|"UART0/PTT/evidence: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22"| VOICE
+  RP <-->|"UART0/PTT request: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21"| VOICE
   RP <-->|"PIO1/UART1: GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214
   RP <-->|"I²C0"| U214_I2C_ISO
   U214_I2C_ISO <-->|"isolated external I²C"| U214
@@ -107,6 +142,49 @@ flowchart TD
   S3 -->|"GPIO6 AUDIO_ARM"| AUDIO_SAFE_GATE
   AUDIO_SAFE_GATE --> AUDIO_SPEAKER_SELECTOR
   AUDIO_SAFE_GATE --> AUDIO_TX_SELECTOR
+  STOPSW --> SAFE_CONDITIONER --> SAFE_LATCH
+  REARMSW --> SAFE_CONDITIONER
+  SAFE_SUPERVISOR --> SAFE_POR_OR --> SAFE_LATCH
+  STOPSW --> SAFE_POR_OR
+  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_RESET_BUFFER
+  SAFE_RESET_BUFFER -->|"CHIP_PU"| S3
+  SAFE_RESET_BUFFER -->|"CHIP_PU"| C5
+  SAFE_RESET_BUFFER -->|"RUN"| RP
+  SAFE_LATCH --> SAFE_GATE_A
+  SAFE_LATCH --> SAFE_GATE_B
+  SAFE_LATCH --> SAFE_PTT_OR
+  SAFE_LATCH --> STOP_LED
+  RP -->|"3×CE + nRF rail requests"| SAFE_GATE_A
+  RP -->|"CC rail request"| SAFE_GATE_B
+  C5 -->|"IR carrier request"| SAFE_GATE_B
+  SLOW_IO -->|"voice/accessory rail requests"| SAFE_GATE_B
+  RP -->|"PTT request"| SAFE_PTT_OR --> VOICE
+  SAFE_GATE_A --> NRF0
+  SAFE_GATE_A --> NRF1
+  SAFE_GATE_A --> NRF2
+  SAFE_GATE_B --> CC
+  SAFE_GATE_B --> IRTX
+  SAFE_GATE_B --> U214
+  S3 --> DET_S3 --> EVIDENCE_CMP_A
+  C5 --> DET_C5 --> EVIDENCE_CMP_A
+  NRF0 --> DET_NRF0 --> EVIDENCE_CMP_A
+  NRF1 --> DET_NRF1 --> EVIDENCE_CMP_A
+  NRF2 --> DET_NRF2 --> EVIDENCE_CMP_B
+  CC --> DET_CC --> EVIDENCE_CMP_B
+  VOICE --> DET_VOICE --> EVIDENCE_CMP_B
+  IRTX --> DET_IR --> EVIDENCE_CMP_B
+  EVIDENCE_CMP_A --> EVIDENCE_MASK
+  EVIDENCE_CMP_B --> EVIDENCE_MASK
+  EVIDENCE_CMP_A --> EVIDENCE_OR_0
+  EVIDENCE_CMP_A --> EVIDENCE_OR_1
+  EVIDENCE_CMP_B --> EVIDENCE_OR_2
+  EVIDENCE_CMP_B --> EVIDENCE_OR_3
+  EVIDENCE_OR_0 --> ANY_TX_LED
+  EVIDENCE_OR_1 --> ANY_TX_LED
+  EVIDENCE_OR_2 --> ANY_TX_LED
+  EVIDENCE_OR_3 --> ANY_TX_LED
+  EVIDENCE_MASK <-->|"local I²C0 source mask"| RP
+  ANY_TX_LED -->|"RP.GPIO22 RP_ANY_TX_N"| RP
 ```
 
 ## Сводный pin budget
@@ -127,19 +205,31 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 
 Следующие функции имеют pin reservation, но не exact production MPN/circuit:
 
+- `AON_SAFE_3V3`
+- `AON_SAFE_3V3-via-10k`
+- `AON_SAFE_3V3-via-2k2`
+- `C5-qualified-RF-tap`
+- `CC-qualified-RF-tap`
+- `NC-stop-loop-10k-pullup-10nF`
+- `NO-rearm-loop-47k-pullup-100nF`
+- `NRF0-qualified-RF-tap`
+- `NRF1-qualified-RF-tap`
+- `NRF2-qualified-RF-tap`
 - `RX-AM-LW-loop-pod`
 - `RX-FM-SW-SMA-front-end`
-- `S3-actual-RF-TX-detector`
+- `S3-qualified-RF-tap`
+- `TP_EVIDENCE_MASK_INT_N`
 - `UI_COL0`
 - `UI_COL1`
 - `UI_COL2`
 - `UI_ROW0`
 - `UI_ROW1`
 - `UI_ROW2`
+- `VOICE-qualified-RF-tap`
 - `accessory-present`
-- `all-TX-enables-and-rails`
 - `always-available-quiet-audio-rail`
 - `audio-ground`
+- `cc-load-switch-enable`
 - `codec-adcvref-decoupling`
 - `codec-address-high-3v3`
 - `codec-audio-ground`
@@ -153,20 +243,14 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `exact carrier-learning IR receiver`
 - `exact display/backlight driver`
 - `exact robust-demod IR receiver`
-- `fail-safe IR LED driver`
+- `fail-safe-IR-LED-driver`
 - `high-z-ac-coupled-capture-network`
 - `i2c-mode-strap`
-- `independent C5 actual-TX detector`
-- `independent IR optical-current detector`
-- `independent actual-TX detector`
-- `latched-hard-stop`
-- `latched-hard-stop-sense`
 - `matched-bypass-ac-reference`
 - `microsd-load-switch`
 - `no-connect`
-- `off-safe CC1101 load switch`
+- `nrf-group-load-switch-enable`
 - `off-safe IR frontend load switch`
-- `off-safe common nRF load switch`
 - `physical PTT switch`
 - `power-current-thermal-fault`
 - `protected configurable M5 Unit contact`
@@ -179,17 +263,29 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `qualified-codec-3v3-digital`
 - `qualified-display-3v3`
 - `qualified-es8311-mic-range-differential-input-network`
+- `qualified-evidence-threshold-0`
+- `qualified-evidence-threshold-1`
+- `qualified-evidence-threshold-2`
+- `qualified-evidence-threshold-3`
+- `qualified-evidence-threshold-4`
+- `qualified-evidence-threshold-5`
+- `qualified-evidence-threshold-6`
+- `qualified-evidence-threshold-7`
 - `qualified-speaker-amp-supply`
 - `qualified-speaker-enable-default-on`
 - `receiver-power-reset-isolation`
 - `rx-audio-bypass-and-capture-node`
+- `safety-ground`
+- `safety-ground-via-10k`
 - `service USB connector`
 - `service fixture`
+- `shielded-ir-evidence-front-end`
 - `si4732-10k-left-mono-sum`
 - `si4732-10k-right-mono-sum`
 - `si4732-passive-mono-sum-output`
 - `speaker-negative`
 - `speaker-positive`
+- `stop-led-series-2k2`
 - `voice-power-reset-domain`
 - `voice-update-fixture`
 
@@ -245,7 +341,7 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO47`.
 | `GPIO0` | 6 | `IR_RX_DEMOD` | `i` | `RMT_RX0` | `abstract:exact robust-demod IR receiver` | — |
 | `GPIO1` | 7 | `IR_RX_CARRIER` | `i` | `RMT_RX1` | `abstract:exact carrier-learning IR receiver` | — |
 | `GPIO4` | 17 | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | `abstract:off-safe IR frontend load switch` | — |
-| `GPIO6` | 8 | `IR_TX_CARRIER` | `o` | `RMT_TX0` | `abstract:fail-safe IR LED driver` | — |
+| `GPIO6` | 8 | `IR_TX_CARRIER` | `o` | `RMT_TX0` | `safe_gate_b.3A` | — |
 | `GPIO7` | 9 | `S3_C5_SDIO_D1_IRQ` | `io` | `SDIO_SLAVE` | `s3.GPIO13` | external pull-up and documented SDIO edge profile are verified before runtime ownership |
 | `GPIO8` | 10 | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE` | `s3.GPIO12` | — |
 | `GPIO9` | 11 | `S3_C5_SDIO_CLK` | `i` | `SDIO_SLAVE` | `s3.GPIO10` | — |
@@ -254,8 +350,8 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO47`.
 | `GPIO12` | 24 | `C5_UART_SERVICE_RX` | `i` | `UART0` | `abstract:service fixture` | — |
 | `GPIO13` | 13 | `C5_USB_DM` | `io` | `USB_SERIAL_JTAG` | `abstract:service USB connector` | — |
 | `GPIO14` | 14 | `C5_USB_DP` | `io` | `USB_SERIAL_JTAG` | `abstract:service USB connector` | — |
-| `GPIO23` | 21 | `C5_RF_TX_EVIDENCE` | `i` | `GPIO_IRQ` | `abstract:independent C5 actual-TX detector` | — |
-| `GPIO24` | 23 | `IR_TX_EVIDENCE` | `i` | `GPIO_IRQ` | `abstract:independent IR optical-current detector` | — |
+| `GPIO23` | 21 | `C5_RF_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_cmp_a.OUT2` | — |
+| `GPIO24` | 23 | `IR_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_cmp_b.OUT4` | — |
 
 Budget: **14 used + 6 reserved + 1 free = 21 exposed GPIO**.
 Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5`.
@@ -265,13 +361,13 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
 | `GPIO0` | 77 | `NRF0_CSN_N` | `o` | `GPIO` | `nrf0.CSN` | — |
-| `GPIO1` | 78 | `NRF0_CE` | `o` | `GPIO` | `nrf0.CE` | — |
+| `GPIO1` | 78 | `NRF0_CE_REQ` | `o` | `GPIO` | `safe_gate_a.1A` | — |
 | `GPIO2` | 79 | `NRF0_IRQ_N` | `i` | `GPIO_IRQ` | `nrf0.IRQ` | — |
 | `GPIO3` | 80 | `NRF1_CSN_N` | `o` | `GPIO` | `nrf1.CSN` | — |
-| `GPIO4` | 1 | `NRF1_CE` | `o` | `GPIO` | `nrf1.CE` | — |
+| `GPIO4` | 1 | `NRF1_CE_REQ` | `o` | `GPIO` | `safe_gate_a.2A` | — |
 | `GPIO5` | 2 | `NRF1_IRQ_N` | `i` | `GPIO_IRQ` | `nrf1.IRQ` | — |
 | `GPIO6` | 3 | `NRF2_CSN_N` | `o` | `GPIO` | `nrf2.CSN` | — |
-| `GPIO7` | 4 | `NRF2_CE` | `o` | `GPIO` | `nrf2.CE` | — |
+| `GPIO7` | 4 | `NRF2_CE_REQ` | `o` | `GPIO` | `safe_gate_a.3A` | — |
 | `GPIO8` | 6 | `NRF2_IRQ_N` | `i` | `GPIO_IRQ` | `nrf2.IRQ` | — |
 | `GPIO9` | 7 | `CC_CSN_N` | `o` | `GPIO` | `cc.CSN` | — |
 | `GPIO10` | 8 | `CC_GDO0` | `i` | `GPIO_IRQ` | `cc.GDO0` | — |
@@ -279,21 +375,21 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO12` | 11 | `U214_BUSY` | `i` | `GPIO_IRQ` | `u214.LORA_BUSY` | — |
 | `GPIO13` | 12 | `U214_IRQ` | `i` | `GPIO_IRQ` | `u214.LORA_IRQ` | — |
 | `GPIO14` | 13 | `U214_RST_N` | `o` | `GPIO` | `u214.LORA_RST` | — |
-| `GPIO15` | 14 | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | `abstract:off-safe common nRF load switch` | — |
+| `GPIO15` | 14 | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | `safe_gate_a.4A` | — |
 | `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `voice.UART_RX` | — |
 | `GPIO17` | 17 | `VOICE_UART_RX` | `i` | `UART0` | `voice.UART_TX` | — |
-| `GPIO18` | 18 | `VOICE_PTT_N` | `o` | `GPIO` | `voice.PTT` | — |
+| `GPIO18` | 18 | `VOICE_PTT_REQ_N` | `o` | `GPIO` | `safe_ptt_or.1A` | — |
 | `GPIO19` | 19 | `RP_ALERT_N` | `od` | `GPIO_IRQ` | `s3.GPIO3` | — |
 | `GPIO20` | 20 | `VOICE_ACTIVITY` | `i` | `GPIO_IRQ` | `voice.AUDIO_ON` | — |
 | `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `abstract:physical PTT switch` | — |
-| `GPIO22` | 22 | `VOICE_TX_EVIDENCE` | `i` | `GPIO_IRQ` | `abstract:independent actual-TX detector` | — |
-| `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `abstract:off-safe CC1101 load switch` | — |
+| `GPIO22` | 22 | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | `evidence_or_0.A_COMMON`, `evidence_or_1.A_COMMON`, `evidence_or_2.A_COMMON`, `evidence_or_3.A_COMMON`, `any_tx_led.K` | — |
+| `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `safe_gate_b.1A` | — |
 | `GPIO24` | 25 | `S3_RP_IPC_MOSI` | `i` | `SPI1_IPC` | `s3.GPIO21` | — |
 | `GPIO25` | 26 | `S3_RP_IPC_CS_N` | `i` | `SPI1_IPC` | `s3.GPIO9` | — |
 | `GPIO26` | 27 | `S3_RP_IPC_SCK` | `i` | `SPI1_IPC` | `s3.GPIO48` | — |
 | `GPIO27` | 28 | `S3_RP_IPC_MISO` | `o` | `SPI1_IPC` | `s3.GPIO14` | — |
-| `GPIO28` | 36 | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | `u214_i2c_iso.SDAIN` | — |
-| `GPIO29` | 37 | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | `u214_i2c_iso.SCLIN` | — |
+| `GPIO28` | 36 | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | `u214_i2c_iso.SDAIN`, `evidence_mask.SDA` | — |
+| `GPIO29` | 37 | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | `u214_i2c_iso.SCLIN`, `evidence_mask.SCL` | — |
 | `GPIO30` | 38 | `NRF0_MISO` | `i` | `PIO0_SM0_RF_SPI` | `nrf0.MISO` | — |
 | `GPIO31` | 39 | `NRF0_SCK` | `o` | `PIO0_SM0_RF_SPI` | `nrf0.SCK` | — |
 | `GPIO32` | 40 | `NRF0_MOSI` | `o` | `PIO0_SM0_RF_SPI` | `nrf0.MOSI` | — |
@@ -402,7 +498,7 @@ Reserved: none. Free: none.
 | `AUDIO_TX_SEL_SAFE` | `audio_safe_gate.2Y` | `audio_tx_selector.IN` | low selects normally-closed electret path; external pull-down holds default if gate rail is absent |
 | `AUDIO_SAFE_GATE_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_safe_gate.VCC` | gate and selectors share a sequenced always-available rail |
 | `AUDIO_SAFE_GATE_GND` | `audio_safe_gate.GND` | `abstract:audio-ground` | quiet logic return |
-| `VOICE_DOMAIN_EN` | `slow_io.P13` | `abstract:voice-power-reset-domain` | off-safe pull; exact circuit gates the qualified 4 V rail and holds the module TX-safe during sequencing |
+| `VOICE_DOMAIN_REQ` | `slow_io.P13` | `safe_gate_b.2A` | request only; RUN_PERMIT and a 10-kOhm output pull-down make the downstream rail enable STOP-dominant |
 | `VOICE_PD_N` | `abstract:voice-power-reset-domain` | `voice.PD` | off-safe sequencer keeps the exact module in power-down until the qualified 4 V rail is valid |
 | `VOICE_HL` | `slow_io.P14` | `voice.HL` | external conservative-power pull |
 | `VOICE_UPDATE` | `voice.UPDATE` | `abstract:voice-update-fixture` | fixture-only; no runtime drive until the rev-1.1 direction/description conflict is resolved by specimen proof |
@@ -413,14 +509,102 @@ Reserved: none. Free: none.
 | `RX_RCLK` | `abstract:qualified-32k-clock` | `receiver.RCLK` | clock source and startup remain exact electrical gates |
 | `RX_FMI_RF` | `receiver.FMI` | `abstract:RX-FM-SW-SMA-front-end` | dedicated external-SMA whip path; matching/ESD stays close to FMI |
 | `RX_AMI_RF` | `receiver.AMI` | `abstract:RX-AM-LW-loop-pod` | dedicated short loop/pod path; generic long coax is not qualified |
-| `EXT_5V_EN` | `slow_io.P17` | `abstract:protected-external-5v-enable` | external off-safe pull and current limit |
+| `EXT_5V_REQ` | `slow_io.P17` | `safe_gate_b.4A` | request only; RUN_PERMIT gates the reverse-safe/current-limited accessory power stage selected in I3/I7 |
 | `SD_PWR_EN` | `slow_io.P20` | `abstract:microsd-load-switch` | external off-safe pull |
 | `SD_CARD_DETECT_N` | `sd.DETECT_A` | `slow_io.P21` | read-only debounced input; socket switch return is tied to the qualified reference domain |
-| `STOP_LATCH_SENSE_N` | `abstract:latched-hard-stop-sense` | `slow_io.P22` | sense only; non-programmable hard-stop dominance never depends on this path |
-| `S3_RF_TX_EVIDENCE` | `abstract:S3-actual-RF-TX-detector` | `slow_io.P23` | read-only evidence; hard-stop remains non-programmable |
+| `STOP_LATCH_SENSE` | `safe_latch.Q` | `slow_io.P22` | diagnostic mirror only; non-programmable hard-stop dominance never depends on the expander |
+| `S3_RF_TX_EVIDENCE_N` | `evidence_cmp_a.OUT1` | `slow_io.P23` | direct read-only mirror of the exact S3 evidence comparator |
 | `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `slow_io.P25` | hardware protection acts independently; this is diagnostic evidence |
 | `ACCESSORY_PRESENT_N` | `abstract:accessory-present` | `slow_io.P26` | read-only, protected and debounced |
-| `HARD_STOP_N` | `abstract:latched-hard-stop` | `abstract:all-TX-enables-and-rails` | non-programmable dominance over every MCU and radio/voice/IR TX path |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor.VDD` | always-on source and hold-up are selected and budgeted in I3 |
+| `AON_SAFE_SENSE` | `abstract:AON_SAFE_3V3` | `safe_supervisor.SENSE` | factory G33 threshold supervises the actual safety rail |
+| `AON_MR_N` | `abstract:AON_SAFE_3V3-via-10k` | `safe_supervisor.MR_N` | no firmware-controlled manual reset path |
+| `POR_N` | `abstract:AON_SAFE_3V3-via-10k` | `safe_supervisor.RESET_N` | open-drain supervisor output is pulled up only to AON_SAFE_3V3 |
+| `POR_N` | `safe_supervisor.RESET_N` | `safe_por_or.1A` | power-good clear input; STOP remains dominant through the second OR input |
+| `STOP_LOOP_SENSE` | `abstract:NC-stop-loop-10k-pullup-10nF` | `safe_conditioner.1A` | healthy closed contact is low; press, disconnect or open wire is high |
+| `STOP_LOOP_SENSE` | `abstract:NC-stop-loop-10k-pullup-10nF` | `safe_por_or.1B` | high forces CLR_N inactive so preset and clear cannot be asserted together |
+| `STOP_ASSERT_N` | `safe_conditioner.1Y` | `safe_latch.PRE_N` | active-low asynchronous preset; software and clocks are outside the path |
+| `REARM_RAW` | `abstract:NO-rearm-loop-47k-pullup-100nF` | `safe_conditioner.2A` | fresh press pulls raw input low and produces one or more harmless rising edges at the Schmitt output |
+| `REARM_CLK` | `safe_conditioner.2Y` | `safe_latch.CLK` | only a fresh physical edge can clock fixed D=0 |
+| `STOP_DOMINANT_CLR_N` | `safe_por_or.1Y` | `safe_latch.CLR_N` | CLR_N = POR_N OR STOP_LOOP_SENSE |
+| `SAFE_D_LOW` | `abstract:safety-ground-via-10k` | `safe_latch.D` | fixed logic low; no MCU, expander or connector endpoint |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.1A` | one non-programmable permit fans out through an Ioff buffer |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.2A` | one non-programmable permit fans out through an Ioff buffer |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.3A` | one non-programmable permit fans out through an Ioff buffer |
+| `S3_RUN_SAFE` | `safe_reset_buffer.1Y` | `s3.EN` | 47-Ohm series plus 1-kOhm target pull-down; AON loss holds CHIP_PU low |
+| `C5_RUN_SAFE` | `safe_reset_buffer.2Y` | `c5.EN` | 47-Ohm series plus 1-kOhm target pull-down; AON loss holds CHIP_PU low |
+| `RP_RUN_SAFE` | `safe_reset_buffer.3Y` | `rp.RUN` | 47-Ohm series plus 1-kOhm target pull-down; AON loss holds RUN low |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.1B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.2B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.3B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.4B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.1B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.2B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.3B` | STOP-dominant active-high gate permit |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.4B` | STOP-dominant active-high gate permit |
+| `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0.CE` | 10-kOhm module-side pull-down; STOP and AON loss force CE low |
+| `NRF1_CE_SAFE` | `safe_gate_a.2Y` | `nrf1.CE` | 10-kOhm module-side pull-down; STOP and AON loss force CE low |
+| `NRF2_CE_SAFE` | `safe_gate_a.3Y` | `nrf2.CE` | 10-kOhm module-side pull-down; STOP and AON loss force CE low |
+| `NRF_GROUP_PWR_EN_SAFE` | `safe_gate_a.4Y` | `abstract:nrf-group-load-switch-enable` | 10-kOhm pull-down; exact load switch and discharge are I3/I6 |
+| `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `abstract:cc-load-switch-enable` | 10-kOhm pull-down; exact load switch and isolation are I3/I6 |
+| `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `abstract:voice-power-reset-domain` | 10-kOhm pull-down; exact 4-V rail circuit is I3/I5 |
+| `IR_TX_CARRIER_SAFE` | `safe_gate_b.3Y` | `abstract:fail-safe-IR-LED-driver` | carrier waveform is physically blocked whenever RUN_PERMIT is low |
+| `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `abstract:protected-external-5v-enable` | 10-kOhm pull-down; reverse/backfeed-safe switch remains I3/I7 |
+| `TX_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
+| `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice.PTT` | 10-kOhm module-side pull-up keeps RX when the AON gate is unpowered |
+| `STOP_LED_DRIVE` | `safe_latch.Q` | `abstract:stop-led-series-2k2` | non-programmable visible latched-stop state |
+| `STOP_LED_A` | `abstract:stop-led-series-2k2` | `stop_led.A` | 2.2-kOhm first-target current limit |
+| `STOP_LED_K` | `stop_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware |
+| `S3_RF_SAMPLE` | `abstract:S3-qualified-RF-tap` | `det_s3.RFIN` | tap/attenuation is selected and measured in I6 |
+| `C5_RF_SAMPLE` | `abstract:C5-qualified-RF-tap` | `det_c5.RFIN` | tap covers the qualified 2.4/5-GHz path; I6 sets attenuation |
+| `NRF0_RF_SAMPLE` | `abstract:NRF0-qualified-RF-tap` | `det_nrf0.RFIN` | one source-specific tap; never shared with nRF1/2 |
+| `NRF1_RF_SAMPLE` | `abstract:NRF1-qualified-RF-tap` | `det_nrf1.RFIN` | one source-specific tap; never shared with nRF0/2 |
+| `NRF2_RF_SAMPLE` | `abstract:NRF2-qualified-RF-tap` | `det_nrf2.RFIN` | one source-specific tap; never shared with nRF0/1 |
+| `CC_RF_SAMPLE` | `abstract:CC-qualified-RF-tap` | `det_cc.RFIN` | sub-GHz tap and coupling capacitor are selected in I6 |
+| `VOICE_RF_SAMPLE` | `abstract:VOICE-qualified-RF-tap` | `det_voice.RFIN` | VHF/UHF tap and coupling capacitor are selected in I6 |
+| `CC_DETECT_ENABLE` | `abstract:AON_SAFE_3V3` | `det_cc.SHDN` | evidence detector remains enabled independently of the CC application rail |
+| `VOICE_DETECT_ENABLE` | `abstract:AON_SAFE_3V3` | `det_voice.SHDN` | evidence detector remains enabled independently of the voice application rail |
+| `IR_OPTICAL_SAMPLE` | `det_ir.ANODE` | `abstract:shielded-ir-evidence-front-end` | physical optical pickup rather than drive-current inference; exact bias/front end is I6 |
+| `S3_DETECT_V` | `det_s3.VOUT` | `evidence_cmp_a.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `C5_DETECT_V` | `det_c5.VOUT` | `evidence_cmp_a.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `NRF0_DETECT_V` | `det_nrf0.VOUT` | `evidence_cmp_a.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `NRF1_DETECT_V` | `det_nrf1.VOUT` | `evidence_cmp_a.IN4_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `NRF2_DETECT_V` | `det_nrf2.VOUT` | `evidence_cmp_b.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `CC_DETECT_V` | `det_cc.VOUT` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `VOICE_DETECT_V` | `det_voice.VOUT` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `IR_DETECT_V` | `abstract:shielded-ir-evidence-front-end` | `evidence_cmp_b.IN4_N` | optical energy above the qualified threshold makes active-low comparator output assert |
+| `EV_THRESH_0` | `abstract:qualified-evidence-threshold-0` | `evidence_cmp_a.IN1_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_1` | `abstract:qualified-evidence-threshold-1` | `evidence_cmp_a.IN2_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_2` | `abstract:qualified-evidence-threshold-2` | `evidence_cmp_a.IN3_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_3` | `abstract:qualified-evidence-threshold-3` | `evidence_cmp_a.IN4_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_4` | `abstract:qualified-evidence-threshold-4` | `evidence_cmp_b.IN1_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_5` | `abstract:qualified-evidence-threshold-5` | `evidence_cmp_b.IN2_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_6` | `abstract:qualified-evidence-threshold-6` | `evidence_cmp_b.IN3_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_THRESH_7` | `abstract:qualified-evidence-threshold-7` | `evidence_cmp_b.IN4_P` | divider/hysteresis values are I6 calibration outputs |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_mask.P0` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_mask.P1` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_mask.P2` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `evidence_mask.P3` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `evidence_mask.P4` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_mask.P5` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_mask.P6` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_mask.P7` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_or_0.K1` | diode-isolated hardware aggregate |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_or_0.K2` | diode-isolated hardware aggregate |
+| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_or_1.K1` | diode-isolated hardware aggregate |
+| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `evidence_or_1.K2` | diode-isolated hardware aggregate |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `evidence_or_2.K1` | diode-isolated hardware aggregate |
+| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_or_2.K2` | diode-isolated hardware aggregate |
+| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_or_3.K1` | diode-isolated hardware aggregate |
+| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_or_3.K2` | diode-isolated hardware aggregate |
+| `RP_ANY_TX_N` | `evidence_or_0.A_COMMON` | `evidence_or_1.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
+| `RP_ANY_TX_N` | `evidence_or_1.A_COMMON` | `evidence_or_2.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
+| `RP_ANY_TX_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
+| `ANY_TX_LED_A` | `abstract:AON_SAFE_3V3-via-2k2` | `any_tx_led.A` | red physical indicator current is sunk by the asserting comparator through one Schottky diode |
+| `EVIDENCE_MASK_INT_N_TP` | `evidence_mask.INT_N` | `abstract:TP_EVIDENCE_MASK_INT_N` | test point only; no safety claim depends on expander interrupt behavior |
+| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | fixed 7-bit address 0x20 |
+| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | fixed 7-bit address 0x20 |
+| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | fixed 7-bit address 0x20 |
 
 ### Programming, recovery and diagnostics
 
@@ -503,6 +687,16 @@ Reserved: none. Free: none.
 - `audio_tx_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `speaker_amp` uses `Diodes Incorporated PAM8302AASCR` as `verified_reference`, not an accepted production choice.
+- `safe_conditioner` lifecycle: `production`.
+- `safe_por_or` lifecycle: `production`.
+- `safe_ptt_or` lifecycle: `production`.
+- `det_s3` lifecycle: `production`.
+- `det_c5` lifecycle: `production`.
+- `det_nrf0` lifecycle: `production`.
+- `det_nrf1` lifecycle: `production`.
+- `det_nrf2` lifecycle: `production`.
+- `det_cc` lifecycle: `production`.
+- `det_voice` lifecycle: `production`.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger
@@ -516,12 +710,13 @@ Reserved: none. Free: none.
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
 - DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
-- HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; exact IR frontends, power tree, antenna placement and hard-stop circuitry also remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
+- HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; the I2 hard-stop/evidence active circuit is paper-reviewed while its AON source/hold-up is I3 and detector taps/thresholds are I6; exact IR frontends, power tree and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Граница проведённого ревью
 
 Validator доказывает существование реально выведенных compute contacts,
 полный used/reserved/free accounting, straps, fixed mux, service paths,
-PIO/DMA capacity и независимые radio/IPC resources. Exact peripheral MPN,
-signal/power integrity, hard-STOP circuit, RF layout and HIL остаются
-следующими gates; этот atlas не разрешает KiCad и не является frozen BOM.
+PIO/DMA capacity, independent radio/IPC resources и exact paper-level
+AON hard-STOP/evidence circuit. Remaining peripheral MPN, branch power,
+signal/power integrity, RF taps/layout and HIL are later gates; этот atlas
+не разрешает KiCad и не является frozen BOM.

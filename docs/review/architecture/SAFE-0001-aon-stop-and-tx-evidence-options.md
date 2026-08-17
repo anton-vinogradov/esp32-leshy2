@@ -1,16 +1,19 @@
 # SAFE-0001 — AON hard STOP и per-path actual-TX evidence
 
-- Статус: **Проведено ревью пререквизитов; owner decision открыт**
+- Статус: **Проведено ревью; вариант A принят `DEC-0061`, exact circuit в `SAFE-0002`**
 - Дата проверки: 2026-08-17
 - Internal step: [`INT-0001/I2`](INT-0001-internal-design-closure-sequence.md)
 - Finding: [`FND-0071`](../findings/FND-0071-hard-stop-and-tx-evidence-coverage.md)
 - Proposal: [`IMP-0050`](../improvements/IMP-0050-aon-stop-and-per-path-tx-evidence.md)
+- Accepted circuit: [`SAFE-0002`](SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 - Inputs: `DEC-0003`, `DEC-0024`, `DEC-0045/0046`, `RES-0001`, `G2F-3I`
 
 ## Review boundary
 
-Этот артефакт выбирает проверяемую логическую схему и exact first-target
-components, но ещё не является schematic/BOM freeze. Passive values, RF
+Этот артефакт сравнивал варианты и выбрал проверяемую логическую схему и exact
+first-target components. Владелец принял вариант A; нормативный fan-out,
+passives и test points теперь находятся в `SAFE-0002`. Это всё ещё не
+schematic/BOM freeze. RF
 couplers/taps, detector matching, thresholds, rail current/reverse blocking,
 LED/connector mechanics и measured latency остаются названными downstream
 gates. Никакой из этих пробелов не замаскирован словом «detector».
@@ -184,12 +187,16 @@ a dated engineering snapshot, not a purchasing guarantee or BOM freeze.
 | 1 | `74LVC2G14GW,125` | dual Schmitt STOP/re-arm conditioning | Nexperia active; broadly stocked |
 | 2 | `74LVC1G32GV,125` | STOP-dominant clear and voice PTT force-RX | Nexperia active; stocked |
 | 2 | `SN74LVC08APWR` | eight active-high STOP-dominant gates | TI ACTIVE; stocked |
+| 1 | `SN74LVC3G34DCUR` | Ioff three-domain reset fan-out | TI ACTIVE; stocked by major distributors |
 | provisional | `TPS22918DBVT` | ≤2-A switched TX-domain rail first target | TI ACTIVE; stocked small-reel code; exact branch suitability remains `I3` |
 | 5 | `LTC5532ES6#TRMPBF` | 300-MHz…7-GHz RF power detector | ADI PRODUCTION; distributor stock observed |
 | 2 | `LTC5507ES6#TRMPBF` | 100-kHz…1-GHz RF power detector | ADI PRODUCTION; distributor stock observed |
 | 2 | `TLV1824PWR` | eight low-power open-drain comparator channels | TI ACTIVE; stocked |
 | 1 | `TCA9534APWR` | 8-bit evidence source mask | TI ACTIVE; stocked |
 | 1 | `VEMD1060X01` | fast 0805 IR photodiode | Vishay active; stocked |
+| 4 | `BAT54ALT1G` | dual-common-anode diode isolation for `ANY_TX_N` | onsemi active; stocked by major distributors |
+| 1 | `LTST-C190KRKT` | red physical ANY-TX indicator | Lite-On active; broad distributor stock |
+| 1 | `LTST-C190KFKT` | orange physical STOP indicator | Lite-On active; stocked |
 | coupon | `BAT1503WE6327HTSA1` | discrete RF-detector cost-down experiment | Infineon active/preferred, but major-distributor stock was inconsistent; not baseline |
 
 Primary manufacturer evidence:
@@ -226,7 +233,8 @@ not zero-loss.
 
 ## Paper exit and downstream proof
 
-After owner decision, `I2` still requires:
+`SAFE-0002/DEC-0061/REV-0005O` complete items 1–3 below and give `I2`
+**«Проведено ревью»**:
 
 1. propagation of accepted devices/nets into `G2F-3I` and all living diagrams;
 2. exact reset/gate fan-out, pulls, test points and AON rail budget;
@@ -237,5 +245,5 @@ After owner decision, `I2` still requires:
 6. HIL thresholds for asserted/cleared latency, stuck request, brownout,
    open/short loop, false positive/negative, cross-radio desense and leakage.
 
-Until those steps pass, `I2` remains active and no physical detector claim is
-promoted from paper candidate to proven product behavior.
+Items 4–6 remain explicit downstream work. No physical detector claim is
+promoted from paper target to proven product behavior before those measurements.

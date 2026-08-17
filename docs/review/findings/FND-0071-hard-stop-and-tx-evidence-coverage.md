@@ -1,6 +1,6 @@
 # FND-0071 — hard STOP и actual-TX evidence не покрывают актуальную архитектуру
 
-- Статус: **Открыто; paper correction внесена, circuit/decision/HIL не закрыты**
+- Статус: **Paper mismatch закрыт `DEC-0061/SAFE-0002`; `I3/I6/HIL` proof открыт**
 - Серьёзность: **критичный safety prerequisite для любого TX**
 - Обнаружено: 2026-08-17
 - Этап: [`INT-0001/I2`](../architecture/INT-0001-internal-design-closure-sequence.md)
@@ -23,7 +23,7 @@ RP2354, но эта поправка не была распространена 
 
 ## Наблюдение 2 — четыре onboard RF-path не имеют фактического evidence
 
-В текущем `G2F-3I` есть только следующие concrete evidence endpoints:
+До исправления `DEC-0061` в `G2F-3I` были только следующие evidence endpoints:
 
 | Path | Current endpoint | Что доказано сейчас |
 |---|---|---|
@@ -68,6 +68,7 @@ evidence должен показывать `unknown/unavailable`. Профиль
 Варианты и рекомендуемое исправление опубликованы в
 [`SAFE-0001`](../architecture/SAFE-0001-aon-stop-and-tx-evidence-options.md) и
 [`IMP-0050`](../improvements/IMP-0050-aon-stop-and-per-path-tx-evidence.md).
-Находка не закрывается до принятия варианта, распространения exact topology в
-machine source/diagrams и отдельного paper review. Измерительная часть затем
-остаётся открытой до `I6/HIL` с заранее указанными pass conditions.
+Вариант принят и exact topology распространена в machine source/diagrams;
+`REV-0005O` провёл отдельное paper review. Поэтому архитектурная часть находки
+закрыта. Измерительная часть остаётся открытой до `I3/I6/HIL` с заранее
+указанными pass conditions и не выдаётся за доказанное product behavior.

@@ -119,12 +119,44 @@ flowchart TD
   IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
   IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
+  STOPSW["MPN TBD<br/>normally-closed physical STOP control"]
+  REARMSW["MPN TBD<br/>normally-open recessed RE-ARM control"]
+  SUP["TPS3808G33DBVR<br/>AON rail supervisor and power-on reset"]
+  COND["74LVC2G14GW,125<br/>STOP and RE-ARM Schmitt conditioner"]
+  POROR["74LVC1G32GV,125<br/>STOP-dominant POR/clear combiner"]
+  LATCH["SN74LVC1G74DCUR<br/>asynchronous latched hard STOP"]
+  RSTBUF["SN74LVC3G34DCUR<br/>Ioff three-domain reset fan-out"]
+  GATEA["SN74LVC08APWR #1<br/>four STOP-dominant nRF request gates"]
+  GATEB["SN74LVC08APWR #2<br/>four STOP-dominant rail/IR/accessory gates"]
+  PTTOR["74LVC1G32GV,125 #2<br/>active-low voice PTT force-RX gate"]
+  STOPLED["LTST-C190KFKT<br/>orange physical latched-STOP indicator"]
+  DS3["LTC5532ES6#TRMPBF #S3<br/>S3 2.4-GHz RF power detector"]
+  DC5["LTC5532ES6#TRMPBF #C5<br/>C5 2.4/5-GHz RF power detector"]
+  DN0["LTC5532ES6#TRMPBF #nRF0<br/>nRF0 2.4-GHz RF power detector"]
+  DN1["LTC5532ES6#TRMPBF #nRF1<br/>nRF1 2.4-GHz RF power detector"]
+  DN2["LTC5532ES6#TRMPBF #nRF2<br/>nRF2 2.4-GHz RF power detector"]
+  DCC["LTC5507ES6#TRMPBF #CC<br/>CC1101 sub-GHz RF power detector"]
+  DVOICE["LTC5507ES6#TRMPBF #voice<br/>SA518 VHF/UHF RF power detector"]
+  DIR["VEMD1060X01<br/>IR optical-evidence photodiode"]
+  CMPA["TLV1824PWR #1<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
+  CMPB["TLV1824PWR #2<br/>nRF2/CC/voice/IR evidence thresholds"]
+  EVMASK["TCA9534APWR<br/>eight-bit evidence source mask on local RP I²C0"]
+  OR0["BAT54ALT1G #0<br/>evidence diode-OR pair 0/1"]
+  OR1["BAT54ALT1G #1<br/>evidence diode-OR pair 2/3"]
+  OR2["BAT54ALT1G #2<br/>evidence diode-OR pair 4/5"]
+  OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
+  ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
   S3 ~~~ SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
-  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214
+  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ STOPSW ~~~ REARMSW
+  REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
+  RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLED
+  STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
+  DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
+  CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
@@ -145,16 +177,58 @@ flowchart TD
   SAFE --> TXSEL
   C5 -->|"RMT RX0"| IR0
   C5 -->|"RMT RX1"| IR1
-  C5 -->|"RMT TX0 + evidence"| IRTX
   RP <-->|"PIO0 SM0"| NRF0
   RP <-->|"PIO0 SM1"| NRF1
   RP <-->|"PIO0 SM2"| NRF2
   RP <-->|"PIO0 SM3"| CC
-  RP <-->|"UART0/PTT/evidence"| SA
+  RP <-->|"UART0/PTT request"| SA
   RP <-->|"PIO1/UART1"| CAPDOCK
   RP <-->|"I²C0"| ISO
   ISO <-->|"isolated I²C"| CAPDOCK
   CAPDOCK <-->|"14-pin Cap-Bus"| U214
+  STOPSW --> COND --> LATCH
+  REARMSW --> COND
+  SUP --> POROR --> LATCH
+  STOPSW --> POROR
+  LATCH -->|"RUN_PERMIT"| RSTBUF
+  RSTBUF -->|"CHIP_PU"| S3
+  RSTBUF -->|"CHIP_PU"| C5
+  RSTBUF -->|"RUN"| RP
+  LATCH --> GATEA
+  LATCH --> GATEB
+  LATCH --> PTTOR
+  LATCH --> STOPLED
+  RP -->|"3×CE + nRF rail requests"| GATEA
+  RP -->|"CC rail request"| GATEB
+  C5 -->|"IR carrier request"| GATEB
+  SLOW -->|"voice/accessory rail requests"| GATEB
+  RP -->|"PTT request"| PTTOR --> SA
+  GATEA --> NRF0
+  GATEA --> NRF1
+  GATEA --> NRF2
+  GATEB --> CC
+  GATEB --> IRTX
+  GATEB --> U214
+  S3 --> DS3 --> CMPA
+  C5 --> DC5 --> CMPA
+  NRF0 --> DN0 --> CMPA
+  NRF1 --> DN1 --> CMPA
+  NRF2 --> DN2 --> CMPB
+  CC --> DCC --> CMPB
+  SA --> DVOICE --> CMPB
+  IRTX --> DIR --> CMPB
+  CMPA --> EVMASK
+  CMPB --> EVMASK
+  CMPA --> OR0
+  CMPA --> OR1
+  CMPB --> OR2
+  CMPB --> OR3
+  OR0 --> ANYLED
+  OR1 --> ANYLED
+  OR2 --> ANYLED
+  OR3 --> ANYLED
+  EVMASK <-->|"local I²C0 source mask"| RP
+  ANYLED -->|"GPIO22 RP_ANY_TX_N"| RP
 ```
 
 <details>
@@ -175,7 +249,8 @@ flowchart TD
 - **nRF24 #1:** RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35`.
 - **nRF24 #2:** RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38`.
 - **CC1101:** RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43`.
-- **SA518/PTT:** RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22`.
+- **SA518/PTT:** RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21`; восьмибитная маска
+  evidence делит локальную RP I²C0, а аппаратный aggregate использует `GPIO22`.
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
 - **Ресурсный итог:** S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
@@ -207,6 +282,13 @@ flowchart TD
   появляется только после явного выбора для текущего сценария.
 - Физический STOP доминирует над firmware и межпроцессорной связью. Отпускание
   STOP не восстанавливает прежние цель, канал, мощность или TX-lease.
+- Нормально-замкнутая STOP-петля асинхронно защёлкивает reset всех трёх
+  вычислительных доменов и независимо блокирует nRF CE, radio/accessory rails,
+  voice PTT и IR waveform. Только новое нажатие утопленного RE-ARM или полное
+  выключение питания начинают новый TX-off boot.
+- Семь отдельных RF detectors и один оптический IR detector формируют восемь
+  source-specific состояний и diode-isolated красный физический индикатор
+  `ANY TX`. Аксессуар без собственного qualified evidence остаётся `Unknown`.
 - Команда передачи, ток тракта, сообщение самого радио и независимое
   фактическое evidence отображаются как разные состояния. Неизвестное не
   превращается в успешное или безопасное.

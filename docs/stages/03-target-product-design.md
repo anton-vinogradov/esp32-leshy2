@@ -64,8 +64,10 @@ rail/screw stack-up и installed-cap hand/GNSS/RF HIL.
 mockup до полного project-level закрытия начинки. `INT-0001` задаёт порядок
 `I0…I9`; compute/recovery/service block `I1` получил **«Проведено ревью»** в
 `DEC-0059/REV-0005L`: working map использует 1-bit SDIO и сохраняет полный
-S3/C5/RP service. Следующим активен safety block `I2`. Цельный enclosure/control layout не
-продолжается до совместного internal self-review.
+S3/C5/RP service. `DEC-0061/SAFE-0002/REV-0005O` затем дают safety block `I2`
+**«Проведено ревью»**: exact three-domain STOP/gates и восемь evidence paths
+внесены в machine source. Следующим активен power block `I3`. Цельный
+enclosure/control layout не продолжается до совместного internal self-review.
 
 ## Downstream boundary
 

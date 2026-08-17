@@ -240,15 +240,18 @@ native USB GPIO13/14 and S3 default UART0 GPIO43/44 independent. M5 Unit UART
 uses UART1 on its unchanged GPIO7/8 port. Framed-throughput/reset/RF-load HIL
 remains required; 4-bit is fallback only after failure.
 
-`SAFE-0001/REV-0005M` review the `I2` prerequisites and open critical
-`FND-0071`. Historical `DEC-0024` named only S3+C5; the current STOP contract
-is corrected to S3 `CHIP_PU` + C5 `CHIP_PU` + RP2354B `RUN` and every external
-gate. The working map has actual-TX endpoints for S3/C5/voice/IR but none for
-3×nRF or CC1101. **⚠️ Proposal `IMP-0050/A`** adds an AON latch/gates, seven
-individual RF detectors plus optical IR evidence, hardware `ANY_TX` and an
-8-bit source mask over local RP I2C0 without a new pin. A parallel BAT15 coupon
-tests no-loss cost-down. Owner decision is required; the machine map and living
-diagrams remain unchanged until acceptance, and `I2` stays active.
+The owner accepted `IMP-0050/A`. `DEC-0061/SAFE-0002/REV-0005O` give `I2`
+**Проведено ревью**: exact AON supervisor/latch/Ioff reset fan-out now resets S3
+`CHIP_PU`, C5 `CHIP_PU` and RP2354B `RUN`; hardware gates cover 3×nRF CE,
+nRF/CC/voice/accessory rails, IR carrier and voice PTT. Five LTC5532, two
+LTC5507 and optical VEMD1060X01 feed two TLV1824 comparators, a local-I²C
+TCA9534A source mask and a direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate.
+Machine source and all living diagrams are updated. U214 without accessory
+evidence remains `unknown/unavailable`; the BAT15 coupon stays cost-down HIL.
+
+`I3` is now active: exact AON source/hold-up, battery/charger/power path, every
+load switch and discharge path, monitoring, reverse current and calculated
+loss/thermal/fault budgets are not yet selected.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

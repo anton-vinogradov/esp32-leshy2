@@ -1,6 +1,6 @@
 # REV-0005M — I2 safety prerequisites and option review
 
-- Статус: **Проведено ревью пререквизитов; `I2` остаётся active**
+- Статус: **Проведено ревью пререквизитов; superseded by `DEC-0061/REV-0005O`**
 - Дата: 2026-08-17
 - Architecture: [`SAFE-0001`](../architecture/SAFE-0001-aon-stop-and-tx-evidence-options.md)
 - Finding: [`FND-0071`](../findings/FND-0071-hard-stop-and-tx-evidence-coverage.md)
@@ -32,9 +32,7 @@ already-current architecture invariant, not an unapproved new feature.
 
 ## Почему этап ещё не закрыт
 
-`IMP-0050` changes concrete device count, cost and evidence implementation, so
-it requires owner acceptance before machine-source and living-diagram
-propagation. Even after that decision, `I2` receives **«Проведено ревью»** only
-after the exact fan-out/pulls/test points and cross-domain circuit boundary are
-documented and structurally checked. RF/IR measured qualification remains a
-named later HIL gate rather than blocking the honest paper boundary.
+Владелец впоследствии принял `IMP-0050/A`. `SAFE-0002` документирует exact
+fan-out/pulls/test points, а `REV-0005O` проверяет machine-source и
+living-diagram propagation. Поэтому `I2` получил **«Проведено ревью»**; RF/IR
+measured qualification остаётся named downstream `I6/HIL` gate.

@@ -30,13 +30,13 @@ bus clocks или powered frontend только потому, что driver за
 
 | Interface/domain | Inactive state | Управление в paper map | Обязательное доказательство |
 |---|---|---|---|
-| `nrf0+nrf1+nrf2` | pre-off CE low/CSN deasserted; then common `RAIL-OFF`, all signal paths isolated/high-Z and three PIO/DMA stopped | новый direct `RP.GPIO15 → NRF_GROUP_PWR_EN`, off-safe pull; exact I/O isolation prevents a live RP pin from feeding an unpowered radio | no I/O back-power, rail discharge/current, no carrier, active-path sensitivity under parked digital aggression |
-| `CC1101` | pre-off IDLE/power-down and CSN deasserted; then `RAIL-OFF`, SPI/GDO isolated/high-Z and PIO/DMA stopped | новый direct `RP.GPIO23 → CC_PWR_EN`, off-safe pull; exact I/O isolation | no back-power through SPI/GDO, rail/current/no-carrier evidence |
-| `U214` / external Cap | `RAIL-OFF`, I²C isolated, SPI/UART static | `slow_io.P17 → EXT_5V_EN`, TCA4307 EN follows protected rail, RP controllers stopped | accessory rail discharge, isolation READY/status, hot-unplug and no-back-power HIL |
-| voice radio | PTT hardware-off, module power-down and qualified 4 V rail off | `VOICE_PTT_N`, `VOICE_DOMAIN_EN`, `HARD_STOP_N`; exact circuit gates the rail and holds TX safe while power settles | actual-TX-off, rail/current/thermal and PTT stuck/fault injection |
+| `nrf0+nrf1+nrf2` | pre-off CE low/CSN deasserted; then common `RAIL-OFF`, all signal paths isolated/high-Z and three PIO/DMA stopped | RP CE requests and `GPIO15` rail request pass through exact `SN74LVC08APWR` AON gates with output pull-downs; exact load switch/I/O isolation follows in I3/I6 | no I/O back-power, rail discharge/current, no carrier, active-path sensitivity under parked digital aggression |
+| `CC1101` | pre-off IDLE/power-down and CSN deasserted; then `RAIL-OFF`, SPI/GDO isolated/high-Z and PIO/DMA stopped | `RP.GPIO23` request passes through exact AON gate; output pull-down and later exact load switch/isolation | no back-power through SPI/GDO, rail/current/no-carrier evidence |
+| `U214` / external Cap | `RAIL-OFF`, I²C isolated, SPI/UART static | `slow_io.P17` request passes through AON gate to protected reverse-safe `EXT_5V_EN_SAFE`; TCA4307 EN follows power-good | accessory rail discharge, isolation READY/status, hot-unplug and no-back-power HIL |
+| voice radio | PTT hardware-off, module power-down and qualified 4 V rail off | exact AON AND gate controls voice rail; exact OR makes `VOICE_PTT_SAFE_N = request OR TX_KILL`, with module-side pull-up | actual-TX-off, rail/current/thermal and PTT stuck/fault injection |
 | Si473x-class receiver | receiver rail/reset off, I²C branch cannot back-power, audio muted | `slow_io.P15 → RX_DOMAIN_EN` controls exact power/reset/isolation circuit after MPN selection | isolated sensitivity of another radio, I²C back-power and wake/calibration HIL |
 | codec/audio path | codec off/muted, I²S clock/DMA stopped | external `CODEC_PWR_EN`, selector safe state, S3 I²S gate; ES8311 `CE` remains fixed address strap | no I/O back-power, BCLK/WS, pop/click/current and RF noise-floor HIL |
-| IR RX/TX frontend | frontend rail off; TX remains under `HARD_STOP_N` | новый `C5.GPIO4 → IR_FRONTEND_PWR_EN`; RMT pins parked; hardware STOP independently dominates driver | dark/current/no-optical-output evidence and active-radio noise-floor HIL |
+| IR RX/TX frontend | frontend rail off; TX remains under `HARD_STOP_N` | `C5.GPIO4 → IR_FRONTEND_PWR_EN`; RMT carrier passes through exact AON gate before the driver | dark/current/no-optical-output evidence and active-radio noise-floor HIL |
 | S3 Wi-Fi/BLE/ESP-NOW | `NATIVE-OFF`; S3 CPU/UI remains alive | stop protocols/scans/advertising, disable RF block, check `S3_RF_TX_EVIDENCE` | no background frames/carrier and active receiver desense HIL |
 | C5 Wi-Fi/802.15.4 | `NATIVE-OFF`; C5 may remain alive for IR/recovery | stop protocols and RF block, check `C5_RF_TX_EVIDENCE`; SDIO clocks only for bounded IPC | no background frames/carrier and active receiver desense HIL |
 | microSD | `RAIL-OFF` when no storage session; SPI static | `SD_PWR_EN`; bounded flush then controller/rail off | no corruption/back-power, removal/fault and active receiver desense HIL |
@@ -56,7 +56,7 @@ The quiet-state requirement consumes three formerly free direct controls:
 After later `DEC-0052`, S3 GPIO41/42 become QSPI D2/D3. Subsequent
 `AUDIO-0002/FND-0067` assigns slow P27 to the previously omitted
 `RX_AUDIO_SOURCE_SEL`. Current remaining direct general-purpose reserve is
-S3=2, C5=1, RP=0, and the slow plane has no reserve. This is not yet a schematic:
+S3=1, C5=1, RP=0, and the slow plane has no reserve. This is not yet a schematic:
 exact load-switch/I/O-isolator MPN, discharge time, voltage domains, default pulls
 and sequencing must be selected together with the frontends. A future direct
 RP timing endpoint now requires a remap or justified expander/latch; it cannot

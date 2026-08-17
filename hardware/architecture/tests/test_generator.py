@@ -137,6 +137,76 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("<details>", readme, readme_name)
             self.assertIn("docs/status/current-state", readme, readme_name)
 
+    def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["safety_contract"]
+
+        self.assertEqual("DEC-0061", contract["decision"])
+        self.assertEqual("paper_reviewed_i2", contract["status"])
+        self.assertEqual(
+            ["s3.EN", "c5.EN", "rp.RUN"],
+            contract["reset_fanout"]["targets"],
+        )
+        self.assertEqual(9, len(contract["tx_gate_map"]))
+        self.assertEqual(
+            [
+                "S3_RF",
+                "C5_RF",
+                "NRF0_RF",
+                "NRF1_RF",
+                "NRF2_RF",
+                "CC_RF",
+                "VOICE_RF",
+                "IR_OPTICAL",
+            ],
+            contract["evidence"]["channels"],
+        )
+        self.assertIn("0x20", contract["evidence"]["source_mask"])
+        self.assertIn("RP_ANY_TX_N", contract["evidence"]["aggregate"])
+
+        required_instances = {
+            "safe_supervisor": "ti_tps3808g33_dbvr",
+            "safe_conditioner": "nexperia_74lvc2g14gw_125",
+            "safe_por_or": "nexperia_74lvc1g32gv_125",
+            "safe_latch": "ti_sn74lvc1g74_dcur",
+            "safe_reset_buffer": "ti_sn74lvc3g34_dcur",
+            "safe_gate_a": "ti_sn74lvc08a_pwr",
+            "safe_gate_b": "ti_sn74lvc08a_pwr",
+            "safe_ptt_or": "nexperia_74lvc1g32gv_125",
+            "det_s3": "adi_ltc5532_es6_trmpbf",
+            "det_c5": "adi_ltc5532_es6_trmpbf",
+            "det_nrf0": "adi_ltc5532_es6_trmpbf",
+            "det_nrf1": "adi_ltc5532_es6_trmpbf",
+            "det_nrf2": "adi_ltc5532_es6_trmpbf",
+            "det_cc": "adi_ltc5507_es6_trmpbf",
+            "det_voice": "adi_ltc5507_es6_trmpbf",
+            "det_ir": "vishay_vemd1060x01",
+            "evidence_cmp_a": "ti_tlv1824_pwr",
+            "evidence_cmp_b": "ti_tlv1824_pwr",
+            "evidence_mask": "ti_tca9534a_pwr",
+        }
+        for instance, device_id in required_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        rp = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "rp"
+        }
+        self.assertEqual("RP_ANY_TX_N", rp["GPIO22"]["net"])
+        self.assertEqual("i", rp["GPIO22"]["direction"])
+        self.assertIn("evidence_mask.SDA", rp["GPIO28"]["peers"])
+        self.assertIn("evidence_mask.SCL", rp["GPIO29"]["peers"])
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for label in (
+            "TPS3808G33DBVR<br/>AON rail supervisor and power-on reset",
+            "SN74LVC1G74DCUR<br/>asynchronous latched hard STOP",
+            "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
+            "TCA9534APWR<br/>eight-bit evidence source mask on local RP I2C0",
+        ):
+            self.assertIn(label, rendered)
+
     def test_qspi_display_decision_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         s3 = {

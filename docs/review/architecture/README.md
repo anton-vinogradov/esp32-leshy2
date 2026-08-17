@@ -57,10 +57,11 @@ values, exact power circuit and HIL remain open.
 `DEC-0058` now pauses the integrated mockup until the internal chain is jointly
 reviewed. `INT-0001/I1` has **Проведено ревью** through
 `DEC-0059/REV-0005L`: 1-bit C5 SDIO restores S3 UART0 and C5 native USB,
-while M5 Unit UART moves to UART1 on the same pins. `SAFE-0001/REV-0005M` now
-review `I2` prerequisites and expose `FND-0071`: STOP must also reset RP2354B,
-and 3×nRF/CC lack physical evidence. `IMP-0050` is the active owner decision;
-no exact safety component is yet part of the working target.
+while M5 Unit UART moves to UART1 on the same pins. `DEC-0061/SAFE-0002/
+REV-0005O` now give `I2` **Проведено ревью**: exact AON latch/reset/gate
+devices cover S3+C5+RP and every external TX request, while seven RF detectors,
+optical IR evidence, local-I²C source mask and direct physical aggregate are
+machine-projected. `I3` power/rail/thermal closure is now active.
 
 ## Active G2F artifacts
 
@@ -68,9 +69,10 @@ no exact safety component is yet part of the working target.
   dependency-ordered `I0…I9` paper/electrical closure required before the
   integrated physical mockup resumes;
 - [`SAFE-0001`](SAFE-0001-aon-stop-and-tx-evidence-options.md) reviews the `I2`
-  AON latch/gate truth table, all eight onboard evidence channels, exact
-  first-target MPNs and no-new-RP-GPIO aggregation. `FND-0071` remains open
-  pending the owner choice in `IMP-0050` and subsequent circuit propagation;
+  options; [`SAFE-0002`](SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
+  records the accepted exact fan-out, pulls, fault matrix, eight evidence
+  channels and test points. `FND-0071` paper mismatch is closed; I3/I6/HIL
+  measured proof remains explicit;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

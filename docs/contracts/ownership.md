@@ -17,7 +17,7 @@ candidates обязаны назначить каждую строку ниже 
 | analog voice/PTT | local PTT/dead-man/TX evidence and fail-safe control | open |
 | broadcast/audio/IR | continuous audio failure path, measured IR carrier provenance and safe TX | open |
 | external GNSS/LoRa/NFC | profile identity, power/isolation/no-backfeed and removal-safe state | open |
-| hard STOP/re-arm | hardware-dominant TX kill and no automatic re-arm | open; cannot depend only on application firmware |
+| hard STOP/re-arm | AON hardware-dominant reset of S3+C5+RP plus independent TX gates; no release-to-rearm | paper-reviewed exact circuit; electrical/HIL proof remains |
 | updates/recovery/diagnostics | owner-controlled signed lifecycle plus independent physical service access for every programmable chip | open |
 
 ## Междоменные правила будущих candidates

@@ -239,15 +239,18 @@ native USB GPIO13/14 и S3 default UART0 GPIO43/44 независимыми. M5 
 использует UART1 на прежнем порту GPIO7/8. Framed-throughput/reset/RF-load HIL
 остаётся обязательным; 4-bit — только fallback после провала.
 
-`SAFE-0001/REV-0005M` провели ревью пререквизитов `I2` и открыли критичный
-`FND-0071`. Исторический `DEC-0024` говорил только о S3+C5; актуальный STOP
-исправлен документально до S3 `CHIP_PU` + C5 `CHIP_PU` + RP2354B `RUN` и всех
-внешних gates. Current map имеет actual-TX endpoints для S3/C5/voice/IR, но не
-для 3×nRF и CC1101. **⚠️ Предложение `IMP-0050/A`** добавляет AON latch/gates,
-семь отдельных RF detectors + optical IR detector, аппаратный `ANY_TX` и
-8-bit source mask через local RP I²C0 без расхода новой ноги. Параллельный
-BAT15 coupon проверяет no-loss cost-down. Требуется решение владельца; machine
-map и living diagrams до принятия не изменены, `I2` остаётся active.
+Владелец принял `IMP-0050/A`. `DEC-0061/SAFE-0002/REV-0005O` дают `I2`
+**«Проведено ревью»**: exact AON supervisor/latch/Ioff reset fan-out теперь
+сбрасывает S3 `CHIP_PU`, C5 `CHIP_PU` и RP2354B `RUN`; hardware gates покрывают
+3×nRF CE, nRF/CC/voice/accessory rails, IR carrier и voice PTT. Пять LTC5532,
+два LTC5507 и optical VEMD1060X01 идут в два TLV1824, local-I²C TCA9534A source
+mask и direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate. Machine source и все
+living diagrams обновлены. U214 без accessory evidence остаётся
+`unknown/unavailable`; BAT15 coupon — cost-down HIL.
+
+Теперь активен `I3`: exact AON source/hold-up, battery/charger/power path, все
+load switches и discharge paths, monitoring, reverse current и рассчитанные
+loss/thermal/fault budgets ещё не выбраны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

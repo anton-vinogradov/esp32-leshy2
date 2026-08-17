@@ -998,6 +998,306 @@
         "SDAOUT": {"physical": "7", "role": "signal"}, "VCC": {"physical": "8", "role": "power"}
       }
     },
+    "ti_tps3808g33_dbvr": {
+      "mpn": "TPS3808G33DBVR",
+      "kind": "sot23_6_aon_supervisor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.6, 1.45],
+      "source": {
+        "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
+        "version": "Rev. M",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "RESET_N": {"physical": "1", "role": "reset"},
+        "GND": {"physical": "2", "role": "power"},
+        "MR_N": {"physical": "3", "role": "reset"},
+        "CT": {"physical": "4", "role": "analog"},
+        "SENSE": {"physical": "5", "role": "analog"},
+        "VDD": {"physical": "6", "role": "power"}
+      }
+    },
+    "nexperia_74lvc2g14gw_125": {
+      "mpn": "74LVC2G14GW,125",
+      "kind": "tssop6_dual_schmitt_inverter",
+      "qualification": "verified_candidate",
+      "lifecycle": "production",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
+        "version": "2023-08-18",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "GND": {"physical": "2", "role": "power"},
+        "2A": {"physical": "3", "role": "signal"},
+        "2Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"},
+        "1Y": {"physical": "6", "role": "signal"}
+      }
+    },
+    "nexperia_74lvc1g32gv_125": {
+      "mpn": "74LVC1G32GV,125",
+      "kind": "tsop5_single_or_gate",
+      "qualification": "verified_candidate",
+      "lifecycle": "production",
+      "dimensions_mm": [2.9, 1.5, 1.1],
+      "source": {
+        "document": "74LVC1G32 Single 2-input OR gate datasheet",
+        "version": "2024-09-03",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "1B": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "1Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
+    "ti_sn74lvc1g74_dcur": {
+      "mpn": "SN74LVC1G74DCUR",
+      "kind": "vssop8_d_flip_flop_async_preset_clear",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.1, 2.0, 1.1],
+      "source": {
+        "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
+        "version": "Rev. G",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "CLK": {"physical": "1", "role": "signal"},
+        "D": {"physical": "2", "role": "signal"},
+        "Q_N": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "Q": {"physical": "5", "role": "signal"},
+        "CLR_N": {"physical": "6", "role": "reset"},
+        "PRE_N": {"physical": "7", "role": "reset"},
+        "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "ti_sn74lvc08a_pwr": {
+      "mpn": "SN74LVC08APWR",
+      "kind": "tssop14_quad_and_gate",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.0, 4.4, 1.2],
+      "source": {
+        "document": "SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet",
+        "version": "Rev. W",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"}, "1B": {"physical": "2", "role": "signal"},
+        "1Y": {"physical": "3", "role": "signal"}, "2A": {"physical": "4", "role": "signal"},
+        "2B": {"physical": "5", "role": "signal"}, "2Y": {"physical": "6", "role": "signal"},
+        "GND": {"physical": "7", "role": "power"}, "3Y": {"physical": "8", "role": "signal"},
+        "3A": {"physical": "9", "role": "signal"}, "3B": {"physical": "10", "role": "signal"},
+        "4Y": {"physical": "11", "role": "signal"}, "4A": {"physical": "12", "role": "signal"},
+        "4B": {"physical": "13", "role": "signal"}, "VCC": {"physical": "14", "role": "power"}
+      }
+    },
+    "ti_sn74lvc3g34_dcur": {
+      "mpn": "SN74LVC3G34DCUR",
+      "kind": "vssop8_triple_buffer_partial_power_down",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.1, 2.0, 1.1],
+      "source": {
+        "document": "SN74LVC3G34 Triple Buffer Gate datasheet",
+        "version": "Rev. L",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "3Y": {"physical": "2", "role": "signal"},
+        "2A": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "2Y": {"physical": "5", "role": "signal"},
+        "3A": {"physical": "6", "role": "signal"},
+        "1Y": {"physical": "7", "role": "signal"},
+        "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "adi_ltc5532_es6_trmpbf": {
+      "mpn": "LTC5532ES6#TRMPBF",
+      "kind": "tsot23_6_rf_power_detector_300mhz_7ghz",
+      "qualification": "verified_candidate",
+      "lifecycle": "production",
+      "dimensions_mm": [2.9, 1.6, 1.0],
+      "source": {
+        "document": "LTC5532 Precision 300MHz to 7GHz RF Detector datasheet",
+        "version": "5532f",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "RFIN": {"physical": "1", "role": "rf"},
+        "GND": {"physical": "2", "role": "power"},
+        "VOS": {"physical": "3", "role": "analog"},
+        "VM": {"physical": "4", "role": "analog"},
+        "VOUT": {"physical": "5", "role": "analog"},
+        "VCC": {"physical": "6", "role": "power"}
+      }
+    },
+    "adi_ltc5507_es6_trmpbf": {
+      "mpn": "LTC5507ES6#TRMPBF",
+      "kind": "tsot23_6_rf_power_detector_100khz_1ghz",
+      "qualification": "verified_candidate",
+      "lifecycle": "production",
+      "dimensions_mm": [2.9, 1.6, 1.0],
+      "source": {
+        "document": "LTC5507 100kHz to 1GHz RF Power Detector datasheet",
+        "version": "5507f",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/5507f.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "SHDN": {"physical": "1", "role": "signal"},
+        "GND": {"physical": "2", "role": "power"},
+        "VOUT": {"physical": "3", "role": "analog"},
+        "VCC": {"physical": "4", "role": "power"},
+        "PCAP": {"physical": "5", "role": "analog"},
+        "RFIN": {"physical": "6", "role": "rf"}
+      }
+    },
+    "ti_tlv1824_pwr": {
+      "mpn": "TLV1824PWR",
+      "kind": "tssop14_quad_open_drain_comparator",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.0, 4.4, 1.2],
+      "source": {
+        "document": "TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "OUT2": {"physical": "1", "role": "signal"}, "OUT1": {"physical": "2", "role": "signal"},
+        "VPLUS": {"physical": "3", "role": "power"}, "IN1_N": {"physical": "4", "role": "analog"},
+        "IN1_P": {"physical": "5", "role": "analog"}, "IN2_N": {"physical": "6", "role": "analog"},
+        "IN2_P": {"physical": "7", "role": "analog"}, "IN3_N": {"physical": "8", "role": "analog"},
+        "IN3_P": {"physical": "9", "role": "analog"}, "IN4_N": {"physical": "10", "role": "analog"},
+        "IN4_P": {"physical": "11", "role": "analog"}, "VMINUS": {"physical": "12", "role": "power"},
+        "OUT4": {"physical": "13", "role": "signal"}, "OUT3": {"physical": "14", "role": "signal"}
+      }
+    },
+    "ti_tca9534a_pwr": {
+      "mpn": "TCA9534APWR",
+      "kind": "tssop16_i2c_8bit_io_expander",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.0, 4.4, 1.2],
+      "source": {
+        "document": "TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "Rev. C",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9534a.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "A0": {"physical": "1", "role": "signal"}, "A1": {"physical": "2", "role": "signal"},
+        "A2": {"physical": "3", "role": "signal"}, "P0": {"physical": "4", "role": "signal"},
+        "P1": {"physical": "5", "role": "signal"}, "P2": {"physical": "6", "role": "signal"},
+        "P3": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"},
+        "P4": {"physical": "9", "role": "signal"}, "P5": {"physical": "10", "role": "signal"},
+        "P6": {"physical": "11", "role": "signal"}, "P7": {"physical": "12", "role": "signal"},
+        "INT_N": {"physical": "13", "role": "signal"}, "SCL": {"physical": "14", "role": "signal"},
+        "SDA": {"physical": "15", "role": "signal"}, "VCC": {"physical": "16", "role": "power"}
+      }
+    },
+    "vishay_vemd1060x01": {
+      "mpn": "VEMD1060X01",
+      "kind": "0805_ir_photodiode",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 0.85],
+      "source": {
+        "document": "VEMD1060X01 Silicon PIN Photodiode datasheet",
+        "version": "Rev. 1.1",
+        "url": "https://www.vishay.com/docs/84295/vemd1060x01.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "ANODE": {"physical": "datasheet anode land", "role": "analog"},
+        "CATHODE": {"physical": "datasheet cathode land", "role": "analog"}
+      }
+    },
+    "onsemi_bat54alt1g": {
+      "mpn": "BAT54ALT1G",
+      "kind": "sot23_dual_common_anode_schottky",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.3, 1.0],
+      "source": {
+        "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
+        "version": "Rev. 16",
+        "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "K1": {"physical": "1", "role": "signal"},
+        "K2": {"physical": "2", "role": "signal"},
+        "A_COMMON": {"physical": "3", "role": "signal"}
+      }
+    },
+    "liteon_ltst_c190krkt": {
+      "mpn": "LTST-C190KRKT",
+      "kind": "0603_red_status_led",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "K": {"physical": "cathode land", "role": "signal"},
+        "A": {"physical": "anode land", "role": "signal"}
+      }
+    },
+    "liteon_ltst_c190kfkt": {
+      "mpn": "LTST-C190KFKT",
+      "kind": "0603_orange_status_led",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "LTST-C190KFKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0186/LTST-C190KFKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "K": {"physical": "cathode land", "role": "signal"},
+        "A": {"physical": "anode land", "role": "signal"}
+      }
+    },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",
       "kind": "tssop16",
