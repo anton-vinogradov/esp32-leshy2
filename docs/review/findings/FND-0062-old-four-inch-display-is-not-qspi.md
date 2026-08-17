@@ -1,10 +1,11 @@
 # FND-0062 — old 4-inch display fits the workload but not the accepted QSPI path
 
-- Статус: **Открыто; target disposition требует решения `IMP-0045`**
+- Статус: **Закрыто `DEC-0053`; old 4-inch оставлен A0/control fixture**
 - Серьёзность: exact display/interface/physical-design gate
 - Обнаружено: 2026-08-17
 - Decision: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md)
 - Evidence: [`DSP-0003`](../architecture/DSP-0003-exact-fast-display-shortlist.md)
+- Closure: [`DEC-0053`](../decisions/DEC-0053-new-35in-qspi-display-class.md)
 
 ## Находка
 
@@ -22,9 +23,9 @@
 цену и/или ширину корпуса. Это fallback `DEC-0052`, а не zero-loss direct-QSPI
 эквивалент старого portrait module.
 
-## Критерий закрытия
+## Закрытие
 
-Владелец выбирает disposition из `IMP-0045`: новый 3.5-inch portrait QSPI
-target class, дорогой 4-inch EVE либо возврат к старому 1-bit target с явным
-пересмотром `DEC-0052`. Старый 4-inch module можно сохранить как A0 control/
-compatibility HIL независимо от target choice.
+Владелец принял `IMP-0045/A` как `DEC-0053`: target — новый 3.5-inch portrait
+QSPI class; старый 4-inch module сохраняется как A0 control/compatibility HIL,
+а EVE — как high-end fallback. Exact production panel/connector остаются
+отдельным sourcing/HIL gate и перечислены в `DSP-0004`.

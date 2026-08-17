@@ -101,7 +101,11 @@ Its principled pin mapping is reviewed, but it is neither the final atomic
 architecture nor authorization to begin KiCad.
 [`DEC-0052`](docs/review/decisions/DEC-0052-qspi-first-display-path.md) adds
 direct-QSPI D2/D3 on S3 GPIO41/42 and measured `<=1 ms` display occupancy;
-the exact screen, optics and mechanics remain open.
+[`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-class.md)
+accepts a 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class.
+[`DSP-0004`](docs/review/architecture/DSP-0004-display-part-number-register.md)
+lists every known display reference part number and leaves the exact production
+panel/connector, optics and protection MPNs explicitly open.
 
 ```mermaid
 flowchart LR

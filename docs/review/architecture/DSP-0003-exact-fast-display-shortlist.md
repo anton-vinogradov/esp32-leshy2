@@ -1,11 +1,13 @@
 # DSP-0003 — exact fast-display shortlist after QSPI decision
 
-- Статус: **Проведено ревью фактов; target class и production MPN открыты**
+- Статус: **Проведено ревью; target class принят `DEC-0053`, production MPN открыт**
 - Дата: 2026-08-17
 - Decision: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md)
+- Class decision: [`DEC-0053`](../decisions/DEC-0053-new-35in-qspi-display-class.md)
 - Finding: [`FND-0062`](../findings/FND-0062-old-four-inch-display-is-not-qspi.md)
-- Proposal: [`IMP-0045`](../improvements/IMP-0045-new-35in-qspi-display-class.md)
+- Accepted proposal: [`IMP-0045`](../improvements/IMP-0045-new-35in-qspi-display-class.md)
 - Review: [`REV-0004Y`](../reviews/REV-0004Y-exact-fast-display-shortlist.md)
+- Part-number register: [`DSP-0004`](DSP-0004-display-part-number-register.md)
 
 ## Что означает «подходит старый 4 дюйма»
 
@@ -26,13 +28,56 @@ renderer/quantum, но не direct-QSPI target.
 
 ## Проверенные актуальные варианты
 
-| Exact reference | Реальный display path | Оптика/механика | Supply/cost evidence | Disposition |
-|---|---|---|---|---|
-| Elecrow `DLE06235B` / QDtech `ES3C35P` | 3.5-inch `320×480`, IPS, capacitive touch, ST77922, QSPI + I2C touch | active `48.96×73.44 mm`; board `54.50×101.50×10.0 mm`; 300 cd/m²; `-30…80°C` | 5 V complete board; display-only stated 0.96 W, backlight 120 mA | **primary new-HIL reference**: stronger brightness/temperature than Waveshare; integrated S3 board is not production panel proof |
-| Waveshare `ESP32-S3-Touch-LCD-3.5B` | 3.5-inch `320×480`, IPS, AXS15231B, four-line QSPI, integrated capacitive touch | 210 cd/m², contrast 1000:1 | complete board currently listed from `$25.99` | **secondary HIL/reference**: orderable and official Espressif AXS driver; too dim to freeze as field target |
-| OPL AXS15231B 3.5-inch raw panel reference | `320×480`, QSPI-capable AXS15231B | LCM `53.36×82.93×2.1 mm`; active `48.96×73.44 mm` | inquiry-only; exact FPC, touch option, MOQ, lifecycle and second source unproved | production sourcing lead, not accepted MPN |
-| Crystalfontz `CFA480480E0-040TW` | 4-inch `480×480`, BT817 EVE, host SPI/QSPI, capacitive touch | `86×86×9.7 mm`; active about `71.86×70.18 mm`; not sunlight-readable | `$104.08` at qty 1 on reviewed date | technically valid 4-inch **EVE fallback**, but expensive and wider than legacy 75-mm body hypothesis |
-| Riverdi `RVT43HLBFWN00` family | 4.3-inch `480×272`, BT817Q, host SPI/QSPI | module `106.30×83.98×9.05 mm`; 1000 cd/m² no-touch variant, landscape | no-touch current listing `$59.90`; touch variants materially higher | outdoor/EVE evidence, but changes product width/aspect and BOM |
+Широкая сравнительная таблица заменена вертикальными карточками, чтобы
+документ читался на узком экране. Полный реестр обозначений — в `DSP-0004`.
+
+### Primary HIL — Elecrow/QDtech
+
+- Part identifiers: Elecrow `DLE06235B`; QDtech `ES3C35P`.
+- Path: 3.5-inch `320×480` IPS, capacitive touch, `ST77922`, QSPI display и
+  I2C touch.
+- Mechanics/optics: active `48.96×73.44 mm`; complete board
+  `54.50×101.50×10.0 mm`; 300 cd/m²; `-30…80 °C`.
+- Power evidence: 5 V complete board; display-only 0.97 W, backlight 120 mA.
+- Disposition: **primary new-screen HIL**. Integrated S3 board не доказывает
+  production panel, connector или touch MPN.
+
+### Secondary HIL — Waveshare
+
+- Part identifiers: `ESP32-S3-Touch-LCD-3.5B`, SKU `31137`.
+- Path: 3.5-inch `320×480` IPS, `AXS15231B`, four-data-line QSPI, integrated
+  capacitive touch.
+- Optics: 210 cd/m², contrast 1000:1.
+- Supply evidence: orderable complete development board.
+- Disposition: **secondary HIL/driver reference**. Published brightness не
+  позволяет заморозить его как field target.
+
+### Raw-panel sourcing lead — OPL
+
+- Page identifier: product `226`; manufacturer panel MPN не опубликован.
+- Path: 3.5-inch `320×480`, QSPI-capable `AXS15231B`.
+- Mechanics: LCM `53.36×82.93×2.1 mm`; active `48.96×73.44 mm`.
+- Disposition: inquiry-only sourcing lead. FPC, touch option, MOQ, lifecycle и
+  second source не доказаны.
+
+### High-end fallback — Crystalfontz
+
+- Part identifier: `CFA480480E0-040TW`.
+- Path: 4-inch `480×480`, `BT817` EVE, host SPI/QSPI, capacitive touch.
+- Mechanics/optics: `86×86×9.7 mm`; active примерно `71.86×70.18 mm`; не
+  заявлен sunlight-readable.
+- Cost evidence: `$104.08` at qty 1 on reviewed date.
+- Disposition: technically valid **EVE fallback**, но дорогой и шире legacy
+  75-mm body hypothesis.
+
+### Outdoor/landscape fallback — Riverdi
+
+- Part identifiers: no-touch `RVT43HLBFWN00`; capacitive-touch
+  `RVT43HLBFWCA0`.
+- Path: 4.3-inch `480×272`, `BT817Q`, host SPI/QSPI.
+- Mechanics/optics: `106.30×83.98×9.05 mm`; no-touch variant 1000 cd/m²;
+  landscape orientation.
+- Disposition: outdoor/EVE evidence, но меняет width/aspect и BOM.
 
 The old 4-inch current supplier class is listed from about `$13.50`; therefore
 replacing it with a `$104` 4-inch EVE module is not a zero-loss cost
@@ -52,7 +97,7 @@ FPC or touch implementation. Each specimen still needs readback/identity,
 reset/init, rotation, partial-window, sleep/wake, touch, long-run and bus-sharing
 tests.
 
-## Recommended prototype and production boundary
+## Accepted prototype and production boundary
 
 1. Keep the existing old 4-inch ST7796S module as A0 control: it measures the
    free gain from the new `<=1 ms` quantum.
@@ -61,7 +106,7 @@ tests.
    stronger than the Waveshare reference.
 3. Use Waveshare AXS15231B 3.5B as a second-controller/driver/supply reference,
    not as an outdoor target.
-4. Call the target only **3.5-inch portrait QSPI `320×480` IPS + capacitive
+4. `DEC-0053` calls the target only **3.5-inch portrait QSPI `320×480` IPS + capacitive
    touch class**. Do not freeze a complete dev board or raw FPC until two-source
    procurement, exact connector/pinout, brightness/cover-lens, power and shared
    SD HIL pass.
@@ -69,7 +114,8 @@ tests.
 The 3.5-inch active area is about 23% smaller than the old 4-inch active area.
 This can reduce enclosure width/height, but legibility, glove/control layout
 and waterfall density must be checked in the adapted physical mockup before
-production acceptance.
+production acceptance. Все известные part identifiers и честные `TBD`
+перечислены в `DSP-0004`.
 
 ## Первичные источники
 

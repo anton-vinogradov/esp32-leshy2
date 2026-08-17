@@ -1,10 +1,11 @@
 # REV-0004Y — exact fast-display shortlist review
 
-- Статус: **Проведено ревью фактов; IMP-0045 и production MPN открыты**
+- Статус: **Проведено ревью фактов; class позднее принят `DEC-0053`, production MPN открыт**
 - Дата: 2026-08-17
 - Evidence: [`DSP-0003`](../architecture/DSP-0003-exact-fast-display-shortlist.md)
 - Finding: [`FND-0062`](../findings/FND-0062-old-four-inch-display-is-not-qspi.md)
 - Proposal: [`IMP-0045`](../improvements/IMP-0045-new-35in-qspi-display-class.md)
+- Subsequent decision: [`DEC-0053`](../decisions/DEC-0053-new-35in-qspi-display-class.md)
 
 ## Проверено
 

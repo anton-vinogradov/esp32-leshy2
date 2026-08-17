@@ -104,8 +104,10 @@ dedicated RP bus, поэтому fixed limit устарел. `DEC-0052/REV-0004X
 находку: принимают direct QSPI на S3 `GPIO41/42` и measured `≤1 ms` display
 occupancy; current S3 budget становится `31/3/2`. `DSP-0003/REV-0004Y`
 показывают, что старый 4-inch ST7796S годится как A0 workload fixture, но не
-как QSPI target; новый 3.5-inch QSPI class остаётся `IMP-0045`. Exact display,
-optics и HIL открыты. `CTL-0001/REV-0004K` обнаружили, что
+как QSPI target. `DEC-0053/REV-0004Z` принимают 3.5-inch portrait `320×480`
+IPS direct-QSPI capacitive-touch class; `DSP-0004` перечисляет все известные
+part numbers. Exact production panel/connector, optics и HIL открыты.
+`CTL-0001/REV-0004K` обнаружили, что
 первые карты закрывали только MCU accounting. Владелец делегировал перебор
 компоновки; `DEC-0044` принял `IMP-0037/A`, а `NIF-0001/REV-0004L` проверили
 ведущий `G2F-3I`: RP2354B/QFN80, пять независимых radio/accessory SPI paths,
@@ -177,9 +179,10 @@ combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; 
 `GPIO41/42` под D2/D3 и `≤1 ms` bus-occupancy contract. BT817/BT818 EVE
 остаётся fallback, четвёртый MCU в baseline не добавляется.
 
-⚠️ Предложение `IMP-0045`: выбрать новый 3.5-inch portrait `320×480` QSPI
-IPS+touch class; ST77922 использовать как primary HIL, AXS15231B — как
-secondary reference, старый 4-inch ST7796S оставить A0 control/fallback.
+`IMP-0045/A` принято как `DEC-0053`: target — 3.5-inch portrait `320×480`
+QSPI IPS+touch class; `DLE06235B/ES3C35P` (`ST77922`) — primary HIL,
+Waveshare SKU `31137` (`AXS15231B`) — secondary HIL, старый 4-inch ST7796S —
+A0 control/fallback. Exact production MPN остаются явными `TBD` в `DSP-0004`.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его

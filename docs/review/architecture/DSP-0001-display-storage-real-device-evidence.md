@@ -1,7 +1,8 @@
 # DSP-0001 — display, touch and removable-storage real-device evidence
 
 > Последующее решение: `DEC-0052` принимает direct QSPI и measured `<=1 ms`
-> display occupancy; `DSP-0003/IMP-0045` выбирают новый exact screen class.
+> display occupancy; `DEC-0053/DSP-0004` принимают новый 3.5-inch screen class
+> и сохраняют exact production MPN как отдельный gate.
 > Historical ST7796S/shared-U214 evidence ниже сохраняется как A0 boundary.
 
 - Статус: **Проведено ревью фактов и performance contract; exact target не выбран**

@@ -70,7 +70,9 @@ peripherals and HIL remain open; CAD stays blocked.
   S3 GPIO41/42 to QSPI D2/D3 and uses measured `<=1 ms` display occupancy;
 - [`DSP-0003`](DSP-0003-exact-fast-display-shortlist.md) shows that the old
   4-inch ST7796S remains a valid A0 workload fixture but not a QSPI target.
-  `IMP-0045` compares a new 3.5-inch portrait QSPI class with 4-inch EVE;
+  `DEC-0053` accepts the new 3.5-inch portrait `320×480` QSPI IPS+touch class;
+  [`DSP-0004`](DSP-0004-display-part-number-register.md) lists every known
+  display identifier and every production `TBD` without freezing a dev board;
 - [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md) proves that
   current validation closes MCU accounting only, derives the open slow-control
   envelope and records the required external-I²C fault boundary;
@@ -116,8 +118,9 @@ peripherals and HIL remain open; CAD stays blocked.
 - [`DSP-0002/REV-0004W`](DSP-0002-fast-display-path-options.md) review the
   display acceleration gate against the exact current pin budget. Direct QSPI
   fits with `GPIO41/42`; current RP/C5 display ownership and direct I80/RGB do
-  not. `DEC-0052/REV-0004X` accept and propagate this path; `DSP-0003/IMP-0045`
-  keep exact screen choice open.
+  not. `DEC-0052/REV-0004X` accept and propagate this path;
+  `DEC-0053/REV-0004Z` accept the 3.5-inch display class while exact production
+  assembly, optics and HIL remain open in `DSP-0004`.
 
 ## Deferred/reference G3 artifacts
 

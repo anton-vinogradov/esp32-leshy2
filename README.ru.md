@@ -101,7 +101,11 @@ target. Бывший `PKG-0001/SYN-3A` после
 atomic architecture и не разрешение на KiCad.
 [`DEC-0052`](docs/review/decisions/DEC-0052-qspi-first-display-path.md)
 добавляет direct-QSPI D2/D3 на S3 GPIO41/42 и measured `≤1 ms` display
-occupancy; exact screen/optics/mechanics остаются открытыми.
+occupancy. [`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-class.md)
+принимает 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class.
+[`DSP-0004`](docs/review/architecture/DSP-0004-display-part-number-register.md)
+перечисляет все известные display part numbers, а exact production panel/
+connector, optics и protection MPN оставляет явно открытыми.
 
 ```mermaid
 flowchart LR

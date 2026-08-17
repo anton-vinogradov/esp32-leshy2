@@ -1,10 +1,11 @@
-# ⚠️ Предложение IMP-0045 — new 3.5-inch portrait QSPI display class
+# IMP-0045 — new 3.5-inch portrait QSPI display class
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принято владельцем — вариант A, `DEC-0053`**
 - Дата: 2026-08-17
 - Decision input: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md)
 - Evidence: [`DSP-0003`](../architecture/DSP-0003-exact-fast-display-shortlist.md)
 - Finding: [`FND-0062`](../findings/FND-0062-old-four-inch-display-is-not-qspi.md)
+- Accepted decision: [`DEC-0053`](../decisions/DEC-0053-new-35in-qspi-display-class.md)
 
 ## Текущее состояние и причина решения
 
@@ -50,8 +51,9 @@ mechanics/BOM. Это разумный high-end fallback, но не zero-loss ba
 преждевременной фиксации dev board как production part. Старый 4-inch образец
 не выбрасывается и будет полезен для честного A0↔QSPI сравнения.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принимаем вариант **A: новый 3.5-inch portrait `320×480` QSPI IPS+touch class,
-ST77922 как primary HIL, AXS15231B как secondary reference, а старый 4-inch
-ST7796S оставляем только контрольным стендом и fallback**?
+Владелец принял вариант **A: новый 3.5-inch portrait `320×480` QSPI IPS+touch
+class, ST77922 как primary HIL, AXS15231B как secondary reference, а старый
+4-inch ST7796S — только контрольный стенд и fallback**. Решение и незакрытые
+production MPN gates перенесены в `DEC-0053/DSP-0004`.

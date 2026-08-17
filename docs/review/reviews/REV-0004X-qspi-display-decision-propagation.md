@@ -1,5 +1,8 @@
 # REV-0004X — QSPI display decision propagation
 
+> Последующее решение `DEC-0053/REV-0004Z` принимает 3.5-inch target class;
+> exact production assembly/optics/HIL остаются открыты.
+
 - Статус: **Проведено ревью принятого QSPI-first working contract**
 - Дата: 2026-08-17
 - Decision: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md)

@@ -17,7 +17,7 @@ control-surface alternatives cannot delete a radio/key result.
 
 | Surface | G3 invariant |
 |---|---|
-| display | readable field status, level, armed/actual-TX, errors and local confirmation; size/technology/touch remain variables |
+| display | readable field status, level, armed/actual-TX, errors and local confirmation; `DEC-0053` fixes a 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class, while exact production MPN, brightness/cover lens and mechanics remain variables |
 | local navigation | complete core, safety, pairing/revoke, update/recovery operation without phone; permanent text keyboard absent |
 | safety controls | direct protected hard STOP, deliberate recessed/recess-protected RE-ARM, side hold-to-talk PTT; distinguishable by touch |
 | audio | speaker, microphone path where selected voice profile requires it, and serviceable headphone/line route without blocking grip |

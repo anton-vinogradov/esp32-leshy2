@@ -1,5 +1,8 @@
 # DEC-0052 — direct QSPI display path on S3
 
+> Последующее решение `DEC-0053` принимает 3.5-inch portrait `320×480` IPS
+> QSPI+touch class, не меняя эту pin/resource allocation.
+
 - Статус: **Принято владельцем; распространение проведено ревью**
 - Дата: 2026-08-17
 - Выбранный вариант: `IMP-0044/A`

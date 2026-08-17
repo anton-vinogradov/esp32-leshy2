@@ -1,6 +1,6 @@
 # DSP-0002 — fast display path options
 
-- Статус: **Проведено ревью фактов; QSPI-first принят `DEC-0052`, exact display открыт**
+- Статус: **Проведено ревью; QSPI-first принят `DEC-0052`, class принят `DEC-0053`, production MPN открыт**
 - Дата: 2026-08-17
 - Current evidence: [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md)
 - Finding: [`FND-0061`](../findings/FND-0061-stale-display-quantum-after-u214-move.md)

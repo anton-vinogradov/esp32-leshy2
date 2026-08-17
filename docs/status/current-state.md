@@ -105,8 +105,9 @@ so the fixed 256 B limit is stale. `DEC-0052/REV-0004X` close the finding by
 accepting direct QSPI on S3 `GPIO41/42` and measured `<=1 ms` display
 occupancy; the current S3 budget becomes `31/3/2`. `DSP-0003/REV-0004Y` show
 that old 4-inch ST7796S remains an A0 workload fixture but not a QSPI target;
-the new 3.5-inch QSPI class remains `IMP-0045`. Exact display, optics and HIL
-remain open.
+`DEC-0053/REV-0004Z` accept a 3.5-inch portrait `320×480` IPS direct-QSPI
+capacitive-touch class. `DSP-0004` lists every known part identifier; exact
+production panel/connector, optics and HIL remain open.
 `CTL-0001/REV-0004K` found that the first maps
 closed MCU accounting only. The owner delegated layout search; `DEC-0044`
 accepts `IMP-0037/A`, while `NIF-0001/REV-0004L` review the leading `G2F-3I`:
@@ -180,9 +181,11 @@ every profile change disarms TX and unknown/mismatch keeps TX disabled.
 `GPIO41/42` for D2/D3 and a `<=1 ms` bus-occupancy contract. BT817/BT818 EVE
 is the fallback; no fourth MCU is added to the baseline.
 
-⚠️ Proposal `IMP-0045`: select a new 3.5-inch portrait `320×480` QSPI IPS+touch
-class, with ST77922 as primary HIL, AXS15231B as secondary reference and the
-old 4-inch ST7796S retained as the A0 control/fallback fixture.
+`IMP-0045/A` is accepted as `DEC-0053`: the target is a 3.5-inch portrait
+`320×480` QSPI IPS+touch class; `DLE06235B/ES3C35P` (`ST77922`) is primary
+HIL, Waveshare SKU `31137` (`AXS15231B`) is secondary HIL, and the old 4-inch
+ST7796S stays A0 control/fallback. Exact production MPNs remain explicit `TBD`
+entries in `DSP-0004`.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
