@@ -16,7 +16,7 @@
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
 | 2F. Logical/electrical feasibility | **In progress; current paper baseline reviewed**: `PIN-0003/REV-0004V` close owners/controllers/exact compute contacts and the current budget; final electrical endpoints, RF/power and HIL remain open |
-| 3. Target physical/product design | **Starting from reviewed `PIN-0003`**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
+| 3. Target physical/product design | **Starting from the `DEC-0051/PIN-0003` visible working design**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
 | 8. Components/BOM | Blocked; previous evidence is candidate/reference only |
@@ -161,6 +161,8 @@ locks those counts. Exact SA518 `UPDATE/UART/PD` service and Si4732 control/
 FMI/AMI contacts are also instantiated. `FND-0060` keeps the remaining
 abstract display/codec/IR/power/STOP/protection endpoints visible: the current
 paper pinout is reviewed, while the final electrical schematic is not.
+`DEC-0051` publishes this reviewed map in the target README as the principled
+working design for G3 while keeping it reopenable until atomic architecture.
 
 ⚠️ Proposal `IMP-0043`: accept the profiled antenna kit as an architecture
 input—shared MPNs only for the electrically equivalent S3/C5 and three nRF

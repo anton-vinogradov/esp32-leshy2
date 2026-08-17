@@ -16,7 +16,7 @@
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
 | 2F. Logical/electrical feasibility | **В работе; current paper baseline reviewed**: `PIN-0003/REV-0004V` закрывают owners/controllers/exact compute contacts и текущий бюджет; final electrical endpoints, RF/power и HIL открыты |
-| 3. Target physical/product design | **Начинается от reviewed `PIN-0003`**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
+| 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
@@ -159,6 +159,8 @@ pre-`DEC-0046` budget. Исправленный current result — S3 `29U/3R/4F
 FMI/AMI contacts также внесены. `FND-0060` сохраняет видимыми ещё abstract
 display/codec/IR/power/STOP/protection endpoints: current paper pinout прошёл
 ревью, final electrical schematic — нет.
+`DEC-0051` публикует эту reviewed карту в целевом README как принципиальный
+working design для G3, сохраняя её reopenable до atomic architecture.
 
 ⚠️ Предложение `IMP-0043`: принять profiled antenna kit как architecture input
 — общие MPN только для электрически одинаковых S3/C5 и трёх nRF paths,

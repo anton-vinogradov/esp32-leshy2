@@ -4,6 +4,8 @@
 - Дата: 2026-08-17
 - Пререквизит: repeat G2 **Проведено ревью** (`REV-0002AS`)
 - Метод: [`FLOW-0001/G3`](../review/architecture/FLOW-0001-product-to-cad-gates.md)
+- Working design: [`DEC-0051`](../review/decisions/DEC-0051-principled-pinout-as-working-design.md) /
+  [`PIN-0003`](../review/architecture/PIN-0003-g2f-3i-principled-pinout.md)
 
 ## Reviewed inputs
 

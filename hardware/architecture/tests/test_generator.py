@@ -31,6 +31,42 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("GPIO30", rendered)
         self.assertIn("QSPI_SS_USB_BOOT", rendered)
 
+    def test_target_readmes_publish_the_current_principled_pin_groups(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+
+        def contacts(instance, prefixes):
+            selected = {
+                row["contact"]
+                for row in candidate["allocations"]
+                if row["instance"] == instance
+                and any(row["net"].startswith(prefix) for prefix in prefixes)
+            }
+            return ",".join(sorted(selected, key=GENERATOR.natural_contact_key))
+
+        expected_groups = (
+            f"S3 `{contacts('s3', ('S3_C5_',))}`; C5 `{contacts('c5', ('S3_C5_',))}`",
+            f"S3 `{contacts('s3', ('S3_RP_', 'RP_ALERT_'))}`; RP `{contacts('rp', ('S3_RP_', 'RP_ALERT_'))}`",
+            f"S3 `{contacts('s3', ('DISPLAY_SD_', 'SD_SPI_', 'LCD_'))}`",
+            f"S3 `{contacts('s3', ('I2S_', 'SYS_I2C_'))}`",
+            f"S3 `{contacts('s3', ('UNIT_',))}`",
+            f"C5 `{contacts('c5', ('IR_',))}`",
+            f"RP `{contacts('rp', ('NRF0_',))}`",
+            f"RP `{contacts('rp', ('NRF1_',))}`",
+            f"RP `{contacts('rp', ('NRF2_',))}`",
+            f"RP `{contacts('rp', ('CC_',))}`",
+            f"RP `{contacts('rp', ('VOICE_', 'PTT_'))}`",
+            f"RP `{contacts('rp', ('U214_',))}`",
+        )
+        for readme_name in ("README.md", "README.ru.md"):
+            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
+            normalized = " ".join(readme.split())
+            self.assertIn("DEC-0051", normalized, readme_name)
+            self.assertIn("S3 `29", normalized, readme_name)
+            self.assertIn("C5 `14/6/1`", normalized, readme_name)
+            self.assertIn("RP `48/0/0`", normalized, readme_name)
+            for group in expected_groups:
+                self.assertIn(group, normalized, f"{readme_name}: {group}")
+
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
             GENERATOR.reject_duplicate_keys([("GPIO0", {}), ("GPIO0", {})])

@@ -24,6 +24,9 @@ The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
 [`G2F-3I principled pinout`](generated/G2F-3I-principled-pinout.md).
 `PIN-0003/REV-0004V` review the current exact owner/contact projection and
 record the honest `S3=4, C5=1, RP=0, slow=P27` free-contact state.
+`DEC-0051` publishes that reviewed projection as the visible principle-level
+working design in the root target document; it remains reopenable and is not
+the G7 atomic architecture.
 `DEC-0044/REV-0004L` make `G2F-3I` the leading reviewed paper
 map under a digital no-neighbour-stall invariant. `FND-0053/REV-0004M` prove
 that arbitrary cross-group co-located same-band TX↔RX cannot be promised;

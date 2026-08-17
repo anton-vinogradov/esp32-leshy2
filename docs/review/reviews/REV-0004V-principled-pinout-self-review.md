@@ -4,6 +4,7 @@
 - Дата: 2026-08-17
 - Artifact: [`PIN-0003`](../architecture/PIN-0003-g2f-3i-principled-pinout.md)
 - Generated atlas: [`G2F-3I principled pinout`](../architecture/generated/G2F-3I-principled-pinout.md)
+- Working-design decision: [`DEC-0051`](../decisions/DEC-0051-principled-pinout-as-working-design.md)
 - Findings: [`FND-0059`](../findings/FND-0059-stale-pin-budget-after-quiet-state.md),
   [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 
@@ -41,4 +42,3 @@ Current G2F-3I principle pin mapping получает **«Проведено р�
 paper owners/controllers/pins/service/capacity. Это не финальное принятие
 архитектуры: exact electrical parts, physical product layout, whole-device
 optimality, RF/power/SI and HIL остаются обязательными последующими gates.
-

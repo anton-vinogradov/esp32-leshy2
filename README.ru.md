@@ -1,8 +1,9 @@
 # Аппаратная часть Leshy2
 
-> **Целевой документ продукта.** Страница описывает проверенное поведение и
-> границы готового продукта, а не выбранную электронную архитектуру или текущую
-> реализацию. Состояние проработки — в [current state](docs/status/current-state.ru.md).
+> **Целевой документ продукта.** Страница описывает проверенное поведение,
+> границы готового продукта и текущий принципиальный working design. Он не
+> равен финальной электронной архитектуре или текущей реализации. Состояние
+> проработки — в [current state](docs/status/current-state.ru.md).
 
 - [English version](README.md)
 - [Целевой firmware-продукт](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)
@@ -17,8 +18,9 @@ wireless наблюдения, диагностики, связи и разре�
 peripheral computer. Это должен быть собираемый, ремонтопригодный и измеримый
 продукт, а не набор maximum-capability demos.
 
-Форм-фактор, вычислительная topology, owners, buses, pin map, components,
-разбиение плат и корпус намеренно открыты. Бывший `PKG-0001/SYN-3A` после
+Финальные form factor, components, board split и enclosure открыты. Текущая
+owner/bus/pin гипотеза принята ниже как reopenable working design, а не frozen
+target. Бывший `PKG-0001/SYN-3A` после
 [`DEC-0032`](docs/review/decisions/DEC-0032-reopen-product-design-before-cad.md)
 сохранён только как один candidate study.
 
@@ -90,6 +92,56 @@ peripheral computer. Это должен быть собираемый, ремо
 
 Названные в требованиях и candidate studies modules/IC являются first targets
 или evidence, но не молча зафиксированным BOM.
+
+## Принципиальный дизайн решения
+
+[`DEC-0051`](docs/review/decisions/DEC-0051-principled-pinout-as-working-design.md)
+принимает `G2F-3I/PIN-0003` как текущий working design для физической
+компоновки. Это проведённое ревью принципиальной распиновки, но не финальная
+atomic architecture и не разрешение на KiCad.
+
+```mermaid
+flowchart LR
+  S3["ESP32-S3-WROOM-1U<br/>UI · display/storage · audio · Unit · native BLE/Wi-Fi"]
+  C5["ESP32-C5-WROOM-1U<br/>2.4/5 GHz · 802.15.4 · IR"]
+  RP["RP2354B QFN80<br/>3×nRF · CC1101 · SA518 · U214"]
+  SLOW["TCA6424A<br/>slow controls/status"]
+  S3 <-->|"4-bit SDIO"| C5
+  S3 <-->|"dedicated SPI3 + alert"| RP
+  S3 <-->|"I²C0 + interrupt"| SLOW
+  S3 -->|"SPI2 scheduled"| DISP["display + microSD"]
+  S3 -->|"I²S0 + I²C0"| AUDIO["codec + Si4732"]
+  C5 -->|"RMT + evidence"| IR["dual RX + IR TX"]
+  RP -->|"3 independent PIO SPI/control groups"| NRF["nRF24 #0/#1/#2"]
+  RP -->|"independent PIO/UART/I²C groups"| RF["CC1101 · SA518 · U214"]
+```
+
+| Принципиальная группа | Exact owner contacts текущей карты | Контракт |
+|---|---|---|
+| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47`; C5 `GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14` | dedicated 4-bit SDIO |
+| S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
+| display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40` | единственная high-rate scheduled pair |
+| audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 и bounded internal I²C0 |
+| M5 Unit | S3 `GPIO7,GPIO8` | отдельный configurable profile port |
+| IR | C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` | dual RX, TX, power gate и evidence |
+| nRF24 #0 | RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32` | PIO0 SM0, direct CE/CSN/IRQ |
+| nRF24 #1 | RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35` | PIO0 SM1, direct CE/CSN/IRQ |
+| nRF24 #2 | RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38` | PIO0 SM2, direct CE/CSN/IRQ |
+| CC1101 | RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43` | independent PIO0 SM3/GDO/power |
+| SA518/PTT | RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22` | UART0, PTT, activity/evidence |
+| U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
+
+Pin budget: S3 `29 used / 3 reserved / 4 free`, C5 `14/6/1`, RP
+`48/0/0`, slow I/O `23/1/0`. RP не имеет свободного direct GPIO; независимые
+SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
+
+Полная нормативная проекция текущей карты находится в
+[`PIN-0003`](docs/review/architecture/PIN-0003-g2f-3i-principled-pinout.md) и
+машинно сгенерированном
+[`exact pad/net atlas`](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
+Оставшиеся electrical boundaries перечислены в
+[`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
+и могут изменить working design после повторного ревью.
 
 ## Границы безопасности и стоимости
 

@@ -1,8 +1,9 @@
 # Leshy2 Hardware
 
-> **Target product document.** This page describes reviewed product behavior
-> and boundaries, not a selected electronic architecture or current
-> implementation. See the [current engineering state](docs/status/current-state.md).
+> **Target product document.** This page describes reviewed product behavior,
+> boundaries and the current principled working design. That design is not the
+> final electronic architecture or current implementation. See the
+> [current engineering state](docs/status/current-state.md).
 
 - [Русская версия](README.ru.md)
 - [Firmware target product](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
@@ -17,8 +18,9 @@ compute exist to support those results rather than turn the product into a
 general-purpose peripheral computer. It must become a buildable, repairable and
 measurable product rather than an unchecked maximum-capability demo.
 
-The physical form factor, compute topology, owners, buses, pin map, component
-set, board partition and enclosure are intentionally open. Former
+The final form factor, component set, board partition and enclosure remain
+open. The current owner/bus/pin hypothesis is accepted below as a reopenable
+working design, not a frozen target. Former
 `PKG-0001/SYN-3A` is retained only as one candidate study after
 [`DEC-0032`](docs/review/decisions/DEC-0032-reopen-product-design-before-cad.md).
 
@@ -90,6 +92,56 @@ or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-
 
 Named modules and ICs in requirement and candidate studies are first targets or
 evidence—not silently fixed BOM components.
+
+## Principled solution design
+
+[`DEC-0051`](docs/review/decisions/DEC-0051-principled-pinout-as-working-design.md)
+accepts `G2F-3I/PIN-0003` as the current working design for physical layout.
+Its principled pin mapping is reviewed, but it is neither the final atomic
+architecture nor authorization to begin KiCad.
+
+```mermaid
+flowchart LR
+  S3["ESP32-S3-WROOM-1U<br/>UI · display/storage · audio · Unit · native BLE/Wi-Fi"]
+  C5["ESP32-C5-WROOM-1U<br/>2.4/5 GHz · 802.15.4 · IR"]
+  RP["RP2354B QFN80<br/>3×nRF · CC1101 · SA518 · U214"]
+  SLOW["TCA6424A<br/>slow controls/status"]
+  S3 <-->|"4-bit SDIO"| C5
+  S3 <-->|"dedicated SPI3 + alert"| RP
+  S3 <-->|"I²C0 + interrupt"| SLOW
+  S3 -->|"SPI2 scheduled"| DISP["display + microSD"]
+  S3 -->|"I²S0 + I²C0"| AUDIO["codec + Si4732"]
+  C5 -->|"RMT + evidence"| IR["dual RX + IR TX"]
+  RP -->|"3 independent PIO SPI/control groups"| NRF["nRF24 #0/#1/#2"]
+  RP -->|"independent PIO/UART/I²C groups"| RF["CC1101 · SA518 · U214"]
+```
+
+| Principled group | Exact owner contacts in the current map | Contract |
+|---|---|---|
+| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47`; C5 `GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14` | dedicated 4-bit SDIO |
+| S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
+| display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40` | the only high-rate scheduled pair |
+| audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 and bounded internal I²C0 |
+| M5 Unit | S3 `GPIO7,GPIO8` | separate configurable profile port |
+| IR | C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` | dual RX, TX, power gate and evidence |
+| nRF24 #0 | RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32` | PIO0 SM0, direct CE/CSN/IRQ |
+| nRF24 #1 | RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35` | PIO0 SM1, direct CE/CSN/IRQ |
+| nRF24 #2 | RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38` | PIO0 SM2, direct CE/CSN/IRQ |
+| CC1101 | RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43` | independent PIO0 SM3/GDO/power |
+| SA518/PTT | RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22` | UART0, PTT, activity/evidence |
+| U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
+
+The pin budget is S3 `29 used / 3 reserved / 4 free`, C5 `14/6/1`, RP
+`48/0/0` and slow I/O `23/1/0`. RP has no free direct GPIO; independent
+SWD/USB/RUN/BOOTSEL remain outside this budget.
+
+The complete normative projection of the current map is in
+[`PIN-0003`](docs/review/architecture/PIN-0003-g2f-3i-principled-pinout.md) and
+the machine-generated
+[`exact pad/net atlas`](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
+Remaining electrical boundaries are listed in
+[`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
+and may change the working design after repeated review.
 
 ## Safety and cost boundary
 

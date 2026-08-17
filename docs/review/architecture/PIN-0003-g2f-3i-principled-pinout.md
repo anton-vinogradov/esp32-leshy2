@@ -8,6 +8,7 @@
 - Findings: [`FND-0059`](../findings/FND-0059-stale-pin-budget-after-quiet-state.md),
   [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 - Review: [`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md)
+- Working-design decision: [`DEC-0051`](../decisions/DEC-0051-principled-pinout-as-working-design.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -87,6 +88,10 @@ electrical/RF qualification are still separate gates.
 This is a paper proof of controller/pin independence, not physical RF or
 signal-integrity proof.
 
+`DEC-0051` publishes this reviewed result in the root target document as the
+current principle-level design for G3. The generated atlas remains the complete
+exact-contact projection and this publication does not freeze G7 architecture.
+
 ## Remaining final-pinout blockers
 
 [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
@@ -103,4 +108,3 @@ The next pass closes these abstractions one group at a time against real parts,
 then regenerates this atlas. KiCad remains blocked until no target-critical
 `abstract:*` endpoint is silently unresolved and the later physical/product
 gates have passed.
-
