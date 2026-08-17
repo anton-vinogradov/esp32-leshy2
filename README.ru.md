@@ -84,7 +84,10 @@ Leshy2 — открытый автономный портативный инст
   квалифицированные 18650; для работы от батарей нужны обе. Переполюсовка
   исключается механически; аппаратная часть наблюдает и допускает пару до её
   подключения к системе и отказывает опасному сочетанию вместо принудительной
-  работы или выравнивания.
+  работы или выравнивания. Глубоко разряженная банка также отклоняется:
+  zero-volt/prequalification recovery в самом устройстве отключён, а любые
+  исследования восстановления требуют отдельной изолированной оснастки
+  Controlled Zone.
 - Подписанные обновления проверяют целевое устройство и поддерживают откат;
   ключи сборки и возможность установки владельческой прошивки остаются у
   владельца. Необратимая блокировка не включается по умолчанию.
@@ -108,8 +111,17 @@ flowchart TD
   PDCFG["CAT24C512WI-GT3<br/>отдельная EEPROM с patch/configuration PD"]
   CHARGER["BQ25798RQMR<br/>настроенный на 2S buck-boost зарядник и NVDC системный power path"]
   CELL0["MPN TBD<br/>отдельно заменяемая квалифицированная 18650 №0"]
+  FUSE0["0451005.MRL<br/>независимый 5-А fast fuse слота 0"]
+  NTC0["B57332V5103F360<br/>датчик температуры банки 0"]
   CELL1["MPN TBD<br/>отдельно заменяемая квалифицированная 18650 №1"]
+  FUSE1["0451005.MRL<br/>независимый 5-А fast fuse слота 1"]
+  NTC1["B57332V5103F360<br/>датчик температуры банки 1"]
   PACKGAUGE["MAX17320G20+T<br/>high-side защита 2S, gauging, температура и балансировка"]
+  SHUNT["WSL25125L000FEA<br/>5-mOhm Kelvin current shunt"]
+  PACKFET["CSD87313DMST<br/>полностью переключаемая common-drain CHG/DIS пара"]
+  PACKHOLD["2N7002DW-7-F<br/>reset-default ALRT hold и явное снятие"]
+  SUPPLYOR["BAV70LT1G<br/>изоляция источников AOLDO/fixture"]
+  SYSDIODE["BAT54-7-F<br/>изоляция и приоритет admitted-system source"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed допуск пары, watchdog и service bridge"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
@@ -168,7 +180,8 @@ flowchart TD
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
-  CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACKGAUGE ~~~ PACKADM ~~~ S3 ~~~ SLOW
+  CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -185,10 +198,18 @@ flowchart TD
   PDCTRL <-->|"локальная I²C, boot image"| PDCFG
   PDCTRL <-->|"защищённый VBUS + локальные I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + общий wired-low IRQ"| PDCTRL
-  CELL0 --> PACKGAUGE
-  CELL1 --> PACKGAUGE
-  PACKGAUGE <-->|"защищённая силовая граница 2S"| CHARGER
-  PACKGAUGE <-->|"локальная I²C + FET hold/fault"| PACKADM
+  CELL0 --> FUSE0 --> PACKGAUGE
+  NTC0 -->|"TH1"| PACKGAUGE
+  CELL1 --> FUSE1 --> PACKGAUGE
+  NTC1 -->|"TH2"| PACKGAUGE
+  SHUNT -->|"Kelvin evidence CSP/CSN"| PACKGAUGE
+  PACKGAUGE -->|"CHG/DIS gates; без prequal"| PACKFET
+  PACKFET <-->|"защищённая силовая граница 2S"| CHARGER
+  PACKHOLD -->|"ALRT low по умолчанию"| PACKGAUGE
+  PACKADM -->|"явное снятие hold"| PACKHOLD
+  PACKGAUGE -->|"AOLDO"| SUPPLYOR --> PACKADM
+  SYSDIODE -->|"admitted 3V3"| PACKADM
+  PACKGAUGE <-->|"локальная I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + общий IRQ"| S3
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP

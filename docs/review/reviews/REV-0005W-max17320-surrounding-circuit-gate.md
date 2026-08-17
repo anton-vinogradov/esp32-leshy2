@@ -1,6 +1,6 @@
 # REV-0005W — MAX17320 surrounding-circuit gate
 
-- Статус: **Проведено ревью фактов; owner gate открыт**
+- Статус: **Проведено ревью фактов; gate later closed by `DEC-0067`**
 - Дата: 2026-08-18
 - Analysis: [`PWR-0007`](../architecture/PWR-0007-max17320-2s-surrounding-circuit.md)
 - Finding: [`FND-0077`](../findings/FND-0077-max17320-prequal-is-a-linear-fet-mode.md)
@@ -31,3 +31,5 @@ After that choice, the exact FET and the independent first targets can be
 propagated atomically into the machine source, vertical diagrams, product
 behavior and firmware contract.
 
+That follow-up is complete in `DEC-0067/REV-0005X`; this review remains the
+historical record of the gate before the owner selected A.

@@ -1,12 +1,14 @@
 # PWR-0007 — MAX17320 2S surrounding-circuit review
 
-- Статус: **Проведено ревью фактов и инвариантов; exact FET blocked by `IMP-0056`**
+- Статус: **Проведено ревью; вариант A принят `DEC-0067`**
 - Дата: 2026-08-18
 - Manager decision: [`DEC-0066`](../decisions/DEC-0066-max17320-mspm0-fail-closed-manager.md)
 - Prior device review: [`PWR-0005`](PWR-0005-replaceable-2s-manager-options.md)
 - Finding: [`FND-0077`](../findings/FND-0077-max17320-prequal-is-a-linear-fet-mode.md)
 - Owner gate: [`IMP-0056`](../improvements/IMP-0056-deep-cell-recovery-boundary.md)
 - Review: [`REV-0005W`](../reviews/REV-0005W-max17320-surrounding-circuit-gate.md)
+- Decision: [`DEC-0067`](../decisions/DEC-0067-no-in-device-deep-cell-recovery.md)
+- Propagation: [`REV-0005X`](../reviews/REV-0005X-deep-cell-policy-propagation.md)
 
 ## Scope
 
@@ -37,8 +39,9 @@ in `DEC-0066`.
 
 ## Exact first targets independent of the recovery choice
 
-These are paper-qualified first targets for the final circuit pass. They do
-not enter the machine diagram until the coupled FET decision closes.
+These are accepted exact first targets for the final circuit pass and now
+enter the machine source and vertical product diagrams after the coupled FET
+decision closed.
 
 | Quantity | Exact MPN | Role and checked fact | Current availability snapshot |
 |---:|---|---|---|
@@ -48,12 +51,16 @@ not enter the machine diagram until the coupled FET decision closes.
 | 1 | `2N7002DW-7-F` | dual N-MOS in one SOT-363 package for reset-default ALRT hold and controlled release | current manufacturer page; broad authorized-channel stock, about `$0.11/100` |
 | 1 | `BAV70LT1G` | dual common-cathode silicon diode: AOLDO and isolated fixture branches of admission-VDD OR | current onsemi part; Mouser 335,473, about `$0.046/100` |
 | 1 | `BAT54-7-F` | Schottky system-3V3 branch of admission-VDD OR; lower drop makes the admitted system source win | current Diodes ordering code; DigiKey/Mouser each show six-figure stock |
+| 1 | `CSD87313DMST` | active 30-V common-drain dual N-FET; topology matches MAX17320 CHG/IN and DIS/PCKP gate references; 5.5-mOhm maximum source-to-source at 4.5 V | TI active production; authorized-channel stock visible at selection |
 
 The formerly tempting Murata `NCP18XH103F03RB` and Panasonic
 `ERT-J1VG103FA` are not selected: their manufacturer lifecycle is NRND/NRFND.
 The Diodes `BAV70-7-F` is also rejected after a 2026 EOL notice; the exact
 onsemi `BAV70LT1G` replacement is used above. This is a concrete bypass of
 stale-part limitations rather than inheriting them into the new product.
+The earlier `FDMC8030` paper candidate is also rejected: onsemi now marks it
+`Last Shipments`. An initially screened common-source replacement is rejected
+electrically; the accepted `CSD87313DMST` is the required common-drain device.
 
 An SMD NTC part number is not sufficient mechanical proof. Each sensor needs a
 repeatable compliant thermal contact to its own cylindrical cell; pad/clip,
@@ -119,14 +126,13 @@ At 2.78 A:
 |---|---:|---:|
 | two `0451005.MRL` fuses | `2 × 12.5 = 25 mOhm` cold | `0.193 W` total |
 | `WSL25125L000FEA` shunt | `5 mOhm` | `0.039 W` |
-| one `FDMC8030`, both channels, 4.5-V maximum | `2 × 14 = 28 mOhm` | `0.216 W` |
-| two `CSD17575Q3T`, 4.5-V maximum | `2 × 3.2 = 6.4 mOhm` | `0.049 W` |
+| one `CSD87313DMST`, complete source-to-source path at 4.5 V maximum | `5.5 mOhm` | `0.043 W` |
 
-The compact-FET path totals about `58 mOhm / 0.45 W` before contacts and copper;
-the two-single-FET path about `36.4 mOhm / 0.28 W`. Hot resistance, holder
-contacts, copper and fault duration remain mandatory thermal margins. Ordinary
-conduction therefore fits either topology on paper; `FND-0077` shows that
-linear prequal, not load current, is the deciding difference.
+The accepted exact path totals about `35.5 mOhm / 0.275 W` before contacts and
+copper. Hot resistance, holder contacts, copper and fault duration remain
+mandatory thermal margins. Ordinary conduction fits on paper; `FND-0077`
+shows why disabling linear prequal is still a product-safety decision rather
+than an excuse to skip thermal HIL.
 
 ## Circuit fork
 
@@ -144,14 +150,16 @@ flowchart TD
   O1["onsemi BAV70LT1G<br/>AOLDO/fixture source isolation"]
   O2["Diodes BAT54-7-F<br/>system-source isolation and priority"]
   M["Texas Instruments MSPM0C1104SDGS20R<br/>pair admission, watchdog and service"]
-  Q["MPN depends on IMP-0056<br/>high-side CHG/DIS power path"]
+  Q["Texas Instruments CSD87313DMST<br/>fully-switching common-drain CHG/DIS pair"]
   S["Texas Instruments BQ25798RQMR<br/>admitted 2S charger/NVDC boundary"]
 
   C0 --> F0 --> G
   C1 --> F1 --> G
   T0 --> G
   T1 --> G
-  G --> R --> Q --> S
+  R -->|"CSP/CSN Kelvin evidence"| G
+  G -->|"CHG/DIS gates; no prequal"| Q
+  Q <-->|"protected 2S boundary"| S
   H -->|"ALRT low by default"| G
   M -->|"explicit release only"| H
   G -->|"AOLDO"| O1 --> M
@@ -173,15 +181,14 @@ Checked 2026-08-18 because every named candidate is an exact orderable MPN:
 - [Diodes `2N7002DW` product page](https://www.diodes.com/part/view/2N7002DW?BackID=8372),
   [onsemi `BAV70LT1G` datasheet](https://www.onsemi.com/pdf/datasheet/bav70lt1-d.pdf)
   and [Diodes `BAT54` datasheet](https://www.diodes.com/datasheet/download/BAT54.pdf);
-- [onsemi `FDMC8030` datasheet](https://www.onsemi.com/download/data-sheet/pdf/fdmc8030-d.pdf)
-  and [TI `CSD17575Q3T`](https://www.ti.com/product/CSD17575Q3/part-details/CSD17575Q3T).
+- [TI `CSD87313DMS` active product page](https://www.ti.com/product/CSD87313DMS)
+  and [exact `CSD87313DMST` orderable page](https://www.ti.com/product/CSD87313DMS/part-details/CSD87313DMST);
+- [onsemi `FDMC8030` product page showing Last Shipments](https://www.onsemi.com/products/discrete-power-modules/mosfets/low-medium-voltage-mosfets/fdmc8030).
 
 ## Review result
 
-The 2S sensing rules, real current envelope, non-FET first targets, reset hold,
-supply handover and two-ADC budget receive **«Проведено ревью»** at paper
-level. The complete surrounding circuit cannot be accepted until `IMP-0056`
-selects whether linear in-device prequal exists. Reverse-insertion blocking,
-diagnostic passives/thresholds, hot losses and HIL remain explicit downstream
-work; no KiCad start is authorized.
-
+The 2S sensing rules, real current envelope, exact switching FET, first targets,
+reset hold, supply handover and two-ADC budget receive **«Проведено ревью»** at
+paper level. `DEC-0067` accepts no in-device deep-cell recovery. Reverse-
+insertion blocking, diagnostic passives/thresholds, hot losses and HIL remain
+explicit downstream work; no KiCad start is authorized.

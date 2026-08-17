@@ -1492,6 +1492,146 @@
         "PA25_A2": {"physical": "20", "role": "gpio"}
       }
     },
+    "ti_csd87313dmst": {
+      "mpn": "Texas Instruments CSD87313DMST",
+      "kind": "dual_common_drain_30v_nmos_battery_protection",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.3, 3.3, 1.0],
+      "source": {
+        "document": "CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet",
+        "version": "SLPS659, April 2017; package addendum updated 2025-10-17",
+        "url": "https://www.ti.com/lit/ds/symlink/csd87313dms.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "CSD87313DMST active orderable product page and authorized-channel stock",
+        "url": "https://www.ti.com/product/CSD87313DMS/part-details/CSD87313DMST",
+        "checked": "2026-08-18"
+      },
+        "programmable": false,
+      "contacts": {
+        "G1": {"physical": "1", "role": "power"},
+        "D_COMMON": {"physical": "2/3 and exposed thermal pad", "role": "power"},
+        "G2": {"physical": "4", "role": "power"},
+        "S2": {"physical": "5/6", "role": "power"},
+        "S1": {"physical": "7/8", "role": "power"}
+      }
+    },
+    "littelfuse_0451005_mrl": {
+      "mpn": "Littelfuse 0451005.MRL",
+      "kind": "5a_fast_nano2_surface_mount_fuse",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [6.1, 2.69, 2.69],
+      "source": {
+        "document": "451/453 Nano2 surface-mount fuse datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "end termination 1", "role": "power"},
+        "END_2": {"physical": "end termination 2", "role": "power"}
+      }
+    },
+    "vishay_wsl25125l000fea": {
+      "mpn": "Vishay WSL25125L000FEA",
+      "kind": "5_milliohm_1pct_1w_2512_current_shunt",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [6.35, 3.18, 0.635],
+      "source": {
+        "document": "WSL power metal strip resistor datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.vishay.com/docs/30108/wsl.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "terminal 1 with Kelvin pickup", "role": "analog"},
+        "END_2": {"physical": "terminal 2 with Kelvin pickup", "role": "analog"}
+      }
+    },
+    "tdk_b57332v5103f360": {
+      "mpn": "TDK B57332V5103F360",
+      "kind": "10k_1pct_b3380_0603_automotive_ntc",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, 0.9],
+      "source": {
+        "document": "B57 V5 automotive SMD NTC datasheet and exact product page",
+        "version": "PPD ML PD 2025-10-30",
+        "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "analog"},
+        "END_2": {"physical": "termination 2", "role": "analog"}
+      }
+    },
+    "diodes_2n7002dw_7_f": {
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "kind": "dual_60v_nmos_sot363_hold_release",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "2N7002DW dual N-channel MOSFET datasheet",
+        "version": "DS30120 Rev. 22-2, October 2021",
+        "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "D2": {"physical": "1", "role": "signal"},
+        "G1": {"physical": "2", "role": "signal"},
+        "S1": {"physical": "3", "role": "signal"},
+        "D1": {"physical": "4", "role": "signal"},
+        "G2": {"physical": "5", "role": "signal"},
+        "S2": {"physical": "6", "role": "signal"}
+      }
+    },
+    "onsemi_bav70lt1g": {
+      "mpn": "onsemi BAV70LT1G",
+      "kind": "dual_common_cathode_source_isolation_diode",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.3, 1.0],
+      "source": {
+        "document": "BAV70L dual common-cathode switching diode datasheet",
+        "version": "Rev. 12",
+        "url": "https://www.onsemi.com/pdf/datasheet/bav70lt1-d.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "A1": {"physical": "1", "role": "power"},
+        "A2": {"physical": "2", "role": "power"},
+        "K_COMMON": {"physical": "3", "role": "power"}
+      }
+    },
+    "diodes_bat54_7_f": {
+      "mpn": "Diodes Incorporated BAT54-7-F",
+      "kind": "single_schottky_system_source_isolation_diode",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.3, 1.15],
+      "source": {
+        "document": "BAT54 surface-mount Schottky barrier diode datasheet",
+        "version": "DS11005 Rev. 34-2, November 2023",
+        "url": "https://www.diodes.com/datasheet/download/BAT54.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "A": {"physical": "1", "role": "power"},
+        "NC": {"physical": "2", "role": "no_connect"},
+        "K": {"physical": "3", "role": "power"}
+      }
+    },
     "onsemi_cat24c512wi_gt3": {
       "mpn": "onsemi CAT24C512WI-GT3",
       "kind": "512_kbit_i2c_pd_configuration_eeprom",

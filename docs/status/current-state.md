@@ -266,7 +266,8 @@ selects supervised 2S in `DEC-0065/REV-0005T`; `PWR-0005/REV-0005U` then
 revalidate the exact devices and the owner accepts
 `MAX17320G20+T + MSPM0C1104SDGS20R` in `DEC-0066/REV-0005V`. Both appear as
 separate components in the machine source and living diagrams; DGS20 has
-`10 used / 5 reserved / 3 free` real GPIO contacts. The owner also accepted `IMP-0053/B` as
+`12 used / 3 permanent service / 3 free` real GPIO contacts after the exact
+two-ADC evidence allocation in `DEC-0067`. The owner also accepted `IMP-0053/B` as
 `DEC-0063`: the product port is sink-only USB-PD with 5-V fallback, 9 V/3 A
 and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
 S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
@@ -274,16 +275,17 @@ S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
 and `TVS2200DRVR`. S3 reuses SYS I2C0 plus the wired-low system IRQ, so GPIO47
 remains free. Blank/corrupt image recovery, reset-high EEPROM WP and
 charge-disable CE are explicit; target README diagrams and firmware contracts
-are updated. Exact MAX17320 cell-tap/FET/fuse/NTC/shunt/diagnostic/hold and
-MCU-supply-isolation circuit, AON source/hold-up, every load switch and
-discharge path, monitoring, reverse current and calculated loss/thermal/fault
-budgets remain active after the manager/frontend reviews.
-`PWR-0007/FND-0077/REV-0005W` now review the exact 2S short-link rules, non-FET first targets,
-reset-default hold, isolated admission supply, two-ADC plan and ordinary
-conduction losses. They find that MAX17320 prequal linearly modulates the CHG
-FET; `IMP-0056` is the current owner gate between rejecting deep cells in the
-product or adding a linear-SOA/thermal recovery path. No new part is projected
-into the target diagram until that coupled choice closes.
+are updated. `PWR-0007/FND-0077/REV-0005W` found that MAX17320 prequal
+linearly modulates the CHG FET. The owner accepted `IMP-0056/A` in
+`DEC-0067/REV-0005X`: the product refuses cells below the qualified floor,
+disables zero-volt/prequal recovery, and leaves any recovery research to a
+separate isolated Controlled-Zone fixture. Active `CSD87313DMST`, two
+`0451005.MRL` fuses, `WSL25125L000FEA`, two `B57332V5103F360` sensors,
+`2N7002DW-7-F`, `BAV70LT1G` and `BAT54-7-F` are now exact machine/diagram
+targets. The obsolete `FDMC8030` paper candidate was rejected at lifecycle
+check. Exact cell-tap/passive/diagnostic values, MCU source-handover HIL, AON
+source/hold-up, every load switch and discharge path, monitoring, reverse
+current and calculated loss/thermal/fault budgets remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

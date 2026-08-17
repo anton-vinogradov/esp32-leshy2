@@ -50,6 +50,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path",
             "Analog Devices MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing",
             "Texas Instruments MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge",
+            "Texas Instruments CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair",
+            "Littelfuse 0451005.MRL<br/>slot-0 independent 5-A fast fuse",
+            "Littelfuse 0451005.MRL<br/>slot-1 independent 5-A fast fuse",
+            "Vishay WSL25125L000FEA<br/>5-mOhm Kelvin current shunt",
+            "TDK B57332V5103F360<br/>cell-0 temperature sensor",
+            "TDK B57332V5103F360<br/>cell-1 temperature sensor",
+            "Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release",
+            "onsemi BAV70LT1G<br/>AOLDO/fixture source isolation",
+            "Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority",
             "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
         )
         for label in required_labels:
@@ -170,10 +179,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("DEC-0063", contract["decision"])
         self.assertEqual("DEC-0065", contract["battery_decision"])
         self.assertEqual("DEC-0066", contract["manager_decision"])
+        self.assertEqual("DEC-0067", contract["manager_circuit_decision"])
         self.assertIn("supervised 2S", contract["battery_topology"])
         self.assertIn("both cells required", contract["battery_topology"])
         self.assertIn("MAX17320G20+T", contract["battery_manager"])
         self.assertIn("MSPM0C1104SDGS20R", contract["battery_manager"])
+        self.assertIn("refuses any cell", contract["battery_recovery_policy"])
+        self.assertIn("prequal are disabled", contract["battery_recovery_policy"])
         self.assertEqual(
             ["5V fallback at advertised Type-C current (<=3A)", "9V@3A", "15V@2A"],
             contract["sink_pdos"],
@@ -189,6 +201,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pd_config_eeprom": "onsemi_cat24c512wi_gt3",
             "pd_vbus_tvs": "ti_tvs2200_drvr",
             "nvdc_charger": "ti_bq25798_rqmr",
+            "pack_power_fet": "ti_csd87313dmst",
+            "pack_fuse0": "littelfuse_0451005_mrl",
+            "pack_fuse1": "littelfuse_0451005_mrl",
+            "pack_shunt": "vishay_wsl25125l000fea",
+            "pack_ntc0": "tdk_b57332v5103f360",
+            "pack_ntc1": "tdk_b57332v5103f360",
+            "pack_hold": "diodes_2n7002dw_7_f",
+            "pack_supply_or": "onsemi_bav70lt1g",
+            "pack_system_diode": "diodes_bat54_7_f",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -216,6 +237,42 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(
             ("pd_controller.GPIO1", "nvdc_charger.CE", "CHARGE_EN_N"),
             routes,
+        )
+        self.assertIn(
+            ("pack_gauge.CHG", "pack_power_fet.G1", "PACK_CHG_GATE"),
+            routes,
+        )
+        self.assertIn(
+            ("pack_gauge.DIS", "pack_power_fet.G2", "PACK_DIS_GATE"),
+            routes,
+        )
+        self.assertIn(
+            ("pack_power_fet.S2", "nvdc_charger.BAT", "PROTECTED_PACK_POSITIVE"),
+            routes,
+        )
+        self.assertIn(
+            ("pack_gauge.ZVC", "abstract:no-connect", "PACK_ZVC_UNUSED"),
+            routes,
+        )
+        self.assertNotIn(
+            ("pack_gauge.CHG", "abstract:exact high-side charge FET gate", "PACK_CHG_GATE"),
+            routes,
+        )
+        admission = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "pack_admission"
+        }
+        self.assertEqual("PACK_CELL0_ADC", admission["PA24_A3"]["net"])
+        self.assertEqual("PACK_STACK_ADC", admission["PA25_A2"]["net"])
+        self.assertEqual(
+            {"PA26_A1", "PA27_A0", "PA28_A5"},
+            set(candidate["free_gpio"]["pack_admission"]),
+        )
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        self.assertIn(
+            "Budget: **12 used + 3 reserved + 3 free = 18 exposed GPIO**.",
+            rendered,
         )
         s3 = {
             row["contact"]: row

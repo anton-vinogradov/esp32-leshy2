@@ -264,7 +264,8 @@ safety/quiet-state branches. Владелец принял `IMP-0052/B` как `
 supervised 2S в `DEC-0065/REV-0005T`; `PWR-0005/REV-0005U` повторно проверяют
 exact devices, а владелец принимает `MAX17320G20+T + MSPM0C1104SDGS20R` в
 `DEC-0066/REV-0005V`. Оба устройства отдельно внесены в machine source и
-living diagrams; DGS20 имеет `10 used / 5 reserved / 3 free` реальных GPIO.
+living diagrams; после exact two-ADC allocation в `DEC-0067` DGS20 имеет
+`12 used / 3 permanent service / 3 free` реальных GPIO.
 Затем
 владелец принял `IMP-0053/B` как `DEC-0063`: основной порт — sink-only USB-PD с
 fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/power-bank/
@@ -273,17 +274,18 @@ fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/
 config EEPROM `CAT24C512WI-GT3` и `TVS2200DRVR`. S3 повторно использует SYS
 I2C0 и wired-low system IRQ, поэтому GPIO47 остаётся свободным. Blank/corrupt
 image recovery, reset-high EEPROM WP и charge-disable CE указаны явно;
-target README diagrams и firmware contracts обновлены. Exact MAX17320
-cell-tap/FET/fuse/NTC/shunt/diagnostic/hold и MCU-supply-isolation circuit,
-AON source/hold-up, все load switches/discharge paths, monitoring, reverse
-current и рассчитанные loss/thermal/fault budgets остаются активны после
-manager/frontend reviews. `PWR-0007/FND-0077/REV-0005W` теперь проверяют exact
-2S short-link rules, non-FET first targets, reset-default hold, изолированное
-питание admission MCU, план двух ADC и обычные conduction losses. Выявлено,
-что MAX17320 в prequal линейно модулирует CHG FET; текущий owner gate
-`IMP-0056` выбирает между отказом глубоко разряженной банки в самом продукте и
-добавлением linear-SOA/thermal recovery path. До закрытия связанного выбора
-новые компоненты не переносятся в target diagram.
+target README diagrams и firmware contracts обновлены. `PWR-0007/FND-0077/
+REV-0005W` выявили линейную модуляцию CHG FET в prequal. Владелец принял
+`IMP-0056/A` в `DEC-0067/REV-0005X`: продукт отклоняет банку ниже
+квалифицированного порога, отключает zero-volt/prequal recovery, а любое
+исследование восстановления возможно только внешней изолированной оснасткой
+Controlled Zone. Active `CSD87313DMST`, две `0451005.MRL`,
+`WSL25125L000FEA`, две `B57332V5103F360`, `2N7002DW-7-F`, `BAV70LT1G` и
+`BAT54-7-F` перенесены в machine source и living diagrams; устаревший
+`FDMC8030` отклонён lifecycle-проверкой. Exact cell-tap/passive/diagnostic
+values, source-handover HIL, AON source/hold-up, все load switches/discharge
+paths, monitoring, reverse current и рассчитанные loss/thermal/fault budgets
+остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

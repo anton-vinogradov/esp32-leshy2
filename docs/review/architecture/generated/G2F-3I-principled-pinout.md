@@ -33,8 +33,17 @@ flowchart TD
   PD_CONFIG_EEPROM["onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
   NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
+  PACK_FUSE0["Littelfuse 0451005.MRL<br/>slot-0 independent 5-A fast fuse"]
+  PACK_NTC0["TDK B57332V5103F360<br/>cell-0 temperature sensor"]
   CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
+  PACK_FUSE1["Littelfuse 0451005.MRL<br/>slot-1 independent 5-A fast fuse"]
+  PACK_NTC1["TDK B57332V5103F360<br/>cell-1 temperature sensor"]
   PACK_GAUGE["Analog Devices MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing"]
+  PACK_SHUNT["Vishay WSL25125L000FEA<br/>5-mOhm Kelvin current shunt"]
+  PACK_POWER_FET["Texas Instruments CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair"]
+  PACK_HOLD["Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release"]
+  PACK_SUPPLY_OR["onsemi BAV70LT1G<br/>AOLDO/fixture source isolation"]
+  PACK_SYSTEM_DIODE["Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority"]
   PACK_ADMISSION["Texas Instruments MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
   end
   subgraph COMPUTE["Compute owners"]
@@ -111,7 +120,8 @@ flowchart TD
   end
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ PD_VBUS_TVS ~~~ PD_CONTROLLER ~~~ PD_CONFIG_EEPROM ~~~ NVDC_CHARGER
-  NVDC_CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACK_GAUGE ~~~ PACK_ADMISSION ~~~ S3 ~~~ SLOW_IO
+  NVDC_CHARGER ~~~ CELL0 ~~~ PACK_FUSE0 ~~~ PACK_NTC0 ~~~ CELL1 ~~~ PACK_FUSE1 ~~~ PACK_NTC1
+  PACK_NTC1 ~~~ PACK_GAUGE ~~~ PACK_SHUNT ~~~ PACK_POWER_FET ~~~ PACK_HOLD ~~~ PACK_SUPPLY_OR ~~~ PACK_SYSTEM_DIODE ~~~ PACK_ADMISSION ~~~ S3 ~~~ SLOW_IO
   SLOW_IO ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ MONOSUM
   MONOSUM ~~~ AUDIO_RX_MUX ~~~ CAPNET ~~~ AUDIO_CAPTURE_BUFFER ~~~ ADCNET
   ADCNET ~~~ CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER
@@ -130,10 +140,18 @@ flowchart TD
   PD_CONTROLLER <-->|"local I²C boot image"| PD_CONFIG_EEPROM
   PD_CONTROLLER <-->|"protected VBUS + local I²C/IRQ"| NVDC_CHARGER
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PD_CONTROLLER
-  CELL0 --> PACK_GAUGE
-  CELL1 --> PACK_GAUGE
-  PACK_GAUGE <-->|"protected 2S power boundary"| NVDC_CHARGER
-  PACK_GAUGE <-->|"local I²C + FET hold/fault"| PACK_ADMISSION
+  CELL0 --> PACK_FUSE0 --> PACK_GAUGE
+  PACK_NTC0 -->|"TH1"| PACK_GAUGE
+  CELL1 --> PACK_FUSE1 --> PACK_GAUGE
+  PACK_NTC1 -->|"TH2"| PACK_GAUGE
+  PACK_SHUNT -->|"CSP/CSN Kelvin evidence"| PACK_GAUGE
+  PACK_GAUGE -->|"CHG/DIS gates; no prequal"| PACK_POWER_FET
+  PACK_POWER_FET <-->|"protected 2S power boundary"| NVDC_CHARGER
+  PACK_HOLD -->|"ALRT low by default"| PACK_GAUGE
+  PACK_ADMISSION -->|"explicit release"| PACK_HOLD
+  PACK_GAUGE -->|"AOLDO"| PACK_SUPPLY_OR --> PACK_ADMISSION
+  PACK_SYSTEM_DIODE -->|"admitted 3V3"| PACK_ADMISSION
+  PACK_GAUGE <-->|"local I²C + fault"| PACK_ADMISSION
   PACK_ADMISSION <-->|"SYS I²C0 + shared IRQ"| S3
   S3 <-->|"1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
@@ -251,6 +269,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `UI_ROW2`
 - `VOICE-qualified-RF-tap`
 - `accessory-present`
+- `admitted-system-3v3`
 - `always-available-quiet-audio-rail`
 - `audio-ground`
 - `bounded diagnostic load switch`
@@ -267,19 +286,18 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `electret-microphone-bias-and-ac-coupling`
 - `exact carrier-learning IR receiver`
 - `exact display/backlight driver`
-- `exact high-side charge FET gate`
-- `exact high-side discharge FET gate`
 - `exact robust-demod IR receiver`
+- `exact-value-hold-gate-pullup`
 - `fail-safe-IR-LED-driver`
 - `high-z-ac-coupled-capture-network`
 - `i2c-mode-strap`
+- `isolated-pack-fixture-3v3`
 - `matched-bypass-ac-reference`
 - `microsd-load-switch`
 - `no-connect`
 - `nrf-group-load-switch-enable`
 - `off-safe IR frontend load switch`
 - `pack service fixture`
-- `pack-admission dual-source isolation circuit`
 - `pack-admission reset-safe open-drain IRQ circuit`
 - `pd-eeprom-factory-scl-pad`
 - `pd-eeprom-factory-sda-pad`
@@ -290,9 +308,13 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `product-usb-c-cc1`
 - `product-usb-c-cc2`
 - `product-usb-c-vbus`
+- `protected 2S midpoint divider`
 - `protected configurable M5 Unit contact`
+- `protected full-stack divider`
+- `protected-2s-midpoint`
 - `protected-accessory-power-good`
 - `protected-external-5v-enable`
+- `qualified-2s-positive`
 - `qualified-32k-clock`
 - `qualified-backlight-sink`
 - `qualified-backlight-supply`
@@ -308,10 +330,11 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `qualified-evidence-threshold-5`
 - `qualified-evidence-threshold-6`
 - `qualified-evidence-threshold-7`
+- `qualified-slot0-positive`
+- `qualified-slot1-positive`
 - `qualified-speaker-amp-supply`
 - `qualified-speaker-enable-default-on`
 - `receiver-power-reset-isolation`
-- `reset-default MAX17320 ALRT hold circuit`
 - `rx-audio-bypass-and-capture-node`
 - `safety-ground`
 - `safety-ground-via-10k`
@@ -470,16 +493,18 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO6`, `GPIO7`, `GPIO11`. Free: none.
 | `PA0` | 4 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
 | `PA2` | 8 | `PACK_GAUGE_I2C_SCL` | `io` | `BITBANG_I2C` | `pack_gauge.SCL_OD` | — |
 | `PA4` | 9 | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | `pack_gauge.SDA_DQ` | — |
-| `PA6` | 10 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `abstract:reset-default MAX17320 ALRT hold circuit` | — |
+| `PA6` | 10 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `pack_hold.G2` | — |
 | `PA11` | 11 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
 | `PA17` | 13 | `PACK_SERVICE_UART_TX` | `o` | `UART0` | `abstract:pack service fixture` | — |
 | `PA23` | 18 | `PACK_SYS_INT_REQ_N` | `o` | `GPIO` | `abstract:pack-admission reset-safe open-drain IRQ circuit` | — |
 | `PA16_A8` | 12 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_gauge.PFAIL` | — |
 | `PA18_A7` | 14 | `PACK_SERVICE_UART_RX` | `i` | `UART0` | `abstract:pack service fixture` | — |
 | `PA22_A4` | 17 | `PACK_DIAG_LOAD_EN` | `o` | `GPIO` | `abstract:bounded diagnostic load switch` | — |
+| `PA24_A3` | 19 | `PACK_CELL0_ADC` | `i` | `ADC` | `abstract:protected 2S midpoint divider` | — |
+| `PA25_A2` | 20 | `PACK_STACK_ADC` | `i` | `ADC` | `abstract:protected full-stack divider` | — |
 
-Budget: **10 used + 5 reserved + 3 free = 18 exposed GPIO**.
-Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`, `PA24_A3`, `PA25_A2`. Free: `PA26_A1`, `PA27_A0`, `PA28_A5`.
+Budget: **12 used + 3 reserved + 3 free = 18 exposed GPIO**.
+Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA26_A1`, `PA27_A0`, `PA28_A5`.
 
 ### Fixed-function/control routes
 
@@ -495,13 +520,34 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`, `PA24_A3`, `PA25_A2`. Free:
 | `PD_LOCAL_I2C_SCL` | `pd_controller.I2Cc_SCL` | `pd_config_eeprom.SCL` | controller loads patch/config autonomously before S3 availability is assumed |
 | `PD_LOCAL_I2C_SDA` | `pd_controller.I2Cc_SDA` | `nvdc_charger.SDA` | charger is controlled through the officially supported TPS25751D local-controller topology |
 | `PD_LOCAL_I2C_SCL` | `pd_controller.I2Cc_SCL` | `nvdc_charger.SCL` | charger transactions never occupy an RF, display or storage bus |
-| `PACK_AOLDO` | `pack_gauge.AOLDO` | `abstract:pack-admission dual-source isolation circuit` | AOLDO supplies only the measured low-clock admission mode below the MAX17320 2-mA source budget; it must not absorb fixture or system-rail backfeed |
-| `PACK_ADMISSION_VDD` | `abstract:pack-admission dual-source isolation circuit` | `pack_admission.VDD` | fixture or admitted system rail may power programming/recovery through exact isolation; blank-device flash current is never drawn from AOLDO |
+| `PACK_AOLDO` | `pack_gauge.AOLDO` | `pack_supply_or.A1` | AOLDO supplies only measured low-clock admission below the MAX17320 2-mA source budget; BAV70LT1G blocks fixture/system backfeed |
+| `PACK_FIXTURE_3V3` | `abstract:isolated-pack-fixture-3v3` | `pack_supply_or.A2` | fixture supply is isolated from USB/system power and is used for blank-device programming and recovery |
+| `PACK_ADMISSION_VDD` | `pack_supply_or.K_COMMON` | `pack_admission.VDD` | common cathode passively ORs AOLDO and fixture sources without firmware control |
+| `PACK_SYSTEM_3V3` | `abstract:admitted-system-3v3` | `pack_system_diode.A` | system source exists only after complete pair admission and uses the lower-drop branch |
+| `PACK_ADMISSION_VDD` | `pack_system_diode.K` | `pack_admission.VDD` | BAT54-7-F blocks admission VDD from back-powering the admitted system rail |
 | `PACK_LOCAL_GND` | `pack_admission.VSS` | `pack_gauge.GND` | local controller, gauge and fixture share one bounded pack-side reference; USB/system isolation and touch-safe access remain exact circuit gates |
-| `PACK_FET_OVERRIDE_N` | `abstract:reset-default MAX17320 ALRT hold circuit` | `pack_gauge.ALRT` | external default asserts ALRT low before MCU code; release is possible only after protected gauge image/readback and complete pair admission |
+| `PACK_HOLD_PULLUP_SOURCE` | `pack_gauge.AOLDO` | `abstract:exact-value-hold-gate-pullup` | exact-value resistor pulls Q1 gate high without exceeding the AOLDO budget |
+| `PACK_HOLD_GATE` | `abstract:exact-value-hold-gate-pullup` | `pack_hold.G1` | reset or unpowered admission MCU turns Q1 on and asserts the hold |
+| `PACK_FET_OVERRIDE_N` | `pack_hold.D1` | `pack_gauge.ALRT` | Q1 asserts ALRT low before MCU code; release follows protected gauge image/readback and complete pair admission only |
+| `PACK_LOCAL_GND` | `pack_hold.S1` | `pack_gauge.GND` | Q1 has a local pack-side return |
+| `PACK_HOLD_GATE` | `pack_hold.D2` | `pack_hold.G1` | Q2 can pull the Q1 gate low only after PA6 explicitly requests release |
+| `PACK_LOCAL_GND` | `pack_hold.S2` | `pack_gauge.GND` | Q2 has a local pack-side return; its gate has an exact-value reset pulldown still to be frozen |
 | `SYS_INT_N` | `abstract:pack-admission reset-safe open-drain IRQ circuit` | `s3.GPIO37` | reset, unpowered admission MCU and push-pull faults cannot drive the shared IRQ high or back-power the system bus |
-| `PACK_CHG_GATE` | `pack_gauge.CHG` | `abstract:exact high-side charge FET gate` | exact MOSFET, gate network and OvrdEn behavior remain the next I3 circuit gate |
-| `PACK_DIS_GATE` | `pack_gauge.DIS` | `abstract:exact high-side discharge FET gate` | exact MOSFET, gate network and OvrdEn behavior remain the next I3 circuit gate |
+| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN; exact 0.1-uF gate-source capacitor remains a schematic value |
+| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMST FET2 source is the pack side required by MAX17320 DIS referenced to PCKP |
+| `PACK_ZVC_UNUSED` | `pack_gauge.ZVC` | `abstract:no-connect` | DEC-0067 forbids in-device zero-volt recovery; the datasheet requires ZVC open when unused |
+| `BATTERY_STACK_POSITIVE` | `abstract:qualified-2s-positive` | `pack_power_fet.S1` | battery-side source enters a common-drain back-to-back pair; zero-volt and prequal recovery remain disabled |
+| `PROTECTED_PACK_POSITIVE` | `pack_power_fet.S2` | `nvdc_charger.BAT` | pack-side source reaches the charger only after complete admission and MAX17320 protection permission |
+| `PACK_SHUNT_CSP` | `pack_gauge.CSP` | `pack_shunt.END_1` | Kelvin pickup follows the ADI Figure-24 current-sense orientation |
+| `PACK_SHUNT_CSN` | `pack_shunt.END_2` | `pack_gauge.CSN` | 5-mOhm shunt yields the accepted measurement range; force/kelvin copper geometry remains an I4 gate |
+| `PACK_CELL0_TEMP` | `pack_gauge.TH1` | `pack_ntc0.END_1` | one exact 10-kOhm NTC is mechanically coupled to cell 0; coupling remains an I8/HIL gate |
+| `PACK_LOCAL_GND` | `pack_ntc0.END_2` | `pack_gauge.GND` | TH1 uses the MAX17320 internal pullup and protected 10-kOhm mode |
+| `PACK_CELL1_TEMP` | `pack_gauge.TH2` | `pack_ntc1.END_1` | one exact 10-kOhm NTC is mechanically coupled to cell 1; coupling remains an I8/HIL gate |
+| `PACK_LOCAL_GND` | `pack_ntc1.END_2` | `pack_gauge.GND` | TH2 uses the MAX17320 internal pullup and protected 10-kOhm mode |
+| `PACK_SLOT0_POSITIVE_RAW` | `abstract:qualified-slot0-positive` | `pack_fuse0.END_1` | each replaceable slot has its own adjacent 5-A fast fuse |
+| `PACK_2S_MIDPOINT` | `pack_fuse0.END_2` | `abstract:protected-2s-midpoint` | slot-0 fuse opens independently; holder polarity and reverse-insertion blocking remain mechanical/electrical gates |
+| `PACK_SLOT1_POSITIVE_RAW` | `abstract:qualified-slot1-positive` | `pack_fuse1.END_1` | each replaceable slot has its own adjacent 5-A fast fuse |
+| `BATTERY_STACK_POSITIVE` | `pack_fuse1.END_2` | `abstract:qualified-2s-positive` | slot-1 fuse opens independently; holder polarity and reverse-insertion blocking remain mechanical/electrical gates |
 | `CHARGER_INT_N` | `nvdc_charger.INT` | `pd_controller.I2Cc_IRQ` | active-low charger status/fault returns to the PD controller without a new MCU contact |
 | `PD_EEPROM_WP` | `pd_controller.GPIO0` | `pd_config_eeprom.WP` | external pull-up protects the image at reset; TPS may drive low only inside an S3-authorized signed update window |
 | `CHARGE_EN_N` | `pd_controller.GPIO1` | `nvdc_charger.CE` | external pull-up disables charge while TPS configuration is absent/invalid; valid policy explicitly drives the active-low enable |
@@ -818,7 +864,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`, `PA24_A3`, `PA25_A2`. Free:
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
 - DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
-- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair. Exact USB-C/USB2 protection, charger inductor/passives, cell-tap/FET/fuse/NTC/shunt/diagnostic/hold/supply-isolation circuit, rail tree, thermal/fault calculation and HIL remain open before schematic/BOM freeze
+- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates CSD87313DMST, dual 0451005.MRL fuses, WSL25125L000FEA, dual B57332V5103F360 sensors, 2N7002DW-7-F, BAV70LT1G and BAT54-7-F around that manager. Exact USB-C/USB2 protection, charger passives, diagnostic load/dividers, mechanical reverse-insertion/thermal coupling, rail tree, hot/fault calculations and HIL remain open before schematic/BOM freeze
 - HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; the I2 hard-stop/evidence active circuit is paper-reviewed while its AON source/hold-up is I3 and detector taps/thresholds are I6; exact IR frontends, power tree and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Граница проведённого ревью

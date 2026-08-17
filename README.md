@@ -80,7 +80,9 @@ privacy or the target owner's authorization.
   cells; both are required for battery operation. Reverse insertion is
   mechanically blocked; hardware observes and admits the pair before it may
   reach the system, and refuses an unsafe combination instead of forcing it
-  to operate or equalize.
+  to operate or equalize. The handheld also refuses deeply discharged cells:
+  zero-volt/prequalification recovery is disabled, and any recovery research
+  requires a separate isolated Controlled-Zone fixture.
 - Signed updates validate their target and support rollback. Build keys and the
   ability to install owner firmware remain owner-controlled; irreversible
   lockdown is not enabled by default.
@@ -104,8 +106,17 @@ flowchart TD
   PDCFG["CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
   CHARGER["BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
+  FUSE0["0451005.MRL<br/>slot-0 independent 5-A fast fuse"]
+  NTC0["B57332V5103F360<br/>cell-0 temperature sensor"]
   CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
+  FUSE1["0451005.MRL<br/>slot-1 independent 5-A fast fuse"]
+  NTC1["B57332V5103F360<br/>cell-1 temperature sensor"]
   PACKGAUGE["MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing"]
+  SHUNT["WSL25125L000FEA<br/>5-mOhm Kelvin current shunt"]
+  PACKFET["CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair"]
+  PACKHOLD["2N7002DW-7-F<br/>reset-default ALRT hold and explicit release"]
+  SUPPLYOR["BAV70LT1G<br/>AOLDO/fixture source isolation"]
+  SYSDIODE["BAT54-7-F<br/>admitted-system source isolation and priority"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
@@ -164,7 +175,8 @@ flowchart TD
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
-  CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACKGAUGE ~~~ PACKADM ~~~ S3 ~~~ SLOW
+  CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -181,10 +193,18 @@ flowchart TD
   PDCTRL <-->|"local I²C boot image"| PDCFG
   PDCTRL <-->|"protected VBUS + local I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL
-  CELL0 --> PACKGAUGE
-  CELL1 --> PACKGAUGE
-  PACKGAUGE <-->|"protected 2S power boundary"| CHARGER
-  PACKGAUGE <-->|"local I²C + FET hold/fault"| PACKADM
+  CELL0 --> FUSE0 --> PACKGAUGE
+  NTC0 -->|"TH1"| PACKGAUGE
+  CELL1 --> FUSE1 --> PACKGAUGE
+  NTC1 -->|"TH2"| PACKGAUGE
+  SHUNT -->|"CSP/CSN Kelvin evidence"| PACKGAUGE
+  PACKGAUGE -->|"CHG/DIS gates; no prequal"| PACKFET
+  PACKFET <-->|"protected 2S power boundary"| CHARGER
+  PACKHOLD -->|"ALRT low by default"| PACKGAUGE
+  PACKADM -->|"explicit release"| PACKHOLD
+  PACKGAUGE -->|"AOLDO"| SUPPLYOR --> PACKADM
+  SYSDIODE -->|"admitted 3V3"| PACKADM
+  PACKGAUGE <-->|"local I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + shared IRQ"| S3
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP

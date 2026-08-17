@@ -1,7 +1,7 @@
 # SRC-0002 — real-device pin provenance ledger
 
 - Статус: **В работе; machine-readable compute/control pass проведён ревью**
-- Дата: 2026-08-17
+- Дата: 2026-08-18
 - Gate: `FLOW-0001/G2F`, шаг 2
 - Решение: [`DEC-0041`](../decisions/DEC-0041-electrical-feasibility-before-physical-layout.md)
 - Finding: [`FND-0049`](../findings/FND-0049-exact-pin-map-lacked-device-provenance.md)
@@ -40,6 +40,7 @@
 | external I²C fault boundary | `TCA4307DGKR` VSSOP8 reference | exact EN/SCLIN/SCLOUT/READY/SDAIN/SDAOUT contacts, powered-off high-Z and stuck-bus recovery verified from TI datasheet | `reference only`; can isolate U214/Port-A I²C, but does not qualify U214 SPI/UART/power hot-plug |
 | radio output compression | `SN74HC595PWR` TSSOP16 candidate for `G2F-2R` | official TI package table exposes QA…QH, SER/SRCLK/RCLK, OE and SRCLR | `verified candidate`; OE/reset/pull truth table and shared-data timing remain schematic/HIL gates |
 | non-programmable safety | `TPS3808G33DBVR`, `SN74LVC1G74DCUR`, `74LVC2G14GW,125`, 2×`74LVC1G32GV,125`, `SN74LVC3G34DCUR`, 2×`SN74LVC08APWR`; exact evidence devices in `SAFE-0002/devices.json` | official pinouts, partial-power-down behavior, three reset outputs, nine gate functions and eight evidence channels are machine-instantiated | `I2 reviewed DEC-0061/REV-0005O`; exact rail source/load switches are I3 |
+| supervised 2S manager circuit | `MAX17320G20+T`, `MSPM0C1104SDGS20R`, `CSD87313DMST`, 2×`0451005.MRL`, `WSL25125L000FEA`, 2×`B57332V5103F360`, `2N7002DW-7-F`, `BAV70LT1G`, `BAT54-7-F` | manufacturer package tables prove every exposed IC/FET/diode contact; MAX17320 CHG/IN and DIS/PCKP references require the accepted common-drain power pair; onsemi `FDMC8030` rejected as Last Shipments | `DEC-0067/REV-0005X` principle circuit reviewed; passive values, mechanical coupling, hot/fault/source-handover HIL and rail tree remain I3 |
 | high-throughput external tier | no exact accessory/transport/connector | current requirement intentionally rejects generic host and cannot name pins without an RF profile | `open/blocking` for final architecture, isolated reopen gate for base candidate comparison |
 
 ## Primary sources used in this pass

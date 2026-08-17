@@ -14,12 +14,15 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Текущий owner gate — [`IMP-0056`](IMP-0056-deep-cell-recovery-boundary.md).
+Последний owner gate — [`IMP-0056`](IMP-0056-deep-cell-recovery-boundary.md),
+закрытый вариантом A в `DEC-0067`.
 `PWR-0007/FND-0077` обнаружили материальную развилку: MAX17320 использует CHG
 FET в линейном режиме для prequal, поэтому in-device recovery меняет FET,
 thermal/SOA validation и продуктовый safety boundary. Рекомендован A: base
 product отклоняет глубоко разряженную банку, а отдельное исследование возможно
-только внешней изолированной оснасткой в Controlled Zone.
+только внешней изолированной оснасткой в Controlled Zone. В machine source
+принят active common-drain `CSD87313DMST`; прежний `FDMC8030` отклонён как
+`Last Shipments`.
 
 Предыдущий [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md) закрыт
 вариантом A в `DEC-0066`: exact `MAX17320G20+T` и

@@ -1,9 +1,10 @@
 # IMP-0056 — deep-cell recovery boundary
 
-- Статус: **Ожидает решения владельца**
+- Статус: **Принято A; закрыто `DEC-0067`**
 - Дата: 2026-08-18
 - Context: [`PWR-0007`](../architecture/PWR-0007-max17320-2s-surrounding-circuit.md)
 - Finding: [`FND-0077`](../findings/FND-0077-max17320-prequal-is-a-linear-fet-mode.md)
+- Decision: [`DEC-0067`](../decisions/DEC-0067-no-in-device-deep-cell-recovery.md)
 - Affects: `I3`, CHG/DIS MOSFET, battery admission, Controlled Zone and HIL
 
 ## Current state
@@ -31,9 +32,9 @@ cell from its two contacts.
   but only as a Controlled-Zone laboratory operation with the existing banner,
   authorization and physical containment rules; it is not a product menu
   shortcut;
-- this permits the compact one-package `FDMC8030` switching path to continue
-  as the cost/area first target, subject to ordinary switching, hot-loss and
-  fault HIL.
+- this permits a compact one-package switching path, subject to ordinary hot-
+  loss and fault HIL; lifecycle and topology checks subsequently selected the
+  active common-drain `CSD87313DMST`, not the obsolete `FDMC8030` paper part.
 
 Material consequence: safer behavior for unknown replaceable cells, smaller
 power path and less validation. The user must replace or externally inspect a
@@ -64,9 +65,10 @@ separate contained Controlled-Zone fixture.
 
 ## Cost indication
 
-Point-in-time distributor prices put one `FDMC8030` around `$1.26/100` and two
-`CSD17575Q3T` parts around `$1.6…1.9/100` before the extra placement and
-thermal-validation cost. These are comparison inputs, not a fabrication RFQ.
+Point-in-time authorized-channel pricing for the selected `CSD87313DMS` package
+was about `$1.03/100` (`$0.658` at full reel) and two `CSD17575Q3T` parts were
+roughly `$1.6…1.9/100` before extra placement and validation. These are
+comparison inputs, not a fabrication RFQ.
 
 ## Recommendation
 
@@ -77,4 +79,4 @@ authorization are available.
 
 ## Owner decision
 
-Open.
+Accepted **A** by the owner on 2026-08-18 and propagated by `DEC-0067`.
