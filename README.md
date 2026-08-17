@@ -111,8 +111,9 @@ feasibility now comes first. One machine-readable source contains three
 structurally checked maps; `DEC-0044/NIF-0001/REV-0004L` select `G2F-3I` as the
 leading reviewed paper map without radio-bus contention. `DEC-0047` selects a
 qualified `SG-N24` envelope; the ordered second ESP32-DIV provides early
-`L0 DIV↔DIV` pre-HIL, while target pass requires Leshy2 `T1`. `IMP-0040` opens
-the compact nRF module/antenna choice; physical RF/full-mix
+`L0 DIV↔DIV` pre-HIL, while target pass requires Leshy2 `T1`. `DEC-0048`
+accepts three compact IPEX→external-SMA nRF paths and external SMA for every
+onboard antenna endpoint; physical RF/full-mix
 measurements, unused-interface quiet-state power controls,
 peripherals, power and HIL must close before adapting the legacy physical
 mockup. Whole-device optimality, conceptual placement and a new atomic

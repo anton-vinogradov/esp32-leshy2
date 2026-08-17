@@ -38,6 +38,26 @@ class ArchitectureValidationTests(unittest.TestCase):
         errors = self.errors_for(candidates)
         self.assertTrue(any("duplicate allocation" in error for error in errors), errors)
 
+    def test_rejects_integrated_nrf_antenna_regression(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        candidate["antenna_policy"]["integrated_pcb_antenna_baseline"] = True
+        candidate["antenna_policy"]["nrf_dedicated_sma_count"] = 2
+        candidate["instances"]["nrf2"] = "ebyte_e01_ml01s"
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("integrated_pcb_antenna_baseline must be False" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("nrf_dedicated_sma_count must be 3" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("nrf2 must use compact IPEX reference" in error for error in errors),
+            errors,
+        )
+
     def test_rejects_allocated_strap_without_proof(self):
         candidates = copy.deepcopy(self.candidates)
         candidate = next(c for c in candidates if c["id"] == "G2F-2R")

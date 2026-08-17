@@ -149,6 +149,26 @@ def validate_sources(
         if not candidate.get("decisive_open_risk"):
             errors.append(f"{candidate_id}: missing decisive_open_risk")
 
+        antenna_policy = candidate.get("antenna_policy", {})
+        expected_antenna_policy = {
+            "decision": "DEC-0048",
+            "base_onboard_endpoint": "external_sma",
+            "nrf_module_interface": "ipex_to_short_pigtail",
+            "nrf_dedicated_sma_count": 3,
+            "integrated_pcb_antenna_baseline": False,
+            "external_accessory_antennas": "owned_by_accessory",
+        }
+        for field, expected in expected_antenna_policy.items():
+            if antenna_policy.get(field) != expected:
+                errors.append(
+                    f"{candidate_id}: antenna policy {field} must be {expected!r}"
+                )
+        for nrf_instance in ("nrf0", "nrf1", "nrf2"):
+            if candidate.get("instances", {}).get(nrf_instance) != "ebyte_e01_ml01ipx":
+                errors.append(
+                    f"{candidate_id}: {nrf_instance} must use compact IPEX reference under DEC-0048"
+                )
+
         signal_policy = candidate.get("signal_group_policy")
         if signal_policy is not None:
             if not signal_policy.get("decision") or not signal_policy.get("default_group"):
@@ -698,6 +718,16 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             "",
             f"- Candidate status: `{candidate['status']}`",
             "- Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.",
+        ]
+        antenna_policy = candidate["antenna_policy"]
+        lines += [
+            "",
+            "### Antenna policy",
+            "",
+            f"Decision `{antenna_policy['decision']}`: onboard endpoint `{antenna_policy['base_onboard_endpoint']}`; "
+            f"three nRF paths use `{antenna_policy['nrf_module_interface']}` to "
+            f"`{antenna_policy['nrf_dedicated_sma_count']}` dedicated SMA; integrated-PCB baseline "
+            f"`{str(antenna_policy['integrated_pcb_antenna_baseline']).lower()}`. External accessories own their antennas.",
         ]
         signal_policy = candidate.get("signal_group_policy")
         if signal_policy:

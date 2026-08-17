@@ -114,8 +114,9 @@ interfaces и отдают RP GPIO15/GPIO23 плюс C5 GPIO4 под group-level
 `DEC-0047` принимает qualified nRF RF envelope. Заказанный второй ESP32-DIV
 становится ранним `L0 DIV↔DIV` pre-HIL observer, но не заменяет target
 `T1 Leshy2` fixture. `N24M-0001` проверяет реальные `E01-ML01S`,
-`E01-ML01IPX` и `E01-2G4M27D`; `IMP-0040` открывает выбор exact compact
-module/antenna direction. Измеренные envelope points, power parts,
+`E01-ML01IPX` и `E01-2G4M27D`; `DEC-0048` принимает `IMP-0040/A`: все
+бортовые antenna endpoints внешние SMA, а три nRF используют три compact
+IPEX→SMA paths. Измеренные envelope points, exact production lots, power parts,
 self-desense и target HIL остаются открытыми. `FND-0050` фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
@@ -124,8 +125,8 @@ self-desense и target HIL остаются открытыми. `FND-0050` фи�
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее владелец решает `IMP-0040`; затем `G2F-3I` фиксирует exact nRF
-modules/antennas и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
+Далее `G2F-3I` фиксирует exact production nRF MPN/lot, SMA/feed implementation
+и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
 `T1` profiles. После этого проходит quiet-state power-part, physical
 RF/self-desense, exact peripheral,
 signal-integrity, power и HIL closure. После этого leading paper map может

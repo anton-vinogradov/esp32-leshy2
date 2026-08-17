@@ -20,7 +20,7 @@
 | Device id | Exact MPN / boundary | Qualification | Lifecycle | Primary source | Lifecycle evidence |
 |---|---|---|---|---|---|
 | `cc1101rgpr` | `CC1101RGPR` | `verified_candidate` | `active` | [CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet SWRS061I](https://www.ti.com/lit/ds/symlink/cc1101.pdf) | [TI CC1101RGPR order page](https://www.ti.com/product/CC1101/part-details/CC1101RGPR) |
-| `ebyte_e01_ml01s` | `Ebyte E01-ML01S` | `reference_only` | `nrf24_family_not_recommended_for_new_designs` | [E01-ML01S product page/manual live product page](https://www.ebyte.com/product/45.html) | [Nordic nRF24 Series lifecycle page](https://www.nordicsemi.com/Products/nRF24-series) |
+| `ebyte_e01_ml01ipx` | `Ebyte E01-ML01IPX` | `verified_reference` | `nrf24_family_not_recommended_for_new_designs` | [E01-ML01IPX product specification 2025-01-16](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf) | [Nordic nRF24 Series lifecycle page](https://www.nordicsemi.com/Products/nRF24-series) |
 | `esp32_c5_wroom_1u_n8r8` | `ESP32-C5-WROOM-1U-N8R8` | `verified_candidate` | `active_candidate_revision_floor_v1_2` | [ESP32-C5-WROOM-1/WROOM-1U Datasheet v1.2](https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `esp32_s3_wroom_1u_n16r2` | `ESP32-S3-WROOM-1U-N16R2` | `verified_candidate` | `active` | [ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `hirose_dm3at_sf_pejm5` | `Hirose DM3AT-SF-PEJM5` | `verified_candidate` | `current_manufacturer_page` | [DM3 Series microSD Card Connectors catalog 2025-12-01](https://www.hirose.com/product/p/CL0609-0031-0-00) | same primary source |
@@ -36,6 +36,10 @@
 
 - Candidate status: `draft_machine_checked_not_architecture_decision`
 - Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.
+
+### Antenna policy
+
+Decision `DEC-0048`: onboard endpoint `external_sma`; three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. External accessories own their antennas.
 
 ### `s3` — `ESP32-S3-WROOM-1U-N16R2`
 
@@ -129,11 +133,11 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 
 ### Open qualification gaps
 
-- `nrf0` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - E01-ML01S is a geometry/interface reference, not the accepted three-module RF/power/antenna production choice
 - nRF24 is not recommended for new designs; CC1101RGPR is ACTIVE, but authorised sourcing, qualified alternates and protocol HIL remain unresolved
@@ -150,6 +154,10 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 
 - Candidate status: `draft_machine_checked_not_architecture_decision`
 - Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.
+
+### Antenna policy
+
+Decision `DEC-0048`: onboard endpoint `external_sma`; three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. External accessories own their antennas.
 
 ### `s3` — `ESP32-S3-WROOM-1U-N16R2`
 
@@ -266,11 +274,11 @@ Reserved: none. Free: none.
 
 ### Open qualification gaps
 
-- `nrf0` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - E01-ML01S is a geometry/interface reference, not the accepted three-module RF/power/antenna production choice
 - nRF24 is not recommended for new designs; CC1101RGPR is ACTIVE, but authorised sourcing, qualified alternates and protocol HIL remain unresolved
@@ -288,6 +296,10 @@ Reserved: none. Free: none.
 
 - Candidate status: `draft_non_interference_candidate`
 - Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.
+
+### Antenna policy
+
+Decision `DEC-0048`: onboard endpoint `external_sma`; three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. External accessories own their antennas.
 
 ### Signal-group policy
 
@@ -529,11 +541,11 @@ Reserved: none. Free: none.
 ### Open qualification gaps
 
 - `u214_i2c_iso` uses `TCA4307DGKR` as `reference_only`, not an accepted production choice.
-- `nrf0` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf0` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf1` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf1` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf2` uses `Ebyte E01-ML01S` as `reference_only`, not an accepted production choice.
+- `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `slow_io` uses `TCA6424ARGJR` as `reference_only`, not an accepted production choice.
 - `sd` lifecycle: `current_manufacturer_page`.

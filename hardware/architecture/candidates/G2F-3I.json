@@ -4,6 +4,7 @@
   "title": "Three domains with independent radio IPC and only bounded display/storage sharing",
   "status": "draft_non_interference_candidate",
   "decisive_open_risk": "DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open",
+  "antenna_policy": {"decision":"DEC-0048","base_onboard_endpoint":"external_sma","nrf_module_interface":"ipex_to_short_pigtail","nrf_dedicated_sma_count":3,"integrated_pcb_antenna_baseline":false,"external_accessory_antennas":"owned_by_accessory"},
   "signal_group_policy": {
     "decision": "DEC-0045",
     "default_group": "NONE",
@@ -44,9 +45,9 @@
     "rp": "rp2354b_a4",
     "u214": "m5_u214",
     "u214_i2c_iso": "tca4307dgkr",
-    "nrf0": "ebyte_e01_ml01s",
-    "nrf1": "ebyte_e01_ml01s",
-    "nrf2": "ebyte_e01_ml01s",
+    "nrf0": "ebyte_e01_ml01ipx",
+    "nrf1": "ebyte_e01_ml01ipx",
+    "nrf2": "ebyte_e01_ml01ipx",
     "cc": "cc1101rgpr",
     "slow_io": "tca6424argjr",
     "sd": "hirose_dm3at_sf_pejm5"

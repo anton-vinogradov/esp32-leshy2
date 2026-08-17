@@ -4,14 +4,15 @@
   "title": "Three compute domains: RP2354A owns compatibility radios and voice deadlines",
   "status": "draft_machine_checked_not_architecture_decision",
   "decisive_open_risk": "third image/power/clock/service burden; S3 and RP have zero free GPIO",
+  "antenna_policy": {"decision":"DEC-0048","base_onboard_endpoint":"external_sma","nrf_module_interface":"ipex_to_short_pigtail","nrf_dedicated_sma_count":3,"integrated_pcb_antenna_baseline":false,"external_accessory_antennas":"owned_by_accessory"},
   "instances": {
     "s3": "esp32_s3_wroom_1u_n16r2",
     "c5": "esp32_c5_wroom_1u_n8r8",
     "rp": "rp2354a_a4",
     "u214": "m5_u214",
-    "nrf0": "ebyte_e01_ml01s",
-    "nrf1": "ebyte_e01_ml01s",
-    "nrf2": "ebyte_e01_ml01s",
+    "nrf0": "ebyte_e01_ml01ipx",
+    "nrf1": "ebyte_e01_ml01ipx",
+    "nrf2": "ebyte_e01_ml01ipx",
     "cc": "cc1101rgpr",
     "slow_io": "tca9535pwr"
   },

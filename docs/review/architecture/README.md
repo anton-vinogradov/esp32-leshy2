@@ -26,8 +26,9 @@ that arbitrary cross-group co-located same-band TX↔RX cannot be promised;
 `DEC-0045` selects one active group, while `SG-N24` explicitly requires every
 simultaneous three-radio PTX/PRX mix. `DEC-0047` selects a qualified RF envelope.
 `N24H-0001` separates ordered `L0 DIV↔DIV` pre-HIL from target `T1`, while
-`N24M-0001/IMP-0040` compare and select the exact compact module/antenna
-direction; measurements remain open.
+`N24M-0001/IMP-0040/DEC-0048` select three compact IPEX→external-SMA nRF paths
+and external SMA for every onboard antenna endpoint; exact production lots,
+feeds and measurements remain open.
 `DEC-0046/QST-0001` require unused interfaces to
 enter verified quiet states. It is not yet target: exact RF paths, power gates,
 peripherals and HIL remain open; CAD stays blocked.

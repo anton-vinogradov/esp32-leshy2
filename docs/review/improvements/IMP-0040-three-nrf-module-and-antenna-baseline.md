@@ -1,6 +1,6 @@
 # IMP-0040 — three-nRF module and antenna baseline
 
-- Статус: **⚠️ Открыто решение владельца**
+- Статус: **Принят вариант A решением `DEC-0048`**
 - Дата: 2026-08-17
 - Evidence: [`N24M-0001`](../architecture/N24M-0001-exact-module-antenna-comparison.md)
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
@@ -66,3 +66,11 @@ accessory/remote RF head с собственным питанием, containment
 Принимаем вариант A как направление целевой компоновки nRF, оставляя
 `E01-ML01S` только проверяемым cost/bench alternate, а PA/LNA — внешним
 Laboratory profile?
+
+## Решение владельца
+
+Владелец уточнил, что все бортовые антенны в макете изначально предполагались
+внешними SMA. [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md)
+принимает A: три compact 0 dBm IPEX paths идут на три dedicated external SMA.
+`E01-ML01S` остаётся bench/reference alternate, а PA/LNA — только отдельным
+Laboratory remote-head study.

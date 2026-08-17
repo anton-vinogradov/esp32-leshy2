@@ -1,6 +1,6 @@
 # N24M-0001 — exact nRF module and antenna comparison
 
-- Статус: **Проведено ревью входов; production choice открыт `IMP-0040`**
+- Статус: **Проведено ревью входов; external-SMA direction принят `DEC-0048`**
 - Дата: 2026-08-17
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - RF policy: [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
@@ -57,8 +57,8 @@ thermal acceptance.
 - exact real-module contacts, dimensions and current classes проверены;
 - 27 dBm module исключён из рекомендуемого base direction, но не из отдельной
   Laboratory accessory study;
-- compact 0 dBm IPEX и PCB-antenna варианты остаются двумя реальными
-  alternatives до решения `IMP-0040`;
+- compact 0 dBm IPEX принят как target layout/reference direction; PCB-antenna
+  variant остаётся только bench/reference alternate;
 - цена не объявляется без dated authorized-source quote;
 - nRF24 series остаётся NRND, поэтому lot identity, genuine-silicon evidence,
   incoming inspection и alternate-source plan обязательны при любом выборе.

@@ -11,7 +11,7 @@
 |---|---|
 | S3 Wi-Fi/BLE are independent simultaneous RF chains | no; official coexistence is TDM over one 2.4 GHz RF module |
 | C5 2.4/5/802.15.4 are independent simultaneous RF chains | no; exact device is 1T1R and official coexistence arbitrates one RF resource |
-| three nRF are independent physical radios | yes as architecture demand; exact production modules/antennas remain open |
+| three nRF are independent physical radios | yes; `DEC-0048` fixes three compact IPEX→dedicated external-SMA paths, while exact production lots/feeds remain open |
 | current compact E01 reference power/sensitivity | official vendor data: 0 dBm / approximately −93 dBm at 250 kbit/s |
 | CC overlaps U214 | yes: CC 779–928 MHz and U214 868–923 MHz |
 | CC overlaps preferred voice backend | yes: CC 387–464 MHz and SA518 UHF 400–470/480 MHz |

@@ -111,7 +111,8 @@ product inputs G3 остаются проверенными, но теперь �
 `DEC-0044/NIF-0001/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без
 radio-bus contention. `DEC-0047` выбирает qualified `SG-N24` envelope;
 заказанный второй ESP32-DIV даёт ранний `L0 DIV↔DIV` pre-HIL, но target pass
-требует `T1` на Leshy2. `IMP-0040` открывает выбор compact nRF module/antenna;
+требует `T1` на Leshy2. `DEC-0048` принимает три compact IPEX→external-SMA
+nRF paths и внешний SMA для всех бортовых antenna endpoints;
 physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.

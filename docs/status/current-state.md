@@ -115,8 +115,10 @@ consume RP GPIO15/GPIO23 plus C5 GPIO4 as group-level power controls. Exact
 `DEC-0047` accepts a qualified nRF RF envelope. The ordered second ESP32-DIV
 becomes an early `L0 DIV↔DIV` pre-HIL observer, but does not replace the target
 `T1 Leshy2` fixture. `N24M-0001` verifies real `E01-ML01S`,
-`E01-ML01IPX` and `E01-2G4M27D` boundaries; `IMP-0040` opens the exact compact
-module/antenna direction. Measured envelope points, power parts, self-desense
+`E01-ML01IPX` and `E01-2G4M27D` boundaries; `DEC-0048` accepts `IMP-0040/A`:
+all onboard antenna endpoints are external SMA and the three nRF paths use
+three compact IPEX→SMA feeds. Measured envelope points, exact production lots,
+power parts, self-desense
 and target HIL remain the next gates. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
@@ -125,8 +127,8 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, the owner decides `IMP-0040`; `G2F-3I` then fixes exact nRF
-modules/antennas and advances `N24H-0001` from `L0 DIV↔DIV` pre-HIL to target
+Next, `G2F-3I` fixes the exact production nRF MPN/lot and SMA/feed
+implementation, then advances `N24H-0001` from `L0 DIV↔DIV` pre-HIL to target
 `T1` profiles. It then receives quiet-state power-part, physical
 RF/self-desense, exact peripheral,
 signal-integrity, power and HIL closure. It can then become a working electrical

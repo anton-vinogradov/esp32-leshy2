@@ -40,7 +40,10 @@ control-surface alternatives cannot delete a radio/key result.
 - physical STOP/actual-TX indication and RF-safe power domains cannot depend on
   a touchscreen, phone or removable accessory;
 - G3 reserves zones and user access, not antenna count/connector type or RF
-  topology. Those are compared in G4–G7.
+  topology. Later [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md)
+  fixes one of those formerly open axes: every onboard RF antenna endpoint is
+  external SMA, and the three nRF paths have three dedicated SMA. Exact
+  non-nRF count, connector implementation and feed topology remain G4–G7 work.
 
 ## Power, thermal and service inputs
 
