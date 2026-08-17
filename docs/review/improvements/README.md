@@ -25,10 +25,16 @@ B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
 sourcing shortlist production qualification, а `FND-0057` требует specimen
 proof generic Ebyte `IPX` mating family.
 
-⚠️ Предложение [`IMP-0047`](IMP-0047-one-stop-pcba-antenna-kitting-policy.md)
-открыто: считать one-stop PCBA + antenna kitting жёстким требованием,
-предпочтением с fallback или всегда разделять закупки. `MFG-0001` подтверждает
-техническую доступность turnkey kitting, но не выбирает поставщика.
+[`IMP-0047`](IMP-0047-one-stop-pcba-antenna-kitting-policy.md) принято вариантом
+B/`DEC-0056`: one-stop PCBA + antenna kitting является первым RFQ и
+предпочтением, но не hard constraint. При худших total cost, сроке,
+quality/test scope или supply risk закупки разделяются. `MFG-0001`
+подтверждает техническую доступность turnkey kitting, не выбирая поставщика.
+
+⚠️ Предложение [`IMP-0048`](IMP-0048-u214-dock-versus-sma-placement.md)
+открыто после `FND-0068`: реальный U214 шириной 84 mm отсутствовал в legacy
+75-mm layout. Рекомендуется нижний съёмный Cap bay с симметричным 4.5-mm
+overhang, чтобы не расширять base device и не вытеснять девять верхних SMA.
 
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,

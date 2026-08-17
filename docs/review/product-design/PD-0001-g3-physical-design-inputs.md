@@ -37,13 +37,18 @@ control-surface alternatives cannot delete a radio/key result.
   need honest separate/shared-path candidates and body-shadowing evidence;
 - every external/onboard TX must remain clear of the U214/GNSS sky-view and
   external Unit cable/antenna envelope;
+- exact U214 body `84 × 24 × 15.2 mm`, direct 14-pin dock, screw access, own
+  RP-SMA antenna bend, GNSS ceramic sky-view and downstream HY2.0-4P cable are
+  mandatory physical envelopes; legacy `75-mm` drawings omitted them
+  (`FND-0068/IMP-0048`);
 - physical STOP/actual-TX indication and RF-safe power domains cannot depend on
   a touchscreen, phone or removable accessory;
 - G3 reserves zones and user access, not antenna count/connector type or RF
   topology. Later [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md)
   fixes one of those formerly open axes: every onboard RF antenna endpoint is
-  external SMA, and the three nRF paths have three dedicated SMA. Exact
-  non-nRF count, connector implementation and feed topology remain G4–G7 work.
+  external SMA, and the three nRF paths have three dedicated SMA. Subsequent
+  `DEC-0049/0050` fix nine ports total and their `2 RP-SMA + 7 standard SMA`
+  polarity. Exact connector MPN/mount, feeds and RF qualification remain open.
 
 ## Power, thermal and service inputs
 

@@ -1,9 +1,10 @@
 # MFG-0001 — one-stop PCBA and loose-antenna kitting feasibility
 
-- Статус: **Проведено ревью фактов; supplier policy остаётся открытой**
+- Статус: **Проведено ревью фактов; supplier policy принята DEC-0056**
 - Дата проверки: 2026-08-17
 - Antenna decision: [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md)
 - Proposal: [`IMP-0047`](../improvements/IMP-0047-one-stop-pcba-antenna-kitting-policy.md)
+- Decision: [`DEC-0056`](../decisions/DEC-0056-prefer-one-stop-kitting-with-fallback.md)
 
 ## Ответ
 
@@ -41,3 +42,8 @@ designators.
 - [JLCPCB PCBA Parts Sourcing Instruction](https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction)
 - [PCBWay Electronic Components Sourcing](https://www.pcbway.com/pcb_prototype/Electronic_Components.html)
 
+## Принятый procurement flow
+
+`DEC-0056` принимает one-stop PCBA + antenna kit как предпочтительный первый
+RFQ, сохраняя раздельную закупку как fallback при худших total cost, сроке,
+quality/test scope или supply risk.

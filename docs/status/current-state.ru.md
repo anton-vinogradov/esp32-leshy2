@@ -182,8 +182,9 @@ working design для G3, сохраняя её reopenable до atomic architect
 проверяется только при выборе exact MPN.
 
 `MFG-0001` подтверждает, что PCBA и loose antennas можно заказать одним
-turnkey/kitting RFQ; `IMP-0047` оставляет открытым, считать ли это жёстким
-ограничением фабрики или предпочтением с fallback.
+turnkey/kitting RFQ. `IMP-0047/B` принято как `DEC-0056`: это предпочтительный
+первый RFQ, но не жёсткое ограничение фабрики; худший total cost, срок,
+quality/test scope или supply risk разрешает раздельную закупку.
 
 `IMP-0044/A` принято как `DEC-0052`: QSPI-first display path на S3 использует
 `GPIO41/42` под D2/D3 и `≤1 ms` bus-occupancy contract. BT817/BT818 EVE
@@ -214,11 +215,17 @@ option. Machine map и диаграммы показывают итоговый 
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
+`FND-0068/REV-0005G` находят следующий physical omission: official U214 имеет
+корпус `84×24×15.2 mm`, direct 14-pin dock, собственный RP-SMA и GNSS ceramic
+antenna, а legacy 75-mm SVG его вообще не рисует. `IMP-0048` предлагает первый
+active candidate: нижний съёмный bay с 4.5-mm overhang по сторонам, чтобы
+сохранить base width и девять верхних SMA.
+
 Принципиальная распиновка больше не отложена: current paper step завершён и
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются `IMP-0047`, `FND-0058` antenna qualification
+маскируется. Параллельно остаются `FND-0058` antenna qualification
 и оставшиеся `FND-0060/0066/0067` exact electrical/HIL endpoints. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

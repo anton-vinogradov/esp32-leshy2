@@ -1,9 +1,10 @@
-# ⚠️ Предложение IMP-0047 — one-stop PCBA and antenna-kitting policy
+# IMP-0047 — one-stop PCBA and antenna-kitting policy
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принято как вариант B в DEC-0056**
 - Дата: 2026-08-17
 - Facts: [`MFG-0001`](../architecture/MFG-0001-one-stop-pcba-antenna-kitting.md)
 - Antenna decision: [`DEC-0055`](../decisions/DEC-0055-profiled-external-antenna-kit.md)
+- Decision: [`DEC-0056`](../decisions/DEC-0056-prefer-one-stop-kitting-with-fallback.md)
 
 ## Контекст
 
@@ -24,8 +25,8 @@ JLCPCB/PCBWay flows не дают достаточного основания с
 - **C — separate by design:** всегда отделять PCBA от antenna procurement.
   Максимальный выбор поставщиков, но ручной комплектовочный труд и риск ошибок.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принимаем **B: one-stop kitting как предпочтение, но не как жёсткое ограничение
-выбора фабрики**?
-
+Принят **B**: one-stop kitting является первым RFQ и предпочтением, но не
+жёстким ограничением выбора фабрики. Если total cost, срок, quality/test scope
+или supply risk хуже, PCBA и antennas заказываются раздельно.

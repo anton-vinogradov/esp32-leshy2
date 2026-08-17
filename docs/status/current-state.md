@@ -185,8 +185,9 @@ profile change disarms TX and unknown/mismatch keeps TX disabled. Availability
 is checked again only when an exact MPN is selected.
 
 `MFG-0001` establishes that a turnkey/kitting RFQ can combine PCBA and loose
-antennas. `IMP-0047` keeps open whether this is a hard factory constraint or a
-preference with a separate-order fallback.
+antennas. `IMP-0047/B` is accepted as `DEC-0056`: this is the preferred first
+RFQ but not a hard factory constraint; worse total cost, lead time, quality/test
+scope or supply risk permits separate procurement.
 
 `IMP-0044/A` is accepted as `DEC-0052`: the QSPI-first S3 display path uses
 `GPIO41/42` for D2/D3 and a `<=1 ms` bus-occupancy contract. BT817/BT818 EVE
@@ -216,11 +217,17 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
+`FND-0068/REV-0005G` find the next physical omission: the official U214 has an
+`84×24×15.2 mm` body, direct 14-pin dock, its own RP-SMA and GNSS ceramic
+antenna, while the legacy 75-mm SVG does not draw it. `IMP-0048` proposes the
+first active candidate: a removable bottom bay with 4.5-mm side overhang,
+preserving base width and all nine top SMA ports.
+
 The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0047`, `FND-0058` antenna qualification and the remaining
+In parallel, `FND-0058` antenna qualification and the remaining
 `FND-0060/0066/0067` electrical/HIL endpoints stay open. Exact production nRF,
 SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and
