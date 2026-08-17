@@ -1,6 +1,6 @@
 # IMP-0052 — safe field-replaceable 2S battery boundary
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принят вариант B как `DEC-0062`; проведено ревью propagation**
 - Дата: 2026-08-18
 - Context: [`PWR-0002`](../architecture/PWR-0002-i3-power-prerequisite-audit.md)
 - Finding: [`FND-0073`](../findings/FND-0073-legacy-power-is-not-a-current-target.md)
@@ -59,3 +59,10 @@ two arbitrary high-energy cells as a self-validating pack. Option B should be
 chosen only if separate commodity-cell replacement is itself a required Leshy2
 capability.
 
+## Owner decision
+
+Владелец выбрал **B**. Две банки остаются физически отдельно заменяемыми.
+Решение не принимает произвольное смешивание ячеек: допуск конкретной пары,
+механическое исключение reverse insertion, pre-connect измерение, one-cell
+remove behavior и protected charge/discharge являются обязательной частью I3.
+Зафиксировано в [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md).

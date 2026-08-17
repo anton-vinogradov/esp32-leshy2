@@ -137,6 +137,23 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("<details>", readme, readme_name)
             self.assertIn("docs/status/current-state", readme, readme_name)
 
+    def test_target_readmes_keep_individually_replaceable_2s_behavior(self):
+        expected = {
+            "README.md": (
+                "two individually replaceable 18650 cells",
+                "refuses a mismatched or unsafe pair",
+            ),
+            "README.ru.md": (
+                "двух отдельно заменяемых 18650",
+                "отказывает несовместимой либо опасной паре",
+            ),
+        }
+        for readme_name, phrases in expected.items():
+            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
+            normalized = " ".join(readme.split()).lower()
+            for phrase in phrases:
+                self.assertIn(phrase.lower(), normalized, readme_name)
+
     def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["safety_contract"]

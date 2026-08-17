@@ -1,6 +1,6 @@
 # PWR-0002 — I3 power prerequisite and legacy-candidate audit
 
-- Статус: **Проведено ревью пререквизитов `I3`; battery-format decision открыт**
+- Статус: **Проведено ревью пререквизитов `I3`; battery format B принят `DEC-0062`**
 - Дата: 2026-08-18
 - Dependency step: [`INT-0001/I3`](INT-0001-internal-design-closure-sequence.md)
 - Previous envelope: [`PWR-0001`](PWR-0001-zero-based-power-safety-envelope.md)
@@ -15,10 +15,10 @@
 candidate/reference. Ни один его MPN, net или physical holder не переносится
 автоматически.
 
-Артефакт закрывает входы и отбраковку прежней схемы, но не завершает `I3`:
-формат батареи влияет на protection/gauge/connector/mechanics, поэтому сначала
-нужно сохранить либо явно удалить старую дополнительную возможность — замену
-двух отдельных 18650 пользователем.
+Артефакт закрывает входы и отбраковку прежней схемы, но не завершает `I3`.
+Формат батареи влияет на protection/gauge/connector/mechanics; владелец уже
+сохранил замену двух отдельных 18650 в `DEC-0062`, поэтому следующий вход —
+charge/power-path choice из `PWR-0003/IMP-0053`.
 
 ## Current load classes
 
@@ -117,9 +117,9 @@ Primary references:
 - Load/scenario envelope: **reviewed**.
 - Legacy useful ideas: **separated from obsolete implementation**.
 - Legacy power source: **reference only; rejected as current target**.
-- First unresolved owner input: whether field replacement means a keyed 2S
-  assembly or arbitrary individual cells.
-- After that answer: compare exact pack/protector/gauge, then `C5V` versus
-  `CPD`, verify selected MPN availability and close every rail/switch/fault/
-  loss/thermal row.
-
+- Battery-format input: owner selected two individually replaceable cells in
+  `DEC-0062`; this retains the behavior but adds a hard pre-connect/reverse/
+  mismatch/removal safety boundary.
+- Next: select `C5V` versus `CPD` through `PWR-0003/IMP-0053`, then compare the
+  compatible exact cell-admission/protector/gauge parts, verify selected MPN
+  availability and close every rail/switch/fault/loss/thermal row.

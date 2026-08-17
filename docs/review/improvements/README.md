@@ -15,15 +15,18 @@
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
 Текущее открытое предложение —
-[`IMP-0052`](IMP-0052-safe-field-replaceable-2s-pack.md): выбрать между
-рекомендуемым keyed removable matched 2S assembly, сохранением двух отдельных
-commodity 18650 и sealed pack. Оно открыто потому, что legacy mockup содержал
-возможность отдельной замены банок, отсутствующую в явных wishlist rows.
+[`IMP-0053`](IMP-0053-5v-typec-versus-pd-charge-path.md): выбрать между
+рекомендуемым полным 5-V Type-C/NVDC power path и более дорогим USB-PD/
+buck-boost трактом. Старый BQ25887-вариант отклонён как dominated после
+добавления всех отсутствующих блоков.
 
 Последние закрытые предложения —
-[`IMP-0051`](IMP-0051-target-readmes-as-product-site.md), принятое как
-`DEC-0060`, и [`IMP-0050`](IMP-0050-aon-stop-and-per-path-tx-evidence.md),
-принятое вариантом A как `DEC-0061`.
+[`IMP-0052`](IMP-0052-safe-field-replaceable-2s-pack.md), принятое вариантом B
+как `DEC-0062`: две 18650 остаются отдельно заменяемыми, но не считаются
+произвольной допустимой парой; [`IMP-0051`](IMP-0051-target-readmes-as-product-site.md),
+принятое как `DEC-0060`, и
+[`IMP-0050`](IMP-0050-aon-stop-and-per-path-tx-evidence.md), принятое вариантом
+A как `DEC-0061`.
 
 [`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md) ранее принято
 вариантом B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.

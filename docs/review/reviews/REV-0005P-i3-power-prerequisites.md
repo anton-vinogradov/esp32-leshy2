@@ -1,6 +1,6 @@
 # REV-0005P — I3 power prerequisite review
 
-- Статус: **Проведено ревью пререквизитов; owner decision открыт**
+- Статус: **Проведено ревью пререквизитов; battery gate закрыт `DEC-0062`**
 - Дата: 2026-08-18
 - Artifact: [`PWR-0002`](../architecture/PWR-0002-i3-power-prerequisite-audit.md)
 - Finding: [`FND-0073`](../findings/FND-0073-legacy-power-is-not-a-current-target.md)
@@ -24,6 +24,6 @@
 ## Result
 
 The `I3` prerequisites are **Проведено ревью**. `I3` itself remains active.
-The next dependency is one owner answer to `IMP-0052`; charger, pack manager,
-rails and exact availability must not be frozen before it.
-
+The owner has since answered `IMP-0052/B` through `DEC-0062/REV-0005Q`. The
+next dependency is `PWR-0003/IMP-0053`; charger, pack manager, rails and exact
+availability remain unfrozen until that charge-path answer.

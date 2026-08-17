@@ -1,6 +1,6 @@
 # FND-0073 — legacy power sheet is not a current target
 
-- Статус: **Подтверждено; исправление начато в `PWR-0002/I3`**
+- Статус: **Подтверждено; battery ambiguity закрыта `DEC-0062`, power correction active**
 - Дата: 2026-08-18
 - Artifact: [`PWR-0002`](../architecture/PWR-0002-i3-power-prerequisite-audit.md)
 - Legacy source: [`hardware/tscircuit/power.tsx`](../../../hardware/tscircuit/power.tsx)
@@ -31,7 +31,7 @@ authorize KiCad.
 
 ## Correction
 
-`PWR-0002` re-derives loads and scenarios, preserves the valid 2S/rail ideas,
-opens the battery-format decision as `IMP-0052`, and compares current power-
-path directions only after that input is known.
-
+`PWR-0002` re-derives loads and scenarios and preserves the valid 2S/rail
+ideas. `DEC-0062` explicitly retains two individually replaceable cells with
+a new pre-connect/reverse/mismatch/removal safety boundary. Current power-path
+directions are now compared in `PWR-0003/IMP-0053`.

@@ -254,13 +254,16 @@ current load/scenario ledger retains 2S, the 2.5/3-A 3.3-V envelope and the
 dedicated 4-V voice result, while rejecting the legacy sheet as a target:
 BQ25887 has no system power path, its ADC is not a fuel gauge, two Rd resistors
 do not prove a 3-A source, the old master switch blocks off-state charging, and
-the old rails omit current safety/quiet-state branches. **⚠️ Proposal
-`IMP-0052`** is now the
-explicit owner gate because the legacy mockup's two separately replaceable
-18650 cells may be an unstated feature rather than disposable implementation.
-Exact AON source/hold-up, battery/charger/power path, every load switch and
-discharge path, monitoring, reverse current and calculated loss/thermal/fault
-budgets remain active after that answer.
+the old rails omit current safety/quiet-state branches. The owner accepted
+`IMP-0052/B` as `DEC-0062`: two 18650 cells remain individually replaceable,
+but they are not an arbitrary admissible pair. Mechanical reverse-insertion
+blocking and pre-admission observation of both cell voltages/temperature must
+keep charge/discharge FETs open on mismatch, removal or contact bounce.
+`REV-0005Q` reviews the propagation. **⚠️ Proposal `IMP-0053`** is now the
+explicit owner gate between a complete 5-V Type-C/NVDC path and a higher-cost
+USB-PD/buck-boost path. Exact AON source/hold-up, cell admission/protection/
+gauge, every load switch and discharge path, monitoring, reverse current and
+calculated loss/thermal/fault budgets remain active after that answer.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

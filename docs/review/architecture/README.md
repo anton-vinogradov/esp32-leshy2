@@ -65,8 +65,11 @@ machine-projected. `I3` power/rail/thermal closure is now active.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
-the accepted AON/voice/current envelope. `IMP-0052` now asks whether field
-replacement means a keyed matched 2S assembly or two arbitrary loose cells.
+the accepted AON/voice/current envelope. The owner accepted `IMP-0052/B` as
+`DEC-0062`: the two 18650 cells remain individually replaceable, but admission
+is pair-aware and fail-closed rather than accepting arbitrary loose cells.
+`PWR-0003` now compares complete 5-V Type-C and USB-PD charge/power paths;
+`IMP-0053` is the active owner decision.
 
 ## Active G2F artifacts
 
@@ -80,8 +83,10 @@ replacement means a keyed matched 2S assembly or two arbitrary loose cells.
   measured proof remains explicit;
 - [`PWR-0002`](PWR-0002-i3-power-prerequisite-audit.md) re-derives the `I3`
   loads/scenarios, preserves only the valid 2S/rail ideas from the old source
-  and opens the field-replaceable battery boundary as `IMP-0052` before exact
-  charger/protector/gauge selection;
+  and closes the field-replaceable battery boundary through `DEC-0062`;
+- [`PWR-0003`](PWR-0003-charge-power-path-options.md) compares the complete
+  5-V Type-C/NVDC and USB-PD/buck-boost paths; `IMP-0053` selects the charge
+  input before exact charger/protector/gauge order codes are sourced;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

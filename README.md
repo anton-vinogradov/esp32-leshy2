@@ -70,6 +70,10 @@ privacy or the target owner's authorization.
 
 - Every programmable compute domain has its own programming, recovery and
   diagnostic path and does not depend on a healthy peer domain.
+- The 2S battery uses two individually replaceable 18650 cells. Reverse
+  insertion is mechanically blocked; the device checks both cells before
+  charge or discharge and refuses a mismatched or unsafe pair instead of
+  forcing it to operate or balance.
 - Signed updates validate their target and support rollback. Build keys and the
   ability to install owner firmware remain owner-controlled; irreversible
   lockdown is not enabled by default.

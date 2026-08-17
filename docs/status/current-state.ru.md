@@ -253,12 +253,15 @@ load/scenario ledger сохраняет 2S, 3.3-V envelope `2.5/3 A` и отде
 voice result, но отклоняет legacy sheet как target: у BQ25887 нет system power
 path, его ADC не является fuel gauge, два Rd не доказывают 3-A source, старый
 master switch блокирует зарядку в OFF, а прежние rails не содержат current
-safety/quiet-state branches. **⚠️ Предложение `IMP-0052`** теперь явный owner
-gate: две отдельно
-заменяемые 18650 из legacy mockup могут быть не пропавшей реализацией, а
-неявной дополнительной функцией. После ответа остаются активны exact AON
-source/hold-up, battery/charger/power path, все load switches/discharge paths,
-monitoring, reverse current и рассчитанные loss/thermal/fault budgets.
+safety/quiet-state branches. Владелец принял `IMP-0052/B` как `DEC-0062`: две
+18650 остаются отдельно заменяемыми, но не считаются произвольной допустимой
+парой. Механическая защита от переполюсовки и наблюдение обеих ячеек до допуска
+обязаны держать charge/discharge FET открытыми при mismatch, извлечении или
+дребезге контакта. Распространение проверено в `REV-0005Q`. **⚠️ Предложение
+`IMP-0053`** теперь явный owner gate между полным 5-V Type-C/NVDC и более
+дорогим USB-PD/buck-boost трактом. После ответа остаются активны exact AON
+source/hold-up, cell admission/protection/gauge, все load switches/discharge
+paths, monitoring, reverse current и рассчитанные loss/thermal/fault budgets.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

@@ -71,9 +71,11 @@ enclosure/control layout не продолжается до совместног
 `PWR-0002/FND-0073/REV-0005P` уже проводят ревью его prerequisites: valid 2S,
 4-V voice и switched-branch principles сохранены, но старые BQ25887/no-power-
 path, fixed-input-current, pseudo-gauge и obsolete rail sizes отклонены как
-target. `IMP-0052` теперь отдельно проверяет, была ли legacy-возможность менять
-две отдельные 18650 реальным требованием или её следует заменить keyed matched
-removable 2S assembly.
+target. Владелец принял `IMP-0052/B` как `DEC-0062`: две 18650 остаются
+отдельно заменяемыми, но до допуска пары аппаратно проверяются обе ячейки;
+переполюсовка, mismatch, извлечение и bounce должны приводить к fail-closed.
+`PWR-0003/IMP-0053` теперь выбирают между полным 5-V Type-C/NVDC и USB-PD/
+buck-boost charge/power path.
 
 ## Downstream boundary
 
