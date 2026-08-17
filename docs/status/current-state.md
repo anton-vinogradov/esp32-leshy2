@@ -238,7 +238,17 @@ Local part-envelope checks remain allowed; enclosure/control layout does not.
 `FND-0070/IMP-0049` are closed by option A: current 1-bit C5 SDIO leaves C5
 native USB GPIO13/14 and S3 default UART0 GPIO43/44 independent. M5 Unit UART
 uses UART1 on its unchanged GPIO7/8 port. Framed-throughput/reset/RF-load HIL
-remains required; 4-bit is fallback only after failure. `I2` is active.
+remains required; 4-bit is fallback only after failure.
+
+`SAFE-0001/REV-0005M` review the `I2` prerequisites and open critical
+`FND-0071`. Historical `DEC-0024` named only S3+C5; the current STOP contract
+is corrected to S3 `CHIP_PU` + C5 `CHIP_PU` + RP2354B `RUN` and every external
+gate. The working map has actual-TX endpoints for S3/C5/voice/IR but none for
+3×nRF or CC1101. **⚠️ Proposal `IMP-0050/A`** adds an AON latch/gates, seven
+individual RF detectors plus optical IR evidence, hardware `ANY_TX` and an
+8-bit source mask over local RP I2C0 without a new pin. A parallel BAT15 coupon
+tests no-loss cost-down. Owner decision is required; the machine map and living
+diagrams remain unchanged until acceptance, and `I2` stays active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

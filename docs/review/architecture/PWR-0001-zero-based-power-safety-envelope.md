@@ -38,7 +38,7 @@ Allowances are rail sizing ceilings, not component acceptance and not permission
 | Domain | Loads | Normal state | STOP/fault behavior |
 |---|---|---|---|
 | `BAT_2S` | accepted 6.0…8.4 V pack, protection, gauge, charger/power-path | always supervised | protection/ship-mode/brownout force downstream TX-off |
-| `3V3_CORE` | S3, C5, optional RP, supervisor, UI, storage, control logic | on while device operates | STOP does not depend on software; core may remain on long enough to show/log fault |
+| `3V3_CORE` | selected compute domains (current candidate S3, C5, RP), supervisor, UI, storage, control logic | on while device operates | STOP does not depend on software; current hard-STOP contract resets every compute domain and does not wait to log |
 | `3V3_PKT` | 3×nRF, CC1101 and their TX-capable frontend | current-limited switched branch from common 3.3 V converter | reset default off or TX-inhibited; STOP asynchronously forces CE/PTX/TX path safe and may cut branch |
 | `3V3_AUDIO` | ES8311, Si4732/control, analog mux/amp/mic frontend | pop-safe sequenced branch | mute/bypass state defined before MCU; RF fault cannot command TX |
 | `5V_EXT` | exactly one qualified U214/Unit GPS/U216/generic profile as policy permits | off until identity/profile/power checks | current limit, reverse/backfeed block and removal detect; U214/NFC RF disabled by STOP |
@@ -65,7 +65,7 @@ These floors are not promises that every rail may be loaded simultaneously. Conv
 
 | Scenario | Mandatory loads | Explicitly not assumed | Pass condition |
 |---|---|---|---|
-| boot/recovery/update | AON, S3/C5, UI, storage/USB as needed | every TX rail on | TX-off before application boot; reset/inrush does not false-arm |
+| boot/recovery/update | AON, every selected compute domain, UI, storage/USB as needed | every TX rail on | TX-off before application boot; reset/inrush does not false-arm |
 | `CS-04` three-sector hunt | S3/C5, 3×nRF RX, UI, record, optional RP | three nRF PA TX peaks | no rail droop, clock/RPD corruption or uncounted FIFO loss |
 | `CS-05` wardrive | selected native/RX producers, display, GNSS if attached, SD | all selectable transmitters at maximum | admission reports power/thermal profile and visible gaps |
 | `CS-07` voice TX | core/UI/audio, `VVOICE` up to 1.25 A, PTT/dead-man/STOP | unrelated RF TX or 5 V accessory maximum | ≥10 s keyed test and duty/thermal profile without core reset; release/STOP bounded |

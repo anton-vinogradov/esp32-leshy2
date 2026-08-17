@@ -66,7 +66,7 @@
 | `RI-NFC` | U216-class | 5 V accessory power profile, 3.3 V-safe bounded control/event path, attachment identity and RF-field inhibit | unknown/removal/fault = RF off; sensitive state protected |
 | `RI-IPC` | cross-domain | typed control, event and bulk-data classes; monotonic time correlation; liveness/reset/version and lease cancellation | no unbounded message, stale owner or TX survival after link loss |
 | `RI-REC` | each programmable domain | independent reset/boot/recovery entry plus observable target identity | a broken peer/application cannot prevent reflashing or safe boot |
-| `RI-STOP` | all TX | asynchronous latch input, physical re-arm, reset dominance for S3/C5, separate inhibit/cut reach to external TX domains and independent visible state | no firmware/I²C/expander dependency in the kill path |
+| `RI-STOP` | all TX | asynchronous latch input, physical re-arm, reset dominance for every selected compute domain (current working map: S3/C5/RP), separate inhibit/cut reach to external TX domains and independent visible state | no firmware/I²C/expander dependency in the kill path |
 
 `RI-*` counts logical requirements. Physical pin cost is calculated later for each implementation: direct signals, decoder/latch, interrupt aggregation and extra controller are compared on the same semantics.
 

@@ -57,13 +57,20 @@ values, exact power circuit and HIL remain open.
 `DEC-0058` now pauses the integrated mockup until the internal chain is jointly
 reviewed. `INT-0001/I1` has **Проведено ревью** through
 `DEC-0059/REV-0005L`: 1-bit C5 SDIO restores S3 UART0 and C5 native USB,
-while M5 Unit UART moves to UART1 on the same pins. `I2` is active next.
+while M5 Unit UART moves to UART1 on the same pins. `SAFE-0001/REV-0005M` now
+review `I2` prerequisites and expose `FND-0071`: STOP must also reset RP2354B,
+and 3×nRF/CC lack physical evidence. `IMP-0050` is the active owner decision;
+no exact safety component is yet part of the working target.
 
 ## Active G2F artifacts
 
 - [`INT-0001`](INT-0001-internal-design-closure-sequence.md) defines the
   dependency-ordered `I0…I9` paper/electrical closure required before the
   integrated physical mockup resumes;
+- [`SAFE-0001`](SAFE-0001-aon-stop-and-tx-evidence-options.md) reviews the `I2`
+  AON latch/gate truth table, all eight onboard evidence channels, exact
+  first-target MPNs and no-new-RP-GPIO aggregation. `FND-0071` remains open
+  pending the owner choice in `IMP-0050` and subsequent circuit propagation;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

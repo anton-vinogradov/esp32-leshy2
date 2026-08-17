@@ -53,9 +53,14 @@ Long-BACK остаётся быстрым software panic-kill без обяза�
 ## Критерии доказательства варианта A
 
 1. Для каждого TX-path построена таблица `STOP asserted → physical off mechanism → measured kill time → release state`.
-2. STOP прекращает continuous/max-power TX при зависших S3, C5, I²C и каждой прикладной задаче; actual-TX LED подтверждает прекращение RF.
+2. STOP прекращает continuous/max-power TX при зависших S3, C5, RP, I²C и
+   каждой прикладной задаче; независимый aggregate actual-TX indicator
+   подтверждает прекращение onboard RF/IR, а source mask не подменяется
+   command/current state.
 3. Удержание STOP не вызывает циклического re-arm, back-power или неопределённых rail states.
-4. После отпускания оба MCU и все RF-компоненты проходят допустимую power/reset sequence и остаются TX-off до явного действия.
+4. После physical re-arm все compute domains и RF-компоненты проходят
+   допустимую power/reset sequence и остаются TX-off до явного действия;
+   простое отпускание STOP ничего не восстанавливает.
 5. Все девять кнопок, одиночные нажатия и принятые chords проходят ghosting/debounce/latency test; отказ строки/столбца обнаруживается self-test.
 6. Touch interrupt, audio selector defaults и codec control не ухудшаются из-за общей PCA9555/I²C нагрузки.
 7. Сводный pin audit подтверждает отсутствие повторного назначения после выбора S3↔C5 transport, удаления onboard LoRa и реализации `DEC-0009`.

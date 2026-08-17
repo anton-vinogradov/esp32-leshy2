@@ -237,7 +237,17 @@ UI/storage, audio, RF/IR/voice, expansion и consolidated component evidence.
 `FND-0070/IMP-0049` закрыты вариантом A: current 1-bit C5 SDIO оставляет C5
 native USB GPIO13/14 и S3 default UART0 GPIO43/44 независимыми. M5 Unit UART
 использует UART1 на прежнем порту GPIO7/8. Framed-throughput/reset/RF-load HIL
-остаётся обязательным; 4-bit — только fallback после провала. Активен `I2`.
+остаётся обязательным; 4-bit — только fallback после провала.
+
+`SAFE-0001/REV-0005M` провели ревью пререквизитов `I2` и открыли критичный
+`FND-0071`. Исторический `DEC-0024` говорил только о S3+C5; актуальный STOP
+исправлен документально до S3 `CHIP_PU` + C5 `CHIP_PU` + RP2354B `RUN` и всех
+внешних gates. Current map имеет actual-TX endpoints для S3/C5/voice/IR, но не
+для 3×nRF и CC1101. **⚠️ Предложение `IMP-0050/A`** добавляет AON latch/gates,
+семь отдельных RF detectors + optical IR detector, аппаратный `ANY_TX` и
+8-bit source mask через local RP I²C0 без расхода новой ноги. Параллельный
+BAT15 coupon проверяет no-loss cost-down. Требуется решение владельца; machine
+map и living diagrams до принятия не изменены, `I2` остаётся active.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

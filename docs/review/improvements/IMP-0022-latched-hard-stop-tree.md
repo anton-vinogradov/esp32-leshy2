@@ -1,10 +1,15 @@
-# ⚠️ IMP-0022 — latched hard-STOP tree с перезапуском обоих MCU
+# IMP-0022 — latched hard-STOP tree с перезапуском всех compute domains
 
 - Статус: **Принят вариант A как `DEC-0024`; проведено ревью**
 - Этап: 3 — системная архитектура и владение
 - Дата: 2026-08-16
 - Основание: `DM-SAFE-01`, `FND-0007`, `IMP-0010`, `PIN-0001`
-- Затрагивает: оба MCU, все встроенные и внешние TX paths, power tree, recovery, UI session
+- Затрагивает: все compute domains, все встроенные и внешние TX paths, power tree, recovery, UI session
+
+> Subsequent correction 2026-08-17: historical `оба MCU` described S3+C5.
+> Current `G2F-3I` adds RP2354B, so the accepted invariant also drives RP
+> `RUN`. See `FND-0071/REV-0005M`. Это исправление распространения принятого
+> STOP, а не повторно открытое предложение.
 
 ## Контекст решения
 
@@ -16,15 +21,20 @@
 
 Физическая кнопка асинхронно устанавливает независимую аппаратную защёлку `TX_KILL`:
 
-1. аппаратно удерживает `EN` S3 и C5 в reset;
+1. аппаратно удерживает `CHIP_PU` S3/C5 и `RUN` RP2354B в reset;
 2. отключает отдельные switched rails всех TX-capable внешних RF/IR/accessory domains либо их эквивалентные hardware inhibit paths;
 3. независимо принуждает voice `PTT` в RX и снимает разрешение PA до исчезновения питания тракта;
 4. принуждает IR driver в off независимо от C5;
 5. имеет собственную видимую индикацию защёлкнутого STOP, не зависящую от UI;
 6. не снимается отпусканием кнопки и не может быть снят одной firmware-командой;
-7. re-arm разрешён только после отпущенного STOP отдельным физическим действием или power cycle; после re-arm устройство проходит обычный boot с TX-default-off и без восстановления старой TX lease.
+7. re-arm разрешён только после отпущенного STOP отдельным физическим
+   действием или power cycle; после re-arm все compute domains проходят
+   обычный boot с TX-default-off и без восстановления старой TX lease.
 
-Цена этого свойства: активная сессия, UI state и приём прекращаются, оба MCU перезапускаются. Журнал может восстановить только записи, уже сброшенные в энергонезависимое хранилище; STOP нельзя задерживать ради записи лога.
+Цена этого свойства: активная сессия, UI state и приём прекращаются, все
+compute domains перезапускаются. Журнал может восстановить только записи, уже
+сброшенные в энергонезависимое хранилище; STOP нельзя задерживать ради записи
+лога.
 
 ## Вариант B — selective TX inhibit
 
@@ -42,7 +52,8 @@ S3/UI и часть приёмников продолжают работать, 
 - fault-open/short и loss-of-power состояния safety chain документируются; одиночный I²C/software fault не отменяет STOP;
 - attached accessory получает питание/разрешение только через квалифицированный STOP-dominant профиль;
 - re-arm не восстанавливает предыдущий канал, мощность, payload, target или TX lease;
-- HIL включает зависание обоих MCU, active TX, brownout, update, expander/bus fault и accessory fault;
+- HIL включает зависание каждого compute domain, active TX, brownout, update,
+  expander/bus fault и accessory fault;
 - actual-TX detection из `DM-SAFE-02` остаётся отдельным требованием: STOP tree не подменяет доказательство фактического TX.
 
 ## Решение владельца

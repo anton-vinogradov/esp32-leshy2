@@ -43,6 +43,13 @@ installed-cap HIL открытыми.
 UART0 RF-test access. 4-bit остаётся только fallback после провала measured
 framed-throughput HIL.
 
+[`IMP-0050`](IMP-0050-aon-stop-and-per-path-tx-evidence.md) — активное
+**⚠️ Предложение** для `INT-0001/I2`. Вариант A рекомендует трёхдоменный AON
+hard STOP и отдельное physical evidence для семи onboard RF paths + IR,
+используя общий `RP.GPIO22` и local-I²C source mask без новой ноги. Параллельный
+BAT15 coupon проверяет cost-down; shared/inferred evidence отклонено
+саморевью как потеря функции. Требуется решение владельца.
+
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,
 отдельный TX selector и reset-safe GPIO6 `AUDIO_ARM`. Passive capture остаётся
