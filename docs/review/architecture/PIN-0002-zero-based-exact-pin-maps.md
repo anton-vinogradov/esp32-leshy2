@@ -224,7 +224,7 @@ All 30 GPIO are used; dedicated `USB_DP/DM`, `SWDIO/SWCLK` and `RUN` retain reco
 | 18 | `VOICE_PTT_N` O | direct/dead-man | pull-up + STOP gate |
 | 19 | `VOICE_PD` O | direct | pull-down/off |
 | 20 | `VOICE_HL` O | direct | pull-down/low power |
-| 21 | `VOICE_SQ` I | direct | qualified input |
+| 21 | `VOICE_ACTIVITY` I | direct | qualified activity/status input; exact SA518 has no dedicated SQ pin (`FND-0056`) |
 | 22 | `PTT_BUTTON_N` I | direct | pull-up; lease-gated |
 | 23 | `VOICE_TX_EVIDENCE` I | detector | command and evidence separate |
 | 24 | `RP_IPC_MOSI` I | SPI1 RX | S3→RP |

@@ -30,8 +30,8 @@
 | high-power nRF reference | Ebyte `E01-2G4M27D`, 18×33.4 mm through-hole, 27 dBm | manufacturer product/manual expose `GND/VCC/CE/CSN/SCK/MOSI/MISO/IRQ`; size/power/antenna burden differs materially | `reference only`; not a default stuffing choice |
 | three production nRF paths | three identical compact 0 dBm IPEX→SMA paths; `E01-ML01IPX` reference | Nordic nRF24 interface is known, but Nordic marks nRF24 series not recommended for new designs; generic marketplace boards are not provenance | direction accepted `DEC-0048`; exact production MPN/revision, authorised sourcing, lot identity and qualified alternate remain `open/blocking` |
 | CC1101 path | `CC1101RGPR` VQFN20 bare-IC candidate | official TI pin table proves exact silicon contacts `SCLK/SI/SO/GDO0/GDO2/CSn/RF_P/RF_N`; current TI order page says `ACTIVE`; it still does not prove crystal, matching network or antenna connector | `verified active silicon candidate`; RF implementation remains `open/blocking`, see lifecycle correction `FND-0050` |
-| analog voice | SA518 preferred / SA868S fallback family | command/function review exists, but exact orderable module revision/padout/body is not frozen | `open/blocking` |
-| broadcast receiver | Si4732 family | function/patch contract reviewed; exact orderable suffix/package, required pins and RF network remain open | `open/blocking` |
+| analog voice | NiceRF `SA518` rev 1.1 preferred / SA868S fallback | current manufacturer sheet exposes 20 physical contacts, one 50-ohm `ANT` on pin 7, UART/PTT/PD/H-L/audio functions and 136–174/400–470 MHz; it exposes no dedicated `SQ`, while pin 17 `UPDATE` has a direction/description conflict | `verified candidate boundary`; `FND-0056` neutralizes the false SQ mapping, while production source/lot, activity semantics, update fixture, footprint and RF HIL remain `open/blocking` |
+| broadcast receiver | Skyworks `Si4732-A10-GS`, SOIC16 | manufacturer ordering guide and physical pin table expose `FMI=1`, `RFGND=2`, `AMI=3`; block diagram assigns FM/SW to FMI and AM/LW to AMI | `verified candidate boundary`; two input domains proven, exact lifecycle/AVL and external frontend/count wait `ANT-0001/IMP-0041` |
 | codec | ES8311 family | audio contract reviewed; exact MPN/package and accessible reset/control implementation remain open | `open/blocking` |
 | IR RX/TX | `TSOP38238`, `TSMP95000`, `TSAL6200` first discrete candidates | manufacturer part-level functions/packages are known; exact optical/electrical stuffing and driver remain conditional | `candidate facts`; finish package/driver/availability and HIL before count becomes target |
 | display/touch | Waveshare SKU 29318, Elecrow `DLS31040B1` and Riverdi `RVT35HITNWC00-B` references | exact module/FPC contacts, dimensions, controllers and power boundaries are recorded in `devices.json`; `DEC-0043` replaces the invalid historical 4.5 MB/s gate with task/dirty-region acceptance | `verified references`; performance contract reviewed, exact MPN/interface/optics and HIL remain `open/blocking`, see `DSP-0001/FND-0051/DEC-0043` |
@@ -56,6 +56,8 @@
 - [Ebyte E01-2G4M27D actual module page](https://www.ebyte.com/product/449.html)
 - [Raspberry Pi RP2350/RP2354 package pinout](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
 - [TI CC1101 exact silicon datasheet](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
+- [Skyworks Si4732-A10 exact SOIC16 boundary](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf)
+- [NiceRF SA518 rev 1.1 exact module boundary](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf)
 - [TI TCA9535 exact package datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf)
 - [TI TCA6424A exact package datasheet](https://www.ti.com/lit/ds/symlink/tca6424a.pdf)
 - [TI TCA4307 hot-swap/stuck-bus buffer datasheet](https://www.ti.com/lit/ds/symlink/tca4307.pdf)

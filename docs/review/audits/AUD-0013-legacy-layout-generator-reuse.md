@@ -33,7 +33,8 @@
 | `MAIN=S3`, `C5 board=co-processor` и прежние owners | переоткрыты; определяются новым `G2F` |
 | три nRF и IR автоматически принадлежат C5 | только историческая раскладка |
 | onboard LoRa и его antenna | исключены; LoRa внешний U214/Unit profile |
-| девять board antennas | пересчитываются по exact RF candidates |
+| девять board antennas | пересчитываются по exact RF candidates; `ANT-0001/FND-0055` подтверждают 9 только при separate Si4732 FMI/AMI, а не из-за former onboard LoRa |
+| один generic `Si4732` SMA | электрически неполон: exact device выводит разные `FMI` FM/SW и `AMI` AM/LW domains; исправляется только в active adapted generator после `IMP-0041` |
 | generic `nRF+PA/LNA` footprint | недопустим без exact MPN; реальные варианты существенно различаются |
 | крупные generic component zones | не доказывают packing, keepout, cable bend, thermal или service access |
 | прежние connector/pin counts | пересчитываются после нового semantic demand и device provenance |

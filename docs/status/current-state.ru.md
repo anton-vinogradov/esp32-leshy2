@@ -116,8 +116,15 @@ interfaces и отдают RP GPIO15/GPIO23 плюс C5 GPIO4 под group-level
 `T1 Leshy2` fixture. `N24M-0001` проверяет реальные `E01-ML01S`,
 `E01-ML01IPX` и `E01-2G4M27D`; `DEC-0048` принимает `IMP-0040/A`: все
 бортовые antenna endpoints внешние SMA, а три nRF используют три compact
-IPEX→SMA paths. Измеренные envelope points, exact production lots, power parts,
-self-desense и target HIL остаются открытыми. `FND-0050` фиксирует nRF24 NRND и
+IPEX→SMA paths. `ANT-0001/REV-0004P` проверяют count для S3/C5/nRF/SA518 и
+фиксируют `FND-0055`: у exact Si4732 отдельные `FMI` FM/SW и `AMI` AM/LW, а
+generic long coax способен нарушить capacitance budget AMI. Поэтому
+`IMP-0041` оставляет текущим решением владельца 9 dedicated SMA против 8 с
+shared switched RX port. Измеренные envelope points, exact production lots, power parts,
+self-desense и target HIL остаются открытыми. Та же exact-device проверка
+нашла `FND-0056`: у SA518 rev 1.1 нет dedicated SQ, поэтому maps теперь
+резервируют neutral `VOICE_ACTIVITY`, а pin-17 UPDATE остаётся fixture proof
+gate. `FND-0050` фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -125,7 +132,8 @@ self-desense и target HIL остаются открытыми. `FND-0050` фи�
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее `G2F-3I` фиксирует exact production nRF MPN/lot, SMA/feed implementation
+Далее владелец решает `IMP-0041`; затем `G2F-3I` фиксирует exact production
+nRF MPN/lot, SMA/feed implementation
 и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
 `T1` profiles. После этого проходит quiet-state power-part, physical
 RF/self-desense, exact peripheral,

@@ -89,7 +89,7 @@
     {"instance":"rp","contact":"GPIO18","net":"VOICE_PTT_N","direction":"o","controller":"GPIO","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO19","net":"VOICE_PD_N","direction":"o","controller":"GPIO","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO20","net":"VOICE_HL","direction":"o","controller":"GPIO","peers":["abstract:exact SA518/SA868 voice module"]},
-    {"instance":"rp","contact":"GPIO21","net":"VOICE_SQ","direction":"i","controller":"GPIO_IRQ","peers":["abstract:exact SA518/SA868 voice module"]},
+    {"instance":"rp","contact":"GPIO21","net":"VOICE_ACTIVITY","direction":"i","controller":"GPIO_IRQ","peers":["abstract:exact voice-module qualified activity/status output; SA518 has no dedicated SQ pin"]},
     {"instance":"rp","contact":"GPIO22","net":"PTT_BUTTON_N","direction":"i","controller":"GPIO_IRQ","peers":["abstract:physical PTT switch"]},
     {"instance":"rp","contact":"GPIO23","net":"VOICE_TX_EVIDENCE","direction":"i","controller":"GPIO_IRQ","peers":["abstract:independent actual-TX detector"]},
     {"instance":"rp","contact":"GPIO24","net":"S3_RP_IPC_MOSI","direction":"i","controller":"SPI1_IPC","peers":["s3.GPIO21"]},

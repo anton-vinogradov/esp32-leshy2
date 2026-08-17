@@ -123,7 +123,7 @@
     {"instance":"rp","contact":"GPIO17","net":"VOICE_UART_RX","direction":"i","controller":"UART0","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO18","net":"VOICE_PTT_N","direction":"o","controller":"GPIO","peers":["abstract:exact SA518/SA868 voice module"]},
     {"instance":"rp","contact":"GPIO19","net":"RP_ALERT_N","direction":"od","controller":"GPIO_IRQ","peers":["s3.GPIO3"]},
-    {"instance":"rp","contact":"GPIO20","net":"VOICE_SQ","direction":"i","controller":"GPIO_IRQ","peers":["abstract:exact SA518/SA868 voice module"]},
+    {"instance":"rp","contact":"GPIO20","net":"VOICE_ACTIVITY","direction":"i","controller":"GPIO_IRQ","peers":["abstract:exact voice-module qualified activity/status output; SA518 has no dedicated SQ pin"]},
     {"instance":"rp","contact":"GPIO21","net":"PTT_BUTTON_N","direction":"i","controller":"GPIO_IRQ","peers":["abstract:physical PTT switch"]},
     {"instance":"rp","contact":"GPIO22","net":"VOICE_TX_EVIDENCE","direction":"i","controller":"GPIO_IRQ","peers":["abstract:independent actual-TX detector"]},
     {"instance":"rp","contact":"GPIO23","net":"CC_PWR_EN","direction":"o","controller":"GPIO","peers":["abstract:off-safe CC1101 load switch"]},
@@ -258,6 +258,6 @@
     "DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points",
     "SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient",
     "DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO",
-    "exact display/touch, codec, receiver, voice module, IR frontends, power tree, antenna placement and hard-stop circuitry remain open before target-architecture acceptance"
+    "exact display/touch, codec, receiver, voice module including SA518 activity and UPDATE contact proof, IR frontends, power tree, antenna placement and hard-stop circuitry remain open before target-architecture acceptance"
   ]
 }

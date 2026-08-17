@@ -58,6 +58,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
+    def test_exact_sa518_does_not_regress_to_a_fictional_sq_pin(self):
+        voice = self.database["devices"]["nicerf_sa518_v11"]
+        self.assertNotIn("SQ", voice["contacts"])
+        self.assertIn("AUDIO_ON", voice["contacts"])
+        self.assertIn("UPDATE", voice["contacts"])
+        for candidate in self.candidates:
+            self.assertFalse(
+                any(row["net"] == "VOICE_SQ" for row in candidate["allocations"]),
+                candidate["id"],
+            )
+
     def test_rejects_allocated_strap_without_proof(self):
         candidates = copy.deepcopy(self.candidates)
         candidate = next(c for c in candidates if c["id"] == "G2F-2R")

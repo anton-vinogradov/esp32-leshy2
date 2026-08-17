@@ -17,12 +17,18 @@
 | `RF-C5-DUAL` | C5 native 2.4/5 GHz Wi-Fi + 802.15.4 | один принятый dual-band module/ANT1 path; native modes time-share |
 | `RF-N24-0..2` | три full-function nRF24 + три sector/calibration identities | три физических transceiver/antenna paths; один radio+switch запрещён |
 | `RF-CC` | CC1101 sub-GHz | own matching/filter/antenna profile |
-| `RF-RX` | Si4732 receive | own receive/frontend/antenna profile |
+| `RF-RX` | Si4732 receive | один logical receiver session, но два physical input domains: `FMI` для FM/SW и `AMI` для AM/LW; shared либо separate SMA выбирается только после frontend proof |
 | `RF-VOICE` | SA518 VHF/UHF voice/modem | own TX-capable dual-band antenna profile |
 | `RF-U214` | attached 868/915-class LoRa/FSK + GNSS | removable M5 profile with its own antennas/cable geometry |
 | `RF-NFC` | attached 13.56 MHz U216-class near field | removable local-field profile, not a far-field antenna claim |
 
 Exact antennas/connectors remain stage 4/5 choices. RF paths may share an enclosure but may not be collapsed through an RF switch/diplexer unless the replacement preserves required simultaneous receive, calibration, loss, fail-safe isolation and every supported band. In particular, merging `RF-CC`, `RF-RX` or `RF-VOICE` merely because some bands overlap is not zero-loss.
+
+[`ANT-0001`](ANT-0001-external-sma-path-inventory.md) further decomposes
+`RF-RX`: exact `Si4732-A10-GS` exposes `FMI` and `AMI` as different antenna
+inputs. They do not create simultaneous receiver modes, but one generic SMA
+cannot be assumed to preserve both frontends. The external endpoint count is
+therefore open in [`IMP-0041`](../improvements/IMP-0041-exact-external-sma-count.md).
 
 ## Source-backed layout invariants
 

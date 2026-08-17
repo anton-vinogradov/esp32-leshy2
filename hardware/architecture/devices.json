@@ -510,6 +510,76 @@
         "EPAD": {"physical": "exposed die-attach pad", "role": "power"}
       }
     },
+    "skyworks_si4732_a10_gs": {
+      "mpn": "Si4732-A10-GS",
+      "kind": "broadcast_receiver_soic16",
+      "qualification": "verified_candidate",
+      "lifecycle": "manufacturer_documented",
+      "dimensions_mm": [9.9, 6.0, 1.75],
+      "source": {
+        "document": "Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short",
+        "version": "2021-09-13",
+        "url": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "FMI": {"physical": "1", "role": "rf"},
+        "RFGND": {"physical": "2", "role": "power"},
+        "AMI": {"physical": "3", "role": "rf"},
+        "GPO1": {"physical": "4", "role": "signal"},
+        "GPO2_INTB": {"physical": "5", "role": "signal"},
+        "GPO3_DCLK": {"physical": "6", "role": "signal"},
+        "LOUT_DFS": {"physical": "7", "role": "analog"},
+        "NC": {"physical": "8", "role": "reserved"},
+        "RST": {"physical": "9", "role": "signal"},
+        "ROUT_DOUT": {"physical": "10", "role": "analog"},
+        "GND": {"physical": "11", "role": "power"},
+        "VDD": {"physical": "12", "role": "power"},
+        "SCLK": {"physical": "13", "role": "signal"},
+        "SENB": {"physical": "14", "role": "strap"},
+        "SDIO": {"physical": "15", "role": "signal"},
+        "RCLK": {"physical": "16", "role": "clock"}
+      }
+    },
+    "nicerf_sa518_v11": {
+      "mpn": "NiceRF SA518",
+      "kind": "dual_band_analog_voice_module",
+      "qualification": "verified_candidate",
+      "lifecycle": "current_product",
+      "dimensions_mm": [39.5, 24.0, 3.15],
+      "source": {
+        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
+        "version": "1.1 / 2026-05",
+        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": true,
+      "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
+      "service_required": ["UPDATE", "UART_TX", "UART_RX", "PD"],
+      "contacts": {
+        "MIC_IN": {"physical": "1", "role": "analog"},
+        "UART_TX": {"physical": "2", "role": "signal"},
+        "UART_RX": {"physical": "3", "role": "signal"},
+        "VOXEN": {"physical": "4", "role": "signal"},
+        "NC_5": {"physical": "5", "role": "reserved"},
+        "NC_6": {"physical": "6", "role": "reserved"},
+        "ANT": {"physical": "7", "role": "rf"},
+        "GND_8": {"physical": "8", "role": "power"},
+        "GND_9": {"physical": "9", "role": "power"},
+        "GND_10": {"physical": "10", "role": "power"},
+        "VCC": {"physical": "11", "role": "power"},
+        "HL": {"physical": "12", "role": "signal"},
+        "PD": {"physical": "13", "role": "signal"},
+        "PTT": {"physical": "14", "role": "signal"},
+        "NC_15": {"physical": "15", "role": "reserved"},
+        "AFOUT": {"physical": "16", "role": "analog"},
+        "UPDATE": {"physical": "17", "role": "service"},
+        "AUDIO_ON": {"physical": "18", "role": "signal"},
+        "GND_19": {"physical": "19", "role": "power"},
+        "GND_20": {"physical": "20", "role": "power"}
+      }
+    },
     "tca9535pwr": {
       "mpn": "TCA9535PWR",
       "kind": "tssop24",

@@ -117,9 +117,17 @@ becomes an early `L0 DIV↔DIV` pre-HIL observer, but does not replace the targe
 `T1 Leshy2` fixture. `N24M-0001` verifies real `E01-ML01S`,
 `E01-ML01IPX` and `E01-2G4M27D` boundaries; `DEC-0048` accepts `IMP-0040/A`:
 all onboard antenna endpoints are external SMA and the three nRF paths use
-three compact IPEX→SMA feeds. Measured envelope points, exact production lots,
+three compact IPEX→SMA feeds. `ANT-0001/REV-0004P` verify S3/C5/nRF/SA518
+endpoint counts and expose `FND-0055`: exact Si4732 has separate `FMI` FM/SW
+and `AMI` AM/LW inputs, while a generic long coax can violate the latter's
+capacitance budget. `IMP-0041` therefore leaves 9 dedicated SMA versus 8 with
+a shared switched RX port as the current owner decision. Measured envelope
+points, exact production lots,
 power parts, self-desense
-and target HIL remain the next gates. `FND-0050` records nRF24 NRND
+and target HIL remain the next gates. The same exact-device pass found
+`FND-0056`: SA518 rev 1.1 has no dedicated SQ pin, so maps now reserve neutral
+`VOICE_ACTIVITY`, while pin-17 UPDATE access remains a fixture proof gate.
+`FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -127,7 +135,8 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, `G2F-3I` fixes the exact production nRF MPN/lot and SMA/feed
+Next, the owner resolves `IMP-0041`; `G2F-3I` then fixes the exact production
+nRF MPN/lot and SMA/feed
 implementation, then advances `N24H-0001` from `L0 DIV↔DIV` pre-HIL to target
 `T1` profiles. It then receives quiet-state power-part, physical
 RF/self-desense, exact peripheral,
