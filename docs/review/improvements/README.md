@@ -14,11 +14,16 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Последний owner gate [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md)
-закрыт вариантом A в `DEC-0066`: exact `MAX17320G20+T` и
-`MSPM0C1104SDGS20R`. Текущий `I3` продолжает surrounding circuit без нового
-owner gate, пока сравнение FET/fuse/NTC/shunt/load/hold/supply-isolation не
-покажет материально разные продуктовые последствия. [`IMP-0055`](IMP-0055-battery-electrical-topology-after-reopen.md)
+Текущий owner gate — [`IMP-0056`](IMP-0056-deep-cell-recovery-boundary.md).
+`PWR-0007/FND-0077` обнаружили материальную развилку: MAX17320 использует CHG
+FET в линейном режиме для prequal, поэтому in-device recovery меняет FET,
+thermal/SOA validation и продуктовый safety boundary. Рекомендован A: base
+product отклоняет глубоко разряженную банку, а отдельное исследование возможно
+только внешней изолированной оснасткой в Controlled Zone.
+
+Предыдущий [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md) закрыт
+вариантом A в `DEC-0066`: exact `MAX17320G20+T` и
+`MSPM0C1104SDGS20R`. [`IMP-0055`](IMP-0055-battery-electrical-topology-after-reopen.md)
 ранее закрыто supervised 2S; альтернативы 1S остаются future-SKU evidence.
 
 Предыдущее [`IMP-0053`](IMP-0053-5v-typec-versus-pd-charge-path.md) закрыто

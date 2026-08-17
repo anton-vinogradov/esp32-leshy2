@@ -76,8 +76,11 @@ target. Владелец принял `IMP-0052/B` как `DEC-0062`: два 186
 приводить к fail-closed. `DEC-0063/PWR-0004` уже принимают exact sink-only
 USB-PD frontend. `DEC-0064/PWR-0006` сравнивают electrical series versus
 controlled-1S topology, а `DEC-0065` принимает supervised 2S; текущий exact
-manager принят в `DEC-0066`. Следующим закрывается его surrounding circuit и
-rail/loss/thermal tree.
+manager принят в `DEC-0066`. `PWR-0007/FND-0077/REV-0005W` проводят ревью
+2S tap rules, non-FET first targets, reset hold, supply isolation, ADC budget и
+ordinary conduction loss. Текущий `IMP-0056` выбирает recovery boundary,
+поскольку prequal MAX17320 линейно нагружает CHG FET; после него закрываются
+exact FET и rail/loss/thermal tree.
 
 ## Downstream boundary
 

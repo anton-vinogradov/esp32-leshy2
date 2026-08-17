@@ -278,6 +278,12 @@ are updated. Exact MAX17320 cell-tap/FET/fuse/NTC/shunt/diagnostic/hold and
 MCU-supply-isolation circuit, AON source/hold-up, every load switch and
 discharge path, monitoring, reverse current and calculated loss/thermal/fault
 budgets remain active after the manager/frontend reviews.
+`PWR-0007/FND-0077/REV-0005W` now review the exact 2S short-link rules, non-FET first targets,
+reset-default hold, isolated admission supply, two-ADC plan and ordinary
+conduction losses. They find that MAX17320 prequal linearly modulates the CHG
+FET; `IMP-0056` is the current owner gate between rejecting deep cells in the
+product or adding a linear-SOA/thermal recovery path. No new part is projected
+into the target diagram until that coupled choice closes.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

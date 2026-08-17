@@ -277,7 +277,13 @@ target README diagrams и firmware contracts обновлены. Exact MAX17320
 cell-tap/FET/fuse/NTC/shunt/diagnostic/hold и MCU-supply-isolation circuit,
 AON source/hold-up, все load switches/discharge paths, monitoring, reverse
 current и рассчитанные loss/thermal/fault budgets остаются активны после
-manager/frontend reviews.
+manager/frontend reviews. `PWR-0007/FND-0077/REV-0005W` теперь проверяют exact
+2S short-link rules, non-FET first targets, reset-default hold, изолированное
+питание admission MCU, план двух ADC и обычные conduction losses. Выявлено,
+что MAX17320 в prequal линейно модулирует CHG FET; текущий owner gate
+`IMP-0056` выбирает между отказом глубоко разряженной банки в самом продукте и
+добавлением linear-SOA/thermal recovery path. До закрытия связанного выбора
+новые компоненты не переносятся в target diagram.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

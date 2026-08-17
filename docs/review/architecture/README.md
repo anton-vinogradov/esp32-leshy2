@@ -78,7 +78,11 @@ pack gauging from fail-closed loose-cell admission; `DEC-0066/REV-0005V`
 accept exact MAX17320G20+T plus MSPM0C1104SDGS20R and project both physical
 devices separately. `PWR-0006/FND-0076` retain the
 controlled two-slot 1S and one-slot 1S alternatives as future-SKU comparison
-evidence.
+evidence. `PWR-0007/FND-0077/REV-0005W` now review the exact 2S tap rules,
+non-FET first targets, reset hold, admission-supply isolation, two-ADC evidence
+and common-path losses. They expose one material owner gate in `IMP-0056`:
+MAX17320 prequal linearly operates the CHG FET, so deep-cell recovery policy
+must close before the exact CHG/DIS device and circuit can be accepted.
 
 ## Active G2F artifacts
 
@@ -102,6 +106,10 @@ evidence.
 - [`PWR-0006`](PWR-0006-one-or-two-cell-topology-comparison.md) reviews the
   reopened topology, rails, losses, one-cell behavior and cost; supervised 2S
   is accepted by `DEC-0065`;
+- [`PWR-0007`](PWR-0007-max17320-2s-surrounding-circuit.md) verifies the 2S
+  sensing/shorting rules, current/loss screen, per-slot fuse/NTC candidates,
+  shunt, reset hold, supply handover and real ADC budget; `IMP-0056` keeps the
+  exact power FET open until the recovery boundary is selected;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
