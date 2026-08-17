@@ -1,5 +1,8 @@
 # AUDIO-0002 — complete fail-safe audio-path comparison
 
+> Subsequent pin-state amendment: `DEC-0059/REV-0005L` assigns GPIO43/44 to
+> permanent S3 UART0 service and leaves GPIO47 free. No audio path changes.
+
 - Статус: **Проведено ревью; вариант A принят как DEC-0054, schematic/HIL открыт**
 - Дата: 2026-08-17
 - Предыдущий contact review: [`AUDIO-0001`](AUDIO-0001-es8311-exact-electrical-fit.md)

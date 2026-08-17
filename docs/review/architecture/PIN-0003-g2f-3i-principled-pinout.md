@@ -17,6 +17,8 @@
   [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 - Complete audio decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md) /
   [`REV-0005D`](../reviews/REV-0005D-audio-decision-propagation.md)
+- Service/IPC amendment: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md) /
+  [`REV-0005L`](../reviews/REV-0005L-full-service-1bit-sdio-propagation.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -39,7 +41,7 @@ load switches, clocks, RF matching и exact unfrozen peripheral MPN должны
 | Owner | Ответственность | Независимость |
 |---|---|---|
 | `ESP32-S3-WROOM-1U-N16R2` | UI, display+microSD scheduler, I²S audio, internal I²C, M5 Unit profile, native 2.4/BLE/ESP-NOW | отдельные SPI2, SPI3, SD/MMC, I²S0, I²C0 и Unit-controller profile |
-| `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 4-bit SDIO to S3; IR uses RMT and direct evidence/power contacts |
+| `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 1-bit SDIO to S3; native USB+UART service; IR uses RMT and direct evidence/power contacts |
 | `RP2354B A4/QFN80` | 3×nRF, CC1101, U214 LoRa/GNSS/I²C, SA518 control/PTT, deterministic event service | five physical PIO SPI groups, hardware UART0/UART1/I²C0/SPI1, direct IRQ/CE/CSN/GDO |
 | `TCA6424ARGJR` | ordinary UI/reset/select/power/status slow plane | 24/24 assigned after RX audio-source correction; no radio FIFO/PTT deadline lives here |
 
@@ -47,9 +49,8 @@ The generated atlas contains the exact pad/contact table for all 91 exposed
 compute GPIO plus the 24 slow contacts. Every programmer/recovery path is
 outside normal application dependency:
 
-- S3: native USB Serial/JTAG + `EN/BOOT`;
-- C5: permanent UART0 + `EN/BOOT/ROM-log strap` because SDIO consumes native
-  USB pins at runtime;
+- S3: native USB Serial/JTAG + default UART0 + `EN/BOOT`;
+- C5: native USB Serial/JTAG + permanent UART0 + `EN/BOOT/ROM-log strap`;
 - RP: SWD + `RUN` + native USB + `BOOTSEL`;
 - SA518: exact `UPDATE/UART_TX/UART_RX/PD` fixture breakout, with UPDATE drive
   forbidden until the rev-1.1 direction/timing ambiguity passes specimen proof.
@@ -67,6 +68,11 @@ The `RP=0` result is deliberate and visible. `GPIO15` and `GPIO23` implement
 the accepted nRF-group and CC quiet-state power gates. SWD/USB/RUN/BOOTSEL are
 separate fixed service contacts and are not lost. Any new direct RP function
 must trigger a remap; it cannot be added as a hidden «free pin».
+
+`DEC-0059` preserves the counts while replacing two SDIO data allocations:
+S3 GPIO43/44 are now permanent UART0 service, C5 GPIO13/14 are native USB and
+S3 GPIO47 becomes the only free S3 contact. The M5 Unit UART profile uses
+UART1 on its existing GPIO7/8 so service does not create a hidden stub.
 
 ## Exact peripheral contacts now instantiated
 
@@ -99,7 +105,8 @@ is an address strap for `0x19`, not reset/enable. `DEC-0054` now terminates
 `OUTP/OUTN`, `MIC1P/MIC1N`, the RX selector, speaker selector, TX selector,
 active capture buffer, reset-safe gate and PAM8302A on exact IC contacts.
 `RX_AUDIO_SOURCE_SEL` is on slow P27; direct S3 GPIO6 is active-high
-`AUDIO_ARM`, leaving only GPIO43 free. Passive values and HIL remain open.
+`AUDIO_ARM`. After `DEC-0059`, GPIO43/44 are UART0 service and only GPIO47 is
+free. Passive values and HIL remain open.
 
 ## Digital non-interference result
 

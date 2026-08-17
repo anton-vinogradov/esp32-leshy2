@@ -1,6 +1,6 @@
 # DEC-0031 — permanent three-domain development access
 
-- Статус: **Requirement retained; exact three-domain implementation superseded by `DEC-0032`**
+- Статус: **Requirement retained; compute service topology restored by `DEC-0059`**
 - Дата: 2026-08-16
 - Основание: владелец выбрал `IMP-0026/B` и потребовал полный debug/recovery access каждого MCU
 - Этап: 4 — `C-006`, с зависимостями на `C-001…003/007`
@@ -11,6 +11,11 @@
 > access suitable for prototype bring-up and owner repair. The three USB-C,
 > DBG10, exact buttons, pin mappings and parts below are a candidate study, not
 > an accepted product topology.
+
+> Subsequent resolution: `DEC-0059` accepts the independent S3/C5/RP
+> USB/UART/SWD topology and exact compute contacts. Connector/protection/button
+> BOM and mechanics below remain first targets for `INT-0001/I7/I8`, not frozen
+> product parts.
 
 ## Решение
 

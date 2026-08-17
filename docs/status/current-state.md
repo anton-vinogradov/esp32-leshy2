@@ -114,11 +114,12 @@ open.
 `CTL-0001/REV-0004K` found that the first maps
 closed MCU accounting only. The owner delegated layout search; `DEC-0044`
 accepts `IMP-0037/A`, while `NIF-0001/REV-0004L` review the leading `G2F-3I`:
-RP2354B/QFN80, five independent radio/accessory SPI paths, dedicated 4-bit
-SDIO S3↔C5, dedicated SPI3 S3↔RP, 23/24 slow endpoints and isolated U214 I²C.
+RP2354B/QFN80, five independent radio/accessory SPI paths, dedicated SDIO
+S3↔C5, dedicated SPI3 S3↔RP, 23/24 slow endpoints and isolated U214 I²C.
 The only high-rate scheduled pair is display+SD on SPI2 with bounded quanta;
-radio FIFO/IPC never waits for it. C5 UART0+EN/BOOT/strap is the recovery path
-because GPIO13/14 carry SDIO. A repeated exact-device check found and fixed an
+radio FIFO/IPC never waits for it. `DEC-0059` subsequently narrows C5 SDIO to
+1-bit and restores both C5 USB+UART and S3 USB+UART service without changing
+controller independence. A repeated exact-device check found and fixed an
 RP2354B PIO GPIO-window crossing; PIO data is now on `GPIO30..46`, fixed mux
 groups are contracted, and capacity closes with seven of twelve PIO state
 machines plus three of sixteen DMA channels in reserve. `DEC-0045` accepts one
@@ -233,11 +234,12 @@ project-level internal review first: compute/service, safety, power,
 UI/storage, audio, RF/IR/voice, expansion and consolidated component evidence.
 Local part-envelope checks remain allowed; enclosure/control layout does not.
 
-`INT-0001/I1` is active. `FND-0070/IMP-0049` expose the first conflict: current
-4-bit C5 SDIO consumes C5 native USB GPIO13/14 and S3 default UART0 RX GPIO44.
-Option A proposes returning to the formerly budgeted 1-bit SDIO path to restore
-complete native service, conditional on the required framed-throughput HIL.
-The machine map is unchanged pending owner choice. `FND-0058`,
+`INT-0001/I1` has **Проведено ревью** through `DEC-0059/REV-0005L`.
+`FND-0070/IMP-0049` are closed by option A: current 1-bit C5 SDIO leaves C5
+native USB GPIO13/14 and S3 default UART0 GPIO43/44 independent. M5 Unit UART
+uses UART1 on its unchanged GPIO7/8 port. Framed-throughput/reset/RF-load HIL
+remains required; 4-bit is fallback only after failure. `I2` is active.
+`FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
 

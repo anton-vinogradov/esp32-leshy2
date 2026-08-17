@@ -22,10 +22,12 @@
         "qualification": "datasheet_verified"
       },
       "programmable": true,
-      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2C1_OR_UART1_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART0", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
       "controller_notes": {
         "SDMMC_SLOT0/SDMMC_SLOT1": "one S3 SD/MMC host exposes slot 0 up to 8-bit and slot 1 up to 4-bit through the GPIO matrix; two 4-bit links remain one scheduled-controller concurrency gate",
-        "I2C1_OR_UART0_OR_GPIO": "GPIO7/8 use the S3 second hardware I2C controller, UART0 through the GPIO matrix or custom GPIO as one mutually exclusive Unit profile; this is not the ROM-default UART0 recovery route"
+        "I2C1_OR_UART0_OR_GPIO": "historical candidates only: GPIO7/8 use the S3 second hardware I2C controller, UART0 through the GPIO matrix or custom GPIO as one mutually exclusive Unit profile",
+        "I2C1_OR_UART1_OR_GPIO": "current G2F-3I Unit profile: GPIO7/8 use the S3 second hardware I2C controller, UART1 through the GPIO matrix or custom GPIO; default UART0 remains dedicated to service GPIO43/44",
+        "UART0": "default service and RF-test route on exposed GPIO43=U0TXD and GPIO44=U0RXD"
       },
       "contacts": {
         "3V3": {"physical": "2", "role": "power"},

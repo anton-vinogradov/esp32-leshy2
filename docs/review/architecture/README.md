@@ -30,7 +30,8 @@ The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001/0002`,
 the then-current `S3=2, C5=1, RP=0, slow=P27` free-contact state. Subsequent
 `AUDIO-0002/FND-0067` uses P27 for the omitted RX-audio source selector;
 `DEC-0054/REV-0005D` then assigns S3 GPIO6 to reset-safe `AUDIO_ARM`. Current
-free state is `S3=1 (GPIO43), C5=1, RP=0, slow=0`.
+free state is `S3=1 (GPIO47), C5=1, RP=0, slow=0` after `DEC-0059` restores
+S3 UART0 and C5 native USB around the dedicated 1-bit SDIO link.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -54,8 +55,9 @@ contacts and expose `FND-0067`; `DEC-0054` accepts the active-buffer ES8311
 prototype plus direct arm and exact selector/gate/amp ICs. Passive analog
 values, exact power circuit and HIL remain open.
 `DEC-0058` now pauses the integrated mockup until the internal chain is jointly
-reviewed. `INT-0001/I1` is active first; `FND-0070/IMP-0049` expose the
-collision between full service access and the current 4-bit C5 SDIO allocation.
+reviewed. `INT-0001/I1` has **Проведено ревью** through
+`DEC-0059/REV-0005L`: 1-bit C5 SDIO restores S3 UART0 and C5 native USB,
+while M5 Unit UART moves to UART1 on the same pins. `I2` is active next.
 
 ## Active G2F artifacts
 

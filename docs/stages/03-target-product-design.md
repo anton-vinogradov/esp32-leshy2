@@ -62,9 +62,9 @@ rail/screw stack-up и installed-cap hand/GNSS/RF HIL.
 
 По прямому указанию владельца `DEC-0058` останавливает дальнейший integrated
 mockup до полного project-level закрытия начинки. `INT-0001` задаёт порядок
-`I0…I9`; первым активен compute/recovery/service block `I1`. Его первый
-конфликт вынесен в `FND-0070/IMP-0049`: current 4-bit C5 SDIO потребляет C5
-native USB и S3 default UART0 RX. Цельный enclosure/control layout не
+`I0…I9`; compute/recovery/service block `I1` получил **«Проведено ревью»** в
+`DEC-0059/REV-0005L`: working map использует 1-bit SDIO и сохраняет полный
+S3/C5/RP service. Следующим активен safety block `I2`. Цельный enclosure/control layout не
 продолжается до совместного internal self-review.
 
 ## Downstream boundary

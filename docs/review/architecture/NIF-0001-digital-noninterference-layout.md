@@ -8,6 +8,8 @@
 - Review: [`REV-0004L`](../reviews/REV-0004L-digital-noninterference-layout.md)
 - Display update: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md) /
   [`REV-0004X`](../reviews/REV-0004X-qspi-display-decision-propagation.md)
+- Service/link update: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md) /
+  [`REV-0005L`](../reviews/REV-0005L-full-service-1bit-sdio-propagation.md)
 
 ## Цель и граница доказательства
 
@@ -31,7 +33,7 @@ RF/zoning gate.
 | 2 | microSD получает SD/MMC; C5 — SPI; RP IPC — 16 Mbaud UART/PIO | отклонено: 1.6 MB/s raw не доказывает принятые ≥1.5 MB/s framed после framing/service reserve |
 | 3 | microSD получает SD/MMC; RP — SPI; C5 IPC — UART1 | отклонено: официальный C5 `SOC_UART_BITRATE_MAX=5,000,000`, только 0.5 MB/s raw |
 | 4 | первая 48-GPIO раскладка разнесла PIO state machines, но смешала GPIO `0…31` и `32…47` внутри одного PIO0 | отклонено: на RP2354B один PIO block одновременно выбирает только окно `0…31` либо `16…47` |
-| **5 / G2F-3I** | все PIO0/PIO1 data pins перенесены в общее окно `16…47`; C5 единолично владеет 4-bit SDIO host; RP — SPI3; display+microSD делят SPI2 по bounded quantum | **бумажная цифровая цель выполнена**; radio paths не ждут display/storage/peer-radio bus |
+| **5 / G2F-3I** | все PIO0/PIO1 data pins перенесены в общее окно `16…47`; C5 единолично владеет SDIO host; RP — SPI3; display+microSD делят SPI2 по bounded quantum | **бумажная цифровая цель выполнена**; `DEC-0059` сужает SDIO до 1-bit ради полного service access без изменения controller independence |
 
 ## Итоговая структура
 
@@ -49,7 +51,7 @@ flowchart LR
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
 
-  S3 <-->|"dedicated 4-bit SDIO"| C5
+  S3 <-->|"dedicated 1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 -->|"direct QSPI on scheduled SPI2; <=1 ms occupancy"| LCD
   S3 <-->|"scheduled SPI2; bounded SD chunks"| SD
@@ -96,9 +98,10 @@ software model.
 | S3 GDMA TX | 3 / 5 | 2 | SPI2, SPI3 и I²S0 получают по каналу |
 | S3 GDMA RX | 3 / 5 | 2 | SPI2, SPI3 и I²S0 получают по каналу; SD/MMC не входит в этот GDMA peripheral pool |
 
-Fixed-function mux также закреплён машинно: S3 native USB — `GPIO19/20`, C5
-4-bit SDIO — `GPIO7/8/9/10/13/14`, RP SPI1 — `GPIO24…27`, UART0 —
-`GPIO16/17`, I²C0 — `GPIO28/29`, UART1 — `GPIO40/41`. Изменение контакта без
+Fixed-function mux также закреплён машинно: S3 native USB — `GPIO19/20`, S3
+service UART0 — `GPIO43/44`, C5 1-bit SDIO — `GPIO7/8/9/10`, C5 native USB —
+`GPIO13/14`, RP SPI1 — `GPIO24…27`, UART0 — `GPIO16/17`, I²C0 — `GPIO28/29`,
+UART1 — `GPIO40/41`. Изменение контакта без
 одновременного обновления и повторного ревью mux contract ломает проверку.
 
 Это закрывает арифметику контроллеров, но не заменяет исполняемую проверку
@@ -114,9 +117,9 @@ stress HIL остаётся обязательным до target acceptance.
 | U214 LoRa | PIO1 SM0, direct BUSY/IRQ/RST | не ждёт display/compat radios | IRQ-to-first-transfer HIL; no shared display bus |
 | U214 GNSS/I²C | hardware UART1; отдельный I²C0 через TCA4307 | external stuck-low не валит internal UI/audio | continuous RX + hot-plug/stuck-bus fault injection |
 | S3↔RP | hardware SPI3/SPI1, 20 MHz target, alert | не делит display, SD или C5 controller | ≥1.5 MB/s framed; alert-to-read ≤250 µs |
-| S3↔C5 | S3 SD/MMC host + C5 4-bit SDIO slave | microSD удалён из host | ≥1.5 MB/s framed; control RTT ≤2 ms |
+| S3↔C5 | S3 SD/MMC host + C5 1-bit SDIO slave | microSD удалён из host; service paths не делят bus | 20 MHz raw 2.5 MB/s; ≥1.5 MB/s framed; occupancy ≤70%; control RTT ≤2 ms |
 | audio | I²S0 + DMA | отдельный peripheral | continuous full-duplex; zero unexplained gaps |
-| Unit | second S3 I²C/UART/GPIO profile | отделён от internal и U214 I²C | profile/fault HIL |
+| Unit | second S3 I²C/UART1/GPIO profile | отделён от internal/U214 I²C и service UART0 | profile/fault HIL |
 | display+microSD | direct-QSPI display + 1-bit SPI SD on SPI2, separate CS and per-device mode/clock | только взаимное, bounded; radio path не затрагивается | UI first feedback ≤100 ms; display occupancy ≤1 ms; SD ≥4 MB/s, 1.5 MB/s record and 250 ms stall; shared-D1 high-Z/contention proof |
 | internal slow controls | I²C0 + INT, bounded transactions | только slow endpoints | UI ≤100 ms; ни PTT, ни radio FIFO/IRQ здесь нет |
 

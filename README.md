@@ -120,6 +120,9 @@ now in the machine map. Passive values and electrical/HIL closure remain open.
 above the batteries. The 84-mm Cap overhangs the 75-mm base by 4.5 mm per side;
 the legacy rear encoder must move. `MEC-0001/FND-0069` keep the separate host
 receptacle MPN, insertion/rail stack-up, screws and installed-cap HIL open.
+`DEC-0059/REV-0005L` accept 1-bit S3↔C5 SDIO with C5 native USB and both
+S3/C5 default UART service routes. The 4-bit link is now only a fallback after
+a failed framed-throughput HIL, not the working map.
 
 The diagram below is intentionally maintained as a narrow top-to-bottom view.
 It is a living projection of the current internals: every accepted change to a
@@ -162,7 +165,7 @@ flowchart TD
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214
-  S3 <-->|"4-bit SDIO"| C5
+  S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
   S3 -->|"direct QSPI + touch"| LCD
@@ -196,7 +199,7 @@ flowchart TD
 
 | Principled group | Exact owner contacts in the current map | Contract |
 |---|---|---|
-| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47`; C5 `GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14` | dedicated 4-bit SDIO |
+| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13`; C5 `GPIO7,GPIO8,GPIO9,GPIO10` | dedicated 1-bit SDIO; ≥1.5 MB/s framed HIL gate |
 | S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
 | display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` | direct QSPI display + 1-bit SPI microSD; the only high-rate scheduled pair |
 | audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 and bounded internal I²C0 |
@@ -221,7 +224,8 @@ Remaining electrical boundaries are listed in
 [`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 and may change the working design after repeated review. The current display
 path already terminates on `HMX035CTFT-001`: S3 GPIO39 is touch IRQ, slow
-P06/P07 are display/touch reset, and S3 GPIO43 remains free.
+P06/P07 are display/touch reset, S3 GPIO43/44 are permanent UART0 service and
+S3 GPIO47 remains free.
 The audio digital path likewise terminates on exact `ES8311` contacts at S3
 GPIO1/2/15/16/17/18; codec power and differential analog conditioning remain
 open electrical blocks rather than hidden pins. The former slow reserve P27 now

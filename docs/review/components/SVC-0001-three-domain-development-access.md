@@ -1,14 +1,15 @@
 # SVC-0001 — three-domain development access
 
-- Статус: **Candidate study only; implementation superseded by `DEC-0032`**
+- Статус: **Access topology restored by `DEC-0059`; component set remains I7/I8 first targets**
 - Дата: 2026-08-16
 - Решение: [`DEC-0031`](../decisions/DEC-0031-permanent-three-domain-development-access.md)
 - Строки BOM: `C-006`, частично `C-001…003/007`
 - Пререквизиты: [`REC-0001`](REC-0001-compute-recovery-and-link-prerequisites.md), `FND-0037` closed
 
 > Permanent independent programming/recovery/diagnostics remains a product
-> requirement. Exact domain count, USB-C/DBG10 topology, pins and components
-> below await product design and a new architecture selection.
+> requirement. `DEC-0059` now selects three independent compute service
+> domains and the listed S3/C5/RP pins. Exact USB-C/DBG10/buttons/protection
+> remain first-target component work for I7/I8 rather than frozen BOM lines.
 
 ## Exact first-target component set
 

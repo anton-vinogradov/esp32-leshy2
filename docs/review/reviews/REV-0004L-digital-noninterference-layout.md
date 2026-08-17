@@ -1,5 +1,9 @@
 # REV-0004L — digital non-interference layout
 
+> Subsequent amendment: `DEC-0059/REV-0005L` replaces the reviewed 4-bit
+> S3↔C5 pin group with dedicated 1-bit SDIO plus full S3/C5 service. Current
+> machine evidence is in `NIF-0001` and the generated atlas.
+
 - Статус: **Проведено ревью исходной компоновки; current budget повторно проверен `REV-0004V`**
 - Дата: 2026-08-17
 - Decision: [`DEC-0044`](../decisions/DEC-0044-delegated-noninterference-layout.md)

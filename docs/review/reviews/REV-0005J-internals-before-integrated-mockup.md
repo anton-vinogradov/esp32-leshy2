@@ -1,6 +1,6 @@
 # REV-0005J — internals before integrated mockup propagation review
 
-- Статус: **Проведено ревью процесса; `INT-0001/I1` и `IMP-0049` открыты**
+- Статус: **Проведено ревью процесса; subsequent `DEC-0059/REV-0005L` закрывают I1 и активируют I2**
 - Дата: 2026-08-17
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Sequence: [`INT-0001`](../architecture/INT-0001-internal-design-closure-sequence.md)
@@ -16,7 +16,7 @@
 | dependency order | pass: `INT-0001/I0…I9` covers compute, safety, power, UI, audio, RF, expansion, BOM and whole-internal review |
 | next prerequisite | pass: compute/recovery/service is first; `FND-0070/IMP-0049` exposes rather than hides the SDIO collision |
 | target behavior | no delta: product capability and three safety levels do not change |
-| firmware repository | no delta until a transport/electrical option is accepted |
+| firmware repository | historical at this review; `DEC-0059` later creates the transport delta |
 
 ## Conclusion
 

@@ -1,10 +1,11 @@
 # FND-0070 — full service access conflicts with the current 4-bit C5 SDIO map
 
-- Статус: **Открыто; варианты вынесены в `IMP-0049`**
+- Статус: **Закрыто решением `DEC-0059`; machine map исправлен**
 - Серьёзность: recovery / RF-test / pin-map blocker
 - Обнаружено: 2026-08-17
 - Active block: [`INT-0001/I1`](../architecture/INT-0001-internal-design-closure-sequence.md)
 - Proposal: [`IMP-0049`](../improvements/IMP-0049-service-access-versus-4bit-sdio.md)
+- Resolution: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md)
 
 ## Проверенные факты
 
@@ -33,12 +34,13 @@ Simply reconnecting the old three USB-C/DBG topology would create unterminated
 branches or external-driver contention on high-speed SDIO and service pins.
 That is not a mechanical detail and must be decided before final pinout.
 
-## Correct boundary
+## Исправление
 
-No active allocation changes until `IMP-0049` is decided. Whichever option is
-selected must preserve erased-image recovery without peer firmware, physical
-boot/reset control, RF-test diagnostics, TX-off defaults, no host backfeed and
-the measured S3↔C5 payload/latency gate.
+`DEC-0059` принимает вариант A. Working map теперь использует 1-bit SDIO на
+S3 `GPIO10…13` ↔ C5 `GPIO7…10`; C5 USB GPIO13/14 и S3 UART0 GPIO43/44
+восстановлены как независимые service paths. Erased-image recovery, physical
+boot/reset, RF-test, TX-off defaults и no-host-backfeed остаются обязательными;
+payload/latency подтверждаются HIL, а не объявляются измеренными этой правкой.
 
 ## Primary sources
 

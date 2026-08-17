@@ -38,10 +38,10 @@ quality/test scope или supply risk закупки разделяются. `MF
 требуется перенести; `MEC-0001/FND-0069` оставляют exact connector/stack-up и
 installed-cap HIL открытыми.
 
-[`IMP-0049`](IMP-0049-service-access-versus-4bit-sdio.md) — открытое
-`⚠️ Предложение`: current 4-bit C5 SDIO конфликтует с C5 native USB и S3
-default UART0 RF-test access. Рекомендуется вариант A — 1-bit SDIO с полным
-native service, условный на measured framed-throughput HIL.
+[`IMP-0049`](IMP-0049-service-access-versus-4bit-sdio.md) принято вариантом A
+как `DEC-0059`: working 1-bit SDIO восстанавливает C5 native USB и S3 default
+UART0 RF-test access. 4-bit остаётся только fallback после провала measured
+framed-throughput HIL.
 
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,

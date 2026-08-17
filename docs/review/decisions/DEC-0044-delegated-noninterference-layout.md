@@ -1,5 +1,9 @@
 # DEC-0044 — delegated non-interference layout search
 
+> Subsequent transport amendment: `DEC-0059/REV-0005L` narrows the dedicated
+> S3↔C5 link from 4-bit to 1-bit SDIO to restore full service access. Controller
+> independence and no-neighbour-stall intent remain unchanged.
+
 - Статус: **Принято владельцем; цифровая компоновка проведена ревью**
 - Дата: 2026-08-17
 - Основание: владелец передал подбор компоновки исполнителю, потребовал

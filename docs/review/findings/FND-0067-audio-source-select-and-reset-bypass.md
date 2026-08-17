@@ -1,5 +1,9 @@
 # FND-0067 — audio source select was missing and expander controls do not reset with S3
 
+> Subsequent pin-state amendment: `DEC-0059/REV-0005L` assigns GPIO43/44 to
+> permanent S3 UART0 service and leaves GPIO47, not GPIO43, free. The audio
+> decision and GPIO6 `AUDIO_ARM` remain unchanged.
+
 - Статус: **Исправлено архитектурно в DEC-0054; осциллографический HIL открыт**
 - Серьёзность: architecture/safety/pin-accounting blocker
 - Обнаружено: 2026-08-17

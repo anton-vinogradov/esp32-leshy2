@@ -1063,6 +1063,19 @@ def render_principled_pinout(
         total = sum(1 for attributes in device["contacts"].values() if attributes["role"] == "gpio")
         return used, reserved, free, total
 
+    c5_sdio_controllers = {
+        row["controller"]
+        for row in allocations
+        if row["instance"] == "c5" and row["net"].startswith("S3_C5_SDIO_")
+    }
+    sdio_label = (
+        "1-bit SDIO"
+        if c5_sdio_controllers == {"SDIO_SLAVE"}
+        else "4-bit SDIO"
+        if c5_sdio_controllers == {"SDIO_SLAVE_4BIT"}
+        else "SDIO"
+    )
+
     def node(instance: str, role: str, suffix: str = "") -> str:
         """Name one physical device with its source-of-truth MPN and role."""
 
@@ -1168,7 +1181,7 @@ def render_principled_pinout(
         "  UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP",
         "  RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ VOICE",
         "  VOICE ~~~ U214_I2C_ISO ~~~ U214",
-        f"  S3 <-->|\"4-bit SDIO: S3 {contacts('s3', ('S3_C5_',))} ↔ C5 {contacts('c5', ('S3_C5_',))}\"| C5",
+        f"  S3 <-->|\"{sdio_label}: S3 {contacts('s3', ('S3_C5_',))} ↔ C5 {contacts('c5', ('S3_C5_',))}\"| C5",
         f"  S3 <-->|\"SPI3+alert: S3 {contacts('s3', ('S3_RP_', 'RP_ALERT_'))} ↔ RP {contacts('rp', ('S3_RP_', 'RP_ALERT_'))}\"| RP",
         f"  S3 <-->|\"I²C0+INT: {contacts('s3', ('SYS_I2C_', 'SLOW_IO_'))}\"| SLOW_IO",
         f"  S3 -->|\"QSPI/touch: {contacts('s3', ('DISPLAY_SD_', 'LCD_'))}\"| DISPLAY",

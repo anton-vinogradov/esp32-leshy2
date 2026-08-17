@@ -114,10 +114,11 @@ orderability/drawing/lifecycle, connector, backlight, optics и HIL открыт
 первые карты закрывали только MCU accounting. Владелец делегировал перебор
 компоновки; `DEC-0044` принял `IMP-0037/A`, а `NIF-0001/REV-0004L` проверили
 ведущий `G2F-3I`: RP2354B/QFN80, пять независимых radio/accessory SPI paths,
-dedicated 4-bit SDIO S3↔C5, dedicated SPI3 S3↔RP, 23/24 slow endpoints и
+dedicated SDIO S3↔C5, dedicated SPI3 S3↔RP, 23/24 slow endpoints и
 изолированный U214 I²C. Единственная high-rate scheduled pair — display+SD на
-SPI2 с bounded quantum; radio FIFO/IPC её не ждут. C5 UART0+EN/BOOT/strap
-остаётся recovery path, потому что GPIO13/14 заняты SDIO. Повторная
+SPI2 с bounded quantum; radio FIFO/IPC её не ждут. `DEC-0059` затем сужает
+C5 SDIO до 1-bit и восстанавливает C5 USB+UART и S3 USB+UART service без
+изменения controller independence. Повторная
 exact-device проверка обнаружила и исправила crossing реального RP2354B PIO
 GPIO-window; PIO data теперь `GPIO30…46`, fixed mux закреплён контрактами, а
 capacity закрыта с резервом 7/12 PIO SM и 3/16 DMA. `DEC-0045` принимает одну active top-level
@@ -232,11 +233,12 @@ physical mockup на паузу решением `DEC-0058`. `INT-0001` треб
 UI/storage, audio, RF/IR/voice, expansion и consolidated component evidence.
 Локальные проверки габаритов деталей разрешены; enclosure/control layout — нет.
 
-Сейчас активен `INT-0001/I1`. `FND-0070/IMP-0049` показывают первый конфликт:
-current 4-bit C5 SDIO занимает C5 native USB GPIO13/14 и S3 default UART0 RX
-GPIO44. Вариант A предлагает вернуться к ранее рассчитанному 1-bit SDIO,
-восстановив полный native service при обязательном framed-throughput HIL.
-Machine map не изменён до решения владельца. `FND-0058`,
+`INT-0001/I1` получил **«Проведено ревью»** в `DEC-0059/REV-0005L`.
+`FND-0070/IMP-0049` закрыты вариантом A: current 1-bit C5 SDIO оставляет C5
+native USB GPIO13/14 и S3 default UART0 GPIO43/44 независимыми. M5 Unit UART
+использует UART1 на прежнем порту GPIO7/8. Framed-throughput/reset/RF-load HIL
+остаётся обязательным; 4-bit — только fallback после провала. Активен `I2`.
+`FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.
 

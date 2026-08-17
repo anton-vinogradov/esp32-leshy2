@@ -188,7 +188,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(["display.QSPI_D2"], s3["GPIO41"]["peers"])
         self.assertEqual(["display.QSPI_D3"], s3["GPIO42"]["peers"])
         self.assertNotIn("LCD_DC", {row["net"] for row in s3.values()})
-        self.assertEqual(["GPIO43"], candidate["free_gpio"]["s3"])
+        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -261,7 +261,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("audio_safe_gate.2Y", "audio_tx_selector.IN", "AUDIO_TX_SEL_SAFE"), routes)
         self.assertIn("P27", candidate["contact_accounting"]["slow_io"]["used"])
         self.assertEqual({}, candidate["contact_accounting"]["slow_io"]["reserved"])
-        self.assertEqual(["GPIO43"], candidate["free_gpio"]["s3"])
+        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
         self.assertEqual("AUDIO_ARM", s3["GPIO6"]["net"])
         self.assertEqual(["audio_safe_gate.1B", "audio_safe_gate.2B"], s3["GPIO6"]["peers"])
         expected_audio_instances = {
@@ -524,6 +524,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         candidate = next(c for c in candidates if c["id"] == "G2F-3I")
         service = next(s for s in candidate["services"] if s["instance"] == "c5")
         service["contacts"].remove("GPIO12")
+        service["contacts"].remove("GPIO14")
         errors = self.errors_for(candidates)
         self.assertTrue(any("missing one complete service alternative" in error for error in errors), errors)
 
@@ -626,6 +627,46 @@ class ArchitectureValidationTests(unittest.TestCase):
             any("RP_UART1_GNSS" not in error and "declared contacts" in error for error in errors),
             errors,
         )
+
+    def test_dec0059_restores_full_s3_c5_service_on_1bit_sdio(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        allocations = {
+            (row["instance"], row["contact"]): row
+            for row in candidate["allocations"]
+        }
+
+        self.assertEqual("SDMMC_SLOT1_1BIT", allocations[("s3", "GPIO10")]["controller"])
+        self.assertEqual("SDIO_SLAVE", allocations[("c5", "GPIO9")]["controller"])
+        self.assertEqual("S3_C5_SDIO_D1_IRQ", allocations[("s3", "GPIO13")]["net"])
+        self.assertEqual("UART0", allocations[("s3", "GPIO43")]["controller"])
+        self.assertEqual("S3_UART_SERVICE_RX", allocations[("s3", "GPIO44")]["net"])
+        self.assertEqual("USB_SERIAL_JTAG", allocations[("c5", "GPIO13")]["controller"])
+        self.assertEqual("C5_USB_DP", allocations[("c5", "GPIO14")]["net"])
+        self.assertEqual("I2C1_OR_UART1_OR_GPIO", allocations[("s3", "GPIO7")]["controller"])
+        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
+
+        services = {
+            item["instance"]: set(item["contacts"])
+            for item in candidate["services"]
+        }
+        self.assertTrue({"GPIO19", "GPIO20", "GPIO43", "GPIO44"} <= services["s3"])
+        self.assertTrue({"GPIO11", "GPIO12", "GPIO13", "GPIO14"} <= services["c5"])
+
+        muxes = {item["id"]: item for item in candidate["mux_contracts"]}
+        self.assertEqual(["GPIO7", "GPIO8", "GPIO9", "GPIO10"], muxes["C5_FIXED_SDIO"]["contacts"])
+        self.assertEqual(["GPIO13", "GPIO14"], muxes["C5_NATIVE_USB"]["contacts"])
+        self.assertEqual(["GPIO43", "GPIO44"], muxes["S3_UART0_SERVICE"]["contacts"])
+
+        ipc = next(
+            item for item in candidate["resource_contracts"]
+            if item["id"] == "S3_C5_IPC"
+        )
+        self.assertIn("1-bit SDIO at 20 MHz raw 2.5 MB/s", ipc["deadline"])
+        self.assertIn("4-bit fallback only if this gate fails", ipc["proof_gate"])
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        self.assertIn("1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13", rendered)
+        self.assertNotIn("4-bit SDIO: S3", rendered)
 
     def test_rejects_missing_required_mux_contract(self):
         candidates = copy.deepcopy(self.candidates)

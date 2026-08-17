@@ -121,6 +121,9 @@ values и electrical/HIL closure остаются открыты.
 каждой стороны; legacy rear encoder обязан переехать. `MEC-0001/FND-0069`
 оставляют открытыми отдельный MPN host-receptacle, insertion/rail stack-up,
 крепёж и HIL установленного Cap.
+`DEC-0059/REV-0005L` принимают 1-bit SDIO S3↔C5 с native USB C5 и штатными
+UART service routes обоих S3/C5. Четырёхбитная связь теперь только fallback
+после провала framed-throughput HIL, а не рабочая карта.
 
 Диаграмма ниже намеренно поддерживается как узкая вертикальная схема сверху
 вниз. Это живое представление текущей начинки: каждое принятое изменение
@@ -163,7 +166,7 @@ flowchart TD
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214
-  S3 <-->|"4-bit SDIO"| C5
+  S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
   S3 -->|"direct QSPI + touch"| LCD
@@ -197,7 +200,7 @@ flowchart TD
 
 | Принципиальная группа | Exact owner contacts текущей карты | Контракт |
 |---|---|---|
-| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47`; C5 `GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14` | dedicated 4-bit SDIO |
+| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13`; C5 `GPIO7,GPIO8,GPIO9,GPIO10` | dedicated 1-bit SDIO; HIL gate ≥1.5 MB/s framed |
 | S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
 | display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` | direct QSPI display + 1-bit SPI microSD; единственная high-rate scheduled pair |
 | audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 и bounded internal I²C0 |
@@ -222,7 +225,8 @@ SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
 [`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 и могут изменить working design после повторного ревью. Current display path
 уже заканчивается на `HMX035CTFT-001`: S3 GPIO39 — touch IRQ, slow P06/P07 —
-display/touch reset; S3 GPIO43 остаётся free.
+display/touch reset; S3 GPIO43/44 постоянно отданы UART0 service, а GPIO47
+остаётся free.
 Audio digital path также заканчивается на exact ES8311 contacts через S3
 GPIO1/2/15/16/17/18; питание codec и differential analog conditioner остаются
 явными электрическими блокерами, а не скрытыми GPIO. Бывший slow reserve P27

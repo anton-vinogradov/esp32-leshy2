@@ -1,9 +1,10 @@
 # ⚠️ Предложение IMP-0049 — complete service access versus 4-bit C5 SDIO
 
-- Статус: **Требуется решение владельца; machine map не изменён**
+- Статус: **Принято владельцем — A / `DEC-0059`**
 - Дата: 2026-08-17
 - Finding: [`FND-0070`](../findings/FND-0070-service-access-conflicts-with-4bit-sdio.md)
 - Internal step: [`INT-0001/I1`](../architecture/INT-0001-internal-design-closure-sequence.md)
+- Decision: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md)
 
 ## Текущее состояние
 
@@ -58,7 +59,8 @@ owner's stated expectation that prototype access will be used heavily. If HIL
 misses the framed-link gate, B remains the fallback; no product capability is
 silently removed.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принять вариант **A**: вернуть 1-bit S3↔C5 SDIO, восстановить native USB C5 и
-default UART0 S3, сохранив 4-bit вариант только fallback при провале HIL?
+Владелец ответил `го`: вариант **A** принят. Machine map переведён на 1-bit
+SDIO; native USB C5 и default UART0 S3 восстановлены; 4-bit остаётся только
+fallback при провале HIL и не является параллельной рабочей разводкой.
