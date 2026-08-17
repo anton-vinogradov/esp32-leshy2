@@ -48,6 +48,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM",
             "Texas Instruments TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection",
             "Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path",
+            "Analog Devices MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing",
+            "Texas Instruments MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge",
             "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
         )
         for label in required_labels:
@@ -167,8 +169,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         contract = candidate["power_contract"]
         self.assertEqual("DEC-0063", contract["decision"])
         self.assertEqual("DEC-0065", contract["battery_decision"])
+        self.assertEqual("DEC-0066", contract["manager_decision"])
         self.assertIn("supervised 2S", contract["battery_topology"])
         self.assertIn("both cells required", contract["battery_topology"])
+        self.assertIn("MAX17320G20+T", contract["battery_manager"])
+        self.assertIn("MSPM0C1104SDGS20R", contract["battery_manager"])
         self.assertEqual(
             ["5V fallback at advertised Type-C current (<=3A)", "9V@3A", "15V@2A"],
             contract["sink_pdos"],

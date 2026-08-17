@@ -74,8 +74,9 @@ reopened the electrical series/controlled-1S arrangement for comparison, and
 USB-PD up to 30 W. `PWR-0004/REV-0005R` review exact TPS25751DREFR,
 BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR fit while leaving the cell manager,
 rail tree, passives and HIL active in I3. `PWR-0005/FND-0075` separate ordinary
-pack gauging from fail-closed loose-cell admission and are again the current
-exact-manager gate through `IMP-0054`. `PWR-0006/FND-0076` retain the
+pack gauging from fail-closed loose-cell admission; `DEC-0066/REV-0005V`
+accept exact MAX17320G20+T plus MSPM0C1104SDGS20R and project both physical
+devices separately. `PWR-0006/FND-0076` retain the
 controlled two-slot 1S and one-slot 1S alternatives as future-SKU comparison
 evidence.
 
@@ -96,7 +97,8 @@ evidence.
 - [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md) verifies the exact
   sink-only 30-W PD/charger/configuration/protection path and sourcing snapshot;
 - [`PWR-0005`](PWR-0005-replaceable-2s-manager-options.md) reviews exact
-  gauge/admission candidates and reset-default behavior for the 2S branch;
+  gauge/admission candidates and reset-default behavior; option A is accepted
+  by `DEC-0066`;
 - [`PWR-0006`](PWR-0006-one-or-two-cell-topology-comparison.md) reviews the
   reopened topology, rails, losses, one-cell behavior and cost; supervised 2S
   is accepted by `DEC-0065`;

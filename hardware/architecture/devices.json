@@ -1403,6 +1403,95 @@
         "PMID": {"physical": "29 exposed power pad", "role": "power"}
       }
     },
+    "adi_max17320_g20_t": {
+      "mpn": "Analog Devices MAX17320G20+T",
+      "kind": "2s_to_4s_high_side_gauge_protector_i2c_no_sha",
+      "qualification": "verified_candidate",
+      "lifecycle": "recommended_for_new_designs",
+      "dimensions_mm": [4.0, 4.0, 0.75],
+      "source": {
+        "document": "MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet",
+        "version": "Rev. 12, July 2025",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "MAX17320G20+T exact orderable page",
+        "url": "https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "service_required": ["ALRT", "SCL_OD", "SDA_DQ", "PFAIL"],
+      "contacts": {
+        "IN": {"physical": "1", "role": "power"},
+        "CP": {"physical": "2", "role": "power"},
+        "CHG": {"physical": "3", "role": "power"},
+        "DIS": {"physical": "4", "role": "power"},
+        "ZVC": {"physical": "5", "role": "signal"},
+        "PCKP": {"physical": "6", "role": "power"},
+        "ALRT": {"physical": "7", "role": "service"},
+        "SCL_OD": {"physical": "8 (SCL in I2C variant)", "role": "service"},
+        "SDA_DQ": {"physical": "9 (SDA in I2C variant)", "role": "service"},
+        "TH1": {"physical": "10", "role": "analog"},
+        "PFAIL": {"physical": "11", "role": "service"},
+        "AOLDO": {"physical": "12", "role": "power"},
+        "REG3": {"physical": "13", "role": "power"},
+        "CSN": {"physical": "14", "role": "analog"},
+        "CSP": {"physical": "15", "role": "analog"},
+        "TH2": {"physical": "16", "role": "analog"},
+        "REG2": {"physical": "17", "role": "power"},
+        "TH3": {"physical": "18", "role": "analog"},
+        "TH4": {"physical": "19", "role": "analog"},
+        "GND": {"physical": "20", "role": "power"},
+        "CELL1": {"physical": "21", "role": "analog"},
+        "CELL2": {"physical": "22", "role": "analog"},
+        "CELL3": {"physical": "23", "role": "analog"},
+        "BATTS": {"physical": "24", "role": "analog"}
+      }
+    },
+    "ti_mspm0c1104_sdgs20r": {
+      "mpn": "Texas Instruments MSPM0C1104SDGS20R",
+      "kind": "24mhz_cortex_m0plus_admission_controller",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.1, 4.9, null],
+      "source": {
+        "document": "MSPM0C110x mixed-signal microcontroller datasheet",
+        "version": "SLASF90D, revised January 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/mspm0c1104.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "MSPM0C1104SDGS20R exact orderable page",
+        "url": "https://www.ti.com/product/MSPM0C1104/part-details/MSPM0C1104SDGS20R",
+        "checked": "2026-08-18"
+      },
+      "programmable": true,
+      "controller_capabilities": ["I2C_TARGET", "BITBANG_I2C", "UART0", "ADC", "GPIO", "GPIO_IRQ", "SWD"],
+      "service_required": ["PA1_NRST", "PA17", "PA18_A7", "PA19_SWDIO", "PA20_A6_SWCLK", "VDD", "VSS"],
+      "contacts": {
+        "PA26_A1": {"physical": "1", "role": "gpio"},
+        "PA27_A0": {"physical": "2", "role": "gpio"},
+        "PA28_A5": {"physical": "3", "role": "gpio"},
+        "PA0": {"physical": "4", "role": "gpio"},
+        "PA1_NRST": {"physical": "5 (PA1 / NRST)", "role": "gpio"},
+        "VDD": {"physical": "6", "role": "power"},
+        "VSS": {"physical": "7", "role": "power"},
+        "PA2": {"physical": "8", "role": "gpio"},
+        "PA4": {"physical": "9", "role": "gpio"},
+        "PA6": {"physical": "10", "role": "gpio"},
+        "PA11": {"physical": "11", "role": "gpio"},
+        "PA16_A8": {"physical": "12", "role": "gpio"},
+        "PA17": {"physical": "13", "role": "gpio"},
+        "PA18_A7": {"physical": "14", "role": "gpio"},
+        "PA19_SWDIO": {"physical": "15 (PA19 / SWDIO)", "role": "gpio"},
+        "PA20_A6_SWCLK": {"physical": "16 (PA20 / A6 / SWCLK)", "role": "gpio"},
+        "PA22_A4": {"physical": "17", "role": "gpio"},
+        "PA23": {"physical": "18", "role": "gpio"},
+        "PA24_A3": {"physical": "19", "role": "gpio"},
+        "PA25_A2": {"physical": "20", "role": "gpio"}
+      }
+    },
     "onsemi_cat24c512wi_gt3": {
       "mpn": "onsemi CAT24C512WI-GT3",
       "kind": "512_kbit_i2c_pd_configuration_eeprom",

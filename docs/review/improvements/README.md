@@ -14,11 +14,12 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Текущий owner gate — [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md):
-после принятого supervised `2S` в `DEC-0065` выбрать exact fail-closed manager
-и admission controller. [`IMP-0055`](IMP-0055-battery-electrical-topology-after-reopen.md)
-закрыто вариантом A; `PWR-0006/FND-0076` сохраняют альтернативы 1S как
-future-SKU evidence.
+Последний owner gate [`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md)
+закрыт вариантом A в `DEC-0066`: exact `MAX17320G20+T` и
+`MSPM0C1104SDGS20R`. Текущий `I3` продолжает surrounding circuit без нового
+owner gate, пока сравнение FET/fuse/NTC/shunt/load/hold/supply-isolation не
+покажет материально разные продуктовые последствия. [`IMP-0055`](IMP-0055-battery-electrical-topology-after-reopen.md)
+ранее закрыто supervised 2S; альтернативы 1S остаются future-SKU evidence.
 
 Предыдущее [`IMP-0053`](IMP-0053-5v-typec-versus-pd-charge-path.md) закрыто
 выбором B в `DEC-0063`: принят sink-only USB-PD до 30 Вт с exact frontend

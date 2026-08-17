@@ -76,7 +76,8 @@ target. Владелец принял `IMP-0052/B` как `DEC-0062`: два 186
 приводить к fail-closed. `DEC-0063/PWR-0004` уже принимают exact sink-only
 USB-PD frontend. `DEC-0064/PWR-0006` сравнивают electrical series versus
 controlled-1S topology, а `DEC-0065` принимает supervised 2S; текущий exact
-manager gate — `IMP-0054`.
+manager принят в `DEC-0066`. Следующим закрывается его surrounding circuit и
+rail/loss/thermal tree.
 
 ## Downstream boundary
 

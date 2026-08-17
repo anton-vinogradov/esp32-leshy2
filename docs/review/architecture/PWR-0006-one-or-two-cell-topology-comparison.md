@@ -61,7 +61,7 @@ accepted limit.
 
 ### A — supervised 2S
 
-`PWR-0005` remains the reviewed branch. Its current high-integrity candidate is
+`PWR-0005` remains the reviewed branch. `DEC-0066` accepts
 `MAX17320G20+T + MSPM0C1104SDGS20R`, about `$4.47` at the previously checked
 100-piece active-pair snapshot before FETs, fuses, shunt, NTCs, contacts and
 diagnostic load. The 3.3-V, 4-V and 5-V outputs can all use ordinary bucks.

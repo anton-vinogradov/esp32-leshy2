@@ -105,7 +105,8 @@ flowchart TD
   CHARGER["BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
   CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
-  PACKMGR["MPN TBD<br/>2S pair admission, protection, state estimation and balancing"]
+  PACKGAUGE["MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing"]
+  PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -163,7 +164,7 @@ flowchart TD
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
-  CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACKMGR ~~~ S3 ~~~ SLOW
+  CHARGER ~~~ CELL0 ~~~ CELL1 ~~~ PACKGAUGE ~~~ PACKADM ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -180,9 +181,11 @@ flowchart TD
   PDCTRL <-->|"local I²C boot image"| PDCFG
   PDCTRL <-->|"protected VBUS + local I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL
-  CELL0 --> PACKMGR
-  CELL1 --> PACKMGR
-  PACKMGR <-->|"qualified supervised 2S boundary"| CHARGER
+  CELL0 --> PACKGAUGE
+  CELL1 --> PACKGAUGE
+  PACKGAUGE <-->|"protected 2S power boundary"| CHARGER
+  PACKGAUGE <-->|"local I²C + FET hold/fault"| PACKADM
+  PACKADM <-->|"SYS I²C0 + shared IRQ"| S3
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW

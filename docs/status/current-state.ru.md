@@ -262,7 +262,10 @@ safety/quiet-state branches. Владелец принял `IMP-0052/B` как `
 электрические series/controlled-1S варианты. Direct parallel отклонён, для 1S
 рассчитаны двойной общий ток и новые rail classes. Владелец выбирает
 supervised 2S в `DEC-0065/REV-0005T`; `PWR-0005/REV-0005U` повторно проверяют
-exact manager devices и возвращают `IMP-0054` как текущий owner gate. Затем
+exact devices, а владелец принимает `MAX17320G20+T + MSPM0C1104SDGS20R` в
+`DEC-0066/REV-0005V`. Оба устройства отдельно внесены в machine source и
+living diagrams; DGS20 имеет `10 used / 5 reserved / 3 free` реальных GPIO.
+Затем
 владелец принял `IMP-0053/B` как `DEC-0063`: основной порт — sink-only USB-PD с
 fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/power-bank/
 20-V/PPS/OTG и с прямыми USB2-линиями S3. `PWR-0004/FND-0074/REV-0005R`
@@ -270,10 +273,11 @@ fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/
 config EEPROM `CAT24C512WI-GT3` и `TVS2200DRVR`. S3 повторно использует SYS
 I2C0 и wired-low system IRQ, поэтому GPIO47 остаётся свободным. Blank/corrupt
 image recovery, reset-high EEPROM WP и charge-disable CE указаны явно;
-target README diagrams и firmware contracts обновлены. Exact AON source/
-hold-up, cell admission/protection/gauge, все load switches/discharge paths,
-monitoring, reverse current и рассчитанные loss/thermal/fault budgets остаются
-активны после frontend review.
+target README diagrams и firmware contracts обновлены. Exact MAX17320
+cell-tap/FET/fuse/NTC/shunt/diagnostic/hold и MCU-supply-isolation circuit,
+AON source/hold-up, все load switches/discharge paths, monitoring, reverse
+current и рассчитанные loss/thermal/fault budgets остаются активны после
+manager/frontend reviews.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

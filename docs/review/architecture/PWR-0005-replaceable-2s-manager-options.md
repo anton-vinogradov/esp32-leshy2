@@ -1,19 +1,19 @@
 # PWR-0005 — replaceable-2S manager and admission options
 
-- Статус: **Проведено повторное ревью exact devices; owner gate IMP-0054 открыт**
+- Статус: **Проведено ревью; A принято `DEC-0066`**
 - Дата: 2026-08-18
 - Battery decision: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
 - USB-PD/NVDC frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 - Finding: [`FND-0075`](../findings/FND-0075-pack-gauge-is-not-loose-cell-admission.md)
 - Topology decision: [`DEC-0065`](../decisions/DEC-0065-supervised-2s-battery-topology.md)
 - Revalidation: [`REV-0005U`](../reviews/REV-0005U-exact-2s-manager-revalidation.md)
+- Decision: [`DEC-0066`](../decisions/DEC-0066-max17320-mspm0-fail-closed-manager.md)
 
 ## Required boundary
 
 > `DEC-0064` temporarily reopened the electrical topology; `DEC-0065` selected
 > supervised 2S after the comparison. This document is again the current
-> exact-manager gate. It does not select option A until the owner answers
-> `IMP-0054`.
+> exact-manager gate. The owner subsequently accepted option A in `DEC-0066`.
 
 The charger already selected in `PWR-0004` sees only a qualified 2S boundary.
 The cell subsystem must independently provide all of the following before that
@@ -157,10 +157,10 @@ not a blanket MCU-mode claim: boot, steady polling and watchdog current must be
 measured at the selected voltage/clock, and the SWD fixture may power VDD while
 programming a blank admission MCU.
 
-This is a manager proposal, not final passive/FET selection. Exact CHG/DIS
+This is an accepted manager decision, not final passive/FET selection. Exact CHG/DIS
 MOSFETs, per-cell fuses, NTCs, sense resistor, diagnostic pulse network,
 default-hold transistor, thresholds, timings and thermal calculations remain
-the immediate continuation of `I3` if option A is accepted.
+the active immediate continuation of `I3` after `DEC-0066`.
 
 ## State and recovery contract
 

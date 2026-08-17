@@ -1,11 +1,12 @@
 # IMP-0054 — fail-closed 2S admission manager
 
-- Статус: **⚠️ Ожидает решения владельца после `DEC-0065`**
+- Статус: **Принято A; закрыто `DEC-0066`**
 - Дата: 2026-08-18
 - Context: [`PWR-0005`](../architecture/PWR-0005-replaceable-2s-manager-options.md)
 - Finding: [`FND-0075`](../findings/FND-0075-pack-gauge-is-not-loose-cell-admission.md)
 - Affects: `I3`, battery startup, safety, SOC/SOH, service and firmware images
 - Revalidation: [`REV-0005U`](../reviews/REV-0005U-exact-2s-manager-revalidation.md)
+- Decision: [`DEC-0066`](../decisions/DEC-0066-max17320-mspm0-fail-closed-manager.md)
 
 ## Context
 
@@ -64,4 +65,4 @@ or chemistry.
 
 ## Owner decision
 
-Reopened because `DEC-0065` selected supervised 2S. Choose `A`, `B` or `C`.
+Accepted **A**: exact `MAX17320G20+T + MSPM0C1104SDGS20R`.

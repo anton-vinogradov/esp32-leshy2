@@ -1,6 +1,6 @@
 # REV-0005U — exact 2S manager revalidation
 
-- Статус: **Проведено ревью фактов; owner gate IMP-0054 открыт**
+- Статус: **Проведено ревью фактов; A later accepted DEC-0066**
 - Дата: 2026-08-18
 - Topology: [`DEC-0065`](../decisions/DEC-0065-supervised-2s-battery-topology.md)
 - Device review: [`PWR-0005`](../architecture/PWR-0005-replaceable-2s-manager-options.md)
@@ -24,6 +24,5 @@
 ## Conclusion
 
 The exact-device and real-contact comparison receives **«Проведено ревью»**.
-Option A remains recommended, but no manager is projected into the target
-diagram or machine map until `IMP-0054` is answered.
-
+Option A was subsequently accepted by `DEC-0066` and is projected into the
+target diagram and machine map by `REV-0005V`.

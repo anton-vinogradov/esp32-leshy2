@@ -263,8 +263,10 @@ open on mismatch, removal or contact bounce. `REV-0005Q` reviews propagation.
 series/controlled-1S alternatives. They reject direct parallel and calculate
 the double common-path current and changed rail classes for 1S. The owner
 selects supervised 2S in `DEC-0065/REV-0005T`; `PWR-0005/REV-0005U` then
-revalidate the exact manager devices and reopen `IMP-0054` as the current
-owner gate. The owner also accepted `IMP-0053/B` as
+revalidate the exact devices and the owner accepts
+`MAX17320G20+T + MSPM0C1104SDGS20R` in `DEC-0066/REV-0005V`. Both appear as
+separate components in the machine source and living diagrams; DGS20 has
+`10 used / 5 reserved / 3 free` real GPIO contacts. The owner also accepted `IMP-0053/B` as
 `DEC-0063`: the product port is sink-only USB-PD with 5-V fallback, 9 V/3 A
 and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
 S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
@@ -272,9 +274,10 @@ S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
 and `TVS2200DRVR`. S3 reuses SYS I2C0 plus the wired-low system IRQ, so GPIO47
 remains free. Blank/corrupt image recovery, reset-high EEPROM WP and
 charge-disable CE are explicit; target README diagrams and firmware contracts
-are updated. Exact AON source/hold-up, cell admission/protection/gauge, every
-load switch and discharge path, monitoring, reverse current and calculated
-loss/thermal/fault budgets remain active after the frontend review.
+are updated. Exact MAX17320 cell-tap/FET/fuse/NTC/shunt/diagnostic/hold and
+MCU-supply-isolation circuit, AON source/hold-up, every load switch and
+discharge path, monitoring, reverse current and calculated loss/thermal/fault
+budgets remain active after the manager/frontend reviews.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
