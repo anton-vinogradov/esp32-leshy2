@@ -257,3 +257,10 @@ blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
 living internals projection. Both target README views and the generated atlas
 must change in the same commit as any accepted device/owner/bus/path change;
 the regression suite checks orientation and current-candidate MPN coverage.
+
+`FND-0072/IMP-0051` found that target README files had again started narrating
+engineering chronology. The owner accepted `DEC-0060`, and `REV-0005N` reviews
+the correction. All four root EN/RU pages are now product landing pages without
+`DEC/REV/FND/IMP` chains or open-gate narrative. Maturity, findings and history
+remain here and in the review ledger; hardware pin groups use a responsive
+`<details>` list linked to the generated atlas.

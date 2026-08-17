@@ -1,28 +1,25 @@
 # Аппаратная часть Leshy2
 
-> **Целевой документ продукта.** Страница описывает проверенное поведение,
-> границы готового продукта и текущий принципиальный working design. Он не
-> равен финальной электронной архитектуре или текущей реализации. Состояние
-> проработки — в [current state](docs/status/current-state.ru.md).
+> **Целевой сайт продукта.** Здесь описан готовый Leshy2: назначение,
+> возможности, интерфейсы, принципиальное устройство и обязательные гарантии.
+> Ход разработки и открытые проверки вынесены в отдельные инженерные документы.
 
 - [English version](README.md)
 - [Целевой firmware-продукт](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)
-- [Канонический журнал ревью](docs/review/README.md)
+- [Состояние разработки](docs/status/current-state.ru.md)
+- [Инженерные решения и доказательства](docs/review/README.md)
 
 ## Образ готового продукта
 
-Leshy2 — открытый автономный портативный all-in-one инструмент для radio/
-wireless наблюдения, диагностики, связи и разрешённых исследований, включая
-беспроводные и контактные credential tools. Навигация, обслуживание и compute
-поддерживают эти результаты, а не превращают продукт в general-purpose
-peripheral computer. Это должен быть собираемый, ремонтопригодный и измеримый
-продукт, а не набор maximum-capability demos.
+Leshy2 — открытый автономный портативный инструмент для наблюдения за
+радиоэфиром, диагностики, связи и разрешённых исследований беспроводных и
+контактных систем. Он объединяет несколько независимых радиотрактов, экран,
+локальное управление, запись данных, аудио, сервисные интерфейсы и расширения
+в одном ремонтопригодном устройстве.
 
-Финальные form factor, components, board split и enclosure открыты. Текущая
-owner/bus/pin гипотеза принята ниже как reopenable working design, а не frozen
-target. Бывший `PKG-0001/SYN-3A` после
-[`DEC-0032`](docs/review/decisions/DEC-0032-reopen-product-design-before-cad.md)
-сохранён только как один candidate study.
+Это полевой прибор, а не универсальный карманный компьютер: каждая аппаратная
+возможность должна давать измеримый результат, иметь понятное безопасное
+состояние и быть доступной для диагностики и восстановления владельцем.
 
 ## Три уровня функциональности
 
@@ -33,102 +30,64 @@ target. Бывший `PKG-0001/SYN-3A` после
    Каждый вход показывает новое неснимаемое предупреждение, а каждое действие
    отдельно требует авторизованной цели, изолированной/проводной среды или обоих.
 
-При первичной установке отдельно принимается акт о ненападении. Ни он, ни banner
-не вооружают функцию и не отменяют spectrum/licensing/privacy/third-party gates
-([`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md),
-[`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md)).
+При первичной установке отдельно принимается акт о ненападении. Ни он, ни
+предупреждение не вооружают функцию и не отменяют требования законодательства,
+лицензирования спектра, приватности и разрешения владельца цели.
 
-## Проверенный целевой набор возможностей
+## Возможности готового устройства
 
-- Три независимых полнофункциональных nRF24 сохраняют native PTX/PRX и обязаны
-  поддерживать любой одновременный mix `3R/1T2R/2T1R/3T` без automatic standby
-  соседей и скрытых RX gaps. Packet/drop/timestamp и exact mixed-RF profile
-  evidence остаются явными. Ведущий paper candidate `G2F-3I` размещает их на
-  RP2354B; atomic ownership и wiring ещё не финальны.
-- Продукт даёт обычные Wi-Fi 2.4/5 ГГц, IEEE 802.15.4, native Bluetooth LE и
-  Wi-Fi 2.4/ESP-NOW profiles. Точные radios и ownership выбирает только будущая
-  whole-device architecture.
-- Packet Sub-GHz, broadcast receiver, analog voice, калиброванное 2.4 GHz
-  sector/RPD comparison, consumer IR learning/TX и digital/analog audio paths
-  остаются в scope со своими проверенными safety/evidence limits.
-- Бортовые GNSS, LoRa и HF NFC frontends не обязательны. Product design должен
-  поддержать внешние M5-style GNSS, общепринятые LoRa bands через cap и
-  expansion-module strategies где это реализуемо, а также внешний NFC.
-  iButton/1-Wire реализуется заменяемым пассивным M5-style Port-B адаптером,
-  без обязательных контактов на корпусе базы.
-- M5 Unit A/B/C/custom и полный U214-compatible 14-pin Cap образуют основной
-  low-rate expansion tier. Принятые raw SDR и external RF/credential-analysis
-  profiles могут вывести отдельный high-throughput class; base не обещает
-  generic host или native 30-pin M5-Bus. Число/расположение портов и high-speed
-  connector выбираются позже.
-- Опциональный qualified external IMU может добавлять к RF records timestamped
-  motion, pitch/roll и short-term relative-rotation metadata. Device-pose claim
-  требует жёсткий indexed mount и sensor-to-antenna transform. Six-axis data не
-  является absolute heading или RF bearing; base IMU не требуется.
-- Core field operation, display/storage controls, PTT, hard STOP, explicit
-  re-arm, pairing/revoke, service и recovery остаются автономными. В base нет
-  постоянной text keyboard; заявленный редкий/длинный text workflow может
-  использовать локально сопряжённый owner phone. Телефон передаёт видимый текст,
-  но не authority для safety, Controlled Zone, TX, destructive, trust или
-  recovery actions.
-- Производительность дисплея задаётся задачами продукта, а не video-like full
-  frames/s: dirty/tiled updates показывают critical state и первый menu feedback
-  за `≤100 ms`, waterfall остаётся preemptible при admitted radio/audio/storage
-  load, а любое visual coalescing/drop явно учитывается. Exact panel и optics
-  остаются решениями architecture/product design.
-- Каждый в итоге выбранный programmable chip получает постоянные независимые
-  пути прошивки, восстановления и диагностики для prototype bring-up и owner
-  repair. Точные connectors и pins пока открыты.
-- Owner-controlled signed updates сохраняют target validation, rollback,
-  offline keys/tools и intentional physical recovery. Необратимый lockdown —
-  отдельный optional decision, а не default.
-- Generic USB host, personal FIDO/U2F authenticator и 6 GHz/Wi-Fi 6E находятся
-  вне product mission. Конкретный принятый RF/SDR profile может позже вывести
-  exact high-throughput transport, не превращая generic host в capability.
-- BadUSB/DuckyScript — одно явное non-core исключение: release-optional
-  Controlled-Zone software profile поверх существующего USB device/service
-  path. Он не добавляет base hardware, не формирует architecture и не задерживает
-  radio/key core, но всё равно требует authorization, parser/security review и HIL.
+### Радио и связь
 
-Названные в требованиях и candidate studies modules/IC являются first targets
-или evidence, но не молча зафиксированным BOM.
+- Три независимых полнофункциональных nRF24 работают одновременно в любом
+  сочетании `3R`, `1T2R`, `2T1R` и `3T`, без скрытого отключения соседних
+  приёмников.
+- Три разнесённых nRF-антенны дают калиброванное относительное sector/RPD
+  сравнение. Результат не выдаётся за абсолютные dBm, угол или VSWR.
+- Wi-Fi 2,4/5 ГГц, Bluetooth LE, ESP-NOW и IEEE 802.15.4 обеспечивают обычную
+  связь, наблюдение и разрешённые диагностические сценарии.
+- Отдельный Sub-GHz тракт работает с пакетными системами; широковещательный
+  приёмник покрывает AM/FM/SW/LW; VHF/UHF voice-тракт поддерживает аналоговую
+  связь и аудиообработку.
+- Два IR-приёмника позволяют одновременно надёжно декодировать бытовые команды
+  и измерять несущую неизвестного сигнала; отдельный передатчик воспроизводит
+  изученные профили.
+- Все девять бортовых антенных трактов выведены на собственные внешние порты:
+  два RP-SMA для native Wi-Fi и семь standard SMA для остальных трактов.
+
+### Интерфейсы и расширения
+
+- Вертикальный сенсорный IPS-дисплей 3,5 дюйма, `320×480`, подключён прямым QSPI;
+  критическое состояние и первый отклик меню появляются не позднее `100 мс`.
+- microSD хранит записи эфира, аудио, профили, журналы и экспортируемые данные.
+- Задний 14-контактный Cap-Bus принимает съёмный M5Stack U214 LoRa/GNSS и
+  совместимые модули; отдельный защищённый M5 Unit-порт поддерживает GNSS,
+  квалифицированные LoRa-модули, NFC, iButton/1-Wire и другие расширения.
+- Квалифицированный raw-SDR или внешний RF-analysis модуль может определить
+  отдельный high-throughput интерфейс; low-rate M5 command port не выдаётся за
+  тракт сырых данных.
+- Редкий длинный ввод текста может выполняться с локально сопряжённого телефона,
+  но телефон не подтверждает опасные действия и не заменяет управление Leshy2.
+- Внешний IMU может добавлять к измерениям положение и относительное движение;
+  без квалифицированного крепления эти данные не выдаются за компас или пеленг.
+
+### Обслуживание
+
+- Каждый программируемый вычислительный домен имеет собственные пути прошивки,
+  восстановления и диагностики, не зависящие от исправности соседнего домена.
+- Подписанные обновления проверяют целевое устройство и поддерживают откат;
+  ключи сборки и возможность установки владельческой прошивки остаются у
+  владельца. Необратимая блокировка не включается по умолчанию.
 
 ## Принципиальный дизайн решения
 
-[`DEC-0051`](docs/review/decisions/DEC-0051-principled-pinout-as-working-design.md)
-принимает `G2F-3I/PIN-0003` как текущий working design для физической
-компоновки. Это проведённое ревью принципиальной распиновки, но не финальная
-atomic architecture и не разрешение на KiCad.
-[`DEC-0052`](docs/review/decisions/DEC-0052-qspi-first-display-path.md)
-добавляет direct-QSPI D2/D3 на S3 GPIO41/42 и measured `≤1 ms` display
-occupancy. [`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-class.md)
-принимает 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class.
-[`DSP-0004`](docs/review/architecture/DSP-0004-display-part-number-register.md)
-перечисляет все известные display part numbers. Official QDtech schematic
-раскрывает exact assembly `HMX035CTFT-001`; `DSP-0005/REV-0005A` проводят
-ревью его 40-contact electrical fit без расхода новых GPIO. Standalone
-orderability/drawing/lifecycle, exact connector, backlight, optics и protection
-остаются явно открытыми.
-`AUDIO-0001/REV-0005B` также вносят exact контакты `ES8311` QFN-20: `CE` —
-strap адреса `0x19`, P10 — внешний `CODEC_PWR_EN`; digital fit не меняется.
-`AUDIO-0002/REV-0005C` исправляют пропущенный RX-source control на slow P27 и
-сравнивают complete capture/playback/TX/reset paths. `DEC-0054/REV-0005D`
-принимают вариант A: exact active capture, differential speaker/TX selectors,
-reset-safe gate и direct S3 GPIO6 `AUDIO_ARM` внесены в machine map. Passive
-values и electrical/HIL closure остаются открыты.
-`DEC-0057/PHY-0001` принимают съёмный U214 dock поперёк задней стороны RF half
-над аккумуляторами. Cap шириной 84 мм нависает над 75-мм базой на 4.5 мм с
-каждой стороны; legacy rear encoder обязан переехать. `MEC-0001/FND-0069`
-оставляют открытыми отдельный MPN host-receptacle, insertion/rail stack-up,
-крепёж и HIL установленного Cap.
-`DEC-0059/REV-0005L` принимают 1-bit SDIO S3↔C5 с native USB C5 и штатными
-UART service routes обоих S3/C5. Четырёхбитная связь теперь только fallback
-после провала framed-throughput HIL, а не рабочая карта.
+Три вычислительных домена разделяют UI, широкополосные беспроводные функции и
+детерминированное обслуживание радио. Независимые шины не заставляют активный
+радиотракт ждать дисплей, карту памяти или соседнее радио. Неиспользуемые
+интерфейсы переводятся в тихое аппаратное состояние.
 
-Диаграмма ниже намеренно поддерживается как узкая вертикальная схема сверху
-вниз. Это живое представление текущей начинки: каждое принятое изменение
-устройства, owner, шины или межкомпонентного тракта обязано в том же коммите
-обновить эту диаграмму, её английскую пару и generated pinout atlas.
+Диаграмма поддерживается как узкая вертикальная проекция целевой начинки.
+Каждый квадрат обозначает один физический компонент и содержит его MPN или
+явный `MPN TBD`, а также роль в готовом устройстве.
 
 ```mermaid
 flowchart TD
@@ -198,86 +157,75 @@ flowchart TD
   CAPDOCK <-->|"14-pin Cap-Bus"| U214
 ```
 
-| Принципиальная группа | Exact owner contacts текущей карты | Контракт |
-|---|---|---|
-| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13`; C5 `GPIO7,GPIO8,GPIO9,GPIO10` | dedicated 1-bit SDIO; HIL gate ≥1.5 MB/s framed |
-| S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
-| display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` | direct QSPI display + 1-bit SPI microSD; единственная high-rate scheduled pair |
-| audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 и bounded internal I²C0 |
-| M5 Unit | S3 `GPIO7,GPIO8` | отдельный configurable profile port |
-| IR | C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` | dual RX, TX, power gate и evidence |
-| nRF24 #0 | RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32` | PIO0 SM0, direct CE/CSN/IRQ |
-| nRF24 #1 | RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35` | PIO0 SM1, direct CE/CSN/IRQ |
-| nRF24 #2 | RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38` | PIO0 SM2, direct CE/CSN/IRQ |
-| CC1101 | RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43` | independent PIO0 SM3/GDO/power |
-| SA518/PTT | RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22` | UART0, PTT, activity/evidence |
-| U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
+<details>
+<summary><strong>Принципиальная распиновка</strong></summary>
 
-Pin budget: S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
-`48/0/0`, slow I/O `24/0/0`. RP не имеет свободного direct GPIO; независимые
-SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
+- **S3↔C5:** S3 `GPIO10,GPIO11,GPIO12,GPIO13`; C5
+  `GPIO7,GPIO8,GPIO9,GPIO10` — выделенная 1-bit SDIO.
+- **S3↔RP:** S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP
+  `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` — выделенная SPI + alert.
+- **Дисплей и microSD:** S3
+  `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
+  и единственная планируемая high-rate shared pair.
+- **Audio и Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0 и
+  локальная I²C0.
+- **M5 Unit:** S3 `GPIO7,GPIO8` — отдельный конфигурируемый profile-port.
+- **IR:** C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` — два RX, TX, power и evidence.
+- **nRF24 #0:** RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32`.
+- **nRF24 #1:** RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35`.
+- **nRF24 #2:** RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38`.
+- **CC1101:** RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43`.
+- **SA518/PTT:** RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22`.
+- **U214 LoRa/GNSS:** RP
+  `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
+- **Ресурсный итог:** S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
+  `48/0/0`, slow I/O `24/0/0`. Независимые SWD/USB/RUN/BOOTSEL не входят в
+  этот GPIO-бюджет.
 
-Полная нормативная проекция текущей карты находится в
-[`PIN-0003`](docs/review/architecture/PIN-0003-g2f-3i-principled-pinout.md) и
-машинно сгенерированном
-[`exact pad/net atlas`](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
-Оставшиеся electrical boundaries перечислены в
-[`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
-и могут изменить working design после повторного ревью. Current display path
-уже заканчивается на `HMX035CTFT-001`: S3 GPIO39 — touch IRQ, slow P06/P07 —
-display/touch reset; S3 GPIO43/44 постоянно отданы UART0 service, а GPIO47
-остаётся free.
-Audio digital path также заканчивается на exact ES8311 contacts через S3
-GPIO1/2/15/16/17/18; питание codec и differential analog conditioner остаются
-явными электрическими блокерами, а не скрытыми GPIO. Бывший slow reserve P27
-теперь несёт обязательный `RX_AUDIO_SOURCE_SEL`; принятое `DEC-0054` назначает
-direct S3 GPIO6 `AUDIO_ARM` exact-входам `SN74LVC2G08DCUR`.
+[Полная карта физических контактов и сетей](docs/review/architecture/generated/G2F-3I-principled-pinout.md)
 
-## Границы безопасности и стоимости
+</details>
 
-- Каждый transmitter и Lab action стартует разоружённым после power/reset/
-  update/watchdog/brownout.
-- Первая TX использует консервативный профиль; максимум требует явного выбора
-  для текущего сценария.
-- Physical STOP доминирует над firmware и communication failures. Его отпускание
-  никогда не восстанавливает прежние target, power или lease.
-- Actual-TX evidence отделено от команды и UI indication.
-- Стоимость уменьшается только при доказанной эквивалентности capabilities,
-  performance, safety, reliability, autonomy, serviceability и testability.
+## Конструкция и органы управления
 
-## Состояние разработки
+- Экран расположен вертикально; водопад обновляется небольшими областями и не
+  блокирует обслуживание радио.
+- Девять подписанных антенных портов сохраняют однозначную связь между
+  разъёмом, трактом и активным профилем антенны.
+- Съёмный U214 устанавливается поперёк задней стороны над аккумуляторами; его
+  собственные антенны и разъёмы остаются доступными.
+- Физические PTT, STOP и утопленный RE-ARM являются разными органами управления.
+  STOP имеет независимую индикацию и не зависит от экрана.
+- Разъёмы прошивки и диагностики доступны при собранном прототипе и не требуют
+  исправной основной прошивки.
 
-125 capability leaves и competitor delta прошли повторное ревью G2. Physical/
-product inputs G3 остаются проверенными, но теперь сначала проходит G2F.
-Единый machine-readable источник содержит три structurally checked карты;
-`DEC-0044/NIF-0001/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без
-radio-bus contention. `DEC-0047` выбирает qualified `SG-N24` envelope;
-заказанный второй ESP32-DIV даёт ранний `L0 DIV↔DIV` pre-HIL, но target pass
-требует `T1` на Leshy2. `DEC-0048` принимает три compact IPEX→external-SMA
-nRF paths и внешний SMA для всех бортовых antenna endpoints;
-`ANT-0001/REV-0004P` подтверждают отдельные Si4732 input domains для FM/SW и
-AM/LW; `DEC-0049/REV-0004Q` принимают девять labelled SMA с раздельными
-`RX-FM/SW` и `RX-AM/LW`. Последний требует короткий loop/pod либо
-квалифицированный buffered profile и не является generic coax port.
-`RFH-0001/REV-0004R` дополнительно проверяют module-to-panel feeds: S3/C5
-официально совместимы с first-generation U.FL/MHF I/AMC, но Ebyte называет
-свой разъём только `IPX`, поэтому `FND-0057` требует specimen-fit gate.
-`RFH-0002/REV-0004S` проверяют antenna ecosystems: RP-SMA типичен для native
-Wi-Fi, Ebyte/nRF использует standard SMA, а sub-GHz имеет обе polarity.
-`DEC-0050/REV-0004T` принимают ограниченный `2 RP-SMA + 7 standard SMA`:
-RP-SMA только для native Wi-Fi S3/C5, standard SMA для остальных семи;
-`ANT-0002/REV-0004U` проверяют procurement candidates; `DEC-0055/REV-0005E`
-принимают 12-item profiled kit и availability gate при выборе exact MPN.
-Mounting, длины кабелей, two-source assemblies и target RF qualification
-остаются открытыми.
-`PIN-0003/REV-0004V` добавляют generated principled owner/net/pad atlas.
-Current exact exposed-contact budget равен S3 `32/3/1`, C5 `14/6/1`, RP
-`48/0/0`, slow I/O `24/0/0`; exact SA518 service и Si4732 control/RF contacts
-внесены, а оставшиеся electrical abstractions открыты как `FND-0060`.
-Physical RF/full-mix measurements,
-quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
-закрываются параллельно адаптации legacy physical mockup и могут переоткрыть
-working pinout.
-Whole-device optimality, conceptual placement и новое atomic architecture
-decision обязаны предшествовать компонентам и KiCad. Нормативный порядок —
-[`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).
+## Безопасность и честность измерений
+
+- Каждый передатчик и лабораторное действие стартуют разоружёнными после
+  включения, reset, watchdog, brownout или обновления.
+- Первая передача использует консервативный профиль. Максимальная мощность
+  появляется только после явного выбора для текущего сценария.
+- Физический STOP доминирует над firmware и межпроцессорной связью. Отпускание
+  STOP не восстанавливает прежние цель, канал, мощность или TX-lease.
+- Команда передачи, ток тракта, сообщение самого радио и независимое
+  фактическое evidence отображаются как разные состояния. Неизвестное не
+  превращается в успешное или безопасное.
+- Неиспользуемые интерфейсы обесточиваются или переводятся в проверенное тихое
+  состояние, чтобы не тормозить и не заглушать активную группу сигналов.
+- Снижение стоимости допустимо только при сохранении функций, производительности,
+  безопасности, надёжности, автономности, ремонтопригодности и тестируемости.
+
+## Границы продукта
+
+В базовый продукт не входят 6 ГГц/Wi-Fi 6E, generic USB host, персональный
+FIDO/U2F-аутентификатор, встроенная клавиатура, мотор и встроенный IMU.
+BadUSB/DuckyScript может существовать только как необязательная программная
+функция Контролируемой зоны поверх уже имеющегося USB device-пути и не влияет
+на аппаратную архитектуру радио-прибора.
+
+## Документация проекта
+
+- [Текущее состояние аппаратной проработки](docs/status/current-state.ru.md)
+- [Принципиальная карта контактов](docs/review/architecture/PIN-0003-g2f-3i-principled-pinout.md)
+- [Полный журнал требований, решений и проверок](docs/review/README.md)
+- [Целевое описание прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)

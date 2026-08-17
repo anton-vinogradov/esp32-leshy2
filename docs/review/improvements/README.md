@@ -14,9 +14,13 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Последнее закрытое предложение в активной цепочке
-[`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md) принято вариантом
-B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
+Последнее закрытое предложение —
+[`IMP-0051`](IMP-0051-target-readmes-as-product-site.md), принятое как
+`DEC-0060`. Текущее открытое engineering-предложение — `IMP-0050` по AON STOP
+и per-path actual-TX evidence.
+
+[`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md) ранее принято
+вариантом B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
 
 [`IMP-0043`](IMP-0043-profiled-antenna-kit.md) принято как `DEC-0055`:
 профилированный комплект с общими MPN для S3/C5 и трёх nRF, combined 868/915,
@@ -49,6 +53,11 @@ hard STOP и отдельное physical evidence для семи onboard RF pat
 используя общий `RP.GPIO22` и local-I²C source mask без новой ноги. Параллельный
 BAT15 coupon проверяет cost-down; shared/inferred evidence отклонено
 саморевью как потеря функции. Требуется решение владельца.
+
+[`IMP-0051`](IMP-0051-target-readmes-as-product-site.md) принято как
+`DEC-0060`: четыре корневые EN/RU страницы являются целевым GitHub product
+site. Инженерная chronology остаётся в current-state/review, wide pin table
+заменена responsive details-list, а regression защищает разделение слоёв.
 
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,

@@ -19,6 +19,10 @@
 13. Корневые README обоих репозиториев описывают целевой готовый продукт только через принятые контракты и всегда отделяют target от текущей реализации.
 14. Текущие стадии, доказательства реализации, открытые находки и `⚠️ Предложение` публикуются в `docs/status/current-state.*.md`, а не смешиваются с образом готового продукта.
 15. При распространении принятого решения проверяются hardware/firmware, target/current-state и EN/RU пары; открытое условие нельзя превращать в безусловное обещание.
+16. Корневые target README — product landing pages, а не review ledger:
+    `DEC/REV/FND/IMP` chronology, maturity narrative и open-gate lists живут в
+    current-state/review. Exact MPN, diagram и pin mapping допустимы как
+    техническая спецификация без истории выбора (`DEC-0060`).
 
 ## Реестр
 
@@ -87,6 +91,7 @@
 - [DEC-0057: U214 rear dock above the batteries](decisions/DEC-0057-u214-rear-dock-above-batteries.md)
 - [DEC-0058: finish internals before resuming integrated mockup](decisions/DEC-0058-internals-before-integrated-mockup.md)
 - [DEC-0059: full S3/C5 service over 1-bit SDIO](decisions/DEC-0059-full-service-over-1bit-sdio.md)
+- [DEC-0060: GitHub target README are product landing pages](decisions/DEC-0060-github-target-product-site.md)
 - [ANT-0001: exact external-SMA path inventory — проведено ревью фактов](architecture/ANT-0001-external-sma-path-inventory.md)
 - [ANT-0002: current-orderable antenna shortlist — факты reviewed, qualification open](architecture/ANT-0002-current-orderable-antenna-shortlist.md)
 - [MFG-0001: one-stop PCBA + loose-antenna kitting feasibility — факты reviewed](architecture/MFG-0001-one-stop-pcba-antenna-kitting.md)
@@ -184,6 +189,7 @@
 - [FND-0069: U214 host connector MPN/stack-up open](findings/FND-0069-u214-host-connector-mpn-and-stack-up-open.md)
 - [FND-0070: full service access conflicted with 4-bit C5 SDIO — закрыто DEC-0059](findings/FND-0070-service-access-conflicts-with-4bit-sdio.md)
 - [FND-0071: STOP/evidence coverage misses RP and 3×nRF/CC — paper correction, decision/circuit open](findings/FND-0071-hard-stop-and-tx-evidence-coverage.md)
+- [FND-0072: target README contained engineering chronology — закрыто DEC-0060](findings/FND-0072-target-readmes-contained-engineering-chronology.md)
 - [PHY-0001: U214 rear dock above batteries — D accepted, exact dock/HIL open](product-design/PHY-0001-u214-rear-dock-fit.md)
 - [MEC-0001: U214 Cap-Bus mechanical interface facts — reviewed, MPN/stack-up open](product-design/MEC-0001-u214-cap-bus-mechanical-interface.md)
 - [IMP-0001: безопасный TX-дефолт вместо максимума — принято](improvements/IMP-0001-safe-tx-defaults.md)
@@ -236,6 +242,7 @@
 - [IMP-0048: U214 dock versus SMA banks — принято D/DEC-0057](improvements/IMP-0048-u214-dock-versus-sma-placement.md)
 - [IMP-0049: complete service access versus 4-bit C5 SDIO — принято A/DEC-0059](improvements/IMP-0049-service-access-versus-4bit-sdio.md)
 - [⚠️ IMP-0050: AON hard STOP and per-path TX evidence — требуется решение владельца](improvements/IMP-0050-aon-stop-and-per-path-tx-evidence.md)
+- [IMP-0051: target README as product site — принято DEC-0060](improvements/IMP-0051-target-readmes-as-product-site.md)
 - [INV-0001: дедуплицированная инвентаризация legacy-возможностей](inventories/INV-0001-legacy-capabilities.md)
 - [INV-0002: единый реестр хотелок продукта — заморожен](inventories/INV-0002-product-wishlist.md)
 - [INV-0003: девять групп wishlist и четыре extra-пакета — проведено ревью](inventories/INV-0003-wishlist-review-groups.md)
@@ -332,6 +339,7 @@
 - [REV-0005K: vertical living principled diagram — проведено ревью](reviews/REV-0005K-vertical-living-principled-diagram.md)
 - [REV-0005L: full-service 1-bit SDIO propagation — проведено ревью, I1 closed](reviews/REV-0005L-full-service-1bit-sdio-propagation.md)
 - [REV-0005M: I2 safety prerequisites — проведено ревью, owner decision open](reviews/REV-0005M-i2-safety-prerequisites.md)
+- [REV-0005N: target product-site cleanup — проведено ревью](reviews/REV-0005N-target-product-site-cleanup.md)
 - [AUD-0001: повторный аудит legacy-исключений — проведено ревью требований](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
 - [AUD-0003: прежний nRF-owner audit — справочный архив](audits/AUD-0003-three-nrf24-owner-placement.md)

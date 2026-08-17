@@ -1,28 +1,24 @@
 # Leshy2 Hardware
 
-> **Target product document.** This page describes reviewed product behavior,
-> boundaries and the current principled working design. That design is not the
-> final electronic architecture or current implementation. See the
-> [current engineering state](docs/status/current-state.md).
+> **Target product site.** This page describes the finished Leshy2: its purpose,
+> capabilities, interfaces, principled design and mandatory guarantees.
+> Engineering progress and open validation work live in separate documents.
 
 - [Русская версия](README.ru.md)
 - [Firmware target product](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
-- [Canonical review ledger](docs/review/README.md)
+- [Current engineering state](docs/status/current-state.md)
+- [Engineering decisions and evidence](docs/review/README.md)
 
 ## Finished-product intent
 
-Leshy2 is an open, autonomous, portable all-in-one field instrument for radio/
-wireless observation, diagnostics, communication and authorized research,
-including wireless and contact credential tools. Navigation, maintenance and
-compute exist to support those results rather than turn the product into a
-general-purpose peripheral computer. It must become a buildable, repairable and
-measurable product rather than an unchecked maximum-capability demo.
+Leshy2 is an open, autonomous and portable instrument for spectrum observation,
+diagnostics, communication and authorized research into wireless and contact
+systems. It combines independent radio paths, a display, local controls, data
+recording, audio, service access and expansion in one repairable device.
 
-The final form factor, component set, board partition and enclosure remain
-open. The current owner/bus/pin hypothesis is accepted below as a reopenable
-working design, not a frozen target. Former
-`PKG-0001/SYN-3A` is retained only as one candidate study after
-[`DEC-0032`](docs/review/decisions/DEC-0032-reopen-product-design-before-cad.md).
+It is a field instrument rather than a general-purpose pocket computer: every
+hardware capability must produce a measurable result, have a defined safe
+state and remain diagnosable and recoverable by its owner.
 
 ## Three functional levels
 
@@ -34,100 +30,60 @@ working design, not a frozen target. Former
    requires an authorized target, isolated/conducted environment, or both.
 
 Initial setup separately requires acceptance of the non-aggression pledge.
-Neither acknowledgement arms a tool or overrides spectrum, licensing, privacy
-or third-party constraints ([`DEC-0002`](docs/review/decisions/DEC-0002-project-vision.md),
-[`DEC-0010`](docs/review/decisions/DEC-0010-three-functional-levels.md)).
+Neither acknowledgement arms a tool or overrides law, spectrum licensing,
+privacy or the target owner's authorization.
 
-## Reviewed capability target
+## Finished-device capabilities
 
-- Three independent full-function nRF24 paths retain native PTX/PRX features
-  and must support every simultaneous `3R/1T2R/2T1R/3T` mix without automatic
-  peer standby or hidden RX gaps. Packet/drop/timestamp and exact mixed-RF
-  profile evidence remain explicit. `G2F-3I` places them on RP2354B as the
-  leading paper candidate; atomic ownership and wiring are not yet final.
-- The product provides ordinary 2.4/5 GHz Wi-Fi, IEEE 802.15.4, native
-  Bluetooth LE and ordinary 2.4 GHz Wi-Fi/ESP-NOW profiles. Exact radios and
-  ownership are selected only by the future whole-device architecture.
-- Packet Sub-GHz, broadcast reception, analog voice, calibrated 2.4 GHz
-  sector/RPD comparison, consumer IR learning/transmit and digital/analog audio
-  paths remain in scope with their reviewed safety and evidence limits.
-- Base-board GNSS, LoRa and HF NFC frontends are not required. The product
-  design must support qualified external M5-style GNSS, common-band LoRa via
-  both cap and expansion-module strategies where feasible, and external NFC.
-  iButton/1-Wire uses a replaceable passive M5-style Port-B adapter rather than
-  mandatory contact pads on the base enclosure.
-- M5 Unit A/B/C/custom and the full U214-compatible 14-pin Cap form the primary
-  low-rate expansion tier. Accepted raw SDR and external RF/credential-analysis
-  profiles may derive a separate high-throughput class; the base does not claim
-  generic host or native 30-pin M5-Bus compatibility. Exact port count,
-  placement and high-speed connector remain product/architecture decisions.
-- An optional qualified external IMU may add timestamped motion, pitch/roll and
-  short-term relative-rotation metadata to RF records. Device-pose claims require
-  a rigid indexed mount and sensor-to-antenna transform. Six-axis data is not
-  absolute heading or RF bearing; no base IMU is required.
-- Core field operation, display/storage controls, PTT, hard STOP, explicit
-  re-arm, pairing/revoke, service and recovery remain autonomous. The base has
-  no permanent text keyboard; a declared rare/long text workflow may use a
-  locally paired owner phone. The phone supplies visible text, never authority
-  for safety, Controlled-Zone, TX, destructive, trust or recovery actions.
-- Display performance follows product tasks, not video-like full-frame FPS:
-  dirty/tiled updates give critical and first menu feedback within 100 ms,
-  waterfall rendering remains preemptible under admitted radio/audio/storage
-  load, and any visual coalescing/drop is explicit. Exact panel and optics
-  remain architecture/product-design choices.
-- Every programmable chip ultimately selected must expose permanent,
-  independent programming, recovery and diagnostic access suitable for
-  prototype bring-up and owner repair. Exact connectors and pins remain open.
-- Owner-controlled signed updates retain target validation, rollback, offline
-  keys/tools and intentional physical recovery. Irreversible lockdown is a
-  separate optional decision, never the default.
-- Generic USB host, personal FIDO/U2F authenticator and 6 GHz/Wi-Fi 6E are
-  outside the product mission. A concrete accepted RF/SDR profile may later
-  derive an exact high-throughput transport without making generic host support
-  a capability.
-- BadUSB/DuckyScript is one explicit non-core exception: a release-optional
-  Controlled-Zone software profile over the existing USB device/service path.
-  It adds no base hardware, cannot shape architecture or delay the radio/key
-  core, and still requires authorization, parser/security review and HIL.
+### Radio and communication
 
-Named modules and ICs in requirement and candidate studies are first targets or
-evidence—not silently fixed BOM components.
+- Three independent full-function nRF24 paths operate concurrently in every
+  `3R`, `1T2R`, `2T1R` and `3T` mix without silently disabling peer receivers.
+- Three separated nRF antennas provide calibrated relative sector/RPD
+  comparison. The result is never presented as absolute dBm, angle or VSWR.
+- 2.4/5 GHz Wi-Fi, Bluetooth LE, ESP-NOW and IEEE 802.15.4 provide ordinary
+  communication, observation and authorized diagnostic workflows.
+- A dedicated Sub-GHz path handles packet systems; a broadcast receiver covers
+  AM/FM/SW/LW; a VHF/UHF voice path provides analog communication and audio.
+- Two IR receivers provide robust consumer decoding and unknown-carrier
+  measurement at the same time; a separate transmitter replays learned profiles.
+- All nine onboard antenna paths terminate at dedicated external ports: two
+  RP-SMA for native Wi-Fi and seven standard SMA for the remaining paths.
+
+### Interfaces and expansion
+
+- A portrait 3.5-inch `320×480` touch IPS display uses direct QSPI; critical
+  state and first menu feedback appear within `100 ms`.
+- microSD stores spectrum records, audio, profiles, logs and exported data.
+- A rear 14-pin Cap-Bus accepts the removable M5Stack U214 LoRa/GNSS and
+  compatible modules; a separate protected M5 Unit port supports GNSS,
+  qualified LoRa modules, NFC, iButton/1-Wire and other extensions.
+- A qualified raw-SDR or external RF-analysis module may define a separate
+  high-throughput interface; a low-rate M5 command port is never presented as
+  a raw-data path.
+- Rare long-form text entry may use a locally paired phone, but the phone cannot
+  authorize dangerous actions or replace controls on Leshy2.
+- An external IMU may annotate measurements with pose and relative motion;
+  without a qualified mount it is never presented as a compass or RF bearing.
+
+### Serviceability
+
+- Every programmable compute domain has its own programming, recovery and
+  diagnostic path and does not depend on a healthy peer domain.
+- Signed updates validate their target and support rollback. Build keys and the
+  ability to install owner firmware remain owner-controlled; irreversible
+  lockdown is not enabled by default.
 
 ## Principled solution design
 
-[`DEC-0051`](docs/review/decisions/DEC-0051-principled-pinout-as-working-design.md)
-accepts `G2F-3I/PIN-0003` as the current working design for physical layout.
-Its principled pin mapping is reviewed, but it is neither the final atomic
-architecture nor authorization to begin KiCad.
-[`DEC-0052`](docs/review/decisions/DEC-0052-qspi-first-display-path.md) adds
-direct-QSPI D2/D3 on S3 GPIO41/42 and measured `<=1 ms` display occupancy;
-[`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-class.md)
-accepts a 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class.
-[`DSP-0004`](docs/review/architecture/DSP-0004-display-part-number-register.md)
-lists every known display reference part number. The official QDtech schematic
-discloses exact assembly `HMX035CTFT-001`; `DSP-0005/REV-0005A` review its
-40-contact electrical fit without consuming a new GPIO. Standalone
-orderability/drawing/lifecycle, exact connector, backlight, optics and
-protection remain explicitly open.
-`AUDIO-0001/REV-0005B` also instantiate exact `ES8311` QFN-20 contacts:
-`CE` is address strap `0x19`, P10 is external `CODEC_PWR_EN`, and the S3
-digital fit is unchanged. `AUDIO-0002/REV-0005C` correct the missing RX-source
-control on slow P27 and compare complete capture/playback/TX/reset paths.
-`DEC-0054/REV-0005D` accept option A: exact active capture, differential
-speaker and TX selectors, reset-safe gate and direct S3 GPIO6 `AUDIO_ARM` are
-now in the machine map. Passive values and electrical/HIL closure remain open.
-`DEC-0057/PHY-0001` accept the removable U214 dock across the rear RF half
-above the batteries. The 84-mm Cap overhangs the 75-mm base by 4.5 mm per side;
-the legacy rear encoder must move. `MEC-0001/FND-0069` keep the separate host
-receptacle MPN, insertion/rail stack-up, screws and installed-cap HIL open.
-`DEC-0059/REV-0005L` accept 1-bit S3↔C5 SDIO with C5 native USB and both
-S3/C5 default UART service routes. The 4-bit link is now only a fallback after
-a failed framed-throughput HIL, not the working map.
+Three compute domains separate the UI, broadband wireless functions and
+deterministic radio service. Independent buses keep an active radio path from
+waiting for the display, storage or another radio. Unused interfaces enter a
+verified electrically quiet state.
 
-The diagram below is intentionally maintained as a narrow top-to-bottom view.
-It is a living projection of the current internals: every accepted change to a
-device, owner, bus or inter-device path must update this diagram, its Russian
-twin and the generated pinout atlas in the same commit.
+The diagram is maintained as a narrow top-to-bottom projection of the target
+internals. Every box represents one physical component and includes its MPN or
+an explicit `MPN TBD`, together with its role in the finished device.
 
 ```mermaid
 flowchart TD
@@ -197,84 +153,74 @@ flowchart TD
   CAPDOCK <-->|"14-pin Cap-Bus"| U214
 ```
 
-| Principled group | Exact owner contacts in the current map | Contract |
-|---|---|---|
-| S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13`; C5 `GPIO7,GPIO8,GPIO9,GPIO10` | dedicated 1-bit SDIO; ≥1.5 MB/s framed HIL gate |
-| S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
-| display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` | direct QSPI display + 1-bit SPI microSD; the only high-rate scheduled pair |
-| audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 and bounded internal I²C0 |
-| M5 Unit | S3 `GPIO7,GPIO8` | separate configurable profile port |
-| IR | C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` | dual RX, TX, power gate and evidence |
-| nRF24 #0 | RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32` | PIO0 SM0, direct CE/CSN/IRQ |
-| nRF24 #1 | RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35` | PIO0 SM1, direct CE/CSN/IRQ |
-| nRF24 #2 | RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38` | PIO0 SM2, direct CE/CSN/IRQ |
-| CC1101 | RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43` | independent PIO0 SM3/GDO/power |
-| SA518/PTT | RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22` | UART0, PTT, activity/evidence |
-| U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
+<details>
+<summary><strong>Principled pin assignment</strong></summary>
 
-The pin budget is S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
-`48/0/0` and slow I/O `24/0/0`. RP has no free direct GPIO; independent
-SWD/USB/RUN/BOOTSEL remain outside this budget.
+- **S3↔C5:** S3 `GPIO10,GPIO11,GPIO12,GPIO13`; C5
+  `GPIO7,GPIO8,GPIO9,GPIO10` — dedicated 1-bit SDIO.
+- **S3↔RP:** S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP
+  `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` — dedicated SPI plus alert.
+- **Display and microSD:** S3
+  `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
+  and the only scheduled high-rate shared pair.
+- **Audio and Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0
+  and local I²C0.
+- **M5 Unit:** S3 `GPIO7,GPIO8` — separate configurable profile port.
+- **IR:** C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` — two RX, TX, power and evidence.
+- **nRF24 #0:** RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32`.
+- **nRF24 #1:** RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35`.
+- **nRF24 #2:** RP `GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38`.
+- **CC1101:** RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43`.
+- **SA518/PTT:** RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22`.
+- **U214 LoRa/GNSS:** RP
+  `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
+- **Resource result:** S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
+  `48/0/0` and slow I/O `24/0/0`. Independent SWD/USB/RUN/BOOTSEL are outside
+  this GPIO budget.
 
-The complete normative projection of the current map is in
-[`PIN-0003`](docs/review/architecture/PIN-0003-g2f-3i-principled-pinout.md) and
-the machine-generated
-[`exact pad/net atlas`](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
-Remaining electrical boundaries are listed in
-[`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
-and may change the working design after repeated review. The current display
-path already terminates on `HMX035CTFT-001`: S3 GPIO39 is touch IRQ, slow
-P06/P07 are display/touch reset, S3 GPIO43/44 are permanent UART0 service and
-S3 GPIO47 remains free.
-The audio digital path likewise terminates on exact `ES8311` contacts at S3
-GPIO1/2/15/16/17/18; codec power and differential analog conditioning remain
-open electrical blocks rather than hidden pins. The former slow reserve P27 now
-carries the required `RX_AUDIO_SOURCE_SEL`; accepted `DEC-0054` assigns direct
-S3 GPIO6 `AUDIO_ARM` to exact `SN74LVC2G08DCUR` gate inputs.
+[Complete physical pad and net atlas](docs/review/architecture/generated/G2F-3I-principled-pinout.md)
 
-## Safety and cost boundary
+</details>
+
+## Physical design and controls
+
+- The display is portrait-oriented; the waterfall redraws small regions and
+  never blocks radio service.
+- Nine labelled antenna ports retain an unambiguous association between each
+  connector, radio path and active antenna profile.
+- The removable U214 mounts across the rear above the batteries while keeping
+  its own antennas and connectors accessible.
+- Physical PTT, STOP and recessed RE-ARM are separate controls. STOP has an
+  independent indicator and does not depend on the display.
+- Programming and diagnostic connectors remain accessible on an assembled
+  prototype and do not require a healthy application image.
+
+## Safety and measurement integrity
 
 - Every transmitter and Lab action starts disarmed after power, reset, update,
   watchdog or brownout.
-- Initial TX uses a conservative per-path profile; maximum available power
-  requires an explicit current-scenario choice.
-- Physical STOP must dominate firmware and communication failures. Releasing it
-  never restores a prior TX target, power or lease.
-- Actual-TX evidence remains distinct from a command or UI indication.
-- Cost reductions are accepted only with proof of equivalent capability,
-  performance, safety, reliability, autonomy, serviceability and testability.
+- Initial transmission uses a conservative profile. Maximum power appears only
+  after an explicit choice for the current scenario.
+- Physical STOP dominates firmware and inter-processor communication. Releasing
+  STOP never restores a previous target, channel, power or TX lease.
+- Commanded TX, path current, radio-reported state and independent actual-TX
+  evidence remain distinct. Unknown is never promoted to success or safety.
+- Unused interfaces are powered down or enter a verified quiet state so they do
+  not delay or desensitize the active signal group.
+- Cost reduction is accepted only when capability, performance, safety,
+  reliability, autonomy, serviceability and testability remain equivalent.
 
-## Development state
+## Product boundary
 
-The 125 capability leaves and the competitor delta have received repeated G2
-review. G3 physical/product inputs remain reviewed, but G2F logical/electrical
-feasibility now comes first. One machine-readable source contains three
-structurally checked maps; `DEC-0044/NIF-0001/REV-0004L` select `G2F-3I` as the
-leading reviewed paper map without radio-bus contention. `DEC-0047` selects a
-qualified `SG-N24` envelope; the ordered second ESP32-DIV provides early
-`L0 DIV↔DIV` pre-HIL, while target pass requires Leshy2 `T1`. `DEC-0048`
-accepts three compact IPEX→external-SMA nRF paths and external SMA for every
-onboard antenna endpoint. `ANT-0001/REV-0004P` now prove that exact Si4732 has
-separate FM/SW and AM/LW antenna inputs; `DEC-0049/REV-0004Q` accept nine
-labelled SMA with separate `RX-FM/SW` and `RX-AM/LW`. The latter requires a
-short loop/pod or qualified buffered profile and is not a generic coax port.
-`RFH-0001/REV-0004R` additionally review module-to-panel feeds: S3/C5 have
-explicit first-generation U.FL/MHF I/AMC compatibility, while Ebyte calls its
-connector only `IPX`, so `FND-0057` requires a specimen-fit gate.
-`RFH-0002/REV-0004S` show that RP-SMA is typical for native Wi-Fi,
-Ebyte/nRF uses standard SMA and sub-GHz has both polarities. The owner choice
-is accepted by `DEC-0050/REV-0004T` as bounded `2 RP-SMA + 7 standard SMA`;
-`ANT-0002/REV-0004U` review procurement candidates; `DEC-0055/REV-0005E`
-accept the 12-item profiled kit and exact-MPN availability gate. Mounting,
-cable lengths, two-source assemblies and target RF qualification remain open.
-`PIN-0003/REV-0004V` add a generated principled owner/net/pad atlas. The
-current exact exposed-contact budget is S3 `32/3/1`, C5 `14/6/1`, RP
-`48/0/0` and slow I/O `24/0/0`; exact SA518 service and Si4732 control/RF
-contacts are instantiated, while remaining electrical abstractions stay open
-under `FND-0060`.
-Physical RF/full-mix
-measurements, unused-interface quiet-state power controls,
-peripherals, power and HIL close in parallel with adapting the legacy physical
-mockup and may reopen the working pinout. Whole-device optimality, conceptual placement and a new atomic
-architecture decision must precede components and KiCad. The normative sequence is
-[`FLOW-0001`](docs/review/architecture/FLOW-0001-product-to-cad-gates.md).
+The base product excludes 6 GHz/Wi-Fi 6E, generic USB host, a personal
+FIDO/U2F authenticator, an integrated keyboard, a motor and an onboard IMU.
+BadUSB/DuckyScript may exist only as an optional Controlled-Zone software
+feature over the existing USB device path and does not shape the radio
+instrument's hardware architecture.
+
+## Project documentation
+
+- [Current hardware engineering state](docs/status/current-state.md)
+- [Principled pin map](docs/review/architecture/PIN-0003-g2f-3i-principled-pinout.md)
+- [Complete requirements, decisions and evidence ledger](docs/review/README.md)
+- [Firmware target product](https://github.com/anton-vinogradov/esp32-leshy2-firmware)

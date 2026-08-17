@@ -116,12 +116,26 @@ class ArchitectureValidationTests(unittest.TestCase):
         for readme_name in ("README.md", "README.ru.md"):
             readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
             normalized = " ".join(readme.split())
-            self.assertIn("DEC-0051", normalized, readme_name)
             self.assertIn("S3 `32", normalized, readme_name)
             self.assertIn("C5 `14/6/1`", normalized, readme_name)
             self.assertIn("RP `48/0/0`", normalized, readme_name)
             for group in expected_groups:
                 self.assertIn(group, normalized, f"{readme_name}: {group}")
+
+    def test_target_readmes_remain_product_sites_not_review_ledgers(self):
+        for readme_name in ("README.md", "README.ru.md"):
+            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
+            for ledger_prefix in ("DEC-", "REV-", "FND-", "IMP-"):
+                self.assertNotIn(ledger_prefix, readme, readme_name)
+            for stale_heading in ("## Development state", "## Состояние разработки"):
+                self.assertNotIn(stale_heading, readme, readme_name)
+            for wide_table_heading in (
+                "| Principled group |",
+                "| Принципиальная группа |",
+            ):
+                self.assertNotIn(wide_table_heading, readme, readme_name)
+            self.assertIn("<details>", readme, readme_name)
+            self.assertIn("docs/status/current-state", readme, readme_name)
 
     def test_qspi_display_decision_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

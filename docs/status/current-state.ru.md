@@ -257,3 +257,10 @@ map и living diagrams до принятия не изменены, `I2` ост�
 обязаны меняться в том же коммите, что и принятое изменение устройства,
 owner, шины или тракта; regression проверяет orientation и покрытие MPN
 текущего candidate.
+
+`FND-0072/IMP-0051` выявили, что target README снова начали пересказывать
+инженерную chronology. Владелец принял `DEC-0060`; `REV-0005N` провёл ревью
+исправления. Четыре корневые EN/RU страницы теперь являются product landing
+pages без цепочек `DEC/REV/FND/IMP` и open-gate narrative. Здесь и в review
+ledger сохранены вся зрелость, находки и история; hardware pin groups доступны
+в responsive `<details>` и generated atlas.
