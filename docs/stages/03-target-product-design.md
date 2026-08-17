@@ -36,9 +36,11 @@ two-board clamshell generator. Его геометрия тоже рабочая
 pinout diagram и exact pad/net tables; current budget честно равен S3
 `29/3/4`, C5 `14/6/1`, RP `48/0/0`, slow `23/1/0`. Это выполняет необходимый
 working-baseline checkpoint `DEC-0041` и разрешает начать перенос в старый
-reproducible mockup. `FND-0060` exact electrical endpoints, принятие profiled
-kit (`IMP-0043`), exact two-source assemblies и assembled RF HIL (`FND-0058`)
-закрываются параллельно. Найденный physical/RF/power/service conflict меняет
+reproducible mockup. `DSP-0002/REV-0004W` подтверждают, что direct QSPI
+помещается на двух из четырёх свободных S3 GPIO, но `IMP-0044` остаётся
+решением до изменения working pin map. `FND-0060` exact electrical endpoints,
+принятие profiled kit (`IMP-0043`), exact two-source assemblies и assembled RF
+HIL (`FND-0058`) закрываются параллельно. Найденный physical/RF/power/service conflict меняет
 рабочую карту через повторное G2F review, а не маскируется внутри макета.
 
 ## Downstream boundary

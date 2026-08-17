@@ -99,8 +99,12 @@ qualification blockers. `DSP-0001/REV-0003Z` review three real display/touch
 boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
 ST7796S budget and generic 24-pin connector cannot be reused. `DEC-0043/REV-0004J`
 accept task/dirty-region performance with `≤100 ms` critical/menu first response
-and correct the shared-U214 display quantum from 1 KiB to 256 B; exact display,
-optics and HIL remain open. `CTL-0001/REV-0004K` found that the first maps
+and correct the former shared-U214 quantum from 1 KiB to 256 B.
+`DSP-0002/REV-0004W` now expose `FND-0061`: U214 has moved to a dedicated RP
+bus, so the fixed 256 B limit is stale and needlessly fragments display DMA.
+Direct QSPI fits on free S3 `GPIO41/42`, while RP/C5 ownership and direct
+I80/RGB do not fit the pin budget. Exact display, optics and HIL remain open.
+`CTL-0001/REV-0004K` found that the first maps
 closed MCU accounting only. The owner delegated layout search; `DEC-0044`
 accepts `IMP-0037/A`, while `NIF-0001/REV-0004L` review the leading `G2F-3I`:
 RP2354B/QFN80, five independent radio/accessory SPI paths, dedicated 4-bit
@@ -169,6 +173,11 @@ input—shared MPNs only for the electrically equivalent S3/C5 and three nRF
 paths, combined 868/915, separate 315/433, VHF/UHF, FM/SW whip and AM/LW pod;
 every profile change disarms TX and unknown/mismatch keeps TX disabled.
 
+⚠️ Proposal `IMP-0044`: accept a QSPI-first S3 display path—first replace the
+stale `256 B` cap with a measured `<=1 ms` bus-occupancy contract, then reserve
+`GPIO41/42` for D2/D3 and qualify an exact QSPI panel. BT817/BT818 EVE is the
+fallback; no fourth MCU is added to the baseline.
+
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
@@ -178,7 +187,8 @@ The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0043`, `FND-0058` antenna qualification and `FND-0060` exact
-electrical endpoints remain open. Exact production nRF, SMA/feed/protection,
+In parallel, `IMP-0043/0044`, `FND-0058` antenna qualification, `FND-0060`
+exact electrical endpoints and `FND-0061` display arbitration correction remain
+open. Exact production nRF, SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and
 KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

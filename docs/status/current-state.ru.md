@@ -98,8 +98,12 @@ implementation, voice/IR и часть control/power всё ещё blockers.
 microSD socket. `FND-0051` доказывает, что старые 10 full frames/s для ST7796S
 и generic 24-pin connector переиспользовать нельзя. `DEC-0043/REV-0004J`
 принимают task/dirty-region performance с первым critical/menu response
-`≤100 ms` и исправляют shared-U214 display quantum с 1 KiB до 256 B; exact
-display, optics и HIL остаются открыты. `CTL-0001/REV-0004K` обнаружили, что
+`≤100 ms` и для прежней shared-U214 карты исправляют quantum с 1 KiB до
+256 B. `DSP-0002/REV-0004W` теперь обнаруживают `FND-0061`: U214 уже перенесён
+на dedicated RP bus, поэтому фиксированные 256 B устарели и излишне дробят
+экранный DMA. Direct QSPI помещается на свободных S3 `GPIO41/42`, тогда как
+RP/C5 и direct I80/RGB не имеют pin budget. Exact display, optics и HIL
+остаются открыты. `CTL-0001/REV-0004K` обнаружили, что
 первые карты закрывали только MCU accounting. Владелец делегировал перебор
 компоновки; `DEC-0044` принял `IMP-0037/A`, а `NIF-0001/REV-0004L` проверили
 ведущий `G2F-3I`: RP2354B/QFN80, пять независимых radio/accessory SPI paths,
@@ -167,6 +171,11 @@ working design для G3, сохраняя её reopenable до atomic architect
 combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; при
 каждой смене TX profile сбрасывать arm, а unknown/mismatch оставлять без TX.
 
+⚠️ Предложение `IMP-0044`: принять QSPI-first display path на S3 — сначала
+заменить stale `256 B` на измеримый `≤1 ms` bus-occupancy contract, затем
+зарезервировать `GPIO41/42` под D2/D3 и квалифицировать exact QSPI panel.
+BT817/BT818 EVE остаётся fallback, четвёртый MCU в baseline не добавляется.
+
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
@@ -176,7 +185,8 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются решение `IMP-0043`, `FND-0058` antenna
-qualification и `FND-0060` exact electrical endpoints. Exact production nRF,
+маскируется. Параллельно остаются решения `IMP-0043/0044`, `FND-0058` antenna
+qualification, `FND-0060` exact electrical endpoints и `FND-0061` display
+arbitration correction. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

@@ -17,7 +17,7 @@
 6. Atomic architecture only after all prior gates pass.
 7. Exact components, electrical CAD, schematic and PCB afterwards.
 
-The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
+The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001/0002`,
 `CTL-0001`, [`NIF-0001`](NIF-0001-digital-noninterference-layout.md),
 [`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md) and the generated
 `G2F-pin-ledger` plus focused
@@ -62,6 +62,11 @@ peripherals and HIL remain open; CAD stays blocked.
   the generator foundation and explicitly leaves complete-candidate review open.
 - [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md) replaces the
   inherited full-frame target with the accepted task/dirty-region contract;
+- [`DSP-0002`](DSP-0002-fast-display-path-options.md) finds that display+SD is
+  the only deliberately shared high-rate pair, exposes the stale U214-derived
+  `256 B` quantum as `FND-0061`, and reviews direct S3 QSPI, EVE and fourth-MCU
+  paths. `IMP-0044` recommends reserving two free S3 pins for QSPI before
+  adding another compute domain;
 - [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md) proves that
   current validation closes MCU accounting only, derives the open slow-control
   envelope and records the required external-I²C fault boundary;
@@ -104,6 +109,11 @@ peripherals and HIL remain open; CAD stays blocked.
   315–915 or full VHF/UHF radiator. `FND-0058` keeps production two-source and
   assembled-HIL qualification open; `IMP-0043` asks whether to adopt the
   profiled external kit as an architecture input.
+- [`DSP-0002/REV-0004W`](DSP-0002-fast-display-path-options.md) review the
+  display acceleration gate against the exact current pin budget. Direct QSPI
+  fits with `GPIO41/42`; current RP/C5 display ownership and direct I80/RGB do
+  not. `IMP-0044` remains an owner decision, so the machine pin map is not yet
+  changed.
 
 ## Deferred/reference G3 artifacts
 
