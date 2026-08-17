@@ -22,8 +22,9 @@ The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001/0002`,
 [`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md) and the generated
 `G2F-pin-ledger` plus focused
 [`G2F-3I principled pinout`](generated/G2F-3I-principled-pinout.md).
-`PIN-0003/REV-0004V` review the current exact owner/contact projection and
-record the honest `S3=4, C5=1, RP=0, slow=P27` free-contact state.
+`PIN-0003/REV-0004V` review the exact owner/contact projection;
+`DEC-0052/REV-0004X` then allocate S3 GPIO41/42 to direct-QSPI D2/D3 and record
+the current honest `S3=2, C5=1, RP=0, slow=P27` free-contact state.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -65,8 +66,11 @@ peripherals and HIL remain open; CAD stays blocked.
 - [`DSP-0002`](DSP-0002-fast-display-path-options.md) finds that display+SD is
   the only deliberately shared high-rate pair, exposes the stale U214-derived
   `256 B` quantum as `FND-0061`, and reviews direct S3 QSPI, EVE and fourth-MCU
-  paths. `IMP-0044` recommends reserving two free S3 pins for QSPI before
-  adding another compute domain;
+  paths. `IMP-0044/A` is accepted by `DEC-0052`; the machine map now assigns
+  S3 GPIO41/42 to QSPI D2/D3 and uses measured `<=1 ms` display occupancy;
+- [`DSP-0003`](DSP-0003-exact-fast-display-shortlist.md) shows that the old
+  4-inch ST7796S remains a valid A0 workload fixture but not a QSPI target.
+  `IMP-0045` compares a new 3.5-inch portrait QSPI class with 4-inch EVE;
 - [`CTL-0001`](CTL-0001-slow-control-and-external-i2c-boundary.md) proves that
   current validation closes MCU accounting only, derives the open slow-control
   envelope and records the required external-I²C fault boundary;
@@ -112,8 +116,8 @@ peripherals and HIL remain open; CAD stays blocked.
 - [`DSP-0002/REV-0004W`](DSP-0002-fast-display-path-options.md) review the
   display acceleration gate against the exact current pin budget. Direct QSPI
   fits with `GPIO41/42`; current RP/C5 display ownership and direct I80/RGB do
-  not. `IMP-0044` remains an owner decision, so the machine pin map is not yet
-  changed.
+  not. `DEC-0052/REV-0004X` accept and propagate this path; `DSP-0003/IMP-0045`
+  keep exact screen choice open.
 
 ## Deferred/reference G3 artifacts
 

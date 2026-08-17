@@ -1,5 +1,8 @@
 # REV-0004W — fast-display path fact and option review
 
+> Последующее решение: `DEC-0052/REV-0004X` принимает `IMP-0044/A`, меняет
+> machine map и закрывает `FND-0061`. Таблица ниже хранит prerequisite review.
+
 - Статус: **Проведено ревью фактов; IMP-0044 и exact panel открыты**
 - Дата: 2026-08-17
 - Evidence: [`DSP-0002`](../architecture/DSP-0002-fast-display-path-options.md)
@@ -25,6 +28,7 @@
 ## Результат
 
 Фактическая часть получает **«Проведено ревью»**. Решение не принято: current
-machine map и `256 B` contract не меняются до ответа владельца по `IMP-0044`.
+На момент этого prerequisite review machine map и `256 B` contract не менялись
+до ответа владельца. Они позднее обновлены `DEC-0052/REV-0004X`.
 Exact panel, shared-line electrical behavior, optics/mechanics and scenario HIL
 остаются qualification gates независимо от выбранного пути.

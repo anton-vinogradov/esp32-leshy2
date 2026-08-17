@@ -99,6 +99,9 @@ target. Бывший `PKG-0001/SYN-3A` после
 принимает `G2F-3I/PIN-0003` как текущий working design для физической
 компоновки. Это проведённое ревью принципиальной распиновки, но не финальная
 atomic architecture и не разрешение на KiCad.
+[`DEC-0052`](docs/review/decisions/DEC-0052-qspi-first-display-path.md)
+добавляет direct-QSPI D2/D3 на S3 GPIO41/42 и measured `≤1 ms` display
+occupancy; exact screen/optics/mechanics остаются открытыми.
 
 ```mermaid
 flowchart LR
@@ -109,7 +112,7 @@ flowchart LR
   S3 <-->|"4-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
-  S3 -->|"SPI2 scheduled"| DISP["display + microSD"]
+  S3 -->|"QSPI/SPI2 scheduled"| DISP["display + microSD"]
   S3 -->|"I²S0 + I²C0"| AUDIO["codec + Si4732"]
   C5 -->|"RMT + evidence"| IR["dual RX + IR TX"]
   RP -->|"3 independent PIO SPI/control groups"| NRF["nRF24 #0/#1/#2"]
@@ -120,7 +123,7 @@ flowchart LR
 |---|---|---|
 | S3↔C5 | S3 `GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47`; C5 `GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14` | dedicated 4-bit SDIO |
 | S3↔RP | S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` | dedicated SPI3/SPI1 + alert |
-| display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40` | единственная high-rate scheduled pair |
+| display+microSD | S3 `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` | direct QSPI display + 1-bit SPI microSD; единственная high-rate scheduled pair |
 | audio+Si4732 | S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` | I²S0 и bounded internal I²C0 |
 | M5 Unit | S3 `GPIO7,GPIO8` | отдельный configurable profile port |
 | IR | C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` | dual RX, TX, power gate и evidence |
@@ -131,7 +134,7 @@ flowchart LR
 | SA518/PTT | RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22` | UART0, PTT, activity/evidence |
 | U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
 
-Pin budget: S3 `29 used / 3 reserved / 4 free`, C5 `14/6/1`, RP
+Pin budget: S3 `31 used / 3 reserved / 2 free`, C5 `14/6/1`, RP
 `48/0/0`, slow I/O `23/1/0`. RP не имеет свободного direct GPIO; независимые
 SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
 
@@ -180,7 +183,7 @@ RP-SMA только для native Wi-Fi S3/C5, standard SMA для осталь�
 mounting, длины кабелей, two-source assemblies и target RF qualification
 остаются открытыми.
 `PIN-0003/REV-0004V` добавляют generated principled owner/net/pad atlas.
-Current exact exposed-contact budget равен S3 `29/3/4`, C5 `14/6/1`, RP
+Current exact exposed-contact budget равен S3 `31/3/2`, C5 `14/6/1`, RP
 `48/0/0`, slow I/O `23/1/0`; exact SA518 service и Si4732 control/RF contacts
 внесены, а оставшиеся electrical abstractions открыты как `FND-0060`.
 Physical RF/full-mix measurements,

@@ -1,10 +1,11 @@
 # ⚠️ Предложение IMP-0044 — QSPI-first fast display path without a fourth MCU
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принято владельцем — вариант A, `DEC-0052`**
 - Дата: 2026-08-17
 - Evidence: [`DSP-0002`](../architecture/DSP-0002-fast-display-path-options.md)
 - Finding: [`FND-0061`](../findings/FND-0061-stale-display-quantum-after-u214-move.md)
 - Current decision: [`DEC-0043`](../decisions/DEC-0043-task-based-display-performance.md)
+- Accepted decision: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md)
 
 ## Текущее состояние и причина решения
 
@@ -71,8 +72,8 @@ workload это избыточно и дороже без доказанной �
 не добавляя compute. Считать EVE заранее определённым fallback, а четвёртый MCU
 не вводить без измеренного провала или расширения UI scope.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принимаем вариант **A: QSPI-first на S3 с `GPIO41/42` под D2/D3, временным
-display quantum `<=1 ms`, optional TE только по HIL, EVE fallback и без
-четвёртого MCU в baseline**?
+Владелец ответил «давай». Принят вариант **A: QSPI-first на S3 с
+`GPIO41/42` под D2/D3, временным display quantum `<=1 ms`, optional TE только
+по HIL, EVE fallback и без четвёртого MCU в baseline**.

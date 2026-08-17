@@ -1,5 +1,9 @@
 # DSP-0001 — display, touch and removable-storage real-device evidence
 
+> Последующее решение: `DEC-0052` принимает direct QSPI и measured `<=1 ms`
+> display occupancy; `DSP-0003/IMP-0045` выбирают новый exact screen class.
+> Historical ST7796S/shared-U214 evidence ниже сохраняется как A0 boundary.
+
 - Статус: **Проведено ревью фактов и performance contract; exact target не выбран**
 - Дата: 2026-08-17
 - Gate: `FLOW-0001/G2F`, exact-peripheral pass
@@ -93,7 +97,8 @@ push-pull сравниваются отдельно.
 
 - exact target display, brightness/glove/water/cover-lens and temperature;
 - exact touch interrupt/polling и ordinary-control IRQ/wake topology;
-- display/U214 shared-bus HIL с datasheet-valid clocks and bounded chunks;
+- display/microSD shared-SPI2 HIL с QSPI/SPI mode switching, CS-high high-Z,
+  datasheet-valid clocks и `<=1 ms` display occupancy;
 - 1-bit/4-bit microSD HIL, qualified cards, socket position and hot removal;
 - lifecycle, authorised supply, unit price, assembly and repair comparison.
 

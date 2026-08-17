@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе; current paper baseline reviewed**: `PIN-0003/REV-0004V` закрывают owners/controllers/exact compute contacts и текущий бюджет; final electrical endpoints, RF/power и HIL открыты |
+| 2F. Logical/electrical feasibility | **В работе; current paper baseline reviewed**: `PIN-0003/REV-0004V/0004X` закрывают owners/controllers/exact compute contacts и current QSPI-amended budget; final electrical endpoints, RF/power и HIL открыты |
 | 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -99,11 +99,13 @@ microSD socket. `FND-0051` доказывает, что старые 10 full fra
 и generic 24-pin connector переиспользовать нельзя. `DEC-0043/REV-0004J`
 принимают task/dirty-region performance с первым critical/menu response
 `≤100 ms` и для прежней shared-U214 карты исправляют quantum с 1 KiB до
-256 B. `DSP-0002/REV-0004W` теперь обнаруживают `FND-0061`: U214 уже перенесён
-на dedicated RP bus, поэтому фиксированные 256 B устарели и излишне дробят
-экранный DMA. Direct QSPI помещается на свободных S3 `GPIO41/42`, тогда как
-RP/C5 и direct I80/RGB не имеют pin budget. Exact display, optics и HIL
-остаются открыты. `CTL-0001/REV-0004K` обнаружили, что
+256 B. `DSP-0002/REV-0004W` обнаружили `FND-0061`: U214 уже перенесён на
+dedicated RP bus, поэтому fixed limit устарел. `DEC-0052/REV-0004X` закрывают
+находку: принимают direct QSPI на S3 `GPIO41/42` и measured `≤1 ms` display
+occupancy; current S3 budget становится `31/3/2`. `DSP-0003/REV-0004Y`
+показывают, что старый 4-inch ST7796S годится как A0 workload fixture, но не
+как QSPI target; новый 3.5-inch QSPI class остаётся `IMP-0045`. Exact display,
+optics и HIL открыты. `CTL-0001/REV-0004K` обнаружили, что
 первые карты закрывали только MCU accounting. Владелец делегировал перебор
 компоновки; `DEC-0044` принял `IMP-0037/A`, а `NIF-0001/REV-0004L` проверили
 ведущий `G2F-3I`: RP2354B/QFN80, пять независимых radio/accessory SPI paths,
@@ -157,8 +159,8 @@ VOICE — отдельных VHF/UHF, а Si4732 сохраняет whip и loop/
 owner diagram, каждый MCU GPIO с physical module/package pad, fixed mux,
 service/recovery, PIO/DMA budget и все slow routes берутся из одного JSON.
 Саморевью обнаружило `FND-0059`: старый `NIF-0001/REV-0004L` показывал
-pre-`DEC-0046` budget. Исправленный current result — S3 `29U/3R/4F`, C5
-`14U/6R/1F`, RP `48U/0R/0F`, slow plane `23U/1R/0F`; regression теперь
+pre-`DEC-0046` budget. После последующего `DEC-0052` current result — S3
+`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F`, slow plane `23U/1R/0F`; regression теперь
 проверяет эти числа. SA518 `UPDATE/UART/PD` service и exact Si4732 control/
 FMI/AMI contacts также внесены. `FND-0060` сохраняет видимыми ещё abstract
 display/codec/IR/power/STOP/protection endpoints: current paper pinout прошёл
@@ -171,10 +173,13 @@ working design для G3, сохраняя её reopenable до atomic architect
 combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; при
 каждой смене TX profile сбрасывать arm, а unknown/mismatch оставлять без TX.
 
-⚠️ Предложение `IMP-0044`: принять QSPI-first display path на S3 — сначала
-заменить stale `256 B` на измеримый `≤1 ms` bus-occupancy contract, затем
-зарезервировать `GPIO41/42` под D2/D3 и квалифицировать exact QSPI panel.
-BT817/BT818 EVE остаётся fallback, четвёртый MCU в baseline не добавляется.
+`IMP-0044/A` принято как `DEC-0052`: QSPI-first display path на S3 использует
+`GPIO41/42` под D2/D3 и `≤1 ms` bus-occupancy contract. BT817/BT818 EVE
+остаётся fallback, четвёртый MCU в baseline не добавляется.
+
+⚠️ Предложение `IMP-0045`: выбрать новый 3.5-inch portrait `320×480` QSPI
+IPS+touch class; ST77922 использовать как primary HIL, AXS15231B — как
+secondary reference, старый 4-inch ST7796S оставить A0 control/fallback.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
@@ -185,8 +190,8 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются решения `IMP-0043/0044`, `FND-0058` antenna
-qualification, `FND-0060` exact electrical endpoints и `FND-0061` display
-arbitration correction. Exact production nRF,
+маскируется. Параллельно остаются решения `IMP-0043/0045`, `FND-0058` antenna
+qualification, `FND-0060` exact electrical endpoints и `FND-0062` exact
+display disposition. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

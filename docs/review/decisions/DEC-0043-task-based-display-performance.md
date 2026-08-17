@@ -1,5 +1,10 @@
 # DEC-0043 — task-based display performance
 
+> Последующее решение: `DEC-0052` сохраняет task/dirty-region contract, но
+> заменяет исторический shared-U214 лимит `256 B` на direct-QSPI path и
+> measured `<=1 ms` display occupancy. Текст ниже фиксирует принятое на тот
+> момент состояние.
+
 - Статус: **Принято владельцем; распространение проведено ревью**
 - Дата: 2026-08-17
 - Выбранный вариант: `IMP-0036/A`
@@ -46,4 +51,3 @@ low-pin write-only SPI + I²C touch с dirty-rectangle/tiled renderer. Точн�
   choice и complete pin/power/cost comparison, а не скрывается firmware tuning.
 
 Ни одна exact display module этим решением не получает target/Q status.
-

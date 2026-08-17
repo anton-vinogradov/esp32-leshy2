@@ -23,7 +23,7 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_principled_pinout_is_derived_from_current_leading_budget(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
-        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 29 | 3 | 4 | 36 |", rendered)
+        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 31 | 3 | 2 | 36 |", rendered)
         self.assertIn("| `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |", rendered)
         self.assertIn("| `rp` | `RP2354B A4", rendered)
         self.assertIn("| 48 | 0 | 0 | 48 |", rendered)
@@ -61,11 +61,32 @@ class ArchitectureValidationTests(unittest.TestCase):
             readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
             normalized = " ".join(readme.split())
             self.assertIn("DEC-0051", normalized, readme_name)
-            self.assertIn("S3 `29", normalized, readme_name)
+            self.assertIn("S3 `31", normalized, readme_name)
             self.assertIn("C5 `14/6/1`", normalized, readme_name)
             self.assertIn("RP `48/0/0`", normalized, readme_name)
             for group in expected_groups:
                 self.assertIn(group, normalized, f"{readme_name}: {group}")
+
+    def test_qspi_display_decision_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        s3 = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "s3"
+        }
+        self.assertEqual("DISPLAY_SD_SPI_D1", s3["GPIO4"]["net"])
+        self.assertEqual("io", s3["GPIO4"]["direction"])
+        self.assertIn("high-Z", s3["GPIO4"]["sharing_proof"])
+        self.assertEqual("LCD_QSPI_D2", s3["GPIO41"]["net"])
+        self.assertEqual("LCD_QSPI_D3", s3["GPIO42"]["net"])
+        self.assertNotIn("GPIO41", candidate["free_gpio"]["s3"])
+        self.assertNotIn("GPIO42", candidate["free_gpio"]["s3"])
+        display_contract = next(
+            item for item in candidate["resource_contracts"]
+            if item["id"] == "DISPLAY_SD_SPI"
+        )
+        self.assertIn("<=1 ms", display_contract["arbitration"])
+        self.assertNotIn("256 B", display_contract["arbitration"])
 
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):

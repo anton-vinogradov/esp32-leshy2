@@ -9,6 +9,8 @@
   [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 - Review: [`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md)
 - Working-design decision: [`DEC-0051`](../decisions/DEC-0051-principled-pinout-as-working-design.md)
+- Display-path amendment: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md) /
+  [`REV-0004X`](../reviews/REV-0004X-qspi-display-decision-propagation.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -50,7 +52,7 @@ outside normal application dependency:
 
 | Domain | Used | Reserved | Free | Total exposed/allocatable |
 |---|---:|---:|---:|---:|
-| S3 | 29 | 3 | 4 | 36 |
+| S3 | 31 | 3 | 2 | 36 |
 | C5 | 14 | 6 | 1 | 21 |
 | RP | 48 | 0 | 0 | 48 |
 | slow I/O | 23 | 1 | 0 | 24 |
@@ -81,7 +83,8 @@ electrical/RF qualification are still separate gates.
 - CC1101 and U214 do not share a radio data bus with nRF or display;
 - S3↔RP and S3↔C5 use different dedicated controllers;
 - display+microSD are the only high-rate scheduled pair and have bounded
-  quanta; no radio FIFO or IPC deadline uses that controller;
+  service: direct-QSPI display occupancy is `<=1 ms`, SD uses separate CS and
+  per-device mode; no radio FIFO or IPC deadline uses that controller;
 - PIO is `5/12`, RP DMA `13/16`, S3 GDMA TX/RX `3/5` with explicit reserves;
 - all three nRF remain simultaneously active for every required PTX/PRX mix.
 
@@ -91,6 +94,8 @@ signal-integrity proof.
 `DEC-0051` publishes this reviewed result in the root target document as the
 current principle-level design for G3. The generated atlas remains the complete
 exact-contact projection and this publication does not freeze G7 architecture.
+`DEC-0052` later amends the visible map with QSPI D2/D3 on S3 GPIO41/42 and
+changes the current S3 budget to `31/3/2` without changing owners.
 
 ## Remaining final-pinout blockers
 

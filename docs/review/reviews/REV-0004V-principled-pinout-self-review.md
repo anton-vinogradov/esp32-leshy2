@@ -1,5 +1,9 @@
 # REV-0004V — principled pinout self-review
 
+> Последующий reviewed amendment: `DEC-0052/REV-0004X` занимает S3 GPIO41/42
+> под QSPI D2/D3; current budget теперь `31/3/2`. Таблица ниже фиксирует
+> состояние исходного прохода `REV-0004V`.
+
 - Статус: **Проведено ревью current principled pinout; final electrical closure открыта**
 - Дата: 2026-08-17
 - Artifact: [`PIN-0003`](../architecture/PIN-0003-g2f-3i-principled-pinout.md)

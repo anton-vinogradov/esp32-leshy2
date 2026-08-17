@@ -1,6 +1,6 @@
 # FND-0061 — display quantum retained after U214 left the shared SPI
 
-- Статус: **Открыто; несоответствие найдено, изменение контракта требует решения**
+- Статус: **Закрыто `DEC-0052`; machine/runtime contracts исправлены**
 - Серьёзность: performance/architecture consistency
 - Обнаружено: 2026-08-17
 - Historical decision: [`DEC-0043`](../decisions/DEC-0043-task-based-display-performance.md)
@@ -37,13 +37,13 @@ transaction, а фактический byte quantum вычисляется из 
 bounded SD operations, card-stall injection и запрет влияния на radio/IPC
 сохраняются.
 
-Это не изменяется автоматически: новый предел меняет принятый arbitration
-contract и должен быть утверждён вместе с выбором fast-display направления из
-`IMP-0044`.
+`DEC-0052` утвердил исправление вместе с fast-display направлением
+`IMP-0044/A`.
 
 ## Критерий закрытия
 
-После решения владельца согласованно обновлены `DEC-0043`-successor,
-machine-readable resource contract, generated ledgers, hardware/firmware
-runtime documents и HIL plan. Проверка подтверждает целевую UI latency,
-storage throughput/stalls и отсутствие влияния на radio/IPC.
+`DEC-0052`, machine-readable resource contract, generated ledgers и
+hardware/firmware runtime documents согласованно обновлены. Scenario HIL всё
+ещё обязан подтвердить целевую UI latency, storage throughput/stalls и
+отсутствие влияния на radio/IPC; это qualification gate, а не причина держать
+находку открытой после исправления артефактов.

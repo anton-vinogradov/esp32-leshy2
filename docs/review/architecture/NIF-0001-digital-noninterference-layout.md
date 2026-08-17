@@ -6,6 +6,8 @@
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
 - Generated exact-pin ledger: [`G2F-pin-ledger`](generated/G2F-pin-ledger.md)
 - Review: [`REV-0004L`](../reviews/REV-0004L-digital-noninterference-layout.md)
+- Display update: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md) /
+  [`REV-0004X`](../reviews/REV-0004X-qspi-display-decision-propagation.md)
 
 ## Цель и граница доказательства
 
@@ -48,7 +50,7 @@ flowchart LR
 
   S3 <-->|"dedicated 4-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
-  S3 -->|"scheduled SPI2; <=256 B display quantum"| LCD
+  S3 -->|"direct QSPI on scheduled SPI2; <=1 ms occupancy"| LCD
   S3 <-->|"scheduled SPI2; bounded SD chunks"| SD
   RP <-->|"PIO0 SM0 + direct IRQ"| NRF0
   RP <-->|"PIO0 SM1 + direct IRQ"| NRF1
@@ -61,7 +63,7 @@ flowchart LR
 
 | Domain | Exact device boundary | Used | Reserved | Free | Проверка |
 |---|---|---:|---:|---:|---|
-| S3 | `ESP32-S3-WROOM-1U-N16R2`, 36 exposed GPIO | 29 | 3 straps | 4 | every GPIO classified |
+| S3 | `ESP32-S3-WROOM-1U-N16R2`, 36 exposed GPIO | 31 | 3 straps | 2 | every GPIO classified; GPIO41/42 are QSPI D2/D3 |
 | C5 | `ESP32-C5-WROOM-1U-N8R8`, 21 exposed GPIO | 14 | 6 straps/service | 1 | internal PSRAM GPIO15 не посчитан; GPIO4 is IR quiet-state gate |
 | RP | `RP2354B A4`, QFN80, 48 GPIO | 48 | 0 | 0 | exact package pads 1…80 checked; GPIO15/23 are nRF/CC quiet-state gates |
 | slow plane | `TCA6424ARGJR`, 24 P-ports | 23 | 1 | 0 | every allocatable contact classified and routed |
@@ -108,7 +110,7 @@ stress HIL остаётся обязательным до target acceptance.
 | S3↔C5 | S3 SD/MMC host + C5 4-bit SDIO slave | microSD удалён из host | ≥1.5 MB/s framed; control RTT ≤2 ms |
 | audio | I²S0 + DMA | отдельный peripheral | continuous full-duplex; zero unexplained gaps |
 | Unit | second S3 I²C/UART/GPIO profile | отделён от internal и U214 I²C | profile/fault HIL |
-| display+microSD | SPI2, отдельные CS и per-device clock | только взаимное, bounded; radio path не затрагивается | UI first feedback ≤100 ms; SD ≥4 MB/s, 1.5 MB/s record and 250 ms stall; display quantum ≤256 B |
+| display+microSD | direct-QSPI display + 1-bit SPI SD on SPI2, separate CS and per-device mode/clock | только взаимное, bounded; radio path не затрагивается | UI first feedback ≤100 ms; display occupancy ≤1 ms; SD ≥4 MB/s, 1.5 MB/s record and 250 ms stall; shared-D1 high-Z/contention proof |
 | internal slow controls | I²C0 + INT, bounded transactions | только slow endpoints | UI ≤100 ms; ни PTT, ни radio FIFO/IRQ здесь нет |
 
 ## Slow plane и safety boundary
@@ -137,8 +139,9 @@ thermal/mechanics, production cost and all named stress tests. `G2F-3I` може
 стать target только внутри будущего atomic package после этих проверок.
 
 Budget presentation повторно проверена после `DEC-0046` в
-[`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)/[`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md);
-старые `C5=13/RP=46` counts исправлены как `FND-0059`.
+[`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)/[`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md),
+а затем после QSPI allocation в `REV-0004X`: current S3 budget `31/3/2`.
+Старые `C5=13/RP=46` counts исправлены как `FND-0059`.
 
 ## Первичные источники
 

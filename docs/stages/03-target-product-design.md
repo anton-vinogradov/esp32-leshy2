@@ -34,11 +34,12 @@ two-board clamshell generator. Его геометрия тоже рабочая
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
 `G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
 pinout diagram и exact pad/net tables; current budget честно равен S3
-`29/3/4`, C5 `14/6/1`, RP `48/0/0`, slow `23/1/0`. Это выполняет необходимый
+`31/3/2`, C5 `14/6/1`, RP `48/0/0`, slow `23/1/0` after accepted direct-QSPI
+GPIO41/42 allocation (`DEC-0052/REV-0004X`). Это выполняет необходимый
 working-baseline checkpoint `DEC-0041` и разрешает начать перенос в старый
-reproducible mockup. `DSP-0002/REV-0004W` подтверждают, что direct QSPI
-помещается на двух из четырёх свободных S3 GPIO, но `IMP-0044` остаётся
-решением до изменения working pin map. `FND-0060` exact electrical endpoints,
+reproducible mockup. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
+1-bit SPI reference, новый 3.5-inch direct-QSPI class и EVE fallback;
+`IMP-0045` остаётся решением exact display class. `FND-0060` exact electrical endpoints,
 принятие profiled kit (`IMP-0043`), exact two-source assemblies и assembled RF
 HIL (`FND-0058`) закрываются параллельно. Найденный physical/RF/power/service conflict меняет
 рабочую карту через повторное G2F review, а не маскируется внутри макета.

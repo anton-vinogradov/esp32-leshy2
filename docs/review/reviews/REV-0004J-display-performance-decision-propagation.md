@@ -1,5 +1,8 @@
 # REV-0004J — task-based display-performance decision propagation
 
+> Последующее решение: `DEC-0052/REV-0004X` supersedes только shared-U214
+> `256 B` clause; task/dirty-region thresholds настоящего review сохраняются.
+
 - Статус: **Проведено ревью распространения решения**
 - Дата: 2026-08-17
 - Decision: [`DEC-0043`](../decisions/DEC-0043-task-based-display-performance.md)

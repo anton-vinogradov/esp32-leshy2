@@ -1,10 +1,11 @@
 # DSP-0002 — fast display path options
 
-- Статус: **Проведено ревью фактов; направление и exact display открыты**
+- Статус: **Проведено ревью фактов; QSPI-first принят `DEC-0052`, exact display открыт**
 - Дата: 2026-08-17
 - Current evidence: [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md)
 - Finding: [`FND-0061`](../findings/FND-0061-stale-display-quantum-after-u214-move.md)
 - Proposal: [`IMP-0044`](../improvements/IMP-0044-qspi-first-fast-display-path.md)
+- Decision: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md)
 - Review: [`REV-0004W`](../reviews/REV-0004W-fast-display-path-options.md)
 
 ## Короткий ответ о текущем bottleneck
@@ -38,12 +39,13 @@ gate.
 
 ## Реальный GPIO envelope S3
 
-Exact `ESP32-S3-WROOM-1U-N16R2` current map имеет четыре свободных, реально
-выведенных контакта: `GPIO6`, `GPIO41`, `GPIO42`, `GPIO43`. C5 имеет один
-свободный GPIO, RP2354B — ни одного. Следовательно, перенос экрана на текущие
-C5/RP без remap невозможен, а S3 может расширить data path до QSPI.
+Exact `ESP32-S3-WROOM-1U-N16R2` map до display decision имела четыре свободных,
+реально выведенных контакта: `GPIO6`, `GPIO41`, `GPIO42`, `GPIO43`. C5 имеет
+один свободный GPIO, RP2354B — ни одного. `DEC-0052` занимает GPIO41/42 под
+QSPI D2/D3 и оставляет S3 GPIO6/43 свободными. Следовательно, перенос экрана
+на текущие C5/RP без remap невозможен, а S3 расширяет data path до QSPI.
 
-Проверяемый candidate net map, но ещё не принятая распиновка:
+Принятый `DEC-0052` working net map:
 
 | QSPI function | S3 contact | Current/reuse state |
 |---|---|---|
@@ -75,7 +77,7 @@ raw ceiling равен `4 × f_clock / 8`, но production throughput задаё
 | `A1` direct QSPI from S3 | в 4 раза расширяет raw pixel data width; DMA остаётся у S3 | `+2 GPIO`, optional `+1 TE`; без нового compute | лучший performance/price/power/firmware balance; сохраняет один owner и open update chain | нужен exact QSPI panel; shared D1 tri-state, mode switching, SI and SD-stall HIL |
 | `B` BT817/BT818 EVE controller | widgets, command list, scanout и framebuffer memory уходят в display coprocessor | QSPI host, QFN64/controller/RGB panel/flash/power | настоящий display offload без четвёртого application firmware; хорошо для richer UI | заметно дороже и больше PCB/NRE; waterfall rows всё равно передаются; меняет panel/mechanics stack |
 | `C` fourth display MCU | весь renderer и panel interface | MCU, flash/PSRAM, rails, recovery/service and IPC | максимальная изоляция и свобода RGB/I80 | максимальные BOM/area/power/update/signing/boot/failure costs; ещё один EMI source |
-| `D` direct I80/RGB from current S3 | широкая или continuous pixel шина | минимум 8/16 data pins plus controls | высокий throughput без extra compute | не помещается в текущие 4 free GPIO; RGB также нежелателен с current 2 MB Quad-PSRAM module; требует whole-map redesign |
+| `D` direct I80/RGB from current S3 | широкая или continuous pixel шина | минимум 8/16 data pins plus controls | высокий throughput без extra compute | не помещается ни в исходные 4, ни в current 2 free GPIO; RGB также нежелателен с current 2 MB Quad-PSRAM module; требует whole-map redesign |
 
 Перенести экран на уже существующий RP или C5 нельзя считать вариантом
 разгрузки: у них нет pin budget, и это снова связало бы UI service с real-time

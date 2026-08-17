@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress; current paper baseline reviewed**: `PIN-0003/REV-0004V` close owners/controllers/exact compute contacts and the current budget; final electrical endpoints, RF/power and HIL remain open |
+| 2F. Logical/electrical feasibility | **In progress; current paper baseline reviewed**: `PIN-0003/REV-0004V/0004X` close owners/controllers/exact compute contacts and the current QSPI-amended budget; final electrical endpoints, RF/power and HIL remain open |
 | 3. Target physical/product design | **Starting from the `DEC-0051/PIN-0003` visible working design**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -100,10 +100,13 @@ boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
 ST7796S budget and generic 24-pin connector cannot be reused. `DEC-0043/REV-0004J`
 accept task/dirty-region performance with `≤100 ms` critical/menu first response
 and correct the former shared-U214 quantum from 1 KiB to 256 B.
-`DSP-0002/REV-0004W` now expose `FND-0061`: U214 has moved to a dedicated RP
-bus, so the fixed 256 B limit is stale and needlessly fragments display DMA.
-Direct QSPI fits on free S3 `GPIO41/42`, while RP/C5 ownership and direct
-I80/RGB do not fit the pin budget. Exact display, optics and HIL remain open.
+`DSP-0002/REV-0004W` expose `FND-0061`: U214 has moved to a dedicated RP bus,
+so the fixed 256 B limit is stale. `DEC-0052/REV-0004X` close the finding by
+accepting direct QSPI on S3 `GPIO41/42` and measured `<=1 ms` display
+occupancy; the current S3 budget becomes `31/3/2`. `DSP-0003/REV-0004Y` show
+that old 4-inch ST7796S remains an A0 workload fixture but not a QSPI target;
+the new 3.5-inch QSPI class remains `IMP-0045`. Exact display, optics and HIL
+remain open.
 `CTL-0001/REV-0004K` found that the first maps
 closed MCU accounting only. The owner delegated layout search; `DEC-0044`
 accepts `IMP-0037/A`, while `NIF-0001/REV-0004L` review the leading `G2F-3I`:
@@ -159,8 +162,8 @@ closed.
 atlas: the owner diagram, every MCU GPIO and physical module/package pad,
 fixed mux, service/recovery, PIO/DMA budget and all slow routes come from one
 JSON source. Self-review found `FND-0059`: old `NIF-0001/REV-0004L` displayed
-the pre-`DEC-0046` budget. The corrected current result is S3 `29U/3R/4F`, C5
-`14U/6R/1F`, RP `48U/0R/0F` and slow plane `23U/1R/0F`; a regression now
+the pre-`DEC-0046` budget. After later `DEC-0052`, the current result is S3
+`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F` and slow plane `23U/1R/0F`; a regression now
 locks those counts. Exact SA518 `UPDATE/UART/PD` service and Si4732 control/
 FMI/AMI contacts are also instantiated. `FND-0060` keeps the remaining
 abstract display/codec/IR/power/STOP/protection endpoints visible: the current
@@ -173,10 +176,13 @@ input—shared MPNs only for the electrically equivalent S3/C5 and three nRF
 paths, combined 868/915, separate 315/433, VHF/UHF, FM/SW whip and AM/LW pod;
 every profile change disarms TX and unknown/mismatch keeps TX disabled.
 
-⚠️ Proposal `IMP-0044`: accept a QSPI-first S3 display path—first replace the
-stale `256 B` cap with a measured `<=1 ms` bus-occupancy contract, then reserve
-`GPIO41/42` for D2/D3 and qualify an exact QSPI panel. BT817/BT818 EVE is the
-fallback; no fourth MCU is added to the baseline.
+`IMP-0044/A` is accepted as `DEC-0052`: the QSPI-first S3 display path uses
+`GPIO41/42` for D2/D3 and a `<=1 ms` bus-occupancy contract. BT817/BT818 EVE
+is the fallback; no fourth MCU is added to the baseline.
+
+⚠️ Proposal `IMP-0045`: select a new 3.5-inch portrait `320×480` QSPI IPS+touch
+class, with ST77922 as primary HIL, AXS15231B as secondary reference and the
+old 4-inch ST7796S retained as the A0 control/fallback fixture.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
@@ -187,8 +193,8 @@ The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0043/0044`, `FND-0058` antenna qualification, `FND-0060`
-exact electrical endpoints and `FND-0061` display arbitration correction remain
+In parallel, `IMP-0043/0045`, `FND-0058` antenna qualification, `FND-0060`
+exact electrical endpoints and `FND-0062` exact-display disposition remain
 open. Exact production nRF, SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and
 KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
