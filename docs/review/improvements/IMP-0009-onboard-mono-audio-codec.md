@@ -50,13 +50,11 @@ flowchart LR
 - PTT остаётся отдельным гейтом и по `DEC-0003` не активируется автоматически;
 - при reset/crash/unpowered codec обычное прослушивание и голосовая связь сохраняются.
 
-Два independent 2:1 selector control остаются достаточными, но `FND-0065`
-исправляет прежнюю электрически неполную формулировку: ES8311 даёт
-дифференциальные `OUTP/OUTN`, а legacy consumers single-ended. Перед обоими
-one-pole selectors нужен принятый differential-to-single-ended conditioner,
-либо speaker branch должна переключать оба полюса. Exact topology вынесена в
-`IMP-0046`; до решения нельзя считать прежние «codec + two switches» готовой
-схемой или полной оценкой BOM.
+Два selector requests остаются достаточными, но `FND-0065` исправляет прежнюю
+электрически неполную формулировку: ES8311 даёт дифференциальные `OUTP/OUTN`,
+а TX consumer single-ended. `DEC-0054` впоследствии принимает dual-pole
+speaker selector, отдельный TX selector и active capture; это всё ещё не
+готовая схема или полная оценка BOM без passive/HIL closure.
 
 ## Почему ES8311
 
@@ -106,7 +104,7 @@ Datasheet SA868 называет `MIC_IN` «microphone or line in», но не �
 |---|---|---:|---|---|---|
 | оставить текущий analog path | только live RX и mic voice | 0 | да | минимум | не закрывает `FND-0003` |
 | S3 ADC1 + 8-bit sigma-delta/PWM | потенциально basic capture/tones | 2+ | можно сохранить | минимальный IC BOM, но analog conditioning и большой proof | не считать эквивалентным: ADC2 continuous нестабилен, ADC1 pin-constrained, TX output 8-bit и качество не доказано |
-| **ES8311 + qualified analog conditioning + два selector** | **все перечисленные mono audio prerequisites** | **4 без MCLK** | **да, hardware default** | **topology/BOM open in `IMP-0046`** | **accepted scope; exact circuit open** |
+| **ES8311 + qualified analog conditioning + fail-safe selectors** | **все перечисленные mono audio prerequisites** | **4 I2S без MCLK + 1 direct AUDIO_ARM** | **да, hardware default** | **topology accepted DEC-0054; passives/HIL open** | **accepted prototype architecture** |
 | ES8388 onboard | то же + stereo/extra analog inputs | 4–5 | только с внешними selector | больше корпус/обвязка; stereo не требуется | технически годится, но добавляет незапрошенный scope |
 | TI TLV320AIC3204 | то же + 2×ADC/2×DAC, 6 inputs, line/headphone outputs | 4–5 | только с внешними selector | active, но дороже и нет готового Espressif driver | premium/reference, не zero-loss minimum |
 | M5Stack Audio Module M144 | codec доступен снаружи | не экономит I²S/I²C | внутреннего bypass нет | `$7.95`, 54×54 mm, 23.53 mA | не подходит как основной internal-radio path |

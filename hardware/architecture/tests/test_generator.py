@@ -23,13 +23,36 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_principled_pinout_is_derived_from_current_leading_budget(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
-        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 31 | 3 | 2 | 36 |", rendered)
+        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 32 | 3 | 1 | 36 |", rendered)
         self.assertIn("| `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |", rendered)
         self.assertIn("| `rp` | `RP2354B A4", rendered)
         self.assertIn("| 48 | 0 | 0 | 48 |", rendered)
         self.assertIn("`RP=0 free`", rendered)
         self.assertIn("GPIO30", rendered)
         self.assertIn("QSPI_SS_USB_BOOT", rendered)
+
+    def test_principled_diagram_names_each_physical_device_and_role(self):
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        required_labels = (
+            "HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly",
+            "Hirose DM3AT-SF-PEJM5<br/>push-push microSD card connector",
+            "Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec",
+            "Texas Instruments TLV9061IDBVR<br/>active high-impedance capture buffer",
+            "Texas Instruments TMUX1136DGSR<br/>dual differential speaker-path selector",
+            "Texas Instruments TS5A63157DCKR<br/>electret/codec transmit-audio selector",
+            "Texas Instruments SN74LVC2G08DCUR<br/>reset-safe dual selector-request gate",
+            "Diodes Incorporated PAM8302AASCR<br/>mono Class-D speaker amplifier",
+            "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
+        )
+        for label in required_labels:
+            self.assertIn(label, rendered)
+        for forbidden in (
+            "display + separate microSD",
+            "codec + Si4732-A10-GS",
+            "dual RX + TX IR frontend",
+            "nRF24 #0",
+        ):
+            self.assertNotIn(forbidden, rendered)
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -61,7 +84,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
             normalized = " ".join(readme.split())
             self.assertIn("DEC-0051", normalized, readme_name)
-            self.assertIn("S3 `31", normalized, readme_name)
+            self.assertIn("S3 `32", normalized, readme_name)
             self.assertIn("C5 `14/6/1`", normalized, readme_name)
             self.assertIn("RP `48/0/0`", normalized, readme_name)
             for group in expected_groups:
@@ -132,7 +155,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(["display.QSPI_D2"], s3["GPIO41"]["peers"])
         self.assertEqual(["display.QSPI_D3"], s3["GPIO42"]["peers"])
         self.assertNotIn("LCD_DC", {row["net"] for row in s3.values()})
-        self.assertEqual(["GPIO6", "GPIO43"], candidate["free_gpio"]["s3"])
+        self.assertEqual(["GPIO43"], candidate["free_gpio"]["s3"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -194,21 +217,30 @@ class ArchitectureValidationTests(unittest.TestCase):
             routes,
         )
         self.assertIn(("codec.MCLK", "abstract:no-connect", "CODEC_MCLK_NC"), routes)
-        self.assertIn(
-            ("codec.OUTP", "abstract:qualified-codec-differential-output-routing", "CODEC_DAC_OUT_P"),
-            routes,
-        )
-        self.assertIn(
-            ("codec.OUTN", "abstract:qualified-codec-differential-output-routing", "CODEC_DAC_OUT_N"),
-            routes,
-        )
-        self.assertIn(
-            ("slow_io.P27", "abstract:rx-audio-source-selector", "RX_AUDIO_SOURCE_SEL"),
-            routes,
-        )
+        self.assertIn(("codec.OUTP", "audio_speaker_selector.S1A", "CODEC_DAC_OUT_P"), routes)
+        self.assertIn(("codec.OUTN", "audio_speaker_selector.S2A", "CODEC_DAC_OUT_N"), routes)
+        self.assertIn(("slow_io.P27", "audio_rx_mux.S", "RX_AUDIO_SOURCE_SEL"), routes)
+        self.assertIn(("audio_speaker_selector.D1", "speaker_amp.IN_PLUS", "PAM_AUDIO_IN_P"), routes)
+        self.assertIn(("audio_speaker_selector.D2", "speaker_amp.IN_MINUS", "PAM_AUDIO_IN_M"), routes)
+        self.assertIn(("audio_tx_selector.COM", "voice.MIC_IN", "VOICE_MIC_IN"), routes)
+        self.assertIn(("audio_safe_gate.1Y", "audio_speaker_selector.SEL1", "AUDIO_SPK_SEL_SAFE"), routes)
+        self.assertIn(("audio_safe_gate.1Y", "audio_speaker_selector.SEL2", "AUDIO_SPK_SEL_SAFE"), routes)
+        self.assertIn(("audio_safe_gate.2Y", "audio_tx_selector.IN", "AUDIO_TX_SEL_SAFE"), routes)
         self.assertIn("P27", candidate["contact_accounting"]["slow_io"]["used"])
         self.assertEqual({}, candidate["contact_accounting"]["slow_io"]["reserved"])
-        self.assertEqual(["GPIO6", "GPIO43"], candidate["free_gpio"]["s3"])
+        self.assertEqual(["GPIO43"], candidate["free_gpio"]["s3"])
+        self.assertEqual("AUDIO_ARM", s3["GPIO6"]["net"])
+        self.assertEqual(["audio_safe_gate.1B", "audio_safe_gate.2B"], s3["GPIO6"]["peers"])
+        expected_audio_instances = {
+            "audio_rx_mux": "ti_sn74lvc1g3157_dbvr",
+            "audio_capture_buffer": "ti_tlv9061_idbvr",
+            "audio_speaker_selector": "ti_tmux1136_dgsr",
+            "audio_tx_selector": "ti_ts5a63157_dckr",
+            "audio_safe_gate": "ti_sn74lvc2g08_dcur",
+            "speaker_amp": "diodes_pam8302a_ascr",
+        }
+        for instance, device_id in expected_audio_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
 
     def test_tac5111_reference_uses_exact_exposed_contacts(self):
         codec = self.database["devices"]["ti_tac5111_irger"]

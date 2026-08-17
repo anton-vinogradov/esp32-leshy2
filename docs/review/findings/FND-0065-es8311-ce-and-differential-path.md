@@ -1,10 +1,10 @@
 # FND-0065 — ES8311 CE is not enable and its analog path is differential
 
-- Статус: **Digital/contact mismatch исправлено; analog topology открыта**
+- Статус: **Digital/contact mismatch исправлено; topology принято DEC-0054, analog/HIL открыт**
 - Серьёзность: schematic/audio-function blocker
 - Обнаружено: 2026-08-17
 - Исправление: [`AUDIO-0001`](../architecture/AUDIO-0001-es8311-exact-electrical-fit.md)
-- Решение требуется: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
+- Решение: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md)
 
 ## Находка
 
@@ -28,7 +28,6 @@ contact review показал:
 - `MCLK` is explicit NC under BCLK-derived-clock contract;
 - differential analog pairs end on qualified conditioner/routing blocks.
 
-Digital pin fit is corrected and regression-tested. Analog implementation is
-not silently repaired: `IMP-0046` must choose the topology before exact
-selectors/conditioner can be placed in the machine source or schematic.
-
+Digital pin fit is corrected and regression-tested. `DEC-0054` subsequently
+selects and instantiates the exact active buffer, selectors, safe gate and amp.
+Passive values, power and analog/HIL proof remain open before schematic freeze.

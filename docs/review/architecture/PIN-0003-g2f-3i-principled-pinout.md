@@ -15,6 +15,8 @@
   [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
 - Exact codec fit: [`AUDIO-0001`](AUDIO-0001-es8311-exact-electrical-fit.md) /
   [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
+- Complete audio decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md) /
+  [`REV-0005D`](../reviews/REV-0005D-audio-decision-propagation.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -56,10 +58,10 @@ outside normal application dependency:
 
 | Domain | Used | Reserved | Free | Total exposed/allocatable |
 |---|---:|---:|---:|---:|
-| S3 | 31 | 3 | 2 | 36 |
+| S3 | 32 | 3 | 1 | 36 |
 | C5 | 14 | 6 | 1 | 21 |
 | RP | 48 | 0 | 0 | 48 |
-| slow I/O | 23 | 1 | 0 | 24 |
+| slow I/O | 24 | 0 | 0 | 24 |
 
 The `RP=0` result is deliberate and visible. `GPIO15` and `GPIO23` implement
 the accepted nRF-group and CC quiet-state power gates. SWD/USB/RUN/BOOTSEL are
@@ -85,19 +87,19 @@ The display path now also terminates on exact `HMX035CTFT-001` contacts from
 the official QDtech schematic. Its QSPI path uses GPIO4/35/36/38/41/42;
 former GPIO39/DC is reused
 as touch IRQ, while slow `P06/P07` provide display/touch reset. This consumes
-no new direct S3 contact, leaves S3 GPIO6/GPIO43 free and keeps TE conditional
-on HIL. Subsequent `AUDIO-0002/FND-0067` consumes slow P27 for the previously
+no new direct S3 contact and keeps TE conditional on HIL. Subsequent
+`AUDIO-0002/FND-0067` consumes slow P27 for the previously
 omitted `RX_AUDIO_SOURCE_SEL`, so the slow plane now has no reserve.
 
 The audio digital path now terminates on exact `ES8311` QFN-20 contacts:
 GPIO1/2 are `CDATA/CCLK`, GPIO15/16/17/18 are
 `SCLK/LRCK/DSDIN/ASDOUT`. `MCLK` is explicit NC under the BCLK-derived clock
 contract. Slow `P10` is corrected to external `CODEC_PWR_EN`; physical `CE`
-is an address strap for `0x19`, not reset/enable. Exact `OUTP/OUTN` and
-`MIC1P/MIC1N` expose the still-open analog topology in `IMP-0046`. Complete-path
-review adds `RX_AUDIO_SOURCE_SEL` on slow P27, changing only slow accounting to
-`24/0/0`. The proposed reset-safe `AUDIO_ARM` would consume S3 GPIO6 only after
-owner acceptance; it is not silently present in the current machine map.
+is an address strap for `0x19`, not reset/enable. `DEC-0054` now terminates
+`OUTP/OUTN`, `MIC1P/MIC1N`, the RX selector, speaker selector, TX selector,
+active capture buffer, reset-safe gate and PAM8302A on exact IC contacts.
+`RX_AUDIO_SOURCE_SEL` is on slow P27; direct S3 GPIO6 is active-high
+`AUDIO_ARM`, leaving only GPIO43 free. Passive values and HIL remain open.
 
 ## Digital non-interference result
 
@@ -117,7 +119,8 @@ signal-integrity proof.
 current principle-level design for G3. The generated atlas remains the complete
 exact-contact projection and this publication does not freeze G7 architecture.
 `DEC-0052` later amends the visible map with QSPI D2/D3 on S3 GPIO41/42 and
-changes the current S3 budget to `31/3/2` without changing owners.
+`DEC-0054` subsequently adds GPIO6 `AUDIO_ARM`; the current S3 budget is
+`32/3/1` without changing owners.
 
 ## Remaining final-pinout blockers
 
@@ -129,7 +132,8 @@ lists every remaining `abstract:*` endpoint. The material groups are:
 - exact IR receiver/learning receiver/LED driver and TX evidence;
 - hard STOP latch, actual-TX detectors and power/current/thermal supervisor;
 - nRF/CC/voice/receiver load switches, isolation and level domains;
-- audio selectors and matching;
+- audio passive matching, bias, attenuation, rail partition and HIL (the
+  selector/buffer/gate/amp IC order codes are instantiated by `DEC-0054`);
 - M5 Unit protection/mux and final service connector mechanics.
 
 The next pass closes these abstractions one group at a time against real parts,

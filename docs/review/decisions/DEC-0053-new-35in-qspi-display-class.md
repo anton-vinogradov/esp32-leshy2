@@ -48,7 +48,9 @@ brightness и optical stack. Реестр известных и отсутств
 - S3 principled pinout `DEC-0052` не меняется.
 - Firmware может планировать два prototype driver profiles — `ST77922` и
   `AXS15231B` — но production init table определяется только точной панелью.
-- Current machine map instantiates `HMX035CTFT-001`: former S3 `GPIO39/DC`
-  becomes touch IRQ; GPIO budget remains `31/3/2` and TE remains unassigned.
+- At this display-only decision, the machine map instantiates
+  `HMX035CTFT-001`: former S3 `GPIO39/DC` becomes touch IRQ and the budget is
+  `31/3/2`; subsequent audio `DEC-0054` changes current total to `32/3/1`.
+  TE remains unassigned.
 - Physical design использует 3.5-inch portrait window как текущий target input
   и сохраняет возможность вернуться к A0/EVE fallback при измеренном провале.

@@ -33,9 +33,9 @@ two-board clamshell generator. Его геометрия тоже рабочая
 `DEM-0001` и `SRC-0002` reviewed. `DEC-0042` создал единый источник; теперь он
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
 `G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
-pinout diagram и exact pad/net tables; current budget честно равен S3
-`31/3/2`, C5 `14/6/1`, RP `48/0/0`, slow `24/0/0` after accepted direct-QSPI
-GPIO41/42 allocation (`DEC-0052/REV-0004X`). Это выполняет необходимый
+pinout diagram и exact pad/net tables; after direct-QSPI GPIO41/42 and accepted
+audio arm the current budget честно равен S3 `32/3/1`, C5 `14/6/1`, RP
+`48/0/0`, slow `24/0/0` (`DEC-0052`, `DEC-0054/REV-0005D`). Это выполняет необходимый
 working-baseline checkpoint `DEC-0041` и разрешает начать перенос в старый
 reproducible mockup. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
 1-bit SPI reference, новый 3.5-inch direct-QSPI class и EVE fallback;
@@ -44,9 +44,9 @@ class. `FND-0063/DSP-0005/REV-0005A` устанавливают exact current as
 candidate `HMX035CTFT-001` и проводят ревью его paper electrical fit;
 production ordering/drawing/connector/backlight/optics остаются открыты.
 `AUDIO-0001/REV-0005B` likewise instantiate exact `ES8311` QFN-20 digital
-contacts without changing S3 `31/3/2`; `FND-0065` corrects `CE` to an address
-strap and P10 to external `CODEC_PWR_EN`. Analog routing remains the explicit
-owner choice `IMP-0046`.
+contacts; `FND-0065` corrects `CE` to an address strap and P10 to external
+`CODEC_PWR_EN`. `DEC-0054` accepts exact selector/buffer/gate/amp devices and
+direct GPIO6 `AUDIO_ARM`; passive analog values and HIL remain open.
 `FND-0060` remaining exact electrical endpoints,
 принятие profiled kit (`IMP-0043`), exact two-source assemblies и assembled RF
 HIL (`FND-0058`) закрываются параллельно. Найденный physical/RF/power/service conflict меняет

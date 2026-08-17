@@ -111,25 +111,70 @@ orderability/drawing/lifecycle, exact connector, backlight, optics and
 protection remain explicitly open.
 `AUDIO-0001/REV-0005B` also instantiate exact `ES8311` QFN-20 contacts:
 `CE` is address strap `0x19`, P10 is external `CODEC_PWR_EN`, and the S3
-budget is unchanged. `AUDIO-0002/REV-0005C` correct the missing RX-source
+digital fit is unchanged. `AUDIO-0002/REV-0005C` correct the missing RX-source
 control on slow P27 and compare complete capture/playback/TX/reset paths.
-Exact differential analog routing and direct reset-default arm remain the open
-`IMP-0046` decision.
+`DEC-0054/REV-0005D` accept option A: exact active capture, differential
+speaker and TX selectors, reset-safe gate and direct S3 GPIO6 `AUDIO_ARM` are
+now in the machine map. Passive values and electrical/HIL closure remain open.
 
 ```mermaid
-flowchart LR
-  S3["ESP32-S3-WROOM-1U<br/>UI · display/storage · audio · Unit · native BLE/Wi-Fi"]
-  C5["ESP32-C5-WROOM-1U<br/>2.4/5 GHz · 802.15.4 · IR"]
-  RP["RP2354B QFN80<br/>3×nRF · CC1101 · SA518 · U214"]
-  SLOW["TCA6424A<br/>slow controls/status"]
+flowchart TB
+  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
+  RP["RP2354B A4<br/>deterministic radio and voice owner"]
+  SLOW["TCA6424ARGJR<br/>24-line slow-control and UI expander"]
+  LCD["HMX035CTFT-001<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
+  SD["DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
+  SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
+  CODEC["ES8311<br/>mono ADC/DAC audio codec"]
+  RXMUX["SN74LVC1G3157DBVR<br/>receive-audio source selector"]
+  BUF["TLV9061IDBVR<br/>active high-impedance capture buffer"]
+  SPKSEL["TMUX1136DGSR<br/>dual differential speaker-path selector"]
+  TXSEL["TS5A63157DCKR<br/>transmit-audio selector"]
+  SAFE["SN74LVC2G08DCUR<br/>reset-safe selector-request gate"]
+  PAM["PAM8302AASCR<br/>mono Class-D speaker amplifier"]
+  SPK["MPN TBD<br/>internal loudspeaker"]
+  MIC["MPN TBD<br/>electret microphone"]
+  NRF0["E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
+  NRF1["E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
+  NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
+  CC["CC1101RGPR<br/>sub-GHz transceiver"]
+  SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
+  U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
+  ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
+  UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
+  IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
+  IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
+  IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
   S3 <-->|"4-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
-  S3 -->|"QSPI/SPI2 scheduled"| DISP["display + microSD"]
-  S3 -->|"I²S0 + I²C0"| AUDIO["codec + Si4732"]
-  C5 -->|"RMT + evidence"| IR["dual RX + IR TX"]
-  RP -->|"3 independent PIO SPI/control groups"| NRF["nRF24 #0/#1/#2"]
-  RP -->|"independent PIO/UART/I²C groups"| RF["CC1101 · SA518 · U214"]
+  S3 -->|"direct QSPI + touch"| LCD
+  S3 <-->|"scheduled SPI2"| SD
+  S3 <-->|"I²S0 + I²C0"| CODEC
+  S3 <-->|"I²C0"| SI
+  S3 <-->|"profile port"| UNIT
+  SI --> RXMUX --> BUF --> CODEC
+  SA -->|"AFOUT"| RXMUX
+  CODEC --> SPKSEL --> PAM
+  PAM --> SPK
+  CODEC --> TXSEL -->|"MIC_IN"| SA
+  MIC --> TXSEL
+  S3 -->|"GPIO6 AUDIO_ARM"| SAFE
+  SLOW -->|"P11/P12 requests"| SAFE
+  SAFE --> SPKSEL
+  SAFE --> TXSEL
+  C5 -->|"RMT RX0"| IR0
+  C5 -->|"RMT RX1"| IR1
+  C5 -->|"RMT TX0 + evidence"| IRTX
+  RP <-->|"PIO0 SM0"| NRF0
+  RP <-->|"PIO0 SM1"| NRF1
+  RP <-->|"PIO0 SM2"| NRF2
+  RP <-->|"PIO0 SM3"| CC
+  RP <-->|"UART0/PTT/evidence"| SA
+  RP <-->|"PIO1/UART1"| U214
+  RP <-->|"I²C0"| ISO
+  ISO <-->|"isolated I²C"| U214
 ```
 
 | Principled group | Exact owner contacts in the current map | Contract |
@@ -147,7 +192,7 @@ flowchart LR
 | SA518/PTT | RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22` | UART0, PTT, activity/evidence |
 | U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
 
-The pin budget is S3 `31 used / 3 reserved / 2 free`, C5 `14/6/1`, RP
+The pin budget is S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
 `48/0/0` and slow I/O `24/0/0`. RP has no free direct GPIO; independent
 SWD/USB/RUN/BOOTSEL remain outside this budget.
 
@@ -159,12 +204,12 @@ Remaining electrical boundaries are listed in
 [`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 and may change the working design after repeated review. The current display
 path already terminates on `HMX035CTFT-001`: S3 GPIO39 is touch IRQ, slow
-P06/P07 are display/touch reset, and S3 GPIO6/GPIO43 remain free.
+P06/P07 are display/touch reset, and S3 GPIO43 remains free.
 The audio digital path likewise terminates on exact `ES8311` contacts at S3
 GPIO1/2/15/16/17/18; codec power and differential analog conditioning remain
 open electrical blocks rather than hidden pins. The former slow reserve P27 now
-carries the required `RX_AUDIO_SOURCE_SEL`; proposed direct `AUDIO_ARM` is not
-counted until `IMP-0046` is accepted.
+carries the required `RX_AUDIO_SOURCE_SEL`; accepted `DEC-0054` assigns direct
+S3 GPIO6 `AUDIO_ARM` to exact `SN74LVC2G08DCUR` gate inputs.
 
 ## Safety and cost boundary
 
@@ -202,7 +247,7 @@ is accepted by `DEC-0050/REV-0004T` as bounded `2 RP-SMA + 7 standard SMA`;
 mounting, cable lengths, two-source assemblies and target RF qualification
 remain open.
 `PIN-0003/REV-0004V` add a generated principled owner/net/pad atlas. The
-current exact exposed-contact budget is S3 `31/3/2`, C5 `14/6/1`, RP
+current exact exposed-contact budget is S3 `32/3/1`, C5 `14/6/1`, RP
 `48/0/0` and slow I/O `24/0/0`; exact SA518 service and Si4732 control/RF
 contacts are instantiated, while remaining electrical abstractions stay open
 under `FND-0060`.

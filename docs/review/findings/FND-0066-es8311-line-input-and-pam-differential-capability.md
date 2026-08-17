@@ -1,6 +1,6 @@
 # FND-0066 — ES8311 line-input warning and PAM differential capability change the optimum
 
-- Статус: **Открыто; IMP-0046 recommendation corrected**
+- Статус: **Архитектурный выбор закрыт DEC-0054; analog/HIL closure открыт**
 - Серьёзность: audio-quality/BOM/topology blocker
 - Обнаружено: 2026-08-17
 - Artifact: [`AUDIO-0001`](../architecture/AUDIO-0001-es8311-exact-electrical-fit.md)
@@ -46,8 +46,9 @@ review shows why that is premature:
    pop/click, reset defaults and RF desense.
 
 `AUDIO-0002/REV-0005C` close items 1–3 at paper-comparison level and recommend
-an active high-Z ES8311 prototype path. The finding remains open until the
-owner selects `IMP-0046` and the chosen circuit passes item 4.
+an active high-Z ES8311 prototype path. The owner selected that path as
+`DEC-0054`; the architecture choice is closed. The finding remains
+electrically open until the chosen circuit passes item 4.
 
 ## Primary sources
 

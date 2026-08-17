@@ -7,7 +7,7 @@
   [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
 - Findings: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md),
   [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md)
-- Open topology proposal: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
+- Subsequent topology decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md)
 - Complete-path comparison: [`AUDIO-0002`](AUDIO-0002-complete-audio-path-comparison.md)
 - Review: [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 
@@ -15,8 +15,9 @@
 
 Exact current paper candidate — **Everest Semiconductor `ES8311`, QFN-20
 3×3 mm с exposed pad**. Все реальные контакты внесены в machine source. Его
-digital path полностью помещается в уже принятую карту без нового GPIO и без
-изменения бюджета S3 `31/3/2`:
+digital path полностью помещается в уже принятую карту без нового GPIO; later
+`DEC-0054` consumes GPIO6 only for fail-safe `AUDIO_ARM`, making total S3
+budget `32/3/1`:
 
 | ES8311 contact | Physical | G2F-3I endpoint |
 |---|---:|---|
@@ -70,10 +71,10 @@ must still receive a qualified single-ended signal. Neither DAC leg may be
 silently grounded or discarded before the selected topology documents the
 level/SNR consequence.
 
-`G2F-3I` therefore terminates `OUTP/OUTN` and `MIC1P/MIC1N` on explicit
-qualified analog blocks rather than inventing a schematic. This does not
-change the two slow selector controls `P11/P12`; it opens the topology choice
-in `IMP-0046`.
+This review initially terminated `OUTP/OUTN` and `MIC1P/MIC1N` on explicit
+qualified analog blocks rather than inventing a schematic. `DEC-0054` later
+selects the active-buffer, differential-speaker and separate-TX topology while
+keeping passive values and HIL open.
 
 The ADC side has a separate qualification warning. The ES8311 user guide calls
 `MIC1P/MIC1N` a microphone interface and says it is not recommended for line
@@ -102,19 +103,19 @@ passive/active line-conditioning network, or the codec choice must reopen.
 | mono codec | Everest Semiconductor `ES8311`, QFN-20 3×3 mm | exact paper candidate instantiated |
 | existing RX mux | TI `SN74LVC1G3157DBVR`, SOT-23-6 | legacy/reference path retained |
 | existing speaker amp | Diodes Inc. `PAM8302AASCR`, MSOP-8 | legacy/reference endpoint retained |
-| candidate one-pole selector | TI `SN74LVC1G3157DBVR` | cheapest/common-part candidate; not yet selected for new positions |
-| candidate dual selector | TI `TMUX1136DGSR` (VSSOP-10) / `TMUX1136DQAR` (USON-10) | active two-pole candidate; not yet selected |
-| candidate powered-off-protected one-pole selector | TI `TS5A63157DCKR` | TX-path candidate; not yet selected |
-| candidate differential receiver | TI `TLV9061IDBVR` | active 10-MHz RRIO candidate; values/noise/power/HIL open |
+| RX one-pole selector | TI `SN74LVC1G3157DBVR` | selected by `DEC-0054` |
+| speaker dual selector | TI `TMUX1136DGSR` (VSSOP-10) | selected by `DEC-0054`; DQAR remains package alternative only |
+| TX one-pole selector | TI `TS5A63157DCKR` | selected by `DEC-0054` |
+| active capture buffer | TI `TLV9061IDBVR` | selected by `DEC-0054`; values/noise/power/HIL open |
 
-The selector/op-amp lines are alternatives, not a BOM freeze. Exact analog
-parts can be selected only after `IMP-0046` and measured Si4732/SA518/PAM8302
-levels.
+The exact prototype ICs are selected by `DEC-0054`, but this is not a BOM or
+schematic freeze. Passive networks, production alternates and measured
+Si4732/SA518/PAM8302 behavior remain open.
 
 ## Remaining gates
 
-1. Owner accepts one complete `IMP-0046/AUDIO-0002` path; do not choose only
-   the DAC half or omit reset-default control.
+1. **Closed by DEC-0054:** owner accepted one complete `IMP-0046/AUDIO-0002`
+   path including reset-default control.
 2. Calculate and review supplies, decoupling, address/pull-up network,
    differential input/output conditioning, mute/default states and protection.
 3. Confirm production order code, AVL/lifecycle, footprint and assembly lot.

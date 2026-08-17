@@ -10,6 +10,10 @@
 ## Как читать артефакт
 
 Диаграмма — навигатор по owners и физически независимым interface groups.
+Каждый прямоугольник физического устройства содержит его exact/current
+paper MPN и роль. Разные устройства не объединяются в один прямоугольник.
+Если production part ещё не выбран, узел явно помечается `MPN TBD`;
+пассивная цепь отдельно помечается как circuit, а не как заказной компонент.
 Нормативные pin/net значения находятся в следующих за ней таблицах и
 получены из того же JSON. `abstract:*` означает зарезервированную функцию,
 для которой exact peripheral MPN/electrical circuit ещё не принят; это не
@@ -18,41 +22,87 @@
 ## Принципиальная структура owners и pin groups
 
 ```mermaid
-flowchart LR
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>UI · audio · display/storage · BLE/Wi-Fi"]
-  C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz · 802.15.4 · IR"]
-  RP["RP2354B A4 QFN80<br/>deterministic radio/voice owner"]
-  SLOW["TCA6424A<br/>24-line slow plane"]
-  DISP["display + separate microSD"]
-  AUDIO["codec + Si4732-A10-GS"]
-  UNIT["M5 Unit port"]
-  IR["dual RX + TX IR frontend"]
-  N0["nRF24 #0"]
-  N1["nRF24 #1"]
-  N2["nRF24 #2"]
-  CC["CC1101"]
-  VOICE["NiceRF SA518 rev 1.1"]
-  U214["U214 LoRa + GNSS"]
+flowchart TB
+  subgraph COMPUTE["Compute owners"]
+  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
+  RP["RP2354B A4 (exact A4 order/lot identity required before BOM freeze)<br/>deterministic radio and voice owner"]
+  end
+  subgraph UI_STORAGE["UI and storage devices"]
+  DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
+  SD["Hirose DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line slow-control and UI expander"]
+  end
+  subgraph AUDIO_PATH["Broadcast, voice and fail-safe audio devices"]
+  RECEIVER["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
+  MONOSUM["MPN-independent passive circuit<br/>Si4732 stereo-to-mono summing network"]
+  AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>Si4732/SA518 receive-audio source selector"]
+  CAPNET["MPN-independent passive circuit<br/>high-impedance AC/bias capture network"]
+  AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>active high-impedance capture buffer"]
+  ADCNET["MPN-independent passive circuit<br/>ES8311 mic-range differential input network"]
+  CODEC["Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec"]
+  AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>dual differential speaker-path selector"]
+  SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>mono Class-D speaker amplifier"]
+  SPEAKER["MPN TBD<br/>internal loudspeaker"]
+  TXATT["MPN-independent passive circuit<br/>35–45 dB codec-to-voice attenuator/filter"]
+  AUDIO_TX_SELECTOR["Texas Instruments TS5A63157DCKR<br/>electret/codec transmit-audio selector"]
+  MIC["MPN TBD<br/>electret microphone"]
+  AUDIO_SAFE_GATE["Texas Instruments SN74LVC2G08DCUR<br/>reset-safe dual selector-request gate"]
+  VOICE["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
+  end
+  subgraph RADIO_ACCESSORY["Radio and external-accessory devices"]
+  NRF0["Ebyte E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
+  NRF1["Ebyte E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
+  NRF2["Ebyte E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
+  CC["CC1101RGPR<br/>sub-GHz transceiver"]
+  U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
+  U214_I2C_ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
+  UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
+  end
+  subgraph IR_PATH["IR frontend devices"]
+  IRDEMOD["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
+  IRCARRIER["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
+  IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED and fail-safe driver endpoint"]
+  end
   S3 <-->|"4-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
-  S3 <-->|"I²C0+INT: GPIO1,GPIO2,GPIO37"| SLOW
-  S3 <-->|"SPI2: GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42"| DISP
-  S3 <-->|"I²S0/I²C: GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18"| AUDIO
+  S3 <-->|"I²C0+INT: GPIO1,GPIO2,GPIO37"| SLOW_IO
+  S3 -->|"QSPI/touch: GPIO4,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42"| DISPLAY
+  S3 <-->|"SPI2: GPIO4,GPIO5,GPIO35,GPIO36"| SD
+  S3 <-->|"I²S0/I²C: GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18"| CODEC
+  S3 <-->|"I²C0"| RECEIVER
   S3 <-->|"profile port: GPIO7,GPIO8"| UNIT
-  C5 <-->|"RMT/evidence/power: GPIO0,GPIO1,GPIO4,GPIO6,GPIO24"| IR
-  RP <-->|"PIO0 SM0 + direct control: GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32"| N0
-  RP <-->|"PIO0 SM1 + direct control: GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35"| N1
-  RP <-->|"PIO0 SM2 + direct control: GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38"| N2
+  C5 <-->|"RMT RX0/power: GPIO0,GPIO1,GPIO4,GPIO6,GPIO24"| IRDEMOD
+  C5 <-->|"RMT RX1/power"| IRCARRIER
+  C5 -->|"RMT TX0/evidence/hard-stop"| IRTX
+  RP <-->|"PIO0 SM0 + direct control: GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32"| NRF0
+  RP <-->|"PIO0 SM1 + direct control: GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35"| NRF1
+  RP <-->|"PIO0 SM2 + direct control: GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38"| NRF2
   RP <-->|"PIO0 SM3 + GDO/power: GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43"| CC
   RP <-->|"UART0/PTT/evidence: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21,GPIO22"| VOICE
-  RP <-->|"PIO1/UART1/I²C0: GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214
+  RP <-->|"PIO1/UART1: GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214
+  RP <-->|"I²C0"| U214_I2C_ISO
+  U214_I2C_ISO <-->|"isolated external I²C"| U214
+  RECEIVER --> MONOSUM --> AUDIO_RX_MUX
+  VOICE -->|"AFOUT"| AUDIO_RX_MUX
+  SLOW_IO -->|"P27 source request"| AUDIO_RX_MUX
+  AUDIO_RX_MUX -->|"analog bypass"| AUDIO_SPEAKER_SELECTOR
+  AUDIO_RX_MUX --> CAPNET --> AUDIO_CAPTURE_BUFFER --> ADCNET --> CODEC
+  CODEC -->|"OUTP/OUTN"| AUDIO_SPEAKER_SELECTOR
+  AUDIO_SPEAKER_SELECTOR --> SPEAKER_AMP --> SPEAKER
+  CODEC --> TXATT --> AUDIO_TX_SELECTOR
+  MIC --> AUDIO_TX_SELECTOR -->|"MIC_IN"| VOICE
+  SLOW_IO -->|"P11/P12 requests"| AUDIO_SAFE_GATE
+  S3 -->|"GPIO6 AUDIO_ARM"| AUDIO_SAFE_GATE
+  AUDIO_SAFE_GATE --> AUDIO_SPEAKER_SELECTOR
+  AUDIO_SAFE_GATE --> AUDIO_TX_SELECTOR
 ```
 
 ## Сводный pin budget
 
 | Domain | Exact exposed boundary | Used | Reserved | Free | Total |
 |---|---|---:|---:|---:|---:|
-| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 31 | 3 | 2 | 36 |
+| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 32 | 3 | 1 | 36 |
 | `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |
 | `rp` | `RP2354B A4 (exact A4 order/lot identity required before BOM freeze)` | 48 | 0 | 0 | 48 |
 | `slow_io` | `TCA6424ARGJR` | 24 | 0 | 0 | 24 |
@@ -77,30 +127,30 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `UI_ROW2`
 - `accessory-present`
 - `all-TX-enables-and-rails`
-- `audio-selector-0`
-- `audio-selector-1`
+- `always-available-quiet-audio-rail`
+- `audio-ground`
 - `codec-adcvref-decoupling`
 - `codec-address-high-3v3`
 - `codec-audio-ground`
+- `codec-dac-to-sa518-35-45db-attenuator`
 - `codec-dacvref-decoupling`
 - `codec-digital-ground`
 - `codec-power-switch-enable`
-- `codec-receiver-left`
-- `codec-receiver-right`
 - `codec-vmid-decoupling`
-- `codec-voice-audio-in`
-- `codec-voice-audio-out`
 - `display-ground`
+- `electret-microphone-bias-and-ac-coupling`
 - `exact carrier-learning IR receiver`
 - `exact display/backlight driver`
 - `exact robust-demod IR receiver`
 - `fail-safe IR LED driver`
+- `high-z-ac-coupled-capture-network`
 - `i2c-mode-strap`
 - `independent C5 actual-TX detector`
 - `independent IR optical-current detector`
 - `independent actual-TX detector`
 - `latched-hard-stop`
 - `latched-hard-stop-sense`
+- `matched-bypass-ac-reference`
 - `microsd-load-switch`
 - `no-connect`
 - `off-safe CC1101 load switch`
@@ -116,13 +166,19 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `qualified-backlight-supply`
 - `qualified-codec-3v3-analog`
 - `qualified-codec-3v3-digital`
-- `qualified-codec-differential-output-routing`
 - `qualified-display-3v3`
-- `qualified-rx-mux-to-codec-differential-conditioner`
+- `qualified-es8311-mic-range-differential-input-network`
+- `qualified-speaker-amp-supply`
+- `qualified-speaker-enable-default-on`
 - `receiver-power-reset-isolation`
-- `rx-audio-source-selector`
+- `rx-audio-bypass-and-capture-node`
 - `service USB connector`
 - `service fixture`
+- `si4732-10k-left-mono-sum`
+- `si4732-10k-right-mono-sum`
+- `si4732-passive-mono-sum-output`
+- `speaker-negative`
+- `speaker-positive`
 - `voice-power-reset-domain`
 - `voice-update-fixture`
 
@@ -140,6 +196,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd.DAT0`, `display.QSPI_D1` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd.CD_DAT3` | — |
+| `GPIO6` | 6 | `AUDIO_ARM` | `o` | `GPIO` | `audio_safe_gate.1B`, `audio_safe_gate.2B` | — |
 | `GPIO7` | 7 | `UNIT_SIG0` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
 | `GPIO8` | 12 | `UNIT_SIG1` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
 | `GPIO9` | 17 | `S3_RP_IPC_CS_N` | `o` | `SPI3` | `rp.GPIO25` | — |
@@ -167,8 +224,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO47` | 24 | `S3_C5_SDIO_D3` | `io` | `SDMMC_SLOT1_4BIT` | `c5.GPIO13` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
 
-Budget: **31 used + 3 reserved + 2 free = 36 exposed GPIO**.
-Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO6`, `GPIO43`.
+Budget: **32 used + 3 reserved + 1 free = 36 exposed GPIO**.
+Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO43`.
 
 ### `c5` — `ESP32-C5-WROOM-1U-N8R8`
 
@@ -291,25 +348,58 @@ Reserved: none. Free: none.
 | `CODEC_VMID` | `abstract:codec-vmid-decoupling` | `codec.VMID` | quiet local reference; not a general-purpose rail |
 | `CODEC_I2C_ADDR_0X19` | `abstract:codec-address-high-3v3` | `codec.CE` | 10 kOhm reference strap selects documented 7-bit address 0x19; complete bus address scan remains HIL |
 | `CODEC_MCLK_NC` | `codec.MCLK` | `abstract:no-connect` | current four-wire I2S contract selects BCLK/SCLK as internal master-clock source; no hidden S3 GPIO |
-| `CODEC_ADC_IN_P` | `abstract:qualified-rx-mux-to-codec-differential-conditioner` | `codec.MIC1P` | single-ended RX mux cannot be wired blindly to the fully differential codec input; gain/common-mode/AC coupling remain exact gates |
-| `CODEC_ADC_IN_N` | `abstract:qualified-rx-mux-to-codec-differential-conditioner` | `codec.MIC1N` | matched differential conditioning and RF shielding remain exact gates |
-| `CODEC_DAC_OUT_P` | `codec.OUTP` | `abstract:qualified-codec-differential-output-routing` | fully differential output; do not ground or silently discard one leg |
-| `CODEC_DAC_OUT_N` | `codec.OUTN` | `abstract:qualified-codec-differential-output-routing` | fully differential output; speaker/TX selector topology remains an explicit decision/HIL gate |
-| `AUDIO_SEL0` | `slow_io.P11` | `abstract:audio-selector-0` | external muted-safe pull |
-| `AUDIO_SEL1` | `slow_io.P12` | `abstract:audio-selector-1` | external muted-safe pull |
+| `RX_AUDIO_L` | `receiver.LOUT_DFS` | `abstract:si4732-10k-left-mono-sum` | 10-kOhm-class summing branch; exact source level, capacitor and impedance remain schematic/HIL gates |
+| `RX_AUDIO_R` | `receiver.ROUT_DOUT` | `abstract:si4732-10k-right-mono-sum` | 10-kOhm-class summing branch; exact source level, capacitor and impedance remain schematic/HIL gates |
+| `RX_SI4732_MONO` | `abstract:si4732-passive-mono-sum-output` | `audio_rx_mux.B1` | logic-low/default receive source; component values and low-band response remain schematic/HIL gates |
+| `RX_SA518_AFOUT` | `voice.AFOUT` | `audio_rx_mux.B2` | voice receive source; muted and isolated before voice rail transitions |
+| `RX_AUDIO_SOURCE_SEL` | `slow_io.P27` | `audio_rx_mux.S` | ordinary non-TX source selection; external pull-down selects Si4732 B1 at reset |
+| `AUDIO_RX_MUX_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_rx_mux.VCC` | selector remains available independently of codec power |
+| `AUDIO_RX_MUX_GND` | `audio_rx_mux.GND` | `abstract:audio-ground` | quiet analog return |
+| `RX_AUDIO_SELECTED` | `audio_rx_mux.A_COM` | `abstract:rx-audio-bypass-and-capture-node` | one selected RX source feeds independent bypass and high-impedance capture branches |
+| `SPK_BYPASS_P` | `abstract:rx-audio-bypass-and-capture-node` | `audio_speaker_selector.S1B` | logic-low/default path; qualified AC coupling and PAM input network remain schematic gates |
+| `SPK_BYPASS_M` | `abstract:matched-bypass-ac-reference` | `audio_speaker_selector.S2B` | matched AC reference for PAM differential input in ordinary bypass mode |
+| `CODEC_CAPTURE_TAP` | `abstract:rx-audio-bypass-and-capture-node` | `abstract:high-z-ac-coupled-capture-network` | 100-kOhm-class source-loading target; exact bias, capacitor and RF filter remain schematic/HIL gates |
+| `CODEC_CAPTURE_BUFFER_IN` | `abstract:high-z-ac-coupled-capture-network` | `audio_capture_buffer.IN_PLUS` | biased inside TLV9061 valid common-mode range; no source back-power when codec branch is off |
+| `CODEC_CAPTURE_BUFFER_FB` | `audio_capture_buffer.OUT` | `audio_capture_buffer.IN_MINUS` | unity-gain baseline; qualified gain may change only with repeated analog review |
+| `CODEC_CAPTURE_BUFFER_VCC` | `abstract:qualified-codec-3v3-analog` | `audio_capture_buffer.V_PLUS` | switched with codec analog domain; input series network prevents powered-off loading/back-power |
+| `CODEC_CAPTURE_BUFFER_GND` | `audio_capture_buffer.V_MINUS` | `abstract:codec-audio-ground` | quiet analog return |
+| `CODEC_CAPTURE_BUFFER_OUT` | `audio_capture_buffer.OUT` | `abstract:qualified-es8311-mic-range-differential-input-network` | buffer output is AC-coupled, biased and attenuated into a manufacturer-valid ES8311 microphone-range interface |
+| `CODEC_ADC_IN_P` | `abstract:qualified-es8311-mic-range-differential-input-network` | `codec.MIC1P` | exact gain, common mode, AC coupling and anti-RF values remain schematic/HIL gates |
+| `CODEC_ADC_IN_N` | `abstract:qualified-es8311-mic-range-differential-input-network` | `codec.MIC1N` | matched reference and conditioning remain an exact schematic/HIL gate |
+| `CODEC_DAC_OUT_P` | `codec.OUTP` | `audio_speaker_selector.S1A` | full differential DAC positive leg; never grounded or silently discarded |
+| `CODEC_DAC_OUT_N` | `codec.OUTN` | `audio_speaker_selector.S2A` | full differential DAC negative leg |
+| `PAM_AUDIO_IN_P` | `audio_speaker_selector.D1` | `speaker_amp.IN_PLUS` | paired selector poles always change together under one safe control |
+| `PAM_AUDIO_IN_M` | `audio_speaker_selector.D2` | `speaker_amp.IN_MINUS` | paired selector poles always change together under one safe control |
+| `AUDIO_SPK_SEL_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_speaker_selector.VDD` | selector remains powered while codec rail is off so analog bypass survives |
+| `AUDIO_SPK_SEL_GND` | `audio_speaker_selector.GND` | `abstract:audio-ground` | quiet analog return |
+| `PAM_VDD` | `abstract:qualified-speaker-amp-supply` | `speaker_amp.VDD` | exact rail, decoupling, current and EMI remain schematic/HIL gates |
+| `PAM_GND` | `speaker_amp.GND` | `abstract:audio-ground` | short quiet return; class-D output currents stay out of codec input return |
+| `PAM_SD` | `abstract:qualified-speaker-enable-default-on` | `speaker_amp.SD` | ordinary bypass remains available after reset; startup pop and fault behavior remain HIL gates |
+| `PAM_NC` | `speaker_amp.NC` | `abstract:no-connect` | physical MSOP-8 pin 2 is no-connect |
+| `SPEAKER_P` | `speaker_amp.VO_PLUS` | `abstract:speaker-positive` | BTL/class-D output; never tie to ground |
+| `SPEAKER_M` | `speaker_amp.VO_MINUS` | `abstract:speaker-negative` | BTL/class-D output; never tie to ground |
+| `CODEC_TX_DAC_TAP` | `codec.OUTP` | `abstract:codec-dac-to-sa518-35-45db-attenuator` | separate high-impedance AC-coupled low-pass branch; exact attenuation is set by measured SA518 deviation |
+| `VOICE_CODEC_INJECT` | `abstract:codec-dac-to-sa518-35-45db-attenuator` | `audio_tx_selector.NO` | codec injection is the non-default selected input |
+| `VOICE_ELECTRET_DEFAULT` | `abstract:electret-microphone-bias-and-ac-coupling` | `audio_tx_selector.NC` | logic-low/default path preserves ordinary microphone operation |
+| `VOICE_MIC_IN` | `audio_tx_selector.COM` | `voice.MIC_IN` | audio selection cannot assert PTT; input level and deviation remain measured gates |
+| `AUDIO_TX_SEL_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_tx_selector.VCC` | selector remains powered independently of codec rail |
+| `AUDIO_TX_SEL_GND` | `audio_tx_selector.GND` | `abstract:audio-ground` | quiet analog return |
+| `AUDIO_SPK_CODEC_REQ` | `slow_io.P11` | `audio_safe_gate.1A` | external pull-down requests ordinary analog bypass while expander is input or high-Z |
+| `AUDIO_TX_CODEC_REQ` | `slow_io.P12` | `audio_safe_gate.2A` | external pull-down requests electret default while expander is input or high-Z |
+| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_selector.SEL1` | low selects bypass S1B; external pull-down holds default if gate rail is absent |
+| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_selector.SEL2` | both differential poles share the same reset-safe control |
+| `AUDIO_TX_SEL_SAFE` | `audio_safe_gate.2Y` | `audio_tx_selector.IN` | low selects normally-closed electret path; external pull-down holds default if gate rail is absent |
+| `AUDIO_SAFE_GATE_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_safe_gate.VCC` | gate and selectors share a sequenced always-available rail |
+| `AUDIO_SAFE_GATE_GND` | `audio_safe_gate.GND` | `abstract:audio-ground` | quiet logic return |
 | `VOICE_DOMAIN_EN` | `slow_io.P13` | `abstract:voice-power-reset-domain` | off-safe pull; exact circuit gates the qualified 4 V rail and holds the module TX-safe during sequencing |
 | `VOICE_PD_N` | `abstract:voice-power-reset-domain` | `voice.PD` | off-safe sequencer keeps the exact module in power-down until the qualified 4 V rail is valid |
 | `VOICE_HL` | `slow_io.P14` | `voice.HL` | external conservative-power pull |
 | `VOICE_UPDATE` | `voice.UPDATE` | `abstract:voice-update-fixture` | fixture-only; no runtime drive until the rev-1.1 direction/description conflict is resolved by specimen proof |
-| `VOICE_MIC_IN` | `abstract:codec-voice-audio-out` | `voice.MIC_IN` | AC-coupled and limited by the exact codec/selector circuit |
-| `VOICE_AF_OUT` | `voice.AFOUT` | `abstract:codec-voice-audio-in` | muted/isolated before voice rail transitions |
 | `RX_DOMAIN_EN` | `slow_io.P15` | `abstract:receiver-power-reset-isolation` | off-safe pull; exact circuit removes receiver power, prevents I2C back-power and supplies reset sequencing |
 | `RX_RST_N` | `abstract:receiver-power-reset-isolation` | `receiver.RST` | reset remains asserted until the qualified receiver rail and I2C isolation are valid |
 | `RX_STATUS_N` | `receiver.GPO2_INTB` | `slow_io.P24` | exact interrupt source; bounded latency and pulse width remain HIL gates |
 | `RX_SENB_I2C` | `abstract:i2c-mode-strap` | `receiver.SENB` | fixed reset strap selects the reviewed two-wire control mode |
 | `RX_RCLK` | `abstract:qualified-32k-clock` | `receiver.RCLK` | clock source and startup remain exact electrical gates |
-| `RX_AUDIO_L` | `receiver.LOUT_DFS` | `abstract:codec-receiver-left` | muted/AC-coupled by the exact audio selector |
-| `RX_AUDIO_R` | `receiver.ROUT_DOUT` | `abstract:codec-receiver-right` | muted/AC-coupled by the exact audio selector |
 | `RX_FMI_RF` | `receiver.FMI` | `abstract:RX-FM-SW-SMA-front-end` | dedicated external-SMA whip path; matching/ESD stays close to FMI |
 | `RX_AMI_RF` | `receiver.AMI` | `abstract:RX-AM-LW-loop-pod` | dedicated short loop/pod path; generic long coax is not qualified |
 | `EXT_5V_EN` | `slow_io.P17` | `abstract:protected-external-5v-enable` | external off-safe pull and current limit |
@@ -319,7 +409,6 @@ Reserved: none. Free: none.
 | `S3_RF_TX_EVIDENCE` | `abstract:S3-actual-RF-TX-detector` | `slow_io.P23` | read-only evidence; hard-stop remains non-programmable |
 | `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `slow_io.P25` | hardware protection acts independently; this is diagnostic evidence |
 | `ACCESSORY_PRESENT_N` | `abstract:accessory-present` | `slow_io.P26` | read-only, protected and debounced |
-| `RX_AUDIO_SOURCE_SEL` | `slow_io.P27` | `abstract:rx-audio-source-selector` | ordinary non-TX source selection between Si4732 and SA518 AFOUT; external deterministic pull chooses the documented default |
 | `HARD_STOP_N` | `abstract:latched-hard-stop` | `abstract:all-TX-enables-and-rails` | non-programmable dominance over every MCU and radio/voice/IR TX path |
 
 ### Programming, recovery and diagnostics
@@ -395,19 +484,26 @@ Reserved: none. Free: none.
 - `sd` lifecycle: `current_manufacturer_page`.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
 - `codec` lifecycle: `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open`.
+- `audio_rx_mux` uses `Texas Instruments SN74LVC1G3157DBVR` as `verified_reference`, not an accepted production choice.
+- `audio_capture_buffer` uses `Texas Instruments TLV9061IDBVR` as `reference_only`, not an accepted production choice.
+- `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `audio_tx_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
+- `speaker_amp` uses `Diodes Incorporated PAM8302AASCR` as `verified_reference`, not an accepted production choice.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger
 - TCA6424ARGJR and TCA4307DGKR are real-contact planning references; voltage domains, pulls, address, reset, shortest pulses and exact endpoint MPNs remain electrical/HIL gates
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and is instantiated as a paper candidate, not a production-qualified orderable part; exact drawing/FPC mechanics, lifecycle, connector, backlight/protection and specimen HIL remain open
-- After DEC-0052 assigns S3 GPIO41/GPIO42 to direct-QSPI D2/D3 and the HMX QSPI path reuses former GPIO39 DC reserve for touch IRQ, S3 retains two free GPIO, C5 one and RP none. Slow_io P27 now carries the previously omitted RX_AUDIO_SOURCE_SEL, so the 24-line slow plane has no reserve. GPIO43 remains unassigned until exact-panel TE benefit is proved; any new direct RP endpoint requires an explicit remap and repeated review
+- After DEC-0054 assigns S3 GPIO6 to direct reset-safe AUDIO_ARM, S3 retains only GPIO43 free, C5 one and RP none. Slow_io P27 carries RX_AUDIO_SOURCE_SEL, so the 24-line slow plane has no reserve. GPIO43 remains unassigned until exact-panel TE benefit is proved; any new direct RP endpoint requires an explicit remap and repeated review
 - C5 4-bit SDIO has exclusive ownership of the S3 SD/MMC host; C5 native USB is unavailable at runtime, so permanent UART0 plus EN/BOOT/strap contacts is the independent recovery path
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; separate CS/per-device clocks and bounded transactions remove radio impact, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
 - DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
-- HMX035CTFT-001 and ES8311 exact contacts are instantiated, but display production qualification and the codec power/fully-differential analog conditioning/selectors/HIL remain open; exact IR frontends, power tree, antenna placement and hard-stop circuitry also remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
+- DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
+- HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; exact IR frontends, power tree, antenna placement and hard-stop circuitry also remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Граница проведённого ревью
 

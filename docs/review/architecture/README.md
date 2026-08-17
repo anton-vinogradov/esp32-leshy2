@@ -25,8 +25,9 @@ The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001/0002`,
 `PIN-0003/REV-0004V` review the exact owner/contact projection;
 `DEC-0052/REV-0004X` then allocate S3 GPIO41/42 to direct-QSPI D2/D3 and record
 the then-current `S3=2, C5=1, RP=0, slow=P27` free-contact state. Subsequent
-`AUDIO-0002/FND-0067` uses P27 for the omitted RX-audio source selector, so
-current free state is `S3=2, C5=1, RP=0, slow=0`.
+`AUDIO-0002/FND-0067` uses P27 for the omitted RX-audio source selector;
+`DEC-0054/REV-0005D` then assigns S3 GPIO6 to reset-safe `AUDIO_ARM`. Current
+free state is `S3=1 (GPIO43), C5=1, RP=0, slow=0`.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -46,8 +47,9 @@ peripherals and HIL remain open; CAD stays blocked.
 S3 GPIO1/2/15/16/17/18 land on real I2C/I2S contacts, `CE` is address strap
 `0x19`, and P10 is external `CODEC_PWR_EN`. `AUDIO-0002/REV-0005C` compare the
 complete capture/playback/TX/reset path, add exact TAC5111IRGER reference
-contacts and expose `FND-0067`; `IMP-0046` remains the one owner choice, with
-fully differential analog routing and exact power circuit still open.
+contacts and expose `FND-0067`; `DEC-0054` accepts the active-buffer ES8311
+prototype plus direct arm and exact selector/gate/amp ICs. Passive analog
+values, exact power circuit and HIL remain open.
 
 ## Active G2F artifacts
 
@@ -133,7 +135,8 @@ fully differential analog routing and exact power circuit still open.
   ES8311 QFN-20 contact, proves the unchanged digital pin budget and corrects
   `CE` versus external power enable. [`AUDIO-0002`](AUDIO-0002-complete-audio-path-comparison.md)
   compares the whole fail-safe path; [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
-  asks whether to accept the active-buffer ES8311 prototype plus direct arm.
+  is accepted as [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md)
+  with propagation reviewed by `REV-0005D`.
 
 ## Deferred/reference G3 artifacts
 

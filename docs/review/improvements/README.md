@@ -24,8 +24,7 @@ B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
 позволяет считать sourcing shortlist production qualification, а `FND-0057`
 по-прежнему требует specimen proof generic Ebyte `IPX` mating family.
 
-⚠️ Предложение [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md)
-открыто после exact-contact review. Initial A recommendation withdrawn:
-PAM8302A already accepts differential input, while ES8311 warns that its ADC
-input is microphone-oriented and not recommended for line input. `FND-0066`
-requires a whole-path comparison before asking the owner to choose.
+[`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
+как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,
+отдельный TX selector и reset-safe GPIO6 `AUDIO_ARM`. Passive capture остаётся
+только HIL-gated cost-down option; analog values и HIL не закрыты решением.

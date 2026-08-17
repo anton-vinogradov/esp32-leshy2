@@ -102,7 +102,7 @@ microSD socket. `FND-0051` доказывает, что старые 10 full fra
 256 B. `DSP-0002/REV-0004W` обнаружили `FND-0061`: U214 уже перенесён на
 dedicated RP bus, поэтому fixed limit устарел. `DEC-0052/REV-0004X` закрывают
 находку: принимают direct QSPI на S3 `GPIO41/42` и measured `≤1 ms` display
-occupancy; current S3 budget становится `31/3/2`. `DSP-0003/REV-0004Y`
+occupancy; тогдашний S3 budget стал `31/3/2`. `DSP-0003/REV-0004Y`
 показывают, что старый 4-inch ST7796S годится как A0 workload fixture, но не
 как QSPI target. `DEC-0053/REV-0004Z` принимают 3.5-inch portrait `320×480`
 IPS direct-QSPI capacitive-touch class; `DSP-0004` перечисляет все известные
@@ -164,8 +164,9 @@ VOICE — отдельных VHF/UHF, а Si4732 сохраняет whip и loop/
 owner diagram, каждый MCU GPIO с physical module/package pad, fixed mux,
 service/recovery, PIO/DMA budget и все slow routes берутся из одного JSON.
 Саморевью обнаружило `FND-0059`: старый `NIF-0001/REV-0004L` показывал
-pre-`DEC-0046` budget. После последующего `DEC-0052` current result — S3
-`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F`, slow plane `24U/0R/0F`; regression теперь
+pre-`DEC-0046` budget. После `DEC-0052` и принятого audio `DEC-0054` current
+result — S3 `32U/3R/1F`, C5 `14U/6R/1F`, RP `48U/0R/0F`, slow plane
+`24U/0R/0F`; regression теперь
 проверяет эти числа. SA518 `UPDATE/UART/PD` service и exact Si4732 control/
 FMI/AMI contacts также внесены. `FND-0067` нашёл пропущенный ordinary control
 RX-audio mux и теперь размещает его на slow P27. `FND-0060` сохраняет видимыми ещё abstract
@@ -197,12 +198,11 @@ PAM8302A уже принимает differential DAC, а SA518 TX требует 
 attenuation. Кроме того, P11/P12 expander могут удерживать старое значение
 через S3 reset.
 
-⚠️ Предложение `IMP-0046/A`: сохранить ES8311, добавить high-Z active capture
-buffer, differential speaker selector и отдельный attenuated TX selector, а
-P11/P12 пропустить через direct S3 GPIO6 `AUDIO_ARM`. Passive capture остаётся
-измеряемой cost-down stuffing option; TAC5111IRGER — более дорогой reference с
-новым driver. При принятии S3 budget станет `32U/3R/1F`; в machine map это ещё
-не внесено.
+`IMP-0046/A` принято как `DEC-0054`: ES8311 сохраняется с exact
+`TLV9061IDBVR` high-Z capture, `TMUX1136DGSR` differential speaker selector,
+`TS5A63157DCKR` TX selector и `SN74LVC2G08DCUR` reset-safe gate. Direct S3
+GPIO6 теперь `AUDIO_ARM`; passive capture остаётся измеряемой cost-down
+option. Machine map и диаграммы показывают итоговый S3 `32U/3R/1F`.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
@@ -213,7 +213,7 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются `IMP-0043`, `IMP-0046`, `FND-0058` antenna
-qualification и оставшиеся `FND-0060/0067` exact electrical endpoints. Exact production nRF,
+маскируется. Параллельно остаются `IMP-0043`, `FND-0058` antenna qualification
+и оставшиеся `FND-0060/0066/0067` exact electrical/HIL endpoints. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

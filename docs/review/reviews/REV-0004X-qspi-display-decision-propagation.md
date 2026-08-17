@@ -1,7 +1,8 @@
 # REV-0004X — QSPI display decision propagation
 
 > Последующее решение `DEC-0053/REV-0004Z` принимает 3.5-inch target class;
-> exact production assembly/optics/HIL остаются открыты.
+> `DEC-0054/REV-0005D` позднее занимает GPIO6 под `AUDIO_ARM` и меняет current
+> S3 total с показанного ниже `31/3/2` на `32/3/1`.
 
 - Статус: **Проведено ревью принятого QSPI-first working contract**
 - Дата: 2026-08-17

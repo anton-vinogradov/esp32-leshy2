@@ -2,8 +2,8 @@
 
 > Последующий reviewed amendment: `DEC-0052/REV-0004X` занимает S3 GPIO41/42
 > под QSPI D2/D3; `AUDIO-0002/REV-0005C` затем занимает slow P27 под
-> пропущенный RX-audio source select. Current budgets: S3 `31/3/2`, slow
-> `24/0/0`. Таблица ниже фиксирует
+> пропущенный RX-audio source select; `DEC-0054/REV-0005D` затем занимает S3
+> GPIO6 под `AUDIO_ARM`. Current budgets: S3 `32/3/1`, slow `24/0/0`. Таблица ниже фиксирует
 > состояние исходного прохода `REV-0004V`.
 
 - Статус: **Проведено ревью current principled pinout; final electrical closure открыта**

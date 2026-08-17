@@ -1,11 +1,12 @@
-# ⚠️ IMP-0046 — complete codec, analog routing and reset-default package
+# IMP-0046 — complete codec, analog routing and reset-default package
 
-- Статус: **⚠️ Открыто; требуется одно атомарное решение владельца**
+- Статус: **Принято как вариант A в DEC-0054**
 - Дата: 2026-08-17
 - Facts: [`AUDIO-0002`](../architecture/AUDIO-0002-complete-audio-path-comparison.md)
 - Findings: [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md),
   [`FND-0067`](../findings/FND-0067-audio-source-select-and-reset-bypass.md)
 - Review: [`REV-0005C`](../reviews/REV-0005C-complete-audio-path-prerequisites.md)
+- Decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md)
 
 ## Текущее состояние
 
@@ -76,8 +77,7 @@ the same PCB and may remove the op-amp only after measured equivalence. Do not
 pay the TAC5111 premium unless E2 fails analog/RF HIL or later sourcing changes
 the complete-circuit comparison.
 
-## Acceptance question
+## Owner result
 
-Accept option **A** as the complete prototype audio architecture, including
-direct S3 GPIO6 `AUDIO_ARM`, while retaining passive E1-P only as a HIL-gated
-cost-down stuffing option?
+Владелец принял вариант **A** целиком. Нормативный результат, pin-budget
+consequence и открытая schematic/HIL boundary зафиксированы в `DEC-0054`.

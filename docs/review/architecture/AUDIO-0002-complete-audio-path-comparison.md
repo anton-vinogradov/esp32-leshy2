@@ -1,12 +1,14 @@
 # AUDIO-0002 — complete fail-safe audio-path comparison
 
-- Статус: **Проведено ревью фактов; атомарный выбор IMP-0046 открыт**
+- Статус: **Проведено ревью; вариант A принят как DEC-0054, schematic/HIL открыт**
 - Дата: 2026-08-17
 - Предыдущий contact review: [`AUDIO-0001`](AUDIO-0001-es8311-exact-electrical-fit.md)
 - Находки: [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md),
   [`FND-0067`](../findings/FND-0067-audio-source-select-and-reset-bypass.md)
-- Решение: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
-- Review: [`REV-0005C`](../reviews/REV-0005C-complete-audio-path-prerequisites.md)
+- Предложение: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
+- Решение: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md)
+- Reviews: [`REV-0005C`](../reviews/REV-0005C-complete-audio-path-prerequisites.md),
+  [`REV-0005D`](../reviews/REV-0005D-audio-decision-propagation.md)
 
 ## Что сравнивается
 
@@ -24,26 +26,34 @@
 7. сохранить текущие I2S/I2C GPIO и не скрыть новый control signal.
 
 ```mermaid
-flowchart LR
-  SI["Si4732 L/R"] --> SUM["mono sum"]
-  SAO["SA518 AFOUT"] --> RXMUX["RX source selector"]
+flowchart TB
+  SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"] --> SUM["MPN-independent passive circuit<br/>stereo-to-mono summing network"]
+  SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"] -->|"AFOUT"| RXMUX["SN74LVC1G3157DBVR<br/>Si4732/SA518 receive-audio source selector"]
   SUM --> RXMUX
-  RXMUX --> BYP["always-available analog bypass"]
-  RXMUX --> CAP["high-Z capture conditioner"]
-  CAP --> ADC["codec ADC"]
-  DAC["codec differential DAC"] --> SPKSEL["2-pole speaker selector"]
-  BYP --> SPKSEL
-  SPKSEL --> PAM["PAM8302A IN+/IN-"]
-  DAC --> ATT["AC coupling + about 40 dB TX attenuation"]
-  MIC["electret microphone"] --> TXSEL["TX-audio selector"]
+  SLOW["TCA6424ARGJR<br/>24-line slow-control expander"] -->|"P27 source request"| RXMUX
+  RXMUX -->|"always-available analog bypass"| SPKSEL["TMUX1136DGSR<br/>dual differential speaker-path selector"]
+  RXMUX --> CAP["MPN-independent passive circuit<br/>high-impedance AC/bias capture network"]
+  CAP --> BUF["TLV9061IDBVR<br/>active high-impedance capture buffer"]
+  BUF --> ADCNET["MPN-independent passive circuit<br/>ES8311 mic-range differential input network"]
+  ADCNET --> CODEC["ES8311<br/>mono ADC/DAC audio codec"]
+  CODEC -->|"OUTP/OUTN"| SPKSEL
+  SPKSEL --> PAM["PAM8302AASCR<br/>mono Class-D speaker amplifier"]
+  PAM --> SPEAKER["MPN TBD<br/>internal loudspeaker"]
+  CODEC --> ATT["MPN-independent passive circuit<br/>35–45 dB codec-to-voice attenuator/filter"]
+  MIC["MPN TBD<br/>electret microphone"] --> TXSEL["TS5A63157DCKR<br/>electret/codec transmit-audio selector"]
   ATT --> TXSEL
-  TXSEL --> MICIN["SA518 MIC_IN"]
-  MICIN --> SATX["SA518 TX audio/modulator"]
-  ARM["direct AUDIO_ARM"] --> SAFE["default-enforcing logic"]
+  TXSEL -->|"MIC_IN"| SA
+  S3["ESP32-S3-WROOM-1U-N16R2<br/>audio-control and I2S owner"] -->|"GPIO6 AUDIO_ARM"| SAFE["SN74LVC2G08DCUR<br/>reset-safe dual selector-request gate"]
+  SLOW -->|"P11/P12 requests"| SAFE
   SAFE --> SPKSEL
   SAFE --> TXSEL
-  PTT["independent PTT gate"] -. "never derived from audio" .-> SATX
+  PTT["MPN TBD<br/>independent fail-safe PTT gate"] -. "never derived from audio selection" .-> SA
 ```
+
+У каждого physical device указан отдельный узел с партномером и ролью.
+Пассивные цепи обозначены как circuit, а ещё не выбранные динамик, микрофон и
+hard-PTT implementation — как `MPN TBD`, поэтому диаграмма не выдаёт их за
+замороженные BOM-позиции.
 
 ## Почему прямой ADC tap не проходит
 
@@ -197,10 +207,12 @@ default mechanism.
 
 ## Result
 
-Facts and complete-path comparison receive **«Проведено ревью»**. No codec or
-analog topology is accepted by this artifact. `IMP-0046` recommends E2-B plus
-the one-pin `AUDIO_ARM` gate as prototype baseline, with E1-P retained only as
-a measured cost-down stuffing option and TAC5111 as the premium reference.
+Facts and complete-path comparison receive **«Проведено ревью»**. The owner
+accepted `IMP-0046/A` as [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md):
+E2-B plus the one-pin `AUDIO_ARM` gate is the prototype baseline, E1-P remains
+only a measured cost-down stuffing option, and TAC5111 remains a premium
+comparison reference. This accepts the architecture, not passive values,
+footprints, production AVL or HIL results.
 
 ## Mandatory schematic/HIL gates after choice
 

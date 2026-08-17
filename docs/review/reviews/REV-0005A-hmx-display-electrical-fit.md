@@ -1,5 +1,9 @@
 # REV-0005A — HMX035CTFT-001 electrical-fit and propagation review
 
+> Subsequent `DEC-0054/REV-0005D` assigns S3 GPIO6 to `AUDIO_ARM`; the
+> display-only `31/3/2` snapshot below is historical and current total is
+> `32/3/1`.
+
 - Статус: **Проведено ревью**
 - Дата: 2026-08-17
 - Artifact: [`DSP-0005`](../architecture/DSP-0005-hmx035ctft-electrical-fit.md)
@@ -14,8 +18,8 @@
   separates disclosed marking from production orderability.
 - `G2F-3I` instantiates the assembly and terminates QSPI, touch I2C/IRQ and
   resets on exact contacts.
-- QSPI needs no separate DC. Existing S3 `GPIO39` is reused as touch IRQ;
-  `GPIO6/GPIO43` remain free and S3 budget remains `31/3/2`.
+- QSPI needs no separate DC. Existing S3 `GPIO39` is reused as touch IRQ; at
+  this display-only pass `GPIO6/GPIO43` remain free and S3 budget is `31/3/2`.
 - Existing slow-plane `P06/P07` terminate exact display/touch reset contacts;
   no hidden P27 allocation was introduced.
 - TE remains unassigned until measured A/B benefit; it is not treated as an

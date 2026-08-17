@@ -1,6 +1,6 @@
 # REV-0005C — complete audio-path prerequisites review
 
-- Статус: **Проведено ревью фактов; IMP-0046 owner choice открыт**
+- Статус: **Проведено ревью фактов; последующий owner choice закрыт DEC-0054**
 - Дата: 2026-08-17
 - Artifact: [`AUDIO-0002`](../architecture/AUDIO-0002-complete-audio-path-comparison.md)
 - Findings: [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md),
@@ -55,6 +55,7 @@ firmware escape from a stuck I2C/expander state while leaving GPIO43 available.
 
 ## Итог
 
-The prerequisite and comparison artifact receives **«Проведено ревью»**.
-Implementation does not: `IMP-0046` remains one atomic owner decision followed
-by exact schematic calculations and HIL.
+The prerequisite and comparison artifact receives **«Проведено ревью»**. It
+did not itself accept implementation. The owner later accepted `IMP-0046/A`
+as `DEC-0054`; propagation is reviewed in `REV-0005D`, followed by the
+still-open exact schematic calculations and HIL.

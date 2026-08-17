@@ -18,7 +18,7 @@
   `CODEC_PWR_EN` for an external power switch and straps `CE` to address `0x19`.
 - Supply, ground, exposed-pad and reference contacts are represented; exact
   load switch, sequencing, decoupling and isolation remain blockers.
-- The digital map does not change current S3 `31/3/2` budget or controller/DMA
+- The digital-only fit did not change the then-current S3 `31/3/2` budget or controller/DMA
   accounting.
 - Exact `OUTP/OUTN` and `MIC1P/MIC1N` expose an analog-topology gap in old
   one-wire wording. No unreviewed selector/conditioner was silently selected.

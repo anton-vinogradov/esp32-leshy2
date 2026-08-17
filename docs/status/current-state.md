@@ -103,7 +103,7 @@ and correct the former shared-U214 quantum from 1 KiB to 256 B.
 `DSP-0002/REV-0004W` expose `FND-0061`: U214 has moved to a dedicated RP bus,
 so the fixed 256 B limit is stale. `DEC-0052/REV-0004X` close the finding by
 accepting direct QSPI on S3 `GPIO41/42` and measured `<=1 ms` display
-occupancy; the current S3 budget becomes `31/3/2`. `DSP-0003/REV-0004Y` show
+occupancy; the then-current S3 budget became `31/3/2`. `DSP-0003/REV-0004Y` show
 that old 4-inch ST7796S remains an A0 workload fixture but not a QSPI target;
 `DEC-0053/REV-0004Z` accept a 3.5-inch portrait `320×480` IPS direct-QSPI
 capacitive-touch class. `FND-0063/DSP-0005/REV-0005A` correct the primary
@@ -166,8 +166,9 @@ closed.
 atlas: the owner diagram, every MCU GPIO and physical module/package pad,
 fixed mux, service/recovery, PIO/DMA budget and all slow routes come from one
 JSON source. Self-review found `FND-0059`: old `NIF-0001/REV-0004L` displayed
-the pre-`DEC-0046` budget. After later `DEC-0052`, the current result is S3
-`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F` and slow plane `24U/0R/0F`; a regression now
+the pre-`DEC-0046` budget. After `DEC-0052` and accepted audio `DEC-0054`, the
+current result is S3 `32U/3R/1F`, C5 `14U/6R/1F`, RP `48U/0R/0F` and slow
+plane `24U/0R/0F`; a regression now
 locks those counts. Exact SA518 `UPDATE/UART/PD` service and Si4732 control/
 FMI/AMI contacts are also instantiated. `FND-0067` found the previously
 omitted ordinary RX-audio mux control and now places it on slow P27. `FND-0060`
@@ -199,12 +200,11 @@ review `AUDIO-0002/REV-0005C` then corrects the analog assumption: a direct
 accepts differential DAC, and SA518 TX requires heavy attenuation. It also
 finds that P11/P12 expander outputs may remain stale through S3 reset.
 
-⚠️ Proposal `IMP-0046/A`: retain ES8311, add a high-Z active capture buffer,
-use differential speaker plus separately attenuated TX selectors, and gate
-P11/P12 with direct S3 GPIO6 `AUDIO_ARM`. Passive capture remains a measured
-cost-down stuffing option; TAC5111IRGER is the more expensive/new-driver
-reference. Acceptance would change S3 accounting to `32U/3R/1F`; it is not
-yet applied to the machine map.
+`IMP-0046/A` is accepted as `DEC-0054`: ES8311 is retained with exact
+`TLV9061IDBVR` high-Z capture, `TMUX1136DGSR` differential speaker selector,
+`TS5A63157DCKR` TX selector and `SN74LVC2G08DCUR` reset-safe gate. Direct S3
+GPIO6 is now `AUDIO_ARM`; passive capture remains a measured cost-down option.
+The machine map and diagrams show the resulting S3 `32U/3R/1F` accounting.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
@@ -215,8 +215,8 @@ The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0043`, `IMP-0046`, `FND-0058` antenna qualification and the
-remaining `FND-0060/0067` electrical endpoints stay open. Exact production nRF,
+In parallel, `IMP-0043`, `FND-0058` antenna qualification and the remaining
+`FND-0060/0066/0067` electrical/HIL endpoints stay open. Exact production nRF,
 SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and
 KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

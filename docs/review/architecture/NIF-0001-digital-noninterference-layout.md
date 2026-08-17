@@ -37,16 +37,17 @@ RF/zoning gate.
 
 ```mermaid
 flowchart LR
-  S3["ESP32-S3\nUI / audio / storage / BLE"]
-  C5["ESP32-C5\n2.4/5 GHz / 802.15.4 / IR"]
-  RP["RP2354B A4\nreal-time radio owner"]
-  SD["microSD"]
-  LCD["display"]
-  NRF0["nRF24 #0"]
-  NRF1["nRF24 #1"]
-  NRF2["nRF24 #2"]
-  CC["CC1101"]
-  U214["U214 LoRa + GNSS"]
+  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
+  RP["RP2354B A4<br/>deterministic radio and voice owner"]
+  SD["DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
+  LCD["HMX035CTFT-001<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
+  NRF0["E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
+  NRF1["E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
+  NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
+  CC["CC1101RGPR<br/>sub-GHz transceiver"]
+  U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
+  ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
 
   S3 <-->|"dedicated 4-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
@@ -56,17 +57,23 @@ flowchart LR
   RP <-->|"PIO0 SM1 + direct IRQ"| NRF1
   RP <-->|"PIO0 SM2 + direct IRQ"| NRF2
   RP <-->|"PIO0 SM3 + direct GDO"| CC
-  RP <-->|"PIO1 SM0 + UART1 + isolated I2C"| U214
+  RP <-->|"PIO1 SM0 + UART1"| U214
+  RP <-->|"dedicated I2C0"| ISO
+  ISO <-->|"isolated external I2C"| U214
 ```
+
+Каждый physical node выше содержит партномер и роль. `E01-ML01IPX` остаётся
+проверенным compact reference, а не frozen production nRF24 choice; это явно
+не маскируется более общим названием `nRF24`.
 
 ## Реально выведенный pin budget
 
 | Domain | Exact device boundary | Used | Reserved | Free | Проверка |
 |---|---|---:|---:|---:|---|
-| S3 | `ESP32-S3-WROOM-1U-N16R2`, 36 exposed GPIO | 31 | 3 straps | 2 | every GPIO classified; GPIO41/42 are QSPI D2/D3 |
+| S3 | `ESP32-S3-WROOM-1U-N16R2`, 36 exposed GPIO | 32 | 3 straps | 1 | every GPIO classified; GPIO6 is reset-safe AUDIO_ARM, GPIO41/42 are QSPI D2/D3 |
 | C5 | `ESP32-C5-WROOM-1U-N8R8`, 21 exposed GPIO | 14 | 6 straps/service | 1 | internal PSRAM GPIO15 не посчитан; GPIO4 is IR quiet-state gate |
 | RP | `RP2354B A4`, QFN80, 48 GPIO | 48 | 0 | 0 | exact package pads 1…80 checked; GPIO15/23 are nRF/CC quiet-state gates |
-| slow plane | `TCA6424ARGJR`, 24 P-ports | 23 | 1 | 0 | every allocatable contact classified and routed |
+| slow plane | `TCA6424ARGJR`, 24 P-ports | 24 | 0 | 0 | every allocatable contact classified and routed; P27 selects RX audio source |
 
 Переход `RP2354A→RP2354B` добавляет 18 GPIO и увеличивает корпус с 7×7 до
 10×10 mm. Это осознанная цена физически независимых radio buses. Последние два
@@ -140,7 +147,8 @@ thermal/mechanics, production cost and all named stress tests. `G2F-3I` може
 
 Budget presentation повторно проверена после `DEC-0046` в
 [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)/[`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md),
-а затем после QSPI allocation в `REV-0004X`: current S3 budget `31/3/2`.
+затем после QSPI allocation в `REV-0004X`, а после принятого audio package
+`DEC-0054` — снова в `REV-0005D`: current S3 budget `32/3/1`.
 Старые `C5=13/RP=46` counts исправлены как `FND-0059`.
 
 ## Первичные источники

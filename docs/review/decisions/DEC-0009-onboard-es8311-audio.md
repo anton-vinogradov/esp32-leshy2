@@ -14,7 +14,7 @@ Legacy firmware заявляет запись и цифровую обработ
 
 - на основную PCB добавляется mono ADC+DAC codec **ES8311**;
 - существующий `U33` выбирает RX-источник `SI_AUDIO` или `SA_AF`, а его выход одновременно доступен ADC кодека;
-- перед PAM8302 добавляется hardware-default analog source selection, default которого — прямой analog RX → speaker; exact one- versus two-pole topology остаётся в `IMP-0046`;
+- перед PAM8302 добавляется hardware-default analog source selection, default которого — прямой analog RX → speaker; exact dual-pole topology впоследствии принято в `DEC-0054`;
 - между electret mic и `MIC_IN` SA868 добавляется второй 2:1 analog selector, аппаратный default которого — прямой mic → SA868;
 - qualified DAC branch попадает на speaker или `MIC_IN` только после явного выбора соответствующего selector;
 - PTT остаётся независимым TX-гейтом и не активируется самим codec или переключением audio selector;
@@ -54,7 +54,7 @@ Legacy firmware заявляет запись и цифровую обработ
 
 ## Стоимостная граница
 
-Снимок `IMP-0009` давал ориентир для ES8311 и двух selectors около `$0.70` по low-volume unit prices и `$0.43` на tier 100. `FND-0065` показал, что эта оценка не включает exact differential-output conditioning; до выбора `IMP-0046` и нового BOM она историческая и не является текущей PCBA-оценкой.
+Снимок `IMP-0009` давал ориентир для ES8311 и двух selectors около `$0.70` по low-volume unit prices и `$0.43` на tier 100. `FND-0065` показал, что эта оценка не включает exact complete path; после `DEC-0054` она остаётся исторической и не является текущей PCBA-оценкой.
 
 ## Exact-contact amendment 2026-08-17
 
@@ -62,7 +62,7 @@ Legacy firmware заявляет запись и цифровую обработ
 [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md) verify
 the exact QFN-20 digital contact fit without changing GPIO budget. The scope
 decision for onboard ES8311 and hardware analog bypass remains accepted.
-`IMP-0046/FND-0066` are a narrower open implementation decision: how to
-preserve differential `OUTP/OUTN` through the physically differential
-PAM8302A while conditioning TX, and how to feed line/audio RX sources into an
-ES8311 input that its user guide characterizes as microphone-oriented.
+`IMP-0046/FND-0066` later narrowed the implementation question. `DEC-0054`
+accepts active high-Z ES8311 capture, preserved differential `OUTP/OUTN`,
+separate TX conditioning and reset-safe selection. Exact passive values,
+power and HIL remain open.

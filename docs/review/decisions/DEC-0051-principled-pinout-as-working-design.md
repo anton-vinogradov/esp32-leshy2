@@ -1,8 +1,9 @@
 # DEC-0051 — principled pinout as the visible working design
 
 > Последующее изменение: `DEC-0052/REV-0004X` добавляют direct-QSPI D2/D3 на
-> S3 GPIO41/42 и меняют current S3 budget с `29/3/4` на `31/3/2`, сохраняя
-> правило machine-source/regeneration настоящего решения.
+> S3 GPIO41/42 и меняют S3 budget с `29/3/4` на `31/3/2`; `DEC-0054/REV-0005D`
+> затем назначают GPIO6 `AUDIO_ARM` и дают current `32/3/1`, сохраняя правило
+> machine-source/regeneration настоящего решения.
 
 - Статус: **Принято по прямому указанию владельца**
 - Дата: 2026-08-17
