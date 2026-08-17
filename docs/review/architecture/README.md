@@ -62,6 +62,11 @@ REV-0005O` now give `I2` **Проведено ревью**: exact AON latch/rese
 devices cover S3+C5+RP and every external TX request, while seven RF detectors,
 optical IR evidence, local-I²C source mask and direct physical aggregate are
 machine-projected. `I3` power/rail/thermal closure is now active.
+`PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
+the legacy sheet as a target: its charger lacks a system power path, its ADC
+is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
+the accepted AON/voice/current envelope. `IMP-0052` now asks whether field
+replacement means a keyed matched 2S assembly or two arbitrary loose cells.
 
 ## Active G2F artifacts
 
@@ -73,6 +78,10 @@ machine-projected. `I3` power/rail/thermal closure is now active.
   records the accepted exact fan-out, pulls, fault matrix, eight evidence
   channels and test points. `FND-0071` paper mismatch is closed; I3/I6/HIL
   measured proof remains explicit;
+- [`PWR-0002`](PWR-0002-i3-power-prerequisite-audit.md) re-derives the `I3`
+  loads/scenarios, preserves only the valid 2S/rail ideas from the old source
+  and opens the field-replaceable battery boundary as `IMP-0052` before exact
+  charger/protector/gauge selection;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

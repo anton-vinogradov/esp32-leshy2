@@ -25,7 +25,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I0` | semantic owners, buses, controllers, exposed pads and budgets | wishlist, `DEM-0001`, `SRC-0002` | `G2F-3I/PIN-0003` reviewed working map; not atomic | all later changes regenerate one machine source without collision or hidden pin |
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
-| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active**: capacity envelope and legacy power candidate exist; exact whole-product rail tree/loss/thermal/fault decision absent | complete rail tree and sequencing with exact first targets, loss/thermal/fault budget |
+| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; prerequisites reviewed** by `PWR-0002/REV-0005P`: current loads/scenarios rebuilt and legacy target rejected; `IMP-0052` battery-format owner decision open before exact tree | complete rail tree and sequencing with exact first targets, loss/thermal/fault budget |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | digital contacts largely exact; backlight/protection/UI endpoints open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
@@ -55,3 +55,9 @@ Exact RF taps/thresholds remain `I6/HIL`, not hidden paper uncertainty.
 scenario/rail demands, then select the battery/charger/power-path topology,
 every quiet-state load switch, sequencing, monitoring, reverse-current policy
 and a calculated loss/thermal/fault budget before `I4` begins.
+
+`PWR-0002/FND-0073/REV-0005P` complete that prerequisite pass. They preserve
+the valid 2S/4-V/common-3.3-V ideas, but reject the old implementation as a
+target. `IMP-0052` is the current gate because a keyed matched removable pack
+and two individually replaceable loose cells require different protection,
+gauge, connector and fault architecture.

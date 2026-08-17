@@ -248,9 +248,17 @@ mask и direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate. Machine source и вс�
 living diagrams обновлены. U214 без accessory evidence остаётся
 `unknown/unavailable`; BAT15 coupon — cost-down HIL.
 
-Теперь активен `I3`: exact AON source/hold-up, battery/charger/power path, все
-load switches и discharge paths, monitoring, reverse current и рассчитанные
-loss/thermal/fault budgets ещё не выбраны.
+`PWR-0002/FND-0073/REV-0005P` проводят первый prerequisite pass `I3`. Новый
+load/scenario ledger сохраняет 2S, 3.3-V envelope `2.5/3 A` и отдельный 4-V
+voice result, но отклоняет legacy sheet как target: у BQ25887 нет system power
+path, его ADC не является fuel gauge, два Rd не доказывают 3-A source, старый
+master switch блокирует зарядку в OFF, а прежние rails не содержат current
+safety/quiet-state branches. **⚠️ Предложение `IMP-0052`** теперь явный owner
+gate: две отдельно
+заменяемые 18650 из legacy mockup могут быть не пропавшей реализацией, а
+неявной дополнительной функцией. После ответа остаются активны exact AON
+source/hold-up, battery/charger/power path, все load switches/discharge paths,
+monitoring, reverse current и рассчитанные loss/thermal/fault budgets.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

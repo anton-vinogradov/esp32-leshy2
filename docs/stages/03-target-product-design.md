@@ -68,6 +68,12 @@ S3/C5/RP service. `DEC-0061/SAFE-0002/REV-0005O` затем дают safety bloc
 **«Проведено ревью»**: exact three-domain STOP/gates и восемь evidence paths
 внесены в machine source. Следующим активен power block `I3`. Цельный
 enclosure/control layout не продолжается до совместного internal self-review.
+`PWR-0002/FND-0073/REV-0005P` уже проводят ревью его prerequisites: valid 2S,
+4-V voice и switched-branch principles сохранены, но старые BQ25887/no-power-
+path, fixed-input-current, pseudo-gauge и obsolete rail sizes отклонены как
+target. `IMP-0052` теперь отдельно проверяет, была ли legacy-возможность менять
+две отдельные 18650 реальным требованием или её следует заменить keyed matched
+removable 2S assembly.
 
 ## Downstream boundary
 
