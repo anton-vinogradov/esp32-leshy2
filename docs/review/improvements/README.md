@@ -14,11 +14,16 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Текущего owner-gate предложения по `I3` нет. Последнее —
-[`IMP-0053`](IMP-0053-5v-typec-versus-pd-charge-path.md) — закрыто выбором B в
-`DEC-0063`: принят sink-only USB-PD до 30 Вт с exact frontend `PWR-0004`.
-Старый BQ25887-вариант остаётся dominated после добавления всех отсутствующих
-блоков.
+Текущий owner gate —
+[`IMP-0054`](IMP-0054-fail-closed-2s-admission-manager.md): выбрать exact
+pack-gauge/admission topology. `PWR-0005/FND-0075` показывают, почему один
+fuel-gauge не может безопасно допускать две свободно заменяемые банки, и
+рекомендуют `MAX17320G20+T + MSPM0C1104SDGS20R`.
+
+Предыдущее [`IMP-0053`](IMP-0053-5v-typec-versus-pd-charge-path.md) закрыто
+выбором B в `DEC-0063`: принят sink-only USB-PD до 30 Вт с exact frontend
+`PWR-0004`. Старый BQ25887-вариант остаётся dominated после добавления всех
+отсутствующих блоков.
 
 Последние закрытые предложения — `IMP-0053` и
 [`IMP-0052`](IMP-0052-safe-field-replaceable-2s-pack.md), принятое вариантом B

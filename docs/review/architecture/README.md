@@ -71,7 +71,10 @@ is pair-aware and fail-closed rather than accepting arbitrary loose cells.
 `PWR-0003/IMP-0053` are closed by `DEC-0063`: the owner selected sink-only
 USB-PD up to 30 W. `PWR-0004/REV-0005R` review exact TPS25751DREFR,
 BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR fit while leaving the cell manager,
-rail tree, passives and HIL active in I3.
+rail tree, passives and HIL active in I3. `PWR-0005/FND-0075` then separate
+ordinary pack gauging from fail-closed loose-cell admission and open
+`IMP-0054`: the recommended exact active pair is MAX17320G20+T plus the
+always-on MSPM0C1104SDGS20R admission controller.
 
 ## Active G2F artifacts
 
@@ -90,6 +93,9 @@ rail tree, passives and HIL active in I3.
   5-V Type-C/NVDC and USB-PD/buck-boost paths; B is accepted by `DEC-0063`;
 - [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md) verifies the exact
   sink-only 30-W PD/charger/configuration/protection path and sourcing snapshot;
+- [`PWR-0005`](PWR-0005-replaceable-2s-manager-options.md) reviews exact
+  gauge/admission candidates, current sourcing and reset-default behavior;
+  `IMP-0054` is the current owner gate;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

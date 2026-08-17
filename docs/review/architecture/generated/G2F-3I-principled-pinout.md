@@ -32,8 +32,8 @@ flowchart TD
   PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
   PD_CONFIG_EEPROM["onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
   NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S buck-boost charger and NVDC system power path"]
-  CELL0["MPN TBD<br/>individually replaceable protected 18650 cell #0"]
-  CELL1["MPN TBD<br/>individually replaceable protected 18650 cell #1"]
+  CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
+  CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
   PACKMGR["MPN TBD<br/>per-cell admission, protection, gauge and balancing manager"]
   end
   subgraph COMPUTE["Compute owners"]
