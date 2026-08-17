@@ -222,8 +222,10 @@ onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 antenna, while the legacy 75-mm SVG does not draw it. `PHY-0001/REV-0005H`
 review a scaled rear-above-battery candidate: Cardputer-like transverse rail,
 4.5-mm side overhang, all nine top SMA preserved and 15.11-mm protrusion inside
-the bare-18650 18.6-mm depth silhouette. `IMP-0048/D` is recommended but still
-awaits owner choice; the legacy encoder must move and exact dock/HIL stay open.
+the bare-18650 18.6-mm depth silhouette. The owner accepts `IMP-0048/D` as
+`DEC-0057`; the legacy encoder must move. `MEC-0001` verifies the official
+male/female `2×7 2.54-mm` interface and two M2/56-mm retention, while
+`FND-0069` keeps the missing exact host MPN/stack-up and installed-cap HIL open.
 
 The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.

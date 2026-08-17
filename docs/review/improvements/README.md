@@ -31,12 +31,12 @@ B/`DEC-0056`: one-stop PCBA + antenna kitting является первым RFQ 
 quality/test scope или supply risk закупки разделяются. `MFG-0001`
 подтверждает техническую доступность turnkey kitting, не выбирая поставщика.
 
-⚠️ Предложение [`IMP-0048`](IMP-0048-u214-dock-versus-sma-placement.md)
-открыто после `FND-0068`: реальный U214 шириной 84 mm отсутствовал в legacy
-75-mm layout. `PHY-0001/REV-0005H` проверяют задний поперечный Cardputer-like
-dock над аккумуляторами: 4.5-mm side overhang, сохранение девяти верхних SMA и
-paper depth внутри 18650 silhouette. Этот вариант D теперь рекомендуется;
-legacy encoder требуется перенести, exact dock/specimen и HIL остаются gate.
+[`IMP-0048`](IMP-0048-u214-dock-versus-sma-placement.md) принято вариантом D
+как `DEC-0057`: U214 размещается в заднем поперечном Cardputer-like dock над
+аккумуляторами. `PHY-0001/REV-0005H` проверяют 4.5-mm side overhang, сохранение
+девяти верхних SMA и paper depth внутри 18650 silhouette. Legacy encoder
+требуется перенести; `MEC-0001/FND-0069` оставляют exact connector/stack-up и
+installed-cap HIL открытыми.
 
 [`IMP-0046`](IMP-0046-es8311-analog-routing-topology.md) принято вариантом A
 как `DEC-0054`: active high-Z ES8311 capture, differential speaker selector,

@@ -18,6 +18,10 @@ U214_REAR_STRIP = 15.281
 U214_DEPTH_BEYOND_HOST_REAR = 15.11
 U214_X = (BOARD_W - U214_W) / 2.0
 U214_Y = 15.0
+U214_M2_END_OFFSET = 14.0
+U214_M2_PITCH = 56.0
+CAPBUS_PITCH = 2.54
+CAPBUS_COLUMNS = 7
 BATTERY_X, BATTERY_Y = 17.5, 40.0
 BATTERY_W, BATTERY_H = 40.0, 78.0
 BATTERY_DEPTH = 18.6
@@ -41,6 +45,8 @@ def validate() -> list[str]:
 
     if abs(-U214_X - 4.5) > 0.001 or abs(U214_X + U214_W - BOARD_W - 4.5) > 0.001:
         errors.append("U214 must overhang the 75-mm chassis symmetrically by 4.5 mm")
+    if abs(2 * U214_M2_END_OFFSET + U214_M2_PITCH - U214_W) > 0.001:
+        errors.append("U214 M2 centres must remain 56 mm apart and 14 mm from each end")
     if overlap(u214, battery):
         errors.append("U214 rear projection overlaps the battery-holder projection")
     if not overlap(u214, old_encoder):
@@ -60,7 +66,9 @@ def validate() -> list[str]:
 def render() -> str:
     scale = 4.0
     bx, by = 80.0, 90.0
-    width, height = 760, 980
+    # Keep a square canvas: the long device/role labels then fit without
+    # clipping, and common repository/app previews show the complete side view.
+    width, height = 980, 980
 
     def x(mm: float) -> float:
         return bx + mm * scale
@@ -107,6 +115,10 @@ def render() -> str:
 
     out += [
         rect(U214_X, U214_Y, U214_W, U214_REAR_STRIP, "#ffedd5", "#ea580c", rx=7),
+        f'<circle cx="{x(U214_X + U214_M2_END_OFFSET):.1f}" cy="{y(U214_Y + U214_REAR_STRIP / 2):.1f}" r="{1.0 * scale:.1f}" '
+        'fill="#ffffff" stroke="#c2410c" stroke-width="2"/>',
+        f'<circle cx="{x(U214_X + U214_M2_END_OFFSET + U214_M2_PITCH):.1f}" cy="{y(U214_Y + U214_REAR_STRIP / 2):.1f}" r="{1.0 * scale:.1f}" '
+        'fill="#ffffff" stroke="#c2410c" stroke-width="2"/>',
         text(x(BOARD_W / 2), y(U214_Y + 6.0), "M5Stack U214 Cap LoRa-1262", 12, "bold", "middle", "#9a3412"),
         text(x(BOARD_W / 2), y(U214_Y + 11.1), "LoRa/GNSS Cap · official 84-mm body", 10, anchor="middle", colour="#9a3412"),
         text(x(37.5), y(37.0), "legacy ENC → relocate", 10, "bold", "middle", "#b91c1c"),
@@ -141,6 +153,22 @@ def render() -> str:
         text(note_x, 504, "Cardputer-like raised rail / recessed female header", 11),
         text(note_x, 526, "+ two screw bosses; not a flat PCB header", 11),
         text(note_x, 558, "Four UI-board SMA are separate and unaffected.", 11, colour="#526076"),
+        text(note_x, 592, "Dock interface — separate physical device", 15, "bold"),
+        '<rect x="430" y="610" width="94" height="48" rx="5" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>',
+    ]
+
+    for column in range(CAPBUS_COLUMNS):
+        for row in range(2):
+            out.append(
+                f'<circle cx="{441 + column * 11:.1f}" cy="{624 + row * 19:.1f}" r="3.2" '
+                'fill="#ffffff" stroke="#6d28d9" stroke-width="1.4"/>'
+            )
+
+    out += [
+        text(540, 620, "9  Host Cap-Bus receptacle", 11, "bold"),
+        text(540, 641, f"2×7 female SMT · {CAPBUS_PITCH:.2f}-mm pitch", 11),
+        text(540, 662, "MPN TBD · role: mate U214 male header", 11),
+        text(430, 691, "Retention: 2×M2 · MPN TBD · 56-mm centres · 14-mm end offsets", 10.5, colour="#526076"),
     ]
 
     sy = 740.0
@@ -149,7 +177,7 @@ def render() -> str:
     out += [
         text(sx, sy - 28, "Side section — rear protrusion", 16, "bold"),
         f'<line x1="{sx:.1f}" y1="{sy:.1f}" x2="{sx + 600:.1f}" y2="{sy:.1f}" stroke="#344054" stroke-width="4"/>',
-        text(sx + 610, sy + 5, "rear shell datum", 11, colour="#526076"),
+        text(sx + 600, sy - 10, "rear shell datum", 11, anchor="end", colour="#526076"),
         f'<rect x="{sx + 40:.1f}" y="{sy:.1f}" width="{190:.1f}" height="{U214_DEPTH_BEYOND_HOST_REAR * depth_scale:.1f}" '
         f'rx="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>',
         text(sx + 135, sy + 36, "U214", 13, "bold", "middle", "#9a3412"),

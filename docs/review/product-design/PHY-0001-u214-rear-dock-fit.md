@@ -1,9 +1,11 @@
 # PHY-0001 — U214 rear dock above the batteries
 
-- Статус: **Проведено ревью paper fit; owner decision и exact dock/HIL открыты**
+- Статус: **Проведено ревью; D принято `DEC-0057`, exact dock/HIL открыты**
 - Дата: 2026-08-17
 - Finding: [`FND-0068`](../findings/FND-0068-u214-envelope-missing-from-legacy-layout.md)
 - Proposal: [`IMP-0048`](../improvements/IMP-0048-u214-dock-versus-sma-placement.md)
+- Decision: [`DEC-0057`](../decisions/DEC-0057-u214-rear-dock-above-batteries.md)
+- Mechanical facts: [`MEC-0001`](MEC-0001-u214-cap-bus-mechanical-interface.md)
 - Generator: [`u214_rear_fit.py`](../../../hardware/product-design/u214_rear_fit.py)
 - Render: [`PHY-0001-u214-rear-fit.svg`](img/PHY-0001-u214-rear-fit.svg)
 
@@ -47,15 +49,16 @@ Rear placement is feasible only as a Cardputer-like raised dock rail:
 5. protected but reachable own RP-SMA and downstream Port A.
 
 The exact header MPN, boss pitch/height and enclosure wall values are not
-invented here; they remain an official-drawing/specimen measurement gate.
+invented here. Official drawings now close the M2 `56-mm` centre pitch and
+`14-mm` symmetric offsets, while `MEC-0001/FND-0069` keep connector MPN,
+mating depth, rail height, screw length and tolerances at the specimen gate.
 
 ## Вывод
 
-Rear-above-battery placement is a better first candidate than the former
-bottom extension: it preserves all nine top SMA, avoids increasing the base
-width, and stays inside the battery depth silhouette on paper. It does require
-relocating the legacy encoder and generating the non-flat rail from exact
-structure/specimen dimensions.
+Rear-above-battery D is the accepted active working placement. It preserves all
+nine top SMA, avoids increasing base width, and stays inside the battery depth
+silhouette on paper. It requires relocating the legacy encoder and cannot reach
+enclosure sign-off before the exact connector/rail/specimen gate.
 
 ## Sources
 

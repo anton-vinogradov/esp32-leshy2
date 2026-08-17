@@ -1,9 +1,10 @@
 # ⚠️ Предложение IMP-0048 — U214 dock placement versus SMA banks
 
-- Статус: **Открыто — требуется решение владельца**
+- Статус: **Принято D — `DEC-0057`; проведено ревью propagation**
 - Дата: 2026-08-17
 - Finding: [`FND-0068`](../findings/FND-0068-u214-envelope-missing-from-legacy-layout.md)
 - Geometry baseline: [`AUD-0013`](../audits/AUD-0013-legacy-layout-generator-reuse.md)
+- Decision: [`DEC-0057`](../decisions/DEC-0057-u214-rear-dock-above-batteries.md)
 
 ## Текущее состояние и причина решения
 
@@ -69,6 +70,7 @@ dock/specimen или installed-cap hand/GNSS/RF HIL опровергнут D.
 
 ## Вопрос владельцу
 
-Принимаем **D: съёмный U214 на Cardputer-like заднем поперечном rail над
-аккумуляторами, с переносом legacy encoder и обязательным exact dock/specimen
-и installed-cap HIL до фиксации корпуса**?
+Владелец ответил **D**. Задний поперечный dock над аккумуляторами принят как
+единственный active working layout. `MEC-0001/FND-0069` сохраняют exact
+connector/rail/screw/specimen gate; вариант A остаётся только fallback при
+провале real-device HIL.

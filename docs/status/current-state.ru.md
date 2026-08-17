@@ -220,9 +220,11 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 antenna, а legacy 75-mm SVG его вообще не рисует. `PHY-0001/REV-0005H`
 проверяют масштабированный задний candidate над аккумуляторами: поперечный
 Cardputer-like rail, 4.5-mm overhang по сторонам, сохранение девяти верхних SMA
-и protrusion 15.11 mm внутри bare-18650 silhouette 18.6 mm. `IMP-0048/D`
-рекомендуется, но ждёт решения владельца; legacy encoder требуется перенести,
-а exact dock/HIL остаются открыты.
+и protrusion 15.11 mm внутри bare-18650 silhouette 18.6 mm. Владелец принимает
+`IMP-0048/D` как `DEC-0057`; legacy encoder требуется перенести. `MEC-0001`
+проверяет official male/female `2×7 2.54-mm` interface и два M2 с шагом 56 mm,
+а `FND-0069` сохраняет отсутствующие exact host MPN/stack-up и installed-cap
+HIL открытыми.
 
 Принципиальная распиновка больше не отложена: current paper step завершён и
 может войти в адаптированный legacy physical generator как reopenable working

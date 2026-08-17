@@ -55,8 +55,9 @@ direct GPIO6 `AUDIO_ARM`; passive analog values and HIL remain open.
 Первый новый physical artifact уже появился: `PHY-0001/REV-0005H` проверяют
 на масштабе U214 в заднем поперечном Cardputer-like dock над аккумуляторами.
 Paper fit сохраняет base `75×150 mm`, девять верхних SMA и battery-defined
-толщину, но явно требует переноса legacy encoder. `IMP-0048/D` ждёт owner
-choice; exact dock/specimen и installed-cap hand/GNSS/RF HIL не закрыты.
+толщину, но явно требует переноса legacy encoder. `IMP-0048/D` принято как
+`DEC-0057`. `MEC-0001/FND-0069` переносят работу на exact host receptacle,
+rail/screw stack-up и installed-cap hand/GNSS/RF HIL.
 
 ## Downstream boundary
 

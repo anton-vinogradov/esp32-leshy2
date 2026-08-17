@@ -116,6 +116,11 @@ strap адреса `0x19`, P10 — внешний `CODEC_PWR_EN`; digital fit н
 принимают вариант A: exact active capture, differential speaker/TX selectors,
 reset-safe gate и direct S3 GPIO6 `AUDIO_ARM` внесены в machine map. Passive
 values и electrical/HIL closure остаются открыты.
+`DEC-0057/PHY-0001` принимают съёмный U214 dock поперёк задней стороны RF half
+над аккумуляторами. Cap шириной 84 мм нависает над 75-мм базой на 4.5 мм с
+каждой стороны; legacy rear encoder обязан переехать. `MEC-0001/FND-0069`
+оставляют открытыми отдельный MPN host-receptacle, insertion/rail stack-up,
+крепёж и HIL установленного Cap.
 
 ```mermaid
 flowchart TB
@@ -140,6 +145,7 @@ flowchart TB
   NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
   CC["CC1101RGPR<br/>sub-GHz transceiver"]
   SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
+  CAPDOCK["MPN TBD<br/>2×7 female 2.54-mm host Cap-Bus receptacle"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
   UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
@@ -172,9 +178,10 @@ flowchart TB
   RP <-->|"PIO0 SM2"| NRF2
   RP <-->|"PIO0 SM3"| CC
   RP <-->|"UART0/PTT/evidence"| SA
-  RP <-->|"PIO1/UART1"| U214
+  RP <-->|"PIO1/UART1"| CAPDOCK
   RP <-->|"I²C0"| ISO
-  ISO <-->|"isolated I²C"| U214
+  ISO <-->|"isolated I²C"| CAPDOCK
+  CAPDOCK <-->|"14-pin Cap-Bus"| U214
 ```
 
 | Принципиальная группа | Exact owner contacts текущей карты | Контракт |

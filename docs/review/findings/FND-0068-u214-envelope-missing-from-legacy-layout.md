@@ -1,6 +1,6 @@
 # FND-0068 — U214 physical envelope is missing from the legacy layout
 
-- Статус: **Несоответствие обнаружено; требуется owner choice по IMP-0048**
+- Статус: **Исправлено `PHY-0001/DEC-0057`; exact mechanics передано `FND-0069`**
 - Серьёзность: product envelope / antenna-access / expansion-fit blocker
 - Обнаружено: 2026-08-17
 - Device: `M5Stack U214 Cap LoRa-1262`, `84.0 × 24.0 × 15.2 mm`
@@ -31,17 +31,18 @@ board collision checks и всё равно быть непригодным с �
 
 ## Исправленная граница
 
-Старый SVG остаётся immutable reference. Его active adaptation не может
-копировать top-edge placement до решения по `IMP-0048`. `PD-0001` исправлен:
-девять onboard SMA уже приняты `DEC-0049/0050`, а U214 accessory envelope —
-отдельный обязательный G3 input.
+Старый SVG остаётся immutable reference. Его active adaptation больше не
+копирует top-edge placement: `DEC-0057` закрепляет заднее расположение D.
+`PD-0001` исправлен: девять onboard SMA уже приняты `DEC-0049/0050`, а U214
+accessory envelope — отдельный обязательный G3 input.
 
 Official U214/Cardputer-Adv STL alignment и scaled `PHY-0001` уже закрывают
 первый paper-fit пробел для rear-above-battery candidate: `4.5 mm` side
 overhang, `5.5 mm` после RF-board SMA keep-outs, `9.719 mm` до holder и
-`15.11 mm` rear protrusion против `18.6 mm` bare 18650. Finding остаётся открыт
-не из-за отсутствия кандидата, а до owner choice, exact header/boss/wall
-geometry и installed-cap hand/GNSS/RF HIL.
+`15.11 mm` rear protrusion против `18.6 mm` bare 18650. Owner choice закрыт
+вариантом D в `DEC-0057`; active generator рисует принятую working placement.
+Отсутствующие exact header/boss/wall данные и installed-cap HIL выделены в
+отдельный `FND-0069/MEC-0001` и не маскируются закрытием этого omission.
 
 ## Источники
 
