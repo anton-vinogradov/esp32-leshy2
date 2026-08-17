@@ -1,5 +1,11 @@
 # REV-0004U — current-orderable antenna shortlist fact review
 
+> Availability amendment: before the IMP-0043 owner question, DigiKey still
+> showed stock for `001-0012`, but official TE pages marked both `001-0012`
+> and `MAF94051` Active while saying not currently available. `ANT-0002` now
+> treats only `001-0012` as the dated stocked specimen and keeps native-Wi-Fi
+> two-source procurement open.
+
 - Статус: **Проведено ревью фактов; architecture decision и qualification открыты**
 - Дата: 2026-08-17
 - Evidence: [`ANT-0002`](../architecture/ANT-0002-current-orderable-antenna-shortlist.md)
@@ -11,7 +17,7 @@
 | Область | Результат |
 |---|---|
 | Connector convention | каждый candidate соответствует принятому `2 RP-SMA + 7 standard SMA` external mate class |
-| Native Wi-Fi | один dual-band MPN может обслуживать S3/C5, exact stocked alternate найден, published gain остаётся в module bounds |
+| Native Wi-Fi | один dual-band MPN может обслуживать S3/C5 and published gain stays in module bounds; `001-0012` dated distributor stock exists, but exact independently stocked alternate remains open |
 | Three nRF | один MPN ×3 сохраняет три independent paths; Ebyte source mismatch и two-stock-source proof открыты |
 | Sub-GHz | universal 315–915 no-loss claim отклонён; отдельные 315/433 profiles и combined 868/915 candidate сформированы |
 | Voice | full 136–174 и 400–470 MHz current antennas найдены, но это две сменные antennas одного port |

@@ -22,12 +22,15 @@ group одновременно:
 `ANT-0002` нашёл сильные пары для native Wi-Fi и VHF/UHF voice, stocked
 candidates для части sub-GHz profiles и полезный combined 868/915 MPN. Но:
 
-1. Ebyte nRF pages расходятся по published gain, а independent stock evidence
+1. Native-Wi-Fi `001-0012` имеет dated DigiKey stock, но official TE pages для
+   него и electrical alternate `MAF94051` одновременно пишут Active и
+   `not currently available`; второго независимо stocked production source нет;
+2. Ebyte nRF pages расходятся по published gain, а independent stock evidence
    обоих proposed MPN ещё неполно;
-2. 433 и combined 868/915 не имеют двух полностью qualified stocked sources;
-3. `RX-FM/SW` имеет только один procurement specimen и не доказан ниже 25 MHz;
-4. `RX-AM/LW` требует custom loop/pod co-design, а не найденную готовую пару;
-5. ни одна группа ещё не прошла assembled-device HIL.
+3. 433 и combined 868/915 не имеют двух полностью qualified stocked sources;
+4. `RX-FM/SW` имеет только один procurement specimen и не доказан ниже 25 MHz;
+5. `RX-AM/LW` требует custom loop/pod co-design, а не найденную готовую пару;
+6. ни одна группа ещё не прошла assembled-device HIL.
 
 ## Исправление процесса
 

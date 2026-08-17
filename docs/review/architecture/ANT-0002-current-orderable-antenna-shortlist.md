@@ -1,7 +1,7 @@
 # ANT-0002 — current-orderable antenna shortlist
 
 - Статус: **Проведено ревью фактов и shortlist; production qualification не закрыта**
-- Дата проверки: 2026-08-17
+- Дата проверки: 2026-08-17; availability перепроверена перед IMP-0043
 - Prerequisite: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 - Finding: [`FND-0058`](../findings/FND-0058-antenna-sourcing-and-qualification-gate-open.md)
 - Proposal: [`IMP-0043`](../improvements/IMP-0043-profiled-antenna-kit.md)
@@ -28,7 +28,7 @@ enclosure и regulatory HIL на собранном Leshy2.
 
 | Endpoint/profile | Primary specimen | Alternate | Paper result | Что остаётся до production |
 |---|---|---|---|---|
-| `S3-2G4`, `C5-2G4/5` | TE `MAF94051`, RP-SMA, 2.4/5 GHz, 2.1/до 3.4 dBi | TE `001-0012`, RP-SMA, 2.4/5 GHz, 2 dBi, IP67 | один MPN можно купить в количестве 2 для обоих native-Wi-Fi paths; две exact current-orderable позиции найдены | assembled cable/enclosure VNA, coexistence, certification profile and lot control |
+| `S3-2G4`, `C5-2G4/5` | TE `001-0012`, RP-SMA, 2.4/5 GHz, 2 dBi, IP67; DigiKey showed 1,188 stocked units at recheck | TE `MAF94051`, RP-SMA, 2.4/5 GHz, 2.1/до 3.4 dBi; lifecycle Active but TE says not currently available | один stocked MPN можно купить в количестве 2 для обоих native-Wi-Fi paths; two-source production sourcing **не** закрыт | second independently stocked source, assembled cable/enclosure VNA, coexistence, certification profile and lot control |
 | `N24-0/1/2` | Ebyte `TX2400-JW-5`, standard SMA, 2.4 GHz, 2 dBi, angled | Ebyte `TX2400-JZ-5`, standard SMA, 2.4–2.5 GHz, straight; JLC listing exists | один MPN покупается в количестве 3; две manufacturer-current геометрии найдены | independent current stock for both MPN, page/datasheet gain mismatch, exact nRF lot and three-path VNA/HIL |
 | `CC-SUB/315` | TE `ANT-315-CW-HW-SMA`, 304–325 MHz, 0 dBi | TE `ANT-315-CW-HWR-SMA`, 305–325 MHz, tilt | две stocked exact standard-SMA позиции | assembled switch/filter/path loss, EIRP and HIL |
 | `CC-SUB/433` | TE `ANT-433-CW-QW-SMA`, 433 MHz, 3.3 dBi | Ebyte `TX433-JK-11`, 423–443 MHz, 2.5 dBi | stocked primary и current manufacturer alternate | полная intended channel mask, gain/EIRP and second stocked source |
@@ -46,9 +46,14 @@ enclosure и regulatory HIL на собранном Leshy2.
 nRF — другой общий 2.4 GHz MPN. Это сокращает запасные части без объединения
 пяти независимых RF paths и без превышения рекомендованного S3 antenna gain.
 
-TE `MAF94051` помещается в published Espressif bounds: `2.1 dBi` на 2.4 GHz
-ниже `2.33 dBi` S3 и `3.86 dBi` C5, а максимум `3.4 dBi` на 5 GHz ниже
-`3.65 dBi` C5. Более мощная случайная router antenna не считается заменой.
+TE `001-0012` с published `2 dBi` помещается в Espressif bounds для обоих
+native paths. `MAF94051` также помещается: `2.1 dBi` на 2.4 GHz ниже
+`2.33 dBi` S3 и `3.86 dBi` C5, а максимум `3.4 dBi` на 5 GHz ниже `3.65 dBi`
+C5. Но manufacturer `Active` не равен текущему stock: обе official TE pages
+сейчас говорят `not currently available`, тогда как DigiKey показывает stock
+для `001-0012`. Поэтому MAF остаётся electrical alternate, не доказанным
+закупочным alternate. Более мощная случайная router antenna не считается
+заменой.
 
 ### `CC-SUB`
 
@@ -98,7 +103,7 @@ SMA не сообщает firmware, какая antenna действительн�
 ## Закрытые и открытые gates
 
 - **Проведено ревью:** реальный рынок exact antennas, connector mating,
-  диапазоны, first-source orderability и возможность безопасно унифицировать
+  диапазоны, dated first-source stock и возможность безопасно унифицировать
   S3/C5, три nRF и common 868/915.
 - **Не закрыто:** `DEC-0050` two-source production gate для каждой profile
   group, exact harness/mount, target ground plane, VNA, sensitivity, EIRP,
@@ -111,10 +116,10 @@ SMA не сообщает firmware, какая antenna действительн�
 Проверено 2026-08-17; stock/price являются датированным evidence, не гарантией
 будущей поставки.
 
-- [TE MAF94051 product page](https://www.te.com/en/product-MAF94051.html),
-  [Mouser MAF94051 listing](https://www.mouser.com/ProductDetail/TE-Connectivity/MAF94051?qs=fnpEE5GccuPEMqYYFSm2vg%3D%3D)
 - [TE 001-0012 product page](https://www.te.com/en/product-001-0012.html),
   [DigiKey 001-0012 listing](https://www.digikey.com/en/products/detail/te-connectivity/001-0012/4732757)
+- [TE MAF94051 product page](https://www.te.com/en/product-MAF94051.html),
+  [Mouser MAF94051 listing](https://www.mouser.com/ProductDetail/TE-Connectivity/MAF94051?qs=fnpEE5GccuPEMqYYFSm2vg%3D%3D)
 - [Ebyte TX2400-JW-5](https://www.ebyte.com/product/495.html),
   [Ebyte TX2400-JZ-5](https://www.ebyte.com/product/494.html),
   [JLC TX2400-JZ-5 listing](https://jlcpcb.com/partdetail/ZIISOR-TX2400_JZ5/C468320)

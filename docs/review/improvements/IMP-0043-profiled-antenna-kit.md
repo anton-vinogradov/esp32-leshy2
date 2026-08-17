@@ -17,6 +17,12 @@ radiator не покрывает без потерь 315/433/868/915 MHz и full
 co-design: унифицировать одинаковые paths и менять antenna profile на одном
 широкодиапазонном radio port либо требовать одну компромиссную antenna.
 
+Availability recheck не меняет этот architecture choice, но ужесточает BOM
+boundary: у native-Wi-Fi `001-0012` есть датированный distributor stock, тогда
+как official TE pages для него и `MAF94051` пишут Active одновременно с `not
+currently available`. Следовательно, общий **тип/SKU внутри выбранной партии**
+доказуем, а production two-source пара ещё нет и остаётся `FND-0058`.
+
 ## Вариант A — profiled kit с общей SKU только там, где это доказуемо
 
 Рекомендуемый комплект:
@@ -78,4 +84,3 @@ assembled HIL gate из `FND-0058`.
 Принимаем вариант **A: профилированный комплект, общий antenna MPN для S3/C5,
 общий MPN для трёх nRF, combined 868/915, но отдельные 315, 433, VHF, UHF,
 FM/SW whip и AM/LW pod с обязательным TX interlock**?
-
