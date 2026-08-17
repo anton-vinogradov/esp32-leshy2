@@ -325,6 +325,7 @@
 - [REV-0005H: U214 rear-dock paper fit — проведено ревью, D accepted/HIL open](reviews/REV-0005H-u214-rear-dock-paper-fit-review.md)
 - [REV-0005I: DEC-0057 rear-dock propagation — проведено ревью](reviews/REV-0005I-u214-rear-dock-decision-propagation.md)
 - [REV-0005J: internals before integrated mockup — процесс reviewed, I1 open](reviews/REV-0005J-internals-before-integrated-mockup.md)
+- [REV-0005K: vertical living principled diagram — проведено ревью](reviews/REV-0005K-vertical-living-principled-diagram.md)
 - [AUD-0001: повторный аудит legacy-исключений — проведено ревью требований](audits/AUD-0001-legacy-exclusions.md)
 - [AUD-0002: снижение стоимости без потерь](audits/AUD-0002-zero-loss-cost.md)
 - [AUD-0003: прежний nRF-owner audit — справочный архив](audits/AUD-0003-three-nrf24-owner-placement.md)

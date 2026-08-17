@@ -121,8 +121,13 @@ above the batteries. The 84-mm Cap overhangs the 75-mm base by 4.5 mm per side;
 the legacy rear encoder must move. `MEC-0001/FND-0069` keep the separate host
 receptacle MPN, insertion/rail stack-up, screws and installed-cap HIL open.
 
+The diagram below is intentionally maintained as a narrow top-to-bottom view.
+It is a living projection of the current internals: every accepted change to a
+device, owner, bus or inter-device path must update this diagram, its Russian
+twin and the generated pinout atlas in the same commit.
+
 ```mermaid
-flowchart TB
+flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -151,6 +156,12 @@ flowchart TB
   IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
   IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
+  %% Layout-only invisible spine: these links are not electrical connections.
+  S3 ~~~ SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
+  CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
+  TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
+  IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
+  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214
   S3 <-->|"4-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW

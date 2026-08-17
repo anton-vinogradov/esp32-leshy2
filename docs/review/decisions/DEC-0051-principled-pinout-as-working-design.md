@@ -11,7 +11,8 @@
   а не только внутренним generated/review artifact
 - Artifact: [`PIN-0003`](../architecture/PIN-0003-g2f-3i-principled-pinout.md)
 - Generated source view: [`G2F-3I principled pinout`](../architecture/generated/G2F-3I-principled-pinout.md)
-- Review: [`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md)
+- Reviews: [`REV-0004V`](../reviews/REV-0004V-principled-pinout-self-review.md),
+  [`REV-0005K`](../reviews/REV-0005K-vertical-living-principled-diagram.md)
 
 ## Решение
 
@@ -30,6 +31,11 @@
 5. Изменение working pinout выполняется через machine source, regeneration,
    повторное review и синхронное обновление design-проекции. Молчаливое
    расхождение README и generated atlas запрещено.
+6. Диаграмма `Principled solution design` поддерживается в узком вертикальном
+   формате `top-to-bottom`. Любое принятое изменение начинки — устройства,
+   owner, шины или межкомпонентного тракта — обновляет обе стартовые диаграммы
+   и generated atlas в том же коммите; regression test проверяет orientation и
+   присутствие каждого current candidate MPN.
 
 ## Последствия
 

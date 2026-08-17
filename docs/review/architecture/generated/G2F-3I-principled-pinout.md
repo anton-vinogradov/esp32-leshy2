@@ -10,6 +10,9 @@
 ## Как читать артефакт
 
 Диаграмма — навигатор по owners и физически независимым interface groups.
+Она намеренно строится сверху вниз и остаётся живой проекцией текущей
+начинки: изменение machine source обязано регенерировать этот atlas и
+синхронно обновить обе стартовые диаграммы.
 Каждый прямоугольник физического устройства содержит его exact/current
 paper MPN и роль. Разные устройства не объединяются в один прямоугольник.
 Если production part ещё не выбран, узел явно помечается `MPN TBD`;
@@ -22,7 +25,7 @@ paper MPN и роль. Разные устройства не объединяю
 ## Принципиальная структура owners и pin groups
 
 ```mermaid
-flowchart TB
+flowchart TD
   subgraph COMPUTE["Compute owners"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
@@ -64,6 +67,14 @@ flowchart TB
   IRCARRIER["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED and fail-safe driver endpoint"]
   end
+  %% Layout-only invisible spine: these links are not electrical connections.
+  S3 ~~~ SLOW_IO ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ MONOSUM
+  MONOSUM ~~~ AUDIO_RX_MUX ~~~ CAPNET ~~~ AUDIO_CAPTURE_BUFFER ~~~ ADCNET
+  ADCNET ~~~ CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER
+  SPEAKER ~~~ MIC ~~~ TXATT ~~~ AUDIO_TX_SELECTOR ~~~ DISPLAY ~~~ SD ~~~ UNIT
+  UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP
+  RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ VOICE
+  VOICE ~~~ U214_I2C_ISO ~~~ U214
   S3 <-->|"4-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13,GPIO44,GPIO47 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10,GPIO13,GPIO14"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
   S3 <-->|"I²C0+INT: GPIO1,GPIO2,GPIO37"| SLOW_IO

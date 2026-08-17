@@ -33,6 +33,8 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_principled_diagram_names_each_physical_device_and_role(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        self.assertIn("flowchart TD", rendered)
+        self.assertIn("Layout-only invisible spine", rendered)
         required_labels = (
             "HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly",
             "Hirose DM3AT-SF-PEJM5<br/>push-push microSD card connector",
@@ -53,6 +55,37 @@ class ArchitectureValidationTests(unittest.TestCase):
             "nRF24 #0",
         ):
             self.assertNotIn(forbidden, rendered)
+
+    def test_target_readme_principled_diagrams_stay_vertical_and_current(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        current_mpn_tokens = set()
+        for device_id in candidate["instances"].values():
+            mpn = self.database["devices"][device_id]["mpn"]
+            part_tokens = [
+                token.strip("(),")
+                for token in mpn.split()
+                if any(character.isdigit() for character in token)
+            ]
+            current_mpn_tokens.add(max(part_tokens, key=len))
+
+        for readme_name in ("README.md", "README.ru.md"):
+            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
+            section = (
+                "Principled solution design"
+                if readme_name == "README.md"
+                else "Принципиальный дизайн решения"
+            )
+            diagram_start = readme.index("```mermaid", readme.index(section))
+            diagram_end = readme.index("```", diagram_start + len("```mermaid"))
+            diagram = readme[diagram_start:diagram_end]
+            self.assertIn("flowchart TD", diagram, readme_name)
+            self.assertIn("Layout-only invisible spine", diagram, readme_name)
+            for mpn_token in current_mpn_tokens:
+                self.assertIn(
+                    mpn_token,
+                    diagram,
+                    f"{readme_name}: missing current MPN token {mpn_token}",
+                )
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

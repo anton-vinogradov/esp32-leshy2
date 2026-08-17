@@ -78,6 +78,10 @@ collision between full service access and the current 4-bit C5 SDIO allocation.
   principled owner/net/pad diagram and exact tables. `FND-0059` fixes stale
   pre-quiet-state budgets; `FND-0060` exposes every still-abstract electrical
   endpoint instead of presenting it as a finished schematic;
+- [`REV-0005K`](../reviews/REV-0005K-vertical-living-principled-diagram.md)
+  makes that diagram a narrow top-to-bottom living projection. Every accepted
+  internals change must update both target README diagrams and the generated
+  atlas in the same commit; regression checks current candidate MPN coverage;
 - [`REV-0003Y`](../reviews/REV-0003Y-single-source-and-draft-pin-maps.md) reviews
   the generator foundation and explicitly leaves complete-candidate review open.
 - [`DSP-0001`](DSP-0001-display-storage-real-device-evidence.md) replaces the

@@ -240,3 +240,8 @@ complete native service, conditional on the required framed-throughput HIL.
 The machine map is unchanged pending owner choice. `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.
+
+`REV-0005K` now makes the `Principled solution design` diagram vertical and a
+living internals projection. Both target README views and the generated atlas
+must change in the same commit as any accepted device/owner/bus/path change;
+the regression suite checks orientation and current-candidate MPN coverage.

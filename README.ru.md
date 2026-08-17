@@ -122,8 +122,13 @@ values и electrical/HIL closure остаются открыты.
 оставляют открытыми отдельный MPN host-receptacle, insertion/rail stack-up,
 крепёж и HIL установленного Cap.
 
+Диаграмма ниже намеренно поддерживается как узкая вертикальная схема сверху
+вниз. Это живое представление текущей начинки: каждое принятое изменение
+устройства, owner, шины или межкомпонентного тракта обязано в том же коммите
+обновить эту диаграмму, её английскую пару и generated pinout atlas.
+
 ```mermaid
-flowchart TB
+flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -152,6 +157,12 @@ flowchart TB
   IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
   IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
+  %% Layout-only invisible spine: these links are not electrical connections.
+  S3 ~~~ SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
+  CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
+  TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
+  IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
+  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214
   S3 <-->|"4-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
