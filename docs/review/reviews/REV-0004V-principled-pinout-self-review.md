@@ -1,7 +1,9 @@
 # REV-0004V — principled pinout self-review
 
 > Последующий reviewed amendment: `DEC-0052/REV-0004X` занимает S3 GPIO41/42
-> под QSPI D2/D3; current budget теперь `31/3/2`. Таблица ниже фиксирует
+> под QSPI D2/D3; `AUDIO-0002/REV-0005C` затем занимает slow P27 под
+> пропущенный RX-audio source select. Current budgets: S3 `31/3/2`, slow
+> `24/0/0`. Таблица ниже фиксирует
 > состояние исходного прохода `REV-0004V`.
 
 - Статус: **Проведено ревью current principled pinout; final electrical closure открыта**
@@ -19,7 +21,7 @@
 | diagram and tables share one source | pass: both generated from `G2F-3I.json` |
 | exact module/package contacts | pass for S3/C5/RP, nRF references, CC1101, U214, slow I/O, I²C isolator, microSD, SA518 and Si4732 |
 | GPIO accounting after quiet-state controls | pass: S3 `29/3/4`, C5 `14/6/1`, RP `48/0/0` |
-| slow-plane accounting | pass: `23 used + P27 reserve` |
+| slow-plane accounting | historical pass: `23 used + P27 reserve`; current `24/0/0` reviewed in REV-0005C |
 | every nRF physically independent at bus/control level | pass: 3× six direct contacts, separate PIO SM and DMA pair |
 | other radio/accessory bus waits for nRF/display | no; resource contracts remain dedicated |
 | controller/fixed-mux capacity | pass: PIO `5/12`, RP DMA `13/16`, S3 GDMA TX/RX `3/5` |

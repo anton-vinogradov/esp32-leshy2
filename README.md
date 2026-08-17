@@ -111,7 +111,9 @@ orderability/drawing/lifecycle, exact connector, backlight, optics and
 protection remain explicitly open.
 `AUDIO-0001/REV-0005B` also instantiate exact `ES8311` QFN-20 contacts:
 `CE` is address strap `0x19`, P10 is external `CODEC_PWR_EN`, and the S3
-budget is unchanged. Exact differential analog routing is the open
+budget is unchanged. `AUDIO-0002/REV-0005C` correct the missing RX-source
+control on slow P27 and compare complete capture/playback/TX/reset paths.
+Exact differential analog routing and direct reset-default arm remain the open
 `IMP-0046` decision.
 
 ```mermaid
@@ -146,7 +148,7 @@ flowchart LR
 | U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
 
 The pin budget is S3 `31 used / 3 reserved / 2 free`, C5 `14/6/1`, RP
-`48/0/0` and slow I/O `23/1/0`. RP has no free direct GPIO; independent
+`48/0/0` and slow I/O `24/0/0`. RP has no free direct GPIO; independent
 SWD/USB/RUN/BOOTSEL remain outside this budget.
 
 The complete normative projection of the current map is in
@@ -160,7 +162,9 @@ path already terminates on `HMX035CTFT-001`: S3 GPIO39 is touch IRQ, slow
 P06/P07 are display/touch reset, and S3 GPIO6/GPIO43 remain free.
 The audio digital path likewise terminates on exact `ES8311` contacts at S3
 GPIO1/2/15/16/17/18; codec power and differential analog conditioning remain
-open electrical blocks rather than hidden pins.
+open electrical blocks rather than hidden pins. The former slow reserve P27 now
+carries the required `RX_AUDIO_SOURCE_SEL`; proposed direct `AUDIO_ARM` is not
+counted until `IMP-0046` is accepted.
 
 ## Safety and cost boundary
 
@@ -199,7 +203,7 @@ mounting, cable lengths, two-source assemblies and target RF qualification
 remain open.
 `PIN-0003/REV-0004V` add a generated principled owner/net/pad atlas. The
 current exact exposed-contact budget is S3 `31/3/2`, C5 `14/6/1`, RP
-`48/0/0` and slow I/O `23/1/0`; exact SA518 service and Si4732 control/RF
+`48/0/0` and slow I/O `24/0/0`; exact SA518 service and Si4732 control/RF
 contacts are instantiated, while remaining electrical abstractions stay open
 under `FND-0060`.
 Physical RF/full-mix

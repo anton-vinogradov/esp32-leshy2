@@ -53,9 +53,10 @@ The quiet-state requirement consumes three formerly free direct controls:
 - RP2354B `GPIO23` — CC1101 power gate;
 - ESP32-C5 `GPIO4` — IR frontend power gate.
 
-After later `DEC-0052`, S3 GPIO41/42 become QSPI D2/D3. Current remaining
-direct general-purpose reserve is S3=2, C5=1, RP=0, while `slow_io.P27`
-remains one controlled slow spare. This is not yet a schematic:
+After later `DEC-0052`, S3 GPIO41/42 become QSPI D2/D3. Subsequent
+`AUDIO-0002/FND-0067` assigns slow P27 to the previously omitted
+`RX_AUDIO_SOURCE_SEL`. Current remaining direct general-purpose reserve is
+S3=2, C5=1, RP=0, and the slow plane has no reserve. This is not yet a schematic:
 exact load-switch/I/O-isolator MPN, discharge time, voltage domains, default pulls
 and sequencing must be selected together with the frontends. A future direct
 RP timing endpoint now requires a remap or justified expander/latch; it cannot

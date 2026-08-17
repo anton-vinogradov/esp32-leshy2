@@ -5,6 +5,7 @@
 - Обнаружено: 2026-08-17
 - Artifact: [`AUDIO-0001`](../architecture/AUDIO-0001-es8311-exact-electrical-fit.md)
 - Corrected proposal: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
+- Completed comparison: [`AUDIO-0002`](../architecture/AUDIO-0002-complete-audio-path-comparison.md)
 
 ## Находка
 
@@ -43,6 +44,10 @@ review shows why that is premature:
    BOM, package, power, driver, bypass and pin cost.
 4. Select the complete path only after SPICE/bench proof of gain, THD+N, noise,
    pop/click, reset defaults and RF desense.
+
+`AUDIO-0002/REV-0005C` close items 1–3 at paper-comparison level and recommend
+an active high-Z ES8311 prototype path. The finding remains open until the
+owner selects `IMP-0046` and the chosen circuit passes item 4.
 
 ## Primary sources
 

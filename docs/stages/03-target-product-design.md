@@ -34,7 +34,7 @@ two-board clamshell generator. Его геометрия тоже рабочая
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
 `G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
 pinout diagram и exact pad/net tables; current budget честно равен S3
-`31/3/2`, C5 `14/6/1`, RP `48/0/0`, slow `23/1/0` after accepted direct-QSPI
+`31/3/2`, C5 `14/6/1`, RP `48/0/0`, slow `24/0/0` after accepted direct-QSPI
 GPIO41/42 allocation (`DEC-0052/REV-0004X`). Это выполняет необходимый
 working-baseline checkpoint `DEC-0041` и разрешает начать перенос в старый
 reproducible mockup. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch

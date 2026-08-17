@@ -115,11 +115,11 @@ stress HIL остаётся обязательным до target acceptance.
 
 ## Slow plane и safety boundary
 
-23/24 линии распределены: шесть линий diode-isolated 3×3 UI matrix,
+24/24 линии распределены: шесть линий diode-isolated 3×3 UI matrix,
 display/touch reset, codec enable, два audio selector, voice PD/HL, receiver
 reset/status, U214 I²C READY, external 5 V, microSD power/detect, STOP sense,
-S3 actual-TX evidence, power fault и accessory present. `P27` остаётся
-контролируемым резервом exact-part discovery.
+S3 actual-TX evidence, power fault, accessory present и обычный
+`RX_AUDIO_SOURCE_SEL` на P27. Свободных или резервных slow contacts больше нет.
 
 PTT, physical PTT, все radio IRQ/GDO/BUSY, actual-TX evidence C5/IR/voice и
 непрограммируемый hard STOP не перенесены на slow plane. Expander powers up as

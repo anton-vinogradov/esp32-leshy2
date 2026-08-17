@@ -167,9 +167,11 @@ atlas: the owner diagram, every MCU GPIO and physical module/package pad,
 fixed mux, service/recovery, PIO/DMA budget and all slow routes come from one
 JSON source. Self-review found `FND-0059`: old `NIF-0001/REV-0004L` displayed
 the pre-`DEC-0046` budget. After later `DEC-0052`, the current result is S3
-`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F` and slow plane `23U/1R/0F`; a regression now
+`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F` and slow plane `24U/0R/0F`; a regression now
 locks those counts. Exact SA518 `UPDATE/UART/PD` service and Si4732 control/
-FMI/AMI contacts are also instantiated. `FND-0060` keeps the remaining
+FMI/AMI contacts are also instantiated. `FND-0067` found the previously
+omitted ordinary RX-audio mux control and now places it on slow P27. `FND-0060`
+keeps the remaining
 abstract display/codec/IR/power/STOP/protection endpoints visible: the current
 paper pinout is reviewed, while the final electrical schematic is not.
 `DEC-0051` publishes this reviewed map in the target README as the principled
@@ -191,6 +193,19 @@ ST7796S stays A0 control/fallback. `HMX035CTFT-001` is the exact current paper
 candidate, not yet a production-qualified BOM line; remaining unknown parts
 stay explicit `TBD` entries in `DSP-0004`.
 
+`AUDIO-0001/REV-0005B` verify exact ES8311 digital/contact fit. Complete-path
+review `AUDIO-0002/REV-0005C` then corrects the analog assumption: a direct
+6-kΩ-class ES8311 input can load the ordinary Si4732 bypass, PAM8302A already
+accepts differential DAC, and SA518 TX requires heavy attenuation. It also
+finds that P11/P12 expander outputs may remain stale through S3 reset.
+
+⚠️ Proposal `IMP-0046/A`: retain ES8311, add a high-Z active capture buffer,
+use differential speaker plus separately attenuated TX selectors, and gate
+P11/P12 with direct S3 GPIO6 `AUDIO_ARM`. Passive capture remains a measured
+cost-down stuffing option; TAC5111IRGER is the more expensive/new-driver
+reference. Acceptance would change S3 accounting to `32U/3R/1F`; it is not
+yet applied to the machine map.
+
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
@@ -200,8 +215,8 @@ The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0043`, `FND-0058` antenna qualification and the remaining
-`FND-0060` electrical endpoints stay open. Exact production nRF,
+In parallel, `IMP-0043`, `IMP-0046`, `FND-0058` antenna qualification and the
+remaining `FND-0060/0067` electrical endpoints stay open. Exact production nRF,
 SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and
 KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

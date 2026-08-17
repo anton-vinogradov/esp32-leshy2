@@ -357,6 +357,220 @@
         "EPAD": {"physical": "21 (exposed thermal pad)", "role": "power"}
       }
     },
+    "ti_tac5111_irger": {
+      "mpn": "Texas Instruments TAC5111IRGER",
+      "kind": "mono_audio_codec",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [4.0, 4.0, null],
+      "source": {
+        "document": "TAC5111 Low-power mono audio codec datasheet",
+        "version": "SLASF25A, January 2022, revised January 2025",
+        "url": "https://www.ti.com/lit/ds/symlink/tac5111.pdf",
+        "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "TAC5111IRGER product/orderable page",
+        "url": "https://www.ti.com/product/TAC5111/part-details/TAC5111IRGER",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "VSS_A1": {"physical": "A1 corner pad", "role": "power"},
+        "VSS_A2": {"physical": "A2 corner pad", "role": "power"},
+        "VSS_A3": {"physical": "A3 corner pad", "role": "power"},
+        "VSS_A4": {"physical": "A4 corner pad", "role": "power"},
+        "DREG": {"physical": "1", "role": "power"},
+        "BCLK": {"physical": "2", "role": "signal"},
+        "FSYNC": {"physical": "3", "role": "signal"},
+        "DOUT": {"physical": "4", "role": "signal"},
+        "DIN": {"physical": "5", "role": "signal"},
+        "IOVDD": {"physical": "6", "role": "power"},
+        "SCL": {"physical": "7", "role": "signal"},
+        "SDA": {"physical": "8", "role": "signal"},
+        "GPIO1": {"physical": "9", "role": "signal"},
+        "GPIO2": {"physical": "10", "role": "signal"},
+        "GPO1": {"physical": "11", "role": "signal"},
+        "GPI1": {"physical": "12", "role": "signal"},
+        "ADDR": {"physical": "13", "role": "strap"},
+        "MICBIAS": {"physical": "14", "role": "analog"},
+        "IN1P": {"physical": "15", "role": "analog"},
+        "IN1M": {"physical": "16", "role": "analog"},
+        "IN2P": {"physical": "17", "role": "analog"},
+        "IN2M": {"physical": "18", "role": "analog"},
+        "OUT1M": {"physical": "19", "role": "analog"},
+        "OUT1P": {"physical": "20", "role": "analog"},
+        "OUT2P": {"physical": "21", "role": "analog"},
+        "OUT2M": {"physical": "22", "role": "analog"},
+        "AVDD": {"physical": "23", "role": "power"},
+        "VREF": {"physical": "24", "role": "reference"},
+        "VSS_THERMAL": {"physical": "exposed thermal pad", "role": "power"}
+      }
+    },
+    "ti_tmux1136_dgsr": {
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "kind": "dual_spdt_analog_switch",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [3.0, 4.9, null],
+      "source": {
+        "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
+        "version": "SCDS402B, June 2019, revised February 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+        "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "TMUX1136DGSR product/orderable page",
+        "url": "https://www.ti.com/product/TMUX1136/part-details/TMUX1136DGSR",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "SEL1": {"physical": "1", "role": "signal"},
+        "S1A": {"physical": "2", "role": "analog"},
+        "GND": {"physical": "3", "role": "power"},
+        "S2A": {"physical": "4", "role": "analog"},
+        "SEL2": {"physical": "5", "role": "signal"},
+        "D2": {"physical": "6", "role": "analog"},
+        "S2B": {"physical": "7", "role": "analog"},
+        "VDD": {"physical": "8", "role": "power"},
+        "S1B": {"physical": "9", "role": "analog"},
+        "D1": {"physical": "10", "role": "analog"}
+      }
+    },
+    "ti_ts5a63157_dckr": {
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "kind": "single_spdt_analog_switch",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, null],
+      "source": {
+        "document": "TS5A63157 12-ohm SPDT analog switch datasheet",
+        "version": "SCDS203B, December 2005, revised March 2019",
+        "url": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf",
+        "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "TS5A63157DCKR product/orderable page",
+        "url": "https://www.ti.com/product/TS5A63157/part-details/TS5A63157DCKR",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "NO": {"physical": "1", "role": "analog"},
+        "GND": {"physical": "2", "role": "power"},
+        "NC": {"physical": "3", "role": "analog"},
+        "COM": {"physical": "4", "role": "analog"},
+        "VCC": {"physical": "5", "role": "power"},
+        "IN": {"physical": "6", "role": "signal"}
+      }
+    },
+    "ti_tlv9061_idbvr": {
+      "mpn": "Texas Instruments TLV9061IDBVR",
+      "kind": "single_operational_amplifier",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.6, null],
+      "source": {
+        "document": "TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet",
+        "version": "SBOS839N, March 2017, revised July 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
+        "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "TLV9061IDBVR product/orderable page",
+        "url": "https://www.ti.com/product/TLV9061/part-details/TLV9061IDBVR",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "OUT": {"physical": "1", "role": "analog"},
+        "V_MINUS": {"physical": "2", "role": "power"},
+        "IN_PLUS": {"physical": "3", "role": "analog"},
+        "IN_MINUS": {"physical": "4", "role": "analog"},
+        "V_PLUS": {"physical": "5", "role": "power"}
+      }
+    },
+    "ti_sn74lvc2g08_dcur": {
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "kind": "dual_two_input_and_gate",
+      "qualification": "reference_only",
+      "lifecycle": "active",
+      "dimensions_mm": [2.3, 2.0, null],
+      "source": {
+        "document": "SN74LVC2G08 dual 2-input positive-AND gate datasheet",
+        "version": "SCES198N, April 1999, revised December 2015",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf",
+        "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "SN74LVC2G08DCUR product/orderable page",
+        "url": "https://www.ti.com/product/SN74LVC2G08/part-details/SN74LVC2G08DCUR",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "1B": {"physical": "2", "role": "signal"},
+        "2Y": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "2A": {"physical": "5", "role": "signal"},
+        "2B": {"physical": "6", "role": "signal"},
+        "1Y": {"physical": "7", "role": "signal"},
+        "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "ti_sn74lvc1g3157_dbvr": {
+      "mpn": "Texas Instruments SN74LVC1G3157DBVR",
+      "kind": "single_spdt_analog_switch",
+      "qualification": "verified_reference",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.6, null],
+      "source": {
+        "document": "SN74LVC1G3157 single-pole, double-throw analog switch datasheet",
+        "version": "SCES424O, January 2003, revised June 2025",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g3157.pdf",
+        "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G3157DBVR product/orderable page",
+        "url": "https://www.ti.com/product/SN74LVC1G3157/part-details/SN74LVC1G3157DBVR",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "B2": {"physical": "1", "role": "analog"},
+        "GND": {"physical": "2", "role": "power"},
+        "B1": {"physical": "3", "role": "analog"},
+        "A_COM": {"physical": "4", "role": "analog"},
+        "VCC": {"physical": "5", "role": "power"},
+        "S": {"physical": "6", "role": "signal"}
+      }
+    },
+    "diodes_pam8302a_ascr": {
+      "mpn": "Diodes Incorporated PAM8302AASCR",
+      "kind": "mono_class_d_speaker_amplifier",
+      "qualification": "verified_reference",
+      "lifecycle": "active",
+      "dimensions_mm": [3.0, 3.0, null],
+      "source": {
+        "document": "PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet",
+        "version": "DS41333 Rev. 6-2, May 2021",
+        "url": "https://www.diodes.com/datasheet/download/PAM8302A.pdf",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "SD": {"physical": "1", "role": "signal"},
+        "NC": {"physical": "2", "role": "nc"},
+        "IN_PLUS": {"physical": "3", "role": "analog"},
+        "IN_MINUS": {"physical": "4", "role": "analog"},
+        "VO_PLUS": {"physical": "5", "role": "analog"},
+        "VDD": {"physical": "6", "role": "power"},
+        "GND": {"physical": "7", "role": "power"},
+        "VO_MINUS": {"physical": "8", "role": "analog"}
+      }
+    },
     "waveshare_29318_3_5_ct_lcd": {
       "mpn": "Waveshare 3.5inch Capacitive Touch LCD, SKU 29318",
       "kind": "display_carrier_module",

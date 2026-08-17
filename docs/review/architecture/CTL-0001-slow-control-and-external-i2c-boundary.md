@@ -115,6 +115,10 @@ conflict isolation. Старый three-domain UART study остаётся refere
 reserved slow contact, direct U214 IRQ и отдельный U214 I²C0+TCA4307 branch.
 Подробная итоговая карта находится в [`NIF-0001`](NIF-0001-digital-noninterference-layout.md).
 
+Последующий `FND-0067/REV-0005C` обнаружил пропущенный обязательный control
+существующего RX-audio source mux и назначил его на P27. Поэтому текущий, а не
+исторический, slow budget равен `24 used / 0 reserved / 0 free`.
+
 ## Первичные источники
 
 - [TI TCA9535 datasheet](https://www.ti.com/lit/ds/symlink/tca9535.pdf)

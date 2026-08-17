@@ -111,7 +111,9 @@ orderability/drawing/lifecycle, exact connector, backlight, optics и protection
 остаются явно открытыми.
 `AUDIO-0001/REV-0005B` также вносят exact контакты `ES8311` QFN-20: `CE` —
 strap адреса `0x19`, P10 — внешний `CODEC_PWR_EN`, бюджет S3 не меняется.
-Exact differential analog routing остаётся открытым решением `IMP-0046`.
+`AUDIO-0002/REV-0005C` исправляют пропущенный RX-source control на slow P27 и
+сравнивают complete capture/playback/TX/reset paths. Exact differential analog
+routing и direct reset-default arm остаются открытым решением `IMP-0046`.
 
 ```mermaid
 flowchart LR
@@ -145,7 +147,7 @@ flowchart LR
 | U214 LoRa/GNSS | RP `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47` | independent PIO1/UART1/I²C0 |
 
 Pin budget: S3 `31 used / 3 reserved / 2 free`, C5 `14/6/1`, RP
-`48/0/0`, slow I/O `23/1/0`. RP не имеет свободного direct GPIO; независимые
+`48/0/0`, slow I/O `24/0/0`. RP не имеет свободного direct GPIO; независимые
 SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
 
 Полная нормативная проекция текущей карты находится в
@@ -159,7 +161,9 @@ SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
 display/touch reset; S3 GPIO6/GPIO43 остаются free.
 Audio digital path также заканчивается на exact ES8311 contacts через S3
 GPIO1/2/15/16/17/18; питание codec и differential analog conditioner остаются
-явными электрическими блокерами, а не скрытыми GPIO.
+явными электрическими блокерами, а не скрытыми GPIO. Бывший slow reserve P27
+теперь несёт обязательный `RX_AUDIO_SOURCE_SEL`; proposed direct `AUDIO_ARM`
+не считается занятым до принятия `IMP-0046`.
 
 ## Границы безопасности и стоимости
 
@@ -199,7 +203,7 @@ mounting, длины кабелей, two-source assemblies и target RF qualific
 остаются открытыми.
 `PIN-0003/REV-0004V` добавляют generated principled owner/net/pad atlas.
 Current exact exposed-contact budget равен S3 `31/3/2`, C5 `14/6/1`, RP
-`48/0/0`, slow I/O `23/1/0`; exact SA518 service и Si4732 control/RF contacts
+`48/0/0`, slow I/O `24/0/0`; exact SA518 service и Si4732 control/RF contacts
 внесены, а оставшиеся electrical abstractions открыты как `FND-0060`.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL

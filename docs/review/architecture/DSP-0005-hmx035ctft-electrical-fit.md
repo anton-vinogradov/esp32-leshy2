@@ -20,7 +20,9 @@
 - S3 `GPIO6` остаётся free;
 - S3 `GPIO43` остаётся free и может получить `TE` только после HIL A/B;
 - display reset и touch reset уже были на `TCA6424ARGJR P06/P07`;
-- бюджет сохраняется: S3 `31/3/2`, slow plane `23/1/0`.
+- display itself preserves S3 `31/3/2` and the then-current slow `23/1/0`;
+  later `AUDIO-0002/FND-0067` uses P27 for RX-audio selection, making current
+  slow accounting `24/0/0` without changing display fit.
 
 Это проводит ревью **paper electrical fit**, но не принимает assembly в
 production BOM: standalone ordering/drawing/lifecycle, exact connector,

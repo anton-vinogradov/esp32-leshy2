@@ -39,7 +39,7 @@ load switches, clocks, RF matching и exact unfrozen peripheral MPN должны
 | `ESP32-S3-WROOM-1U-N16R2` | UI, display+microSD scheduler, I²S audio, internal I²C, M5 Unit profile, native 2.4/BLE/ESP-NOW | отдельные SPI2, SPI3, SD/MMC, I²S0, I²C0 и Unit-controller profile |
 | `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 4-bit SDIO to S3; IR uses RMT and direct evidence/power contacts |
 | `RP2354B A4/QFN80` | 3×nRF, CC1101, U214 LoRa/GNSS/I²C, SA518 control/PTT, deterministic event service | five physical PIO SPI groups, hardware UART0/UART1/I²C0/SPI1, direct IRQ/CE/CSN/GDO |
-| `TCA6424ARGJR` | ordinary UI/reset/select/power/status slow plane | 23/24 assigned, P27 controlled reserve; no radio FIFO/PTT deadline lives here |
+| `TCA6424ARGJR` | ordinary UI/reset/select/power/status slow plane | 24/24 assigned after RX audio-source correction; no radio FIFO/PTT deadline lives here |
 
 The generated atlas contains the exact pad/contact table for all 91 exposed
 compute GPIO plus the 24 slow contacts. Every programmer/recovery path is
@@ -85,15 +85,19 @@ The display path now also terminates on exact `HMX035CTFT-001` contacts from
 the official QDtech schematic. Its QSPI path uses GPIO4/35/36/38/41/42;
 former GPIO39/DC is reused
 as touch IRQ, while slow `P06/P07` provide display/touch reset. This consumes
-no new contact, leaves S3 GPIO6/GPIO43 free and keeps TE conditional on HIL.
+no new direct S3 contact, leaves S3 GPIO6/GPIO43 free and keeps TE conditional
+on HIL. Subsequent `AUDIO-0002/FND-0067` consumes slow P27 for the previously
+omitted `RX_AUDIO_SOURCE_SEL`, so the slow plane now has no reserve.
 
 The audio digital path now terminates on exact `ES8311` QFN-20 contacts:
 GPIO1/2 are `CDATA/CCLK`, GPIO15/16/17/18 are
 `SCLK/LRCK/DSDIN/ASDOUT`. `MCLK` is explicit NC under the BCLK-derived clock
 contract. Slow `P10` is corrected to external `CODEC_PWR_EN`; physical `CE`
 is an address strap for `0x19`, not reset/enable. Exact `OUTP/OUTN` and
-`MIC1P/MIC1N` expose the still-open analog topology in `IMP-0046` without
-changing pin budget.
+`MIC1P/MIC1N` expose the still-open analog topology in `IMP-0046`. Complete-path
+review adds `RX_AUDIO_SOURCE_SEL` on slow P27, changing only slow accounting to
+`24/0/0`. The proposed reset-safe `AUDIO_ARM` would consume S3 GPIO6 only after
+owner acceptance; it is not silently present in the current machine map.
 
 ## Digital non-interference result
 

@@ -165,9 +165,10 @@ owner diagram, каждый MCU GPIO с physical module/package pad, fixed mux,
 service/recovery, PIO/DMA budget и все slow routes берутся из одного JSON.
 Саморевью обнаружило `FND-0059`: старый `NIF-0001/REV-0004L` показывал
 pre-`DEC-0046` budget. После последующего `DEC-0052` current result — S3
-`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F`, slow plane `23U/1R/0F`; regression теперь
+`31U/3R/2F`, C5 `14U/6R/1F`, RP `48U/0R/0F`, slow plane `24U/0R/0F`; regression теперь
 проверяет эти числа. SA518 `UPDATE/UART/PD` service и exact Si4732 control/
-FMI/AMI contacts также внесены. `FND-0060` сохраняет видимыми ещё abstract
+FMI/AMI contacts также внесены. `FND-0067` нашёл пропущенный ordinary control
+RX-audio mux и теперь размещает его на slow P27. `FND-0060` сохраняет видимыми ещё abstract
 display/codec/IR/power/STOP/protection endpoints: current paper pinout прошёл
 ревью, final electrical schematic — нет.
 `DEC-0051` публикует эту reviewed карту в целевом README как принципиальный
@@ -189,6 +190,20 @@ A0 control/fallback. `HMX035CTFT-001` — exact current paper candidate, но е
 не production-qualified BOM line; остальные неизвестные parts остаются
 явными `TBD` в `DSP-0004`.
 
+`AUDIO-0001/REV-0005B` проверяют exact digital/contact fit ES8311. Затем
+complete-path review `AUDIO-0002/REV-0005C` исправляет analog assumption:
+direct 6-kΩ-class input ES8311 способен нагрузить обычный Si4732 bypass,
+PAM8302A уже принимает differential DAC, а SA518 TX требует большого
+attenuation. Кроме того, P11/P12 expander могут удерживать старое значение
+через S3 reset.
+
+⚠️ Предложение `IMP-0046/A`: сохранить ES8311, добавить high-Z active capture
+buffer, differential speaker selector и отдельный attenuated TX selector, а
+P11/P12 пропустить через direct S3 GPIO6 `AUDIO_ARM`. Passive capture остаётся
+измеряемой cost-down stuffing option; TAC5111IRGER — более дорогой reference с
+новым driver. При принятии S3 budget станет `32U/3R/1F`; в machine map это ещё
+не внесено.
+
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
@@ -198,7 +213,7 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются `IMP-0043`, `FND-0058` antenna qualification
-и оставшиеся `FND-0060` exact electrical endpoints. Exact production nRF,
+маскируется. Параллельно остаются `IMP-0043`, `IMP-0046`, `FND-0058` antenna
+qualification и оставшиеся `FND-0060/0067` exact electrical endpoints. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

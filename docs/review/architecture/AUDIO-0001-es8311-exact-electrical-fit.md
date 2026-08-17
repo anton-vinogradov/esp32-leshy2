@@ -8,6 +8,7 @@
 - Findings: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md),
   [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md)
 - Open topology proposal: [`IMP-0046`](../improvements/IMP-0046-es8311-analog-routing-topology.md)
+- Complete-path comparison: [`AUDIO-0002`](AUDIO-0002-complete-audio-path-comparison.md)
 - Review: [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 
 ## Результат
@@ -112,8 +113,8 @@ levels.
 
 ## Remaining gates
 
-1. Complete the `IMP-0046/FND-0066` whole-path comparison; do not choose only
-   the DAC half.
+1. Owner accepts one complete `IMP-0046/AUDIO-0002` path; do not choose only
+   the DAC half or omit reset-default control.
 2. Calculate and review supplies, decoupling, address/pull-up network,
    differential input/output conditioning, mute/default states and protection.
 3. Confirm production order code, AVL/lifecycle, footprint and assembly lot.

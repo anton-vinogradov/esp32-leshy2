@@ -202,7 +202,86 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("codec.OUTN", "abstract:qualified-codec-differential-output-routing", "CODEC_DAC_OUT_N"),
             routes,
         )
+        self.assertIn(
+            ("slow_io.P27", "abstract:rx-audio-source-selector", "RX_AUDIO_SOURCE_SEL"),
+            routes,
+        )
+        self.assertIn("P27", candidate["contact_accounting"]["slow_io"]["used"])
+        self.assertEqual({}, candidate["contact_accounting"]["slow_io"]["reserved"])
         self.assertEqual(["GPIO6", "GPIO43"], candidate["free_gpio"]["s3"])
+
+    def test_tac5111_reference_uses_exact_exposed_contacts(self):
+        codec = self.database["devices"]["ti_tac5111_irger"]
+        self.assertEqual("Texas Instruments TAC5111IRGER", codec["mpn"])
+        self.assertEqual("reference_only", codec["qualification"])
+        expected_physical = {
+            "DREG": "1",
+            "BCLK": "2",
+            "FSYNC": "3",
+            "DOUT": "4",
+            "DIN": "5",
+            "IOVDD": "6",
+            "SCL": "7",
+            "SDA": "8",
+            "ADDR": "13",
+            "IN1P": "15",
+            "IN1M": "16",
+            "OUT1M": "19",
+            "OUT1P": "20",
+            "AVDD": "23",
+            "VREF": "24",
+            "VSS_THERMAL": "exposed thermal pad",
+        }
+        for contact, physical in expected_physical.items():
+            self.assertEqual(physical, codec["contacts"][contact]["physical"])
+        for corner in ("VSS_A1", "VSS_A2", "VSS_A3", "VSS_A4"):
+            self.assertIn(corner, codec["contacts"])
+
+    def test_complete_audio_path_references_use_exact_order_codes_and_contacts(self):
+        expected = {
+            "ti_tmux1136_dgsr": (
+                "Texas Instruments TMUX1136DGSR",
+                {"SEL1": "1", "S1A": "2", "GND": "3", "S2A": "4", "SEL2": "5", "D2": "6", "S2B": "7", "VDD": "8", "S1B": "9", "D1": "10"},
+            ),
+            "ti_ts5a63157_dckr": (
+                "Texas Instruments TS5A63157DCKR",
+                {"NO": "1", "GND": "2", "NC": "3", "COM": "4", "VCC": "5", "IN": "6"},
+            ),
+            "ti_tlv9061_idbvr": (
+                "Texas Instruments TLV9061IDBVR",
+                {"OUT": "1", "V_MINUS": "2", "IN_PLUS": "3", "IN_MINUS": "4", "V_PLUS": "5"},
+            ),
+            "ti_sn74lvc2g08_dcur": (
+                "Texas Instruments SN74LVC2G08DCUR",
+                {"1A": "1", "1B": "2", "2Y": "3", "GND": "4", "2A": "5", "2B": "6", "1Y": "7", "VCC": "8"},
+            ),
+            "ti_sn74lvc1g3157_dbvr": (
+                "Texas Instruments SN74LVC1G3157DBVR",
+                {"B2": "1", "GND": "2", "B1": "3", "A_COM": "4", "VCC": "5", "S": "6"},
+            ),
+            "diodes_pam8302a_ascr": (
+                "Diodes Incorporated PAM8302AASCR",
+                {"SD": "1", "NC": "2", "IN_PLUS": "3", "IN_MINUS": "4", "VO_PLUS": "5", "VDD": "6", "GND": "7", "VO_MINUS": "8"},
+            ),
+        }
+        for device_id, (mpn, contacts) in expected.items():
+            with self.subTest(device=device_id):
+                device = self.database["devices"][device_id]
+                self.assertEqual(mpn, device["mpn"])
+                self.assertIn(device["qualification"], ("reference_only", "verified_reference"))
+                for contact, physical in contacts.items():
+                    self.assertEqual(physical, device["contacts"][contact]["physical"])
+
+        expected_orderable_urls = {
+            "ti_tmux1136_dgsr": "https://www.ti.com/product/TMUX1136/part-details/TMUX1136DGSR",
+            "ti_ts5a63157_dckr": "https://www.ti.com/product/TS5A63157/part-details/TS5A63157DCKR",
+            "ti_tlv9061_idbvr": "https://www.ti.com/product/TLV9061/part-details/TLV9061IDBVR",
+            "ti_sn74lvc2g08_dcur": "https://www.ti.com/product/SN74LVC2G08/part-details/SN74LVC2G08DCUR",
+            "ti_sn74lvc1g3157_dbvr": "https://www.ti.com/product/SN74LVC1G3157/part-details/SN74LVC1G3157DBVR",
+        }
+        for device_id, url in expected_orderable_urls.items():
+            with self.subTest(orderable_device=device_id):
+                self.assertEqual(url, self.database["devices"][device_id]["orderable_source"]["url"])
 
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
@@ -372,7 +451,7 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_rejects_unaccounted_slow_contact(self):
         candidates = copy.deepcopy(self.candidates)
         candidate = next(c for c in candidates if c["id"] == "G2F-3I")
-        candidate["contact_accounting"]["slow_io"]["reserved"].pop("P27")
+        candidate["contact_accounting"]["slow_io"]["used"].remove("P27")
         errors = self.errors_for(candidates)
         self.assertTrue(any("unaccounted allocatable contacts" in error and "P27" in error for error in errors), errors)
 

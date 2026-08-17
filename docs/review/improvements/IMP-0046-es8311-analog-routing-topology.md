@@ -1,89 +1,83 @@
-# IMP-0046 — exact ES8311 analog routing topology
+# ⚠️ IMP-0046 — complete codec, analog routing and reset-default package
 
-- Статус: **⚠️ Открыто; прежняя рекомендация A снята после complete-path review**
+- Статус: **⚠️ Открыто; требуется одно атомарное решение владельца**
 - Дата: 2026-08-17
-- Trigger: [`FND-0065`](../findings/FND-0065-es8311-ce-and-differential-path.md)
-- Evidence: [`AUDIO-0001`](../architecture/AUDIO-0001-es8311-exact-electrical-fit.md)
-- Additional finding: [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md)
-- Не меняет: S3 GPIO/I2S map, two slow selector controls, PTT independence
+- Facts: [`AUDIO-0002`](../architecture/AUDIO-0002-complete-audio-path-comparison.md)
+- Findings: [`FND-0066`](../findings/FND-0066-es8311-line-input-and-pam-differential-capability.md),
+  [`FND-0067`](../findings/FND-0067-audio-source-select-and-reset-bypass.md)
+- Review: [`REV-0005C`](../reviews/REV-0005C-complete-audio-path-prerequisites.md)
 
-## Почему нужен выбор
+## Текущее состояние
 
-Legacy analog bypass is wired single-ended. Exact ES8311 DAC is differential
-`OUTP/OUTN`, but physical PAM8302A already has differential `IN+/IN-`; only its
-legacy wiring is single-ended. Separately, ES8311 `MIC1P/MIC1N` are described
-by the manufacturer as a microphone interface not recommended for line input,
-while both selected RX sources are line/audio outputs. The output choice and
-ADC conditioner must therefore be reviewed as one complete path.
+ES8311 digital fit remains valid on S3 GPIO1/2/15/16/17/18, but the old phrase
+«ADC tap + two selectors» was not a complete circuit. A direct `≈6 kΩ` ES8311
+tap can load the Si4732 bypass, the ES8311 user guide discourages blind line-in,
+PAM8302A can already accept differential DAC, SA518 TX needs about 40 dB
+attenuation, and TCA6424 selector outputs can remain stale through S3 reset.
 
-## Варианты
+The separately omitted `RX_AUDIO_SOURCE_SEL` has already been corrected on
+slow `P27`; slow budget is now `24/0/0`. The remaining choice must select the
+whole path and its failure behavior together.
 
-### A — differential-to-single-ended conditioner, затем два one-pole selector
+## A — E2-B supported codec + active capture + one-pin arm **(recommended)**
 
-`OUTP/OUTN` входят в low-noise differential receiver; его single-ended output
-идёт на speaker selector и через отдельный level/AC-coupling network на TX
-selector. Analog defaults остаются `RX→PAM8302` и `electret→SA518 MIC_IN`.
+- Keep exact `ES8311` QFN-20 and current Espressif driver path.
+- Add high-input-impedance AC-coupled buffer candidate `TLV9061IDBVR` before a
+  qualified ES8311 mic-range input network.
+- Switch both PAM8302A inputs with dual `TMUX1136DGSR/DQAR`; use separate
+  `TS5A63157DCKR` for attenuated DAC-to-SA518 selection.
+- Keep P11/P12 as requested modes, add direct S3 GPIO6 `AUDIO_ARM`, and gate
+  both through `SN74LVC2G08DCUR`; arm-low forces analog defaults.
+- Preserve S3 GPIO43 as the only free direct S3 contact.
+- Put passive E1-P stuffing/bypass pads on the prototype. They are not the
+  production cost-down until the same board proves bypass and capture equality.
 
-- Плюсы: используется полный differential DAC swing; одна понятная точка gain/
-  filtering; сохраняется legacy single-ended bypass и два control signal.
-- Минусы: op-amp + matched resistors + decoupling; дополнительный active-noise/
-  power объект; exact common-mode/output swing must be calculated.
-- Current exact candidates: `TLV9061IDBVR` as receiver, two
-  `SN74LVC1G3157DBVR` selectors. Это candidates, не BOM freeze.
+Consequences: one op-amp and one dual logic IC are added; codec/selector analog
+values and HIL remain work. This has the least combined architecture, firmware
+and zero-loss risk.
 
-### B — один DAC leg через AC coupling/attenuation, два one-pole selector
+## B — E1-P cheapest passive ES8311 path from first prototype
 
-Один из `OUTP/OUTN` используется как single-ended source; второй получает
-только manufacturer-valid load/termination.
+Same differential output selectors and one-pin arm as A, but no active capture
+buffer. A high-series-impedance passive network attenuates MUX_OUT into
+ES8311. It is the smallest BOM, but it makes first hardware responsible for
+proving unknown Si4732 level, low-band response and record SNR. Failure means a
+board rework or a second PCB revision rather than a DNP cost-down.
 
-- Плюсы: минимальный BOM/area; retains two selector controls.
-- Минусы: потенциально теряет около 6 dB differential swing и common-mode
-  cancellation; noise/headroom and unused-leg legality require explicit proof;
-  это нельзя назвать «без потерь» до HIL.
+## C — T1-P TAC5111IRGER documented-line-input path
 
-### C — differential speaker switching plus separate TX conversion
+Replace ES8311 with active TI `TAC5111IRGER`, VQFN-24 4×4 mm. It fits the same
+six digital bus GPIO, documents line/mic input and 40-kΩ mode, and has excellent
+ADC/DAC performance. It still needs external fail-safe speaker/TX selectors,
+the one-pin arm and a high-impedance capture network. It is roughly `$1.6`
+higher than ES8311 plus the screened buffer at quantity 100 before common
+parts, and current `esp_codec_dev` does not provide its driver.
 
-Both PAM8302A input legs switch as a pair. In bypass, `IN+` receives qualified
-`MUX_OUT` and `IN-` receives the matched AC-ground reference. In codec mode,
-they receive AC-coupled `OUTP/OUTN`. TX uses a high-impedance, AC-coupled and
-heavily attenuated tap from one DAC leg through its own selector.
+Consequences: technically clean codec documentation, larger/denser package,
+new driver/HIL work and materially higher cost without a new accepted feature.
 
-- Плюсы: preserves the full differential DAC for local playback without the
-  central op-amp; retains hardware-default RX bypass and the existing two slow
-  controls. One DAC leg is still far above the SA518 typical modulation level,
-  so the TX branch needs attenuation rather than voltage gain.
-- Минусы: at least three analog switch poles; legacy bypass/PAM input network
-  must be redesigned; one-leg loading and the exact SA518 divider/filter must
-  pass calculation and HIL; more routing and common-die/fault analysis.
-- Candidate switch: dual `TMUX1136DGSR` or `TMUX1136DQAR` for speaker plus
-  `TS5A63157DCKR` for TX.
+## Rejected fragments
 
-## Separate ADC-side problem
+- Former central differential-to-single-ended option: unnecessary for speaker
+  because PAM8302A already accepts differential input.
+- One DAC leg for both speaker and TX: loses differential speaker benefit and
+  still does not solve TX attenuation.
+- P11/P12 pulls alone: do not override an actively driven stale expander.
+- Reset/power-cycle the whole TCA6424 for audio: couples unrelated UI, power and
+  fault controls into audio recovery.
+- Internal codec analog bypass as the only bypass: ordinary radio audio would
+  then depend on codec power/register health.
 
-The user guide says the fully differential input is a microphone interface and
-is not recommended for line input. Yet the product brief specifies about
-`2 Vrms` differential full scale and `6 kΩ` input impedance, so the warning is
-not equivalent to a hard prohibition. It means a blind ADC tap is not an
-accepted circuit. Three implementation branches remain:
+## Recommendation
 
-1. passive AC-coupled attenuation/reference network into `MIC1P/MIC1N`;
-2. active line-to-differential buffer/conditioner;
-3. reopen the codec comparison for a part with documented line input.
+Accept **A**. It is deliberately the robust prototype, not the permanent
+expensive stuffing choice: E1-P remains an explicit cost-down experiment on
+the same PCB and may remove the op-amp only after measured equivalence. Do not
+pay the TAC5111 premium unless E2 fails analog/RF HIL or later sourcing changes
+the complete-circuit comparison.
 
-Actual Si4732 and SA518 min/nominal/max output levels, loading and required
-recording SNR decide between them. A PCB can expose stuffing options for the
-passive and active paths, but that choice adds area and test burden.
+## Acceptance question
 
-## Updated recommendation
-
-Do **not** accept A yet. For the DAC/output half, **C** is now the leading
-lower-BOM candidate because PAM8302A can already consume a differential input.
-For the ADC/input half, no zero-loss recommendation is honest before the
-source-level/load calculation and comparison with a documented-line-input
-codec. The next artifact must compare complete circuits, not isolated ICs.
-
-## Acceptance after choice
-
-The eventual option is conditional on exact gain/common-mode calculations,
-SA518/PAM8302 limits, off-state loading, power/reset defaults, pop/click and RF
-HIL. No option allows codec state to assert PTT.
+Accept option **A** as the complete prototype audio architecture, including
+direct S3 GPIO6 `AUDIO_ARM`, while retaining passive E1-P only as a HIL-gated
+cost-down stuffing option?

@@ -249,12 +249,13 @@
     {"from":"abstract:S3-actual-RF-TX-detector","to":"slow_io.P23","net":"S3_RF_TX_EVIDENCE","safety":"read-only evidence; hard-stop remains non-programmable"},
     {"from":"abstract:power-current-thermal-fault","to":"slow_io.P25","net":"POWER_FAULT_N","safety":"hardware protection acts independently; this is diagnostic evidence"},
     {"from":"abstract:accessory-present","to":"slow_io.P26","net":"ACCESSORY_PRESENT_N","safety":"read-only, protected and debounced"},
+    {"from":"slow_io.P27","to":"abstract:rx-audio-source-selector","net":"RX_AUDIO_SOURCE_SEL","safety":"ordinary non-TX source selection between Si4732 and SA518 AFOUT; external deterministic pull chooses the documented default"},
     {"from":"abstract:latched-hard-stop","to":"abstract:all-TX-enables-and-rails","net":"HARD_STOP_N","safety":"non-programmable dominance over every MCU and radio/voice/IR TX path"}
   ],
   "contact_accounting": {
     "slow_io": {
-      "used": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17", "P20", "P21", "P22", "P23", "P24", "P25", "P26"],
-      "reserved": {"P27": "one controlled spare for exact touch/codec/receiver or board-revision discovery"},
+      "used": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17", "P20", "P21", "P22", "P23", "P24", "P25", "P26", "P27"],
+      "reserved": {},
       "free": []
     }
   },
@@ -300,7 +301,7 @@
     "CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger",
     "TCA6424ARGJR and TCA4307DGKR are real-contact planning references; voltage domains, pulls, address, reset, shortest pulses and exact endpoint MPNs remain electrical/HIL gates",
     "HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and is instantiated as a paper candidate, not a production-qualified orderable part; exact drawing/FPC mechanics, lifecycle, connector, backlight/protection and specimen HIL remain open",
-    "After DEC-0052 assigns S3 GPIO41/GPIO42 to direct-QSPI D2/D3 and the HMX QSPI path reuses former GPIO39 DC reserve for touch IRQ, S3 retains two free GPIO, C5 one and RP none; slow_io retains P27. GPIO43 remains unassigned until exact-panel TE benefit is proved; any new direct RP endpoint requires an explicit remap and repeated review",
+    "After DEC-0052 assigns S3 GPIO41/GPIO42 to direct-QSPI D2/D3 and the HMX QSPI path reuses former GPIO39 DC reserve for touch IRQ, S3 retains two free GPIO, C5 one and RP none. Slow_io P27 now carries the previously omitted RX_AUDIO_SOURCE_SEL, so the 24-line slow plane has no reserve. GPIO43 remains unassigned until exact-panel TE benefit is proved; any new direct RP endpoint requires an explicit remap and repeated review",
     "C5 4-bit SDIO has exclusive ownership of the S3 SD/MMC host; C5 native USB is unavailable at runtime, so permanent UART0 plus EN/BOOT/strap contacts is the independent recovery path",
     "display and microSD are the only scheduled high-rate pair on one SPI2 controller; separate CS/per-device clocks and bounded transactions remove radio impact, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate",
     "PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve",

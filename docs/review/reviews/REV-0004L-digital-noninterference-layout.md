@@ -12,7 +12,7 @@
 |---|---|
 | exact S3/C5 module and RP2354B QFN80 contacts exist | pass |
 | every programmable exposed GPIO is used/reserved/free exactly once | current pass after `DEC-0046`: S3 `29/3/4`, C5 `14/6/1`, RP `48/0/0`; corrected by `FND-0059/REV-0004V` |
-| every TCA6424 allocatable contact classified | pass: `23/1/0` |
+| every TCA6424 allocatable contact classified | historical pass: `23/1/0`; `FND-0067/REV-0005C` later assigned P27 to the omitted RX-audio source selector, so current is `24/0/0` |
 | duplicate JSON keys fail before semantic validation | pass |
 | every strap allocation has explicit reset proof | pass |
 | every programmable peer link reciprocates the same net | pass |
@@ -26,7 +26,7 @@
 | C5 IPC shares controller with microSD | no; C5 exclusively uses S3 SD/MMC host |
 | RP IPC shares controller with display/storage | no; dedicated SPI3/SPI1 |
 | remaining scheduled resources declare arbiter/deadline/proof gate | pass: display+SD and internal slow I²C only |
-| generator tests | pass: 19 tests, including GPIO-window, fixed-mux and capacity-overbooking regressions |
+| generator tests | historical pass: 19 tests; current suite is rerun and reported by the newest review artifact |
 
 ## Найдено и исправлено в ходе перебора
 
