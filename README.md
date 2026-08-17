@@ -123,7 +123,9 @@ connector only `IPX`, so `FND-0057` requires a specimen-fit gate.
 `RFH-0002/REV-0004S` show that RP-SMA is typical for native Wi-Fi,
 Ebyte/nRF uses standard SMA and sub-GHz has both polarities. The owner choice
 is accepted by `DEC-0050/REV-0004T` as bounded `2 RP-SMA + 7 standard SMA`;
-mounting, cable lengths and exact antenna shortlist remain the next gates.
+`ANT-0002/REV-0004U` review procurement candidates, while kit selection,
+mounting, cable lengths, two-source assemblies and target RF qualification
+remain open.
 Physical RF/full-mix
 measurements, unused-interface quiet-state power controls,
 peripherals, power and HIL must close before adapting the legacy physical

@@ -139,13 +139,28 @@ machine connector/mate map without choosing mount/length or replacing exact
 antenna qualification with connector popularity. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
+`ANT-0002/REV-0004U` review exact current commercial antenna candidates. One
+dual-band RP-SMA MPN can serve S3/C5, one standard-SMA MPN can serve all three
+identical nRF paths, and Taoglas `TI.08.C.0112` combines the common 868/915
+profiles. No no-loss universal 315–915 or full-range VHF/UHF antenna was
+established: CC needs interchangeable 315/433/868+915 profiles, VOICE needs
+separate VHF/UHF antennas, and Si4732 retains whip and loop/pod profiles.
+`FND-0058` corrects the earlier overstatement: the shortlist is reviewed, but
+two-source production assemblies and target VNA/sensitivity/EIRP/HIL are not
+closed.
+
+⚠️ Proposal `IMP-0043`: accept the profiled antenna kit as an architecture
+input—shared MPNs only for the electrically equivalent S3/C5 and three nRF
+paths, combined 868/915, separate 315/433, VHF/UHF, FM/SW whip and AM/LW pod;
+every profile change disarms TX and unknown/mismatch keeps TX disabled.
+
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, an exact current-orderable antenna shortlist closes the `DEC-0050` gate;
-`G2F-3I` then fixes the exact production nRF MPN/lot and
+Next, the owner decides `IMP-0043`; `G2F-3I` then closes `FND-0058`, fixes the
+exact production nRF MPN/lot and
 SMA/feed/protection/antenna-profile implementation, then advances `N24H-0001`
 from `L0 DIV↔DIV` pre-HIL to target
 `T1` profiles. It then receives quiet-state power-part, physical

@@ -30,8 +30,11 @@ two-board clamshell generator. Его геометрия тоже рабочая
 
 `DEM-0001` и `SRC-0002` reviewed. `DEC-0042` создал единый источник; теперь он
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
-`G2F-3I` leading paper map. Дальше она закрывает physical RF, exact peripherals,
-signal integrity, memory/traffic/power/service и HIL. После квалификации
+`G2F-3I` leading paper map. `ANT-0002/REV-0004U` сформировали sourcing
+shortlist; принятие profiled kit (`IMP-0043`), exact two-source assemblies и
+assembled RF HIL (`FND-0058`) остаются prerequisite. Дальше карта закрывает
+physical RF, exact peripherals, signal integrity, memory/traffic/power/service
+и HIL. После квалификации
 рабочей карты G3 переносит её в старый reproducible mockup.
 
 ## Downstream boundary

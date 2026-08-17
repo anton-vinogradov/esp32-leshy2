@@ -137,13 +137,28 @@ qualification популярностью разъёма. `FND-0050`
 фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
+`ANT-0002/REV-0004U` провели ревью exact current commercial antenna
+candidates. Один dual-band RP-SMA MPN может обслуживать S3/C5, один
+standard-SMA MPN — три одинаковых nRF paths, а Taoglas `TI.08.C.0112`
+объединяет common 868/915 profiles. При этом no-loss universal 315–915 и
+full-range VHF/UHF antenna не подтверждены: CC требует сменных 315/433/868+915,
+VOICE — отдельных VHF/UHF, а Si4732 сохраняет whip и loop/pod.
+`FND-0058` исправляет прежнее слишком сильное обещание: shortlist проведён
+ревью, но two-source production assemblies и target VNA/sensitivity/EIRP/HIL
+ещё не закрыты.
+
+⚠️ Предложение `IMP-0043`: принять profiled antenna kit как architecture input
+— общие MPN только для электрически одинаковых S3/C5 и трёх nRF paths,
+combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; при
+каждой смене TX profile сбрасывать arm, а unknown/mismatch оставлять без TX.
+
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее exact current-orderable antenna shortlist закрывает `DEC-0050` gate;
-затем `G2F-3I` фиксирует exact production nRF MPN/lot,
+Далее требуется решение по `IMP-0043`; затем `G2F-3I` закрывает
+`FND-0058`, фиксирует exact production nRF MPN/lot,
 SMA/feed/protection и antenna-profile implementation
 и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
 `T1` profiles. После этого проходит quiet-state power-part, physical

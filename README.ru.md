@@ -124,7 +124,9 @@ AM/LW; `DEC-0049/REV-0004Q` принимают девять labelled SMA с ра
 Wi-Fi, Ebyte/nRF использует standard SMA, а sub-GHz имеет обе polarity.
 `DEC-0050/REV-0004T` принимают ограниченный `2 RP-SMA + 7 standard SMA`:
 RP-SMA только для native Wi-Fi S3/C5, standard SMA для остальных семи;
-mounting, длины кабелей и exact antenna shortlist остаются следующими gates.
+`ANT-0002/REV-0004U` проверяют procurement candidates, но выбор kit,
+mounting, длины кабелей, two-source assemblies и target RF qualification
+остаются открытыми.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.

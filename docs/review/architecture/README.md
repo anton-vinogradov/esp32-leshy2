@@ -85,7 +85,13 @@ peripherals and HIL remain open; CAD stays blocked.
   antenna ecosystems instead of grouping only by frequency. It finds RP-SMA
   typical for native Wi-Fi, standard SMA in Ebyte's nRF ecosystem and both
   polarities in sub-GHz; `DEC-0050/REV-0004T` accept bounded
-  `2 RP-SMA + 7 standard SMA` and make exact antenna shortlist the next gate.
+  `2 RP-SMA + 7 standard SMA` and made exact antenna sourcing the next gate.
+- [`ANT-0002`](ANT-0002-current-orderable-antenna-shortlist.md) reviews exact
+  current commercial candidates. It finds safe SKU sharing for S3/C5 and the
+  three nRF paths, a combined 868/915 candidate, but no honest universal
+  315–915 or full VHF/UHF radiator. `FND-0058` keeps production two-source and
+  assembled-HIL qualification open; `IMP-0043` asks whether to adopt the
+  profiled external kit as an architecture input.
 
 ## Deferred/reference G3 artifacts
 
