@@ -39,7 +39,7 @@
 
 ### Antenna policy
 
-Decision `DEC-0048`: onboard endpoint `external_sma`; three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. External accessories own their antennas.
+Decisions `DEC-0048`/`DEC-0049`: onboard endpoint `external_sma`; `9` total SMA paths (`S3-2G4`, `C5-2G4/5`, `N24-0`, `N24-1`, `N24-2`, `CC-SUB`, `VOICE-V/U`, `RX-FM/SW`, `RX-AM/LW`); three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. Si4732 topology `dedicated_fmi_and_ami` with shared switch `false` and AMI profile `direct_plug_in_loop_or_qualified_buffered_pod`. External accessories own their antennas.
 
 ### `s3` — `ESP32-S3-WROOM-1U-N16R2`
 
@@ -157,7 +157,7 @@ Reserved: `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: none.
 
 ### Antenna policy
 
-Decision `DEC-0048`: onboard endpoint `external_sma`; three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. External accessories own their antennas.
+Decisions `DEC-0048`/`DEC-0049`: onboard endpoint `external_sma`; `9` total SMA paths (`S3-2G4`, `C5-2G4/5`, `N24-0`, `N24-1`, `N24-2`, `CC-SUB`, `VOICE-V/U`, `RX-FM/SW`, `RX-AM/LW`); three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. Si4732 topology `dedicated_fmi_and_ami` with shared switch `false` and AMI profile `direct_plug_in_loop_or_qualified_buffered_pod`. External accessories own their antennas.
 
 ### `s3` — `ESP32-S3-WROOM-1U-N16R2`
 
@@ -299,7 +299,7 @@ Reserved: none. Free: none.
 
 ### Antenna policy
 
-Decision `DEC-0048`: onboard endpoint `external_sma`; three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. External accessories own their antennas.
+Decisions `DEC-0048`/`DEC-0049`: onboard endpoint `external_sma`; `9` total SMA paths (`S3-2G4`, `C5-2G4/5`, `N24-0`, `N24-1`, `N24-2`, `CC-SUB`, `VOICE-V/U`, `RX-FM/SW`, `RX-AM/LW`); three nRF paths use `ipex_to_short_pigtail` to `3` dedicated SMA; integrated-PCB baseline `false`. Si4732 topology `dedicated_fmi_and_ami` with shared switch `false` and AMI profile `direct_plug_in_loop_or_qualified_buffered_pod`. External accessories own their antennas.
 
 ### Signal-group policy
 

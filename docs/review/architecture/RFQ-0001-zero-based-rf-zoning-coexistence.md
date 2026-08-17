@@ -28,7 +28,7 @@ Exact antennas/connectors remain stage 4/5 choices. RF paths may share an enclos
 `RF-RX`: exact `Si4732-A10-GS` exposes `FMI` and `AMI` as different antenna
 inputs. They do not create simultaneous receiver modes, but one generic SMA
 cannot be assumed to preserve both frontends. The external endpoint count is
-therefore open in [`IMP-0041`](../improvements/IMP-0041-exact-external-sma-count.md).
+therefore resolved as two dedicated ports by [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md), while exact frontends and HIL remain open.
 
 ## Source-backed layout invariants
 

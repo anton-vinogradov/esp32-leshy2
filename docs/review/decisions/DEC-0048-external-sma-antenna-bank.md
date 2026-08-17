@@ -30,8 +30,9 @@
    а TX profile требует подтверждённую совместимую antenna configuration.
    SMA сам по себе не доказывает правильную антенну, EIRP или legal profile.
 7. Exact SMA gender/polarity, straight/right-angle implementation, bulkhead
-   против edge-launch, cable SKU/loss/bend/retention и окончательное количество
-   ненRF портов выбираются позже по цельной RF/mechanical компоновке.
+   против edge-launch и cable SKU/loss/bend/retention выбираются позже по
+   цельной RF/mechanical компоновке. Итоговые девять antenna endpoints и их
+   identities позже закреплены `DEC-0049`.
 8. Внешние M5 Unit/Cap accessories не считаются бортовыми antenna paths: они
    сохраняют собственный разъём/антенну и квалифицируются своим manifest.
 

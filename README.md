@@ -114,8 +114,10 @@ qualified `SG-N24` envelope; the ordered second ESP32-DIV provides early
 `L0 DIV↔DIV` pre-HIL, while target pass requires Leshy2 `T1`. `DEC-0048`
 accepts three compact IPEX→external-SMA nRF paths and external SMA for every
 onboard antenna endpoint. `ANT-0001/REV-0004P` now prove that exact Si4732 has
-separate FM/SW and AM/LW antenna inputs; `IMP-0041` keeps the resulting
-eight-vs-nine SMA choice visibly open. Physical RF/full-mix
+separate FM/SW and AM/LW antenna inputs; `DEC-0049/REV-0004Q` accept nine
+labelled SMA with separate `RX-FM/SW` and `RX-AM/LW`. The latter requires a
+short loop/pod or qualified buffered profile and is not a generic coax port.
+Physical RF/full-mix
 measurements, unused-interface quiet-state power controls,
 peripherals, power and HIL must close before adapting the legacy physical
 mockup. Whole-device optimality, conceptual placement and a new atomic

@@ -152,10 +152,26 @@ def validate_sources(
         antenna_policy = candidate.get("antenna_policy", {})
         expected_antenna_policy = {
             "decision": "DEC-0048",
+            "exact_count_decision": "DEC-0049",
             "base_onboard_endpoint": "external_sma",
+            "base_onboard_sma_count": 9,
+            "base_onboard_sma_paths": [
+                "S3-2G4",
+                "C5-2G4/5",
+                "N24-0",
+                "N24-1",
+                "N24-2",
+                "CC-SUB",
+                "VOICE-V/U",
+                "RX-FM/SW",
+                "RX-AM/LW",
+            ],
             "nrf_module_interface": "ipex_to_short_pigtail",
             "nrf_dedicated_sma_count": 3,
             "integrated_pcb_antenna_baseline": False,
+            "si4732_port_topology": "dedicated_fmi_and_ami",
+            "si4732_shared_switch": False,
+            "si4732_ami_external_profile": "direct_plug_in_loop_or_qualified_buffered_pod",
             "external_accessory_antennas": "owned_by_accessory",
         }
         for field, expected in expected_antenna_policy.items():
@@ -724,10 +740,16 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             "",
             "### Antenna policy",
             "",
-            f"Decision `{antenna_policy['decision']}`: onboard endpoint `{antenna_policy['base_onboard_endpoint']}`; "
+            f"Decisions `{antenna_policy['decision']}`/`{antenna_policy['exact_count_decision']}`: "
+            f"onboard endpoint `{antenna_policy['base_onboard_endpoint']}`; "
+            f"`{antenna_policy['base_onboard_sma_count']}` total SMA paths "
+            f"({', '.join(f'`{path}`' for path in antenna_policy['base_onboard_sma_paths'])}); "
             f"three nRF paths use `{antenna_policy['nrf_module_interface']}` to "
             f"`{antenna_policy['nrf_dedicated_sma_count']}` dedicated SMA; integrated-PCB baseline "
-            f"`{str(antenna_policy['integrated_pcb_antenna_baseline']).lower()}`. External accessories own their antennas.",
+            f"`{str(antenna_policy['integrated_pcb_antenna_baseline']).lower()}`. Si4732 topology "
+            f"`{antenna_policy['si4732_port_topology']}` with shared switch "
+            f"`{str(antenna_policy['si4732_shared_switch']).lower()}` and AMI profile "
+            f"`{antenna_policy['si4732_ami_external_profile']}`. External accessories own their antennas.",
         ]
         signal_policy = candidate.get("signal_group_policy")
         if signal_policy:

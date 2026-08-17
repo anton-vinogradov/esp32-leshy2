@@ -114,7 +114,9 @@ radio-bus contention. `DEC-0047` выбирает qualified `SG-N24` envelope;
 требует `T1` на Leshy2. `DEC-0048` принимает три compact IPEX→external-SMA
 nRF paths и внешний SMA для всех бортовых antenna endpoints;
 `ANT-0001/REV-0004P` подтверждают отдельные Si4732 input domains для FM/SW и
-AM/LW, поэтому `IMP-0041` оставляет открытым явный выбор между 8 и 9 SMA.
+AM/LW; `DEC-0049/REV-0004Q` принимают девять labelled SMA с раздельными
+`RX-FM/SW` и `RX-AM/LW`. Последний требует короткий loop/pod либо
+квалифицированный buffered profile и не является generic coax port.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.

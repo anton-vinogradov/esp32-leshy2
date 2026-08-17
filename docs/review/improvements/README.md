@@ -14,6 +14,7 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Текущее открытое предложение: [`IMP-0041`](IMP-0041-exact-external-sma-count.md)
-сравнивает девять dedicated external SMA с восьмью и shared Si4732 port после
-проверки exact `FMI/AMI` pins и antenna frontends.
+Последнее рассмотренное предложение: [`IMP-0041`](IMP-0041-exact-external-sma-count.md)
+сравнило девять dedicated external SMA с восьмью и shared Si4732 port после
+проверки exact `FMI/AMI` pins и antenna frontends. Вариант A принят
+`DEC-0049`; открытых предложений в этом реестре сейчас нет.

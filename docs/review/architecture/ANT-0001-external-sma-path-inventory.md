@@ -1,11 +1,12 @@
 # ANT-0001 — external-SMA path and frontend inventory
 
-- Статус: **Проведено ревью фактов; exact count ожидает решение IMP-0041**
+- Статус: **Проведено ревью; 9 endpoints приняты `DEC-0049`**
 - Дата: 2026-08-17
 - Основание: [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md)
 - Legacy geometry: [`AUD-0013`](../audits/AUD-0013-legacy-layout-generator-reuse.md)
 - Finding: [`FND-0055`](../findings/FND-0055-si4732-two-antenna-input-domains.md)
 - Proposal: [`IMP-0041`](../improvements/IMP-0041-exact-external-sma-count.md)
+- Decision: [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
 
 ## Проверенная граница
 
@@ -25,10 +26,10 @@ antenna/load manifest до keying.
 | Si4732 FM/SW | physical pin 1 `FMI`, block diagram прямо маркирует `FM/SW ANT` | собственный external whip/SMA frontend | отдельный input domain подтверждён |
 | Si4732 AM/LW | physical pin 3 `AMI`, block diagram прямо маркирует `AM/LW ANT` | собственный external loop/pod SMA frontend; не generic 50-ohm coax port | отдельный input domain подтверждён |
 
-Итого для полного on-board scope: **девять external endpoints**, если оба
-Si4732 input domains имеют собственный порт; **восемь**, если их объединить
-через дополнительно квалифицируемый switch/frontend и потребовать смену
-external antenna profile.
+Итого для полного on-board scope принято **девять external endpoints**: оба
+Si4732 input domains имеют собственный порт. Восьмипортовый вариант с общим
+switch/frontend рассмотрен и отклонён `DEC-0049` как недоказанная zero-loss
+экономия.
 
 ## Почему Si4732 нельзя считать одним generic SMA
 
@@ -80,14 +81,13 @@ U214/другой LoRa Cap, external GNSS и U216 NFC владеют своим�
 
 ## Следующие gates
 
-1. Решить `IMP-0041`: 9 dedicated endpoints либо 8 с shared Si4732 port.
-2. После решения записать exact port identities в machine source и
-   адаптированный generator.
-3. Отдельно синтезировать CC1101 switched frontend по exact TI references;
+1. Exact port identities записаны в machine source; адаптированный physical
+   generator потребляет их после входа в G3.
+2. Отдельно синтезировать CC1101 switched frontend по exact TI references;
    legacy proxy topology не переносить.
-4. Квалифицировать Si4732 antenna pods, cable capacitance, ESD, noise pickup и
+3. Квалифицировать Si4732 antenna pods, cable capacitance, ESD, noise pickup и
    sensitivity для каждого принятого mode.
-5. Затем выбрать SMA gender/mounting, cable assemblies и физическую раскладку.
+4. Затем выбрать SMA gender/mounting, cable assemblies и физическую раскладку.
 
 ## Первичные источники
 

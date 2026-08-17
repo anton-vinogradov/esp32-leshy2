@@ -58,6 +58,36 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
+    def test_rejects_nine_sma_identity_or_si4732_split_regression(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        candidate["antenna_policy"]["base_onboard_sma_count"] = 8
+        candidate["antenna_policy"]["base_onboard_sma_paths"].remove("RX-AM/LW")
+        candidate["antenna_policy"]["si4732_port_topology"] = "shared_switched_port"
+        candidate["antenna_policy"]["si4732_shared_switch"] = True
+        candidate["antenna_policy"]["si4732_ami_external_profile"] = "generic_long_coax"
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("base_onboard_sma_count must be 9" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("base_onboard_sma_paths must be" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("si4732_port_topology must be 'dedicated_fmi_and_ami'" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("si4732_shared_switch must be False" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("si4732_ami_external_profile must be" in error for error in errors),
+            errors,
+        )
+
     def test_exact_sa518_does_not_regress_to_a_fictional_sq_pin(self):
         voice = self.database["devices"]["nicerf_sa518_v11"]
         self.assertNotIn("SQ", voice["contacts"])

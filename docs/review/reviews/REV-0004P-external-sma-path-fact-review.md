@@ -1,10 +1,11 @@
 # REV-0004P — external-SMA path fact review
 
-- Статус: **Проведено ревью фактов; решение IMP-0041 открыто**
+- Статус: **Проведено ревью фактов; решение закрыто `DEC-0049`**
 - Дата: 2026-08-17
 - Evidence: [`ANT-0001`](../architecture/ANT-0001-external-sma-path-inventory.md)
 - Finding: [`FND-0055`](../findings/FND-0055-si4732-two-antenna-input-domains.md)
 - Proposal: [`IMP-0041`](../improvements/IMP-0041-exact-external-sma-count.md)
+- Decision: [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
 
 ## Проверенная матрица
 
@@ -26,5 +27,5 @@
 
 Fact-review scope получает **«Проведено ревью»**. Старый один `Si4732` SMA
 зафиксирован как `FND-0055`, active RF model исправлена без изменения legacy
-draft. Exact count не получает review/decision status до ответа владельца на
-`IMP-0041`.
+draft. Владелец затем принял девять dedicated endpoints в `DEC-0049`;
+распространение решения отдельно проверено `REV-0004Q`.

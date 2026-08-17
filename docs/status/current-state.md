@@ -120,8 +120,9 @@ all onboard antenna endpoints are external SMA and the three nRF paths use
 three compact IPEX→SMA feeds. `ANT-0001/REV-0004P` verify S3/C5/nRF/SA518
 endpoint counts and expose `FND-0055`: exact Si4732 has separate `FMI` FM/SW
 and `AMI` AM/LW inputs, while a generic long coax can violate the latter's
-capacitance budget. `IMP-0041` therefore leaves 9 dedicated SMA versus 8 with
-a shared switched RX port as the current owner decision. Measured envelope
+capacitance budget. `DEC-0049/REV-0004Q` close `IMP-0041` with option A: nine
+labelled SMA and separate `RX-FM/SW`/`RX-AM/LW`; AM/LW requires a short
+loop/pod or qualified buffered profile. Measured envelope
 points, exact production lots,
 power parts, self-desense
 and target HIL remain the next gates. The same exact-device pass found
@@ -135,9 +136,9 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, the owner resolves `IMP-0041`; `G2F-3I` then fixes the exact production
-nRF MPN/lot and SMA/feed
-implementation, then advances `N24H-0001` from `L0 DIV↔DIV` pre-HIL to target
+Next, `G2F-3I` fixes the exact production nRF MPN/lot and
+SMA/feed/protection/antenna-profile implementation, then advances `N24H-0001`
+from `L0 DIV↔DIV` pre-HIL to target
 `T1` profiles. It then receives quiet-state power-part, physical
 RF/self-desense, exact peripheral,
 signal-integrity, power and HIL closure. It can then become a working electrical

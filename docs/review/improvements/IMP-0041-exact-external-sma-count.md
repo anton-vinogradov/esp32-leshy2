@@ -1,16 +1,18 @@
 # IMP-0041 — exact external-SMA count and Si4732 split
 
-- Статус: **Ожидает решения владельца**
+- Статус: **Принят вариант A — `DEC-0049`**
 - Дата: 2026-08-17
 - Основание: [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md)
 - Evidence: [`ANT-0001`](../architecture/ANT-0001-external-sma-path-inventory.md)
 - Finding: [`FND-0055`](../findings/FND-0055-si4732-two-antenna-input-domains.md)
+- Decision: [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
 
 ## Контекст решения
 
 Владелец подтвердил, что все бортовые antenna endpoints внешние и механически
-SMA. Старый clamshell уже имел девять мест. После удаления onboard LoRa одно
-место освободилось, но exact Si4732 оказался не одним generic antenna input:
+SMA. Старый clamshell уже имел девять мест. После удаления onboard LoRa одна
+позиция legacy geometry стала доступной для перераспределения, но exact
+Si4732 оказался не одним generic antenna input:
 у него отдельные `FMI` для FM/SW и `AMI` для AM/LW.
 
 Фиксированные endpoints дают шесть SMA: S3, C5, три nRF и SA518. CC1101
@@ -31,7 +33,7 @@ SMA. Старый clamshell уже имел девять мест. После у
 8. `RX-FM/SW`;
 9. `RX-AM/LW`.
 
-Удалённый `LoRa` slot старого корпуса переименовывается в `RX-AM/LW`, поэтому
+Бывшая позиция `LoRa` старого корпуса может стать `RX-AM/LW`, поэтому
 внешний envelope остаётся девятипортовым. Si4732 pins не соединяются через
 дополнительный RF switch, обе antennas могут быть установлены, а mode меняет
 только внутренний receiver mux. `RX-AM/LW` остаётся SMA по механическому
@@ -68,8 +70,9 @@ envelope, честно отражает реальные Si4732 pins и испо
 LoRa для исправления старого скрытого ограничения. Exact connector gender,
 mounting и antenna pod MPN останутся следующей отдельной квалификацией.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принимаем вариант **A: девять внешних SMA с отдельными `RX-FM/SW` и
-`RX-AM/LW`, а бывший LoRa slot отдаём второму Si4732 input domain**?
-
+Вариант **A** принят 2026-08-17 в [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md):
+девять внешних SMA с отдельными `RX-FM/SW` и `RX-AM/LW`. Бывшая позиция LoRa
+в legacy geometry является кандидатом для `RX-AM/LW`, но окончательное
+размещение ещё не зафиксировано.

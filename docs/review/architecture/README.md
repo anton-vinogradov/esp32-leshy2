@@ -74,8 +74,9 @@ peripherals and HIL remain open; CAD stays blocked.
   per-interface power-down, clock-parking and EMI proof contracts.
 - [`ANT-0001`](ANT-0001-external-sma-path-inventory.md) reviews every onboard
   antenna endpoint against exact device pins. It finds two Si4732 input
-  domains, rejects the legacy one-generic-port assumption and leaves the
-  8-vs-9 connector choice in [`IMP-0041`](../improvements/IMP-0041-exact-external-sma-count.md).
+  domains and rejects the legacy one-generic-port assumption;
+  [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
+  accepts nine labelled SMA with separate `RX-FM/SW` and `RX-AM/LW` paths.
 
 ## Deferred/reference G3 artifacts
 

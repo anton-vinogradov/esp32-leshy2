@@ -4,7 +4,7 @@
   "title": "Three domains with independent radio IPC and only bounded display/storage sharing",
   "status": "draft_non_interference_candidate",
   "decisive_open_risk": "DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open",
-  "antenna_policy": {"decision":"DEC-0048","base_onboard_endpoint":"external_sma","nrf_module_interface":"ipex_to_short_pigtail","nrf_dedicated_sma_count":3,"integrated_pcb_antenna_baseline":false,"external_accessory_antennas":"owned_by_accessory"},
+  "antenna_policy": {"decision":"DEC-0048","exact_count_decision":"DEC-0049","base_onboard_endpoint":"external_sma","base_onboard_sma_count":9,"base_onboard_sma_paths":["S3-2G4","C5-2G4/5","N24-0","N24-1","N24-2","CC-SUB","VOICE-V/U","RX-FM/SW","RX-AM/LW"],"nrf_module_interface":"ipex_to_short_pigtail","nrf_dedicated_sma_count":3,"integrated_pcb_antenna_baseline":false,"si4732_port_topology":"dedicated_fmi_and_ami","si4732_shared_switch":false,"si4732_ami_external_profile":"direct_plug_in_loop_or_qualified_buffered_pod","external_accessory_antennas":"owned_by_accessory"},
   "signal_group_policy": {
     "decision": "DEC-0045",
     "default_group": "NONE",
