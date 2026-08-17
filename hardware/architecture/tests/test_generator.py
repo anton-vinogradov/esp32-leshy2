@@ -218,6 +218,26 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
+    def test_rejects_full_mix_without_observer_hil(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        group = next(
+            group
+            for group in candidate["signal_group_policy"]["groups"]
+            if group["id"] == "SG-N24"
+        )
+        group["rf_acceptance"]["external_observer_fixture"] = ""
+        group["rf_acceptance"]["hil_required"] = False
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("full mix RF acceptance missing external_observer_fixture" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("full mix RF acceptance must require HIL" in error for error in errors),
+            errors,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

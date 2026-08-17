@@ -99,7 +99,7 @@ stress HIL остаётся обязательным до target acceptance.
 
 | Path | Controller/bus | Соседнее влияние | Acceptance |
 |---|---|---|---|
-| nRF24 #0/#1/#2 | отдельные PIO0 SM0/1/2 и отдельные SCK/MOSI/MISO/CSN/CE/IRQ | отсутствует на bus/IRQ уровне | IRQ/FIFO HIL and every simultaneous PTX/PRX role mix; physical mixed-RF sensitivity remains `IMP-0039` |
+| nRF24 #0/#1/#2 | отдельные PIO0 SM0/1/2 и отдельные SCK/MOSI/MISO/CSN/CE/IRQ | отсутствует на bus/IRQ уровне | IRQ/FIFO HIL and every simultaneous PTX/PRX role mix; `DEC-0047/N24H-0001` physical measurements remain open |
 | CC1101 | PIO0 SM3, отдельные data pins и direct GDO0/GDO2 | не ждёт nRF/U214 | FIFO begin ≤250 µs, complete ≤500 µs при admitted load |
 | U214 LoRa | PIO1 SM0, direct BUSY/IRQ/RST | не ждёт display/compat radios | IRQ-to-first-transfer HIL; no shared display bus |
 | U214 GNSS/I²C | hardware UART1; отдельный I²C0 через TCA4307 | external stuck-low не валит internal UI/audio | continuous RX + hot-plug/stuck-bus fault injection |

@@ -31,4 +31,4 @@
 
 Review закрывает полноту requirement/paper-map propagation. Оно не принимает
 load-switch MPN, power tree, I/O isolation, discharge timing, residual EMI или
-mixed-nRF RF envelope `IMP-0039`.
+physical measurements of the `DEC-0047/N24H-0001` mixed-nRF RF envelope.

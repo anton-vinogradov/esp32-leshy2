@@ -1,6 +1,6 @@
-# ⚠️ IMP-0039 — three-nRF full-mix RF acceptance
+# IMP-0039 — three-nRF full-mix RF acceptance
 
-- Статус: **Ожидает решения владельца**
+- Статус: **Принят вариант A решением `DEC-0047`**
 - Дата: 2026-08-17
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - Finding: [`FND-0054`](../findings/FND-0054-three-nrf-mix-needs-rf-acceptance.md)
@@ -66,6 +66,14 @@ BOM; результат остаётся сильно зависимым от к
 Принять A: hardware/runtime обязаны реализовать любой одновременный mix, а
 качество RX во время local TX является versioned измеренным RF envelope.
 Вариант B оставить отдельным Laboratory remote/conducted fixture, не base BOM.
+
+## Решение владельца
+
+[`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
+принимает вариант A. Заказанный второй device используется как внешний
+observer/peer по [`N24H-0001`](../architecture/N24H-0001-two-device-full-mix-fixture.md).
+Он измеряет и воспроизводит профиль, но не становится обязательной частью base
+product и не превращает один nRF24 в same-frequency full duplex.
 
 ## Первичный источник
 

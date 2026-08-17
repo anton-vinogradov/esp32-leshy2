@@ -1,10 +1,11 @@
 # FND-0054 — three-nRF digital concurrency does not prove mixed-RF sensitivity
 
-- Статус: **Подтверждено; ожидает `IMP-0039`**
+- Статус: **Подтверждено; policy закрыта `DEC-0047`, measurements открыты**
 - Дата: 2026-08-17
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - Architecture: [`RFQ-0002`](../architecture/RFQ-0002-g2f-3i-rf-concurrency-boundary.md)
 - Proposal: [`IMP-0039`](../improvements/IMP-0039-three-nrf-full-mix-acceptance.md)
+- Decision: [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
 
 ## Находка
 
@@ -26,7 +27,7 @@ enclosure HIL.
 - automatic peer standby и hidden time-sharing запрещены;
 - mixed role concurrency остаётся обязательной;
 - status «Проведено ревью» не распространяется на mixed-TX/RX sensitivity до
-  выбора `IMP-0039` и воспроизводимого OTA/conducted HIL.
+  воспроизводимого two-device/OTA/conducted HIL по `N24H-0001`.
 
 ## Первичный источник
 

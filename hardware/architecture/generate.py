@@ -175,6 +175,27 @@ def validate_sources(
                         errors.append(f"{candidate_id}: {context}: full mix lacks required role mixes")
                     if group.get("peer_standby_forbidden") is not True:
                         errors.append(f"{candidate_id}: {context}: full mix must forbid peer standby")
+                    rf_acceptance = group.get("rf_acceptance", {})
+                    for required_field in (
+                        "decision",
+                        "mode",
+                        "external_observer_fixture",
+                    ):
+                        if not rf_acceptance.get(required_field):
+                            errors.append(
+                                f"{candidate_id}: {context}: full mix RF acceptance missing {required_field}"
+                            )
+                    if rf_acceptance.get("hil_required") is not True:
+                        errors.append(
+                            f"{candidate_id}: {context}: full mix RF acceptance must require HIL"
+                        )
+                    if not isinstance(
+                        rf_acceptance.get("same_near_channel_isolated_sensitivity_guaranteed"),
+                        bool,
+                    ):
+                        errors.append(
+                            f"{candidate_id}: {context}: same/near-channel sensitivity flag must be boolean"
+                        )
             if not signal_policy.get("groups"):
                 errors.append(f"{candidate_id}: signal-group policy has no groups")
             for required_group in signal_policy.get("required_full_mix_groups", []):
@@ -678,13 +699,22 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
                 f"Decision `{signal_policy['decision']}`; default `{signal_policy['default_group']}`; "
                 f"exclusive groups: `{str(signal_policy['exclusive']).lower()}`.",
                 "",
-                "| Group | Members | Runtime mode | Required role mixes |",
-                "|---|---|---|---|",
+                "| Group | Members | Runtime mode | Required role mixes | RF acceptance |",
+                "|---|---|---|---|---|",
             ]
             for group in signal_policy["groups"]:
                 members = ", ".join(f"`{member}`" for member in group["members"])
                 mixes = ", ".join(f"`{mix}`" for mix in group.get("required_role_mixes", [])) or "—"
-                lines.append(f"| `{group['id']}` | {members} | {group['mode']} | {mixes} |")
+                rf_acceptance = group.get("rf_acceptance")
+                rf_text = "—"
+                if rf_acceptance:
+                    rf_text = (
+                        f"`{rf_acceptance['decision']}` / `{rf_acceptance['mode']}`; "
+                        f"observer `{rf_acceptance['external_observer_fixture']}`; HIL required"
+                    )
+                lines.append(
+                    f"| `{group['id']}` | {members} | {group['mode']} | {mixes} | {rf_text} |"
+                )
 
         quiet_policy = candidate.get("quiet_state_policy")
         if quiet_policy:

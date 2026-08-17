@@ -111,8 +111,9 @@ capacity закрыта с резервом 7/12 PIO SM и 3/16 DMA. `DEC-0045` 
 signal group, но определяет `SG-N24` как все три radio одновременно активные в
 любом PTX/PRX mix. `DEC-0046/QST-0001` требуют quiet-state всех неиспользуемых
 interfaces и отдают RP GPIO15/GPIO23 плюс C5 GPIO4 под group-level power gates.
-Exact `IMP-0039` nRF RF acceptance, power parts, self-desense и named HIL
-остаются открытыми. `FND-0050` фиксирует nRF24 NRND и
+`DEC-0047` принимает qualified nRF RF envelope и reversible план второго
+device-observer/peer. Exact modules, измеренные envelope points, power parts,
+self-desense и named HIL остаются открытыми. `FND-0050` фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -120,8 +121,9 @@ Exact `IMP-0039` nRF RF acceptance, power parts, self-desense и named HIL
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее `IMP-0039` выбирает nRF full-mix RF envelope; затем `G2F-3I` проходит
-quiet-state power-part, physical RF/self-desense, exact peripheral,
+Далее `G2F-3I` выбирает exact nRF modules/antennas и превращает `N24H-0001` в
+измеряемые profiles; затем проходит quiet-state power-part, physical
+RF/self-desense, exact peripheral,
 signal-integrity, power и HIL closure. После этого leading paper map может
 стать working electrical baseline и войти в адаптированный legacy physical
 generator. `G2F-2R/3D` остаются сравнимыми references; `LAY-0001` P1/P2/P3

@@ -1,6 +1,6 @@
 # RFQ-0002 — G2F-3I RF concurrency boundary
 
-- Статус: **Проведено ревью фактов; nRF full-mix acceptance открыт**
+- Статус: **Проведено ревью фактов/policy; physical HIL открыт**
 - Дата: 2026-08-17
 - Digital prerequisite: [`NIF-0001`](NIF-0001-digital-noninterference-layout.md)
 - Prior neutral model: [`RFQ-0001`](RFQ-0001-zero-based-rf-zoning-coexistence.md)
@@ -8,7 +8,8 @@
 - Proposal: [`IMP-0038`](../improvements/IMP-0038-visible-qualified-rf-arbiter.md)
 - Decision: [`DEC-0045`](../decisions/DEC-0045-one-active-signal-group.md)
 - Quiet-state decision: [`DEC-0046`](../decisions/DEC-0046-unused-interface-quiet-by-default.md)
-- Open nRF choice: [`IMP-0039`](../improvements/IMP-0039-three-nrf-full-mix-acceptance.md)
+- nRF decision: [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
+- Fixture: [`N24H-0001`](N24H-0001-two-device-full-mix-fixture.md)
 
 ## Scope
 
@@ -40,7 +41,7 @@ exact HIL, `X` = prohibited simultaneous state, `A` = accessory-conditional.
 
 | Session/pair | Class before exact HIL | Acceptance/fallback |
 |---|---|---|
-| nRF0/nRF1/nRF2 any `PRX`/`PTX` mix | `P` digitally, RF acceptance open | all roles run concurrently without hidden standby/gaps; `IMP-0039` selects the channel/power/sensitivity envelope |
+| nRF0/nRF1/nRF2 any `PRX`/`PTX` mix | `P` digitally; qualified RF envelope | all roles run concurrently without hidden standby/gaps; `DEC-0047/N24H-0001` measure the channel/power/sensitivity points |
 | nRF control/FIFO service ↔ any other digital interface | `P` | already independent in `NIF-0001`; timing HIL remains |
 | S3 Wi-Fi ↔ S3 BLE | `T` | Espressif native coexistence; dwell/preemption/gaps/loss visible |
 | C5 2.4 Wi-Fi ↔ C5 5 GHz ↔ C5 802.15.4 | `T` | one 1T1R RF domain; active owner/channel and gaps visible |
@@ -78,6 +79,6 @@ universal isolation и не повышаются в base product. Qualification 
 состоит из isolated-path HIL, обязательной внутригрупповой concurrency
 (`SG-N24` full digital mix, native vendor TDM, declared U214 support members),
 safe atomic group switching, inactive-interface quiet states и
-digital-aggression EMI tests. `IMP-0039` still decides whether base acceptance
-uses a qualified channel/power envelope or attempts a materially different
-remote/self-cancellation architecture.
+digital-aggression EMI tests. `DEC-0047` selects the qualified channel/power
+envelope for base and a second-device observer/peer for HIL. Remote heads or
+self-cancellation remain optional Laboratory equipment, not base architecture.

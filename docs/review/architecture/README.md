@@ -24,8 +24,9 @@ The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001`,
 map under a digital no-neighbour-stall invariant. `FND-0053/REV-0004M` prove
 that arbitrary cross-group co-located same-band TX↔RX cannot be promised;
 `DEC-0045` selects one active group, while `SG-N24` explicitly requires every
-simultaneous three-radio PTX/PRX mix. `FND-0054/IMP-0039` keep its exact RF
-sensitivity envelope open. `DEC-0046/QST-0001` require unused interfaces to
+simultaneous three-radio PTX/PRX mix. `DEC-0047` selects a qualified RF envelope
+and `N24H-0001` second-device observer plan; measurements remain open.
+`DEC-0046/QST-0001` require unused interfaces to
 enter verified quiet states. It is not yet target: exact RF paths, power gates,
 peripherals and HIL remain open; CAD stays blocked.
 
@@ -60,7 +61,10 @@ peripherals and HIL remain open; CAD stays blocked.
   and [`IMP-0038`](../improvements/IMP-0038-visible-qualified-rf-arbiter.md)
   records the accepted group arbiter. [`FND-0054`](../findings/FND-0054-three-nrf-mix-needs-rf-acceptance.md)
   and [`IMP-0039`](../improvements/IMP-0039-three-nrf-full-mix-acceptance.md)
-  reopen the physical acceptance envelope for all nRF PTX/PRX mixes;
+  derive the physical acceptance envelope for all nRF PTX/PRX mixes;
+- [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
+  accepts the qualified-envelope option; [`N24H-0001`](N24H-0001-two-device-full-mix-fixture.md)
+  turns the second device into a reversible DUT/observer HIL peer;
 - [`QST-0001`](QST-0001-unused-interface-quiet-states.md) propagates
   [`DEC-0046`](../decisions/DEC-0046-unused-interface-quiet-by-default.md) into
   per-interface power-down, clock-parking and EMI proof contracts.

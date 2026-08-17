@@ -112,8 +112,9 @@ machines plus three of sixteen DMA channels in reserve. `DEC-0045` accepts one
 active top-level signal group but defines `SG-N24` as all three radios active in
 every PTX/PRX mix. `DEC-0046/QST-0001` require all unused interfaces quiet and
 consume RP GPIO15/GPIO23 plus C5 GPIO4 as group-level power controls. Exact
-`IMP-0039` nRF RF acceptance, power parts, self-desense and named HIL remain the
-next gates. `FND-0050` records nRF24 NRND
+`DEC-0047` accepts a qualified nRF RF envelope and a reversible second-device
+observer/peer plan. Exact modules, measured envelope points, power parts,
+self-desense and named HIL remain the next gates. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -121,8 +122,9 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, `IMP-0039` selects the nRF full-mix RF envelope; then `G2F-3I` receives
-quiet-state power-part, physical RF/self-desense, exact peripheral,
+Next, `G2F-3I` selects exact nRF modules/antennas and turns `N24H-0001` into
+measurable profiles; then it receives quiet-state power-part, physical
+RF/self-desense, exact peripheral,
 signal-integrity, power and HIL closure. It can then become a working electrical
 baseline and feed the adapted legacy physical generator. `G2F-2R/3D` and
 `LAY-0001` P1/P2/P3 remain references; no selection is requested. KiCad stays

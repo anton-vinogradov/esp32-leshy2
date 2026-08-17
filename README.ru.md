@@ -109,7 +109,8 @@ peripheral computer. Это должен быть собираемый, ремо
 product inputs G3 остаются проверенными, но теперь сначала проходит G2F.
 Единый machine-readable источник содержит три structurally checked карты;
 `DEC-0044/NIF-0001/REV-0004L` выбрали `G2F-3I` ведущей reviewed paper map без
-radio-bus contention. Physical RF, exact `SG-N24` full-mix acceptance,
+radio-bus contention. `DEC-0047` выбирает qualified `SG-N24` envelope со вторым
+device-observer; physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.
 Whole-device optimality, conceptual placement и новое atomic architecture
