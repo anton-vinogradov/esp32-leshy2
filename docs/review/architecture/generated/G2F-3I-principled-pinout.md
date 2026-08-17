@@ -31,10 +31,10 @@ flowchart TD
   PD_VBUS_TVS["Texas Instruments TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection"]
   PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
   PD_CONFIG_EEPROM["onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
-  NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S buck-boost charger and NVDC system power path"]
+  NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>1–4-cell-capable buck-boost charger and NVDC system power path"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
   CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
-  PACKMGR["MPN TBD<br/>per-cell admission, protection, gauge and balancing manager"]
+  PACKMGR["MPN TBD<br/>per-cell admission, protection, state estimation and topology control"]
   end
   subgraph COMPUTE["Compute owners"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
@@ -131,7 +131,7 @@ flowchart TD
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PD_CONTROLLER
   CELL0 --> PACKMGR
   CELL1 --> PACKMGR
-  PACKMGR <-->|"qualified 2S pack boundary"| NVDC_CHARGER
+  PACKMGR <-->|"qualified supervised battery boundary"| NVDC_CHARGER
   S3 <-->|"1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
   S3 <-->|"I²C0+INT: GPIO1,GPIO2"| SLOW_IO

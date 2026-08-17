@@ -59,7 +59,7 @@ All candidates contain a non-programmable STOP latch with asynchronous dominance
 - external `VEXT_RF`/LoRa power or hardware inhibit;
 - external NFC RF-field/power profile.
 
-Release does not re-arm. A physical re-arm action starts a fresh TX-off boot. Actual-TX evidence and the physical STOP-latched indicator do not derive solely from software command state. The common 2S power tree retains separate `3V3_LOGIC/RF`, `5V_EXT`, `VVOICE≈4.0 V`, audio and switched accessory domains; exact converters/current limits are candidate-package rows, not assumed legacy circuits.
+Release does not re-arm. A physical re-arm action starts a fresh TX-off boot. Actual-TX evidence and the physical STOP-latched indicator do not derive solely from software command state. The supervised battery tree retains separate `3V3_LOGIC/RF`, `5V_EXT`, `VVOICE≈4.0 V`, audio and switched accessory domains; `DEC-0064/PWR-0006` later reopen its 2S versus controlled-1S input, and exact converters/current limits are candidate-package rows rather than assumed legacy circuits.
 
 ### Common update/recovery behavior
 

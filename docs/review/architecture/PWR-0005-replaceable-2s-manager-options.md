@@ -1,12 +1,16 @@
 # PWR-0005 — replaceable-2S manager and admission options
 
-- Статус: **Проведено ревью вариантов; owner gate IMP-0054 открыт**
+- Статус: **Проведено ревью 2S branch; owner gate superseded by DEC-0064/IMP-0055**
 - Дата: 2026-08-18
 - Battery decision: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
 - USB-PD/NVDC frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 - Finding: [`FND-0075`](../findings/FND-0075-pack-gauge-is-not-loose-cell-admission.md)
 
 ## Required boundary
+
+> `DEC-0064` reopened the electrical topology after this review. Everything
+> below remains evidence for option A/2S in `PWR-0006`; it is not the current
+> selected topology.
 
 The charger already selected in `PWR-0004` sees only a qualified 2S boundary.
 The cell subsystem must independently provide all of the following before that

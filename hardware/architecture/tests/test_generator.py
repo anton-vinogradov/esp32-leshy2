@@ -47,7 +47,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path",
             "onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM",
             "Texas Instruments TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection",
-            "Texas Instruments BQ25798RQMR<br/>2S buck-boost charger and NVDC system power path",
+            "Texas Instruments BQ25798RQMR<br/>1–4-cell-capable buck-boost charger and NVDC system power path",
             "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
         )
         for label in required_labels:
@@ -141,15 +141,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("<details>", readme, readme_name)
             self.assertIn("docs/status/current-state", readme, readme_name)
 
-    def test_target_readmes_keep_individually_replaceable_2s_behavior(self):
+    def test_target_readmes_keep_two_supervised_replaceable_slots_without_freezing_topology(self):
         expected = {
             "README.md": (
-                "two individually replaceable 18650 cells",
-                "refuses a mismatched or unsafe pair",
+                "two individually replaceable qualified 18650 slots",
+                "admits each cell",
             ),
             "README.ru.md": (
-                "двух отдельно заменяемых 18650",
-                "отказывает несовместимой либо опасной паре",
+                "два слота для отдельно заменяемых квалифицированных 18650",
+                "допускает каждую ячейку",
             ),
         }
         for readme_name, phrases in expected.items():
@@ -157,6 +157,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             normalized = " ".join(readme.split()).lower()
             for phrase in phrases:
                 self.assertIn(phrase.lower(), normalized, readme_name)
+            self.assertNotIn("2s battery", normalized, readme_name)
+            self.assertNotIn("батарея 2s", normalized, readme_name)
 
     def test_sink_only_30w_pd_front_end_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

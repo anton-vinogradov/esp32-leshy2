@@ -137,7 +137,7 @@ A single physical link may carry `CH-*` only with priority, bounded framing and 
 
 | Domain | Accepted demand | Synthesis obligation |
 |---|---|---|
-| `PW-BAT` | accepted 2S source, charge/state/sleep/brownout | exact worst-case scenario peak, protection, efficiency and shutdown behavior |
+| `PW-BAT` | historical accepted 2S source; superseded by `DEC-0064/PWR-0006` supervised two-slot topology comparison | exact worst-case scenario peak, protection, efficiency and shutdown behavior |
 | `PW-LOGIC` | S3/C5, digital logic, storage and low-voltage radios | rail transient/sequencing/isolation; reset never produces TX pulse |
 | `PW-VOICE` | dedicated 4.0 V SA518-class rail from `DEC-0025` | separate enable/discharge/current/thermal proof; fallback has explicit stuffing/profile |
 | `PW-EXT5` | qualified NFC/Grove-class 5 V accessory | current limit, wrong-profile isolation, reverse/backfeed and removal behavior |

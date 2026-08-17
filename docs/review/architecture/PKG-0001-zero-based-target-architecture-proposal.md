@@ -133,7 +133,7 @@ The theoretical simultaneous maximum of 3×nRF plus CC would consume 79.5% of th
 
 ## Power and STOP topology
 
-- accepted `BAT_2S=6.0…8.4 V`, ≥3 A continuous/4 A pulse pack/protection and ≥12 W/15 W power path;
+- historical `BAT_2S=6.0…8.4 V`, superseded by `DEC-0064/PWR-0006`; the ≥12 W/15 W power envelope remains current;
 - one 3.3 V buck, ≥2.5 A continuous/3.0 A transient, with independently switched/filtered/current-observed core, packet-RF and audio branches;
 - each nRF path reserves 150 mA/200 mA transient until exact module qualification; CC branch 50/75 mA;
 - `5V_EXT` 0.75 A continuous/1.0 A limited, backfeed protected, profile-switched;

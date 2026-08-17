@@ -1,6 +1,6 @@
 # FND-0075 — a pack gauge is not a loose-cell admission controller
 
-- Статус: **Подтверждено; correction предложена в IMP-0054**
+- Статус: **Подтверждено для any removable-cell topology; correction moved to IMP-0055**
 - Дата: 2026-08-18
 - Requirement: [`DEC-0062`](../decisions/DEC-0062-individually-replaceable-2s-cells.md)
 - Option review: [`PWR-0005`](../architecture/PWR-0005-replaceable-2s-manager-options.md)
@@ -10,7 +10,7 @@
 The accepted two-slot behavior has two distinct jobs that must not be collapsed
 into one label:
 
-1. a pack gauge/protector measures an already inserted 2S stack, protects it,
+1. a pack gauge/protector measures an already connected stack or common bus, protects it,
    counts charge, balances cells and drives the normal CHG/DSG FETs;
 2. an admission controller keeps those FETs open until the particular loose-cell
    pair passes presence, voltage, temperature, mismatch and diagnostic-load

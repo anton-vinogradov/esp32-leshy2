@@ -1,6 +1,6 @@
 # FND-0073 — legacy power sheet is not a current target
 
-- Статус: **Подтверждено; battery ambiguity закрыта `DEC-0062`, power correction active**
+- Статус: **Подтверждено; physical slots fixed, electrical topology reopened by `DEC-0064`**
 - Дата: 2026-08-18
 - Artifact: [`PWR-0002`](../architecture/PWR-0002-i3-power-prerequisite-audit.md)
 - Legacy source: [`hardware/tscircuit/power.tsx`](../../../hardware/tscircuit/power.tsx)
@@ -31,7 +31,8 @@ authorize KiCad.
 
 ## Correction
 
-`PWR-0002` re-derives loads and scenarios and preserves the valid 2S/rail
-ideas. `DEC-0062` explicitly retains two individually replaceable cells with
-a new pre-connect/reverse/mismatch/removal safety boundary. Current power-path
-directions are now compared in `PWR-0003/IMP-0053`.
+`PWR-0002` re-derives loads and scenarios and preserves the valid load/rail
+requirements. `DEC-0062` retains two individually replaceable slots and the
+pre-connect/reverse/mismatch/removal safety boundary; `DEC-0064/PWR-0006`
+later reopen their electrical topology. The sink-only frontend is accepted by
+`DEC-0063`, while the current topology choice is `IMP-0055`.

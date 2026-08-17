@@ -1,6 +1,6 @@
 # PWR-0002 — I3 power prerequisite and legacy-candidate audit
 
-- Статус: **Проведено ревью пререквизитов `I3`; battery format B принят `DEC-0062`**
+- Статус: **Проведено ревью пререквизитов `I3`; electrical topology reopened by `DEC-0064`**
 - Дата: 2026-08-18
 - Dependency step: [`INT-0001/I3`](INT-0001-internal-design-closure-sequence.md)
 - Previous envelope: [`PWR-0001`](PWR-0001-zero-based-power-safety-envelope.md)
@@ -16,9 +16,10 @@ candidate/reference. Ни один его MPN, net или physical holder не �
 автоматически.
 
 Артефакт закрывает входы и отбраковку прежней схемы, но не завершает `I3`.
-Формат батареи влияет на protection/gauge/connector/mechanics; владелец уже
-сохранил замену двух отдельных 18650 в `DEC-0062`, поэтому следующий вход —
-charge/power-path choice из `PWR-0003/IMP-0053`.
+Формат батареи влияет на protection/gauge/connector/mechanics; владелец
+сохранил два отдельно заменяемых слота в `DEC-0062`, а `DEC-0064` переоткрыл
+их электрическую конфигурацию. Актуальное сравнение находится в
+`PWR-0006/IMP-0055`.
 
 ## Current load classes
 
@@ -39,7 +40,7 @@ charge/power-path choice из `PWR-0003/IMP-0053`.
 | `3V3_MAIN` | **`2.5 A` floor** | **`3.0 A` load step** | preserves previous envelope with margin for current uncertainties and allowed native-radio scenarios |
 | `VVOICE=4.0 V` | **`1.25 A`** | **`1.5 A`** | accepted `DEC-0025`; preserves SA518 0.5/1-W class |
 | `5V_AUX/EXT` before branch limits | **`1.25 A`** | **`2.0 A`** | one 0.75-A external profile plus audio/IR inrush; exact simultaneous support loads are closed in `I4/I5/I7` |
-| protected 2S pack/path | **`3 A`** | **`4 A` bounded pulse** | `6.0…8.4 V`, at least `12 W` continuous / `15 W` bounded transient |
+| protected battery path | topology-dependent | topology-dependent | at least `12 W` continuous / `15 W` bounded transient; `PWR-0006` derives `2S` and `1S` currents |
 
 The former `5 V / 3 A` rail was sized around deleted onboard SA868, onboard
 LoRa and WS2812 loads. Carrying it forward would spend area/cost without a
@@ -61,7 +62,10 @@ accepted current floor and cannot be copied.
 
 ## What survives from the old design
 
-- `2S / 6.0…8.4 V` remains electrically strong: all three main output rails
+> `DEC-0064` supersedes the former claim that `2S` itself survives. The
+> following first bullet is retained only as evidence for the 2S candidate.
+
+- In the `2S / 6.0…8.4 V` candidate all three main output rails
   are ordinary bucks and SA518 keeps its accepted 4.0-V profile.
 - A common efficient 3.3-V converter plus separately switched radio/storage/
   analog branches is lower-cost than one converter per small load.
@@ -117,9 +121,10 @@ Primary references:
 - Load/scenario envelope: **reviewed**.
 - Legacy useful ideas: **separated from obsolete implementation**.
 - Legacy power source: **reference only; rejected as current target**.
-- Battery-format input: owner selected two individually replaceable cells in
-  `DEC-0062`; this retains the behavior but adds a hard pre-connect/reverse/
-  mismatch/removal safety boundary.
-- Next: select `C5V` versus `CPD` through `PWR-0003/IMP-0053`, then compare the
-  compatible exact cell-admission/protector/gauge parts, verify selected MPN
-  availability and close every rail/switch/fault/loss/thermal row.
+- Battery-format input: `DEC-0062` retains two individually replaceable slots
+  and the hard pre-connect/reverse/mismatch/removal boundary; `DEC-0064`
+  reopens only their electrical arrangement through `PWR-0006/IMP-0055`.
+- The charge frontend is already selected by `DEC-0063`; next choose the
+  electrical cell topology in `IMP-0055`, then select compatible exact
+  admission/protector/gauge and rail parts and close every fault/loss/thermal
+  row.

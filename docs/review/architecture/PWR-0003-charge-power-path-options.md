@@ -7,6 +7,10 @@
 - Proposal: [`IMP-0053`](../improvements/IMP-0053-5v-typec-versus-pd-charge-path.md)
 - Accepted exact frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 
+> `DEC-0064/PWR-0006` later reopen the battery electrical topology. The CPD
+> frontend remains accepted because BQ25798 supports 1–4 cells; 2S-only rows
+> below are historical comparison evidence, not the configured-count decision.
+
 ## Required result independent of option
 
 - only the S3 product USB-C is a normal power input; S3 USB2 data remains;

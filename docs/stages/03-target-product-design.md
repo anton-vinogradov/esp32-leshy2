@@ -68,14 +68,14 @@ S3/C5/RP service. `DEC-0061/SAFE-0002/REV-0005O` затем дают safety bloc
 **«Проведено ревью»**: exact three-domain STOP/gates и восемь evidence paths
 внесены в machine source. Следующим активен power block `I3`. Цельный
 enclosure/control layout не продолжается до совместного internal self-review.
-`PWR-0002/FND-0073/REV-0005P` уже проводят ревью его prerequisites: valid 2S,
-4-V voice и switched-branch principles сохранены, но старые BQ25887/no-power-
+`PWR-0002/FND-0073/REV-0005P` уже проводят ревью его prerequisites: 4-V voice,
+load envelope и switched-branch principles сохранены, но старые BQ25887/no-power-
 path, fixed-input-current, pseudo-gauge и obsolete rail sizes отклонены как
-target. Владелец принял `IMP-0052/B` как `DEC-0062`: две 18650 остаются
-отдельно заменяемыми, но до допуска пары аппаратно проверяются обе ячейки;
-переполюсовка, mismatch, извлечение и bounce должны приводить к fail-closed.
-`PWR-0003/IMP-0053` теперь выбирают между полным 5-V Type-C/NVDC и USB-PD/
-buck-boost charge/power path.
+target. Владелец принял `IMP-0052/B` как `DEC-0062`: два 18650 slots остаются
+отдельно заменяемыми, а переполюсовка, mismatch, извлечение и bounce должны
+приводить к fail-closed. `DEC-0063/PWR-0004` уже принимают exact sink-only
+USB-PD frontend. `DEC-0064/PWR-0006` переоткрывают electrical series versus
+controlled-1S topology; текущий owner gate — `IMP-0055`.
 
 ## Downstream boundary
 

@@ -76,10 +76,10 @@ privacy or the target owner's authorization.
 - The PD controller boots autonomously from a dedicated recoverable EEPROM.
   Factory pads can program a blank device; field updates verify an
   owner-signed image and retain a rollback region.
-- The 2S battery uses two individually replaceable 18650 cells. Reverse
-  insertion is mechanically blocked; the device checks both cells before
-  charge or discharge and refuses a mismatched or unsafe pair instead of
-  forcing it to operate or balance.
+- The battery system has two individually replaceable qualified 18650 slots.
+  Reverse insertion is mechanically blocked; hardware observes and admits
+  each cell before it may reach the system, and refuses an unsafe combination
+  instead of forcing it to operate or equalize.
 - Signed updates validate their target and support rollback. Build keys and the
   ability to install owner firmware remain owner-controlled; irreversible
   lockdown is not enabled by default.
@@ -101,10 +101,10 @@ flowchart TD
   VBUSPROT["TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection"]
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
   PDCFG["CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
-  CHARGER["BQ25798RQMR<br/>2S buck-boost charger and NVDC system power path"]
+  CHARGER["BQ25798RQMR<br/>1–4-cell-capable buck-boost charger and NVDC system power path"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
   CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
-  PACKMGR["MPN TBD<br/>per-cell admission, protection, gauge and balancing manager"]
+  PACKMGR["MPN TBD<br/>per-cell admission, protection, state estimation and topology control"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -181,7 +181,7 @@ flowchart TD
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL
   CELL0 --> PACKMGR
   CELL1 --> PACKMGR
-  PACKMGR <-->|"qualified 2S pack boundary"| CHARGER
+  PACKMGR <-->|"qualified supervised battery boundary"| CHARGER
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW

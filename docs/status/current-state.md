@@ -250,16 +250,20 @@ Machine source and all living diagrams are updated. U214 without accessory
 evidence remains `unknown/unavailable`; the BAT15 coupon stays cost-down HIL.
 
 `PWR-0002/FND-0073/REV-0005P` complete the first `I3` prerequisite pass. The
-current load/scenario ledger retains 2S, the 2.5/3-A 3.3-V envelope and the
+current load/scenario ledger retains the 2.5/3-A 3.3-V envelope and the
 dedicated 4-V voice result, while rejecting the legacy sheet as a target:
 BQ25887 has no system power path, its ADC is not a fuel gauge, two Rd resistors
 do not prove a 3-A source, the old master switch blocks off-state charging, and
 the old rails omit current safety/quiet-state branches. The owner accepted
-`IMP-0052/B` as `DEC-0062`: two 18650 cells remain individually replaceable,
-but they are not an arbitrary admissible pair. Mechanical reverse-insertion
-blocking and pre-admission observation of both cell voltages/temperature must
-keep charge/discharge FETs open on mismatch, removal or contact bounce.
-`REV-0005Q` reviews the propagation. The owner then accepted `IMP-0053/B` as
+`IMP-0052/B` as `DEC-0062`: two 18650 slots remain individually replaceable,
+but arbitrary cells/combinations are not admitted. Mechanical reverse-
+insertion blocking and pre-admission observation must keep unsafe slot paths
+open on mismatch, removal or contact bounce. `REV-0005Q` reviews propagation.
+`DEC-0064/PWR-0006/FND-0076/REV-0005S` later reopen only the electrical
+series/controlled-1S topology. They reject direct parallel, calculate the
+double common-path current and changed rail classes for 1S and open
+`IMP-0055`; `PWR-0005/IMP-0054` remain evidence for the 2S branch. The owner
+then accepted `IMP-0053/B` as
 `DEC-0063`: the product port is sink-only USB-PD with 5-V fallback, 9 V/3 A
 and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
 S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact

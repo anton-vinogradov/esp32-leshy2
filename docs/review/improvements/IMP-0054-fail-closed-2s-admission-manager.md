@@ -1,6 +1,6 @@
 # IMP-0054 — fail-closed 2S admission manager
 
-- Статус: **Ожидает решения владельца**
+- Статус: **Закрыто без выбора; сохранено как reviewed 2S branch после `DEC-0064`**
 - Дата: 2026-08-18
 - Context: [`PWR-0005`](../architecture/PWR-0005-replaceable-2s-manager-options.md)
 - Finding: [`FND-0075`](../findings/FND-0075-pack-gauge-is-not-loose-cell-admission.md)
@@ -62,4 +62,6 @@ or chemistry.
 
 ## Owner decision
 
-Open.
+Closed without selecting A/B/C. `DEC-0064` reopened the electrical topology;
+the current owner gate is `IMP-0055`. This comparison resumes only if its 2S
+option is selected.

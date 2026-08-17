@@ -249,15 +249,19 @@ living diagrams обновлены. U214 без accessory evidence остаёт�
 `unknown/unavailable`; BAT15 coupon — cost-down HIL.
 
 `PWR-0002/FND-0073/REV-0005P` проводят первый prerequisite pass `I3`. Новый
-load/scenario ledger сохраняет 2S, 3.3-V envelope `2.5/3 A` и отдельный 4-V
+load/scenario ledger сохраняет 3.3-V envelope `2.5/3 A` и отдельный 4-V
 voice result, но отклоняет legacy sheet как target: у BQ25887 нет system power
 path, его ADC не является fuel gauge, два Rd не доказывают 3-A source, старый
 master switch блокирует зарядку в OFF, а прежние rails не содержат current
-safety/quiet-state branches. Владелец принял `IMP-0052/B` как `DEC-0062`: две
-18650 остаются отдельно заменяемыми, но не считаются произвольной допустимой
-парой. Механическая защита от переполюсовки и наблюдение обеих ячеек до допуска
-обязаны держать charge/discharge FET открытыми при mismatch, извлечении или
-дребезге контакта. Распространение проверено в `REV-0005Q`. Затем владелец
+safety/quiet-state branches. Владелец принял `IMP-0052/B` как `DEC-0062`: два
+слота 18650 остаются отдельно заменяемыми, но произвольные ячейки/сочетания не
+допускаются. Механическая защита от переполюсовки и наблюдение до допуска
+обязаны держать опасные slot paths открытыми при mismatch, извлечении или
+дребезге контакта. Распространение проверено в `REV-0005Q`.
+`DEC-0064/PWR-0006/FND-0076/REV-0005S` затем переоткрывают только электрическую
+series/controlled-1S топологию. Direct parallel отклонён, для 1S рассчитаны
+двойной общий ток и новые rail classes, открыт `IMP-0055`; `PWR-0005/IMP-0054`
+остаются evidence 2S branch. Затем владелец
 принял `IMP-0053/B` как `DEC-0063`: основной порт — sink-only USB-PD с
 fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/power-bank/
 20-V/PPS/OTG и с прямыми USB2-линиями S3. `PWR-0004/FND-0074/REV-0005R`

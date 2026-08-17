@@ -66,15 +66,16 @@ machine-projected. `I3` power/rail/thermal closure is now active.
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
 the accepted AON/voice/current envelope. The owner accepted `IMP-0052/B` as
-`DEC-0062`: the two 18650 cells remain individually replaceable, but admission
-is pair-aware and fail-closed rather than accepting arbitrary loose cells.
+`DEC-0062`: the two 18650 slots remain individually replaceable, and admission
+is fail-closed rather than accepting arbitrary loose cells. `DEC-0064` then
+reopened only the electrical series/controlled-1S arrangement.
 `PWR-0003/IMP-0053` are closed by `DEC-0063`: the owner selected sink-only
 USB-PD up to 30 W. `PWR-0004/REV-0005R` review exact TPS25751DREFR,
 BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR fit while leaving the cell manager,
-rail tree, passives and HIL active in I3. `PWR-0005/FND-0075` then separate
-ordinary pack gauging from fail-closed loose-cell admission and open
-`IMP-0054`: the recommended exact active pair is MAX17320G20+T plus the
-always-on MSPM0C1104SDGS20R admission controller.
+rail tree, passives and HIL active in I3. `PWR-0005/FND-0075` separate ordinary
+pack gauging from fail-closed loose-cell admission for the 2S branch.
+`PWR-0006/FND-0076` compare 2S, controlled two-slot 1S and one-slot 1S; the
+current owner gate is `IMP-0055`.
 
 ## Active G2F artifacts
 
@@ -87,15 +88,16 @@ always-on MSPM0C1104SDGS20R admission controller.
   channels and test points. `FND-0071` paper mismatch is closed; I3/I6/HIL
   measured proof remains explicit;
 - [`PWR-0002`](PWR-0002-i3-power-prerequisite-audit.md) re-derives the `I3`
-  loads/scenarios, preserves only the valid 2S/rail ideas from the old source
-  and closes the field-replaceable battery boundary through `DEC-0062`;
+  loads/scenarios and rejects the old source as a target;
 - [`PWR-0003`](PWR-0003-charge-power-path-options.md) compares the complete
   5-V Type-C/NVDC and USB-PD/buck-boost paths; B is accepted by `DEC-0063`;
 - [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md) verifies the exact
   sink-only 30-W PD/charger/configuration/protection path and sourcing snapshot;
 - [`PWR-0005`](PWR-0005-replaceable-2s-manager-options.md) reviews exact
-  gauge/admission candidates, current sourcing and reset-default behavior;
-  `IMP-0054` is the current owner gate;
+  gauge/admission candidates and reset-default behavior for the 2S branch;
+- [`PWR-0006`](PWR-0006-one-or-two-cell-topology-comparison.md) reviews the
+  reopened topology, rails, losses, one-cell behavior and cost; `IMP-0055` is
+  the current owner gate;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
