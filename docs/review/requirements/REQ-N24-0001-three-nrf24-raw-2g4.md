@@ -1,6 +1,6 @@
 # REQ-N24-0001 — 3×nRF24 raw 2.4 GHz analysis and controlled-test contract
 
-- Статус набора: **Проведено ревью capability; `G2F-3I` leading owner/controller, full-mix RF acceptance открыт `IMP-0039`**
+- Статус набора: **Проведено ревью capability; `G2F-3I` leading owner/controller, full-mix policy принят `DEC-0047`, exact module/antenna открыт `IMP-0040`**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-N24-01`–`C-N24-10`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-08`, `C-X-11`
 - Обязательные решения: `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`, `DEC-0019`, `DEC-0021`; nRF24-часть `DEC-0001` переоткрыта

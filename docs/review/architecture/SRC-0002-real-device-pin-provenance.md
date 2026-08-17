@@ -26,6 +26,7 @@
 | external LoRa/GNSS | M5Stack Cap LoRa-1262 `U214` | actual Cap-Bus exposes GPS TX/RX, SCL/SDA, LoRa RST/IRQ/BUSY/SCK/MOSI/MISO/NSS and power; body `84×24×15.2 mm` | `verified candidate`; mating connector/retention/hot-plug HIL later |
 | generic Unit surface | actual HY2.0-4P base connector | M5 documents GND, 5V and two signals; colors are conventions, not automatic peripheral support | `verified connector class`; every advertised Unit SKU is separately blocking until checked |
 | compact nRF reference | Ebyte `E01-ML01S`, 12×19 mm SMD, onboard antenna, 0 dBm | manufacturer product/manual expose `VCC/CE/CSN/SCK/MOSI/MISO/IRQ/GND` and identify nRF24L01P | `reference only`; lifecycle/source authenticity/RF HIL and whether 0 dBm meets product envelope open |
+| compact external-antenna nRF reference | Ebyte `E01-ML01IPX`, 12×19 mm SMD, IPEX, 0 dBm | 2025 manufacturer specification exposes the same eight functional pads, 2.0–3.6 V, 13 mA TX, 12 mA RX and `12×19×2.0 mm` body | `verified reference`; leading `IMP-0040/A`, not production-selected until owner decision, source/lot and HIL |
 | high-power nRF reference | Ebyte `E01-2G4M27D`, 18×33.4 mm through-hole, 27 dBm | manufacturer product/manual expose `GND/VCC/CE/CSN/SCK/MOSI/MISO/IRQ`; size/power/antenna burden differs materially | `reference only`; not a default stuffing choice |
 | three production nRF paths | exact module MPN/revision not selected | Nordic nRF24 interface is known, but Nordic marks nRF24 series not recommended for new designs; generic marketplace boards are not provenance | `open/blocking`; compare exact compact/PA options, authorised sourcing and qualified alternates |
 | CC1101 path | `CC1101RGPR` VQFN20 bare-IC candidate | official TI pin table proves exact silicon contacts `SCLK/SI/SO/GDO0/GDO2/CSn/RF_P/RF_N`; current TI order page says `ACTIVE`; it still does not prove crystal, matching network or antenna connector | `verified active silicon candidate`; RF implementation remains `open/blocking`, see lifecycle correction `FND-0050` |
@@ -51,6 +52,7 @@
 - [M5Stack Grove/HY2.0 connector definitions](https://docs.m5stack.com/en/learn/interface/grove)
 - [Nordic nRF24 lifecycle page](https://www.nordicsemi.com/Products/nRF24-series)
 - [Ebyte E01-ML01S actual module page](https://www.ebyte.com/product/45.html)
+- [Ebyte E01-ML01IPX actual module page/specification](https://www.ebyte.com/product/47.html)
 - [Ebyte E01-2G4M27D actual module page](https://www.ebyte.com/product/449.html)
 - [Raspberry Pi RP2350/RP2354 package pinout](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
 - [TI CC1101 exact silicon datasheet](https://www.ti.com/lit/ds/symlink/cc1101.pdf)

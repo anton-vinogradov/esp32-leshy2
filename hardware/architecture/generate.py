@@ -189,6 +189,15 @@ def validate_sources(
                         errors.append(
                             f"{candidate_id}: {context}: full mix RF acceptance must require HIL"
                         )
+                    fixture_levels = rf_acceptance.get("fixture_levels", [])
+                    if fixture_levels != ["L0_DIV_DIV_PRE_HIL", "T1_TARGET"]:
+                        errors.append(
+                            f"{candidate_id}: {context}: full mix RF acceptance must separate L0 DIV pre-HIL from T1 target HIL"
+                        )
+                    if rf_acceptance.get("production_acceptance_level") != "T1_TARGET":
+                        errors.append(
+                            f"{candidate_id}: {context}: production RF acceptance must require T1_TARGET"
+                        )
                     if not isinstance(
                         rf_acceptance.get("same_near_channel_isolated_sensitivity_guaranteed"),
                         bool,
@@ -710,7 +719,8 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
                 if rf_acceptance:
                     rf_text = (
                         f"`{rf_acceptance['decision']}` / `{rf_acceptance['mode']}`; "
-                        f"observer `{rf_acceptance['external_observer_fixture']}`; HIL required"
+                        f"observer `{rf_acceptance['external_observer_fixture']}`; "
+                        f"`L0 DIV↔DIV` pre-HIL → `{rf_acceptance['production_acceptance_level']}`; HIL required"
                     )
                 lines.append(
                     f"| `{group['id']}` | {members} | {group['mode']} | {mixes} | {rf_text} |"

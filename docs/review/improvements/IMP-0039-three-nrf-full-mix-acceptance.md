@@ -70,10 +70,13 @@ BOM; результат остаётся сильно зависимым от к
 ## Решение владельца
 
 [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
-принимает вариант A. Заказанный второй device используется как внешний
-observer/peer по [`N24H-0001`](../architecture/N24H-0001-two-device-full-mix-fixture.md).
-Он измеряет и воспроизводит профиль, но не становится обязательной частью base
-product и не превращает один nRF24 в same-frequency full duplex.
+принимает вариант A. Заказанный второй ESP32-DIV используется в раннем
+`L0 DIV↔DIV` observer/peer стенде по
+[`N24H-0001`](../architecture/N24H-0001-two-device-full-mix-fixture.md).
+Он воспроизводит проблему и test protocol, но из-за отличий exact hardware не
+закрывает target Leshy2 profile. Production envelope закрывается отдельным
+`T1` на целевой ревизии; ни один observer не становится обязательной частью
+base product и не превращает один nRF24 в same-frequency full duplex.
 
 ## Первичный источник
 

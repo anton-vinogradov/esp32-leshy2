@@ -1,12 +1,23 @@
-# N24H-0001 — two-device three-nRF full-mix fixture
+# N24H-0001 — staged two-device three-nRF full-mix fixture
 
-- Статус: **Проведено ревью test-plan input; measurements not started**
+- Статус: **Проведено ревью test-plan input; L0/T1 measurements not started**
 - Дата: 2026-08-17
 - Decision: [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - RF boundary: [`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md)
 
-## Роли стенда
+## Уровни стенда
+
+| Level | Hardware | Что закрывает | Чего не закрывает |
+|---|---|---|---|
+| `L0 DIV↔DIV` | два заказанных ESP32-DIV с записанными board/module identities | раннее воспроизведение `3R/1T2R/2T1R/3T`, packet manifest/log protocol, observed loss/self-desense, firmware-test ergonomics | Leshy2 sensitivity, rail/transient, antenna isolation, thermal, emissions или target reproducibility |
+| `T1 TARGET` | два сопоставимых Leshy2 target revisions либо Leshy2 DUT + calibrated conducted/OTA peer | production versioned RF/power envelope и role-reversal/reproducibility acceptance | arbitrary untested channels, powers, poses или same-frequency full duplex |
+
+`L0` — полезный pre-HIL, а не суррогат `T1`. Отличия modules, rails, bus sharing,
+antenna geometry и enclosure всегда записываются, а результаты двух уровней не
+смешиваются в одну pass-метку.
+
+## Роли target-стенда
 
 ```mermaid
 flowchart LR
@@ -33,7 +44,7 @@ barrier. Сопоставление выполняется по test ID, radio i
 | `1T+2R` | принимает DUT TX и одновременно подаёт два wanted streams на DUT RX | реальная TX continuity, peer RX continuity и measured desense без hidden gaps |
 | `2T+1R` | принимает два DUT streams и подаёт wanted stream на DUT RX | two-local-TX current/coupling и remaining RX envelope |
 | `3T` | принимает/считает все DUT streams | three-TX scheduling, packet rail peak/average, droop, thermal and emissions |
-| role reversal | Device B becomes DUT, Device A observer | fixture asymmetry, device-to-device calibration and reproducibility |
+| role reversal | Device B becomes DUT, Device A observer | на `L0` — asymmetry двух DIV; на `T1` — target device-to-device calibration and reproducibility |
 | same/near channel negative cases | known packet sequences and power | collision/desense classified as expected/qualified/unsupported, never hidden success |
 
 ## Записываемые параметры
@@ -51,7 +62,10 @@ barrier. Сопоставление выполняется по test ID, radio i
 
 ## Pass boundary
 
-Digital full mix passes only when the DUT executes the complete role schedule
+`L0` passes as pre-HIL evidence only when both ESP32-DIV identities and all
+hardware differences are recorded; он никогда не выдаёт target pass.
+
+Target digital full mix passes only when the Leshy2 DUT executes the complete role schedule
 without peer standby, hidden CE suppression or unexplained RX gaps. RF envelope
 points pass individually with versioned limits; a passed far-channel point
 does not promote same-channel operation. Power passes only if `3T` remains

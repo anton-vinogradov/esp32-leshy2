@@ -80,5 +80,6 @@ universal isolation и не повышаются в base product. Qualification 
 (`SG-N24` full digital mix, native vendor TDM, declared U214 support members),
 safe atomic group switching, inactive-interface quiet states и
 digital-aggression EMI tests. `DEC-0047` selects the qualified channel/power
-envelope for base and a second-device observer/peer for HIL. Remote heads or
+envelope for base. `N24H-0001` uses `L0 DIV↔DIV` only as pre-HIL and requires
+target `T1` for production acceptance. Remote heads or
 self-cancellation remain optional Laboratory equipment, not base architecture.

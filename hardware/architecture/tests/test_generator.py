@@ -238,6 +238,26 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
+    def test_rejects_div_pre_hil_as_production_acceptance(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        group = next(
+            group
+            for group in candidate["signal_group_policy"]["groups"]
+            if group["id"] == "SG-N24"
+        )
+        group["rf_acceptance"]["fixture_levels"] = ["L0_DIV_DIV_PRE_HIL"]
+        group["rf_acceptance"]["production_acceptance_level"] = "L0_DIV_DIV_PRE_HIL"
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("must separate L0 DIV pre-HIL from T1 target HIL" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(
+            any("production RF acceptance must require T1_TARGET" in error for error in errors),
+            errors,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

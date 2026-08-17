@@ -404,7 +404,7 @@
       "kind": "smd_radio_module",
       "qualification": "reference_only",
       "lifecycle": "nrf24_family_not_recommended_for_new_designs",
-      "dimensions_mm": [12.0, 19.0, null],
+      "dimensions_mm": [12.0, 19.0, 1.63],
       "source": {
         "document": "E01-ML01S product page/manual",
         "version": "live product page",
@@ -422,6 +422,60 @@
         "CSN": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
         "MOSI": {"physical": "5", "role": "signal"}, "MISO": {"physical": "6", "role": "signal"},
         "IRQ": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"}
+      }
+    },
+    "ebyte_e01_ml01ipx": {
+      "mpn": "Ebyte E01-ML01IPX",
+      "kind": "smd_radio_module",
+      "qualification": "verified_reference",
+      "lifecycle": "nrf24_family_not_recommended_for_new_designs",
+      "dimensions_mm": [12.0, 19.0, 2.0],
+      "source": {
+        "document": "E01-ML01IPX product specification",
+        "version": "2025-01-16",
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+        "checked": "2026-08-17"
+      },
+      "lifecycle_source": {
+        "document": "Nordic nRF24 Series lifecycle page",
+        "url": "https://www.nordicsemi.com/Products/nRF24-series",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "VCC": {"physical": "1", "role": "power"}, "CE": {"physical": "2", "role": "signal"},
+        "CSN": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
+        "MOSI": {"physical": "5", "role": "signal"}, "MISO": {"physical": "6", "role": "signal"},
+        "IRQ": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"},
+        "ANT": {"physical": "on-module IPEX connector", "role": "rf"}
+      }
+    },
+    "ebyte_e01_2g4m27d": {
+      "mpn": "Ebyte E01-2G4M27D",
+      "kind": "dip_pa_lna_radio_module",
+      "qualification": "verified_reference",
+      "lifecycle": "nrf24_family_not_recommended_for_new_designs",
+      "dimensions_mm": [18.0, 33.4, null],
+      "source": {
+        "document": "E01-2G4M27D product page/manual",
+        "version": "v1.1 / 2024 manual",
+        "url": "https://www.cdebyte.com/products/E01-2G4M27D/4",
+        "checked": "2026-08-17"
+      },
+      "lifecycle_source": {
+        "document": "Nordic nRF24 Series lifecycle page",
+        "url": "https://www.nordicsemi.com/Products/nRF24-series",
+        "checked": "2026-08-17"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND_1": {"physical": "1", "role": "power"}, "VCC": {"physical": "2", "role": "power"},
+        "CE": {"physical": "3", "role": "signal"}, "CSN": {"physical": "4", "role": "signal"},
+        "SCK": {"physical": "5", "role": "signal"}, "MOSI": {"physical": "6", "role": "signal"},
+        "MISO": {"physical": "7", "role": "signal"}, "IRQ": {"physical": "8", "role": "signal"},
+        "GND_9": {"physical": "9", "role": "power"}, "GND_10": {"physical": "10", "role": "power"},
+        "GND_11": {"physical": "11", "role": "power"}, "GND_12": {"physical": "12", "role": "power"},
+        "ANT": {"physical": "on-module SMA-K connector", "role": "rf"}
       }
     },
     "cc1101rgpr": {

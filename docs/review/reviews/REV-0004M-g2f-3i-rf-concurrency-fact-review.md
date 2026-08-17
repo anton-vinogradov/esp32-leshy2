@@ -37,5 +37,6 @@
 требует один `SG-N24` с любым одновременным PTX/PRX mix, а `DEC-0046` — quiet
 state всех неиспользуемых interfaces. Antenna MPN/coordinates, filters,
 shields и conducted/OTA measurements остаются открыты. `DEC-0047` принимает
-qualified envelope и second-device observer plan `N24H-0001`; поэтому policy
+qualified envelope и staged `L0 DIV↔DIV` pre-HIL / target `T1` plan
+`N24H-0001`; поэтому policy
 проверена, но physical nRF mix ещё не получает status «Проведено ревью».
