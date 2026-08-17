@@ -131,8 +131,12 @@ and target HIL remain the next gates. The same exact-device pass found
 `RFH-0001/REV-0004R` review the module-to-panel interface: S3/C5 have an
 explicit first-generation U.FL/MHF I/AMC boundary, while Ebyte documents only
 generic `IPX`. `FND-0057` corrects the machine source and requires a
-specimen-fit/VNA gate; `IMP-0042` leaves standard SMA versus mixed RP-SMA open
-without prematurely choosing mount/length. `FND-0050` records nRF24 NRND
+specimen-fit/VNA gate. `RFH-0002/REV-0004S` separately review real antenna
+ecosystems: RP-SMA is typical for native Wi-Fi, Ebyte/nRF uses standard SMA,
+and sub-GHz has both polarities. `IMP-0042` therefore compares uniform
+standard SMA with a bounded `2 RP-SMA + 7 standard SMA` option without choosing
+mount/length or replacing exact antenna qualification with connector
+popularity. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)

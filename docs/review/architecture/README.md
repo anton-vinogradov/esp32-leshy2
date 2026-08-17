@@ -81,6 +81,11 @@ peripherals and HIL remain open; CAD stays blocked.
   five module-origin feeds from four PCB/frontend-origin feeds. It verifies
   first-generation U.FL/MHF I/AMC compatibility for S3/C5, records Ebyte
   `IPX` as unproven `FND-0057`, and opens external gender choice `IMP-0042`.
+- [`RFH-0002`](RFH-0002-antenna-connector-ecosystem-review.md) checks actual
+  antenna ecosystems instead of grouping only by frequency. It finds RP-SMA
+  typical for native Wi-Fi, standard SMA in Ebyte's nRF ecosystem and both
+  polarities in sub-GHz; `IMP-0042` now compares uniform SMA with a bounded
+  `2 RP-SMA + 7 standard SMA` candidate.
 
 ## Deferred/reference G3 artifacts
 

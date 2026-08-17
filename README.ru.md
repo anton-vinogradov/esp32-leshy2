@@ -120,8 +120,11 @@ AM/LW; `DEC-0049/REV-0004Q` принимают девять labelled SMA с ра
 `RFH-0001/REV-0004R` дополнительно проверяют module-to-panel feeds: S3/C5
 официально совместимы с first-generation U.FL/MHF I/AMC, но Ebyte называет
 свой разъём только `IPX`, поэтому `FND-0057` требует specimen-fit gate.
-`IMP-0042` оставляет владельцу выбор standard SMA против mixed RP-SMA;
-mounting и длины кабелей остаются physical co-design.
+`RFH-0002/REV-0004S` проверяют antenna ecosystems: RP-SMA типичен для native
+Wi-Fi, Ebyte/nRF использует standard SMA, а sub-GHz имеет обе polarity.
+`IMP-0042` оставляет владельцу выбор uniform standard SMA против ограниченного
+`2 RP-SMA + 7 standard SMA`; mounting и длины кабелей остаются physical
+co-design.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.

@@ -128,8 +128,12 @@ self-desense и target HIL остаются открытыми. Та же exact-
 gate. `RFH-0001/REV-0004R` проверили module-to-panel interface: S3/C5 имеют
 явный first-generation U.FL/MHF I/AMC boundary, а Ebyte документирует только
 generic `IPX`. `FND-0057` исправляет machine source и требует specimen-fit/VNA
-gate; `IMP-0042` оставляет открытым standard SMA против mixed RP-SMA без
-преждевременного выбора mount/length. `FND-0050` фиксирует nRF24 NRND и
+gate. `RFH-0002/REV-0004S` отдельно проверяют реальные antenna ecosystems:
+RP-SMA типичен для native Wi-Fi, Ebyte/nRF использует standard SMA, а sub-GHz
+имеет обе polarity. Поэтому `IMP-0042` теперь сравнивает uniform standard SMA
+с ограниченным `2 RP-SMA + 7 standard SMA`, не выбирая mount/length и не
+подменяя exact antenna qualification популярностью разъёма. `FND-0050`
+фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
