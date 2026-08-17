@@ -104,8 +104,11 @@ atomic architecture и не разрешение на KiCad.
 occupancy. [`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-class.md)
 принимает 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class.
 [`DSP-0004`](docs/review/architecture/DSP-0004-display-part-number-register.md)
-перечисляет все известные display part numbers, а exact production panel/
-connector, optics и protection MPN оставляет явно открытыми.
+перечисляет все известные display part numbers. Official QDtech schematic
+раскрывает exact assembly `HMX035CTFT-001`; `DSP-0005/REV-0005A` проводят
+ревью его 40-contact electrical fit без расхода новых GPIO. Standalone
+orderability/drawing/lifecycle, exact connector, backlight, optics и protection
+остаются явно открытыми.
 
 ```mermaid
 flowchart LR
@@ -148,7 +151,9 @@ SWD/USB/RUN/BOOTSEL сохранены вне этого бюджета.
 [`exact pad/net atlas`](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
 Оставшиеся electrical boundaries перечислены в
 [`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
-и могут изменить working design после повторного ревью.
+и могут изменить working design после повторного ревью. Current display path
+уже заканчивается на `HMX035CTFT-001`: S3 GPIO39 — touch IRQ, slow P06/P07 —
+display/touch reset; S3 GPIO6/GPIO43 остаются free.
 
 ## Границы безопасности и стоимости
 

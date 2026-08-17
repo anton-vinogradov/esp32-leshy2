@@ -11,7 +11,9 @@ Current machine map полностью распределяет compute GPIO, co
 contacts, но часть peers остаётся `abstract:*`. Это корректно для G2F pin
 feasibility и некорректно для final schematic. Наиболее существенные gaps:
 
-- display/touch и mono codec не имеют принятого exact target MPN/package;
+- display/touch уже имеют exact current paper endpoint `HMX035CTFT-001`, но
+  production orderability/drawing/connector/backlight/protection/HIL открыты;
+  mono codec всё ещё не имеет принятого exact target MPN/package;
 - IR frontends/driver и actual-TX evidence не заканчиваются на exact contacts;
 - hard-STOP latch, power/current/thermal supervisor и load-switch/isolation
   circuits не выбраны;
@@ -20,7 +22,7 @@ feasibility и некорректно для final schematic. Наиболее �
 - nRF, CC, voice and receiver electrical/RF assemblies ещё требуют source,
   voltage, reset, matching and HIL closure.
 
-SA518 and Si4732 exact contacts were instantiated during this pass, including
+SA518, Si4732 and HMX035CTFT-001 exact contacts are now instantiated, including
 SA518 update/recovery breakout and separate Si4732 FMI/AMI routes. Это
 подтверждает, что список можно сокращать по реальным devices, не меняя GPIO
 арифметику догадками.
@@ -31,4 +33,3 @@ SA518 update/recovery breakout and separate Si4732 FMI/AMI routes. Это
 contact либо документированная non-programmable circuit block, voltage/reset/
 safe-state contract, source and test gate. Затем regenerated atlas, electrical
 review and later product/physical gates pass without hidden pin allocation.
-

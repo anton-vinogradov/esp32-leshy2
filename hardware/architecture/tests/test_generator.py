@@ -88,6 +88,62 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("<=1 ms", display_contract["arbitration"])
         self.assertNotIn("256 B", display_contract["arbitration"])
 
+    def test_exact_hmx_display_electrical_fit_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        self.assertEqual("qdtech_hmx035ctft_001", candidate["instances"]["display"])
+
+        display = self.database["devices"][candidate["instances"]["display"]]
+        self.assertEqual(
+            "HMX035CTFT-001 (QDtech schematic assembly marking)", display["mpn"]
+        )
+        expected_physical = {
+            "TP_I2C_SCL": "1",
+            "TP_I2C_SDA": "2",
+            "TP_INT": "3",
+            "TP_RESET": "4 (TP_RESXP)",
+            "QSPI_CS": "9 (CS)",
+            "QSPI_D1": "10 (RS)",
+            "QSPI_CLK": "11 (WR)",
+            "QSPI_D0": "13 (SDA)",
+            "RESET": "15",
+            "QSPI_D2": "17 (DB0)",
+            "QSPI_D3": "18 (DB1)",
+            "LEDA": "33",
+            "IM0": "38",
+            "IM1": "39",
+            "IM2": "40",
+        }
+        for contact, physical in expected_physical.items():
+            self.assertEqual(physical, display["contacts"][contact]["physical"])
+
+        s3 = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "s3"
+        }
+        self.assertEqual(["sd.DAT0", "display.QSPI_D1"], s3["GPIO4"]["peers"])
+        self.assertIn("display.QSPI_CLK", s3["GPIO35"]["peers"])
+        self.assertIn("display.QSPI_D0", s3["GPIO36"]["peers"])
+        self.assertEqual("display.QSPI_CS", s3["GPIO38"]["peers"][0])
+        self.assertEqual("LCD_TOUCH_INT", s3["GPIO39"]["net"])
+        self.assertEqual("i", s3["GPIO39"]["direction"])
+        self.assertEqual("GPIO_IRQ", s3["GPIO39"]["controller"])
+        self.assertEqual(["display.TP_INT"], s3["GPIO39"]["peers"])
+        self.assertEqual(["display.QSPI_D2"], s3["GPIO41"]["peers"])
+        self.assertEqual(["display.QSPI_D3"], s3["GPIO42"]["peers"])
+        self.assertNotIn("LCD_DC", {row["net"] for row in s3.values()})
+        self.assertEqual(["GPIO6", "GPIO43"], candidate["free_gpio"]["s3"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        self.assertIn(("slow_io.P06", "display.RESET", "LCD_RST_N"), routes)
+        self.assertIn(("slow_io.P07", "display.TP_RESET", "TOUCH_RST_N"), routes)
+        self.assertIn(("abstract:qualified-display-3v3", "display.IM1", "LCD_IM1_HIGH"), routes)
+        self.assertIn(("display.IM0", "abstract:display-ground", "LCD_IM0_LOW"), routes)
+        self.assertIn(("display.IM2", "abstract:display-ground", "LCD_IM2_LOW"), routes)
+
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
             GENERATOR.reject_duplicate_keys([("GPIO0", {}), ("GPIO0", {})])

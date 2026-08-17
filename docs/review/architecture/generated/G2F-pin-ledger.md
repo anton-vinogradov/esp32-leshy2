@@ -26,6 +26,7 @@
 | `hirose_dm3at_sf_pejm5` | `Hirose DM3AT-SF-PEJM5` | `verified_candidate` | `current_manufacturer_page` | [DM3 Series microSD Card Connectors catalog 2025-12-01](https://www.hirose.com/product/p/CL0609-0031-0-00) | same primary source |
 | `m5_u214` | `M5Stack U214 Cap LoRa-1262` | `verified_candidate` | `active` | [M5Stack Cap LoRa-1262 product documentation live product page](https://docs.m5stack.com/en/cap/Cap_LoRa-1262) | same primary source |
 | `nicerf_sa518_v11` | `NiceRF SA518` | `verified_candidate` | `current_product` | [SA518 UV Dual Frequency Walkie-talkie Module Product Specification 1.1 / 2026-05](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf) | same primary source |
+| `qdtech_hmx035ctft_001` | `HMX035CTFT-001 (QDtech schematic assembly marking)` | `verified_candidate` | `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified` | [QDtech ES3C35P ESP32-S3 schematic official published schematic](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf) | same primary source |
 | `rp2354a_a4` | `RP2354A A4 (exact order code required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354A uses the same A-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
 | `rp2354b_a4` | `RP2354B A4 (exact A4 order/lot identity required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
 | `skyworks_si4732_a10_gs` | `Si4732-A10-GS` | `verified_candidate` | `manufacturer_documented` | [Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short 2021-09-13](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf) | same primary source |
@@ -340,10 +341,10 @@ Decision `DEC-0046`; default `QUIET`.
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `receiver.SDIO`, `abstract:touch/codec internal I2C` | — |
-| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `receiver.SCLK`, `abstract:touch/codec internal I2C` | — |
+| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `receiver.SDIO`, `display.TP_I2C_SDA`, `abstract:codec internal I2C` | — |
+| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `receiver.SCLK`, `display.TP_I2C_SCL`, `abstract:codec internal I2C` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
-| `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd.DAT0`, `abstract:exact QSPI display controller D1` | — |
+| `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd.DAT0`, `display.QSPI_D1` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd.CD_DAT3` | — |
 | `GPIO7` | 7 | `UNIT_SIG0` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
 | `GPIO8` | 12 | `UNIT_SIG1` | `io` | `I2C1_OR_UART0_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
@@ -360,14 +361,14 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO19` | 13 | `S3_USB_DM` | `io` | `USB_SERIAL_JTAG` | `abstract:service USB connector` | — |
 | `GPIO20` | 14 | `S3_USB_DP` | `io` | `USB_SERIAL_JTAG` | `abstract:service USB connector` | — |
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
-| `GPIO35` | 28 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd.CLK`, `abstract:exact display controller` | — |
-| `GPIO36` | 29 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd.CMD`, `abstract:exact QSPI display controller D0` | — |
+| `GPIO35` | 28 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd.CLK`, `display.QSPI_CLK` | — |
+| `GPIO36` | 29 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd.CMD`, `display.QSPI_D0` | — |
 | `GPIO37` | 30 | `SLOW_IO_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT` | — |
-| `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `abstract:exact display controller` | — |
-| `GPIO39` | 32 | `LCD_DC` | `o` | `GPIO` | `abstract:exact display controller` | — |
+| `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `display.QSPI_CS` | — |
+| `GPIO39` | 32 | `LCD_TOUCH_INT` | `i` | `GPIO_IRQ` | `display.TP_INT` | — |
 | `GPIO40` | 33 | `LCD_BL_PWM` | `o` | `LEDC` | `abstract:exact display/backlight driver` | — |
-| `GPIO41` | 34 | `LCD_QSPI_D2` | `o` | `SPI2` | `abstract:exact QSPI display controller D2` | — |
-| `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `abstract:exact QSPI display controller D3` | — |
+| `GPIO41` | 34 | `LCD_QSPI_D2` | `o` | `SPI2` | `display.QSPI_D2` | — |
+| `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `display.QSPI_D3` | — |
 | `GPIO44` | 36 | `S3_C5_SDIO_D2` | `io` | `SDMMC_SLOT1_4BIT` | `c5.GPIO14` | — |
 | `GPIO47` | 24 | `S3_C5_SDIO_D3` | `io` | `SDMMC_SLOT1_4BIT` | `c5.GPIO13` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
@@ -467,8 +468,23 @@ Reserved: none. Free: none.
 | `UI_COL0` | `slow_io.P03` | `abstract:UI_COL0` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
 | `UI_COL1` | `slow_io.P04` | `abstract:UI_COL1` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
 | `UI_COL2` | `slow_io.P05` | `abstract:UI_COL2` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
-| `LCD_RST_N` | `slow_io.P06` | `abstract:display-reset` | external reset-safe pull |
-| `TOUCH_RST_N` | `slow_io.P07` | `abstract:touch-reset` | external reset-safe pull |
+| `LCD_RST_N` | `slow_io.P06` | `display.RESET` | external reset-safe pull; release only after qualified display rails are stable |
+| `TOUCH_RST_N` | `slow_io.P07` | `display.TP_RESET` | external reset-safe pull; exact TP_RESXP polarity and timing require specimen HIL |
+| `LCD_VDDI_3V3` | `abstract:qualified-display-3v3` | `display.VDDI` | local decoupling and sequencing remain electrical gates |
+| `LCD_VDD_3V3` | `abstract:qualified-display-3v3` | `display.VDD` | local decoupling, inrush and sequencing remain electrical gates |
+| `LCD_IM1_HIGH` | `abstract:qualified-display-3v3` | `display.IM1` | fixed QSPI interface strap, matching the reviewed QDtech reference |
+| `LCD_IM0_LOW` | `display.IM0` | `abstract:display-ground` | fixed QSPI interface strap, matching the reviewed QDtech reference |
+| `LCD_IM2_LOW` | `display.IM2` | `abstract:display-ground` | fixed QSPI interface strap, matching the reviewed QDtech reference |
+| `LCD_DB2_LOW` | `display.DB2_STRAP` | `abstract:display-ground` | unused parallel-data contact tied low, matching the reviewed QDtech reference |
+| `LCD_DB3_LOW` | `display.DB3_STRAP` | `abstract:display-ground` | unused parallel-data contact tied low, matching the reviewed QDtech reference |
+| `LCD_DB4_LOW` | `display.DB4_STRAP` | `abstract:display-ground` | unused parallel-data contact tied low, matching the reviewed QDtech reference |
+| `LCD_DB5_LOW` | `display.DB5_STRAP` | `abstract:display-ground` | unused parallel-data contact tied low, matching the reviewed QDtech reference |
+| `LCD_DB6_LOW` | `display.DB6_STRAP` | `abstract:display-ground` | unused parallel-data contact tied low, matching the reviewed QDtech reference |
+| `LCD_DB7_LOW` | `display.DB7_STRAP` | `abstract:display-ground` | unused parallel-data contact tied low, matching the reviewed QDtech reference |
+| `LCD_LEDA` | `abstract:qualified-backlight-supply` | `display.LEDA` | production backlight source remains an exact current/thermal/EMI gate |
+| `LCD_LEDK` | `display.LEDK_1` | `abstract:qualified-backlight-sink` | all three cathodes terminate on one qualified dimmable sink |
+| `LCD_LEDK` | `display.LEDK_2` | `abstract:qualified-backlight-sink` | all three cathodes terminate on one qualified dimmable sink |
+| `LCD_LEDK` | `display.LEDK_3` | `abstract:qualified-backlight-sink` | all three cathodes terminate on one qualified dimmable sink |
 | `CODEC_EN` | `slow_io.P10` | `abstract:codec-enable` | external off-safe pull |
 | `AUDIO_SEL0` | `slow_io.P11` | `abstract:audio-selector-0` | external muted-safe pull |
 | `AUDIO_SEL1` | `slow_io.P12` | `abstract:audio-selector-1` | external muted-safe pull |
@@ -520,10 +536,10 @@ Reserved: none. Free: none.
 | `U214_SPI` | `rp` | `u214` | dedicated | LoRa BUSY/IRQ transaction never waits for display or compatibility-radio bus ownership | PIO1 SM0 plus dedicated DMA/IRQ stress HIL |
 | `U214_UART` | `rp` | `u214` | dedicated | GNSS receive has continuous hardware UART buffering independent of SPI activity | UART1 DMA/ring overflow stress HIL |
 | `U214_I2C` | `rp` | `u214`, `u214_i2c_iso` | dedicated | external stuck-low or hot-plug cannot stall internal UI/audio/receiver I2C | TCA4307 stuck-bus and hot-plug fault-injection HIL |
-| `DISPLAY_SD_SPI` | `s3` | `abstract:QSPI display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
+| `DISPLAY_SD_SPI` | `s3` | `display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
 | `S3_RP_IPC` | `s3` | `rp` | dedicated | 20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership | SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL |
 | `S3_C5_IPC` | `s3` | `c5` | dedicated | 4-bit SDIO at up to 40 MHz with qualified framed payload >=1.5 MB/s and control RTT <=2 ms; no microSD, RP or display controller ownership | single-slot SDMMC/SDIO throughput, control-priority and simultaneous Wi-Fi/802.15.4 load HIL |
-| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `abstract:touch`, `abstract:codec`, `receiver` | scheduled; bounded transactions; expander INT only wakes the service loop | ordinary UI/control first visible response <=100 ms; no radio FIFO or PTT deadline is placed here | shortest-pulse, matrix and fault-latency HIL |
+| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `display touch`, `abstract:codec`, `receiver` | scheduled; bounded transactions; expander INT and touch IRQ only wake the service loop | ordinary UI/control first visible response <=100 ms; no radio FIFO or PTT deadline is placed here | touch IRQ/reset, shortest-pulse, matrix and fault-latency HIL |
 | `S3_UNIT_PORT` | `s3` | `abstract:M5 Unit` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | profile-switch and external-fault HIL |
 | `S3_I2S` | `s3` | `abstract:codec` | dedicated | continuous DMA audio without storage/display service gaps | simultaneous display, SD, C5 and radio event stress HIL |
 
@@ -567,18 +583,20 @@ Reserved: none. Free: none.
 - `receiver` lifecycle: `manufacturer_documented`.
 - `slow_io` uses `TCA6424ARGJR` as `reference_only`, not an accepted production choice.
 - `sd` lifecycle: `current_manufacturer_page`.
+- `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger
 - TCA6424ARGJR and TCA4307DGKR are real-contact planning references; voltage domains, pulls, address, reset, shortest pulses and exact endpoint MPNs remain electrical/HIL gates
-- After DEC-0052 assigns S3 GPIO41/GPIO42 to direct-QSPI D2/D3, S3 retains two free GPIO, C5 one and RP none; slow_io retains P27. GPIO43 remains unassigned until exact-panel TE benefit is proved; any new direct RP endpoint requires an explicit remap and repeated review
+- HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and is instantiated as a paper candidate, not a production-qualified orderable part; exact drawing/FPC mechanics, lifecycle, connector, backlight/protection and specimen HIL remain open
+- After DEC-0052 assigns S3 GPIO41/GPIO42 to direct-QSPI D2/D3 and the HMX QSPI path reuses former GPIO39 DC reserve for touch IRQ, S3 retains two free GPIO, C5 one and RP none; slow_io retains P27. GPIO43 remains unassigned until exact-panel TE benefit is proved; any new direct RP endpoint requires an explicit remap and repeated review
 - C5 4-bit SDIO has exclusive ownership of the S3 SD/MMC host; C5 native USB is unavailable at runtime, so permanent UART0 plus EN/BOOT/strap contacts is the independent recovery path
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; separate CS/per-device clocks and bounded transactions remove radio impact, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
 - DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
-- exact display/touch and codec, IR frontends, power tree, antenna placement and hard-stop circuitry remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
+- HMX035CTFT-001 exact display/touch contacts are instantiated, but production orderability/drawing/connector/backlight/protection/optics and HIL remain open; exact codec, IR frontends, power tree, antenna placement and hard-stop circuitry also remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Machine-check result and review boundary
 

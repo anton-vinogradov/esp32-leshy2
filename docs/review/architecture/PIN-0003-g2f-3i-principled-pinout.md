@@ -11,6 +11,8 @@
 - Working-design decision: [`DEC-0051`](../decisions/DEC-0051-principled-pinout-as-working-design.md)
 - Display-path amendment: [`DEC-0052`](../decisions/DEC-0052-qspi-first-display-path.md) /
   [`REV-0004X`](../reviews/REV-0004X-qspi-display-decision-propagation.md)
+- Exact display fit: [`DSP-0005`](DSP-0005-hmx035ctft-electrical-fit.md) /
+  [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -77,6 +79,12 @@ nRF contacts, CC1101 contacts, U214 Cap-Bus, TCA4307, TCA6424A and the Hirose
 microSD socket were already exact in the source. Their production choice and
 electrical/RF qualification are still separate gates.
 
+The display path now also terminates on exact `HMX035CTFT-001` contacts from
+the official QDtech schematic. Its QSPI path uses GPIO4/35/36/38/41/42;
+former GPIO39/DC is reused
+as touch IRQ, while slow `P06/P07` provide display/touch reset. This consumes
+no new contact, leaves S3 GPIO6/GPIO43 free and keeps TE conditional on HIL.
+
 ## Digital non-interference result
 
 - every nRF has its own `SCK/MOSI/MISO/CSN/CE/IRQ` and PIO state machine;
@@ -102,7 +110,8 @@ changes the current S3 budget to `31/3/2` without changing owners.
 [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 lists every remaining `abstract:*` endpoint. The material groups are:
 
-- exact display/touch and codec package;
+- production-qualified display connector/backlight/protection/sourcing and
+  exact codec package; the current HMX display paper endpoint itself is exact;
 - exact IR receiver/learning receiver/LED driver and TX evidence;
 - hard STOP latch, actual-TX detectors and power/current/thermal supervisor;
 - nRF/CC/voice/receiver load switches, isolation and level domains;

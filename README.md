@@ -104,8 +104,11 @@ direct-QSPI D2/D3 on S3 GPIO41/42 and measured `<=1 ms` display occupancy;
 [`DEC-0053`](docs/review/decisions/DEC-0053-new-35in-qspi-display-class.md)
 accepts a 3.5-inch portrait `320×480` IPS direct-QSPI capacitive-touch class.
 [`DSP-0004`](docs/review/architecture/DSP-0004-display-part-number-register.md)
-lists every known display reference part number and leaves the exact production
-panel/connector, optics and protection MPNs explicitly open.
+lists every known display reference part number. The official QDtech schematic
+discloses exact assembly `HMX035CTFT-001`; `DSP-0005/REV-0005A` review its
+40-contact electrical fit without consuming a new GPIO. Standalone
+orderability/drawing/lifecycle, exact connector, backlight, optics and
+protection remain explicitly open.
 
 ```mermaid
 flowchart LR
@@ -148,7 +151,9 @@ the machine-generated
 [`exact pad/net atlas`](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
 Remaining electrical boundaries are listed in
 [`FND-0060`](docs/review/findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
-and may change the working design after repeated review.
+and may change the working design after repeated review. The current display
+path already terminates on `HMX035CTFT-001`: S3 GPIO39 is touch IRQ, slow
+P06/P07 are display/touch reset, and S3 GPIO6/GPIO43 remain free.
 
 ## Safety and cost boundary
 

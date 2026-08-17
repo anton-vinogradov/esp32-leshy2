@@ -106,8 +106,11 @@ accepting direct QSPI on S3 `GPIO41/42` and measured `<=1 ms` display
 occupancy; the current S3 budget becomes `31/3/2`. `DSP-0003/REV-0004Y` show
 that old 4-inch ST7796S remains an A0 workload fixture but not a QSPI target;
 `DEC-0053/REV-0004Z` accept a 3.5-inch portrait `320×480` IPS direct-QSPI
-capacitive-touch class. `DSP-0004` lists every known part identifier; exact
-production panel/connector, optics and HIL remain open.
+capacitive-touch class. `FND-0063/DSP-0005/REV-0005A` correct the primary
+source: official QDtech schematic exposes exact assembly `HMX035CTFT-001` and
+its 40-contact paper fit now terminates in `G2F-3I`. Production
+orderability/drawing/lifecycle, connector, backlight, optics and HIL remain
+open.
 `CTL-0001/REV-0004K` found that the first maps
 closed MCU accounting only. The owner delegated layout search; `DEC-0044`
 accepts `IMP-0037/A`, while `NIF-0001/REV-0004L` review the leading `G2F-3I`:
@@ -184,8 +187,9 @@ is the fallback; no fourth MCU is added to the baseline.
 `IMP-0045/A` is accepted as `DEC-0053`: the target is a 3.5-inch portrait
 `320×480` QSPI IPS+touch class; `DLE06235B/ES3C35P` (`ST77922`) is primary
 HIL, Waveshare SKU `31137` (`AXS15231B`) is secondary HIL, and the old 4-inch
-ST7796S stays A0 control/fallback. Exact production MPNs remain explicit `TBD`
-entries in `DSP-0004`.
+ST7796S stays A0 control/fallback. `HMX035CTFT-001` is the exact current paper
+candidate, not yet a production-qualified BOM line; remaining unknown parts
+stay explicit `TBD` entries in `DSP-0004`.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 accepts reuse of the old 75×150 mm two-board clamshell and its
@@ -196,8 +200,8 @@ The principled pinout is no longer deferred: the current paper step is complete
 and can feed the adapted legacy physical generator as a reopenable working map.
 The next pass begins the G3 physical/product mockup with real envelopes; any
 packing/RF/power conflict loops back into `G2F-3I` rather than being hidden.
-In parallel, `IMP-0043/0045`, `FND-0058` antenna qualification, `FND-0060`
-exact electrical endpoints and `FND-0062` exact-display disposition remain
-open. Exact production nRF, SMA/feed/protection,
+In parallel, `IMP-0043`, `FND-0058` antenna qualification and the remaining
+`FND-0060` electrical endpoints stay open. Exact production nRF,
+SMA/feed/protection,
 quiet-state parts, SI/power/RF/HIL must close before the atomic target and
 KiCad. `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

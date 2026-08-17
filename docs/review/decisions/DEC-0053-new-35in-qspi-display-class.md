@@ -4,8 +4,10 @@
 - Дата: 2026-08-17
 - Основание: [`IMP-0045`](../improvements/IMP-0045-new-35in-qspi-display-class.md)
 - Evidence: [`DSP-0003`](../architecture/DSP-0003-exact-fast-display-shortlist.md) /
-  [`DSP-0004`](../architecture/DSP-0004-display-part-number-register.md)
-- Review: [`REV-0004Z`](../reviews/REV-0004Z-display-class-decision-propagation.md)
+  [`DSP-0004`](../architecture/DSP-0004-display-part-number-register.md) /
+  [`DSP-0005`](../architecture/DSP-0005-hmx035ctft-electrical-fit.md)
+- Reviews: [`REV-0004Z`](../reviews/REV-0004Z-display-class-decision-propagation.md),
+  [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
 
 ## Решение
 
@@ -23,12 +25,13 @@
 
 ## Что ещё не выбрано
 
-Production status не получает ни одна dev board. До закупочного и HIL gate
-остаются открыты точные MPN дисплейной сборки, FPC/board connector, touch
-implementation, backlight driver, ESD/protection, cover lens, brightness и
-optical stack. Реестр известных и отсутствующих обозначений находится в
-`DSP-0004`; отсутствие опубликованного MPN обозначается `TBD`, а не заменяется
-названием controller IC.
+Production status не получает ни одна dev board. Official `ES3C35P` schematic
+раскрывает exact assembly marking `HMX035CTFT-001`, и `DSP-0005` подтверждает
+его paper electrical fit. До закупочного и HIL gate остаются открыты
+standalone orderability/lifecycle/drawing этой сборки, FPC/board connector,
+touch implementation, backlight driver, ESD/protection, cover lens,
+brightness и optical stack. Реестр известных и отсутствующих обозначений
+находится в `DSP-0004`; controller IC не подменяет assembly MPN.
 
 ## Почему это не преждевременный BOM freeze
 
@@ -45,5 +48,7 @@ optical stack. Реестр известных и отсутствующих о�
 - S3 principled pinout `DEC-0052` не меняется.
 - Firmware может планировать два prototype driver profiles — `ST77922` и
   `AXS15231B` — но production init table определяется только точной панелью.
+- Current machine map instantiates `HMX035CTFT-001`: former S3 `GPIO39/DC`
+  becomes touch IRQ; GPIO budget remains `31/3/2` and TE remains unassigned.
 - Physical design использует 3.5-inch portrait window как текущий target input
   и сохраняет возможность вернуться к A0/EVE fallback при измеренном провале.

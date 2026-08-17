@@ -4,7 +4,8 @@
 - Дата проверки: 2026-08-17
 - Target-class decision: [`DEC-0053`](../decisions/DEC-0053-new-35in-qspi-display-class.md)
 - Shortlist: [`DSP-0003`](DSP-0003-exact-fast-display-shortlist.md)
-- Review: [`REV-0004Z`](../reviews/REV-0004Z-display-class-decision-propagation.md)
+- Reviews: [`REV-0004Z`](../reviews/REV-0004Z-display-class-decision-propagation.md),
+  [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
 
 Этот реестр намеренно не использует широкую таблицу. Для каждого обозначения
 указано, чем оно является: target part, HIL-only development reference,
@@ -20,12 +21,16 @@ fallback либо ещё не опубликованный production MPN. Contr
 - Target class: 3.5-inch portrait `320×480`, IPS, direct QSPI, capacitive
   touch. Это спецификация класса по `DEC-0053`, не заказываемый MPN.
 
-### Production parts, которые ещё обязаны получить exact MPN
+### Production parts, которые ещё обязаны пройти qualification
 
-- Display/panel assembly: **`TBD`** — ни одна проверенная dev board не
-  раскрывает заказываемый raw-panel MPN с подтверждённым lifecycle.
+- Display/panel assembly: current exact paper candidate
+  **`HMX035CTFT-001`**. Marking раскрыт official QDtech `ES3C35P` schematic,
+  но manufacturer attribution, standalone orderability, drawing, lifecycle и
+  second source не подтверждены; поэтому production BOM ещё не принят.
 - Display FPC/board connector: **`TBD`** — выбирается только вместе с exact
-  assembly и его drawing/pinout.
+  assembly drawing/FPC mechanics. Hirose `FH12-40S-0.5SH(55)`,
+  CL `CL0586-0527-7-55`, — проверенный по pitch/count/height кандидат, не
+  принятый mate.
 - Touch controller: **`TBD` или integrated** — отдельный IC нельзя выдумывать,
   пока exact assembly не выбран.
 - Backlight LED driver: **`TBD`**.
@@ -39,12 +44,15 @@ fallback либо ещё не опубликованный production MPN. Contr
 - Retail/product identifier: Elecrow `DLE06235B`.
 - Manufacturer/specification module identifier: QDtech `ES3C35P`.
 - Display/touch controller marking: Sitronix `ST77922`.
-- Exact raw panel/FPC manufacturer MPN: **не опубликован**.
+- Exact display/touch assembly marking: `HMX035CTFT-001` in the official
+  QDtech schematic; separate manufacturer attribution is not assumed.
 - Separate touch-controller MPN: **не опубликован**; specification описывает
   touch capability семейства `ST77922`.
-- Role: primary HIL only; не target BOM part.
+- Role: exact current paper candidate и primary HIL specimen target; не
+  production-accepted BOM part до sourcing/mechanics/HIL gates.
 - Checked properties: 3.5-inch `320×480` IPS, QSPI display, I2C touch,
   300 cd/m², `-30…80 °C`, module outline `54.50×101.50×10 mm`.
+- Exact contact/electrical fit: [`DSP-0005`](DSP-0005-hmx035ctft-electrical-fit.md).
 
 ## Secondary HIL — Waveshare AXS15231B
 
@@ -52,7 +60,8 @@ fallback либо ещё не опубликованный production MPN. Contr
 - Orderable SKU: Waveshare `31137`.
 - Enclosed/camera variant: Waveshare `ESP32-S3-Touch-LCD-3.5B-C`, SKU `31334`.
 - Display/touch controller marking: `AXS15231B`.
-- Exact raw panel/FPC manufacturer MPN: **не опубликован**.
+- Schematic assembly markings: `HXR35014C30` and `HXR35014C30_TOUCH`.
+- Exact standalone orderability/drawing/lifecycle: **не подтверждены**.
 - Role: secondary HIL/driver reference only; не target BOM part.
 
 Parts на schematic готовой Waveshare board перечислены только для точной HIL
@@ -132,6 +141,8 @@ PSRAM, но reviewed page/schematic не дают достаточного order
 ## Primary sources
 
 - [Elecrow/QDtech DLE06235B/ES3C35P specification](https://www.elecrow.com/download/product/DLE06235B/3.5inch_IPS_ESP32-S3_Specification.pdf)
+- [QDtech ES3C35P official schematic with HMX035CTFT-001](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf)
+- [Hirose FH12-40S-0.5SH(55)](https://www.hirose.com/en/product/p/CL0586-0527-7-55)
 - [Waveshare ESP32-S3-Touch-LCD-3.5B documentation](https://docs.waveshare.com/ESP32-S3-Touch-LCD-3.5B)
 - [Waveshare 3.5B schematic](https://files.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B/ESP32-S3-Touch-LCD-3.5B-Schematic.pdf)
 - [OPL AXS15231B raw-panel sourcing page](https://www.opldisplaytec.com/product/226)
@@ -141,4 +152,3 @@ PSRAM, но reviewed page/schematic не дают достаточного order
 - [Riverdi RVT43HLBFWCA0 datasheet](https://download.riverdi.com/RVT43HLBFWCA0/DS_RVT43HLBFWCA0_Rev.1.4.pdf)
 - [Espressif ST77922 component](https://components.espressif.com/components/espressif/esp_lcd_st77922)
 - [Espressif AXS15231B component](https://components.espressif.com/components/espressif/esp_lcd_axs15231b)
-

@@ -106,7 +106,10 @@ occupancy; current S3 budget становится `31/3/2`. `DSP-0003/REV-0004Y`
 показывают, что старый 4-inch ST7796S годится как A0 workload fixture, но не
 как QSPI target. `DEC-0053/REV-0004Z` принимают 3.5-inch portrait `320×480`
 IPS direct-QSPI capacitive-touch class; `DSP-0004` перечисляет все известные
-part numbers. Exact production panel/connector, optics и HIL открыты.
+part numbers. `FND-0063/DSP-0005/REV-0005A` исправляют primary source:
+official QDtech schematic раскрывает exact assembly `HMX035CTFT-001`, а его
+40-contact paper fit теперь заканчивается в `G2F-3I`. Production
+orderability/drawing/lifecycle, connector, backlight, optics и HIL открыты.
 `CTL-0001/REV-0004K` обнаружили, что
 первые карты закрывали только MCU accounting. Владелец делегировал перебор
 компоновки; `DEC-0044` принял `IMP-0037/A`, а `NIF-0001/REV-0004L` проверили
@@ -182,7 +185,9 @@ combined 868/915, отдельные 315/433, VHF/UHF, FM/SW whip и AM/LW pod; 
 `IMP-0045/A` принято как `DEC-0053`: target — 3.5-inch portrait `320×480`
 QSPI IPS+touch class; `DLE06235B/ES3C35P` (`ST77922`) — primary HIL,
 Waveshare SKU `31137` (`AXS15231B`) — secondary HIL, старый 4-inch ST7796S —
-A0 control/fallback. Exact production MPN остаются явными `TBD` в `DSP-0004`.
+A0 control/fallback. `HMX035CTFT-001` — exact current paper candidate, но ещё
+не production-qualified BOM line; остальные неизвестные parts остаются
+явными `TBD` в `DSP-0004`.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
 подтверждает переиспользование старого `75×150 mm` two-board clamshell и его
@@ -193,8 +198,7 @@ onboard LoRa, antenna count и generic nRF dimensions не наследуютс�
 может войти в адаптированный legacy physical generator как reopenable working
 map. Следующий проход начинает G3 physical/product mockup с реальными
 envelopes; найденный packing/RF/power conflict возвращается в `G2F-3I`, а не
-маскируется. Параллельно остаются решения `IMP-0043/0045`, `FND-0058` antenna
-qualification, `FND-0060` exact electrical endpoints и `FND-0062` exact
-display disposition. Exact production nRF,
+маскируется. Параллельно остаются `IMP-0043`, `FND-0058` antenna qualification
+и оставшиеся `FND-0060` exact electrical endpoints. Exact production nRF,
 SMA/feed/protection, quiet-state parts, SI/power/RF/HIL обязаны закрыться до
 atomic target и KiCad. `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

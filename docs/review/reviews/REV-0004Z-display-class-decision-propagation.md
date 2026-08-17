@@ -26,3 +26,9 @@
 production assembly и его init/HIL остаются downstream gate, поэтому KiCad и
 production firmware driver ещё не разрешены.
 
+## Последующее исправление
+
+`FND-0063/REV-0005A` установили, что official QDtech schematic всё-таки
+раскрывает assembly marking `HMX035CTFT-001`. Это исправляет прежнее
+утверждение про отсутствующий raw MPN, но не меняет production boundary:
+standalone orderability/drawing/lifecycle и qualification остаются открыты.

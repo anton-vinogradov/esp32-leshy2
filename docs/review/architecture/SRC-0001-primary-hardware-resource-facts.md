@@ -87,7 +87,8 @@ Legacy-документация ограничивалась S3/C5 placement. Ze
 - какой S3/C5 memory variant является оптимальным;
 - будет ли междоменный link SDIO, SPI, UART, USB или комбинацией;
 - сколько buses следует физически разделить;
-- exact display/touch MPN и connector pinout;
+- exact display/touch MPN и connector pinout (последующий `DSP-0005` закрыл
+  assembly contact map как paper candidate, но не production connector);
 - окончательную цену, доступность, RF module/PA/LNA variant и PCB dimensions.
 
 Эти решения допустимы только в полном `SYN/PIN/PKG` package. Цена и наличие являются нестабильными данными и фиксируются отдельным датированным supplier snapshot одинакового quantity/region для всех candidates.

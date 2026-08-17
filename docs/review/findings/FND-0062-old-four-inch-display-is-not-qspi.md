@@ -27,5 +27,6 @@
 
 Владелец принял `IMP-0045/A` как `DEC-0053`: target — новый 3.5-inch portrait
 QSPI class; старый 4-inch module сохраняется как A0 control/compatibility HIL,
-а EVE — как high-end fallback. Exact production panel/connector остаются
-отдельным sourcing/HIL gate и перечислены в `DSP-0004`.
+а EVE — как high-end fallback. `HMX035CTFT-001` теперь exact current assembly
+candidate, но production orderability/connector остаются отдельным
+sourcing/HIL gate и перечислены в `DSP-0004/DSP-0005`.

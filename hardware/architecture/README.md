@@ -45,9 +45,9 @@ Its digital non-interference/resource contracts pass these checks; physical RF,
 electrical/HIL and complete target-architecture acceptance remain upstream
 gates.
 
-The inventory also contains verified reference boundaries that are not yet
-instantiated in either map. `DSP-0001` currently covers three display/touch
-devices and one microSD socket. `DEC-0043` accepts the task/dirty-region
-performance contract, but their presence still proves real contacts only. An
-exact MPN/interface/optics choice and HIL must close before a display can
-replace the abstract endpoint in a candidate.
+The inventory also contains verified reference boundaries. `DSP-0001` covers
+three display/touch devices and one microSD socket; `DSP-0005` additionally
+instantiates the exact disclosed `HMX035CTFT-001` assembly in `G2F-3I` and
+checks its 40-contact QSPI/touch fit. This remains a paper candidate: exact
+FPC mechanics/connector, standalone orderability/lifecycle, backlight,
+protection, optics and HIL must close before production acceptance.

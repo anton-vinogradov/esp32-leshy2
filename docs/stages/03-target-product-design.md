@@ -40,8 +40,10 @@ working-baseline checkpoint `DEC-0041` и разрешает начать пер
 reproducible mockup. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
 1-bit SPI reference, новый 3.5-inch direct-QSPI class и EVE fallback;
 `DEC-0053/REV-0004Z` принимают 3.5-inch portrait `320×480` IPS QSPI+touch
-class. `DSP-0004` сохраняет exact production panel/connector/optics как
-явные `TBD`. `FND-0060` exact electrical endpoints,
+class. `FND-0063/DSP-0005/REV-0005A` устанавливают exact current assembly
+candidate `HMX035CTFT-001` и проводят ревью его paper electrical fit;
+production ordering/drawing/connector/backlight/optics остаются открыты.
+`FND-0060` remaining exact electrical endpoints,
 принятие profiled kit (`IMP-0043`), exact two-source assemblies и assembled RF
 HIL (`FND-0058`) закрываются параллельно. Найденный physical/RF/power/service conflict меняет
 рабочую карту через повторное G2F review, а не маскируется внутри макета.

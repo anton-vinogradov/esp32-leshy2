@@ -39,8 +39,11 @@ renderer/quantum, но не direct-QSPI target.
 - Mechanics/optics: active `48.96×73.44 mm`; complete board
   `54.50×101.50×10.0 mm`; 300 cd/m²; `-30…80 °C`.
 - Power evidence: 5 V complete board; display-only 0.97 W, backlight 120 mA.
-- Disposition: **primary new-screen HIL**. Integrated S3 board не доказывает
-  production panel, connector или touch MPN.
+- Exact assembly marking from the official board schematic:
+  `HMX035CTFT-001`.
+- Disposition: **exact current paper candidate and primary new-screen HIL**.
+  Integrated S3 board всё ещё не доказывает standalone orderability,
+  manufacturer drawing, connector mechanics, lifecycle или production HIL.
 
 ### Secondary HIL — Waveshare
 
@@ -107,9 +110,9 @@ tests.
 3. Use Waveshare AXS15231B 3.5B as a second-controller/driver/supply reference,
    not as an outdoor target.
 4. `DEC-0053` calls the target only **3.5-inch portrait QSPI `320×480` IPS + capacitive
-   touch class**. Do not freeze a complete dev board or raw FPC until two-source
-   procurement, exact connector/pinout, brightness/cover-lens, power and shared
-   SD HIL pass.
+   touch class**. Official schematic раскрывает raw assembly marking
+   `HMX035CTFT-001`, но его нельзя freeze до two-source procurement, exact
+   drawing/connector mechanics, brightness/cover-lens, power и shared-SD HIL.
 
 The 3.5-inch active area is about 23% smaller than the old 4-inch active area.
 This can reduce enclosure width/height, but legibility, glove/control layout
@@ -121,6 +124,7 @@ production acceptance. Все известные part identifiers и честн�
 
 - [Elecrow DLE06235B product/specification](https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html)
 - [Elecrow/QDtech 3.5-inch ST77922 specification](https://www.elecrow.com/download/product/DLE06235B/3.5inch_IPS_ESP32-S3_Specification.pdf)
+- [QDtech ES3C35P official schematic](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf)
 - [Waveshare ESP32-S3-Touch-LCD-3.5B](https://www.waveshare.com/product/esp32-s3-touch-lcd-3.5b.htm)
 - [Espressif AXS15231B component](https://components.espressif.com/components/espressif/esp_lcd_axs15231b)
 - [Espressif ST77922 component](https://components.espressif.com/components/espressif/esp_lcd_st77922)

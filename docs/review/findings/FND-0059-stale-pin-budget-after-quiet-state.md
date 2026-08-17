@@ -28,11 +28,12 @@ machine source и прежние review tables создавали противо
 - создан отдельный generated
   [`G2F-3I-principled-pinout`](../architecture/generated/G2F-3I-principled-pinout.md);
 - `--check` теперь проверяет оба generated artifacts;
-- regression test фиксирует exact `29/3/4`, `14/6/1`, `48/0/0` budgets.
+- regression test зафиксировал exact `29/3/4`, `14/6/1`, `48/0/0` budgets
+  этого прохода; subsequent `DEC-0052` корректно изменил S3 на current
+  `31/3/2`, и test теперь защищает именно current value.
 
 ## Результат
 
 Presentation mismatch закрыт. Нулевой direct RP reserve остаётся осознанным
 architecture fact, а не закрытой проблемой: новый direct endpoint обязан
 переоткрыть layout review.
-

@@ -25,8 +25,10 @@ product workload, но является только 1-bit SPI и поэтому
 - secondary HIL: Waveshare AXS15231B 3.5B for second-controller/driver evidence;
 - старый 4-inch ST7796S сохраняется как A0 control и дешёвый fallback fixture,
   но не target;
-- exact production panel/connector не замораживается до two-source,
-  brightness/cover-lens, power, shared-SD and physical-legibility HIL.
+- disclosed assembly candidate `HMX035CTFT-001` не замораживается как
+  production part до standalone orderability/drawing, exact connector,
+  two-source, brightness/cover-lens, power, shared-SD and physical-legibility
+  HIL.
 
 Это рекомендуемый вариант: он реализует `DEC-0052` с минимальным BOM и не
 ломает portrait product layout.
