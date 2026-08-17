@@ -1,12 +1,13 @@
 # IMP-0042 — external SMA gender/polarity and feed-class policy
 
-- Статус: **Ожидает решения владельца**
+- Статус: **Принят вариант B — `DEC-0050`**
 - Дата: 2026-08-17
 - Decisions: [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md),
   [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
 - Evidence: [`RFH-0001`](../architecture/RFH-0001-module-to-external-sma-interface-review.md),
   [`RFH-0002`](../architecture/RFH-0002-antenna-connector-ecosystem-review.md)
 - Finding: [`FND-0057`](../findings/FND-0057-ebyte-ipx-mating-family-unproven.md)
+- Decision: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 
 ## Контекст решения
 
@@ -87,9 +88,10 @@ standard SMA вариант A остаётся fallback без изменени�
 Одновременно остаются обязательными `FND-0057` sample gate и запрет считать
 все девять paths одним электрическим feed/BOM item.
 
-## Вопрос владельцу
+## Решение владельца
 
-Принимаем вариант **B: RP-SMA jack только для `S3-2G4` и `C5-2G4/5`, standard
-SMA jack для остальных семи ports, с обязательным two-source antenna
-qualification gate и fallback к uniform standard SMA, если RP-SMA не даёт
-реального преимущества по gain/cost/availability**?
+Вариант **B** принят 2026-08-17 в [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md):
+RP-SMA jack только для `S3-2G4` и `C5-2G4/5`, standard SMA jack для остальных
+семи ports, с обязательным two-source antenna qualification gate и fallback к
+uniform standard SMA, если RP-SMA не даёт реального преимущества по
+gain/cost/availability.

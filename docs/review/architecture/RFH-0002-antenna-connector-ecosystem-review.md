@@ -1,9 +1,10 @@
 # RFH-0002 — antenna connector ecosystem review
 
-- Статус: **Проведено ревью фактов; polarity choice остаётся `IMP-0042`**
+- Статус: **Проведено ревью фактов; вариант B принят `DEC-0050`**
 - Дата: 2026-08-17
 - Prerequisite: [`RFH-0001`](RFH-0001-module-to-external-sma-interface-review.md)
 - Proposal: [`IMP-0042`](../improvements/IMP-0042-external-sma-gender-and-feed-policy.md)
+- Decision: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 
 ## Проверяемый вопрос
 
@@ -67,8 +68,8 @@ Wi-Fi ports S3/C5, standard SMA для остальных семи. Вариан
 2.4/5 GHz ports RP-SMA» не следует из фактов: три nRF принадлежат Ebyte/nRF
 ecosystem, а не Wi-Fi-router ecosystem.
 
-Факт-review получает **«Проведено ревью»**. Сам polarity choice остаётся
-решением владельца в `IMP-0042`; exact antenna MPN и orderability не закрыты.
+Факт-review получает **«Проведено ревью»**. Владелец принял ограниченный mixed
+candidate в `DEC-0050`; exact antenna MPN и orderability не закрыты.
 
 ## Первичные источники
 

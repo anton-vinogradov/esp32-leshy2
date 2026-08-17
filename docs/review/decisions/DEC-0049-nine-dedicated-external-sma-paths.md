@@ -7,6 +7,7 @@
 - Proposal: [`IMP-0041`](../improvements/IMP-0041-exact-external-sma-count.md), вариант A
 - Evidence: [`ANT-0001`](../architecture/ANT-0001-external-sma-path-inventory.md)
 - Finding: [`FND-0055`](../findings/FND-0055-si4732-two-antenna-input-domains.md)
+- Connector refinement: [`DEC-0050`](DEC-0050-ecosystem-aligned-sma-polarity.md)
 
 ## Решение
 
@@ -18,9 +19,11 @@
    `RX-FM/SW`, physical `AMI` — `RX-AM/LW`. Между ними не ставится общий
    пользовательский RF switch, а переход режима не требует переставлять одну
    antenna между двумя электрически разными frontends.
-3. Девять SMA означают девять механически одинаковых внешних interfaces, но
-   **не** одинаковые электрические порты. Каждый получает неснимаемую маркировку
-   path/band, допустимого antenna profile и TX/RX capability.
+3. Девять SMA означают девять внешних interfaces одного threaded form factor,
+   но **не** одинаковые electrical/polarity ports. `DEC-0050` позднее уточняет
+   их как две native-Wi-Fi RP-SMA и семь standard SMA. Каждый получает
+   неснимаемую маркировку path/band, допустимого antenna profile и TX/RX
+   capability.
 4. `RX-AM/LW` не объявляется generic 50-ohm coax port. Baseline — короткий
    direct plug-in loop/pod либо отдельно квалифицированный transformer/buffered
    pod. Cable capacitance, ESD, pickup и sensitivity входят в обязательный

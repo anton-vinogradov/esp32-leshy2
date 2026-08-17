@@ -88,6 +88,23 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
+    def test_rejects_external_sma_polarity_decision_regression(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        policy = candidate["antenna_policy"]
+        policy["external_connector_decision"] = "IMP-0042"
+        policy["device_connector_by_path"]["N24-0"] = "rp_sma_jack_pin_center"
+        policy["antenna_mate_by_path"]["C5-2G4/5"] = "sma_plug_pin_center"
+        policy["antenna_qualification_gate"]["minimum_orderable_qualified_mpns_per_group"] = 1
+        errors = self.errors_for(candidates)
+        self.assertTrue(
+            any("external_connector_decision must be 'DEC-0050'" in error for error in errors),
+            errors,
+        )
+        self.assertTrue(any("device_connector_by_path must be" in error for error in errors), errors)
+        self.assertTrue(any("antenna_mate_by_path must be" in error for error in errors), errors)
+        self.assertTrue(any("antenna_qualification_gate must be" in error for error in errors), errors)
+
     def test_exact_sa518_does_not_regress_to_a_fictional_sq_pin(self):
         voice = self.database["devices"]["nicerf_sa518_v11"]
         self.assertNotIn("SQ", voice["contacts"])

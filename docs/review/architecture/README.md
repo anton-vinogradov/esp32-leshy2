@@ -84,8 +84,8 @@ peripherals and HIL remain open; CAD stays blocked.
 - [`RFH-0002`](RFH-0002-antenna-connector-ecosystem-review.md) checks actual
   antenna ecosystems instead of grouping only by frequency. It finds RP-SMA
   typical for native Wi-Fi, standard SMA in Ebyte's nRF ecosystem and both
-  polarities in sub-GHz; `IMP-0042` now compares uniform SMA with a bounded
-  `2 RP-SMA + 7 standard SMA` candidate.
+  polarities in sub-GHz; `DEC-0050/REV-0004T` accept bounded
+  `2 RP-SMA + 7 standard SMA` and make exact antenna shortlist the next gate.
 
 ## Deferred/reference G3 artifacts
 

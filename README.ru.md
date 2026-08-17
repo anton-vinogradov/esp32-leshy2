@@ -122,9 +122,9 @@ AM/LW; `DEC-0049/REV-0004Q` принимают девять labelled SMA с ра
 свой разъём только `IPX`, поэтому `FND-0057` требует specimen-fit gate.
 `RFH-0002/REV-0004S` проверяют antenna ecosystems: RP-SMA типичен для native
 Wi-Fi, Ebyte/nRF использует standard SMA, а sub-GHz имеет обе polarity.
-`IMP-0042` оставляет владельцу выбор uniform standard SMA против ограниченного
-`2 RP-SMA + 7 standard SMA`; mounting и длины кабелей остаются physical
-co-design.
+`DEC-0050/REV-0004T` принимают ограниченный `2 RP-SMA + 7 standard SMA`:
+RP-SMA только для native Wi-Fi S3/C5, standard SMA для остальных семи;
+mounting, длины кабелей и exact antenna shortlist остаются следующими gates.
 Physical RF/full-mix measurements,
 quiet-state power controls неиспользуемых interfaces, peripherals, power и HIL
 должны закрыться до адаптации legacy physical mockup.

@@ -14,7 +14,8 @@
 
 Предложение не меняет scope и не становится архитектурным решением до явного согласия владельца проекта.
 
-Текущее предложение в активной цепочке: [`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md)
-выбирает external SMA gender/polarity, сохраняя mount и cable length для
-physical co-design. `FND-0057` одновременно запрещает считать generic Ebyte
-`IPX` доказанным U.FL/MHF I до specimen gate.
+Последнее предложение в активной цепочке [`IMP-0042`](IMP-0042-external-sma-gender-and-feed-policy.md)
+закрыто вариантом B/`DEC-0050`: две native-Wi-Fi RP-SMA и семь standard SMA.
+Следующий candidate должен выбрать exact current-orderable antenna shortlist,
+сохраняя mount и cable length для physical co-design. `FND-0057` одновременно
+запрещает считать generic Ebyte `IPX` доказанным U.FL/MHF I до specimen gate.

@@ -1,11 +1,12 @@
 # RFH-0001 — module-to-external-SMA interface review
 
-- Статус: **Проведено ревью фактов; external SMA gender/polarity ожидает `IMP-0042`**
+- Статус: **Проведено ревью фактов; polarity закрыта `DEC-0050`**
 - Дата: 2026-08-17
 - Decisions: [`DEC-0048`](../decisions/DEC-0048-external-sma-antenna-bank.md),
   [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md)
 - Finding: [`FND-0057`](../findings/FND-0057-ebyte-ipx-mating-family-unproven.md)
 - Proposal: [`IMP-0042`](../improvements/IMP-0042-external-sma-gender-and-feed-policy.md)
+- Decision: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 
 ## Проверенная граница
 

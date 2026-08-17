@@ -1,9 +1,10 @@
 # REV-0004S — antenna connector ecosystem fact review
 
-- Статус: **Проведено ревью фактов; `IMP-0042` ожидает решения**
+- Статус: **Проведено ревью фактов; вариант B принят `DEC-0050`**
 - Дата: 2026-08-17
 - Evidence: [`RFH-0002`](../architecture/RFH-0002-antenna-connector-ecosystem-review.md)
 - Proposal: [`IMP-0042`](../improvements/IMP-0042-external-sma-gender-and-feed-policy.md)
+- Decision: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 
 ## Проверено
 
@@ -18,6 +19,6 @@
 
 ## Результат
 
-Fact scope получает **«Проведено ревью»**. В `IMP-0042` добавлен и рекомендован
-ограниченный mixed candidate `2 RP-SMA + 7 standard SMA`; owner decision и exact
-two-source antenna shortlist остаются открыты.
+Fact scope получает **«Проведено ревью»**. Ограниченный mixed candidate
+`2 RP-SMA + 7 standard SMA` принят в `DEC-0050`; exact two-source antenna
+shortlist остаётся открытым.

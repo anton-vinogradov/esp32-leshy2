@@ -133,10 +133,10 @@ explicit first-generation U.FL/MHF I/AMC boundary, while Ebyte documents only
 generic `IPX`. `FND-0057` corrects the machine source and requires a
 specimen-fit/VNA gate. `RFH-0002/REV-0004S` separately review real antenna
 ecosystems: RP-SMA is typical for native Wi-Fi, Ebyte/nRF uses standard SMA,
-and sub-GHz has both polarities. `IMP-0042` therefore compares uniform
-standard SMA with a bounded `2 RP-SMA + 7 standard SMA` option without choosing
-mount/length or replacing exact antenna qualification with connector
-popularity. `FND-0050` records nRF24 NRND
+and sub-GHz has both polarities. `DEC-0050/REV-0004T` accept bounded
+`2 native-Wi-Fi RP-SMA + 7 standard SMA`, a two-source antenna gate and a
+machine connector/mate map without choosing mount/length or replacing exact
+antenna qualification with connector popularity. `FND-0050` records nRF24 NRND
 and corrects CC1101 to ACTIVE.
 
 [`AUD-0013`](../review/audits/AUD-0013-legacy-layout-generator-reuse.md)
@@ -144,8 +144,8 @@ accepts reuse of the old 75×150 mm two-board clamshell and its
 collision/fold/mezzanine checks after the pin map is reviewed. Its old owners,
 onboard LoRa, antenna count and generic nRF dimensions are not inherited.
 
-Next, the owner resolves `IMP-0042`; `G2F-3I` then fixes the exact production
-nRF MPN/lot and
+Next, an exact current-orderable antenna shortlist closes the `DEC-0050` gate;
+`G2F-3I` then fixes the exact production nRF MPN/lot and
 SMA/feed/protection/antenna-profile implementation, then advances `N24H-0001`
 from `L0 DIV↔DIV` pre-HIL to target
 `T1` profiles. It then receives quiet-state power-part, physical

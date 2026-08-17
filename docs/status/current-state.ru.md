@@ -130,9 +130,10 @@ gate. `RFH-0001/REV-0004R` проверили module-to-panel interface: S3/C5 �
 generic `IPX`. `FND-0057` исправляет machine source и требует specimen-fit/VNA
 gate. `RFH-0002/REV-0004S` отдельно проверяют реальные antenna ecosystems:
 RP-SMA типичен для native Wi-Fi, Ebyte/nRF использует standard SMA, а sub-GHz
-имеет обе polarity. Поэтому `IMP-0042` теперь сравнивает uniform standard SMA
-с ограниченным `2 RP-SMA + 7 standard SMA`, не выбирая mount/length и не
-подменяя exact antenna qualification популярностью разъёма. `FND-0050`
+имеет обе polarity. `DEC-0050/REV-0004T` принимают ограниченный
+`2 native-Wi-Fi RP-SMA + 7 standard SMA`, two-source antenna gate и machine
+connector/mate map, не выбирая mount/length и не подменяя exact antenna
+qualification популярностью разъёма. `FND-0050`
 фиксирует nRF24 NRND и
 исправляет статус CC1101 на ACTIVE.
 
@@ -141,9 +142,9 @@ RP-SMA типичен для native Wi-Fi, Ebyte/nRF использует standa
 collision/fold/mezzanine checks после согласования pin map. Старые owners,
 onboard LoRa, antenna count и generic nRF dimensions не наследуются.
 
-Далее владелец решает `IMP-0042`; затем `G2F-3I` фиксирует exact production
-nRF MPN/lot, SMA/feed/protection и
-antenna-profile implementation
+Далее exact current-orderable antenna shortlist закрывает `DEC-0050` gate;
+затем `G2F-3I` фиксирует exact production nRF MPN/lot,
+SMA/feed/protection и antenna-profile implementation
 и превращает `N24H-0001` из `L0 DIV↔DIV` pre-HIL в target
 `T1` profiles. После этого проходит quiet-state power-part, physical
 RF/self-desense, exact peripheral,

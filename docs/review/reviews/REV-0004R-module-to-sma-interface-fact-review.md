@@ -1,10 +1,11 @@
 # REV-0004R — module-to-SMA interface fact review
 
-- Статус: **Проведено ревью фактов; `IMP-0042` ожидает решения**
+- Статус: **Проведено ревью фактов; решение принято `DEC-0050`**
 - Дата: 2026-08-17
 - Evidence: [`RFH-0001`](../architecture/RFH-0001-module-to-external-sma-interface-review.md)
 - Finding: [`FND-0057`](../findings/FND-0057-ebyte-ipx-mating-family-unproven.md)
 - Proposal: [`IMP-0042`](../improvements/IMP-0042-external-sma-gender-and-feed-policy.md)
+- Decision: [`DEC-0050`](../decisions/DEC-0050-ecosystem-aligned-sma-polarity.md)
 
 ## Проверено
 
@@ -21,5 +22,5 @@
 
 Fact scope получает **«Проведено ревью»**. Machine source corrected by
 `FND-0057`; exact Ebyte mating remains a specimen blocker. Внешняя SMA
-polarity/gender является owner choice `IMP-0042`, поэтому решение не
-подменяется этим fact review.
+polarity/gender затем принята владельцем в `DEC-0050`; exact Ebyte mating всё
+равно остаётся отдельным specimen gate.

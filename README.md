@@ -119,11 +119,11 @@ labelled SMA with separate `RX-FM/SW` and `RX-AM/LW`. The latter requires a
 short loop/pod or qualified buffered profile and is not a generic coax port.
 `RFH-0001/REV-0004R` additionally review module-to-panel feeds: S3/C5 have
 explicit first-generation U.FL/MHF I/AMC compatibility, while Ebyte calls its
-connector only `IPX`, so `FND-0057` requires a specimen-fit gate. `IMP-0042`
-is informed by `RFH-0002/REV-0004S`: RP-SMA is typical for native Wi-Fi,
+connector only `IPX`, so `FND-0057` requires a specimen-fit gate.
+`RFH-0002/REV-0004S` show that RP-SMA is typical for native Wi-Fi,
 Ebyte/nRF uses standard SMA and sub-GHz has both polarities. The owner choice
-is now uniform standard SMA versus bounded `2 RP-SMA + 7 standard SMA`;
-mounting and cable lengths remain physical co-design.
+is accepted by `DEC-0050/REV-0004T` as bounded `2 RP-SMA + 7 standard SMA`;
+mounting, cable lengths and exact antenna shortlist remain the next gates.
 Physical RF/full-mix
 measurements, unused-interface quiet-state power controls,
 peripherals, power and HIL must close before adapting the legacy physical

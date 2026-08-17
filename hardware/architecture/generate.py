@@ -153,6 +153,7 @@ def validate_sources(
         expected_antenna_policy = {
             "decision": "DEC-0048",
             "exact_count_decision": "DEC-0049",
+            "external_connector_decision": "DEC-0050",
             "base_onboard_endpoint": "external_sma",
             "base_onboard_sma_count": 9,
             "base_onboard_sma_paths": [
@@ -165,6 +166,38 @@ def validate_sources(
                 "VOICE-V/U",
                 "RX-FM/SW",
                 "RX-AM/LW",
+            ],
+            "device_connector_by_path": {
+                "S3-2G4": "rp_sma_jack_pin_center",
+                "C5-2G4/5": "rp_sma_jack_pin_center",
+                "N24-0": "sma_jack_socket_center",
+                "N24-1": "sma_jack_socket_center",
+                "N24-2": "sma_jack_socket_center",
+                "CC-SUB": "sma_jack_socket_center",
+                "VOICE-V/U": "sma_jack_socket_center",
+                "RX-FM/SW": "sma_jack_socket_center",
+                "RX-AM/LW": "sma_jack_socket_center",
+            },
+            "antenna_mate_by_path": {
+                "S3-2G4": "rp_sma_plug_socket_center",
+                "C5-2G4/5": "rp_sma_plug_socket_center",
+                "N24-0": "sma_plug_pin_center",
+                "N24-1": "sma_plug_pin_center",
+                "N24-2": "sma_plug_pin_center",
+                "CC-SUB": "sma_plug_pin_center",
+                "VOICE-V/U": "sma_plug_pin_center",
+                "RX-FM/SW": "sma_plug_pin_center",
+                "RX-AM/LW": "sma_plug_pin_center",
+            },
+            "antenna_qualification_gate": {
+                "minimum_orderable_qualified_mpns_per_group": 2,
+                "native_wifi_fallback": "standard_sma_if_no_gain_cost_availability_advantage",
+            },
+            "identification_controls": [
+                "permanent_path_band_label",
+                "color_collar_or_cap",
+                "antenna_profile_manifest",
+                "tx_interlock",
             ],
             "nrf_module_interface": "ipex_to_short_pigtail",
             "nrf_dedicated_sma_count": 3,
@@ -736,6 +769,16 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             "- Validation scope: exposed-contact identity, unique allocation, strap proof, complete GPIO accounting, controller declaration, reciprocal programmable links and service-contact coverage.",
         ]
         antenna_policy = candidate["antenna_policy"]
+        rp_sma_paths = [
+            path
+            for path, connector in antenna_policy["device_connector_by_path"].items()
+            if connector == "rp_sma_jack_pin_center"
+        ]
+        standard_sma_paths = [
+            path
+            for path, connector in antenna_policy["device_connector_by_path"].items()
+            if connector == "sma_jack_socket_center"
+        ]
         lines += [
             "",
             "### Antenna policy",
@@ -749,7 +792,13 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
             f"`{str(antenna_policy['integrated_pcb_antenna_baseline']).lower()}`. Si4732 topology "
             f"`{antenna_policy['si4732_port_topology']}` with shared switch "
             f"`{str(antenna_policy['si4732_shared_switch']).lower()}` and AMI profile "
-            f"`{antenna_policy['si4732_ami_external_profile']}`. External accessories own their antennas.",
+            f"`{antenna_policy['si4732_ami_external_profile']}`. Connector decision "
+            f"`{antenna_policy['external_connector_decision']}` assigns device-side RP-SMA jack/pin to "
+            f"{', '.join(f'`{path}`' for path in rp_sma_paths)} and standard SMA jack/socket to "
+            f"{', '.join(f'`{path}`' for path in standard_sma_paths)}. Each antenna group requires at least "
+            f"`{antenna_policy['antenna_qualification_gate']['minimum_orderable_qualified_mpns_per_group']}` "
+            f"orderable qualified MPNs; native Wi-Fi fallback is "
+            f"`{antenna_policy['antenna_qualification_gate']['native_wifi_fallback']}`. External accessories own their antennas.",
         ]
         signal_policy = candidate.get("signal_group_policy")
         if signal_policy:
