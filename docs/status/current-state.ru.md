@@ -314,8 +314,14 @@ TPS564252 input/output/feed-forward banks с фиксированными 1% д�
 принятыми нагрузками, а максимум внешней линии остаётся ниже порога OVLO
 eFuse. Lifecycle review отклоняет устаревшие 45,0 кОм в пользу активного MPN
 45,3 кОм; recurring passive estimate — около `$1.8` на плату при 100 штуках.
-Charger passives, converter EN/PG pulls, effective-capacitance/load-step,
-hot-loss/layout и перечисленные HIL-gates остаются активны.
+`PWR-0012/DEC-0073/REV-0005AD` затем закрывают control profile: AON EN
+напрямую подключён к admitted SYS; один pull AON PG 47 кОм, шесть EN/PG/fault
+pull 10 кОм и два базовых резистора квалификаторов 68 кОм представлены девятью
+физическими экземплярами. Все значения переиспользуют существующие BOM MPN,
+добавляют около `$0.006` проверенного material cost на плату и сохраняют
+принятую fault truth table без GPIO. Charger passives,
+effective-capacitance/load-step, hot-loss/layout и перечисленные
+startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

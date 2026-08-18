@@ -35,6 +35,5 @@ one-component-per-box product diagram.
 The fixed-rail architecture is now electrically instantiated through its
 energy and feedback parts without adding a voltage selector or GPIO. Full
 paper limits remain compatible with the loads and external eFuse OVLO.
-EN/PG pulls, layout and specimen HIL remain explicit later gates; no KiCad
-authorization is implied.
-
+`DEC-0073` subsequently closes EN/PG pulls. Layout and specimen HIL remain
+explicit later gates; no KiCad authorization is implied.

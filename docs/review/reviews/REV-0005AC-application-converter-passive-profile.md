@@ -28,7 +28,8 @@
 
 ## Remaining gates
 
-Exact EN/PG/pull/qualifier resistor values, effective-capacitance measurement,
+Exact EN/PG/pull/qualifier resistor values subsequently close in
+`PWR-0012/DEC-0073/REV-0005AD`. Effective-capacitance measurement,
 load-step/ripple/EMI, hot loss, copper/Kelvin layout and fault HIL remain open.
 The result is **«Проведено ревью»** at the paper electrical-profile level and
 does not authorize KiCad.

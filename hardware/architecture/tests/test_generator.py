@@ -64,6 +64,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Yageo RC0402FR-0742K2L<br/>42.2-kOhm 1% AON mode/configuration resistor",
             "TDK CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V X7R AON input capacitor",
             "Murata GRM31CR71A226KE15L<br/>22-uF 10-V X7R AON output capacitor",
+            "Yageo RC0402FR-0747KL<br/>47-kOhm 1% AON power-good pull-up resistor",
             "Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main-converter bulk input capacitor",
@@ -73,6 +74,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G main feed-forward capacitor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main output capacitor #0",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main output capacitor #1",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% main-enable fail-low resistor",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% wired-low power-fault pull-up resistor",
             "Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R voice-converter bulk input capacitor",
@@ -82,6 +85,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G voice feed-forward capacitor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R voice output capacitor #0",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R voice output capacitor #1",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% voice-enable fail-low resistor",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% voice power-good pull-up resistor",
+            "Yageo RC0402FR-0768KL<br/>68-kOhm 1% voice PG-qualifier base resistor",
             "Diodes Incorporated MMBT3904-7-F<br/>voice-rail enable-qualified PG fault transistor",
             "Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter",
             "Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor",
@@ -92,6 +98,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G accessory feed-forward capacitor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R accessory output capacitor #0",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R accessory output capacitor #1",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% accessory-enable fail-low resistor",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% accessory power-good pull-up resistor",
+            "Yageo RC0402FR-0768KL<br/>68-kOhm 1% accessory PG-qualifier base resistor",
             "Diodes Incorporated MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor",
             "Texas Instruments TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse and current monitor",
             "Yageo RC0402FR-072K21L<br/>2.21-kOhm 1% eFuse current-limit resistor",
@@ -343,6 +352,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("45.3k/10k", contract["converter_passive_profile"])
         self.assertIn("68k/12k", contract["converter_passive_profile"])
         self.assertIn("220k/30k", contract["converter_passive_profile"])
+        self.assertEqual("DEC-0073", contract["converter_control_passive_decision"])
+        self.assertIn("nine physical resistors", contract["converter_control_passive_profile"])
+        self.assertIn("directly to admitted SYS", contract["converter_control_passive_profile"])
         self.assertEqual("DEC-0069", contract["external_protection_decision"])
         self.assertIn("TPS259470LRPWR", contract["external_protection"])
         self.assertIn("latch-off", contract["external_protection"])
@@ -354,6 +366,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "aon_mode_res": "yageo_rc0402fr_0742k2l",
             "aon_input_cap": "tdk_cga5l1x7r1e475k160ac",
             "aon_output_cap": "murata_grm31cr71a226ke15l",
+            "aon_pg_pullup": "yageo_rc0402fr_0747kl",
             "main_buck": "ti_tps564252_drlr",
             "main_inductor": "sunlord_mwsa0503s_3r3mt",
             "main_input_cap": "murata_grm32er71e226ke15l",
@@ -363,6 +376,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "main_ff_cap": "kemet_c0402c330j5gactu",
             "main_output_cap0": "murata_grm32er71e226ke15l",
             "main_output_cap1": "murata_grm32er71e226ke15l",
+            "main_en_pulldown": "yageo_rc0402fr_0710kl",
+            "power_fault_pullup": "yageo_rc0402fr_0710kl",
             "voice_buck": "ti_tps564252_drlr",
             "voice_inductor": "sunlord_mwsa0503s_3r3mt",
             "voice_input_cap": "murata_grm32er71e226ke15l",
@@ -372,6 +387,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "voice_ff_cap": "kemet_c0402c330j5gactu",
             "voice_output_cap0": "murata_grm32er71e226ke15l",
             "voice_output_cap1": "murata_grm32er71e226ke15l",
+            "voice_en_pulldown": "yageo_rc0402fr_0710kl",
+            "voice_pg_pullup": "yageo_rc0402fr_0710kl",
+            "voice_pg_base_res": "yageo_rc0402fr_0768kl",
             "voice_pg_qualifier": "diodes_mmbt3904_7_f",
             "ext_buck": "ti_tps564252_drlr",
             "ext_inductor": "sunlord_mwsa0503s_4r7mt",
@@ -382,6 +400,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ext_buck_ff_cap": "kemet_c0402c330j5gactu",
             "ext_buck_output_cap0": "murata_grm32er71e226ke15l",
             "ext_buck_output_cap1": "murata_grm32er71e226ke15l",
+            "ext_en_pulldown": "yageo_rc0402fr_0710kl",
+            "ext_pg_pullup": "yageo_rc0402fr_0710kl",
+            "ext_pg_base_res": "yageo_rc0402fr_0768kl",
             "ext_pg_qualifier": "diodes_mmbt3904_7_f",
             "ext_efuse": "ti_tps259470l_rpwr",
             "ext_rilm": "yageo_rc0402fr_072k21l",
@@ -418,6 +439,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("ext_efuse.ITIMER", "ext_itimer_cap.END_1", "EXT_EFUSE_ITIMER"), routes)
         self.assertIn(("ext_efuse.OUT", "ext_bleeder.END_1", "5V_EXT_PROTECTED"), routes)
         self.assertIn(("aon_buck.MODE_SCONF", "aon_mode_res.END_1", "AON_MODE_SET"), routes)
+        self.assertIn(("nvdc_charger.SYS", "aon_buck.EN", "AON_BUCK_EN"), routes)
+        self.assertIn(("aon_pg_pullup.END_2", "aon_buck.PG", "AON_PG_N"), routes)
         self.assertIn(("main_fb_top.END_2", "main_buck.FB", "MAIN_3V3_FB"), routes)
         self.assertIn(("voice_fb_top.END_2", "voice_buck.FB", "VOICE_4V_FB"), routes)
         self.assertIn(("ext_buck_fb_top.END_2", "ext_buck.FB", "EXT_5V_FB"), routes)
@@ -449,11 +472,27 @@ class ArchitectureValidationTests(unittest.TestCase):
             routes,
         )
         self.assertIn(
+            ("voice_pg_base_res.END_2", "voice_pg_qualifier.B", "VOICE_PG_QUAL_BASE"),
+            routes,
+        )
+        self.assertIn(
+            ("voice_pg_pullup.END_2", "voice_buck.PG", "VOICE_4V_PG_N"),
+            routes,
+        )
+        self.assertIn(
             ("voice_pg_qualifier.C", "abstract:power-current-thermal-fault", "VOICE_4V_FAULT_QUAL_N"),
             routes,
         )
         self.assertIn(
             ("ext_buck.PG", "ext_pg_qualifier.E", "EXT_5V_PG_N"),
+            routes,
+        )
+        self.assertIn(
+            ("ext_pg_base_res.END_2", "ext_pg_qualifier.B", "EXT_PG_QUAL_BASE"),
+            routes,
+        )
+        self.assertIn(
+            ("ext_pg_pullup.END_2", "ext_buck.PG", "EXT_5V_PG_N"),
             routes,
         )
         self.assertIn(

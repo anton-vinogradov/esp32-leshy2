@@ -22,12 +22,14 @@
 | machine/visible artifacts | pass: exact packages and routes are represented separately in machine source and the generated vertical diagrams |
 | firmware contract | pass at documentation level: fixed rail IDs, PG/fault sequencing and refusal states propagate to runtime input |
 | later passive amendment | `PWR-0011/DEC-0072/REV-0005AC` close exact converter energy/configuration/feedback parts and paper DC-bias/tolerance screens |
-| remaining proof | open by design: EN/PG pulls, effective-capacitance/load-step, copper/thermal, source handover, discharge timing and fault-injection HIL |
+| later control amendment | `PWR-0012/DEC-0073/REV-0005AD` close direct AON enable and nine exact EN/PG/fault resistors |
+| remaining proof | open by design: effective-capacitance/load-step, copper/thermal, source handover, discharge timing and fault-injection HIL |
 | CAD boundary | pass: no KiCad authorization is implied |
 
 ## Conclusion
 
 `DEC-0068` receives **«Проведено ревью»** for the active rail topology and
 exact first targets. Its converter passives are later reviewed by
-`DEC-0072/REV-0005AC`; `I3` continues to the remaining pulls, hot loss and HIL
-rather than moving to KiCad or the external mockup.
+`DEC-0072/REV-0005AC`, and control pulls by `DEC-0073/REV-0005AD`; `I3`
+continues to hot loss and HIL rather than moving to KiCad or the external
+mockup.

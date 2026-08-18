@@ -84,5 +84,6 @@ Primary evidence:
 
 Принципиальная fault-функция, exact transistor/contact fit, machine routes,
 стоимость и отсутствие нового GPIO получают **«Проведено ревью»**. Exact MPN
-резисторов/pull-ups, температурные уровни, startup timeout и fault-injection
-HIL закрываются вместе с остальными rail passives. KiCad не разрешён.
+резисторов/pull-ups subsequently close in `PWR-0012/DEC-0073/REV-0005AD`.
+Температурные уровни, startup timeout и fault-injection HIL остаются вместе с
+остальными rail prototype gates. KiCad не разрешён.

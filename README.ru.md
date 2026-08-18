@@ -137,6 +137,7 @@ flowchart TD
   AONMODE["RC0402FR-0742K2L<br/>42,2-кОм 1% резистор режима/конфигурации AON"]
   AONIN["CGA5L1X7R1E475K160AC<br/>4,7-мкФ 25-В X7R входной конденсатор AON"]
   AONOUT["GRM31CR71A226KE15L<br/>22-мкФ 10-В X7R выходной конденсатор AON"]
+  AONPGPU["RC0402FR-0747KL<br/>47-кОм 1% pull-up резистор power-good AON"]
   MAINBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь основной шины 3,3 В"]
   MAINL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн основной шины"]
   MAININ["GRM32ER71E226KE15L #MAIN-IN<br/>22-мкФ 25-В X7R входной bulk-конденсатор основной шины"]
@@ -146,6 +147,8 @@ flowchart TD
   MAINFF["C0402C330J5GACTU #MAIN<br/>33-пФ 50-В C0G feed-forward конденсатор основной шины"]
   MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №0"]
   MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №1"]
+  MAINENPD["RC0402FR-0710KL #MAIN-EN<br/>10-кОм 1% fail-low резистор EN основной шины"]
+  FAULTPU["RC0402FR-0710KL #POWER-FAULT<br/>10-кОм 1% pull-up резистор общей линии power-fault"]
   VOICEBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь голосовой шины 4,0 В"]
   VOICEL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн голосовой шины"]
   VOICEIN["GRM32ER71E226KE15L #VOICE-IN<br/>22-мкФ 25-В X7R входной bulk-конденсатор voice"]
@@ -155,6 +158,9 @@ flowchart TD
   VOICEFF["C0402C330J5GACTU #VOICE<br/>33-пФ 50-В C0G feed-forward конденсатор voice"]
   VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор voice №0"]
   VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор voice №1"]
+  VOICEENPD["RC0402FR-0710KL #VOICE-EN<br/>10-кОм 1% fail-low резистор EN голосовой шины"]
+  VOICEPGPU["RC0402FR-0710KL #VOICE-PG<br/>10-кОм 1% pull-up резистор PG голосовой шины"]
+  VOICEPGBR["RC0402FR-0768KL #VOICE-PG-BASE<br/>68-кОм 1% базовый резистор PG-квалификатора voice"]
   VOICEPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault голосовой шины"]
   EXTBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь расширения 5,0 В"]
   EXTL["MWSA0503S-4R7MT<br/>силовой дроссель 4,7 мкГн шины расширения"]
@@ -165,6 +171,9 @@ flowchart TD
   EXTBUCKFF["C0402C330J5GACTU #EXT-BUCK<br/>33-пФ 50-В C0G feed-forward конденсатор расширения"]
   EXTBUCKOUT0["GRM32ER71E226KE15L #EXT-BUCK-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор buck расширения №0"]
   EXTBUCKOUT1["GRM32ER71E226KE15L #EXT-BUCK-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор buck расширения №1"]
+  EXTENPD["RC0402FR-0710KL #EXT-EN<br/>10-кОм 1% fail-low резистор EN шины расширения"]
+  EXTPGPU["RC0402FR-0710KL #EXT-PG<br/>10-кОм 1% pull-up резистор PG шины расширения"]
+  EXTPGBR["RC0402FR-0768KL #EXT-PG-BASE<br/>68-кОм 1% базовый резистор PG-квалификатора расширения"]
   EXTPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault шины расширения"]
   EXTFUSE["TPS259470LRPWR<br/>latch-off eFuse расширения с true reverse blocking и измерением тока"]
   EXTRILM["RC0402FR-072K21L<br/>2,21-кОм 1% резистор ограничения тока eFuse"]
@@ -239,10 +248,10 @@ flowchart TD
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT
-  AONOUT ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1
-  MAINOUT1 ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEPGQ
-  VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
+  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
+  AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
+  FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
+  VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
@@ -277,6 +286,7 @@ flowchart TD
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"локальный bypass SYS"| AONIN
   AONL -->|"локальный выход AON"| AONOUT
+  AONL -->|"pull-up PG"| AONPGPU --> AONBUCK
   CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
   CHARGER -->|"локальный bulk SYS"| MAININ
   CHARGER -->|"локальный HF SYS"| MAINHF
@@ -284,6 +294,8 @@ flowchart TD
   MAINL -->|"feed-forward"| MAINFF
   MAINL -->|"локальный выходной банк"| MAINOUT0
   MAINL -->|"локальный выходной банк"| MAINOUT1
+  MAINBUCK -->|"fail-low EN"| MAINENPD
+  MAINL -->|"pull-up POWER_FAULT_N"| FAULTPU --> SLOW
   MAINL --> C5
   MAINL --> RP
   MAINL --> SWNRF
@@ -298,6 +310,9 @@ flowchart TD
   VOICEL -->|"feed-forward"| VOICEFF
   VOICEL -->|"локальный выходной банк"| VOICEOUT0
   VOICEL -->|"локальный выходной банк"| VOICEOUT1
+  VOICEBUCK -->|"fail-low EN"| VOICEENPD
+  MAINL -->|"pull-up PG"| VOICEPGPU --> VOICEBUCK
+  GATEB -->|"EN"| VOICEPGBR --> VOICEPGQ
   VOICEBUCK -->|"PG"| VOICEPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"защищённые фиксированные 5,0 В"| U214
   CHARGER -->|"локальный bulk SYS"| EXTBUCKIN
@@ -306,6 +321,9 @@ flowchart TD
   EXTL -->|"feed-forward"| EXTBUCKFF
   EXTL -->|"локальный выходной банк"| EXTBUCKOUT0
   EXTL -->|"локальный выходной банк"| EXTBUCKOUT1
+  EXTBUCK -->|"fail-low EN"| EXTENPD
+  MAINL -->|"pull-up PG"| EXTPGPU --> EXTBUCK
+  GATEB -->|"EN"| EXTPGBR --> EXTPGQ
   EXTBUCK -->|"PG"| EXTPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   EXTFUSE -->|"ILM"| EXTRILM
   EXTFUSE -->|"dVdt"| EXTDVDT
@@ -373,10 +391,8 @@ flowchart TD
   GATEA --> SWNRF
   GATEB --> SWCC
   GATEB --> VOICEBUCK
-  GATEB -->|"EN через 68 кОм"| VOICEPGQ
   GATEB --> IRTX
   GATEB --> EXTBUCK
-  GATEB -->|"EN через 68 кОм"| EXTPGQ
   GATEB --> EXTFUSE
   S3 --> DS3 --> CMPA
   C5 --> DC5 --> CMPA

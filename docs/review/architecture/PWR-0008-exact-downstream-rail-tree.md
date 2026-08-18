@@ -9,6 +9,7 @@
 - eFuse fail-closed amendment: [`DEC-0069`](../decisions/DEC-0069-latch-off-external-efuse.md)
 - switched-PG amendment: [`DEC-0070`](../decisions/DEC-0070-enable-qualified-switched-rail-pg.md)
 - converter-passive amendment: [`DEC-0072`](../decisions/DEC-0072-exact-converter-energy-feedback-passives.md)
+- control-passive amendment: [`DEC-0073`](../decisions/DEC-0073-exact-converter-control-passives.md)
 - Propagation review: [`REV-0005Y`](../reviews/REV-0005Y-downstream-rail-tree-propagation.md)
 
 ## Scope
@@ -17,8 +18,9 @@
 четырёх шин и five quiet-state branches. Он проверяет реальные контакты exact
 MPN, current/ripple headroom, reverse-current boundary, доступность и порядок
 включения. `PWR-0011/DEC-0072` subsequently close converter energy,
-configuration, feedback and feed-forward passives; EN/PG pulls,
-copper/thermal layout and specimen HIL are still open. Артефакт не разрешает
+configuration, feedback and feed-forward passives, then
+`PWR-0012/DEC-0073` close EN/PG/fault pulls; copper/thermal layout and
+specimen HIL are still open. Артефакт не разрешает
 начинать KiCad.
 
 ## Why four converters, not one configurable rail
@@ -241,8 +243,9 @@ reverse blocking and availability receive **«Проведено ревью»**.
 
 `PWR-0011/DEC-0072` subsequently close the application-converter feedback,
 feed-forward and input/output energy components as 24 exact physical
-instances. Still open before schematic/BOM freeze: exact EN/PG resistor MPNs,
-ground/copper/thermal geometry, effective-capacitance/load-step proof, source
+instances; `PWR-0012/DEC-0073` subsequently close their nine control
+resistors. Still open before schematic/BOM freeze: ground/copper/thermal
+geometry, effective-capacitance/load-step proof, source
 transitions and fault-injection HIL.
 `PWR-0010/DEC-0071` close the eFuse `ILM/ITIMER/dVdt/OVLO`, local-capacitor and
 connector-discharge paper profile. No KiCad authorization is implied.

@@ -27,8 +27,9 @@ state. Их `TPS564252.PG` при этом low, поэтому ранний пр
    timeout/fault; automatic retry запрещён.
 6. Main-rail PG остаётся прямым evidence: без `3V3_MAIN` сам P25 diagnostic
    domain не работает, поэтому optional-off ambiguity к нему не относится.
-7. Exact resistor MPN, thermal corners and HIL remain passive/prototype gates;
-   это решение не разрешает KiCad.
+7. [`DEC-0073`](DEC-0073-exact-converter-control-passives.md) subsequently
+   closes the exact base, PG, EN and aggregate resistor MPNs. Thermal corners
+   and HIL remain prototype gates; это решение не разрешает KiCad.
 
 The accepted option preserves converter-specific hardware evidence, consumes
 no GPIO and adds roughly `$0.032` per board at the checked 50-piece price.

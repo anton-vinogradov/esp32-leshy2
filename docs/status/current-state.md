@@ -314,8 +314,13 @@ external nominals are 3.318/4.000/5.000 V; their full paper tolerance screens
 fit the accepted loads and leave the external maximum below the eFuse OVLO
 floor. Lifecycle review rejects obsolete 45.0 kOhm for active 45.3 kOhm, and
 the recurring passive estimate is about `$1.8` per board at 100 pieces.
-Charger passives, converter EN/PG pulls, effective-capacitance/load-step,
-hot-loss/layout and the listed HIL gates remain active.
+`PWR-0012/DEC-0073/REV-0005AD` then close the control profile: AON EN is a
+direct admitted-SYS strap; one 47-kOhm AON PG pull plus six 10-kOhm EN/PG/
+fault pulls and two 68-kOhm qualifier-base resistors are nine physical
+instances. All values reuse existing BOM MPNs, add about `$0.006` checked
+material per board and preserve the existing fault truth table without GPIO.
+Charger passives, effective-capacitance/load-step, hot-loss/layout and the
+listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

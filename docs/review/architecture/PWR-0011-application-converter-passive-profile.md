@@ -16,8 +16,9 @@ capacitance margin, LC pole, lifecycle и доступность exact MPN. Ка
 физическая деталь внесена отдельным экземпляром в machine source и living
 diagram.
 
-Здесь не закрываются EN/PG pull networks, copper/thermal geometry, load-step,
-ripple/EMI и specimen HIL. Артефакт не разрешает начинать KiCad.
+EN/PG pull networks subsequently close in `PWR-0012/DEC-0073`; this artifact
+still does not close copper/thermal geometry, load-step, ripple/EMI or
+specimen HIL. Артефакт не разрешает начинать KiCad.
 
 ## `TPS629203DRLR` AON profile
 
@@ -131,6 +132,6 @@ Primary sources:
 
 Exact AON configuration/energy parts and all three application-converter
 input, output, feedback and feed-forward parts receive **«Проведено ревью»**
-at the paper electrical-profile level. EN/PG/qualifier pulls, effective-
-capacitance measurement, ripple/load-step/EMI, hot loss and layout remain open.
-
+at the paper electrical-profile level. `PWR-0012/DEC-0073` later close
+EN/PG/qualifier pulls; effective-capacitance measurement,
+ripple/load-step/EMI, hot loss and layout remain open.

@@ -17,5 +17,6 @@
 | cost/function | pass: no GPIO or diagnostic function is lost; checked recurring addition is about `$0.032` per board before assembly |
 
 Generator/checks guard the exact instances and reject restoration of the two
-direct PG routes. Exact passive MPN, temperature/HIL levels and transition
+direct PG routes. `PWR-0012/DEC-0073/REV-0005AD` later close exact passive
+MPNs; temperature/HIL levels and transition
 deadlines remain I3 work; this review does not authorize KiCad.

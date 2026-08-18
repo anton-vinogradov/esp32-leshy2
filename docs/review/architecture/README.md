@@ -97,7 +97,9 @@ replace the four converters' abstract networks with 24 exact physical
 configuration, input, output, fixed-feedback and feed-forward passives. Their
 fixed tolerance ranges remain compatible with the loads and eFuse OVLO, and
 the obsolete 45.0-kOhm candidate is rejected for the active 45.3-kOhm MPN.
-Converter EN/PG pulls, charger passives, diagnostic load, mechanical
+`PWR-0012/DEC-0073/REV-0005AD` then close direct AON enable plus nine exact
+EN/PG/fault resistors using only existing BOM MPNs. Charger passives,
+diagnostic load, mechanical
 polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
@@ -135,6 +137,9 @@ polarity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0011`](PWR-0011-application-converter-passive-profile.md) closes the
   exact AON and three TPS564252 energy/configuration/feedback profiles as 24
   separate physical parts, including lifecycle, tolerance and DC-bias screens;
+- [`PWR-0012`](PWR-0012-exact-converter-control-passives.md) closes direct
+  AON enable and nine exact converter EN/PG/fault resistors without adding a
+  GPIO or unique BOM MPN;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

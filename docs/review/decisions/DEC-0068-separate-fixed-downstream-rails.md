@@ -30,7 +30,8 @@
    external-rail enables.
 8. [`DEC-0072`](DEC-0072-exact-converter-energy-feedback-passives.md)
    subsequently closes exact converter energy/configuration/feedback
-   passives. EN/PG pulls, thermal/layout closure and HIL remain prerequisites;
+   passives; [`DEC-0073`](DEC-0073-exact-converter-control-passives.md) closes
+   EN/PG/fault pulls. Thermal/layout closure and HIL remain prerequisites;
    this decision does not authorize KiCad.
 
 ## Package correction

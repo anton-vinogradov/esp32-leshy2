@@ -1,0 +1,110 @@
+# PWR-0012 — exact converter enable, power-good and fault pull profile
+
+- Статус: **Проведено ревью бумажной принципиальной схемы**
+- Дата: 2026-08-18
+- Parent topology: [`PWR-0008`](PWR-0008-exact-downstream-rail-tree.md)
+- PG qualifier: [`PWR-0009`](PWR-0009-enable-qualified-switched-rail-pg.md)
+- Energy/feedback passives: [`PWR-0011`](PWR-0011-application-converter-passive-profile.md)
+- Decision: [`DEC-0073`](../decisions/DEC-0073-exact-converter-control-passives.md)
+- Propagation review: [`REV-0005AD`](../reviews/REV-0005AD-converter-control-passive-profile.md)
+
+## Scope
+
+Этот проход закрывает оставшиеся abstract EN/PG/power-fault resistor networks
+четырёх принятых преобразователей. Он не меняет rail topology, напряжения,
+runtime sequencing или accepted truth table `EN AND NOT(PG)`. Девять
+физических резисторов внесены отдельными machine/diagram instances; AON EN
+получает точный direct strap, а не скрытый десятый компонент.
+
+Startup/shutdown timing, brownout, simultaneous faults and specimen HIL remain
+open. Артефакт не разрешает начинать KiCad.
+
+## Exact physical profile
+
+| Physical function | Exact MPN | Qty | Connection |
+|---|---|---:|---|
+| AON PG pull-up | `Yageo RC0402FR-0747KL`, 47 kOhm, 1%, 0402 | 1 | `AON_SAFE_3V3 → TPS629203.PG` |
+| main converter EN fail-low | `Yageo RC0402FR-0710KL`, 10 kOhm, 1%, 0402 | 1 | `MAIN_3V3_EN → GND` |
+| wired-low fault pull-up | `Yageo RC0402FR-0710KL` | 1 | `3V3_MAIN → POWER_FAULT_N` |
+| voice converter EN fail-low | `Yageo RC0402FR-0710KL` | 1 | `VOICE_DOMAIN_EN_SAFE → GND` |
+| voice PG pull-up | `Yageo RC0402FR-0710KL` | 1 | `3V3_MAIN → VOICE_4V_PG_N` |
+| voice qualifier base | `Yageo RC0402FR-0768KL`, 68 kOhm, 1%, 0402 | 1 | safe EN → `MMBT3904.B` |
+| accessory converter/eFuse EN fail-low | `Yageo RC0402FR-0710KL` | 1 | `EXT_5V_EN_SAFE → GND` |
+| accessory PG pull-up | `Yageo RC0402FR-0710KL` | 1 | `3V3_MAIN → EXT_5V_PG_N` |
+| accessory qualifier base | `Yageo RC0402FR-0768KL` | 1 | safe EN → `MMBT3904.B` |
+
+Итого: six 10-kOhm, one 47-kOhm and two 68-kOhm physical resistors. Все три
+MPN уже присутствуют в принятом BOM: 10/68 kOhm — в feedback networks,
+47 kOhm — в eFuse OVLO. Нового unique line item нет.
+
+## AON enable and power-good
+
+`TPS629203.EN` is tied directly to admitted `BQ25798.SYS`. TI permits EN up to
+the converter input range, requires that it not float and shows direct VIN
+enable in its reference circuits. The direct strap avoids a divider against
+the unspecified dynamic internal fail-low resistor and saves one component.
+There is no application-firmware shutdown path for the safety rail.
+
+The AON PG pull-up is 47 kOhm rather than the common 10 kOhm. At 3.3 V it
+draws approximately 70.2 uA when asserted, versus 330 uA for 10 kOhm. This is
+below the TPS629203 1-mA recommended PG sink and preserves the low-IQ purpose
+without adding a new MPN. The maximum specified 1-uA high-state leakage would
+drop only 47 mV; edge timing and the actual sequencer input remain HIL gates.
+
+## TPS564252 enable defaults
+
+TI specifies a 2-MOhm internal EN pull-down, 1.25-V maximum rising threshold
+and 1.10-V maximum falling threshold. The external 10-kOhm pull-downs make the
+main, voice and accessory defaults independent of a high-impedance or
+unpowered sequencer output. A 3.3-V asserted output sources about 0.33 mA per
+pull-down. Even with one qualifier base branch and the eFuse EN leakage, each
+optional safe-gate output remains below approximately 0.4 mA static load.
+
+Accessory `EXT_5V_EN_SAFE` drives the fixed 5-V converter and
+`TPS259470LRPWR.EN/UVLO` together. The 3.3-V high is above both devices'
+maximum enable thresholds and below their recommended pin-voltage ceilings;
+the 10-kOhm low reaches true eFuse shutdown rather than merely UVLO.
+
+## PG qualifier and aggregate arithmetic
+
+Each TPS564252 PG gets an independent 10-kOhm pull-up to `3V3_MAIN`.
+Using the datasheet worst-case `VPG(OL)=0.4 V`, its pull-up contributes about
+290 uA. In the only fault state, `EN=3.3 V`, `PG=0.4 V` and conservative
+`VBE=0.85 V` leave about 30.1 uA through 68 kOhm. Total PG sink is therefore
+about 0.320 mA, less than one tenth of the specified 4-mA test current.
+
+The shared `POWER_FAULT_N` 10-kOhm pull-up asks an asserting source to sink at
+most 0.33 mA. The NPN forced beta is approximately 11, retaining the margin
+already reviewed in `PWR-0009`. Main PG, either qualifier collector and eFuse
+FLT therefore share one, not several competing, pull-ups.
+
+The existing `EN=0, PG=1` transient can reverse-bias the MMBT3904 base-emitter
+junction up to 3.3 V, below its 6-V absolute limit. Repeated shutdown,
+brownout and another-source-low combinations remain explicit HIL because an
+absolute limit is not a lifetime qualification.
+
+## Availability and cost
+
+The selected exact Yageo parts are active/current and stocked. The checked
+LCSC 100+ material snapshot is approximately `$0.006` per board for all nine
+resistors. Because all three MPNs already occur elsewhere on the board, this
+closure adds placements but no feeder/unique-part line.
+
+Primary sources:
+
+- [TI TPS629203 datasheet](https://www.ti.com/lit/ds/symlink/tps629203.pdf)
+- [TI TPS564252 datasheet](https://www.ti.com/lit/ds/symlink/tps564252.pdf)
+- [TI TPS25947 datasheet](https://www.ti.com/lit/ds/symlink/tps25947.pdf)
+- [Diodes MMBT3904 product page](https://www.diodes.com/part/view/MMBT3904)
+- [Yageo RC0402FR-0768KL specification](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL)
+- [LCSC RC0402FR-0710KL](https://www.lcsc.com/product-detail/C60490.html)
+- [LCSC RC0402FR-0747KL](https://www.lcsc.com/product-detail/C93943.html)
+- [LCSC RC0402FR-0768KL](https://www.lcsc.com/product-detail/C137947.html)
+
+## Review result
+
+Exact AON EN/PG, three application-converter EN defaults, both qualifier base
+branches, both optional PG pull-ups and the common fault pull-up receive
+**«Проведено ревью»** at paper schematic level. Dynamic timing, temperature,
+brownout, reverse-BE cycling, multi-fault and HIL remain open.
+

@@ -84,8 +84,9 @@ AON/3.3/4.0/5.0-V converter, inductor, load-switch и external-eFuse first
 targets; `DEC-0069/REV-0005Z` исправляют external eFuse на latch-off exact
 suffix. `PWR-0009…0011/DEC-0070…0072` затем закрывают optional-PG
 qualification, exact eFuse passives и 24 exact converter
-energy/configuration/feedback parts. Далее закрываются charger/EN/PG/
-diagnostic values и hot loss/thermal/fault tree.
+energy/configuration/feedback parts; `PWR-0012/DEC-0073/REV-0005AD`
+закрывают direct AON EN и девять exact EN/PG/fault resistors. Далее закрываются
+charger/diagnostic values и hot loss/thermal/fault tree.
 
 ## Downstream boundary
 

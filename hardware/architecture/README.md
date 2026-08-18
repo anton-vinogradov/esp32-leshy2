@@ -47,9 +47,10 @@ gates.
 
 Its I3 power source now also records the `DEC-0067` no-deep-recovery boundary
 and exact active CSD87313DMST/fuse/shunt/NTC/hold/source-isolation packages,
-plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers and
-`DEC-0072`'s 24 exact converter energy/configuration/feedback passives. This
-is still a principle-level circuit contract: EN/PG pulls, diagnostic load,
+plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers,
+`DEC-0072`'s 24 exact converter energy/configuration/feedback passives and
+`DEC-0073`'s nine exact EN/PG/fault resistors. This is still a principle-level
+circuit contract: diagnostic load,
 mechanical polarity/thermal coupling and HIL remain open.
 
 The inventory also contains verified reference boundaries. `DSP-0001` covers
