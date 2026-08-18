@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I1 through I7 paper architecture and qualification contracts are reviewed; physical conducted/OTA/optical/coexistence/no-stall/thermal/fault/service HIL can still reopen their owner, while I8 consolidated BOM lifecycle availability cost and alternate evidence is the active paper block |
+| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I1, I2 and I4 through I7 paper scopes are reviewed; FND-0109 narrowly reopens MAX17320 support inside I3 without changing the accepted 2S topology, and I8 sourcing lifecycle cost and alternate qualification is active after reviewed inventory coverage |
 
 ## Exact-device provenance used by these drafts
 

@@ -483,8 +483,11 @@ living internals projection. Both target README views and the generated atlas
 must change in the same commit as any accepted device/owner/bus/path change;
 the regression suite checks orientation and current-candidate MPN coverage.
 
-Current dependency maturity is now I1…I7 **reviewed in paper scope**, with I8
-consolidated BOM/lifecycle/availability/cost/alternate evidence active.
+Current dependency maturity is I1/I2/I4…I7 **reviewed in paper scope**. I8
+inventory coverage is reviewed and its sourcing/lifecycle/cost/alternate work
+is active; `FND-0109` narrowly reopens MAX17320 support inside I3 because
+mandatory support parts had remained prose/abstract rather than physical
+machine instances.
 `FND-0105/EXP-0001/DEC-0098/REV-0005BD` close independent U214/native-Unit
 power and signal isolation. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
 close the remaining service/recovery circuit: two board-off-isolated data-only
@@ -493,6 +496,14 @@ passive-drain hard-STOP resets are machine-instantiated. GPIO budgets and all
 controls remain unchanged. Physical connector/mechanics, USB SI/backfeed/ESD,
 fixture and erased-image HIL remain named reopen gates; KiCad and the integrated
 mockup remain blocked through I8/I9.
+
+`FND-0109/BOM-0008` now generate a consolidated narrow-screen review and CSV:
+791 current placements collapse to 185 used lines, 151 carry dated orderability
+evidence and 34 do not; no line yet has machine-readable comparable cost or
+alternate/no-substitution disposition. The same audit separately records nine
+SMA bodies, five RF cable assemblies, two M5 connector bodies, eight actual-TX
+threshold networks, MAX17320 support residue and the 12-item antenna-kit
+variant instead of treating them as zero-cost abstractions.
 
 `FND-0072/IMP-0051` found that target README files had again started narrating
 engineering chronology. The owner accepted `DEC-0060`, and `REV-0005N` reviews

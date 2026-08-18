@@ -1,13 +1,14 @@
-# Historical component/BOM workspace
+# Component/BOM workspace
 
-- Статус: **Заблокировано исправленным workflow (`DEC-0032`)**
+- Статус: **current I8 workbench active; former stage-4 package historical**
 - Former prerequisite: superseded `DEC-0028/PKG-0001/SYN-3A`
 - Current use: candidate facts and risks only
 
-This workspace preserves component facts collected for the former candidate.
-No row is a current BOM target. New component qualification begins only after
-target product design, whole-device optimality, conceptual placement and a new
-atomic architecture decision pass `FLOW-0001`.
+This workspace preserves component facts collected for the former candidate,
+but [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) is now the
+current machine-derived I8 workbench. Historical `BOM-0001…0007` rows are not
+silently promoted into the target; only current `G2F-3I` instances and its
+explicit physical-gap register feed the generated manifest.
 
 ## Каноническая цепочка
 
@@ -18,7 +19,7 @@ atomic architecture decision pass `FLOW-0001`.
 5. `BOM-0005` — receive/audio/IR signal chain;
 6. `BOM-0006` — packet RF, analog voice and antenna/front-end assemblies;
 7. `BOM-0007` — external M5 profiles/connectors/power-isolation;
-8. `BOM-0008` — consolidated sourcing, alternates, lifecycle, cost and assembly manifest.
+8. [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) — current consolidated sourcing, alternates, lifecycle, cost and assembly manifest.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -43,5 +44,6 @@ atomic architecture decision pass `FLOW-0001`.
 - [`REC-0001`](REC-0001-compute-recovery-and-link-prerequisites.md) / [`REV-0004F`](../reviews/REV-0004F-compute-recovery-link-prerequisites.md) — ROM/debug/link prerequisites and corrected C5 strap; **Проведено ревью**.
 - [`SVC-0001`](SVC-0001-three-domain-development-access.md) / [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md) — historical permanent-access topology review.
 - [`SVC-0002`](../architecture/SVC-0002-exact-three-domain-service-recovery-boundary.md) / [`REV-0005BE`](../reviews/REV-0005BE-i7-service-recovery-propagation.md) — exact USB/DBG10/BOOT/RESET and conflict-free hard-STOP reset implementation; **Проведено ревью paper electrical scope**, physical/HIL open.
+- [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) / [`FND-0109`](../findings/FND-0109-machine-map-was-not-a-complete-physical-bom.md) — machine-derived I8 coverage and explicit physical-gap register; **Проведено ревью inventory coverage**, qualification active.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

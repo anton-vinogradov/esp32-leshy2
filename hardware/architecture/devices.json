@@ -2,6 +2,8 @@
   "schema_version": 1,
   "generated_ledger": "docs/review/architecture/generated/G2F-pin-ledger.md",
   "generated_principled_pinout": "docs/review/architecture/generated/G2F-3I-principled-pinout.md",
+  "generated_target_bom_review": "docs/review/components/generated/G2F-3I-target-bom-review.md",
+  "generated_target_bom_csv": "docs/review/components/generated/G2F-3I-target-bom.csv",
   "devices": {
     "esp32_s3_wroom_1u_n16r2": {
       "mpn": "ESP32-S3-WROOM-1U-N16R2",

@@ -21,6 +21,41 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
 
+    def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        lines = GENERATOR._target_bom_lines(self.database, candidate)
+        self.assertEqual(791, sum(line["quantity"] for line in lines))
+        self.assertEqual(185, len(lines))
+        self.assertEqual(
+            34,
+            sum(line["orderable_evidence"] == "missing" for line in lines),
+        )
+        self.assertEqual(
+            185,
+            sum(line["cost_evidence"] == "missing" for line in lines),
+        )
+        self.assertEqual(
+            185,
+            sum(line["alternate_evidence"] == "missing" for line in lines),
+        )
+
+        gap_quantities = {
+            row["id"]: row["quantity"]
+            for row in candidate["bom_audit"]["required_uninstantiated_parts"]
+        }
+        self.assertEqual(9, gap_quantities["external_sma_bodies"])
+        self.assertEqual(5, gap_quantities["rf_cable_assemblies"])
+        self.assertEqual(2, gap_quantities["m5_connector_bodies"])
+        self.assertEqual(8, gap_quantities["actual_tx_threshold_networks"])
+        self.assertEqual(12, gap_quantities["external_antenna_kit"])
+
+        rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
+        self.assertIn("791", rendered)
+        self.assertIn("185", rendered)
+        self.assertIn("151/185", rendered)
+        self.assertIn("narrow screen", rendered)
+        self.assertIn("KiCad remains unauthorized", rendered)
+
     def test_exact_polarized_holder_and_three_ntc_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["power_contract"]

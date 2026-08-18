@@ -354,6 +354,66 @@ def validate_sources(
         if any(device_id not in devices for device_id in instances.values()):
             continue
 
+        bom_audit = candidate.get("bom_audit")
+        if bom_audit is not None:
+            for required in (
+                "status",
+                "default_scope",
+                "cost_basis",
+                "required_uninstantiated_parts",
+                "pcb_features_not_mpn_lines",
+                "exit",
+            ):
+                if not bom_audit.get(required):
+                    errors.append(f"{candidate_id}: BOM audit missing {required}")
+            for instance in bom_audit.get("scope_overrides", {}):
+                if instance not in instances:
+                    errors.append(
+                        f"{candidate_id}: BOM scope override references unknown {instance}"
+                    )
+            missing_part_ids: set[str] = set()
+            for row_number, row in enumerate(
+                bom_audit.get("required_uninstantiated_parts", []), 1
+            ):
+                context = f"BOM uninstantiated part {row_number}"
+                for required in ("id", "quantity", "scope", "role", "blocker"):
+                    if not row.get(required):
+                        errors.append(f"{candidate_id}: {context}: missing {required}")
+                if row.get("id") in missing_part_ids:
+                    errors.append(
+                        f"{candidate_id}: duplicate BOM uninstantiated id {row.get('id')}"
+                    )
+                missing_part_ids.add(row.get("id", ""))
+            required_gap_ids = {
+                "external_sma_bodies",
+                "rf_cable_assemblies",
+                "m5_connector_bodies",
+                "actual_tx_threshold_networks",
+                "pack_hold_irq_and_gate_support",
+                "external_antenna_kit",
+            }
+            if required_gap_ids - missing_part_ids:
+                errors.append(
+                    f"{candidate_id}: BOM audit omits physical gap families "
+                    f"{sorted(required_gap_ids - missing_part_ids)}"
+                )
+            gap_by_id = {
+                row.get("id"): row
+                for row in bom_audit.get("required_uninstantiated_parts", [])
+            }
+            if gap_by_id.get("external_sma_bodies", {}).get("quantity") != antenna_policy.get(
+                "base_onboard_sma_count"
+            ):
+                errors.append(
+                    f"{candidate_id}: BOM SMA gap must match antenna-policy connector count"
+                )
+            if gap_by_id.get("external_antenna_kit", {}).get("quantity") != antenna_policy.get(
+                "full_field_kit_physical_items"
+            ):
+                errors.append(
+                    f"{candidate_id}: BOM antenna-kit gap must match antenna policy"
+                )
+
         controller_sets: dict[str, set[str]] = {}
         for instance, controller_list in candidate.get("controllers", {}).items():
             if instance not in instances:
@@ -1032,6 +1092,167 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
     ]
     return "\n".join(lines)
+
+
+def _target_bom_lines(
+    database: dict[str, Any], candidate: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Collapse physical instance names into exact-MPN quantity lines."""
+
+    devices = database["devices"]
+    audit = candidate["bom_audit"]
+    grouped: dict[str, list[str]] = {}
+    for instance, device_id in candidate["instances"].items():
+        grouped.setdefault(device_id, []).append(instance)
+
+    result: list[dict[str, Any]] = []
+    for device_id, placements in sorted(grouped.items()):
+        device = devices[device_id]
+        scopes = {
+            audit.get("scope_overrides", {}).get(instance, audit["default_scope"])
+            for instance in placements
+        }
+        scope = next(iter(scopes)) if len(scopes) == 1 else "+".join(sorted(scopes))
+        result.append(
+            {
+                "scope": scope,
+                "device_id": device_id,
+                "mpn": device["mpn"],
+                "quantity": len(placements),
+                "lifecycle": device["lifecycle"],
+                "qualification": device["qualification"],
+                "orderable_evidence": "present" if device.get("orderable_source") else "missing",
+                "cost_evidence": "present" if device.get("cost") else "missing",
+                "alternate_evidence": "present" if device.get("alternates") else "missing",
+                "placements": sorted(placements),
+            }
+        )
+    return result
+
+
+def render_target_bom_review(
+    database: dict[str, Any], candidates: list[dict[str, Any]]
+) -> str:
+    """Render a narrow-screen I8 coverage review without pretending to be a quote."""
+
+    candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
+    audit = candidate["bom_audit"]
+    bom = _target_bom_lines(database, candidate)
+    instance_count = sum(row["quantity"] for row in bom)
+    orderable = sum(row["orderable_evidence"] == "present" for row in bom)
+    costed = sum(row["cost_evidence"] == "present" for row in bom)
+    alternates = sum(row["alternate_evidence"] == "present" for row in bom)
+    scope_counts: dict[str, int] = {}
+    for row in bom:
+        scope_counts[row["scope"]] = scope_counts.get(row["scope"], 0) + row["quantity"]
+
+    lines = [
+        "# G2F-3I — generated target BOM coverage review",
+        "",
+        "- Статус: **I8 inventory complete; sourcing/cost/alternate review active**",
+        "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`",
+        "- Regenerate: `python3 hardware/architecture/generate.py --write`",
+        "",
+        "> Файл сгенерирован. Он показывает полноту входа в I8, а не выдаёт незакрытые строки за factory quote.",
+        "",
+        "## Что уже посчитано",
+        "",
+        f"- **{instance_count}** machine-instantiated physical placements collapse to **{len(bom)}** used exact-device/MPN lines.",
+        f"- Current orderability evidence exists for **{orderable}/{len(bom)}** used lines; **{len(bom) - orderable}** need a current source check.",
+        f"- Machine-readable quantity-100 cost evidence exists for **{costed}/{len(bom)}** lines.",
+        f"- Machine-readable alternate/no-substitution evidence exists for **{alternates}/{len(bom)}** lines.",
+        f"- Cost basis: {audit['cost_basis']}.",
+        "",
+        "Scopes: " + "; ".join(
+            f"`{scope}` — {quantity} placements"
+            for scope, quantity in sorted(scope_counts.items())
+        )
+        + ".",
+        "",
+        "The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.",
+        "",
+        "## Physical items not yet instantiated",
+        "",
+    ]
+    for gap in audit["required_uninstantiated_parts"]:
+        lines += [
+            f"### `{gap['id']}` — {gap['quantity']} item(s)",
+            "",
+            f"- Scope: `{gap['scope']}`.",
+            f"- Role: {gap['role']}.",
+            f"- Blocking evidence: {gap['blocker']}.",
+            "",
+        ]
+
+    missing_orderability = [
+        row for row in bom if row["orderable_evidence"] == "missing"
+    ]
+    lines += [
+        "## Used lines without current orderability evidence",
+        "",
+        "This is deliberately rendered as vertical cards so the document remains usable on a narrow screen.",
+        "",
+    ]
+    for row in missing_orderability:
+        lines += [
+            f"<details><summary><code>{row['mpn']}</code> — qty {row['quantity']}</summary>",
+            "",
+            f"- Device id: `{row['device_id']}`",
+            f"- Scope: `{row['scope']}`",
+            f"- Lifecycle claim awaiting I8 recheck: `{row['lifecycle']}`",
+            f"- Qualification: `{row['qualification']}`",
+            f"- Placements: {', '.join(f'`{placement}`' for placement in row['placements'])}",
+            "",
+            "</details>",
+            "",
+        ]
+
+    lines += [
+        "## Non-MPN physical features",
+        "",
+    ]
+    lines.extend(f"- {feature}." for feature in audit["pcb_features_not_mpn_lines"])
+    lines += [
+        "",
+        "These need exact library/geometry and manufacturing rules, but must not be padded into component cost as fictitious purchased parts.",
+        "",
+        "## I8 exit",
+        "",
+        audit["exit"] + ".",
+        "",
+        "Until those conditions pass, the BOM has **not** received «Проведено ревью», no total COGS is claimed and KiCad remains unauthorized.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def _csv_cell(value: Any) -> str:
+    value_text = str(value)
+    return '"' + value_text.replace('"', '""') + '"'
+
+
+def render_target_bom_csv(
+    database: dict[str, Any], candidates: list[dict[str, Any]]
+) -> str:
+    candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
+    columns = (
+        "scope",
+        "device_id",
+        "mpn",
+        "quantity",
+        "lifecycle",
+        "qualification",
+        "orderable_evidence",
+        "cost_evidence",
+        "alternate_evidence",
+        "placements",
+    )
+    rows = [",".join(_csv_cell(column) for column in columns)]
+    for line in _target_bom_lines(database, candidate):
+        values = dict(line)
+        values["placements"] = ";".join(line["placements"])
+        rows.append(",".join(_csv_cell(values[column]) for column in columns))
+    return "\n".join(rows) + "\n"
 
 
 def render_principled_pinout(
@@ -2370,6 +2591,12 @@ def main(argv: list[str] | None = None) -> int:
     outputs = {
         REPO_ROOT / database["generated_ledger"]: render_ledger(database, candidates),
         REPO_ROOT / database["generated_principled_pinout"]: render_principled_pinout(
+            database, candidates
+        ),
+        REPO_ROOT / database["generated_target_bom_review"]: render_target_bom_review(
+            database, candidates
+        ),
+        REPO_ROOT / database["generated_target_bom_csv"]: render_target_bom_csv(
             database, candidates
         ),
     }

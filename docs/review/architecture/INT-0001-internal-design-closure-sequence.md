@@ -1,6 +1,6 @@
 # INT-0001 — dependency-ordered internal-design closure sequence
 
-- Статус: **Проведено ревью порядка; I1…I7 reviewed, I8 active**
+- Статус: **Проведено ревью порядка; I1/I2/I4…I7 reviewed, narrow I3 support reopened, I8 active**
 - Дата: 2026-08-19
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Working map: [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)
@@ -25,12 +25,12 @@ Exact MPN availability повторно проверяется при выбор
 | `I0` | semantic owners, buses, controllers, exposed pads and budgets | wishlist, `DEM-0001`, `SRC-0002` | `G2F-3I/PIN-0003` reviewed working map; not atomic | all later changes regenerate one machine source without collision or hidden pin |
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
-| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
+| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **narrow support-circuit reopen by `FND-0109`**: topology/manager/cells remain accepted, but MAX17320 support that was prose/abstract must be machine-instantiated and re-reviewed; other exact-lot, thermal, transition and destructive HIL remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **Проведено ревью paper electrical scope** by `DEC-0089/IOX-0001/REV-0005AT`; exact USB/display/microSD/controls/touch endpoints plus TCA6424A core, addresses, cross-domain isolation and shared-interface audit complete; physical/HIL gates named | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
-| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **active**; exact candidates are scattered across reviewed blocks and now require one coherent target BOM/AVL/cost projection | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
+| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory coverage reviewed, qualification active** by `FND-0109/BOM-0008`: 791 instantiated placements / 185 used lines plus six explicit uninstantiated physical families; 34 source, every cost and every alternate disposition remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
@@ -210,3 +210,13 @@ subblock: C5/RP data-only USB gains power-off D-line isolation, three keyed
 DBG10 and six physical controls become exact, and the contended push-pull reset
 fan-out becomes passive-drain. I7 has **«Проведено ревью»**; I8 is active.
 Neither KiCad nor the paused integrated mockup is authorized.
+
+`FND-0109/BOM-0008` then perform the first consolidated I8 inventory pass.
+The current machine map contains 791 placements across 185 used MPN lines, but
+the pass also proves that this is not yet the complete supplied-product BOM:
+SMA/cable/M5 bodies, threshold networks, antenna variants and a narrow group
+of MAX17320 support parts had remained abstract or prose-only. I8 inventory
+coverage has **«Проведено ревью»** and produces responsive Markdown plus CSV;
+sourcing/cost/alternate qualification remains active. Because MAX17320
+IN/CP/regulator/gate/sense support is paper electrical input rather than HIL,
+that narrow I3 subblock is reopened until exact instantiation and repeat review.

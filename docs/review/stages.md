@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. `I2`…`I7` have **«Проведено ревью»** through `DEC-0061/0082/0089/0090/0091…0099`, `COX-0001`, `EXP-0001` and `SVC-0002`; physical HIL remains a named reopen gate. I8 consolidated BOM/lifecycle/cost evidence is active. Gate 2F remains open through I8, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. I1/I2/I4…I7 have **«Проведено ревью»** in their paper scope; `FND-0109` narrowly reopens MAX17320 support inside I3 without changing the accepted 2S topology. I8 inventory coverage is reviewed at 791 placements/185 used lines plus explicit physical gaps; sourcing/lifecycle/cost/alternate qualification remains active. Gate 2F remains open through repaired I3 support, I8, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -81,5 +81,7 @@ COX-0001/DEC-0097/REV-0005BC` затем исправляют cross-group promot
 runtime, отдельные quiet boundaries, восемь fixture classes, ordered
 transitions и все no-stall thresholds. I6 paper scope имеет **«Проведено
 ревью»** без присвоения несуществующих измерений; physical HIL может открыть
-его владельца повторно. I7 закрыт `DEC-0098/0099`; активен I8 consolidated
-BOM/lifecycle/cost/alternate review, KiCad не разрешён.
+его владельца повторно. I7 закрыт `DEC-0098/0099`; I8 inventory coverage
+проведён `FND-0109/BOM-0008`, sourcing/cost/alternate qualification активен,
+а narrow MAX17320 support I3 переоткрыт до exact machine instantiation. KiCad
+не разрешён.
