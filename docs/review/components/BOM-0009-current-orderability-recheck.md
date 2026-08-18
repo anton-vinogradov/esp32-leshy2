@@ -20,7 +20,9 @@
 | current exact source recorded | 32 | exact identity присутствует у производителя, production supplier или distributor/authorized aggregation | будущий stock, landed factory price и alternate equivalence |
 | standalone source unresolved | 1 | official reference schematic раскрывает `HMX035CTFT-001` и его contacts; `BOM-0010` later proves complete-board specimen access | отдельный raw-panel order page/quote, approval drawing/lifecycle и стабильный production channel |
 
-После recheck текущая machine-readable coverage равна `187/188`. Эта метрика
+После последующего `BOM-0011` assembly-internal correction текущая
+machine-readable coverage равна `186/187`; исходный результат этого recheck
+был `187/188`. Эта метрика
 не называется «все детали лежат на складе»: manufacturer RFQ/current-product
 страница и live distributor stock — разные уровни evidence. Особенно
 ограниченные строки остаются видимыми в собственном `orderable_source`.
@@ -34,7 +36,7 @@
 
 ## Не смешивать с physical gaps
 
-Следующие items пока не являются пропущенными строками среди 188 used MPN:
+Следующие items пока не являются пропущенными строками среди 187 purchase MPN:
 
 - 9 внешних SMA connector bodies — зависят от connector plane и mechanics;
 - 5 RF cable assemblies — зависят от полученных RF-модулей и placement;
@@ -49,7 +51,7 @@
 ## Следующий порядок I8
 
 1. разрешить exact display sourcing без скрытого изменения endpoint;
-2. назначить оставшимся 187 used lines qualified alternate, parametric policy
+2. назначить оставшимся 186 used lines qualified alternate, parametric policy
    либо explicit no-drop-in-substitute; display disposition already exists;
 3. собрать сопоставимые quantity-100 cost snapshots;
 4. материализовать четыре physical families после соответствующих

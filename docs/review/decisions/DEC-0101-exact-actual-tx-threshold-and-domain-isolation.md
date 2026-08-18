@@ -2,6 +2,10 @@
 
 Статус: **принято автоматически в предоставленных пределах; проведено ревью paper electrical scope**.
 
+> Subsequent `FND-0112/BOM-0011` corrects one unrelated assembly-internal
+> display-controller purchasing duplicate. The 858/188 count below remains
+> the threshold-repair snapshot, not the current 857/187 purchase view.
+
 ## Контекст
 
 I2 already accepted eight physical TX-evidence channels. I8 exposed that their
@@ -39,4 +43,3 @@ repairs that preserve function and do not materially inflate budget.
 - No GPIO, firmware polarity or product capability changes.
 - KiCad and physical freeze remain unauthorized pending the rest of I8, I9 and
   the stated HIL gates.
-

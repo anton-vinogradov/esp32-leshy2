@@ -22,7 +22,7 @@
    `$20.90` у Elecrow и supplier tiers полного `ES3C35P-QD` являются только
    потолком/каналом прототипной закупки, не raw-panel COGS.
 
-Следовательно, used-line coverage честно остаётся `187/188`, но I8 больше не
+Следовательно, used-line coverage после `BOM-0011` честно равна `186/187`, но I8 больше не
 заблокирован отсутствием доступного HIL specimen: заблокирован именно
 production RFQ/approval package.
 

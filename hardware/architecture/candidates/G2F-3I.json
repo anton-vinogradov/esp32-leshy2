@@ -12,6 +12,13 @@
       "pack_cell0": "regional_replaceable_cell_kit",
       "pack_cell1": "regional_replaceable_cell_kit"
     },
+    "non_purchase_instances": [
+      {
+        "instance": "display_touch_controller",
+        "parent_instance": "display",
+        "reason": "Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement"
+      }
+    ],
     "cost_basis": "USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ",
     "required_uninstantiated_parts": [
       {"id":"external_sma_bodies","quantity":9,"scope":"base_product","role":"two RP-SMA and seven standard-SMA external RF connector bodies","blocker":"exact attachment style and MPN depend on the physical connector plane; polarity and radio ownership are already fixed"},

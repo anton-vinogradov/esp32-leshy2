@@ -8,15 +8,20 @@
 
 ## Что уже посчитано
 
-- **858** machine-instantiated physical placements collapse to **188** used exact-device/MPN lines.
-- Current orderability evidence exists for **187/188** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **0/188** lines.
-- Machine-readable alternate/no-substitution evidence exists for **1/188** lines.
+- **858** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
+- Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **0/187** lines.
+- Machine-readable alternate/no-substitution evidence exists for **1/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 855 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 854 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
+
+## Assembly-internal evidence nodes excluded from purchase BOM
+
+- `display_touch_controller` / `Sitronix ST77922` is contained by `display`: Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement.
 
 ## Physical items not yet instantiated
 

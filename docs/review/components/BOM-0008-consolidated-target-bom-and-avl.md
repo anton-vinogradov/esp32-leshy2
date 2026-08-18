@@ -16,16 +16,18 @@ calibration или accessory item.
 
 ## Current measured coverage
 
-- 858 current placements;
-- 188 used exact-device/MPN lines;
-- 855 base-product placements;
+- 858 architecture instances, including 1 explicit assembly-internal evidence
+  node excluded from purchasing by `BOM-0011`;
+- 857 supplied/costed placements;
+- 187 used exact-device/MPN purchase lines;
+- 854 base-product purchase placements;
 - 2 separately supplied regional cell-kit placements;
 - 1 optional U214 accessory placement;
-- 187/188 used lines already carry dated orderability evidence;
-- 1/188 requires current source verification: standalone
+- 186/187 used lines already carry dated orderability evidence;
+- 1/187 requires current source verification: standalone
   `HMX035CTFT-001` orderability remains unproved;
-- 188/188 still require machine-readable quantity-100 cost;
-- 187/188 still require alternate/no-substitution disposition after
+- 187/187 still require machine-readable quantity-100 cost;
+- 186/187 still require alternate/no-substitution disposition after
   `BOM-0010` records explicit no-drop-in policy for the display assembly.
 
 The generated review intentionally uses vertical `<details>` cards rather than

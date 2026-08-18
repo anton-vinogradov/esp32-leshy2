@@ -2,6 +2,10 @@
 
 - Статус: **исправлено; проведено ревью в paper electrical scope**
 - Scope: I8 prerequisite repair discovered during consolidated BOM qualification
+
+> Subsequent `FND-0112/BOM-0011` removes one unrelated assembly-internal
+> display-controller purchasing duplicate; its 857/187 current denominator
+> does not change any threshold circuit or quantity.
 - Corrected artifact: [`SAFE-0003`](../architecture/SAFE-0003-exact-actual-tx-threshold-and-isolation.md)
 - Decision: [`DEC-0101`](../decisions/DEC-0101-exact-actual-tx-threshold-and-domain-isolation.md)
 
@@ -48,4 +52,3 @@ optical-tunnel coupling, ambient IR, threshold tolerance, assertion/decay and
 false-positive/false-negative behavior remain HIL gates. A failed measured
 channel remains unavailable for proof-mandatory TX; the paper calculation is
 not substituted for that gate.
-

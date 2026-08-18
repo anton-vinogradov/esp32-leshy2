@@ -2,6 +2,11 @@
 
 Статус: **проведено ревью; display sourcing/cost/alternates remain open**.
 
+> `FND-0112/BOM-0011/REV-0005BJ` subsequently exclude the assembly-internal
+> ST77922 purchasing duplicate. Counts below are the reviewed pre-correction
+> snapshot; current purchase coverage is 857 placements / 187 lines / 186
+> source records.
+
 | Проверка | Результат |
 |---|---|
 | audit input | pass: all 33 previously missing used-line sources inspected |

@@ -24,18 +24,18 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(858, sum(line["quantity"] for line in lines))
-        self.assertEqual(188, len(lines))
+        self.assertEqual(857, sum(line["quantity"] for line in lines))
+        self.assertEqual(187, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            188,
+            187,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            187,
+            186,
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
 
@@ -62,12 +62,44 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("858", rendered)
-        self.assertIn("188", rendered)
-        self.assertIn("187/188", rendered)
-        self.assertIn("1/188", rendered)
+        self.assertIn("857", rendered)
+        self.assertIn("187", rendered)
+        self.assertIn("186/187", rendered)
+        self.assertIn("1/187", rendered)
+        self.assertIn("assembly-internal evidence node", rendered)
+        self.assertIn("display_touch_controller", rendered)
+        self.assertNotIn(
+            "sitronix_st77922",
+            {line["device_id"] for line in lines},
+        )
         self.assertIn("HMX035CTFT-001", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
+
+    def test_rejects_invalid_bom_non_purchase_boundary(self):
+        cases = (
+            (
+                [{"instance": "missing", "parent_instance": "display", "reason": "test"}],
+                "unknown instance 'missing'",
+            ),
+            (
+                [{"instance": "display", "parent_instance": "display", "reason": "test"}],
+                "instance cannot parent itself",
+            ),
+            (
+                [
+                    {"instance": "display_touch_controller", "parent_instance": "display", "reason": "test"},
+                    {"instance": "display_touch_controller", "parent_instance": "display", "reason": "duplicate"},
+                ],
+                "duplicate BOM non-purchase instance",
+            ),
+        )
+        for rows, expected in cases:
+            with self.subTest(expected=expected):
+                candidates = copy.deepcopy(self.candidates)
+                candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+                candidate["bom_audit"]["non_purchase_instances"] = rows
+                self.assertIn(expected, "\n".join(self.errors_for(candidates)))
 
     def test_exact_polarized_holder_and_three_ntc_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

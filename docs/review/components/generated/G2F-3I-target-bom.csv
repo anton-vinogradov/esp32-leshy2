@@ -90,7 +90,6 @@
 "base_product","same_sky_cmej_0413_42_smt_tr","Same Sky CMEJ-0413-42-SMT-TR","1","active_orderable","verified_candidate","present","missing","missing","microphone"
 "base_product","same_sky_sj1_3515_smt_tr","Same Sky SJ1-3515-SMT-TR","1","active_orderable","verified_candidate","present","missing","missing","headphone_jack"
 "base_product","samtec_ftsh_105_01_l_dv_k_p_tr","Samtec FTSH-105-01-L-DV-K-P-TR","3","active_orderable","verified_exact_three_domain_dbg10_header","present","missing","missing","c5_dbg_header;rp_dbg_header;s3_dbg_header"
-"base_product","sitronix_st77922","Sitronix ST77922","1","active manufacturer-catalog TDDI; sourced only inside a qualified display assembly","verified_exact_controller_inside_hmx035ctft_001","present","missing","missing","display_touch_controller"
 "base_product","skyworks_si4732_a10_gsr","Si4732-A10-GSR","1","active_orderable","verified_exact_production_candidate","present","missing","missing","receiver"
 "base_product","sunlord_mwsa0503s_2r2mt","Sunlord MWSA0503S-2R2MT","1","active","verified_candidate","present","missing","missing","charger_inductor"
 "base_product","sunlord_mwsa0503s_3r3mt","Sunlord MWSA0503S-3R3MT","2","active","verified_candidate","present","missing","missing","main_inductor;voice_inductor"

@@ -508,10 +508,12 @@ SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates
 и integrated mockup заблокированы до завершения I8/I9.
 
 `FND-0109/BOM-0008` теперь генерируют consolidated narrow-screen review и CSV:
-858 current placements сворачиваются в 188 used lines, у 187 есть датированное
+858 architecture instances включают один явно исключённый assembly-internal
+узел ST77922. Исправленные 857 supplied/costed placements сворачиваются в 187
+purchase lines, у 186 есть датированное
 orderability evidence, а единственной unresolved standalone строкой остаётся
 `HMX035CTFT-001`; ни одна строка пока не имеет machine-readable comparable
-cost, а у 187 строк нет alternate/no-substitution disposition.
+cost, а у 186 строк нет alternate/no-substitution disposition.
 Тот же аудит отдельно учитывает 9 SMA bodies, 5 RF cable assemblies, 2 M5
 connector bodies и 12-item antenna-kit variant вместо выдачи этих абстракций
 за нулевую стоимость. Бывшие MAX17320 и threshold gaps теперь представлены
@@ -519,8 +521,10 @@ exact physical placements.
 `DSP-0008/BOM-0010/REV-0005BI` дополнительно доказывают, что exact HMX
 specimen можно получить внутри текущей платы `DLE06235B/ES3C35P-QD`, но
 standalone raw-panel sourcing честно остаётся открытым. Exact RFQ и
-no-drop-in policy внесены в machine source; alternate coverage теперь 1/188
+no-drop-in policy внесены в machine source; alternate coverage теперь 1/187
 без изменения функций, контактов или диаграммы.
+`FND-0112/BOM-0011/DEC-0103/REV-0005BJ` проводят ревью этой границы между
+architecture и purchasing и запрещают возврат COG в factory CSV.
 
 `FND-0072/IMP-0051` выявили, что target README снова начали пересказывать
 инженерную chronology. Владелец принял `DEC-0060`; `REV-0005N` провёл ревью

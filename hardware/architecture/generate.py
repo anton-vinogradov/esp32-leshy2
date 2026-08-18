@@ -360,6 +360,7 @@ def validate_sources(
                 "status",
                 "default_scope",
                 "cost_basis",
+                "non_purchase_instances",
                 "required_uninstantiated_parts",
                 "pcb_features_not_mpn_lines",
                 "exit",
@@ -371,6 +372,33 @@ def validate_sources(
                     errors.append(
                         f"{candidate_id}: BOM scope override references unknown {instance}"
                     )
+            non_purchase_names: set[str] = set()
+            for row_number, row in enumerate(
+                bom_audit.get("non_purchase_instances", []), 1
+            ):
+                context = f"BOM non-purchase instance {row_number}"
+                for required in ("instance", "parent_instance", "reason"):
+                    if not row.get(required):
+                        errors.append(f"{candidate_id}: {context}: missing {required}")
+                instance = row.get("instance")
+                parent = row.get("parent_instance")
+                if instance not in instances:
+                    errors.append(
+                        f"{candidate_id}: {context}: unknown instance {instance!r}"
+                    )
+                if parent not in instances:
+                    errors.append(
+                        f"{candidate_id}: {context}: unknown parent {parent!r}"
+                    )
+                if instance == parent:
+                    errors.append(
+                        f"{candidate_id}: {context}: instance cannot parent itself"
+                    )
+                if instance in non_purchase_names:
+                    errors.append(
+                        f"{candidate_id}: duplicate BOM non-purchase instance {instance}"
+                    )
+                non_purchase_names.add(instance)
             missing_part_ids: set[str] = set()
             for row_number, row in enumerate(
                 bom_audit.get("required_uninstantiated_parts", []), 1
@@ -1099,8 +1127,13 @@ def _target_bom_lines(
 
     devices = database["devices"]
     audit = candidate["bom_audit"]
+    non_purchase_instances = {
+        row["instance"] for row in audit.get("non_purchase_instances", [])
+    }
     grouped: dict[str, list[str]] = {}
     for instance, device_id in candidate["instances"].items():
+        if instance in non_purchase_instances:
+            continue
         grouped.setdefault(device_id, []).append(instance)
 
     result: list[dict[str, Any]] = []
@@ -1135,8 +1168,12 @@ def render_target_bom_review(
 
     candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
     audit = candidate["bom_audit"]
+    devices = database["devices"]
     bom = _target_bom_lines(database, candidate)
-    instance_count = sum(row["quantity"] for row in bom)
+    purchase_instance_count = sum(row["quantity"] for row in bom)
+    architecture_instance_count = len(candidate["instances"])
+    non_purchase_instances = audit.get("non_purchase_instances", [])
+    non_purchase_node_word = "node" if len(non_purchase_instances) == 1 else "nodes"
     orderable = sum(row["orderable_evidence"] == "present" for row in bom)
     costed = sum(row["cost_evidence"] == "present" for row in bom)
     alternates = sum(row["alternate_evidence"] == "present" for row in bom)
@@ -1155,7 +1192,8 @@ def render_target_bom_review(
         "",
         "## Что уже посчитано",
         "",
-        f"- **{instance_count}** machine-instantiated physical placements collapse to **{len(bom)}** used exact-device/MPN lines.",
+        f"- **{architecture_instance_count}** architecture instances include **{len(non_purchase_instances)}** explicit assembly-internal evidence {non_purchase_node_word}.",
+        f"- After excluding those non-purchase nodes, **{purchase_instance_count}** supplied/costed placements collapse to **{len(bom)}** used exact-device/MPN lines.",
         f"- Current orderability evidence exists for **{orderable}/{len(bom)}** used lines; **{len(bom) - orderable}** need a current source check.",
         f"- Machine-readable quantity-100 cost evidence exists for **{costed}/{len(bom)}** lines.",
         f"- Machine-readable alternate/no-substitution evidence exists for **{alternates}/{len(bom)}** lines.",
@@ -1168,6 +1206,18 @@ def render_target_bom_review(
         + ".",
         "",
         "The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.",
+        "",
+        "## Assembly-internal evidence nodes excluded from purchase BOM",
+        "",
+    ]
+    for row in non_purchase_instances:
+        instance = row["instance"]
+        parent = row["parent_instance"]
+        device = devices[candidate["instances"][instance]]
+        lines += [
+            f"- `{instance}` / `{device['mpn']}` is contained by `{parent}`: {row['reason']}.",
+        ]
+    lines += [
         "",
         "## Physical items not yet instantiated",
         "",

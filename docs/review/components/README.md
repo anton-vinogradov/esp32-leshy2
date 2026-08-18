@@ -20,8 +20,9 @@ explicit physical-gap register feed the generated manifest.
 6. `BOM-0006` — packet RF, analog voice and antenna/front-end assemblies;
 7. `BOM-0007` — external M5 profiles/connectors/power-isolation;
 8. [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) — current consolidated sourcing, alternates, lifecycle, cost and assembly manifest.
-9. [`BOM-0009`](BOM-0009-current-orderability-recheck.md) — exact-line source recheck: 187/188 current orderability records and isolated display residue.
+9. [`BOM-0009`](BOM-0009-current-orderability-recheck.md) — exact-line source recheck; current corrected denominator is 186/187 with isolated display residue.
 10. [`BOM-0010`](BOM-0010-display-procurement-and-alternate-disposition.md) — display specimen/RFQ boundary and explicit no-drop-in policy.
+11. [`BOM-0011`](BOM-0011-assembly-internal-purchase-boundary.md) — explicit assembly-internal node exclusion and corrected 857/187 purchase view.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -51,5 +52,6 @@ explicit physical-gap register feed the generated manifest.
 - [`SAFE-0003`](../architecture/SAFE-0003-exact-actual-tx-threshold-and-isolation.md) / [`DEC-0101`](../decisions/DEC-0101-exact-actual-tx-threshold-and-domain-isolation.md) / [`REV-0005BG`](../reviews/REV-0005BG-actual-tx-threshold-propagation.md) — eight exact threshold networks and AON-to-main evidence isolation; **Проведено ревью paper electrical scope**, measured calibration/HIL open.
 - [`BOM-0009`](BOM-0009-current-orderability-recheck.md) / [`FND-0111`](../findings/FND-0111-orderability-audit-exposed-pseudo-mpn-and-display-gap.md) / [`DEC-0102`](../decisions/DEC-0102-exact-sc1512-a4-order-identity.md) / [`REV-0005BH`](../reviews/REV-0005BH-orderability-propagation.md) — previously missing exact-line sources rechecked, `SC1512-A4` order identity repaired and only `HMX035CTFT-001` left unresolved; **Проведено ревью current sourcing batch**, cost/alternates and full I8 remain open.
 - [`DSP-0008`](../architecture/DSP-0008-display-procurement-boundary-and-rfq.md) / [`BOM-0010`](BOM-0010-display-procurement-and-alternate-disposition.md) / [`REV-0005BI`](../reviews/REV-0005BI-display-procurement-propagation.md) — exact display donor/specimen sources, production RFQ packet and no-drop-in disposition; **Проведено ревью sourcing strategy**, standalone panel RFQ/HIL open.
+- [`FND-0112`](../findings/FND-0112-assembly-internal-controller-was-double-counted.md) / [`BOM-0011`](BOM-0011-assembly-internal-purchase-boundary.md) / [`DEC-0103`](../decisions/DEC-0103-separate-architecture-nodes-from-purchase-bom.md) / [`REV-0005BJ`](../reviews/REV-0005BJ-assembly-internal-bom-propagation.md) — ST77922 remains a distinct architecture node but is no longer double-counted as a purchase line; **Проведено ревью corrected purchasing coverage**.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

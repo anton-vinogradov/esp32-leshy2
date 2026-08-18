@@ -18,9 +18,10 @@
 панелью не доказывает возможность заказать отдельную панель для PCBA. Поэтому
 current totals становятся:
 
-- orderability `187/188`;
-- comparable quantity-100 component cost `0/188`;
-- alternate/no-substitution disposition `1/188`.
+- orderability `186/187` after `BOM-0011` excludes the assembly-internal
+  ST77922 purchasing duplicate;
+- comparable quantity-100 component cost `0/187`;
+- alternate/no-substitution disposition `1/187`.
 
 ## Procurement actions
 

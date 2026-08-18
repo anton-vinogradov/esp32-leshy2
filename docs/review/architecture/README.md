@@ -230,16 +230,19 @@ passive-drain reset sinks remove push-pull contention. I7 has **«Проведе
 `FND-0109/BOM-0008` then generate the first complete I8 coverage view.
 `PWR-0022/DEC-0100/REV-0005BF` repair and re-review the exposed MAX17320/MSPM0
 support residue without changing the accepted 2S product topology. The current
-map has 858 placements / 188 used MPN lines plus four explicit SMA, cable, M5
+map has 858 architecture instances; `FND-0112/BOM-0011/DEC-0103/REV-0005BJ`
+exclude the one assembly-internal ST77922 evidence node, leaving 857
+supplied/costed placements / 187 purchase MPN lines plus four explicit SMA, cable, M5
 and antenna-kit gap families. `FND-0110/SAFE-0003/DEC-0101/REV-0005BG`
 subsequently instantiate every actual-TX threshold network and repair the
 AON-to-main evidence boundary. I8 inventory coverage is reviewed;
 orderability, cost and alternate qualification remain active.
 `FND-0111/BOM-0009/DEC-0102/REV-0005BH` subsequently recheck all 33 missing
 source lines, replace the RP prose pseudo-MPN with exact `SC1512-A4`
-(`RP2354B0A4`) and raise current orderability coverage to 187/188. Exact
+(`RP2354B0A4`) and, after the internal-node correction, leave current
+orderability coverage at 186/187. Exact
 standalone `HMX035CTFT-001` sourcing is the sole used-line residue; all costs,
-187 remaining alternate dispositions and the four physical-gap families remain
+186 remaining alternate dispositions and the four physical-gap families remain
 open. `DSP-0008/BOM-0010/REV-0005BI` then prove current complete-board
 specimen access, define the exact standalone-panel RFQ and record the first
 no-drop-in disposition without changing the display endpoint.

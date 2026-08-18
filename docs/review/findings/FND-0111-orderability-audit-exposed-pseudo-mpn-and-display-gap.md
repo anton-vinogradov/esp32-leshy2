@@ -4,6 +4,10 @@
 - Дата: 2026-08-19
 - Scope: `G2F-3I`, `INT-0001/I8`
 
+> Subsequent `FND-0112/BOM-0011` excludes one assembly-internal ST77922
+> purchasing duplicate. The reviewed 858/188 and 187/188 figures below are
+> this source-audit snapshot; current purchase figures are 857/187 and 186/187.
+
 ## Несоответствие
 
 После закрытия inventory coverage 33 используемые BOM-линии не имели

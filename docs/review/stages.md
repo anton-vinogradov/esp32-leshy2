@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. I1…I7 have **«Проведено ревью»** in paper scope after the MAX17320 and actual-TX support repairs. I8 inventory/current source batch/display sourcing strategy are reviewed at 858 placements/188 used lines, 187/188 source records and 1/188 alternate disposition plus four explicit physical-gap families; standalone display RFQ, cost and remaining alternate qualification are active. Gate 2F remains open through I8, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. I1…I7 have **«Проведено ревью»** in paper scope after the MAX17320 and actual-TX support repairs. I8 inventory/current source batch/display sourcing strategy are reviewed at 858 architecture instances / 857 supplied placements / 187 purchase lines, 186/187 source records and 1/187 alternate disposition plus four explicit physical-gap families; standalone display RFQ, cost and remaining alternate qualification are active. Gate 2F remains open through I8, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -84,8 +84,10 @@ transitions и все no-stall thresholds. I6 paper scope имеет **«Про�
 его владельца повторно. I7 закрыт `DEC-0098/0099`; I8 inventory coverage
 проведён `FND-0109/BOM-0008`; `PWR-0022/DEC-0100/REV-0005BF` исправляют и
 повторно закрывают narrow MAX17320 support I3. `FND-0111/BOM-0009/DEC-0102/
-REV-0005BH` проверяют current source batch: 187/188 used lines имеют evidence,
+REV-0005BH` проверяют current source batch; после `BOM-0011` 186/187 purchase
+lines имеют evidence,
 а exact `HMX035CTFT-001` остаётся открыт. `DSP-0008/BOM-0010/REV-0005BI`
 закрывают donor/specimen route, exact RFQ и no-drop-in policy без подмены
 standalone sourcing. Cost/remaining alternate qualification активен, KiCad не
-разрешён.
+разрешён. `FND-0112/BOM-0011/DEC-0103/REV-0005BJ` отдельно исправляют
+двойной purchasing-счёт internal ST77922 и фиксируют current 857/187.
