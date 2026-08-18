@@ -1361,6 +1361,73 @@ def render_principled_pinout(
         "unit_signal_iso_oe_pulldown", "unit_esd",
     )
 
+    service_instance_names = (
+        "c5_service_usb_connector", "c5_service_usb_esd",
+        "c5_service_usb_switch", "c5_service_usb_switch_bypass",
+        "c5_service_usb_cc1_rd", "c5_service_usb_cc2_rd",
+        "c5_service_usb_vbus_bleeder", "c5_service_usb_dm_series",
+        "c5_service_usb_dp_series", "rp_service_usb_connector",
+        "rp_service_usb_esd", "rp_service_usb_switch",
+        "rp_service_usb_switch_bypass", "rp_service_usb_cc1_rd",
+        "rp_service_usb_cc2_rd", "rp_service_usb_vbus_bleeder",
+        "rp_service_usb_dm_series", "rp_service_usb_dp_series",
+        "s3_dbg_header", "c5_dbg_header", "rp_dbg_header",
+        "s3_dbg_esd", "c5_dbg_esd", "rp_dbg_esd",
+        "s3_reset_button", "s3_boot_button", "c5_reset_button",
+        "c5_boot_button", "rp_reset_button", "rp_boot_button",
+        "s3_dbg_vtref_series", "s3_dbg_reset_series", "s3_dbg_boot_series",
+        "s3_dbg0_series", "s3_dbg1_series", "s3_dbg_id0_strap",
+        "s3_dbg_id1_strap", "c5_dbg_vtref_series", "c5_dbg_reset_series",
+        "c5_dbg_boot_series", "c5_dbg0_series", "c5_dbg1_series",
+        "c5_dbg_id0_strap", "c5_dbg_id1_strap", "rp_dbg_vtref_series",
+        "rp_dbg_reset_series", "rp_dbg_boot_series", "rp_dbg0_series",
+        "rp_dbg1_series", "rp_dbg_id0_strap", "rp_dbg_id1_strap",
+        "s3_boot_pullup", "c5_boot_pullup", "rp_boot_pullup",
+        "c5_gpio27_pullup",
+    )
+
+    def service_role(instance: str) -> str:
+        domain = "C5" if instance.startswith("c5_") else "RP" if instance.startswith("rp_") else "S3"
+        if instance.endswith("service_usb_connector"):
+            return f"{domain} independent data-only USB-C service receptacle"
+        if instance.endswith("service_usb_esd"):
+            return f"{domain} service USB D+/D- low-capacitance ESD shunt"
+        if instance.endswith("service_usb_switch"):
+            return f"{domain} board-off D+/D- backfeed-isolation switch"
+        if instance.endswith("service_usb_switch_bypass"):
+            return f"{domain} USB isolation-switch local bypass capacitor"
+        if "service_usb_cc" in instance:
+            return f"{domain} service-port passive Type-C Rd resistor"
+        if instance.endswith("service_usb_vbus_bleeder"):
+            return f"{domain} no-power service-VBUS bleeder resistor"
+        if instance.endswith("service_usb_dm_series"):
+            return f"{domain} USB Full-Speed D- MCU-side series resistor"
+        if instance.endswith("service_usb_dp_series"):
+            return f"{domain} USB Full-Speed D+ MCU-side series resistor"
+        if instance.endswith("dbg_header"):
+            return f"{domain} keyed ten-contact independent debug header"
+        if instance.endswith("dbg_esd"):
+            return f"{domain} RESET/BOOT/debug four-line ESD array"
+        if instance.endswith("reset_button"):
+            return f"{domain} separate physical RESET service control"
+        if instance.endswith("boot_button"):
+            return f"{domain} separate physical BOOT service control"
+        if instance.endswith("dbg_vtref_series"):
+            return f"{domain} fixture VTREF sense-current resistor"
+        if instance.endswith("dbg_reset_series"):
+            return f"{domain} active-low RESET fixture-current resistor"
+        if instance.endswith("dbg_boot_series"):
+            return f"{domain} active-low BOOT fixture-current resistor"
+        if instance.endswith(("dbg0_series", "dbg1_series")):
+            return f"{domain} UART/SWD fixture-current and edge resistor"
+        if instance.endswith(("dbg_id0_strap", "dbg_id1_strap")):
+            return f"{domain} passive DBG10 identity strap resistor"
+        if instance.endswith("boot_pullup"):
+            return f"{domain} deterministic normal-boot pull-up resistor"
+        if instance == "c5_gpio27_pullup":
+            return "C5 fixed-high normal-boot and ROM-log strap resistor"
+        return instance.replace("_", " ") + " service component"
+
     full_ledger = render_ledger(database, candidates)
     detail_start = full_ledger.index("\n### `s3` —", full_ledger.index("\n## G2F-3I —")) + 1
     detail_end = full_ledger.index("\n## Machine-check result and review boundary", detail_start)
@@ -1533,6 +1600,11 @@ def render_principled_pinout(
         node("s3", "application, UI, display/storage, audio, BLE/Wi-Fi owner"),
         node("c5", "2.4/5 GHz, IEEE 802.15.4 and IR owner"),
         node("rp", "deterministic radio and voice owner"),
+        "  end",
+        "  subgraph SERVICE_RECOVERY[\"Independent three-domain service and recovery devices\"]",
+        *[node(instance, service_role(instance)) for instance in service_instance_names],
+        "  %% Service layout-only invisible spine: every box above is one physical device.",
+        "  " + " ~~~ ".join(instance.upper() for instance in service_instance_names),
         "  end",
         "  subgraph UI_STORAGE[\"UI and storage devices\"]",
         node("display_connector", "first 40-position 0.5-mm bottom-contact ZIF panel-mate candidate"),
@@ -1739,7 +1811,14 @@ def render_principled_pinout(
         node("safe_conditioner", "STOP and RE-ARM Schmitt conditioner"),
         node("safe_por_or", "STOP-dominant POR/clear combiner"),
         node("safe_latch", "asynchronous latched hard STOP"),
-        node("safe_reset_buffer", "Ioff three-domain reset fan-out"),
+        node("safe_reset_buffer", "AON open-drain RUN-permit inverter"),
+        node("safe_reset_buffer_bypass", "100-nF AON reset-driver bypass capacitor"),
+        node("safe_reset_gate_pullup", "10-kOhm main-domain fail-reset gate pull-up"),
+        node("safe_reset_sink_a", "independent passive-drain S3/C5 reset sinks"),
+        node("safe_reset_sink_b", "independent passive-drain RP reset sink plus inert spare"),
+        node("s3_reset_pullup", "10-kOhm passive S3 EN pull-up resistor"),
+        node("c5_reset_pullup", "10-kOhm passive C5 CHIP_PU pull-up resistor"),
+        node("rp_reset_pullup", "10-kOhm passive RP RUN pull-up resistor"),
         node("safe_gate_a", "four STOP-dominant nRF request gates"),
         node("safe_gate_b", "four STOP-dominant rail/IR/accessory gates"),
         node("safe_ptt_or", "active-low voice PTT force-RX gate"),
@@ -1792,13 +1871,13 @@ def render_principled_pinout(
         "  SD_ESD_B ~~~ SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLUP ~~~ SD_HOST_D1_PULLUP",
         "  SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP ~~~ SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP",
         "  SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT",
-        "  UNIT ~~~ C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in ir_instance_names) + " ~~~ RP",
+        "  UNIT ~~~ C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in ir_instance_names) + " ~~~ RP ~~~ " + " ~~~ ".join(instance.upper() for instance in service_instance_names),
         "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
         "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_RF ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
-        "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
+        "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
         "  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
         "  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B",
         "  EVIDENCE_CMP_B ~~~ EVIDENCE_MASK ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_LED",
@@ -1808,6 +1887,18 @@ def render_principled_pinout(
         "  PRODUCT_USB_PROTECTOR <-->|\"protected D+\"| PRODUCT_USB_DP_SERIES <-->|\"Full-Speed GPIO20\"| S3",
         "  PRODUCT_USB_PROTECTOR <-->|\"protected D-\"| PRODUCT_USB_DM_SERIES <-->|\"Full-Speed GPIO19\"| S3",
         "  PRODUCT_USB_PROTECTOR <-->|\"protected CC1/CC2\"| PD_CONTROLLER",
+        "  C5_SERVICE_USB_CONNECTOR <-->|\"D+/D-; VBUS sense-only\"| C5_SERVICE_USB_ESD",
+        "  C5_SERVICE_USB_CONNECTOR <-->|\"board-off isolated data\"| C5_SERVICE_USB_SWITCH <-->|\"22 Ω D+/D-\"| C5",
+        "  RP_SERVICE_USB_CONNECTOR <-->|\"D+/D-; VBUS sense-only\"| RP_SERVICE_USB_ESD",
+        "  RP_SERVICE_USB_CONNECTOR <-->|\"board-off isolated data\"| RP_SERVICE_USB_SWITCH <-->|\"27 Ω D+/D-\"| RP",
+        "  S3_DBG_HEADER <-->|\"protected UART0 + RESET/BOOT\"| S3_DBG_ESD <-->|\"current-limited\"| S3",
+        "  C5_DBG_HEADER <-->|\"protected UART0 + RESET/BOOT\"| C5_DBG_ESD <-->|\"current-limited\"| C5",
+        "  RP_DBG_HEADER <-->|\"protected SWD + RESET/BOOT\"| RP_DBG_ESD <-->|\"current-limited\"| RP",
+        "  SAFE_LATCH -->|\"RUN_PERMIT\"| SAFE_RESET_BUFFER -->|\"RESET_KILL_GATE\"| SAFE_RESET_SINK_A",
+        "  SAFE_RESET_BUFFER -->|\"RESET_KILL_GATE\"| SAFE_RESET_SINK_B",
+        "  SAFE_RESET_SINK_A -->|\"passive-drain EN\"| S3",
+        "  SAFE_RESET_SINK_A -->|\"passive-drain CHIP_PU\"| C5",
+        "  SAFE_RESET_SINK_B -->|\"passive-drain RUN\"| RP",
         "  PRODUCT_USB_PROTECTOR --> PRODUCT_USB_VBIAS_CAP",
         "  PD_CONTROLLER -->|\"LDO_3V3\"| PRODUCT_USB_VPWR_CAP --> PRODUCT_USB_PROTECTOR",
         "  PD_CONTROLLER --> PRODUCT_USB_FAULT_PULLUP --> PRODUCT_USB_PROTECTOR",

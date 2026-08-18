@@ -41,6 +41,7 @@ atomic architecture decision pass `FLOW-0001`.
 - [`REV-0004D`](../reviews/REV-0004D-compute-cad-library-audit.md) — historical availability/provenance audit; **Проведено ревью фактов**.
 - [`REV-0004E`](../reviews/REV-0004E-vendored-critical-cad-libraries.md) — `DEC-0030/IMP-0025-A`, project-local critical CAD snapshot, provenance and tests; **Проведено ревью**.
 - [`REC-0001`](REC-0001-compute-recovery-and-link-prerequisites.md) / [`REV-0004F`](../reviews/REV-0004F-compute-recovery-link-prerequisites.md) — ROM/debug/link prerequisites and corrected C5 strap; **Проведено ревью**.
-- [`SVC-0001`](SVC-0001-three-domain-development-access.md) / [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md) — accepted permanent USB/DBG10/BOOT/RESET access for all three domains; **Проведено ревью topology/candidates**, implementation gates open.
+- [`SVC-0001`](SVC-0001-three-domain-development-access.md) / [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md) — historical permanent-access topology review.
+- [`SVC-0002`](../architecture/SVC-0002-exact-three-domain-service-recovery-boundary.md) / [`REV-0005BE`](../reviews/REV-0005BE-i7-service-recovery-propagation.md) — exact USB/DBG10/BOOT/RESET and conflict-free hard-STOP reset implementation; **Проведено ревью paper electrical scope**, physical/HIL open.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

@@ -165,6 +165,65 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4 (exact A4 order/lot identity required before BOM freeze)<br/>deterministic radio and voice owner"]
   end
+  subgraph SERVICE_RECOVERY["Independent three-domain service and recovery devices"]
+  C5_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>C5 independent data-only USB-C service receptacle"]
+  C5_SERVICE_USB_ESD["Texas Instruments TPD2EUSB30ADRTR<br/>C5 service USB D+/D- low-capacitance ESD shunt"]
+  C5_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>C5 board-off D+/D- backfeed-isolation switch"]
+  C5_SERVICE_USB_SWITCH_BYPASS["TDK C1005X7R1H104K050BB<br/>C5 USB isolation-switch local bypass capacitor"]
+  C5_SERVICE_USB_CC1_RD["Yageo RC0402FR-075K1L<br/>C5 service-port passive Type-C Rd resistor"]
+  C5_SERVICE_USB_CC2_RD["Yageo RC0402FR-075K1L<br/>C5 service-port passive Type-C Rd resistor"]
+  C5_SERVICE_USB_VBUS_BLEEDER["Yageo RC0402FR-071ML<br/>C5 no-power service-VBUS bleeder resistor"]
+  C5_SERVICE_USB_DM_SERIES["Panasonic ERJ-2RKF22R0X<br/>C5 USB Full-Speed D- MCU-side series resistor"]
+  C5_SERVICE_USB_DP_SERIES["Panasonic ERJ-2RKF22R0X<br/>C5 USB Full-Speed D+ MCU-side series resistor"]
+  RP_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>RP independent data-only USB-C service receptacle"]
+  RP_SERVICE_USB_ESD["Texas Instruments TPD2EUSB30ADRTR<br/>RP service USB D+/D- low-capacitance ESD shunt"]
+  RP_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>RP board-off D+/D- backfeed-isolation switch"]
+  RP_SERVICE_USB_SWITCH_BYPASS["TDK C1005X7R1H104K050BB<br/>RP USB isolation-switch local bypass capacitor"]
+  RP_SERVICE_USB_CC1_RD["Yageo RC0402FR-075K1L<br/>RP service-port passive Type-C Rd resistor"]
+  RP_SERVICE_USB_CC2_RD["Yageo RC0402FR-075K1L<br/>RP service-port passive Type-C Rd resistor"]
+  RP_SERVICE_USB_VBUS_BLEEDER["Yageo RC0402FR-071ML<br/>RP no-power service-VBUS bleeder resistor"]
+  RP_SERVICE_USB_DM_SERIES["Panasonic ERJ-2RKF27R0X<br/>RP USB Full-Speed D- MCU-side series resistor"]
+  RP_SERVICE_USB_DP_SERIES["Panasonic ERJ-2RKF27R0X<br/>RP USB Full-Speed D+ MCU-side series resistor"]
+  S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>S3 keyed ten-contact independent debug header"]
+  C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>C5 keyed ten-contact independent debug header"]
+  RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>RP keyed ten-contact independent debug header"]
+  S3_DBG_ESD["Texas Instruments TPD4E05U06DQAR<br/>S3 RESET/BOOT/debug four-line ESD array"]
+  C5_DBG_ESD["Texas Instruments TPD4E05U06DQAR<br/>C5 RESET/BOOT/debug four-line ESD array"]
+  RP_DBG_ESD["Texas Instruments TPD4E05U06DQAR<br/>RP RESET/BOOT/debug four-line ESD array"]
+  S3_RESET_BUTTON["Alps Alpine SKQGADE010<br/>S3 separate physical RESET service control"]
+  S3_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>S3 separate physical BOOT service control"]
+  C5_RESET_BUTTON["Alps Alpine SKQGADE010<br/>C5 separate physical RESET service control"]
+  C5_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>C5 separate physical BOOT service control"]
+  RP_RESET_BUTTON["Alps Alpine SKQGADE010<br/>RP separate physical RESET service control"]
+  RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>RP separate physical BOOT service control"]
+  S3_DBG_VTREF_SERIES["Yageo RC0402FR-071KL<br/>S3 fixture VTREF sense-current resistor"]
+  S3_DBG_RESET_SERIES["Yageo RC0402FR-071KL<br/>S3 active-low RESET fixture-current resistor"]
+  S3_DBG_BOOT_SERIES["Yageo RC0402FR-071KL<br/>S3 active-low BOOT fixture-current resistor"]
+  S3_DBG0_SERIES["Yageo RC0402FR-07470RL<br/>S3 UART/SWD fixture-current and edge resistor"]
+  S3_DBG1_SERIES["Yageo RC0402FR-07470RL<br/>S3 UART/SWD fixture-current and edge resistor"]
+  S3_DBG_ID0_STRAP["Yageo RC0402FR-0710KL<br/>S3 passive DBG10 identity strap resistor"]
+  S3_DBG_ID1_STRAP["Yageo RC0402FR-0710KL<br/>S3 passive DBG10 identity strap resistor"]
+  C5_DBG_VTREF_SERIES["Yageo RC0402FR-071KL<br/>C5 fixture VTREF sense-current resistor"]
+  C5_DBG_RESET_SERIES["Yageo RC0402FR-071KL<br/>C5 active-low RESET fixture-current resistor"]
+  C5_DBG_BOOT_SERIES["Yageo RC0402FR-071KL<br/>C5 active-low BOOT fixture-current resistor"]
+  C5_DBG0_SERIES["Yageo RC0402FR-07470RL<br/>C5 UART/SWD fixture-current and edge resistor"]
+  C5_DBG1_SERIES["Yageo RC0402FR-07470RL<br/>C5 UART/SWD fixture-current and edge resistor"]
+  C5_DBG_ID0_STRAP["Yageo RC0402FR-0710KL<br/>C5 passive DBG10 identity strap resistor"]
+  C5_DBG_ID1_STRAP["Yageo RC0402FR-0710KL<br/>C5 passive DBG10 identity strap resistor"]
+  RP_DBG_VTREF_SERIES["Yageo RC0402FR-071KL<br/>RP fixture VTREF sense-current resistor"]
+  RP_DBG_RESET_SERIES["Yageo RC0402FR-071KL<br/>RP active-low RESET fixture-current resistor"]
+  RP_DBG_BOOT_SERIES["Yageo RC0402FR-071KL<br/>RP active-low BOOT fixture-current resistor"]
+  RP_DBG0_SERIES["Yageo RC0402FR-07470RL<br/>RP UART/SWD fixture-current and edge resistor"]
+  RP_DBG1_SERIES["Yageo RC0402FR-07470RL<br/>RP UART/SWD fixture-current and edge resistor"]
+  RP_DBG_ID0_STRAP["Yageo RC0402FR-0710KL<br/>RP passive DBG10 identity strap resistor"]
+  RP_DBG_ID1_STRAP["Yageo RC0402FR-0710KL<br/>RP passive DBG10 identity strap resistor"]
+  S3_BOOT_PULLUP["Yageo RC0402FR-0710KL<br/>S3 deterministic normal-boot pull-up resistor"]
+  C5_BOOT_PULLUP["Yageo RC0402FR-0710KL<br/>C5 deterministic normal-boot pull-up resistor"]
+  RP_BOOT_PULLUP["Yageo RC0402FR-0710KL<br/>RP deterministic normal-boot pull-up resistor"]
+  C5_GPIO27_PULLUP["Yageo RC0402FR-0710KL<br/>C5 fixed-high normal-boot and ROM-log strap resistor"]
+  %% Service layout-only invisible spine: every box above is one physical device.
+  C5_SERVICE_USB_CONNECTOR ~~~ C5_SERVICE_USB_ESD ~~~ C5_SERVICE_USB_SWITCH ~~~ C5_SERVICE_USB_SWITCH_BYPASS ~~~ C5_SERVICE_USB_CC1_RD ~~~ C5_SERVICE_USB_CC2_RD ~~~ C5_SERVICE_USB_VBUS_BLEEDER ~~~ C5_SERVICE_USB_DM_SERIES ~~~ C5_SERVICE_USB_DP_SERIES ~~~ RP_SERVICE_USB_CONNECTOR ~~~ RP_SERVICE_USB_ESD ~~~ RP_SERVICE_USB_SWITCH ~~~ RP_SERVICE_USB_SWITCH_BYPASS ~~~ RP_SERVICE_USB_CC1_RD ~~~ RP_SERVICE_USB_CC2_RD ~~~ RP_SERVICE_USB_VBUS_BLEEDER ~~~ RP_SERVICE_USB_DM_SERIES ~~~ RP_SERVICE_USB_DP_SERIES ~~~ S3_DBG_HEADER ~~~ C5_DBG_HEADER ~~~ RP_DBG_HEADER ~~~ S3_DBG_ESD ~~~ C5_DBG_ESD ~~~ RP_DBG_ESD ~~~ S3_RESET_BUTTON ~~~ S3_BOOT_BUTTON ~~~ C5_RESET_BUTTON ~~~ C5_BOOT_BUTTON ~~~ RP_RESET_BUTTON ~~~ RP_BOOT_BUTTON ~~~ S3_DBG_VTREF_SERIES ~~~ S3_DBG_RESET_SERIES ~~~ S3_DBG_BOOT_SERIES ~~~ S3_DBG0_SERIES ~~~ S3_DBG1_SERIES ~~~ S3_DBG_ID0_STRAP ~~~ S3_DBG_ID1_STRAP ~~~ C5_DBG_VTREF_SERIES ~~~ C5_DBG_RESET_SERIES ~~~ C5_DBG_BOOT_SERIES ~~~ C5_DBG0_SERIES ~~~ C5_DBG1_SERIES ~~~ C5_DBG_ID0_STRAP ~~~ C5_DBG_ID1_STRAP ~~~ RP_DBG_VTREF_SERIES ~~~ RP_DBG_RESET_SERIES ~~~ RP_DBG_BOOT_SERIES ~~~ RP_DBG0_SERIES ~~~ RP_DBG1_SERIES ~~~ RP_DBG_ID0_STRAP ~~~ RP_DBG_ID1_STRAP ~~~ S3_BOOT_PULLUP ~~~ C5_BOOT_PULLUP ~~~ RP_BOOT_PULLUP ~~~ C5_GPIO27_PULLUP
+  end
   subgraph UI_STORAGE["UI and storage devices"]
   DISPLAY_CONNECTOR["Hirose FH12-40S-0.5SH(55)<br/>first 40-position 0.5-mm bottom-contact ZIF panel-mate candidate"]
   DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
@@ -731,7 +790,14 @@ flowchart TD
   SAFE_CONDITIONER["74LVC2G14GW,125<br/>STOP and RE-ARM Schmitt conditioner"]
   SAFE_POR_OR["74LVC1G32GV,125<br/>STOP-dominant POR/clear combiner"]
   SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous latched hard STOP"]
-  SAFE_RESET_BUFFER["SN74LVC3G34DCUR<br/>Ioff three-domain reset fan-out"]
+  SAFE_RESET_BUFFER["Texas Instruments SN74LVC1G06DCKR<br/>AON open-drain RUN-permit inverter"]
+  SAFE_RESET_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF AON reset-driver bypass capacitor"]
+  SAFE_RESET_GATE_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain fail-reset gate pull-up"]
+  SAFE_RESET_SINK_A["Diodes Incorporated 2N7002DW-7-F<br/>independent passive-drain S3/C5 reset sinks"]
+  SAFE_RESET_SINK_B["Diodes Incorporated 2N7002DW-7-F<br/>independent passive-drain RP reset sink plus inert spare"]
+  S3_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive S3 EN pull-up resistor"]
+  C5_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive C5 CHIP_PU pull-up resistor"]
+  RP_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive RP RUN pull-up resistor"]
   SAFE_GATE_A["SN74LVC08APWR<br/>four STOP-dominant nRF request gates"]
   SAFE_GATE_B["SN74LVC08APWR<br/>four STOP-dominant rail/IR/accessory gates"]
   SAFE_PTT_OR["74LVC1G32GV,125<br/>active-low voice PTT force-RX gate"]
@@ -784,13 +850,13 @@ flowchart TD
   SD_ESD_B ~~~ SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLUP ~~~ SD_HOST_D1_PULLUP
   SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP ~~~ SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP
   SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT
-  UNIT ~~~ C5 ~~~ IR_POWER_SWITCH ~~~ IR_POWER_INPUT_CAP ~~~ IR_POWER_OUTPUT_CAP ~~~ IR_POWER_OUTPUT_BYPASS ~~~ IR_POWER_ON_PULLDOWN ~~~ IR_DEMOD ~~~ IR_DEMOD_SUPPLY_RES ~~~ IR_DEMOD_SUPPLY_CAP ~~~ IR_CARRIER ~~~ IR_CARRIER_SUPPLY_RES ~~~ IR_CARRIER_SUPPLY_CAP ~~~ IR_CARRIER_PULLUP ~~~ IR_RETURN_BUFFER ~~~ IR_RETURN_BUFFER_BYPASS ~~~ IR_DEMOD_SERIES ~~~ IR_CARRIER_SERIES ~~~ IR_DEMOD_HOST_PULLUP ~~~ IR_CARRIER_HOST_PULLUP ~~~ IR_EMITTER ~~~ IR_EMITTER_LIMIT ~~~ IR_TX_MOSFET ~~~ IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ RP
+  UNIT ~~~ C5 ~~~ IR_POWER_SWITCH ~~~ IR_POWER_INPUT_CAP ~~~ IR_POWER_OUTPUT_CAP ~~~ IR_POWER_OUTPUT_BYPASS ~~~ IR_POWER_ON_PULLDOWN ~~~ IR_DEMOD ~~~ IR_DEMOD_SUPPLY_RES ~~~ IR_DEMOD_SUPPLY_CAP ~~~ IR_CARRIER ~~~ IR_CARRIER_SUPPLY_RES ~~~ IR_CARRIER_SUPPLY_CAP ~~~ IR_CARRIER_PULLUP ~~~ IR_RETURN_BUFFER ~~~ IR_RETURN_BUFFER_BYPASS ~~~ IR_DEMOD_SERIES ~~~ IR_CARRIER_SERIES ~~~ IR_DEMOD_HOST_PULLUP ~~~ IR_CARRIER_HOST_PULLUP ~~~ IR_EMITTER ~~~ IR_EMITTER_LIMIT ~~~ IR_TX_MOSFET ~~~ IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ RP ~~~ C5_SERVICE_USB_CONNECTOR ~~~ C5_SERVICE_USB_ESD ~~~ C5_SERVICE_USB_SWITCH ~~~ C5_SERVICE_USB_SWITCH_BYPASS ~~~ C5_SERVICE_USB_CC1_RD ~~~ C5_SERVICE_USB_CC2_RD ~~~ C5_SERVICE_USB_VBUS_BLEEDER ~~~ C5_SERVICE_USB_DM_SERIES ~~~ C5_SERVICE_USB_DP_SERIES ~~~ RP_SERVICE_USB_CONNECTOR ~~~ RP_SERVICE_USB_ESD ~~~ RP_SERVICE_USB_SWITCH ~~~ RP_SERVICE_USB_SWITCH_BYPASS ~~~ RP_SERVICE_USB_CC1_RD ~~~ RP_SERVICE_USB_CC2_RD ~~~ RP_SERVICE_USB_VBUS_BLEEDER ~~~ RP_SERVICE_USB_DM_SERIES ~~~ RP_SERVICE_USB_DP_SERIES ~~~ S3_DBG_HEADER ~~~ C5_DBG_HEADER ~~~ RP_DBG_HEADER ~~~ S3_DBG_ESD ~~~ C5_DBG_ESD ~~~ RP_DBG_ESD ~~~ S3_RESET_BUTTON ~~~ S3_BOOT_BUTTON ~~~ C5_RESET_BUTTON ~~~ C5_BOOT_BUTTON ~~~ RP_RESET_BUTTON ~~~ RP_BOOT_BUTTON ~~~ S3_DBG_VTREF_SERIES ~~~ S3_DBG_RESET_SERIES ~~~ S3_DBG_BOOT_SERIES ~~~ S3_DBG0_SERIES ~~~ S3_DBG1_SERIES ~~~ S3_DBG_ID0_STRAP ~~~ S3_DBG_ID1_STRAP ~~~ C5_DBG_VTREF_SERIES ~~~ C5_DBG_RESET_SERIES ~~~ C5_DBG_BOOT_SERIES ~~~ C5_DBG0_SERIES ~~~ C5_DBG1_SERIES ~~~ C5_DBG_ID0_STRAP ~~~ C5_DBG_ID1_STRAP ~~~ RP_DBG_VTREF_SERIES ~~~ RP_DBG_RESET_SERIES ~~~ RP_DBG_BOOT_SERIES ~~~ RP_DBG0_SERIES ~~~ RP_DBG1_SERIES ~~~ RP_DBG_ID0_STRAP ~~~ RP_DBG_ID1_STRAP ~~~ S3_BOOT_PULLUP ~~~ C5_BOOT_PULLUP ~~~ RP_BOOT_PULLUP ~~~ C5_GPIO27_PULLUP
   C5 ~~~ S3_RF_BOARD_CONNECTOR ~~~ S3_RF_COUPLER ~~~ S3_RF_COUPLER_TERMINATION ~~~ S3_DETECTOR_INPUT_CAP ~~~ S3_DETECTOR_FEEDBACK_RES ~~~ S3_DETECTOR_GROUND_RES ~~~ S3_DETECTOR_OUTPUT_CAP ~~~ S3_DETECTOR_BYPASS ~~~ C5_RF_BOARD_CONNECTOR ~~~ C5_RF_COUPLER ~~~ C5_RF_COUPLER_TERMINATION ~~~ C5_DETECTOR_INPUT_CAP ~~~ C5_DETECTOR_FEEDBACK_RES ~~~ C5_DETECTOR_GROUND_RES ~~~ C5_DETECTOR_OUTPUT_CAP ~~~ C5_DETECTOR_BYPASS
   S3_RF_BOARD_CONNECTOR ~~~ S3_RF_COUPLER ~~~ S3_RF_COUPLER_TERMINATION ~~~ S3_DETECTOR_INPUT_CAP ~~~ S3_DETECTOR_FEEDBACK_RES ~~~ S3_DETECTOR_GROUND_RES ~~~ S3_DETECTOR_OUTPUT_CAP ~~~ S3_DETECTOR_BYPASS ~~~ C5_RF_BOARD_CONNECTOR ~~~ C5_RF_COUPLER ~~~ C5_RF_COUPLER_TERMINATION ~~~ C5_DETECTOR_INPUT_CAP ~~~ C5_DETECTOR_FEEDBACK_RES ~~~ C5_DETECTOR_GROUND_RES ~~~ C5_DETECTOR_OUTPUT_CAP ~~~ C5_DETECTOR_BYPASS ~~~ RP
   RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ NRF_POWER_INPUT_CAP ~~~ NRF_POWER_ON_PULLDOWN ~~~ NRF_EVIDENCE_HOLD_DIODE ~~~ NRF_EVIDENCE_HOLD_CAP ~~~ NRF_EVIDENCE_HOLD_PULLDOWN ~~~ NRF0_HOST_BUFFER ~~~ NRF0_RETURN_BUFFER ~~~ NRF0_HOST_BUFFER_BYPASS ~~~ NRF0_RETURN_BUFFER_BYPASS ~~~ NRF0_MODULE_BULK_CAP ~~~ NRF0_MODULE_HF_CAP ~~~ NRF0_CE_SERIES ~~~ NRF0_CSN_SERIES ~~~ NRF0_SCK_SERIES ~~~ NRF0_MOSI_SERIES ~~~ NRF0_MISO_SERIES ~~~ NRF0_IRQ_SERIES ~~~ NRF0_HOST_CE_PULLDOWN ~~~ NRF0_HOST_CSN_PULLUP ~~~ NRF0_HOST_SCK_PULLDOWN ~~~ NRF0_HOST_MOSI_PULLDOWN ~~~ NRF0_HOST_MISO_PULLDOWN ~~~ NRF0_HOST_IRQ_PULLUP ~~~ NRF0_MODULE_CE_PULLDOWN ~~~ NRF0_MODULE_CSN_PULLUP ~~~ NRF0_MODULE_SCK_PULLDOWN ~~~ NRF0_MODULE_MOSI_PULLDOWN ~~~ NRF0_MODULE_MISO_PULLDOWN ~~~ NRF0_MODULE_IRQ_PULLUP ~~~ NRF0_COUPLER ~~~ NRF0_COUPLER_TERMINATION ~~~ NRF0_DETECTOR_MATCH ~~~ NRF0_DETECTOR_FILTER ~~~ NRF0_DETECTOR_BYPASS ~~~ NRF1_HOST_BUFFER ~~~ NRF1_RETURN_BUFFER ~~~ NRF1_HOST_BUFFER_BYPASS ~~~ NRF1_RETURN_BUFFER_BYPASS ~~~ NRF1_MODULE_BULK_CAP ~~~ NRF1_MODULE_HF_CAP ~~~ NRF1_CE_SERIES ~~~ NRF1_CSN_SERIES ~~~ NRF1_SCK_SERIES ~~~ NRF1_MOSI_SERIES ~~~ NRF1_MISO_SERIES ~~~ NRF1_IRQ_SERIES ~~~ NRF1_HOST_CE_PULLDOWN ~~~ NRF1_HOST_CSN_PULLUP ~~~ NRF1_HOST_SCK_PULLDOWN ~~~ NRF1_HOST_MOSI_PULLDOWN ~~~ NRF1_HOST_MISO_PULLDOWN ~~~ NRF1_HOST_IRQ_PULLUP ~~~ NRF1_MODULE_CE_PULLDOWN ~~~ NRF1_MODULE_CSN_PULLUP ~~~ NRF1_MODULE_SCK_PULLDOWN ~~~ NRF1_MODULE_MOSI_PULLDOWN ~~~ NRF1_MODULE_MISO_PULLDOWN ~~~ NRF1_MODULE_IRQ_PULLUP ~~~ NRF1_COUPLER ~~~ NRF1_COUPLER_TERMINATION ~~~ NRF1_DETECTOR_MATCH ~~~ NRF1_DETECTOR_FILTER ~~~ NRF1_DETECTOR_BYPASS ~~~ NRF2_HOST_BUFFER ~~~ NRF2_RETURN_BUFFER ~~~ NRF2_HOST_BUFFER_BYPASS ~~~ NRF2_RETURN_BUFFER_BYPASS ~~~ NRF2_MODULE_BULK_CAP ~~~ NRF2_MODULE_HF_CAP ~~~ NRF2_CE_SERIES ~~~ NRF2_CSN_SERIES ~~~ NRF2_SCK_SERIES ~~~ NRF2_MOSI_SERIES ~~~ NRF2_MISO_SERIES ~~~ NRF2_IRQ_SERIES ~~~ NRF2_HOST_CE_PULLDOWN ~~~ NRF2_HOST_CSN_PULLUP ~~~ NRF2_HOST_SCK_PULLDOWN ~~~ NRF2_HOST_MOSI_PULLDOWN ~~~ NRF2_HOST_MISO_PULLDOWN ~~~ NRF2_HOST_IRQ_PULLUP ~~~ NRF2_MODULE_CE_PULLDOWN ~~~ NRF2_MODULE_CSN_PULLUP ~~~ NRF2_MODULE_SCK_PULLDOWN ~~~ NRF2_MODULE_MOSI_PULLDOWN ~~~ NRF2_MODULE_MISO_PULLDOWN ~~~ NRF2_MODULE_IRQ_PULLUP ~~~ NRF2_COUPLER ~~~ NRF2_COUPLER_TERMINATION ~~~ NRF2_DETECTOR_MATCH ~~~ NRF2_DETECTOR_FILTER ~~~ NRF2_DETECTOR_BYPASS ~~~ CC ~~~ VOICE
   VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_EXTERNAL_RF ~~~ U214_I2C_ISO ~~~ U214_I2C_ISO_BYPASS ~~~ U214_I2C_HOST_SDA_PULLUP ~~~ U214_I2C_HOST_SCL_PULLUP ~~~ U214_HOST_BUFFER_A ~~~ U214_HOST_BUFFER_B ~~~ U214_RETURN_BUFFER ~~~ U214_HOST_BUFFER_A_BYPASS ~~~ U214_HOST_BUFFER_B_BYPASS ~~~ U214_RETURN_BUFFER_BYPASS ~~~ U214_SERIES_RST ~~~ U214_SERIES_GPS_RX ~~~ U214_SERIES_SCK ~~~ U214_SERIES_MOSI ~~~ U214_SERIES_NSS ~~~ U214_SERIES_BUSY ~~~ U214_SERIES_IRQ ~~~ U214_SERIES_GPS_TX ~~~ U214_SERIES_MISO ~~~ U214_ESD_A ~~~ U214_ESD_B ~~~ U214_ESD_C ~~~ EXT_REQUEST_OR ~~~ EXT_REQUEST_OR_BYPASS ~~~ EXT_ANY_REQ_PULLDOWN ~~~ EXT_BRANCH_GATE ~~~ EXT_BRANCH_GATE_BYPASS ~~~ U214_REQ_PULLDOWN ~~~ UNIT_REQ_PULLDOWN ~~~ U214_SUPERVISOR ~~~ U214_SUPERVISOR_BYPASS ~~~ U214_SUPERVISOR_SENSE_TOP ~~~ U214_SUPERVISOR_SENSE_BOTTOM ~~~ U214_SUPERVISOR_CT ~~~ U214_SUPERVISOR_PULLUP ~~~ UNIT_EFUSE ~~~ UNIT_RILM ~~~ UNIT_DVDT_CAP ~~~ UNIT_ITIMER_CAP ~~~ UNIT_OVLO_TOP ~~~ UNIT_OVLO_BOTTOM ~~~ UNIT_INPUT_CAP ~~~ UNIT_OUTPUT_CAP ~~~ UNIT_BLEEDER ~~~ UNIT_SUPERVISOR ~~~ UNIT_SUPERVISOR_BYPASS ~~~ UNIT_SUPERVISOR_SENSE_TOP ~~~ UNIT_SUPERVISOR_SENSE_BOTTOM ~~~ UNIT_SUPERVISOR_CT ~~~ UNIT_SUPERVISOR_PULLUP ~~~ UNIT_SIGNAL_ISO ~~~ UNIT_SIGNAL_ISO_VCCA_BYPASS ~~~ UNIT_SIGNAL_ISO_VCCB_BYPASS ~~~ UNIT_SIGNAL_ISO_OE_PULLDOWN ~~~ UNIT_ESD ~~~ UNIT ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD
   SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
-  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED
+  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED
   STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
   DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B
   EVIDENCE_CMP_B ~~~ EVIDENCE_MASK ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_LED
@@ -800,6 +866,18 @@ flowchart TD
   PRODUCT_USB_PROTECTOR <-->|"protected D+"| PRODUCT_USB_DP_SERIES <-->|"Full-Speed GPIO20"| S3
   PRODUCT_USB_PROTECTOR <-->|"protected D-"| PRODUCT_USB_DM_SERIES <-->|"Full-Speed GPIO19"| S3
   PRODUCT_USB_PROTECTOR <-->|"protected CC1/CC2"| PD_CONTROLLER
+  C5_SERVICE_USB_CONNECTOR <-->|"D+/D-; VBUS sense-only"| C5_SERVICE_USB_ESD
+  C5_SERVICE_USB_CONNECTOR <-->|"board-off isolated data"| C5_SERVICE_USB_SWITCH <-->|"22 Ω D+/D-"| C5
+  RP_SERVICE_USB_CONNECTOR <-->|"D+/D-; VBUS sense-only"| RP_SERVICE_USB_ESD
+  RP_SERVICE_USB_CONNECTOR <-->|"board-off isolated data"| RP_SERVICE_USB_SWITCH <-->|"27 Ω D+/D-"| RP
+  S3_DBG_HEADER <-->|"protected UART0 + RESET/BOOT"| S3_DBG_ESD <-->|"current-limited"| S3
+  C5_DBG_HEADER <-->|"protected UART0 + RESET/BOOT"| C5_DBG_ESD <-->|"current-limited"| C5
+  RP_DBG_HEADER <-->|"protected SWD + RESET/BOOT"| RP_DBG_ESD <-->|"current-limited"| RP
+  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_RESET_BUFFER -->|"RESET_KILL_GATE"| SAFE_RESET_SINK_A
+  SAFE_RESET_BUFFER -->|"RESET_KILL_GATE"| SAFE_RESET_SINK_B
+  SAFE_RESET_SINK_A -->|"passive-drain EN"| S3
+  SAFE_RESET_SINK_A -->|"passive-drain CHIP_PU"| C5
+  SAFE_RESET_SINK_B -->|"passive-drain RUN"| RP
   PRODUCT_USB_PROTECTOR --> PRODUCT_USB_VBIAS_CAP
   PD_CONTROLLER -->|"LDO_3V3"| PRODUCT_USB_VPWR_CAP --> PRODUCT_USB_PROTECTOR
   PD_CONTROLLER --> PRODUCT_USB_FAULT_PULLUP --> PRODUCT_USB_PROTECTOR
@@ -1253,6 +1331,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `VVOICE_RAW_4V`
 - `admitted-system-3v3`
 - `audio-ground`
+- `c5-gpio27-read-only-test-pad`
+- `c5-service-vbus-high-impedance-test-pad`
 - `chassis-rf-ground`
 - `exact-value-hold-gate-pullup`
 - `isolated-pack-fixture-3v3`
@@ -1285,11 +1365,10 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `reserved-local-control-expansion-pad`
 - `rf-ground`
 - `rf-ground-dedicated-via`
+- `rp-service-vbus-high-impedance-test-pad`
 - `safety-ground`
 - `safety-ground-dedicated-via`
 - `safety-ground-via-10k`
-- `service USB connector`
-- `service fixture`
 - `voice-raw-converter-pg-test`
 
 Эти строки блокируют final schematic/BOM, но не нарушают проверенную
@@ -1330,8 +1409,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO40` | 33 | `LCD_BL_PWM` | `o` | `LEDC` | `backlight_gate_series.END_1` | — |
 | `GPIO41` | 34 | `LCD_QSPI_D2` | `o` | `SPI2` | `display_connector.PIN_17` | — |
 | `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `display_connector.PIN_18` | — |
-| `GPIO43` | 37 | `S3_UART_SERVICE_TX` | `o` | `UART0` | `abstract:service fixture` | — |
-| `GPIO44` | 36 | `S3_UART_SERVICE_RX` | `i` | `UART0` | `abstract:service fixture` | — |
+| `GPIO43` | 37 | `S3_UART_SERVICE_TX` | `o` | `UART0` | `s3_dbg0_series.END_2` | — |
+| `GPIO44` | 36 | `S3_UART_SERVICE_RX` | `i` | `UART0` | `s3_dbg1_series.END_2` | — |
 | `GPIO47` | 24 | `ENCODER_B` | `i` | `PCNT0` | `encoder.B`, `encoder_b_pullup.END_1` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
 
@@ -1350,10 +1429,10 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: none.
 | `GPIO8` | 10 | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE` | `s3.GPIO12` | — |
 | `GPIO9` | 11 | `S3_C5_SDIO_CLK` | `i` | `SDIO_SLAVE` | `s3.GPIO10` | — |
 | `GPIO10` | 12 | `S3_C5_SDIO_CMD` | `io` | `SDIO_SLAVE` | `s3.GPIO11` | — |
-| `GPIO11` | 25 | `C5_UART_SERVICE_TX` | `o` | `UART0` | `abstract:service fixture` | — |
-| `GPIO12` | 24 | `C5_UART_SERVICE_RX` | `i` | `UART0` | `abstract:service fixture` | — |
-| `GPIO13` | 13 | `C5_USB_DM` | `io` | `USB_SERIAL_JTAG` | `abstract:service USB connector` | — |
-| `GPIO14` | 14 | `C5_USB_DP` | `io` | `USB_SERIAL_JTAG` | `abstract:service USB connector` | — |
+| `GPIO11` | 25 | `C5_UART_SERVICE_TX` | `o` | `UART0` | `c5_dbg0_series.END_2` | — |
+| `GPIO12` | 24 | `C5_UART_SERVICE_RX` | `i` | `UART0` | `c5_dbg1_series.END_2` | — |
+| `GPIO13` | 13 | `C5_USB_DM` | `io` | `USB_SERIAL_JTAG` | `c5_service_usb_dm_series.END_2` | — |
+| `GPIO14` | 14 | `C5_USB_DP` | `io` | `USB_SERIAL_JTAG` | `c5_service_usb_dp_series.END_2` | — |
 | `GPIO23` | 21 | `C5_RF_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_cmp_a.OUT2` | — |
 | `GPIO24` | 23 | `IR_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_cmp_b.OUT4` | — |
 
@@ -1453,6 +1532,192 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 | Net | From | To | Reset/safety rule |
 |---|---|---|---|
+| `POWER_GROUND` | `c5_service_usb_connector.A1_GND` | `c5_service_usb_connector.A12_GND` | all four C5 service-port ground contacts join the local connector return |
+| `POWER_GROUND` | `c5_service_usb_connector.A12_GND` | `c5_service_usb_connector.B1_GND` | second C5 service-port ground pair is physically soldered |
+| `POWER_GROUND` | `c5_service_usb_connector.B1_GND` | `c5_service_usb_connector.B12_GND` | all C5 service-port ground contacts remain present |
+| `POWER_GROUND` | `c5_service_usb_connector.B12_GND` | `abstract:power-ground` | short connector-zone return |
+| `C5_SERVICE_USB_SHIELD` | `c5_service_usb_connector.SHIELD` | `abstract:power-ground` | all four shell stakes bond directly through multiple short local vias |
+| `C5_SERVICE_VBUS_SENSE_ONLY` | `c5_service_usb_connector.A4_VBUS` | `c5_service_usb_connector.A9_VBUS` | VBUS contacts join only the no-power service sense island |
+| `C5_SERVICE_VBUS_SENSE_ONLY` | `c5_service_usb_connector.A9_VBUS` | `c5_service_usb_connector.B4_VBUS` | no product rail attaches to service VBUS |
+| `C5_SERVICE_VBUS_SENSE_ONLY` | `c5_service_usb_connector.B4_VBUS` | `c5_service_usb_connector.B9_VBUS` | all physical VBUS contacts are accounted without a board-power path |
+| `C5_SERVICE_VBUS_SENSE_ONLY` | `c5_service_usb_connector.B9_VBUS` | `c5_service_usb_vbus_bleeder.END_1` | exact 1-MOhm bleeder is the only populated service-VBUS load |
+| `C5_SERVICE_VBUS_SENSE_ONLY` | `c5_service_usb_connector.B9_VBUS` | `abstract:c5-service-vbus-high-impedance-test-pad` | read-only test pad permits attach diagnosis; no active load or board-power path |
+| `POWER_GROUND` | `c5_service_usb_vbus_bleeder.END_2` | `abstract:power-ground` | service VBUS bleeds harmlessly after detach |
+| `C5_SERVICE_CC1` | `c5_service_usb_connector.A5_CC1` | `c5_service_usb_cc1_rd.END_1` | exact passive Type-C sink declaration |
+| `POWER_GROUND` | `c5_service_usb_cc1_rd.END_2` | `abstract:power-ground` | 5.1-kOhm Rd return |
+| `C5_SERVICE_CC2` | `c5_service_usb_connector.B5_CC2` | `c5_service_usb_cc2_rd.END_1` | both plug orientations declare a passive sink |
+| `POWER_GROUND` | `c5_service_usb_cc2_rd.END_2` | `abstract:power-ground` | 5.1-kOhm Rd return |
+| `C5_SERVICE_USB_DP_CONNECTOR` | `c5_service_usb_connector.A6_DP` | `c5_service_usb_connector.B6_DP` | both D+ orientation contacts join at the receptacle |
+| `C5_SERVICE_USB_DP_CONNECTOR` | `c5_service_usb_connector.B6_DP` | `c5_service_usb_esd.D_PLUS` | connector-side low-capacitance ESD shunt |
+| `C5_SERVICE_USB_DP_CONNECTOR` | `c5_service_usb_connector.B6_DP` | `c5_service_usb_switch.D_PLUS` | data enters the power-off-protected common switch port |
+| `C5_SERVICE_USB_DM_CONNECTOR` | `c5_service_usb_connector.A7_DM` | `c5_service_usb_connector.B7_DM` | both D- orientation contacts join at the receptacle |
+| `C5_SERVICE_USB_DM_CONNECTOR` | `c5_service_usb_connector.B7_DM` | `c5_service_usb_esd.D_MINUS` | connector-side low-capacitance ESD shunt |
+| `C5_SERVICE_USB_DM_CONNECTOR` | `c5_service_usb_connector.B7_DM` | `c5_service_usb_switch.D_MINUS` | data enters the power-off-protected common switch port |
+| `C5_SERVICE_USB_ESD_RETURN` | `c5_service_usb_esd.GND` | `abstract:power-ground-dedicated-via` | short low-inductance connector-zone return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_service_usb_switch.VCC` | the USB path exists only while the product main rail is valid |
+| `POWER_GROUND` | `c5_service_usb_switch.GND` | `abstract:power-ground` | local switch return |
+| `C5_SERVICE_USB_SWITCH_ENABLE_N` | `c5_service_usb_switch.OE` | `abstract:power-ground` | hard-low OE selects the switch without firmware only while VCC is present |
+| `C5_SERVICE_USB_SWITCH_SELECT` | `c5_service_usb_switch.SEL` | `abstract:power-ground` | hard-low selects HSD1; no firmware-controlled alternate path |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_service_usb_switch_bypass.END_1` | exact local 100-nF switch bypass |
+| `POWER_GROUND` | `c5_service_usb_switch_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `C5_SERVICE_USB_DP_SWITCHED` | `c5_service_usb_switch.HSD1_PLUS` | `c5_service_usb_dp_series.END_1` | selected Full-Speed D+ path reaches the MCU-side exact 22-Ohm termination |
+| `C5_USB_DP` | `c5_service_usb_dp_series.END_2` | `c5.GPIO14` | series element stays close to the real exposed module GPIO14 |
+| `C5_SERVICE_USB_DM_SWITCHED` | `c5_service_usb_switch.HSD1_MINUS` | `c5_service_usb_dm_series.END_1` | selected Full-Speed D- path reaches the MCU-side exact 22-Ohm termination |
+| `C5_USB_DM` | `c5_service_usb_dm_series.END_2` | `c5.GPIO13` | series element stays close to the real exposed module GPIO13 |
+| `NO_CONNECT` | `c5_service_usb_switch.HSD2_PLUS` | `abstract:no-connect` | no hidden second data destination |
+| `NO_CONNECT` | `c5_service_usb_switch.HSD2_MINUS` | `abstract:no-connect` | no hidden second data destination |
+| `NO_CONNECT` | `c5_service_usb_connector.A8_SBU1` | `abstract:no-connect` | service port implements no Alt Mode |
+| `NO_CONNECT` | `c5_service_usb_connector.B8_SBU2` | `abstract:no-connect` | service port implements no Alt Mode |
+| `POWER_GROUND` | `rp_service_usb_connector.A1_GND` | `rp_service_usb_connector.A12_GND` | all four RP service-port ground contacts join the local connector return |
+| `POWER_GROUND` | `rp_service_usb_connector.A12_GND` | `rp_service_usb_connector.B1_GND` | second RP service-port ground pair is physically soldered |
+| `POWER_GROUND` | `rp_service_usb_connector.B1_GND` | `rp_service_usb_connector.B12_GND` | all RP service-port ground contacts remain present |
+| `POWER_GROUND` | `rp_service_usb_connector.B12_GND` | `abstract:power-ground` | short connector-zone return |
+| `RP_SERVICE_USB_SHIELD` | `rp_service_usb_connector.SHIELD` | `abstract:power-ground` | all four shell stakes bond directly through multiple short local vias |
+| `RP_SERVICE_VBUS_SENSE_ONLY` | `rp_service_usb_connector.A4_VBUS` | `rp_service_usb_connector.A9_VBUS` | VBUS contacts join only the no-power service sense island |
+| `RP_SERVICE_VBUS_SENSE_ONLY` | `rp_service_usb_connector.A9_VBUS` | `rp_service_usb_connector.B4_VBUS` | no product rail attaches to service VBUS |
+| `RP_SERVICE_VBUS_SENSE_ONLY` | `rp_service_usb_connector.B4_VBUS` | `rp_service_usb_connector.B9_VBUS` | all physical VBUS contacts are accounted without a board-power path |
+| `RP_SERVICE_VBUS_SENSE_ONLY` | `rp_service_usb_connector.B9_VBUS` | `rp_service_usb_vbus_bleeder.END_1` | exact 1-MOhm bleeder is the only populated service-VBUS load |
+| `RP_SERVICE_VBUS_SENSE_ONLY` | `rp_service_usb_connector.B9_VBUS` | `abstract:rp-service-vbus-high-impedance-test-pad` | read-only test pad permits attach diagnosis; no active load or board-power path |
+| `POWER_GROUND` | `rp_service_usb_vbus_bleeder.END_2` | `abstract:power-ground` | service VBUS bleeds harmlessly after detach |
+| `RP_SERVICE_CC1` | `rp_service_usb_connector.A5_CC1` | `rp_service_usb_cc1_rd.END_1` | exact passive Type-C sink declaration |
+| `POWER_GROUND` | `rp_service_usb_cc1_rd.END_2` | `abstract:power-ground` | 5.1-kOhm Rd return |
+| `RP_SERVICE_CC2` | `rp_service_usb_connector.B5_CC2` | `rp_service_usb_cc2_rd.END_1` | both plug orientations declare a passive sink |
+| `POWER_GROUND` | `rp_service_usb_cc2_rd.END_2` | `abstract:power-ground` | 5.1-kOhm Rd return |
+| `RP_SERVICE_USB_DP_CONNECTOR` | `rp_service_usb_connector.A6_DP` | `rp_service_usb_connector.B6_DP` | both D+ orientation contacts join at the receptacle |
+| `RP_SERVICE_USB_DP_CONNECTOR` | `rp_service_usb_connector.B6_DP` | `rp_service_usb_esd.D_PLUS` | connector-side low-capacitance ESD shunt |
+| `RP_SERVICE_USB_DP_CONNECTOR` | `rp_service_usb_connector.B6_DP` | `rp_service_usb_switch.D_PLUS` | data enters the power-off-protected common switch port |
+| `RP_SERVICE_USB_DM_CONNECTOR` | `rp_service_usb_connector.A7_DM` | `rp_service_usb_connector.B7_DM` | both D- orientation contacts join at the receptacle |
+| `RP_SERVICE_USB_DM_CONNECTOR` | `rp_service_usb_connector.B7_DM` | `rp_service_usb_esd.D_MINUS` | connector-side low-capacitance ESD shunt |
+| `RP_SERVICE_USB_DM_CONNECTOR` | `rp_service_usb_connector.B7_DM` | `rp_service_usb_switch.D_MINUS` | data enters the power-off-protected common switch port |
+| `RP_SERVICE_USB_ESD_RETURN` | `rp_service_usb_esd.GND` | `abstract:power-ground-dedicated-via` | short low-inductance connector-zone return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_service_usb_switch.VCC` | the USB path exists only while the product main rail is valid |
+| `POWER_GROUND` | `rp_service_usb_switch.GND` | `abstract:power-ground` | local switch return |
+| `RP_SERVICE_USB_SWITCH_ENABLE_N` | `rp_service_usb_switch.OE` | `abstract:power-ground` | hard-low OE selects the switch without firmware only while VCC is present |
+| `RP_SERVICE_USB_SWITCH_SELECT` | `rp_service_usb_switch.SEL` | `abstract:power-ground` | hard-low selects HSD1; no firmware-controlled alternate path |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_service_usb_switch_bypass.END_1` | exact local 100-nF switch bypass |
+| `POWER_GROUND` | `rp_service_usb_switch_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `RP_SERVICE_USB_DP_SWITCHED` | `rp_service_usb_switch.HSD1_PLUS` | `rp_service_usb_dp_series.END_1` | selected Full-Speed D+ path reaches the MCU-side exact 27-Ohm termination |
+| `RP_USB_DP` | `rp_service_usb_dp_series.END_2` | `rp.USB_DP` | series element follows the RP2350 hardware-design requirement and stays close to the real package contact |
+| `RP_SERVICE_USB_DM_SWITCHED` | `rp_service_usb_switch.HSD1_MINUS` | `rp_service_usb_dm_series.END_1` | selected Full-Speed D- path reaches the MCU-side exact 27-Ohm termination |
+| `RP_USB_DM` | `rp_service_usb_dm_series.END_2` | `rp.USB_DM` | series element follows the RP2350 hardware-design requirement and stays close to the real package contact |
+| `NO_CONNECT` | `rp_service_usb_switch.HSD2_PLUS` | `abstract:no-connect` | no hidden second data destination |
+| `NO_CONNECT` | `rp_service_usb_switch.HSD2_MINUS` | `abstract:no-connect` | no hidden second data destination |
+| `NO_CONNECT` | `rp_service_usb_connector.A8_SBU1` | `abstract:no-connect` | service port implements no Alt Mode |
+| `NO_CONNECT` | `rp_service_usb_connector.B8_SBU2` | `abstract:no-connect` | service port implements no Alt Mode |
+| `S3_DBG_VTREF_SENSE` | `s3_dbg_header.P1` | `s3_dbg_vtref_series.END_1` | fixture senses target voltage through exact 1 kOhm and never powers the target |
+| `3V3_MAIN` | `s3_dbg_vtref_series.END_2` | `abstract:3V3_MAIN` | target-side reference |
+| `POWER_GROUND` | `s3_dbg_header.P2` | `abstract:power-ground` | fixture ground |
+| `POWER_GROUND` | `s3_dbg_header.P7` | `abstract:power-ground` | adjacent debug return |
+| `POWER_GROUND` | `s3_dbg_header.P9` | `abstract:power-ground` | identity guard return |
+| `S3_DBG_RESET_CONNECTOR_N` | `s3_dbg_header.P3` | `s3_dbg_esd.D1_PLUS` | header-side active-low reset has connector ESD protection |
+| `S3_DBG_RESET_CONNECTOR_N` | `s3_dbg_header.P3` | `s3_dbg_reset_series.END_1` | exact 1-kOhm fixture current limit |
+| `S3_DBG_RESET_CONNECTOR_N` | `s3_reset_button.A1` | `s3_dbg_reset_series.END_1` | physical button joins the protected header side |
+| `S3_DBG_RESET_CONNECTOR_N` | `s3_reset_button.A1` | `s3_reset_button.A2` | both same-side switch terminals are represented |
+| `POWER_GROUND` | `s3_reset_button.B1` | `s3_reset_button.B2` | both ground-side switch terminals are represented |
+| `POWER_GROUND` | `s3_reset_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `S3_RESET_N` | `s3_dbg_reset_series.END_2` | `s3.EN` | manual and fixture reset meet only a passive pull-up and open-drain safety sink |
+| `S3_DBG_BOOT_CONNECTOR_N` | `s3_dbg_header.P4` | `s3_dbg_esd.D1_MINUS` | header-side active-low boot control has connector ESD protection |
+| `S3_DBG_BOOT_CONNECTOR_N` | `s3_dbg_header.P4` | `s3_dbg_boot_series.END_1` | exact 1-kOhm fixture current limit |
+| `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.A1` | `s3_dbg_boot_series.END_1` | physical button joins the protected header side |
+| `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.A1` | `s3_boot_button.A2` | both same-side switch terminals are represented |
+| `POWER_GROUND` | `s3_boot_button.B1` | `s3_boot_button.B2` | both ground-side switch terminals are represented |
+| `POWER_GROUND` | `s3_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `S3_BOOT_N` | `s3_dbg_boot_series.END_2` | `s3.GPIO0` | physical GPIO0 is exposed without adding a runtime load |
+| `S3_DBG0_CONNECTOR` | `s3_dbg_header.P5` | `s3_dbg_esd.D2_PLUS` | UART TX connector ESD shunt |
+| `S3_DBG0_CONNECTOR` | `s3_dbg_header.P5` | `s3_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
+| `S3_UART_SERVICE_TX` | `s3_dbg0_series.END_2` | `s3.GPIO43` | real exposed module UART0 TX contact |
+| `S3_DBG1_CONNECTOR` | `s3_dbg_header.P6` | `s3_dbg_esd.D2_MINUS` | UART RX connector ESD shunt |
+| `S3_DBG1_CONNECTOR` | `s3_dbg_header.P6` | `s3_dbg1_series.END_1` | exact 470-Ohm fixture-current and edge limit |
+| `S3_UART_SERVICE_RX` | `s3_dbg1_series.END_2` | `s3.GPIO44` | real exposed module UART0 RX contact |
+| `S3_DBG_ID0` | `s3_dbg_header.P8` | `s3_dbg_id0_strap.END_1` | passive low identity bit |
+| `POWER_GROUND` | `s3_dbg_id0_strap.END_2` | `abstract:power-ground` | 00 identifies S3 without a hard strap |
+| `S3_DBG_ID1` | `s3_dbg_header.P10` | `s3_dbg_id1_strap.END_1` | passive low identity bit |
+| `POWER_GROUND` | `s3_dbg_id1_strap.END_2` | `abstract:power-ground` | 00 identifies S3 without a hard strap |
+| `S3_DBG_ESD_RETURN` | `s3_dbg_esd.GND_3` | `abstract:power-ground-dedicated-via` | first short ESD return |
+| `S3_DBG_ESD_RETURN` | `s3_dbg_esd.GND_8` | `abstract:power-ground-dedicated-via` | second short ESD return |
+| `NO_CONNECT` | `s3_dbg_esd.NC_6` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `s3_dbg_esd.NC_7` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `s3_dbg_esd.NC_9` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `s3_dbg_esd.NC_10` | `abstract:no-connect` | manufacturer NC remains open |
+| `C5_DBG_VTREF_SENSE` | `c5_dbg_header.P1` | `c5_dbg_vtref_series.END_1` | fixture senses target voltage through exact 1 kOhm and never powers the target |
+| `3V3_MAIN` | `c5_dbg_vtref_series.END_2` | `abstract:3V3_MAIN` | target-side reference |
+| `POWER_GROUND` | `c5_dbg_header.P2` | `abstract:power-ground` | fixture ground |
+| `POWER_GROUND` | `c5_dbg_header.P7` | `abstract:power-ground` | adjacent debug return |
+| `POWER_GROUND` | `c5_dbg_header.P9` | `abstract:power-ground` | identity guard return |
+| `C5_DBG_RESET_CONNECTOR_N` | `c5_dbg_header.P3` | `c5_dbg_esd.D1_PLUS` | header-side active-low reset has connector ESD protection |
+| `C5_DBG_RESET_CONNECTOR_N` | `c5_dbg_header.P3` | `c5_dbg_reset_series.END_1` | exact 1-kOhm fixture current limit |
+| `C5_DBG_RESET_CONNECTOR_N` | `c5_reset_button.A1` | `c5_dbg_reset_series.END_1` | physical button joins the protected header side |
+| `C5_DBG_RESET_CONNECTOR_N` | `c5_reset_button.A1` | `c5_reset_button.A2` | both same-side switch terminals are represented |
+| `POWER_GROUND` | `c5_reset_button.B1` | `c5_reset_button.B2` | both ground-side switch terminals are represented |
+| `POWER_GROUND` | `c5_reset_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `C5_RESET_N` | `c5_dbg_reset_series.END_2` | `c5.EN` | manual and fixture reset meet only a passive pull-up and open-drain safety sink |
+| `C5_DBG_BOOT_CONNECTOR_N` | `c5_dbg_header.P4` | `c5_dbg_esd.D1_MINUS` | header-side active-low boot control has connector ESD protection |
+| `C5_DBG_BOOT_CONNECTOR_N` | `c5_dbg_header.P4` | `c5_dbg_boot_series.END_1` | exact 1-kOhm fixture current limit |
+| `C5_DBG_BOOT_CONNECTOR_N` | `c5_boot_button.A1` | `c5_dbg_boot_series.END_1` | physical button joins the protected header side |
+| `C5_DBG_BOOT_CONNECTOR_N` | `c5_boot_button.A1` | `c5_boot_button.A2` | both same-side switch terminals are represented |
+| `POWER_GROUND` | `c5_boot_button.B1` | `c5_boot_button.B2` | both ground-side switch terminals are represented |
+| `POWER_GROUND` | `c5_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `C5_BOOT_N` | `c5_dbg_boot_series.END_2` | `c5.GPIO28` | real exposed GPIO28 selects joint-download boot |
+| `C5_DBG0_CONNECTOR` | `c5_dbg_header.P5` | `c5_dbg_esd.D2_PLUS` | UART TX connector ESD shunt |
+| `C5_DBG0_CONNECTOR` | `c5_dbg_header.P5` | `c5_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
+| `C5_UART_SERVICE_TX` | `c5_dbg0_series.END_2` | `c5.GPIO11` | real exposed module UART0 TX contact |
+| `C5_DBG1_CONNECTOR` | `c5_dbg_header.P6` | `c5_dbg_esd.D2_MINUS` | UART RX connector ESD shunt |
+| `C5_DBG1_CONNECTOR` | `c5_dbg_header.P6` | `c5_dbg1_series.END_1` | exact 470-Ohm fixture-current and edge limit |
+| `C5_UART_SERVICE_RX` | `c5_dbg1_series.END_2` | `c5.GPIO12` | real exposed module UART0 RX contact |
+| `C5_DBG_ID0` | `c5_dbg_header.P8` | `c5_dbg_id0_strap.END_1` | passive high identity bit |
+| `3V3_MAIN` | `c5_dbg_id0_strap.END_2` | `abstract:3V3_MAIN` | 01 identifies C5 through a resistive strap |
+| `C5_DBG_ID1` | `c5_dbg_header.P10` | `c5_dbg_id1_strap.END_1` | passive low identity bit |
+| `POWER_GROUND` | `c5_dbg_id1_strap.END_2` | `abstract:power-ground` | 01 identifies C5 through a resistive strap |
+| `C5_DBG_ESD_RETURN` | `c5_dbg_esd.GND_3` | `abstract:power-ground-dedicated-via` | first short ESD return |
+| `C5_DBG_ESD_RETURN` | `c5_dbg_esd.GND_8` | `abstract:power-ground-dedicated-via` | second short ESD return |
+| `NO_CONNECT` | `c5_dbg_esd.NC_6` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `c5_dbg_esd.NC_7` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `c5_dbg_esd.NC_9` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `c5_dbg_esd.NC_10` | `abstract:no-connect` | manufacturer NC remains open |
+| `RP_DBG_VTREF_SENSE` | `rp_dbg_header.P1` | `rp_dbg_vtref_series.END_1` | fixture senses target voltage through exact 1 kOhm and never powers the target |
+| `3V3_MAIN` | `rp_dbg_vtref_series.END_2` | `abstract:3V3_MAIN` | target-side reference |
+| `POWER_GROUND` | `rp_dbg_header.P2` | `abstract:power-ground` | fixture ground |
+| `POWER_GROUND` | `rp_dbg_header.P7` | `abstract:power-ground` | adjacent debug return |
+| `POWER_GROUND` | `rp_dbg_header.P9` | `abstract:power-ground` | identity guard return |
+| `RP_DBG_RESET_CONNECTOR_N` | `rp_dbg_header.P3` | `rp_dbg_esd.D1_PLUS` | header-side active-low reset has connector ESD protection |
+| `RP_DBG_RESET_CONNECTOR_N` | `rp_dbg_header.P3` | `rp_dbg_reset_series.END_1` | exact 1-kOhm fixture current limit |
+| `RP_DBG_RESET_CONNECTOR_N` | `rp_reset_button.A1` | `rp_dbg_reset_series.END_1` | physical button joins the protected header side |
+| `RP_DBG_RESET_CONNECTOR_N` | `rp_reset_button.A1` | `rp_reset_button.A2` | both same-side switch terminals are represented |
+| `POWER_GROUND` | `rp_reset_button.B1` | `rp_reset_button.B2` | both ground-side switch terminals are represented |
+| `POWER_GROUND` | `rp_reset_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `RP_RESET_N` | `rp_dbg_reset_series.END_2` | `rp.RUN` | manual and fixture reset meet only a passive pull-up and open-drain safety sink |
+| `RP_DBG_BOOT_CONNECTOR_N` | `rp_dbg_header.P4` | `rp_dbg_esd.D1_MINUS` | header-side active-low boot control has connector ESD protection |
+| `RP_DBG_BOOT_CONNECTOR_N` | `rp_dbg_header.P4` | `rp_dbg_boot_series.END_1` | exact 1-kOhm path follows the RP2350 USB_BOOT reference |
+| `RP_DBG_BOOT_CONNECTOR_N` | `rp_boot_button.A1` | `rp_dbg_boot_series.END_1` | physical button joins the protected header side |
+| `RP_DBG_BOOT_CONNECTOR_N` | `rp_boot_button.A1` | `rp_boot_button.A2` | both same-side switch terminals are represented |
+| `POWER_GROUND` | `rp_boot_button.B1` | `rp_boot_button.B2` | both ground-side switch terminals are represented |
+| `POWER_GROUND` | `rp_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `RP_USB_BOOT_N` | `rp_dbg_boot_series.END_2` | `rp.QSPI_SS_USB_BOOT` | real RP2354B package contact reaches BOOTSEL without consuming a GPIO |
+| `RP_DBG0_CONNECTOR` | `rp_dbg_header.P5` | `rp_dbg_esd.D2_PLUS` | SWDIO connector ESD shunt |
+| `RP_DBG0_CONNECTOR` | `rp_dbg_header.P5` | `rp_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
+| `RP_SWDIO` | `rp_dbg0_series.END_2` | `rp.SWDIO` | dedicated real RP2354B SWD contact |
+| `RP_DBG1_CONNECTOR` | `rp_dbg_header.P6` | `rp_dbg_esd.D2_MINUS` | SWCLK connector ESD shunt |
+| `RP_DBG1_CONNECTOR` | `rp_dbg_header.P6` | `rp_dbg1_series.END_1` | exact 470-Ohm fixture-current and edge limit |
+| `RP_SWCLK` | `rp_dbg1_series.END_2` | `rp.SWCLK` | dedicated real RP2354B SWD contact |
+| `RP_DBG_ID0` | `rp_dbg_header.P8` | `rp_dbg_id0_strap.END_1` | passive low identity bit |
+| `POWER_GROUND` | `rp_dbg_id0_strap.END_2` | `abstract:power-ground` | 10 identifies RP through a resistive strap |
+| `RP_DBG_ID1` | `rp_dbg_header.P10` | `rp_dbg_id1_strap.END_1` | passive high identity bit |
+| `3V3_MAIN` | `rp_dbg_id1_strap.END_2` | `abstract:3V3_MAIN` | 10 identifies RP through a resistive strap |
+| `RP_DBG_ESD_RETURN` | `rp_dbg_esd.GND_3` | `abstract:power-ground-dedicated-via` | first short ESD return |
+| `RP_DBG_ESD_RETURN` | `rp_dbg_esd.GND_8` | `abstract:power-ground-dedicated-via` | second short ESD return |
+| `NO_CONNECT` | `rp_dbg_esd.NC_6` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `rp_dbg_esd.NC_7` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `rp_dbg_esd.NC_9` | `abstract:no-connect` | manufacturer NC remains open |
+| `NO_CONNECT` | `rp_dbg_esd.NC_10` | `abstract:no-connect` | manufacturer NC remains open |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_boot_pullup.END_1` | exact normal-boot pull-up |
+| `S3_BOOT_N` | `s3_boot_pullup.END_2` | `s3.GPIO0` | S3 normal boot remains deterministic without a fixture |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_boot_pullup.END_1` | exact normal-boot pull-up |
+| `C5_BOOT_N` | `c5_boot_pullup.END_2` | `c5.GPIO28` | C5 normal boot remains deterministic without a fixture |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_boot_pullup.END_1` | exact normal-boot pull-up |
+| `RP_USB_BOOT_N` | `rp_boot_pullup.END_2` | `rp.QSPI_SS_USB_BOOT` | RP flash-select/USB_BOOT remains high in normal operation |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_gpio27_pullup.END_1` | exact fixed-high C5 download-mode strap |
+| `C5_GPIO27_FIXED_HIGH` | `c5_gpio27_pullup.END_2` | `c5.GPIO27` | normal-boot and deterministic ROM logging strap; read-only test pad may observe but never drive |
+| `C5_GPIO27_FIXED_HIGH` | `c5.GPIO27` | `abstract:c5-gpio27-read-only-test-pad` | fixture observation only |
 | `USB_C_VBUS_RAW` | `product_usb_connector.A4_VBUS` | `product_usb_connector.A9_VBUS` | both A-side VBUS contacts join one short wide connector-side copper region |
 | `USB_C_VBUS_RAW` | `product_usb_connector.A9_VBUS` | `product_usb_connector.B4_VBUS` | all four exact receptacle VBUS contacts share the raw input plane |
 | `USB_C_VBUS_RAW` | `product_usb_connector.B4_VBUS` | `product_usb_connector.B9_VBUS` | all four exact receptacle VBUS contacts are electrically present and independently soldered |
@@ -3095,12 +3360,32 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `REARM_CLK` | `safe_conditioner.2Y` | `safe_latch.CLK` | only a fresh physical edge can clock fixed D=0 |
 | `STOP_DOMINANT_CLR_N` | `safe_por_or.1Y` | `safe_latch.CLR_N` | CLR_N = POR_N OR STOP_LOOP_SENSE |
 | `SAFE_D_LOW` | `abstract:safety-ground-via-10k` | `safe_latch.D` | fixed logic low; no MCU, expander or connector endpoint |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.1A` | one non-programmable permit fans out through an Ioff buffer |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.2A` | one non-programmable permit fans out through an Ioff buffer |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.3A` | one non-programmable permit fans out through an Ioff buffer |
-| `S3_RUN_SAFE` | `safe_reset_buffer.1Y` | `s3.EN` | 47-Ohm series plus 1-kOhm target pull-down; AON loss holds CHIP_PU low |
-| `C5_RUN_SAFE` | `safe_reset_buffer.2Y` | `c5.EN` | 47-Ohm series plus 1-kOhm target pull-down; AON loss holds CHIP_PU low |
-| `RP_RUN_SAFE` | `safe_reset_buffer.3Y` | `rp.RUN` | 47-Ohm series plus 1-kOhm target pull-down; AON loss holds RUN low |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer.VCC` | open-drain reset control remains powered with the non-programmable latch |
+| `SAFETY_GROUND` | `safe_reset_buffer.GND` | `abstract:safety-ground` | local AON logic return |
+| `NO_CONNECT` | `safe_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer_bypass.END_1` | exact 100-nF local bypass |
+| `SAFETY_GROUND` | `safe_reset_buffer_bypass.END_2` | `abstract:safety-ground` | local bypass return |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.A` | one non-programmable permit controls all passive-drain reset sinks |
+| `RESET_KILL_GATE` | `safe_reset_buffer.Y` | `safe_reset_gate_pullup.END_2` | open-drain inverter actively holds the common gates low only while RUN_PERMIT and AON are valid |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `safe_reset_gate_pullup.END_1` | main-domain pull-up asserts reset if the AON driver disappears while compute power remains |
+| `RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G1` | first independent reset sink gate |
+| `RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G2` | second independent reset sink gate |
+| `RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_b.G1` | third independent reset sink gate |
+| `SAFETY_GROUND` | `safe_reset_sink_a.S1` | `abstract:safety-ground` | S3 reset sink source |
+| `SAFETY_GROUND` | `safe_reset_sink_a.S2` | `abstract:safety-ground` | C5 reset sink source |
+| `SAFETY_GROUND` | `safe_reset_sink_b.S1` | `abstract:safety-ground` | RP reset sink source |
+| `SAFETY_GROUND` | `safe_reset_sink_b.G2` | `abstract:safety-ground` | unused fourth FET is held permanently off |
+| `SAFETY_GROUND` | `safe_reset_sink_b.S2` | `abstract:safety-ground` | unused fourth FET source is grounded |
+| `NO_CONNECT` | `safe_reset_sink_b.D2` | `abstract:no-connect` | unused fourth FET drain remains open |
+| `S3_RESET_N` | `safe_reset_sink_a.D1` | `s3.EN` | STOP-dominant passive-drain S3 reset; no push-pull high contention |
+| `C5_RESET_N` | `safe_reset_sink_a.D2` | `c5.EN` | STOP-dominant passive-drain C5 reset; no push-pull high contention |
+| `RP_RESET_N` | `safe_reset_sink_b.D1` | `rp.RUN` | STOP-dominant passive-drain RP reset; no push-pull high contention |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_reset_pullup.END_1` | exact passive target pull-up |
+| `S3_RESET_N` | `s3_reset_pullup.END_2` | `s3.EN` | S3 can run only when neither hard STOP nor service control pulls low |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_reset_pullup.END_1` | exact passive target pull-up |
+| `C5_RESET_N` | `c5_reset_pullup.END_2` | `c5.EN` | C5 can run only when neither hard STOP nor service control pulls low |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_reset_pullup.END_1` | exact passive target pull-up |
+| `RP_RESET_N` | `rp_reset_pullup.END_2` | `rp.RUN` | RP can run only when neither hard STOP nor service control pulls low |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.1B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.2B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.3B` | STOP-dominant active-high gate permit |
@@ -3435,9 +3720,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 ### Programming, recovery and diagnostics
 
-- `s3`: `EN`, `GPIO0`, `GPIO19`, `GPIO20`, `GPIO43`, `GPIO44` — native USB Serial/JTAG, permanent default UART0 RF-test/diagnostic route and physical EN/BOOT.
-- `c5`: `EN`, `GPIO28`, `GPIO27`, `GPIO11`, `GPIO12`, `GPIO13`, `GPIO14` — native USB Serial/JTAG, permanent UART0, physical CHIP_PU/BOOT and normal-boot/log strap; 1-bit SDIO leaves USB contacts independent.
-- `rp`: `RUN`, `SWCLK`, `SWDIO`, `USB_DM`, `USB_DP`, `QSPI_SS_USB_BOOT` — independent SWD, RUN, USB and BOOTSEL fixture access.
+- `s3`: `EN`, `GPIO0`, `GPIO19`, `GPIO20`, `GPIO43`, `GPIO44` — protected product USB Serial/JTAG plus separately ESD-protected keyed DBG10 UART0/RESET/BOOT and separate Alps RESET/BOOT controls; DBG10 passive ID 00.
+- `c5`: `EN`, `GPIO28`, `GPIO27`, `GPIO11`, `GPIO12`, `GPIO13`, `GPIO14` — independent GCT USB4105 data-only USB through TPD2EUSB30A and board-powered FSUSB42MUX, plus separately ESD-protected keyed DBG10 UART0/RESET/BOOT and Alps controls; GPIO27 fixed high/read-only, DBG10 passive ID 01.
+- `rp`: `RUN`, `SWCLK`, `SWDIO`, `USB_DM`, `USB_DP`, `QSPI_SS_USB_BOOT` — independent GCT USB4105 data-only USB through TPD2EUSB30A and board-powered FSUSB42MUX, plus separately ESD-protected keyed DBG10 SWD/RUN/USB_BOOT and Alps controls; DBG10 passive ID 10.
 - `pd_controller`: `I2Ct_SDA`, `I2Ct_SCL`, `I2Ct_IRQ` — S3 shared SYS_I2C0 host control plus shared wired-low IRQ; same bus is exposed on protected service pads for controller status/recovery.
 - `pd_config_eeprom`: `SDA`, `SCL`, `WP` — first image uses a preprogrammed loose EEPROM or a current-limited raw-VBUS fixture. The fixture observes TPS ReadyForPatch on I2Ct and verifies I2Cc high-Z before direct SDA/SCL/WP programming; it never drives LDO_3V3 externally and does not depend on S3.
 - `pack_gauge`: `ALRT`, `SCL_OD`, `SDA_DQ`, `PFAIL` — direct protected I2C/NVM and hold/fault pads with fixture ground and qualified stack-sense supply; protected image checksum and OvrdEn readback are mandatory before energized cell installation.
@@ -3632,7 +3917,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `voice` lifecycle: `current_product`.
 - `voice_rf_esd` uses `Nexperia PESD24VY1BSF` as `verified_exact_sa518_external_rf_esd`, not an accepted production choice.
 - `voice_rf_esd` lifecycle: `production_orderable`.
-- `voice_detector_series_attenuator` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator`, not an accepted production choice.
+- `voice_detector_series_attenuator` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
 - `voice_detector_series_attenuator` lifecycle: `active_orderable`.
 - `voice_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `voice_detector_match` lifecycle: `active_orderable`.
@@ -3757,8 +4042,86 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `pack_cell1` lifecycle: `current_catalog`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
+- `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
+- `c5_service_usb_connector` lifecycle: `active_orderable`.
+- `c5_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.
+- `c5_service_usb_esd` lifecycle: `active_orderable`.
+- `c5_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.
+- `c5_service_usb_switch` lifecycle: `active_orderable`.
+- `c5_service_usb_cc1_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
+- `c5_service_usb_cc1_rd` lifecycle: `active_orderable`.
+- `c5_service_usb_cc2_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
+- `c5_service_usb_cc2_rd` lifecycle: `active_orderable`.
+- `c5_service_usb_vbus_bleeder` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `c5_service_usb_vbus_bleeder` lifecycle: `active_orderable`.
+- `rp_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
+- `rp_service_usb_connector` lifecycle: `active_orderable`.
+- `rp_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.
+- `rp_service_usb_esd` lifecycle: `active_orderable`.
+- `rp_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.
+- `rp_service_usb_switch` lifecycle: `active_orderable`.
+- `rp_service_usb_cc1_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
+- `rp_service_usb_cc1_rd` lifecycle: `active_orderable`.
+- `rp_service_usb_cc2_rd` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd`, not an accepted production choice.
+- `rp_service_usb_cc2_rd` lifecycle: `active_orderable`.
+- `rp_service_usb_vbus_bleeder` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `rp_service_usb_vbus_bleeder` lifecycle: `active_orderable`.
+- `rp_service_usb_dm_series` uses `Panasonic ERJ-2RKF27R0X` as `verified_exact_rp2354_usb_series_resistor`, not an accepted production choice.
+- `rp_service_usb_dm_series` lifecycle: `active_orderable`.
+- `rp_service_usb_dp_series` uses `Panasonic ERJ-2RKF27R0X` as `verified_exact_rp2354_usb_series_resistor`, not an accepted production choice.
+- `rp_service_usb_dp_series` lifecycle: `active_orderable`.
+- `s3_dbg_header` uses `Samtec FTSH-105-01-L-DV-K-P-TR` as `verified_exact_three_domain_dbg10_header`, not an accepted production choice.
+- `s3_dbg_header` lifecycle: `active_orderable`.
+- `c5_dbg_header` uses `Samtec FTSH-105-01-L-DV-K-P-TR` as `verified_exact_three_domain_dbg10_header`, not an accepted production choice.
+- `c5_dbg_header` lifecycle: `active_orderable`.
+- `rp_dbg_header` uses `Samtec FTSH-105-01-L-DV-K-P-TR` as `verified_exact_three_domain_dbg10_header`, not an accepted production choice.
+- `rp_dbg_header` lifecycle: `active_orderable`.
+- `s3_reset_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `s3_reset_button` lifecycle: `standard_active_orderable`.
+- `s3_boot_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `s3_boot_button` lifecycle: `standard_active_orderable`.
+- `c5_reset_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `c5_reset_button` lifecycle: `standard_active_orderable`.
+- `c5_boot_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `c5_boot_button` lifecycle: `standard_active_orderable`.
+- `rp_reset_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `rp_reset_button` lifecycle: `standard_active_orderable`.
+- `rp_boot_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `rp_boot_button` lifecycle: `standard_active_orderable`.
+- `s3_dbg_vtref_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `s3_dbg_vtref_series` lifecycle: `active_orderable`.
+- `s3_dbg_reset_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `s3_dbg_reset_series` lifecycle: `active_orderable`.
+- `s3_dbg_boot_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `s3_dbg_boot_series` lifecycle: `active_orderable`.
+- `s3_dbg0_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
+- `s3_dbg0_series` lifecycle: `active_orderable`.
+- `s3_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
+- `s3_dbg1_series` lifecycle: `active_orderable`.
+- `c5_dbg_vtref_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `c5_dbg_vtref_series` lifecycle: `active_orderable`.
+- `c5_dbg_reset_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `c5_dbg_reset_series` lifecycle: `active_orderable`.
+- `c5_dbg_boot_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `c5_dbg_boot_series` lifecycle: `active_orderable`.
+- `c5_dbg0_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
+- `c5_dbg0_series` lifecycle: `active_orderable`.
+- `c5_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
+- `c5_dbg1_series` lifecycle: `active_orderable`.
+- `rp_dbg_vtref_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `rp_dbg_vtref_series` lifecycle: `active_orderable`.
+- `rp_dbg_reset_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `rp_dbg_reset_series` lifecycle: `active_orderable`.
+- `rp_dbg_boot_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `rp_dbg_boot_series` lifecycle: `active_orderable`.
+- `rp_dbg0_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
+- `rp_dbg0_series` lifecycle: `active_orderable`.
+- `rp_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
+- `rp_dbg1_series` lifecycle: `active_orderable`.
 - `safe_conditioner` lifecycle: `production`.
 - `safe_por_or` lifecycle: `production`.
+- `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
+- `safe_reset_buffer` lifecycle: `active_orderable`.
 - `safe_ptt_or` lifecycle: `production`.
 - `det_s3` lifecycle: `production`.
 - `det_c5` lifecycle: `production`.

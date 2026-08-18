@@ -485,6 +485,17 @@ startup/shutdown/brownout/multi-fault gates остаются обязатель�
 owner, шины или тракта; regression проверяет orientation и покрытие MPN
 текущего candidate.
 
+Текущая зрелость dependency chain: I1…I7 **reviewed в paper scope**, активен
+I8 consolidated BOM/lifecycle/availability/cost/alternate review.
+`FND-0105/EXP-0001/DEC-0098/REV-0005BD` закрывают независимые power/signal
+границы U214 и native Unit. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
+закрывают оставшуюся service/recovery схему: два board-off-isolated data-only
+USB, три keyed DBG10, шесть отдельных controls, exact straps/passives и
+passive-drain hard-STOP resets внесены в machine source. GPIO budgets и весь
+набор controls не изменились. Physical connector/mechanics, USB
+SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates; KiCad
+и integrated mockup заблокированы до завершения I8/I9.
+
 `FND-0072/IMP-0051` выявили, что target README снова начали пересказывать
 инженерную chronology. Владелец принял `DEC-0060`; `REV-0005N` провёл ревью
 исправления. Четыре корневые EN/RU страницы теперь являются product landing

@@ -110,6 +110,16 @@ privacy or the target owner's authorization.
 
 - Every programmable compute domain has its own programming, recovery and
   diagnostic path and does not depend on a healthy peer domain.
+- S3 uses the protected product USB plus keyed UART0/RESET/BOOT access. C5 has
+  its own data-only USB and keyed UART0/RESET/BOOT access; RP2354B has its own
+  data-only USB and keyed SWD/RUN/USB_BOOT access. All three domains retain
+  separate physical RESET and BOOT controls.
+- The C5 and RP USB-C receptacles never power the product. Their VBUS reaches
+  only a 1-MOhm bleeder/test point, and a board-powered USB switch disconnects
+  D+/D- while the product is off, preventing cable backfeed.
+- Hard STOP still dominates every recovery mode. Its reset output uses three
+  passive-drain sinks, so a RESET button or fixture can pull a target low
+  without fighting a driven-high logic output; recovery always starts TX-off.
 - The product USB-C port keeps protected S3 USB2 Full-Speed data (12 Mbit/s)
   and accepts power only:
   5-V fallback, 9 V at 3 A and 15 V at 2 A, up to 30 W. It never acts as a
@@ -351,6 +361,61 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
+  C5USBC["GCT USB4105-GF-A #C5<br/>independent data-only USB-C service receptacle"]
+  C5UESD["Texas Instruments TPD2EUSB30ADRTR #C5<br/>service USB D+/D- ESD shunt"]
+  C5UMUX["onsemi FSUSB42MUX #C5<br/>board-off D+/D- backfeed-isolation switch"]
+  C5UMUXBP["C1005X7R1H104K050BB #C5-USB-SW<br/>USB-switch local bypass capacitor"]
+  C5CC1["RC0402FR-075K1L #C5-CC1<br/>passive Type-C Rd resistor"]
+  C5CC2["RC0402FR-075K1L #C5-CC2<br/>passive Type-C Rd resistor"]
+  C5VB["RC0402FR-071ML #C5-VBUS<br/>sense-only VBUS bleeder resistor"]
+  C5DMR["ERJ-2RKF22R0X #C5-DM<br/>MCU-side USB D- series resistor"]
+  C5DPR["ERJ-2RKF22R0X #C5-DP<br/>MCU-side USB D+ series resistor"]
+  RPUSBC["GCT USB4105-GF-A #RP<br/>independent data-only USB-C service receptacle"]
+  RPUESD["Texas Instruments TPD2EUSB30ADRTR #RP<br/>service USB D+/D- ESD shunt"]
+  RPUMUX["onsemi FSUSB42MUX #RP<br/>board-off D+/D- backfeed-isolation switch"]
+  RPUMUXBP["C1005X7R1H104K050BB #RP-USB-SW<br/>USB-switch local bypass capacitor"]
+  RPCC1["RC0402FR-075K1L #RP-CC1<br/>passive Type-C Rd resistor"]
+  RPCC2["RC0402FR-075K1L #RP-CC2<br/>passive Type-C Rd resistor"]
+  RPVB["RC0402FR-071ML #RP-VBUS<br/>sense-only VBUS bleeder resistor"]
+  RPDMR["ERJ-2RKF27R0X #RP-DM<br/>MCU-side USB D- series resistor"]
+  RPDPR["ERJ-2RKF27R0X #RP-DP<br/>MCU-side USB D+ series resistor"]
+  S3DBG["Samtec FTSH-105-01-L-DV-K-P-TR #S3<br/>keyed independent DBG10 header"]
+  C5DBG["Samtec FTSH-105-01-L-DV-K-P-TR #C5<br/>keyed independent DBG10 header"]
+  RPDBG["Samtec FTSH-105-01-L-DV-K-P-TR #RP<br/>keyed independent DBG10 header"]
+  S3DBGE["TPD4E05U06DQAR #S3-DBG<br/>RESET/BOOT/UART ESD array"]
+  C5DBGE["TPD4E05U06DQAR #C5-DBG<br/>RESET/BOOT/UART ESD array"]
+  RPDBGE["TPD4E05U06DQAR #RP-DBG<br/>RUN/BOOT/SWD ESD array"]
+  S3RSTSW["Alps Alpine SKQGADE010 #S3-RESET<br/>separate physical RESET service control"]
+  S3BOOTSW["Alps Alpine SKQGADE010 #S3-BOOT<br/>separate physical BOOT service control"]
+  C5RSTSW["Alps Alpine SKQGADE010 #C5-RESET<br/>separate physical RESET service control"]
+  C5BOOTSW["Alps Alpine SKQGADE010 #C5-BOOT<br/>separate physical BOOT service control"]
+  RPRSTSW["Alps Alpine SKQGADE010 #RP-RESET<br/>separate physical RESET service control"]
+  RPBOOTSW["Alps Alpine SKQGADE010 #RP-BOOT<br/>separate physical BOOT service control"]
+  S3VTR["RC0402FR-071KL #S3-VTREF<br/>fixture voltage-sense resistor"]
+  S3RSTR["RC0402FR-071KL #S3-RESET<br/>fixture reset-current resistor"]
+  S3BOOTR["RC0402FR-071KL #S3-BOOT<br/>fixture boot-current resistor"]
+  S3D0R["RC0402FR-07470RL #S3-DBG0<br/>UART0-TX fixture-current resistor"]
+  S3D1R["RC0402FR-07470RL #S3-DBG1<br/>UART0-RX fixture-current resistor"]
+  S3ID0["RC0402FR-0710KL #S3-ID0<br/>passive DBG10 identity strap"]
+  S3ID1["RC0402FR-0710KL #S3-ID1<br/>passive DBG10 identity strap"]
+  C5VTR["RC0402FR-071KL #C5-VTREF<br/>fixture voltage-sense resistor"]
+  C5RSTR["RC0402FR-071KL #C5-RESET<br/>fixture reset-current resistor"]
+  C5BOOTR["RC0402FR-071KL #C5-BOOT<br/>fixture boot-current resistor"]
+  C5D0R["RC0402FR-07470RL #C5-DBG0<br/>UART0-TX fixture-current resistor"]
+  C5D1R["RC0402FR-07470RL #C5-DBG1<br/>UART0-RX fixture-current resistor"]
+  C5ID0["RC0402FR-0710KL #C5-ID0<br/>passive DBG10 identity strap"]
+  C5ID1["RC0402FR-0710KL #C5-ID1<br/>passive DBG10 identity strap"]
+  RPVTR["RC0402FR-071KL #RP-VTREF<br/>fixture voltage-sense resistor"]
+  RPRSTR["RC0402FR-071KL #RP-RUN<br/>fixture reset-current resistor"]
+  RPBOOTR["RC0402FR-071KL #RP-BOOT<br/>fixture boot-current resistor"]
+  RPD0R["RC0402FR-07470RL #RP-DBG0<br/>SWDIO fixture-current resistor"]
+  RPD1R["RC0402FR-07470RL #RP-DBG1<br/>SWCLK fixture-current resistor"]
+  RPID0["RC0402FR-0710KL #RP-ID0<br/>passive DBG10 identity strap"]
+  RPID1["RC0402FR-0710KL #RP-ID1<br/>passive DBG10 identity strap"]
+  S3BPU["RC0402FR-0710KL #S3-BOOT<br/>deterministic normal-boot pull-up"]
+  C5BPU["RC0402FR-0710KL #C5-BOOT<br/>deterministic normal-boot pull-up"]
+  RPBPU["RC0402FR-0710KL #RP-BOOT<br/>deterministic normal-boot pull-up"]
+  C5G27PU["RC0402FR-0710KL #C5-GPIO27<br/>fixed-high normal-boot and ROM-log strap"]
   SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; all contacts allocated"]
   SLOWVCI["C1005X7R1H104K050BB #SLOW-VCCI<br/>100-nF main slow-I/O VCCI bypass capacitor"]
   SLOWVCP["C1005X7R1H104K050BB #SLOW-VCCP<br/>100-nF main slow-I/O VCCP bypass capacitor"]
@@ -705,7 +770,14 @@ flowchart TD
   COND["74LVC2G14GW,125<br/>STOP and RE-ARM Schmitt conditioner"]
   POROR["74LVC1G32GV,125<br/>STOP-dominant POR/clear combiner"]
   LATCH["SN74LVC1G74DCUR<br/>asynchronous latched hard STOP"]
-  RSTBUF["SN74LVC3G34DCUR<br/>Ioff three-domain reset fan-out"]
+  RSTBUF["Texas Instruments SN74LVC1G06DCKR<br/>AON open-drain RUN-permit inverter"]
+  RSTBUFBP["C1005X7R1H104K050BB #RESET-DRIVER<br/>AON reset-driver bypass capacitor"]
+  RSTGPU["RC0402FR-0710KL #RESET-KILL<br/>main-domain fail-reset gate pull-up"]
+  RSTQA["Diodes Incorporated 2N7002DW-7-F #RESET-A<br/>independent passive-drain S3/C5 reset sinks"]
+  RSTQB["Diodes Incorporated 2N7002DW-7-F #RESET-B<br/>independent passive-drain RP reset sink plus inert spare"]
+  S3RPU["RC0402FR-0710KL #S3-EN<br/>passive S3 EN pull-up"]
+  C5RPU["RC0402FR-0710KL #C5-EN<br/>passive C5 CHIP_PU pull-up"]
+  RPRPU["RC0402FR-0710KL #RP-RUN<br/>passive RP RUN pull-up"]
   GATEA["SN74LVC08APWR #1<br/>four STOP-dominant nRF request gates"]
   GATEB["SN74LVC08APWR #2<br/>four STOP-dominant rail/IR/accessory gates"]
   PTTOR["74LVC1G32GV,125 #2<br/>active-low voice PTT force-RX gate"]
@@ -743,6 +815,10 @@ flowchart TD
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEFUSE ~~~ VOICERILIM ~~~ VOICEDVDT ~~~ VOICEIT ~~~ VOICEOVT ~~~ VOICEOVB ~~~ VOICEPGT ~~~ VOICEPGB ~~~ VOICEFOUT ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
+  RP ~~~ C5USBC ~~~ C5UESD ~~~ C5UMUX ~~~ C5UMUXBP ~~~ C5CC1 ~~~ C5CC2 ~~~ C5VB ~~~ C5DMR ~~~ C5DPR ~~~ RPUSBC ~~~ RPUESD ~~~ RPUMUX ~~~ RPUMUXBP ~~~ RPCC1 ~~~ RPCC2 ~~~ RPVB ~~~ RPDMR ~~~ RPDPR
+  RPDPR ~~~ S3DBG ~~~ C5DBG ~~~ RPDBG ~~~ S3DBGE ~~~ C5DBGE ~~~ RPDBGE ~~~ S3RSTSW ~~~ S3BOOTSW ~~~ C5RSTSW ~~~ C5BOOTSW ~~~ RPRSTSW ~~~ RPBOOTSW
+  RPBOOTSW ~~~ S3VTR ~~~ S3RSTR ~~~ S3BOOTR ~~~ S3D0R ~~~ S3D1R ~~~ S3ID0 ~~~ S3ID1 ~~~ C5VTR ~~~ C5RSTR ~~~ C5BOOTR ~~~ C5D0R ~~~ C5D1R ~~~ C5ID0 ~~~ C5ID1
+  C5ID1 ~~~ RPVTR ~~~ RPRSTR ~~~ RPBOOTR ~~~ RPD0R ~~~ RPD1R ~~~ RPID0 ~~~ RPID1 ~~~ S3BPU ~~~ C5BPU ~~~ RPBPU ~~~ C5G27PU
   SLOW ~~~ SLOWVCI ~~~ SLOWVCP ~~~ SLOWBULK ~~~ SLOWRSTPU ~~~ SLOWRST ~~~ SLOWSTOPISO ~~~ SLOWSTOPBP ~~~ SLOWSTOPPU
   SLOWSTOPPU ~~~ SLOWEVISO ~~~ SLOWEVBP ~~~ SLOWEVPU ~~~ UIMATRIX ~~~ UIMBP ~~~ UIR0PD ~~~ UIR1PD ~~~ UIR2PD ~~~ UIR3PD ~~~ UIC0PU ~~~ UIC1PU ~~~ UIC2PU ~~~ UIMESD
   UIMESD ~~~ UIDUP ~~~ UIUP ~~~ UIDDN ~~~ UIDOWN ~~~ UIDLEFT ~~~ UILEFT
@@ -771,7 +847,7 @@ flowchart TD
   UNITBLEED ~~~ UNITSUP ~~~ UNITSUPBP ~~~ UNITSUPT ~~~ UNITSUPB ~~~ UNITSUPC ~~~ UNITSUPPU ~~~ UNISO ~~~ UNISOA ~~~ UNISOB ~~~ UNISOEPD ~~~ UNITESD ~~~ UNIT
   UNIT ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
-  RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
+  RSTBUF ~~~ RSTBUFBP ~~~ RSTGPU ~~~ RSTQA ~~~ RSTQB ~~~ S3RPU ~~~ C5RPU ~~~ RPRPU ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ VOICEESD ~~~ VOICETAP ~~~ VOICEMATCH ~~~ VOICEDF ~~~ VOICEDBP ~~~ VOICEEVD ~~~ VOICEEVC ~~~ VOICEEVR ~~~ VOICESMA ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
@@ -781,6 +857,13 @@ flowchart TD
   PORTPROT <-->|"protected D+"| PORTDPR <-->|"Full-Speed GPIO20"| S3
   PORTPROT <-->|"protected D-"| PORTDMR <-->|"Full-Speed GPIO19"| S3
   PORTPROT <-->|"protected CC1/CC2"| PDCTRL
+  C5USBC -.->|"D+/D- ESD shunt"| C5UESD
+  C5USBC <-->|"data; VBUS sense-only"| C5UMUX <-->|"22 Ω D+/D-"| C5
+  RPUSBC -.->|"D+/D- ESD shunt"| RPUESD
+  RPUSBC <-->|"data; VBUS sense-only"| RPUMUX <-->|"27 Ω D+/D-"| RP
+  S3DBG -.->|"four-line ESD"| S3DBGE <-->|"UART0 + RESET/BOOT"| S3
+  C5DBG -.->|"four-line ESD"| C5DBGE <-->|"UART0 + RESET/BOOT"| C5
+  RPDBG -.->|"four-line ESD"| RPDBGE <-->|"SWD + RUN/BOOT"| RP
   PORTPROT -->|"100-nF / 100-V bias"| PORTVBIAS
   PDCTRL -->|"LDO_3V3"| PORTVPWR --> PORTPROT
   PDCTRL --> PORTFLTPU --> PORTPROT
@@ -1142,9 +1225,12 @@ flowchart TD
   SUP --> POROR --> LATCH
   STOPLOOP --> POROR
   LATCH -->|"RUN_PERMIT"| RSTBUF
-  RSTBUF -->|"CHIP_PU"| S3
-  RSTBUF -->|"CHIP_PU"| C5
-  RSTBUF -->|"RUN"| RP
+  RSTBUF -->|"open-drain RESET_KILL_GATE"| RSTGPU
+  RSTGPU --> RSTQA
+  RSTGPU --> RSTQB
+  RSTQA -->|"passive-drain EN"| S3
+  RSTQA -->|"passive-drain CHIP_PU"| C5
+  RSTQB -->|"passive-drain RUN"| RP
   LATCH --> GATEA
   LATCH --> GATEB
   LATCH --> PTTOR

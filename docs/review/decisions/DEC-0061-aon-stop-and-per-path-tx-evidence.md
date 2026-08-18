@@ -48,6 +48,11 @@
   aggregate;
 - `LTST-C190KRKT` и `LTST-C190KFKT` — exact first-target critical indicators.
 
+> Implementation amendment: `DEC-0099/FND-0106` supersede the listed
+> push-pull reset fan-out with `SN74LVC1G06DCKR` plus three passive
+> `2N7002DW-7-F` drains. The STOP truth table remains unchanged and manual
+> RESET no longer contends with a driven-high output.
+
 Это не новый продуктовый выбор и не расширение функции. Компоненты устраняют
 конкретные электрические пробелы уже принятого A; их MPN/spec/availability
 проверены до внесения в machine source.

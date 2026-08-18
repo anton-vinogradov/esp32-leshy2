@@ -206,9 +206,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "codec + Si4732-A10-GSR",
             "dual RX + TX IR frontend",
             "nRF24 #0",
-            "SN74LVC1G06DCKR",
         ):
             self.assertNotIn(forbidden, rendered)
+        self.assertIn("SN74LVC1G06DCKR", rendered)
 
     def test_target_readme_principled_diagrams_stay_vertical_and_current(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -288,7 +288,8 @@ class ArchitectureValidationTests(unittest.TestCase):
                     diagram,
                     f"{readme_name}: touch part {node_id}/{mpn} lacks its own box",
                 )
-            self.assertNotIn("SN74LVC1G06DCKR", diagram, readme_name)
+            self.assertIn("SN74LVC1G06DCKR", diagram, readme_name)
+            self.assertIn("SN74LVC1G07DCKR", diagram, readme_name)
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -1064,7 +1065,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "safe_conditioner": "nexperia_74lvc2g14gw_125",
             "safe_por_or": "nexperia_74lvc1g32gv_125",
             "safe_latch": "ti_sn74lvc1g74_dcur",
-            "safe_reset_buffer": "ti_sn74lvc3g34_dcur",
+            "safe_reset_buffer": "ti_sn74lvc1g06_dckr",
+            "safe_reset_sink_a": "diodes_2n7002dw_7_f",
+            "safe_reset_sink_b": "diodes_2n7002dw_7_f",
             "safe_gate_a": "ti_sn74lvc08a_pwr",
             "safe_gate_b": "ti_sn74lvc08a_pwr",
             "safe_ptt_or": "nexperia_74lvc1g32gv_125",
@@ -2394,7 +2397,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertEqual("0x38", matrix_io["i2c_7bit_address_by_a2a1a0"]["000"])
         self.assertEqual("0x3F", matrix_io["i2c_7bit_address_by_a2a1a0"]["111"])
-        self.assertNotIn("ti_sn74lvc1g06_dckr", self.database["devices"])
+        self.assertIn("ti_sn74lvc1g06_dckr", self.database["devices"])
+        self.assertEqual(
+            "ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"]
+        )
         self.assertEqual(
             "sitronix_st77922", candidate["instances"]["display_touch_controller"]
         )
@@ -2462,7 +2468,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(token, rendered)
         self.assertNotIn("PTT_SWITCH --> PTT_PULLUP --> PTT_FILTER_CAP", rendered)
         self.assertNotIn("STOP_SWITCH --> STOP_PULLUP --> STOP_FILTER_CAP", rendered)
-        self.assertNotIn("SN74LVC1G06DCKR", rendered)
+        self.assertIn("SN74LVC1G06DCKR", rendered)
+        self.assertIn("SN74LVC1G07DCKR", rendered)
 
     def test_dec0059_restores_full_s3_c5_service_on_1bit_sdio(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -2503,6 +2510,79 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13", rendered)
         self.assertNotIn("4-bit SDIO: S3", rendered)
+
+    def test_i7_exact_three_domain_service_recovery_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["service_recovery_contract"]
+        self.assertEqual("DEC-0099", contract["decision"])
+        self.assertIn("paper_reviewed_i7", contract["status"])
+        self.assertIn("FSUSB42MUX", contract["usb"])
+        self.assertIn("00 S3, 01 C5 and 10 RP", contract["debug"])
+        self.assertIn("never fight a push-pull source", contract["reset"])
+
+        required_instances = {
+            "c5_service_usb_connector": "gct_usb4105_gf_a",
+            "rp_service_usb_connector": "gct_usb4105_gf_a",
+            "c5_service_usb_switch": "onsemi_fsusb42_mux",
+            "rp_service_usb_switch": "onsemi_fsusb42_mux",
+            "s3_dbg_header": "samtec_ftsh_105_01_l_dv_k_p_tr",
+            "c5_dbg_header": "samtec_ftsh_105_01_l_dv_k_p_tr",
+            "rp_dbg_header": "samtec_ftsh_105_01_l_dv_k_p_tr",
+            "s3_reset_button": "alps_skqgade010",
+            "s3_boot_button": "alps_skqgade010",
+            "c5_reset_button": "alps_skqgade010",
+            "c5_boot_button": "alps_skqgade010",
+            "rp_reset_button": "alps_skqgade010",
+            "rp_boot_button": "alps_skqgade010",
+            "safe_reset_buffer": "ti_sn74lvc1g06_dckr",
+            "safe_reset_sink_a": "diodes_2n7002dw_7_f",
+            "safe_reset_sink_b": "diodes_2n7002dw_7_f",
+        }
+        for instance, device_id in required_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        routes = {
+            (row["from"], row["to"], row["net"])
+            for row in candidate["fixed_routes"]
+        }
+        for route in (
+            ("c5_service_usb_switch.HSD1_PLUS", "c5_service_usb_dp_series.END_1", "C5_SERVICE_USB_DP_SWITCHED"),
+            ("rp_service_usb_switch.HSD1_PLUS", "rp_service_usb_dp_series.END_1", "RP_SERVICE_USB_DP_SWITCHED"),
+            ("s3_dbg_reset_series.END_2", "s3.EN", "S3_RESET_N"),
+            ("c5_dbg_boot_series.END_2", "c5.GPIO28", "C5_BOOT_N"),
+            ("rp_dbg_boot_series.END_2", "rp.QSPI_SS_USB_BOOT", "RP_USB_BOOT_N"),
+            ("safe_latch.Q_N", "safe_reset_buffer.A", "RUN_PERMIT"),
+            ("safe_reset_sink_a.D1", "s3.EN", "S3_RESET_N"),
+            ("safe_reset_sink_a.D2", "c5.EN", "C5_RESET_N"),
+            ("safe_reset_sink_b.D1", "rp.RUN", "RP_RESET_N"),
+        ):
+            self.assertIn(route, routes)
+
+        for domain in ("c5", "rp"):
+            connector = f"{domain}_service_usb_connector"
+            vbus_routes = [
+                row for row in candidate["fixed_routes"]
+                if row["from"].startswith(f"{connector}.")
+                and "VBUS" in row["from"]
+            ]
+            serialized = " ".join(str(row) for row in vbus_routes)
+            self.assertNotIn("3V3", serialized)
+            self.assertNotIn("charger", serialized.lower())
+            self.assertIn("vbus_bleeder", serialized)
+
+        self.assertNotEqual(
+            "ti_sn74lvc3g34_dcur", candidate["instances"]["safe_reset_buffer"]
+        )
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "GCT USB4105-GF-A",
+            "Samtec FTSH-105-01-L-DV-K-P-TR",
+            "Alps Alpine SKQGADE010",
+            "onsemi FSUSB42MUX",
+            "SN74LVC1G06DCKR",
+            "2N7002DW-7-F",
+        ):
+            self.assertIn(token, rendered)
 
     def test_exact_main_slow_io_and_i4_closure_do_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

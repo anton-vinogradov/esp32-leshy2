@@ -24,5 +24,6 @@
 
 `DEC-0098/EXP-0001` close the M5 external-expansion paper electrical subblock.
 They do not authorize KiCad or claim hot-plug/connector/profile qualification.
-I7 continues with independent USB/debug/recovery service endpoints.
-
+At this review checkpoint I7 continued with independent USB/debug/recovery
+service endpoints. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE` subsequently
+close that remaining paper subblock and advance the dependency chain to I8.

@@ -34,6 +34,11 @@ Ioff plus `1 kΩ` local reset pull-downs and an explicit `≥10 kΩ` upper bound
 any application-side pull-up. This correction preserves the owner's accepted
 function and is now machine-recorded instead of remaining narrative intent.
 
+> Subsequent correction: `FND-0106/SVC-0002/DEC-0099/REV-0005BE` identify the
+> push-pull/manual-reset contention in that implementation and replace it with
+> an AON open-drain inverter plus three passive NMOS sinks and target pull-ups.
+> The I2 safety behavior is preserved; the corrected circuit is normative.
+
 `BAT54A,215` was screened for the hardware OR but had poor dated distributor
 availability. Exact `BAT54ALT1G` provides the same dual-common-anode topology
 with observed stock. This is a no-function-loss sourcing correction.

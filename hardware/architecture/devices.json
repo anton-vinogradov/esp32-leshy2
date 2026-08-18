@@ -4912,8 +4912,8 @@
     },
     "yageo_rc0402fr_075k1l": {
       "mpn": "Yageo RC0402FR-075K1L",
-      "kind": "5_1kohm_1pct_0402_rf_detector_series_attenuation_resistor",
-      "qualification": "verified_exact_sa518_detector_series_attenuator",
+      "kind": "5_1kohm_1pct_0402_resistor",
+      "qualification": "verified_exact_sa518_detector_series_attenuator_and_usb_type_c_rd",
       "lifecycle": "active_orderable",
       "dimensions_mm": [1.0, 0.5, 0.4],
       "source": {
@@ -4929,6 +4929,282 @@
       },
       "programmable": false,
       "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "gct_usb4105_gf_a": {
+      "mpn": "GCT USB4105-GF-A",
+      "kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
+      "qualification": "verified_exact_service_usb_receptacle",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [8.94, 7.35, 3.31],
+      "source": {
+        "document": "USB4105 USB Type-C receptacle drawing and product specification",
+        "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
+        "url": "https://gct.co/files/drawings/usb4105.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "USB4105-GF-A active authorized-distributor listing; more than 150,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510",
+        "checked": "2026-08-19"
+      },
+      "programmable": false,
+      "contacts": {
+        "A1_GND": {"physical": "A1", "role": "power"},
+        "A4_VBUS": {"physical": "A4", "role": "power"},
+        "A5_CC1": {"physical": "A5", "role": "signal"},
+        "A6_DP": {"physical": "A6", "role": "signal"},
+        "A7_DM": {"physical": "A7", "role": "signal"},
+        "A8_SBU1": {"physical": "A8", "role": "no_connect"},
+        "A9_VBUS": {"physical": "A9", "role": "power"},
+        "A12_GND": {"physical": "A12", "role": "power"},
+        "B1_GND": {"physical": "B1", "role": "power"},
+        "B4_VBUS": {"physical": "B4", "role": "power"},
+        "B5_CC2": {"physical": "B5", "role": "signal"},
+        "B6_DP": {"physical": "B6", "role": "signal"},
+        "B7_DM": {"physical": "B7", "role": "signal"},
+        "B8_SBU2": {"physical": "B8", "role": "no_connect"},
+        "B9_VBUS": {"physical": "B9", "role": "power"},
+        "B12_GND": {"physical": "B12", "role": "power"},
+        "SHIELD": {"physical": "four through-hole shell stakes", "role": "shield"}
+      }
+    },
+    "samtec_ftsh_105_01_l_dv_k_p_tr": {
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "qualification": "verified_exact_three_domain_dbg10_header",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [9.65, 5.84, 5.56],
+      "source": {
+        "document": "Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint",
+        "version": "drawing revision FX; -105/-01/-L/-DV/-K/-P configuration",
+        "url": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "FTSH-105-01-L-DV-K-P-TR active authorized-distributor listing; 47,164 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K-P-TR/5305483",
+        "checked": "2026-08-19"
+      },
+      "programmable": false,
+      "contacts": {
+        "P1": {"physical": "1", "role": "service"}, "P2": {"physical": "2", "role": "power"},
+        "P3": {"physical": "3", "role": "reset"}, "P4": {"physical": "4", "role": "service"},
+        "P5": {"physical": "5", "role": "service"}, "P6": {"physical": "6", "role": "service"},
+        "P7": {"physical": "7", "role": "power"}, "P8": {"physical": "8", "role": "strap"},
+        "P9": {"physical": "9", "role": "power"}, "P10": {"physical": "10", "role": "strap"}
+      }
+    },
+    "alps_skqgade010": {
+      "mpn": "Alps Alpine SKQGADE010",
+      "kind": "spst_no_top_actuated_automotive_tact_switch",
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "lifecycle": "standard_active_orderable",
+      "dimensions_mm": [6.4, 5.2, 1.5],
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "SKQGADE010 authorized-distributor listing; more than 36,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/alps-alpine/SKQGADE010/18109115",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "function": "normally-open manual momentary contact",
+        "operating_force_n": 2.55,
+        "travel_mm": 0.25,
+        "minimum_dry_rating": "1 V DC, 10 uA",
+        "maximum_bounce_ms": 10,
+        "operating_life_cycles": 100000,
+        "environment": "-40 to +90 C; not sealed and must remain behind the service hatch"
+      },
+      "programmable": false,
+      "contacts": {
+        "A1": {"physical": "1", "role": "signal"}, "A2": {"physical": "2", "role": "signal"},
+        "B1": {"physical": "3", "role": "power"}, "B2": {"physical": "4", "role": "power"}
+      }
+    },
+    "ti_tpd2eusb30a_drtr": {
+      "mpn": "Texas Instruments TPD2EUSB30ADRTR",
+      "kind": "two_channel_low_capacitance_usb_esd_array",
+      "qualification": "verified_exact_service_usb_esd",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.9, 1.3, 1.1],
+      "source": {
+        "document": "TPD2EUSB30A two-channel ESD protection datasheet",
+        "version": "SLLSE78E, revised July 2025",
+        "url": "https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "TPD2EUSB30ADRTR active authorized-distributor listing; more than 74,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPD2EUSB30ADRTR/3752964",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "io_capacitance_typ_pf": 0.7,
+        "reverse_standoff_v": 3.6,
+        "iec_contact_kv": 8
+      },
+      "programmable": false,
+      "contacts": {
+        "D_PLUS": {"physical": "1", "role": "signal"},
+        "D_MINUS": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"}
+      }
+    },
+    "onsemi_fsusb42_mux": {
+      "mpn": "onsemi FSUSB42MUX",
+      "kind": "msop10_usb2_dpdt_power_off_protected_switch",
+      "qualification": "verified_exact_data_only_service_usb_isolator",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.0, 3.0, 1.1],
+      "source": {
+        "document": "FSUSB42 low-power two-port high-speed USB 2.0 switch datasheet",
+        "version": "Rev. 3, May 2022; current PDF checked 2026-08-19",
+        "url": "https://www.onsemi.com/download/data-sheet/pdf/fsusb42-d.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "FSUSB42MUX active authorized-distributor listing; more than 67,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/onsemi/FSUSB42MUX/2036916",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "usb_speed_mbps": 480,
+        "bandwidth_mhz": 720,
+        "on_resistance_max_ohm_at_3v": 6.5,
+        "power_off_leakage_max_ua": 2,
+        "power_off_io_range_v": [0, 4.3],
+        "usage": "OE low and SEL low permanently select HSD1; loss of 3V3_MAIN provides hardware data-line isolation without firmware"
+      },
+      "programmable": false,
+      "contacts": {
+        "VCC": {"physical": "1", "role": "power"},
+        "SEL": {"physical": "2", "role": "strap"},
+        "D_PLUS": {"physical": "3", "role": "signal"},
+        "D_MINUS": {"physical": "4", "role": "signal"},
+        "GND": {"physical": "5", "role": "power"},
+        "HSD1_MINUS": {"physical": "6", "role": "signal"},
+        "HSD1_PLUS": {"physical": "7", "role": "signal"},
+        "HSD2_MINUS": {"physical": "8", "role": "no_connect"},
+        "HSD2_PLUS": {"physical": "9", "role": "no_connect"},
+        "OE": {"physical": "10", "role": "strap"}
+      }
+    },
+    "ti_sn74lvc1g06_dckr": {
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "kind": "sc70_5_open_drain_inverting_buffer",
+      "qualification": "verified_exact_fail_low_reset_gate_driver",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G06 single inverter with open-drain output datasheet",
+        "version": "Rev. AB",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G06DCKR active authorized-distributor listing; more than 148,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "function": "single inverting buffer with open-drain output",
+        "supply_range_v": [1.65, 5.5],
+        "partial_power_down": "Ioff makes output high impedance when AON_SAFE_3V3 is absent",
+        "usage": "RUN_PERMIT high actively holds the common reset-sink gates low; STOP or AON loss releases the gate pull-up and asserts all three resets"
+      },
+      "programmable": false,
+      "contacts": {
+        "NC": {"physical": "1", "role": "no_connect"},
+        "A": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
+    "panasonic_erj_2rkf27r0x": {
+      "mpn": "Panasonic ERJ-2RKF27R0X",
+      "kind": "27ohm_1pct_0402_usb_series_resistor",
+      "qualification": "verified_exact_rp2354_usb_series_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "ERJ-2RKF27R0X exact product page and ERJ precision thick-film datasheet",
+        "version": "current product data checked 2026-08-19",
+        "url": "https://industrial.panasonic.com/ww/products/pt/general-purpose-chip-resistors/models/ERJ2RKF27R0X",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "ERJ-2RKF27R0X active authorized-distributor listing; 105,965 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-2RKF27R0X/1746179",
+        "checked": "2026-08-19"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "signal"}, "END_2": {"physical": "2", "role": "signal"}}
+    },
+    "yageo_rc0402fr_071kl": {
+      "mpn": "Yageo RC0402FR-071KL",
+      "kind": "1kohm_1pct_0402_service_current_limit_resistor",
+      "qualification": "verified_exact_dbg10_and_boot_series_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "RC0402FR-071KL exact product specification",
+        "version": "generated 2026-01-15",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-071KL",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-071KL authorized-distributor aggregation; more than 5.9 million shown at DigiKey",
+        "url": "https://www.trustedparts.com/en/part/yageo/RC0402FR-071KL",
+        "checked": "2026-08-19"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "signal"}, "END_2": {"physical": "2", "role": "signal"}}
+    },
+    "yageo_rc0402fr_07470rl": {
+      "mpn": "Yageo RC0402FR-07470RL",
+      "kind": "470ohm_1pct_0402_debug_contention_limit_resistor",
+      "qualification": "verified_exact_dbg10_uart_swd_series_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-07470RL exact product specification",
+        "version": "current exact order code checked 2026-08-19",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07470RL",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07470RL active authorized-distributor listing; 485,497 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07470RL/729566",
+        "checked": "2026-08-19"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "signal"}, "END_2": {"physical": "2", "role": "signal"}}
+    },
+    "yageo_rc0402fr_071ml": {
+      "mpn": "Yageo RC0402FR-071ML",
+      "kind": "1megohm_1pct_0402_service_vbus_bleeder",
+      "qualification": "verified_exact_data_only_service_vbus_bleeder",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-071ML exact product specification",
+        "version": "current exact order code checked 2026-08-19",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-071ML",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-071ML authorized-distributor listing; more than 2.3 million shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-071ML/729472",
+        "checked": "2026-08-19"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
     },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",

@@ -198,7 +198,8 @@ a dated engineering snapshot, not a purchasing guarantee or BOM freeze.
 | 1 | `74LVC2G14GW,125` | dual Schmitt STOP/re-arm conditioning | Nexperia active; broadly stocked |
 | 2 | `74LVC1G32GV,125` | STOP-dominant clear and voice PTT force-RX | Nexperia active; stocked |
 | 2 | `SN74LVC08APWR` | eight active-high STOP-dominant gates | TI ACTIVE; stocked |
-| 1 | `SN74LVC3G34DCUR` | Ioff three-domain reset fan-out | TI ACTIVE; stocked by major distributors |
+| 1 | `SN74LVC1G06DCKR` | AON Ioff open-drain RUN-permit inverter | TI ACTIVE; stocked by major distributors |
+| 2 | `2N7002DW-7-F` | three passive-drain reset sinks plus one inert spare | active; broad distributor stock |
 | provisional | `TPS22918DBVT` | ≤2-A switched TX-domain rail first target | TI ACTIVE; stocked small-reel code; exact branch suitability remains `I3` |
 | 5 | `LTC5532ES6#TRMPBF` | 300-MHz…7-GHz RF power detector | ADI PRODUCTION; distributor stock observed |
 | 2 | `LTC5507ES6#TRMPBF` | 100-kHz…1-GHz RF power detector | ADI PRODUCTION; distributor stock observed |

@@ -29,7 +29,7 @@ Evidence states: `E0` — строка только идентифицирова
 | `C-003` | A | `RP2354A A4`, exact `SC1511-A4` / packaging-equivalent `SC1511(13)-A4`, QFN60, stacked flash 2 MiB | E1; E3 partial | crystal/clock network, decoupling/thermal pad, USB/SWD/RUN fixture, quotes/traceability and assembly yield |
 | `C-004` | A | TI `TCA9535PWR` | E1 | address/pulls/INT, preload-before-direction reset sequence, drive/current limits, exact footprint and AVL |
 | `C-005` | C | RP reference `ABM8-272-T3` 12 MHz crystal and manufacturer-recommended passives | E1; E3 partial | exact passives, placement and startup/temperature/EMI proof versus USB and packet timestamp requirements; alternate only by equivalence HIL |
-| `C-006` | F | 3×`USB4105-GF-A`, 3×`FTSH-105-01-L-DV-K-TR` DBG10, 6×`KMR221GULCLFS`, 3×`TPD2EUSB30ADRTR`; exact service passives | E1 partial; `DEC-0031/SVC-0001` | CAD/AVL/mechanics, CC/VBUS/ESD/series network, erased-image recovery and multi-host HIL |
+| `C-006` | F | 2×`USB4105-GF-A`, 2×`TPD2EUSB30ADRTR`, 2×`FSUSB42MUX`; 3×`FTSH-105-01-L-DV-K-P-TR` DBG10, 3×`TPD4E05U06DQAR`, 6×`SKQGADE010`; `SN74LVC1G06DCKR`, 2×`2N7002DW-7-F` and exact service passives | E2/E3 partial; `DEC-0099/SVC-0002` paper reviewed | CAD/mechanics, USB SI/backfeed/ESD, erased-image recovery, fixture and multi-host HIL; exact lot/alternate/assembly evidence in I8 |
 | `C-007` | F | SDIO/SPI/alert inter-domain pulls, damping, test points and isolation provisions | E1 contract | 3.3 V/common-core compatibility, boot-safe defaults, signal integrity, fixture access and no accidental peer powering |
 
 ## 2. Always-on safety and power

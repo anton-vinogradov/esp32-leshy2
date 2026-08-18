@@ -1,6 +1,6 @@
 # REC-0001 — compute recovery and inter-domain link prerequisites
 
-- Статус: **Проведено ревью manufacturer primitives; exact topology superseded by `DEC-0032`**
+- Статус: **Проведено ревью manufacturer primitives; exact topology restored and closed by `DEC-0099/SVC-0002`**
 - Дата: 2026-08-16
 - Строки BOM: `C-006`, `C-007`
 - Входы: `DEC-0028`, `PIN-0002`, `PWR-0001`, `BOM-0002`
@@ -11,26 +11,21 @@
 
 ## Evidence boundary
 
-Этот артефакт фиксирует ROM/debug prerequisites и допустимую электрическую
-границу. `DEC-0031` сохраняет owner requirement независимого доступа, но его
-exact three-domain topology superseded by `DEC-0032`; future active candidate
-должен заново показать все physical routes. Ни один first-target candidate не
-получает Q до schematic/ERC/layout/fixture/HIL.
+Этот артефакт фиксирует ROM/debug prerequisites. `DEC-0099/SVC-0002` теперь
+показывают все physical routes, exact parts и board-off isolation. Ни один
+first-target не получает physical Q до schematic/ERC/layout/fixture/HIL.
 
 ## Recovery primitives that cannot depend on application firmware
 
 | Domain | Independent primitive | Required physical controls | Primary consequence |
 |---|---|---|---|
-| S3 | USB Serial/JTAG ROM download | native USB D−/D+, physical `GPIO0` and `EN`; UART0 is an optional secondary fixture path only after active-map routing/isolation proof | strap control remains physical; current G2F GPIO43/44 use conflicts with an unisolated default UART0 route |
+| S3 | USB Serial/JTAG ROM download | native USB D−/D+, physical `GPIO0` and `EN`; permanent UART0 GPIO43/44 DBG10 | strap and UART route are exact in current machine map |
 | C5 | USB Serial/JTAG or UART0 Joint Download Boot 0 | native USB GPIO13/14, `GPIO28=0`, `GPIO27=1`, `CHIP_PU`; UART0 GPIO11/12 | `GPIO26` is not the USB BOOT selector; see `FND-0037` |
-| RP2354A | ROM USB BOOTSEL and independent SWD | USB DP/DM, `QSPI_SS/USB_BOOT` through 1 kΩ, `RUN`, `SWDIO`, `SWCLK` | internal 2 MiB flash does not remove the USB_BOOT requirement |
+| RP2354B | ROM USB BOOTSEL and independent SWD | USB DP/DM, `QSPI_SS/USB_BOOT` through 1 kΩ, `RUN`, `SWDIO`, `SWCLK` | internal 2 MiB flash does not remove the USB_BOOT requirement |
 
-The superseded three-domain study retained S3 and C5 UART download for RF-test
-and manufacturing. The current G2F maps retain C5 UART where shown, but S3
-GPIO43/44 are allocated to U214. Therefore native USB plus physical EN/BOOT is
-the current S3 baseline; an S3 UART fixture is not claimed until its accessory-
-off/high-Z state, route and conflict isolation are represented and tested
-(`FND-0052`).
+The current G2F map retains S3 and C5 UART0 for RF-test/manufacturing. U214 is
+owned by RP and does not consume S3 GPIO43/44. All three DBG10 routes and their
+ESD/current-limiting networks are represented by `SVC-0002`.
 
 Primary sources:
 
@@ -53,10 +48,10 @@ powered through its normal protected input. This prevents a host cable from
 partially powering one MCU or backfeeding the common rail. S3 product USB power
 remains a separate later-qualified protected input path.
 
-`TPD2EUSB30ADRTR` is a technically compatible ESD candidate (active TI part,
-two channels, 0.7 pF typical, ±8 kV IEC contact), but its exact AVL/cost/
-assembly disposition follows the physical-access choice and does not receive Q
-here.
+`TPD2EUSB30ADRTR` is now the exact C5/RP first target. A separate
+`FSUSB42MUX` per port closes D-line backfeed while the board is off; VBUS has no
+power path. USB SI/leakage/ESD remain named HIL rather than an uninstantiated
+paper circuit.
 
 ## Inter-domain electrical contract
 
@@ -92,7 +87,7 @@ new control dependency of an unnecessary active mux.
 6. An open/shorted inter-domain series element produces a detected degraded
    state and safe TX-off behavior, not uncontrolled re-arm.
 
-The manufacturer prerequisite set receives **«Проведено ревью»**. The owner
-requirement from `DEC-0031` remains; `IMP-0026/B` and `SVC-0001` exact topology
-are superseded reference. Future CAD, resistor MPNs, placement, mechanics/AVL
-and measured values remain implementation/HIL gates.
+The manufacturer prerequisite set and `SVC-0002` paper implementation receive
+**«Проведено ревью»**. `IMP-0026/B` and the original `SVC-0001` exact list are
+historical references. CAD, placement, mechanics, lot/AVL and measured values
+remain implementation/HIL gates.

@@ -28,7 +28,8 @@ front end remain in `I6`.
 | `safe_conditioner` | `74LVC2G14GW,125` | Schmitt conditioning STOP/RE-ARM | `1A→1Y`, `2A→2Y` |
 | `safe_por_or` | `74LVC1G32GV,125` | STOP-dominant clear combination | `1A,1B→1Y` |
 | `safe_latch` | `SN74LVC1G74DCUR` | asynchronous STOP latch | `1 CLK`, `2 D`, `3 /Q`, `5 Q`, `6 /CLR`, `7 /PRE` |
-| `safe_reset_buffer` | `SN74LVC3G34DCUR` | Ioff reset fan-out | `1A→1Y`, `2A→2Y`, `3A→3Y` |
+| `safe_reset_buffer` | `SN74LVC1G06DCKR` | AON Ioff open-drain RUN-permit inverter | `A→Y` drives common reset-sink gates |
+| `safe_reset_sink_a/b` | 2×`2N7002DW-7-F` | three passive-drain reset sinks plus inert spare | package A `D1→S3`, `D2→C5`; package B `D1→RP`, `D2=NC` |
 | `safe_gate_a` | `SN74LVC08APWR` | 3×nRF CE + nRF rail | four independent `A·B→Y` channels |
 | `safe_gate_b` | `SN74LVC08APWR` | CC/voice rails + IR + accessory | four independent `A·B→Y` channels |
 | `safe_ptt_or` | `74LVC1G32GV,125` | active-low voice PTT force-RX | `PTT_REQ_N OR TX_KILL` |
@@ -70,15 +71,18 @@ the product, but always starts a fresh TX-off session.
 
 ### Three-domain reset fan-out
 
-All three `SN74LVC3G34DCUR` inputs receive `RUN_PERMIT`; outputs drive S3
-`CHIP_PU`, C5 `CHIP_PU` and RP `RUN`. Every target has `47 Ω` series resistance
-from the buffer and a local `1 kΩ` pull-down. Application-side pull-ups are
-forbidden unless they are at least `10 kΩ`.
+`DEC-0099/FND-0106` correct the former push-pull contention. AON-powered
+`SN74LVC1G06DCKR` receives `RUN_PERMIT`; its open-drain output holds common
+`RESET_KILL_GATE` low only while running is permitted. A 10-kΩ pull-up from
+that gate to `3V3_MAIN` turns on three separate sinks implemented by two
+`2N7002DW-7-F` packages whenever STOP asserts or AON disappears while main
+power remains.
 
-With the buffer unpowered and a worst allowed `10 kΩ` pull-up to `3.3 V`, the
-target voltage is `3.3 × 1/(10+1) ≈ 0.30 V`. This is below the conservative
-`0.8 V` low ceiling used for paper review; exact module specimen thresholds and
-release waveforms remain fault-injection/HIL measurements.
+Each S3 `EN`, C5 `CHIP_PU` and RP `RUN` target has its own 10-kΩ main-domain
+pull-up and one passive NMOS drain. Physical RESET and DBG10 paths reach the
+same target through exact 1-kΩ resistors, so they never contend with a
+push-pull high output. Exact thresholds and release waveforms remain
+fault-injection/HIL measurements.
 
 ## TX gate fan-out
 
@@ -203,11 +207,14 @@ topology unless measurements disprove its electrical assumptions.
 
 ## Availability snapshot for added closure parts
 
-Checked 2026-08-18 because these exact order codes are newly selected:
+Checked 2026-08-18/19 because these exact order codes are newly selected:
 
-- `SN74LVC3G34DCUR`: TI `ACTIVE`, partial-power-down `Ioff`; DigiKey and Mouser
-  showed stock ([TI](https://www.ti.com/product/SN74LVC3G34),
-  [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G34DCUR/484593));
+- `SN74LVC1G06DCKR`: TI `ACTIVE`, open-drain and partial-power-down `Ioff`;
+  authorized-distributor stock observed
+  ([TI](https://www.ti.com/product/SN74LVC1G06),
+  [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452));
+- `2N7002DW-7-F`: active dual NMOS with broad distributor stock; the same exact
+  package is already used elsewhere in the design;
 - `BAT54ALT1G`: onsemi active common-anode dual; DigiKey and Mouser showed stock
   ([onsemi datasheet](https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf),
   [DigiKey](https://www.digikey.com/en/products/detail/onsemi/BAT54ALT1G/917808));
