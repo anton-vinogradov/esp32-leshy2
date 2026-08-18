@@ -39,8 +39,8 @@ mux экономил бы только один дешёвый IC и inductor, �
 independent fixed-feedback rails.
 
 `MAX17320 AOLDO` также не заменяет AON converter: его выход рассчитан менее чем
-на 2 mA, тогда как уже принятое safety circuitry требует не менее 5 mA
-continuous / 8 mA transient. Product AON therefore starts directly from
+на 2 mA, тогда как safety circuitry after the `DEC-0091` nRF-evidence amendment
+requires at least 5 mA continuous / 30 mA transient. Product AON therefore starts directly from
 `BQ25798 SYS`; AOLDO remains only inside the bounded pack-admission circuit.
 
 ## Accepted rail tree
@@ -99,7 +99,7 @@ continues to supervise the actual AON output.
 At 8.4-V input, 3.3-V output, 2.5 MHz and minimum 1.76 uH, the continuous-mode
 ripple screen is about `0.455 A`; even at the converter's full 0.3-A rating the
 peak is about `0.528 A`, far below saturation. The real product load is only
-5/8 mA, so efficiency and hold-up, not current rating, dominate HIL.
+5/30 mA, so efficiency and hold-up, not current rating, dominate HIL.
 
 ### `TPS564252DRLR` — main, voice and external rails
 

@@ -19,6 +19,7 @@
 
 | Device id | Exact MPN / boundary | Qualification | Lifecycle | Primary source | Lifecycle evidence |
 |---|---|---|---|---|---|
+| `adi_ad8314acpz_rl7` | `Analog Devices AD8314ACPZ-RL7` | `verified_exact_nrf_forward_power_detector` | `production_active_orderable` | [AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet Rev. C](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | same primary source |
 | `adi_ltc5507_es6_trmpbf` | `LTC5507ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5507 100kHz to 1GHz RF Power Detector datasheet 5507f](https://www.analog.com/media/en/technical-documentation/data-sheets/5507f.pdf) | same primary source |
 | `adi_ltc5532_es6_trmpbf` | `LTC5532ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5532 Precision 300MHz to 7GHz RF Detector datasheet 5532f](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | same primary source |
 | `adi_max17320_g20_t` | `Analog Devices MAX17320G20+T` | `verified_candidate` | `recommended_for_new_designs` | [MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet Rev. 12, July 2025](https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf) | same primary source |
@@ -61,7 +62,9 @@
 | `murata_grm31cr71a226ke15l` | `Murata GRM31CR71A226KE15L` | `verified_candidate` | `active` | [Murata GRM31CR71A226KE15 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM31CR71A226KE15L) | same primary source |
 | `murata_grm31cr71e106ma12l` | `Murata GRM31CR71E106MA12L` | `verified_candidate` | `active` | [Murata GRM31CR71E106MA12 product data current product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L) | same primary source |
 | `murata_grm32er71e226ke15l` | `Murata GRM32ER71E226KE15L` | `verified_candidate` | `active` | [Murata GRM32ER71E226KE15 product data and TI reference-BOM use current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L) | same primary source |
+| `nexperia_74lvc126apw_118` | `Nexperia 74LVC126APW,118` | `verified_exact_nrf_host_to_switched_domain_isolator` | `production_active_orderable` | [74LVC126A quad buffer/line driver product data sheet Rev. 14, 12 June 2025](https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf) | same primary source |
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
+| `nexperia_74lvc2g126dc_125` | `Nexperia 74LVC2G126DC,125` | `verified_exact_nrf_switched_to_host_domain_isolator` | `production_active_orderable` | [74LVC2G126 dual bus buffer/line driver product data sheet Rev. 16, 17 August 2023](https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf) | same primary source |
 | `nexperia_74lvc2g14gw_125` | `74LVC2G14GW,125` | `verified_candidate` | `production` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
 | `nicerf_sa518_v11` | `NiceRF SA518` | `verified_candidate` | `current_product` | [SA518 UV Dual Frequency Walkie-talkie Module Product Specification 1.1 / 2026-05](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf) | same primary source |
 | `onsemi_1n4148wt` | `onsemi 1N4148WT` | `verified_candidate` | `active` | [1N4148WT Small Signal Diode datasheet Rev. 11](https://www.onsemi.com/pdf/datasheet/1n4148wt-d.pdf) | same primary source |
@@ -124,6 +127,7 @@
 | `ti_tpul2g223_bqbr` | `Texas Instruments TPUL2G223BQBR` | `verified_candidate` | `active_production` | [TPUL2G223 dual RC-timed non-retriggerable monostable multivibrators datasheet SLVSL08, January 2026](https://www.ti.com/lit/ds/symlink/tpul2g223.pdf) | same primary source |
 | `ti_ts5a63157_dckr` | `Texas Instruments TS5A63157DCKR` | `reference_only` | `active` | [TS5A63157 12-ohm SPDT analog switch datasheet SCDS203B, December 2005, revised March 2019](https://www.ti.com/lit/ds/symlink/ts5a63157.pdf) | same primary source |
 | `ti_tvs2200_drvr` | `Texas Instruments TVS2200DRVR` | `verified_candidate` | `active` | [TVS2200 22-V flat-clamp surge-protection datasheet SLVSED5C, December 2017, revised August 2023; orderable addendum 2025-11-09](https://www.ti.com/lit/ds/symlink/tvs2200.pdf) | same primary source |
+| `ttm_dc2337j5010ahf` | `TTM Technologies DC2337J5010AHF` | `verified_exact_nrf_forward_power_coupler` | `active_orderable` | [DC2337J5010AHF 10-dB directional coupler datasheet Rev. H](https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf) | same primary source |
 | `vishay_vemd1060x01` | `VEMD1060X01` | `verified_candidate` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
 | `vishay_wsl25125l000fea` | `Vishay WSL25125L000FEA` | `verified_candidate` | `active` | [WSL power metal strip resistor datasheet current product data checked 2026-08-18](https://www.vishay.com/docs/30108/wsl.pdf) | same primary source |
 | `xtar_18650_4000mah_protected` | `XTAR 18650 4000mAh` | `selected_qualification_target` | `current_catalog` | [XTAR 18650 4000mAh official two-page battery datasheet official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18](https://www.xtar.cc/download/18650-4000mah-data-sheet) | same primary source |
@@ -149,6 +153,8 @@
 | `yageo_rc0402fr_0744k2l` | `Yageo RC0402FR-0744K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-0744K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0744K2L) | same primary source |
 | `yageo_rc0402fr_0745k3l` | `Yageo RC0402FR-0745K3L` | `verified_candidate` | `active` | [Yageo RC0402FR-0745K3L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0745K3L) | same primary source |
 | `yageo_rc0402fr_0747kl` | `Yageo RC0402FR-0747KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
+| `yageo_rc0402fr_0749r9l` | `Yageo RC0402FR-0749R9L` | `verified_exact_nrf_coupler_isolated_port_termination` | `active_orderable` | [RC0402FR-0749R9L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0749R9L) | same primary source |
+| `yageo_rc0402fr_0752r3l` | `Yageo RC0402FR-0752R3L` | `verified_exact_ad8314_broadband_input_match` | `active_orderable` | [RC0402FR-0752R3L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0752R3L) | same primary source |
 | `yageo_rc0402fr_075k23l` | `Yageo RC0402FR-075K23L` | `verified_candidate` | `active` | [Yageo RC0402FR-075K23L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L) | same primary source |
 | `yageo_rc0402fr_07620kl` | `Yageo RC0402FR-07620KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07620KL exact product specification generated 2026-05-21; checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07620KL) | same primary source |
 | `yageo_rc0402fr_0768kl` | `Yageo RC0402FR-0768KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0768KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL) | same primary source |
@@ -530,15 +536,15 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `GPIO0` | 77 | `NRF0_CSN_N` | `o` | `GPIO` | `nrf0.CSN` | — |
+| `GPIO0` | 77 | `NRF0_CSN_N` | `o` | `GPIO` | `nrf0_host_buffer.2A`, `nrf0_host_csn_pullup.END_1` | — |
 | `GPIO1` | 78 | `NRF0_CE_REQ` | `o` | `GPIO` | `safe_gate_a.1A` | — |
-| `GPIO2` | 79 | `NRF0_IRQ_N` | `i` | `GPIO_IRQ` | `nrf0.IRQ` | — |
-| `GPIO3` | 80 | `NRF1_CSN_N` | `o` | `GPIO` | `nrf1.CSN` | — |
+| `GPIO2` | 79 | `NRF0_IRQ_N` | `i` | `GPIO_IRQ` | `nrf0_irq_series.END_2`, `nrf0_host_irq_pullup.END_1` | — |
+| `GPIO3` | 80 | `NRF1_CSN_N` | `o` | `GPIO` | `nrf1_host_buffer.2A`, `nrf1_host_csn_pullup.END_1` | — |
 | `GPIO4` | 1 | `NRF1_CE_REQ` | `o` | `GPIO` | `safe_gate_a.2A` | — |
-| `GPIO5` | 2 | `NRF1_IRQ_N` | `i` | `GPIO_IRQ` | `nrf1.IRQ` | — |
-| `GPIO6` | 3 | `NRF2_CSN_N` | `o` | `GPIO` | `nrf2.CSN` | — |
+| `GPIO5` | 2 | `NRF1_IRQ_N` | `i` | `GPIO_IRQ` | `nrf1_irq_series.END_2`, `nrf1_host_irq_pullup.END_1` | — |
+| `GPIO6` | 3 | `NRF2_CSN_N` | `o` | `GPIO` | `nrf2_host_buffer.2A`, `nrf2_host_csn_pullup.END_1` | — |
 | `GPIO7` | 4 | `NRF2_CE_REQ` | `o` | `GPIO` | `safe_gate_a.3A` | — |
-| `GPIO8` | 6 | `NRF2_IRQ_N` | `i` | `GPIO_IRQ` | `nrf2.IRQ` | — |
+| `GPIO8` | 6 | `NRF2_IRQ_N` | `i` | `GPIO_IRQ` | `nrf2_irq_series.END_2`, `nrf2_host_irq_pullup.END_1` | — |
 | `GPIO9` | 7 | `CC_CSN_N` | `o` | `GPIO` | `cc.CSN` | — |
 | `GPIO10` | 8 | `CC_GDO0` | `i` | `GPIO_IRQ` | `cc.GDO0` | — |
 | `GPIO11` | 9 | `CC_GDO2` | `i` | `GPIO_IRQ` | `cc.GDO2` | — |
@@ -560,15 +566,15 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO27` | 28 | `S3_RP_IPC_MISO` | `o` | `SPI1_IPC` | `s3.GPIO14` | — |
 | `GPIO28` | 36 | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | `u214_i2c_iso.SDAIN`, `evidence_mask.SDA` | — |
 | `GPIO29` | 37 | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | `u214_i2c_iso.SCLIN`, `evidence_mask.SCL` | — |
-| `GPIO30` | 38 | `NRF0_MISO` | `i` | `PIO0_SM0_RF_SPI` | `nrf0.MISO` | — |
-| `GPIO31` | 39 | `NRF0_SCK` | `o` | `PIO0_SM0_RF_SPI` | `nrf0.SCK` | — |
-| `GPIO32` | 40 | `NRF0_MOSI` | `o` | `PIO0_SM0_RF_SPI` | `nrf0.MOSI` | — |
-| `GPIO33` | 42 | `NRF1_MISO` | `i` | `PIO0_SM1_RF_SPI` | `nrf1.MISO` | — |
-| `GPIO34` | 43 | `NRF1_SCK` | `o` | `PIO0_SM1_RF_SPI` | `nrf1.SCK` | — |
-| `GPIO35` | 44 | `NRF1_MOSI` | `o` | `PIO0_SM1_RF_SPI` | `nrf1.MOSI` | — |
-| `GPIO36` | 45 | `NRF2_MISO` | `i` | `PIO0_SM2_RF_SPI` | `nrf2.MISO` | — |
-| `GPIO37` | 46 | `NRF2_SCK` | `o` | `PIO0_SM2_RF_SPI` | `nrf2.SCK` | — |
-| `GPIO38` | 47 | `NRF2_MOSI` | `o` | `PIO0_SM2_RF_SPI` | `nrf2.MOSI` | — |
+| `GPIO30` | 38 | `NRF0_MISO` | `i` | `PIO0_SM0_RF_SPI` | `nrf0_miso_series.END_2`, `nrf0_host_miso_pulldown.END_1` | — |
+| `GPIO31` | 39 | `NRF0_SCK` | `o` | `PIO0_SM0_RF_SPI` | `nrf0_host_buffer.3A`, `nrf0_host_sck_pulldown.END_1` | — |
+| `GPIO32` | 40 | `NRF0_MOSI` | `o` | `PIO0_SM0_RF_SPI` | `nrf0_host_buffer.4A`, `nrf0_host_mosi_pulldown.END_1` | — |
+| `GPIO33` | 42 | `NRF1_MISO` | `i` | `PIO0_SM1_RF_SPI` | `nrf1_miso_series.END_2`, `nrf1_host_miso_pulldown.END_1` | — |
+| `GPIO34` | 43 | `NRF1_SCK` | `o` | `PIO0_SM1_RF_SPI` | `nrf1_host_buffer.3A`, `nrf1_host_sck_pulldown.END_1` | — |
+| `GPIO35` | 44 | `NRF1_MOSI` | `o` | `PIO0_SM1_RF_SPI` | `nrf1_host_buffer.4A`, `nrf1_host_mosi_pulldown.END_1` | — |
+| `GPIO36` | 45 | `NRF2_MISO` | `i` | `PIO0_SM2_RF_SPI` | `nrf2_miso_series.END_2`, `nrf2_host_miso_pulldown.END_1` | — |
+| `GPIO37` | 46 | `NRF2_SCK` | `o` | `PIO0_SM2_RF_SPI` | `nrf2_host_buffer.3A`, `nrf2_host_sck_pulldown.END_1` | — |
+| `GPIO38` | 47 | `NRF2_MOSI` | `o` | `PIO0_SM2_RF_SPI` | `nrf2_host_buffer.4A`, `nrf2_host_mosi_pulldown.END_1` | — |
 | `GPIO39` | 48 | `CC_MISO` | `i` | `PIO0_SM3_RF_SPI` | `cc.SO_GDO1` | — |
 | `GPIO40` | 49 | `U214_GPS_TX` | `o` | `UART1` | `u214.GPS_RX` | — |
 | `GPIO41` | 52 | `U214_GPS_RX` | `i` | `UART1` | `u214.GPS_TX` | — |
@@ -1053,11 +1059,55 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `ext_output_cap.END_2` | `abstract:power-ground` | output bypass return stays local to the eFuse high-current path |
 | `5V_EXT_PROTECTED` | `ext_efuse.OUT` | `ext_bleeder.END_1` | 1-kOhm 1% bleeder discharges the unplugged connector without creating an external backfeed sink path |
 | `POWER_GROUND` | `ext_bleeder.END_2` | `abstract:power-ground` | 5-mA nominal passive discharge remains active whenever protected 5 V is present |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf_power_input_cap.END_1` | exact 1-uF switch-input bypass follows the TPS22919 application profile |
+| `POWER_GROUND` | `nrf_power_input_cap.END_2` | `abstract:power-ground` | short local switch-input return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf_power_switch.IN` | one 1.5-A protected branch serves all three simultaneously active nRF modules |
-| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0.VCC` | all three modules share one commanded quiet-state domain but retain independent data, CE and IRQ |
-| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1.VCC` | full three-radio PTX/PRX mix remains an accepted simultaneous load |
-| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2.VCC` | full three-radio PTX/PRX mix remains an accepted simultaneous load |
+| `POWER_GROUND` | `nrf_power_switch.GND` | `abstract:power-ground` | short local switch return |
+| `NRF_GROUP_PWR_EN_SAFE` | `nrf_power_switch.ON` | `nrf_power_on_pulldown.END_1` | exact 10-kOhm fail-low keeps the common radio rail off through reset or open gate output |
+| `POWER_GROUND` | `nrf_power_on_pulldown.END_2` | `abstract:power-ground` | hardware off default does not depend on firmware |
 | `NRF_QOD` | `nrf_power_switch.QOD` | `nrf_power_switch.VOUT` | internal 24-Ohm discharge removes the unused radio rail; capacitance and fall time remain HIL gates |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0.VCC` | all three modules share one commanded quiet-state domain but retain independent data, CE and IRQ |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_host_buffer.VCC` | host-to-radio isolation exists only while the module rail is valid |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_return_buffer.VCC` | radio-to-host outputs use specified Ioff when the group rail is absent |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_host_buffer_bypass.END_1` | exact 100-nF local quad-buffer bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_return_buffer_bypass.END_1` | exact 100-nF local return-buffer bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_module_bulk_cap.END_1` | exact 10-uF module-local transient reservoir |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_module_hf_cap.END_1` | exact 100-nF module-local high-frequency bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1.VCC` | full three-radio PTX/PRX mix remains an accepted simultaneous load |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_host_buffer.VCC` | host-to-radio isolation follows radio 1 power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_return_buffer.VCC` | radio 1 return paths expose specified Ioff while off |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_host_buffer_bypass.END_1` | exact 100-nF local quad-buffer bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_return_buffer_bypass.END_1` | exact 100-nF local return-buffer bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_module_bulk_cap.END_1` | exact 10-uF module-local transient reservoir |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_module_hf_cap.END_1` | exact 100-nF module-local high-frequency bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2.VCC` | full three-radio PTX/PRX mix remains an accepted simultaneous load |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_host_buffer.VCC` | host-to-radio isolation follows radio 2 power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_return_buffer.VCC` | radio 2 return paths expose specified Ioff while off |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_host_buffer_bypass.END_1` | exact 100-nF local quad-buffer bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_return_buffer_bypass.END_1` | exact 100-nF local return-buffer bypass |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_bulk_cap.END_1` | exact 10-uF module-local transient reservoir |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_hf_cap.END_1` | exact 100-nF module-local high-frequency bypass |
+| `NRF0_RF_GROUND` | `nrf0.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF1_RF_GROUND` | `nrf1.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `NRF2_RF_GROUND` | `nrf2.GND` | `abstract:rf-ground` | module and coupler reference use a short local RF ground |
+| `POWER_GROUND` | `nrf0_host_buffer.GND` | `abstract:power-ground` | local digital return |
+| `POWER_GROUND` | `nrf0_return_buffer.GND` | `abstract:power-ground` | local digital return |
+| `POWER_GROUND` | `nrf1_host_buffer.GND` | `abstract:power-ground` | local digital return |
+| `POWER_GROUND` | `nrf1_return_buffer.GND` | `abstract:power-ground` | local digital return |
+| `POWER_GROUND` | `nrf2_host_buffer.GND` | `abstract:power-ground` | local digital return |
+| `POWER_GROUND` | `nrf2_return_buffer.GND` | `abstract:power-ground` | local digital return |
+| `POWER_GROUND` | `nrf0_host_buffer_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `POWER_GROUND` | `nrf0_return_buffer_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `NRF0_RF_GROUND` | `nrf0_module_bulk_cap.END_2` | `abstract:rf-ground` | module-local bulk return |
+| `NRF0_RF_GROUND` | `nrf0_module_hf_cap.END_2` | `abstract:rf-ground` | module-local high-frequency return |
+| `POWER_GROUND` | `nrf1_host_buffer_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `POWER_GROUND` | `nrf1_return_buffer_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `NRF1_RF_GROUND` | `nrf1_module_bulk_cap.END_2` | `abstract:rf-ground` | module-local bulk return |
+| `NRF1_RF_GROUND` | `nrf1_module_hf_cap.END_2` | `abstract:rf-ground` | module-local high-frequency return |
+| `POWER_GROUND` | `nrf2_host_buffer_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `POWER_GROUND` | `nrf2_return_buffer_bypass.END_2` | `abstract:power-ground` | local bypass return |
+| `NRF2_RF_GROUND` | `nrf2_module_bulk_cap.END_2` | `abstract:rf-ground` | module-local bulk return |
+| `NRF2_RF_GROUND` | `nrf2_module_hf_cap.END_2` | `abstract:rf-ground` | module-local high-frequency return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_power_switch.IN` | compatibility radio receives an independent reset-off branch |
 | `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `abstract:cc-filtered-3v3` | exact RF decoupling/matching follows the switch and remains an I6 circuit gate |
 | `CC_QOD` | `cc_power_switch.QOD` | `cc_power_switch.VOUT` | internal discharge produces a measured quiet state |
@@ -1838,10 +1888,142 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.2B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.3B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.4B` | STOP-dominant active-high gate permit |
-| `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0.CE` | 10-kOhm module-side pull-down; STOP and AON loss force CE low |
-| `NRF1_CE_SAFE` | `safe_gate_a.2Y` | `nrf1.CE` | 10-kOhm module-side pull-down; STOP and AON loss force CE low |
-| `NRF2_CE_SAFE` | `safe_gate_a.3Y` | `nrf2.CE` | 10-kOhm module-side pull-down; STOP and AON loss force CE low |
+| `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0_host_buffer.1A` | STOP-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
+| `NRF0_CE_BUFFERED` | `nrf0_host_buffer.1Y` | `nrf0_ce_series.END_1` | exact switched-domain buffer isolates CE while off |
+| `NRF0_CE_MODULE` | `nrf0_ce_series.END_2` | `nrf0.CE` | exact 22-Ohm source resistor bounds CE edges at the module |
+| `NRF0_CSN_BUFFERED_N` | `nrf0_host_buffer.2Y` | `nrf0_csn_series.END_1` | CSN reaches the radio only with a valid switched rail |
+| `NRF0_CSN_MODULE_N` | `nrf0_csn_series.END_2` | `nrf0.CSN` | exact 22-Ohm source resistor bounds CSN edges |
+| `NRF0_SCK_BUFFERED` | `nrf0_host_buffer.3Y` | `nrf0_sck_series.END_1` | dedicated PIO clock is isolated from the unpowered module |
+| `NRF0_SCK_MODULE` | `nrf0_sck_series.END_2` | `nrf0.SCK` | exact 22-Ohm source resistor bounds the 10-Mbit/s clock edge |
+| `NRF0_MOSI_BUFFERED` | `nrf0_host_buffer.4Y` | `nrf0_mosi_series.END_1` | dedicated PIO data is isolated from the unpowered module |
+| `NRF0_MOSI_MODULE` | `nrf0_mosi_series.END_2` | `nrf0.MOSI` | exact 22-Ohm source resistor bounds MOSI edges |
+| `NRF0_MISO_MODULE` | `nrf0.MISO` | `nrf0_return_buffer.1A` | module return enters a switched-rail Ioff buffer |
+| `NRF0_MISO_BUFFERED` | `nrf0_return_buffer.1Y` | `nrf0_miso_series.END_1` | return buffer output is high-Z with the radio rail off |
+| `NRF0_MISO` | `nrf0_miso_series.END_2` | `rp.GPIO30` | exact 22-Ohm return-source resistor bounds the RP input edge |
+| `NRF0_IRQ_MODULE_N` | `nrf0.IRQ` | `nrf0_return_buffer.2A` | active-low interrupt enters a switched-rail Ioff buffer |
+| `NRF0_IRQ_BUFFERED_N` | `nrf0_return_buffer.2Y` | `nrf0_irq_series.END_1` | interrupt output is high-Z with the radio rail off |
+| `NRF0_IRQ_N` | `nrf0_irq_series.END_2` | `rp.GPIO2` | exact 22-Ohm return-source resistor bounds the asynchronous edge |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_host_buffer.1OE` | active-high OE cannot enable without the switched rail |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_host_buffer.2OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_host_buffer.3OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_host_buffer.4OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_return_buffer.1OE` | active-high return OE cannot enable without the switched rail |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_return_buffer.2OE` | active-high return OE follows switched power |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf0_host_csn_pullup.END_2` | host CSN defaults deasserted before rail enable |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf0_host_irq_pullup.END_2` | host IRQ defaults inactive while return buffer is high-Z |
+| `NRF0_CE_SAFE` | `nrf0_host_ce_pulldown.END_1` | `nrf0_host_buffer.1A` | host-side 10-kOhm CE fail-low |
+| `POWER_GROUND` | `nrf0_host_ce_pulldown.END_2` | `abstract:power-ground` | CE remains low without an RP drive |
+| `NRF0_SCK` | `nrf0_host_sck_pulldown.END_1` | `nrf0_host_buffer.3A` | host clock defaults low |
+| `POWER_GROUND` | `nrf0_host_sck_pulldown.END_2` | `abstract:power-ground` | parked clock cannot toggle the switched boundary |
+| `NRF0_MOSI` | `nrf0_host_mosi_pulldown.END_1` | `nrf0_host_buffer.4A` | host MOSI defaults low |
+| `POWER_GROUND` | `nrf0_host_mosi_pulldown.END_2` | `abstract:power-ground` | parked MOSI cannot toggle the switched boundary |
+| `POWER_GROUND` | `nrf0_host_miso_pulldown.END_2` | `abstract:power-ground` | host MISO has a defined low state while isolated |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_module_csn_pullup.END_2` | module CSN defaults deasserted whenever powered |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf0_module_irq_pullup.END_2` | module IRQ defaults inactive whenever powered |
+| `NRF0_CE_MODULE` | `nrf0.CE` | `nrf0_module_ce_pulldown.END_1` | module-side 10-kOhm CE fail-low |
+| `NRF0_RF_GROUND` | `nrf0_module_ce_pulldown.END_2` | `abstract:rf-ground` | CE default return stays local |
+| `NRF0_CSN_MODULE_N` | `nrf0.CSN` | `nrf0_module_csn_pullup.END_1` | module-side 10-kOhm CSN fail-high |
+| `NRF0_SCK_MODULE` | `nrf0.SCK` | `nrf0_module_sck_pulldown.END_1` | module-side clock defaults low |
+| `NRF0_RF_GROUND` | `nrf0_module_sck_pulldown.END_2` | `abstract:rf-ground` | clock default return stays local |
+| `NRF0_MOSI_MODULE` | `nrf0.MOSI` | `nrf0_module_mosi_pulldown.END_1` | module-side MOSI defaults low |
+| `NRF0_RF_GROUND` | `nrf0_module_mosi_pulldown.END_2` | `abstract:rf-ground` | MOSI default return stays local |
+| `NRF0_MISO_MODULE` | `nrf0.MISO` | `nrf0_module_miso_pulldown.END_1` | return-buffer input cannot float during module startup |
+| `NRF0_RF_GROUND` | `nrf0_module_miso_pulldown.END_2` | `abstract:rf-ground` | MISO default return stays local |
+| `NRF0_IRQ_MODULE_N` | `nrf0.IRQ` | `nrf0_module_irq_pullup.END_1` | return-buffer IRQ input defaults inactive |
+| `NRF1_CE_SAFE` | `safe_gate_a.2Y` | `nrf1_host_buffer.1A` | STOP-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
+| `NRF1_CE_BUFFERED` | `nrf1_host_buffer.1Y` | `nrf1_ce_series.END_1` | exact switched-domain buffer isolates CE while off |
+| `NRF1_CE_MODULE` | `nrf1_ce_series.END_2` | `nrf1.CE` | exact 22-Ohm source resistor bounds CE edges at the module |
+| `NRF1_CSN_BUFFERED_N` | `nrf1_host_buffer.2Y` | `nrf1_csn_series.END_1` | CSN reaches the radio only with a valid switched rail |
+| `NRF1_CSN_MODULE_N` | `nrf1_csn_series.END_2` | `nrf1.CSN` | exact 22-Ohm source resistor bounds CSN edges |
+| `NRF1_SCK_BUFFERED` | `nrf1_host_buffer.3Y` | `nrf1_sck_series.END_1` | dedicated PIO clock is isolated from the unpowered module |
+| `NRF1_SCK_MODULE` | `nrf1_sck_series.END_2` | `nrf1.SCK` | exact 22-Ohm source resistor bounds the 10-Mbit/s clock edge |
+| `NRF1_MOSI_BUFFERED` | `nrf1_host_buffer.4Y` | `nrf1_mosi_series.END_1` | dedicated PIO data is isolated from the unpowered module |
+| `NRF1_MOSI_MODULE` | `nrf1_mosi_series.END_2` | `nrf1.MOSI` | exact 22-Ohm source resistor bounds MOSI edges |
+| `NRF1_MISO_MODULE` | `nrf1.MISO` | `nrf1_return_buffer.1A` | module return enters a switched-rail Ioff buffer |
+| `NRF1_MISO_BUFFERED` | `nrf1_return_buffer.1Y` | `nrf1_miso_series.END_1` | return buffer output is high-Z with the radio rail off |
+| `NRF1_MISO` | `nrf1_miso_series.END_2` | `rp.GPIO33` | exact 22-Ohm return-source resistor bounds the RP input edge |
+| `NRF1_IRQ_MODULE_N` | `nrf1.IRQ` | `nrf1_return_buffer.2A` | active-low interrupt enters a switched-rail Ioff buffer |
+| `NRF1_IRQ_BUFFERED_N` | `nrf1_return_buffer.2Y` | `nrf1_irq_series.END_1` | interrupt output is high-Z with the radio rail off |
+| `NRF1_IRQ_N` | `nrf1_irq_series.END_2` | `rp.GPIO5` | exact 22-Ohm return-source resistor bounds the asynchronous edge |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_host_buffer.1OE` | active-high OE cannot enable without the switched rail |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_host_buffer.2OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_host_buffer.3OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_host_buffer.4OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_return_buffer.1OE` | active-high return OE cannot enable without the switched rail |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_return_buffer.2OE` | active-high return OE follows switched power |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf1_host_csn_pullup.END_2` | host CSN defaults deasserted before rail enable |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf1_host_irq_pullup.END_2` | host IRQ defaults inactive while return buffer is high-Z |
+| `NRF1_CE_SAFE` | `nrf1_host_ce_pulldown.END_1` | `nrf1_host_buffer.1A` | host-side 10-kOhm CE fail-low |
+| `POWER_GROUND` | `nrf1_host_ce_pulldown.END_2` | `abstract:power-ground` | CE remains low without an RP drive |
+| `NRF1_SCK` | `nrf1_host_sck_pulldown.END_1` | `nrf1_host_buffer.3A` | host clock defaults low |
+| `POWER_GROUND` | `nrf1_host_sck_pulldown.END_2` | `abstract:power-ground` | parked clock cannot toggle the switched boundary |
+| `NRF1_MOSI` | `nrf1_host_mosi_pulldown.END_1` | `nrf1_host_buffer.4A` | host MOSI defaults low |
+| `POWER_GROUND` | `nrf1_host_mosi_pulldown.END_2` | `abstract:power-ground` | parked MOSI cannot toggle the switched boundary |
+| `POWER_GROUND` | `nrf1_host_miso_pulldown.END_2` | `abstract:power-ground` | host MISO has a defined low state while isolated |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_module_csn_pullup.END_2` | module CSN defaults deasserted whenever powered |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf1_module_irq_pullup.END_2` | module IRQ defaults inactive whenever powered |
+| `NRF1_CE_MODULE` | `nrf1.CE` | `nrf1_module_ce_pulldown.END_1` | module-side 10-kOhm CE fail-low |
+| `NRF1_RF_GROUND` | `nrf1_module_ce_pulldown.END_2` | `abstract:rf-ground` | CE default return stays local |
+| `NRF1_CSN_MODULE_N` | `nrf1.CSN` | `nrf1_module_csn_pullup.END_1` | module-side 10-kOhm CSN fail-high |
+| `NRF1_SCK_MODULE` | `nrf1.SCK` | `nrf1_module_sck_pulldown.END_1` | module-side clock defaults low |
+| `NRF1_RF_GROUND` | `nrf1_module_sck_pulldown.END_2` | `abstract:rf-ground` | clock default return stays local |
+| `NRF1_MOSI_MODULE` | `nrf1.MOSI` | `nrf1_module_mosi_pulldown.END_1` | module-side MOSI defaults low |
+| `NRF1_RF_GROUND` | `nrf1_module_mosi_pulldown.END_2` | `abstract:rf-ground` | MOSI default return stays local |
+| `NRF1_MISO_MODULE` | `nrf1.MISO` | `nrf1_module_miso_pulldown.END_1` | return-buffer input cannot float during module startup |
+| `NRF1_RF_GROUND` | `nrf1_module_miso_pulldown.END_2` | `abstract:rf-ground` | MISO default return stays local |
+| `NRF1_IRQ_MODULE_N` | `nrf1.IRQ` | `nrf1_module_irq_pullup.END_1` | return-buffer IRQ input defaults inactive |
+| `NRF2_CE_SAFE` | `safe_gate_a.3Y` | `nrf2_host_buffer.1A` | STOP-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
+| `NRF2_CE_BUFFERED` | `nrf2_host_buffer.1Y` | `nrf2_ce_series.END_1` | exact switched-domain buffer isolates CE while off |
+| `NRF2_CE_MODULE` | `nrf2_ce_series.END_2` | `nrf2.CE` | exact 22-Ohm source resistor bounds CE edges at the module |
+| `NRF2_CSN_BUFFERED_N` | `nrf2_host_buffer.2Y` | `nrf2_csn_series.END_1` | CSN reaches the radio only with a valid switched rail |
+| `NRF2_CSN_MODULE_N` | `nrf2_csn_series.END_2` | `nrf2.CSN` | exact 22-Ohm source resistor bounds CSN edges |
+| `NRF2_SCK_BUFFERED` | `nrf2_host_buffer.3Y` | `nrf2_sck_series.END_1` | dedicated PIO clock is isolated from the unpowered module |
+| `NRF2_SCK_MODULE` | `nrf2_sck_series.END_2` | `nrf2.SCK` | exact 22-Ohm source resistor bounds the 10-Mbit/s clock edge |
+| `NRF2_MOSI_BUFFERED` | `nrf2_host_buffer.4Y` | `nrf2_mosi_series.END_1` | dedicated PIO data is isolated from the unpowered module |
+| `NRF2_MOSI_MODULE` | `nrf2_mosi_series.END_2` | `nrf2.MOSI` | exact 22-Ohm source resistor bounds MOSI edges |
+| `NRF2_MISO_MODULE` | `nrf2.MISO` | `nrf2_return_buffer.1A` | module return enters a switched-rail Ioff buffer |
+| `NRF2_MISO_BUFFERED` | `nrf2_return_buffer.1Y` | `nrf2_miso_series.END_1` | return buffer output is high-Z with the radio rail off |
+| `NRF2_MISO` | `nrf2_miso_series.END_2` | `rp.GPIO36` | exact 22-Ohm return-source resistor bounds the RP input edge |
+| `NRF2_IRQ_MODULE_N` | `nrf2.IRQ` | `nrf2_return_buffer.2A` | active-low interrupt enters a switched-rail Ioff buffer |
+| `NRF2_IRQ_BUFFERED_N` | `nrf2_return_buffer.2Y` | `nrf2_irq_series.END_1` | interrupt output is high-Z with the radio rail off |
+| `NRF2_IRQ_N` | `nrf2_irq_series.END_2` | `rp.GPIO8` | exact 22-Ohm return-source resistor bounds the asynchronous edge |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_host_buffer.1OE` | active-high OE cannot enable without the switched rail |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_host_buffer.2OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_host_buffer.3OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_host_buffer.4OE` | active-high OE follows switched power |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_return_buffer.1OE` | active-high return OE cannot enable without the switched rail |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_return_buffer.2OE` | active-high return OE follows switched power |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf2_host_csn_pullup.END_2` | host CSN defaults deasserted before rail enable |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf2_host_irq_pullup.END_2` | host IRQ defaults inactive while return buffer is high-Z |
+| `NRF2_CE_SAFE` | `nrf2_host_ce_pulldown.END_1` | `nrf2_host_buffer.1A` | host-side 10-kOhm CE fail-low |
+| `POWER_GROUND` | `nrf2_host_ce_pulldown.END_2` | `abstract:power-ground` | CE remains low without an RP drive |
+| `NRF2_SCK` | `nrf2_host_sck_pulldown.END_1` | `nrf2_host_buffer.3A` | host clock defaults low |
+| `POWER_GROUND` | `nrf2_host_sck_pulldown.END_2` | `abstract:power-ground` | parked clock cannot toggle the switched boundary |
+| `NRF2_MOSI` | `nrf2_host_mosi_pulldown.END_1` | `nrf2_host_buffer.4A` | host MOSI defaults low |
+| `POWER_GROUND` | `nrf2_host_mosi_pulldown.END_2` | `abstract:power-ground` | parked MOSI cannot toggle the switched boundary |
+| `POWER_GROUND` | `nrf2_host_miso_pulldown.END_2` | `abstract:power-ground` | host MISO has a defined low state while isolated |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_csn_pullup.END_2` | module CSN defaults deasserted whenever powered |
+| `3V3_NRF_GROUP` | `nrf_power_switch.VOUT` | `nrf2_module_irq_pullup.END_2` | module IRQ defaults inactive whenever powered |
+| `NRF2_CE_MODULE` | `nrf2.CE` | `nrf2_module_ce_pulldown.END_1` | module-side 10-kOhm CE fail-low |
+| `NRF2_RF_GROUND` | `nrf2_module_ce_pulldown.END_2` | `abstract:rf-ground` | CE default return stays local |
+| `NRF2_CSN_MODULE_N` | `nrf2.CSN` | `nrf2_module_csn_pullup.END_1` | module-side 10-kOhm CSN fail-high |
+| `NRF2_SCK_MODULE` | `nrf2.SCK` | `nrf2_module_sck_pulldown.END_1` | module-side clock defaults low |
+| `NRF2_RF_GROUND` | `nrf2_module_sck_pulldown.END_2` | `abstract:rf-ground` | clock default return stays local |
+| `NRF2_MOSI_MODULE` | `nrf2.MOSI` | `nrf2_module_mosi_pulldown.END_1` | module-side MOSI defaults low |
+| `NRF2_RF_GROUND` | `nrf2_module_mosi_pulldown.END_2` | `abstract:rf-ground` | MOSI default return stays local |
+| `NRF2_MISO_MODULE` | `nrf2.MISO` | `nrf2_module_miso_pulldown.END_1` | return-buffer input cannot float during module startup |
+| `NRF2_RF_GROUND` | `nrf2_module_miso_pulldown.END_2` | `abstract:rf-ground` | MISO default return stays local |
+| `NRF2_IRQ_MODULE_N` | `nrf2.IRQ` | `nrf2_module_irq_pullup.END_1` | return-buffer IRQ input defaults inactive |
 | `NRF_GROUP_PWR_EN_SAFE` | `safe_gate_a.4Y` | `nrf_power_switch.ON` | 10-kOhm pull-down; STOP and AON loss disable the exact protected load switch |
+| `NRF_GROUP_PWR_EN_SAFE` | `safe_gate_a.4Y` | `nrf_evidence_hold_diode.A` | the same STOP-dominant enable pre-arms actual-TX evidence before the radio rail rises |
+| `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `nrf_evidence_hold_cap.END_1` | Schottky isolation retains detector enable through the QOD rail fall |
+| `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `nrf_evidence_hold_pulldown.END_1` | 10-kOhm and 1-uF create an approximately 10-ms nominal discharge constant |
+| `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `det_nrf0.ENBL` | nRF0 detector survives commanded rail fall before entering low-current shutdown |
+| `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `det_nrf1.ENBL` | nRF1 detector survives commanded rail fall before entering low-current shutdown |
+| `NRF_EVIDENCE_HOLD` | `nrf_evidence_hold_diode.K` | `det_nrf2.ENBL` | nRF2 detector survives commanded rail fall before entering low-current shutdown |
+| `SAFETY_GROUND` | `nrf_evidence_hold_cap.END_2` | `abstract:safety-ground` | hold capacitor returns in the AON evidence domain |
+| `SAFETY_GROUND` | `nrf_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | detectors cannot remain enabled indefinitely after group shutdown |
+| `NRF_EVIDENCE_DIODE_NC` | `nrf_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_power_switch.ON` | 10-kOhm pull-down; STOP and AON loss disable the exact protected load switch |
 | `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_buck.EN` | STOP and AON loss disable the independent fixed 4-V converter |
 | `VOICE_DOMAIN_EN_SAFE` | `voice_buck.EN` | `voice_en_pulldown.END_1` | one exact 10-kOhm pull-down defines voice off even if the safety-gate output is high-impedance |
@@ -1861,9 +2043,63 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `STOP_LED_K` | `stop_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware |
 | `S3_RF_SAMPLE` | `abstract:S3-qualified-RF-tap` | `det_s3.RFIN` | tap/attenuation is selected and measured in I6 |
 | `C5_RF_SAMPLE` | `abstract:C5-qualified-RF-tap` | `det_c5.RFIN` | tap covers the qualified 2.4/5-GHz path; I6 sets attenuation |
-| `NRF0_RF_SAMPLE` | `abstract:NRF0-qualified-RF-tap` | `det_nrf0.RFIN` | one source-specific tap; never shared with nRF1/2 |
-| `NRF1_RF_SAMPLE` | `abstract:NRF1-qualified-RF-tap` | `det_nrf1.RFIN` | one source-specific tap; never shared with nRF0/2 |
-| `NRF2_RF_SAMPLE` | `abstract:NRF2-qualified-RF-tap` | `det_nrf2.RFIN` | one source-specific tap; never shared with nRF0/1 |
+| `NRF0_MODULE_RF` | `nrf0.ANT` | `abstract:NRF0-qualified-module-pigtail-mate` | Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze |
+| `NRF0_MODULE_RF_50R` | `abstract:NRF0-qualified-module-pigtail-mate` | `nrf0_coupler.RF_IN` | only a microscope/fit/VNA-qualified pigtail may enter the exact coupler |
+| `NRF0_EXTERNAL_RF_50R` | `nrf0_coupler.RF_OUT` | `abstract:NRF0-dedicated-standard-SMA` | each radio retains its own external standard-SMA feed with no RF switch |
+| `NRF0_FORWARD_RF_SAMPLE` | `nrf0_coupler.COUPLED_FWD` | `det_nrf0.RFIN` | 10-dB directional sample covers 2400-2525 MHz and is never shared with peers |
+| `NRF0_REVERSE_ISOLATED_PORT` | `nrf0_coupler.ISOLATED_REVERSE` | `nrf0_coupler_termination.END_1` | exact 49.9-Ohm isolated-port termination preserves directivity |
+| `NRF0_RF_GROUND` | `nrf0_coupler_termination.END_2` | `abstract:rf-ground` | termination return stays at the coupler ground via |
+| `NRF0_RF_GROUND` | `nrf0_coupler.GND_3` | `abstract:rf-ground` | first coupler ground land has a shortest RF via |
+| `NRF0_RF_GROUND` | `nrf0_coupler.GND_4` | `abstract:rf-ground` | second coupler ground land has a shortest RF via |
+| `NRF0_FORWARD_RF_SAMPLE` | `det_nrf0.RFIN` | `nrf0_detector_match.END_1` | exact 52.3-Ohm shunt implements the AD8314 broadband input match |
+| `NRF0_RF_GROUND` | `nrf0_detector_match.END_2` | `abstract:rf-ground` | detector input match returns beside RFIN |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `det_nrf0.VPOS` | actual-TX evidence remains powered independently of the application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_detector_bypass.END_1` | exact 100-nF AD8314 local bypass |
+| `SAFETY_GROUND` | `nrf0_detector_bypass.END_2` | `abstract:safety-ground` | detector bypass returns locally |
+| `SAFETY_GROUND` | `det_nrf0.COMM` | `abstract:safety-ground` | detector common uses the AON evidence ground |
+| `SAFETY_GROUND` | `det_nrf0.EPAD` | `abstract:safety-ground` | exposed paddle is grounded for RF layout repeatability |
+| `NRF0_DETECT_V` | `det_nrf0.VSET` | `det_nrf0.V_UP` | datasheet measurement mode closes VSET to rising-power output V_UP |
+| `NRF0_DETECT_FILTER` | `det_nrf0.FLTR` | `nrf0_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
+| `NRF0_DETECT_V` | `nrf0_detector_filter.END_2` | `det_nrf0.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
+| `NRF0_DETECT_VDN_NC` | `det_nrf0.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
+| `NRF1_MODULE_RF` | `nrf1.ANT` | `abstract:NRF1-qualified-module-pigtail-mate` | Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze |
+| `NRF1_MODULE_RF_50R` | `abstract:NRF1-qualified-module-pigtail-mate` | `nrf1_coupler.RF_IN` | only a microscope/fit/VNA-qualified pigtail may enter the exact coupler |
+| `NRF1_EXTERNAL_RF_50R` | `nrf1_coupler.RF_OUT` | `abstract:NRF1-dedicated-standard-SMA` | each radio retains its own external standard-SMA feed with no RF switch |
+| `NRF1_FORWARD_RF_SAMPLE` | `nrf1_coupler.COUPLED_FWD` | `det_nrf1.RFIN` | 10-dB directional sample covers 2400-2525 MHz and is never shared with peers |
+| `NRF1_REVERSE_ISOLATED_PORT` | `nrf1_coupler.ISOLATED_REVERSE` | `nrf1_coupler_termination.END_1` | exact 49.9-Ohm isolated-port termination preserves directivity |
+| `NRF1_RF_GROUND` | `nrf1_coupler_termination.END_2` | `abstract:rf-ground` | termination return stays at the coupler ground via |
+| `NRF1_RF_GROUND` | `nrf1_coupler.GND_3` | `abstract:rf-ground` | first coupler ground land has a shortest RF via |
+| `NRF1_RF_GROUND` | `nrf1_coupler.GND_4` | `abstract:rf-ground` | second coupler ground land has a shortest RF via |
+| `NRF1_FORWARD_RF_SAMPLE` | `det_nrf1.RFIN` | `nrf1_detector_match.END_1` | exact 52.3-Ohm shunt implements the AD8314 broadband input match |
+| `NRF1_RF_GROUND` | `nrf1_detector_match.END_2` | `abstract:rf-ground` | detector input match returns beside RFIN |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `det_nrf1.VPOS` | actual-TX evidence remains powered independently of the application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_detector_bypass.END_1` | exact 100-nF AD8314 local bypass |
+| `SAFETY_GROUND` | `nrf1_detector_bypass.END_2` | `abstract:safety-ground` | detector bypass returns locally |
+| `SAFETY_GROUND` | `det_nrf1.COMM` | `abstract:safety-ground` | detector common uses the AON evidence ground |
+| `SAFETY_GROUND` | `det_nrf1.EPAD` | `abstract:safety-ground` | exposed paddle is grounded for RF layout repeatability |
+| `NRF1_DETECT_V` | `det_nrf1.VSET` | `det_nrf1.V_UP` | datasheet measurement mode closes VSET to rising-power output V_UP |
+| `NRF1_DETECT_FILTER` | `det_nrf1.FLTR` | `nrf1_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
+| `NRF1_DETECT_V` | `nrf1_detector_filter.END_2` | `det_nrf1.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
+| `NRF1_DETECT_VDN_NC` | `det_nrf1.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
+| `NRF2_MODULE_RF` | `nrf2.ANT` | `abstract:NRF2-qualified-module-pigtail-mate` | Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze |
+| `NRF2_MODULE_RF_50R` | `abstract:NRF2-qualified-module-pigtail-mate` | `nrf2_coupler.RF_IN` | only a microscope/fit/VNA-qualified pigtail may enter the exact coupler |
+| `NRF2_EXTERNAL_RF_50R` | `nrf2_coupler.RF_OUT` | `abstract:NRF2-dedicated-standard-SMA` | each radio retains its own external standard-SMA feed with no RF switch |
+| `NRF2_FORWARD_RF_SAMPLE` | `nrf2_coupler.COUPLED_FWD` | `det_nrf2.RFIN` | 10-dB directional sample covers 2400-2525 MHz and is never shared with peers |
+| `NRF2_REVERSE_ISOLATED_PORT` | `nrf2_coupler.ISOLATED_REVERSE` | `nrf2_coupler_termination.END_1` | exact 49.9-Ohm isolated-port termination preserves directivity |
+| `NRF2_RF_GROUND` | `nrf2_coupler_termination.END_2` | `abstract:rf-ground` | termination return stays at the coupler ground via |
+| `NRF2_RF_GROUND` | `nrf2_coupler.GND_3` | `abstract:rf-ground` | first coupler ground land has a shortest RF via |
+| `NRF2_RF_GROUND` | `nrf2_coupler.GND_4` | `abstract:rf-ground` | second coupler ground land has a shortest RF via |
+| `NRF2_FORWARD_RF_SAMPLE` | `det_nrf2.RFIN` | `nrf2_detector_match.END_1` | exact 52.3-Ohm shunt implements the AD8314 broadband input match |
+| `NRF2_RF_GROUND` | `nrf2_detector_match.END_2` | `abstract:rf-ground` | detector input match returns beside RFIN |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `det_nrf2.VPOS` | actual-TX evidence remains powered independently of the application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_detector_bypass.END_1` | exact 100-nF AD8314 local bypass |
+| `SAFETY_GROUND` | `nrf2_detector_bypass.END_2` | `abstract:safety-ground` | detector bypass returns locally |
+| `SAFETY_GROUND` | `det_nrf2.COMM` | `abstract:safety-ground` | detector common uses the AON evidence ground |
+| `SAFETY_GROUND` | `det_nrf2.EPAD` | `abstract:safety-ground` | exposed paddle is grounded for RF layout repeatability |
+| `NRF2_DETECT_V` | `det_nrf2.VSET` | `det_nrf2.V_UP` | datasheet measurement mode closes VSET to rising-power output V_UP |
+| `NRF2_DETECT_FILTER` | `det_nrf2.FLTR` | `nrf2_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
+| `NRF2_DETECT_V` | `nrf2_detector_filter.END_2` | `det_nrf2.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
+| `NRF2_DETECT_VDN_NC` | `det_nrf2.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
 | `CC_RF_SAMPLE` | `abstract:CC-qualified-RF-tap` | `det_cc.RFIN` | sub-GHz tap and coupling capacitor are selected in I6 |
 | `VOICE_RF_SAMPLE` | `abstract:VOICE-qualified-RF-tap` | `det_voice.RFIN` | VHF/UHF tap and coupling capacitor are selected in I6 |
 | `CC_DETECT_ENABLE` | `abstract:AON_SAFE_3V3` | `det_cc.SHDN` | evidence detector remains enabled independently of the CC application rail |
@@ -1871,9 +2107,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `IR_OPTICAL_SAMPLE` | `det_ir.ANODE` | `abstract:shielded-ir-evidence-front-end` | physical optical pickup rather than drive-current inference; exact bias/front end is I6 |
 | `S3_DETECT_V` | `det_s3.VOUT` | `evidence_cmp_a.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `C5_DETECT_V` | `det_c5.VOUT` | `evidence_cmp_a.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `NRF0_DETECT_V` | `det_nrf0.VOUT` | `evidence_cmp_a.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `NRF1_DETECT_V` | `det_nrf1.VOUT` | `evidence_cmp_a.IN4_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `NRF2_DETECT_V` | `det_nrf2.VOUT` | `evidence_cmp_b.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `NRF0_DETECT_V` | `det_nrf0.V_UP` | `evidence_cmp_a.IN3_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
+| `NRF1_DETECT_V` | `det_nrf1.V_UP` | `evidence_cmp_a.IN4_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
+| `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN1_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `CC_DETECT_V` | `det_cc.VOUT` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `VOICE_DETECT_V` | `det_voice.VOUT` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `IR_DETECT_V` | `abstract:shielded-ir-evidence-front-end` | `evidence_cmp_b.IN4_N` | optical energy above the qualified threshold makes active-low comparator output assert |
@@ -1989,6 +2225,38 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
+- `nrf_power_input_cap` lifecycle: `active_production`.
+- `nrf_evidence_hold_cap` lifecycle: `active_production`.
+- `nrf0_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `nrf0_host_buffer` lifecycle: `production_active_orderable`.
+- `nrf0_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `nrf0_return_buffer` lifecycle: `production_active_orderable`.
+- `nrf0_coupler` uses `TTM Technologies DC2337J5010AHF` as `verified_exact_nrf_forward_power_coupler`, not an accepted production choice.
+- `nrf0_coupler` lifecycle: `active_orderable`.
+- `nrf0_coupler_termination` uses `Yageo RC0402FR-0749R9L` as `verified_exact_nrf_coupler_isolated_port_termination`, not an accepted production choice.
+- `nrf0_coupler_termination` lifecycle: `active_orderable`.
+- `nrf0_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
+- `nrf0_detector_match` lifecycle: `active_orderable`.
+- `nrf1_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `nrf1_host_buffer` lifecycle: `production_active_orderable`.
+- `nrf1_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `nrf1_return_buffer` lifecycle: `production_active_orderable`.
+- `nrf1_coupler` uses `TTM Technologies DC2337J5010AHF` as `verified_exact_nrf_forward_power_coupler`, not an accepted production choice.
+- `nrf1_coupler` lifecycle: `active_orderable`.
+- `nrf1_coupler_termination` uses `Yageo RC0402FR-0749R9L` as `verified_exact_nrf_coupler_isolated_port_termination`, not an accepted production choice.
+- `nrf1_coupler_termination` lifecycle: `active_orderable`.
+- `nrf1_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
+- `nrf1_detector_match` lifecycle: `active_orderable`.
+- `nrf2_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `nrf2_host_buffer` lifecycle: `production_active_orderable`.
+- `nrf2_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `nrf2_return_buffer` lifecycle: `production_active_orderable`.
+- `nrf2_coupler` uses `TTM Technologies DC2337J5010AHF` as `verified_exact_nrf_forward_power_coupler`, not an accepted production choice.
+- `nrf2_coupler` lifecycle: `active_orderable`.
+- `nrf2_coupler_termination` uses `Yageo RC0402FR-0749R9L` as `verified_exact_nrf_coupler_isolated_port_termination`, not an accepted production choice.
+- `nrf2_coupler_termination` lifecycle: `active_orderable`.
+- `nrf2_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
+- `nrf2_detector_match` lifecycle: `active_orderable`.
 - `voice` lifecycle: `current_product`.
 - `receiver` lifecycle: `manufacturer_documented`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
@@ -2086,9 +2354,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `safe_ptt_or` lifecycle: `production`.
 - `det_s3` lifecycle: `production`.
 - `det_c5` lifecycle: `production`.
-- `det_nrf0` lifecycle: `production`.
-- `det_nrf1` lifecycle: `production`.
-- `det_nrf2` lifecycle: `production`.
+- `det_nrf0` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_nrf0` lifecycle: `production_active_orderable`.
+- `det_nrf1` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_nrf1` lifecycle: `production_active_orderable`.
+- `det_nrf2` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_nrf2` lifecycle: `production_active_orderable`.
 - `det_cc` lifecycle: `production`.
 - `det_voice` lifecycle: `production`.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze

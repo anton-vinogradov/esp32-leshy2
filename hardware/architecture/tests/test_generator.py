@@ -1016,9 +1016,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "safe_ptt_or": "nexperia_74lvc1g32gv_125",
             "det_s3": "adi_ltc5532_es6_trmpbf",
             "det_c5": "adi_ltc5532_es6_trmpbf",
-            "det_nrf0": "adi_ltc5532_es6_trmpbf",
-            "det_nrf1": "adi_ltc5532_es6_trmpbf",
-            "det_nrf2": "adi_ltc5532_es6_trmpbf",
+            "det_nrf0": "adi_ad8314acpz_rl7",
+            "det_nrf1": "adi_ad8314acpz_rl7",
+            "det_nrf2": "adi_ad8314acpz_rl7",
             "det_cc": "adi_ltc5507_es6_trmpbf",
             "det_voice": "adi_ltc5507_es6_trmpbf",
             "det_ir": "vishay_vemd1060x01",
@@ -1045,6 +1045,90 @@ class ArchitectureValidationTests(unittest.TestCase):
             "SN74LVC1G74DCUR<br/>asynchronous latched hard STOP",
             "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
             "TCA9534APWR<br/>eight-bit evidence source mask on local RP I2C0",
+        ):
+            self.assertIn(label, rendered)
+
+    def test_i6_three_nrf_exact_electrical_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["nrf_electrical_contract"]
+        self.assertEqual("DEC-0091", contract["decision"])
+        self.assertIn("paper_reviewed_i6_nrf_subblock", contract["status"])
+        self.assertIn("100-ms", contract["startup_shutdown"])
+        self.assertIn("channels 0, 100 and 125", " ".join(contract["remaining_hil"]))
+        self.assertIn(">=30mA transient", candidate["power_contract"]["aon_rail"])
+
+        required = {
+            "nrf0_host_buffer": "nexperia_74lvc126apw_118",
+            "nrf0_return_buffer": "nexperia_74lvc2g126dc_125",
+            "nrf1_host_buffer": "nexperia_74lvc126apw_118",
+            "nrf1_return_buffer": "nexperia_74lvc2g126dc_125",
+            "nrf2_host_buffer": "nexperia_74lvc126apw_118",
+            "nrf2_return_buffer": "nexperia_74lvc2g126dc_125",
+            "nrf0_coupler": "ttm_dc2337j5010ahf",
+            "nrf1_coupler": "ttm_dc2337j5010ahf",
+            "nrf2_coupler": "ttm_dc2337j5010ahf",
+            "det_nrf0": "adi_ad8314acpz_rl7",
+            "det_nrf1": "adi_ad8314acpz_rl7",
+            "det_nrf2": "adi_ad8314acpz_rl7",
+        }
+        for instance, device_id in required.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        coupler = self.database["devices"]["ttm_dc2337j5010ahf"]
+        self.assertEqual([2000, 4000], coupler["electrical_contract"]["operating_band_mhz"])
+        self.assertEqual(
+            [2400, 2525],
+            coupler["electrical_contract"]["nrf_channel_0_to_125_coverage_mhz"],
+        )
+        self.assertEqual("1", coupler["contacts"]["RF_IN"]["physical"])
+        self.assertEqual("6", coupler["contacts"]["RF_OUT"]["physical"])
+        detector = self.database["devices"]["adi_ad8314acpz_rl7"]
+        self.assertEqual([100, 2700], detector["electrical_contract"]["frequency_response_mhz"])
+        self.assertEqual(5.7, detector["electrical_contract"]["maximum_active_current_ma"])
+        self.assertEqual("6", detector["contacts"]["V_UP"]["physical"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for radio in range(3):
+            prefix = f"nrf{radio}"
+            self.assertIn(
+                (f"{prefix}.ANT", f"abstract:NRF{radio}-qualified-module-pigtail-mate", f"NRF{radio}_MODULE_RF"),
+                routes,
+            )
+            self.assertIn(
+                (f"{prefix}_coupler.COUPLED_FWD", f"det_nrf{radio}.RFIN", f"NRF{radio}_FORWARD_RF_SAMPLE"),
+                routes,
+            )
+            self.assertIn(
+                (f"{prefix}_return_buffer.1Y", f"{prefix}_miso_series.END_1", f"NRF{radio}_MISO_BUFFERED"),
+                routes,
+            )
+            self.assertIn(
+                (f"{prefix}_host_buffer.4Y", f"{prefix}_mosi_series.END_1", f"NRF{radio}_MOSI_BUFFERED"),
+                routes,
+            )
+
+        direct_peers = {
+            peer
+            for allocation in candidate["allocations"]
+            if allocation["instance"] == "rp"
+            for peer in allocation.get("peers", [])
+            if peer.startswith(("nrf0.", "nrf1.", "nrf2."))
+        }
+        self.assertEqual(set(), direct_peers)
+        self.assertIn(
+            ("nrf_evidence_hold_diode.K", "det_nrf2.ENBL", "NRF_EVIDENCE_HOLD"),
+            routes,
+        )
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for label in (
+            "Nexperia 74LVC126APW,118<br/>CE/CSN/SCK/MOSI switched-rail Ioff buffer",
+            "Nexperia 74LVC2G126DC,125<br/>MISO/IRQ switched-rail Ioff buffer",
+            "TTM Technologies DC2337J5010AHF<br/>full-band forward-power directional coupler",
+            "Analog Devices AD8314ACPZ-RL7<br/>nRF0 2.4-GHz RF power detector",
         ):
             self.assertIn(label, rendered)
 

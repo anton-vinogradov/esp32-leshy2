@@ -1,6 +1,6 @@
 # SAFE-0002 — принятая AON STOP/evidence circuit boundary
 
-- Статус: **Проведено ревью `I2`; расчёты `I3/I6` и HIL открыты отдельно**
+- Статус: **Проведено ревью `I2`; nRF evidence amended/reviewed by `DEC-0091`; other I6/HIL open**
 - Дата фиксации: 2026-08-18
 - Decision: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md)
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
@@ -86,10 +86,10 @@ STOP. The active-low SA518 PTT output instead has a `10 kΩ` module-side pull-up
 
 | Request source | Exact gate channel | Safe output | Downstream exact-part gate |
 |---|---|---|---|
-| RP `GPIO1 NRF0_CE_REQ` | `safe_gate_a.1` | `NRF0_CE_SAFE` | complete |
-| RP `GPIO4 NRF1_CE_REQ` | `safe_gate_a.2` | `NRF1_CE_SAFE` | complete |
-| RP `GPIO7 NRF2_CE_REQ` | `safe_gate_a.3` | `NRF2_CE_SAFE` | complete |
-| RP `GPIO15 NRF_GROUP_PWR_EN` | `safe_gate_a.4` | `NRF_GROUP_PWR_EN_SAFE` | load switch selected in `I3/I6` |
+| RP `GPIO1 NRF0_CE_REQ` | `safe_gate_a.1` | `NRF0_CE_SAFE` | exact switched-rail `74LVC126APW,118` then nRF0 CE |
+| RP `GPIO4 NRF1_CE_REQ` | `safe_gate_a.2` | `NRF1_CE_SAFE` | exact switched-rail `74LVC126APW,118` then nRF1 CE |
+| RP `GPIO7 NRF2_CE_REQ` | `safe_gate_a.3` | `NRF2_CE_SAFE` | exact switched-rail `74LVC126APW,118` then nRF2 CE |
+| RP `GPIO15 NRF_GROUP_PWR_EN` | `safe_gate_a.4` | `NRF_GROUP_PWR_EN_SAFE` | exact `TPS22919DCKR`, Ioff buffers and detector-hold circuit reviewed in `DEC-0091` |
 | RP `GPIO23 CC_PWR_EN` | `safe_gate_b.1` | `CC_PWR_EN_SAFE` | load switch/isolation in `I3/I6` |
 | slow `P13 VOICE_DOMAIN_REQ` | `safe_gate_b.2` | `VOICE_DOMAIN_EN_SAFE` | 4-V rail stage in `I3/I5` |
 | C5 `GPIO6 IR_TX_CARRIER` | `safe_gate_b.3` | `IR_TX_CARRIER_SAFE` | LED driver in `I6` |
@@ -106,9 +106,9 @@ outputs and rail states independently.
 |---:|---|---|---|---|
 | 0 | S3 2.4 GHz | `LTC5532ES6#TRMPBF` | `cmp_a IN1/OUT1` | slow `P23` |
 | 1 | C5 2.4/5 GHz | `LTC5532ES6#TRMPBF` | `cmp_a IN2/OUT2` | C5 `GPIO23` |
-| 2 | nRF0 | `LTC5532ES6#TRMPBF` | `cmp_a IN3/OUT3` | source mask |
-| 3 | nRF1 | `LTC5532ES6#TRMPBF` | `cmp_a IN4/OUT4` | source mask |
-| 4 | nRF2 | `LTC5532ES6#TRMPBF` | `cmp_b IN1/OUT1` | source mask |
+| 2 | nRF0 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_a IN3/OUT3` | source mask |
+| 3 | nRF1 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_a IN4/OUT4` | source mask |
+| 4 | nRF2 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_b IN1/OUT1` | source mask |
 | 5 | CC1101 | `LTC5507ES6#TRMPBF` | `cmp_b IN2/OUT2` | source mask |
 | 6 | SA518 voice | `LTC5507ES6#TRMPBF` | `cmp_b IN3/OUT3` | source mask |
 | 7 | IR optical | `VEMD1060X01` | `cmp_b IN4/OUT4` | C5 `GPIO24` |
@@ -118,9 +118,13 @@ AON. Each output is `EV_N[i]`, active low, with a `10 kΩ` AON pull-up. RF
 detector output goes to the inverting comparator input; the separately
 calibrated threshold/hysteresis network goes to the non-inverting input.
 `LTC5507` `SHDN` is tied high to AON so CC/voice evidence does not disappear
-with their application rails. `LTC5532` first-target gain is `2×` using matched
-`10 kΩ 1%` feedback/ground resistors and grounded `VOS`; `I6` may repopulate
-only after recalculating all thresholds.
+with their application rails. The remaining S3/C5 `LTC5532` first-target gain
+is `2×` using matched `10 kΩ 1%` feedback/ground resistors and grounded `VOS`.
+The three nRF paths are amended by `N24E-0001/DEC-0091`: exact 10-dB
+directional couplers feed AON `AD8314` measurement-mode `V_UP`; a common
+diode/10-kOhm/1-uF node keeps ENBL asserted through nRF QOD fall and then
+returns all three detectors to low-current shutdown. Channels 0/100/125 still
+require measured thresholds.
 
 `TCA9534APWR` is fixed at seven-bit address `0x38` on the local side of RP I²C0,
 before `TCA4307`: `P0…P7 = EV_N[0…7]`. Its `INT_N` is a test point only. Source
@@ -145,14 +149,17 @@ Detectors, comparators, source-mask expander and both critical LEDs stay on
 select the rail source/hold-up and prove its continuous current. The base
 first-target load is approximately:
 
-- five LTC5532: `5 × 0.50 mA = 2.50 mA`;
+- two continuously enabled LTC5532: `2 × 0.50 mA = 1.00 mA`;
+- three AD8314: about `3 × 20 uA = 0.06 mA` while the nRF domain is parked,
+  rising from `3 × 4.5 mA = 13.5 mA` typical to the listed
+  `3 × 5.7 mA = 17.1 mA` maximum during nRF operation/hold;
 - two LTC5507: `2 × 0.55 mA = 1.10 mA`;
 - eight TLV1824 channels: about `0.04 mA` typical total;
 - supervisor/logic/expander idle plus pull networks: budget `0.50 mA` until
   measured;
 - indicator current only while active: about `0.5…0.7 mA` each.
 
-Thus `I3` reserves **at least 5 mA continuous and 8 mA transient** for safety
+Thus `I3` reserves **at least 5 mA continuous and 30 mA transient** for safety
 electronics before tolerance, cold/temperature and hold-up margin. It may
 increase this budget, never silently reduce it.
 

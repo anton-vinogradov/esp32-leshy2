@@ -1,6 +1,6 @@
 # PIN-0003 — G2F-3I principled pinout review
 
-- Статус: **Проведено ревью принципиальной распиновки leading paper candidate; I1…I5 paper reviewed, I6 active**
+- Статус: **Проведено ревью принципиальной распиновки leading paper candidate; I1…I5 and I6/nRF subblock paper reviewed, I6 active**
 - Дата: 2026-08-17
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
 - Generated atlas: [`G2F-3I principled pinout`](generated/G2F-3I-principled-pinout.md)
@@ -27,6 +27,8 @@
   [`REV-0005L`](../reviews/REV-0005L-full-service-1bit-sdio-propagation.md)
 - Safety/evidence amendment: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md) /
   [`SAFE-0002`](SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
+- Three-nRF electrical amendment: [`DEC-0091`](../decisions/DEC-0091-exact-three-nrf-electrical-endpoint.md) /
+  [`REV-0005AV`](../reviews/REV-0005AV-i6-three-nrf-propagation.md)
 
 ## Что здесь называется принципиальной распиновкой
 

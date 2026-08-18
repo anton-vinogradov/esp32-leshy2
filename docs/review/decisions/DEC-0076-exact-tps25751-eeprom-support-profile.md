@@ -14,7 +14,9 @@
    No application MCU is required before the EEPROM image is loaded.
 3. `PP5V` is grounded for the accepted sink-only/no-VCONN product.
 4. `VIN_3V3` uses `AON_SAFE_3V3`; the AON budget becomes at least 15 mA
-   continuous and 20 mA transient without changing TPS629203.
+   continuous and 20 mA transient without changing TPS629203. `DEC-0091`
+   later raises the transient reserve to 30 mA for three active nRF evidence
+   detectors, still without a converter change.
 5. Accept the exact 17-component profile and all contact terminations in
    `PWR-0015`.
 6. Replace the previous charger-only 10-kOhm SCL/SDA pulls with complete-bus

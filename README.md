@@ -39,6 +39,10 @@ privacy or the target owner's authorization.
 
 - Three independent full-function nRF24 paths operate concurrently in every
   `3R`, `1T2R`, `2T1R` and `3T` mix without silently disabling peer receivers.
+- Each nRF path has switched-rail Ioff isolation in both digital directions,
+  a dedicated full-band directional forward-power detector and its own
+  external SMA feed. The module-side `IPX` mate is qualified from a received
+  sample rather than assumed to be U.FL.
 - Three separated nRF antennas provide calibrated relative sector/RPD
   comparison. The result is never presented as absolute dBm, angle or VSWR.
 - 2.4/5 GHz Wi-Fi, Bluetooth LE, ESP-NOW and IEEE 802.15.4 provide ordinary
@@ -450,6 +454,24 @@ flowchart TD
   NRF0["E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
   NRF1["E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
   NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
+  N0HB["74LVC126APW,118 #nRF0<br/>CE/CSN/SCK/MOSI switched-rail Ioff buffer"]
+  N1HB["74LVC126APW,118 #nRF1<br/>CE/CSN/SCK/MOSI switched-rail Ioff buffer"]
+  N2HB["74LVC126APW,118 #nRF2<br/>CE/CSN/SCK/MOSI switched-rail Ioff buffer"]
+  N0RB["74LVC2G126DC,125 #nRF0<br/>MISO/IRQ switched-rail Ioff buffer"]
+  N1RB["74LVC2G126DC,125 #nRF1<br/>MISO/IRQ switched-rail Ioff buffer"]
+  N2RB["74LVC2G126DC,125 #nRF2<br/>MISO/IRQ switched-rail Ioff buffer"]
+  N0CPL["DC2337J5010AHF #nRF0<br/>2.0-4.0-GHz 10-dB forward-power coupler"]
+  N1CPL["DC2337J5010AHF #nRF1<br/>2.0-4.0-GHz 10-dB forward-power coupler"]
+  N2CPL["DC2337J5010AHF #nRF2<br/>2.0-4.0-GHz 10-dB forward-power coupler"]
+  N0TERM["RC0402FR-0749R9L #nRF0<br/>coupler isolated-port 49.9-Ohm termination"]
+  N1TERM["RC0402FR-0749R9L #nRF1<br/>coupler isolated-port 49.9-Ohm termination"]
+  N2TERM["RC0402FR-0749R9L #nRF2<br/>coupler isolated-port 49.9-Ohm termination"]
+  N0MATCH["RC0402FR-0752R3L #nRF0<br/>AD8314 broadband 52.3-Ohm input match"]
+  N1MATCH["RC0402FR-0752R3L #nRF1<br/>AD8314 broadband 52.3-Ohm input match"]
+  N2MATCH["RC0402FR-0752R3L #nRF2<br/>AD8314 broadband 52.3-Ohm input match"]
+  NEVD["BAT54-7-F #nRF-EVIDENCE<br/>actual-TX evidence hold isolation diode"]
+  NEVC["C1608X7R1C105K080AC #nRF-EVIDENCE<br/>1-uF actual-TX evidence hold capacitor"]
+  NEVR["RC0402FR-0710KL #nRF-EVIDENCE<br/>10-kOhm evidence hold discharge resistor"]
   CC["CC1101RGPR<br/>sub-GHz transceiver"]
   SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
   VOICESUP["TPS3808G33DBVR #VOICE<br/>STOP-qualified protected-4-V voice supervisor"]
@@ -487,9 +509,9 @@ flowchart TD
   STOPLED["LTST-C190KFKT<br/>orange physical latched-STOP indicator"]
   DS3["LTC5532ES6#TRMPBF #S3<br/>S3 2.4-GHz RF power detector"]
   DC5["LTC5532ES6#TRMPBF #C5<br/>C5 2.4/5-GHz RF power detector"]
-  DN0["LTC5532ES6#TRMPBF #nRF0<br/>nRF0 2.4-GHz RF power detector"]
-  DN1["LTC5532ES6#TRMPBF #nRF1<br/>nRF1 2.4-GHz RF power detector"]
-  DN2["LTC5532ES6#TRMPBF #nRF2<br/>nRF2 2.4-GHz RF power detector"]
+  DN0["AD8314ACPZ-RL7 #nRF0<br/>100-MHz-to-2.7-GHz forward-power detector"]
+  DN1["AD8314ACPZ-RL7 #nRF1<br/>100-MHz-to-2.7-GHz forward-power detector"]
+  DN2["AD8314ACPZ-RL7 #nRF2<br/>100-MHz-to-2.7-GHz forward-power detector"]
   DCC["LTC5507ES6#TRMPBF #CC<br/>CC1101 sub-GHz RF power detector"]
   DVOICE["LTC5507ES6#TRMPBF #voice<br/>SA518 VHF/UHF RF power detector"]
   DIR["VEMD1060X01<br/>IR optical-evidence photodiode"]
@@ -531,7 +553,7 @@ flowchart TD
   SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
   SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
-  IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
+  IRTX ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
@@ -705,8 +727,14 @@ flowchart TD
   EXTFUSE --> EXTOUTCAP
   EXTFUSE --> EXTBLEED
   SWNRF --> NRF0
+  SWNRF --> N0HB
+  SWNRF --> N0RB
   SWNRF --> NRF1
+  SWNRF --> N1HB
+  SWNRF --> N1RB
   SWNRF --> NRF2
+  SWNRF --> N2HB
+  SWNRF --> N2RB
   SWCC --> CC
   MAINFUSE --> SDINCAP
   SWSD -->|"switched 3.3 V + QOD"| SD
@@ -827,9 +855,12 @@ flowchart TD
   SLOW -->|"P14 low-or-open power request"| VOICEHL --> SA
   C5 -->|"RMT RX0"| IR0
   C5 -->|"RMT RX1"| IR1
-  RP <-->|"PIO0 SM0"| NRF0
-  RP <-->|"PIO0 SM1"| NRF1
-  RP <-->|"PIO0 SM2"| NRF2
+  RP -->|"PIO0 SM0 outputs"| N0HB --> NRF0
+  NRF0 -->|"MISO + IRQ"| N0RB --> RP
+  RP -->|"PIO0 SM1 outputs"| N1HB --> NRF1
+  NRF1 -->|"MISO + IRQ"| N1RB --> RP
+  RP -->|"PIO0 SM2 outputs"| N2HB --> NRF2
+  NRF2 -->|"MISO + IRQ"| N2RB --> RP
   RP <-->|"PIO0 SM3"| CC
   RP <-->|"UART0/PTT request"| SA
   PTTPU -->|"10 kOhm to 3V3_MAIN"| PTTRAW
@@ -866,10 +897,15 @@ flowchart TD
   C5 -->|"IR carrier request"| GATEB
   SLOW -->|"voice/accessory rail requests"| GATEB
   RP -->|"PTT request"| PTTOR --> VOICEPTT --> SA
-  GATEA --> NRF0
-  GATEA --> NRF1
-  GATEA --> NRF2
+  GATEA --> N0HB
+  GATEA --> N1HB
+  GATEA --> N2HB
   GATEA --> SWNRF
+  GATEA --> NEVD --> NEVC
+  NEVD --> NEVR
+  NEVD --> DN0
+  NEVD --> DN1
+  NEVD --> DN2
   GATEB --> SWCC
   GATEB --> VOICEBUCK
   GATEB --> IRTX
@@ -877,9 +913,15 @@ flowchart TD
   GATEB --> EXTFUSE
   S3 --> DS3 --> CMPA
   C5 --> DC5 --> CMPA
-  NRF0 --> DN0 --> CMPA
-  NRF1 --> DN1 --> CMPA
-  NRF2 --> DN2 --> CMPB
+  NRF0 -->|"qualified pigtail"| N0CPL -->|"dedicated SMA"| NRF0SMA["standard SMA #nRF0"]
+  N0CPL --> N0TERM
+  N0CPL -->|"10-dB forward sample"| N0MATCH --> DN0 --> CMPA
+  NRF1 -->|"qualified pigtail"| N1CPL -->|"dedicated SMA"| NRF1SMA["standard SMA #nRF1"]
+  N1CPL --> N1TERM
+  N1CPL -->|"10-dB forward sample"| N1MATCH --> DN1 --> CMPA
+  NRF2 -->|"qualified pigtail"| N2CPL -->|"dedicated SMA"| NRF2SMA["standard SMA #nRF2"]
+  N2CPL --> N2TERM
+  N2CPL -->|"10-dB forward sample"| N2MATCH --> DN2 --> CMPB
   CC --> DCC --> CMPB
   SA --> DVOICE --> CMPB
   IRTX --> DIR --> CMPB

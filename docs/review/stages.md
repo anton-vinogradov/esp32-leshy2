@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `21/0/3` and dedicated UI I/O `7/1/0`. `I2`…`I5` paper electrical scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090`; exact UI/storage and audio/receiver electrical closures retain named physical/HIL gates. I6 is active. Gate 2F remains open through I6…I7, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `21/0/3` and dedicated UI I/O `7/1/0`. `I2`…`I5` paper electrical scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090`; `DEC-0091/REV-0005AV` review the first I6 three-nRF electrical subblock with exact Ioff isolation and forward-power evidence. I6 remains active for all other RF endpoints and consolidated coexistence. Gate 2F remains open through I6…I7, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -56,4 +56,6 @@ supervisor и physical isolation для ES8311/Si4732/SA518, полный captur
 playback/TX тракт, exact microphone/speaker/headphone endpoints и все
 first-target пассивы внесены в machine map. Main slow I/O становится
 `21/0/3`; полный набор controls не изменён. I5 имеет **«Проведено ревью»**,
-активен I6; acoustic/RF/specimen HIL остаётся открытым, KiCad не разрешён.
+активен I6; its three-nRF paper electrical subblock is reviewed by
+`DEC-0091/REV-0005AV`, while other RF and all specimen/coexistence HIL remain
+open. KiCad не разрешён.

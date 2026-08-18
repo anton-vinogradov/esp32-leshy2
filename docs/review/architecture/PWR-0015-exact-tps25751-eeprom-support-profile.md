@@ -29,7 +29,9 @@ Raw connector VBUS must reach two electrically different TPS pin groups:
    remains pulled high until GPIO1 deliberately sinks it after IINDPM setup;
 6. once BQ SYS produces `AON_SAFE_3V3`, TPS `VIN_3V3` moves onto that admitted
    rail. Its 6-mA maximum active load is included in the revised 15-mA
-   continuous / 20-mA transient AON paper budget.
+   continuous / 20-mA transient AON paper budget. The later `DEC-0091`
+   three-nRF evidence amendment raises the transient reserve to 30 mA without
+   changing the selected AON converter or cutoff.
 
 Missing or corrupt EEPROM therefore fails with PPHV and charge off, not with an
 uncontrolled 5-V pass-through. Blank/corrupt/raw-VBUS-only behavior remains a

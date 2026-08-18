@@ -4061,6 +4061,179 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
+    "nexperia_74lvc126apw_118": {
+      "mpn": "Nexperia 74LVC126APW,118",
+      "kind": "tssop14_quad_noninverting_three_state_buffer_with_ioff",
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "lifecycle": "production_active_orderable",
+      "dimensions_mm": [5.1, 4.5, 1.1],
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "74LVC126APW,118 active authorized-distributor listing",
+        "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC126APW-118/2753809",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "supply_v": [1.2, 3.6],
+        "ioff": "partial-power-down output isolation is specified at VCC=0 V",
+        "oe_active_level": "high",
+        "maximum_propagation_delay_ns_at_3v0_to_3v6": 4.7
+      },
+      "programmable": false,
+      "contacts": {
+        "1OE": {"physical": "1", "role": "signal"}, "1A": {"physical": "2", "role": "signal"}, "1Y": {"physical": "3", "role": "signal"},
+        "2OE": {"physical": "4", "role": "signal"}, "2A": {"physical": "5", "role": "signal"}, "2Y": {"physical": "6", "role": "signal"},
+        "GND": {"physical": "7", "role": "power"}, "3Y": {"physical": "8", "role": "signal"}, "3A": {"physical": "9", "role": "signal"},
+        "3OE": {"physical": "10", "role": "signal"}, "4Y": {"physical": "11", "role": "signal"}, "4A": {"physical": "12", "role": "signal"},
+        "4OE": {"physical": "13", "role": "signal"}, "VCC": {"physical": "14", "role": "power"}
+      }
+    },
+    "nexperia_74lvc2g126dc_125": {
+      "mpn": "Nexperia 74LVC2G126DC,125",
+      "kind": "vssop8_dual_noninverting_three_state_buffer_with_ioff",
+      "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
+      "lifecycle": "production_active_orderable",
+      "dimensions_mm": [2.3, 2.0, 1.0],
+      "source": {
+        "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
+        "version": "Rev. 16, 17 August 2023",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "74LVC2G126DC,125 current manufacturer orderable part",
+        "url": "https://www.nexperia.com/products/analog-logic-ics/logic/buffers-inverters-transceivers/buffers/serie/74lvc2g126",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "supply_v": [1.65, 5.5],
+        "ioff": "partial-power-down output isolation is specified at VCC=0 V",
+        "oe_active_level": "high",
+        "maximum_propagation_delay_ns_at_3v0_to_3v6": 4.3
+      },
+      "programmable": false,
+      "contacts": {
+        "1OE": {"physical": "1", "role": "signal"}, "1A": {"physical": "2", "role": "signal"}, "2Y": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"}, "2A": {"physical": "5", "role": "signal"}, "1Y": {"physical": "6", "role": "signal"},
+        "2OE": {"physical": "7", "role": "signal"}, "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "ttm_dc2337j5010ahf": {
+      "mpn": "TTM Technologies DC2337J5010AHF",
+      "kind": "0805_10db_2ghz_4ghz_directional_coupler",
+      "qualification": "verified_exact_nrf_forward_power_coupler",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.03, 1.27, 0.55],
+      "source": {
+        "document": "DC2337J5010AHF 10-dB directional coupler datasheet",
+        "version": "Rev. H",
+        "url": "https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "DC2337J5010AHF active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC2337J5010AHF/3069211",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "operating_band_mhz": [2000, 4000],
+        "nrf_channel_0_to_125_coverage_mhz": [2400, 2525],
+        "configuration": "datasheet configuration 2: pin 1 input, pin 6 direct output, pin 2 forward coupled, pin 5 isolated/reverse termination",
+        "coupling_db_2400_2500_min_max": [10.0, 11.1],
+        "coupling_db_2500_3300_min_max": [10.0, 11.2],
+        "mainline_insertion_loss_db_max_2400_2500": 0.22,
+        "mainline_insertion_loss_db_max_2500_3300": 0.25,
+        "directivity_db_min_2400_2500": 20,
+        "directivity_db_min_2500_3300": 18
+      },
+      "programmable": false,
+      "contacts": {
+        "RF_IN": {"physical": "1", "role": "rf"}, "COUPLED_FWD": {"physical": "2", "role": "rf"},
+        "GND_3": {"physical": "3", "role": "power"}, "GND_4": {"physical": "4", "role": "power"},
+        "ISOLATED_REVERSE": {"physical": "5", "role": "rf"}, "RF_OUT": {"physical": "6", "role": "rf"}
+      }
+    },
+    "adi_ad8314acpz_rl7": {
+      "mpn": "Analog Devices AD8314ACPZ-RL7",
+      "kind": "lfcsp8_100mhz_2_7ghz_log_rf_detector",
+      "qualification": "verified_exact_nrf_forward_power_detector",
+      "lifecycle": "production_active_orderable",
+      "dimensions_mm": [3.0, 2.0, 0.85],
+      "source": {
+        "document": "AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet",
+        "version": "Rev. C",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "AD8314ACPZ-RL7 production product and authorized-distributor listing",
+        "url": "https://www.digikey.com/en/products/detail/analog-devices-inc/AD8314ACPZ-RL7/671084",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "frequency_response_mhz": [100, 2700],
+        "typical_input_range_dbm": [-45, 0],
+        "supply_v": [2.7, 5.5],
+        "typical_active_current_ma": 4.5,
+        "maximum_active_current_ma": 5.7,
+        "typical_shutdown_current_ua": 20,
+        "measurement_mode": "VSET tied to V_UP; forward-power evidence uses V_UP",
+        "nrf_channel_125": "inside response band but threshold and temperature margin require conducted HIL"
+      },
+      "programmable": false,
+      "contacts": {
+        "RFIN": {"physical": "1", "role": "rf"}, "ENBL": {"physical": "2", "role": "signal"},
+        "VSET": {"physical": "3", "role": "analog"}, "FLTR": {"physical": "4", "role": "analog"},
+        "COMM": {"physical": "5", "role": "power"}, "V_UP": {"physical": "6", "role": "analog"},
+        "V_DN": {"physical": "7", "role": "analog"}, "VPOS": {"physical": "8", "role": "power"},
+        "EPAD": {"physical": "exposed paddle", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_0749r9l": {
+      "mpn": "Yageo RC0402FR-0749R9L",
+      "kind": "49_9ohm_1pct_0402_rf_termination_resistor",
+      "qualification": "verified_exact_nrf_coupler_isolated_port_termination",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-0749R9L exact product specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0749R9L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0749R9L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0749R9L/726621",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "power"}}
+    },
+    "yageo_rc0402fr_0752r3l": {
+      "mpn": "Yageo RC0402FR-0752R3L",
+      "kind": "52_3ohm_1pct_0402_rf_detector_shunt_match_resistor",
+      "qualification": "verified_exact_ad8314_broadband_input_match",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-0752R3L exact product specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0752R3L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0752R3L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0752R3L/5281040",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "power"}}
+    },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",
       "kind": "tssop16",

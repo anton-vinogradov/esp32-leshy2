@@ -8,6 +8,11 @@
 - Accepted circuit: [`SAFE-0002`](SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 - Inputs: `DEC-0003`, `DEC-0024`, `DEC-0045/0046`, `RES-0001`, `G2F-3I`
 
+> **Позднее уточнение I6:** выбранные здесь три абстрактных nRF detector
+> endpoint заменены exact directional chains из [`N24E-0001`](N24E-0001-exact-three-nrf-electrical-endpoint.md):
+> `DC2337J5010AHF` + `AD8314ACPZ-RL7`. Остальная принятая STOP/evidence
+> архитектура этого сравнительного артефакта не отменяется.
+
 ## Review boundary
 
 Этот артефакт сравнивал варианты и выбрал проверяемую логическую схему и exact

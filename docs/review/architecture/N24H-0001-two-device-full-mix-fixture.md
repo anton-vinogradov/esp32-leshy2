@@ -5,6 +5,7 @@
 - Decision: [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - RF boundary: [`RFQ-0002`](RFQ-0002-g2f-3i-rf-concurrency-boundary.md)
+- Exact DUT endpoint: [`N24E-0001`](N24E-0001-exact-three-nrf-electrical-endpoint.md)
 
 ## Уровни стенда
 
@@ -57,6 +58,10 @@ barrier. Сопоставление выполняется по test ID, radio i
   identity where used, temperature and supply state;
 - transmitted/received/CRC-failed/duplicate/lost counts, FIFO/IRQ latency,
   RPD hits, RX gaps, reset/fault and actual-TX evidence;
+- actual-TX threshold/latency at `RF_CH` 0, 100 and 125, including a strong
+  inbound-only negative case and detector hold through common-rail QOD fall;
+- 10-Mbit/s buffer-path integrity, 100-ms POR, three identity reads and
+  measured rail/no-backpower behavior before the RF role schedule starts;
 - wanted/reference level or a calibrated path-loss proxy. Uncalibrated RSSI
   from an unrelated receiver cannot close nRF sensitivity acceptance.
 

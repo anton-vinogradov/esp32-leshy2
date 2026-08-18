@@ -5,6 +5,7 @@
 - Requirement: [`REQ-N24-0001`](../requirements/REQ-N24-0001-three-nrf24-raw-2g4.md)
 - RF policy: [`DEC-0047`](../decisions/DEC-0047-qualified-nrf-mix-with-external-observer.md)
 - Fixture: [`N24H-0001`](N24H-0001-two-device-full-mix-fixture.md)
+- Exact electrical endpoint: [`N24E-0001`](N24E-0001-exact-three-nrf-electrical-endpoint.md)
 - Legacy geometry: [`AUD-0013`](../audits/AUD-0013-legacy-layout-generator-reuse.md)
 
 ## Проверенные реальные варианты
@@ -62,6 +63,9 @@ thermal acceptance.
 - цена не объявляется без dated authorized-source quote;
 - nRF24 series остаётся NRND, поэтому lot identity, genuine-silicon evidence,
   incoming inspection и alternate-source plan обязательны при любом выборе.
+- `DEC-0091` now physically closes the reference's digital power boundary and
+  full-band forward-power evidence without pretending that `IPX` proves a
+  U.FL mate. Exact received pigtail/SMA qualification remains blocking.
 
 ## Первичные источники
 

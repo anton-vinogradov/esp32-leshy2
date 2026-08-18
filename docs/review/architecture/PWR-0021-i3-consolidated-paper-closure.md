@@ -46,7 +46,7 @@ they are not enclosure-temperature claims.
 | main magnetic + post-buck eFuse | about 0.238 W inductor copper at 2.5 A plus about 0.063 W typical protected-boundary burden | converter switching loss and hot-Ron temperature |
 | voice magnetic + post-buck eFuse | about 0.059 W inductor copper at 1.25 A plus about 0.018 W typical protected-boundary burden | RF/audio duty-cycle temperature |
 | external magnetic + eFuse + bleeder | about 0.094 W inductor copper, 0.044 W typical eFuse conduction at 1.25 A and 0.025 W bleeder | connector/accessory/copper hot spot |
-| AON cutoff | about 9.1-mV/0.18-mW conservative series proxy at 20 mA plus about 0.43 mW typical quiescent burden | cold-start hold-up and enclosure temperature |
+| AON cutoff | about 13.6-mV/0.41-mW conservative series proxy at the amended 30-mA transient plus about 0.43 mW typical quiescent burden | cold-start hold-up and enclosure temperature |
 | TPS/BQ and buck conversion | source admission reserves 15% of negotiated input before charging; system load always wins | treating the 15% reserve as a measured heat number or guaranteed efficiency |
 
 The conversion stages dominate the remaining unknown because manufacturer
@@ -95,4 +95,3 @@ runtime authority and reopen conditions receive **«Проведено ревь�
 paper electrical scope. All physical/lot evidence above remains open and
 visible. I4 paper work may begin; integrated mockup, BOM freeze and KiCad do
 not.
-

@@ -1148,6 +1148,49 @@ def render_principled_pinout(
         "voice_hl_driver": "low-or-open SA518 H/L driver",
         "voice_audio_iso": "dual AFOUT/MIC_IN power-domain isolation switch",
     }
+    nrf_support_instance_names = tuple(
+        instance
+        for instance in candidate["instances"]
+        if (
+            instance in {"nrf0", "nrf1", "nrf2"}
+            or instance.startswith(("nrf0_", "nrf1_", "nrf2_", "nrf_evidence_", "nrf_power_input_", "nrf_power_on_"))
+        )
+    )
+    nrf_roles = {
+        "nrf0": "nRF24-compatible full-function radio 0",
+        "nrf1": "nRF24-compatible full-function radio 1",
+        "nrf2": "nRF24-compatible full-function radio 2",
+        "nrf_power_input_cap": "common nRF switch-input bypass capacitor",
+        "nrf_power_on_pulldown": "common nRF rail fail-low resistor",
+        "nrf_evidence_hold_diode": "actual-TX evidence hold isolation diode",
+        "nrf_evidence_hold_cap": "actual-TX evidence enable hold capacitor",
+        "nrf_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
+    }
+
+    def nrf_role(instance: str) -> str:
+        if instance in nrf_roles:
+            return nrf_roles[instance]
+        suffix_roles = {
+            "host_buffer": "CE/CSN/SCK/MOSI switched-rail Ioff buffer",
+            "return_buffer": "MISO/IRQ switched-rail Ioff buffer",
+            "host_buffer_bypass": "host-buffer local bypass capacitor",
+            "return_buffer_bypass": "return-buffer local bypass capacitor",
+            "module_bulk_cap": "radio-module local bulk capacitor",
+            "module_hf_cap": "radio-module high-frequency bypass capacitor",
+            "coupler": "full-band forward-power directional coupler",
+            "coupler_termination": "coupler isolated-port 49.9-Ohm termination",
+            "detector_match": "AD8314 52.3-Ohm broadband input match",
+            "detector_filter": "AD8314 response filter capacitor",
+            "detector_bypass": "AD8314 local bypass capacitor",
+        }
+        for suffix, role in suffix_roles.items():
+            if instance.endswith(suffix):
+                return role
+        if instance.endswith("_series"):
+            return "22-Ohm isolated-interface source resistor"
+        if instance.endswith(("_pullup", "_pulldown")):
+            return "10-kOhm deterministic interface-state resistor"
+        return instance.replace("_", " ") + " physical component"
 
     full_ledger = render_ledger(database, candidates)
     detail_start = full_ledger.index("\n### `s3` —", full_ledger.index("\n## G2F-3I —")) + 1
@@ -1434,9 +1477,7 @@ def render_principled_pinout(
         "  " + " ~~~ ".join(instance.upper() for instance in audio_instance_names),
         "  end",
         "  subgraph RADIO_ACCESSORY[\"Radio and external-accessory devices\"]",
-        node("nrf0", "nRF24-compatible radio #0 compact IPEX reference"),
-        node("nrf1", "nRF24-compatible radio #1 compact IPEX reference"),
-        node("nrf2", "nRF24-compatible radio #2 compact IPEX reference"),
+        *[node(instance, nrf_role(instance)) for instance in nrf_support_instance_names],
         node("cc", "sub-GHz transceiver"),
         node("u214", "external LoRa/GNSS Cap module"),
         node("u214_i2c_iso", "external I2C stuck-bus isolator"),
@@ -1517,7 +1558,7 @@ def render_principled_pinout(
         "  SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP ~~~ SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP",
         "  SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT",
         "  UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP",
-        "  RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ VOICE",
+        "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
         "  VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
         "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
@@ -1647,9 +1688,15 @@ def render_principled_pinout(
         "  EXT_INDUCTOR --> EXT_INPUT_CAP",
         "  EXT_EFUSE --> EXT_OUTPUT_CAP",
         "  EXT_EFUSE --> EXT_BLEEDER",
-        "  NRF_POWER_SWITCH --> NRF0",
-        "  NRF_POWER_SWITCH --> NRF1",
-        "  NRF_POWER_SWITCH --> NRF2",
+        "  NRF_POWER_SWITCH -->|\"switched 3.3 V\"| NRF0",
+        "  NRF_POWER_SWITCH --> NRF0_HOST_BUFFER",
+        "  NRF_POWER_SWITCH --> NRF0_RETURN_BUFFER",
+        "  NRF_POWER_SWITCH -->|\"switched 3.3 V\"| NRF1",
+        "  NRF_POWER_SWITCH --> NRF1_HOST_BUFFER",
+        "  NRF_POWER_SWITCH --> NRF1_RETURN_BUFFER",
+        "  NRF_POWER_SWITCH -->|\"switched 3.3 V\"| NRF2",
+        "  NRF_POWER_SWITCH --> NRF2_HOST_BUFFER",
+        "  NRF_POWER_SWITCH --> NRF2_RETURN_BUFFER",
         "  CC_POWER_SWITCH --> CC",
         "  MAIN_EFUSE --> SD_POWER_SWITCH -->|\"switched 3.3 V\"| SD",
         "  MAIN_EFUSE -->|\"local input bypass\"| SD_POWER_INPUT_CAP",
@@ -1750,9 +1797,12 @@ def render_principled_pinout(
         f"  S3 <-->|\"profile port: {contacts('s3', ('UNIT_',))}\"| UNIT",
         f"  C5 <-->|\"RMT RX0/power: {contacts('c5', ('IR_',))}\"| IRDEMOD",
         "  C5 <-->|\"RMT RX1/power\"| IRCARRIER",
-        f"  RP <-->|\"PIO0 SM0 + direct control: {contacts('rp', ('NRF0_',))}\"| NRF0",
-        f"  RP <-->|\"PIO0 SM1 + direct control: {contacts('rp', ('NRF1_',))}\"| NRF1",
-        f"  RP <-->|\"PIO0 SM2 + direct control: {contacts('rp', ('NRF2_',))}\"| NRF2",
+        f"  RP -->|\"PIO0 SM0 outputs: {contacts('rp', ('NRF0_',))}\"| NRF0_HOST_BUFFER --> NRF0",
+        "  NRF0 -->|\"MISO + IRQ\"| NRF0_RETURN_BUFFER --> RP",
+        f"  RP -->|\"PIO0 SM1 outputs: {contacts('rp', ('NRF1_',))}\"| NRF1_HOST_BUFFER --> NRF1",
+        "  NRF1 -->|\"MISO + IRQ\"| NRF1_RETURN_BUFFER --> RP",
+        f"  RP -->|\"PIO0 SM2 outputs: {contacts('rp', ('NRF2_',))}\"| NRF2_HOST_BUFFER --> NRF2",
+        "  NRF2 -->|\"MISO + IRQ\"| NRF2_RETURN_BUFFER --> RP",
         f"  RP <-->|\"PIO0 SM3 + GDO/power: {contacts('rp', ('CC_',))}\"| CC",
         f"  RP <-->|\"UART0/PTT request: {contacts('rp', ('VOICE_', 'PTT_'))}\"| VOICE",
         "  PTT_PULLUP -->|\"10 kOhm to 3V3_MAIN\"| PTT_RAW",
@@ -1822,10 +1872,15 @@ def render_principled_pinout(
         "  C5 -->|\"IR carrier request\"| SAFE_GATE_B",
         "  SLOW_IO -->|\"voice/accessory rail requests\"| SAFE_GATE_B",
         "  RP -->|\"PTT request\"| SAFE_PTT_OR --> VOICE_PTT_ISO --> VOICE",
-        "  SAFE_GATE_A --> NRF0",
-        "  SAFE_GATE_A --> NRF1",
-        "  SAFE_GATE_A --> NRF2",
+        "  SAFE_GATE_A -->|\"CE0\"| NRF0_HOST_BUFFER",
+        "  SAFE_GATE_A -->|\"CE1\"| NRF1_HOST_BUFFER",
+        "  SAFE_GATE_A -->|\"CE2\"| NRF2_HOST_BUFFER",
         "  SAFE_GATE_A --> NRF_POWER_SWITCH",
+        "  SAFE_GATE_A --> NRF_EVIDENCE_HOLD_DIODE --> NRF_EVIDENCE_HOLD_CAP",
+        "  NRF_EVIDENCE_HOLD_DIODE --> NRF_EVIDENCE_HOLD_PULLDOWN",
+        "  NRF_EVIDENCE_HOLD_DIODE --> DET_NRF0",
+        "  NRF_EVIDENCE_HOLD_DIODE --> DET_NRF1",
+        "  NRF_EVIDENCE_HOLD_DIODE --> DET_NRF2",
         "  SAFE_GATE_B --> CC_POWER_SWITCH",
         "  SAFE_GATE_B --> VOICE_BUCK",
         "  SAFE_GATE_B --> IRTX",
@@ -1833,9 +1888,12 @@ def render_principled_pinout(
         "  SAFE_GATE_B --> EXT_EFUSE",
         "  S3 --> DET_S3 --> EVIDENCE_CMP_A",
         "  C5 --> DET_C5 --> EVIDENCE_CMP_A",
-        "  NRF0 --> DET_NRF0 --> EVIDENCE_CMP_A",
-        "  NRF1 --> DET_NRF1 --> EVIDENCE_CMP_A",
-        "  NRF2 --> DET_NRF2 --> EVIDENCE_CMP_B",
+        "  NRF0 -->|\"qualified pigtail\"| NRF0_COUPLER -->|\"dedicated SMA\"| NRF0_EXTERNAL_RF_50R",
+        "  NRF0_COUPLER -->|\"10-dB forward sample\"| DET_NRF0 --> EVIDENCE_CMP_A",
+        "  NRF1 -->|\"qualified pigtail\"| NRF1_COUPLER -->|\"dedicated SMA\"| NRF1_EXTERNAL_RF_50R",
+        "  NRF1_COUPLER -->|\"10-dB forward sample\"| DET_NRF1 --> EVIDENCE_CMP_A",
+        "  NRF2 -->|\"qualified pigtail\"| NRF2_COUPLER -->|\"dedicated SMA\"| NRF2_EXTERNAL_RF_50R",
+        "  NRF2_COUPLER -->|\"10-dB forward sample\"| DET_NRF2 --> EVIDENCE_CMP_B",
         "  CC --> DET_CC --> EVIDENCE_CMP_B",
         "  VOICE --> DET_VOICE --> EVIDENCE_CMP_B",
         "  IRTX --> DET_IR --> EVIDENCE_CMP_B",

@@ -28,7 +28,7 @@ candidate/reference. Ни один его MPN, net или physical holder не �
 
 | Load class | Continuous allowance | Transient allowance | Current basis / uncertainty |
 |---|---:|---:|---|
-| `AON_SAFE_3V3` | `5 mA` minimum | `8 mA` minimum | accepted `SAFE-0002`: latch/gates, 7 RF detectors, optical evidence, comparators, mask and critical LEDs |
+| `AON_SAFE_3V3` | `5 mA` minimum | `30 mA` minimum | `SAFE-0002` amended by `DEC-0091`: parked nRF detectors shut down, but three active AD8314 add 13.5 mA typical / 17.1 mA listed maximum during nRF operation/evidence hold |
 | ESP32-S3 branch | `450 mA` | inside common `3 A` step | manufacturer Wi-Fi peak plus PSRAM/I/O margin from `PWR-0001` |
 | ESP32-C5 branch | `500 mA` | inside common `3 A` step | manufacturer 5-GHz TX peak plus PSRAM/I/O margin from `PWR-0001` |
 | RP2354B branch | `100 mA` | `150 mA` local | architecture allowance until exact clocks/PIO workload are measured |

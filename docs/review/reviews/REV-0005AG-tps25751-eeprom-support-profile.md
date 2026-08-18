@@ -18,7 +18,7 @@
 | Blank first image | pre-placement programming or current-limited raw-VBUS ISP after ReadyForPatch/I2Cc-high-Z proof; no LDO-output injection |
 | Local bus | old charger-only 10-kOhm SCL/SDA pair replaced by complete-bus 2.2-kOhm pair; INT remains 10 kOhm |
 | Host bus | exact 2.2-kOhm SCL/SDA and 10-kOhm wired-low IRQ pulls added to 3V3_MAIN |
-| AON | TPS maximum active current included in 15-mA continuous / 20-mA transient contract; no converter change |
+| AON | TPS maximum active current was included in the 15-mA continuous / 20-mA transient contract; later `DEC-0091` raises transient reserve to 30 mA for nRF evidence without a converter change |
 | Cost | three new active/orderable MPN lines; approximately $1.15…1.45 total support material, mostly reused bulk |
 | Product diagrams | 17 support parts appear as 17 distinct MPN-and-role boxes in both target landing pages |
 | Firmware | SafeMode, autonomous boot, WP open-drain and PPHV/IINDPM/CE ordering are contractual inputs |

@@ -108,7 +108,8 @@ TPS25974 quiescent input is about 0.41 mA typical; divider burden keeps the
 non-load overhead in the low-milliwatt range. The TPS25961 low-voltage/
 low-current datasheet condition nearest the selected profile is about
 455 mOhm, not its 12-V headline value: as a conservative paper proxy it drops
-about 9.1 mV and dissipates about 0.18 mW at a representative 20-mA load. Its
+about 13.6 mV and dissipates about 0.41 mW at the amended representative
+30-mA transient load. Its
 130-uA typical quiescent current adds roughly 0.43 mW.
 Hot-Ron and board temperature remain measured gates, not inferred guarantees.
 

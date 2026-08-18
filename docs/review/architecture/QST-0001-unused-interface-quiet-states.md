@@ -1,6 +1,6 @@
 # QST-0001 — unused-interface quiet-state contracts
 
-- Статус: **Проведено ревью требования; exact electrical/HIL открыты**
+- Статус: **Проведено ревью требования; three-nRF paper circuit reviewed, remaining electrical/HIL open**
 - Дата: 2026-08-17
 - Decision: [`DEC-0046`](../decisions/DEC-0046-unused-interface-quiet-by-default.md)
 - Signal groups: [`DEC-0045`](../decisions/DEC-0045-one-active-signal-group.md)
@@ -30,7 +30,7 @@ bus clocks или powered frontend только потому, что driver за
 
 | Interface/domain | Inactive state | Управление в paper map | Обязательное доказательство |
 |---|---|---|---|
-| `nrf0+nrf1+nrf2` | pre-off CE low/CSN deasserted; then common `RAIL-OFF`, all signal paths isolated/high-Z and three PIO/DMA stopped | RP CE requests and `GPIO15` rail request pass through exact `SN74LVC08APWR` AON gates with output pull-downs; exact load switch/I/O isolation follows in I3/I6 | no I/O back-power, rail discharge/current, no carrier, active-path sensitivity under parked digital aggression |
+| `nrf0+nrf1+nrf2` | pre-off CE low/CSN deasserted; then common `RAIL-OFF`, all signal paths isolated/high-Z and three PIO/DMA stopped | exact `TPS22919DCKR`; per radio `74LVC126APW,118` for CE/CSN/SCK/MOSI and `74LVC2G126DC,125` for MISO/IRQ, all OEs on the switched rail with Ioff, two-domain pulls and 22-Ohm output resistors; `DEC-0091` | HIL still proves 100-ms POR, no I/O back-power, QOD discharge/current, no carrier, detector hold and active-path sensitivity under parked digital aggression |
 | `CC1101` | pre-off IDLE/power-down and CSN deasserted; then `RAIL-OFF`, SPI/GDO isolated/high-Z and PIO/DMA stopped | `RP.GPIO23` request passes through exact AON gate; output pull-down and later exact load switch/isolation | no back-power through SPI/GDO, rail/current/no-carrier evidence |
 | `U214` / external Cap | `RAIL-OFF`, I²C isolated, SPI/UART static | `slow_io.P17` request passes through AON gate to protected reverse-safe `EXT_5V_EN_SAFE`; TCA4307 EN follows power-good | accessory rail discharge, isolation READY/status, hot-unplug and no-back-power HIL |
 | voice radio | PTT hardware-off, module power-down and qualified 4 V rail off | exact AON AND gate controls voice rail; exact OR makes `VOICE_PTT_SAFE_N = request OR TX_KILL`, with module-side pull-up | actual-TX-off, rail/current/thermal and PTT stuck/fault injection |
@@ -80,6 +80,7 @@ For every group transition, a HIL trace must show:
 5. any unknown status, stuck rail/line or timeout leaves group `NONE` and TX
    disarmed.
 
-Until exact power parts and this matrix pass, the quiet-state requirement is
-reviewed, but the electrical implementation and physical non-interference are
-not marked «Проведено ревью».
+The three-nRF paper electrical implementation is now marked
+**«Проведено ревью subblock»** by `N24E-0001/DEC-0091/REV-0005AV`. Its physical
+non-interference remains HIL. Every other row keeps the prior rule: requirement
+review alone is not electrical or physical acceptance.

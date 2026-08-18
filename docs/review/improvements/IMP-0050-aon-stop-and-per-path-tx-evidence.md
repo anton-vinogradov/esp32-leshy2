@@ -8,6 +8,11 @@
 - Decision: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md)
 - Exact circuit: [`SAFE-0002`](../architecture/SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 
+> **Позднее уточнение I6:** три nRF detector endpoint из исходного варианта A
+> заменены exact directional chains `DC2337J5010AHF` + `AD8314ACPZ-RL7` в
+> [`N24E-0001`](../architecture/N24E-0001-exact-three-nrf-electrical-endpoint.md).
+> Это уточняет способ получения evidence и не переоткрывает принятое решение A.
+
 ## Текущее состояние и причина решения
 
 Принцип hard STOP уже принят, но exact circuit отсутствует, а старый текст
