@@ -1,6 +1,6 @@
 # QST-0001 — unused-interface quiet-state contracts
 
-- Статус: **Проведено ревью требования; three-nRF paper circuit reviewed, remaining electrical/HIL open**
+- Статус: **Проведено ревью требования и всех отдельных base RF/IR paper endpoints; consolidated HIL open**
 - Дата: 2026-08-17
 - Decision: [`DEC-0046`](../decisions/DEC-0046-unused-interface-quiet-by-default.md)
 - Signal groups: [`DEC-0045`](../decisions/DEC-0045-one-active-signal-group.md)
@@ -34,7 +34,7 @@ bus clocks или powered frontend только потому, что driver за
 | `CC1101` | pre-off IDLE/power-down and CSN deasserted; then `RAIL-OFF`, SPI/GDO isolated/high-Z and PIO/DMA stopped | `RP.GPIO23` request passes through exact AON gate; output pull-down and later exact load switch/isolation | no back-power through SPI/GDO, rail/current/no-carrier evidence |
 | `U214` / external Cap | `RAIL-OFF`, I²C isolated, SPI/UART static | `slow_io.P17` request passes through AON gate to protected reverse-safe `EXT_5V_EN_SAFE`; TCA4307 EN follows power-good | accessory rail discharge, isolation READY/status, hot-unplug and no-back-power HIL |
 | voice radio | PTT hardware-off, module power-down and qualified 4 V rail off | exact AON AND gate controls voice rail; exact OR makes `VOICE_PTT_SAFE_N = request OR TX_KILL`, with module-side pull-up | actual-TX-off, rail/current/thermal and PTT stuck/fault injection |
-| Si473x-class receiver | receiver rail/reset off, I²C branch cannot back-power, audio muted | `slow_io.P15 → RX_DOMAIN_EN` controls exact power/reset/isolation circuit after MPN selection | isolated sensitivity of another radio, I²C back-power and wake/calibration HIL |
+| `Si4732-A10-GSR` receiver | receiver rail/reset off, I²C branch cannot back-power, audio muted; two passive RX ports remain protected | `slow_io.P15 → RX_DOMAIN_EN` controls exact power/reset/isolation; separate exact FMI 56-nH/1-nF and AMI 0.47-uF/ESD paths add no control | all four bands, loop-pod parasitics, isolated sensitivity of another radio, I²C back-power and wake/calibration HIL |
 | codec/audio path | codec off/muted, I²S clock/DMA stopped | external `CODEC_PWR_EN`, selector safe state, S3 I²S gate; ES8311 `CE` remains fixed address strap | no I/O back-power, BCLK/WS, pop/click/current and RF noise-floor HIL |
 | IR RX/TX frontend | frontend rail off; TX remains under `HARD_STOP_N` | `C5.GPIO4 → IR_FRONTEND_PWR_EN`; RMT carrier passes through exact AON gate before the driver | dark/current/no-optical-output evidence and active-radio noise-floor HIL |
 | S3 Wi-Fi/BLE/ESP-NOW | `NATIVE-OFF`; S3 CPU/UI remains alive | stop protocols/scans/advertising, disable RF block, check `S3_RF_TX_EVIDENCE` | no background frames/carrier and active receiver desense HIL |
@@ -56,9 +56,10 @@ The quiet-state requirement consumes three formerly free direct controls:
 After later `DEC-0052`, S3 GPIO41/42 become QSPI D2/D3. Subsequent
 `AUDIO-0002/FND-0067` assigns slow P27 to the previously omitted
 `RX_AUDIO_SOURCE_SEL`. Current remaining direct general-purpose reserve is
-S3=1, C5=1, RP=0, and the slow plane has no reserve. This is not yet a schematic:
-exact load-switch/I/O-isolator MPN, discharge time, voltage domains, default pulls
-and sequencing must be selected together with the frontends. A future direct
+S3=0, C5=1 and RP=0. Main slow I/O retains P05 as its only free contact; the
+separate UI expander retains P7 as a protected fixture/growth reserve. The
+individual paper endpoints now contain exact first-target switches, isolation,
+default pulls and passive frontends, but physical/HIL evidence remains open. A future direct
 RP timing endpoint now requires a remap or justified expander/latch; it cannot
 be silently added.
 
@@ -80,7 +81,7 @@ For every group transition, a HIL trace must show:
 5. any unknown status, stuck rail/line or timeout leaves group `NONE` and TX
    disarmed.
 
-The three-nRF paper electrical implementation is now marked
-**«Проведено ревью subblock»** by `N24E-0001/DEC-0091/REV-0005AV`. Its physical
-non-interference remains HIL. Every other row keeps the prior rule: requirement
-review alone is not electrical or physical acceptance.
+Every separate base RF/IR paper endpoint is now marked **«Проведено ревью
+subblock»** through `DEC-0091…0096/REV-0005AV…BA`. Their physical
+non-interference remains HIL. Requirement review alone is not electrical or
+physical acceptance, and consolidated I6 remains active.

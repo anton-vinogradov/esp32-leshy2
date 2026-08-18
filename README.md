@@ -58,6 +58,14 @@ privacy or the target owner's authorization.
   AON-held `AD8314ACPZ-RL7`; incoming RF can never authorize transmission.
 - The Sub-GHz path handles packet systems; a broadcast receiver covers
   AM/FM/SW/LW; a VHF/UHF voice path provides analog communication and audio.
+- The `Si4732-A10-GSR` keeps separate protected receive-only ports: FM/SW uses
+  `FMI`, with `LQW15AN56NJ00D` 56-nH matching plus
+  `GRM1555C1H102JA01D` 1-nF coupling as the FM starting network;
+  AM/LW uses `GRM155R71A474KE01D` 0.47-uF coupling into a short labelled loop
+  pod. Each boundary has its own `SESD0402X1UN-0020-090`; the AM/LW port is
+  explicitly non-50-Ohm and arbitrary long coax is not supported. SW remains
+  on the exact chip's published FMI input, but sensitivity is qualified from
+  the complete path rather than inferred from the FM reference circuit.
 - The exact audio endpoint can route either selected receive audio or the local
   electret microphone into the codec, play through a reset-off 4-Ohm speaker,
   or use insertion-detected 3.5-mm headphones. Codec, receiver and SA518 buses
@@ -436,12 +444,19 @@ flowchart TD
   SDDETR["RC0603FR-071KL #SD-DETECT<br/>1-kOhm card-detect input series resistor"]
   SDDETPU["RC0402FR-0710KL #SD-DETECT<br/>10-kOhm always-readable card-detect pull-up"]
   SDDETC["C1005X7R1H104K050BB #SD-DETECT<br/>100-nF card-detect hardware filter capacitor"]
-  SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
+  SI["Si4732-A10-GSR<br/>AM/FM/SW/LW broadcast receiver"]
   RXCLK["Q13FC13500005<br/>32.768-kHz receiver crystal"]
   RXCLKC0["GRM1555C1H220JA01D #RX-RCLK<br/>22-pF receiver crystal capacitor"]
   RXCLKC1["GRM1555C1H220JA01D #RX-GPO3<br/>22-pF receiver crystal capacitor"]
   RXSUP["TPS3839K33DBZR #RX<br/>3.08-V 200-ms receiver supervisor"]
   RXI2C["SN74LVC2G66DCUR #RX-I2C<br/>receiver I²C power isolation"]
+  RXFMESD["SESD0402X1UN-0020-090 #RX-FM/SW<br/>0.2-pF RF ESD shunt"]
+  RXFML["LQW15AN56NJ00D<br/>56-nH high-Q FM first target on FM/SW port"]
+  RXFMC["GRM1555C1H102JA01D<br/>1-nF C0G FMI coupling capacitor"]
+  RXFMSMA["MPN TBD after mechanics<br/>dedicated FM/SW standard-SMA receive endpoint"]
+  RXAMESD["SESD0402X1UN-0020-090 #RX-AM/LW<br/>0.2-pF RF ESD shunt"]
+  RXAMC["GRM155R71A474KE01D<br/>0.47-uF AMI coupling capacitor"]
+  RXAMSMA["MPN TBD after mechanics<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA endpoint"]
   CODEC["Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec"]
   CODECSUP["TPS3839K33DBZR #CODEC<br/>3.08-V 200-ms codec-interface supervisor"]
   CODECI2C["SN74LVC2G66DCUR #ES8311-I2C<br/>codec I²C power isolation"]
@@ -675,7 +690,7 @@ flowchart TD
   UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
   UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
   UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ ENCPTTESD ~~~ PTTPU ~~~ PTTR ~~~ PTTC ~~~ PTTRAW ~~~ TPIRQPU ~~~ TPIRQRAW ~~~ TPIRQ ~~~ TPIRQBP
-  TPIRQBP ~~~ SI ~~~ RXCLK ~~~ RXCLKC0 ~~~ RXCLKC1 ~~~ RXSUP ~~~ RXI2C ~~~ RXMUX ~~~ CAPSEL ~~~ BUF
+  TPIRQBP ~~~ SI ~~~ RXCLK ~~~ RXCLKC0 ~~~ RXCLKC1 ~~~ RXSUP ~~~ RXI2C ~~~ RXFMESD ~~~ RXFML ~~~ RXFMC ~~~ RXFMSMA ~~~ RXAMESD ~~~ RXAMC ~~~ RXAMSMA ~~~ RXMUX ~~~ CAPSEL ~~~ BUF
   BUF ~~~ CODEC ~~~ CODECSUP ~~~ CODECI2C ~~~ CODECBCLK ~~~ CODECWS ~~~ CODECDOUT ~~~ CODECDIN ~~~ SAFE ~~~ SPKSEL ~~~ PAM
   PAM ~~~ SPKBEADP ~~~ SPKBEADN ~~~ SPK ~~~ MIC ~~~ MICFILT ~~~ AGNDLINK ~~~ HPJACK ~~~ HPESD ~~~ TXSEL
   TXSEL ~~~ SA ~~~ VOICESUP ~~~ VOICEIOSW ~~~ VOICEPTT ~~~ VOICEUART ~~~ VOICEHL ~~~ VOICEAUDIO ~~~ LCDCON ~~~ LCD ~~~ LCDTDDI ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
@@ -974,6 +989,10 @@ flowchart TD
   RXCLKC0 --> SI
   RXCLKC1 --> SI
   RXSUP -->|"reset and 200-ms interface release"| RXI2C
+  RXFMSMA --> RXFMESD
+  RXFMSMA --> RXFML --> RXFMC -->|"FMI contact 6"| SI
+  RXAMSMA --> RXAMESD
+  RXAMSMA --> RXAMC -->|"AMI contact 8"| SI
   CODECSUP -->|"200-ms interface release"| CODECI2C
   CODECSUP --> CODECBCLK
   SI --> RXMUX --> CAPSEL --> BUF --> CODEC

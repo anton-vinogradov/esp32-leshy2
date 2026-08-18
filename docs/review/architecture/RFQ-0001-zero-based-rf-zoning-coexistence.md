@@ -25,7 +25,7 @@
 Exact antennas/connectors remain stage 4/5 choices. RF paths may share an enclosure but may not be collapsed through an RF switch/diplexer unless the replacement preserves required simultaneous receive, calibration, loss, fail-safe isolation and every supported band. In particular, merging `RF-CC`, `RF-RX` or `RF-VOICE` merely because some bands overlap is not zero-loss.
 
 [`ANT-0001`](ANT-0001-external-sma-path-inventory.md) further decomposes
-`RF-RX`: exact `Si4732-A10-GS` exposes `FMI` and `AMI` as different antenna
+`RF-RX`: exact `Si4732-A10-GSR` exposes `FMI` and `AMI` as different antenna
 inputs. They do not create simultaneous receiver modes, but one generic SMA
 cannot be assumed to preserve both frontends. The external endpoint count is
 therefore resolved as two dedicated ports by [`DEC-0049`](../decisions/DEC-0049-nine-dedicated-external-sma-paths.md), while exact frontends and HIL remain open.

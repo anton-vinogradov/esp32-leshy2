@@ -194,14 +194,18 @@ AD8314 5.1-kOhm/52.3-Ohm actual-TX sample. The lower-voltage CC TVS is not
 reused, no unproven filter bank spends P05, and a measured conducted failure
 explicitly reopens that choice. Voice RF HIL remains open; I6 continues with
 IR and consolidated coexistence under the same no-KiCad boundary.
-`FND-0100/IRF-0001/DEC-0095/REV-0005AZ` then close the last separate I6 paper
-endpoint. Exact top-view SMD `TSOP95238TT` and `TSMP95000TT` retain robust
+`FND-0100/IRF-0001/DEC-0095/REV-0005AZ` then close the IR paper endpoint.
+Exact top-view SMD `TSOP95238TT` and `TSMP95000TT` retain robust
 demodulation plus measured 30-60-kHz carrier learning behind one discharged
 receive rail and Ioff return buffer. Exact `VSMY14940`, 33-Ohm limit,
 `DMN2056U-7` and the existing STOP gate close TX; shielded `VEMD1060X01` plus
 AON `TLV9061IDBVR` verify physical light rather than current. Pin budgets do
-not change. Optical/thermal/IEC and consolidated coexistence HIL remain open;
-I6 and the no-KiCad boundary continue.
+not change. `FND-0101/RXF-0001/DEC-0096/REV-0005BA` subsequently catch the
+still-abstract Si4732 FMI/AMI endpoints and add separate protected FM/SW and
+non-50-Ohm AM/LW first-target circuits. `FND-0102/REV-0005BB` then correct the
+entire shifted SOIC-16 machine contact map from the visually inspected
+manufacturer package drawing and lock all 16 contacts. Optical/thermal/IEC and consolidated
+coexistence HIL remain open; I6 and the no-KiCad boundary continue.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

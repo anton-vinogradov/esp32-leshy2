@@ -19,7 +19,8 @@
 
 ## Result
 
-The IR paper subblock receives **«Проведено ревью»**. This closes the last
-separate I6 endpoint, not I6 as a whole: optical, thermal, electrical,
-conducted/OTA and whole-device coexistence/no-stall HIL remain mandatory.
-No KiCad or integrated-mockup authorization follows from this review.
+The IR paper subblock receives **«Проведено ревью»**. `FND-0101/DEC-0096`
+later correct the missed abstract Si4732 FMI/AMI paths, so this was not the last
+separate I6 endpoint. Optical, thermal, electrical, conducted/OTA and
+whole-device coexistence/no-stall HIL remain mandatory. No KiCad or
+integrated-mockup authorization follows from this review.

@@ -275,7 +275,7 @@ flowchart TD
   VOICE_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>voice evidence hold diode physical component"]
   VOICE_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>voice evidence hold cap physical component"]
   VOICE_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>voice evidence hold pulldown physical component"]
-  RECEIVER["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
+  RECEIVER["Si4732-A10-GSR<br/>AM/FM/SW/LW broadcast receiver"]
   CODEC["Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec"]
   AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>Si4732/SA518 receive-audio source selector"]
   AUDIO_RX_MUX_BYPASS["TDK C1005X7R1H104K050BB<br/>audio rx mux bypass physical component"]
@@ -399,6 +399,11 @@ flowchart TD
   RECEIVER_CLOCK_CAP_RCLK["Murata GRM1555C1H220JA01D<br/>receiver clock cap rclk physical component"]
   RECEIVER_CLOCK_CAP_GPO3["Murata GRM1555C1H220JA01D<br/>receiver clock cap gpo3 physical component"]
   RECEIVER_SENB_PULLDOWN["Yageo RC0402FR-0710KL<br/>receiver senb pulldown physical component"]
+  RECEIVER_FMI_ESD["Littelfuse SESD0402X1UN-0020-090<br/>FM/SW-boundary 0.2-pF RF ESD shunt"]
+  RECEIVER_FMI_MATCH_INDUCTOR["Murata LQW15AN56NJ00D<br/>56-nH high-Q FM first target on FM/SW port"]
+  RECEIVER_FMI_COUPLING_CAP["Murata GRM1555C1H102JA01D<br/>1-nF C0G FMI AC-coupling capacitor"]
+  RECEIVER_AMI_ESD["Littelfuse SESD0402X1UN-0020-090<br/>AM/LW-boundary 0.2-pF RF ESD shunt"]
+  RECEIVER_AMI_COUPLING_CAP["Murata GRM155R71A474KE01D<br/>0.47-uF AMI AC-coupling capacitor"]
   VOICE_SUPERVISOR["TPS3808G33DBVR<br/>STOP-qualified protected-4-V voice supervisor"]
   VOICE_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>voice supervisor bypass physical component"]
   VOICE_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-0747KL<br/>voice supervisor sense top physical component"]
@@ -422,7 +427,7 @@ flowchart TD
   VOICE_AUDIO_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice audio iso bypass physical component"]
   VOICE_AUDIO_ON_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice audio on pulldown physical component"]
   %% Audio layout-only invisible spine: every box above is one physical device.
-  VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM ~~~ AUDIO_VMID_CAP ~~~ AUDIO_GROUND_LINK ~~~ SI_AUDIO_L_COUPLING ~~~ SI_AUDIO_R_COUPLING ~~~ SI_AUDIO_L_SUM ~~~ SI_AUDIO_R_SUM ~~~ SI_AUDIO_SUM_BIAS ~~~ VOICE_RX_COUPLING ~~~ VOICE_RX_SERIES ~~~ VOICE_RX_BIAS ~~~ AUDIO_CAPTURE_SELECTOR ~~~ AUDIO_CAPTURE_SELECTOR_BYPASS ~~~ AUDIO_CAPTURE_SEL_PULLDOWN ~~~ AUDIO_CAPTURE_RX_COUPLING ~~~ AUDIO_CAPTURE_RX_BIAS ~~~ AUDIO_CAPTURE_MIC_COUPLING ~~~ AUDIO_CAPTURE_MIC_BIAS ~~~ AUDIO_CAPTURE_INPUT_COUPLING ~~~ AUDIO_CAPTURE_LOCAL_BIAS_TOP ~~~ AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM ~~~ AUDIO_CAPTURE_LOCAL_BIAS_CAP ~~~ AUDIO_CAPTURE_BUFFER ~~~ AUDIO_CAPTURE_BUFFER_BYPASS ~~~ CODEC_ADC_P_COUPLING ~~~ CODEC_ADC_P_SERIES ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN ~~~ SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR ~~~ AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS ~~~ AUDIO_SPEAKER_REQ_PULLDOWN ~~~ AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P ~~~ SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADPHONE_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN
+  VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM ~~~ AUDIO_VMID_CAP ~~~ AUDIO_GROUND_LINK ~~~ SI_AUDIO_L_COUPLING ~~~ SI_AUDIO_R_COUPLING ~~~ SI_AUDIO_L_SUM ~~~ SI_AUDIO_R_SUM ~~~ SI_AUDIO_SUM_BIAS ~~~ VOICE_RX_COUPLING ~~~ VOICE_RX_SERIES ~~~ VOICE_RX_BIAS ~~~ AUDIO_CAPTURE_SELECTOR ~~~ AUDIO_CAPTURE_SELECTOR_BYPASS ~~~ AUDIO_CAPTURE_SEL_PULLDOWN ~~~ AUDIO_CAPTURE_RX_COUPLING ~~~ AUDIO_CAPTURE_RX_BIAS ~~~ AUDIO_CAPTURE_MIC_COUPLING ~~~ AUDIO_CAPTURE_MIC_BIAS ~~~ AUDIO_CAPTURE_INPUT_COUPLING ~~~ AUDIO_CAPTURE_LOCAL_BIAS_TOP ~~~ AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM ~~~ AUDIO_CAPTURE_LOCAL_BIAS_CAP ~~~ AUDIO_CAPTURE_BUFFER ~~~ AUDIO_CAPTURE_BUFFER_BYPASS ~~~ CODEC_ADC_P_COUPLING ~~~ CODEC_ADC_P_SERIES ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN ~~~ SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR ~~~ AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS ~~~ AUDIO_SPEAKER_REQ_PULLDOWN ~~~ AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P ~~~ SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADPHONE_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN
   end
   subgraph RADIO_ACCESSORY["Radio and external-accessory devices"]
   S3_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle"]
@@ -614,6 +619,8 @@ flowchart TD
   VOICE_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>actual-TX evidence enable hold capacitor"]
   VOICE_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>actual-TX evidence hold discharge resistor"]
   VOICE_EXTERNAL_RF["MPN TBD after mechanics<br/>voice dedicated external standard-SMA endpoint"]
+  RX_FMSW_EXTERNAL_RF["MPN TBD after mechanics<br/>dedicated FM/SW standard-SMA receive endpoint"]
+  RX_AMLW_EXTERNAL_RF["MPN TBD after mechanics<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA endpoint"]
   %% Voice-RF layout-only invisible spine: every box above is one physical device.
   VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
@@ -1048,6 +1055,10 @@ flowchart TD
   VOICE_IO_POWER_SWITCH --> VOICE_UART_TX_ISO
   VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_ISO
   SLOW_IO -->|"P14 low-or-open power select"| VOICE_HL_DRIVER --> VOICE
+  RX_FMSW_EXTERNAL_RF --> RECEIVER_FMI_ESD
+  RX_FMSW_EXTERNAL_RF --> RECEIVER_FMI_MATCH_INDUCTOR --> RECEIVER_FMI_COUPLING_CAP -->|"FMI contact 6"| RECEIVER
+  RX_AMLW_EXTERNAL_RF --> RECEIVER_AMI_ESD
+  RX_AMLW_EXTERNAL_RF --> RECEIVER_AMI_COUPLING_CAP -->|"AMI contact 8"| RECEIVER
   STOP_PULLUP -->|"10 kOhm to AON_SAFE_3V3"| STOP_LOOP
   STOP_FILTER_CAP -->|"10 nF to safety ground"| STOP_LOOP
   STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP
@@ -1156,8 +1167,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `NRF1-qualified-module-pigtail-mate`
 - `NRF2-dedicated-standard-SMA`
 - `NRF2-qualified-module-pigtail-mate`
-- `RX-AM-LW-loop-pod`
-- `RX-FM-SW-SMA-front-end`
+- `RX-AM-LW-keyed-loop-pod-standard-SMA`
+- `RX-FM-SW-dedicated-standard-SMA`
 - `S3-dedicated-external-reverse-polarity-SMA`
 - `S3-placement-qualified-double-ended-UFL-jumper`
 - `SYS_INT_N_WIRED_LOW`
@@ -1202,6 +1213,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `qualified-evidence-threshold-7`
 - `reserved-local-control-expansion-pad`
 - `rf-ground`
+- `rf-ground-dedicated-via`
 - `safety-ground`
 - `safety-ground-dedicated-via`
 - `safety-ground-via-10k`
@@ -2526,8 +2538,15 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `LCD_IM2_LOW` | `display_connector.PIN_40` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `CODEC_PWR_EN` | `slow_io.P10` | `codec_power_switch.ON` | off-safe exact TPS22919 switch; ES8311 CE remains only its 0x19 address strap |
 | `RX_DOMAIN_EN` | `slow_io.P15` | `receiver_power_switch.ON` | off-safe exact TPS22919 receiver switch |
-| `RX_FMI_RF` | `receiver.FMI` | `abstract:RX-FM-SW-SMA-front-end` | dedicated external-SMA whip path; exact matching and input protection close in I6 |
-| `RX_AMI_RF` | `receiver.AMI` | `abstract:RX-AM-LW-loop-pod` | dedicated short loop or buffered-pod path; generic long coax remains unqualified |
+| `RX_FMSW_BOUNDARY_RF` | `abstract:RX-FM-SW-dedicated-standard-SMA` | `receiver_fmi_esd.K` | one exact 0.2-pF-typical shunt protects only the dedicated FM/SW receive boundary |
+| `RX_FMSW_ESD_GROUND` | `receiver_fmi_esd.A` | `abstract:rf-ground-dedicated-via` | shortest boundary return keeps antenna discharge out of receiver signal-ground routing |
+| `RX_FMSW_PROTECTED_RF` | `abstract:RX-FM-SW-dedicated-standard-SMA` | `receiver_fmi_match_inductor.END_1` | receive-only FM/SW line enters the exact first-pass 56-nH high-Q series match |
+| `RX_FMSW_MATCHED_RF` | `receiver_fmi_match_inductor.END_2` | `receiver_fmi_coupling_cap.END_1` | the series elements follow the family FMI whip first target; wideband acceptance remains measured |
+| `RX_FMI_RF` | `receiver_fmi_coupling_cap.END_2` | `receiver.FMI` | exact 1-nF C0G AC coupling is placed immediately at Si4732 physical contact 6 |
+| `RX_AMLW_BOUNDARY_RF` | `abstract:RX-AM-LW-keyed-loop-pod-standard-SMA` | `receiver_ami_esd.K` | a separate exact low-capacitance shunt protects the dedicated non-50-Ohm loop/pod boundary |
+| `RX_AMLW_ESD_GROUND` | `receiver_ami_esd.A` | `abstract:rf-ground-dedicated-via` | shortest boundary return keeps discharge current outside the sensitive AMI loop |
+| `RX_AMLW_PROTECTED_RF` | `abstract:RX-AM-LW-keyed-loop-pod-standard-SMA` | `receiver_ami_coupling_cap.END_1` | only a short labelled ferrite-loop or qualified transformer pod may feed this non-50-Ohm port |
+| `RX_AMI_RF` | `receiver_ami_coupling_cap.END_2` | `receiver.AMI` | exact 0.47-uF AC coupling is placed immediately at Si4732 physical contact 8; generic long coax is forbidden |
 | `POWER_GROUND` | `abstract:power-ground` | `audio_ground_link.END_1` | one explicit zero-Ohm star entry prevents class-D return current from crossing the codec input region |
 | `AUDIO_GROUND` | `audio_ground_link.END_2` | `abstract:audio-ground` | audio ground is a routed local region, not a second floating product ground |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_vmid_top.END_1` | 100-kOhm upper leg creates the always-available analog midpoint |
@@ -3370,7 +3389,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `voice_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `voice_detector_match` lifecycle: `active_orderable`.
 - `voice_evidence_hold_cap` lifecycle: `active_production`.
-- `receiver` lifecycle: `manufacturer_documented`.
+- `receiver` uses `Si4732-A10-GSR` as `verified_exact_production_candidate`, not an accepted production choice.
+- `receiver` lifecycle: `active_orderable`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
 - `slow_io_bulk_cap` lifecycle: `active_production`.
 - `slow_io_stop_sense_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
@@ -3449,6 +3469,16 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `receiver_clock` lifecycle: `active_orderable`.
 - `receiver_clock_cap_rclk` lifecycle: `active_orderable`.
 - `receiver_clock_cap_gpo3` lifecycle: `active_orderable`.
+- `receiver_fmi_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
+- `receiver_fmi_esd` lifecycle: `active_orderable`.
+- `receiver_fmi_match_inductor` uses `Murata LQW15AN56NJ00D` as `verified_exact_si4732_fmi_first_target`, not an accepted production choice.
+- `receiver_fmi_match_inductor` lifecycle: `active_orderable`.
+- `receiver_fmi_coupling_cap` uses `Murata GRM1555C1H102JA01D` as `verified_exact_si4732_fmi_first_target`, not an accepted production choice.
+- `receiver_fmi_coupling_cap` lifecycle: `active_orderable`.
+- `receiver_ami_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
+- `receiver_ami_esd` lifecycle: `active_orderable`.
+- `receiver_ami_coupling_cap` uses `Murata GRM155R71A474KE01D` as `verified_exact_si4732_ami_first_target`, not an accepted production choice.
+- `receiver_ami_coupling_cap` lifecycle: `active_orderable`.
 - `ir_power_input_cap` lifecycle: `active_production`.
 - `ir_demod` uses `Vishay TSOP95238TT` as `verified_exact_robust_ir_receiver`, not an accepted production choice.
 - `ir_demod` lifecycle: `active_orderable_factory_lead_time`.
@@ -3506,10 +3536,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
 - DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
-- DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates. DEC-0090 now closes the exact switches/isolators, discharge and no-back-power sequencing for the I5 audio/receiver/voice domains; exact RF-group load switches, RF-front-end isolation and quiet-state EMI remain I6 gates, leaving no free direct RP GPIO
+- DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates. DEC-0090 closes the exact audio/receiver/voice switches, isolation, discharge and no-back-power sequence; DEC-0091 through DEC-0096 close every separate base RF/IR paper endpoint. Whole-device quiet-state EMI, conducted/OTA/optical coexistence and no-stall HIL remain I6 gates, leaving no free direct RP GPIO
 - DEC-0090 supersedes the abstract DEC-0054 endpoint with exact ES8311, Si4732-A10, SA518, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR microphone, PUI AS02404PO speaker, SJ1-3515-SMT-TR jack and all first-pass passive values. Paper contacts, power, common mode, gain, reset-off behavior and no-backfeed are closed; specimen identity, acoustic gain/noise, pop/click, RF immunity and concurrent-load evidence remain explicit HIL gates before schematic/BOM freeze
 - DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient; DEC-0072 adds 24 exact converter energy/configuration/feedback passives and fixed tolerance-screened outputs; DEC-0073 originally adds nine exact converter EN/PG/fault resistors and a direct hardware AON enable strap; DEC-0080 amends this to ten physical positions and exact SYS-to-AON, AON-PG/MR, SENSE/CT/POR and main-EN wiring without a programmable sequencer; DEC-0081 adds independent TPS25961DRVR AON cutoff plus two TPS25974LRPWR latch-off protected-PG circuit breakers, exact thresholds, rise/timer networks and single-fault paper containment after every internal buck; DEC-0074 establishes the 10-Ohm pre-admission function, <=50-ms hardware cutoff and corrected PA25/PA26 frontends; DEC-0075 adds the exact BQ25798 750-kHz/2.2-uH energy, TS/ILIM, reset and special-pin profile; DEC-0076 adds the exact TPS25751/CAT24 support circuit, hardware SafeMode, separate raw-VBUS startup path and complete local/host bus pulls; DEC-0077 adds exact polarized Keystone 1048P contacts and three physical NTC roles; DEC-0078 corrects the TPUL WQFN contact map, adds a >=350-ms second-channel hardware refractory lockout and splits the 10-Ohm load across two exact 20-Ohm/2-W branches; DEC-0079 selects two XTAR 18650 4000mAh protected button-top cells as the exact first qualification target and freezes a 2-A charge ceiling. Exact-cell droop thresholds, certification-document/specimen fit, continuity/thermal/hot-copper/source-handover and full injected-fault HIL remain open in I3. DEC-0083 closes the protected product USB endpoint and DEC-0089 replaces the unresolved chassis abstraction with a direct multi-via shell bond to local power/ESD ground. DEC-0084 closes the display paper endpoint and DEC-0089 classifies its FPC as internal service-only/no-live-insertion, with protection reopening if mechanics later expose it. DEC-0085 closes the isolated microSD paper endpoint; DEC-0089 corrects its DAT0 return to real S3 GPIO4. Connector placement/mate, USB/display/storage signal integrity and destructive/thermal HIL remain explicit
-- HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open; the I2 hard-stop/evidence active circuit is paper-reviewed while detector taps/thresholds are I6; exact IR frontends and antenna placement remain open. DEC-0090 closes the surrounding SA518/Si4732 power, interface and audio circuits on paper; SA518 UPDATE remains fixture-only, and module identity, RF feed, sensitivity, audio/noise and coexistence remain specimen/RF/HIL gates before target-architecture acceptance
+- HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open. The I2 hard-stop/evidence circuit and every separate DEC-0091 through DEC-0096 RF/IR endpoint are paper-reviewed; exact mechanics-selected antenna connector bodies, antenna/pod lots, placement, sensitivity, audio/noise, optical, conducted/OTA and coexistence HIL remain gates before target-architecture acceptance
 
 ## Граница проведённого ревью
 

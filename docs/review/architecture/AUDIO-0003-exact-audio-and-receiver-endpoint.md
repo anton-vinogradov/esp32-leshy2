@@ -18,7 +18,7 @@ performance.
 
 ```mermaid
 flowchart TD
-  RX["Skyworks Si4732-A10-GS<br/>broadcast receiver"]
+  RX["Skyworks Si4732-A10-GSR<br/>broadcast receiver"]
   RXMUX["Texas Instruments SN74LVC1G3157DBVR<br/>receiver-source selector"]
   CAPSEL["Texas Instruments TS5A63157DCKR<br/>RX/microphone capture selector"]
   MIC["Same Sky CMEJ-0413-42-SMT-TR<br/>local electret microphone"]

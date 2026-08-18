@@ -99,9 +99,10 @@ This pass removes two important abstractions without changing GPIO ownership:
 - `NiceRF SA518 rev 1.1`: RP UART/PTT/activity now terminate on exact module
   pins `UART_RX=3`, `UART_TX=2`, `PTT=14`, `AUDIO_ON=18`; `HL=12`, `PD=13`,
   `UPDATE=17`, `MIC_IN=1` and `AFOUT=16` are present in fixed routes/service;
-- `Si4732-A10-GS`: S3 I²C terminates on exact `SDIO=15`, `SCLK=13`; exact
-  `RST=9`, `GPO2/INTB=5`, `SENB=14`, `RCLK=16`, audio outputs and separate
-  `FMI=1`/`AMI=3` antenna routes are represented.
+- `Si4732-A10-GSR`: S3 I²C terminates on exact `SDIO=12`, `SCLK=11`; exact
+  `RST=9`, `GPO2/INTB=3`, `SENB=10`, `RCLK=13`, audio outputs
+  `LOUT/DFS=1`/`ROUT/DOUT=16` and separate `FMI=6`/`AMI=8` antenna routes are
+  represented. `FND-0102/REV-0005BB` supersede the former shifted numbering.
 
 nRF contacts, CC1101 contacts, U214 Cap-Bus, TCA4307 and TCA6424A were already
 exact in the source. Their production choice and electrical/RF qualification

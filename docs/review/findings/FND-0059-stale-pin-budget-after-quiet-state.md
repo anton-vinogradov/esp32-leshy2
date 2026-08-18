@@ -30,7 +30,8 @@ machine source и прежние review tables создавали противо
 - `--check` теперь проверяет оба generated artifacts;
 - regression test зафиксировал exact `29/3/4`, `14/6/1`, `48/0/0` budgets
   этого прохода; subsequent `DEC-0052` изменил S3 на `31/3/2`, а `DEC-0054`
-  затем на current `32/3/1`; test защищает именно current value.
+  затем на point-in-time `32/3/1`; current machine regression protects
+  `33/3/0` after the direct encoder allocation.
 
 ## Результат
 

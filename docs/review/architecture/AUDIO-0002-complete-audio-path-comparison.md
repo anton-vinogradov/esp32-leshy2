@@ -30,7 +30,7 @@
 
 ```mermaid
 flowchart TB
-  SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"] --> SUM["MPN-independent passive circuit<br/>stereo-to-mono summing network"]
+  SI["Si4732-A10-GSR<br/>AM/FM/SW/LW broadcast receiver"] --> SUM["MPN-independent passive circuit<br/>stereo-to-mono summing network"]
   SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"] -->|"AFOUT"| RXMUX["SN74LVC1G3157DBVR<br/>Si4732/SA518 receive-audio source selector"]
   SUM --> RXMUX
   SLOW["TCA6424ARGJR<br/>24-line slow-control expander"] -->|"P27 source request"| RXMUX

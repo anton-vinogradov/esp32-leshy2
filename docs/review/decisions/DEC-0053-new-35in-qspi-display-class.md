@@ -55,7 +55,8 @@ brightness и optical stack. Реестр известных и отсутств
   `AXS15231B` — но production init table определяется только точной панелью.
 - At this display-only decision, the machine map instantiates
   `HMX035CTFT-001`: former S3 `GPIO39/DC` becomes touch IRQ and the budget is
-  `31/3/2`; subsequent audio `DEC-0054` changes current total to `32/3/1`.
+  `31/3/2`; subsequent audio `DEC-0054` changed that point-in-time total to
+  `32/3/1`, and the current direct-encoder total is `33/3/0`.
   TE remains unassigned.
 - Physical design использует 3.5-inch portrait window как текущий target input
   и сохраняет возможность вернуться к A0/EVE fallback при измеренном провале.

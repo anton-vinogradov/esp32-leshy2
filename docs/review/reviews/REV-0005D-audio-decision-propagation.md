@@ -24,10 +24,11 @@
 
 1. The old navigation diagrams combined two physical devices in one square and
    used generic labels. They now separate `HMX035CTFT-001` from
-   `DM3AT-SF-PEJM5`, and `ES8311` from `Si4732-A10-GS`, while stating each role.
-2. The former `31/3/2` S3 snapshot is superseded by the accepted GPIO6
-   allocation. Historical review snapshots remain historical; current product
-   pages and machine-generated artifacts publish `32/3/1`.
+   `DM3AT-SF-PEJM5`, and `ES8311` from `Si4732-A10-GSR`, while stating each role.
+2. The former `31/3/2` S3 snapshot was superseded at this review by the
+   accepted GPIO6 allocation and point-in-time `32/3/1`. Historical review
+   snapshots remain historical; current product pages and generated artifacts
+   publish `33/3/0` after the direct encoder allocation.
 3. The earlier abstract codec output, RX selector and amplifier endpoints are
    replaced by exact instantiated IC contacts. Passive networks remain openly
    abstract because their values have not yet passed schematic/HIL review.
@@ -37,4 +38,3 @@
 This review closes decision propagation and the paper pin/resource model. It
 does not close the analog schematic or authorize PCB layout. The next audio
 gate is calculated schematic plus specimen/HIL evidence listed in `DEC-0054`.
-

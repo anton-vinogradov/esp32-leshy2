@@ -11,7 +11,7 @@
 ## Несоответствие
 
 Legacy mockup рисует один generic `Si4732` SMA и описывает его как один
-телескопический HF/CB/FM port. У exact `Si4732-A10-GS` на реальном SOIC16
+телескопический HF/CB/FM port. У exact `Si4732-A10-GSR` на реальном SOIC16
 выведены разные RF pins:
 
 - pin 1 `FMI` — `FM/SW ANT`;

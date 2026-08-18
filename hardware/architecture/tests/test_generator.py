@@ -203,7 +203,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(label, rendered)
         for forbidden in (
             "display + separate microSD",
-            "codec + Si4732-A10-GS",
+            "codec + Si4732-A10-GSR",
             "dual RX + TX IR frontend",
             "nRF24 #0",
             "SN74LVC1G06DCKR",
@@ -1396,6 +1396,92 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(token, rendered)
 
+    def test_i6_exact_si4732_dual_input_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["receiver_rf_electrical_contract"]
+        self.assertEqual("DEC-0096", contract["decision"])
+        self.assertIn("paper_reviewed_i6_exact_si4732", contract["status"])
+        self.assertIn("no RF switch", contract["scope"])
+        self.assertIn("non-50-Ohm", contract["ami_path"])
+        self.assertIn("Arbitrary long coax is forbidden", contract["external_pod_contract"])
+
+        required = {
+            "receiver": "skyworks_si4732_a10_gsr",
+            "receiver_fmi_esd": "littelfuse_sesd0402x1un_0020_090",
+            "receiver_fmi_match_inductor": "murata_lqw15an56nj00d",
+            "receiver_fmi_coupling_cap": "murata_grm1555c1h102ja01d",
+            "receiver_ami_esd": "littelfuse_sesd0402x1un_0020_090",
+            "receiver_ami_coupling_cap": "murata_grm155r71a474ke01d",
+        }
+        for instance, device_id in required.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        receiver = self.database["devices"]["skyworks_si4732_a10_gsr"]
+        self.assertEqual("active_orderable", receiver["lifecycle"])
+        self.assertEqual("C2155558", receiver["assembly_contract"]["jlcpcb_part_number"])
+        self.assertEqual(
+            {
+                "LOUT_DFS": "1",
+                "GPO3_DCLK": "2",
+                "GPO2_INTB": "3",
+                "GPO1": "4",
+                "NC": "5",
+                "FMI": "6",
+                "RFGND": "7",
+                "AMI": "8",
+                "RST": "9",
+                "SENB": "10",
+                "SCLK": "11",
+                "SDIO": "12",
+                "RCLK": "13",
+                "VDD": "14",
+                "GND": "15",
+                "ROUT_DOUT": "16",
+            },
+            {
+                name: contact["physical"]
+                for name, contact in receiver["contacts"].items()
+            },
+        )
+
+        inductor = self.database["devices"]["murata_lqw15an56nj00d"]
+        self.assertEqual(56, inductor["electrical_contract"]["inductance_nh"])
+        self.assertEqual("active_orderable", inductor["lifecycle"])
+        self.assertIn("orderable_source", inductor)
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("abstract:RX-FM-SW-dedicated-standard-SMA", "receiver_fmi_esd.K", "RX_FMSW_BOUNDARY_RF"),
+            ("receiver_fmi_esd.A", "abstract:rf-ground-dedicated-via", "RX_FMSW_ESD_GROUND"),
+            ("receiver_fmi_match_inductor.END_2", "receiver_fmi_coupling_cap.END_1", "RX_FMSW_MATCHED_RF"),
+            ("receiver_fmi_coupling_cap.END_2", "receiver.FMI", "RX_FMI_RF"),
+            ("abstract:RX-AM-LW-keyed-loop-pod-standard-SMA", "receiver_ami_esd.K", "RX_AMLW_BOUNDARY_RF"),
+            ("receiver_ami_coupling_cap.END_2", "receiver.AMI", "RX_AMI_RF"),
+        ):
+            self.assertIn(route, routes)
+
+        self.assertFalse(any(
+            endpoint in {
+                "abstract:RX-FM-SW-SMA-front-end",
+                "abstract:RX-AM-LW-loop-pod",
+            }
+            for route in candidate["fixed_routes"]
+            for endpoint in (route["from"], route["to"])
+        ))
+        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "LQW15AN56NJ00D<br/>56-nH high-Q FM first target on FM/SW port",
+            "GRM1555C1H102JA01D<br/>1-nF C0G FMI AC-coupling capacitor",
+            "GRM155R71A474KE01D<br/>0.47-uF AMI AC-coupling capacitor",
+            "dedicated non-50-Ohm AM/LW loop-pod standard-SMA endpoint",
+        ):
+            self.assertIn(token, rendered)
+
     def test_qspi_display_decision_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         s3 = {
@@ -1959,7 +2045,7 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_leading_voice_and_receiver_paths_use_exact_exposed_contacts(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual("nicerf_sa518_v11", candidate["instances"]["voice"])
-        self.assertEqual("skyworks_si4732_a10_gs", candidate["instances"]["receiver"])
+        self.assertEqual("skyworks_si4732_a10_gsr", candidate["instances"]["receiver"])
         voice_service = next(s for s in candidate["services"] if s["instance"] == "voice")
         self.assertEqual({"UPDATE", "UART_TX", "UART_RX", "PD"}, set(voice_service["contacts"]))
         endpoints = {

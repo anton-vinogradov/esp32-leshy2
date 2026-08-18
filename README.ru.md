@@ -62,6 +62,14 @@ Leshy2 — открытый автономный портативный инст
 - Sub-GHz тракт работает с пакетными системами; широковещательный
   приёмник покрывает AM/FM/SW/LW; VHF/UHF voice-тракт поддерживает аналоговую
   связь и аудиообработку.
+- `Si4732-A10-GSR` сохраняет два отдельных защищённых RX-only порта: FM/SW
+  работает через `FMI`, где `LQW15AN56NJ00D` 56 нГн и
+  `GRM1555C1H102JA01D` 1 нФ образуют стартовый FM-тракт, а AM/LW —
+  `GRM155R71A474KE01D` 0,47 мкФ и короткий маркированный loop-под. На каждой
+  границе стоит свой `SESD0402X1UN-0020-090`; AM/LW явно не является 50-Ом
+  портом и не допускает произвольный длинный коаксиал. SW остаётся на
+  опубликованном для exact-чипа входе FMI, но его чувствительность принимается
+  только по измерению полного тракта, а не по одной FM reference-схеме.
 - Точный аудиотракт умеет направлять в кодек выбранный RX-звук или локальный
   электретный микрофон, воспроизводить через выключенный в reset 4-Ом динамик
   либо через определяемые по вставке наушники 3,5 мм. Шины кодека, приёмника и
@@ -444,12 +452,19 @@ flowchart TD
   SDDETR["RC0603FR-071KL #SD-DETECT<br/>1-кОм входной резистор card-detect"]
   SDDETPU["RC0402FR-0710KL #SD-DETECT<br/>10-кОм pull-up всегда читаемого card-detect"]
   SDDETC["C1005X7R1H104K050BB #SD-DETECT<br/>100-нФ аппаратный фильтр card-detect"]
-  SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
+  SI["Si4732-A10-GSR<br/>AM/FM/SW/LW broadcast receiver"]
   RXCLK["Q13FC13500005<br/>кварц приёмника 32,768 кГц"]
   RXCLKC0["GRM1555C1H220JA01D #RX-RCLK<br/>конденсатор кварца приёмника 22 пФ"]
   RXCLKC1["GRM1555C1H220JA01D #RX-GPO3<br/>конденсатор кварца приёмника 22 пФ"]
   RXSUP["TPS3839K33DBZR #RX<br/>супервизор приёмника 3,08 В / 200 мс"]
   RXI2C["SN74LVC2G66DCUR #RX-I2C<br/>развязка питания I²C приёмника"]
+  RXFMESD["SESD0402X1UN-0020-090 #RX-FM/SW<br/>RF ESD-шунт 0,2 пФ"]
+  RXFML["LQW15AN56NJ00D<br/>стартовое high-Q FM-согласование 56 нГн на FM/SW-порту"]
+  RXFMC["GRM1555C1H102JA01D<br/>C0G-конденсатор связи FMI 1 нФ"]
+  RXFMSMA["MPN TBD после механики<br/>отдельный standard-SMA RX-порт FM/SW"]
+  RXAMESD["SESD0402X1UN-0020-090 #RX-AM/LW<br/>RF ESD-шунт 0,2 пФ"]
+  RXAMC["GRM155R71A474KE01D<br/>конденсатор связи AMI 0,47 мкФ"]
+  RXAMSMA["MPN TBD после механики<br/>отдельный не-50-Ом standard-SMA порт AM/LW loop-пода"]
   CODEC["Everest Semiconductor ES8311<br/>монофонический аудиокодек ADC/DAC"]
   CODECSUP["TPS3839K33DBZR #CODEC<br/>супервизор интерфейсов кодека 3,08 В / 200 мс"]
   CODECI2C["SN74LVC2G66DCUR #ES8311-I2C<br/>развязка питания I²C кодека"]
@@ -683,7 +698,7 @@ flowchart TD
   UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
   UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
   UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ ENCPTTESD ~~~ PTTPU ~~~ PTTR ~~~ PTTC ~~~ PTTRAW ~~~ TPIRQPU ~~~ TPIRQRAW ~~~ TPIRQ ~~~ TPIRQBP
-  TPIRQBP ~~~ SI ~~~ RXCLK ~~~ RXCLKC0 ~~~ RXCLKC1 ~~~ RXSUP ~~~ RXI2C ~~~ RXMUX ~~~ CAPSEL ~~~ BUF
+  TPIRQBP ~~~ SI ~~~ RXCLK ~~~ RXCLKC0 ~~~ RXCLKC1 ~~~ RXSUP ~~~ RXI2C ~~~ RXFMESD ~~~ RXFML ~~~ RXFMC ~~~ RXFMSMA ~~~ RXAMESD ~~~ RXAMC ~~~ RXAMSMA ~~~ RXMUX ~~~ CAPSEL ~~~ BUF
   BUF ~~~ CODEC ~~~ CODECSUP ~~~ CODECI2C ~~~ CODECBCLK ~~~ CODECWS ~~~ CODECDOUT ~~~ CODECDIN ~~~ SAFE ~~~ SPKSEL ~~~ PAM
   PAM ~~~ SPKBEADP ~~~ SPKBEADN ~~~ SPK ~~~ MIC ~~~ MICFILT ~~~ AGNDLINK ~~~ HPJACK ~~~ HPESD ~~~ TXSEL
   TXSEL ~~~ SA ~~~ VOICESUP ~~~ VOICEIOSW ~~~ VOICEPTT ~~~ VOICEUART ~~~ VOICEHL ~~~ VOICEAUDIO ~~~ LCDCON ~~~ LCD ~~~ LCDTDDI ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
@@ -982,6 +997,10 @@ flowchart TD
   RXCLKC0 --> SI
   RXCLKC1 --> SI
   RXSUP -->|"reset и задержка интерфейсов 200 мс"| RXI2C
+  RXFMSMA --> RXFMESD
+  RXFMSMA --> RXFML --> RXFMC -->|"FMI, контакт 6"| SI
+  RXAMSMA --> RXAMESD
+  RXAMSMA --> RXAMC -->|"AMI, контакт 8"| SI
   CODECSUP -->|"задержка интерфейсов 200 мс"| CODECI2C
   CODECSUP --> CODECBCLK
   SI --> RXMUX --> CAPSEL --> BUF --> CODEC

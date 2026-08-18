@@ -1069,6 +1069,95 @@
         "END_2": {"physical": "2", "role": "passive"}
       }
     },
+    "murata_lqw15an56nj00d": {
+      "mpn": "Murata LQW15AN56NJ00D",
+      "kind": "56nh_5pct_high_q_rf_inductor_0402",
+      "qualification": "verified_exact_si4732_fmi_first_target",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.6],
+      "source": {
+        "document": "Murata LQW15AN_00 RF-inductor family and exact-product data",
+        "version": "current manufacturer data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/inductor/chip/overview/lineup/rf2",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "LQW15AN56NJ00D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "inductance_nh": 56,
+        "tolerance_percent": 5,
+        "q_min_at_200mhz": 25,
+        "self_resonant_frequency_ghz_min": 2.8,
+        "rated_current_ma": 200,
+        "dcr_ohm_max": 1.17
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "rf"},
+        "END_2": {"physical": "termination 2", "role": "rf"}
+      }
+    },
+    "murata_grm1555c1h102ja01d": {
+      "mpn": "Murata GRM1555C1H102JA01D",
+      "kind": "1nf_5pct_50v_c0g_0402_rf_coupling_capacitor",
+      "qualification": "verified_exact_si4732_fmi_first_target",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Murata GRM1555C1H102JA01 exact-product specification",
+        "version": "current manufacturer data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM1555C1H102JA01%23",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM1555C1H102JA01D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H102JA01D/702785",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "capacitance_pf": 1000,
+        "tolerance_percent": 5,
+        "rated_voltage_vdc": 50,
+        "dielectric": "C0G"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "rf"},
+        "END_2": {"physical": "termination 2", "role": "rf"}
+      }
+    },
+    "murata_grm155r71a474ke01d": {
+      "mpn": "Murata GRM155R71A474KE01D",
+      "kind": "0_47uf_10pct_10v_x7r_0402_ami_coupling_capacitor",
+      "qualification": "verified_exact_si4732_ami_first_target",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {
+        "document": "Murata GRM exact-part list and product specification",
+        "version": "current manufacturer data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/api/pdfdownloadapi?cate=luCeramicCapacitorsSMD&partno=GRM155R71A474KE01%23",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM155R71A474KE01D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71A474KE01D/6605995",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "capacitance_uf": 0.47,
+        "tolerance_percent": 10,
+        "rated_voltage_vdc": 10,
+        "dielectric": "X7R"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "rf"},
+        "END_2": {"physical": "termination 2", "role": "rf"}
+      }
+    },
     "waveshare_29318_3_5_ct_lcd": {
       "mpn": "Waveshare 3.5inch Capacitive Touch LCD, SKU 29318",
       "kind": "display_carrier_module",
@@ -1667,36 +1756,46 @@
       "orderable_source": {"document": "RC0402FR-0756KL authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=RC0402FR-0756KL", "checked": "2026-08-18"},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "analog"}, "END_2": {"physical": "2", "role": "power"}}
     },
-    "skyworks_si4732_a10_gs": {
-      "mpn": "Si4732-A10-GS",
+    "skyworks_si4732_a10_gsr": {
+      "mpn": "Si4732-A10-GSR",
       "kind": "broadcast_receiver_soic16",
-      "qualification": "verified_candidate",
-      "lifecycle": "manufacturer_documented",
+      "qualification": "verified_exact_production_candidate",
+      "lifecycle": "active_orderable",
       "dimensions_mm": [9.9, 6.0, 1.75],
       "source": {
         "document": "Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short",
         "version": "2021-09-13",
         "url": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "JLCPCB/LCSC C2155558 exact SMT-assembly stock page",
+        "url": "https://jlcpcb.com/partdetail/SILICONLABS-SI4732_A10GSR/C2155558",
+        "checked": "2026-08-18"
+      },
+      "assembly_contract": {
+        "jlcpcb_part_number": "C2155558",
+        "packaging": "tape_and_reel",
+        "electrical_equivalence": "R suffix changes packaging only; same Si4732-A10 SOIC-16 silicon and contact map"
       },
       "programmable": false,
       "contacts": {
-        "FMI": {"physical": "1", "role": "rf"},
-        "RFGND": {"physical": "2", "role": "power"},
-        "AMI": {"physical": "3", "role": "rf"},
+        "LOUT_DFS": {"physical": "1", "role": "analog"},
+        "GPO3_DCLK": {"physical": "2", "role": "signal"},
+        "GPO2_INTB": {"physical": "3", "role": "signal"},
         "GPO1": {"physical": "4", "role": "signal"},
-        "GPO2_INTB": {"physical": "5", "role": "signal"},
-        "GPO3_DCLK": {"physical": "6", "role": "signal"},
-        "LOUT_DFS": {"physical": "7", "role": "analog"},
-        "NC": {"physical": "8", "role": "reserved"},
+        "NC": {"physical": "5", "role": "reserved"},
+        "FMI": {"physical": "6", "role": "rf"},
+        "RFGND": {"physical": "7", "role": "power"},
+        "AMI": {"physical": "8", "role": "rf"},
         "RST": {"physical": "9", "role": "signal"},
-        "ROUT_DOUT": {"physical": "10", "role": "analog"},
-        "GND": {"physical": "11", "role": "power"},
-        "VDD": {"physical": "12", "role": "power"},
-        "SCLK": {"physical": "13", "role": "signal"},
-        "SENB": {"physical": "14", "role": "strap"},
-        "SDIO": {"physical": "15", "role": "signal"},
-        "RCLK": {"physical": "16", "role": "clock"}
+        "SENB": {"physical": "10", "role": "strap"},
+        "SCLK": {"physical": "11", "role": "signal"},
+        "SDIO": {"physical": "12", "role": "signal"},
+        "RCLK": {"physical": "13", "role": "clock"},
+        "VDD": {"physical": "14", "role": "power"},
+        "GND": {"physical": "15", "role": "power"},
+        "ROUT_DOUT": {"physical": "16", "role": "analog"}
       }
     },
     "nicerf_sa518_v11": {

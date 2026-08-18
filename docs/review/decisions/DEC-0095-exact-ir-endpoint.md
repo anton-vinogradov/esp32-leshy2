@@ -35,5 +35,6 @@
   analog contacts now exist in the generated physical map;
 - the direct C5 budget and main slow-I/O budget are unchanged;
 - `TSOP95238TT` factory lead time is visible before procurement freeze;
-- every separate I6 RF/IR paper endpoint is now reviewed, while consolidated
+- the IR endpoint itself is reviewed; `FND-0101/DEC-0096` later corrected the
+  then-missed abstract Si4732 FMI/AMI RF inputs before consolidated I6, while
   coexistence and physical/HIL evidence remain open and KiCad is not authorized.

@@ -8,7 +8,7 @@
 // nRF24 (Sheet 3) — and the electret mic (MK1) / speaker (LS1) stay 2-pin resistor proxies.
 //
 // Pad-name sources of truth (engine probe of each footprint):
-//   U30  Si4732-A10-GS  16-SOIC  -> jlcpcb:C1526102
+//   U30  Si4732-A10-GSR  16-SOIC  -> jlcpcb:C2155558
 //        Engine pads: 4 GPO1, 5 NC, 6 FMI, 7 RFGND, 8 AMI, 9 RST, 10 SENB, 11 SCLK, 12 SDIO,
 //        13 RCLK, 14 VDD, 15 GND. Pads 1,2,3,16 are engine-UNNAMED -> referenced by .pin#.
 //        Per the Si4732-A10 datasheet 16-SOIC pinout: pin1 LOUT/DFS, pin2 GPO3/DCLK,
@@ -51,8 +51,8 @@
 // not a wiring defect. V3V3 keeps only U33.VCC on this sheet (U31 dropped its 3V3 pin, above).
 export default () => (
   <board width="80mm" height="60mm">
-    {/* ===================== Si4732-A10-GS receiver (U30, all on +3V3A) ===================== */}
-    <chip name="U30" footprint="jlcpcb:C1526102" />
+    {/* ===================== Si4732-A10-GSR receiver (U30, all on +3V3A) ===================== */}
+    <chip name="U30" footprint="jlcpcb:C2155558" />
     {/* dedicated 32.768 kHz watch crystal + load caps (NOT from MCU) */}
     <chip name="Y1" footprint="jlcpcb:C280830" />
     <capacitor name="CL1" capacitance="12pF" footprint="0402" />

@@ -16,4 +16,5 @@
 Stage ledger приведён к machine-derived `31/3/2`. Новый HMX electrical-fit
 pass не меняет эту арифметику: бывший `GPIO39/LCD_DC` переиспользован под
 touch IRQ, reset lines уже находились на slow plane. Subsequent `DEC-0054`
-корректно расходует GPIO6 на `AUDIO_ARM`; current ledger теперь `32/3/1`.
+корректно расходует GPIO6 на `AUDIO_ARM`; ledger того прохода стал `32/3/1`,
+а current machine projection после direct encoder — `33/3/0`.

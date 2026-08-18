@@ -17,7 +17,7 @@
 | nRF | три separate IPEX→SMA закреплены `DEC-0048` |
 | SA518 | exact rev 1.1 выводит один physical `ANT` pin 7 для 50-ohm antenna |
 | SA518 non-RF pins | exact check also found no dedicated `SQ` and an ambiguous `UPDATE` direction; `FND-0056` corrects the paper maps without pretending `Audio_ON` is proven squelch |
-| Si4732 | exact SOIC16 выводит `FMI` pin 1 и `AMI` pin 3 для разных band/antenna domains |
+| Si4732 | exact SOIC16 выводит `FMI` pin 6 и `AMI` pin 8 для разных band/antenna domains; прежняя сдвинутая нумерация исправлена в `FND-0102` |
 | AMI cable caveat | manufacturer guidance требует учитывать total input capacitance; generic long coax не принят |
 | CC1101 | разные band-specific TI matching networks подтверждены; legacy generic balun/SP4T proxy не production proof |
 | Endpoint count | 9 при separate Si inputs; 8 только с дополнительно квалифицируемым shared port |

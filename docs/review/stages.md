@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `23/0/1` and dedicated UI I/O `7/1/0`. `I2`…`I5` paper electrical scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090`; `DEC-0091…0094/REV-0005AV…AY` review the three-nRF, independent native S3/C5, exact CC1101 three-band and SA518 direct-RF I6 subblocks. I6 remains active for IR and consolidated coexistence. Gate 2F remains open through I6…I7, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `23/0/1` and dedicated UI I/O `7/1/0`. `I2`…`I5` paper electrical scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090`; `DEC-0091…0096/REV-0005AV…BA` review every separate nRF/native/CC/voice/IR/Si4732-input I6 subblock. I6 remains active for consolidated coexistence. Gate 2F remains open through I6…I7, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -65,9 +65,14 @@ coupon, final-line ESD и AD8314 actual-TX sample входят в machine map; P
 `FND-0099/VRF-0001/DEC-0094/REV-0005AY` далее закрывают SA518 paper RF path:
 ANT contact 7, direct protected 50-Ом SMA boundary, 24-В low-C ESD и exact
 5,1-кОм/52,3-Ом AD8314 sample. P05 не расходуется на фильтры без measured
-failure. `FND-0100/IRF-0001/DEC-0095/REV-0005AZ` закрывают последний отдельный
-I6 paper endpoint: exact `TSOP95238TT + TSMP95000TT` RX pair, discharged/Ioff
+failure. `FND-0100/IRF-0001/DEC-0095/REV-0005AZ` закрывают IR paper endpoint:
+exact `TSOP95238TT + TSMP95000TT` RX pair, discharged/Ioff
 receive boundary, `VSMY14940` current-limited STOP-gated TX и independent
-`VEMD1060X01/TLV9061IDBVR` actual-optical evidence. Весь optical/thermal/IEC,
+`VEMD1060X01/TLV9061IDBVR` actual-optical evidence. Затем
+`FND-0101/RXF-0001/DEC-0096/REV-0005BA` исправляют пропущенные abstract FMI/AMI:
+отдельные защищённые FM/SW и не-50-Ом AM/LW first-target тракты теперь
+завершены до физических SMA boundary. `FND-0102/REV-0005BB` дополнительно
+исправляют всю сдвинутую SOIC-16 contact map Si4732 по визуально проверенному
+manufacturer package drawing и regression-lock всех 16 контактов. Весь optical/thermal/IEC,
 specimen/conducted/coexistence HIL остаётся открыт; I6 не завершён и KiCad не
 разрешён.
