@@ -82,7 +82,11 @@ privacy or the target owner's authorization.
   reach the system, and refuses an unsafe combination instead of forcing it
   to operate or equalize. The handheld also refuses deeply discharged cells:
   zero-volt/prequalification recovery is disabled, and any recovery research
-  requires a separate isolated Controlled-Zone fixture.
+  requires a separate isolated Controlled-Zone fixture. Before admission, a
+  common-path 10-Ohm diagnostic applies approximately `0.57…0.88 A` for no
+  more than `50 ms`; an independent non-retriggerable hardware timer prevents
+  firmware from stretching the pulse. This is a contact/cell screen, not a
+  full-load qualification claim.
 - Four independent fixed rails separate always-on safety, 3.3-V compute,
   4.0-V voice and protected 5.0-V accessory power. Unused radio, storage and
   audio branches are disconnected and discharged into a verified quiet state.
@@ -125,6 +129,25 @@ flowchart TD
   SUPPLYOR["BAV70LT1G<br/>AOLDO/fixture source isolation"]
   SYSDIODE["BAT54-7-F<br/>admitted-system source isolation and priority"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
+  DIAGTMR["TPUL2G223BQBR<br/>non-retriggerable hardware diagnostic-pulse limiter"]
+  DIAGTR["RC0402FR-07169KL #DIAG-TIME<br/>169-kOhm 1% diagnostic-pulse timing resistor"]
+  DIAGTC["GRM31C5C1H224JE02L #DIAG-TIME<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor"]
+  DIAGBP["C1005X7R1H104K050BB #DIAG<br/>100-nF 50-V X7R one-shot bypass capacitor"]
+  DIAGTRPD["RC0402FR-0710KL #DIAG-TRIG<br/>10-kOhm 1% diagnostic-trigger fail-low resistor"]
+  DIAGGPD["RC0402FR-0710KL #DIAG-GATE<br/>10-kOhm 1% diagnostic-gate fail-low resistor"]
+  DIAGQ["DMN2056U-7<br/>20-V low-gate-drive diagnostic-load MOSFET"]
+  DIAGR["CRCW251210R0JNEGIF<br/>10-Ohm 1-W pulse-proof diagnostic-load resistor"]
+  MIDADC0["RC0402FR-07220KL #MID-TOP0<br/>220-kOhm 1% midpoint-divider top resistor #0"]
+  MIDADC1["RC0402FR-07220KL #MID-TOP1<br/>220-kOhm 1% midpoint-divider top resistor #1"]
+  MIDADCB["RC0402FR-07169KL #MID-BOTTOM<br/>169-kOhm 1% midpoint-divider bottom resistor"]
+  MIDADCC["GRM155R71H103KA88D #MID<br/>10-nF 50-V X7R midpoint ADC filter capacitor"]
+  STACKADC0["RC0402FR-07220KL #STACK-TOP0<br/>220-kOhm 1% stack-divider top resistor #0"]
+  STACKADC1["RC0402FR-07220KL #STACK-TOP1<br/>220-kOhm 1% stack-divider top resistor #1"]
+  STACKADC2["RC0402FR-07220KL #STACK-TOP2<br/>220-kOhm 1% stack-divider top resistor #2"]
+  STACKADC3["RC0402FR-07220KL #STACK-TOP3<br/>220-kOhm 1% stack-divider top resistor #3"]
+  STACKADC4["RC0402FR-07220KL #STACK-TOP4<br/>220-kOhm 1% stack-divider top resistor #4"]
+  STACKADCB["RC0402FR-07169KL #STACK-BOTTOM<br/>169-kOhm 1% stack-divider bottom resistor"]
+  STACKADCC["GRM155R71H103KA88D #STACK<br/>10-nF 50-V X7R stack ADC filter capacitor"]
   AONBUCK["TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
   AONL["WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor"]
   AONMODE["RC0402FR-0742K2L<br/>42.2-kOhm 1% AON mode/configuration resistor"]
@@ -241,7 +264,9 @@ flowchart TD
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
+  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
+  DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
+  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
   AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
@@ -275,6 +300,20 @@ flowchart TD
   SYSDIODE -->|"admitted 3V3"| PACKADM
   PACKGAUGE <-->|"local I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + shared IRQ"| S3
+  PACKADM -->|"PA22 rising edge"| DIAGTMR
+  PACKADM --> DIAGTRPD
+  SUPPLYOR -->|"admission VDD"| DIAGTMR
+  DIAGTMR -->|"169 kΩ / 220 nF; ≤50 ms"| DIAGTR --> DIAGTC
+  DIAGTMR --> DIAGBP
+  DIAGTMR -->|"bounded gate pulse"| DIAGQ
+  DIAGTMR --> DIAGGPD
+  FUSE1 -->|"fused full stack"| DIAGR --> DIAGQ
+  FUSE0 --> MIDADC0 --> MIDADC1 -->|"PA25/A2"| PACKADM
+  PACKADM --> MIDADCB
+  PACKADM --> MIDADCC
+  FUSE1 --> STACKADC0 --> STACKADC1 --> STACKADC2 --> STACKADC3 --> STACKADC4 -->|"PA26/A1"| PACKADM
+  PACKADM --> STACKADCB
+  PACKADM --> STACKADCC
   CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"SYS local bypass"| AONIN

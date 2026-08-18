@@ -85,8 +85,12 @@ targets; `DEC-0069/REV-0005Z` исправляют external eFuse на latch-off
 suffix. `PWR-0009…0011/DEC-0070…0072` затем закрывают optional-PG
 qualification, exact eFuse passives и 24 exact converter
 energy/configuration/feedback parts; `PWR-0012/DEC-0073/REV-0005AD`
-закрывают direct AON EN и девять exact EN/PG/fault resistors. Далее закрываются
-charger/diagnostic values и hot loss/thermal/fault tree.
+закрывают direct AON EN и девять exact EN/PG/fault resistors.
+`PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
+независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
+divider/filter frontends, исправляя запрещённую injection-current привязку
+PA24 без изменения бюджета `12/3/3`. Далее закрываются charger values,
+diagnostic thresholds/cooldown и hot loss/thermal/fault tree.
 
 ## Downstream boundary
 

@@ -43,7 +43,7 @@ Evidence states: `E0` — строка только идентифицирова
 | `P-005` | F | exact `TPS564252DRLR + MWSA0503S-4R7MT + MMBT3904-7-F + TPS259470LRPWR` protected `5V_EXT`: exact 220/30-kOhm feedback, energy/Cff, EN/PG/base passives, 1.25 A continuous, controlled startup and bounded 2.0-A post-start transient; eight exact eFuse passives | E2; E3 partial | effective-capacitance/inrush/hot-loss/OVLO/fault/discharge HIL, high-current geometry, connector fault and per-profile isolation |
 | `P-006` | F | exact `TPS629203DRLR + WPN201612H2R2MT` `AON_SAFE` regulator, direct SYS enable, open VSET fixed 3.3 V, 42.2-kOhm mode, 47-kOhm PG and exact input/output capacitors plus accepted supervisor | E2; E3 partial | capacitor hold-up and valid STOP latch/indicator/gates through application-rail collapse and brownout |
 | `P-007` | F | latched STOP, recessed RE-ARM, TX_KILL fan-out and reset/enable drivers | E0 | asynchronous truth table, stuck/open/short fault analysis, independent actual-TX indication and fault injection |
-| `P-008` | F | battery measurement/charge/fuel-gauge/thermal policy | E0 | exact supported charging boundary and truthful SoC/fault reporting; no unaccepted charging claim |
+| `P-008` | F | exact `MAX17320G20+T + MSPM0C1104SDGS20R` manager, `TPUL2G223BQBR + GRM31C5C1H224JE02L + DMN2056U-7 + CRCW251210R0JNEGIF` 10-Ohm diagnostic with a 25-50-ms accepted pulse and exact PA25/PA26 divider/filter frontends | E2; E3 partial | production cell profile, ADC/droop thresholds, timer lot/cooldown, insertion/removal/source-handover and thermal/fault HIL; no unaccepted recovery or full-load claim |
 
 ## 3. UI, display, storage and service I/O
 

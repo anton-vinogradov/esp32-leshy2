@@ -265,7 +265,8 @@ supervised 2S в `DEC-0065/REV-0005T`; `PWR-0005/REV-0005U` повторно п�
 exact devices, а владелец принимает `MAX17320G20+T + MSPM0C1104SDGS20R` в
 `DEC-0066/REV-0005V`. Оба устройства отдельно внесены в machine source и
 living diagrams; после exact two-ADC allocation в `DEC-0067` DGS20 имеет
-`12 used / 3 permanent service / 3 free` реальных GPIO.
+`12 used / 3 permanent service / 3 free` реальных GPIO; `DEC-0074/FND-0078`
+позже исправляют exact контакты на PA25/PA26 без изменения бюджета.
 Затем
 владелец принял `IMP-0053/B` как `DEC-0063`: основной порт — sink-only USB-PD с
 fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/power-bank/
@@ -285,7 +286,7 @@ Controlled Zone. Active `CSD87313DMST`, две `0451005.MRL`,
 `FDMC8030` отклонён lifecycle-проверкой. Exact cell-tap/passive/diagnostic
 values, source-handover HIL, AON source/hold-up, все load switches/discharge
 paths, monitoring, reverse current и рассчитанные loss/thermal/fault budgets
-остаются активны. `PWR-0008/DEC-0068/REV-0005Y` теперь проводят ревью active
+оставались активны на этом checkpoint. `PWR-0008/DEC-0068/REV-0005Y` теперь проводят ревью active
 downstream tree: exact `TPS629203DRLR` AON, три независимых фиксированных
 `TPS564252DRLR` stage 3.3/4.0/5.0 В, exact Sunlord inductors, пять отдельных
 quiet-state switches `TPS22919DCKR` и connector-side reverse blocking/current
@@ -319,7 +320,17 @@ eFuse. Lifecycle review отклоняет устаревшие 45,0 кОм в �
 pull 10 кОм и два базовых резистора квалификаторов 68 кОм представлены девятью
 физическими экземплярами. Все значения переиспользуют существующие BOM MPN,
 добавляют около `$0.006` проверенного material cost на плату и сохраняют
-принятую fault truth table без GPIO. Charger passives,
+принятую fault truth table без GPIO.
+`PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
+frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
+non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный
+бумажный C0G-диапазон 28,7-40,7 мс; production принимает только измеренные
+импульсы 25-50 мс. Midpoint/stack ADC переносятся с ошибочного
+PA24/PA25 на PA25/PA26, потому что PA24 не допускает injection current. Exact
+делители 2x220k/169k и 5x220k/169k с двумя фильтрами 10 нФ остаются ниже
+внутреннего reference 1,4 В в заданных fault-screen corners; все 19 физических
+экземпляров отдельно показаны в machine source и вертикальных diagrams.
+Charger passives, diagnostic thresholds/cooldown,
 effective-capacitance/load-step, hot-loss/layout и перечисленные
 startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,

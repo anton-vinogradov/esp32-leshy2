@@ -30,9 +30,10 @@
 6. The reset-default hold and admission supply use exact packages
    `2N7002DW-7-F`, `BAV70LT1G` and `BAT54-7-F`. Exact resistor/capacitor values
    and source-handover current remain schematic/HIL outputs.
-7. `PA24/A3` measures the protected 2S midpoint and `PA25/A2` the protected
-   full stack. The admission-controller budget is now `12 used / 3 permanent
-   service / 3 free`.
+7. The original PA24/PA25 evidence assignment is superseded by
+   `DEC-0074/FND-0078`: `PA25/A2` measures the protected 2S midpoint and
+   `PA26/A1` the protected full stack. The admission-controller budget remains
+   `12 used / 3 permanent service / 3 free`.
 
 ## Lifecycle correction made during acceptance
 
@@ -48,7 +49,8 @@ stale MPN nor a topologically wrong package can leak into the BOM.
 ## Remaining gates
 
 - reproduce the ADI 2S sense/balance network and freeze every passive value;
-- select the bounded diagnostic-load switch/resistor and both ADC dividers;
+- qualify the accepted exact bounded diagnostic pulse, ADC thresholds and
+  cooldown from `PWR-0013/DEC-0074` in HIL;
 - prove holder polarity/reverse-insertion behavior and repeatable NTC coupling;
 - calculate hot losses and validate source handover, removal/bounce, short and
   fault behavior in HIL;

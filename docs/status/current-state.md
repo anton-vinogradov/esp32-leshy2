@@ -267,7 +267,8 @@ revalidate the exact devices and the owner accepts
 `MAX17320G20+T + MSPM0C1104SDGS20R` in `DEC-0066/REV-0005V`. Both appear as
 separate components in the machine source and living diagrams; DGS20 has
 `12 used / 3 permanent service / 3 free` real GPIO contacts after the exact
-two-ADC evidence allocation in `DEC-0067`. The owner also accepted `IMP-0053/B` as
+two-ADC evidence allocation, now corrected to PA25/PA26 by `DEC-0074/FND-0078`.
+The owner also accepted `IMP-0053/B` as
 `DEC-0063`: the product port is sink-only USB-PD with 5-V fallback, 9 V/3 A
 and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
 S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
@@ -285,7 +286,8 @@ separate isolated Controlled-Zone fixture. Active `CSD87313DMST`, two
 targets. The obsolete `FDMC8030` paper candidate was rejected at lifecycle
 check. Exact cell-tap/passive/diagnostic values, MCU source-handover HIL, AON
 source/hold-up capacitor, monitoring, reverse current and calculated
-loss/thermal/fault budgets remain active. `PWR-0008/DEC-0068/REV-0005Y` now
+loss/thermal/fault budgets remained active at that checkpoint.
+`PWR-0008/DEC-0068/REV-0005Y` now
 review the active downstream tree: exact `TPS629203DRLR` AON,
 three independent fixed `TPS564252DRLR` 3.3/4.0/5.0-V stages, exact Sunlord
 inductors, five separate `TPS22919DCKR` quiet-state switches and connector-side
@@ -319,7 +321,17 @@ direct admitted-SYS strap; one 47-kOhm AON PG pull plus six 10-kOhm EN/PG/
 fault pulls and two 68-kOhm qualifier-base resistors are nine physical
 instances. All values reuse existing BOM MPNs, add about `$0.006` checked
 material per board and preserve the existing fault truth table without GPIO.
-Charger passives, effective-capacitance/load-step, hot-loss/layout and the
+`PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
+The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
+non-retriggerable one-shot, giving about 34.4 ms typical and a conservative
+28.7-40.7-ms C0G paper window; production accepts only measured 25-50-ms
+pulses. Midpoint/stack ADC evidence moves from the invalid
+PA24/PA25 map to PA25/PA26 because PA24 supports no injection current. Exact
+2x220k/169k and 5x220k/169k dividers plus two 10-nF filters remain below the
+1.4-V internal reference at defined fault-screen corners; all 19 physical
+instances appear separately in the machine source and vertical diagrams.
+Charger passives, diagnostic thresholds/cooldown,
+effective-capacitance/load-step, hot-loss/layout and the
 listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays

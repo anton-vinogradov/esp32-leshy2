@@ -17,7 +17,7 @@
 | common-path loss | pass for comparison: fuse, shunt and both FET options are calculated without hiding contacts/copper/hot multiplier |
 | reset-default safety | pass at topology level: dual-MOS hold asserts ALRT without MCU code; release is explicit through PA6 |
 | MCU supply handover | pass at topology level: AOLDO, fixture and admitted system branches are diode-isolated; current and transition HIL remain open |
-| independent cell evidence | pass: reserved PA24/PA25 can measure midpoint and stack, leaving three free GPIO; exact analog values/HIL remain open |
+| independent cell evidence | historical proposal used PA24/PA25; `FND-0078/DEC-0074` later correct this to PA25/PA26 because PA24 permits no injection current, still leaving three free GPIO |
 | recovery behavior | blocked: MAX17320 prequal linearly operates CHG FET, so `IMP-0056` must choose the product boundary before exact FET acceptance |
 | target diagrams | unchanged intentionally: no new component is accepted into the working design before the coupled owner decision |
 | firmware | unchanged intentionally: the product must not advertise either recovery policy before owner acceptance |

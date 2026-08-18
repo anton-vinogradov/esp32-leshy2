@@ -87,7 +87,10 @@ Leshy2 — открытый автономный портативный инст
   работы или выравнивания. Глубоко разряженная банка также отклоняется:
   zero-volt/prequalification recovery в самом устройстве отключён, а любые
   исследования восстановления требуют отдельной изолированной оснастки
-  Controlled Zone.
+  Controlled Zone. Перед допуском общий тракт с нагрузкой 10 Ом прикладывает
+  примерно `0,57…0,88 А` не дольше `50 мс`; независимый non-retriggerable
+  аппаратный таймер не позволяет firmware растянуть импульс. Это screen
+  ячеек/контактов, а не обещание полной проверки под нагрузкой.
 - Четыре независимые фиксированные шины разделяют always-on безопасность,
   вычислительное питание 3,3 В, голосовой тракт 4,0 В и защищённый порт
   расширения 5,0 В. Неиспользуемые ветви радио, накопителя и аудио физически
@@ -132,6 +135,25 @@ flowchart TD
   SUPPLYOR["BAV70LT1G<br/>изоляция источников AOLDO/fixture"]
   SYSDIODE["BAT54-7-F<br/>изоляция и приоритет admitted-system source"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed допуск пары, watchdog и service bridge"]
+  DIAGTMR["TPUL2G223BQBR<br/>аппаратный non-retriggerable ограничитель диагностического импульса"]
+  DIAGTR["RC0402FR-07169KL #DIAG-TIME<br/>169-кОм 1% резистор времени диагностического импульса"]
+  DIAGTC["GRM31C5C1H224JE02L #DIAG-TIME<br/>220-нФ 50-В C0G конденсатор времени диагностического импульса"]
+  DIAGBP["C1005X7R1H104K050BB #DIAG<br/>100-нФ 50-В X7R bypass-конденсатор one-shot"]
+  DIAGTRPD["RC0402FR-0710KL #DIAG-TRIG<br/>10-кОм 1% fail-low резистор диагностического trigger"]
+  DIAGGPD["RC0402FR-0710KL #DIAG-GATE<br/>10-кОм 1% fail-low резистор затвора нагрузки"]
+  DIAGQ["DMN2056U-7<br/>20-В MOSFET диагностической нагрузки с низким gate drive"]
+  DIAGR["CRCW251210R0JNEGIF<br/>10-Ом 1-Вт pulse-proof резистор диагностической нагрузки"]
+  MIDADC0["RC0402FR-07220KL #MID-TOP0<br/>220-кОм 1% верхний резистор делителя midpoint №0"]
+  MIDADC1["RC0402FR-07220KL #MID-TOP1<br/>220-кОм 1% верхний резистор делителя midpoint №1"]
+  MIDADCB["RC0402FR-07169KL #MID-BOTTOM<br/>169-кОм 1% нижний резистор делителя midpoint"]
+  MIDADCC["GRM155R71H103KA88D #MID<br/>10-нФ 50-В X7R фильтр ADC midpoint"]
+  STACKADC0["RC0402FR-07220KL #STACK-TOP0<br/>220-кОм 1% верхний резистор делителя stack №0"]
+  STACKADC1["RC0402FR-07220KL #STACK-TOP1<br/>220-кОм 1% верхний резистор делителя stack №1"]
+  STACKADC2["RC0402FR-07220KL #STACK-TOP2<br/>220-кОм 1% верхний резистор делителя stack №2"]
+  STACKADC3["RC0402FR-07220KL #STACK-TOP3<br/>220-кОм 1% верхний резистор делителя stack №3"]
+  STACKADC4["RC0402FR-07220KL #STACK-TOP4<br/>220-кОм 1% верхний резистор делителя stack №4"]
+  STACKADCB["RC0402FR-07169KL #STACK-BOTTOM<br/>169-кОм 1% нижний резистор делителя stack"]
+  STACKADCC["GRM155R71H103KA88D #STACK<br/>10-нФ 50-В X7R фильтр ADC полного stack"]
   AONBUCK["TPS629203DRLR<br/>low-IQ always-on преобразователь безопасности 3,3 В"]
   AONL["WPN201612H2R2MT<br/>экранированный дроссель 2,2 мкГн шины AON"]
   AONMODE["RC0402FR-0742K2L<br/>42,2-кОм 1% резистор режима/конфигурации AON"]
@@ -248,7 +270,9 @@ flowchart TD
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
+  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
+  DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
+  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
   AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
@@ -282,6 +306,20 @@ flowchart TD
   SYSDIODE -->|"admitted 3V3"| PACKADM
   PACKGAUGE <-->|"локальная I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + общий IRQ"| S3
+  PACKADM -->|"фронт PA22"| DIAGTMR
+  PACKADM --> DIAGTRPD
+  SUPPLYOR -->|"питание admission"| DIAGTMR
+  DIAGTMR -->|"169 кОм / 220 нФ; ≤50 мс"| DIAGTR --> DIAGTC
+  DIAGTMR --> DIAGBP
+  DIAGTMR -->|"ограниченный gate pulse"| DIAGQ
+  DIAGTMR --> DIAGGPD
+  FUSE1 -->|"полный stack после fuse"| DIAGR --> DIAGQ
+  FUSE0 --> MIDADC0 --> MIDADC1 -->|"PA25/A2"| PACKADM
+  PACKADM --> MIDADCB
+  PACKADM --> MIDADCC
+  FUSE1 --> STACKADC0 --> STACKADC1 --> STACKADC2 --> STACKADC3 --> STACKADC4 -->|"PA26/A1"| PACKADM
+  PACKADM --> STACKADCB
+  PACKADM --> STACKADCC
   CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"локальный bypass SYS"| AONIN

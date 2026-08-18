@@ -17,10 +17,10 @@
 | slot independence | pass at principle level: each physical cell has its own fuse and NTC box/path |
 | reset default | pass at topology level: Q1 holds ALRT low without MCU code; Q2 releases only from admitted `PA6` |
 | supply isolation | pass at topology level: AOLDO/fixture use BAV70 common-cathode OR; admitted system 3V3 uses a lower-drop BAT54 branch |
-| GPIO budget | pass: PA24/PA25 are consumed as midpoint/stack ADC evidence; `12/3/3` accounts every admission-controller GPIO |
+| GPIO budget | superseded contact detail: `DEC-0074/FND-0078` move midpoint/stack to PA25/PA26 and release PA24; `12/3/3` remains complete |
 | machine/visible artifacts | pass: exact MPNs, routes, vertical atlas and both product diagrams derive from the same JSON source |
 | firmware contract | pass at documentation level: no runtime recovery command; protected image and admission behavior remain fail-closed |
-| remaining proof | open by design: passive values, diagnostic load, mechanical polarity/NTC coupling, hot loss, source handover and fault HIL |
+| remaining proof | diagnostic passives are now closed by `PWR-0013`; thresholds/cooldown, mechanical polarity/NTC coupling, hot loss, source handover and fault HIL remain open |
 | CAD boundary | pass: no KiCad authorization is implied |
 
 ## Conclusion

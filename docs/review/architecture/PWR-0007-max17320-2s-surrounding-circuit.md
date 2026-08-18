@@ -102,15 +102,17 @@ The admission MCU samples both electrical degrees of freedom:
 
 | Contact | Proposed evidence | Derivation |
 |---|---|---|
-| `PA24/A3` | protected/divided stack midpoint | lower-cell voltage |
-| `PA25/A2` | protected/divided full-stack voltage | upper-cell voltage = stack minus midpoint |
+| `PA25/A2` | protected/divided stack midpoint | lower-cell voltage |
+| `PA26/A1` | protected/divided full-stack voltage | upper-cell voltage = stack minus midpoint |
 
 This consumes the two ADC contacts already reserved for independent slot
 evidence, moving the controller budget from `10 used / 5 reserved / 3 free` to
 `12 used / 3 reserved / 3 free` when the circuit is accepted. `PA22/A4`
-remains the reset-low diagnostic-load switch control. The pulse resistor,
-switch MPN, divider values, ADC settling and acceptance threshold stay open
-until a qualified cell/contact matrix establishes useful droop limits.
+remains the reset-low diagnostic trigger. `PWR-0013/FND-0078` correct the old
+PA24 assignment because that exact pin permits no injection current, then
+freeze the exact one-shot, pulse resistor, switch, divider values and ADC
+settling. Acceptance thresholds and cooldown stay open until a qualified
+cell/contact matrix establishes useful droop limits.
 
 ## Series-path current and loss screen
 

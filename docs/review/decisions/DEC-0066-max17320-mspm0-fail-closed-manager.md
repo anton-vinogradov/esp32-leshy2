@@ -39,11 +39,11 @@
 | `PA6` | 10 | request to release the external reset-default ALRT hold |
 | `PA16/A8` | 12 | `PFAIL` input |
 | `PA17`, `PA18/A7` | 13, 14 | permanent service UART TX/RX |
-| `PA22/A4` | 17 | bounded diagnostic-load enable, reset-default off |
+| `PA22/A4` | 17 | bounded diagnostic one-shot trigger, reset-default low |
 | `PA23` | 18 | request through a reset-safe open-drain system-IRQ stage |
 | `PA1/NRST`, `PA19/SWDIO`, `PA20/SWCLK` | 5, 15, 16 | permanent recovery; never runtime-repurposed |
-| `PA24/A3`, `PA25/A2` | 19, 20 | subsequently consumed by `DEC-0067` for protected midpoint/full-stack ADC evidence |
-| `PA26/A1`, `PA27/A0`, `PA28/A5` | 1, 2, 3 | free after the accepted manager allocation |
+| `PA25/A2`, `PA26/A1` | 20, 1 | current protected midpoint/full-stack ADC evidence after `DEC-0074/FND-0078` |
+| `PA24/A3`, `PA27/A0`, `PA28/A5` | 19, 2, 3 | current free set; PA24 must not receive battery-derived injection current |
 
 ## Consequences
 
@@ -59,4 +59,5 @@
   thresholds, removal timing and physical HIL remain blocking.
 
 `DEC-0067` subsequently closes the recovery/FET branch and updates the live
-MSPM0 budget to `12 used / 3 permanent service / 3 free`.
+MSPM0 budget to `12 used / 3 permanent service / 3 free`; `DEC-0074/FND-0078`
+retain that budget while correcting the two ADC contacts.

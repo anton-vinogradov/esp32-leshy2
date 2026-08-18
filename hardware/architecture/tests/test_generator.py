@@ -59,6 +59,25 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release",
             "onsemi BAV70LT1G<br/>AOLDO/fixture source isolation",
             "Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority",
+            "Texas Instruments TPUL2G223BQBR<br/>non-retriggerable hardware diagnostic-pulse limiter",
+            "Yageo RC0402FR-07169KL<br/>169-kOhm 1% diagnostic-pulse timing resistor",
+            "Murata GRM31C5C1H224JE02L<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor",
+            "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R one-shot bypass capacitor",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% diagnostic-trigger fail-low resistor",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% diagnostic-gate fail-low resistor",
+            "Diodes Incorporated DMN2056U-7<br/>20-V low-gate-drive diagnostic-load MOSFET",
+            "Vishay CRCW251210R0JNEGIF<br/>10-Ohm 1-W pulse-proof diagnostic-load resistor",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% midpoint-divider top resistor #0",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% midpoint-divider top resistor #1",
+            "Yageo RC0402FR-07169KL<br/>169-kOhm 1% midpoint-divider bottom resistor",
+            "Murata GRM155R71H103KA88D<br/>10-nF 50-V X7R midpoint ADC filter capacitor",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% stack-divider top resistor #0",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% stack-divider top resistor #1",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% stack-divider top resistor #2",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% stack-divider top resistor #3",
+            "Yageo RC0402FR-07220KL<br/>220-kOhm 1% stack-divider top resistor #4",
+            "Yageo RC0402FR-07169KL<br/>169-kOhm 1% stack-divider bottom resistor",
+            "Murata GRM155R71H103KA88D<br/>10-nF 50-V X7R stack ADC filter capacitor",
             "Texas Instruments TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter",
             "Sunlord WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor",
             "Yageo RC0402FR-0742K2L<br/>42.2-kOhm 1% AON mode/configuration resistor",
@@ -216,12 +235,20 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "two individually replaceable qualified 18650 cells",
                 "both are required",
                 "admits the pair",
+                "0.57…0.88 A",
+                "no more than `50 ms`",
+                "independent non-retriggerable hardware timer",
+                "not a full-load qualification claim",
             ),
             "README.ru.md": (
                 "контролируемая батарея 2S",
                 "две отдельно заменяемые квалифицированные 18650",
                 "нужны обе",
                 "допускает пару",
+                "0,57…0,88 А",
+                "не дольше `50 мс`",
+                "независимый non-retriggerable аппаратный таймер",
+                "не обещание полной проверки под нагрузкой",
             ),
         }
         for readme_name, phrases in expected.items():
@@ -252,6 +279,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("20V PDO", contract["disabled"])
         self.assertIn("GPIO19/20 remain direct", contract["usb2_data"])
         self.assertIn("GPIO47", contract["host_control"])
+        self.assertEqual("DEC-0074", contract["diagnostic_decision"])
+        self.assertIn("non-retriggerable", contract["diagnostic_load_profile"])
+        self.assertIn("28.7-40.7 ms", contract["diagnostic_load_profile"])
+        self.assertIn("25-50 ms", contract["diagnostic_load_profile"])
+        self.assertIn("PA25/A2", contract["admission_adc_profile"])
+        self.assertIn("PA26/A1", contract["admission_adc_profile"])
+        self.assertIn("forbids injection current", contract["admission_adc_profile"])
 
         expected_instances = {
             "pd_controller": "ti_tps25751d_refr",
@@ -267,6 +301,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_hold": "diodes_2n7002dw_7_f",
             "pack_supply_or": "onsemi_bav70lt1g",
             "pack_system_diode": "diodes_bat54_7_f",
+            "pack_diag_timer": "ti_tpul2g223_bqbr",
+            "pack_diag_switch": "diodes_dmn2056u_7",
+            "pack_diag_res": "vishay_crcw251210r0jnegif",
+            "pack_mid_adc_filter": "murata_grm155r71h103ka88d",
+            "pack_stack_adc_filter": "murata_grm155r71h103ka88d",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -311,6 +350,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("pack_gauge.ZVC", "abstract:no-connect", "PACK_ZVC_UNUSED"),
             routes,
         )
+        self.assertIn(
+            ("pack_diag_timer.CH1_Q", "pack_diag_switch.G", "PACK_DIAG_GATE"),
+            routes,
+        )
+        self.assertIn(
+            ("abstract:qualified-2s-positive", "pack_diag_res.END_1", "PACK_DIAG_LOAD_POSITIVE"),
+            routes,
+        )
         self.assertNotIn(
             ("pack_gauge.CHG", "abstract:exact high-side charge FET gate", "PACK_CHG_GATE"),
             routes,
@@ -320,10 +367,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             for row in candidate["allocations"]
             if row["instance"] == "pack_admission"
         }
-        self.assertEqual("PACK_CELL0_ADC", admission["PA24_A3"]["net"])
-        self.assertEqual("PACK_STACK_ADC", admission["PA25_A2"]["net"])
+        self.assertEqual("PACK_CELL0_ADC", admission["PA25_A2"]["net"])
+        self.assertEqual("PACK_STACK_ADC", admission["PA26_A1"]["net"])
+        self.assertNotIn("PA24_A3", admission)
         self.assertEqual(
-            {"PA26_A1", "PA27_A0", "PA28_A5"},
+            {"PA24_A3", "PA27_A0", "PA28_A5"},
             set(candidate["free_gpio"]["pack_admission"]),
         )
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)

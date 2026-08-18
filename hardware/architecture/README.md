@@ -49,9 +49,13 @@ Its I3 power source now also records the `DEC-0067` no-deep-recovery boundary
 and exact active CSD87313DMST/fuse/shunt/NTC/hold/source-isolation packages,
 plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers,
 `DEC-0072`'s 24 exact converter energy/configuration/feedback passives and
-`DEC-0073`'s nine exact EN/PG/fault resistors. This is still a principle-level
-circuit contract: diagnostic load,
-mechanical polarity/thermal coupling and HIL remain open.
+`DEC-0073`'s nine exact EN/PG/fault resistors. `DEC-0074/PWR-0013` add the
+exact 10-Ohm load, non-retriggerable timer, exact C0G 28.7-40.7-ms paper
+window with 25-50-ms production acceptance, corrected PA25/PA26 ADC contacts
+and all divider/filter components; regression checks prevent the
+invalid battery-derived PA24 assignment from returning. This is still a
+principle-level circuit contract: diagnostic thresholds/cooldown, mechanical
+polarity/thermal coupling and HIL remain open.
 
 The inventory also contains verified reference boundaries. `DSP-0001` covers
 three display/touch devices and one microSD socket; `DSP-0005` additionally

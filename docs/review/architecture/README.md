@@ -98,8 +98,13 @@ configuration, input, output, fixed-feedback and feed-forward passives. Their
 fixed tolerance ranges remain compatible with the loads and eFuse OVLO, and
 the obsolete 45.0-kOhm candidate is rejected for the active 45.3-kOhm MPN.
 `PWR-0012/DEC-0073/REV-0005AD` then close direct AON enable plus nine exact
-EN/PG/fault resistors using only existing BOM MPNs. Charger passives,
-diagnostic load, mechanical
+EN/PG/fault resistors using only existing BOM MPNs.
+`PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
+load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
+25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
+corrects the old PA24 battery-divider assignment to real
+PA25/PA26 contacts without changing the `12/3/3` budget. Charger passives,
+diagnostic thresholds/cooldown, mechanical
 polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
@@ -140,6 +145,9 @@ polarity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0012`](PWR-0012-exact-converter-control-passives.md) closes direct
   AON enable and nine exact converter EN/PG/fault resistors without adding a
   GPIO or unique BOM MPN;
+- [`PWR-0013`](PWR-0013-exact-pack-diagnostic-frontends.md) closes the exact
+  bounded pack-load switch/timer/resistor and PA25/PA26 divider/filter
+  frontends, while leaving measured thresholds and cooldown to prototype HIL;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
