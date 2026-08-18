@@ -36,8 +36,10 @@ parts не были представлены всеми физическими i
 
 Генератор выпускает узкий responsive review и полный CSV. После exact
 MAX17320 и последующего actual-TX threshold/domain-isolation repair тест
-фиксирует текущий I8-срез: 858 placements, 188 used lines, 155 lines с current
-orderability evidence, 33 без него и 0 machine-readable cost/alternate lines.
+фиксирует текущий I8-срез: 858 placements, 188 used lines и 0 machine-readable
+cost/alternate lines. Последующий `FND-0111/BOM-0009` проверяет 33 source gaps:
+187 lines теперь имеют current orderability evidence, а standalone
+`HMX035CTFT-001` остаётся единственной незакрытой used line.
 Исторический первый срез 816/187 сохранён в его propagation review, но больше
 не является current BOM.
 Эти нули не означают нулевую стоимость — они запрещают складывать разрозненные

@@ -495,6 +495,9 @@ inventory coverage проведён, а sourcing/lifecycle/cost/alternate work �
 `FND-0110/SAFE-0003/DEC-0101/REV-0005BG` затем инстанцируют все восемь
 actual-TX threshold/hysteresis networks и исправляют AON-to-main evidence
 boundary без изменения GPIO или active-low runtime semantics.
+`FND-0111/BOM-0009/DEC-0102/REV-0005BH` перепроверяют все прежние current
+source gaps и исправляют prose-псевдо-MPN RP на exact `SC1512-A4`
+(`RP2354B0A4`) без изменения функции, контактов или класса корпуса.
 `FND-0105/EXP-0001/DEC-0098/REV-0005BD` закрывают независимые power/signal
 границы U214 и native Unit. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
 закрывают оставшуюся service/recovery схему: два board-off-isolated data-only
@@ -505,9 +508,10 @@ SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates
 и integrated mockup заблокированы до завершения I8/I9.
 
 `FND-0109/BOM-0008` теперь генерируют consolidated narrow-screen review и CSV:
-858 current placements сворачиваются в 188 used lines, у 155 есть датированное
-orderability evidence, у 33 его нет; ни одна строка пока не имеет
-machine-readable comparable cost или alternate/no-substitution disposition.
+858 current placements сворачиваются в 188 used lines, у 187 есть датированное
+orderability evidence, а единственной unresolved standalone строкой остаётся
+`HMX035CTFT-001`; ни одна строка пока не имеет machine-readable comparable
+cost или alternate/no-substitution disposition.
 Тот же аудит отдельно учитывает 9 SMA bodies, 5 RF cable assemblies, 2 M5
 connector bodies и 12-item antenna-kit variant вместо выдачи этих абстракций
 за нулевую стоимость. Бывшие MAX17320 и threshold gaps теперь представлены

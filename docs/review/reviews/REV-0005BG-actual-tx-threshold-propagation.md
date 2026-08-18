@@ -37,3 +37,6 @@ without changing product behavior. I8 qualification continues with 33 source,
 188 cost and 188 alternate dispositions plus the four explicit physical gap
 families. KiCad and the paused integrated mockup remain unauthorized.
 
+Subsequent `FND-0111/BOM-0009/REV-0005BH` closes 32 of those 33 source gaps;
+the numbers above remain the reviewed threshold-repair snapshot rather than
+the current I8 sourcing count.

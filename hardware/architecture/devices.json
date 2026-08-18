@@ -17,6 +17,11 @@
         "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "ESP32-S3-WROOM-1U-N16R2 active authorized-distributor stock page; 2,239 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R2/16162650",
+        "checked": "2026-08-19"
+      },
       "rf_connector": {
         "manufacturer_description": "first-generation external antenna connector",
         "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
@@ -91,6 +96,11 @@
         "version": "v1.2",
         "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "ESP32-C5-WROOM-1U-N8R8 exact authorized-distributor page; 1,838 shown in stock",
+        "url": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8?qs=4dK74SdgGtxee18dMuslog%3D%3D",
+        "checked": "2026-08-19"
       },
       "rf_connector": {
         "manufacturer_description": "ANT1 first-generation external antenna connector",
@@ -184,16 +194,22 @@
       "unavailable_gpio": {}
     },
     "rp2354b_a4": {
-      "mpn": "RP2354B A4 (exact A4 order/lot identity required before BOM freeze)",
+      "mpn": "SC1512-A4",
       "kind": "bare_qfn80",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+      "qualification": "verified_exact_rp2354b0a4_7inch_reel_order_code",
+      "lifecycle": "active_orderable",
+      "ordering_identity_note": "SC1512-A4 is Raspberry Pi's actual 7-inch-reel order code for RP2354B0A4; SC1512(13)-A4 is the same A4 silicon on a 13-inch reel and is not the first-target purchasing line",
       "dimensions_mm": [10.0, 10.0, 0.9],
       "source": {
         "document": "RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash",
         "version": "build-date 2025-02-20",
         "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "SC1512-A4 exact authorized-distributor identity and stock page; cut tape is available from the 500-piece 7-inch reel",
+        "url": "https://www.trustedparts.com/en/part/raspberry-pi/SC1512-A4",
+        "checked": "2026-08-19"
       },
       "programmable": true,
       "controller_capabilities": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "PIO1_SM1_IPC_UART", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"],
@@ -252,6 +268,11 @@
         "version": "live product page",
         "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "U214 active authorized-distributor exact-SKU page; 61 shown in stock",
+        "url": "https://www.digikey.co.uk/en/products/detail/m5stack-technology-co-ltd/U214/29291633",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -571,6 +592,11 @@
         "url": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "ES8311 exact manufacturer line at the selected PCBA supplier/LCSC; supplier identity and production-lot qualification remain required",
+        "url": "https://jlcpcb.com/partdetail/1044199-ES8311/C962342",
+        "checked": "2026-08-19"
+      },
       "package_evidence": {
         "package": "QFN-20 3x3 mm with exposed thermal pad",
         "document": "ES8311 User Guide",
@@ -804,6 +830,11 @@
         "url": "https://www.diodes.com/datasheet/download/PAM8302A.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "PAM8302AASCR authorized-distributor exact order-code page; 141,272 shown in stock",
+        "url": "https://www.mouser.fr/ProductDetail/Diodes-Incorporated/PAM8302AASCR?qs=pYVYkI7xuRXTVZEQSGcDyg%3D%3D",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "SD": {"physical": "1", "role": "signal"},
@@ -921,6 +952,11 @@
         "version": "current product specification checked 2026-08-18",
         "url": "https://download.epsondevice.com/td/pdf/td_xtal_32khz/FC-135_Q13FC13500005_en.pdf",
         "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "Q13FC13500005 exact LCSC/JLCPCB line; 33,665 shown in stock",
+        "url": "https://www.lcsc.com/product-detail/crystals_seiko-epson-q13fc13500005_C841881.html",
+        "checked": "2026-08-19"
       },
       "electrical_contract": {
         "frequency_hz": 32768,
@@ -1059,6 +1095,11 @@
         "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "RC0402JR-070RL exact authorized-channel aggregation; DigiKey and Mouser both show multi-million stock",
+        "url": "https://www.trustedparts.com/en/part/yageo/RC0402JR-070RL",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "passive"},
@@ -1077,6 +1118,11 @@
         "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "RC0402FR-07220RL active authorized-distributor exact order-code page; 170,066 shown in stock",
+        "url": "https://www.digikey.pl/pl/products/detail/yageo/RC0402FR-07220RL/726565",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "passive"},
@@ -1094,6 +1140,11 @@
         "version": "current exact order code checked 2026-08-18",
         "url": "https://psearch.en.murata.com/capacitor/product/GRM1555C1H220JA01%23.html",
         "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM1555C1H220JA01D active authorized-distributor exact order-code page",
+        "url": "https://www.digikey.jp/ja/products/detail/murata-electronics/GRM1555C1H220JA01D/3175187",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -1496,6 +1547,11 @@
         "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "E01-ML01IPX current Ebyte official-store exact-product page",
+        "url": "https://ebyteiot.com/products/ebyte-e01-ml01ipx-nrf24l01p-rf-2-4g-smd-wireless-transceiver-module-iot-electronic-components-ebyte-e01-ml01ipx-spi-interface-antenna-ipex-smd",
+        "checked": "2026-08-19"
+      },
       "lifecycle_source": {
         "document": "Nordic nRF24 Series lifecycle page",
         "url": "https://www.nordicsemi.com/Products/nRF24-series",
@@ -1561,6 +1617,11 @@
         "document": "TI CC1101RGPR order page",
         "url": "https://www.ti.com/product/CC1101/part-details/CC1101RGPR",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "CC1101RGPR active authorized-distributor exact order-code page",
+        "url": "https://www.digikey.jp/ja/products/detail/texas-instruments/CC1101RGPR/3947323",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -1872,6 +1933,11 @@
         "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "SA518 current manufacturer product/RFQ page; no authorized stocking distributor or public quantity inventory is claimed",
+        "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
       "service_required": ["UPDATE", "UART_TX", "UART_RX", "PD"],
@@ -1988,6 +2054,11 @@
         "version": "Rev. V",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
         "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G07DCKR authorized-distributor exact order-code page; 595,229 shown in stock",
+        "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G07DCKR?qs=EIjG%252BN7kn%252Bm5urWpZFTEPA%3D%3D",
+        "checked": "2026-08-19"
       },
       "electrical_contract": {
         "function": "non-inverting buffer with open-drain output",
@@ -2159,6 +2230,11 @@
         "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "EC11E18244AU authorized-distributor exact order-code page; 966 shown in stock",
+        "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU?qs=YMSFtX0bdJDrS4vspzwcPg%3D%3D",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "A": {"physical": "A", "role": "quadrature"},
@@ -2179,6 +2255,11 @@
         "version": "Rev. 11",
         "url": "https://www.onsemi.com/pdf/datasheet/1n4148wt-d.pdf",
         "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "1N4148WT active authorized-distributor exact order-code page; 2,196 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/onsemi/1N4148WT/2094398",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -2267,6 +2348,11 @@
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "TPS3808G33DBVR active authorized-distributor exact order-code page; Mouser stock independently observed in the dated check",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS3808G33DBVR/666727",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "RESET_N": {"physical": "1", "role": "reset"},
@@ -2288,6 +2374,11 @@
         "version": "2023-08-18",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "74LVC2G14GW,125 exact authorized-distributor replacement listing; 72,597 shown in stock under the current Nexperia line",
+        "url": "https://www.digikey.com/en/products/detail/nxp-usa-inc/74LVC2G14GW-125/10476011",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -2311,6 +2402,11 @@
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "74LVC1G32GV,125 active authorized-distributor exact order-code page; 23,078 shown in stock",
+        "url": "https://www.digikey.ca/en/products/detail/nexperia-usa-inc/74LVC1G32GV-125/946687",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "1A": {"physical": "1", "role": "signal"},
@@ -2331,6 +2427,11 @@
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G74DCUR ACTIVE exact TI order page; authorized-distributor stock independently observed",
+        "url": "https://www.ti.com/product/SN74LVC1G74/part-details/SN74LVC1G74DCUR",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -2356,6 +2457,11 @@
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "SN74LVC08APWR active authorized-distributor exact order-code page; 14,237 shown in stock",
+        "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/SN74LVC08APWR?qs=FM6NhYOeeBVuqx5y44y2yw%3D%3D",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "1A": {"physical": "1", "role": "signal"}, "1B": {"physical": "2", "role": "signal"},
@@ -2378,6 +2484,11 @@
         "version": "Rev. L",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "SN74LVC3G34DCUR ACTIVE exact TI order page; no local TI inventory is implied",
+        "url": "https://www.ti.com/product/SN74LVC3G34/part-details/SN74LVC3G34DCUR",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -2402,6 +2513,11 @@
         "version": "5532f",
         "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "LTC5532ES6#TRMPBF active authorized-distributor exact order-code page; 1,701 shown in stock",
+        "url": "https://www.digikey.de/de/products/detail/analog-devices-inc/LTC5532ES6-TRMPBF/1115993",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -2713,6 +2829,11 @@
         "url": "https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "BAT54ALT1G active authorized-distributor exact order-code page; 185,183 shown in stock",
+        "url": "https://www.digikey.com/es/products/detail/onsemi/BAT54ALT1G/917808",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "K1": {"physical": "1", "role": "signal"},
@@ -2732,6 +2853,11 @@
         "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "LTST-C190KRKT authorized-distributor exact order-code page; 584,863 shown in stock",
+        "url": "https://www.mouser.pl/ProductDetail/LITEON/LTST-C190KRKT?qs=kAD5fFa1n5VY3YYNWPC1Fg%3D%3D",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "K": {"physical": "cathode land", "role": "signal"},
@@ -2749,6 +2875,11 @@
         "version": "BNS-OD-C131/A4",
         "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0186/LTST-C190KFKT.PDF",
         "checked": "2026-08-17"
+      },
+      "orderable_source": {
+        "document": "LTST-C190KFKT active authorized-distributor exact order-code page",
+        "url": "https://www.digikey.jp/ja/products/detail/liteon/LTST-C190KFKT/386813",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -4084,6 +4215,11 @@
         "url": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "0451005.MRL authorized-distributor exact order-code page; 35,669 shown in stock",
+        "url": "https://www.digikey.pl/pl/products/detail/littelfuse-inc/0451005-MRL/700828",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "end termination 1", "role": "power"},
@@ -4194,6 +4330,11 @@
         "url": "https://www.vishay.com/docs/30108/wsl.pdf",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "WSL25125L000FEA authorized-distributor exact order-code page; 8,905 shown in regional stock",
+        "url": "https://www.mouser.ch/ProductDetail/Vishay-Dale/WSL25125L000FEA?qs=ViWNInbc%252BeWBpJ7mz8KqSA%3D%3D",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "terminal 1 with Kelvin pickup", "role": "analog"},
@@ -4211,6 +4352,11 @@
         "version": "PPD ML PD 2025-10-30",
         "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
         "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TDK exact product page with production status and multi-distributor stock inventory",
+        "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {
@@ -4291,6 +4437,11 @@
         "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "2N7002DW-7-F active authorized-distributor exact order-code page",
+        "url": "https://www.digikey.com/es/products/detail/diodes-incorporated/2N7002DW-7-F/749948",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "D2": {"physical": "1", "role": "signal"},
@@ -4313,6 +4464,11 @@
         "url": "https://www.onsemi.com/pdf/datasheet/bav70lt1-d.pdf",
         "checked": "2026-08-18"
       },
+      "orderable_source": {
+        "document": "BAV70LT1G active authorized-distributor exact order-code page",
+        "url": "https://www.digikey.com/en/products/detail/onsemi/BAV70LT1G/918324",
+        "checked": "2026-08-19"
+      },
       "programmable": false,
       "contacts": {
         "A1": {"physical": "1", "role": "power"},
@@ -4331,6 +4487,11 @@
         "version": "DS11005 Rev. 34-2, November 2023",
         "url": "https://www.diodes.com/datasheet/download/BAT54.pdf",
         "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "BAT54-7-F active authorized-distributor exact order-code page; 186,051 shown in stock",
+        "url": "https://www.digikey.ca/en/products/detail/diodes-incorporated/BAT54-7-F/717699",
+        "checked": "2026-08-19"
       },
       "programmable": false,
       "contacts": {

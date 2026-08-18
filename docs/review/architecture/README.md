@@ -235,6 +235,11 @@ and antenna-kit gap families. `FND-0110/SAFE-0003/DEC-0101/REV-0005BG`
 subsequently instantiate every actual-TX threshold network and repair the
 AON-to-main evidence boundary. I8 inventory coverage is reviewed;
 orderability, cost and alternate qualification remain active.
+`FND-0111/BOM-0009/DEC-0102/REV-0005BH` subsequently recheck all 33 missing
+source lines, replace the RP prose pseudo-MPN with exact `SC1512-A4`
+(`RP2354B0A4`) and raise current orderability coverage to 187/188. Exact
+standalone `HMX035CTFT-001` sourcing is the sole used-line residue; all costs,
+alternates and the four physical-gap families remain open.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

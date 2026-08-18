@@ -27,7 +27,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(858, sum(line["quantity"] for line in lines))
         self.assertEqual(188, len(lines))
         self.assertEqual(
-            33,
+            1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
@@ -52,7 +52,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("858", rendered)
         self.assertIn("188", rendered)
-        self.assertIn("155/188", rendered)
+        self.assertIn("187/188", rendered)
+        self.assertIn("HMX035CTFT-001", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
 
@@ -169,7 +170,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 33 | 3 | 0 | 36 |", rendered)
         self.assertIn("| `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |", rendered)
-        self.assertIn("| `rp` | `RP2354B A4", rendered)
+        self.assertIn("| `rp` | `SC1512-A4` |", rendered)
         self.assertIn("| 48 | 0 | 0 | 48 |", rendered)
         self.assertIn("`RP=0 free`", rendered)
         self.assertIn("GPIO30", rendered)

@@ -385,7 +385,7 @@ flowchart TD
   SWRX["TPS22919DCKR<br/>Si4732 quiet-state load switch"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
-  RP["RP2354B A4<br/>deterministic radio and voice owner"]
+  RP["SC1512-A4 (RP2354B0A4)<br/>deterministic radio and voice owner"]
   C5USBC["GCT USB4105-GF-A #C5<br/>independent data-only USB-C service receptacle"]
   C5UESD["Texas Instruments TPD2EUSB30ADRTR #C5<br/>service USB D+/D- ESD shunt"]
   C5UMUX["onsemi FSUSB42MUX #C5<br/>board-off D+/D- backfeed-isolation switch"]

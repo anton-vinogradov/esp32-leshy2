@@ -30,7 +30,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
-| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory coverage reviewed, qualification active** by `FND-0109/BOM-0008` and the `FND-0110/SAFE-0003/DEC-0101/REV-0005BG` threshold repair: 858 instantiated placements / 188 used lines plus four explicit uninstantiated physical families; 33 source, every cost and every alternate disposition remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
+| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory coverage and current source batch reviewed; qualification active** by `FND-0109/BOM-0008`, the `FND-0110/SAFE-0003/DEC-0101/REV-0005BG` threshold repair and `FND-0111/BOM-0009/DEC-0102/REV-0005BH`: 858 instantiated placements / 188 used lines, 187 source records and four explicit uninstantiated physical families; exact `HMX035CTFT-001`, every cost and every alternate disposition remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
@@ -220,5 +220,8 @@ qualification-gated. The narrow groups of MAX17320 support and actual-TX
 threshold/domain-isolation parts that had remained prose-only are now exact
 and reviewed. I8 inventory
 coverage has **«Проведено ревью»** and produces responsive Markdown plus CSV;
-sourcing/cost/alternate qualification remains active. I3 paper scope is closed
+sourcing/cost/alternate qualification remains active. `FND-0111/BOM-0009`
+then recheck the 33 missing used-line sources: exact `SC1512-A4`
+(`RP2354B0A4`) corrects the pseudo-MPN, 187/188 source records are present and
+only standalone `HMX035CTFT-001` remains unresolved. I3 paper scope is closed
 again without claiming layout, exact-lot, thermal or fault-injection HIL.

@@ -493,6 +493,9 @@ the accepted 2S topology.
 `FND-0110/SAFE-0003/DEC-0101/REV-0005BG` then instantiate all eight actual-TX
 threshold/hysteresis networks and repair the AON-to-main evidence boundary
 without changing GPIO or active-low runtime semantics.
+`FND-0111/BOM-0009/DEC-0102/REV-0005BH` recheck every formerly missing current
+source and correct the RP prose pseudo-MPN to exact `SC1512-A4`
+(`RP2354B0A4`) without changing function, pins or package class.
 `FND-0105/EXP-0001/DEC-0098/REV-0005BD` close independent U214/native-Unit
 power and signal isolation. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
 close the remaining service/recovery circuit: two board-off-isolated data-only
@@ -503,9 +506,10 @@ fixture and erased-image HIL remain named reopen gates; KiCad and the integrated
 mockup remain blocked through I8/I9.
 
 `FND-0109/BOM-0008` now generate a consolidated narrow-screen review and CSV:
-858 current placements collapse to 188 used lines, 155 carry dated orderability
-evidence and 33 do not; no line yet has machine-readable comparable cost or
-alternate/no-substitution disposition. The same audit separately records nine
+858 current placements collapse to 188 used lines, 187 carry dated
+orderability evidence and only standalone `HMX035CTFT-001` remains unresolved;
+no line yet has machine-readable comparable cost or alternate/no-substitution
+disposition. The same audit separately records nine
 SMA bodies, five RF cable assemblies, two M5 connector bodies and the 12-item
 antenna-kit variant instead of treating them as zero-cost abstractions. The
 former MAX17320 and threshold gaps are now exact physical placements.
