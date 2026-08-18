@@ -220,6 +220,7 @@ flowchart TD
   UI_MATRIX_COL0_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm ordinary-matrix column-0 pull-up"]
   UI_MATRIX_COL1_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm ordinary-matrix column-1 pull-up"]
   UI_MATRIX_COL2_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm ordinary-matrix column-2 pull-up"]
+  UI_MATRIX_ESD["Texas Instruments TPD8E003DQDR<br/>eight-channel keypad/GPIO ESD array for P0-P7"]
   UI_MATRIX_DIODE_UP["onsemi 1N4148WT<br/>D-pad UP matrix-isolation diode"]
   UI_MATRIX_DIODE_DOWN["onsemi 1N4148WT<br/>D-pad DOWN matrix-isolation diode"]
   UI_MATRIX_DIODE_LEFT["onsemi 1N4148WT<br/>D-pad LEFT matrix-isolation diode"]
@@ -230,18 +231,23 @@ flowchart TD
   UI_MATRIX_DIODE_F1["onsemi 1N4148WT<br/>F1 matrix-isolation diode"]
   UI_MATRIX_DIODE_F2["onsemi 1N4148WT<br/>F2 matrix-isolation diode"]
   UI_MATRIX_DIODE_ENCODER["onsemi 1N4148WT<br/>encoder-push matrix-isolation diode"]
-  UI_UP["MPN TBD<br/>D-pad UP ordinary control"]
-  UI_DOWN["MPN TBD<br/>D-pad DOWN ordinary control"]
-  UI_LEFT["MPN TBD<br/>D-pad LEFT ordinary control"]
-  UI_RIGHT["MPN TBD<br/>D-pad RIGHT ordinary control"]
-  UI_OK["MPN TBD<br/>D-pad OK ordinary control"]
-  UI_BACK["MPN TBD<br/>BACK ordinary control"]
-  UI_OPT["MPN TBD<br/>OPT ordinary control"]
-  UI_F1["MPN TBD<br/>F1 ordinary control"]
-  UI_F2["MPN TBD<br/>F2 ordinary control"]
+  UI_SWITCH_UP["C&K Y78B23214FP<br/>D-pad UP ultra-low-current ordinary control"]
+  UI_SWITCH_DOWN["C&K Y78B23214FP<br/>D-pad DOWN ultra-low-current ordinary control"]
+  UI_SWITCH_LEFT["C&K Y78B23214FP<br/>D-pad LEFT ultra-low-current ordinary control"]
+  UI_SWITCH_RIGHT["C&K Y78B23214FP<br/>D-pad RIGHT ultra-low-current ordinary control"]
+  UI_SWITCH_OK["C&K Y78B23214FP<br/>D-pad OK ultra-low-current ordinary control"]
+  UI_SWITCH_BACK["C&K Y78B23214FP<br/>BACK ultra-low-current ordinary control"]
+  UI_SWITCH_OPT["C&K Y78B23214FP<br/>OPT ultra-low-current ordinary control"]
+  UI_SWITCH_F1["C&K Y78B23214FP<br/>F1 ultra-low-current ordinary control"]
+  UI_SWITCH_F2["C&K Y78B23214FP<br/>F2 ultra-low-current ordinary control"]
   ENCODER["Alps Alpine EC11E18244AU<br/>36-detent/18-pulse rotary encoder with push"]
   ENCODER_A_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-A contact-current pull-up"]
   ENCODER_B_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-B contact-current pull-up"]
+  ENCODER_PTT_ESD["Texas Instruments TPD4E05U06DQAR<br/>four-channel encoder/PTT low-capacitance ESD array"]
+  PTT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm direct-PTT contact-current pull-up"]
+  PTT_SERIES["Yageo RC0603FR-071KL<br/>1-kOhm direct-PTT input series resistor"]
+  PTT_FILTER_CAP["TDK C1005X7R1H104K050BB<br/>100-nF direct-PTT hardware filter capacitor"]
+  PTT_RAW(("PTT_BUTTON_RAW_N<br/>active-low direct-PTT node"))
   TOUCH_IRQ_BUFFER["SN74LVC1G07DCKR<br/>open-drain touch-interrupt polarity adapter"]
   TOUCH_IRQ_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF touch-interrupt-buffer bypass capacitor"]
   TOUCH_IRQ_ALT["SN74LVC1G06DCKR (DNP alternative)<br/>pin-compatible active-high TP_INT inverter option"]
@@ -278,9 +284,16 @@ flowchart TD
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED and fail-safe driver endpoint"]
   end
   subgraph SAFETY_STOP["AON hard-STOP devices"]
-  PTTSW["MPN TBD<br/>separate normally-open hold-to-talk PTT control"]
-  STOPSW["MPN TBD<br/>normally-closed physical STOP control"]
-  REARMSW["MPN TBD<br/>normally-open recessed RE-ARM control"]
+  PTT_SWITCH["C&K Y78B23214FP<br/>separate normally-open hold-to-talk PTT control"]
+  STOP_SWITCH["Panasonic AEQ10410<br/>gold-clad low-level normally-closed hard-STOP control"]
+  REARM_SWITCH["C&K Y78B23214FP<br/>normally-open recessed RE-ARM control"]
+  STOP_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm AON STOP contact-current pull-up"]
+  STOP_FILTER_CAP["Murata GRM155R71H103KA88D<br/>10-nF X7R asynchronous STOP filter capacitor"]
+  REARM_PULLUP["Yageo RC0402FR-0747KL<br/>47-kOhm AON RE-ARM contact-current pull-up"]
+  REARM_FILTER_CAP["TDK C1005X7R1H104K050BB<br/>100-nF X7R RE-ARM filter capacitor"]
+  SAFETY_CONTROL_ESD["Texas Instruments TPD4E05U06DQAR<br/>dedicated four-channel STOP/RE-ARM ESD array"]
+  STOP_LOOP(("STOP_LOOP_SENSE<br/>fail-open AON STOP node"))
+  REARM_RAW(("REARM_RAW<br/>fresh-press AON node"))
   SAFE_SUPERVISOR["TPS3808G33DBVR<br/>AON rail supervisor and power-on reset"]
   SAFE_POR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm 1% AON POR pull-up resistor"]
   SAFE_CONDITIONER["74LVC2G14GW,125<br/>STOP and RE-ARM Schmitt conditioner"]
@@ -323,11 +336,11 @@ flowchart TD
   VOICE_PG_QUALIFIER ~~~ EXT_BUCK ~~~ EXT_INDUCTOR ~~~ EXT_BUCK_INPUT_CAP ~~~ EXT_BUCK_HF_INPUT_CAP ~~~ EXT_BUCK_FB_TOP ~~~ EXT_BUCK_FB_BOTTOM ~~~ EXT_BUCK_FF_CAP ~~~ EXT_BUCK_OUTPUT_CAP0 ~~~ EXT_BUCK_OUTPUT_CAP1 ~~~ EXT_EN_PULLDOWN ~~~ EXT_PG_PULLUP ~~~ EXT_PG_BASE_RES ~~~ EXT_PG_QUALIFIER ~~~ EXT_EFUSE
   EXT_EFUSE ~~~ EXT_RILM ~~~ EXT_DVDT_CAP ~~~ EXT_ITIMER_CAP ~~~ EXT_OVLO_TOP ~~~ EXT_OVLO_BOTTOM
   EXT_OVLO_BOTTOM ~~~ EXT_INPUT_CAP ~~~ EXT_OUTPUT_CAP ~~~ EXT_BLEEDER ~~~ NRF_POWER_SWITCH ~~~ CC_POWER_SWITCH ~~~ SD_POWER_SWITCH ~~~ CODEC_POWER_SWITCH ~~~ RECEIVER_POWER_SWITCH ~~~ S3 ~~~ SLOW_IO
-  SLOW_IO ~~~ UI_MATRIX_IO ~~~ UI_MATRIX_IO_BYPASS ~~~ UI_MATRIX_ROW0_PULLDOWN ~~~ UI_MATRIX_ROW1_PULLDOWN ~~~ UI_MATRIX_ROW2_PULLDOWN ~~~ UI_MATRIX_ROW3_PULLDOWN ~~~ UI_MATRIX_COL0_PULLUP ~~~ UI_MATRIX_COL1_PULLUP ~~~ UI_MATRIX_COL2_PULLUP
-  UI_MATRIX_COL2_PULLUP ~~~ UI_MATRIX_DIODE_UP ~~~ UI_UP ~~~ UI_MATRIX_DIODE_DOWN ~~~ UI_DOWN ~~~ UI_MATRIX_DIODE_LEFT ~~~ UI_LEFT
-  UI_LEFT ~~~ UI_MATRIX_DIODE_RIGHT ~~~ UI_RIGHT ~~~ UI_MATRIX_DIODE_OK ~~~ UI_OK ~~~ UI_MATRIX_DIODE_BACK ~~~ UI_BACK
-  UI_BACK ~~~ UI_MATRIX_DIODE_OPT ~~~ UI_OPT ~~~ UI_MATRIX_DIODE_F1 ~~~ UI_F1 ~~~ UI_MATRIX_DIODE_F2 ~~~ UI_F2
-  UI_F2 ~~~ UI_MATRIX_DIODE_ENCODER ~~~ ENCODER ~~~ ENCODER_A_PULLUP ~~~ ENCODER_B_PULLUP ~~~ TOUCH_IRQ_BUFFER ~~~ TOUCH_IRQ_BUFFER_BYPASS ~~~ TOUCH_IRQ_ALT
+  SLOW_IO ~~~ UI_MATRIX_IO ~~~ UI_MATRIX_IO_BYPASS ~~~ UI_MATRIX_ROW0_PULLDOWN ~~~ UI_MATRIX_ROW1_PULLDOWN ~~~ UI_MATRIX_ROW2_PULLDOWN ~~~ UI_MATRIX_ROW3_PULLDOWN ~~~ UI_MATRIX_COL0_PULLUP ~~~ UI_MATRIX_COL1_PULLUP ~~~ UI_MATRIX_COL2_PULLUP ~~~ UI_MATRIX_ESD
+  UI_MATRIX_ESD ~~~ UI_MATRIX_DIODE_UP ~~~ UI_SWITCH_UP ~~~ UI_MATRIX_DIODE_DOWN ~~~ UI_SWITCH_DOWN ~~~ UI_MATRIX_DIODE_LEFT ~~~ UI_SWITCH_LEFT
+  UI_SWITCH_LEFT ~~~ UI_MATRIX_DIODE_RIGHT ~~~ UI_SWITCH_RIGHT ~~~ UI_MATRIX_DIODE_OK ~~~ UI_SWITCH_OK ~~~ UI_MATRIX_DIODE_BACK ~~~ UI_SWITCH_BACK
+  UI_SWITCH_BACK ~~~ UI_MATRIX_DIODE_OPT ~~~ UI_SWITCH_OPT ~~~ UI_MATRIX_DIODE_F1 ~~~ UI_SWITCH_F1 ~~~ UI_MATRIX_DIODE_F2 ~~~ UI_SWITCH_F2
+  UI_SWITCH_F2 ~~~ UI_MATRIX_DIODE_ENCODER ~~~ ENCODER ~~~ ENCODER_A_PULLUP ~~~ ENCODER_B_PULLUP ~~~ ENCODER_PTT_ESD ~~~ PTT_PULLUP ~~~ PTT_SERIES ~~~ PTT_FILTER_CAP ~~~ PTT_RAW ~~~ TOUCH_IRQ_BUFFER ~~~ TOUCH_IRQ_BUFFER_BYPASS ~~~ TOUCH_IRQ_ALT
   TOUCH_IRQ_ALT ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ MONOSUM
   MONOSUM ~~~ AUDIO_RX_MUX ~~~ CAPNET ~~~ AUDIO_CAPTURE_BUFFER ~~~ ADCNET
   ADCNET ~~~ CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER
@@ -339,8 +352,8 @@ flowchart TD
   SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT
   UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP
   RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ VOICE
-  VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW
-  REARMSW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
+  VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD
+  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
   SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED
   STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
   DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B
@@ -514,15 +527,16 @@ flowchart TD
   UI_MATRIX_ROW1_PULLDOWN -->|"reset/idle low"| UI_MATRIX_IO
   UI_MATRIX_ROW2_PULLDOWN -->|"reset/idle low"| UI_MATRIX_IO
   UI_MATRIX_ROW3_PULLDOWN -->|"reset/idle low"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_UP --> UI_UP -->|"P4 column 0"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_DOWN --> UI_DOWN -->|"P5 column 1"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_LEFT --> UI_LEFT -->|"P6 column 2"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_RIGHT --> UI_RIGHT -->|"P4 column 0"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_OK --> UI_OK -->|"P5 column 1"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_BACK --> UI_BACK -->|"P6 column 2"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_OPT --> UI_OPT -->|"P4 column 0"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_F1 --> UI_F1 -->|"P5 column 1"| UI_MATRIX_IO
-  UI_MATRIX_IO --> UI_MATRIX_DIODE_F2 --> UI_F2 -->|"P6 column 2"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_ESD
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_UP --> UI_SWITCH_UP -->|"P4 column 0"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_DOWN --> UI_SWITCH_DOWN -->|"P5 column 1"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_LEFT --> UI_SWITCH_LEFT -->|"P6 column 2"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_RIGHT --> UI_SWITCH_RIGHT -->|"P4 column 0"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_OK --> UI_SWITCH_OK -->|"P5 column 1"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_BACK --> UI_SWITCH_BACK -->|"P6 column 2"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_OPT --> UI_SWITCH_OPT -->|"P4 column 0"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_F1 --> UI_SWITCH_F1 -->|"P5 column 1"| UI_MATRIX_IO
+  UI_MATRIX_IO --> UI_MATRIX_DIODE_F2 --> UI_SWITCH_F2 -->|"P6 column 2"| UI_MATRIX_IO
   UI_MATRIX_IO --> UI_MATRIX_DIODE_ENCODER -->|"push"| ENCODER -->|"P4 column 0"| UI_MATRIX_IO
   UI_MATRIX_COL0_PULLUP --> UI_MATRIX_IO
   UI_MATRIX_COL1_PULLUP --> UI_MATRIX_IO
@@ -554,7 +568,12 @@ flowchart TD
   RP <-->|"PIO0 SM2 + direct control: GPIO6,GPIO7,GPIO8,GPIO36,GPIO37,GPIO38"| NRF2
   RP <-->|"PIO0 SM3 + GDO/power: GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43"| CC
   RP <-->|"UART0/PTT request: GPIO16,GPIO17,GPIO18,GPIO20,GPIO21"| VOICE
-  PTTSW -->|"direct GPIO21; never in UI matrix"| RP
+  PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW
+  PTT_FILTER_CAP -->|"100 nF to power ground"| PTT_RAW
+  PTT_SWITCH -->|"NO contact to power ground"| PTT_RAW
+  PTT_RAW --> ENCODER_PTT_ESD
+  PTT_RAW -->|"direct GPIO21 through 1 kOhm; never in UI matrix"| PTT_SERIES --> RP
+  ENCODER --> ENCODER_PTT_ESD
   RP <-->|"PIO1/UART1: GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214
   RP <-->|"I²C0"| U214_I2C_ISO
   U214_I2C_ISO <-->|"isolated external I²C"| U214
@@ -571,10 +590,18 @@ flowchart TD
   S3 -->|"GPIO6 AUDIO_ARM"| AUDIO_SAFE_GATE
   AUDIO_SAFE_GATE --> AUDIO_SPEAKER_SELECTOR
   AUDIO_SAFE_GATE --> AUDIO_TX_SELECTOR
-  STOPSW --> SAFE_CONDITIONER --> SAFE_LATCH
-  REARMSW --> SAFE_CONDITIONER
+  STOP_PULLUP -->|"10 kOhm to AON_SAFE_3V3"| STOP_LOOP
+  STOP_FILTER_CAP -->|"10 nF to safety ground"| STOP_LOOP
+  STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP
+  STOP_LOOP --> SAFETY_CONTROL_ESD
+  STOP_LOOP --> SAFE_CONDITIONER --> SAFE_LATCH
+  REARM_PULLUP -->|"47 kOhm to AON_SAFE_3V3"| REARM_RAW
+  REARM_FILTER_CAP -->|"100 nF to safety ground"| REARM_RAW
+  REARM_SWITCH -->|"NO contact to safety ground"| REARM_RAW
+  REARM_RAW --> SAFETY_CONTROL_ESD
+  REARM_RAW --> SAFE_CONDITIONER
   SAFE_SUPERVISOR --> SAFE_POR_OR --> SAFE_LATCH
-  STOPSW --> SAFE_POR_OR
+  STOP_LOOP --> SAFE_POR_OR
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_RESET_BUFFER
   SAFE_RESET_BUFFER -->|"CHIP_PU"| S3
   SAFE_RESET_BUFFER -->|"CHIP_PU"| C5
@@ -644,8 +671,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `C5-qualified-RF-tap`
 - `CC-qualified-RF-tap`
 - `MAIN_RAW_3V3`
-- `NC-stop-loop-10k-pullup-10nF`
-- `NO-rearm-loop-47k-pullup-100nF`
 - `NRF0-qualified-RF-tap`
 - `NRF1-qualified-RF-tap`
 - `NRF2-qualified-RF-tap`
@@ -658,31 +683,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `TP_EXT_5V_ILM`
 - `TP_LCD_BACKLIGHT_FAULT_N`
 - `TP_USB_PROTECTOR_FAULT_N`
-- `UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES`
-- `UI_MATRIX_COL1_WITH_SWITCHES_AND_DIODES`
-- `UI_MATRIX_COL2_WITH_SWITCHES_AND_DIODES`
-- `UI_MATRIX_ROW0_UP_DOWN_LEFT`
-- `UI_MATRIX_ROW1_RIGHT_OK_BACK`
-- `UI_MATRIX_ROW2_OPT_F1_F2`
-- `UI_MATRIX_ROW3_ENCODER_PUSH`
-- `UI_SWITCH_BACK_COL_CONTACT`
-- `UI_SWITCH_BACK_ROW_CONTACT`
-- `UI_SWITCH_DOWN_COL_CONTACT`
-- `UI_SWITCH_DOWN_ROW_CONTACT`
-- `UI_SWITCH_F1_COL_CONTACT`
-- `UI_SWITCH_F1_ROW_CONTACT`
-- `UI_SWITCH_F2_COL_CONTACT`
-- `UI_SWITCH_F2_ROW_CONTACT`
-- `UI_SWITCH_LEFT_COL_CONTACT`
-- `UI_SWITCH_LEFT_ROW_CONTACT`
-- `UI_SWITCH_OK_COL_CONTACT`
-- `UI_SWITCH_OK_ROW_CONTACT`
-- `UI_SWITCH_OPT_COL_CONTACT`
-- `UI_SWITCH_OPT_ROW_CONTACT`
-- `UI_SWITCH_RIGHT_COL_CONTACT`
-- `UI_SWITCH_RIGHT_ROW_CONTACT`
-- `UI_SWITCH_UP_COL_CONTACT`
-- `UI_SWITCH_UP_ROW_CONTACT`
 - `VOICE-qualified-RF-tap`
 - `VVOICE_RAW_4V`
 - `accessory-present`
@@ -716,7 +716,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `pd-eeprom-factory-scl-pad`
 - `pd-eeprom-factory-sda-pad`
 - `pd-eeprom-factory-wp-pad`
-- `physical PTT switch`
 - `power-current-thermal-fault`
 - `power-ground`
 - `power-ground-dedicated-via`
@@ -743,6 +742,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `reserved-local-control-expansion-pad`
 - `rx-audio-bypass-and-capture-node`
 - `safety-ground`
+- `safety-ground-dedicated-via`
 - `safety-ground-via-10k`
 - `service USB connector`
 - `service fixture`
@@ -850,7 +850,7 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO18` | 18 | `VOICE_PTT_REQ_N` | `o` | `GPIO` | `safe_ptt_or.1A` | — |
 | `GPIO19` | 19 | `RP_ALERT_N` | `od` | `GPIO_IRQ` | `s3.GPIO3` | — |
 | `GPIO20` | 20 | `VOICE_ACTIVITY` | `i` | `GPIO_IRQ` | `voice.AUDIO_ON` | — |
-| `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `abstract:physical PTT switch` | — |
+| `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `ptt_series.END_2` | — |
 | `GPIO22` | 22 | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | `evidence_or_0.A_COMMON`, `evidence_or_1.A_COMMON`, `evidence_or_2.A_COMMON`, `evidence_or_3.A_COMMON`, `any_tx_led.K` | — |
 | `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `safe_gate_b.1A` | — |
 | `GPIO24` | 25 | `S3_RP_IPC_MOSI` | `i` | `SPI1_IPC` | `s3.GPIO21` | — |
@@ -1432,14 +1432,16 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `UI_MATRIX_ADDR_A0_HIGH` | `abstract:3V3_MAIN` | `ui_matrix_io.A0` | candidate 7-bit address 0x3F; physical collision scan remains HIL |
 | `UI_MATRIX_ADDR_A1_HIGH` | `abstract:3V3_MAIN` | `ui_matrix_io.A1` | candidate 7-bit address 0x3F; physical collision scan remains HIL |
 | `UI_MATRIX_ADDR_A2_HIGH` | `abstract:3V3_MAIN` | `ui_matrix_io.A2` | candidate 7-bit address 0x3F; physical collision scan remains HIL |
-| `UI_ROW0_N` | `ui_matrix_io.P0` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | 1-kOhm reset pull-down makes the row low before firmware; bounded scan may drive it high when unselected |
-| `UI_ROW1_N` | `ui_matrix_io.P1` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | 1-kOhm reset pull-down makes the row low before firmware; bounded scan may drive it high when unselected |
-| `UI_ROW2_N` | `ui_matrix_io.P2` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | 1-kOhm reset pull-down makes the row low before firmware; bounded scan may drive it high when unselected |
-| `UI_ROW3_N` | `ui_matrix_io.P3` | `abstract:UI_MATRIX_ROW3_ENCODER_PUSH` | 1-kOhm reset pull-down makes the encoder-push row low before firmware |
-| `UI_COL0` | `ui_matrix_io.P4` | `abstract:UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES` | 10-kOhm pull-up and one 1N4148WT per populated control; ordinary UI only |
-| `UI_COL1` | `ui_matrix_io.P5` | `abstract:UI_MATRIX_COL1_WITH_SWITCHES_AND_DIODES` | 10-kOhm pull-up and one 1N4148WT per populated control; ordinary UI only |
-| `UI_COL2` | `ui_matrix_io.P6` | `abstract:UI_MATRIX_COL2_WITH_SWITCHES_AND_DIODES` | 10-kOhm pull-up and one 1N4148WT per populated control; ordinary UI only |
-| `UI_MATRIX_P7_RESERVE` | `ui_matrix_io.P7` | `abstract:reserved-local-control-expansion-pad` | single local growth contact is reserved until all physical-control wishes close |
+| `UI_ROW0_N` | `ui_matrix_io.P0` | `ui_matrix_esd.IO1` | exact keypad/GPIO ESD channel protects row 0; 1-kOhm reset pull-down keeps it low before firmware |
+| `UI_ROW1_N` | `ui_matrix_io.P1` | `ui_matrix_esd.IO2` | exact keypad/GPIO ESD channel protects row 1; 1-kOhm reset pull-down keeps it low before firmware |
+| `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_esd.IO3` | exact keypad/GPIO ESD channel protects row 2; 1-kOhm reset pull-down keeps it low before firmware |
+| `UI_ROW3_N` | `ui_matrix_io.P3` | `ui_matrix_esd.IO4` | exact keypad/GPIO ESD channel protects the encoder-push row |
+| `UI_COL0` | `ui_matrix_io.P4` | `ui_matrix_esd.IO5` | exact keypad/GPIO ESD channel protects column 0 |
+| `UI_COL1` | `ui_matrix_io.P5` | `ui_matrix_esd.IO6` | exact keypad/GPIO ESD channel protects column 1 |
+| `UI_COL2` | `ui_matrix_io.P6` | `ui_matrix_esd.IO7` | exact keypad/GPIO ESD channel protects column 2 |
+| `UI_MATRIX_P7_RESERVE` | `ui_matrix_io.P7` | `ui_matrix_esd.IO8` | the reserved local growth contact receives the eighth exact ESD channel |
+| `UI_MATRIX_P7_RESERVE` | `ui_matrix_io.P7` | `abstract:reserved-local-control-expansion-pad` | single protected local growth contact is reserved until all physical-control wishes close |
+| `UI_MATRIX_ESD_GROUND` | `ui_matrix_esd.GND` | `abstract:power-ground-dedicated-via` | exposed pad receives a shortest-path local ESD return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_io_bypass.END_1` | 100-nF local expander bypass |
 | `POWER_GROUND` | `ui_matrix_io_bypass.END_2` | `abstract:power-ground` | short local bypass return |
 | `UI_ROW0_N` | `ui_matrix_io.P0` | `ui_matrix_row0_pulldown.END_1` | exact 1-kOhm reset pull-down |
@@ -1456,41 +1458,88 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `UI_COL1` | `ui_matrix_col1_pullup.END_2` | `ui_matrix_io.P5` | 10-kOhm column pull-up |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_col2_pullup.END_1` | ordinary matrix column pull-up source |
 | `UI_COL2` | `ui_matrix_col2_pullup.END_2` | `ui_matrix_io.P6` | 10-kOhm column pull-up |
-| `UI_ROW0_N` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | `ui_matrix_diode_up.K` | one exact diode isolates D-pad UP from other rows |
-| `UI_UP_ROW_SIDE` | `ui_matrix_diode_up.A` | `abstract:UI_SWITCH_UP_ROW_CONTACT` | ordinary normally-open D-pad UP mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL0` | `abstract:UI_SWITCH_UP_COL_CONTACT` | `ui_matrix_io.P4` | D-pad UP occupies row 0, column 0 |
-| `UI_ROW0_N` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | `ui_matrix_diode_down.K` | one exact diode isolates D-pad DOWN from other rows |
-| `UI_DOWN_ROW_SIDE` | `ui_matrix_diode_down.A` | `abstract:UI_SWITCH_DOWN_ROW_CONTACT` | ordinary normally-open D-pad DOWN mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL1` | `abstract:UI_SWITCH_DOWN_COL_CONTACT` | `ui_matrix_io.P5` | D-pad DOWN occupies row 0, column 1 |
-| `UI_ROW0_N` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | `ui_matrix_diode_left.K` | one exact diode isolates D-pad LEFT from other rows |
-| `UI_LEFT_ROW_SIDE` | `ui_matrix_diode_left.A` | `abstract:UI_SWITCH_LEFT_ROW_CONTACT` | ordinary normally-open D-pad LEFT mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL2` | `abstract:UI_SWITCH_LEFT_COL_CONTACT` | `ui_matrix_io.P6` | D-pad LEFT occupies row 0, column 2 |
-| `UI_ROW1_N` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | `ui_matrix_diode_right.K` | one exact diode isolates D-pad RIGHT from other rows |
-| `UI_RIGHT_ROW_SIDE` | `ui_matrix_diode_right.A` | `abstract:UI_SWITCH_RIGHT_ROW_CONTACT` | ordinary normally-open D-pad RIGHT mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL0` | `abstract:UI_SWITCH_RIGHT_COL_CONTACT` | `ui_matrix_io.P4` | D-pad RIGHT occupies row 1, column 0 |
-| `UI_ROW1_N` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | `ui_matrix_diode_ok.K` | one exact diode isolates D-pad OK from other rows |
-| `UI_OK_ROW_SIDE` | `ui_matrix_diode_ok.A` | `abstract:UI_SWITCH_OK_ROW_CONTACT` | ordinary normally-open D-pad OK mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL1` | `abstract:UI_SWITCH_OK_COL_CONTACT` | `ui_matrix_io.P5` | D-pad OK occupies row 1, column 1 |
-| `UI_ROW1_N` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | `ui_matrix_diode_back.K` | one exact diode isolates BACK from other rows |
-| `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `abstract:UI_SWITCH_BACK_ROW_CONTACT` | ordinary normally-open BACK mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL2` | `abstract:UI_SWITCH_BACK_COL_CONTACT` | `ui_matrix_io.P6` | BACK occupies row 1, column 2 |
-| `UI_ROW2_N` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | `ui_matrix_diode_opt.K` | one exact diode isolates OPT from other rows |
-| `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `abstract:UI_SWITCH_OPT_ROW_CONTACT` | ordinary normally-open OPT mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL0` | `abstract:UI_SWITCH_OPT_COL_CONTACT` | `ui_matrix_io.P4` | OPT occupies row 2, column 0 |
-| `UI_ROW2_N` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | `ui_matrix_diode_f1.K` | one exact diode isolates F1 from other rows |
-| `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `abstract:UI_SWITCH_F1_ROW_CONTACT` | ordinary normally-open F1 mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL1` | `abstract:UI_SWITCH_F1_COL_CONTACT` | `ui_matrix_io.P5` | F1 occupies row 2, column 1 |
-| `UI_ROW2_N` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | `ui_matrix_diode_f2.K` | one exact diode isolates F2 from other rows |
-| `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `abstract:UI_SWITCH_F2_ROW_CONTACT` | ordinary normally-open F2 mechanics remain an I4 MPN/ergonomics gate |
-| `UI_COL2` | `abstract:UI_SWITCH_F2_COL_CONTACT` | `ui_matrix_io.P6` | F2 occupies row 2, column 2 |
-| `UI_ROW3_N` | `abstract:UI_MATRIX_ROW3_ENCODER_PUSH` | `ui_matrix_diode_encoder.K` | one exact diode isolates encoder push from other rows |
+| `UI_ROW0_N` | `ui_matrix_io.P0` | `ui_matrix_diode_up.K` | one exact diode isolates D-pad UP from other rows |
+| `UI_UP_ROW_SIDE` | `ui_matrix_diode_up.A` | `ui_switch_up.SIDE_A_1` | exact ultra-low-current D-pad UP switch first row-side land |
+| `UI_UP_ROW_SIDE` | `ui_matrix_diode_up.A` | `ui_switch_up.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL0` | `ui_switch_up.SIDE_B_1` | `ui_matrix_io.P4` | D-pad UP occupies row 0, column 0 |
+| `UI_COL0` | `ui_switch_up.SIDE_B_2` | `ui_matrix_io.P4` | both internally common column-side lands are physically routed |
+| `UI_ROW0_N` | `ui_matrix_io.P0` | `ui_matrix_diode_down.K` | one exact diode isolates D-pad DOWN from other rows |
+| `UI_DOWN_ROW_SIDE` | `ui_matrix_diode_down.A` | `ui_switch_down.SIDE_A_1` | exact ultra-low-current D-pad DOWN switch first row-side land |
+| `UI_DOWN_ROW_SIDE` | `ui_matrix_diode_down.A` | `ui_switch_down.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL1` | `ui_switch_down.SIDE_B_1` | `ui_matrix_io.P5` | D-pad DOWN occupies row 0, column 1 |
+| `UI_COL1` | `ui_switch_down.SIDE_B_2` | `ui_matrix_io.P5` | both internally common column-side lands are physically routed |
+| `UI_ROW0_N` | `ui_matrix_io.P0` | `ui_matrix_diode_left.K` | one exact diode isolates D-pad LEFT from other rows |
+| `UI_LEFT_ROW_SIDE` | `ui_matrix_diode_left.A` | `ui_switch_left.SIDE_A_1` | exact ultra-low-current D-pad LEFT switch first row-side land |
+| `UI_LEFT_ROW_SIDE` | `ui_matrix_diode_left.A` | `ui_switch_left.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL2` | `ui_switch_left.SIDE_B_1` | `ui_matrix_io.P6` | D-pad LEFT occupies row 0, column 2 |
+| `UI_COL2` | `ui_switch_left.SIDE_B_2` | `ui_matrix_io.P6` | both internally common column-side lands are physically routed |
+| `UI_ROW1_N` | `ui_matrix_io.P1` | `ui_matrix_diode_right.K` | one exact diode isolates D-pad RIGHT from other rows |
+| `UI_RIGHT_ROW_SIDE` | `ui_matrix_diode_right.A` | `ui_switch_right.SIDE_A_1` | exact ultra-low-current D-pad RIGHT switch first row-side land |
+| `UI_RIGHT_ROW_SIDE` | `ui_matrix_diode_right.A` | `ui_switch_right.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL0` | `ui_switch_right.SIDE_B_1` | `ui_matrix_io.P4` | D-pad RIGHT occupies row 1, column 0 |
+| `UI_COL0` | `ui_switch_right.SIDE_B_2` | `ui_matrix_io.P4` | both internally common column-side lands are physically routed |
+| `UI_ROW1_N` | `ui_matrix_io.P1` | `ui_matrix_diode_ok.K` | one exact diode isolates D-pad OK from other rows |
+| `UI_OK_ROW_SIDE` | `ui_matrix_diode_ok.A` | `ui_switch_ok.SIDE_A_1` | exact ultra-low-current D-pad OK switch first row-side land |
+| `UI_OK_ROW_SIDE` | `ui_matrix_diode_ok.A` | `ui_switch_ok.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL1` | `ui_switch_ok.SIDE_B_1` | `ui_matrix_io.P5` | D-pad OK occupies row 1, column 1 |
+| `UI_COL1` | `ui_switch_ok.SIDE_B_2` | `ui_matrix_io.P5` | both internally common column-side lands are physically routed |
+| `UI_ROW1_N` | `ui_matrix_io.P1` | `ui_matrix_diode_back.K` | one exact diode isolates BACK from other rows |
+| `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `ui_switch_back.SIDE_A_1` | exact ultra-low-current BACK switch first row-side land |
+| `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `ui_switch_back.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL2` | `ui_switch_back.SIDE_B_1` | `ui_matrix_io.P6` | BACK occupies row 1, column 2 |
+| `UI_COL2` | `ui_switch_back.SIDE_B_2` | `ui_matrix_io.P6` | both internally common column-side lands are physically routed |
+| `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_diode_opt.K` | one exact diode isolates OPT from other rows |
+| `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `ui_switch_opt.SIDE_A_1` | exact ultra-low-current OPT switch first row-side land |
+| `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `ui_switch_opt.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL0` | `ui_switch_opt.SIDE_B_1` | `ui_matrix_io.P4` | OPT occupies row 2, column 0 |
+| `UI_COL0` | `ui_switch_opt.SIDE_B_2` | `ui_matrix_io.P4` | both internally common column-side lands are physically routed |
+| `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_diode_f1.K` | one exact diode isolates F1 from other rows |
+| `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `ui_switch_f1.SIDE_A_1` | exact ultra-low-current F1 switch first row-side land |
+| `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `ui_switch_f1.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL1` | `ui_switch_f1.SIDE_B_1` | `ui_matrix_io.P5` | F1 occupies row 2, column 1 |
+| `UI_COL1` | `ui_switch_f1.SIDE_B_2` | `ui_matrix_io.P5` | both internally common column-side lands are physically routed |
+| `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_diode_f2.K` | one exact diode isolates F2 from other rows |
+| `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `ui_switch_f2.SIDE_A_1` | exact ultra-low-current F2 switch first row-side land |
+| `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `ui_switch_f2.SIDE_A_2` | both internally common row-side lands are physically routed |
+| `UI_COL2` | `ui_switch_f2.SIDE_B_1` | `ui_matrix_io.P6` | F2 occupies row 2, column 2 |
+| `UI_COL2` | `ui_switch_f2.SIDE_B_2` | `ui_matrix_io.P6` | both internally common column-side lands are physically routed |
+| `UI_ROW3_N` | `ui_matrix_io.P3` | `ui_matrix_diode_encoder.K` | one exact diode isolates encoder push from other rows |
 | `UI_ENCODER_PUSH_ROW` | `ui_matrix_diode_encoder.A` | `encoder.SW1` | integrated push switch is the tenth ordinary matrix control |
 | `POWER_GROUND` | `encoder.C` | `abstract:power-ground` | quadrature common is a short local digital return |
-| `UI_COL0` | `encoder.SW2` | `abstract:UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES` | encoder push occupies row 3, column 0 |
+| `UI_COL0` | `encoder.SW2` | `ui_matrix_io.P4` | encoder push occupies row 3, column 0 |
+| `POWER_GROUND` | `ui_switch_up.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_down.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_left.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_right.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_ok.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_back.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_opt.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_f1.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
+| `POWER_GROUND` | `ui_switch_f2.GROUND` | `abstract:power-ground` | switch ground pin bonds the exposed metal shell |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `encoder_a_pullup.END_1` | external phase pull-up keeps the direct PCNT input deterministic |
 | `ENCODER_A` | `encoder_a_pullup.END_2` | `encoder.A` | exact 3.32-kOhm pull-up targets approximately 1 mA closed-contact current at 3.3 V; chatter and EMI remain HIL |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `encoder_b_pullup.END_1` | external phase pull-up keeps the direct PCNT input deterministic |
 | `ENCODER_B` | `encoder_b_pullup.END_2` | `encoder.B` | exact 3.32-kOhm pull-up targets approximately 1 mA closed-contact current at 3.3 V; chatter and EMI remain HIL |
+| `ENCODER_A` | `encoder.A` | `encoder_ptt_esd.D1_PLUS` | first low-capacitance IEC channel protects the direct PCNT phase |
+| `ENCODER_B` | `encoder.B` | `encoder_ptt_esd.D1_MINUS` | second low-capacitance IEC channel protects the direct PCNT phase |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ptt_pullup.END_1` | PTT has an exact external pull-up and does not depend on the RP internal pull |
+| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_switch.SIDE_A_1` | 10-kOhm pull-up provides about 0.33 mA closed-contact current, above the switch ULC floor |
+| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_switch.SIDE_A_2` | both internally common switch lands are physically routed |
+| `POWER_GROUND` | `ptt_switch.SIDE_B_1` | `abstract:power-ground` | PTT is active low and normally open |
+| `POWER_GROUND` | `ptt_switch.SIDE_B_2` | `abstract:power-ground` | both internally common switch lands are physically routed |
+| `POWER_GROUND` | `ptt_switch.GROUND` | `abstract:power-ground` | PTT ground pin bonds the exposed metal shell |
+| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_filter_cap.END_1` | 100-nF hardware filter gives approximately 1 ms release time constant before firmware debounce |
+| `POWER_GROUND` | `ptt_filter_cap.END_2` | `abstract:power-ground` | short local PTT filter return |
+| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `encoder_ptt_esd.D2_PLUS` | third low-capacitance IEC channel protects the direct PTT path |
+| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_series.END_1` | 1-kOhm series limits injected current into the RP input without adding a shared bus |
+| `PTT_BUTTON_N` | `ptt_series.END_2` | `rp.GPIO21` | direct interrupt input; hold state is debounced in firmware but never scanned through I2C |
+| `ENCODER_PTT_ESD_SPARE` | `encoder_ptt_esd.D2_MINUS` | `abstract:no-connect` | fourth ESD signal channel is intentionally unused |
+| `ENCODER_PTT_ESD_GROUND` | `encoder_ptt_esd.GND_3` | `abstract:power-ground-dedicated-via` | first ground contact receives a shortest-path local ESD return |
+| `ENCODER_PTT_ESD_GROUND` | `encoder_ptt_esd.GND_8` | `abstract:power-ground-dedicated-via` | second ground contact receives a shortest-path local ESD return |
+| `ENCODER_PTT_ESD_NC6` | `encoder_ptt_esd.NC_6` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `ENCODER_PTT_ESD_NC7` | `encoder_ptt_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `ENCODER_PTT_ESD_NC9` | `encoder_ptt_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `ENCODER_PTT_ESD_NC10` | `encoder_ptt_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SYS_I2C_SCL` | `display_connector.PIN_1` | `display.TP_I2C_SCL` | logical contact 1 maps one-to-one; physical tail orientation remains specimen HIL |
 | `SYS_I2C_SDA` | `display_connector.PIN_2` | `display.TP_I2C_SDA` | one existing exact 2.2-kOhm host pull-up pair serves the complete bus; no duplicate panel pull-ups |
 | `LCD_TOUCH_INT_RAW` | `display_connector.PIN_3` | `display.TP_INT` | panel contact is kept separate from SYS_INT_N until specimen polarity/type is handled by the population option |
@@ -1685,10 +1734,34 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_por_pullup.END_1` | one exact 10-kOhm resistor is the sole external pull-up on the supervisor's open-drain POR output |
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
 | `POR_N` | `safe_supervisor.RESET_N` | `safe_por_or.1A` | power-good clear input; STOP remains dominant through the second OR input |
-| `STOP_LOOP_SENSE` | `abstract:NC-stop-loop-10k-pullup-10nF` | `safe_conditioner.1A` | healthy closed contact is low; press, disconnect or open wire is high |
-| `STOP_LOOP_SENSE` | `abstract:NC-stop-loop-10k-pullup-10nF` | `safe_por_or.1B` | high forces CLR_N inactive so preset and clear cannot be asserted together |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `stop_pullup.END_1` | hard-STOP contact current comes only from the independently protected AON rail |
+| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_switch.NC` | 10-kOhm gives approximately 0.33 mA at 3.3 V, above AEQ10410's qualified 100-uA-at-3-V floor |
+| `SAFETY_GROUND` | `stop_switch.COM` | `abstract:safety-ground` | healthy COM+NC contact holds STOP_LOOP_SENSE low; press or open wire asserts |
+| `STOP_SWITCH_NO_NC` | `stop_switch.NO` | `abstract:no-connect` | unused throw cannot create a second release path |
+| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_filter_cap.END_1` | exact 10-nF X7R filter preserves asynchronous STOP assertion |
+| `SAFETY_GROUND` | `stop_filter_cap.END_2` | `abstract:safety-ground` | STOP filter returns only to safety ground |
+| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safety_control_esd.D1_PLUS` | dedicated low-capacitance IEC channel protects the AON STOP conductor |
+| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safe_conditioner.1A` | healthy closed contact is low; press, disconnect or open wire is high |
+| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safe_por_or.1B` | high forces CLR_N inactive so preset and clear cannot be asserted together |
 | `STOP_ASSERT_N` | `safe_conditioner.1Y` | `safe_latch.PRE_N` | active-low asynchronous preset; software and clocks are outside the path |
-| `REARM_RAW` | `abstract:NO-rearm-loop-47k-pullup-100nF` | `safe_conditioner.2A` | fresh press pulls raw input low and produces one or more harmless rising edges at the Schmitt output |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `rearm_pullup.END_1` | RE-ARM contact current comes only from the independently protected AON rail |
+| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_1` | 47-kOhm gives approximately 70 uA at 3.3 V, well above the Y78B23214FP ULC floor |
+| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_2` | both internally common switch lands are physically routed |
+| `SAFETY_GROUND` | `rearm_switch.SIDE_B_1` | `abstract:safety-ground` | fresh recessed RE-ARM press pulls raw input low |
+| `SAFETY_GROUND` | `rearm_switch.SIDE_B_2` | `abstract:safety-ground` | both internally common switch lands are physically routed |
+| `SAFETY_GROUND` | `rearm_switch.GROUND` | `abstract:safety-ground` | switch ground pin bonds the exposed metal shell only to safety ground |
+| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_filter_cap.END_1` | exact 100-nF X7R filter plus Schmitt input creates the reviewed fresh-edge path |
+| `SAFETY_GROUND` | `rearm_filter_cap.END_2` | `abstract:safety-ground` | RE-ARM filter returns only to safety ground |
+| `REARM_RAW` | `rearm_pullup.END_2` | `safety_control_esd.D1_MINUS` | dedicated low-capacitance IEC channel protects the AON RE-ARM conductor |
+| `REARM_RAW` | `rearm_pullup.END_2` | `safe_conditioner.2A` | fresh press pulls raw input low and produces one or more harmless rising edges at the Schmitt output |
+| `SAFETY_ESD_SPARE_0` | `safety_control_esd.D2_PLUS` | `abstract:no-connect` | unused safety-domain ESD channel remains unconnected |
+| `SAFETY_ESD_SPARE_1` | `safety_control_esd.D2_MINUS` | `abstract:no-connect` | unused safety-domain ESD channel remains unconnected |
+| `SAFETY_ESD_GROUND` | `safety_control_esd.GND_3` | `abstract:safety-ground-dedicated-via` | first ESD ground contact receives a shortest path to safety ground |
+| `SAFETY_ESD_GROUND` | `safety_control_esd.GND_8` | `abstract:safety-ground-dedicated-via` | second ESD ground contact receives a shortest path to safety ground |
+| `SAFETY_ESD_NC6` | `safety_control_esd.NC_6` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `SAFETY_ESD_NC7` | `safety_control_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `SAFETY_ESD_NC9` | `safety_control_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `SAFETY_ESD_NC10` | `safety_control_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `REARM_CLK` | `safe_conditioner.2Y` | `safe_latch.CLK` | only a fresh physical edge can clock fixed D=0 |
 | `STOP_DOMINANT_CLR_N` | `safe_por_or.1Y` | `safe_latch.CLR_N` | CLR_N = POR_N OR STOP_LOOP_SENSE |
 | `SAFE_D_LOW` | `abstract:safety-ground-via-10k` | `safe_latch.D` | fixed logic low; no MCU, expander or connector endpoint |
@@ -1861,6 +1934,29 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `voice` lifecycle: `current_product`.
 - `receiver` lifecycle: `manufacturer_documented`.
 - `slow_io` uses `TCA6424ARGJR` as `reference_only`, not an accepted production choice.
+- `ui_switch_up` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_up` lifecycle: `active_orderable`.
+- `ui_switch_down` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_down` lifecycle: `active_orderable`.
+- `ui_switch_left` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_left` lifecycle: `active_orderable`.
+- `ui_switch_right` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_right` lifecycle: `active_orderable`.
+- `ui_switch_ok` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_ok` lifecycle: `active_orderable`.
+- `ui_switch_back` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_back` lifecycle: `active_orderable`.
+- `ui_switch_opt` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_opt` lifecycle: `active_orderable`.
+- `ui_switch_f1` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_f1` lifecycle: `active_orderable`.
+- `ui_switch_f2` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_f2` lifecycle: `active_orderable`.
+- `ptt_switch` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ptt_switch` lifecycle: `active_orderable`.
+- `stop_switch` uses `Panasonic AEQ10410` as `verified_first_hard_stop_target_actuator_and_mount_hil_open`, not an accepted production choice.
+- `rearm_switch` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `rearm_switch` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
 - `encoder` lifecycle: `active_standard`.
 - `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_first_target_touch_polarity_hil_open`, not an accepted production choice.

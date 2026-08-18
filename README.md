@@ -326,6 +326,7 @@ flowchart TD
   UIC0PU["RC0402FR-0710KL #UI-C0<br/>10-kOhm matrix-column pull-up"]
   UIC1PU["RC0402FR-0710KL #UI-C1<br/>10-kOhm matrix-column pull-up"]
   UIC2PU["RC0402FR-0710KL #UI-C2<br/>10-kOhm matrix-column pull-up"]
+  UIMESD["TPD8E003DQDR<br/>eight-channel keypad/GPIO ESD array for P0-P7"]
   UIDUP["onsemi 1N4148WT #UP<br/>D-pad UP matrix-isolation diode"]
   UIDDN["onsemi 1N4148WT #DOWN<br/>D-pad DOWN matrix-isolation diode"]
   UIDLEFT["onsemi 1N4148WT #LEFT<br/>D-pad LEFT matrix-isolation diode"]
@@ -336,18 +337,23 @@ flowchart TD
   UIDF1["onsemi 1N4148WT #F1<br/>F1 matrix-isolation diode"]
   UIDF2["onsemi 1N4148WT #F2<br/>F2 matrix-isolation diode"]
   UIDENC["onsemi 1N4148WT #ENC<br/>encoder-push matrix-isolation diode"]
-  UIUP["MPN TBD<br/>D-pad UP ordinary control"]
-  UIDOWN["MPN TBD<br/>D-pad DOWN ordinary control"]
-  UILEFT["MPN TBD<br/>D-pad LEFT ordinary control"]
-  UIRIGHT["MPN TBD<br/>D-pad RIGHT ordinary control"]
-  UIOK["MPN TBD<br/>D-pad OK ordinary control"]
-  UIBACK["MPN TBD<br/>BACK ordinary control"]
-  UIOPT["MPN TBD<br/>OPT ordinary control"]
-  UIF1["MPN TBD<br/>F1 ordinary control"]
-  UIF2["MPN TBD<br/>F2 ordinary control"]
+  UIUP["Y78B23214FP<br/>D-pad UP ultra-low-current ordinary control"]
+  UIDOWN["Y78B23214FP<br/>D-pad DOWN ultra-low-current ordinary control"]
+  UILEFT["Y78B23214FP<br/>D-pad LEFT ultra-low-current ordinary control"]
+  UIRIGHT["Y78B23214FP<br/>D-pad RIGHT ultra-low-current ordinary control"]
+  UIOK["Y78B23214FP<br/>D-pad OK ultra-low-current ordinary control"]
+  UIBACK["Y78B23214FP<br/>BACK ultra-low-current ordinary control"]
+  UIOPT["Y78B23214FP<br/>OPT ultra-low-current ordinary control"]
+  UIF1["Y78B23214FP<br/>F1 ultra-low-current ordinary control"]
+  UIF2["Y78B23214FP<br/>F2 ultra-low-current ordinary control"]
   ENC["Alps Alpine EC11E18244AU<br/>36-detent/18-pulse encoder with push"]
   ENCAPU["RC0402FR-073K32L #ENC-A<br/>3.32-kOhm encoder-phase-A contact-current pull-up"]
   ENCBPU["RC0402FR-073K32L #ENC-B<br/>3.32-kOhm encoder-phase-B contact-current pull-up"]
+  ENCPTTESD["TPD4E05U06DQAR<br/>four-channel encoder/PTT ESD array"]
+  PTTPU["RC0402FR-0710KL<br/>10-kOhm direct-PTT pull-up"]
+  PTTR["RC0603FR-071KL<br/>1-kOhm direct-PTT input series resistor"]
+  PTTC["C1005X7R1H104K050BB<br/>100-nF direct-PTT hardware filter"]
+  PTTRAW(("PTT_BUTTON_RAW_N<br/>active-low direct-PTT node"))
   TPIRQ["SN74LVC1G07DCKR<br/>open-drain touch-interrupt adapter"]
   TPIRQALT["SN74LVC1G06DCKR (DNP alternative)<br/>pin-compatible active-high TP_INT inverter option"]
   TPIRQBP["C1005X7R1H104K050BB #TP-IRQ<br/>100-nF touch-IRQ adapter bypass capacitor"]
@@ -417,9 +423,16 @@ flowchart TD
   IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
   IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
-  PTTSW["MPN TBD<br/>separate normally-open hold-to-talk PTT control"]
-  STOPSW["MPN TBD<br/>normally-closed physical STOP control"]
-  REARMSW["MPN TBD<br/>normally-open recessed RE-ARM control"]
+  PTTSW["Y78B23214FP<br/>separate normally-open hold-to-talk PTT control"]
+  STOPSW["AEQ10410<br/>gold-clad low-level normally-closed hard-STOP control"]
+  REARMSW["Y78B23214FP<br/>normally-open recessed RE-ARM control"]
+  STOPPU["RC0402FR-0710KL<br/>10-kOhm AON STOP contact-current pull-up"]
+  STOPC["GRM155R71H103KA88D<br/>10-nF X7R asynchronous STOP filter"]
+  REARMPU["RC0402FR-0747KL<br/>47-kOhm AON RE-ARM contact-current pull-up"]
+  REARMC["C1005X7R1H104K050BB<br/>100-nF X7R RE-ARM filter"]
+  SAFEESD["TPD4E05U06DQAR<br/>dedicated STOP/RE-ARM ESD array"]
+  STOPLOOP(("STOP_LOOP_SENSE<br/>fail-open AON STOP node"))
+  REARMRAW(("REARM_RAW<br/>fresh-press AON node"))
   SUP["TPS3808G33DBVR<br/>AON rail supervisor and power-on reset"]
   COND["74LVC2G14GW,125<br/>STOP and RE-ARM Schmitt conditioner"]
   POROR["74LVC1G32GV,125<br/>STOP-dominant POR/clear combiner"]
@@ -461,11 +474,11 @@ flowchart TD
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEFUSE ~~~ VOICERILIM ~~~ VOICEDVDT ~~~ VOICEIT ~~~ VOICEOVT ~~~ VOICEOVB ~~~ VOICEPGT ~~~ VOICEPGB ~~~ VOICEFOUT ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
-  SLOW ~~~ UIMATRIX ~~~ UIMBP ~~~ UIR0PD ~~~ UIR1PD ~~~ UIR2PD ~~~ UIR3PD ~~~ UIC0PU ~~~ UIC1PU ~~~ UIC2PU
-  UIC2PU ~~~ UIDUP ~~~ UIUP ~~~ UIDDN ~~~ UIDOWN ~~~ UIDLEFT ~~~ UILEFT
+  SLOW ~~~ UIMATRIX ~~~ UIMBP ~~~ UIR0PD ~~~ UIR1PD ~~~ UIR2PD ~~~ UIR3PD ~~~ UIC0PU ~~~ UIC1PU ~~~ UIC2PU ~~~ UIMESD
+  UIMESD ~~~ UIDUP ~~~ UIUP ~~~ UIDDN ~~~ UIDOWN ~~~ UIDLEFT ~~~ UILEFT
   UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
   UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
-  UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ TPIRQ ~~~ TPIRQALT ~~~ TPIRQBP
+  UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ ENCPTTESD ~~~ PTTPU ~~~ PTTR ~~~ PTTC ~~~ PTTRAW ~~~ TPIRQ ~~~ TPIRQALT ~~~ TPIRQBP
   TPIRQBP ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
@@ -474,8 +487,8 @@ flowchart TD
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
   SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
-  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW
-  REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
+  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
+  SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
@@ -671,6 +684,7 @@ flowchart TD
   UIR1PD -->|"reset/idle low"| UIMATRIX
   UIR2PD -->|"reset/idle low"| UIMATRIX
   UIR3PD -->|"reset/idle low"| UIMATRIX
+  UIMATRIX --> UIMESD
   UIMATRIX --> UIDUP --> UIUP -->|"P4 column 0"| UIMATRIX
   UIMATRIX --> UIDDN --> UIDOWN -->|"P5 column 1"| UIMATRIX
   UIMATRIX --> UIDLEFT --> UILEFT -->|"P6 column 2"| UIMATRIX
@@ -686,6 +700,7 @@ flowchart TD
   UIC2PU --> UIMATRIX
   ENCAPU --> ENC
   ENCBPU --> ENC
+  ENC --> ENCPTTESD
   ENC -->|"GPIO39/GPIO47 PCNT0 quadrature"| S3
   LCDRPD -->|"RESX default low"| LCDCON
   TPRPD -->|"TP_RESXP default low"| LCDCON
@@ -741,15 +756,27 @@ flowchart TD
   RP <-->|"PIO0 SM2"| NRF2
   RP <-->|"PIO0 SM3"| CC
   RP <-->|"UART0/PTT request"| SA
-  PTTSW -->|"direct GPIO21; never in UI matrix"| RP
+  PTTPU -->|"10 kOhm to 3V3_MAIN"| PTTRAW
+  PTTC -->|"100 nF to power ground"| PTTRAW
+  PTTSW -->|"NO contact to power ground"| PTTRAW
+  PTTRAW --> ENCPTTESD
+  PTTRAW -->|"direct GPIO21 through 1 kOhm; never in UI matrix"| PTTR --> RP
   RP <-->|"PIO1/UART1"| CAPDOCK
   RP <-->|"I²C0"| ISO
   ISO <-->|"isolated I²C"| CAPDOCK
   CAPDOCK <-->|"14-pin Cap-Bus"| U214
-  STOPSW --> COND --> LATCH
-  REARMSW --> COND
+  STOPPU -->|"10 kOhm to AON_SAFE_3V3"| STOPLOOP
+  STOPC -->|"10 nF to safety ground"| STOPLOOP
+  STOPSW -->|"COM+NC to safety ground"| STOPLOOP
+  STOPLOOP --> SAFEESD
+  STOPLOOP --> COND --> LATCH
+  REARMPU -->|"47 kOhm to AON_SAFE_3V3"| REARMRAW
+  REARMC -->|"100 nF to safety ground"| REARMRAW
+  REARMSW -->|"NO contact to safety ground"| REARMRAW
+  REARMRAW --> SAFEESD
+  REARMRAW --> COND
   SUP --> POROR --> LATCH
-  STOPSW --> POROR
+  STOPLOOP --> POROR
   LATCH -->|"RUN_PERMIT"| RSTBUF
   RSTBUF -->|"CHIP_PU"| S3
   RSTBUF -->|"CHIP_PU"| C5
@@ -850,6 +877,10 @@ flowchart TD
 - The complete local set is retained: D-pad directions plus OK, BACK, OPT, F1,
   F2, rotary encoder with push, dedicated hold-to-talk PTT, hardware STOP and
   recessed RE-ARM. None is replaced by touch or a phone.
+- The nine discrete ordinary buttons, PTT and RE-ARM use exact low-current
+  `Y78B23214FP`; gold-clad `AEQ10410` supplies the normally-closed STOP contact.
+  Matrix, encoder/PTT and safety inputs have separate exact ESD arrays, and the
+  STOP/RE-ARM array returns only to safety ground.
 - Physical PTT, STOP and recessed RE-ARM are separate controls. STOP has an
   independent indicator and does not depend on the display.
 - Programming and diagnostic connectors remain accessible on an assembled

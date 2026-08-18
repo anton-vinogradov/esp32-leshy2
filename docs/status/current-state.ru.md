@@ -25,6 +25,13 @@
 
 Каноническая таблица — [`stages.md`](../review/stages.md).
 
+Для текущего I4 control endpoint **проведено paper review** через
+[`UI-0001`](../review/architecture/UI-0001-complete-local-control-topology.md)
+и [`UI-0002`](../review/architecture/UI-0002-exact-switch-and-control-protection.md):
+полный набор D-pad/OK/BACK/OPT/F1/F2/encoder/PTT/STOP/RE-ARM сохранён, а exact
+low-current switches, pull/filter и ESD routes уже входят в machine projection.
+Cap/guard/harness/enclosure fit и electrical/HIL injection остаются открыты.
+
 ## Закрытие competitor delta
 
 - `W-EXTRA-11` закрыт: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)

@@ -1694,6 +1694,24 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("ti_tca9534a_pwr", candidate["instances"]["ui_matrix_io"])
         self.assertEqual("alps_ec11e18244au", candidate["instances"]["encoder"])
         self.assertEqual("ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"])
+        for instance in (
+            "ui_switch_up", "ui_switch_down", "ui_switch_left", "ui_switch_right",
+            "ui_switch_ok", "ui_switch_back", "ui_switch_opt", "ui_switch_f1",
+            "ui_switch_f2", "ptt_switch", "rearm_switch",
+        ):
+            self.assertEqual("ck_y78b23214fp", candidate["instances"][instance])
+        self.assertEqual("panasonic_aeq10410", candidate["instances"]["stop_switch"])
+        self.assertEqual("ti_tpd8e003_dqdr", candidate["instances"]["ui_matrix_esd"])
+        self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["encoder_ptt_esd"])
+        self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["safety_control_esd"])
+        self.assertEqual(
+            "1 uA at 1.8 VDC",
+            self.database["devices"]["ck_y78b23214fp"]["electrical_contract"]["ulc_minimum"],
+        )
+        self.assertEqual(
+            "100 uA at 3 VDC through 100 mA at 30 VDC",
+            self.database["devices"]["panasonic_aeq10410"]["electrical_contract"]["qualified_range"],
+        )
         matrix_io = self.database["devices"]["ti_tca9534a_pwr"]
         self.assertEqual("4", matrix_io["contacts"]["P0"]["physical"])
         self.assertEqual("13", matrix_io["contacts"]["INT_N"]["physical"])
@@ -1720,13 +1738,21 @@ class ArchitectureValidationTests(unittest.TestCase):
             (route["from"], route["to"], route["net"])
             for route in candidate["fixed_routes"]
         }
-        self.assertIn(("ui_matrix_io.P0", "abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT", "UI_ROW0_N"), routes)
-        self.assertIn(("ui_matrix_io.P4", "abstract:UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES", "UI_COL0"), routes)
+        self.assertIn(("ui_matrix_io.P0", "ui_matrix_esd.IO1", "UI_ROW0_N"), routes)
+        self.assertIn(("ui_matrix_io.P4", "ui_matrix_esd.IO5", "UI_COL0"), routes)
         self.assertIn(("ui_matrix_io.INT_N", "abstract:SYS_INT_N_WIRED_LOW", "SYS_INT_N"), routes)
         self.assertIn(("abstract:3V3_MAIN", "ui_matrix_io.A2", "UI_MATRIX_ADDR_A2_HIGH"), routes)
         self.assertIn(("abstract:safety-ground", "evidence_mask.A2", "EVIDENCE_ADDR_A2_LOW"), routes)
-        self.assertIn(("ui_matrix_diode_f1.A", "abstract:UI_SWITCH_F1_ROW_CONTACT", "UI_F1_ROW_SIDE"), routes)
-        self.assertIn(("ui_matrix_diode_f2.A", "abstract:UI_SWITCH_F2_ROW_CONTACT", "UI_F2_ROW_SIDE"), routes)
+        self.assertIn(("ui_matrix_diode_f1.A", "ui_switch_f1.SIDE_A_1", "UI_F1_ROW_SIDE"), routes)
+        self.assertIn(("ui_switch_f1.SIDE_B_1", "ui_matrix_io.P5", "UI_COL1"), routes)
+        self.assertIn(("ui_matrix_diode_f2.A", "ui_switch_f2.SIDE_A_1", "UI_F2_ROW_SIDE"), routes)
+        self.assertIn(("ui_switch_f2.SIDE_B_1", "ui_matrix_io.P6", "UI_COL2"), routes)
+        self.assertIn(("ptt_series.END_2", "rp.GPIO21", "PTT_BUTTON_N"), routes)
+        self.assertIn(("stop_pullup.END_2", "stop_switch.NC", "STOP_LOOP_SENSE"), routes)
+        self.assertIn(("stop_switch.COM", "abstract:safety-ground", "SAFETY_GROUND"), routes)
+        self.assertIn(("rearm_pullup.END_2", "rearm_switch.SIDE_A_1", "REARM_RAW"), routes)
+        self.assertIn(("stop_pullup.END_2", "safety_control_esd.D1_PLUS", "STOP_LOOP_SENSE"), routes)
+        self.assertIn(("rearm_pullup.END_2", "safety_control_esd.D1_MINUS", "REARM_RAW"), routes)
         self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW"), routes)
         self.assertEqual(
             ["P00", "P01", "P02", "P03", "P04", "P05"],
@@ -1739,11 +1765,18 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
-            "D-pad UP ordinary control", "F1 ordinary control", "F2 ordinary control",
-            "hold-to-talk PTT control", "normally-closed physical STOP",
+            "D-pad UP ultra-low-current ordinary control",
+            "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
+            "hold-to-talk PTT control", "normally-closed hard-STOP control",
+            "Y78B23214FP", "AEQ10410", "TPD8E003DQDR",
+            'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
+            'STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP',
+            'REARM_SWITCH -->|"NO contact to safety ground"| REARM_RAW',
             "TCA9534APWR", "dedicated interrupt-capable 4x3 ordinary-control expander",
         ):
             self.assertIn(token, rendered)
+        self.assertNotIn("PTT_SWITCH --> PTT_PULLUP --> PTT_FILTER_CAP", rendered)
+        self.assertNotIn("STOP_SWITCH --> STOP_PULLUP --> STOP_FILTER_CAP", rendered)
 
     def test_dec0059_restores_full_s3_c5_service_on_1bit_sdio(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

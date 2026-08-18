@@ -25,6 +25,13 @@
 
 The canonical table is [`stages.md`](../review/stages.md).
 
+The current I4 control endpoint has **paper review completed** through
+[`UI-0001`](../review/architecture/UI-0001-complete-local-control-topology.md)
+and [`UI-0002`](../review/architecture/UI-0002-exact-switch-and-control-protection.md):
+the full D-pad/OK/BACK/OPT/F1/F2/encoder/PTT/STOP/RE-ARM inventory is retained,
+and exact low-current switch, pull/filter and ESD routes are machine-projected.
+Cap/guard/harness/enclosure fit and electrical/HIL injection remain open.
+
 ## Competitor-delta closure
 
 - `W-EXTRA-11` is closed: [`DEC-0033/REQ-IBTN-0001`](../review/decisions/DEC-0033-external-m5-ibutton-profile.md)

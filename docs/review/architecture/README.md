@@ -83,8 +83,11 @@ SPI-mode-first sequencing preserve the shared S3 allocation without a new
 GPIO. Socket placement/access, real media, throughput and fault HIL stay open.
 `FND-0090/UI-0001/DEC-0086/REV-0005AQ` then restore the complete local-control
 inventory and close its principled pin fit: 4x3 ordinary matrix, direct PCNT0
-encoder, direct RP PTT and independent AON STOP/RE-ARM. Exact switch mechanics,
-touch polarity and control HIL remain open.
+encoder, direct RP PTT and independent AON STOP/RE-ARM.
+`FND-0092/UI-0002/DEC-0087/REV-0005AR` close the next electrical boundary with
+exact low-current switches, a gold-clad COM+NC STOP target, exact pull/filter
+networks and separate matrix/fast/safety ESD returns. Cap/guard/harness and
+enclosure mechanics, touch polarity and control HIL remain open.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -233,6 +236,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
   I4 endpoint with exact switched power, partial-power isolation, pull/damping,
   complete socket ESD and always-readable detect while retaining physical and
   media HIL;
+- [`UI-0002`](UI-0002-exact-switch-and-control-protection.md) closes exact
+  contact-current, default-state and ESD routes for every retained physical
+  control while keeping actuator/enclosure HIL open;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

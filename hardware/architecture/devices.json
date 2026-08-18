@@ -1243,6 +1243,115 @@
         "VCC": {"physical": "5", "role": "power"}
       }
     },
+    "ck_y78b23214fp": {
+      "mpn": "C&K Y78B23214FP",
+      "commercial_alias": "KMR232G ULC LFS",
+      "kind": "spst_no_ultra_low_current_grounded_smt_tact_switch",
+      "qualification": "verified_first_target_mechanical_cap_and_enclosure_hil_open",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [4.2, 2.8, 1.9],
+      "source": {
+        "document": "C&K KMR2 Series Micro Miniature Tactile Switch datasheet",
+        "version": "VL 01/28/26",
+        "url": "https://www.ckswitches.com/media/1479/kmr2.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "Y78B23214FP authorized-distributor exact order-code page; 41,878 shown in stock",
+        "url": "https://au.mouser.com/en/ProductDetail/CK/Y78B23214FP",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "contact_form": "SPST normally open, momentary",
+        "ulc_minimum": "1 uA at 1.8 VDC",
+        "operating_force_n": "3.0 +/- 0.75",
+        "travel_mm": "0.25 +/- 0.1",
+        "bounce_max_ms": 3,
+        "operating_life": 300000,
+        "ingress": "IP40"
+      },
+      "programmable": false,
+      "contacts": {
+        "SIDE_A_1": {"physical": "1", "role": "switch_contact"},
+        "SIDE_B_1": {"physical": "2", "role": "switch_contact"},
+        "SIDE_B_2": {"physical": "3", "role": "switch_contact"},
+        "SIDE_A_2": {"physical": "4", "role": "switch_contact"},
+        "GROUND": {"physical": "5", "role": "shield_ground"}
+      },
+      "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
+    },
+    "panasonic_aeq10410": {
+      "mpn": "Panasonic AEQ10410",
+      "kind": "spdt_gold_clad_low_level_chassis_switch_pin_plunger",
+      "qualification": "verified_first_hard_stop_target_actuator_and_mount_hil_open",
+      "lifecycle": "active",
+      "dimensions_mm": [13.3, 10.4, 5.4],
+      "source": {
+        "document": "Panasonic AEQ (EQ) Switches product specification and drawing",
+        "version": "AECTB14E 202406; live product page checked 2026-08-18",
+        "url": "https://industry.panasonic.com/global/en/products/control/switch/micro-non-seal/number/aeq10410",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "AEQ10410 authorized-distributor exact order-code page; 982 shown in stock",
+        "url": "https://www.mouser.com/ProductDetail/Panasonic-Industrial-Devices/AEQ10410",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "contact_form": "SPDT",
+        "qualified_range": "100 uA at 3 VDC through 100 mA at 30 VDC",
+        "operating_force_max_n": 1.2,
+        "nc_overtravel_min_mm": 2.5,
+        "no_overtravel_min_mm": 2.2,
+        "electrical_life_at_100ua_3vdc": 200000,
+        "contact_material": "gold clad",
+        "ingress": "IP40"
+      },
+      "programmable": false,
+      "contacts": {
+        "COM": {"physical": "drawing COM solder terminal", "role": "switch_common"},
+        "NO": {"physical": "drawing N.O. solder terminal", "role": "switch_normally_open"},
+        "NC": {"physical": "drawing N.C. solder terminal", "role": "switch_normally_closed"}
+      }
+    },
+    "ti_tpd8e003_dqdr": {
+      "mpn": "Texas Instruments TPD8E003DQDR",
+      "kind": "eight_channel_keypad_gpio_iec_esd_array",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.7, 1.35, 0.8],
+      "source": {
+        "document": "TPD8E003 8-Channel ESD Protection Diode for Keypad and GPIO datasheet",
+        "version": "SLLSE38B",
+        "url": "https://www.ti.com/lit/ds/symlink/tpd8e003.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPD8E003DQDR authorized-distributor exact order-code page; 3,906 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPD8E003DQDR/2348535",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "channels": 8,
+        "io_range_v": [0, 5.5],
+        "iec_contact_kv": 12,
+        "iec_air_kv": 15,
+        "capacitance_typ_pf": 9,
+        "leakage_max_na_at_2v5": 100
+      },
+      "programmable": false,
+      "contacts": {
+        "IO1": {"physical": "1", "role": "esd_signal"},
+        "IO2": {"physical": "2", "role": "esd_signal"},
+        "IO3": {"physical": "3", "role": "esd_signal"},
+        "IO4": {"physical": "4", "role": "esd_signal"},
+        "IO5": {"physical": "5", "role": "esd_signal"},
+        "IO6": {"physical": "6", "role": "esd_signal"},
+        "IO7": {"physical": "7", "role": "esd_signal"},
+        "IO8": {"physical": "8", "role": "esd_signal"},
+        "GND": {"physical": "exposed thermal pad", "role": "power"}
+      }
+    },
     "alps_ec11e18244au": {
       "mpn": "Alps Alpine EC11E18244AU",
       "kind": "through_hole_incremental_encoder_with_push",

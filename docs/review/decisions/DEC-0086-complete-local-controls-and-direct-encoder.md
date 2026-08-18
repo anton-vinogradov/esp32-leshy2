@@ -34,8 +34,9 @@
   it restores interrupt-driven operation and six main slow-I/O contacts.
 - Touch remains interrupt-driven and the full autonomous physical control set
   remains available without phone or touchscreen.
-- Exact switch mechanics, address-collision scan, scan current, touch polarity,
-  encoder placement and all UI HIL remain blockers. This decision does not
-  authorize KiCad or enclosure freeze.
+- Exact switch/contact-current/protection is continued and closed on paper by
+  `DEC-0087/UI-0002`; cap/guard/harness mechanics, address-collision scan, scan
+  current, touch polarity, encoder placement and UI HIL remain blockers. This
+  decision does not authorize KiCad or enclosure freeze.
 - `FND-0091` corrects the exact TCA9534A address table: all-high UI straps are
   candidate `0x3F`; the control topology and pin result are unchanged.

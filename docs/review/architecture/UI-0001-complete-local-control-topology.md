@@ -1,6 +1,6 @@
 # UI-0001 — complete local-control topology
 
-- Status: **Проведено ревью for control inventory and principled pin fit**
+- Status: **Проведено ревью for control inventory and principled pin fit; exact switch/protection endpoint continued by [`UI-0002`](UI-0002-exact-switch-and-control-protection.md)**
 - Finding: [`FND-0090`](../findings/FND-0090-required-local-controls-were-dropped.md)
 - Decision: [`DEC-0086`](../decisions/DEC-0086-complete-local-controls-and-direct-encoder.md)
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
@@ -91,9 +91,10 @@ before one population option is frozen. Polling-only touch is not accepted.
   support passives; no additional MCU and the new expander MPN is already used
   elsewhere in the product BOM.
 
-## Remaining gates
+## Remaining gates after UI-0002
 
-- exact ordinary, PTT, STOP and RE-ARM switch MPN/force/sealing/caps;
+- switch cap/guard/harness/sealing, force/feel and placement HIL; exact electrical
+  switch/protection MPNs are closed by `UI-0002`;
 - encoder position with the rear U214 installed and shaft/cap access;
 - complete physical SYS-I2C address scan and TCA9534A interrupt HIL;
 - matrix ghosting, debounce, multiple presses, bounded scan current, wake and
@@ -101,5 +102,6 @@ before one population option is frozen. Polling-only touch is not accepted.
 - encoder chatter/speed/EMI/concurrent-load HIL;
 - touch IRQ polarity, shortest assertion and shared-source identification HIL.
 
-This artifact closes inventory and principled pin fit only. It does not freeze
-the enclosure, switch footprints, production BOM or KiCad.
+This artifact closes inventory and principled pin fit. `UI-0002` closes the
+dependent exact electrical switch/protection endpoint. Neither freezes the
+enclosure, production BOM or KiCad.
