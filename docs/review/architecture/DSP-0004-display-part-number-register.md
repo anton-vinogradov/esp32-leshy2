@@ -26,8 +26,10 @@ fallback либо ещё не опубликованный production MPN. Contr
 
 - Display/panel assembly: current exact paper candidate
   **`HMX035CTFT-001`**. Marking раскрыт official QDtech `ES3C35P` schematic,
-  но manufacturer attribution, standalone orderability, drawing, lifecycle и
-  second source не подтверждены; поэтому production BOM ещё не принят.
+  и QDtech подтверждён как direct reference-board supplier, но manufacturer
+  attribution именно raw assembly, standalone orderability, approval drawing,
+  lifecycle и second source не подтверждены; поэтому production BOM ещё не
+  принят. `DSP-0008` фиксирует two complete-board specimen sources и exact RFQ.
 - Integrated display/touch TDDI: exact **`Sitronix ST77922`** inside the
   assembly. It is not a separate purchase line; its exact touch address is
   `0x38` and the exact assembly specification defines active-low `TP_INT`.
@@ -60,6 +62,8 @@ fallback либо ещё не опубликованный production MPN. Contr
   `TP_INT`; board normalization is specified by `DSP-0007/DEC-0088`.
 - Role: exact current paper candidate и primary HIL specimen target; не
   production-accepted BOM part до sourcing/mechanics/HIL gates.
+- Current specimen route: complete `DLE06235B/ES3C35P-QD` board; this proves
+  access to the installed HMX assembly for measurement, not standalone supply.
 - Checked properties: 3.5-inch `320×480` IPS, QSPI display, I2C touch,
   300 cd/m², `-30…80 °C`, module outline `54.50×101.50×10 mm`.
 - Exact contact/electrical fit: [`DSP-0005`](DSP-0005-hmx035ctft-electrical-fit.md).

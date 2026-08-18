@@ -35,8 +35,19 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            188,
+            187,
             sum(line["alternate_evidence"] == "missing" for line in lines),
+        )
+
+        display = self.database["devices"]["qdtech_hmx035ctft_001"]
+        self.assertEqual(2, len(display["prototype_specimen_sources"]))
+        self.assertEqual(
+            "standalone_raw_assembly_rfq_required",
+            display["procurement_gate"]["status"],
+        )
+        self.assertIn(
+            "no_drop_in_substitute",
+            display["alternates"]["disposition"],
         )
 
         gap_quantities = {
@@ -53,6 +64,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("858", rendered)
         self.assertIn("188", rendered)
         self.assertIn("187/188", rendered)
+        self.assertIn("1/188", rendered)
         self.assertIn("HMX035CTFT-001", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)

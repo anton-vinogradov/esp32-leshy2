@@ -42,7 +42,9 @@
 - 188 used exact-device/MPN lines;
 - 187/188 lines с current orderability evidence;
 - 1/188 unresolved: `HMX035CTFT-001`;
-- 188/188 cost и alternate dispositions по-прежнему открыты;
+- 188/188 cost и, на момент этого source recheck, alternate dispositions
+  открыты; subsequent `DSP-0008/BOM-0010` closes the display no-drop-in
+  disposition only;
 - четыре отдельные physical-gap families не смешиваются с used-line sourcing:
   SMA bodies, RF cable assemblies, M5 connector bodies и antenna kit.
 

@@ -22,6 +22,9 @@
 > `DSP-0006/DEC-0084` later close the exact paper power, reset, backlight and
 > first-connector circuit. Standalone panel procurement and physical mate HIL
 > remain open; this original contact-fit review is otherwise unchanged.
+> `DSP-0008/BOM-0010/REV-0005BI` later prove complete-board donor/specimen
+> availability and record the standalone RFQ/no-drop-in boundary; they do not
+> claim raw-panel production orderability.
 
 ## Результат
 

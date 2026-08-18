@@ -11,7 +11,7 @@
 - **858** machine-instantiated physical placements collapse to **188** used exact-device/MPN lines.
 - Current orderability evidence exists for **187/188** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **0/188** lines.
-- Machine-readable alternate/no-substitution evidence exists for **0/188** lines.
+- Machine-readable alternate/no-substitution evidence exists for **1/188** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
 Scopes: `base_product` — 855 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.

@@ -85,7 +85,7 @@
 "base_product","panasonic_erj_p08f10r0v","Panasonic ERJ-P08F10R0V","2","active","verified_candidate","present","missing","missing","backlight_series_resistor;pack_in_res"
 "base_product","panasonic_erj_p08f49r9v","Panasonic ERJ-P08F49R9V","2","active_orderable","verified_exact_max17320_2s_balance_resistor","present","missing","missing","pack_batts_rbal;pack_cell1_rbal"
 "base_product","pui_as02404po","PUI Audio AS02404PO","1","active_orderable","verified_candidate","present","missing","missing","speaker"
-"base_product","qdtech_hmx035ctft_001","HMX035CTFT-001 (QDtech schematic assembly marking)","1","assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified","verified_candidate","missing","missing","missing","display"
+"base_product","qdtech_hmx035ctft_001","HMX035CTFT-001 (QDtech schematic assembly marking)","1","assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified","verified_candidate","missing","missing","present","display"
 "base_product","rp2354b_a4","SC1512-A4","1","active_orderable","verified_exact_rp2354b0a4_7inch_reel_order_code","present","missing","missing","rp"
 "base_product","same_sky_cmej_0413_42_smt_tr","Same Sky CMEJ-0413-42-SMT-TR","1","active_orderable","verified_candidate","present","missing","missing","microphone"
 "base_product","same_sky_sj1_3515_smt_tr","Same Sky SJ1-3515-SMT-TR","1","active_orderable","verified_candidate","present","missing","missing","headphone_jack"

@@ -511,11 +511,16 @@ SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates
 858 current placements сворачиваются в 188 used lines, у 187 есть датированное
 orderability evidence, а единственной unresolved standalone строкой остаётся
 `HMX035CTFT-001`; ни одна строка пока не имеет machine-readable comparable
-cost или alternate/no-substitution disposition.
+cost, а у 187 строк нет alternate/no-substitution disposition.
 Тот же аудит отдельно учитывает 9 SMA bodies, 5 RF cable assemblies, 2 M5
 connector bodies и 12-item antenna-kit variant вместо выдачи этих абстракций
 за нулевую стоимость. Бывшие MAX17320 и threshold gaps теперь представлены
 exact physical placements.
+`DSP-0008/BOM-0010/REV-0005BI` дополнительно доказывают, что exact HMX
+specimen можно получить внутри текущей платы `DLE06235B/ES3C35P-QD`, но
+standalone raw-panel sourcing честно остаётся открытым. Exact RFQ и
+no-drop-in policy внесены в machine source; alternate coverage теперь 1/188
+без изменения функций, контактов или диаграммы.
 
 `FND-0072/IMP-0051` выявили, что target README снова начали пересказывать
 инженерную chronology. Владелец принял `DEC-0060`; `REV-0005N` провёл ревью

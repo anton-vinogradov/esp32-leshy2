@@ -536,6 +536,40 @@
         "url": "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
         "checked": "2026-08-17"
       },
+      "prototype_specimen_sources": [
+        {
+          "document": "Elecrow DLE06235B current in-stock complete-board page; official schematic proves that the bundled display assembly is HMX035CTFT-001",
+          "url": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
+          "checked": "2026-08-19",
+          "scope": "prototype donor/specimen only; listed USD 20.90 complete-board price is not a raw-panel BOM cost"
+        },
+        {
+          "document": "Shenzhen QDTFT ES3C35P-QD supplier listing with MOQ 1 and quantity tiers",
+          "url": "https://www.alibaba.com/product-detail/2-4-inch-LCD-Touch-Screen_62554192860.html",
+          "checked": "2026-08-19",
+          "scope": "prototype complete-board source and direct-supplier inquiry route; it does not prove standalone raw-panel sale"
+        }
+      ],
+      "procurement_gate": {
+        "status": "standalone_raw_assembly_rfq_required",
+        "supplier_route": "Shenzhen QDtech/QDTFT through the current ES3C35P product channel",
+        "required_evidence": [
+          "quote explicitly naming standalone HMX035CTFT-001 LCM+CTP assembly",
+          "supplier-controlled approval drawing with 40-contact FPC pitch, tail thickness, exposed-contact side, stiffener and keepout",
+          "ST77922 QSPI/I2C configuration, touch address/IRQ/reset and backlight electrical limits",
+          "sample, MOQ, quantity-100/500 pricing, lead time, lifecycle and PCN/EOL terms",
+          "brightness, optics/cover-lens option, operating-temperature, RoHS/REACH and lot traceability"
+        ]
+      },
+      "alternates": {
+        "disposition": "no_drop_in_substitute; exact panel or full endpoint requalification required",
+        "reason": "controller name, diagonal and resolution do not prove the same FPC, touch, backlight, optics or mechanical stack",
+        "requalification_candidates": [
+          "OPL product 226: AXS15231B QSPI raw-LCM inquiry lead, but no public MPN, approval drawing or proved capacitive-touch assembly",
+          "Waveshare ESP32-S3-Touch-LCD-3.5B: orderable AXS15231B complete-board HIL reference, but 210-cd/m2 optics and HXR35014C30 raw assembly are not proved standalone/drop-in",
+          "Leadtek LTK035P4046TX-09QC-V1: exact inquiry MPN with CTP, but public interface/mechanics do not preserve the accepted direct-QSPI endpoint"
+        ]
+      },
       "programmable": false,
       "contacts": {
         "TP_I2C_SCL": {"physical": "1", "role": "signal"},

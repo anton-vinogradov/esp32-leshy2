@@ -18,7 +18,7 @@
 | Класс результата | Lines | Что доказано | Что не доказано |
 |---|---:|---|---|
 | current exact source recorded | 32 | exact identity присутствует у производителя, production supplier или distributor/authorized aggregation | будущий stock, landed factory price и alternate equivalence |
-| standalone source unresolved | 1 | official reference schematic раскрывает `HMX035CTFT-001` и его contacts | отдельный order page/drawing/lifecycle и стабильный production channel |
+| standalone source unresolved | 1 | official reference schematic раскрывает `HMX035CTFT-001` и его contacts; `BOM-0010` later proves complete-board specimen access | отдельный raw-panel order page/quote, approval drawing/lifecycle и стабильный production channel |
 
 После recheck текущая machine-readable coverage равна `187/188`. Эта метрика
 не называется «все детали лежат на складе»: manufacturer RFQ/current-product
@@ -49,8 +49,8 @@
 ## Следующий порядок I8
 
 1. разрешить exact display sourcing без скрытого изменения endpoint;
-2. назначить каждой used line qualified alternate, parametric policy либо
-   explicit no-drop-in-substitute;
+2. назначить оставшимся 187 used lines qualified alternate, parametric policy
+   либо explicit no-drop-in-substitute; display disposition already exists;
 3. собрать сопоставимые quantity-100 cost snapshots;
 4. материализовать четыре physical families после соответствующих
    mechanics/RF specimen gates;
