@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF and native S3/C5 RF endpoints are machine-projected; CC/voice/IR feeds, expansion, physical and HIL evidence remain open |
+| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5 and CC1101 three-band RF endpoints are machine-projected; voice/IR feeds, expansion, physical and HIL evidence remain open |
 | 3. Target physical/product design | **Starting from the `DEC-0051/PIN-0003` visible working design**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -40,17 +40,23 @@ through [`AUDIO-0003`](../review/architecture/AUDIO-0003-exact-audio-and-receive
 power and physical interface isolation; receiver/microphone capture, bypass/
 codec playback, ordinary/codec-injected TX and exact microphone, speaker and
 switched-headphone endpoints are complete on paper. P00/P01/P02 implement
-capture source, speaker enable and headphone sensing, leaving P03…P05 free;
+capture source, speaker enable and headphone sensing; CC1101 band selection
+now uses P03/P04 and leaves P05 free;
 the full D-pad, PTT, STOP, F1/F2 and encoder remain unchanged. Acoustic, RF,
 specimen and concurrent-load HIL remain explicit, and I6 is active.
 
-The first two I6 slices now also have **paper review completed**. Three
+The first three I6 slices now also have **paper review completed**. Three
 full-function nRF paths have independent Ioff isolation, local energy and
 directional 2400…2525-MHz evidence. Separate S3 2.4-GHz and C5 2.4/5-GHz
 feeds run from real module RF contacts through exact PCB U.FL receptacles and
 `CP0603Q5425ENTR` couplers into complete LTC5532 channels; C5 ANT2 remains
-default-disabled/no-connect. Exact jumper/chassis connectors, thresholds and
-whole-device RF/coexistence HIL remain open; CC1101 is the next active slice.
+default-disabled/no-connect. The CC1101 path uses two equal-control
+`BGS13SN8E6327XTSA1` bodies around exact 315/433/868–915-MHz first-pass
+branches, so `00` isolates both ends; P03/P04 are rail-off band truth bits and
+P05 is the only free main slow-I/O contact. The complete line has exact ESD
+and an `AD8314ACPZ-RL7` actual-TX sample after all switching/matching. Exact
+jumper/chassis connectors, thresholds, VNA/conducted and whole-device
+RF/coexistence HIL remain open; voice/IR feeds are the next active slices.
 
 ## Competitor-delta closure
 
@@ -120,8 +126,8 @@ forbids counting a pin without the SoC→package→exact module/device→actual
 pad/header/connector chain. `DEC-0042/REV-0003Y` add the checked source;
 [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md) now has
 three consumers and `G2F-3I` is the leading paper map. They pass
-contact/collision/accounting/strap/service checks, but exact nRF,
-CC RF implementation, voice/IR and several control/power devices remain
+contact/collision/accounting/strap/service checks, but exact voice/IR RF
+implementation and several control/power devices remain
 qualification blockers. `DSP-0001/REV-0003Z` review three real display/touch
 boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
 ST7796S budget and generic 24-pin connector cannot be reused. `DEC-0043/REV-0004J`
@@ -409,8 +415,9 @@ dedicated PTT, independent normally-closed STOP and recessed RE-ARM. One exact
 Dedicated `TCA9534APWR` P0…P6 and ten `1N4148WT` devices form an
 interrupt-driven 4x3 matrix, while P7 is reserved and main TCA6424 P00…P05 are
 available to the dependent audio block. Encoder A/B use S3 GPIO39/GPIO47 PCNT0
-and touch IRQ joins GPIO37. I5 later assigns P00/P01/P02. S3 is now `33/3/0`,
-main slow I/O `21/0/3` and UI I/O `7/1/0`; PTT remains direct RP GPIO21 and
+and touch IRQ joins GPIO37. I5 later assigns P00/P01/P02 and I6 assigns
+P03/P04 to CC band selection. S3 is now `33/3/0`, main slow I/O `23/0/1` and
+UI I/O `7/1/0`; PTT remains direct RP GPIO21 and
 STOP/RE-ARM remain outside I2C. Exact switch mechanics, SYS-I2C collision scan,
 encoder/U214 fit and matrix/encoder HIL remain open; KiCad
 stays blocked.

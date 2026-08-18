@@ -1192,6 +1192,61 @@ def render_principled_pinout(
             return "10-kOhm deterministic interface-state resistor"
         return instance.replace("_", " ") + " physical component"
 
+    cc_support_instance_names = tuple(
+        instance
+        for instance in candidate["instances"]
+        if instance.startswith("cc_") and instance != "cc_power_switch"
+    )
+    cc_roles = {
+        "cc_host_buffer": "SCLK/SI/CSN switched-rail Ioff buffer",
+        "cc_return_buffer": "SO/GDO0/GDO2 switched-rail Ioff buffer",
+        "cc_band_buffer": "rail-off V1/V2 band-control Ioff buffer",
+        "cc_power_input_cap": "CC load-switch input bypass capacitor",
+        "cc_local_bulk_cap": "CC switched-rail local bulk capacitor",
+        "cc_power_on_pulldown": "CC load-switch reset-off resistor",
+        "cc_dcoupl_cap": "CC1101 DCOUPL capacitor",
+        "cc_rbias_res": "CC1101 56-kOhm RBIAS resistor",
+        "cc_crystal": "CC1101 exact 26-MHz reference crystal",
+        "cc_crystal_load_q1": "CC crystal Q1 load capacitor",
+        "cc_crystal_load_q2": "CC crystal Q2 load capacitor",
+        "cc_rf_p_dc_block": "RF_P high-Q series DC-block capacitor",
+        "cc_rf_n_dc_block": "RF_N high-Q series DC-block capacitor",
+        "cc_rf_diff_cap": "differential RF trim capacitor",
+        "cc_balun": "300-MHz-to-1-GHz 50-to-100-Ohm RF balun",
+        "cc_match_l3n3": "balun-output 3.3-nH series match",
+        "cc_match_c1p2": "balun-output 1.2-pF shunt match",
+        "cc_match_l6n8": "balun-output 6.8-nH series match",
+        "cc_switch_a": "transceiver-side three-band SP3T isolator",
+        "cc_switch_b": "antenna-side three-band SP3T isolator",
+        "cc_315_l10_in": "315-MHz input series inductor",
+        "cc_315_shunt_l3n6": "315-MHz shunt-trap inductor",
+        "cc_315_shunt_c8p": "315-MHz shunt-trap capacitor",
+        "cc_315_l10_out": "315-MHz output series inductor",
+        "cc_433_shunt_c10p": "433-MHz input shunt capacitor",
+        "cc_433_l15": "433-MHz series inductor",
+        "cc_433_shunt_c6p2": "433-MHz output shunt capacitor",
+        "cc_868_915_l10": "combined 868/915-MHz series inductor",
+        "cc_output_l2n2": "selected-path output matching inductor",
+        "cc_rf_esd": "external CC RF line ultra-low-capacitance ESD diode",
+        "cc_detector_tap_cap": "actual-TX high-impedance RF sample capacitor",
+        "cc_detector_filter": "AD8314 response filter capacitor",
+        "cc_detector_bypass": "AD8314 local bypass capacitor",
+        "cc_evidence_hold_diode": "actual-TX evidence hold isolation diode",
+        "cc_evidence_hold_cap": "actual-TX evidence enable hold capacitor",
+        "cc_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
+    }
+
+    def cc_role(instance: str) -> str:
+        if instance in cc_roles:
+            return cc_roles[instance]
+        if instance.endswith("_bypass"):
+            return "local switched-domain bypass capacitor"
+        if instance.endswith("_series"):
+            return "22-Ohm switched-interface source resistor"
+        if instance.endswith(("_pullup", "_pulldown")):
+            return "10-kOhm deterministic interface-state resistor"
+        return instance.removeprefix("cc_").replace("_", " ") + " CC physical component"
+
     native_rf_support_instance_names = tuple(
         instance
         for instance in candidate["instances"]
@@ -1435,7 +1490,7 @@ def render_principled_pinout(
         node("sd_detect_series", "1-kOhm card-detect input series resistor"),
         node("sd_detect_pullup", "10-kOhm always-readable card-detect pull-up"),
         node("sd_detect_cap", "100-nF card-detect hardware filter capacitor"),
-        node("slow_io", "24-line main slow-control expander; three contacts free"),
+        node("slow_io", "24-line main slow-control expander; P05 remains free"),
         node("slow_io_vcci_bypass", "100-nF main slow-I/O VCCI bypass capacitor"),
         node("slow_io_vccp_bypass", "100-nF main slow-I/O VCCP bypass capacitor"),
         node("slow_io_bulk_cap", "1-uF main slow-I/O local bulk capacitor"),
@@ -1504,6 +1559,10 @@ def render_principled_pinout(
         *[node(instance, native_rf_roles[instance]) for instance in native_rf_support_instance_names],
         *[node(instance, nrf_role(instance)) for instance in nrf_support_instance_names],
         node("cc", "sub-GHz transceiver"),
+        *[node(instance, cc_role(instance)) for instance in cc_support_instance_names],
+        "  CC_EXTERNAL_RF[\"MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint\"]",
+        "  %% CC layout-only invisible spine: every box above is one physical device.",
+        "  " + " ~~~ ".join(instance.upper() for instance in cc_support_instance_names),
         node("u214", "external LoRa/GNSS Cap module"),
         node("u214_i2c_iso", "external I2C stuck-bus isolator"),
         "  UNIT[\"MPN TBD<br/>protected HY2.0-4P M5 Unit connector\"]",
@@ -1724,7 +1783,31 @@ def render_principled_pinout(
         "  NRF_POWER_SWITCH -->|\"switched 3.3 V\"| NRF2",
         "  NRF_POWER_SWITCH --> NRF2_HOST_BUFFER",
         "  NRF_POWER_SWITCH --> NRF2_RETURN_BUFFER",
-        "  CC_POWER_SWITCH --> CC",
+        "  CC_POWER_SWITCH -->|\"switched 3.3 V\"| CC",
+        "  CC_POWER_SWITCH --> CC_HOST_BUFFER",
+        "  CC_POWER_SWITCH --> CC_RETURN_BUFFER",
+        "  CC_POWER_SWITCH --> CC_BAND_BUFFER",
+        "  CC_POWER_SWITCH --> CC_SWITCH_A",
+        "  CC_POWER_SWITCH --> CC_SWITCH_B",
+        "  RP -->|\"SCLK / SI / CSN\"| CC_HOST_BUFFER --> CC",
+        "  CC -->|\"SO / GDO0 / GDO2\"| CC_RETURN_BUFFER --> RP",
+        "  SLOW_IO -->|\"P03/P04; rail-off only\"| CC_BAND_BUFFER",
+        "  CC_BAND_BUFFER -->|\"same V1/V2 to both ends\"| CC_SWITCH_A",
+        "  CC_BAND_BUFFER -->|\"same V1/V2 to both ends\"| CC_SWITCH_B",
+        "  CC --> CC_RF_P_DC_BLOCK --> CC_BALUN",
+        "  CC --> CC_RF_N_DC_BLOCK --> CC_BALUN",
+        "  CC_RF_P_DC_BLOCK --> CC_RF_DIFF_CAP",
+        "  CC_RF_N_DC_BLOCK --> CC_RF_DIFF_CAP",
+        "  CC_BALUN --> CC_MATCH_L3N3 --> CC_MATCH_L6N8 --> CC_SWITCH_A",
+        "  CC_MATCH_L3N3 -->|\"shunt\"| CC_MATCH_C1P2",
+        "  CC_SWITCH_A -->|\"RF1 = 315 MHz\"| CC_315_L10_IN --> CC_315_L10_OUT --> CC_SWITCH_B",
+        "  CC_315_L10_IN -->|\"shunt trap\"| CC_315_SHUNT_L3N6 --> CC_315_SHUNT_C8P",
+        "  CC_SWITCH_A -->|\"RF2 = 433 MHz\"| CC_433_L15 --> CC_SWITCH_B",
+        "  CC_SWITCH_A -->|\"433 input shunt\"| CC_433_SHUNT_C10P",
+        "  CC_433_L15 -->|\"433 output shunt\"| CC_433_SHUNT_C6P2",
+        "  CC_SWITCH_A -->|\"RF3 = 868/915 MHz\"| CC_868_915_L10 --> CC_SWITCH_B",
+        "  CC_SWITCH_B --> CC_OUTPUT_L2N2 --> CC_RF_ESD --> CC_EXTERNAL_RF",
+        "  CC_OUTPUT_L2N2 -->|\"0.47-pF actual-TX sample\"| CC_DETECTOR_TAP_CAP --> DET_CC",
         "  MAIN_EFUSE --> SD_POWER_SWITCH -->|\"switched 3.3 V\"| SD",
         "  MAIN_EFUSE -->|\"local input bypass\"| SD_POWER_INPUT_CAP",
         "  SLOW_IO -->|\"P20 session enable\"| SD_POWER_SWITCH",
@@ -1933,7 +2016,7 @@ def render_principled_pinout(
         "  NRF1_COUPLER -->|\"10-dB forward sample\"| DET_NRF1 --> EVIDENCE_CMP_A",
         "  NRF2 -->|\"qualified pigtail\"| NRF2_COUPLER -->|\"dedicated SMA\"| NRF2_EXTERNAL_RF_50R",
         "  NRF2_COUPLER -->|\"10-dB forward sample\"| DET_NRF2 --> EVIDENCE_CMP_B",
-        "  CC --> DET_CC --> EVIDENCE_CMP_B",
+        "  DET_CC --> EVIDENCE_CMP_B",
         "  VOICE --> DET_VOICE --> EVIDENCE_CMP_B",
         "  IRTX --> DET_IR --> EVIDENCE_CMP_B",
         "  EVIDENCE_CMP_A --> EVIDENCE_MASK",

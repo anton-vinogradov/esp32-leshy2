@@ -1403,6 +1403,219 @@
         "EPAD": {"physical": "exposed die-attach pad", "role": "power"}
       }
     },
+    "infineon_bgs13sn8e6327xtsa1": {
+      "mpn": "Infineon BGS13SN8E6327XTSA1",
+      "kind": "pg_tsnp_8_1_100mhz_to_6ghz_sp3t_rf_switch",
+      "qualification": "verified_exact_cc_dual_ended_band_switch",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.1, 1.1, 0.4],
+      "source": {
+        "document": "BGS13SN8 SP3T RF switch datasheet",
+        "version": "Rev. 2.4",
+        "url": "https://www.infineon.com/dgdl/Infineon-BGS13SN8-DataSheet-v02_04-EN.pdf?fileId=5546d462584d1d4a0158cf52e3ae03a7",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "BGS13SN8E6327XTSA1 active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/infineon-technologies/BGS13SN8E6327XTSA1/6559893",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "frequency_mhz": [100, 6000],
+        "supply_v": [1.65, 3.4],
+        "control_low_v_max": 0.45,
+        "control_high_v_min": 1.35,
+        "truth_table": {"00": "isolation", "10": "RF1", "01": "RF2", "11": "RF3"},
+        "insertion_loss_db_698_to_960_typ_max": [0.22, 0.42],
+        "isolation_db_698_to_960_min_typ": [30, 35]
+      },
+      "programmable": false,
+      "contacts": {
+        "VDD": {"physical": "1", "role": "power"}, "V2": {"physical": "2", "role": "signal"},
+        "V1": {"physical": "3", "role": "signal"}, "RF3": {"physical": "4", "role": "rf"},
+        "RF1": {"physical": "5", "role": "rf"}, "RFIN": {"physical": "6", "role": "rf"},
+        "RF2": {"physical": "7", "role": "rf"}, "GND": {"physical": "8", "role": "power"}
+      }
+    },
+    "ttm_b0310j50100ahf": {
+      "mpn": "TTM Technologies B0310J50100AHF",
+      "kind": "0805_300mhz_to_1ghz_50_to_100ohm_balun",
+      "qualification": "verified_exact_cc_first_pass_balun",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.0, 1.25, 0.7],
+      "source": {
+        "document": "B0310J50100AHF balun datasheet",
+        "version": "current manufacturer document checked 2026-08-18",
+        "url": "https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "B0310J50100AHF active authorized-distributor stock listing",
+        "url": "https://www.digikey.com/en/products/filter/balun/849?keywords=B0310J50100AHF",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "frequency_mhz": [300, 1000],
+        "unbalanced_ohm": 50,
+        "balanced_ohm": 100,
+        "insertion_loss_db_max": 1.0,
+        "return_loss_db_min": 8.1,
+        "amplitude_balance_db_max": 2.8,
+        "phase_balance_deg_max": 36
+      },
+      "programmable": false,
+      "contacts": {
+        "UNBALANCED": {"physical": "1", "role": "rf"}, "GND": {"physical": "2", "role": "power"},
+        "BALANCED_A": {"physical": "3", "role": "rf"}, "BALANCED_B": {"physical": "4", "role": "rf"},
+        "DNC_5": {"physical": "5", "role": "reserved"}, "DNC_6": {"physical": "6", "role": "reserved"}
+      }
+    },
+    "abracon_abm8_26mhz_10_d_1_g_t": {
+      "mpn": "Abracon ABM8-26.000MHZ-10-D-1-G-T",
+      "kind": "3_2x2_5mm_26mhz_10pf_crystal",
+      "qualification": "verified_exact_cc_reference_crystal",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.2, 2.5, 0.8],
+      "source": {
+        "document": "ABM8 low-profile SMD crystal datasheet and exact order-code data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://abracon.com/Resonators/ABM8.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "ABM8-26.000MHZ-10-D-1-G-T active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/abracon-llc/ABM8-26-000MHZ-10-D-1-G-T/9998081",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "frequency_mhz": 26.0,
+        "load_capacitance_pf": 10,
+        "esr_ohm_max": 50,
+        "frequency_tolerance_ppm": 10,
+        "frequency_stability_ppm": 15
+      },
+      "programmable": false,
+      "contacts": {
+        "X1": {"physical": "1", "role": "clock"}, "GND_2": {"physical": "2", "role": "power"},
+        "X2": {"physical": "3", "role": "clock"}, "GND_4": {"physical": "4", "role": "power"}
+      }
+    },
+    "littelfuse_sesd0402x1un_0020_090": {
+      "mpn": "Littelfuse SESD0402X1UN-0020-090",
+      "kind": "0402_0_2pf_unidirectional_rf_esd_diode",
+      "qualification": "verified_exact_cc_external_rf_esd",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.6, 0.5],
+      "source": {
+        "document": "SESD ultra-low-capacitance discrete TVS datasheet",
+        "version": "current manufacturer document checked 2026-08-18",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-tvs-diode-array-sesd-ultra-low-capacitance-discrete-tvs-datasheet?assetguid=645e7b6b-8305-497f-b62b-24df676c444e",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "SESD0402X1UN-0020-090 active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/littelfuse-inc/SESD0402X1UN-0020-090/5233545",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "stand_off_v": 7,
+        "typical_capacitance_pf": 0.2,
+        "maximum_unidirectional_capacitance_pf": 0.25,
+        "iec61000_4_2_contact_air_kv": 20
+      },
+      "programmable": false,
+      "contacts": {"K": {"physical": "1", "role": "rf"}, "A": {"physical": "2", "role": "power"}}
+    },
+    "murata_lqg15hs2n2s02d": {
+      "mpn": "Murata LQG15HS2N2S02D", "kind": "2_2nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS2N2S02D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "LQG15HS2N2S02D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS2N2S02D/662863", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_lqg15hs3n3s02d": {
+      "mpn": "Murata LQG15HS3N3S02D", "kind": "3_3nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS3N3S02D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "LQG15HS3N3S02D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=LQG15HS3N3S02D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_lqg15hs3n6s02d": {
+      "mpn": "Murata LQG15HS3N6S02D", "kind": "3_6nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS3N6S02D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "LQG15HS3N6S02D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=LQG15HS3N6S02D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_lqg15hs6n8j02d": {
+      "mpn": "Murata LQG15HS6N8J02D", "kind": "6_8nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS6N8J02D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "LQG15HS6N8J02D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=LQG15HS6N8J02D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_lqg15hs10nj02d": {
+      "mpn": "Murata LQG15HS10NJ02D", "kind": "10nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS10NJ02D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "LQG15HS10NJ02D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS10NJ02D/662903", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_lqg15hs15nj02d": {
+      "mpn": "Murata LQG15HS15NJ02D", "kind": "15nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS15NJ02D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "LQG15HS15NJ02D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS15NJ02D/662874", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1hr47bb01d": {
+      "mpn": "Murata GJM1555C1HR47BB01D", "kind": "0_47pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_detector_tap_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1HR47BB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1HR47BB01D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1HR47BB01D/7362927", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1hr60bb01d": {
+      "mpn": "Murata GJM1555C1HR60BB01D", "kind": "0_6pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1HR60BB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1HR60BB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1HR60BB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1h1r2bb01d": {
+      "mpn": "Murata GJM1555C1H1R2BB01D", "kind": "1_2pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R2BB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1H1R2BB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H1R2BB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1h6r2db01d": {
+      "mpn": "Murata GJM1555C1H6R2DB01D", "kind": "6_2pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H6R2DB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1H6R2DB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H6R2DB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1h8r0db01d": {
+      "mpn": "Murata GJM1555C1H8R0DB01D", "kind": "8pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H8R0DB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1H8R0DB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H8R0DB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1h100jb01d": {
+      "mpn": "Murata GJM1555C1H100JB01D", "kind": "10pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H100JB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1H100JB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H100JB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "murata_gjm1555c1h150jb01d": {
+      "mpn": "Murata GJM1555C1H150JB01D", "kind": "15pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_crystal_load_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H150JB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1H150JB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H150JB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "clock"}, "END_2": {"physical": "2", "role": "power"}}
+    },
+    "murata_gjm1555c1h101jb01d": {
+      "mpn": "Murata GJM1555C1H101JB01D", "kind": "100pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_rf_dc_block_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H101JB01D", "checked": "2026-08-18"},
+      "orderable_source": {"document": "GJM1555C1H101JB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H101JB01D", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
+    },
+    "yageo_rc0402fr_0756kl": {
+      "mpn": "Yageo RC0402FR-0756KL", "kind": "56kohm_1pct_0402_cc_rbias_resistor", "qualification": "verified_exact_cc_bias_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {"document": "RC0402FR-0756KL exact product specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0756KL", "checked": "2026-08-18"},
+      "orderable_source": {"document": "RC0402FR-0756KL authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=RC0402FR-0756KL", "checked": "2026-08-18"},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "analog"}, "END_2": {"physical": "2", "role": "power"}}
+    },
     "skyworks_si4732_a10_gs": {
       "mpn": "Si4732-A10-GS",
       "kind": "broadcast_receiver_soic16",

@@ -35,8 +35,9 @@ GPIO39/GPIO47 for direct encoder PCNT0 capture and move touch IRQ into shared
 GPIO37. `DEC-0088/DSP-0007` fix exact active-low ST77922, 10-kOhm raw pull-up
 and non-inverting 1G07. A dedicated TCA9534A restores
 interrupt-driven 4×3 controls and releases TCA6424 P00…P05. I5 now assigns
-P00/P01/P02 to capture selection, speaker enable and headphone sensing.
-Current free state is `S3=0, C5=1, RP=0, main slow=3`, with UI-matrix P7 reserved.
+P00/P01/P02 to capture selection, speaker enable and headphone sensing; I6
+assigns P03/P04 to powered-off CC1101 band selection. Current free state is
+`S3=0, C5=1, RP=0, main slow=1`, with P05 free and UI-matrix P7 reserved.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -180,7 +181,13 @@ subblock: exact S3 2.4-GHz and C5 2.4/5-GHz external contacts now lead through
 separate real U.FL mates and dual-band directional couplers into complete
 LTC5532 evidence circuits. C5 ANT2 is explicitly default-disabled/no-connect;
 jumper length, chassis RP-SMA, thresholds and whole-feed HIL remain physical
-gates. CC1101 and the remaining I6 endpoints stay active.
+gates. `FND-0098/CCRF-0001/DEC-0093/REV-0005AX` next close the CC1101 paper
+subblock: two equal-control SP3T bodies isolate all three branches at both ends,
+P03/P04 select 315/433/868–915 only while power is off, exact crystal/balun/
+passives/ESD are physical and a final-line AD8314 sample replaces the abstract
+evidence tap. Conducted tuning, sensitivity/output/spurious/legal-profile,
+SMA mechanics and coexistence HIL remain open; I6 and no-KiCad boundary stay
+active for the remaining RF endpoints.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

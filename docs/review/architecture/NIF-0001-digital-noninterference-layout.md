@@ -125,14 +125,15 @@ stress HIL остаётся обязательным до target acceptance.
 
 ## Slow plane и safety boundary
 
-18/24 линий main `TCA6424ARGJR` распределены; P00…P05 теперь свободны.
+23/24 линий main `TCA6424ARGJR` распределены; P05 остаётся свободным.
 Отдельный `TCA9534APWR` обслуживает interrupt-driven diode-isolated 4×3 UI
 matrix и сохраняет P7 как локальный резерв. Main slow-plane покрывает
 display/touch reset, codec enable, два audio selector, voice PD/HL, receiver
 reset/status, U214 I²C READY, external 5 V, microSD power/detect, STOP sense,
 S3 actual-TX evidence, power fault, accessory present и обычный
 `RX_AUDIO_SOURCE_SEL` на P27 и I5 audio endpoints на P00/P01/P02. Его текущий
-бюджет — `21/0/3`, UI-expander —
+набор дополнен rail-off CC1101 band truth bits на P03/P04. Текущий бюджет —
+`23/0/1`, UI-expander —
 `7/1/0`.
 
 PTT, physical PTT, все radio IRQ/GDO/BUSY, actual-TX evidence C5/IR/voice и
@@ -151,7 +152,7 @@ coverage, reciprocal programmable links, реальные RP PIO GPIO-windows,
 capacity arithmetic и наличие resource contracts. Оно не заменяет
 schematic/HIL.
 
-Открыты: exact nRF production implementation, CC RF network, display/touch,
+Открыты: exact nRF production implementation, CC RF conducted qualification,
 codec, receiver, voice/IR frontends, power/clock, antenna/filter/zoning,
 thermal/mechanics, production cost and all named stress tests. `G2F-3I` может
 стать target только внутри будущего atomic package после этих проверок.

@@ -54,7 +54,12 @@ Leshy2 — открытый автономный портативный инст
   `Hirose U.FL-R-SMT-1(10)` и направленный ответвитель
   `KYOCERA AVX CP0603Q5425ENTR`, поэтому фактическое исходящее RF измеряется
   без общей антенны или общего детекторного тракта.
-- Отдельный Sub-GHz тракт работает с пакетными системами; широковещательный
+- Отдельный Sub-GHz тракт на `CC1101RGPR` выбирает ветку 315, 433 или общую
+  868/915 МГц двумя `BGS13SN8E6327XTSA1`, отключая каждый невыбранный фильтр с
+  обеих сторон. Band controls меняются только при выключенной шине; default
+  `00` изолирует все ветви. Последний 50-Ом участок через 0,47-пФ sample
+  наблюдает AON-held `AD8314ACPZ-RL7`; входящий RF никогда не разрешает TX.
+- Sub-GHz тракт работает с пакетными системами; широковещательный
   приёмник покрывает AM/FM/SW/LW; VHF/UHF voice-тракт поддерживает аналоговую
   связь и аудиообработку.
 - Точный аудиотракт умеет направлять в кодек выбранный RX-звук или локальный
@@ -338,7 +343,7 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
-  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; three contacts free"]
+  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; P05 remains free"]
   SLOWVCI["C1005X7R1H104K050BB #SLOW-VCCI<br/>100-нФ развязка VCCI главного slow-I/O"]
   SLOWVCP["C1005X7R1H104K050BB #SLOW-VCCP<br/>100-нФ развязка VCCP главного slow-I/O"]
   SLOWBULK["C1608X7R1C105K080AC #SLOW<br/>1-мкФ локальный bulk-конденсатор главного slow-I/O"]
@@ -502,6 +507,71 @@ flowchart TD
   NEVC["C1608X7R1C105K080AC #nRF-EVIDENCE<br/>1-мкФ конденсатор удержания evidence"]
   NEVR["RC0402FR-0710KL #nRF-EVIDENCE<br/>10-кОм резистор разряда удержания evidence"]
   CC["CC1101RGPR<br/>sub-GHz transceiver"]
+  CCHB["74LVC126APW,118 #CC-HOST<br/>SCLK/SI/CSN switched-rail Ioff buffer"]
+  CCRB["74LVC126APW,118 #CC-RETURN<br/>SO/GDO0/GDO2 switched-rail Ioff buffer"]
+  CCBAND["74LVC2G126DC,125 #CC-BAND<br/>rail-off V1/V2 band-control Ioff buffer"]
+  CCHBBP["C1005X7R1H104K050BB #CC-HOST<br/>host-buffer local bypass capacitor"]
+  CCRBBP["C1005X7R1H104K050BB #CC-RETURN<br/>return-buffer local bypass capacitor"]
+  CCBANDBP["C1005X7R1H104K050BB #CC-BAND<br/>band-buffer local bypass capacitor"]
+  CCPIN["C1608X7R1C105K080AC #CC-IN<br/>CC load-switch input bypass capacitor"]
+  CCBULK["C1608X7R1C105K080AC #CC-LOCAL<br/>CC switched-rail local bulk capacitor"]
+  CCONPD["RC0402FR-0710KL #CC-ON<br/>CC load-switch reset-off resistor"]
+  CCDVBP["C1005X7R1H104K050BB #CC-DVDD<br/>CC1101 DVDD bypass capacitor"]
+  CC9BP["C1005X7R1H104K050BB #CC-AVDD9<br/>CC1101 AVDD9 bypass capacitor"]
+  CC11BP["C1005X7R1H104K050BB #CC-AVDD11<br/>CC1101 AVDD11 bypass capacitor"]
+  CC14BP["C1005X7R1H104K050BB #CC-AVDD14<br/>CC1101 AVDD14 bypass capacitor"]
+  CC15BP["C1005X7R1H104K050BB #CC-AVDD15<br/>CC1101 AVDD15 bypass capacitor"]
+  CCDCOUPL["C1005X7R1H104K050BB #CC-DCOUPL<br/>CC1101 DCOUPL capacitor"]
+  CCRBIAS["RC0402FR-0756KL<br/>CC1101 56-kOhm RBIAS resistor"]
+  CCXTAL["ABM8-26.000MHZ-10-D-1-G-T<br/>CC1101 exact 26-MHz reference crystal"]
+  CCX1C["GJM1555C1H150JB01D #CC-X1<br/>CC crystal Q1 15-pF load capacitor"]
+  CCX2C["GJM1555C1H150JB01D #CC-X2<br/>CC crystal Q2 15-pF load capacitor"]
+  CCRSCLK["ERJ-2RKF22R0X #CC-SCLK<br/>SCLK source-series resistor"]
+  CCRSI["ERJ-2RKF22R0X #CC-SI<br/>SI source-series resistor"]
+  CCRCSN["ERJ-2RKF22R0X #CC-CSN<br/>CSN source-series resistor"]
+  CCRSO["ERJ-2RKF22R0X #CC-SO<br/>SO return-source resistor"]
+  CCRG0["ERJ-2RKF22R0X #CC-GDO0<br/>GDO0 return-source resistor"]
+  CCRG2["ERJ-2RKF22R0X #CC-GDO2<br/>GDO2 return-source resistor"]
+  CCRV1["ERJ-2RKF22R0X #CC-V1<br/>band-V1 source-series resistor"]
+  CCRV2["ERJ-2RKF22R0X #CC-V2<br/>band-V2 source-series resistor"]
+  CCPDSCLK["RC0402FR-0710KL #CC-SCLK<br/>host SCLK fail-low resistor"]
+  CCPDSI["RC0402FR-0710KL #CC-SI<br/>host SI fail-low resistor"]
+  CCPCS["RC0402FR-0710KL #CC-CSN<br/>host CSN fail-high resistor"]
+  CCPDSO["RC0402FR-0710KL #CC-SO<br/>host SO fail-low resistor"]
+  CCPDG0["RC0402FR-0710KL #CC-GDO0<br/>host GDO0 fail-low resistor"]
+  CCPDG2["RC0402FR-0710KL #CC-GDO2<br/>host GDO2 fail-low resistor"]
+  CCPDV1H["RC0402FR-0710KL #CC-V1-HOST<br/>band-V1 host fail-low resistor"]
+  CCPDV2H["RC0402FR-0710KL #CC-V2-HOST<br/>band-V2 host fail-low resistor"]
+  CCPDV1A["RC0402FR-0710KL #CC-V1-A<br/>switch-A V1 isolation-default resistor"]
+  CCPDV2A["RC0402FR-0710KL #CC-V2-A<br/>switch-A V2 isolation-default resistor"]
+  CCPDV1B["RC0402FR-0710KL #CC-V1-B<br/>switch-B V1 isolation-default resistor"]
+  CCPDV2B["RC0402FR-0710KL #CC-V2-B<br/>switch-B V2 isolation-default resistor"]
+  CCCP["GJM1555C1H101JB01D #CC-RF-P<br/>RF_P high-Q 100-pF DC block"]
+  CCCN["GJM1555C1H101JB01D #CC-RF-N<br/>RF_N high-Q 100-pF DC block"]
+  CCDIFF["GJM1555C1HR60BB01D<br/>0.6-pF differential RF trim capacitor"]
+  CCBAL["B0310J50100AHF<br/>300-MHz-to-1-GHz 50-to-100-Ohm balun"]
+  CCL33["LQG15HS3N3S02D<br/>balun-output 3.3-nH series match"]
+  CCC12["GJM1555C1H1R2BB01D<br/>balun-output 1.2-pF shunt match"]
+  CCL68["LQG15HS6N8J02D<br/>balun-output 6.8-nH series match"]
+  CCSWA["BGS13SN8E6327XTSA1 #A<br/>transceiver-side three-band SP3T isolator"]
+  CCSWB["BGS13SN8E6327XTSA1 #B<br/>antenna-side three-band SP3T isolator"]
+  CC315L1["LQG15HS10NJ02D #315-IN<br/>315-MHz input series inductor"]
+  CC315L36["LQG15HS3N6S02D<br/>315-MHz shunt-trap inductor"]
+  CC315C8["GJM1555C1H8R0DB01D<br/>315-MHz shunt-trap capacitor"]
+  CC315L2["LQG15HS10NJ02D #315-OUT<br/>315-MHz output series inductor"]
+  CC433C10["GJM1555C1H100JB01D<br/>433-MHz input shunt capacitor"]
+  CC433L15["LQG15HS15NJ02D<br/>433-MHz series inductor"]
+  CC433C62["GJM1555C1H6R2DB01D<br/>433-MHz output shunt capacitor"]
+  CC868L10["LQG15HS10NJ02D #868-915<br/>combined 868/915-MHz series inductor"]
+  CCLOUT["LQG15HS2N2S02D<br/>selected-path output matching inductor"]
+  CCESD["SESD0402X1UN-0020-090<br/>external CC RF ultra-low-capacitance ESD diode"]
+  CCTAP["GJM1555C1HR47BB01D<br/>actual-TX high-impedance RF sample capacitor"]
+  CCDF["GRM1555C1H121JA01D #CC-DETECT<br/>AD8314 response filter capacitor"]
+  CCDBP["C1005X7R1H104K050BB #CC-DETECT<br/>AD8314 local bypass capacitor"]
+  CCEVD["BAT54-7-F #CC-EVIDENCE<br/>actual-TX evidence hold isolation diode"]
+  CCEVC["C1608X7R1C105K080AC #CC-EVIDENCE<br/>actual-TX evidence hold capacitor"]
+  CCEVR["RC0402FR-0710KL #CC-EVIDENCE<br/>actual-TX evidence hold discharge resistor"]
+  CCSMA["MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint"]
   SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
   VOICESUP["TPS3808G33DBVR #VOICE<br/>STOP-квалифицированный супервизор голосовой шины 4 В"]
   VOICEIOSW["TPS22919DCKR #VOICE-IO<br/>разряжаемый локальный источник интерфейсов SA518"]
@@ -541,7 +611,7 @@ flowchart TD
   DN0["AD8314ACPZ-RL7 #nRF0<br/>100-МГц-2,7-ГГц детектор прямой мощности"]
   DN1["AD8314ACPZ-RL7 #nRF1<br/>100-МГц-2,7-ГГц детектор прямой мощности"]
   DN2["AD8314ACPZ-RL7 #nRF2<br/>100-МГц-2,7-ГГц детектор прямой мощности"]
-  DCC["LTC5507ES6#TRMPBF #CC<br/>CC1101 sub-GHz RF power detector"]
+  DCC["AD8314ACPZ-RL7 #CC<br/>CC1101 actual-TX RF power detector"]
   DVOICE["LTC5507ES6#TRMPBF #voice<br/>SA518 VHF/UHF RF power detector"]
   DIR["VEMD1060X01<br/>IR optical-evidence photodiode"]
   CMPA["TLV1824PWR #1<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
@@ -583,7 +653,10 @@ flowchart TD
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
   SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ S3RFJ ~~~ S3CPL ~~~ S3TERM ~~~ S3CIN ~~~ S3RFB ~~~ S3RGB ~~~ S3COUT ~~~ S3BP ~~~ C5RFJ ~~~ C5CPL ~~~ C5TERM ~~~ C5CIN ~~~ C5RFB ~~~ C5RGB ~~~ C5COUT ~~~ C5BP
-  C5BP ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC ~~~ SA
+  C5BP ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC
+  CC ~~~ CCHB ~~~ CCRB ~~~ CCBAND ~~~ CCHBBP ~~~ CCRBBP ~~~ CCBANDBP ~~~ CCPIN ~~~ CCBULK ~~~ CCONPD ~~~ CCDVBP ~~~ CC9BP ~~~ CC11BP ~~~ CC14BP ~~~ CC15BP ~~~ CCDCOUPL ~~~ CCRBIAS ~~~ CCXTAL ~~~ CCX1C ~~~ CCX2C
+  CCX2C ~~~ CCRSCLK ~~~ CCRSI ~~~ CCRCSN ~~~ CCRSO ~~~ CCRG0 ~~~ CCRG2 ~~~ CCRV1 ~~~ CCRV2 ~~~ CCPDSCLK ~~~ CCPDSI ~~~ CCPCS ~~~ CCPDSO ~~~ CCPDG0 ~~~ CCPDG2 ~~~ CCPDV1H ~~~ CCPDV2H ~~~ CCPDV1A ~~~ CCPDV2A ~~~ CCPDV1B ~~~ CCPDV2B
+  CCPDV2B ~~~ CCCP ~~~ CCCN ~~~ CCDIFF ~~~ CCBAL ~~~ CCL33 ~~~ CCC12 ~~~ CCL68 ~~~ CCSWA ~~~ CC315L1 ~~~ CC315L36 ~~~ CC315C8 ~~~ CC315L2 ~~~ CC433C10 ~~~ CC433L15 ~~~ CC433C62 ~~~ CC868L10 ~~~ CCSWB ~~~ CCLOUT ~~~ CCESD ~~~ CCTAP ~~~ CCDF ~~~ CCDBP ~~~ CCEVD ~~~ CCEVC ~~~ CCEVR ~~~ CCSMA ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
@@ -766,6 +839,11 @@ flowchart TD
   SWNRF --> N2HB
   SWNRF --> N2RB
   SWCC --> CC
+  SWCC --> CCHB
+  SWCC --> CCRB
+  SWCC --> CCBAND
+  SWCC --> CCSWA
+  SWCC --> CCSWB
   MAINFUSE --> SDINCAP
   SWSD -->|"включаемые 3,3 В + QOD"| SD
   SWSD --> SDBULK
@@ -891,7 +969,11 @@ flowchart TD
   NRF1 -->|"MISO + IRQ"| N1RB --> RP
   RP -->|"выходы PIO0 SM2"| N2HB --> NRF2
   NRF2 -->|"MISO + IRQ"| N2RB --> RP
-  RP <-->|"PIO0 SM3"| CC
+  RP -->|"PIO0 SM3 SCLK/SI/CSN"| CCHB --> CC
+  CC -->|"SO/GDO0/GDO2"| CCRB --> RP
+  SLOW -->|"P03/P04; только при выключенной шине"| CCBAND
+  CCBAND -->|"одинаковые V1/V2"| CCSWA
+  CCBAND -->|"одинаковые V1/V2"| CCSWB
   RP <-->|"UART0/PTT request"| SA
   PTTPU -->|"10 кОм к 3V3_MAIN"| PTTRAW
   PTTC -->|"100 нФ к power ground"| PTTRAW
@@ -964,7 +1046,25 @@ flowchart TD
   NRF2 -->|"квалифицированный пигтейл"| N2CPL -->|"отдельный SMA"| NRF2SMA["стандартный SMA #nRF2"]
   N2CPL --> N2TERM
   N2CPL -->|"прямой отвод 10 дБ"| N2MATCH --> DN2 --> CMPB
-  CC --> DCC --> CMPB
+  CC --> CCCP --> CCBAL
+  CC --> CCCN --> CCBAL
+  CCCP --> CCDIFF
+  CCCN --> CCDIFF
+  CCBAL --> CCL33 --> CCL68 --> CCSWA
+  CCL33 -->|"шунт 1,2 пФ"| CCC12
+  CCSWA -->|"RF1 315 МГц"| CC315L1 --> CC315L2 --> CCSWB
+  CC315L1 -->|"шунтирующая ловушка"| CC315L36 --> CC315C8
+  CCSWA -->|"RF2 433 МГц"| CC433L15 --> CCSWB
+  CCSWA -->|"входной шунт 433"| CC433C10
+  CC433L15 -->|"выходной шунт 433"| CC433C62
+  CCSWA -->|"RF3 868/915 МГц"| CC868L10 --> CCSWB
+  CCSWB --> CCLOUT --> CCESD --> CCSMA
+  CCLOUT -->|"actual-TX sample 0,47 пФ"| CCTAP --> DCC --> CMPB
+  GATEB --> CCEVD --> CCEVC
+  CCEVD --> CCEVR
+  CCEVD --> DCC
+  CCDF --> DCC
+  CCDBP --> DCC
   SA --> DVOICE --> CMPB
   IRTX --> DIR --> CMPB
   CMPA --> EVMASK
@@ -1002,6 +1102,8 @@ flowchart TD
   защищённого `3V3_MAIN`; RESET доступен fixture, а продукт умеет полностью
   перезапустить main-rail. Наблюдение STOP/evidence переходит из AON через
   отдельные open-drain буферы и не подпитывает выключенный расширитель.
+  P03/P04 задают CC1101 band truth только при снятом питании; P05 остаётся
+  единственным свободным контактом.
 - **Audio и Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0 и
   локальная I²C0 через физическую power-valid развязку. Slow I/O `P00,P01,P02`
   выбирают запись RX/микрофона, включают выключенный в reset динамик и
@@ -1018,7 +1120,7 @@ flowchart TD
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
 - **Ресурсный итог:** S3 `33 used / 3 reserved / 0 free`, C5 `14/6/1`, RP
-  `48/0/0`, main slow I/O `21/0/3`, UI matrix I/O `7/1/0`. Независимые
+  `48/0/0`, main slow I/O `23/0/1`, UI matrix I/O `7/1/0`. Независимые
   SWD/USB/RUN/BOOTSEL не входят в этот GPIO-бюджет.
 
 [Полная карта физических контактов и сетей](docs/review/architecture/generated/G2F-3I-principled-pinout.md)

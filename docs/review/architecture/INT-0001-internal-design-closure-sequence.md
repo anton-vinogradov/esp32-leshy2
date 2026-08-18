@@ -175,7 +175,11 @@ Ioff isolation, local energy and 2400–2525-MHz forward-power evidence without
 freezing the unproven Ebyte mate. `FND-0097/NAT-0001/DEC-0092/REV-0005AW`
 then review independent S3 2.4-GHz and C5 2.4/5-GHz feeds through exact
 module/PCB U.FL contacts, dual-band couplers and complete LTC5532 support;
-C5 ANT2 is real but remains default-disabled/no-connect. CC/voice/receiver/IR
+C5 ANT2 is real but remains default-disabled/no-connect.
+`FND-0098/CCRF-0001/DEC-0093/REV-0005AX` then correct and review the CC1101
+paper endpoint: two equal-control SP3T bodies isolate all three first-pass
+branches at both ends, P03/P04 select the band only while power is removed,
+and final-line ESD plus AD8314 actual-TX evidence are exact. Voice/receiver/IR
 RF endpoints and the consolidated coexistence proof remain active. All
 prototype/physical/procurement evidence remains explicit,
 and neither KiCad nor the paused integrated mockup is authorized.

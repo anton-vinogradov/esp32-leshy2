@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF и native S3/C5 RF endpoints входят в machine projection; CC/voice/IR feeds, expansion, physical и HIL evidence открыты |
+| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5 и CC1101 three-band RF endpoints входят в machine projection; voice/IR feeds, expansion, physical и HIL evidence открыты |
 | 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -40,18 +40,24 @@ Cap/guard/harness/enclosure и specimen/electrical HIL остаются откр
 power и physical interface isolation; receiver/microphone capture, bypass/
 codec playback, ordinary/codec-injected TX и exact microphone, speaker и
 switched-headphone endpoints завершены на бумаге. P00/P01/P02 реализуют
-capture source, speaker enable и headphone sensing, оставляя P03…P05
-свободными; полный D-pad, PTT, STOP, F1/F2 и encoder не изменены. Acoustic,
+capture source, speaker enable и headphone sensing; выбор диапазона CC1101
+теперь занимает P03/P04 и оставляет P05 свободным. Полный D-pad, PTT, STOP,
+F1/F2 и encoder не изменены. Acoustic,
 RF, specimen и concurrent-load HIL остаются явными; активен I6.
 
-Первые два подблока I6 теперь также получили **«Проведено ревью»** на
+Первые три подблока I6 теперь также получили **«Проведено ревью»** на
 paper-уровне. Три полнофункциональных nRF-тракта имеют независимую Ioff-
 изоляцию, локальную энергию и направленное evidence в диапазоне
 2400…2525 МГц. Раздельные S3 2,4-ГГц и C5 2,4/5-ГГц тракты идут от реальных
 RF-контактов модулей через exact платные U.FL и `CP0603Q5425ENTR` в полные
-каналы LTC5532; C5 ANT2 остаётся default-disabled/no-connect. Точные джамперы,
-корпусные разъёмы, пороги и RF/coexistence HIL всего устройства открыты;
-следующий активный подблок — CC1101.
+каналы LTC5532; C5 ANT2 остаётся default-disabled/no-connect. CC1101 теперь
+использует два одинаково управляемых `BGS13SN8E6327XTSA1` вокруг exact
+first-pass ветвей 315/433/868–915 МГц: код `00` изолирует оба конца; P03/P04
+задают диапазон только при снятом питании, а P05 остаётся единственным
+свободным main slow-I/O. Полная линия имеет exact ESD и actual-TX sample на
+`AD8314ACPZ-RL7` после всех switch/matching элементов. Точные джамперы и
+корпусные разъёмы, пороги, VNA/conducted и RF/coexistence HIL всего устройства
+открыты; следующие активные подблоки — voice/IR feeds.
 
 ## Закрытие competitor delta
 
@@ -120,8 +126,8 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 pad/header/connector. `DEC-0042/REV-0003Y` добавили проверяемый источник;
 [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md) теперь
 содержит три consumer, а `G2F-3I` является ведущей paper map. Все проходят
-contact/collision/accounting/strap/service checks, но exact nRF, CC RF
-implementation, voice/IR и часть control/power всё ещё blockers.
+contact/collision/accounting/strap/service checks, но exact voice/IR RF
+implementation и часть control/power всё ещё blockers.
 `DSP-0001/REV-0003Z` проверяют три реальные display/touch boundaries и один
 microSD socket. `FND-0051` доказывает, что старые 10 full frames/s для ST7796S
 и generic 24-pin connector переиспользовать нельзя. `DEC-0043/REV-0004J`
@@ -409,8 +415,9 @@ principled pin fit. Сохранены D-pad/OK, BACK, OPT, F1, F2, encoder/push
 Отдельный `TCA9534APWR` P0…P6 и десять `1N4148WT` образуют interrupt-driven
 матрицу 4x3; P7 зарезервирован, а main TCA6424 P00…P05 доступны зависимому
 audio block. A/B энкодера занимают S3 GPIO39/GPIO47 PCNT0, а touch IRQ входит
-в GPIO37. I5 затем назначает P00/P01/P02. S3 теперь `33/3/0`, main slow I/O
-`21/0/3`, UI I/O `7/1/0`; PTT остаётся прямым RP GPIO21, а STOP/RE-ARM
+в GPIO37. I5 затем назначает P00/P01/P02, а I6 — P03/P04 для выбора CC band.
+S3 теперь `33/3/0`, main slow I/O `23/0/1`, UI I/O `7/1/0`; PTT остаётся
+прямым RP GPIO21, а STOP/RE-ARM
 — вне I2C. Exact mechanics переключателей, SYS-I2C collision scan,
 encoder/U214 fit и HIL матрицы/энкодера остаются открыты;
 KiCad заблокирован.

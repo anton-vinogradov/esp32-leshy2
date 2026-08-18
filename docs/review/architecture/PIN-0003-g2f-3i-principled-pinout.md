@@ -1,6 +1,6 @@
 # PIN-0003 — G2F-3I principled pinout review
 
-- Статус: **Проведено ревью принципиальной распиновки leading paper candidate; I1…I5 and I6/nRF subblock paper reviewed, I6 active**
+- Статус: **Проведено ревью принципиальной распиновки leading paper candidate; I1…I5 and I6 nRF/native/CC subblocks paper reviewed, I6 active**
 - Дата: 2026-08-17
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
 - Generated atlas: [`G2F-3I principled pinout`](generated/G2F-3I-principled-pinout.md)
@@ -29,6 +29,11 @@
   [`SAFE-0002`](SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 - Three-nRF electrical amendment: [`DEC-0091`](../decisions/DEC-0091-exact-three-nrf-electrical-endpoint.md) /
   [`REV-0005AV`](../reviews/REV-0005AV-i6-three-nrf-propagation.md)
+- Native S3/C5 RF amendment: [`DEC-0092`](../decisions/DEC-0092-exact-s3-c5-native-rf-endpoints.md) /
+  [`REV-0005AW`](../reviews/REV-0005AW-i6-native-rf-propagation.md)
+- CC1101 three-band amendment: [`DEC-0093`](../decisions/DEC-0093-exact-cc1101-three-band-endpoint.md) /
+  [`CCRF-0001`](CCRF-0001-exact-cc1101-three-band-endpoint.md) /
+  [`REV-0005AX`](../reviews/REV-0005AX-i6-cc1101-propagation.md)
 
 ## Что здесь называется принципиальной распиновкой
 
@@ -53,7 +58,7 @@ load switches, clocks, RF matching и exact unfrozen peripheral MPN должны
 | `ESP32-S3-WROOM-1U-N16R2` | UI, display+microSD scheduler, I²S audio, internal I²C, M5 Unit profile, native 2.4/BLE/ESP-NOW | отдельные SPI2, SPI3, SD/MMC, I²S0, I²C0 и Unit-controller profile |
 | `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 1-bit SDIO to S3; native USB+UART service; IR uses RMT and direct evidence/power contacts |
 | `RP2354B A4/QFN80` | 3×nRF, CC1101, U214 LoRa/GNSS/I²C, SA518 control/PTT, deterministic event service | five physical PIO SPI groups, hardware UART0/UART1/I²C0/SPI1, direct IRQ/CE/CSN/GDO |
-| `TCA6424ARGJR` | reset/select/power/status main slow plane | 21/24 assigned; P03…P05 are free and no radio FIFO/PTT deadline lives here |
+| `TCA6424ARGJR` | reset/select/power/status main slow plane | 23/24 assigned; P03/P04 select the powered-off CC band, P05 is free and no radio FIFO/PTT deadline lives here |
 | `TCA9534APWR #UI` | D-pad/OK/BACK/OPT/F1/F2/encoder-push 4×3 matrix | P0…P6 assigned; P7 local reserve; all-low idle produces hardware interrupt |
 
 The generated atlas contains the exact pad/contact table for all 91 exposed
@@ -74,7 +79,7 @@ outside normal application dependency:
 | S3 | 33 | 3 | 0 | 36 |
 | C5 | 14 | 6 | 1 | 21 |
 | RP | 48 | 0 | 0 | 48 |
-| main slow I/O | 21 | 0 | 3 | 24 |
+| main slow I/O | 23 | 0 | 1 | 24 |
 | UI matrix I/O | 7 | 1 | 0 | 8 |
 
 The `RP=0` result is deliberate and visible. `GPIO15` and `GPIO23` implement
@@ -117,8 +122,9 @@ pin-compatible open-drain polarity-adapter footprint into shared `SYS_INT_N`
 on GPIO37, releasing former direct GPIO39 for encoder phase A. Subsequent
 `AUDIO-0002/FND-0067` consumes slow P27 for the previously
 omitted `RX_AUDIO_SOURCE_SEL`. `DEC-0090/AUDIO-0003` later use P00/P01/P02
-for capture source, reset-off speaker enable and headphone absence, leaving
-P03…P05 free.
+for capture source, reset-off speaker enable and headphone absence. The exact
+CC1101 endpoint subsequently uses P03/P04 as rail-off V1/V2 truth bits and
+leaves only P05 free.
 `DSP-0006/DEC-0084` later place the exact first ZIF connector candidate
 between those nets and the panel, add reset-low defaults and close the exact
 latch-protected PWM-backlight circuit without changing the pin budget.
@@ -136,6 +142,16 @@ power-domain isolation, all first-target analog values and exact microphone,
 speaker and switched-headphone endpoints. GPIO43/44 are UART0 service;
 GPIO39/47 now capture encoder phases with PCNT0, leaving no free S3 GPIO.
 Acoustic, RF, powered-state and concurrency HIL remain open.
+
+The CC1101 path now terminates on exact `CC1101RGPR`, separate host/return
+`74LVC126APW,118` isolation bodies, `ABM8-26.000MHZ-10-D-1-G-T`,
+`B0310J50100AHF`, two equal-control `BGS13SN8E6327XTSA1` switch bodies and
+three exact first-pass band coupons. Code `00` isolates both ends; `10/01/11`
+select 315/433/868–915 MHz. The external line has
+`SESD0402X1UN-0020-090`, while a 0.47-pF sample drives the existing AON
+`AD8314ACPZ-RL7` actual-TX detector after the complete RF path. VNA,
+conducted/evidence/legal/coexistence HIL and the mechanics-selected SMA MPN
+remain open.
 
 ## Digital non-interference result
 

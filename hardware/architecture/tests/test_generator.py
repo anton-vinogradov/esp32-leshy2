@@ -1019,7 +1019,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "det_nrf0": "adi_ad8314acpz_rl7",
             "det_nrf1": "adi_ad8314acpz_rl7",
             "det_nrf2": "adi_ad8314acpz_rl7",
-            "det_cc": "adi_ltc5507_es6_trmpbf",
+            "det_cc": "adi_ad8314acpz_rl7",
             "det_voice": "adi_ltc5507_es6_trmpbf",
             "det_ir": "vishay_vemd1060x01",
             "evidence_cmp_a": "ti_tlv1824_pwr",
@@ -1195,6 +1195,84 @@ class ArchitectureValidationTests(unittest.TestCase):
             "U.FL-R-SMT-1(10)<br/>C5 module-jumper board receptacle",
             'S3_RF_COUPLER -->|"-20-dB forward sample"| S3_DETECTOR_INPUT_CAP',
             'C5_RF_COUPLER -->|"-20/-13-dB forward sample"| C5_DETECTOR_INPUT_CAP',
+        ):
+            self.assertIn(token, rendered)
+
+    def test_i6_cc1101_exact_rf_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["cc_rf_electrical_contract"]
+        self.assertEqual("DEC-0093", contract["decision"])
+        self.assertIn("paper_reviewed_i6_cc1101_subblock", contract["status"])
+        self.assertIn("00 isolation", contract["band_selection"])
+        self.assertIn("never authorize TX", contract["evidence"])
+
+        required = {
+            "cc_host_buffer": "nexperia_74lvc126apw_118",
+            "cc_return_buffer": "nexperia_74lvc126apw_118",
+            "cc_band_buffer": "nexperia_74lvc2g126dc_125",
+            "cc_crystal": "abracon_abm8_26mhz_10_d_1_g_t",
+            "cc_balun": "ttm_b0310j50100ahf",
+            "cc_switch_a": "infineon_bgs13sn8e6327xtsa1",
+            "cc_switch_b": "infineon_bgs13sn8e6327xtsa1",
+            "cc_rf_esd": "littelfuse_sesd0402x1un_0020_090",
+            "cc_detector_tap_cap": "murata_gjm1555c1hr47bb01d",
+            "det_cc": "adi_ad8314acpz_rl7",
+        }
+        for instance, device_id in required.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        switch = self.database["devices"]["infineon_bgs13sn8e6327xtsa1"]
+        self.assertEqual(
+            {"00": "isolation", "10": "RF1", "01": "RF2", "11": "RF3"},
+            switch["electrical_contract"]["truth_table"],
+        )
+        self.assertEqual("3", switch["contacts"]["V1"]["physical"])
+        self.assertEqual("2", switch["contacts"]["V2"]["physical"])
+        self.assertEqual("6", switch["contacts"]["RFIN"]["physical"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("slow_io.P03", "cc_band_buffer.1A", "CC_BAND_V1_REQ"),
+            ("slow_io.P04", "cc_band_buffer.2A", "CC_BAND_V2_REQ"),
+            ("cc_band_v1_series.END_2", "cc_switch_a.V1", "CC_BAND_V1"),
+            ("cc_band_v1_series.END_2", "cc_switch_b.V1", "CC_BAND_V1"),
+            ("cc_switch_a.RF1", "cc_315_l10_in.END_1", "CC_RF_315_IN"),
+            ("cc_315_l10_out.END_2", "cc_switch_b.RF1", "CC_RF_315_OUT"),
+            ("cc_switch_a.RF2", "cc_433_l15.END_1", "CC_RF_433_IN"),
+            ("cc_433_l15.END_2", "cc_switch_b.RF2", "CC_RF_433_OUT"),
+            ("cc_switch_a.RF3", "cc_868_915_l10.END_1", "CC_RF_868_915_IN"),
+            ("cc_868_915_l10.END_2", "cc_switch_b.RF3", "CC_RF_868_915_OUT"),
+            ("cc_detector_tap_cap.END_2", "det_cc.RFIN", "CC_RF_SAMPLE"),
+            ("cc_evidence_hold_diode.K", "det_cc.ENBL", "CC_EVIDENCE_HOLD"),
+            ("det_cc.V_UP", "evidence_cmp_b.IN2_N", "CC_DETECT_V"),
+        ):
+            self.assertIn(route, routes)
+
+        direct_cc_peers = {
+            peer
+            for allocation in candidate["allocations"]
+            if allocation["instance"] == "rp"
+            for peer in allocation.get("peers", [])
+            if peer.startswith("cc.")
+        }
+        self.assertEqual(set(), direct_cc_peers)
+        self.assertFalse(any(
+            route["from"] == "abstract:CC-qualified-RF-tap"
+            for route in candidate["fixed_routes"]
+        ))
+        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "BGS13SN8E6327XTSA1<br/>transceiver-side three-band SP3T isolator",
+            "BGS13SN8E6327XTSA1<br/>antenna-side three-band SP3T isolator",
+            "B0310J50100AHF<br/>300-MHz-to-1-GHz 50-to-100-Ohm RF balun",
+            "ABM8-26.000MHZ-10-D-1-G-T<br/>CC1101 exact 26-MHz reference crystal",
+            "GJM1555C1HR47BB01D<br/>actual-TX high-impedance RF sample capacitor",
+            "SESD0402X1UN-0020-090<br/>external CC RF line ultra-low-capacitance ESD diode",
         ):
             self.assertIn(token, rendered)
 
@@ -1567,7 +1645,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         slow = candidate["contact_accounting"]["slow_io"]
-        self.assertEqual({"P03", "P04", "P05"}, set(slow["free"]))
+        self.assertEqual({"P05"}, set(slow["free"]))
+        self.assertIn("P03", slow["used"])
+        self.assertIn("P04", slow["used"])
         self.assertEqual({}, slow["reserved"])
         self.assertEqual(
             {"P00", "P01", "P02", "P10", "P11", "P12", "P13", "P14", "P15", "P24", "P27"},
@@ -2026,10 +2106,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("display.TP_INT", "display_touch_controller.TP_INT", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
-        self.assertEqual(
-            ["P03", "P04", "P05"],
-            candidate["contact_accounting"]["slow_io"]["free"],
-        )
+        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
         self.assertEqual(
             {"P7": "protected local fixture/growth test pad retained after physical-control wish-list closure"},
             candidate["contact_accounting"]["ui_matrix_io"]["reserved"],

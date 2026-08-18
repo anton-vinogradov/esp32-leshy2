@@ -211,7 +211,7 @@ flowchart TD
   SD_DETECT_SERIES["Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor"]
   SD_DETECT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm always-readable card-detect pull-up"]
   SD_DETECT_CAP["TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor"]
-  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; three contacts free"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; P05 remains free"]
   SLOW_IO_VCCI_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor"]
   SLOW_IO_VCCP_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCP bypass capacitor"]
   SLOW_IO_BULK_CAP["TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor"]
@@ -529,6 +529,73 @@ flowchart TD
   NRF2_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
   NRF2_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>AD8314 local bypass capacitor"]
   CC["CC1101RGPR<br/>sub-GHz transceiver"]
+  CC_HOST_BUFFER["Nexperia 74LVC126APW,118<br/>SCLK/SI/CSN switched-rail Ioff buffer"]
+  CC_RETURN_BUFFER["Nexperia 74LVC126APW,118<br/>SO/GDO0/GDO2 switched-rail Ioff buffer"]
+  CC_BAND_BUFFER["Nexperia 74LVC2G126DC,125<br/>rail-off V1/V2 band-control Ioff buffer"]
+  CC_HOST_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_RETURN_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_BAND_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>CC load-switch input bypass capacitor"]
+  CC_LOCAL_BULK_CAP["TDK C1608X7R1C105K080AC<br/>CC switched-rail local bulk capacitor"]
+  CC_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>CC load-switch reset-off resistor"]
+  CC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD9_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD11_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD14_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD15_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_DCOUPL_CAP["TDK C1005X7R1H104K050BB<br/>CC1101 DCOUPL capacitor"]
+  CC_RBIAS_RES["Yageo RC0402FR-0756KL<br/>CC1101 56-kOhm RBIAS resistor"]
+  CC_CRYSTAL["Abracon ABM8-26.000MHZ-10-D-1-G-T<br/>CC1101 exact 26-MHz reference crystal"]
+  CC_CRYSTAL_LOAD_Q1["Murata GJM1555C1H150JB01D<br/>CC crystal Q1 load capacitor"]
+  CC_CRYSTAL_LOAD_Q2["Murata GJM1555C1H150JB01D<br/>CC crystal Q2 load capacitor"]
+  CC_SCLK_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_SI_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_CSN_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_SO_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_GDO0_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_GDO2_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_BAND_V1_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_BAND_V2_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm switched-interface source resistor"]
+  CC_HOST_SCLK_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_HOST_SI_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_HOST_CSN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_HOST_SO_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_HOST_GDO0_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_HOST_GDO2_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_BAND_V1_HOST_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_BAND_V2_HOST_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_SWITCH_A_V1_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_SWITCH_A_V2_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_SWITCH_B_V1_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_SWITCH_B_V2_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  CC_RF_P_DC_BLOCK["Murata GJM1555C1H101JB01D<br/>RF_P high-Q series DC-block capacitor"]
+  CC_RF_N_DC_BLOCK["Murata GJM1555C1H101JB01D<br/>RF_N high-Q series DC-block capacitor"]
+  CC_RF_DIFF_CAP["Murata GJM1555C1HR60BB01D<br/>differential RF trim capacitor"]
+  CC_BALUN["TTM Technologies B0310J50100AHF<br/>300-MHz-to-1-GHz 50-to-100-Ohm RF balun"]
+  CC_MATCH_L3N3["Murata LQG15HS3N3S02D<br/>balun-output 3.3-nH series match"]
+  CC_MATCH_C1P2["Murata GJM1555C1H1R2BB01D<br/>balun-output 1.2-pF shunt match"]
+  CC_MATCH_L6N8["Murata LQG15HS6N8J02D<br/>balun-output 6.8-nH series match"]
+  CC_SWITCH_A["Infineon BGS13SN8E6327XTSA1<br/>transceiver-side three-band SP3T isolator"]
+  CC_SWITCH_B["Infineon BGS13SN8E6327XTSA1<br/>antenna-side three-band SP3T isolator"]
+  CC_315_L10_IN["Murata LQG15HS10NJ02D<br/>315-MHz input series inductor"]
+  CC_315_SHUNT_L3N6["Murata LQG15HS3N6S02D<br/>315-MHz shunt-trap inductor"]
+  CC_315_SHUNT_C8P["Murata GJM1555C1H8R0DB01D<br/>315-MHz shunt-trap capacitor"]
+  CC_315_L10_OUT["Murata LQG15HS10NJ02D<br/>315-MHz output series inductor"]
+  CC_433_SHUNT_C10P["Murata GJM1555C1H100JB01D<br/>433-MHz input shunt capacitor"]
+  CC_433_L15["Murata LQG15HS15NJ02D<br/>433-MHz series inductor"]
+  CC_433_SHUNT_C6P2["Murata GJM1555C1H6R2DB01D<br/>433-MHz output shunt capacitor"]
+  CC_868_915_L10["Murata LQG15HS10NJ02D<br/>combined 868/915-MHz series inductor"]
+  CC_OUTPUT_L2N2["Murata LQG15HS2N2S02D<br/>selected-path output matching inductor"]
+  CC_RF_ESD["Littelfuse SESD0402X1UN-0020-090<br/>external CC RF line ultra-low-capacitance ESD diode"]
+  CC_DETECTOR_TAP_CAP["Murata GJM1555C1HR47BB01D<br/>actual-TX high-impedance RF sample capacitor"]
+  CC_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
+  CC_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>AD8314 local bypass capacitor"]
+  CC_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
+  CC_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>actual-TX evidence enable hold capacitor"]
+  CC_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>actual-TX evidence hold discharge resistor"]
+  CC_EXTERNAL_RF["MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint"]
+  %% CC layout-only invisible spine: every box above is one physical device.
+  CC_HOST_BUFFER ~~~ CC_RETURN_BUFFER ~~~ CC_BAND_BUFFER ~~~ CC_HOST_BUFFER_BYPASS ~~~ CC_RETURN_BUFFER_BYPASS ~~~ CC_BAND_BUFFER_BYPASS ~~~ CC_POWER_INPUT_CAP ~~~ CC_LOCAL_BULK_CAP ~~~ CC_POWER_ON_PULLDOWN ~~~ CC_DVDD_BYPASS ~~~ CC_AVDD9_BYPASS ~~~ CC_AVDD11_BYPASS ~~~ CC_AVDD14_BYPASS ~~~ CC_AVDD15_BYPASS ~~~ CC_DCOUPL_CAP ~~~ CC_RBIAS_RES ~~~ CC_CRYSTAL ~~~ CC_CRYSTAL_LOAD_Q1 ~~~ CC_CRYSTAL_LOAD_Q2 ~~~ CC_SCLK_SERIES ~~~ CC_SI_SERIES ~~~ CC_CSN_SERIES ~~~ CC_SO_SERIES ~~~ CC_GDO0_SERIES ~~~ CC_GDO2_SERIES ~~~ CC_BAND_V1_SERIES ~~~ CC_BAND_V2_SERIES ~~~ CC_HOST_SCLK_PULLDOWN ~~~ CC_HOST_SI_PULLDOWN ~~~ CC_HOST_CSN_PULLUP ~~~ CC_HOST_SO_PULLDOWN ~~~ CC_HOST_GDO0_PULLDOWN ~~~ CC_HOST_GDO2_PULLDOWN ~~~ CC_BAND_V1_HOST_PULLDOWN ~~~ CC_BAND_V2_HOST_PULLDOWN ~~~ CC_SWITCH_A_V1_PULLDOWN ~~~ CC_SWITCH_A_V2_PULLDOWN ~~~ CC_SWITCH_B_V1_PULLDOWN ~~~ CC_SWITCH_B_V2_PULLDOWN ~~~ CC_RF_P_DC_BLOCK ~~~ CC_RF_N_DC_BLOCK ~~~ CC_RF_DIFF_CAP ~~~ CC_BALUN ~~~ CC_MATCH_L3N3 ~~~ CC_MATCH_C1P2 ~~~ CC_MATCH_L6N8 ~~~ CC_SWITCH_A ~~~ CC_SWITCH_B ~~~ CC_315_L10_IN ~~~ CC_315_SHUNT_L3N6 ~~~ CC_315_SHUNT_C8P ~~~ CC_315_L10_OUT ~~~ CC_433_SHUNT_C10P ~~~ CC_433_L15 ~~~ CC_433_SHUNT_C6P2 ~~~ CC_868_915_L10 ~~~ CC_OUTPUT_L2N2 ~~~ CC_RF_ESD ~~~ CC_DETECTOR_TAP_CAP ~~~ CC_DETECTOR_FILTER ~~~ CC_DETECTOR_BYPASS ~~~ CC_EVIDENCE_HOLD_DIODE ~~~ CC_EVIDENCE_HOLD_CAP ~~~ CC_EVIDENCE_HOLD_PULLDOWN
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   U214_I2C_ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
   UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
@@ -567,7 +634,7 @@ flowchart TD
   DET_NRF0["Analog Devices AD8314ACPZ-RL7<br/>nRF0 2.4-GHz RF power detector"]
   DET_NRF1["Analog Devices AD8314ACPZ-RL7<br/>nRF1 2.4-GHz RF power detector"]
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
-  DET_CC["LTC5507ES6#TRMPBF<br/>CC1101 sub-GHz RF power detector"]
+  DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["LTC5507ES6#TRMPBF<br/>SA518 VHF/UHF RF power detector"]
   DET_IR["VEMD1060X01<br/>IR optical-evidence photodiode"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
@@ -749,7 +816,31 @@ flowchart TD
   NRF_POWER_SWITCH -->|"switched 3.3 V"| NRF2
   NRF_POWER_SWITCH --> NRF2_HOST_BUFFER
   NRF_POWER_SWITCH --> NRF2_RETURN_BUFFER
-  CC_POWER_SWITCH --> CC
+  CC_POWER_SWITCH -->|"switched 3.3 V"| CC
+  CC_POWER_SWITCH --> CC_HOST_BUFFER
+  CC_POWER_SWITCH --> CC_RETURN_BUFFER
+  CC_POWER_SWITCH --> CC_BAND_BUFFER
+  CC_POWER_SWITCH --> CC_SWITCH_A
+  CC_POWER_SWITCH --> CC_SWITCH_B
+  RP -->|"SCLK / SI / CSN"| CC_HOST_BUFFER --> CC
+  CC -->|"SO / GDO0 / GDO2"| CC_RETURN_BUFFER --> RP
+  SLOW_IO -->|"P03/P04; rail-off only"| CC_BAND_BUFFER
+  CC_BAND_BUFFER -->|"same V1/V2 to both ends"| CC_SWITCH_A
+  CC_BAND_BUFFER -->|"same V1/V2 to both ends"| CC_SWITCH_B
+  CC --> CC_RF_P_DC_BLOCK --> CC_BALUN
+  CC --> CC_RF_N_DC_BLOCK --> CC_BALUN
+  CC_RF_P_DC_BLOCK --> CC_RF_DIFF_CAP
+  CC_RF_N_DC_BLOCK --> CC_RF_DIFF_CAP
+  CC_BALUN --> CC_MATCH_L3N3 --> CC_MATCH_L6N8 --> CC_SWITCH_A
+  CC_MATCH_L3N3 -->|"shunt"| CC_MATCH_C1P2
+  CC_SWITCH_A -->|"RF1 = 315 MHz"| CC_315_L10_IN --> CC_315_L10_OUT --> CC_SWITCH_B
+  CC_315_L10_IN -->|"shunt trap"| CC_315_SHUNT_L3N6 --> CC_315_SHUNT_C8P
+  CC_SWITCH_A -->|"RF2 = 433 MHz"| CC_433_L15 --> CC_SWITCH_B
+  CC_SWITCH_A -->|"433 input shunt"| CC_433_SHUNT_C10P
+  CC_433_L15 -->|"433 output shunt"| CC_433_SHUNT_C6P2
+  CC_SWITCH_A -->|"RF3 = 868/915 MHz"| CC_868_915_L10 --> CC_SWITCH_B
+  CC_SWITCH_B --> CC_OUTPUT_L2N2 --> CC_RF_ESD --> CC_EXTERNAL_RF
+  CC_OUTPUT_L2N2 -->|"0.47-pF actual-TX sample"| CC_DETECTOR_TAP_CAP --> DET_CC
   MAIN_EFUSE --> SD_POWER_SWITCH -->|"switched 3.3 V"| SD
   MAIN_EFUSE -->|"local input bypass"| SD_POWER_INPUT_CAP
   SLOW_IO -->|"P20 session enable"| SD_POWER_SWITCH
@@ -958,7 +1049,7 @@ flowchart TD
   NRF1_COUPLER -->|"10-dB forward sample"| DET_NRF1 --> EVIDENCE_CMP_A
   NRF2 -->|"qualified pigtail"| NRF2_COUPLER -->|"dedicated SMA"| NRF2_EXTERNAL_RF_50R
   NRF2_COUPLER -->|"10-dB forward sample"| DET_NRF2 --> EVIDENCE_CMP_B
-  CC --> DET_CC --> EVIDENCE_CMP_B
+  DET_CC --> EVIDENCE_CMP_B
   VOICE --> DET_VOICE --> EVIDENCE_CMP_B
   IRTX --> DET_IR --> EVIDENCE_CMP_B
   EVIDENCE_CMP_A --> EVIDENCE_MASK
@@ -982,7 +1073,7 @@ flowchart TD
 | `s3` | `ESP32-S3-WROOM-1U-N16R2` | 33 | 3 | 0 | 36 |
 | `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |
 | `rp` | `RP2354B A4 (exact A4 order/lot identity required before BOM freeze)` | 48 | 0 | 0 | 48 |
-| `slow_io` | `TCA6424ARGJR` | 21 | 0 | 3 | 24 |
+| `slow_io` | `TCA6424ARGJR` | 23 | 0 | 1 | 24 |
 
 `RP=0 free` является текущим честным результатом после direct quiet-state
 controls `NRF_GROUP_PWR_EN` и `CC_PWR_EN`, а не ошибкой округления. Новый
@@ -999,7 +1090,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `AON_SAFE_3V3-via-2k2`
 - `C5-dedicated-external-reverse-polarity-SMA`
 - `C5-placement-qualified-double-ended-UFL-jumper`
-- `CC-qualified-RF-tap`
+- `CC-dedicated-standard-SMA`
 - `MAIN_RAW_3V3`
 - `NRF0-dedicated-standard-SMA`
 - `NRF0-qualified-module-pigtail-mate`
@@ -1025,7 +1116,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `accessory-present`
 - `admitted-system-3v3`
 - `audio-ground`
-- `cc-filtered-3v3`
+- `chassis-rf-ground`
 - `exact carrier-learning IR receiver`
 - `exact robust-demod IR receiver`
 - `exact-value-hold-gate-pullup`
@@ -1147,9 +1238,9 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO6` | 3 | `NRF2_CSN_N` | `o` | `GPIO` | `nrf2_host_buffer.2A`, `nrf2_host_csn_pullup.END_1` | — |
 | `GPIO7` | 4 | `NRF2_CE_REQ` | `o` | `GPIO` | `safe_gate_a.3A` | — |
 | `GPIO8` | 6 | `NRF2_IRQ_N` | `i` | `GPIO_IRQ` | `nrf2_irq_series.END_2`, `nrf2_host_irq_pullup.END_1` | — |
-| `GPIO9` | 7 | `CC_CSN_N` | `o` | `GPIO` | `cc.CSN` | — |
-| `GPIO10` | 8 | `CC_GDO0` | `i` | `GPIO_IRQ` | `cc.GDO0` | — |
-| `GPIO11` | 9 | `CC_GDO2` | `i` | `GPIO_IRQ` | `cc.GDO2` | — |
+| `GPIO9` | 7 | `CC_CSN_N` | `o` | `GPIO` | `cc_host_buffer.3A`, `cc_host_csn_pullup.END_1` | — |
+| `GPIO10` | 8 | `CC_GDO0` | `i` | `GPIO_IRQ` | `cc_gdo0_series.END_2`, `cc_host_gdo0_pulldown.END_1` | — |
+| `GPIO11` | 9 | `CC_GDO2` | `i` | `GPIO_IRQ` | `cc_gdo2_series.END_2`, `cc_host_gdo2_pulldown.END_1` | — |
 | `GPIO12` | 11 | `U214_BUSY` | `i` | `GPIO_IRQ` | `u214.LORA_BUSY` | — |
 | `GPIO13` | 12 | `U214_IRQ` | `i` | `GPIO_IRQ` | `u214.LORA_IRQ` | — |
 | `GPIO14` | 13 | `U214_RST_N` | `o` | `GPIO` | `u214.LORA_RST` | — |
@@ -1177,11 +1268,11 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO36` | 45 | `NRF2_MISO` | `i` | `PIO0_SM2_RF_SPI` | `nrf2_miso_series.END_2`, `nrf2_host_miso_pulldown.END_1` | — |
 | `GPIO37` | 46 | `NRF2_SCK` | `o` | `PIO0_SM2_RF_SPI` | `nrf2_host_buffer.3A`, `nrf2_host_sck_pulldown.END_1` | — |
 | `GPIO38` | 47 | `NRF2_MOSI` | `o` | `PIO0_SM2_RF_SPI` | `nrf2_host_buffer.4A`, `nrf2_host_mosi_pulldown.END_1` | — |
-| `GPIO39` | 48 | `CC_MISO` | `i` | `PIO0_SM3_RF_SPI` | `cc.SO_GDO1` | — |
+| `GPIO39` | 48 | `CC_MISO` | `i` | `PIO0_SM3_RF_SPI` | `cc_so_series.END_2`, `cc_host_so_pulldown.END_1` | — |
 | `GPIO40` | 49 | `U214_GPS_TX` | `o` | `UART1` | `u214.GPS_RX` | — |
 | `GPIO41` | 52 | `U214_GPS_RX` | `i` | `UART1` | `u214.GPS_TX` | — |
-| `GPIO42` | 53 | `CC_SCK` | `o` | `PIO0_SM3_RF_SPI` | `cc.SCLK` | — |
-| `GPIO43` | 54 | `CC_MOSI` | `o` | `PIO0_SM3_RF_SPI` | `cc.SI` | — |
+| `GPIO42` | 53 | `CC_SCK` | `o` | `PIO0_SM3_RF_SPI` | `cc_host_buffer.1A`, `cc_host_sclk_pulldown.END_1` | — |
+| `GPIO43` | 54 | `CC_MOSI` | `o` | `PIO0_SM3_RF_SPI` | `cc_host_buffer.2A`, `cc_host_si_pulldown.END_1` | — |
 | `GPIO44` | 55 | `U214_MISO` | `i` | `PIO1_SM0_EXT_SPI` | `u214.MISO` | — |
 | `GPIO45` | 56 | `U214_SCK` | `o` | `PIO1_SM0_EXT_SPI` | `u214.SCK` | — |
 | `GPIO46` | 57 | `U214_MOSI` | `o` | `PIO1_SM0_EXT_SPI` | `u214.MOSI` | — |
@@ -1711,7 +1802,173 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF2_RF_GROUND` | `nrf2_module_bulk_cap.END_2` | `abstract:rf-ground` | module-local bulk return |
 | `NRF2_RF_GROUND` | `nrf2_module_hf_cap.END_2` | `abstract:rf-ground` | module-local high-frequency return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_power_switch.IN` | compatibility radio receives an independent reset-off branch |
-| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `abstract:cc-filtered-3v3` | exact RF decoupling/matching follows the switch and remains an I6 circuit gate |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_power_input_cap.END_1` | exact 1-uF switch-input bypass is local to the CC branch |
+| `POWER_GROUND` | `cc_power_input_cap.END_2` | `abstract:power-ground` | CC branch input bypass has a short local return |
+| `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_power_on_pulldown.END_1` | exact 10-kOhm reset-off pull shares the STOP-dominant enable |
+| `POWER_GROUND` | `cc_power_on_pulldown.END_2` | `abstract:power-ground` | CC rail cannot enable from a floating request |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.DVDD` | exact switched rail powers CC1101 digital supply |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.AVDD_9` | exact switched rail powers CC1101 AVDD pin 9 |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.AVDD_11` | exact switched rail powers CC1101 AVDD pin 11 |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.AVDD_14` | exact switched rail powers CC1101 AVDD pin 14 |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc.AVDD_15` | exact switched rail powers CC1101 AVDD pin 15 |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_host_buffer.VCC` | host-to-radio buffer exists only with valid CC power and exposes specified Ioff while off |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_return_buffer.VCC` | radio-to-host buffer exists only with valid CC power and exposes specified Ioff while off |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_band_buffer.VCC` | band requests cannot reach RF-switch controls while the CC rail is absent |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_switch_a.VDD` | transceiver-side SP3T follows the CC quiet-state domain |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_switch_b.VDD` | antenna-side SP3T follows the CC quiet-state domain |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_local_bulk_cap.END_1` | exact 1-uF local bulk supports CC1101 and both low-current RF switches |
+| `CC_RF_GROUND` | `cc_local_bulk_cap.END_2` | `abstract:rf-ground` | local switched-domain energy returns in the RF zone |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_dvdd_bypass.END_1` | independent exact 100-nF DVDD bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_avdd9_bypass.END_1` | independent exact 100-nF AVDD9 bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_avdd11_bypass.END_1` | independent exact 100-nF AVDD11 bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_avdd14_bypass.END_1` | independent exact 100-nF AVDD14 bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_avdd15_bypass.END_1` | independent exact 100-nF AVDD15 bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_host_buffer_bypass.END_1` | exact local host-buffer bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_return_buffer_bypass.END_1` | exact local return-buffer bypass |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_band_buffer_bypass.END_1` | exact local band-buffer bypass |
+| `CC_RF_GROUND` | `cc_dvdd_bypass.END_2` | `abstract:rf-ground` | DVDD bypass return |
+| `CC_RF_GROUND` | `cc_avdd9_bypass.END_2` | `abstract:rf-ground` | AVDD9 bypass return |
+| `CC_RF_GROUND` | `cc_avdd11_bypass.END_2` | `abstract:rf-ground` | AVDD11 bypass return |
+| `CC_RF_GROUND` | `cc_avdd14_bypass.END_2` | `abstract:rf-ground` | AVDD14 bypass return |
+| `CC_RF_GROUND` | `cc_avdd15_bypass.END_2` | `abstract:rf-ground` | AVDD15 bypass return |
+| `CC_RF_GROUND` | `cc_host_buffer_bypass.END_2` | `abstract:rf-ground` | host-buffer bypass return |
+| `CC_RF_GROUND` | `cc_return_buffer_bypass.END_2` | `abstract:rf-ground` | return-buffer bypass return |
+| `CC_RF_GROUND` | `cc_band_buffer_bypass.END_2` | `abstract:rf-ground` | band-buffer bypass return |
+| `CC_RF_GROUND` | `cc.GND_16` | `abstract:rf-ground` | CC1101 ground pin 16 and exposed pad join the local via field |
+| `CC_RF_GROUND` | `cc.GND_19` | `abstract:rf-ground` | CC1101 ground pin 19 joins the local via field |
+| `CC_RF_GROUND` | `cc.EPAD` | `abstract:rf-ground` | CC1101 exposed pad receives the required low-inductance ground connection |
+| `CC_RF_GROUND` | `cc.DGUARD` | `abstract:rf-ground` | DGUARD is grounded exactly as the TI reference requires |
+| `CC_RF_GROUND` | `cc_host_buffer.GND` | `abstract:rf-ground` | host-buffer local return |
+| `CC_RF_GROUND` | `cc_return_buffer.GND` | `abstract:rf-ground` | return-buffer local return |
+| `CC_RF_GROUND` | `cc_band_buffer.GND` | `abstract:rf-ground` | band-buffer local return |
+| `CC_RF_GROUND` | `cc_switch_a.GND` | `abstract:rf-ground` | transceiver-side RF-switch ground |
+| `CC_RF_GROUND` | `cc_switch_b.GND` | `abstract:rf-ground` | antenna-side RF-switch ground |
+| `CC_DCOUPL` | `cc.DCOUPL` | `cc_dcoupl_cap.END_1` | exact 100-nF DCOUPL capacitor follows TI's reference requirement |
+| `CC_RF_GROUND` | `cc_dcoupl_cap.END_2` | `abstract:rf-ground` | DCOUPL capacitor local return |
+| `CC_RBIAS` | `cc.RBIAS` | `cc_rbias_res.END_1` | exact 56-kOhm one-percent bias resistor |
+| `CC_RF_GROUND` | `cc_rbias_res.END_2` | `abstract:rf-ground` | RBIAS return remains local |
+| `CC_XOSC_Q1` | `cc.XOSC_Q1` | `cc_crystal.X1` | exact 26-MHz crystal terminal 1 |
+| `CC_XOSC_Q2` | `cc.XOSC_Q2` | `cc_crystal.X2` | exact 26-MHz crystal terminal 2 |
+| `CC_XOSC_Q1` | `cc.XOSC_Q1` | `cc_crystal_load_q1.END_1` | 15-pF C0G load plus typical 2.5-pF parasitic targets the exact 10-pF crystal load |
+| `CC_XOSC_Q2` | `cc.XOSC_Q2` | `cc_crystal_load_q2.END_1` | second matched 15-pF C0G load targets the exact 10-pF crystal load |
+| `CC_RF_GROUND` | `cc_crystal_load_q1.END_2` | `abstract:rf-ground` | crystal load return |
+| `CC_RF_GROUND` | `cc_crystal_load_q2.END_2` | `abstract:rf-ground` | crystal load return |
+| `CC_RF_GROUND` | `cc_crystal.GND_2` | `abstract:rf-ground` | crystal case pad 2 ground |
+| `CC_RF_GROUND` | `cc_crystal.GND_4` | `abstract:rf-ground` | crystal case pad 4 ground |
+| `CC_SCK` | `rp.GPIO42` | `cc_host_buffer.1A` | dedicated PIO0 SM3 clock enters the switched-domain Ioff buffer |
+| `CC_MOSI` | `rp.GPIO43` | `cc_host_buffer.2A` | dedicated PIO0 SM3 data enters the switched-domain Ioff buffer |
+| `CC_CSN_N` | `rp.GPIO9` | `cc_host_buffer.3A` | dedicated active-low select enters the switched-domain Ioff buffer |
+| `CC_SCLK_BUFFERED` | `cc_host_buffer.1Y` | `cc_sclk_series.END_1` | exact switched-domain source bounds the SCLK edge |
+| `CC_SCLK_DEVICE` | `cc_sclk_series.END_2` | `cc.SCLK` | exact 22-Ohm source series resistor reaches physical CC1101 pin 1 |
+| `CC_SI_BUFFERED` | `cc_host_buffer.2Y` | `cc_si_series.END_1` | exact switched-domain source bounds the SI edge |
+| `CC_SI_DEVICE` | `cc_si_series.END_2` | `cc.SI` | exact 22-Ohm source series resistor reaches physical CC1101 pin 20 |
+| `CC_CSN_BUFFERED_N` | `cc_host_buffer.3Y` | `cc_csn_series.END_1` | exact switched-domain source bounds the CSN edge |
+| `CC_CSN_DEVICE_N` | `cc_csn_series.END_2` | `cc.CSN` | exact 22-Ohm source series resistor reaches physical CC1101 pin 7 |
+| `CC_SO_DEVICE` | `cc.SO_GDO1` | `cc_return_buffer.1A` | physical SO/GDO1 enters a switched-rail Ioff return buffer |
+| `CC_GDO0_DEVICE` | `cc.GDO0` | `cc_return_buffer.2A` | physical GDO0 enters a switched-rail Ioff return buffer |
+| `CC_GDO2_DEVICE` | `cc.GDO2` | `cc_return_buffer.3A` | physical GDO2 enters a switched-rail Ioff return buffer |
+| `CC_SO_BUFFERED` | `cc_return_buffer.1Y` | `cc_so_series.END_1` | return-buffer output becomes high-Z when the CC rail is absent |
+| `CC_MISO` | `cc_so_series.END_2` | `rp.GPIO39` | exact 22-Ohm return-source resistor bounds the PIO input edge |
+| `CC_GDO0_BUFFERED` | `cc_return_buffer.2Y` | `cc_gdo0_series.END_1` | GDO0 return becomes high-Z when the CC rail is absent |
+| `CC_GDO0` | `cc_gdo0_series.END_2` | `rp.GPIO10` | exact 22-Ohm return-source resistor bounds the asynchronous GDO0 edge |
+| `CC_GDO2_BUFFERED` | `cc_return_buffer.3Y` | `cc_gdo2_series.END_1` | GDO2 return becomes high-Z when the CC rail is absent |
+| `CC_GDO2` | `cc_gdo2_series.END_2` | `rp.GPIO11` | exact 22-Ohm return-source resistor bounds the asynchronous GDO2 edge |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_host_buffer.1OE` | active-high OE cannot enable without valid CC power |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_host_buffer.2OE` | active-high OE follows switched power |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_host_buffer.3OE` | active-high OE follows switched power |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_return_buffer.1OE` | active-high return OE follows switched power |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_return_buffer.2OE` | active-high return OE follows switched power |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_return_buffer.3OE` | active-high return OE follows switched power |
+| `CC_HOST_SPARE_DISABLED` | `abstract:rf-ground` | `cc_host_buffer.4OE` | unused host-buffer channel is permanently disabled |
+| `CC_HOST_SPARE_LOW` | `abstract:rf-ground` | `cc_host_buffer.4A` | unused host-buffer input cannot float |
+| `CC_HOST_SPARE_Y_NC` | `cc_host_buffer.4Y` | `abstract:no-connect` | disabled spare output is unconnected |
+| `CC_RETURN_SPARE_DISABLED` | `abstract:rf-ground` | `cc_return_buffer.4OE` | unused return-buffer channel is permanently disabled |
+| `CC_RETURN_SPARE_LOW` | `abstract:rf-ground` | `cc_return_buffer.4A` | unused return-buffer input cannot float |
+| `CC_RETURN_SPARE_Y_NC` | `cc_return_buffer.4Y` | `abstract:no-connect` | disabled spare output is unconnected |
+| `CC_SCK` | `cc_host_sclk_pulldown.END_1` | `cc_host_buffer.1A` | host clock defaults low before rail enable |
+| `CC_MOSI` | `cc_host_si_pulldown.END_1` | `cc_host_buffer.2A` | host SI defaults low before rail enable |
+| `CC_CSN_N` | `cc_host_csn_pullup.END_1` | `cc_host_buffer.3A` | host CSN defaults high before rail enable |
+| `CC_MISO` | `cc_host_so_pulldown.END_1` | `rp.GPIO39` | host SO input has a deterministic low state while isolated |
+| `CC_GDO0` | `cc_host_gdo0_pulldown.END_1` | `rp.GPIO10` | host GDO0 input has a deterministic low state while isolated |
+| `CC_GDO2` | `cc_host_gdo2_pulldown.END_1` | `rp.GPIO11` | host GDO2 input has a deterministic low state while isolated |
+| `POWER_GROUND` | `cc_host_sclk_pulldown.END_2` | `abstract:power-ground` | host SCLK fail-low return |
+| `POWER_GROUND` | `cc_host_si_pulldown.END_2` | `abstract:power-ground` | host SI fail-low return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_host_csn_pullup.END_2` | host CSN fail-high source |
+| `POWER_GROUND` | `cc_host_so_pulldown.END_2` | `abstract:power-ground` | host SO fail-low return |
+| `POWER_GROUND` | `cc_host_gdo0_pulldown.END_2` | `abstract:power-ground` | host GDO0 fail-low return |
+| `POWER_GROUND` | `cc_host_gdo2_pulldown.END_2` | `abstract:power-ground` | host GDO2 fail-low return |
+| `CC_BAND_V1_REQ` | `slow_io.P03` | `cc_band_buffer.1A` | slow control is changed only while the CC rail is off |
+| `CC_BAND_V2_REQ` | `slow_io.P04` | `cc_band_buffer.2A` | slow control is changed only while the CC rail is off |
+| `CC_BAND_V1_REQ` | `slow_io.P03` | `cc_band_v1_host_pulldown.END_1` | uninitialized expander state requests BGS isolation |
+| `CC_BAND_V2_REQ` | `slow_io.P04` | `cc_band_v2_host_pulldown.END_1` | uninitialized expander state requests BGS isolation |
+| `POWER_GROUND` | `cc_band_v1_host_pulldown.END_2` | `abstract:power-ground` | band V1 host fail-low return |
+| `POWER_GROUND` | `cc_band_v2_host_pulldown.END_2` | `abstract:power-ground` | band V2 host fail-low return |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_band_buffer.1OE` | band V1 output cannot drive an unpowered RF switch |
+| `3V3_CC_SWITCHED` | `cc_power_switch.VOUT` | `cc_band_buffer.2OE` | band V2 output cannot drive an unpowered RF switch |
+| `CC_BAND_V1_BUFFERED` | `cc_band_buffer.1Y` | `cc_band_v1_series.END_1` | one source drives both same-name V1 controls |
+| `CC_BAND_V2_BUFFERED` | `cc_band_buffer.2Y` | `cc_band_v2_series.END_1` | one source drives both same-name V2 controls |
+| `CC_BAND_V1` | `cc_band_v1_series.END_2` | `cc_switch_a.V1` | transceiver-side switch receives the same V1 truth bit as antenna-side switch |
+| `CC_BAND_V1` | `cc_band_v1_series.END_2` | `cc_switch_b.V1` | identical controls keep both switch ends on the same branch |
+| `CC_BAND_V2` | `cc_band_v2_series.END_2` | `cc_switch_a.V2` | transceiver-side switch receives the same V2 truth bit as antenna-side switch |
+| `CC_BAND_V2` | `cc_band_v2_series.END_2` | `cc_switch_b.V2` | identical controls keep both switch ends on the same branch |
+| `CC_BAND_V1` | `cc_switch_a.V1` | `cc_switch_a_v1_pulldown.END_1` | switch A V1 defaults to the 00 isolation state |
+| `CC_BAND_V2` | `cc_switch_a.V2` | `cc_switch_a_v2_pulldown.END_1` | switch A V2 defaults to the 00 isolation state |
+| `CC_BAND_V1` | `cc_switch_b.V1` | `cc_switch_b_v1_pulldown.END_1` | switch B V1 defaults to the 00 isolation state |
+| `CC_BAND_V2` | `cc_switch_b.V2` | `cc_switch_b_v2_pulldown.END_1` | switch B V2 defaults to the 00 isolation state |
+| `CC_RF_GROUND` | `cc_switch_a_v1_pulldown.END_2` | `abstract:rf-ground` | switch A V1 fail-low return |
+| `CC_RF_GROUND` | `cc_switch_a_v2_pulldown.END_2` | `abstract:rf-ground` | switch A V2 fail-low return |
+| `CC_RF_GROUND` | `cc_switch_b_v1_pulldown.END_2` | `abstract:rf-ground` | switch B V1 fail-low return |
+| `CC_RF_GROUND` | `cc_switch_b_v2_pulldown.END_2` | `abstract:rf-ground` | switch B V2 fail-low return |
+| `CC_RF_P` | `cc.RF_P` | `cc_rf_p_dc_block.END_1` | exact 100-pF C0G series block follows the first-pass real-device reference |
+| `CC_RF_N` | `cc.RF_N` | `cc_rf_n_dc_block.END_1` | exact 100-pF C0G series block follows the first-pass real-device reference |
+| `CC_RF_BAL_A` | `cc_rf_p_dc_block.END_2` | `cc_balun.BALANCED_A` | physical B0310 balanced contact A |
+| `CC_RF_BAL_B` | `cc_rf_n_dc_block.END_2` | `cc_balun.BALANCED_B` | physical B0310 balanced contact B |
+| `CC_RF_BAL_A` | `cc_rf_p_dc_block.END_2` | `cc_rf_diff_cap.END_1` | exact 0.6-pF differential trim capacitor first end |
+| `CC_RF_BAL_B` | `cc_rf_n_dc_block.END_2` | `cc_rf_diff_cap.END_2` | exact 0.6-pF differential trim capacitor second end |
+| `CC_RF_GROUND` | `cc_balun.GND` | `abstract:rf-ground` | balun ground contact receives a short via return |
+| `CC_BALUN_DNC5` | `cc_balun.DNC_5` | `abstract:no-connect` | datasheet do-not-connect contact remains isolated |
+| `CC_BALUN_DNC6` | `cc_balun.DNC_6` | `abstract:no-connect` | datasheet do-not-connect contact remains isolated |
+| `CC_RF_UNBALANCED` | `cc_balun.UNBALANCED` | `cc_match_l3n3.END_1` | exact 3.3-nH first matching element |
+| `CC_RF_MATCH_MID` | `cc_match_l3n3.END_2` | `cc_match_c1p2.END_1` | exact 1.2-pF shunt is located between the two series inductors |
+| `CC_RF_GROUND` | `cc_match_c1p2.END_2` | `abstract:rf-ground` | balun-output shunt return |
+| `CC_RF_MATCH_MID` | `cc_match_l3n3.END_2` | `cc_match_l6n8.END_1` | exact 6.8-nH second matching element |
+| `CC_RF_SWITCH_INPUT` | `cc_match_l6n8.END_2` | `cc_switch_a.RFIN` | transceiver-side SP3T common port |
+| `CC_RF_315_IN` | `cc_switch_a.RF1` | `cc_315_l10_in.END_1` | BGS truth 10 selects RF1 as the 315-MHz branch |
+| `CC_RF_315_MID` | `cc_315_l10_in.END_2` | `cc_315_shunt_l3n6.END_1` | 315-MHz shunt-series trap starts at the branch midpoint |
+| `CC_RF_315_TRAP` | `cc_315_shunt_l3n6.END_2` | `cc_315_shunt_c8p.END_1` | exact 3.6-nH plus 8-pF series shunt coupon |
+| `CC_RF_GROUND` | `cc_315_shunt_c8p.END_2` | `abstract:rf-ground` | 315-MHz shunt-trap return |
+| `CC_RF_315_MID` | `cc_315_l10_in.END_2` | `cc_315_l10_out.END_1` | second exact 10-nH series element completes the branch |
+| `CC_RF_315_OUT` | `cc_315_l10_out.END_2` | `cc_switch_b.RF1` | antenna-side switch disconnects the 315-MHz branch unless RF1 is selected |
+| `CC_RF_433_IN` | `cc_switch_a.RF2` | `cc_433_shunt_c10p.END_1` | BGS truth 01 selects RF2 as the 433-MHz branch |
+| `CC_RF_GROUND` | `cc_433_shunt_c10p.END_2` | `abstract:rf-ground` | 433-MHz input shunt return |
+| `CC_RF_433_IN` | `cc_switch_a.RF2` | `cc_433_l15.END_1` | exact 15-nH series element follows the first shunt |
+| `CC_RF_433_OUT` | `cc_433_l15.END_2` | `cc_433_shunt_c6p2.END_1` | exact 6.2-pF output shunt |
+| `CC_RF_GROUND` | `cc_433_shunt_c6p2.END_2` | `abstract:rf-ground` | 433-MHz output shunt return |
+| `CC_RF_433_OUT` | `cc_433_l15.END_2` | `cc_switch_b.RF2` | antenna-side switch disconnects the 433-MHz branch unless RF2 is selected |
+| `CC_RF_868_915_IN` | `cc_switch_a.RF3` | `cc_868_915_l10.END_1` | BGS truth 11 selects RF3 as the combined common-band branch |
+| `CC_RF_868_915_OUT` | `cc_868_915_l10.END_2` | `cc_switch_b.RF3` | exact 10-nH first-pass coupon; both 868 and 915 profiles require conducted qualification |
+| `CC_RF_SELECTED` | `cc_switch_b.RFIN` | `cc_output_l2n2.END_1` | one antenna-side common port prevents unselected filter stubs from loading the output |
+| `CC_EXTERNAL_RF_50R` | `cc_output_l2n2.END_2` | `cc_rf_esd.K` | exact 2.2-nH final element feeds the low-capacitance protected external line |
+| `CC_RF_ESD_RETURN` | `cc_rf_esd.A` | `abstract:chassis-rf-ground` | 0.2-pF IEC-ESD diode returns at the connector boundary through a short via field |
+| `CC_EXTERNAL_RF_50R` | `cc_output_l2n2.END_2` | `abstract:CC-dedicated-standard-SMA` | exact SMA MPN waits for physical placement; electrical endpoint and polarity remain fixed |
+| `CC_EXTERNAL_RF_50R` | `cc_output_l2n2.END_2` | `cc_detector_tap_cap.END_1` | 0.47-pF high-Q sample is taken after both switches and every populated branch element |
+| `CC_RF_SAMPLE` | `cc_detector_tap_cap.END_2` | `det_cc.RFIN` | unmatched high-impedance AD8314 voltage sample avoids a 50-Ohm mainline shunt |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `det_cc.VPOS` | actual-TX detector remains alive independently of the CC application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_detector_bypass.END_1` | exact 100-nF local AD8314 bypass |
+| `SAFETY_GROUND` | `cc_detector_bypass.END_2` | `abstract:safety-ground` | detector bypass returns in the AON evidence domain |
+| `SAFETY_GROUND` | `det_cc.COMM` | `abstract:safety-ground` | AD8314 signal ground |
+| `SAFETY_GROUND` | `det_cc.EPAD` | `abstract:safety-ground` | AD8314 exposed paddle ground |
+| `CC_DETECT_V` | `det_cc.VSET` | `det_cc.V_UP` | measurement-mode connection follows the AD8314 datasheet |
+| `CC_DETECT_FILTER` | `det_cc.FLTR` | `cc_detector_filter.END_1` | exact 120-pF response capacitor |
+| `CC_DETECT_V` | `cc_detector_filter.END_2` | `det_cc.V_UP` | filter capacitor is placed between FLTR and V_UP |
+| `CC_DETECT_VDN_NC` | `det_cc.V_DN` | `abstract:no-connect` | unused controller output remains unconnected |
+| `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_evidence_hold_diode.A` | STOP-dominant enable pre-arms actual-TX evidence before the radio rail rises |
+| `CC_EVIDENCE_HOLD` | `cc_evidence_hold_diode.K` | `cc_evidence_hold_cap.END_1` | Schottky isolation retains detector enable through QOD fall |
+| `CC_EVIDENCE_HOLD` | `cc_evidence_hold_diode.K` | `cc_evidence_hold_pulldown.END_1` | 10-kOhm and 1-uF create an approximately 10-ms nominal discharge constant |
+| `CC_EVIDENCE_HOLD` | `cc_evidence_hold_diode.K` | `det_cc.ENBL` | AD8314 remains active through commanded rail fall before low-current shutdown |
+| `SAFETY_GROUND` | `cc_evidence_hold_cap.END_2` | `abstract:safety-ground` | hold capacitor returns in the AON evidence domain |
+| `SAFETY_GROUND` | `cc_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | detector cannot remain enabled indefinitely after CC shutdown |
+| `CC_EVIDENCE_DIODE_NC` | `cc_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `CC_QOD` | `cc_power_switch.QOD` | `cc_power_switch.VOUT` | internal discharge produces a measured quiet state |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sd_power_input_cap.END_1` | exact 1-uF local switch-input bypass follows the TPS22919 evaluation profile |
 | `POWER_GROUND` | `sd_power_input_cap.END_2` | `abstract:power-ground` | short local input-capacitor return |
@@ -2741,9 +2998,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF2_DETECT_FILTER` | `det_nrf2.FLTR` | `nrf2_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF2_DETECT_V` | `nrf2_detector_filter.END_2` | `det_nrf2.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF2_DETECT_VDN_NC` | `det_nrf2.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `CC_RF_SAMPLE` | `abstract:CC-qualified-RF-tap` | `det_cc.RFIN` | sub-GHz tap and coupling capacitor are selected in I6 |
 | `VOICE_RF_SAMPLE` | `abstract:VOICE-qualified-RF-tap` | `det_voice.RFIN` | VHF/UHF tap and coupling capacitor are selected in I6 |
-| `CC_DETECT_ENABLE` | `abstract:AON_SAFE_3V3` | `det_cc.SHDN` | evidence detector remains enabled independently of the CC application rail |
 | `VOICE_DETECT_ENABLE` | `abstract:AON_SAFE_3V3` | `det_voice.SHDN` | evidence detector remains enabled independently of the voice application rail |
 | `IR_OPTICAL_SAMPLE` | `det_ir.ANODE` | `abstract:shielded-ir-evidence-front-end` | physical optical pickup rather than drive-current inference; exact bias/front end is I6 |
 | `S3_DETECT_V` | `det_s3.VOUT` | `evidence_cmp_a.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
@@ -2751,7 +3006,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF0_DETECT_V` | `det_nrf0.V_UP` | `evidence_cmp_a.IN3_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `NRF1_DETECT_V` | `det_nrf1.V_UP` | `evidence_cmp_a.IN4_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN1_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
-| `CC_DETECT_V` | `det_cc.VOUT` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `VOICE_DETECT_V` | `det_voice.VOUT` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `IR_DETECT_V` | `abstract:shielded-ir-evidence-front-end` | `evidence_cmp_b.IN4_N` | optical energy above the qualified threshold makes active-low comparator output assert |
 | `EV_THRESH_0` | `abstract:qualified-evidence-threshold-0` | `evidence_cmp_a.IN1_P` | divider/hysteresis values are I6 calibration outputs |
@@ -2802,7 +3057,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 | Instance | Used | Reserved | Free |
 |---|---:|---:|---:|
-| `slow_io` | 21 | 0 | 3 |
+| `slow_io` | 23 | 0 | 1 |
 | `ui_matrix_io` | 7 | 1 | 0 |
 
 ### Interface non-interference contracts
@@ -2914,6 +3169,63 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `nrf2_coupler_termination` lifecycle: `active_orderable`.
 - `nrf2_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
 - `nrf2_detector_match` lifecycle: `active_orderable`.
+- `cc_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `cc_host_buffer` lifecycle: `production_active_orderable`.
+- `cc_return_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `cc_return_buffer` lifecycle: `production_active_orderable`.
+- `cc_band_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `cc_band_buffer` lifecycle: `production_active_orderable`.
+- `cc_power_input_cap` lifecycle: `active_production`.
+- `cc_local_bulk_cap` lifecycle: `active_production`.
+- `cc_rbias_res` uses `Yageo RC0402FR-0756KL` as `verified_exact_cc_bias_passive`, not an accepted production choice.
+- `cc_rbias_res` lifecycle: `active_orderable`.
+- `cc_crystal` uses `Abracon ABM8-26.000MHZ-10-D-1-G-T` as `verified_exact_cc_reference_crystal`, not an accepted production choice.
+- `cc_crystal` lifecycle: `active_orderable`.
+- `cc_crystal_load_q1` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
+- `cc_crystal_load_q1` lifecycle: `active_orderable`.
+- `cc_crystal_load_q2` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
+- `cc_crystal_load_q2` lifecycle: `active_orderable`.
+- `cc_rf_p_dc_block` uses `Murata GJM1555C1H101JB01D` as `verified_exact_cc_rf_dc_block_passive`, not an accepted production choice.
+- `cc_rf_p_dc_block` lifecycle: `active_orderable`.
+- `cc_rf_n_dc_block` uses `Murata GJM1555C1H101JB01D` as `verified_exact_cc_rf_dc_block_passive`, not an accepted production choice.
+- `cc_rf_n_dc_block` lifecycle: `active_orderable`.
+- `cc_rf_diff_cap` uses `Murata GJM1555C1HR60BB01D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_rf_diff_cap` lifecycle: `active_orderable`.
+- `cc_balun` uses `TTM Technologies B0310J50100AHF` as `verified_exact_cc_first_pass_balun`, not an accepted production choice.
+- `cc_balun` lifecycle: `active_orderable`.
+- `cc_match_l3n3` uses `Murata LQG15HS3N3S02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_match_l3n3` lifecycle: `active_orderable`.
+- `cc_match_c1p2` uses `Murata GJM1555C1H1R2BB01D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_match_c1p2` lifecycle: `active_orderable`.
+- `cc_match_l6n8` uses `Murata LQG15HS6N8J02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_match_l6n8` lifecycle: `active_orderable`.
+- `cc_switch_a` uses `Infineon BGS13SN8E6327XTSA1` as `verified_exact_cc_dual_ended_band_switch`, not an accepted production choice.
+- `cc_switch_a` lifecycle: `active_orderable`.
+- `cc_switch_b` uses `Infineon BGS13SN8E6327XTSA1` as `verified_exact_cc_dual_ended_band_switch`, not an accepted production choice.
+- `cc_switch_b` lifecycle: `active_orderable`.
+- `cc_315_l10_in` uses `Murata LQG15HS10NJ02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_315_l10_in` lifecycle: `active_orderable`.
+- `cc_315_shunt_l3n6` uses `Murata LQG15HS3N6S02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_315_shunt_l3n6` lifecycle: `active_orderable`.
+- `cc_315_shunt_c8p` uses `Murata GJM1555C1H8R0DB01D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_315_shunt_c8p` lifecycle: `active_orderable`.
+- `cc_315_l10_out` uses `Murata LQG15HS10NJ02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_315_l10_out` lifecycle: `active_orderable`.
+- `cc_433_shunt_c10p` uses `Murata GJM1555C1H100JB01D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_433_shunt_c10p` lifecycle: `active_orderable`.
+- `cc_433_l15` uses `Murata LQG15HS15NJ02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_433_l15` lifecycle: `active_orderable`.
+- `cc_433_shunt_c6p2` uses `Murata GJM1555C1H6R2DB01D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_433_shunt_c6p2` lifecycle: `active_orderable`.
+- `cc_868_915_l10` uses `Murata LQG15HS10NJ02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_868_915_l10` lifecycle: `active_orderable`.
+- `cc_output_l2n2` uses `Murata LQG15HS2N2S02D` as `verified_exact_cc_matching_passive`, not an accepted production choice.
+- `cc_output_l2n2` lifecycle: `active_orderable`.
+- `cc_rf_esd` uses `Littelfuse SESD0402X1UN-0020-090` as `verified_exact_cc_external_rf_esd`, not an accepted production choice.
+- `cc_rf_esd` lifecycle: `active_orderable`.
+- `cc_detector_tap_cap` uses `Murata GJM1555C1HR47BB01D` as `verified_exact_cc_detector_tap_passive`, not an accepted production choice.
+- `cc_detector_tap_cap` lifecycle: `active_orderable`.
+- `cc_evidence_hold_cap` lifecycle: `active_production`.
 - `voice` lifecycle: `current_product`.
 - `receiver` lifecycle: `manufacturer_documented`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
@@ -3017,14 +3329,15 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `det_nrf1` lifecycle: `production_active_orderable`.
 - `det_nrf2` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
 - `det_nrf2` lifecycle: `production_active_orderable`.
-- `det_cc` lifecycle: `production`.
+- `det_cc` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_cc` lifecycle: `production_active_orderable`.
 - `det_voice` lifecycle: `production`.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
-- CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger
+- DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. Conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence HIL and the mechanics-selected standard-SMA MPN remain blocking before schematic/BOM freeze
 - DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. Same-rail startup, below-0.2-V power-cycle recovery, interrupt behavior and assembled-bus/no-back-power HIL remain open. TCA4307DGKR and external-accessory endpoint details remain I7 gates
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open
-- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; the 24-line main slow plane retains six free contacts while dedicated UI P7 is a protected local fixture/growth pad. New direct MCU endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
+- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; DEC-0093 consumes main slow-I/O P03/P04 for rail-off CC1101 band truth bits, leaving only P05 free, while dedicated UI P7 remains a protected local fixture/growth pad. New direct MCU endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
 - C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
