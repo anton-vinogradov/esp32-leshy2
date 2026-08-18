@@ -70,6 +70,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor",
             "Diodes Incorporated MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor",
             "Texas Instruments TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse and current monitor",
+            "Yageo RC0402FR-072K21L<br/>2.21-kOhm 1% eFuse current-limit resistor",
+            "Murata GRM155R71H472KA01D<br/>4.7-nF 50-V X7R eFuse startup-slew capacitor",
+            "Murata GRM188R71E224KA88D<br/>220-nF 25-V X7R post-start transient-timer capacitor",
+            "Yageo RC0402FR-07169KL<br/>169-kOhm 1% eFuse OVLO top resistor",
+            "Yageo RC0402FR-0747KL<br/>47-kOhm 1% eFuse OVLO bottom resistor",
+            "Murata GRM21BR71E225KE11L<br/>2.2-uF 25-V X7R local eFuse input capacitor",
+            "Murata GRM21BR71E225KE11L<br/>2.2-uF 25-V X7R local eFuse output capacitor",
+            "Yageo RC0603FR-071KL<br/>1-kOhm 1% protected-output discharge resistor",
             "Texas Instruments TPS22919DCKR<br/>three-radio nRF quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>CC1101 quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>microSD quiet-state load switch",
@@ -324,6 +332,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ext_inductor": "sunlord_mwsa0503s_4r7mt",
             "ext_pg_qualifier": "diodes_mmbt3904_7_f",
             "ext_efuse": "ti_tps259470l_rpwr",
+            "ext_rilm": "yageo_rc0402fr_072k21l",
+            "ext_dvdt_cap": "murata_grm155r71h472ka01d",
+            "ext_itimer_cap": "murata_grm188r71e224ka88d",
+            "ext_ovlo_top": "yageo_rc0402fr_07169kl",
+            "ext_ovlo_bottom": "yageo_rc0402fr_0747kl",
+            "ext_input_cap": "murata_grm21br71e225ke11l",
+            "ext_output_cap": "murata_grm21br71e225ke11l",
+            "ext_bleeder": "yageo_rc0603fr_071kl",
             "nrf_power_switch": "ti_tps22919_dckr",
             "cc_power_switch": "ti_tps22919_dckr",
             "sd_power_switch": "ti_tps22919_dckr",
@@ -345,6 +361,20 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(("nvdc_charger.SYS", destination, "NVDC_SYS"), routes)
         self.assertIn(("voice_inductor.END_2", "voice.VCC", "VVOICE_4V"), routes)
         self.assertIn(("ext_efuse.OUT", "u214.5V_IN", "5V_EXT_PROTECTED"), routes)
+        self.assertIn(("ext_efuse.ILM", "ext_rilm.END_1", "EXT_EFUSE_ILM_SET"), routes)
+        self.assertIn(("ext_efuse.DVDT", "ext_dvdt_cap.END_1", "EXT_EFUSE_DVDT"), routes)
+        self.assertIn(("ext_efuse.ITIMER", "ext_itimer_cap.END_1", "EXT_EFUSE_ITIMER"), routes)
+        self.assertIn(("ext_efuse.OUT", "ext_bleeder.END_1", "5V_EXT_PROTECTED"), routes)
+        self.assertIn("immediately at startup", contract["external_protection"])
+        self.assertIn("post-start 2A transient", contract["external_protection"])
+        self.assertNotIn(
+            "ext-5v-passive-discharge",
+            {
+                endpoint
+                for route in candidate["fixed_routes"]
+                for endpoint in (route["from"], route["to"])
+            },
+        )
         self.assertIn(("nrf_power_switch.VOUT", "nrf2.VCC", "3V3_NRF_GROUP"), routes)
 
         self.assertEqual("DEC-0070", contract["switched_pg_qualification_decision"])

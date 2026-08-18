@@ -1610,6 +1610,167 @@
         "ITIMER": {"physical": "10", "role": "analog"}
       }
     },
+    "yageo_rc0402fr_072k21l": {
+      "mpn": "Yageo RC0402FR-072K21L",
+      "kind": "2_21kohm_1pct_0402_efuse_current_limit_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, null],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-072K21L LCSC C138019 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C138019.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm155r71h472ka01d": {
+      "mpn": "Murata GRM155R71H472KA01D",
+      "kind": "4_7nf_10pct_50v_x7r_0402_efuse_slew_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {
+        "document": "Murata GRM155R71H472KA01 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H472KA01D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM155R71H472KA01D LCSC C77024 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C77024.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm188r71e224ka88d": {
+      "mpn": "Murata GRM188R71E224KA88D",
+      "kind": "220nf_10pct_25v_x7r_0603_efuse_transient_timer_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "Murata GRM188R71E224KA88 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM188R71E224KA88D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM188R71E224KA88D stocked exact order code",
+        "url": "https://www.mouser.com/ProductDetail/Murata-Electronics/GRM188R71E224KA88D",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07169kl": {
+      "mpn": "Yageo RC0402FR-07169KL",
+      "kind": "169kohm_1pct_0402_efuse_ovlo_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, null],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07169KL LCSC C327367 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C327367.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_0747kl": {
+      "mpn": "Yageo RC0402FR-0747KL",
+      "kind": "47kohm_1pct_0402_efuse_ovlo_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, null],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0747KL LCSC C93943 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C93943.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm21br71e225ke11l": {
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "kind": "2_2uf_10pct_25v_x7r_0805_efuse_local_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.25],
+      "source": {
+        "document": "Murata GRM21BR71E225KE11 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM21BR71E225KE11L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM21BR71E225KE11L LCSC C77081 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C77081.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0603fr_071kl": {
+      "mpn": "Yageo RC0603FR-071KL",
+      "kind": "1kohm_1pct_100mw_0603_external_rail_bleeder",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, null],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0603FR-071KL LCSC C22548 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C22548.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "adi_max17320_g20_t": {
       "mpn": "Analog Devices MAX17320G20+T",
       "kind": "2s_to_4s_high_side_gauge_protector_i2c_no_sha",

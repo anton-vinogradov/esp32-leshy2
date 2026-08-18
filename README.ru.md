@@ -92,6 +92,11 @@ Leshy2 — открытый автономный портативный инст
   вычислительное питание 3,3 В, голосовой тракт 4,0 В и защищённый порт
   расширения 5,0 В. Неиспользуемые ветви радио, накопителя и аудио физически
   отключаются и разряжаются до проверенного тихого состояния.
+- Защищённый порт расширения запускается с управляемой скоростью нарастания
+  напряжения и сразу действующим ограничением тока. Он поддерживает `1,25 А`
+  постоянно и ограниченный по времени импульс `2,0 А` только после запуска;
+  затянувшаяся перегрузка или иной fault eFuse защёлкивает порт выключенным без
+  автоматических повторов.
 - Подписанные обновления проверяют целевое устройство и поддерживают откат;
   ключи сборки и возможность установки владельческой прошивки остаются у
   владельца. Необратимая блокировка не включается по умолчанию.
@@ -138,12 +143,19 @@ flowchart TD
   EXTL["MWSA0503S-4R7MT<br/>силовой дроссель 4,7 мкГн шины расширения"]
   EXTPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault шины расширения"]
   EXTFUSE["TPS259470LRPWR<br/>latch-off eFuse расширения с true reverse blocking и измерением тока"]
+  EXTRILM["RC0402FR-072K21L<br/>2,21-кОм 1% резистор ограничения тока eFuse"]
+  EXTDVDT["GRM155R71H472KA01D<br/>4,7-нФ 50-В X7R конденсатор плавного запуска"]
+  EXTITIMER["GRM188R71E224KA88D<br/>220-нФ 25-В X7R таймер импульса после запуска"]
+  EXTOVLOT["RC0402FR-07169KL<br/>169-кОм 1% верхний резистор OVLO eFuse"]
+  EXTOVLOB["RC0402FR-0747KL<br/>47-кОм 1% нижний резистор OVLO eFuse"]
+  EXTINCAP["GRM21BR71E225KE11L #IN<br/>2,2-мкФ 25-В X7R локальный входной конденсатор eFuse"]
+  EXTOUTCAP["GRM21BR71E225KE11L #OUT<br/>2,2-мкФ 25-В X7R локальный выходной конденсатор eFuse"]
+  EXTBLEED["RC0603FR-071KL<br/>1-кОм 1% резистор разряда защищённого выхода"]
   SWNRF["TPS22919DCKR<br/>quiet-state ключ группы из трёх nRF"]
   SWCC["TPS22919DCKR<br/>quiet-state ключ CC1101"]
   SWSD["TPS22919DCKR<br/>quiet-state ключ microSD"]
   SWCODEC["TPS22919DCKR<br/>quiet-state ключ ES8311"]
   SWRX["TPS22919DCKR<br/>quiet-state ключ Si4732"]
-  EXTBLEED["MPN-независимая пассивная цепь<br/>разряд разъёма внешних 5 В"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -204,7 +216,8 @@ flowchart TD
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
-  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
+  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
+  EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -247,6 +260,12 @@ flowchart TD
   VOICEBUCK -->|"PG"| VOICEPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"защищённые фиксированные 5,0 В"| U214
   EXTBUCK -->|"PG"| EXTPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
+  EXTFUSE -->|"ILM"| EXTRILM
+  EXTFUSE -->|"dVdt"| EXTDVDT
+  EXTFUSE -->|"ITIMER"| EXTITIMER
+  EXTL -->|"делитель OVLO"| EXTOVLOT --> EXTOVLOB
+  EXTL --> EXTINCAP
+  EXTFUSE --> EXTOUTCAP
   EXTFUSE --> EXTBLEED
   SWNRF --> NRF0
   SWNRF --> NRF1

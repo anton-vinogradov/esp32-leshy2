@@ -86,6 +86,10 @@ privacy or the target owner's authorization.
 - Four independent fixed rails separate always-on safety, 3.3-V compute,
   4.0-V voice and protected 5.0-V accessory power. Unused radio, storage and
   audio branches are disconnected and discharged into a verified quiet state.
+- The protected accessory port admits startup through a controlled voltage
+  slew under an immediately active current limit. It supports `1.25 A`
+  continuously and a bounded `2.0 A` transient only after startup; an expired
+  overload or other eFuse fault latches the port off instead of auto-retrying.
 - Signed updates validate their target and support rollback. Build keys and the
   ability to install owner firmware remain owner-controlled; irreversible
   lockdown is not enabled by default.
@@ -132,12 +136,19 @@ flowchart TD
   EXTL["MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor"]
   EXTPGQ["MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor"]
   EXTFUSE["TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse/current monitor"]
+  EXTRILM["RC0402FR-072K21L<br/>2.21-kOhm 1% eFuse current-limit resistor"]
+  EXTDVDT["GRM155R71H472KA01D<br/>4.7-nF 50-V X7R startup-slew capacitor"]
+  EXTITIMER["GRM188R71E224KA88D<br/>220-nF 25-V X7R post-start transient timer"]
+  EXTOVLOT["RC0402FR-07169KL<br/>169-kOhm 1% eFuse OVLO top resistor"]
+  EXTOVLOB["RC0402FR-0747KL<br/>47-kOhm 1% eFuse OVLO bottom resistor"]
+  EXTINCAP["GRM21BR71E225KE11L #IN<br/>2.2-uF 25-V X7R local eFuse input capacitor"]
+  EXTOUTCAP["GRM21BR71E225KE11L #OUT<br/>2.2-uF 25-V X7R local eFuse output capacitor"]
+  EXTBLEED["RC0603FR-071KL<br/>1-kOhm 1% protected-output discharge resistor"]
   SWNRF["TPS22919DCKR<br/>three-radio nRF quiet-state load switch"]
   SWCC["TPS22919DCKR<br/>CC1101 quiet-state load switch"]
   SWSD["TPS22919DCKR<br/>microSD quiet-state load switch"]
   SWCODEC["TPS22919DCKR<br/>ES8311 quiet-state load switch"]
   SWRX["TPS22919DCKR<br/>Si4732 quiet-state load switch"]
-  EXTBLEED["MPN-independent passive circuit<br/>external-5-V connector discharge"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -198,7 +209,8 @@ flowchart TD
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
-  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
+  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
+  EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -241,6 +253,12 @@ flowchart TD
   VOICEBUCK -->|"PG"| VOICEPGQ -->|"qualified POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"protected fixed 5.0 V"| U214
   EXTBUCK -->|"PG"| EXTPGQ -->|"qualified POWER_FAULT_N"| SLOW
+  EXTFUSE -->|"ILM"| EXTRILM
+  EXTFUSE -->|"dVdt"| EXTDVDT
+  EXTFUSE -->|"ITIMER"| EXTITIMER
+  EXTL -->|"OVLO divider"| EXTOVLOT --> EXTOVLOB
+  EXTL --> EXTINCAP
+  EXTFUSE --> EXTOUTCAP
   EXTFUSE --> EXTBLEED
   SWNRF --> NRF0
   SWNRF --> NRF1

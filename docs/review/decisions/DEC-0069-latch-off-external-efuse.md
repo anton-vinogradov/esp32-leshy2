@@ -27,8 +27,10 @@ thermal fault устройство при оставшемся enable автон
    no GPIO, footprint or cost-class change follows from the suffix correction.
 5. The accepted 1.25-A continuous output is not implemented as a nominal
    1.25-A current limit. Exact passive closure uses a nominal 1.50-A set point
-   so the component-tolerance floor remains at least 1.25 A; bounded 2-A
-   transients still use `ITIMER`.
+   so the component-tolerance floor remains at least 1.25 A. Correction from
+   `DEC-0071`: that limit is active immediately during startup; `dVdt` controls
+   startup inrush, while `ITIMER` applies only to bounded 2-A post-start
+   transients.
 6. Reverse-current blocking, `FLT`, `ILM`, `dVdt`, `OVLO` and `ITIMER` behavior
    remain mandatory and are not replaced by firmware estimates.
 

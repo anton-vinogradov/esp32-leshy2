@@ -162,8 +162,11 @@ or power cycle; it does not perform the `A` variant's autonomous 110-ms retry.
 Real QFN-10 contacts are `1 EN/UVLO`, `2 OVLO`, `3 AUXOFF`, `4 FLT`, `5 IN`,
 `6 OUT`, `7 dVdt`, `8 GND`, `9 ILM`, `10 ITIMER`. The next passive gate sets
 nominal 1.50-A limit whose worst tolerance floor remains above the accepted
-1.25-A continuous envelope, plus a bounded interval below the device's
-`2×ILIM` transient ceiling covering the accepted 2.0-A startup envelope.
+1.25-A continuous envelope. Correction from `PWR-0010/DEC-0071`: this active
+current limit applies immediately during startup; `ITIMER` cannot postpone it.
+Startup inrush is instead bounded by `dVdt`. Only after startup may `ITIMER`
+admit a bounded interval below the device's `2×ILIM` fast-trip ceiling for the
+accepted 2.0-A transient envelope.
 `ILM` reaches
 a protected test point; `FLT` joins `POWER_FAULT_N` without consuming another
 GPIO.
@@ -233,7 +236,8 @@ first-target inductors, current/ripple screen, quiet-state branches, qualified
 switched-rail PG evidence, external
 reverse blocking and availability receive **«Проведено ревью»**.
 
-Still open before schematic/BOM freeze: exact feedback, input/output
-capacitance with DC-bias curves, exact EN/PG resistor MPNs, eFuse `ILM/ITIMER/dVdt/OVLO`,
-connector discharge, ground/copper/thermal geometry, source transitions and
-fault-injection HIL. No KiCad authorization is implied.
+Still open before schematic/BOM freeze: application-converter feedback and
+input/output capacitance with DC-bias curves, exact EN/PG resistor MPNs,
+ground/copper/thermal geometry, source transitions and fault-injection HIL.
+`PWR-0010/DEC-0071` close the eFuse `ILM/ITIMER/dVdt/OVLO`, local-capacitor and
+connector-discharge paper profile. No KiCad authorization is implied.

@@ -299,6 +299,14 @@ normally off. `PWR-0009/DEC-0070/REV-0005AA` now instantiate two separate
 `MMBT3904-7-F` stages implementing `EN AND NOT(PG)` before
 `POWER_FAULT_N`; direct optional-PG aggregation is removed, no GPIO is spent,
 and the two parts add about `$0.032` at the checked 50-piece price.
+`PWR-0010/DEC-0071/REV-0005AB` then correct the external-eFuse operating
+contract: `RILM` limits startup immediately, a 4.7-nF `dVdt` capacitor admits
+the capacitive load, and the 2-A allowance is a bounded post-start event timed
+by 220 nF. Exact OVLO, local bypass and 1-kOhm discharge parts replace the
+abstract passive network; all eight physical instances appear separately in
+the machine source and target diagrams. Their checked recurring cost is about
+`$0.10` per board at 100 pieces. Converter passives and the listed HIL gates
+remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

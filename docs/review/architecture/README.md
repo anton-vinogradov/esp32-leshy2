@@ -88,7 +88,12 @@ TPS629203/TPS564252 inductors, five TPS22919 branches and reverse-blocking
 TPS259470L latch-off external boundary after `DEC-0069/REV-0005Z`.
 `PWR-0009/DEC-0070/REV-0005AA` add two exact `MMBT3904-7-F` qualifiers so
 disabled optional rails release `POWER_FAULT_N`, while EN-high PG loss remains
-hardware-visible. Passive values, diagnostic load, mechanical
+hardware-visible. `PWR-0010/DEC-0071/REV-0005AB` correct the earlier startup
+claim: the 1.509-A eFuse limit is immediately active, 4.7 nF controls startup
+slew and 220 nF admits only a bounded post-start 2-A transient. Exact OVLO,
+local bypass and output bleed are now eight physical MPN-bearing instances in
+the machine source and living diagrams. Application-converter passive values,
+diagnostic load, mechanical
 polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
@@ -120,6 +125,9 @@ polarity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0008`](PWR-0008-exact-downstream-rail-tree.md) verifies independent
   fixed rails, exact converter/inductor/load-switch/eFuse contacts, current
   headroom, availability, sequencing and the updated cost screen;
+- [`PWR-0010`](PWR-0010-external-efuse-passive-profile.md) closes the first
+  exact eFuse `RILM/dVdt/ITIMER/OVLO`, local-capacitor and discharge profile,
+  and separates controlled startup from the bounded 2-A post-start interval;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
