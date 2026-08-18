@@ -1,21 +1,21 @@
 # FND-0109 — machine map was not a complete physical BOM
 
-- Статус: **обнаружено I8; coverage исправлен, строки закрываются**
+- Статус: **I8 coverage исправлен; MAX17320 residue закрыт, qualification active**
 - Дата: 2026-08-19
 - Scope: `G2F-3I`, `INT-0001/I8`
 
 ## Несоответствие
 
 До I8 количество `instances` ошибочно можно было принять за полный material
-inventory. На самом деле 791 machine-instantiated placements дают 185
-используемых MPN-линий, но за `abstract:*` и prose оставались физические
+inventory. Исходный срез из 791 machine-instantiated placements / 185
+используемых MPN-линий всё ещё скрывал за `abstract:*` и prose физические
 покупные элементы:
 
 - 9 внешних SMA bodies;
 - 5 RF cable/pigtail assemblies;
 - rear Cap-Bus и native HY2.0-4P connector bodies;
 - 8 отдельных actual-TX threshold/hysteresis networks;
-- часть обязательной MAX17320 support circuit;
+- часть обязательной MAX17320 support circuit — исправлено `DEC-0100`;
 - 12 предметов внешнего antenna kit/variant.
 
 Особенно существенен MAX17320: прежний текст I3 называл power paper scope
@@ -34,9 +34,10 @@ parts не были представлены всеми физическими i
    являются фиктивной закупочной строкой;
 4. base-product, regional cell-kit, optional accessory и costed-variant scope.
 
-Генератор выпускает узкий responsive review и полный CSV. Тест фиксирует
-исходный I8-срез: 791 placements, 185 used lines, 151 lines с current
-orderability evidence, 34 без него и 0 machine-readable cost/alternate lines.
+Генератор выпускает узкий responsive review и полный CSV. После exact
+MAX17320 repair тест фиксирует текущий I8-срез: 816 placements, 187 used lines,
+153 lines с current orderability evidence, 34 без него и 0 machine-readable
+cost/alternate lines.
 Эти нули не означают нулевую стоимость — они запрещают складывать разрозненные
 старые оценки в ложный COGS.
 
@@ -44,11 +45,24 @@ orderability evidence, 34 без него и 0 machine-readable cost/alternate l
 
 - I8 inventory prerequisite теперь воспроизводим и **проведён ревью только по
   coverage**, но sourcing/cost/alternate qualification остаётся active.
-- Узкий MAX17320 paper-support subblock I3 считается переоткрытым до exact
-  machine instantiation и повторного review; выбранные 2S topology, cells,
-  manager и safety intent не отменены.
+- Узкий MAX17320 paper-support subblock исправлен и повторно просмотрен в
+  [`PWR-0022`](../architecture/PWR-0022-exact-max17320-2s-support-profile.md),
+  [`DEC-0100`](../decisions/DEC-0100-exact-max17320-2s-support-closure.md) и
+  [`REV-0005BF`](../reviews/REV-0005BF-max17320-support-repair-propagation.md).
+  I3 paper scope снова закрыт; physical/HIL evidence не заявляется.
 - RF/M5 connector MPN могут быть first-target candidates с явным
   mechanics/specimen reopen gate; отсутствие final enclosure ещё не разрешает
   скрыть их из BOM.
 - KiCad и total COGS остаются заблокированы.
 
+## Сводная таблица исправлений MAX17320
+
+| Было | Несоответствие | Исправлено |
+|---|---|---|
+| обязательные IN/CP/regulator parts только в prose | физический BOM и схема неполны | 25 exact placements, включая каждый отдельный capacitor/resistor |
+| 2S support не воспроизводил Figure 24 | риск случайного 3S/4S ladder | CELL1/CELL2/CELL3 short, только RBAL1/RBAL4 и два filters |
+| balance resistor без power closure | 0402 мог перегреться при 0,267 Вт | `ERJ-P08F49R9V`, 0,66 Вт, thermal HIL open |
+| CSP/CSN только sense routes | отсутствовал явный силовой путь шунта | force path SLOT0_NEG→END1→END2→power ground плюс Kelvin |
+| push-pull PFAIL напрямую в MSPM0 | возможен overdrive при более низком VDD | NMOS level translator и admission-referenced pull-up |
+| PA23 подразумевался open-drain | PA23 является standard GPIO | внешний NMOS passive-drain к `SYS_INT_N` |
+| MSPM0 VDD/NRST только подразумевались | support нельзя было перенести в схему | exact 10 µF + 100 nF, 47 kΩ + 10 nF и NRST test point |

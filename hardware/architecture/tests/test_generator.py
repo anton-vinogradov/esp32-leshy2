@@ -24,18 +24,18 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(791, sum(line["quantity"] for line in lines))
-        self.assertEqual(185, len(lines))
+        self.assertEqual(816, sum(line["quantity"] for line in lines))
+        self.assertEqual(187, len(lines))
         self.assertEqual(
             34,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            185,
+            187,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            185,
+            187,
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
 
@@ -50,9 +50,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(12, gap_quantities["external_antenna_kit"])
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("791", rendered)
-        self.assertIn("185", rendered)
-        self.assertIn("151/185", rendered)
+        self.assertIn("816", rendered)
+        self.assertIn("187", rendered)
+        self.assertIn("153/187", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
 
@@ -84,6 +84,86 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("Keystone Electronics 1048P", rendered)
         self.assertIn("indexed thermally worst-slot contact", rendered)
+
+    def test_exact_max17320_2s_support_and_safe_status_interface_do_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0100", contract["manager_support_decision"])
+        self.assertIn("CELL1/CELL2/CELL3", contract["manager_support_profile"])
+        self.assertIn("Paper electrical closure does not replace", contract["manager_support_profile"])
+
+        expected_instances = {
+            "pack_in_res": "panasonic_erj_p08f10r0v",
+            "pack_in_bypass": "tdk_c1005x7r1h104k050bb",
+            "pack_cp_cap": "murata_grm188r71e474ka12d",
+            "pack_aoldo_cap": "murata_grm188r71e474ka12d",
+            "pack_reg3_cap": "murata_grm188r71e474ka12d",
+            "pack_reg2_cap": "murata_grm188r71e474ka12d",
+            "pack_cell1_rbal": "panasonic_erj_p08f49r9v",
+            "pack_batts_rbal": "panasonic_erj_p08f49r9v",
+            "pack_cell1_filter_cap": "tdk_c1005x7r1h104k050bb",
+            "pack_batts_filter_cap": "tdk_c1005x7r1h104k050bb",
+            "pack_pckp_res": "yageo_rc0402fr_071kl",
+            "pack_chg_gate_cap": "tdk_c1005x7r1h104k050bb",
+            "pack_dis_gate_cap": "tdk_c1005x7r1h104k050bb",
+            "pack_hold_pullup": "yageo_rc0402fr_0710kl",
+            "pack_hold_release_pulldown": "yageo_rc0402fr_0710kl",
+            "pack_alrt_pullup": "yageo_rc0402fr_0710kl",
+            "pack_status_buffer": "diodes_2n7002dw_7_f",
+            "pack_pfail_pullup": "yageo_rc0402fr_0710kl",
+            "pack_irq_gate_pulldown": "yageo_rc0402fr_0710kl",
+            "pack_gauge_scl_pullup": "yageo_rc0402fr_0710kl",
+            "pack_gauge_sda_pullup": "yageo_rc0402fr_0710kl",
+            "pack_admission_bulk_cap": "murata_grm188r60j106me47d",
+            "pack_admission_bypass": "tdk_c1005x7r1h104k050bb",
+            "pack_admission_reset_pullup": "yageo_rc0402fr_0747kl",
+            "pack_admission_reset_cap": "murata_grm155r71h103ka88d",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("abstract:qualified-2s-positive", "pack_in_res.END_1", "BATTERY_STACK_POSITIVE"),
+            ("pack_gauge.CP", "pack_cp_cap.END_1", "PACK_CHARGE_PUMP"),
+            ("pack_cp_cap.END_2", "pack_gauge.IN", "PACK_GAUGE_IN"),
+            ("pack_gauge.CELL1", "pack_gauge.CELL2", "PACK_CELL1_SENSE"),
+            ("pack_gauge.CELL2", "pack_gauge.CELL3", "PACK_CELL1_SENSE"),
+            ("pack_holder.SLOT0_NEG", "pack_shunt.END_1", "BATTERY_STACK_NEGATIVE_CELL_SIDE"),
+            ("pack_shunt.END_2", "abstract:power-ground", "POWER_GROUND"),
+            ("pack_gauge.PFAIL", "pack_status_buffer.G1", "PACK_PFAIL_RAW"),
+            ("pack_status_buffer.D1", "pack_admission.PA16_A8", "PACK_PFAIL_N"),
+            ("pack_admission.PA23", "pack_status_buffer.G2", "PACK_SYS_INT_REQ"),
+            ("pack_status_buffer.D2", "s3.GPIO37", "SYS_INT_N"),
+            ("pack_gauge.TH3", "pack_gauge.GND", "PACK_TH3_UNUSED_LOW"),
+            ("pack_gauge.TH4", "pack_gauge.GND", "PACK_TH4_UNUSED_LOW"),
+        ):
+            self.assertIn(route, routes)
+
+        route_text = "\n".join(
+            f"{route['from']} {route['to']} {route['net']}"
+            for route in candidate["fixed_routes"]
+        )
+        self.assertNotIn("abstract:exact-value-hold-gate-pullup", route_text)
+        self.assertNotIn("abstract:pack-admission reset-safe open-drain IRQ circuit", route_text)
+
+        balance = self.database["devices"]["panasonic_erj_p08f49r9v"]["electrical_contract"]
+        self.assertGreater(
+            balance["rated_power_w"],
+            balance["max_2s_cell1_balance_dissipation_w_at_4_3v"],
+        )
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for label in (
+            "Panasonic ERJ-P08F49R9V<br/>49.9-Ohm 0.66-W bottom-cell balancing resistor",
+            "Panasonic ERJ-P08F49R9V<br/>49.9-Ohm 0.66-W top-cell balancing resistor",
+            "Diodes Incorporated 2N7002DW-7-F<br/>dual PFAIL level translator and passive-drain system IRQ",
+            "Yageo RC0402FR-0747KL<br/>47-kOhm admission-controller NRST pull-up resistor",
+        ):
+            self.assertIn(label, rendered)
 
     def test_principled_pinout_is_derived_from_current_leading_budget(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
@@ -322,6 +402,39 @@ class ArchitectureValidationTests(unittest.TestCase):
                     f'  {node_id}["{mpn}',
                     diagram,
                     f"{readme_name}: touch part {node_id}/{mpn} lacks its own box",
+                )
+            pack_support_nodes = {
+                "PACKINR": "ERJ-P08F10R0V",
+                "PACKINC": "C1005X7R1H104K050BB",
+                "PACKCPC": "GRM188R71E474KA12D",
+                "PACKAOC": "GRM188R71E474KA12D",
+                "PACKR3C": "GRM188R71E474KA12D",
+                "PACKR2C": "GRM188R71E474KA12D",
+                "PACKRB1": "ERJ-P08F49R9V",
+                "PACKRB4": "ERJ-P08F49R9V",
+                "PACKCF1": "C1005X7R1H104K050BB",
+                "PACKCF4": "C1005X7R1H104K050BB",
+                "PACKPCKR": "RC0402FR-071KL",
+                "PACKCGC": "C1005X7R1H104K050BB",
+                "PACKDGC": "C1005X7R1H104K050BB",
+                "PACKHOLDPU": "RC0402FR-0710KL",
+                "PACKRELDPD": "RC0402FR-0710KL",
+                "PACKALRTPU": "RC0402FR-0710KL",
+                "PACKSTAT": "2N7002DW-7-F",
+                "PACKPFAILPU": "RC0402FR-0710KL",
+                "PACKIRQPD": "RC0402FR-0710KL",
+                "PACKSCLPU": "RC0402FR-0710KL",
+                "PACKSDAPU": "RC0402FR-0710KL",
+                "PACKMCUBULK": "GRM188R60J106ME47D",
+                "PACKMCUHF": "C1005X7R1H104K050BB",
+                "PACKRSTPU": "RC0402FR-0747KL",
+                "PACKRSTC": "GRM155R71H103KA88D",
+            }
+            for node_id, mpn in pack_support_nodes.items():
+                self.assertIn(
+                    f'  {node_id}["{mpn}',
+                    diagram,
+                    f"{readme_name}: pack-support part {node_id}/{mpn} lacks its own box",
                 )
             self.assertIn("SN74LVC1G06DCKR", diagram, readme_name)
             self.assertIn("SN74LVC1G07DCKR", diagram, readme_name)

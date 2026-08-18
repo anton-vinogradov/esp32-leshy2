@@ -227,11 +227,11 @@ service/recovery paper circuit: separate data-only C5/RP USB ports now block
 VBUS and D-line backfeed, three keyed DBG10 and six controls are exact, and
 passive-drain reset sinks remove push-pull contention. I7 has **«Проведено
 ревью»**; I8 is active and the no-KiCad boundary continues.
-`FND-0109/BOM-0008` then generate the first complete I8 coverage view: 791
-machine placements / 185 used MPN lines plus explicit SMA, cable, M5,
-threshold, pack-support and antenna-kit gaps. This exposes a narrow MAX17320
-support-circuit paper residue, so that part of I3 is reopened without changing
-the accepted 2S product topology. I8 inventory coverage is reviewed;
+`FND-0109/BOM-0008` then generate the first complete I8 coverage view.
+`PWR-0022/DEC-0100/REV-0005BF` repair and re-review the exposed MAX17320/MSPM0
+support residue without changing the accepted 2S product topology. The current
+map has 816 placements / 187 used MPN lines plus five explicit SMA, cable, M5,
+threshold and antenna-kit gap families. I8 inventory coverage is reviewed;
 orderability, cost and alternate qualification remain active.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
@@ -318,6 +318,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0021`](PWR-0021-i3-consolidated-paper-closure.md) audits the complete
   I3 dependency, heat/fault ledger and remaining evidence, allowing I4 paper
   work without claiming prototype qualification;
+- [`PWR-0022`](PWR-0022-exact-max17320-2s-support-profile.md) repairs the exact
+  MAX17320 2S support, status translation, shunt force path and MSPM0 support;
+  **Проведено ревью paper electrical scope**, physical/HIL open;
 - [`USB-0001`](USB-0001-exact-product-usb-c-and-protection.md) closes the first
   I4 endpoint with exact JAE USB-C, four-line TI CC/USB2 protection, corrected
   220-pF CC shunts and complete real-contact routing while retaining HIL;

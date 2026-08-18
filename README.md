@@ -248,12 +248,37 @@ flowchart TD
   FUSE1["0451005.MRL<br/>slot-1 independent 5-A fast fuse"]
   NTC1["B57332V5103F360<br/>cell-1 temperature sensor"]
   PACKGAUGE["MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing"]
+  PACKINR["ERJ-P08F10R0V<br/>10-Ohm MAX17320 IN series resistor"]
+  PACKINC["C1005X7R1H104K050BB<br/>100-nF 50-V MAX17320 IN bypass capacitor"]
+  PACKCPC["GRM188R71E474KA12D<br/>0.47-uF 25-V MAX17320 CP-to-IN capacitor"]
+  PACKAOC["GRM188R71E474KA12D<br/>0.47-uF 25-V MAX17320 AOLDO bypass capacitor"]
+  PACKR3C["GRM188R71E474KA12D<br/>0.47-uF 25-V MAX17320 REG3 bypass capacitor"]
+  PACKR2C["GRM188R71E474KA12D<br/>0.47-uF 25-V MAX17320 REG2 bypass capacitor"]
+  PACKRB1["ERJ-P08F49R9V<br/>49.9-Ohm 0.66-W bottom-cell balancing resistor"]
+  PACKRB4["ERJ-P08F49R9V<br/>49.9-Ohm 0.66-W top-cell balancing resistor"]
+  PACKCF1["C1005X7R1H104K050BB<br/>100-nF 50-V bottom-cell sense filter capacitor"]
+  PACKCF4["C1005X7R1H104K050BB<br/>100-nF 50-V top-cell sense filter capacitor"]
+  PACKPCKR["RC0402FR-071KL<br/>1-kOhm protected-pack PCKP series resistor"]
   SHUNT["WSL25125L000FEA<br/>5-mOhm Kelvin current shunt"]
   PACKFET["CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair"]
+  PACKCGC["C1005X7R1H104K050BB<br/>100-nF charge-FET gate-to-source capacitor"]
+  PACKDGC["C1005X7R1H104K050BB<br/>100-nF discharge-FET gate-to-source capacitor"]
   PACKHOLD["2N7002DW-7-F<br/>reset-default ALRT hold and explicit release"]
+  PACKHOLDPU["RC0402FR-0710KL<br/>10-kOhm reset-default ALRT-hold pull-up resistor"]
+  PACKRELDPD["RC0402FR-0710KL<br/>10-kOhm hold-release fail-low resistor"]
+  PACKALRTPU["RC0402FR-0710KL<br/>10-kOhm REG3-referenced ALRT release pull-up resistor"]
+  PACKSTAT["2N7002DW-7-F<br/>dual PFAIL level translator and passive-drain system IRQ"]
+  PACKPFAILPU["RC0402FR-0710KL<br/>10-kOhm admission-referenced PFAIL_N pull-up resistor"]
+  PACKIRQPD["RC0402FR-0710KL<br/>10-kOhm shared-IRQ gate fail-low resistor"]
+  PACKSCLPU["RC0402FR-0710KL<br/>10-kOhm private gauge-clock pull-up resistor"]
+  PACKSDAPU["RC0402FR-0710KL<br/>10-kOhm private gauge-data pull-up resistor"]
   SUPPLYOR["BAV70LT1G<br/>AOLDO/fixture source isolation"]
   SYSDIODE["BAT54-7-F<br/>admitted-system source isolation and priority"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
+  PACKMCUBULK["GRM188R60J106ME47D<br/>10-uF admission-controller bulk decoupling capacitor"]
+  PACKMCUHF["C1005X7R1H104K050BB<br/>100-nF admission-controller bypass capacitor"]
+  PACKRSTPU["RC0402FR-0747KL<br/>47-kOhm admission-controller NRST pull-up resistor"]
+  PACKRSTC["GRM155R71H103KA88D<br/>10-nF admission-controller NRST capacitor"]
   DIAGTMR["TPUL2G223BQBR<br/>non-retriggerable pulse limiter and refractory lockout"]
   DIAGTR["RC0402FR-07169KL #DIAG-TIME<br/>169-kOhm 1% diagnostic-pulse timing resistor"]
   DIAGTC["GRM31C5C1H224JE02L #DIAG-TIME<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor"]
@@ -807,8 +832,11 @@ flowchart TD
   CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
   CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ HOLDER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
-  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
+  NTC1 ~~~ PACKGAUGE ~~~ PACKINR ~~~ PACKINC ~~~ PACKCPC ~~~ PACKAOC ~~~ PACKR3C ~~~ PACKR2C
+  PACKR2C ~~~ PACKRB1 ~~~ PACKRB4 ~~~ PACKCF1 ~~~ PACKCF4 ~~~ PACKPCKR ~~~ SHUNT ~~~ PACKFET ~~~ PACKCGC ~~~ PACKDGC
+  PACKDGC ~~~ PACKHOLD ~~~ PACKHOLDPU ~~~ PACKRELDPD ~~~ PACKALRTPU ~~~ PACKSTAT ~~~ PACKPFAILPU ~~~ PACKIRQPD ~~~ PACKSCLPU ~~~ PACKSDAPU
+  PACKSDAPU ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM ~~~ PACKMCUBULK ~~~ PACKMCUHF ~~~ PACKRSTPU ~~~ PACKRSTC
+  PACKRSTC ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
   DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
   STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONFUSE ~~~ AONRILIM ~~~ AONOVT ~~~ AONOVB ~~~ AONFIN ~~~ AONFOUT ~~~ AONPGPU ~~~ PORPU
   PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINFUSE ~~~ MAINRILM ~~~ MAINDVDT ~~~ MAINIT ~~~ MAINOVT ~~~ MAINOVB ~~~ MAINPGT ~~~ MAINPGB ~~~ MAINFOUT ~~~ MAINENPD ~~~ FAULTPU
@@ -923,13 +951,39 @@ flowchart TD
   NTC0 -.->|"insulated compliant mid-can contact"| CELL0
   NTC1 -.->|"insulated compliant mid-can contact"| CELL1
   CTSN -.->|"one indexed thermally worst-slot contact"| HOLDER
-  SHUNT -->|"CSP/CSN Kelvin evidence"| PACKGAUGE
+  FUSE1 -->|"fused stack positive"| PACKINR --> PACKGAUGE
+  PACKGAUGE --> PACKINC
+  PACKGAUGE -->|"CP to IN"| PACKCPC
+  PACKGAUGE -->|"AOLDO/REG3/REG2 local bypass"| PACKAOC
+  PACKGAUGE --> PACKR3C
+  PACKGAUGE --> PACKR2C
+  FUSE0 -->|"2S midpoint"| PACKRB1 --> PACKGAUGE
+  FUSE1 -->|"top of 2S stack"| PACKRB4 --> PACKGAUGE
+  PACKGAUGE -->|"CELL1 to GND"| PACKCF1
+  PACKGAUGE -->|"BATTS to shorted CELL3"| PACKCF4
+  SHUNT -->|"CSP/CSN Kelvin plus force path"| PACKGAUGE
+  PACKGAUGE -->|"PCKP through 1 kOhm"| PACKPCKR --> PACKFET
   PACKGAUGE -->|"CHG/DIS gates; no prequal"| PACKFET
+  PACKFET --> PACKCGC
+  PACKFET --> PACKDGC
   PACKFET <-->|"protected 2S power boundary"| CHARGER
+  PACKHOLDPU --> PACKHOLD
+  PACKRELDPD --> PACKHOLD
+  PACKALRTPU --> PACKGAUGE
   PACKHOLD -->|"ALRT low by default"| PACKGAUGE
   PACKADM -->|"explicit release"| PACKHOLD
+  PACKGAUGE -->|"push-pull PFAIL"| PACKSTAT -->|"safe active-low status"| PACKADM
+  PACKPFAILPU --> PACKSTAT
+  PACKADM -->|"high means assert"| PACKSTAT -->|"passive-drain SYS_INT_N"| S3
+  PACKIRQPD --> PACKSTAT
+  PACKSCLPU --> PACKGAUGE
+  PACKSDAPU --> PACKGAUGE
   PACKGAUGE -->|"AOLDO"| SUPPLYOR --> PACKADM
   SYSDIODE -->|"admitted 3V3"| PACKADM
+  PACKADM --> PACKMCUBULK
+  PACKADM --> PACKMCUHF
+  PACKADM -->|"NRST"| PACKRSTPU
+  PACKADM --> PACKRSTC
   PACKGAUGE <-->|"local I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + shared IRQ"| S3
   PACKADM -->|"PA22 rising edge"| DIAGTMR

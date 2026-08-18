@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I1, I2 and I4 through I7 paper scopes are reviewed; FND-0109 narrowly reopens MAX17320 support inside I3 without changing the accepted 2S topology, and I8 sourcing lifecycle cost and alternate qualification is active after reviewed inventory coverage |
+| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I1 through I7 paper scopes are reviewed; I8 sourcing, lifecycle, cost and alternate qualification is active after reviewed inventory coverage, while exact-lot and prototype HIL gates remain explicit |
 
 ## Exact-device provenance used by these drafts
 
@@ -73,6 +73,7 @@
 | `murata_grm155r71h472ka01d` | `Murata GRM155R71H472KA01D` | `verified_candidate` | `active` | [Murata GRM155R71H472KA01 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H472KA01D) | same primary source |
 | `murata_grm188r60j106me47d` | `Murata GRM188R60J106ME47D` | `verified_candidate` | `active` | [Murata GRM188R60J106ME47 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188R60J106ME47D) | same primary source |
 | `murata_grm188r71e224ka88d` | `Murata GRM188R71E224KA88D` | `verified_candidate` | `active` | [Murata GRM188R71E224KA88 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188R71E224KA88D) | same primary source |
+| `murata_grm188r71e474ka12d` | `Murata GRM188R71E474KA12D` | `verified_exact_max17320_bypass_capacitor` | `active_stocked_orderable` | [Murata GRM188R71E474KA12 exact product page current product data checked 2026-08-19](https://www.murata.com/products/productdetail?partno=GRM188R71E474KA12%23) | same primary source |
 | `murata_grm188z71a475me15d` | `Murata GRM188Z71A475ME15D` | `verified_exact_ir_receiver_filter_capacitor` | `active_stocked_orderable` | [GRM188Z71A475ME15 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188Z71A475ME15D) | same primary source |
 | `murata_grm21br60j226me39l` | `Murata GRM21BR60J226ME39L` | `verified_candidate` | `active` | [Murata GRM21BR60J226ME39 product data and current part list current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM21BR60J226ME39L) | same primary source |
 | `murata_grm21br71e225ke11l` | `Murata GRM21BR71E225KE11L` | `verified_candidate` | `active` | [Murata GRM21BR71E225KE11 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM21BR71E225KE11L) | same primary source |
@@ -102,6 +103,7 @@
 | `panasonic_erj_2rkf22r0x` | `Panasonic ERJ-2RKF22R0X` | `verified_candidate` | `active` | [Panasonic ERJ precision thick-film chip resistor datasheet current family datasheet checked 2026-08-18](https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263) | same primary source |
 | `panasonic_erj_2rkf27r0x` | `Panasonic ERJ-2RKF27R0X` | `verified_exact_rp2354_usb_series_resistor` | `active_orderable` | [ERJ-2RKF27R0X exact product page and ERJ precision thick-film datasheet current product data checked 2026-08-19](https://industrial.panasonic.com/ww/products/pt/general-purpose-chip-resistors/models/ERJ2RKF27R0X) | same primary source |
 | `panasonic_erj_p08f10r0v` | `Panasonic ERJ-P08F10R0V` | `verified_candidate` | `active` | [Panasonic ERJ-P08F10R0V high-power anti-surge resistor product page current product data checked 2026-08-18](https://na.industrial.panasonic.com/products/resistors/smd-chip-resistors/high-power-anti-surge-high-voltage/series/36033/model/39214) | same primary source |
+| `panasonic_erj_p08f49r9v` | `Panasonic ERJ-P08F49R9V` | `verified_exact_max17320_2s_balance_resistor` | `active_orderable` | [Panasonic ERJ-P08F49R9V exact product page current product data checked 2026-08-19](https://industrial.panasonic.com/ww/products/pt/small-and-high-power-chip-resistors/models/ERJP08F49R9V) | same primary source |
 | `pui_as02404po` | `PUI Audio AS02404PO` | `verified_candidate` | `active_orderable` | [AS02404PO Speaker datasheet 2024 current datasheet checked 2026-08-18](https://api.puiaudio.com/filename/AS02404PO.pdf) | same primary source |
 | `qdtech_hmx035ctft_001` | `HMX035CTFT-001 (QDtech schematic assembly marking)` | `verified_candidate` | `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified` | [QDtech ES3C35P ESP32-S3 schematic official published schematic](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf) | same primary source |
 | `rp2354a_a4` | `RP2354A A4 (exact order code required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354A uses the same A-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
@@ -543,7 +545,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
 | `GPIO35` | 28 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd_host_buffer.1A`, `sd_host_sck_pulldown.END_1`, `display_connector.PIN_11` | — |
 | `GPIO36` | 29 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd_host_buffer.2A`, `sd_host_d0_pullup.END_1`, `display_connector.PIN_13` | — |
-| `GPIO37` | 30 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `abstract:pack-admission reset-safe open-drain IRQ circuit` | — |
+| `GPIO37` | 30 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `pack_status_buffer.D2` | — |
 | `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `display_connector.PIN_9`, `lcd_host_cs_pullup.END_1` | — |
 | `GPIO39` | 32 | `ENCODER_A` | `i` | `PCNT0` | `encoder.A`, `encoder_a_pullup.END_1` | — |
 | `GPIO40` | 33 | `LCD_BL_PWM` | `o` | `LEDC` | `backlight_gate_series.END_1` | — |
@@ -653,13 +655,13 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO6`, `GPIO7`, `GPIO11`. Free: none.
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
 | `PA0` | 4 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
-| `PA2` | 8 | `PACK_GAUGE_I2C_SCL` | `io` | `BITBANG_I2C` | `pack_gauge.SCL_OD` | — |
-| `PA4` | 9 | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | `pack_gauge.SDA_DQ` | — |
-| `PA6` | 10 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `pack_hold.G2` | — |
+| `PA2` | 8 | `PACK_GAUGE_I2C_SCL` | `io` | `BITBANG_I2C` | `pack_gauge.SCL_OD`, `pack_gauge_scl_pullup.END_2` | — |
+| `PA4` | 9 | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | `pack_gauge.SDA_DQ`, `pack_gauge_sda_pullup.END_2` | — |
+| `PA6` | 10 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `pack_hold.G2`, `pack_hold_release_pulldown.END_1` | — |
 | `PA11` | 11 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
 | `PA17` | 13 | `PACK_SERVICE_UART_TX` | `o` | `UART0` | `abstract:pack service fixture` | — |
-| `PA23` | 18 | `PACK_SYS_INT_REQ_N` | `o` | `GPIO` | `abstract:pack-admission reset-safe open-drain IRQ circuit` | — |
-| `PA16_A8` | 12 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_gauge.PFAIL` | — |
+| `PA23` | 18 | `PACK_SYS_INT_REQ` | `o` | `GPIO` | `pack_status_buffer.G2`, `pack_irq_gate_pulldown.END_1` | — |
+| `PA16_A8` | 12 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_status_buffer.D1`, `pack_pfail_pullup.END_2` | — |
 | `PA18_A7` | 14 | `PACK_SERVICE_UART_RX` | `i` | `UART0` | `abstract:pack service fixture` | — |
 | `PA22_A4` | 17 | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | `pack_diag_timer.CH1_T`, `pack_diag_trigger_pulldown.END_1` | — |
 | `PA25_A2` | 20 | `PACK_CELL0_ADC` | `i` | `ADC` | `pack_mid_adc_top1.END_2`, `pack_mid_adc_bottom.END_1`, `pack_mid_adc_filter.END_1` | — |
@@ -1035,11 +1037,34 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `PD_LOCAL_I2C_SCL` | `pd_controller.I2Cc_SCL` | `pd_config_eeprom.SCL` | controller loads patch/config autonomously before S3 availability is assumed |
 | `PD_LOCAL_I2C_SDA` | `pd_controller.I2Cc_SDA` | `nvdc_charger.SDA` | charger is controlled through the officially supported TPS25751D local-controller topology |
 | `PD_LOCAL_I2C_SCL` | `pd_controller.I2Cc_SCL` | `nvdc_charger.SCL` | charger transactions never occupy an RF, display or storage bus |
-| `PACK_AOLDO` | `pack_gauge.AOLDO` | `pack_supply_or.A1` | AOLDO supplies only measured low-clock admission below the MAX17320 2-mA source budget; BAV70LT1G blocks fixture/system backfeed |
+| `PACK_AOLDO` | `pack_gauge.AOLDO` | `pack_aoldo_cap.END_1` | one exact 0.47-uF 25-V X7R part exceeds the MAX17320 10-V AOLDO bypass requirement and is placed at pin 12 |
+| `PACK_LOCAL_GND` | `pack_aoldo_cap.END_2` | `pack_gauge.GND` | AOLDO bypass returns directly to the gauge ground rather than through the CSP Kelvin trace |
+| `PACK_REG3_3V4` | `pack_gauge.REG3` | `pack_reg3_cap.END_1` | one exact 0.47-uF 25-V X7R part satisfies the required REG3 bypass at pin 13 |
+| `PACK_LOCAL_GND` | `pack_reg3_cap.END_2` | `pack_gauge.GND` | REG3 bypass has a short local return |
+| `PACK_REG2_1V8` | `pack_gauge.REG2` | `pack_reg2_cap.END_1` | one exact 0.47-uF 25-V X7R part satisfies the required REG2 bypass at pin 17 |
+| `PACK_LOCAL_GND` | `pack_reg2_cap.END_2` | `pack_gauge.GND` | REG2 bypass has a short local return |
+| `PACK_AOLDO` | `pack_gauge.AOLDO` | `pack_supply_or.A1` | AOLDO is configured for 3.4 V and supplies only measured low-clock admission below the MAX17320 2-mA source budget; BAV70LT1G blocks fixture/system backfeed |
 | `PACK_FIXTURE_3V3` | `abstract:isolated-pack-fixture-3v3` | `pack_supply_or.A2` | fixture supply is isolated from USB/system power and is used for blank-device programming and recovery |
 | `PACK_ADMISSION_VDD` | `pack_supply_or.K_COMMON` | `pack_admission.VDD` | common cathode passively ORs AOLDO and fixture sources without firmware control |
 | `PACK_SYSTEM_3V3` | `abstract:admitted-system-3v3` | `pack_system_diode.A` | system source exists only after complete pair admission and uses the lower-drop branch |
 | `PACK_ADMISSION_VDD` | `pack_system_diode.K` | `pack_admission.VDD` | BAT54-7-F blocks admission VDD from back-powering the admitted system rail |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_bulk_cap.END_1` | exact 10-uF low-ESR ceramic implements the MSPM0C1104 recommended local bulk decoupling after source isolation |
+| `PACK_LOCAL_GND` | `pack_admission_bulk_cap.END_2` | `pack_gauge.GND` | bulk return is within millimeters of the admission-controller supply pair |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_bypass.END_1` | exact 100-nF ceramic implements the MSPM0C1104 high-frequency bypass recommendation |
+| `PACK_LOCAL_GND` | `pack_admission_bypass.END_2` | `pack_gauge.GND` | high-frequency bypass has a separate short return |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_reset_pullup.END_1` | exact 47-kOhm external pull-up follows the MSPM0C1104 PA1/NRST recommendation and remains valid on every admitted or fixture supply source |
+| `PACK_ADMISSION_NRST_N` | `pack_admission_reset_pullup.END_2` | `pack_admission.PA1_NRST` | NRST defaults deasserted without consuming PA1 as runtime GPIO |
+| `PACK_ADMISSION_NRST_N` | `pack_admission.PA1_NRST` | `pack_admission_reset_cap.END_1` | exact 10-nF reset capacitor implements the TI typical-application profile |
+| `PACK_LOCAL_GND` | `pack_admission_reset_cap.END_2` | `pack_gauge.GND` | reset capacitor returns locally and remains accessible to the isolated service fixture |
+| `PACK_ADMISSION_NRST_N` | `pack_admission.PA1_NRST` | `abstract:TP_PACK_NRST_N` | permanent isolated fixture access can pull reset low without fighting a push-pull source |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_gauge_scl_pullup.END_1` | the private gauge clock pull-up follows the live admission domain rather than REG3 or the off system domain |
+| `PACK_GAUGE_I2C_SCL` | `pack_gauge_scl_pullup.END_2` | `pack_gauge.SCL_OD` | exact 10-kOhm pull-up overcomes the bounded disconnect-sense pulldown and supports the intentionally low-clock private bus |
+| `PACK_GAUGE_I2C_SCL` | `pack_admission.PA2` | `pack_gauge.SCL_OD` | dedicated bit-banged clock has no other client and remains below the measured pull-up rise-time limit |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_gauge_sda_pullup.END_1` | the private data pull-up remains inside both the MAX17320 and MSPM0 I/O voltage windows |
+| `PACK_GAUGE_I2C_SDA` | `pack_gauge_sda_pullup.END_2` | `pack_gauge.SDA_DQ` | exact 10-kOhm pull-up completes the MAX17320 open-drain data path |
+| `PACK_GAUGE_I2C_SDA` | `pack_admission.PA4` | `pack_gauge.SDA_DQ` | dedicated bit-banged data path reads both MAX17320 address spaces before hold release |
+| `SYS_I2C_SDA` | `pack_admission.PA0` | `s3.GPIO1` | PA0 is the actual 5-V-tolerant open-drain MSPM0 contact; it cannot source the host bus while main power is absent |
+| `SYS_I2C_SCL` | `pack_admission.PA11` | `s3.GPIO2` | PA11 is input-only in the pack I2C-target role and never drives the host clock high |
 | `PACK_ADMISSION_VDD` | `pack_supply_or.K_COMMON` | `pack_diag_timer.VCC` | the hardware pulse limiter is alive whenever the admission MCU can request a diagnostic; its ready-state current remains inside the AOLDO budget |
 | `PACK_DIAG_TIMER_VCC` | `pack_diag_timer.VCC` | `pack_diag_timer_bypass.END_1` | one exact 100-nF local bypass capacitor supports one-shot switching without coupling the diagnostic edge into the admission ADC reference |
 | `PACK_LOCAL_GND` | `pack_diag_timer_bypass.END_2` | `pack_gauge.GND` | timer bypass return stays local to the admission controller and gauge |
@@ -1068,20 +1093,60 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `PACK_LOCAL_GND` | `pack_diag_timer.CH2_C` | `pack_gauge.GND` | the channel-2 timing capacitor has an explicit local return |
 | `PACK_DIAG_CH2_Q_NC` | `pack_diag_timer.CH2_Q` | `abstract:no-connect` | unused push-pull active-high channel-2 output is left open as required |
 | `PACK_LOCAL_GND` | `pack_admission.VSS` | `pack_gauge.GND` | local controller, gauge and fixture share one bounded pack-side reference; USB/system isolation and touch-safe access remain exact circuit gates |
-| `PACK_HOLD_PULLUP_SOURCE` | `pack_gauge.AOLDO` | `abstract:exact-value-hold-gate-pullup` | exact-value resistor pulls Q1 gate high without exceeding the AOLDO budget |
-| `PACK_HOLD_GATE` | `abstract:exact-value-hold-gate-pullup` | `pack_hold.G1` | reset or unpowered admission MCU turns Q1 on and asserts the hold |
+| `PACK_HOLD_PULLUP_SOURCE` | `pack_gauge.AOLDO` | `pack_hold_pullup.END_1` | exact 10-kOhm pull-up makes the ALRT override hold independent of admission-controller reset |
+| `PACK_HOLD_GATE` | `pack_hold_pullup.END_2` | `pack_hold.G1` | reset or unpowered admission MCU turns Q1 on and asserts the hold |
 | `PACK_FET_OVERRIDE_N` | `pack_hold.D1` | `pack_gauge.ALRT` | Q1 asserts ALRT low before MCU code; release follows protected gauge image/readback and complete pair admission only |
 | `PACK_LOCAL_GND` | `pack_hold.S1` | `pack_gauge.GND` | Q1 has a local pack-side return |
 | `PACK_HOLD_GATE` | `pack_hold.D2` | `pack_hold.G1` | Q2 can pull the Q1 gate low only after PA6 explicitly requests release |
-| `PACK_LOCAL_GND` | `pack_hold.S2` | `pack_gauge.GND` | Q2 has a local pack-side return; its gate has an exact-value reset pulldown still to be frozen |
-| `SYS_INT_N` | `abstract:pack-admission reset-safe open-drain IRQ circuit` | `s3.GPIO37` | reset, unpowered admission MCU and push-pull faults cannot drive the shared IRQ high or back-power the system bus |
-| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN; exact 0.1-uF gate-source capacitor remains a schematic value |
-| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMST FET2 source is the pack side required by MAX17320 DIS referenced to PCKP |
+| `PACK_LOCAL_GND` | `pack_hold.S2` | `pack_gauge.GND` | Q2 has a local pack-side return |
+| `PACK_FET_HOLD_RELEASE` | `pack_admission.PA6` | `pack_hold.G2` | PA6 may energize release Q2 only after the complete protected image, cell pair and diagnostic admission checks pass |
+| `PACK_FET_HOLD_RELEASE` | `pack_admission.PA6` | `pack_hold_release_pulldown.END_1` | PA6 and Q2 gate share one exact reset-default node |
+| `PACK_LOCAL_GND` | `pack_hold_release_pulldown.END_2` | `pack_gauge.GND` | 10-kOhm gate pull-down prevents a reset, erased image or fixture transition from releasing the hold |
+| `PACK_REG3_3V4` | `pack_gauge.REG3` | `pack_alrt_pullup.END_1` | REG3 provides the documented local logic level for the dual-use ALRT input/output pin |
+| `PACK_FET_OVERRIDE_N` | `pack_alrt_pullup.END_2` | `pack_gauge.ALRT` | exact 10-kOhm pull-up produces a deterministic release level while Q1 can still sink only about 0.34 mA |
+| `PACK_PFAIL_RAW` | `pack_gauge.PFAIL` | `pack_status_buffer.G1` | push-pull REG3-referenced permanent-failure indication drives only a MOSFET gate and never a lower-voltage standard MCU input directly |
+| `PACK_LOCAL_GND` | `pack_status_buffer.S1` | `pack_gauge.GND` | PFAIL translator Q1 uses the admission reference |
+| `PACK_PFAIL_N` | `pack_status_buffer.D1` | `pack_admission.PA16_A8` | Q1 inverts permanent failure into an admission-VDD-referenced active-low MCU input |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_pfail_pullup.END_1` | status pull-up cannot exceed the standard PA16 input supply |
+| `PACK_PFAIL_N` | `pack_pfail_pullup.END_2` | `pack_status_buffer.D1` | exact 10-kOhm pull-up completes the safe PFAIL level translator |
+| `PACK_SYS_INT_REQ` | `pack_admission.PA23` | `pack_status_buffer.G2` | firmware high means assert; the system-facing node remains a passive drain |
+| `PACK_SYS_INT_REQ` | `pack_admission.PA23` | `pack_irq_gate_pulldown.END_1` | exact 10-kOhm gate pull-down prevents spurious shared-IRQ assertion through reset |
+| `PACK_LOCAL_GND` | `pack_irq_gate_pulldown.END_2` | `pack_gauge.GND` | IRQ request defaults inactive even when the main system rail is absent |
+| `PACK_LOCAL_GND` | `pack_status_buffer.S2` | `pack_gauge.GND` | IRQ translator Q2 has a passive local source return |
+| `SYS_INT_N` | `pack_status_buffer.D2` | `s3.GPIO37` | exact 2N7002DW passive drain cannot drive the shared host interrupt high or back-power an off main domain |
+| `BATTERY_STACK_POSITIVE` | `abstract:qualified-2s-positive` | `pack_in_res.END_1` | MAX17320 IN begins at the fused top of the accepted 2S stack |
+| `PACK_GAUGE_IN` | `pack_in_res.END_2` | `pack_gauge.IN` | exact 10-Ohm 0.66-W resistor implements the Rev.12 IN requirement while reusing an active BOM line |
+| `PACK_GAUGE_IN` | `pack_gauge.IN` | `pack_in_bypass.END_1` | exact 100-nF 50-V X7R bypass exceeds the required 25-V rating |
+| `PACK_LOCAL_GND` | `pack_in_bypass.END_2` | `pack_gauge.GND` | IN bypass closes locally at the gauge |
+| `PACK_CHARGE_PUMP` | `pack_gauge.CP` | `pack_cp_cap.END_1` | exact 0.47-uF 25-V X7R implements the Rev.12 charge-pump bypass |
+| `PACK_GAUGE_IN` | `pack_cp_cap.END_2` | `pack_gauge.IN` | CP bypass returns to IN, not ground, exactly as required |
+| `PACK_CHG_GATE` | `pack_gauge.CHG` | `pack_power_fet.G1` | CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN |
+| `PACK_CHG_GATE` | `pack_power_fet.G1` | `pack_chg_gate_cap.END_1` | exact 100-nF gate capacitor is placed at charge-FET gate |
+| `BATTERY_STACK_POSITIVE` | `pack_chg_gate_cap.END_2` | `pack_power_fet.S1` | charge gate capacitor returns to its battery-side source as required |
+| `PACK_DIS_GATE` | `pack_gauge.DIS` | `pack_power_fet.G2` | CSD87313DMST FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP |
+| `PACK_DIS_GATE` | `pack_power_fet.G2` | `pack_dis_gate_cap.END_1` | exact 100-nF gate capacitor is placed at discharge-FET gate |
+| `PROTECTED_PACK_POSITIVE` | `pack_dis_gate_cap.END_2` | `pack_power_fet.S2` | discharge gate capacitor returns to its pack-side source |
+| `PACK_PCKP_SENSE` | `pack_gauge.PCKP` | `pack_pckp_res.END_1` | the exact Rev.12 pack-positive sense path begins at pin 6 |
+| `PROTECTED_PACK_POSITIVE` | `pack_pckp_res.END_2` | `pack_power_fet.S2` | exact 1-kOhm series resistance connects PCKP to the protected pack terminal |
 | `PACK_ZVC_UNUSED` | `pack_gauge.ZVC` | `abstract:no-connect` | DEC-0067 forbids in-device zero-volt recovery; the datasheet requires ZVC open when unused |
 | `BATTERY_STACK_POSITIVE` | `abstract:qualified-2s-positive` | `pack_power_fet.S1` | battery-side source enters a common-drain back-to-back pair; zero-volt and prequal recovery remain disabled |
 | `PROTECTED_PACK_POSITIVE` | `pack_power_fet.S2` | `nvdc_charger.BAT` | pack-side source reaches the charger only after complete admission and MAX17320 protection permission |
 | `PACK_SHUNT_CSP` | `pack_gauge.CSP` | `pack_shunt.END_1` | Kelvin pickup follows the ADI Figure-24 current-sense orientation |
 | `PACK_SHUNT_CSN` | `pack_shunt.END_2` | `pack_gauge.CSN` | 5-mOhm shunt yields the accepted measurement range; force/kelvin copper geometry remains an I4 gate |
+| `BATTERY_STACK_NEGATIVE_CELL_SIDE` | `pack_holder.SLOT0_NEG` | `pack_shunt.END_1` | the lower-cell negative force path reaches the cell-side shunt terminal; CSP remains a separate Kelvin pickup |
+| `POWER_GROUND` | `pack_shunt.END_2` | `abstract:power-ground` | the pack/system negative force path exits only from the load-side shunt terminal; CSN remains a separate Kelvin pickup |
+| `PACK_2S_MIDPOINT` | `abstract:protected-2s-midpoint` | `pack_cell1_rbal.END_1` | the physical 2S midpoint feeds the mandatory CELL1 balancing resistor |
+| `PACK_CELL1_SENSE` | `pack_cell1_rbal.END_2` | `pack_gauge.CELL1` | 49.9 Ohm at the 4.3-V screen corner limits balance current to about 73 mA and dissipates about 0.267 W below the 0.66-W rating before derating |
+| `PACK_CELL1_SENSE` | `pack_gauge.CELL1` | `pack_gauge.CELL2` | Rev.12 Figure 24 replaces the CELL1-CELL2 capacitor with a direct short for 2S |
+| `PACK_CELL1_SENSE` | `pack_gauge.CELL2` | `pack_gauge.CELL3` | Rev.12 Figure 24 replaces the CELL2-CELL3 capacitor with a direct short for 2S |
+| `PACK_CELL1_SENSE` | `pack_gauge.CELL1` | `pack_cell1_filter_cap.END_1` | exact 100-nF 50-V filter implements the retained bottom-cell capacitor in Figure 24 |
+| `PACK_LOCAL_GND` | `pack_cell1_filter_cap.END_2` | `pack_gauge.GND` | bottom-cell sense filter returns to the cell-side gauge reference |
+| `BATTERY_STACK_POSITIVE` | `abstract:qualified-2s-positive` | `pack_batts_rbal.END_1` | the fused top of stack feeds the mandatory BATTS balancing resistor |
+| `PACK_BATTS_SENSE` | `pack_batts_rbal.END_2` | `pack_gauge.BATTS` | exact 49.9-Ohm 0.66-W resistor provides wide thermal margin for the top-cell balancing path |
+| `PACK_BATTS_SENSE` | `pack_gauge.BATTS` | `pack_batts_filter_cap.END_1` | exact 100-nF 50-V filter implements the retained BATTS-to-CELL3 capacitor in Figure 24 |
+| `PACK_CELL1_SENSE` | `pack_batts_filter_cap.END_2` | `pack_gauge.CELL3` | top-cell filter closes at the shorted CELL3/CELL2/CELL1 midpoint node |
+| `PACK_TH3_UNUSED_LOW` | `pack_gauge.TH3` | `pack_gauge.GND` | unused TH3 is tied to GND, one of the two explicit Rev.12 dispositions |
+| `PACK_TH4_UNUSED_LOW` | `pack_gauge.TH4` | `pack_gauge.GND` | unused TH4 is tied to GND, avoiding the obsolete REG3 connection forbidden by later datasheet revisions |
 | `PACK_CELL0_TEMP` | `pack_gauge.TH1` | `pack_ntc0.END_1` | one exact 10-kOhm NTC uses a dedicated insulated compliant contact through the open holder window to the middle third of cell 0; compression and response remain I8/HIL gates |
 | `PACK_LOCAL_GND` | `pack_ntc0.END_2` | `pack_gauge.GND` | TH1 uses the MAX17320 internal pullup and protected 10-kOhm mode |
 | `PACK_CELL1_TEMP` | `pack_gauge.TH2` | `pack_ntc1.END_1` | one exact 10-kOhm NTC uses a dedicated insulated compliant contact through the open holder window to the middle third of cell 1; compression and response remain I8/HIL gates |
@@ -3180,6 +3245,20 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `pack_cell0` lifecycle: `current_catalog`.
 - `pack_cell1` uses `XTAR 18650 4000mAh` as `selected_qualification_target`, not an accepted production choice.
 - `pack_cell1` lifecycle: `current_catalog`.
+- `pack_cp_cap` uses `Murata GRM188R71E474KA12D` as `verified_exact_max17320_bypass_capacitor`, not an accepted production choice.
+- `pack_cp_cap` lifecycle: `active_stocked_orderable`.
+- `pack_pckp_res` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `pack_pckp_res` lifecycle: `active_orderable`.
+- `pack_aoldo_cap` uses `Murata GRM188R71E474KA12D` as `verified_exact_max17320_bypass_capacitor`, not an accepted production choice.
+- `pack_aoldo_cap` lifecycle: `active_stocked_orderable`.
+- `pack_reg3_cap` uses `Murata GRM188R71E474KA12D` as `verified_exact_max17320_bypass_capacitor`, not an accepted production choice.
+- `pack_reg3_cap` lifecycle: `active_stocked_orderable`.
+- `pack_reg2_cap` uses `Murata GRM188R71E474KA12D` as `verified_exact_max17320_bypass_capacitor`, not an accepted production choice.
+- `pack_reg2_cap` lifecycle: `active_stocked_orderable`.
+- `pack_cell1_rbal` uses `Panasonic ERJ-P08F49R9V` as `verified_exact_max17320_2s_balance_resistor`, not an accepted production choice.
+- `pack_cell1_rbal` lifecycle: `active_orderable`.
+- `pack_batts_rbal` uses `Panasonic ERJ-P08F49R9V` as `verified_exact_max17320_2s_balance_resistor`, not an accepted production choice.
+- `pack_batts_rbal` lifecycle: `active_orderable`.
 - `pack_diag_timer` lifecycle: `active_production`.
 - `pack_diag_lockout_cap` lifecycle: `active_production`.
 - `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.

@@ -45,5 +45,6 @@ explicit physical-gap register feed the generated manifest.
 - [`SVC-0001`](SVC-0001-three-domain-development-access.md) / [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md) — historical permanent-access topology review.
 - [`SVC-0002`](../architecture/SVC-0002-exact-three-domain-service-recovery-boundary.md) / [`REV-0005BE`](../reviews/REV-0005BE-i7-service-recovery-propagation.md) — exact USB/DBG10/BOOT/RESET and conflict-free hard-STOP reset implementation; **Проведено ревью paper electrical scope**, physical/HIL open.
 - [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) / [`FND-0109`](../findings/FND-0109-machine-map-was-not-a-complete-physical-bom.md) — machine-derived I8 coverage and explicit physical-gap register; **Проведено ревью inventory coverage**, qualification active.
+- [`PWR-0022`](../architecture/PWR-0022-exact-max17320-2s-support-profile.md) / [`DEC-0100`](../decisions/DEC-0100-exact-max17320-2s-support-closure.md) / [`REV-0005BF`](../reviews/REV-0005BF-max17320-support-repair-propagation.md) — exact MAX17320/MSPM0 support repair; **Проведено ревью paper electrical scope**, physical/HIL open.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

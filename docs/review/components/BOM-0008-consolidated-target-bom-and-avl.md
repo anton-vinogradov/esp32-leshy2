@@ -16,14 +16,14 @@ calibration или accessory item.
 
 ## Current measured coverage
 
-- 791 current placements;
-- 185 used exact-device/MPN lines;
-- 788 base-product placements;
+- 816 current placements;
+- 187 used exact-device/MPN lines;
+- 813 base-product placements;
 - 2 separately supplied regional cell-kit placements;
 - 1 optional U214 accessory placement;
-- 151/185 used lines already carry dated orderability evidence;
-- 34/185 require current source verification;
-- 185/185 still require machine-readable quantity-100 cost and
+- 153/187 used lines already carry dated orderability evidence;
+- 34/187 require current source verification;
+- 187/187 still require machine-readable quantity-100 cost and
   alternate/no-substitution disposition.
 
 The generated review intentionally uses vertical `<details>` cards rather than
@@ -32,9 +32,9 @@ future factory RFQ.
 
 ## Ordered closure
 
-1. Repair prerequisite electrical residues exposed by consolidation, starting
-   with MAX17320 support and direct ODIO pack interrupt.
-2. Convert physical connector/cable/antenna gaps into exact first-target or
+1. ~~Repair prerequisite MAX17320 electrical residues exposed by
+   consolidation.~~ **Проведено ревью** by `PWR-0022/DEC-0100/REV-0005BF`.
+2. Convert the five remaining connector/cable/calibration/antenna gap families into exact first-target or
    received-item gates without guessing unavailable contacts.
 3. Recheck the 34 used lines with no dated orderable source; replace a part
    automatically only when function, performance, safety, reliability,
@@ -48,4 +48,3 @@ future factory RFQ.
 No incomplete line is assigned a zero price. No broad family name is an AVL.
 No substitute may change a pin, rail, RF path, STOP behavior or product
 capability silently.
-

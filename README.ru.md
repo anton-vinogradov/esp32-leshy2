@@ -256,12 +256,37 @@ flowchart TD
   FUSE1["0451005.MRL<br/>независимый 5-А fast fuse слота 1"]
   NTC1["B57332V5103F360<br/>датчик температуры банки 1"]
   PACKGAUGE["MAX17320G20+T<br/>high-side защита 2S, gauging, температура и балансировка"]
+  PACKINR["ERJ-P08F10R0V<br/>10-Ом последовательный резистор IN MAX17320"]
+  PACKINC["C1005X7R1H104K050BB<br/>100-нФ 50-В bypass-конденсатор IN MAX17320"]
+  PACKCPC["GRM188R71E474KA12D<br/>0,47-мкФ 25-В конденсатор CP-to-IN MAX17320"]
+  PACKAOC["GRM188R71E474KA12D<br/>0,47-мкФ 25-В bypass-конденсатор AOLDO MAX17320"]
+  PACKR3C["GRM188R71E474KA12D<br/>0,47-мкФ 25-В bypass-конденсатор REG3 MAX17320"]
+  PACKR2C["GRM188R71E474KA12D<br/>0,47-мкФ 25-В bypass-конденсатор REG2 MAX17320"]
+  PACKRB1["ERJ-P08F49R9V<br/>49,9-Ом 0,66-Вт резистор балансировки нижней банки"]
+  PACKRB4["ERJ-P08F49R9V<br/>49,9-Ом 0,66-Вт резистор балансировки верхней банки"]
+  PACKCF1["C1005X7R1H104K050BB<br/>100-нФ 50-В фильтр sense нижней банки"]
+  PACKCF4["C1005X7R1H104K050BB<br/>100-нФ 50-В фильтр sense верхней банки"]
+  PACKPCKR["RC0402FR-071KL<br/>1-кОм последовательный резистор PCKP защищённого pack"]
   SHUNT["WSL25125L000FEA<br/>5-mOhm Kelvin current shunt"]
   PACKFET["CSD87313DMST<br/>полностью переключаемая common-drain CHG/DIS пара"]
+  PACKCGC["C1005X7R1H104K050BB<br/>100-нФ конденсатор gate-to-source ключа CHG"]
+  PACKDGC["C1005X7R1H104K050BB<br/>100-нФ конденсатор gate-to-source ключа DIS"]
   PACKHOLD["2N7002DW-7-F<br/>reset-default ALRT hold и явное снятие"]
+  PACKHOLDPU["RC0402FR-0710KL<br/>10-кОм reset-default pull-up удержания ALRT"]
+  PACKRELDPD["RC0402FR-0710KL<br/>10-кОм fail-low резистор release управления hold"]
+  PACKALRTPU["RC0402FR-0710KL<br/>10-кОм pull-up release ALRT к REG3"]
+  PACKSTAT["2N7002DW-7-F<br/>двойной транслятор PFAIL и passive-drain системный IRQ"]
+  PACKPFAILPU["RC0402FR-0710KL<br/>10-кОм pull-up PFAIL_N к питанию admission"]
+  PACKIRQPD["RC0402FR-0710KL<br/>10-кОм fail-low резистор затвора общего IRQ"]
+  PACKSCLPU["RC0402FR-0710KL<br/>10-кОм pull-up приватной тактовой линии gauge"]
+  PACKSDAPU["RC0402FR-0710KL<br/>10-кОм pull-up приватной линии данных gauge"]
   SUPPLYOR["BAV70LT1G<br/>изоляция источников AOLDO/fixture"]
   SYSDIODE["BAT54-7-F<br/>изоляция и приоритет admitted-system source"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed допуск пары, watchdog и service bridge"]
+  PACKMCUBULK["GRM188R60J106ME47D<br/>10-мкФ bulk-развязка admission-контроллера"]
+  PACKMCUHF["C1005X7R1H104K050BB<br/>100-нФ bypass admission-контроллера"]
+  PACKRSTPU["RC0402FR-0747KL<br/>47-кОм pull-up NRST admission-контроллера"]
+  PACKRSTC["GRM155R71H103KA88D<br/>10-нФ конденсатор NRST admission-контроллера"]
   DIAGTMR["TPUL2G223BQBR<br/>non-retriggerable ограничитель импульса и аппаратный cooldown"]
   DIAGTR["RC0402FR-07169KL #DIAG-TIME<br/>169-кОм 1% резистор времени диагностического импульса"]
   DIAGTC["GRM31C5C1H224JE02L #DIAG-TIME<br/>220-нФ 50-В C0G конденсатор времени диагностического импульса"]
@@ -815,8 +840,11 @@ flowchart TD
   CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
   CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ HOLDER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
-  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
+  NTC1 ~~~ PACKGAUGE ~~~ PACKINR ~~~ PACKINC ~~~ PACKCPC ~~~ PACKAOC ~~~ PACKR3C ~~~ PACKR2C
+  PACKR2C ~~~ PACKRB1 ~~~ PACKRB4 ~~~ PACKCF1 ~~~ PACKCF4 ~~~ PACKPCKR ~~~ SHUNT ~~~ PACKFET ~~~ PACKCGC ~~~ PACKDGC
+  PACKDGC ~~~ PACKHOLD ~~~ PACKHOLDPU ~~~ PACKRELDPD ~~~ PACKALRTPU ~~~ PACKSTAT ~~~ PACKPFAILPU ~~~ PACKIRQPD ~~~ PACKSCLPU ~~~ PACKSDAPU
+  PACKSDAPU ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM ~~~ PACKMCUBULK ~~~ PACKMCUHF ~~~ PACKRSTPU ~~~ PACKRSTC
+  PACKRSTC ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
   DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
   STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONFUSE ~~~ AONRILIM ~~~ AONOVT ~~~ AONOVB ~~~ AONFIN ~~~ AONFOUT ~~~ AONPGPU ~~~ PORPU
   PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINFUSE ~~~ MAINRILM ~~~ MAINDVDT ~~~ MAINIT ~~~ MAINOVT ~~~ MAINOVB ~~~ MAINPGT ~~~ MAINPGB ~~~ MAINFOUT ~~~ MAINENPD ~~~ FAULTPU
@@ -931,13 +959,39 @@ flowchart TD
   NTC0 -.->|"изолированный поджатый контакт с серединой банки"| CELL0
   NTC1 -.->|"изолированный поджатый контакт с серединой банки"| CELL1
   CTSN -.->|"одна индексированная позиция на худшем по нагреву слоте"| HOLDER
-  SHUNT -->|"Kelvin evidence CSP/CSN"| PACKGAUGE
+  FUSE1 -->|"fused положительный вывод stack"| PACKINR --> PACKGAUGE
+  PACKGAUGE --> PACKINC
+  PACKGAUGE -->|"CP к IN"| PACKCPC
+  PACKGAUGE -->|"локальная развязка AOLDO/REG3/REG2"| PACKAOC
+  PACKGAUGE --> PACKR3C
+  PACKGAUGE --> PACKR2C
+  FUSE0 -->|"середина 2S"| PACKRB1 --> PACKGAUGE
+  FUSE1 -->|"верх 2S stack"| PACKRB4 --> PACKGAUGE
+  PACKGAUGE -->|"CELL1 к GND"| PACKCF1
+  PACKGAUGE -->|"BATTS к замкнутому CELL3"| PACKCF4
+  SHUNT -->|"Kelvin CSP/CSN плюс силовой путь"| PACKGAUGE
+  PACKGAUGE -->|"PCKP через 1 кОм"| PACKPCKR --> PACKFET
   PACKGAUGE -->|"CHG/DIS gates; без prequal"| PACKFET
+  PACKFET --> PACKCGC
+  PACKFET --> PACKDGC
   PACKFET <-->|"защищённая силовая граница 2S"| CHARGER
+  PACKHOLDPU --> PACKHOLD
+  PACKRELDPD --> PACKHOLD
+  PACKALRTPU --> PACKGAUGE
   PACKHOLD -->|"ALRT low по умолчанию"| PACKGAUGE
   PACKADM -->|"явное снятие hold"| PACKHOLD
+  PACKGAUGE -->|"push-pull PFAIL"| PACKSTAT -->|"безопасный active-low status"| PACKADM
+  PACKPFAILPU --> PACKSTAT
+  PACKADM -->|"high означает assert"| PACKSTAT -->|"passive-drain SYS_INT_N"| S3
+  PACKIRQPD --> PACKSTAT
+  PACKSCLPU --> PACKGAUGE
+  PACKSDAPU --> PACKGAUGE
   PACKGAUGE -->|"AOLDO"| SUPPLYOR --> PACKADM
   SYSDIODE -->|"admitted 3V3"| PACKADM
+  PACKADM --> PACKMCUBULK
+  PACKADM --> PACKMCUHF
+  PACKADM -->|"NRST"| PACKRSTPU
+  PACKADM --> PACKRSTC
   PACKGAUGE <-->|"локальная I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + общий IRQ"| S3
   PACKADM -->|"фронт PA22"| DIAGTMR

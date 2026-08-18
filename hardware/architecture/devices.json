@@ -403,7 +403,7 @@
     },
     "panasonic_erj_p08f10r0v": {
       "mpn": "Panasonic ERJ-P08F10R0V",
-      "kind": "10ohm_1pct_1206_0_66w_anti_surge_backlight_resistor",
+      "kind": "10ohm_1pct_1206_0_66w_anti_surge_power_resistor",
       "qualification": "verified_candidate",
       "lifecycle": "active",
       "dimensions_mm": [3.2, 1.6, 0.65],
@@ -417,6 +417,36 @@
         "document": "ERJ-P08F10R0V active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-P08F10R0V/5722446",
         "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "panasonic_erj_p08f49r9v": {
+      "mpn": "Panasonic ERJ-P08F49R9V",
+      "kind": "49_9ohm_1pct_1206_0_66w_anti_surge_cell_balance_resistor",
+      "qualification": "verified_exact_max17320_2s_balance_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.2, 1.6, 0.7],
+      "source": {
+        "document": "Panasonic ERJ-P08F49R9V exact product page",
+        "version": "current product data checked 2026-08-19",
+        "url": "https://industrial.panasonic.com/ww/products/pt/small-and-high-power-chip-resistors/models/ERJP08F49R9V",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "ERJ-P08F49R9V active authorized-distributor order page",
+        "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-P08F49R9V/9813007",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "resistance_ohm": 49.9,
+        "tolerance_pct": 1,
+        "rated_power_w": 0.66,
+        "max_2s_cell1_balance_dissipation_w_at_4_3v": 0.267,
+        "margin_note": "rated power exceeds the MAX17320 CELL1 worst-screen continuous balance calculation before temperature derating; thermal HIL remains required"
       },
       "programmable": false,
       "contacts": {
@@ -1158,6 +1188,36 @@
       "contacts": {
         "END_1": {"physical": "termination 1", "role": "rf"},
         "END_2": {"physical": "termination 2", "role": "rf"}
+      }
+    },
+    "murata_grm188r71e474ka12d": {
+      "mpn": "Murata GRM188R71E474KA12D",
+      "kind": "0_47uf_10pct_25v_x7r_0603_power_bypass_capacitor",
+      "qualification": "verified_exact_max17320_bypass_capacitor",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [1.6, 0.8, 0.9],
+      "source": {
+        "document": "Murata GRM188R71E474KA12 exact product page",
+        "version": "current product data checked 2026-08-19",
+        "url": "https://www.murata.com/products/productdetail?partno=GRM188R71E474KA12%23",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "GRM188R71E474KA12D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM188R71E474KA12D/702832",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "capacitance_uf": 0.47,
+        "tolerance_percent": 10,
+        "rated_voltage_vdc": 25,
+        "dielectric": "X7R",
+        "reuse_note": "one exact 25-V line covers CP, AOLDO, REG3 and REG2; the regulator outputs only require 10 V"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "power"},
+        "END_2": {"physical": "termination 2", "role": "power"}
       }
     },
     "waveshare_29318_3_5_ct_lcd": {

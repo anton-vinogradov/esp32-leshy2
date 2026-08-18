@@ -485,11 +485,11 @@ startup/shutdown/brownout/multi-fault gates остаются обязатель�
 owner, шины или тракта; regression проверяет orientation и покрытие MPN
 текущего candidate.
 
-Текущая зрелость dependency chain: I1/I2/I4…I7 **reviewed в paper scope**.
-I8 inventory coverage проведён, а sourcing/lifecycle/cost/alternate work
-активен; `FND-0109` узко переоткрывает MAX17320 support внутри I3, потому что
-обязательные детали обвязки остались prose/abstract, а не физическими machine
-instances.
+Текущая зрелость dependency chain: I1…I7 **reviewed в paper scope**. I8
+inventory coverage проведён, а sourcing/lifecycle/cost/alternate work активен.
+`FND-0109/PWR-0022/DEC-0100/REV-0005BF` обнаруживают, исправляют и повторно
+проверяют MAX17320/MSPM0 support, который оставался prose/abstract; принятая
+2S topology не меняется.
 `FND-0105/EXP-0001/DEC-0098/REV-0005BD` закрывают независимые power/signal
 границы U214 и native Unit. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
 закрывают оставшуюся service/recovery схему: два board-off-isolated data-only
@@ -500,12 +500,13 @@ SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates
 и integrated mockup заблокированы до завершения I8/I9.
 
 `FND-0109/BOM-0008` теперь генерируют consolidated narrow-screen review и CSV:
-791 current placements сворачиваются в 185 used lines, у 151 есть датированное
+816 current placements сворачиваются в 187 used lines, у 153 есть датированное
 orderability evidence, у 34 его нет; ни одна строка пока не имеет
 machine-readable comparable cost или alternate/no-substitution disposition.
 Тот же аудит отдельно учитывает 9 SMA bodies, 5 RF cable assemblies, 2 M5
-connector bodies, 8 actual-TX threshold networks, MAX17320 support residue и
-12-item antenna-kit variant вместо выдачи этих абстракций за нулевую стоимость.
+connector bodies, 8 actual-TX threshold networks и 12-item antenna-kit variant
+вместо выдачи этих абстракций за нулевую стоимость. Бывший MAX17320 gap теперь
+представлен 25 exact placements.
 
 `FND-0072/IMP-0051` выявили, что target README снова начали пересказывать
 инженерную chronology. Владелец принял `DEC-0060`; `REV-0005N` провёл ревью

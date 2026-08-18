@@ -8,13 +8,13 @@
 
 ## Что уже посчитано
 
-- **791** machine-instantiated physical placements collapse to **185** used exact-device/MPN lines.
-- Current orderability evidence exists for **151/185** used lines; **34** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **0/185** lines.
-- Machine-readable alternate/no-substitution evidence exists for **0/185** lines.
+- **816** machine-instantiated physical placements collapse to **187** used exact-device/MPN lines.
+- Current orderability evidence exists for **153/187** used lines; **34** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **0/187** lines.
+- Machine-readable alternate/no-substitution evidence exists for **0/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 788 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 813 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -43,12 +43,6 @@ The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused c
 - Scope: `base_product`.
 - Role: separate divider and hysteresis population for eight actual-TX comparators.
 - Blocking evidence: first values and exact resistor placements must be machine-instantiated; production values remain measured calibration outputs.
-
-### `pack_hold_irq_and_gate_support` — 1 item(s)
-
-- Scope: `base_product`.
-- Role: MAX17320 hold pull/reset, CHG/DIS gate capacitors and reset-safe open-drain pack IRQ implementation.
-- Blocking evidence: previous I3 prose left physical parts abstract or only described as schematic values.
 
 ### `external_antenna_kit` — 12 item(s)
 
@@ -90,13 +84,13 @@ This is deliberately rendered as vertical cards so the document remains usable o
 
 </details>
 
-<details><summary><code>Diodes Incorporated 2N7002DW-7-F</code> — qty 3</summary>
+<details><summary><code>Diodes Incorporated 2N7002DW-7-F</code> — qty 4</summary>
 
 - Device id: `diodes_2n7002dw_7_f`
 - Scope: `base_product`
 - Lifecycle claim awaiting I8 recheck: `active`
 - Qualification: `verified_candidate`
-- Placements: `pack_hold`, `safe_reset_sink_a`, `safe_reset_sink_b`
+- Placements: `pack_hold`, `pack_status_buffer`, `safe_reset_sink_a`, `safe_reset_sink_b`
 
 </details>
 
