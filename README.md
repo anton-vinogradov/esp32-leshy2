@@ -76,6 +76,10 @@ privacy or the target owner's authorization.
 - The PD controller boots autonomously from a dedicated recoverable EEPROM.
   Factory pads can program a blank device; field updates verify an
   owner-signed image and retain a rollback region.
+- The 2S charger is physically strapped to an efficient `750 kHz` profile
+  with a `2.2 uH / 7 A` inductor. Reset restores a conservative `1 A` charge;
+  normal operation never exceeds `2 A`, first limits input current to the
+  actual 5/9/15-V USB contract and stops on direct battery-temperature faults.
 - The supervised 2S battery uses two individually replaceable qualified 18650
   cells; both are required for battery operation. Reverse insertion is
   mechanically blocked; hardware observes and admits the pair before it may
@@ -116,6 +120,37 @@ flowchart TD
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
   PDCFG["CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
   CHARGER["BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
+  CHL["MWSA0503S-2R2MT<br/>2.2-uH 7-A 750-kHz charger inductor"]
+  CVB0["GRM31CR71E106MA12L #VBUS0<br/>10-uF 25-V X7R charger VBUS capacitor #0"]
+  CVB1["GRM31CR71E106MA12L #VBUS1<br/>10-uF 25-V X7R charger VBUS capacitor #1"]
+  CVBHF["C1005X7R1H104K050BB #VBUS<br/>100-nF 50-V charger VBUS HF capacitor"]
+  CPM0["GRM31CR71E106MA12L #PMID0<br/>10-uF 25-V X7R charger PMID capacitor #0"]
+  CPM1["GRM31CR71E106MA12L #PMID1<br/>10-uF 25-V X7R charger PMID capacitor #1"]
+  CPM2["GRM31CR71E106MA12L #PMID2<br/>10-uF 25-V X7R charger PMID capacitor #2"]
+  CPMHF["C1005X7R1H104K050BB #PMID<br/>100-nF 50-V charger PMID HF capacitor"]
+  CSYS0["GRM31CR71E106MA12L #SYS0<br/>10-uF 25-V X7R charger SYS capacitor #0"]
+  CSYS1["GRM31CR71E106MA12L #SYS1<br/>10-uF 25-V X7R charger SYS capacitor #1"]
+  CSYS2["GRM31CR71E106MA12L #SYS2<br/>10-uF 25-V X7R charger SYS capacitor #2"]
+  CSYS3["GRM31CR71E106MA12L #SYS3<br/>10-uF 25-V X7R charger SYS capacitor #3"]
+  CSYS4["GRM31CR71E106MA12L #SYS4<br/>10-uF 25-V X7R charger SYS capacitor #4"]
+  CSYSHF["C1005X7R1H104K050BB #SYS<br/>100-nF 50-V charger SYS HF capacitor"]
+  CBAT0["GRM31CR71E106MA12L #BAT0<br/>10-uF 25-V X7R charger BAT capacitor #0"]
+  CBAT1["GRM31CR71E106MA12L #BAT1<br/>10-uF 25-V X7R charger BAT capacitor #1"]
+  CBT1["GRM155R71E473KA88D #BTST1<br/>47-nF 25-V charger bootstrap capacitor #1"]
+  CBT2["GRM155R71E473KA88D #BTST2<br/>47-nF 25-V charger bootstrap capacitor #2"]
+  CREGN["CGA5L1X7R1E475K160AC #REGN<br/>4.7-uF 25-V charger REGN capacitor"]
+  CSDRV["C0402C102K5RACTU<br/>1-nF 50-V no-ship-FET SDRV capacitor"]
+  CPROG["RC0402FR-078K2L<br/>8.2-kOhm 1% 2S/750-kHz PROG resistor"]
+  CBATP["RC0402FR-07100RL<br/>100-Ohm 1% BATP sense resistor"]
+  CTSU["RC0402FR-075K23L<br/>5.23-kOhm 1% charger TS upper resistor"]
+  CTSL["RC0402FR-0730K1L<br/>30.1-kOhm 1% charger TS lower resistor"]
+  CTSN["B57332V5103F360 #CHARGER<br/>independent 10-kOhm charger battery NTC"]
+  CILU["RC0402FR-0744K2L<br/>44.2-kOhm 1% hardware ILIM upper resistor"]
+  CILL["RC0402FR-07100KL<br/>100-kOhm 1% hardware ILIM lower resistor"]
+  CSCLPU["RC0402FR-0710KL #CHG-SCL<br/>10-kOhm charger SCL pull-up resistor"]
+  CSDAPU["RC0402FR-0710KL #CHG-SDA<br/>10-kOhm charger SDA pull-up resistor"]
+  CINTPU["RC0402FR-0710KL #CHG-INT<br/>10-kOhm charger INT pull-up resistor"]
+  CCEPU["RC0402FR-0710KL #CHG-CE<br/>10-kOhm reset-high charger CE pull-up resistor"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
   FUSE0["0451005.MRL<br/>slot-0 independent 5-A fast fuse"]
   NTC0["B57332V5103F360<br/>cell-0 temperature sensor"]
@@ -262,7 +297,10 @@ flowchart TD
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
-  CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
+  CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
+  CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
+  CTSN ~~~ CILU ~~~ CILL ~~~ CSCLPU ~~~ CSDAPU ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
   DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
@@ -287,6 +325,35 @@ flowchart TD
   PDCTRL <-->|"local I²C boot image"| PDCFG
   PDCTRL <-->|"protected VBUS + local I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL
+  CHARGER -->|"SW1/SW2"| CHL
+  CHARGER -->|"VBUS bulk/HF"| CVB0
+  CHARGER --> CVB1
+  CHARGER --> CVBHF
+  CHARGER -->|"PMID bulk/HF"| CPM0
+  CHARGER --> CPM1
+  CHARGER --> CPM2
+  CHARGER --> CPMHF
+  CHARGER -->|"SYS bulk/HF"| CSYS0
+  CHARGER --> CSYS1
+  CHARGER --> CSYS2
+  CHARGER --> CSYS3
+  CHARGER --> CSYS4
+  CHARGER --> CSYSHF
+  CHARGER -->|"BAT bulk"| CBAT0
+  CHARGER --> CBAT1
+  CHARGER -->|"BTST1/SW1"| CBT1
+  CHARGER -->|"BTST2/SW2"| CBT2
+  CHARGER -->|"REGN"| CREGN
+  CHARGER -->|"SDRV to ground"| CSDRV
+  CHARGER -->|"2S/750-kHz POR"| CPROG
+  PACKFET -->|"admitted BATP sense"| CBATP --> CHARGER
+  CHARGER -->|"direct non-ignored TS"| CTSU --> CTSN
+  CTSN --> CTSL
+  CHARGER -->|"2.71…3.29-A hardware ceiling"| CILU --> CILL
+  PDCTRL -->|"LDO_3V3 pull-ups"| CSCLPU --> CHARGER
+  PDCTRL --> CSDAPU --> CHARGER
+  PDCTRL --> CINTPU --> CHARGER
+  CHARGER -->|"REGN reset-high CE"| CCEPU --> CHARGER
   CELL0 --> FUSE0 --> PACKGAUGE
   NTC0 -->|"TH1"| PACKGAUGE
   CELL1 --> FUSE1 --> PACKGAUGE

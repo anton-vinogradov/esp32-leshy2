@@ -25,7 +25,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I0` | semantic owners, buses, controllers, exposed pads and budgets | wishlist, `DEM-0001`, `SRC-0002` | `G2F-3I/PIN-0003` reviewed working map; not atomic | all later changes regenerate one machine source without collision or hidden pin |
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
-| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend/surrounding circuit, rail tree, eFuse, converter passives and exact bounded diagnostic frontends reviewed** through `DEC-0074/PWR-0013`; charger passives, diagnostic thresholds/cooldown, hot calculation and HIL open | freeze remaining passives and complete loss/thermal/fault/source-transition budget |
+| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend, BQ25798 passive profile, rail tree, eFuse, converter passives and bounded diagnostic frontends reviewed** through `DEC-0075/PWR-0014`; TPS/EEPROM passives, mechanics, thresholds, hot calculation and HIL open | freeze remaining passives and complete loss/thermal/fault/source-transition budget |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | digital contacts largely exact; backlight/protection/UI endpoints open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
@@ -74,7 +74,11 @@ continues through `PWR-0008/DEC-0068/REV-0005Y`, which review the exact
 independent fixed rail tree and quiet-state switches; `DEC-0069/REV-0005Z`
 then make the externally accessible eFuse latch-off, and
 `PWR-0009/DEC-0070/REV-0005AA` qualify optional-rail PG with two exact
-`MMBT3904-7-F` stages instead of treating normal off as a fault. Next are exact
-charger passives, diagnostic thresholds/cooldown and the hot
-loss/thermal/fault tree. `PWR-0013/FND-0078` have already corrected PA24 to
-PA25/PA26 and frozen the exact load/divider components.
+`MMBT3904-7-F` stages instead of treating normal off as a fault.
+`PWR-0013/FND-0078` correct PA24 to PA25/PA26 and freeze the exact
+load/divider components. `PWR-0014/DEC-0075/REV-0005AF` then review the exact
+BQ25798 750-kHz/2.2-uH energy banks, TS/ILIM, reset defaults and all special
+pins. `FND-0079` corrects the product USB-C/USB2 endpoint back to dependent
+step I4. The next I3 paper dependency is exact TPS25751/CAT24C512 support
+passives and straps, followed by mechanical coupling, diagnostic
+thresholds/cooldown and the hot loss/thermal/fault tree.

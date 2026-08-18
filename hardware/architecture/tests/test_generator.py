@@ -389,6 +389,81 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO37"]["peers"])
         self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
 
+    def test_exact_bq25798_passive_profile_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0075", contract["charger_passive_decision"])
+        self.assertIn("2S at 750kHz", contract["charger_passive_profile"])
+        self.assertIn("Twelve independent", contract["charger_passive_profile"])
+        self.assertIn("44.2k/100k ILIM", contract["charger_passive_profile"])
+        self.assertIn("direct non-ignored charger TS", contract["charger_passive_profile"])
+        self.assertNotIn("exact product USB-C receptacle", contract["remaining_i3"])
+        self.assertIn("exact product USB-C receptacle", contract["deferred_i4"])
+
+        expected_instances = {
+            "charger_inductor": "sunlord_mwsa0503s_2r2mt",
+            "charger_vbus_cap0": "murata_grm31cr71e106ma12l",
+            "charger_vbus_cap1": "murata_grm31cr71e106ma12l",
+            "charger_vbus_hf_cap": "tdk_c1005x7r1h104k050bb",
+            "charger_pmid_cap0": "murata_grm31cr71e106ma12l",
+            "charger_pmid_cap1": "murata_grm31cr71e106ma12l",
+            "charger_pmid_cap2": "murata_grm31cr71e106ma12l",
+            "charger_pmid_hf_cap": "tdk_c1005x7r1h104k050bb",
+            "charger_sys_cap0": "murata_grm31cr71e106ma12l",
+            "charger_sys_cap1": "murata_grm31cr71e106ma12l",
+            "charger_sys_cap2": "murata_grm31cr71e106ma12l",
+            "charger_sys_cap3": "murata_grm31cr71e106ma12l",
+            "charger_sys_cap4": "murata_grm31cr71e106ma12l",
+            "charger_sys_hf_cap": "tdk_c1005x7r1h104k050bb",
+            "charger_bat_cap0": "murata_grm31cr71e106ma12l",
+            "charger_bat_cap1": "murata_grm31cr71e106ma12l",
+            "charger_btst1_cap": "murata_grm155r71e473ka88d",
+            "charger_btst2_cap": "murata_grm155r71e473ka88d",
+            "charger_regn_cap": "tdk_cga5l1x7r1e475k160ac",
+            "charger_sdrv_cap": "kemet_c0402c102k5ractu",
+            "charger_prog_res": "yageo_rc0402fr_078k2l",
+            "charger_batp_res": "yageo_rc0402fr_07100rl",
+            "charger_ts_top": "yageo_rc0402fr_075k23l",
+            "charger_ts_bottom": "yageo_rc0402fr_0730k1l",
+            "charger_ts_ntc": "tdk_b57332v5103f360",
+            "charger_ilim_top": "yageo_rc0402fr_0744k2l",
+            "charger_ilim_bottom": "yageo_rc0402fr_07100kl",
+            "charger_scl_pullup": "yageo_rc0402fr_0710kl",
+            "charger_sda_pullup": "yageo_rc0402fr_0710kl",
+            "charger_int_pullup": "yageo_rc0402fr_0710kl",
+            "charger_ce_pullup": "yageo_rc0402fr_0710kl",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("nvdc_charger.SW1", "charger_inductor.END_1", "CHARGER_SW1"),
+            ("charger_inductor.END_2", "nvdc_charger.SW2", "CHARGER_SW2"),
+            ("nvdc_charger.PROG", "charger_prog_res.END_1", "CHARGER_PROG_2S_750KHZ"),
+            ("pack_power_fet.S2", "charger_batp_res.END_1", "PROTECTED_PACK_POSITIVE"),
+            ("nvdc_charger.TS", "charger_ts_ntc.END_1", "CHARGER_TS"),
+            ("nvdc_charger.ILIM_HIZ", "charger_ilim_bottom.END_1", "CHARGER_ILIM_HIZ"),
+            ("pd_controller.LDO_3V3", "charger_scl_pullup.END_1", "PD_LOCAL_3V3"),
+            ("nvdc_charger.REGN", "charger_ce_pullup.END_1", "CHARGER_REGN"),
+            ("nvdc_charger.VBUS", "nvdc_charger.VAC1", "CHARGER_VBUS_SENSE"),
+            ("nvdc_charger.VBUS", "nvdc_charger.VAC2", "CHARGER_VBUS_SENSE"),
+            ("nvdc_charger.D_PLUS", "abstract:no-connect", "CHARGER_DP_NC"),
+            ("nvdc_charger.D_MINUS", "abstract:no-connect", "CHARGER_DM_NC"),
+        ):
+            self.assertIn(route, routes)
+
+        pd_gpio1 = next(
+            row
+            for row in candidate["allocations"]
+            if row["instance"] == "pd_controller" and row["contact"] == "GPIO1"
+        )
+        self.assertEqual("od", pd_gpio1["direction"])
+        self.assertIn("Hi-Z reset", pd_gpio1["reset_proof"])
+
     def test_exact_fixed_downstream_rail_tree_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["power_contract"]

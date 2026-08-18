@@ -330,8 +330,13 @@ PA24/PA25 map to PA25/PA26 because PA24 supports no injection current. Exact
 2x220k/169k and 5x220k/169k dividers plus two 10-nF filters remain below the
 1.4-V internal reference at defined fault-screen corners; all 19 physical
 instances appear separately in the machine source and vertical diagrams.
-Charger passives, diagnostic thresholds/cooldown,
-effective-capacitance/load-step, hot-loss/layout and the
+`PWR-0014/DEC-0075/REV-0005AF` now close the BQ25798 physical profile: exact
+2S/750-kHz PROG strap, 2.2-uH/7-A inductor, 19 capacitor instances, BATP,
+direct non-ignored TS, hardware ILIM, I2C/INT pulls, reset-high open-drain CE
+and Rev-C special-pin terminations. `FND-0079` moves product USB-C/USB2
+protection back to dependent I4 and exposes TPS25751/CAT24C512 support
+passives as the next I3 paper item. Diagnostic thresholds/cooldown,
+effective-capacitance/load-step, NTC mechanics, hot-loss/layout and the
 listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays

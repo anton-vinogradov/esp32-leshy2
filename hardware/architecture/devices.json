@@ -1432,6 +1432,236 @@
         "MODE_SCONF": {"physical": "8", "role": "strap"}
       }
     },
+    "sunlord_mwsa0503s_2r2mt": {
+      "mpn": "Sunlord MWSA0503S-2R2MT",
+      "kind": "2_2uh_7a_molded_charger_power_inductor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.4, 5.2, 3.0],
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "MWSA0503S-2R2MT DigiKey active stocked exact order code",
+        "url": "https://www.digikey.com/en/products/detail/shenzhen-sunlord-electronics-co-ltd/MWSA0503S-2R2MT/14120103",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "power"},
+        "END_2": {"physical": "termination 2", "role": "power"}
+      }
+    },
+    "murata_grm31cr71e106ma12l": {
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "kind": "10uf_20pct_25v_x7r_1206_charger_bulk_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.2, 1.6, 1.6],
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM31CR71E106MA12L active authorized-distributor order code",
+        "url": "https://www.mouser.com/ProductDetail/Murata-Electronics/GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm155r71e473ka88d": {
+      "mpn": "Murata GRM155R71E473KA88D",
+      "kind": "47nf_10pct_25v_x7r_0402_charger_bootstrap_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Murata GRM155R71E473KA88 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM155R71E473KA88D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM155R71E473KA88D LCSC C77017 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C77017.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "kemet_c0402c102k5ractu": {
+      "mpn": "KEMET C0402C102K5RACTU",
+      "kind": "1nf_10pct_50v_x7r_0402_charger_sdrv_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {
+        "document": "KEMET C0402C102K5RACTU product specification and TI reference BOM",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://search.kemet.com/download/specsheet/C0402C102K5RACTU",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "C0402C102K5RACTU DigiKey active stocked exact order code",
+        "url": "https://www.digikey.com/en/products/detail/kemet/C0402C102K5RACTU/411034",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_078k2l": {
+      "mpn": "Yageo RC0402FR-078K2L",
+      "kind": "8_2kohm_1pct_0402_charger_prog_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-078K2L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-078K2L active distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-078K2L/726662",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07100rl": {
+      "mpn": "Yageo RC0402FR-07100RL",
+      "kind": "100ohm_1pct_0402_charger_batp_series_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-07100RL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07100RL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07100RL LCSC C106232 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C106232.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_07100kl": {
+      "mpn": "Yageo RC0402FR-07100KL",
+      "kind": "100kohm_1pct_0402_charger_ilim_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-07100KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07100KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07100KL active authorized-distributor order code",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726525",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_075k23l": {
+      "mpn": "Yageo RC0402FR-075K23L",
+      "kind": "5_23kohm_1pct_0402_charger_ts_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-075K23L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-075K23L Mouser active stocked exact order code",
+        "url": "https://www.mouser.com/ProductDetail/YAGEO/RC0402FR-075K23L",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_0730k1l": {
+      "mpn": "Yageo RC0402FR-0730K1L",
+      "kind": "30_1kohm_1pct_0402_charger_ts_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0730K1L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730K1L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0730K1L active authorized-distributor order code",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0730K1L/726582",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_0744k2l": {
+      "mpn": "Yageo RC0402FR-0744K2L",
+      "kind": "44_2kohm_1pct_0402_charger_ilim_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0744K2L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0744K2L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0744K2L active orderable exact code",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0744K2L/726611",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
     "sunlord_wpn201612h2r2mt": {
       "mpn": "Sunlord WPN201612H2R2MT",
       "kind": "2_2uh_shielded_aon_power_inductor",

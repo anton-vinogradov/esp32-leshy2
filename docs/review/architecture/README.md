@@ -103,9 +103,13 @@ EN/PG/fault resistors using only existing BOM MPNs.
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
 corrects the old PA24 battery-divider assignment to real
-PA25/PA26 contacts without changing the `12/3/3` budget. Charger passives,
-diagnostic thresholds/cooldown, mechanical
-polarity/thermal coupling, calculated hot loss and HIL remain active.
+PA25/PA26 contacts without changing the `12/3/3` budget.
+`PWR-0014/DEC-0075/REV-0005AF` then close the exact BQ25798 2S/750-kHz
+strap, 2.2-uH/7-A inductor, all physical energy banks, BATP/TS/ILIM, local-bus
+pulls, reset-high CE and special-pin terminations. `FND-0079` corrects product
+USB-C/USB2 protection back to I4 and exposes TPS25751/CAT24C512 support
+passives as the next true I3 paper dependency. Diagnostic thresholds/cooldown,
+mechanical polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
 
@@ -148,6 +152,9 @@ polarity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0013`](PWR-0013-exact-pack-diagnostic-frontends.md) closes the exact
   bounded pack-load switch/timer/resistor and PA25/PA26 divider/filter
   frontends, while leaving measured thresholds and cooldown to prototype HIL;
+- [`PWR-0014`](PWR-0014-exact-bq25798-passive-profile.md) closes the exact
+  BQ25798 2S/750-kHz energy, current/temperature sensing, reset and special-pin
+  profile while leaving placement/thermal/source-transition HIL explicit;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

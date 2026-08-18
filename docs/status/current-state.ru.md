@@ -330,8 +330,14 @@ PA24/PA25 на PA25/PA26, потому что PA24 не допускает injec
 делители 2x220k/169k и 5x220k/169k с двумя фильтрами 10 нФ остаются ниже
 внутреннего reference 1,4 В в заданных fault-screen corners; все 19 физических
 экземпляров отдельно показаны в machine source и вертикальных diagrams.
-Charger passives, diagnostic thresholds/cooldown,
-effective-capacitance/load-step, hot-loss/layout и перечисленные
+`PWR-0014/DEC-0075/REV-0005AF` теперь закрывают физический профиль BQ25798:
+exact 2S/750-kHz PROG, дроссель 2,2 мкГн/7 А, 19 capacitor instances, BATP,
+прямой non-ignored TS, hardware ILIM, pulls I2C/INT, reset-high CE с
+open-drain GPIO1 и Rev-C termination специальных контактов. `FND-0079`
+возвращает product USB-C/USB2 protection в зависимый I4 и выявляет следующим
+бумажным пунктом I3 support passives TPS25751/CAT24C512. Diagnostic
+thresholds/cooldown, effective-capacitance/load-step, NTC mechanics,
+hot-loss/layout и перечисленные
 startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad

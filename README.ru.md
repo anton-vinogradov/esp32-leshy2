@@ -80,6 +80,10 @@ Leshy2 — открытый автономный портативный инст
 - PD-контроллер автономно загружается из отдельной восстанавливаемой EEPROM.
   Заводские площадки позволяют прошить пустую микросхему; полевое обновление
   проверяет подписанный владельцем образ и сохраняет rollback-регион.
+- Зарядник 2S физически настроен на эффективный профиль `750 кГц` с дросселем
+  `2,2 мкГн / 7 А`. После reset заряд начинается с консервативного `1 А`;
+  штатно он не превышает `2 А`, сначала ограничивает вход по фактическому
+  USB-контракту 5/9/15 В и прекращается при прямой ошибке температуры батареи.
 - Контролируемая батарея 2S использует две отдельно заменяемые
   квалифицированные 18650; для работы от батарей нужны обе. Переполюсовка
   исключается механически; аппаратная часть наблюдает и допускает пару до её
@@ -122,6 +126,37 @@ flowchart TD
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD политика и защищённый high-voltage тракт"]
   PDCFG["CAT24C512WI-GT3<br/>отдельная EEPROM с patch/configuration PD"]
   CHARGER["BQ25798RQMR<br/>настроенный на 2S buck-boost зарядник и NVDC системный power path"]
+  CHL["MWSA0503S-2R2MT<br/>дроссель зарядника 2,2 мкГн, 7 А, 750 кГц"]
+  CVB0["GRM31CR71E106MA12L #VBUS0<br/>конденсатор VBUS зарядника №0: 10 мкФ, 25 В, X7R"]
+  CVB1["GRM31CR71E106MA12L #VBUS1<br/>конденсатор VBUS зарядника №1: 10 мкФ, 25 В, X7R"]
+  CVBHF["C1005X7R1H104K050BB #VBUS<br/>HF-конденсатор VBUS зарядника: 100 нФ, 50 В"]
+  CPM0["GRM31CR71E106MA12L #PMID0<br/>конденсатор PMID зарядника №0: 10 мкФ, 25 В, X7R"]
+  CPM1["GRM31CR71E106MA12L #PMID1<br/>конденсатор PMID зарядника №1: 10 мкФ, 25 В, X7R"]
+  CPM2["GRM31CR71E106MA12L #PMID2<br/>конденсатор PMID зарядника №2: 10 мкФ, 25 В, X7R"]
+  CPMHF["C1005X7R1H104K050BB #PMID<br/>HF-конденсатор PMID зарядника: 100 нФ, 50 В"]
+  CSYS0["GRM31CR71E106MA12L #SYS0<br/>конденсатор SYS зарядника №0: 10 мкФ, 25 В, X7R"]
+  CSYS1["GRM31CR71E106MA12L #SYS1<br/>конденсатор SYS зарядника №1: 10 мкФ, 25 В, X7R"]
+  CSYS2["GRM31CR71E106MA12L #SYS2<br/>конденсатор SYS зарядника №2: 10 мкФ, 25 В, X7R"]
+  CSYS3["GRM31CR71E106MA12L #SYS3<br/>конденсатор SYS зарядника №3: 10 мкФ, 25 В, X7R"]
+  CSYS4["GRM31CR71E106MA12L #SYS4<br/>конденсатор SYS зарядника №4: 10 мкФ, 25 В, X7R"]
+  CSYSHF["C1005X7R1H104K050BB #SYS<br/>HF-конденсатор SYS зарядника: 100 нФ, 50 В"]
+  CBAT0["GRM31CR71E106MA12L #BAT0<br/>конденсатор BAT зарядника №0: 10 мкФ, 25 В, X7R"]
+  CBAT1["GRM31CR71E106MA12L #BAT1<br/>конденсатор BAT зарядника №1: 10 мкФ, 25 В, X7R"]
+  CBT1["GRM155R71E473KA88D #BTST1<br/>bootstrap-конденсатор зарядника №1: 47 нФ, 25 В"]
+  CBT2["GRM155R71E473KA88D #BTST2<br/>bootstrap-конденсатор зарядника №2: 47 нФ, 25 В"]
+  CREGN["CGA5L1X7R1E475K160AC #REGN<br/>конденсатор REGN зарядника: 4,7 мкФ, 25 В"]
+  CSDRV["C0402C102K5RACTU<br/>конденсатор SDRV no-ship-FET: 1 нФ, 50 В"]
+  CPROG["RC0402FR-078K2L<br/>резистор PROG 8,2 кОм, 1% для 2S/750 кГц"]
+  CBATP["RC0402FR-07100RL<br/>резистор BATP sense 100 Ом, 1%"]
+  CTSU["RC0402FR-075K23L<br/>верхний резистор TS зарядника 5,23 кОм, 1%"]
+  CTSL["RC0402FR-0730K1L<br/>нижний резистор TS зарядника 30,1 кОм, 1%"]
+  CTSN["B57332V5103F360 #CHARGER<br/>независимый NTC батареи зарядника 10 кОм"]
+  CILU["RC0402FR-0744K2L<br/>верхний резистор аппаратного ILIM 44,2 кОм, 1%"]
+  CILL["RC0402FR-07100KL<br/>нижний резистор аппаратного ILIM 100 кОм, 1%"]
+  CSCLPU["RC0402FR-0710KL #CHG-SCL<br/>pull-up резистор SCL зарядника 10 кОм"]
+  CSDAPU["RC0402FR-0710KL #CHG-SDA<br/>pull-up резистор SDA зарядника 10 кОм"]
+  CINTPU["RC0402FR-0710KL #CHG-INT<br/>pull-up резистор INT зарядника 10 кОм"]
+  CCEPU["RC0402FR-0710KL #CHG-CE<br/>reset-high pull-up резистор CE зарядника 10 кОм"]
   CELL0["MPN TBD<br/>отдельно заменяемая квалифицированная 18650 №0"]
   FUSE0["0451005.MRL<br/>независимый 5-А fast fuse слота 0"]
   NTC0["B57332V5103F360<br/>датчик температуры банки 0"]
@@ -268,7 +303,10 @@ flowchart TD
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
-  CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
+  CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
+  CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
+  CTSN ~~~ CILU ~~~ CILL ~~~ CSCLPU ~~~ CSDAPU ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
   DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
@@ -293,6 +331,35 @@ flowchart TD
   PDCTRL <-->|"локальная I²C, boot image"| PDCFG
   PDCTRL <-->|"защищённый VBUS + локальные I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + общий wired-low IRQ"| PDCTRL
+  CHARGER -->|"SW1/SW2"| CHL
+  CHARGER -->|"bulk/HF VBUS"| CVB0
+  CHARGER --> CVB1
+  CHARGER --> CVBHF
+  CHARGER -->|"bulk/HF PMID"| CPM0
+  CHARGER --> CPM1
+  CHARGER --> CPM2
+  CHARGER --> CPMHF
+  CHARGER -->|"bulk/HF SYS"| CSYS0
+  CHARGER --> CSYS1
+  CHARGER --> CSYS2
+  CHARGER --> CSYS3
+  CHARGER --> CSYS4
+  CHARGER --> CSYSHF
+  CHARGER -->|"bulk BAT"| CBAT0
+  CHARGER --> CBAT1
+  CHARGER -->|"BTST1/SW1"| CBT1
+  CHARGER -->|"BTST2/SW2"| CBT2
+  CHARGER -->|"REGN"| CREGN
+  CHARGER -->|"SDRV на землю"| CSDRV
+  CHARGER -->|"POR 2S/750 кГц"| CPROG
+  PACKFET -->|"sense допущенного BATP"| CBATP --> CHARGER
+  CHARGER -->|"прямой TS без ignore"| CTSU --> CTSN
+  CTSN --> CTSL
+  CHARGER -->|"аппаратный предел 2,71…3,29 А"| CILU --> CILL
+  PDCTRL -->|"pull-up к LDO_3V3"| CSCLPU --> CHARGER
+  PDCTRL --> CSDAPU --> CHARGER
+  PDCTRL --> CINTPU --> CHARGER
+  CHARGER -->|"reset-high CE от REGN"| CCEPU --> CHARGER
   CELL0 --> FUSE0 --> PACKGAUGE
   NTC0 -->|"TH1"| PACKGAUGE
   CELL1 --> FUSE1 --> PACKGAUGE
