@@ -94,6 +94,12 @@ identity/address/polarity endpoint: ST77922 is the assembly TDDI at `0x38`,
 active-low TP_INT has its own 10-kOhm raw pull-up and fixed 1G07 path to shared
 GPIO37, and the former inverter option is removed. Specimen IRQ/reset,
 shared-source and physical HIL remain open.
+`FND-0094/IOX-0001/DEC-0089/REV-0005AT` then complete the consolidated I4
+audit. Exact TCA6424A power/address/reset/interrupt, AON-to-main observation
+isolation, pack target `0x2A`, real GPIO4 microSD return, direct USB-shell
+ground bond and exact STOP LED resistor are machine-projected. I4 paper
+electrical scope has **«Проведено ревью»**; I5 is active, while prototype,
+physical and procurement evidence stays open and KiCad remains unauthorized.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -141,7 +147,8 @@ protected-side PG, threshold/loss calculations and a reviewed fault matrix;
 no GPIO or function is lost.
 `FND-0086/PWR-0021/DEC-0082/REV-0005AM` consolidate every I3 paper obligation,
 heat source, fault and physical residue. I3 is paper-reviewed with all
-prototype/lot/I8 evidence still explicit; I4 is now the active paper block.
+prototype/lot/I8 evidence still explicit; this activates the dependent I4
+paper block at that point in the chain.
 `FND-0087/USB-0001/DEC-0083/REV-0005AN` now give exact protected product USB
 the first I4 paper-endpoint review without promoting placement or HIL.
 `FND-0088/DSP-0006/DEC-0084/REV-0005AO` give the second I4 endpoint a paper
@@ -153,6 +160,9 @@ socket footprint, media/endurance, throughput and destructive HIL blocked.
 `FND-0090…0093/UI-0001/UI-0002/DSP-0007/DEC-0086…0088` retain every physical
 control, close exact switch/protection and touch identity/address/polarity,
 and leave only named mechanics/specimen HIL before the consolidated I4 audit.
+`FND-0094/IOX-0001/DEC-0089/REV-0005AT` close that consolidated audit, correct
+the shared-interface residues and advance the dependency chain to I5 without
+claiming layout or HIL evidence.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -251,6 +261,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`DSP-0007`](DSP-0007-exact-integrated-st77922-touch-endpoint.md) names the
   integrated ST77922, exact `0x38`/active-low contract and fixed board IRQ
   normalizer while retaining specimen/shared-line HIL;
+- [`IOX-0001`](IOX-0001-consolidated-i4-electrical-closure.md) audits all I4
+  endpoints together, closes the exact main slow-I/O core and cross-domain
+  routes, and classifies every remaining item as HIL, physical, I5…I8 or CAD;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

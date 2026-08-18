@@ -1,6 +1,6 @@
 # INT-0001 — dependency-ordered internal-design closure sequence
 
-- Статус: **Проведено ревью порядка; внутренние блоки открыты**
+- Статус: **Проведено ревью порядка; I1…I4 paper reviewed, I5 active**
 - Дата: 2026-08-18
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Working map: [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)
@@ -26,8 +26,8 @@ Exact MPN availability повторно проверяется при выбор
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
 | `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
-| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **active paper block, consolidated audit next**; USB/display/microSD reviewed by `DEC-0083…0085`; complete controls and exact switch/protection by `DEC-0086/0087`; integrated ST77922 address/polarity/IRQ by `DEC-0088/DSP-0007`; all retain named physical/HIL gates | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
-| `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
+| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **Проведено ревью paper electrical scope** by `DEC-0089/IOX-0001/REV-0005AT`; exact USB/display/microSD/controls/touch endpoints plus TCA6424A core, addresses, cross-domain isolation and shared-interface audit complete; physical/HIL gates named | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
+| `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | **active paper block**; active IC topology selected, passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | logical profiles reviewed; exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
 | `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | scattered candidates; no coherent target BOM | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
@@ -154,5 +154,16 @@ touch responds at `0x38`, and active-low TP_INT now has a 10-kOhm raw pull-up
 plus fixed non-inverting `SN74LVC1G07DCKR` before shared GPIO37. The obsolete
 inverter population option and stale direct-GPIO39 machine text are removed.
 Identity/readback, IRQ pulse/clear, reset recovery, shared-source discovery and
-physical HIL remain named. The next I4 action is a consolidated dependency and
-abstract-endpoint audit, not a return to KiCad or the full mockup.
+physical HIL remain named.
+
+`FND-0094/IOX-0001/DEC-0089/REV-0005AT` complete the consolidated dependency
+and abstract-endpoint audit. The exact TCA6424A core now has address `0x22`,
+complete VCCI/VCCP/decoupling/ground/reset/interrupt routes and fixture plus
+full-main-power-cycle recovery. Two AON-powered open-drain buffers prevent
+positive injection into P22/P23 while preserving STOP/evidence polarity. The
+pack target is fixed at `0x2A`, microSD terminates at real GPIO4, the product
+USB shield directly bonds to local power/ESD ground and the STOP LED resistor
+is exact. No generic I4-owned paper endpoint remains; I4 therefore has
+**«Проведено ревью»** at paper electrical scope. I5 is now active. All
+prototype/physical/procurement evidence remains explicit, and neither KiCad
+nor the paused integrated mockup is authorized.

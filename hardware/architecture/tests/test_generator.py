@@ -1788,7 +1788,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["contact_accounting"]["slow_io"]["free"],
         )
         self.assertEqual(
-            {"P7": "local UI-growth pad until the complete physical-control wish list closes"},
+            {"P7": "protected local fixture/growth test pad retained after physical-control wish-list closure"},
             candidate["contact_accounting"]["ui_matrix_io"]["reserved"],
         )
 
@@ -1848,6 +1848,92 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13", rendered)
         self.assertNotIn("4-bit SDIO: S3", rendered)
+
+    def test_exact_main_slow_io_and_i4_closure_do_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["slow_io_contract"]
+        device = self.database["devices"][candidate["instances"]["slow_io"]]
+
+        self.assertEqual("DEC-0089", contract["decision"])
+        self.assertEqual("0x22", device["electrical_contract"]["selected_address"])
+        self.assertEqual(400, device["electrical_contract"]["maximum_i2c_khz"])
+        self.assertEqual("verified_exact_main_slow_io_core", device["qualification"])
+        self.assertIn("below 0.2 V", contract["reset"])
+        self.assertIn("0x2A", contract["pack_system_target"])
+        self.assertIn("FPC is service-only", contract["interface_boundary"])
+        self.assertIn("0x2A", candidate["power_contract"]["pack_system_i2c_target"])
+
+        expected_instances = {
+            "slow_io_vcci_bypass": "tdk_c1005x7r1h104k050bb",
+            "slow_io_vccp_bypass": "tdk_c1005x7r1h104k050bb",
+            "slow_io_bulk_cap": "tdk_c1608x7r1c105k080ac",
+            "slow_io_reset_pullup": "yageo_rc0402fr_0710kl",
+            "slow_io_stop_sense_iso": "ti_sn74lvc1g07_dckr",
+            "slow_io_stop_sense_pullup": "yageo_rc0402fr_0710kl",
+            "slow_io_s3_evidence_iso": "ti_sn74lvc1g07_dckr",
+            "slow_io_s3_evidence_pullup": "yageo_rc0402fr_0710kl",
+            "stop_led_series": "yageo_rc0402fr_072k2l",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("abstract:3V3_MAIN", "slow_io.VCCI", "3V3_MAIN"),
+            ("abstract:3V3_MAIN", "slow_io.VCCP", "3V3_MAIN"),
+            ("slow_io.ADDR", "abstract:power-ground", "SLOW_IO_ADDR_LOW"),
+            ("slow_io_reset_pullup.END_2", "slow_io.RESET", "SLOW_IO_RESET_N"),
+            ("slow_io.RESET", "abstract:TP_SLOW_IO_RESET_N", "SLOW_IO_RESET_N"),
+            ("slow_io.SCL", "s3.GPIO2", "SYS_I2C_SCL"),
+            ("slow_io.SDA", "s3.GPIO1", "SYS_I2C_SDA"),
+            ("slow_io.INT", "s3.GPIO37", "SYS_INT_N"),
+            ("safe_latch.Q", "slow_io_stop_sense_iso.A", "STOP_LATCH_SENSE_AON"),
+            ("slow_io_stop_sense_iso.Y", "slow_io.P22", "STOP_LATCH_SENSE"),
+            ("evidence_cmp_a.OUT1", "slow_io_s3_evidence_iso.A", "S3_RF_TX_EVIDENCE_AON_N"),
+            ("slow_io_s3_evidence_iso.Y", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"),
+            ("sd_miso_series.END_2", "s3.GPIO4", "DISPLAY_SD_SPI_D1"),
+            ("product_usb_connector.SHIELD", "abstract:power-ground", "USB_C_SHIELD"),
+            ("safe_latch.Q", "stop_led_series.END_1", "STOP_LED_DRIVE"),
+            ("stop_led_series.END_2", "stop_led.A", "STOP_LED_A"),
+        ):
+            self.assertIn(route, routes)
+        self.assertNotIn(("safe_latch.Q", "slow_io.P22", "STOP_LATCH_SENSE"), routes)
+        self.assertNotIn(("evidence_cmp_a.OUT1", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"), routes)
+
+        internal_bus = next(
+            resource
+            for resource in candidate["resource_contracts"]
+            if resource["id"] == "S3_INTERNAL_I2C"
+        )
+        for address in ("0x20", "0x22", "0x2A", "0x38", "0x3F"):
+            self.assertIn(address, internal_bus["proof_gate"])
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "main slow-I/O VCCI bypass capacitor",
+            "AON-powered open-drain STOP-sense domain isolator",
+            "AON-powered open-drain S3-evidence domain isolator",
+            "physical STOP-indicator current limit",
+            "SLOW_IO_RESET_N",
+        ):
+            self.assertIn(token, rendered)
+
+        for readme_name in ("README.md", "README.ru.md"):
+            target = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
+            for token in (
+                "TCA6424ARGJR",
+                "C1005X7R1H104K050BB #SLOW-VCCI",
+                "C1608X7R1C105K080AC #SLOW",
+                "SN74LVC1G07DCKR #STOP-SENSE",
+                "SN74LVC1G07DCKR #S3-EVIDENCE",
+                "RC0402FR-072K2L #STOP",
+                "SLOW_IO_RESET_N",
+                "flowchart TD",
+            ):
+                self.assertIn(token, target, f"{readme_name}: {token}")
 
     def test_rejects_missing_required_mux_contract(self):
         candidates = copy.deepcopy(self.candidates)

@@ -212,6 +212,17 @@ flowchart TD
   SD_DETECT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm always-readable card-detect pull-up"]
   SD_DETECT_CAP["TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; six contacts free"]
+  SLOW_IO_VCCI_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor"]
+  SLOW_IO_VCCP_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCP bypass capacitor"]
+  SLOW_IO_BULK_CAP["TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor"]
+  SLOW_IO_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main slow-I/O RESET_N pull-up"]
+  SLOW_IO_RESET(("SLOW_IO_RESET_N<br/>protected fixture-reset node"))
+  SLOW_IO_STOP_SENSE_ISO["SN74LVC1G07DCKR<br/>AON-powered open-drain STOP-sense domain isolator"]
+  SLOW_IO_STOP_SENSE_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF STOP-sense-isolator bypass capacitor"]
+  SLOW_IO_STOP_SENSE_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain STOP-sense pull-up"]
+  SLOW_IO_S3_EVIDENCE_ISO["SN74LVC1G07DCKR<br/>AON-powered open-drain S3-evidence domain isolator"]
+  SLOW_IO_S3_EVIDENCE_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF S3-evidence-isolator bypass capacitor"]
+  SLOW_IO_S3_EVIDENCE_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain S3-evidence pull-up"]
   UI_MATRIX_IO["TCA9534APWR<br/>dedicated interrupt-capable 4x3 ordinary-control expander"]
   UI_MATRIX_IO_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF UI-expander bypass capacitor"]
   UI_MATRIX_ROW0_PULLDOWN["Yageo RC0603FR-071KL<br/>1-kOhm row-0 reset/idle pull-down"]
@@ -306,6 +317,7 @@ flowchart TD
   SAFE_GATE_B["SN74LVC08APWR<br/>four STOP-dominant rail/IR/accessory gates"]
   SAFE_PTT_OR["74LVC1G32GV,125<br/>active-low voice PTT force-RX gate"]
   STOP_LED["LTST-C190KFKT<br/>orange physical latched-STOP indicator"]
+  STOP_LED_SERIES["Yageo RC0402FR-072K2L<br/>2.2-kOhm physical STOP-indicator current limit"]
   end
   subgraph TX_EVIDENCE["Per-path physical TX-evidence devices"]
   DET_S3["LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector"]
@@ -338,7 +350,8 @@ flowchart TD
   VOICE_PG_QUALIFIER ~~~ EXT_BUCK ~~~ EXT_INDUCTOR ~~~ EXT_BUCK_INPUT_CAP ~~~ EXT_BUCK_HF_INPUT_CAP ~~~ EXT_BUCK_FB_TOP ~~~ EXT_BUCK_FB_BOTTOM ~~~ EXT_BUCK_FF_CAP ~~~ EXT_BUCK_OUTPUT_CAP0 ~~~ EXT_BUCK_OUTPUT_CAP1 ~~~ EXT_EN_PULLDOWN ~~~ EXT_PG_PULLUP ~~~ EXT_PG_BASE_RES ~~~ EXT_PG_QUALIFIER ~~~ EXT_EFUSE
   EXT_EFUSE ~~~ EXT_RILM ~~~ EXT_DVDT_CAP ~~~ EXT_ITIMER_CAP ~~~ EXT_OVLO_TOP ~~~ EXT_OVLO_BOTTOM
   EXT_OVLO_BOTTOM ~~~ EXT_INPUT_CAP ~~~ EXT_OUTPUT_CAP ~~~ EXT_BLEEDER ~~~ NRF_POWER_SWITCH ~~~ CC_POWER_SWITCH ~~~ SD_POWER_SWITCH ~~~ CODEC_POWER_SWITCH ~~~ RECEIVER_POWER_SWITCH ~~~ S3 ~~~ SLOW_IO
-  SLOW_IO ~~~ UI_MATRIX_IO ~~~ UI_MATRIX_IO_BYPASS ~~~ UI_MATRIX_ROW0_PULLDOWN ~~~ UI_MATRIX_ROW1_PULLDOWN ~~~ UI_MATRIX_ROW2_PULLDOWN ~~~ UI_MATRIX_ROW3_PULLDOWN ~~~ UI_MATRIX_COL0_PULLUP ~~~ UI_MATRIX_COL1_PULLUP ~~~ UI_MATRIX_COL2_PULLUP ~~~ UI_MATRIX_ESD
+  SLOW_IO ~~~ SLOW_IO_VCCI_BYPASS ~~~ SLOW_IO_VCCP_BYPASS ~~~ SLOW_IO_BULK_CAP ~~~ SLOW_IO_RESET_PULLUP ~~~ SLOW_IO_RESET ~~~ SLOW_IO_STOP_SENSE_ISO ~~~ SLOW_IO_STOP_SENSE_ISO_BYPASS ~~~ SLOW_IO_STOP_SENSE_PULLUP
+  SLOW_IO_STOP_SENSE_PULLUP ~~~ SLOW_IO_S3_EVIDENCE_ISO ~~~ SLOW_IO_S3_EVIDENCE_ISO_BYPASS ~~~ SLOW_IO_S3_EVIDENCE_PULLUP ~~~ UI_MATRIX_IO ~~~ UI_MATRIX_IO_BYPASS ~~~ UI_MATRIX_ROW0_PULLDOWN ~~~ UI_MATRIX_ROW1_PULLDOWN ~~~ UI_MATRIX_ROW2_PULLDOWN ~~~ UI_MATRIX_ROW3_PULLDOWN ~~~ UI_MATRIX_COL0_PULLUP ~~~ UI_MATRIX_COL1_PULLUP ~~~ UI_MATRIX_COL2_PULLUP ~~~ UI_MATRIX_ESD
   UI_MATRIX_ESD ~~~ UI_MATRIX_DIODE_UP ~~~ UI_SWITCH_UP ~~~ UI_MATRIX_DIODE_DOWN ~~~ UI_SWITCH_DOWN ~~~ UI_MATRIX_DIODE_LEFT ~~~ UI_SWITCH_LEFT
   UI_SWITCH_LEFT ~~~ UI_MATRIX_DIODE_RIGHT ~~~ UI_SWITCH_RIGHT ~~~ UI_MATRIX_DIODE_OK ~~~ UI_SWITCH_OK ~~~ UI_MATRIX_DIODE_BACK ~~~ UI_SWITCH_BACK
   UI_SWITCH_BACK ~~~ UI_MATRIX_DIODE_OPT ~~~ UI_SWITCH_OPT ~~~ UI_MATRIX_DIODE_F1 ~~~ UI_SWITCH_F1 ~~~ UI_MATRIX_DIODE_F2 ~~~ UI_SWITCH_F2
@@ -356,7 +369,7 @@ flowchart TD
   RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ VOICE
   VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD
   SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
-  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED
+  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED
   STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
   DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B
   EVIDENCE_CMP_B ~~~ EVIDENCE_MASK ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_LED
@@ -436,6 +449,11 @@ flowchart TD
   MAIN_BUCK -->|"100-kOhm EN fail-low"| MAIN_EN_PULLDOWN
   MAIN_EFUSE -->|"protected PG to fault aggregate"| SLOW_IO
   MAIN_EFUSE -->|"POWER_FAULT_N pull-up source"| POWER_FAULT_PULLUP --> SLOW_IO
+  MAIN_EFUSE -->|"3V3_MAIN: VCCI/VCCP"| SLOW_IO
+  MAIN_EFUSE --> SLOW_IO_VCCI_BYPASS --> SLOW_IO
+  MAIN_EFUSE --> SLOW_IO_VCCP_BYPASS --> SLOW_IO
+  MAIN_EFUSE --> SLOW_IO_BULK_CAP --> SLOW_IO
+  MAIN_EFUSE --> SLOW_IO_RESET_PULLUP --> SLOW_IO_RESET --> SLOW_IO
   MAIN_EFUSE -->|"3V3_MAIN"| C5
   MAIN_EFUSE -->|"3V3_MAIN"| RP
   MAIN_EFUSE --> NRF_POWER_SWITCH
@@ -518,6 +536,12 @@ flowchart TD
   S3 <-->|"1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
   S3 <-->|"I²C0+INT: GPIO1,GPIO2"| SLOW_IO
+  SAFE_LATCH -->|"Q polarity preserved"| SLOW_IO_STOP_SENSE_ISO --> SLOW_IO
+  AON_EFUSE --> SLOW_IO_STOP_SENSE_ISO_BYPASS --> SLOW_IO_STOP_SENSE_ISO
+  MAIN_EFUSE --> SLOW_IO_STOP_SENSE_PULLUP --> SLOW_IO
+  EVIDENCE_CMP_A -->|"active-low polarity preserved"| SLOW_IO_S3_EVIDENCE_ISO --> SLOW_IO
+  AON_EFUSE --> SLOW_IO_S3_EVIDENCE_ISO_BYPASS --> SLOW_IO_S3_EVIDENCE_ISO
+  MAIN_EFUSE --> SLOW_IO_S3_EVIDENCE_PULLUP --> SLOW_IO
   S3 -->|"QSPI/touch/PWM: GPIO4,GPIO35,GPIO36,GPIO38,GPIO40,GPIO41,GPIO42"| DISPLAY_CONNECTOR
   DISPLAY_CONNECTOR <-->|"40-contact FPC; physical mate HIL open"| DISPLAY
   DISPLAY -->|"integrated exact COG"| DISPLAY_TOUCH_CONTROLLER
@@ -613,7 +637,7 @@ flowchart TD
   SAFE_LATCH --> SAFE_GATE_A
   SAFE_LATCH --> SAFE_GATE_B
   SAFE_LATCH --> SAFE_PTT_OR
-  SAFE_LATCH --> STOP_LED
+  SAFE_LATCH --> STOP_LED_SERIES --> STOP_LED
   RP -->|"3×CE + nRF rail requests"| SAFE_GATE_A
   RP -->|"CC rail request"| SAFE_GATE_B
   C5 -->|"IR carrier request"| SAFE_GATE_B
@@ -680,12 +704,12 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `NRF2-qualified-RF-tap`
 - `RX-AM-LW-loop-pod`
 - `RX-FM-SW-SMA-front-end`
-- `S3-GPIO4-shared-D1`
 - `S3-qualified-RF-tap`
 - `SYS_INT_N_WIRED_LOW`
 - `TP_EVIDENCE_MASK_INT_N`
 - `TP_EXT_5V_ILM`
 - `TP_LCD_BACKLIGHT_FAULT_N`
+- `TP_SLOW_IO_RESET_N`
 - `TP_USB_PROTECTOR_FAULT_N`
 - `VOICE-qualified-RF-tap`
 - `VVOICE_RAW_4V`
@@ -694,7 +718,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `always-available-quiet-audio-rail`
 - `audio-ground`
 - `cc-filtered-3v3`
-- `chassis-ground-at-product-usb-entry`
 - `codec-adcvref-decoupling`
 - `codec-address-high-3v3`
 - `codec-audio-ground`
@@ -756,7 +779,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `si4732-passive-mono-sum-output`
 - `speaker-negative`
 - `speaker-positive`
-- `stop-led-series-2k2`
 - `voice-power-reset-domain`
 - `voice-raw-converter-pg-test`
 - `voice-update-fixture`
@@ -933,7 +955,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `product_usb_connector.A12_GND` | `product_usb_connector.B1_GND` | all four signal/power ground contacts share the low-impedance local return |
 | `POWER_GROUND` | `product_usb_connector.B1_GND` | `product_usb_connector.B12_GND` | all four exact ground contacts remain independently soldered |
 | `POWER_GROUND` | `product_usb_connector.B12_GND` | `abstract:power-ground` | connector ground reaches the product power-ground plane through a short low-inductance region |
-| `USB_C_SHIELD` | `product_usb_connector.SHIELD` | `abstract:chassis-ground-at-product-usb-entry` | four shell locks terminate at the entry-zone chassis/ESD structure; the final chassis-to-power-ground network remains a placement/HIL item |
+| `USB_C_SHIELD` | `product_usb_connector.SHIELD` | `abstract:power-ground` | all four shell locks bond directly to the local power/ESD ground through multiple short entry-zone vias; a separate unproved chassis network is not inserted |
 | `USB_C_CC1_CONNECTOR` | `product_usb_connector.A5_CC1` | `product_usb_protector.C_CC1` | connector-side CC1 reaches only the 28-V short-to-VBUS and IEC-ESD protector input |
 | `USB_C_CC2_CONNECTOR` | `product_usb_connector.B5_CC2` | `product_usb_protector.C_CC2` | connector-side CC2 reaches only the 28-V short-to-VBUS and IEC-ESD protector input |
 | `USB_C_CC1_PROTECTED` | `product_usb_protector.CC1` | `pd_controller.CC1` | protected sink-only Type-C/PD detection; source, VCONN and power-bank roles are disabled |
@@ -1076,6 +1098,23 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `SYS_I2C_SDA` | `sys_i2c_sda_pullup.END_2` | `s3.GPIO1` | one exact 2.2-kOhm pull-up serves the complete scheduled host-control bus |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sys_int_pullup.END_1` | the shared interrupt pull-up exists only with the host domain |
 | `SYS_INT_N` | `sys_int_pullup.END_2` | `s3.GPIO37` | one exact 10-kOhm pull-up completes the wired-low interrupt tree without consuming another dedicated GPIO |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io.VCCI` | the TCA6424A I2C interface domain shares the protected host rail |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io.VCCP` | the TCA6424A P-port domain uses the same protected rail as VCCI, avoiding a second partial-power sequence |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_vcci_bypass.END_1` | one exact 100-nF capacitor is local to VCCI |
+| `POWER_GROUND` | `slow_io_vcci_bypass.END_2` | `abstract:power-ground` | VCCI high-frequency return is short and local |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_vccp_bypass.END_1` | one separate exact 100-nF capacitor is local to VCCP |
+| `POWER_GROUND` | `slow_io_vccp_bypass.END_2` | `abstract:power-ground` | VCCP high-frequency return is short and local |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_bulk_cap.END_1` | one exact 1-uF local bulk capacitor supports the complete expander |
+| `POWER_GROUND` | `slow_io_bulk_cap.END_2` | `abstract:power-ground` | slow-I/O bulk return joins the local main-domain plane |
+| `POWER_GROUND` | `slow_io.GND` | `abstract:power-ground` | exact package ground contact is accounted |
+| `POWER_GROUND` | `slow_io.EPAD` | `abstract:power-ground` | exposed pad is grounded with the datasheet-compatible local via structure |
+| `SLOW_IO_ADDR_LOW` | `slow_io.ADDR` | `abstract:power-ground` | direct low strap selects exact 7-bit address 0x22 |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_reset_pullup.END_1` | exact 10-kOhm pull-up follows the datasheet RESET recommendation when no runtime GPIO is consumed |
+| `SLOW_IO_RESET_N` | `slow_io_reset_pullup.END_2` | `slow_io.RESET` | RESET remains deasserted in product operation and can be asserted only by the protected fixture pad |
+| `SLOW_IO_RESET_N` | `slow_io.RESET` | `abstract:TP_SLOW_IO_RESET_N` | fixture access provides direct reset diagnostics; product recovery uses bus recovery then a full main-rail power cycle below 0.2 V |
+| `SYS_I2C_SCL` | `slow_io.SCL` | `s3.GPIO2` | exact TCA6424A clock endpoint shares the single host pull-up and stays at or below 400 kHz |
+| `SYS_I2C_SDA` | `slow_io.SDA` | `s3.GPIO1` | exact TCA6424A data endpoint joins the scheduled host-control bus |
+| `SYS_INT_N` | `slow_io.INT` | `s3.GPIO37` | open-drain interrupt shares the single host-domain pull-up; firmware reads expander status before release |
 | `CHARGER_QON_NC` | `nvdc_charger.QON` | `abstract:no-connect` | QON uses its specified internal pull-up; no external system-reset or ship-FET function is claimed |
 | `CHARGER_STAT_NC` | `nvdc_charger.STAT` | `abstract:no-connect` | unused open-drain STAT is disabled in the charger image; status and faults use INT/I2C |
 | `PD_LOCAL_I2C_SDA` | `pd_controller.I2Cc_SDA` | `pd_config_eeprom.SDA` | dedicated address-0x50 boot image; one EEPROM per controller |
@@ -1381,7 +1420,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `SD_DAT0_MISO_PROTECTED` | `sd.DAT0` | `sd_miso_buffer.A` | only the card's selected DAT0 return reaches the explicit tri-state buffer |
 | `SD_DAT0_MISO_PROTECTED` | `sd.DAT0` | `sd_esd_a.D2_MINUS` | fourth IEC channel clamps the exposed DAT0 contact |
 | `SD_MISO_BUFFERED` | `sd_miso_buffer.Y` | `sd_miso_series.END_1` | buffer output is high-Z whenever SD_CS_N is high or the card rail is absent |
-| `DISPLAY_SD_SPI_D1` | `sd_miso_series.END_2` | `abstract:S3-GPIO4-shared-D1` | exact 22-Ohm source series bounds the return edge before the shared display D1 node |
+| `DISPLAY_SD_SPI_D1` | `sd_miso_series.END_2` | `s3.GPIO4` | exact 22-Ohm source series bounds the return edge at the real shared S3 GPIO4 display-D1 endpoint |
 | `SD_CARD_3V3` | `sd_power_switch.VOUT` | `sd_card_cmd_pullup.END_1` | switched-rail pull cannot back-power an off card |
 | `SD_CMD_PROTECTED` | `sd_card_cmd_pullup.END_2` | `sd.CMD` | exact 10-kOhm CMD pull-up required for ESP32-S3 SD SPI mode |
 | `SD_CARD_3V3` | `sd_power_switch.VOUT` | `sd_card_dat0_pullup.END_1` | switched-rail DAT0 pull-up |
@@ -1751,8 +1790,22 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `SD_CARD_DETECT_N` | `sd_detect_pullup.END_2` | `slow_io.P21` | exact 10-kOhm pull-up reports absent/open wiring as high |
 | `SD_CARD_DETECT_N` | `slow_io.P21` | `sd_detect_cap.END_1` | exact 100-nF hardware filter suppresses the shortest contact chatter before software debounce |
 | `POWER_GROUND` | `sd_detect_cap.END_2` | `abstract:power-ground` | local detect-filter return |
-| `STOP_LATCH_SENSE` | `safe_latch.Q` | `slow_io.P22` | diagnostic mirror only; non-programmable hard-stop dominance never depends on the expander |
-| `S3_RF_TX_EVIDENCE_N` | `evidence_cmp_a.OUT1` | `slow_io.P23` | direct read-only mirror of the exact S3 evidence comparator |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_stop_sense_iso.VCC` | the STOP diagnostic isolator remains valid whenever the hard latch is alive |
+| `SAFETY_GROUND` | `slow_io_stop_sense_iso.GND` | `abstract:safety-ground` | AON buffer return stays in the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_stop_sense_iso_bypass.END_1` | exact 100-nF local bypass supports the first open-drain isolator |
+| `SAFETY_GROUND` | `slow_io_stop_sense_iso_bypass.END_2` | `abstract:safety-ground` | first isolator bypass returns locally |
+| `STOP_LATCH_SENSE_AON` | `safe_latch.Q` | `slow_io_stop_sense_iso.A` | read-only mirror cannot influence the non-programmable hard-stop latch |
+| `STOP_LATCH_SENSE` | `slow_io_stop_sense_iso.Y` | `slow_io.P22` | non-inverting open-drain transfer preserves Q polarity without positive AON injection into an unpowered VCCP domain |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_stop_sense_pullup.END_1` | main-domain 10-kOhm pull-up exists only while TCA6424A VCCP is powered |
+| `STOP_LATCH_SENSE` | `slow_io_stop_sense_pullup.END_2` | `slow_io.P22` | low means RUN and high means latched STOP exactly as before isolation |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_s3_evidence_iso.VCC` | the S3 evidence isolator follows the always-on comparator domain |
+| `SAFETY_GROUND` | `slow_io_s3_evidence_iso.GND` | `abstract:safety-ground` | second AON buffer return stays local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_s3_evidence_iso_bypass.END_1` | exact 100-nF local bypass supports the second open-drain isolator |
+| `SAFETY_GROUND` | `slow_io_s3_evidence_iso_bypass.END_2` | `abstract:safety-ground` | second isolator bypass returns locally |
+| `S3_RF_TX_EVIDENCE_AON_N` | `evidence_cmp_a.OUT1` | `slow_io_s3_evidence_iso.A` | read-only active-low physical evidence remains independent of firmware |
+| `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_iso.Y` | `slow_io.P23` | non-inverting open-drain transfer preserves active-low evidence without positive AON injection into unpowered VCCP |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_s3_evidence_pullup.END_1` | main-domain 10-kOhm pull-up exists only with the receiving expander |
+| `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_pullup.END_2` | `slow_io.P23` | active-low evidence semantics are unchanged across the isolation boundary |
 | `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `slow_io.P25` | hardware protection acts independently; this is diagnostic evidence |
 | `ACCESSORY_PRESENT_N` | `abstract:accessory-present` | `slow_io.P26` | read-only, protected and debounced |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor.VDD` | always-on source and hold-up are selected and budgeted in I3 |
@@ -1824,8 +1877,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_efuse.EN_UVLO` | the same STOP-dominant request also disables the connector-side true-reverse-blocking eFuse |
 | `TX_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
 | `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice.PTT` | 10-kOhm module-side pull-up keeps RX when the AON gate is unpowered |
-| `STOP_LED_DRIVE` | `safe_latch.Q` | `abstract:stop-led-series-2k2` | non-programmable visible latched-stop state |
-| `STOP_LED_A` | `abstract:stop-led-series-2k2` | `stop_led.A` | 2.2-kOhm first-target current limit |
+| `STOP_LED_DRIVE` | `safe_latch.Q` | `stop_led_series.END_1` | non-programmable visible latched-stop state |
+| `STOP_LED_A` | `stop_led_series.END_2` | `stop_led.A` | exact 2.2-kOhm current limit |
 | `STOP_LED_K` | `stop_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware |
 | `S3_RF_SAMPLE` | `abstract:S3-qualified-RF-tap` | `det_s3.RFIN` | tap/attenuation is selected and measured in I6 |
 | `C5_RF_SAMPLE` | `abstract:C5-qualified-RF-tap` | `det_c5.RFIN` | tap covers the qualified 2.4/5-GHz path; I6 sets attenuation |
@@ -1910,7 +1963,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `DISPLAY_SD_SPI` | `s3` | `display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
 | `S3_RP_IPC` | `s3` | `rp` | dedicated | 20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership | SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL |
 | `S3_C5_IPC` | `s3` | `c5` | dedicated | 1-bit SDIO at 20 MHz raw 2.5 MB/s with qualified framed payload >=1.5 MB/s, admitted occupancy <=70% and control RTT <=2 ms; no microSD, RP or display controller ownership | single-slot 1-bit SDMMC/SDIO throughput, control-priority, reset recovery and simultaneous Wi-Fi/802.15.4 load HIL; 4-bit fallback only if this gate fails |
-| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `display_touch_controller`, `codec`, `receiver`, `pd_controller`, `pack_admission` | scheduled; bounded transactions; both expanders, PD, pack and touch interrupts only wake the service loop; UI initialization writes low output latches before P0..P3 become outputs, then holds all rows low in idle, scans one low row against three high rows, and restores idle; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including exact ST77922 touch 0x38 and candidate UI 0x3F, ES8311 address/readback and power-off no-backfeed, ST77922 identity/readback/reset/interrupt-pulse-clear behavior, TCA9534A idle-row interrupt behavior, PD and pack target-interface recovery, wired-low IRQ source identification, shortest-pulse, 4x3 matrix and fault-latency HIL |
+| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `display_touch_controller`, `codec`, `receiver`, `pd_controller`, `pack_admission` | scheduled; bounded transactions; both expanders, PD, pack and touch interrupts only wake the service loop; UI initialization writes low output latches before P0..P3 become outputs, then holds all rows low in idle, scans one low row against three high rows, and restores idle; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including exact TCA6424A 0x22, firmware-fixed pack target 0x2A, exact ST77922 touch 0x38, candidate UI 0x3F and TPS25751D 0x20; ES8311 and Si4732 exact-address/readback closure remains in I5, while HIL proves 0x22 identity/reset/recovery, power-off no-backfeed, touch and matrix interrupt behavior, wired-low source identification, shortest pulse, 4x3 matrix and fault latency |
 | `S3_ENCODER_PCNT` | `s3` | `encoder` | dedicated; PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C matrix carries only encoder push and never phase edges | no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case | phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL |
 | `PD_LOCAL_I2C` | `pd_controller` | `pd_config_eeprom`, `nvdc_charger` | scheduled; TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive | boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses | blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL |
 | `PACK_LOCAL_I2C` | `pack_admission` | `pack_gauge` | dedicated | gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant | bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL |
@@ -1959,7 +2012,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `voice` lifecycle: `current_product`.
 - `receiver` lifecycle: `manufacturer_documented`.
-- `slow_io` uses `TCA6424ARGJR` as `reference_only`, not an accepted production choice.
+- `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
+- `slow_io_bulk_cap` lifecycle: `active_production`.
+- `slow_io_stop_sense_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `slow_io_s3_evidence_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `ui_switch_up` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
 - `ui_switch_up` lifecycle: `active_orderable`.
 - `ui_switch_down` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
@@ -1987,7 +2043,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `encoder` lifecycle: `active_standard`.
 - `display_touch_controller` uses `Sitronix ST77922` as `verified_exact_controller_inside_hmx035ctft_001`, not an accepted production choice.
 - `display_touch_controller` lifecycle: `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly`.
-- `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_active_low_touch_irq_normalizer`, not an accepted production choice.
+- `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
 - `display_connector` uses `Hirose FH12-40S-0.5SH(55)` as `verified_first_fit_candidate`, not an accepted production choice.
 - `display_connector` lifecycle: `active; exact HMX035CTFT-001 tail thickness, exposed-contact side, stiffener and insertion fit remain specimen HIL`.
@@ -2021,9 +2077,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger
-- TCA6424ARGJR and TCA4307DGKR are real-contact planning references; voltage domains, pulls, address, reset, shortest pulses and exact endpoint MPNs remain electrical/HIL gates
+- DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. Same-rail startup, below-0.2-V power-cycle recovery, interrupt behavior and assembled-bus/no-back-power HIL remain open. TCA4307DGKR and external-accessory endpoint details remain I7 gates
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open
-- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO, C5 retains one, and the 24-line slow plane has no reserve. New direct endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
+- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; the 24-line main slow plane retains six free contacts while dedicated UI P7 is a protected local fixture/growth pad. New direct MCU endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
 - C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
@@ -2031,7 +2087,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
 - DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
-- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient; DEC-0072 adds 24 exact converter energy/configuration/feedback passives and fixed tolerance-screened outputs; DEC-0073 originally adds nine exact converter EN/PG/fault resistors and a direct hardware AON enable strap; DEC-0080 amends this to ten physical positions and exact SYS-to-AON, AON-PG/MR, SENSE/CT/POR and main-EN wiring without a programmable sequencer; DEC-0081 adds independent TPS25961DRVR AON cutoff plus two TPS25974LRPWR latch-off protected-PG circuit breakers, exact thresholds, rise/timer networks and single-fault paper containment after every internal buck; DEC-0074 establishes the 10-Ohm pre-admission function, <=50-ms hardware cutoff and corrected PA25/PA26 frontends; DEC-0075 adds the exact BQ25798 750-kHz/2.2-uH energy, TS/ILIM, reset and special-pin profile; DEC-0076 adds the exact TPS25751/CAT24 support circuit, hardware SafeMode, separate raw-VBUS startup path and complete local/host bus pulls; DEC-0077 adds exact polarized Keystone 1048P contacts and three physical NTC roles; DEC-0078 corrects the TPUL WQFN contact map, adds a >=350-ms second-channel hardware refractory lockout and splits the 10-Ohm load across two exact 20-Ohm/2-W branches; DEC-0079 selects two XTAR 18650 4000mAh protected button-top cells as the exact first qualification target and freezes a 2-A charge ceiling. Exact-cell droop thresholds, certification-document/specimen fit, continuity/thermal/hot-copper/source-handover and full injected-fault HIL remain open in I3. DEC-0083 closes the first I4 paper endpoint with exact DX07S016JA1R1500, TPD4S201RUKR, protected USB2/CC routes, exact 22-Ohm S3 terminations, reserved DNP tuning footprints and recalculated 220-pF CC shunts. DEC-0084 closes the second I4 paper endpoint with exact first display ZIF candidate, protected-main logic decoupling, reset-low defaults and a latch-protected PWM backlight. DEC-0085 closes the third I4 paper endpoint with exact DM3AT-SF-PEJM5, switched TPS22919 rail, Ioff card-side isolation, CS-gated DAT0 return, mandatory switched pulls, complete contact/detect ESD and safe shared-bus sequencing; connector placement/mate, USB/display/storage signal integrity and destructive/thermal HIL remain explicit
+- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient; DEC-0072 adds 24 exact converter energy/configuration/feedback passives and fixed tolerance-screened outputs; DEC-0073 originally adds nine exact converter EN/PG/fault resistors and a direct hardware AON enable strap; DEC-0080 amends this to ten physical positions and exact SYS-to-AON, AON-PG/MR, SENSE/CT/POR and main-EN wiring without a programmable sequencer; DEC-0081 adds independent TPS25961DRVR AON cutoff plus two TPS25974LRPWR latch-off protected-PG circuit breakers, exact thresholds, rise/timer networks and single-fault paper containment after every internal buck; DEC-0074 establishes the 10-Ohm pre-admission function, <=50-ms hardware cutoff and corrected PA25/PA26 frontends; DEC-0075 adds the exact BQ25798 750-kHz/2.2-uH energy, TS/ILIM, reset and special-pin profile; DEC-0076 adds the exact TPS25751/CAT24 support circuit, hardware SafeMode, separate raw-VBUS startup path and complete local/host bus pulls; DEC-0077 adds exact polarized Keystone 1048P contacts and three physical NTC roles; DEC-0078 corrects the TPUL WQFN contact map, adds a >=350-ms second-channel hardware refractory lockout and splits the 10-Ohm load across two exact 20-Ohm/2-W branches; DEC-0079 selects two XTAR 18650 4000mAh protected button-top cells as the exact first qualification target and freezes a 2-A charge ceiling. Exact-cell droop thresholds, certification-document/specimen fit, continuity/thermal/hot-copper/source-handover and full injected-fault HIL remain open in I3. DEC-0083 closes the protected product USB endpoint and DEC-0089 replaces the unresolved chassis abstraction with a direct multi-via shell bond to local power/ESD ground. DEC-0084 closes the display paper endpoint and DEC-0089 classifies its FPC as internal service-only/no-live-insertion, with protection reopening if mechanics later expose it. DEC-0085 closes the isolated microSD paper endpoint; DEC-0089 corrects its DAT0 return to real S3 GPIO4. Connector placement/mate, USB/display/storage signal integrity and destructive/thermal HIL remain explicit
 - HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open; the I2 hard-stop/evidence active circuit is paper-reviewed while detector taps/thresholds are I6; exact IR frontends and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Граница проведённого ревью

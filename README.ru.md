@@ -325,6 +325,17 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
   SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; six contacts free"]
+  SLOWVCI["C1005X7R1H104K050BB #SLOW-VCCI<br/>100-нФ развязка VCCI главного slow-I/O"]
+  SLOWVCP["C1005X7R1H104K050BB #SLOW-VCCP<br/>100-нФ развязка VCCP главного slow-I/O"]
+  SLOWBULK["C1608X7R1C105K080AC #SLOW<br/>1-мкФ локальный bulk-конденсатор главного slow-I/O"]
+  SLOWRSTPU["RC0402FR-0710KL #SLOW-RESET<br/>10-кОм pull-up RESET_N главного slow-I/O"]
+  SLOWRST(("SLOW_IO_RESET_N<br/>защищённый fixture-reset узел"))
+  SLOWSTOPISO["SN74LVC1G07DCKR #STOP-SENSE<br/>AON open-drain изолятор домена STOP-sense"]
+  SLOWSTOPBP["C1005X7R1H104K050BB #STOP-SENSE<br/>100-нФ развязка изолятора STOP-sense"]
+  SLOWSTOPPU["RC0402FR-0710KL #STOP-SENSE<br/>10-кОм main-domain pull-up STOP-sense"]
+  SLOWEVISO["SN74LVC1G07DCKR #S3-EVIDENCE<br/>AON open-drain изолятор домена S3-evidence"]
+  SLOWEVBP["C1005X7R1H104K050BB #S3-EVIDENCE<br/>100-нФ развязка изолятора S3-evidence"]
+  SLOWEVPU["RC0402FR-0710KL #S3-EVIDENCE<br/>10-кОм main-domain pull-up S3-evidence"]
   UIMATRIX["TCA9534APWR #UI<br/>dedicated interrupt-capable 4x3 control expander"]
   UIMBP["C1005X7R1H104K050BB #UI<br/>100-nF UI-expander bypass capacitor"]
   UIR0PD["RC0603FR-071KL #UI-R0<br/>1-kOhm reset/idle row pull-down"]
@@ -451,6 +462,7 @@ flowchart TD
   GATEA["SN74LVC08APWR #1<br/>four STOP-dominant nRF request gates"]
   GATEB["SN74LVC08APWR #2<br/>four STOP-dominant rail/IR/accessory gates"]
   PTTOR["74LVC1G32GV,125 #2<br/>active-low voice PTT force-RX gate"]
+  STOPLEDR["RC0402FR-072K2L #STOP<br/>2,2-кОм ограничитель тока аппаратного STOP-индикатора"]
   STOPLED["LTST-C190KFKT<br/>orange physical latched-STOP indicator"]
   DS3["LTC5532ES6#TRMPBF #S3<br/>S3 2.4-GHz RF power detector"]
   DC5["LTC5532ES6#TRMPBF #C5<br/>C5 2.4/5-GHz RF power detector"]
@@ -484,7 +496,8 @@ flowchart TD
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEFUSE ~~~ VOICERILIM ~~~ VOICEDVDT ~~~ VOICEIT ~~~ VOICEOVT ~~~ VOICEOVB ~~~ VOICEPGT ~~~ VOICEPGB ~~~ VOICEFOUT ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
-  SLOW ~~~ UIMATRIX ~~~ UIMBP ~~~ UIR0PD ~~~ UIR1PD ~~~ UIR2PD ~~~ UIR3PD ~~~ UIC0PU ~~~ UIC1PU ~~~ UIC2PU ~~~ UIMESD
+  SLOW ~~~ SLOWVCI ~~~ SLOWVCP ~~~ SLOWBULK ~~~ SLOWRSTPU ~~~ SLOWRST ~~~ SLOWSTOPISO ~~~ SLOWSTOPBP ~~~ SLOWSTOPPU
+  SLOWSTOPPU ~~~ SLOWEVISO ~~~ SLOWEVBP ~~~ SLOWEVPU ~~~ UIMATRIX ~~~ UIMBP ~~~ UIR0PD ~~~ UIR1PD ~~~ UIR2PD ~~~ UIR3PD ~~~ UIC0PU ~~~ UIC1PU ~~~ UIC2PU ~~~ UIMESD
   UIMESD ~~~ UIDUP ~~~ UIUP ~~~ UIDDN ~~~ UIDOWN ~~~ UIDLEFT ~~~ UILEFT
   UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
   UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
@@ -499,7 +512,7 @@ flowchart TD
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
-  RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLED
+  RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
@@ -622,6 +635,11 @@ flowchart TD
   MAINBUCK -->|"100-кОм fail-low EN"| MAINENPD
   MAINFUSE -->|"защищённый PG в fault aggregate"| SLOW
   MAINFUSE -->|"источник pull-up POWER_FAULT_N"| FAULTPU --> SLOW
+  MAINFUSE -->|"3V3_MAIN: VCCI/VCCP"| SLOW
+  MAINFUSE --> SLOWVCI --> SLOW
+  MAINFUSE --> SLOWVCP --> SLOW
+  MAINFUSE --> SLOWBULK --> SLOW
+  MAINFUSE --> SLOWRSTPU --> SLOWRST --> SLOW
   MAINFUSE --> C5
   MAINFUSE --> RP
   MAINFUSE --> SWNRF
@@ -682,6 +700,12 @@ flowchart TD
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
+  LATCH -->|"полярность Q сохранена"| SLOWSTOPISO --> SLOW
+  AONFUSE --> SLOWSTOPBP --> SLOWSTOPISO
+  MAINFUSE --> SLOWSTOPPU --> SLOW
+  CMPA -->|"active-low полярность сохранена"| SLOWEVISO --> SLOW
+  AONFUSE --> SLOWEVBP --> SLOWEVISO
+  MAINFUSE --> SLOWEVPU --> SLOW
   S3 -->|"direct QSPI + touch"| LCDCON
   LCDCON <-->|"40-контактный FPC; HIL физического сопряжения открыт"| LCD
   LCD -->|"встроенный exact COG"| LCDTDDI
@@ -796,7 +820,7 @@ flowchart TD
   LATCH --> GATEA
   LATCH --> GATEB
   LATCH --> PTTOR
-  LATCH --> STOPLED
+  LATCH --> STOPLEDR --> STOPLED
   RP -->|"3×CE + nRF rail requests"| GATEA
   RP -->|"CC rail request"| GATEB
   C5 -->|"IR carrier request"| GATEB
@@ -850,6 +874,10 @@ flowchart TD
   энкодера; `P7` — локальный резерв. В reset/idle все строки низкие, поэтому
   любая кнопка вызывает wired-low interrupt. PTT подключён прямо к RP `GPIO21`,
   а STOP и RE-ARM остаются независимыми AON-трактами.
+- **Главный slow I/O:** точный `TCA6424ARGJR` работает по адресу `0x22` от
+  защищённого `3V3_MAIN`; RESET доступен fixture, а продукт умеет полностью
+  перезапустить main-rail. Наблюдение STOP/evidence переходит из AON через
+  отдельные open-drain буферы и не подпитывает выключенный расширитель.
 - **Audio и Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0 и
   локальная I²C0. PD-контроллер также использует эту ограниченную control-шину
   и общий wired-low system IRQ, не занимая нового GPIO S3.

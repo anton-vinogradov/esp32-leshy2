@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `18/0/6` and dedicated UI I/O `7/1/0`; paper `I2` exact AON STOP/evidence закрыт. `DEC-0062…0082` close supervised 2S and paper I3 power. Active I4 has reviewed exact USB/display/microSD endpoints (`DEC-0083…0085`), complete controls/switch protection (`DEC-0086/0087`) and exact integrated ST77922 address/active-low IRQ (`DEC-0088`) while physical/HIL gates remain explicit. Gate 2F remains open through I4…I7, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `18/0/6` and dedicated UI I/O `7/1/0`. `I2`, I3 and I4 paper electrical scopes have **«Проведено ревью»** through `DEC-0061/0082/0089`; exact USB/display/microSD/controls/touch and consolidated slow-I/O/shared-interface closure retain named physical/HIL gates. I5 is active. Gate 2F remains open through I5…I7, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -45,5 +45,9 @@ throughput, hot-remove и destructive HIL остаются открыты; I4 п
 `DEC-0086…0088/UI-0001/UI-0002/DSP-0007` затем сохраняют полный physical
 control set, закрывают exact switch/current/ESD и фиксируют integrated ST77922
 at `0x38` с active-low TP_INT, 10-kOhm raw pull-up и fixed 1G07 на GPIO37.
-Следующий шаг — consolidated I4 audit; mechanics/specimen HIL остаются
-открыты, KiCad по-прежнему не разрешён.
+`FND-0094/IOX-0001/DEC-0089/REV-0005AT` завершают consolidated I4 audit:
+TCA6424A получает полный exact power/address/reset/IRQ контракт, AON-наблюдение
+изолируется от выключенного main-домена, pack target фиксируется на `0x2A`, а
+остаточные USB/microSD/STOP endpoints становятся реальными. I4 имеет
+**«Проведено ревью»**, активен I5; mechanics/specimen HIL остаются открыты,
+KiCad по-прежнему не разрешён.
