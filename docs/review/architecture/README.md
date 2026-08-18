@@ -29,9 +29,12 @@ The current active artifacts are `DEM-0001`, `SRC-0002`, `DSP-0001/0002`,
 `DEC-0052/REV-0004X` then allocate S3 GPIO41/42 to direct-QSPI D2/D3 and record
 the then-current `S3=2, C5=1, RP=0, slow=P27` free-contact state. Subsequent
 `AUDIO-0002/FND-0067` uses P27 for the omitted RX-audio source selector;
-`DEC-0054/REV-0005D` then assigns S3 GPIO6 to reset-safe `AUDIO_ARM`. Current
-free state is `S3=1 (GPIO47), C5=1, RP=0, slow=0` after `DEC-0059` restores
-S3 UART0 and C5 native USB around the dedicated 1-bit SDIO link.
+`DEC-0054/REV-0005D` then assigns S3 GPIO6 to reset-safe `AUDIO_ARM`. After
+`DEC-0059`, GPIO47 was the only free S3 contact. `DEC-0086/UI-0001` now use
+GPIO39/GPIO47 for direct encoder PCNT0 capture and move touch IRQ into shared
+GPIO37 through a polarity adapter. A dedicated TCA9534A restores
+interrupt-driven 4×3 controls and releases TCA6424 P00…P05. Current free state
+is `S3=0, C5=1, RP=0, main slow=6`, with UI-matrix P7 reserved.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -66,7 +69,7 @@ scope **«Проведено ревью»** and make I4 the active paper block; 
 procurement and prototype HIL evidence remains open.
 `DEC-0083/USB-0001/REV-0005AN` then close the first I4 endpoint: exact JAE
 USB-C and TI four-line protection replace the abstract port, corrected 220-pF
-CC shunts preserve capacitance margin, and GPIO47 remains free. Physical
+CC shunts preserve capacitance margin, and that endpoint leaves GPIO47 free. Physical
 port/SI/ESD HIL stays open while I4 proceeds.
 `FND-0088/DSP-0006/DEC-0084/REV-0005AO` then close the display paper
 electrical endpoint: exact first ZIF candidate, protected-main logic supply,
@@ -78,6 +81,10 @@ electrical endpoint. Exact card-side Ioff buffers, CS-gated DAT0 return,
 mandatory switched pulls, all exposed-contact/detect ESD, reset defaults and
 SPI-mode-first sequencing preserve the shared S3 allocation without a new
 GPIO. Socket placement/access, real media, throughput and fault HIL stay open.
+`FND-0090/UI-0001/DEC-0086/REV-0005AQ` then restore the complete local-control
+inventory and close its principled pin fit: 4x3 ordinary matrix, direct PCNT0
+encoder, direct RP PTT and independent AON STOP/RE-ARM. Exact switch mechanics,
+touch polarity and control HIL remain open.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit

@@ -1,5 +1,8 @@
 # REV-0005L — full-service 1-bit SDIO propagation
 
+> GPIO47 was the reserve after this review; `REV-0005AQ` later consumes it for
+> encoder phase B while preserving every service path reviewed here.
+
 - Статус: **Проведено ревью; `INT-0001/I1` закрыт на paper level**
 - Дата: 2026-08-17
 - Decision: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md)

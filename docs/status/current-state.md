@@ -273,8 +273,8 @@ The owner also accepted `IMP-0053/B` as
 and 15 V/2 A, 30 W maximum, no source/power-bank/20-V/PPS/OTG modes and direct
 S3 USB2 data. `PWR-0004/FND-0074/REV-0005R` instantiate and review exact
 `TPS25751DREFR`, `BQ25798RQMR`, mandatory `CAT24C512WI-GT3` boot/config EEPROM
-and `TVS2200DRVR`. S3 reuses SYS I2C0 plus the wired-low system IRQ, so GPIO47
-remains free. Blank/corrupt image recovery, reset-high EEPROM WP and
+and `TVS2200DRVR`. S3 reuses SYS I2C0 plus the wired-low system IRQ, so this
+endpoint itself did not consume the then-free GPIO47. Blank/corrupt image recovery, reset-high EEPROM WP and
 charge-disable CE are explicit; target README diagrams and firmware contracts
 are updated. `PWR-0007/FND-0077/REV-0005W` found that MAX17320 prequal
 linearly modulates the CHG FET. The owner accepted `IMP-0056/A` in
@@ -359,7 +359,7 @@ protected `3V3_MAIN`, local 10-uF/100-nF decoupling and separate reset-low
 defaults feed the panel logic. `TPS2553DRVR-1`, 133-kOhm ILIM,
 `ERJ-P08F10R0V` and `DMN2056U-7` form a latch-off, reset-dark backlight path.
 A whole-panel local switch was rejected because live QSPI/I2C could back-power
-its tripped rail. S3 remains `32/3/1`; the checked delta is about `$2.5…2.9`
+its tripped rail. At that endpoint S3 remained `32/3/1`; the checked delta is about `$2.5…2.9`
 including the required connector. Standalone panel procurement, real-tail
 mate/orientation, shared-SPI/touch, current/thermal and fault HIL remain open;
 I4 continues to the remaining UI endpoints.
@@ -373,6 +373,21 @@ about `$0.75…1.00` at quantity 100 excluding the existing socket, with no new
 GPIO. Socket placement/access, media/endurance, shared-bus throughput and
 contention, hot removal, ESD/short/brownout and filesystem-recovery HIL remain
 open; I4 continues to the remaining UI endpoints and KiCad stays blocked.
+`FND-0090/UI-0001/DEC-0086/REV-0005AQ` then correct the inherited control
+projection and close the fourth I4 paper endpoint for inventory and principled
+pin fit. The retained set is D-pad/OK, BACK, OPT, F1, F2, encoder/push,
+dedicated PTT, independent normally-closed STOP and recessed RE-ARM. One exact
+Dedicated `TCA9534APWR` P0…P6 and ten `1N4148WT` devices form an
+interrupt-driven 4x3 matrix, while P7 is reserved and main TCA6424 P00…P05 are
+free. Encoder A/B use S3 GPIO39/GPIO47 PCNT0 and touch IRQ joins GPIO37 through
+the pin-compatible `SN74LVC1G07/1G06` population option. S3 is now `33/3/0`,
+main slow I/O `18/0/6` and UI I/O `7/1/0`; PTT remains direct RP GPIO21 and
+STOP/RE-ARM remain outside I2C. Exact switch mechanics, SYS-I2C collision scan,
+encoder/U214 fit, touch polarity and matrix/encoder HIL remain open; KiCad
+stays blocked.
+`FND-0091` also corrects exact TCA9534A addressing from the impossible legacy
+values: RP evidence all-low straps are `0x38`, and UI all-high straps are
+candidate `0x3F`; TPS25751D `0x20` is unrelated and unchanged.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative

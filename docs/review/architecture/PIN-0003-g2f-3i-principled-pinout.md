@@ -49,10 +49,12 @@ load switches, clocks, RF matching и exact unfrozen peripheral MPN должны
 | `ESP32-S3-WROOM-1U-N16R2` | UI, display+microSD scheduler, I²S audio, internal I²C, M5 Unit profile, native 2.4/BLE/ESP-NOW | отдельные SPI2, SPI3, SD/MMC, I²S0, I²C0 и Unit-controller profile |
 | `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 1-bit SDIO to S3; native USB+UART service; IR uses RMT and direct evidence/power contacts |
 | `RP2354B A4/QFN80` | 3×nRF, CC1101, U214 LoRa/GNSS/I²C, SA518 control/PTT, deterministic event service | five physical PIO SPI groups, hardware UART0/UART1/I²C0/SPI1, direct IRQ/CE/CSN/GDO |
-| `TCA6424ARGJR` | ordinary UI/reset/select/power/status slow plane | 24/24 assigned after RX audio-source correction; no radio FIFO/PTT deadline lives here |
+| `TCA6424ARGJR` | reset/select/power/status main slow plane | 18/24 assigned; P00…P05 are free and no radio FIFO/PTT deadline lives here |
+| `TCA9534APWR #UI` | D-pad/OK/BACK/OPT/F1/F2/encoder-push 4×3 matrix | P0…P6 assigned; P7 local reserve; all-low idle produces hardware interrupt |
 
 The generated atlas contains the exact pad/contact table for all 91 exposed
-compute GPIO plus the 24 slow contacts. Every programmer/recovery path is
+compute GPIO plus the 24 main slow and eight UI-matrix contacts. Every
+programmer/recovery path is
 outside normal application dependency:
 
 - S3: native USB Serial/JTAG + default UART0 + `EN/BOOT`;
@@ -65,20 +67,21 @@ outside normal application dependency:
 
 | Domain | Used | Reserved | Free | Total exposed/allocatable |
 |---|---:|---:|---:|---:|
-| S3 | 32 | 3 | 1 | 36 |
+| S3 | 33 | 3 | 0 | 36 |
 | C5 | 14 | 6 | 1 | 21 |
 | RP | 48 | 0 | 0 | 48 |
-| slow I/O | 24 | 0 | 0 | 24 |
+| main slow I/O | 18 | 0 | 6 | 24 |
+| UI matrix I/O | 7 | 1 | 0 | 8 |
 
 The `RP=0` result is deliberate and visible. `GPIO15` and `GPIO23` implement
 the accepted nRF-group and CC quiet-state power gates. SWD/USB/RUN/BOOTSEL are
 separate fixed service contacts and are not lost. Any new direct RP function
 must trigger a remap; it cannot be added as a hidden «free pin».
 
-`DEC-0059` preserves the counts while replacing two SDIO data allocations:
-S3 GPIO43/44 are now permanent UART0 service, C5 GPIO13/14 are native USB and
-S3 GPIO47 becomes the only free S3 contact. The M5 Unit UART profile uses
-UART1 on its existing GPIO7/8 so service does not create a hidden stub.
+`DEC-0059` originally left GPIO47 as the only free S3 contact. `DEC-0086` now
+uses it with GPIO39 as the dedicated PCNT0 quadrature pair for the restored
+encoder. S3 GPIO43/44 remain permanent UART0 service, C5 GPIO13/14 remain
+native USB, and the M5 Unit UART profile continues on GPIO7/8.
 
 ## Exact peripheral contacts now instantiated
 
@@ -104,10 +107,10 @@ the same scheduled display/storage group. Physical access, real media and HIL
 remain open.
 
 The display path now also terminates on exact `HMX035CTFT-001` contacts from
-the official QDtech schematic. Its QSPI path uses GPIO4/35/36/38/41/42;
-former GPIO39/DC is reused
-as touch IRQ, while slow `P06/P07` provide display/touch reset. This consumes
-no new direct S3 contact and keeps TE conditional on HIL. Subsequent
+the official QDtech schematic. Its QSPI path uses GPIO4/35/36/38/41/42, while
+slow `P06/P07` provide display/touch reset. `DEC-0086` moves TP_INT through a
+pin-compatible open-drain polarity-adapter footprint into shared `SYS_INT_N`
+on GPIO37, releasing former direct GPIO39 for encoder phase A. Subsequent
 `AUDIO-0002/FND-0067` consumes slow P27 for the previously
 omitted `RX_AUDIO_SOURCE_SEL`, so the slow plane now has no reserve.
 `DSP-0006/DEC-0084` later place the exact first ZIF connector candidate
@@ -122,8 +125,8 @@ is an address strap for `0x19`, not reset/enable. `DEC-0054` now terminates
 `OUTP/OUTN`, `MIC1P/MIC1N`, the RX selector, speaker selector, TX selector,
 active capture buffer, reset-safe gate and PAM8302A on exact IC contacts.
 `RX_AUDIO_SOURCE_SEL` is on slow P27; direct S3 GPIO6 is active-high
-`AUDIO_ARM`. After `DEC-0059`, GPIO43/44 are UART0 service and only GPIO47 is
-free. Passive values and HIL remain open.
+`AUDIO_ARM`. GPIO43/44 are UART0 service; GPIO39/47 now capture encoder phases
+with PCNT0, leaving no free S3 GPIO. Passive values and HIL remain open.
 
 ## Digital non-interference result
 

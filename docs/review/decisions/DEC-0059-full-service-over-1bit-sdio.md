@@ -1,5 +1,8 @@
 # DEC-0059 — full S3/C5 service over 1-bit SDIO
 
+> Later allocation: `DEC-0086` consumes the GPIO47 reserve for encoder phase B;
+> the 1-bit SDIO and restored service paths decided here remain unchanged.
+
 - Статус: **Принято владельцем — вариант A**
 - Дата: 2026-08-17
 - Ответ владельца: `го` после рекомендации варианта A

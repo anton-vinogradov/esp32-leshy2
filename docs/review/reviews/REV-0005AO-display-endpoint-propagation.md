@@ -1,5 +1,8 @@
 # REV-0005AO — display endpoint propagation review
 
+> Subsequent `REV-0005AQ` changes TP_INT routing and consumes GPIO39/47 for the
+> encoder; the display endpoint reviewed here otherwise remains unchanged.
+
 - Status: **Проведено ревью**
 - Decision: [`DEC-0084`](../decisions/DEC-0084-exact-protected-display-electrical-endpoint.md)
 - Finding: [`FND-0088`](../findings/FND-0088-display-endpoint-still-contained-abstract-circuits.md)
@@ -22,4 +25,3 @@ The checked JSON and generated atlas agree, and the paper circuit has no
 abstract display supply/backlight endpoint. This review does not authorize
 KiCad, connector footprint freeze, panel purchase as a production MPN or any
 mechanical mockup update.
-

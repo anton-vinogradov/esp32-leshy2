@@ -1,5 +1,8 @@
 # REV-0005AN — exact product USB-port propagation review
 
+> GPIO47 was free at this endpoint; `REV-0005AQ` later consumes it for encoder
+> phase B without changing the USB-port result.
+
 - Статус: **Проведено ревью**
 - Дата: 2026-08-18
 - Decision: [`DEC-0083`](../decisions/DEC-0083-exact-protected-product-usb-port.md)

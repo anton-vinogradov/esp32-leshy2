@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 5 | `s3 32U/3R/1F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open |
+| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open |
 
 ## Exact-device provenance used by these drafts
 
@@ -22,6 +22,7 @@
 | `adi_ltc5507_es6_trmpbf` | `LTC5507ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5507 100kHz to 1GHz RF Power Detector datasheet 5507f](https://www.analog.com/media/en/technical-documentation/data-sheets/5507f.pdf) | same primary source |
 | `adi_ltc5532_es6_trmpbf` | `LTC5532ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5532 Precision 300MHz to 7GHz RF Detector datasheet 5532f](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | same primary source |
 | `adi_max17320_g20_t` | `Analog Devices MAX17320G20+T` | `verified_candidate` | `recommended_for_new_designs` | [MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet Rev. 12, July 2025](https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf) | same primary source |
+| `alps_ec11e18244au` | `Alps Alpine EC11E18244AU` | `verified_first_target_mechanical_fit_hil_open` | `active_standard` | [EC11E Series Incremental Encoder catalog and product specification catalog update 2510](https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf) | same primary source |
 | `bourns_crm2512_fx_20r0elf` | `Bourns CRM2512-FX-20R0ELF` | `verified_candidate` | `active` | [Bourns CRM2512 high-power resistor datasheet with pulse-load curve Rev. 08/21; current product data checked 2026-08-18](https://www.bourns.com/docs/product-datasheets/CRM.pdf) | same primary source |
 | `cc1101rgpr` | `CC1101RGPR` | `verified_candidate` | `active` | [CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet SWRS061I](https://www.ti.com/lit/ds/symlink/cc1101.pdf) | [TI CC1101RGPR order page](https://www.ti.com/product/CC1101/part-details/CC1101RGPR) |
 | `diodes_2n7002dw_7_f` | `Diodes Incorporated 2N7002DW-7-F` | `verified_candidate` | `active` | [2N7002DW dual N-channel MOSFET datasheet DS30120 Rev. 22-2, October 2021](https://www.diodes.com/datasheet/download/2N7002DW.pdf) | same primary source |
@@ -59,6 +60,7 @@
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
 | `nexperia_74lvc2g14gw_125` | `74LVC2G14GW,125` | `verified_candidate` | `production` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
 | `nicerf_sa518_v11` | `NiceRF SA518` | `verified_candidate` | `current_product` | [SA518 UV Dual Frequency Walkie-talkie Module Product Specification 1.1 / 2026-05](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf) | same primary source |
+| `onsemi_1n4148wt` | `onsemi 1N4148WT` | `verified_candidate` | `active` | [1N4148WT Small Signal Diode datasheet Rev. 11](https://www.onsemi.com/pdf/datasheet/1n4148wt-d.pdf) | same primary source |
 | `onsemi_bat54alt1g` | `BAT54ALT1G` | `verified_candidate` | `active` | [BAT54ALT1 Schottky Barrier Diodes datasheet Rev. 16](https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf) | same primary source |
 | `onsemi_bav70lt1g` | `onsemi BAV70LT1G` | `verified_candidate` | `active` | [BAV70L dual common-cathode switching diode datasheet Rev. 12](https://www.onsemi.com/pdf/datasheet/bav70lt1-d.pdf) | same primary source |
 | `onsemi_cat24c512wi_gt3` | `onsemi CAT24C512WI-GT3` | `verified_candidate` | `active` | [CAT24C512 512-kb I2C serial EEPROM datasheet Rev. 9](https://www.onsemi.com/pdf/datasheet/cat24c512-d.pdf) | same primary source |
@@ -85,6 +87,7 @@
 | `ti_csd87313dmst` | `Texas Instruments CSD87313DMST` | `verified_candidate` | `active` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
 | `ti_mspm0c1104_sdgs20r` | `Texas Instruments MSPM0C1104SDGS20R` | `verified_candidate` | `active` | [MSPM0C110x mixed-signal microcontroller datasheet SLASF90D, revised January 2026](https://www.ti.com/lit/ds/symlink/mspm0c1104.pdf) | same primary source |
 | `ti_sn74lvc08a_pwr` | `SN74LVC08APWR` | `verified_candidate` | `active` | [SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet Rev. W](https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf) | same primary source |
+| `ti_sn74lvc1g07_dckr` | `SN74LVC1G07DCKR` | `verified_first_target_touch_polarity_hil_open` | `active` | [SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet Rev. V](https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf) | same primary source |
 | `ti_sn74lvc1g125_dckr` | `Texas Instruments SN74LVC1G125DCKR` | `verified_candidate` | `active` | [SN74LVC1G125 single-bus buffer with 3-state output datasheet SCES223T and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf) | same primary source |
 | `ti_sn74lvc1g3157_dbvr` | `Texas Instruments SN74LVC1G3157DBVR` | `verified_reference` | `active` | [SN74LVC1G3157 single-pole, double-throw analog switch datasheet SCES424O, January 2003, revised June 2025](https://www.ti.com/lit/ds/symlink/sn74lvc1g3157.pdf) | same primary source |
 | `ti_sn74lvc1g74_dcur` | `SN74LVC1G74DCUR` | `verified_candidate` | `active` | [SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet Rev. G](https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf) | same primary source |
@@ -449,8 +452,8 @@ Decision `DEC-0046`; default `QUIET`.
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `receiver.SDIO`, `display_connector.PIN_2`, `codec.CDATA`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0` | — |
-| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `receiver.SCLK`, `display_connector.PIN_1`, `codec.CCLK`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11` | — |
+| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver.SDIO`, `display_connector.PIN_2`, `codec.CDATA`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0` | — |
+| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver.SCLK`, `display_connector.PIN_1`, `codec.CCLK`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
@@ -472,18 +475,19 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
 | `GPIO35` | 28 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd_host_buffer.1A`, `sd_host_sck_pulldown.END_1`, `display_connector.PIN_11` | — |
 | `GPIO36` | 29 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd_host_buffer.2A`, `sd_host_d0_pullup.END_1`, `display_connector.PIN_13` | — |
-| `GPIO37` | 30 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `pd_controller.I2Ct_IRQ`, `abstract:pack-admission reset-safe open-drain IRQ circuit` | — |
+| `GPIO37` | 30 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `abstract:pack-admission reset-safe open-drain IRQ circuit` | — |
 | `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `display_connector.PIN_9`, `lcd_host_cs_pullup.END_1` | — |
-| `GPIO39` | 32 | `LCD_TOUCH_INT` | `i` | `GPIO_IRQ` | `display_connector.PIN_3` | — |
+| `GPIO39` | 32 | `ENCODER_A` | `i` | `PCNT0` | `encoder.A`, `encoder_a_pullup.END_1` | — |
 | `GPIO40` | 33 | `LCD_BL_PWM` | `o` | `LEDC` | `backlight_gate_series.END_1` | — |
 | `GPIO41` | 34 | `LCD_QSPI_D2` | `o` | `SPI2` | `display_connector.PIN_17` | — |
 | `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `display_connector.PIN_18` | — |
 | `GPIO43` | 37 | `S3_UART_SERVICE_TX` | `o` | `UART0` | `abstract:service fixture` | — |
 | `GPIO44` | 36 | `S3_UART_SERVICE_RX` | `i` | `UART0` | `abstract:service fixture` | — |
+| `GPIO47` | 24 | `ENCODER_B` | `i` | `PCNT0` | `encoder.B`, `encoder_b_pullup.END_1` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
 
-Budget: **32 used + 3 reserved + 1 free = 36 exposed GPIO**.
-Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: `GPIO47`.
+Budget: **33 used + 3 reserved + 0 free = 36 exposed GPIO**.
+Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: none.
 
 ### `c5` — `ESP32-C5-WROOM-1U-N8R8`
 
@@ -753,7 +757,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sys_i2c_sda_pullup.END_1` | host data pull-up uses the common live logic domain |
 | `SYS_I2C_SDA` | `sys_i2c_sda_pullup.END_2` | `s3.GPIO1` | one exact 2.2-kOhm pull-up serves the complete scheduled host-control bus |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sys_int_pullup.END_1` | the shared interrupt pull-up exists only with the host domain |
-| `SYS_INT_N` | `sys_int_pullup.END_2` | `s3.GPIO37` | one exact 10-kOhm pull-up completes the wired-low interrupt tree without consuming GPIO47 |
+| `SYS_INT_N` | `sys_int_pullup.END_2` | `s3.GPIO37` | one exact 10-kOhm pull-up completes the wired-low interrupt tree without consuming another dedicated GPIO |
 | `CHARGER_QON_NC` | `nvdc_charger.QON` | `abstract:no-connect` | QON uses its specified internal pull-up; no external system-reset or ship-FET function is claimed |
 | `CHARGER_STAT_NC` | `nvdc_charger.STAT` | `abstract:no-connect` | unused open-drain STAT is disabled in the charger image; status and faults use INT/I2C |
 | `PD_LOCAL_I2C_SDA` | `pd_controller.I2Cc_SDA` | `pd_config_eeprom.SDA` | dedicated address-0x50 boot image; one EEPROM per controller |
@@ -1106,15 +1110,83 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `U214_I2C_SCL_OUT` | `u214_i2c_iso.SCLOUT` | `u214.SCL` | hot-swap isolation and stuck-low recovery keep the external branch off the controller-side domain |
 | `U214_I2C_ISO_EN` | `abstract:protected-accessory-power-good` | `u214_i2c_iso.EN` | off until protected accessory power is stable |
 | `U214_I2C_READY` | `u214_i2c_iso.READY` | `slow_io.P16` | read-only status; no safety function depends on firmware polling |
-| `UI_ROW0` | `slow_io.P00` | `abstract:UI_ROW0` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
-| `UI_ROW1` | `slow_io.P01` | `abstract:UI_ROW1` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
-| `UI_ROW2` | `slow_io.P02` | `abstract:UI_ROW2` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
-| `UI_COL0` | `slow_io.P03` | `abstract:UI_COL0` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
-| `UI_COL1` | `slow_io.P04` | `abstract:UI_COL1` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
-| `UI_COL2` | `slow_io.P05` | `abstract:UI_COL2` | diode-isolated 3x3 ordinary-key matrix; reset input-safe |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_io.VCC` | dedicated ordinary-control expander shares the protected SYS-I2C logic domain |
+| `POWER_GROUND` | `ui_matrix_io.GND` | `abstract:power-ground` | short local digital return |
+| `SYS_I2C_SDA` | `s3.GPIO1` | `ui_matrix_io.SDA` | bounded ordinary-control transactions share the internal bus but no encoder or PTT edge depends on them |
+| `SYS_I2C_SCL` | `s3.GPIO2` | `ui_matrix_io.SCL` | candidate 400-kHz service; physical bus timing remains HIL |
+| `SYS_INT_N` | `ui_matrix_io.INT_N` | `abstract:SYS_INT_N_WIRED_LOW` | open-drain interrupt asserts on any column change while every row is held low in idle |
+| `UI_MATRIX_ADDR_A0_HIGH` | `abstract:3V3_MAIN` | `ui_matrix_io.A0` | candidate 7-bit address 0x3F; physical collision scan remains HIL |
+| `UI_MATRIX_ADDR_A1_HIGH` | `abstract:3V3_MAIN` | `ui_matrix_io.A1` | candidate 7-bit address 0x3F; physical collision scan remains HIL |
+| `UI_MATRIX_ADDR_A2_HIGH` | `abstract:3V3_MAIN` | `ui_matrix_io.A2` | candidate 7-bit address 0x3F; physical collision scan remains HIL |
+| `UI_ROW0_N` | `ui_matrix_io.P0` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | 1-kOhm reset pull-down makes the row low before firmware; bounded scan may drive it high when unselected |
+| `UI_ROW1_N` | `ui_matrix_io.P1` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | 1-kOhm reset pull-down makes the row low before firmware; bounded scan may drive it high when unselected |
+| `UI_ROW2_N` | `ui_matrix_io.P2` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | 1-kOhm reset pull-down makes the row low before firmware; bounded scan may drive it high when unselected |
+| `UI_ROW3_N` | `ui_matrix_io.P3` | `abstract:UI_MATRIX_ROW3_ENCODER_PUSH` | 1-kOhm reset pull-down makes the encoder-push row low before firmware |
+| `UI_COL0` | `ui_matrix_io.P4` | `abstract:UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES` | 10-kOhm pull-up and one 1N4148WT per populated control; ordinary UI only |
+| `UI_COL1` | `ui_matrix_io.P5` | `abstract:UI_MATRIX_COL1_WITH_SWITCHES_AND_DIODES` | 10-kOhm pull-up and one 1N4148WT per populated control; ordinary UI only |
+| `UI_COL2` | `ui_matrix_io.P6` | `abstract:UI_MATRIX_COL2_WITH_SWITCHES_AND_DIODES` | 10-kOhm pull-up and one 1N4148WT per populated control; ordinary UI only |
+| `UI_MATRIX_P7_RESERVE` | `ui_matrix_io.P7` | `abstract:reserved-local-control-expansion-pad` | single local growth contact is reserved until all physical-control wishes close |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_io_bypass.END_1` | 100-nF local expander bypass |
+| `POWER_GROUND` | `ui_matrix_io_bypass.END_2` | `abstract:power-ground` | short local bypass return |
+| `UI_ROW0_N` | `ui_matrix_io.P0` | `ui_matrix_row0_pulldown.END_1` | exact 1-kOhm reset pull-down |
+| `POWER_GROUND` | `ui_matrix_row0_pulldown.END_2` | `abstract:power-ground` | row is low while TCA9534A powers up as an input |
+| `UI_ROW1_N` | `ui_matrix_io.P1` | `ui_matrix_row1_pulldown.END_1` | exact 1-kOhm reset pull-down |
+| `POWER_GROUND` | `ui_matrix_row1_pulldown.END_2` | `abstract:power-ground` | row is low while TCA9534A powers up as an input |
+| `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_row2_pulldown.END_1` | exact 1-kOhm reset pull-down |
+| `POWER_GROUND` | `ui_matrix_row2_pulldown.END_2` | `abstract:power-ground` | row is low while TCA9534A powers up as an input |
+| `UI_ROW3_N` | `ui_matrix_io.P3` | `ui_matrix_row3_pulldown.END_1` | exact 1-kOhm reset pull-down |
+| `POWER_GROUND` | `ui_matrix_row3_pulldown.END_2` | `abstract:power-ground` | row is low while TCA9534A powers up as an input |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_col0_pullup.END_1` | ordinary matrix column pull-up source |
+| `UI_COL0` | `ui_matrix_col0_pullup.END_2` | `ui_matrix_io.P4` | 10-kOhm column pull-up |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_col1_pullup.END_1` | ordinary matrix column pull-up source |
+| `UI_COL1` | `ui_matrix_col1_pullup.END_2` | `ui_matrix_io.P5` | 10-kOhm column pull-up |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_col2_pullup.END_1` | ordinary matrix column pull-up source |
+| `UI_COL2` | `ui_matrix_col2_pullup.END_2` | `ui_matrix_io.P6` | 10-kOhm column pull-up |
+| `UI_ROW0_N` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | `ui_matrix_diode_up.K` | one exact diode isolates D-pad UP from other rows |
+| `UI_UP_ROW_SIDE` | `ui_matrix_diode_up.A` | `abstract:UI_SWITCH_UP_ROW_CONTACT` | ordinary normally-open D-pad UP mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL0` | `abstract:UI_SWITCH_UP_COL_CONTACT` | `ui_matrix_io.P4` | D-pad UP occupies row 0, column 0 |
+| `UI_ROW0_N` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | `ui_matrix_diode_down.K` | one exact diode isolates D-pad DOWN from other rows |
+| `UI_DOWN_ROW_SIDE` | `ui_matrix_diode_down.A` | `abstract:UI_SWITCH_DOWN_ROW_CONTACT` | ordinary normally-open D-pad DOWN mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL1` | `abstract:UI_SWITCH_DOWN_COL_CONTACT` | `ui_matrix_io.P5` | D-pad DOWN occupies row 0, column 1 |
+| `UI_ROW0_N` | `abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT` | `ui_matrix_diode_left.K` | one exact diode isolates D-pad LEFT from other rows |
+| `UI_LEFT_ROW_SIDE` | `ui_matrix_diode_left.A` | `abstract:UI_SWITCH_LEFT_ROW_CONTACT` | ordinary normally-open D-pad LEFT mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL2` | `abstract:UI_SWITCH_LEFT_COL_CONTACT` | `ui_matrix_io.P6` | D-pad LEFT occupies row 0, column 2 |
+| `UI_ROW1_N` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | `ui_matrix_diode_right.K` | one exact diode isolates D-pad RIGHT from other rows |
+| `UI_RIGHT_ROW_SIDE` | `ui_matrix_diode_right.A` | `abstract:UI_SWITCH_RIGHT_ROW_CONTACT` | ordinary normally-open D-pad RIGHT mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL0` | `abstract:UI_SWITCH_RIGHT_COL_CONTACT` | `ui_matrix_io.P4` | D-pad RIGHT occupies row 1, column 0 |
+| `UI_ROW1_N` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | `ui_matrix_diode_ok.K` | one exact diode isolates D-pad OK from other rows |
+| `UI_OK_ROW_SIDE` | `ui_matrix_diode_ok.A` | `abstract:UI_SWITCH_OK_ROW_CONTACT` | ordinary normally-open D-pad OK mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL1` | `abstract:UI_SWITCH_OK_COL_CONTACT` | `ui_matrix_io.P5` | D-pad OK occupies row 1, column 1 |
+| `UI_ROW1_N` | `abstract:UI_MATRIX_ROW1_RIGHT_OK_BACK` | `ui_matrix_diode_back.K` | one exact diode isolates BACK from other rows |
+| `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `abstract:UI_SWITCH_BACK_ROW_CONTACT` | ordinary normally-open BACK mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL2` | `abstract:UI_SWITCH_BACK_COL_CONTACT` | `ui_matrix_io.P6` | BACK occupies row 1, column 2 |
+| `UI_ROW2_N` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | `ui_matrix_diode_opt.K` | one exact diode isolates OPT from other rows |
+| `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `abstract:UI_SWITCH_OPT_ROW_CONTACT` | ordinary normally-open OPT mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL0` | `abstract:UI_SWITCH_OPT_COL_CONTACT` | `ui_matrix_io.P4` | OPT occupies row 2, column 0 |
+| `UI_ROW2_N` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | `ui_matrix_diode_f1.K` | one exact diode isolates F1 from other rows |
+| `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `abstract:UI_SWITCH_F1_ROW_CONTACT` | ordinary normally-open F1 mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL1` | `abstract:UI_SWITCH_F1_COL_CONTACT` | `ui_matrix_io.P5` | F1 occupies row 2, column 1 |
+| `UI_ROW2_N` | `abstract:UI_MATRIX_ROW2_OPT_F1_F2` | `ui_matrix_diode_f2.K` | one exact diode isolates F2 from other rows |
+| `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `abstract:UI_SWITCH_F2_ROW_CONTACT` | ordinary normally-open F2 mechanics remain an I4 MPN/ergonomics gate |
+| `UI_COL2` | `abstract:UI_SWITCH_F2_COL_CONTACT` | `ui_matrix_io.P6` | F2 occupies row 2, column 2 |
+| `UI_ROW3_N` | `abstract:UI_MATRIX_ROW3_ENCODER_PUSH` | `ui_matrix_diode_encoder.K` | one exact diode isolates encoder push from other rows |
+| `UI_ENCODER_PUSH_ROW` | `ui_matrix_diode_encoder.A` | `encoder.SW1` | integrated push switch is the tenth ordinary matrix control |
+| `POWER_GROUND` | `encoder.C` | `abstract:power-ground` | quadrature common is a short local digital return |
+| `UI_COL0` | `encoder.SW2` | `abstract:UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES` | encoder push occupies row 3, column 0 |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `encoder_a_pullup.END_1` | external phase pull-up keeps the direct PCNT input deterministic |
+| `ENCODER_A` | `encoder_a_pullup.END_2` | `encoder.A` | exact 3.32-kOhm pull-up targets approximately 1 mA closed-contact current at 3.3 V; chatter and EMI remain HIL |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `encoder_b_pullup.END_1` | external phase pull-up keeps the direct PCNT input deterministic |
+| `ENCODER_B` | `encoder_b_pullup.END_2` | `encoder.B` | exact 3.32-kOhm pull-up targets approximately 1 mA closed-contact current at 3.3 V; chatter and EMI remain HIL |
 | `SYS_I2C_SCL` | `display_connector.PIN_1` | `display.TP_I2C_SCL` | logical contact 1 maps one-to-one; physical tail orientation remains specimen HIL |
 | `SYS_I2C_SDA` | `display_connector.PIN_2` | `display.TP_I2C_SDA` | one existing exact 2.2-kOhm host pull-up pair serves the complete bus; no duplicate panel pull-ups |
-| `LCD_TOUCH_INT` | `display_connector.PIN_3` | `display.TP_INT` | S3 input has no assumed pull until specimen HIL proves output type, idle level and polarity |
+| `LCD_TOUCH_INT_RAW` | `display_connector.PIN_3` | `display.TP_INT` | panel contact is kept separate from SYS_INT_N until specimen polarity/type is handled by the population option |
+| `LCD_TOUCH_INT_RAW` | `display_connector.PIN_3` | `touch_irq_buffer.A` | first target is non-inverting open drain for active-low TP_INT; pin-compatible inverter is populated if specimen HIL proves active-high |
+| `SYS_INT_N` | `touch_irq_buffer.Y` | `abstract:SYS_INT_N_WIRED_LOW` | open-drain output joins the existing shared interrupt without consuming another GPIO |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `touch_irq_buffer.VCC` | Ioff-capable buffer is supplied from protected main logic |
+| `POWER_GROUND` | `touch_irq_buffer.GND` | `abstract:power-ground` | short local digital return |
+| `TOUCH_IRQ_BUFFER_NC` | `touch_irq_buffer.NC` | `abstract:no-connect` | SC70 pin 1 is intentionally unconnected |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `touch_irq_buffer_bypass.END_1` | 100-nF local buffer bypass |
+| `POWER_GROUND` | `touch_irq_buffer_bypass.END_2` | `abstract:power-ground` | short local bypass return |
 | `TOUCH_RST_N` | `slow_io.P07` | `display_connector.PIN_4` | TP_RESXP is held low by a physical pull-down and released only after display power is stable |
 | `TOUCH_RST_N` | `display_connector.PIN_4` | `display.TP_RESET` | official ST77922 timing requires a reset pulse of at least 10 us and at least 100 ms after release before touch operation |
 | `TOUCH_RST_N` | `display_connector.PIN_4` | `touch_reset_pulldown.END_1` | separate physical reset-default resistor remains effective while the slow-I/O output is high-impedance |
@@ -1389,9 +1461,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `RP_ANY_TX_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
 | `ANY_TX_LED_A` | `abstract:AON_SAFE_3V3-via-2k2` | `any_tx_led.A` | red physical indicator current is sunk by the asserting comparator through one Schottky diode |
 | `EVIDENCE_MASK_INT_N_TP` | `evidence_mask.INT_N` | `abstract:TP_EVIDENCE_MASK_INT_N` | test point only; no safety claim depends on expander interrupt behavior |
-| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | fixed 7-bit address 0x20 |
-| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | fixed 7-bit address 0x20 |
-| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | fixed 7-bit address 0x20 |
+| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | fixed 7-bit address 0x38 |
+| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | fixed 7-bit address 0x38 |
+| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | fixed 7-bit address 0x38 |
 
 ### Programming, recovery and diagnostics
 
@@ -1408,7 +1480,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 | Instance | Used | Reserved | Free |
 |---|---:|---:|---:|
-| `slow_io` | 24 | 0 | 0 |
+| `slow_io` | 18 | 0 | 6 |
+| `ui_matrix_io` | 7 | 1 | 0 |
 
 ### Interface non-interference contracts
 
@@ -1424,7 +1497,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `DISPLAY_SD_SPI` | `s3` | `display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
 | `S3_RP_IPC` | `s3` | `rp` | dedicated | 20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership | SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL |
 | `S3_C5_IPC` | `s3` | `c5` | dedicated | 1-bit SDIO at 20 MHz raw 2.5 MB/s with qualified framed payload >=1.5 MB/s, admitted occupancy <=70% and control RTT <=2 ms; no microSD, RP or display controller ownership | single-slot 1-bit SDMMC/SDIO throughput, control-priority, reset recovery and simultaneous Wi-Fi/802.15.4 load HIL; 4-bit fallback only if this gate fails |
-| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `display touch`, `codec`, `receiver`, `pd_controller`, `pack_admission` | scheduled; bounded transactions; expander, PD, pack and touch interrupts only wake the service loop; GPIO47 remains free | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO or PTT deadline is placed here | ES8311 address/readback and power-off no-backfeed, touch IRQ/reset, PD and pack target-interface recovery, wired-low IRQ source identification, shortest-pulse, matrix and fault-latency HIL |
+| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `display touch`, `codec`, `receiver`, `pd_controller`, `pack_admission` | scheduled; bounded transactions; both expanders, PD, pack and touch interrupts only wake the service loop; UI initialization writes low output latches before P0..P3 become outputs, then holds all rows low in idle, scans one low row against three high rows, and restores idle; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including candidate UI address 0x3F, ES8311 address/readback and power-off no-backfeed, touch IRQ polarity/reset, TCA9534A idle-row interrupt behavior, PD and pack target-interface recovery, wired-low IRQ source identification, shortest-pulse, 4x3 matrix and fault-latency HIL |
+| `S3_ENCODER_PCNT` | `s3` | `encoder` | dedicated; PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C matrix carries only encoder push and never phase edges | no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case | phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL |
 | `PD_LOCAL_I2C` | `pd_controller` | `pd_config_eeprom`, `nvdc_charger` | scheduled; TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive | boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses | blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL |
 | `PACK_LOCAL_I2C` | `pack_admission` | `pack_gauge` | dedicated | gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant | bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL |
 | `S3_UNIT_PORT` | `s3` | `abstract:M5 Unit` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | profile-switch and external-fault HIL |
@@ -1473,6 +1547,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `voice` lifecycle: `current_product`.
 - `receiver` lifecycle: `manufacturer_documented`.
 - `slow_io` uses `TCA6424ARGJR` as `reference_only`, not an accepted production choice.
+- `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
+- `encoder` lifecycle: `active_standard`.
+- `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_first_target_touch_polarity_hil_open`, not an accepted production choice.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
 - `display_connector` uses `Hirose FH12-40S-0.5SH(55)` as `verified_first_fit_candidate`, not an accepted production choice.
 - `display_connector` lifecycle: `active; exact HMX035CTFT-001 tail thickness, exposed-contact side, stiffener and insertion fit remain specimen HIL`.
@@ -1508,7 +1585,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - CC1101 matching, oscillator, antenna path and regional proof are not represented by the bare-IC contact ledger
 - TCA6424ARGJR and TCA4307DGKR are real-contact planning references; voltage domains, pulls, address, reset, shortest pulses and exact endpoint MPNs remain electrical/HIL gates
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and is instantiated as a paper candidate, not a production-qualified orderable part; DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open
-- After DEC-0059 restores full S3/C5 service, S3 retains only GPIO47 free, C5 one and RP none. Slow_io P27 carries RX_AUDIO_SOURCE_SEL, so the 24-line slow plane has no reserve. GPIO47 remains unassigned; any new direct RP endpoint requires an explicit remap and repeated review
+- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO, C5 retains one, and the 24-line slow plane has no reserve. New direct endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM switch mechanics, touch polarity and control HIL remain open
 - C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve

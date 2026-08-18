@@ -1,5 +1,8 @@
 # REV-0005AP — microSD endpoint propagation review
 
+> S3 was `32/3/1` at this endpoint; `REV-0005AQ` later changes the whole-device
+> result to `33/3/0` for encoder capture without changing microSD allocation.
+
 - Status: **Проведено ревью**
 - Decision: [`DEC-0085`](../decisions/DEC-0085-exact-isolated-microsd-electrical-endpoint.md)
 - Finding: [`FND-0089`](../findings/FND-0089-microsd-endpoint-was-backpowered-and-unprotected.md)

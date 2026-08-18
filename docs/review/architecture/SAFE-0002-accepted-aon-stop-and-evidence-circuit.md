@@ -122,7 +122,7 @@ with their application rails. `LTC5532` first-target gain is `2×` using matched
 `10 kΩ 1%` feedback/ground resistors and grounded `VOS`; `I6` may repopulate
 only after recalculating all thresholds.
 
-`TCA9534APWR` is fixed at seven-bit address `0x20` on the local side of RP I²C0,
+`TCA9534APWR` is fixed at seven-bit address `0x38` on the local side of RP I²C0,
 before `TCA4307`: `P0…P7 = EV_N[0…7]`. Its `INT_N` is a test point only. Source
 attribution may fail with I²C, but the physical aggregate cannot.
 

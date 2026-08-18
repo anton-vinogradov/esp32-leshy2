@@ -1,5 +1,8 @@
 # DEC-0063 — sink-only USB-PD up to 30 W
 
+> Later allocation: this decision itself consumes no direct GPIO, but
+> `DEC-0086` subsequently uses GPIO47 for encoder phase B.
+
 - Статус: **Принято владельцем; распространено; frontend проведён ревью**
 - Owner choice: `IMP-0053/B`
 - Дата: 2026-08-18

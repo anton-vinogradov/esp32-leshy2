@@ -81,20 +81,31 @@ S3 GPIO0 remains pulled for normal boot; RP is held reset/high-Z during S3 strap
 
 ## Local UI and physical controls
 
-The target uses touch plus a small, complete physical set derived from the local-UI requirement rather than the legacy 3×3 matrix:
+The target keeps the complete physical control set proven by the old mockup,
+but remaps it from requirements rather than inheriting its old GPIO placement:
 
+- D-pad directions plus `OK`, `BACK`, `OPT`, `F1` and `F2`;
 - rotary encoder `A/B/push` for navigate/select;
-- `BACK` with long-hold software panic-stop;
-- `HOME` and `OPTIONS`;
-- touch interrupt and on-screen keyboard; every text/action remains reachable with encoder/buttons if touch fails;
-- direct physical PTT on RP GPIO22, active only in an armed foreground voice session;
+- touch interrupt and on-screen keyboard; touch and phone text input do not
+  replace any physical control;
+- direct physical PTT on RP GPIO21, active only in an armed foreground voice session;
 - independent latched hardware STOP;
 - separate recessed physical `RE-ARM`, effective only after STOP release and safe-state checks;
 - supervisor-managed power/wake control, not an ordinary I²C-only button.
 
-One onboard TI [`TCA9535PWR`](https://www.ti.com/product/TCA9535) 16-bit I²C controller is selected for non-safety UI/slow control. Seven inputs are encoder A/B/push, BACK, HOME, OPTIONS and touch IRQ; the eighth observes accessory/power fault. Eight reset-safe outputs serve display/touch reset, two audio selectors, amp mute/enable, GNSS mux select, U214 reset and an external-profile power/isolation-sequencer request. All outputs have external safe pulls because the expander powers up as inputs; firmware preloads the inactive output latch before changing direction. The downstream sequencer independently enforces current limit, no-backfeed and safe-off, so this request is not the only isolation barrier. Stage 4 may qualify an exact second source only as a pin/reset/electrical/AVL-equivalent BOM substitution.
+Dedicated `TCA9534APWR` uses `P0…P3` as four reset/idle-low rows and `P4…P6`
+as three pulled-up columns; `P7` is reserved for local UI growth. Ten exact
+onsemi `1N4148WT` diodes isolate the ten populated positions: the nine labelled
+ordinary buttons plus encoder push. Any idle press asserts its open-drain IRQ;
+the bounded scan drives one row low and three high, then restores all-low idle.
+Encoder phases bypass I²C entirely and reach S3 `GPIO39/GPIO47` through
+hardware `PCNT0`. Touch interrupt passes
+through the pin-compatible `SN74LVC1G07DCKR`/`SN74LVC1G06DCKR` population
+option into shared wired-low `SYS_INT_N`; specimen polarity chooses which part.
 
-STOP, PTT, re-arm, TX gates and critical actual-TX/STOP indication never depend solely on this I²C controller. The old nine-button matrix and extra `U14` are not part of target; their user results remain covered with fewer parts and no ghosting state.
+STOP, PTT, re-arm, TX gates and critical actual-TX/STOP indication never depend
+solely on this I²C controller. The old physical control inventory is retained;
+only its obsolete direct pin placement and 3×3 limit are rejected.
 
 ## Peripheral ownership
 

@@ -22,12 +22,13 @@
         "qualification": "datasheet_verified"
       },
       "programmable": true,
-      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2C1_OR_UART1_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART0", "UART1", "UART2", "GPIO", "GPIO_IRQ", "LEDC"],
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2C1_OR_UART1_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART0", "UART1", "UART2", "PCNT0", "GPIO", "GPIO_IRQ", "LEDC"],
       "controller_notes": {
         "SDMMC_SLOT0/SDMMC_SLOT1": "one S3 SD/MMC host exposes slot 0 up to 8-bit and slot 1 up to 4-bit through the GPIO matrix; two 4-bit links remain one scheduled-controller concurrency gate",
         "I2C1_OR_UART0_OR_GPIO": "historical candidates only: GPIO7/8 use the S3 second hardware I2C controller, UART0 through the GPIO matrix or custom GPIO as one mutually exclusive Unit profile",
         "I2C1_OR_UART1_OR_GPIO": "current G2F-3I Unit profile: GPIO7/8 use the S3 second hardware I2C controller, UART1 through the GPIO matrix or custom GPIO; default UART0 remains dedicated to service GPIO43/44",
-        "UART0": "default service and RF-test route on exposed GPIO43=U0TXD and GPIO44=U0RXD"
+        "UART0": "default service and RF-test route on exposed GPIO43=U0TXD and GPIO44=U0RXD",
+        "PCNT0": "hardware quadrature capture for the local rotary encoder through the GPIO matrix; detent semantics and contact-bounce rejection remain a firmware/HIL contract"
       },
       "contacts": {
         "3V3": {"physical": "2", "role": "power"},
@@ -1200,6 +1201,86 @@
         "EPAD": {"physical": "exposed center pad", "role": "power_or_open"}
       }
     },
+    "ti_sn74lvc1g07_dckr": {
+      "mpn": "SN74LVC1G07DCKR",
+      "kind": "sc70_5_open_drain_noninverting_buffer",
+      "qualification": "verified_first_target_touch_polarity_hil_open",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet",
+        "version": "Rev. V",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "NC": {"physical": "1", "role": "no_connect"},
+        "A": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
+    "ti_sn74lvc1g06_dckr": {
+      "mpn": "SN74LVC1G06DCKR",
+      "kind": "sc70_5_open_drain_inverting_buffer",
+      "qualification": "verified_pin_compatible_touch_polarity_alternative",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G06 Single Inverter Buffer/Driver With Open-Drain Output datasheet",
+        "version": "Rev. W",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "NC": {"physical": "1", "role": "no_connect"},
+        "A": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
+    "alps_ec11e18244au": {
+      "mpn": "Alps Alpine EC11E18244AU",
+      "kind": "through_hole_incremental_encoder_with_push",
+      "qualification": "verified_first_target_mechanical_fit_hil_open",
+      "lifecycle": "active_standard",
+      "source": {
+        "document": "EC11E Series Incremental Encoder catalog and product specification",
+        "version": "catalog update 2510",
+        "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "A": {"physical": "A", "role": "quadrature"},
+        "C": {"physical": "C", "role": "common"},
+        "B": {"physical": "B", "role": "quadrature"},
+        "SW1": {"physical": "D", "role": "push_switch"},
+        "SW2": {"physical": "E", "role": "push_switch"}
+      }
+    },
+    "onsemi_1n4148wt": {
+      "mpn": "onsemi 1N4148WT",
+      "kind": "sod523_switching_diode",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.2, 0.8, 0.65],
+      "source": {
+        "document": "1N4148WT Small Signal Diode datasheet",
+        "version": "Rev. 11",
+        "url": "https://www.onsemi.com/pdf/datasheet/1n4148wt-d.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "K": {"physical": "1", "role": "cathode"},
+        "A": {"physical": "2", "role": "anode"}
+      }
+    },
     "tca4307dgkr": {
       "mpn": "TCA4307DGKR",
       "kind": "vssop8",
@@ -1433,9 +1514,19 @@
         "document": "TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet",
         "version": "Rev. C",
         "url": "https://www.ti.com/lit/ds/symlink/tca9534a.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TCA9534APWR Mouser exact order code; 8,054 shown in stock",
+        "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/TCA9534APWR?qs=asCBFxFfL1RkU8XbvZBOXg%3D%3D",
+        "checked": "2026-08-18"
       },
       "programmable": false,
+      "i2c_7bit_address_by_a2a1a0": {
+        "000": "0x38", "001": "0x39", "010": "0x3A", "011": "0x3B",
+        "100": "0x3C", "101": "0x3D", "110": "0x3E", "111": "0x3F"
+      },
+      "allocatable_contacts": ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7"],
       "contacts": {
         "A0": {"physical": "1", "role": "signal"}, "A1": {"physical": "2", "role": "signal"},
         "A2": {"physical": "3", "role": "signal"}, "P0": {"physical": "4", "role": "signal"},

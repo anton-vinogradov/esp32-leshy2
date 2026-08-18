@@ -1,5 +1,8 @@
 # REV-0005A — HMX035CTFT-001 electrical-fit and propagation review
 
+> Subsequent propagation is reviewed by `REV-0005AQ`: TP_INT moves to shared
+> GPIO37 and GPIO39/47 become the encoder PCNT0 pair.
+
 > Subsequent `DEC-0054/REV-0005D` assigns S3 GPIO6 to `AUDIO_ARM`; the
 > display-only `31/3/2` snapshot below is historical and current total is
 > `32/3/1`.

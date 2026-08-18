@@ -1,5 +1,9 @@
 # DSP-0006 — exact display rail, backlight and first mate profile
 
+> Amended by `DEC-0086/UI-0001`: the previously direct TP_INT route is moved
+> through a polarity adapter into shared GPIO37; GPIO39/47 now serve encoder
+> PCNT0. Display power, reset, QSPI, connector and backlight conclusions remain.
+
 - Status: **Проведено ревью paper electrical endpoint; physical mate and HIL open**
 - Finding: [`FND-0088`](../findings/FND-0088-display-endpoint-still-contained-abstract-circuits.md)
 - Decision: [`DEC-0084`](../decisions/DEC-0084-exact-protected-display-electrical-endpoint.md)
@@ -112,4 +116,3 @@ not the reviewed paper electrical endpoint.
 - [ST77922 specification hosted by Espressif](https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf)
 - [Hirose FH12-40S-0.5SH(55) exact product page](https://www.hirose.com/product/p/CL0586-0527-7-55?lang=en)
 - [TI TPS2553DRVR-1 exact product page](https://www.ti.com/product/TPS2553-1/part-details/TPS2553DRVR-1)
-

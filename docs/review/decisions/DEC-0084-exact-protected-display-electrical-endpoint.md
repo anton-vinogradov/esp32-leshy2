@@ -1,5 +1,8 @@
 # DEC-0084 — exact protected display electrical endpoint
 
+> Amended by `DEC-0086`: only TP_INT routing changes, from direct GPIO39 to
+> shared GPIO37 through a specimen-selected open-drain polarity adapter.
+
 - Status: **accepted; Проведено ревью for paper electrical scope**
 - Finding: [`FND-0088`](../findings/FND-0088-display-endpoint-still-contained-abstract-circuits.md)
 - Architecture: [`DSP-0006`](../architecture/DSP-0006-exact-display-rail-backlight-and-mate-profile.md)
@@ -36,4 +39,3 @@
   than a back-power-prone local switch.
 - Connector orientation, standalone orderability and all listed HIL remain
   blockers for physical freeze and KiCad authorization.
-

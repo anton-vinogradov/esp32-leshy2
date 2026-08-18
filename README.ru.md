@@ -324,7 +324,41 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
-  SLOW["TCA6424ARGJR<br/>24-line slow-control and UI expander"]
+  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; six contacts free"]
+  UIMATRIX["TCA9534APWR #UI<br/>dedicated interrupt-capable 4x3 control expander"]
+  UIMBP["C1005X7R1H104K050BB #UI<br/>100-nF UI-expander bypass capacitor"]
+  UIR0PD["RC0603FR-071KL #UI-R0<br/>1-kOhm reset/idle row pull-down"]
+  UIR1PD["RC0603FR-071KL #UI-R1<br/>1-kOhm reset/idle row pull-down"]
+  UIR2PD["RC0603FR-071KL #UI-R2<br/>1-kOhm reset/idle row pull-down"]
+  UIR3PD["RC0603FR-071KL #UI-R3<br/>1-kOhm reset/idle row pull-down"]
+  UIC0PU["RC0402FR-0710KL #UI-C0<br/>10-kOhm matrix-column pull-up"]
+  UIC1PU["RC0402FR-0710KL #UI-C1<br/>10-kOhm matrix-column pull-up"]
+  UIC2PU["RC0402FR-0710KL #UI-C2<br/>10-kOhm matrix-column pull-up"]
+  UIDUP["onsemi 1N4148WT #UP<br/>D-pad UP matrix-isolation diode"]
+  UIDDN["onsemi 1N4148WT #DOWN<br/>D-pad DOWN matrix-isolation diode"]
+  UIDLEFT["onsemi 1N4148WT #LEFT<br/>D-pad LEFT matrix-isolation diode"]
+  UIDRIGHT["onsemi 1N4148WT #RIGHT<br/>D-pad RIGHT matrix-isolation diode"]
+  UIDOK["onsemi 1N4148WT #OK<br/>D-pad OK matrix-isolation diode"]
+  UIDBACK["onsemi 1N4148WT #BACK<br/>BACK matrix-isolation diode"]
+  UIDOPT["onsemi 1N4148WT #OPT<br/>OPT matrix-isolation diode"]
+  UIDF1["onsemi 1N4148WT #F1<br/>F1 matrix-isolation diode"]
+  UIDF2["onsemi 1N4148WT #F2<br/>F2 matrix-isolation diode"]
+  UIDENC["onsemi 1N4148WT #ENC<br/>encoder-push matrix-isolation diode"]
+  UIUP["MPN TBD<br/>D-pad UP ordinary control"]
+  UIDOWN["MPN TBD<br/>D-pad DOWN ordinary control"]
+  UILEFT["MPN TBD<br/>D-pad LEFT ordinary control"]
+  UIRIGHT["MPN TBD<br/>D-pad RIGHT ordinary control"]
+  UIOK["MPN TBD<br/>D-pad OK ordinary control"]
+  UIBACK["MPN TBD<br/>BACK ordinary control"]
+  UIOPT["MPN TBD<br/>OPT ordinary control"]
+  UIF1["MPN TBD<br/>F1 ordinary control"]
+  UIF2["MPN TBD<br/>F2 ordinary control"]
+  ENC["Alps Alpine EC11E18244AU<br/>36-detent/18-pulse encoder with push"]
+  ENCAPU["RC0402FR-073K32L #ENC-A<br/>3.32-kOhm encoder-phase-A contact-current pull-up"]
+  ENCBPU["RC0402FR-073K32L #ENC-B<br/>3.32-kOhm encoder-phase-B contact-current pull-up"]
+  TPIRQ["SN74LVC1G07DCKR<br/>open-drain touch-interrupt adapter"]
+  TPIRQALT["SN74LVC1G06DCKR (DNP alternative)<br/>pin-compatible active-high TP_INT inverter option"]
+  TPIRQBP["C1005X7R1H104K050BB #TP-IRQ<br/>100-nF touch-IRQ adapter bypass capacitor"]
   LCDCON["FH12-40S-0.5SH(55)<br/>первый кандидат 40-контактного ZIF 0,5 мм с нижними контактами для шлейфа экрана"]
   LCD["HMX035CTFT-001<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
   LCDLBULK["GRM188R60J106ME47D #LCD-LOGIC<br/>10-мкФ буферный конденсатор логического питания экрана"]
@@ -391,6 +425,7 @@ flowchart TD
   IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
   IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
   IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
+  PTTSW["MPN TBD<br/>separate normally-open hold-to-talk PTT control"]
   STOPSW["MPN TBD<br/>normally-closed physical STOP control"]
   REARMSW["MPN TBD<br/>normally-open recessed RE-ARM control"]
   SUP["TPS3808G33DBVR<br/>AON rail supervisor and power-on reset"]
@@ -434,7 +469,12 @@ flowchart TD
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEFUSE ~~~ VOICERILIM ~~~ VOICEDVDT ~~~ VOICEIT ~~~ VOICEOVT ~~~ VOICEOVB ~~~ VOICEPGT ~~~ VOICEPGB ~~~ VOICEFOUT ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
-  SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
+  SLOW ~~~ UIMATRIX ~~~ UIMBP ~~~ UIR0PD ~~~ UIR1PD ~~~ UIR2PD ~~~ UIR3PD ~~~ UIC0PU ~~~ UIC1PU ~~~ UIC2PU
+  UIC2PU ~~~ UIDUP ~~~ UIUP ~~~ UIDDN ~~~ UIDOWN ~~~ UIDLEFT ~~~ UILEFT
+  UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
+  UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
+  UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ TPIRQ ~~~ TPIRQALT ~~~ TPIRQBP
+  TPIRQBP ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
   BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ SDHBUF ~~~ SDMBUF ~~~ SDESDA ~~~ SDESDB
@@ -442,7 +482,7 @@ flowchart TD
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
   SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
-  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ STOPSW ~~~ REARMSW
+  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW
   REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
@@ -629,7 +669,32 @@ flowchart TD
   S3 <-->|"I²C0 + interrupt"| SLOW
   S3 -->|"direct QSPI + touch"| LCDCON
   LCDCON <-->|"40-контактный FPC; HIL физического сопряжения открыт"| LCD
+  LCDCON -->|"сырой TP_INT"| TPIRQ -->|"open-drain SYS_INT_N"| S3
+  TPIRQALT -.->|"тот же footprint; установка только после HIL полярности"| TPIRQ
+  TPIRQBP --> TPIRQ
   SLOW -->|"P06/P07 release reset"| LCDCON
+  S3 <-->|"SYS I²C0 + wired-low IRQ"| UIMATRIX
+  UIMBP --> UIMATRIX
+  UIR0PD -->|"reset/idle low"| UIMATRIX
+  UIR1PD -->|"reset/idle low"| UIMATRIX
+  UIR2PD -->|"reset/idle low"| UIMATRIX
+  UIR3PD -->|"reset/idle low"| UIMATRIX
+  UIMATRIX --> UIDUP --> UIUP -->|"P4 столбец 0"| UIMATRIX
+  UIMATRIX --> UIDDN --> UIDOWN -->|"P5 столбец 1"| UIMATRIX
+  UIMATRIX --> UIDLEFT --> UILEFT -->|"P6 столбец 2"| UIMATRIX
+  UIMATRIX --> UIDRIGHT --> UIRIGHT -->|"P4 столбец 0"| UIMATRIX
+  UIMATRIX --> UIDOK --> UIOK -->|"P5 столбец 1"| UIMATRIX
+  UIMATRIX --> UIDBACK --> UIBACK -->|"P6 столбец 2"| UIMATRIX
+  UIMATRIX --> UIDOPT --> UIOPT -->|"P4 столбец 0"| UIMATRIX
+  UIMATRIX --> UIDF1 --> UIF1 -->|"P5 столбец 1"| UIMATRIX
+  UIMATRIX --> UIDF2 --> UIF2 -->|"P6 столбец 2"| UIMATRIX
+  UIMATRIX --> UIDENC -->|"нажатие"| ENC -->|"P4 столбец 0"| UIMATRIX
+  UIC0PU --> UIMATRIX
+  UIC1PU --> UIMATRIX
+  UIC2PU --> UIMATRIX
+  ENCAPU --> ENC
+  ENCBPU --> ENC
+  ENC -->|"GPIO39/GPIO47 PCNT0 quadrature"| S3
   LCDRPD -->|"RESX по умолчанию low"| LCDCON
   TPRPD -->|"TP_RESXP по умолчанию low"| LCDCON
   MAINFUSE -->|"защищённые 3,3 В логики"| LCDLBULK --> LCDCON
@@ -684,6 +749,7 @@ flowchart TD
   RP <-->|"PIO0 SM2"| NRF2
   RP <-->|"PIO0 SM3"| CC
   RP <-->|"UART0/PTT request"| SA
+  PTTSW -->|"прямой GPIO21; никогда не входит в UI-матрицу"| RP
   RP <-->|"PIO1/UART1"| CAPDOCK
   RP <-->|"I²C0"| ISO
   ISO <-->|"isolated I²C"| CAPDOCK
@@ -744,9 +810,15 @@ flowchart TD
 - **S3↔RP:** S3 `GPIO3,GPIO9,GPIO14,GPIO21,GPIO48`; RP
   `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` — выделенная SPI + alert.
 - **Дисплей и microSD:** S3
-  `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
+  `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO40,GPIO41,GPIO42` — direct QSPI
   и единственная планируемая high-rate shared pair. Ioff-буферы со стороны
   карты и CS-gated возврат MISO исключают конфликт выключенной карты с D1 экрана.
+- **Локальные органы управления:** S3 `GPIO39,GPIO47` — выделенные входы
+  quadrature PCNT0. Отдельный `TCA9534APWR` `P0…P6` сканирует
+  диодно-изолированную матрицу 4×3 с D-pad/OK, BACK, OPT, F1, F2 и нажатием
+  энкодера; `P7` — локальный резерв. В reset/idle все строки низкие, поэтому
+  любая кнопка вызывает wired-low interrupt. PTT подключён прямо к RP `GPIO21`,
+  а STOP и RE-ARM остаются независимыми AON-трактами.
 - **Audio и Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0 и
   локальная I²C0. PD-контроллер также использует эту ограниченную control-шину
   и общий wired-low system IRQ, не занимая нового GPIO S3.
@@ -760,9 +832,9 @@ flowchart TD
   evidence делит локальную RP I²C0, а аппаратный aggregate использует `GPIO22`.
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
-- **Ресурсный итог:** S3 `32 used / 3 reserved / 1 free`, C5 `14/6/1`, RP
-  `48/0/0`, slow I/O `24/0/0`. Независимые SWD/USB/RUN/BOOTSEL не входят в
-  этот GPIO-бюджет.
+- **Ресурсный итог:** S3 `33 used / 3 reserved / 0 free`, C5 `14/6/1`, RP
+  `48/0/0`, main slow I/O `18/0/6`, UI matrix I/O `7/1/0`. Независимые
+  SWD/USB/RUN/BOOTSEL не входят в этот GPIO-бюджет.
 
 [Полная карта физических контактов и сетей](docs/review/architecture/generated/G2F-3I-principled-pinout.md)
 
@@ -786,6 +858,9 @@ flowchart TD
   разъёмом, трактом и активным профилем антенны.
 - Съёмный U214 устанавливается поперёк задней стороны над аккумуляторами; его
   собственные антенны и разъёмы остаются доступными.
+- Полный локальный набор сохранён: направления D-pad и OK, BACK, OPT, F1, F2,
+  энкодер с нажатием, отдельный PTT с удержанием, аппаратный STOP и утопленный
+  RE-ARM. Ни touch, ни телефон не заменяют эти органы управления.
 - Физические PTT, STOP и утопленный RE-ARM являются разными органами управления.
   STOP имеет независимую индикацию и не зависит от экрана.
 - Разъёмы прошивки и диагностики доступны при собранном прототипе и не требуют

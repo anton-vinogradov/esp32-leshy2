@@ -26,7 +26,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
 | `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
-| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **active paper block**; product USB reviewed by `DEC-0083/USB-0001/REV-0005AN`; display by `DEC-0084/DSP-0006/REV-0005AO`; isolated microSD by `DEC-0085/STO-0001/REV-0005AP`; all retain named physical/HIL gates and remaining UI endpoints stay open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
+| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **active paper block**; product USB reviewed by `DEC-0083/USB-0001/REV-0005AN`; display by `DEC-0084/DSP-0006/REV-0005AO`; isolated microSD by `DEC-0085/STO-0001/REV-0005AP`; complete control inventory and principled fit by `DEC-0086/UI-0001/REV-0005AQ`; all retain named physical/HIL gates and remaining UI electrical/mechanical endpoints stay open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | logical profiles reviewed; exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
@@ -128,3 +128,14 @@ detect. The paper endpoint is reviewed with no new GPIO. Socket access,
 real-media/endurance, throughput/contention, hot-removal, electrical abuse and
 filesystem-recovery HIL remain evidence gates. I4 now proceeds to the remaining
 UI protection/default-state endpoints.
+
+`FND-0090/UI-0001/DEC-0086/REV-0005AQ` restore D-pad/OK, BACK, OPT, F1, F2,
+encoder push, direct PTT, hard STOP and RE-ARM without inheriting the obsolete
+legacy GPIO placement. Dedicated TCA9534A P0…P6 gives the ordinary controls an
+interrupt-driven 4×3 plane, P7 is reserved, TCA6424 P00…P05 return to the main
+slow-I/O budget and encoder A/B use direct S3 PCNT0. The decoder alternative
+was rejected because its disabled state could not wake the first key press.
+`FND-0091` separately corrects the exact TCA9534A address table to RP-local
+`0x38` and S3 UI candidate `0x3F`. Control inventory and principled pin fit now
+have **«Проведено ревью»**; exact switch mechanics/protection and specimen HIL
+remain the next I4 boundary before the block can close.

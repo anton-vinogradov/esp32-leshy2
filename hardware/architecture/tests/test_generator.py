@@ -52,7 +52,7 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_principled_pinout_is_derived_from_current_leading_budget(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
-        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 32 | 3 | 1 | 36 |", rendered)
+        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 33 | 3 | 0 | 36 |", rendered)
         self.assertIn("| `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |", rendered)
         self.assertIn("| `rp` | `RP2354B A4", rendered)
         self.assertIn("| 48 | 0 | 0 | 48 |", rendered)
@@ -299,7 +299,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for readme_name in ("README.md", "README.ru.md"):
             readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
             normalized = " ".join(readme.split())
-            self.assertIn("S3 `32", normalized, readme_name)
+            self.assertIn("S3 `33", normalized, readme_name)
             self.assertIn("C5 `14/6/1`", normalized, readme_name)
             self.assertIn("RP `48/0/0`", normalized, readme_name)
             for group in expected_groups:
@@ -377,7 +377,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("20V PDO", contract["disabled"])
         self.assertIn("USB Full-Speed", contract["usb2_data"])
         self.assertIn("22-Ohm series resistors", contract["usb2_data"])
-        self.assertIn("GPIO47", contract["host_control"])
+        self.assertIn("SYS_INT_N", contract["host_control"])
+        self.assertIn("without consuming a dedicated GPIO", contract["host_control"])
         self.assertEqual("DEC-0078", contract["diagnostic_decision"])
         self.assertIn("non-retriggerable", contract["diagnostic_load_profile"])
         self.assertIn("28.7-40.7 ms", contract["diagnostic_load_profile"])
@@ -552,7 +553,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("pd_controller.I2Ct_SDA", s3["GPIO1"]["peers"])
         self.assertIn("pd_controller.I2Ct_SCL", s3["GPIO2"]["peers"])
         self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO37"]["peers"])
-        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
+        self.assertEqual([], candidate["free_gpio"]["s3"])
 
     def test_exact_bq25798_passive_profile_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -979,7 +980,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             ],
             contract["evidence"]["channels"],
         )
-        self.assertIn("0x20", contract["evidence"]["source_mask"])
+        self.assertIn("0x38", contract["evidence"]["source_mask"])
+        self.assertEqual(
+            "0x38",
+            self.database["devices"]["ti_tca9534a_pwr"]
+            ["i2c_7bit_address_by_a2a1a0"]["000"],
+        )
         self.assertIn("RP_ANY_TX_N", contract["evidence"]["aggregate"])
 
         required_instances = {
@@ -1101,15 +1107,18 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("display_connector.PIN_13", s3["GPIO36"]["peers"])
         self.assertEqual("display_connector.PIN_9", s3["GPIO38"]["peers"][0])
         self.assertIn("lcd_host_cs_pullup.END_1", s3["GPIO38"]["peers"])
-        self.assertEqual("LCD_TOUCH_INT", s3["GPIO39"]["net"])
+        self.assertEqual("ENCODER_A", s3["GPIO39"]["net"])
         self.assertEqual("i", s3["GPIO39"]["direction"])
-        self.assertEqual("GPIO_IRQ", s3["GPIO39"]["controller"])
-        self.assertEqual(["display_connector.PIN_3"], s3["GPIO39"]["peers"])
+        self.assertEqual("PCNT0", s3["GPIO39"]["controller"])
+        self.assertIn("encoder.A", s3["GPIO39"]["peers"])
+        self.assertEqual("ENCODER_B", s3["GPIO47"]["net"])
+        self.assertEqual("PCNT0", s3["GPIO47"]["controller"])
+        self.assertIn("touch_irq_buffer.Y", s3["GPIO37"]["peers"])
         self.assertEqual(["backlight_gate_series.END_1"], s3["GPIO40"]["peers"])
         self.assertEqual(["display_connector.PIN_17"], s3["GPIO41"]["peers"])
         self.assertEqual(["display_connector.PIN_18"], s3["GPIO42"]["peers"])
         self.assertNotIn("LCD_DC", {row["net"] for row in s3.values()})
-        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
+        self.assertEqual([], candidate["free_gpio"]["s3"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -1117,6 +1126,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertIn(("slow_io.P06", "display_connector.PIN_15", "LCD_RST_N"), routes)
         self.assertIn(("slow_io.P07", "display_connector.PIN_4", "TOUCH_RST_N"), routes)
+        self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW"), routes)
+        self.assertIn(("touch_irq_buffer.Y", "abstract:SYS_INT_N_WIRED_LOW", "SYS_INT_N"), routes)
         self.assertIn(("abstract:3V3_MAIN", "display_connector.PIN_39", "LCD_IM1_HIGH"), routes)
         self.assertIn(("display_connector.PIN_38", "abstract:power-ground", "LCD_IM0_LOW"), routes)
         self.assertIn(("display_connector.PIN_40", "abstract:power-ground", "LCD_IM2_LOW"), routes)
@@ -1290,7 +1301,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("audio_safe_gate.2Y", "audio_tx_selector.IN", "AUDIO_TX_SEL_SAFE"), routes)
         self.assertIn("P27", candidate["contact_accounting"]["slow_io"]["used"])
         self.assertEqual({}, candidate["contact_accounting"]["slow_io"]["reserved"])
-        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
+        self.assertEqual([], candidate["free_gpio"]["s3"])
         self.assertEqual("AUDIO_ARM", s3["GPIO6"]["net"])
         self.assertEqual(["audio_safe_gate.1B", "audio_safe_gate.2B"], s3["GPIO6"]["peers"])
         expected_audio_instances = {
@@ -1657,6 +1668,83 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
+    def test_complete_local_controls_ptt_and_stop_do_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["ui_control_contract"]
+        self.assertEqual("DEC-0086", contract["decision"])
+        self.assertEqual(
+            {
+                "D-PAD UP", "D-PAD DOWN", "D-PAD LEFT", "D-PAD RIGHT", "OK",
+                "BACK", "OPT", "F1", "F2", "ENCODER PUSH",
+            },
+            set(contract["ordinary_matrix"]["controls"]),
+        )
+        self.assertEqual(
+            ["OPT", "F1", "F2"],
+            contract["ordinary_matrix"]["coordinate_map"]["ROW2"],
+        )
+        self.assertIn(
+            "writes P0..P3 output latches low",
+            contract["ordinary_matrix"]["scan_contract"],
+        )
+        self.assertIn("RP GPIO21", contract["dedicated_controls"]["ptt"])
+        self.assertIn("normally-closed", contract["dedicated_controls"]["stop"])
+        self.assertIn("never multiplexed", contract["dedicated_controls"]["rearm"])
+
+        self.assertEqual("ti_tca9534a_pwr", candidate["instances"]["ui_matrix_io"])
+        self.assertEqual("alps_ec11e18244au", candidate["instances"]["encoder"])
+        self.assertEqual("ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"])
+        matrix_io = self.database["devices"]["ti_tca9534a_pwr"]
+        self.assertEqual("4", matrix_io["contacts"]["P0"]["physical"])
+        self.assertEqual("13", matrix_io["contacts"]["INT_N"]["physical"])
+        self.assertEqual(
+            ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7"],
+            matrix_io["allocatable_contacts"],
+        )
+        self.assertEqual("0x38", matrix_io["i2c_7bit_address_by_a2a1a0"]["000"])
+        self.assertEqual("0x3F", matrix_io["i2c_7bit_address_by_a2a1a0"]["111"])
+        noninverting = self.database["devices"]["ti_sn74lvc1g07_dckr"]["contacts"]
+        inverting = self.database["devices"]["ti_sn74lvc1g06_dckr"]["contacts"]
+        self.assertEqual(noninverting, inverting)
+
+        allocations = {
+            (row["instance"], row["contact"]): row
+            for row in candidate["allocations"]
+        }
+        self.assertEqual("PCNT0", allocations[("s3", "GPIO39")]["controller"])
+        self.assertEqual("PCNT0", allocations[("s3", "GPIO47")]["controller"])
+        self.assertEqual("PTT_BUTTON_N", allocations[("rp", "GPIO21")]["net"])
+        self.assertEqual([], candidate["free_gpio"]["s3"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        self.assertIn(("ui_matrix_io.P0", "abstract:UI_MATRIX_ROW0_UP_DOWN_LEFT", "UI_ROW0_N"), routes)
+        self.assertIn(("ui_matrix_io.P4", "abstract:UI_MATRIX_COL0_WITH_SWITCHES_AND_DIODES", "UI_COL0"), routes)
+        self.assertIn(("ui_matrix_io.INT_N", "abstract:SYS_INT_N_WIRED_LOW", "SYS_INT_N"), routes)
+        self.assertIn(("abstract:3V3_MAIN", "ui_matrix_io.A2", "UI_MATRIX_ADDR_A2_HIGH"), routes)
+        self.assertIn(("abstract:safety-ground", "evidence_mask.A2", "EVIDENCE_ADDR_A2_LOW"), routes)
+        self.assertIn(("ui_matrix_diode_f1.A", "abstract:UI_SWITCH_F1_ROW_CONTACT", "UI_F1_ROW_SIDE"), routes)
+        self.assertIn(("ui_matrix_diode_f2.A", "abstract:UI_SWITCH_F2_ROW_CONTACT", "UI_F2_ROW_SIDE"), routes)
+        self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW"), routes)
+        self.assertEqual(
+            ["P00", "P01", "P02", "P03", "P04", "P05"],
+            candidate["contact_accounting"]["slow_io"]["free"],
+        )
+        self.assertEqual(
+            {"P7": "local UI-growth pad until the complete physical-control wish list closes"},
+            candidate["contact_accounting"]["ui_matrix_io"]["reserved"],
+        )
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "D-pad UP ordinary control", "F1 ordinary control", "F2 ordinary control",
+            "hold-to-talk PTT control", "normally-closed physical STOP",
+            "TCA9534APWR", "dedicated interrupt-capable 4x3 ordinary-control expander",
+        ):
+            self.assertIn(token, rendered)
+
     def test_dec0059_restores_full_s3_c5_service_on_1bit_sdio(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         allocations = {
@@ -1672,7 +1760,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("USB_SERIAL_JTAG", allocations[("c5", "GPIO13")]["controller"])
         self.assertEqual("C5_USB_DP", allocations[("c5", "GPIO14")]["net"])
         self.assertEqual("I2C1_OR_UART1_OR_GPIO", allocations[("s3", "GPIO7")]["controller"])
-        self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
+        self.assertEqual([], candidate["free_gpio"]["s3"])
 
         services = {
             item["instance"]: set(item["contacts"])

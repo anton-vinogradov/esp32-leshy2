@@ -125,15 +125,22 @@ stress HIL остаётся обязательным до target acceptance.
 
 ## Slow plane и safety boundary
 
-24/24 линии распределены: шесть линий diode-isolated 3×3 UI matrix,
+18/24 линий main `TCA6424ARGJR` распределены; P00…P05 теперь свободны.
+Отдельный `TCA9534APWR` обслуживает interrupt-driven diode-isolated 4×3 UI
+matrix и сохраняет P7 как локальный резерв. Main slow-plane покрывает
 display/touch reset, codec enable, два audio selector, voice PD/HL, receiver
 reset/status, U214 I²C READY, external 5 V, microSD power/detect, STOP sense,
 S3 actual-TX evidence, power fault, accessory present и обычный
-`RX_AUDIO_SOURCE_SEL` на P27. Свободных или резервных slow contacts больше нет.
+`RX_AUDIO_SOURCE_SEL` на P27. Его текущий бюджет — `18/0/6`, UI-expander —
+`7/1/0`.
 
 PTT, physical PTT, все radio IRQ/GDO/BUSY, actual-TX evidence C5/IR/voice и
 непрограммируемый hard STOP не перенесены на slow plane. Expander powers up as
 inputs; каждый output получает внешний fail-safe pull.
+
+Фазы энкодера также не находятся на slow plane: S3 `GPIO39/GPIO47` и `PCNT0`
+принимают их независимо от I²C, display и storage scheduling. На матрице
+находится только нажатие энкодера вместе с D-pad/OK, BACK, OPT, F1 и F2.
 
 ## Доказанное и ещё не доказанное
 

@@ -33,9 +33,10 @@ two-board clamshell generator. Его геометрия тоже рабочая
 `DEM-0001` и `SRC-0002` reviewed. `DEC-0042` создал единый источник; теперь он
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
 `G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
-pinout diagram и exact pad/net tables; after direct-QSPI GPIO41/42 and accepted
-audio arm the current budget честно равен S3 `32/3/1`, C5 `14/6/1`, RP
-`48/0/0`, slow `24/0/0` (`DEC-0052`, `DEC-0054/REV-0005D`). Это выполняет необходимый
+pinout diagram и exact pad/net tables; after direct-QSPI GPIO41/42, accepted
+audio arm and `DEC-0086` local-control correction the current budget честно
+равен S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow `18/0/6` и UI matrix
+`7/1/0`. Это выполняет необходимый
 working-baseline checkpoint `DEC-0041`; технически он разрешил перенос в старый
 reproducible mockup, но последующий `DEC-0058` ставит этот перенос на паузу до
 `INT-0001/I9`. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
@@ -68,6 +69,12 @@ S3/C5/RP service. `DEC-0061/SAFE-0002/REV-0005O` затем дают safety bloc
 **«Проведено ревью»**: exact three-domain STOP/gates и восемь evidence paths
 внесены в machine source. Следующим активен power block `I3`. Цельный
 enclosure/control layout не продолжается до совместного internal self-review.
+`FND-0090/UI-0001/DEC-0086/REV-0005AQ` теперь также закрывают paper inventory
+и principled pin fit локальных controls: D-pad/OK, BACK, OPT, F1, F2 и encoder
+push остаются в матрице 4x3, A/B энкодера идут напрямую в PCNT0, PTT остаётся
+прямым RP input, а STOP/RE-ARM — независимым AON hardware. Exact switch
+mechanics, touch polarity и HIL остаются активными I4 gates; это не разрешает
+KiCad и не возобновляет integrated mockup раньше полного закрытия начинки.
 `PWR-0002/FND-0073/REV-0005P` уже проводят ревью его prerequisites: 4-V voice,
 load envelope и switched-branch principles сохранены, но старые BQ25887/no-power-
 path, fixed-input-current, pseudo-gauge и obsolete rail sizes отклонены как

@@ -1,5 +1,8 @@
 # PWR-0004 — accepted sink-only USB-PD frontend
 
+> Later allocation: the frontend still consumes no dedicated GPIO;
+> `DEC-0086` subsequently uses the former GPIO47 reserve for encoder phase B.
+
 - Статус: **Проведено ревью exact paper fit; electrical/HIL остаток отделён**
 - Дата: 2026-08-18
 - Decision: [`DEC-0063`](../decisions/DEC-0063-sink-only-30w-usb-pd-power-path.md)

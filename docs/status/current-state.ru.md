@@ -273,7 +273,8 @@ fallback 5 В, 9 В/3 А и 15 В/2 А, максимум 30 Вт, без source/
 20-V/PPS/OTG и с прямыми USB2-линиями S3. `PWR-0004/FND-0074/REV-0005R`
 создают и проверяют exact `TPS25751DREFR`, `BQ25798RQMR`, обязательную boot/
 config EEPROM `CAT24C512WI-GT3` и `TVS2200DRVR`. S3 повторно использует SYS
-I2C0 и wired-low system IRQ, поэтому GPIO47 остаётся свободным. Blank/corrupt
+I2C0 и wired-low system IRQ, поэтому сам этот endpoint не занял тогда ещё
+свободный GPIO47. Blank/corrupt
 image recovery, reset-high EEPROM WP и charge-disable CE указаны явно;
 target README diagrams и firmware contracts обновлены. `PWR-0007/FND-0077/
 REV-0005W` выявили линейную модуляцию CHG FET в prequal. Владелец принял
@@ -358,7 +359,7 @@ short-to-VBUS/ESD без расхода GPIO47. Support VPWR, VBIAS и FLT за�
 раздельных default-low reset. `TPS2553DRVR-1`, ILIM 133 кОм,
 `ERJ-P08F10R0V` и `DMN2056U-7` образуют latch-off и reset-dark путь подсветки.
 Отдельный switch всей панели отклонён: живые QSPI/I2C могли бы подпитывать его
-отключённую шину. S3 остаётся `32/3/1`; проверенная добавка — примерно
+отключённую шину. На этом endpoint S3 оставался `32/3/1`; проверенная добавка — примерно
 `$2.5…2.9` вместе с обязательным разъёмом. Standalone procurement панели,
 реальный fit/orientation шлейфа, shared-SPI/touch, current/thermal и fault HIL
 остаются открыты; I4 продолжается к остальным UI endpoints.
@@ -373,6 +374,21 @@ always-readable detect. Выключенная карта больше не по
 shared-bus throughput/contention, hot removal, ESD/short/brownout и
 filesystem-recovery HIL остаются открыты; I4 продолжается к оставшимся UI
 endpoints, KiCad остаётся заблокирован.
+`FND-0090/UI-0001/DEC-0086/REV-0005AQ` затем исправляют унаследованную
+проекцию controls и закрывают четвёртый paper endpoint I4 для inventory и
+principled pin fit. Сохранены D-pad/OK, BACK, OPT, F1, F2, encoder/push,
+отдельный PTT, независимый normally-closed STOP и утопленный RE-ARM. Один exact
+Отдельный `TCA9534APWR` P0…P6 и десять `1N4148WT` образуют interrupt-driven
+матрицу 4x3; P7 зарезервирован, а main TCA6424 P00…P05 свободны. A/B энкодера
+занимают S3 GPIO39/GPIO47 PCNT0, а touch IRQ входит в GPIO37 через
+pin-compatible population option `SN74LVC1G07/1G06`. S3 теперь `33/3/0`, main
+slow I/O `18/0/6`, UI I/O `7/1/0`; PTT остаётся прямым RP GPIO21, а STOP/RE-ARM
+— вне I2C. Exact mechanics переключателей, SYS-I2C collision scan,
+encoder/U214 fit, touch polarity и HIL матрицы/энкодера остаются открыты;
+KiCad заблокирован.
+`FND-0091` также исправляет exact addressing TCA9534A с невозможных legacy
+значений: all-low straps RP evidence дают `0x38`, all-high straps UI — candidate
+`0x3F`; отдельный TPS25751D `0x20` не меняется.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный
