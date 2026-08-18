@@ -135,7 +135,7 @@ flowchart TD
   VOICEL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн голосовой шины"]
   EXTBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь расширения 5,0 В"]
   EXTL["MWSA0503S-4R7MT<br/>силовой дроссель 4,7 мкГн шины расширения"]
-  EXTFUSE["TPS259470ARPWR<br/>eFuse расширения с true reverse blocking и измерением тока"]
+  EXTFUSE["TPS259470LRPWR<br/>latch-off eFuse расширения с true reverse blocking и измерением тока"]
   SWNRF["TPS22919DCKR<br/>quiet-state ключ группы из трёх nRF"]
   SWCC["TPS22919DCKR<br/>quiet-state ключ CC1101"]
   SWSD["TPS22919DCKR<br/>quiet-state ключ microSD"]

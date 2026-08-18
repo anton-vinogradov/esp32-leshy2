@@ -289,7 +289,9 @@ paths, monitoring, reverse current и рассчитанные loss/thermal/faul
 downstream tree: exact `TPS629203DRLR` AON, три независимых фиксированных
 `TPS564252DRLR` stage 3.3/4.0/5.0 В, exact Sunlord inductors, пять отдельных
 quiet-state switches `TPS22919DCKR` и connector-side reverse blocking/current
-limit `TPS259470ARPWR`. Проверка реального корпуса также исправляет pin 4
+limit `TPS259470LRPWR`. `DEC-0069/REV-0005Z` заменяют ранний auto-retry suffix
+на latch-off с теми же footprint/ценой и исправляют nominal limit на
+tolerance-safe target 1,50 А. Проверка реального корпуса также исправляет pin 4
 TPS564252 на `PG` (bootstrap встроен). Exact passive values, hot loss и HIL
 остаются активным закрытием I3.
 `FND-0058`,

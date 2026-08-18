@@ -85,7 +85,7 @@ deep-cell recovery and accept the exact active switching FET, fuses, shunt,
 NTCs, hold and supply-isolation packages. `PWR-0008/DEC-0068/REV-0005Y`
 then review the independent fixed AON/3.3/4.0/5.0-V rail tree, exact
 TPS629203/TPS564252 inductors, five TPS22919 branches and reverse-blocking
-TPS259470A external boundary. Passive values, diagnostic load, mechanical
+TPS259470L latch-off external boundary after `DEC-0069/REV-0005Z`. Passive values, diagnostic load, mechanical
 polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts

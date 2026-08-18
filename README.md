@@ -129,7 +129,7 @@ flowchart TD
   VOICEL["MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor"]
   EXTBUCK["TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   EXTL["MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor"]
-  EXTFUSE["TPS259470ARPWR<br/>true-reverse-blocking accessory eFuse/current monitor"]
+  EXTFUSE["TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse/current monitor"]
   SWNRF["TPS22919DCKR<br/>three-radio nRF quiet-state load switch"]
   SWCC["TPS22919DCKR<br/>CC1101 quiet-state load switch"]
   SWSD["TPS22919DCKR<br/>microSD quiet-state load switch"]

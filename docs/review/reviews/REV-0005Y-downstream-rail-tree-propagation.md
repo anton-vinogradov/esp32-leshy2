@@ -16,7 +16,7 @@
 | AON capacity | pass: `TPS629203DRLR` and 1.7-A-saturation WPN inductor exceed the 5/8-mA safety envelope; MAX17320 AOLDO is rejected for this role |
 | nRF concurrency | pass: one 1.5-A branch switch powers three independent radios without serializing SPI/CE/IRQ or weakening the full-mix requirement |
 | quiet-state branches | pass at topology level: separate reset-off TPS22919 packages serve nRF, CC, SD, codec and receiver; QOD/fall time remains measured HIL |
-| external backfeed/fault | pass at topology level: TPS259470A is last before the connector, blocks reverse current and exposes `FLT`; passive discharge remains value/HIL work |
+| external backfeed/fault | pass at topology level, amended by `DEC-0069`: latch-off TPS259470L is last before the connector, blocks reverse current and exposes `FLT`; passive discharge remains value/HIL work |
 | availability | pass at selection time: all exact active parts have manufacturer status and assembly/authorized-channel stock evidence |
 | cost reduction | pass: identical buck and switch MPNs reduce line/setup count while independent packages preserve failure isolation |
 | machine/visible artifacts | pass: exact packages and routes are represented separately in machine source and the generated vertical diagrams |

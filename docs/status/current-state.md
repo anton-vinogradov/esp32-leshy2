@@ -289,7 +289,9 @@ loss/thermal/fault budgets remain active. `PWR-0008/DEC-0068/REV-0005Y` now
 review the active downstream tree: exact `TPS629203DRLR` AON,
 three independent fixed `TPS564252DRLR` 3.3/4.0/5.0-V stages, exact Sunlord
 inductors, five separate `TPS22919DCKR` quiet-state switches and connector-side
-`TPS259470ARPWR` reverse blocking/current limit. The official package review
+`TPS259470LRPWR` reverse blocking/current limit. `DEC-0069/REV-0005Z` replace
+the early auto-retry suffix with the same-cost/footprint latch-off suffix and
+correct the nominal limit to a tolerance-safe 1.50-A target. The official package review
 also corrects TPS564252 pin 4 to `PG` (integrated bootstrap). Exact passive
 values, hot loss and HIL remain the active I3 closure.
 `FND-0058`,

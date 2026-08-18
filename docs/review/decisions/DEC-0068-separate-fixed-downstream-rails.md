@@ -20,9 +20,11 @@
    microSD, ES8311 and Si4732. One grouped nRF power domain is permitted, but
    it does not alter the requirement that all three radios operate
    simultaneously in every PTX/PRX mix.
-6. `TPS259470ARPWR` is the connector-side 5-V eFuse: true reverse blocking,
-   adjustable 1.25-A steady limit, bounded 2-A transient allowance, current
-   test point and open-drain fault evidence.
+6. A connector-side TPS259470-family 5-V eFuse provides true reverse blocking,
+   a tolerance-safe current limit, bounded 2-A transient allowance, current
+   test point and open-drain fault evidence. [`DEC-0069`](DEC-0069-latch-off-external-efuse.md)
+   subsequently selects exact latch-off `TPS259470LRPWR` instead of the early
+   auto-retry suffix.
 7. Every unused interface remains powered off and discharged where its
    electrical contract permits it. Hardware STOP dominates nRF, CC, voice and
    external-rail enables.
@@ -42,4 +44,3 @@ assembly setup while retaining physical rail isolation. Newer `TPS564252B`
 may be requalified when it has comparable stock; it is not substituted merely
 because the family is newer. A pin-compatible OOA voice variant remains a HIL
 fallback, not an untracked mixed BOM.
-

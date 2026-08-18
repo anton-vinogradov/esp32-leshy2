@@ -1555,9 +1555,9 @@
         "VOUT": {"physical": "6", "role": "power"}
       }
     },
-    "ti_tps259470a_rpwr": {
-      "mpn": "Texas Instruments TPS259470ARPWR",
-      "kind": "5_5a_true_reverse_blocking_adjustable_efuse",
+    "ti_tps259470l_rpwr": {
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "kind": "5_5a_true_reverse_blocking_latchoff_adjustable_efuse",
       "qualification": "verified_candidate",
       "lifecycle": "active",
       "dimensions_mm": [2.0, 2.0, null],
@@ -1568,8 +1568,8 @@
         "checked": "2026-08-18"
       },
       "orderable_source": {
-        "document": "TPS259470ARPWR JLCPCB C3662799 stocked assembly part",
-        "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS259470ARPWR/C3662799",
+        "document": "TPS259470LRPWR JLCPCB C3662793 stocked assembly part",
+        "url": "https://jlcpcb.com/partdetail/TPS259470LRPWR/C3662793",
         "checked": "2026-08-18"
       },
       "programmable": false,

@@ -1161,7 +1161,7 @@ def render_principled_pinout(
         node("voice_inductor", "3.3-uH voice-rail power inductor"),
         node("ext_buck", "fixed 5.0-V 4-A accessory converter"),
         node("ext_inductor", "4.7-uH accessory-rail power inductor"),
-        node("ext_efuse", "true-reverse-blocking accessory eFuse and current monitor"),
+        node("ext_efuse", "true-reverse-blocking latch-off accessory eFuse and current monitor"),
         node("nrf_power_switch", "three-radio nRF quiet-state load switch"),
         node("cc_power_switch", "CC1101 quiet-state load switch"),
         node("sd_power_switch", "microSD quiet-state load switch"),

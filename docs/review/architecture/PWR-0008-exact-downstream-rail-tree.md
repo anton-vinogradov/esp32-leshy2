@@ -6,6 +6,7 @@
 - Source boundary: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 - Battery boundary: [`PWR-0007`](PWR-0007-max17320-2s-surrounding-circuit.md)
 - Decision: [`DEC-0068`](../decisions/DEC-0068-separate-fixed-downstream-rails.md)
+- eFuse fail-closed amendment: [`DEC-0069`](../decisions/DEC-0069-latch-off-external-efuse.md)
 - Propagation review: [`REV-0005Y`](../reviews/REV-0005Y-downstream-rail-tree-propagation.md)
 
 ## Scope
@@ -43,7 +44,7 @@ flowchart TD
   LV["Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice inductor"]
   E["Texas Instruments TPS564252DRLR<br/>fixed 5.0-V / 4-A accessory buck"]
   LE["Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory inductor"]
-  F["Texas Instruments TPS259470ARPWR<br/>reverse-blocking/current-limited eFuse"]
+  F["Texas Instruments TPS259470LRPWR<br/>reverse-blocking/current-limited latch-off eFuse"]
   SN["Texas Instruments TPS22919DCKR<br/>nRF-group load switch"]
   SC["Texas Instruments TPS22919DCKR<br/>CC1101 load switch"]
   SS["Texas Instruments TPS22919DCKR<br/>microSD load switch"]
@@ -137,15 +138,19 @@ with production capacitance; QOD is not treated as evidence without HIL.
 
 ## External 5-V protection
 
-`TPS259470ARPWR` is the last series element before U214/Cap power. It has
+`TPS259470LRPWR` is the last series element before U214/Cap power. It has
 integrated back-to-back FETs, 28.3-mOhm typical on-resistance, true reverse
 current blocking at all times, adjustable active current limit, transient
-blanking, `dVdt`, current monitor and active-low open-drain `FLT`.
+blanking, `dVdt`, current monitor and active-low open-drain `FLT`. The `L`
+variant latches off after thermal/latched faults until an explicit enable-low
+or power cycle; it does not perform the `A` variant's autonomous 110-ms retry.
 
 Real QFN-10 contacts are `1 EN/UVLO`, `2 OVLO`, `3 AUXOFF`, `4 FLT`, `5 IN`,
 `6 OUT`, `7 dVdt`, `8 GND`, `9 ILM`, `10 ITIMER`. The next passive gate sets
-1.25-A steady limit and a bounded interval below the device's `2×ILIM`
-transient ceiling, covering the accepted 2.0-A startup envelope. `ILM` reaches
+nominal 1.50-A limit whose worst tolerance floor remains above the accepted
+1.25-A continuous envelope, plus a bounded interval below the device's
+`2×ILIM` transient ceiling covering the accepted 2.0-A startup envelope.
+`ILM` reaches
 a protected test point; `FLT` joins `POWER_FAULT_N` without consuming another
 GPIO.
 
@@ -182,7 +187,8 @@ Checked on 2026-08-18 because each selected item is now an exact MPN:
 - `TPS629203DRLR`: TI active; DigiKey showed 13,762 units;
 - `TPS22919DCKR`: TI active; broad authorized stock and LCSC/JLCPCB
   `C2149796` availability;
-- `TPS259470ARPWR`: TI active; JLCPCB `C3662799`, LCSC stock and Mouser 12,831;
+- `TPS259470LRPWR`: TI active; JLCPCB `C3662793` showed 6,218 units and
+  DigiKey 11,374 at the variant decision; its listed volume price matched A;
 - `MWSA0503S-3R3MT` / `MWSA0503S-4R7MT`: current Sunlord series; JLCPCB
   `C408409` / `C408410`, with 15,224 of the 4.7-uH part visible;
 - `WPN201612H2R2MT`: Sunlord active; JLCPCB `C97025` showed 684 units.

@@ -40,7 +40,7 @@ Evidence states: `E0` — строка только идентифицирова
 | `P-002` | F | exact `TPS564252DRLR + MWSA0503S-3R3MT` common 3.3 V buck ≥2.5 A continuous/3.0 A transient | E1 | passive/DC-bias, efficiency/transient/thermal/EMI at accepted scenarios; no RF/audio collapse |
 | `P-003` | F | five exact `TPS22919DCKR` packet-RF/storage/audio branch switches with QOD | E1 | independent fault containment, inrush, no-back-power and measured discharge ordering |
 | `P-004` | F | exact `TPS564252DRLR + MWSA0503S-3R3MT` dedicated `VVOICE=4.0 V` ≥1.25/1.5 A | E1 | passive values, SA518 startup/TX transient, ripple, local bulk/discharge, STOP dominance |
-| `P-005` | F | exact `TPS564252DRLR + MWSA0503S-4R7MT + TPS259470ARPWR` protected `5V_EXT` 1.25/2.0 A | E1 | passive current-limit/timer/bleed values, backfeed, connector fault and per-profile isolation |
+| `P-005` | F | exact `TPS564252DRLR + MWSA0503S-4R7MT + TPS259470LRPWR` protected `5V_EXT` 1.25/2.0 A | E1 | passive current-limit/timer/bleed values, backfeed, connector fault and per-profile isolation |
 | `P-006` | F | exact `TPS629203DRLR + WPN201612H2R2MT` `AON_SAFE` regulator plus accepted supervisor | E1 | capacitor hold-up and valid STOP latch/indicator/gates through application-rail collapse and brownout |
 | `P-007` | F | latched STOP, recessed RE-ARM, TX_KILL fan-out and reset/enable drivers | E0 | asynchronous truth table, stuck/open/short fault analysis, independent actual-TX indication and fault injection |
 | `P-008` | F | battery measurement/charge/fuel-gauge/thermal policy | E0 | exact supported charging boundary and truthful SoC/fault reporting; no unaccepted charging claim |

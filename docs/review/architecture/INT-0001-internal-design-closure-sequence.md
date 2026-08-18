@@ -71,5 +71,6 @@ S3 USB2 and leave GPIO47 free. `PWR-0007/FND-0077/REV-0005W` exposed the
 linear-prequal gate; `DEC-0067/REV-0005X` accept no in-device recovery and the
 exact active FET/fuse/NTC/shunt/hold/supply-isolation packages. I3 now
 continues through `PWR-0008/DEC-0068/REV-0005Y`, which review the exact
-independent fixed rail tree and quiet-state switches. Next are exact
+independent fixed rail tree and quiet-state switches; `DEC-0069/REV-0005Z`
+then make the externally accessible eFuse latch-off. Next are exact
 cell-tap/rail passive/diagnostic values and the hot loss/thermal/fault tree.

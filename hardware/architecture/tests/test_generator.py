@@ -67,7 +67,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor",
             "Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter",
             "Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor",
-            "Texas Instruments TPS259470ARPWR<br/>true-reverse-blocking accessory eFuse and current monitor",
+            "Texas Instruments TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse and current monitor",
             "Texas Instruments TPS22919DCKR<br/>three-radio nRF quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>CC1101 quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>microSD quiet-state load switch",
@@ -305,7 +305,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("independent fixed", contract["rail_tree"])
         self.assertIn("TPS629203DRLR", contract["aon_rail"])
         self.assertIn("three independent TPS564252DRLR", contract["application_rails"])
-        self.assertIn("TPS259470ARPWR", contract["external_protection"])
+        self.assertEqual("DEC-0069", contract["external_protection_decision"])
+        self.assertIn("TPS259470LRPWR", contract["external_protection"])
+        self.assertIn("latch-off", contract["external_protection"])
+        self.assertNotIn("TPS259470ARPWR", contract["external_protection"])
 
         expected_instances = {
             "aon_buck": "ti_tps629203_drlr",
@@ -316,7 +319,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "voice_inductor": "sunlord_mwsa0503s_3r3mt",
             "ext_buck": "ti_tps564252_drlr",
             "ext_inductor": "sunlord_mwsa0503s_4r7mt",
-            "ext_efuse": "ti_tps259470a_rpwr",
+            "ext_efuse": "ti_tps259470l_rpwr",
             "nrf_power_switch": "ti_tps22919_dckr",
             "cc_power_switch": "ti_tps22919_dckr",
             "sd_power_switch": "ti_tps22919_dckr",

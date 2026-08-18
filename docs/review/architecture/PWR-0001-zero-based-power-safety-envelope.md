@@ -54,7 +54,7 @@ Allowances are rail sizing ceilings, not component acceptance and not permission
 | combined 3.3 V converter | 2.5 A | ≥3.0 A non-destructive transient | covers allowed core/RX/TX/UI/storage scenarios plus 100 mA RP allowance |
 | each nRF local branch | 150 mA | ≥200 mA short transient with local bulk | retains comparison space through 140 mA PA/LNA module; exact AVL later |
 | CC1101 local branch | 50 mA | ≥75 mA | startup/TX margin and measurable isolation |
-| `5V_EXT` | 1.25 A | 2.0 A bounded transient, 1.25-A steady current limit | superseded sizing from `PWR-0002/DEC-0068`; U214+GNSS and U216 fit with cable/inrush/profile margin |
+| `5V_EXT` | 1.25 A | 2.0 A bounded transient, nominal 1.50-A current limit with a tolerance floor ≥1.25 A | sizing from `PWR-0002/DEC-0068`, fail-closed suffix corrected by `DEC-0069`; U214+GNSS and U216 fit with cable/inrush/profile margin |
 | `VVOICE=4.0 V` | 1.25 A | 1.5 A | already accepted by `DEC-0025`, above SA518 900 mA max listed TX current |
 | battery/power-path | ≥12 W | ≥15 W bounded transient | 2S minimum-current arithmetic is calculated in `PWR-0006/DEC-0065` |
 | cell/slot protection | ≥3 A path target before margins | ≥4 A pulse target before exact qualification | must prevent low-cell droop or contact loss from masquerading as radio/firmware fault |
