@@ -312,7 +312,22 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
   SLOW["TCA6424ARGJR<br/>24-line slow-control and UI expander"]
+  LCDCON["FH12-40S-0.5SH(55)<br/>first 40-position 0.5-mm bottom-contact ZIF panel-mate candidate"]
   LCD["HMX035CTFT-001<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
+  LCDLBULK["GRM188R60J106ME47D #LCD-LOGIC<br/>10-uF protected-main display-logic bulk capacitor"]
+  LCDLHF["C1005X7R1H104K050BB #LCD-LOGIC<br/>100-nF display-logic high-frequency bypass capacitor"]
+  LCDRPD["RC0402FR-0710KL #LCD-RESX<br/>10-kOhm display reset-default pull-down"]
+  TPRPD["RC0402FR-0710KL #TP-RESXP<br/>10-kOhm touch reset-default pull-down"]
+  BLEFUSE["TPS2553DRVR-1<br/>latch-off and reverse-blocking LEDA power switch"]
+  BLILIM["RC0402FR-07133KL<br/>133-kOhm 1% approximately 200-mA backlight-limit resistor"]
+  BLIN["C1005X7R1H104K050BB #BL-IN<br/>100-nF backlight-switch input bypass capacitor"]
+  BLOUT["GRM188R60J106ME47D #BL-OUT<br/>10-uF protected-LEDA output bulk capacitor"]
+  BLOUTHF["C1005X7R1H104K050BB #BL-OUT<br/>100-nF protected-LEDA output bypass capacitor"]
+  BLFPU["RC0402FR-0710KL #BL-FAULT<br/>10-kOhm open-drain backlight-fault pull-up"]
+  BLR["ERJ-P08F10R0V<br/>10-Ohm 0.66-W anti-surge LED cathode resistor"]
+  BLQ["DMN2056U-7 #BACKLIGHT<br/>low-gate-drive LED cathode PWM MOSFET"]
+  BLGR["RC0402FR-07100RL #BL-GATE<br/>100-Ohm PWM gate series resistor"]
+  BLGPD["RC0402FR-0710KL #BL-GATE<br/>10-kOhm PWM gate reset-off pull-down"]
   SD["DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
   SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
   CODEC["ES8311<br/>mono ADC/DAC audio codec"]
@@ -381,7 +396,8 @@ flowchart TD
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
-  TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
+  TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
+  BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ STOPSW ~~~ REARMSW
   REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
@@ -560,7 +576,22 @@ flowchart TD
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
-  S3 -->|"direct QSPI + touch"| LCD
+  S3 -->|"direct QSPI + touch"| LCDCON
+  LCDCON <-->|"40-contact FPC; physical mate HIL open"| LCD
+  SLOW -->|"P06/P07 reset release"| LCDCON
+  LCDRPD -->|"RESX default low"| LCDCON
+  TPRPD -->|"TP_RESXP default low"| LCDCON
+  MAINFUSE -->|"protected 3.3 V logic"| LCDLBULK --> LCDCON
+  MAINFUSE --> LCDLHF --> LCDCON
+  MAINFUSE -->|"LEDA branch"| BLEFUSE --> LCDCON
+  BLEFUSE --> BLILIM
+  BLEFUSE --> BLIN
+  BLEFUSE --> BLOUT
+  BLEFUSE --> BLOUTHF
+  BLFPU --> BLEFUSE
+  LCDCON -->|"3 × LEDK"| BLR --> BLQ
+  S3 -->|"GPIO40 PWM"| BLGR --> BLQ
+  BLGPD -->|"reset off"| BLQ
   S3 <-->|"scheduled SPI2"| SD
   S3 <-->|"I²S0 + I²C0"| CODEC
   S3 <-->|"I²C0"| SI
@@ -669,6 +700,10 @@ flowchart TD
 
 - The display is portrait-oriented; the waterfall redraws small regions and
   never blocks radio service.
+- Its QSPI/touch assembly uses a 40-position ZIF candidate with reset-low
+  defaults, local logic decoupling and a separately latch-protected PWM
+  backlight. Final connector orientation still requires the real panel tail;
+  the electrical map does not pretend that mechanical fit has already passed.
 - Nine labelled antenna ports retain an unambiguous association between each
   connector, radio path and active antenna profile.
 - The removable U214 mounts across the rear above the batteries while keeping

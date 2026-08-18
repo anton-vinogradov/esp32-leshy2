@@ -68,6 +68,11 @@ procurement and prototype HIL evidence remains open.
 USB-C and TI four-line protection replace the abstract port, corrected 220-pF
 CC shunts preserve capacitance margin, and GPIO47 remains free. Physical
 port/SI/ESD HIL stays open while I4 proceeds.
+`FND-0088/DSP-0006/DEC-0084/REV-0005AO` then close the display paper
+electrical endpoint: exact first ZIF candidate, protected-main logic supply,
+reset-low defaults and a separately latch-protected PWM backlight replace the
+three former abstractions. Real-tail mate/orientation, panel procurement and
+electrical/thermal HIL remain open; no KiCad or physical freeze is implied.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -118,6 +123,9 @@ heat source, fault and physical residue. I3 is paper-reviewed with all
 prototype/lot/I8 evidence still explicit; I4 is now the active paper block.
 `FND-0087/USB-0001/DEC-0083/REV-0005AN` now give exact protected product USB
 the first I4 paper-endpoint review without promoting placement or HIL.
+`FND-0088/DSP-0006/DEC-0084/REV-0005AO` give the second I4 endpoint a paper
+review while explicitly rejecting a back-power-prone whole-panel switch and
+keeping the connector footprint blocked on a real FPC-tail proof.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

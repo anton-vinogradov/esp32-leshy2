@@ -320,7 +320,22 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
   SLOW["TCA6424ARGJR<br/>24-line slow-control and UI expander"]
+  LCDCON["FH12-40S-0.5SH(55)<br/>первый кандидат 40-контактного ZIF 0,5 мм с нижними контактами для шлейфа экрана"]
   LCD["HMX035CTFT-001<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
+  LCDLBULK["GRM188R60J106ME47D #LCD-LOGIC<br/>10-мкФ буферный конденсатор логического питания экрана"]
+  LCDLHF["C1005X7R1H104K050BB #LCD-LOGIC<br/>100-нФ ВЧ-развязка логического питания экрана"]
+  LCDRPD["RC0402FR-0710KL #LCD-RESX<br/>10-кОм подтяжка reset экрана к неактивному состоянию"]
+  TPRPD["RC0402FR-0710KL #TP-RESXP<br/>10-кОм подтяжка reset тач-контроллера к неактивному состоянию"]
+  BLEFUSE["TPS2553DRVR-1<br/>защёлкиваемый ключ питания LEDA с блокировкой обратного тока"]
+  BLILIM["RC0402FR-07133KL<br/>133-кОм 1% резистор лимита подсветки около 200 мА"]
+  BLIN["C1005X7R1H104K050BB #BL-IN<br/>100-нФ входная ВЧ-развязка ключа подсветки"]
+  BLOUT["GRM188R60J106ME47D #BL-OUT<br/>10-мкФ буферный конденсатор защищённого LEDA"]
+  BLOUTHF["C1005X7R1H104K050BB #BL-OUT<br/>100-нФ ВЧ-развязка защищённого LEDA"]
+  BLFPU["RC0402FR-0710KL #BL-FAULT<br/>10-кОм подтяжка open-drain ошибки подсветки"]
+  BLR["ERJ-P08F10R0V<br/>10-Ом 0,66-Вт anti-surge резистор катодов LED"]
+  BLQ["DMN2056U-7 #BACKLIGHT<br/>низкопороговый MOSFET ШИМ катодов LED"]
+  BLGR["RC0402FR-07100RL #BL-GATE<br/>100-Ом последовательный резистор затвора ШИМ"]
+  BLGPD["RC0402FR-0710KL #BL-GATE<br/>10-кОм reset-off подтяжка затвора"]
   SD["DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
   SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
   CODEC["ES8311<br/>mono ADC/DAC audio codec"]
@@ -389,7 +404,8 @@ flowchart TD
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
-  TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
+  TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
+  BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ STOPSW ~~~ REARMSW
   REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
@@ -568,7 +584,22 @@ flowchart TD
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
-  S3 -->|"direct QSPI + touch"| LCD
+  S3 -->|"direct QSPI + touch"| LCDCON
+  LCDCON <-->|"40-контактный FPC; HIL физического сопряжения открыт"| LCD
+  SLOW -->|"P06/P07 release reset"| LCDCON
+  LCDRPD -->|"RESX по умолчанию low"| LCDCON
+  TPRPD -->|"TP_RESXP по умолчанию low"| LCDCON
+  MAINFUSE -->|"защищённые 3,3 В логики"| LCDLBULK --> LCDCON
+  MAINFUSE --> LCDLHF --> LCDCON
+  MAINFUSE -->|"ветвь LEDA"| BLEFUSE --> LCDCON
+  BLEFUSE --> BLILIM
+  BLEFUSE --> BLIN
+  BLEFUSE --> BLOUT
+  BLEFUSE --> BLOUTHF
+  BLFPU --> BLEFUSE
+  LCDCON -->|"3 × LEDK"| BLR --> BLQ
+  S3 -->|"GPIO40 PWM"| BLGR --> BLQ
+  BLGPD -->|"reset off"| BLQ
   S3 <-->|"scheduled SPI2"| SD
   S3 <-->|"I²S0 + I²C0"| CODEC
   S3 <-->|"I²C0"| SI
@@ -677,6 +708,11 @@ flowchart TD
 
 - Экран расположен вертикально; водопад обновляется небольшими областями и не
   блокирует обслуживание радио.
+- Сборка QSPI/touch подключается через кандидат 40-контактного ZIF, имеет
+  reset-low состояния по умолчанию, локальную развязку логики и отдельно
+  защищённую защёлкиваемым ключом ШИМ-подсветку. Окончательная ориентация
+  разъёма требует реального шлейфа экрана: электрическая карта не подменяет
+  механическую квалификацию.
 - Девять подписанных антенных портов сохраняют однозначную связь между
   разъёмом, трактом и активным профилем антенны.
 - Съёмный U214 устанавливается поперёк задней стороны над аккумуляторами; его

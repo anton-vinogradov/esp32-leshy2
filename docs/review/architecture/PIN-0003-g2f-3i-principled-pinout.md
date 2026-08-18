@@ -13,6 +13,8 @@
   [`REV-0004X`](../reviews/REV-0004X-qspi-display-decision-propagation.md)
 - Exact display fit: [`DSP-0005`](DSP-0005-hmx035ctft-electrical-fit.md) /
   [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
+- Exact display endpoint: [`DSP-0006`](DSP-0006-exact-display-rail-backlight-and-mate-profile.md) /
+  [`REV-0005AO`](../reviews/REV-0005AO-display-endpoint-propagation.md)
 - Exact codec fit: [`AUDIO-0001`](AUDIO-0001-es8311-exact-electrical-fit.md) /
   [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 - Complete audio decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md) /
@@ -98,6 +100,9 @@ as touch IRQ, while slow `P06/P07` provide display/touch reset. This consumes
 no new direct S3 contact and keeps TE conditional on HIL. Subsequent
 `AUDIO-0002/FND-0067` consumes slow P27 for the previously
 omitted `RX_AUDIO_SOURCE_SEL`, so the slow plane now has no reserve.
+`DSP-0006/DEC-0084` later place the exact first ZIF connector candidate
+between those nets and the panel, add reset-low defaults and close the exact
+latch-protected PWM-backlight circuit without changing the pin budget.
 
 The audio digital path now terminates on exact `ES8311` QFN-20 contacts:
 GPIO1/2 are `CDATA/CCLK`, GPIO15/16/17/18 are
@@ -136,8 +141,8 @@ exact-contact projection and this publication does not freeze G7 architecture.
 [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 lists every remaining `abstract:*` endpoint. The material groups are:
 
-- production-qualified display connector/backlight/protection/sourcing and
-  exact codec power/analog conditioning; current HMX and ES8311 paper contacts are exact;
+- final real-tail display mate, standalone panel sourcing and display HIL plus
+  exact codec power/analog conditioning; current display/backlight/ES8311 paper circuits are exact;
 - exact IR receiver/learning receiver/LED driver and optical front end; IR
   evidence detector MPN/paper routing is now exact;
 - AON source/hold-up, branch power/current/thermal circuits and RF detector

@@ -31,3 +31,8 @@ endpoint product USB-C **«Проведено ревью»** на paper-schemati
 JAE receptacle, TI four-line CC/USB2 protection и corrected 220-pF CC shunts
 внесены в machine map; placement, USB Full-Speed RC/SI, ESD/short-to-VBUS HIL
 остаются открыты. I4 и gate 2F в целом продолжаются, KiCad не разрешён.
+`DEC-0084/DSP-0006/REV-0005AO` затем дают display/touch paper endpoint
+**«Проведено ревью»**: first exact 40-contact ZIF candidate, protected-main
+logic rail, reset-low defaults и latch-off PWM backlight внесены в machine
+map без нового GPIO. Real-tail mate, procurement и shared-SPI/touch/
+backlight HIL остаются открыты; I4 и gate 2F продолжаются.

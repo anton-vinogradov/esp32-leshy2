@@ -353,6 +353,16 @@ least 129 pF to the USB-PD ceiling. The port material is now quantified at
 about `$1.9…2.6` per board. Placement/cutout, total CC capacitance, USB
 Full-Speed RC/signal integrity, ESD and short-to-VBUS HIL remain open; I4
 continues and KiCad stays blocked.
+`FND-0088/DSP-0006/DEC-0084/REV-0005AO` close the second I4 paper endpoint.
+`FH12-40S-0.5SH(55)` is now an exact first 40-contact connector candidate;
+protected `3V3_MAIN`, local 10-uF/100-nF decoupling and separate reset-low
+defaults feed the panel logic. `TPS2553DRVR-1`, 133-kOhm ILIM,
+`ERJ-P08F10R0V` and `DMN2056U-7` form a latch-off, reset-dark backlight path.
+A whole-panel local switch was rejected because live QSPI/I2C could back-power
+its tripped rail. S3 remains `32/3/1`; the checked delta is about `$2.5…2.9`
+including the required connector. Standalone panel procurement, real-tail
+mate/orientation, shared-SPI/touch, current/thermal and fault HIL remain open;
+I4 continues to microSD and remaining UI endpoints.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative

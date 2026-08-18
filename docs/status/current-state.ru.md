@@ -352,6 +352,16 @@ short-to-VBUS/ESD без расхода GPIO47. Support VPWR, VBIAS и FLT за�
 Материал порта теперь оценён примерно в `$1.9…2.6` на плату. Placement/cutout,
 полная ёмкость CC, USB Full-Speed RC/SI, ESD и short-to-VBUS HIL остаются
 открыты; I4 продолжается, KiCad остаётся заблокирован.
+`FND-0088/DSP-0006/DEC-0084/REV-0005AO` закрывают второй paper endpoint I4.
+`FH12-40S-0.5SH(55)` теперь exact first-кандидат 40-контактного разъёма;
+логика панели получает protected `3V3_MAIN`, локальные 10 мкФ/100 нФ и два
+раздельных default-low reset. `TPS2553DRVR-1`, ILIM 133 кОм,
+`ERJ-P08F10R0V` и `DMN2056U-7` образуют latch-off и reset-dark путь подсветки.
+Отдельный switch всей панели отклонён: живые QSPI/I2C могли бы подпитывать его
+отключённую шину. S3 остаётся `32/3/1`; проверенная добавка — примерно
+`$2.5…2.9` вместе с обязательным разъёмом. Standalone procurement панели,
+реальный fit/orientation шлейфа, shared-SPI/touch, current/thermal и fault HIL
+остаются открыты; I4 продолжается к microSD и остальным UI endpoints.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный

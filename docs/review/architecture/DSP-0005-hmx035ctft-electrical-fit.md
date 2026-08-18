@@ -8,6 +8,12 @@
 - Findings: [`FND-0063`](../findings/FND-0063-hmx035ctft-mpn-was-disclosed.md),
   [`FND-0064`](../findings/FND-0064-stale-s3-budget-in-stage-ledger.md)
 - Review: [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
+- Exact endpoint amendment: [`DSP-0006`](DSP-0006-exact-display-rail-backlight-and-mate-profile.md) /
+  [`DEC-0084`](../decisions/DEC-0084-exact-protected-display-electrical-endpoint.md)
+
+> `DSP-0006/DEC-0084` later close the exact paper power, reset, backlight and
+> first-connector circuit. Standalone panel procurement and physical mate HIL
+> remain open; this original contact-fit review is otherwise unchanged.
 
 ## Результат
 
@@ -24,9 +30,10 @@
   later `AUDIO-0002/FND-0067` uses P27 for RX-audio selection, making current
   slow accounting `24/0/0` without changing display fit.
 
-Это проводит ревью **paper electrical fit**, но не принимает assembly в
-production BOM: standalone ordering/drawing/lifecycle, exact connector,
-backlight driver, protection, optics и specimen measurements ещё открыты.
+Это проводит ревью **paper contact fit**, но не принимает assembly в production
+BOM. `DSP-0006/DEC-0084` now add exact connector candidate and backlight/power
+circuit; standalone ordering/drawing/lifecycle, final mate, optics and specimen
+measurements remain open.
 
 ## Exact assembly and controller identifiers
 
@@ -111,15 +118,17 @@ sink therefore remains an exact-part electrical gate.
 ## Touch reference
 
 The official board places `10 kΩ` pull-ups `R29/R30` on touch SDA/SCL and
-`C50 = 100 nF` (`104`) decoupling. Production pull-up value must be calculated
-for the complete internal-I2C capacitance and accepted rise time; it is not
-copied blindly.
+`C50 = 100 nF` (`104`) decoupling. `DEC-0084` deliberately does not copy those
+pull-ups: the complete Leshy2 SYS_I2C already has one exact 2.2-kOhm pair.
+Rise time and touch behaviour remain HIL.
 
-## Connector candidate — deliberately not accepted
+## Connector candidate — electrically instantiated, mechanical acceptance open
 
 Hirose `FH12-40S-0.5SH(55)`, CL `CL0586-0527-7-55`, is an active 40-position,
 0.5-mm-pitch, 2.0-mm-height bottom-contact ZIF candidate. It matches the coarse
-Waveshare/QDtech connector class, but it is **not yet the Leshy2 connector**.
+Waveshare/QDtech connector class. `DEC-0084` instantiates it as the exact first
+paper connector candidate, but it is **not yet the final Leshy2 mate or frozen
+footprint**.
 
 Before acceptance, a real `HMX035CTFT-001` sample or manufacturer drawing must
 prove FPC thickness, exposed-contact side, tail geometry, insertion direction,

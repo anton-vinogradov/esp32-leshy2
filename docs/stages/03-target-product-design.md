@@ -108,6 +108,12 @@ exact `DX07S016JA1R1500`, `TPD4S201RUKR`, protected CC/USB2 routes и
 пересчитанные exact 220-pF CC shunts полностью внесены в machine source без
 нового GPIO. Placement/cutout, total CC, USB Full-Speed RC/SI, ESD и
 short-to-VBUS HIL остаются открыты; integrated mockup не возобновляется.
+`FND-0088/DSP-0006/DEC-0084/REV-0005AO` затем закрывают display paper
+electrical endpoint: exact first ZIF candidate, protected-main logic supply,
+reset-low defaults и отдельно latch-protected PWM backlight теперь являются
+машинными physical instances. Real-tail mate/orientation, standalone panel
+procurement и shared-SPI/touch/current/thermal HIL остаются открыты;
+integrated mockup и KiCad по-прежнему не возобновляются.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку

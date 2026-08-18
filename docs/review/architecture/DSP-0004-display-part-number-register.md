@@ -5,7 +5,8 @@
 - Target-class decision: [`DEC-0053`](../decisions/DEC-0053-new-35in-qspi-display-class.md)
 - Shortlist: [`DSP-0003`](DSP-0003-exact-fast-display-shortlist.md)
 - Reviews: [`REV-0004Z`](../reviews/REV-0004Z-display-class-decision-propagation.md),
-  [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
+  [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md),
+  [`REV-0005AO`](../reviews/REV-0005AO-display-endpoint-propagation.md)
 
 Этот реестр намеренно не использует широкую таблицу. Для каждого обозначения
 указано, чем оно является: target part, HIL-only development reference,
@@ -27,14 +28,17 @@ fallback либо ещё не опубликованный production MPN. Contr
   **`HMX035CTFT-001`**. Marking раскрыт official QDtech `ES3C35P` schematic,
   но manufacturer attribution, standalone orderability, drawing, lifecycle и
   second source не подтверждены; поэтому production BOM ещё не принят.
-- Display FPC/board connector: **`TBD`** — выбирается только вместе с exact
-  assembly drawing/FPC mechanics. Hirose `FH12-40S-0.5SH(55)`,
-  CL `CL0586-0527-7-55`, — проверенный по pitch/count/height кандидат, не
-  принятый mate.
+- Display FPC/board connector: Hirose **`FH12-40S-0.5SH(55)`**, CL
+  `CL0586-0527-7-55`, принят `DEC-0084` как exact first electrical/fit
+  candidate. Он ещё не final mate и не разрешает footprint: tail
+  thickness/contact side/stiffener/insertion должны быть доказаны specimen HIL.
 - Touch controller: **`TBD` или integrated** — отдельный IC нельзя выдумывать,
   пока exact assembly не выбран.
-- Backlight LED driver: **`TBD`**.
-- Display/touch ESD and interface protection: **`TBD`**.
+- Backlight power/PWM path: exact `TPS2553DRVR-1`, `DMN2056U-7`,
+  `ERJ-P08F10R0V` and exact support passives по `DSP-0006/DEC-0084`.
+- Display/touch interface protection: internal-FPC ESD classification and
+  populated QSPI tuning remain HIL; source-series/shunt tuning positions are
+  DNP rather than invented BOM parts.
 - Cover lens/optical bonding assembly: **custom/`TBD`**.
 
 Ни одно из значений `TBD` не разрешено переносить в KiCad как generic footprint.

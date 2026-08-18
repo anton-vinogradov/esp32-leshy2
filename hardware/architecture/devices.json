@@ -261,6 +261,143 @@
         "MISO": {"physical": "13", "role": "signal"}, "NSS": {"physical": "14", "role": "signal"}
       }
     },
+    "hirose_fh12_40s_0_5sh_55": {
+      "mpn": "Hirose FH12-40S-0.5SH(55)",
+      "kind": "40_position_0_5mm_bottom_contact_zif_fpc_receptacle",
+      "qualification": "verified_first_fit_candidate",
+      "lifecycle": "active; exact HMX035CTFT-001 tail thickness, exposed-contact side, stiffener and insertion fit remain specimen HIL",
+      "dimensions_mm": [24.1, 6.4, 2.0],
+      "source": {
+        "document": "Hirose FH12-40S-0.5SH(55) product page and 2D drawing",
+        "version": "CL0586-0527-7-55; drawing updated 2026-07-01",
+        "url": "https://www.hirose.com/product/p/CL0586-0527-7-55?lang=en",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "FH12-40S-0.5SH(55) active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110388",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "PIN_1": {"physical": "1", "role": "signal"},
+        "PIN_2": {"physical": "2", "role": "signal"},
+        "PIN_3": {"physical": "3", "role": "signal"},
+        "PIN_4": {"physical": "4", "role": "reset"},
+        "PIN_5": {"physical": "5", "role": "power"},
+        "PIN_6": {"physical": "6", "role": "power"},
+        "PIN_7": {"physical": "7", "role": "power"},
+        "PIN_8": {"physical": "8", "role": "signal"},
+        "PIN_9": {"physical": "9", "role": "signal"},
+        "PIN_10": {"physical": "10", "role": "signal"},
+        "PIN_11": {"physical": "11", "role": "signal"},
+        "PIN_12": {"physical": "12", "role": "signal"},
+        "PIN_13": {"physical": "13", "role": "signal"},
+        "PIN_14": {"physical": "14", "role": "nc"},
+        "PIN_15": {"physical": "15", "role": "reset"},
+        "PIN_16": {"physical": "16", "role": "power"},
+        "PIN_17": {"physical": "17", "role": "signal"},
+        "PIN_18": {"physical": "18", "role": "signal"},
+        "PIN_19": {"physical": "19", "role": "strap"},
+        "PIN_20": {"physical": "20", "role": "strap"},
+        "PIN_21": {"physical": "21", "role": "strap"},
+        "PIN_22": {"physical": "22", "role": "strap"},
+        "PIN_23": {"physical": "23", "role": "strap"},
+        "PIN_24": {"physical": "24", "role": "strap"},
+        "PIN_25": {"physical": "25", "role": "nc"},
+        "PIN_26": {"physical": "26", "role": "nc"},
+        "PIN_27": {"physical": "27", "role": "nc"},
+        "PIN_28": {"physical": "28", "role": "nc"},
+        "PIN_29": {"physical": "29", "role": "nc"},
+        "PIN_30": {"physical": "30", "role": "nc"},
+        "PIN_31": {"physical": "31", "role": "nc"},
+        "PIN_32": {"physical": "32", "role": "nc"},
+        "PIN_33": {"physical": "33", "role": "power"},
+        "PIN_34": {"physical": "34", "role": "power"},
+        "PIN_35": {"physical": "35", "role": "power"},
+        "PIN_36": {"physical": "36", "role": "power"},
+        "PIN_37": {"physical": "37", "role": "power"},
+        "PIN_38": {"physical": "38", "role": "strap"},
+        "PIN_39": {"physical": "39", "role": "strap"},
+        "PIN_40": {"physical": "40", "role": "strap"},
+        "FITTING_1": {"physical": "left solder hold-down", "role": "mechanical"},
+        "FITTING_2": {"physical": "right solder hold-down", "role": "mechanical"}
+      }
+    },
+    "ti_tps2553drvr_1": {
+      "mpn": "Texas Instruments TPS2553DRVR-1",
+      "kind": "active_high_adjustable_latch_off_reverse_blocking_power_switch",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 2.0, 0.8],
+      "source": {
+        "document": "TPS2552/TPS2553 precision adjustable current-limited power-distribution switch datasheet",
+        "version": "SLVS841F and current exact-part page checked 2026-08-18",
+        "url": "https://www.ti.com/lit/gpn/TPS2553-1",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS2553DRVR-1 active exact order-code page",
+        "url": "https://www.ti.com/product/TPS2553-1/part-details/TPS2553DRVR-1",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "OUT": {"physical": "1", "role": "power"},
+        "ILIM": {"physical": "2", "role": "analog"},
+        "FAULT_N": {"physical": "3", "role": "signal"},
+        "EN": {"physical": "4", "role": "signal"},
+        "GND": {"physical": "5", "role": "power"},
+        "IN": {"physical": "6", "role": "power"},
+        "POWERPAD": {"physical": "exposed thermal pad", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07133kl": {
+      "mpn": "Yageo RC0402FR-07133KL",
+      "kind": "133kohm_1pct_0402_current_limit_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RC0402FR-07133KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-07133KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07133KL authorized-distributor stock aggregation",
+        "url": "https://www.findchips.com/detail/RC0402FR-07133KL/YAGEO-Corporation",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "panasonic_erj_p08f10r0v": {
+      "mpn": "Panasonic ERJ-P08F10R0V",
+      "kind": "10ohm_1pct_1206_0_66w_anti_surge_backlight_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.2, 1.6, 0.65],
+      "source": {
+        "document": "Panasonic ERJ-P08F10R0V high-power anti-surge resistor product page",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://na.industrial.panasonic.com/products/resistors/smd-chip-resistors/high-power-anti-surge-high-voltage/series/36033/model/39214",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "ERJ-P08F10R0V active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-P08F10R0V/5722446",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "qdtech_hmx035ctft_001": {
       "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
       "kind": "raw_display_touch_assembly",

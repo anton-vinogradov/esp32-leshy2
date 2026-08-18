@@ -1002,6 +1002,14 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_exact_hmx_display_electrical_fit_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual("qdtech_hmx035ctft_001", candidate["instances"]["display"])
+        self.assertEqual(
+            "hirose_fh12_40s_0_5sh_55", candidate["instances"]["display_connector"]
+        )
+        self.assertEqual("ti_tps2553drvr_1", candidate["instances"]["backlight_efuse"])
+        self.assertEqual(
+            "panasonic_erj_p08f10r0v",
+            candidate["instances"]["backlight_series_resistor"],
+        )
 
         display = self.database["devices"][candidate["instances"]["display"]]
         self.assertEqual(
@@ -1032,16 +1040,19 @@ class ArchitectureValidationTests(unittest.TestCase):
             for row in candidate["allocations"]
             if row["instance"] == "s3"
         }
-        self.assertEqual(["sd.DAT0", "display.QSPI_D1"], s3["GPIO4"]["peers"])
-        self.assertIn("display.QSPI_CLK", s3["GPIO35"]["peers"])
-        self.assertIn("display.QSPI_D0", s3["GPIO36"]["peers"])
-        self.assertEqual("display.QSPI_CS", s3["GPIO38"]["peers"][0])
+        self.assertEqual(
+            ["sd.DAT0", "display_connector.PIN_10"], s3["GPIO4"]["peers"]
+        )
+        self.assertIn("display_connector.PIN_11", s3["GPIO35"]["peers"])
+        self.assertIn("display_connector.PIN_13", s3["GPIO36"]["peers"])
+        self.assertEqual("display_connector.PIN_9", s3["GPIO38"]["peers"][0])
         self.assertEqual("LCD_TOUCH_INT", s3["GPIO39"]["net"])
         self.assertEqual("i", s3["GPIO39"]["direction"])
         self.assertEqual("GPIO_IRQ", s3["GPIO39"]["controller"])
-        self.assertEqual(["display.TP_INT"], s3["GPIO39"]["peers"])
-        self.assertEqual(["display.QSPI_D2"], s3["GPIO41"]["peers"])
-        self.assertEqual(["display.QSPI_D3"], s3["GPIO42"]["peers"])
+        self.assertEqual(["display_connector.PIN_3"], s3["GPIO39"]["peers"])
+        self.assertEqual(["backlight_gate_series.END_1"], s3["GPIO40"]["peers"])
+        self.assertEqual(["display_connector.PIN_17"], s3["GPIO41"]["peers"])
+        self.assertEqual(["display_connector.PIN_18"], s3["GPIO42"]["peers"])
         self.assertNotIn("LCD_DC", {row["net"] for row in s3.values()})
         self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
 
@@ -1049,11 +1060,21 @@ class ArchitectureValidationTests(unittest.TestCase):
             (route["from"], route["to"], route["net"])
             for route in candidate["fixed_routes"]
         }
-        self.assertIn(("slow_io.P06", "display.RESET", "LCD_RST_N"), routes)
-        self.assertIn(("slow_io.P07", "display.TP_RESET", "TOUCH_RST_N"), routes)
-        self.assertIn(("abstract:qualified-display-3v3", "display.IM1", "LCD_IM1_HIGH"), routes)
-        self.assertIn(("display.IM0", "abstract:display-ground", "LCD_IM0_LOW"), routes)
-        self.assertIn(("display.IM2", "abstract:display-ground", "LCD_IM2_LOW"), routes)
+        self.assertIn(("slow_io.P06", "display_connector.PIN_15", "LCD_RST_N"), routes)
+        self.assertIn(("slow_io.P07", "display_connector.PIN_4", "TOUCH_RST_N"), routes)
+        self.assertIn(("abstract:3V3_MAIN", "display_connector.PIN_39", "LCD_IM1_HIGH"), routes)
+        self.assertIn(("display_connector.PIN_38", "abstract:power-ground", "LCD_IM0_LOW"), routes)
+        self.assertIn(("display_connector.PIN_40", "abstract:power-ground", "LCD_IM2_LOW"), routes)
+        self.assertIn(("backlight_efuse.OUT", "display_connector.PIN_33", "LCD_LEDA_PROTECTED"), routes)
+        self.assertIn(("display_connector.PIN_34", "backlight_series_resistor.END_1", "LCD_LEDK"), routes)
+        self.assertIn(("backlight_series_resistor.END_2", "backlight_mosfet.D", "LCD_LEDK_LIMITED"), routes)
+
+        display_contract = candidate["display_contract"]
+        self.assertEqual("DEC-0084", display_contract["decision"])
+        self.assertIn("back-power", display_contract["logic_supply"])
+        self.assertIn("174-to-234-mA", display_contract["backlight"])
+        self.assertIn("at least 120 ms", display_contract["reset_defaults"])
+        self.assertIn("power cycling", display_contract["fault_behavior"])
 
     def test_exact_es8311_digital_fit_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
