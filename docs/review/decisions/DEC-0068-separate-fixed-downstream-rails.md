@@ -28,7 +28,9 @@
 7. Every unused interface remains powered off and discharged where its
    electrical contract permits it. Hardware STOP dominates nRF, CC, voice and
    external-rail enables.
-8. Exact passive values, thermal/layout closure and HIL remain prerequisites;
+8. [`DEC-0072`](DEC-0072-exact-converter-energy-feedback-passives.md)
+   subsequently closes exact converter energy/configuration/feedback
+   passives. EN/PG pulls, thermal/layout closure and HIL remain prerequisites;
    this decision does not authorize KiCad.
 
 ## Package correction

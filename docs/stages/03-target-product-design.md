@@ -82,8 +82,10 @@ recovery и exact active FET/fuse/NTC/shunt/hold/supply-isolation packages.
 `PWR-0008/DEC-0068/REV-0005Y` затем закрывают active rail topology и exact
 AON/3.3/4.0/5.0-V converter, inductor, load-switch и external-eFuse first
 targets; `DEC-0069/REV-0005Z` исправляют external eFuse на latch-off exact
-suffix. Далее закрываются passive/diagnostic values и hot
-loss/thermal/fault tree.
+suffix. `PWR-0009…0011/DEC-0070…0072` затем закрывают optional-PG
+qualification, exact eFuse passives и 24 exact converter
+energy/configuration/feedback parts. Далее закрываются charger/EN/PG/
+diagnostic values и hot loss/thermal/fault tree.
 
 ## Downstream boundary
 

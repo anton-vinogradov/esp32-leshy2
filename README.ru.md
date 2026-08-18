@@ -134,13 +134,37 @@ flowchart TD
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed допуск пары, watchdog и service bridge"]
   AONBUCK["TPS629203DRLR<br/>low-IQ always-on преобразователь безопасности 3,3 В"]
   AONL["WPN201612H2R2MT<br/>экранированный дроссель 2,2 мкГн шины AON"]
+  AONMODE["RC0402FR-0742K2L<br/>42,2-кОм 1% резистор режима/конфигурации AON"]
+  AONIN["CGA5L1X7R1E475K160AC<br/>4,7-мкФ 25-В X7R входной конденсатор AON"]
+  AONOUT["GRM31CR71A226KE15L<br/>22-мкФ 10-В X7R выходной конденсатор AON"]
   MAINBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь основной шины 3,3 В"]
   MAINL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн основной шины"]
+  MAININ["GRM32ER71E226KE15L #MAIN-IN<br/>22-мкФ 25-В X7R входной bulk-конденсатор основной шины"]
+  MAINHF["C1005X7R1H104K050BB #MAIN<br/>100-нФ 50-В X7R входной HF-конденсатор основной шины"]
+  MAINFBT["RC0402FR-0745K3L<br/>45,3-кОм 1% верхний резистор FB основной шины"]
+  MAINFBB["RC0402FR-0710KL<br/>10-кОм 1% нижний резистор FB основной шины"]
+  MAINFF["C0402C330J5GACTU #MAIN<br/>33-пФ 50-В C0G feed-forward конденсатор основной шины"]
+  MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №0"]
+  MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №1"]
   VOICEBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь голосовой шины 4,0 В"]
   VOICEL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн голосовой шины"]
+  VOICEIN["GRM32ER71E226KE15L #VOICE-IN<br/>22-мкФ 25-В X7R входной bulk-конденсатор voice"]
+  VOICEHF["C1005X7R1H104K050BB #VOICE<br/>100-нФ 50-В X7R входной HF-конденсатор voice"]
+  VOICEFBT["RC0402FR-0768KL<br/>68-кОм 1% верхний резистор FB voice"]
+  VOICEFBB["RC0402FR-0712KL<br/>12-кОм 1% нижний резистор FB voice"]
+  VOICEFF["C0402C330J5GACTU #VOICE<br/>33-пФ 50-В C0G feed-forward конденсатор voice"]
+  VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор voice №0"]
+  VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор voice №1"]
   VOICEPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault голосовой шины"]
   EXTBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь расширения 5,0 В"]
   EXTL["MWSA0503S-4R7MT<br/>силовой дроссель 4,7 мкГн шины расширения"]
+  EXTBUCKIN["GRM32ER71E226KE15L #EXT-BUCK-IN<br/>22-мкФ 25-В X7R входной bulk-конденсатор buck расширения"]
+  EXTBUCKHF["C1005X7R1H104K050BB #EXT-BUCK<br/>100-нФ 50-В X7R входной HF-конденсатор buck расширения"]
+  EXTBUCKFBT["RC0402FR-07220KL<br/>220-кОм 1% верхний резистор FB расширения"]
+  EXTBUCKFBB["RC0402FR-0730KL<br/>30-кОм 1% нижний резистор FB расширения"]
+  EXTBUCKFF["C0402C330J5GACTU #EXT-BUCK<br/>33-пФ 50-В C0G feed-forward конденсатор расширения"]
+  EXTBUCKOUT0["GRM32ER71E226KE15L #EXT-BUCK-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор buck расширения №0"]
+  EXTBUCKOUT1["GRM32ER71E226KE15L #EXT-BUCK-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор buck расширения №1"]
   EXTPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault шины расширения"]
   EXTFUSE["TPS259470LRPWR<br/>latch-off eFuse расширения с true reverse blocking и измерением тока"]
   EXTRILM["RC0402FR-072K21L<br/>2,21-кОм 1% резистор ограничения тока eFuse"]
@@ -215,8 +239,10 @@ flowchart TD
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
-  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
+  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT
+  AONOUT ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1
+  MAINOUT1 ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEPGQ
+  VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
@@ -248,7 +274,16 @@ flowchart TD
   PACKGAUGE <-->|"локальная I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + общий IRQ"| S3
   CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
+  AONBUCK -->|"MODE/S-CONF"| AONMODE
+  CHARGER -->|"локальный bypass SYS"| AONIN
+  AONL -->|"локальный выход AON"| AONOUT
   CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
+  CHARGER -->|"локальный bulk SYS"| MAININ
+  CHARGER -->|"локальный HF SYS"| MAINHF
+  MAINL -->|"feedback"| MAINFBT --> MAINFBB
+  MAINL -->|"feed-forward"| MAINFF
+  MAINL -->|"локальный выходной банк"| MAINOUT0
+  MAINL -->|"локальный выходной банк"| MAINOUT1
   MAINL --> C5
   MAINL --> RP
   MAINL --> SWNRF
@@ -257,8 +292,20 @@ flowchart TD
   MAINL --> SWCODEC
   MAINL --> SWRX
   CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"фиксированные 4,0 В"| SA
+  CHARGER -->|"локальный bulk SYS"| VOICEIN
+  CHARGER -->|"локальный HF SYS"| VOICEHF
+  VOICEL -->|"feedback"| VOICEFBT --> VOICEFBB
+  VOICEL -->|"feed-forward"| VOICEFF
+  VOICEL -->|"локальный выходной банк"| VOICEOUT0
+  VOICEL -->|"локальный выходной банк"| VOICEOUT1
   VOICEBUCK -->|"PG"| VOICEPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"защищённые фиксированные 5,0 В"| U214
+  CHARGER -->|"локальный bulk SYS"| EXTBUCKIN
+  CHARGER -->|"локальный HF SYS"| EXTBUCKHF
+  EXTL -->|"feedback"| EXTBUCKFBT --> EXTBUCKFBB
+  EXTL -->|"feed-forward"| EXTBUCKFF
+  EXTL -->|"локальный выходной банк"| EXTBUCKOUT0
+  EXTL -->|"локальный выходной банк"| EXTBUCKOUT1
   EXTBUCK -->|"PG"| EXTPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   EXTFUSE -->|"ILM"| EXTRILM
   EXTFUSE -->|"dVdt"| EXTDVDT

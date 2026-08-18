@@ -291,9 +291,10 @@ three independent fixed `TPS564252DRLR` 3.3/4.0/5.0-V stages, exact Sunlord
 inductors, five separate `TPS22919DCKR` quiet-state switches and connector-side
 `TPS259470LRPWR` reverse blocking/current limit. `DEC-0069/REV-0005Z` replace
 the early auto-retry suffix with the same-cost/footprint latch-off suffix and
-correct the nominal limit to a tolerance-safe 1.50-A target. The official package review
-also corrects TPS564252 pin 4 to `PG` (integrated bootstrap). Exact passive
-values, hot loss and HIL remain the active I3 closure. That PG review also
+correct the nominal limit to a tolerance-safe 1.50-A target. The official
+package review also corrects TPS564252 pin 4 to `PG` (integrated bootstrap).
+Converter energy/feedback passives, hot loss and HIL remained the active I3
+closure at that checkpoint. That PG review also
 exposed a real aggregation defect: an optional converter reports PG low while
 normally off. `PWR-0009/DEC-0070/REV-0005AA` now instantiate two separate
 `MMBT3904-7-F` stages implementing `EN AND NOT(PG)` before
@@ -305,8 +306,16 @@ the capacitive load, and the 2-A allowance is a bounded post-start event timed
 by 220 nF. Exact OVLO, local bypass and 1-kOhm discharge parts replace the
 abstract passive network; all eight physical instances appear separately in
 the machine source and target diagrams. Their checked recurring cost is about
-`$0.10` per board at 100 pieces. Converter passives and the listed HIL gates
-remain active.
+`$0.10` per board at 100 pieces. `PWR-0011/DEC-0072/REV-0005AC` now close the
+next paper prerequisite: open AON VSET, exact AON mode/input/output parts and
+three independent TPS564252 input/output/feed-forward banks plus fixed 1%
+feedback dividers are represented as 24 physical instances. The main/voice/
+external nominals are 3.318/4.000/5.000 V; their full paper tolerance screens
+fit the accepted loads and leave the external maximum below the eFuse OVLO
+floor. Lifecycle review rejects obsolete 45.0 kOhm for active 45.3 kOhm, and
+the recurring passive estimate is about `$1.8` per board at 100 pieces.
+Charger passives, converter EN/PG pulls, effective-capacitance/load-step,
+hot-loss/layout and the listed HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

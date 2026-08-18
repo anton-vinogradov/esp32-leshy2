@@ -8,6 +8,7 @@
 - Decision: [`DEC-0068`](../decisions/DEC-0068-separate-fixed-downstream-rails.md)
 - eFuse fail-closed amendment: [`DEC-0069`](../decisions/DEC-0069-latch-off-external-efuse.md)
 - switched-PG amendment: [`DEC-0070`](../decisions/DEC-0070-enable-qualified-switched-rail-pg.md)
+- converter-passive amendment: [`DEC-0072`](../decisions/DEC-0072-exact-converter-energy-feedback-passives.md)
 - Propagation review: [`REV-0005Y`](../reviews/REV-0005Y-downstream-rail-tree-propagation.md)
 
 ## Scope
@@ -15,8 +16,10 @@
 Этот проход выбирает физически независимые active stages от `BQ25798 SYS` до
 четырёх шин и five quiet-state branches. Он проверяет реальные контакты exact
 MPN, current/ripple headroom, reverse-current boundary, доступность и порядок
-включения. Passive values, copper/thermal layout и specimen HIL ещё не закрыты;
-артефакт не разрешает начинать KiCad.
+включения. `PWR-0011/DEC-0072` subsequently close converter energy,
+configuration, feedback and feed-forward passives; EN/PG pulls,
+copper/thermal layout and specimen HIL are still open. Артефакт не разрешает
+начинать KiCad.
 
 ## Why four converters, not one configurable rail
 
@@ -236,8 +239,10 @@ first-target inductors, current/ripple screen, quiet-state branches, qualified
 switched-rail PG evidence, external
 reverse blocking and availability receive **«Проведено ревью»**.
 
-Still open before schematic/BOM freeze: application-converter feedback and
-input/output capacitance with DC-bias curves, exact EN/PG resistor MPNs,
-ground/copper/thermal geometry, source transitions and fault-injection HIL.
+`PWR-0011/DEC-0072` subsequently close the application-converter feedback,
+feed-forward and input/output energy components as 24 exact physical
+instances. Still open before schematic/BOM freeze: exact EN/PG resistor MPNs,
+ground/copper/thermal geometry, effective-capacitance/load-step proof, source
+transitions and fault-injection HIL.
 `PWR-0010/DEC-0071` close the eFuse `ILM/ITIMER/dVdt/OVLO`, local-capacitor and
 connector-discharge paper profile. No KiCad authorization is implied.

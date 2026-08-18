@@ -127,13 +127,37 @@ flowchart TD
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
   AONBUCK["TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
   AONL["WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor"]
+  AONMODE["RC0402FR-0742K2L<br/>42.2-kOhm 1% AON mode/configuration resistor"]
+  AONIN["CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V X7R AON input capacitor"]
+  AONOUT["GRM31CR71A226KE15L<br/>22-uF 10-V X7R AON output capacitor"]
   MAINBUCK["TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
   MAINL["MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor"]
+  MAININ["GRM32ER71E226KE15L #MAIN-IN<br/>22-uF 25-V X7R main bulk input capacitor"]
+  MAINHF["C1005X7R1H104K050BB #MAIN<br/>100-nF 50-V X7R main HF input capacitor"]
+  MAINFBT["RC0402FR-0745K3L<br/>45.3-kOhm 1% main feedback top resistor"]
+  MAINFBB["RC0402FR-0710KL<br/>10-kOhm 1% main feedback bottom resistor"]
+  MAINFF["C0402C330J5GACTU #MAIN<br/>33-pF 50-V C0G main feed-forward capacitor"]
+  MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-uF 25-V X7R main output capacitor #0"]
+  MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-uF 25-V X7R main output capacitor #1"]
   VOICEBUCK["TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   VOICEL["MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor"]
+  VOICEIN["GRM32ER71E226KE15L #VOICE-IN<br/>22-uF 25-V X7R voice bulk input capacitor"]
+  VOICEHF["C1005X7R1H104K050BB #VOICE<br/>100-nF 50-V X7R voice HF input capacitor"]
+  VOICEFBT["RC0402FR-0768KL<br/>68-kOhm 1% voice feedback top resistor"]
+  VOICEFBB["RC0402FR-0712KL<br/>12-kOhm 1% voice feedback bottom resistor"]
+  VOICEFF["C0402C330J5GACTU #VOICE<br/>33-pF 50-V C0G voice feed-forward capacitor"]
+  VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-uF 25-V X7R voice output capacitor #0"]
+  VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-uF 25-V X7R voice output capacitor #1"]
   VOICEPGQ["MMBT3904-7-F<br/>voice-rail enable-qualified PG fault transistor"]
   EXTBUCK["TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   EXTL["MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor"]
+  EXTBUCKIN["GRM32ER71E226KE15L #EXT-BUCK-IN<br/>22-uF 25-V X7R accessory-buck bulk input capacitor"]
+  EXTBUCKHF["C1005X7R1H104K050BB #EXT-BUCK<br/>100-nF 50-V X7R accessory-buck HF input capacitor"]
+  EXTBUCKFBT["RC0402FR-07220KL<br/>220-kOhm 1% accessory feedback top resistor"]
+  EXTBUCKFBB["RC0402FR-0730KL<br/>30-kOhm 1% accessory feedback bottom resistor"]
+  EXTBUCKFF["C0402C330J5GACTU #EXT-BUCK<br/>33-pF 50-V C0G accessory feed-forward capacitor"]
+  EXTBUCKOUT0["GRM32ER71E226KE15L #EXT-BUCK-OUT0<br/>22-uF 25-V X7R accessory output capacitor #0"]
+  EXTBUCKOUT1["GRM32ER71E226KE15L #EXT-BUCK-OUT1<br/>22-uF 25-V X7R accessory output capacitor #1"]
   EXTPGQ["MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor"]
   EXTFUSE["TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse/current monitor"]
   EXTRILM["RC0402FR-072K21L<br/>2.21-kOhm 1% eFuse current-limit resistor"]
@@ -208,8 +232,10 @@ flowchart TD
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
-  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
+  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT
+  AONOUT ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1
+  MAINOUT1 ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEPGQ
+  VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
@@ -241,7 +267,16 @@ flowchart TD
   PACKGAUGE <-->|"local I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + shared IRQ"| S3
   CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
+  AONBUCK -->|"MODE/S-CONF"| AONMODE
+  CHARGER -->|"SYS local bypass"| AONIN
+  AONL -->|"AON local output"| AONOUT
   CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
+  CHARGER -->|"SYS local bulk"| MAININ
+  CHARGER -->|"SYS local HF"| MAINHF
+  MAINL -->|"feedback"| MAINFBT --> MAINFBB
+  MAINL -->|"feed-forward"| MAINFF
+  MAINL -->|"local output bank"| MAINOUT0
+  MAINL -->|"local output bank"| MAINOUT1
   MAINL --> C5
   MAINL --> RP
   MAINL --> SWNRF
@@ -250,8 +285,20 @@ flowchart TD
   MAINL --> SWCODEC
   MAINL --> SWRX
   CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"fixed 4.0 V"| SA
+  CHARGER -->|"SYS local bulk"| VOICEIN
+  CHARGER -->|"SYS local HF"| VOICEHF
+  VOICEL -->|"feedback"| VOICEFBT --> VOICEFBB
+  VOICEL -->|"feed-forward"| VOICEFF
+  VOICEL -->|"local output bank"| VOICEOUT0
+  VOICEL -->|"local output bank"| VOICEOUT1
   VOICEBUCK -->|"PG"| VOICEPGQ -->|"qualified POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"protected fixed 5.0 V"| U214
+  CHARGER -->|"SYS local bulk"| EXTBUCKIN
+  CHARGER -->|"SYS local HF"| EXTBUCKHF
+  EXTL -->|"feedback"| EXTBUCKFBT --> EXTBUCKFBB
+  EXTL -->|"feed-forward"| EXTBUCKFF
+  EXTL -->|"local output bank"| EXTBUCKOUT0
+  EXTL -->|"local output bank"| EXTBUCKOUT1
   EXTBUCK -->|"PG"| EXTPGQ -->|"qualified POWER_FAULT_N"| SLOW
   EXTFUSE -->|"ILM"| EXTRILM
   EXTFUSE -->|"dVdt"| EXTDVDT

@@ -292,8 +292,8 @@ quiet-state switches `TPS22919DCKR` и connector-side reverse blocking/current
 limit `TPS259470LRPWR`. `DEC-0069/REV-0005Z` заменяют ранний auto-retry suffix
 на latch-off с теми же footprint/ценой и исправляют nominal limit на
 tolerance-safe target 1,50 А. Проверка реального корпуса также исправляет pin 4
-TPS564252 на `PG` (bootstrap встроен). Exact passive values, hot loss и HIL
-остаются активным закрытием I3. Эта проверка PG также выявила реальный дефект
+TPS564252 на `PG` (bootstrap встроен). Пассивы энергии/feedback, hot loss и HIL
+оставались активным закрытием I3 на этом checkpoint. Эта проверка PG также выявила реальный дефект
 агрегации: optional converter штатно держит PG low, пока выключен.
 `PWR-0009/DEC-0070/REV-0005AA` теперь вводят два отдельных
 `MMBT3904-7-F`, реализующих `EN AND NOT(PG)` перед `POWER_FAULT_N`; прямое
@@ -306,7 +306,16 @@ optional-PG объединение удалено, GPIO не потрачен, �
 резистор разряда 1 кОм заменяют абстрактную цепь; все восемь физических
 экземпляров отдельно показаны в machine source и target diagrams. Их
 проверенная recurring cost — около `$0.10` на плату при 100 штуках.
-Пассивы преобразователей и перечисленные HIL-gates остаются активны.
+`PWR-0011/DEC-0072/REV-0005AC` теперь закрывают следующий бумажный
+пререквизит: open AON VSET, exact AON mode/input/output и независимые
+TPS564252 input/output/feed-forward banks с фиксированными 1% делителями
+представлены 24 физическими экземплярами. Номиналы main/voice/external равны
+3,318/4,000/5,000 В; полные бумажные диапазоны допусков совместимы с
+принятыми нагрузками, а максимум внешней линии остаётся ниже порога OVLO
+eFuse. Lifecycle review отклоняет устаревшие 45,0 кОм в пользу активного MPN
+45,3 кОм; recurring passive estimate — около `$1.8` на плату при 100 штуках.
+Charger passives, converter EN/PG pulls, effective-capacitance/load-step,
+hot-loss/layout и перечисленные HIL-gates остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

@@ -32,6 +32,7 @@
 | `esp32_s3_wroom_1u_n16r2` | `ESP32-S3-WROOM-1U-N16R2` | `verified_candidate` | `active` | [ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `everest_es8311_qfn20` | `Everest Semiconductor ES8311` | `verified_candidate` | `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open` | [ES8311 Low Power Mono Audio CODEC Product Brief Revision 17.0, February 2026](https://www.everest-semi.com/pdf/ES8311%20PB.pdf) | same primary source |
 | `hirose_dm3at_sf_pejm5` | `Hirose DM3AT-SF-PEJM5` | `verified_candidate` | `current_manufacturer_page` | [DM3 Series microSD Card Connectors catalog 2025-12-01](https://www.hirose.com/product/p/CL0609-0031-0-00) | same primary source |
+| `kemet_c0402c330j5gactu` | `KEMET C0402C330J5GACTU` | `verified_candidate` | `active` | [KEMET C0402C330J5GACTU product specification current product data checked 2026-08-18](https://search.kemet.com/download/specsheet/C0402C330J5GACTU) | same primary source |
 | `liteon_ltst_c190kfkt` | `LTST-C190KFKT` | `verified_candidate` | `active` | [LTST-C190KFKT SMD LED datasheet BNS-OD-C131/A4](https://optoelectronics.liteon.com/upload/download/DS-22-99-0186/LTST-C190KFKT.PDF) | same primary source |
 | `liteon_ltst_c190krkt` | `LTST-C190KRKT` | `verified_candidate` | `active` | [LTST-C190KRKT SMD LED datasheet BNS-OD-C131/A4](https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF) | same primary source |
 | `littelfuse_0451005_mrl` | `Littelfuse 0451005.MRL` | `verified_candidate` | `active` | [451/453 Nano2 surface-mount fuse datasheet current product data checked 2026-08-18](https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803) | same primary source |
@@ -39,6 +40,8 @@
 | `murata_grm155r71h472ka01d` | `Murata GRM155R71H472KA01D` | `verified_candidate` | `active` | [Murata GRM155R71H472KA01 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H472KA01D) | same primary source |
 | `murata_grm188r71e224ka88d` | `Murata GRM188R71E224KA88D` | `verified_candidate` | `active` | [Murata GRM188R71E224KA88 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188R71E224KA88D) | same primary source |
 | `murata_grm21br71e225ke11l` | `Murata GRM21BR71E225KE11L` | `verified_candidate` | `active` | [Murata GRM21BR71E225KE11 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM21BR71E225KE11L) | same primary source |
+| `murata_grm31cr71a226ke15l` | `Murata GRM31CR71A226KE15L` | `verified_candidate` | `active` | [Murata GRM31CR71A226KE15 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM31CR71A226KE15L) | same primary source |
+| `murata_grm32er71e226ke15l` | `Murata GRM32ER71E226KE15L` | `verified_candidate` | `active` | [Murata GRM32ER71E226KE15 product data and TI reference-BOM use current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L) | same primary source |
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
 | `nexperia_74lvc2g14gw_125` | `74LVC2G14GW,125` | `verified_candidate` | `production` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
 | `nicerf_sa518_v11` | `NiceRF SA518` | `verified_candidate` | `current_product` | [SA518 UV Dual Frequency Walkie-talkie Module Product Specification 1.1 / 2026-05](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf) | same primary source |
@@ -57,6 +60,8 @@
 | `tca6424argjr` | `TCA6424ARGJR` | `reference_only` | `active` | [TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet SCPS193D](https://www.ti.com/lit/ds/symlink/tca6424a.pdf) | same primary source |
 | `tca9535pwr` | `TCA9535PWR` | `verified_candidate` | `active` | [TCA9535 Remote 16-Bit I2C/SMBus I/O Expander datasheet SCPS201E](https://www.ti.com/lit/ds/symlink/tca9535.pdf) | same primary source |
 | `tdk_b57332v5103f360` | `TDK B57332V5103F360` | `verified_candidate` | `active` | [B57 V5 automotive SMD NTC datasheet and exact product page PPD ML PD 2025-10-30](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360) | same primary source |
+| `tdk_c1005x7r1h104k050bb` | `TDK C1005X7R1H104K050BB` | `verified_candidate` | `active` | [TDK C1005X7R1H104K050BB product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB) | same primary source |
+| `tdk_cga5l1x7r1e475k160ac` | `TDK CGA5L1X7R1E475K160AC` | `verified_candidate` | `active` | [TDK CGA5L1X7R1E475K160AC product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC) | same primary source |
 | `ti_bq25798_rqmr` | `Texas Instruments BQ25798RQMR` | `verified_candidate` | `active` | [BQ25798 1-to-4-cell 5-A buck-boost charger datasheet SLUSDV2C, May 2020, revised June 2026](https://www.ti.com/lit/ds/symlink/bq25798.pdf) | same primary source |
 | `ti_csd87313dmst` | `Texas Instruments CSD87313DMST` | `verified_candidate` | `active` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
 | `ti_mspm0c1104_sdgs20r` | `Texas Instruments MSPM0C1104SDGS20R` | `verified_candidate` | `active` | [MSPM0C110x mixed-signal microcontroller datasheet SLASF90D, revised January 2026](https://www.ti.com/lit/ds/symlink/mspm0c1104.pdf) | same primary source |
@@ -79,9 +84,16 @@
 | `ti_tvs2200_drvr` | `Texas Instruments TVS2200DRVR` | `verified_candidate` | `active` | [TVS2200 22-V flat-clamp surge-protection datasheet SLVSED5C, December 2017, revised August 2023; orderable addendum 2025-11-09](https://www.ti.com/lit/ds/symlink/tvs2200.pdf) | same primary source |
 | `vishay_vemd1060x01` | `VEMD1060X01` | `verified_candidate` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
 | `vishay_wsl25125l000fea` | `Vishay WSL25125L000FEA` | `verified_candidate` | `active` | [WSL power metal strip resistor datasheet current product data checked 2026-08-18](https://www.vishay.com/docs/30108/wsl.pdf) | same primary source |
+| `yageo_rc0402fr_0710kl` | `Yageo RC0402FR-0710KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0710KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL) | same primary source |
+| `yageo_rc0402fr_0712kl` | `Yageo RC0402FR-0712KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0712KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0712KL) | same primary source |
 | `yageo_rc0402fr_07169kl` | `Yageo RC0402FR-07169KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
+| `yageo_rc0402fr_07220kl` | `Yageo RC0402FR-07220KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07220KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL) | same primary source |
 | `yageo_rc0402fr_072k21l` | `Yageo RC0402FR-072K21L` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
+| `yageo_rc0402fr_0730kl` | `Yageo RC0402FR-0730KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0730KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730KL) | same primary source |
+| `yageo_rc0402fr_0742k2l` | `Yageo RC0402FR-0742K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-0742K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0742K2L) | same primary source |
+| `yageo_rc0402fr_0745k3l` | `Yageo RC0402FR-0745K3L` | `verified_candidate` | `active` | [Yageo RC0402FR-0745K3L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0745K3L) | same primary source |
 | `yageo_rc0402fr_0747kl` | `Yageo RC0402FR-0747KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
+| `yageo_rc0402fr_0768kl` | `Yageo RC0402FR-0768KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0768KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL) | same primary source |
 | `yageo_rc0603fr_071kl` | `Yageo RC0603FR-071KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 
 ## G2F-2R — Two compute domains: C5 owns IR and compatibility radios
@@ -593,29 +605,74 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA26_A1`, `PA27_A0`,
 | `CHARGER_DP_NC` | `nvdc_charger.D_PLUS` | `abstract:no-connect` | BQ DPDM detection is disabled and isolated from the direct S3 USB2 data pair |
 | `CHARGER_DM_NC` | `nvdc_charger.D_MINUS` | `abstract:no-connect` | BQ DPDM detection is disabled and isolated from the direct S3 USB2 data pair |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `aon_buck.VIN` | the AON source is independent of every application rail and remains available on admitted battery or valid USB system power |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `aon_input_cap.END_1` | one exact 4.7-uF 25-V X7R input capacitor is the TPS629203 nominal local input target |
+| `POWER_GROUND` | `aon_input_cap.END_2` | `abstract:power-ground` | the AON input-capacitor loop must be placed directly at VIN and GND |
 | `AON_BUCK_EN` | `abstract:nvdc-sys-via-aon-enable-pullup` | `aon_buck.EN` | hardware pull-up enables AON without application firmware; converter UVLO and supervisor still force a safe result on collapse |
 | `AON_BUCK_SW` | `aon_buck.SW` | `aon_inductor.END_1` | 2.2-uH shielded inductor is the manufacturer-nominal 2.5-MHz first target |
-| `AON_SAFE_3V3` | `aon_inductor.END_2` | `abstract:AON_SAFE_3V3` | rated for at least 5-mA continuous and 8-mA transient safety load; exact capacitor hold-up closes in the next passive-value gate |
+| `AON_SAFE_3V3` | `aon_inductor.END_2` | `abstract:AON_SAFE_3V3` | rated for at least 5-mA continuous and 8-mA transient safety load with an exact 22-uF local output capacitor |
+| `AON_SAFE_3V3` | `aon_inductor.END_2` | `aon_output_cap.END_1` | one exact 22-uF 10-V X7R capacitor provides the recommended nominal AON output capacitance |
+| `POWER_GROUND` | `aon_output_cap.END_2` | `abstract:power-ground` | VOS senses the capacitor positive terminal and its return remains local to the converter |
 | `AON_SAFE_3V3_SENSE` | `abstract:AON_SAFE_3V3` | `aon_buck.VOS` | remote sense is taken at the local AON output capacitor rather than the switching node |
-| `AON_VSET_3V3` | `abstract:aon-3v3-vset-config` | `aon_buck.FB_VSET` | fixed 3.3-V hardware configuration; no runtime-programmable rail voltage |
+| `AON_VSET_3V3_NC` | `abstract:no-connect-open-vset` | `aon_buck.FB_VSET` | FB/VSET is deliberately left open; the datasheet decodes open or at least 249 kOhm as fixed 3.3 V |
+| `AON_MODE_SET` | `aon_buck.MODE_SCONF` | `aon_mode_res.END_1` | 42.2-kOhm 1% selects VSET, up-to-2.5-MHz auto-PFM/PWM AEE and disabled output discharge |
+| `POWER_GROUND` | `aon_mode_res.END_2` | `abstract:power-ground` | fixed resistor strap is read at startup and cannot be changed by application firmware |
 | `AON_PG_N` | `aon_buck.PG` | `abstract:aon-power-good-sequence` | open-drain evidence must be valid before the hard-STOP supervisor and downstream sequencing are released |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `main_buck.VIN` | independent fixed converter prevents compute transients from changing voice or accessory voltage |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `main_input_cap.END_1` | 22-uF 25-V X7R local bulk input capacitor exceeds the TPS564252 nominal input recommendation |
+| `POWER_GROUND` | `main_input_cap.END_2` | `abstract:power-ground` | main bulk input return stays inside the high-current switching loop |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `main_hf_input_cap.END_1` | 100-nF 50-V X7R directly shunts high-frequency VIN current |
+| `POWER_GROUND` | `main_hf_input_cap.END_2` | `abstract:power-ground` | main high-frequency input return is placed directly at converter ground |
 | `MAIN_3V3_EN` | `abstract:main-rail-enable-after-source-admission` | `main_buck.EN` | reset-low hardware sequencer permits main power only after an admitted battery pair or valid USB service source |
 | `MAIN_BUCK_SW` | `main_buck.SW` | `main_inductor.END_1` | 3.3-uH exact first target keeps the 3-A load-step peak below its minimum saturation current |
 | `3V3_MAIN` | `main_inductor.END_2` | `abstract:3V3_MAIN` | fixed 3.3-V rail is sized for 2.5-A continuous and 3.0-A load-step demand |
-| `MAIN_3V3_FB` | `abstract:main-3v3-feedback-divider` | `main_buck.FB` | fixed divider; passive tolerance and feed-forward choice close before schematic authorization |
+| `3V3_MAIN` | `main_inductor.END_2` | `main_fb_top.END_1` | active 45.3-kOhm replacement for the obsolete 45.0-kOhm table value starts the fixed main feedback divider |
+| `MAIN_3V3_FB` | `main_fb_top.END_2` | `main_buck.FB` | 45.3-kOhm over 10-kOhm sets nominal 3.318 V without a selector or firmware control |
+| `MAIN_3V3_FB` | `main_buck.FB` | `main_fb_bottom.END_1` | 1% bottom resistor completes the fixed main feedback divider |
+| `POWER_GROUND` | `main_fb_bottom.END_2` | `abstract:power-ground` | quiet Kelvin feedback return must not share the switching-current return |
+| `3V3_MAIN` | `main_inductor.END_2` | `main_ff_cap.END_1` | 33-pF C0G feed-forward capacitor stays inside the datasheet 10-to-100-pF high-output range |
+| `MAIN_3V3_FB` | `main_ff_cap.END_2` | `main_buck.FB` | feed-forward element is physically across the top divider resistor |
+| `3V3_MAIN` | `main_inductor.END_2` | `main_output_cap0.END_1` | first physical 22-uF 25-V X7R output capacitor contributes to the recommended 44-uF nominal bank |
+| `POWER_GROUND` | `main_output_cap0.END_2` | `abstract:power-ground` | first main output capacitor closes the local power loop |
+| `3V3_MAIN` | `main_inductor.END_2` | `main_output_cap1.END_1` | second independent 22-uF 25-V X7R output capacitor preserves DC-bias and transient margin |
+| `POWER_GROUND` | `main_output_cap1.END_2` | `abstract:power-ground` | second main output capacitor closes the local power loop |
 | `MAIN_3V3_PG_N` | `main_buck.PG` | `abstract:power-current-thermal-fault` | open-drain loss/fault evidence joins the diagnostic aggregate without replacing hardware protection |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `voice_buck.VIN` | voice has a physically independent fixed-voltage converter rather than a shared 4/5-V selector |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `voice_input_cap.END_1` | 22-uF 25-V X7R local bulk input capacitor keeps the voice switching loop independent |
+| `POWER_GROUND` | `voice_input_cap.END_2` | `abstract:power-ground` | voice bulk input return stays inside its own high-current switching loop |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `voice_hf_input_cap.END_1` | 100-nF 50-V X7R directly shunts high-frequency voice-converter VIN current |
+| `POWER_GROUND` | `voice_hf_input_cap.END_2` | `abstract:power-ground` | voice high-frequency input return is placed directly at converter ground |
 | `VOICE_BUCK_SW` | `voice_buck.SW` | `voice_inductor.END_1` | 3.3-uH exact first target has margin over the qualified 1.5-A transient peak current |
 | `VVOICE_4V` | `voice_inductor.END_2` | `voice.VCC` | fixed 4.0-V rail can never be switched to the 5-V accessory setting |
-| `VOICE_4V_FB` | `abstract:voice-4v-feedback-divider` | `voice_buck.FB` | fixed divider; no MCU, mux or digital potentiometer can overvolt SA518 |
+| `VVOICE_4V` | `voice_inductor.END_2` | `voice_fb_top.END_1` | 68-kOhm 1% top resistor starts the physically fixed voice feedback divider |
+| `VOICE_4V_FB` | `voice_fb_top.END_2` | `voice_buck.FB` | 68-kOhm over 12-kOhm sets nominal 4.000 V without a selector |
+| `VOICE_4V_FB` | `voice_buck.FB` | `voice_fb_bottom.END_1` | 12-kOhm 1% bottom resistor completes the fixed voice divider |
+| `POWER_GROUND` | `voice_fb_bottom.END_2` | `abstract:power-ground` | quiet Kelvin return prevents load current from shifting the voice set point |
+| `VVOICE_4V` | `voice_inductor.END_2` | `voice_ff_cap.END_1` | 33-pF C0G feed-forward capacitor follows the datasheet high-output recommendation |
+| `VOICE_4V_FB` | `voice_ff_cap.END_2` | `voice_buck.FB` | feed-forward element is physically across the voice top divider resistor |
+| `VVOICE_4V` | `voice_inductor.END_2` | `voice_output_cap0.END_1` | first physical 22-uF 25-V X7R output capacitor supports voice startup and TX transients |
+| `POWER_GROUND` | `voice_output_cap0.END_2` | `abstract:power-ground` | first voice output capacitor closes its local power loop |
+| `VVOICE_4V` | `voice_inductor.END_2` | `voice_output_cap1.END_1` | second independent 22-uF 25-V X7R output capacitor completes the 44-uF nominal bank |
+| `POWER_GROUND` | `voice_output_cap1.END_2` | `abstract:power-ground` | second voice output capacitor closes its local power loop |
 | `VOICE_4V_PG_N` | `voice_buck.PG` | `abstract:voice-power-reset-domain` | PD remains asserted until the exact fixed 4-V rail is valid |
 | `VOICE_4V_PG_N` | `voice_buck.PG` | `voice_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
 | `VOICE_4V_FAULT_QUAL_N` | `voice_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled voice rail releases POWER_FAULT_N |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck.VIN` | external 5 V has a dedicated converter and cannot disturb fixed voice voltage |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck_input_cap.END_1` | 22-uF 25-V X7R local bulk input capacitor keeps accessory load steps out of the other converter loops |
+| `POWER_GROUND` | `ext_buck_input_cap.END_2` | `abstract:power-ground` | accessory-buck bulk input return stays inside its own switching loop |
+| `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck_hf_input_cap.END_1` | 100-nF 50-V X7R directly shunts high-frequency accessory-converter VIN current |
+| `POWER_GROUND` | `ext_buck_hf_input_cap.END_2` | `abstract:power-ground` | accessory-buck high-frequency input return is placed directly at converter ground |
 | `EXT_BUCK_SW` | `ext_buck.SW` | `ext_inductor.END_1` | 4.7-uH exact first target limits ripple while preserving the 2-A transient envelope |
 | `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_efuse.IN` | the eFuse is the final series element before the externally accessible connector |
-| `EXT_5V_FB` | `abstract:ext-5v-feedback-divider` | `ext_buck.FB` | fixed 5.0-V divider; no shared voice/accessory selector exists |
+| `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_buck_fb_top.END_1` | 220-kOhm 1% top resistor starts the physically fixed accessory feedback divider |
+| `EXT_5V_FB` | `ext_buck_fb_top.END_2` | `ext_buck.FB` | 220-kOhm over 30-kOhm sets nominal 5.000 V without a shared voice/accessory selector |
+| `EXT_5V_FB` | `ext_buck.FB` | `ext_buck_fb_bottom.END_1` | 30-kOhm 1% bottom resistor completes the fixed accessory divider |
+| `POWER_GROUND` | `ext_buck_fb_bottom.END_2` | `abstract:power-ground` | quiet Kelvin feedback return prevents connector current from shifting the set point |
+| `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_buck_ff_cap.END_1` | 33-pF C0G feed-forward capacitor follows the datasheet 5-V recommendation |
+| `EXT_5V_FB` | `ext_buck_ff_cap.END_2` | `ext_buck.FB` | feed-forward element is physically across the accessory top divider resistor |
+| `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_buck_output_cap0.END_1` | first physical 22-uF 25-V X7R output capacitor supports eFuse startup and post-start load steps |
+| `POWER_GROUND` | `ext_buck_output_cap0.END_2` | `abstract:power-ground` | first accessory-buck output capacitor closes its local power loop |
+| `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_buck_output_cap1.END_1` | second independent 22-uF 25-V X7R output capacitor completes the recommended 44-uF nominal bank |
+| `POWER_GROUND` | `ext_buck_output_cap1.END_2` | `abstract:power-ground` | second accessory-buck output capacitor closes its local power loop |
 | `EXT_5V_PG_N` | `ext_buck.PG` | `ext_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
 | `EXT_5V_FAULT_QUAL_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
 | `5V_EXT_PROTECTED` | `ext_efuse.OUT` | `u214.5V_IN` | true reverse-current blocking, bounded inrush and active current limit sit between the connector and converter |
@@ -971,7 +1028,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA26_A1`, `PA27_A0`,
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
 - DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
-- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient. Exact USB-C/USB2 protection, charger/application-converter passives, diagnostic load/dividers, mechanical reverse-insertion/thermal coupling, hot/fault calculations and HIL remain open before schematic/BOM freeze
+- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient; DEC-0072 adds 24 exact converter energy/configuration/feedback passives and fixed tolerance-screened outputs. Exact USB-C/USB2 protection, charger passives, converter EN/PG pulls, diagnostic load/dividers, mechanical reverse-insertion/thermal coupling, hot/fault calculations and HIL remain open before schematic/BOM freeze
 - HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; the I2 hard-stop/evidence active circuit is paper-reviewed while its AON source/hold-up is I3 and detector taps/thresholds are I6; exact IR frontends, power tree and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Machine-check result and review boundary

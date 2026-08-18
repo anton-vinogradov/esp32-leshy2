@@ -2053,6 +2053,282 @@
         "IN": {"physical": "4/5/6", "role": "power"}
       }
     },
+    "tdk_cga5l1x7r1e475k160ac": {
+      "mpn": "TDK CGA5L1X7R1E475K160AC",
+      "kind": "4_7uf_10pct_25v_x7r_1206_aon_input_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.2, 1.6, 1.6],
+      "source": {
+        "document": "TDK CGA5L1X7R1E475K160AC product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TDK product-page distributor inventory for exact order code",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm31cr71a226ke15l": {
+      "mpn": "Murata GRM31CR71A226KE15L",
+      "kind": "22uf_10pct_10v_x7r_1206_aon_output_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.2, 1.6, 1.6],
+      "source": {
+        "document": "Murata GRM31CR71A226KE15 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM31CR71A226KE15L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM31CR71A226KE15L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM31CR71A226KE15L/2039036",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm32er71e226ke15l": {
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "kind": "22uf_10pct_25v_x7r_1210_converter_bulk_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.2, 2.5, 2.7],
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM32ER71E226KE15L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM32ER71E226KE15L/2039092",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "tdk_c1005x7r1h104k050bb": {
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TDK product-page distributor inventory for exact order code",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "kemet_c0402c330j5gactu": {
+      "mpn": "KEMET C0402C330J5GACTU",
+      "kind": "33pf_5pct_50v_c0g_0402_buck_feedforward_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {
+        "document": "KEMET C0402C330J5GACTU product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://search.kemet.com/download/specsheet/C0402C330J5GACTU",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "C0402C330J5GACTU active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/kemet/C0402C330J5GACTU/411019",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_0742k2l": {
+      "mpn": "Yageo RC0402FR-0742K2L",
+      "kind": "42_2kohm_1pct_0402_aon_mode_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0742K2L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0742K2L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0742K2L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0742K2L/726608",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "strap"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_0745k3l": {
+      "mpn": "Yageo RC0402FR-0745K3L",
+      "kind": "45_3kohm_1pct_0402_main_feedback_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0745K3L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0745K3L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0745K3L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0745K3L/726613",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_0710kl": {
+      "mpn": "Yageo RC0402FR-0710KL",
+      "kind": "10kohm_1pct_0402_main_feedback_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0710KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0710KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/726523",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_0768kl": {
+      "mpn": "Yageo RC0402FR-0768KL",
+      "kind": "68kohm_1pct_0402_voice_feedback_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0768KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0768KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0768KL/726651",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_0712kl": {
+      "mpn": "Yageo RC0402FR-0712KL",
+      "kind": "12kohm_1pct_0402_voice_feedback_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0712KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0712KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0712KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0712KL/729479",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07220kl": {
+      "mpn": "Yageo RC0402FR-07220KL",
+      "kind": "220kohm_1pct_0402_accessory_feedback_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-07220KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07220KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220KL/726686",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_0730kl": {
+      "mpn": "Yageo RC0402FR-0730KL",
+      "kind": "30kohm_1pct_0402_accessory_feedback_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0730KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0730KL stocked distributor page",
+        "url": "https://www.lcsc.com/product-detail/C138075.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",
       "kind": "tssop16",

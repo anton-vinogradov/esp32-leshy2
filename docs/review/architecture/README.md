@@ -92,8 +92,12 @@ hardware-visible. `PWR-0010/DEC-0071/REV-0005AB` correct the earlier startup
 claim: the 1.509-A eFuse limit is immediately active, 4.7 nF controls startup
 slew and 220 nF admits only a bounded post-start 2-A transient. Exact OVLO,
 local bypass and output bleed are now eight physical MPN-bearing instances in
-the machine source and living diagrams. Application-converter passive values,
-diagnostic load, mechanical
+the machine source and living diagrams. `PWR-0011/DEC-0072/REV-0005AC` then
+replace the four converters' abstract networks with 24 exact physical
+configuration, input, output, fixed-feedback and feed-forward passives. Their
+fixed tolerance ranges remain compatible with the loads and eFuse OVLO, and
+the obsolete 45.0-kOhm candidate is rejected for the active 45.3-kOhm MPN.
+Converter EN/PG pulls, charger passives, diagnostic load, mechanical
 polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
@@ -128,6 +132,9 @@ polarity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0010`](PWR-0010-external-efuse-passive-profile.md) closes the first
   exact eFuse `RILM/dVdt/ITIMER/OVLO`, local-capacitor and discharge profile,
   and separates controlled startup from the bounded 2-A post-start interval;
+- [`PWR-0011`](PWR-0011-application-converter-passive-profile.md) closes the
+  exact AON and three TPS564252 energy/configuration/feedback profiles as 24
+  separate physical parts, including lifecycle, tolerance and DC-bias screens;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
