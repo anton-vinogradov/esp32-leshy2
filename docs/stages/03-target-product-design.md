@@ -79,7 +79,10 @@ controlled-1S topology, а `DEC-0065` принимает supervised 2S; теку
 manager принят в `DEC-0066`. `PWR-0007/FND-0077/REV-0005W` выявляют
 linear-prequal gate; `DEC-0067/REV-0005X` принимают отсутствие in-device
 recovery и exact active FET/fuse/NTC/shunt/hold/supply-isolation packages.
-Далее закрываются passive/diagnostic values и rail/loss/thermal tree.
+`PWR-0008/DEC-0068/REV-0005Y` затем закрывают active rail topology и exact
+AON/3.3/4.0/5.0-V converter, inductor, load-switch и external-eFuse first
+targets. Далее закрываются passive/diagnostic values и hot
+loss/thermal/fault tree.
 
 ## Downstream boundary
 

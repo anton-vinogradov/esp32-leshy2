@@ -12,7 +12,7 @@
 | Scenario-derived | rail peaks выведены из `CON-0001`, не из суммы несовместимых TX maxima |
 | Primary values | S3/C5/nRF/CC/SA518/U214/U216/RP comparison values traceable to manufacturer documents |
 | Voice decision | 4.0 V, 1.25 A continuous/1.5 A transient и STOP-dominant behavior сохранены без legacy 5 V substitution |
-| Accessory power | U214/GNSS и U216 помещаются в 0.75 A/1.0 A current-limited 5 V envelope; unknown profile default-off |
+| Accessory power | U214/GNSS и U216 помещаются в актуальный 1.25-A continuous / 2.0-A transient current-limited 5-V envelope; unknown profile default-off |
 | Core/RF separation | один 3.3 V converter допускается ради стоимости, но packet/audio branches имеют isolation, observation and default state |
 | Candidate equality | 2.5 A/3.0 A common rail включает 100 mA RP allowance; `3A` не получает скрытый дополнительный regulator |
 | Safety order | hardware kill precedes best-effort logging; rail-on is never arming |

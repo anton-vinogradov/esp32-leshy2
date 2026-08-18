@@ -88,6 +88,10 @@ Leshy2 — открытый автономный портативный инст
   zero-volt/prequalification recovery в самом устройстве отключён, а любые
   исследования восстановления требуют отдельной изолированной оснастки
   Controlled Zone.
+- Четыре независимые фиксированные шины разделяют always-on безопасность,
+  вычислительное питание 3,3 В, голосовой тракт 4,0 В и защищённый порт
+  расширения 5,0 В. Неиспользуемые ветви радио, накопителя и аудио физически
+  отключаются и разряжаются до проверенного тихого состояния.
 - Подписанные обновления проверяют целевое устройство и поддерживают откат;
   ключи сборки и возможность установки владельческой прошивки остаются у
   владельца. Необратимая блокировка не включается по умолчанию.
@@ -123,6 +127,21 @@ flowchart TD
   SUPPLYOR["BAV70LT1G<br/>изоляция источников AOLDO/fixture"]
   SYSDIODE["BAT54-7-F<br/>изоляция и приоритет admitted-system source"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed допуск пары, watchdog и service bridge"]
+  AONBUCK["TPS629203DRLR<br/>low-IQ always-on преобразователь безопасности 3,3 В"]
+  AONL["WPN201612H2R2MT<br/>экранированный дроссель 2,2 мкГн шины AON"]
+  MAINBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь основной шины 3,3 В"]
+  MAINL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн основной шины"]
+  VOICEBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь голосовой шины 4,0 В"]
+  VOICEL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн голосовой шины"]
+  EXTBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь расширения 5,0 В"]
+  EXTL["MWSA0503S-4R7MT<br/>силовой дроссель 4,7 мкГн шины расширения"]
+  EXTFUSE["TPS259470ARPWR<br/>eFuse расширения с true reverse blocking и измерением тока"]
+  SWNRF["TPS22919DCKR<br/>quiet-state ключ группы из трёх nRF"]
+  SWCC["TPS22919DCKR<br/>quiet-state ключ CC1101"]
+  SWSD["TPS22919DCKR<br/>quiet-state ключ microSD"]
+  SWCODEC["TPS22919DCKR<br/>quiet-state ключ ES8311"]
+  SWRX["TPS22919DCKR<br/>quiet-state ключ Si4732"]
+  EXTBLEED["MPN-независимая пассивная цепь<br/>разряд разъёма внешних 5 В"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -181,7 +200,9 @@ flowchart TD
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
-  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM ~~~ S3 ~~~ SLOW
+  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
+  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
+  VOICEL ~~~ EXTBUCK ~~~ EXTL ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -211,6 +232,25 @@ flowchart TD
   SYSDIODE -->|"admitted 3V3"| PACKADM
   PACKGAUGE <-->|"локальная I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + общий IRQ"| S3
+  CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
+  CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
+  MAINL --> C5
+  MAINL --> RP
+  MAINL --> SWNRF
+  MAINL --> SWCC
+  MAINL --> SWSD
+  MAINL --> SWCODEC
+  MAINL --> SWRX
+  CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"фиксированные 4,0 В"| SA
+  CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"защищённые фиксированные 5,0 В"| U214
+  EXTFUSE --> EXTBLEED
+  SWNRF --> NRF0
+  SWNRF --> NRF1
+  SWNRF --> NRF2
+  SWCC --> CC
+  SWSD --> SD
+  SWCODEC --> CODEC
+  SWRX --> SI
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
@@ -260,9 +300,12 @@ flowchart TD
   GATEA --> NRF0
   GATEA --> NRF1
   GATEA --> NRF2
-  GATEB --> CC
+  GATEA --> SWNRF
+  GATEB --> SWCC
+  GATEB --> VOICEBUCK
   GATEB --> IRTX
-  GATEB --> U214
+  GATEB --> EXTBUCK
+  GATEB --> EXTFUSE
   S3 --> DS3 --> CMPA
   C5 --> DC5 --> CMPA
   NRF0 --> DN0 --> CMPA

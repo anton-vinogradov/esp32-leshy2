@@ -82,8 +82,11 @@ evidence. `PWR-0007/FND-0077/REV-0005W` review the exact 2S tap rules, reset
 hold, admission-supply isolation, two-ADC evidence and common-path losses.
 `DEC-0067/REV-0005X` close the exposed recovery gate with no in-device
 deep-cell recovery and accept the exact active switching FET, fuses, shunt,
-NTCs, hold and supply-isolation packages. Passive values, diagnostic load,
-mechanical polarity/thermal coupling, rail tree and HIL remain active.
+NTCs, hold and supply-isolation packages. `PWR-0008/DEC-0068/REV-0005Y`
+then review the independent fixed AON/3.3/4.0/5.0-V rail tree, exact
+TPS629203/TPS564252 inductors, five TPS22919 branches and reverse-blocking
+TPS259470A external boundary. Passive values, diagnostic load, mechanical
+polarity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
 
@@ -111,6 +114,9 @@ mechanical polarity/thermal coupling, rail tree and HIL remain active.
   sensing/shorting rules, current/loss screen, per-slot fuse/NTC candidates,
   shunt, reset hold, supply handover and real ADC budget; `DEC-0067` accepts
   no in-device recovery and the exact active common-drain power FET;
+- [`PWR-0008`](PWR-0008-exact-downstream-rail-tree.md) verifies independent
+  fixed rails, exact converter/inductor/load-switch/eFuse contacts, current
+  headroom, availability, sequencing and the updated cost screen;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

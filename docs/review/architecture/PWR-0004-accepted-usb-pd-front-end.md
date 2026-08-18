@@ -106,7 +106,7 @@ Primary/reference sources:
 | image faults | blank, corrupt and interrupted update cannot enable charge/high V; direct fixture recovery succeeds |
 | USB2 | high-speed eye/ESD and recovery remain valid with the final receptacle; no PD/charger branch exists |
 | IRQ | shared wired-low sources are identified without missed 256-us charger fault indications |
-| power | no-battery/deep-cell startup, supplement, removal/bounce and reverse-current paths pass |
+| power | no-battery USB service, admitted-pack supplement, deep-cell refusal, removal/bounce and reverse-current paths pass |
 | thermal/fault | connector, TPS, BQ, inductor and cells derate safely under 30-W input and all product loads |
 
 These are explicit prototype/electrical gates. They do not reopen the accepted

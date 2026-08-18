@@ -52,7 +52,7 @@ stale MPN nor a topologically wrong package can leak into the BOM.
 - prove holder polarity/reverse-insertion behavior and repeatable NTC coupling;
 - calculate hot losses and validate source handover, removal/bounce, short and
   fault behavior in HIL;
-- complete the downstream rail tree.
+- close the accepted `DEC-0068/PWR-0008` rail tree with exact passive values,
+  loss/thermal calculations and HIL.
 
 This is a reviewed working-design decision, not authorization to begin KiCad.
-

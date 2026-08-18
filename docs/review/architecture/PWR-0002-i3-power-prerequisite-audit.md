@@ -52,7 +52,7 @@ accepted current floor and cannot be copied.
 | Scenario | Mandatory powered result | Power admission rule |
 |---|---|---|
 | physical OFF, charger attached | pack protection/gauge and charger only; application rails and AON off | charging may continue; no accessory or TX path can wake |
-| USB-only service / deeply discharged pack | one selected recovery target plus AON and bounded core rail | desirable current target because a dead/removable pack must not make physical recovery circular; exact acceptance follows charger choice |
+| USB-only service / absent or admitted pack | AON and bounded core/service rail from valid USB system power | service must not require a battery; a deeply discharged cell is refused by `DEC-0067`, never revived by the product |
 | cold boot / update | AON first, then all three compute domains and required service/storage | no TX rail; inrush cannot release STOP or create an evidence pulse |
 | `SG-N24` full mix | RP, three nRF, UI/IPC/recording | `3R`, `1T2R`, `2T1R`, `3T`; current candidate is 0-dBm, no hidden high-power allowance |
 | native S3 or C5 group | selected compute native RF plus UI/storage | other RF branches power-isolated/quiet; common core load step still includes native peak |

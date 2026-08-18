@@ -26,6 +26,6 @@
 ## Conclusion
 
 `DEC-0067` receives **«Проведено ревью»** at the principle/electrical-contract
-level. `I3` can continue to the rail tree while the listed schematic and HIL
-closures remain explicit prerequisites for atomic architecture acceptance.
-
+level. The rail-tree continuation is now reviewed by
+`PWR-0008/DEC-0068/REV-0005Y`; the listed passive and HIL closures remain
+explicit prerequisites for atomic architecture acceptance.

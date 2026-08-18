@@ -83,6 +83,9 @@ privacy or the target owner's authorization.
   to operate or equalize. The handheld also refuses deeply discharged cells:
   zero-volt/prequalification recovery is disabled, and any recovery research
   requires a separate isolated Controlled-Zone fixture.
+- Four independent fixed rails separate always-on safety, 3.3-V compute,
+  4.0-V voice and protected 5.0-V accessory power. Unused radio, storage and
+  audio branches are disconnected and discharged into a verified quiet state.
 - Signed updates validate their target and support rollback. Build keys and the
   ability to install owner firmware remain owner-controlled; irreversible
   lockdown is not enabled by default.
@@ -118,6 +121,21 @@ flowchart TD
   SUPPLYOR["BAV70LT1G<br/>AOLDO/fixture source isolation"]
   SYSDIODE["BAT54-7-F<br/>admitted-system source isolation and priority"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
+  AONBUCK["TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter"]
+  AONL["WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor"]
+  MAINBUCK["TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
+  MAINL["MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor"]
+  VOICEBUCK["TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
+  VOICEL["MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor"]
+  EXTBUCK["TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
+  EXTL["MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor"]
+  EXTFUSE["TPS259470ARPWR<br/>true-reverse-blocking accessory eFuse/current monitor"]
+  SWNRF["TPS22919DCKR<br/>three-radio nRF quiet-state load switch"]
+  SWCC["TPS22919DCKR<br/>CC1101 quiet-state load switch"]
+  SWSD["TPS22919DCKR<br/>microSD quiet-state load switch"]
+  SWCODEC["TPS22919DCKR<br/>ES8311 quiet-state load switch"]
+  SWRX["TPS22919DCKR<br/>Si4732 quiet-state load switch"]
+  EXTBLEED["MPN-independent passive circuit<br/>external-5-V connector discharge"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
@@ -176,7 +194,9 @@ flowchart TD
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
-  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM ~~~ S3 ~~~ SLOW
+  NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
+  PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
+  VOICEL ~~~ EXTBUCK ~~~ EXTL ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -206,6 +226,25 @@ flowchart TD
   SYSDIODE -->|"admitted 3V3"| PACKADM
   PACKGAUGE <-->|"local I²C + fault"| PACKADM
   PACKADM <-->|"SYS I²C0 + shared IRQ"| S3
+  CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
+  CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
+  MAINL --> C5
+  MAINL --> RP
+  MAINL --> SWNRF
+  MAINL --> SWCC
+  MAINL --> SWSD
+  MAINL --> SWCODEC
+  MAINL --> SWRX
+  CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"fixed 4.0 V"| SA
+  CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"protected fixed 5.0 V"| U214
+  EXTFUSE --> EXTBLEED
+  SWNRF --> NRF0
+  SWNRF --> NRF1
+  SWNRF --> NRF2
+  SWCC --> CC
+  SWSD --> SD
+  SWCODEC --> CODEC
+  SWRX --> SI
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
   S3 <-->|"I²C0 + interrupt"| SLOW
@@ -255,9 +294,12 @@ flowchart TD
   GATEA --> NRF0
   GATEA --> NRF1
   GATEA --> NRF2
-  GATEB --> CC
+  GATEA --> SWNRF
+  GATEB --> SWCC
+  GATEB --> VOICEBUCK
   GATEB --> IRTX
-  GATEB --> U214
+  GATEB --> EXTBUCK
+  GATEB --> EXTFUSE
   S3 --> DS3 --> CMPA
   C5 --> DC5 --> CMPA
   NRF0 --> DN0 --> CMPA

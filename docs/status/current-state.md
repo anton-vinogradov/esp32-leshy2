@@ -284,8 +284,14 @@ separate isolated Controlled-Zone fixture. Active `CSD87313DMST`, two
 `2N7002DW-7-F`, `BAV70LT1G` and `BAT54-7-F` are now exact machine/diagram
 targets. The obsolete `FDMC8030` paper candidate was rejected at lifecycle
 check. Exact cell-tap/passive/diagnostic values, MCU source-handover HIL, AON
-source/hold-up, every load switch and discharge path, monitoring, reverse
-current and calculated loss/thermal/fault budgets remain active.
+source/hold-up capacitor, monitoring, reverse current and calculated
+loss/thermal/fault budgets remain active. `PWR-0008/DEC-0068/REV-0005Y` now
+review the active downstream tree: exact `TPS629203DRLR` AON,
+three independent fixed `TPS564252DRLR` 3.3/4.0/5.0-V stages, exact Sunlord
+inductors, five separate `TPS22919DCKR` quiet-state switches and connector-side
+`TPS259470ARPWR` reverse blocking/current limit. The official package review
+also corrects TPS564252 pin 4 to `PG` (integrated bootstrap). Exact passive
+values, hot loss and HIL remain the active I3 closure.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

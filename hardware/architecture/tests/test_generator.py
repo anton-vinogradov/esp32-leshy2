@@ -59,6 +59,20 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release",
             "onsemi BAV70LT1G<br/>AOLDO/fixture source isolation",
             "Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority",
+            "Texas Instruments TPS629203DRLR<br/>low-IQ always-on 3.3-V safety converter",
+            "Sunlord WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor",
+            "Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter",
+            "Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor",
+            "Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter",
+            "Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor",
+            "Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter",
+            "Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor",
+            "Texas Instruments TPS259470ARPWR<br/>true-reverse-blocking accessory eFuse and current monitor",
+            "Texas Instruments TPS22919DCKR<br/>three-radio nRF quiet-state load switch",
+            "Texas Instruments TPS22919DCKR<br/>CC1101 quiet-state load switch",
+            "Texas Instruments TPS22919DCKR<br/>microSD quiet-state load switch",
+            "Texas Instruments TPS22919DCKR<br/>ES8311 quiet-state load switch",
+            "Texas Instruments TPS22919DCKR<br/>Si4732 quiet-state load switch",
             "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
         )
         for label in required_labels:
@@ -284,6 +298,48 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO37"]["peers"])
         self.assertEqual(["GPIO47"], candidate["free_gpio"]["s3"])
 
+    def test_exact_fixed_downstream_rail_tree_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0068", contract["rail_decision"])
+        self.assertIn("independent fixed", contract["rail_tree"])
+        self.assertIn("TPS629203DRLR", contract["aon_rail"])
+        self.assertIn("three independent TPS564252DRLR", contract["application_rails"])
+        self.assertIn("TPS259470ARPWR", contract["external_protection"])
+
+        expected_instances = {
+            "aon_buck": "ti_tps629203_drlr",
+            "aon_inductor": "sunlord_wpn201612h2r2mt",
+            "main_buck": "ti_tps564252_drlr",
+            "main_inductor": "sunlord_mwsa0503s_3r3mt",
+            "voice_buck": "ti_tps564252_drlr",
+            "voice_inductor": "sunlord_mwsa0503s_3r3mt",
+            "ext_buck": "ti_tps564252_drlr",
+            "ext_inductor": "sunlord_mwsa0503s_4r7mt",
+            "ext_efuse": "ti_tps259470a_rpwr",
+            "nrf_power_switch": "ti_tps22919_dckr",
+            "cc_power_switch": "ti_tps22919_dckr",
+            "sd_power_switch": "ti_tps22919_dckr",
+            "codec_power_switch": "ti_tps22919_dckr",
+            "receiver_power_switch": "ti_tps22919_dckr",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        buck = self.database["devices"]["ti_tps564252_drlr"]
+        self.assertEqual("4", buck["contacts"]["PG"]["physical"])
+        self.assertNotIn("BST", buck["contacts"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for destination in ("aon_buck.VIN", "main_buck.VIN", "voice_buck.VIN", "ext_buck.VIN"):
+            self.assertIn(("nvdc_charger.SYS", destination, "NVDC_SYS"), routes)
+        self.assertIn(("voice_inductor.END_2", "voice.VCC", "VVOICE_4V"), routes)
+        self.assertIn(("ext_efuse.OUT", "u214.5V_IN", "5V_EXT_PROTECTED"), routes)
+        self.assertIn(("nrf_power_switch.VOUT", "nrf2.VCC", "3V3_NRF_GROUP"), routes)
+
     def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["safety_contract"]
@@ -472,7 +528,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             for route in candidate["fixed_routes"]
         }
         self.assertIn(
-            ("slow_io.P10", "abstract:codec-power-switch-enable", "CODEC_PWR_EN"),
+            ("slow_io.P10", "codec_power_switch.ON", "CODEC_PWR_EN"),
             routes,
         )
         self.assertNotIn("CODEC_EN", {route["net"] for route in candidate["fixed_routes"]})

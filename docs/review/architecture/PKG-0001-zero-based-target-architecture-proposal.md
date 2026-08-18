@@ -136,7 +136,9 @@ The theoretical simultaneous maximum of 3×nRF plus CC would consume 79.5% of th
 - `BAT_2S=6.0…8.4 V`, reopened by `DEC-0064/PWR-0006` and confirmed for the base product by `DEC-0065`; the ≥12 W/15 W power envelope remains current;
 - one 3.3 V buck, ≥2.5 A continuous/3.0 A transient, with independently switched/filtered/current-observed core, packet-RF and audio branches;
 - each nRF path reserves 150 mA/200 mA transient until exact module qualification; CC branch 50/75 mA;
-- `5V_EXT` 0.75 A continuous/1.0 A limited, backfeed protected, profile-switched;
+- `5V_EXT` 1.25 A continuous/2.0 A bounded transient, backfeed protected,
+  profile-switched; this historical candidate value is superseded by
+  `PWR-0002/DEC-0068`;
 - accepted `VVOICE=4.0 V`, 1.25 A continuous/1.5 A transient, local bulk/discharge;
 - `AON_SAFE` powers STOP latch, supervisor, critical indicator and gates independently of application firmware.
 

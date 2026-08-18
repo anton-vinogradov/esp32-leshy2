@@ -25,7 +25,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I0` | semantic owners, buses, controllers, exposed pads and budgets | wishlist, `DEM-0001`, `SRC-0002` | `G2F-3I/PIN-0003` reviewed working map; not atomic | all later changes regenerate one machine source without collision or hidden pin |
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
-| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend and surrounding circuit reviewed** by `DEC-0063/0065/0066/0067` and `PWR-0007/REV-0005X`; passive values, rails/calculation/HIL open | complete rail tree and sequencing with exact first targets, loss/thermal/fault budget |
+| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend/surrounding circuit and active rail tree reviewed** by `DEC-0063/0065/0066/0067/0068` and `PWR-0007/0008`; passive values, hot calculation and HIL open | freeze passives and complete loss/thermal/fault/source-transition budget |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | digital contacts largely exact; backlight/protection/UI endpoints open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
@@ -70,5 +70,6 @@ TPS25751DREFR/BQ25798RQMR/CAT24C512WI-GT3/TVS2200DRVR frontend, preserve direct
 S3 USB2 and leave GPIO47 free. `PWR-0007/FND-0077/REV-0005W` exposed the
 linear-prequal gate; `DEC-0067/REV-0005X` accept no in-device recovery and the
 exact active FET/fuse/NTC/shunt/hold/supply-isolation packages. I3 now
-continues through exact cell-tap/passive/diagnostic values and the
-rail/loss/thermal/fault tree.
+continues through `PWR-0008/DEC-0068/REV-0005Y`, which review the exact
+independent fixed rail tree and quiet-state switches. Next are exact
+cell-tap/rail passive/diagnostic values and the hot loss/thermal/fault tree.

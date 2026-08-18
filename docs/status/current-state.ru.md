@@ -285,7 +285,13 @@ Controlled Zone. Active `CSD87313DMST`, две `0451005.MRL`,
 `FDMC8030` отклонён lifecycle-проверкой. Exact cell-tap/passive/diagnostic
 values, source-handover HIL, AON source/hold-up, все load switches/discharge
 paths, monitoring, reverse current и рассчитанные loss/thermal/fault budgets
-остаются активны.
+остаются активны. `PWR-0008/DEC-0068/REV-0005Y` теперь проводят ревью active
+downstream tree: exact `TPS629203DRLR` AON, три независимых фиксированных
+`TPS564252DRLR` stage 3.3/4.0/5.0 В, exact Sunlord inductors, пять отдельных
+quiet-state switches `TPS22919DCKR` и connector-side reverse blocking/current
+limit `TPS259470ARPWR`. Проверка реального корпуса также исправляет pin 4
+TPS564252 на `PG` (bootstrap встроен). Exact passive values, hot loss и HIL
+остаются активным закрытием I3.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

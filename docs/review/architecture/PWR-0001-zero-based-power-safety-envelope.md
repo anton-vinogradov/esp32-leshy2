@@ -27,7 +27,7 @@ Power tree рассчитывается по разрешённым сценар
 | nRF PA/LNA comparison | [Ebyte E01-ML01DP5](https://www.ebyte.com/product/7.html): max 140 mA TX, 22 mA RX | shows why generic `PA/LNA` cannot be budgeted as bare IC |
 | CC1101 | [TI datasheet](https://www.ti.com/lit/ds/symlink/cc1101.pdf): about 34 mA at maximum listed output profile | 50 mA branch envelope |
 | SA518 | [NiceRF SA518 rev 1.1](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf): max 900 mA at 4.0 V/1 W and 76 mA RX | accepted separate 1.25 A continuous / 1.5 A transient rail |
-| U214 | [M5 U214](https://docs.m5stack.com/en/cap/Cap_LoRa-1262): 5 V/163.4 mA LoRa operation and 33.1 mA GNSS power-on figure | combined profile remains below a 0.75 A accessory rail envelope |
+| U214 | [M5 U214](https://docs.m5stack.com/en/cap/Cap_LoRa-1262): 5 V/163.4 mA LoRa operation and 33.1 mA GNSS power-on figure | combined profile remains below the later accepted 1.25-A continuous / 2.0-A transient accessory envelope |
 | U216 | [M5 Unit NFC](https://docs.m5stack.com/en/unit/Unit_NFC): about 67.65 mA continuous reading at 5 V | same current-limited accessory rail, separate profile |
 | RP2354A | [Raspberry Pi RP2350 datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf): workload-dependent, no guaranteed board maximum applicable here | 100 mA 3.3 V architecture allowance; exact build measured |
 
@@ -54,7 +54,7 @@ Allowances are rail sizing ceilings, not component acceptance and not permission
 | combined 3.3 V converter | 2.5 A | ≥3.0 A non-destructive transient | covers allowed core/RX/TX/UI/storage scenarios plus 100 mA RP allowance |
 | each nRF local branch | 150 mA | ≥200 mA short transient with local bulk | retains comparison space through 140 mA PA/LNA module; exact AVL later |
 | CC1101 local branch | 50 mA | ≥75 mA | startup/TX margin and measurable isolation |
-| `5V_EXT` | 0.75 A | 1.0 A current-limited | U214+GNSS and U216 values fit with cable/inrush/later-qualified profile margin |
+| `5V_EXT` | 1.25 A | 2.0 A bounded transient, 1.25-A steady current limit | superseded sizing from `PWR-0002/DEC-0068`; U214+GNSS and U216 fit with cable/inrush/profile margin |
 | `VVOICE=4.0 V` | 1.25 A | 1.5 A | already accepted by `DEC-0025`, above SA518 900 mA max listed TX current |
 | battery/power-path | ≥12 W | ≥15 W bounded transient | 2S minimum-current arithmetic is calculated in `PWR-0006/DEC-0065` |
 | cell/slot protection | ≥3 A path target before margins | ≥4 A pulse target before exact qualification | must prevent low-cell droop or contact loss from masquerading as radio/firmware fault |

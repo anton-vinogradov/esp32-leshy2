@@ -1403,6 +1403,189 @@
         "PMID": {"physical": "29 exposed power pad", "role": "power"}
       }
     },
+    "ti_tps629203_drlr": {
+      "mpn": "Texas Instruments TPS629203DRLR",
+      "kind": "300ma_low_iq_always_on_synchronous_buck",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 1.6, null],
+      "source": {
+        "document": "TPS629203 300-mA, 3-V to 17-V low-IQ buck converter datasheet",
+        "version": "SLVSGE2, March 2022",
+        "url": "https://www.ti.com/lit/ds/symlink/tps629203.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS629203DRLR exact authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS629203DRLR/16516661",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "FB_VSET": {"physical": "1", "role": "analog"},
+        "PG": {"physical": "2", "role": "signal"},
+        "VOS": {"physical": "3", "role": "analog"},
+        "SW": {"physical": "4", "role": "power"},
+        "GND": {"physical": "5", "role": "power"},
+        "VIN": {"physical": "6", "role": "power"},
+        "EN": {"physical": "7", "role": "signal"},
+        "MODE_SCONF": {"physical": "8", "role": "strap"}
+      }
+    },
+    "sunlord_wpn201612h2r2mt": {
+      "mpn": "Sunlord WPN201612H2R2MT",
+      "kind": "2_2uh_shielded_aon_power_inductor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.6, 1.2],
+      "source": {
+        "document": "Sunlord WPN series wire-wound SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20221122/WPN%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "WPN201612H2R2MT JLCPCB C97025 stock page",
+        "url": "https://jlcpcb.com/partdetail/Sunlord-WPN201612H2R2MT/C97025",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "power"},
+        "END_2": {"physical": "termination 2", "role": "power"}
+      }
+    },
+    "ti_tps564252_drlr": {
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "kind": "4a_600khz_eco_synchronous_buck_with_power_good",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 1.6, null],
+      "source": {
+        "document": "TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet",
+        "version": "SLUSEQ6A, December 2022, revised May 2023",
+        "url": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS564252DRLR JLCPCB C19191267 stocked assembly part",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS564252DRLR/C19191267",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "VIN": {"physical": "1", "role": "power"},
+        "SW": {"physical": "2", "role": "power"},
+        "GND": {"physical": "3", "role": "power"},
+        "PG": {"physical": "4", "role": "signal"},
+        "EN": {"physical": "5", "role": "signal"},
+        "FB": {"physical": "6", "role": "analog"}
+      }
+    },
+    "sunlord_mwsa0503s_3r3mt": {
+      "mpn": "Sunlord MWSA0503S-3R3MT",
+      "kind": "3_3uh_molded_power_inductor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.4, 5.2, 3.0],
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "MWSA0503S-3R3MT JLCPCB/LCSC C408409 assembly listing",
+        "url": "https://www.jlc-smt.com/lcsc/detail/C408409.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "power"},
+        "END_2": {"physical": "termination 2", "role": "power"}
+      }
+    },
+    "sunlord_mwsa0503s_4r7mt": {
+      "mpn": "Sunlord MWSA0503S-4R7MT",
+      "kind": "4_7uh_molded_power_inductor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [5.4, 5.2, 3.0],
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "MWSA0503S-4R7MT JLCPCB C408410 stocked assembly part",
+        "url": "https://jlcpcb.com/partdetail/Sunlord-MWSA0503S4R7MT/C408410",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "power"},
+        "END_2": {"physical": "termination 2", "role": "power"}
+      }
+    },
+    "ti_tps22919_dckr": {
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "kind": "1_5a_self_protected_load_switch_with_qod",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.1, 2.0, null],
+      "source": {
+        "document": "TPS22919 5.5-V, 1.5-A self-protected load-switch datasheet",
+        "version": "SLVSEN5B, October 2018, revised May 2019",
+        "url": "https://www.ti.com/lit/ds/symlink/tps22919.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS22919DCKR authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS22919DCKR/10434801",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "IN": {"physical": "1", "role": "power"},
+        "GND": {"physical": "2", "role": "power"},
+        "ON": {"physical": "3", "role": "signal"},
+        "NC": {"physical": "4", "role": "no_connect"},
+        "QOD": {"physical": "5", "role": "power"},
+        "VOUT": {"physical": "6", "role": "power"}
+      }
+    },
+    "ti_tps259470a_rpwr": {
+      "mpn": "Texas Instruments TPS259470ARPWR",
+      "kind": "5_5a_true_reverse_blocking_adjustable_efuse",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 2.0, null],
+      "source": {
+        "document": "TPS25947xx true-reverse-current-blocking eFuse datasheet",
+        "version": "SLVSFC9C, October 2020, revised May 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS259470ARPWR JLCPCB C3662799 stocked assembly part",
+        "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS259470ARPWR/C3662799",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "EN_UVLO": {"physical": "1", "role": "analog"},
+        "OVLO": {"physical": "2", "role": "analog"},
+        "AUXOFF": {"physical": "3", "role": "signal"},
+        "FLT": {"physical": "4", "role": "signal"},
+        "IN": {"physical": "5", "role": "power"},
+        "OUT": {"physical": "6", "role": "power"},
+        "DVDT": {"physical": "7", "role": "analog"},
+        "GND": {"physical": "8", "role": "power"},
+        "ILM": {"physical": "9", "role": "analog"},
+        "ITIMER": {"physical": "10", "role": "analog"}
+      }
+    },
     "adi_max17320_g20_t": {
       "mpn": "Analog Devices MAX17320G20+T",
       "kind": "2s_to_4s_high_side_gauge_protector_i2c_no_sha",
