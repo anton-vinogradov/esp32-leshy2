@@ -5,6 +5,7 @@
 - Analysis: [`PWR-0019`](../architecture/PWR-0019-exact-source-sequence-and-power-reserve.md)
 - Finding: [`FND-0084`](../findings/FND-0084-abstract-main-source-sequencer.md)
 - Propagation: [`REV-0005AK`](../reviews/REV-0005AK-source-sequence-propagation.md)
+- Post-buck containment amendment: [`DEC-0081`](DEC-0081-independent-internal-rail-containment.md)
 
 ## Decision
 
@@ -12,8 +13,10 @@
    sequencer between AON and `3V3_MAIN`.
 2. An admitted battery or protected USB path creates `BQ25798 SYS`; `SYS`
    directly enables `TPS629203DRLR`.
-3. Pulled-up `TPS629203.PG` directly drives `TPS3808G33DBVR.MR_N`. The
-   supervisor must see both AON PG and its own 3.07-V SENSE threshold before
+3. Pulled-up `TPS629203.PG` directly drives `TPS3808G33DBVR.MR_N`. As amended
+   by `DEC-0081`, the pull-up and supervisor SENSE are powered from
+   `AON_SAFE_3V3` after `TPS25961DRVR`, so the supervisor must see both raw
+   converter PG and the independently protected 3.07-V SENSE threshold before
    starting the existing CT delay.
 4. `TPS3808.RESET_N = POR_N` directly enables `TPS564252 #MAIN`. One exact
    `RC0402FR-0710KL` pulls POR up to AON and one exact
@@ -32,10 +35,10 @@
 Two abstract endpoints disappear and one already-used resistor value changes
 position. No new unique BOM line, GPIO, firmware boot dependency or user
 function is added. Battery-only, USB-only and automatic supplement behavior
-remain owned by the exact protected source path; loss of AON validity now has
-a direct calculable route to main-rail shutdown.
+remain owned by the exact protected source path; loss of protected AON
+validity now has a direct calculable route to main-rail shutdown. `DEC-0081`
+adds the independent cutoff without changing this ordering.
 
 Exact ramp, CT tolerance, load-step, USB attach/remove, battery removal,
 supplement-mode and brownout traces remain HIL. This decision does not
 authorize KiCad.
-

@@ -6,6 +6,7 @@
 - External-port protection: [`PWR-0010`](PWR-0010-external-efuse-passive-profile.md)
 - Decision: [`DEC-0072`](../decisions/DEC-0072-exact-converter-energy-feedback-passives.md)
 - Propagation review: [`REV-0005AC`](../reviews/REV-0005AC-application-converter-passive-profile.md)
+- Post-buck containment: [`PWR-0020`](PWR-0020-independent-post-buck-containment.md)
 
 ## Scope
 
@@ -27,7 +28,7 @@ specimen HIL. Артефакт не разрешает начинать KiCad.
 | mode/configuration | `Yageo RC0402FR-0742K2L`, 42.2 kOhm, 1%, 0402 | `MODE/S-CONF` to GND: VSET, auto PFM/PWM with AEE, up to 2.5 MHz, output discharge off |
 | output selection | no fitted component | `FB/VSET` deliberately open; datasheet decodes open or at least 249 kOhm as fixed 3.3 V |
 | input energy | `TDK CGA5L1X7R1E475K160AC`, 4.7 uF, 25 V, X7R, 1206 | one local VIN-to-GND capacitor |
-| output energy | `Murata GRM31CR71A226KE15L`, 22 uF, 10 V, X7R, 1206 | one local `AON_SAFE_3V3` capacitor; `VOS` senses its positive terminal |
+| output energy | `Murata GRM31CR71A226KE15L`, 22 uF, 10 V, X7R, 1206 | one local `AON_RAW_3V3` converter capacitor; `VOS` senses its positive terminal; `PWR-0020` adds a separately protected output bank |
 
 TI requires at least 3 uF effective input and 10 uF effective output
 capacitance and recommends nominal 4.7/22 uF with 2.2 uH. The chosen 1206
@@ -134,4 +135,6 @@ Exact AON configuration/energy parts and all three application-converter
 input, output, feedback and feed-forward parts receive **«Проведено ревью»**
 at the paper electrical-profile level. `PWR-0012/DEC-0073` later close
 EN/PG/qualifier pulls; effective-capacitance measurement,
-ripple/load-step/EMI, hot loss and layout remain open.
+ripple/load-step/EMI and layout remain open. `PWR-0020/DEC-0081` separately
+review post-buck protection loss and the raw/protected rail split; hot HIL
+remains open.

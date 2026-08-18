@@ -324,6 +324,17 @@ sequencer with exact `AON_PG_N → TPS3808.MR_N` and delayed
 positions, no GPIO and no new unique MPN. An initial 85% protected-input
 reserve makes charging system-first across actual 5/9/15-V contracts;
 source-transition behavior remains HIL.
+`FND-0085/PWR-0020/DEC-0081/REV-0005AL` then close the paper single-fault gap
+left after that sequence. Exact `TPS25961DRVR` protects `AON_SAFE_3V3`, while
+two physically separate `TPS25974LRPWR` devices protect main and voice. Every
+OVLO/ILIM-or-ILM/dVdt/ITIMER/PGTH/output component is machine-instantiated;
+the supervisor and runtime fault logic now use protected-side evidence, and
+raw converter PG is fixture-only. Full-corner cutoff windows are
+3.505…3.809 V AON, 3.438…3.578 V main and 4.314…4.610 V voice. Paper series
+loss is about 61 mW typical on main at 2.5 A and 15 mW on voice at 1.25 A.
+The roughly USD 2.4/board increment uses no GPIO and preserves all functions;
+trip energy, hot temperature, load step and destructive high-side-short HIL
+remain open.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative
@@ -359,7 +370,7 @@ pulse/cooldown lot and hot-copper HIL are now grounded by
 a 10-A discharge class, a 2-A standard/product charge ceiling and a maximum
 `18.7 × 69.7 mm` envelope. Exact assembly certification documents, received
 fit, droop distributions, effective-capacitance/load-step, thermal-stack,
-continuity/thermal, hot-loss/layout and the
+continuity/thermal, destructive-fault/hot-loss/layout and the
 listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays

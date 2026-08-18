@@ -51,7 +51,10 @@ plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers,
 `DEC-0072`'s 24 exact converter energy/configuration/feedback passives and the
 `DEC-0080`-amended ten exact EN/PG/POR/fault resistor positions. DEC-0080 also
 replaces the abstract source sequencer with `AON_PG_N → TPS3808.MR_N` and
-delayed `POR_N → main EN`. `DEC-0074/PWR-0013` first added
+delayed `POR_N → main EN`. `DEC-0081/PWR-0020` now add exact independent
+`TPS25961DRVR` AON and two `TPS25974LRPWR` main/voice post-buck boundaries,
+all setting passives and protected-side PG; raw converter PG is diagnostic
+only. `DEC-0074/PWR-0013` first added
 the bounded diagnostic and PA25/PA26 ADC frontends; `DEC-0078/PWR-0017` now
 correct the TPUL WQFN contact map, cascade its second channel into a `>=350 ms`
 hardware refractory lockout and use two parallel

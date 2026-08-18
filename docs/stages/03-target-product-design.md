@@ -95,6 +95,9 @@ close direct AON EN and the original nine exact EN/PG/fault resistors. `FND-0084
 DEC-0080/REV-0005AK` then replace the hidden sequencer with exact AON-PG/MR,
 SENSE/CT/POR and main-EN wiring. The amended profile has ten physical
 resistor positions, about 3.0-V main release and no new unique MPN or GPIO.
+`FND-0085/PWR-0020/DEC-0081/REV-0005AL` then add exact independent post-buck
+containment to AON/main/voice, protected-side PG and a reviewed single-fault/
+paper-loss profile for about USD 2.4 per board without GPIO or function loss.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку
@@ -102,7 +105,7 @@ PA24 без изменения бюджета `12/3/3`. `PWR-0017/FND-0082/DEC-0
 исправляют физические контакты TPUL, добавляют независимый аппаратный cooldown
 `>=350 мс` и две параллельные 20-Ом/2-Вт ветви нагрузки без нового GPIO или
 active device. Далее закрываются exact-cell droop thresholds, lot/hot-copper
-HIL и hot loss/thermal/fault tree.
+HIL, destructive post-buck fault injection и measured thermal consolidation.
 
 ## Downstream boundary
 

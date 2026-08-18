@@ -103,6 +103,10 @@ DEC-0080/REV-0005AK` later expose and remove the hidden source-sequencer
 endpoint: AON PG directly holds TPS3808 MR, delayed POR directly enables main,
 and an exact 10-kOhm/100-kOhm pair gives 3.0-V nominal release. The amended
 control profile has ten physical resistor positions and no new unique MPN.
+`FND-0085/PWR-0020/DEC-0081/REV-0005AL` then correct the remaining internal
+single-fault gap with exact independent AON/main/voice post-buck cutoffs,
+protected-side PG, threshold/loss calculations and a reviewed fault matrix;
+no GPIO or function is lost.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -182,6 +186,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0019`](PWR-0019-exact-source-sequence-and-power-reserve.md) replaces
   the abstract source sequencer with the exact AON-PG/POR/main path and freezes
   a conservative system-first USB/charge power rule;
+- [`PWR-0020`](PWR-0020-independent-post-buck-containment.md) separates all
+  internal raw buck outputs from their loads with exact independent cutoffs,
+  protected PG and reviewed threshold/loss/single-fault behavior;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

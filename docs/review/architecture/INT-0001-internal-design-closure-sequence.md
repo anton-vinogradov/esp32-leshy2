@@ -25,7 +25,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I0` | semantic owners, buses, controllers, exposed pads and budgets | wishlist, `DEM-0001`, `SRC-0002` | `G2F-3I/PIN-0003` reviewed working map; not atomic | all later changes regenerate one machine source without collision or hidden pin |
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
-| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend, BQ25798 and TPS25751/EEPROM passive profiles, rail tree, eFuse, converter passives and bounded diagnostic frontends reviewed** through `DEC-0076/PWR-0015`; mechanics, thresholds, hot calculation and HIL open | freeze remaining passives and complete loss/thermal/fault/source-transition budget |
+| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend/support, rail tree, converter passives, bounded diagnostics, source sequence and independent AON/main/voice post-buck containment reviewed** through `DEC-0081/PWR-0020`; mechanics, exact-cell thresholds and HIL open | close certification/specimen/threshold evidence, consolidate hot/thermal calculations and execute named HIL |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | digital contacts largely exact; backlight/protection/UI endpoints open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
@@ -89,7 +89,12 @@ hardware repetition bound. `PWR-0018/FND-0083/DEC-0079` select two exact
 `FND-0084/PWR-0019/DEC-0080` then remove the hidden programmable-sequencer
 placeholder: exact AON PG, TPS3808 MR/SENSE/CT/POR and a 10-kOhm/100-kOhm pair
 now form the complete hardware main-release path, with a conservative
-system-first input/charge budget. Remaining I3 dependencies are
+system-first input/charge budget. `FND-0085/PWR-0020/DEC-0081/REV-0005AL`
+then correct the remaining single-fault gap: exact `TPS25961DRVR` AON and two
+separate `TPS25974LRPWR` main/voice stages split every raw buck output from its
+load, move operational evidence to protected PG and review exact settings,
+loss and fault direction. Remaining I3 dependencies are
 certification/specimen fit and exact-cell droop thresholds, pulse/cooldown lot
-and hot-copper HIL, source-transition HIL, followed by the complete hot
-loss/thermal/fault tree.
+and hot-copper HIL, destructive overvoltage/short containment,
+source-transition HIL and consolidation of the complete measured thermal
+budget.

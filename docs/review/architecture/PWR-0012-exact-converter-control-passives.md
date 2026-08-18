@@ -7,6 +7,7 @@
 - Energy/feedback passives: [`PWR-0011`](PWR-0011-application-converter-passive-profile.md)
 - Decision: [`DEC-0073`](../decisions/DEC-0073-exact-converter-control-passives.md)
 - Propagation review: [`REV-0005AD`](../reviews/REV-0005AD-converter-control-passive-profile.md)
+- Post-buck containment: [`PWR-0020`](PWR-0020-independent-post-buck-containment.md)
 
 ## Scope
 
@@ -16,6 +17,9 @@ runtime sequencing или accepted truth table `EN AND NOT(PG)`. The original
 nine resistors are amended by `PWR-0019/DEC-0080` to ten separate
 machine/diagram instances; AON EN receives an exact direct strap and the exact
 AON-POR/main-EN pair replaces the hidden sequencer.
+`PWR-0020/DEC-0081` later source AON PG/POR and main/voice runtime PG evidence
+from the protected side of independent post-buck cutoffs; raw converter PG is
+fixture-only.
 
 Startup/shutdown timing, brownout, simultaneous faults and specimen HIL remain
 open. Артефакт не разрешает начинать KiCad.
@@ -113,4 +117,5 @@ Primary sources:
 Exact AON EN/PG/POR, three application-converter EN defaults, both qualifier base
 branches, both optional PG pull-ups and the common fault pull-up receive
 **«Проведено ревью»** at paper schematic level. Dynamic timing, temperature,
-brownout, reverse-BE cycling, multi-fault and HIL remain open.
+brownout, reverse-BE cycling, multi-fault and HIL remain open. The later
+protected-side evidence amendment is reviewed in `PWR-0020/REV-0005AL`.

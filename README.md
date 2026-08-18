@@ -102,9 +102,15 @@ privacy or the target owner's authorization.
 - Four independent fixed rails separate always-on safety, 3.3-V compute,
   4.0-V voice and protected 5.0-V accessory power. Unused radio, storage and
   audio branches are disconnected and discharged into a verified quiet state.
-  The AON converter's physical power-good output holds the 3.07-V supervisor
-  in reset; only its delayed hardware POR enables the main rail. Firmware
-  cannot bypass source admission, AON brownout or that startup order.
+  Each converter output crosses its own hardware overvoltage/current/short
+  cutoff before it can reach a load. The protected AON rail and its physical
+  power-good evidence hold the 3.07-V supervisor in reset; only its delayed
+  hardware POR enables the main rail. Firmware cannot bypass source admission,
+  AON brownout, any internal protection boundary or that startup order.
+  Runtime trusts only protected-side power-good evidence. A latched main fault
+  requires complete source removal and fresh admission. The AON cutoff may
+  perform its own bounded hardware recovery attempts, but software cannot
+  accelerate them and main remains off until protected AON is stably valid.
 - The protected accessory port admits startup through a controlled voltage
   slew under an immediately active current limit. It supports `1.25 A`
   continuously and a bounded `2.0 A` transient only after startup; an expired
@@ -217,7 +223,13 @@ flowchart TD
   AONL["WPN201612H2R2MT<br/>2.2-uH shielded AON converter inductor"]
   AONMODE["RC0402FR-0742K2L<br/>42.2-kOhm 1% AON mode/configuration resistor"]
   AONIN["CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V X7R AON input capacitor"]
-  AONOUT["GRM31CR71A226KE15L<br/>22-uF 10-V X7R AON output capacitor"]
+  AONOUT["GRM31CR71A226KE15L<br/>22-uF 10-V X7R AON raw-output capacitor"]
+  AONFUSE["TPS25961DRVR<br/>independent AON overvoltage/current/short cutoff"]
+  AONRILIM["RC0402FR-07240KL<br/>240-kOhm 1% AON eFuse current-limit resistor"]
+  AONOVT["RC0402FR-07196KL<br/>196-kOhm 1% AON eFuse OVLO top resistor"]
+  AONOVB["RC0402FR-07100KL #AON-OVLO<br/>100-kOhm 1% AON eFuse OVLO bottom resistor"]
+  AONFIN["C1005X7R1H104K050BB #AON-EFUSE-IN<br/>100-nF 50-V X7R AON eFuse input capacitor"]
+  AONFOUT["GRM188R60J106ME47D #AON-SAFE<br/>10-uF 6.3-V X5R protected-AON output capacitor"]
   AONPGPU["RC0402FR-0747KL<br/>47-kOhm 1% AON power-good pull-up resistor"]
   PORPU["RC0402FR-0710KL #AON-POR<br/>10-kOhm 1% AON POR pull-up resistor"]
   MAINBUCK["TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
@@ -227,8 +239,17 @@ flowchart TD
   MAINFBT["RC0402FR-0745K3L<br/>45.3-kOhm 1% main feedback top resistor"]
   MAINFBB["RC0402FR-0710KL<br/>10-kOhm 1% main feedback bottom resistor"]
   MAINFF["C0402C330J5GACTU #MAIN<br/>33-pF 50-V C0G main feed-forward capacitor"]
-  MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-uF 25-V X7R main output capacitor #0"]
-  MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-uF 25-V X7R main output capacitor #1"]
+  MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-uF 25-V X7R main raw-output capacitor #0"]
+  MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-uF 25-V X7R main raw-output capacitor #1"]
+  MAINFUSE["TPS25974LRPWR #MAIN<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  MAINRILM["RC0402FR-071K65L<br/>1.65-kOhm 1% main eFuse threshold resistor"]
+  MAINDVDT["GRM155R71H472KA01D #MAIN<br/>4.7-nF 50-V X7R main eFuse slew capacitor"]
+  MAINIT["GRM1555C1H121JA01D #MAIN<br/>120-pF 50-V C0G main eFuse transient timer"]
+  MAINOVT["RT0402BRD07191KL<br/>191-kOhm 0.1% main eFuse OVLO top resistor"]
+  MAINOVB["RT0402BRD07100KL<br/>100-kOhm 0.1% main eFuse OVLO bottom resistor"]
+  MAINPGT["RC0402FR-0745K3L #MAIN-PGTH<br/>45.3-kOhm 1% main protected-PG top resistor"]
+  MAINPGB["RC0402FR-0730KL #MAIN-PGTH<br/>30-kOhm 1% main protected-PG bottom resistor"]
+  MAINFOUT["GRM188R60J106ME47D #MAIN-SAFE<br/>10-uF 6.3-V X5R protected-main output capacitor"]
   MAINENPD["RC0402FR-07100KL #MAIN-EN<br/>100-kOhm 1% main-enable fail-low resistor"]
   FAULTPU["RC0402FR-0710KL #POWER-FAULT<br/>10-kOhm 1% wired-low power-fault pull-up resistor"]
   VOICEBUCK["TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
@@ -238,8 +259,17 @@ flowchart TD
   VOICEFBT["RC0402FR-0768KL<br/>68-kOhm 1% voice feedback top resistor"]
   VOICEFBB["RC0402FR-0712KL<br/>12-kOhm 1% voice feedback bottom resistor"]
   VOICEFF["C0402C330J5GACTU #VOICE<br/>33-pF 50-V C0G voice feed-forward capacitor"]
-  VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-uF 25-V X7R voice output capacitor #0"]
-  VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-uF 25-V X7R voice output capacitor #1"]
+  VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-uF 25-V X7R voice raw-output capacitor #0"]
+  VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-uF 25-V X7R voice raw-output capacitor #1"]
+  VOICEFUSE["TPS25974LRPWR #VOICE<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  VOICERILIM["RC0402FR-073K32L<br/>3.32-kOhm 1% voice eFuse threshold resistor"]
+  VOICEDVDT["GRM155R71H472KA01D #VOICE<br/>4.7-nF 50-V X7R voice eFuse slew capacitor"]
+  VOICEIT["GRM1555C1H121JA01D #VOICE<br/>120-pF 50-V C0G voice eFuse transient timer"]
+  VOICEOVT["RC0402FR-07270KL<br/>270-kOhm 1% voice eFuse OVLO top resistor"]
+  VOICEOVB["RC0402FR-07100KL #VOICE-OVLO<br/>100-kOhm 1% voice eFuse OVLO bottom resistor"]
+  VOICEPGT["RC0402FR-0768KL #VOICE-PGTH<br/>68-kOhm 1% voice protected-PG top resistor"]
+  VOICEPGB["RC0402FR-0733KL #VOICE-PGTH<br/>33-kOhm 1% voice protected-PG bottom resistor"]
+  VOICEFOUT["GRM188R60J106ME47D #VOICE-SAFE<br/>10-uF 6.3-V X5R protected-voice output capacitor"]
   VOICEENPD["RC0402FR-0710KL #VOICE-EN<br/>10-kOhm 1% voice-enable fail-low resistor"]
   VOICEPGPU["RC0402FR-0710KL #VOICE-PG<br/>10-kOhm 1% voice power-good pull-up resistor"]
   VOICEPGBR["RC0402FR-0768KL #VOICE-PG-BASE<br/>68-kOhm 1% voice PG-qualifier base resistor"]
@@ -337,9 +367,9 @@ flowchart TD
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
   DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
-  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU ~~~ PORPU
-  PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
-  FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
+  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONFUSE ~~~ AONRILIM ~~~ AONOVT ~~~ AONOVB ~~~ AONFIN ~~~ AONFOUT ~~~ AONPGPU ~~~ PORPU
+  PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINFUSE ~~~ MAINRILM ~~~ MAINDVDT ~~~ MAINIT ~~~ MAINOVT ~~~ MAINOVB ~~~ MAINPGT ~~~ MAINPGB ~~~ MAINFOUT ~~~ MAINENPD ~~~ FAULTPU
+  FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEFUSE ~~~ VOICERILIM ~~~ VOICEDVDT ~~~ VOICEIT ~~~ VOICEOVT ~~~ VOICEOVB ~~~ VOICEPGT ~~~ VOICEPGB ~~~ VOICEFOUT ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
@@ -436,42 +466,59 @@ flowchart TD
   FUSE1 --> STACKADC0 --> STACKADC1 --> STACKADC2 --> STACKADC3 --> STACKADC4 -->|"PA26/A1"| PACKADM
   PACKADM --> STACKADCB
   PACKADM --> STACKADCC
-  CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
-  AONL -->|"AON_SAFE_3V3 runtime source"| PVINCAP
+  CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_RAW_3V3"| AONFUSE -->|"AON_SAFE_3V3"| SUP
+  AONFUSE -->|"AON_SAFE_3V3 runtime source"| PVINCAP
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"SYS local bypass"| AONIN
-  AONL -->|"AON local output"| AONOUT
-  AONL -->|"PG pull-up"| AONPGPU --> AONBUCK
+  AONL -->|"raw local output"| AONOUT
+  AONL --> AONFIN
+  AONFUSE -->|"ILIM"| AONRILIM
+  AONL -->|"OVLO divider"| AONOVT --> AONOVB
+  AONFUSE --> AONFOUT
+  AONFUSE -->|"PG pull-up source"| AONPGPU --> AONBUCK
   AONPGPU -->|"AON_PG_N to MR_N"| SUP
-  AONL -->|"POR pull-up"| PORPU --> SUP
+  AONFUSE -->|"POR pull-up"| PORPU --> SUP
   SUP -->|"delayed POR_N enables main"| MAINBUCK
-  CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
+  CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"MAIN_RAW_3V3"| MAINFUSE -->|"3V3_MAIN"| S3
   CHARGER -->|"SYS local bulk"| MAININ
   CHARGER -->|"SYS local HF"| MAINHF
   MAINL -->|"feedback"| MAINFBT --> MAINFBB
   MAINL -->|"feed-forward"| MAINFF
   MAINL -->|"local output bank"| MAINOUT0
   MAINL -->|"local output bank"| MAINOUT1
+  MAINFUSE -->|"ILM"| MAINRILM
+  MAINFUSE -->|"dVdt"| MAINDVDT
+  MAINFUSE -->|"ITIMER"| MAINIT
+  MAINL -->|"OVLO divider"| MAINOVT --> MAINOVB
+  MAINFUSE -->|"PGTH divider"| MAINPGT --> MAINPGB
+  MAINFUSE --> MAINFOUT
   MAINBUCK -->|"100-kOhm EN fail-low"| MAINENPD
-  MAINL -->|"POWER_FAULT_N pull-up"| FAULTPU --> SLOW
-  MAINL --> C5
-  MAINL --> RP
-  MAINL --> SWNRF
-  MAINL --> SWCC
-  MAINL --> SWSD
-  MAINL --> SWCODEC
-  MAINL --> SWRX
-  CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"fixed 4.0 V"| SA
+  MAINFUSE -->|"protected PG to fault aggregate"| SLOW
+  MAINFUSE -->|"POWER_FAULT_N pull-up source"| FAULTPU --> SLOW
+  MAINFUSE --> C5
+  MAINFUSE --> RP
+  MAINFUSE --> SWNRF
+  MAINFUSE --> SWCC
+  MAINFUSE --> SWSD
+  MAINFUSE --> SWCODEC
+  MAINFUSE --> SWRX
+  CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"VVOICE_RAW_4V"| VOICEFUSE -->|"protected 4.0 V"| SA
   CHARGER -->|"SYS local bulk"| VOICEIN
   CHARGER -->|"SYS local HF"| VOICEHF
   VOICEL -->|"feedback"| VOICEFBT --> VOICEFBB
   VOICEL -->|"feed-forward"| VOICEFF
   VOICEL -->|"local output bank"| VOICEOUT0
   VOICEL -->|"local output bank"| VOICEOUT1
+  VOICEFUSE -->|"ILM"| VOICERILIM
+  VOICEFUSE -->|"dVdt"| VOICEDVDT
+  VOICEFUSE -->|"ITIMER"| VOICEIT
+  VOICEL -->|"OVLO divider"| VOICEOVT --> VOICEOVB
+  VOICEFUSE -->|"PGTH divider"| VOICEPGT --> VOICEPGB
+  VOICEFUSE --> VOICEFOUT
   VOICEBUCK -->|"EN fail-low"| VOICEENPD
-  MAINL -->|"PG pull-up"| VOICEPGPU --> VOICEBUCK
+  MAINFUSE -->|"PG pull-up"| VOICEPGPU --> VOICEFUSE
   GATEB -->|"EN"| VOICEPGBR --> VOICEPGQ
-  VOICEBUCK -->|"PG"| VOICEPGQ -->|"qualified POWER_FAULT_N"| SLOW
+  VOICEFUSE -->|"protected PG"| VOICEPGQ -->|"qualified POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"protected fixed 5.0 V"| U214
   CHARGER -->|"SYS local bulk"| EXTBUCKIN
   CHARGER -->|"SYS local HF"| EXTBUCKHF
@@ -480,7 +527,7 @@ flowchart TD
   EXTL -->|"local output bank"| EXTBUCKOUT0
   EXTL -->|"local output bank"| EXTBUCKOUT1
   EXTBUCK -->|"EN fail-low"| EXTENPD
-  MAINL -->|"PG pull-up"| EXTPGPU --> EXTBUCK
+  MAINFUSE -->|"PG pull-up"| EXTPGPU --> EXTBUCK
   GATEB -->|"EN"| EXTPGBR --> EXTPGQ
   EXTBUCK -->|"PG"| EXTPGQ -->|"qualified POWER_FAULT_N"| SLOW
   EXTFUSE -->|"ILM"| EXTRILM

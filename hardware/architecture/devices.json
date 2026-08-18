@@ -1870,6 +1870,64 @@
         "C": {"physical": "3", "role": "signal"}
       }
     },
+    "ti_tps25961_drvr": {
+      "mpn": "Texas Instruments TPS25961DRVR",
+      "kind": "2a_adjustable_overvoltage_current_limit_aon_efuse",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 2.0, null],
+      "source": {
+        "document": "TPS25961 2.7-V to 19-V, 106-mOhm eFuse datasheet",
+        "version": "SLVSGT8, December 2022",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS25961DRVR active production order code and authorized-distributor stock snapshot",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25961DRVR/17394947",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "OUT": {"physical": "1", "role": "power"},
+        "OVLO": {"physical": "2", "role": "analog"},
+        "ILIM": {"physical": "3", "role": "analog"},
+        "GND": {"physical": "4 and exposed thermal pad", "role": "power"},
+        "EN_UVLO": {"physical": "5", "role": "analog"},
+        "IN": {"physical": "6", "role": "power"}
+      }
+    },
+    "ti_tps25974l_rpwr": {
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "kind": "7a_latchoff_adjustable_overvoltage_circuit_breaker_efuse_with_power_good",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 2.0, null],
+      "source": {
+        "document": "TPS2597xx 2.7-V to 23-V, 7-A, 9.8-mOhm eFuse datasheet",
+        "version": "SLVSGG5D, November 2021, revised May 2025",
+        "url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS25974LRPWR active order code and authorized-distributor stock snapshot",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25974LRPWR/15965500",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "EN_UVLO": {"physical": "1", "role": "analog"},
+        "OVLO": {"physical": "2", "role": "analog"},
+        "PG": {"physical": "3", "role": "signal"},
+        "PGTH": {"physical": "4", "role": "analog"},
+        "IN": {"physical": "5", "role": "power"},
+        "OUT": {"physical": "6", "role": "power"},
+        "DVDT": {"physical": "7", "role": "analog"},
+        "GND": {"physical": "8", "role": "power"},
+        "ILM": {"physical": "9", "role": "analog"},
+        "ITIMER": {"physical": "10", "role": "analog"}
+      }
+    },
     "ti_tps259470l_rpwr": {
       "mpn": "Texas Instruments TPS259470LRPWR",
       "kind": "5_5a_true_reverse_blocking_latchoff_adjustable_efuse",
@@ -1899,6 +1957,190 @@
         "GND": {"physical": "8", "role": "power"},
         "ILM": {"physical": "9", "role": "analog"},
         "ITIMER": {"physical": "10", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_07240kl": {
+      "mpn": "Yageo RC0402FR-07240KL",
+      "kind": "240kohm_1pct_0402_aon_efuse_current_limit_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-07240KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07240KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07240KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07240KL/729516",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07196kl": {
+      "mpn": "Yageo RC0402FR-07196KL",
+      "kind": "196kohm_1pct_0402_aon_efuse_ovlo_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07196KL active authorized-distributor stock page",
+        "url": "https://www.mouser.com/ProductDetail/YAGEO/RC0402FR-07196KL",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rt0402brd07191kl": {
+      "mpn": "Yageo RT0402BRD07191KL",
+      "kind": "191kohm_0_1pct_25ppm_0402_main_efuse_ovlo_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RT high-precision thin-film resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RT_1-to-0_01.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RT0402BRD07191KL active authorized-distributor stock page",
+        "url": "https://www.mouser.com/ProductDetail/YAGEO/RT0402BRD07191KL",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rt0402brd07100kl": {
+      "mpn": "Yageo RT0402BRD07100KL",
+      "kind": "100kohm_0_1pct_25ppm_0402_main_efuse_ovlo_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RT0402BRD07100KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RT0402BRD07100KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RT0402BRD07100KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RT0402BRD07100KL/1068989",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07270kl": {
+      "mpn": "Yageo RC0402FR-07270KL",
+      "kind": "270kohm_1pct_0402_voice_efuse_ovlo_top_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07270KL active authorized-distributor stock page",
+        "url": "https://www.mouser.com/en/ProductDetail/YAGEO/RC0402FR-07270KL",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "yageo_rc0402fr_071k65l": {
+      "mpn": "Yageo RC0402FR-071K65L",
+      "kind": "1_65kohm_1pct_0402_main_efuse_current_threshold_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-071K65L LCSC C185453 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0402FR-071K65L_C185453.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_073k32l": {
+      "mpn": "Yageo RC0402FR-073K32L",
+      "kind": "3_32kohm_1pct_0402_voice_efuse_current_threshold_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-073K32L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-073K32L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-073K32L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-073K32L/2827627",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_0733kl": {
+      "mpn": "Yageo RC0402FR-0733KL",
+      "kind": "33kohm_1pct_0402_voice_efuse_power_good_bottom_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-0733KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0733KL LCSC C138003 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO_C138003.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
       }
     },
     "yageo_rc0402fr_072k21l": {
@@ -1939,6 +2181,29 @@
       "orderable_source": {
         "document": "GRM155R71H103KA88D LCSC C77019 stocked exact order code",
         "url": "https://www.lcsc.com/product-detail/C77019.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm1555c1h121ja01d": {
+      "mpn": "Murata GRM1555C1H121JA01D",
+      "kind": "120pf_5pct_50v_c0g_0402_efuse_transient_timer_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.55],
+      "source": {
+        "document": "Murata GRM1555C1H121JA01 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM1555C1H121JA01D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM1555C1H121JA01D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H121JA01D/587178",
         "checked": "2026-08-18"
       },
       "programmable": false,

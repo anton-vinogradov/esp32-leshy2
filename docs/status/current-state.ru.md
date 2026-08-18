@@ -323,6 +323,17 @@ sequencer точными связями `AON_PG_N → TPS3808.MR_N` и заде�
 физических позиций без GPIO и нового unique MPN. Исходный 85% reserve
 защищённого входного тракта делает заряд system-first для фактических
 5/9/15-В контрактов; source-transition behavior остаётся HIL.
+`FND-0085/PWR-0020/DEC-0081/REV-0005AL` затем закрывают бумажный single-fault
+пробел в этой последовательности. Exact `TPS25961DRVR` защищает
+`AON_SAFE_3V3`, а два физически отдельных `TPS25974LRPWR` защищают main и
+voice. Каждый компонент OVLO/ILIM-or-ILM/dVdt/ITIMER/PGTH/output внесён в
+machine source; supervisor и runtime fault logic используют защищённую
+сторону, а raw PG преобразователей остаётся только для оснастки. Full-corner
+окна отсечки: 3,505…3,809 В AON, 3,438…3,578 В main и 4,314…4,610 В voice.
+Расчётные потери — около 61 мВт typical на main при 2,5 А и 15 мВт на voice
+при 1,25 А. Прибавка около USD 2,4 на плату не расходует GPIO и сохраняет все
+функции; trip energy, hot temperature, load step и destructive
+high-side-short HIL остаются открыты.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный
@@ -359,7 +370,7 @@ thresholds и lot/hot-copper HIL импульса/cooldown теперь опир
 standard/product charge ceiling и максимальный envelope `18,7 × 69,7 мм`.
 Exact assembly certification documents, received fit, droop distributions,
 effective-capacitance/load-step, thermal-stack, continuity/thermal,
-hot-loss/layout и перечисленные
+destructive-fault/hot-loss/layout и перечисленные
 startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad

@@ -5,6 +5,7 @@
 - Decision: [`DEC-0080`](../decisions/DEC-0080-exact-aon-pg-por-main-sequence.md)
 - Analysis: [`PWR-0019`](../architecture/PWR-0019-exact-source-sequence-and-power-reserve.md)
 - Finding: [`FND-0084`](../findings/FND-0084-abstract-main-source-sequencer.md)
+- Later containment review: [`REV-0005AL`](REV-0005AL-internal-rail-containment-propagation.md)
 
 ## Reviewed propagation
 
@@ -12,7 +13,7 @@
 |---|---|
 | Source validity | only admitted battery or protected USB can create `BQ25798 SYS` |
 | AON start | `SYS → TPS629203.EN` remains a direct hardware strap |
-| AON qualification | exact pulled-up `AON_PG_N → TPS3808.MR_N`; 3.07-V SENSE remains independent |
+| AON qualification | exact pulled-up `AON_PG_N → TPS3808.MR_N`; after `DEC-0081`, pull-up and 3.07-V SENSE are on independently protected AON |
 | Delay | exact existing CT network remains between valid AON and POR release |
 | Main enable | exact `TPS3808.RESET_N/POR_N → TPS564252 #MAIN.EN` replaces the abstract sequencer |
 | Pulls | exact 10-kOhm POR pull-up plus 100-kOhm main fail-low pull; about 3.0-V nominal release |
@@ -28,4 +29,3 @@ battery admission, USB 5/9/15-V attach/remove, weak-source DPM, pack removal,
 brownout and repeated faults. Source sequencing and calculated logic levels
 receive **«Проведено ревью»** at paper level; measured transition behavior
 does not.
-

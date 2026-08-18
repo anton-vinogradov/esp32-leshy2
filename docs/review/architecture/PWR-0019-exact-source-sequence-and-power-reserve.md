@@ -7,6 +7,7 @@
 - Propagation review: [`REV-0005AK`](../reviews/REV-0005AK-source-sequence-propagation.md)
 - Source frontend: [`PWR-0004`](PWR-0004-accepted-usb-pd-front-end.md)
 - Rail tree: [`PWR-0008`](PWR-0008-exact-downstream-rail-tree.md)
+- Post-buck containment: [`PWR-0020`](PWR-0020-independent-post-buck-containment.md)
 
 ## Boundary
 
@@ -25,16 +26,17 @@ flowchart TD
   SRC["admitted battery or protected USB source"]
   BQ["BQ25798RQMR<br/>NVDC SYS and automatic battery supplement"]
   AON["TPS629203DRLR<br/>fixed 3.3-V AON converter"]
+  AONF["TPS25961DRVR<br/>independent AON cutoff"]
   PGPU["RC0402FR-0747KL<br/>47-kOhm AON PG pull-up"]
   SUP["TPS3808G33DBVR<br/>3.07-V supervisor with CT delay"]
   PORPU["RC0402FR-0710KL<br/>10-kOhm POR pull-up"]
   MAINPD["RC0402FR-07100KL<br/>100-kOhm main-EN fail-low"]
   MAIN["TPS564252DRLR #MAIN<br/>fixed 3.3-V application converter"]
 
-  SRC --> BQ -->|"SYS"| AON
-  AON -->|"AON_SAFE_3V3"| PGPU -->|"AON_PG_N → MR_N"| SUP
-  AON -->|"SENSE=3.07 V class"| SUP
-  AON --> PORPU -->|"POR_N"| SUP
+  SRC --> BQ -->|"SYS"| AON -->|"AON_RAW_3V3"| AONF
+  AONF -->|"AON_SAFE_3V3"| PGPU -->|"AON_PG_N → MR_N"| SUP
+  AONF -->|"SENSE=3.07 V class"| SUP
+  AONF --> PORPU -->|"POR_N"| SUP
   SUP -->|"delayed open-drain POR_N"| MAIN
   MAIN --> MAINPD
 ```
@@ -48,8 +50,11 @@ The source boundary is already fail-closed:
 - therefore `BQ25798 SYS` is itself the hardware result of one valid source,
   not a software declaration.
 
-`SYS` directly enables AON. `TPS629203.PG`, with the exact 47-kOhm pull-up,
-drives `TPS3808.MR_N`; the supervisor simultaneously observes AON on SENSE.
+`SYS` directly enables AON. Under the later `DEC-0081` containment amendment,
+the converter creates `AON_RAW_3V3` and `TPS25961DRVR` admits
+`AON_SAFE_3V3`. `TPS629203.PG`, with the exact 47-kOhm pull-up sourced only
+from protected AON, drives `TPS3808.MR_N`; the supervisor simultaneously
+observes protected AON on SENSE.
 Either PG low or SENSE below the G33 threshold asserts RESET. Only after both
 recover and the exact CT delay expires does `POR_N` become high impedance.
 
@@ -153,4 +158,3 @@ logic-level margins, failure direction and conservative input/charge-power
 calculation receive **«Проведено ревью»**. Transition timing, conversion loss,
 load-step, source-removal and thermal behavior remain explicit HIL. No KiCad
 start is authorized.
-

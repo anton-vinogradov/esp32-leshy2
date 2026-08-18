@@ -10,6 +10,7 @@
 - switched-PG amendment: [`DEC-0070`](../decisions/DEC-0070-enable-qualified-switched-rail-pg.md)
 - converter-passive amendment: [`DEC-0072`](../decisions/DEC-0072-exact-converter-energy-feedback-passives.md)
 - control-passive amendment: [`DEC-0073`](../decisions/DEC-0073-exact-converter-control-passives.md)
+- internal-containment amendment: [`DEC-0081`](../decisions/DEC-0081-independent-internal-rail-containment.md)
 - Propagation review: [`REV-0005Y`](../reviews/REV-0005Y-downstream-rail-tree-propagation.md)
 
 ## Scope
@@ -22,7 +23,10 @@ configuration, feedback and feed-forward passives, then
 `PWR-0012/DEC-0073` close EN/PG/fault pulls; `PWR-0019/DEC-0080`
 subsequently replace the abstract source sequencer with the exact
 AON-PG/supervisor/POR/main-EN chain. Copper/thermal layout and specimen HIL
-are still open. Артефакт не разрешает
+`PWR-0020/DEC-0081` then split AON/main/voice raw converter outputs from their
+loads with independent exact post-buck overvoltage/current cutoffs and
+protected-side PG. Copper/thermal layout and specimen HIL are still open.
+Артефакт не разрешает
 начинать KiCad.
 
 ## Why four converters, not one configurable rail
@@ -248,7 +252,8 @@ reverse blocking and availability receive **«Проведено ревью»**.
 feed-forward and input/output energy components as 24 exact physical
 instances; `PWR-0012/DEC-0073` close their original nine control resistors,
 and `PWR-0019/DEC-0080` amend that profile to ten positions while reusing
-existing MPNs and close the exact source sequence. Still open before
+existing MPNs and close the exact source sequence. `PWR-0020/DEC-0081` then
+review the independent post-buck containment profile. Still open before
 schematic/BOM freeze: ground/copper/thermal geometry,
 effective-capacitance/load-step proof, source-transition and fault-injection
 HIL.

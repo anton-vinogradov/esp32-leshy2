@@ -106,10 +106,18 @@ Leshy2 — открытый автономный портативный инст
 - Четыре независимые фиксированные шины разделяют always-on безопасность,
   вычислительное питание 3,3 В, голосовой тракт 4,0 В и защищённый порт
   расширения 5,0 В. Неиспользуемые ветви радио, накопителя и аудио физически
-  отключаются и разряжаются до проверенного тихого состояния. Физический
-  power-good AON-преобразователя удерживает supervisor 3,07 В в reset, и
-  только его задержанный аппаратный POR включает основную шину. Firmware не
-  может обойти допуск источника, brownout AON или этот порядок запуска.
+  отключаются и разряжаются до проверенного тихого состояния. Выход каждого
+  преобразователя проходит собственную аппаратную отсечку перенапряжения,
+  перегрузки и короткого замыкания до любого потребителя. Защищённая шина AON
+  и её физический power-good удерживают supervisor 3,07 В в reset, и только
+  его задержанный аппаратный POR включает основную шину. Firmware не может
+  обойти допуск источника, brownout AON, любую внутреннюю границу защиты или
+  этот порядок запуска.
+  Runtime доверяет только power-good защищённой стороны. Защёлкнутая ошибка
+  main требует полностью снять источник и заново пройти допуск. AON-отсечка
+  может выполнять собственные ограниченные аппаратные попытки восстановления,
+  но software не может их ускорить, а main остаётся выключенной до устойчиво
+  исправной защищённой AON.
 - Защищённый порт расширения запускается с управляемой скоростью нарастания
   напряжения и сразу действующим ограничением тока. Он поддерживает `1,25 А`
   постоянно и ограниченный по времени импульс `2,0 А` только после запуска;
@@ -223,7 +231,13 @@ flowchart TD
   AONL["WPN201612H2R2MT<br/>экранированный дроссель 2,2 мкГн шины AON"]
   AONMODE["RC0402FR-0742K2L<br/>42,2-кОм 1% резистор режима/конфигурации AON"]
   AONIN["CGA5L1X7R1E475K160AC<br/>4,7-мкФ 25-В X7R входной конденсатор AON"]
-  AONOUT["GRM31CR71A226KE15L<br/>22-мкФ 10-В X7R выходной конденсатор AON"]
+  AONOUT["GRM31CR71A226KE15L<br/>22-мкФ 10-В X7R конденсатор сырого выхода AON"]
+  AONFUSE["TPS25961DRVR<br/>независимая отсечка AON по перенапряжению, току и КЗ"]
+  AONRILIM["RC0402FR-07240KL<br/>240-кОм 1% резистор ограничения тока eFuse AON"]
+  AONOVT["RC0402FR-07196KL<br/>196-кОм 1% верхний резистор OVLO eFuse AON"]
+  AONOVB["RC0402FR-07100KL #AON-OVLO<br/>100-кОм 1% нижний резистор OVLO eFuse AON"]
+  AONFIN["C1005X7R1H104K050BB #AON-EFUSE-IN<br/>100-нФ 50-В X7R входной конденсатор eFuse AON"]
+  AONFOUT["GRM188R60J106ME47D #AON-SAFE<br/>10-мкФ 6,3-В X5R выходной конденсатор защищённой AON"]
   AONPGPU["RC0402FR-0747KL<br/>47-кОм 1% pull-up резистор power-good AON"]
   PORPU["RC0402FR-0710KL #AON-POR<br/>10-кОм 1% pull-up резистор AON POR"]
   MAINBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь основной шины 3,3 В"]
@@ -233,8 +247,17 @@ flowchart TD
   MAINFBT["RC0402FR-0745K3L<br/>45,3-кОм 1% верхний резистор FB основной шины"]
   MAINFBB["RC0402FR-0710KL<br/>10-кОм 1% нижний резистор FB основной шины"]
   MAINFF["C0402C330J5GACTU #MAIN<br/>33-пФ 50-В C0G feed-forward конденсатор основной шины"]
-  MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №0"]
-  MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №1"]
+  MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-мкФ 25-В X7R конденсатор сырого выхода основной шины №0"]
+  MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-мкФ 25-В X7R конденсатор сырого выхода основной шины №1"]
+  MAINFUSE["TPS25974LRPWR #MAIN<br/>latch-off eFuse основной шины с OVLO, circuit breaker и защищённым PG"]
+  MAINRILM["RC0402FR-071K65L<br/>1,65-кОм 1% резистор порога eFuse основной шины"]
+  MAINDVDT["GRM155R71H472KA01D #MAIN<br/>4,7-нФ 50-В X7R конденсатор slew eFuse основной шины"]
+  MAINIT["GRM1555C1H121JA01D #MAIN<br/>120-пФ 50-В C0G таймер transient eFuse основной шины"]
+  MAINOVT["RT0402BRD07191KL<br/>191-кОм 0,1% верхний резистор OVLO eFuse основной шины"]
+  MAINOVB["RT0402BRD07100KL<br/>100-кОм 0,1% нижний резистор OVLO eFuse основной шины"]
+  MAINPGT["RC0402FR-0745K3L #MAIN-PGTH<br/>45,3-кОм 1% верхний резистор protected-PG основной шины"]
+  MAINPGB["RC0402FR-0730KL #MAIN-PGTH<br/>30-кОм 1% нижний резистор protected-PG основной шины"]
+  MAINFOUT["GRM188R60J106ME47D #MAIN-SAFE<br/>10-мкФ 6,3-В X5R выходной конденсатор защищённой основной шины"]
   MAINENPD["RC0402FR-07100KL #MAIN-EN<br/>100-кОм 1% fail-low резистор EN основной шины"]
   FAULTPU["RC0402FR-0710KL #POWER-FAULT<br/>10-кОм 1% pull-up резистор общей линии power-fault"]
   VOICEBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь голосовой шины 4,0 В"]
@@ -244,8 +267,17 @@ flowchart TD
   VOICEFBT["RC0402FR-0768KL<br/>68-кОм 1% верхний резистор FB voice"]
   VOICEFBB["RC0402FR-0712KL<br/>12-кОм 1% нижний резистор FB voice"]
   VOICEFF["C0402C330J5GACTU #VOICE<br/>33-пФ 50-В C0G feed-forward конденсатор voice"]
-  VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор voice №0"]
-  VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор voice №1"]
+  VOICEOUT0["GRM32ER71E226KE15L #VOICE-OUT0<br/>22-мкФ 25-В X7R конденсатор сырого выхода voice №0"]
+  VOICEOUT1["GRM32ER71E226KE15L #VOICE-OUT1<br/>22-мкФ 25-В X7R конденсатор сырого выхода voice №1"]
+  VOICEFUSE["TPS25974LRPWR #VOICE<br/>latch-off eFuse voice с OVLO, circuit breaker и защищённым PG"]
+  VOICERILIM["RC0402FR-073K32L<br/>3,32-кОм 1% резистор порога eFuse voice"]
+  VOICEDVDT["GRM155R71H472KA01D #VOICE<br/>4,7-нФ 50-В X7R конденсатор slew eFuse voice"]
+  VOICEIT["GRM1555C1H121JA01D #VOICE<br/>120-пФ 50-В C0G таймер transient eFuse voice"]
+  VOICEOVT["RC0402FR-07270KL<br/>270-кОм 1% верхний резистор OVLO eFuse voice"]
+  VOICEOVB["RC0402FR-07100KL #VOICE-OVLO<br/>100-кОм 1% нижний резистор OVLO eFuse voice"]
+  VOICEPGT["RC0402FR-0768KL #VOICE-PGTH<br/>68-кОм 1% верхний резистор protected-PG voice"]
+  VOICEPGB["RC0402FR-0733KL #VOICE-PGTH<br/>33-кОм 1% нижний резистор protected-PG voice"]
+  VOICEFOUT["GRM188R60J106ME47D #VOICE-SAFE<br/>10-мкФ 6,3-В X5R выходной конденсатор защищённой voice"]
   VOICEENPD["RC0402FR-0710KL #VOICE-EN<br/>10-кОм 1% fail-low резистор EN голосовой шины"]
   VOICEPGPU["RC0402FR-0710KL #VOICE-PG<br/>10-кОм 1% pull-up резистор PG голосовой шины"]
   VOICEPGBR["RC0402FR-0768KL #VOICE-PG-BASE<br/>68-кОм 1% базовый резистор PG-квалификатора voice"]
@@ -343,9 +375,9 @@ flowchart TD
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
   DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
-  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU ~~~ PORPU
-  PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
-  FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
+  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONFUSE ~~~ AONRILIM ~~~ AONOVT ~~~ AONOVB ~~~ AONFIN ~~~ AONFOUT ~~~ AONPGPU ~~~ PORPU
+  PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINFUSE ~~~ MAINRILM ~~~ MAINDVDT ~~~ MAINIT ~~~ MAINOVT ~~~ MAINOVB ~~~ MAINPGT ~~~ MAINPGB ~~~ MAINFOUT ~~~ MAINENPD ~~~ FAULTPU
+  FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEFUSE ~~~ VOICERILIM ~~~ VOICEDVDT ~~~ VOICEIT ~~~ VOICEOVT ~~~ VOICEOVB ~~~ VOICEPGT ~~~ VOICEPGB ~~~ VOICEFOUT ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
@@ -442,42 +474,59 @@ flowchart TD
   FUSE1 --> STACKADC0 --> STACKADC1 --> STACKADC2 --> STACKADC3 --> STACKADC4 -->|"PA26/A1"| PACKADM
   PACKADM --> STACKADCB
   PACKADM --> STACKADCC
-  CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
-  AONL -->|"AON_SAFE_3V3, runtime source"| PVINCAP
+  CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_RAW_3V3"| AONFUSE -->|"AON_SAFE_3V3"| SUP
+  AONFUSE -->|"AON_SAFE_3V3, runtime source"| PVINCAP
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"локальный bypass SYS"| AONIN
-  AONL -->|"локальный выход AON"| AONOUT
-  AONL -->|"pull-up PG"| AONPGPU --> AONBUCK
+  AONL -->|"локальный сырой выход"| AONOUT
+  AONL --> AONFIN
+  AONFUSE -->|"ILIM"| AONRILIM
+  AONL -->|"делитель OVLO"| AONOVT --> AONOVB
+  AONFUSE --> AONFOUT
+  AONFUSE -->|"источник pull-up PG"| AONPGPU --> AONBUCK
   AONPGPU -->|"AON_PG_N к MR_N"| SUP
-  AONL -->|"pull-up POR"| PORPU --> SUP
+  AONFUSE -->|"pull-up POR"| PORPU --> SUP
   SUP -->|"задержанный POR_N включает main"| MAINBUCK
-  CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
+  CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"MAIN_RAW_3V3"| MAINFUSE -->|"3V3_MAIN"| S3
   CHARGER -->|"локальный bulk SYS"| MAININ
   CHARGER -->|"локальный HF SYS"| MAINHF
   MAINL -->|"feedback"| MAINFBT --> MAINFBB
   MAINL -->|"feed-forward"| MAINFF
   MAINL -->|"локальный выходной банк"| MAINOUT0
   MAINL -->|"локальный выходной банк"| MAINOUT1
+  MAINFUSE -->|"ILM"| MAINRILM
+  MAINFUSE -->|"dVdt"| MAINDVDT
+  MAINFUSE -->|"ITIMER"| MAINIT
+  MAINL -->|"делитель OVLO"| MAINOVT --> MAINOVB
+  MAINFUSE -->|"делитель PGTH"| MAINPGT --> MAINPGB
+  MAINFUSE --> MAINFOUT
   MAINBUCK -->|"100-кОм fail-low EN"| MAINENPD
-  MAINL -->|"pull-up POWER_FAULT_N"| FAULTPU --> SLOW
-  MAINL --> C5
-  MAINL --> RP
-  MAINL --> SWNRF
-  MAINL --> SWCC
-  MAINL --> SWSD
-  MAINL --> SWCODEC
-  MAINL --> SWRX
-  CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"фиксированные 4,0 В"| SA
+  MAINFUSE -->|"защищённый PG в fault aggregate"| SLOW
+  MAINFUSE -->|"источник pull-up POWER_FAULT_N"| FAULTPU --> SLOW
+  MAINFUSE --> C5
+  MAINFUSE --> RP
+  MAINFUSE --> SWNRF
+  MAINFUSE --> SWCC
+  MAINFUSE --> SWSD
+  MAINFUSE --> SWCODEC
+  MAINFUSE --> SWRX
+  CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"VVOICE_RAW_4V"| VOICEFUSE -->|"защищённые 4,0 В"| SA
   CHARGER -->|"локальный bulk SYS"| VOICEIN
   CHARGER -->|"локальный HF SYS"| VOICEHF
   VOICEL -->|"feedback"| VOICEFBT --> VOICEFBB
   VOICEL -->|"feed-forward"| VOICEFF
   VOICEL -->|"локальный выходной банк"| VOICEOUT0
   VOICEL -->|"локальный выходной банк"| VOICEOUT1
+  VOICEFUSE -->|"ILM"| VOICERILIM
+  VOICEFUSE -->|"dVdt"| VOICEDVDT
+  VOICEFUSE -->|"ITIMER"| VOICEIT
+  VOICEL -->|"делитель OVLO"| VOICEOVT --> VOICEOVB
+  VOICEFUSE -->|"делитель PGTH"| VOICEPGT --> VOICEPGB
+  VOICEFUSE --> VOICEFOUT
   VOICEBUCK -->|"fail-low EN"| VOICEENPD
-  MAINL -->|"pull-up PG"| VOICEPGPU --> VOICEBUCK
+  MAINFUSE -->|"pull-up PG"| VOICEPGPU --> VOICEFUSE
   GATEB -->|"EN"| VOICEPGBR --> VOICEPGQ
-  VOICEBUCK -->|"PG"| VOICEPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
+  VOICEFUSE -->|"защищённый PG"| VOICEPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"защищённые фиксированные 5,0 В"| U214
   CHARGER -->|"локальный bulk SYS"| EXTBUCKIN
   CHARGER -->|"локальный HF SYS"| EXTBUCKHF
@@ -486,7 +535,7 @@ flowchart TD
   EXTL -->|"локальный выходной банк"| EXTBUCKOUT0
   EXTL -->|"локальный выходной банк"| EXTBUCKOUT1
   EXTBUCK -->|"fail-low EN"| EXTENPD
-  MAINL -->|"pull-up PG"| EXTPGPU --> EXTBUCK
+  MAINFUSE -->|"pull-up PG"| EXTPGPU --> EXTBUCK
   GATEB -->|"EN"| EXTPGBR --> EXTPGQ
   EXTBUCK -->|"PG"| EXTPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   EXTFUSE -->|"ILM"| EXTRILM
