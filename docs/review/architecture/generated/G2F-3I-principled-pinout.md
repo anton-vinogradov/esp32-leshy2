@@ -510,8 +510,12 @@ flowchart TD
   VOICE_AUDIO_ISO["Texas Instruments SN74LVC2G66DCUR<br/>dual AFOUT/MIC_IN power-domain isolation switch"]
   VOICE_AUDIO_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>voice audio iso bypass physical component"]
   VOICE_AUDIO_ON_PULLDOWN["Yageo RC0402FR-07100KL<br/>voice audio on pulldown physical component"]
+  VOICE_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice evidence threshold top physical component"]
+  VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice evidence threshold bottom physical component"]
+  VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice evidence hysteresis physical component"]
+  VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice evidence output pullup physical component"]
   %% Audio layout-only invisible spine: every box above is one physical device.
-  VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM ~~~ AUDIO_VMID_CAP ~~~ AUDIO_GROUND_LINK ~~~ SI_AUDIO_L_COUPLING ~~~ SI_AUDIO_R_COUPLING ~~~ SI_AUDIO_L_SUM ~~~ SI_AUDIO_R_SUM ~~~ SI_AUDIO_SUM_BIAS ~~~ VOICE_RX_COUPLING ~~~ VOICE_RX_SERIES ~~~ VOICE_RX_BIAS ~~~ AUDIO_CAPTURE_SELECTOR ~~~ AUDIO_CAPTURE_SELECTOR_BYPASS ~~~ AUDIO_CAPTURE_SEL_PULLDOWN ~~~ AUDIO_CAPTURE_RX_COUPLING ~~~ AUDIO_CAPTURE_RX_BIAS ~~~ AUDIO_CAPTURE_MIC_COUPLING ~~~ AUDIO_CAPTURE_MIC_BIAS ~~~ AUDIO_CAPTURE_INPUT_COUPLING ~~~ AUDIO_CAPTURE_LOCAL_BIAS_TOP ~~~ AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM ~~~ AUDIO_CAPTURE_LOCAL_BIAS_CAP ~~~ AUDIO_CAPTURE_BUFFER ~~~ AUDIO_CAPTURE_BUFFER_BYPASS ~~~ CODEC_ADC_P_COUPLING ~~~ CODEC_ADC_P_SERIES ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN ~~~ SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR ~~~ AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS ~~~ AUDIO_SPEAKER_REQ_PULLDOWN ~~~ AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P ~~~ SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADPHONE_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN
+  VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ RECEIVER ~~~ CODEC ~~~ AUDIO_RX_MUX ~~~ AUDIO_RX_MUX_BYPASS ~~~ AUDIO_RX_SEL_PULLDOWN ~~~ AUDIO_VMID_TOP ~~~ AUDIO_VMID_BOTTOM ~~~ AUDIO_VMID_CAP ~~~ AUDIO_GROUND_LINK ~~~ SI_AUDIO_L_COUPLING ~~~ SI_AUDIO_R_COUPLING ~~~ SI_AUDIO_L_SUM ~~~ SI_AUDIO_R_SUM ~~~ SI_AUDIO_SUM_BIAS ~~~ VOICE_RX_COUPLING ~~~ VOICE_RX_SERIES ~~~ VOICE_RX_BIAS ~~~ AUDIO_CAPTURE_SELECTOR ~~~ AUDIO_CAPTURE_SELECTOR_BYPASS ~~~ AUDIO_CAPTURE_SEL_PULLDOWN ~~~ AUDIO_CAPTURE_RX_COUPLING ~~~ AUDIO_CAPTURE_RX_BIAS ~~~ AUDIO_CAPTURE_MIC_COUPLING ~~~ AUDIO_CAPTURE_MIC_BIAS ~~~ AUDIO_CAPTURE_INPUT_COUPLING ~~~ AUDIO_CAPTURE_LOCAL_BIAS_TOP ~~~ AUDIO_CAPTURE_LOCAL_BIAS_BOTTOM ~~~ AUDIO_CAPTURE_LOCAL_BIAS_CAP ~~~ AUDIO_CAPTURE_BUFFER ~~~ AUDIO_CAPTURE_BUFFER_BYPASS ~~~ CODEC_ADC_P_COUPLING ~~~ CODEC_ADC_P_SERIES ~~~ CODEC_ADC_N_COUPLING ~~~ CODEC_ADC_N_SERIES ~~~ AUDIO_SPEAKER_SELECTOR ~~~ AUDIO_SPEAKER_SELECTOR_BYPASS ~~~ SPEAKER_INPUT_P_COUPLING ~~~ SPEAKER_INPUT_N_COUPLING ~~~ SPEAKER_INPUT_P_GAIN ~~~ SPEAKER_INPUT_N_GAIN ~~~ AUDIO_TX_SELECTOR ~~~ AUDIO_TX_SELECTOR_BYPASS ~~~ MIC_TX_COUPLING ~~~ MIC_TX_BIAS ~~~ CODEC_TX_COUPLING ~~~ CODEC_TX_ATTEN_TOP ~~~ CODEC_TX_ATTEN_BOTTOM ~~~ CODEC_TX_FILTER ~~~ VOICE_MIC_COUPLING ~~~ AUDIO_SAFE_GATE ~~~ AUDIO_SAFE_GATE_BYPASS ~~~ AUDIO_SPEAKER_REQ_PULLDOWN ~~~ AUDIO_TX_REQ_PULLDOWN ~~~ AUDIO_ARM_PULLDOWN ~~~ AUDIO_SPEAKER_SAFE_PULLDOWN ~~~ AUDIO_TX_SAFE_PULLDOWN ~~~ SPEAKER_AMP ~~~ SPEAKER_AMP_INPUT_CAP ~~~ SPEAKER_AMP_BULK_CAP ~~~ SPEAKER_AMP_ENABLE_PULLDOWN ~~~ SPEAKER_OUTPUT_BEAD_P ~~~ SPEAKER_OUTPUT_BEAD_N ~~~ SPEAKER_OUTPUT_CAP_P ~~~ SPEAKER_OUTPUT_CAP_N ~~~ SPEAKER ~~~ MICROPHONE ~~~ MICROPHONE_BIAS_FILTER_RES ~~~ MICROPHONE_BIAS_FILTER_CAP ~~~ MICROPHONE_BIAS_RES ~~~ HEADPHONE_JACK ~~~ HEADPHONE_ESD ~~~ HEADPHONE_L_COUPLING0 ~~~ HEADPHONE_L_COUPLING1 ~~~ HEADPHONE_R_COUPLING0 ~~~ HEADPHONE_R_COUPLING1 ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADPHONE_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN ~~~ CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP
   end
   subgraph RADIO_ACCESSORY["Radio and external-accessory devices"]
   S3_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle"]
@@ -838,14 +842,58 @@ flowchart TD
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   DET_IR["VEMD1060X01<br/>IR optical-evidence photodiode"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR evidence thresholds"]
-  EVIDENCE_MASK["TCA9534APWR<br/>eight-bit evidence source mask on local RP I2C0"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
+  EVIDENCE_CMP_A_BYPASS["TDK C1005X7R1H104K050BB<br/>first evidence-comparator local bypass capacitor"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_B_BYPASS["TDK C1005X7R1H104K050BB<br/>second evidence-comparator local bypass capacitor"]
+  S3_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>s3 first-population 100-kOhm threshold upper resistor"]
+  S3_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>s3 first-population 10-kOhm threshold lower resistor"]
+  S3_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>s3 1-MOhm evidence-hysteresis feedback resistor"]
+  S3_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>s3 10-kOhm AON comparator-output pull-up resistor"]
+  C5_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>c5 first-population 100-kOhm threshold upper resistor"]
+  C5_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>c5 first-population 10-kOhm threshold lower resistor"]
+  C5_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>c5 1-MOhm evidence-hysteresis feedback resistor"]
+  C5_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>c5 10-kOhm AON comparator-output pull-up resistor"]
+  NRF0_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>nRF0 first-population 100-kOhm threshold upper resistor"]
+  NRF0_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>nRF0 first-population 10-kOhm threshold lower resistor"]
+  NRF0_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>nRF0 1-MOhm evidence-hysteresis feedback resistor"]
+  NRF0_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>nRF0 10-kOhm AON comparator-output pull-up resistor"]
+  NRF1_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>nRF1 first-population 100-kOhm threshold upper resistor"]
+  NRF1_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>nRF1 first-population 10-kOhm threshold lower resistor"]
+  NRF1_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>nRF1 1-MOhm evidence-hysteresis feedback resistor"]
+  NRF1_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>nRF1 10-kOhm AON comparator-output pull-up resistor"]
+  NRF2_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>nRF2 first-population 100-kOhm threshold upper resistor"]
+  NRF2_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>nRF2 first-population 10-kOhm threshold lower resistor"]
+  NRF2_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>nRF2 1-MOhm evidence-hysteresis feedback resistor"]
+  NRF2_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>nRF2 10-kOhm AON comparator-output pull-up resistor"]
+  CC_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>cc first-population 100-kOhm threshold upper resistor"]
+  CC_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>cc first-population 10-kOhm threshold lower resistor"]
+  CC_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>cc 1-MOhm evidence-hysteresis feedback resistor"]
+  CC_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>cc 10-kOhm AON comparator-output pull-up resistor"]
+  VOICE_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice first-population 100-kOhm threshold upper resistor"]
+  VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice first-population 10-kOhm threshold lower resistor"]
+  VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice 1-MOhm evidence-hysteresis feedback resistor"]
+  VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice 10-kOhm AON comparator-output pull-up resistor"]
+  IR_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>ir first-population 100-kOhm threshold upper resistor"]
+  IR_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0712KL<br/>ir first-population 12-kOhm threshold lower resistor"]
+  IR_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>ir 1-MOhm evidence-hysteresis feedback resistor"]
+  IR_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>ir 10-kOhm AON comparator-output pull-up resistor"]
+  EVIDENCE_MASK["TCA9534APWR<br/>AON eight-bit evidence source mask on local RP I2C0"]
+  EVIDENCE_MASK_BYPASS["TDK C1005X7R1H104K050BB<br/>evidence-mask local bypass capacitor"]
   EVIDENCE_OR_0["BAT54ALT1G<br/>evidence diode-OR pair 0/1"]
   EVIDENCE_OR_1["BAT54ALT1G<br/>evidence diode-OR pair 2/3"]
   EVIDENCE_OR_2["BAT54ALT1G<br/>evidence diode-OR pair 4/5"]
   EVIDENCE_OR_3["BAT54ALT1G<br/>evidence diode-OR pair 6/7"]
+  ANY_TX_AON_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm AON ANY-TX logic pull-up resistor"]
+  ANY_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>2.2-kOhm physical ANY-TX indicator current limit"]
   ANY_TX_LED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
+  EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator"]
+  EVIDENCE_MAIN_ISOLATOR_BYPASS["TDK C1005X7R1H104K050BB<br/>evidence-domain-isolator local bypass capacitor"]
+  C5_EVIDENCE_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain C5-evidence pull-up resistor"]
+  IR_EVIDENCE_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain IR-evidence pull-up resistor"]
+  RP_ANY_TX_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain RP ANY-TX pull-up resistor"]
+  %% TX-evidence layout-only invisible spine: every box above is one physical device.
+  EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_A_BYPASS ~~~ EVIDENCE_CMP_B ~~~ EVIDENCE_CMP_B_BYPASS ~~~ S3_EVIDENCE_THRESHOLD_TOP ~~~ S3_EVIDENCE_THRESHOLD_BOTTOM ~~~ S3_EVIDENCE_HYSTERESIS ~~~ S3_EVIDENCE_OUTPUT_PULLUP ~~~ C5_EVIDENCE_THRESHOLD_TOP ~~~ C5_EVIDENCE_THRESHOLD_BOTTOM ~~~ C5_EVIDENCE_HYSTERESIS ~~~ C5_EVIDENCE_OUTPUT_PULLUP ~~~ NRF0_EVIDENCE_THRESHOLD_TOP ~~~ NRF0_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF0_EVIDENCE_HYSTERESIS ~~~ NRF0_EVIDENCE_OUTPUT_PULLUP ~~~ NRF1_EVIDENCE_THRESHOLD_TOP ~~~ NRF1_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF1_EVIDENCE_HYSTERESIS ~~~ NRF1_EVIDENCE_OUTPUT_PULLUP ~~~ NRF2_EVIDENCE_THRESHOLD_TOP ~~~ NRF2_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF2_EVIDENCE_HYSTERESIS ~~~ NRF2_EVIDENCE_OUTPUT_PULLUP ~~~ CC_EVIDENCE_THRESHOLD_TOP ~~~ CC_EVIDENCE_THRESHOLD_BOTTOM ~~~ CC_EVIDENCE_HYSTERESIS ~~~ CC_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ IR_EVIDENCE_THRESHOLD_TOP ~~~ IR_EVIDENCE_THRESHOLD_BOTTOM ~~~ IR_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_OUTPUT_PULLUP ~~~ EVIDENCE_MASK ~~~ EVIDENCE_MASK_BYPASS ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_AON_PULLUP ~~~ ANY_TX_LED_SERIES ~~~ ANY_TX_LED ~~~ EVIDENCE_MAIN_ISOLATOR ~~~ EVIDENCE_MAIN_ISOLATOR_BYPASS ~~~ C5_EVIDENCE_MAIN_PULLUP ~~~ IR_EVIDENCE_MAIN_PULLUP ~~~ RP_ANY_TX_MAIN_PULLUP
   end
   %% Layout-only invisible spine: these links are not electrical connections.
   PRODUCT_USB_CONNECTOR ~~~ PRODUCT_USB_PROTECTOR ~~~ PRODUCT_USB_DP_SERIES ~~~ PRODUCT_USB_DM_SERIES ~~~ PRODUCT_USB_VBIAS_CAP ~~~ PRODUCT_USB_VPWR_CAP ~~~ PRODUCT_USB_FAULT_PULLUP ~~~ PD_CC1_CAP ~~~ PD_CC2_CAP ~~~ PD_VBUS_TVS ~~~ PD_CONTROLLER ~~~ PD_CONFIG_EEPROM ~~~ NVDC_CHARGER
@@ -886,8 +934,7 @@ flowchart TD
   SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
   SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED
   STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B
-  EVIDENCE_CMP_B ~~~ EVIDENCE_MASK ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_LED
+  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_A_BYPASS ~~~ EVIDENCE_CMP_B ~~~ EVIDENCE_CMP_B_BYPASS ~~~ S3_EVIDENCE_THRESHOLD_TOP ~~~ S3_EVIDENCE_THRESHOLD_BOTTOM ~~~ S3_EVIDENCE_HYSTERESIS ~~~ S3_EVIDENCE_OUTPUT_PULLUP ~~~ C5_EVIDENCE_THRESHOLD_TOP ~~~ C5_EVIDENCE_THRESHOLD_BOTTOM ~~~ C5_EVIDENCE_HYSTERESIS ~~~ C5_EVIDENCE_OUTPUT_PULLUP ~~~ NRF0_EVIDENCE_THRESHOLD_TOP ~~~ NRF0_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF0_EVIDENCE_HYSTERESIS ~~~ NRF0_EVIDENCE_OUTPUT_PULLUP ~~~ NRF1_EVIDENCE_THRESHOLD_TOP ~~~ NRF1_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF1_EVIDENCE_HYSTERESIS ~~~ NRF1_EVIDENCE_OUTPUT_PULLUP ~~~ NRF2_EVIDENCE_THRESHOLD_TOP ~~~ NRF2_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF2_EVIDENCE_HYSTERESIS ~~~ NRF2_EVIDENCE_OUTPUT_PULLUP ~~~ CC_EVIDENCE_THRESHOLD_TOP ~~~ CC_EVIDENCE_THRESHOLD_BOTTOM ~~~ CC_EVIDENCE_HYSTERESIS ~~~ CC_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ IR_EVIDENCE_THRESHOLD_TOP ~~~ IR_EVIDENCE_THRESHOLD_BOTTOM ~~~ IR_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_OUTPUT_PULLUP ~~~ EVIDENCE_MASK ~~~ EVIDENCE_MASK_BYPASS ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_AON_PULLUP ~~~ ANY_TX_LED_SERIES ~~~ ANY_TX_LED ~~~ EVIDENCE_MAIN_ISOLATOR ~~~ EVIDENCE_MAIN_ISOLATOR_BYPASS ~~~ C5_EVIDENCE_MAIN_PULLUP ~~~ IR_EVIDENCE_MAIN_PULLUP ~~~ RP_ANY_TX_MAIN_PULLUP
   PRODUCT_USB_CONNECTOR -->|"VBUS sink only"| PD_CONTROLLER
   PRODUCT_USB_CONNECTOR -->|"VBUS shunt"| PD_VBUS_TVS
   PRODUCT_USB_CONNECTOR <-->|"CC1/CC2 + D+/D-"| PRODUCT_USB_PROTECTOR
@@ -1322,18 +1369,52 @@ flowchart TD
   DET_CC --> EVIDENCE_CMP_B
   DET_VOICE --> EVIDENCE_CMP_B
   IRTX --> DET_IR --> EVIDENCE_CMP_B
+  EVIDENCE_CMP_A_BYPASS --> EVIDENCE_CMP_A
+  EVIDENCE_CMP_B_BYPASS --> EVIDENCE_CMP_B
+  S3_EVIDENCE_THRESHOLD_TOP --> S3_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A
+  S3_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A
+  S3_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A
+  C5_EVIDENCE_THRESHOLD_TOP --> C5_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A
+  C5_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A
+  C5_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A
+  NRF0_EVIDENCE_THRESHOLD_TOP --> NRF0_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A
+  NRF0_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A
+  NRF0_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A
+  NRF1_EVIDENCE_THRESHOLD_TOP --> NRF1_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A
+  NRF1_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A
+  NRF1_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A
+  NRF2_EVIDENCE_THRESHOLD_TOP --> NRF2_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B
+  NRF2_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B
+  NRF2_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
+  CC_EVIDENCE_THRESHOLD_TOP --> CC_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B
+  CC_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B
+  CC_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
+  VOICE_EVIDENCE_THRESHOLD_TOP --> VOICE_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B
+  VOICE_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B
+  VOICE_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
+  IR_EVIDENCE_THRESHOLD_TOP --> IR_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B
+  IR_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B
+  IR_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
   EVIDENCE_CMP_A --> EVIDENCE_MASK
   EVIDENCE_CMP_B --> EVIDENCE_MASK
+  EVIDENCE_MASK_BYPASS --> EVIDENCE_MASK
   EVIDENCE_CMP_A --> EVIDENCE_OR_0
   EVIDENCE_CMP_A --> EVIDENCE_OR_1
   EVIDENCE_CMP_B --> EVIDENCE_OR_2
   EVIDENCE_CMP_B --> EVIDENCE_OR_3
-  EVIDENCE_OR_0 --> ANY_TX_LED
-  EVIDENCE_OR_1 --> ANY_TX_LED
-  EVIDENCE_OR_2 --> ANY_TX_LED
-  EVIDENCE_OR_3 --> ANY_TX_LED
+  EVIDENCE_OR_0 --> ANY_TX_AON_PULLUP
+  EVIDENCE_OR_1 --> ANY_TX_AON_PULLUP
+  EVIDENCE_OR_2 --> ANY_TX_AON_PULLUP
+  EVIDENCE_OR_3 --> ANY_TX_AON_PULLUP
+  ANY_TX_LED_SERIES --> ANY_TX_LED --> ANY_TX_AON_PULLUP
   EVIDENCE_MASK <-->|"local I²C0 source mask"| RP
-  ANY_TX_LED -->|"RP.GPIO22 RP_ANY_TX_N"| RP
+  EVIDENCE_CMP_A -->|"C5 RF evidence"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_B -->|"IR evidence"| EVIDENCE_MAIN_ISOLATOR
+  ANY_TX_AON_PULLUP -->|"AON aggregate"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_MAIN_ISOLATOR_BYPASS --> EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_MAIN_ISOLATOR --> C5_EVIDENCE_MAIN_PULLUP -->|"GPIO23 active-low"| C5
+  EVIDENCE_MAIN_ISOLATOR --> IR_EVIDENCE_MAIN_PULLUP -->|"GPIO24 active-low"| C5
+  EVIDENCE_MAIN_ISOLATOR --> RP_ANY_TX_MAIN_PULLUP -->|"GPIO22 active-low"| RP
 ```
 
 ## Сводный pin budget
@@ -1357,7 +1438,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `3V3_MAIN`
 - `AON_RAW_3V3`
 - `AON_SAFE_3V3`
-- `AON_SAFE_3V3-via-2k2`
 - `C5-dedicated-external-reverse-polarity-SMA`
 - `C5-placement-qualified-double-ended-UFL-jumper`
 - `CC-dedicated-standard-SMA`
@@ -1407,14 +1487,6 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `power-ground-multivia`
 - `protected-2s-midpoint`
 - `qualified-2s-positive`
-- `qualified-evidence-threshold-0`
-- `qualified-evidence-threshold-1`
-- `qualified-evidence-threshold-2`
-- `qualified-evidence-threshold-3`
-- `qualified-evidence-threshold-4`
-- `qualified-evidence-threshold-5`
-- `qualified-evidence-threshold-6`
-- `qualified-evidence-threshold-7`
 - `reserved-local-control-expansion-pad`
 - `rf-ground`
 - `rf-ground-dedicated-via`
@@ -1486,8 +1558,8 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: none.
 | `GPIO12` | 24 | `C5_UART_SERVICE_RX` | `i` | `UART0` | `c5_dbg1_series.END_2` | — |
 | `GPIO13` | 13 | `C5_USB_DM` | `io` | `USB_SERIAL_JTAG` | `c5_service_usb_dm_series.END_2` | — |
 | `GPIO14` | 14 | `C5_USB_DP` | `io` | `USB_SERIAL_JTAG` | `c5_service_usb_dp_series.END_2` | — |
-| `GPIO23` | 21 | `C5_RF_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_cmp_a.OUT2` | — |
-| `GPIO24` | 23 | `IR_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_cmp_b.OUT4` | — |
+| `GPIO23` | 21 | `C5_RF_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_main_isolator.1Y`, `c5_evidence_main_pullup.END_2` | — |
+| `GPIO24` | 23 | `IR_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | `evidence_main_isolator.2Y`, `ir_evidence_main_pullup.END_2` | — |
 
 Budget: **14 used + 6 reserved + 1 free = 21 exposed GPIO**.
 Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5`.
@@ -1518,7 +1590,7 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO19` | 19 | `RP_ALERT_N` | `od` | `GPIO_IRQ` | `s3.GPIO3` | — |
 | `GPIO20` | 20 | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | `voice.AUDIO_ON`, `voice_audio_on_pulldown.END_1` | — |
 | `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `ptt_series.END_2` | — |
-| `GPIO22` | 22 | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | `evidence_or_0.A_COMMON`, `evidence_or_1.A_COMMON`, `evidence_or_2.A_COMMON`, `evidence_or_3.A_COMMON`, `any_tx_led.K` | — |
+| `GPIO22` | 22 | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | `evidence_main_isolator.3Y`, `rp_any_tx_main_pullup.END_2` | — |
 | `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `safe_gate_b.1A` | — |
 | `GPIO24` | 25 | `S3_RP_IPC_MOSI` | `i` | `SPI1_IPC` | `s3.GPIO21` | — |
 | `GPIO25` | 26 | `S3_RP_IPC_CS_N` | `i` | `SPI1_IPC` | `s3.GPIO9` | — |
@@ -3801,22 +3873,96 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `VOICE_DETECT_V` | `det_voice.V_UP` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `IR_DETECT_V` | `ir_evidence_amp.OUT` | `evidence_cmp_b.IN4_N` | physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute |
-| `EV_THRESH_0` | `abstract:qualified-evidence-threshold-0` | `evidence_cmp_a.IN1_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_1` | `abstract:qualified-evidence-threshold-1` | `evidence_cmp_a.IN2_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_2` | `abstract:qualified-evidence-threshold-2` | `evidence_cmp_a.IN3_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_3` | `abstract:qualified-evidence-threshold-3` | `evidence_cmp_a.IN4_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_4` | `abstract:qualified-evidence-threshold-4` | `evidence_cmp_b.IN1_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_5` | `abstract:qualified-evidence-threshold-5` | `evidence_cmp_b.IN2_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_6` | `abstract:qualified-evidence-threshold-6` | `evidence_cmp_b.IN3_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_THRESH_7` | `abstract:qualified-evidence-threshold-7` | `evidence_cmp_b.IN4_P` | divider/hysteresis values are I6 calibration outputs |
-| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_mask.P0` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_mask.P1` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_mask.P2` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `evidence_mask.P3` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `evidence_mask.P4` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_mask.P5` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_mask.P6` | 10-kOhm AON pull-up; individually readable active-low evidence |
-| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_mask.P7` | 10-kOhm AON pull-up; individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_a.VPLUS` | first quad comparator remains alive with the hard-STOP evidence plane |
+| `SAFETY_GROUND` | `evidence_cmp_a.VMINUS` | `abstract:safety-ground` | first comparator return stays in the AON evidence domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_a_bypass.END_1` | exact 100-nF local bypass required at the first TLV1824 package |
+| `SAFETY_GROUND` | `evidence_cmp_a_bypass.END_2` | `abstract:safety-ground` | first comparator bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_b.VPLUS` | second quad comparator remains alive with the hard-STOP evidence plane |
+| `SAFETY_GROUND` | `evidence_cmp_b.VMINUS` | `abstract:safety-ground` | second comparator return stays in the AON evidence domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_b_bypass.END_1` | exact 100-nF local bypass required at the second TLV1824 package |
+| `SAFETY_GROUND` | `evidence_cmp_b_bypass.END_2` | `abstract:safety-ground` | second comparator bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the S3 first threshold population |
+| `EV_THRESH_0_S3` | `s3_evidence_threshold_top.END_2` | `evidence_cmp_a.IN1_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_0_S3` | `evidence_cmp_a.IN1_P` | `s3_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `s3_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | S3 threshold returns locally |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `s3_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_0_S3` | `s3_evidence_hysteresis.END_2` | `evidence_cmp_a.IN1_P` | S3 threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_evidence_output_pullup.END_1` | separate 10-kOhm open-drain pull-up is at least ten times lower than feedback resistance |
+| `EV_N0_S3` | `s3_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT1` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `c5_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the C5 first threshold population |
+| `EV_THRESH_1_C5` | `c5_evidence_threshold_top.END_2` | `evidence_cmp_a.IN2_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_1_C5` | `evidence_cmp_a.IN2_P` | `c5_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `c5_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | C5 threshold returns locally |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `c5_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_1_C5` | `c5_evidence_hysteresis.END_2` | `evidence_cmp_a.IN2_P` | C5 threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `c5_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N1_C5` | `c5_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT2` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the nRF0 first threshold population |
+| `EV_THRESH_2_NRF0` | `nrf0_evidence_threshold_top.END_2` | `evidence_cmp_a.IN3_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_2_NRF0` | `evidence_cmp_a.IN3_P` | `nrf0_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `nrf0_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | nRF0 threshold returns locally |
+| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `nrf0_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_2_NRF0` | `nrf0_evidence_hysteresis.END_2` | `evidence_cmp_a.IN3_P` | nRF0 threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N2_NRF0` | `nrf0_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT3` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the nRF1 first threshold population |
+| `EV_THRESH_3_NRF1` | `nrf1_evidence_threshold_top.END_2` | `evidence_cmp_a.IN4_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_3_NRF1` | `evidence_cmp_a.IN4_P` | `nrf1_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `nrf1_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | nRF1 threshold returns locally |
+| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `nrf1_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_3_NRF1` | `nrf1_evidence_hysteresis.END_2` | `evidence_cmp_a.IN4_P` | nRF1 threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N3_NRF1` | `nrf1_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT4` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the nRF2 first threshold population |
+| `EV_THRESH_4_NRF2` | `nrf2_evidence_threshold_top.END_2` | `evidence_cmp_b.IN1_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_4_NRF2` | `evidence_cmp_b.IN1_P` | `nrf2_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `nrf2_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | nRF2 threshold returns locally |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `nrf2_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_4_NRF2` | `nrf2_evidence_hysteresis.END_2` | `evidence_cmp_b.IN1_P` | nRF2 threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N4_NRF2` | `nrf2_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT1` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the CC first threshold population |
+| `EV_THRESH_5_CC` | `cc_evidence_threshold_top.END_2` | `evidence_cmp_b.IN2_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_5_CC` | `evidence_cmp_b.IN2_P` | `cc_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `cc_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | CC threshold returns locally |
+| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `cc_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_5_CC` | `cc_evidence_hysteresis.END_2` | `evidence_cmp_b.IN2_P` | CC threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N5_CC` | `cc_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT2` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the voice first threshold population |
+| `EV_THRESH_6_VOICE` | `voice_evidence_threshold_top.END_2` | `evidence_cmp_b.IN3_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_6_VOICE` | `evidence_cmp_b.IN3_P` | `voice_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `SAFETY_GROUND` | `voice_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | voice threshold returns locally |
+| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `voice_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_6_VOICE` | `voice_evidence_hysteresis.END_2` | `evidence_cmp_b.IN3_P` | voice threshold clears near 0.297 V nominal |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N6_VOICE` | `voice_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT3` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the IR first threshold population |
+| `EV_THRESH_7_IR` | `ir_evidence_threshold_top.END_2` | `evidence_cmp_b.IN4_P` | 12-kOhm lower leg raises nominal optical assert threshold to approximately 0.384 V |
+| `EV_THRESH_7_IR` | `evidence_cmp_b.IN4_P` | `ir_evidence_threshold_bottom.END_1` | IR population differs because the optical TIA idles near 0.30 V |
+| `SAFETY_GROUND` | `ir_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | IR threshold returns locally |
+| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `ir_evidence_hysteresis.END_1` | 1-MOhm positive feedback provides approximately 34.7-mV nominal optical hysteresis |
+| `EV_THRESH_7_IR` | `ir_evidence_hysteresis.END_2` | `evidence_cmp_b.IN4_P` | IR threshold clears near 0.350 V, above nominal dark idle |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
+| `EV_N7_IR` | `ir_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT4` | individually readable active-low evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask.VCC` | source identity remains readable whenever the AON evidence plane is alive |
+| `SAFETY_GROUND` | `evidence_mask.GND` | `abstract:safety-ground` | evidence-mask return stays local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_bypass.END_1` | exact 100-nF local TCA9534A bypass |
+| `SAFETY_GROUND` | `evidence_mask_bypass.END_2` | `abstract:safety-ground` | evidence-mask bypass returns locally |
+| `U214_I2C_SDA_IN` | `rp.GPIO28` | `evidence_mask.SDA` | local RP I2C0 data reaches the evidence mask before the external stuck-bus isolator |
+| `U214_I2C_SCL_IN` | `rp.GPIO29` | `evidence_mask.SCL` | local RP I2C0 clock reaches the evidence mask before the external stuck-bus isolator |
+| `EVIDENCE_MASK_INT_N_TP` | `evidence_mask.INT_N` | `abstract:TP_EVIDENCE_MASK_INT_N` | test point only; no safety claim depends on expander interrupt behavior |
+| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | direct strap fixes 7-bit address 0x38 |
+| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | direct strap fixes 7-bit address 0x38 |
+| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | direct strap fixes 7-bit address 0x38 |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_mask.P0` | individually readable active-low evidence |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_mask.P1` | individually readable active-low evidence |
+| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_mask.P2` | individually readable active-low evidence |
+| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `evidence_mask.P3` | individually readable active-low evidence |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `evidence_mask.P4` | individually readable active-low evidence |
+| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_mask.P5` | individually readable active-low evidence |
+| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_mask.P6` | individually readable active-low evidence |
+| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_mask.P7` | individually readable active-low evidence |
 | `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_or_0.K1` | diode-isolated hardware aggregate |
 | `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_or_0.K2` | diode-isolated hardware aggregate |
 | `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_or_1.K1` | diode-isolated hardware aggregate |
@@ -3825,14 +3971,30 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_or_2.K2` | diode-isolated hardware aggregate |
 | `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_or_3.K1` | diode-isolated hardware aggregate |
 | `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_or_3.K2` | diode-isolated hardware aggregate |
-| `RP_ANY_TX_N` | `evidence_or_0.A_COMMON` | `evidence_or_1.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
-| `RP_ANY_TX_N` | `evidence_or_1.A_COMMON` | `evidence_or_2.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
-| `RP_ANY_TX_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low aggregate without merging source lines |
-| `ANY_TX_LED_A` | `abstract:AON_SAFE_3V3-via-2k2` | `any_tx_led.A` | red physical indicator current is sunk by the asserting comparator through one Schottky diode |
-| `EVIDENCE_MASK_INT_N_TP` | `evidence_mask.INT_N` | `abstract:TP_EVIDENCE_MASK_INT_N` | test point only; no safety claim depends on expander interrupt behavior |
-| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | fixed 7-bit address 0x38 |
-| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | fixed 7-bit address 0x38 |
-| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | fixed 7-bit address 0x38 |
+| `ANY_TX_AON_N` | `evidence_or_0.A_COMMON` | `evidence_or_1.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
+| `ANY_TX_AON_N` | `evidence_or_1.A_COMMON` | `evidence_or_2.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
+| `ANY_TX_AON_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_aon_pullup.END_1` | exact logic pull-up keeps the aggregate deasserted independently of LED leakage |
+| `ANY_TX_AON_N` | `any_tx_aon_pullup.END_2` | `evidence_or_3.A_COMMON` | 10-kOhm AON aggregate pull-up |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
+| `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
+| `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_3.A_COMMON` | asserted diode aggregate lights without firmware |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator.VCC` | domain isolator remains alive with the evidence plane |
+| `SAFETY_GROUND` | `evidence_main_isolator.GND` | `abstract:safety-ground` | domain-isolator return stays local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator_bypass.END_1` | exact 100-nF local triple-buffer bypass |
+| `SAFETY_GROUND` | `evidence_main_isolator_bypass.END_2` | `abstract:safety-ground` | domain-isolator bypass returns locally |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_main_isolator.1A` | C5 evidence remains in the AON domain before isolation |
+| `C5_RF_TX_EVIDENCE_N` | `evidence_main_isolator.1Y` | `c5.GPIO23` | passive-drain transfer preserves active-low polarity without positive AON injection |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_evidence_main_pullup.END_1` | pull-up exists only while C5 is powered |
+| `C5_RF_TX_EVIDENCE_N` | `c5_evidence_main_pullup.END_2` | `c5.GPIO23` | 10-kOhm main-domain C5 evidence pull-up |
+| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_main_isolator.2A` | IR evidence remains in the AON domain before isolation |
+| `IR_TX_EVIDENCE_N` | `evidence_main_isolator.2Y` | `c5.GPIO24` | passive-drain transfer preserves active-low polarity without positive AON injection |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_evidence_main_pullup.END_1` | pull-up exists only while C5 is powered |
+| `IR_TX_EVIDENCE_N` | `ir_evidence_main_pullup.END_2` | `c5.GPIO24` | 10-kOhm main-domain IR evidence pull-up |
+| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `evidence_main_isolator.3A` | hardware aggregate remains AON-side before isolation |
+| `RP_ANY_TX_N` | `evidence_main_isolator.3Y` | `rp.GPIO22` | passive-drain transfer preserves active-low aggregate polarity without AON back-power |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_any_tx_main_pullup.END_1` | pull-up exists only while RP is powered |
+| `RP_ANY_TX_N` | `rp_any_tx_main_pullup.END_2` | `rp.GPIO22` | 10-kOhm main-domain RP ANY-TX pull-up |
 
 ### Programming, recovery and diagnostics
 
@@ -4266,6 +4428,24 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `det_voice` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_voice` lifecycle: `production_active_orderable`.
 - `det_ir` uses `VEMD1060X01` as `verified_exact_ir_actual_optical_evidence_sensor`, not an accepted production choice.
+- `evidence_main_isolator` uses `SN74LVC3G07DCUR` as `verified_exact_aon_to_main_open_drain_isolator`, not an accepted production choice.
+- `evidence_main_isolator` lifecycle: `active_orderable`.
+- `s3_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `s3_evidence_hysteresis` lifecycle: `active_orderable`.
+- `c5_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `c5_evidence_hysteresis` lifecycle: `active_orderable`.
+- `nrf0_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `nrf0_evidence_hysteresis` lifecycle: `active_orderable`.
+- `nrf1_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `nrf1_evidence_hysteresis` lifecycle: `active_orderable`.
+- `nrf2_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `nrf2_evidence_hysteresis` lifecycle: `active_orderable`.
+- `cc_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `cc_evidence_hysteresis` lifecycle: `active_orderable`.
+- `voice_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `voice_evidence_hysteresis` lifecycle: `active_orderable`.
+- `ir_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
+- `ir_evidence_hysteresis` lifecycle: `active_orderable`.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. Conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence HIL and the mechanics-selected standard-SMA MPN remain blocking before schematic/BOM freeze

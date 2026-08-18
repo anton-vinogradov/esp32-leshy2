@@ -16,14 +16,14 @@ calibration или accessory item.
 
 ## Current measured coverage
 
-- 816 current placements;
-- 187 used exact-device/MPN lines;
-- 813 base-product placements;
+- 858 current placements;
+- 188 used exact-device/MPN lines;
+- 855 base-product placements;
 - 2 separately supplied regional cell-kit placements;
 - 1 optional U214 accessory placement;
-- 153/187 used lines already carry dated orderability evidence;
-- 34/187 require current source verification;
-- 187/187 still require machine-readable quantity-100 cost and
+- 155/188 used lines already carry dated orderability evidence;
+- 33/188 require current source verification;
+- 188/188 still require machine-readable quantity-100 cost and
   alternate/no-substitution disposition.
 
 The generated review intentionally uses vertical `<details>` cards rather than
@@ -34,16 +34,19 @@ future factory RFQ.
 
 1. ~~Repair prerequisite MAX17320 electrical residues exposed by
    consolidation.~~ **Проведено ревью** by `PWR-0022/DEC-0100/REV-0005BF`.
-2. Convert the five remaining connector/cable/calibration/antenna gap families into exact first-target or
-   received-item gates without guessing unavailable contacts.
-3. Recheck the 34 used lines with no dated orderable source; replace a part
+2. ~~Instantiate eight actual-TX threshold/hysteresis networks and repair the
+   AON-to-main observation boundary.~~ **Проведено ревью** by
+   `SAFE-0003/DEC-0101/REV-0005BG`.
+3. Convert the four remaining connector/cable/antenna gap families into exact
+   first-target or received-item gates without guessing unavailable contacts.
+4. Recheck the 33 used lines with no dated orderable source; replace a part
    automatically only when function, performance, safety, reliability,
    serviceability and assembly remain equivalent.
-4. Attach one substitution class to every used line: qualified exact alternate,
+5. Attach one substitution class to every used line: qualified exact alternate,
    parametric passive policy, or explicit no-drop-in-substitute/requalification.
-5. Record comparable USD qty-100 component snapshots and keep PCB, PCBA,
+6. Record comparable USD qty-100 component snapshots and keep PCB, PCBA,
    enclosure, fixture, battery logistics and antenna-kit variants separate.
-6. Run the consolidated self-review and only then mark I8 «Проведено ревью».
+7. Run the consolidated self-review and only then mark I8 «Проведено ревью».
 
 No incomplete line is assigned a zero price. No broad family name is an AVL.
 No substitute may change a pin, rail, RF path, STOP behavior or product

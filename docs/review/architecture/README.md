@@ -230,8 +230,10 @@ passive-drain reset sinks remove push-pull contention. I7 has **«Проведе
 `FND-0109/BOM-0008` then generate the first complete I8 coverage view.
 `PWR-0022/DEC-0100/REV-0005BF` repair and re-review the exposed MAX17320/MSPM0
 support residue without changing the accepted 2S product topology. The current
-map has 816 placements / 187 used MPN lines plus five explicit SMA, cable, M5,
-threshold and antenna-kit gap families. I8 inventory coverage is reviewed;
+map has 858 placements / 188 used MPN lines plus four explicit SMA, cable, M5
+and antenna-kit gap families. `FND-0110/SAFE-0003/DEC-0101/REV-0005BG`
+subsequently instantiate every actual-TX threshold network and repair the
+AON-to-main evidence boundary. I8 inventory coverage is reviewed;
 orderability, cost and alternate qualification remain active.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
@@ -265,6 +267,10 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
   records the accepted exact fan-out, pulls, fault matrix, eight evidence
   channels and test points. `FND-0071` paper mismatch is closed; I3/I6/HIL
   measured proof remains explicit;
+- [`SAFE-0003`](SAFE-0003-exact-actual-tx-threshold-and-isolation.md)
+  instantiates all eight comparator threshold/hysteresis networks, completes
+  comparator/source-mask support and isolates three AON evidence signals from
+  main-domain inputs; paper electrical scope reviewed, calibration/HIL open;
 - [`PWR-0002`](PWR-0002-i3-power-prerequisite-audit.md) re-derives the `I3`
   loads/scenarios and rejects the old source as a target;
 - [`PWR-0003`](PWR-0003-charge-power-path-options.md) compares the complete

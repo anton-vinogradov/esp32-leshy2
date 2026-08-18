@@ -10,7 +10,10 @@
 > remain accepted. Exact nRF/CC/voice RF implementations are superseded by
 > `DEC-0091`, `DEC-0093` and `DEC-0094`: those five paths now use separate
 > `AD8314ACPZ-RL7` bodies and exact samples/finite enable hold. S3/C5 retain
-> separate `LTC5532ES6#TRMPBF` paths.
+> separate `LTC5532ES6#TRMPBF` paths. `DEC-0101` additionally supersedes the
+> direct AON-to-main evidence connection with non-inverting open-drain
+> isolation and instantiates the eight threshold/hysteresis networks; signal
+> meaning and GPIO ownership do not change.
 
 ## Решение
 
@@ -29,9 +32,10 @@
    `VEMD1060X01`; drive state/current нельзя выдавать за optical output.
 6. Два `TLV1824PWR` формируют восемь active-low hardware states. Один
    `TCA9534APWR` на local RP I²C0 даёт source mask без нового GPIO.
-7. Четыре `BAT54ALT1G` hardware-OR states в direct `RP.GPIO22/RP_ANY_TX_N` и
-   красный `LTST-C190KRKT`. Этот aggregate не зависит от MCU/I²C. Orange
-   `LTST-C190KFKT` показывает latched STOP.
+7. Четыре `BAT54ALT1G` hardware-OR states в AON aggregate, красный
+   `LTST-C190KRKT` и non-inverting isolated `RP.GPIO22/RP_ANY_TX_N`.
+   Aggregate не зависит от MCU/I²C. Orange `LTST-C190KFKT` показывает
+   latched STOP.
 8. U214 или иной accessory без собственного qualified actual-TX evidence
    показывает `unknown/unavailable`; proof-mandatory mode остаётся
    disabled/fixture-only.

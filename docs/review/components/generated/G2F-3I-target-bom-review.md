@@ -8,13 +8,13 @@
 
 ## Что уже посчитано
 
-- **816** machine-instantiated physical placements collapse to **187** used exact-device/MPN lines.
-- Current orderability evidence exists for **153/187** used lines; **34** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **0/187** lines.
-- Machine-readable alternate/no-substitution evidence exists for **0/187** lines.
+- **858** machine-instantiated physical placements collapse to **188** used exact-device/MPN lines.
+- Current orderability evidence exists for **155/188** used lines; **33** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **0/188** lines.
+- Machine-readable alternate/no-substitution evidence exists for **0/188** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 813 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 855 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -37,12 +37,6 @@ The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused c
 - Scope: `base_product`.
 - Role: rear Cap-Bus receptacle and native HY2.0-4P Unit receptacle.
 - Blocking evidence: manufacturer order codes are not published; received U214/cable mate and retention coupon are required.
-
-### `actual_tx_threshold_networks` — 8 item(s)
-
-- Scope: `base_product`.
-- Role: separate divider and hysteresis population for eight actual-TX comparators.
-- Blocking evidence: first values and exact resistor placements must be machine-instantiated; production values remain measured calibration outputs.
 
 ### `external_antenna_kit` — 12 item(s)
 
@@ -341,16 +335,6 @@ This is deliberately rendered as vertical cards so the document remains usable o
 - Lifecycle claim awaiting I8 recheck: `active`
 - Qualification: `verified_candidate`
 - Placements: `sd_host_buffer`
-
-</details>
-
-<details><summary><code>TLV1824PWR</code> — qty 2</summary>
-
-- Device id: `ti_tlv1824_pwr`
-- Scope: `base_product`
-- Lifecycle claim awaiting I8 recheck: `active`
-- Qualification: `verified_candidate`
-- Placements: `evidence_cmp_a`, `evidence_cmp_b`
 
 </details>
 

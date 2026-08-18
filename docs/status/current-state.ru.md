@@ -282,7 +282,9 @@ native USB GPIO13/14 и S3 default UART0 GPIO43/44 независимыми. M5 
 сбрасывает S3 `CHIP_PU`, C5 `CHIP_PU` и RP2354B `RUN`; hardware gates покрывают
 3×nRF CE, nRF/CC/voice/accessory rails, IR carrier и voice PTT. Два LTC5532,
 пять AD8314 и optical VEMD1060X01 идут в два TLV1824, local-I²C TCA9534A source
-mask и direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate. Machine source и все
+mask и BAT54ALT1G/red-LED AON aggregate. AON-powered `SN74LVC3G07DCUR`
+переносит aggregate на `RP.GPIO22` и два direct C5 mirrors через
+passive drains с отдельными main-domain pull-ups. Machine source и все
 living diagrams обновлены. U214 без accessory evidence остаётся
 `unknown/unavailable`; BAT15 coupon — cost-down HIL.
 
@@ -490,6 +492,9 @@ inventory coverage проведён, а sourcing/lifecycle/cost/alternate work �
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` обнаруживают, исправляют и повторно
 проверяют MAX17320/MSPM0 support, который оставался prose/abstract; принятая
 2S topology не меняется.
+`FND-0110/SAFE-0003/DEC-0101/REV-0005BG` затем инстанцируют все восемь
+actual-TX threshold/hysteresis networks и исправляют AON-to-main evidence
+boundary без изменения GPIO или active-low runtime semantics.
 `FND-0105/EXP-0001/DEC-0098/REV-0005BD` закрывают независимые power/signal
 границы U214 и native Unit. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
 закрывают оставшуюся service/recovery схему: два board-off-isolated data-only
@@ -500,13 +505,13 @@ SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates
 и integrated mockup заблокированы до завершения I8/I9.
 
 `FND-0109/BOM-0008` теперь генерируют consolidated narrow-screen review и CSV:
-816 current placements сворачиваются в 187 used lines, у 153 есть датированное
-orderability evidence, у 34 его нет; ни одна строка пока не имеет
+858 current placements сворачиваются в 188 used lines, у 155 есть датированное
+orderability evidence, у 33 его нет; ни одна строка пока не имеет
 machine-readable comparable cost или alternate/no-substitution disposition.
 Тот же аудит отдельно учитывает 9 SMA bodies, 5 RF cable assemblies, 2 M5
-connector bodies, 8 actual-TX threshold networks и 12-item antenna-kit variant
-вместо выдачи этих абстракций за нулевую стоимость. Бывший MAX17320 gap теперь
-представлен 25 exact placements.
+connector bodies и 12-item antenna-kit variant вместо выдачи этих абстракций
+за нулевую стоимость. Бывшие MAX17320 и threshold gaps теперь представлены
+exact physical placements.
 
 `FND-0072/IMP-0051` выявили, что target README снова начали пересказывать
 инженерную chronology. Владелец принял `DEC-0060`; `REV-0005N` провёл ревью

@@ -8,6 +8,14 @@
 - Prerequisite review: [`SAFE-0001`](SAFE-0001-aon-stop-and-tx-evidence-options.md)
 - Finding: [`FND-0071`](../findings/FND-0071-hard-stop-and-tx-evidence-coverage.md)
 
+> **Exact-support amendment:** `SAFE-0003/DEC-0101/REV-0005BG` supersede the
+> former direct AON-to-C5/RP electrical connection. The accepted eight-channel
+> truth table and active-low firmware meaning are unchanged, but
+> `EV_N1_C5`, `EV_N7_IR` and the diode aggregate now cross through an
+> AON-powered `SN74LVC3G07DCUR` with separate `3V3_MAIN` pull-ups. The same
+> amendment instantiates every threshold, hysteresis, output pull-up and local
+> bypass that this I2 boundary previously left for I6.
+
 ## Граница артефакта
 
 Этот документ закрывает бумажный `I2`: exact first-target active devices,
@@ -144,9 +152,14 @@ before `TCA4307`: `P0…P7 = EV_N[0…7]`. Its `INT_N` is a test point only. Sou
 attribution may fail with I²C, but the physical aggregate cannot.
 
 Four exact `BAT54ALT1G` dual-common-anode arrays isolate pairs `0/1`, `2/3`,
-`4/5`, `6/7`. Their common anodes join `RP_ANY_TX_N`, pulled up by `10 kΩ`.
-The same node sinks current from `AON → 2.2 kΩ → LTST-C190KRKT`, so any asserted
-comparator lights the red indicator and pulls RP `GPIO22` low without firmware.
+`4/5`, `6/7`. Their common anodes join `ANY_TX_AON_N`, pulled up independently
+by `10 kΩ`. The same AON node sinks current from
+`AON → 2.2 kΩ → LTST-C190KRKT`, so any asserted comparator lights the red
+indicator without firmware. One channel of AON-powered `SN74LVC3G07DCUR`
+transfers the active-low state to `RP_ANY_TX_N`; its passive drain and a
+separate 10-kΩ `3V3_MAIN` pull-up drive RP `GPIO22` without back-powering the
+main domain. The other two channels apply the same boundary to C5 RF and IR
+mirrors. Exact networks and contacts are in [`SAFE-0003`](SAFE-0003-exact-actual-tx-threshold-and-isolation.md).
 The selected onsemi array replaces initially screened `BAT54A,215`: the latter
 had zero DigiKey/Mouser stock in the dated check, while `BAT54ALT1G` was active
 and stocked by both distributors.

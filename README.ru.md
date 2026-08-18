@@ -824,14 +824,56 @@ flowchart TD
   DCC["AD8314ACPZ-RL7 #CC<br/>CC1101 actual-TX RF power detector"]
   DVOICE["AD8314ACPZ-RL7 #voice<br/>SA518 VHF/UHF actual-TX RF power detector"]
   DIR["VEMD1060X01<br/>IR optical-evidence photodiode"]
-  CMPA["TLV1824PWR #1<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
-  CMPB["TLV1824PWR #2<br/>nRF2/CC/voice/IR evidence thresholds"]
+  CMPA["TLV1824PWR #1<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
+  CMPABP["C1005X7R1H104K050BB #CMP-A<br/>first evidence-comparator local bypass capacitor"]
+  CMPB["TLV1824PWR #2<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  CMPBBP["C1005X7R1H104K050BB #CMP-B<br/>second evidence-comparator local bypass capacitor"]
+  S3EVT["RC0402FR-07100KL #S3-EV<br/>100-kOhm first-population threshold upper resistor"]
+  S3EVB["RC0402FR-0710KL #S3-EV<br/>10-kOhm first-population threshold lower resistor"]
+  S3EVH["RC0402FR-071ML #S3-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  S3EVPU["RC0402FR-0710KL #S3-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  C5EVT["RC0402FR-07100KL #C5-EV<br/>100-kOhm first-population threshold upper resistor"]
+  C5EVB["RC0402FR-0710KL #C5-EV<br/>10-kOhm first-population threshold lower resistor"]
+  C5EVH["RC0402FR-071ML #C5-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  C5EVPU["RC0402FR-0710KL #C5-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  N0EVT["RC0402FR-07100KL #nRF0-EV<br/>100-kOhm first-population threshold upper resistor"]
+  N0EVB["RC0402FR-0710KL #nRF0-EV<br/>10-kOhm first-population threshold lower resistor"]
+  N0EVH["RC0402FR-071ML #nRF0-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  N0EVPU["RC0402FR-0710KL #nRF0-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  N1EVT["RC0402FR-07100KL #nRF1-EV<br/>100-kOhm first-population threshold upper resistor"]
+  N1EVB["RC0402FR-0710KL #nRF1-EV<br/>10-kOhm first-population threshold lower resistor"]
+  N1EVH["RC0402FR-071ML #nRF1-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  N1EVPU["RC0402FR-0710KL #nRF1-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  N2EVT["RC0402FR-07100KL #nRF2-EV<br/>100-kOhm first-population threshold upper resistor"]
+  N2EVB["RC0402FR-0710KL #nRF2-EV<br/>10-kOhm first-population threshold lower resistor"]
+  N2EVH["RC0402FR-071ML #nRF2-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  N2EVPU["RC0402FR-0710KL #nRF2-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  CCEVT["RC0402FR-07100KL #CC-EV<br/>100-kOhm first-population threshold upper resistor"]
+  CCEVB["RC0402FR-0710KL #CC-EV<br/>10-kOhm first-population threshold lower resistor"]
+  CCEVH["RC0402FR-071ML #CC-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  CCEVPU["RC0402FR-0710KL #CC-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  VOEVT["RC0402FR-07100KL #VOICE-EV<br/>100-kOhm first-population threshold upper resistor"]
+  VOEVB["RC0402FR-0710KL #VOICE-EV<br/>10-kOhm first-population threshold lower resistor"]
+  VOEVH["RC0402FR-071ML #VOICE-EV<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  VOEVPU["RC0402FR-0710KL #VOICE-EV<br/>10-kOhm AON comparator-output pull-up resistor"]
+  IREVT2["RC0402FR-07100KL #IR-EV-TH<br/>100-kOhm first-population threshold upper resistor"]
+  IREVB2["RC0402FR-0712KL #IR-EV-TH<br/>12-kOhm first-population threshold lower resistor"]
+  IREVH["RC0402FR-071ML #IR-EV-TH<br/>1-MOhm evidence-hysteresis feedback resistor"]
+  IREVPU["RC0402FR-0710KL #IR-EV-TH<br/>10-kOhm AON comparator-output pull-up resistor"]
   EVMASK["TCA9534APWR<br/>eight-bit evidence source mask on local RP I²C0"]
+  EVMASKBP["C1005X7R1H104K050BB #EV-MASK<br/>evidence-mask local bypass capacitor"]
   OR0["BAT54ALT1G #0<br/>evidence diode-OR pair 0/1"]
   OR1["BAT54ALT1G #1<br/>evidence diode-OR pair 2/3"]
   OR2["BAT54ALT1G #2<br/>evidence diode-OR pair 4/5"]
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
+  ANYPU["RC0402FR-0710KL #ANY-TX-AON<br/>10-kOhm AON ANY-TX logic pull-up resistor"]
+  ANYLEDR["RC0402FR-072K2L #ANY-TX<br/>2.2-kOhm physical indicator current limit"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
+  EVISO["SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator"]
+  EVISOBP["C1005X7R1H104K050BB #EV-ISO<br/>evidence-domain-isolator local bypass capacitor"]
+  C5EVMPU["RC0402FR-0710KL #C5-EV-MAIN<br/>10-kOhm main-domain C5-evidence pull-up resistor"]
+  IREVMPU["RC0402FR-0710KL #IR-EV-MAIN<br/>10-kOhm main-domain IR-evidence pull-up resistor"]
+  RPEVMPU["RC0402FR-0710KL #RP-EV-MAIN<br/>10-kOhm main-domain RP ANY-TX pull-up resistor"]
   %% Layout-only invisible spine: these links are not electrical connections.
   USBC ~~~ PORTPROT ~~~ PORTDPR ~~~ PORTDMR ~~~ PORTVBIAS ~~~ PORTVPWR ~~~ PORTFLTPU ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
   PPHVC1 ~~~ PPHVC2 ~~~ PPHVC3 ~~~ PVBUSCAP ~~~ PCC1CAP ~~~ PCC2CAP ~~~ PEECAP ~~~ PEEWPPU
@@ -885,8 +927,11 @@ flowchart TD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ RSTBUFBP ~~~ RSTGPU ~~~ RSTQA ~~~ RSTQB ~~~ S3RPU ~~~ C5RPU ~~~ RPRPU ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
-  DN2 ~~~ DCC ~~~ VOICEESD ~~~ VOICETAP ~~~ VOICEMATCH ~~~ VOICEDF ~~~ VOICEDBP ~~~ VOICEEVD ~~~ VOICEEVC ~~~ VOICEEVR ~~~ VOICESMA ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
-  CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
+  DN2 ~~~ DCC ~~~ VOICEESD ~~~ VOICETAP ~~~ VOICEMATCH ~~~ VOICEDF ~~~ VOICEDBP ~~~ VOICEEVD ~~~ VOICEEVC ~~~ VOICEEVR ~~~ VOICESMA ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPABP ~~~ CMPB ~~~ CMPBBP
+  CMPBBP ~~~ S3EVT ~~~ S3EVB ~~~ S3EVH ~~~ S3EVPU ~~~ C5EVT ~~~ C5EVB ~~~ C5EVH ~~~ C5EVPU ~~~ N0EVT ~~~ N0EVB ~~~ N0EVH ~~~ N0EVPU
+  N0EVPU ~~~ N1EVT ~~~ N1EVB ~~~ N1EVH ~~~ N1EVPU ~~~ N2EVT ~~~ N2EVB ~~~ N2EVH ~~~ N2EVPU ~~~ CCEVT ~~~ CCEVB ~~~ CCEVH ~~~ CCEVPU
+  CCEVPU ~~~ VOEVT ~~~ VOEVB ~~~ VOEVH ~~~ VOEVPU ~~~ IREVT2 ~~~ IREVB2 ~~~ IREVH ~~~ IREVPU ~~~ EVMASK ~~~ EVMASKBP ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3
+  OR3 ~~~ ANYPU ~~~ ANYLEDR ~~~ ANYLED ~~~ EVISO ~~~ EVISOBP ~~~ C5EVMPU ~~~ IREVMPU ~~~ RPEVMPU
   USBC -->|"сырой VBUS к VBUS + VBUS_IN"| PDCTRL
   USBC -->|"шунтирующая защита VBUS"| VBUSPROT
   USBC <-->|"CC1/CC2 + D+/D-"| PORTPROT
@@ -1374,18 +1419,52 @@ flowchart TD
   IREVC --> IREVAMP
   IREFBR --> IREVAMP
   IREFBC --> IREVAMP
+  CMPABP --> CMPA
+  CMPBBP --> CMPB
+  S3EVT --> S3EVB --> CMPA
+  S3EVH --> CMPA
+  S3EVPU --> CMPA
+  C5EVT --> C5EVB --> CMPA
+  C5EVH --> CMPA
+  C5EVPU --> CMPA
+  N0EVT --> N0EVB --> CMPA
+  N0EVH --> CMPA
+  N0EVPU --> CMPA
+  N1EVT --> N1EVB --> CMPA
+  N1EVH --> CMPA
+  N1EVPU --> CMPA
+  N2EVT --> N2EVB --> CMPB
+  N2EVH --> CMPB
+  N2EVPU --> CMPB
+  CCEVT --> CCEVB --> CMPB
+  CCEVH --> CMPB
+  CCEVPU --> CMPB
+  VOEVT --> VOEVB --> CMPB
+  VOEVH --> CMPB
+  VOEVPU --> CMPB
+  IREVT2 --> IREVB2 --> CMPB
+  IREVH --> CMPB
+  IREVPU --> CMPB
   CMPA --> EVMASK
   CMPB --> EVMASK
+  EVMASKBP --> EVMASK
   CMPA --> OR0
   CMPA --> OR1
   CMPB --> OR2
   CMPB --> OR3
-  OR0 --> ANYLED
-  OR1 --> ANYLED
-  OR2 --> ANYLED
-  OR3 --> ANYLED
+  OR0 --> ANYPU
+  OR1 --> ANYPU
+  OR2 --> ANYPU
+  OR3 --> ANYPU
+  ANYLEDR --> ANYLED --> ANYPU
   EVMASK <-->|"local I²C0 source mask"| RP
-  ANYLED -->|"GPIO22 RP_ANY_TX_N"| RP
+  CMPA -->|"C5 RF evidence"| EVISO
+  CMPB -->|"IR evidence"| EVISO
+  ANYPU -->|"AON aggregate"| EVISO
+  EVISOBP --> EVISO
+  EVISO --> C5EVMPU -->|"GPIO23 active-low"| C5
+  EVISO --> IREVMPU -->|"GPIO24 active-low"| C5
+  EVISO --> RPEVMPU -->|"GPIO22 active-low"| RP
 ```
 
 <details>
@@ -1489,6 +1568,10 @@ flowchart TD
 - Семь отдельных RF detectors и один оптический IR detector формируют восемь
   source-specific состояний и diode-isolated красный физический индикатор
   `ANY TX`. Аксессуар без собственного qualified evidence остаётся `Unknown`.
+- Каждый onboard evidence-канал имеет собственные first-population threshold,
+  hysteresis и open-drain pull-up. Тройная open-drain граница не позволяет
+  постоянно запитанному evidence-домену подпитывать выключенные C5 или RP;
+  обязательная измеренная калибровка каждого тракта остаётся TX-gate.
 - Команда передачи, ток тракта, сообщение самого радио и независимое
   фактическое evidence отображаются как разные состояния. Неизвестное не
   превращается в успешное или безопасное.

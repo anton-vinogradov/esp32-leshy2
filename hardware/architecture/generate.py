@@ -388,7 +388,6 @@ def validate_sources(
                 "external_sma_bodies",
                 "rf_cable_assemblies",
                 "m5_connector_bodies",
-                "actual_tx_threshold_networks",
                 "external_antenna_kit",
             }
             if required_gap_ids - missing_part_ids:
@@ -1380,6 +1379,10 @@ def render_principled_pinout(
             instance in {"nrf0", "nrf1", "nrf2"}
             or instance.startswith(("nrf0_", "nrf1_", "nrf2_", "nrf_evidence_", "nrf_power_input_", "nrf_power_on_"))
         )
+        and not any(
+            token in instance
+            for token in ("_evidence_threshold_", "_evidence_hysteresis", "_evidence_output_pullup", "_evidence_main_pullup")
+        )
     )
     nrf_roles = {
         "nrf0": "nRF24-compatible full-function radio 0",
@@ -1420,7 +1423,12 @@ def render_principled_pinout(
     cc_support_instance_names = tuple(
         instance
         for instance in candidate["instances"]
-        if instance.startswith("cc_") and instance != "cc_power_switch"
+        if instance.startswith("cc_")
+        and instance != "cc_power_switch"
+        and not any(
+            token in instance
+            for token in ("_evidence_threshold_", "_evidence_hysteresis", "_evidence_output_pullup", "_evidence_main_pullup")
+        )
     )
     cc_roles = {
         "cc_host_buffer": "SCLK/SI/CSN switched-rail Ioff buffer",
@@ -1499,7 +1507,13 @@ def render_principled_pinout(
     }
 
     ir_instance_names = tuple(
-        instance for instance in candidate["instances"] if instance.startswith("ir_")
+        instance
+        for instance in candidate["instances"]
+        if instance.startswith("ir_")
+        and not any(
+            token in instance
+            for token in ("_evidence_threshold_", "_evidence_hysteresis", "_evidence_output_pullup", "_evidence_main_pullup")
+        )
     )
     ir_roles = {
         "ir_power_switch": "independent reset-off IR-receiver load switch",
@@ -1557,6 +1571,68 @@ def render_principled_pinout(
         "c5_detector_output_cap": "C5 detector output-load capacitor",
         "c5_detector_bypass": "C5 detector local bypass capacitor",
     }
+
+    evidence_support_instance_names = (
+        "evidence_cmp_a", "evidence_cmp_a_bypass",
+        "evidence_cmp_b", "evidence_cmp_b_bypass",
+        "s3_evidence_threshold_top", "s3_evidence_threshold_bottom",
+        "s3_evidence_hysteresis", "s3_evidence_output_pullup",
+        "c5_evidence_threshold_top", "c5_evidence_threshold_bottom",
+        "c5_evidence_hysteresis", "c5_evidence_output_pullup",
+        "nrf0_evidence_threshold_top", "nrf0_evidence_threshold_bottom",
+        "nrf0_evidence_hysteresis", "nrf0_evidence_output_pullup",
+        "nrf1_evidence_threshold_top", "nrf1_evidence_threshold_bottom",
+        "nrf1_evidence_hysteresis", "nrf1_evidence_output_pullup",
+        "nrf2_evidence_threshold_top", "nrf2_evidence_threshold_bottom",
+        "nrf2_evidence_hysteresis", "nrf2_evidence_output_pullup",
+        "cc_evidence_threshold_top", "cc_evidence_threshold_bottom",
+        "cc_evidence_hysteresis", "cc_evidence_output_pullup",
+        "voice_evidence_threshold_top", "voice_evidence_threshold_bottom",
+        "voice_evidence_hysteresis", "voice_evidence_output_pullup",
+        "ir_evidence_threshold_top", "ir_evidence_threshold_bottom",
+        "ir_evidence_hysteresis", "ir_evidence_output_pullup",
+        "evidence_mask", "evidence_mask_bypass",
+        "evidence_or_0", "evidence_or_1", "evidence_or_2", "evidence_or_3",
+        "any_tx_aon_pullup", "any_tx_led_series", "any_tx_led",
+        "evidence_main_isolator", "evidence_main_isolator_bypass",
+        "c5_evidence_main_pullup", "ir_evidence_main_pullup",
+        "rp_any_tx_main_pullup",
+    )
+
+    def evidence_role(instance: str) -> str:
+        fixed = {
+            "evidence_cmp_a": "S3/C5/nRF0/nRF1 AON evidence comparator",
+            "evidence_cmp_a_bypass": "first evidence-comparator local bypass capacitor",
+            "evidence_cmp_b": "nRF2/CC/voice/IR AON evidence comparator",
+            "evidence_cmp_b_bypass": "second evidence-comparator local bypass capacitor",
+            "evidence_mask": "AON eight-bit evidence source mask on local RP I2C0",
+            "evidence_mask_bypass": "evidence-mask local bypass capacitor",
+            "evidence_or_0": "evidence diode-OR pair 0/1",
+            "evidence_or_1": "evidence diode-OR pair 2/3",
+            "evidence_or_2": "evidence diode-OR pair 4/5",
+            "evidence_or_3": "evidence diode-OR pair 6/7",
+            "any_tx_aon_pullup": "10-kOhm AON ANY-TX logic pull-up resistor",
+            "any_tx_led_series": "2.2-kOhm physical ANY-TX indicator current limit",
+            "any_tx_led": "red physical ANY-TX indicator",
+            "evidence_main_isolator": "triple AON-to-main open-drain evidence isolator",
+            "evidence_main_isolator_bypass": "evidence-domain-isolator local bypass capacitor",
+            "c5_evidence_main_pullup": "10-kOhm main-domain C5-evidence pull-up resistor",
+            "ir_evidence_main_pullup": "10-kOhm main-domain IR-evidence pull-up resistor",
+            "rp_any_tx_main_pullup": "10-kOhm main-domain RP ANY-TX pull-up resistor",
+        }
+        if instance in fixed:
+            return fixed[instance]
+        channel = instance.split("_evidence_", 1)[0].replace("nrf", "nRF")
+        if instance.endswith("threshold_top"):
+            return f"{channel} first-population 100-kOhm threshold upper resistor"
+        if instance.endswith("threshold_bottom"):
+            value = "12-kOhm" if channel == "ir" else "10-kOhm"
+            return f"{channel} first-population {value} threshold lower resistor"
+        if instance.endswith("hysteresis"):
+            return f"{channel} 1-MOhm evidence-hysteresis feedback resistor"
+        if instance.endswith("output_pullup"):
+            return f"{channel} 10-kOhm AON comparator-output pull-up resistor"
+        return instance.replace("_", " ") + " evidence component"
 
     expansion_instance_names = (
         "u214_i2c_iso", "u214_i2c_iso_bypass", "u214_i2c_host_sda_pullup",
@@ -2079,14 +2155,9 @@ def render_principled_pinout(
         node("det_cc", "CC1101 sub-GHz RF power detector"),
         node("det_voice", "SA518 VHF/UHF RF power detector"),
         node("det_ir", "IR optical-evidence photodiode"),
-        node("evidence_cmp_a", "S3/C5/nRF0/nRF1 evidence thresholds"),
-        node("evidence_cmp_b", "nRF2/CC/voice/IR evidence thresholds"),
-        node("evidence_mask", "eight-bit evidence source mask on local RP I2C0"),
-        node("evidence_or_0", "evidence diode-OR pair 0/1"),
-        node("evidence_or_1", "evidence diode-OR pair 2/3"),
-        node("evidence_or_2", "evidence diode-OR pair 4/5"),
-        node("evidence_or_3", "evidence diode-OR pair 6/7"),
-        node("any_tx_led", "red physical ANY-TX indicator"),
+        *[node(instance, evidence_role(instance)) for instance in evidence_support_instance_names],
+        "  %% TX-evidence layout-only invisible spine: every box above is one physical device.",
+        "  " + " ~~~ ".join(instance.upper() for instance in evidence_support_instance_names),
         "  end",
         "  %% Layout-only invisible spine: these links are not electrical connections.",
         "  PRODUCT_USB_CONNECTOR ~~~ PRODUCT_USB_PROTECTOR ~~~ PRODUCT_USB_DP_SERIES ~~~ PRODUCT_USB_DM_SERIES ~~~ PRODUCT_USB_VBIAS_CAP ~~~ PRODUCT_USB_VPWR_CAP ~~~ PRODUCT_USB_FAULT_PULLUP ~~~ PD_CC1_CAP ~~~ PD_CC2_CAP ~~~ PD_VBUS_TVS ~~~ PD_CONTROLLER ~~~ PD_CONFIG_EEPROM ~~~ NVDC_CHARGER",
@@ -2127,8 +2198,7 @@ def render_principled_pinout(
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
         "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
         "  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
-        "  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B",
-        "  EVIDENCE_CMP_B ~~~ EVIDENCE_MASK ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_LED",
+        "  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ " + " ~~~ ".join(instance.upper() for instance in evidence_support_instance_names),
         "  PRODUCT_USB_CONNECTOR -->|\"VBUS sink only\"| PD_CONTROLLER",
         "  PRODUCT_USB_CONNECTOR -->|\"VBUS shunt\"| PD_VBUS_TVS",
         "  PRODUCT_USB_CONNECTOR <-->|\"CC1/CC2 + D+/D-\"| PRODUCT_USB_PROTECTOR",
@@ -2563,18 +2633,52 @@ def render_principled_pinout(
         "  DET_CC --> EVIDENCE_CMP_B",
         "  DET_VOICE --> EVIDENCE_CMP_B",
         "  IRTX --> DET_IR --> EVIDENCE_CMP_B",
+        "  EVIDENCE_CMP_A_BYPASS --> EVIDENCE_CMP_A",
+        "  EVIDENCE_CMP_B_BYPASS --> EVIDENCE_CMP_B",
+        "  S3_EVIDENCE_THRESHOLD_TOP --> S3_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A",
+        "  S3_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A",
+        "  S3_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A",
+        "  C5_EVIDENCE_THRESHOLD_TOP --> C5_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A",
+        "  C5_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A",
+        "  C5_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A",
+        "  NRF0_EVIDENCE_THRESHOLD_TOP --> NRF0_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A",
+        "  NRF0_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A",
+        "  NRF0_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A",
+        "  NRF1_EVIDENCE_THRESHOLD_TOP --> NRF1_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A",
+        "  NRF1_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_A",
+        "  NRF1_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_A",
+        "  NRF2_EVIDENCE_THRESHOLD_TOP --> NRF2_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B",
+        "  NRF2_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B",
+        "  NRF2_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B",
+        "  CC_EVIDENCE_THRESHOLD_TOP --> CC_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B",
+        "  CC_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B",
+        "  CC_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B",
+        "  VOICE_EVIDENCE_THRESHOLD_TOP --> VOICE_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B",
+        "  VOICE_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B",
+        "  VOICE_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B",
+        "  IR_EVIDENCE_THRESHOLD_TOP --> IR_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B",
+        "  IR_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B",
+        "  IR_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B",
         "  EVIDENCE_CMP_A --> EVIDENCE_MASK",
         "  EVIDENCE_CMP_B --> EVIDENCE_MASK",
+        "  EVIDENCE_MASK_BYPASS --> EVIDENCE_MASK",
         "  EVIDENCE_CMP_A --> EVIDENCE_OR_0",
         "  EVIDENCE_CMP_A --> EVIDENCE_OR_1",
         "  EVIDENCE_CMP_B --> EVIDENCE_OR_2",
         "  EVIDENCE_CMP_B --> EVIDENCE_OR_3",
-        "  EVIDENCE_OR_0 --> ANY_TX_LED",
-        "  EVIDENCE_OR_1 --> ANY_TX_LED",
-        "  EVIDENCE_OR_2 --> ANY_TX_LED",
-        "  EVIDENCE_OR_3 --> ANY_TX_LED",
+        "  EVIDENCE_OR_0 --> ANY_TX_AON_PULLUP",
+        "  EVIDENCE_OR_1 --> ANY_TX_AON_PULLUP",
+        "  EVIDENCE_OR_2 --> ANY_TX_AON_PULLUP",
+        "  EVIDENCE_OR_3 --> ANY_TX_AON_PULLUP",
+        "  ANY_TX_LED_SERIES --> ANY_TX_LED --> ANY_TX_AON_PULLUP",
         "  EVIDENCE_MASK <-->|\"local I²C0 source mask\"| RP",
-        "  ANY_TX_LED -->|\"RP.GPIO22 RP_ANY_TX_N\"| RP",
+        "  EVIDENCE_CMP_A -->|\"C5 RF evidence\"| EVIDENCE_MAIN_ISOLATOR",
+        "  EVIDENCE_CMP_B -->|\"IR evidence\"| EVIDENCE_MAIN_ISOLATOR",
+        "  ANY_TX_AON_PULLUP -->|\"AON aggregate\"| EVIDENCE_MAIN_ISOLATOR",
+        "  EVIDENCE_MAIN_ISOLATOR_BYPASS --> EVIDENCE_MAIN_ISOLATOR",
+        "  EVIDENCE_MAIN_ISOLATOR --> C5_EVIDENCE_MAIN_PULLUP -->|\"GPIO23 active-low\"| C5",
+        "  EVIDENCE_MAIN_ISOLATOR --> IR_EVIDENCE_MAIN_PULLUP -->|\"GPIO24 active-low\"| C5",
+        "  EVIDENCE_MAIN_ISOLATOR --> RP_ANY_TX_MAIN_PULLUP -->|\"GPIO22 active-low\"| RP",
         "```",
         "",
         "## Сводный pin budget",

@@ -24,18 +24,18 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(816, sum(line["quantity"] for line in lines))
-        self.assertEqual(187, len(lines))
+        self.assertEqual(858, sum(line["quantity"] for line in lines))
+        self.assertEqual(188, len(lines))
         self.assertEqual(
-            34,
+            33,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            187,
+            188,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            187,
+            188,
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
 
@@ -46,13 +46,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(9, gap_quantities["external_sma_bodies"])
         self.assertEqual(5, gap_quantities["rf_cable_assemblies"])
         self.assertEqual(2, gap_quantities["m5_connector_bodies"])
-        self.assertEqual(8, gap_quantities["actual_tx_threshold_networks"])
+        self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
         self.assertEqual(12, gap_quantities["external_antenna_kit"])
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("816", rendered)
-        self.assertIn("187", rendered)
-        self.assertIn("153/187", rendered)
+        self.assertIn("858", rendered)
+        self.assertIn("188", rendered)
+        self.assertIn("155/188", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
 
@@ -1181,7 +1181,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         contract = candidate["safety_contract"]
 
         self.assertEqual("DEC-0061", contract["decision"])
-        self.assertEqual("paper_reviewed_i2", contract["status"])
+        self.assertEqual("paper_reviewed_i2_and_exact_i8_threshold_support", contract["status"])
         self.assertEqual(
             ["s3.EN", "c5.EN", "rp.RUN"],
             contract["reset_fanout"]["targets"],
@@ -1206,7 +1206,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.database["devices"]["ti_tca9534a_pwr"]
             ["i2c_7bit_address_by_a2a1a0"]["000"],
         )
-        self.assertIn("RP_ANY_TX_N", contract["evidence"]["aggregate"])
+        self.assertIn("ANY_TX_AON_N", contract["evidence"]["aggregate"])
+        self.assertEqual("DEC-0101", contract["evidence"]["electrical_decision"])
 
         required_instances = {
             "safe_supervisor": "ti_tps3808g33_dbvr",
@@ -1230,6 +1231,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "evidence_cmp_a": "ti_tlv1824_pwr",
             "evidence_cmp_b": "ti_tlv1824_pwr",
             "evidence_mask": "ti_tca9534a_pwr",
+            "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
         }
         for instance, device_id in required_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -1249,7 +1251,101 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TPS3808G33DBVR<br/>AON rail supervisor and power-on reset",
             "SN74LVC1G74DCUR<br/>asynchronous latched hard STOP",
             "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
-            "TCA9534APWR<br/>eight-bit evidence source mask on local RP I2C0",
+            "TCA9534APWR<br/>AON eight-bit evidence source mask on local RP I2C0",
+            "SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator",
+        ):
+            self.assertIn(label, rendered)
+
+    def test_exact_actual_tx_thresholds_and_domain_isolation_do_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        instances = candidate["instances"]
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+
+        channels = {
+            "s3": ("evidence_cmp_a", "IN1_P", "OUT1", "EV_THRESH_0_S3", "EV_N0_S3", "yageo_rc0402fr_0710kl"),
+            "c5": ("evidence_cmp_a", "IN2_P", "OUT2", "EV_THRESH_1_C5", "EV_N1_C5", "yageo_rc0402fr_0710kl"),
+            "nrf0": ("evidence_cmp_a", "IN3_P", "OUT3", "EV_THRESH_2_NRF0", "EV_N2_NRF0", "yageo_rc0402fr_0710kl"),
+            "nrf1": ("evidence_cmp_a", "IN4_P", "OUT4", "EV_THRESH_3_NRF1", "EV_N3_NRF1", "yageo_rc0402fr_0710kl"),
+            "nrf2": ("evidence_cmp_b", "IN1_P", "OUT1", "EV_THRESH_4_NRF2", "EV_N4_NRF2", "yageo_rc0402fr_0710kl"),
+            "cc": ("evidence_cmp_b", "IN2_P", "OUT2", "EV_THRESH_5_CC", "EV_N5_CC", "yageo_rc0402fr_0710kl"),
+            "voice": ("evidence_cmp_b", "IN3_P", "OUT3", "EV_THRESH_6_VOICE", "EV_N6_VOICE", "yageo_rc0402fr_0710kl"),
+            "ir": ("evidence_cmp_b", "IN4_P", "OUT4", "EV_THRESH_7_IR", "EV_N7_IR", "yageo_rc0402fr_0712kl"),
+        }
+        for channel, (comparator, input_p, output, threshold_net, output_net, bottom_device) in channels.items():
+            self.assertEqual("yageo_rc0402fr_07100kl", instances[f"{channel}_evidence_threshold_top"])
+            self.assertEqual(bottom_device, instances[f"{channel}_evidence_threshold_bottom"])
+            self.assertEqual("yageo_rc0402fr_071ml", instances[f"{channel}_evidence_hysteresis"])
+            self.assertEqual("yageo_rc0402fr_0710kl", instances[f"{channel}_evidence_output_pullup"])
+            self.assertIn(
+                (f"{channel}_evidence_threshold_top.END_2", f"{comparator}.{input_p}", threshold_net),
+                routes,
+            )
+            self.assertIn(
+                (f"{comparator}.{output}", f"{channel}_evidence_hysteresis.END_1", output_net),
+                routes,
+            )
+            self.assertIn(
+                (f"{channel}_evidence_output_pullup.END_2", f"{comparator}.{output}", output_net),
+                routes,
+            )
+
+        def trip_values(bottom_ohm):
+            top_ohm = 100_000.0
+            feedback_ohm = 1_000_000.0
+            pullup_ohm = 10_000.0
+            open_top = 1.0 / (1.0 / top_ohm + 1.0 / (feedback_ohm + pullup_ohm))
+            assert_threshold = 3.3 * bottom_ohm / (bottom_ohm + open_top)
+            low_bottom = 1.0 / (1.0 / bottom_ohm + 1.0 / feedback_ohm)
+            clear_threshold = 3.3 * low_bottom / (top_ohm + low_bottom)
+            return assert_threshold, clear_threshold
+
+        rf_assert, rf_clear = trip_values(10_000.0)
+        ir_assert, ir_clear = trip_values(12_000.0)
+        self.assertAlmostEqual(0.327, rf_assert, places=3)
+        self.assertAlmostEqual(0.297, rf_clear, places=3)
+        self.assertAlmostEqual(0.384, ir_assert, places=3)
+        self.assertAlmostEqual(0.350, ir_clear, places=3)
+
+        for instance in ("evidence_cmp_a_bypass", "evidence_cmp_b_bypass", "evidence_mask_bypass", "evidence_main_isolator_bypass"):
+            self.assertEqual("tdk_c1005x7r1h104k050bb", instances[instance])
+        self.assertEqual("ti_sn74lvc3g07_dcur", instances["evidence_main_isolator"])
+        isolator = self.database["devices"]["ti_sn74lvc3g07_dcur"]
+        self.assertEqual("1", isolator["contacts"]["1A"]["physical"])
+        self.assertEqual("7", isolator["contacts"]["1Y"]["physical"])
+        self.assertIn("Ioff", isolator["electrical_contract"]["partial_power_down"])
+
+        for route in (
+            ("evidence_cmp_a.OUT2", "evidence_main_isolator.1A", "EV_N1_C5"),
+            ("evidence_main_isolator.1Y", "c5.GPIO23", "C5_RF_TX_EVIDENCE_N"),
+            ("evidence_cmp_b.OUT4", "evidence_main_isolator.2A", "EV_N7_IR"),
+            ("evidence_main_isolator.2Y", "c5.GPIO24", "IR_TX_EVIDENCE_N"),
+            ("evidence_or_3.A_COMMON", "evidence_main_isolator.3A", "ANY_TX_AON_N"),
+            ("evidence_main_isolator.3Y", "rp.GPIO22", "RP_ANY_TX_N"),
+            ("rp.GPIO28", "evidence_mask.SDA", "U214_I2C_SDA_IN"),
+            ("rp.GPIO29", "evidence_mask.SCL", "U214_I2C_SCL_IN"),
+        ):
+            self.assertIn(route, routes)
+        self.assertFalse(
+            any(
+                route["from"] in {"evidence_cmp_a.OUT2", "evidence_cmp_b.OUT4"}
+                and route["to"] in {"c5.GPIO23", "c5.GPIO24"}
+                for route in candidate["fixed_routes"]
+            )
+        )
+        self.assertNotIn(
+            "actual_tx_threshold_networks",
+            {row["id"] for row in candidate["bom_audit"]["required_uninstantiated_parts"]},
+        )
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for label in (
+            "Yageo RC0402FR-07100KL<br/>s3 first-population 100-kOhm threshold upper resistor",
+            "Yageo RC0402FR-0712KL<br/>ir first-population 12-kOhm threshold lower resistor",
+            "SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm main-domain RP ANY-TX pull-up resistor",
         ):
             self.assertIn(label, rendered)
 

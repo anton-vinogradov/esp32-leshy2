@@ -2004,6 +2004,41 @@
         "VCC": {"physical": "5", "role": "power"}
       }
     },
+    "ti_sn74lvc3g07_dcur": {
+      "mpn": "SN74LVC3G07DCUR",
+      "kind": "vssop8_triple_open_drain_noninverting_buffer",
+      "qualification": "verified_exact_aon_to_main_open_drain_isolator",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.1, 2.0, 0.9],
+      "source": {
+        "document": "SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet",
+        "version": "Rev. R",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "SN74LVC3G07DCUR authorized-distributor exact order-code page; 14,781 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G07DCUR/484588",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "function": "three non-inverting buffers with open-drain outputs",
+        "supply_range_v": [1.65, 5.5],
+        "partial_power_down": "Ioff supports live inputs and outputs while VCC is 0 V",
+        "usage": "AON-powered C5-RF, IR and ANY-TX evidence isolation into separately pulled-up 3V3_MAIN inputs"
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "signal"},
+        "3Y": {"physical": "2", "role": "signal"},
+        "2A": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "2Y": {"physical": "5", "role": "signal"},
+        "3A": {"physical": "6", "role": "signal"},
+        "1Y": {"physical": "7", "role": "signal"},
+        "VCC": {"physical": "8", "role": "power"}
+      }
+    },
     "ck_y78b23214fp": {
       "mpn": "C&K Y78B23214FP",
       "commercial_alias": "KMR232G ULC LFS",
@@ -2476,6 +2511,18 @@
         "url": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "TLV1824PWR authorized-distributor exact order-code page; 1,847 shown in stock",
+        "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/TLV1824PWR?qs=i8QVZAFTkqRBQ9Qmuw0tYA%3D%3D",
+        "checked": "2026-08-19"
+      },
+      "electrical_contract": {
+        "supply_range_v": [2.4, 40.0],
+        "output": "open drain with power-on reset to a known high-impedance state",
+        "selected_supply": "AON_SAFE_3V3",
+        "local_bypass": "one exact 100-nF low-ESR capacitor at each package",
+        "hysteresis_topology": "detector at IN_N; R1 from AON to IN_P, R2 from IN_P to safety ground, R3 from OUT to IN_P and a separate AON output pull-up; pull-up is at least ten times lower than R3"
+      },
       "programmable": false,
       "contacts": {
         "OUT2": {"physical": "1", "role": "signal"}, "OUT1": {"physical": "2", "role": "signal"},
@@ -2503,6 +2550,13 @@
         "document": "TCA9534APWR Mouser exact order code; 8,054 shown in stock",
         "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/TCA9534APWR?qs=asCBFxFfL1RkU8XbvZBOXg%3D%3D",
         "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "supply_range_v": [1.65, 5.5],
+        "power_on_default": "all P0 through P7 are inputs",
+        "evidence_mask_supply": "AON_SAFE_3V3 with one exact 100-nF local bypass",
+        "evidence_mask_address": "A2/A1/A0 tied directly to safety ground selects 0x38",
+        "evidence_mask_bus": "RP local I2C0; the existing controller-side 2.2-kOhm pull-ups are on 3V3_MAIN, which cannot remain present without AON_SAFE_3V3"
       },
       "programmable": false,
       "i2c_7bit_address_by_a2a1a0": {

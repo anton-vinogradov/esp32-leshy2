@@ -282,7 +282,9 @@ The owner accepted `IMP-0050/A`. `DEC-0061/SAFE-0002/REV-0005O` give `I2`
 `CHIP_PU`, C5 `CHIP_PU` and RP2354B `RUN`; hardware gates cover 3×nRF CE,
 nRF/CC/voice/accessory rails, IR carrier and voice PTT. Two LTC5532, five
 AD8314 and optical VEMD1060X01 feed two TLV1824 comparators, a local-I²C
-TCA9534A source mask and a direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate.
+TCA9534A source mask and a BAT54ALT1G/red-LED AON aggregate. An AON-powered
+`SN74LVC3G07DCUR` transfers that aggregate to `RP.GPIO22` and the two direct C5
+mirrors through passive drains with separate main-domain pull-ups.
 The S3/C5 LTC5532 inputs later close through exact dual-band directional
 couplers and support networks; the three nRF inputs use separate wideband
 coupler/AD8314 chains, while CC and SA518 use separate final-line AD8314
@@ -488,6 +490,9 @@ coverage is reviewed and its sourcing/lifecycle/cost/alternate work is active.
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` exposed, repaired and re-reviewed the
 MAX17320/MSPM0 support that had remained prose/abstract; this did not change
 the accepted 2S topology.
+`FND-0110/SAFE-0003/DEC-0101/REV-0005BG` then instantiate all eight actual-TX
+threshold/hysteresis networks and repair the AON-to-main evidence boundary
+without changing GPIO or active-low runtime semantics.
 `FND-0105/EXP-0001/DEC-0098/REV-0005BD` close independent U214/native-Unit
 power and signal isolation. `FND-0106…0108/SVC-0002/DEC-0099/REV-0005BE`
 close the remaining service/recovery circuit: two board-off-isolated data-only
@@ -498,12 +503,12 @@ fixture and erased-image HIL remain named reopen gates; KiCad and the integrated
 mockup remain blocked through I8/I9.
 
 `FND-0109/BOM-0008` now generate a consolidated narrow-screen review and CSV:
-816 current placements collapse to 187 used lines, 153 carry dated orderability
-evidence and 34 do not; no line yet has machine-readable comparable cost or
+858 current placements collapse to 188 used lines, 155 carry dated orderability
+evidence and 33 do not; no line yet has machine-readable comparable cost or
 alternate/no-substitution disposition. The same audit separately records nine
-SMA bodies, five RF cable assemblies, two M5 connector bodies, eight actual-TX
-threshold networks and the 12-item antenna-kit variant instead of treating them
-as zero-cost abstractions. The former MAX17320 gap is now 25 exact placements.
+SMA bodies, five RF cable assemblies, two M5 connector bodies and the 12-item
+antenna-kit variant instead of treating them as zero-cost abstractions. The
+former MAX17320 and threshold gaps are now exact physical placements.
 
 `FND-0072/IMP-0051` found that target README files had again started narrating
 engineering chronology. The owner accepted `DEC-0060`, and `REV-0005N` reviews
