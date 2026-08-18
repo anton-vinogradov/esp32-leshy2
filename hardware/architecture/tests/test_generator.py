@@ -31,8 +31,20 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            187,
+            172,
             sum(line["cost_evidence"] == "missing" for line in lines),
+        )
+        self.assertEqual(
+            15,
+            sum(line["cost_evidence"] == "present" for line in lines),
+        )
+        self.assertEqual(
+            22,
+            sum(
+                line["quantity"]
+                for line in lines
+                if line["cost_evidence"] == "present"
+            ),
         )
         self.assertEqual(
             0,
@@ -79,6 +91,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("187", rendered)
         self.assertIn("186/187", rendered)
         self.assertIn("187/187", rendered)
+        self.assertIn("15/187", rendered)
+        self.assertIn("22/857", rendered)
+        self.assertIn("USD 57.2502", rendered)
         self.assertIn("SUB-RF", rendered)
         self.assertIn("SUB-MECH-OPTICAL", rendered)
         self.assertIn("assembly-internal evidence node", rendered)
@@ -90,6 +105,27 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("HMX035CTFT-001", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
+
+    def test_rejects_incomparable_or_undocumented_cost_evidence(self):
+        cases = (
+            ({"currency": "EUR"}, "cost currency must be USD"),
+            ({"target_quantity": 99}, "cost target quantity must be 100"),
+            ({"unit_price_usd": 0}, "cost unit price must be positive"),
+            (
+                {"source": {"document": "test", "url": "http://example.com", "checked": "2026-08-19"}},
+                "cost source must use HTTPS",
+            ),
+            (
+                {"source": {"document": "test", "url": "https://example.com", "checked": "19-08-2026"}},
+                "cost source checked date must be YYYY-MM-DD",
+            ),
+        )
+        for update, expected in cases:
+            with self.subTest(expected=expected):
+                database = copy.deepcopy(self.database)
+                database["devices"]["esp32_s3_wroom_1u_n16r2"]["cost"].update(update)
+                errors = GENERATOR.validate_sources(database, self.candidates)
+                self.assertIn(expected, "\n".join(errors))
 
     def test_rejects_invalid_bom_non_purchase_boundary(self):
         cases = (

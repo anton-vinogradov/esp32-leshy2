@@ -30,7 +30,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
-| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy and substitution-policy coverage reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011` and `BOM-0012/DEC-0104/REV-0005BK`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions and four explicit uninstantiated physical families; standalone `HMX035CTFT-001`, every cost and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
+| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy, substitution-policy coverage and first cost batch reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011`, `BOM-0012/DEC-0104/REV-0005BK` and `BOM-0013/DEC-0105/REV-0005BL`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions, 15 costed lines / 22 placements and four explicit uninstantiated physical families; standalone `HMX035CTFT-001`, 172 prices and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
@@ -230,5 +230,9 @@ raw-panel RFQ and mark the display no-drop-in; raw sourcing remains unresolved.
 `BOM-0012/DEC-0104/REV-0005BK` then give every purchase line exactly one
 validated no-silent-substitution class and complete policy coverage at 187/187;
 this does not pre-qualify unnamed second-source MPNs.
+`BOM-0013/DEC-0105/REV-0005BL` next review the strict USD quantity-100 evidence
+contract and first 15/187 prices / 22 placements. The USD 57.2502 subtotal is
+partial base-product material only; 172 price records and full COGS remain
+open.
 I3 paper scope is closed again without claiming layout, exact-lot, thermal or
 fault-injection HIL.

@@ -137,6 +137,45 @@ def validate_sources(
                     errors.append(f"{context}: invalid allowed window {window!r}")
         if "not_recommended" in device.get("lifecycle", "") and not device.get("lifecycle_source"):
             errors.append(f"device {device_id}: constrained lifecycle lacks lifecycle_source")
+        cost = device.get("cost")
+        if cost is not None:
+            for required in (
+                "currency",
+                "target_quantity",
+                "unit_price_usd",
+                "price_break",
+                "source",
+            ):
+                if required not in cost:
+                    errors.append(f"device {device_id}: cost missing {required}")
+            if cost.get("currency") != "USD":
+                errors.append(f"device {device_id}: cost currency must be USD")
+            if cost.get("target_quantity") != 100:
+                errors.append(f"device {device_id}: cost target quantity must be 100")
+            unit_price = cost.get("unit_price_usd")
+            if (
+                isinstance(unit_price, bool)
+                or not isinstance(unit_price, (int, float))
+                or unit_price <= 0
+            ):
+                errors.append(f"device {device_id}: cost unit price must be positive")
+            source = cost.get("source")
+            if not isinstance(source, dict):
+                errors.append(f"device {device_id}: cost source must be an object")
+            else:
+                for required in ("document", "url", "checked"):
+                    if not source.get(required):
+                        errors.append(
+                            f"device {device_id}: cost source missing {required}"
+                        )
+                if source.get("url") and not source["url"].startswith("https://"):
+                    errors.append(f"device {device_id}: cost source must use HTTPS")
+                if source.get("checked") and not re.fullmatch(
+                    r"\d{4}-\d{2}-\d{2}", source["checked"]
+                ):
+                    errors.append(
+                        f"device {device_id}: cost source checked date must be YYYY-MM-DD"
+                    )
 
     candidate_ids: set[str] = set()
     for candidate in candidates:
@@ -1201,6 +1240,7 @@ def _target_bom_lines(
     result: list[dict[str, Any]] = []
     for device_id, placements in sorted(grouped.items()):
         device = devices[device_id]
+        cost = device.get("cost")
         scopes = {
             audit.get("scope_overrides", {}).get(instance, audit["default_scope"])
             for instance in placements
@@ -1215,7 +1255,16 @@ def _target_bom_lines(
                 "lifecycle": device["lifecycle"],
                 "qualification": device["qualification"],
                 "orderable_evidence": "present" if device.get("orderable_source") else "missing",
-                "cost_evidence": "present" if device.get("cost") else "missing",
+                "cost_evidence": "present" if cost else "missing",
+                "cost_currency": cost["currency"] if cost else "",
+                "cost_target_quantity": cost["target_quantity"] if cost else "",
+                "unit_price_usd": cost["unit_price_usd"] if cost else "",
+                "line_material_usd": round(cost["unit_price_usd"] * len(placements), 4)
+                if cost
+                else "",
+                "cost_price_break": cost["price_break"] if cost else "",
+                "cost_source": cost["source"]["url"] if cost else "",
+                "cost_checked": cost["source"]["checked"] if cost else "",
                 "alternate_evidence": "present" if device_id in substitution_class_by_device else "missing",
                 "alternate_policy_class": substitution_class_by_device.get(device_id, "missing"),
                 "placements": sorted(placements),
@@ -1245,8 +1294,17 @@ def render_target_bom_review(
         for row in audit.get("substitution_policy", {}).get("classes", [])
     }
     scope_counts: dict[str, int] = {}
+    covered_cost_scope_subtotals: dict[str, float] = {}
+    costed_placements = 0
     for row in bom:
         scope_counts[row["scope"]] = scope_counts.get(row["scope"], 0) + row["quantity"]
+        if row["cost_evidence"] == "present":
+            costed_placements += row["quantity"]
+            covered_cost_scope_subtotals[row["scope"]] = round(
+                covered_cost_scope_subtotals.get(row["scope"], 0.0)
+                + row["line_material_usd"],
+                4,
+            )
 
     lines = [
         "# G2F-3I — generated target BOM coverage review",
@@ -1263,6 +1321,12 @@ def render_target_bom_review(
         f"- After excluding those non-purchase nodes, **{purchase_instance_count}** supplied/costed placements collapse to **{len(bom)}** used exact-device/MPN lines.",
         f"- Current orderability evidence exists for **{orderable}/{len(bom)}** used lines; **{len(bom) - orderable}** need a current source check.",
         f"- Machine-readable quantity-100 cost evidence exists for **{costed}/{len(bom)}** lines.",
+        f"- Those priced lines cover **{costed_placements}/{purchase_instance_count}** supplied placements; their partial subtotals are "
+        + "; ".join(
+            f"`{scope}` — USD {subtotal:.4f}"
+            for scope, subtotal in sorted(covered_cost_scope_subtotals.items())
+        )
+        + ". These are coverage diagnostics, not product COGS.",
         f"- Machine-readable alternate/no-substitution evidence exists for **{alternates}/{len(bom)}** lines.",
         f"- Cost basis: {audit['cost_basis']}.",
         "",
@@ -1298,6 +1362,24 @@ def render_target_bom_review(
             for row in class_lines
         )
         lines += ["", "</details>", ""]
+    lines += [
+        "## Quantity-100 cost evidence",
+        "",
+        "Only exact-MPN published USD prices that apply to a 100-piece purchase are listed. Taxes, tariffs, freight, PCB, assembly, test, enclosure, yield and tooling are excluded. The sum below is intentionally partial while any purchase line remains unpriced.",
+        "",
+    ]
+    for row in (row for row in bom if row["cost_evidence"] == "present"):
+        lines += [
+            f"<details><summary><code>{row['mpn']}</code> — {row['quantity']} × USD {row['unit_price_usd']:.4f} = USD {row['line_material_usd']:.4f}</summary>",
+            "",
+            f"- Device id: `{row['device_id']}`.",
+            f"- Scope: `{row['scope']}`.",
+            f"- Comparable basis: {row['cost_price_break']}; target quantity `{row['cost_target_quantity']}`.",
+            f"- Checked: `{row['cost_checked']}`; [published source]({row['cost_source']}).",
+            "",
+            "</details>",
+            "",
+        ]
     lines += [
         "## Assembly-internal evidence nodes excluded from purchase BOM",
         "",
@@ -1384,6 +1466,13 @@ def render_target_bom_csv(
         "qualification",
         "orderable_evidence",
         "cost_evidence",
+        "cost_currency",
+        "cost_target_quantity",
+        "unit_price_usd",
+        "line_material_usd",
+        "cost_price_break",
+        "cost_source",
+        "cost_checked",
         "alternate_evidence",
         "alternate_policy_class",
         "placements",

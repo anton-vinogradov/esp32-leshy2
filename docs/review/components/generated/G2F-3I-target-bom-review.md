@@ -11,7 +11,8 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **0/187** lines.
+- Machine-readable quantity-100 cost evidence exists for **15/187** lines.
+- Those priced lines cover **22/857** supplied placements; their partial subtotals are `base_product` — USD 57.2502. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -327,6 +328,145 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `same_sky_sj1_3515_smt_tr` — `Same Sky SJ1-3515-SMT-TR`.
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
   - `xtar_18650_4000mah_protected` — `XTAR 18650 4000mAh`.
+
+</details>
+
+## Quantity-100 cost evidence
+
+Only exact-MPN published USD prices that apply to a 100-piece purchase are listed. Taxes, tariffs, freight, PCB, assembly, test, enclosure, yield and tooling are excluded. The sum below is intentionally partial while any purchase line remains unpriced.
+
+<details><summary><code>Analog Devices AD8314ACPZ-RL7</code> — 5 × USD 2.8570 = USD 14.2850</summary>
+
+- Device id: `adi_ad8314acpz_rl7`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/analog-devices-inc/AD8314ACPZ-RL7/671084).
+
+</details>
+
+<details><summary><code>LTC5532ES6#TRMPBF</code> — 2 × USD 3.8877 = USD 7.7754</summary>
+
+- Device id: `adi_ltc5532_es6_trmpbf`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/analog-devices-inc/LTC5532ES6-TRMPBF/1115993).
+
+</details>
+
+<details><summary><code>Analog Devices MAX17320G20+T</code> — 1 × USD 4.0019 = USD 4.0019</summary>
+
+- Device id: `adi_max17320_g20_t`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX17320G20-T/16675120).
+
+</details>
+
+<details><summary><code>Alps Alpine EC11E18244AU</code> — 1 × USD 3.2880 = USD 3.2880</summary>
+
+- Device id: `alps_ec11e18244au`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey tray quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/alps-alpine/EC11E18244AU/19529126).
+
+</details>
+
+<details><summary><code>CC1101RGPR</code> — 1 × USD 3.0358 = USD 3.0358</summary>
+
+- Device id: `cc1101rgpr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/CC1101RGPR/3947323).
+
+</details>
+
+<details><summary><code>ESP32-C5-WROOM-1U-N8R8</code> — 1 × USD 4.3700 = USD 4.3700</summary>
+
+- Device id: `esp32_c5_wroom_1u_n8r8`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8?qs=4dK74SdgGtxee18dMuslog%3D%3D).
+
+</details>
+
+<details><summary><code>ESP32-S3-WROOM-1U-N16R2</code> — 1 × USD 4.7741 = USD 4.7741</summary>
+
+- Device id: `esp32_s3_wroom_1u_n16r2`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R2/16162650).
+
+</details>
+
+<details><summary><code>GCT USB4105-GF-A</code> — 2 × USD 0.5745 = USD 1.1490</summary>
+
+- Device id: `gct_usb4105_gf_a`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510).
+
+</details>
+
+<details><summary><code>Hirose DM3AT-SF-PEJM5</code> — 1 × USD 2.5656 = USD 2.5656</summary>
+
+- Device id: `hirose_dm3at_sf_pejm5`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/DM3AT-SF-PEJM5/2533565).
+
+</details>
+
+<details><summary><code>Hirose FH12-40S-0.5SH(55)</code> — 1 × USD 2.2948 = USD 2.2948</summary>
+
+- Device id: `hirose_fh12_40s_0_5sh_55`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328).
+
+</details>
+
+<details><summary><code>Hirose U.FL-R-SMT-1(10)</code> — 2 × USD 1.0655 = USD 2.1310</summary>
+
+- Device id: `hirose_ufl_r_smt_1_10`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570).
+
+</details>
+
+<details><summary><code>JAE DX07S016JA1R1500</code> — 1 × USD 1.2272 = USD 1.2272</summary>
+
+- Device id: `jae_dx07s016ja1r1500`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/jae-electronics/DX07S016JA1R1500/11585731).
+
+</details>
+
+<details><summary><code>SC1512-A4</code> — 1 × USD 1.0000 = USD 1.0000</summary>
+
+- Device id: `rp2354b_a4`.
+- Scope: `base_product`.
+- Comparable basis: Mouser published 1+ cut-tape unit price applied to an order of 100 pieces; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D).
+
+</details>
+
+<details><summary><code>Texas Instruments BQ25798RQMR</code> — 1 × USD 3.5140 = USD 3.5140</summary>
+
+- Device id: `ti_bq25798_rqmr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/BQ25798RQMR/15666783).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS25751DREFR</code> — 1 × USD 1.8384 = USD 1.8384</summary>
+
+- Device id: `ti_tps25751d_refr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS25751DREFR/23028775).
 
 </details>
 

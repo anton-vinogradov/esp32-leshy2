@@ -26,7 +26,9 @@ calibration или accessory item.
 - 186/187 used lines already carry dated orderability evidence;
 - 1/187 requires current source verification: standalone
   `HMX035CTFT-001` orderability remains unproved;
-- 187/187 still require machine-readable quantity-100 cost;
+- 15/187 now have machine-readable quantity-100 cost by
+  `BOM-0013/DEC-0105/REV-0005BL`; 172/187 remain unpriced and the USD 57.2502
+  covered subtotal is not complete COGS;
 - 187/187 now have alternate/no-substitution disposition by
   `BOM-0012/DEC-0104/REV-0005BK`; this is policy coverage, not 187 qualified
   second-source MPNs.
@@ -59,6 +61,8 @@ future factory RFQ.
    to their class gates.
 6. Record comparable USD qty-100 component snapshots and keep PCB, PCBA,
    enclosure, fixture, battery logistics and antenna-kit variants separate.
+   **First 15/187 lines reviewed** by `BOM-0013/DEC-0105/REV-0005BL`; continue
+   through the remaining 172 lines without assigning zero to missing evidence.
 7. Run the consolidated self-review and only then mark I8 «Проведено ревью».
 
 No incomplete line is assigned a zero price. No broad family name is an AVL.

@@ -33,5 +33,8 @@ tradeoff decision.
 - alternate/no-substitution policy coverage becomes `187/187`;
 - no component, quantity, owner, pin, feature or diagram changes;
 - no untested alternate becomes approved;
-- sourcing remains `186/187`, cost remains `0/187`, and any proposed specific
-  alternate still needs its class requalification before AVL acceptance.
+- at this decision's acceptance sourcing was `186/187` and cost was `0/187`;
+  later `BOM-0013/DEC-0105/REV-0005BL` advances cost to 15/187 without changing
+  this substitution policy;
+- any proposed specific alternate still needs its class requalification before
+  AVL acceptance.

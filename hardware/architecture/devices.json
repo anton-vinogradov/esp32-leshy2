@@ -22,6 +22,17 @@
         "url": "https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R2/16162650",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 4.7741,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R2/16162650",
+          "checked": "2026-08-19"
+        }
+      },
       "rf_connector": {
         "manufacturer_description": "first-generation external antenna connector",
         "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
@@ -101,6 +112,17 @@
         "document": "ESP32-C5-WROOM-1U-N8R8 exact authorized-distributor page; 1,838 shown in stock",
         "url": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8?qs=4dK74SdgGtxee18dMuslog%3D%3D",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 4.37,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {
+          "document": "Mouser exact-MPN published price table",
+          "url": "https://www.mouser.com/en/ProductDetail/Espressif-Systems/ESP32-C5-WROOM-1U-N8R8?qs=4dK74SdgGtxee18dMuslog%3D%3D",
+          "checked": "2026-08-19"
+        }
       },
       "rf_connector": {
         "manufacturer_description": "ANT1 first-generation external antenna connector",
@@ -211,6 +233,17 @@
         "url": "https://www.trustedparts.com/en/part/raspberry-pi/SC1512-A4",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.0,
+        "price_break": "Mouser published 1+ cut-tape unit price applied to an order of 100 pieces",
+        "source": {
+          "document": "Mouser exact-MPN published price table; no lower intermediate tier is advertised",
+          "url": "https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": true,
       "controller_capabilities": ["USB_DEVICE", "SWD", "PIO0_SM0_RF_SPI", "PIO0_SM1_RF_SPI", "PIO0_SM2_RF_SPI", "PIO0_SM3_RF_SPI", "PIO1_SM0_EXT_SPI", "PIO1_SM1_IPC_UART", "UART0", "UART1", "I2C0_EXT", "SPI1_IPC", "GPIO", "GPIO_IRQ"],
       "controller_notes": {
@@ -301,6 +334,17 @@
         "document": "FH12-40S-0.5SH(55) active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110388",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 2.2948,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -1449,6 +1493,17 @@
         "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/DM3AT-SF-PEJM5/2533566",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 2.5656,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/DM3AT-SF-PEJM5/2533565",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "DAT2": {"physical": "1", "role": "signal"},
@@ -1656,6 +1711,17 @@
         "document": "CC1101RGPR active authorized-distributor exact order-code page",
         "url": "https://www.digikey.jp/ja/products/detail/texas-instruments/CC1101RGPR/3947323",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 3.0358,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/CC1101RGPR/3947323",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -2269,6 +2335,17 @@
         "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/EC11E18244AU?qs=YMSFtX0bdJDrS4vspzwcPg%3D%3D",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 3.288,
+        "price_break": "DigiKey tray quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/alps-alpine/EC11E18244AU/19529126",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "A": {"physical": "A", "role": "quadrature"},
@@ -2553,6 +2630,17 @@
         "url": "https://www.digikey.de/de/products/detail/analog-devices-inc/LTC5532ES6-TRMPBF/1115993",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 3.8877,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/analog-devices-inc/LTC5532ES6-TRMPBF/1115993",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "RFIN": {"physical": "1", "role": "rf"},
@@ -2613,6 +2701,17 @@
         "document": "U.FL-R-SMT-1(10) active authorized-distributor stock page; 271,862 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.0655,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
+          "checked": "2026-08-19"
+        }
       },
       "electrical_contract": {
         "impedance_ohm": 50,
@@ -2938,6 +3037,17 @@
         "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.2272,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/jae-electronics/DX07S016JA1R1500/11585731",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "A1_GND": {"physical": "A1", "role": "power"},
@@ -3018,6 +3128,17 @@
         "url": "https://www.ti.com/product/TPS25751/part-details/TPS25751DREFR",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.8384,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25751DREFR/23028775",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": true,
       "controller_capabilities": ["USB_PD_SINK", "I2C_TARGET", "I2C_CONTROLLER", "GPIO"],
       "service_required": ["I2Ct_SDA", "I2Ct_SCL", "I2Ct_IRQ"],
@@ -3074,6 +3195,17 @@
         "document": "BQ25798RQMR product/orderable page",
         "url": "https://www.ti.com/product/BQ25798/part-details/BQ25798RQMR",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 3.514,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/BQ25798RQMR/15666783",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -4139,6 +4271,17 @@
         "url": "https://www.mouser.com/en/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17320G20%2BT",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 4.0019,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/analog-devices-inc-maxim-integrated/MAX17320G20-T/16675120",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "service_required": ["ALRT", "SCL_OD", "SDA_DQ", "PFAIL"],
       "contacts": {
@@ -5162,6 +5305,17 @@
         "url": "https://www.digikey.com/en/products/detail/analog-devices-inc/AD8314ACPZ-RL7/671084",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 2.857,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/analog-devices-inc/AD8314ACPZ-RL7/671084",
+          "checked": "2026-08-19"
+        }
+      },
       "electrical_contract": {
         "frequency_response_mhz": [100, 2700],
         "typical_input_range_dbm": [-45, 0],
@@ -5257,6 +5411,17 @@
         "document": "USB4105-GF-A active authorized-distributor listing; more than 150,000 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.5745,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
