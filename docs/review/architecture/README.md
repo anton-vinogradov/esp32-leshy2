@@ -61,7 +61,9 @@ while M5 Unit UART moves to UART1 on the same pins. `DEC-0061/SAFE-0002/
 REV-0005O` now give `I2` **Проведено ревью**: exact AON latch/reset/gate
 devices cover S3+C5+RP and every external TX request, while seven RF detectors,
 optical IR evidence, local-I²C source mask and direct physical aggregate are
-machine-projected. `I3` power/rail/thermal closure is now active.
+machine-projected. `DEC-0082/PWR-0021/REV-0005AM` now give I3 paper electrical
+scope **«Проведено ревью» and make I4 the active paper block; named
+procurement and prototype HIL evidence remains open.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -107,6 +109,9 @@ control profile has ten physical resistor positions and no new unique MPN.
 single-fault gap with exact independent AON/main/voice post-buck cutoffs,
 protected-side PG, threshold/loss calculations and a reviewed fault matrix;
 no GPIO or function is lost.
+`FND-0086/PWR-0021/DEC-0082/REV-0005AM` consolidate every I3 paper obligation,
+heat source, fault and physical residue. I3 is paper-reviewed with all
+prototype/lot/I8 evidence still explicit; I4 is now the active paper block.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -189,6 +194,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0020`](PWR-0020-independent-post-buck-containment.md) separates all
   internal raw buck outputs from their loads with exact independent cutoffs,
   protected PG and reviewed threshold/loss/single-fault behavior;
+- [`PWR-0021`](PWR-0021-i3-consolidated-paper-closure.md) audits the complete
+  I3 dependency, heat/fault ledger and remaining evidence, allowing I4 paper
+  work without claiming prototype qualification;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

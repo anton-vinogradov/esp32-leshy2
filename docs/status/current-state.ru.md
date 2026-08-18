@@ -334,6 +334,14 @@ machine source; supervisor и runtime fault logic используют защи�
 при 1,25 А. Прибавка около USD 2,4 на плату не расходует GPIO и сохраняет все
 функции; trip energy, hot temperature, load step и destructive
 high-side-short HIL остаются открыты.
+`FND-0086/PWR-0021/DEC-0082/REV-0005AM` затем проводят сводный I3-аудит
+источников, тепла и отказов. Неразрешённых бумажных архитектурных
+решений, скрытых деталей, нагрузок или recovery owner не остаётся,
+поэтому бумажная электрическая часть I3 получает **«Проведено ревью»**,
+а I4 становится активным бумажным блоком. Документы на ячейки/
+держатель остаются procurement-gate I8; received-lot, source-transition,
+rail, destructive-fault и thermal evidence остаются явным prototype HIL.
+Этот переход не фиксирует BOM и не разрешает KiCad.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный
@@ -371,7 +379,9 @@ standard/product charge ceiling и максимальный envelope `18,7 × 69
 Exact assembly certification documents, received fit, droop distributions,
 effective-capacitance/load-step, thermal-stack, continuity/thermal,
 destructive-fault/hot-loss/layout и перечисленные
-startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
+startup/shutdown/brownout/multi-fault gates остаются обязательными
+физическими свидетельствами по `DEC-0082`; они больше не маскируются
+под незакрытый бумажный дизайн I3.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

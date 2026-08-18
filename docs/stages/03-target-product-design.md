@@ -98,6 +98,11 @@ resistor positions, about 3.0-V main release and no new unique MPN or GPIO.
 `FND-0085/PWR-0020/DEC-0081/REV-0005AL` then add exact independent post-buck
 containment to AON/main/voice, protected-side PG and a reviewed single-fault/
 paper-loss profile for about USD 2.4 per board without GPIO or function loss.
+`FND-0086/PWR-0021/DEC-0082/REV-0005AM` then consolidate the complete source,
+heat and fault ledger and give the I3 paper electrical scope **«Проведено
+ревью»**. Certification is an I8 procurement gate; exact-cell lot,
+source-transition, rail, destructive-fault and thermal evidence remain named
+prototype HIL. I4 paper work is now active without claiming those measurements.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку
@@ -105,7 +110,8 @@ PA24 без изменения бюджета `12/3/3`. `PWR-0017/FND-0082/DEC-0
 исправляют физические контакты TPUL, добавляют независимый аппаратный cooldown
 `>=350 мс` и две параллельные 20-Ом/2-Вт ветви нагрузки без нового GPIO или
 active device. Далее закрываются exact-cell droop thresholds, lot/hot-copper
-HIL, destructive post-buck fault injection и measured thermal consolidation.
+HIL, destructive post-buck fault injection и measured thermal consolidation
+как физические qualification gates, а не как бумажные prerequisites I4.
 
 ## Downstream boundary
 

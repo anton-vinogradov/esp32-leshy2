@@ -335,6 +335,13 @@ loss is about 61 mW typical on main at 2.5 A and 15 mW on voice at 1.25 A.
 The roughly USD 2.4/board increment uses no GPIO and preserves all functions;
 trip energy, hot temperature, load step and destructive high-side-short HIL
 remain open.
+`FND-0086/PWR-0021/DEC-0082/REV-0005AM` then perform the consolidated I3
+source/heat/fault audit. No unresolved paper architecture choice, hidden part,
+load or recovery owner remains, so the I3 paper electrical scope receives
+**«Проведено ревью»** and I4 becomes the active paper block. Cell/holder
+documents remain an I8 procurement gate; received-lot, source-transition,
+rail, destructive-fault and thermal evidence remain explicit prototype HIL.
+This maturity transition neither freezes the BOM nor authorizes KiCad.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative
@@ -370,8 +377,9 @@ pulse/cooldown lot and hot-copper HIL are now grounded by
 a 10-A discharge class, a 2-A standard/product charge ceiling and a maximum
 `18.7 × 69.7 mm` envelope. Exact assembly certification documents, received
 fit, droop distributions, effective-capacitance/load-step, thermal-stack,
-continuity/thermal, destructive-fault/hot-loss/layout and the
-listed startup/shutdown/brownout/multi-fault HIL gates remain active.
+continuity/thermal, destructive-fault/hot-loss/layout and the listed
+startup/shutdown/brownout/multi-fault gates remain mandatory physical evidence
+under `DEC-0082`; they no longer masquerade as unresolved I3 paper design.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

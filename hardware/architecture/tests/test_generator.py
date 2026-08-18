@@ -345,6 +345,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("DEC-0081", contract["internal_rail_protection_decision"])
         self.assertIn("TPS25961DRVR", contract["internal_rail_protection_profile"])
         self.assertIn("TPS25974LRPWR", contract["internal_rail_protection_profile"])
+        self.assertEqual("DEC-0082", contract["paper_closure_decision"])
+        self.assertIn("paper electrical scope reviewed", contract["paper_closure_status"])
+        self.assertTrue(all("HIL" in item or "procurement" in item for item in contract["remaining_i3"]))
         self.assertEqual(0.85, contract["source_power_reserve"]["paper_efficiency_factor"])
         self.assertEqual(25.5, contract["source_power_reserve"]["best_case_pdo_sys_w"]["15V_2A"])
 

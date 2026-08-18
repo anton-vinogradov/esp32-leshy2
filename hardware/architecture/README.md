@@ -70,6 +70,13 @@ pair energy and a 2-A charge ceiling. This is still a principle-level circuit
 contract: assembly certification, received fit, exact-cell droop thresholds,
 thermal-stack material and specimen HIL remain open.
 
+`DEC-0082/PWR-0021` now mark the complete I3 paper electrical input reviewed
+without promoting any physical result. The machine-readable
+`paper_closure_status` records that maturity, while every `remaining_i3`
+entry is explicitly classified as procurement/I8 or prototype/controlled
+HIL. I4 paper work may consume the exact rail and fault contracts; any measured
+functional or derating conflict reopens I3 before propagation.
+
 The inventory also contains verified reference boundaries. `DSP-0001` covers
 three display/touch devices and one microSD socket; `DSP-0005` additionally
 instantiates the exact disclosed `HMX035CTFT-001` assembly in `G2F-3I` and

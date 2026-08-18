@@ -25,8 +25,8 @@ Exact MPN availability повторно проверяется при выбор
 | `I0` | semantic owners, buses, controllers, exposed pads and budgets | wishlist, `DEM-0001`, `SRC-0002` | `G2F-3I/PIN-0003` reviewed working map; not atomic | all later changes regenerate one machine source without collision or hidden pin |
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
-| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **active; supervised 2S, exact manager/frontend/support, rail tree, converter passives, bounded diagnostics, source sequence and independent AON/main/voice post-buck containment reviewed** through `DEC-0081/PWR-0020`; mechanics, exact-cell thresholds and HIL open | close certification/specimen/threshold evidence, consolidate hot/thermal calculations and execute named HIL |
-| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | digital contacts largely exact; backlight/protection/UI endpoints open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
+| `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
+| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **active paper block**; digital contacts largely exact; backlight/protection/UI endpoints open | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | logical profiles reviewed; exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
@@ -43,7 +43,7 @@ Exact MPN availability повторно проверяется при выбор
 - Any change that removes a capability, service path or safety guarantee returns
   to the owner as an explicit proposal before it changes the machine map.
 
-## Current next gate
+## Completed I3 boundary and current next gate
 
 `I2` has **Проведено ревью** through `DEC-0061/SAFE-0002/REV-0005O`. The
 machine source now contains the three-domain AON latch/reset/gate tree, seven
@@ -51,8 +51,8 @@ RF detectors, optical IR evidence, eight-bit local-I²C source mask, direct
 hardware aggregate/indicators, default pulls, fault cases and test points.
 Exact RF taps/thresholds remain `I6/HIL`, not hidden paper uncertainty.
 
-`I3` is now active. It must start from this accepted AON load and all existing
-scenario/rail demands, then select the battery/charger/power-path topology,
+`I3` started from this accepted AON load and all existing scenario/rail
+demands, then selected the battery/charger/power-path topology,
 every quiet-state load switch, sequencing, monitoring, reverse-current policy
 and a calculated loss/thermal/fault budget before `I4` begins.
 
@@ -98,3 +98,11 @@ certification/specimen fit and exact-cell droop thresholds, pulse/cooldown lot
 and hot-copper HIL, destructive overvoltage/short containment,
 source-transition HIL and consolidation of the complete measured thermal
 budget.
+
+`FND-0086/PWR-0021/DEC-0082/REV-0005AM` audit that residue against the
+completion rule above. No generic paper design gap remains: certification is
+an I8 procurement gate and every other item is a named lot/prototype/
+controlled-destructive HIL with a pass and reopen condition. I3 therefore has
+**«Проведено ревью»** for paper electrical scope without promoting any
+measurement. I4 is the active dependent paper block; failed I3 HIL reopens I3
+before changing a rail, mode or target guarantee.
