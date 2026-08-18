@@ -7,6 +7,7 @@
 - Battery boundary: [`PWR-0007`](PWR-0007-max17320-2s-surrounding-circuit.md)
 - Decision: [`DEC-0068`](../decisions/DEC-0068-separate-fixed-downstream-rails.md)
 - eFuse fail-closed amendment: [`DEC-0069`](../decisions/DEC-0069-latch-off-external-efuse.md)
+- switched-PG amendment: [`DEC-0070`](../decisions/DEC-0070-enable-qualified-switched-rail-pg.md)
 - Propagation review: [`REV-0005Y`](../reviews/REV-0005Y-downstream-rail-tree-propagation.md)
 
 ## Scope
@@ -42,8 +43,10 @@ flowchart TD
   LM["Sunlord MWSA0503S-3R3MT<br/>3.3-uH main inductor"]
   V["Texas Instruments TPS564252DRLR<br/>fixed 4.0-V / 4-A voice buck"]
   LV["Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice inductor"]
+  QV["Diodes Incorporated MMBT3904-7-F<br/>voice EN-qualified PG fault transistor"]
   E["Texas Instruments TPS564252DRLR<br/>fixed 5.0-V / 4-A accessory buck"]
   LE["Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory inductor"]
+  QE["Diodes Incorporated MMBT3904-7-F<br/>accessory EN-qualified PG fault transistor"]
   F["Texas Instruments TPS259470LRPWR<br/>reverse-blocking/current-limited latch-off eFuse"]
   SN["Texas Instruments TPS22919DCKR<br/>nRF-group load switch"]
   SC["Texas Instruments TPS22919DCKR<br/>CC1101 load switch"]
@@ -54,7 +57,9 @@ flowchart TD
   SYS --> A --> LA --> AON["AON_SAFE_3V3"]
   SYS --> M --> LM --> MAIN["3V3_MAIN"]
   SYS --> V --> LV --> VOICE["VVOICE_4V"]
+  V -.->|"PG + EN"| QV --> FAULT["POWER_FAULT_N"]
   SYS --> E --> LE --> F --> EXT["5V_EXT_PROTECTED"]
+  E -.->|"PG + EN"| QE --> FAULT
   MAIN --> SN
   MAIN --> SC
   MAIN --> SS
@@ -62,8 +67,8 @@ flowchart TD
   MAIN --> SR
 ```
 
-Every converter, inductor, eFuse and load switch is one physical package. The
-two 3.3-uH inductors and five identical switches stay as separate boxes in the
+Every converter, inductor, qualifier transistor, eFuse and load switch is one
+physical package. The two 3.3-uH inductors, two identical PG qualifiers and five switches stay as separate boxes in the
 living vertical product diagram because they occupy independent physical
 branches.
 
@@ -136,6 +141,15 @@ Reset-low `ON` pulls and bus-side isolation must prove that an unpowered branch
 cannot be back-powered through SPI/I2C/I2S. Exact discharge time is measured
 with production capacitance; QOD is not treated as evidence without HIL.
 
+## Switched-rail PG qualification
+
+Voice and accessory `PG` are low in their normal disabled state, so they do
+not directly join the fault aggregate. `DEC-0070/PWR-0009` add two separate
+`MMBT3904-7-F` stages. Their base receives the matching safe EN through 68 kOhm,
+emitter receives PG and open collector joins `POWER_FAULT_N`; only
+`EN=1 && PG=0` asserts. This preserves converter-fault evidence without a GPIO
+or false quiet-state fault.
+
 ## External 5-V protection
 
 `TPS259470LRPWR` is the last series element before U214/Cap power. It has
@@ -168,9 +182,11 @@ not paralleled into the base rail in this profile.
    of the fault aggregate.
 4. `VOICE_DOMAIN_EN_SAFE` directly enables the fixed 4-V converter. SA518
    `PD` remains asserted until its `PG` is valid, while hardware PTT still
-   independently forces receive.
+   independently forces receive. Its qualified fault stays low only during the
+   bounded startup window or a real failure while EN remains high.
 5. `EXT_5V_EN_SAFE` enables both the 5-V converter and connector eFuse. Any
-   eFuse fault removes connector power independently of UI polling.
+   eFuse fault removes connector power independently of UI polling; the 5-V
+   converter PG uses its own identical enable qualifier.
 6. nRF and CC switches receive only STOP-dominant safe gates; SD, codec and
    receiver receive reset-off ordinary session controls.
 
@@ -189,12 +205,14 @@ Checked on 2026-08-18 because each selected item is now an exact MPN:
   `C2149796` availability;
 - `TPS259470LRPWR`: TI active; JLCPCB `C3662793` showed 6,218 units and
   DigiKey 11,374 at the variant decision; its listed volume price matched A;
+- `MMBT3904-7-F`: current Diodes exact order code; LCSC `C94514` showed at
+  least 18,060 units and two parts add about `$0.032` at 50-piece pricing;
 - `MWSA0503S-3R3MT` / `MWSA0503S-4R7MT`: current Sunlord series; JLCPCB
   `C408409` / `C408410`, with 15,224 of the 4.7-uH part visible;
 - `WPN201612H2R2MT`: Sunlord active; JLCPCB `C97025` showed 684 units.
 
 At visible 100-piece prices, three bucks, AON converter/inductor, three large
-inductors, five load switches and the eFuse total roughly **$3.4 per board**
+inductors, five load switches, two PG qualifiers and the eFuse total roughly **$3.43 per board**
 before passives, tax and assembly setup. Reusing one buck and one load-switch
 MPN reduces sourcing/setup cost without coupling the rails electrically.
 
@@ -204,16 +222,18 @@ Primary sources:
 - [TI TPS629203 datasheet](https://www.ti.com/lit/ds/symlink/tps629203.pdf)
 - [TI TPS22919 product page](https://www.ti.com/product/TPS22919)
 - [TI TPS25947 product page](https://www.ti.com/product/TPS25947)
+- [Diodes MMBT3904 product page](https://www.diodes.com/part/view/MMBT3904)
 - [Sunlord MWSA-S datasheet](https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf)
 - [Sunlord WPN datasheet](https://www.sunlordinc.com/uploads/files/20221122/WPN%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf)
 
 ## Review result
 
 The independent fixed topology, exact active packages, real contacts,
-first-target inductors, current/ripple screen, quiet-state branches, external
+first-target inductors, current/ripple screen, quiet-state branches, qualified
+switched-rail PG evidence, external
 reverse blocking and availability receive **«Проведено ревью»**.
 
 Still open before schematic/BOM freeze: exact feedback, input/output
-capacitance with DC-bias curves, EN/PG pulls, eFuse `ILM/ITIMER/dVdt/OVLO`,
+capacitance with DC-bias curves, exact EN/PG resistor MPNs, eFuse `ILM/ITIMER/dVdt/OVLO`,
 connector discharge, ground/copper/thermal geometry, source transitions and
 fault-injection HIL. No KiCad authorization is implied.

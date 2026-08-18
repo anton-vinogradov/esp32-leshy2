@@ -1555,6 +1555,30 @@
         "VOUT": {"physical": "6", "role": "power"}
       }
     },
+    "diodes_mmbt3904_7_f": {
+      "mpn": "Diodes Incorporated MMBT3904-7-F",
+      "kind": "40v_200ma_npn_switched_rail_pg_fault_qualifier",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.3, null],
+      "source": {
+        "document": "MMBT3904 40-V NPN small-signal transistor datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.diodes.com/datasheet/download/MMBT3904.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "MMBT3904-7-F LCSC C94514 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C94514.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "B": {"physical": "1", "role": "signal"},
+        "E": {"physical": "2", "role": "signal"},
+        "C": {"physical": "3", "role": "signal"}
+      }
+    },
     "ti_tps259470l_rpwr": {
       "mpn": "Texas Instruments TPS259470LRPWR",
       "kind": "5_5a_true_reverse_blocking_latchoff_adjustable_efuse",

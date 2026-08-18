@@ -65,8 +65,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor",
             "Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor",
+            "Diodes Incorporated MMBT3904-7-F<br/>voice-rail enable-qualified PG fault transistor",
             "Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter",
             "Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor",
+            "Diodes Incorporated MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor",
             "Texas Instruments TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse and current monitor",
             "Texas Instruments TPS22919DCKR<br/>three-radio nRF quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>CC1101 quiet-state load switch",
@@ -317,8 +319,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             "main_inductor": "sunlord_mwsa0503s_3r3mt",
             "voice_buck": "ti_tps564252_drlr",
             "voice_inductor": "sunlord_mwsa0503s_3r3mt",
+            "voice_pg_qualifier": "diodes_mmbt3904_7_f",
             "ext_buck": "ti_tps564252_drlr",
             "ext_inductor": "sunlord_mwsa0503s_4r7mt",
+            "ext_pg_qualifier": "diodes_mmbt3904_7_f",
             "ext_efuse": "ti_tps259470l_rpwr",
             "nrf_power_switch": "ti_tps22919_dckr",
             "cc_power_switch": "ti_tps22919_dckr",
@@ -342,6 +346,33 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("voice_inductor.END_2", "voice.VCC", "VVOICE_4V"), routes)
         self.assertIn(("ext_efuse.OUT", "u214.5V_IN", "5V_EXT_PROTECTED"), routes)
         self.assertIn(("nrf_power_switch.VOUT", "nrf2.VCC", "3V3_NRF_GROUP"), routes)
+
+        self.assertEqual("DEC-0070", contract["switched_pg_qualification_decision"])
+        self.assertIn("EN high plus PG low", contract["switched_pg_qualification"])
+        self.assertIn(
+            ("voice_buck.PG", "voice_pg_qualifier.E", "VOICE_4V_PG_N"),
+            routes,
+        )
+        self.assertIn(
+            ("voice_pg_qualifier.C", "abstract:power-current-thermal-fault", "VOICE_4V_FAULT_QUAL_N"),
+            routes,
+        )
+        self.assertIn(
+            ("ext_buck.PG", "ext_pg_qualifier.E", "EXT_5V_PG_N"),
+            routes,
+        )
+        self.assertIn(
+            ("ext_pg_qualifier.C", "abstract:power-current-thermal-fault", "EXT_5V_FAULT_QUAL_N"),
+            routes,
+        )
+        self.assertNotIn(
+            ("voice_buck.PG", "abstract:power-current-thermal-fault", "VOICE_4V_PG_N"),
+            routes,
+        )
+        self.assertNotIn(
+            ("ext_buck.PG", "abstract:power-current-thermal-fault", "EXT_5V_PG_N"),
+            routes,
+        )
 
     def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

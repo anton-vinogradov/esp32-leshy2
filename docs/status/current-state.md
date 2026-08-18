@@ -293,7 +293,12 @@ inductors, five separate `TPS22919DCKR` quiet-state switches and connector-side
 the early auto-retry suffix with the same-cost/footprint latch-off suffix and
 correct the nominal limit to a tolerance-safe 1.50-A target. The official package review
 also corrects TPS564252 pin 4 to `PG` (integrated bootstrap). Exact passive
-values, hot loss and HIL remain the active I3 closure.
+values, hot loss and HIL remain the active I3 closure. That PG review also
+exposed a real aggregation defect: an optional converter reports PG low while
+normally off. `PWR-0009/DEC-0070/REV-0005AA` now instantiate two separate
+`MMBT3904-7-F` stages implementing `EN AND NOT(PG)` before
+`POWER_FAULT_N`; direct optional-PG aggregation is removed, no GPIO is spent,
+and the two parts add about `$0.032` at the checked 50-piece price.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays
 blocked; `G2F-2R/3D` and `LAY-0001` P1/P2/P3 remain references.

@@ -72,5 +72,7 @@ linear-prequal gate; `DEC-0067/REV-0005X` accept no in-device recovery and the
 exact active FET/fuse/NTC/shunt/hold/supply-isolation packages. I3 now
 continues through `PWR-0008/DEC-0068/REV-0005Y`, which review the exact
 independent fixed rail tree and quiet-state switches; `DEC-0069/REV-0005Z`
-then make the externally accessible eFuse latch-off. Next are exact
+then make the externally accessible eFuse latch-off, and
+`PWR-0009/DEC-0070/REV-0005AA` qualify optional-rail PG with two exact
+`MMBT3904-7-F` stages instead of treating normal off as a fault. Next are exact
 cell-tap/rail passive/diagnostic values and the hot loss/thermal/fault tree.

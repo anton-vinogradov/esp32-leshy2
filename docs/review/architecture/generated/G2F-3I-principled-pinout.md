@@ -53,8 +53,10 @@ flowchart TD
   MAIN_INDUCTOR["Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor"]
   VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   VOICE_INDUCTOR["Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor"]
+  VOICE_PG_QUALIFIER["Diodes Incorporated MMBT3904-7-F<br/>voice-rail enable-qualified PG fault transistor"]
   EXT_BUCK["Texas Instruments TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   EXT_INDUCTOR["Sunlord MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor"]
+  EXT_PG_QUALIFIER["Diodes Incorporated MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor"]
   EXT_EFUSE["Texas Instruments TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse and current monitor"]
   NRF_POWER_SWITCH["Texas Instruments TPS22919DCKR<br/>three-radio nRF quiet-state load switch"]
   CC_POWER_SWITCH["Texas Instruments TPS22919DCKR<br/>CC1101 quiet-state load switch"]
@@ -140,7 +142,7 @@ flowchart TD
   NVDC_CHARGER ~~~ CELL0 ~~~ PACK_FUSE0 ~~~ PACK_NTC0 ~~~ CELL1 ~~~ PACK_FUSE1 ~~~ PACK_NTC1
   PACK_NTC1 ~~~ PACK_GAUGE ~~~ PACK_SHUNT ~~~ PACK_POWER_FET ~~~ PACK_HOLD ~~~ PACK_SUPPLY_OR ~~~ PACK_SYSTEM_DIODE ~~~ PACK_ADMISSION
   PACK_ADMISSION ~~~ AON_BUCK ~~~ AON_INDUCTOR ~~~ MAIN_BUCK ~~~ MAIN_INDUCTOR
-  MAIN_INDUCTOR ~~~ VOICE_BUCK ~~~ VOICE_INDUCTOR ~~~ EXT_BUCK ~~~ EXT_INDUCTOR ~~~ EXT_EFUSE
+  MAIN_INDUCTOR ~~~ VOICE_BUCK ~~~ VOICE_INDUCTOR ~~~ VOICE_PG_QUALIFIER ~~~ EXT_BUCK ~~~ EXT_INDUCTOR ~~~ EXT_PG_QUALIFIER ~~~ EXT_EFUSE
   EXT_EFUSE ~~~ EXTBLEED ~~~ NRF_POWER_SWITCH ~~~ CC_POWER_SWITCH ~~~ SD_POWER_SWITCH ~~~ CODEC_POWER_SWITCH ~~~ RECEIVER_POWER_SWITCH ~~~ S3 ~~~ SLOW_IO
   SLOW_IO ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ MONOSUM
   MONOSUM ~~~ AUDIO_RX_MUX ~~~ CAPNET ~~~ AUDIO_CAPTURE_BUFFER ~~~ ADCNET
@@ -183,7 +185,9 @@ flowchart TD
   MAIN_INDUCTOR --> CODEC_POWER_SWITCH
   MAIN_INDUCTOR --> RECEIVER_POWER_SWITCH
   NVDC_CHARGER -->|"SYS"| VOICE_BUCK --> VOICE_INDUCTOR -->|"fixed 4.0 V"| VOICE
+  VOICE_BUCK -->|"PG + EN via 68 kOhm"| VOICE_PG_QUALIFIER -->|"qualified open collector"| SLOW_IO
   NVDC_CHARGER -->|"SYS"| EXT_BUCK --> EXT_INDUCTOR --> EXT_EFUSE -->|"protected fixed 5.0 V"| U214
+  EXT_BUCK -->|"PG + EN via 68 kOhm"| EXT_PG_QUALIFIER -->|"qualified open collector"| SLOW_IO
   EXT_EFUSE --> EXTBLEED
   NRF_POWER_SWITCH --> NRF0
   NRF_POWER_SWITCH --> NRF1
@@ -624,12 +628,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA26_A1`, `PA27_A0`,
 | `VVOICE_4V` | `voice_inductor.END_2` | `voice.VCC` | fixed 4.0-V rail can never be switched to the 5-V accessory setting |
 | `VOICE_4V_FB` | `abstract:voice-4v-feedback-divider` | `voice_buck.FB` | fixed divider; no MCU, mux or digital potentiometer can overvolt SA518 |
 | `VOICE_4V_PG_N` | `voice_buck.PG` | `abstract:voice-power-reset-domain` | PD remains asserted until the exact fixed 4-V rail is valid |
-| `VOICE_4V_PG_N` | `voice_buck.PG` | `abstract:power-current-thermal-fault` | open-drain voltage fault joins the diagnostic aggregate |
+| `VOICE_4V_PG_N` | `voice_buck.PG` | `voice_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
+| `VOICE_4V_FAULT_QUAL_N` | `voice_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled voice rail releases POWER_FAULT_N |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `ext_buck.VIN` | external 5 V has a dedicated converter and cannot disturb fixed voice voltage |
 | `EXT_BUCK_SW` | `ext_buck.SW` | `ext_inductor.END_1` | 4.7-uH exact first target limits ripple while preserving the 2-A transient envelope |
 | `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `ext_efuse.IN` | the eFuse is the final series element before the externally accessible connector |
 | `EXT_5V_FB` | `abstract:ext-5v-feedback-divider` | `ext_buck.FB` | fixed 5.0-V divider; no shared voice/accessory selector exists |
-| `EXT_5V_PG_N` | `ext_buck.PG` | `abstract:power-current-thermal-fault` | converter voltage fault joins the diagnostic aggregate |
+| `EXT_5V_PG_N` | `ext_buck.PG` | `ext_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
+| `EXT_5V_FAULT_QUAL_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
 | `5V_EXT_PROTECTED` | `ext_efuse.OUT` | `u214.5V_IN` | true reverse-current blocking, bounded inrush and active current limit sit between the connector and converter |
 | `U214_5V_OUT_NC` | `u214.5V_OUT` | `abstract:no-connect` | the base is the only source in this profile; the cap output contact is not paralleled back into the protected rail |
 | `EXT_EFUSE_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N |
@@ -794,8 +800,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA26_A1`, `PA27_A0`,
 | `NRF_GROUP_PWR_EN_SAFE` | `safe_gate_a.4Y` | `nrf_power_switch.ON` | 10-kOhm pull-down; STOP and AON loss disable the exact protected load switch |
 | `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_power_switch.ON` | 10-kOhm pull-down; STOP and AON loss disable the exact protected load switch |
 | `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_buck.EN` | 10-kOhm pull-down; STOP and AON loss disable the independent fixed 4-V converter |
+| `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_pg_qualifier.B` | 68-kOhm 1% series base resistor qualifies voice PG without adding a GPIO |
 | `IR_TX_CARRIER_SAFE` | `safe_gate_b.3Y` | `abstract:fail-safe-IR-LED-driver` | carrier waveform is physically blocked whenever RUN_PERMIT is low |
 | `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_buck.EN` | 10-kOhm pull-down; STOP and AON loss disable the dedicated 5-V converter |
+| `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_pg_qualifier.B` | 68-kOhm 1% series base resistor qualifies accessory PG without adding a GPIO |
 | `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_efuse.EN_UVLO` | the same STOP-dominant request also disables the connector-side true-reverse-blocking eFuse |
 | `TX_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
 | `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice.PTT` | 10-kOhm module-side pull-up keeps RX when the AON gate is unpowered |
@@ -966,7 +974,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA26_A1`, `PA27_A0`,
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
 - DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
-- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR with a tolerance-safe nominal current limit. Exact USB-C/USB2 protection, charger/rail passives, diagnostic load/dividers, mechanical reverse-insertion/thermal coupling, hot/fault calculations and HIL remain open before schematic/BOM freeze
+- DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR with a tolerance-safe nominal current limit; DEC-0070 adds two exact MMBT3904-7-F stages so normally disabled switched rails do not assert POWER_FAULT_N. Exact USB-C/USB2 protection, charger/rail passives, diagnostic load/dividers, mechanical reverse-insertion/thermal coupling, hot/fault calculations and HIL remain open before schematic/BOM freeze
 - HMX035CTFT-001 exact contacts are instantiated, but display production qualification remains open; the I2 hard-stop/evidence active circuit is paper-reviewed while its AON source/hold-up is I3 and detector taps/thresholds are I6; exact IR frontends, power tree and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
 
 ## Граница проведённого ревью

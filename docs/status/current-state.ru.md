@@ -293,7 +293,12 @@ limit `TPS259470LRPWR`. `DEC-0069/REV-0005Z` заменяют ранний auto-
 на latch-off с теми же footprint/ценой и исправляют nominal limit на
 tolerance-safe target 1,50 А. Проверка реального корпуса также исправляет pin 4
 TPS564252 на `PG` (bootstrap встроен). Exact passive values, hot loss и HIL
-остаются активным закрытием I3.
+остаются активным закрытием I3. Эта проверка PG также выявила реальный дефект
+агрегации: optional converter штатно держит PG low, пока выключен.
+`PWR-0009/DEC-0070/REV-0005AA` теперь вводят два отдельных
+`MMBT3904-7-F`, реализующих `EN AND NOT(PG)` перед `POWER_FAULT_N`; прямое
+optional-PG объединение удалено, GPIO не потрачен, а два компонента добавляют
+около `$0.032` при проверенной цене на 50 штук.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad
 заблокирован; `G2F-2R/3D` и `LAY-0001` P1/P2/P3 остаются references.

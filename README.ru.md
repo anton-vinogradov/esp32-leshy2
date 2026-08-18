@@ -133,8 +133,10 @@ flowchart TD
   MAINL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн основной шины"]
   VOICEBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь голосовой шины 4,0 В"]
   VOICEL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн голосовой шины"]
+  VOICEPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault голосовой шины"]
   EXTBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь расширения 5,0 В"]
   EXTL["MWSA0503S-4R7MT<br/>силовой дроссель 4,7 мкГн шины расширения"]
+  EXTPGQ["MMBT3904-7-F<br/>EN-квалифицированный транзистор PG/fault шины расширения"]
   EXTFUSE["TPS259470LRPWR<br/>latch-off eFuse расширения с true reverse blocking и измерением тока"]
   SWNRF["TPS22919DCKR<br/>quiet-state ключ группы из трёх nRF"]
   SWCC["TPS22919DCKR<br/>quiet-state ключ CC1101"]
@@ -202,7 +204,7 @@ flowchart TD
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
-  VOICEL ~~~ EXTBUCK ~~~ EXTL ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
+  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -242,7 +244,9 @@ flowchart TD
   MAINL --> SWCODEC
   MAINL --> SWRX
   CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"фиксированные 4,0 В"| SA
+  VOICEBUCK -->|"PG"| VOICEPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"защищённые фиксированные 5,0 В"| U214
+  EXTBUCK -->|"PG"| EXTPGQ -->|"квалифицированный POWER_FAULT_N"| SLOW
   EXTFUSE --> EXTBLEED
   SWNRF --> NRF0
   SWNRF --> NRF1
@@ -303,8 +307,10 @@ flowchart TD
   GATEA --> SWNRF
   GATEB --> SWCC
   GATEB --> VOICEBUCK
+  GATEB -->|"EN через 68 кОм"| VOICEPGQ
   GATEB --> IRTX
   GATEB --> EXTBUCK
+  GATEB -->|"EN через 68 кОм"| EXTPGQ
   GATEB --> EXTFUSE
   S3 --> DS3 --> CMPA
   C5 --> DC5 --> CMPA

@@ -127,8 +127,10 @@ flowchart TD
   MAINL["MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor"]
   VOICEBUCK["TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   VOICEL["MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor"]
+  VOICEPGQ["MMBT3904-7-F<br/>voice-rail enable-qualified PG fault transistor"]
   EXTBUCK["TPS564252DRLR<br/>fixed 5.0-V 4-A accessory converter"]
   EXTL["MWSA0503S-4R7MT<br/>4.7-uH accessory-rail power inductor"]
+  EXTPGQ["MMBT3904-7-F<br/>accessory-rail enable-qualified PG fault transistor"]
   EXTFUSE["TPS259470LRPWR<br/>true-reverse-blocking latch-off accessory eFuse/current monitor"]
   SWNRF["TPS22919DCKR<br/>three-radio nRF quiet-state load switch"]
   SWCC["TPS22919DCKR<br/>CC1101 quiet-state load switch"]
@@ -196,7 +198,7 @@ flowchart TD
   CHARGER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ AONBUCK ~~~ AONL ~~~ MAINBUCK ~~~ MAINL ~~~ VOICEBUCK ~~~ VOICEL
-  VOICEL ~~~ EXTBUCK ~~~ EXTL ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
+  VOICEL ~~~ VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
@@ -236,7 +238,9 @@ flowchart TD
   MAINL --> SWCODEC
   MAINL --> SWRX
   CHARGER -->|"SYS"| VOICEBUCK --> VOICEL -->|"fixed 4.0 V"| SA
+  VOICEBUCK -->|"PG"| VOICEPGQ -->|"qualified POWER_FAULT_N"| SLOW
   CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"protected fixed 5.0 V"| U214
+  EXTBUCK -->|"PG"| EXTPGQ -->|"qualified POWER_FAULT_N"| SLOW
   EXTFUSE --> EXTBLEED
   SWNRF --> NRF0
   SWNRF --> NRF1
@@ -297,8 +301,10 @@ flowchart TD
   GATEA --> SWNRF
   GATEB --> SWCC
   GATEB --> VOICEBUCK
+  GATEB -->|"EN via 68 kOhm"| VOICEPGQ
   GATEB --> IRTX
   GATEB --> EXTBUCK
+  GATEB -->|"EN via 68 kOhm"| EXTPGQ
   GATEB --> EXTFUSE
   S3 --> DS3 --> CMPA
   C5 --> DC5 --> CMPA

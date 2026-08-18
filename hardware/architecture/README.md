@@ -46,9 +46,10 @@ electrical/HIL and complete target-architecture acceptance remain upstream
 gates.
 
 Its I3 power source now also records the `DEC-0067` no-deep-recovery boundary
-and exact active CSD87313DMST/fuse/shunt/NTC/hold/source-isolation packages.
-This is still a principle-level circuit contract: passive values, diagnostic
-load, rail tree, mechanical polarity/thermal coupling and HIL remain open.
+and exact active CSD87313DMST/fuse/shunt/NTC/hold/source-isolation packages,
+plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers. This is
+still a principle-level circuit contract: passive values, diagnostic load,
+mechanical polarity/thermal coupling and HIL remain open.
 
 The inventory also contains verified reference boundaries. `DSP-0001` covers
 three display/touch devices and one microSD socket; `DSP-0005` additionally
