@@ -376,6 +376,29 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
+    "yageo_rc1206fr_0733rl": {
+      "mpn": "Yageo RC1206FR-0733RL",
+      "kind": "33ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
+      "qualification": "verified_exact_ir_emitter_current_limit_resistor",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [3.2, 1.6, 0.55],
+      "source": {
+        "document": "RC1206FR-0733RL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0733RL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC1206FR-0733RL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC1206FR-0733RL/728818",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "panasonic_erj_p08f10r0v": {
       "mpn": "Panasonic ERJ-P08F10R0V",
       "kind": "10ohm_1pct_1206_0_66w_anti_surge_backlight_resistor",
@@ -658,7 +681,7 @@
     "ti_tlv9061_idbvr": {
       "mpn": "Texas Instruments TLV9061IDBVR",
       "kind": "single_operational_amplifier",
-      "qualification": "reference_only",
+      "qualification": "verified_reference",
       "lifecycle": "active",
       "dimensions_mm": [2.9, 1.6, null],
       "source": {
@@ -2291,7 +2314,7 @@
     "vishay_vemd1060x01": {
       "mpn": "VEMD1060X01",
       "kind": "0805_ir_photodiode",
-      "qualification": "verified_candidate",
+      "qualification": "verified_exact_ir_actual_optical_evidence_sensor",
       "lifecycle": "active",
       "dimensions_mm": [2.0, 1.25, 0.85],
       "source": {
@@ -2300,10 +2323,118 @@
         "url": "https://www.vishay.com/docs/84295/vemd1060x01.pdf",
         "checked": "2026-08-17"
       },
+      "orderable_source": {
+        "document": "VEMD1060X01 current manufacturer product page",
+        "url": "https://www.vishay.com/en/product/84295/",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "spectral_band_nm": [350, 1070],
+        "peak_wavelength_nm": 820,
+        "sensitive_at_emitter_wavelength_nm": 940,
+        "placement": "light-tight internal optical tunnel facing the physical IR emitter; external ambient is excluded mechanically"
+      },
       "programmable": false,
       "contacts": {
         "ANODE": {"physical": "datasheet anode land", "role": "analog"},
         "CATHODE": {"physical": "datasheet cathode land", "role": "analog"}
+      }
+    },
+    "vishay_tsop95238tt": {
+      "mpn": "Vishay TSOP95238TT",
+      "kind": "heimdall_smd_38khz_agc2_demodulating_ir_receiver",
+      "qualification": "verified_exact_robust_ir_receiver",
+      "lifecycle": "active_orderable_factory_lead_time",
+      "dimensions_mm": [6.8, 3.0, 3.2],
+      "source": {
+        "document": "TSOP952/TSOP954 IR receiver modules datasheet",
+        "version": "Rev. 1.2, 13-Apr-2022",
+        "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TSOP95238TT active exact order code; authorized distributor available-to-order with 23-week manufacturer lead time",
+        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "supply_v": [2.0, 3.6],
+        "carrier_khz": 38,
+        "agc": "AGC2",
+        "typical_transmission_distance_m": 25,
+        "output": "active-low demodulated envelope; never carrier-frequency evidence",
+        "taping": "TT top-view tape, 2200 pieces per reel"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND_1": {"physical": "1", "role": "power"},
+        "VS": {"physical": "2", "role": "power"},
+        "OUT": {"physical": "3", "role": "signal"},
+        "GND_4": {"physical": "4", "role": "power"}
+      }
+    },
+    "vishay_tsmp95000tt": {
+      "mpn": "Vishay TSMP95000TT",
+      "kind": "heimdall_smd_30_60khz_carrier_output_ir_learning_receiver",
+      "qualification": "verified_exact_carrier_learning_ir_receiver",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [6.8, 3.0, 3.2],
+      "source": {
+        "document": "TSMP95000 IR sensor module datasheet",
+        "version": "Rev. 1.0, 20-Oct-2022",
+        "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TSMP95000TT active exact order code; authorized distributor stock checked",
+        "url": "https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "supply_v": [2.0, 5.5],
+        "carrier_range_khz": [30, 60],
+        "typical_supply_current_ma_at_3v3": 0.35,
+        "typical_learning_distance_m": 1.8,
+        "output": "active-low carrier cycles; the only onboard source allowed to create measured 30-60-kHz carrier provenance",
+        "taping": "TT top-view tape, 2200 pieces per reel"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND_1": {"physical": "1", "role": "power"},
+        "VS": {"physical": "2", "role": "power"},
+        "CARRIER_OUT": {"physical": "3", "role": "signal"},
+        "GND_4": {"physical": "4", "role": "power"}
+      }
+    },
+    "vishay_vsmy14940": {
+      "mpn": "Vishay VSMY14940",
+      "kind": "940nm_side_view_smd_ir_emitter",
+      "qualification": "verified_exact_consumer_ir_transmit_emitter",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [3.0, 2.51, 1.2],
+      "source": {
+        "document": "VSMY14940 high-speed infrared emitter datasheet",
+        "version": "Rev. 1.6, 22-Sep-2017",
+        "url": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "VSMY14940 active stocked exact order code",
+        "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4494435",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "peak_wavelength_nm": 940,
+        "maximum_continuous_forward_current_ma_at_25c": 70,
+        "typical_forward_voltage_v_at_70ma": 1.5,
+        "minimum_radiant_intensity_mw_per_sr_at_70ma": 50,
+        "half_intensity_angle_deg": 9,
+        "orientation": "side-view surface mount"
+      },
+      "programmable": false,
+      "contacts": {
+        "ANODE": {"physical": "datasheet anode solder land", "role": "power"},
+        "CATHODE": {"physical": "datasheet cathode solder land", "role": "power"}
       }
     },
     "onsemi_bat54alt1g": {
@@ -2644,6 +2775,29 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
+    "murata_grm188z71a475me15d": {
+      "mpn": "Murata GRM188Z71A475ME15D",
+      "kind": "4_7uf_20pct_10v_x7r_0603_ir_receiver_filter_capacitor",
+      "qualification": "verified_exact_ir_receiver_filter_capacitor",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "GRM188Z71A475ME15 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM188Z71A475ME15D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM188Z71A475ME15D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM188Z71A475ME15D/13904814",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
     "kemet_c0402c102k5ractu": {
       "mpn": "KEMET C0402C102K5RACTU",
       "kind": "1nf_10pct_50v_x7r_0402_charger_sdrv_capacitor",
@@ -2687,6 +2841,29 @@
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_074k7l": {
+      "mpn": "Yageo RC0402FR-074K7L",
+      "kind": "4_7kohm_1pct_0402_ir_carrier_output_pullup",
+      "qualification": "verified_exact_ir_carrier_output_pullup",
+      "lifecycle": "active_stocked_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-074K7L product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-074K7L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-074K7L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-074K7L/2827563",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "signal"},
         "END_2": {"physical": "2", "role": "power"}
       }
     },

@@ -194,7 +194,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Panasonic ERJ-2RKF22R0X<br/>22-Ohm card-MISO buffer source-series resistor",
             "Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor",
             "TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor",
-            "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
+            "Vishay TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver",
+            "Vishay TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
+            "Vishay VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
+            "Texas Instruments TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
         )
         for label in required_labels:
             self.assertIn(label, rendered)
@@ -1333,6 +1336,63 @@ class ArchitectureValidationTests(unittest.TestCase):
             "RC0402FR-075K1L<br/>actual-TX 5.1-kOhm RF series sampler",
             "RC0402FR-0752R3L<br/>AD8314 52.3-Ohm detector input shunt",
             "AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector",
+        ):
+            self.assertIn(token, rendered)
+
+    def test_i6_exact_ir_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["ir_endpoint_contract"]
+        self.assertEqual("DEC-0095", contract["decision"])
+        self.assertIn("paper_reviewed_exact_dual_receiver", contract["status"])
+        self.assertIn("no new GPIO or slow-I/O", contract["owner_and_pins"])
+        self.assertIn("never creates measured carrier provenance", contract["robust_receive"])
+        self.assertIn("never authorizes TX", contract["actual_optical_evidence"])
+
+        required = {
+            "ir_demod": "vishay_tsop95238tt",
+            "ir_carrier": "vishay_tsmp95000tt",
+            "ir_return_buffer": "nexperia_74lvc2g126dc_125",
+            "ir_emitter": "vishay_vsmy14940",
+            "ir_emitter_limit": "yageo_rc1206fr_0733rl",
+            "ir_tx_mosfet": "diodes_dmn2056u_7",
+            "det_ir": "vishay_vemd1060x01",
+            "ir_evidence_amp": "ti_tlv9061_idbvr",
+        }
+        for instance, device_id in required.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        c5 = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "c5"
+        }
+        self.assertEqual("IR_RX_DEMOD", c5["GPIO0"]["net"])
+        self.assertEqual("IR_RX_CARRIER", c5["GPIO1"]["net"])
+        self.assertEqual("IR_FRONTEND_PWR_EN", c5["GPIO4"]["net"])
+        self.assertEqual("IR_TX_CARRIER", c5["GPIO6"]["net"])
+        self.assertEqual("IR_TX_EVIDENCE_N", c5["GPIO24"]["net"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("ir_demod.OUT", "ir_return_buffer.1A", "IR_DEMOD_LOCAL_N"),
+            ("ir_carrier.CARRIER_OUT", "ir_return_buffer.2A", "IR_CARRIER_LOCAL_N"),
+            ("ir_emitter_limit.END_2", "ir_emitter.ANODE", "IR_LED_ANODE_LIMITED"),
+            ("safe_gate_b.3Y", "ir_tx_gate_series.END_1", "IR_TX_CARRIER_SAFE"),
+            ("det_ir.CATHODE", "ir_evidence_amp.IN_MINUS", "IR_OPTICAL_SUM"),
+            ("ir_evidence_amp.OUT", "evidence_cmp_b.IN4_N", "IR_DETECT_V"),
+        ):
+            self.assertIn(route, routes)
+
+        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver",
+            "TSMP95000TT<br/>30-to-60-kHz carrier-learning IR receiver",
+            "VSMY14940<br/>side-view 940-nm consumer IR transmit emitter",
+            "TLV9061IDBVR<br/>AON physical-optical transimpedance amplifier",
         ):
             self.assertIn(token, rendered)
 

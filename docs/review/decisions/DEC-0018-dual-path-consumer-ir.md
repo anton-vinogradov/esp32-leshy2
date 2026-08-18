@@ -1,14 +1,16 @@
 # DEC-0018 — двухтрактный consumer IR; former C5 implementation profile
 
-- Статус: **Capability decision retained; C5 ownership/component implementation reopened by `DEC-0032`**
+- Статус: **Capability decision retained; exact C5 implementation superseded by `DEC-0095`**
 - Источник: `IMP-0015`, вариант A
 - Дата: 2026-08-16
 
 ## Решение
 
 > Нормативно сохраняются robust ordinary receive и отдельный carrier-aware
-> learning path. Назначение C5/RMT и конкретные TSOP/TSMP/TSAL являются
-> проверенным reference profile, а не принятой архитектурой или BOM.
+> learning path. `DEC-0095/IRF-0001` later accept C5/RMT with exact
+> `TSOP95238TT`, `TSMP95000TT`, `VSMY14940` and actual-optical evidence. The
+> `TSOP38238/TSAL6200` names below remain the original comparison history, not
+> the current target BOM.
 
 Consumer IR получает два независимых RX-тракта, физически и программно принадлежащих ESP32-C5:
 

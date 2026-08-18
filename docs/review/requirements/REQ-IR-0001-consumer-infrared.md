@@ -1,6 +1,6 @@
 # REQ-IR-0001 — consumer IR receive, learn, remote and controlled-test contract
 
-- Статус набора: **Проведено ревью capability; owner/backend открыт `DEC-0032`**
+- Статус набора: **Проведено ревью capability; exact C5 paper endpoint `DEC-0095`, HIL open**
 - Этап: 2 — возможности и исключения
 - Источники кандидатов: `C-IR-01`–`C-IR-05`, пересечения `C-X-01`, `C-X-02`, `C-X-05`, `C-X-07`, `C-X-11`
 - Обязательные решения: `DEC-0001`, `DEC-0002`, `DEC-0003`, `DEC-0005`, `DEC-0010`, `DEC-0013`, `DEC-0018`
@@ -9,7 +9,7 @@
 
 ## Граница документа
 
-Этот набор отделяет обычный пульт для собственных устройств от passive protocol analysis и disruptive multi-code actions. По `DEC-0018` сохраняются robust demodulated receive и отдельный carrier-learning path 30–60 kHz; прежний C5+TSOP38238+TSMP95000 остаётся reference profile, не target owner/BOM. `Universal remote` означает только corpus-proven device/protocol/carrier profiles; это не blanket compatibility со всем оптическим оборудованием. Demodulated raw envelope, measured carrier и carrier metadata из protocol/database/import/manual input — разные типы evidence.
+Этот набор отделяет обычный пульт для собственных устройств от passive protocol analysis и disruptive multi-code actions. По `DEC-0018` сохраняются robust demodulated receive и отдельный carrier-learning path 30–60 kHz; `DEC-0095/IRF-0001` now instantiate exact C5 `TSOP95238TT + TSMP95000TT + VSMY14940` and independent actual-optical evidence. `Universal remote` означает только corpus-proven device/protocol/carrier profiles; это не blanket compatibility со всем оптическим оборудованием. Demodulated raw envelope, measured carrier и carrier metadata из protocol/database/import/manual input — разные типы evidence.
 
 ## Матрица требований
 
@@ -55,8 +55,10 @@
 
 - [ESP32-C5 datasheet](https://documentation.espressif.com/esp32-c5_datasheet_en.html)
 - [ESP-IDF RMT API](https://docs.espressif.com/projects/esp-idf/en/stable/esp32c5/api-reference/peripherals/rmt.html)
+- [Vishay TSOP952/954 datasheet](https://www.vishay.com/docs/82837/tsop952.pdf)
 - [Vishay TSOP382/384 datasheet](https://www.vishay.com/docs/82491/tsop382.pdf)
 - [Vishay TSMP95000 datasheet](https://www.vishay.com/docs/82907/tsmp95000.pdf)
+- [Vishay VSMY14940 datasheet](https://www.vishay.com/docs/84209/vsmy14940.pdf)
 - [Vishay TSAL6200 datasheet](https://www.vishay.com/docs/81010/tsal6200.pdf)
 - [Vishay IEC 62471 eye-safety note](https://www.vishay.com/docs/81935/eyesafe.pdf)
 - [Arduino-IRremote MIT reference](https://github.com/Arduino-IRremote/Arduino-IRremote)

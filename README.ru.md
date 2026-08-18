@@ -67,9 +67,12 @@ Leshy2 — открытый автономный портативный инст
   либо через определяемые по вставке наушники 3,5 мм. Шины кодека, приёмника и
   SA518 физически отсоединены при снятом питании; PTT остаётся отдельным
   STOP-доминируемым разрешением и никогда не выводится из наличия звука.
-- Два IR-приёмника позволяют одновременно надёжно декодировать бытовые команды
-  и измерять несущую неизвестного сигнала; отдельный передатчик воспроизводит
-  изученные профили.
+- Точные приёмники `TSOP95238TT` и `TSMP95000TT` одновременно обеспечивают
+  устойчивую демодуляцию 38 кГц и измерение несущей 30–60 кГц. Их фильтрованная
+  шина разряжается и Ioff-изолируется при простое. Боковой `VSMY14940`
+  воспроизводит допущенные профили через STOP-квалифицированный ограниченный по
+  току драйвер; экранированный оптический датчик `VEMD1060X01` подтверждает
+  реальное излучение, а не выводит его из тока управления.
 - Все девять бортовых антенных трактов выведены на собственные внешние порты:
   два RP-SMA для native Wi-Fi и семь standard SMA для остальных трактов.
 
@@ -592,9 +595,36 @@ flowchart TD
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
   UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
-  IR0["MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver"]
-  IR1["MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver"]
-  IRTX["MPN TBD (TSAL6200 screened)<br/>IR transmit LED/driver endpoint"]
+  IRSW["TPS22919DCKR #IR-RX<br/>независимый reset-off ключ питания приёмников"]
+  IRINCAP["C1608X7R1C105K080AC #IR-RX-IN<br/>входной конденсатор ключа приёмников"]
+  IROUTCAP["GRM188R60J106ME47D #IR-RX-OUT<br/>bulk-конденсатор коммутируемой шины приёмников"]
+  IROUTBP["C1005X7R1H104K050BB #IR-RX-OUT<br/>ВЧ bypass коммутируемой шины приёмников"]
+  IRONPD["RC0402FR-0710KL #IR-RX-ON<br/>reset-off pull-down управления шиной приёмников"]
+  IR0["TSOP95238TT<br/>AGC2 IR-приёмник с демодуляцией 38 кГц"]
+  IR0R["RC0402FR-07100RL #IR-DEMOD<br/>резистор фильтра питания демодулятора"]
+  IR0C["GRM188Z71A475ME15D #IR-DEMOD<br/>конденсатор фильтра питания демодулятора"]
+  IR1["TSMP95000TT<br/>IR-приёмник измерения несущей 30–60 кГц"]
+  IR1R["RC0402FR-07100RL #IR-CARRIER<br/>резистор фильтра питания carrier-приёмника"]
+  IR1C["GRM188Z71A475ME15D #IR-CARRIER<br/>конденсатор фильтра питания carrier-приёмника"]
+  IR1PU["RC0402FR-074K7L #IR-CARRIER<br/>pull-up выхода carrier-приёмника"]
+  IRBUF["74LVC2G126DC,125 #IR-RETURN<br/>двухканальный Ioff-буфер возврата с коммутируемой шиной"]
+  IRBUFC["C1005X7R1H104K050BB #IR-RETURN<br/>bypass-конденсатор буфера возврата"]
+  IR0SER["RC0402FR-07100RL #IR-DEMOD-OUT<br/>source-резистор демодулированной огибающей"]
+  IR1SER["RC0402FR-07100RL #IR-CARRIER-OUT<br/>source-резистор циклов несущей"]
+  IR0HPU["RC0402FR-0710KL #IR-DEMOD-HOST<br/>host-side idle-high pull-up"]
+  IR1HPU["RC0402FR-0710KL #IR-CARRIER-HOST<br/>host-side idle-high pull-up"]
+  IRTX["VSMY14940<br/>боковой 940-нм IR-излучатель бытовых команд"]
+  IRTXRLIM["RC1206FR-0733RL #IR-TX<br/>33-Ом ограничитель тока излучателя"]
+  IRTXFET["DMN2056U-7 #IR-TX<br/>STOP-квалифицированный нижний ключ излучателя"]
+  IRTXGS["RC0402FR-07100RL #IR-TX-GATE<br/>100-Ом резистор затвора MOSFET"]
+  IRTXGPD["RC0402FR-0710KL #IR-TX-GATE<br/>10-кОм fail-low резистор затвора MOSFET"]
+  IREVAMP["TLV9061IDBVR #IR-EVIDENCE<br/>AON трансимпедансный усилитель оптического контроля"]
+  IREVBP["C1005X7R1H104K050BB #IR-EVIDENCE<br/>bypass-конденсатор усилителя"]
+  IREVT["RC0402FR-07100KL #IR-EVIDENCE<br/>100-кОм верхний резистор опорного делителя"]
+  IREVB["RC0402FR-0710KL #IR-EVIDENCE<br/>10-кОм нижний резистор опорного делителя"]
+  IREVC["C1005X7R1H104K050BB #IR-EVIDENCE<br/>конденсатор фильтра опорного напряжения"]
+  IREFBR["RC0402FR-0747KL #IR-EVIDENCE<br/>47-кОм резистор обратной связи TIA"]
+  IREFBC["C0402C102K5RACTU #IR-EVIDENCE<br/>1-нФ конденсатор оптического отклика"]
   PTTSW["Y78B23214FP<br/>separate normally-open hold-to-talk PTT control"]
   STOPSW["AEQ10410<br/>gold-clad low-level normally-closed hard-STOP control"]
   REARMSW["Y78B23214FP<br/>normally-open recessed RE-ARM control"]
@@ -660,8 +690,10 @@ flowchart TD
   BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ SDHBUF ~~~ SDMBUF ~~~ SDESDA ~~~ SDESDB
   SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
-  SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
-  IRTX ~~~ S3RFJ ~~~ S3CPL ~~~ S3TERM ~~~ S3CIN ~~~ S3RFB ~~~ S3RGB ~~~ S3COUT ~~~ S3BP ~~~ C5RFJ ~~~ C5CPL ~~~ C5TERM ~~~ C5CIN ~~~ C5RFB ~~~ C5RGB ~~~ C5COUT ~~~ C5BP
+  SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IRSW ~~~ IRINCAP ~~~ IROUTCAP ~~~ IROUTBP ~~~ IRONPD
+  IRONPD ~~~ IR0 ~~~ IR0R ~~~ IR0C ~~~ IR1 ~~~ IR1R ~~~ IR1C ~~~ IR1PU ~~~ IRBUF ~~~ IRBUFC ~~~ IR0SER ~~~ IR1SER ~~~ IR0HPU ~~~ IR1HPU
+  IR1HPU ~~~ IRTX ~~~ IRTXRLIM ~~~ IRTXFET ~~~ IRTXGS ~~~ IRTXGPD ~~~ IREVAMP ~~~ IREVBP ~~~ IREVT ~~~ IREVB ~~~ IREVC ~~~ IREFBR ~~~ IREFBC
+  IREFBC ~~~ S3RFJ ~~~ S3CPL ~~~ S3TERM ~~~ S3CIN ~~~ S3RFB ~~~ S3RGB ~~~ S3COUT ~~~ S3BP ~~~ C5RFJ ~~~ C5CPL ~~~ C5TERM ~~~ C5CIN ~~~ C5RFB ~~~ C5RGB ~~~ C5COUT ~~~ C5BP
   C5BP ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC
   CC ~~~ CCHB ~~~ CCRB ~~~ CCBAND ~~~ CCHBBP ~~~ CCRBBP ~~~ CCBANDBP ~~~ CCPIN ~~~ CCBULK ~~~ CCONPD ~~~ CCDVBP ~~~ CC9BP ~~~ CC11BP ~~~ CC14BP ~~~ CC15BP ~~~ CCDCOUPL ~~~ CCRBIAS ~~~ CCXTAL ~~~ CCX1C ~~~ CCX2C
   CCX2C ~~~ CCRSCLK ~~~ CCRSI ~~~ CCRCSN ~~~ CCRSO ~~~ CCRG0 ~~~ CCRG2 ~~~ CCRV1 ~~~ CCRV2 ~~~ CCPDSCLK ~~~ CCPDSI ~~~ CCPCS ~~~ CCPDSO ~~~ CCPDG0 ~~~ CCPDG2 ~~~ CCPDV1H ~~~ CCPDV2H ~~~ CCPDV1A ~~~ CCPDV2A ~~~ CCPDV1B ~~~ CCPDV2B
@@ -970,8 +1002,22 @@ flowchart TD
   VOICEIOSW --> VOICEPTT
   VOICEIOSW --> VOICEUART
   SLOW -->|"P14 запрос low/open мощности"| VOICEHL --> SA
-  C5 -->|"RMT RX0"| IR0
-  C5 -->|"RMT RX1"| IR1
+  MAINFUSE --> IRINCAP
+  MAINFUSE --> IRSW
+  C5 -->|"GPIO4; reset-off"| IRONPD --> IRSW
+  IRSW --> IROUTCAP
+  IRSW --> IROUTBP
+  IRSW --> IR0R --> IR0
+  IR0R --> IR0C
+  IRSW --> IR1R --> IR1
+  IR1R --> IR1C
+  IR1PU --> IR1
+  IRSW --> IRBUF
+  IRSW --> IRBUFC
+  IR0 --> IRBUF --> IR0SER -->|"RMT RX0: демодулированная огибающая"| C5
+  IR1 --> IRBUF --> IR1SER -->|"RMT RX1: измеренные циклы несущей"| C5
+  MAINFUSE --> IR0HPU --> C5
+  MAINFUSE --> IR1HPU --> C5
   RP -->|"выходы PIO0 SM0"| N0HB --> NRF0
   NRF0 -->|"MISO + IRQ"| N0RB --> RP
   RP -->|"выходы PIO0 SM1"| N1HB --> NRF1
@@ -1029,7 +1075,9 @@ flowchart TD
   NEVD --> DN2
   GATEB --> SWCC
   GATEB --> VOICEBUCK
-  GATEB --> IRTX
+  GATEB --> IRTXGS --> IRTXFET
+  IRTXGPD --> IRTXFET
+  MAINFUSE --> IRTXRLIM --> IRTX --> IRTXFET
   GATEB --> EXTBUCK
   GATEB --> EXTFUSE
   S3 -->|"U.FL-джампер длины по компоновке"| S3RFJ --> S3CPL -->|"отдельная RP-SMA-граница"| S3SMA["MPN TBD<br/>внешняя RP-SMA S3"]
@@ -1083,7 +1131,12 @@ flowchart TD
   VOICEEVD --> DVOICE
   VOICEDF --> DVOICE
   VOICEDBP --> DVOICE
-  IRTX --> DIR --> CMPB
+  IRTX -.->|"светонепроницаемый внутренний оптический тоннель"| DIR --> IREVAMP --> CMPB
+  AONFUSE --> IREVBP --> IREVAMP
+  AONFUSE --> IREVT --> IREVB
+  IREVC --> IREVAMP
+  IREFBR --> IREVAMP
+  IREFBC --> IREVAMP
   CMPA --> EVMASK
   CMPB --> EVMASK
   CMPA --> OR0

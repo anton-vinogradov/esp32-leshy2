@@ -1273,6 +1273,42 @@ def render_principled_pinout(
         "voice_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
     }
 
+    ir_instance_names = tuple(
+        instance for instance in candidate["instances"] if instance.startswith("ir_")
+    )
+    ir_roles = {
+        "ir_power_switch": "independent reset-off IR-receiver load switch",
+        "ir_power_input_cap": "IR-receiver switch input capacitor",
+        "ir_power_output_cap": "IR switched-rail bulk capacitor",
+        "ir_power_output_bypass": "IR switched-rail high-frequency bypass capacitor",
+        "ir_power_on_pulldown": "IR receive-rail reset-off resistor",
+        "ir_demod": "38-kHz AGC2 demodulating IR receiver",
+        "ir_demod_supply_res": "demodulator 100-Ohm supply-filter resistor",
+        "ir_demod_supply_cap": "demodulator 4.7-uF supply-filter capacitor",
+        "ir_carrier": "30-to-60-kHz carrier-learning IR receiver",
+        "ir_carrier_supply_res": "carrier receiver 100-Ohm supply-filter resistor",
+        "ir_carrier_supply_cap": "carrier receiver 4.7-uF supply-filter capacitor",
+        "ir_carrier_pullup": "carrier-output 4.7-kOhm pull-up resistor",
+        "ir_return_buffer": "dual switched-rail Ioff IR-return buffer",
+        "ir_return_buffer_bypass": "IR-return-buffer bypass capacitor",
+        "ir_demod_series": "demodulated-envelope 100-Ohm source resistor",
+        "ir_carrier_series": "carrier-cycle 100-Ohm source resistor",
+        "ir_demod_host_pullup": "host-side demodulated-input idle pull-up",
+        "ir_carrier_host_pullup": "host-side carrier-input idle pull-up",
+        "ir_emitter": "side-view 940-nm consumer IR transmit emitter",
+        "ir_emitter_limit": "33-Ohm 1206 emitter current-limit resistor",
+        "ir_tx_mosfet": "STOP-qualified low-side IR emitter switch",
+        "ir_tx_gate_series": "100-Ohm IR-switch gate resistor",
+        "ir_tx_gate_pulldown": "10-kOhm IR-switch fail-low resistor",
+        "ir_evidence_amp": "AON physical-optical transimpedance amplifier",
+        "ir_evidence_amp_bypass": "optical-evidence amplifier bypass capacitor",
+        "ir_evidence_vref_top": "optical-evidence 100-kOhm reference upper leg",
+        "ir_evidence_vref_bottom": "optical-evidence 10-kOhm reference lower leg",
+        "ir_evidence_vref_cap": "optical-evidence reference filter capacitor",
+        "ir_evidence_feedback": "47-kOhm optical transimpedance feedback resistor",
+        "ir_evidence_feedback_cap": "1-nF optical-evidence response capacitor",
+    }
+
     native_rf_support_instance_names = tuple(
         instance
         for instance in candidate["instances"]
@@ -1599,9 +1635,9 @@ def render_principled_pinout(
         "  UNIT[\"MPN TBD<br/>protected HY2.0-4P M5 Unit connector\"]",
         "  end",
         "  subgraph IR_PATH[\"IR frontend devices\"]",
-        "  IRDEMOD[\"MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver\"]",
-        "  IRCARRIER[\"MPN TBD (TSMP95000 screened)<br/>carrier-learning IR receiver\"]",
-        "  IRTX[\"MPN TBD (TSAL6200 screened)<br/>IR transmit LED and fail-safe driver endpoint\"]",
+        *[node(instance, ir_roles[instance]) for instance in ir_instance_names],
+        "  %% IR layout-only invisible spine: every box above is one physical device.",
+        "  " + " ~~~ ".join(instance.upper() for instance in ir_instance_names),
         "  end",
         "  subgraph SAFETY_STOP[\"AON hard-STOP devices\"]",
         node("ptt_switch", "separate normally-open hold-to-talk PTT control"),
@@ -1672,7 +1708,7 @@ def render_principled_pinout(
         "  SD_ESD_B ~~~ SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLUP ~~~ SD_HOST_D1_PULLUP",
         "  SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP ~~~ SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP",
         "  SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT",
-        "  UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP",
+        "  UNIT ~~~ C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in ir_instance_names) + " ~~~ RP",
         "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",

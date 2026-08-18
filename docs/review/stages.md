@@ -65,5 +65,9 @@ coupon, final-line ESD и AD8314 actual-TX sample входят в machine map; P
 `FND-0099/VRF-0001/DEC-0094/REV-0005AY` далее закрывают SA518 paper RF path:
 ANT contact 7, direct protected 50-Ом SMA boundary, 24-В low-C ESD и exact
 5,1-кОм/52,3-Ом AD8314 sample. P05 не расходуется на фильтры без measured
-failure. IR endpoint и весь specimen/conducted/coexistence HIL остаются
-открыты. KiCad не разрешён.
+failure. `FND-0100/IRF-0001/DEC-0095/REV-0005AZ` закрывают последний отдельный
+I6 paper endpoint: exact `TSOP95238TT + TSMP95000TT` RX pair, discharged/Ioff
+receive boundary, `VSMY14940` current-limited STOP-gated TX и independent
+`VEMD1060X01/TLV9061IDBVR` actual-optical evidence. Весь optical/thermal/IEC,
+specimen/conducted/coexistence HIL остаётся открыт; I6 не завершён и KiCad не
+разрешён.

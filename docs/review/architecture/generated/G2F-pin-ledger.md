@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I5 closes the exact paper audio, Si4732 and SA518 electrical endpoints; I6 must now close exact RF front ends, matching/protection, antenna-feed geometry and conducted/OTA acceptance without reopening the reviewed compute or slow-I/O budget |
+| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I2 through I5 and every separate I6 RF/IR paper endpoint are reviewed; I6 must now consolidate whole-device conducted/OTA, optical, coexistence, no-stall, thermal and fault evidence without reopening the reviewed compute or slow-I/O budget |
 
 ## Exact-device provenance used by these drafts
 
@@ -69,6 +69,7 @@
 | `murata_grm155r71h472ka01d` | `Murata GRM155R71H472KA01D` | `verified_candidate` | `active` | [Murata GRM155R71H472KA01 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H472KA01D) | same primary source |
 | `murata_grm188r60j106me47d` | `Murata GRM188R60J106ME47D` | `verified_candidate` | `active` | [Murata GRM188R60J106ME47 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188R60J106ME47D) | same primary source |
 | `murata_grm188r71e224ka88d` | `Murata GRM188R71E224KA88D` | `verified_candidate` | `active` | [Murata GRM188R71E224KA88 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188R71E224KA88D) | same primary source |
+| `murata_grm188z71a475me15d` | `Murata GRM188Z71A475ME15D` | `verified_exact_ir_receiver_filter_capacitor` | `active_stocked_orderable` | [GRM188Z71A475ME15 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM188Z71A475ME15D) | same primary source |
 | `murata_grm21br60j226me39l` | `Murata GRM21BR60J226ME39L` | `verified_candidate` | `active` | [Murata GRM21BR60J226ME39 product data and current part list current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM21BR60J226ME39L) | same primary source |
 | `murata_grm21br71e225ke11l` | `Murata GRM21BR71E225KE11L` | `verified_candidate` | `active` | [Murata GRM21BR71E225KE11 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM21BR71E225KE11L) | same primary source |
 | `murata_grm31c5c1h224je02l` | `Murata GRM31C5C1H224JE02L` | `verified_candidate` | `active` | [Murata GRM31C5C1H224JE02 product detail current product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=GRM31C5C1H224JE02%23) | same primary source |
@@ -129,7 +130,7 @@
 | `ti_sn74lvc3g34_dcur` | `SN74LVC3G34DCUR` | `verified_candidate` | `active` | [SN74LVC3G34 Triple Buffer Gate datasheet Rev. L](https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf) | same primary source |
 | `ti_tca9534a_pwr` | `TCA9534APWR` | `verified_candidate` | `active` | [TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9534a.pdf) | same primary source |
 | `ti_tlv1824_pwr` | `TLV1824PWR` | `verified_candidate` | `active` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1824.pdf) | same primary source |
-| `ti_tlv9061_idbvr` | `Texas Instruments TLV9061IDBVR` | `reference_only` | `active` | [TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet SBOS839N, March 2017, revised July 2026](https://www.ti.com/lit/ds/symlink/tlv9061.pdf) | same primary source |
+| `ti_tlv9061_idbvr` | `Texas Instruments TLV9061IDBVR` | `verified_reference` | `active` | [TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet SBOS839N, March 2017, revised July 2026](https://www.ti.com/lit/ds/symlink/tlv9061.pdf) | same primary source |
 | `ti_tmux1136_dgsr` | `Texas Instruments TMUX1136DGSR` | `reference_only` | `active` | [TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet SCDS402B, June 2019, revised February 2024](https://www.ti.com/lit/ds/symlink/tmux1136.pdf) | same primary source |
 | `ti_tpd4e05u06_dqar` | `Texas Instruments TPD4E05U06DQAR` | `verified_candidate` | `active` | [TPDxE05U06 1/4/6-channel ESD protection datasheet SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18](https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf) | same primary source |
 | `ti_tpd4s201_rukr` | `Texas Instruments TPD4S201RUKR` | `verified_candidate` | `active` | [TPD4S201 USB Type-C port-protection datasheet SLVSIF2, July 2025](https://www.ti.com/lit/gpn/TPD4S201) | same primary source |
@@ -149,7 +150,10 @@
 | `ti_tvs2200_drvr` | `Texas Instruments TVS2200DRVR` | `verified_candidate` | `active` | [TVS2200 22-V flat-clamp surge-protection datasheet SLVSED5C, December 2017, revised August 2023; orderable addendum 2025-11-09](https://www.ti.com/lit/ds/symlink/tvs2200.pdf) | same primary source |
 | `ttm_b0310j50100ahf` | `TTM Technologies B0310J50100AHF` | `verified_exact_cc_first_pass_balun` | `active_orderable` | [B0310J50100AHF balun datasheet current manufacturer document checked 2026-08-18](https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf) | same primary source |
 | `ttm_dc2337j5010ahf` | `TTM Technologies DC2337J5010AHF` | `verified_exact_nrf_forward_power_coupler` | `active_orderable` | [DC2337J5010AHF 10-dB directional coupler datasheet Rev. H](https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf) | same primary source |
-| `vishay_vemd1060x01` | `VEMD1060X01` | `verified_candidate` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
+| `vishay_tsmp95000tt` | `Vishay TSMP95000TT` | `verified_exact_carrier_learning_ir_receiver` | `active_stocked_orderable` | [TSMP95000 IR sensor module datasheet Rev. 1.0, 20-Oct-2022](https://www.vishay.com/docs/82907/tsmp95000.pdf) | same primary source |
+| `vishay_tsop95238tt` | `Vishay TSOP95238TT` | `verified_exact_robust_ir_receiver` | `active_orderable_factory_lead_time` | [TSOP952/TSOP954 IR receiver modules datasheet Rev. 1.2, 13-Apr-2022](https://www.vishay.com/docs/82837/tsop952.pdf) | same primary source |
+| `vishay_vemd1060x01` | `VEMD1060X01` | `verified_exact_ir_actual_optical_evidence_sensor` | `active` | [VEMD1060X01 Silicon PIN Photodiode datasheet Rev. 1.1](https://www.vishay.com/docs/84295/vemd1060x01.pdf) | same primary source |
+| `vishay_vsmy14940` | `Vishay VSMY14940` | `verified_exact_consumer_ir_transmit_emitter` | `active_stocked_orderable` | [VSMY14940 high-speed infrared emitter datasheet Rev. 1.6, 22-Sep-2017](https://www.vishay.com/docs/84209/vsmy14940.pdf) | same primary source |
 | `vishay_wsl25125l000fea` | `Vishay WSL25125L000FEA` | `verified_candidate` | `active` | [WSL power metal strip resistor datasheet current product data checked 2026-08-18](https://www.vishay.com/docs/30108/wsl.pdf) | same primary source |
 | `xtar_18650_4000mah_protected` | `XTAR 18650 4000mAh` | `selected_qualification_target` | `current_catalog` | [XTAR 18650 4000mAh official two-page battery datasheet official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18](https://www.xtar.cc/download/18650-4000mah-data-sheet) | same primary source |
 | `yageo_rc0402fr_07100kl` | `Yageo RC0402FR-07100KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07100KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07100KL) | same primary source |
@@ -175,6 +179,7 @@
 | `yageo_rc0402fr_0745k3l` | `Yageo RC0402FR-0745K3L` | `verified_candidate` | `active` | [Yageo RC0402FR-0745K3L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0745K3L) | same primary source |
 | `yageo_rc0402fr_0747kl` | `Yageo RC0402FR-0747KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_0749r9l` | `Yageo RC0402FR-0749R9L` | `verified_exact_nrf_coupler_isolated_port_termination` | `active_orderable` | [RC0402FR-0749R9L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0749R9L) | same primary source |
+| `yageo_rc0402fr_074k7l` | `Yageo RC0402FR-074K7L` | `verified_exact_ir_carrier_output_pullup` | `active_stocked_orderable` | [RC0402FR-074K7L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-074K7L) | same primary source |
 | `yageo_rc0402fr_0752r3l` | `Yageo RC0402FR-0752R3L` | `verified_exact_ad8314_broadband_input_match` | `active_orderable` | [RC0402FR-0752R3L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0752R3L) | same primary source |
 | `yageo_rc0402fr_0756kl` | `Yageo RC0402FR-0756KL` | `verified_exact_cc_bias_passive` | `active_orderable` | [RC0402FR-0756KL exact product specification current exact product data checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0756KL) | same primary source |
 | `yageo_rc0402fr_075k1l` | `Yageo RC0402FR-075K1L` | `verified_exact_sa518_detector_series_attenuator` | `active_orderable` | [RC0402FR-075K1L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K1L) | same primary source |
@@ -184,6 +189,7 @@
 | `yageo_rc0402fr_078k2l` | `Yageo RC0402FR-078K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-078K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L) | same primary source |
 | `yageo_rc0402jr_070rl` | `Yageo RC0402JR-070RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0603fr_071kl` | `Yageo RC0603FR-071KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
+| `yageo_rc1206fr_0733rl` | `Yageo RC1206FR-0733RL` | `verified_exact_ir_emitter_current_limit_resistor` | `active_stocked_orderable` | [RC1206FR-0733RL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC1206FR-0733RL) | same primary source |
 | `yageo_rt0402brd07100kl` | `Yageo RT0402BRD07100KL` | `verified_candidate` | `active` | [Yageo RT0402BRD07100KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RT0402BRD07100KL) | same primary source |
 | `yageo_rt0402brd07191kl` | `Yageo RT0402BRD07191KL` | `verified_candidate` | `active` | [Yageo RT high-precision thin-film resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RT_1-to-0_01.pdf) | same primary source |
 
@@ -486,7 +492,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `U214_EXT_QUIET` | `u214`, `external accessories` | external 5 V off; I2C isolated; SPI/UART static | slow_io.P17 EXT_5V_EN plus protected power and TCA4307 isolation | rail discharge, isolation, hot-plug and no-back-power HIL |
 | `VOICE_QUIET` | `voice` | PTT hardware-off; module power-down; qualified 4 V rail off | VOICE_PTT_N, VOICE_DOMAIN_EN and HARD_STOP_N-dominant power/TX gates | actual-TX-off, rail/current and stuck-control fault-injection HIL |
 | `RECEIVER_AUDIO_QUIET` | `receiver`, `codec`, `I2S`, `speaker amplifier`, `voice audio and digital interfaces` | AUDIO_ARM low forces receive bypass and electret TX-audio default; P01 keeps PAM8302A off; receiver and codec rails are discharged with I2C/I2S isolated; voice PTT/UART/AFOUT/MIC_IN are isolated; I2S clock/DMA is stopped | direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10/P13/P15 and exact supervisors/isolators | stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-receiver desense HIL |
-| `IR_QUIET` | `IR RX`, `IR TX` | frontend rail off; RMT stopped and pins parked; TX remains HARD_STOP_N-dominated | C5.GPIO4 IR_FRONTEND_PWR_EN plus independent HARD_STOP_N TX gate | dark/current/no-optical-output and active-radio desense HIL |
+| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind HARD_STOP_N | C5.GPIO4 IR_FRONTEND_PWR_EN plus safe_gate_b channel 3, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, STOP fault injection and active-radio desense HIL |
 | `S3_RF_QUIET` | `S3 Wi-Fi`, `S3 BLE`, `ESP-NOW` | protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive | native RF power state plus S3_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `C5_RF_QUIET` | `C5 Wi-Fi`, `C5 IEEE 802.15.4` | protocols stopped and native RF block off while C5 may remain alive for IR/recovery | native RF power state plus C5_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `STORAGE_QUIET` | `microSD` | bounded flush then controller static and rail off when no storage session | slow_io.P20 SD_PWR_EN | no corruption/back-power and active-receiver desense HIL |
@@ -537,9 +543,9 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: none.
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `GPIO0` | 6 | `IR_RX_DEMOD` | `i` | `RMT_RX0` | `abstract:exact robust-demod IR receiver` | — |
-| `GPIO1` | 7 | `IR_RX_CARRIER` | `i` | `RMT_RX1` | `abstract:exact carrier-learning IR receiver` | — |
-| `GPIO4` | 17 | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | `abstract:off-safe IR frontend load switch` | — |
+| `GPIO0` | 6 | `IR_RX_DEMOD` | `i` | `RMT_RX0` | `ir_demod_series.END_2`, `ir_demod_host_pullup.END_1` | — |
+| `GPIO1` | 7 | `IR_RX_CARRIER` | `i` | `RMT_RX1` | `ir_carrier_series.END_2`, `ir_carrier_host_pullup.END_1` | — |
+| `GPIO4` | 17 | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | `ir_power_switch.ON`, `ir_power_on_pulldown.END_1` | — |
 | `GPIO6` | 8 | `IR_TX_CARRIER` | `o` | `RMT_TX0` | `safe_gate_b.3A` | — |
 | `GPIO7` | 9 | `S3_C5_SDIO_D1_IRQ` | `io` | `SDIO_SLAVE` | `s3.GPIO13` | external pull-up and documented SDIO edge profile are verified before runtime ownership |
 | `GPIO8` | 10 | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE` | `s3.GPIO12` | — |
@@ -1495,6 +1501,55 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `receiver_clock_cap_gpo3.END_2` | `abstract:power-ground` | second crystal capacitor returns locally |
 | `RX_SENB_LOW` | `receiver.SENB` | `receiver_senb_pulldown.END_1` | 10-kOhm first population target selects the two-wire boot state |
 | `POWER_GROUND` | `receiver_senb_pulldown.END_2` | `abstract:power-ground` | firmware still probes both documented/publicly conflicting 0x11 and 0x63 identities; specimen HIL freezes the address |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_power_switch.IN` | the two receive paths use one independent reset-off protected branch; the emitter is not powered by this rail |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_power_input_cap.END_1` | exact 1-uF load-switch input capacitor |
+| `POWER_GROUND` | `ir_power_input_cap.END_2` | `abstract:power-ground` | IR receive-switch input bypass return |
+| `POWER_GROUND` | `ir_power_switch.GND` | `abstract:power-ground` | IR receive-switch ground |
+| `IR_FRONTEND_PWR_EN` | `c5.GPIO4` | `ir_power_switch.ON` | direct C5 control enables only admitted receive/learning phases |
+| `IR_FRONTEND_PWR_EN` | `ir_power_switch.ON` | `ir_power_on_pulldown.END_1` | exact 10-kOhm external fail-low default |
+| `POWER_GROUND` | `ir_power_on_pulldown.END_2` | `abstract:power-ground` | receive frontend remains off through C5 reset or absence |
+| `IR_RX_QOD` | `ir_power_switch.QOD` | `ir_power_switch.VOUT` | off receive rail is actively discharged |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_cap.END_1` | exact 10-uF switched-rail energy |
+| `POWER_GROUND` | `ir_power_output_cap.END_2` | `abstract:power-ground` | switched-rail bulk return |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_power_output_bypass.END_1` | exact 100-nF high-frequency switched-rail bypass |
+| `POWER_GROUND` | `ir_power_output_bypass.END_2` | `abstract:power-ground` | IR receive bypass return |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_demod_supply_res.END_1` | separate exact 100-Ohm supply filter prevents one optical receiver from modulating the other |
+| `IR_DEMOD_VS` | `ir_demod_supply_res.END_2` | `ir_demod.VS` | TSOP95238TT physical contact 2 receives the filtered 2.0-to-3.6-V supply |
+| `IR_DEMOD_VS` | `ir_demod.VS` | `ir_demod_supply_cap.END_1` | exact 4.7-uF local receiver filter capacitor |
+| `POWER_GROUND` | `ir_demod_supply_cap.END_2` | `abstract:power-ground` | demodulator filter return stays beside both ground contacts |
+| `POWER_GROUND` | `ir_demod.GND_1` | `abstract:power-ground` | TSOP95238TT physical contact 1 is grounded |
+| `POWER_GROUND` | `ir_demod.GND_4` | `abstract:power-ground` | TSOP95238TT physical contact 4 is independently accounted |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_carrier_supply_res.END_1` | separate exact 100-Ohm supply filter follows the TSMP application circuit |
+| `IR_CARRIER_VS` | `ir_carrier_supply_res.END_2` | `ir_carrier.VS` | TSMP95000TT physical contact 2 receives the filtered 2.0-to-5.5-V supply |
+| `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_supply_cap.END_1` | exact 4.7-uF local filter follows the manufacturer recommendation |
+| `POWER_GROUND` | `ir_carrier_supply_cap.END_2` | `abstract:power-ground` | carrier receiver filter return stays beside both ground contacts |
+| `POWER_GROUND` | `ir_carrier.GND_1` | `abstract:power-ground` | TSMP95000TT physical contact 1 is grounded |
+| `POWER_GROUND` | `ir_carrier.GND_4` | `abstract:power-ground` | TSMP95000TT physical contact 4 is independently accounted |
+| `IR_CARRIER_VS` | `ir_carrier.VS` | `ir_carrier_pullup.END_2` | exact 4.7-kOhm output pull-up follows the TSMP95000 application circuit |
+| `IR_CARRIER_LOCAL_N` | `ir_carrier_pullup.END_1` | `ir_carrier.CARRIER_OUT` | pull-up sharpens active-low carrier cycles without relying on a C5 internal pull |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.VCC` | Ioff buffer loses power with both optical receivers |
+| `POWER_GROUND` | `ir_return_buffer.GND` | `abstract:power-ground` | IR return-buffer ground |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.1OE` | demodulated return is enabled only while the switched rail exists |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer.2OE` | carrier return is enabled only while the switched rail exists |
+| `3V3_IR_RX_SWITCHED` | `ir_power_switch.VOUT` | `ir_return_buffer_bypass.END_1` | exact 100-nF return-buffer bypass |
+| `POWER_GROUND` | `ir_return_buffer_bypass.END_2` | `abstract:power-ground` | return-buffer bypass return |
+| `IR_DEMOD_LOCAL_N` | `ir_demod.OUT` | `ir_return_buffer.1A` | active-low demodulated envelope enters its own physical buffer channel |
+| `IR_DEMOD_BUFFERED_N` | `ir_return_buffer.1Y` | `ir_demod_series.END_1` | Ioff output becomes high impedance when the receive rail is off |
+| `IR_RX_DEMOD` | `ir_demod_series.END_2` | `c5.GPIO0` | exact 100-Ohm source resistor bounds the direct RMT_RX0 edge |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_demod_host_pullup.END_2` | host-side 10-kOhm pull-up keeps RMT_RX0 idle-high while isolated |
+| `IR_RX_DEMOD` | `ir_demod_host_pullup.END_1` | `c5.GPIO0` | powered-off receiver cannot back-power the C5 input |
+| `IR_CARRIER_LOCAL_N` | `ir_carrier.CARRIER_OUT` | `ir_return_buffer.2A` | active-low carrier cycles use the second independent buffer channel |
+| `IR_CARRIER_BUFFERED_N` | `ir_return_buffer.2Y` | `ir_carrier_series.END_1` | Ioff output becomes high impedance when the receive rail is off |
+| `IR_RX_CARRIER` | `ir_carrier_series.END_2` | `c5.GPIO1` | exact 100-Ohm source resistor bounds the direct RMT_RX1 edge |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_carrier_host_pullup.END_2` | host-side 10-kOhm pull-up keeps RMT_RX1 idle-high while isolated |
+| `IR_RX_CARRIER` | `ir_carrier_host_pullup.END_1` | `c5.GPIO1` | powered-off learning receiver cannot back-power the C5 input |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_emitter_limit.END_1` | emitter current comes from the protected main rail, independently of the receive frontend rail |
+| `IR_LED_ANODE_LIMITED` | `ir_emitter_limit.END_2` | `ir_emitter.ANODE` | exact 33-Ohm 1206 resistor bounds first-order current below 70 mA at the conservative paper voltage/forward-voltage corner |
+| `IR_LED_CATHODE` | `ir_emitter.CATHODE` | `ir_tx_mosfet.D` | physical VSMY14940 cathode reaches only the low-side switch |
+| `POWER_GROUND` | `ir_tx_mosfet.S` | `abstract:power-ground` | low-side source uses a short local return away from optical-receiver filters |
+| `IR_TX_GATE` | `ir_tx_gate_series.END_2` | `ir_tx_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
+| `IR_TX_GATE` | `ir_tx_mosfet.G` | `ir_tx_gate_pulldown.END_1` | external 10-kOhm pull-down makes reset, disconnect and high-impedance states dark |
+| `POWER_GROUND` | `ir_tx_gate_pulldown.END_2` | `abstract:power-ground` | MOSFET gate fail-low return |
 | `RX_GPO1_NC` | `receiver.GPO1` | `abstract:no-connect` | unused multifunction output remains open |
 | `RX_PACKAGE_NC` | `receiver.NC` | `abstract:no-connect` | SOIC physical pin 8 remains open |
 | `NRF_SWITCH_NC` | `nrf_power_switch.NC` | `abstract:no-connect` | SC70 pin 4 is left floating as required |
@@ -2225,7 +2280,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `voice_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of converter internal bias |
 | `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_pg_base_res.END_1` | the qualifier consumes the same STOP-dominant voice enable evidence |
 | `VOICE_PG_QUAL_BASE` | `voice_pg_base_res.END_2` | `voice_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
-| `IR_TX_CARRIER_SAFE` | `safe_gate_b.3Y` | `abstract:fail-safe-IR-LED-driver` | carrier waveform is physically blocked whenever RUN_PERMIT is low |
+| `IR_TX_CARRIER_SAFE` | `safe_gate_b.3Y` | `ir_tx_gate_series.END_1` | STOP-dominant carrier reaches the exact emitter gate network only while RUN_PERMIT is high |
 | `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_buck.EN` | STOP and AON loss disable the dedicated 5-V converter |
 | `EXT_5V_EN_SAFE` | `ext_buck.EN` | `ext_en_pulldown.END_1` | one exact 10-kOhm pull-down defines accessory off for both converter and eFuse if the safety-gate output is high-impedance |
 | `POWER_GROUND` | `ext_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of the converter's internal 2-MOhm pull-down |
@@ -2350,7 +2405,22 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `SAFETY_GROUND` | `voice_evidence_hold_cap.END_2` | `abstract:safety-ground` | hold capacitor returns in the AON evidence domain |
 | `SAFETY_GROUND` | `voice_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | detector cannot remain enabled indefinitely after voice shutdown |
 | `VOICE_EVIDENCE_DIODE_NC` | `voice_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `IR_OPTICAL_SAMPLE` | `det_ir.ANODE` | `abstract:shielded-ir-evidence-front-end` | physical optical pickup rather than drive-current inference; exact bias/front end is I6 |
+| `SAFETY_GROUND` | `det_ir.ANODE` | `abstract:safety-ground` | the optical sensor is electrically independent of the emitter drive and returns only in the AON evidence domain |
+| `IR_OPTICAL_SUM` | `det_ir.CATHODE` | `ir_evidence_amp.IN_MINUS` | reverse-biased VEMD1060X01 in the internal light-tight tunnel sources only measured physical optical response into the TIA |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_amp.V_PLUS` | actual-optical evidence stays alive independently of the C5 and IR receive rail |
+| `SAFETY_GROUND` | `ir_evidence_amp.V_MINUS` | `abstract:safety-ground` | TLV9061 AON evidence return |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_amp_bypass.END_1` | exact 100-nF local TLV9061 bypass |
+| `SAFETY_GROUND` | `ir_evidence_amp_bypass.END_2` | `abstract:safety-ground` | op-amp bypass return stays local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_vref_top.END_1` | exact 100-kOhm upper leg begins the optical TIA reference |
+| `IR_EVIDENCE_VREF` | `ir_evidence_vref_top.END_2` | `ir_evidence_amp.IN_PLUS` | 100-kOhm over 10-kOhm creates approximately 0.30 V at 3.3 V |
+| `IR_EVIDENCE_VREF` | `ir_evidence_amp.IN_PLUS` | `ir_evidence_vref_bottom.END_1` | exact lower leg fixes the AON reference independently of firmware |
+| `SAFETY_GROUND` | `ir_evidence_vref_bottom.END_2` | `abstract:safety-ground` | 10-kOhm lower reference leg |
+| `IR_EVIDENCE_VREF` | `ir_evidence_amp.IN_PLUS` | `ir_evidence_vref_cap.END_1` | exact 100-nF reference filter rejects safety-rail noise |
+| `SAFETY_GROUND` | `ir_evidence_vref_cap.END_2` | `abstract:safety-ground` | reference-filter return stays local |
+| `IR_DETECT_V` | `ir_evidence_amp.OUT` | `ir_evidence_feedback.END_1` | exact 47-kOhm transimpedance feedback converts only photodiode current |
+| `IR_OPTICAL_SUM` | `ir_evidence_feedback.END_2` | `ir_evidence_amp.IN_MINUS` | feedback closes at the physical photodiode summing node |
+| `IR_DETECT_V` | `ir_evidence_amp.OUT` | `ir_evidence_feedback_cap.END_1` | exact 1-nF parallel feedback gives about 47-us nominal time constant and averages 30-60-kHz carrier while retaining envelope response |
+| `IR_OPTICAL_SUM` | `ir_evidence_feedback_cap.END_2` | `ir_evidence_amp.IN_MINUS` | feedback capacitor closes at the summing node |
 | `S3_DETECT_V` | `det_s3.VOUT` | `evidence_cmp_a.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `C5_DETECT_V` | `det_c5.VOUT` | `evidence_cmp_a.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `NRF0_DETECT_V` | `det_nrf0.V_UP` | `evidence_cmp_a.IN3_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
@@ -2358,7 +2428,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN1_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `VOICE_DETECT_V` | `det_voice.V_UP` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `IR_DETECT_V` | `abstract:shielded-ir-evidence-front-end` | `evidence_cmp_b.IN4_N` | optical energy above the qualified threshold makes active-low comparator output assert |
+| `IR_DETECT_V` | `ir_evidence_amp.OUT` | `evidence_cmp_b.IN4_N` | physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute |
 | `EV_THRESH_0` | `abstract:qualified-evidence-threshold-0` | `evidence_cmp_a.IN1_P` | divider/hysteresis values are I6 calibration outputs |
 | `EV_THRESH_1` | `abstract:qualified-evidence-threshold-1` | `evidence_cmp_a.IN2_P` | divider/hysteresis values are I6 calibration outputs |
 | `EV_THRESH_2` | `abstract:qualified-evidence-threshold-2` | `evidence_cmp_a.IN3_P` | divider/hysteresis values are I6 calibration outputs |
@@ -2633,7 +2703,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `audio_capture_mic_coupling` lifecycle: `active_production`.
 - `audio_capture_input_coupling` lifecycle: `active_production`.
 - `audio_capture_local_bias_cap` lifecycle: `active_production`.
-- `audio_capture_buffer` uses `Texas Instruments TLV9061IDBVR` as `reference_only`, not an accepted production choice.
+- `audio_capture_buffer` uses `Texas Instruments TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `codec_adc_p_coupling` lifecycle: `active_production`.
 - `codec_adc_n_coupling` lifecycle: `active_production`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
@@ -2663,6 +2733,24 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `receiver_clock` lifecycle: `active_orderable`.
 - `receiver_clock_cap_rclk` lifecycle: `active_orderable`.
 - `receiver_clock_cap_gpo3` lifecycle: `active_orderable`.
+- `ir_power_input_cap` lifecycle: `active_production`.
+- `ir_demod` uses `Vishay TSOP95238TT` as `verified_exact_robust_ir_receiver`, not an accepted production choice.
+- `ir_demod` lifecycle: `active_orderable_factory_lead_time`.
+- `ir_demod_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
+- `ir_demod_supply_cap` lifecycle: `active_stocked_orderable`.
+- `ir_carrier` uses `Vishay TSMP95000TT` as `verified_exact_carrier_learning_ir_receiver`, not an accepted production choice.
+- `ir_carrier` lifecycle: `active_stocked_orderable`.
+- `ir_carrier_supply_cap` uses `Murata GRM188Z71A475ME15D` as `verified_exact_ir_receiver_filter_capacitor`, not an accepted production choice.
+- `ir_carrier_supply_cap` lifecycle: `active_stocked_orderable`.
+- `ir_carrier_pullup` uses `Yageo RC0402FR-074K7L` as `verified_exact_ir_carrier_output_pullup`, not an accepted production choice.
+- `ir_carrier_pullup` lifecycle: `active_stocked_orderable`.
+- `ir_return_buffer` uses `Nexperia 74LVC2G126DC,125` as `verified_exact_nrf_switched_to_host_domain_isolator`, not an accepted production choice.
+- `ir_return_buffer` lifecycle: `production_active_orderable`.
+- `ir_emitter` uses `Vishay VSMY14940` as `verified_exact_consumer_ir_transmit_emitter`, not an accepted production choice.
+- `ir_emitter` lifecycle: `active_stocked_orderable`.
+- `ir_emitter_limit` uses `Yageo RC1206FR-0733RL` as `verified_exact_ir_emitter_current_limit_resistor`, not an accepted production choice.
+- `ir_emitter_limit` lifecycle: `active_stocked_orderable`.
+- `ir_evidence_amp` uses `Texas Instruments TLV9061IDBVR` as `verified_reference`, not an accepted production choice.
 - `voice_io_power_input_cap` lifecycle: `active_production`.
 - `voice_io_power_output_cap` lifecycle: `active_production`.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
@@ -2690,6 +2778,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `det_cc` lifecycle: `production_active_orderable`.
 - `det_voice` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_voice` lifecycle: `production_active_orderable`.
+- `det_ir` uses `VEMD1060X01` as `verified_exact_ir_actual_optical_evidence_sensor`, not an accepted production choice.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. Conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence HIL and the mechanics-selected standard-SMA MPN remain blocking before schematic/BOM freeze

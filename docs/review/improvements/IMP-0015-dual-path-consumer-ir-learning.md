@@ -1,11 +1,15 @@
 # IMP-0015 — dual-path consumer IR learning без ложного universal claim
 
-- Статус: **Принято владельцем: вариант A, `DEC-0018`**
+- Статус: **Принято владельцем: вариант A; exact implementation `DEC-0095`**
 - Связано: `C-IR-01`–`C-IR-05`, `FND-0017`, `FND-0018`, draft `REQ-IR-0001`
 - Зона: Main own-device remote; Lab passive analysis; Controlled Zone disruptive sweep/replay
 - Дата: 2026-08-16
 
 ## Контекст
+
+> Current implementation note: `IRF-0001/DEC-0095` preserve option A but use
+> the reflowable exact `TSOP95238TT + TSMP95000TT + VSMY14940` endpoint. The
+> older `TSOP38238/TSAL6200` wording below records the original alternatives.
 
 Текущий `TSOP38238` хорош как noise-resistant demodulated receiver для 38 kHz long-burst consumer protocols, но удаляет carrier и не может автоматически узнать исходную частоту. Специализированный `TSMP95000` сохраняет carrier cycles для 30–60 kHz code learning, однако его типовая дальность в datasheet — 1.8 m с TSAL6200/50 mA, то есть он не является безусловной заменой robust receiver. ESP32-C5 предоставляет ровно два RX RMT channels, поэтому возможно сохранить оба назначения.
 
@@ -51,12 +55,14 @@ TX artifact также требует exact emitter/driver. `TSAL6200` — до�
 
 - [ESP32-C5 datasheet: 2 TX + 2 RX RMT](https://documentation.espressif.com/esp32-c5_datasheet_en.html)
 - [ESP-IDF RMT API](https://docs.espressif.com/projects/esp-idf/en/stable/esp32c5/api-reference/peripherals/rmt.html)
+- [Vishay TSOP952/954 datasheet](https://www.vishay.com/docs/82837/tsop952.pdf)
 - [Vishay TSOP382/384 datasheet](https://www.vishay.com/docs/82491/tsop382.pdf)
 - [Vishay TSMP95000 datasheet](https://www.vishay.com/docs/82907/tsmp95000.pdf)
+- [Vishay VSMY14940 datasheet](https://www.vishay.com/docs/84209/vsmy14940.pdf)
 - [Vishay TSAL6200 datasheet](https://www.vishay.com/docs/81010/tsal6200.pdf)
 - [Arduino-IRremote MIT reference](https://github.com/Arduino-IRremote/Arduino-IRremote)
 - [IRremoteESP8266 protocol matrix](https://github.com/crankyoldgit/IRremoteESP8266/blob/master/SupportedProtocols.md)
 
 ## Решение владельца
 
-2026-08-16 принят вариант A: два независимых C5 RX path (`TSOP38238` + `TSMP95000`) и квалифицируемый TX с `TSAL6200` как первым emitter candidate. Канонический контракт — `DEC-0018`; варианты B/C не могут быть применены как скрытая BOM-экономия.
+2026-08-16 принят вариант A: два независимых C5 RX path и квалифицируемый TX. `DEC-0095` later freezes exact `TSOP95238TT + TSMP95000TT + VSMY14940` while preserving that function; варианты B/C не могут быть применены как скрытая BOM-экономия.

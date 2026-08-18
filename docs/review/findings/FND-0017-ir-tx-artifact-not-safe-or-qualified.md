@@ -1,6 +1,6 @@
 # FND-0017 — текущий IR TX artifact не был fail-safe или квалифицирован
 
-- Статус: **Частично исправлено консервативно; implementation finding открыт**
+- Статус: **Исправлено на paper-electrical уровне `DEC-0095`; physical/HIL finding открыт**
 - Серьёзность: safety/electrical/traceability blocker
 - Затрагивает: `DEC-0001`, `DEC-0003`, `C-IR-02`–`C-IR-05`, `hardware/tscircuit/indicators.tsx`
 - Обнаружено и частично исправлено: 2026-08-16
@@ -27,6 +27,11 @@
 
 ## Что остаётся открытым
 
+`IRF-0001/DEC-0095` now replace the legacy placeholder with exact
+`VSMY14940`, `RC1206FR-0733RL`, `DMN2056U-7`, STOP-dominated gate defaults and
+independent `VEMD1060X01/TLV9061IDBVR` actual-optical evidence. The remaining
+items below are physical/HIL gates, not an abstract circuit gap.
+
 - exact C5 GPIO/RMT allocation и inter-MCU/STOP contract после stage-3 resource budget;
 - qualified 940 nm emitter, logic driver, current/duty/thermal/rail calculations и PCB/enclosure optics;
 - independent STOP/dead-man behavior, electrical TX indication и optically observed HIL;
@@ -42,6 +47,8 @@
 
 ## Первичные источники
 
+- [Vishay VSMY14940 datasheet](https://www.vishay.com/docs/84209/vsmy14940.pdf)
+- [Vishay VEMD1060X01 datasheet](https://www.vishay.com/docs/84295/vemd1060x01.pdf)
 - [Vishay TSAL6200 datasheet](https://www.vishay.com/docs/81010/tsal6200.pdf)
 - [Vishay IEC 62471 eye-safety note](https://www.vishay.com/docs/81935/eyesafe.pdf)
 - [Espressif ESP32-C5 RMT API](https://docs.espressif.com/projects/esp-idf/en/stable/esp32c5/api-reference/peripherals/rmt.html)

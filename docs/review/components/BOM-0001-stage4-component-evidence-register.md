@@ -68,9 +68,10 @@ Evidence states: `E0` — строка только идентифицирова
 | `A-003` | F | microphone bias/input and speaker/headphone amplifier/output | E0 | levels, gain/noise, load/thermal, mute default, EMC and hearing-safe UI bounds |
 | `R-001` | A | Si4732 receive IC/module function | E1 | exact orderable implementation, RF frontend/bands, reference clock, audio/control levels, lifecycle and SSB-patch compatibility |
 | `R-002` | F | Si4732 antenna matching/filter/switch path | E0 | sensitivity, overload, ESD, coexistence and enclosure antenna contract |
-| `I-001` | A | TSOP38238 robust 38 kHz IR RX | E1 | supply/filter/layout/optical aperture and ambient-light HIL |
-| `I-002` | A | TSMP95000 30–60 kHz learning RX | E1 | carrier measurement accuracy, supply/filter/layout/aperture and HIL |
-| `I-003` | C | TSAL6200 940 nm IR emitter | E1 | exact pulse current/driver/thermal/optics, eye safety and STOP/TX-state evidence |
+| `I-001` | F | exact `TSOP95238TT` robust 38-kHz AGC2 SMD IR RX plus 100-Ohm/4.7-uF filter | E2 | actual assembly orientation, sensitivity/noise, aperture/ambient and simultaneous-RX HIL |
+| `I-002` | F | exact `TSMP95000TT` 30–60-kHz SMD learning RX plus 100-Ohm/4.7-uF filter and 4.7-kOhm output pull-up | E2 | carrier measurement accuracy, range/aperture and simultaneous-RX HIL |
+| `I-003` | F | exact `VSMY14940 + RC1206FR-0733RL + DMN2056U-7` STOP-qualified TX | E2 | current/range/duty/temperature, stuck-carrier fault, optics and IEC 62471 HIL |
+| `I-004` | F | exact shielded `VEMD1060X01 + TLV9061IDBVR` 47-kOhm/1-nF actual-optical evidence | E2 | tunnel coupling, threshold, assert/decay, missing-light and ambient false-positive HIL |
 
 ## 5. Packet RF and analog voice
 
