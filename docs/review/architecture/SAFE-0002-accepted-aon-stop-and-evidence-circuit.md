@@ -95,7 +95,7 @@ STOP. The active-low SA518 PTT output instead has a `10 kΩ` module-side pull-up
 | RP `GPIO23 CC_PWR_EN` | `safe_gate_b.1` | `CC_PWR_EN_SAFE` | load switch/isolation in `I3/I6` |
 | slow `P13 VOICE_DOMAIN_REQ` | `safe_gate_b.2` | `VOICE_DOMAIN_EN_SAFE` | 4-V rail stage in `I3/I5` |
 | C5 `GPIO6 IR_TX_CARRIER` | `safe_gate_b.3` | `IR_TX_CARRIER_SAFE` | LED driver in `I6` |
-| slow `P17 EXT_5V_REQ` | `safe_gate_b.4` | `EXT_5V_EN_SAFE` | reverse-safe switch/eFuse in `I3/I7` |
+| slow `P17 U214_5V_REQ` OR `P05 UNIT_5V_REQ` | exact request OR then `safe_gate_b.4` | `EXT_ANY_5V_EN_SAFE` | shared fixed-5-V buck; exact dual AND then independently enables each reverse-safe eFuse per `DEC-0098` |
 | RP `GPIO18 VOICE_PTT_REQ_N` | `safe_ptt_or` | `VOICE_PTT_SAFE_N` | exact SA518 pin 14 |
 
 S3/C5 native radios are stopped by their module resets. RP reset additionally

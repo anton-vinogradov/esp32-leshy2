@@ -36,8 +36,9 @@ GPIO37. `DEC-0088/DSP-0007` fix exact active-low ST77922, 10-kOhm raw pull-up
 and non-inverting 1G07. A dedicated TCA9534A restores
 interrupt-driven 4×3 controls and releases TCA6424 P00…P05. I5 now assigns
 P00/P01/P02 to capture selection, speaker enable and headphone sensing; I6
-assigns P03/P04 to powered-off CC1101 band selection. Current free state is
-`S3=0, C5=1, RP=0, main slow=1`, with P05 free and UI-matrix P7 reserved.
+assigns P03/P04 to powered-off CC1101 band selection. `DEC-0098/EXP-0001` then
+uses P05 for independent native-M5-Unit power. Current free state is
+`S3=0, C5=1, RP=0, main slow=0`; UI-matrix P7 remains reserved.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -214,6 +215,13 @@ actual-TX evidence and no-stall thresholds. I6 has **«Проведено рев
 paper electrical and qualification scope; physical HIL remains explicitly
 not executed and can reopen its owner. I7 is active and the no-KiCad boundary
 continues.
+`FND-0105/EXP-0001/DEC-0098/REV-0005BD` close the I7 M5 expansion paper
+subblock. U214 and the native HY2.0-4P Unit port now have independent
+true-reverse-blocking 5-V branches, branch-valid supervisors, exact signal
+isolation and connector ESD. The fictitious accessory-presence input is removed;
+P26 reports real Unit-rail readiness. Connector MPNs and all physical/hot-plug/
+reverse-source/profile/coexistence evidence remain open. I7 continues with
+independent USB/debug/recovery service endpoints.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

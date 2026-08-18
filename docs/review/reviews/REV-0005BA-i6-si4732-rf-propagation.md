@@ -12,7 +12,7 @@
 |---|---|
 | exact device registry | pass after `REV-0005BB`: the full Si4732 SOIC-16 map is corrected and regression-locked; target `Si4732-A10-GSR`/JLCPCB `C2155558` is an in-stock assembly line rather than the out-of-stock tube SKU; three new exact passive MPN/contact records include manufacturer facts and current authorized-stock evidence; two independent existing SESD bodies are reused |
 | machine candidate | pass: nine exact routes replace both hidden frontend abstractions and retain separate FMI/AMI/RFGND contacts 6/8/7 |
-| pin/power budget | pass: S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow I/O `23/0/1`, UI I/O `7/1/0`; no new rail or TX path |
+| pin/power budget | historical I6 pass: main slow I/O was `23/0/1`; DEC-0098 later makes it `24/0/0`; S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, UI `7/1/0` and this receive-only endpoint remain unchanged |
 | antenna identity | pass: FM/SW and non-50-Ohm AM/LW remain distinct labelled standard-SMA boundaries; connector MPN is still a mechanics input |
 | quiet state | pass on paper: receiver rail/digital interfaces still discharge/isolate; passive ESD/coupling cannot back-power or authorize TX |
 | principled diagram | pass: generated and both landing-page vertical diagrams show each physical part with exact MPN and role; the two ESD bodies are not merged |

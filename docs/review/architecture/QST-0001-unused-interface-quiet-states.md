@@ -57,8 +57,9 @@ The quiet-state requirement consumes three formerly free direct controls:
 After later `DEC-0052`, S3 GPIO41/42 become QSPI D2/D3. Subsequent
 `AUDIO-0002/FND-0067` assigns slow P27 to the previously omitted
 `RX_AUDIO_SOURCE_SEL`. Current remaining direct general-purpose reserve is
-S3=0, C5=1 and RP=0. Main slow I/O retains P05 as its only free contact; the
-separate UI expander retains P7 as a protected fixture/growth reserve. The
+S3=0, C5=1 and RP=0. `DEC-0098` consumes main slow-I/O P05 as the independent
+native-Unit power request, so that plane is now `24/0/0`; the separate UI
+expander retains P7 as a protected fixture/growth reserve. The
 individual paper endpoints now contain exact first-target switches, isolation,
 default pulls and passive frontends, but physical/HIL evidence remains open. A future direct
 RP timing endpoint now requires a remap or justified expander/latch; it cannot

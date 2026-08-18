@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `23/0/1` and dedicated UI I/O `7/1/0`. `I2`…`I6` paper scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090/0091…0097` and `COX-0001`; physical I6 HIL remains a named reopen gate. I7 is the active paper block. Gate 2F remains open through I7, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. `I2`…`I6` plus the M5 expansion subblock of I7 have **«Проведено ревью»** through `DEC-0061/0082/0089/0090/0091…0098`, `COX-0001` and `EXP-0001`; physical HIL remains a named reopen gate. I7 service closure is active. Gate 2F remains open through I7, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -61,7 +61,8 @@ first-target пассивы внесены в machine map. Main slow I/O ста�
 `DEC-0092/REV-0005AW`. `FND-0098/CCRF-0001/DEC-0093/REV-0005AX` затем
 исправляют односторонний CC band switch: exact dual-SP3T path, three-band
 coupon, final-line ESD и AD8314 actual-TX sample входят в machine map; P03/P04
-заняты, P05 свободен, main slow I/O становится `23/0/1`.
+заняты; позднее `DEC-0098` отдаёт P05 native-Unit power request, поэтому current
+main slow I/O становится `24/0/0`.
 `FND-0099/VRF-0001/DEC-0094/REV-0005AY` далее закрывают SA518 paper RF path:
 ANT contact 7, direct protected 50-Ом SMA boundary, 24-В low-C ESD и exact
 5,1-кОм/52,3-Ом AD8314 sample. P05 не расходуется на фильтры без measured
@@ -80,4 +81,5 @@ COX-0001/DEC-0097/REV-0005BC` затем исправляют cross-group promot
 runtime, отдельные quiet boundaries, восемь fixture classes, ordered
 transitions и все no-stall thresholds. I6 paper scope имеет **«Проведено
 ревью»** без присвоения несуществующих измерений; physical HIL может открыть
-его владельца повторно. Активен I7, KiCad не разрешён.
+его владельца повторно. M5 expansion subblock I7 закрыт `DEC-0098`, активен
+service subblock I7, KiCad не разрешён.

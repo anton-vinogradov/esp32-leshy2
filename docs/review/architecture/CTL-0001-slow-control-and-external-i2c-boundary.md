@@ -111,8 +111,9 @@ conflict isolation. Старый three-domain UART study остаётся refere
 ## Последующее закрытие
 
 Этот документ сохраняет снимок проблемы первых `G2F-2R/3D`. `DEC-0044`
-принял `IMP-0037/A`; `G2F-3I` и новый validator теперь проверяют 23 used + 1
-reserved slow contact, direct U214 IRQ и отдельный U214 I²C0+TCA4307 branch.
+принял `IMP-0037/A`; последующий `DEC-0098` довёл текущий `G2F-3I` до
+`24 used / 0 reserved / 0 free`: P05 независимо запрашивает native-Unit branch,
+direct U214 IRQ сохранён, а U214 I²C0+TCA4307 branch полностью инстанцирован.
 Подробная итоговая карта находится в [`NIF-0001`](NIF-0001-digital-noninterference-layout.md).
 
 Последующий `FND-0067/REV-0005C` обнаружил пропущенный обязательный control

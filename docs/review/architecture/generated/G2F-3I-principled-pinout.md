@@ -211,7 +211,7 @@ flowchart TD
   SD_DETECT_SERIES["Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor"]
   SD_DETECT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm always-readable card-detect pull-up"]
   SD_DETECT_CAP["TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor"]
-  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; P05 remains free"]
+  SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   SLOW_IO_VCCI_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor"]
   SLOW_IO_VCCP_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCP bypass capacitor"]
   SLOW_IO_BULK_CAP["TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor"]
@@ -625,6 +625,60 @@ flowchart TD
   VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   U214_I2C_ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
+  U214_I2C_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-I2C-isolator bypass capacitor"]
+  U214_I2C_HOST_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm U214 controller-side SDA pull-up"]
+  U214_I2C_HOST_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>2.2-kOhm U214 controller-side SCL pull-up"]
+  U214_HOST_BUFFER_A["Nexperia 74LVC126APW,118<br/>U214 RST/GPS-RX/SCK/MOSI Ioff buffer"]
+  U214_HOST_BUFFER_B["Nexperia 74LVC126APW,118<br/>U214 NSS plus disabled-spare Ioff buffer"]
+  U214_RETURN_BUFFER["Nexperia 74LVC126APW,118<br/>U214 BUSY/IRQ/GPS-TX/MISO Ioff return buffer"]
+  U214_HOST_BUFFER_A_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF first U214 host-buffer bypass capacitor"]
+  U214_HOST_BUFFER_B_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF second U214 host-buffer bypass capacitor"]
+  U214_RETURN_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF U214 return-buffer bypass capacitor"]
+  U214_SERIES_RST["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 reset source-series resistor"]
+  U214_SERIES_GPS_RX["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 GPS-RX source-series resistor"]
+  U214_SERIES_SCK["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 SPI-clock source-series resistor"]
+  U214_SERIES_MOSI["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 MOSI source-series resistor"]
+  U214_SERIES_NSS["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 NSS source-series resistor"]
+  U214_SERIES_BUSY["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 BUSY return-series resistor"]
+  U214_SERIES_IRQ["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 IRQ return-series resistor"]
+  U214_SERIES_GPS_TX["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 GPS-TX return-series resistor"]
+  U214_SERIES_MISO["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 MISO return-series resistor"]
+  U214_ESD_A["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 I2C/RST/GPS-RX ESD array"]
+  U214_ESD_B["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 SCK/MOSI/NSS/BUSY ESD array"]
+  U214_ESD_C["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 IRQ/GPS-TX/MISO ESD array"]
+  EXT_REQUEST_OR["74LVC1G32GV,125<br/>U214/native-Unit branch-request OR gate"]
+  EXT_REQUEST_OR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-request-OR bypass capacitor"]
+  EXT_ANY_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm shared-5-V request fail-low resistor"]
+  EXT_BRANCH_GATE["Texas Instruments SN74LVC2G08DCUR<br/>dual STOP-qualified U214/native-Unit branch gate"]
+  EXT_BRANCH_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-branch-gate bypass capacitor"]
+  U214_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm U214 request fail-low resistor"]
+  UNIT_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm native-Unit request fail-low resistor"]
+  U214_SUPERVISOR["TPS3808G33DBVR<br/>protected-U214-5-V readiness supervisor"]
+  U214_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF U214-supervisor bypass capacitor"]
+  U214_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-07110KL<br/>110-kOhm U214-ready threshold top resistor"]
+  U214_SUPERVISOR_SENSE_BOTTOM["Yageo RC0402FR-07220KL<br/>220-kOhm U214-ready threshold bottom resistor"]
+  U214_SUPERVISOR_CT["Murata GRM155R71H103KA88D<br/>10-nF U214-ready delay capacitor"]
+  U214_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm U214-ready main-domain pull-up"]
+  UNIT_EFUSE["Texas Instruments TPS259470LRPWR<br/>native-Unit true-reverse-blocking latch-off eFuse"]
+  UNIT_RILM["Yageo RC0402FR-072K21L<br/>2.21-kOhm native-Unit eFuse current-limit resistor"]
+  UNIT_DVDT_CAP["Murata GRM155R71H472KA01D<br/>4.7-nF native-Unit eFuse slew capacitor"]
+  UNIT_ITIMER_CAP["Murata GRM188R71E224KA88D<br/>220-nF native-Unit post-start transient timer"]
+  UNIT_OVLO_TOP["Yageo RC0402FR-07169KL<br/>169-kOhm native-Unit OVLO top resistor"]
+  UNIT_OVLO_BOTTOM["Yageo RC0402FR-0747KL<br/>47-kOhm native-Unit OVLO bottom resistor"]
+  UNIT_INPUT_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF native-Unit eFuse input capacitor"]
+  UNIT_OUTPUT_CAP["Murata GRM21BR71E225KE11L<br/>2.2-uF native-Unit eFuse output capacitor"]
+  UNIT_BLEEDER["Yageo RC0603FR-071KL<br/>1-kOhm native-Unit protected-output discharge resistor"]
+  UNIT_SUPERVISOR["TPS3808G33DBVR<br/>protected-native-Unit-5-V readiness supervisor"]
+  UNIT_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF native-Unit-supervisor bypass capacitor"]
+  UNIT_SUPERVISOR_SENSE_TOP["Yageo RC0402FR-07110KL<br/>110-kOhm native-Unit-ready threshold top resistor"]
+  UNIT_SUPERVISOR_SENSE_BOTTOM["Yageo RC0402FR-07220KL<br/>220-kOhm native-Unit-ready threshold bottom resistor"]
+  UNIT_SUPERVISOR_CT["Murata GRM155R71H103KA88D<br/>10-nF native-Unit-ready delay capacitor"]
+  UNIT_SUPERVISOR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm native-Unit-ready main-domain pull-up"]
+  UNIT_SIGNAL_ISO["Texas Instruments TXS0102DCUR<br/>dual bidirectional I2C/UART/GPIO Unit signal isolator"]
+  UNIT_SIGNAL_ISO_VCCA_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF Unit-isolator VCCA bypass capacitor"]
+  UNIT_SIGNAL_ISO_VCCB_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF Unit-isolator VCCB bypass capacitor"]
+  UNIT_SIGNAL_ISO_OE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm Unit-isolator OE fail-low resistor"]
+  UNIT_ESD["Texas Instruments TPD4E05U06DQAR<br/>four-channel native-Unit connector ESD array"]
   UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
   end
   subgraph IR_PATH["IR frontend devices"]
@@ -734,7 +788,7 @@ flowchart TD
   C5 ~~~ S3_RF_BOARD_CONNECTOR ~~~ S3_RF_COUPLER ~~~ S3_RF_COUPLER_TERMINATION ~~~ S3_DETECTOR_INPUT_CAP ~~~ S3_DETECTOR_FEEDBACK_RES ~~~ S3_DETECTOR_GROUND_RES ~~~ S3_DETECTOR_OUTPUT_CAP ~~~ S3_DETECTOR_BYPASS ~~~ C5_RF_BOARD_CONNECTOR ~~~ C5_RF_COUPLER ~~~ C5_RF_COUPLER_TERMINATION ~~~ C5_DETECTOR_INPUT_CAP ~~~ C5_DETECTOR_FEEDBACK_RES ~~~ C5_DETECTOR_GROUND_RES ~~~ C5_DETECTOR_OUTPUT_CAP ~~~ C5_DETECTOR_BYPASS
   S3_RF_BOARD_CONNECTOR ~~~ S3_RF_COUPLER ~~~ S3_RF_COUPLER_TERMINATION ~~~ S3_DETECTOR_INPUT_CAP ~~~ S3_DETECTOR_FEEDBACK_RES ~~~ S3_DETECTOR_GROUND_RES ~~~ S3_DETECTOR_OUTPUT_CAP ~~~ S3_DETECTOR_BYPASS ~~~ C5_RF_BOARD_CONNECTOR ~~~ C5_RF_COUPLER ~~~ C5_RF_COUPLER_TERMINATION ~~~ C5_DETECTOR_INPUT_CAP ~~~ C5_DETECTOR_FEEDBACK_RES ~~~ C5_DETECTOR_GROUND_RES ~~~ C5_DETECTOR_OUTPUT_CAP ~~~ C5_DETECTOR_BYPASS ~~~ RP
   RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ NRF_POWER_INPUT_CAP ~~~ NRF_POWER_ON_PULLDOWN ~~~ NRF_EVIDENCE_HOLD_DIODE ~~~ NRF_EVIDENCE_HOLD_CAP ~~~ NRF_EVIDENCE_HOLD_PULLDOWN ~~~ NRF0_HOST_BUFFER ~~~ NRF0_RETURN_BUFFER ~~~ NRF0_HOST_BUFFER_BYPASS ~~~ NRF0_RETURN_BUFFER_BYPASS ~~~ NRF0_MODULE_BULK_CAP ~~~ NRF0_MODULE_HF_CAP ~~~ NRF0_CE_SERIES ~~~ NRF0_CSN_SERIES ~~~ NRF0_SCK_SERIES ~~~ NRF0_MOSI_SERIES ~~~ NRF0_MISO_SERIES ~~~ NRF0_IRQ_SERIES ~~~ NRF0_HOST_CE_PULLDOWN ~~~ NRF0_HOST_CSN_PULLUP ~~~ NRF0_HOST_SCK_PULLDOWN ~~~ NRF0_HOST_MOSI_PULLDOWN ~~~ NRF0_HOST_MISO_PULLDOWN ~~~ NRF0_HOST_IRQ_PULLUP ~~~ NRF0_MODULE_CE_PULLDOWN ~~~ NRF0_MODULE_CSN_PULLUP ~~~ NRF0_MODULE_SCK_PULLDOWN ~~~ NRF0_MODULE_MOSI_PULLDOWN ~~~ NRF0_MODULE_MISO_PULLDOWN ~~~ NRF0_MODULE_IRQ_PULLUP ~~~ NRF0_COUPLER ~~~ NRF0_COUPLER_TERMINATION ~~~ NRF0_DETECTOR_MATCH ~~~ NRF0_DETECTOR_FILTER ~~~ NRF0_DETECTOR_BYPASS ~~~ NRF1_HOST_BUFFER ~~~ NRF1_RETURN_BUFFER ~~~ NRF1_HOST_BUFFER_BYPASS ~~~ NRF1_RETURN_BUFFER_BYPASS ~~~ NRF1_MODULE_BULK_CAP ~~~ NRF1_MODULE_HF_CAP ~~~ NRF1_CE_SERIES ~~~ NRF1_CSN_SERIES ~~~ NRF1_SCK_SERIES ~~~ NRF1_MOSI_SERIES ~~~ NRF1_MISO_SERIES ~~~ NRF1_IRQ_SERIES ~~~ NRF1_HOST_CE_PULLDOWN ~~~ NRF1_HOST_CSN_PULLUP ~~~ NRF1_HOST_SCK_PULLDOWN ~~~ NRF1_HOST_MOSI_PULLDOWN ~~~ NRF1_HOST_MISO_PULLDOWN ~~~ NRF1_HOST_IRQ_PULLUP ~~~ NRF1_MODULE_CE_PULLDOWN ~~~ NRF1_MODULE_CSN_PULLUP ~~~ NRF1_MODULE_SCK_PULLDOWN ~~~ NRF1_MODULE_MOSI_PULLDOWN ~~~ NRF1_MODULE_MISO_PULLDOWN ~~~ NRF1_MODULE_IRQ_PULLUP ~~~ NRF1_COUPLER ~~~ NRF1_COUPLER_TERMINATION ~~~ NRF1_DETECTOR_MATCH ~~~ NRF1_DETECTOR_FILTER ~~~ NRF1_DETECTOR_BYPASS ~~~ NRF2_HOST_BUFFER ~~~ NRF2_RETURN_BUFFER ~~~ NRF2_HOST_BUFFER_BYPASS ~~~ NRF2_RETURN_BUFFER_BYPASS ~~~ NRF2_MODULE_BULK_CAP ~~~ NRF2_MODULE_HF_CAP ~~~ NRF2_CE_SERIES ~~~ NRF2_CSN_SERIES ~~~ NRF2_SCK_SERIES ~~~ NRF2_MOSI_SERIES ~~~ NRF2_MISO_SERIES ~~~ NRF2_IRQ_SERIES ~~~ NRF2_HOST_CE_PULLDOWN ~~~ NRF2_HOST_CSN_PULLUP ~~~ NRF2_HOST_SCK_PULLDOWN ~~~ NRF2_HOST_MOSI_PULLDOWN ~~~ NRF2_HOST_MISO_PULLDOWN ~~~ NRF2_HOST_IRQ_PULLUP ~~~ NRF2_MODULE_CE_PULLDOWN ~~~ NRF2_MODULE_CSN_PULLUP ~~~ NRF2_MODULE_SCK_PULLDOWN ~~~ NRF2_MODULE_MOSI_PULLDOWN ~~~ NRF2_MODULE_MISO_PULLDOWN ~~~ NRF2_MODULE_IRQ_PULLUP ~~~ NRF2_COUPLER ~~~ NRF2_COUPLER_TERMINATION ~~~ NRF2_DETECTOR_MATCH ~~~ NRF2_DETECTOR_FILTER ~~~ NRF2_DETECTOR_BYPASS ~~~ CC ~~~ VOICE
-  VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_EXTERNAL_RF ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD
+  VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_EXTERNAL_RF ~~~ U214_I2C_ISO ~~~ U214_I2C_ISO_BYPASS ~~~ U214_I2C_HOST_SDA_PULLUP ~~~ U214_I2C_HOST_SCL_PULLUP ~~~ U214_HOST_BUFFER_A ~~~ U214_HOST_BUFFER_B ~~~ U214_RETURN_BUFFER ~~~ U214_HOST_BUFFER_A_BYPASS ~~~ U214_HOST_BUFFER_B_BYPASS ~~~ U214_RETURN_BUFFER_BYPASS ~~~ U214_SERIES_RST ~~~ U214_SERIES_GPS_RX ~~~ U214_SERIES_SCK ~~~ U214_SERIES_MOSI ~~~ U214_SERIES_NSS ~~~ U214_SERIES_BUSY ~~~ U214_SERIES_IRQ ~~~ U214_SERIES_GPS_TX ~~~ U214_SERIES_MISO ~~~ U214_ESD_A ~~~ U214_ESD_B ~~~ U214_ESD_C ~~~ EXT_REQUEST_OR ~~~ EXT_REQUEST_OR_BYPASS ~~~ EXT_ANY_REQ_PULLDOWN ~~~ EXT_BRANCH_GATE ~~~ EXT_BRANCH_GATE_BYPASS ~~~ U214_REQ_PULLDOWN ~~~ UNIT_REQ_PULLDOWN ~~~ U214_SUPERVISOR ~~~ U214_SUPERVISOR_BYPASS ~~~ U214_SUPERVISOR_SENSE_TOP ~~~ U214_SUPERVISOR_SENSE_BOTTOM ~~~ U214_SUPERVISOR_CT ~~~ U214_SUPERVISOR_PULLUP ~~~ UNIT_EFUSE ~~~ UNIT_RILM ~~~ UNIT_DVDT_CAP ~~~ UNIT_ITIMER_CAP ~~~ UNIT_OVLO_TOP ~~~ UNIT_OVLO_BOTTOM ~~~ UNIT_INPUT_CAP ~~~ UNIT_OUTPUT_CAP ~~~ UNIT_BLEEDER ~~~ UNIT_SUPERVISOR ~~~ UNIT_SUPERVISOR_BYPASS ~~~ UNIT_SUPERVISOR_SENSE_TOP ~~~ UNIT_SUPERVISOR_SENSE_BOTTOM ~~~ UNIT_SUPERVISOR_CT ~~~ UNIT_SUPERVISOR_PULLUP ~~~ UNIT_SIGNAL_ISO ~~~ UNIT_SIGNAL_ISO_VCCA_BYPASS ~~~ UNIT_SIGNAL_ISO_VCCB_BYPASS ~~~ UNIT_SIGNAL_ISO_OE_PULLDOWN ~~~ UNIT_ESD ~~~ UNIT ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD
   SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH
   SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED
   STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
@@ -845,7 +899,9 @@ flowchart TD
   MAIN_EFUSE -->|"PG pull-up"| VOICE_PG_PULLUP --> VOICE_EFUSE
   SAFE_GATE_B -->|"EN"| VOICE_PG_BASE_RES --> VOICE_PG_QUALIFIER
   VOICE_EFUSE -->|"protected PG"| VOICE_PG_QUALIFIER -->|"qualified open collector"| SLOW_IO
-  NVDC_CHARGER -->|"SYS"| EXT_BUCK --> EXT_INDUCTOR --> EXT_EFUSE -->|"protected fixed 5.0 V"| U214
+  NVDC_CHARGER -->|"SYS"| EXT_BUCK --> EXT_INDUCTOR
+  EXT_INDUCTOR --> EXT_EFUSE -->|"protected U214 5.0 V"| U214
+  EXT_INDUCTOR --> UNIT_EFUSE -->|"protected native-Unit 5.0 V"| UNIT
   NVDC_CHARGER -->|"SYS local bulk"| EXT_BUCK_INPUT_CAP
   NVDC_CHARGER -->|"SYS local HF"| EXT_BUCK_HF_INPUT_CAP
   EXT_INDUCTOR -->|"feedback"| EXT_BUCK_FB_TOP --> EXT_BUCK_FB_BOTTOM
@@ -1019,9 +1075,23 @@ flowchart TD
   PTT_RAW --> ENCODER_PTT_ESD
   PTT_RAW -->|"direct GPIO21 through 1 kOhm; never in UI matrix"| PTT_SERIES --> RP
   ENCODER --> ENCODER_PTT_ESD
-  RP <-->|"PIO1/UART1: GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214
+  RP -->|"PIO1/UART1 outputs: GPIO12,GPIO13,GPIO14,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47"| U214_HOST_BUFFER_A --> U214
+  RP --> U214_HOST_BUFFER_B --> U214
+  U214 -->|"BUSY/IRQ/GPS-TX/MISO"| U214_RETURN_BUFFER --> RP
   RP <-->|"I²C0"| U214_I2C_ISO
   U214_I2C_ISO <-->|"isolated external I²C"| U214
+  U214_ESD_A -.->|"I²C/RST/GPS-RX shunt protection"| U214
+  U214_ESD_B -.->|"SCK/MOSI/NSS/BUSY shunt protection"| U214
+  U214_ESD_C -.->|"IRQ/GPS-TX/MISO shunt protection"| U214
+  S3 <-->|"GPIO7/GPIO8 profile signals"| UNIT_SIGNAL_ISO <-->|"isolated I²C/UART/GPIO"| UNIT
+  UNIT_ESD -.->|"two signal shunt clamps"| UNIT
+  SLOW_IO -->|"P17/P05 independent requests"| EXT_REQUEST_OR --> SAFE_GATE_B
+  SAFE_GATE_B --> EXT_BRANCH_GATE
+  EXT_BRANCH_GATE --> EXT_EFUSE
+  EXT_BRANCH_GATE --> UNIT_EFUSE
+  EXT_EFUSE --> U214_SUPERVISOR --> U214_HOST_BUFFER_A
+  U214_SUPERVISOR --> U214_I2C_ISO
+  UNIT_EFUSE --> UNIT_SUPERVISOR --> UNIT_SIGNAL_ISO
   RECEIVER --> SI_AUDIO_L_COUPLING --> SI_AUDIO_L_SUM --> AUDIO_RX_MUX
   RECEIVER --> SI_AUDIO_R_COUPLING --> SI_AUDIO_R_SUM --> AUDIO_RX_MUX
   RECEIVER_CLOCK --> RECEIVER
@@ -1097,7 +1167,6 @@ flowchart TD
   SAFE_GATE_B --> VOICE_BUCK
   SAFE_GATE_B --> IRTX
   SAFE_GATE_B --> EXT_BUCK
-  SAFE_GATE_B --> EXT_EFUSE
   S3 -->|"placement-qualified U.FL jumper"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|"dedicated RP-SMA boundary"| S3_EXTERNAL_RF_50R
   S3_RF_COUPLER -->|"-20-dB forward sample"| S3_DETECTOR_INPUT_CAP --> DET_S3 --> EVIDENCE_CMP_A
   S3_RF_COUPLER --> S3_RF_COUPLER_TERMINATION
@@ -1142,7 +1211,7 @@ flowchart TD
 | `s3` | `ESP32-S3-WROOM-1U-N16R2` | 33 | 3 | 0 | 36 |
 | `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |
 | `rp` | `RP2354B A4 (exact A4 order/lot identity required before BOM freeze)` | 48 | 0 | 0 | 48 |
-| `slow_io` | `TCA6424ARGJR` | 23 | 0 | 1 | 24 |
+| `slow_io` | `TCA6424ARGJR` | 24 | 0 | 0 | 24 |
 
 `RP=0 free` является текущим честным результатом после direct quiet-state
 controls `NRF_GROUP_PWR_EN` и `CC_PWR_EN`, а не ошибкой округления. Новый
@@ -1173,21 +1242,25 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `S3-placement-qualified-double-ended-UFL-jumper`
 - `SYS_INT_N_WIRED_LOW`
 - `TP_EVIDENCE_MASK_INT_N`
-- `TP_EXT_5V_ILM`
 - `TP_LCD_BACKLIGHT_FAULT_N`
 - `TP_SLOW_IO_RESET_N`
+- `TP_U214_5V_ILM`
+- `TP_UNIT_5V_ILM`
 - `TP_USB_PROTECTOR_FAULT_N`
 - `TP_VOICE_EFUSE_PG_N`
 - `TP_VOICE_UPDATE_WITH_GND`
 - `VOICE-dedicated-standard-SMA`
 - `VVOICE_RAW_4V`
-- `accessory-present`
 - `admitted-system-3v3`
 - `audio-ground`
 - `chassis-rf-ground`
 - `exact-value-hold-gate-pullup`
 - `isolated-pack-fixture-3v3`
 - `main-raw-converter-pg-test`
+- `native-M5-HY2-0-4P-5V`
+- `native-M5-HY2-0-4P-GND`
+- `native-M5-HY2-0-4P-SIG0`
+- `native-M5-HY2-0-4P-SIG1`
 - `no-connect`
 - `no-connect-open-vset`
 - `pack service fixture`
@@ -1199,9 +1272,7 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `power-ground`
 - `power-ground-dedicated-via`
 - `power-ground-multivia`
-- `protected configurable M5 Unit contact`
 - `protected-2s-midpoint`
-- `protected-accessory-power-good`
 - `qualified-2s-positive`
 - `qualified-evidence-threshold-0`
 - `qualified-evidence-threshold-1`
@@ -1236,8 +1307,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
 | `GPIO6` | 6 | `AUDIO_ARM` | `o` | `GPIO` | `audio_safe_gate.1B`, `audio_safe_gate.2B` | — |
-| `GPIO7` | 7 | `UNIT_SIG0` | `io` | `I2C1_OR_UART1_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
-| `GPIO8` | 12 | `UNIT_SIG1` | `io` | `I2C1_OR_UART1_OR_GPIO` | `abstract:protected configurable M5 Unit contact` | — |
+| `GPIO7` | 7 | `UNIT_HOST_SIG0` | `io` | `I2C1_OR_UART1_OR_GPIO` | `unit_signal_iso.A1` | — |
+| `GPIO8` | 12 | `UNIT_HOST_SIG1` | `io` | `I2C1_OR_UART1_OR_GPIO` | `unit_signal_iso.A2` | — |
 | `GPIO9` | 17 | `S3_RP_IPC_CS_N` | `o` | `SPI3` | `rp.GPIO25` | — |
 | `GPIO10` | 18 | `S3_C5_SDIO_CLK` | `o` | `SDMMC_SLOT1_1BIT` | `c5.GPIO9` | — |
 | `GPIO11` | 19 | `S3_C5_SDIO_CMD` | `io` | `SDMMC_SLOT1_1BIT` | `c5.GPIO10` | — |
@@ -1305,9 +1376,9 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO9` | 7 | `CC_CSN_N` | `o` | `GPIO` | `cc_host_buffer.3A`, `cc_host_csn_pullup.END_1` | — |
 | `GPIO10` | 8 | `CC_GDO0` | `i` | `GPIO_IRQ` | `cc_gdo0_series.END_2`, `cc_host_gdo0_pulldown.END_1` | — |
 | `GPIO11` | 9 | `CC_GDO2` | `i` | `GPIO_IRQ` | `cc_gdo2_series.END_2`, `cc_host_gdo2_pulldown.END_1` | — |
-| `GPIO12` | 11 | `U214_BUSY` | `i` | `GPIO_IRQ` | `u214.LORA_BUSY` | — |
-| `GPIO13` | 12 | `U214_IRQ` | `i` | `GPIO_IRQ` | `u214.LORA_IRQ` | — |
-| `GPIO14` | 13 | `U214_RST_N` | `o` | `GPIO` | `u214.LORA_RST` | — |
+| `GPIO12` | 11 | `U214_HOST_BUSY` | `i` | `GPIO_IRQ` | `u214_series_busy.END_2` | — |
+| `GPIO13` | 12 | `U214_HOST_IRQ` | `i` | `GPIO_IRQ` | `u214_series_irq.END_2` | — |
+| `GPIO14` | 13 | `U214_HOST_RST_N` | `o` | `GPIO` | `u214_host_buffer_a.1A` | — |
 | `GPIO15` | 14 | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | `safe_gate_a.4A` | — |
 | `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `voice_uart_tx_iso.A` | — |
 | `GPIO17` | 17 | `VOICE_UART_RX` | `i` | `UART0` | `voice.UART_TX` | — |
@@ -1333,14 +1404,14 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO37` | 46 | `NRF2_SCK` | `o` | `PIO0_SM2_RF_SPI` | `nrf2_host_buffer.3A`, `nrf2_host_sck_pulldown.END_1` | — |
 | `GPIO38` | 47 | `NRF2_MOSI` | `o` | `PIO0_SM2_RF_SPI` | `nrf2_host_buffer.4A`, `nrf2_host_mosi_pulldown.END_1` | — |
 | `GPIO39` | 48 | `CC_MISO` | `i` | `PIO0_SM3_RF_SPI` | `cc_so_series.END_2`, `cc_host_so_pulldown.END_1` | — |
-| `GPIO40` | 49 | `U214_GPS_TX` | `o` | `UART1` | `u214.GPS_RX` | — |
-| `GPIO41` | 52 | `U214_GPS_RX` | `i` | `UART1` | `u214.GPS_TX` | — |
+| `GPIO40` | 49 | `U214_HOST_GPS_TX` | `o` | `UART1` | `u214_host_buffer_a.2A` | — |
+| `GPIO41` | 52 | `U214_HOST_GPS_RX` | `i` | `UART1` | `u214_series_gps_tx.END_2` | — |
 | `GPIO42` | 53 | `CC_SCK` | `o` | `PIO0_SM3_RF_SPI` | `cc_host_buffer.1A`, `cc_host_sclk_pulldown.END_1` | — |
 | `GPIO43` | 54 | `CC_MOSI` | `o` | `PIO0_SM3_RF_SPI` | `cc_host_buffer.2A`, `cc_host_si_pulldown.END_1` | — |
-| `GPIO44` | 55 | `U214_MISO` | `i` | `PIO1_SM0_EXT_SPI` | `u214.MISO` | — |
-| `GPIO45` | 56 | `U214_SCK` | `o` | `PIO1_SM0_EXT_SPI` | `u214.SCK` | — |
-| `GPIO46` | 57 | `U214_MOSI` | `o` | `PIO1_SM0_EXT_SPI` | `u214.MOSI` | — |
-| `GPIO47` | 58 | `U214_NSS_N` | `o` | `GPIO` | `u214.NSS` | — |
+| `GPIO44` | 55 | `U214_HOST_MISO` | `i` | `PIO1_SM0_EXT_SPI` | `u214_series_miso.END_2` | — |
+| `GPIO45` | 56 | `U214_HOST_SCK` | `o` | `PIO1_SM0_EXT_SPI` | `u214_host_buffer_a.3A` | — |
+| `GPIO46` | 57 | `U214_HOST_MOSI` | `o` | `PIO1_SM0_EXT_SPI` | `u214_host_buffer_a.4A` | — |
+| `GPIO47` | 58 | `U214_HOST_NSS_N` | `o` | `GPIO` | `u214_host_buffer_b.1A` | — |
 
 Budget: **48 used + 0 reserved + 0 free = 48 exposed GPIO**.
 Reserved: none. Free: none.
@@ -1796,10 +1867,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `EXT_5V_PG_N` | `ext_pg_pullup.END_2` | `ext_buck.PG` | 10-kOhm draws at most about 0.33 mA when the open-drain PG is low, far below its 4-mA rating |
 | `EXT_5V_PG_N` | `ext_buck.PG` | `ext_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
 | `EXT_5V_FAULT_QUAL_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
-| `5V_EXT_PROTECTED` | `ext_efuse.OUT` | `u214.5V_IN` | true reverse-current blocking, bounded inrush and active current limit sit between the connector and converter |
+| `5V_U214_PROTECTED` | `ext_efuse.OUT` | `u214.5V_IN` | a U214-only true-reverse-blocking branch provides bounded inrush and active current limit |
 | `U214_5V_OUT_NC` | `u214.5V_OUT` | `abstract:no-connect` | the base is the only source in this profile; the cap output contact is not paralleled back into the protected rail |
-| `EXT_EFUSE_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N |
-| `EXT_5V_CURRENT_MONITOR` | `ext_efuse.ILM` | `abstract:TP_EXT_5V_ILM` | analog current evidence is accessible at a protected test point without consuming another MCU GPIO |
+| `POWER_GROUND` | `ext_efuse.GND` | `abstract:power-ground` | U214 eFuse ground and exposed-pad return are local to the branch |
+| `U214_EFUSE_AUXOFF_LOW` | `ext_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low and cannot float |
+| `U214_EFUSE_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N |
+| `U214_5V_CURRENT_MONITOR` | `ext_efuse.ILM` | `abstract:TP_U214_5V_ILM` | analog current evidence is accessible at a protected test point without consuming another MCU GPIO |
 | `EXT_EFUSE_ILM_SET` | `ext_efuse.ILM` | `ext_rilm.END_1` | 2.21-kOhm 1% resistor sets a nominal 1.509-A current limit that is active during startup and steady operation |
 | `POWER_GROUND` | `ext_rilm.END_2` | `abstract:power-ground` | short quiet return preserves the current-limit accuracy |
 | `EXT_EFUSE_DVDT` | `ext_efuse.DVDT` | `ext_dvdt_cap.END_1` | 4.7-nF 10% capacitor controls the startup slew instead of relying on ITIMER |
@@ -1812,10 +1885,33 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `ext_ovlo_bottom.END_2` | `abstract:power-ground` | fixed OVLO return has no firmware-controlled overvoltage setting |
 | `5V_EXT_PREPROTECT` | `ext_efuse.IN` | `ext_input_cap.END_1` | local 2.2-uF 25-V X7R capacitor exceeds the eFuse input bypass minimum and retains voltage-rating margin |
 | `POWER_GROUND` | `ext_input_cap.END_2` | `abstract:power-ground` | input bypass return stays local to the eFuse high-current path |
-| `5V_EXT_PROTECTED` | `ext_efuse.OUT` | `ext_output_cap.END_1` | local 2.2-uF 25-V X7R capacitor provides the required close output capacitance |
+| `5V_U214_PROTECTED` | `ext_efuse.OUT` | `ext_output_cap.END_1` | local 2.2-uF 25-V X7R capacitor provides the required close output capacitance |
 | `POWER_GROUND` | `ext_output_cap.END_2` | `abstract:power-ground` | output bypass return stays local to the eFuse high-current path |
-| `5V_EXT_PROTECTED` | `ext_efuse.OUT` | `ext_bleeder.END_1` | 1-kOhm 1% bleeder discharges the unplugged connector without creating an external backfeed sink path |
+| `5V_U214_PROTECTED` | `ext_efuse.OUT` | `ext_bleeder.END_1` | 1-kOhm 1% bleeder discharges the unplugged Cap dock without creating an external backfeed sink path |
 | `POWER_GROUND` | `ext_bleeder.END_2` | `abstract:power-ground` | 5-mA nominal passive discharge remains active whenever protected 5 V is present |
+| `5V_EXT_PREPROTECT` | `ext_inductor.END_2` | `unit_efuse.IN` | the native Unit branch is parallel only on the internal raw 5-V source and remains isolated from U214 after its own eFuse |
+| `UNIT_5V_EN_SAFE` | `ext_branch_gate.2Y` | `unit_efuse.EN_UVLO` | only the native Unit request plus STOP-permitted common source can enable this branch |
+| `POWER_GROUND` | `unit_efuse.GND` | `abstract:power-ground` | native Unit eFuse return is local to the connector branch |
+| `UNIT_EFUSE_AUXOFF_LOW` | `unit_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low |
+| `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `abstract:native-M5-HY2-0-4P-5V` | only reverse-blocked, current-limited, slew-controlled 5 V reaches the still-MPN-TBD native Unit connector |
+| `UNIT_EFUSE_FAULT_N` | `unit_efuse.FLT` | `abstract:power-current-thermal-fault` | native Unit overcurrent/thermal/voltage fault joins POWER_FAULT_N |
+| `UNIT_5V_CURRENT_MONITOR` | `unit_efuse.ILM` | `abstract:TP_UNIT_5V_ILM` | branch current evidence remains fixture-visible without another MCU input |
+| `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 2.21-kOhm 1% resistor sets nominal 1.509-A immediate current limit |
+| `POWER_GROUND` | `unit_rilm.END_2` | `abstract:power-ground` | short quiet ILM return |
+| `UNIT_EFUSE_DVDT` | `unit_efuse.DVDT` | `unit_dvdt_cap.END_1` | exact 4.7-nF capacitor controls connector rise |
+| `POWER_GROUND` | `unit_dvdt_cap.END_2` | `abstract:power-ground` | local slew return |
+| `UNIT_EFUSE_ITIMER` | `unit_efuse.ITIMER` | `unit_itimer_cap.END_1` | exact 220-nF capacitor bounds only the accepted post-start transient |
+| `POWER_GROUND` | `unit_itimer_cap.END_2` | `abstract:power-ground` | local timer return |
+| `5V_EXT_PREPROTECT` | `unit_efuse.IN` | `unit_ovlo_top.END_1` | exact 169-kOhm top begins the fixed Unit OVLO divider |
+| `UNIT_EFUSE_OVLO_SENSE` | `unit_ovlo_top.END_2` | `unit_efuse.OVLO` | same exact 5.515-V nominal branch cutoff as U214 |
+| `UNIT_EFUSE_OVLO_SENSE` | `unit_efuse.OVLO` | `unit_ovlo_bottom.END_1` | exact 47-kOhm bottom completes fixed OVLO |
+| `POWER_GROUND` | `unit_ovlo_bottom.END_2` | `abstract:power-ground` | fixed Unit OVLO return |
+| `5V_EXT_PREPROTECT` | `unit_efuse.IN` | `unit_input_cap.END_1` | exact 2.2-uF 25-V local eFuse input capacitor |
+| `POWER_GROUND` | `unit_input_cap.END_2` | `abstract:power-ground` | Unit eFuse input bypass return |
+| `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_output_cap.END_1` | exact 2.2-uF 25-V close output capacitor |
+| `POWER_GROUND` | `unit_output_cap.END_2` | `abstract:power-ground` | Unit protected-output bypass return |
+| `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_bleeder.END_1` | exact 1-kOhm passive discharge removes an unused connector rail |
+| `POWER_GROUND` | `unit_bleeder.END_2` | `abstract:power-ground` | 5-mA nominal Unit-branch discharge |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf_power_input_cap.END_1` | exact 1-uF switch-input bypass follows the TPS22919 application profile |
 | `POWER_GROUND` | `nrf_power_input_cap.END_2` | `abstract:power-ground` | short local switch-input return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `nrf_power_switch.IN` | one 1.5-A protected branch serves all three simultaneously active nRF modules |
@@ -2288,10 +2384,130 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `PD_LOCAL_I2C_SDA` | `pd_config_eeprom.SDA` | `abstract:pd-eeprom-factory-sda-pad` | blank-device programming and recovery remain possible without booted product firmware |
 | `PD_LOCAL_I2C_SCL` | `pd_config_eeprom.SCL` | `abstract:pd-eeprom-factory-scl-pad` | blank-device programming and recovery remain possible without booted product firmware |
 | `PD_EEPROM_WP` | `pd_config_eeprom.WP` | `abstract:pd-eeprom-factory-wp-pad` | fixture can verify protected and writable states; normal reset state remains protected |
-| `U214_I2C_SDA_OUT` | `u214_i2c_iso.SDAOUT` | `u214.SDA` | hot-swap isolation and stuck-low recovery keep the external branch off the controller-side domain |
-| `U214_I2C_SCL_OUT` | `u214_i2c_iso.SCLOUT` | `u214.SCL` | hot-swap isolation and stuck-low recovery keep the external branch off the controller-side domain |
-| `U214_I2C_ISO_EN` | `abstract:protected-accessory-power-good` | `u214_i2c_iso.EN` | off until protected accessory power is stable |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `u214_supervisor.VDD` | U214 readiness remains valid across application reset |
+| `SAFETY_GROUND` | `u214_supervisor.GND` | `abstract:safety-ground` | U214 supervisor return stays in the AON gate domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `u214_supervisor_bypass.END_1` | exact 100-nF local U214-supervisor bypass |
+| `SAFETY_GROUND` | `u214_supervisor_bypass.END_2` | `abstract:safety-ground` | U214-supervisor bypass return |
+| `5V_U214_PROTECTED` | `ext_efuse.OUT` | `u214_supervisor_sense_top.END_1` | readiness senses the connector-side protected rail, not raw converter PG |
+| `U214_5V_SENSE` | `u214_supervisor_sense_top.END_2` | `u214_supervisor.SENSE` | 110-kOhm over 220-kOhm raises the G33 threshold into the 5-V valid window |
+| `U214_5V_SENSE` | `u214_supervisor.SENSE` | `u214_supervisor_sense_bottom.END_1` | exact lower divider leg prevents a false valid state |
+| `SAFETY_GROUND` | `u214_supervisor_sense_bottom.END_2` | `abstract:safety-ground` | U214 readiness threshold return |
+| `U214_5V_EN_SAFE` | `ext_branch_gate.1Y` | `u214_supervisor.MR_N` | STOP or branch revocation immediately forces U214_READY low |
+| `U214_READY_DELAY` | `u214_supervisor.CT` | `u214_supervisor_ct.END_1` | exact 10-nF timing capacitor gives about 57.6-ms typical post-threshold delay |
+| `SAFETY_GROUND` | `u214_supervisor_ct.END_2` | `abstract:safety-ground` | U214 delay return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_supervisor_pullup.END_1` | READY cannot rise when the host signal domain is absent |
+| `U214_READY` | `u214_supervisor_pullup.END_2` | `u214_supervisor.RESET_N` | open-drain readiness enables every U214 signal boundary only after qualified power |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `unit_supervisor.VDD` | native Unit readiness remains valid across application reset |
+| `SAFETY_GROUND` | `unit_supervisor.GND` | `abstract:safety-ground` | native Unit supervisor return |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `unit_supervisor_bypass.END_1` | exact 100-nF local Unit-supervisor bypass |
+| `SAFETY_GROUND` | `unit_supervisor_bypass.END_2` | `abstract:safety-ground` | Unit-supervisor bypass return |
+| `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_supervisor_sense_top.END_1` | readiness senses the protected connector rail |
+| `UNIT_5V_SENSE` | `unit_supervisor_sense_top.END_2` | `unit_supervisor.SENSE` | exact 110-kOhm top leg raises the G33 threshold into the 5-V valid window |
+| `UNIT_5V_SENSE` | `unit_supervisor.SENSE` | `unit_supervisor_sense_bottom.END_1` | exact 220-kOhm lower divider leg |
+| `SAFETY_GROUND` | `unit_supervisor_sense_bottom.END_2` | `abstract:safety-ground` | Unit readiness threshold return |
+| `UNIT_5V_EN_SAFE` | `ext_branch_gate.2Y` | `unit_supervisor.MR_N` | STOP or branch revocation immediately forces UNIT_READY low |
+| `UNIT_READY_DELAY` | `unit_supervisor.CT` | `unit_supervisor_ct.END_1` | exact 10-nF timing capacitor gives about 57.6-ms typical post-threshold delay |
+| `SAFETY_GROUND` | `unit_supervisor_ct.END_2` | `abstract:safety-ground` | Unit delay return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `unit_supervisor_pullup.END_1` | UNIT_READY cannot rise while S3 and the signal isolator are unpowered |
+| `UNIT_READY` | `unit_supervisor_pullup.END_2` | `unit_supervisor.RESET_N` | open-drain protected-rail readiness |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_i2c_iso.VCC` | controller-side hot-swap buffer uses the protected host logic rail |
+| `POWER_GROUND` | `u214_i2c_iso.GND` | `abstract:power-ground` | short local TCA4307 return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_i2c_iso_bypass.END_1` | exact 100-nF TCA4307 bypass |
+| `POWER_GROUND` | `u214_i2c_iso_bypass.END_2` | `abstract:power-ground` | TCA4307 bypass return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_i2c_host_sda_pullup.END_1` | exact controller-side 2.2-kOhm I2C pull-up |
+| `U214_I2C_SDA_IN` | `u214_i2c_host_sda_pullup.END_2` | `u214_i2c_iso.SDAIN` | external pull-up is not placed on the unpowered Cap side |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_i2c_host_scl_pullup.END_1` | exact controller-side 2.2-kOhm I2C pull-up |
+| `U214_I2C_SCL_IN` | `u214_i2c_host_scl_pullup.END_2` | `u214_i2c_iso.SCLIN` | controller-side clock remains defined independently of Cap power |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_i2c_iso.EN` | I2C segments connect only after protected Cap power has remained valid through the delay |
+| `U214_I2C_SDA_OUT` | `u214_i2c_iso.SDAOUT` | `u214_esd_a.D1_PLUS` | low-capacitance connector ESD precedes the exact Cap contact |
+| `U214_I2C_SDA_OUT` | `u214_esd_a.D1_PLUS` | `u214.SDA` | Cap-side pull-up disclosed by the exact U214 assembly supplies only the powered external segment |
+| `U214_I2C_SCL_OUT` | `u214_i2c_iso.SCLOUT` | `u214_esd_a.D1_MINUS` | low-capacitance connector ESD protects the clock path |
+| `U214_I2C_SCL_OUT` | `u214_esd_a.D1_MINUS` | `u214.SCL` | TCA4307 stuck-low recovery keeps this external segment from stalling the host |
 | `U214_I2C_READY` | `u214_i2c_iso.READY` | `slow_io.P16` | read-only status; no safety function depends on firmware polling |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_host_buffer_a.VCC` | first host-to-Cap quad buffer uses the protected host domain and specified Ioff |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_host_buffer_b.VCC` | second host-to-Cap quad buffer uses the protected host domain and specified Ioff |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_return_buffer.VCC` | Cap-to-host quad buffer uses the protected host domain and specified Ioff |
+| `POWER_GROUND` | `u214_host_buffer_a.GND` | `abstract:power-ground` | first U214 buffer return |
+| `POWER_GROUND` | `u214_host_buffer_b.GND` | `abstract:power-ground` | second U214 buffer return |
+| `POWER_GROUND` | `u214_return_buffer.GND` | `abstract:power-ground` | U214 return-buffer ground |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_host_buffer_a_bypass.END_1` | exact first quad-buffer bypass |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_host_buffer_b_bypass.END_1` | exact second quad-buffer bypass |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_return_buffer_bypass.END_1` | exact return-buffer bypass |
+| `POWER_GROUND` | `u214_host_buffer_a_bypass.END_2` | `abstract:power-ground` | first quad-buffer bypass return |
+| `POWER_GROUND` | `u214_host_buffer_b_bypass.END_2` | `abstract:power-ground` | second quad-buffer bypass return |
+| `POWER_GROUND` | `u214_return_buffer_bypass.END_2` | `abstract:power-ground` | return-buffer bypass return |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_host_buffer_a.1OE` | RST output is high-Z until protected power is ready |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_host_buffer_a.2OE` | GPS RX input is not driven before Cap readiness |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_host_buffer_a.3OE` | SPI clock is isolated before Cap readiness |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_host_buffer_a.4OE` | MOSI is isolated before Cap readiness |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_host_buffer_b.1OE` | NSS is isolated before Cap readiness |
+| `U214_UNUSED_OE_LOW` | `u214_host_buffer_b.2OE` | `abstract:power-ground` | unused channel permanently disabled |
+| `U214_UNUSED_A_LOW` | `u214_host_buffer_b.2A` | `abstract:power-ground` | unused input cannot float |
+| `U214_UNUSED_Y_NC` | `u214_host_buffer_b.2Y` | `abstract:no-connect` | disabled output unconnected |
+| `U214_UNUSED_OE_LOW` | `u214_host_buffer_b.3OE` | `abstract:power-ground` | unused channel permanently disabled |
+| `U214_UNUSED_A_LOW` | `u214_host_buffer_b.3A` | `abstract:power-ground` | unused input cannot float |
+| `U214_UNUSED_Y_NC` | `u214_host_buffer_b.3Y` | `abstract:no-connect` | disabled output unconnected |
+| `U214_UNUSED_OE_LOW` | `u214_host_buffer_b.4OE` | `abstract:power-ground` | unused channel permanently disabled |
+| `U214_UNUSED_A_LOW` | `u214_host_buffer_b.4A` | `abstract:power-ground` | unused input cannot float |
+| `U214_UNUSED_Y_NC` | `u214_host_buffer_b.4Y` | `abstract:no-connect` | disabled output unconnected |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_return_buffer.1OE` | BUSY return isolated before readiness |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_return_buffer.2OE` | IRQ return isolated before readiness |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_return_buffer.3OE` | GNSS TX return isolated before readiness |
+| `U214_READY` | `u214_supervisor.RESET_N` | `u214_return_buffer.4OE` | MISO return isolated before readiness |
+| `U214_RST_BUFFERED` | `u214_host_buffer_a.1Y` | `u214_series_rst.END_1` | exact source series starts at the driving buffer |
+| `U214_RST_CONNECTOR` | `u214_series_rst.END_2` | `u214_esd_a.D2_PLUS` | connector-side reset path is ESD protected |
+| `U214_RST_CONNECTOR` | `u214_esd_a.D2_PLUS` | `u214.LORA_RST` | exact Cap contact 8 |
+| `U214_GPS_RX_BUFFERED` | `u214_host_buffer_a.2Y` | `u214_series_gps_rx.END_1` | host UART TX source termination |
+| `U214_GPS_RX_CONNECTOR` | `u214_series_gps_rx.END_2` | `u214_esd_a.D2_MINUS` | connector ESD for exact Cap GPS_RX contact |
+| `U214_GPS_RX_CONNECTOR` | `u214_esd_a.D2_MINUS` | `u214.GPS_RX` | exact Cap contact 2 |
+| `U214_SCK_BUFFERED` | `u214_host_buffer_a.3Y` | `u214_series_sck.END_1` | SPI clock source termination |
+| `U214_SCK_CONNECTOR` | `u214_series_sck.END_2` | `u214_esd_b.D1_PLUS` | low-capacitance clock ESD |
+| `U214_SCK_CONNECTOR` | `u214_esd_b.D1_PLUS` | `u214.SCK` | exact Cap contact 11 |
+| `U214_MOSI_BUFFERED` | `u214_host_buffer_a.4Y` | `u214_series_mosi.END_1` | MOSI source termination |
+| `U214_MOSI_CONNECTOR` | `u214_series_mosi.END_2` | `u214_esd_b.D1_MINUS` | low-capacitance MOSI ESD |
+| `U214_MOSI_CONNECTOR` | `u214_esd_b.D1_MINUS` | `u214.MOSI` | exact Cap contact 12 |
+| `U214_NSS_BUFFERED` | `u214_host_buffer_b.1Y` | `u214_series_nss.END_1` | NSS source termination |
+| `U214_NSS_CONNECTOR` | `u214_series_nss.END_2` | `u214_esd_b.D2_PLUS` | low-capacitance NSS ESD |
+| `U214_NSS_CONNECTOR` | `u214_esd_b.D2_PLUS` | `u214.NSS` | exact Cap contact 14 |
+| `U214_BUSY_CONNECTOR` | `u214.LORA_BUSY` | `u214_esd_b.D2_MINUS` | exact Cap contact 10 receives connector ESD before the return buffer |
+| `U214_BUSY_CONNECTOR` | `u214_esd_b.D2_MINUS` | `u214_return_buffer.1A` | powered Cap return cannot back-power RP |
+| `U214_BUSY_BUFFERED` | `u214_return_buffer.1Y` | `u214_series_busy.END_1` | return source termination sits at the buffer |
+| `U214_IRQ_CONNECTOR` | `u214.LORA_IRQ` | `u214_esd_c.D1_PLUS` | exact Cap contact 9 connector ESD |
+| `U214_IRQ_CONNECTOR` | `u214_esd_c.D1_PLUS` | `u214_return_buffer.2A` | IRQ return isolated before RP |
+| `U214_IRQ_BUFFERED` | `u214_return_buffer.2Y` | `u214_series_irq.END_1` | IRQ source termination |
+| `U214_GPS_TX_CONNECTOR` | `u214.GPS_TX` | `u214_esd_c.D1_MINUS` | exact Cap contact 1 connector ESD |
+| `U214_GPS_TX_CONNECTOR` | `u214_esd_c.D1_MINUS` | `u214_return_buffer.3A` | continuous GNSS return remains isolated when off |
+| `U214_GPS_TX_BUFFERED` | `u214_return_buffer.3Y` | `u214_series_gps_tx.END_1` | GNSS TX source termination |
+| `U214_MISO_CONNECTOR` | `u214.MISO` | `u214_esd_c.D2_PLUS` | exact Cap contact 13 connector ESD |
+| `U214_MISO_CONNECTOR` | `u214_esd_c.D2_PLUS` | `u214_return_buffer.4A` | MISO return isolated when the Cap is off |
+| `U214_MISO_BUFFERED` | `u214_return_buffer.4Y` | `u214_series_miso.END_1` | MISO source termination |
+| `U214_ESD_SPARE_NC` | `u214_esd_c.D2_MINUS` | `abstract:no-connect` | one spare low-capacitance ESD channel is not tied to a signal |
+| `POWER_GROUND` | `u214.GND` | `abstract:power-ground` | exact Cap ground contact 6 has a short return beside power and signal entry |
+| `U214_ESD_GROUND` | `u214_esd_a.GND_3` | `abstract:power-ground-dedicated-via` | first ESD ground contact receives a shortest entry-zone via |
+| `U214_ESD_GROUND` | `u214_esd_a.GND_8` | `abstract:power-ground-dedicated-via` | second first-array ground contact receives a separate via |
+| `U214_ESD_GROUND` | `u214_esd_b.GND_3` | `abstract:power-ground-dedicated-via` | second-array first ground via |
+| `U214_ESD_GROUND` | `u214_esd_b.GND_8` | `abstract:power-ground-dedicated-via` | second-array second ground via |
+| `U214_ESD_GROUND` | `u214_esd_c.GND_3` | `abstract:power-ground-dedicated-via` | third-array first ground via |
+| `U214_ESD_GROUND` | `u214_esd_c.GND_8` | `abstract:power-ground-dedicated-via` | third-array second ground via |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `unit_signal_iso.VCCA` | A side follows the S3 host domain |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `unit_signal_iso.VCCB` | B side deliberately uses the same 3.3-V logic level; VCCA never exceeds VCCB |
+| `POWER_GROUND` | `unit_signal_iso.GND` | `abstract:power-ground` | native Unit translator return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `unit_signal_iso_vcca_bypass.END_1` | exact VCCA 100-nF bypass |
+| `POWER_GROUND` | `unit_signal_iso_vcca_bypass.END_2` | `abstract:power-ground` | VCCA bypass return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `unit_signal_iso_vccb_bypass.END_1` | exact VCCB 100-nF bypass |
+| `POWER_GROUND` | `unit_signal_iso_vccb_bypass.END_2` | `abstract:power-ground` | VCCB bypass return |
+| `UNIT_READY` | `unit_supervisor.RESET_N` | `unit_signal_iso.OE` | both connector signals stay high-Z until protected 5 V and host 3.3 V are valid |
+| `UNIT_READY` | `unit_signal_iso.OE` | `unit_signal_iso_oe_pulldown.END_1` | exact 10-kOhm OE fail-low default |
+| `POWER_GROUND` | `unit_signal_iso_oe_pulldown.END_2` | `abstract:power-ground` | translator cannot enable from a floating supervisor output |
+| `UNIT_CONNECTOR_SIG0` | `unit_signal_iso.B1` | `unit_esd.D1_PLUS` | first configurable I2C/UART/GPIO signal receives low-capacitance IEC protection |
+| `UNIT_CONNECTOR_SIG0` | `unit_esd.D1_PLUS` | `abstract:native-M5-HY2-0-4P-SIG0` | exact connector MPN and physical pin order wait for the received cable coupon |
+| `UNIT_CONNECTOR_SIG1` | `unit_signal_iso.B2` | `unit_esd.D1_MINUS` | second configurable signal receives low-capacitance IEC protection |
+| `UNIT_CONNECTOR_SIG1` | `unit_esd.D1_MINUS` | `abstract:native-M5-HY2-0-4P-SIG1` | profile manifest assigns I2C/UART/GPIO meaning before power is admitted |
+| `UNIT_ESD_SPARE_NC` | `unit_esd.D2_PLUS` | `abstract:no-connect` | unused ESD channel is not tied to a connector contact |
+| `UNIT_ESD_SPARE_NC` | `unit_esd.D2_MINUS` | `abstract:no-connect` | unused ESD channel is not tied to a connector contact |
+| `UNIT_ESD_GROUND` | `unit_esd.GND_3` | `abstract:power-ground-dedicated-via` | first ESD ground contact receives a shortest connector-zone via |
+| `UNIT_ESD_GROUND` | `unit_esd.GND_8` | `abstract:power-ground-dedicated-via` | second ESD ground contact receives a separate via |
+| `POWER_GROUND` | `abstract:native-M5-HY2-0-4P-GND` | `abstract:power-ground` | native Unit ground contact returns beside its protected 5 V and ESD array |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_io.VCC` | dedicated ordinary-control expander shares the protected SYS-I2C logic domain |
 | `POWER_GROUND` | `ui_matrix_io.GND` | `abstract:power-ground` | short local digital return |
 | `SYS_I2C_SDA` | `s3.GPIO1` | `ui_matrix_io.SDA` | bounded ordinary-control transactions share the internal bus but no encoder or PTT edge depends on them |
@@ -2793,7 +3009,27 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `VOICE_RF_SAMPLE` | `voice_detector_series_attenuator.END_2` | `det_voice.RFIN` | exact 5.1-kOhm series attenuation follows the AD8314 high-power sampling method |
 | `VOICE_RF_SAMPLE` | `det_voice.RFIN` | `voice_detector_match.END_1` | exact 52.3-Ohm shunt defines the detector input and approximately 40-dB resistive tap |
 | `VOICE_RF_GROUND` | `voice_detector_match.END_2` | `abstract:rf-ground` | detector input return stays beside RFIN and the sampler |
-| `EXT_5V_REQ` | `slow_io.P17` | `safe_gate_b.4A` | request only; RUN_PERMIT gates the reverse-safe/current-limited accessory power stage selected in I3/I7 |
+| `U214_5V_REQ` | `slow_io.P17` | `ext_request_or.1A` | U214-only request; exact endpoint pull-down keeps the branch off while the expander resets as inputs |
+| `U214_5V_REQ` | `slow_io.P17` | `u214_req_pulldown.END_1` | exact 10-kOhm fail-low default |
+| `POWER_GROUND` | `u214_req_pulldown.END_2` | `abstract:power-ground` | U214 request cannot float high |
+| `UNIT_5V_REQ` | `slow_io.P05` | `ext_request_or.1B` | native Unit-only request consumes the last free main slow-I/O contact |
+| `UNIT_5V_REQ` | `slow_io.P05` | `unit_req_pulldown.END_1` | exact 10-kOhm fail-low default |
+| `POWER_GROUND` | `unit_req_pulldown.END_2` | `abstract:power-ground` | Unit request cannot float high |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_request_or.VCC` | request aggregation remains defined through main-domain reset |
+| `SAFETY_GROUND` | `ext_request_or.GND` | `abstract:safety-ground` | request OR return remains in the AON gate domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_request_or_bypass.END_1` | exact 100-nF local request-OR bypass |
+| `SAFETY_GROUND` | `ext_request_or_bypass.END_2` | `abstract:safety-ground` | request-OR bypass returns locally |
+| `EXT_ANY_5V_REQ` | `ext_request_or.1Y` | `safe_gate_b.4A` | either exact branch may request the common converter, but only RUN_PERMIT can produce the safe output |
+| `EXT_ANY_5V_REQ` | `ext_request_or.1Y` | `ext_any_req_pulldown.END_1` | safe-gate input remains low if aggregation power or output is absent |
+| `SAFETY_GROUND` | `ext_any_req_pulldown.END_2` | `abstract:safety-ground` | common converter request is fail-low |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_branch_gate.VCC` | branch gates remain STOP-aware independently of application reset |
+| `SAFETY_GROUND` | `ext_branch_gate.GND` | `abstract:safety-ground` | branch gate return remains in the AON gate domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_branch_gate_bypass.END_1` | exact 100-nF local branch-gate bypass |
+| `SAFETY_GROUND` | `ext_branch_gate_bypass.END_2` | `abstract:safety-ground` | branch-gate bypass returns locally |
+| `U214_5V_REQ` | `slow_io.P17` | `ext_branch_gate.1A` | branch identity is retained after common-source aggregation |
+| `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_branch_gate.1B` | STOP and AON loss dominate U214 branch admission |
+| `UNIT_5V_REQ` | `slow_io.P05` | `ext_branch_gate.2A` | native Unit has an independent branch request |
+| `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_branch_gate.2B` | STOP and AON loss dominate native Unit branch admission |
 | `SD_PWR_EN` | `slow_io.P20` | `sd_power_switch.ON` | ordinary session request only; exact external fail-low and switch protection remain effective across firmware reset |
 | `SD_PWR_EN` | `sd_power_switch.ON` | `sd_on_pulldown.END_1` | separate exact 10-kOhm reset-off default supplements the switch smart pull-down |
 | `POWER_GROUND` | `sd_on_pulldown.END_2` | `abstract:power-ground` | card, buffers and pull-ups remain off until an explicit storage session |
@@ -2822,7 +3058,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_s3_evidence_pullup.END_1` | main-domain 10-kOhm pull-up exists only with the receiving expander |
 | `S3_RF_TX_EVIDENCE_N` | `slow_io_s3_evidence_pullup.END_2` | `slow_io.P23` | active-low evidence semantics are unchanged across the isolation boundary |
 | `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `slow_io.P25` | hardware protection acts independently; this is diagnostic evidence |
-| `ACCESSORY_PRESENT_N` | `abstract:accessory-present` | `slow_io.P26` | read-only, protected and debounced |
+| `UNIT_READY` | `unit_supervisor.RESET_N` | `slow_io.P26` | read-only electrical readiness replaces the impossible connector-presence claim; no safety function depends on firmware polling |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor.VDD` | always-on source and hold-up are selected and budgeted in I3 |
 | `AON_SAFE_SENSE` | `abstract:AON_SAFE_3V3` | `safe_supervisor.SENSE` | factory G33 threshold supervises the actual safety rail |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_por_pullup.END_1` | one exact 10-kOhm resistor is the sole external pull-up on the supervisor's open-drain POR output |
@@ -3016,12 +3252,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_pg_base_res.END_1` | the qualifier consumes the same STOP-dominant voice enable evidence |
 | `VOICE_PG_QUAL_BASE` | `voice_pg_base_res.END_2` | `voice_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
 | `IR_TX_CARRIER_SAFE` | `safe_gate_b.3Y` | `ir_tx_gate_series.END_1` | STOP-dominant carrier reaches the exact emitter gate network only while RUN_PERMIT is high |
-| `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_buck.EN` | STOP and AON loss disable the dedicated 5-V converter |
-| `EXT_5V_EN_SAFE` | `ext_buck.EN` | `ext_en_pulldown.END_1` | one exact 10-kOhm pull-down defines accessory off for both converter and eFuse if the safety-gate output is high-impedance |
+| `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_buck.EN` | STOP and AON loss disable the shared fixed-5-V converter; either admitted branch may request it |
+| `EXT_ANY_5V_EN_SAFE` | `ext_buck.EN` | `ext_en_pulldown.END_1` | one exact 10-kOhm pull-down defines the common converter off if the safety-gate output is high-impedance |
 | `POWER_GROUND` | `ext_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of the converter's internal 2-MOhm pull-down |
-| `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_pg_base_res.END_1` | the qualifier consumes the same STOP-dominant accessory enable evidence |
+| `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_pg_base_res.END_1` | the qualifier consumes the same STOP-dominant common-source enable evidence |
 | `EXT_PG_QUAL_BASE` | `ext_pg_base_res.END_2` | `ext_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
-| `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_efuse.EN_UVLO` | the same STOP-dominant request also disables the connector-side true-reverse-blocking eFuse |
+| `U214_5V_EN_SAFE` | `ext_branch_gate.1Y` | `ext_efuse.EN_UVLO` | U214 eFuse is independent of the native Unit branch and remains STOP-dominant |
 | `TX_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
 | `STOP_LED_DRIVE` | `safe_latch.Q` | `stop_led_series.END_1` | non-programmable visible latched-stop state |
 | `STOP_LED_A` | `stop_led_series.END_2` | `stop_led.A` | exact 2.2-kOhm current limit |
@@ -3212,7 +3448,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 | Instance | Used | Reserved | Free |
 |---|---:|---:|---:|
-| `slow_io` | 23 | 0 | 1 |
+| `slow_io` | 24 | 0 | 0 |
 | `ui_matrix_io` | 7 | 1 | 0 |
 
 ### Interface non-interference contracts
@@ -3223,7 +3459,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF1_SPI` | `rp` | `nrf1` | dedicated | IRQ serviced before nRF FIFO/transaction deadline under simultaneous peers | PIO0 SM1 plus dedicated DMA/IRQ stress HIL |
 | `NRF2_SPI` | `rp` | `nrf2` | dedicated | IRQ serviced before nRF FIFO/transaction deadline under simultaneous peers | PIO0 SM2 plus dedicated DMA/IRQ stress HIL |
 | `CC_SPI` | `rp` | `cc` | dedicated | GDO/FIFO service completes without waiting for any nRF or U214 transfer | PIO0 SM3 plus dedicated DMA/IRQ stress HIL |
-| `U214_SPI` | `rp` | `u214` | dedicated | LoRa BUSY/IRQ transaction never waits for display or compatibility-radio bus ownership | PIO1 SM0 plus dedicated DMA/IRQ stress HIL |
+| `U214_SPI` | `rp` | `u214`, `u214_host_buffer_a`, `u214_host_buffer_b`, `u214_return_buffer` | dedicated | LoRa BUSY/IRQ transaction never waits for display or compatibility-radio bus ownership | PIO1 SM0, exact Ioff buffers, 22-Ohm series, connector ESD and dedicated DMA/IRQ stress HIL |
 | `U214_UART` | `rp` | `u214` | dedicated | GNSS receive has continuous hardware UART buffering independent of SPI activity | UART1 DMA/ring overflow stress HIL |
 | `U214_I2C` | `rp` | `u214`, `u214_i2c_iso` | dedicated | external stuck-low or hot-plug cannot stall internal UI/audio/receiver I2C | TCA4307 stuck-bus and hot-plug fault-injection HIL |
 | `DISPLAY_SD_SPI` | `s3` | `display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
@@ -3233,7 +3469,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `S3_ENCODER_PCNT` | `s3` | `encoder` | dedicated; PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C matrix carries only encoder push and never phase edges | no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case | phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL |
 | `PD_LOCAL_I2C` | `pd_controller` | `pd_config_eeprom`, `nvdc_charger` | scheduled; TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive | boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses | blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL |
 | `PACK_LOCAL_I2C` | `pack_admission` | `pack_gauge` | dedicated | gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant | bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL |
-| `S3_UNIT_PORT` | `s3` | `abstract:M5 Unit` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | profile-switch and external-fault HIL |
+| `S3_UNIT_PORT` | `s3` | `unit_signal_iso`, `abstract:native M5 Unit connector` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | independent power, TXS0102 OE/isolation, profile-switch, long-cable, 1-Wire candidate and external-fault HIL |
 | `S3_I2S` | `s3` | `codec`, `codec_i2s_bclk_iso`, `codec_i2s_ws_iso`, `codec_i2s_dout_iso`, `codec_i2s_din_iso` | dedicated | continuous DMA audio without storage/display service gaps | four independent Ioff tri-state directions, ES8311 BCLK-derived master-clock, powered-off no-backfeed and simultaneous full-duplex display, SD, C5 and radio-event stress HIL |
 
 ### Controller GPIO-window selections
@@ -3269,7 +3505,19 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 ### Open qualification gaps
 
-- `u214_i2c_iso` uses `TCA4307DGKR` as `reference_only`, not an accepted production choice.
+- `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
+- `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `u214_host_buffer_a` lifecycle: `production_active_orderable`.
+- `u214_host_buffer_b` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `u214_host_buffer_b` lifecycle: `production_active_orderable`.
+- `u214_return_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
+- `u214_return_buffer` lifecycle: `production_active_orderable`.
+- `ext_request_or` lifecycle: `production`.
+- `ext_branch_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
+- `u214_supervisor_sense_top` lifecycle: `active_orderable`.
+- `unit_supervisor_sense_top` lifecycle: `active_orderable`.
+- `unit_signal_iso` uses `Texas Instruments TXS0102DCUR` as `verified_exact_native_m5_unit_signal_isolator`, not an accepted production choice.
+- `unit_signal_iso` lifecycle: `active_production_orderable`.
 - `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `s3_rf_board_connector` lifecycle: `active_orderable`.
 - `s3_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
@@ -3528,9 +3776,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. Conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence HIL and the mechanics-selected standard-SMA MPN remain blocking before schematic/BOM freeze
-- DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. Same-rail startup, below-0.2-V power-cycle recovery, interrupt behavior and assembled-bus/no-back-power HIL remain open. TCA4307DGKR and external-accessory endpoint details remain I7 gates
+- DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. DEC-0098 closes the M5 expansion paper subblock with complete TCA4307, independent branch power/readiness and exact signal isolation. Same-rail startup, connector, hot-plug, reverse-source, profile and assembled-bus/no-back-power HIL remain open
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open
-- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; DEC-0093 consumes main slow-I/O P03/P04 for rail-off CC1101 band truth bits, leaving only P05 free, while dedicated UI P7 remains a protected local fixture/growth pad. New direct MCU endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
+- DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; DEC-0093 consumes main slow-I/O P03/P04 for rail-off CC1101 band truth bits and DEC-0098 consumes final P05 for independent native-Unit power, while dedicated UI P7 remains a protected local fixture/growth pad. New direct endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
+- DEC-0098 closes the M5 expansion paper electrical endpoint: U214 and native Unit have independent true-reverse-blocking branch power, branch-valid supervisors, complete U214 SPI/UART/control/I2C isolation, native two-signal TXS isolation and connector ESD. Physical connector MPN/specimen, reverse-source, hot-plug, profile identity, long-cable and coexistence HIL remain blocking; neither connector has a presence pin and generic USB host remains rejected
 - C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve

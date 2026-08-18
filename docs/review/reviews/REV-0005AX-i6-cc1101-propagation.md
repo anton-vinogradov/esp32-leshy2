@@ -16,7 +16,7 @@
 | band branches | pass as first coupon: exact 315/433/868–915 populated MPNs exist; conducted tuning remains blocking |
 | actual-TX evidence | pass on paper: sample is after both switches/matching; AD8314 is AON-held; incoming RF cannot authorize |
 | ESD | pass on paper: exact 0.2-pF, ±20-kV SESD part is at the external line |
-| pin budget | pass: P03/P04 consumed, P05 remains the only free main slow-I/O contact; MCU budgets unchanged |
+| pin budget | historical I6 pass: P03/P04 consumed and P05 was free; DEC-0098 later consumes P05 for native-Unit power; MCU budgets remain unchanged |
 | cost | pass: no dramatic expansion; two switches are about USD 0.43 total at qty 100, balun about USD 0.56, remaining support is low-cost; AD8314 reuses an existing SKU |
 | diagrams | pass: both target pages and generated vertical atlas show exact MPN and role per physical body |
 | firmware | pass after companion propagation: rail-off band code, lease identity, evidence semantics and fail-closed transition are explicit |
@@ -41,4 +41,3 @@
 
 The CC1101 paper subblock therefore has **«Проведено ревью»**. Conducted and
 coexistence HIL remain open, and I6 proceeds to the next unfinished RF endpoint.
-

@@ -58,7 +58,7 @@ load switches, clocks, RF matching и exact unfrozen peripheral MPN должны
 | `ESP32-S3-WROOM-1U-N16R2` | UI, display+microSD scheduler, I²S audio, internal I²C, M5 Unit profile, native 2.4/BLE/ESP-NOW | отдельные SPI2, SPI3, SD/MMC, I²S0, I²C0 и Unit-controller profile |
 | `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 1-bit SDIO to S3; native USB+UART service; IR uses RMT and direct evidence/power contacts |
 | `RP2354B A4/QFN80` | 3×nRF, CC1101, U214 LoRa/GNSS/I²C, SA518 control/PTT, deterministic event service | five physical PIO SPI groups, hardware UART0/UART1/I²C0/SPI1, direct IRQ/CE/CSN/GDO |
-| `TCA6424ARGJR` | reset/select/power/status main slow plane | 23/24 assigned; P03/P04 select the powered-off CC band, P05 is free and no radio FIFO/PTT deadline lives here |
+| `TCA6424ARGJR` | reset/select/power/status main slow plane | 24/24 assigned; P03/P04 select the powered-off CC band, P05 requests native-Unit power and no radio FIFO/PTT deadline lives here |
 | `TCA9534APWR #UI` | D-pad/OK/BACK/OPT/F1/F2/encoder-push 4×3 matrix | P0…P6 assigned; P7 local reserve; all-low idle produces hardware interrupt |
 
 The generated atlas contains the exact pad/contact table for all 91 exposed
@@ -124,8 +124,9 @@ on GPIO37, releasing former direct GPIO39 for encoder phase A. Subsequent
 `AUDIO-0002/FND-0067` consumes slow P27 for the previously
 omitted `RX_AUDIO_SOURCE_SEL`. `DEC-0090/AUDIO-0003` later use P00/P01/P02
 for capture source, reset-off speaker enable and headphone absence. The exact
-CC1101 endpoint subsequently uses P03/P04 as rail-off V1/V2 truth bits and
-leaves only P05 free.
+CC1101 endpoint subsequently uses P03/P04 as rail-off V1/V2 truth bits;
+`DEC-0098/EXP-0001` later use final P05 for independent native-Unit power, so
+main slow I/O is now `24/0/0`.
 `DSP-0006/DEC-0084` later place the exact first ZIF connector candidate
 between those nets and the panel, add reset-low defaults and close the exact
 latch-protected PWM-backlight circuit without changing the pin budget.

@@ -75,7 +75,7 @@ flowchart LR
 | S3 | `ESP32-S3-WROOM-1U-N16R2`, 36 exposed GPIO | 33 | 3 straps | 0 | every GPIO classified; GPIO6 is reset-safe AUDIO_ARM, GPIO39/47 are direct encoder PCNT, GPIO41/42 are QSPI D2/D3 |
 | C5 | `ESP32-C5-WROOM-1U-N8R8`, 21 exposed GPIO | 14 | 6 straps/service | 1 | internal PSRAM GPIO15 не посчитан; GPIO4 is IR quiet-state gate |
 | RP | `RP2354B A4`, QFN80, 48 GPIO | 48 | 0 | 0 | exact package pads 1…80 checked; GPIO15/23 are nRF/CC quiet-state gates |
-| main slow plane | `TCA6424ARGJR`, 24 P-ports | 23 | 0 | 1 | P05 remains free; P27 selects RX audio source and P03/P04 hold rail-off CC band truth |
+| main slow plane | `TCA6424ARGJR`, 24 P-ports | 24 | 0 | 0 | P05 requests the independent native-Unit branch; P27 selects RX audio source and P03/P04 hold rail-off CC band truth |
 | UI plane | `TCA9534APWR`, 8 P-ports | 7 | 1 | 0 | P0…P6 implement the 4×3 matrix; protected P7 is reserved for fixture/growth |
 
 Переход `RP2354A→RP2354B` добавляет 18 GPIO и увеличивает корпус с 7×7 до
@@ -126,15 +126,16 @@ stress HIL остаётся обязательным до target acceptance.
 
 ## Slow plane и safety boundary
 
-23/24 линий main `TCA6424ARGJR` распределены; P05 остаётся свободным.
+Все 24 линии main `TCA6424ARGJR` распределены; P05 запрашивает питание
+отдельной native-Unit branch по `DEC-0098/EXP-0001`.
 Отдельный `TCA9534APWR` обслуживает interrupt-driven diode-isolated 4×3 UI
 matrix и сохраняет P7 как локальный резерв. Main slow-plane покрывает
 display/touch reset, codec enable, два audio selector, voice PD/HL, receiver
 reset/status, U214 I²C READY, external 5 V, microSD power/detect, STOP sense,
-S3 actual-TX evidence, power fault, accessory present и обычный
+S3 actual-TX evidence, power fault, real `UNIT_READY` и обычный
 `RX_AUDIO_SOURCE_SEL` на P27 и I5 audio endpoints на P00/P01/P02. Его текущий
 набор дополнен rail-off CC1101 band truth bits на P03/P04. Текущий бюджет —
-`23/0/1`, UI-expander —
+`24/0/0`, UI-expander —
 `7/1/0`.
 
 PTT, physical PTT, все radio IRQ/GDO/BUSY, actual-TX evidence C5/IR/voice и
@@ -163,7 +164,7 @@ Budget presentation повторно проверена после `DEC-0046` в
 затем после QSPI allocation в `REV-0004X`, а после принятого audio package
 `DEC-0054` — снова в `REV-0005D`. Текущая machine projection после direct
 encoder и exact endpoints: S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow
-I/O `23/0/1`, UI I/O `7/1/0`.
+I/O `24/0/0`, UI I/O `7/1/0`.
 Старые `C5=13/RP=46` counts исправлены как `FND-0059`.
 
 ## Первичные источники

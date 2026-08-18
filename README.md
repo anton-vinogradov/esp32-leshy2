@@ -351,7 +351,7 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
-  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; P05 remains free"]
+  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; all contacts allocated"]
   SLOWVCI["C1005X7R1H104K050BB #SLOW-VCCI<br/>100-nF main slow-I/O VCCI bypass capacitor"]
   SLOWVCP["C1005X7R1H104K050BB #SLOW-VCCP<br/>100-nF main slow-I/O VCCP bypass capacitor"]
   SLOWBULK["C1608X7R1C105K080AC #SLOW<br/>1-uF main slow-I/O local bulk capacitor"]
@@ -607,6 +607,60 @@ flowchart TD
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
   UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
+  UISOBP["C1005X7R1H104K050BB #U214-I2C<br/>TCA4307 bypass capacitor"]
+  UISDAPU["RC0402FR-072K2L #U214-SDA<br/>controller-side I2C pull-up resistor"]
+  UISCLPU["RC0402FR-072K2L #U214-SCL<br/>controller-side I2C pull-up resistor"]
+  UHBA["74LVC126APW,118 #U214-HOST-A<br/>RST/GPS-RX/SCK/MOSI Ioff buffer"]
+  UHBB["74LVC126APW,118 #U214-HOST-B<br/>NSS and disabled-spare Ioff buffer"]
+  URB["74LVC126APW,118 #U214-RETURN<br/>BUSY/IRQ/GPS-TX/MISO Ioff buffer"]
+  UHBABP["C1005X7R1H104K050BB #U214-HOST-A<br/>host-buffer bypass capacitor"]
+  UHBBBP["C1005X7R1H104K050BB #U214-HOST-B<br/>host-buffer bypass capacitor"]
+  URBBP["C1005X7R1H104K050BB #U214-RETURN<br/>return-buffer bypass capacitor"]
+  URSTR["ERJ-2RKF22R0X #U214-RST<br/>reset source-series resistor"]
+  UGPSRR["ERJ-2RKF22R0X #U214-GPS-RX<br/>GNSS receive source-series resistor"]
+  USCKR["ERJ-2RKF22R0X #U214-SCK<br/>SPI-clock source-series resistor"]
+  UMOSIR["ERJ-2RKF22R0X #U214-MOSI<br/>MOSI source-series resistor"]
+  UNSSR["ERJ-2RKF22R0X #U214-NSS<br/>NSS source-series resistor"]
+  UBUSYR["ERJ-2RKF22R0X #U214-BUSY<br/>BUSY return-series resistor"]
+  UIRQR["ERJ-2RKF22R0X #U214-IRQ<br/>IRQ return-series resistor"]
+  UGPSTR["ERJ-2RKF22R0X #U214-GPS-TX<br/>GNSS transmit return-series resistor"]
+  UMISOR["ERJ-2RKF22R0X #U214-MISO<br/>MISO return-series resistor"]
+  UESDA["TPD4E05U06DQAR #U214-A<br/>I2C/RST/GPS-RX connector ESD array"]
+  UESDB["TPD4E05U06DQAR #U214-B<br/>SCK/MOSI/NSS/BUSY connector ESD array"]
+  UESDC["TPD4E05U06DQAR #U214-C<br/>IRQ/GPS-TX/MISO connector ESD array"]
+  EXTOR["74LVC1G32GV,125 #EXT-REQ<br/>U214/native-Unit request OR gate"]
+  EXTORBP["C1005X7R1H104K050BB #EXT-REQ<br/>request-OR bypass capacitor"]
+  EXTREQPD["RC0402FR-0710KL #EXT-REQ<br/>shared-5-V request fail-low resistor"]
+  EXTBG["SN74LVC2G08DCUR #EXT-BRANCH<br/>dual STOP-qualified connector-branch gate"]
+  EXTBGBP["C1005X7R1H104K050BB #EXT-BRANCH<br/>branch-gate bypass capacitor"]
+  UREQPD["RC0402FR-0710KL #U214-REQ<br/>U214 request fail-low resistor"]
+  UNITREQPD["RC0402FR-0710KL #UNIT-REQ<br/>native-Unit request fail-low resistor"]
+  USUP["TPS3808G33DBVR #U214<br/>protected-5-V readiness supervisor"]
+  USUPBP["C1005X7R1H104K050BB #U214-SUP<br/>supervisor bypass capacitor"]
+  USUPT["RC0402FR-07110KL #U214-SENSE<br/>ready-threshold top resistor"]
+  USUPB["RC0402FR-07220KL #U214-SENSE<br/>ready-threshold bottom resistor"]
+  USUPC["GRM155R71H103KA88D #U214-READY<br/>readiness delay capacitor"]
+  USUPPU["RC0402FR-0710KL #U214-READY<br/>main-domain READY pull-up resistor"]
+  UNITEF["TPS259470LRPWR #UNIT<br/>native-Unit true-reverse-blocking latch-off eFuse"]
+  UNITRILM["RC0402FR-072K21L #UNIT<br/>native-Unit current-limit resistor"]
+  UNITDVDT["GRM155R71H472KA01D #UNIT<br/>native-Unit startup-slew capacitor"]
+  UNITIT["GRM188R71E224KA88D #UNIT<br/>native-Unit post-start transient timer"]
+  UNITOVT["RC0402FR-07169KL #UNIT<br/>native-Unit OVLO top resistor"]
+  UNITOVB["RC0402FR-0747KL #UNIT<br/>native-Unit OVLO bottom resistor"]
+  UNITIN["GRM21BR71E225KE11L #UNIT-IN<br/>native-Unit eFuse input capacitor"]
+  UNITOUT["GRM21BR71E225KE11L #UNIT-OUT<br/>native-Unit eFuse output capacitor"]
+  UNITBLEED["RC0603FR-071KL #UNIT<br/>native-Unit protected-output discharge resistor"]
+  UNITSUP["TPS3808G33DBVR #UNIT<br/>protected-native-Unit-5-V readiness supervisor"]
+  UNITSUPBP["C1005X7R1H104K050BB #UNIT-SUP<br/>supervisor bypass capacitor"]
+  UNITSUPT["RC0402FR-07110KL #UNIT-SENSE<br/>ready-threshold top resistor"]
+  UNITSUPB["RC0402FR-07220KL #UNIT-SENSE<br/>ready-threshold bottom resistor"]
+  UNITSUPC["GRM155R71H103KA88D #UNIT-READY<br/>readiness delay capacitor"]
+  UNITSUPPU["RC0402FR-0710KL #UNIT-READY<br/>main-domain READY pull-up resistor"]
+  UNISO["TXS0102DCUR #UNIT-SIGNALS<br/>bidirectional I2C/UART/GPIO isolator"]
+  UNISOA["C1005X7R1H104K050BB #UNIT-VCCA<br/>signal-isolator A-side bypass capacitor"]
+  UNISOB["C1005X7R1H104K050BB #UNIT-VCCB<br/>signal-isolator B-side bypass capacitor"]
+  UNISOEPD["RC0402FR-0710KL #UNIT-OE<br/>signal-isolator fail-low OE resistor"]
+  UNITESD["TPD4E05U06DQAR #UNIT<br/>native-Unit connector ESD array"]
   IRSW["TPS22919DCKR #IR-RX<br/>independent reset-off receiver load switch"]
   IRINCAP["C1608X7R1C105K080AC #IR-RX-IN<br/>receiver-switch input capacitor"]
   IROUTCAP["GRM188R60J106ME47D #IR-RX-OUT<br/>switched receiver-rail bulk capacitor"]
@@ -710,7 +764,12 @@ flowchart TD
   CC ~~~ CCHB ~~~ CCRB ~~~ CCBAND ~~~ CCHBBP ~~~ CCRBBP ~~~ CCBANDBP ~~~ CCPIN ~~~ CCBULK ~~~ CCONPD ~~~ CCDVBP ~~~ CC9BP ~~~ CC11BP ~~~ CC14BP ~~~ CC15BP ~~~ CCDCOUPL ~~~ CCRBIAS ~~~ CCXTAL ~~~ CCX1C ~~~ CCX2C
   CCX2C ~~~ CCRSCLK ~~~ CCRSI ~~~ CCRCSN ~~~ CCRSO ~~~ CCRG0 ~~~ CCRG2 ~~~ CCRV1 ~~~ CCRV2 ~~~ CCPDSCLK ~~~ CCPDSI ~~~ CCPCS ~~~ CCPDSO ~~~ CCPDG0 ~~~ CCPDG2 ~~~ CCPDV1H ~~~ CCPDV2H ~~~ CCPDV1A ~~~ CCPDV2A ~~~ CCPDV1B ~~~ CCPDV2B
   CCPDV2B ~~~ CCCP ~~~ CCCN ~~~ CCDIFF ~~~ CCBAL ~~~ CCL33 ~~~ CCC12 ~~~ CCL68 ~~~ CCSWA ~~~ CC315L1 ~~~ CC315L36 ~~~ CC315C8 ~~~ CC315L2 ~~~ CC433C10 ~~~ CC433L15 ~~~ CC433C62 ~~~ CC868L10 ~~~ CCSWB ~~~ CCLOUT ~~~ CCESD ~~~ CCTAP ~~~ CCDF ~~~ CCDBP ~~~ CCEVD ~~~ CCEVC ~~~ CCEVR ~~~ CCSMA ~~~ SA
-  SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
+  SA ~~~ ISO ~~~ UISOBP ~~~ UISDAPU ~~~ UISCLPU ~~~ EXTOR ~~~ EXTORBP ~~~ EXTREQPD ~~~ EXTBG ~~~ EXTBGBP ~~~ UREQPD ~~~ UNITREQPD
+  UNITREQPD ~~~ USUP ~~~ USUPBP ~~~ USUPT ~~~ USUPB ~~~ USUPC ~~~ USUPPU ~~~ UHBA ~~~ UHBABP ~~~ UHBB ~~~ UHBBBP ~~~ URB ~~~ URBBP
+  URBBP ~~~ URSTR ~~~ UGPSRR ~~~ USCKR ~~~ UMOSIR ~~~ UNSSR ~~~ UBUSYR ~~~ UIRQR ~~~ UGPSTR ~~~ UMISOR ~~~ UESDA ~~~ UESDB ~~~ UESDC
+  UESDC ~~~ CAPDOCK ~~~ U214 ~~~ UNITEF ~~~ UNITRILM ~~~ UNITDVDT ~~~ UNITIT ~~~ UNITOVT ~~~ UNITOVB ~~~ UNITIN ~~~ UNITOUT ~~~ UNITBLEED
+  UNITBLEED ~~~ UNITSUP ~~~ UNITSUPBP ~~~ UNITSUPT ~~~ UNITSUPB ~~~ UNITSUPC ~~~ UNITSUPPU ~~~ UNISO ~~~ UNISOA ~~~ UNISOB ~~~ UNISOEPD ~~~ UNITESD ~~~ UNIT
+  UNIT ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
@@ -864,7 +923,9 @@ flowchart TD
   MAINFUSE -->|"PG pull-up"| VOICEPGPU --> VOICEFUSE
   GATEB -->|"EN"| VOICEPGBR --> VOICEPGQ
   VOICEFUSE -->|"protected PG"| VOICEPGQ -->|"qualified POWER_FAULT_N"| SLOW
-  CHARGER -->|"SYS"| EXTBUCK --> EXTL --> EXTFUSE -->|"protected fixed 5.0 V"| U214
+  CHARGER -->|"SYS"| EXTBUCK --> EXTL
+  EXTL --> EXTFUSE -->|"protected U214 5.0 V"| CAPDOCK
+  EXTL --> UNITEF -->|"protected native-Unit 5.0 V"| UNIT
   CHARGER -->|"SYS local bulk"| EXTBUCKIN
   CHARGER -->|"SYS local HF"| EXTBUCKHF
   EXTL -->|"feedback"| EXTBUCKFBT --> EXTBUCKFBB
@@ -989,7 +1050,8 @@ flowchart TD
   S3 -->|"I²S0 playback"| CODECDOUT --> CODEC
   CODEC -->|"I²S0 capture"| CODECDIN --> S3
   S3 <-->|"I²C0 host side"| RXI2C <-->|"switched local bus"| SI
-  S3 <-->|"profile port"| UNIT
+  S3 <-->|"GPIO7/GPIO8 profile signals"| UNISO <-->|"isolated I2C/UART/GPIO"| UNIT
+  UNITESD -.->|"two signal shunt clamps"| UNIT
   RXCLK --> SI
   RXCLKC0 --> SI
   RXCLKC1 --> SI
@@ -1051,10 +1113,22 @@ flowchart TD
   PTTSW -->|"NO contact to power ground"| PTTRAW
   PTTRAW --> ENCPTTESD
   PTTRAW -->|"direct GPIO21 through 1 kOhm; never in UI matrix"| PTTR --> RP
-  RP <-->|"PIO1/UART1"| CAPDOCK
+  RP -->|"PIO1/UART1 outputs"| UHBA --> CAPDOCK
+  RP --> UHBB --> CAPDOCK
+  CAPDOCK -->|"BUSY/IRQ/GPS-TX/MISO"| URB --> RP
   RP <-->|"I²C0"| ISO
   ISO <-->|"isolated I²C"| CAPDOCK
+  UESDA -.->|"I²C/RST/GPS-RX clamps"| CAPDOCK
+  UESDB -.->|"SCK/MOSI/NSS/BUSY clamps"| CAPDOCK
+  UESDC -.->|"IRQ/GPS-TX/MISO clamps"| CAPDOCK
   CAPDOCK <-->|"14-pin Cap-Bus"| U214
+  SLOW -->|"P17/P05 independent requests"| EXTOR --> GATEB
+  GATEB --> EXTBG
+  EXTBG --> EXTFUSE
+  EXTBG --> UNITEF
+  EXTFUSE --> USUP --> UHBA
+  USUP --> ISO
+  UNITEF --> UNITSUP --> UNISO
   STOPPU -->|"10 kOhm to AON_SAFE_3V3"| STOPLOOP
   STOPC -->|"10 nF to safety ground"| STOPLOOP
   STOPSW -->|"COM+NC to safety ground"| STOPLOOP
@@ -1095,7 +1169,6 @@ flowchart TD
   IRTXGPD --> IRTXFET
   MAINFUSE --> IRTXRLIM --> IRTX --> IRTXFET
   GATEB --> EXTBUCK
-  GATEB --> EXTFUSE
   S3 -->|"placement-qualified U.FL jumper"| S3RFJ --> S3CPL -->|"dedicated RP-SMA boundary"| S3SMA["MPN TBD<br/>S3 external reverse-polarity SMA"]
   S3CPL -->|"-20-dB forward sample"| S3CIN --> DS3 --> CMPA
   S3CPL --> S3TERM
@@ -1187,13 +1260,17 @@ flowchart TD
   `3V3_MAIN`; RESET is available to the fixture and product recovery can fully
   power-cycle the main rail. AON STOP/evidence observations cross through
   separate open-drain buffers, so they cannot back-power an unpowered expander.
-  P03/P04 are CC1101 rail-off band truth bits; P05 remains the only free contact.
+  P03/P04 are CC1101 rail-off band truth bits; P05 independently requests native
+  M5 Unit power, so all 24 contacts are now allocated.
 - **Audio and Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0
   and local I²C0 through power-valid physical isolation. Slow I/O `P00,P01,P02`
   select RX/microphone capture, enable the reset-off speaker and detect
   headphone absence. The PD controller also shares the bounded host bus and
   wired-low system IRQ; it consumes no new S3 GPIO.
-- **M5 Unit:** S3 `GPIO7,GPIO8` — separate configurable profile port.
+- **M5 expansion:** S3 `GPIO7,GPIO8` reach the native HY2.0-4P Unit port through
+  `TXS0102DCUR`; P05 controls its own `TPS259470LRPWR` 5-V branch. P17 controls
+  the separate U214 branch. Both use protected-rail supervisors, high-Z signal
+  isolation and connector ESD; neither connector exposes a real presence pin.
 - **IR:** C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` — two RX, TX, power and evidence.
 - **nRF24 #0:** RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32`.
 - **nRF24 #1:** RP `GPIO3,GPIO4,GPIO5,GPIO33,GPIO34,GPIO35`.
@@ -1207,7 +1284,7 @@ flowchart TD
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
 - **Resource result:** S3 `33 used / 3 reserved / 0 free`, C5 `14/6/1`, RP
-  `48/0/0`, main slow I/O `23/0/1`, and UI matrix I/O `7/1/0`. Independent
+  `48/0/0`, main slow I/O `24/0/0`, and UI matrix I/O `7/1/0`. Independent
   SWD/USB/RUN/BOOTSEL are outside this GPIO budget.
 
 [Complete physical pad and net atlas](docs/review/architecture/generated/G2F-3I-principled-pinout.md)

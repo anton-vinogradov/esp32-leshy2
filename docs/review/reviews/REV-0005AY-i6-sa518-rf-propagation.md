@@ -15,7 +15,7 @@
 | actual-TX evidence | pass on paper: exact ~40-dB resistive sample reaches −14…−9 dBm, detector survives rail fall by bounded hold and never authorizes |
 | detector SKU | pass: voice migrates from legacy LTC5507 to separate AD8314, reusing support SKUs |
 | filter decision | pass as reopenable no-loss choice: no filter bank or P05 consumption before conducted failure evidence |
-| pin/resource budget | pass unchanged: MCU allocations unchanged; P05 remains free; SG-VOICE remains independent half-duplex |
+| pin/resource budget | historical I6 pass: MCU allocations unchanged and P05 was free; DEC-0098 later consumes P05 for native-Unit power; SG-VOICE remains independent half-duplex |
 | diagrams | pass: both target pages and generated vertical atlas show exact MPN and role per physical body |
 | firmware | pass after companion propagation: lease, antenna/profile, evidence, timeout and filter-reopen semantics explicit |
 | CAD/mockup | pass boundary: no KiCad authorization and no integrated-mockup restart |
@@ -39,4 +39,3 @@
 
 The SA518 RF paper subblock therefore has **«Проведено ревью»**. Conducted,
 legal and coexistence HIL remain open, and I6 proceeds to the IR endpoint.
-

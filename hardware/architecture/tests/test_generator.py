@@ -901,11 +901,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("voice_efuse.OUT", "voice.VCC", "VVOICE_4V"), routes)
         self.assertIn(("aon_efuse.OUT", "abstract:AON_SAFE_3V3", "AON_SAFE_3V3"), routes)
         self.assertIn(("main_efuse.OUT", "abstract:3V3_MAIN", "3V3_MAIN"), routes)
-        self.assertIn(("ext_efuse.OUT", "u214.5V_IN", "5V_EXT_PROTECTED"), routes)
+        self.assertIn(("ext_efuse.OUT", "u214.5V_IN", "5V_U214_PROTECTED"), routes)
         self.assertIn(("ext_efuse.ILM", "ext_rilm.END_1", "EXT_EFUSE_ILM_SET"), routes)
         self.assertIn(("ext_efuse.DVDT", "ext_dvdt_cap.END_1", "EXT_EFUSE_DVDT"), routes)
         self.assertIn(("ext_efuse.ITIMER", "ext_itimer_cap.END_1", "EXT_EFUSE_ITIMER"), routes)
-        self.assertIn(("ext_efuse.OUT", "ext_bleeder.END_1", "5V_EXT_PROTECTED"), routes)
+        self.assertIn(("ext_efuse.OUT", "ext_bleeder.END_1", "5V_U214_PROTECTED"), routes)
         self.assertIn(("aon_buck.MODE_SCONF", "aon_mode_res.END_1", "AON_MODE_SET"), routes)
         self.assertIn(("nvdc_charger.SYS", "aon_buck.EN", "AON_BUCK_EN"), routes)
         self.assertIn(("aon_pg_pullup.END_2", "aon_buck.PG", "AON_PG_N"), routes)
@@ -975,6 +975,57 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("ext_buck.PG", "abstract:power-current-thermal-fault", "EXT_5V_PG_N"),
             routes,
         )
+
+    def test_i7_external_expansion_power_and_signal_boundary_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["external_expansion_contract"]
+        self.assertEqual("DEC-0098", contract["decision"])
+        self.assertIn("paper_reviewed", contract["status"])
+        self.assertIn("TPS259470LRPWR", contract["branch_power"])
+        self.assertIn("TXS0102DCUR", contract["unit_signals"])
+        self.assertIn("TCA4307DGKR", contract["u214_signals"])
+        self.assertIn("presence or identity contact", contract["identity_and_hot_plug"])
+        self.assertIn("MPN TBD", contract["connector_truth"])
+        self.assertIn("concrete device", contract["high_throughput_boundary"])
+
+        expected = {
+            "ext_request_or": "nexperia_74lvc1g32gv_125",
+            "ext_branch_gate": "ti_sn74lvc2g08_dcur",
+            "u214_supervisor": "ti_tps3808g33_dbvr",
+            "unit_supervisor": "ti_tps3808g33_dbvr",
+            "unit_efuse": "ti_tps259470l_rpwr",
+            "u214_i2c_iso": "tca4307dgkr",
+            "u214_host_buffer_a": "nexperia_74lvc126apw_118",
+            "u214_host_buffer_b": "nexperia_74lvc126apw_118",
+            "u214_return_buffer": "nexperia_74lvc126apw_118",
+            "unit_signal_iso": "ti_txs0102_dcur",
+            "u214_esd_a": "ti_tpd4e05u06_dqar",
+            "u214_esd_b": "ti_tpd4e05u06_dqar",
+            "u214_esd_c": "ti_tpd4e05u06_dqar",
+            "unit_esd": "ti_tpd4e05u06_dqar",
+        }
+        for instance, device_id in expected.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        self.assertIn(("slow_io.P05", "ext_request_or.1B", "UNIT_5V_REQ"), routes)
+        self.assertIn(("slow_io.P17", "ext_request_or.1A", "U214_5V_REQ"), routes)
+        self.assertIn(("ext_branch_gate.1Y", "ext_efuse.EN_UVLO", "U214_5V_EN_SAFE"), routes)
+        self.assertIn(("ext_branch_gate.2Y", "unit_efuse.EN_UVLO", "UNIT_5V_EN_SAFE"), routes)
+        self.assertIn(("unit_efuse.OUT", "abstract:native-M5-HY2-0-4P-5V", "5V_UNIT_PROTECTED"), routes)
+        self.assertIn(("unit_supervisor.RESET_N", "slow_io.P26", "UNIT_READY"), routes)
+        self.assertNotIn(
+            "abstract:accessory-present",
+            {endpoint for route in candidate["fixed_routes"] for endpoint in (route["from"], route["to"])},
+        )
+        quiet = {item["id"] for item in candidate["quiet_state_policy"]["contracts"]}
+        self.assertIn("U214_CAP_QUIET", quiet)
+        self.assertIn("UNIT_PORT_QUIET", quiet)
+        self.assertNotIn("U214_EXT_QUIET", quiet)
+        self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
 
     def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -1266,7 +1317,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             route["from"] == "abstract:CC-qualified-RF-tap"
             for route in candidate["fixed_routes"]
         ))
-        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
@@ -1328,7 +1380,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             route["from"] == "abstract:VOICE-qualified-RF-tap"
             for route in candidate["fixed_routes"]
         ))
-        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
@@ -1386,7 +1439,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(route, routes)
 
-        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
             "TSOP95238TT<br/>38-kHz AGC2 demodulating IR receiver",
@@ -1471,7 +1525,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             for route in candidate["fixed_routes"]
             for endpoint in (route["from"], route["to"])
         ))
-        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
@@ -1923,7 +1978,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         slow = candidate["contact_accounting"]["slow_io"]
-        self.assertEqual({"P05"}, set(slow["free"]))
+        self.assertEqual(set(), set(slow["free"]))
+        self.assertIn("P05", set(slow["used"]))
         self.assertIn("P03", slow["used"])
         self.assertIn("P04", slow["used"])
         self.assertEqual({}, slow["reserved"])
@@ -2384,7 +2440,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("display.TP_INT", "display_touch_controller.TP_INT", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
-        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
+        self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
         self.assertEqual(
             {"P7": "protected local fixture/growth test pad retained after physical-control wish-list closure"},
             candidate["contact_accounting"]["ui_matrix_io"]["reserved"],

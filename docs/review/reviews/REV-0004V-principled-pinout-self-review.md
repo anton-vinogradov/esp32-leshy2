@@ -4,7 +4,7 @@
 > под QSPI D2/D3; `AUDIO-0002/REV-0005C` затем занимает slow P27 под
 > пропущенный RX-audio source select; `DEC-0054/REV-0005D` затем занимает S3
 > GPIO6 под `AUDIO_ARM`. At that later review point budgets were S3 `32/3/1`,
-> slow `24/0/0`; current machine projection is S3 `33/3/0`, main slow `23/0/1`
+> slow `24/0/0`; post-DEC-0098 current machine projection is S3 `33/3/0`, main slow `24/0/0`
 > and UI `7/1/0`. Таблица ниже фиксирует состояние исходного прохода `REV-0004V`.
 
 - Статус: **Проведено ревью current principled pinout; final electrical closure открыта**
@@ -22,7 +22,7 @@
 | diagram and tables share one source | pass: both generated from `G2F-3I.json` |
 | exact module/package contacts | historical pass amended: S3/C5/RP, nRF references, CC1101, U214, slow I/O, I²C isolator, microSD and SA518 remain pass; the shifted Si4732 map was found and corrected by `FND-0102`/`REV-0005BB` |
 | GPIO accounting after quiet-state controls | pass: S3 `29/3/4`, C5 `14/6/1`, RP `48/0/0` |
-| slow-plane accounting | historical pass: `23 used + P27 reserve`; later `24/0/0` was reviewed in REV-0005C, and current exact-audio/CC/UI projection is main `23/0/1` plus UI `7/1/0` |
+| slow-plane accounting | historical pass: `23 used + P27 reserve`; later reviews assigned P27, P00…P04 and final P05; post-DEC-0098 current projection is main `24/0/0` plus UI `7/1/0` |
 | every nRF physically independent at bus/control level | pass: 3× six direct contacts, separate PIO SM and DMA pair |
 | other radio/accessory bus waits for nRF/display | no; resource contracts remain dedicated |
 | controller/fixed-mux capacity | pass: PIO `5/12`, RP DMA `13/16`, S3 GDMA TX/RX `3/5` |
