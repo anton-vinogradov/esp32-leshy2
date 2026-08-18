@@ -111,8 +111,11 @@ USB-C/USB2 protection back to I4 and exposes TPS25751/CAT24C512 support
 passives as the next true I3 paper dependency.
 `FND-0080/PWR-0015/DEC-0076/REV-0005AG` then correct separate TPS
 VBUS/VBUS_IN startup, hardware SafeMode,
-17 exact support components and both complete I2C pull networks. Diagnostic
-thresholds/cooldown, mechanical polarity/thermal coupling, calculated hot loss
+17 exact support components and both complete I2C pull networks.
+`FND-0082/PWR-0017/DEC-0078/REV-0005AI` then correct the physical TPUL WQFN
+map, reuse its second channel for a `>=350 ms` hardware refractory lockout and
+replace the single load with two parallel 20-Ohm/2-W branches. Exact-cell
+droop thresholds, mechanical continuity/thermal coupling, calculated hot loss
 and HIL remain active.
 
 ## Active G2F artifacts
@@ -153,15 +156,19 @@ and HIL remain active.
 - [`PWR-0012`](PWR-0012-exact-converter-control-passives.md) closes direct
   AON enable and nine exact converter EN/PG/fault resistors without adding a
   GPIO or unique BOM MPN;
-- [`PWR-0013`](PWR-0013-exact-pack-diagnostic-frontends.md) closes the exact
-  bounded pack-load switch/timer/resistor and PA25/PA26 divider/filter
-  frontends, while leaving measured thresholds and cooldown to prototype HIL;
+- [`PWR-0013`](PWR-0013-exact-pack-diagnostic-frontends.md) is retained as the
+  historical first diagnostic pass and is explicitly superseded by PWR-0017;
 - [`PWR-0014`](PWR-0014-exact-bq25798-passive-profile.md) closes the exact
   BQ25798 2S/750-kHz energy, current/temperature sensing, reset and special-pin
   profile while leaving placement/thermal/source-transition HIL explicit;
 - [`PWR-0015`](PWR-0015-exact-tps25751-eeprom-support-profile.md) closes the
   exact TPS25751D/CAT24 autonomous SafeMode startup, 17 support components,
   unused contacts and complete local/host pull networks;
+- [`PWR-0016`](PWR-0016-keystone-1048p-holder-and-ntc-coupling.md) closes the
+  exact polarized holder and three physical cell-temperature contact roles;
+- [`PWR-0017`](PWR-0017-hardware-diagnostic-refractory-lockout.md) closes the
+  corrected TPUL contacts, cascaded hardware cooldown, hot repetition bound
+  and two-branch pulse-rated load while leaving exact-cell droop numbers HIL;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

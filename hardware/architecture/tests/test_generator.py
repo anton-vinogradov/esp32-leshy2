@@ -89,14 +89,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release",
             "onsemi BAV70LT1G<br/>AOLDO/fixture source isolation",
             "Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority",
-            "Texas Instruments TPUL2G223BQBR<br/>non-retriggerable hardware diagnostic-pulse limiter",
+            "Texas Instruments TPUL2G223BQBR<br/>non-retriggerable pulse limiter and refractory lockout",
             "Yageo RC0402FR-07169KL<br/>169-kOhm 1% diagnostic-pulse timing resistor",
             "Murata GRM31C5C1H224JE02L<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor",
+            "Yageo RC0402FR-07620KL<br/>620-kOhm 1% refractory-lockout timing resistor",
+            "TDK C1608X7R1C105K080AC<br/>1-uF 16-V X7R refractory-lockout timing capacitor",
             "TDK C1005X7R1H104K050BB<br/>100-nF 50-V X7R one-shot bypass capacitor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% diagnostic-trigger fail-low resistor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% diagnostic-gate fail-low resistor",
             "Diodes Incorporated DMN2056U-7<br/>20-V low-gate-drive diagnostic-load MOSFET",
-            "Vishay CRCW251210R0JNEGIF<br/>10-Ohm 1-W pulse-proof diagnostic-load resistor",
+            "Bourns CRM2512-FX-20R0ELF<br/>20-Ohm 2-W pulse-rated diagnostic-load branch #0",
+            "Bourns CRM2512-FX-20R0ELF<br/>20-Ohm 2-W pulse-rated diagnostic-load branch #1",
             "Yageo RC0402FR-07220KL<br/>220-kOhm 1% midpoint-divider top resistor #0",
             "Yageo RC0402FR-07220KL<br/>220-kOhm 1% midpoint-divider top resistor #1",
             "Yageo RC0402FR-07169KL<br/>169-kOhm 1% midpoint-divider bottom resistor",
@@ -267,7 +270,8 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "admits the pair",
                 "0.57…0.88 A",
                 "no more than `50 ms`",
-                "independent non-retriggerable hardware timer",
+                "one non-retriggerable hardware channel",
+                "at least `350 ms`",
                 "not a full-load qualification claim",
             ),
             "README.ru.md": (
@@ -277,7 +281,8 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "допускает пару",
                 "0,57…0,88 А",
                 "не дольше `50 мс`",
-                "независимый non-retriggerable аппаратный таймер",
+                "один non-retriggerable аппаратный канал",
+                "на `350 мс`",
                 "не обещание полной проверки под нагрузкой",
             ),
         }
@@ -309,7 +314,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("20V PDO", contract["disabled"])
         self.assertIn("GPIO19/20 remain direct", contract["usb2_data"])
         self.assertIn("GPIO47", contract["host_control"])
-        self.assertEqual("DEC-0074", contract["diagnostic_decision"])
+        self.assertEqual("DEC-0078", contract["diagnostic_decision"])
         self.assertIn("non-retriggerable", contract["diagnostic_load_profile"])
         self.assertIn("28.7-40.7 ms", contract["diagnostic_load_profile"])
         self.assertIn("25-50 ms", contract["diagnostic_load_profile"])
@@ -333,8 +338,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_supply_or": "onsemi_bav70lt1g",
             "pack_system_diode": "diodes_bat54_7_f",
             "pack_diag_timer": "ti_tpul2g223_bqbr",
+            "pack_diag_lockout_res": "yageo_rc0402fr_07620kl",
+            "pack_diag_lockout_cap": "tdk_c1608x7r1c105k080ac",
             "pack_diag_switch": "diodes_dmn2056u_7",
-            "pack_diag_res": "vishay_crcw251210r0jnegif",
+            "pack_diag_res0": "bourns_crm2512_fx_20r0elf",
+            "pack_diag_res1": "bourns_crm2512_fx_20r0elf",
             "pack_mid_adc_filter": "murata_grm155r71h103ka88d",
             "pack_stack_adc_filter": "murata_grm155r71h103ka88d",
         }
@@ -355,6 +363,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         charger = self.database["devices"]["ti_bq25798_rqmr"]
         self.assertEqual("2/3", charger["contacts"]["VBUS"]["physical"])
         self.assertEqual("22/23", charger["contacts"]["BAT"]["physical"])
+        timer = self.database["devices"]["ti_tpul2g223_bqbr"]
+        self.assertEqual("5", timer["contacts"]["CH2_Q"]["physical"])
+        self.assertEqual("16", timer["contacts"]["VCC"]["physical"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -393,7 +404,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             routes,
         )
         self.assertIn(
-            ("abstract:qualified-2s-positive", "pack_diag_res.END_1", "PACK_DIAG_LOAD_POSITIVE"),
+            ("pack_diag_timer.CH2_Q_N", "pack_diag_timer.CH1_CLR_N", "PACK_DIAG_REFRACTORY_CLEAR_N"),
+            routes,
+        )
+        self.assertIn(
+            ("pack_diag_timer.CH1_Q", "pack_diag_timer.CH2_T_N", "PACK_DIAG_PULSE_ACTIVE"),
+            routes,
+        )
+        self.assertIn(
+            ("abstract:qualified-2s-positive", "pack_diag_res0.END_1", "PACK_DIAG_LOAD_POSITIVE"),
             routes,
         )
         self.assertNotIn(

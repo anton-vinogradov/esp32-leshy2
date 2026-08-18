@@ -97,9 +97,12 @@ Leshy2 — открытый автономный портативный инст
   zero-volt/prequalification recovery в самом устройстве отключён, а любые
   исследования восстановления требуют отдельной изолированной оснастки
   Controlled Zone. Перед допуском общий тракт с нагрузкой 10 Ом прикладывает
-  примерно `0,57…0,88 А` не дольше `50 мс`; независимый non-retriggerable
-  аппаратный таймер не позволяет firmware растянуть импульс. Это screen
-  ячеек/контактов, а не обещание полной проверки под нагрузкой.
+  примерно `0,57…0,88 А` не дольше `50 мс`. Один non-retriggerable аппаратный
+  канал не даёт растянуть импульс, а второй после него запрещает повтор минимум
+  на `350 мс` даже при неисправной firmware. Две параллельные pulse-rated ветви
+  по 20 Ом/2 Вт сохраняют суммарные 10 Ом и безопасно делят нагрев; штатная
+  программа ждёт между попытками не менее 10 секунд. Это screen ячеек/контактов,
+  а не обещание полной проверки под нагрузкой.
 - Четыре независимые фиксированные шины разделяют always-on безопасность,
   вычислительное питание 3,3 В, голосовой тракт 4,0 В и защищённый порт
   расширения 5,0 В. Неиспользуемые ветви радио, накопителя и аудио физически
@@ -191,14 +194,17 @@ flowchart TD
   SUPPLYOR["BAV70LT1G<br/>изоляция источников AOLDO/fixture"]
   SYSDIODE["BAT54-7-F<br/>изоляция и приоритет admitted-system source"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed допуск пары, watchdog и service bridge"]
-  DIAGTMR["TPUL2G223BQBR<br/>аппаратный non-retriggerable ограничитель диагностического импульса"]
+  DIAGTMR["TPUL2G223BQBR<br/>non-retriggerable ограничитель импульса и аппаратный cooldown"]
   DIAGTR["RC0402FR-07169KL #DIAG-TIME<br/>169-кОм 1% резистор времени диагностического импульса"]
   DIAGTC["GRM31C5C1H224JE02L #DIAG-TIME<br/>220-нФ 50-В C0G конденсатор времени диагностического импульса"]
+  DIAGLR["RC0402FR-07620KL<br/>620-кОм 1% резистор аппаратного cooldown"]
+  DIAGLC["C1608X7R1C105K080AC<br/>1-мкФ 16-В X7R конденсатор аппаратного cooldown"]
   DIAGBP["C1005X7R1H104K050BB #DIAG<br/>100-нФ 50-В X7R bypass-конденсатор one-shot"]
   DIAGTRPD["RC0402FR-0710KL #DIAG-TRIG<br/>10-кОм 1% fail-low резистор диагностического trigger"]
   DIAGGPD["RC0402FR-0710KL #DIAG-GATE<br/>10-кОм 1% fail-low резистор затвора нагрузки"]
   DIAGQ["DMN2056U-7<br/>20-В MOSFET диагностической нагрузки с низким gate drive"]
-  DIAGR["CRCW251210R0JNEGIF<br/>10-Ом 1-Вт pulse-proof резистор диагностической нагрузки"]
+  DIAGR0["CRM2512-FX-20R0ELF #0<br/>20-Ом 2-Вт pulse-rated ветвь диагностической нагрузки"]
+  DIAGR1["CRM2512-FX-20R0ELF #1<br/>20-Ом 2-Вт pulse-rated ветвь диагностической нагрузки"]
   MIDADC0["RC0402FR-07220KL #MID-TOP0<br/>220-кОм 1% верхний резистор делителя midpoint №0"]
   MIDADC1["RC0402FR-07220KL #MID-TOP1<br/>220-кОм 1% верхний резистор делителя midpoint №1"]
   MIDADCB["RC0402FR-07169KL #MID-BOTTOM<br/>169-кОм 1% нижний резистор делителя midpoint"]
@@ -331,8 +337,8 @@ flowchart TD
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
   CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ HOLDER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
-  DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
+  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
+  DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
   STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
   AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
@@ -420,10 +426,12 @@ flowchart TD
   PACKADM --> DIAGTRPD
   SUPPLYOR -->|"питание admission"| DIAGTMR
   DIAGTMR -->|"169 кОм / 220 нФ; ≤50 мс"| DIAGTR --> DIAGTC
+  DIAGTMR -->|"спад Q; аппаратный cooldown ≥350 мс"| DIAGLR --> DIAGLC
   DIAGTMR --> DIAGBP
   DIAGTMR -->|"ограниченный gate pulse"| DIAGQ
   DIAGTMR --> DIAGGPD
-  FUSE1 -->|"полный stack после fuse"| DIAGR --> DIAGQ
+  FUSE1 -->|"полный stack после fuse; суммарно 10 Ом"| DIAGR0 --> DIAGQ
+  FUSE1 --> DIAGR1 --> DIAGQ
   FUSE0 --> MIDADC0 --> MIDADC1 -->|"PA25/A2"| PACKADM
   PACKADM --> MIDADCB
   PACKADM --> MIDADCC

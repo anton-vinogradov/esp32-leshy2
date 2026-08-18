@@ -328,8 +328,8 @@ non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консе
 импульсы 25-50 мс. Midpoint/stack ADC переносятся с ошибочного
 PA24/PA25 на PA25/PA26, потому что PA24 не допускает injection current. Exact
 делители 2x220k/169k и 5x220k/169k с двумя фильтрами 10 нФ остаются ниже
-внутреннего reference 1,4 В в заданных fault-screen corners; все 19 физических
-экземпляров отдельно показаны в machine source и вертикальных diagrams.
+внутреннего reference 1,4 В в заданных fault-screen corners; эти first-pass
+physical instances остаются явными и ниже исправлены PWR-0017.
 `PWR-0014/DEC-0075/REV-0005AF` теперь закрывают физический профиль BQ25798:
 exact 2S/750-kHz PROG, дроссель 2,2 мкГн/7 А, 19 capacitor instances, BATP,
 прямой non-ignored TS, hardware ILIM, pulls I2C/INT, reset-high CE с
@@ -344,8 +344,15 @@ open-drain GPIO1 и Rev-C termination специальных контактов.
 контакта, qualified protected-button-top boundary и отдельную изолированную
 поджатую coupling role каждого из трёх NTC. Bounded rear-fit теперь использует
 `39,8 × 86,0 мм` и installed reference envelope `20,7 мм`; для U214 остаются
-paper reserves `9,719 мм` в плане и `5,59 мм` по глубине. Diagnostic
-thresholds/cooldown, effective-capacitance/load-step, exact cell/thermal-stack,
+paper reserves `9,719 мм` в плане и `5,59 мм` по глубине.
+`PWR-0017/FND-0082/DEC-0078/REV-0005AI` затем исправляют WQFN-карту
+TPUL2G223 (`2Q` — контакт 5, `VCC` — контакт 16), каскадируют второй канал в
+измеряемый аппаратный cooldown `350…860 мс` и заменяют один 1-Вт load двумя
+параллельными exact `CRM2512-FX-20R0ELF` по 20 Ом/2 Вт. Залипший или враждебный
+trigger теперь аппаратно ограничен одним импульсом `<=50 мс` за каждые
+`>=350 мс`, а штатная firmware ждёт минимум 10 секунд. Exact-cell droop
+thresholds, lot/hot-copper HIL импульса и cooldown,
+effective-capacitance/load-step, exact cell/thermal-stack,
 continuity/thermal, hot-loss/layout и перечисленные
 startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,

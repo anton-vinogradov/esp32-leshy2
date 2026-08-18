@@ -1,11 +1,15 @@
 # PWR-0013 — exact bounded pack load and admission ADC frontends
 
-- Статус: **Проведено ревью бумажной принципиальной схемы**
+- Статус: **Заменено корректирующим PWR-0017; не использовать как текущую схему**
 - Дата: 2026-08-18
 - Parent circuit: [`PWR-0007`](PWR-0007-max17320-2s-surrounding-circuit.md)
 - Decision: [`DEC-0074`](../decisions/DEC-0074-bounded-pack-diagnostic-pulse.md)
 - Corrected finding: [`FND-0078`](../findings/FND-0078-mspm0-pa24-forbids-injection-current.md)
 - Propagation review: [`REV-0005AE`](../reviews/REV-0005AE-pack-diagnostic-profile.md)
+
+> `PWR-0017/DEC-0078/FND-0082` correct the WQFN physical map, replace the
+> firmware-only repetition assumption with a second-channel hardware lockout
+> and replace the single 1-W load. This file remains only as review history.
 
 ## Scope
 

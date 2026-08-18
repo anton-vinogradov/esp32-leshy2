@@ -93,8 +93,11 @@ energy/configuration/feedback parts; `PWR-0012/DEC-0073/REV-0005AD`
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку
-PA24 без изменения бюджета `12/3/3`. Далее закрываются charger values,
-diagnostic thresholds/cooldown и hot loss/thermal/fault tree.
+PA24 без изменения бюджета `12/3/3`. `PWR-0017/FND-0082/DEC-0078/REV-0005AI`
+исправляют физические контакты TPUL, добавляют независимый аппаратный cooldown
+`>=350 мс` и две параллельные 20-Ом/2-Вт ветви нагрузки без нового GPIO или
+active device. Далее закрываются exact-cell droop thresholds, lot/hot-copper
+HIL и hot loss/thermal/fault tree.
 
 ## Downstream boundary
 

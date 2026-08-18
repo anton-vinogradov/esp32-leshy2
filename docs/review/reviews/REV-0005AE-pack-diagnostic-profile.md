@@ -1,5 +1,9 @@
 # REV-0005AE — pack diagnostic frontend propagation review
 
+> Historical first-pass review. Current reviewed hardware is
+> `PWR-0017/DEC-0078/REV-0005AI`; it corrects the TPUL WQFN pin map and adds a
+> second-channel refractory lockout plus repetition-safe load.
+
 - Статус: **Проведено ревью**
 - Дата: 2026-08-18
 - Decision: [`DEC-0074`](../decisions/DEC-0074-bounded-pack-diagnostic-pulse.md)

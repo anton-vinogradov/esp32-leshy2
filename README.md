@@ -93,8 +93,11 @@ privacy or the target owner's authorization.
   zero-volt/prequalification recovery is disabled, and any recovery research
   requires a separate isolated Controlled-Zone fixture. Before admission, a
   common-path 10-Ohm diagnostic applies approximately `0.57…0.88 A` for no
-  more than `50 ms`; an independent non-retriggerable hardware timer prevents
-  firmware from stretching the pulse. This is a contact/cell screen, not a
+  more than `50 ms`. One non-retriggerable hardware channel prevents pulse
+  stretching; a second channel then blocks every retry for at least `350 ms`,
+  even if firmware is faulty. Two parallel 20-Ohm/2-W pulse-rated branches
+  preserve the 10-Ohm load and safely share worst-case repetition heat. Normal
+  software waits at least 10 seconds. This is a contact/cell screen, not a
   full-load qualification claim.
 - Four independent fixed rails separate always-on safety, 3.3-V compute,
   4.0-V voice and protected 5.0-V accessory power. Unused radio, storage and
@@ -185,14 +188,17 @@ flowchart TD
   SUPPLYOR["BAV70LT1G<br/>AOLDO/fixture source isolation"]
   SYSDIODE["BAT54-7-F<br/>admitted-system source isolation and priority"]
   PACKADM["MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge"]
-  DIAGTMR["TPUL2G223BQBR<br/>non-retriggerable hardware diagnostic-pulse limiter"]
+  DIAGTMR["TPUL2G223BQBR<br/>non-retriggerable pulse limiter and refractory lockout"]
   DIAGTR["RC0402FR-07169KL #DIAG-TIME<br/>169-kOhm 1% diagnostic-pulse timing resistor"]
   DIAGTC["GRM31C5C1H224JE02L #DIAG-TIME<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor"]
+  DIAGLR["RC0402FR-07620KL<br/>620-kOhm 1% refractory-lockout timing resistor"]
+  DIAGLC["C1608X7R1C105K080AC<br/>1-uF 16-V X7R refractory-lockout timing capacitor"]
   DIAGBP["C1005X7R1H104K050BB #DIAG<br/>100-nF 50-V X7R one-shot bypass capacitor"]
   DIAGTRPD["RC0402FR-0710KL #DIAG-TRIG<br/>10-kOhm 1% diagnostic-trigger fail-low resistor"]
   DIAGGPD["RC0402FR-0710KL #DIAG-GATE<br/>10-kOhm 1% diagnostic-gate fail-low resistor"]
   DIAGQ["DMN2056U-7<br/>20-V low-gate-drive diagnostic-load MOSFET"]
-  DIAGR["CRCW251210R0JNEGIF<br/>10-Ohm 1-W pulse-proof diagnostic-load resistor"]
+  DIAGR0["CRM2512-FX-20R0ELF #0<br/>20-Ohm 2-W pulse-rated diagnostic-load branch"]
+  DIAGR1["CRM2512-FX-20R0ELF #1<br/>20-Ohm 2-W pulse-rated diagnostic-load branch"]
   MIDADC0["RC0402FR-07220KL #MID-TOP0<br/>220-kOhm 1% midpoint-divider top resistor #0"]
   MIDADC1["RC0402FR-07220KL #MID-TOP1<br/>220-kOhm 1% midpoint-divider top resistor #1"]
   MIDADCB["RC0402FR-07169KL #MID-BOTTOM<br/>169-kOhm 1% midpoint-divider bottom resistor"]
@@ -325,8 +331,8 @@ flowchart TD
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
   CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ HOLDER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
-  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
-  DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
+  PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
+  DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
   STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
   AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
@@ -414,10 +420,12 @@ flowchart TD
   PACKADM --> DIAGTRPD
   SUPPLYOR -->|"admission VDD"| DIAGTMR
   DIAGTMR -->|"169 kΩ / 220 nF; ≤50 ms"| DIAGTR --> DIAGTC
+  DIAGTMR -->|"falling Q edge; ≥350-ms hardware lockout"| DIAGLR --> DIAGLC
   DIAGTMR --> DIAGBP
   DIAGTMR -->|"bounded gate pulse"| DIAGQ
   DIAGTMR --> DIAGGPD
-  FUSE1 -->|"fused full stack"| DIAGR --> DIAGQ
+  FUSE1 -->|"fused full stack; 10 Ω total"| DIAGR0 --> DIAGQ
+  FUSE1 --> DIAGR1 --> DIAGQ
   FUSE0 --> MIDADC0 --> MIDADC1 -->|"PA25/A2"| PACKADM
   PACKADM --> MIDADCB
   PACKADM --> MIDADCC

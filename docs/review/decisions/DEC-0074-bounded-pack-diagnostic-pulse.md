@@ -1,5 +1,9 @@
 # DEC-0074 — bounded pre-admission pack diagnostic pulse
 
+> Historical base decision. `DEC-0078/PWR-0017` correct the physical TPUL pin
+> map, add an independent hardware repetition lockout and replace the load
+> resistor while preserving this decision's 10-Ohm / 25-50-ms function.
+
 - Статус: **Принято владельцем; exact components propagated automatically**
 - Дата: 2026-08-18
 - Owner choice: `10 Ohm`, hardware/software pulse limit `<=50 ms`

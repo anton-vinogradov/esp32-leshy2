@@ -20,7 +20,7 @@
 | GPIO budget | superseded contact detail: `DEC-0074/FND-0078` move midpoint/stack to PA25/PA26 and release PA24; `12/3/3` remains complete |
 | machine/visible artifacts | pass: exact MPNs, routes, vertical atlas and both product diagrams derive from the same JSON source |
 | firmware contract | pass at documentation level: no runtime recovery command; protected image and admission behavior remain fail-closed |
-| remaining proof | diagnostic passives are now closed by `PWR-0013`; thresholds/cooldown, mechanical polarity/NTC coupling, hot loss, source handover and fault HIL remain open |
+| remaining proof | historical state: `PWR-0013` first closed the diagnostic passives; current `PWR-0017` corrects the timer/load and hardware cooldown; exact-cell thresholds, lot/hot-copper, mechanical/thermal, source-handover and fault HIL remain open |
 | CAD boundary | pass: no KiCad authorization is implied |
 
 ## Conclusion

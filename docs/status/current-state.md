@@ -328,8 +328,8 @@ non-retriggerable one-shot, giving about 34.4 ms typical and a conservative
 pulses. Midpoint/stack ADC evidence moves from the invalid
 PA24/PA25 map to PA25/PA26 because PA24 supports no injection current. Exact
 2x220k/169k and 5x220k/169k dividers plus two 10-nF filters remain below the
-1.4-V internal reference at defined fault-screen corners; all 19 physical
-instances appear separately in the machine source and vertical diagrams.
+1.4-V internal reference at defined fault-screen corners; those first-pass
+physical instances remain explicit and are corrected below by PWR-0017.
 `PWR-0014/DEC-0075/REV-0005AF` now close the BQ25798 physical profile: exact
 2S/750-kHz PROG strap, 2.2-uH/7-A inductor, 19 capacitor instances, BATP,
 direct non-ignored TS, hardware ILIM, I2C/INT pulls, reset-high open-drain CE
@@ -344,7 +344,13 @@ four functional independent contacts, qualified protected-button-top scope
 and one insulated compliant coupling role for each of the three NTCs. The
 bounded rear-fit now uses `39.8 × 86.0 mm` and a `20.7 mm` installed reference
 envelope; U214 retains `9.719 mm` plan and `5.59 mm` depth paper reserves.
-Diagnostic thresholds/cooldown, effective-capacitance/load-step, exact cell/
+`PWR-0017/FND-0082/DEC-0078/REV-0005AI` then correct the TPUL2G223 WQFN map
+(`2Q` contact 5, `VCC` contact 16), cascade its second channel into a measured
+`350…860 ms` refractory lockout and replace the single 1-W load with two
+parallel exact `CRM2512-FX-20R0ELF` 20-Ohm/2-W branches. A stuck or hostile
+trigger is now hardware-bounded to one `<=50 ms` pulse per `>=350 ms`, while
+normal firmware waits at least 10 seconds. The exact-cell droop thresholds,
+pulse/cooldown lot and hot-copper HIL, effective-capacitance/load-step, exact cell/
 thermal-stack, continuity/thermal, hot-loss/layout and the
 listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,

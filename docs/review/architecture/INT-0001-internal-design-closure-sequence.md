@@ -81,6 +81,9 @@ BQ25798 750-kHz/2.2-uH energy banks, TS/ILIM, reset defaults and all special
 pins. `FND-0079` corrects the product USB-C/USB2 endpoint back to dependent
 step I4. `FND-0080/PWR-0015/DEC-0076/REV-0005AG` correct raw VBUS to both
 TPS pin groups and close SafeMode straps, all controller/EEPROM passives,
-unused contacts and both complete bus pull networks. The next I3 paper
-dependency is mechanical reverse-insertion/NTC coupling, followed by
-diagnostic thresholds/cooldown and the hot loss/thermal/fault tree.
+unused contacts and both complete bus pull networks. `PWR-0016/DEC-0077`
+close the exact polarized holder/NTC paper coupling;
+`PWR-0017/FND-0082/DEC-0078` then correct the TPUL package and close the
+hardware repetition bound. Remaining I3 dependencies are exact-cell droop
+thresholds, pulse/cooldown lot and hot-copper HIL, followed by the complete hot
+loss/thermal/fault tree.

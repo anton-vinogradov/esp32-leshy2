@@ -1808,7 +1808,7 @@
         "CH1_T": {"physical": "2", "role": "signal"},
         "CH1_CLR_N": {"physical": "3", "role": "signal"},
         "CH1_Q_N": {"physical": "4", "role": "signal"},
-        "VCC": {"physical": "5", "role": "power"},
+        "CH2_Q": {"physical": "5", "role": "signal"},
         "CH2_C": {"physical": "6", "role": "analog"},
         "CH2_RC": {"physical": "7", "role": "analog"},
         "GND": {"physical": "8 and exposed pad", "role": "power"},
@@ -1819,7 +1819,7 @@
         "CH1_Q": {"physical": "13", "role": "signal"},
         "CH1_C": {"physical": "14", "role": "analog"},
         "CH1_RC": {"physical": "15", "role": "analog"},
-        "CH2_Q": {"physical": "16", "role": "signal"}
+        "VCC": {"physical": "16", "role": "power"}
       }
     },
     "diodes_dmn2056u_7": {
@@ -2262,6 +2262,75 @@
       "contacts": {
         "END_1": {"physical": "termination 1", "role": "power"},
         "END_2": {"physical": "termination 2", "role": "power"}
+      }
+    },
+    "bourns_crm2512_fx_20r0elf": {
+      "mpn": "Bourns CRM2512-FX-20R0ELF",
+      "kind": "20ohm_1pct_2w_2512_pulse_rated_diagnostic_load_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [6.3, 3.1, 0.9],
+      "source": {
+        "document": "Bourns CRM2512 high-power resistor datasheet with pulse-load curve",
+        "version": "Rev. 08/21; current product data checked 2026-08-18",
+        "url": "https://www.bourns.com/docs/product-datasheets/CRM.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "CRM2512-FX-20R0ELF active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/bourns-inc/CRM2512-FX-20R0ELF/4698376",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "termination 1", "role": "power"},
+        "END_2": {"physical": "termination 2", "role": "power"}
+      }
+    },
+    "tdk_c1608x7r1c105k080ac": {
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "kind": "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_production",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "TDK C1608X7R1C105K080AC product and characterization data",
+        "version": "production status and DC-bias/temperature curves checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TDK product-page distributor inventory for exact order code",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_07620kl": {
+      "mpn": "Yageo RC0402FR-07620KL",
+      "kind": "620kohm_1pct_0402_diagnostic_lockout_timing_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "Yageo RC0402FR-07620KL exact product specification",
+        "version": "generated 2026-05-21; checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07620KL",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-07620KL active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07620KL/726647",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "analog"},
+        "END_2": {"physical": "2", "role": "analog"}
       }
     },
     "vishay_wsl25125l000fea": {

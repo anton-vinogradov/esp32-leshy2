@@ -49,14 +49,17 @@ Its I3 power source now also records the `DEC-0067` no-deep-recovery boundary
 and exact active CSD87313DMST/fuse/shunt/NTC/hold/source-isolation packages,
 plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers,
 `DEC-0072`'s 24 exact converter energy/configuration/feedback passives and
-`DEC-0073`'s nine exact EN/PG/fault resistors. `DEC-0074/PWR-0013` add the
-exact 10-Ohm load, non-retriggerable timer, exact C0G 28.7-40.7-ms paper
-window with 25-50-ms production acceptance, corrected PA25/PA26 ADC contacts
-and all divider/filter components; regression checks prevent the
-invalid battery-derived PA24 assignment from returning. `DEC-0077/PWR-0016`
-then instantiate exact polarized `Keystone Electronics 1048P`, four functional
-slot contacts and the three insulated compliant NTC roles. This is still a
-principle-level circuit contract: diagnostic thresholds/cooldown, exact cell,
+`DEC-0073`'s nine exact EN/PG/fault resistors. `DEC-0074/PWR-0013` first added
+the bounded diagnostic and PA25/PA26 ADC frontends; `DEC-0078/PWR-0017` now
+correct the TPUL WQFN contact map, cascade its second channel into a `>=350 ms`
+hardware refractory lockout and use two parallel
+`CRM2512-FX-20R0ELF` 20-Ohm/2-W load branches. The effective 10-Ohm load and
+25-50-ms pulse are preserved, while dense faulty firmware retries can no
+longer create near-continuous heating. Regression checks prevent both the
+invalid battery-derived PA24 assignment and the TPUL pin swap from returning.
+`DEC-0077/PWR-0016` instantiate exact polarized `Keystone Electronics 1048P`,
+four functional slot contacts and the three insulated compliant NTC roles.
+This is still a principle-level circuit contract: exact-cell droop thresholds,
 thermal-stack material and specimen HIL remain open.
 
 The inventory also contains verified reference boundaries. `DSP-0001` covers
