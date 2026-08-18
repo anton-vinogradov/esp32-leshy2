@@ -15,6 +15,8 @@
   [`REV-0005A`](../reviews/REV-0005A-hmx-display-electrical-fit.md)
 - Exact display endpoint: [`DSP-0006`](DSP-0006-exact-display-rail-backlight-and-mate-profile.md) /
   [`REV-0005AO`](../reviews/REV-0005AO-display-endpoint-propagation.md)
+- Exact microSD endpoint: [`STO-0001`](STO-0001-exact-isolated-microsd-endpoint.md) /
+  [`REV-0005AP`](../reviews/REV-0005AP-microsd-endpoint-propagation.md)
 - Exact codec fit: [`AUDIO-0001`](AUDIO-0001-es8311-exact-electrical-fit.md) /
   [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 - Complete audio decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md) /
@@ -89,9 +91,17 @@ This pass removes two important abstractions without changing GPIO ownership:
   `RST=9`, `GPO2/INTB=5`, `SENB=14`, `RCLK=16`, audio outputs and separate
   `FMI=1`/`AMI=3` antenna routes are represented.
 
-nRF contacts, CC1101 contacts, U214 Cap-Bus, TCA4307, TCA6424A and the Hirose
-microSD socket were already exact in the source. Their production choice and
-electrical/RF qualification are still separate gates.
+nRF contacts, CC1101 contacts, U214 Cap-Bus, TCA4307 and TCA6424A were already
+exact in the source. Their production choice and electrical/RF qualification
+are still separate gates.
+
+The Hirose microSD socket now terminates through the complete
+`STO-0001/DEC-0085` endpoint: SCK/CMD/CS use a card-powered Ioff triple buffer, DAT0/MISO
+returns only while card CS is low, CMD/DAT0…DAT3 have switched pulls, all seven
+non-ground card contacts plus detect have exact ESD channels, and detect stays
+readable with card power off. This changes no allocation; GPIO4/5/35/36 remain
+the same scheduled display/storage group. Physical access, real media and HIL
+remain open.
 
 The display path now also terminates on exact `HMX035CTFT-001` contacts from
 the official QDtech schematic. Its QSPI path uses GPIO4/35/36/38/41/42;

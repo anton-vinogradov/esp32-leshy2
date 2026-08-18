@@ -58,7 +58,12 @@ Leshy2 — открытый автономный портативный инст
 
 - Вертикальный сенсорный IPS-дисплей 3,5 дюйма, `320×480`, подключён прямым QSPI;
   критическое состояние и первый отклик меню появляются не позднее `100 мс`.
-- microSD хранит записи эфира, аудио, профили, журналы и экспортируемые данные.
+- Съёмная microSD хранит записи эфира, аудио, профили, журналы и экспортируемые
+  данные. Питание включается только на время сессии накопителя; выключенная
+  карта электрически изолирована, все доступные электрические контакты защищены,
+  а наличие карты читается независимо от её питания. Штатное извлечение сначала
+  завершает отложенную запись; неожиданное извлечение явно сообщается и не
+  выдаёт незаписанный хвост данных за целый.
 - Задний 14-контактный Cap-Bus принимает съёмный M5Stack U214 LoRa/GNSS и
   совместимые модули; отдельный защищённый M5 Unit-порт поддерживает GNSS,
   квалифицированные LoRa-модули, NFC, iButton/1-Wire и другие расширения.
@@ -337,6 +342,33 @@ flowchart TD
   BLGR["RC0402FR-07100RL #BL-GATE<br/>100-Ом последовательный резистор затвора ШИМ"]
   BLGPD["RC0402FR-0710KL #BL-GATE<br/>10-кОм reset-off подтяжка затвора"]
   SD["DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
+  SDHBUF["SN74LVC3G34DCUR<br/>трёхканальный Ioff-буфер SCK/CMD/CS со стороны карты"]
+  SDMBUF["SN74LVC1G125DCKR<br/>CS-gated Ioff-буфер возврата DAT0/MISO"]
+  SDESDA["TPD4E05U06DQAR #SD-A<br/>четырёхканальная ESD-сборка сигналов microSD"]
+  SDESDB["TPD4E05U06DQAR #SD-B<br/>четырёхканальная ESD-сборка питания/сигналов/detect microSD"]
+  SDINCAP["C1608X7R1C105K080AC #SD-IN<br/>1-мкФ входная развязка ключа накопителя"]
+  SDBULK["GRM21BR60J226ME39L<br/>22-мкФ bulk-конденсатор включаемой карты"]
+  SDHFCAP["C1005X7R1H104K050BB #SD-RAIL<br/>100-нФ ВЧ-развязка включаемой карты"]
+  SDHBUFCAP["C1005X7R1H104K050BB #SD-HOST-BUF<br/>100-нФ развязка тройного буфера"]
+  SDMBUFCAP["C1005X7R1H104K050BB #SD-MISO-BUF<br/>100-нФ развязка буфера возврата"]
+  SDONPD["RC0402FR-0710KL #SD-ON<br/>10-кОм reset-off pull-down питания карты"]
+  SDSCKPD["RC0402FR-0710KL #SD-SCK<br/>10-кОм reset-low pull-down общей тактовой"]
+  SDD0PU["RC0402FR-0710KL #SD-D0<br/>10-кОм reset-high pull-up общей D0"]
+  SDD1PU["RC0402FR-0710KL #SD-D1<br/>10-кОм reset-high pull-up общей D1"]
+  SDHCS["RC0402FR-0710KL #SD-CS<br/>10-кОм reset-high pull-up CS карты"]
+  LCDHCS["RC0402FR-0710KL #LCD-CS<br/>10-кОм reset-high pull-up CS дисплея"]
+  SDCPUCMD["RC0402FR-0710KL #SD-CMD<br/>10-кОм pull-up CMD от питания карты"]
+  SDCPUD0["RC0402FR-0710KL #SD-DAT0<br/>10-кОм pull-up DAT0 от питания карты"]
+  SDCPUD1["RC0402FR-0710KL #SD-DAT1<br/>10-кОм pull-up DAT1 от питания карты"]
+  SDCPUD2["RC0402FR-0710KL #SD-DAT2<br/>10-кОм pull-up DAT2 от питания карты"]
+  SDCPUD3["RC0402FR-0710KL #SD-DAT3<br/>10-кОм pull-up DAT3/CS от питания карты"]
+  SDSCKR["ERJ-2RKF22R0X #SD-SCK<br/>22-Ом последовательный резистор тактовой карты"]
+  SDCMDR["ERJ-2RKF22R0X #SD-CMD<br/>22-Ом последовательный резистор CMD карты"]
+  SDCSR["ERJ-2RKF22R0X #SD-CS<br/>22-Ом последовательный резистор CS карты"]
+  SDMISOR["ERJ-2RKF22R0X #SD-MISO<br/>22-Ом последовательный резистор буфера возврата"]
+  SDDETR["RC0603FR-071KL #SD-DETECT<br/>1-кОм входной резистор card-detect"]
+  SDDETPU["RC0402FR-0710KL #SD-DETECT<br/>10-кОм pull-up всегда читаемого card-detect"]
+  SDDETC["C1005X7R1H104K050BB #SD-DETECT<br/>100-нФ аппаратный фильтр card-detect"]
   SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
   CODEC["ES8311<br/>mono ADC/DAC audio codec"]
   RXMUX["SN74LVC1G3157DBVR<br/>receive-audio source selector"]
@@ -405,7 +437,10 @@ flowchart TD
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
-  BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
+  BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ SDHBUF ~~~ SDMBUF ~~~ SDESDA ~~~ SDESDB
+  SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
+  SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
+  SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ STOPSW ~~~ REARMSW
   REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
@@ -578,7 +613,15 @@ flowchart TD
   SWNRF --> NRF1
   SWNRF --> NRF2
   SWCC --> CC
-  SWSD --> SD
+  MAINFUSE --> SDINCAP
+  SWSD -->|"включаемые 3,3 В + QOD"| SD
+  SWSD --> SDBULK
+  SWSD --> SDHFCAP
+  SWSD -->|"VCC с Ioff"| SDHBUF
+  SWSD -->|"VCC с Ioff"| SDMBUF
+  SWSD --> SDHBUFCAP
+  SWSD --> SDMBUFCAP
+  SDONPD -->|"reset off"| SWSD
   SWCODEC --> CODEC
   SWRX --> SI
   S3 <-->|"1-bit SDIO"| C5
@@ -600,7 +643,27 @@ flowchart TD
   LCDCON -->|"3 × LEDK"| BLR --> BLQ
   S3 -->|"GPIO40 PWM"| BLGR --> BLQ
   BLGPD -->|"reset off"| BLQ
-  S3 <-->|"scheduled SPI2"| SD
+  SDSCKPD -->|"reset low"| S3
+  MAINFUSE --> SDD0PU --> S3
+  MAINFUSE --> SDD1PU --> S3
+  MAINFUSE --> SDHCS --> S3
+  MAINFUSE --> LCDHCS --> S3
+  S3 -->|"общие SCK/CMD + CS карты"| SDHBUF
+  SDHBUF -->|"SCK"| SDSCKR --> SD
+  SDHBUF -->|"CMD"| SDCMDR --> SD
+  SDHBUF -->|"CS"| SDCSR --> SD
+  SD -->|"DAT0 только при CS low"| SDMBUF --> SDMISOR --> S3
+  S3 -->|"SD_CS_N разрешает выход"| SDMBUF
+  SWSD --> SDCPUCMD --> SD
+  SWSD --> SDCPUD0 --> SD
+  SWSD --> SDCPUD1 --> SD
+  SWSD --> SDCPUD2 --> SD
+  SWSD --> SDCPUD3 --> SD
+  SDESDA -.->|"shunt ESD для CLK/CMD/DAT0/DAT3"| SD
+  SDESDB -.->|"shunt ESD для DAT1/DAT2/VDD/detect"| SD
+  SD -->|"всегда читаемый detect"| SDDETR --> SLOW
+  MAINFUSE --> SDDETPU --> SLOW
+  SLOW --> SDDETC
   S3 <-->|"I²S0 + I²C0"| CODEC
   S3 <-->|"I²C0"| SI
   S3 <-->|"profile port"| UNIT
@@ -682,7 +745,8 @@ flowchart TD
   `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` — выделенная SPI + alert.
 - **Дисплей и microSD:** S3
   `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
-  и единственная планируемая high-rate shared pair.
+  и единственная планируемая high-rate shared pair. Ioff-буферы со стороны
+  карты и CS-gated возврат MISO исключают конфликт выключенной карты с D1 экрана.
 - **Audio и Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0 и
   локальная I²C0. PD-контроллер также использует эту ограниченную control-шину
   и общий wired-low system IRQ, не занимая нового GPIO S3.
@@ -713,6 +777,11 @@ flowchart TD
   защищённую защёлкиваемым ключом ШИМ-подсветку. Окончательная ориентация
   разъёма требует реального шлейфа экрана: электрическая карта не подменяет
   механическую квалификацию.
+- Push-push microSD получает изолированное включаемое питание, безопасные
+  reset-состояния и всегда читаемый card-detect. После каждого цикла питания
+  прошивка переводит карту в SPI mode до возобновления обмена с дисплеем.
+  Размещение гнезда, доступ к карте, ресурс носителей и fault-тесты вставки и
+  извлечения остаются физическим HIL.
 - Девять подписанных антенных портов сохраняют однозначную связь между
   разъёмом, трактом и активным профилем антенны.
 - Съёмный U214 устанавливается поперёк задней стороны над аккумуляторами; его

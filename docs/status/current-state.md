@@ -362,7 +362,17 @@ A whole-panel local switch was rejected because live QSPI/I2C could back-power
 its tripped rail. S3 remains `32/3/1`; the checked delta is about `$2.5…2.9`
 including the required connector. Standalone panel procurement, real-tail
 mate/orientation, shared-SPI/touch, current/thermal and fault HIL remain open;
-I4 continues to microSD and remaining UI endpoints.
+I4 continues to the remaining UI endpoints.
+`FND-0089/STO-0001/DEC-0085/REV-0005AP` close the third I4 paper endpoint.
+The exact active `DM3AT-SF-PEJM5` socket now has a controlled/QOD switched
+rail, card-side `SN74LVC3G34DCUR`, CS-gated `SN74LVC1G125DCKR` DAT0 return,
+mandatory CMD/DAT pulls, safe host defaults, four exact 22-Ohm outputs, two
+`TPD4E05U06DQAR` arrays and filtered always-readable detect. This prevents an
+unpowered card from back-powering the host or driving display D1 and costs
+about `$0.75…1.00` at quantity 100 excluding the existing socket, with no new
+GPIO. Socket placement/access, media/endurance, shared-bus throughput and
+contention, hot removal, ESD/short/brownout and filesystem-recovery HIL remain
+open; I4 continues to the remaining UI endpoints and KiCad stays blocked.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative

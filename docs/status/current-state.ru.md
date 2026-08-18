@@ -361,7 +361,18 @@ short-to-VBUS/ESD без расхода GPIO47. Support VPWR, VBIAS и FLT за�
 отключённую шину. S3 остаётся `32/3/1`; проверенная добавка — примерно
 `$2.5…2.9` вместе с обязательным разъёмом. Standalone procurement панели,
 реальный fit/orientation шлейфа, shared-SPI/touch, current/thermal и fault HIL
-остаются открыты; I4 продолжается к microSD и остальным UI endpoints.
+остаются открыты; I4 продолжается к остальным UI endpoints.
+`FND-0089/STO-0001/DEC-0085/REV-0005AP` закрывают третий paper endpoint I4.
+Exact active socket `DM3AT-SF-PEJM5` теперь получает controlled/QOD switched
+rail, card-side `SN74LVC3G34DCUR`, CS-gated возврат DAT0 через
+`SN74LVC1G125DCKR`, обязательные CMD/DAT pulls, безопасные host defaults,
+четыре exact 22-Ом выхода, две сборки `TPD4E05U06DQAR` и фильтрованный
+always-readable detect. Выключенная карта больше не подпитывает host и не
+может занять D1 дисплея. Добавка — около `$0.75…1.00` при 100 шт. без уже
+выбранного socket и без новых GPIO. Placement/access гнезда, media/endurance,
+shared-bus throughput/contention, hot removal, ESD/short/brownout и
+filesystem-recovery HIL остаются открыты; I4 продолжается к оставшимся UI
+endpoints, KiCad остаётся заблокирован.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный

@@ -114,6 +114,13 @@ reset-low defaults и отдельно latch-protected PWM backlight тепер�
 машинными physical instances. Real-tail mate/orientation, standalone panel
 procurement и shared-SPI/touch/current/thermal HIL остаются открыты;
 integrated mockup и KiCad по-прежнему не возобновляются.
+`FND-0089/STO-0001/DEC-0085/REV-0005AP` затем закрывают microSD paper
+electrical endpoint: exact switched rail, card-side Ioff isolation,
+CS-gated DAT0/MISO return, mandatory pulls, source damping, full socket ESD и
+always-readable detect становятся machine instances без расхода GPIO.
+Размещение/доступ к карте, media/endurance, shared-bus throughput, hot-remove,
+ESD/short/brownout и filesystem-recovery HIL остаются открыты; mockup и KiCad
+не возобновляются.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку

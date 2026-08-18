@@ -54,7 +54,12 @@ privacy or the target owner's authorization.
 
 - A portrait 3.5-inch `320×480` touch IPS display uses direct QSPI; critical
   state and first menu feedback appear within `100 ms`.
-- microSD stores spectrum records, audio, profiles, logs and exported data.
+- A removable microSD stores spectrum records, audio, profiles, logs and
+  exported data. It is powered only for an active storage session, electrically
+  isolated while off, protected on every exposed electrical contact, and
+  detected independently of card power. Clean removal drains pending writes;
+  unexpected removal is reported and recovered without pretending the last
+  unwritten tail is intact.
 - A rear 14-pin Cap-Bus accepts the removable M5Stack U214 LoRa/GNSS and
   compatible modules; a separate protected M5 Unit port supports GNSS,
   qualified LoRa modules, NFC, iButton/1-Wire and other extensions.
@@ -329,6 +334,33 @@ flowchart TD
   BLGR["RC0402FR-07100RL #BL-GATE<br/>100-Ohm PWM gate series resistor"]
   BLGPD["RC0402FR-0710KL #BL-GATE<br/>10-kOhm PWM gate reset-off pull-down"]
   SD["DM3AT-SF-PEJM5<br/>push-push microSD card connector"]
+  SDHBUF["SN74LVC3G34DCUR<br/>three-channel Ioff SCK/CMD/CS card-side buffer"]
+  SDMBUF["SN74LVC1G125DCKR<br/>CS-gated Ioff DAT0/MISO return buffer"]
+  SDESDA["TPD4E05U06DQAR #SD-A<br/>four-channel microSD signal ESD array"]
+  SDESDB["TPD4E05U06DQAR #SD-B<br/>four-channel microSD supply/signal/detect ESD array"]
+  SDINCAP["C1608X7R1C105K080AC #SD-IN<br/>1-uF storage-switch input bypass capacitor"]
+  SDBULK["GRM21BR60J226ME39L<br/>22-uF switched-card bulk capacitor"]
+  SDHFCAP["C1005X7R1H104K050BB #SD-RAIL<br/>100-nF switched-card bypass capacitor"]
+  SDHBUFCAP["C1005X7R1H104K050BB #SD-HOST-BUF<br/>100-nF triple-buffer bypass capacitor"]
+  SDMBUFCAP["C1005X7R1H104K050BB #SD-MISO-BUF<br/>100-nF return-buffer bypass capacitor"]
+  SDONPD["RC0402FR-0710KL #SD-ON<br/>10-kOhm storage-power reset-off pull-down"]
+  SDSCKPD["RC0402FR-0710KL #SD-SCK<br/>10-kOhm shared-clock reset-low pull-down"]
+  SDD0PU["RC0402FR-0710KL #SD-D0<br/>10-kOhm shared-D0 reset-high pull-up"]
+  SDD1PU["RC0402FR-0710KL #SD-D1<br/>10-kOhm shared-D1 reset-high pull-up"]
+  SDHCS["RC0402FR-0710KL #SD-CS<br/>10-kOhm card-CS reset-high pull-up"]
+  LCDHCS["RC0402FR-0710KL #LCD-CS<br/>10-kOhm display-CS reset-high pull-up"]
+  SDCPUCMD["RC0402FR-0710KL #SD-CMD<br/>10-kOhm switched-card CMD pull-up"]
+  SDCPUD0["RC0402FR-0710KL #SD-DAT0<br/>10-kOhm switched-card DAT0 pull-up"]
+  SDCPUD1["RC0402FR-0710KL #SD-DAT1<br/>10-kOhm switched-card DAT1 pull-up"]
+  SDCPUD2["RC0402FR-0710KL #SD-DAT2<br/>10-kOhm switched-card DAT2 pull-up"]
+  SDCPUD3["RC0402FR-0710KL #SD-DAT3<br/>10-kOhm switched-card DAT3/CS pull-up"]
+  SDSCKR["ERJ-2RKF22R0X #SD-SCK<br/>22-Ohm buffered-card clock series resistor"]
+  SDCMDR["ERJ-2RKF22R0X #SD-CMD<br/>22-Ohm buffered-card CMD series resistor"]
+  SDCSR["ERJ-2RKF22R0X #SD-CS<br/>22-Ohm buffered-card CS series resistor"]
+  SDMISOR["ERJ-2RKF22R0X #SD-MISO<br/>22-Ohm return-buffer series resistor"]
+  SDDETR["RC0603FR-071KL #SD-DETECT<br/>1-kOhm card-detect input series resistor"]
+  SDDETPU["RC0402FR-0710KL #SD-DETECT<br/>10-kOhm always-readable card-detect pull-up"]
+  SDDETC["C1005X7R1H104K050BB #SD-DETECT<br/>100-nF card-detect hardware filter capacitor"]
   SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
   CODEC["ES8311<br/>mono ADC/DAC audio codec"]
   RXMUX["SN74LVC1G3157DBVR<br/>receive-audio source selector"]
@@ -397,7 +429,10 @@ flowchart TD
   SLOW ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
   TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
-  BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
+  BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ SDHBUF ~~~ SDMBUF ~~~ SDESDA ~~~ SDESDB
+  SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
+  SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
+  SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
   IRTX ~~~ RP ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ STOPSW ~~~ REARMSW
   REARMSW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
@@ -570,7 +605,15 @@ flowchart TD
   SWNRF --> NRF1
   SWNRF --> NRF2
   SWCC --> CC
-  SWSD --> SD
+  MAINFUSE --> SDINCAP
+  SWSD -->|"switched 3.3 V + QOD"| SD
+  SWSD --> SDBULK
+  SWSD --> SDHFCAP
+  SWSD -->|"VCC with Ioff"| SDHBUF
+  SWSD -->|"VCC with Ioff"| SDMBUF
+  SWSD --> SDHBUFCAP
+  SWSD --> SDMBUFCAP
+  SDONPD -->|"reset off"| SWSD
   SWCODEC --> CODEC
   SWRX --> SI
   S3 <-->|"1-bit SDIO"| C5
@@ -592,7 +635,27 @@ flowchart TD
   LCDCON -->|"3 × LEDK"| BLR --> BLQ
   S3 -->|"GPIO40 PWM"| BLGR --> BLQ
   BLGPD -->|"reset off"| BLQ
-  S3 <-->|"scheduled SPI2"| SD
+  SDSCKPD -->|"reset low"| S3
+  MAINFUSE --> SDD0PU --> S3
+  MAINFUSE --> SDD1PU --> S3
+  MAINFUSE --> SDHCS --> S3
+  MAINFUSE --> LCDHCS --> S3
+  S3 -->|"shared SCK/CMD + card CS"| SDHBUF
+  SDHBUF -->|"SCK"| SDSCKR --> SD
+  SDHBUF -->|"CMD"| SDCMDR --> SD
+  SDHBUF -->|"CS"| SDCSR --> SD
+  SD -->|"DAT0 only while CS low"| SDMBUF --> SDMISOR --> S3
+  S3 -->|"SD_CS_N output enable"| SDMBUF
+  SWSD --> SDCPUCMD --> SD
+  SWSD --> SDCPUD0 --> SD
+  SWSD --> SDCPUD1 --> SD
+  SWSD --> SDCPUD2 --> SD
+  SWSD --> SDCPUD3 --> SD
+  SDESDA -.->|"CLK/CMD/DAT0/DAT3 shunt clamps"| SD
+  SDESDB -.->|"DAT1/DAT2/VDD/detect shunt clamps"| SD
+  SD -->|"always-readable detect"| SDDETR --> SLOW
+  MAINFUSE --> SDDETPU --> SLOW
+  SLOW --> SDDETC
   S3 <-->|"I²S0 + I²C0"| CODEC
   S3 <-->|"I²C0"| SI
   S3 <-->|"profile port"| UNIT
@@ -674,7 +737,8 @@ flowchart TD
   `GPIO19,GPIO24,GPIO25,GPIO26,GPIO27` — dedicated SPI plus alert.
 - **Display and microSD:** S3
   `GPIO4,GPIO5,GPIO35,GPIO36,GPIO38,GPIO39,GPIO40,GPIO41,GPIO42` — direct QSPI
-  and the only scheduled high-rate shared pair.
+  and the only scheduled high-rate shared pair. Card-side Ioff buffers and a
+  CS-gated MISO return keep the unpowered card and display D1 from contending.
 - **Audio and Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0
   and local I²C0. The PD controller also shares this bounded control bus and
   the wired-low system IRQ; it consumes no new S3 GPIO.
@@ -704,6 +768,10 @@ flowchart TD
   defaults, local logic decoupling and a separately latch-protected PWM
   backlight. Final connector orientation still requires the real panel tail;
   the electrical map does not pretend that mechanical fit has already passed.
+- The push-push microSD endpoint uses an isolated switched rail, safe reset
+  levels and always-readable card detection. Firmware enters SPI mode before
+  display traffic resumes after every card-power cycle. Final socket placement,
+  card access, media endurance and insert/remove fault tests remain physical HIL.
 - Nine labelled antenna ports retain an unambiguous association between each
   connector, radio path and active antenna profile.
 - The removable U214 mounts across the rear above the batteries while keeping

@@ -841,13 +841,18 @@
       "mpn": "Hirose DM3AT-SF-PEJM5",
       "kind": "microsd_socket",
       "qualification": "verified_candidate",
-      "lifecycle": "current_manufacturer_page",
+      "lifecycle": "active",
       "dimensions_mm": [13.85, 15.95, 1.68],
       "source": {
         "document": "DM3 Series microSD Card Connectors catalog",
-        "version": "2025-12-01",
+        "version": "2026-05-01 current catalog and exact product page",
         "url": "https://www.hirose.com/product/p/CL0609-0031-0-00",
-        "checked": "2026-08-17"
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "DM3AT-SF-PEJM5 active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/DM3AT-SF-PEJM5/2533566",
+        "checked": "2026-08-18"
       },
       "programmable": false,
       "contacts": {
@@ -862,6 +867,86 @@
         "DETECT_A": {"physical": "switch A", "role": "signal"},
         "DETECT_B": {"physical": "switch B", "role": "signal"},
         "SHIELD": {"physical": "mechanical shield tabs", "role": "power"}
+      }
+    },
+    "ti_sn74lvc1g125_dckr": {
+      "mpn": "Texas Instruments SN74LVC1G125DCKR",
+      "kind": "single_ioff_tristate_buffer",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G125 single-bus buffer with 3-state output datasheet",
+        "version": "SCES223T and current exact-part page checked 2026-08-18",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G125DCKR authorized-distributor stock page",
+        "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G125DCKR",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "OE_N": {"physical": "1", "role": "signal"},
+        "A": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
+    "ti_tpd4e05u06_dqar": {
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "kind": "four_channel_0_5pf_iec_esd_array",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.5, 1.0, 0.5],
+      "source": {
+        "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+        "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+        "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPD4E05U06DQAR active exact order-code page",
+        "url": "https://www.ti.com/product/TPD4E05U06/part-details/TPD4E05U06DQAR",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "D1_PLUS": {"physical": "1", "role": "signal"},
+        "D1_MINUS": {"physical": "2", "role": "signal"},
+        "GND_3": {"physical": "3", "role": "power"},
+        "D2_PLUS": {"physical": "4", "role": "signal"},
+        "D2_MINUS": {"physical": "5", "role": "signal"},
+        "NC_6": {"physical": "6", "role": "no_connect"},
+        "NC_7": {"physical": "7", "role": "no_connect"},
+        "GND_8": {"physical": "8", "role": "power"},
+        "NC_9": {"physical": "9", "role": "no_connect"},
+        "NC_10": {"physical": "10", "role": "no_connect"}
+      }
+    },
+    "murata_grm21br60j226me39l": {
+      "mpn": "Murata GRM21BR60J226ME39L",
+      "kind": "22uf_20pct_6v3_x5r_0805_storage_bulk_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.25],
+      "source": {
+        "document": "Murata GRM21BR60J226ME39 product data and current part list",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM21BR60J226ME39L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM21BR60J226ME39L LCSC C77071 stocked exact order code",
+        "url": "https://www.lcsc.com/product-detail/C77071.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
       }
     },
     "ebyte_e01_ml01s": {

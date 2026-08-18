@@ -36,3 +36,9 @@ JAE receptacle, TI four-line CC/USB2 protection и corrected 220-pF CC shunts
 logic rail, reset-low defaults и latch-off PWM backlight внесены в machine
 map без нового GPIO. Real-tail mate, procurement и shared-SPI/touch/
 backlight HIL остаются открыты; I4 и gate 2F продолжаются.
+`DEC-0085/STO-0001/REV-0005AP` затем дают microSD paper endpoint
+**«Проведено ревью»**: exact switched rail, Ioff SCK/CMD/CS isolation,
+CS-gated DAT0/MISO, mandatory pulls, eight ESD channels и always-readable
+detect внесены в machine map без нового GPIO. Socket access, media/endurance,
+throughput, hot-remove и destructive HIL остаются открыты; I4 продолжается к
+остальным UI endpoints.

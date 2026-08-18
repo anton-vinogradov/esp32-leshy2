@@ -180,6 +180,16 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TPS22919DCKR<br/>microSD quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>ES8311 quiet-state load switch",
             "Texas Instruments TPS22919DCKR<br/>Si4732 quiet-state load switch",
+            "SN74LVC3G34DCUR<br/>three-channel Ioff SCK/CMD/CS card-side buffer",
+            "Texas Instruments SN74LVC1G125DCKR<br/>CS-gated Ioff DAT0/MISO return buffer",
+            "Texas Instruments TPD4E05U06DQAR<br/>four-channel low-capacitance microSD signal ESD array A",
+            "Texas Instruments TPD4E05U06DQAR<br/>four-channel low-capacitance microSD supply/signal/detect ESD array B",
+            "TDK C1608X7R1C105K080AC<br/>1-uF storage-switch input bypass capacitor",
+            "Murata GRM21BR60J226ME39L<br/>22-uF switched-card bulk capacitor",
+            "Panasonic ERJ-2RKF22R0X<br/>22-Ohm buffered-card clock source-series resistor",
+            "Panasonic ERJ-2RKF22R0X<br/>22-Ohm card-MISO buffer source-series resistor",
+            "Yageo RC0603FR-071KL<br/>1-kOhm card-detect input series resistor",
+            "TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor",
             "MPN TBD (TSOP38238 screened)<br/>38 kHz demodulating IR receiver",
         )
         for label in required_labels:
@@ -221,6 +231,43 @@ class ArchitectureValidationTests(unittest.TestCase):
                     mpn_token,
                     diagram,
                     f"{readme_name}: missing current MPN token {mpn_token}",
+                )
+            storage_nodes = {
+                "SWSD": "TPS22919DCKR",
+                "SD": "DM3AT-SF-PEJM5",
+                "SDHBUF": "SN74LVC3G34DCUR",
+                "SDMBUF": "SN74LVC1G125DCKR",
+                "SDESDA": "TPD4E05U06DQAR",
+                "SDESDB": "TPD4E05U06DQAR",
+                "SDINCAP": "C1608X7R1C105K080AC",
+                "SDBULK": "GRM21BR60J226ME39L",
+                "SDHFCAP": "C1005X7R1H104K050BB",
+                "SDHBUFCAP": "C1005X7R1H104K050BB",
+                "SDMBUFCAP": "C1005X7R1H104K050BB",
+                "SDONPD": "RC0402FR-0710KL",
+                "SDSCKPD": "RC0402FR-0710KL",
+                "SDD0PU": "RC0402FR-0710KL",
+                "SDD1PU": "RC0402FR-0710KL",
+                "SDHCS": "RC0402FR-0710KL",
+                "LCDHCS": "RC0402FR-0710KL",
+                "SDCPUCMD": "RC0402FR-0710KL",
+                "SDCPUD0": "RC0402FR-0710KL",
+                "SDCPUD1": "RC0402FR-0710KL",
+                "SDCPUD2": "RC0402FR-0710KL",
+                "SDCPUD3": "RC0402FR-0710KL",
+                "SDSCKR": "ERJ-2RKF22R0X",
+                "SDCMDR": "ERJ-2RKF22R0X",
+                "SDCSR": "ERJ-2RKF22R0X",
+                "SDMISOR": "ERJ-2RKF22R0X",
+                "SDDETR": "RC0603FR-071KL",
+                "SDDETPU": "RC0402FR-0710KL",
+                "SDDETC": "C1005X7R1H104K050BB",
+            }
+            for node_id, mpn in storage_nodes.items():
+                self.assertIn(
+                    f'  {node_id}["{mpn}',
+                    diagram,
+                    f"{readme_name}: storage part {node_id}/{mpn} lacks its own box",
                 )
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
@@ -1041,11 +1088,19 @@ class ArchitectureValidationTests(unittest.TestCase):
             if row["instance"] == "s3"
         }
         self.assertEqual(
-            ["sd.DAT0", "display_connector.PIN_10"], s3["GPIO4"]["peers"]
+            [
+                "sd_miso_series.END_2",
+                "sd_host_d1_pullup.END_1",
+                "display_connector.PIN_10",
+            ],
+            s3["GPIO4"]["peers"],
         )
+        self.assertIn("sd_host_buffer.1A", s3["GPIO35"]["peers"])
         self.assertIn("display_connector.PIN_11", s3["GPIO35"]["peers"])
+        self.assertIn("sd_host_buffer.2A", s3["GPIO36"]["peers"])
         self.assertIn("display_connector.PIN_13", s3["GPIO36"]["peers"])
         self.assertEqual("display_connector.PIN_9", s3["GPIO38"]["peers"][0])
+        self.assertIn("lcd_host_cs_pullup.END_1", s3["GPIO38"]["peers"])
         self.assertEqual("LCD_TOUCH_INT", s3["GPIO39"]["net"])
         self.assertEqual("i", s3["GPIO39"]["direction"])
         self.assertEqual("GPIO_IRQ", s3["GPIO39"]["controller"])
@@ -1075,6 +1130,104 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("174-to-234-mA", display_contract["backlight"])
         self.assertIn("at least 120 ms", display_contract["reset_defaults"])
         self.assertIn("power cycling", display_contract["fault_behavior"])
+
+    def test_exact_isolated_microsd_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["storage_contract"]
+        self.assertEqual("DEC-0085", contract["decision"])
+        self.assertIn("no GPIO", contract["paper_cost_delta_usd_at_100_excluding_socket"])
+        self.assertIn("back-power", contract["powered_off_isolation"])
+        self.assertIn("DAT0-DAT3", contract["pulls_and_series"])
+        self.assertIn("CLK, CMD, DAT0-DAT3, VDD and card-detect", contract["esd"])
+        self.assertIn("SPI mode", contract["sequence"])
+        self.assertIn("unexpected-removal", " ".join(contract["remaining_hil"]))
+
+        expected_instances = {
+            "sd": "hirose_dm3at_sf_pejm5",
+            "sd_power_switch": "ti_tps22919_dckr",
+            "sd_host_buffer": "ti_sn74lvc3g34_dcur",
+            "sd_miso_buffer": "ti_sn74lvc1g125_dckr",
+            "sd_esd_a": "ti_tpd4e05u06_dqar",
+            "sd_esd_b": "ti_tpd4e05u06_dqar",
+            "sd_power_bulk_cap": "murata_grm21br60j226me39l",
+            "sd_sck_series": "panasonic_erj_2rkf22r0x",
+            "sd_cmd_series": "panasonic_erj_2rkf22r0x",
+            "sd_cs_series": "panasonic_erj_2rkf22r0x",
+            "sd_miso_series": "panasonic_erj_2rkf22r0x",
+            "sd_detect_series": "yageo_rc0603fr_071kl",
+        }
+        for instance, device in expected_instances.items():
+            self.assertEqual(device, candidate["instances"][instance])
+
+        socket = self.database["devices"][candidate["instances"]["sd"]]
+        self.assertEqual("Hirose DM3AT-SF-PEJM5", socket["mpn"])
+        self.assertEqual("switch A", socket["contacts"]["DETECT_A"]["physical"])
+        self.assertEqual("switch B", socket["contacts"]["DETECT_B"]["physical"])
+
+        host_buffer = self.database["devices"][candidate["instances"]["sd_host_buffer"]]
+        self.assertEqual("1", host_buffer["contacts"]["1A"]["physical"])
+        self.assertEqual("7", host_buffer["contacts"]["1Y"]["physical"])
+        miso_buffer = self.database["devices"][candidate["instances"]["sd_miso_buffer"]]
+        self.assertEqual("1", miso_buffer["contacts"]["OE_N"]["physical"])
+        self.assertEqual("4", miso_buffer["contacts"]["Y"]["physical"])
+        esd = self.database["devices"][candidate["instances"]["sd_esd_a"]]
+        self.assertEqual("3", esd["contacts"]["GND_3"]["physical"])
+        self.assertEqual("8", esd["contacts"]["GND_8"]["physical"])
+
+        s3 = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "s3"
+        }
+        self.assertIn("sd_miso_buffer.OE_N", s3["GPIO5"]["peers"])
+        self.assertIn("sd_host_buffer.1A", s3["GPIO35"]["peers"])
+        self.assertIn("sd_host_buffer.2A", s3["GPIO36"]["peers"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("abstract:3V3_MAIN", "sd_power_switch.IN", "3V3_MAIN"),
+            ("sd_power_switch.VOUT", "sd.VDD", "SD_CARD_3V3"),
+            ("sd_power_switch.QOD", "sd_power_switch.VOUT", "SD_QOD"),
+            ("sd_host_buffer.1Y", "sd_sck_series.END_1", "SD_CLK_BUFFERED"),
+            ("sd_host_buffer.2Y", "sd_cmd_series.END_1", "SD_CMD_BUFFERED"),
+            ("sd_host_buffer.3Y", "sd_cs_series.END_1", "SD_CS_BUFFERED_N"),
+            ("sd.DAT0", "sd_miso_buffer.A", "SD_DAT0_MISO_PROTECTED"),
+            ("sd_miso_buffer.Y", "sd_miso_series.END_1", "SD_MISO_BUFFERED"),
+            ("sd_card_cmd_pullup.END_2", "sd.CMD", "SD_CMD_PROTECTED"),
+            ("sd_card_dat0_pullup.END_2", "sd.DAT0", "SD_DAT0_MISO_PROTECTED"),
+            ("sd_card_dat1_pullup.END_2", "sd.DAT1", "SD_DAT1_PROTECTED"),
+            ("sd_card_dat2_pullup.END_2", "sd.DAT2", "SD_DAT2_PROTECTED"),
+            ("sd_card_dat3_pullup.END_2", "sd.CD_DAT3", "SD_DAT3_CS_PROTECTED_N"),
+            ("sd.DETECT_B", "abstract:power-ground", "POWER_GROUND"),
+            ("sd.DETECT_A", "sd_detect_series.END_1", "SD_CARD_DETECT_RAW_N"),
+            ("sd_detect_series.END_2", "slow_io.P21", "SD_CARD_DETECT_N"),
+            ("sd.SHIELD", "abstract:power-ground-multivia", "SD_SHIELD_GROUND"),
+        ):
+            self.assertIn(route, routes)
+
+        for endpoint in (
+            "sd_esd_a.D1_PLUS",
+            "sd_esd_a.D1_MINUS",
+            "sd_esd_a.D2_PLUS",
+            "sd_esd_a.D2_MINUS",
+            "sd_esd_b.D1_PLUS",
+            "sd_esd_b.D1_MINUS",
+            "sd_esd_b.D2_PLUS",
+            "sd_esd_b.D2_MINUS",
+        ):
+            self.assertTrue(any(route[1] == endpoint for route in routes), endpoint)
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for label in (
+            "SN74LVC3G34DCUR<br/>three-channel Ioff SCK/CMD/CS card-side buffer",
+            "Texas Instruments SN74LVC1G125DCKR<br/>CS-gated Ioff DAT0/MISO return buffer",
+            "Texas Instruments TPD4E05U06DQAR<br/>four-channel low-capacitance microSD signal ESD array A",
+            "Murata GRM21BR60J226ME39L<br/>22-uF switched-card bulk capacitor",
+        ):
+            self.assertIn(label, rendered)
 
     def test_exact_es8311_digital_fit_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

@@ -54,7 +54,7 @@ Evidence states: `E0` — строка только идентифицирова
 | `U-002` | historical F | former touch controller/panel candidate | E0 | not mandatory; compare touch and non-touch complete candidates at G3/G5 |
 | `U-003` | historical F | former rotary encoder/push and named controls | E0 | not mandatory; exact field-control surface follows G3/G5 usability and whole-product comparison |
 | `U-004` | F | direct PTT, STOP and recessed RE-ARM mechanics | E0 | independent routing, human factors, debounce where allowed and abuse/fault behavior |
-| `U-005` | F | microSD socket, detect/protection/pulls | E0 | 4-bit SDMMC signal integrity, hot removal, endurance/profile and exclusive ownership |
+| `U-005` | F | exact isolated microSD endpoint: `DM3AT-SF-PEJM5`, switched rail, Ioff buffers, mandatory pulls, full contact/detect ESD | E2 paper reviewed `DEC-0085/STO-0001`; physical/media HIL open | socket placement/access, shared-SPI throughput/contention, hot removal, endurance/profile, ESD/short/brownout and recovery UX |
 | `U-006` | F | S3 product USB connector/power/CC/ESD | E0 | device-only role, CDC/HID/MSC profiles, backfeed and recovery coexistence |
 | `U-007` | F | non-safety reset/select/mute/enable support parts around TCA9535 | E0 | external safe pulls, glitch-free startup and sequencer independence |
 | `U-008` | F | supervisor-managed power/wake control and user actuator | E0 | always-on current, short/long action semantics, hard-off/recovery behavior and independence from I²C-only state |

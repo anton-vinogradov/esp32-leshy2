@@ -73,6 +73,11 @@ electrical endpoint: exact first ZIF candidate, protected-main logic supply,
 reset-low defaults and a separately latch-protected PWM backlight replace the
 three former abstractions. Real-tail mate/orientation, panel procurement and
 electrical/thermal HIL remain open; no KiCad or physical freeze is implied.
+`FND-0089/STO-0001/DEC-0085/REV-0005AP` then close the microSD paper
+electrical endpoint. Exact card-side Ioff buffers, CS-gated DAT0 return,
+mandatory switched pulls, all exposed-contact/detect ESD, reset defaults and
+SPI-mode-first sequencing preserve the shared S3 allocation without a new
+GPIO. Socket placement/access, real media, throughput and fault HIL stay open.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -126,6 +131,9 @@ the first I4 paper-endpoint review without promoting placement or HIL.
 `FND-0088/DSP-0006/DEC-0084/REV-0005AO` give the second I4 endpoint a paper
 review while explicitly rejecting a back-power-prone whole-panel switch and
 keeping the connector footprint blocked on a real FPC-tail proof.
+`FND-0089/STO-0001/DEC-0085/REV-0005AP` give the third I4 endpoint a paper
+review, eliminate storage back-power and display-D1 contention, and keep the
+socket footprint, media/endurance, throughput and destructive HIL blocked.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -214,6 +222,10 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`USB-0001`](USB-0001-exact-product-usb-c-and-protection.md) closes the first
   I4 endpoint with exact JAE USB-C, four-line TI CC/USB2 protection, corrected
   220-pF CC shunts and complete real-contact routing while retaining HIL;
+- [`STO-0001`](STO-0001-exact-isolated-microsd-endpoint.md) closes the third
+  I4 endpoint with exact switched power, partial-power isolation, pull/damping,
+  complete socket ESD and always-readable detect while retaining physical and
+  media HIL;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
