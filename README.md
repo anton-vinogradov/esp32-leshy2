@@ -39,6 +39,11 @@ privacy or the target owner's authorization.
 
 - Three independent full-function nRF24 paths operate concurrently in every
   `3R`, `1T2R`, `2T1R` and `3T` mix without silently disabling peer receivers.
+- Exactly one top-level signal group owns the signal plane at a time. The three
+  nRF paths form one such group and retain every required concurrent mix;
+  contained cross-group Laboratory injection can characterize robustness but
+  never grants a runtime permission. Every foreign interface is then driven to
+  its measured quiet/off state.
 - Each nRF path has switched-rail Ioff isolation in both digital directions,
   a dedicated full-band directional forward-power detector and its own
   external SMA feed. The module-side `IPX` mate is qualified from a received

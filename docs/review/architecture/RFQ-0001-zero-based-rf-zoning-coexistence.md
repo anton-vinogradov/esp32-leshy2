@@ -66,19 +66,25 @@ The enclosure/PCB is partitioned by electromagnetic function before assigning ex
 
 This is an architecture risk comparison, not an RF pass. `SYN-3A` gains no assumed dB until the same board/enclosure fixture measures it.
 
-## Coexistence classes instantiated
+## Coexistence classes after the one-group decision
+
+This neutral pre-layout screen originally allowed exact cross-group pairs to be
+promoted after HIL. `DEC-0045` later selected a stricter product invariant:
+different top-level signal groups never run simultaneously. The table below is
+therefore amended by `FND-0103`; cross-group RF injection is a contained
+Laboratory robustness/fault test and never grants runtime concurrency.
 
 | Pair/session | Initial class | Qualification/fallback |
 |---|---|---|
 | nRF0 RX ↔ nRF1 RX ↔ nRF2 RX | `P` | mandatory simultaneous PRX/RPD; isolated and three-active calibration must both pass |
 | S3 Wi-Fi ↔ S3 BLE | `T` | native coexistence scheduler; actual dwell/gaps visible |
 | C5 2.4 ↔ C5 5 ↔ C5 802.15.4 | `T` | one native chain; selected mode and dwell visible |
-| S3/C5 2.4 activity ↔ nRF RX | `Q` | exact pair HIL; otherwise scheduler uses `T/D`, never false full coverage |
-| C5 5 GHz activity ↔ nRF/CC/Si4732/GNSS RX | `Q` | harmonics/clock/common-rail coupling still measured; band separation alone is not proof |
-| CC RX ↔ voice TX; Si4732 RX ↔ voice TX | `Q` | conducted/OTA desense and false-decode test; fallback mutes/marks stale or time-shares |
+| S3/C5 2.4 activity ↔ nRF RX | `X-RUNTIME / LAB-CHAR` | product group switch stops one side; contained injection may measure blocking, transition residue and false evidence but cannot promote the pair |
+| C5 5 GHz activity ↔ nRF/CC/Si4732/GNSS RX | `X-RUNTIME / LAB-CHAR` | product group switch stops one side; harmonics/clock/common-rail susceptibility remains a characterization gate, not concurrency permission |
+| CC RX ↔ voice TX; Si4732 RX ↔ voice TX | `X-RUNTIME / LAB-CHAR` | simultaneous product state is prohibited; contained injection characterizes overload, false decode and recovery only |
 | U214 GNSS ↔ U214 LoRa TX | `Q+A+D` | same attached/cable profile; fix may become stale/unknown during TX |
-| external NFC field ↔ other receive/session | `Q+A` | power/bus/field coupling measured; removal or wrong profile disables field |
-| any TX ↔ any other TX | `X` by default | only one exact contained pair may become `Q` after channel/power/duty/antenna/enclosure/load proof |
+| external NFC field ↔ other receive/session | `X-RUNTIME / LAB-CHAR` | different groups remain exclusive; power/bus/field coupling may be characterized in the contained fixture |
+| any TX ↔ any other TX | `X` across groups | no cross-group promotion exists; only members of one declared group may have mandatory concurrency, currently the `SG-N24` PTX mixes and native/U214 manifest behavior |
 
 Being an authorized white-hat target satisfies only the ownership/authorization part of Controlled Zone. It does not waive spectrum, emission, exposure or no-leakage requirements. Dangerous RF tests remain conducted or inside the qualified shielded environment and still show the mandatory entry banner every time.
 
@@ -102,8 +108,8 @@ Production self-test may detect gross missing/stuck hardware but must not label 
 | `RFQ-01` isolated path | exact module/antenna/filter meets its manufacturer/project sensitivity, output, mask/harmonic and current profile over battery/temperature/enclosure |
 | `RFQ-02` mandatory 3×nRF PRX | each radio remains within 3 dB of its isolated sensitivity reference, preserves `BUD-0002` latency/loss guarantee and reports source-specific RPD/calibration state |
 | `RFQ-03` nRF sector comparison | reference-source rotations/channel/rate/power produce repeatable calibrated hit-rate ordering; no dBm/bearing/VSWR label is introduced |
-| `RFQ-04` `Q` receive pair | both participants still meet their accepted exact-profile minimum; any degradation/false detect/stale interval is measured and visible |
-| `RFQ-05` qualified TX pair | conducted/shielded fixture meets both spectral profiles, STOP/dead-man and no-leakage threshold; qualification names exact pair/channel/power/duty/layout/enclosure |
+| `RFQ-04` allowed intragroup receive pair | every simultaneously active member of one manifest meets its accepted exact-profile minimum; degradation/false detect/stale interval is measured and visible; no cross-group promotion is possible |
+| `RFQ-05` allowed intragroup TX pair | conducted/shielded fixture meets every member's spectral profile, STOP/dead-man and no-leakage threshold; qualification names the exact one-group manifest/channel/power/duty/layout/enclosure |
 | `RFQ-06` digital aggression | display full updates, SD/SDIO/USB, RP IPC and every converter state do not violate isolated minimum or create false radio/GNSS/NFC evidence |
 | `RFQ-07` antenna/user state | installed battery, display, enclosure, hand positions and every supported accessory/cable state are included; unsupported placement is shown or blocked |
 | `RFQ-08` STOP/fault | reset, rail fault, IPC loss and STOP create no RF pulse outside the bounded measured kill interval; release does not resume TX |
@@ -124,4 +130,7 @@ The 3 dB requirement exists only for the mandatory equal-footing three-nRF recei
 
 All three remain physically plausible, but `SYN-2B` has the hardest RF/scheduling concentration and `SYN-3A` the cleanest controllable partition. This comparison will become a score only after cost and implementation burden are placed beside it in the atomic package.
 
-RF paths, zoning, equal-fixture rule, coexistence classes and eight qualification gates receive **«Проведено ревью»**. No unmeasured pair is promoted from `Q/X`, and no legacy antenna placement was inherited.
+RF paths, zoning, equal-fixture rule, coexistence classes and eight qualification
+gates receive **«Проведено ревью»**. `DEC-0045/FND-0103` supersede the earlier
+cross-group-promotion wording: no measurement can turn two top-level groups
+into a product concurrency state. No legacy antenna placement was inherited.

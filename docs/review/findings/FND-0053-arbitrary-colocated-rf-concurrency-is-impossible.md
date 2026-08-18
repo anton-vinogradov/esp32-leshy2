@@ -48,8 +48,9 @@ battery, display, shield seams и рукой она не является layout
 - три nRF обязаны одновременно выполнять любые независимые PTX/PRX роли без
   digital serialization или скрытых gaps; exact mixed-RF sensitivity вынесена
   в `FND-0054/IMP-0039` и не считается доказанной этой находкой;
-- разные физические полосы и exact channel-separated pairs могут получить
-  qualified parallel class после conducted/OTA HIL;
+- исторически рассматривалась qualification отдельных separated-band pairs,
+  но `DEC-0045` выбрал более строгую границу: разные top-level signal groups
+  не получают parallel runtime class после HIL;
 - внутренние S3 Wi-Fi/BLE и C5 Wi-Fi/802.15.4 работают честным native
   time-sharing с видимыми dwell/gaps/loss;
 - overlapping TX↔RX работает через заранее проверенный arbiter contract, а не

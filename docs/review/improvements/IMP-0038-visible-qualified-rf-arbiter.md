@@ -21,8 +21,10 @@ SA518 до 1 W пересекается с CC в 400–464 MHz. Произвол
 - S3/C5 native shared-chain modes и overlapping TX↔RX time-share физический RF;
 - перед grant TX arbiter проверяет exact band/channel/power/antenna/profile,
   приостанавливает несовместимые RX и публикует gap/stale/loss/active owner;
-- exact separated-band/channel pair может быть повышена из `X/T` в `Q` только
-  после conducted/OTA HIL конкретной ревизии;
+- proposal originally allowed an exact separated-band/channel pair to move
+  from `X/T` to `Q`, but the owner's later `DEC-0045` deliberately supersedes
+  that option: cross-group HIL is characterization only and never opens
+  product concurrency;
 - base product платит за zoning, band filters, shields/test points и evidence,
   но не за универсальные remote heads.
 

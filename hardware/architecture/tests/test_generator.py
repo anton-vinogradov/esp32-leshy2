@@ -1482,6 +1482,78 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(token, rendered)
 
+    def test_i6_consolidated_one_group_qualification_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["i6_consolidated_qualification_contract"]
+        self.assertEqual("DEC-0097", contract["decision"])
+        self.assertIn("paper_reviewed_i6_consolidated", contract["status"])
+        self.assertEqual(
+            "prohibited",
+            contract["runtime_invariant"]["cross_group_simultaneous_runtime"],
+        )
+        self.assertIn(
+            "never_runtime_permission",
+            contract["runtime_invariant"]["cross_group_lab_injection"],
+        )
+
+        self.assertEqual(
+            [group["id"] for group in candidate["signal_group_policy"]["groups"]],
+            contract["covered_signal_groups"],
+        )
+        self.assertEqual(
+            {
+                "FX-I6-CFG",
+                "FX-I6-CONDUCTED",
+                "FX-I6-OTA",
+                "FX-I6-N24-T1",
+                "FX-I6-OPTICAL",
+                "FX-I6-DIGITAL",
+                "FX-I6-FAULT",
+                "FX-I6-THERMAL",
+            },
+            {fixture["id"] for fixture in contract["fixtures"]},
+        )
+        self.assertIn("UI <=100 ms", contract["acceptance"]["no_stall"])
+        self.assertIn("actual-TX", contract["acceptance"]["transition"])
+        self.assertIn("false negative", contract["acceptance"]["evidence"])
+        self.assertIn("not_executed", contract["physical_evidence_state"])
+
+        quiet_ids = candidate["quiet_state_policy"]["required_contracts"]
+        self.assertNotIn("RECEIVER_AUDIO_QUIET", quiet_ids)
+        for quiet_id in (
+            "RECEIVER_QUIET",
+            "CODEC_AUDIO_QUIET",
+            "VOICE_INTERFACE_QUIET",
+        ):
+            self.assertIn(quiet_id, quiet_ids)
+        self.assertEqual(
+            set(quiet_ids),
+            {
+                quiet["id"]
+                for quiet in candidate["quiet_state_policy"]["contracts"]
+            },
+        )
+
+        for endpoint_contract in (
+            candidate["native_rf_electrical_contract"],
+            candidate["cc_rf_electrical_contract"],
+            candidate["voice_rf_electrical_contract"],
+            candidate["ir_endpoint_contract"],
+            candidate["receiver_rf_electrical_contract"],
+        ):
+            remaining = " ".join(endpoint_contract["remaining_hil"])
+            self.assertIn("foreign signal group", remaining)
+            self.assertIn("Laboratory characterization only", remaining)
+
+        repo = Path(__file__).resolve().parents[3]
+        for relative in (
+            "docs/review/architecture/RFQ-0001-zero-based-rf-zoning-coexistence.md",
+            "docs/review/architecture/RFQ-0002-g2f-3i-rf-concurrency-boundary.md",
+        ):
+            text = (repo / relative).read_text()
+            self.assertIn("LAB-CHAR", text)
+            self.assertNotIn("only one exact contained pair may become `Q`", text)
+
     def test_qspi_display_decision_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         s3 = {

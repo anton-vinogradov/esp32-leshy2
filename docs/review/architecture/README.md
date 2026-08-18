@@ -62,7 +62,8 @@ prototype plus direct arm and exact selector/gate/amp ICs. `FND-0095/
 AUDIO-0003/DEC-0090/REV-0005AU` now close the dependent I5 paper block with
 exact power/interface isolation, analog passives, address/clock handling and
 physical microphone/speaker/headphone endpoints. I5 has **«Проведено ревью»**;
-acoustic/RF/specimen HIL stays explicit and I6 is active.
+acoustic/RF/specimen HIL stays explicit. I6 later receives paper review by
+`DEC-0097/COX-0001/REV-0005BC`; I7 is now active.
 `DEC-0058` now pauses the integrated mockup until the internal chain is jointly
 reviewed. `INT-0001/I1` has **Проведено ревью** through
 `DEC-0059/REV-0005L`: 1-bit C5 SDIO restores S3 UART0 and C5 native USB,
@@ -205,7 +206,14 @@ still-abstract Si4732 FMI/AMI endpoints and add separate protected FM/SW and
 non-50-Ohm AM/LW first-target circuits. `FND-0102/REV-0005BB` then correct the
 entire shifted SOIC-16 machine contact map from the visually inspected
 manufacturer package drawing and lock all 16 contacts. Optical/thermal/IEC and consolidated
-coexistence HIL remain open; I6 and the no-KiCad boundary continue.
+coexistence HIL remain open. `FND-0103/FND-0104/COX-0001/DEC-0097/
+REV-0005BC` then remove the stale cross-group-promotion path, split receiver,
+codec/audio and voice quiet contracts and freeze one consolidated matrix for
+all groups, legal intragroup modes, ordered transitions, eight fixture classes,
+actual-TX evidence and no-stall thresholds. I6 has **«Проведено ревью»** for
+paper electrical and qualification scope; physical HIL remains explicitly
+not executed and can reopen its owner. I7 is active and the no-KiCad boundary
+continues.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

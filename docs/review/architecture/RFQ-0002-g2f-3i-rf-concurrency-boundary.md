@@ -49,8 +49,8 @@ exact HIL, `X` = prohibited simultaneous state, `A` = accessory-conditional.
 | one or two nRF TX ↔ peer nRF RX | required, not yet physically qualified | no automatic standby/time-slicing; same/near-channel weak-signal isolated sensitivity is not claimed before exact OTA/conducted HIL |
 | CC ↔ U214 in 868/915 overlap | `X+A` cross-group | `SG-CC` and `SG-U214` are mutually exclusive |
 | CC RX ↔ voice TX in 400–464 overlap | `X` | RX is paused and marked stale/lost before PTT; no same-channel internal exception |
-| Si473x/GNSS RX ↔ any TX | `Q` | band filtering, harmonics, common-rail and enclosure desense test; fallback visible stale/unknown |
-| C5 5 GHz ↔ non-C5 receive paths | `Q` | different band is useful but not proof against harmonics, clocks or common-rail coupling |
+| Si473x/GNSS RX ↔ TX from another group | `X-RUNTIME / LAB-CHAR` | simultaneous product state is prohibited; contained injection measures blocking, false evidence and recovery without granting concurrency |
+| C5 5 GHz ↔ non-C5 receive paths | `X-RUNTIME / LAB-CHAR` | different band is useful for robustness, but `DEC-0045` still requires a group switch; contained HIL cannot promote the pair |
 | any two independent signal groups | `X` | one-active-group invariant; system planes continue without RF permission |
 
 ## Physical invariants for the next placement artifact
@@ -75,7 +75,7 @@ exact HIL, `X` = prohibited simultaneous state, `A` = accessory-conditional.
 
 [`DEC-0045`](../decisions/DEC-0045-one-active-signal-group.md) принимает один
 active signal-group manifest. Cross-group RF pairs не требуют дорогой попытки
-universal isolation и не повышаются в base product. Qualification теперь
+universal isolation и не повышаются ни в каком product profile. Qualification теперь
 состоит из isolated-path HIL, обязательной внутригрупповой concurrency
 (`SG-N24` full digital mix, native vendor TDM, declared U214 support members),
 safe atomic group switching, inactive-interface quiet states и
@@ -83,3 +83,5 @@ digital-aggression EMI tests. `DEC-0047` selects the qualified channel/power
 envelope for base. `N24H-0001` uses `L0 DIV↔DIV` only as pre-HIL and requires
 target `T1` for production acceptance. Remote heads or
 self-cancellation remain optional Laboratory equipment, not base architecture.
+Contained cross-group injection in such equipment is characterization/fault
+evidence only and cannot modify the one-active-group runtime invariant.

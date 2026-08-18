@@ -11,7 +11,7 @@ and physical design (`FND-0039`).
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `23/0/1` and dedicated UI I/O `7/1/0`. `I2`…`I5` paper electrical scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090`; `DEC-0091…0096/REV-0005AV…BA` review every separate nRF/native/CC/voice/IR/Si4732-input I6 subblock. I6 remains active for consolidated coexistence. Gate 2F remains open through I6…I7, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `23/0/1` and dedicated UI I/O `7/1/0`. `I2`…`I6` paper scopes have **«Проведено ревью»** through `DEC-0061/0082/0089/0090/0091…0097` and `COX-0001`; physical I6 HIL remains a named reopen gate. I7 is the active paper block. Gate 2F remains open through I7, antenna lots/feeds/protection, physical RF and peripherals |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -74,5 +74,10 @@ receive boundary, `VSMY14940` current-limited STOP-gated TX и independent
 завершены до физических SMA boundary. `FND-0102/REV-0005BB` дополнительно
 исправляют всю сдвинутую SOIC-16 contact map Si4732 по визуально проверенному
 manufacturer package drawing и regression-lock всех 16 контактов. Весь optical/thermal/IEC,
-specimen/conducted/coexistence HIL остаётся открыт; I6 не завершён и KiCad не
-разрешён.
+specimen/conducted/coexistence HIL остаётся открыт. `FND-0103/FND-0104/
+COX-0001/DEC-0097/REV-0005BC` затем исправляют cross-group promotion и
+неприменимый monolithic receiver/audio quiet contract, фиксируют one-group
+runtime, отдельные quiet boundaries, восемь fixture classes, ordered
+transitions и все no-stall thresholds. I6 paper scope имеет **«Проведено
+ревью»** без присвоения несуществующих измерений; physical HIL может открыть
+его владельца повторно. Активен I7, KiCad не разрешён.

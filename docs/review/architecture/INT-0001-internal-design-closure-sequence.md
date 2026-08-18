@@ -1,6 +1,6 @@
 # INT-0001 — dependency-ordered internal-design closure sequence
 
-- Статус: **Проведено ревью порядка; I1…I5 and all separate I6 paper endpoints reviewed, consolidated I6 active**
+- Статус: **Проведено ревью порядка; I1…I6 paper scope reviewed, I7 active**
 - Дата: 2026-08-18
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Working map: [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)
@@ -28,8 +28,8 @@ Exact MPN availability повторно проверяется при выбор
 | `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **Проведено ревью paper electrical scope** by `DEC-0089/IOX-0001/REV-0005AT`; exact USB/display/microSD/controls/touch endpoints plus TCA6424A core, addresses, cross-domain isolation and shared-interface audit complete; physical/HIL gates named | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
-| `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **active consolidated-proof block**; every separate nRF/native/CC/voice/IR/Si4732-input paper endpoint reviewed by `DEC-0091…0096/REV-0005AV…BA`; whole-device conducted/OTA/optical/coexistence remains open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
-| `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | logical profiles reviewed; exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
+| `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
+| `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **active paper block**; logical profiles reviewed, exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
 | `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | scattered candidates; no coherent target BOM | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
@@ -192,7 +192,14 @@ shielded photodiode/TIA actual-light path replace every IR abstraction. The
 C5 and slow-I/O budgets remain unchanged. `FND-0101/RXF-0001/DEC-0096/
 REV-0005BA` subsequently catch the remaining abstract Si4732 FMI/AMI paths and
 replace them with separate protected FM/SW and non-50-Ohm AM/LW first-target
-circuits. No GPIO or rail changes. Consolidated optical, thermal, IEC,
-conducted/OTA, coexistence and no-stall proof remains active. All
-prototype/physical/procurement evidence remains explicit,
-and neither KiCad nor the paused integrated mockup is authorized.
+circuits. No GPIO or rail changes. `FND-0103/FND-0104/COX-0001/DEC-0097/
+REV-0005BC` then correct two consolidated-proof contradictions: cross-group
+injection is Laboratory characterization only and can never create runtime
+permission, while receiver, codec/audio and voice interfaces receive separate
+quiet contracts. The versioned matrix covers all signal groups, every allowed
+intragroup mode, ordered transitions, eight fixture classes, actual-TX evidence
+and all no-stall deadlines. I6 therefore has **«Проведено ревью»** for paper
+electrical and qualification scope. Physical optical, thermal, IEC,
+conducted/OTA, coexistence, timing and fault HIL stays explicitly
+`not_executed` and can reopen its owning subblock. I7 is now active; neither
+KiCad nor the paused integrated mockup is authorized.
