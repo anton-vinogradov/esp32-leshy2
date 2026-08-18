@@ -74,7 +74,8 @@ Leshy2 — открытый автономный портативный инст
 
 - Каждый программируемый вычислительный домен имеет собственные пути прошивки,
   восстановления и диагностики, не зависящие от исправности соседнего домена.
-- Основной USB-C сохраняет прямые USB2-линии S3 и только принимает питание:
+- Основной USB-C сохраняет защищённые USB2 Full-Speed линии S3 (12 Мбит/с)
+  и только принимает питание:
   fallback 5 В, 9 В при 3 А и 15 В при 2 А, до 30 Вт. Режимы power bank и
   USB-PD source отсутствуют.
 - PD-контроллер прямо от сырого USB VBUS входит в аппаратный SafeMode,
@@ -140,7 +141,13 @@ Leshy2 — открытый автономный портативный инст
 
 ```mermaid
 flowchart TD
-  USBC["MPN TBD<br/>основной USB-C: прямые USB2-линии S3 и только приём питания"]
+  USBC["DX07S016JA1R1500<br/>основной USB-C: защищённые USB2-линии S3 и только приём питания"]
+  PORTPROT["TPD4S201RUKR<br/>защита CC1/CC2 и USB2 D+/D- от short-to-VBUS/ESD"]
+  PORTDPR["ERJ-2RKF22R0X #USB-DP<br/>последовательный резистор 22 Ом линии D+ USB Full-Speed S3"]
+  PORTDMR["ERJ-2RKF22R0X #USB-DM<br/>последовательный резистор 22 Ом линии D- USB Full-Speed S3"]
+  PORTVBIAS["C1608X7S2A104K080AB<br/>конденсатор VBIAS защиты порта: 100 нФ, 100 В"]
+  PORTVPWR["C1608X7R1C105K080AC #USB-PROT<br/>конденсатор VPWR защиты порта: 1 мкФ, 16 В"]
+  PORTFLTPU["RC0402FR-0710KL #USB-PROT-FLT<br/>pull-up сигнала ошибки защиты порта: 10 кОм"]
   VBUSPROT["TVS2200DRVR<br/>22-В flat-clamp защита VBUS от импульсов"]
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD политика и защищённый high-voltage тракт"]
   PDCFG["CAT24C512WI-GT3<br/>отдельная EEPROM с patch/configuration PD"]
@@ -152,8 +159,8 @@ flowchart TD
   PPHVC2["GRM32ER71E226KE15L #PPHV2<br/>конденсатор защищённого VBUS №2: 22 мкФ, 25 В"]
   PPHVC3["GRM32ER71E226KE15L #PPHV3<br/>конденсатор защищённого VBUS №3: 22 мкФ, 25 В"]
   PVBUSCAP["CGA5L1X7R1E475K160AC #PD-VBUS<br/>конденсатор запуска от сырого VBUS: 4,7 мкФ, 25 В"]
-  PCC1CAP["GRM1555C1H331JA01J #CC1<br/>конденсатор USB-C CC1: 330 пФ, C0G"]
-  PCC2CAP["GRM1555C1H331JA01J #CC2<br/>конденсатор USB-C CC2: 330 пФ, C0G"]
+  PCC1CAP["GRM1555C1H221JA01D #CC1<br/>конденсатор защищённой USB-C CC1: 220 пФ, C0G"]
+  PCC2CAP["GRM1555C1H221JA01D #CC2<br/>конденсатор защищённой USB-C CC2: 220 пФ, C0G"]
   PEECAP["C1005X7R1H104K050BB #PD-EEPROM<br/>bypass-конденсатор EEPROM PD: 100 нФ"]
   PEEWPPU["RC0402FR-0710KL #PD-WP<br/>reset-high pull-up защиты записи EEPROM: 10 кОм"]
   PLSCLPU["RC0402FR-072K2L #PD-SCL<br/>pull-up SCL локальной PD-шины: 2,2 кОм"]
@@ -365,7 +372,7 @@ flowchart TD
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
-  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
+  USBC ~~~ PORTPROT ~~~ PORTDPR ~~~ PORTDMR ~~~ PORTVBIAS ~~~ PORTVPWR ~~~ PORTFLTPU ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
   PPHVC1 ~~~ PPHVC2 ~~~ PPHVC3 ~~~ PVBUSCAP ~~~ PCC1CAP ~~~ PCC2CAP ~~~ PEECAP ~~~ PEEWPPU
   PEEWPPU ~~~ PLSCLPU ~~~ PLSDAPU ~~~ PHSCLPU ~~~ PHSDAPU ~~~ PIRQPU ~~~ CHARGER
   CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
@@ -392,7 +399,13 @@ flowchart TD
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
   USBC -->|"сырой VBUS к VBUS + VBUS_IN"| PDCTRL
   USBC -->|"шунтирующая защита VBUS"| VBUSPROT
-  USBC <-->|"D-/D+ напрямую, без ответвления к PD/charger"| S3
+  USBC <-->|"CC1/CC2 + D+/D-"| PORTPROT
+  PORTPROT <-->|"защищённая D+"| PORTDPR <-->|"Full-Speed GPIO20"| S3
+  PORTPROT <-->|"защищённая D-"| PORTDMR <-->|"Full-Speed GPIO19"| S3
+  PORTPROT <-->|"защищённые CC1/CC2"| PDCTRL
+  PORTPROT -->|"bias 100 нФ / 100 В"| PORTVBIAS
+  PDCTRL -->|"LDO_3V3"| PORTVPWR --> PORTPROT
+  PDCTRL --> PORTFLTPU --> PORTPROT
   PDCTRL <-->|"локальная I²C, boot image"| PDCFG
   PDCTRL <-->|"защищённый VBUS + локальные I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + общий wired-low IRQ"| PDCTRL

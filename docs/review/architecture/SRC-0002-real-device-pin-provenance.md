@@ -36,6 +36,7 @@
 | IR RX/TX | `TSOP38238`, `TSMP95000`, `TSAL6200` first discrete candidates | manufacturer part-level functions/packages are known; exact optical/electrical stuffing and driver remain conditional | `candidate facts`; finish package/driver/availability and HIL before count becomes target |
 | display/touch | Waveshare SKU 29318, Elecrow `DLS31040B1` and Riverdi `RVT35HITNWC00-B` references | exact module/FPC contacts, dimensions, controllers and power boundaries are recorded in `devices.json`; `DEC-0043` replaces the invalid historical 4.5 MB/s gate with task/dirty-region acceptance | `verified references`; performance contract reviewed, exact MPN/interface/optics and HIL remain `open/blocking`, see `DSP-0001/FND-0051/DEC-0043` |
 | microSD | Hirose `DM3AT-SF-PEJM5` exact socket reference | all 8 card contacts, detect switch and body are verified; integrated display TF slots are shared-SPI and not SDMMC-equivalent | `verified candidate boundary`; width, protection, placement, card set and HIL remain `open/blocking` |
+| product USB-C and CC/data protection | `JAE DX07S016JA1R1500`, `Texas Instruments TPD4S201RUKR` and 2× `Panasonic ERJ-2RKF22R0X` | current manufacturer documents expose all 16 live Type-C contacts, four shell locks, all 20 protector contacts/pad and exact S3 Full-Speed terminations; CC1/CC2 and USB2 D+/D- are separately protected before exact TPS/S3 contacts | `DEC-0083/REV-0005AN` paper endpoint reviewed; connector placement/shield return, total CC capacitance, USB Full-Speed RC/SI, ESD and short-to-VBUS HIL remain blocking |
 | slow control | `TCA6424ARGJR` UQFN32 leading reference; `TCA9535PWR` TSSOP24 smaller alternative | official TI package tables expose respectively 24 and 16 ports, open-drain INT and I²C; all ports power up as inputs | `G2F-3I` now accounts `24 used / 0 reserved / 0 free` after `FND-0067` assigns P27 to the omitted RX-audio source selector; exact electrical/MPN freeze remains open, see `NIF-0001/FND-0052/FND-0067` |
 | external I²C fault boundary | `TCA4307DGKR` VSSOP8 reference | exact EN/SCLIN/SCLOUT/READY/SDAIN/SDAOUT contacts, powered-off high-Z and stuck-bus recovery verified from TI datasheet | `reference only`; can isolate U214/Port-A I²C, but does not qualify U214 SPI/UART/power hot-plug |
 | radio output compression | `SN74HC595PWR` TSSOP16 candidate for `G2F-2R` | official TI package table exposes QA…QH, SER/SRCLK/RCLK, OE and SRCLR | `verified candidate`; OE/reset/pull truth table and shared-data timing remain schematic/HIL gates |
@@ -80,6 +81,8 @@
 - [Vishay D/CRCW-IF pulse-proof resistor family](https://www.vishay.com/docs/20024/dcrcwife3.pdf)
 - [Murata GRM31C5C1H224JE02L exact 220-nF C0G timing capacitor](https://www.murata.com/en-us/products/productdetail?partno=GRM31C5C1H224JE02%23)
 - [XTAR exact protected 18650 4000mAh product and datasheet](https://www.xtar.cc/product/xtar-18650-4000mah-10a-battery.html)
+- [JAE DX07S016JA1R1500 exact receptacle](https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/)
+- [TI TPD4S201 exact CC/USB2 port protector](https://www.ti.com/lit/gpn/TPD4S201)
 - [Display/touch/storage exact-device evidence](DSP-0001-display-storage-real-device-evidence.md)
 
 ## Machine-readable source and draft consumers

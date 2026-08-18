@@ -342,6 +342,17 @@ load or recovery owner remains, so the I3 paper electrical scope receives
 documents remain an I8 procurement gate; received-lot, source-transition,
 rail, destructive-fault and thermal evidence remain explicit prototype HIL.
 This maturity transition neither freezes the BOM nor authorizes KiCad.
+`FND-0087/USB-0001/DEC-0083/REV-0005AN` close the first I4 endpoint. Exact
+`JAE DX07S016JA1R1500` replaces the abstract product USB-C receptacle and one
+`TPD4S201RUKR` protects both CC and both native S3 USB2 lines against
+connector-side short-to-VBUS/ESD without consuming GPIO47. Protector VPWR,
+VBIAS and FLT support are exact; `FLT` is fixture-only. The added protection
+requires replacing the two 330-pF CC shunts with exact 220-pF C0G parts: the
+published-value subtotal is 369…471 pF before route parasitics, leaving at
+least 129 pF to the USB-PD ceiling. The port material is now quantified at
+about `$1.9…2.6` per board. Placement/cutout, total CC capacitance, USB
+Full-Speed RC/signal integrity, ESD and short-to-VBUS HIL remain open; I4
+continues and KiCad stays blocked.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative

@@ -342,6 +342,16 @@ high-side-short HIL остаются открыты.
 держатель остаются procurement-gate I8; received-lot, source-transition,
 rail, destructive-fault и thermal evidence остаются явным prototype HIL.
 Этот переход не фиксирует BOM и не разрешает KiCad.
+`FND-0087/USB-0001/DEC-0083/REV-0005AN` закрывают первый endpoint I4. Exact
+`JAE DX07S016JA1R1500` заменяет абстрактный основной USB-C, а один
+`TPD4S201RUKR` защищает обе CC и обе native USB2-линии S3 от connector-side
+short-to-VBUS/ESD без расхода GPIO47. Support VPWR, VBIAS и FLT защиты
+полностью exact; `FLT` остаётся только для оснастки. После добавления защиты
+два шунта CC 330 пФ заменены exact C0G 220 пФ: published-value subtotal равен
+369…471 пФ до паразитики трасс и оставляет минимум 129 пФ до потолка USB-PD.
+Материал порта теперь оценён примерно в `$1.9…2.6` на плату. Placement/cutout,
+полная ёмкость CC, USB Full-Speed RC/SI, ESD и short-to-VBUS HIL остаются
+открыты; I4 продолжается, KiCad остаётся заблокирован.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный

@@ -1298,6 +1298,86 @@
         "A": {"physical": "anode land", "role": "signal"}
       }
     },
+    "jae_dx07s016ja1r1500": {
+      "mpn": "JAE DX07S016JA1R1500",
+      "kind": "usb_type_c_usb2_16_contact_right_angle_receptacle",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [8.94, 6.9, 3.16],
+      "source": {
+        "document": "JAE DX07 16-position receptacle product brochure",
+        "version": "MB-0350E, August 2025",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "DX07S016JA1R1500 active manufacturer product page and distributor inventory",
+        "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "A1_GND": {"physical": "A1", "role": "power"},
+        "A4_VBUS": {"physical": "A4", "role": "power"},
+        "A5_CC1": {"physical": "A5", "role": "signal"},
+        "A6_DP": {"physical": "A6", "role": "signal"},
+        "A7_DM": {"physical": "A7", "role": "signal"},
+        "A8_SBU1": {"physical": "A8", "role": "signal"},
+        "A9_VBUS": {"physical": "A9", "role": "power"},
+        "A12_GND": {"physical": "A12", "role": "power"},
+        "B1_GND": {"physical": "B1", "role": "power"},
+        "B4_VBUS": {"physical": "B4", "role": "power"},
+        "B5_CC2": {"physical": "B5", "role": "signal"},
+        "B6_DP": {"physical": "B6", "role": "signal"},
+        "B7_DM": {"physical": "B7", "role": "signal"},
+        "B8_SBU2": {"physical": "B8", "role": "signal"},
+        "B9_VBUS": {"physical": "B9", "role": "power"},
+        "B12_GND": {"physical": "B12", "role": "power"},
+        "SHIELD": {"physical": "four 0.9-mm through-hole shell board locks", "role": "shield"}
+      }
+    },
+    "ti_tpd4s201_rukr": {
+      "mpn": "Texas Instruments TPD4S201RUKR",
+      "kind": "four_channel_type_c_ovp_esd_usb2_port_protector",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [3.0, 3.0, null],
+      "source": {
+        "document": "TPD4S201 USB Type-C port-protection datasheet",
+        "version": "SLVSIF2, July 2025",
+        "url": "https://www.ti.com/lit/gpn/TPD4S201",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPD4S201RUKR active TI product/orderable page",
+        "url": "https://www.ti.com/product/TPD4S201/part-details/TPD4S201RUKR",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "C_SBU1": {"physical": "1", "role": "signal"},
+        "C_SBU2": {"physical": "2", "role": "signal"},
+        "VBIAS": {"physical": "3", "role": "power"},
+        "C_CC1": {"physical": "4", "role": "signal"},
+        "C_CC2": {"physical": "5", "role": "signal"},
+        "RPD_G2": {"physical": "6", "role": "signal"},
+        "RPD_G1": {"physical": "7", "role": "signal"},
+        "GND_8": {"physical": "8", "role": "power"},
+        "FLT": {"physical": "9", "role": "signal"},
+        "VPWR": {"physical": "10", "role": "power"},
+        "CC2": {"physical": "11", "role": "signal"},
+        "CC1": {"physical": "12", "role": "signal"},
+        "GND_13": {"physical": "13", "role": "power"},
+        "SBU2": {"physical": "14", "role": "signal"},
+        "SBU1": {"physical": "15", "role": "signal"},
+        "NC_16": {"physical": "16", "role": "nc"},
+        "NC_17": {"physical": "17", "role": "nc"},
+        "GND_18": {"physical": "18", "role": "power"},
+        "NC_19": {"physical": "19", "role": "nc"},
+        "NC_20": {"physical": "20", "role": "nc"},
+        "GND_PAD": {"physical": "unnumbered exposed thermal pad", "role": "power"}
+      }
+    },
     "ti_tps25751d_refr": {
       "mpn": "Texas Instruments TPS25751DREFR",
       "kind": "usb_pd_controller_integrated_20v_5a_path",
@@ -2876,6 +2956,75 @@
       "contacts": {
         "END_1": {"physical": "1", "role": "signal"},
         "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm1555c1h221ja01d": {
+      "mpn": "Murata GRM1555C1H221JA01D",
+      "kind": "220pf_5pct_50v_c0g_0402_usb_cc_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Murata GRM1555C1H221JA01 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM1555C1H221JA01D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM1555C1H221JA01D active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H221JA01D/587204",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "signal"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "tdk_c1608x7s2a104k080ab": {
+      "mpn": "TDK C1608X7S2A104K080AB",
+      "kind": "100nf_10pct_100v_x7s_0603_usb_protector_bias_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "TDK commercial mid-voltage MLCC datasheet",
+        "version": "current catalog checked 2026-08-18",
+        "url": "https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "C1608X7S2A104K080AB product-page distributor inventory",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7S2A104K080AB",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "signal"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "panasonic_erj_2rkf22r0x": {
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "kind": "22ohm_1pct_0402_usb_series_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
+        "version": "current family datasheet checked 2026-08-18",
+        "url": "https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "ERJ-2RKF22R0X active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-2RKF22R0X/1746157",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "signal"},
+        "END_2": {"physical": "2", "role": "signal"}
       }
     },
     "yageo_rc0402fr_072k2l": {

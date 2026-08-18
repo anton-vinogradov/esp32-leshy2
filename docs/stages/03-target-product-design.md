@@ -1,7 +1,7 @@
 # Stage 3 — target product design
 
 - Статус: **Integrated mockup приостановлен DEC-0058; active internal closure**
-- Дата: 2026-08-17
+- Дата: 2026-08-18
 - Пререквизит: repeat G2 **Проведено ревью** (`REV-0002AS`)
 - Метод: [`FLOW-0001/G3`](../review/architecture/FLOW-0001-product-to-cad-gates.md)
 - Working design: [`DEC-0051`](../review/decisions/DEC-0051-principled-pinout-as-working-design.md) /
@@ -103,6 +103,11 @@ heat and fault ledger and give the I3 paper electrical scope **«Проведе�
 ревью»**. Certification is an I8 procurement gate; exact-cell lot,
 source-transition, rail, destructive-fault and thermal evidence remain named
 prototype HIL. I4 paper work is now active without claiming those measurements.
+`FND-0087/USB-0001/DEC-0083/REV-0005AN` далее закрывают первый I4 endpoint:
+exact `DX07S016JA1R1500`, `TPD4S201RUKR`, protected CC/USB2 routes и
+пересчитанные exact 220-pF CC shunts полностью внесены в machine source без
+нового GPIO. Placement/cutout, total CC, USB Full-Speed RC/SI, ESD и
+short-to-VBUS HIL остаются открыты; integrated mockup не возобновляется.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку

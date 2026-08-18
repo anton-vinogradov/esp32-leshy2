@@ -62,8 +62,12 @@ REV-0005O` now give `I2` **Проведено ревью**: exact AON latch/rese
 devices cover S3+C5+RP and every external TX request, while seven RF detectors,
 optical IR evidence, local-I²C source mask and direct physical aggregate are
 machine-projected. `DEC-0082/PWR-0021/REV-0005AM` now give I3 paper electrical
-scope **«Проведено ревью» and make I4 the active paper block; named
+scope **«Проведено ревью»** and make I4 the active paper block; named
 procurement and prototype HIL evidence remains open.
+`DEC-0083/USB-0001/REV-0005AN` then close the first I4 endpoint: exact JAE
+USB-C and TI four-line protection replace the abstract port, corrected 220-pF
+CC shunts preserve capacitance margin, and GPIO47 remains free. Physical
+port/SI/ESD HIL stays open while I4 proceeds.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -112,6 +116,8 @@ no GPIO or function is lost.
 `FND-0086/PWR-0021/DEC-0082/REV-0005AM` consolidate every I3 paper obligation,
 heat source, fault and physical residue. I3 is paper-reviewed with all
 prototype/lot/I8 evidence still explicit; I4 is now the active paper block.
+`FND-0087/USB-0001/DEC-0083/REV-0005AN` now give exact protected product USB
+the first I4 paper-endpoint review without promoting placement or HIL.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -197,6 +203,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0021`](PWR-0021-i3-consolidated-paper-closure.md) audits the complete
   I3 dependency, heat/fault ledger and remaining evidence, allowing I4 paper
   work without claiming prototype qualification;
+- [`USB-0001`](USB-0001-exact-product-usb-c-and-protection.md) closes the first
+  I4 endpoint with exact JAE USB-C, four-line TI CC/USB2 protection, corrected
+  220-pF CC shunts and complete real-contact routing while retaining HIL;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

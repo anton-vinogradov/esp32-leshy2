@@ -328,7 +328,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(30, contract["maximum_input_power_w"])
         self.assertIn("source mode", contract["disabled"])
         self.assertIn("20V PDO", contract["disabled"])
-        self.assertIn("GPIO19/20 remain direct", contract["usb2_data"])
+        self.assertIn("USB Full-Speed", contract["usb2_data"])
+        self.assertIn("22-Ohm series resistors", contract["usb2_data"])
         self.assertIn("GPIO47", contract["host_control"])
         self.assertEqual("DEC-0078", contract["diagnostic_decision"])
         self.assertIn("non-retriggerable", contract["diagnostic_load_profile"])
@@ -515,7 +516,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("44.2k/100k ILIM", contract["charger_passive_profile"])
         self.assertIn("direct non-ignored charger TS", contract["charger_passive_profile"])
         self.assertNotIn("exact product USB-C receptacle", contract["remaining_i3"])
-        self.assertIn("exact product USB-C receptacle", contract["deferred_i4"])
+        self.assertNotIn("exact product USB-C receptacle", contract["deferred_i4"])
 
         expected_instances = {
             "charger_inductor": "sunlord_mwsa0503s_2r2mt",
@@ -601,8 +602,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pd_pphv_cap2": "murata_grm32er71e226ke15l",
             "pd_pphv_cap3": "murata_grm32er71e226ke15l",
             "pd_vbus_cap": "tdk_cga5l1x7r1e475k160ac",
-            "pd_cc1_cap": "murata_grm1555c1h331ja01j",
-            "pd_cc2_cap": "murata_grm1555c1h331ja01j",
+            "pd_cc1_cap": "murata_grm1555c1h221ja01d",
+            "pd_cc2_cap": "murata_grm1555c1h221ja01d",
             "pd_eeprom_bypass": "tdk_c1005x7r1h104k050bb",
             "pd_eeprom_wp_pullup": "yageo_rc0402fr_0710kl",
             "pd_local_scl_pullup": "yageo_rc0402fr_072k2l",
@@ -621,8 +622,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             for route in candidate["fixed_routes"]
         }
         for route in (
-            ("abstract:product-usb-c-vbus", "pd_controller.VBUS", "USB_C_VBUS_RAW"),
-            ("abstract:product-usb-c-vbus", "pd_controller.VBUS_IN", "USB_C_VBUS_RAW"),
+            ("product_usb_connector.B9_VBUS", "pd_controller.VBUS", "USB_C_VBUS_RAW"),
+            ("product_usb_connector.B9_VBUS", "pd_controller.VBUS_IN", "USB_C_VBUS_RAW"),
             ("pd_controller.LDO_3V3", "pd_controller.ADCIN1", "PD_ADCIN1_SAFE_MODE_HIGH"),
             ("pd_controller.ADCIN2", "abstract:power-ground", "PD_ADCIN2_SAFE_MODE_LOW"),
             ("pd_controller.PP5V", "abstract:power-ground", "POWER_GROUND"),
@@ -654,6 +655,65 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertIn("ReadyForPatch", eeprom_service["method"])
         self.assertIn("never drives LDO_3V3 externally", eeprom_service["method"])
+
+    def test_exact_protected_product_usb_port_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0083", contract["product_usb_decision"])
+        self.assertIn("TPD4S201RUKR", contract["product_usb_profile"])
+        self.assertIn("369-471 pF", contract["product_usb_profile"])
+        self.assertIn("without consuming a GPIO", contract["product_usb_profile"])
+        self.assertIn("22-Ohm series resistors", contract["product_usb_profile"])
+        self.assertIn("reserved DNP", contract["product_usb_profile"])
+
+        expected_instances = {
+            "product_usb_connector": "jae_dx07s016ja1r1500",
+            "product_usb_protector": "ti_tpd4s201_rukr",
+            "product_usb_dp_series": "panasonic_erj_2rkf22r0x",
+            "product_usb_dm_series": "panasonic_erj_2rkf22r0x",
+            "product_usb_vbias_cap": "tdk_c1608x7s2a104k080ab",
+            "product_usb_vpwr_cap": "tdk_c1608x7r1c105k080ac",
+            "product_usb_fault_pullup": "yageo_rc0402fr_0710kl",
+            "pd_cc1_cap": "murata_grm1555c1h221ja01d",
+            "pd_cc2_cap": "murata_grm1555c1h221ja01d",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("product_usb_connector.A5_CC1", "product_usb_protector.C_CC1", "USB_C_CC1_CONNECTOR"),
+            ("product_usb_connector.B5_CC2", "product_usb_protector.C_CC2", "USB_C_CC2_CONNECTOR"),
+            ("product_usb_protector.CC1", "pd_controller.CC1", "USB_C_CC1_PROTECTED"),
+            ("product_usb_protector.CC2", "pd_controller.CC2", "USB_C_CC2_PROTECTED"),
+            ("product_usb_protector.SBU1", "product_usb_dp_series.END_1", "USB2_DP_PROTECTED"),
+            ("product_usb_dp_series.END_2", "s3.GPIO20", "S3_USB_DP"),
+            ("product_usb_protector.SBU2", "product_usb_dm_series.END_1", "USB2_DM_PROTECTED"),
+            ("product_usb_dm_series.END_2", "s3.GPIO19", "S3_USB_DM"),
+            ("product_usb_protector.RPD_G1", "product_usb_protector.C_CC1", "USB_C_CC1_CONNECTOR"),
+            ("product_usb_protector.RPD_G2", "product_usb_protector.C_CC2", "USB_C_CC2_CONNECTOR"),
+            ("product_usb_protector.VBIAS", "product_usb_vbias_cap.END_1", "USB_PROTECTOR_VBIAS"),
+            ("pd_controller.LDO_3V3", "product_usb_protector.VPWR", "PD_LOCAL_3V3"),
+            ("product_usb_protector.FLT", "abstract:TP_USB_PROTECTOR_FAULT_N", "USB_PROTECTOR_FAULT_N"),
+            ("product_usb_connector.A8_SBU1", "abstract:no-connect", "NO_CONNECT"),
+            ("product_usb_connector.B8_SBU2", "abstract:no-connect", "NO_CONNECT"),
+        ):
+            self.assertIn(route, routes)
+
+        self.assertFalse(
+            any(
+                route["from"].startswith("abstract:product-usb-c")
+                or route["to"].startswith("abstract:product-usb-c")
+                for route in candidate["fixed_routes"]
+            )
+        )
+        self.assertIn(
+            "USB Full-Speed RC tuning, signal-integrity, ESD and short-to-VBUS HIL",
+            contract["deferred_i4"],
+        )
 
     def test_exact_fixed_downstream_rail_tree_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

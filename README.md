@@ -70,7 +70,8 @@ privacy or the target owner's authorization.
 
 - Every programmable compute domain has its own programming, recovery and
   diagnostic path and does not depend on a healthy peer domain.
-- The product USB-C port keeps direct S3 USB2 data and accepts power only:
+- The product USB-C port keeps protected S3 USB2 Full-Speed data (12 Mbit/s)
+  and accepts power only:
   5-V fallback, 9 V at 3 A and 15 V at 2 A, up to 30 W. It never acts as a
   power bank or USB-PD source.
 - The PD controller enters hardware SafeMode directly from raw USB VBUS,
@@ -132,7 +133,13 @@ an explicit `MPN TBD`, together with its role in the finished device.
 
 ```mermaid
 flowchart TD
-  USBC["MPN TBD<br/>product USB-C receptacle: direct S3 USB2 data and sink-only power"]
+  USBC["DX07S016JA1R1500<br/>product USB-C receptacle: protected S3 USB2 data and sink-only power"]
+  PORTPROT["TPD4S201RUKR<br/>CC1/CC2 and USB2 D+/D- short-to-VBUS/ESD protector"]
+  PORTDPR["ERJ-2RKF22R0X #USB-DP<br/>22-Ohm S3 USB Full-Speed D+ series resistor"]
+  PORTDMR["ERJ-2RKF22R0X #USB-DM<br/>22-Ohm S3 USB Full-Speed D- series resistor"]
+  PORTVBIAS["C1608X7S2A104K080AB<br/>100-nF 100-V port-protector VBIAS capacitor"]
+  PORTVPWR["C1608X7R1C105K080AC #USB-PROT<br/>1-uF 16-V port-protector VPWR capacitor"]
+  PORTFLTPU["RC0402FR-0710KL #USB-PROT-FLT<br/>10-kOhm port-protector fault pull-up"]
   VBUSPROT["TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection"]
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
   PDCFG["CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
@@ -144,8 +151,8 @@ flowchart TD
   PPHVC2["GRM32ER71E226KE15L #PPHV2<br/>22-uF 25-V protected-VBUS capacitor #2"]
   PPHVC3["GRM32ER71E226KE15L #PPHV3<br/>22-uF 25-V protected-VBUS capacitor #3"]
   PVBUSCAP["CGA5L1X7R1E475K160AC #PD-VBUS<br/>4.7-uF 25-V raw-VBUS startup capacitor"]
-  PCC1CAP["GRM1555C1H331JA01J #CC1<br/>330-pF C0G USB-C CC1 capacitor"]
-  PCC2CAP["GRM1555C1H331JA01J #CC2<br/>330-pF C0G USB-C CC2 capacitor"]
+  PCC1CAP["GRM1555C1H221JA01D #CC1<br/>220-pF C0G protected USB-C CC1 capacitor"]
+  PCC2CAP["GRM1555C1H221JA01D #CC2<br/>220-pF C0G protected USB-C CC2 capacitor"]
   PEECAP["C1005X7R1H104K050BB #PD-EEPROM<br/>100-nF PD EEPROM bypass capacitor"]
   PEEWPPU["RC0402FR-0710KL #PD-WP<br/>10-kOhm reset-high EEPROM write-protect pull-up"]
   PLSCLPU["RC0402FR-072K2L #PD-SCL<br/>2.2-kOhm local PD-bus SCL pull-up"]
@@ -357,7 +364,7 @@ flowchart TD
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
-  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
+  USBC ~~~ PORTPROT ~~~ PORTDPR ~~~ PORTDMR ~~~ PORTVBIAS ~~~ PORTVPWR ~~~ PORTFLTPU ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
   PPHVC1 ~~~ PPHVC2 ~~~ PPHVC3 ~~~ PVBUSCAP ~~~ PCC1CAP ~~~ PCC2CAP ~~~ PEECAP ~~~ PEEWPPU
   PEEWPPU ~~~ PLSCLPU ~~~ PLSDAPU ~~~ PHSCLPU ~~~ PHSDAPU ~~~ PIRQPU ~~~ CHARGER
   CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
@@ -384,7 +391,13 @@ flowchart TD
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
   USBC -->|"raw VBUS to VBUS + VBUS_IN"| PDCTRL
   USBC -->|"VBUS shunt"| VBUSPROT
-  USBC <-->|"D-/D+ direct; no PD/charger tap"| S3
+  USBC <-->|"CC1/CC2 + D+/D-"| PORTPROT
+  PORTPROT <-->|"protected D+"| PORTDPR <-->|"Full-Speed GPIO20"| S3
+  PORTPROT <-->|"protected D-"| PORTDMR <-->|"Full-Speed GPIO19"| S3
+  PORTPROT <-->|"protected CC1/CC2"| PDCTRL
+  PORTPROT -->|"100-nF / 100-V bias"| PORTVBIAS
+  PDCTRL -->|"LDO_3V3"| PORTVPWR --> PORTPROT
+  PDCTRL --> PORTFLTPU --> PORTPROT
   PDCTRL <-->|"local I²C boot image"| PDCFG
   PDCTRL <-->|"protected VBUS + local I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL

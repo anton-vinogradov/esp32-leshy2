@@ -25,3 +25,9 @@ and physical design (`FND-0039`).
 Этапы могут содержать параллельные feasibility probes, но их результаты
 остаются черновиками. Ни одна ветвь не использует непроверенный или
 candidate-only artifact как окончательный вход.
+
+Текущее дополнение gate 2F: `DEC-0083/USB-0001/REV-0005AN` дают первому I4
+endpoint product USB-C **«Проведено ревью»** на paper-schematic уровне. Exact
+JAE receptacle, TI four-line CC/USB2 protection и corrected 220-pF CC shunts
+внесены в machine map; placement, USB Full-Speed RC/SI, ESD/short-to-VBUS HIL
+остаются открыты. I4 и gate 2F в целом продолжаются, KiCad не разрешён.

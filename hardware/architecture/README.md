@@ -77,6 +77,13 @@ entry is explicitly classified as procurement/I8 or prototype/controlled
 HIL. I4 paper work may consume the exact rail and fault contracts; any measured
 functional or derating conflict reopens I3 before propagation.
 
+`DEC-0083/USB-0001` close the first I4 endpoint with exact
+`DX07S016JA1R1500`, one `TPD4S201RUKR` across both CC and both native S3 USB2
+lines, exact VPWR/VBIAS/FLT support and corrected 220-pF CC shunts. The machine
+map now names every receptacle/protector contact and removes all abstract
+product-USB endpoints. GPIO47 remains free; placement, total CC, USB
+Full-Speed RC/signal integrity, ESD and short-to-VBUS HIL remain open.
+
 The inventory also contains verified reference boundaries. `DSP-0001` covers
 three display/touch devices and one microSD socket; `DSP-0005` additionally
 instantiates the exact disclosed `HMX035CTFT-001` assembly in `G2F-3I` and

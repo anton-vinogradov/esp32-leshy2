@@ -45,7 +45,7 @@ the programmed image.
 | LDO_1V5 local capacitor | 1 | `GRM188R60J106ME47D` | 10 uF; inside 4.5…12-uF allowed range |
 | PPHV bulk | 4 | `GRM32ER71E226KE15L` | 4×22 uF, 25 V, X7R; 88 uF nominal |
 | VBUS local capacitor | 1 | `CGA5L1X7R1E475K160AC` | 4.7 uF, 25 V, X7R |
-| CC shunts | 2 | `GRM1555C1H331JA01J` | 330 pF, 50 V, C0G; one per CC |
+| CC shunts | 2 | `GRM1555C1H221JA01D` | 220 pF, 50 V, C0G; one per protected CC; amended by `DEC-0083` |
 | EEPROM bypass | 1 | `C1005X7R1H104K050BB` | 100 nF, 50 V, X7R |
 | EEPROM WP pull-up | 1 | `RC0402FR-0710KL` | 10 kOhm to LDO_3V3 |
 | TPS local-I2C pull-ups | 2 | `RC0402FR-072K2L` | 2.2 kOhm SCL and SDA to LDO_3V3 |
@@ -54,8 +54,10 @@ the programmed image.
 
 These are 17 separately instantiated physical components. Four PPHV
 capacitors deliberately reuse an existing 25-V BOM line. PPHV effective
-capacitance at the accepted 15-V maximum, CC total capacitance including route
-and connector, and startup overshoot remain layout/lot/HIL checks.
+capacitance at the accepted 15-V maximum, CC total capacitance including
+protector, route and connector, and startup overshoot remain layout/lot/HIL
+checks. `USB-0001/DEC-0083` later replaces the original 330-pF first targets
+with the current 220-pF parts after adding exact four-line protection.
 
 The earlier charger-only 10-kOhm SCL/SDA pulls were not valid for the complete
 TPS + EEPROM + BQ bus. They are replaced, not paralleled, by the exact 2.2-kOhm
@@ -94,7 +96,8 @@ corrupt region are production/HIL acceptance cases.
 ## Availability and cost screen
 
 The three newly introduced BOM lines are active and visibly orderable as of
-2026-08-18: `GRM188R60J106ME47D`, `GRM1555C1H331JA01J` and
+2026-08-18: `GRM188R60J106ME47D`, current amended
+`GRM1555C1H221JA01D` and
 `RC0402FR-072K2L`. Reused PPHV bulk dominates the incremental material. The
 visible 100-to-reel screen is approximately `$1.15…1.45` per board; factory
 quote, alternates and landed cost remain I8. This is not a dramatic BOM change.
