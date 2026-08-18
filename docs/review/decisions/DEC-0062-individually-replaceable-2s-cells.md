@@ -31,8 +31,10 @@
    handling and early-removal detection/hold-up are mandatory I3/I4 proofs.
 8. At least one cell-independent fuse/protection layer, a pack manager with
    per-cell protection/balancing/current/temperature evidence and a keyed or
-   recessed retained battery compartment are required. Exact cells, contacts,
-   holder/door and manager/FETs remain I3/I8 selections.
+   recessed retained battery compartment are required. `DEC-0077` now selects
+   exact polarized `Keystone 1048P`, protected-button-top cell compatibility
+   and the three-NTC coupling contract; exact cell, door and thermal-stack MPNs
+   remain I8 selections.
 
 ## Consequences
 
@@ -44,6 +46,9 @@
   access without making installed-cap removal a live-cell short/tool hazard.
 - The selected charger must support safe instant-on/battery supplement and
   must never energize a reversed/absent slot through its BAT path.
+- `Keystone 1048P` is the exact safe reference. A custom compartment may
+  replace it only after proving equivalent pre-contact polarity and thermal
+  behavior; an ordinary open holder is still forbidden.
 
 ## Reopen rule
 

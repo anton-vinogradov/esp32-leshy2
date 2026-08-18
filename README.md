@@ -83,7 +83,10 @@ privacy or the target owner's authorization.
   normal operation never exceeds `2 A`, first limits input current to the
   actual 5/9/15-V USB contract and stops on direct battery-temperature faults.
 - The supervised 2S battery uses two individually replaceable qualified 18650
-  cells; both are required for battery operation. Reverse insertion is
+  cells, each a protected button-top type, in an exact polarized `Keystone 1048P`
+  holder; both are required for battery operation. Raw flat-top cells are not
+  supported, and the qualified cells ship as a separate regional kit by
+  default. Reverse insertion is
   mechanically blocked; hardware observes and admits the pair before it may
   reach the system, and refuses an unsafe combination instead of forcing it
   to operate or equalize. The handheld also refuses deeply discharged cells:
@@ -168,10 +171,11 @@ flowchart TD
   CILL["RC0402FR-07100KL<br/>100-kOhm 1% hardware ILIM lower resistor"]
   CINTPU["RC0402FR-0710KL #CHG-INT<br/>10-kOhm charger INT pull-up resistor"]
   CCEPU["RC0402FR-0710KL #CHG-CE<br/>10-kOhm reset-high charger CE pull-up resistor"]
-  CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
+  HOLDER["Keystone Electronics 1048P<br/>polarized dual protected-button-top 18650 holder"]
+  CELL0["MPN TBD<br/>qualified protected button-top 18650 cell #0"]
   FUSE0["0451005.MRL<br/>slot-0 independent 5-A fast fuse"]
   NTC0["B57332V5103F360<br/>cell-0 temperature sensor"]
-  CELL1["MPN TBD<br/>individually replaceable qualified 18650 cell #1"]
+  CELL1["MPN TBD<br/>qualified protected button-top 18650 cell #1"]
   FUSE1["0451005.MRL<br/>slot-1 independent 5-A fast fuse"]
   NTC1["B57332V5103F360<br/>cell-1 temperature sensor"]
   PACKGAUGE["MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing"]
@@ -319,7 +323,7 @@ flowchart TD
   CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
   CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
-  CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ HOLDER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
   DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
@@ -388,10 +392,15 @@ flowchart TD
   CHARGER -->|"2.71…3.29-A hardware ceiling"| CILU --> CILL
   PDCTRL --> CINTPU --> CHARGER
   CHARGER -->|"REGN reset-high CE"| CCEPU --> CHARGER
-  CELL0 --> FUSE0 --> PACKGAUGE
+  CELL0 -->|"polarized slot 0"| HOLDER
+  CELL1 -->|"polarized slot 1"| HOLDER
+  HOLDER -->|"independent slot-0 contacts"| FUSE0 --> PACKGAUGE
   NTC0 -->|"TH1"| PACKGAUGE
-  CELL1 --> FUSE1 --> PACKGAUGE
+  HOLDER -->|"independent slot-1 contacts"| FUSE1 --> PACKGAUGE
   NTC1 -->|"TH2"| PACKGAUGE
+  NTC0 -.->|"insulated compliant mid-can contact"| CELL0
+  NTC1 -.->|"insulated compliant mid-can contact"| CELL1
+  CTSN -.->|"one indexed thermally worst-slot contact"| HOLDER
   SHUNT -->|"CSP/CSN Kelvin evidence"| PACKGAUGE
   PACKGAUGE -->|"CHG/DIS gates; no prequal"| PACKFET
   PACKFET <-->|"protected 2S power boundary"| CHARGER

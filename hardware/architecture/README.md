@@ -53,9 +53,11 @@ plus `DEC-0070`'s two exact `MMBT3904-7-F` switched-rail PG qualifiers,
 exact 10-Ohm load, non-retriggerable timer, exact C0G 28.7-40.7-ms paper
 window with 25-50-ms production acceptance, corrected PA25/PA26 ADC contacts
 and all divider/filter components; regression checks prevent the
-invalid battery-derived PA24 assignment from returning. This is still a
-principle-level circuit contract: diagnostic thresholds/cooldown, mechanical
-polarity/thermal coupling and HIL remain open.
+invalid battery-derived PA24 assignment from returning. `DEC-0077/PWR-0016`
+then instantiate exact polarized `Keystone Electronics 1048P`, four functional
+slot contacts and the three insulated compliant NTC roles. This is still a
+principle-level circuit contract: diagnostic thresholds/cooldown, exact cell,
+thermal-stack material and specimen HIL remain open.
 
 The inventory also contains verified reference boundaries. `DSP-0001` covers
 three display/touch devices and one microSD socket; `DSP-0005` additionally

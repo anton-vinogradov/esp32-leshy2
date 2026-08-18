@@ -335,8 +335,17 @@ instances appear separately in the machine source and vertical diagrams.
 direct non-ignored TS, hardware ILIM, I2C/INT pulls, reset-high open-drain CE
 and Rev-C special-pin terminations. `FND-0079` moves product USB-C/USB2
 protection back to dependent I4 and exposes TPS25751/CAT24C512 support
-passives as the next I3 paper item. Diagnostic thresholds/cooldown,
-effective-capacitance/load-step, NTC mechanics, hot-loss/layout and the
+passives as the next I3 paper item. `PWR-0015/FND-0080/DEC-0076/REV-0005AG`
+then close that paper profile: both raw-VBUS pin groups, hardware SafeMode,
+autonomous EEPROM startup, 17 separate support components and complete local/
+host pull networks are explicit. `PWR-0016/FND-0081/DEC-0077/REV-0005AH`
+next replace the holder placeholder with exact polarized `Keystone 1048P`,
+four functional independent contacts, qualified protected-button-top scope
+and one insulated compliant coupling role for each of the three NTCs. The
+bounded rear-fit now uses `39.8 × 86.0 mm` and a `20.7 mm` installed reference
+envelope; U214 retains `9.719 mm` plan and `5.59 mm` depth paper reserves.
+Diagnostic thresholds/cooldown, effective-capacitance/load-step, exact cell/
+thermal-stack, continuity/thermal, hot-loss/layout and the
 listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays

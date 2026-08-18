@@ -22,9 +22,12 @@ U214_M2_END_OFFSET = 14.0
 U214_M2_PITCH = 56.0
 CAPBUS_PITCH = 2.54
 CAPBUS_COLUMNS = 7
-BATTERY_X, BATTERY_Y = 17.5, 40.0
-BATTERY_W, BATTERY_H = 40.0, 78.0
-BATTERY_DEPTH = 18.6
+BATTERY_X, BATTERY_Y = 17.6, 40.0
+BATTERY_W, BATTERY_H = 39.8, 86.0
+BATTERY_HOLDER_BODY_DEPTH = 14.86
+BATTERY_INSTALLED_DEPTH = 20.7
+CELL_REFERENCE_DIAMETER = 18.6
+CELL_REFERENCE_LENGTH = 69.3
 SMA_Y = 3.5
 SMA_KEEP_OUT_R = 6.0
 SMA_CENTRES = [13.0, 25.5, 38.0, 50.5, 63.0]
@@ -51,8 +54,12 @@ def validate() -> list[str]:
         errors.append("U214 rear projection overlaps the battery-holder projection")
     if not overlap(u214, old_encoder):
         errors.append("legacy encoder collision must remain visible until the encoder is relocated")
-    if U214_DEPTH_BEYOND_HOST_REAR >= BATTERY_DEPTH:
-        errors.append("U214 must remain inside the bare-cell rear-depth silhouette")
+    if abs(BATTERY_W - 39.8) > 0.001 or abs(BATTERY_H - 86.0) > 0.001:
+        errors.append("battery projection must match the exact Keystone 1048P drawing")
+    if BATTERY_X < 0 or BATTERY_X + BATTERY_W > BOARD_W or BATTERY_Y + BATTERY_H > BOARD_H:
+        errors.append("Keystone 1048P projection must remain inside the 75x150-mm board")
+    if U214_DEPTH_BEYOND_HOST_REAR >= BATTERY_INSTALLED_DEPTH:
+        errors.append("U214 must remain inside the installed holder/cell rear-depth envelope")
     if U214_Y + U214_REAR_STRIP >= BATTERY_Y:
         errors.append("U214 needs a positive planar service gap above the battery holder")
     for centre in SMA_CENTRES:
@@ -68,7 +75,7 @@ def render() -> str:
     bx, by = 80.0, 90.0
     # Keep a square canvas: the long device/role labels then fit without
     # clipping, and common repository/app previews show the complete side view.
-    width, height = 980, 980
+    width, height = 980, 1080
 
     def x(mm: float) -> float:
         return bx + mm * scale
@@ -124,13 +131,24 @@ def render() -> str:
         text(x(37.5), y(37.0), "legacy ENC → relocate", 10, "bold", "middle", "#b91c1c"),
         rect(BATTERY_X, BATTERY_Y, BATTERY_W, BATTERY_H, "#dcfce7", "#16a34a", rx=9),
         text(x(BATTERY_X + 2.0), y(BATTERY_Y + 5.0), "6", 10, "bold", colour="#166534"),
+        text(x(BOARD_W / 2), y(BATTERY_Y + 5.0), "Keystone 1048P", 10, "bold", "middle", "#166534"),
     ]
 
-    for cell_x, label, number in ((20.0, "CELL 1", "7"), (38.7, "CELL 2", "8")):
-        out.append(rect(cell_x, 46.0, 18.6, 65.0, "#bbf7d0", "#15803d", rx=28))
-        out.append(text(x(cell_x + 3.0), y(50.0), number, 9, "bold", "middle", "#166534"))
-        out.append(text(x(cell_x + 9.3), y(79), label, 9, "bold", "middle", "#166534"))
-        out.append(text(x(cell_x + 9.3), y(84), "MPN TBD", 8, anchor="middle", colour="#166534"))
+    cell_y = BATTERY_Y + (BATTERY_H - CELL_REFERENCE_LENGTH) / 2.0
+    for cell_x, label, number in ((18.4, "CELL 0", "7"), (38.2, "CELL 1", "8")):
+        out.append(rect(cell_x, cell_y, CELL_REFERENCE_DIAMETER, CELL_REFERENCE_LENGTH, "#bbf7d0", "#15803d", rx=28))
+        out.append(text(x(cell_x + 3.0), y(cell_y + 4.0), number, 9, "bold", "middle", "#166534"))
+        out.append(text(x(cell_x + 9.3), y(cell_y + 33.0), label, 9, "bold", "middle", "#166534"))
+        out.append(text(x(cell_x + 9.3), y(cell_y + 38.0), "protected · MPN TBD", 7.5, anchor="middle", colour="#166534"))
+
+    # Each blue mark is one physical B57332V5103F360. The charger sensor has
+    # two allowed indexed tongue sites, but exactly one site is populated.
+    out += [
+        f'<circle cx="{x(27.7):.1f}" cy="{y(82.0):.1f}" r="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        f'<circle cx="{x(47.5):.1f}" cy="{y(82.0):.1f}" r="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        f'<circle cx="{x(27.7):.1f}" cy="{y(103.0):.1f}" r="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" stroke-dasharray="3 2"/>',
+        f'<circle cx="{x(47.5):.1f}" cy="{y(103.0):.1f}" r="5" fill="#eff6ff" stroke="#2563eb" stroke-width="2" stroke-dasharray="3 2"/>',
+    ]
 
     note_x = 430.0
     out += [
@@ -140,38 +158,41 @@ def render() -> str:
         text(note_x, 172, "3  SMA connector · MPN TBD · N24-1 antenna port", 11),
         text(note_x, 194, "4  SMA connector · MPN TBD · VOICE-V/U antenna port", 11),
         text(note_x, 216, "5  SMA connector · MPN TBD · N24-2 antenna port", 11),
-        text(note_x, 238, "6  Battery holder · MPN TBD · 2×18650 retention", 11),
-        text(note_x, 260, "7  Battery cell 1 · MPN TBD · device power", 11),
-        text(note_x, 282, "8  Battery cell 2 · MPN TBD · device power", 11),
-        text(note_x, 316, "U214 end openings must remain accessible:", 11, "bold"),
-        text(note_x, 338, "own RP-SMA, downstream HY2.0-4P and screw access", 11),
-        text(note_x, 372, "Plan clearances", 15, "bold"),
-        text(note_x, 400, f"side overhang: {abs(U214_X):.1f} mm per side", 11),
-        text(note_x, 422, f"SMA keep-out → U214: {U214_Y - SMA_Y - SMA_KEEP_OUT_R:.1f} mm", 11),
-        text(note_x, 444, f"U214 → battery holder: {BATTERY_Y - U214_Y - U214_REAR_STRIP:.1f} mm", 11),
-        text(note_x, 476, "Required mount", 15, "bold"),
-        text(note_x, 504, "Cardputer-like raised rail / recessed female header", 11),
-        text(note_x, 526, "+ two screw bosses; not a flat PCB header", 11),
-        text(note_x, 558, "Four UI-board SMA are separate and unaffected.", 11, colour="#526076"),
-        text(note_x, 592, "Dock interface — separate physical device", 15, "bold"),
-        '<rect x="430" y="610" width="94" height="48" rx="5" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>',
+        text(note_x, 238, "6  Keystone 1048P · polarized 2×18650 holder", 11),
+        text(note_x, 260, "7  Battery cell 0 · protected button-top · MPN TBD", 11),
+        text(note_x, 282, "8  Battery cell 1 · protected button-top · MPN TBD", 11),
+        text(note_x, 304, "9  B57332V5103F360 · cell-0 MAX17320 NTC", 11),
+        text(note_x, 326, "10 B57332V5103F360 · cell-1 MAX17320 NTC", 11),
+        text(note_x, 348, "11 B57332V5103F360 · one populated charger NTC", 11),
+        text(note_x, 382, "U214 end openings must remain accessible:", 11, "bold"),
+        text(note_x, 404, "own RP-SMA, downstream HY2.0-4P and screw access", 11),
+        text(note_x, 438, "Plan clearances", 15, "bold"),
+        text(note_x, 466, f"side overhang: {abs(U214_X):.1f} mm per side", 11),
+        text(note_x, 488, f"SMA keep-out → U214: {U214_Y - SMA_Y - SMA_KEEP_OUT_R:.1f} mm", 11),
+        text(note_x, 510, f"U214 → Keystone 1048P: {BATTERY_Y - U214_Y - U214_REAR_STRIP:.1f} mm", 11),
+        text(note_x, 542, "Required mount", 15, "bold"),
+        text(note_x, 570, "Cardputer-like raised rail / recessed female header", 11),
+        text(note_x, 592, "+ two screw bosses; not a flat PCB header", 11),
+        text(note_x, 624, "Four UI-board SMA are separate and unaffected.", 11, colour="#526076"),
+        text(note_x, 658, "Dock interface — separate physical device", 15, "bold"),
+        '<rect x="430" y="676" width="94" height="48" rx="5" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>',
     ]
 
     for column in range(CAPBUS_COLUMNS):
         for row in range(2):
             out.append(
-                f'<circle cx="{441 + column * 11:.1f}" cy="{624 + row * 19:.1f}" r="3.2" '
+                f'<circle cx="{441 + column * 11:.1f}" cy="{690 + row * 19:.1f}" r="3.2" '
                 'fill="#ffffff" stroke="#6d28d9" stroke-width="1.4"/>'
             )
 
     out += [
-        text(540, 620, "9  Host Cap-Bus receptacle", 11, "bold"),
-        text(540, 641, f"2×7 female SMT · {CAPBUS_PITCH:.2f}-mm pitch", 11),
-        text(540, 662, "MPN TBD · role: mate U214 male header", 11),
-        text(430, 691, "Retention: 2×M2 · MPN TBD · 56-mm centres · 14-mm end offsets", 10.5, colour="#526076"),
+        text(540, 686, "12 Host Cap-Bus receptacle", 11, "bold"),
+        text(540, 707, f"2×7 female SMT · {CAPBUS_PITCH:.2f}-mm pitch", 11),
+        text(540, 728, "MPN TBD · role: mate U214 male header", 11),
+        text(430, 757, "Retention: 2×M2 · MPN TBD · 56-mm centres · 14-mm end offsets", 10.5, colour="#526076"),
     ]
 
-    sy = 740.0
+    sy = 806.0
     sx = 80.0
     depth_scale = 8.0
     out += [
@@ -182,12 +203,13 @@ def render() -> str:
         f'rx="8" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>',
         text(sx + 135, sy + 36, "U214", 13, "bold", "middle", "#9a3412"),
         text(sx + 135, sy + 56, f"+{U214_DEPTH_BEYOND_HOST_REAR:.2f} mm", 11, anchor="middle", colour="#9a3412"),
-        f'<rect x="{sx + 330:.1f}" y="{sy:.1f}" width="{190:.1f}" height="{BATTERY_DEPTH * depth_scale:.1f}" '
+        f'<rect x="{sx + 330:.1f}" y="{sy:.1f}" width="{190:.1f}" height="{BATTERY_INSTALLED_DEPTH * depth_scale:.1f}" '
         f'rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
-        text(sx + 425, sy + 36, "18650 silhouette", 13, "bold", "middle", "#166534"),
-        text(sx + 425, sy + 56, f"+{BATTERY_DEPTH:.1f} mm", 11, anchor="middle", colour="#166534"),
-        text(sx + 290, sy + 176, f"depth reserve: {BATTERY_DEPTH - U214_DEPTH_BEYOND_HOST_REAR:.2f} mm", 12, "bold", "middle", "#166534"),
-        text(sx, 942, "Open: exact dock/header MPN, boss geometry, enclosure wall, installed-cap hand/GNSS/RF HIL", 11, colour="#b45309"),
+        text(sx + 425, sy + 36, "1048P + cell envelope", 13, "bold", "middle", "#166534"),
+        text(sx + 425, sy + 56, f"+{BATTERY_INSTALLED_DEPTH:.1f} mm", 11, anchor="middle", colour="#166534"),
+        text(sx + 425, sy + 76, f"holder body: {BATTERY_HOLDER_BODY_DEPTH:.2f} mm", 10, anchor="middle", colour="#166534"),
+        text(sx + 290, sy + 188, f"depth reserve: {BATTERY_INSTALLED_DEPTH - U214_DEPTH_BEYOND_HOST_REAR:.2f} mm", 12, "bold", "middle", "#166534"),
+        text(sx, 1042, "Open: exact cell/pad/host-header MPN, wall stack, continuity/thermal/installed-cap HIL", 11, colour="#b45309"),
         "</svg>",
     ]
     return "\n".join(out) + "\n"

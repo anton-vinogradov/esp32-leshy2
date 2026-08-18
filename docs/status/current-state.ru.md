@@ -335,9 +335,18 @@ exact 2S/750-kHz PROG, дроссель 2,2 мкГн/7 А, 19 capacitor instance
 прямой non-ignored TS, hardware ILIM, pulls I2C/INT, reset-high CE с
 open-drain GPIO1 и Rev-C termination специальных контактов. `FND-0079`
 возвращает product USB-C/USB2 protection в зависимый I4 и выявляет следующим
-бумажным пунктом I3 support passives TPS25751/CAT24C512. Diagnostic
-thresholds/cooldown, effective-capacitance/load-step, NTC mechanics,
-hot-loss/layout и перечисленные
+бумажным пунктом I3 support passives TPS25751/CAT24C512.
+`PWR-0015/FND-0080/DEC-0076/REV-0005AG` затем закрывают этот paper profile:
+обе raw-VBUS группы, hardware SafeMode, автономный EEPROM startup, 17
+отдельных support components и полные local/host pulls представлены явно.
+`PWR-0016/FND-0081/DEC-0077/REV-0005AH` далее заменяют placeholder держателя
+на exact polarized `Keystone 1048P`, четыре функционально независимых
+контакта, qualified protected-button-top boundary и отдельную изолированную
+поджатую coupling role каждого из трёх NTC. Bounded rear-fit теперь использует
+`39,8 × 86,0 мм` и installed reference envelope `20,7 мм`; для U214 остаются
+paper reserves `9,719 мм` в плане и `5,59 мм` по глубине. Diagnostic
+thresholds/cooldown, effective-capacitance/load-step, exact cell/thermal-stack,
+continuity/thermal, hot-loss/layout и перечисленные
 startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad

@@ -79,6 +79,10 @@ controlled-1S topology, а `DEC-0065` принимает supervised 2S; теку
 manager принят в `DEC-0066`. `PWR-0007/FND-0077/REV-0005W` выявляют
 linear-prequal gate; `DEC-0067/REV-0005X` принимают отсутствие in-device
 recovery и exact active FET/fuse/NTC/shunt/hold/supply-isolation packages.
+`PWR-0016/DEC-0077/REV-0005AH` дополнительно выбирают exact polarized
+`Keystone 1048P`, qualified protected-button-top compatibility, четыре
+независимых slot contacts и coupling role каждого из трёх NTC. Exact cell,
+door/thermal-stack и specimen HIL остаются downstream gates.
 `PWR-0008/DEC-0068/REV-0005Y` затем закрывают active rail topology и exact
 AON/3.3/4.0/5.0-V converter, inductor, load-switch и external-eFuse first
 targets; `DEC-0069/REV-0005Z` исправляют external eFuse на latch-off exact

@@ -87,7 +87,10 @@ Leshy2 — открытый автономный портативный инст
   штатно он не превышает `2 А`, сначала ограничивает вход по фактическому
   USB-контракту 5/9/15 В и прекращается при прямой ошибке температуры батареи.
 - Контролируемая батарея 2S использует две отдельно заменяемые
-  квалифицированные 18650; для работы от батарей нужны обе. Переполюсовка
+  квалифицированные 18650 защищённого button-top типа в точном поляризованном
+  держателе `Keystone 1048P`; для работы от батарей нужны обе. Raw flat-top
+  ячейки не поддерживаются, а квалифицированные аккумуляторы по умолчанию
+  поставляются отдельным региональным комплектом. Переполюсовка
   исключается механически; аппаратная часть наблюдает и допускает пару до её
   подключения к системе и отказывает опасному сочетанию вместо принудительной
   работы или выравнивания. Глубоко разряженная банка также отклоняется:
@@ -174,10 +177,11 @@ flowchart TD
   CILL["RC0402FR-07100KL<br/>нижний резистор аппаратного ILIM 100 кОм, 1%"]
   CINTPU["RC0402FR-0710KL #CHG-INT<br/>pull-up резистор INT зарядника 10 кОм"]
   CCEPU["RC0402FR-0710KL #CHG-CE<br/>reset-high pull-up резистор CE зарядника 10 кОм"]
-  CELL0["MPN TBD<br/>отдельно заменяемая квалифицированная 18650 №0"]
+  HOLDER["Keystone Electronics 1048P<br/>поляризованный держатель 2× protected button-top 18650"]
+  CELL0["MPN TBD<br/>квалифицированная защищённая button-top 18650 №0"]
   FUSE0["0451005.MRL<br/>независимый 5-А fast fuse слота 0"]
   NTC0["B57332V5103F360<br/>датчик температуры банки 0"]
-  CELL1["MPN TBD<br/>отдельно заменяемая квалифицированная 18650 №1"]
+  CELL1["MPN TBD<br/>квалифицированная защищённая button-top 18650 №1"]
   FUSE1["0451005.MRL<br/>независимый 5-А fast fuse слота 1"]
   NTC1["B57332V5103F360<br/>датчик температуры банки 1"]
   PACKGAUGE["MAX17320G20+T<br/>high-side защита 2S, gauging, температура и балансировка"]
@@ -325,7 +329,7 @@ flowchart TD
   CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
   CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
-  CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ HOLDER ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
   DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
@@ -394,10 +398,15 @@ flowchart TD
   CHARGER -->|"аппаратный предел 2,71…3,29 А"| CILU --> CILL
   PDCTRL --> CINTPU --> CHARGER
   CHARGER -->|"reset-high CE от REGN"| CCEPU --> CHARGER
-  CELL0 --> FUSE0 --> PACKGAUGE
+  CELL0 -->|"поляризованный слот 0"| HOLDER
+  CELL1 -->|"поляризованный слот 1"| HOLDER
+  HOLDER -->|"независимые контакты слота 0"| FUSE0 --> PACKGAUGE
   NTC0 -->|"TH1"| PACKGAUGE
-  CELL1 --> FUSE1 --> PACKGAUGE
+  HOLDER -->|"независимые контакты слота 1"| FUSE1 --> PACKGAUGE
   NTC1 -->|"TH2"| PACKGAUGE
+  NTC0 -.->|"изолированный поджатый контакт с серединой банки"| CELL0
+  NTC1 -.->|"изолированный поджатый контакт с серединой банки"| CELL1
+  CTSN -.->|"одна индексированная позиция на худшем по нагреву слоте"| HOLDER
   SHUNT -->|"Kelvin evidence CSP/CSN"| PACKGAUGE
   PACKGAUGE -->|"CHG/DIS gates; без prequal"| PACKFET
   PACKFET <-->|"защищённая силовая граница 2S"| CHARGER

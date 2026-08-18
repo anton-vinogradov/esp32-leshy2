@@ -2300,6 +2300,37 @@
         "END_2": {"physical": "termination 2", "role": "analog"}
       }
     },
+    "keystone_1048p": {
+      "mpn": "Keystone Electronics 1048P",
+      "kind": "dual_18650_smt_polarized_open_holder",
+      "qualification": "verified_mechanical_reference",
+      "lifecycle": "active",
+      "dimensions_mm": [86.0, 39.8, 14.86],
+      "installed_envelope_mm": [86.0, 39.8, 20.7],
+      "source": {
+        "document": "Keystone 1048P exact product page and 18650 holder drawing",
+        "version": "current product page and catalog M65 p27 checked 2026-08-18",
+        "url": "https://www.keyelco.com/product.cfm/product_id/13959",
+        "checked": "2026-08-18"
+      },
+      "drawing_source": {
+        "document": "Keystone Catalog M65 p27, dual-cell SMT polarized holder and pad layout",
+        "url": "https://www.digikey.com/htmldatasheets/production/1298968/0/0/1/18650-lithium-ion-battery-holders.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "1048P active authorized-distributor stock and price page",
+        "url": "https://www.mouser.com/ProductDetail/Keystone-Electronics/1048P?qs=9%252Bwcgl%2FJqd1h8Vx3IFpTxA%3D%3D",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "SLOT0_POS": {"physical": "slot 0 positive-side independent SMT contact", "role": "power"},
+        "SLOT0_NEG": {"physical": "slot 0 negative-side independent SMT contact", "role": "power"},
+        "SLOT1_POS": {"physical": "slot 1 positive-side independent SMT contact", "role": "power"},
+        "SLOT1_NEG": {"physical": "slot 1 negative-side independent SMT contact", "role": "power"}
+      }
+    },
     "diodes_2n7002dw_7_f": {
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
       "kind": "dual_60v_nmos_sot363_hold_release",

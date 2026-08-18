@@ -62,9 +62,10 @@ The earlier `FDMC8030` paper candidate is also rejected: onsemi now marks it
 `Last Shipments`. An initially screened common-source replacement is rejected
 electrically; the accepted `CSD87313DMST` is the required common-drain device.
 
-An SMD NTC part number is not sufficient mechanical proof. Each sensor needs a
-repeatable compliant thermal contact to its own cylindrical cell; pad/clip,
-insulator and cell-replacement HIL remain `I8` work.
+An SMD NTC part number is not sufficient mechanical proof. `PWR-0016/DEC-0077`
+now define one insulated compliant mid-can contact per cell and the independent
+charger-TS worst-slot location. Exact thermal-stack material and replacement
+HIL remain `I8` work.
 
 ## Reset-default hold and admission supply
 
@@ -192,5 +193,6 @@ Checked 2026-08-18 because every named candidate is an exact orderable MPN:
 The 2S sensing rules, real current envelope, exact switching FET, first targets,
 reset hold, supply handover and two-ADC budget receive **«Проведено ревью»** at
 paper level. `DEC-0067` accepts no in-device deep-cell recovery. Reverse-
-insertion blocking, diagnostic passives/thresholds, hot losses and HIL remain
-explicit downstream work; no KiCad start is authorized.
+insertion blocking and NTC roles are subsequently paper-closed by
+`PWR-0016/DEC-0077`; diagnostic thresholds, hot losses and HIL remain explicit
+downstream work. No KiCad start is authorized.

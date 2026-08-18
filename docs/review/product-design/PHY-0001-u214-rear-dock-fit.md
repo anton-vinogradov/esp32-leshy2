@@ -6,6 +6,7 @@
 - Proposal: [`IMP-0048`](../improvements/IMP-0048-u214-dock-versus-sma-placement.md)
 - Decision: [`DEC-0057`](../decisions/DEC-0057-u214-rear-dock-above-batteries.md)
 - Mechanical facts: [`MEC-0001`](MEC-0001-u214-cap-bus-mechanical-interface.md)
+- Exact battery update: [`PWR-0016`](../architecture/PWR-0016-keystone-1048p-holder-and-ntc-coupling.md)
 - Generator: [`u214_rear_fit.py`](../../../hardware/product-design/u214_rear_fit.py)
 - Render: [`PHY-0001-u214-rear-fit.svg`](img/PHY-0001-u214-rear-fit.svg)
 
@@ -17,8 +18,9 @@ assembled-position components получены следующие paper dimensio
 - Cardputer body: `84 × 54 × 19.676 mm` overall model envelope;
 - U214 assembled shell: width `84 mm`, rear strip/edge height `15.281 mm`;
 - U214 extends from host rear datum approximately `15.11 mm`;
-- bare 18650 diameter/depth is `18.6 mm`, leaving `3.49 mm` depth reserve before
-  holder walls are counted;
+- the original bare-cell screen used `18.6 mm`; exact `Keystone 1048P` plus
+  installed-cell reference envelope is now `20.7 mm`, leaving `5.59 mm` paper
+  depth reserve;
 - U214 is L-shaped and wraps the host edge: a flat board header is not
   mechanically equivalent.
 
@@ -32,6 +34,8 @@ The scaled candidate places U214 transversely above the battery holder:
   mm`, leaving `5.5 mm` planar gap;
 - U214 projection ends at `y=30.281 mm`; battery holder starts at `y=40 mm`,
   leaving `9.719 mm` service gap;
+- exact `1048P` projection is `39.8 × 86.0 mm` at `(17.6, 40.0)` and leaves a
+  `24.0 mm` lower board margin;
 - old rear encoder at `x=30…45, y=20…33` collides and must move;
 - the diagram shows the five RF-board SMA paths; four separate UI-board SMA
   paths remain outside this face and are unaffected;
@@ -56,8 +60,8 @@ mating depth, rail height, screw length and tolerances at the specimen gate.
 ## Вывод
 
 Rear-above-battery D is the accepted active working placement. It preserves all
-nine top SMA, avoids increasing base width, and stays inside the battery depth
-silhouette on paper. It requires relocating the legacy encoder and cannot reach
+all nine SMA paths, avoids increasing base width, and stays inside the exact
+holder/cell depth envelope on paper. It requires relocating the legacy encoder and cannot reach
 enclosure sign-off before the exact connector/rail/specimen gate.
 
 ## Sources

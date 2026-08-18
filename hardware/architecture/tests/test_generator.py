@@ -21,6 +21,35 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
 
+    def test_exact_polarized_holder_and_three_ntc_contract_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0077", contract["battery_holder_decision"])
+        self.assertIn("Keystone Electronics 1048P", contract["battery_holder_profile"])
+        self.assertIn("protected button-top", contract["battery_holder_profile"])
+        self.assertIn("thermally worst slot", contract["battery_thermal_coupling"])
+        self.assertNotIn(
+            "mechanical reverse-insertion blocking and all NTC cell coupling",
+            contract["remaining_i3"],
+        )
+        self.assertEqual("keystone_1048p", candidate["instances"]["pack_holder"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("pack_holder.SLOT0_POS", "pack_fuse0.END_1", "PACK_SLOT0_POSITIVE_RAW"),
+            ("pack_holder.SLOT0_NEG", "pack_gauge.GND", "PACK_LOCAL_GND"),
+            ("pack_holder.SLOT1_NEG", "abstract:protected-2s-midpoint", "PACK_2S_MIDPOINT"),
+            ("pack_holder.SLOT1_POS", "pack_fuse1.END_1", "PACK_SLOT1_POSITIVE_RAW"),
+        ):
+            self.assertIn(route, routes)
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        self.assertIn("Keystone Electronics 1048P", rendered)
+        self.assertIn("indexed thermally worst-slot contact", rendered)
+
     def test_principled_pinout_is_derived_from_current_leading_budget(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 32 | 3 | 1 | 36 |", rendered)
@@ -56,6 +85,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Vishay WSL25125L000FEA<br/>5-mOhm Kelvin current shunt",
             "TDK B57332V5103F360<br/>cell-0 temperature sensor",
             "TDK B57332V5103F360<br/>cell-1 temperature sensor",
+            "Keystone Electronics 1048P<br/>polarized dual protected-button-top 18650 retention and four independent contacts",
             "Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release",
             "onsemi BAV70LT1G<br/>AOLDO/fixture source isolation",
             "Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority",
@@ -298,6 +328,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_shunt": "vishay_wsl25125l000fea",
             "pack_ntc0": "tdk_b57332v5103f360",
             "pack_ntc1": "tdk_b57332v5103f360",
+            "pack_holder": "keystone_1048p",
             "pack_hold": "diodes_2n7002dw_7_f",
             "pack_supply_or": "onsemi_bav70lt1g",
             "pack_system_diode": "diodes_bat54_7_f",
@@ -309,6 +340,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
+
+        holder = self.database["devices"]["keystone_1048p"]
+        self.assertEqual([86.0, 39.8, 14.86], holder["dimensions_mm"])
+        self.assertEqual(
+            {"SLOT0_POS", "SLOT0_NEG", "SLOT1_POS", "SLOT1_NEG"},
+            set(holder["contacts"]),
+        )
 
         tps = self.database["devices"]["ti_tps25751d_refr"]
         self.assertEqual("23/24/25", tps["contacts"]["VBUS_IN"]["physical"])
