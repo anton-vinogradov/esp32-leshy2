@@ -78,7 +78,7 @@ because all three functions are outside the accepted product envelope.
 | BATP | `RC0402FR-07100RL`, 100 Ohm 1% | required series sense connection to the admitted pack positive |
 | TS | `RC0402FR-075K23L` 5.23 kOhm, `RC0402FR-0730K1L` 30.1 kOhm, third `B57332V5103F360` 10-kOhm NTC | direct non-ignored BQ temperature gate, nominally close to the 0/10/45/60°C JEITA points |
 | ILIM | `RC0402FR-0744K2L` 44.2 kOhm over `RC0402FR-07100KL` 100 kOhm | about 2.91 A at 4.8-V REGN and 3.08 A at 5.0 V; 2.71…3.29 A over specified REGN and 1% resistor corners |
-| local I2C/IRQ | 3 × `RC0402FR-0710KL` | separate SCL, SDA and INT 10-kOhm pull-ups to TPS `LDO_3V3` |
+| local I2C/IRQ | 2 × `RC0402FR-072K2L`; 1 × `RC0402FR-0710KL` | complete-bus SCL/SDA 2.2-kOhm pull-ups and separate INT 10-kOhm pull-up to TPS `LDO_3V3`; corrected by `FND-0080/DEC-0076` |
 | charge default | 1 × `RC0402FR-0710KL` | CE pulled high to BQ REGN; TPS GPIO1 is open-drain and can only sink it after valid policy |
 
 The external ILIM divider is a hardware ceiling, not source negotiation. BQ
@@ -138,5 +138,7 @@ The exact BQ inductor, 19 capacitor instances, ten resistor instances, third
 NTC, all previously omitted special-pin terminations and the reset/runtime
 contract receive **«Проведено ревью»** at paper-schematic level. Placement,
 thermal/EMI/source-transition tests and NTC mechanics remain HIL. Exact
-TPS25751/CAT24C512 surrounding passives are the next I3 paper dependency. This
-does not authorize KiCad.
+TPS25751/CAT24C512 surrounding passives later close in
+`PWR-0015/DEC-0076/REV-0005AG`; `FND-0080` replaces the provisional
+charger-only bus pulls with the complete-bus values. This does not authorize
+KiCad.

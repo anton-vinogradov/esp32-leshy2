@@ -108,8 +108,12 @@ PA25/PA26 contacts without changing the `12/3/3` budget.
 strap, 2.2-uH/7-A inductor, all physical energy banks, BATP/TS/ILIM, local-bus
 pulls, reset-high CE and special-pin terminations. `FND-0079` corrects product
 USB-C/USB2 protection back to I4 and exposes TPS25751/CAT24C512 support
-passives as the next true I3 paper dependency. Diagnostic thresholds/cooldown,
-mechanical polarity/thermal coupling, calculated hot loss and HIL remain active.
+passives as the next true I3 paper dependency.
+`FND-0080/PWR-0015/DEC-0076/REV-0005AG` then correct separate TPS
+VBUS/VBUS_IN startup, hardware SafeMode,
+17 exact support components and both complete I2C pull networks. Diagnostic
+thresholds/cooldown, mechanical polarity/thermal coupling, calculated hot loss
+and HIL remain active.
 
 ## Active G2F artifacts
 
@@ -155,6 +159,9 @@ mechanical polarity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0014`](PWR-0014-exact-bq25798-passive-profile.md) closes the exact
   BQ25798 2S/750-kHz energy, current/temperature sensing, reset and special-pin
   profile while leaving placement/thermal/source-transition HIL explicit;
+- [`PWR-0015`](PWR-0015-exact-tps25751-eeprom-support-profile.md) closes the
+  exact TPS25751D/CAT24 autonomous SafeMode startup, 17 support components,
+  unused contacts and complete local/host pull networks;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

@@ -18,14 +18,17 @@
 3. A third independent `B57332V5103F360` with 5.23-kOhm/30.1-kOhm bias gives
    BQ its own non-ignored temperature gate. Its mechanical coupling remains
    an explicit I3/HIL dependency.
-4. TPS `LDO_3V3` supplies the exact 10-kOhm SCL/SDA/INT pull-ups. CE has an
-   exact 10-kOhm pull-up to BQ REGN; TPS GPIO1 is open-drain and sinks only
-   after valid image, source contract and IINDPM readback.
+4. TPS `LDO_3V3` supplies the local SCL/SDA/INT pull-ups. The provisional
+   charger-only values are superseded by `FND-0080/DEC-0076`: complete-bus
+   SCL/SDA are 2.2 kOhm and INT remains 10 kOhm. CE has an exact 10-kOhm
+   pull-up to BQ REGN; TPS GPIO1 is open-drain and sinks only after valid image,
+   source contract and IINDPM readback.
 5. Both VAC inputs tie to VBUS; both unused ACDRV outputs tie to ground. SDRV
    uses the current Rev-C 1-nF/50-V/0402 termination. D+/D-/QON/disabled STAT
    remain no-connects. No backup/OTG/MPPT/BC1.2 behavior is introduced.
 6. Exact product USB-C/USB2 protection is corrected back to dependent step I4.
-   TPS25751/CAT24C512 support passives become the next true I3 paper item.
+   TPS25751/CAT24C512 support passives are the next true I3 paper item and later
+   close in `DEC-0076`.
 
 ## Consequence
 

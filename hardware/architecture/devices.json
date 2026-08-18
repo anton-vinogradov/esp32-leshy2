@@ -2378,6 +2378,7 @@
         "checked": "2026-08-18"
       },
       "programmable": false,
+      "externally_programmed_memory": true,
       "service_required": ["SDA", "SCL", "WP"],
       "contacts": {
         "A0": {"physical": "1", "role": "strap"},
@@ -2434,6 +2435,75 @@
       "contacts": {
         "END_1": {"physical": "1", "role": "power"},
         "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm188r60j106me47d": {
+      "mpn": "Murata GRM188R60J106ME47D",
+      "kind": "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "Murata GRM188R60J106ME47 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM188R60J106ME47D",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM188R60J106ME47D active distributor stock page",
+        "url": "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Murata-Electronics-GRM188R60J106ME47D_C77041.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "murata_grm1555c1h331ja01j": {
+      "mpn": "Murata GRM1555C1H331JA01J",
+      "kind": "330pf_5pct_50v_c0g_0402_usb_cc_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Murata GRM1555C1H331JA01 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM1555C1H331JA01J",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM1555C1H331JA01J active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H331JA01J/4380494",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "signal"},
+        "END_2": {"physical": "2", "role": "power"}
+      }
+    },
+    "yageo_rc0402fr_072k2l": {
+      "mpn": "Yageo RC0402FR-072K2L",
+      "kind": "2_2kohm_1pct_0402_i2c_pullup_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RC0402 thick-film resistor series datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-072K2L active authorized-distributor stock page",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/729500",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "power"},
+        "END_2": {"physical": "2", "role": "signal"}
       }
     },
     "murata_grm31cr71a226ke15l": {

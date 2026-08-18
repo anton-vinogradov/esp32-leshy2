@@ -428,8 +428,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "charger_ts_ntc": "tdk_b57332v5103f360",
             "charger_ilim_top": "yageo_rc0402fr_0744k2l",
             "charger_ilim_bottom": "yageo_rc0402fr_07100kl",
-            "charger_scl_pullup": "yageo_rc0402fr_0710kl",
-            "charger_sda_pullup": "yageo_rc0402fr_0710kl",
+            "pd_local_scl_pullup": "yageo_rc0402fr_072k2l",
+            "pd_local_sda_pullup": "yageo_rc0402fr_072k2l",
             "charger_int_pullup": "yageo_rc0402fr_0710kl",
             "charger_ce_pullup": "yageo_rc0402fr_0710kl",
         }
@@ -447,7 +447,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("pack_power_fet.S2", "charger_batp_res.END_1", "PROTECTED_PACK_POSITIVE"),
             ("nvdc_charger.TS", "charger_ts_ntc.END_1", "CHARGER_TS"),
             ("nvdc_charger.ILIM_HIZ", "charger_ilim_bottom.END_1", "CHARGER_ILIM_HIZ"),
-            ("pd_controller.LDO_3V3", "charger_scl_pullup.END_1", "PD_LOCAL_3V3"),
+            ("pd_controller.LDO_3V3", "pd_local_scl_pullup.END_1", "PD_LOCAL_3V3"),
             ("nvdc_charger.REGN", "charger_ce_pullup.END_1", "CHARGER_REGN"),
             ("nvdc_charger.VBUS", "nvdc_charger.VAC1", "CHARGER_VBUS_SENSE"),
             ("nvdc_charger.VBUS", "nvdc_charger.VAC2", "CHARGER_VBUS_SENSE"),
@@ -463,6 +463,80 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertEqual("od", pd_gpio1["direction"])
         self.assertIn("Hi-Z reset", pd_gpio1["reset_proof"])
+
+    def test_exact_tps25751_eeprom_support_profile_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["power_contract"]
+        self.assertEqual("DEC-0076", contract["pd_support_decision"])
+        self.assertIn("hardware SafeMode", contract["pd_support_profile"])
+        self.assertIn("both VBUS and VBUS_IN", contract["pd_support_profile"])
+        self.assertNotIn(
+            "TPS25751 and CAT24C512 surrounding passives and configuration straps",
+            contract["remaining_i3"],
+        )
+
+        expected_instances = {
+            "pd_vin_cap": "murata_grm188r60j106me47d",
+            "pd_ldo3v3_cap": "murata_grm188r60j106me47d",
+            "pd_ldo1v5_cap": "murata_grm188r60j106me47d",
+            "pd_pphv_cap0": "murata_grm32er71e226ke15l",
+            "pd_pphv_cap1": "murata_grm32er71e226ke15l",
+            "pd_pphv_cap2": "murata_grm32er71e226ke15l",
+            "pd_pphv_cap3": "murata_grm32er71e226ke15l",
+            "pd_vbus_cap": "tdk_cga5l1x7r1e475k160ac",
+            "pd_cc1_cap": "murata_grm1555c1h331ja01j",
+            "pd_cc2_cap": "murata_grm1555c1h331ja01j",
+            "pd_eeprom_bypass": "tdk_c1005x7r1h104k050bb",
+            "pd_eeprom_wp_pullup": "yageo_rc0402fr_0710kl",
+            "pd_local_scl_pullup": "yageo_rc0402fr_072k2l",
+            "pd_local_sda_pullup": "yageo_rc0402fr_072k2l",
+            "sys_i2c_scl_pullup": "yageo_rc0402fr_072k2l",
+            "sys_i2c_sda_pullup": "yageo_rc0402fr_072k2l",
+            "sys_int_pullup": "yageo_rc0402fr_0710kl",
+        }
+        for instance, device_id in expected_instances.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+        self.assertNotIn("charger_scl_pullup", candidate["instances"])
+        self.assertNotIn("charger_sda_pullup", candidate["instances"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("abstract:product-usb-c-vbus", "pd_controller.VBUS", "USB_C_VBUS_RAW"),
+            ("abstract:product-usb-c-vbus", "pd_controller.VBUS_IN", "USB_C_VBUS_RAW"),
+            ("pd_controller.LDO_3V3", "pd_controller.ADCIN1", "PD_ADCIN1_SAFE_MODE_HIGH"),
+            ("pd_controller.ADCIN2", "abstract:power-ground", "PD_ADCIN2_SAFE_MODE_LOW"),
+            ("pd_controller.PP5V", "abstract:power-ground", "POWER_GROUND"),
+            ("abstract:AON_SAFE_3V3", "pd_controller.VIN_3V3", "AON_SAFE_3V3"),
+            ("pd_controller.LDO_3V3", "pd_config_eeprom.VCC", "PD_LOCAL_3V3"),
+            ("pd_config_eeprom.VSS", "abstract:power-ground", "POWER_GROUND"),
+            ("pd_eeprom_wp_pullup.END_2", "pd_config_eeprom.WP", "PD_EEPROM_WP"),
+            ("pd_local_scl_pullup.END_2", "nvdc_charger.SCL", "PD_LOCAL_I2C_SCL"),
+            ("sys_i2c_sda_pullup.END_2", "s3.GPIO1", "SYS_I2C_SDA"),
+            ("sys_int_pullup.END_2", "s3.GPIO37", "SYS_INT_N"),
+            ("pd_controller.DRAIN_30", "pd_controller.DRAIN_PAD", "PD_DRAIN_COPPER"),
+        ):
+            self.assertIn(route, routes)
+
+        pd_gpio0 = next(
+            row
+            for row in candidate["allocations"]
+            if row["instance"] == "pd_controller" and row["contact"] == "GPIO0"
+        )
+        self.assertEqual("od", pd_gpio0["direction"])
+        self.assertIn("authorized", pd_gpio0["reset_proof"])
+        self.assertTrue(
+            self.database["devices"]["onsemi_cat24c512wi_gt3"][
+                "externally_programmed_memory"
+            ]
+        )
+        eeprom_service = next(
+            item for item in candidate["services"] if item["instance"] == "pd_config_eeprom"
+        )
+        self.assertIn("ReadyForPatch", eeprom_service["method"])
+        self.assertIn("never drives LDO_3V3 externally", eeprom_service["method"])
 
     def test_exact_fixed_downstream_rail_tree_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

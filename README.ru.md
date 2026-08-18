@@ -77,9 +77,11 @@ Leshy2 — открытый автономный портативный инст
 - Основной USB-C сохраняет прямые USB2-линии S3 и только принимает питание:
   fallback 5 В, 9 В при 3 А и 15 В при 2 А, до 30 Вт. Режимы power bank и
   USB-PD source отсутствуют.
-- PD-контроллер автономно загружается из отдельной восстанавливаемой EEPROM.
-  Заводские площадки позволяют прошить пустую микросхему; полевое обновление
-  проверяет подписанный владельцем образ и сохраняет rollback-регион.
+- PD-контроллер прямо от сырого USB VBUS входит в аппаратный SafeMode,
+  автономно загружается из отдельной восстанавливаемой EEPROM и не включает
+  защищённый силовой тракт и заряд до появления валидного образа. Заводские
+  площадки позволяют прошить пустую микросхему; полевое обновление проверяет
+  подписанный владельцем образ и сохраняет rollback-регион.
 - Зарядник 2S физически настроен на эффективный профиль `750 кГц` с дросселем
   `2,2 мкГн / 7 А`. После reset заряд начинается с консервативного `1 А`;
   штатно он не превышает `2 А`, сначала ограничивает вход по фактическому
@@ -125,6 +127,23 @@ flowchart TD
   VBUSPROT["TVS2200DRVR<br/>22-В flat-clamp защита VBUS от импульсов"]
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD политика и защищённый high-voltage тракт"]
   PDCFG["CAT24C512WI-GT3<br/>отдельная EEPROM с patch/configuration PD"]
+  PVINCAP["GRM188R60J106ME47D #VIN<br/>конденсатор VIN_3V3 PD-контроллера: 10 мкФ"]
+  PL3CAP["GRM188R60J106ME47D #LDO3V3<br/>конденсатор LDO 3,3 В PD-контроллера: 10 мкФ"]
+  PL1CAP["GRM188R60J106ME47D #LDO1V5<br/>конденсатор LDO 1,5 В PD-контроллера: 10 мкФ"]
+  PPHVC0["GRM32ER71E226KE15L #PPHV0<br/>конденсатор защищённого VBUS №0: 22 мкФ, 25 В"]
+  PPHVC1["GRM32ER71E226KE15L #PPHV1<br/>конденсатор защищённого VBUS №1: 22 мкФ, 25 В"]
+  PPHVC2["GRM32ER71E226KE15L #PPHV2<br/>конденсатор защищённого VBUS №2: 22 мкФ, 25 В"]
+  PPHVC3["GRM32ER71E226KE15L #PPHV3<br/>конденсатор защищённого VBUS №3: 22 мкФ, 25 В"]
+  PVBUSCAP["CGA5L1X7R1E475K160AC #PD-VBUS<br/>конденсатор запуска от сырого VBUS: 4,7 мкФ, 25 В"]
+  PCC1CAP["GRM1555C1H331JA01J #CC1<br/>конденсатор USB-C CC1: 330 пФ, C0G"]
+  PCC2CAP["GRM1555C1H331JA01J #CC2<br/>конденсатор USB-C CC2: 330 пФ, C0G"]
+  PEECAP["C1005X7R1H104K050BB #PD-EEPROM<br/>bypass-конденсатор EEPROM PD: 100 нФ"]
+  PEEWPPU["RC0402FR-0710KL #PD-WP<br/>reset-high pull-up защиты записи EEPROM: 10 кОм"]
+  PLSCLPU["RC0402FR-072K2L #PD-SCL<br/>pull-up SCL локальной PD-шины: 2,2 кОм"]
+  PLSDAPU["RC0402FR-072K2L #PD-SDA<br/>pull-up SDA локальной PD-шины: 2,2 кОм"]
+  PHSCLPU["RC0402FR-072K2L #SYS-SCL<br/>pull-up SCL системной host-шины: 2,2 кОм"]
+  PHSDAPU["RC0402FR-072K2L #SYS-SDA<br/>pull-up SDA системной host-шины: 2,2 кОм"]
+  PIRQPU["RC0402FR-0710KL #SYS-IRQ<br/>pull-up общего wired-low IRQ: 10 кОм"]
   CHARGER["BQ25798RQMR<br/>настроенный на 2S buck-boost зарядник и NVDC системный power path"]
   CHL["MWSA0503S-2R2MT<br/>дроссель зарядника 2,2 мкГн, 7 А, 750 кГц"]
   CVB0["GRM31CR71E106MA12L #VBUS0<br/>конденсатор VBUS зарядника №0: 10 мкФ, 25 В, X7R"]
@@ -153,8 +172,6 @@ flowchart TD
   CTSN["B57332V5103F360 #CHARGER<br/>независимый NTC батареи зарядника 10 кОм"]
   CILU["RC0402FR-0744K2L<br/>верхний резистор аппаратного ILIM 44,2 кОм, 1%"]
   CILL["RC0402FR-07100KL<br/>нижний резистор аппаратного ILIM 100 кОм, 1%"]
-  CSCLPU["RC0402FR-0710KL #CHG-SCL<br/>pull-up резистор SCL зарядника 10 кОм"]
-  CSDAPU["RC0402FR-0710KL #CHG-SDA<br/>pull-up резистор SDA зарядника 10 кОм"]
   CINTPU["RC0402FR-0710KL #CHG-INT<br/>pull-up резистор INT зарядника 10 кОм"]
   CCEPU["RC0402FR-0710KL #CHG-CE<br/>reset-high pull-up резистор CE зарядника 10 кОм"]
   CELL0["MPN TBD<br/>отдельно заменяемая квалифицированная 18650 №0"]
@@ -302,11 +319,13 @@ flowchart TD
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
-  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
+  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
+  PPHVC1 ~~~ PPHVC2 ~~~ PPHVC3 ~~~ PVBUSCAP ~~~ PCC1CAP ~~~ PCC2CAP ~~~ PEECAP ~~~ PEEWPPU
+  PEEWPPU ~~~ PLSCLPU ~~~ PLSDAPU ~~~ PHSCLPU ~~~ PHSDAPU ~~~ PIRQPU ~~~ CHARGER
   CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
   CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
-  CTSN ~~~ CILU ~~~ CILL ~~~ CSCLPU ~~~ CSDAPU ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
   DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
@@ -325,12 +344,29 @@ flowchart TD
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
-  USBC -->|"только приём VBUS"| PDCTRL
+  USBC -->|"сырой VBUS к VBUS + VBUS_IN"| PDCTRL
   USBC -->|"шунтирующая защита VBUS"| VBUSPROT
   USBC <-->|"D-/D+ напрямую, без ответвления к PD/charger"| S3
   PDCTRL <-->|"локальная I²C, boot image"| PDCFG
   PDCTRL <-->|"защищённый VBUS + локальные I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + общий wired-low IRQ"| PDCTRL
+  PDCTRL -->|"энергия VIN_3V3 / внутренних LDO"| PVINCAP
+  PDCTRL --> PL3CAP
+  PDCTRL --> PL1CAP
+  PDCTRL -->|"номинально 88 мкФ PPHV"| PPHVC0
+  PDCTRL --> PPHVC1
+  PDCTRL --> PPHVC2
+  PDCTRL --> PPHVC3
+  PDCTRL -->|"энергия VBUS dead-battery"| PVBUSCAP
+  PDCTRL -->|"шунты CC1 / CC2"| PCC1CAP
+  PDCTRL --> PCC2CAP
+  PDCTRL -->|"bypass питания EEPROM"| PEECAP --> PDCFG
+  PDCTRL -->|"reset-high open-drain WP"| PEEWPPU --> PDCFG
+  PDCTRL -->|"pull-up полной локальной I²C"| PLSCLPU --> PDCFG
+  PDCTRL --> PLSDAPU --> CHARGER
+  S3 -->|"pull-up полной host I²C/IRQ"| PHSCLPU --> PDCTRL
+  S3 --> PHSDAPU --> PDCTRL
+  S3 --> PIRQPU --> PDCTRL
   CHARGER -->|"SW1/SW2"| CHL
   CHARGER -->|"bulk/HF VBUS"| CVB0
   CHARGER --> CVB1
@@ -356,8 +392,6 @@ flowchart TD
   CHARGER -->|"прямой TS без ignore"| CTSU --> CTSN
   CTSN --> CTSL
   CHARGER -->|"аппаратный предел 2,71…3,29 А"| CILU --> CILL
-  PDCTRL -->|"pull-up к LDO_3V3"| CSCLPU --> CHARGER
-  PDCTRL --> CSDAPU --> CHARGER
   PDCTRL --> CINTPU --> CHARGER
   CHARGER -->|"reset-high CE от REGN"| CCEPU --> CHARGER
   CELL0 --> FUSE0 --> PACKGAUGE
@@ -388,6 +422,7 @@ flowchart TD
   PACKADM --> STACKADCB
   PACKADM --> STACKADCC
   CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
+  AONL -->|"AON_SAFE_3V3, runtime source"| PVINCAP
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"локальный bypass SYS"| AONIN
   AONL -->|"локальный выход AON"| AONOUT

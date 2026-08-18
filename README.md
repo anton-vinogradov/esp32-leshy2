@@ -73,9 +73,11 @@ privacy or the target owner's authorization.
 - The product USB-C port keeps direct S3 USB2 data and accepts power only:
   5-V fallback, 9 V at 3 A and 15 V at 2 A, up to 30 W. It never acts as a
   power bank or USB-PD source.
-- The PD controller boots autonomously from a dedicated recoverable EEPROM.
-  Factory pads can program a blank device; field updates verify an
-  owner-signed image and retain a rollback region.
+- The PD controller enters hardware SafeMode directly from raw USB VBUS,
+  autonomously loads a dedicated recoverable EEPROM and keeps the protected
+  power path and charging off until a valid image is present. Factory pads can
+  program a blank device; field updates verify an owner-signed image and retain
+  a rollback region.
 - The 2S charger is physically strapped to an efficient `750 kHz` profile
   with a `2.2 uH / 7 A` inductor. Reset restores a conservative `1 A` charge;
   normal operation never exceeds `2 A`, first limits input current to the
@@ -119,6 +121,23 @@ flowchart TD
   VBUSPROT["TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection"]
   PDCTRL["TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path"]
   PDCFG["CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM"]
+  PVINCAP["GRM188R60J106ME47D #VIN<br/>10-uF PD-controller VIN_3V3 capacitor"]
+  PL3CAP["GRM188R60J106ME47D #LDO3V3<br/>10-uF PD-controller 3.3-V LDO capacitor"]
+  PL1CAP["GRM188R60J106ME47D #LDO1V5<br/>10-uF PD-controller 1.5-V LDO capacitor"]
+  PPHVC0["GRM32ER71E226KE15L #PPHV0<br/>22-uF 25-V protected-VBUS capacitor #0"]
+  PPHVC1["GRM32ER71E226KE15L #PPHV1<br/>22-uF 25-V protected-VBUS capacitor #1"]
+  PPHVC2["GRM32ER71E226KE15L #PPHV2<br/>22-uF 25-V protected-VBUS capacitor #2"]
+  PPHVC3["GRM32ER71E226KE15L #PPHV3<br/>22-uF 25-V protected-VBUS capacitor #3"]
+  PVBUSCAP["CGA5L1X7R1E475K160AC #PD-VBUS<br/>4.7-uF 25-V raw-VBUS startup capacitor"]
+  PCC1CAP["GRM1555C1H331JA01J #CC1<br/>330-pF C0G USB-C CC1 capacitor"]
+  PCC2CAP["GRM1555C1H331JA01J #CC2<br/>330-pF C0G USB-C CC2 capacitor"]
+  PEECAP["C1005X7R1H104K050BB #PD-EEPROM<br/>100-nF PD EEPROM bypass capacitor"]
+  PEEWPPU["RC0402FR-0710KL #PD-WP<br/>10-kOhm reset-high EEPROM write-protect pull-up"]
+  PLSCLPU["RC0402FR-072K2L #PD-SCL<br/>2.2-kOhm local PD-bus SCL pull-up"]
+  PLSDAPU["RC0402FR-072K2L #PD-SDA<br/>2.2-kOhm local PD-bus SDA pull-up"]
+  PHSCLPU["RC0402FR-072K2L #SYS-SCL<br/>2.2-kOhm host-bus SCL pull-up"]
+  PHSDAPU["RC0402FR-072K2L #SYS-SDA<br/>2.2-kOhm host-bus SDA pull-up"]
+  PIRQPU["RC0402FR-0710KL #SYS-IRQ<br/>10-kOhm shared wired-low IRQ pull-up"]
   CHARGER["BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
   CHL["MWSA0503S-2R2MT<br/>2.2-uH 7-A 750-kHz charger inductor"]
   CVB0["GRM31CR71E106MA12L #VBUS0<br/>10-uF 25-V X7R charger VBUS capacitor #0"]
@@ -147,8 +166,6 @@ flowchart TD
   CTSN["B57332V5103F360 #CHARGER<br/>independent 10-kOhm charger battery NTC"]
   CILU["RC0402FR-0744K2L<br/>44.2-kOhm 1% hardware ILIM upper resistor"]
   CILL["RC0402FR-07100KL<br/>100-kOhm 1% hardware ILIM lower resistor"]
-  CSCLPU["RC0402FR-0710KL #CHG-SCL<br/>10-kOhm charger SCL pull-up resistor"]
-  CSDAPU["RC0402FR-0710KL #CHG-SDA<br/>10-kOhm charger SDA pull-up resistor"]
   CINTPU["RC0402FR-0710KL #CHG-INT<br/>10-kOhm charger INT pull-up resistor"]
   CCEPU["RC0402FR-0710KL #CHG-CE<br/>10-kOhm reset-high charger CE pull-up resistor"]
   CELL0["MPN TBD<br/>individually replaceable qualified 18650 cell #0"]
@@ -296,11 +313,13 @@ flowchart TD
   OR3["BAT54ALT1G #3<br/>evidence diode-OR pair 6/7"]
   ANYLED["LTST-C190KRKT<br/>red physical ANY-TX indicator"]
   %% Layout-only invisible spine: these links are not electrical connections.
-  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ CHARGER
+  USBC ~~~ VBUSPROT ~~~ PDCTRL ~~~ PDCFG ~~~ PVINCAP ~~~ PL3CAP ~~~ PL1CAP ~~~ PPHVC0 ~~~ PPHVC1
+  PPHVC1 ~~~ PPHVC2 ~~~ PPHVC3 ~~~ PVBUSCAP ~~~ PCC1CAP ~~~ PCC2CAP ~~~ PEECAP ~~~ PEEWPPU
+  PEEWPPU ~~~ PLSCLPU ~~~ PLSDAPU ~~~ PHSCLPU ~~~ PHSDAPU ~~~ PIRQPU ~~~ CHARGER
   CHARGER ~~~ CHL ~~~ CVB0 ~~~ CVB1 ~~~ CVBHF ~~~ CPM0 ~~~ CPM1 ~~~ CPM2 ~~~ CPMHF
   CPMHF ~~~ CSYS0 ~~~ CSYS1 ~~~ CSYS2 ~~~ CSYS3 ~~~ CSYS4 ~~~ CSYSHF ~~~ CBAT0 ~~~ CBAT1
   CBAT1 ~~~ CBT1 ~~~ CBT2 ~~~ CREGN ~~~ CSDRV ~~~ CPROG ~~~ CBATP ~~~ CTSU ~~~ CTSL ~~~ CTSN
-  CTSN ~~~ CILU ~~~ CILL ~~~ CSCLPU ~~~ CSDAPU ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
+  CTSN ~~~ CILU ~~~ CILL ~~~ CINTPU ~~~ CCEPU ~~~ CELL0 ~~~ FUSE0 ~~~ NTC0 ~~~ CELL1 ~~~ FUSE1 ~~~ NTC1
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR
   DIAGR ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
@@ -319,12 +338,29 @@ flowchart TD
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
   DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
-  USBC -->|"VBUS sink only"| PDCTRL
+  USBC -->|"raw VBUS to VBUS + VBUS_IN"| PDCTRL
   USBC -->|"VBUS shunt"| VBUSPROT
   USBC <-->|"D-/D+ direct; no PD/charger tap"| S3
   PDCTRL <-->|"local I²C boot image"| PDCFG
   PDCTRL <-->|"protected VBUS + local I²C/IRQ"| CHARGER
   S3 <-->|"SYS I²C0 + shared wired-low IRQ"| PDCTRL
+  PDCTRL -->|"VIN_3V3 / internal LDO energy"| PVINCAP
+  PDCTRL --> PL3CAP
+  PDCTRL --> PL1CAP
+  PDCTRL -->|"88-uF nominal PPHV bank"| PPHVC0
+  PDCTRL --> PPHVC1
+  PDCTRL --> PPHVC2
+  PDCTRL --> PPHVC3
+  PDCTRL -->|"dead-battery VBUS energy"| PVBUSCAP
+  PDCTRL -->|"CC1 / CC2 shunts"| PCC1CAP
+  PDCTRL --> PCC2CAP
+  PDCTRL -->|"EEPROM supply bypass"| PEECAP --> PDCFG
+  PDCTRL -->|"reset-high open-drain WP"| PEEWPPU --> PDCFG
+  PDCTRL -->|"complete local I²C pull-ups"| PLSCLPU --> PDCFG
+  PDCTRL --> PLSDAPU --> CHARGER
+  S3 -->|"complete host I²C/IRQ pull-ups"| PHSCLPU --> PDCTRL
+  S3 --> PHSDAPU --> PDCTRL
+  S3 --> PIRQPU --> PDCTRL
   CHARGER -->|"SW1/SW2"| CHL
   CHARGER -->|"VBUS bulk/HF"| CVB0
   CHARGER --> CVB1
@@ -350,8 +386,6 @@ flowchart TD
   CHARGER -->|"direct non-ignored TS"| CTSU --> CTSN
   CTSN --> CTSL
   CHARGER -->|"2.71…3.29-A hardware ceiling"| CILU --> CILL
-  PDCTRL -->|"LDO_3V3 pull-ups"| CSCLPU --> CHARGER
-  PDCTRL --> CSDAPU --> CHARGER
   PDCTRL --> CINTPU --> CHARGER
   CHARGER -->|"REGN reset-high CE"| CCEPU --> CHARGER
   CELL0 --> FUSE0 --> PACKGAUGE
@@ -382,6 +416,7 @@ flowchart TD
   PACKADM --> STACKADCB
   PACKADM --> STACKADCC
   CHARGER -->|"SYS"| AONBUCK --> AONL -->|"AON_SAFE_3V3"| SUP
+  AONL -->|"AON_SAFE_3V3 runtime source"| PVINCAP
   AONBUCK -->|"MODE/S-CONF"| AONMODE
   CHARGER -->|"SYS local bypass"| AONIN
   AONL -->|"AON local output"| AONOUT

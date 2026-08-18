@@ -32,10 +32,13 @@
   REGN-referenced and driven only by a TPS open-drain sink;
 - the accepted 9-V/3-A input is preserved without treating a static resistor
   as USB negotiation.
+- `FND-0080/DEC-0076` later replace the provisional charger-only 10-kOhm
+  SCL/SDA values with complete-bus 2.2-kOhm parts; INT and CE remain 10 kOhm.
 
 ## Remaining gates
 
-TPS25751/CAT24C512 passives/straps, cell/NTC mechanics, hot loss and EMI,
-source attach/remove, negotiated-current matrix, watchdog/reset, capacitor
-effective value and inductor thermal/saturation HIL remain open. The BQ paper
-circuit receives **«Проведено ревью»** and does not authorize KiCad.
+TPS25751/CAT24C512 passives/straps later close in
+`PWR-0015/DEC-0076/REV-0005AG`. Cell/NTC mechanics, hot loss and EMI, source
+attach/remove, negotiated-current matrix, watchdog/reset, capacitor effective
+value and inductor thermal/saturation HIL remain open. The BQ paper circuit
+receives **«Проведено ревью»** and does not authorize KiCad.
