@@ -1,6 +1,6 @@
 # PIN-0003 — G2F-3I principled pinout review
 
-- Статус: **Проведено ревью принципиальной распиновки leading paper candidate; final electrical closure открыта**
+- Статус: **Проведено ревью принципиальной распиновки leading paper candidate; I1…I5 paper reviewed, I6 active**
 - Дата: 2026-08-17
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
 - Generated atlas: [`G2F-3I principled pinout`](generated/G2F-3I-principled-pinout.md)
@@ -21,6 +21,8 @@
   [`REV-0005B`](../reviews/REV-0005B-es8311-digital-fit-and-analog-gap.md)
 - Complete audio decision: [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md) /
   [`REV-0005D`](../reviews/REV-0005D-audio-decision-propagation.md)
+- Exact audio/receiver endpoint: [`AUDIO-0003`](AUDIO-0003-exact-audio-and-receiver-endpoint.md) /
+  [`REV-0005AU`](../reviews/REV-0005AU-i5-audio-receiver-propagation.md)
 - Service/IPC amendment: [`DEC-0059`](../decisions/DEC-0059-full-service-over-1bit-sdio.md) /
   [`REV-0005L`](../reviews/REV-0005L-full-service-1bit-sdio-propagation.md)
 - Safety/evidence amendment: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md) /
@@ -49,7 +51,7 @@ load switches, clocks, RF matching и exact unfrozen peripheral MPN должны
 | `ESP32-S3-WROOM-1U-N16R2` | UI, display+microSD scheduler, I²S audio, internal I²C, M5 Unit profile, native 2.4/BLE/ESP-NOW | отдельные SPI2, SPI3, SD/MMC, I²S0, I²C0 и Unit-controller profile |
 | `ESP32-C5-WROOM-1U-N8R8` | native 2.4/5 GHz, IEEE 802.15.4, dual-path IR | dedicated 1-bit SDIO to S3; native USB+UART service; IR uses RMT and direct evidence/power contacts |
 | `RP2354B A4/QFN80` | 3×nRF, CC1101, U214 LoRa/GNSS/I²C, SA518 control/PTT, deterministic event service | five physical PIO SPI groups, hardware UART0/UART1/I²C0/SPI1, direct IRQ/CE/CSN/GDO |
-| `TCA6424ARGJR` | reset/select/power/status main slow plane | 18/24 assigned; P00…P05 are free and no radio FIFO/PTT deadline lives here |
+| `TCA6424ARGJR` | reset/select/power/status main slow plane | 21/24 assigned; P03…P05 are free and no radio FIFO/PTT deadline lives here |
 | `TCA9534APWR #UI` | D-pad/OK/BACK/OPT/F1/F2/encoder-push 4×3 matrix | P0…P6 assigned; P7 local reserve; all-low idle produces hardware interrupt |
 
 The generated atlas contains the exact pad/contact table for all 91 exposed
@@ -70,7 +72,7 @@ outside normal application dependency:
 | S3 | 33 | 3 | 0 | 36 |
 | C5 | 14 | 6 | 1 | 21 |
 | RP | 48 | 0 | 0 | 48 |
-| main slow I/O | 18 | 0 | 6 | 24 |
+| main slow I/O | 21 | 0 | 3 | 24 |
 | UI matrix I/O | 7 | 1 | 0 | 8 |
 
 The `RP=0` result is deliberate and visible. `GPIO15` and `GPIO23` implement
@@ -112,7 +114,9 @@ slow `P06/P07` provide display/touch reset. `DEC-0086` moves TP_INT through a
 pin-compatible open-drain polarity-adapter footprint into shared `SYS_INT_N`
 on GPIO37, releasing former direct GPIO39 for encoder phase A. Subsequent
 `AUDIO-0002/FND-0067` consumes slow P27 for the previously
-omitted `RX_AUDIO_SOURCE_SEL`, so the slow plane now has no reserve.
+omitted `RX_AUDIO_SOURCE_SEL`. `DEC-0090/AUDIO-0003` later use P00/P01/P02
+for capture source, reset-off speaker enable and headphone absence, leaving
+P03…P05 free.
 `DSP-0006/DEC-0084` later place the exact first ZIF connector candidate
 between those nets and the panel, add reset-low defaults and close the exact
 latch-protected PWM-backlight circuit without changing the pin budget.
@@ -125,8 +129,11 @@ is an address strap for `0x19`, not reset/enable. `DEC-0054` now terminates
 `OUTP/OUTN`, `MIC1P/MIC1N`, the RX selector, speaker selector, TX selector,
 active capture buffer, reset-safe gate and PAM8302A on exact IC contacts.
 `RX_AUDIO_SOURCE_SEL` is on slow P27; direct S3 GPIO6 is active-high
-`AUDIO_ARM`. GPIO43/44 are UART0 service; GPIO39/47 now capture encoder phases
-with PCNT0, leaving no free S3 GPIO. Passive values and HIL remain open.
+`AUDIO_ARM`. `AUDIO-0003/DEC-0090` now close exact codec/receiver/voice
+power-domain isolation, all first-target analog values and exact microphone,
+speaker and switched-headphone endpoints. GPIO43/44 are UART0 service;
+GPIO39/47 now capture encoder phases with PCNT0, leaving no free S3 GPIO.
+Acoustic, RF, powered-state and concurrency HIL remain open.
 
 ## Digital non-interference result
 
@@ -147,22 +154,21 @@ current principle-level design for G3. The generated atlas remains the complete
 exact-contact projection and this publication does not freeze G7 architecture.
 `DEC-0052` later amends the visible map with QSPI D2/D3 on S3 GPIO41/42 and
 `DEC-0054` subsequently adds GPIO6 `AUDIO_ARM`; the current S3 budget is
-`32/3/1` without changing owners.
+`33/3/0` without changing owners.
 
 ## Remaining final-pinout blockers
 
 [`FND-0060`](../findings/FND-0060-abstract-electrical-endpoints-block-final-pinout.md)
 lists every remaining `abstract:*` endpoint. The material groups are:
 
-- final real-tail display mate, standalone panel sourcing and display HIL plus
-  exact codec power/analog conditioning; current display/backlight/ES8311 paper circuits are exact;
+- final real-tail display mate, standalone panel sourcing and display HIL;
+  current display/backlight/audio/receiver paper circuits are exact;
 - exact IR receiver/learning receiver/LED driver and optical front end; IR
   evidence detector MPN/paper routing is now exact;
 - AON source/hold-up, branch power/current/thermal circuits and RF detector
   taps/threshold values; hard STOP latch/gates/evidence active devices are now exact;
-- nRF/CC/voice/receiver load switches, isolation and level domains;
-- audio passive matching, bias, attenuation, rail partition and HIL (the
-  selector/buffer/gate/amp IC order codes are instantiated by `DEC-0054`);
+- exact nRF/CC/voice/receiver RF feeds, matching, protection and coexistence;
+- audio/receiver/voice specimen, acoustic, RF-immunity and concurrent-load HIL;
 - M5 Unit protection/mux and final service connector mechanics.
 
 The next pass closes these abstractions one group at a time against real parts,

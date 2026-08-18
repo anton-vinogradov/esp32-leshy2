@@ -761,6 +761,291 @@
         "VO_MINUS": {"physical": "8", "role": "analog"}
       }
     },
+    "ti_sn74lvc2g66_dcur": {
+      "mpn": "Texas Instruments SN74LVC2G66DCUR",
+      "kind": "dual_bilateral_spst_analog_switch",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.3, 2.0, 0.9],
+      "source": {
+        "document": "SN74LVC2G66 Dual Bilateral Analog Switch datasheet",
+        "version": "SCES325N, July 2001, revised August 2018",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g66.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "SN74LVC2G66DCUR active exact-order-code quality page",
+        "url": "https://www.ti.com/quality-reliability-packaging-download/report?opn=SN74LVC2G66DCUR",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "supply_range_v": [1.65, 5.5],
+        "control": "each C input high closes its bilateral channel; low opens it",
+        "on_resistance_typ_ohm_at_3v3": 6,
+        "maximum_tested_signal_frequency_mhz": 150
+      },
+      "programmable": false,
+      "contacts": {
+        "1A": {"physical": "1", "role": "analog"},
+        "1B": {"physical": "2", "role": "analog"},
+        "2C": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "2A": {"physical": "5", "role": "analog"},
+        "2B": {"physical": "6", "role": "analog"},
+        "1C": {"physical": "7", "role": "signal"},
+        "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "ti_sn74lvc1g126_dckr": {
+      "mpn": "Texas Instruments SN74LVC1G126DCKR",
+      "kind": "single_ioff_active_high_tristate_buffer",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G126 Single Bus Buffer Gate With 3-State Output datasheet",
+        "version": "SCES225 and current exact-part page checked 2026-08-18",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g126.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G126DCKR exact orderable page",
+        "url": "https://www.ti.com/product/SN74LVC1G126/part-details/SN74LVC1G126DCKR",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "enable": "OE high enables Y; OE low makes Y high impedance",
+        "partial_power_down": "Ioff supports live-bus isolation while VCC is 0 V"
+      },
+      "programmable": false,
+      "contacts": {
+        "OE": {"physical": "1", "role": "signal"},
+        "A": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
+    "ti_tps3839k33_dbzr": {
+      "mpn": "Texas Instruments TPS3839K33DBZR",
+      "kind": "3v08_push_pull_supply_supervisor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active",
+      "dimensions_mm": [2.9, 1.6, 1.15],
+      "source": {
+        "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
+        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "TPS3839K33DBZR exact active orderable page",
+        "url": "https://www.ti.com/product/TPS3839/part-details/TPS3839K33DBZR",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "nominal_threshold_v": 3.08,
+        "reset_release_delay_ms_typ": 200,
+        "reset_output": "active-low push-pull and valid for VDD above 0.6 V"
+      },
+      "programmable": false,
+      "contacts": {
+        "RESET_N": {"physical": "1", "role": "signal"},
+        "GND": {"physical": "2", "role": "power"},
+        "VDD": {"physical": "3", "role": "power"}
+      }
+    },
+    "epson_q13fc13500005": {
+      "mpn": "Seiko Epson Q13FC13500005",
+      "kind": "32_768khz_12_5pf_crystal",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.2, 1.5, 0.9],
+      "source": {
+        "document": "FC-135 32.768-kHz crystal-unit specification",
+        "version": "current product specification checked 2026-08-18",
+        "url": "https://download.epsondevice.com/td/pdf/td_xtal_32khz/FC-135_Q13FC13500005_en.pdf",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "frequency_hz": 32768,
+        "load_capacitance_pf": 12.5,
+        "frequency_tolerance_ppm": 10,
+        "maximum_esr_kohm": 70
+      },
+      "programmable": false,
+      "contacts": {
+        "X1": {"physical": "1", "role": "clock"},
+        "X2": {"physical": "2", "role": "clock"}
+      }
+    },
+    "same_sky_cmej_0413_42_smt_tr": {
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "kind": "top_port_analog_electret_microphone",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [4.0, 4.0, 1.3],
+      "source": {
+        "document": "CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet",
+        "version": "Rev. 1.04, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "CMEJ-0413-42-SMT-TR current manufacturer product page",
+        "url": "https://www.sameskydevices.com/product/audio/microphones/electret-condenser-microphones/cmej-0413-42-smt-tr",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "recommended_supply_v": 2.0,
+        "load_ohm": 2200,
+        "maximum_current_ma": 0.5,
+        "sensitivity_dbv_pa": -42,
+        "frequency_hz": [100, 10000]
+      },
+      "programmable": false,
+      "contacts": {
+        "OUT_PLUS": {"physical": "1", "role": "analog"},
+        "GND_MINUS": {"physical": "2", "role": "power"}
+      }
+    },
+    "same_sky_sj1_3515_smt_tr": {
+      "mpn": "Same Sky SJ1-3515-SMT-TR",
+      "kind": "3_5mm_stereo_jack_two_internal_switches",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [15.0, 9.5, 5.0],
+      "source": {
+        "document": "SJ1-351X-SMT Audio Jack datasheet",
+        "version": "Rev. 1.09, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "SJ1-3515-SMT-TR current manufacturer catalog entry",
+        "url": "https://www.sameskydevices.com/product/resource/pcbfootprint/sj1-3515-smt-tr",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "SLEEVE": {"physical": "1", "role": "power"},
+        "TIP": {"physical": "2", "role": "analog"},
+        "RING": {"physical": "3", "role": "analog"},
+        "TIP_SWITCH": {"physical": "10", "role": "signal"},
+        "RING_SWITCH": {"physical": "11", "role": "signal"}
+      }
+    },
+    "pui_as02404po": {
+      "mpn": "PUI Audio AS02404PO",
+      "kind": "24x12mm_4ohm_2w_loudspeaker",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [24.0, 12.0, 4.5],
+      "source": {
+        "document": "AS02404PO Speaker datasheet",
+        "version": "2024 current datasheet checked 2026-08-18",
+        "url": "https://api.puiaudio.com/filename/AS02404PO.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "AS02404PO active authorized-distributor page",
+        "url": "https://www.digikey.com/en/products/detail/pui-audio-inc/AS02404PO/24385608",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "impedance_ohm": 4,
+        "rated_power_w": 2.0,
+        "maximum_power_w": 2.5,
+        "free_air_resonance_hz": 450
+      },
+      "programmable": false,
+      "contacts": {
+        "PLUS": {"physical": "positive solder terminal", "role": "analog"},
+        "MINUS": {"physical": "negative solder terminal", "role": "analog"}
+      }
+    },
+    "murata_blm18pg181sn1d": {
+      "mpn": "Murata BLM18PG181SN1D",
+      "kind": "180ohm_1_5a_0603_power_ferrite_bead",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {
+        "document": "BLM18PG181SN1 product specification",
+        "version": "current manufacturer page checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?cate=cgsubChipFerriBead&partno=BLM18PG181SN1%23",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "BLM18PG181SN1D active distributor listing",
+        "url": "https://www.digikey.com/en/products/filter/ferrite-beads-and-chips/841",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "impedance_ohm_at_100mhz": 180,
+        "rated_current_a_at_85c": 1.5,
+        "maximum_dcr_ohm": 0.09
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "passive"},
+        "END_2": {"physical": "2", "role": "passive"}
+      }
+    },
+    "yageo_rc0402jr_070rl": {
+      "mpn": "Yageo RC0402JR-070RL",
+      "kind": "0ohm_0402_jumper_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RC general-purpose chip resistor specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "passive"},
+        "END_2": {"physical": "2", "role": "passive"}
+      }
+    },
+    "yageo_rc0402fr_07220rl": {
+      "mpn": "Yageo RC0402FR-07220RL",
+      "kind": "220ohm_1pct_0402_resistor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.35],
+      "source": {
+        "document": "Yageo RC general-purpose chip resistor specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "passive"},
+        "END_2": {"physical": "2", "role": "passive"}
+      }
+    },
+    "murata_grm1555c1h220ja01d": {
+      "mpn": "Murata GRM1555C1H220JA01D",
+      "kind": "22pf_5pct_50v_c0g_0402_crystal_load_capacitor",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Murata GRM series exact-product specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://psearch.en.murata.com/capacitor/product/GRM1555C1H220JA01%23.html",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "passive"},
+        "END_2": {"physical": "2", "role": "passive"}
+      }
+    },
     "waveshare_29318_3_5_ct_lcd": {
       "mpn": "Waveshare 3.5inch Capacitive Touch LCD, SKU 29318",
       "kind": "display_carrier_module",

@@ -5,7 +5,7 @@
 > GPIO39 is encoder phase A. Exact integrated controller is ST77922 at address
 > 0x38; the former controller/polarity uncertainty is closed on paper.
 > The dedicated UI expander also makes the later `24/0/0` slow-plane statement
-> historical; current main slow accounting is `18/0/6`.
+> historical; current main slow accounting is `21/0/3` after I5.
 > The panel contact map and QSPI/reset conclusions below remain valid.
 
 - Статус: **Проведено ревью paper electrical fit; sourcing/mechanics/HIL открыты**

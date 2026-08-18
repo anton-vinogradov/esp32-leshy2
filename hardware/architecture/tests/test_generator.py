@@ -70,10 +70,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Hirose DM3AT-SF-PEJM5<br/>push-push microSD card connector",
             "Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec",
             "Texas Instruments TLV9061IDBVR<br/>active high-impedance capture buffer",
-            "Texas Instruments TMUX1136DGSR<br/>dual differential speaker-path selector",
+            "Texas Instruments TMUX1136DGSR<br/>dual differential RX-bypass/codec speaker selector",
             "Texas Instruments TS5A63157DCKR<br/>electret/codec transmit-audio selector",
-            "Texas Instruments SN74LVC2G08DCUR<br/>reset-safe dual selector-request gate",
-            "Diodes Incorporated PAM8302AASCR<br/>mono Class-D speaker amplifier",
+            "Texas Instruments SN74LVC2G08DCUR<br/>direct-AUDIO_ARM dual selector-request gate",
+            "Diodes Incorporated PAM8302AASCR<br/>reset-off mono Class-D speaker amplifier",
+            "Texas Instruments TPS3839K33DBZR<br/>3.08-V 200-ms codec interface supervisor",
+            "Same Sky CMEJ-0413-42-SMT-TR<br/>top-port analog electret microphone",
+            "PUI Audio AS02404PO<br/>24-by-12-mm 4-Ohm internal loudspeaker",
             "Texas Instruments TPS25751DREFR<br/>sink-only USB-PD policy and protected high-voltage path",
             "onsemi CAT24C512WI-GT3<br/>dedicated PD patch/configuration EEPROM",
             "Texas Instruments TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection",
@@ -1285,12 +1288,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             for row in candidate["allocations"]
             if row["instance"] == "s3"
         }
-        self.assertIn("codec.CDATA", s3["GPIO1"]["peers"])
-        self.assertIn("codec.CCLK", s3["GPIO2"]["peers"])
-        self.assertEqual(["codec.SCLK"], s3["GPIO15"]["peers"])
-        self.assertEqual(["codec.LRCK"], s3["GPIO16"]["peers"])
-        self.assertEqual(["codec.DSDIN"], s3["GPIO17"]["peers"])
-        self.assertEqual(["codec.ASDOUT"], s3["GPIO18"]["peers"])
+        self.assertIn("codec_i2c_iso.1A", s3["GPIO1"]["peers"])
+        self.assertIn("codec_i2c_iso.2A", s3["GPIO2"]["peers"])
+        self.assertEqual(["codec_i2s_bclk_iso.A"], s3["GPIO15"]["peers"])
+        self.assertEqual(["codec_i2s_ws_iso.A"], s3["GPIO16"]["peers"])
+        self.assertEqual(["codec_i2s_dout_iso.A"], s3["GPIO17"]["peers"])
+        self.assertEqual(["codec_i2s_din_iso.Y"], s3["GPIO18"]["peers"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -1302,16 +1305,16 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertNotIn("CODEC_EN", {route["net"] for route in candidate["fixed_routes"]})
         self.assertIn(
-            ("abstract:codec-address-high-3v3", "codec.CE", "CODEC_I2C_ADDR_0X19"),
+            ("codec_ce_pullup.END_2", "codec.CE", "CODEC_I2C_ADDR_0X19"),
             routes,
         )
         self.assertIn(("codec.MCLK", "abstract:no-connect", "CODEC_MCLK_NC"), routes)
         self.assertIn(("codec.OUTP", "audio_speaker_selector.S1A", "CODEC_DAC_OUT_P"), routes)
         self.assertIn(("codec.OUTN", "audio_speaker_selector.S2A", "CODEC_DAC_OUT_N"), routes)
         self.assertIn(("slow_io.P27", "audio_rx_mux.S", "RX_AUDIO_SOURCE_SEL"), routes)
-        self.assertIn(("audio_speaker_selector.D1", "speaker_amp.IN_PLUS", "PAM_AUDIO_IN_P"), routes)
-        self.assertIn(("audio_speaker_selector.D2", "speaker_amp.IN_MINUS", "PAM_AUDIO_IN_M"), routes)
-        self.assertIn(("audio_tx_selector.COM", "voice.MIC_IN", "VOICE_MIC_IN"), routes)
+        self.assertIn(("speaker_input_p_gain.END_2", "speaker_amp.IN_PLUS", "PAM_AUDIO_IN_P"), routes)
+        self.assertIn(("speaker_input_n_gain.END_2", "speaker_amp.IN_MINUS", "PAM_AUDIO_IN_N"), routes)
+        self.assertIn(("voice_mic_coupling.END_2", "voice.MIC_IN", "VOICE_MIC_IN"), routes)
         self.assertIn(("audio_safe_gate.1Y", "audio_speaker_selector.SEL1", "AUDIO_SPK_SEL_SAFE"), routes)
         self.assertIn(("audio_safe_gate.1Y", "audio_speaker_selector.SEL2", "AUDIO_SPK_SEL_SAFE"), routes)
         self.assertIn(("audio_safe_gate.2Y", "audio_tx_selector.IN", "AUDIO_TX_SEL_SAFE"), routes)
@@ -1403,6 +1406,96 @@ class ArchitectureValidationTests(unittest.TestCase):
         for device_id, url in expected_orderable_urls.items():
             with self.subTest(orderable_device=device_id):
                 self.assertEqual(url, self.database["devices"][device_id]["orderable_source"]["url"])
+
+    def test_i5_exact_audio_receiver_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["audio_receiver_contract"]
+        self.assertEqual("DEC-0090", contract["decision"])
+        self.assertEqual(
+            "paper_reviewed_i5_exact_endpoints_hil_open",
+            contract["status"],
+        )
+
+        slow = candidate["contact_accounting"]["slow_io"]
+        self.assertEqual({"P03", "P04", "P05"}, set(slow["free"]))
+        self.assertEqual({}, slow["reserved"])
+        self.assertEqual(
+            {"P00", "P01", "P02", "P10", "P11", "P12", "P13", "P14", "P15", "P24", "P27"},
+            set(slow["used"]) & {"P00", "P01", "P02", "P10", "P11", "P12", "P13", "P14", "P15", "P24", "P27"},
+        )
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("slow_io.P00", "audio_capture_selector.IN", "AUDIO_CAPTURE_MIC_SEL"),
+            ("slow_io.P01", "speaker_amp.SD", "SPEAKER_AMP_EN"),
+            ("headphone_jack.TIP_SWITCH", "slow_io.P02", "HEADPHONE_ABSENT"),
+            ("codec_supervisor.RESET_N", "codec_i2c_iso.1C", "CODEC_READY"),
+            ("codec_supervisor.RESET_N", "codec_i2s_din_iso.OE", "CODEC_READY"),
+            ("receiver_supervisor.RESET_N", "receiver.RST", "RX_RST_N"),
+            ("receiver_supervisor.RESET_N", "receiver_i2c_iso.1C", "RECEIVER_READY"),
+            ("safe_ptt_or.1Y", "voice_ptt_iso.A", "VOICE_PTT_SAFE_N"),
+            ("voice_ptt_iso.Y", "voice.PTT", "VOICE_PTT_MODULE_N"),
+            ("voice_hl_driver.Y", "voice.HL", "VOICE_HL_OPEN_DRAIN"),
+            ("voice.UPDATE", "abstract:TP_VOICE_UPDATE_WITH_GND", "VOICE_UPDATE_FIXTURE"),
+            ("voice.VOXEN", "abstract:no-connect", "VOICE_VOXEN_NC"),
+        ):
+            self.assertIn(route, routes)
+
+        self.assertFalse(
+            any(
+                route[0] == "slow_io.P14" and route[1] == "voice.HL"
+                for route in routes
+            )
+        )
+        self.assertFalse(
+            any(
+                route[0] == "safe_ptt_or.1Y" and route[1] == "voice.PTT"
+                for route in routes
+            )
+        )
+
+        exact_i5_instances = {
+            "codec",
+            "codec_power_switch",
+            "codec_supervisor",
+            "codec_i2c_iso",
+            "codec_i2s_bclk_iso",
+            "codec_i2s_ws_iso",
+            "codec_i2s_dout_iso",
+            "codec_i2s_din_iso",
+            "receiver",
+            "receiver_power_switch",
+            "receiver_supervisor",
+            "receiver_i2c_iso",
+            "receiver_irq_iso",
+            "receiver_clock",
+            "voice",
+            "voice_supervisor",
+            "voice_io_power_switch",
+            "voice_ptt_iso",
+            "voice_uart_tx_iso",
+            "voice_hl_driver",
+            "voice_audio_iso",
+            "audio_capture_selector",
+            "audio_capture_buffer",
+            "audio_speaker_selector",
+            "audio_tx_selector",
+            "audio_safe_gate",
+            "speaker_amp",
+            "speaker",
+            "microphone",
+            "headphone_jack",
+            "headphone_esd",
+        }
+        endpoints = {endpoint for route in routes for endpoint in route[:2]}
+        for instance in sorted(exact_i5_instances):
+            device = self.database["devices"][candidate["instances"][instance]]
+            for contact in device["contacts"]:
+                with self.subTest(instance=instance, contact=contact):
+                    self.assertIn(f"{instance}.{contact}", endpoints)
 
     def test_rejects_duplicate_json_key_before_validation(self):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
@@ -1784,7 +1877,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertEqual(
-            ["P00", "P01", "P02", "P03", "P04", "P05"],
+            ["P03", "P04", "P05"],
             candidate["contact_accounting"]["slow_io"]["free"],
         )
         self.assertEqual(

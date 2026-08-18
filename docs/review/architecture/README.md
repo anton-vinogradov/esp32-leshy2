@@ -34,8 +34,9 @@ the then-current `S3=2, C5=1, RP=0, slow=P27` free-contact state. Subsequent
 GPIO39/GPIO47 for direct encoder PCNT0 capture and move touch IRQ into shared
 GPIO37. `DEC-0088/DSP-0007` fix exact active-low ST77922, 10-kOhm raw pull-up
 and non-inverting 1G07. A dedicated TCA9534A restores
-interrupt-driven 4×3 controls and releases TCA6424 P00…P05. Current free state
-is `S3=0, C5=1, RP=0, main slow=6`, with UI-matrix P7 reserved.
+interrupt-driven 4×3 controls and releases TCA6424 P00…P05. I5 now assigns
+P00/P01/P02 to capture selection, speaker enable and headphone sensing.
+Current free state is `S3=0, C5=1, RP=0, main slow=3`, with UI-matrix P7 reserved.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
 working design in the root target document; it remains reopenable and is not
 the G7 atomic architecture.
@@ -56,8 +57,11 @@ S3 GPIO1/2/15/16/17/18 land on real I2C/I2S contacts, `CE` is address strap
 `0x19`, and P10 is external `CODEC_PWR_EN`. `AUDIO-0002/REV-0005C` compare the
 complete capture/playback/TX/reset path, add exact TAC5111IRGER reference
 contacts and expose `FND-0067`; `DEC-0054` accepts the active-buffer ES8311
-prototype plus direct arm and exact selector/gate/amp ICs. Passive analog
-values, exact power circuit and HIL remain open.
+prototype plus direct arm and exact selector/gate/amp ICs. `FND-0095/
+AUDIO-0003/DEC-0090/REV-0005AU` now close the dependent I5 paper block with
+exact power/interface isolation, analog passives, address/clock handling and
+physical microphone/speaker/headphone endpoints. I5 has **«Проведено ревью»**;
+acoustic/RF/specimen HIL stays explicit and I6 is active.
 `DEC-0058` now pauses the integrated mockup until the internal chain is jointly
 reviewed. `INT-0001/I1` has **Проведено ревью** through
 `DEC-0059/REV-0005L`: 1-bit C5 SDIO restores S3 UART0 and C5 native USB,
@@ -98,7 +102,7 @@ shared-source and physical HIL remain open.
 audit. Exact TCA6424A power/address/reset/interrupt, AON-to-main observation
 isolation, pack target `0x2A`, real GPIO4 microSD return, direct USB-shell
 ground bond and exact STOP LED resistor are machine-projected. I4 paper
-electrical scope has **«Проведено ревью»**; I5 is active, while prototype,
+electrical scope has **«Проведено ревью»**; I5 follows as reviewed above, while prototype,
 physical and procurement evidence stays open and KiCad remains unauthorized.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
@@ -163,6 +167,9 @@ and leave only named mechanics/specimen HIL before the consolidated I4 audit.
 `FND-0094/IOX-0001/DEC-0089/REV-0005AT` close that consolidated audit, correct
 the shared-interface residues and advance the dependency chain to I5 without
 claiming layout or HIL evidence.
+`FND-0095/AUDIO-0003/DEC-0090/REV-0005AU` close that I5 paper block and
+advance the dependency chain to active I6 without claiming acoustic, RF,
+layout or HIL evidence.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -264,6 +271,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`IOX-0001`](IOX-0001-consolidated-i4-electrical-closure.md) audits all I4
   endpoints together, closes the exact main slow-I/O core and cross-domain
   routes, and classifies every remaining item as HIL, physical, I5…I8 or CAD;
+- [`AUDIO-0003`](AUDIO-0003-exact-audio-and-receiver-endpoint.md) closes I5
+  with exact codec/receiver/voice power and isolation, complete analog paths,
+  exact acoustic endpoints and separately named HIL residue;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

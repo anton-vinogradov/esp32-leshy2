@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе; current paper baseline reviewed**: `PIN-0003/REV-0004V/0004X` закрывают owners/controllers/exact compute contacts и current QSPI-amended budget; final electrical endpoints, RF/power и HIL открыты |
+| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage и audio/receiver endpoints входят в machine projection; RF feeds, expansion, physical и HIL evidence открыты |
 | 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -33,6 +33,16 @@
 switch/protection routes входят в machine projection; integrated ST77922 touch
 зафиксирован на адресе `0x38` с active-low IRQ на shared GPIO37.
 Cap/guard/harness/enclosure и specimen/electrical HIL остаются открыты.
+
+Для зависимого I5 audio/receiver block теперь **проведено paper review** через
+[`AUDIO-0003`](../review/architecture/AUDIO-0003-exact-audio-and-receiver-endpoint.md),
+`DEC-0090` и `REV-0005AU`. ES8311, Si4732 и SA518 получили exact reset-off
+power и physical interface isolation; receiver/microphone capture, bypass/
+codec playback, ordinary/codec-injected TX и exact microphone, speaker и
+switched-headphone endpoints завершены на бумаге. P00/P01/P02 реализуют
+capture source, speaker enable и headphone sensing, оставляя P03…P05
+свободными; полный D-pad, PTT, STOP, F1/F2 и encoder не изменены. Acoustic,
+RF, specimen и concurrent-load HIL остаются явными; активен I6.
 
 ## Закрытие competitor delta
 
@@ -388,9 +398,10 @@ endpoints, KiCad остаётся заблокирован.
 principled pin fit. Сохранены D-pad/OK, BACK, OPT, F1, F2, encoder/push,
 отдельный PTT, независимый normally-closed STOP и утопленный RE-ARM. Один exact
 Отдельный `TCA9534APWR` P0…P6 и десять `1N4148WT` образуют interrupt-driven
-матрицу 4x3; P7 зарезервирован, а main TCA6424 P00…P05 свободны. A/B энкодера
-занимают S3 GPIO39/GPIO47 PCNT0, а touch IRQ входит в GPIO37. S3 теперь `33/3/0`, main
-slow I/O `18/0/6`, UI I/O `7/1/0`; PTT остаётся прямым RP GPIO21, а STOP/RE-ARM
+матрицу 4x3; P7 зарезервирован, а main TCA6424 P00…P05 доступны зависимому
+audio block. A/B энкодера занимают S3 GPIO39/GPIO47 PCNT0, а touch IRQ входит
+в GPIO37. I5 затем назначает P00/P01/P02. S3 теперь `33/3/0`, main slow I/O
+`21/0/3`, UI I/O `7/1/0`; PTT остаётся прямым RP GPIO21, а STOP/RE-ARM
 — вне I2C. Exact mechanics переключателей, SYS-I2C collision scan,
 encoder/U214 fit и HIL матрицы/энкодера остаются открыты;
 KiCad заблокирован.

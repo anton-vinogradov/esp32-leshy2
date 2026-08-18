@@ -131,7 +131,8 @@ matrix и сохраняет P7 как локальный резерв. Main slo
 display/touch reset, codec enable, два audio selector, voice PD/HL, receiver
 reset/status, U214 I²C READY, external 5 V, microSD power/detect, STOP sense,
 S3 actual-TX evidence, power fault, accessory present и обычный
-`RX_AUDIO_SOURCE_SEL` на P27. Его текущий бюджет — `18/0/6`, UI-expander —
+`RX_AUDIO_SOURCE_SEL` на P27 и I5 audio endpoints на P00/P01/P02. Его текущий
+бюджет — `21/0/3`, UI-expander —
 `7/1/0`.
 
 PTT, physical PTT, все radio IRQ/GDO/BUSY, actual-TX evidence C5/IR/voice и

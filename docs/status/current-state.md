@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress; current paper baseline reviewed**: `PIN-0003/REV-0004V/0004X` close owners/controllers/exact compute contacts and the current QSPI-amended budget; final electrical endpoints, RF/power and HIL remain open |
+| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage and audio/receiver endpoints are machine-projected; RF feeds, expansion, physical and HIL evidence remain open |
 | 3. Target physical/product design | **Starting from the `DEC-0051/PIN-0003` visible working design**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -33,6 +33,16 @@ the full D-pad/OK/BACK/OPT/F1/F2/encoder/PTT/STOP/RE-ARM inventory is retained,
 exact switch/protection routes are machine-projected, and integrated ST77922
 touch is fixed at address `0x38` with active-low IRQ on shared GPIO37.
 Cap/guard/harness/enclosure and specimen/electrical HIL remain open.
+
+The dependent I5 audio/receiver block now has **paper review completed**
+through [`AUDIO-0003`](../review/architecture/AUDIO-0003-exact-audio-and-receiver-endpoint.md),
+`DEC-0090` and `REV-0005AU`. ES8311, Si4732 and SA518 have exact reset-off
+power and physical interface isolation; receiver/microphone capture, bypass/
+codec playback, ordinary/codec-injected TX and exact microphone, speaker and
+switched-headphone endpoints are complete on paper. P00/P01/P02 implement
+capture source, speaker enable and headphone sensing, leaving P03…P05 free;
+the full D-pad, PTT, STOP, F1/F2 and encoder remain unchanged. Acoustic, RF,
+specimen and concurrent-load HIL remain explicit, and I6 is active.
 
 ## Competitor-delta closure
 
@@ -388,8 +398,9 @@ pin fit. The retained set is D-pad/OK, BACK, OPT, F1, F2, encoder/push,
 dedicated PTT, independent normally-closed STOP and recessed RE-ARM. One exact
 Dedicated `TCA9534APWR` P0…P6 and ten `1N4148WT` devices form an
 interrupt-driven 4x3 matrix, while P7 is reserved and main TCA6424 P00…P05 are
-free. Encoder A/B use S3 GPIO39/GPIO47 PCNT0 and touch IRQ joins GPIO37. S3 is now `33/3/0`,
-main slow I/O `18/0/6` and UI I/O `7/1/0`; PTT remains direct RP GPIO21 and
+available to the dependent audio block. Encoder A/B use S3 GPIO39/GPIO47 PCNT0
+and touch IRQ joins GPIO37. I5 later assigns P00/P01/P02. S3 is now `33/3/0`,
+main slow I/O `21/0/3` and UI I/O `7/1/0`; PTT remains direct RP GPIO21 and
 STOP/RE-ARM remain outside I2C. Exact switch mechanics, SYS-I2C collision scan,
 encoder/U214 fit and matrix/encoder HIL remain open; KiCad
 stays blocked.

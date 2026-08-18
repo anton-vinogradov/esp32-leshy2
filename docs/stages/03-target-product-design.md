@@ -35,7 +35,7 @@ two-board clamshell generator. Его геометрия тоже рабочая
 `G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
 pinout diagram и exact pad/net tables; after direct-QSPI GPIO41/42, accepted
 audio arm and `DEC-0086` local-control correction the current budget честно
-равен S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow `18/0/6` и UI matrix
+равен S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow `21/0/3` и UI matrix
 `7/1/0`. Это выполняет необходимый
 working-baseline checkpoint `DEC-0041`; технически он разрешил перенос в старый
 reproducible mockup, но последующий `DEC-0058` ставит этот перенос на паузу до

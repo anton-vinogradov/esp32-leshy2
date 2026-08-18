@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | DEC-0045 limits runtime to one active signal group, but SG-N24 requires every simultaneous three-radio PTX/PRX mix including 3PTX; exact mixed-RF sensitivity/current/thermal envelope, quiet-state power parts and conducted/OTA HIL remain open |
+| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 12U/3R/3F` | I5 closes the exact paper audio, Si4732 and SA518 electrical endpoints; I6 must now close exact RF front ends, matching/protection, antenna-feed geometry and conducted/OTA acceptance without reopening the reviewed compute or slow-I/O budget |
 
 ## Exact-device provenance used by these drafts
 
@@ -32,6 +32,7 @@
 | `diodes_mmbt3904_7_f` | `Diodes Incorporated MMBT3904-7-F` | `verified_candidate` | `active` | [MMBT3904 40-V NPN small-signal transistor datasheet current product data checked 2026-08-18](https://www.diodes.com/datasheet/download/MMBT3904.pdf) | same primary source |
 | `diodes_pam8302a_ascr` | `Diodes Incorporated PAM8302AASCR` | `verified_reference` | `active` | [PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet DS41333 Rev. 6-2, May 2021](https://www.diodes.com/datasheet/download/PAM8302A.pdf) | same primary source |
 | `ebyte_e01_ml01ipx` | `Ebyte E01-ML01IPX` | `verified_reference` | `nrf24_family_not_recommended_for_new_designs` | [E01-ML01IPX product specification 2025-01-16](https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf) | [Nordic nRF24 Series lifecycle page](https://www.nordicsemi.com/Products/nRF24-series) |
+| `epson_q13fc13500005` | `Seiko Epson Q13FC13500005` | `verified_candidate` | `active_orderable` | [FC-135 32.768-kHz crystal-unit specification current product specification checked 2026-08-18](https://download.epsondevice.com/td/pdf/td_xtal_32khz/FC-135_Q13FC13500005_en.pdf) | same primary source |
 | `esp32_c5_wroom_1u_n8r8` | `ESP32-C5-WROOM-1U-N8R8` | `verified_candidate` | `active_candidate_revision_floor_v1_2` | [ESP32-C5-WROOM-1/WROOM-1U Datasheet v1.2](https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `esp32_s3_wroom_1u_n16r2` | `ESP32-S3-WROOM-1U-N16R2` | `verified_candidate` | `active` | [ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | same primary source |
 | `everest_es8311_qfn20` | `Everest Semiconductor ES8311` | `verified_candidate` | `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open` | [ES8311 Low Power Mono Audio CODEC Product Brief Revision 17.0, February 2026](https://www.everest-semi.com/pdf/ES8311%20PB.pdf) | same primary source |
@@ -45,7 +46,9 @@
 | `liteon_ltst_c190krkt` | `LTST-C190KRKT` | `verified_candidate` | `active` | [LTST-C190KRKT SMD LED datasheet BNS-OD-C131/A4](https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF) | same primary source |
 | `littelfuse_0451005_mrl` | `Littelfuse 0451005.MRL` | `verified_candidate` | `active` | [451/453 Nano2 surface-mount fuse datasheet current product data checked 2026-08-18](https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803) | same primary source |
 | `m5_u214` | `M5Stack U214 Cap LoRa-1262` | `verified_candidate` | `active` | [M5Stack Cap LoRa-1262 product documentation live product page](https://docs.m5stack.com/en/cap/Cap_LoRa-1262) | same primary source |
+| `murata_blm18pg181sn1d` | `Murata BLM18PG181SN1D` | `verified_candidate` | `active_orderable` | [BLM18PG181SN1 product specification current manufacturer page checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?cate=cgsubChipFerriBead&partno=BLM18PG181SN1%23) | same primary source |
 | `murata_grm1555c1h121ja01d` | `Murata GRM1555C1H121JA01D` | `verified_candidate` | `active` | [Murata GRM1555C1H121JA01 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM1555C1H121JA01D) | same primary source |
+| `murata_grm1555c1h220ja01d` | `Murata GRM1555C1H220JA01D` | `verified_candidate` | `active_orderable` | [Murata GRM series exact-product specification current exact order code checked 2026-08-18](https://psearch.en.murata.com/capacitor/product/GRM1555C1H220JA01%23.html) | same primary source |
 | `murata_grm1555c1h221ja01d` | `Murata GRM1555C1H221JA01D` | `verified_candidate` | `active` | [Murata GRM1555C1H221JA01 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM1555C1H221JA01D) | same primary source |
 | `murata_grm155r71e473ka88d` | `Murata GRM155R71E473KA88D` | `verified_candidate` | `active` | [Murata GRM155R71E473KA88 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM155R71E473KA88D) | same primary source |
 | `murata_grm155r71h103ka88d` | `Murata GRM155R71H103KA88D` | `verified_candidate` | `active` | [Murata GRM155R71H103KA88 product data current product data checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?partno=GRM155R71H103KA88D) | same primary source |
@@ -68,9 +71,12 @@
 | `panasonic_aeq10410` | `Panasonic AEQ10410` | `verified_first_hard_stop_target_actuator_and_mount_hil_open` | `active` | [Panasonic AEQ (EQ) Switches product specification and drawing AECTB14E 202406; live product page checked 2026-08-18](https://industry.panasonic.com/global/en/products/control/switch/micro-non-seal/number/aeq10410) | same primary source |
 | `panasonic_erj_2rkf22r0x` | `Panasonic ERJ-2RKF22R0X` | `verified_candidate` | `active` | [Panasonic ERJ precision thick-film chip resistor datasheet current family datasheet checked 2026-08-18](https://api.pim.na.industrial.panasonic.com/file_stream/main/fileversion/1263) | same primary source |
 | `panasonic_erj_p08f10r0v` | `Panasonic ERJ-P08F10R0V` | `verified_candidate` | `active` | [Panasonic ERJ-P08F10R0V high-power anti-surge resistor product page current product data checked 2026-08-18](https://na.industrial.panasonic.com/products/resistors/smd-chip-resistors/high-power-anti-surge-high-voltage/series/36033/model/39214) | same primary source |
+| `pui_as02404po` | `PUI Audio AS02404PO` | `verified_candidate` | `active_orderable` | [AS02404PO Speaker datasheet 2024 current datasheet checked 2026-08-18](https://api.puiaudio.com/filename/AS02404PO.pdf) | same primary source |
 | `qdtech_hmx035ctft_001` | `HMX035CTFT-001 (QDtech schematic assembly marking)` | `verified_candidate` | `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified` | [QDtech ES3C35P ESP32-S3 schematic official published schematic](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf) | same primary source |
 | `rp2354a_a4` | `RP2354A A4 (exact order code required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354A uses the same A-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
 | `rp2354b_a4` | `RP2354B A4 (exact A4 order/lot identity required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
+| `same_sky_cmej_0413_42_smt_tr` | `Same Sky CMEJ-0413-42-SMT-TR` | `verified_candidate` | `active_orderable` | [CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet Rev. 1.04, September 2024](https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf) | same primary source |
+| `same_sky_sj1_3515_smt_tr` | `Same Sky SJ1-3515-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ1-351X-SMT Audio Jack datasheet Rev. 1.09, September 2024](https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf) | same primary source |
 | `sitronix_st77922` | `Sitronix ST77922` | `verified_exact_controller_inside_hmx035ctft_001` | `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly` | [ST77922 Single-Chip TFT Controller/Driver/Touch datasheet Preliminary 0.1, 2023-06](https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf) | same primary source |
 | `skyworks_si4732_a10_gs` | `Si4732-A10-GS` | `verified_candidate` | `manufacturer_documented` | [Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short 2021-09-13](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf) | same primary source |
 | `sn74hc595pwr` | `SN74HC595PWR` | `verified_candidate` | `active` | [SNx4HC595 8-Bit Shift Registers datasheet SCLS041J](https://www.ti.com/lit/ds/symlink/sn74hc595.pdf) | same primary source |
@@ -92,9 +98,11 @@
 | `ti_sn74lvc08a_pwr` | `SN74LVC08APWR` | `verified_candidate` | `active` | [SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet Rev. W](https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf) | same primary source |
 | `ti_sn74lvc1g07_dckr` | `SN74LVC1G07DCKR` | `verified_exact_open_drain_partial_power_buffer` | `active` | [SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet Rev. V](https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf) | same primary source |
 | `ti_sn74lvc1g125_dckr` | `Texas Instruments SN74LVC1G125DCKR` | `verified_candidate` | `active` | [SN74LVC1G125 single-bus buffer with 3-state output datasheet SCES223T and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf) | same primary source |
+| `ti_sn74lvc1g126_dckr` | `Texas Instruments SN74LVC1G126DCKR` | `verified_candidate` | `active` | [SN74LVC1G126 Single Bus Buffer Gate With 3-State Output datasheet SCES225 and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/sn74lvc1g126.pdf) | same primary source |
 | `ti_sn74lvc1g3157_dbvr` | `Texas Instruments SN74LVC1G3157DBVR` | `verified_reference` | `active` | [SN74LVC1G3157 single-pole, double-throw analog switch datasheet SCES424O, January 2003, revised June 2025](https://www.ti.com/lit/ds/symlink/sn74lvc1g3157.pdf) | same primary source |
 | `ti_sn74lvc1g74_dcur` | `SN74LVC1G74DCUR` | `verified_candidate` | `active` | [SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet Rev. G](https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf) | same primary source |
 | `ti_sn74lvc2g08_dcur` | `Texas Instruments SN74LVC2G08DCUR` | `reference_only` | `active` | [SN74LVC2G08 dual 2-input positive-AND gate datasheet SCES198N, April 1999, revised December 2015](https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf) | same primary source |
+| `ti_sn74lvc2g66_dcur` | `Texas Instruments SN74LVC2G66DCUR` | `verified_candidate` | `active` | [SN74LVC2G66 Dual Bilateral Analog Switch datasheet SCES325N, July 2001, revised August 2018](https://www.ti.com/lit/ds/symlink/sn74lvc2g66.pdf) | same primary source |
 | `ti_sn74lvc3g34_dcur` | `SN74LVC3G34DCUR` | `verified_candidate` | `active` | [SN74LVC3G34 Triple Buffer Gate datasheet Rev. L](https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf) | same primary source |
 | `ti_tca9534a_pwr` | `TCA9534APWR` | `verified_candidate` | `active` | [TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9534a.pdf) | same primary source |
 | `ti_tlv1824_pwr` | `TLV1824PWR` | `verified_candidate` | `active` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1824.pdf) | same primary source |
@@ -110,6 +118,7 @@
 | `ti_tps25961_drvr` | `Texas Instruments TPS25961DRVR` | `verified_candidate` | `active` | [TPS25961 2.7-V to 19-V, 106-mOhm eFuse datasheet SLVSGT8, December 2022](https://www.ti.com/lit/ds/symlink/tps25961.pdf) | same primary source |
 | `ti_tps25974l_rpwr` | `Texas Instruments TPS25974LRPWR` | `verified_candidate` | `active` | [TPS2597xx 2.7-V to 23-V, 7-A, 9.8-mOhm eFuse datasheet SLVSGG5D, November 2021, revised May 2025](https://www.ti.com/lit/ds/symlink/tps2597.pdf) | same primary source |
 | `ti_tps3808g33_dbvr` | `TPS3808G33DBVR` | `verified_candidate` | `active` | [TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet Rev. M](https://www.ti.com/lit/ds/symlink/tps3808.pdf) | same primary source |
+| `ti_tps3839k33_dbzr` | `Texas Instruments TPS3839K33DBZR` | `verified_candidate` | `active` | [TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet SBVS193D and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/tps3839.pdf) | same primary source |
 | `ti_tps564252_drlr` | `Texas Instruments TPS564252DRLR` | `verified_candidate` | `active` | [TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet SLUSEQ6A, December 2022, revised May 2023](https://www.ti.com/lit/ds/symlink/tps564252.pdf) | same primary source |
 | `ti_tps629203_drlr` | `Texas Instruments TPS629203DRLR` | `verified_candidate` | `active` | [TPS629203 300-mA, 3-V to 17-V low-IQ buck converter datasheet SLVSGE2, March 2022](https://www.ti.com/lit/ds/symlink/tps629203.pdf) | same primary source |
 | `ti_tpul2g223_bqbr` | `Texas Instruments TPUL2G223BQBR` | `verified_candidate` | `active_production` | [TPUL2G223 dual RC-timed non-retriggerable monostable multivibrators datasheet SLVSL08, January 2026](https://www.ti.com/lit/ds/symlink/tpul2g223.pdf) | same primary source |
@@ -127,6 +136,7 @@
 | `yageo_rc0402fr_07196kl` | `Yageo RC0402FR-07196KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_071k65l` | `Yageo RC0402FR-071K65L` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_07220kl` | `Yageo RC0402FR-07220KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07220KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07220KL) | same primary source |
+| `yageo_rc0402fr_07220rl` | `Yageo RC0402FR-07220RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0402fr_07240kl` | `Yageo RC0402FR-07240KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07240KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07240KL) | same primary source |
 | `yageo_rc0402fr_07270kl` | `Yageo RC0402FR-07270KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rc0402fr_072k21l` | `Yageo RC0402FR-072K21L` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
@@ -143,6 +153,7 @@
 | `yageo_rc0402fr_07620kl` | `Yageo RC0402FR-07620KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07620KL exact product specification generated 2026-05-21; checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07620KL) | same primary source |
 | `yageo_rc0402fr_0768kl` | `Yageo RC0402FR-0768KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0768KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL) | same primary source |
 | `yageo_rc0402fr_078k2l` | `Yageo RC0402FR-078K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-078K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-078K2L) | same primary source |
+| `yageo_rc0402jr_070rl` | `Yageo RC0402JR-070RL` | `verified_candidate` | `active_orderable` | [Yageo RC general-purpose chip resistor specification current exact order code checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf) | same primary source |
 | `yageo_rc0603fr_071kl` | `Yageo RC0603FR-071KL` | `verified_candidate` | `active` | [Yageo RC general-purpose thick-film chip resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_14.pdf) | same primary source |
 | `yageo_rt0402brd07100kl` | `Yageo RT0402BRD07100KL` | `verified_candidate` | `active` | [Yageo RT0402BRD07100KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RT0402BRD07100KL) | same primary source |
 | `yageo_rt0402brd07191kl` | `Yageo RT0402BRD07191KL` | `verified_candidate` | `active` | [Yageo RT high-precision thin-film resistor series datasheet current product data checked 2026-08-18](https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RT_1-to-0_01.pdf) | same primary source |
@@ -445,7 +456,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `CC_QUIET` | `cc` | pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped | RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no SPI/GDO back-power and active-receiver desense HIL |
 | `U214_EXT_QUIET` | `u214`, `external accessories` | external 5 V off; I2C isolated; SPI/UART static | slow_io.P17 EXT_5V_EN plus protected power and TCA4307 isolation | rail discharge, isolation, hot-plug and no-back-power HIL |
 | `VOICE_QUIET` | `voice` | PTT hardware-off; module power-down; qualified 4 V rail off | VOICE_PTT_N, VOICE_DOMAIN_EN and HARD_STOP_N-dominant power/TX gates | actual-TX-off, rail/current and stuck-control fault-injection HIL |
-| `RECEIVER_AUDIO_QUIET` | `receiver`, `codec`, `I2S` | AUDIO_ARM low forces speaker bypass and electret TX-audio default; receiver rail/reset off and isolated when unused; codec muted/off; I2S clock/DMA stopped | direct S3.GPIO6 AUDIO_ARM with pull-down plus RX_DOMAIN_EN, CODEC_PWR_EN and S3 peripheral clock gates | stale P11/P12 reset/watchdog/brownout override, bypass delta, I2C no-back-power, clock spectrum, current and active-receiver desense HIL |
+| `RECEIVER_AUDIO_QUIET` | `receiver`, `codec`, `I2S`, `speaker amplifier`, `voice audio and digital interfaces` | AUDIO_ARM low forces receive bypass and electret TX-audio default; P01 keeps PAM8302A off; receiver and codec rails are discharged with I2C/I2S isolated; voice PTT/UART/AFOUT/MIC_IN are isolated; I2S clock/DMA is stopped | direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10/P13/P15 and exact supervisors/isolators | stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-receiver desense HIL |
 | `IR_QUIET` | `IR RX`, `IR TX` | frontend rail off; RMT stopped and pins parked; TX remains HARD_STOP_N-dominated | C5.GPIO4 IR_FRONTEND_PWR_EN plus independent HARD_STOP_N TX gate | dark/current/no-optical-output and active-radio desense HIL |
 | `S3_RF_QUIET` | `S3 Wi-Fi`, `S3 BLE`, `ESP-NOW` | protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive | native RF power state plus S3_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `C5_RF_QUIET` | `C5 Wi-Fi`, `C5 IEEE 802.15.4` | protocols stopped and native RF block off while C5 may remain alive for IR/recovery | native RF power state plus C5_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
@@ -456,8 +467,8 @@ Decision `DEC-0046`; default `QUIET`.
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver.SDIO`, `display_connector.PIN_2`, `codec.CDATA`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0` | — |
-| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver.SCLK`, `display_connector.PIN_1`, `codec.CCLK`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11` | — |
+| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0` | — |
+| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
@@ -470,10 +481,10 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO12` | 20 | `S3_C5_SDIO_D0` | `io` | `SDMMC_SLOT1_1BIT` | `c5.GPIO8` | — |
 | `GPIO13` | 21 | `S3_C5_SDIO_D1_IRQ` | `io` | `SDMMC_SLOT1_1BIT` | `c5.GPIO7` | — |
 | `GPIO14` | 22 | `S3_RP_IPC_MISO` | `i` | `SPI3` | `rp.GPIO27` | — |
-| `GPIO15` | 8 | `I2S_BCLK` | `o` | `I2S0` | `codec.SCLK` | — |
-| `GPIO16` | 9 | `I2S_WS` | `o` | `I2S0` | `codec.LRCK` | — |
-| `GPIO17` | 10 | `I2S_DOUT` | `o` | `I2S0` | `codec.DSDIN` | — |
-| `GPIO18` | 11 | `I2S_DIN` | `i` | `I2S0` | `codec.ASDOUT` | — |
+| `GPIO15` | 8 | `I2S_BCLK` | `o` | `I2S0` | `codec_i2s_bclk_iso.A` | — |
+| `GPIO16` | 9 | `I2S_WS` | `o` | `I2S0` | `codec_i2s_ws_iso.A` | — |
+| `GPIO17` | 10 | `I2S_DOUT` | `o` | `I2S0` | `codec_i2s_dout_iso.A` | — |
+| `GPIO18` | 11 | `I2S_DIN` | `i` | `I2S0` | `codec_i2s_din_iso.Y` | — |
 | `GPIO19` | 13 | `S3_USB_DM` | `io` | `USB_SERIAL_JTAG` | `product_usb_dm_series.END_2` | — |
 | `GPIO20` | 14 | `S3_USB_DP` | `io` | `USB_SERIAL_JTAG` | `product_usb_dp_series.END_2` | — |
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
@@ -535,11 +546,11 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO13` | 12 | `U214_IRQ` | `i` | `GPIO_IRQ` | `u214.LORA_IRQ` | — |
 | `GPIO14` | 13 | `U214_RST_N` | `o` | `GPIO` | `u214.LORA_RST` | — |
 | `GPIO15` | 14 | `NRF_GROUP_PWR_EN` | `o` | `GPIO` | `safe_gate_a.4A` | — |
-| `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `voice.UART_RX` | — |
+| `GPIO16` | 16 | `VOICE_UART_TX` | `o` | `UART0` | `voice_uart_tx_iso.A` | — |
 | `GPIO17` | 17 | `VOICE_UART_RX` | `i` | `UART0` | `voice.UART_TX` | — |
 | `GPIO18` | 18 | `VOICE_PTT_REQ_N` | `o` | `GPIO` | `safe_ptt_or.1A` | — |
 | `GPIO19` | 19 | `RP_ALERT_N` | `od` | `GPIO_IRQ` | `s3.GPIO3` | — |
-| `GPIO20` | 20 | `VOICE_ACTIVITY` | `i` | `GPIO_IRQ` | `voice.AUDIO_ON` | — |
+| `GPIO20` | 20 | `VOICE_AUDIO_ON_N` | `i` | `GPIO_IRQ` | `voice.AUDIO_ON`, `voice_audio_on_pulldown.END_1` | — |
 | `GPIO21` | 21 | `PTT_BUTTON_N` | `i` | `GPIO_IRQ` | `ptt_series.END_2` | — |
 | `GPIO22` | 22 | `RP_ANY_TX_N` | `i` | `GPIO_IRQ` | `evidence_or_0.A_COMMON`, `evidence_or_1.A_COMMON`, `evidence_or_2.A_COMMON`, `evidence_or_3.A_COMMON`, `any_tx_led.K` | — |
 | `GPIO23` | 23 | `CC_PWR_EN` | `o` | `GPIO` | `safe_gate_b.1A` | — |
@@ -958,6 +969,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `3V3_MAIN` | `main_efuse.OUT` | `power_fault_pullup.END_1` | one exact pull-up serves the entire wired-low fault aggregate only while its protected diagnostic domain is powered |
 | `POWER_FAULT_N` | `power_fault_pullup.END_2` | `abstract:power-current-thermal-fault` | 10-kOhm limits any asserting PG, FLT or qualifier sink to about 0.33 mA |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `voice_buck.VIN` | voice has a physically independent fixed-voltage converter rather than a shared 4/5-V selector |
+| `POWER_GROUND` | `voice_buck.GND` | `abstract:power-ground` | exact converter ground contact closes the independent voice switching loop |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `voice_input_cap.END_1` | 22-uF 25-V X7R local bulk input capacitor keeps the voice switching loop independent |
 | `POWER_GROUND` | `voice_input_cap.END_2` | `abstract:power-ground` | voice bulk input return stays inside its own high-current switching loop |
 | `NVDC_SYS` | `nvdc_charger.SYS` | `voice_hf_input_cap.END_1` | 100-nF 50-V X7R directly shunts high-frequency voice-converter VIN current |
@@ -995,7 +1007,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `VOICE_EFUSE_PGTH` | `voice_efuse_pg_top.END_2` | `voice_efuse.PGTH` | 68/33-kOhm divider asserts only after the protected rail crosses approximately 3.67 V |
 | `VOICE_EFUSE_PGTH` | `voice_efuse.PGTH` | `voice_efuse_pg_bottom.END_1` | PGTH directly measures protected output, not raw converter output |
 | `POWER_GROUND` | `voice_efuse_pg_bottom.END_2` | `abstract:power-ground` | 33-kOhm 1% completes the PG divider |
-| `VOICE_4V_PG_N` | `voice_efuse.PG` | `abstract:voice-power-reset-domain` | PD remains asserted until the protected 4-V rail and internal eFuse power path are valid |
+| `VOICE_4V_PG_N` | `voice_efuse.PG` | `abstract:TP_VOICE_EFUSE_PG_N` | diagnostic power-good remains observable; the exact analog supervisor independently controls PD and all voice interfaces |
 | `3V3_MAIN` | `main_efuse.OUT` | `voice_pg_pullup.END_1` | voice protected-PG is referenced only to the powered diagnostic domain |
 | `VOICE_4V_PG_N` | `voice_pg_pullup.END_2` | `voice_efuse.PG` | 10-kOhm draws at most about 0.33 mA when the open-drain protected PG is low |
 | `VOICE_4V_PG_N` | `voice_efuse.PG` | `voice_pg_qualifier.E` | the protected-rail PG input is qualified by the same STOP-dominant enable request |
@@ -1112,13 +1124,140 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `SD_ESD_B_NC7` | `sd_esd_b.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SD_ESD_B_NC9` | `sd_esd_b.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SD_ESD_B_NC10` | `sd_esd_b.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_power_switch.IN` | codec branch is independently reset-off and cannot back-power the common I2C/I2S buses |
-| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `abstract:qualified-codec-3v3-digital` | digital and analog filtering split only after the exact protected load switch |
-| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `abstract:qualified-codec-3v3-analog` | analog filtering and return-current geometry remain a schematic/HIL gate |
-| `CODEC_QOD` | `codec_power_switch.QOD` | `codec_power_switch.VOUT` | powered-off codec rail is actively discharged before interface isolation is relaxed |
-| `3V3_MAIN` | `abstract:3V3_MAIN` | `receiver_power_switch.IN` | receive-only radio has its own reset-off branch for desense control |
-| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver.VDD` | local filtering and RST sequencing follow the exact switch |
-| `RECEIVER_QOD` | `receiver_power_switch.QOD` | `receiver_power_switch.VOUT` | powered-off receiver rail is discharged and verified quiet |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_power_switch.IN` | codec branch starts at one independently reset-off, self-protected load switch |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_power_input_cap.END_1` | one exact 1-uF input capacitor is local to the codec switch |
+| `POWER_GROUND` | `codec_power_input_cap.END_2` | `abstract:power-ground` | codec-switch input bypass has a short return |
+| `POWER_GROUND` | `codec_power_switch.GND` | `abstract:power-ground` | load-switch ground follows the main power return |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_power_output_cap.END_1` | one exact 10-uF output capacitor supports codec, op-amp and local references |
+| `AUDIO_GROUND` | `codec_power_output_cap.END_2` | `abstract:audio-ground` | switched codec bulk returns inside the quiet audio region |
+| `CODEC_QOD` | `codec_power_switch.QOD` | `codec_power_switch.VOUT` | powered-off codec rail is actively discharged before interfaces can reopen |
+| `CODEC_PWR_EN` | `codec_power_switch.ON` | `codec_power_on_pulldown.END_1` | exact 10-kOhm pull-down makes codec power fail off while the expander is input or absent |
+| `POWER_GROUND` | `codec_power_on_pulldown.END_2` | `abstract:power-ground` | codec-enable default is physically low |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_supervisor.VDD` | 3.08-V supervisor releases local interfaces only after about 200 ms of valid codec power |
+| `AUDIO_GROUND` | `codec_supervisor.GND` | `abstract:audio-ground` | codec supervisor shares the local quiet return |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_supervisor_bypass.END_1` | exact 100-nF supervisor bypass |
+| `AUDIO_GROUND` | `codec_supervisor_bypass.END_2` | `abstract:audio-ground` | supervisor bypass returns locally |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_ready_pulldown.END_1` | 100-kOhm keeps every isolator disabled below the supervisor's guaranteed-output voltage |
+| `AUDIO_GROUND` | `codec_ready_pulldown.END_2` | `abstract:audio-ground` | codec readiness fails low |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2c_iso.VCC` | host-powered bilateral switch stays controllable while the codec is off |
+| `POWER_GROUND` | `codec_i2c_iso.GND` | `abstract:power-ground` | I2C-isolator logic return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2c_iso_bypass.END_1` | exact 100-nF codec-I2C isolator bypass |
+| `POWER_GROUND` | `codec_i2c_iso_bypass.END_2` | `abstract:power-ground` | codec-I2C bypass returns locally |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2c_iso.1C` | SDA remains physically open until codec power is valid |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2c_iso.2C` | SCL remains physically open until codec power is valid |
+| `SYS_I2C_SDA` | `s3.GPIO1` | `codec_i2c_iso.1A` | codec isolation does not disturb the always-live scheduled host bus |
+| `CODEC_I2C_SDA` | `codec_i2c_iso.1B` | `codec.CDATA` | local data reaches only the powered codec |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_i2c_sda_pullup.END_1` | exact 2.2-kOhm local data pull-up disappears with codec power |
+| `CODEC_I2C_SDA` | `codec_i2c_sda_pullup.END_2` | `codec.CDATA` | no host pull-up can back-power CDATA while isolation is open |
+| `SYS_I2C_SCL` | `s3.GPIO2` | `codec_i2c_iso.2A` | host clock enters a separately enabled bilateral channel |
+| `CODEC_I2C_SCL` | `codec_i2c_iso.2B` | `codec.CCLK` | local clock reaches only the powered codec |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_i2c_scl_pullup.END_1` | exact 2.2-kOhm local clock pull-up |
+| `CODEC_I2C_SCL` | `codec_i2c_scl_pullup.END_2` | `codec.CCLK` | local clock defaults high only with valid codec power |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_bclk_iso.VCC` | one Ioff-capable physical buffer owns BCLK isolation |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_ws_iso.VCC` | one separate physical buffer owns WS isolation |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_dout_iso.VCC` | one separate physical buffer owns playback-data isolation |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_din_iso.VCC` | one separate physical buffer owns capture-data isolation |
+| `POWER_GROUND` | `codec_i2s_bclk_iso.GND` | `abstract:power-ground` | BCLK buffer return |
+| `POWER_GROUND` | `codec_i2s_ws_iso.GND` | `abstract:power-ground` | WS buffer return |
+| `POWER_GROUND` | `codec_i2s_dout_iso.GND` | `abstract:power-ground` | DOUT buffer return |
+| `POWER_GROUND` | `codec_i2s_din_iso.GND` | `abstract:power-ground` | DIN buffer return |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_bclk_iso.OE` | BCLK output is high impedance until valid codec power |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_ws_iso.OE` | WS output is high impedance until valid codec power |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_dout_iso.OE` | playback data is high impedance until valid codec power |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_din_iso.OE` | S3 capture input is disconnected from a collapsing codec domain |
+| `I2S_BCLK` | `s3.GPIO15` | `codec_i2s_bclk_iso.A` | dedicated I2S0 BCLK never shares a controller with display or storage |
+| `CODEC_I2S_BCLK` | `codec_i2s_bclk_iso.Y` | `codec.SCLK` | ES8311 derives its internal master clock from the admitted BCLK mode |
+| `I2S_WS` | `s3.GPIO16` | `codec_i2s_ws_iso.A` | dedicated I2S0 word select |
+| `CODEC_I2S_WS` | `codec_i2s_ws_iso.Y` | `codec.LRCK` | word select reaches only the powered codec |
+| `I2S_DOUT` | `s3.GPIO17` | `codec_i2s_dout_iso.A` | dedicated playback data |
+| `CODEC_I2S_DOUT` | `codec_i2s_dout_iso.Y` | `codec.DSDIN` | playback data reaches only the powered codec |
+| `CODEC_I2S_DIN_LOCAL` | `codec.ASDOUT` | `codec_i2s_din_iso.A` | codec capture data enters a host-powered receive buffer |
+| `I2S_DIN` | `codec_i2s_din_iso.Y` | `s3.GPIO18` | S3 sees high impedance rather than an off-domain codec output |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_bclk_iso_bypass.END_1` | exact 100-nF BCLK-buffer bypass |
+| `POWER_GROUND` | `codec_i2s_bclk_iso_bypass.END_2` | `abstract:power-ground` | BCLK bypass return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_ws_iso_bypass.END_1` | exact 100-nF WS-buffer bypass |
+| `POWER_GROUND` | `codec_i2s_ws_iso_bypass.END_2` | `abstract:power-ground` | WS bypass return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_dout_iso_bypass.END_1` | exact 100-nF DOUT-buffer bypass |
+| `POWER_GROUND` | `codec_i2s_dout_iso_bypass.END_2` | `abstract:power-ground` | DOUT bypass return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_din_iso_bypass.END_1` | exact 100-nF DIN-buffer bypass |
+| `POWER_GROUND` | `codec_i2s_din_iso_bypass.END_2` | `abstract:power-ground` | DIN bypass return |
+| `CODEC_PVDD` | `codec_power_switch.VOUT` | `codec.PVDD` | PVDD uses the directly switched rail with local high-frequency bypass |
+| `CODEC_PVDD` | `codec_power_switch.VOUT` | `codec_pvdd_bypass.END_1` | exact 100-nF PVDD bypass |
+| `AUDIO_GROUND` | `codec_pvdd_bypass.END_2` | `abstract:audio-ground` | PVDD bypass returns inside the codec region |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_dvdd_bead.END_1` | exact 180-Ohm-at-100-MHz bead separates digital-core noise |
+| `CODEC_DVDD` | `codec_dvdd_bead.END_2` | `codec.DVDD` | DVDD remains within the common switched-rail sequencing |
+| `CODEC_DVDD` | `codec.DVDD` | `codec_dvdd_bypass.END_1` | exact 100-nF DVDD bypass |
+| `AUDIO_GROUND` | `codec_dvdd_bypass.END_2` | `abstract:audio-ground` | DVDD HF return stays local |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_avdd_bead.END_1` | separate exact bead isolates the analog supply |
+| `CODEC_AVDD` | `codec_avdd_bead.END_2` | `codec.AVDD` | AVDD receives the filtered switched rail |
+| `CODEC_AVDD` | `codec.AVDD` | `codec_avdd_bypass.END_1` | exact 100-nF AVDD bypass |
+| `AUDIO_GROUND` | `codec_avdd_bypass.END_2` | `abstract:audio-ground` | AVDD return avoids the class-D output loop |
+| `AUDIO_GROUND` | `codec.DGND` | `abstract:audio-ground` | codec digital ground joins the local audio plane |
+| `AUDIO_GROUND` | `codec.AGND` | `abstract:audio-ground` | codec analog ground joins the local audio plane |
+| `AUDIO_GROUND` | `codec.EPAD` | `abstract:audio-ground` | the exposed pad is grounded as required by the user guide |
+| `CODEC_DACVREF` | `codec.DACVREF` | `codec_dacvref_cap.END_1` | exact 1-uF DAC reference capacitor |
+| `AUDIO_GROUND` | `codec_dacvref_cap.END_2` | `abstract:audio-ground` | DAC reference return is local |
+| `CODEC_ADCVREF` | `codec.ADCVREF` | `codec_adcvref_cap.END_1` | exact 1-uF ADC reference capacitor |
+| `AUDIO_GROUND` | `codec_adcvref_cap.END_2` | `abstract:audio-ground` | ADC reference return is local |
+| `CODEC_VMID` | `codec.VMID` | `codec_vmid_cap.END_1` | exact 1-uF codec midpoint capacitor; VMID is not exported as a rail |
+| `AUDIO_GROUND` | `codec_vmid_cap.END_2` | `abstract:audio-ground` | VMID return is local |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `codec_ce_pullup.END_1` | exact 10-kOhm CE strap exists only with codec power |
+| `CODEC_I2C_ADDR_0X19` | `codec_ce_pullup.END_2` | `codec.CE` | physical high strap selects documented 7-bit address 0x19 |
+| `CODEC_MCLK_NC` | `codec.MCLK` | `abstract:no-connect` | reviewed BCLK-derived-clock mode consumes no hidden S3 contact |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `receiver_power_switch.IN` | receive-only radio has an independent reset-off branch |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `receiver_power_input_cap.END_1` | exact 1-uF receiver-switch input capacitor |
+| `POWER_GROUND` | `receiver_power_input_cap.END_2` | `abstract:power-ground` | receiver input bypass return |
+| `POWER_GROUND` | `receiver_power_switch.GND` | `abstract:power-ground` | receiver switch ground |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_power_output_cap.END_1` | exact 10-uF local receiver bulk |
+| `POWER_GROUND` | `receiver_power_output_cap.END_2` | `abstract:power-ground` | receiver bulk return stays by the SOIC |
+| `RECEIVER_QOD` | `receiver_power_switch.QOD` | `receiver_power_switch.VOUT` | off receiver rail is actively discharged |
+| `RX_DOMAIN_EN` | `receiver_power_switch.ON` | `receiver_power_on_pulldown.END_1` | exact 10-kOhm reset-off default |
+| `POWER_GROUND` | `receiver_power_on_pulldown.END_2` | `abstract:power-ground` | receiver power fails low |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_supervisor.VDD` | 3.08-V supervisor holds reset and bus isolation for about 200 ms |
+| `POWER_GROUND` | `receiver_supervisor.GND` | `abstract:power-ground` | receiver supervisor return |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_supervisor_bypass.END_1` | exact 100-nF supervisor bypass |
+| `POWER_GROUND` | `receiver_supervisor_bypass.END_2` | `abstract:power-ground` | receiver supervisor bypass return |
+| `RECEIVER_READY` | `receiver_supervisor.RESET_N` | `receiver_ready_pulldown.END_1` | 100-kOhm guarantees reset and isolation remain asserted below valid supervisor output |
+| `POWER_GROUND` | `receiver_ready_pulldown.END_2` | `abstract:power-ground` | receiver readiness fails low |
+| `RX_RST_N` | `receiver_supervisor.RESET_N` | `receiver.RST` | the exact receiver remains reset through power ramp and discharge |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `receiver_i2c_iso.VCC` | host-powered bilateral switch prevents an off receiver from loading SYS-I2C |
+| `POWER_GROUND` | `receiver_i2c_iso.GND` | `abstract:power-ground` | receiver-I2C isolator return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `receiver_i2c_iso_bypass.END_1` | exact 100-nF receiver-I2C isolator bypass |
+| `POWER_GROUND` | `receiver_i2c_iso_bypass.END_2` | `abstract:power-ground` | receiver-I2C bypass return |
+| `RECEIVER_READY` | `receiver_supervisor.RESET_N` | `receiver_i2c_iso.1C` | SDIO channel opens only after reset release |
+| `RECEIVER_READY` | `receiver_supervisor.RESET_N` | `receiver_i2c_iso.2C` | SCLK channel opens only after reset release |
+| `SYS_I2C_SDA` | `s3.GPIO1` | `receiver_i2c_iso.1A` | receiver data branch is independently isolatable |
+| `RX_I2C_SDA` | `receiver_i2c_iso.1B` | `receiver.SDIO` | local data reaches only the valid receiver domain |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_i2c_sda_pullup.END_1` | exact 2.2-kOhm local data pull-up |
+| `RX_I2C_SDA` | `receiver_i2c_sda_pullup.END_2` | `receiver.SDIO` | no pull-up remains when the receiver is off |
+| `SYS_I2C_SCL` | `s3.GPIO2` | `receiver_i2c_iso.2A` | receiver clock branch is independently isolatable |
+| `RX_I2C_SCL` | `receiver_i2c_iso.2B` | `receiver.SCLK` | local clock reaches only the valid receiver domain |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_i2c_scl_pullup.END_1` | exact 2.2-kOhm local clock pull-up |
+| `RX_I2C_SCL` | `receiver_i2c_scl_pullup.END_2` | `receiver.SCLK` | local clock defaults high only while powered |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_irq_iso.VCC` | Ioff open-drain IRQ buffer loses power with the receiver |
+| `POWER_GROUND` | `receiver_irq_iso.GND` | `abstract:power-ground` | receiver IRQ buffer return |
+| `RX_IRQ_ISO_NC` | `receiver_irq_iso.NC` | `abstract:no-connect` | SC70 no-connect remains open |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver_irq_iso_bypass.END_1` | exact 100-nF IRQ-buffer bypass |
+| `POWER_GROUND` | `receiver_irq_iso_bypass.END_2` | `abstract:power-ground` | IRQ bypass return |
+| `RX_STATUS_LOCAL_N` | `receiver.GPO2_INTB` | `receiver_irq_iso.A` | exact active-low receiver interrupt enters a non-inverting open-drain isolator |
+| `RX_STATUS_N` | `receiver_irq_iso.Y` | `slow_io.P24` | read-only status cannot back-power the receiver |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `receiver_irq_pullup.END_1` | exact 10-kOhm status pull-up belongs to the live expander domain |
+| `RX_STATUS_N` | `receiver_irq_pullup.END_2` | `slow_io.P24` | receiver-off and wire-open state reads high |
+| `3V3_RECEIVER_SWITCHED` | `receiver_power_switch.VOUT` | `receiver.VDD` | exact 3.3-V receiver supply |
+| `3V3_RECEIVER_SWITCHED` | `receiver.VDD` | `receiver_vdd_bypass.END_1` | exact 100-nF receiver bypass |
+| `POWER_GROUND` | `receiver_vdd_bypass.END_2` | `abstract:power-ground` | receiver HF return |
+| `RX_RF_GROUND` | `receiver.RFGND` | `abstract:power-ground` | RF input ground receives a short RF return |
+| `POWER_GROUND` | `receiver.GND` | `abstract:power-ground` | receiver signal ground |
+| `RX_XTAL_RCLK` | `receiver.RCLK` | `receiver_clock.X1` | exact 32.768-kHz crystal is connected directly at RCLK |
+| `RX_XTAL_GPO3` | `receiver.GPO3_DCLK` | `receiver_clock.X2` | internal-crystal mode uses GPO3/DCLK as the second crystal terminal |
+| `RX_XTAL_RCLK` | `receiver.RCLK` | `receiver_clock_cap_rclk.END_1` | first exact 22-pF load capacitor is a placement/HIL starting value |
+| `POWER_GROUND` | `receiver_clock_cap_rclk.END_2` | `abstract:power-ground` | first crystal capacitor returns locally |
+| `RX_XTAL_GPO3` | `receiver.GPO3_DCLK` | `receiver_clock_cap_gpo3.END_1` | second exact 22-pF load capacitor is a placement/HIL starting value |
+| `POWER_GROUND` | `receiver_clock_cap_gpo3.END_2` | `abstract:power-ground` | second crystal capacitor returns locally |
+| `RX_SENB_LOW` | `receiver.SENB` | `receiver_senb_pulldown.END_1` | 10-kOhm first population target selects the two-wire boot state |
+| `POWER_GROUND` | `receiver_senb_pulldown.END_2` | `abstract:power-ground` | firmware still probes both documented/publicly conflicting 0x11 and 0x63 identities; specimen HIL freezes the address |
+| `RX_GPO1_NC` | `receiver.GPO1` | `abstract:no-connect` | unused multifunction output remains open |
+| `RX_PACKAGE_NC` | `receiver.NC` | `abstract:no-connect` | SOIC physical pin 8 remains open |
 | `NRF_SWITCH_NC` | `nrf_power_switch.NC` | `abstract:no-connect` | SC70 pin 4 is left floating as required |
 | `CC_SWITCH_NC` | `cc_power_switch.NC` | `abstract:no-connect` | SC70 pin 4 is left floating as required |
 | `SD_SWITCH_NC` | `sd_power_switch.NC` | `abstract:no-connect` | SC70 pin 4 is left floating as required |
@@ -1375,73 +1514,250 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `LCD_IM2_LOW` | `display_connector.PIN_40` | `display.IM2` | fixed QSPI interface strap |
 | `LCD_IM2_LOW` | `display.IM2` | `display_touch_controller.IM2P` | assembly IM2 reaches exact ST77922 die pad 144 |
 | `LCD_IM2_LOW` | `display_connector.PIN_40` | `abstract:power-ground` | short fixed board-side QSPI strap |
-| `CODEC_PWR_EN` | `slow_io.P10` | `codec_power_switch.ON` | external off-safe pull; ES8311 has no hardware enable/reset pin and CE is only the I2C address strap |
-| `CODEC_PVDD` | `abstract:qualified-codec-3v3-digital` | `codec.PVDD` | switched quiet rail with local decoupling; no back-power through I2C/I2S when off |
-| `CODEC_DVDD` | `abstract:qualified-codec-3v3-digital` | `codec.DVDD` | switched quiet rail with local decoupling and manufacturer-valid sequencing |
-| `CODEC_AVDD` | `abstract:qualified-codec-3v3-analog` | `codec.AVDD` | filtered switched analog rail; return-current and RF-noise layout remain gates |
-| `CODEC_DGND` | `codec.DGND` | `abstract:codec-digital-ground` | joined to audio ground at the reviewed single-point/plane boundary |
-| `CODEC_AGND` | `codec.AGND` | `abstract:codec-audio-ground` | quiet analog return |
-| `CODEC_EPAD_AGND` | `codec.EPAD` | `abstract:codec-audio-ground` | manufacturer user guide requires the exposed thermal pad on audio ground |
-| `CODEC_DACVREF` | `abstract:codec-dacvref-decoupling` | `codec.DACVREF` | exact capacitor/value/layout follow current product brief and HIL |
-| `CODEC_ADCVREF` | `abstract:codec-adcvref-decoupling` | `codec.ADCVREF` | exact capacitor/value/layout follow current product brief and HIL |
-| `CODEC_VMID` | `abstract:codec-vmid-decoupling` | `codec.VMID` | quiet local reference; not a general-purpose rail |
-| `CODEC_I2C_ADDR_0X19` | `abstract:codec-address-high-3v3` | `codec.CE` | 10 kOhm reference strap selects documented 7-bit address 0x19; complete bus address scan remains HIL |
-| `CODEC_MCLK_NC` | `codec.MCLK` | `abstract:no-connect` | current four-wire I2S contract selects BCLK/SCLK as internal master-clock source; no hidden S3 GPIO |
-| `RX_AUDIO_L` | `receiver.LOUT_DFS` | `abstract:si4732-10k-left-mono-sum` | 10-kOhm-class summing branch; exact source level, capacitor and impedance remain schematic/HIL gates |
-| `RX_AUDIO_R` | `receiver.ROUT_DOUT` | `abstract:si4732-10k-right-mono-sum` | 10-kOhm-class summing branch; exact source level, capacitor and impedance remain schematic/HIL gates |
-| `RX_SI4732_MONO` | `abstract:si4732-passive-mono-sum-output` | `audio_rx_mux.B1` | logic-low/default receive source; component values and low-band response remain schematic/HIL gates |
-| `RX_SA518_AFOUT` | `voice.AFOUT` | `audio_rx_mux.B2` | voice receive source; muted and isolated before voice rail transitions |
-| `RX_AUDIO_SOURCE_SEL` | `slow_io.P27` | `audio_rx_mux.S` | ordinary non-TX source selection; external pull-down selects Si4732 B1 at reset |
-| `AUDIO_RX_MUX_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_rx_mux.VCC` | selector remains available independently of codec power |
-| `AUDIO_RX_MUX_GND` | `audio_rx_mux.GND` | `abstract:audio-ground` | quiet analog return |
-| `RX_AUDIO_SELECTED` | `audio_rx_mux.A_COM` | `abstract:rx-audio-bypass-and-capture-node` | one selected RX source feeds independent bypass and high-impedance capture branches |
-| `SPK_BYPASS_P` | `abstract:rx-audio-bypass-and-capture-node` | `audio_speaker_selector.S1B` | logic-low/default path; qualified AC coupling and PAM input network remain schematic gates |
-| `SPK_BYPASS_M` | `abstract:matched-bypass-ac-reference` | `audio_speaker_selector.S2B` | matched AC reference for PAM differential input in ordinary bypass mode |
-| `CODEC_CAPTURE_TAP` | `abstract:rx-audio-bypass-and-capture-node` | `abstract:high-z-ac-coupled-capture-network` | 100-kOhm-class source-loading target; exact bias, capacitor and RF filter remain schematic/HIL gates |
-| `CODEC_CAPTURE_BUFFER_IN` | `abstract:high-z-ac-coupled-capture-network` | `audio_capture_buffer.IN_PLUS` | biased inside TLV9061 valid common-mode range; no source back-power when codec branch is off |
-| `CODEC_CAPTURE_BUFFER_FB` | `audio_capture_buffer.OUT` | `audio_capture_buffer.IN_MINUS` | unity-gain baseline; qualified gain may change only with repeated analog review |
-| `CODEC_CAPTURE_BUFFER_VCC` | `abstract:qualified-codec-3v3-analog` | `audio_capture_buffer.V_PLUS` | switched with codec analog domain; input series network prevents powered-off loading/back-power |
-| `CODEC_CAPTURE_BUFFER_GND` | `audio_capture_buffer.V_MINUS` | `abstract:codec-audio-ground` | quiet analog return |
-| `CODEC_CAPTURE_BUFFER_OUT` | `audio_capture_buffer.OUT` | `abstract:qualified-es8311-mic-range-differential-input-network` | buffer output is AC-coupled, biased and attenuated into a manufacturer-valid ES8311 microphone-range interface |
-| `CODEC_ADC_IN_P` | `abstract:qualified-es8311-mic-range-differential-input-network` | `codec.MIC1P` | exact gain, common mode, AC coupling and anti-RF values remain schematic/HIL gates |
-| `CODEC_ADC_IN_N` | `abstract:qualified-es8311-mic-range-differential-input-network` | `codec.MIC1N` | matched reference and conditioning remain an exact schematic/HIL gate |
-| `CODEC_DAC_OUT_P` | `codec.OUTP` | `audio_speaker_selector.S1A` | full differential DAC positive leg; never grounded or silently discarded |
-| `CODEC_DAC_OUT_N` | `codec.OUTN` | `audio_speaker_selector.S2A` | full differential DAC negative leg |
-| `PAM_AUDIO_IN_P` | `audio_speaker_selector.D1` | `speaker_amp.IN_PLUS` | paired selector poles always change together under one safe control |
-| `PAM_AUDIO_IN_M` | `audio_speaker_selector.D2` | `speaker_amp.IN_MINUS` | paired selector poles always change together under one safe control |
-| `AUDIO_SPK_SEL_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_speaker_selector.VDD` | selector remains powered while codec rail is off so analog bypass survives |
-| `AUDIO_SPK_SEL_GND` | `audio_speaker_selector.GND` | `abstract:audio-ground` | quiet analog return |
-| `PAM_VDD` | `abstract:qualified-speaker-amp-supply` | `speaker_amp.VDD` | exact rail, decoupling, current and EMI remain schematic/HIL gates |
-| `PAM_GND` | `speaker_amp.GND` | `abstract:audio-ground` | short quiet return; class-D output currents stay out of codec input return |
-| `PAM_SD` | `abstract:qualified-speaker-enable-default-on` | `speaker_amp.SD` | ordinary bypass remains available after reset; startup pop and fault behavior remain HIL gates |
-| `PAM_NC` | `speaker_amp.NC` | `abstract:no-connect` | physical MSOP-8 pin 2 is no-connect |
-| `SPEAKER_P` | `speaker_amp.VO_PLUS` | `abstract:speaker-positive` | BTL/class-D output; never tie to ground |
-| `SPEAKER_M` | `speaker_amp.VO_MINUS` | `abstract:speaker-negative` | BTL/class-D output; never tie to ground |
-| `CODEC_TX_DAC_TAP` | `codec.OUTP` | `abstract:codec-dac-to-sa518-35-45db-attenuator` | separate high-impedance AC-coupled low-pass branch; exact attenuation is set by measured SA518 deviation |
-| `VOICE_CODEC_INJECT` | `abstract:codec-dac-to-sa518-35-45db-attenuator` | `audio_tx_selector.NO` | codec injection is the non-default selected input |
-| `VOICE_ELECTRET_DEFAULT` | `abstract:electret-microphone-bias-and-ac-coupling` | `audio_tx_selector.NC` | logic-low/default path preserves ordinary microphone operation |
-| `VOICE_MIC_IN` | `audio_tx_selector.COM` | `voice.MIC_IN` | audio selection cannot assert PTT; input level and deviation remain measured gates |
-| `AUDIO_TX_SEL_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_tx_selector.VCC` | selector remains powered independently of codec rail |
-| `AUDIO_TX_SEL_GND` | `audio_tx_selector.GND` | `abstract:audio-ground` | quiet analog return |
-| `AUDIO_SPK_CODEC_REQ` | `slow_io.P11` | `audio_safe_gate.1A` | external pull-down requests ordinary analog bypass while expander is input or high-Z |
-| `AUDIO_TX_CODEC_REQ` | `slow_io.P12` | `audio_safe_gate.2A` | external pull-down requests electret default while expander is input or high-Z |
-| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_selector.SEL1` | low selects bypass S1B; external pull-down holds default if gate rail is absent |
-| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_selector.SEL2` | both differential poles share the same reset-safe control |
-| `AUDIO_TX_SEL_SAFE` | `audio_safe_gate.2Y` | `audio_tx_selector.IN` | low selects normally-closed electret path; external pull-down holds default if gate rail is absent |
-| `AUDIO_SAFE_GATE_VCC` | `abstract:always-available-quiet-audio-rail` | `audio_safe_gate.VCC` | gate and selectors share a sequenced always-available rail |
-| `AUDIO_SAFE_GATE_GND` | `audio_safe_gate.GND` | `abstract:audio-ground` | quiet logic return |
-| `VOICE_DOMAIN_REQ` | `slow_io.P13` | `safe_gate_b.2A` | request only; RUN_PERMIT and a 10-kOhm output pull-down make the downstream rail enable STOP-dominant |
-| `VOICE_PD_N` | `abstract:voice-power-reset-domain` | `voice.PD` | off-safe sequencer keeps the exact module in power-down until the qualified 4 V rail is valid |
-| `VOICE_HL` | `slow_io.P14` | `voice.HL` | external conservative-power pull |
-| `VOICE_UPDATE` | `voice.UPDATE` | `abstract:voice-update-fixture` | fixture-only; no runtime drive until the rev-1.1 direction/description conflict is resolved by specimen proof |
-| `RX_DOMAIN_EN` | `slow_io.P15` | `receiver_power_switch.ON` | off-safe pull; exact switch removes receiver power while the following reset/isolation circuit prevents I2C back-power |
-| `RX_DOMAIN_POWER_VALID` | `receiver_power_switch.VOUT` | `abstract:receiver-power-reset-isolation` | reset remains asserted until switched power and I2C isolation are valid |
-| `RX_RST_N` | `abstract:receiver-power-reset-isolation` | `receiver.RST` | reset remains asserted until the qualified receiver rail and I2C isolation are valid |
-| `RX_STATUS_N` | `receiver.GPO2_INTB` | `slow_io.P24` | exact interrupt source; bounded latency and pulse width remain HIL gates |
-| `RX_SENB_I2C` | `abstract:i2c-mode-strap` | `receiver.SENB` | fixed reset strap selects the reviewed two-wire control mode |
-| `RX_RCLK` | `abstract:qualified-32k-clock` | `receiver.RCLK` | clock source and startup remain exact electrical gates |
-| `RX_FMI_RF` | `receiver.FMI` | `abstract:RX-FM-SW-SMA-front-end` | dedicated external-SMA whip path; matching/ESD stays close to FMI |
-| `RX_AMI_RF` | `receiver.AMI` | `abstract:RX-AM-LW-loop-pod` | dedicated short loop/pod path; generic long coax is not qualified |
+| `CODEC_PWR_EN` | `slow_io.P10` | `codec_power_switch.ON` | off-safe exact TPS22919 switch; ES8311 CE remains only its 0x19 address strap |
+| `RX_DOMAIN_EN` | `slow_io.P15` | `receiver_power_switch.ON` | off-safe exact TPS22919 receiver switch |
+| `RX_FMI_RF` | `receiver.FMI` | `abstract:RX-FM-SW-SMA-front-end` | dedicated external-SMA whip path; exact matching and input protection close in I6 |
+| `RX_AMI_RF` | `receiver.AMI` | `abstract:RX-AM-LW-loop-pod` | dedicated short loop or buffered-pod path; generic long coax remains unqualified |
+| `POWER_GROUND` | `abstract:power-ground` | `audio_ground_link.END_1` | one explicit zero-Ohm star entry prevents class-D return current from crossing the codec input region |
+| `AUDIO_GROUND` | `audio_ground_link.END_2` | `abstract:audio-ground` | audio ground is a routed local region, not a second floating product ground |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_vmid_top.END_1` | 100-kOhm upper leg creates the always-available analog midpoint |
+| `AUDIO_VMID_MAIN` | `audio_vmid_top.END_2` | `audio_vmid_bottom.END_1` | 1.65-V nominal reference biases receiver and electret selector branches |
+| `AUDIO_GROUND` | `audio_vmid_bottom.END_2` | `abstract:audio-ground` | 100-kOhm lower leg completes the midpoint |
+| `AUDIO_VMID_MAIN` | `audio_vmid_top.END_2` | `audio_vmid_cap.END_1` | exact 1-uF capacitor quiets the midpoint |
+| `AUDIO_GROUND` | `audio_vmid_cap.END_2` | `abstract:audio-ground` | midpoint bypass return remains local |
+| `RX_AUDIO_L` | `receiver.LOUT_DFS` | `si_audio_l_coupling.END_1` | left receiver output is AC-coupled before passive mono summing |
+| `RX_AUDIO_L_AC` | `si_audio_l_coupling.END_2` | `si_audio_l_sum.END_1` | one exact 10-kOhm summing branch bounds left/right interaction |
+| `RX_AUDIO_R` | `receiver.ROUT_DOUT` | `si_audio_r_coupling.END_1` | right receiver output is independently AC-coupled |
+| `RX_AUDIO_R_AC` | `si_audio_r_coupling.END_2` | `si_audio_r_sum.END_1` | second exact 10-kOhm summing branch |
+| `RX_SI4732_MONO` | `si_audio_l_sum.END_2` | `si_audio_r_sum.END_2` | passive mono sum cannot short the two receiver outputs together |
+| `RX_SI4732_MONO` | `si_audio_l_sum.END_2` | `si_audio_sum_bias.END_1` | 100-kOhm midpoint bias defines the AC-coupled sum |
+| `AUDIO_VMID_MAIN` | `si_audio_sum_bias.END_2` | `audio_vmid_top.END_2` | receive sum uses the always-available audio midpoint |
+| `RX_SI4732_MONO` | `si_audio_l_sum.END_2` | `audio_rx_mux.B1` | logic-low selector default is the broadcast receiver |
+| `RX_SA518_AFOUT_ISOLATED` | `voice_audio_iso.1B` | `voice_rx_coupling.END_1` | voice audio reaches the main audio region only through a power-valid bilateral switch |
+| `RX_SA518_AFOUT_AC` | `voice_rx_coupling.END_2` | `voice_rx_series.END_1` | exact 1-uF coupling removes module DC state |
+| `RX_SA518_AFOUT_BIASED` | `voice_rx_series.END_2` | `audio_rx_mux.B2` | exact 10-kOhm branch limits source and selector fault current |
+| `RX_SA518_AFOUT_BIASED` | `voice_rx_series.END_2` | `voice_rx_bias.END_1` | 100-kOhm bias defines the source while voice audio is disconnected |
+| `AUDIO_VMID_MAIN` | `voice_rx_bias.END_2` | `audio_vmid_top.END_2` | voice RX branch uses the main midpoint |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_rx_mux.VCC` | receive selector remains available while codec and radio domains are independently off |
+| `AUDIO_GROUND` | `audio_rx_mux.GND` | `abstract:audio-ground` | receive selector quiet return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_rx_mux_bypass.END_1` | exact 100-nF receive-selector bypass |
+| `AUDIO_GROUND` | `audio_rx_mux_bypass.END_2` | `abstract:audio-ground` | receive-selector bypass return |
+| `RX_AUDIO_SOURCE_SEL` | `slow_io.P27` | `audio_rx_mux.S` | low selects Si4732; exact physical pull-down preserves that reset default |
+| `RX_AUDIO_SOURCE_SEL` | `audio_rx_mux.S` | `audio_rx_sel_pulldown.END_1` | 10-kOhm prevents reset-time source ambiguity |
+| `AUDIO_GROUND` | `audio_rx_sel_pulldown.END_2` | `abstract:audio-ground` | default receive source is physically low |
+| `RX_AUDIO_SELECTED` | `audio_rx_mux.A_COM` | `audio_speaker_selector.S1B` | selected receive audio directly feeds the reset-default speaker bypass pole |
+| `AUDIO_VMID_MAIN` | `audio_vmid_top.END_2` | `audio_speaker_selector.S2B` | matched midpoint is the negative differential reference in bypass mode |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `microphone_bias_filter_res.END_1` | exact 220-Ohm resistor begins a quiet electret supply filter |
+| `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `microphone_bias_filter_cap.END_1` | exact 10-uF local bulk decouples transmitter and capture demand |
+| `AUDIO_GROUND` | `microphone_bias_filter_cap.END_2` | `abstract:audio-ground` | microphone-bias return stays in the input region |
+| `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `microphone_bias_res.END_1` | exact 2.2-kOhm load targets the microphone's 2-V operating point |
+| `MIC_RAW` | `microphone_bias_res.END_2` | `microphone.OUT_PLUS` | one exact Same Sky electret is the shared acoustic source |
+| `AUDIO_GROUND` | `microphone.GND_MINUS` | `abstract:audio-ground` | electret shell/input return is local and short |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_capture_selector.VCC` | capture source can be selected before codec power admission |
+| `AUDIO_GROUND` | `audio_capture_selector.GND` | `abstract:audio-ground` | capture-selector return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_capture_selector_bypass.END_1` | exact 100-nF capture-selector bypass |
+| `AUDIO_GROUND` | `audio_capture_selector_bypass.END_2` | `abstract:audio-ground` | capture-selector bypass return |
+| `AUDIO_CAPTURE_MIC_SEL` | `slow_io.P00` | `audio_capture_selector.IN` | new exact slow contact selects microphone high; reset/default low records the chosen receive source |
+| `AUDIO_CAPTURE_MIC_SEL` | `audio_capture_selector.IN` | `audio_capture_sel_pulldown.END_1` | 10-kOhm keeps host capture on RX until explicitly changed |
+| `AUDIO_GROUND` | `audio_capture_sel_pulldown.END_2` | `abstract:audio-ground` | capture-selection default is physical |
+| `RX_AUDIO_SELECTED` | `audio_rx_mux.A_COM` | `audio_capture_rx_coupling.END_1` | capture tap is separately AC-coupled and does not load speaker bypass DC |
+| `CAPTURE_RX_BIASED` | `audio_capture_rx_coupling.END_2` | `audio_capture_selector.NC` | logic-low TS5A63157 path selects RX |
+| `CAPTURE_RX_BIASED` | `audio_capture_rx_coupling.END_2` | `audio_capture_rx_bias.END_1` | 100-kOhm source bias limits capture loading |
+| `AUDIO_VMID_MAIN` | `audio_capture_rx_bias.END_2` | `audio_vmid_top.END_2` | RX capture branch uses main midpoint |
+| `MIC_RAW` | `microphone.OUT_PLUS` | `audio_capture_mic_coupling.END_1` | microphone capture has its own AC branch independent of transmitter audio |
+| `CAPTURE_MIC_BIASED` | `audio_capture_mic_coupling.END_2` | `audio_capture_selector.NO` | logic-high path selects local electret |
+| `CAPTURE_MIC_BIASED` | `audio_capture_mic_coupling.END_2` | `audio_capture_mic_bias.END_1` | 100-kOhm source bias limits electret loading |
+| `AUDIO_VMID_MAIN` | `audio_capture_mic_bias.END_2` | `audio_vmid_top.END_2` | microphone capture branch uses main midpoint |
+| `CAPTURE_SELECTED` | `audio_capture_selector.COM` | `audio_capture_input_coupling.END_1` | selected source is AC-coupled across the always-on to switched-codec boundary |
+| `CODEC_CAPTURE_BUFFER_IN` | `audio_capture_input_coupling.END_2` | `audio_capture_buffer.IN_PLUS` | codec-local common mode prevents off-domain input injection |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `audio_capture_local_bias_top.END_1` | 100-kOhm upper leg creates a codec-local buffer midpoint |
+| `CODEC_CAPTURE_VMID` | `audio_capture_local_bias_top.END_2` | `audio_capture_local_bias_bottom.END_1` | buffer input stays inside TLV9061 common-mode range |
+| `AUDIO_GROUND` | `audio_capture_local_bias_bottom.END_2` | `abstract:audio-ground` | 100-kOhm lower leg completes codec-local midpoint |
+| `CODEC_CAPTURE_VMID` | `audio_capture_local_bias_top.END_2` | `audio_capture_local_bias_cap.END_1` | exact 1-uF midpoint bypass |
+| `AUDIO_GROUND` | `audio_capture_local_bias_cap.END_2` | `abstract:audio-ground` | capture midpoint return |
+| `CODEC_CAPTURE_VMID` | `audio_capture_local_bias_top.END_2` | `audio_capture_buffer.IN_PLUS` | bias is applied on the codec side of the isolation capacitor |
+| `CODEC_CAPTURE_BUFFER_FB` | `audio_capture_buffer.OUT` | `audio_capture_buffer.IN_MINUS` | unity gain preserves headroom; measured HIL may only reduce level in firmware or passive attenuation |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `audio_capture_buffer.V_PLUS` | capture buffer powers down with codec |
+| `AUDIO_GROUND` | `audio_capture_buffer.V_MINUS` | `abstract:audio-ground` | capture buffer quiet return |
+| `3V3_CODEC_SWITCHED` | `codec_power_switch.VOUT` | `audio_capture_buffer_bypass.END_1` | exact 100-nF TLV9061 bypass |
+| `AUDIO_GROUND` | `audio_capture_buffer_bypass.END_2` | `abstract:audio-ground` | buffer bypass return |
+| `CODEC_CAPTURE_BUFFER_OUT` | `audio_capture_buffer.OUT` | `codec_adc_p_coupling.END_1` | buffered source is AC-coupled into microphone-range input |
+| `CODEC_ADC_P_AC` | `codec_adc_p_coupling.END_2` | `codec_adc_p_series.END_1` | 33-kOhm series element attenuates against the ES8311 input impedance |
+| `CODEC_ADC_IN_P` | `codec_adc_p_series.END_2` | `codec.MIC1P` | about -16-dB paper target remains a measured level/deviation HIL gate |
+| `AUDIO_GROUND` | `abstract:audio-ground` | `codec_adc_n_coupling.END_1` | matched AC reference forms the negative single-ended-to-differential leg |
+| `CODEC_ADC_N_AC` | `codec_adc_n_coupling.END_2` | `codec_adc_n_series.END_1` | matching 33-kOhm source impedance preserves common-mode behavior |
+| `CODEC_ADC_IN_N` | `codec_adc_n_series.END_2` | `codec.MIC1N` | negative codec microphone input is not silently grounded |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_speaker_selector.VDD` | speaker selector remains alive for receive bypass while codec is off |
+| `AUDIO_GROUND` | `audio_speaker_selector.GND` | `abstract:audio-ground` | speaker selector quiet return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_speaker_selector_bypass.END_1` | exact 100-nF TMUX1136 bypass |
+| `AUDIO_GROUND` | `audio_speaker_selector_bypass.END_2` | `abstract:audio-ground` | speaker-selector bypass return |
+| `CODEC_DAC_OUT_P` | `codec.OUTP` | `audio_speaker_selector.S1A` | full positive codec output reaches the codec-selected pole |
+| `CODEC_DAC_OUT_N` | `codec.OUTN` | `audio_speaker_selector.S2A` | full negative codec output reaches the second physical pole |
+| `SPEAKER_SELECTED_P` | `audio_speaker_selector.D1` | `speaker_input_p_coupling.END_1` | selector output is AC-coupled into the amplifier |
+| `PAM_INPUT_P_AC` | `speaker_input_p_coupling.END_2` | `speaker_input_p_gain.END_1` | exact 47-kOhm input element sets about 8.4-dB amplifier gain |
+| `PAM_AUDIO_IN_P` | `speaker_input_p_gain.END_2` | `speaker_amp.IN_PLUS` | positive amplifier input has bounded source impedance |
+| `SPEAKER_SELECTED_N` | `audio_speaker_selector.D2` | `speaker_input_n_coupling.END_1` | second selector output is independently AC-coupled |
+| `PAM_INPUT_N_AC` | `speaker_input_n_coupling.END_2` | `speaker_input_n_gain.END_1` | matched exact 47-kOhm negative input element |
+| `PAM_AUDIO_IN_N` | `speaker_input_n_gain.END_2` | `speaker_amp.IN_MINUS` | differential input is preserved through both physical poles |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `speaker_amp.VDD` | PAM8302A uses the reviewed protected main rail; maximum paper load stays inside the I3 rail envelope |
+| `AUDIO_GROUND` | `speaker_amp.GND` | `abstract:audio-ground` | amplifier input return is local while BTL current uses a short output loop |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `speaker_amp_input_cap.END_1` | exact 1-uF high-frequency/local input capacitor |
+| `AUDIO_GROUND` | `speaker_amp_input_cap.END_2` | `abstract:audio-ground` | speaker-amplifier input bypass return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `speaker_amp_bulk_cap.END_1` | exact 10-uF local bulk absorbs class-D step current |
+| `POWER_GROUND` | `speaker_amp_bulk_cap.END_2` | `abstract:power-ground` | bulk return follows the output-current region rather than the codec input trace |
+| `SPEAKER_AMP_EN` | `slow_io.P01` | `speaker_amp.SD` | speaker is explicitly enabled only while needed; headphone insertion and quiet-state policy force this contact low |
+| `SPEAKER_AMP_EN` | `speaker_amp.SD` | `speaker_amp_enable_pulldown.END_1` | 10-kOhm reset default keeps the class-D stage off |
+| `AUDIO_GROUND` | `speaker_amp_enable_pulldown.END_2` | `abstract:audio-ground` | amplifier enable fails low |
+| `PAM_NC` | `speaker_amp.NC` | `abstract:no-connect` | MSOP physical pin 2 remains open |
+| `SPEAKER_BTL_P_RAW` | `speaker_amp.VO_PLUS` | `speaker_output_bead_p.END_1` | exact EMI bead starts the positive output branch |
+| `SPEAKER_BTL_P` | `speaker_output_bead_p.END_2` | `speaker.PLUS` | positive 4-Ohm speaker terminal is never grounded |
+| `SPEAKER_BTL_P` | `speaker_output_bead_p.END_2` | `speaker_output_cap_p.END_1` | exact 220-pF connector-side shunt reduces class-D cable radiation |
+| `POWER_GROUND` | `speaker_output_cap_p.END_2` | `abstract:power-ground` | positive EMI shunt returns by the amplifier/output region |
+| `SPEAKER_BTL_N_RAW` | `speaker_amp.VO_MINUS` | `speaker_output_bead_n.END_1` | separate exact EMI bead starts the negative output branch |
+| `SPEAKER_BTL_N` | `speaker_output_bead_n.END_2` | `speaker.MINUS` | negative BTL terminal remains floating from ground |
+| `SPEAKER_BTL_N` | `speaker_output_bead_n.END_2` | `speaker_output_cap_n.END_1` | matched exact 220-pF connector-side shunt |
+| `POWER_GROUND` | `speaker_output_cap_n.END_2` | `abstract:power-ground` | negative EMI shunt uses the same short output return region |
+| `CODEC_HP_L_RAW` | `codec.OUTP` | `headphone_l_coupling0.END_1` | first exact 22-uF capacitor contributes to the left headphone coupling bank |
+| `CODEC_HP_L_RAW` | `codec.OUTP` | `headphone_l_coupling1.END_1` | second physical 22-uF capacitor is parallel, not hidden inside one diagram block |
+| `HEADPHONE_L_AC` | `headphone_l_coupling0.END_2` | `headphone_l_series.END_1` | parallel bank provides about 44 uF before exact series damping |
+| `HEADPHONE_L_AC` | `headphone_l_coupling1.END_2` | `headphone_l_series.END_1` | both left capacitors join only after their separate bodies |
+| `HEADPHONE_TIP` | `headphone_l_series.END_2` | `headphone_jack.TIP` | exact 22-Ohm resistor limits transient and cable loading |
+| `CODEC_HP_R_RAW` | `codec.OUTN` | `headphone_r_coupling0.END_1` | first exact 22-uF right coupling capacitor |
+| `CODEC_HP_R_RAW` | `codec.OUTN` | `headphone_r_coupling1.END_1` | second separate exact 22-uF right coupling capacitor |
+| `HEADPHONE_R_AC` | `headphone_r_coupling0.END_2` | `headphone_r_series.END_1` | right parallel bank provides about 44 uF |
+| `HEADPHONE_R_AC` | `headphone_r_coupling1.END_2` | `headphone_r_series.END_1` | both right capacitors are physically accounted |
+| `HEADPHONE_RING` | `headphone_r_series.END_2` | `headphone_jack.RING` | exact 22-Ohm right series resistor |
+| `HEADPHONE_SLEEVE` | `headphone_jack.SLEEVE` | `abstract:audio-ground` | headphone sleeve returns at the protected audio entry, not a class-D output |
+| `HEADPHONE_TIP` | `headphone_jack.TIP` | `headphone_esd.D1_PLUS` | first side of a flow-through ESD channel reaches the exact jack tip |
+| `HEADPHONE_TIP` | `headphone_jack.TIP` | `headphone_esd.D1_MINUS` | second side is the same tip conductor in flow-through placement |
+| `HEADPHONE_RING` | `headphone_jack.RING` | `headphone_esd.D2_PLUS` | first side of the second ESD channel reaches ring |
+| `HEADPHONE_RING` | `headphone_jack.RING` | `headphone_esd.D2_MINUS` | second side is the same ring conductor |
+| `HEADPHONE_ESD_GROUND` | `headphone_esd.GND_3` | `abstract:power-ground-dedicated-via` | first array ground has a shortest-path local via |
+| `HEADPHONE_ESD_GROUND` | `headphone_esd.GND_8` | `abstract:power-ground-dedicated-via` | second array ground has its own local via |
+| `HEADPHONE_ESD_NC6` | `headphone_esd.NC_6` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADPHONE_ESD_NC7` | `headphone_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADPHONE_ESD_NC9` | `headphone_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADPHONE_ESD_NC10` | `headphone_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headphone_tip_detect_pullup.END_1` | 10-kOhm pull-up reaches the DC-isolated tip only for plug detection |
+| `HEADPHONE_TIP_DETECT_SOURCE` | `headphone_tip_detect_pullup.END_2` | `headphone_jack.TIP` | 32-Ohm headphones clamp this source harmlessly while coupling capacitors block codec DC |
+| `HEADPHONE_ABSENT` | `headphone_jack.TIP_SWITCH` | `slow_io.P02` | closed no-plug contact reads high; insertion opens it and forces speaker shutdown in firmware |
+| `HEADPHONE_ABSENT` | `slow_io.P02` | `headphone_absent_pulldown.END_1` | 100-kOhm makes inserted, open-wire and reset state low |
+| `AUDIO_GROUND` | `headphone_absent_pulldown.END_2` | `abstract:audio-ground` | jack-detect default is deterministic |
+| `HEADPHONE_RING_SWITCH_NC` | `headphone_jack.RING_SWITCH` | `abstract:no-connect` | unused second internal switch remains open |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_tx_selector.VCC` | transmit-audio selector stays deterministic independently of codec power |
+| `AUDIO_GROUND` | `audio_tx_selector.GND` | `abstract:audio-ground` | TX selector quiet return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_tx_selector_bypass.END_1` | exact 100-nF TX-selector bypass |
+| `AUDIO_GROUND` | `audio_tx_selector_bypass.END_2` | `abstract:audio-ground` | TX-selector bypass return |
+| `MIC_RAW` | `microphone.OUT_PLUS` | `mic_tx_coupling.END_1` | ordinary voice path uses its own AC branch |
+| `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `audio_tx_selector.NC` | logic-low/default TS5A63157 path preserves direct microphone operation |
+| `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `mic_tx_bias.END_1` | 100-kOhm midpoint bias defines the selector input |
+| `AUDIO_VMID_MAIN` | `mic_tx_bias.END_2` | `audio_vmid_top.END_2` | ordinary TX audio uses main midpoint |
+| `CODEC_TX_DAC_TAP` | `codec.OUTP` | `codec_tx_coupling.END_1` | codec injection is separately AC-coupled and cannot assert PTT |
+| `CODEC_TX_AC` | `codec_tx_coupling.END_2` | `codec_tx_atten_top.END_1` | exact 220-kOhm upper attenuation leg minimally loads the codec output |
+| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `audio_tx_selector.NO` | about -40-dB first target matches the SA518 microphone-input scale |
+| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_atten_bottom.END_1` | exact 2.2-kOhm lower leg fixes passive attenuation |
+| `AUDIO_VMID_MAIN` | `codec_tx_atten_bottom.END_2` | `audio_vmid_top.END_2` | attenuator is centered on the main analog midpoint |
+| `VOICE_CODEC_INJECT` | `codec_tx_atten_top.END_2` | `codec_tx_filter.END_1` | exact 10-nF shunt limits out-of-band codec energy |
+| `AUDIO_GROUND` | `codec_tx_filter.END_2` | `abstract:audio-ground` | TX-injection filter return |
+| `VOICE_MIC_SELECTED_MAIN` | `audio_tx_selector.COM` | `voice_audio_iso.2A` | selected audio remains physically disconnected while the voice domain is invalid |
+| `VOICE_MIC_SELECTED_ISOLATED` | `voice_audio_iso.2B` | `voice_mic_coupling.END_1` | voice-side bilateral output is AC-coupled into the module |
+| `VOICE_MIC_IN` | `voice_mic_coupling.END_2` | `voice.MIC_IN` | audio selection never bypasses separate PTT and STOP gates; level/deviation closes in HIL |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_safe_gate.VCC` | reset-safe AND gate remains available independently of codec power |
+| `AUDIO_GROUND` | `audio_safe_gate.GND` | `abstract:audio-ground` | audio safe-gate return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_safe_gate_bypass.END_1` | exact 100-nF safe-gate bypass |
+| `AUDIO_GROUND` | `audio_safe_gate_bypass.END_2` | `abstract:audio-ground` | safe-gate bypass return |
+| `AUDIO_SPK_CODEC_REQ` | `slow_io.P11` | `audio_safe_gate.1A` | software request alone cannot select codec playback |
+| `AUDIO_SPK_CODEC_REQ` | `slow_io.P11` | `audio_speaker_req_pulldown.END_1` | exact 10-kOhm request pull-down |
+| `AUDIO_GROUND` | `audio_speaker_req_pulldown.END_2` | `abstract:audio-ground` | speaker path defaults to RX bypass |
+| `AUDIO_ARM` | `s3.GPIO6` | `audio_safe_gate.1B` | direct MCU arm is independent of slow-I/O stale state |
+| `AUDIO_ARM` | `s3.GPIO6` | `audio_arm_pulldown.END_1` | exact 10-kOhm reset pull-down forces both selectors to defaults |
+| `AUDIO_GROUND` | `audio_arm_pulldown.END_2` | `abstract:audio-ground` | audio arm fails low |
+| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_selector.SEL1` | low selects receive bypass on physical pole one |
+| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_selector.SEL2` | same safe signal controls the second differential pole |
+| `AUDIO_SPK_SEL_SAFE` | `audio_safe_gate.1Y` | `audio_speaker_safe_pulldown.END_1` | output-side exact pull-down covers absent/unpowered gate |
+| `AUDIO_GROUND` | `audio_speaker_safe_pulldown.END_2` | `abstract:audio-ground` | selector default remains physical |
+| `AUDIO_TX_CODEC_REQ` | `slow_io.P12` | `audio_safe_gate.2A` | software request alone cannot inject codec audio |
+| `AUDIO_TX_CODEC_REQ` | `slow_io.P12` | `audio_tx_req_pulldown.END_1` | exact 10-kOhm TX-source request pull-down |
+| `AUDIO_GROUND` | `audio_tx_req_pulldown.END_2` | `abstract:audio-ground` | ordinary electret remains reset default |
+| `AUDIO_ARM` | `s3.GPIO6` | `audio_safe_gate.2B` | same direct arm qualifies TX-source selection |
+| `AUDIO_TX_SEL_SAFE` | `audio_safe_gate.2Y` | `audio_tx_selector.IN` | low selects normally-closed electret path |
+| `AUDIO_TX_SEL_SAFE` | `audio_safe_gate.2Y` | `audio_tx_safe_pulldown.END_1` | exact output-side pull-down preserves electret default |
+| `AUDIO_GROUND` | `audio_tx_safe_pulldown.END_2` | `abstract:audio-ground` | TX audio selector fails low |
+| `VOICE_DOMAIN_REQ` | `slow_io.P13` | `safe_gate_b.2A` | request only; RUN_PERMIT still dominates the exact 4-V converter enable |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_supervisor.VDD` | voice-valid supervision remains alive across main-domain reset and cannot depend on SA518 firmware |
+| `SAFETY_GROUND` | `voice_supervisor.GND` | `abstract:safety-ground` | supervisor return stays with always-on gating |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_supervisor_bypass.END_1` | exact 100-nF local voice-supervisor bypass |
+| `SAFETY_GROUND` | `voice_supervisor_bypass.END_2` | `abstract:safety-ground` | voice-supervisor bypass return |
+| `VVOICE_4V` | `voice.VCC` | `voice_supervisor_sense_top.END_1` | exact 47-kOhm upper divider leg senses the protected module rail |
+| `VOICE_4V_SENSE` | `voice_supervisor_sense_top.END_2` | `voice_supervisor.SENSE` | TPS3808G33 releases only above approximately 3.73 V at nominal values |
+| `VOICE_4V_SENSE` | `voice_supervisor.SENSE` | `voice_supervisor_sense_bottom.END_1` | exact 220-kOhm lower leg avoids a false valid state |
+| `SAFETY_GROUND` | `voice_supervisor_sense_bottom.END_2` | `abstract:safety-ground` | voice-rail threshold is referenced to common product/safety ground |
+| `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_supervisor.MR_N` | STOP or AON loss asynchronously keeps voice readiness low regardless of sensed rail |
+| `VOICE_READY_DELAY` | `voice_supervisor.CT` | `voice_supervisor_ct.END_1` | exact 10-nF timing capacitor gives about 57.6-ms typical post-threshold delay |
+| `SAFETY_GROUND` | `voice_supervisor_ct.END_2` | `abstract:safety-ground` | supervisor delay capacitor returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_supervisor_pullup.END_1` | exact 10-kOhm pull-up completes the open-drain supervisor output |
+| `VOICE_READY` | `voice_supervisor_pullup.END_2` | `voice_supervisor.RESET_N` | high means STOP-permitted protected 4-V rail has remained valid through the delay |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_io_power_switch.IN` | voice interface logic has a separately discharged local supply |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_io_power_input_cap.END_1` | exact 1-uF voice-I/O switch input capacitor |
+| `POWER_GROUND` | `voice_io_power_input_cap.END_2` | `abstract:power-ground` | voice-I/O input bypass return |
+| `POWER_GROUND` | `voice_io_power_switch.GND` | `abstract:power-ground` | voice-I/O switch return |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_io_power_switch.ON` | interface rail cannot exist before STOP-permitted module power is valid |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_io_power_output_cap.END_1` | exact 1-uF local output capacitor supports buffers and analog isolation |
+| `AUDIO_GROUND` | `voice_io_power_output_cap.END_2` | `abstract:audio-ground` | voice-interface output bypass return |
+| `VOICE_IO_QOD` | `voice_io_power_switch.QOD` | `voice_io_power_switch.VOUT` | interface rail is actively discharged before the 4-V module rail falls |
+| `VOICE_IO_SWITCH_NC` | `voice_io_power_switch.NC` | `abstract:no-connect` | TPS22919 physical pin 4 remains open |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_iso.VCC` | one physical tri-state buffer owns module PTT drive |
+| `AUDIO_GROUND` | `voice_ptt_iso.GND` | `abstract:audio-ground` | PTT-isolator return |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_ptt_iso.OE` | module-side PTT is high impedance until power is qualified |
+| `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice_ptt_iso.A` | AON STOP gate remains the only source of the active-low PTT request |
+| `VOICE_PTT_MODULE_N` | `voice_ptt_iso.Y` | `voice.PTT` | buffer cannot create TX while its interface rail or enable is absent |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_pullup.END_1` | exact 10-kOhm module-side pull-up forces RX during buffer startup |
+| `VOICE_PTT_MODULE_N` | `voice_ptt_pullup.END_2` | `voice.PTT` | PTT remains high/RX through every normal power transition |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_iso_bypass.END_1` | exact 100-nF PTT-buffer bypass |
+| `AUDIO_GROUND` | `voice_ptt_iso_bypass.END_2` | `abstract:audio-ground` | PTT-buffer bypass return |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_uart_tx_iso.VCC` | separate physical buffer owns RP-to-module UART TX |
+| `AUDIO_GROUND` | `voice_uart_tx_iso.GND` | `abstract:audio-ground` | voice-UART TX buffer return |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_uart_tx_iso.OE` | module RX cannot be driven while the module rail is invalid |
+| `VOICE_UART_TX` | `rp.GPIO16` | `voice_uart_tx_iso.A` | firmware holds the host UART output low through SA518 sleep/startup, as required by the module specification |
+| `VOICE_UART_RX_MODULE` | `voice_uart_tx_iso.Y` | `voice.UART_RX` | UART idle is admitted only after voice readiness |
+| `VOICE_UART_RX_MODULE` | `voice.UART_RX` | `voice_uart_rx_pulldown.END_1` | 100-kOhm module-side pull-down enforces the documented sleep leakage/reset rule |
+| `AUDIO_GROUND` | `voice_uart_rx_pulldown.END_2` | `abstract:audio-ground` | module UART RX fails low |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_uart_tx_iso_bypass.END_1` | exact 100-nF UART-buffer bypass |
+| `AUDIO_GROUND` | `voice_uart_tx_iso_bypass.END_2` | `abstract:audio-ground` | UART-buffer bypass return |
+| `VOICE_UART_RX` | `voice.UART_TX` | `rp.GPIO17` | module-to-host direction needs no driven off-domain source |
+| `VOICE_UART_RX` | `rp.GPIO17` | `voice_uart_tx_pulldown.END_1` | 100-kOhm defines the host receive input while the module is off |
+| `POWER_GROUND` | `voice_uart_tx_pulldown.END_2` | `abstract:power-ground` | host voice-UART receive defaults low |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_hl_driver.VCC` | open-drain H/L driver remains available while module power is sequenced |
+| `POWER_GROUND` | `voice_hl_driver.GND` | `abstract:power-ground` | H/L driver return |
+| `VOICE_HL_DRIVER_NC` | `voice_hl_driver.NC` | `abstract:no-connect` | SC70 no-connect remains open |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `voice_hl_driver_bypass.END_1` | exact 100-nF H/L-driver bypass |
+| `POWER_GROUND` | `voice_hl_driver_bypass.END_2` | `abstract:power-ground` | H/L-driver bypass return |
+| `VOICE_HL_RELEASE_REQ` | `slow_io.P14` | `voice_hl_driver.A` | low requests conservative module power; high only releases the open-drain output |
+| `VOICE_HL_RELEASE_REQ` | `slow_io.P14` | `voice_hl_req_pulldown.END_1` | exact 10-kOhm default selects low-power output |
+| `POWER_GROUND` | `voice_hl_req_pulldown.END_2` | `abstract:power-ground` | no circuit ever actively drives the SA518 H/L contact high |
+| `VOICE_HL_OPEN_DRAIN` | `voice_hl_driver.Y` | `voice.HL` | datasheet-required low-or-open behavior is physical, not a firmware convention |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_audio_iso.VCC` | dual bilateral switch disconnects both AFOUT and MIC_IN with voice power |
+| `AUDIO_GROUND` | `voice_audio_iso.GND` | `abstract:audio-ground` | voice-audio isolation return |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_audio_iso.1C` | AFOUT remains open until module power is valid |
+| `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_audio_iso.2C` | MIC_IN remains open until module power is valid |
+| `RX_SA518_AFOUT_LOCAL` | `voice.AFOUT` | `voice_audio_iso.1A` | receive audio is disconnected before module rail collapse |
+| `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_audio_iso_bypass.END_1` | exact 100-nF voice-audio-isolator bypass |
+| `AUDIO_GROUND` | `voice_audio_iso_bypass.END_2` | `abstract:audio-ground` | voice-audio-isolator bypass return |
+| `VOICE_PD` | `voice_supervisor.RESET_N` | `voice.PD` | PD stays low through rail ramp and becomes high/normal only after exact threshold and delay |
+| `VOICE_AUDIO_ON_N` | `voice.AUDIO_ON` | `rp.GPIO20` | firmware qualifies the active-low indication by VOICE_READY; it never acts as a TX authorization |
+| `VOICE_AUDIO_ON_N` | `rp.GPIO20` | `voice_audio_on_pulldown.END_1` | 100-kOhm prevents a floating host input while the module is off |
+| `POWER_GROUND` | `voice_audio_on_pulldown.END_2` | `abstract:power-ground` | off-domain low is ignored unless VOICE_READY is high |
+| `VOICE_UPDATE_FIXTURE` | `voice.UPDATE` | `abstract:TP_VOICE_UPDATE_WITH_GND` | fixture-only contact; runtime never drives it until specimen HIL resolves the rev-1.1 input/output wording conflict |
+| `VOICE_VOXEN_NC` | `voice.VOXEN` | `abstract:no-connect` | standard SA518 leaves VOXEN without function; host-side authorized VOX uses the exact microphone capture path and preserves data TX |
+| `VOICE_NC5` | `voice.NC_5` | `abstract:no-connect` | module reserved contact remains open |
+| `VOICE_NC6` | `voice.NC_6` | `abstract:no-connect` | module reserved contact remains open |
+| `VOICE_NC15` | `voice.NC_15` | `abstract:no-connect` | module reserved contact remains open |
+| `POWER_GROUND` | `voice.GND_8` | `abstract:power-ground` | first SA518 ground land is physically connected |
+| `POWER_GROUND` | `voice.GND_9` | `abstract:power-ground` | second SA518 ground land is physically connected |
+| `POWER_GROUND` | `voice.GND_10` | `abstract:power-ground` | third SA518 ground land is physically connected |
+| `POWER_GROUND` | `voice.GND_19` | `abstract:power-ground` | fourth SA518 ground land is physically connected |
+| `POWER_GROUND` | `voice.GND_20` | `abstract:power-ground` | fifth SA518 ground land is physically connected |
+| `VOICE_RF` | `voice.ANT` | `abstract:VOICE-V-U-external-SMA-path` | external antenna path and band-specific antenna stay mandatory |
 | `EXT_5V_REQ` | `slow_io.P17` | `safe_gate_b.4A` | request only; RUN_PERMIT gates the reverse-safe/current-limited accessory power stage selected in I3/I7 |
 | `SD_PWR_EN` | `slow_io.P20` | `sd_power_switch.ON` | ordinary session request only; exact external fail-low and switch protection remain effective across firmware reset |
 | `SD_PWR_EN` | `sd_power_switch.ON` | `sd_on_pulldown.END_1` | separate exact 10-kOhm reset-off default supplements the switch smart pull-down |
@@ -1540,7 +1856,6 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `EXT_PG_QUAL_BASE` | `ext_pg_base_res.END_2` | `ext_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
 | `EXT_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_efuse.EN_UVLO` | the same STOP-dominant request also disables the connector-side true-reverse-blocking eFuse |
 | `TX_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
-| `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice.PTT` | 10-kOhm module-side pull-up keeps RX when the AON gate is unpowered |
 | `STOP_LED_DRIVE` | `safe_latch.Q` | `stop_led_series.END_1` | non-programmable visible latched-stop state |
 | `STOP_LED_A` | `stop_led_series.END_2` | `stop_led.A` | exact 2.2-kOhm current limit |
 | `STOP_LED_K` | `stop_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware |
@@ -1610,7 +1925,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 | Instance | Used | Reserved | Free |
 |---|---:|---:|---:|
-| `slow_io` | 18 | 0 | 6 |
+| `slow_io` | 21 | 0 | 3 |
 | `ui_matrix_io` | 7 | 1 | 0 |
 
 ### Interface non-interference contracts
@@ -1627,12 +1942,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `DISPLAY_SD_SPI` | `s3` | `display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
 | `S3_RP_IPC` | `s3` | `rp` | dedicated | 20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership | SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL |
 | `S3_C5_IPC` | `s3` | `c5` | dedicated | 1-bit SDIO at 20 MHz raw 2.5 MB/s with qualified framed payload >=1.5 MB/s, admitted occupancy <=70% and control RTT <=2 ms; no microSD, RP or display controller ownership | single-slot 1-bit SDMMC/SDIO throughput, control-priority, reset recovery and simultaneous Wi-Fi/802.15.4 load HIL; 4-bit fallback only if this gate fails |
-| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `display_touch_controller`, `codec`, `receiver`, `pd_controller`, `pack_admission` | scheduled; bounded transactions; both expanders, PD, pack and touch interrupts only wake the service loop; UI initialization writes low output latches before P0..P3 become outputs, then holds all rows low in idle, scans one low row against three high rows, and restores idle; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including exact TCA6424A 0x22, firmware-fixed pack target 0x2A, exact ST77922 touch 0x38, candidate UI 0x3F and TPS25751D 0x20; ES8311 and Si4732 exact-address/readback closure remains in I5, while HIL proves 0x22 identity/reset/recovery, power-off no-backfeed, touch and matrix interrupt behavior, wired-low source identification, shortest pulse, 4x3 matrix and fault latency |
+| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `display_touch_controller`, `codec`, `codec_i2c_iso`, `receiver`, `receiver_i2c_iso`, `pd_controller`, `pack_admission` | scheduled; bounded transactions; both expanders, PD, pack and touch interrupts only wake the service loop; UI initialization writes low output latches before P0..P3 become outputs, then holds all rows low in idle, scans one low row against three high rows, and restores idle; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including exact TCA6424A 0x22, firmware-fixed pack target 0x2A, exact ST77922 touch 0x38, candidate UI 0x3F, TPS25751D 0x20 and codec ES8311 at 0x19; Si4732 firmware probes both public strap outcomes 0x11/0x63 until specimen HIL freezes the physical identity. HIL also proves reset/recovery, isolator-off no-backfeed, touch and matrix interrupt behavior, wired-low source identification, shortest pulse, 4x3 matrix and fault latency |
 | `S3_ENCODER_PCNT` | `s3` | `encoder` | dedicated; PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C matrix carries only encoder push and never phase edges | no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case | phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL |
 | `PD_LOCAL_I2C` | `pd_controller` | `pd_config_eeprom`, `nvdc_charger` | scheduled; TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive | boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses | blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL |
 | `PACK_LOCAL_I2C` | `pack_admission` | `pack_gauge` | dedicated | gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant | bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL |
 | `S3_UNIT_PORT` | `s3` | `abstract:M5 Unit` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | profile-switch and external-fault HIL |
-| `S3_I2S` | `s3` | `codec` | dedicated | continuous DMA audio without storage/display service gaps | ES8311 BCLK-derived master-clock and simultaneous full-duplex display, SD, C5 and radio event stress HIL |
+| `S3_I2S` | `s3` | `codec`, `codec_i2s_bclk_iso`, `codec_i2s_ws_iso`, `codec_i2s_dout_iso`, `codec_i2s_din_iso` | dedicated | continuous DMA audio without storage/display service gaps | four independent Ioff tri-state directions, ES8311 BCLK-derived master-clock, powered-off no-backfeed and simultaneous full-duplex display, SD, C5 and radio-event stress HIL |
 
 ### Controller GPIO-window selections
 
@@ -1714,11 +2029,49 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `sd_power_input_cap` lifecycle: `active_production`.
 - `codec` lifecycle: `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open`.
 - `audio_rx_mux` uses `Texas Instruments SN74LVC1G3157DBVR` as `verified_reference`, not an accepted production choice.
+- `audio_vmid_cap` lifecycle: `active_production`.
+- `audio_ground_link` lifecycle: `active_orderable`.
+- `si_audio_l_coupling` lifecycle: `active_production`.
+- `si_audio_r_coupling` lifecycle: `active_production`.
+- `voice_rx_coupling` lifecycle: `active_production`.
+- `audio_capture_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `audio_capture_rx_coupling` lifecycle: `active_production`.
+- `audio_capture_mic_coupling` lifecycle: `active_production`.
+- `audio_capture_input_coupling` lifecycle: `active_production`.
+- `audio_capture_local_bias_cap` lifecycle: `active_production`.
 - `audio_capture_buffer` uses `Texas Instruments TLV9061IDBVR` as `reference_only`, not an accepted production choice.
+- `codec_adc_p_coupling` lifecycle: `active_production`.
+- `codec_adc_n_coupling` lifecycle: `active_production`.
 - `audio_speaker_selector` uses `Texas Instruments TMUX1136DGSR` as `reference_only`, not an accepted production choice.
+- `speaker_input_p_coupling` lifecycle: `active_production`.
+- `speaker_input_n_coupling` lifecycle: `active_production`.
 - `audio_tx_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
+- `mic_tx_coupling` lifecycle: `active_production`.
+- `codec_tx_coupling` lifecycle: `active_production`.
+- `voice_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
 - `speaker_amp` uses `Diodes Incorporated PAM8302AASCR` as `verified_reference`, not an accepted production choice.
+- `speaker_amp_input_cap` lifecycle: `active_production`.
+- `speaker_output_bead_p` lifecycle: `active_orderable`.
+- `speaker_output_bead_n` lifecycle: `active_orderable`.
+- `speaker` lifecycle: `active_orderable`.
+- `microphone` lifecycle: `active_orderable`.
+- `microphone_bias_filter_res` lifecycle: `active_orderable`.
+- `headphone_jack` lifecycle: `active_orderable`.
+- `codec_power_input_cap` lifecycle: `active_production`.
+- `codec_dvdd_bead` lifecycle: `active_orderable`.
+- `codec_avdd_bead` lifecycle: `active_orderable`.
+- `codec_dacvref_cap` lifecycle: `active_production`.
+- `codec_adcvref_cap` lifecycle: `active_production`.
+- `codec_vmid_cap` lifecycle: `active_production`.
+- `receiver_power_input_cap` lifecycle: `active_production`.
+- `receiver_irq_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `receiver_clock` lifecycle: `active_orderable`.
+- `receiver_clock_cap_rclk` lifecycle: `active_orderable`.
+- `receiver_clock_cap_gpo3` lifecycle: `active_orderable`.
+- `voice_io_power_input_cap` lifecycle: `active_production`.
+- `voice_io_power_output_cap` lifecycle: `active_production`.
+- `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
 - `pack_holder` uses `Keystone Electronics 1048P` as `verified_mechanical_reference`, not an accepted production choice.
@@ -1749,10 +2102,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve
 - DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and STOP at the qualified power profile; a former RX-only hunt budget is insufficient
-- DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates; exact load-switch/isolator MPNs, discharge, no-back-power sequencing and quiet-state EMI HIL remain open, leaving no free direct RP GPIO
-- DEC-0054 instantiates ES8311, SN74LVC1G3157DBVR, TLV9061IDBVR, TMUX1136DGSR, TS5A63157DCKR, SN74LVC2G08DCUR and PAM8302AASCR as the prototype audio topology and assigns GPIO6 AUDIO_ARM; exact passive values, powered-off loading, codec power, common-mode/gain, pop/click, RF immunity and HIL remain open before schematic/BOM freeze
+- DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates. DEC-0090 now closes the exact switches/isolators, discharge and no-back-power sequencing for the I5 audio/receiver/voice domains; exact RF-group load switches, RF-front-end isolation and quiet-state EMI remain I6 gates, leaving no free direct RP GPIO
+- DEC-0090 supersedes the abstract DEC-0054 endpoint with exact ES8311, Si4732-A10, SA518, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR microphone, PUI AS02404PO speaker, SJ1-3515-SMT-TR jack and all first-pass passive values. Paper contacts, power, common mode, gain, reset-off behavior and no-backfeed are closed; specimen identity, acoustic gain/noise, pop/click, RF immunity and concurrent-load evidence remain explicit HIL gates before schematic/BOM freeze
 - DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient; DEC-0072 adds 24 exact converter energy/configuration/feedback passives and fixed tolerance-screened outputs; DEC-0073 originally adds nine exact converter EN/PG/fault resistors and a direct hardware AON enable strap; DEC-0080 amends this to ten physical positions and exact SYS-to-AON, AON-PG/MR, SENSE/CT/POR and main-EN wiring without a programmable sequencer; DEC-0081 adds independent TPS25961DRVR AON cutoff plus two TPS25974LRPWR latch-off protected-PG circuit breakers, exact thresholds, rise/timer networks and single-fault paper containment after every internal buck; DEC-0074 establishes the 10-Ohm pre-admission function, <=50-ms hardware cutoff and corrected PA25/PA26 frontends; DEC-0075 adds the exact BQ25798 750-kHz/2.2-uH energy, TS/ILIM, reset and special-pin profile; DEC-0076 adds the exact TPS25751/CAT24 support circuit, hardware SafeMode, separate raw-VBUS startup path and complete local/host bus pulls; DEC-0077 adds exact polarized Keystone 1048P contacts and three physical NTC roles; DEC-0078 corrects the TPUL WQFN contact map, adds a >=350-ms second-channel hardware refractory lockout and splits the 10-Ohm load across two exact 20-Ohm/2-W branches; DEC-0079 selects two XTAR 18650 4000mAh protected button-top cells as the exact first qualification target and freezes a 2-A charge ceiling. Exact-cell droop thresholds, certification-document/specimen fit, continuity/thermal/hot-copper/source-handover and full injected-fault HIL remain open in I3. DEC-0083 closes the protected product USB endpoint and DEC-0089 replaces the unresolved chassis abstraction with a direct multi-via shell bond to local power/ESD ground. DEC-0084 closes the display paper endpoint and DEC-0089 classifies its FPC as internal service-only/no-live-insertion, with protection reopening if mechanics later expose it. DEC-0085 closes the isolated microSD paper endpoint; DEC-0089 corrects its DAT0 return to real S3 GPIO4. Connector placement/mate, USB/display/storage signal integrity and destructive/thermal HIL remain explicit
-- HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open; the I2 hard-stop/evidence active circuit is paper-reviewed while detector taps/thresholds are I6; exact IR frontends and antenna placement remain open; SA518/Si4732 contact maps are instantiated, while SA518 UPDATE electrical direction/timing and both modules' surrounding power/audio/RF circuits remain specimen/electrical/HIL gates before target-architecture acceptance
+- HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open; the I2 hard-stop/evidence active circuit is paper-reviewed while detector taps/thresholds are I6; exact IR frontends and antenna placement remain open. DEC-0090 closes the surrounding SA518/Si4732 power, interface and audio circuits on paper; SA518 UPDATE remains fixture-only, and module identity, RF feed, sensitivity, audio/noise and coexistence remain specimen/RF/HIL gates before target-architecture acceptance
 
 ## Machine-check result and review boundary
 

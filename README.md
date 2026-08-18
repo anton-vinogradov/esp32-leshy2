@@ -45,6 +45,11 @@ privacy or the target owner's authorization.
   communication, observation and authorized diagnostic workflows.
 - A dedicated Sub-GHz path handles packet systems; a broadcast receiver covers
   AM/FM/SW/LW; a VHF/UHF voice path provides analog communication and audio.
+- The exact audio endpoint can route either selected receive audio or the local
+  electret microphone into the codec, play through a reset-off 4-Ohm speaker,
+  or use insertion-detected 3.5-mm headphones. Codec, receiver and SA518 buses
+  are physically isolated while their domains are off; PTT remains a separate
+  STOP-dominated authorization and is never inferred from audio.
 - Two IR receivers provide robust consumer decoding and unknown-carrier
   measurement at the same time; a separate transmitter replays learned profiles.
 - All nine onboard antenna paths terminate at dedicated external ports: two
@@ -316,7 +321,7 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["RP2354B A4<br/>deterministic radio and voice owner"]
-  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; six contacts free"]
+  SLOW["TCA6424ARGJR<br/>24-line main slow-control expander; three contacts free"]
   SLOWVCI["C1005X7R1H104K050BB #SLOW-VCCI<br/>100-nF main slow-I/O VCCI bypass capacitor"]
   SLOWVCP["C1005X7R1H104K050BB #SLOW-VCCP<br/>100-nF main slow-I/O VCCP bypass capacitor"]
   SLOWBULK["C1608X7R1C105K080AC #SLOW<br/>1-uF main slow-I/O local bulk capacitor"]
@@ -415,20 +420,44 @@ flowchart TD
   SDDETPU["RC0402FR-0710KL #SD-DETECT<br/>10-kOhm always-readable card-detect pull-up"]
   SDDETC["C1005X7R1H104K050BB #SD-DETECT<br/>100-nF card-detect hardware filter capacitor"]
   SI["Si4732-A10-GS<br/>AM/FM/SW/LW broadcast receiver"]
-  CODEC["ES8311<br/>mono ADC/DAC audio codec"]
+  RXCLK["Q13FC13500005<br/>32.768-kHz receiver crystal"]
+  RXCLKC0["GRM1555C1H220JA01D #RX-RCLK<br/>22-pF receiver crystal capacitor"]
+  RXCLKC1["GRM1555C1H220JA01D #RX-GPO3<br/>22-pF receiver crystal capacitor"]
+  RXSUP["TPS3839K33DBZR #RX<br/>3.08-V 200-ms receiver supervisor"]
+  RXI2C["SN74LVC2G66DCUR #RX-I2C<br/>receiver I²C power isolation"]
+  CODEC["Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec"]
+  CODECSUP["TPS3839K33DBZR #CODEC<br/>3.08-V 200-ms codec-interface supervisor"]
+  CODECI2C["SN74LVC2G66DCUR #ES8311-I2C<br/>codec I²C power isolation"]
+  CODECBCLK["SN74LVC1G126DCKR #BCLK<br/>physical codec BCLK isolation buffer"]
+  CODECWS["SN74LVC1G126DCKR #WS<br/>physical codec word-select isolation buffer"]
+  CODECDOUT["SN74LVC1G126DCKR #DOUT<br/>physical codec playback-data isolation buffer"]
+  CODECDIN["SN74LVC1G126DCKR #DIN<br/>physical codec capture-data isolation buffer"]
   RXMUX["SN74LVC1G3157DBVR<br/>receive-audio source selector"]
+  CAPSEL["TS5A63157DCKR #CAPTURE<br/>RX/microphone recording-source selector"]
   BUF["TLV9061IDBVR<br/>active high-impedance capture buffer"]
   SPKSEL["TMUX1136DGSR<br/>dual differential speaker-path selector"]
-  TXSEL["TS5A63157DCKR<br/>transmit-audio selector"]
+  TXSEL["TS5A63157DCKR #TX<br/>electret/codec transmit-audio selector"]
   SAFE["SN74LVC2G08DCUR<br/>reset-safe selector-request gate"]
   PAM["PAM8302AASCR<br/>mono Class-D speaker amplifier"]
-  SPK["MPN TBD<br/>internal loudspeaker"]
-  MIC["MPN TBD<br/>electret microphone"]
+  SPKBEADP["BLM18PG181SN1D #SPK-P<br/>positive class-D output EMI bead"]
+  SPKBEADN["BLM18PG181SN1D #SPK-N<br/>negative class-D output EMI bead"]
+  SPK["AS02404PO<br/>24 × 12 mm, 4-Ohm, 2-W internal loudspeaker"]
+  MIC["CMEJ-0413-42-SMT-TR<br/>top-port analog electret microphone"]
+  MICFILT["RC0402FR-07220RL<br/>220-Ohm microphone-bias filter resistor"]
+  AGNDLINK["RC0402JR-070RL<br/>single audio-to-power-ground star link"]
+  HPJACK["SJ1-3515-SMT-TR<br/>3.5-mm stereo headphone jack with insertion switches"]
+  HPESD["TPD4E05U06DQAR #HEADPHONE<br/>headphone tip/ring IEC-ESD array"]
   NRF0["E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
   NRF1["E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
   NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
   CC["CC1101RGPR<br/>sub-GHz transceiver"]
   SA["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
+  VOICESUP["TPS3808G33DBVR #VOICE<br/>STOP-qualified protected-4-V voice supervisor"]
+  VOICEIOSW["TPS22919DCKR #VOICE-IO<br/>discharged local voice-interface supply switch"]
+  VOICEPTT["SN74LVC1G126DCKR #VOICE-PTT<br/>physical module-PTT isolation buffer"]
+  VOICEUART["SN74LVC1G126DCKR #VOICE-UART<br/>physical host-to-module UART isolation buffer"]
+  VOICEHL["SN74LVC1G07DCKR #VOICE-HL<br/>low-or-open SA518 H/L driver"]
+  VOICEAUDIO["SN74LVC2G66DCUR #VOICE-AUDIO<br/>dual AFOUT/MIC_IN domain-isolation switch"]
   CAPDOCK["MPN TBD<br/>2×7 female 2.54-mm host Cap-Bus receptacle"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
@@ -494,9 +523,10 @@ flowchart TD
   UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
   UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
   UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ ENCPTTESD ~~~ PTTPU ~~~ PTTR ~~~ PTTC ~~~ PTTRAW ~~~ TPIRQPU ~~~ TPIRQRAW ~~~ TPIRQ ~~~ TPIRQBP
-  TPIRQBP ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
-  CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
-  TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDTDDI ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
+  TPIRQBP ~~~ SI ~~~ RXCLK ~~~ RXCLKC0 ~~~ RXCLKC1 ~~~ RXSUP ~~~ RXI2C ~~~ RXMUX ~~~ CAPSEL ~~~ BUF
+  BUF ~~~ CODEC ~~~ CODECSUP ~~~ CODECI2C ~~~ CODECBCLK ~~~ CODECWS ~~~ CODECDOUT ~~~ CODECDIN ~~~ SAFE ~~~ SPKSEL ~~~ PAM
+  PAM ~~~ SPKBEADP ~~~ SPKBEADN ~~~ SPK ~~~ MIC ~~~ MICFILT ~~~ AGNDLINK ~~~ HPJACK ~~~ HPESD ~~~ TXSEL
+  TXSEL ~~~ SA ~~~ VOICESUP ~~~ VOICEIOSW ~~~ VOICEPTT ~~~ VOICEUART ~~~ VOICEHL ~~~ VOICEAUDIO ~~~ LCDCON ~~~ LCD ~~~ LCDTDDI ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
   BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ SDHBUF ~~~ SDMBUF ~~~ SDESDA ~~~ SDESDB
   SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
@@ -764,19 +794,37 @@ flowchart TD
   SD -->|"always-readable detect"| SDDETR --> SLOW
   MAINFUSE --> SDDETPU --> SLOW
   SLOW --> SDDETC
-  S3 <-->|"I²S0 + I²C0"| CODEC
-  S3 <-->|"I²C0"| SI
+  S3 <-->|"I²C0 host side"| CODECI2C <-->|"switched local bus; 0x19"| CODEC
+  S3 -->|"I²S0 BCLK"| CODECBCLK --> CODEC
+  S3 -->|"I²S0 WS"| CODECWS --> CODEC
+  S3 -->|"I²S0 playback"| CODECDOUT --> CODEC
+  CODEC -->|"I²S0 capture"| CODECDIN --> S3
+  S3 <-->|"I²C0 host side"| RXI2C <-->|"switched local bus"| SI
   S3 <-->|"profile port"| UNIT
-  SI --> RXMUX --> BUF --> CODEC
-  SA -->|"AFOUT"| RXMUX
+  RXCLK --> SI
+  RXCLKC0 --> SI
+  RXCLKC1 --> SI
+  RXSUP -->|"reset and 200-ms interface release"| RXI2C
+  CODECSUP -->|"200-ms interface release"| CODECI2C
+  CODECSUP --> CODECBCLK
+  SI --> RXMUX --> CAPSEL --> BUF --> CODEC
+  MIC --> CAPSEL
+  SA -->|"AFOUT"| VOICEAUDIO --> RXMUX
   CODEC --> SPKSEL --> PAM
-  PAM --> SPK
-  CODEC --> TXSEL -->|"MIC_IN"| SA
-  MIC --> TXSEL
+  PAM --> SPKBEADP --> SPK
+  PAM --> SPKBEADN --> SPK
+  CODEC --> HPJACK --> HPESD
+  CODEC --> TXSEL --> VOICEAUDIO -->|"MIC_IN"| SA
+  MICFILT --> MIC --> TXSEL
+  AGNDLINK --> CODEC
   S3 -->|"GPIO6 AUDIO_ARM"| SAFE
-  SLOW -->|"P11/P12 requests"| SAFE
+  SLOW -->|"P00 capture; P01 speaker; P02 headphone; P11/P12 selectors"| SAFE
   SAFE --> SPKSEL
   SAFE --> TXSEL
+  VOICESUP --> VOICEIOSW --> VOICEAUDIO
+  VOICEIOSW --> VOICEPTT
+  VOICEIOSW --> VOICEUART
+  SLOW -->|"P14 low-or-open power request"| VOICEHL --> SA
   C5 -->|"RMT RX0"| IR0
   C5 -->|"RMT RX1"| IR1
   RP <-->|"PIO0 SM0"| NRF0
@@ -817,7 +865,7 @@ flowchart TD
   RP -->|"CC rail request"| GATEB
   C5 -->|"IR carrier request"| GATEB
   SLOW -->|"voice/accessory rail requests"| GATEB
-  RP -->|"PTT request"| PTTOR --> SA
+  RP -->|"PTT request"| PTTOR --> VOICEPTT --> SA
   GATEA --> NRF0
   GATEA --> NRF1
   GATEA --> NRF2
@@ -870,8 +918,10 @@ flowchart TD
   power-cycle the main rail. AON STOP/evidence observations cross through
   separate open-drain buffers, so they cannot back-power an unpowered expander.
 - **Audio and Si4732:** S3 `GPIO1,GPIO2,GPIO15,GPIO16,GPIO17,GPIO18` — I²S0
-  and local I²C0. The PD controller also shares this bounded control bus and
-  the wired-low system IRQ; it consumes no new S3 GPIO.
+  and local I²C0 through power-valid physical isolation. Slow I/O `P00,P01,P02`
+  select RX/microphone capture, enable the reset-off speaker and detect
+  headphone absence. The PD controller also shares the bounded host bus and
+  wired-low system IRQ; it consumes no new S3 GPIO.
 - **M5 Unit:** S3 `GPIO7,GPIO8` — separate configurable profile port.
 - **IR:** C5 `GPIO0,GPIO1,GPIO4,GPIO6,GPIO24` — two RX, TX, power and evidence.
 - **nRF24 #0:** RP `GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32`.
@@ -883,7 +933,7 @@ flowchart TD
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
 - **Resource result:** S3 `33 used / 3 reserved / 0 free`, C5 `14/6/1`, RP
-  `48/0/0`, main slow I/O `18/0/6`, and UI matrix I/O `7/1/0`. Independent
+  `48/0/0`, main slow I/O `21/0/3`, and UI matrix I/O `7/1/0`. Independent
   SWD/USB/RUN/BOOTSEL are outside this GPIO budget.
 
 [Complete physical pad and net atlas](docs/review/architecture/generated/G2F-3I-principled-pinout.md)
