@@ -1,7 +1,8 @@
 # DEC-0084 — exact protected display electrical endpoint
 
-> Amended by `DEC-0086`: only TP_INT routing changes, from direct GPIO39 to
-> shared GPIO37 through a specimen-selected open-drain polarity adapter.
+> Amended by `DEC-0086` and `DEC-0088`: TP_INT moves from direct GPIO39 to
+> shared GPIO37 through fixed active-low `SN74LVC1G07DCKR`, with an exact
+> 10-kOhm raw pull-up. GPIO39 remains encoder phase A.
 
 - Status: **accepted; Проведено ревью for paper electrical scope**
 - Finding: [`FND-0088`](../findings/FND-0088-display-endpoint-still-contained-abstract-circuits.md)
@@ -26,8 +27,9 @@
    resistors. Firmware observes at least 120-ms display and 100-ms touch
    post-release intervals.
 7. Reuse the single existing SYS_I2C pull-up pair; do not add panel-local
-   duplicates. Leave TP_INT without an assumed populated pull until specimen
-   HIL proves its electrical mode.
+   duplicates. `DEC-0088` later identifies exact integrated ST77922/address
+   `0x38` and adds a separate exact 10-kOhm raw TP_INT pull-up plus fixed
+   active-low normalizer.
 8. Reserve QSPI tuning footprints DNP. No value becomes an exact populated BOM
    item before shared display/microSD measurements.
 

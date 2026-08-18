@@ -30,8 +30,9 @@ The corrected topology retains the full inventory and changes only transport:
 - ten onsemi `1N4148WT` devices isolate the nine ordinary buttons and encoder
   push in a 4×3 matrix;
 - encoder A/B move to real exposed S3 GPIO39/GPIO47 and hardware PCNT0;
-- display TP_INT moves through a pin-compatible open-drain polarity-adapter
-  footprint into existing shared `SYS_INT_N` on GPIO37;
+- display TP_INT moves through a board-side open-drain normalizer into existing
+  shared `SYS_INT_N` on GPIO37; `DEC-0088` later fixes exact active-low
+  ST77922/10-kOhm/`SN74LVC1G07DCKR` implementation;
 - PTT remains direct RP GPIO21; STOP and RE-ARM remain separate AON hardware.
 
 The initially considered decoder was rejected during self-review: with all
@@ -44,7 +45,9 @@ expander is `7/1/0`.
 
 ## Remaining boundary
 
-Ordinary/PTT/STOP/RE-ARM exact switch MPNs, force, sealing and placement remain
-mechanical gates. Touch polarity/controller identity and full matrix/encoder
-concurrent-load behavior remain HIL. The selected first encoder is not a
+Ordinary/PTT/STOP/RE-ARM exact switch MPNs and protection were later closed by
+`DEC-0087`; force, sealing and placement remain mechanical gates. Touch
+identity/address/polarity were later closed on paper by `DEC-0088`; specimen
+readback/IRQ/reset and full matrix/encoder concurrent-load behavior remain HIL.
+The selected first encoder is not a
 production mechanical freeze, and this correction does not authorize KiCad.

@@ -25,12 +25,14 @@
 
 Каноническая таблица — [`stages.md`](../review/stages.md).
 
-Для текущего I4 control endpoint **проведено paper review** через
+Для текущего I4 control/touch endpoint **проведено paper review** через
 [`UI-0001`](../review/architecture/UI-0001-complete-local-control-topology.md)
-и [`UI-0002`](../review/architecture/UI-0002-exact-switch-and-control-protection.md):
+[`UI-0002`](../review/architecture/UI-0002-exact-switch-and-control-protection.md)
+и [`DSP-0007`](../review/architecture/DSP-0007-exact-integrated-st77922-touch-endpoint.md):
 полный набор D-pad/OK/BACK/OPT/F1/F2/encoder/PTT/STOP/RE-ARM сохранён, а exact
-low-current switches, pull/filter и ESD routes уже входят в machine projection.
-Cap/guard/harness/enclosure fit и electrical/HIL injection остаются открыты.
+switch/protection routes входят в machine projection; integrated ST77922 touch
+зафиксирован на адресе `0x38` с active-low IRQ на shared GPIO37.
+Cap/guard/harness/enclosure и specimen/electrical HIL остаются открыты.
 
 ## Закрытие competitor delta
 
@@ -387,15 +389,21 @@ principled pin fit. Сохранены D-pad/OK, BACK, OPT, F1, F2, encoder/push
 отдельный PTT, независимый normally-closed STOP и утопленный RE-ARM. Один exact
 Отдельный `TCA9534APWR` P0…P6 и десять `1N4148WT` образуют interrupt-driven
 матрицу 4x3; P7 зарезервирован, а main TCA6424 P00…P05 свободны. A/B энкодера
-занимают S3 GPIO39/GPIO47 PCNT0, а touch IRQ входит в GPIO37 через
-pin-compatible population option `SN74LVC1G07/1G06`. S3 теперь `33/3/0`, main
+занимают S3 GPIO39/GPIO47 PCNT0, а touch IRQ входит в GPIO37. S3 теперь `33/3/0`, main
 slow I/O `18/0/6`, UI I/O `7/1/0`; PTT остаётся прямым RP GPIO21, а STOP/RE-ARM
 — вне I2C. Exact mechanics переключателей, SYS-I2C collision scan,
-encoder/U214 fit, touch polarity и HIL матрицы/энкодера остаются открыты;
+encoder/U214 fit и HIL матрицы/энкодера остаются открыты;
 KiCad заблокирован.
 `FND-0091` также исправляет exact addressing TCA9534A с невозможных legacy
 значений: all-low straps RP evidence дают `0x38`, all-high straps UI — candidate
 `0x3F`; отдельный TPS25751D `0x20` не меняется.
+`FND-0092/UI-0002/DEC-0087/REV-0005AR` затем закрывают exact switch current,
+default-state и разделённую ESD-защиту, не убирая PTT, STOP, F1, F2 или D-pad.
+`FND-0093/DSP-0007/DEC-0088/REV-0005AS` идентифицируют integrated ST77922,
+exact address `0x38` и active-low TP_INT; exact raw pull-up 10 кОм и fixed
+non-inverting `SN74LVC1G07DCKR` ведут сигнал на shared GPIO37, прежний inverter
+option удалён. Specimen readback/IRQ/reset, shared-source и physical HIL
+остаются открыты; следующий шаг — consolidated I4 audit.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный

@@ -28,12 +28,16 @@ fallback либо ещё не опубликованный production MPN. Contr
   **`HMX035CTFT-001`**. Marking раскрыт official QDtech `ES3C35P` schematic,
   но manufacturer attribution, standalone orderability, drawing, lifecycle и
   second source не подтверждены; поэтому production BOM ещё не принят.
+- Integrated display/touch TDDI: exact **`Sitronix ST77922`** inside the
+  assembly. It is not a separate purchase line; its exact touch address is
+  `0x38` and the exact assembly specification defines active-low `TP_INT`.
 - Display FPC/board connector: Hirose **`FH12-40S-0.5SH(55)`**, CL
   `CL0586-0527-7-55`, принят `DEC-0084` как exact first electrical/fit
   candidate. Он ещё не final mate и не разрешает footprint: tail
   thickness/contact side/stiffener/insertion должны быть доказаны specimen HIL.
-- Touch controller: **`TBD` или integrated** — отдельный IC нельзя выдумывать,
-  пока exact assembly не выбран.
+- Separate touch controller: **not applicable** for this exact candidate;
+  `ST77922` integrates the touch controller. `DSP-0007/DEC-0088` close its
+  paper address, reset and interrupt contract.
 - Backlight power/PWM path: exact `TPS2553DRVR-1`, `DMN2056U-7`,
   `ERJ-P08F10R0V` and exact support passives по `DSP-0006/DEC-0084`.
 - Display/touch interface protection: internal-FPC ESD classification and
@@ -50,8 +54,10 @@ fallback либо ещё не опубликованный production MPN. Contr
 - Display/touch controller marking: Sitronix `ST77922`.
 - Exact display/touch assembly marking: `HMX035CTFT-001` in the official
   QDtech schematic; separate manufacturer attribution is not assumed.
-- Separate touch-controller MPN: **не опубликован**; specification описывает
-  touch capability семейства `ST77922`.
+- Separate touch-controller MPN: **not applicable**; exact `ST77922` is the
+  assembly's integrated display/touch TDDI.
+- Exact touch contract: 7-bit address `0x38`, maximum 400 kHz, active-low
+  `TP_INT`; board normalization is specified by `DSP-0007/DEC-0088`.
 - Role: exact current paper candidate и primary HIL specimen target; не
   production-accepted BOM part до sourcing/mechanics/HIL gates.
 - Checked properties: 3.5-inch `320×480` IPS, QSPI display, I2C touch,

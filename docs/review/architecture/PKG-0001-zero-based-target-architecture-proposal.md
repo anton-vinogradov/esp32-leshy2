@@ -99,9 +99,9 @@ onsemi `1N4148WT` diodes isolate the ten populated positions: the nine labelled
 ordinary buttons plus encoder push. Any idle press asserts its open-drain IRQ;
 the bounded scan drives one row low and three high, then restores all-low idle.
 Encoder phases bypass I²C entirely and reach S3 `GPIO39/GPIO47` through
-hardware `PCNT0`. Touch interrupt passes
-through the pin-compatible `SN74LVC1G07DCKR`/`SN74LVC1G06DCKR` population
-option into shared wired-low `SYS_INT_N`; specimen polarity chooses which part.
+hardware `PCNT0`. Exact integrated `ST77922` touch responds at `0x38`; its
+active-low interrupt passes through an exact 10-kOhm raw pull-up and fixed
+`SN74LVC1G07DCKR` into shared wired-low `SYS_INT_N`.
 
 STOP, PTT, re-arm, TX gates and critical actual-TX/STOP indication never depend
 solely on this I²C controller. The old physical control inventory is retained;

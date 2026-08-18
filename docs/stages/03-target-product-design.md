@@ -73,8 +73,10 @@ enclosure/control layout не продолжается до совместног
 и principled pin fit локальных controls: D-pad/OK, BACK, OPT, F1, F2 и encoder
 push остаются в матрице 4x3, A/B энкодера идут напрямую в PCNT0, PTT остаётся
 прямым RP input, а STOP/RE-ARM — независимым AON hardware. Exact switch
-mechanics, touch polarity и HIL остаются активными I4 gates; это не разрешает
-KiCad и не возобновляет integrated mockup раньше полного закрытия начинки.
+mechanics и HIL остаются активными I4 gates. `DEC-0088/DSP-0007` later close
+exact ST77922 address/active-low IRQ on paper; specimen readback/IRQ/reset HIL
+remains. Это не разрешает KiCad и не возобновляет integrated mockup раньше
+полного закрытия начинки.
 `PWR-0002/FND-0073/REV-0005P` уже проводят ревью его prerequisites: 4-V voice,
 load envelope и switched-branch principles сохранены, но старые BQ25887/no-power-
 path, fixed-input-current, pseudo-gauge и obsolete rail sizes отклонены как

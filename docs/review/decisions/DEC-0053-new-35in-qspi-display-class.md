@@ -1,8 +1,9 @@
 # DEC-0053 — 3.5-inch portrait QSPI display class
 
-> Pin-route amendment: `DEC-0086` moves TP_INT from direct GPIO39 to shared
-> GPIO37 through an open-drain polarity adapter and assigns GPIO39/47 to encoder
-> PCNT0. The accepted display class and QSPI D2/D3 decision are unchanged.
+> Pin-route amendments: `DEC-0086` moves TP_INT from direct GPIO39 to shared
+> GPIO37 and assigns GPIO39/47 to encoder PCNT0; `DEC-0088` then fixes exact
+> active-low ST77922/10-kOhm/`SN74LVC1G07DCKR`. The accepted display class and
+> QSPI D2/D3 decision are unchanged.
 
 - Статус: **Принято владельцем — IMP-0045/A; распространение проведено ревью**
 - Дата: 2026-08-17

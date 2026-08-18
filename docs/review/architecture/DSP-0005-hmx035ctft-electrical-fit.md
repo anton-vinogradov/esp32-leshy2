@@ -1,7 +1,9 @@
 # DSP-0005 — HMX035CTFT-001 exact electrical-fit review
 
-> Amended by `DEC-0086/UI-0001`: TP_INT now reaches shared GPIO37 through the
-> specimen-selected open-drain polarity adapter; GPIO39 is encoder phase A.
+> Amended by `DEC-0086/UI-0001` and then `DEC-0088/DSP-0007`: TP_INT now
+> reaches shared GPIO37 through a fixed active-low open-drain normalizer;
+> GPIO39 is encoder phase A. Exact integrated controller is ST77922 at address
+> 0x38; the former controller/polarity uncertainty is closed on paper.
 > The dedicated UI expander also makes the later `24/0/0` slow-plane statement
 > historical; current main slow accounting is `18/0/6`.
 > The panel contact map and QSPI/reset conclusions below remain valid.
@@ -27,8 +29,8 @@
 `HMX035CTFT-001` и все 40 контактов. Его QSPI+I2C path полностью ложится на
 текущую карту без нового GPIO:
 
-- бывший S3 `GPIO39/LCD_DC` становится input `LCD_TOUCH_INT`; active level
-  не утверждается до specimen proof;
+- `TP_INT` joins shared S3 `GPIO37/SYS_INT_N` through exact 10-kOhm raw pull-up
+  and fixed `SN74LVC1G07DCKR`; active level is low;
 - S3 `GPIO6` остаётся free;
 - S3 `GPIO43` остаётся free и может получить `TE` только после HIL A/B;
 - display reset и touch reset уже были на `TCA6424ARGJR P06/P07`;
@@ -47,10 +49,11 @@ measurements remain open.
   schematic; the marking is not proof that QDtech manufactures the assembly.
 - Primary complete HIL board identifiers: Elecrow `DLE06235B`, QDtech
   `ES3C35P`.
-- Display/touch controller family: Sitronix `ST77922`.
+- Exact integrated display/touch TDDI: Sitronix `ST77922`.
 - Firmware component reference: `espressif/esp_lcd_st77922`.
-- Separate touch-controller MPN: схема не раскрывает; нельзя придумывать
-  отдельный IC поверх published integrated/reference path.
+- Separate touch-controller MPN: not applicable; ST77922 itself contains the
+  capacitive-touch controller.
+- Exact touch bus: I2C 7-bit address `0x38`, maximum 400 kHz.
 
 ## Exact 40-contact register
 
@@ -58,7 +61,8 @@ measurements remain open.
 
 - `1 TP_I2C_SCL` → S3 `GPIO2/SYS_I2C_SCL`.
 - `2 TP_I2C_SDA` → S3 `GPIO1/SYS_I2C_SDA`.
-- `3 TP_INT` → S3 `GPIO39/LCD_TOUCH_INT`.
+- `3 TP_INT` → 10-kOhm raw pull-up → fixed non-inverting open-drain
+  `SN74LVC1G07DCKR` → shared S3 `GPIO37/SYS_INT_N`.
 - `4 TP_RESXP` → normalized `TP_RESET` → slow I/O `P07/TOUCH_RST_N`.
 - `5 GND` → qualified display ground.
 - `6 VDDI` → qualified 3.3 V display rail.
@@ -126,7 +130,9 @@ sink therefore remains an exact-part electrical gate.
 The official board places `10 kΩ` pull-ups `R29/R30` on touch SDA/SCL and
 `C50 = 100 nF` (`104`) decoupling. `DEC-0084` deliberately does not copy those
 pull-ups: the complete Leshy2 SYS_I2C already has one exact 2.2-kOhm pair.
-Rise time and touch behaviour remain HIL.
+The exact assembly specification publishes address `0x38` and active-low
+TP_INT; `DEC-0088` adds a distinct exact 10-kOhm pull-up on the raw interrupt,
+not another I2C pull-up. Rise time and touch pulse/clear behaviour remain HIL.
 
 ## Connector candidate — electrically instantiated, mechanical acceptance open
 
@@ -161,8 +167,8 @@ secondary-HIL identifiers, not interchangeable target parts.
 1. Obtain one exact `DLE06235B/ES3C35P` board and preferably one raw
    `HMX035CTFT-001`; photograph markings and FPC tail.
 2. Measure FPC pitch/thickness/contact side and qualify the exact connector.
-3. Verify rail sequencing, reset polarities/timing, I2C address/IRQ behaviour
-   and controller readback.
+3. Verify rail sequencing, reset timing, exact `0x38` identity/readback and
+   active-low IRQ idle/pulse/hold/clear behaviour.
 4. Validate vendor init, rotation, partial windows, sleep/wake and long-run
    image integrity.
 5. Prove both display and microSD CS-high high-Z, no back-power/contention,

@@ -355,10 +355,12 @@ flowchart TD
   PTTC["C1005X7R1H104K050BB<br/>100-nF direct-PTT hardware filter"]
   PTTRAW(("PTT_BUTTON_RAW_N<br/>active-low direct-PTT node"))
   TPIRQ["SN74LVC1G07DCKR<br/>open-drain touch-interrupt adapter"]
-  TPIRQALT["SN74LVC1G06DCKR (DNP alternative)<br/>pin-compatible active-high TP_INT inverter option"]
+  TPIRQPU["RC0402FR-0710KL<br/>10-kOhm active-low TP_INT raw pull-up"]
+  TPIRQRAW(("LCD_TOUCH_INT_RAW_N<br/>active-low ST77922 touch node"))
   TPIRQBP["C1005X7R1H104K050BB #TP-IRQ<br/>100-nF touch-IRQ adapter bypass capacitor"]
   LCDCON["FH12-40S-0.5SH(55)<br/>first 40-position 0.5-mm bottom-contact ZIF panel-mate candidate"]
   LCD["HMX035CTFT-001<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
+  LCDTDDI["Sitronix ST77922<br/>integrated display and capacitive-touch TDDI COG"]
   LCDLBULK["GRM188R60J106ME47D #LCD-LOGIC<br/>10-uF protected-main display-logic bulk capacitor"]
   LCDLHF["C1005X7R1H104K050BB #LCD-LOGIC<br/>100-nF display-logic high-frequency bypass capacitor"]
   LCDRPD["RC0402FR-0710KL #LCD-RESX<br/>10-kOhm display reset-default pull-down"]
@@ -478,10 +480,10 @@ flowchart TD
   UIMESD ~~~ UIDUP ~~~ UIUP ~~~ UIDDN ~~~ UIDOWN ~~~ UIDLEFT ~~~ UILEFT
   UILEFT ~~~ UIDRIGHT ~~~ UIRIGHT ~~~ UIDOK ~~~ UIOK ~~~ UIDBACK ~~~ UIBACK
   UIBACK ~~~ UIDOPT ~~~ UIOPT ~~~ UIDF1 ~~~ UIF1 ~~~ UIDF2 ~~~ UIF2
-  UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ ENCPTTESD ~~~ PTTPU ~~~ PTTR ~~~ PTTC ~~~ PTTRAW ~~~ TPIRQ ~~~ TPIRQALT ~~~ TPIRQBP
+  UIF2 ~~~ UIDENC ~~~ ENC ~~~ ENCAPU ~~~ ENCBPU ~~~ ENCPTTESD ~~~ PTTPU ~~~ PTTR ~~~ PTTC ~~~ PTTRAW ~~~ TPIRQPU ~~~ TPIRQRAW ~~~ TPIRQ ~~~ TPIRQBP
   TPIRQBP ~~~ SAFE ~~~ SI ~~~ RXMUX ~~~ BUF ~~~ CODEC
   CODEC ~~~ SPKSEL ~~~ PAM ~~~ SPK ~~~ MIC ~~~ TXSEL
-  TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
+  TXSEL ~~~ LCDCON ~~~ LCD ~~~ LCDTDDI ~~~ LCDLBULK ~~~ LCDLHF ~~~ LCDRPD ~~~ TPRPD ~~~ BLEFUSE ~~~ BLILIM ~~~ BLIN ~~~ BLOUT ~~~ BLOUTHF
   BLOUTHF ~~~ BLFPU ~~~ BLR ~~~ BLQ ~~~ BLGR ~~~ BLGPD ~~~ SD ~~~ SDHBUF ~~~ SDMBUF ~~~ SDESDA ~~~ SDESDB
   SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
@@ -674,8 +676,10 @@ flowchart TD
   S3 <-->|"I²C0 + interrupt"| SLOW
   S3 -->|"direct QSPI + touch"| LCDCON
   LCDCON <-->|"40-contact FPC; physical mate HIL open"| LCD
-  LCDCON -->|"raw TP_INT"| TPIRQ -->|"open-drain SYS_INT_N"| S3
-  TPIRQALT -.->|"same footprint; populate only after polarity HIL"| TPIRQ
+  LCD -->|"integrated exact COG"| LCDTDDI
+  LCDTDDI -->|"TP_INT low on touch"| TPIRQRAW
+  TPIRQPU -->|"10 kOhm to 3V3_MAIN"| TPIRQRAW
+  TPIRQRAW --> TPIRQ -->|"open-drain SYS_INT_N"| S3
   TPIRQBP --> TPIRQ
   SLOW -->|"P06/P07 reset release"| LCDCON
   S3 <-->|"SYS I²C0 + wired-low IRQ"| UIMATRIX
@@ -864,8 +868,11 @@ flowchart TD
   never blocks radio service.
 - Its QSPI/touch assembly uses a 40-position ZIF candidate with reset-low
   defaults, local logic decoupling and a separately latch-protected PWM
-  backlight. Final connector orientation still requires the real panel tail;
-  the electrical map does not pretend that mechanical fit has already passed.
+  backlight. The assembly contains one exact `Sitronix ST77922` display/touch
+  TDDI: touch uses I²C address `0x38`, and its active-low interrupt reaches the
+  shared line through a pulled-up non-inverting open-drain buffer. Final
+  connector orientation still requires the real panel tail; the electrical
+  map does not pretend that mechanical fit has already passed.
 - The push-push microSD endpoint uses an isolated switched rail, safe reset
   levels and always-readable card detection. Firmware enters SPI mode before
   display traffic resumes after every card-power cycle. Final socket placement,

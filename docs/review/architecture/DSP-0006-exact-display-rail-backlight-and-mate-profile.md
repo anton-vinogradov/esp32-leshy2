@@ -1,8 +1,9 @@
 # DSP-0006 — exact display rail, backlight and first mate profile
 
-> Amended by `DEC-0086/UI-0001`: the previously direct TP_INT route is moved
-> through a polarity adapter into shared GPIO37; GPIO39/47 now serve encoder
-> PCNT0. Display power, reset, QSPI, connector and backlight conclusions remain.
+> Amended by `DEC-0086/UI-0001` and `DEC-0088/DSP-0007`: TP_INT reaches shared
+> GPIO37 through the fixed active-low `SN74LVC1G07DCKR` path with a 10-kOhm
+> raw pull-up; GPIO39/47 serve encoder PCNT0. Display power, reset, QSPI,
+> connector and backlight conclusions remain.
 
 - Status: **Проведено ревью paper electrical endpoint; physical mate and HIL open**
 - Finding: [`FND-0088`](../findings/FND-0088-display-endpoint-still-contained-abstract-circuits.md)
@@ -76,8 +77,9 @@ reset.
   specified non-damaging ST77922 case, not a promise of retained UI state.
 - Existing SYS_I2C 2.2-kOhm pull-ups are the only populated touch pull-ups.
   QDtech's reference 10-kOhm pair is not duplicated.
-- `TP_INT` reaches S3 GPIO39 without an assumed board pull. Output type,
-  polarity and idle state are specimen-HIL gates.
+- Exact integrated `ST77922` touch responds at 7-bit `0x38`. Active-low
+  `TP_INT` receives its own exact 10-kOhm raw pull-up, then fixed non-inverting
+  open-drain `SN74LVC1G07DCKR` joins shared S3 GPIO37 `SYS_INT_N`.
 - QSPI source-series and shunt-tuning footprints are reserved DNP. Values
   enter the populated BOM only after shared display/microSD RC, high-Z and
   contention measurements.
@@ -101,7 +103,8 @@ still mandatory before footprint freeze:
 - standalone panel identity, orderability, lifecycle and lot consistency;
 - connector mate/orientation/retention and installed mechanics;
 - QSPI timing at the selected clock, shared-SPI CS-high high-Z and contention;
-- touch interrupt electrical type/polarity and reset/recovery;
+- ST77922 identity/readback, raw idle voltage, interrupt pulse/hold/clear
+  semantics and reset/recovery;
 - LED current corners, PWM flicker/EMI, thermal map and latch recovery;
 - internal-FPC ESD and enclosure abuse boundary.
 

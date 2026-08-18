@@ -19,8 +19,9 @@
 4. Use active `Alps Alpine EC11E18244AU` as the first encoder target; keep its
    final rear placement, feel and installed-U214 fit open.
 5. Move panel TP_INT to existing `SYS_INT_N` through one SC70-5 footprint.
-   Populate `SN74LVC1G07DCKR` for active-low or pin-compatible
-   `SN74LVC1G06DCKR` for active-high only after specimen HIL proves polarity.
+   `DEC-0088` later proves the exact integrated ST77922 active-low contract,
+   adds a 10-kOhm raw pull-up, fixes `SN74LVC1G07DCKR` and removes the former
+   pin-compatible inverter alternative.
 6. Keep PTT direct on RP GPIO21. Keep STOP and RE-ARM on their independent AON
    circuits; neither may be multiplexed into the UI matrix.
 
@@ -36,7 +37,9 @@
   remains available without phone or touchscreen.
 - Exact switch/contact-current/protection is continued and closed on paper by
   `DEC-0087/UI-0002`; cap/guard/harness mechanics, address-collision scan, scan
-  current, touch polarity, encoder placement and UI HIL remain blockers. This
+  current, encoder placement and UI HIL remain blockers. Touch identity,
+  address and polarity are later paper-closed by `DEC-0088`; IRQ/reset HIL
+  remains. This
   decision does not authorize KiCad or enclosure freeze.
 - `FND-0091` corrects the exact TCA9534A address table: all-high UI straps are
   candidate `0x3F`; the control topology and pin result are unchanged.

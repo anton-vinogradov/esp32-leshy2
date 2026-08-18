@@ -26,7 +26,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I1` | compute, clocks, reset, signed update, recovery/diagnostics and S3↔C5↔RP links | `I0`, `DEC-0012/0031`, `REC-0001` | **Проведено ревью** by `DEC-0059/REV-0005L`: 1-bit SDIO, full USB/UART service, exact topology budgeted; HIL named | every domain independently recoverable and diagnosable; exact transport/service topology selected and budgeted |
 | `I2` | AON safety, hard STOP, re-arm, TX gates and actual-TX evidence | `I1`, `DEC-0024`, group arbiter | **Проведено ревью** by `DEC-0061/SAFE-0002/REV-0005O`: three-domain latch/gates, eight evidence channels, source mask, hardware aggregate and test points machine-projected; I3/I6/HIL proofs named | non-programmable truth table, exact parts/rails/faults and test points reviewed |
 | `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
-| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **active paper block**; product USB reviewed by `DEC-0083/USB-0001/REV-0005AN`; display by `DEC-0084/DSP-0006/REV-0005AO`; isolated microSD by `DEC-0085/STO-0001/REV-0005AP`; complete control inventory/pin fit by `DEC-0086/UI-0001/REV-0005AQ`; exact switch current/default/protection by `DEC-0087/UI-0002/REV-0005AR`; all retain named physical/HIL gates | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
+| `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **active paper block, consolidated audit next**; USB/display/microSD reviewed by `DEC-0083…0085`; complete controls and exact switch/protection by `DEC-0086/0087`; integrated ST77922 address/polarity/IRQ by `DEC-0088/DSP-0007`; all retain named physical/HIL gates | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker | `I2/I3/I4`, `DEC-0054` | active IC topology selected; passives, rails and HIL open | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3`, `DEC-0045…0050` | owners/ports accepted; production modules/frontends/gates/evidence open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | logical profiles reviewed; exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
@@ -146,6 +146,13 @@ RE-ARM; exact gold-clad `AEQ10410` preserves the normally-closed hard STOP
 inside its documented 100-uA-at-3-V range. One `TPD8E003DQDR` and two separate
 `TPD4E05U06DQAR` instances protect matrix, encoder/PTT and safety inputs without
 mixing the safety ESD return. Exact cap/guard/harness/enclosure mechanics and
-electrical/HIL injection remain open; the next I4 paper boundary is the
-remaining touch-controller identity/polarity and any still-abstract product UI
-endpoint, not a return to KiCad or the full mockup.
+electrical/HIL injection remain open.
+
+`FND-0093/DSP-0007/DEC-0088/REV-0005AS` close the former touch identity and
+polarity uncertainty. Exact integrated `ST77922` owns both display and touch,
+touch responds at `0x38`, and active-low TP_INT now has a 10-kOhm raw pull-up
+plus fixed non-inverting `SN74LVC1G07DCKR` before shared GPIO37. The obsolete
+inverter population option and stale direct-GPIO39 machine text are removed.
+Identity/readback, IRQ pulse/clear, reset recovery, shared-source discovery and
+physical HIL remain named. The next I4 action is a consolidated dependency and
+abstract-endpoint audit, not a return to KiCad or the full mockup.

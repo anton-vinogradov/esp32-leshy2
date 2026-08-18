@@ -66,6 +66,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("Layout-only invisible spine", rendered)
         required_labels = (
             "HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly",
+            "Sitronix ST77922<br/>integrated display plus capacitive-touch TDDI COG",
             "Hirose DM3AT-SF-PEJM5<br/>push-push microSD card connector",
             "Everest Semiconductor ES8311<br/>mono ADC/DAC audio codec",
             "Texas Instruments TLV9061IDBVR<br/>active high-impedance capture buffer",
@@ -199,6 +200,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "codec + Si4732-A10-GS",
             "dual RX + TX IR frontend",
             "nRF24 #0",
+            "SN74LVC1G06DCKR",
         ):
             self.assertNotIn(forbidden, rendered)
 
@@ -269,6 +271,18 @@ class ArchitectureValidationTests(unittest.TestCase):
                     diagram,
                     f"{readme_name}: storage part {node_id}/{mpn} lacks its own box",
                 )
+            touch_nodes = {
+                "LCDTDDI": "Sitronix ST77922",
+                "TPIRQPU": "RC0402FR-0710KL",
+                "TPIRQ": "SN74LVC1G07DCKR",
+            }
+            for node_id, mpn in touch_nodes.items():
+                self.assertIn(
+                    f'  {node_id}["{mpn}',
+                    diagram,
+                    f"{readme_name}: touch part {node_id}/{mpn} lacks its own box",
+                )
+            self.assertNotIn("SN74LVC1G06DCKR", diagram, readme_name)
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -1126,7 +1140,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertIn(("slow_io.P06", "display_connector.PIN_15", "LCD_RST_N"), routes)
         self.assertIn(("slow_io.P07", "display_connector.PIN_4", "TOUCH_RST_N"), routes)
-        self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW"), routes)
+        self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
+        self.assertIn(("display.TP_INT", "display_touch_controller.TP_INT", "LCD_TOUCH_INT_RAW_N"), routes)
+        self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("touch_irq_buffer.Y", "abstract:SYS_INT_N_WIRED_LOW", "SYS_INT_N"), routes)
         self.assertIn(("abstract:3V3_MAIN", "display_connector.PIN_39", "LCD_IM1_HIGH"), routes)
         self.assertIn(("display_connector.PIN_38", "abstract:power-ground", "LCD_IM0_LOW"), routes)
@@ -1721,9 +1737,20 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertEqual("0x38", matrix_io["i2c_7bit_address_by_a2a1a0"]["000"])
         self.assertEqual("0x3F", matrix_io["i2c_7bit_address_by_a2a1a0"]["111"])
-        noninverting = self.database["devices"]["ti_sn74lvc1g07_dckr"]["contacts"]
-        inverting = self.database["devices"]["ti_sn74lvc1g06_dckr"]["contacts"]
-        self.assertEqual(noninverting, inverting)
+        self.assertNotIn("ti_sn74lvc1g06_dckr", self.database["devices"])
+        self.assertEqual(
+            "sitronix_st77922", candidate["instances"]["display_touch_controller"]
+        )
+        self.assertEqual(
+            "yageo_rc0402fr_0710kl", candidate["instances"]["touch_irq_pullup"]
+        )
+        st77922 = self.database["devices"]["sitronix_st77922"]
+        self.assertEqual("die pad 31", st77922["contacts"]["TP_INT"]["physical"])
+        self.assertEqual("0x38", st77922["assembly_contract"]["touch_i2c_7bit_address"])
+        self.assertEqual(
+            "active-low on the exact ES3C35P/HMX035CTFT-001 reference",
+            st77922["assembly_contract"]["touch_irq"],
+        )
 
         allocations = {
             (row["instance"], row["contact"]): row
@@ -1753,7 +1780,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("rearm_pullup.END_2", "rearm_switch.SIDE_A_1", "REARM_RAW"), routes)
         self.assertIn(("stop_pullup.END_2", "safety_control_esd.D1_PLUS", "STOP_LOOP_SENSE"), routes)
         self.assertIn(("rearm_pullup.END_2", "safety_control_esd.D1_MINUS", "REARM_RAW"), routes)
-        self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW"), routes)
+        self.assertIn(("display.TP_INT", "display_touch_controller.TP_INT", "LCD_TOUCH_INT_RAW_N"), routes)
+        self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
+        self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertEqual(
             ["P00", "P01", "P02", "P03", "P04", "P05"],
             candidate["contact_accounting"]["slow_io"]["free"],
@@ -1768,7 +1797,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "D-pad UP ultra-low-current ordinary control",
             "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
             "hold-to-talk PTT control", "normally-closed hard-STOP control",
-            "Y78B23214FP", "AEQ10410", "TPD8E003DQDR",
+            "Y78B23214FP", "AEQ10410", "TPD8E003DQDR", "Sitronix ST77922",
+            "active-low ST77922 touch node",
             'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
             'STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP',
             'REARM_SWITCH -->|"NO contact to safety ground"| REARM_RAW',
@@ -1777,6 +1807,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(token, rendered)
         self.assertNotIn("PTT_SWITCH --> PTT_PULLUP --> PTT_FILTER_CAP", rendered)
         self.assertNotIn("STOP_SWITCH --> STOP_PULLUP --> STOP_FILTER_CAP", rendered)
+        self.assertNotIn("SN74LVC1G06DCKR", rendered)
 
     def test_dec0059_restores_full_s3_c5_service_on_1bit_sdio(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

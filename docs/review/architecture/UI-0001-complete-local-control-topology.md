@@ -66,18 +66,15 @@ invented.
 
 ## Touch IRQ relocation
 
-Panel `TP_INT` is not documented deeply enough to assume polarity or output
-type. One SC70-5 footprint therefore accepts:
-
-- `SN74LVC1G07DCKR` as first target for active-low/non-inverting input;
-- pin-compatible `SN74LVC1G06DCKR` for active-high/inverting input.
-
-Both produce an open-drain contribution to the existing pulled-up `SYS_INT_N`
-on S3 GPIO37. After any wake firmware reads every enabled source: TCA6424,
-the dedicated TCA9534A, touch, TPS25751 and pack admission. The actual
-HMX035CTFT-001 specimen must
-identify controller, idle level, polarity, pulse persistence and recovery
-before one population option is frozen. Polling-only touch is not accepted.
+`DEC-0088/DSP-0007` close the later exact endpoint: integrated `ST77922` touch
+uses 7-bit address `0x38`, and the exact assembly specification defines
+active-low `TP_INT`. The raw line has an exact 10-kOhm pull-up and fixed
+non-inverting open-drain `SN74LVC1G07DCKR`; the former `SN74LVC1G06DCKR`
+inverter option is removed. Its output joins pulled-up `SYS_INT_N` on S3
+GPIO37. After any wake firmware reads every enabled source: TCA6424, the
+dedicated TCA9534A, ST77922, TPS25751 and pack admission. Specimen HIL still
+proves identity/readback, idle voltage, pulse persistence/clear and recovery.
+Polling-only touch is not accepted.
 
 ## Pin and cost result
 
@@ -100,7 +97,8 @@ before one population option is frozen. Polling-only touch is not accepted.
 - matrix ghosting, debounce, multiple presses, bounded scan current, wake and
   100-ms response HIL;
 - encoder chatter/speed/EMI/concurrent-load HIL;
-- touch IRQ polarity, shortest assertion and shared-source identification HIL.
+- ST77922 identity/readback, raw idle voltage, shortest assertion,
+  pulse-clear/reset and shared-source identification HIL.
 
 This artifact closes inventory and principled pin fit. `UI-0002` closes the
 dependent exact electrical switch/protection endpoint. Neither freezes the

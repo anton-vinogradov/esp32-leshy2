@@ -25,12 +25,14 @@
 
 The canonical table is [`stages.md`](../review/stages.md).
 
-The current I4 control endpoint has **paper review completed** through
+The current I4 control/touch endpoint has **paper review completed** through
 [`UI-0001`](../review/architecture/UI-0001-complete-local-control-topology.md)
-and [`UI-0002`](../review/architecture/UI-0002-exact-switch-and-control-protection.md):
+[`UI-0002`](../review/architecture/UI-0002-exact-switch-and-control-protection.md)
+and [`DSP-0007`](../review/architecture/DSP-0007-exact-integrated-st77922-touch-endpoint.md):
 the full D-pad/OK/BACK/OPT/F1/F2/encoder/PTT/STOP/RE-ARM inventory is retained,
-and exact low-current switch, pull/filter and ESD routes are machine-projected.
-Cap/guard/harness/enclosure fit and electrical/HIL injection remain open.
+exact switch/protection routes are machine-projected, and integrated ST77922
+touch is fixed at address `0x38` with active-low IRQ on shared GPIO37.
+Cap/guard/harness/enclosure and specimen/electrical HIL remain open.
 
 ## Competitor-delta closure
 
@@ -386,15 +388,21 @@ pin fit. The retained set is D-pad/OK, BACK, OPT, F1, F2, encoder/push,
 dedicated PTT, independent normally-closed STOP and recessed RE-ARM. One exact
 Dedicated `TCA9534APWR` P0…P6 and ten `1N4148WT` devices form an
 interrupt-driven 4x3 matrix, while P7 is reserved and main TCA6424 P00…P05 are
-free. Encoder A/B use S3 GPIO39/GPIO47 PCNT0 and touch IRQ joins GPIO37 through
-the pin-compatible `SN74LVC1G07/1G06` population option. S3 is now `33/3/0`,
+free. Encoder A/B use S3 GPIO39/GPIO47 PCNT0 and touch IRQ joins GPIO37. S3 is now `33/3/0`,
 main slow I/O `18/0/6` and UI I/O `7/1/0`; PTT remains direct RP GPIO21 and
 STOP/RE-ARM remain outside I2C. Exact switch mechanics, SYS-I2C collision scan,
-encoder/U214 fit, touch polarity and matrix/encoder HIL remain open; KiCad
+encoder/U214 fit and matrix/encoder HIL remain open; KiCad
 stays blocked.
 `FND-0091` also corrects exact TCA9534A addressing from the impossible legacy
 values: RP evidence all-low straps are `0x38`, and UI all-high straps are
 candidate `0x3F`; TPS25751D `0x20` is unrelated and unchanged.
+`FND-0092/UI-0002/DEC-0087/REV-0005AR` then close exact switch current,
+default-state and separated ESD protection without removing PTT, STOP, F1, F2
+or any D-pad control. `FND-0093/DSP-0007/DEC-0088/REV-0005AS` identify exact
+integrated ST77922, exact address `0x38` and active-low TP_INT; an exact 10-kOhm
+raw pull-up plus fixed non-inverting `SN74LVC1G07DCKR` reach shared GPIO37, and
+the obsolete inverter option is removed. Specimen readback/IRQ/reset,
+shared-source and physical HIL remain open; consolidated I4 audit is next.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative

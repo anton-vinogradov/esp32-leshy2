@@ -32,7 +32,8 @@ the then-current `S3=2, C5=1, RP=0, slow=P27` free-contact state. Subsequent
 `DEC-0054/REV-0005D` then assigns S3 GPIO6 to reset-safe `AUDIO_ARM`. After
 `DEC-0059`, GPIO47 was the only free S3 contact. `DEC-0086/UI-0001` now use
 GPIO39/GPIO47 for direct encoder PCNT0 capture and move touch IRQ into shared
-GPIO37 through a polarity adapter. A dedicated TCA9534A restores
+GPIO37. `DEC-0088/DSP-0007` fix exact active-low ST77922, 10-kOhm raw pull-up
+and non-inverting 1G07. A dedicated TCA9534A restores
 interrupt-driven 4×3 controls and releases TCA6424 P00…P05. Current free state
 is `S3=0, C5=1, RP=0, main slow=6`, with UI-matrix P7 reserved.
 `DEC-0051` publishes that reviewed projection as the visible principle-level
@@ -87,7 +88,12 @@ encoder, direct RP PTT and independent AON STOP/RE-ARM.
 `FND-0092/UI-0002/DEC-0087/REV-0005AR` close the next electrical boundary with
 exact low-current switches, a gold-clad COM+NC STOP target, exact pull/filter
 networks and separate matrix/fast/safety ESD returns. Cap/guard/harness and
-enclosure mechanics, touch polarity and control HIL remain open.
+enclosure mechanics and control HIL remain open.
+`FND-0093/DSP-0007/DEC-0088/REV-0005AS` then close the exact integrated touch
+identity/address/polarity endpoint: ST77922 is the assembly TDDI at `0x38`,
+active-low TP_INT has its own 10-kOhm raw pull-up and fixed 1G07 path to shared
+GPIO37, and the former inverter option is removed. Specimen IRQ/reset,
+shared-source and physical HIL remain open.
 `PWR-0002/REV-0005P` review its current load/scenario prerequisites and reject
 the legacy sheet as a target: its charger lacks a system power path, its ADC
 is not a fuel gauge, fixed 3-A Type-C draw is unproven and its rails do not fit
@@ -144,6 +150,9 @@ keeping the connector footprint blocked on a real FPC-tail proof.
 `FND-0089/STO-0001/DEC-0085/REV-0005AP` give the third I4 endpoint a paper
 review, eliminate storage back-power and display-D1 contention, and keep the
 socket footprint, media/endurance, throughput and destructive HIL blocked.
+`FND-0090…0093/UI-0001/UI-0002/DSP-0007/DEC-0086…0088` retain every physical
+control, close exact switch/protection and touch identity/address/polarity,
+and leave only named mechanics/specimen HIL before the consolidated I4 audit.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -239,6 +248,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`UI-0002`](UI-0002-exact-switch-and-control-protection.md) closes exact
   contact-current, default-state and ESD routes for every retained physical
   control while keeping actuator/enclosure HIL open;
+- [`DSP-0007`](DSP-0007-exact-integrated-st77922-touch-endpoint.md) names the
+  integrated ST77922, exact `0x38`/active-low contract and fixed board IRQ
+  normalizer while retaining specimen/shared-line HIL;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full
