@@ -90,8 +90,11 @@ AON/3.3/4.0/5.0-V converter, inductor, load-switch и external-eFuse first
 targets; `DEC-0069/REV-0005Z` исправляют external eFuse на latch-off exact
 suffix. `PWR-0009…0011/DEC-0070…0072` затем закрывают optional-PG
 qualification, exact eFuse passives и 24 exact converter
-energy/configuration/feedback parts; `PWR-0012/DEC-0073/REV-0005AD`
-закрывают direct AON EN и девять exact EN/PG/fault resistors.
+energy/configuration/feedback parts; `PWR-0012/DEC-0073/REV-0005AD` first
+close direct AON EN and the original nine exact EN/PG/fault resistors. `FND-0084/PWR-0019/
+DEC-0080/REV-0005AK` then replace the hidden sequencer with exact AON-PG/MR,
+SENSE/CT/POR and main-EN wiring. The amended profile has ten physical
+resistor positions, about 3.0-V main release and no new unique MPN or GPIO.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` закрывают exact 10-Ом diagnostic,
 независимый non-retriggerable предел `<=50 мс` и exact PA25/PA26
 divider/filter frontends, исправляя запрещённую injection-current привязку

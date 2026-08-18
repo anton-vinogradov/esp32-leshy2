@@ -316,11 +316,14 @@ external nominals are 3.318/4.000/5.000 V; their full paper tolerance screens
 fit the accepted loads and leave the external maximum below the eFuse OVLO
 floor. Lifecycle review rejects obsolete 45.0 kOhm for active 45.3 kOhm, and
 the recurring passive estimate is about `$1.8` per board at 100 pieces.
-`PWR-0012/DEC-0073/REV-0005AD` then close the control profile: AON EN is a
-direct admitted-SYS strap; one 47-kOhm AON PG pull plus six 10-kOhm EN/PG/
-fault pulls and two 68-kOhm qualifier-base resistors are nine physical
-instances. All values reuse existing BOM MPNs, add about `$0.006` checked
-material per board and preserve the existing fault truth table without GPIO.
+`PWR-0012/DEC-0073/REV-0005AD` first close the converter control profile.
+`FND-0084/PWR-0019/DEC-0080/REV-0005AK` now replace the hidden source
+sequencer with exact `AON_PG_N → TPS3808.MR_N` and delayed
+`POR_N → TPS564252 #MAIN.EN`. One exact 10-kOhm POR pull-up and existing
+100-kOhm MPN create about 3.0-V release; the amended profile has ten physical
+positions, no GPIO and no new unique MPN. An initial 85% protected-input
+reserve makes charging system-first across actual 5/9/15-V contracts;
+source-transition behavior remains HIL.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` then close the diagnostic frontend.
 The accepted 10-Ohm pulse-proof load is driven only by a TPUL2G223
 non-retriggerable one-shot, giving about 34.4 ms typical and a conservative

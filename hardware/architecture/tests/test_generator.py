@@ -119,6 +119,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TDK CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V X7R AON input capacitor",
             "Murata GRM31CR71A226KE15L<br/>22-uF 10-V X7R AON output capacitor",
             "Yageo RC0402FR-0747KL<br/>47-kOhm 1% AON power-good pull-up resistor",
+            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% AON POR pull-up resistor",
             "Texas Instruments TPS564252DRLR<br/>fixed 3.3-V 4-A main converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main-converter bulk input capacitor",
@@ -128,7 +129,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "KEMET C0402C330J5GACTU<br/>33-pF 50-V C0G main feed-forward capacitor",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main output capacitor #0",
             "Murata GRM32ER71E226KE15L<br/>22-uF 25-V X7R main output capacitor #1",
-            "Yageo RC0402FR-0710KL<br/>10-kOhm 1% main-enable fail-low resistor",
+            "Yageo RC0402FR-07100KL<br/>100-kOhm 1% main-enable fail-low resistor",
             "Yageo RC0402FR-0710KL<br/>10-kOhm 1% wired-low power-fault pull-up resistor",
             "Texas Instruments TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter",
             "Sunlord MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor",
@@ -331,6 +332,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("XTAR 18650 4000mAh", contract["battery_cell_profile"])
         self.assertIn("28.8Wh", contract["battery_cell_profile"])
         self.assertIn("2A", contract["charge_limit"])
+        self.assertEqual("DEC-0080", contract["source_sequence_decision"])
+        self.assertEqual(0.85, contract["source_power_reserve"]["paper_efficiency_factor"])
+        self.assertEqual(25.5, contract["source_power_reserve"]["best_case_pdo_sys_w"]["15V_2A"])
 
         expected_instances = {
             "pd_controller": "ti_tps25751d_refr",
@@ -346,6 +350,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_holder": "keystone_1048p",
             "pack_cell0": "xtar_18650_4000mah_protected",
             "pack_cell1": "xtar_18650_4000mah_protected",
+            "safe_por_pullup": "yageo_rc0402fr_0710kl",
             "pack_hold": "diodes_2n7002dw_7_f",
             "pack_supply_or": "onsemi_bav70lt1g",
             "pack_system_diode": "diodes_bat54_7_f",
@@ -433,6 +438,22 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertIn(
             ("pack_cell1.NEG", "pack_holder.SLOT1_NEG", "PACK_2S_MIDPOINT"),
+            routes,
+        )
+        self.assertIn(
+            ("aon_buck.PG", "safe_supervisor.MR_N", "AON_PG_N"),
+            routes,
+        )
+        self.assertIn(
+            ("safe_supervisor.RESET_N", "main_buck.EN", "POR_N"),
+            routes,
+        )
+        self.assertIn(
+            ("safe_por_pullup.END_2", "safe_supervisor.RESET_N", "POR_N"),
+            routes,
+        )
+        self.assertNotIn(
+            ("abstract:main-rail-enable-after-source-admission", "main_buck.EN", "MAIN_3V3_EN"),
             routes,
         )
         self.assertIn(
@@ -631,7 +652,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("68k/12k", contract["converter_passive_profile"])
         self.assertIn("220k/30k", contract["converter_passive_profile"])
         self.assertEqual("DEC-0073", contract["converter_control_passive_decision"])
-        self.assertIn("nine physical resistors", contract["converter_control_passive_profile"])
+        self.assertIn("Ten physical resistor positions", contract["converter_control_passive_profile"])
         self.assertIn("directly to admitted SYS", contract["converter_control_passive_profile"])
         self.assertEqual("DEC-0069", contract["external_protection_decision"])
         self.assertIn("TPS259470LRPWR", contract["external_protection"])
@@ -654,7 +675,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "main_ff_cap": "kemet_c0402c330j5gactu",
             "main_output_cap0": "murata_grm32er71e226ke15l",
             "main_output_cap1": "murata_grm32er71e226ke15l",
-            "main_en_pulldown": "yageo_rc0402fr_0710kl",
+            "main_en_pulldown": "yageo_rc0402fr_07100kl",
             "power_fault_pullup": "yageo_rc0402fr_0710kl",
             "voice_buck": "ti_tps564252_drlr",
             "voice_inductor": "sunlord_mwsa0503s_3r3mt",

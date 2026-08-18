@@ -106,7 +106,10 @@ Leshy2 — открытый автономный портативный инст
 - Четыре независимые фиксированные шины разделяют always-on безопасность,
   вычислительное питание 3,3 В, голосовой тракт 4,0 В и защищённый порт
   расширения 5,0 В. Неиспользуемые ветви радио, накопителя и аудио физически
-  отключаются и разряжаются до проверенного тихого состояния.
+  отключаются и разряжаются до проверенного тихого состояния. Физический
+  power-good AON-преобразователя удерживает supervisor 3,07 В в reset, и
+  только его задержанный аппаратный POR включает основную шину. Firmware не
+  может обойти допуск источника, brownout AON или этот порядок запуска.
 - Защищённый порт расширения запускается с управляемой скоростью нарастания
   напряжения и сразу действующим ограничением тока. Он поддерживает `1,25 А`
   постоянно и ограниченный по времени импульс `2,0 А` только после запуска;
@@ -222,6 +225,7 @@ flowchart TD
   AONIN["CGA5L1X7R1E475K160AC<br/>4,7-мкФ 25-В X7R входной конденсатор AON"]
   AONOUT["GRM31CR71A226KE15L<br/>22-мкФ 10-В X7R выходной конденсатор AON"]
   AONPGPU["RC0402FR-0747KL<br/>47-кОм 1% pull-up резистор power-good AON"]
+  PORPU["RC0402FR-0710KL #AON-POR<br/>10-кОм 1% pull-up резистор AON POR"]
   MAINBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь основной шины 3,3 В"]
   MAINL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн основной шины"]
   MAININ["GRM32ER71E226KE15L #MAIN-IN<br/>22-мкФ 25-В X7R входной bulk-конденсатор основной шины"]
@@ -231,7 +235,7 @@ flowchart TD
   MAINFF["C0402C330J5GACTU #MAIN<br/>33-пФ 50-В C0G feed-forward конденсатор основной шины"]
   MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №0"]
   MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-мкФ 25-В X7R выходной конденсатор основной шины №1"]
-  MAINENPD["RC0402FR-0710KL #MAIN-EN<br/>10-кОм 1% fail-low резистор EN основной шины"]
+  MAINENPD["RC0402FR-07100KL #MAIN-EN<br/>100-кОм 1% fail-low резистор EN основной шины"]
   FAULTPU["RC0402FR-0710KL #POWER-FAULT<br/>10-кОм 1% pull-up резистор общей линии power-fault"]
   VOICEBUCK["TPS564252DRLR<br/>фиксированный 4-А преобразователь голосовой шины 4,0 В"]
   VOICEL["MWSA0503S-3R3MT<br/>силовой дроссель 3,3 мкГн голосовой шины"]
@@ -339,8 +343,8 @@ flowchart TD
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
   DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
-  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
-  AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
+  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU ~~~ PORPU
+  PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
@@ -444,6 +448,9 @@ flowchart TD
   CHARGER -->|"локальный bypass SYS"| AONIN
   AONL -->|"локальный выход AON"| AONOUT
   AONL -->|"pull-up PG"| AONPGPU --> AONBUCK
+  AONPGPU -->|"AON_PG_N к MR_N"| SUP
+  AONL -->|"pull-up POR"| PORPU --> SUP
+  SUP -->|"задержанный POR_N включает main"| MAINBUCK
   CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
   CHARGER -->|"локальный bulk SYS"| MAININ
   CHARGER -->|"локальный HF SYS"| MAINHF
@@ -451,7 +458,7 @@ flowchart TD
   MAINL -->|"feed-forward"| MAINFF
   MAINL -->|"локальный выходной банк"| MAINOUT0
   MAINL -->|"локальный выходной банк"| MAINOUT1
-  MAINBUCK -->|"fail-low EN"| MAINENPD
+  MAINBUCK -->|"100-кОм fail-low EN"| MAINENPD
   MAINL -->|"pull-up POWER_FAULT_N"| FAULTPU --> SLOW
   MAINL --> C5
   MAINL --> RP

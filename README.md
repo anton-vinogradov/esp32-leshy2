@@ -102,6 +102,9 @@ privacy or the target owner's authorization.
 - Four independent fixed rails separate always-on safety, 3.3-V compute,
   4.0-V voice and protected 5.0-V accessory power. Unused radio, storage and
   audio branches are disconnected and discharged into a verified quiet state.
+  The AON converter's physical power-good output holds the 3.07-V supervisor
+  in reset; only its delayed hardware POR enables the main rail. Firmware
+  cannot bypass source admission, AON brownout or that startup order.
 - The protected accessory port admits startup through a controlled voltage
   slew under an immediately active current limit. It supports `1.25 A`
   continuously and a bounded `2.0 A` transient only after startup; an expired
@@ -216,6 +219,7 @@ flowchart TD
   AONIN["CGA5L1X7R1E475K160AC<br/>4.7-uF 25-V X7R AON input capacitor"]
   AONOUT["GRM31CR71A226KE15L<br/>22-uF 10-V X7R AON output capacitor"]
   AONPGPU["RC0402FR-0747KL<br/>47-kOhm 1% AON power-good pull-up resistor"]
+  PORPU["RC0402FR-0710KL #AON-POR<br/>10-kOhm 1% AON POR pull-up resistor"]
   MAINBUCK["TPS564252DRLR<br/>fixed 3.3-V 4-A main converter"]
   MAINL["MWSA0503S-3R3MT<br/>3.3-uH main-rail power inductor"]
   MAININ["GRM32ER71E226KE15L #MAIN-IN<br/>22-uF 25-V X7R main bulk input capacitor"]
@@ -225,7 +229,7 @@ flowchart TD
   MAINFF["C0402C330J5GACTU #MAIN<br/>33-pF 50-V C0G main feed-forward capacitor"]
   MAINOUT0["GRM32ER71E226KE15L #MAIN-OUT0<br/>22-uF 25-V X7R main output capacitor #0"]
   MAINOUT1["GRM32ER71E226KE15L #MAIN-OUT1<br/>22-uF 25-V X7R main output capacitor #1"]
-  MAINENPD["RC0402FR-0710KL #MAIN-EN<br/>10-kOhm 1% main-enable fail-low resistor"]
+  MAINENPD["RC0402FR-07100KL #MAIN-EN<br/>100-kOhm 1% main-enable fail-low resistor"]
   FAULTPU["RC0402FR-0710KL #POWER-FAULT<br/>10-kOhm 1% wired-low power-fault pull-up resistor"]
   VOICEBUCK["TPS564252DRLR<br/>fixed 4.0-V 4-A voice converter"]
   VOICEL["MWSA0503S-3R3MT<br/>3.3-uH voice-rail power inductor"]
@@ -333,8 +337,8 @@ flowchart TD
   NTC1 ~~~ PACKGAUGE ~~~ SHUNT ~~~ PACKFET ~~~ PACKHOLD ~~~ SUPPLYOR ~~~ SYSDIODE ~~~ PACKADM
   PACKADM ~~~ DIAGTMR ~~~ DIAGTR ~~~ DIAGTC ~~~ DIAGLR ~~~ DIAGLC ~~~ DIAGBP ~~~ DIAGTRPD ~~~ DIAGGPD ~~~ DIAGQ ~~~ DIAGR0 ~~~ DIAGR1
   DIAGR1 ~~~ MIDADC0 ~~~ MIDADC1 ~~~ MIDADCB ~~~ MIDADCC ~~~ STACKADC0 ~~~ STACKADC1 ~~~ STACKADC2 ~~~ STACKADC3 ~~~ STACKADC4 ~~~ STACKADCB ~~~ STACKADCC
-  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU
-  AONPGPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
+  STACKADCC ~~~ AONBUCK ~~~ AONL ~~~ AONMODE ~~~ AONIN ~~~ AONOUT ~~~ AONPGPU ~~~ PORPU
+  PORPU ~~~ MAINBUCK ~~~ MAINL ~~~ MAININ ~~~ MAINHF ~~~ MAINFBT ~~~ MAINFBB ~~~ MAINFF ~~~ MAINOUT0 ~~~ MAINOUT1 ~~~ MAINENPD ~~~ FAULTPU
   FAULTPU ~~~ VOICEBUCK ~~~ VOICEL ~~~ VOICEIN ~~~ VOICEHF ~~~ VOICEFBT ~~~ VOICEFBB ~~~ VOICEFF ~~~ VOICEOUT0 ~~~ VOICEOUT1 ~~~ VOICEENPD ~~~ VOICEPGPU ~~~ VOICEPGBR ~~~ VOICEPGQ
   VOICEPGQ ~~~ EXTBUCK ~~~ EXTL ~~~ EXTBUCKIN ~~~ EXTBUCKHF ~~~ EXTBUCKFBT ~~~ EXTBUCKFBB ~~~ EXTBUCKFF ~~~ EXTBUCKOUT0 ~~~ EXTBUCKOUT1 ~~~ EXTENPD ~~~ EXTPGPU ~~~ EXTPGBR ~~~ EXTPGQ ~~~ EXTFUSE ~~~ EXTRILM ~~~ EXTDVDT ~~~ EXTITIMER
   EXTITIMER ~~~ EXTOVLOT ~~~ EXTOVLOB ~~~ EXTINCAP ~~~ EXTOUTCAP ~~~ EXTBLEED ~~~ SWNRF ~~~ SWCC ~~~ SWSD ~~~ SWCODEC ~~~ SWRX ~~~ S3 ~~~ SLOW
@@ -438,6 +442,9 @@ flowchart TD
   CHARGER -->|"SYS local bypass"| AONIN
   AONL -->|"AON local output"| AONOUT
   AONL -->|"PG pull-up"| AONPGPU --> AONBUCK
+  AONPGPU -->|"AON_PG_N to MR_N"| SUP
+  AONL -->|"POR pull-up"| PORPU --> SUP
+  SUP -->|"delayed POR_N enables main"| MAINBUCK
   CHARGER -->|"SYS"| MAINBUCK --> MAINL -->|"3V3_MAIN"| S3
   CHARGER -->|"SYS local bulk"| MAININ
   CHARGER -->|"SYS local HF"| MAINHF
@@ -445,7 +452,7 @@ flowchart TD
   MAINL -->|"feed-forward"| MAINFF
   MAINL -->|"local output bank"| MAINOUT0
   MAINL -->|"local output bank"| MAINOUT1
-  MAINBUCK -->|"EN fail-low"| MAINENPD
+  MAINBUCK -->|"100-kOhm EN fail-low"| MAINENPD
   MAINL -->|"POWER_FAULT_N pull-up"| FAULTPU --> SLOW
   MAINL --> C5
   MAINL --> RP

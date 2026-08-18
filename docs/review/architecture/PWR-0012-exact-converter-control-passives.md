@@ -12,9 +12,10 @@
 
 Этот проход закрывает оставшиеся abstract EN/PG/power-fault resistor networks
 четырёх принятых преобразователей. Он не меняет rail topology, напряжения,
-runtime sequencing или accepted truth table `EN AND NOT(PG)`. Девять
-физических резисторов внесены отдельными machine/diagram instances; AON EN
-получает точный direct strap, а не скрытый десятый компонент.
+runtime sequencing или accepted truth table `EN AND NOT(PG)`. The original
+nine resistors are amended by `PWR-0019/DEC-0080` to ten separate
+machine/diagram instances; AON EN receives an exact direct strap and the exact
+AON-POR/main-EN pair replaces the hidden sequencer.
 
 Startup/shutdown timing, brownout, simultaneous faults and specimen HIL remain
 open. Артефакт не разрешает начинать KiCad.
@@ -24,7 +25,8 @@ open. Артефакт не разрешает начинать KiCad.
 | Physical function | Exact MPN | Qty | Connection |
 |---|---|---:|---|
 | AON PG pull-up | `Yageo RC0402FR-0747KL`, 47 kOhm, 1%, 0402 | 1 | `AON_SAFE_3V3 → TPS629203.PG` |
-| main converter EN fail-low | `Yageo RC0402FR-0710KL`, 10 kOhm, 1%, 0402 | 1 | `MAIN_3V3_EN → GND` |
+| AON POR pull-up | `Yageo RC0402FR-0710KL`, 10 kOhm, 1%, 0402 | 1 | `AON_SAFE_3V3 → TPS3808.RESET_N/POR_N` |
+| main converter EN fail-low | `Yageo RC0402FR-07100KL`, 100 kOhm, 1%, 0402 | 1 | `POR_N / MAIN.EN → GND` |
 | wired-low fault pull-up | `Yageo RC0402FR-0710KL` | 1 | `3V3_MAIN → POWER_FAULT_N` |
 | voice converter EN fail-low | `Yageo RC0402FR-0710KL` | 1 | `VOICE_DOMAIN_EN_SAFE → GND` |
 | voice PG pull-up | `Yageo RC0402FR-0710KL` | 1 | `3V3_MAIN → VOICE_4V_PG_N` |
@@ -33,9 +35,10 @@ open. Артефакт не разрешает начинать KiCad.
 | accessory PG pull-up | `Yageo RC0402FR-0710KL` | 1 | `3V3_MAIN → EXT_5V_PG_N` |
 | accessory qualifier base | `Yageo RC0402FR-0768KL` | 1 | safe EN → `MMBT3904.B` |
 
-Итого: six 10-kOhm, one 47-kOhm and two 68-kOhm physical resistors. Все три
-MPN уже присутствуют в принятом BOM: 10/68 kOhm — в feedback networks,
-47 kOhm — в eFuse OVLO. Нового unique line item нет.
+Итого: six 10-kOhm, one 47-kOhm, two 68-kOhm and one 100-kOhm physical
+resistors. All four MPNs already occur in the accepted BOM: 10/68 kOhm in
+feedback/control networks, 47 kOhm in eFuse OVLO and 100 kOhm in the BQ25798
+ILIM divider. Нового unique line item нет.
 
 ## AON enable and power-good
 
@@ -49,16 +52,20 @@ The AON PG pull-up is 47 kOhm rather than the common 10 kOhm. At 3.3 V it
 draws approximately 70.2 uA when asserted, versus 330 uA for 10 kOhm. This is
 below the TPS629203 1-mA recommended PG sink and preserves the low-IQ purpose
 without adding a new MPN. The maximum specified 1-uA high-state leakage would
-drop only 47 mV; edge timing and the actual sequencer input remain HIL gates.
+drop only 47 mV. The same exact node now drives `TPS3808.MR_N`; edge timing
+remains a HIL gate.
 
 ## TPS564252 enable defaults
 
 TI specifies a 2-MOhm internal EN pull-down, 1.25-V maximum rising threshold
-and 1.10-V maximum falling threshold. The external 10-kOhm pull-downs make the
-main, voice and accessory defaults independent of a high-impedance or
-unpowered sequencer output. A 3.3-V asserted output sources about 0.33 mA per
-pull-down. Even with one qualifier base branch and the eFuse EN leakage, each
-optional safe-gate output remains below approximately 0.4 mA static load.
+and 1.10-V maximum falling threshold. Voice and accessory retain exact 10-kOhm
+pull-downs on push-pull safe-gate outputs. Main is different: its open-drain
+POR uses a 10-kOhm AON pull-up and a 100-kOhm fail-low pull-down, yielding
+3.00 V nominal and about 2.79 V at the supervisor's minimum valid rail with
+1% corners. Equal 10-kOhm values would have yielded only 1.65 V and are no
+longer accepted. A 3.3-V asserted optional safe-gate output still sources about
+0.33 mA per 10-kOhm pull-down; with one qualifier base branch and eFuse EN
+leakage it remains below approximately 0.4 mA static load.
 
 Accessory `EXT_5V_EN_SAFE` drives the fixed 5-V converter and
 `TPS259470LRPWR.EN/UVLO` together. The 3.3-V high is above both devices'
@@ -86,8 +93,8 @@ absolute limit is not a lifetime qualification.
 ## Availability and cost
 
 The selected exact Yageo parts are active/current and stocked. The checked
-LCSC 100+ material snapshot is approximately `$0.006` per board for all nine
-resistors. Because all three MPNs already occur elsewhere on the board, this
+LCSC 100+ material class remains below one cent per board for all ten
+resistors. Because all four MPNs already occur elsewhere on the board, this
 closure adds placements but no feeder/unique-part line.
 
 Primary sources:
@@ -103,8 +110,7 @@ Primary sources:
 
 ## Review result
 
-Exact AON EN/PG, three application-converter EN defaults, both qualifier base
+Exact AON EN/PG/POR, three application-converter EN defaults, both qualifier base
 branches, both optional PG pull-ups and the common fault pull-up receive
 **«Проведено ревью»** at paper schematic level. Dynamic timing, temperature,
 brownout, reverse-BE cycling, multi-fault and HIL remain open.
-

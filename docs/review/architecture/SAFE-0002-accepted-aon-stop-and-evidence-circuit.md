@@ -13,8 +13,9 @@
 Этот документ закрывает бумажный `I2`: exact first-target active devices,
 непрограммируемую truth table, fan-out, default pulls, fault behavior и
 контрольные точки. Он не подменяет schematic capture и не объявляет
-измеренными RF/IR thresholds. Источник/hold-up `AON_SAFE_3V3`, branch load
-switches и thermal/loss budget относятся к `I3`; RF taps, matching,
+измеренными RF/IR thresholds. Источник/hold-up `AON_SAFE_3V3` and the exact
+main-release chain subsequently close at paper level in `PWR-0019/DEC-0080`;
+branch load switches и thermal/loss budget относятся к `I3`; RF taps, matching,
 comparator thresholds и оптический analog front end — к `I6`.
 
 ## Непрограммируемая STOP-цепь
@@ -46,7 +47,9 @@ back-power application domains.
   produces a positive clock edge on a fresh press.
 - D is fixed low through `10 kΩ`. `Q=TX_KILL`; `/Q=RUN_PERMIT`.
 - Supervisor `CT=10 nF C0G`, giving approximately `57.6 ms` typical POR delay.
-  `MR_N` and open-drain `POR_N` each use `10 kΩ` AON pull-ups.
+  `MR_N` is now driven directly by exact pulled-up `TPS629203.PG`;
+  open-drain `POR_N` uses one exact `10 kΩ` AON pull-up and directly enables
+  main against an exact 100-kOhm fail-low pull.
 - The clear equation is `CLR_N = POR_N OR STOP_LOOP_SENSE`. Therefore an open
   STOP loop makes `/CLR` inactive before/as `/PRE` asserts and avoids the
   forbidden simultaneous asynchronous preset+clear state.

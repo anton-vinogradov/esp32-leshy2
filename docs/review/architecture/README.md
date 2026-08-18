@@ -97,8 +97,12 @@ replace the four converters' abstract networks with 24 exact physical
 configuration, input, output, fixed-feedback and feed-forward passives. Their
 fixed tolerance ranges remain compatible with the loads and eFuse OVLO, and
 the obsolete 45.0-kOhm candidate is rejected for the active 45.3-kOhm MPN.
-`PWR-0012/DEC-0073/REV-0005AD` then close direct AON enable plus nine exact
-EN/PG/fault resistors using only existing BOM MPNs.
+`PWR-0012/DEC-0073/REV-0005AD` first close direct AON enable plus nine exact
+EN/PG/fault resistors using only existing BOM MPNs. `FND-0084/PWR-0019/
+DEC-0080/REV-0005AK` later expose and remove the hidden source-sequencer
+endpoint: AON PG directly holds TPS3808 MR, delayed POR directly enables main,
+and an exact 10-kOhm/100-kOhm pair gives 3.0-V nominal release. The amended
+control profile has ten physical resistor positions and no new unique MPN.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
@@ -157,8 +161,8 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
   exact AON and three TPS564252 energy/configuration/feedback profiles as 24
   separate physical parts, including lifecycle, tolerance and DC-bias screens;
 - [`PWR-0012`](PWR-0012-exact-converter-control-passives.md) closes direct
-  AON enable and nine exact converter EN/PG/fault resistors without adding a
-  GPIO or unique BOM MPN;
+  AON enable and, after the DEC-0080 amendment, ten exact converter/POR
+  EN/PG/fault resistors without adding a GPIO or unique BOM MPN;
 - [`PWR-0013`](PWR-0013-exact-pack-diagnostic-frontends.md) is retained as the
   historical first diagnostic pass and is explicitly superseded by PWR-0017;
 - [`PWR-0014`](PWR-0014-exact-bq25798-passive-profile.md) closes the exact
@@ -175,6 +179,9 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
 - [`PWR-0018`](PWR-0018-xtar-18650-4000mah-cell-profile.md) selects two exact
   XTAR protected 4-Ah cells as the first qualification target and records the
   certification/specimen gates;
+- [`PWR-0019`](PWR-0019-exact-source-sequence-and-power-reserve.md) replaces
+  the abstract source sequencer with the exact AON-PG/POR/main path and freezes
+  a conservative system-first USB/charge power rule;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

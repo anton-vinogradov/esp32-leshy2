@@ -5,6 +5,11 @@
 - Analysis: [`PWR-0012`](../architecture/PWR-0012-exact-converter-control-passives.md)
 - Parent PG decision: [`DEC-0070`](DEC-0070-enable-qualified-switched-rail-pg.md)
 - Propagation review: [`REV-0005AD`](../reviews/REV-0005AD-converter-control-passive-profile.md)
+- Source-sequence amendment: [`DEC-0080`](DEC-0080-exact-aon-pg-por-main-sequence.md)
+
+> `DEC-0080` later amends items 3 and 7: main uses an exact 100-kOhm fail-low
+> against a new exact 10-kOhm POR pull-up, while voice/accessory retain 10
+> kOhm. The current physical total is ten, with no new unique MPN.
 
 ## Context
 
@@ -36,4 +41,3 @@ application converter fails low; optional-off PG remains non-fault; enabled
 PG loss remains hardware-visible. The profile adds no unique BOM MPN and
 approximately `$0.006` of checked material per board. Dynamic and multi-fault
 HIL remain prerequisites; no KiCad authorization is implied.
-

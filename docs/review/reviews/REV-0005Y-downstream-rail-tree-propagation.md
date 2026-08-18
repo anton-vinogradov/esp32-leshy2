@@ -22,7 +22,7 @@
 | machine/visible artifacts | pass: exact packages and routes are represented separately in machine source and the generated vertical diagrams |
 | firmware contract | pass at documentation level: fixed rail IDs, PG/fault sequencing and refusal states propagate to runtime input |
 | later passive amendment | `PWR-0011/DEC-0072/REV-0005AC` close exact converter energy/configuration/feedback parts and paper DC-bias/tolerance screens |
-| later control amendment | `PWR-0012/DEC-0073/REV-0005AD` close direct AON enable and nine exact EN/PG/fault resistors |
+| later control amendment | `PWR-0012/DEC-0073/REV-0005AD` first close direct AON enable and nine exact EN/PG/fault resistors; `PWR-0019/DEC-0080/REV-0005AK` amend this to ten positions and replace the abstract source sequencer with exact AON-PG/POR/main wiring |
 | remaining proof | open by design: effective-capacitance/load-step, copper/thermal, source handover, discharge timing and fault-injection HIL |
 | CAD boundary | pass: no KiCad authorization is implied |
 

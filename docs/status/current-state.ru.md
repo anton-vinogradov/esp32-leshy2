@@ -315,12 +315,14 @@ TPS564252 input/output/feed-forward banks с фиксированными 1% д�
 принятыми нагрузками, а максимум внешней линии остаётся ниже порога OVLO
 eFuse. Lifecycle review отклоняет устаревшие 45,0 кОм в пользу активного MPN
 45,3 кОм; recurring passive estimate — около `$1.8` на плату при 100 штуках.
-`PWR-0012/DEC-0073/REV-0005AD` затем закрывают control profile: AON EN
-напрямую подключён к admitted SYS; один pull AON PG 47 кОм, шесть EN/PG/fault
-pull 10 кОм и два базовых резистора квалификаторов 68 кОм представлены девятью
-физическими экземплярами. Все значения переиспользуют существующие BOM MPN,
-добавляют около `$0.006` проверенного material cost на плату и сохраняют
-принятую fault truth table без GPIO.
+`PWR-0012/DEC-0073/REV-0005AD` сначала закрывают converter control profile.
+`FND-0084/PWR-0019/DEC-0080/REV-0005AK` теперь заменяют скрытый source
+sequencer точными связями `AON_PG_N → TPS3808.MR_N` и задержанным
+`POR_N → TPS564252 #MAIN.EN`. Exact pull-up POR 10 кОм и уже применяемый MPN
+100 кОм дают около 3,0 В при release; amended profile содержит десять
+физических позиций без GPIO и нового unique MPN. Исходный 85% reserve
+защищённого входного тракта делает заряд system-first для фактических
+5/9/15-В контрактов; source-transition behavior остаётся HIL.
 `PWR-0013/FND-0078/DEC-0074/REV-0005AE` затем закрывают диагностический
 frontend. Принятая pulse-proof нагрузка 10 Ом управляется только
 non-retriggerable one-shot TPUL2G223: около 34,4 мс nominal и консервативный

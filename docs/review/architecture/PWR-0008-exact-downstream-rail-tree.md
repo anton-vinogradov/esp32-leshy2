@@ -19,8 +19,10 @@
 MPN, current/ripple headroom, reverse-current boundary, доступность и порядок
 включения. `PWR-0011/DEC-0072` subsequently close converter energy,
 configuration, feedback and feed-forward passives, then
-`PWR-0012/DEC-0073` close EN/PG/fault pulls; copper/thermal layout and
-specimen HIL are still open. Артефакт не разрешает
+`PWR-0012/DEC-0073` close EN/PG/fault pulls; `PWR-0019/DEC-0080`
+subsequently replace the abstract source sequencer with the exact
+AON-PG/supervisor/POR/main-EN chain. Copper/thermal layout and specimen HIL
+are still open. Артефакт не разрешает
 начинать KiCad.
 
 ## Why four converters, not one configurable rail
@@ -186,8 +188,9 @@ not paralleled into the base rail in this profile.
 1. An admitted battery pair or valid USB source establishes `BQ25798 SYS`.
 2. AON starts in hardware; `TPS629203 PG` and `TPS3808G33` must both show a
    valid safety rail before hard-STOP logic can release reset.
-3. A reset-low source-admission sequencer enables `3V3_MAIN`; its `PG` is part
-   of the fault aggregate.
+3. `TPS629203.PG` directly holds `TPS3808.MR_N`; after the independent 3.07-V
+   SENSE threshold and CT delay pass, open-drain `POR_N` directly enables
+   `3V3_MAIN`. Its `PG` is part of the fault aggregate.
 4. `VOICE_DOMAIN_EN_SAFE` directly enables the fixed 4-V converter. SA518
    `PD` remains asserted until its `PG` is valid, while hardware PTT still
    independently forces receive. Its qualified fault stays low only during the
@@ -243,9 +246,11 @@ reverse blocking and availability receive **«Проведено ревью»**.
 
 `PWR-0011/DEC-0072` subsequently close the application-converter feedback,
 feed-forward and input/output energy components as 24 exact physical
-instances; `PWR-0012/DEC-0073` subsequently close their nine control
-resistors. Still open before schematic/BOM freeze: ground/copper/thermal
-geometry, effective-capacitance/load-step proof, source
-transitions and fault-injection HIL.
+instances; `PWR-0012/DEC-0073` close their original nine control resistors,
+and `PWR-0019/DEC-0080` amend that profile to ten positions while reusing
+existing MPNs and close the exact source sequence. Still open before
+schematic/BOM freeze: ground/copper/thermal geometry,
+effective-capacitance/load-step proof, source-transition and fault-injection
+HIL.
 `PWR-0010/DEC-0071` close the eFuse `ILM/ITIMER/dVdt/OVLO`, local-capacitor and
 connector-discharge paper profile. No KiCad authorization is implied.
