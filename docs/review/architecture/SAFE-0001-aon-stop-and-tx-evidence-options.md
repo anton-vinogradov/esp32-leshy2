@@ -12,6 +12,12 @@
 > endpoint заменены exact directional chains из [`N24E-0001`](N24E-0001-exact-three-nrf-electrical-endpoint.md):
 > `DC2337J5010AHF` + `AD8314ACPZ-RL7`. Остальная принятая STOP/evidence
 > архитектура этого сравнительного артефакта не отменяется.
+>
+> S3/C5 endpoints later close in [`NAT-0001`](NAT-0001-exact-s3-c5-native-rf-evidence-endpoints.md):
+> two independent `CP0603Q5425ENTR` directional paths feed the existing
+> `LTC5532ES6#TRMPBF` channels after real external module contacts. The table
+> below is retained as historical option screening, not the current feed
+> definition.
 
 ## Review boundary
 

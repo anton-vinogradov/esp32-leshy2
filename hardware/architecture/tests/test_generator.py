@@ -1132,6 +1132,72 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(label, rendered)
 
+    def test_i6_native_s3_c5_exact_rf_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["native_rf_electrical_contract"]
+        self.assertEqual("DEC-0092", contract["decision"])
+        self.assertIn("paper_reviewed_i6_s3_c5_native_rf_subblock", contract["status"])
+        self.assertIn("ANT2", contract["band_coverage"])
+        self.assertIn("<=0.4 dB", contract["performance_budget"])
+
+        required = {
+            "s3_rf_board_connector": "hirose_ufl_r_smt_1_10",
+            "c5_rf_board_connector": "hirose_ufl_r_smt_1_10",
+            "s3_rf_coupler": "kyocera_avx_cp0603q5425entr",
+            "c5_rf_coupler": "kyocera_avx_cp0603q5425entr",
+            "s3_detector_input_cap": "murata_grm1555c1h390ja01d",
+            "c5_detector_input_cap": "murata_grm1555c1h390ja01d",
+            "s3_detector_feedback_res": "yageo_rc0402fr_0710kl",
+            "s3_detector_ground_res": "yageo_rc0402fr_0710kl",
+            "c5_detector_feedback_res": "yageo_rc0402fr_0710kl",
+            "c5_detector_ground_res": "yageo_rc0402fr_0710kl",
+        }
+        for instance, device_id in required.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        coupler = self.database["devices"]["kyocera_avx_cp0603q5425entr"]
+        self.assertEqual([[2400, 2496], [4900, 5950]], coupler["electrical_contract"]["bands_mhz"])
+        self.assertEqual(0.2, coupler["electrical_contract"]["mainline_loss_max_db"]["2400_2496"])
+        self.assertEqual(0.4, coupler["electrical_contract"]["mainline_loss_max_db"]["4900_5950"])
+        self.assertEqual("manufacturer top-view IN land", coupler["contacts"]["RF_IN"]["physical"])
+        self.assertEqual("manufacturer top-view 50 OHM land", coupler["contacts"]["TERMINATION_50R"]["physical"])
+
+        connector = self.database["devices"]["hirose_ufl_r_smt_1_10"]
+        self.assertEqual(6, connector["electrical_contract"]["frequency_max_ghz"])
+        self.assertEqual("1", connector["contacts"]["CENTER"]["physical"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("s3.ANT", "abstract:S3-placement-qualified-double-ended-UFL-jumper", "S3_MODULE_RF_50R"),
+            ("s3_rf_board_connector.CENTER", "s3_rf_coupler.RF_IN", "S3_RF_MAINLINE_IN_50R"),
+            ("s3_rf_coupler.COUPLED_FWD", "s3_detector_input_cap.END_1", "S3_FORWARD_RF_SAMPLE_RAW"),
+            ("s3_detector_input_cap.END_2", "det_s3.RFIN", "S3_FORWARD_RF_SAMPLE"),
+            ("c5.ANT1", "abstract:C5-placement-qualified-double-ended-UFL-jumper", "C5_MODULE_RF_50R"),
+            ("c5.ANT2", "abstract:no-connect", "C5_ANT2_DISABLED_NC"),
+            ("c5_rf_board_connector.CENTER", "c5_rf_coupler.RF_IN", "C5_RF_MAINLINE_IN_50R"),
+            ("c5_rf_coupler.COUPLED_FWD", "c5_detector_input_cap.END_1", "C5_FORWARD_RF_SAMPLE_RAW"),
+            ("c5_detector_input_cap.END_2", "det_c5.RFIN", "C5_FORWARD_RF_SAMPLE"),
+        ):
+            self.assertIn(route, routes)
+
+        self.assertFalse(any(
+            route["from"] in {"abstract:S3-qualified-RF-tap", "abstract:C5-qualified-RF-tap"}
+            for route in candidate["fixed_routes"]
+        ))
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "CP0603Q5425ENTR<br/>S3 2.4-GHz forward-power directional coupler",
+            "CP0603Q5425ENTR<br/>C5 2.4/5-GHz forward-power directional coupler",
+            "U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle",
+            "U.FL-R-SMT-1(10)<br/>C5 module-jumper board receptacle",
+            'S3_RF_COUPLER -->|"-20-dB forward sample"| S3_DETECTOR_INPUT_CAP',
+            'C5_RF_COUPLER -->|"-20/-13-dB forward sample"| C5_DETECTOR_INPUT_CAP',
+        ):
+            self.assertIn(token, rendered)
+
     def test_qspi_display_decision_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         s3 = {

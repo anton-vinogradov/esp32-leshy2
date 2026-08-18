@@ -1192,6 +1192,30 @@ def render_principled_pinout(
             return "10-kOhm deterministic interface-state resistor"
         return instance.replace("_", " ") + " physical component"
 
+    native_rf_support_instance_names = tuple(
+        instance
+        for instance in candidate["instances"]
+        if instance.startswith(("s3_rf_", "s3_detector_", "c5_rf_", "c5_detector_"))
+    )
+    native_rf_roles = {
+        "s3_rf_board_connector": "S3 module-jumper board receptacle",
+        "s3_rf_coupler": "S3 2.4-GHz forward-power directional coupler",
+        "s3_rf_coupler_termination": "S3 coupler 49.9-Ohm termination",
+        "s3_detector_input_cap": "S3 detector RF-input DC block",
+        "s3_detector_feedback_res": "S3 detector gain feedback resistor",
+        "s3_detector_ground_res": "S3 detector gain ground resistor",
+        "s3_detector_output_cap": "S3 detector output-load capacitor",
+        "s3_detector_bypass": "S3 detector local bypass capacitor",
+        "c5_rf_board_connector": "C5 module-jumper board receptacle",
+        "c5_rf_coupler": "C5 2.4/5-GHz forward-power directional coupler",
+        "c5_rf_coupler_termination": "C5 coupler 49.9-Ohm termination",
+        "c5_detector_input_cap": "C5 detector RF-input DC block",
+        "c5_detector_feedback_res": "C5 detector gain feedback resistor",
+        "c5_detector_ground_res": "C5 detector gain ground resistor",
+        "c5_detector_output_cap": "C5 detector output-load capacitor",
+        "c5_detector_bypass": "C5 detector local bypass capacitor",
+    }
+
     full_ledger = render_ledger(database, candidates)
     detail_start = full_ledger.index("\n### `s3` —", full_ledger.index("\n## G2F-3I —")) + 1
     detail_end = full_ledger.index("\n## Machine-check result and review boundary", detail_start)
@@ -1477,6 +1501,7 @@ def render_principled_pinout(
         "  " + " ~~~ ".join(instance.upper() for instance in audio_instance_names),
         "  end",
         "  subgraph RADIO_ACCESSORY[\"Radio and external-accessory devices\"]",
+        *[node(instance, native_rf_roles[instance]) for instance in native_rf_support_instance_names],
         *[node(instance, nrf_role(instance)) for instance in nrf_support_instance_names],
         node("cc", "sub-GHz transceiver"),
         node("u214", "external LoRa/GNSS Cap module"),
@@ -1558,6 +1583,8 @@ def render_principled_pinout(
         "  SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP ~~~ SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP",
         "  SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT",
         "  UNIT ~~~ C5 ~~~ IRDEMOD ~~~ IRCARRIER ~~~ IRTX ~~~ RP",
+        "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
+        "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
         "  VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
@@ -1886,8 +1913,20 @@ def render_principled_pinout(
         "  SAFE_GATE_B --> IRTX",
         "  SAFE_GATE_B --> EXT_BUCK",
         "  SAFE_GATE_B --> EXT_EFUSE",
-        "  S3 --> DET_S3 --> EVIDENCE_CMP_A",
-        "  C5 --> DET_C5 --> EVIDENCE_CMP_A",
+        "  S3 -->|\"placement-qualified U.FL jumper\"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| S3_EXTERNAL_RF_50R",
+        "  S3_RF_COUPLER -->|\"-20-dB forward sample\"| S3_DETECTOR_INPUT_CAP --> DET_S3 --> EVIDENCE_CMP_A",
+        "  S3_RF_COUPLER --> S3_RF_COUPLER_TERMINATION",
+        "  S3_DETECTOR_FEEDBACK_RES --> DET_S3",
+        "  S3_DETECTOR_GROUND_RES --> DET_S3",
+        "  S3_DETECTOR_OUTPUT_CAP --> DET_S3",
+        "  S3_DETECTOR_BYPASS --> DET_S3",
+        "  C5 -->|\"placement-qualified U.FL jumper\"| C5_RF_BOARD_CONNECTOR --> C5_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| C5_EXTERNAL_RF_50R",
+        "  C5_RF_COUPLER -->|\"-20/-13-dB forward sample\"| C5_DETECTOR_INPUT_CAP --> DET_C5 --> EVIDENCE_CMP_A",
+        "  C5_RF_COUPLER --> C5_RF_COUPLER_TERMINATION",
+        "  C5_DETECTOR_FEEDBACK_RES --> DET_C5",
+        "  C5_DETECTOR_GROUND_RES --> DET_C5",
+        "  C5_DETECTOR_OUTPUT_CAP --> DET_C5",
+        "  C5_DETECTOR_BYPASS --> DET_C5",
         "  NRF0 -->|\"qualified pigtail\"| NRF0_COUPLER -->|\"dedicated SMA\"| NRF0_EXTERNAL_RF_50R",
         "  NRF0_COUPLER -->|\"10-dB forward sample\"| DET_NRF0 --> EVIDENCE_CMP_A",
         "  NRF1 -->|\"qualified pigtail\"| NRF1_COUPLER -->|\"dedicated SMA\"| NRF1_EXTERNAL_RF_50R",

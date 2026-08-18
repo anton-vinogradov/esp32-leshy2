@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage и audio/receiver endpoints входят в machine projection; RF feeds, expansion, physical и HIL evidence открыты |
+| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF и native S3/C5 RF endpoints входят в machine projection; CC/voice/IR feeds, expansion, physical и HIL evidence открыты |
 | 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -43,6 +43,15 @@ switched-headphone endpoints завершены на бумаге. P00/P01/P02 �
 capture source, speaker enable и headphone sensing, оставляя P03…P05
 свободными; полный D-pad, PTT, STOP, F1/F2 и encoder не изменены. Acoustic,
 RF, specimen и concurrent-load HIL остаются явными; активен I6.
+
+Первые два подблока I6 теперь также получили **«Проведено ревью»** на
+paper-уровне. Три полнофункциональных nRF-тракта имеют независимую Ioff-
+изоляцию, локальную энергию и направленное evidence в диапазоне
+2400…2525 МГц. Раздельные S3 2,4-ГГц и C5 2,4/5-ГГц тракты идут от реальных
+RF-контактов модулей через exact платные U.FL и `CP0603Q5425ENTR` в полные
+каналы LTC5532; C5 ANT2 остаётся default-disabled/no-connect. Точные джамперы,
+корпусные разъёмы, пороги и RF/coexistence HIL всего устройства открыты;
+следующий активный подблок — CC1101.
 
 ## Закрытие competitor delta
 

@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage and audio/receiver endpoints are machine-projected; RF feeds, expansion, physical and HIL evidence remain open |
+| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF and native S3/C5 RF endpoints are machine-projected; CC/voice/IR feeds, expansion, physical and HIL evidence remain open |
 | 3. Target physical/product design | **Starting from the `DEC-0051/PIN-0003` visible working design**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -43,6 +43,14 @@ switched-headphone endpoints are complete on paper. P00/P01/P02 implement
 capture source, speaker enable and headphone sensing, leaving P03…P05 free;
 the full D-pad, PTT, STOP, F1/F2 and encoder remain unchanged. Acoustic, RF,
 specimen and concurrent-load HIL remain explicit, and I6 is active.
+
+The first two I6 slices now also have **paper review completed**. Three
+full-function nRF paths have independent Ioff isolation, local energy and
+directional 2400…2525-MHz evidence. Separate S3 2.4-GHz and C5 2.4/5-GHz
+feeds run from real module RF contacts through exact PCB U.FL receptacles and
+`CP0603Q5425ENTR` couplers into complete LTC5532 channels; C5 ANT2 remains
+default-disabled/no-connect. Exact jumper/chassis connectors, thresholds and
+whole-device RF/coexistence HIL remain open; CC1101 is the next active slice.
 
 ## Competitor-delta closure
 
@@ -265,7 +273,9 @@ The owner accepted `IMP-0050/A`. `DEC-0061/SAFE-0002/REV-0005O` give `I2`
 nRF/CC/voice/accessory rails, IR carrier and voice PTT. Five LTC5532, two
 LTC5507 and optical VEMD1060X01 feed two TLV1824 comparators, a local-I²C
 TCA9534A source mask and a direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate.
-Machine source and all living diagrams are updated. U214 without accessory
+The S3/C5 LTC5532 inputs later close through exact dual-band directional
+couplers and support networks; the three nRF inputs use separate wideband
+coupler/AD8314 chains. Machine source and all living diagrams are updated. U214 without accessory
 evidence remains `unknown/unavailable`; the BAT15 coupon stays cost-down HIL.
 
 `PWR-0002/FND-0073/REV-0005P` complete the first `I3` prerequisite pass. The

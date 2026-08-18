@@ -49,6 +49,11 @@ Leshy2 — открытый автономный портативный инст
   сравнение. Результат не выдаётся за абсолютные dBm, угол или VSWR.
 - Wi-Fi 2,4/5 ГГц, Bluetooth LE, ESP-NOW и IEEE 802.15.4 обеспечивают обычную
   связь, наблюдение и разрешённые диагностические сценарии.
+- Радио S3 2,4 ГГц и C5 2,4/5 ГГц сохраняют независимые внешние RP-SMA-тракты.
+  Каждый проходит через собственную платную ответную часть
+  `Hirose U.FL-R-SMT-1(10)` и направленный ответвитель
+  `KYOCERA AVX CP0603Q5425ENTR`, поэтому фактическое исходящее RF измеряется
+  без общей антенны или общего детекторного тракта.
 - Отдельный Sub-GHz тракт работает с пакетными системами; широковещательный
   приёмник покрывает AM/FM/SW/LW; VHF/UHF voice-тракт поддерживает аналоговую
   связь и аудиообработку.
@@ -459,6 +464,22 @@ flowchart TD
   AGNDLINK["RC0402JR-070RL<br/>единственная звезда аудиоземли к силовой земле"]
   HPJACK["SJ1-3515-SMT-TR<br/>стереоразъём 3,5 мм с контактами вставки"]
   HPESD["TPD4E05U06DQAR #HEADPHONE<br/>IEC-ESD-защита tip/ring наушников"]
+  S3RFJ["Hirose U.FL-R-SMT-1(10)<br/>платная ответная часть джампера S3"]
+  S3CPL["KYOCERA AVX CP0603Q5425ENTR #S3<br/>направленный отвод прямой мощности S3 2,4 ГГц"]
+  S3TERM["Yageo RC0402FR-0749R9L #S3<br/>49,9-Ом терминация отвода S3"]
+  S3CIN["Murata GRM1555C1H390JA01D #S3<br/>39-пФ ВЧ-развязка входа детектора S3"]
+  S3RFB["Yageo RC0402FR-0710KL #S3-FB<br/>резистор обратной связи усиления детектора S3"]
+  S3RGB["Yageo RC0402FR-0710KL #S3-GND<br/>нижний резистор усиления детектора S3"]
+  S3COUT["KEMET C0402C330J5GACTU #S3<br/>33-пФ выходная ёмкость детектора S3"]
+  S3BP["TDK C1005X7R1H104K050BB #S3-DET<br/>100-нФ локальная развязка детектора S3"]
+  C5RFJ["Hirose U.FL-R-SMT-1(10)<br/>платная ответная часть джампера C5"]
+  C5CPL["KYOCERA AVX CP0603Q5425ENTR #C5<br/>направленный отвод прямой мощности C5 2,4/5 ГГц"]
+  C5TERM["Yageo RC0402FR-0749R9L #C5<br/>49,9-Ом терминация отвода C5"]
+  C5CIN["Murata GRM1555C1H390JA01D #C5<br/>39-пФ ВЧ-развязка входа детектора C5"]
+  C5RFB["Yageo RC0402FR-0710KL #C5-FB<br/>резистор обратной связи усиления детектора C5"]
+  C5RGB["Yageo RC0402FR-0710KL #C5-GND<br/>нижний резистор усиления детектора C5"]
+  C5COUT["KEMET C0402C330J5GACTU #C5<br/>33-пФ выходная ёмкость детектора C5"]
+  C5BP["TDK C1005X7R1H104K050BB #C5-DET<br/>100-нФ локальная развязка детектора C5"]
   NRF0["E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
   NRF1["E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
   NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
@@ -561,7 +582,8 @@ flowchart TD
   SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
   SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
-  IRTX ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC ~~~ SA
+  IRTX ~~~ S3RFJ ~~~ S3CPL ~~~ S3TERM ~~~ S3CIN ~~~ S3RFB ~~~ S3RGB ~~~ S3COUT ~~~ S3BP ~~~ C5RFJ ~~~ C5CPL ~~~ C5TERM ~~~ C5CIN ~~~ C5RFB ~~~ C5RGB ~~~ C5COUT ~~~ C5BP
+  C5BP ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
@@ -919,8 +941,20 @@ flowchart TD
   GATEB --> IRTX
   GATEB --> EXTBUCK
   GATEB --> EXTFUSE
-  S3 --> DS3 --> CMPA
-  C5 --> DC5 --> CMPA
+  S3 -->|"U.FL-джампер длины по компоновке"| S3RFJ --> S3CPL -->|"отдельная RP-SMA-граница"| S3SMA["MPN TBD<br/>внешняя RP-SMA S3"]
+  S3CPL -->|"прямой отвод -20 дБ"| S3CIN --> DS3 --> CMPA
+  S3CPL --> S3TERM
+  S3RFB --> DS3
+  S3RGB --> DS3
+  S3COUT --> DS3
+  S3BP --> DS3
+  C5 -->|"U.FL-джампер длины по компоновке"| C5RFJ --> C5CPL -->|"отдельная RP-SMA-граница"| C5SMA["MPN TBD<br/>внешняя RP-SMA C5"]
+  C5CPL -->|"прямой отвод -20/-13 дБ"| C5CIN --> DC5 --> CMPA
+  C5CPL --> C5TERM
+  C5RFB --> DC5
+  C5RGB --> DC5
+  C5COUT --> DC5
+  C5BP --> DC5
   NRF0 -->|"квалифицированный пигтейл"| N0CPL -->|"отдельный SMA"| NRF0SMA["стандартный SMA #nRF0"]
   N0CPL --> N0TERM
   N0CPL -->|"прямой отвод 10 дБ"| N0MATCH --> DN0 --> CMPA

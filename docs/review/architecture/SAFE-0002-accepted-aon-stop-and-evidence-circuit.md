@@ -1,6 +1,6 @@
 # SAFE-0002 — принятая AON STOP/evidence circuit boundary
 
-- Статус: **Проведено ревью `I2`; nRF evidence amended/reviewed by `DEC-0091`; other I6/HIL open**
+- Статус: **Проведено ревью `I2`; nRF and native S3/C5 evidence amended/reviewed by `DEC-0091/0092`; other I6/HIL open**
 - Дата фиксации: 2026-08-18
 - Decision: [`DEC-0061`](../decisions/DEC-0061-aon-stop-and-per-path-tx-evidence.md)
 - Machine source: [`G2F-3I.json`](../../../hardware/architecture/candidates/G2F-3I.json)
@@ -15,8 +15,10 @@
 контрольные точки. Он не подменяет schematic capture и не объявляет
 измеренными RF/IR thresholds. Источник/hold-up `AON_SAFE_3V3` and the exact
 main-release chain subsequently close at paper level in `PWR-0019/DEC-0080`;
-branch load switches и thermal/loss budget относятся к `I3`; RF taps, matching,
-comparator thresholds и оптический analog front end — к `I6`.
+branch load switches и thermal/loss budget относятся к `I3`. The three nRF
+paths now close through `N24E-0001`; native S3/C5 feeds close through
+`NAT-0001`; CC/voice RF taps, every measured threshold and the optical analog
+front end remain in `I6`.
 
 ## Непрограммируемая STOP-цепь
 
@@ -104,8 +106,8 @@ outputs and rail states independently.
 
 | Index | Path | Exact detector | Comparator/contact | Direct mirror |
 |---:|---|---|---|---|
-| 0 | S3 2.4 GHz | `LTC5532ES6#TRMPBF` | `cmp_a IN1/OUT1` | slow `P23` |
-| 1 | C5 2.4/5 GHz | `LTC5532ES6#TRMPBF` | `cmp_a IN2/OUT2` | C5 `GPIO23` |
+| 0 | S3 2.4 GHz | `CP0603Q5425ENTR` → `LTC5532ES6#TRMPBF` | `cmp_a IN1/OUT1` | slow `P23` |
+| 1 | C5 2.4/5 GHz | `CP0603Q5425ENTR` → `LTC5532ES6#TRMPBF` | `cmp_a IN2/OUT2` | C5 `GPIO23` |
 | 2 | nRF0 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_a IN3/OUT3` | source mask |
 | 3 | nRF1 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_a IN4/OUT4` | source mask |
 | 4 | nRF2 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_b IN1/OUT1` | source mask |
@@ -118,8 +120,13 @@ AON. Each output is `EV_N[i]`, active low, with a `10 kΩ` AON pull-up. RF
 detector output goes to the inverting comparator input; the separately
 calibrated threshold/hysteresis network goes to the non-inverting input.
 `LTC5507` `SHDN` is tied high to AON so CC/voice evidence does not disappear
-with their application rails. The remaining S3/C5 `LTC5532` first-target gain
-is `2×` using matched `10 kΩ 1%` feedback/ground resistors and grounded `VOS`.
+with their application rails. The S3/C5 paths are amended by
+`NAT-0001/DEC-0092`: independent `CP0603Q5425ENTR` couplers sit after real
+module-to-PCB U.FL links, their `50 OHM` lands receive 49.9-Ohm terminations,
+and their samples reach `LTC5532` through exact 39-pF C0G DC blocks. Each
+detector uses matched `10 kΩ 1%` feedback/ground resistors for `2×` gain,
+grounded `VOS`, exact 33-pF output loading and 100-nF local bypass. C5 `ANT2`
+remains default-disabled/no-connect; only `ANT1` feeds its evidence path.
 The three nRF paths are amended by `N24E-0001/DEC-0091`: exact 10-dB
 directional couplers feed AON `AD8314` measurement-mode `V_UP`; a common
 diode/10-kOhm/1-uF node keeps ENBL asserted through nRF QOD fall and then
@@ -185,7 +192,7 @@ connectors and require no GPIO.
 | one comparator asserted | source bit + aggregate assert | threshold, pulse width, LED/GPIO low voltage |
 | STOP loop opened | fail-safe assertion | contact/cable disconnect |
 | STOP sense shorted to ground | STOP can be masked | explicit HIL detection case; no dual-fault claim |
-| RF tap/front end absent/unqualified | evidence unknown | TX profile blocked until `I6/HIL` pass |
+| remaining RF tap/front end absent/unqualified | evidence unknown | affected TX profile blocked until `I6/HIL` pass |
 
 The remaining tests are named and owned; they do not reopen the accepted logic
 topology unless measurements disprove its electrical assumptions.
@@ -203,6 +210,10 @@ Checked 2026-08-18 because these exact order codes are newly selected:
 - `LTST-C190KRKT` and `LTST-C190KFKT`: active Lite-On 0603 indicators with
   broad distributor stock ([red datasheet](https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF),
   [orange DigiKey](https://www.digikey.com/en/products/detail/liteon/LTST-C190KFKT/386812)).
+- `CP0603Q5425ENTR`, `U.FL-R-SMT-1(10)` and `GRM1555C1H390JA01D`: exact
+  S3/C5 coupler, PCB receptacle and RF input DC block were checked at selection
+  and had authorized distributor stock; full evidence is in
+  [`NAT-0001`](NAT-0001-exact-s3-c5-native-rf-evidence-endpoints.md).
 
 All earlier option-A active devices retain the dated availability evidence in
 [`SAFE-0001`](SAFE-0001-aon-stop-and-tx-evidence-options.md). Availability is

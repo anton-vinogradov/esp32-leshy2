@@ -1904,6 +1904,70 @@
         "VCC": {"physical": "6", "role": "power"}
       }
     },
+    "kyocera_avx_cp0603q5425entr": {
+      "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+      "kind": "0603_dual_band_wifi_directional_coupler",
+      "qualification": "verified_exact_native_rf_forward_coupler",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.6, 0.84, 0.6],
+      "source": {
+        "document": "CP0302/CP0402/CP0603 High Directivity Directional Couplers for WiFi Bands",
+        "version": "TDS-RFM-0055 Rev. 2",
+        "url": "https://datasheets.kyocera-avx.com/cp0302.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "CP0603Q5425ENTR active authorized-distributor stock page; 7,424 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/kyocera-avx/CP0603Q5425ENTR/4805840",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "bands_mhz": [[2400, 2496], [4900, 5950]],
+        "coupling_db": {"2400_2496": "-20 +/-0.5", "4900_5950": "-13 +/-0.5"},
+        "mainline_loss_max_db": {"2400_2496": 0.2, "4900_5950": 0.4},
+        "directivity_min_db": 20,
+        "return_loss_min_db": {"2400_2496": 30, "4900_5950": 25},
+        "continuous_power_w": 5,
+        "orientation_rule": "manufacturer names the four lands by top-view function rather than numeric pin; footprint must preserve IN/OUT/COUPLING/50-OHM orientation from the exact drawing"
+      },
+      "programmable": false,
+      "contacts": {
+        "RF_IN": {"physical": "manufacturer top-view IN land", "role": "rf"},
+        "RF_OUT": {"physical": "manufacturer top-view OUT land", "role": "rf"},
+        "COUPLED_FWD": {"physical": "manufacturer top-view COUPLING land", "role": "rf"},
+        "TERMINATION_50R": {"physical": "manufacturer top-view 50 OHM land", "role": "rf"}
+      }
+    },
+    "hirose_ufl_r_smt_1_10": {
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "kind": "first_generation_ufl_6ghz_board_receptacle",
+      "qualification": "verified_exact_native_rf_board_mate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.0, 3.1, 2.4],
+      "source": {
+        "document": "Hirose U.FL Series connector catalog",
+        "version": "current catalog",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "U.FL-R-SMT-1(10) active authorized-distributor stock page; 271,862 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/U-FL-R-SMT-1-10/2391570",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "impedance_ohm": 50,
+        "frequency_max_ghz": 6,
+        "mating_cycles": 30,
+        "mate_families": ["Hirose U.FL plug", "first-generation I-PEX MHF I plug", "Amphenol AMC plug"],
+        "assembly_boundary": "qualified double-ended microcoax length is selected only after placement; it is not silently inferred from the connector MPN"
+      },
+      "programmable": false,
+      "contacts": {
+        "CENTER": {"physical": "1", "role": "rf"},
+        "SHELL": {"physical": "three manufacturer ground lands", "role": "power"}
+      }
+    },
     "adi_ltc5507_es6_trmpbf": {
       "mpn": "LTC5507ES6#TRMPBF",
       "kind": "tsot23_6_rf_power_detector_100khz_1ghz",
@@ -3898,6 +3962,29 @@
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
         "END_2": {"physical": "2", "role": "analog"}
+      }
+    },
+    "murata_grm1555c1h390ja01d": {
+      "mpn": "Murata GRM1555C1H390JA01D",
+      "kind": "39pf_5pct_50v_c0g_0402_rf_coupling_capacitor",
+      "qualification": "verified_exact_ltc5532_rf_input_coupling_capacitor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {
+        "document": "Murata GRM1555C1H390JA01 exact-product specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://psearch.en.murata.com/capacitor/product/GRM1555C1H390JA01%23.html",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "GRM1555C1H390JA01D active authorized-distributor stock page; 76,643 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H390JA01D/3175190",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_1": {"physical": "1", "role": "rf"},
+        "END_2": {"physical": "2", "role": "rf"}
       }
     },
     "yageo_rc0402fr_0742k2l": {

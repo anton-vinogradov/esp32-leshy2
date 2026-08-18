@@ -47,6 +47,10 @@ privacy or the target owner's authorization.
   comparison. The result is never presented as absolute dBm, angle or VSWR.
 - 2.4/5 GHz Wi-Fi, Bluetooth LE, ESP-NOW and IEEE 802.15.4 provide ordinary
   communication, observation and authorized diagnostic workflows.
+- The S3 2.4-GHz and C5 2.4/5-GHz radios keep independent external RP-SMA
+  feeds. Each feed passes through its own `Hirose U.FL-R-SMT-1(10)` PCB mate
+  and `KYOCERA AVX CP0603Q5425ENTR` directional coupler, so actual outgoing RF
+  is measured without sharing an antenna or detector path.
 - A dedicated Sub-GHz path handles packet systems; a broadcast receiver covers
   AM/FM/SW/LW; a VHF/UHF voice path provides analog communication and audio.
 - The exact audio endpoint can route either selected receive audio or the local
@@ -451,6 +455,22 @@ flowchart TD
   AGNDLINK["RC0402JR-070RL<br/>single audio-to-power-ground star link"]
   HPJACK["SJ1-3515-SMT-TR<br/>3.5-mm stereo headphone jack with insertion switches"]
   HPESD["TPD4E05U06DQAR #HEADPHONE<br/>headphone tip/ring IEC-ESD array"]
+  S3RFJ["Hirose U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle"]
+  S3CPL["KYOCERA AVX CP0603Q5425ENTR #S3<br/>S3 2.4-GHz forward-power directional coupler"]
+  S3TERM["Yageo RC0402FR-0749R9L #S3<br/>S3 coupler 49.9-Ohm termination"]
+  S3CIN["Murata GRM1555C1H390JA01D #S3<br/>S3 detector 39-pF RF-input DC block"]
+  S3RFB["Yageo RC0402FR-0710KL #S3-FB<br/>S3 detector gain feedback resistor"]
+  S3RGB["Yageo RC0402FR-0710KL #S3-GND<br/>S3 detector gain ground resistor"]
+  S3COUT["KEMET C0402C330J5GACTU #S3<br/>S3 detector 33-pF output-load capacitor"]
+  S3BP["TDK C1005X7R1H104K050BB #S3-DET<br/>S3 detector 100-nF local bypass capacitor"]
+  C5RFJ["Hirose U.FL-R-SMT-1(10)<br/>C5 module-jumper board receptacle"]
+  C5CPL["KYOCERA AVX CP0603Q5425ENTR #C5<br/>C5 2.4/5-GHz forward-power directional coupler"]
+  C5TERM["Yageo RC0402FR-0749R9L #C5<br/>C5 coupler 49.9-Ohm termination"]
+  C5CIN["Murata GRM1555C1H390JA01D #C5<br/>C5 detector 39-pF RF-input DC block"]
+  C5RFB["Yageo RC0402FR-0710KL #C5-FB<br/>C5 detector gain feedback resistor"]
+  C5RGB["Yageo RC0402FR-0710KL #C5-GND<br/>C5 detector gain ground resistor"]
+  C5COUT["KEMET C0402C330J5GACTU #C5<br/>C5 detector 33-pF output-load capacitor"]
+  C5BP["TDK C1005X7R1H104K050BB #C5-DET<br/>C5 detector 100-nF local bypass capacitor"]
   NRF0["E01-ML01IPX<br/>nRF24-compatible radio #0 compact IPEX reference"]
   NRF1["E01-ML01IPX<br/>nRF24-compatible radio #1 compact IPEX reference"]
   NRF2["E01-ML01IPX<br/>nRF24-compatible radio #2 compact IPEX reference"]
@@ -553,7 +573,8 @@ flowchart TD
   SDESDB ~~~ SDINCAP ~~~ SDBULK ~~~ SDHFCAP ~~~ SDHBUFCAP ~~~ SDMBUFCAP ~~~ SDONPD ~~~ SDSCKPD ~~~ SDD0PU ~~~ SDD1PU
   SDD1PU ~~~ SDHCS ~~~ LCDHCS ~~~ SDCPUCMD ~~~ SDCPUD0 ~~~ SDCPUD1 ~~~ SDCPUD2 ~~~ SDCPUD3
   SDCPUD3 ~~~ SDSCKR ~~~ SDCMDR ~~~ SDCSR ~~~ SDMISOR ~~~ SDDETR ~~~ SDDETPU ~~~ SDDETC ~~~ UNIT ~~~ C5 ~~~ IR0 ~~~ IR1 ~~~ IRTX
-  IRTX ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC ~~~ SA
+  IRTX ~~~ S3RFJ ~~~ S3CPL ~~~ S3TERM ~~~ S3CIN ~~~ S3RFB ~~~ S3RGB ~~~ S3COUT ~~~ S3BP ~~~ C5RFJ ~~~ C5CPL ~~~ C5TERM ~~~ C5CIN ~~~ C5RFB ~~~ C5RGB ~~~ C5COUT ~~~ C5BP
+  C5BP ~~~ RP ~~~ N0HB ~~~ NRF0 ~~~ N0RB ~~~ N0CPL ~~~ N0TERM ~~~ N0MATCH ~~~ N1HB ~~~ NRF1 ~~~ N1RB ~~~ N1CPL ~~~ N1TERM ~~~ N1MATCH ~~~ N2HB ~~~ NRF2 ~~~ N2RB ~~~ N2CPL ~~~ N2TERM ~~~ N2MATCH ~~~ NEVD ~~~ NEVC ~~~ NEVR ~~~ CC ~~~ SA
   SA ~~~ ISO ~~~ CAPDOCK ~~~ U214 ~~~ PTTSW ~~~ STOPSW ~~~ REARMSW ~~~ STOPPU ~~~ STOPC ~~~ REARMPU ~~~ REARMC ~~~ SAFEESD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
@@ -911,8 +932,20 @@ flowchart TD
   GATEB --> IRTX
   GATEB --> EXTBUCK
   GATEB --> EXTFUSE
-  S3 --> DS3 --> CMPA
-  C5 --> DC5 --> CMPA
+  S3 -->|"placement-qualified U.FL jumper"| S3RFJ --> S3CPL -->|"dedicated RP-SMA boundary"| S3SMA["MPN TBD<br/>S3 external reverse-polarity SMA"]
+  S3CPL -->|"-20-dB forward sample"| S3CIN --> DS3 --> CMPA
+  S3CPL --> S3TERM
+  S3RFB --> DS3
+  S3RGB --> DS3
+  S3COUT --> DS3
+  S3BP --> DS3
+  C5 -->|"placement-qualified U.FL jumper"| C5RFJ --> C5CPL -->|"dedicated RP-SMA boundary"| C5SMA["MPN TBD<br/>C5 external reverse-polarity SMA"]
+  C5CPL -->|"-20/-13-dB forward sample"| C5CIN --> DC5 --> CMPA
+  C5CPL --> C5TERM
+  C5RFB --> DC5
+  C5RGB --> DC5
+  C5COUT --> DC5
+  C5BP --> DC5
   NRF0 -->|"qualified pigtail"| N0CPL -->|"dedicated SMA"| NRF0SMA["standard SMA #nRF0"]
   N0CPL --> N0TERM
   N0CPL -->|"10-dB forward sample"| N0MATCH --> DN0 --> CMPA

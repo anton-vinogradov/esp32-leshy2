@@ -175,6 +175,12 @@ three full-function nRF paths gain exact powered-off digital isolation,
 local energy and directional 2400–2525-MHz actual-TX evidence. The unproven
 Ebyte RF mate, thresholds, T1 fixture and every other I6 RF endpoint remain
 open, so I6 and the no-KiCad boundary are unchanged.
+`FND-0097/NAT-0001/DEC-0092/REV-0005AW` then close the native-radio paper
+subblock: exact S3 2.4-GHz and C5 2.4/5-GHz external contacts now lead through
+separate real U.FL mates and dual-band directional couplers into complete
+LTC5532 evidence circuits. C5 ANT2 is explicitly default-disabled/no-connect;
+jumper length, chassis RP-SMA, thresholds and whole-feed HIL remain physical
+gates. CC1101 and the remaining I6 endpoints stay active.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`
