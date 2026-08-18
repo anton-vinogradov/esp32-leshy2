@@ -1020,7 +1020,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "det_nrf1": "adi_ad8314acpz_rl7",
             "det_nrf2": "adi_ad8314acpz_rl7",
             "det_cc": "adi_ad8314acpz_rl7",
-            "det_voice": "adi_ltc5507_es6_trmpbf",
+            "det_voice": "adi_ad8314acpz_rl7",
             "det_ir": "vishay_vemd1060x01",
             "evidence_cmp_a": "ti_tlv1824_pwr",
             "evidence_cmp_b": "ti_tlv1824_pwr",
@@ -1273,6 +1273,66 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ABM8-26.000MHZ-10-D-1-G-T<br/>CC1101 exact 26-MHz reference crystal",
             "GJM1555C1HR47BB01D<br/>actual-TX high-impedance RF sample capacitor",
             "SESD0402X1UN-0020-090<br/>external CC RF line ultra-low-capacitance ESD diode",
+        ):
+            self.assertIn(token, rendered)
+
+    def test_i6_sa518_exact_rf_endpoint_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["voice_rf_electrical_contract"]
+        self.assertEqual("DEC-0094", contract["decision"])
+        self.assertIn("paper_reviewed_i6_sa518_rf_subblock", contract["status"])
+        self.assertIn("about 0.04 dB", contract["evidence"])
+        self.assertIn("never authorize", contract["failure_semantics"])
+        self.assertIn("consume no P05", contract["filter_reopen_gate"])
+
+        required = {
+            "voice": "nicerf_sa518_v11",
+            "voice_rf_esd": "nexperia_pesd24vy1bsf",
+            "voice_detector_series_attenuator": "yageo_rc0402fr_075k1l",
+            "voice_detector_match": "yageo_rc0402fr_0752r3l",
+            "voice_detector_filter": "murata_grm1555c1h121ja01d",
+            "voice_detector_bypass": "tdk_c1005x7r1h104k050bb",
+            "voice_evidence_hold_diode": "diodes_bat54_7_f",
+            "voice_evidence_hold_cap": "tdk_c1608x7r1c105k080ac",
+            "voice_evidence_hold_pulldown": "yageo_rc0402fr_0710kl",
+            "det_voice": "adi_ad8314acpz_rl7",
+        }
+        for instance, device_id in required.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+
+        esd = self.database["devices"]["nexperia_pesd24vy1bsf"]
+        self.assertEqual(24, esd["electrical_contract"]["reverse_stand_off_v"])
+        self.assertEqual(0.17, esd["electrical_contract"]["typical_capacitance_pf"])
+        self.assertEqual("1", esd["contacts"]["K1"]["physical"])
+        self.assertEqual("2", esd["contacts"]["K2"]["physical"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("voice.ANT", "abstract:VOICE-dedicated-standard-SMA", "VOICE_EXTERNAL_RF_50R"),
+            ("voice.ANT", "voice_rf_esd.K1", "VOICE_EXTERNAL_RF_50R"),
+            ("voice.ANT", "voice_detector_series_attenuator.END_1", "VOICE_EXTERNAL_RF_50R"),
+            ("voice_detector_series_attenuator.END_2", "det_voice.RFIN", "VOICE_RF_SAMPLE"),
+            ("det_voice.RFIN", "voice_detector_match.END_1", "VOICE_RF_SAMPLE"),
+            ("voice_evidence_hold_diode.K", "det_voice.ENBL", "VOICE_EVIDENCE_HOLD"),
+            ("det_voice.V_UP", "evidence_cmp_b.IN3_N", "VOICE_DETECT_V"),
+        ):
+            self.assertIn(route, routes)
+
+        self.assertFalse(any(
+            route["from"] == "abstract:VOICE-qualified-RF-tap"
+            for route in candidate["fixed_routes"]
+        ))
+        self.assertEqual(["P05"], candidate["contact_accounting"]["slow_io"]["free"])
+
+        rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        for token in (
+            "PESD24VY1BSF<br/>24-V ultra-low-capacitance external voice RF ESD diode",
+            "RC0402FR-075K1L<br/>actual-TX 5.1-kOhm RF series sampler",
+            "RC0402FR-0752R3L<br/>AD8314 52.3-Ohm detector input shunt",
+            "AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector",
         ):
             self.assertIn(token, rendered)
 

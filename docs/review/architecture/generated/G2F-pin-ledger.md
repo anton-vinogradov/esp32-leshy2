@@ -20,8 +20,7 @@
 | Device id | Exact MPN / boundary | Qualification | Lifecycle | Primary source | Lifecycle evidence |
 |---|---|---|---|---|---|
 | `abracon_abm8_26mhz_10_d_1_g_t` | `Abracon ABM8-26.000MHZ-10-D-1-G-T` | `verified_exact_cc_reference_crystal` | `active_orderable` | [ABM8 low-profile SMD crystal datasheet and exact order-code data current product data checked 2026-08-18](https://abracon.com/Resonators/ABM8.pdf) | same primary source |
-| `adi_ad8314acpz_rl7` | `Analog Devices AD8314ACPZ-RL7` | `verified_exact_nrf_forward_power_detector` | `production_active_orderable` | [AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet Rev. C](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | same primary source |
-| `adi_ltc5507_es6_trmpbf` | `LTC5507ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5507 100kHz to 1GHz RF Power Detector datasheet 5507f](https://www.analog.com/media/en/technical-documentation/data-sheets/5507f.pdf) | same primary source |
+| `adi_ad8314acpz_rl7` | `Analog Devices AD8314ACPZ-RL7` | `verified_exact_wideband_rf_power_detector` | `production_active_orderable` | [AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet Rev. C](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | same primary source |
 | `adi_ltc5532_es6_trmpbf` | `LTC5532ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5532 Precision 300MHz to 7GHz RF Detector datasheet 5532f](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | same primary source |
 | `adi_max17320_g20_t` | `Analog Devices MAX17320G20+T` | `verified_candidate` | `recommended_for_new_designs` | [MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet Rev. 12, July 2025](https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf) | same primary source |
 | `alps_ec11e18244au` | `Alps Alpine EC11E18244AU` | `verified_first_target_mechanical_fit_hil_open` | `active_standard` | [EC11E Series Incremental Encoder catalog and product specification catalog update 2510](https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf) | same primary source |
@@ -86,6 +85,7 @@
 | `nexperia_74lvc1g32gv_125` | `74LVC1G32GV,125` | `verified_candidate` | `production` | [74LVC1G32 Single 2-input OR gate datasheet 2024-09-03](https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf) | same primary source |
 | `nexperia_74lvc2g126dc_125` | `Nexperia 74LVC2G126DC,125` | `verified_exact_nrf_switched_to_host_domain_isolator` | `production_active_orderable` | [74LVC2G126 dual bus buffer/line driver product data sheet Rev. 16, 17 August 2023](https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf) | same primary source |
 | `nexperia_74lvc2g14gw_125` | `74LVC2G14GW,125` | `verified_candidate` | `production` | [74LVC2G14 Dual inverting Schmitt trigger datasheet 2023-08-18](https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf) | same primary source |
+| `nexperia_pesd24vy1bsf` | `Nexperia PESD24VY1BSF` | `verified_exact_sa518_external_rf_esd` | `production_orderable` | [PESD24VY1BSF very-low-harmonic-distortion bidirectional ESD protection diode short data sheet current manufacturer document checked 2026-08-18](https://assets.nexperia.com/documents/short-data-sheet/PESD24VY1BSF_SDS.pdf) | same primary source |
 | `nicerf_sa518_v11` | `NiceRF SA518` | `verified_candidate` | `current_product` | [SA518 UV Dual Frequency Walkie-talkie Module Product Specification 1.1 / 2026-05](https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf) | same primary source |
 | `onsemi_1n4148wt` | `onsemi 1N4148WT` | `verified_candidate` | `active` | [1N4148WT Small Signal Diode datasheet Rev. 11](https://www.onsemi.com/pdf/datasheet/1n4148wt-d.pdf) | same primary source |
 | `onsemi_bat54alt1g` | `BAT54ALT1G` | `verified_candidate` | `active` | [BAT54ALT1 Schottky Barrier Diodes datasheet Rev. 16](https://www.onsemi.com/download/data-sheet/pdf/bat54alt1-d.pdf) | same primary source |
@@ -177,6 +177,7 @@
 | `yageo_rc0402fr_0749r9l` | `Yageo RC0402FR-0749R9L` | `verified_exact_nrf_coupler_isolated_port_termination` | `active_orderable` | [RC0402FR-0749R9L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0749R9L) | same primary source |
 | `yageo_rc0402fr_0752r3l` | `Yageo RC0402FR-0752R3L` | `verified_exact_ad8314_broadband_input_match` | `active_orderable` | [RC0402FR-0752R3L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0752R3L) | same primary source |
 | `yageo_rc0402fr_0756kl` | `Yageo RC0402FR-0756KL` | `verified_exact_cc_bias_passive` | `active_orderable` | [RC0402FR-0756KL exact product specification current exact product data checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0756KL) | same primary source |
+| `yageo_rc0402fr_075k1l` | `Yageo RC0402FR-075K1L` | `verified_exact_sa518_detector_series_attenuator` | `active_orderable` | [RC0402FR-075K1L exact product specification current exact order code checked 2026-08-18](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K1L) | same primary source |
 | `yageo_rc0402fr_075k23l` | `Yageo RC0402FR-075K23L` | `verified_candidate` | `active` | [Yageo RC0402FR-075K23L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K23L) | same primary source |
 | `yageo_rc0402fr_07620kl` | `Yageo RC0402FR-07620KL` | `verified_candidate` | `active` | [Yageo RC0402FR-07620KL exact product specification generated 2026-05-21; checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07620KL) | same primary source |
 | `yageo_rc0402fr_0768kl` | `Yageo RC0402FR-0768KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0768KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0768KL) | same primary source |
@@ -1995,7 +1996,13 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `voice.GND_10` | `abstract:power-ground` | third SA518 ground land is physically connected |
 | `POWER_GROUND` | `voice.GND_19` | `abstract:power-ground` | fourth SA518 ground land is physically connected |
 | `POWER_GROUND` | `voice.GND_20` | `abstract:power-ground` | fifth SA518 ground land is physically connected |
-| `VOICE_RF` | `voice.ANT` | `abstract:VOICE-V-U-external-SMA-path` | external antenna path and band-specific antenna stay mandatory |
+| `VOICE_EXTERNAL_RF_50R` | `voice.ANT` | `abstract:VOICE-dedicated-standard-SMA` | physical SA518 ANT contact 7 feeds one shortest controlled-50-Ohm line; exact SMA MPN waits for mechanics |
+| `VOICE_EXTERNAL_RF_50R` | `voice.ANT` | `voice_rf_esd.K1` | 24-V 0.17-pF bidirectional antenna TVS is a shunt at the external boundary, not a series RF body |
+| `VOICE_RF_ESD_RETURN` | `voice_rf_esd.K2` | `abstract:chassis-rf-ground` | PESD24VY1BSF returns through the shortest connector-boundary via field |
+| `VOICE_EXTERNAL_RF_50R` | `voice.ANT` | `voice_detector_series_attenuator.END_1` | actual-TX sample is taken from the complete protected external line without a mainline series element |
+| `VOICE_RF_SAMPLE` | `voice_detector_series_attenuator.END_2` | `det_voice.RFIN` | exact 5.1-kOhm series attenuation follows the AD8314 high-power sampling method |
+| `VOICE_RF_SAMPLE` | `det_voice.RFIN` | `voice_detector_match.END_1` | exact 52.3-Ohm shunt defines the detector input and approximately 40-dB resistive tap |
+| `VOICE_RF_GROUND` | `voice_detector_match.END_2` | `abstract:rf-ground` | detector input return stays beside RFIN and the sampler |
 | `EXT_5V_REQ` | `slow_io.P17` | `safe_gate_b.4A` | request only; RUN_PERMIT gates the reverse-safe/current-limited accessory power stage selected in I3/I7 |
 | `SD_PWR_EN` | `slow_io.P20` | `sd_power_switch.ON` | ordinary session request only; exact external fail-low and switch protection remain effective across firmware reset |
 | `SD_PWR_EN` | `sd_power_switch.ON` | `sd_on_pulldown.END_1` | separate exact 10-kOhm reset-off default supplements the switch smart pull-down |
@@ -2327,8 +2334,22 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF2_DETECT_FILTER` | `det_nrf2.FLTR` | `nrf2_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF2_DETECT_V` | `nrf2_detector_filter.END_2` | `det_nrf2.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF2_DETECT_VDN_NC` | `det_nrf2.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `VOICE_RF_SAMPLE` | `abstract:VOICE-qualified-RF-tap` | `det_voice.RFIN` | VHF/UHF tap and coupling capacitor are selected in I6 |
-| `VOICE_DETECT_ENABLE` | `abstract:AON_SAFE_3V3` | `det_voice.SHDN` | evidence detector remains enabled independently of the voice application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `det_voice.VPOS` | actual-TX detector remains alive independently of the voice application rail |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_detector_bypass.END_1` | exact 100-nF local AD8314 bypass |
+| `SAFETY_GROUND` | `voice_detector_bypass.END_2` | `abstract:safety-ground` | voice detector bypass returns in the AON evidence domain |
+| `SAFETY_GROUND` | `det_voice.COMM` | `abstract:safety-ground` | AD8314 signal ground |
+| `SAFETY_GROUND` | `det_voice.EPAD` | `abstract:safety-ground` | AD8314 exposed paddle ground |
+| `VOICE_DETECT_V` | `det_voice.VSET` | `det_voice.V_UP` | measurement-mode connection follows the AD8314 datasheet |
+| `VOICE_DETECT_FILTER` | `det_voice.FLTR` | `voice_detector_filter.END_1` | exact 120-pF response capacitor |
+| `VOICE_DETECT_V` | `voice_detector_filter.END_2` | `det_voice.V_UP` | filter capacitor is placed between FLTR and V_UP |
+| `VOICE_DETECT_VDN_NC` | `det_voice.V_DN` | `abstract:no-connect` | unused controller output remains unconnected |
+| `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_evidence_hold_diode.A` | STOP-dominant enable pre-arms actual-TX evidence before the voice rail rises |
+| `VOICE_EVIDENCE_HOLD` | `voice_evidence_hold_diode.K` | `voice_evidence_hold_cap.END_1` | Schottky isolation retains detector enable through voice-rail collapse |
+| `VOICE_EVIDENCE_HOLD` | `voice_evidence_hold_diode.K` | `voice_evidence_hold_pulldown.END_1` | 10-kOhm and 1-uF create an approximately 10-ms nominal discharge constant |
+| `VOICE_EVIDENCE_HOLD` | `voice_evidence_hold_diode.K` | `det_voice.ENBL` | AD8314 remains active long enough to observe commanded voice shutdown |
+| `SAFETY_GROUND` | `voice_evidence_hold_cap.END_2` | `abstract:safety-ground` | hold capacitor returns in the AON evidence domain |
+| `SAFETY_GROUND` | `voice_evidence_hold_pulldown.END_2` | `abstract:safety-ground` | detector cannot remain enabled indefinitely after voice shutdown |
+| `VOICE_EVIDENCE_DIODE_NC` | `voice_evidence_hold_diode.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `IR_OPTICAL_SAMPLE` | `det_ir.ANODE` | `abstract:shielded-ir-evidence-front-end` | physical optical pickup rather than drive-current inference; exact bias/front end is I6 |
 | `S3_DETECT_V` | `det_s3.VOUT` | `evidence_cmp_a.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `C5_DETECT_V` | `det_c5.VOUT` | `evidence_cmp_a.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
@@ -2336,7 +2357,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `NRF1_DETECT_V` | `det_nrf1.V_UP` | `evidence_cmp_a.IN4_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN1_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
 | `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `VOICE_DETECT_V` | `det_voice.VOUT` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
+| `VOICE_DETECT_V` | `det_voice.V_UP` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `IR_DETECT_V` | `abstract:shielded-ir-evidence-front-end` | `evidence_cmp_b.IN4_N` | optical energy above the qualified threshold makes active-low comparator output assert |
 | `EV_THRESH_0` | `abstract:qualified-evidence-threshold-0` | `evidence_cmp_a.IN1_P` | divider/hysteresis values are I6 calibration outputs |
 | `EV_THRESH_1` | `abstract:qualified-evidence-threshold-1` | `evidence_cmp_a.IN2_P` | divider/hysteresis values are I6 calibration outputs |
@@ -2556,6 +2577,13 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `cc_detector_tap_cap` lifecycle: `active_orderable`.
 - `cc_evidence_hold_cap` lifecycle: `active_production`.
 - `voice` lifecycle: `current_product`.
+- `voice_rf_esd` uses `Nexperia PESD24VY1BSF` as `verified_exact_sa518_external_rf_esd`, not an accepted production choice.
+- `voice_rf_esd` lifecycle: `production_orderable`.
+- `voice_detector_series_attenuator` uses `Yageo RC0402FR-075K1L` as `verified_exact_sa518_detector_series_attenuator`, not an accepted production choice.
+- `voice_detector_series_attenuator` lifecycle: `active_orderable`.
+- `voice_detector_match` uses `Yageo RC0402FR-0752R3L` as `verified_exact_ad8314_broadband_input_match`, not an accepted production choice.
+- `voice_detector_match` lifecycle: `active_orderable`.
+- `voice_evidence_hold_cap` lifecycle: `active_production`.
 - `receiver` lifecycle: `manufacturer_documented`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
 - `slow_io_bulk_cap` lifecycle: `active_production`.
@@ -2652,15 +2680,16 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `safe_ptt_or` lifecycle: `production`.
 - `det_s3` lifecycle: `production`.
 - `det_c5` lifecycle: `production`.
-- `det_nrf0` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_nrf0` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_nrf0` lifecycle: `production_active_orderable`.
-- `det_nrf1` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_nrf1` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_nrf1` lifecycle: `production_active_orderable`.
-- `det_nrf2` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_nrf2` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_nrf2` lifecycle: `production_active_orderable`.
-- `det_cc` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_nrf_forward_power_detector`, not an accepted production choice.
+- `det_cc` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_cc` lifecycle: `production_active_orderable`.
-- `det_voice` lifecycle: `production`.
+- `det_voice` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
+- `det_voice` lifecycle: `production_active_orderable`.
 - RP2354B A4 exact lot identity, power/clock/land pattern and prototype assembly remain implementation gates; the verified QFN80 contact map is not a BOM freeze
 - E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. Conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence HIL and the mechanics-selected standard-SMA MPN remain blocking before schematic/BOM freeze

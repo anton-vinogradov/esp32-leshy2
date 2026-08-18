@@ -6,6 +6,12 @@
 - Exact circuit boundary: [`SAFE-0002`](../architecture/SAFE-0002-accepted-aon-stop-and-evidence-circuit.md)
 - Propagation review: [`REV-0005O`](../reviews/REV-0005O-i2-safety-decision-propagation.md)
 
+> **I6 supersession note:** the detector principle and eight-channel mapping
+> remain accepted. Exact nRF/CC/voice RF implementations are superseded by
+> `DEC-0091`, `DEC-0093` and `DEC-0094`: those five paths now use separate
+> `AD8314ACPZ-RL7` bodies and exact samples/finite enable hold. S3/C5 retain
+> separate `LTC5532ES6#TRMPBF` paths.
+
 ## Решение
 
 1. Hard STOP живёт на отдельной `AON_SAFE_3V3` и не зависит от firmware, I²C,

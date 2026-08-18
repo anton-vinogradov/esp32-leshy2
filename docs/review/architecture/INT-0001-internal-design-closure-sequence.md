@@ -1,6 +1,6 @@
 # INT-0001 — dependency-ordered internal-design closure sequence
 
-- Статус: **Проведено ревью порядка; I1…I5 paper reviewed, I6 active**
+- Статус: **Проведено ревью порядка; I1…I5 paper reviewed, I6 active through reviewed nRF/native/CC/voice subblocks**
 - Дата: 2026-08-18
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Working map: [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)
@@ -28,7 +28,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I3` | battery, charging, power path, rails, load switches, monitoring and thermal | `I1/I2`, `PWR-0001`, scenario ledger | **Проведено ревью paper electrical scope** by `DEC-0082/PWR-0021/REV-0005AM`; exact-lot, thermal, transition and destructive HIL plus I8 certification evidence remain explicit | exact circuits, source/fault truth, loss ledger and every physical residue classified without claiming HIL |
 | `I4` | display, touch, UI electrical plane, microSD and product USB | `I1/I3` | **Проведено ревью paper electrical scope** by `DEC-0089/IOX-0001/REV-0005AT`; exact USB/display/microSD/controls/touch endpoints plus TCA6424A core, addresses, cross-domain isolation and shared-interface audit complete; physical/HIL gates named | exact electrical endpoints, protection, reset/default and shared-SPI contracts |
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
-| `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **active paper block**; three-nRF subblock reviewed by `DEC-0091/REV-0005AV` and native S3/C5 feeds by `DEC-0092/REV-0005AW`; CC/voice/receiver/IR endpoints and consolidated coexistence remain open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
+| `I6` | nRF/CC/C5/voice/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **active paper block**; three-nRF, native S3/C5, CC and SA518 RF subblocks reviewed by `DEC-0091…0094/REV-0005AV…AY`; IR endpoint and consolidated coexistence remain open | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | logical profiles reviewed; exact protection/detection and some connector mechanics open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
 | `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | scattered candidates; no coherent target BOM | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
@@ -179,7 +179,11 @@ C5 ANT2 is real but remains default-disabled/no-connect.
 `FND-0098/CCRF-0001/DEC-0093/REV-0005AX` then correct and review the CC1101
 paper endpoint: two equal-control SP3T bodies isolate all three first-pass
 branches at both ends, P03/P04 select the band only while power is removed,
-and final-line ESD plus AD8314 actual-TX evidence are exact. Voice/receiver/IR
-RF endpoints and the consolidated coexistence proof remain active. All
+and final-line ESD plus AD8314 actual-TX evidence are exact.
+`FND-0099/VRF-0001/DEC-0094/REV-0005AY` then review SA518 ANT contact 7 through
+a direct protected 50-Ohm SMA boundary and exact AD8314 resistive actual-TX
+sample. The 24-V low-C TVS clears the 1-W normal-voltage check; external
+filters remain a measured-failure reopen gate and P05 stays free. IR RF/optical
+endpoint and the consolidated coexistence proof remain active. All
 prototype/physical/procurement evidence remains explicit,
 and neither KiCad nor the paused integrated mockup is authorized.

@@ -187,7 +187,13 @@ P03/P04 select 315/433/868–915 only while power is off, exact crystal/balun/
 passives/ESD are physical and a final-line AD8314 sample replaces the abstract
 evidence tap. Conducted tuning, sensitivity/output/spurious/legal-profile,
 SMA mechanics and coexistence HIL remain open; I6 and no-KiCad boundary stay
-active for the remaining RF endpoints.
+active for the remaining RF endpoints. `FND-0099/VRF-0001/DEC-0094/
+REV-0005AY` then close the SA518 RF paper subblock: physical ANT contact 7
+feeds a direct protected 50-Ohm SMA boundary, exact 24-V low-C ESD and an
+AD8314 5.1-kOhm/52.3-Ohm actual-TX sample. The lower-voltage CC TVS is not
+reused, no unproven filter bank spends P05, and a measured conducted failure
+explicitly reopens that choice. Voice RF HIL remains open; I6 continues with
+IR and consolidated coexistence under the same no-KiCad boundary.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

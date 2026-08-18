@@ -111,16 +111,18 @@ outputs and rail states independently.
 | 2 | nRF0 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_a IN3/OUT3` | source mask |
 | 3 | nRF1 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_a IN4/OUT4` | source mask |
 | 4 | nRF2 | `DC2337J5010AHF` → `AD8314ACPZ-RL7` | `cmp_b IN1/OUT1` | source mask |
-| 5 | CC1101 | `LTC5507ES6#TRMPBF` | `cmp_b IN2/OUT2` | source mask |
-| 6 | SA518 voice | `LTC5507ES6#TRMPBF` | `cmp_b IN3/OUT3` | source mask |
+| 5 | CC1101 | final-line resistive sample → `AD8314ACPZ-RL7` | `cmp_b IN2/OUT2` | source mask |
+| 6 | SA518 voice | 5.1-kΩ/52.3-Ω sample → `AD8314ACPZ-RL7` | `cmp_b IN3/OUT3` | source mask |
 | 7 | IR optical | `VEMD1060X01` | `cmp_b IN4/OUT4` | C5 `GPIO24` |
 
 `evidence_cmp_a/b` are two exact `TLV1824PWR` quad open-drain comparators on
 AON. Each output is `EV_N[i]`, active low, with a `10 kΩ` AON pull-up. RF
 detector output goes to the inverting comparator input; the separately
 calibrated threshold/hysteresis network goes to the non-inverting input.
-`LTC5507` `SHDN` is tied high to AON so CC/voice evidence does not disappear
-with their application rails. The S3/C5 paths are amended by
+The CC and voice paths are amended by `DEC-0093/DEC-0094`: each separate
+`AD8314` is pre-armed from its STOP-qualified rail request and a
+diode/10-kΩ/1-uF node retains `ENBL` for approximately 10 ms after application
+rail fall. The S3/C5 paths are amended by
 `NAT-0001/DEC-0092`: independent `CP0603Q5425ENTR` couplers sit after real
 module-to-PCB U.FL links, their `50 OHM` lands receive 49.9-Ohm terminations,
 and their samples reach `LTC5532` through exact 39-pF C0G DC blocks. Each
@@ -160,7 +162,9 @@ first-target load is approximately:
 - three AD8314: about `3 × 20 uA = 0.06 mA` while the nRF domain is parked,
   rising from `3 × 4.5 mA = 13.5 mA` typical to the listed
   `3 × 5.7 mA = 17.1 mA` maximum during nRF operation/hold;
-- two LTC5507: `2 × 0.55 mA = 1.10 mA`;
+- two additional AD8314: about `2 × 20 uA = 0.04 mA` while CC/voice are parked,
+  rising to `2 × 4.5 mA = 9.0 mA` typical during their individually exclusive
+  active/hold windows;
 - eight TLV1824 channels: about `0.04 mA` typical total;
 - supervisor/logic/expander idle plus pull networks: budget `0.50 mA` until
   measured;

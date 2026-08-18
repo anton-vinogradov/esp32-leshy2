@@ -15,7 +15,7 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5 and CC1101 three-band RF endpoints are machine-projected; voice/IR feeds, expansion, physical and HIL evidence remain open |
+| 2F. Logical/electrical feasibility | **In progress; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5, CC1101 three-band and SA518 RF endpoints are machine-projected; IR, expansion, physical and HIL evidence remain open |
 | 3. Target physical/product design | **Starting from the `DEC-0051/PIN-0003` visible working design**: adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
@@ -45,7 +45,7 @@ now uses P03/P04 and leaves P05 free;
 the full D-pad, PTT, STOP, F1/F2 and encoder remain unchanged. Acoustic, RF,
 specimen and concurrent-load HIL remain explicit, and I6 is active.
 
-The first three I6 slices now also have **paper review completed**. Three
+The first four I6 slices now also have **paper review completed**. Three
 full-function nRF paths have independent Ioff isolation, local energy and
 directional 2400…2525-MHz evidence. Separate S3 2.4-GHz and C5 2.4/5-GHz
 feeds run from real module RF contacts through exact PCB U.FL receptacles and
@@ -56,7 +56,11 @@ branches, so `00` isolates both ends; P03/P04 are rail-off band truth bits and
 P05 is the only free main slow-I/O contact. The complete line has exact ESD
 and an `AD8314ACPZ-RL7` actual-TX sample after all switching/matching. Exact
 jumper/chassis connectors, thresholds, VNA/conducted and whole-device
-RF/coexistence HIL remain open; voice/IR feeds are the next active slices.
+RF/coexistence HIL remain open. SA518 ANT contact 7 now feeds a direct
+controlled-50-Ohm SMA boundary with exact 24-V `PESD24VY1BSF` protection and
+an `AD8314ACPZ-RL7` 5.1-kOhm/52.3-Ohm actual-TX sample. No unproven external
+filter bank consumes P05; measured conducted failure reopens that choice.
+IR and consolidated coexistence are the next active slices.
 
 ## Competitor-delta closure
 
@@ -126,7 +130,7 @@ forbids counting a pin without the SoC→package→exact module/device→actual
 pad/header/connector chain. `DEC-0042/REV-0003Y` add the checked source;
 [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md) now has
 three consumers and `G2F-3I` is the leading paper map. They pass
-contact/collision/accounting/strap/service checks, but exact voice/IR RF
+contact/collision/accounting/strap/service checks, but exact IR
 implementation and several control/power devices remain
 qualification blockers. `DSP-0001/REV-0003Z` review three real display/touch
 boundaries and one microSD socket. `FND-0051` proves that the old 10-full-frame
@@ -276,12 +280,13 @@ remains required; 4-bit is fallback only after failure.
 The owner accepted `IMP-0050/A`. `DEC-0061/SAFE-0002/REV-0005O` give `I2`
 **Проведено ревью**: exact AON supervisor/latch/Ioff reset fan-out now resets S3
 `CHIP_PU`, C5 `CHIP_PU` and RP2354B `RUN`; hardware gates cover 3×nRF CE,
-nRF/CC/voice/accessory rails, IR carrier and voice PTT. Five LTC5532, two
-LTC5507 and optical VEMD1060X01 feed two TLV1824 comparators, a local-I²C
+nRF/CC/voice/accessory rails, IR carrier and voice PTT. Two LTC5532, five
+AD8314 and optical VEMD1060X01 feed two TLV1824 comparators, a local-I²C
 TCA9534A source mask and a direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate.
 The S3/C5 LTC5532 inputs later close through exact dual-band directional
 couplers and support networks; the three nRF inputs use separate wideband
-coupler/AD8314 chains. Machine source and all living diagrams are updated. U214 without accessory
+coupler/AD8314 chains, while CC and SA518 use separate final-line AD8314
+samples with finite enable hold. Machine source and all living diagrams are updated. U214 without accessory
 evidence remains `unknown/unavailable`; the BAT15 coupon stays cost-down HIL.
 
 `PWR-0002/FND-0073/REV-0005P` complete the first `I3` prerequisite pass. The

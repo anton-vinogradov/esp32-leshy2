@@ -579,6 +579,15 @@ flowchart TD
   VOICEUART["SN74LVC1G126DCKR #VOICE-UART<br/>отдельный буфер UART к модулю"]
   VOICEHL["SN74LVC1G07DCKR #VOICE-HL<br/>драйвер low/open для SA518 H/L"]
   VOICEAUDIO["SN74LVC2G66DCUR #VOICE-AUDIO<br/>двухканальная развязка AFOUT/MIC_IN"]
+  VOICEESD["PESD24VY1BSF<br/>24-В 0,17-пФ ESD-защита внешнего voice RF"]
+  VOICETAP["RC0402FR-075K1L<br/>5,1-кОм series sampler actual-TX"]
+  VOICEMATCH["RC0402FR-0752R3L<br/>52,3-Ом входной шунт AD8314"]
+  VOICEDF["GRM1555C1H121JA01D #VOICE-DETECT<br/>response filter детектора AD8314"]
+  VOICEDBP["C1005X7R1H104K050BB #VOICE-DETECT<br/>локальный bypass детектора AD8314"]
+  VOICEEVD["BAT54-7-F #VOICE-EVIDENCE<br/>диод удержания actual-TX evidence"]
+  VOICEEVC["C1608X7R1C105K080AC #VOICE-EVIDENCE<br/>конденсатор удержания actual-TX evidence"]
+  VOICEEVR["RC0402FR-0710KL #VOICE-EVIDENCE<br/>резистор разряда actual-TX evidence"]
+  VOICESMA["MPN TBD после mechanics<br/>отдельный внешний standard-SMA voice"]
   CAPDOCK["MPN TBD<br/>2×7 female 2.54-mm host Cap-Bus receptacle"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
@@ -612,7 +621,7 @@ flowchart TD
   DN1["AD8314ACPZ-RL7 #nRF1<br/>100-МГц-2,7-ГГц детектор прямой мощности"]
   DN2["AD8314ACPZ-RL7 #nRF2<br/>100-МГц-2,7-ГГц детектор прямой мощности"]
   DCC["AD8314ACPZ-RL7 #CC<br/>CC1101 actual-TX RF power detector"]
-  DVOICE["LTC5507ES6#TRMPBF #voice<br/>SA518 VHF/UHF RF power detector"]
+  DVOICE["AD8314ACPZ-RL7 #voice<br/>SA518 VHF/UHF actual-TX RF power detector"]
   DIR["VEMD1060X01<br/>IR optical-evidence photodiode"]
   CMPA["TLV1824PWR #1<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
   CMPB["TLV1824PWR #2<br/>nRF2/CC/voice/IR evidence thresholds"]
@@ -661,7 +670,7 @@ flowchart TD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
-  DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
+  DN2 ~~~ DCC ~~~ VOICEESD ~~~ VOICETAP ~~~ VOICEMATCH ~~~ VOICEDF ~~~ VOICEDBP ~~~ VOICEEVD ~~~ VOICEEVC ~~~ VOICEEVR ~~~ VOICESMA ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
   USBC -->|"сырой VBUS к VBUS + VBUS_IN"| PDCTRL
   USBC -->|"шунтирующая защита VBUS"| VBUSPROT
@@ -1065,7 +1074,15 @@ flowchart TD
   CCEVD --> DCC
   CCDF --> DCC
   CCDBP --> DCC
-  SA --> DVOICE --> CMPB
+  SA -->|"короткая controlled 50-Ом линия"| VOICESMA
+  SA -->|"24-В шунт у внешней границы"| VOICEESD
+  SA -->|"5,1-кОм actual-TX sample"| VOICETAP --> DVOICE --> CMPB
+  DVOICE -->|"52,3-Ом шунт RFIN"| VOICEMATCH
+  GATEB --> VOICEEVD --> VOICEEVC
+  VOICEEVD --> VOICEEVR
+  VOICEEVD --> DVOICE
+  VOICEDF --> DVOICE
+  VOICEDBP --> DVOICE
   IRTX --> DIR --> CMPB
   CMPA --> EVMASK
   CMPB --> EVMASK
@@ -1117,6 +1134,9 @@ flowchart TD
 - **CC1101:** RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43`.
 - **SA518/PTT:** RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21`; восьмибитная маска
   evidence делит локальную RP I²C0, а аппаратный aggregate использует `GPIO22`.
+  Физический ANT contact 7 идёт в direct protected 50-Ом standard-SMA path;
+  `PESD24VY1BSF` и отдельный `AD8314ACPZ-RL7` resistive sample дают совместимые
+  с 1 Вт ESD и actual-TX evidence, не расходуя P05.
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
 - **Ресурсный итог:** S3 `33 used / 3 reserved / 0 free`, C5 `14/6/1`, RP

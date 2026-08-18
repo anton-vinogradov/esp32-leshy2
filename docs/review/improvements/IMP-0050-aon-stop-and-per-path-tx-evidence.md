@@ -12,6 +12,9 @@
 > заменены exact directional chains `DC2337J5010AHF` + `AD8314ACPZ-RL7` в
 > [`N24E-0001`](../architecture/N24E-0001-exact-three-nrf-electrical-endpoint.md).
 > Это уточняет способ получения evidence и не переоткрывает принятое решение A.
+> `CCRF-0001/DEC-0093` и `VRF-0001/DEC-0094` тем же образом заменяют ранние
+> CC/voice LTC5507 candidates на отдельные exact AD8314 samples с finite
+> enable hold; eight-channel safety topology не меняется.
 
 ## Текущее состояние и причина решения
 

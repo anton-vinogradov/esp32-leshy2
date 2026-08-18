@@ -570,6 +570,15 @@ flowchart TD
   VOICEUART["SN74LVC1G126DCKR #VOICE-UART<br/>physical host-to-module UART isolation buffer"]
   VOICEHL["SN74LVC1G07DCKR #VOICE-HL<br/>low-or-open SA518 H/L driver"]
   VOICEAUDIO["SN74LVC2G66DCUR #VOICE-AUDIO<br/>dual AFOUT/MIC_IN domain-isolation switch"]
+  VOICEESD["PESD24VY1BSF<br/>24-V 0.17-pF external voice RF ESD diode"]
+  VOICETAP["RC0402FR-075K1L<br/>actual-TX 5.1-kOhm RF series sampler"]
+  VOICEMATCH["RC0402FR-0752R3L<br/>AD8314 52.3-Ohm detector input shunt"]
+  VOICEDF["GRM1555C1H121JA01D #VOICE-DETECT<br/>AD8314 response filter capacitor"]
+  VOICEDBP["C1005X7R1H104K050BB #VOICE-DETECT<br/>AD8314 local bypass capacitor"]
+  VOICEEVD["BAT54-7-F #VOICE-EVIDENCE<br/>actual-TX evidence hold isolation diode"]
+  VOICEEVC["C1608X7R1C105K080AC #VOICE-EVIDENCE<br/>actual-TX evidence hold capacitor"]
+  VOICEEVR["RC0402FR-0710KL #VOICE-EVIDENCE<br/>actual-TX evidence hold discharge resistor"]
+  VOICESMA["MPN TBD after mechanics<br/>voice dedicated external standard-SMA endpoint"]
   CAPDOCK["MPN TBD<br/>2×7 female 2.54-mm host Cap-Bus receptacle"]
   U214["M5Stack U214 Cap LoRa-1262<br/>external LoRa/GNSS Cap module"]
   ISO["TCA4307DGKR<br/>external I2C stuck-bus isolator"]
@@ -603,7 +612,7 @@ flowchart TD
   DN1["AD8314ACPZ-RL7 #nRF1<br/>100-MHz-to-2.7-GHz forward-power detector"]
   DN2["AD8314ACPZ-RL7 #nRF2<br/>100-MHz-to-2.7-GHz forward-power detector"]
   DCC["AD8314ACPZ-RL7 #CC<br/>CC1101 actual-TX RF power detector"]
-  DVOICE["LTC5507ES6#TRMPBF #voice<br/>SA518 VHF/UHF RF power detector"]
+  DVOICE["AD8314ACPZ-RL7 #voice<br/>SA518 VHF/UHF actual-TX RF power detector"]
   DIR["VEMD1060X01<br/>IR optical-evidence photodiode"]
   CMPA["TLV1824PWR #1<br/>S3/C5/nRF0/nRF1 evidence thresholds"]
   CMPB["TLV1824PWR #2<br/>nRF2/CC/voice/IR evidence thresholds"]
@@ -652,7 +661,7 @@ flowchart TD
   SAFEESD ~~~ STOPLOOP ~~~ REARMRAW ~~~ SUP ~~~ COND ~~~ POROR ~~~ LATCH ~~~ RSTBUF
   RSTBUF ~~~ GATEA ~~~ GATEB ~~~ PTTOR ~~~ STOPLEDR ~~~ STOPLED
   STOPLED ~~~ DS3 ~~~ DC5 ~~~ DN0 ~~~ DN1 ~~~ DN2
-  DN2 ~~~ DCC ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
+  DN2 ~~~ DCC ~~~ VOICEESD ~~~ VOICETAP ~~~ VOICEMATCH ~~~ VOICEDF ~~~ VOICEDBP ~~~ VOICEEVD ~~~ VOICEEVC ~~~ VOICEEVR ~~~ VOICESMA ~~~ DVOICE ~~~ DIR ~~~ CMPA ~~~ CMPB
   CMPB ~~~ EVMASK ~~~ OR0 ~~~ OR1 ~~~ OR2 ~~~ OR3 ~~~ ANYLED
   USBC -->|"raw VBUS to VBUS + VBUS_IN"| PDCTRL
   USBC -->|"VBUS shunt"| VBUSPROT
@@ -1056,7 +1065,15 @@ flowchart TD
   CCEVD --> DCC
   CCDF --> DCC
   CCDBP --> DCC
-  SA --> DVOICE --> CMPB
+  SA -->|"short controlled 50-Ohm line"| VOICESMA
+  SA -->|"24-V shunt at external boundary"| VOICEESD
+  SA -->|"5.1-kOhm actual-TX sample"| VOICETAP --> DVOICE --> CMPB
+  DVOICE -->|"52.3-Ohm RFIN shunt"| VOICEMATCH
+  GATEB --> VOICEEVD --> VOICEEVC
+  VOICEEVD --> VOICEEVR
+  VOICEEVD --> DVOICE
+  VOICEDF --> DVOICE
+  VOICEDBP --> DVOICE
   IRTX --> DIR --> CMPB
   CMPA --> EVMASK
   CMPB --> EVMASK
@@ -1106,6 +1123,9 @@ flowchart TD
 - **CC1101:** RP `GPIO9,GPIO10,GPIO11,GPIO23,GPIO39,GPIO42,GPIO43`.
 - **SA518/PTT:** RP `GPIO16,GPIO17,GPIO18,GPIO20,GPIO21`; the eight-source
   evidence mask shares local RP I²C0 and hardware aggregate uses `GPIO22`.
+  Physical ANT contact 7 feeds a direct protected 50-Ohm standard-SMA path;
+  `PESD24VY1BSF` and a separate `AD8314ACPZ-RL7` resistive sample provide
+  1-W-compatible ESD and actual-TX evidence without spending P05.
 - **U214 LoRa/GNSS:** RP
   `GPIO12,GPIO13,GPIO14,GPIO28,GPIO29,GPIO40,GPIO41,GPIO44,GPIO45,GPIO46,GPIO47`.
 - **Resource result:** S3 `33 used / 3 reserved / 0 free`, C5 `14/6/1`, RP

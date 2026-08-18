@@ -1526,6 +1526,34 @@
       "programmable": false,
       "contacts": {"K": {"physical": "1", "role": "rf"}, "A": {"physical": "2", "role": "power"}}
     },
+    "nexperia_pesd24vy1bsf": {
+      "mpn": "Nexperia PESD24VY1BSF",
+      "kind": "dsn0603_2_24v_0_17pf_bidirectional_antenna_esd_diode",
+      "qualification": "verified_exact_sa518_external_rf_esd",
+      "lifecycle": "production_orderable",
+      "dimensions_mm": [0.6, 0.3, 0.3],
+      "source": {
+        "document": "PESD24VY1BSF very-low-harmonic-distortion bidirectional ESD protection diode short data sheet",
+        "version": "current manufacturer document checked 2026-08-18",
+        "url": "https://assets.nexperia.com/documents/short-data-sheet/PESD24VY1BSF_SDS.pdf",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "Nexperia production product page with manufacturer sample and authorized-distributor ordering path; independent distributor aggregation showed 9,338 units",
+        "url": "https://www.nexperia.com/product/PESD24VY1BSF",
+        "checked": "2026-08-18"
+      },
+      "electrical_contract": {
+        "reverse_stand_off_v": 24,
+        "typical_capacitance_pf": 0.17,
+        "iec61000_4_2_contact_kv": 10,
+        "surge_peak_current_a": 5,
+        "normal_31dbm_50ohm_peak_v": 11.22,
+        "normal_31dbm_2_to_1_vswr_voltage_antinode_v": 14.96
+      },
+      "programmable": false,
+      "contacts": {"K1": {"physical": "1", "role": "rf"}, "K2": {"physical": "2", "role": "power"}}
+    },
     "murata_lqg15hs2n2s02d": {
       "mpn": "Murata LQG15HS2N2S02D", "kind": "2_2nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
       "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS2N2S02D", "checked": "2026-08-18"},
@@ -4461,7 +4489,7 @@
     "adi_ad8314acpz_rl7": {
       "mpn": "Analog Devices AD8314ACPZ-RL7",
       "kind": "lfcsp8_100mhz_2_7ghz_log_rf_detector",
-      "qualification": "verified_exact_nrf_forward_power_detector",
+      "qualification": "verified_exact_wideband_rf_power_detector",
       "lifecycle": "production_active_orderable",
       "dimensions_mm": [3.0, 2.0, 0.85],
       "source": {
@@ -4482,8 +4510,8 @@
         "typical_active_current_ma": 4.5,
         "maximum_active_current_ma": 5.7,
         "typical_shutdown_current_ua": 20,
-        "measurement_mode": "VSET tied to V_UP; forward-power evidence uses V_UP",
-        "nrf_channel_125": "inside response band but threshold and temperature margin require conducted HIL"
+        "measurement_mode": "VSET tied to V_UP; actual-TX evidence uses V_UP",
+        "qualification_note": "every nRF, CC1101 and SA518 sample topology still requires conducted threshold and temperature margin HIL"
       },
       "programmable": false,
       "contacts": {
@@ -4533,6 +4561,26 @@
       },
       "programmable": false,
       "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "power"}}
+    },
+    "yageo_rc0402fr_075k1l": {
+      "mpn": "Yageo RC0402FR-075K1L",
+      "kind": "5_1kohm_1pct_0402_rf_detector_series_attenuation_resistor",
+      "qualification": "verified_exact_sa518_detector_series_attenuator",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-075K1L exact product specification",
+        "version": "current exact order code checked 2026-08-18",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-075K1L",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-075K1L active authorized-distributor listing; 166,368 shown in stock and USD 0.0097 at quantity 100",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-075K1L/726624",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",

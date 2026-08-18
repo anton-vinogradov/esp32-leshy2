@@ -1247,6 +1247,32 @@ def render_principled_pinout(
             return "10-kOhm deterministic interface-state resistor"
         return instance.removeprefix("cc_").replace("_", " ") + " CC physical component"
 
+    voice_rf_support_instance_names = tuple(
+        instance
+        for instance in candidate["instances"]
+        if instance.startswith("voice_")
+        and instance in {
+            "voice_rf_esd",
+            "voice_detector_series_attenuator",
+            "voice_detector_match",
+            "voice_detector_filter",
+            "voice_detector_bypass",
+            "voice_evidence_hold_diode",
+            "voice_evidence_hold_cap",
+            "voice_evidence_hold_pulldown",
+        }
+    )
+    voice_rf_roles = {
+        "voice_rf_esd": "24-V ultra-low-capacitance external voice RF ESD diode",
+        "voice_detector_series_attenuator": "actual-TX 5.1-kOhm RF series sampler",
+        "voice_detector_match": "AD8314 52.3-Ohm detector input shunt",
+        "voice_detector_filter": "AD8314 response filter capacitor",
+        "voice_detector_bypass": "AD8314 local bypass capacitor",
+        "voice_evidence_hold_diode": "actual-TX evidence hold isolation diode",
+        "voice_evidence_hold_cap": "actual-TX evidence enable hold capacitor",
+        "voice_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
+    }
+
     native_rf_support_instance_names = tuple(
         instance
         for instance in candidate["instances"]
@@ -1563,6 +1589,11 @@ def render_principled_pinout(
         "  CC_EXTERNAL_RF[\"MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint\"]",
         "  %% CC layout-only invisible spine: every box above is one physical device.",
         "  " + " ~~~ ".join(instance.upper() for instance in cc_support_instance_names),
+        node("voice", "136-174/400-470-MHz analog voice transceiver"),
+        *[node(instance, voice_rf_roles[instance]) for instance in voice_rf_support_instance_names],
+        "  VOICE_EXTERNAL_RF[\"MPN TBD after mechanics<br/>voice dedicated external standard-SMA endpoint\"]",
+        "  %% Voice-RF layout-only invisible spine: every box above is one physical device.",
+        "  " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names),
         node("u214", "external LoRa/GNSS Cap module"),
         node("u214_i2c_iso", "external I2C stuck-bus isolator"),
         "  UNIT[\"MPN TBD<br/>protected HY2.0-4P M5 Unit connector\"]",
@@ -1645,7 +1676,7 @@ def render_principled_pinout(
         "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
-        "  VOICE ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
+        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_RF ~~~ U214_I2C_ISO ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
         "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
         "  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
@@ -1808,6 +1839,15 @@ def render_principled_pinout(
         "  CC_SWITCH_A -->|\"RF3 = 868/915 MHz\"| CC_868_915_L10 --> CC_SWITCH_B",
         "  CC_SWITCH_B --> CC_OUTPUT_L2N2 --> CC_RF_ESD --> CC_EXTERNAL_RF",
         "  CC_OUTPUT_L2N2 -->|\"0.47-pF actual-TX sample\"| CC_DETECTOR_TAP_CAP --> DET_CC",
+        "  VOICE -->|\"short controlled 50-Ohm line\"| VOICE_EXTERNAL_RF",
+        "  VOICE -->|\"24-V shunt at external boundary\"| VOICE_RF_ESD",
+        "  VOICE -->|\"5.1-kOhm actual-TX sample\"| VOICE_DETECTOR_SERIES_ATTENUATOR --> DET_VOICE",
+        "  DET_VOICE -->|\"52.3-Ohm RFIN shunt\"| VOICE_DETECTOR_MATCH",
+        "  VOICE_DETECTOR_FILTER --> DET_VOICE",
+        "  VOICE_DETECTOR_BYPASS --> DET_VOICE",
+        "  SAFE_GATE_B --> VOICE_EVIDENCE_HOLD_DIODE --> VOICE_EVIDENCE_HOLD_CAP",
+        "  VOICE_EVIDENCE_HOLD_DIODE --> VOICE_EVIDENCE_HOLD_PULLDOWN",
+        "  VOICE_EVIDENCE_HOLD_DIODE --> DET_VOICE",
         "  MAIN_EFUSE --> SD_POWER_SWITCH -->|\"switched 3.3 V\"| SD",
         "  MAIN_EFUSE -->|\"local input bypass\"| SD_POWER_INPUT_CAP",
         "  SLOW_IO -->|\"P20 session enable\"| SD_POWER_SWITCH",
@@ -2017,7 +2057,7 @@ def render_principled_pinout(
         "  NRF2 -->|\"qualified pigtail\"| NRF2_COUPLER -->|\"dedicated SMA\"| NRF2_EXTERNAL_RF_50R",
         "  NRF2_COUPLER -->|\"10-dB forward sample\"| DET_NRF2 --> EVIDENCE_CMP_B",
         "  DET_CC --> EVIDENCE_CMP_B",
-        "  VOICE --> DET_VOICE --> EVIDENCE_CMP_B",
+        "  DET_VOICE --> EVIDENCE_CMP_B",
         "  IRTX --> DET_IR --> EVIDENCE_CMP_B",
         "  EVIDENCE_CMP_A --> EVIDENCE_MASK",
         "  EVIDENCE_CMP_B --> EVIDENCE_MASK",

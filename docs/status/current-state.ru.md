@@ -15,7 +15,7 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5 и CC1101 three-band RF endpoints входят в machine projection; voice/IR feeds, expansion, physical и HIL evidence открыты |
+| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5, CC1101 three-band и SA518 RF endpoints входят в machine projection; IR, expansion, physical и HIL evidence открыты |
 | 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
@@ -45,7 +45,7 @@ capture source, speaker enable и headphone sensing; выбор диапазон
 F1/F2 и encoder не изменены. Acoustic,
 RF, specimen и concurrent-load HIL остаются явными; активен I6.
 
-Первые три подблока I6 теперь также получили **«Проведено ревью»** на
+Первые четыре подблока I6 теперь также получили **«Проведено ревью»** на
 paper-уровне. Три полнофункциональных nRF-тракта имеют независимую Ioff-
 изоляцию, локальную энергию и направленное evidence в диапазоне
 2400…2525 МГц. Раздельные S3 2,4-ГГц и C5 2,4/5-ГГц тракты идут от реальных
@@ -57,7 +57,11 @@ first-pass ветвей 315/433/868–915 МГц: код `00` изолирует
 свободным main slow-I/O. Полная линия имеет exact ESD и actual-TX sample на
 `AD8314ACPZ-RL7` после всех switch/matching элементов. Точные джамперы и
 корпусные разъёмы, пороги, VNA/conducted и RF/coexistence HIL всего устройства
-открыты; следующие активные подблоки — voice/IR feeds.
+открыты. SA518 ANT contact 7 теперь идёт на direct controlled-50-Ом SMA boundary
+с exact 24-В `PESD24VY1BSF` и `AD8314ACPZ-RL7` actual-TX sample через
+5,1 кОм/52,3 Ом. Непроверенный filter bank не расходует P05; measured
+conducted failure переоткроет этот выбор. Далее активны IR и consolidated
+coexistence.
 
 ## Закрытие competitor delta
 
@@ -126,7 +130,7 @@ whole-product optimality и conceptual placement. Владелец выбрал 
 pad/header/connector. `DEC-0042/REV-0003Y` добавили проверяемый источник;
 [`G2F-pin-ledger`](../review/architecture/generated/G2F-pin-ledger.md) теперь
 содержит три consumer, а `G2F-3I` является ведущей paper map. Все проходят
-contact/collision/accounting/strap/service checks, но exact voice/IR RF
+contact/collision/accounting/strap/service checks, но exact IR
 implementation и часть control/power всё ещё blockers.
 `DSP-0001/REV-0003Z` проверяют три реальные display/touch boundaries и один
 microSD socket. `FND-0051` доказывает, что старые 10 full frames/s для ST7796S
@@ -276,8 +280,8 @@ native USB GPIO13/14 и S3 default UART0 GPIO43/44 независимыми. M5 
 Владелец принял `IMP-0050/A`. `DEC-0061/SAFE-0002/REV-0005O` дают `I2`
 **«Проведено ревью»**: exact AON supervisor/latch/Ioff reset fan-out теперь
 сбрасывает S3 `CHIP_PU`, C5 `CHIP_PU` и RP2354B `RUN`; hardware gates покрывают
-3×nRF CE, nRF/CC/voice/accessory rails, IR carrier и voice PTT. Пять LTC5532,
-два LTC5507 и optical VEMD1060X01 идут в два TLV1824, local-I²C TCA9534A source
+3×nRF CE, nRF/CC/voice/accessory rails, IR carrier и voice PTT. Два LTC5532,
+пять AD8314 и optical VEMD1060X01 идут в два TLV1824, local-I²C TCA9534A source
 mask и direct BAT54ALT1G/`RP.GPIO22`/red-LED aggregate. Machine source и все
 living diagrams обновлены. U214 без accessory evidence остаётся
 `unknown/unavailable`; BAT15 coupon — cost-down HIL.
