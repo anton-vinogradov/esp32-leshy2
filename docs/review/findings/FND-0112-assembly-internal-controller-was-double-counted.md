@@ -40,7 +40,8 @@ Leshy2 purchase line.
 - 187 used purchase lines;
 - orderability `186/187`, единственный gap — standalone `HMX035CTFT-001`;
 - cost `0/187`;
-- alternate/no-substitution `1/187` after display no-drop-in disposition;
+- alternate/no-substitution `187/187` after subsequent `BOM-0012`; at this
+  accounting correction snapshot only the display-specific disposition existed;
 - four uninstantiated physical families remain separate.
 
 ## Влияние

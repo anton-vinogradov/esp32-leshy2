@@ -510,16 +510,19 @@ mockup remain blocked through I8/I9.
 ST77922 node. The corrected 857 supplied/costed placements collapse to 187
 purchase lines, 186 carry dated
 orderability evidence and only standalone `HMX035CTFT-001` remains unresolved;
-no line yet has machine-readable comparable cost and 186 lines still lack an
-alternate/no-substitution disposition. The same audit separately records nine
+no line yet has machine-readable comparable cost. `BOM-0012/DEC-0104/
+REV-0005BK` now give all 187 lines exactly one alternate/no-substitution
+disposition class; this is a safe replacement boundary, not a claim of 187
+qualified second sources. The same audit separately records nine
 SMA bodies, five RF cable assemblies, two M5 connector bodies and the 12-item
 antenna-kit variant instead of treating them as zero-cost abstractions. The
 former MAX17320 and threshold gaps are now exact physical placements.
 `DSP-0008/BOM-0010/REV-0005BI` additionally prove that an exact HMX specimen
 can be obtained inside a current `DLE06235B/ES3C35P-QD` board, but correctly
 keep standalone raw-panel sourcing open. The exact RFQ and no-drop-in policy
-are machine-readable; alternate coverage is now 1/187 without any functional,
-pin or diagram change.
+are machine-readable; the display-specific no-drop-in policy remains more
+detailed than its `SUB-MECH-OPTICAL` class without any functional, pin or
+diagram change.
 `FND-0112/BOM-0011/DEC-0103/REV-0005BJ` review this architecture-versus-
 purchase boundary and prevent the COG from returning to the factory CSV.
 

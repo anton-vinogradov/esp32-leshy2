@@ -21,7 +21,8 @@ current totals становятся:
 - orderability `186/187` after `BOM-0011` excludes the assembly-internal
   ST77922 purchasing duplicate;
 - comparable quantity-100 component cost `0/187`;
-- alternate/no-substitution disposition `1/187`.
+- at this display-specific snapshot alternate/no-substitution disposition was
+  `1/187`; subsequent `BOM-0012` provides policy coverage `187/187`.
 
 ## Procurement actions
 

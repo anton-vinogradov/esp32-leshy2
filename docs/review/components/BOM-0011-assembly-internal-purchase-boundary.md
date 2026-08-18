@@ -21,7 +21,7 @@ purchase manifest because the target buys the complete
 | purchase MPN lines | 188 | 187 |
 | source evidence | 187/188 | 186/187 |
 | cost evidence | 0/188 | 0/187 |
-| alternate/no-substitution evidence | 1/188 | 1/187 |
+| alternate/no-substitution evidence | 1/188 | 187/187 after subsequent `BOM-0012` |
 
 Only the denominator and internal controller line change. Quantities for every
 other device remain identical. The generated CSV is the corrected purchasing

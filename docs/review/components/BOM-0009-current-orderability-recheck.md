@@ -51,8 +51,9 @@ machine-readable coverage равна `186/187`; исходный результ�
 ## Следующий порядок I8
 
 1. разрешить exact display sourcing без скрытого изменения endpoint;
-2. назначить оставшимся 186 used lines qualified alternate, parametric policy
-   либо explicit no-drop-in-substitute; display disposition already exists;
+2. ~~назначить всем purchase lines qualified alternate, parametric policy либо
+   explicit no-drop-in-substitute~~ — policy coverage `187/187` проведено
+   ревью by `BOM-0012`; named alternate qualification remains per-line;
 3. собрать сопоставимые quantity-100 cost snapshots;
 4. материализовать четыре physical families после соответствующих
    mechanics/RF specimen gates;

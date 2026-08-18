@@ -27,8 +27,9 @@ calibration или accessory item.
 - 1/187 requires current source verification: standalone
   `HMX035CTFT-001` orderability remains unproved;
 - 187/187 still require machine-readable quantity-100 cost;
-- 186/187 still require alternate/no-substitution disposition after
-  `BOM-0010` records explicit no-drop-in policy for the display assembly.
+- 187/187 now have alternate/no-substitution disposition by
+  `BOM-0012/DEC-0104/REV-0005BK`; this is policy coverage, not 187 qualified
+  second-source MPNs.
 
 The generated review intentionally uses vertical `<details>` cards rather than
 one over-wide table. CSV retains every quantity and placement for scripts and
@@ -51,8 +52,11 @@ future factory RFQ.
    `DSP-0008/BOM-0010/REV-0005BI` subsequently prove current prototype
    specimen access and exact RFQ inputs without misreporting a bundled board as
    standalone orderability.
-5. Attach one substitution class to every used line: qualified exact alternate,
-   parametric passive policy, or explicit no-drop-in-substitute/requalification.
+5. ~~Attach one substitution class to every used line: qualified exact
+   alternate, parametric passive policy, or explicit
+   no-drop-in-substitute/requalification.~~ **Проведено ревью** by
+   `BOM-0012/DEC-0104/REV-0005BK`; specific proposed alternates remain subject
+   to their class gates.
 6. Record comparable USD qty-100 component snapshots and keep PCB, PCBA,
    enclosure, fixture, battery logistics and antenna-kit variants separate.
 7. Run the consolidated self-review and only then mark I8 «Проведено ревью».

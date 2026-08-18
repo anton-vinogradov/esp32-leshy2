@@ -35,8 +35,21 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            186,
+            0,
             sum(line["alternate_evidence"] == "missing" for line in lines),
+        )
+        self.assertEqual(
+            {
+                "SUB-RF",
+                "SUB-PWR-PASSIVE",
+                "SUB-CTRL-PASSIVE",
+                "SUB-DISCRETE-PROT",
+                "SUB-LOGIC-ANALOG",
+                "SUB-PWR-SAFETY",
+                "SUB-COMPUTE-RF",
+                "SUB-MECH-OPTICAL",
+            },
+            {line["alternate_policy_class"] for line in lines},
         )
 
         display = self.database["devices"]["qdtech_hmx035ctft_001"]
@@ -65,7 +78,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("857", rendered)
         self.assertIn("187", rendered)
         self.assertIn("186/187", rendered)
-        self.assertIn("1/187", rendered)
+        self.assertIn("187/187", rendered)
+        self.assertIn("SUB-RF", rendered)
+        self.assertIn("SUB-MECH-OPTICAL", rendered)
         self.assertIn("assembly-internal evidence node", rendered)
         self.assertIn("display_touch_controller", rendered)
         self.assertNotIn(
@@ -100,6 +115,34 @@ class ArchitectureValidationTests(unittest.TestCase):
                 candidate = next(c for c in candidates if c["id"] == "G2F-3I")
                 candidate["bom_audit"]["non_purchase_instances"] = rows
                 self.assertIn(expected, "\n".join(self.errors_for(candidates)))
+
+    def test_rejects_incomplete_or_duplicate_substitution_policy(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        classes = candidate["bom_audit"]["substitution_policy"]["classes"]
+        omitted = classes[0]["device_ids"].pop()
+        errors = "\n".join(self.errors_for(candidates))
+        self.assertIn("BOM substitution policy omits current purchase lines", errors)
+        self.assertIn(omitted, errors)
+
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        classes = candidate["bom_audit"]["substitution_policy"]["classes"]
+        duplicate = classes[0]["device_ids"][0]
+        classes[1]["device_ids"].append(duplicate)
+        self.assertIn(
+            f"duplicate BOM substitution member {duplicate}",
+            "\n".join(self.errors_for(candidates)),
+        )
+
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        classes = candidate["bom_audit"]["substitution_policy"]["classes"]
+        classes[0]["device_ids"].append("sitronix_st77922")
+        self.assertIn(
+            "BOM substitution policy contains non-purchase lines",
+            "\n".join(self.errors_for(candidates)),
+        )
 
     def test_exact_polarized_holder_and_three_ntc_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

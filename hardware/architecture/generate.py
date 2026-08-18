@@ -361,6 +361,7 @@ def validate_sources(
                 "default_scope",
                 "cost_basis",
                 "non_purchase_instances",
+                "substitution_policy",
                 "required_uninstantiated_parts",
                 "pcb_features_not_mpn_lines",
                 "exit",
@@ -399,6 +400,58 @@ def validate_sources(
                         f"{candidate_id}: duplicate BOM non-purchase instance {instance}"
                     )
                 non_purchase_names.add(instance)
+            substitution_policy = bom_audit.get("substitution_policy", {})
+            if not substitution_policy.get("status"):
+                errors.append(f"{candidate_id}: BOM substitution policy missing status")
+            substitution_class_ids: set[str] = set()
+            substitution_members: set[str] = set()
+            for row_number, row in enumerate(
+                substitution_policy.get("classes", []), 1
+            ):
+                context = f"BOM substitution class {row_number}"
+                for required in (
+                    "id",
+                    "title",
+                    "disposition",
+                    "equivalence_envelope",
+                    "requalification",
+                    "device_ids",
+                ):
+                    if not row.get(required):
+                        errors.append(f"{candidate_id}: {context}: missing {required}")
+                class_id = row.get("id", "")
+                if class_id in substitution_class_ids:
+                    errors.append(
+                        f"{candidate_id}: duplicate BOM substitution class {class_id}"
+                    )
+                substitution_class_ids.add(class_id)
+                for device_id in row.get("device_ids", []):
+                    if device_id not in devices:
+                        errors.append(
+                            f"{candidate_id}: {context}: unknown device {device_id}"
+                        )
+                    if device_id in substitution_members:
+                        errors.append(
+                            f"{candidate_id}: duplicate BOM substitution member {device_id}"
+                        )
+                    substitution_members.add(device_id)
+            expected_purchase_devices = {
+                device_id
+                for instance, device_id in instances.items()
+                if instance not in non_purchase_names
+            }
+            missing_substitution = expected_purchase_devices - substitution_members
+            unexpected_substitution = substitution_members - expected_purchase_devices
+            if missing_substitution:
+                errors.append(
+                    f"{candidate_id}: BOM substitution policy omits current purchase lines "
+                    f"{sorted(missing_substitution)}"
+                )
+            if unexpected_substitution:
+                errors.append(
+                    f"{candidate_id}: BOM substitution policy contains non-purchase lines "
+                    f"{sorted(unexpected_substitution)}"
+                )
             missing_part_ids: set[str] = set()
             for row_number, row in enumerate(
                 bom_audit.get("required_uninstantiated_parts", []), 1
@@ -1120,6 +1173,14 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
     return "\n".join(lines)
 
 
+def _substitution_class_lookup(audit: dict[str, Any]) -> dict[str, str]:
+    return {
+        device_id: row["id"]
+        for row in audit.get("substitution_policy", {}).get("classes", [])
+        for device_id in row.get("device_ids", [])
+    }
+
+
 def _target_bom_lines(
     database: dict[str, Any], candidate: dict[str, Any]
 ) -> list[dict[str, Any]]:
@@ -1130,6 +1191,7 @@ def _target_bom_lines(
     non_purchase_instances = {
         row["instance"] for row in audit.get("non_purchase_instances", [])
     }
+    substitution_class_by_device = _substitution_class_lookup(audit)
     grouped: dict[str, list[str]] = {}
     for instance, device_id in candidate["instances"].items():
         if instance in non_purchase_instances:
@@ -1154,7 +1216,8 @@ def _target_bom_lines(
                 "qualification": device["qualification"],
                 "orderable_evidence": "present" if device.get("orderable_source") else "missing",
                 "cost_evidence": "present" if device.get("cost") else "missing",
-                "alternate_evidence": "present" if device.get("alternates") else "missing",
+                "alternate_evidence": "present" if device_id in substitution_class_by_device else "missing",
+                "alternate_policy_class": substitution_class_by_device.get(device_id, "missing"),
                 "placements": sorted(placements),
             }
         )
@@ -1177,6 +1240,10 @@ def render_target_bom_review(
     orderable = sum(row["orderable_evidence"] == "present" for row in bom)
     costed = sum(row["cost_evidence"] == "present" for row in bom)
     alternates = sum(row["alternate_evidence"] == "present" for row in bom)
+    substitution_classes = {
+        row["id"]: row
+        for row in audit.get("substitution_policy", {}).get("classes", [])
+    }
     scope_counts: dict[str, int] = {}
     for row in bom:
         scope_counts[row["scope"]] = scope_counts.get(row["scope"], 0) + row["quantity"]
@@ -1207,6 +1274,31 @@ def render_target_bom_review(
         "",
         "The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.",
         "",
+        "## Substitution/no-silent-replacement policy",
+        "",
+        "Every purchase line below belongs to exactly one validated class. A class is a disposition and requalification envelope, not a claim that a second MPN is already qualified.",
+        "",
+    ]
+    for class_id, policy in substitution_classes.items():
+        class_lines = [
+            row for row in bom if row["alternate_policy_class"] == class_id
+        ]
+        lines += [
+            f"<details><summary><code>{class_id}</code> — {policy['title']} — {len(class_lines)} line(s)</summary>",
+            "",
+            f"- Disposition: {policy['disposition']}.",
+            "- Equivalence envelope:",
+        ]
+        lines.extend(f"  - {item}." for item in policy["equivalence_envelope"])
+        lines += ["- Required requalification:"]
+        lines.extend(f"  - {item}." for item in policy["requalification"])
+        lines += ["- Current lines:"]
+        lines.extend(
+            f"  - `{row['device_id']}` — `{row['mpn']}`."
+            for row in class_lines
+        )
+        lines += ["", "</details>", ""]
+    lines += [
         "## Assembly-internal evidence nodes excluded from purchase BOM",
         "",
     ]
@@ -1293,6 +1385,7 @@ def render_target_bom_csv(
         "orderable_evidence",
         "cost_evidence",
         "alternate_evidence",
+        "alternate_policy_class",
         "placements",
     )
     rows = [",".join(_csv_cell(column) for column in columns)]
