@@ -350,8 +350,13 @@ envelope; U214 retains `9.719 mm` plan and `5.59 mm` depth paper reserves.
 parallel exact `CRM2512-FX-20R0ELF` 20-Ohm/2-W branches. A stuck or hostile
 trigger is now hardware-bounded to one `<=50 ms` pulse per `>=350 ms`, while
 normal firmware waits at least 10 seconds. The exact-cell droop thresholds,
-pulse/cooldown lot and hot-copper HIL, effective-capacitance/load-step, exact cell/
-thermal-stack, continuity/thermal, hot-loss/layout and the
+pulse/cooldown lot and hot-copper HIL are now grounded by
+`PWR-0018/FND-0083/DEC-0079/REV-0005AJ`: two separate exact
+`XTAR 18650 4000mAh` protected button-top devices provide `28.8 Wh` nominal,
+a 10-A discharge class, a 2-A standard/product charge ceiling and a maximum
+`18.7 × 69.7 mm` envelope. Exact assembly certification documents, received
+fit, droop distributions, effective-capacitance/load-step, thermal-stack,
+continuity/thermal, hot-loss/layout and the
 listed startup/shutdown/brownout/multi-fault HIL gates remain active.
 `FND-0058`,
 `FND-0060/0066/0067` and later prototype-only HIL remain explicit. KiCad stays

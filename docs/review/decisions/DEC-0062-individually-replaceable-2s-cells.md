@@ -33,8 +33,9 @@
    per-cell protection/balancing/current/temperature evidence and a keyed or
    recessed retained battery compartment are required. `DEC-0077` now selects
    exact polarized `Keystone 1048P`, protected-button-top cell compatibility
-   and the three-NTC coupling contract; exact cell, door and thermal-stack MPNs
-   remain I8 selections.
+   and the three-NTC coupling contract. `DEC-0079` now selects exact
+   `XTAR 18650 4000mAh` cells as the first qualification target; its
+   certification/specimen gates, door and thermal-stack MPNs remain open.
 
 ## Consequences
 

@@ -59,7 +59,10 @@ longer create near-continuous heating. Regression checks prevent both the
 invalid battery-derived PA24 assignment and the TPUL pin swap from returning.
 `DEC-0077/PWR-0016` instantiate exact polarized `Keystone Electronics 1048P`,
 four functional slot contacts and the three insulated compliant NTC roles.
-This is still a principle-level circuit contract: exact-cell droop thresholds,
+`DEC-0079/PWR-0018` then replace both generic cell nodes with separate exact
+`XTAR 18650 4000mAh` protected button-top instances, freeze `28.8 Wh` nominal
+pair energy and a 2-A charge ceiling. This is still a principle-level circuit
+contract: assembly certification, received fit, exact-cell droop thresholds,
 thermal-stack material and specimen HIL remain open.
 
 The inventory also contains verified reference boundaries. `DSP-0001` covers

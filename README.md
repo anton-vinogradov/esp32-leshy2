@@ -82,11 +82,11 @@ privacy or the target owner's authorization.
   with a `2.2 uH / 7 A` inductor. Reset restores a conservative `1 A` charge;
   normal operation never exceeds `2 A`, first limits input current to the
   actual 5/9/15-V USB contract and stops on direct battery-temperature faults.
-- The supervised 2S battery uses two individually replaceable qualified 18650
-  cells, each a protected button-top type, in an exact polarized `Keystone 1048P`
-  holder; both are required for battery operation. Raw flat-top cells are not
-  supported, and the qualified cells ship as a separate regional kit by
-  default. Reverse insertion is
+- The supervised 2S battery uses two individually replaceable exact
+  `XTAR 18650 4000mAh` protected button-top cells (`28.8 Wh` nominal per pair)
+  in an exact polarized `Keystone 1048P` holder; both are required for battery
+  operation. Raw flat-top cells are not supported, and the qualified cells
+  ship as a separate regional kit by default. Reverse insertion is
   mechanically blocked; hardware observes and admits the pair before it may
   reach the system, and refuses an unsafe combination instead of forcing it
   to operate or equalize. The handheld also refuses deeply discharged cells:
@@ -175,10 +175,10 @@ flowchart TD
   CINTPU["RC0402FR-0710KL #CHG-INT<br/>10-kOhm charger INT pull-up resistor"]
   CCEPU["RC0402FR-0710KL #CHG-CE<br/>10-kOhm reset-high charger CE pull-up resistor"]
   HOLDER["Keystone Electronics 1048P<br/>polarized dual protected-button-top 18650 holder"]
-  CELL0["MPN TBD<br/>qualified protected button-top 18650 cell #0"]
+  CELL0["XTAR 18650 4000mAh #0<br/>qualified protected button-top 4-Ah cell"]
   FUSE0["0451005.MRL<br/>slot-0 independent 5-A fast fuse"]
   NTC0["B57332V5103F360<br/>cell-0 temperature sensor"]
-  CELL1["MPN TBD<br/>qualified protected button-top 18650 cell #1"]
+  CELL1["XTAR 18650 4000mAh #1<br/>qualified protected button-top 4-Ah cell"]
   FUSE1["0451005.MRL<br/>slot-1 independent 5-A fast fuse"]
   NTC1["B57332V5103F360<br/>cell-1 temperature sensor"]
   PACKGAUGE["MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing"]

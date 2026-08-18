@@ -24,7 +24,8 @@
 
 ## Remaining gates
 
-Exact cell MPN, thermal-interface stack and enclosure door; received-part
+`DEC-0079` now selects the exact first cell target. Its certification and
+specimen fit, thermal-interface stack and enclosure door; received-part
 continuity/orientation; holder/door insertion life; NTC compression,
 insulation, open/short/lift and thermal response; installed U214 hand/thermal
 fit remain I8/HIL. The paper contract receives **«Проведено ревью»** and does

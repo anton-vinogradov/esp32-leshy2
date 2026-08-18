@@ -31,13 +31,13 @@
 ## Consequences
 
 - `PWR-0005/IMP-0054` resume as the current exact manager/admission gate.
-- Exact cell MPN, manager, CHG/DIS FETs, fuses, NTCs, shunt, diagnostic load,
-  contacts and all rail components remain `I3` selections; this decision is
-  not KiCad authorization.
+- The downstream passes now select the manager, switching path, contacts,
+  rails and `XTAR 18650 4000mAh` first cell target. Certification/specimen,
+  droop, thermal and fault HIL remain `I3`; this decision is not KiCad
+  authorization.
 - Either-cell removal opens the 2S source. Early-removal detection, hold-up,
   orderly shutdown, data integrity and no-restart behavior remain calculated
   circuit and HIL gates.
 - A future one-cell-capable SKU requires a new owner decision and a complete
   review of its isolated slot paths, converters, current, loss and thermal
   envelope.
-

@@ -159,8 +159,8 @@ def render() -> str:
         text(note_x, 194, "4  SMA connector · MPN TBD · VOICE-V/U antenna port", 11),
         text(note_x, 216, "5  SMA connector · MPN TBD · N24-2 antenna port", 11),
         text(note_x, 238, "6  Keystone 1048P · polarized 2×18650 holder", 11),
-        text(note_x, 260, "7  Battery cell 0 · protected button-top · MPN TBD", 11),
-        text(note_x, 282, "8  Battery cell 1 · protected button-top · MPN TBD", 11),
+        text(note_x, 260, "7  XTAR 18650 4000mAh #0 · protected button-top cell", 11),
+        text(note_x, 282, "8  XTAR 18650 4000mAh #1 · protected button-top cell", 11),
         text(note_x, 304, "9  B57332V5103F360 · cell-0 MAX17320 NTC", 11),
         text(note_x, 326, "10 B57332V5103F360 · cell-1 MAX17320 NTC", 11),
         text(note_x, 348, "11 B57332V5103F360 · one populated charger NTC", 11),
@@ -209,7 +209,7 @@ def render() -> str:
         text(sx + 425, sy + 56, f"+{BATTERY_INSTALLED_DEPTH:.1f} mm", 11, anchor="middle", colour="#166534"),
         text(sx + 425, sy + 76, f"holder body: {BATTERY_HOLDER_BODY_DEPTH:.2f} mm", 10, anchor="middle", colour="#166534"),
         text(sx + 290, sy + 188, f"depth reserve: {BATTERY_INSTALLED_DEPTH - U214_DEPTH_BEYOND_HOST_REAR:.2f} mm", 12, "bold", "middle", "#166534"),
-        text(sx, 1042, "Open: exact cell/pad/host-header MPN, wall stack, continuity/thermal/installed-cap HIL", 11, colour="#b45309"),
+        text(sx, 1042, "Open: pad/host-header MPN, wall stack, cell-fit/certification/thermal/installed-cap HIL", 11, colour="#b45309"),
         "</svg>",
     ]
     return "\n".join(out) + "\n"

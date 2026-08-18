@@ -115,8 +115,11 @@ VBUS/VBUS_IN startup, hardware SafeMode,
 `FND-0082/PWR-0017/DEC-0078/REV-0005AI` then correct the physical TPUL WQFN
 map, reuse its second channel for a `>=350 ms` hardware refractory lockout and
 replace the single load with two parallel 20-Ohm/2-W branches. Exact-cell
-droop thresholds, mechanical continuity/thermal coupling, calculated hot loss
-and HIL remain active.
+selection is then closed at paper level by `FND-0083/PWR-0018/DEC-0079/
+REV-0005AJ`: two exact `XTAR 18650 4000mAh` protected button-top instances
+provide `28.8 Wh`, a 10-A discharge class and a 2-A standard-charge ceiling.
+Assembly-matching certification evidence, droop distributions, mechanical
+continuity/thermal coupling, calculated hot loss and HIL remain active.
 
 ## Active G2F artifacts
 
@@ -169,6 +172,9 @@ and HIL remain active.
 - [`PWR-0017`](PWR-0017-hardware-diagnostic-refractory-lockout.md) closes the
   corrected TPUL contacts, cascaded hardware cooldown, hot repetition bound
   and two-branch pulse-rated load while leaving exact-cell droop numbers HIL;
+- [`PWR-0018`](PWR-0018-xtar-18650-4000mah-cell-profile.md) selects two exact
+  XTAR protected 4-Ah cells as the first qualification target and records the
+  certification/specimen gates;
 - [`DEM-0001`](DEM-0001-current-semantic-signal-demand.md) reconstructs current
   signal demand without inheriting an owner;
 - [`SRC-0002`](SRC-0002-real-device-pin-provenance.md) requires the full

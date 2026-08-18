@@ -84,6 +84,8 @@ TPS pin groups and close SafeMode straps, all controller/EEPROM passives,
 unused contacts and both complete bus pull networks. `PWR-0016/DEC-0077`
 close the exact polarized holder/NTC paper coupling;
 `PWR-0017/FND-0082/DEC-0078` then correct the TPUL package and close the
-hardware repetition bound. Remaining I3 dependencies are exact-cell droop
-thresholds, pulse/cooldown lot and hot-copper HIL, followed by the complete hot
-loss/thermal/fault tree.
+hardware repetition bound. `PWR-0018/FND-0083/DEC-0079` select two exact
+`XTAR 18650 4000mAh` protected cells and freeze the 2-A charge ceiling.
+Remaining I3 dependencies are certification/specimen fit and exact-cell droop
+thresholds, pulse/cooldown lot and hot-copper HIL, followed by the complete
+hot loss/thermal/fault tree.

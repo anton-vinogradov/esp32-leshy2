@@ -2369,6 +2369,36 @@
         "END_2": {"physical": "termination 2", "role": "analog"}
       }
     },
+    "xtar_18650_4000mah_protected": {
+      "mpn": "XTAR 18650 4000mAh",
+      "ordering_identity_note": "XTAR publishes the model as 18650 4000mAh and does not publish a separate ordering code on the exact product page; procurement must bind manufacturer, exact product URL, protected/no-USB construction and received packaging/lot evidence",
+      "kind": "protected_button_top_18650_liion_4000mah_10a_cell",
+      "qualification": "selected_qualification_target",
+      "lifecycle": "current_catalog",
+      "dimensions_mm": [69.7, 18.7, 18.7],
+      "nominal_dimensions_mm": [69.2, 18.4, 18.4],
+      "source": {
+        "document": "XTAR 18650 4000mAh official two-page battery datasheet",
+        "version": "official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18",
+        "url": "https://www.xtar.cc/download/18650-4000mah-data-sheet",
+        "checked": "2026-08-18"
+      },
+      "product_source": {
+        "document": "XTAR exact protected 4000mAh product page",
+        "url": "https://www.xtar.cc/product/xtar-18650-4000mah-10a-battery.html",
+        "checked": "2026-08-18"
+      },
+      "orderable_source": {
+        "document": "XTAR official store exact protected-cell listing",
+        "url": "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery",
+        "checked": "2026-08-18"
+      },
+      "programmable": false,
+      "contacts": {
+        "POS": {"physical": "button-top positive end", "role": "power"},
+        "NEG": {"physical": "flat negative end", "role": "power"}
+      }
+    },
     "keystone_1048p": {
       "mpn": "Keystone Electronics 1048P",
       "kind": "dual_18650_smt_polarized_open_holder",

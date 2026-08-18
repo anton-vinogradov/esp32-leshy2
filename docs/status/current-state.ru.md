@@ -351,9 +351,13 @@ TPUL2G223 (`2Q` — контакт 5, `VCC` — контакт 16), каскад
 параллельными exact `CRM2512-FX-20R0ELF` по 20 Ом/2 Вт. Залипший или враждебный
 trigger теперь аппаратно ограничен одним импульсом `<=50 мс` за каждые
 `>=350 мс`, а штатная firmware ждёт минимум 10 секунд. Exact-cell droop
-thresholds, lot/hot-copper HIL импульса и cooldown,
-effective-capacitance/load-step, exact cell/thermal-stack,
-continuity/thermal, hot-loss/layout и перечисленные
+thresholds и lot/hot-copper HIL импульса/cooldown теперь опираются на
+`PWR-0018/FND-0083/DEC-0079/REV-0005AJ`: два отдельных exact
+`XTAR 18650 4000mAh` дают 28,8 Вт·ч nominal, 10-А discharge class, 2-А
+standard/product charge ceiling и максимальный envelope `18,7 × 69,7 мм`.
+Exact assembly certification documents, received fit, droop distributions,
+effective-capacitance/load-step, thermal-stack, continuity/thermal,
+hot-loss/layout и перечисленные
 startup/shutdown/brownout/multi-fault HIL-gates остаются активны.
 `FND-0058`,
 `FND-0060/0066/0067` и последующие prototype-only HIL остаются явными. KiCad

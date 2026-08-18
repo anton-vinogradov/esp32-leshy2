@@ -11,9 +11,9 @@
 This pass closes the paper choice that `DEC-0062` deliberately left open:
 mechanical polarity before contact, an exact dual-cell holder envelope and a
 physical coupling rule for all three accepted `B57332V5103F360` sensors. It
-does not select the final cell MPN, enclosure door or thermal-interface
+did not yet select the final cell MPN, enclosure door or thermal-interface
 material and does not replace specimen continuity, insertion-cycle or thermal
-HIL.
+HIL. `PWR-0018/DEC-0079` subsequently select the exact first cell target.
 
 ## Exact holder facts
 
@@ -134,7 +134,8 @@ software/electronic reverse detection is not an equivalent cost reduction.
 
 Exact holder identity, plan/depth envelope, four independent functional
 contacts, protected-button-top compatibility boundary and all three NTC
-coupling roles receive **«Проведено ревью»** at paper level. Exact cell and
-thermal-stack MPNs, enclosure door, continuity/orientation, insertion cycling,
-sensor compression/open/short/lift and thermal response remain I8/HIL gates.
+coupling roles receive **«Проведено ревью»** at paper level. The exact cell is
+now selected by `DEC-0079`; its certification/specimen fit, thermal-stack MPNs,
+enclosure door, continuity/orientation, insertion cycling, sensor compression/
+open/short/lift and thermal response remain HIL gates.
 No KiCad start is authorized.

@@ -86,6 +86,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TDK B57332V5103F360<br/>cell-0 temperature sensor",
             "TDK B57332V5103F360<br/>cell-1 temperature sensor",
             "Keystone Electronics 1048P<br/>polarized dual protected-button-top 18650 retention and four independent contacts",
+            "XTAR 18650 4000mAh<br/>individually replaceable protected button-top 4-Ah cell #0",
+            "XTAR 18650 4000mAh<br/>individually replaceable protected button-top 4-Ah cell #1",
             "Diodes Incorporated 2N7002DW-7-F<br/>reset-default ALRT hold and explicit release",
             "onsemi BAV70LT1G<br/>AOLDO/fixture source isolation",
             "Diodes Incorporated BAT54-7-F<br/>admitted-system source isolation and priority",
@@ -265,7 +267,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         expected = {
             "README.md": (
                 "supervised 2S battery",
-                "two individually replaceable qualified 18650 cells",
+                "two individually replaceable exact",
+                "XTAR 18650 4000mAh",
+                "28.8 Wh",
                 "both are required",
                 "admits the pair",
                 "0.57…0.88 A",
@@ -276,7 +280,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             ),
             "README.ru.md": (
                 "контролируемая батарея 2S",
-                "две отдельно заменяемые квалифицированные 18650",
+                "две отдельно заменяемые exact",
+                "XTAR 18650 4000mAh",
+                "28,8 Вт·ч",
                 "нужны обе",
                 "допускает пару",
                 "0,57…0,88 А",
@@ -321,6 +327,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("PA25/A2", contract["admission_adc_profile"])
         self.assertIn("PA26/A1", contract["admission_adc_profile"])
         self.assertIn("forbids injection current", contract["admission_adc_profile"])
+        self.assertEqual("DEC-0079", contract["battery_cell_decision"])
+        self.assertIn("XTAR 18650 4000mAh", contract["battery_cell_profile"])
+        self.assertIn("28.8Wh", contract["battery_cell_profile"])
+        self.assertIn("2A", contract["charge_limit"])
 
         expected_instances = {
             "pd_controller": "ti_tps25751d_refr",
@@ -334,6 +344,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_ntc0": "tdk_b57332v5103f360",
             "pack_ntc1": "tdk_b57332v5103f360",
             "pack_holder": "keystone_1048p",
+            "pack_cell0": "xtar_18650_4000mah_protected",
+            "pack_cell1": "xtar_18650_4000mah_protected",
             "pack_hold": "diodes_2n7002dw_7_f",
             "pack_supply_or": "onsemi_bav70lt1g",
             "pack_system_diode": "diodes_bat54_7_f",
@@ -366,6 +378,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         timer = self.database["devices"]["ti_tpul2g223_bqbr"]
         self.assertEqual("5", timer["contacts"]["CH2_Q"]["physical"])
         self.assertEqual("16", timer["contacts"]["VCC"]["physical"])
+        cell = self.database["devices"]["xtar_18650_4000mah_protected"]
+        self.assertEqual("button-top positive end", cell["contacts"]["POS"]["physical"])
+        self.assertEqual([69.7, 18.7, 18.7], cell["dimensions_mm"])
+        self.assertIn("does not publish a separate ordering code", cell["ordering_identity_note"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -409,6 +425,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertIn(
             ("pack_diag_timer.CH1_Q", "pack_diag_timer.CH2_T_N", "PACK_DIAG_PULSE_ACTIVE"),
+            routes,
+        )
+        self.assertIn(
+            ("pack_cell0.POS", "pack_holder.SLOT0_POS", "PACK_SLOT0_POSITIVE_RAW"),
+            routes,
+        )
+        self.assertIn(
+            ("pack_cell1.NEG", "pack_holder.SLOT1_NEG", "PACK_2S_MIDPOINT"),
             routes,
         )
         self.assertIn(
