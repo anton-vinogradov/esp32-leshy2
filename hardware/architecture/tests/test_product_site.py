@@ -140,7 +140,6 @@ class ProductSiteTests(unittest.TestCase):
             self.assertIn("current-clamshell.svg?layout=8", page)
             self.assertIn("internal-board-layout.svg?layout=5", page)
             self.assertIn("sandwich-section.svg?layout=8", page)
-            self.assertIn("u214-dock-top-view.svg?layout=4", page)
             self.assertIn("top-edge-view.svg?layout=1", page)
             self.assertLess(
                 page.index("current-clamshell.svg"),
@@ -148,7 +147,7 @@ class ProductSiteTests(unittest.TestCase):
             )
             self.assertLess(
                 page.index("internal-board-layout.svg"),
-                page.index("u214-dock-top-view.svg"),
+                page.index("top-edge-view.svg"),
             )
 
     def test_sandwich_section_uses_registered_component_depths(self):
@@ -169,33 +168,6 @@ class ProductSiteTests(unittest.TestCase):
             "No U214 appears",
             "Keystone Electronics 1048P + 2× 18650",
             "Dimensioned architecture projection",
-        ):
-            self.assertIn(token, layout)
-
-    def test_rear_view_proves_the_rear_plan_fit(self):
-        layout = self.read("docs/images/u214-dock-top-view.svg")
-        for token in (
-            'data-view="rear-face" data-look-direction="rear-to-front"',
-            'data-board-mm="75x150"',
-            'id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56"',
-            'id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1"',
-            'id="rear-controls" data-direct-press="F1-F2-PTT-RE-ARM" data-actuator-reserves="STOP" data-enclosure-reserves="RE-ARM-recess-encoder-knob"',
-            "complete rear view",
-            "base PCB · 75 mm",
-            "U214 · 84 mm",
-            "retention · 56 mm",
-            "the two envelopes have a 1.0-mm plan gap",
-            "Samtec SSW-107-02-S-D · vertical 2×7 host socket",
-            "Keystone Electronics 1048P",
-            "insert ⊗ / remove ⊙",
-            "nRF24-1",
-            "2.4 GHz SMA",
-            "SUB-GHz",
-            "VHF/UHF",
-            "OMRON B3S-1100P",
-            "Panasonic AEQ10410",
-            "Alps Alpine EC11E18244AU",
-            "direct buttons and remaining actuator reserves clear the battery and U214 envelopes",
         ):
             self.assertIn(token, layout)
 
@@ -248,7 +220,6 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/images/current-clamshell.svg",
                 "docs/images/internal-board-layout.svg",
                 "docs/images/sandwich-section.svg",
-                "docs/images/u214-dock-top-view.svg",
                 "docs/images/top-edge-view.svg",
             ):
                 self.assertIn(image, landing, name)

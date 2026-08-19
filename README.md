@@ -46,14 +46,6 @@ number inside an outline maps to the adjacent exact MPN and component role.
 
 ![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=5)
 
-### Rear view
-
-This view is normal to the rear face, exactly as a user sees it from behind.
-It uses one millimetre scale for the antennas, raised rail, installed LoRa
-Cap, battery holder and rear controls.
-
-![Leshy2 complete rear view](docs/images/u214-dock-top-view.svg?layout=4)
-
 ### Top view from the antenna edge
 
 The true top projection looks along the board from its antenna edge and shows

@@ -116,13 +116,6 @@ The two Si4732 antenna inputs are receive-only.
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=5)
 
-The complete rear view projects every exact control body. F1/F2/PTT and
-RE-ARM are the directly visible solid switch bodies; STOP retains a dashed
-actuator reserve, RE-ARM a dashed protective recess, and the encoder a dashed
-knob reserve pending final depth, feel and sealing qualification.
-
-![Dimensioned complete rear view](images/u214-dock-top-view.svg?layout=4)
-
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=1)
 
 ![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=8)

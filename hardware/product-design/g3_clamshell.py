@@ -17,7 +17,6 @@ CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
-REAR_OUTPUT = REPO / "docs/images/u214-dock-top-view.svg"
 TOP_EDGE_OUTPUT = REPO / "docs/images/top-edge-view.svg"
 
 BOARD_W = 75.0
@@ -1544,7 +1543,6 @@ def main() -> int:
         EXTERNAL_OUTPUT: render_external(devices, instances),
         INTERNAL_OUTPUT: render_internal(devices, instances),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
-        REAR_OUTPUT: render_rear_face(devices, instances),
         TOP_EDGE_OUTPUT: render_top_edge(devices, instances),
     }
     if args.write:
@@ -1558,7 +1556,7 @@ def main() -> int:
             for path in stale:
                 print(f"error: stale {path}")
             return 1
-        print("ok: external, internal, rear, top-edge and section mechanical projections are valid and current")
+        print("ok: external, internal, top-edge and section mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0
