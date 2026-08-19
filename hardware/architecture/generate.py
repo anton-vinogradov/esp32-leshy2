@@ -1948,11 +1948,11 @@ def render_target_principled_section(
         }
         atlas_text = (
             "[Полный отрисовываемый атлас всех физических устройств]"
-            "(docs/review/architecture/generated/G2F-3I-principled-pinout.md) разбит"
+            "(hardware/architecture/generated/G2F-3I-principled-pinout.md) разбит"
             " на ограниченные Mermaid-диаграммы. Исходная монолитная проекция для"
             " машинного ревью сохраняется отдельно в"
             " [`G2F-3I-principled-projection.mmd`]"
-            "(docs/review/architecture/generated/G2F-3I-principled-projection.mmd)."
+            "(hardware/architecture/generated/G2F-3I-principled-projection.mmd)."
         )
     else:
         heading = "## Principled solution design"
@@ -2003,11 +2003,11 @@ def render_target_principled_section(
         }
         atlas_text = (
             "The [complete rendered physical-device atlas]"
-            "(docs/review/architecture/generated/G2F-3I-principled-pinout.md) is split"
+            "(hardware/architecture/generated/G2F-3I-principled-pinout.md) is split"
             " into bounded Mermaid diagrams. The original monolithic projection remains"
             " available for machine review as"
             " [`G2F-3I-principled-projection.mmd`]"
-            "(docs/review/architecture/generated/G2F-3I-principled-projection.mmd)."
+            "(hardware/architecture/generated/G2F-3I-principled-projection.mmd)."
         )
 
     node = lambda instance: _target_node(devices, candidate, instance, roles[instance])
@@ -3692,6 +3692,88 @@ def render_principled_pinout(
     return _render_principled_pinout_bundle(database, candidates)[0]
 
 
+def render_public_pinout(
+    database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
+) -> str:
+    """Render the exact current controller assignment without project history."""
+
+    candidate = next(item for item in candidates if item["id"] == "G2F-3I")
+    devices = database["devices"]
+    owners = (
+        ("s3", "S3 — application, UI, display, storage and audio"),
+        ("c5", "C5 — native 2.4/5-GHz radio, IEEE 802.15.4 and IR"),
+        ("rp", "RP2354B — nRF24 ×3, Sub-GHz, voice and U214"),
+        ("pd_controller", "USB-PD controller"),
+        ("pack_admission", "Battery-pack admission controller"),
+    )
+    if russian:
+        title = "# Распиновка Leshy2"
+        navigation = "[На главную](../README.ru.md) · [English](pinout.md) · [Аппаратная архитектура](hardware.ru.md)"
+        intro = (
+            "Страница автоматически строится из той же карты устройств и сетей, что используется "
+            "для электрических проверок. Здесь показано текущее целевое назначение контактов."
+        )
+        headings = {
+            "s3": "S3 — приложение, UI, display, storage и audio",
+            "c5": "C5 — native 2,4/5 ГГц, IEEE 802.15.4 и IR",
+            "rp": "RP2354B — nRF24 ×3, Sub-GHz, voice и U214",
+            "pd_controller": "USB-PD controller",
+            "pack_admission": "Контроллер допуска батарейного pack",
+        }
+        columns = "| Контакт | Сеть | Направление | Периферия | Подключение |"
+        footer = (
+            "`i` — вход, `o` — выход, `io` — двунаправленный контакт. "
+            "Сервисные, питание и fixed-function контакты учитываются в полной machine-карте, "
+            "даже если не являются GPIO."
+        )
+    else:
+        title = "# Leshy2 pin assignment"
+        navigation = "[Home](../README.md) · [Русский](pinout.ru.md) · [Hardware architecture](hardware.md)"
+        intro = (
+            "This page is generated from the same device and net map used by the electrical "
+            "checks. It shows the current target contact assignment."
+        )
+        headings = {owner: heading for owner, heading in owners}
+        columns = "| Contact | Net | Direction | Peripheral | Connected endpoint |"
+        footer = (
+            "`i` means input, `o` output and `io` bidirectional. Service, power and fixed-function "
+            "contacts remain accounted in the complete machine map even when they are not GPIO."
+        )
+
+    def clean(value: str) -> str:
+        return value.replace("|", "\\|").replace("\n", " ")
+
+    lines = [
+        title,
+        "",
+        navigation,
+        "",
+        intro,
+        "",
+        "> Файл сгенерирован из `hardware/architecture/devices.json` и `hardware/architecture/candidates/G2F-3I.json`."
+        if russian
+        else "> Generated from `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`.",
+        "",
+    ]
+    for owner, _ in owners:
+        device_id = candidate["instances"][owner]
+        mpn = devices[device_id]["mpn"]
+        lines.extend((f"## {headings[owner]}", "", f"**MPN:** `{mpn}`", "", columns, "|---|---|---|---|---|"))
+        rows = sorted(
+            (row for row in candidate["allocations"] if row["instance"] == owner),
+            key=lambda row: natural_contact_key(row["contact"]),
+        )
+        for row in rows:
+            peers = "<br>".join(clean(peer) for peer in row.get("peers", ())) or "—"
+            lines.append(
+                f"| `{clean(row['contact'])}` | `{clean(row['net'])}` | `{clean(row['direction'])}` | "
+                f"`{clean(row['controller'])}` | {peers} |"
+            )
+        lines.append("")
+    lines.extend((footer, ""))
+    return "\n".join(lines)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
@@ -3712,24 +3794,18 @@ def main(argv: list[str] | None = None) -> int:
     outputs = {
         REPO_ROOT / database["generated_ledger"]: render_ledger(database, candidates),
         REPO_ROOT / database["generated_principled_pinout"]: principled_pinout,
-        REPO_ROOT / "docs/review/architecture/generated/G2F-3I-principled-projection.mmd": raw_projection,
+        REPO_ROOT / "hardware/architecture/generated/G2F-3I-principled-projection.mmd": raw_projection,
         REPO_ROOT / database["generated_target_bom_review"]: render_target_bom_review(
             database, candidates
         ),
         REPO_ROOT / database["generated_target_bom_csv"]: render_target_bom_csv(
             database, candidates
         ),
-        REPO_ROOT / "README.md": render_target_readme(
-            (REPO_ROOT / "README.md").read_text(encoding="utf-8"),
-            database,
-            candidates,
-            russian=False,
+        REPO_ROOT / "docs/pinout.md": render_public_pinout(
+            database, candidates, russian=False
         ),
-        REPO_ROOT / "README.ru.md": render_target_readme(
-            (REPO_ROOT / "README.ru.md").read_text(encoding="utf-8"),
-            database,
-            candidates,
-            russian=True,
+        REPO_ROOT / "docs/pinout.ru.md": render_public_pinout(
+            database, candidates, russian=True
         ),
     }
     if args.write:

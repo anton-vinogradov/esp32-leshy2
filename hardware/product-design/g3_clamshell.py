@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate and validate the first current G3 clamshell zoning projection."""
+"""Generate and validate the Leshy2 clamshell product layout."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
-OUTPUT = REPO / "docs/review/product-design/img/G3-0001-current-clamshell.svg"
+OUTPUT = REPO / "docs/images/current-clamshell.svg"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -198,15 +198,15 @@ def render() -> str:
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        text(32, 34, "G3-0001 — current two-board clamshell working projection", 22, "bold"),
-        text(32, 58, "75×150-mm legacy geometry reused; current owners, MPNs, controls, nine SMA paths and U214 restored", 12, colour="#526076"),
+        text(32, 34, "Leshy2 — two-board clamshell layout", 22, "bold"),
+        text(32, 58, "75×150-mm boards · compute owners · exact selected MPNs · controls · nine SMA paths · U214", 12, colour="#526076"),
     ]
     out += board(origins["fo"], "1 · UI/CONTROL OUTER — front")
     out += board(origins["fi"], "2 · UI/CONTROL INNER — back view")
     out += board(origins["ri"], "3 · RF/POWER INNER — back view")
     out += board(origins["ro"], "4 · RF/POWER OUTER — rear")
 
-    # Front face: current panel and the complete local controls.
+    # Front face: product panel and the complete local controls.
     out.append(rect(origins["fo"], *DISPLAY, "#dbeafe", "#2563eb", rx=5))
     out.append(text(sx(origins["fo"], 37.5), sy(origins["fo"], 57), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
     out.append(text(sx(origins["fo"], 37.5), sy(origins["fo"], 62), "3.5-inch QSPI IPS + touch", 7, anchor="middle", colour="#1d4ed8"))
@@ -234,7 +234,7 @@ def render() -> str:
     out.append(rect(origins["ri"], 48, 64, 21, 58, "#fafaf9", "#a8a29e", "5 3", 4))
     out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],91),"POWER",8,"bold","middle","#78716c"))
     out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],96),"exact devices",6.5,anchor="middle",colour="#78716c"))
-    out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],101),"packing at G6/G9",6.5,anchor="middle",colour="#78716c"))
+    out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],101),"power and safety area",6.5,anchor="middle",colour="#78716c"))
 
     out.append(rect(origins["ro"], *U214, "#ffedd5", "#ea580c", rx=6))
     out.append(text(sx(origins["ro"],37.5),sy(origins["ro"],23),"M5Stack U214 · LoRa/GNSS Cap · raised rear dock",8,"bold","middle","#9a3412"))
@@ -267,10 +267,10 @@ def render() -> str:
         text(note_x, 518, "Next G3 checks", 12, "bold"),
         text(note_x, 538, "hand/grip + installed-U214 access · side-control discrimination", 10.5),
         text(note_x, 558, "antenna/cable routing · service hatch · thermal/weight/centre of mass", 10.5),
-        text(note_x, 594, "Working projection only — not G7 architecture and not KiCad.", 11, "bold", colour="#b42318"),
+        text(note_x, 594, "Conceptual placement; exact pad/net data is maintained separately.", 11, "bold", colour="#526076"),
         text(650, 655, "Legend", 15, "bold"),
         '<rect x="650" y="674" width="24" height="14" rx="3" fill="#eef2f6" stroke="#667085"/>',
-        text(684, 686, "one physical device · exact/current MPN + role", 10.5),
+        text(684, 686, "one physical device · exact selected MPN + role", 10.5),
         '<rect x="650" y="702" width="24" height="14" rx="3" fill="#fafaf9" stroke="#a8a29e" stroke-dasharray="5 3"/>',
         text(684, 714, "placement responsibility, not a combined device", 10.5),
         '<rect x="650" y="730" width="24" height="14" rx="3" fill="#ffedd5" stroke="#ea580c"/>',
@@ -303,13 +303,14 @@ def main() -> int:
         return 1
     rendered = render()
     if args.write:
+        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(rendered, encoding="utf-8")
         print(f"wrote {OUTPUT.relative_to(REPO)}")
     if args.check:
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != rendered:
             print(f"error: stale {OUTPUT.relative_to(REPO)}")
             return 1
-        print("ok: G3 current clamshell projection is valid and current")
+        print("ok: Leshy2 clamshell layout is valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0

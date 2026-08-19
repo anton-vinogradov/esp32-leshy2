@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parents[2]
-OUTPUT = REPO / "docs/review/product-design/img/PHY-0001-u214-rear-fit.svg"
+OUTPUT = REPO / "docs/images/u214-rear-fit.svg"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -209,7 +209,7 @@ def render() -> str:
         text(sx + 425, sy + 56, f"+{BATTERY_INSTALLED_DEPTH:.1f} mm", 11, anchor="middle", colour="#166534"),
         text(sx + 425, sy + 76, f"holder body: {BATTERY_HOLDER_BODY_DEPTH:.2f} mm", 10, anchor="middle", colour="#166534"),
         text(sx + 290, sy + 188, f"depth reserve: {BATTERY_INSTALLED_DEPTH - U214_DEPTH_BEYOND_HOST_REAR:.2f} mm", 12, "bold", "middle", "#166534"),
-        text(sx, 1042, "Open: pad/host-header MPN, wall stack, cell-fit/certification/thermal/installed-cap HIL", 11, colour="#b45309"),
+        text(sx, 1042, "Manufacturing selection: pad/header MPN, wall stack, cell fit, certification and thermal limits", 11, colour="#b45309"),
         "</svg>",
     ]
     return "\n".join(out) + "\n"

@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="1360" viewBox="0 0 1180 1360">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="34.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — two-board clamshell layout</text>
+<text x="32.0" y="58.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">75×150-mm boards · compute owners · exact selected MPNs · controls · nine SMA paths · U214</text>
+<text x="70.0" y="85.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">1 · UI/CONTROL OUTER — front</text>
+<rect x="70.0" y="105.0" width="225.0" height="450.0" rx="7" fill="#f8fafc" stroke="#344054" stroke-width="1.6"/>
+<circle cx="85.0" cy="120.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="280.0" cy="120.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="85.0" cy="540.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="280.0" cy="540.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<text x="365.0" y="85.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">2 · UI/CONTROL INNER — back view</text>
+<rect x="365.0" y="105.0" width="225.0" height="450.0" rx="7" fill="#f8fafc" stroke="#344054" stroke-width="1.6"/>
+<circle cx="380.0" cy="120.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="575.0" cy="120.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="380.0" cy="540.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="575.0" cy="540.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<text x="70.0" y="605.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">3 · RF/POWER INNER — back view</text>
+<rect x="70.0" y="625.0" width="225.0" height="450.0" rx="7" fill="#f8fafc" stroke="#344054" stroke-width="1.6"/>
+<circle cx="85.0" cy="640.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="280.0" cy="640.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="85.0" cy="1060.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="280.0" cy="1060.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<text x="365.0" y="605.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">4 · RF/POWER OUTER — rear</text>
+<rect x="365.0" y="625.0" width="225.0" height="450.0" rx="7" fill="#f8fafc" stroke="#344054" stroke-width="1.6"/>
+<circle cx="380.0" cy="640.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="575.0" cy="640.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="380.0" cy="1060.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<circle cx="575.0" cy="1060.0" r="6.6" fill="white" stroke="#667085" stroke-width="1.4"/>
+<rect x="100.8" y="138.0" width="163.5" height="304.5" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="182.5" y="276.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
+<text x="182.5" y="291.0" font-family="sans-serif" font-size="7" font-weight="normal" text-anchor="middle" fill="#1d4ed8">3.5-inch QSPI IPS + touch</text>
+<rect x="85.0" y="465.0" width="18.0" height="18.0" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="94.0" y="477.0" font-family="sans-serif" font-size="5.5" font-weight="bold" text-anchor="middle" fill="#6d28d9">BACK</text>
+<rect x="85.0" y="501.0" width="18.0" height="18.0" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="94.0" y="513.0" font-family="sans-serif" font-size="5.5" font-weight="bold" text-anchor="middle" fill="#6d28d9">F1</text>
+<rect x="262.0" y="465.0" width="18.0" height="18.0" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="271.0" y="477.0" font-family="sans-serif" font-size="5.5" font-weight="bold" text-anchor="middle" fill="#6d28d9">OPT</text>
+<rect x="262.0" y="501.0" width="18.0" height="18.0" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="271.0" y="513.0" font-family="sans-serif" font-size="5.5" font-weight="bold" text-anchor="middle" fill="#6d28d9">F2</text>
+<rect x="152.5" y="465.0" width="60.0" height="60.0" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="182.5" y="501.0" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#6d28d9">D-pad + OK</text>
+<rect x="70.0" y="315.0" width="18.0" height="21.0" rx="3" fill="#fee4e2" stroke="#b42318" stroke-width="1.6"/>
+<text x="79.0" y="329.4" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
+<rect x="277.0" y="315.0" width="18.0" height="21.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="286.0" y="329.4" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">PTT</text>
+<rect x="73.0" y="534.0" width="18.0" height="21.0" rx="3" fill="#fee4e2" stroke="#b42318" stroke-width="1.6"/>
+<text x="82.0" y="548.4" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#b42318">RE-ARM</text>
+<rect x="244.0" y="528.0" width="36.0" height="21.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="262.0" y="542.4" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">ENC</text>
+<circle cx="115.0" cy="115.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="115.0" y="136.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3-2G4</text>
+<circle cx="160.0" cy="115.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="160.0" y="136.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5-2G4/5</text>
+<circle cx="205.0" cy="115.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="205.0" y="136.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-FM/SW</text>
+<circle cx="250.0" cy="115.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="250.0" y="136.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-AM/LW</text>
+<circle cx="404.0" cy="635.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="404.0" y="656.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-0</text>
+<circle cx="441.5" cy="635.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="441.5" y="656.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">CC-SUB</text>
+<circle cx="479.0" cy="635.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="479.0" y="656.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1</text>
+<circle cx="516.5" cy="635.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="516.5" y="656.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VOICE-V/U</text>
+<circle cx="554.0" cy="635.5" r="9.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="554.0" y="656.5" font-family="sans-serif" font-size="5.7" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2</text>
+<rect x="383.0" y="153.0" width="54.0" height="57.6" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="410.0" y="185.8" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">1</text>
+<rect x="518.0" y="153.0" width="54.0" height="63.6" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="545.0" y="188.8" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">2</text>
+<rect x="440.0" y="231.0" width="72.3" height="19.2" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="476.1" y="244.6" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">3</text>
+<rect x="383.0" y="267.0" width="41.5" height="47.8" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="403.8" y="294.9" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">4</text>
+<rect x="440.0" y="270.0" width="15.0" height="15.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="447.5" y="281.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">5</text>
+<rect x="467.0" y="270.0" width="15.0" height="13.2" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="474.5" y="280.6" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">6</text>
+<rect x="494.0" y="270.0" width="9.0" height="9.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="498.5" y="278.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">7</text>
+<rect x="518.0" y="267.0" width="29.7" height="18.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="532.9" y="280.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">8</text>
+<rect x="365.0" y="333.0" width="20.4" height="9.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="375.2" y="341.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">9</text>
+<rect x="365.0" y="354.0" width="20.4" height="9.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="375.2" y="362.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">10</text>
+<rect x="365.0" y="375.0" width="9.3" height="9.3" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="369.6" y="383.6" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">11</text>
+<rect x="545.0" y="333.0" width="45.0" height="28.5" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="567.5" y="351.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">12</text>
+<rect x="425.0" y="333.0" width="9.0" height="9.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="429.5" y="341.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">13</text>
+<rect x="446.0" y="333.0" width="12.0" height="18.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="452.0" y="346.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">14</text>
+<rect x="392.0" y="534.0" width="26.8" height="20.7" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="405.4" y="548.3" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">15</text>
+<rect x="465.5" y="543.0" width="12.0" height="12.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="471.5" y="553.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">16</text>
+<rect x="167.5" y="667.0" width="30.0" height="30.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="182.5" y="686.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">17</text>
+<rect x="85.0" y="715.0" width="36.0" height="57.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="103.0" y="747.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">18</text>
+<rect x="164.5" y="715.0" width="36.0" height="57.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="182.5" y="747.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">19</text>
+<rect x="244.0" y="715.0" width="36.0" height="57.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="262.0" y="747.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">20</text>
+<rect x="85.0" y="790.0" width="118.5" height="72.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="144.2" y="830.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">21</text>
+<rect x="220.0" y="790.0" width="12.0" height="12.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="226.0" y="800.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">22</text>
+<rect x="109.0" y="1054.0" width="26.8" height="21.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="122.4" y="1068.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">23</text>
+<rect x="172.0" y="1054.0" width="26.8" height="21.0" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
+<text x="185.4" y="1068.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#172033">24</text>
+<rect x="435.5" y="462.0" width="84.0" height="21.0" rx="3" fill="#fce7f3" stroke="#db2777" stroke-width="1.6"/>
+<text x="477.5" y="475.5" font-family="sans-serif" font-size="6.6" font-weight="bold" text-anchor="middle" fill="#be185d">M1 · MPN TBD · power/HV/safety/S3↔RP</text>
+<rect x="140.5" y="982.0" width="84.0" height="21.0" rx="3" fill="#fce7f3" stroke="#db2777" stroke-width="1.6"/>
+<text x="182.5" y="995.5" font-family="sans-serif" font-size="6.6" font-weight="bold" text-anchor="middle" fill="#be185d">M1 · MPN TBD · power/HV/safety/S3↔RP</text>
+<rect x="214.0" y="817.0" width="63.0" height="174.0" rx="4" fill="#fafaf9" stroke="#a8a29e" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="245.5" y="898.0" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#78716c">POWER</text>
+<text x="245.5" y="913.0" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#78716c">exact devices</text>
+<text x="245.5" y="928.0" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#78716c">power and safety area</text>
+<rect x="351.5" y="670.0" width="252.0" height="45.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.6"/>
+<text x="477.5" y="694.0" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 · LoRa/GNSS Cap · raised rear dock</text>
+<rect x="417.8" y="745.0" width="119.4" height="258.0" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.6"/>
+<text x="477.5" y="874.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#166534">Keystone 1048P</text>
+<text x="477.5" y="892.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="middle" fill="#166534">2× XTAR 18650 4000mAh</text>
+<rect x="536.0" y="1021.0" width="54.0" height="24.0" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.6"/>
+<text x="563.0" y="1036.0" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#92400e">M5 Unit · MPN TBD</text>
+<rect x="374.0" y="1021.0" width="72.0" height="36.0" rx="7" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+<text x="410.0" y="1042.0" font-family="sans-serif" font-size="6.1" font-weight="bold" text-anchor="middle" fill="#1d4ed8">PUI AS02404PO · speaker</text>
+<text x="650.0" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Current physical split</text>
+<text x="650.0" y="132.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#1d4ed8">UI/control board</text>
+<text x="650.0" y="152.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">S3 + C5; display, storage, controls, audio/receiver and IR stay local.</text>
+<text x="650.0" y="178.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#c2410c">RF/power board</text>
+<text x="650.0" y="198.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">RP + 3× E01-ML01IPX + CC1101RGPR + SA518; U214 and power stay local.</text>
+<text x="650.0" y="234.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#172033">No old ownership is inherited</text>
+<text x="650.0" y="254.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">nRF is RP-owned; IR is C5-owned; physical board locality is separate.</text>
+<text x="650.0" y="290.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#172033">Verified geometry retained</text>
+<text x="650.0" y="310.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">75×150 mm · fold/mirror · four M2.5 zones · 11-mm inner gap</text>
+<text x="650.0" y="330.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">9 SMA keep-outs · 4.5-mm U214 overhang · exact 1048P envelope</text>
+<text x="650.0" y="366.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#172033">Visible controls retained</text>
+<text x="650.0" y="386.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">D-pad/OK · BACK · OPT · F1 · F2 · encoder/push · PTT</text>
+<text x="650.0" y="406.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">hard STOP · recessed RE-ARM; phone is only optional text input</text>
+<text x="650.0" y="442.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#b42318">Not yet frozen</text>
+<text x="650.0" y="462.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">SMA bodies/pigtails, M5 connectors, mezzanine, display approval</text>
+<text x="650.0" y="482.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">drawing, enclosure stack, cable bends and final internal packing.</text>
+<text x="650.0" y="518.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#172033">Next G3 checks</text>
+<text x="650.0" y="538.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">hand/grip + installed-U214 access · side-control discrimination</text>
+<text x="650.0" y="558.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">antenna/cable routing · service hatch · thermal/weight/centre of mass</text>
+<text x="650.0" y="594.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#526076">Conceptual placement; exact pad/net data is maintained separately.</text>
+<text x="650.0" y="655.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Legend</text>
+<rect x="650" y="674" width="24" height="14" rx="3" fill="#eef2f6" stroke="#667085"/>
+<text x="684.0" y="686.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">one physical device · exact selected MPN + role</text>
+<rect x="650" y="702" width="24" height="14" rx="3" fill="#fafaf9" stroke="#a8a29e" stroke-dasharray="5 3"/>
+<text x="684.0" y="714.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">placement responsibility, not a combined device</text>
+<rect x="650" y="730" width="24" height="14" rx="3" fill="#ffedd5" stroke="#ea580c"/>
+<text x="684.0" y="742.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">removable external module/envelope</text>
+<text x="650.0" y="778.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Numbered physical devices</text>
+<text x="650.0" y="798.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">01  ESP32-S3-WROOM-1U-N16R2</text>
+<text x="676.0" y="807.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI/display/audio owner</text>
+<text x="650.0" y="820.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">02  ESP32-C5-WROOM-1U-N8R8</text>
+<text x="676.0" y="829.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz + IR owner</text>
+<text x="650.0" y="842.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">03  Hirose FH12-40S-0.5SH(55)</text>
+<text x="676.0" y="851.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">display FPC mate</text>
+<text x="650.0" y="864.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">04  Hirose DM3AT-SF-PEJM5</text>
+<text x="676.0" y="873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">removable microSD</text>
+<text x="650.0" y="886.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">05  TCA6424ARGJR</text>
+<text x="676.0" y="895.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">main slow-control expander</text>
+<text x="650.0" y="908.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">06  TCA9534APWR</text>
+<text x="676.0" y="917.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">local-control matrix expander</text>
+<text x="650.0" y="930.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">07  Everest Semiconductor ES8311</text>
+<text x="676.0" y="939.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">audio codec</text>
+<text x="650.0" y="952.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">08  Si4732-A10-GSR</text>
+<text x="676.0" y="961.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">FM/AM/SW/LW receiver</text>
+<text x="650.0" y="974.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">09  Vishay TSOP95238TT</text>
+<text x="676.0" y="983.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">38-kHz IR receiver</text>
+<text x="650.0" y="996.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">10  Vishay TSMP95000TT</text>
+<text x="676.0" y="1005.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">carrier-learning IR receiver</text>
+<text x="650.0" y="1018.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">11  Vishay VSMY14940</text>
+<text x="676.0" y="1027.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">940-nm IR transmitter</text>
+<text x="650.0" y="1040.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">12  Same Sky SJ1-3515-SMT-TR</text>
+<text x="676.0" y="1049.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">headphone/line connector</text>
+<text x="650.0" y="1062.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">13  Texas Instruments TPD4S201RUKR</text>
+<text x="676.0" y="1071.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">CC/USB2 port protector</text>
+<text x="650.0" y="1084.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">14  Texas Instruments TPS25751DREFR</text>
+<text x="676.0" y="1093.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">sink-only USB-PD controller</text>
+<text x="650.0" y="1106.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">15  JAE DX07S016JA1R1500</text>
+<text x="676.0" y="1115.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">product USB-C data + sink</text>
+<text x="650.0" y="1128.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">16  Same Sky CMEJ-0413-42-SMT-TR</text>
+<text x="676.0" y="1137.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">bottom microphone port</text>
+<text x="650.0" y="1150.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">17  SC1512-A4</text>
+<text x="676.0" y="1159.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">deterministic radio owner</text>
+<text x="650.0" y="1172.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">18  Ebyte E01-ML01IPX</text>
+<text x="676.0" y="1181.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 #0</text>
+<text x="650.0" y="1194.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">19  Ebyte E01-ML01IPX</text>
+<text x="676.0" y="1203.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 #1</text>
+<text x="650.0" y="1216.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">20  Ebyte E01-ML01IPX</text>
+<text x="676.0" y="1225.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 #2</text>
+<text x="650.0" y="1238.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">21  NiceRF SA518</text>
+<text x="676.0" y="1247.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">VHF/UHF voice transceiver</text>
+<text x="650.0" y="1260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">22  CC1101RGPR</text>
+<text x="676.0" y="1269.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">multiband sub-GHz transceiver</text>
+<text x="650.0" y="1282.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">23  GCT USB4105-GF-A</text>
+<text x="676.0" y="1291.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 data-only service USB</text>
+<text x="650.0" y="1304.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">24  GCT USB4105-GF-A</text>
+<text x="676.0" y="1313.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">RP data-only service USB</text>
+<text x="650.0" y="1328.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#be185d">M1  MPN TBD · board-to-board power/HV/safety/S3↔RP mezzanine</text>
+</svg>

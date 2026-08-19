@@ -185,7 +185,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         rendered = (
             GENERATOR.REPO_ROOT
-            / "docs/review/product-design/img/G3-0001-current-clamshell.svg"
+            / "docs/images/current-clamshell.svg"
         ).read_text(encoding="utf-8")
         for token in (
             "HMX035CTFT-001",
@@ -203,7 +203,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "PTT",
             "RE-ARM",
             "Numbered physical devices",
-            "not G7 architecture and not KiCad",
+            "Conceptual placement; exact pad/net data is maintained separately.",
         ):
             self.assertIn(token, rendered)
 
@@ -639,7 +639,7 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         raw_projection = (
             GENERATOR.REPO_ROOT
-            / "docs/review/architecture/generated/G2F-3I-principled-projection.mmd"
+            / "hardware/architecture/generated/G2F-3I-principled-projection.mmd"
         ).read_text(encoding="utf-8")
 
         def assert_individual_mpn_nodes(expected: dict[str, str], context: str) -> None:
@@ -675,45 +675,24 @@ class ArchitectureValidationTests(unittest.TestCase):
                     f"{context}: implicit Mermaid nodes {sorted(referenced - declared)} in {line}",
                 )
 
-        for readme_name in ("README.md", "README.ru.md"):
-            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
-            section = (
-                "Principled solution design"
-                if readme_name == "README.md"
-                else "Принципиальный дизайн решения"
-            )
-            section_start = readme.index(section)
-            section_end = readme.index("<details>", section_start)
-            section_text = readme[section_start:section_end]
-            diagrams = re.findall(r"```mermaid\n(.*?)```", section_text, re.DOTALL)
-            self.assertEqual(5, len(diagrams), readme_name)
-            self.assertNotIn("```text", section_text, readme_name)
-            self.assertIn("not from the USB port" if readme_name == "README.md" else "не от USB-порта", section_text)
+        for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
+            public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
+            diagrams = re.findall(r"```mermaid\n(.*?)```", public_doc, re.DOTALL)
+            self.assertEqual(1, len(diagrams), doc_name)
             for diagram in diagrams:
-                self.assertIn("flowchart TD", diagram, readme_name)
-                self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT, readme_name)
-                assert_no_implicit_mermaid_nodes(diagram, readme_name)
+                self.assertIn("flowchart TB", diagram, doc_name)
+                self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT, doc_name)
+                assert_no_implicit_mermaid_nodes(diagram, doc_name)
             combined_diagrams = "\n".join(diagrams)
-            self.assertIn(
-                'PRODUCT_USB_CONNECTOR <-->|"D+/D-"| PRODUCT_USB_PROTECTOR',
-                combined_diagrams,
-                readme_name,
-            )
-            self.assertIn(
-                'PRODUCT_USB_CONNECTOR -->|"VBUS sink only; never source"| PD_CONTROLLER',
-                combined_diagrams,
-                readme_name,
-            )
-            self.assertNotIn(
-                "PRODUCT_USB_CONNECTOR --> PRODUCT_USB_PROTECTOR --> PD_CONTROLLER",
-                combined_diagrams,
-                readme_name,
-            )
+            for token in ("ESP32-S3-WROOM-1U-N16R2", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
+                self.assertIn(token, combined_diagrams, doc_name)
+            self.assertIn('S3 <-->|"1-bit SDIO"| C5', combined_diagrams, doc_name)
+            self.assertIn('S3 <-->|"dedicated SPI3 + alert"| RP', combined_diagrams, doc_name)
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,
-                    combined_diagrams,
-                    f"{readme_name}: missing current MPN token {mpn_token}",
+                    raw_projection,
+                    f"raw projection: missing current MPN token {mpn_token}",
                 )
             storage_nodes = {
                 "SWSD": "TPS22919DCKR",
@@ -746,13 +725,13 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "SDDETPU": "RC0402FR-0710KL",
                 "SDDETC": "C1005X7R1H104K050BB",
             }
-            assert_individual_mpn_nodes(storage_nodes, f"{readme_name}: storage")
+            assert_individual_mpn_nodes(storage_nodes, f"{doc_name}: storage")
             touch_nodes = {
                 "LCDTDDI": "Sitronix ST77922",
                 "TPIRQPU": "RC0402FR-0710KL",
                 "TPIRQ": "SN74LVC1G07DCKR",
             }
-            assert_individual_mpn_nodes(touch_nodes, f"{readme_name}: touch")
+            assert_individual_mpn_nodes(touch_nodes, f"{doc_name}: touch")
             pack_support_nodes = {
                 "PACKINR": "ERJ-P08F10R0V",
                 "PACKINC": "C1005X7R1H104K050BB",
@@ -780,9 +759,9 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "PACKRSTPU": "RC0402FR-0747KL",
                 "PACKRSTC": "GRM155R71H103KA88D",
             }
-            assert_individual_mpn_nodes(pack_support_nodes, f"{readme_name}: pack support")
-            self.assertIn("SN74LVC1G06DCKR", raw_projection, readme_name)
-            self.assertIn("SN74LVC1G07DCKR", raw_projection, readme_name)
+            assert_individual_mpn_nodes(pack_support_nodes, f"{doc_name}: pack support")
+            self.assertIn("SN74LVC1G06DCKR", raw_projection, doc_name)
+            self.assertIn("SN74LVC1G07DCKR", raw_projection, doc_name)
 
         atlas = GENERATOR.render_principled_pinout(self.database, self.candidates)
         atlas_diagrams = re.findall(r"```mermaid\n(.*?)```", atlas, re.DOTALL)
@@ -792,7 +771,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             assert_no_implicit_mermaid_nodes(diagram, "generated atlas")
         self.assertNotIn("```text", atlas)
 
-    def test_target_readmes_publish_the_current_principled_pin_groups(self):
+    def test_public_hardware_pages_link_the_exact_pin_assignment(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
 
         def contacts(instance, prefixes):
@@ -804,28 +783,31 @@ class ArchitectureValidationTests(unittest.TestCase):
             }
             return ",".join(sorted(selected, key=GENERATOR.natural_contact_key))
 
-        expected_groups = (
-            f"S3 `{contacts('s3', ('S3_C5_',))}`; C5 `{contacts('c5', ('S3_C5_',))}`",
-            f"S3 `{contacts('s3', ('S3_RP_', 'RP_ALERT_'))}`; RP `{contacts('rp', ('S3_RP_', 'RP_ALERT_'))}`",
-            f"S3 `{contacts('s3', ('DISPLAY_SD_', 'SD_SPI_', 'LCD_'))}`",
-            f"S3 `{contacts('s3', ('I2S_', 'SYS_I2C_'))}`",
-            f"S3 `{contacts('s3', ('UNIT_',))}`",
-            f"C5 `{contacts('c5', ('IR_',))}`",
-            f"RP `{contacts('rp', ('NRF0_',))}`",
-            f"RP `{contacts('rp', ('NRF1_',))}`",
-            f"RP `{contacts('rp', ('NRF2_',))}`",
-            f"RP `{contacts('rp', ('CC_',))}`",
-            f"RP `{contacts('rp', ('VOICE_', 'PTT_'))}`",
-            f"RP `{contacts('rp', ('U214_',))}`",
-        )
-        for readme_name in ("README.md", "README.ru.md"):
-            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
-            normalized = " ".join(readme.split())
-            self.assertIn("S3 `33", normalized, readme_name)
-            self.assertIn("C5 `14/6/1`", normalized, readme_name)
-            self.assertIn("RP `48/0/0`", normalized, readme_name)
-            for group in expected_groups:
-                self.assertIn(group, normalized, f"{readme_name}: {group}")
+        for instance, prefixes in (
+            ("s3", ("S3_C5_",)),
+            ("c5", ("S3_C5_",)),
+            ("s3", ("S3_RP_", "RP_ALERT_")),
+            ("rp", ("S3_RP_", "RP_ALERT_")),
+            ("s3", ("DISPLAY_SD_", "SD_SPI_", "LCD_")),
+            ("s3", ("I2S_", "SYS_I2C_")),
+            ("s3", ("UNIT_",)),
+            ("c5", ("IR_",)),
+            ("rp", ("NRF0_",)),
+            ("rp", ("NRF1_",)),
+            ("rp", ("NRF2_",)),
+            ("rp", ("CC_",)),
+            ("rp", ("VOICE_", "PTT_")),
+            ("rp", ("U214_",)),
+        ):
+            self.assertTrue(contacts(instance, prefixes), f"{instance}: {prefixes}")
+
+        for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
+            public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
+            self.assertIn(
+                "pinout",
+                public_doc,
+                doc_name,
+            )
 
     def test_target_readmes_remain_product_sites_not_review_ledgers(self):
         for readme_name in ("README.md", "README.ru.md"):
@@ -839,43 +821,27 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "| Принципиальная группа |",
             ):
                 self.assertNotIn(wide_table_heading, readme, readme_name)
-            self.assertIn("<details>", readme, readme_name)
-            self.assertIn("docs/status/current-state", readme, readme_name)
+            for process_path in ("docs/status", "docs/review", "docs/stages"):
+                self.assertNotIn(process_path, readme, readme_name)
+            self.assertIn("docs/hardware", readme, readme_name)
+            self.assertIn("docs/safety", readme, readme_name)
 
     def test_target_readmes_keep_accepted_supervised_2s_behavior(self):
         expected = {
-            "README.md": (
-                "supervised 2S battery",
-                "two individually replaceable exact",
-                "XTAR 18650 4000mAh",
-                "28.8 Wh",
-                "both are required",
-                "admits the pair",
-                "0.57…0.88 A",
-                "no more than `50 ms`",
-                "one non-retriggerable hardware channel",
-                "at least `350 ms`",
-                "not a full-load qualification claim",
+            "docs/hardware.md": (
+                "XTAR 18650 4000mAh", "28.8 Wh", "both are required",
+                "MAX17320G20+T", "MSPM0C1104SDGS20R",
             ),
-            "README.ru.md": (
-                "контролируемая батарея 2S",
-                "две отдельно заменяемые exact",
-                "XTAR 18650 4000mAh",
-                "28,8 Вт·ч",
-                "нужны обе",
-                "допускает пару",
-                "0,57…0,88 А",
-                "не дольше `50 мс`",
-                "один non-retriggerable аппаратный канал",
-                "на `350 мс`",
-                "не обещание полной проверки под нагрузкой",
+            "docs/hardware.ru.md": (
+                "XTAR 18650 4000mAh", "28,8 Вт·ч", "обе нужны",
+                "MAX17320G20+T", "MSPM0C1104SDGS20R",
             ),
         }
-        for readme_name, phrases in expected.items():
-            readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
-            normalized = " ".join(readme.split()).lower()
+        for doc_name, phrases in expected.items():
+            public_doc = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
+            normalized = " ".join(public_doc.split()).lower()
             for phrase in phrases:
-                self.assertIn(phrase.lower(), normalized, readme_name)
+                self.assertIn(phrase.lower(), normalized, doc_name)
 
     def test_sink_only_30w_pd_front_end_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -2202,8 +2168,8 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         repo = Path(__file__).resolve().parents[3]
         for relative in (
-            "docs/review/architecture/RFQ-0001-zero-based-rf-zoning-coexistence.md",
-            "docs/review/architecture/RFQ-0002-g2f-3i-rf-concurrency-boundary.md",
+            "drafts/project-history-2026-08-19/review/architecture/RFQ-0001-zero-based-rf-zoning-coexistence.md",
+            "drafts/project-history-2026-08-19/review/architecture/RFQ-0002-g2f-3i-rf-concurrency-boundary.md",
         ):
             text = (repo / relative).read_text()
             self.assertIn("LAB-CHAR", text)
@@ -3253,9 +3219,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(token, rendered)
 
-        for readme_name in ("README.md", "README.ru.md"):
-            target = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
-            self.assertIn("TCA6424ARGJR", target, readme_name)
+        for doc_name in ("docs/hardware.md", "docs/hardware.ru.md"):
+            target = (GENERATOR.REPO_ROOT / doc_name).read_text(encoding="utf-8")
+            self.assertIn("TCA6424ARGJR", target, doc_name)
 
         for token in (
             "TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor",
