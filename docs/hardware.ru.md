@@ -100,7 +100,7 @@ Si4732 работают только на приём.
 
 ![Размерная внешняя компоновка](images/current-clamshell.svg)
 
-![Размерная компоновка внутренних плат](images/internal-board-layout.svg)
+![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=2)
 
 ![Размерный поперечный разрез бутерброда](images/sandwich-section.svg)
 

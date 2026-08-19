@@ -46,7 +46,7 @@ and radio modules, speaker, microphone, ON/OFF switch, board-to-board
 connector, USB and every separate programming, reset and recovery button. A
 number inside an outline maps to the adjacent exact MPN and component role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=2)
 
 ### Sandwich cross-section
 

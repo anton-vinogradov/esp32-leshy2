@@ -47,7 +47,7 @@ class ProductSiteTests(unittest.TestCase):
             for target in re.findall(r"!?\[[^]]*\]\(([^)]+)\)", page):
                 if target.startswith(("http://", "https://", "#")):
                     continue
-                resolved = (page_path.parent / target.split("#", 1)[0]).resolve()
+                resolved = (page_path.parent / re.split(r"[?#]", target, maxsplit=1)[0]).resolve()
                 self.assertTrue(resolved.exists(), f"{name}: missing {target}")
 
     def test_layout_is_product_facing(self):
@@ -111,7 +111,9 @@ class ProductSiteTests(unittest.TestCase):
             layout,
         )
         self.assertIsNotNone(bounds)
-        self.assertLess(float(bounds.group(1)), float(bounds.group(2)))
+        self.assertGreaterEqual(float(bounds.group(2)) - float(bounds.group(1)), 24.0)
+        for path in ("README.md", "docs/hardware.md", "docs/hardware.ru.md"):
+            self.assertIn("internal-board-layout.svg?layout=2", self.read(path))
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")

@@ -98,7 +98,7 @@ The two Si4732 antenna inputs are receive-only.
 
 ![Dimensioned external layout](images/current-clamshell.svg)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=2)
 
 ![Dimensioned sandwich cross-section](images/sandwich-section.svg)
 
