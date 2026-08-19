@@ -302,9 +302,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             "M2.5 hole/head keep-outs",
             "S3-2G4 · RP-SMA",
             "N24-0 · SMA",
-            "HEADPHONES / LINE",
-            "SPEAKER GRILLE",
-            "POWER ON/OFF",
+            "HEADPHONES",
+            "LINE OUT",
+            "SPEAKER",
+            "GRILLE",
+            "POWER",
+            "ON / OFF",
         ):
             self.assertIn(token, rendered)
         internal = (
@@ -315,7 +318,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Leshy2 — dimensioned inner-board placement",
             "Numbered physical devices",
             "M2.5 hole/head keep-out",
-            "outward direction arrow",
+            "every edge arrow is centred",
+            'data-view="mirrored-x"',
             "AS02404PO",
             "CMEJ-0413-42-SMT-TR",
             "JS102011SCQN",

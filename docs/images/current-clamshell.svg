@@ -92,24 +92,21 @@
 <text x="218.8" y="658.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
 <text x="154.4" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
 <text x="283.1" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
-<rect x="80.0" y="427.5" width="11.8" height="11.1" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="94.8" y="425.7" font-family="sans-serif" font-size="4.5" font-weight="bold" text-anchor="start" fill="#d97706">IR 38 kHz RX</text>
-<rect x="80.0" y="453.4" width="11.8" height="11.1" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="99.0" y="433.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR 38 kHz RX</text>
 <path d="M80.0 458.9 L54.1 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="94.8" y="451.6" font-family="sans-serif" font-size="4.5" font-weight="bold" text-anchor="start" fill="#d97706">IR raw RX</text>
-<rect x="80.0" y="479.3" width="11.8" height="11.1" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-<path d="M80.0 484.9 L54.1 484.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="94.8" y="477.4" font-family="sans-serif" font-size="4.5" font-weight="bold" text-anchor="start" fill="#d97706">IR TX</text>
-<rect x="345.7" y="439.7" width="11.8" height="11.1" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<path d="M357.5 445.3 L383.4 445.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="342.7" y="437.9" font-family="sans-serif" font-size="4.5" font-weight="bold" text-anchor="end" fill="#2563eb">HEADPHONES / LINE</text>
-<path d="M196.6 705.0 L196.6 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="196.6" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
+<text x="99.0" y="458.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR RAW RX</text>
+<path d="M80.0 483.9 L54.1 483.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="99.0" y="483.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR TX</text>
+<path d="M357.5 445.1 L383.4 445.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="338.5" y="440.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">HEADPHONES</text>
+<text x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">LINE OUT</text>
+<path d="M196.4 705.0 L196.4 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="196.4" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
 <path d="M242.8 705.0 L242.8 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="242.8" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
-<path d="M287.2 705.0 L287.2 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="287.2" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
+<path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="287.1" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <text x="603.8" y="453.4" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#166534">Keystone 1048P</text>
 <text x="603.8" y="471.9" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#166534">86×39.8-mm rotated holder</text>
@@ -131,16 +128,16 @@
 <text x="714.8" y="545.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
 <rect x="642.6" y="642.1" width="66.6" height="29.6" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3"/>
 <text x="675.9" y="660.6" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#9a3412">M5 UNIT · MPN TBD</text>
-<rect x="465.0" y="545.9" width="11.8" height="14.8" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
 <path d="M465.0 553.3 L439.1 553.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="479.8" y="544.0" font-family="sans-serif" font-size="4.4" font-weight="bold" text-anchor="start" fill="#2563eb">SPEAKER GRILLE</text>
-<rect x="730.7" y="562.5" width="11.8" height="14.8" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
-<path d="M742.5 570.0 L768.4 570.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="727.7" y="560.7" font-family="sans-serif" font-size="4.4" font-weight="bold" text-anchor="end" fill="#ea580c">POWER ON/OFF</text>
-<path d="M526.0 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="526.0" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
-<path d="M603.8 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="603.8" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
+<text x="483.5" y="548.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER</text>
+<text x="483.5" y="558.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">GRILLE</text>
+<path d="M742.5 567.2 L768.4 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">POWER</text>
+<text x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">ON / OFF</text>
+<path d="M525.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="525.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
+<path d="M603.6 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="603.6" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="675.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
 <text x="850.0" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What this drawing proves</text>

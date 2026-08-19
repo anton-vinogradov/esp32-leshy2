@@ -81,17 +81,30 @@ FRONT_TX_INDICATORS = (
 EDGE_INTERFACES = (
     ("ir_demod", "front", "left", 76.5, "IR 38 kHz RX"),
     ("ir_carrier", "front", "left", 83.5, "IR raw RX"),
-    ("ir_emitter", "front", "left", 90.5, "IR TX"),
-    ("headphone_jack", "front", "right", 79.8, "HEADPHONES / LINE"),
-    ("c5_service_usb_connector", "front", "bottom", 31.5, "C5 SERVICE USB"),
+    ("ir_emitter", "front", "left", 90.255, "IR TX"),
+    ("headphone_jack", "front", "right", 79.75, "HEADPHONES / LINE"),
+    ("c5_service_usb_connector", "front", "bottom", 31.47, "C5 SERVICE USB"),
     ("microphone", "front", "bottom", 44.0, "MICROPHONE"),
-    ("sd", "front", "bottom", 56.0, "microSD"),
+    ("sd", "front", "bottom", 55.975, "microSD"),
     ("speaker", "rear", "left", 109.0, "SPEAKER GRILLE"),
-    ("power_command_switch", "rear", "right", 113.5, "POWER ON/OFF"),
-    ("product_usb_connector", "rear", "bottom", 16.5, "USB / POWER"),
-    ("rp_service_usb_connector", "rear", "bottom", 37.5, "RP SERVICE USB"),
+    ("power_command_switch", "rear", "right", 112.75, "POWER ON/OFF"),
+    ("product_usb_connector", "rear", "bottom", 16.47, "USB / POWER"),
+    ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
     ("unit_port_reserve", "rear", "bottom", 57.0, "M5 UNIT"),
 )
+
+# External side projections show only real silkscreen labels and an enclosure
+# direction arrow.  They must not invent a visible button/socket body on the
+# face, and the front labels must fit wholly in the two gutters beside the
+# display envelope.
+SIDE_INTERFACE_LABEL_LINES = {
+    "ir_demod": ("IR 38 kHz RX",),
+    "ir_carrier": ("IR RAW RX",),
+    "ir_emitter": ("IR TX",),
+    "headphone_jack": ("HEADPHONES", "LINE OUT"),
+    "speaker": ("SPEAKER", "GRILLE"),
+    "power_command_switch": ("POWER", "ON / OFF"),
+}
 
 
 @dataclass(frozen=True)
@@ -228,6 +241,11 @@ def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[flo
     return (h, w) if item.rotation % 180 else (w, h)
 
 
+def mirrored_x(x: float, width: float = 0.0) -> float:
+    """Mirror a point or left edge across the 75-mm board centreline."""
+    return BOARD_W - x - width
+
+
 def overlaps(a: tuple[float, float, float, float], b: tuple[float, float, float, float], margin: float = 0.0) -> bool:
     ax, ay, aw, ah = a
     bx, by, bw, bh = b
@@ -359,6 +377,7 @@ def validate() -> list[str]:
     if len({y for _, _, _, y in FRONT_TX_INDICATORS}) != 1:
         errors.append("front: all nine TX indicators must remain in one horizontal line")
     edge_instances = {item.instance for item in UI_INNER + RF_INNER}
+    edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if instance != "unit_port_reserve" and instance not in edge_instances:
             errors.append(f"external interface {label}: source instance {instance} is not placed")
@@ -366,6 +385,15 @@ def validate() -> list[str]:
             errors.append(f"external interface {label}: invalid face/side")
         if not label.strip() or not 0 <= coordinate <= BOARD_H:
             errors.append(f"external interface {instance}: label/coordinate is invalid")
+        if instance in edge_placements:
+            item = edge_placements[instance]
+            w, h = placement_size(item, devices, instances)
+            component_centre = item.x + w / 2 if side == "bottom" else item.y + h / 2
+            if abs(coordinate - component_centre) > 0.051:
+                errors.append(
+                    f"external interface {label}: label centre {coordinate:.3f} does not "
+                    f"match {instance} centre {component_centre:.3f}"
+                )
     if len({label for _, _, _, _, label in EDGE_INTERFACES}) != len(EDGE_INTERFACES):
         errors.append("external interface labels must be unique")
 
@@ -428,9 +456,10 @@ def board(origin, title, scale, sx, sy, text, rect):
     return rows
 
 
-def rf_bank(origin, bank, scale, sx, sy, text, rect, show_body, compact_labels=False):
+def rf_bank(origin, bank, scale, sx, sy, text, rect, show_body, compact_labels=False, mirror=False):
     rows = []
-    for centre, path, polarity in bank:
+    for source_centre, path, polarity in bank:
+        centre = mirrored_x(source_centre) if mirror else source_centre
         if show_body:
             rows.append(rect(origin, centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#eef2f6", "#667085", rx=2))
         x = sx(origin, centre)
@@ -520,13 +549,16 @@ def render_external(devices, instances):
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "front" or side not in {"left", "right"}:
             continue
-        x = 0.0 if side == "left" else 71.8
-        fill, stroke = ("#fef3c7", "#d97706") if instance.startswith("ir_") else ("#dbeafe", "#2563eb")
-        out.append(rect(front, x, coordinate-1.5, 3.2, 3.0, fill, stroke, rx=2))
+        stroke = "#d97706" if instance.startswith("ir_") else "#2563eb"
         start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
         out.append(f'<path d="M{sx(front,start_x):.1f} {sy(front,coordinate):.1f} L{sx(front,end_x):.1f} {sy(front,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        label_x, anchor = (4.0, "start") if side == "left" else (71.0, "end")
-        out.append(text(sx(front,label_x), sy(front,coordinate-2.0), label, 4.5, "bold", anchor, stroke))
+        # Display spans x=10.25..64.75 mm; these are the exact centres of
+        # the remaining equal 10.25-mm silkscreen gutters.
+        label_x = 5.125 if side == "left" else 69.875
+        lines = SIDE_INTERFACE_LABEL_LINES[instance]
+        first_y = coordinate - 1.3 * (len(lines) - 1)
+        for line_index, line in enumerate(lines):
+            out.append(text(sx(front,label_x), sy(front,first_y + 2.6 * line_index), line, 4.2, "bold", "middle", stroke))
     for _, face, side, x, label in EDGE_INTERFACES:
         if face != "front" or side != "bottom":
             continue
@@ -555,13 +587,14 @@ def render_external(devices, instances):
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "rear" or side not in {"left", "right"}:
             continue
-        x = 0.0 if side == "left" else 71.8
-        fill, stroke = ("#dbeafe", "#2563eb") if instance == "speaker" else ("#fff7ed", "#ea580c")
-        out.append(rect(rear, x, coordinate-2.0, 3.2, 4.0, fill, stroke, rx=2))
+        stroke = "#2563eb" if instance == "speaker" else "#ea580c"
         start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
         out.append(f'<path d="M{sx(rear,start_x):.1f} {sy(rear,coordinate):.1f} L{sx(rear,end_x):.1f} {sy(rear,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        label_x, anchor = (4.0, "start") if side == "left" else (71.0, "end")
-        out.append(text(sx(rear,label_x), sy(rear,coordinate-2.5), label, 4.4, "bold", anchor, stroke))
+        label_x = 5.0 if side == "left" else 70.0
+        lines = SIDE_INTERFACE_LABEL_LINES[instance]
+        first_y = coordinate - 1.3 * (len(lines) - 1)
+        for line_index, line in enumerate(lines):
+            out.append(text(sx(rear,label_x), sy(rear,first_y + 2.6 * line_index), line, 4.2, "bold", "middle", stroke))
     for _, face, side, x, label in EDGE_INTERFACES:
         if face != "rear" or side != "bottom":
             continue
@@ -607,8 +640,13 @@ def render_internal(devices, instances):
     ui, rf = (80.0, 150.0), (465.0, 150.0)
     all_items = UI_INNER + RF_INNER
     numbers = {item.instance: index for index, item in enumerate(all_items, 1)}
+    legend_first_y = 148
+    legend_row_height = 21
+    legend_bottom = legend_first_y + (max(len(UI_INNER), len(RF_INNER)) - 1) * legend_row_height + 9
+    notes_top = max(560, legend_bottom + 35)
+    svg_height = notes_top + 230
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="800" viewBox="0 0 1510 800">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30,32,"Leshy2 — dimensioned inner-board placement",22,"bold"),
@@ -616,11 +654,15 @@ def render_internal(devices, instances):
     ]
     out += board(ui, "UI/control PCB — inner side", scale, sx, sy, text, rect)
     out += board(rf, "RF/power PCB — inner side", scale, sx, sy, text, rect)
-    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, True)
-    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, True)
+    # Looking at either PCB's inner side means physically turning that board
+    # over.  Therefore all X coordinates are mirrored relative to the matching
+    # external face; this is not a transparent-through-board projection.
+    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, True, mirror=True)
+    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, True, mirror=True)
     for origin, items in ((ui, UI_INNER), (rf, RF_INNER)):
         for item in items:
             w, h = placement_size(item, devices, instances)
+            view_x = mirrored_x(item.x, w)
             if item.instance == "speaker":
                 fill, stroke = "#dbeafe", "#2563eb"
             elif item.instance == "microphone":
@@ -631,53 +673,58 @@ def render_internal(devices, instances):
                 fill, stroke = "#ccfbf1", "#0f766e"
             else:
                 fill, stroke = "#eef2f6", "#667085"
-            out.append(rect(origin, item.x, item.y, w, h, fill, stroke, rx=2))
-            out.append(text(sx(origin,item.x+w/2), sy(origin,item.y+h/2)+3, str(numbers[item.instance]), 7.5, "bold", "middle"))
+            out.append(rect(origin, view_x, item.y, w, h, fill, stroke, rx=2))
+            out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, str(numbers[item.instance]), 7.5, "bold", "middle"))
     for reserve in INTERNAL_RESERVES:
-        out.append(rect(rf, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "5 3", 3))
-        out.append(text(sx(rf,reserve.x+reserve.w/2), sy(rf,reserve.y+reserve.h/2)+2, "PWR", 5.0, "bold", "middle", "#9a3412"))
+        view_x = mirrored_x(reserve.x, reserve.w)
+        out.append(rect(rf, view_x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "5 3", 3))
+        out.append(text(sx(rf,view_x+reserve.w/2), sy(rf,reserve.y+reserve.h/2)+2, "PWR", 5.0, "bold", "middle", "#9a3412"))
 
-    arrows = (
-        (ui,0,76.5,-10,76.5),(ui,0,83.5,-10,83.5),(ui,0,90.5,-10,90.5),
-        (ui,75,79.8,85,79.8),(ui,31.5,150,31.5,159),
-        (ui,44,150,44,159),(ui,56,150,56,159),(rf,16.5,150,16.5,159),
-        (rf,37.5,150,37.5,159),(rf,5.0,109.0,-8.0,109.0),
-        (rf,74.0,113.5,84.0,113.5),
-    )
+    arrows = []
+    for _, face, side, coordinate, _ in EDGE_INTERFACES:
+        origin = ui if face == "front" else rf
+        if side == "left":
+            arrows.append((origin, 0.0, coordinate, -10.0, coordinate))
+        elif side == "right":
+            arrows.append((origin, BOARD_W, coordinate, BOARD_W + 10.0, coordinate))
+        else:
+            arrows.append((origin, coordinate, BOARD_H, coordinate, BOARD_H + 9.0))
     for origin, x1, y1, x2, y2 in arrows:
-        out.append(f'<path d="M{sx(origin,x1):.1f} {sy(origin,y1):.1f} L{sx(origin,x2):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(text(sx(ui,44), sy(ui,144.5), "MIC", 5.2, "bold", "middle", "#92400e"))
-    out.append(text(sx(rf,17), sy(rf,101.5), "AS02404PO · side grille ←", 4.8, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(rf,73.5), sy(rf,109.5), "ON/OFF request", 4.6, "bold", "end", "#9a3412"))
-    out.append(text(sx(ui,37.5), sy(ui,101.5), "S3/C5 recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
-    out.append(text(sx(rf,54.5), sy(rf,101.5), "RP recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
+        out.append(f'<path d="M{sx(origin,mirrored_x(x1)):.1f} {sy(origin,y1):.1f} L{sx(origin,mirrored_x(x2)):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    out.append(text(sx(ui,mirrored_x(44)), sy(ui,144.5), "MIC", 5.2, "bold", "middle", "#92400e"))
+    out.append(text(sx(rf,mirrored_x(17)), sy(rf,101.5), "AS02404PO · side grille →", 4.8, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(rf,mirrored_x(73.5)), sy(rf,109.5), "ON/OFF request", 4.6, "bold", "start", "#9a3412"))
+    out.append(text(sx(ui,mirrored_x(37.5)), sy(ui,101.5), "S3/C5 recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(text(sx(rf,mirrored_x(54.5)), sy(rf,101.5), "RP recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
 
     left_x, right_x = 830, 1165
     out += [text(left_x,105,"Numbered physical devices",16,"bold"), text(left_x,128,"UI/control PCB",12,"bold",colour="#1d4ed8")]
-    y = 148
+    y = legend_first_y
     for item in UI_INNER:
         mpn = devices[instances[item.instance]]["mpn"].replace(" (QDtech schematic assembly marking)", "")
         out.append(text(left_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
         out.append(text(left_x+26,y+9,item.role,7.2,colour="#526076"))
-        y += 21
+        y += legend_row_height
     out.append(text(right_x,128,"RF/power PCB",12,"bold",colour="#c2410c"))
-    y = 148
+    y = legend_first_y
     for item in RF_INNER:
         mpn = devices[instances[item.instance]]["mpn"]
         out.append(text(right_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
         out.append(text(right_x+26,y+9,item.role,7.2,colour="#526076"))
-        y += 21
+        y += legend_row_height
     out += [
-        text(left_x,560,"Validated clearances",14,"bold"),
-        text(left_x,584,"• device-to-device: ≥0.7 mm in this projection",10),
-        text(left_x,605,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
-        text(left_x,626,"• every edge interface has an outward direction arrow",10),
-        text(left_x,647,"• microSD is edge-accessible; C5 USB stays with C5",10),
-        text(left_x,668,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,688,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,714,"Only unselected RF cable bodies remain physical reserves.",9.2,"bold",colour="#9a3412"),
-        text(left_x,735,"POWER command: C&K JS102011SCQN; low-current request only, never pack current.",9.2,"bold",colour="#9a3412"),
-        text(left_x,756,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
+        f'<g id="validated-clearances" data-legend-bottom="{legend_bottom}" data-top="{notes_top}">',
+        text(left_x,notes_top,"Validated clearances",14,"bold"),
+        text(left_x,notes_top+24,"• device-to-device: ≥0.7 mm in this projection",10),
+        text(left_x,notes_top+45,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
+        text(left_x,notes_top+66,"• both inner views are horizontally mirrored from their external faces",10),
+        text(left_x,notes_top+87,"• every edge arrow is centred on its component (or an explicit reserve)",10),
+        text(left_x,notes_top+108,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
+        text(left_x,notes_top+128,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
+        text(left_x,notes_top+154,"Only unselected RF cable bodies remain physical reserves.",9.2,"bold",colour="#9a3412"),
+        text(left_x,notes_top+175,"POWER command: C&K JS102011SCQN; low-current request only, never pack current.",9.2,"bold",colour="#9a3412"),
+        text(left_x,notes_top+196,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
+        "</g>",
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"

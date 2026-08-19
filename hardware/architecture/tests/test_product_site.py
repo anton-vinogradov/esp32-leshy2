@@ -68,12 +68,15 @@ class ProductSiteTests(unittest.TestCase):
             "GCT RFPC-SMA32-FN-175-A",
             "S3-2G4 · RP-SMA",
             "N24-0 · SMA",
-            "HEADPHONES / LINE",
+            "HEADPHONES",
+            "LINE OUT",
             "C5 SERVICE USB",
             "MICROPHONE",
             "microSD",
-            "SPEAKER GRILLE",
-            "POWER ON/OFF",
+            "SPEAKER",
+            "GRILLE",
+            "POWER",
+            "ON / OFF",
             "USB / POWER",
             "RP SERVICE USB",
             "M5 UNIT",
@@ -90,7 +93,7 @@ class ProductSiteTests(unittest.TestCase):
             "Numbered physical devices",
             "UI/control PCB",
             "RF/power PCB",
-            "outward direction arrow",
+            "every edge arrow is centred",
             "M2.5 hole/head keep-out",
             "FX8C-80P-SV1(92)",
             "FX8C-80S-SV5(92)",
@@ -101,6 +104,13 @@ class ProductSiteTests(unittest.TestCase):
             "FTSH-105-01-L-DV-K-P-TR",
         ):
             self.assertIn(token, layout)
+        self.assertIn('data-view="mirrored-x"', layout)
+        bounds = re.search(
+            r'id="validated-clearances" data-legend-bottom="([0-9.]+)" data-top="([0-9.]+)"',
+            layout,
+        )
+        self.assertIsNotNone(bounds)
+        self.assertLess(float(bounds.group(1)), float(bounds.group(2)))
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
