@@ -26,11 +26,11 @@ calibration или accessory item.
 - 186/187 used lines already carry dated orderability evidence;
 - 1/187 requires current source verification: standalone
   `HMX035CTFT-001` orderability remains unproved;
-- 39/187 now have machine-readable quantity-100 cost by
-  `BOM-0013…0015/DEC-0105…0106/REV-0005BL…BN`; they cover 578/857 placements,
-  148/187 remain unpriced and the USD 79.0660 covered base subtotal is not
+- 52/187 now have machine-readable quantity-100 cost by
+  `BOM-0013…0016/DEC-0105…0106/REV-0005BL…BO`; they cover 614/857 placements,
+  135/187 remain unpriced and the USD 102.2205 covered base subtotal is not
   complete COGS;
-- 5/148 unpriced lines have explicit machine-readable RFQ/retail comparability
+- 5/135 unpriced lines have explicit machine-readable RFQ/retail comparability
   gates; a gate never contributes a numeric subtotal;
 - 187/187 now have alternate/no-substitution disposition by
   `BOM-0012/DEC-0104/REV-0005BK`; this is policy coverage, not 187 qualified
@@ -64,9 +64,9 @@ future factory RFQ.
    to their class gates.
 6. Record comparable USD qty-100 component snapshots and keep PCB, PCBA,
    enclosure, fixture, battery logistics and antenna-kit variants separate.
-   **First 39/187 lines / 578 placements reviewed** by
-   `BOM-0013…0015/DEC-0105…0106/REV-0005BL…BN`; continue through the remaining
-   148 lines without assigning zero or retail multiplication to missing
+   **First 52/187 lines / 614 placements reviewed** by
+   `BOM-0013…0016/DEC-0105…0106/REV-0005BL…BO`; continue through the remaining
+   135 lines without assigning zero or retail multiplication to missing
    evidence. Five researched gaps already carry an explicit RFQ/retail gate.
 7. Run the consolidated self-review and only then mark I8 «Проведено ревью».
 

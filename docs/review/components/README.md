@@ -26,7 +26,8 @@ explicit physical-gap register feed the generated manifest.
 12. [`BOM-0012`](BOM-0012-complete-substitution-policy.md) — all 187 purchase lines mapped to one conservative no-silent-substitution class.
 13. [`BOM-0013`](BOM-0013-first-quantity-100-cost-evidence.md) — validated USD quantity-100 cost contract and first 15/187 exact-MPN lines.
 14. [`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md) — second high-placement price batch: reviewed 23/187-line snapshot and five explicit RFQ/retail gates.
-15. [`BOM-0015`](BOM-0015-third-high-placement-cost-evidence.md) — third high-placement price batch, current 39/187 lines / 578 placements / USD 79.0660 partial base subtotal.
+15. [`BOM-0015`](BOM-0015-third-high-placement-cost-evidence.md) — reviewed third-batch snapshot: 39/187 lines / 578 placements / USD 79.0660.
+16. [`BOM-0016`](BOM-0016-high-value-ic-rf-cost-evidence.md) — high-value IC/RF price batch, current 52/187 lines / 614 placements / USD 102.2205 partial base subtotal.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -60,6 +61,7 @@ explicit physical-gap register feed the generated manifest.
 - [`BOM-0012`](BOM-0012-complete-substitution-policy.md) / [`DEC-0104`](../decisions/DEC-0104-complete-no-silent-substitution-policy.md) / [`REV-0005BK`](../reviews/REV-0005BK-substitution-policy-propagation.md) — exactly one conservative substitution/requalification class for every current purchase line; **Проведено ревью policy coverage 187/187**, specific alternates stay evidence-driven.
 - [`BOM-0013`](BOM-0013-first-quantity-100-cost-evidence.md) / [`DEC-0105`](../decisions/DEC-0105-machine-readable-quantity-100-cost-evidence.md) / [`REV-0005BL`](../reviews/REV-0005BL-first-cost-evidence-propagation.md) — strict comparable-price contract plus first 15/187 lines and 22/857 placements; **Проведено ревью first batch**, USD 57.2502 remains a partial base-product subtotal, not COGS.
 - [`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md) / [`DEC-0106`](../decisions/DEC-0106-explicit-unpriced-cost-gates.md) / [`REV-0005BM`](../reviews/REV-0005BM-second-cost-evidence-propagation.md) — eight high-placement prices plus five explicit RFQ/retail gates; **Проведено ревью second-batch snapshot**, 23/187 lines / 440/857 placements and USD 68.8226 partial base subtotal at that checkpoint.
-- [`BOM-0015`](BOM-0015-third-high-placement-cost-evidence.md) / [`REV-0005BN`](../reviews/REV-0005BN-third-cost-evidence-propagation.md) — 16 further exact-MPN quantity-100 prices and three source-link repairs; **Проведено ревью third batch**, current coverage 39/187 lines / 578/857 placements and USD 79.0660 partial base subtotal.
+- [`BOM-0015`](BOM-0015-third-high-placement-cost-evidence.md) / [`REV-0005BN`](../reviews/REV-0005BN-third-cost-evidence-propagation.md) — 16 further exact-MPN quantity-100 prices and three source-link repairs; **Проведено ревью third-batch snapshot**.
+- [`BOM-0016`](BOM-0016-high-value-ic-rf-cost-evidence.md) / [`REV-0005BO`](../reviews/REV-0005BO-high-value-cost-evidence-propagation.md) — 13 higher-value IC/RF/interconnect prices; **Проведено ревью fourth batch**, current coverage 52/187 lines / 614/857 placements and USD 102.2205 partial base subtotal.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

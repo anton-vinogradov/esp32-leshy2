@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **39/187** lines.
-- Of the remaining **148** unpriced lines, **5** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **578/857** supplied placements; their partial subtotals are `base_product` — USD 79.0660. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **52/187** lines.
+- Of the remaining **135** unpriced lines, **5** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **614/857** supplied placements; their partial subtotals are `base_product` — USD 102.2205. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -444,12 +444,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Infineon BGS13SN8E6327XTSA1</code> — 2 × USD 0.2126 = USD 0.4252</summary>
+
+- Device id: `infineon_bgs13sn8e6327xtsa1`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/infineon-technologies/BGS13SN8E6327XTSA1/6559893).
+
+</details>
+
 <details><summary><code>JAE DX07S016JA1R1500</code> — 1 × USD 1.2272 = USD 1.2272</summary>
 
 - Device id: `jae_dx07s016ja1r1500`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/jae-electronics/DX07S016JA1R1500/11585731).
+
+</details>
+
+<details><summary><code>KYOCERA AVX CP0603Q5425ENTR</code> — 2 × USD 0.4271 = USD 0.8542</summary>
+
+- Device id: `kyocera_avx_cp0603q5425entr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/kyocera-avx/CP0603Q5425ENTR/4805840).
 
 </details>
 
@@ -507,12 +525,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Nexperia 74LVC2G126DC,125</code> — 5 × USD 0.2086 = USD 1.0430</summary>
+
+- Device id: `nexperia_74lvc2g126dc_125`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G126DC-125/1231578).
+
+</details>
+
 <details><summary><code>onsemi 1N4148WT</code> — 10 × USD 0.0629 = USD 0.6290</summary>
 
 - Device id: `onsemi_1n4148wt`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/1N4148WT/2094398).
+
+</details>
+
+<details><summary><code>onsemi FSUSB42MUX</code> — 2 × USD 0.4663 = USD 0.9326</summary>
+
+- Device id: `onsemi_fsusb42_mux`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/FSUSB42MUX/2036916).
 
 </details>
 
@@ -531,6 +567,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: Mouser published 1+ cut-tape unit price applied to an order of 100 pieces; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D).
+
+</details>
+
+<details><summary><code>Samtec FTSH-105-01-L-DV-K-P-TR</code> — 3 × USD 1.6991 = USD 5.0973</summary>
+
+- Device id: `samtec_ftsh_105_01_l_dv_k_p_tr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K-P-TR/5305483).
 
 </details>
 
@@ -561,12 +606,39 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments MSPM0C1104SDGS20R</code> — 1 × USD 0.4523 = USD 0.4523</summary>
+
+- Device id: `ti_mspm0c1104_sdgs20r`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1104SDGS20R/24709068).
+
+</details>
+
+<details><summary><code>SN74LVC1G07DCKR</code> — 5 × USD 0.0509 = USD 0.2545</summary>
+
+- Device id: `ti_sn74lvc1g07_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G07DCKR/377457).
+
+</details>
+
 <details><summary><code>Texas Instruments SN74LVC1G126DCKR</code> — 6 × USD 0.0546 = USD 0.3276</summary>
 
 - Device id: `ti_sn74lvc1g126_dckr`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G126DCKR/385723).
+
+</details>
+
+<details><summary><code>TLV1824PWR</code> — 2 × USD 1.0518 = USD 2.1036</summary>
+
+- Device id: `ti_tlv1824_pwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TLV1824PWR/23028806).
 
 </details>
 
@@ -594,6 +666,51 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS25751DREFR/23028775).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS259470LRPWR</code> — 2 × USD 1.0196 = USD 2.0392</summary>
+
+- Device id: `ti_tps259470l_rpwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS259470LRPWR/14124014).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS25974LRPWR</code> — 2 × USD 0.7929 = USD 1.5858</summary>
+
+- Device id: `ti_tps25974l_rpwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS25974LRPWR/15965500).
+
+</details>
+
+<details><summary><code>TPS3808G33DBVR</code> — 4 × USD 1.0984 = USD 4.3936</summary>
+
+- Device id: `ti_tps3808g33_dbvr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS3808G33DBVR/666727).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS564252DRLR</code> — 3 × USD 0.2953 = USD 0.8859</summary>
+
+- Device id: `ti_tps564252_drlr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS564252DRLR/20415586).
+
+</details>
+
+<details><summary><code>TTM Technologies DC2337J5010AHF</code> — 3 × USD 1.0291 = USD 3.0873</summary>
+
+- Device id: `ttm_dc2337j5010ahf`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC2337J5010AHF/3069211).
 
 </details>
 

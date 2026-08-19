@@ -1804,6 +1804,11 @@
         "url": "https://www.digikey.com/en/products/detail/infineon-technologies/BGS13SN8E6327XTSA1/6559893",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.2126,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/infineon-technologies/BGS13SN8E6327XTSA1/6559893", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "frequency_mhz": [100, 6000],
         "supply_v": [1.65, 3.4],
@@ -2218,6 +2223,11 @@
         "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G07DCKR?qs=EIjG%252BN7kn%252Bm5urWpZFTEPA%3D%3D",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0509,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G07DCKR/377457", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "function": "non-inverting buffer with open-drain output",
         "supply_range_v": [1.65, 5.5],
@@ -2533,6 +2543,11 @@
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS3808G33DBVR/666727",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.0984,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS3808G33DBVR/666727", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "RESET_N": {"physical": "1", "role": "reset"},
@@ -2737,6 +2752,11 @@
         "url": "https://www.digikey.com/en/products/detail/kyocera-avx/CP0603Q5425ENTR/4805840",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.4271,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/kyocera-avx/CP0603Q5425ENTR/4805840", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "bands_mhz": [[2400, 2496], [4900, 5950]],
         "coupling_db": {"2400_2496": "-20 +/-0.5", "4900_5950": "-13 +/-0.5"},
@@ -2833,6 +2853,11 @@
         "document": "TLV1824PWR authorized-distributor exact order-code page; 1,847 shown in stock",
         "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/TLV1824PWR?qs=i8QVZAFTkqRBQ9Qmuw0tYA%3D%3D",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.0518,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TLV1824PWR/23028806", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "supply_range_v": [2.4, 40.0],
@@ -3685,6 +3710,11 @@
         "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS564252DRLR/C19191267",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.2953,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS564252DRLR/20415586", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "VIN": {"physical": "1", "role": "power"},
@@ -3908,6 +3938,11 @@
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25974LRPWR/15965500",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.7929,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25974LRPWR/15965500", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "EN_UVLO": {"physical": "1", "role": "analog"},
@@ -3938,6 +3973,11 @@
         "document": "TPS259470LRPWR JLCPCB C3662793 stocked assembly part",
         "url": "https://jlcpcb.com/partdetail/TPS259470LRPWR/C3662793",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.0196,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS259470LRPWR/14124014", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -4484,6 +4524,11 @@
         "document": "MSPM0C1104SDGS20R exact orderable page",
         "url": "https://www.ti.com/product/MSPM0C1104/part-details/MSPM0C1104SDGS20R",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.4523,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1104SDGS20R/24709068", "checked": "2026-08-19"}
       },
       "programmable": true,
       "controller_capabilities": ["I2C_TARGET", "BITBANG_I2C", "UART0", "ADC", "GPIO", "GPIO_IRQ", "SWD"],
@@ -5505,6 +5550,11 @@
         "url": "https://www.nexperia.com/products/analog-logic-ics/logic/buffers-inverters-transceivers/buffers/serie/74lvc2g126",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.2086,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G126DC-125/1231578", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "supply_v": [1.65, 5.5],
         "ioff": "partial-power-down output isolation is specified at VCC=0 V",
@@ -5534,6 +5584,11 @@
         "document": "DC2337J5010AHF active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC2337J5010AHF/3069211",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.0291,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC2337J5010AHF/3069211", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "operating_band_mhz": [2000, 4000],
@@ -5726,6 +5781,11 @@
         "url": "https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K-P-TR/5305483",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.6991,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K-P-TR/5305483", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "P1": {"physical": "1", "role": "service"}, "P2": {"physical": "2", "role": "power"},
@@ -5823,6 +5883,11 @@
         "document": "FSUSB42MUX active authorized-distributor listing; more than 67,000 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/onsemi/FSUSB42MUX/2036916",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.4663,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/onsemi/FSUSB42MUX/2036916", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "usb_speed_mbps": 480,

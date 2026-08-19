@@ -178,3 +178,9 @@ revision for this batch.
 3. Instantiate SMA, RF cable, M5 connector and antenna-kit physical families.
 4. Keep PCB/PCBA/enclosure/test quotes separate until the factory package is
    stable.
+
+## Последующий статус
+
+Этот artifact сохраняет проверенный third-batch checkpoint. Текущий итог
+находится в [`BOM-0016`](BOM-0016-high-value-ic-rf-cost-evidence.md): 52/187
+lines, 614/857 placements и partial base subtotal USD 102.2205.
