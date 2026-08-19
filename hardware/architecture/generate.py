@@ -2027,7 +2027,7 @@ def render_target_principled_section(
             "cc": "многодиапазонный sub-GHz transceiver",
             "voice": "аналоговый VHF/UHF voice transceiver",
             "u214": "съёмный LoRa/GNSS Cap-модуль",
-            "u214_connector": "угловой боковой 14-контактный host Cap-Bus",
+            "u214_connector": "вертикальный 14-контактный host Cap-Bus на поднятой планке",
             "unit_connector": "защищённый разъём M5 Unit HY2.0-4P",
             "s3_external_rp_sma": "внешний RP-SMA порт S3 2,4 ГГц",
             "c5_external_rp_sma": "внешний RP-SMA порт C5 2,4/5 ГГц",
@@ -2146,7 +2146,7 @@ def render_target_principled_section(
             "cc": "multi-band sub-GHz transceiver",
             "voice": "analog VHF/UHF voice transceiver",
             "u214": "removable LoRa/GNSS Cap module",
-            "u214_connector": "right-angle side-entry 14-contact Cap-Bus host",
+            "u214_connector": "vertical 14-contact Cap-Bus host on raised rear rail",
             "unit_connector": "protected M5 Unit HY2.0-4P connector",
             "s3_external_rp_sma": "external S3 2.4-GHz RP-SMA port",
             "c5_external_rp_sma": "external C5 2.4/5-GHz RP-SMA port",
@@ -2550,7 +2550,7 @@ def render_public_interconnect(
         )
         rf_groups = (
             f"Радиодомен реального времени: `{mpn('rp')}`, три `{mpn('nrf0')}`, `{mpn('cc')}` и `{mpn('voice')}`.",
-            f"Внешние модули: съёмный `{mpn('u214')}` на точном боковом `{mpn('u214_connector')}` и независимый порт M5 Unit на точном `{mpn('unit_connector')}`.",
+            f"Внешние модули: съёмный `{mpn('u214')}` на точном вертикальном `{mpn('u214_connector')}` поднятой задней планки и независимый порт M5 Unit на точном `{mpn('unit_connector')}`.",
             f"Питание и основной USB-C: `{mpn('product_usb_connector')}`, защита `{mpn('product_usb_protector')}`, USB-PD `{mpn('pd_controller')}`, заряд, аккумуляторы и все преобразователи питания.",
             f"Аудио на задней плате: микрофон `{mpn('microphone')}` с локальным смещением, дифференциальный усилитель `{mpn('speaker_amp')}` и динамик `{mpn('speaker')}`.",
             "Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.",
@@ -2587,7 +2587,7 @@ def render_public_interconnect(
         )
         rf_groups = (
             f"Real-time radio domain: `{mpn('rp')}`, three `{mpn('nrf0')}`, `{mpn('cc')}` and `{mpn('voice')}`.",
-            f"External modules: removable `{mpn('u214')}` on exact side-entry `{mpn('u214_connector')}` and an independent M5 Unit port on exact `{mpn('unit_connector')}`.",
+            f"External modules: removable `{mpn('u214')}` on exact vertical `{mpn('u214_connector')}` of the raised rear rail and an independent M5 Unit port on exact `{mpn('unit_connector')}`.",
             f"Power and product USB-C: `{mpn('product_usb_connector')}`, `{mpn('product_usb_protector')}` protection, `{mpn('pd_controller')}` USB-PD, charger, cells and every rail converter.",
             f"Rear-board audio: `{mpn('microphone')}` microphone with local bias, `{mpn('speaker_amp')}` differential amplifier and `{mpn('speaker')}` speaker.",
             "Rear controls: F1/F2, encoder, PTT, STOP and recessed RE-ARM; PTT connects locally to RP/voice.",
@@ -3532,7 +3532,7 @@ def _render_principled_pinout_bundle(
         "  %% Voice-RF layout-only invisible spine: every box above is one physical device.",
         "  " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names),
         node("u214", "external LoRa/GNSS Cap module"),
-        node("u214_connector", "right-angle side-entry 14-contact Cap-Bus host socket"),
+        node("u214_connector", "vertical 14-contact Cap-Bus host socket on raised rear rail"),
         node("u214_i2c_iso", "external I2C stuck-bus isolator"),
         node("u214_i2c_iso_bypass", "100-nF external-I2C-isolator bypass capacitor"),
         node("u214_i2c_host_sda_pullup", "2.2-kOhm U214 controller-side SDA pull-up"),

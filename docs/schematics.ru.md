@@ -65,7 +65,7 @@ NRF1["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
 VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
-U214_CONNECTOR["Samtec SSW-107-02-S-D-RA<br/>угловой боковой 14-контактный host Cap-Bus"]
+U214_CONNECTOR["Samtec SSW-107-02-S-D<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
 U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
   RP <-->|"independent PIO0 SM0"| NRF0
   RP <-->|"independent PIO0 SM1"| NRF1

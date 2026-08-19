@@ -1151,31 +1151,31 @@
         "MISO": {"physical": "13", "role": "signal"}, "NSS": {"physical": "14", "role": "signal"}
       }
     },
-    "samtec_ssw_107_02_s_d_ra": {
-      "mpn": "Samtec SSW-107-02-S-D-RA",
-      "kind": "14_contact_2x7_2_54mm_right_angle_through_hole_socket",
+    "samtec_ssw_107_02_s_d": {
+      "mpn": "Samtec SSW-107-02-S-D",
+      "kind": "14_contact_2x7_2_54mm_vertical_through_hole_socket",
       "qualification": "verified_exact_paper_fit_received_u214_mating_hil_open",
       "lifecycle": "active and manufacturer-orderable",
-      "dimensions_mm": [18.29, 8.51, 4.95],
+      "dimensions_mm": [18.29, 4.95, 8.51],
       "source": {
         "document": "Samtec exact product page and SSW series drawing",
-        "version": "SSW-107-02-S-D-RA / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL",
-        "url": "https://www.samtec.com/products/ssw-107-02-s-d-ra",
+        "version": "SSW-107-02-S-D / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL",
+        "url": "https://www.samtec.com/products/ssw-107-02-s-d",
         "checked": "2026-08-19"
       },
       "orderable_source": {
         "document": "Samtec exact-MPN manufacturer stock page; 1132 shown as ships tomorrow",
-        "url": "https://www.samtec.com/products/ssw-107-02-s-d-ra",
+        "url": "https://www.samtec.com/products/ssw-107-02-s-d",
         "checked": "2026-08-19"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 2.61,
+        "unit_price_usd": 2.374,
         "price_break": "Samtec OEM quantity-100 tier",
         "source": {
           "document": "Samtec exact-MPN published OEM price table",
-          "url": "https://www.samtec.com/products/ssw-107-02-s-d-ra",
+          "url": "https://www.samtec.com/products/ssw-107-02-s-d",
           "checked": "2026-08-19"
         }
       },
@@ -1185,13 +1185,13 @@
         "rows": 2,
         "positions_per_row": 7,
         "pitch_mm": 2.54,
-        "orientation": "right-angle side-entry socket with through-hole solder tails",
+        "orientation": "vertical socket normal to the raised rear dock plane with through-hole solder tails",
         "nominal_body_length_mm": 18.29,
-        "registered_plan_depth_mm": 8.51,
-        "double_row_body_height_mm": 4.95,
+        "registered_plan_depth_mm": 4.95,
+        "double_row_body_height_mm": 8.51,
         "accepted_square_post_mm": 0.635,
         "published_insertion_depth_mm": [3.68, 6.35],
-        "u214_fit_status": "contact count, pitch, sex and required side-entry axis are paper-compatible; received U214 pin section, exposed length, bottoming and repeated-cycle retention remain HIL"
+        "u214_fit_status": "official U214 photos and size drawing place the male 2x7 normal to its broad rear face; contact count, pitch, sex and vertical mating axis are paper-compatible, while received U214 pin section, exposed length, bottoming and repeated-cycle retention remain HIL"
       },
       "contacts": {
         "PIN_1": {"physical": "mating cavity / board pad 1", "role": "signal"},

@@ -58,8 +58,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-layer="pcb-silkscreen"',
             "HMX035CTFT-001",
             "M5Stack U214",
-            "SSW-107-02-S-D-RA",
-            "mate ↑ toward socket · remove ↓",
+            "SSW-107-02-S-D",
+            "insert ⊗ · remove ⊙",
             "Keystone 1048P",
             "single D-pad cap",
             "STOP",
@@ -130,9 +130,10 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=5", page)
+            self.assertIn("current-clamshell.svg?layout=6", page)
             self.assertIn("internal-board-layout.svg?layout=5", page)
-            self.assertIn("sandwich-section.svg?layout=6", page)
+            self.assertIn("sandwich-section.svg?layout=7", page)
+            self.assertIn("u214-dock-top-view.svg?layout=1", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
@@ -143,8 +144,8 @@ class ProductSiteTests(unittest.TestCase):
             "AS02404PO",
             "Keystone Electronics 1048P",
             "M5Stack U214",
-            "Samtec SSW-107-02-S-D-RA",
-            "U214 slides into/out of its side-entry socket",
+            "Samtec SSW-107-02-S-D",
+            "U214 presses onto / lifts from the vertical socket",
             'id="u214-zone" data-plan-y-mm="17..41"',
             'id="battery-zone" data-plan-y-mm="42..128"',
             "separate upper dock",
@@ -161,6 +162,24 @@ class ProductSiteTests(unittest.TestCase):
         }
         self.assertEqual({"u214-zone", "battery-zone"}, set(zones))
         self.assertLessEqual(zones["u214-zone"][1], zones["battery-zone"][0])
+
+    def test_u214_top_view_proves_the_rear_plan_fit(self):
+        layout = self.read("docs/images/u214-dock-top-view.svg")
+        for token in (
+            'data-view="rear-top"',
+            'data-board-mm="75x150"',
+            'id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56"',
+            'id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1"',
+            "rear-face top view",
+            "base PCB · 75 mm",
+            "U214 · 84 mm",
+            "retention · 56 mm",
+            "the two envelopes have a 1.0-mm plan gap",
+            "Samtec SSW-107-02-S-D · vertical 2×7 host socket",
+            "Keystone Electronics 1048P",
+            "insert ⊗ / remove ⊙",
+        ):
+            self.assertIn(token, layout)
 
     def test_principle_component_diagrams_are_public_and_discoverable(self):
         for hardware, schematics in (
@@ -181,7 +200,7 @@ class ProductSiteTests(unittest.TestCase):
                 "AEQ10410",
                 "JS102011SCQN",
                 "1125R-SMT-4P",
-                "SSW-107-02-S-D-RA",
+                "SSW-107-02-S-D",
             ):
                 self.assertIn(token, diagrams)
 
@@ -192,6 +211,7 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/images/current-clamshell.svg",
                 "docs/images/internal-board-layout.svg",
                 "docs/images/sandwich-section.svg",
+                "docs/images/u214-dock-top-view.svg",
             ):
                 self.assertIn(image, landing, name)
             self.assertGreaterEqual(landing.count("```mermaid"), 10, name)

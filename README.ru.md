@@ -36,7 +36,14 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 
 ### Внешние стороны
 
-![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=5)
+![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=6)
+
+### Планка U214 сзади — вид сверху
+
+На плане задней стороны в едином миллиметровом масштабе показаны поднятая
+планка и установленный LoRa Cap 84×24 мм между антеннами и держателем батарей.
+
+![Вид сверху на планку U214 Leshy2](docs/images/u214-dock-top-view.svg?layout=1)
 
 ### Внутренние стороны плат
 
@@ -49,7 +56,7 @@ USB и все отдельные кнопки прошивки, сброса и 
 
 ### Поперечный разрез бутерброда
 
-![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=6)
+![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=7)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
@@ -116,7 +123,7 @@ NRF1["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
 VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
-U214_CONNECTOR["Samtec SSW-107-02-S-D-RA<br/>угловой боковой 14-контактный host Cap-Bus"]
+U214_CONNECTOR["Samtec SSW-107-02-S-D<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
 U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
   RP <-->|"independent PIO0 SM0"| NRF0
   RP <-->|"independent PIO0 SM1"| NRF1

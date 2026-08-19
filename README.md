@@ -37,7 +37,14 @@ are powered down and placed into a verifiable quiet state.
 
 ### External faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=5)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=6)
+
+### Rear U214 dock — top view
+
+This rear-face plan uses one millimetre scale to show the raised rail and
+installed 84×24-mm LoRa Cap between the antenna bank and battery holder.
+
+![Leshy2 U214 dock top view](docs/images/u214-dock-top-view.svg?layout=1)
 
 ### Inner board faces
 
@@ -50,7 +57,7 @@ number inside an outline maps to the adjacent exact MPN and component role.
 
 ### Sandwich cross-section
 
-![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=6)
+![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=7)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
@@ -117,7 +124,7 @@ NRF1["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #1"]
 NRF2["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #2"]
 CC["CC1101RGPR<br/>multi-band sub-GHz transceiver"]
 VOICE["NiceRF SA518<br/>analog VHF/UHF voice transceiver"]
-U214_CONNECTOR["Samtec SSW-107-02-S-D-RA<br/>right-angle side-entry 14-contact Cap-Bus host"]
+U214_CONNECTOR["Samtec SSW-107-02-S-D<br/>vertical 14-contact Cap-Bus host on raised rear rail"]
 U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
   RP <-->|"independent PIO0 SM0"| NRF0
   RP <-->|"independent PIO0 SM1"| NRF1

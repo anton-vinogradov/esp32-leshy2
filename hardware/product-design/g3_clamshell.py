@@ -17,6 +17,7 @@ CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
+U214_TOP_OUTPUT = REPO / "docs/images/u214-dock-top-view.svg"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -30,11 +31,18 @@ U214_W = 84.0
 U214_H = 24.0
 U214_CLEARANCE = 0.7
 U214_CONNECTOR_W = 18.29
-U214_CONNECTOR_D = 8.51
+U214_CONNECTOR_D = 4.95
 U214_CONNECTOR_X = (BOARD_W - U214_CONNECTOR_W) / 2
-# The Cap occupies y=17..41 mm and slides upward in the rear-board plane.
-# Therefore the side-entry socket body ends exactly at the Cap mating edge.
-U214_CONNECTOR_Y = U214_Y - U214_CONNECTOR_D
+# The U214 male Cap-Bus exits normal to its broad rear face.  The exact host
+# socket is therefore vertical on the raised Cardputer-like rear rail and is
+# projected beneath the installed Cap envelope, not beside it.
+U214_CONNECTOR_Y = U214_Y + (U214_H - U214_CONNECTOR_D) / 2
+U214_RETENTION_PITCH = 56.0
+U214_RETENTION_X = (
+    U214_X + (U214_W - U214_RETENTION_PITCH) / 2,
+    U214_X + (U214_W + U214_RETENTION_PITCH) / 2,
+)
+U214_RETENTION_Y = U214_Y + U214_H / 2
 
 # Exact GCT RFPC-SMA31/SMA32 1.6-mm edge-launch family. The 10.2-mm
 # plan width includes the nut envelope; the 6-mm board-side depth comes from
@@ -241,7 +249,7 @@ REAR_OUTER = (
         "u214_connector",
         U214_CONNECTOR_X,
         U214_CONNECTOR_Y,
-        "right-angle side-entry host socket for the rear-flat U214 dock",
+        "vertical host socket on the raised rear U214 rail",
     ),
 )
 
@@ -330,7 +338,7 @@ def validate() -> list[str]:
         "rp": "SC1512-A4",
         "display": "HMX035CTFT-001 (QDtech schematic assembly marking)",
         "u214": "M5Stack U214 Cap LoRa-1262",
-        "u214_connector": "Samtec SSW-107-02-S-D-RA",
+        "u214_connector": "Samtec SSW-107-02-S-D",
         "pack_holder": "Keystone Electronics 1048P",
         "unit_connector": "1125R-SMT-4P",
     }
@@ -367,14 +375,14 @@ def validate() -> list[str]:
     connector = REAR_OUTER[0]
     connector_w, connector_d = placement_size(connector, devices, instances)
     if (connector_w, connector_d) != (U214_CONNECTOR_W, U214_CONNECTOR_D):
-        errors.append("U214 host socket must retain the exact 18.29x8.51-mm plan envelope")
+        errors.append("U214 host socket must retain the exact 18.29x4.95-mm plan envelope")
     if abs(connector.x + connector_w / 2 - (U214_X + U214_W / 2)) > 0.001:
         errors.append("U214 host socket and Cap must share the same 84-mm centreline")
-    if abs(connector.y + connector_d - U214_Y) > 0.001:
-        errors.append("U214 host socket entry face must meet the Cap planar mating edge")
+    if abs(connector.y + connector_d / 2 - (U214_Y + U214_H / 2)) > 0.001:
+        errors.append("U214 host socket must be centred beneath the Cap envelope")
     mechanical = devices[instances["u214_connector"]].get("mechanical_contract", {})
-    if not mechanical.get("orientation", "").startswith("right-angle side-entry"):
-        errors.append("rear-flat U214 dock requires a right-angle side-entry socket")
+    if not mechanical.get("orientation", "").startswith("vertical socket"):
+        errors.append("raised rear U214 rail requires a vertical socket normal to its plane")
     holder_w, holder_h = placement_size(holder, devices, instances)
     u214_box = (U214_X, U214_Y, U214_W, U214_H)
     if overlaps(u214_box, (holder.x, holder.y, holder_w, holder_h), U214_CLEARANCE):
@@ -383,6 +391,10 @@ def validate() -> list[str]:
         if hits_hole(u214_box, hole, U214_CLEARANCE):
             errors.append(f"full U214 envelope lacks 0.7-mm clearance to the M2.5 keep-out at {hole}")
     connector_box = (connector.x, connector.y, connector_w, connector_d)
+    if not overlaps(connector_box, u214_box):
+        errors.append("vertical U214 host socket must project beneath the installed Cap")
+    if any(x < 0.0 or x > BOARD_W for x in U214_RETENTION_X):
+        errors.append("U214 56-mm retention pitch must remain inside the 75-mm base")
     for centre, _, _ in REAR_RF:
         rf_box = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
         if overlaps(connector_box, rf_box, U214_CLEARANCE):
@@ -587,19 +599,24 @@ def render_external(devices, instances):
     out += board(front, "Front / UI face", scale, sx, sy, text, rect)
     out += board(rear, "Rear / battery and expansion face", scale, sx, sy, text, rect)
 
-    # The exact side-entry host socket sits between the RF bank and the Cap.
-    # Its entry face coincides with the Cap's y=17-mm mating edge.
+    # The raised rail occupies the same plan band as the installed Cap.  The
+    # exact vertical socket is hidden beneath the Cap in the assembled view.
+    out.append(rect(rear, 0.0, U214_Y, BOARD_W, U214_H, "#f0f9ff", "#0284c7", "5 3", 4))
     dock = REAR_OUTER[0]
     dock_w, dock_d = placement_size(dock, devices, instances)
-    out.append(rect(rear, dock.x, dock.y, dock_w, dock_d, "#e0f2fe", "#0369a1", rx=2))
-    out.append(text(sx(rear,37.5), sy(rear,dock.y + 4.0), "SSW-107-02-S-D-RA", 4.0, "bold", "middle", "#075985"))
-    out.append(text(sx(rear,37.5), sy(rear,dock.y + 6.3), "side-entry Cap-Bus host", 3.8, anchor="middle", colour="#075985"))
 
     # The installed Cap is a full-size external envelope. Draw it beneath the
     # RF-port annotation layer so it cannot hide port identity or TX evidence.
     out.append(rect(rear, U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", rx=6))
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "M5Stack U214 · exact 84×24-mm plan envelope", 7.3, "bold", "middle", "#9a3412"))
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "mate ↑ toward socket · remove ↓", 6.2, anchor="middle", colour="#dc2626"))
+    out.append(rect(rear, dock.x, dock.y, dock_w, dock_d, "#e0f2fe", "#0369a1", "4 2", 2))
+    for retention_x in U214_RETENTION_X:
+        out.append(
+            f'<circle cx="{sx(rear,retention_x):.1f}" cy="{sy(rear,U214_RETENTION_Y):.1f}" '
+            f'r="{1.6*scale:.1f}" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>'
+        )
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · 84×24 mm", 7.0, "bold", "middle", "#9a3412"))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "raised rail · SSW-107-02-S-D beneath Cap", 5.0, "bold", "middle", "#075985"))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
     out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.1)
 
     display = Placement("display", 10.25, 11.0, "display")
@@ -699,11 +716,11 @@ def render_external(devices, instances):
         text(note_x,105,"What this drawing proves",16,"bold"),
         text(note_x,135,"• both 75×150-mm panels use the same millimetre scale",11),
         text(note_x,158,"• every solid component envelope comes from the MPN register",11),
-        text(note_x,181,"• U214, exact side-entry host socket and Keystone holder all fit",11),
+        text(note_x,181,"• raised U214 rail, vertical host socket and Keystone holder all fit",11),
         text(note_x,204,"• exact components clear all M2.5 hole/head keep-outs",11),
         text(note_x,245,"Interface direction",15,"bold"),
         text(note_x,273,"↑ / ↓ / ← / →  interface faces through that enclosure edge",11),
-        text(note_x,296,"⊗  touch/press enters face     ↑/↓  U214 slides in the rear-board plane",11),
+        text(note_x,296,"⊗ / ⊙  press toward / remove away from the viewed face",11),
         text(note_x,319,"○ / ≋  microphone port and speaker grille are locations, not signal directions",11),
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
@@ -718,7 +735,7 @@ def render_external(devices, instances):
         text(note_x,550,"RF connectors are barrels with hex nuts, not circles.",11,"bold"),
         text(note_x,573,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
         text(note_x,593,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
-        text(note_x,614,"Cap-Bus host: Samtec SSW-107-02-S-D-RA · 2×7 · 2.54 mm · side-entry.",11),
+        text(note_x,614,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
         text(note_x,637,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
         text(note_x,660,"Caps/knob, enclosure wall stack and internal cable lengths remain open.",11),
         text(note_x,683,"Front: single D-pad cap + BACK/OPT. Rear: ENC, F1/F2, PTT, STOP, RE-ARM.",11,"bold"),
@@ -833,6 +850,159 @@ def render_internal(devices, instances):
     return "\n".join(out) + "\n"
 
 
+def render_u214_top(devices, instances):
+    """Render a normal-to-rear-face plan that proves the U214/battery fit."""
+
+    scale = 4.0
+    ox, oy = 170.0, 105.0
+
+    def x(mm):
+        return ox + mm * scale
+
+    def y(mm):
+        return oy + mm * scale
+
+    def t(px, py, value, size=12, weight="normal", anchor="start", colour="#172033"):
+        return (
+            f'<text x="{px:.1f}" y="{py:.1f}" font-family="sans-serif" font-size="{size}" '
+            f'font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
+        )
+
+    def r(mm_x, mm_y, mm_w, mm_h, fill, stroke, dash="", rx=2, extra=""):
+        dotted = f' stroke-dasharray="{dash}"' if dash else ""
+        return (
+            f'<rect x="{x(mm_x):.1f}" y="{y(mm_y):.1f}" width="{mm_w*scale:.1f}" '
+            f'height="{mm_h*scale:.1f}" rx="{rx}" fill="{fill}" stroke="{stroke}" '
+            f'stroke-width="1.6"{dotted}{extra}/>'
+        )
+
+    def h_dim(x1_mm, x2_mm, y_px, label):
+        x1, x2 = x(x1_mm), x(x2_mm)
+        return [
+            f'<line x1="{x1:.1f}" y1="{y_px:.1f}" x2="{x2:.1f}" y2="{y_px:.1f}" stroke="#344054"/>',
+            f'<line x1="{x1:.1f}" y1="{y_px-6:.1f}" x2="{x1:.1f}" y2="{y_px+6:.1f}" stroke="#344054"/>',
+            f'<line x1="{x2:.1f}" y1="{y_px-6:.1f}" x2="{x2:.1f}" y2="{y_px+6:.1f}" stroke="#344054"/>',
+            t((x1+x2)/2, y_px-7, label, 11, "bold", "middle", "#344054"),
+        ]
+
+    def v_dim(y1_mm, y2_mm, x_px, label):
+        y1, y2 = y(y1_mm), y(y2_mm)
+        return [
+            f'<line x1="{x_px:.1f}" y1="{y1:.1f}" x2="{x_px:.1f}" y2="{y2:.1f}" stroke="#344054"/>',
+            f'<line x1="{x_px-6:.1f}" y1="{y1:.1f}" x2="{x_px+6:.1f}" y2="{y1:.1f}" stroke="#344054"/>',
+            f'<line x1="{x_px-6:.1f}" y1="{y2:.1f}" x2="{x_px+6:.1f}" y2="{y2:.1f}" stroke="#344054"/>',
+            t(x_px-9, (y1+y2)/2+4, label, 10, "bold", "end", "#344054"),
+        ]
+
+    cap_mpn = devices[instances["u214"]]["mpn"]
+    socket_mpn = devices[instances["u214_connector"]]["mpn"]
+    holder_mpn = devices[instances["pack_holder"]]["mpn"]
+    holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
+    holder_w, holder_h = placement_size(holder, devices, instances)
+
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="840" viewBox="0 0 1400 840" data-view="rear-top">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        t(30, 34, "Leshy2 — raised U214 dock, rear-face top view", 22, "bold"),
+        t(30, 58, "One millimetre scale for the 75×150-mm base, installed Cap, exact socket, retention and battery holder.", 11, colour="#526076"),
+        r(0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=8, extra=' data-board-mm="75x150"'),
+    ]
+
+    # Exact rear antenna connector bodies and outward barrels.
+    out.append('<g id="rear-antenna-bank" data-plan-y-mm="0..6">')
+    for centre, path, polarity in REAR_RF:
+        out.append(r(centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#eef2f6", "#667085", rx=2))
+        out.append(
+            f'<rect x="{x(centre)-RF_BARREL_D*scale/2:.1f}" y="{y(0)-RF_BARREL_OUT*scale:.1f}" '
+            f'width="{RF_BARREL_D*scale:.1f}" height="{RF_BARREL_OUT*scale:.1f}" '
+            'fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>'
+        )
+        out.append(t(x(centre), y(9.0), path, 6.4, "bold", "middle", "#1d4ed8"))
+    out.append('</g>')
+
+    # Existing base mounting holes and head keep-outs.
+    for hole_x, hole_y in HOLES:
+        out.append(
+            f'<circle cx="{x(hole_x):.1f}" cy="{y(hole_y):.1f}" r="{MOUNT_KEEPOUT_R*scale:.1f}" '
+            'fill="none" stroke="#f97316" stroke-dasharray="5 3"/>'
+        )
+        out.append(
+            f'<circle cx="{x(hole_x):.1f}" cy="{y(hole_y):.1f}" r="{MOUNT_HOLE_D*scale/2:.1f}" '
+            'fill="#ffffff" stroke="#475467" stroke-width="1.5"/>'
+        )
+
+    # The rail is part of the base; the Cap is the larger removable orange
+    # envelope. The connector and two retention points are below the Cap.
+    out += [
+        '<g id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56">',
+        r(0, U214_Y, BOARD_W, U214_H, "#e0f2fe", "#0284c7", "5 3", 4, ' data-part="raised-host-rail"'),
+        r(U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", "", 6, ' fill-opacity="0.72" data-part="installed-u214"'),
+        r(U214_CONNECTOR_X, U214_CONNECTOR_Y, U214_CONNECTOR_W, U214_CONNECTOR_D, "#bae6fd", "#0369a1", "4 2", 2, ' data-part="vertical-host-socket"'),
+    ]
+    for retention_x in U214_RETENTION_X:
+        out.append(
+            f'<circle cx="{x(retention_x):.1f}" cy="{y(U214_RETENTION_Y):.1f}" r="{1.6*scale:.1f}" '
+            'fill="#ffffff" stroke="#0369a1" stroke-width="1.5" data-part="u214-retention"/>'
+        )
+    out += [
+        t(x(37.5), y(21.5), "removable U214 Cap · 84×24 mm", 11, "bold", "middle", "#9a3412"),
+        t(x(37.5), y(26.0), "raised 75-mm rail · vertical socket beneath", 8.5, "bold", "middle", "#075985"),
+        t(x(37.5), y(34.5), "insert ⊗ / remove ⊙", 8.5, "bold", "middle", "#075985"),
+        '</g>',
+    ]
+
+    # Battery holder begins one millimetre after the Cap envelope. It never
+    # shares plan area with the Cap or its rail.
+    out += [
+        '<g id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1">',
+        r(holder.x, holder.y, holder_w, holder_h, "#dcfce7", "#16a34a", "", 12, ' data-part="battery-holder"'),
+    ]
+    for cell_x in (28.0, 47.0):
+        out.append(r(cell_x-9.3, 52.0, 18.6, 65.0, "#ecfdf3", "#22c55e", "", 20, ' data-part="18650-cell"'))
+        out.append(t(x(cell_x), y(86), "18650", 10, "bold", "middle", "#166534"))
+    out += [
+        t(x(37.5), y(124.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
+        '</g>',
+    ]
+
+    # Dimensions: base, Cap, overhang, retention and the two non-overlapping
+    # longitudinal bands. These are documentation annotations, not silk.
+    out += h_dim(0, BOARD_W, 744, "base PCB · 75 mm")
+    out += h_dim(U214_X, U214_X+U214_W, 773, "U214 · 84 mm")
+    out += h_dim(U214_X, 0, y(U214_Y)-10, "4.5")
+    out += h_dim(BOARD_W, U214_X+U214_W, y(U214_Y)-10, "4.5")
+    out += h_dim(U214_RETENTION_X[0], U214_RETENTION_X[1], 802, "retention · 56 mm")
+    out += v_dim(U214_Y, U214_Y+U214_H, x(U214_X)-30, "24 mm")
+    out += v_dim(42.0, 128.0, x(BOARD_W)+34, "86 mm holder")
+
+    note_x = 560.0
+    out += [
+        t(note_x, 112, "Fit result", 17, "bold"),
+        t(note_x, 143, "✓ antenna bodies end at Y=6 mm; the Cap starts at Y=17 mm", 12, "bold", colour="#166534"),
+        t(note_x, 170, "✓ U214 occupies Y=17…41 mm", 12, "bold", colour="#166534"),
+        t(note_x, 197, "✓ battery holder occupies Y=42…128 mm", 12, "bold", colour="#166534"),
+        t(note_x, 224, "✓ the two envelopes have a 1.0-mm plan gap", 12, "bold", colour="#166534"),
+        t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 4.5 mm per side", 12, "bold", colour="#166534"),
+        t(note_x, 278, "✓ 56-mm retention pitch remains inside the 75-mm base", 12, "bold", colour="#166534"),
+        t(note_x, 324, "Selected parts", 15, "bold"),
+        t(note_x, 352, cap_mpn, 11, "bold", colour="#9a3412"),
+        t(note_x, 377, f"{socket_mpn} · vertical 2×7 host socket", 11, "bold", colour="#075985"),
+        t(note_x, 402, f"{holder_mpn} · rotated holder", 11, "bold", colour="#166534"),
+        t(note_x, 448, "Meaning of this view", 15, "bold"),
+        t(note_x, 476, "Rear face viewed normal to the PCB — not a side section.", 11),
+        t(note_x, 501, "Orange: removable Cap envelope; blue: raised host rail/socket.", 11),
+        t(note_x, 526, "Green: holder and cells. Dashed orange: M2.5 keep-outs.", 11),
+        t(note_x, 566, "Still requires specimen/HIL", 15, "bold", colour="#b42318"),
+        t(note_x, 594, "• received-U214 pin length, socket bottoming and repeated-cycle retention", 11),
+        t(note_x, 619, "• rail height/tolerance, screw engagement and enclosure-side clearance", 11),
+        t(note_x, 644, "• connector-to-holder depth clearance in the final enclosure stack", 11),
+        t(note_x, 690, "Dimensioned architecture projection — not a production enclosure drawing.", 11, "bold", colour="#b42318"),
+        t(note_x, 716, "All free text in this mechanical view is documentation annotation, not PCB silkscreen.", 10, colour="#526076"),
+    ]
+    out.append("</svg>")
+    return "\n".join(out) + "\n"
+
+
 def render_sandwich(devices, instances):
     """Render the physical front-to-rear stack with exact selected-part depths."""
 
@@ -918,8 +1088,8 @@ def render_sandwich(devices, instances):
         t(x_rf + pcb_z/2, top + height + 44, "RF/power PCB · 1.6 mm", 10, "bold", "middle", "#c2410c"),
         t(x_holder + holder_installed_z/2, holder_y + holder_h/2 - 8, "1048P + 2× 18650", 10, "bold", "middle", "#166534"),
         t(x_holder + holder_installed_z/2, holder_y + holder_h/2 + 10, "installed depth 20.7 mm", 8.5, anchor="middle", colour="#166534"),
-        t(x_rear_outer + u214_z/2, u214_y + u214_h/2 + 4, "U214 · 15.287 mm", 9, "bold", "middle", "#9a3412"),
-        t(x_rear_outer + u214_connector_z/2, connector_y + connector_h/2 + 3, "SSW · 4.95", 7.5, "bold", "middle", "#075985"),
+        t(x_rear_outer + u214_z - 5, u214_y + u214_h/2 + 4, "U214 · 15.287 mm", 8.5, "bold", "end", "#9a3412"),
+        t(x_rear_outer + u214_connector_z/2, connector_y + connector_h/2 + 3, "2×7", 7.5, "bold", "middle", "#075985"),
         t(x_rear_outer + u214_z, u214_y + u214_h + 13, "separate upper dock", 8.5, "bold", "end", "#9a3412"),
     ]
 
@@ -960,11 +1130,11 @@ def render_sandwich(devices, instances):
         t(note_x, 194, f"• largest shown cavity load: {mpn('speaker')} · {depth('speaker'):.1f} mm", 11),
         t(note_x, 220, f"• battery region: {mpn('pack_holder')} plus Ø18.6-mm cells", 11),
         t(note_x, 246, f"• upper rear expansion: {mpn('u214')} · {depth('u214'):.3f}-mm envelope", 11),
-        t(note_x, 272, f"• Cap-Bus host: {mpn('u214_connector')} · right-angle side-entry", 11),
+        t(note_x, 272, f"• Cap-Bus host: {mpn('u214_connector')} · vertical on raised rail", 11),
         t(note_x, 312, "Interface directions", 15, "bold"),
         t(note_x, 340, "← front: touch/view and front labels", 11),
         t(note_x, 366, "→ rear: batteries, encoder, F1/F2, PTT, STOP and RE-ARM", 11),
-        t(note_x, 392, "↑/↓ on rear face: U214 slides into/out of its side-entry socket", 11),
+        t(note_x, 392, "⊗/⊙ on rear face: U214 presses onto / lifts from the vertical socket", 11),
         t(note_x, 418, "↑ top: nine separately labelled SMA/RP-SMA antenna ports", 11),
         t(note_x, 444, "bottom/sides: USB, microSD, microphone port, headphones and M5 Unit", 11),
         t(note_x, 486, "Clearance meaning", 15, "bold"),
@@ -992,6 +1162,7 @@ def main() -> int:
         EXTERNAL_OUTPUT: render_external(devices, instances),
         INTERNAL_OUTPUT: render_internal(devices, instances),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
+        U214_TOP_OUTPUT: render_u214_top(devices, instances),
     }
     if args.write:
         for path, content in outputs.items():
@@ -1004,7 +1175,7 @@ def main() -> int:
             for path in stale:
                 print(f"error: stale {path}")
             return 1
-        print("ok: external, internal and sandwich mechanical projections are valid and current")
+        print("ok: external, internal, sandwich and U214 top-view mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0

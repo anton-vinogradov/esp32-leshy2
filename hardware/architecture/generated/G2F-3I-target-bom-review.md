@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **195/196** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **184/196** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **865/893** supplied placements; their partial subtotals are `base_product` — USD 191.5749. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **865/893** supplied placements; their partial subtotals are `base_product` — USD 191.3389. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **196/196** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -335,7 +335,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `same_sky_cmej_0413_42_smt_tr` — `Same Sky CMEJ-0413-42-SMT-TR`.
   - `same_sky_sj1_3515_smt_tr` — `Same Sky SJ1-3515-SMT-TR`.
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
-  - `samtec_ssw_107_02_s_d_ra` — `Samtec SSW-107-02-S-D-RA`.
+  - `samtec_ssw_107_02_s_d` — `Samtec SSW-107-02-S-D`.
   - `seeed_1125r_smt_4p` — `1125R-SMT-4P`.
   - `xtar_18650_4000mah_protected` — `XTAR 18650 4000mAh`.
 
@@ -1137,12 +1137,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Samtec SSW-107-02-S-D-RA</code> — 1 × USD 2.6100 = USD 2.6100</summary>
+<details><summary><code>Samtec SSW-107-02-S-D</code> — 1 × USD 2.3740 = USD 2.3740</summary>
 
-- Device id: `samtec_ssw_107_02_s_d_ra`.
+- Device id: `samtec_ssw_107_02_s_d`.
 - Scope: `base_product`.
 - Comparable basis: Samtec OEM quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.samtec.com/products/ssw-107-02-s-d-ra).
+- Checked: `2026-08-19`; [published source](https://www.samtec.com/products/ssw-107-02-s-d).
 
 </details>
 
