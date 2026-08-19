@@ -357,6 +357,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "AS02404PO",
             "2× 18650",
             "M5Stack U214",
+            'id="u214-zone" data-plan-y-mm="17..41"',
+            'id="battery-zone" data-plan-y-mm="42..128"',
+            "separate upper dock",
         ):
             self.assertIn(token, sandwich)
 

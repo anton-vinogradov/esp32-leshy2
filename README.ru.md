@@ -49,7 +49,7 @@ USB и все отдельные кнопки прошивки, сброса и 
 
 ### Поперечный разрез бутерброда
 
-![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=5)
+![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=6)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 

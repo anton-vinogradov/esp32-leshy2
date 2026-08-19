@@ -132,7 +132,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=5", page)
             self.assertIn("internal-board-layout.svg?layout=5", page)
-            self.assertIn("sandwich-section.svg?layout=5", page)
+            self.assertIn("sandwich-section.svg?layout=6", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
@@ -145,9 +145,22 @@ class ProductSiteTests(unittest.TestCase):
             "M5Stack U214",
             "Samtec SSW-107-02-S-D-RA",
             "U214 slides into/out of its side-entry socket",
+            'id="u214-zone" data-plan-y-mm="17..41"',
+            'id="battery-zone" data-plan-y-mm="42..128"',
+            "separate upper dock",
+            "1048P + 2× 18650",
             "Dimensioned architecture projection",
         ):
             self.assertIn(token, layout)
+        zones = {
+            name: tuple(map(float, bounds.split("..")))
+            for name, bounds in re.findall(
+                r'id="(u214-zone|battery-zone)" data-plan-y-mm="([0-9.]+\.\.[0-9.]+)"',
+                layout,
+            )
+        }
+        self.assertEqual({"u214-zone", "battery-zone"}, set(zones))
+        self.assertLessEqual(zones["u214-zone"][1], zones["battery-zone"][0])
 
     def test_principle_component_diagrams_are_public_and_discoverable(self):
         for hardware, schematics in (

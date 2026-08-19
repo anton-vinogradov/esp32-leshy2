@@ -50,7 +50,7 @@ number inside an outline maps to the adjacent exact MPN and component role.
 
 ### Sandwich cross-section
 
-![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=5)
+![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=6)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 

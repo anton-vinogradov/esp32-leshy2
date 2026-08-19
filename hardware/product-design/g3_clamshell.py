@@ -859,30 +859,43 @@ def render_sandwich(devices, instances):
         return f'<path d="M{x1:.1f} {y1:.1f} L{x2:.1f} {y2:.1f}" stroke="#dc2626" stroke-width="1.7" marker-end="url(#arrow)"/>'
 
     z_scale = 12.0
+    plan_scale = 330.0 / BOARD_H
     x0, top, height = 120.0, 125.0, 330.0
     shell = 1.5 * z_scale
     display_z = depth("display") * z_scale
     pcb_z = 1.6 * z_scale
     gap_z = 11.0 * z_scale
     cell_z = 18.6 * z_scale
+    holder_installed_z = float(
+        devices[instances["pack_holder"]]["installed_envelope_mm"][2]
+    ) * z_scale
     x_shell_front = x0
     x_display = x_shell_front + shell
     x_ui = x_display + display_z
     x_gap = x_ui + pcb_z
     x_rf = x_gap + gap_z
-    x_cells = x_rf + pcb_z
-    x_shell_rear = x_cells + cell_z
+    x_holder = x_rf + pcb_z
+    x_cells = x_holder + (holder_installed_z - cell_z) / 2
+    x_shell_rear = x_holder + holder_installed_z
     x_rear_outer = x_shell_rear + shell
     u214_z = depth("u214") * z_scale
     u214_connector_z = depth("u214_connector") * z_scale
-    total_nominal = depth("display") + 11.0 + 1.6 + 18.6
+    total_nominal = (x_shell_rear - x_display) / z_scale
+    u214_y = top + U214_Y * plan_scale
+    u214_h = U214_H * plan_scale
+    connector_y = top + U214_CONNECTOR_Y * plan_scale
+    connector_h = U214_CONNECTOR_D * plan_scale
+    holder_y = top + 42.0 * plan_scale
+    holder_h = 86.0 * plan_scale
+    cells_y = top + 52.0 * plan_scale
+    cells_h = 65.0 * plan_scale
 
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1650" height="720" viewBox="0 0 1650 720">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 34, "Leshy2 — dimensioned front-to-rear sandwich", 22, "bold"),
-        t(30, 58, "Depth uses exact registered part envelopes; enclosure walls and assembly tolerances remain reserves.", 11, colour="#526076"),
+        t(30, 58, "Depth uses exact registered part envelopes; vertical position preserves board Y so the Cap and battery zones cannot be conflated.", 11, colour="#526076"),
         t(x0 - 32, 105, "FRONT", 12, "bold", "middle", "#1d4ed8"),
         t(x_rear_outer + u214_z + 28, 105, "REAR", 12, "bold", "middle", "#166534"),
         r(x_shell_front, top, shell, height, "none", "#ea580c", "6 4", 2),
@@ -890,18 +903,24 @@ def render_sandwich(devices, instances):
         r(x_ui, top, pcb_z, height, "#dcfce7", "#16a34a", rx=1),
         r(x_gap, top, gap_z, height, "#f8fafc", "#94a3b8", "5 4", 2),
         r(x_rf, top, pcb_z, height, "#ffedd5", "#ea580c", rx=1),
-        r(x_cells, top + 38, cell_z, height - 76, "#ecfdf3", "#22c55e", rx=18),
+        '<g id="battery-zone" data-plan-y-mm="42..128">',
+        r(x_holder, holder_y, holder_installed_z, holder_h, "#f0fdf4", "#16a34a", rx=18),
+        r(x_cells, cells_y, cell_z, cells_h, "#dcfce7", "#22c55e", rx=18),
+        '</g>',
         r(x_shell_rear, top, shell, height, "none", "#ea580c", "6 4", 2),
-        r(x_rear_outer, top + 28, u214_z, 96, "#ffedd5", "#ea580c", rx=5),
-        r(x_rear_outer, top + 42, u214_connector_z, 34, "#e0f2fe", "#0369a1", rx=2),
+        '<g id="u214-zone" data-plan-y-mm="17..41">',
+        r(x_rear_outer, u214_y, u214_z, u214_h, "#ffedd5", "#ea580c", rx=5),
+        r(x_rear_outer, connector_y, u214_connector_z, connector_h, "#e0f2fe", "#0369a1", rx=2),
+        '</g>',
         t(x_display + display_z/2, top + height/2, "HMX035CTFT-001", 10, "bold", "middle", "#1d4ed8"),
         t(x_display + display_z/2, top + height/2 + 17, "10.0 mm", 9, anchor="middle", colour="#1d4ed8"),
         t(x_ui + pcb_z/2, top + height + 24, "UI/control PCB · 1.6 mm", 10, "bold", "middle", "#166534"),
         t(x_rf + pcb_z/2, top + height + 44, "RF/power PCB · 1.6 mm", 10, "bold", "middle", "#c2410c"),
-        t(x_cells + cell_z/2, top + height/2, "2× 18650", 11, "bold", "middle", "#166534"),
-        t(x_cells + cell_z/2, top + height/2 + 18, "Ø18.6 mm", 9, anchor="middle", colour="#166534"),
-        t(x_rear_outer + u214_z/2, top + 108, "U214 · 15.287 mm", 9, "bold", "middle", "#9a3412"),
-        t(x_rear_outer + u214_connector_z/2, top + 65, "SSW · 4.95", 7.5, "bold", "middle", "#075985"),
+        t(x_holder + holder_installed_z/2, holder_y + holder_h/2 - 8, "1048P + 2× 18650", 10, "bold", "middle", "#166534"),
+        t(x_holder + holder_installed_z/2, holder_y + holder_h/2 + 10, "installed depth 20.7 mm", 8.5, anchor="middle", colour="#166534"),
+        t(x_rear_outer + u214_z/2, u214_y + u214_h/2 + 4, "U214 · 15.287 mm", 9, "bold", "middle", "#9a3412"),
+        t(x_rear_outer + u214_connector_z/2, connector_y + connector_h/2 + 3, "SSW · 4.95", 7.5, "bold", "middle", "#075985"),
+        t(x_rear_outer + u214_z, u214_y + u214_h + 13, "separate upper dock", 8.5, "bold", "end", "#9a3412"),
     ]
 
     # Representative opposing components prove the useful 11-mm inter-board cavity.
@@ -929,8 +948,8 @@ def render_sandwich(devices, instances):
         t((x_display + x_shell_rear)/2, dim_y + 22, "before enclosure walls, adhesive, solder and tolerance allowance", 9, anchor="middle", colour="#526076"),
         arrow(x_display + 8, top + 20, x_display - 45, top + 20),
         t(x_display - 50, top + 24, "touch/view", 9, "bold", "end", "#dc2626"),
-        arrow(x_cells + cell_z - 8, top + 20, x_shell_rear + 55, top + 20),
-        t(x_shell_rear + 60, top + 24, "cell insertion / rear controls", 9, "bold", colour="#dc2626"),
+        arrow(x_cells + cell_z - 8, holder_y + holder_h/2, x_shell_rear + 55, holder_y + holder_h/2),
+        t(x_shell_rear + 60, holder_y + holder_h/2 + 4, "cell insertion / rear controls", 9, "bold", colour="#dc2626"),
     ]
 
     note_x = 1040.0
