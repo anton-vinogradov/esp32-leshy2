@@ -35,18 +35,9 @@ are powered down and placed into a verifiable quiet state.
 
 ## Device layout
 
-### External faces
+### External and inner board faces
 
 ![Leshy2 external faces](docs/images/current-clamshell.svg?layout=8)
-
-### Complete rear face — top view
-
-This rear-face plan uses one millimetre scale to show the antennas, raised
-rail and installed 84×24-mm LoRa Cap, battery holder and every rear control.
-
-![Leshy2 complete rear-face top view](docs/images/u214-dock-top-view.svg?layout=3)
-
-### Inner board faces
 
 These are the two PCB faces looking into the sandwich. They expose the compute
 and radio modules, speaker, microphone, ON/OFF switch, board-to-board
@@ -55,9 +46,28 @@ number inside an outline maps to the adjacent exact MPN and component role.
 
 ![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=5)
 
-### Sandwich cross-section
+### Rear view
 
-![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=7)
+This view is normal to the rear face, exactly as a user sees it from behind.
+It uses one millimetre scale for the antennas, raised rail, installed LoRa
+Cap, battery holder and rear controls.
+
+![Leshy2 complete rear view](docs/images/u214-dock-top-view.svg?layout=4)
+
+### Top view from the antenna edge
+
+The true top projection looks along the board from its antenna edge and shows
+the sandwich width and depth, both antenna banks and the symmetric Cap
+overhang.
+
+![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=1)
+
+### Sandwich sections
+
+Section A–A crosses the LoRa Cap zone; B–B crosses the battery and rear-control
+zone. Different longitudinal zones are never combined in one projection.
+
+![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=8)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 

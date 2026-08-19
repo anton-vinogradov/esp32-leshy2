@@ -354,17 +354,18 @@ class ArchitectureValidationTests(unittest.TestCase):
             / "docs/images/sandwich-section.svg"
         ).read_text(encoding="utf-8")
         for token in (
-            "Leshy2 — dimensioned front-to-rear sandwich",
+            'data-view="true-sections"',
+            "Leshy2 — two physical cross-sections",
+            "Each panel is one physical cut plane; zones are never combined.",
             "HMX035CTFT-001",
-            "FX8C M1 · 11-mm board-to-board",
+            "FX8C M1 · exact 11-mm board-to-board gap",
             "AS02404PO",
             "2× 18650",
             "M5Stack U214",
-            'id="u214-zone" data-plan-y-mm="17..41"',
-            'id="battery-zone" data-plan-y-mm="42..128"',
-            'id="rear-open-frame" data-continuous-battery-lid="false"',
-            "separate upper dock",
-            "open rear frame — no battery lid",
+            'id="section-u214" data-cut-y-mm="29"',
+            'id="section-battery" data-cut-y-mm="82"',
+            "No battery appears",
+            "No U214 appears",
         ):
             self.assertIn(token, sandwich)
 

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="30.0" y="36.0" font-family="sans-serif" font-size="23" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — true top view from the antenna edge</text>
+<text x="30.0" y="62.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Looking along board +Y. Horizontal is board X; vertical is front-to-rear depth Z.</text>
+<text x="30.0" y="84.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Board Y is collapsed in this orthographic projection; the rear view separately proves U214/battery longitudinal clearance.</text>
+<text x="96.0" y="150.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#1d4ed8">FRONT</text>
+<text x="96.0" y="367.8" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#166534">REAR</text>
+<rect x="238.0" y="145.0" width="436.0" height="90.0" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-instance="display"/>
+<text x="456.0" y="191.8" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001 · display</text>
+<rect x="156.0" y="235.0" width="600.0" height="14.4" rx="1" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="ui-pcb"/>
+<rect x="156.0" y="249.4" width="600.0" height="99.0" rx="1" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" data-board-gap-mm="11"/>
+<rect x="156.0" y="348.4" width="600.0" height="14.4" rx="1" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" data-instance="rf-pcb"/>
+<text x="456.0" y="304.3" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#9d174d">FX8C M1 · 11-mm board gap</text>
+<g id="top-edge-rear-envelopes" data-y-collapsed="true">
+<rect x="120.0" y="362.8" width="672.0" height="137.6" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="7 4" fill-opacity="0.45" data-instance="u214"/>
+<rect x="296.8" y="362.8" width="318.4" height="186.3" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" fill-opacity="0.45" data-instance="pack-holder"/>
+</g>
+<text x="456.0" y="416.8" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#9a3412">U214 · 84 mm wide · Y=17…41</text>
+<text x="456.0" y="523.9" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#166534">1048P + cells · 39.8 mm wide · Y=42…128</text>
+<g id="front-antenna-bank" data-count="4">
+<circle cx="284.0" cy="242.2" r="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="S3-2G4"/>
+<circle cx="396.0" cy="242.2" r="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="C5-2G4/5"/>
+<circle cx="516.0" cy="242.2" r="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="RX-FM/SW"/>
+<circle cx="628.0" cy="242.2" r="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="RX-AM/LW"/>
+</g>
+<g id="rear-antenna-bank" data-count="5">
+<circle cx="264.0" cy="355.6" r="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-0"/>
+<circle cx="360.0" cy="355.6" r="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="CC-SUB"/>
+<circle cx="456.0" cy="355.6" r="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-1"/>
+<circle cx="552.0" cy="355.6" r="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="VOICE-V/U"/>
+<circle cx="648.0" cy="355.6" r="25.4" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="N24-2"/>
+</g>
+<text x="837.0" y="245.8" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">4 front antenna ports · UI/control side</text>
+<text x="837.0" y="359.2" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#9a3412">5 rear antenna ports · RF/power side</text>
+<line x1="156.0" y1="607.1" x2="756.0" y2="607.1" stroke="#344054"/>
+<line x1="156.0" y1="601.1" x2="156.0" y2="613.1" stroke="#344054"/>
+<line x1="756.0" y1="601.1" x2="756.0" y2="613.1" stroke="#344054"/>
+<text x="456.0" y="599.1" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#344054">base PCB · 75 mm</text>
+<line x1="120.0" y1="637.1" x2="792.0" y2="637.1" stroke="#344054"/>
+<line x1="120.0" y1="631.1" x2="120.0" y2="643.1" stroke="#344054"/>
+<line x1="792.0" y1="631.1" x2="792.0" y2="643.1" stroke="#344054"/>
+<text x="456.0" y="629.1" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#9a3412">U214 · 84 mm · symmetric 4.5-mm side overhang</text>
+<text x="920.0" y="150.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What this view proves</text>
+<text x="920.0" y="184.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#166534">✓ 84-mm Cap overhang is 4.5 mm on each side</text>
+<text x="920.0" y="212.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#166534">✓ display width fits the 75-mm base</text>
+<text x="920.0" y="240.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#166534">✓ front and rear antenna banks are distinct</text>
+<text x="920.0" y="268.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#166534">✓ exact board-to-board spacing is 11 mm</text>
+<text x="920.0" y="316.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Projection limits</text>
+<text x="920.0" y="350.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">U214 and battery look superposed only because Y is collapsed.</text>
+<text x="920.0" y="378.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Use the adjacent rear view for their real longitudinal positions.</text>
+<text x="920.0" y="426.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Selected depth references</text>
+<text x="920.0" y="460.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">M5Stack U214 Cap LoRa-1262 · 15.287 mm</text>
+<text x="920.0" y="488.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">Keystone Electronics 1048P · 20.7-mm installed envelope</text>
+<text x="920.0" y="516.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">HMX035CTFT-001 · 10.0 mm</text>
+<text x="920.0" y="564.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Nominal maximum selected-part depth: 44.9 mm</text>
+<text x="920.0" y="590.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">Excludes enclosure walls, solder and manufacturing tolerances.</text>
+<text x="30.0" y="690.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned architecture projection — not a production enclosure drawing.</text>
+</svg>

@@ -17,7 +17,8 @@ CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
-U214_TOP_OUTPUT = REPO / "docs/images/u214-dock-top-view.svg"
+REAR_OUTPUT = REPO / "docs/images/u214-dock-top-view.svg"
+TOP_EDGE_OUTPUT = REPO / "docs/images/top-edge-view.svg"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -929,8 +930,8 @@ def render_internal(devices, instances):
     return "\n".join(out) + "\n"
 
 
-def render_u214_top(devices, instances):
-    """Render a normal-to-rear-face plan that proves the U214/battery fit."""
+def render_rear_face(devices, instances):
+    """Render the rear face as seen by a user looking straight at it."""
 
     scale = 4.0
     ox, oy = 170.0, 105.0
@@ -987,10 +988,10 @@ def render_u214_top(devices, instances):
     holder_w, holder_h = placement_size(holder, devices, instances)
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" data-view="rear-top">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" data-view="rear-face" data-look-direction="rear-to-front">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        t(30, 34, "Leshy2 — complete rear-face top view", 22, "bold"),
-        t(30, 58, "One millimetre scale for antennas, raised U214 rail, battery holder and every rear control.", 11, colour="#526076"),
+        t(30, 34, "Leshy2 — complete rear view", 22, "bold"),
+        t(30, 58, "View normal to the rear face; left and right are shown as seen by the user from behind.", 11, colour="#526076"),
         r(0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=8, extra=' data-board-mm="75x150"'),
     ]
 
@@ -1124,7 +1125,7 @@ def render_u214_top(devices, instances):
     return "\n".join(out) + "\n"
 
 
-def render_sandwich(devices, instances):
+def _render_sandwich_legacy(devices, instances):
     """Render the physical front-to-rear stack with exact selected-part depths."""
 
     def mpn(instance):
@@ -1291,6 +1292,243 @@ def render_sandwich(devices, instances):
     return "\n".join(out) + "\n"
 
 
+def render_sandwich(devices, instances):
+    """Render two real X/Z sections; never merge different board-Y zones."""
+
+    def mpn(instance):
+        return devices[instances[instance]]["mpn"].replace(
+            " (QDtech schematic assembly marking)", ""
+        )
+
+    def depth(instance):
+        return float(devices[instances[instance]]["dimensions_mm"][2])
+
+    def t(x, y, value, size=12, weight="normal", anchor="start", colour="#172033"):
+        return (
+            f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" '
+            f'font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
+        )
+
+    def r(x, y, w, h, fill, stroke, dash="", rx=2, extra=""):
+        dotted = f' stroke-dasharray="{dash}"' if dash else ""
+        return (
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" '
+            f'rx="{rx}" fill="{fill}" stroke="{stroke}" stroke-width="1.5"{dotted}{extra}/>'
+        )
+
+    def line(x1, y1, x2, y2, colour="#344054", dash="", width=1.2):
+        dotted = f' stroke-dasharray="{dash}"' if dash else ""
+        return (
+            f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
+            f'stroke="{colour}" stroke-width="{width}"{dotted}/>'
+        )
+
+    x_scale = 6.5
+    z_scale = 9.0
+    drawing_top = 155.0
+    pcb_front_z = depth("display")
+    ui_rear_z = pcb_front_z + 1.6
+    rf_front_z = ui_rear_z + 11.0
+    base_rear_z = rf_front_z + 1.6
+    holder_depth = float(devices[instances["pack_holder"]]["installed_envelope_mm"][2])
+    battery_rear_z = base_rear_z + holder_depth
+    cap_rear_z = base_rear_z + depth("u214")
+
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820" data-view="true-sections">',
+        '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        t(30, 36, "Leshy2 — two physical cross-sections", 23, "bold"),
+        t(30, 62, "Each panel is one physical cut plane; zones are never combined.", 12, "bold", colour="#b42318"),
+        t(30, 84, "Horizontal: board X. Vertical: front-to-rear depth Z. Both panels look from the antenna edge along +Y.", 11, colour="#526076"),
+    ]
+
+    def panel(panel_x, title, cut_y, kind):
+        origin_x = panel_x + 60.0
+
+        def px(mm):
+            return origin_x + (mm + 4.5) * x_scale
+
+        def pz(mm):
+            return drawing_top + mm * z_scale
+
+        parts = [
+            t(panel_x, 118, title, 18, "bold"),
+            t(panel_x, 140, f"cut plane Y={cut_y:.0f} mm · view from antenna edge", 10.5, colour="#526076"),
+            t(px(-4.5) - 24, pz(0) + 5, "FRONT", 9, "bold", "end", "#1d4ed8"),
+            t(px(-4.5) - 24, pz(base_rear_z) + 5, "REAR", 9, "bold", "end", "#166534"),
+            r(px(10.25), pz(0), 54.5*x_scale, depth("display")*z_scale, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
+            t(px(37.5), pz(5.2), "HMX035CTFT-001", 8.8, "bold", "middle", "#1d4ed8"),
+            r(px(0), pz(pcb_front_z), BOARD_W*x_scale, 1.6*z_scale, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
+            r(px(0), pz(ui_rear_z), BOARD_W*x_scale, 11.0*z_scale, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11"'),
+            r(px(0), pz(rf_front_z), BOARD_W*x_scale, 1.6*z_scale, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
+            t(px(37.5), pz(ui_rear_z+5.8), "FX8C M1 · exact 11-mm board-to-board gap", 8.3, "bold", "middle", "#9d174d"),
+            line(px(0), pz(0), px(0), pz(max(battery_rear_z, cap_rear_z)), "#cbd5e1", "3 3"),
+            line(px(75), pz(0), px(75), pz(max(battery_rear_z, cap_rear_z)), "#cbd5e1", "3 3"),
+        ]
+
+        if kind == "u214":
+            parts += [
+                f'<g id="section-u214" data-cut-y-mm="{cut_y:.0f}" data-contains="u214-no-battery">',
+                r(px(U214_X), pz(base_rear_z), U214_W*x_scale, depth("u214")*z_scale, "#ffedd5", "#ea580c", rx=5, extra=' fill-opacity="0.75" data-instance="u214"'),
+                r(px(U214_CONNECTOR_X), pz(base_rear_z), U214_CONNECTOR_W*x_scale, depth("u214_connector")*z_scale, "#bae6fd", "#0369a1", "4 2", 2, ' data-instance="u214-connector"'),
+                t(px(37.5), pz(base_rear_z+4.7), "Samtec SSW-107-02-S-D · vertical host socket", 7.2, "bold", "middle", "#075985"),
+                t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
+                t(px(37.5), pz(cap_rear_z)+24, "No battery appears: its Y=42…128-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
+                '</g>',
+            ]
+            rear_z = cap_rear_z
+            rear_label = f"base + U214 = {rear_z:.3f} mm"
+        else:
+            holder_x = 17.6
+            holder_w = 39.8
+            parts += [
+                f'<g id="section-battery" data-cut-y-mm="{cut_y:.0f}" data-contains="battery-controls-no-u214">',
+                r(px(holder_x), pz(base_rear_z), holder_w*x_scale, holder_depth*z_scale, "#dcfce7", "#16a34a", rx=12, extra=' data-instance="pack-holder"'),
+                r(px(18.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
+                r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
+                t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
+                r(px(4.2), pz(base_rear_z), 6.6*x_scale, depth("ui_switch_f2")*z_scale, "#e2e8f0", "#64748b", rx=2, extra=' data-instance="F2"'),
+                r(px(60.85), pz(base_rear_z), 13.3*x_scale, depth("stop_switch")*z_scale, "#fee2e2", "#b42318", rx=2, extra=' data-instance="STOP"'),
+                t(px(7.5), pz(base_rear_z+2.7), "F2", 8, "bold", "middle", "#4c1d95"),
+                t(px(67.5), pz(base_rear_z+3.4), "STOP", 8, "bold", "middle", "#b42318"),
+                t(px(37.5), pz(battery_rear_z)+24, "No U214 appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
+                '</g>',
+            ]
+            rear_z = battery_rear_z
+            rear_label = f"base + installed holder = {rear_z:.1f} mm"
+
+        dim_x = px(-4.5) - 42
+        parts += [
+            line(dim_x, pz(0), dim_x, pz(rear_z)),
+            line(dim_x-6, pz(0), dim_x+6, pz(0)),
+            line(dim_x-6, pz(rear_z), dim_x+6, pz(rear_z)),
+            t(dim_x-9, (pz(0)+pz(rear_z))/2, rear_label, 9, "bold", "middle", "#344054").replace(
+                '<text ', f'<text transform="rotate(-90 {dim_x-9:.1f} {((pz(0)+pz(rear_z))/2):.1f})" ', 1
+            ),
+            line(px(0), pz(rear_z)+58, px(75), pz(rear_z)+58),
+            line(px(0), pz(rear_z)+52, px(0), pz(rear_z)+64),
+            line(px(75), pz(rear_z)+52, px(75), pz(rear_z)+64),
+            t(px(37.5), pz(rear_z)+51, "base PCB · 75 mm", 9.5, "bold", "middle", "#344054"),
+        ]
+        if kind == "u214":
+            parts += [
+                line(px(U214_X), pz(rear_z)+88, px(U214_X+U214_W), pz(rear_z)+88),
+                line(px(U214_X), pz(rear_z)+82, px(U214_X), pz(rear_z)+94),
+                line(px(U214_X+U214_W), pz(rear_z)+82, px(U214_X+U214_W), pz(rear_z)+94),
+                t(px(37.5), pz(rear_z)+81, "U214 · 84 mm · 4.5-mm overhang per side", 9.5, "bold", "middle", "#9a3412"),
+            ]
+        return parts
+
+    out += panel(60, "A–A · U214 dock zone", 29.0, "u214")
+    out += panel(780, "B–B · battery/control zone", 82.0, "battery")
+    out += [
+        line(745, 105, 745, 750, "#d0d5dd", "6 5"),
+        t(60, 750, f"Display: {mpn('display')} · 10.0-mm envelope", 10.5, "bold"),
+        t(60, 774, f"Inner component positions—including {mpn('speaker')}—are documented in the adjacent inner-face view.", 10.5, colour="#526076"),
+        t(780, 750, "The sections exclude enclosure walls, solder and manufacturing tolerances.", 10.5, "bold", colour="#b42318"),
+        t(780, 774, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, colour="#526076"),
+        '</svg>',
+    ]
+    return "\n".join(out) + "\n"
+
+
+def render_top_edge(devices, instances):
+    """Render a true orthographic view from the antenna edge along board Y."""
+
+    def mpn(instance):
+        return devices[instances[instance]]["mpn"].replace(
+            " (QDtech schematic assembly marking)", ""
+        )
+
+    def depth(instance):
+        return float(devices[instances[instance]]["dimensions_mm"][2])
+
+    def t(x, y, value, size=12, weight="normal", anchor="start", colour="#172033"):
+        return (
+            f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" '
+            f'font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
+        )
+
+    def r(x, y, w, h, fill, stroke, dash="", rx=2, extra=""):
+        dotted = f' stroke-dasharray="{dash}"' if dash else ""
+        return (
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" '
+            f'rx="{rx}" fill="{fill}" stroke="{stroke}" stroke-width="1.5"{dotted}{extra}/>'
+        )
+
+    scale_x = 8.0
+    scale_z = 9.0
+    ox, oz = 120.0, 145.0
+
+    def x(mm):
+        return ox + (mm + 4.5) * scale_x
+
+    def z(mm):
+        return oz + mm * scale_z
+
+    base_rear_z = 10.0 + 1.6 + 11.0 + 1.6
+    holder_depth = float(devices[instances["pack_holder"]]["installed_envelope_mm"][2])
+    max_rear_z = base_rear_z + holder_depth
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        t(30, 36, "Leshy2 — true top view from the antenna edge", 23, "bold"),
+        t(30, 62, "Looking along board +Y. Horizontal is board X; vertical is front-to-rear depth Z.", 11, "bold", colour="#b42318"),
+        t(30, 84, "Board Y is collapsed in this orthographic projection; the rear view separately proves U214/battery longitudinal clearance.", 11, colour="#526076"),
+        t(x(-4.5)-24, z(0)+5, "FRONT", 9, "bold", "end", "#1d4ed8"),
+        t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
+        r(x(10.25), z(0), 54.5*scale_x, 10.0*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
+        t(x(37.5), z(5.2), "HMX035CTFT-001 · display", 9.5, "bold", "middle", "#1d4ed8"),
+        r(x(0), z(10.0), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
+        r(x(0), z(11.6), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11"'),
+        r(x(0), z(22.6), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
+        t(x(37.5), z(17.7), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
+        '<g id="top-edge-rear-envelopes" data-y-collapsed="true">',
+        r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
+        r(x(17.6), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
+        '</g>',
+        t(x(37.5), z(base_rear_z+6.0), "U214 · 84 mm wide · Y=17…41", 9, "bold", "middle", "#9a3412"),
+        t(x(37.5), z(base_rear_z+17.9), "1048P + cells · 39.8 mm wide · Y=42…128", 9, "bold", "middle", "#166534"),
+        '<g id="front-antenna-bank" data-count="4">',
+    ]
+    for centre, path, _ in FRONT_RF:
+        out.append(f'<circle cx="{x(centre):.1f}" cy="{z(10.8):.1f}" r="{RF_BARREL_D*scale_x/2:.1f}" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="{path}"/>')
+    out += ['</g>', '<g id="rear-antenna-bank" data-count="5">']
+    for centre, path, _ in REAR_RF:
+        out.append(f'<circle cx="{x(centre):.1f}" cy="{z(23.4):.1f}" r="{RF_BARREL_D*scale_x/2:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{path}"/>')
+    out += [
+        '</g>',
+        t(x(79.5)+45, z(11.2), "4 front antenna ports · UI/control side", 10, "bold", colour="#1d4ed8"),
+        t(x(79.5)+45, z(23.8), "5 rear antenna ports · RF/power side", 10, "bold", colour="#9a3412"),
+        f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
+        f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
+        f'<line x1="{x(75):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
+        t(x(37.5), z(max_rear_z)+50, "base PCB · 75 mm", 10, "bold", "middle", "#344054"),
+        f'<line x1="{x(U214_X):.1f}" y1="{z(max_rear_z)+88:.1f}" x2="{x(U214_X+U214_W):.1f}" y2="{z(max_rear_z)+88:.1f}" stroke="#344054"/>',
+        f'<line x1="{x(U214_X):.1f}" y1="{z(max_rear_z)+82:.1f}" x2="{x(U214_X):.1f}" y2="{z(max_rear_z)+94:.1f}" stroke="#344054"/>',
+        f'<line x1="{x(U214_X+U214_W):.1f}" y1="{z(max_rear_z)+82:.1f}" x2="{x(U214_X+U214_W):.1f}" y2="{z(max_rear_z)+94:.1f}" stroke="#344054"/>',
+        t(x(37.5), z(max_rear_z)+80, "U214 · 84 mm · symmetric 4.5-mm side overhang", 10, "bold", "middle", "#9a3412"),
+        t(920, 150, "What this view proves", 16, "bold"),
+        t(920, 184, "✓ 84-mm Cap overhang is 4.5 mm on each side", 11, "bold", colour="#166534"),
+        t(920, 212, "✓ display width fits the 75-mm base", 11, "bold", colour="#166534"),
+        t(920, 240, "✓ front and rear antenna banks are distinct", 11, "bold", colour="#166534"),
+        t(920, 268, "✓ exact board-to-board spacing is 11 mm", 11, "bold", colour="#166534"),
+        t(920, 316, "Projection limits", 16, "bold"),
+        t(920, 350, "U214 and battery look superposed only because Y is collapsed.", 11),
+        t(920, 378, "Use the adjacent rear view for their real longitudinal positions.", 11),
+        t(920, 426, "Selected depth references", 16, "bold"),
+        t(920, 460, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10.5),
+        t(920, 488, f"{mpn('pack_holder')} · {holder_depth:.1f}-mm installed envelope", 10.5),
+        t(920, 516, f"{mpn('display')} · {depth('display'):.1f} mm", 10.5),
+        t(920, 564, "Nominal maximum selected-part depth: 44.9 mm", 11, "bold", colour="#b42318"),
+        t(920, 590, "Excludes enclosure walls, solder and manufacturing tolerances.", 10.5, colour="#526076"),
+        t(30, 690, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, "bold", colour="#b42318"),
+        '</svg>',
+    ]
+    return "\n".join(out) + "\n"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true")
@@ -1306,7 +1544,8 @@ def main() -> int:
         EXTERNAL_OUTPUT: render_external(devices, instances),
         INTERNAL_OUTPUT: render_internal(devices, instances),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
-        U214_TOP_OUTPUT: render_u214_top(devices, instances),
+        REAR_OUTPUT: render_rear_face(devices, instances),
+        TOP_EDGE_OUTPUT: render_top_edge(devices, instances),
     }
     if args.write:
         for path, content in outputs.items():
@@ -1319,7 +1558,7 @@ def main() -> int:
             for path in stale:
                 print(f"error: stale {path}")
             return 1
-        print("ok: external, internal, sandwich and U214 top-view mechanical projections are valid and current")
+        print("ok: external, internal, rear, top-edge and section mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0

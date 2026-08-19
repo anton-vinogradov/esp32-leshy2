@@ -139,48 +139,48 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=8", page)
             self.assertIn("internal-board-layout.svg?layout=5", page)
-            self.assertIn("sandwich-section.svg?layout=7", page)
-            self.assertIn("u214-dock-top-view.svg?layout=3", page)
+            self.assertIn("sandwich-section.svg?layout=8", page)
+            self.assertIn("u214-dock-top-view.svg?layout=4", page)
+            self.assertIn("top-edge-view.svg?layout=1", page)
+            self.assertLess(
+                page.index("current-clamshell.svg"),
+                page.index("internal-board-layout.svg"),
+            )
+            self.assertLess(
+                page.index("internal-board-layout.svg"),
+                page.index("u214-dock-top-view.svg"),
+            )
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
         for token in (
-            "Leshy2 — dimensioned front-to-rear sandwich",
+            'data-view="true-sections"',
+            "Leshy2 — two physical cross-sections",
+            "Each panel is one physical cut plane; zones are never combined.",
             "HMX035CTFT-001",
-            "FX8C M1 · 11-mm board-to-board",
+            "FX8C M1 · exact 11-mm board-to-board gap",
             "AS02404PO",
             "Keystone Electronics 1048P",
             "M5Stack U214",
             "Samtec SSW-107-02-S-D",
-            "U214 presses onto / lifts from the vertical socket",
-            'id="u214-zone" data-plan-y-mm="17..41"',
-            'id="battery-zone" data-plan-y-mm="42..128"',
-            'id="rear-open-frame" data-continuous-battery-lid="false"',
-            "separate upper dock",
-            "1048P + 2× 18650",
-            "open rear frame — no battery lid",
+            'id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery"',
+            'id="section-battery" data-cut-y-mm="82" data-contains="battery-controls-no-u214"',
+            "No battery appears",
+            "No U214 appears",
+            "Keystone Electronics 1048P + 2× 18650",
             "Dimensioned architecture projection",
         ):
             self.assertIn(token, layout)
-        zones = {
-            name: tuple(map(float, bounds.split("..")))
-            for name, bounds in re.findall(
-                r'id="(u214-zone|battery-zone)" data-plan-y-mm="([0-9.]+\.\.[0-9.]+)"',
-                layout,
-            )
-        }
-        self.assertEqual({"u214-zone", "battery-zone"}, set(zones))
-        self.assertLessEqual(zones["u214-zone"][1], zones["battery-zone"][0])
 
-    def test_u214_top_view_proves_the_rear_plan_fit(self):
+    def test_rear_view_proves_the_rear_plan_fit(self):
         layout = self.read("docs/images/u214-dock-top-view.svg")
         for token in (
-            'data-view="rear-top"',
+            'data-view="rear-face" data-look-direction="rear-to-front"',
             'data-board-mm="75x150"',
             'id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56"',
             'id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1"',
             'id="rear-controls" data-direct-press="F1-F2-PTT-RE-ARM" data-actuator-reserves="STOP" data-enclosure-reserves="RE-ARM-recess-encoder-knob"',
-            "rear-face top view",
+            "complete rear view",
             "base PCB · 75 mm",
             "U214 · 84 mm",
             "retention · 56 mm",
@@ -196,6 +196,25 @@ class ProductSiteTests(unittest.TestCase):
             "Panasonic AEQ10410",
             "Alps Alpine EC11E18244AU",
             "direct buttons and remaining actuator reserves clear the battery and U214 envelopes",
+        ):
+            self.assertIn(token, layout)
+
+    def test_top_edge_view_has_true_axes_and_both_antenna_banks(self):
+        layout = self.read("docs/images/top-edge-view.svg")
+        for token in (
+            'data-view="top-edge" data-look-direction="antenna-edge-to-bottom"',
+            "true top view from the antenna edge",
+            "Looking along board +Y",
+            'id="front-antenna-bank" data-count="4"',
+            'id="rear-antenna-bank" data-count="5"',
+            'data-y-collapsed="true"',
+            "base PCB · 75 mm",
+            "U214 · 84 mm · symmetric 4.5-mm side overhang",
+            "FX8C M1 · 11-mm board gap",
+            "HMX035CTFT-001",
+            "M5Stack U214",
+            "Keystone Electronics 1048P",
+            "Nominal maximum selected-part depth: 44.9 mm",
         ):
             self.assertIn(token, layout)
 
@@ -230,6 +249,7 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/images/internal-board-layout.svg",
                 "docs/images/sandwich-section.svg",
                 "docs/images/u214-dock-top-view.svg",
+                "docs/images/top-edge-view.svg",
             ):
                 self.assertIn(image, landing, name)
             self.assertGreaterEqual(landing.count("```mermaid"), 10, name)

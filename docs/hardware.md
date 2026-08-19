@@ -112,18 +112,20 @@ In one line below the display, user-facing actual-transmit labels cover
 same names and also states the required frequency and `SMA`/`RP-SMA` type.
 The two Si4732 antenna inputs are receive-only.
 
-The complete rear-face top view projects every exact control body. F1/F2/PTT
-and RE-ARM are the directly visible solid switch bodies; STOP retains a dashed
-actuator reserve, RE-ARM a dashed protective recess, and the encoder a dashed
-knob reserve pending final depth, feel and sealing qualification.
-
 ![Dimensioned external layout](images/current-clamshell.svg?layout=8)
-
-![Dimensioned complete rear-face top view](images/u214-dock-top-view.svg?layout=3)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=5)
 
-![Dimensioned sandwich cross-section](images/sandwich-section.svg?layout=7)
+The complete rear view projects every exact control body. F1/F2/PTT and
+RE-ARM are the directly visible solid switch bodies; STOP retains a dashed
+actuator reserve, RE-ARM a dashed protective recess, and the encoder a dashed
+knob reserve pending final depth, feel and sealing qualification.
+
+![Dimensioned complete rear view](images/u214-dock-top-view.svg?layout=4)
+
+![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=1)
+
+![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=8)
 
 ## Power and service
 
