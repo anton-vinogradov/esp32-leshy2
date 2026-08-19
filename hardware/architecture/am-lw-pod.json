@@ -80,6 +80,44 @@
     "estimated_component_material_usd_at_100": 4.36,
     "excluded_from_estimate": ["interface PCB", "housing", "winding and assembly", "test", "packaging", "yield", "freight", "tax"]
   },
+  "paper_alternate": {
+    "assembly_id": "L2-ANT-AM-LW-ALT01",
+    "status": "selected_geometry_alternate_hil_open_not_source_independent",
+    "purpose": "second buildable geometry for the same passive direct-plug AM/LW role",
+    "core": {
+      "mpn": "3061990891",
+      "manufacturer": "Fair-Rite",
+      "material": "61",
+      "diameter_mm": 5.0,
+      "length_mm": 35.0,
+      "rod_permeability": 24,
+      "manufacturer_suggested_frequency_mhz": [0.2, 5.0],
+      "spec": "https://fair-rite.com/product/antennarfid-rods-3061990891/"
+    },
+    "winding": {
+      "wire_mpn": "38SNSP.125",
+      "initial_setup_turns": 143,
+      "derivation": "setup-only square-root scaling from the first geometry; measured inductance overrides the calculated turn count",
+      "inductance_target_uh_at_100khz": 300,
+      "inductance_tolerance_percent": 5
+    },
+    "connector": {
+      "mpn": "CONSMA013.062-G",
+      "manufacturer": "TE Connectivity Linx",
+      "termination": "SMA male edge mount for 0.062-inch PCB",
+      "spec": "https://www.te.com/de/product-L9000275-01.html"
+    },
+    "availability_snapshot": {
+      "date": "2026-08-20",
+      "core_stock": 2569,
+      "core_unit_price_usd_at_100": 0.71,
+      "connector_stock": 1256,
+      "connector_unit_price_usd_at_100": 6.43,
+      "estimated_component_material_usd_at_100": 7.18,
+      "same_estimate_exclusions_as_first_target": true
+    },
+    "substitution_limit": "this is not a source-independent alternate because the core remains Fair-Rite material 61 and the winding uses the same Remington wire; qualify it as a separate assembly, including the 153-200-kHz boundary"
+  },
   "qualification": {
     "status": "open",
     "required_evidence": [
@@ -89,6 +127,7 @@
       "prove LW 153-279-kHz tuning and sensitivity, explicitly including 153-200 kHz below the core maker's suggested 0.2-MHz boundary",
       "prove that the unselected radios, display, storage and power converters enter their quiet states during AM/LW receive",
       "prove ESD, connector torque, bending, repeated mating, drop and orientation-null behaviour"
+      ,"build and qualify L2-ANT-AM-LW-ALT01 independently rather than inferring performance from its calculated starting turn count"
     ],
     "claim_boundary": "The assembly identity and constituent first-target MPNs are selected; AM/LW performance is not production-qualified until every required measurement passes."
   },

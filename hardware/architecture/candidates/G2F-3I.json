@@ -152,13 +152,13 @@
         "quantity": 12,
         "scope": "costed_product_variant",
         "role": "two native, three nRF, three CC, two voice and two receiver antennas/pods",
-        "blocker": "exact first targets are selected for all 12 physical items; qualified alternates, assembled-device HIL and package-variant costing remain open",
+        "blocker": "exact first targets and paper alternates are selected for all 12 physical items; AM/LW source independence, alternate qualification, assembled-device HIL and package-variant costing remain open",
         "resolution_gate": {
           "status": "profile_variant_bom_and_hil_required",
           "owner_stage": "G3 physical design plus product-variant qualification before antenna-kit freeze",
           "prerequisites": [
             "freeze final external connector plane, target ground/counterpoise environment and the twelve-item profiled-kit packaging manifest",
-            "retain the exact L2-ANT-AM-LW-001 controlled passive-pod design and fail-closed TX profile selection from DEC-0055"
+            "retain the exact L2-ANT-AM-LW-001 controlled passive-pod design, its L2-ANT-AM-LW-ALT01 geometry fallback and fail-closed TX profile selection from DEC-0055"
           ],
           "acceptance": [
             "name exact current orderable first-target and qualified-alternate MPNs for every antenna profile, with twelve physical kit items and no missing AM/LW identity",

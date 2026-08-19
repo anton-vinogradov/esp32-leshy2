@@ -55,17 +55,39 @@ The core maker suggests material 61 from 0.2 MHz, so LW reception from
 153–200 kHz remains an explicit prototype test and is not yet a qualified
 sensitivity claim.
 
-## Selection and remaining qualification
+## Backup choices
 
-An exact first target is selected for all 12 physical items. Availability
-was checked at selection time: the volume TE/Taoglas parts have authorized
-distributor stock, Ebyte accepts direct sample/quantity RFQs, and the Hytera
-and Comet items are sold as finished accessories; the AM/LW pod has a controlled
-assembly specification made from currently orderable parts. The dated price and stock
-snapshot is retained in the [machine manifest](../hardware/architecture/antenna-kit.json).
+An orderable backup candidate is named for every one of the 12 items:
 
-The kit is not yet production-qualified. It still needs independent alternates
-and assembled-device measurements for match, receive
-sensitivity, EIRP, harmonics, coexistence, connector load and operation with
-all nine ports populated. `SMA-W100RX2` is documented only from 25 MHz, so no
+- `WI-FI/BLE` and `WI-FI/15.4` — Taoglas [`GW.05.0153`](https://www.taoglas.com/datasheets/GW.05.0153.pdf);
+- all three `nRF24` items — Pulse [`W1010`](https://www.digikey.com/en/products/detail/pulse-electronics/W1010/1616689);
+- 315-MHz `SUB-GHz` — Joymax [`UHX-328ASA2B`](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978), for the exact 315-MHz profile only;
+- 433-MHz `SUB-GHz` — Joymax [`UHX-325ASAXB`](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-325ASAXB/26742115), for the narrow 433-MHz profile only;
+- 868/915-MHz `SUB-GHz` — Joymax [`GHX-221ASA3B`](https://www.digikey.com/en/products/detail/joymax-electronics/GHX-221ASA3B/27545760);
+- VHF — Pulse [`SPWB24150`](https://www.pulseelectronics.com/wp-content/uploads/2021/01/PulseLarsen_Portables_Flyer_2017.pdf), whose current stocked quantity is too low for a production commitment;
+- UHF — Hytera [`AN0435H25`](https://www.hytera.com/br/product-new/accessories/radio-antennas/an0435h25.html);
+- `FM/SW RX` — remote receive-only Opek [`SCANSMA 25-1300`](https://www.hamradio.com/detail.cfm?pid=H0-016713);
+- `AM/LW LOOP` — controlled assembly [`L2-ANT-AM-LW-ALT01`](../hardware/architecture/am-lw-pod.json) using core `3061990891` and connector `CONSMA013.062-G`.
+
+These are purchasing and test backups, not permission for silent substitution.
+Narrower antennas enable only the stated firmware profile. Every substitution
+must repeat assembled-device match, sensitivity, EIRP, harmonic, coexistence
+and mechanical tests. The AM/LW candidate supplies a second geometry but not
+yet an independent source: its core material and winding wire retain the same
+manufacturers.
+
+## Kit readiness and cost
+
+First and backup choices are named for all 12 physical items; 11 backup items
+are independent of their first target's manufacturer. No backup has completed
+hardware qualification yet. Availability, price and limits dated 20 August
+2026 are retained in the [machine manifest](../hardware/architecture/antenna-kit.json).
+
+Using comparable public prices, the backup saves $18.88 for the two native
+antennas, $6.39 for the 433-MHz antenna and $20 for the remote FM/SW antenna.
+The 315-MHz estimate is about $3.71, but it compares different quantity tiers.
+The 868/915-MHz backup adds $0.49. No total is shown because Ebyte is RFQ-only,
+VHF/UHF lack comparable volume tiers, and AM/LW pricing excludes assembly.
+
+Both `SMA-W100RX2` and `SCANSMA 25-1300` are documented only from 25 MHz, so no
 below-25-MHz performance is claimed before hardware testing.

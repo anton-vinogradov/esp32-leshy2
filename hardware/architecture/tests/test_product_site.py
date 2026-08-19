@@ -126,7 +126,21 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(12, manifest["physical_item_count"])
         self.assertEqual(12, manifest["exact_target_item_count"])
+        self.assertEqual(12, manifest["paper_alternate_item_count"])
+        self.assertEqual(11, manifest["supply_independent_alternate_item_count"])
+        self.assertEqual(0, manifest["hil_qualified_alternate_item_count"])
         self.assertEqual(12, sum(item["quantity"] for item in manifest["items"]))
+        self.assertEqual(12, sum("alternate" in item for item in manifest["items"]))
+        self.assertEqual(
+            11,
+            sum(
+                item["alternate"]["manufacturer_independent_from_first_target"]
+                for item in manifest["items"]
+            ),
+        )
+        self.assertTrue(
+            all("hil_open" in item["alternate"]["status"] for item in manifest["items"])
+        )
         self.assertEqual(9, manifest["maximum_simultaneously_connected"])
         self.assertEqual(
             candidate["antenna_policy"]["full_field_kit_physical_items"],
@@ -163,6 +177,9 @@ class ProductSiteTests(unittest.TestCase):
                 "001-0012", "TX2400-JW-5", "ANT-315-CW-HW-SMA",
                 "ANT-433-CW-QW-SMA", "TI.08.C.0112", "AN0155H13",
                 "SMA-W100RX2", "L2-ANT-AM-LW-001", "3061990901",
+                "GW.05.0153", "W1010", "UHX-328ASA2B",
+                "UHX-325ASAXB", "GHX-221ASA3B", "SPWB24150",
+                "AN0435H25", "SCANSMA 25-1300", "L2-ANT-AM-LW-ALT01",
             ):
                 self.assertIn(token, page)
 
@@ -177,6 +194,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("3061990901", pod["electrical_design"]["core"]["mpn"])
         self.assertEqual(
             "RF2-154-T-17-50-G", pod["interface"]["connector_mpn"]
+        )
+        self.assertEqual("L2-ANT-AM-LW-ALT01", pod["paper_alternate"]["assembly_id"])
+        self.assertEqual("3061990891", pod["paper_alternate"]["core"]["mpn"])
+        self.assertEqual(
+            "CONSMA013.062-G", pod["paper_alternate"]["connector"]["mpn"]
         )
         self.assertEqual(
             300,

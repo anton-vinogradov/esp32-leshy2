@@ -1,9 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "snapshot_date": "2026-08-20",
   "variant": "full_field_kit",
   "physical_item_count": 12,
   "exact_target_item_count": 12,
+  "paper_alternate_item_count": 12,
+  "supply_independent_alternate_item_count": 11,
+  "hil_qualified_alternate_item_count": 0,
   "maximum_simultaneously_connected": 9,
   "connector_rule": {
     "rp_sma_ports": "antenna must have an RP-SMA male plug with socket centre contact",
@@ -27,6 +30,23 @@
         "url": "https://www.mouser.com/ProductDetail/TE-Connectivity/001-0012?qs=k2piNBSag38h55ME6Wcqyg%3D%3D",
         "stock": 711,
         "unit_price_usd_at_100": 16.91
+      },
+      "alternate": {
+        "mpn": "GW.05.0153",
+        "manufacturer": "Taoglas",
+        "termination": "RP-SMA male",
+        "specified_bands_mhz": [[2400, 2500], [5150, 5850]],
+        "maximum_input_power_w": 10,
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.taoglas.com/datasheets/GW.05.0153.pdf",
+        "availability": {
+          "source": "Symmetry Electronics",
+          "url": "https://www.symmetryelectronics.com/products/taoglas/gw-05-0153/",
+          "stock": 574,
+          "unit_price_usd_at_100": 7.47
+        },
+        "substitution_limit": "profile HIL and a new measured EIRP ceiling are mandatory because gain and ground-plane response differ from the first target"
       }
     },
     {
@@ -46,6 +66,23 @@
         "url": "https://www.mouser.com/ProductDetail/TE-Connectivity/001-0012?qs=k2piNBSag38h55ME6Wcqyg%3D%3D",
         "stock": 711,
         "unit_price_usd_at_100": 16.91
+      },
+      "alternate": {
+        "mpn": "GW.05.0153",
+        "manufacturer": "Taoglas",
+        "termination": "RP-SMA male",
+        "specified_bands_mhz": [[2400, 2500], [5150, 5850]],
+        "maximum_input_power_w": 10,
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.taoglas.com/datasheets/GW.05.0153.pdf",
+        "availability": {
+          "source": "Symmetry Electronics",
+          "url": "https://www.symmetryelectronics.com/products/taoglas/gw-05-0153/",
+          "stock": 574,
+          "unit_price_usd_at_100": 7.47
+        },
+        "substitution_limit": "profile HIL and a new measured EIRP ceiling are mandatory because gain and ground-plane response differ from the first target"
       }
     },
     {
@@ -65,6 +102,23 @@
         "url": "https://www.ebyte.com/product/495.html",
         "order_route": "manufacturer sample purchase or quantity RFQ",
         "unit_price_usd_at_100": null
+      },
+      "alternate": {
+        "mpn": "W1010",
+        "manufacturer": "Pulse Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[2400, 2500]],
+        "peak_gain_dbi": 2.0,
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://productfinder.pulseelectronics.com/products/datasheets/w1010.pdf",
+        "availability": {
+          "source": "DigiKey",
+          "url": "https://www.digikey.com/en/products/detail/pulse-electronics/W1010/1616689",
+          "stock": 16121,
+          "unit_price_usd_at_100": 3.8414
+        },
+        "substitution_limit": "covers the product nRF24 profile but still requires three-branch enclosure, coexistence and connector-load HIL"
       }
     },
     {
@@ -84,6 +138,23 @@
         "url": "https://www.ebyte.com/product/495.html",
         "order_route": "manufacturer sample purchase or quantity RFQ",
         "unit_price_usd_at_100": null
+      },
+      "alternate": {
+        "mpn": "W1010",
+        "manufacturer": "Pulse Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[2400, 2500]],
+        "peak_gain_dbi": 2.0,
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://productfinder.pulseelectronics.com/products/datasheets/w1010.pdf",
+        "availability": {
+          "source": "DigiKey",
+          "url": "https://www.digikey.com/en/products/detail/pulse-electronics/W1010/1616689",
+          "stock": 16121,
+          "unit_price_usd_at_100": 3.8414
+        },
+        "substitution_limit": "covers the product nRF24 profile but still requires three-branch enclosure, coexistence and connector-load HIL"
       }
     },
     {
@@ -103,6 +174,23 @@
         "url": "https://www.ebyte.com/product/495.html",
         "order_route": "manufacturer sample purchase or quantity RFQ",
         "unit_price_usd_at_100": null
+      },
+      "alternate": {
+        "mpn": "W1010",
+        "manufacturer": "Pulse Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[2400, 2500]],
+        "peak_gain_dbi": 2.0,
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://productfinder.pulseelectronics.com/products/datasheets/w1010.pdf",
+        "availability": {
+          "source": "DigiKey",
+          "url": "https://www.digikey.com/en/products/detail/pulse-electronics/W1010/1616689",
+          "stock": 16121,
+          "unit_price_usd_at_100": 3.8414
+        },
+        "substitution_limit": "covers the product nRF24 profile but still requires three-branch enclosure, coexistence and connector-load HIL"
       }
     },
     {
@@ -123,6 +211,24 @@
         "stock": 424,
         "unit_price_usd_at_1": 9.60,
         "unit_price_usd_at_250": 9.275
+      },
+      "alternate": {
+        "mpn": "UHX-328ASA2B",
+        "manufacturer": "Joymax Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[312, 317]],
+        "peak_gain_dbi": -0.4,
+        "maximum_input_power_w": 1,
+        "status": "selected_paper_alternate_hil_open_exact_315_profile_only",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://file.joymax.com.tw/Datasheet/UHX-328Acc2B_DS_RevA.pdf",
+        "availability": {
+          "source": "DigiKey",
+          "url": "https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978",
+          "stock": 958,
+          "unit_price_usd_at_100": 5.5693
+        },
+        "substitution_limit": "valid only for the exact 315-MHz product profile; it is not a broad 304-325-MHz substitute and TX power must remain within both antenna and legal limits"
       }
     },
     {
@@ -143,6 +249,24 @@
         "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-433-CW-QW-SMA?qs=XYAu1o%252BHdOKINRzlq1JrLQ%3D%3D",
         "stock": 440,
         "unit_price_usd_at_100": 11.23
+      },
+      "alternate": {
+        "mpn": "UHX-325ASAXB",
+        "manufacturer": "Joymax Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[410, 427], [433, 435]],
+        "peak_gain_dbi_at_433_435": -1.0,
+        "maximum_input_power_w": 1,
+        "status": "selected_paper_alternate_hil_open_exact_433_profile_only",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.digikey.com/en/products/detail/joymax-electronics/UHX-325ASAXB/26742115",
+        "availability": {
+          "source": "DigiKey",
+          "url": "https://www.digikey.com/en/products/detail/joymax-electronics/UHX-325ASAXB/26742115",
+          "stock": 998,
+          "unit_price_usd_at_100": 4.8421
+        },
+        "substitution_limit": "valid only for the narrow 433-MHz product profile; it does not replace the first target for general 400-470-MHz use"
       }
     },
     {
@@ -164,6 +288,24 @@
         "stock": 222,
         "unit_price_usd_at_100": 4.7866,
         "note": "distributor single-band metadata is superseded by the current Taoglas dual-band datasheet"
+      },
+      "alternate": {
+        "mpn": "GHX-221ASA3B",
+        "manufacturer": "Joymax Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[862, 876], [902, 928]],
+        "peak_gain_dbi_by_band": {"868": 1.4, "915": 3.1},
+        "maximum_input_power_w": 1,
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.digikey.com/en/products/detail/joymax-electronics/GHX-221ASA3B/27545760",
+        "availability": {
+          "source": "DigiKey",
+          "url": "https://www.digikey.com/en/products/detail/joymax-electronics/GHX-221ASA3B/27545760",
+          "stock": 949,
+          "unit_price_usd_at_100": 5.2742
+        },
+        "substitution_limit": "both regional bands require assembled-device HIL and independent EIRP ceilings; the alternate is not a higher-power antenna"
       }
     },
     {
@@ -182,6 +324,23 @@
         "url": "https://www.hitechwireless.com/hytera-an0155h13-vhf-helical-antenna-136-174-mhz-gps-sma-male-20-cm/",
         "unit_price_usd_at_1": 31.70,
         "unit_price_usd_at_100": null
+      },
+      "alternate": {
+        "mpn": "SPWB24150",
+        "manufacturer": "Pulse Electronics",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[136, 174]],
+        "status": "selected_paper_alternate_hil_open_low_stock",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.pulseelectronics.com/wp-content/uploads/2021/01/PulseLarsen_Portables_Flyer_2017.pdf",
+        "availability": {
+          "source": "Mouser",
+          "url": "https://www.mouser.ie/en/ProductDetail/Pulse-Electronics/SPWB24150?qs=l7cgNqFNU1hhMU2IvIX9bA%3D%3D",
+          "stock": 7,
+          "unit_price_eur_at_1": 45.47,
+          "unit_price_eur_at_100": 33.57
+        },
+        "substitution_limit": "exact-band backup but current stocked quantity is too low for a production commitment; mechanical seating and complete voice-path HIL remain mandatory"
       }
     },
     {
@@ -202,6 +361,23 @@
         "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-433-CW-QW-SMA?qs=XYAu1o%252BHdOKINRzlq1JrLQ%3D%3D",
         "stock": 440,
         "unit_price_usd_at_100": 11.23
+      },
+      "alternate": {
+        "mpn": "AN0435H25",
+        "manufacturer": "Hytera",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[400, 470]],
+        "status": "selected_paper_alternate_hil_open",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.hytera.com/br/product-new/accessories/radio-antennas/an0435h25.html",
+        "availability": {
+          "source": "DMR24",
+          "url": "https://www.dmr24.com/en/hytera-uhf-gps-antenna-9cm-stubby-400-470mhz-an0435h25/ar504039",
+          "stock": 10,
+          "unit_price_eur_at_1": 16.18,
+          "unit_price_eur_at_100": null
+        },
+        "substitution_limit": "connector seating, power rating, feed loss and complete UHF voice HIL remain mandatory before substitution"
       }
     },
     {
@@ -221,6 +397,23 @@
         "stock_state": "in_stock",
         "unit_price_usd_at_1": 35.95,
         "unit_price_usd_at_100": null
+      },
+      "alternate": {
+        "mpn": "SCANSMA 25-1300",
+        "manufacturer": "Opek",
+        "termination": "SMA male on 12-ft RG-174 cable",
+        "specified_bands_mhz": [[25, 1300]],
+        "status": "selected_paper_alternate_hil_open_remote_receive_accessory",
+        "manufacturer_independent_from_first_target": true,
+        "primary_spec": "https://www.hamradio.com/detail.cfm?pid=H0-016713",
+        "availability": {
+          "source": "Ham Radio Outlet",
+          "url": "https://www.hamradio.com/detail.cfm?pid=H0-016713",
+          "stock_state": "in_stock",
+          "unit_price_usd_at_1": 15.95,
+          "unit_price_usd_at_100": null
+        },
+        "substitution_limit": "remote magnetic-mount receive accessory rather than a direct whip; cable capacitance/loss, enclosure noise and below-25-MHz performance remain outside the claim"
       }
     },
     {
@@ -240,17 +433,46 @@
         "url": "am-lw-pod.json",
         "estimated_component_material_usd_at_100": 4.36,
         "note": "PCB, housing, winding, assembly, test, packaging, yield, freight and tax are excluded"
+      },
+      "alternate": {
+        "mpn": "L2-ANT-AM-LW-ALT01",
+        "manufacturer": "Leshy2 controlled assembly",
+        "termination": "SMA male",
+        "specified_bands_mhz": [[0.153, 0.279], [0.520, 1.710]],
+        "status": "selected_geometry_alternate_hil_open_not_source_independent",
+        "manufacturer_independent_from_first_target": false,
+        "primary_spec": "am-lw-pod.json",
+        "constituent_mpns": ["3061990891", "38SNSP.125", "CONSMA013.062-G"],
+        "availability": {
+          "source": "controlled assembly from currently orderable constituents",
+          "url": "am-lw-pod.json",
+          "estimated_component_material_usd_at_100": 7.18,
+          "note": "PCB, housing, winding, assembly, test, packaging, yield, freight and tax are excluded"
+        },
+        "substitution_limit": "a controlled geometry fallback only; it still shares the Fair-Rite core family and Remington wire source, and it requires a separately measured winding and complete receiver HIL"
       }
     }
   ],
   "qualification": {
-    "status": "first_targets_selected_for_12_of_12_items_hil_and_alternates_open",
+    "status": "first_targets_and_paper_alternates_selected_for_12_of_12_items_hil_open",
     "open_items": [
       "qualify the selected AM/LW controlled assembly across its complete band, especially 153-200 kHz",
-      "qualify an independent alternate for every profile",
+      "qualify every paper alternate on assembled hardware and retain explicit per-profile substitution limits",
+      "select a source-independent AM/LW alternate rather than only a second controlled geometry",
       "measure every antenna on the assembled enclosure and actual ground plane",
       "verify receive sensitivity, TX EIRP, harmonics, coexistence and connector mechanics",
       "request quantity-100 quotes where public tiers are absent"
     ]
+  },
+  "cost_observations": {
+    "basis": "public distributor snapshots only; prices exclude tax, freight and kitting and are not a production quote",
+    "known_comparisons": [
+      {"profile": "two native antennas", "first_target_usd_at_100": 33.82, "alternate_usd_at_100": 14.94, "difference_usd_per_kit": -18.88},
+      {"profile": "315 MHz", "first_target_usd_at_250": 9.275, "alternate_usd_at_100": 5.5693, "approximate_difference_usd_per_item": -3.7057},
+      {"profile": "433 MHz", "first_target_usd_at_100": 11.23, "alternate_usd_at_100": 4.8421, "difference_usd_per_item": -6.3879},
+      {"profile": "868/915 MHz", "first_target_usd_at_100": 4.7866, "alternate_usd_at_100": 5.2742, "difference_usd_per_item": 0.4876},
+      {"profile": "FM/SW receive", "first_target_usd_at_1": 35.95, "alternate_usd_at_1": 15.95, "difference_usd_per_item": -20.0}
+    ],
+    "not_totalled": "nRF first-target price is RFQ-only, VHF/UHF comparisons mix currencies or missing volume tiers, and AM/LW estimates exclude assembly"
   }
 }
