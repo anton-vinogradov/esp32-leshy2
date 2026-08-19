@@ -78,9 +78,10 @@ text input but cannot confirm dangerous actions.
 
 - The rear 14-contact dock accepts `M5Stack U214 Cap LoRa-1262`; the Cap sits
   above the batteries and overhangs the enclosure by 4.5 mm on each side.
-- A separate M5 Unit port provides a protected, switchable 5-V branch and two
-  isolated signal lines for qualified GNSS, LoRa, NFC, iButton/1-Wire and other
-  modules.
+- A separate exact `1125R-SMT-4P` right-angle M5 Unit receptacle provides a
+  protected, switchable 5-V branch and two isolated signal lines for qualified
+  GNSS, LoRa, NFC, iButton/1-Wire and other modules. Its keyed mating-view order
+  is GND, 5 V, SIG0, SIG1.
 - High-throughput raw SDR needs a dedicated interface; the low-rate Unit port
   is not presented as a raw RF data path.
 

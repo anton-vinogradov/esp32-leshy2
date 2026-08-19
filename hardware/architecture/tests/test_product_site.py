@@ -100,6 +100,7 @@ class ProductSiteTests(unittest.TestCase):
             "AS02404PO",
             "CMEJ-0413-42-SMT-TR",
             "JS102011SCQN",
+            "1125R-SMT-4P",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
         ):
@@ -143,6 +144,7 @@ class ProductSiteTests(unittest.TestCase):
                 "USB4105-GF-A",
                 "AEQ10410",
                 "JS102011SCQN",
+                "1125R-SMT-4P",
             ):
                 self.assertIn(token, diagrams)
 

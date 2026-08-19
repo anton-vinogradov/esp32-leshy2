@@ -1151,6 +1151,50 @@
         "MISO": {"physical": "13", "role": "signal"}, "NSS": {"physical": "14", "role": "signal"}
       }
     },
+    "seeed_1125r_smt_4p": {
+      "mpn": "1125R-SMT-4P",
+      "kind": "m5_hy2_0_4p_grove_2mm_right_angle_smt_receptacle",
+      "qualification": "verified_exact_paper_fit_received_cable_hil_open",
+      "lifecycle": "active in Seeed Open Parts Library as PCBA SKU 320110032",
+      "dimensions_mm": [12.0, 9.1, 5.1],
+      "source": {
+        "document": "Seeed 1125R-SMT-4P official manufacturer drawing",
+        "version": "NS-1125-W00010 Rev.A",
+        "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "Seeed Grove Designers Guide exact OPL mapping: PCBA SKU 320110032, MPN 1125R-SMT-4P; multi-pack SKU 114020164",
+        "url": "https://www.seeedstudio.com/blog/2022/11/18/seeed-grove-designers-guide-pcb-design-guidelines-and-more/",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.042,
+        "price_break": "Seeed Open Parts Library published per-placement price applied at target quantity 100",
+        "source": {
+          "document": "Seeed Grove Designers Guide exact OPL part-cost table",
+          "url": "https://www.seeedstudio.com/blog/2022/11/18/seeed-grove-designers-guide-pcb-design-guidelines-and-more/",
+          "checked": "2026-08-19"
+        }
+      },
+      "programmable": false,
+      "electrical_contract": {
+        "positions": 4,
+        "pitch_mm": 2.0,
+        "rated_current_a": 2.0,
+        "rated_voltage_v": 250,
+        "orientation": "right-angle SMT; keyed M5 HY2.0-4P/Grove cable exit through board edge",
+        "m5_mating_view_order": ["GND", "5V", "SIG0", "SIG1"]
+      },
+      "contacts": {
+        "GND": {"physical": "leftmost contact in M5 mating view; black cable", "role": "power"},
+        "5V": {"physical": "second contact in M5 mating view; red cable", "role": "power"},
+        "SIG0": {"physical": "third contact in M5 mating view; yellow cable", "role": "signal"},
+        "SIG1": {"physical": "rightmost contact in M5 mating view; white cable", "role": "signal"}
+      }
+    },
     "hirose_fh12_40s_0_5sh_55": {
       "mpn": "Hirose FH12-40S-0.5SH(55)",
       "kind": "40_position_0_5mm_bottom_contact_zif_fpc_receptacle",

@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **892** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **891** supplied/costed placements collapse to **194** used exact-device/MPN lines.
-- Current orderability evidence exists for **193/194** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **182/194** lines.
+- **893** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **892** supplied/costed placements collapse to **195** used exact-device/MPN lines.
+- Current orderability evidence exists for **194/195** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **183/195** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **863/891** supplied placements; their partial subtotals are `base_product` — USD 188.9229. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **194/194** lines.
+- Those priced lines cover **864/892** supplied placements; their partial subtotals are `base_product` — USD 188.9649. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **195/195** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 888 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 889 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -303,7 +303,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 21 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 22 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -335,6 +335,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `same_sky_cmej_0413_42_smt_tr` — `Same Sky CMEJ-0413-42-SMT-TR`.
   - `same_sky_sj1_3515_smt_tr` — `Same Sky SJ1-3515-SMT-TR`.
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
+  - `seeed_1125r_smt_4p` — `1125R-SMT-4P`.
   - `xtar_18650_4000mah_protected` — `XTAR 18650 4000mAh`.
 
 </details>
@@ -1132,6 +1133,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K-P-TR/5305483).
+
+</details>
+
+<details><summary><code>1125R-SMT-4P</code> — 1 × USD 0.0420 = USD 0.0420</summary>
+
+- Device id: `seeed_1125r_smt_4p`.
+- Scope: `base_product`.
+- Comparable basis: Seeed Open Parts Library published per-placement price applied at target quantity 100; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.seeedstudio.com/blog/2022/11/18/seeed-grove-designers-guide-pcb-design-guidelines-and-more/).
 
 </details>
 
@@ -2115,21 +2125,21 @@ These entries are intentionally excluded from the partial subtotal until a compa
   - pass mate retention, flex/pull, no-chafe and repeated-service coupon on every distinct harness profile.
   - pass per-path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition.
 
-### `m5_connector_bodies` — 2 item(s)
+### `m5_connector_bodies` — 1 item(s)
 
 - Scope: `base_product`.
-- Role: rear Cap-Bus receptacle and native HY2.0-4P Unit receptacle.
-- Blocking evidence: manufacturer order codes are not published; received U214/cable mate and retention coupon are required.
+- Role: rear U214 Cap-Bus receptacle.
+- Blocking evidence: M5 does not publish the host-side Cap-Bus connector manufacturer order code; a received U214 mate and retention coupon are required.
 - Gate: `received_mate_identification_and_retention_coupon_required`.
-- Owner stage: G3 U214 dock and Unit-port physical closure before connector BOM freeze.
+- Owner stage: G3 U214 dock physical closure before Cap-Bus connector BOM freeze.
 - Evidence chain: `MEC-0001`, `FND-0069`, `EXP-0001`.
 - Prerequisites:
-  - receive a production U214 and native HY2.0-4P cable, then measure contact sex, pin section, exposed length, insertion depth, housing and polarity.
-  - freeze U214 rail/contact planes, 56-mm M2 retention stack, screw engagement and native Unit cable-exit envelope.
+  - receive a production U214, then measure Cap-Bus contact sex, pin section, exposed length, insertion depth and housing.
+  - freeze U214 rail/contact planes, 56-mm M2 retention stack and screw engagement.
 - Acceptance:
-  - name exact current orderable host connector MPNs and footprints for both interfaces; generic HDR-SMD_14P-P2.54 and HY2.0-4P labels are insufficient.
+  - name an exact current orderable host connector MPN and footprint; generic HDR-SMD_14P-P2.54 is insufficient.
   - pass adjustable U214 dock coupon without pin bottoming, preload or screw-induced board bending over repeated cycles.
-  - pass Unit polarity/retention/hot-plug coupon and attach mounting hardware, quantity-100 cost and substitution disposition.
+  - attach Cap-Bus mounting hardware, quantity-100 cost and substitution disposition.
 
 ### `external_antenna_kit` — 12 item(s)
 

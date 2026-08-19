@@ -127,8 +127,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(891, sum(line["quantity"] for line in lines))
-        self.assertEqual(194, len(lines))
+        self.assertEqual(892, sum(line["quantity"] for line in lines))
+        self.assertEqual(195, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -138,11 +138,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            182,
+            183,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            863,
+            864,
             sum(
                 line["quantity"]
                 for line in lines
@@ -188,7 +188,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertNotIn("external_sma_bodies", gap_quantities)
         self.assertEqual(5, gap_quantities["rf_cable_assemblies"])
-        self.assertEqual(2, gap_quantities["m5_connector_bodies"])
+        self.assertEqual(1, gap_quantities["m5_connector_bodies"])
         self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
         self.assertEqual(12, gap_quantities["external_antenna_kit"])
         physical_gates = {
@@ -205,14 +205,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
+        self.assertIn("893", rendered)
         self.assertIn("892", rendered)
-        self.assertIn("891", rendered)
-        self.assertIn("194", rendered)
-        self.assertIn("193/194", rendered)
-        self.assertIn("194/194", rendered)
-        self.assertIn("182/194", rendered)
-        self.assertIn("863/891", rendered)
-        self.assertIn("USD 188.9229", rendered)
+        self.assertIn("195", rendered)
+        self.assertIn("194/195", rendered)
+        self.assertIn("195/195", rendered)
+        self.assertIn("183/195", rendered)
+        self.assertIn("864/892", rendered)
+        self.assertIn("USD 188.9649", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -252,12 +252,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(50, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1020, policy["expected_occurrence_count"])
+        self.assertEqual(46, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1016, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
-            9,
+            5,
             len(
                 next(
                     row["endpoints"]
@@ -1625,6 +1625,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "u214_esd_b": "ti_tpd4e05u06_dqar",
             "u214_esd_c": "ti_tpd4e05u06_dqar",
             "unit_esd": "ti_tpd4e05u06_dqar",
+            "unit_connector": "seeed_1125r_smt_4p",
         }
         for instance, device_id in expected.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -1637,7 +1638,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("slow_io.P17", "ext_request_or.1A", "U214_5V_REQ"), routes)
         self.assertIn(("ext_branch_gate.1Y", "ext_efuse.EN_UVLO", "U214_5V_EN_SAFE"), routes)
         self.assertIn(("ext_branch_gate.2Y", "unit_efuse.EN_UVLO", "UNIT_5V_EN_SAFE"), routes)
-        self.assertIn(("unit_efuse.OUT", "abstract:native-M5-HY2-0-4P-5V", "5V_UNIT_PROTECTED"), routes)
+        self.assertIn(("unit_efuse.OUT", "unit_connector.5V", "5V_UNIT_PROTECTED"), routes)
+        self.assertIn(("unit_esd.D1_PLUS", "unit_connector.SIG0", "UNIT_CONNECTOR_SIG0"), routes)
+        self.assertIn(("unit_esd.D1_MINUS", "unit_connector.SIG1", "UNIT_CONNECTOR_SIG1"), routes)
+        self.assertIn(("unit_connector.GND", "abstract:power-ground", "POWER_GROUND"), routes)
         self.assertIn(("unit_supervisor.RESET_N", "slow_io.P26", "UNIT_READY"), routes)
         self.assertNotIn(
             "abstract:accessory-present",

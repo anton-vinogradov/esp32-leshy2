@@ -116,6 +116,7 @@
 | `same_sky_cmej_0413_42_smt_tr` | `Same Sky CMEJ-0413-42-SMT-TR` | `verified_candidate` | `active_orderable` | [CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet Rev. 1.04, September 2024](https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf) | same primary source |
 | `same_sky_sj1_3515_smt_tr` | `Same Sky SJ1-3515-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ1-351X-SMT Audio Jack datasheet Rev. 1.09, September 2024](https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf) | same primary source |
 | `samtec_ftsh_105_01_l_dv_k_p_tr` | `Samtec FTSH-105-01-L-DV-K-P-TR` | `verified_exact_three_domain_dbg10_header` | `active_orderable` | [Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint drawing revision FX; -105/-01/-L/-DV/-K/-P configuration](https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf) | same primary source |
+| `seeed_1125r_smt_4p` | `1125R-SMT-4P` | `verified_exact_paper_fit_received_cable_hil_open` | `active in Seeed Open Parts Library as PCBA SKU 320110032` | [Seeed 1125R-SMT-4P official manufacturer drawing NS-1125-W00010 Rev.A](https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf) | same primary source |
 | `sitronix_st77922` | `Sitronix ST77922` | `verified_exact_controller_inside_hmx035ctft_001` | `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly` | [ST77922 Single-Chip TFT Controller/Driver/Touch datasheet Preliminary 0.1, 2023-06](https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf) | same primary source |
 | `skyworks_si4732_a10_gsr` | `Si4732-A10-GSR` | `verified_exact_production_candidate` | `active_orderable` | [Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short 2021-09-13](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf) | same primary source |
 | `sn74hc595pwr` | `SN74HC595PWR` | `verified_candidate` | `active` | [SNx4HC595 8-Bit Shift Registers datasheet SCLS041J](https://www.ti.com/lit/ds/symlink/sn74hc595.pdf) | same primary source |
@@ -1415,7 +1416,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `UNIT_5V_EN_SAFE` | `ext_branch_gate.2Y` | `unit_efuse.EN_UVLO` | only the native Unit request plus STOP-permitted common source can enable this branch |
 | `POWER_GROUND` | `unit_efuse.GND` | `abstract:power-ground` | native Unit eFuse return is local to the connector branch |
 | `UNIT_EFUSE_AUXOFF_LOW` | `unit_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low |
-| `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `abstract:native-M5-HY2-0-4P-5V` | only reverse-blocked, current-limited, slew-controlled 5 V reaches the still-MPN-TBD native Unit connector |
+| `5V_UNIT_PROTECTED` | `unit_efuse.OUT` | `unit_connector.5V` | only reverse-blocked, current-limited, slew-controlled 5 V reaches exact 1125R-SMT-4P contact 5V |
 | `UNIT_EFUSE_FAULT_N` | `unit_efuse.FLT` | `abstract:power-current-thermal-fault` | native Unit overcurrent/thermal/voltage fault joins POWER_FAULT_N |
 | `UNIT_5V_CURRENT_MONITOR` | `unit_efuse.ILM` | `abstract:TP_UNIT_5V_ILM` | branch current evidence remains fixture-visible without another MCU input |
 | `UNIT_EFUSE_ILM_SET` | `unit_efuse.ILM` | `unit_rilm.END_1` | exact 2.21-kOhm 1% resistor sets nominal 1.509-A immediate current limit |
@@ -2022,14 +2023,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `UNIT_READY` | `unit_signal_iso.OE` | `unit_signal_iso_oe_pulldown.END_1` | exact 10-kOhm OE fail-low default |
 | `POWER_GROUND` | `unit_signal_iso_oe_pulldown.END_2` | `abstract:power-ground` | translator cannot enable from a floating supervisor output |
 | `UNIT_CONNECTOR_SIG0` | `unit_signal_iso.B1` | `unit_esd.D1_PLUS` | first configurable I2C/UART/GPIO signal receives low-capacitance IEC protection |
-| `UNIT_CONNECTOR_SIG0` | `unit_esd.D1_PLUS` | `abstract:native-M5-HY2-0-4P-SIG0` | exact connector MPN and physical pin order wait for the received cable coupon |
+| `UNIT_CONNECTOR_SIG0` | `unit_esd.D1_PLUS` | `unit_connector.SIG0` | third M5 mating-view contact is the protected configurable SIG0 path; received-cable polarity remains HIL |
 | `UNIT_CONNECTOR_SIG1` | `unit_signal_iso.B2` | `unit_esd.D1_MINUS` | second configurable signal receives low-capacitance IEC protection |
-| `UNIT_CONNECTOR_SIG1` | `unit_esd.D1_MINUS` | `abstract:native-M5-HY2-0-4P-SIG1` | profile manifest assigns I2C/UART/GPIO meaning before power is admitted |
+| `UNIT_CONNECTOR_SIG1` | `unit_esd.D1_MINUS` | `unit_connector.SIG1` | rightmost M5 mating-view contact is SIG1; the profile manifest assigns I2C/UART/GPIO meaning before power is admitted |
 | `UNIT_ESD_SPARE_NC` | `unit_esd.D2_PLUS` | `abstract:no-connect` | unused ESD channel is not tied to a connector contact |
 | `UNIT_ESD_SPARE_NC` | `unit_esd.D2_MINUS` | `abstract:no-connect` | unused ESD channel is not tied to a connector contact |
 | `UNIT_ESD_GROUND` | `unit_esd.GND_3` | `abstract:power-ground-dedicated-via` | first ESD ground contact receives a shortest connector-zone via |
 | `UNIT_ESD_GROUND` | `unit_esd.GND_8` | `abstract:power-ground-dedicated-via` | second ESD ground contact receives a separate via |
-| `POWER_GROUND` | `abstract:native-M5-HY2-0-4P-GND` | `abstract:power-ground` | native Unit ground contact returns beside its protected 5 V and ESD array |
+| `POWER_GROUND` | `unit_connector.GND` | `abstract:power-ground` | leftmost M5 mating-view contact returns beside protected 5 V and the connector ESD array |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_matrix_io.VCC` | dedicated ordinary-control expander shares the protected SYS-I2C logic domain |
 | `POWER_GROUND` | `ui_matrix_io.GND` | `abstract:power-ground` | short local digital return |
 | `SYS_I2C_SDA` | `s3.GPIO1` | `ui_matrix_io.SDA` | bounded ordinary-control transactions share the internal bus but no encoder or PTT edge depends on them |
@@ -3140,7 +3141,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `S3_ENCODER_PCNT` | `s3` | `encoder` | dedicated; PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C matrix carries only encoder push and never phase edges | no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case | phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL |
 | `PD_LOCAL_I2C` | `pd_controller` | `pd_config_eeprom`, `nvdc_charger` | scheduled; TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive | boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses | blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL |
 | `PACK_LOCAL_I2C` | `pack_admission` | `pack_gauge` | dedicated | gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant | bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL |
-| `S3_UNIT_PORT` | `s3` | `unit_signal_iso`, `abstract:native M5 Unit connector` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | independent power, TXS0102 OE/isolation, profile-switch, long-cable, 1-Wire candidate and external-fault HIL |
+| `S3_UNIT_PORT` | `s3` | `unit_signal_iso`, `unit_connector` | dedicated | one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C | independent power, TXS0102 OE/isolation, profile-switch, long-cable, 1-Wire candidate and external-fault HIL |
 | `S3_I2S` | `s3` | `codec`, `codec_i2s_bclk_iso`, `codec_i2s_ws_iso`, `codec_i2s_dout_iso`, `codec_i2s_din_iso` | dedicated | continuous DMA audio without storage/display service gaps | four independent Ioff tri-state directions, ES8311 BCLK-derived master-clock, powered-off no-backfeed and simultaneous full-duplex display, SD, C5 and radio-event stress HIL |
 
 ### Controller GPIO-window selections
@@ -3202,6 +3203,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `unit_supervisor_sense_top` lifecycle: `active_orderable`.
 - `unit_signal_iso` uses `Texas Instruments TXS0102DCUR` as `verified_exact_native_m5_unit_signal_isolator`, not an accepted production choice.
 - `unit_signal_iso` lifecycle: `active_production_orderable`.
+- `unit_connector` uses `1125R-SMT-4P` as `verified_exact_paper_fit_received_cable_hil_open`, not an accepted production choice.
+- `unit_connector` lifecycle: `active in Seeed Open Parts Library as PCBA SKU 320110032`.
 - `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `s3_rf_board_connector` lifecycle: `active_orderable`.
 - `s3_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.

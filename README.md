@@ -84,14 +84,14 @@ SLOW_IO["TCA6424ARGJR<br/>24-line slow-control expander"]
 UI_MATRIX_IO["TCA9534APWR<br/>D-pad and function-key matrix expander"]
 CODEC["Everest Semiconductor ES8311<br/>audio capture and playback codec"]
 RECEIVER["Si4732-A10-GSR<br/>FM/AM/SW/LW broadcast receiver"]
-  UNIT["Part number not selected<br/>protected M5 Unit port"]
+UNIT_CONNECTOR["1125R-SMT-4P<br/>protected M5 Unit HY2.0-4P connector"]
   S3 -->|"direct QSPI + touch"| DISPLAY
   S3 -->|"scheduled SPI + isolated rail"| SD
   S3 <-->|"I²C0 + wired-low IRQ"| SLOW_IO
   S3 <-->|"I²C0 + wired-low IRQ"| UI_MATRIX_IO
   S3 <-->|"isolated I²S0 + I²C0"| CODEC
   S3 <-->|"isolated I²C0"| RECEIVER
-  S3 <-->|"isolated profile pair"| UNIT
+  S3 <-->|"isolated profile pair"| UNIT_CONNECTOR
 ```
 
 ### C5: native 2.4/5 GHz, 802.15.4 and IR

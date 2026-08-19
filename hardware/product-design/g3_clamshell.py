@@ -90,7 +90,7 @@ EDGE_INTERFACES = (
     ("power_command_switch", "rear", "right", 112.75, "POWER ON/OFF"),
     ("product_usb_connector", "rear", "bottom", 16.47, "USB / POWER"),
     ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
-    ("unit_port_reserve", "rear", "bottom", 57.0, "M5 UNIT"),
+    ("unit_connector", "rear", "bottom", 57.0, "M5 UNIT"),
 )
 
 # External side projections show only real silkscreen labels and an enclosure
@@ -183,6 +183,7 @@ RF_INNER = (
     Placement("m1_rf_receptacle", 22.2, 119.0, "80-contact M1 receptacle; 11-mm board stack"),
     Placement("product_usb_connector", 12.0, 143.1, "product USB-C data and sink"),
     Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
+    Placement("unit_connector", 51.0, 140.9, "native M5 Unit HY2.0-4P edge receptacle"),
     Placement("speaker", 5.0, 103.0, "internal 4-Ohm differential speaker"),
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
@@ -312,6 +313,7 @@ def validate() -> list[str]:
         "display": "HMX035CTFT-001 (QDtech schematic assembly marking)",
         "u214": "M5Stack U214 Cap LoRa-1262",
         "pack_holder": "Keystone Electronics 1048P",
+        "unit_connector": "1125R-SMT-4P",
     }
     for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
@@ -379,7 +381,7 @@ def validate() -> list[str]:
     edge_instances = {item.instance for item in UI_INNER + RF_INNER}
     edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
-        if instance != "unit_port_reserve" and instance not in edge_instances:
+        if instance not in edge_instances:
             errors.append(f"external interface {label}: source instance {instance} is not placed")
         if face not in {"front", "rear"} or side not in {"left", "right", "bottom"}:
             errors.append(f"external interface {label}: invalid face/side")
@@ -582,8 +584,6 @@ def render_external(devices, instances):
     ):
         out.append(text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#b42318" if label == "STOP" else "#4c1d95"))
 
-    out.append(rect(rear, 48, 133, 18, 8, "#fff7ed", "#ea580c", "5 3", 3))
-    out.append(text(sx(rear,57), sy(rear,138), "M5 UNIT · MPN TBD", 5.6, "bold", "middle", "#9a3412"))
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "rear" or side not in {"left", "right"}:
             continue

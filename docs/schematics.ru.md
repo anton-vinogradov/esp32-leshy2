@@ -32,14 +32,14 @@ SLOW_IO["TCA6424ARGJR<br/>24-линейный slow-control expander"]
 UI_MATRIX_IO["TCA9534APWR<br/>матрица D-pad и функциональных кнопок"]
 CODEC["Everest Semiconductor ES8311<br/>кодек записи и воспроизведения"]
 RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
-  UNIT["Партномер не выбран<br/>защищённый M5 Unit port"]
+UNIT_CONNECTOR["1125R-SMT-4P<br/>защищённый разъём M5 Unit HY2.0-4P"]
   S3 -->|"direct QSPI + touch"| DISPLAY
   S3 -->|"scheduled SPI + isolated rail"| SD
   S3 <-->|"I²C0 + wired-low IRQ"| SLOW_IO
   S3 <-->|"I²C0 + wired-low IRQ"| UI_MATRIX_IO
   S3 <-->|"isolated I²S0 + I²C0"| CODEC
   S3 <-->|"isolated I²C0"| RECEIVER
-  S3 <-->|"isolated profile pair"| UNIT
+  S3 <-->|"isolated profile pair"| UNIT_CONNECTOR
 ```
 
 ### C5: native 2,4/5 ГГц, 802.15.4 и IR

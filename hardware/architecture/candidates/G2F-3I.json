@@ -20,7 +20,7 @@
       }
     ],
     "substitution_policy": {
-      "status": "all_194_current_purchase_lines_have_exactly_one_conservative_disposition_class",
+      "status": "all_195_current_purchase_lines_have_exactly_one_conservative_disposition_class",
       "classes": [
         {
           "id": "SUB-RF",
@@ -119,7 +119,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -149,21 +149,21 @@
       },
       {
         "id": "m5_connector_bodies",
-        "quantity": 2,
+        "quantity": 1,
         "scope": "base_product",
-        "role": "rear Cap-Bus receptacle and native HY2.0-4P Unit receptacle",
-        "blocker": "manufacturer order codes are not published; received U214/cable mate and retention coupon are required",
+        "role": "rear U214 Cap-Bus receptacle",
+        "blocker": "M5 does not publish the host-side Cap-Bus connector manufacturer order code; a received U214 mate and retention coupon are required",
         "resolution_gate": {
           "status": "received_mate_identification_and_retention_coupon_required",
-          "owner_stage": "G3 U214 dock and Unit-port physical closure before connector BOM freeze",
+          "owner_stage": "G3 U214 dock physical closure before Cap-Bus connector BOM freeze",
           "prerequisites": [
-            "receive a production U214 and native HY2.0-4P cable, then measure contact sex, pin section, exposed length, insertion depth, housing and polarity",
-            "freeze U214 rail/contact planes, 56-mm M2 retention stack, screw engagement and native Unit cable-exit envelope"
+            "receive a production U214, then measure Cap-Bus contact sex, pin section, exposed length, insertion depth and housing",
+            "freeze U214 rail/contact planes, 56-mm M2 retention stack and screw engagement"
           ],
           "acceptance": [
-            "name exact current orderable host connector MPNs and footprints for both interfaces; generic HDR-SMD_14P-P2.54 and HY2.0-4P labels are insufficient",
+            "name an exact current orderable host connector MPN and footprint; generic HDR-SMD_14P-P2.54 is insufficient",
             "pass adjustable U214 dock coupon without pin bottoming, preload or screw-induced board bending over repeated cycles",
-            "pass Unit polarity/retention/hot-plug coupon and attach mounting hardware, quantity-100 cost and substitution disposition"
+            "attach Cap-Bus mounting hardware, quantity-100 cost and substitution disposition"
           ],
           "evidence_refs": ["MEC-0001", "FND-0069", "EXP-0001"]
         }
@@ -196,8 +196,8 @@
   "i9_projection_audit": {
     "status": "paper_reviewed_joint_candidate_projection_not_target_architecture",
     "fixed_route_abstract_policy": {
-      "expected_unique_endpoint_count": 50,
-      "expected_occurrence_count": 1020,
+      "expected_unique_endpoint_count": 46,
+      "expected_occurrence_count": 1016,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -231,8 +231,7 @@
           "rule": "electrical endpoint is fixed but connector body, cable mate/length or antenna/pod identity is owned by a BOM-0027 G3 received-item/geometry gate",
           "endpoints": [
             "abstract:S3-placement-qualified-double-ended-UFL-jumper", "abstract:C5-placement-qualified-double-ended-UFL-jumper",
-            "abstract:NRF0-qualified-module-pigtail-mate", "abstract:NRF1-qualified-module-pigtail-mate", "abstract:NRF2-qualified-module-pigtail-mate",
-            "abstract:native-M5-HY2-0-4P-5V", "abstract:native-M5-HY2-0-4P-GND", "abstract:native-M5-HY2-0-4P-SIG0", "abstract:native-M5-HY2-0-4P-SIG1"
+            "abstract:NRF0-qualified-module-pigtail-mate", "abstract:NRF1-qualified-module-pigtail-mate", "abstract:NRF2-qualified-module-pigtail-mate"
           ]
         },
         {
@@ -244,7 +243,7 @@
     },
     "consistency_checks": [
       "all programmable GPIO, module contacts, slow-I/O contacts, service alternatives and scheduled resources are machine-accounted without collision",
-      "all 892 physical architecture instances render one-device-per-node and the 891 supplied placements map to the reviewed I8 purchase boundary",
+      "all 893 physical architecture instances render one-device-per-node and the 892 supplied placements map to the reviewed I8 purchase boundary",
       "all signal groups have complete quiet-state, transition, actual-TX evidence and no-stall contracts without cross-group runtime promotion",
       "all remaining physical, procurement and HIL uncertainty has an owning downstream gate and no unresolved owner decision changes candidate function"
     ],
@@ -663,10 +662,10 @@
     "u214_signals": "three exact 74LVC126APW,118 bodies isolate five RP-to-Cap and four Cap-to-RP SPI/UART/control paths; every path has an exact 22-Ohm source series element. TCA4307DGKR with complete VCC/GND/bypass, controller-side pulls, EN and READY implements the separate I2C hot-swap/stuck-low boundary. Three TPD4E05U06DQAR arrays protect all eleven exposed signal contacts",
     "unit_signals": "one exact TXS0102DCUR, with both rails at protected 3V3_MAIN and OE held low until UNIT_READY, makes S3 GPIO7/GPIO8 a two-wire bidirectional I2C/UART/GPIO profile boundary with Ioff/VCC isolation. One TPD4E05U06DQAR protects the two connector signals; the remaining two array channels are no-connect. 1-Wire is a specimen HIL profile, not a paper-guaranteed consequence of generic GPIO support",
     "identity_and_hot_plug": "neither connector exposes a presence or identity contact. Unpowered insertion is the default. Firmware first admits an exact signed accessory manifest, powers only that branch, verifies branch READY and profile-specific identity/readback, and only then enables protocol traffic. Unknown, wrong-voltage, overcurrent, stuck-bus or externally powered behavior latches the branch off and requires a new explicit session",
-    "connector_truth": "U214 exact 14-contact numbering and 84x24x15.2-mm envelope come from the official product and V1.1 schematic. The host receptacle and native HY2.0-4P board connector remain MPN TBD because M5 does not publish a manufacturer order code; freeze requires received U214/cable microscopy, mating coupon, insertion/retention and installed-cap HIL",
+    "connector_truth": "U214 exact 14-contact numbering and 84x24x15.2-mm envelope come from the official product and V1.1 schematic; only its host receptacle remains MPN TBD pending received-U214 microscopy and a mating coupon. The independent native Unit port uses exact Seeed 1125R-SMT-4P / PCBA SKU 320110032 with the official M5 mating-view order GND, 5V, SIG0, SIG1; received-cable polarity, insertion and retention remain HIL gates",
     "high_throughput_boundary": "the rejected generic USB-host reservation is not revived. A future high-throughput RF/SDR accessory must first name a concrete device, bandwidth, power, legal and isolation profile; only that derived profile may reopen transport hardware",
-    "pin_and_cost_result": "P05 becomes UNIT_5V_REQ, so main slow I/O closes at 24 used / 0 reserved / 0 free; S3, C5 and RP GPIO maps do not change. First-pass incremental protection/isolation cost is approximately USD 4.5-6.5 at quantity 100 before the two still-TBD connector bodies",
-    "remaining_hil": ["received U214 V1.1 identity, exact Cap receptacle mating family and 84-mm installed mechanics", "exact native HY2.0-4P board connector and cable polarity/retention", "shared buck stability and thermal/current envelope with U214, U214 downstream Unit and native Unit at each admitted simultaneous load", "each eFuse current/OVLO/inrush/discharge/reverse-source/latch-off behavior", "TPS3808 threshold, delay, brownout and main-domain-off behavior", "all eleven U214 signal directions, SPI timing, GNSS UART continuity, I2C stuck-low recovery and connector ESD", "native I2C/UART/push-pull GPIO/open-drain and 1-Wire profiles through TXS0102, including external pulls and long-cable edge behavior", "unknown/wrong/miswired/hot-plug/external-power accessory fault injection", "U214 and each exact Unit profile active with every foreign signal group quiet plus maximum allowed system-plane traffic"]
+    "pin_and_cost_result": "P05 becomes UNIT_5V_REQ, so main slow I/O closes at 24 used / 0 reserved / 0 free; S3, C5 and RP GPIO maps do not change. Exact Unit connector adds USD 0.042 at quantity 100; first-pass incremental protection/isolation plus this connector is approximately USD 4.54-6.54 before the still-TBD Cap-Bus host receptacle",
+    "remaining_hil": ["received U214 V1.1 identity, exact Cap receptacle mating family and 84-mm installed mechanics", "received native HY2.0-4P cable polarity, insertion/retention and board-edge exit", "shared buck stability and thermal/current envelope with U214, U214 downstream Unit and native Unit at each admitted simultaneous load", "each eFuse current/OVLO/inrush/discharge/reverse-source/latch-off behavior", "TPS3808 threshold, delay, brownout and main-domain-off behavior", "all eleven U214 signal directions, SPI timing, GNSS UART continuity, I2C stuck-low recovery and connector ESD", "native I2C/UART/push-pull GPIO/open-drain and 1-Wire profiles through TXS0102, including external pulls and long-cable edge behavior", "unknown/wrong/miswired/hot-plug/external-power accessory fault injection", "U214 and each exact Unit profile active with every foreign signal group quiet plus maximum allowed system-plane traffic"]
   },
   "service_recovery_contract": {
     "decision": "DEC-0099",
@@ -1321,6 +1320,7 @@
     "unit_signal_iso_vccb_bypass": "tdk_c1005x7r1h104k050bb",
     "unit_signal_iso_oe_pulldown": "yageo_rc0402fr_0710kl",
     "unit_esd": "ti_tpd4e05u06_dqar",
+    "unit_connector": "seeed_1125r_smt_4p",
     "s3_rf_board_connector": "hirose_ufl_r_smt_1_10",
     "s3_rf_coupler": "kyocera_avx_cp0603q5425entr",
     "s3_rf_coupler_termination": "yageo_rc0402fr_0749r9l",
@@ -3048,7 +3048,7 @@
     {"from":"ext_branch_gate.2Y","to":"unit_efuse.EN_UVLO","net":"UNIT_5V_EN_SAFE","safety":"only the native Unit request plus STOP-permitted common source can enable this branch"},
     {"from":"unit_efuse.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"native Unit eFuse return is local to the connector branch"},
     {"from":"unit_efuse.AUXOFF","to":"abstract:power-ground","net":"UNIT_EFUSE_AUXOFF_LOW","safety":"unused active-high fast-off input is fixed low"},
-    {"from":"unit_efuse.OUT","to":"abstract:native-M5-HY2-0-4P-5V","net":"5V_UNIT_PROTECTED","safety":"only reverse-blocked, current-limited, slew-controlled 5 V reaches the still-MPN-TBD native Unit connector"},
+    {"from":"unit_efuse.OUT","to":"unit_connector.5V","net":"5V_UNIT_PROTECTED","safety":"only reverse-blocked, current-limited, slew-controlled 5 V reaches exact 1125R-SMT-4P contact 5V"},
     {"from":"unit_efuse.FLT","to":"abstract:power-current-thermal-fault","net":"UNIT_EFUSE_FAULT_N","safety":"native Unit overcurrent/thermal/voltage fault joins POWER_FAULT_N"},
     {"from":"unit_efuse.ILM","to":"abstract:TP_UNIT_5V_ILM","net":"UNIT_5V_CURRENT_MONITOR","safety":"branch current evidence remains fixture-visible without another MCU input"},
     {"from":"unit_efuse.ILM","to":"unit_rilm.END_1","net":"UNIT_EFUSE_ILM_SET","safety":"exact 2.21-kOhm 1% resistor sets nominal 1.509-A immediate current limit"},
@@ -3658,14 +3658,14 @@
     {"from":"unit_signal_iso.OE","to":"unit_signal_iso_oe_pulldown.END_1","net":"UNIT_READY","safety":"exact 10-kOhm OE fail-low default"},
     {"from":"unit_signal_iso_oe_pulldown.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"translator cannot enable from a floating supervisor output"},
     {"from":"unit_signal_iso.B1","to":"unit_esd.D1_PLUS","net":"UNIT_CONNECTOR_SIG0","safety":"first configurable I2C/UART/GPIO signal receives low-capacitance IEC protection"},
-    {"from":"unit_esd.D1_PLUS","to":"abstract:native-M5-HY2-0-4P-SIG0","net":"UNIT_CONNECTOR_SIG0","safety":"exact connector MPN and physical pin order wait for the received cable coupon"},
+    {"from":"unit_esd.D1_PLUS","to":"unit_connector.SIG0","net":"UNIT_CONNECTOR_SIG0","safety":"third M5 mating-view contact is the protected configurable SIG0 path; received-cable polarity remains HIL"},
     {"from":"unit_signal_iso.B2","to":"unit_esd.D1_MINUS","net":"UNIT_CONNECTOR_SIG1","safety":"second configurable signal receives low-capacitance IEC protection"},
-    {"from":"unit_esd.D1_MINUS","to":"abstract:native-M5-HY2-0-4P-SIG1","net":"UNIT_CONNECTOR_SIG1","safety":"profile manifest assigns I2C/UART/GPIO meaning before power is admitted"},
+    {"from":"unit_esd.D1_MINUS","to":"unit_connector.SIG1","net":"UNIT_CONNECTOR_SIG1","safety":"rightmost M5 mating-view contact is SIG1; the profile manifest assigns I2C/UART/GPIO meaning before power is admitted"},
     {"from":"unit_esd.D2_PLUS","to":"abstract:no-connect","net":"UNIT_ESD_SPARE_NC","safety":"unused ESD channel is not tied to a connector contact"},
     {"from":"unit_esd.D2_MINUS","to":"abstract:no-connect","net":"UNIT_ESD_SPARE_NC","safety":"unused ESD channel is not tied to a connector contact"},
     {"from":"unit_esd.GND_3","to":"abstract:power-ground-dedicated-via","net":"UNIT_ESD_GROUND","safety":"first ESD ground contact receives a shortest connector-zone via"},
     {"from":"unit_esd.GND_8","to":"abstract:power-ground-dedicated-via","net":"UNIT_ESD_GROUND","safety":"second ESD ground contact receives a separate via"},
-    {"from":"abstract:native-M5-HY2-0-4P-GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"native Unit ground contact returns beside its protected 5 V and ESD array"},
+    {"from":"unit_connector.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"leftmost M5 mating-view contact returns beside protected 5 V and the connector ESD array"},
     {"from":"abstract:3V3_MAIN","to":"ui_matrix_io.VCC","net":"3V3_MAIN","safety":"dedicated ordinary-control expander shares the protected SYS-I2C logic domain"},
     {"from":"ui_matrix_io.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short local digital return"},
     {"from":"s3.GPIO1","to":"ui_matrix_io.SDA","net":"SYS_I2C_SDA","safety":"bounded ordinary-control transactions share the internal bus but no encoder or PTT edge depends on them"},
@@ -4803,7 +4803,7 @@
     {"id":"S3_ENCODER_PCNT","owner":"s3","clients":["encoder"],"sharing":"dedicated","deadline":"no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case","proof_gate":"phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL","arbitration":"PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C matrix carries only encoder push and never phase edges"},
     {"id":"PD_LOCAL_I2C","owner":"pd_controller","clients":["pd_config_eeprom","nvdc_charger"],"sharing":"scheduled","deadline":"boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses","proof_gate":"blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL","arbitration":"TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive"},
     {"id":"PACK_LOCAL_I2C","owner":"pack_admission","clients":["pack_gauge"],"sharing":"dedicated","deadline":"gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant","proof_gate":"bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL"},
-    {"id":"S3_UNIT_PORT","owner":"s3","clients":["unit_signal_iso","abstract:native M5 Unit connector"],"sharing":"dedicated","deadline":"one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C","proof_gate":"independent power, TXS0102 OE/isolation, profile-switch, long-cable, 1-Wire candidate and external-fault HIL"},
+    {"id":"S3_UNIT_PORT","owner":"s3","clients":["unit_signal_iso","unit_connector"],"sharing":"dedicated","deadline":"one selected I2C/UART/GPIO Unit profile cannot be blocked by internal or U214 I2C","proof_gate":"independent power, TXS0102 OE/isolation, profile-switch, long-cable, 1-Wire candidate and external-fault HIL"},
     {"id":"S3_I2S","owner":"s3","clients":["codec","codec_i2s_bclk_iso","codec_i2s_ws_iso","codec_i2s_dout_iso","codec_i2s_din_iso"],"sharing":"dedicated","deadline":"continuous DMA audio without storage/display service gaps","proof_gate":"four independent Ioff tri-state directions, ES8311 BCLK-derived master-clock, powered-off no-backfeed and simultaneous full-duplex display, SD, C5 and radio-event stress HIL"}
   ],
   "qualification_gaps": [

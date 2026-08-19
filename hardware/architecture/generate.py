@@ -2028,6 +2028,7 @@ def render_target_principled_section(
             "cc": "многодиапазонный sub-GHz transceiver",
             "voice": "аналоговый VHF/UHF voice transceiver",
             "u214": "съёмный LoRa/GNSS Cap-модуль",
+            "unit_connector": "защищённый разъём M5 Unit HY2.0-4P",
             "s3_external_rp_sma": "внешний RP-SMA порт S3 2,4 ГГц",
             "c5_external_rp_sma": "внешний RP-SMA порт C5 2,4/5 ГГц",
             "receiver_fmsw_external_sma": "приёмный SMA порт FM/SW",
@@ -2145,6 +2146,7 @@ def render_target_principled_section(
             "cc": "multi-band sub-GHz transceiver",
             "voice": "analog VHF/UHF voice transceiver",
             "u214": "removable LoRa/GNSS Cap module",
+            "unit_connector": "protected M5 Unit HY2.0-4P connector",
             "s3_external_rp_sma": "external S3 2.4-GHz RP-SMA port",
             "c5_external_rp_sma": "external C5 2.4/5-GHz RP-SMA port",
             "receiver_fmsw_external_sma": "receive-only FM/SW SMA port",
@@ -2213,11 +2215,7 @@ def render_target_principled_section(
             [
                 node("s3"), node("display"), node("sd"), node("slow_io"),
                 node("ui_matrix_io"), node("codec"), node("receiver"),
-                (
-                    '  UNIT["Партномер не выбран<br/>защищённый M5 Unit port"]'
-                    if russian
-                    else '  UNIT["Part number not selected<br/>protected M5 Unit port"]'
-                ),
+                node("unit_connector"),
             ],
             [
                 '  S3 -->|"direct QSPI + touch"| DISPLAY',
@@ -2226,7 +2224,7 @@ def render_target_principled_section(
                 '  S3 <-->|"I²C0 + wired-low IRQ"| UI_MATRIX_IO',
                 '  S3 <-->|"isolated I²S0 + I²C0"| CODEC',
                 '  S3 <-->|"isolated I²C0"| RECEIVER',
-                '  S3 <-->|"isolated profile pair"| UNIT',
+                '  S3 <-->|"isolated profile pair"| UNIT_CONNECTOR',
             ],
         ),
         (
@@ -2550,7 +2548,7 @@ def render_public_interconnect(
         )
         rf_groups = (
             f"Радиодомен реального времени: `{mpn('rp')}`, три `{mpn('nrf0')}`, `{mpn('cc')}` и `{mpn('voice')}`.",
-            f"Внешние модули: съёмный `{mpn('u214')}` и независимый порт M5 Unit.",
+            f"Внешние модули: съёмный `{mpn('u214')}` и независимый порт M5 Unit на точном `{mpn('unit_connector')}`.",
             f"Питание и основной USB-C: `{mpn('product_usb_connector')}`, защита `{mpn('product_usb_protector')}`, USB-PD `{mpn('pd_controller')}`, заряд, аккумуляторы и все преобразователи питания.",
             f"Выход звука: дифференциальный усилитель `{mpn('speaker_amp')}` и динамик `{mpn('speaker')}`.",
             "Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.",
@@ -2587,7 +2585,7 @@ def render_public_interconnect(
         )
         rf_groups = (
             f"Real-time radio domain: `{mpn('rp')}`, three `{mpn('nrf0')}`, `{mpn('cc')}` and `{mpn('voice')}`.",
-            f"External modules: removable `{mpn('u214')}` and an independent M5 Unit port.",
+            f"External modules: removable `{mpn('u214')}` and an independent M5 Unit port on exact `{mpn('unit_connector')}`.",
             f"Power and product USB-C: `{mpn('product_usb_connector')}`, `{mpn('product_usb_protector')}` protection, `{mpn('pd_controller')}` USB-PD, charger, cells and every rail converter.",
             f"Audio output: `{mpn('speaker_amp')}` differential amplifier and `{mpn('speaker')}` speaker.",
             "Rear controls: F1/F2, encoder, PTT, STOP and recessed RE-ARM; PTT connects locally to RP/voice.",
@@ -3586,7 +3584,7 @@ def _render_principled_pinout_bundle(
         node("unit_signal_iso_vccb_bypass", "100-nF Unit-isolator VCCB bypass capacitor"),
         node("unit_signal_iso_oe_pulldown", "10-kOhm Unit-isolator OE fail-low resistor"),
         node("unit_esd", "four-channel native-Unit connector ESD array"),
-        "  UNIT[\"MPN TBD<br/>protected HY2.0-4P M5 Unit connector\"]",
+        node("unit_connector", "exact protected HY2.0-4P M5 Unit connector"),
         "  end",
         "  subgraph IR_PATH[\"IR frontend devices\"]",
         *[node(instance, ir_roles[instance]) for instance in ir_instance_names],
@@ -3664,12 +3662,12 @@ def _render_principled_pinout_bundle(
         "  BACKLIGHT_EFUSE_OUTPUT_HF ~~~ BACKLIGHT_FAULT_PULLUP ~~~ BACKLIGHT_SERIES_RESISTOR ~~~ BACKLIGHT_MOSFET ~~~ BACKLIGHT_GATE_SERIES ~~~ BACKLIGHT_GATE_PULLDOWN ~~~ SD ~~~ SD_HOST_BUFFER ~~~ SD_MISO_BUFFER ~~~ SD_ESD_A ~~~ SD_ESD_B",
         "  SD_ESD_B ~~~ SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLUP ~~~ SD_HOST_D1_PULLUP",
         "  SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP ~~~ SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP",
-        "  SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT",
-        "  UNIT ~~~ C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in ir_instance_names) + " ~~~ RP ~~~ " + " ~~~ ".join(instance.upper() for instance in service_instance_names),
+        "  SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ UNIT_CONNECTOR",
+        "  UNIT_CONNECTOR ~~~ C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in ir_instance_names) + " ~~~ RP ~~~ " + " ~~~ ".join(instance.upper() for instance in service_instance_names),
         "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
-        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_SMA ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
+        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_SMA ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT_CONNECTOR ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
         "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
         "  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
@@ -3822,7 +3820,7 @@ def _render_principled_pinout_bundle(
         "  VOICE_EFUSE -->|\"protected PG\"| VOICE_PG_QUALIFIER -->|\"qualified open collector\"| SLOW_IO",
         "  NVDC_CHARGER -->|\"SYS\"| EXT_BUCK --> EXT_INDUCTOR",
         "  EXT_INDUCTOR --> EXT_EFUSE -->|\"protected U214 5.0 V\"| U214",
-        "  EXT_INDUCTOR --> UNIT_EFUSE -->|\"protected native-Unit 5.0 V\"| UNIT",
+        "  EXT_INDUCTOR --> UNIT_EFUSE -->|\"protected native-Unit 5.0 V\"| UNIT_CONNECTOR",
         "  NVDC_CHARGER -->|\"SYS local bulk\"| EXT_BUCK_INPUT_CAP",
         "  NVDC_CHARGER -->|\"SYS local HF\"| EXT_BUCK_HF_INPUT_CAP",
         "  EXT_INDUCTOR -->|\"feedback\"| EXT_BUCK_FB_TOP --> EXT_BUCK_FB_BOTTOM",
@@ -3979,7 +3977,7 @@ def _render_principled_pinout_bundle(
         "  RECEIVER_I2C_ISO <-->|\"switched local I²C\"| RECEIVER",
         "  RECEIVER_SUPERVISOR -->|\"reset + 200-ms isolation release\"| RECEIVER_I2C_ISO",
         "  RECEIVER --> RECEIVER_IRQ_ISO --> SLOW_IO",
-        f"  S3 <-->|\"profile port: {contacts('s3', ('UNIT_',))}\"| UNIT",
+        f"  S3 <-->|\"profile port: {contacts('s3', ('UNIT_',))}\"| UNIT_CONNECTOR",
         f"  C5 <-->|\"RMT RX0/power: {contacts('c5', ('IR_',))}\"| IR_DEMOD",
         "  C5 <-->|\"RMT RX1/power\"| IR_CARRIER",
         f"  RP -->|\"PIO0 SM0 outputs: {contacts('rp', ('NRF0_',))}\"| NRF0_HOST_BUFFER --> NRF0",
@@ -4004,8 +4002,8 @@ def _render_principled_pinout_bundle(
         "  U214_ESD_A -.->|\"I²C/RST/GPS-RX shunt protection\"| U214",
         "  U214_ESD_B -.->|\"SCK/MOSI/NSS/BUSY shunt protection\"| U214",
         "  U214_ESD_C -.->|\"IRQ/GPS-TX/MISO shunt protection\"| U214",
-        "  S3 <-->|\"GPIO7/GPIO8 profile signals\"| UNIT_SIGNAL_ISO <-->|\"isolated I²C/UART/GPIO\"| UNIT",
-        "  UNIT_ESD -.->|\"two signal shunt clamps\"| UNIT",
+        "  S3 <-->|\"GPIO7/GPIO8 profile signals\"| UNIT_SIGNAL_ISO <-->|\"isolated I²C/UART/GPIO\"| UNIT_CONNECTOR",
+        "  UNIT_ESD -.->|\"two signal shunt clamps\"| UNIT_CONNECTOR",
         "  SLOW_IO -->|\"P17/P05 independent requests\"| EXT_REQUEST_OR --> SAFE_GATE_B",
         "  SAFE_GATE_B --> EXT_BRANCH_GATE",
         "  EXT_BRANCH_GATE --> EXT_EFUSE",
