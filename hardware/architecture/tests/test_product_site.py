@@ -86,6 +86,26 @@ class ProductSiteTests(unittest.TestCase):
         ):
             self.assertIn(token, layout)
 
+    def test_principle_component_diagrams_are_public_and_discoverable(self):
+        for hardware, schematics in (
+            ("docs/hardware.md", "docs/schematics.md"),
+            ("docs/hardware.ru.md", "docs/schematics.ru.md"),
+        ):
+            landing = self.read(hardware)
+            diagrams = self.read(schematics)
+            self.assertIn(f"]({Path(schematics).name})", landing)
+            self.assertGreaterEqual(diagrams.count("```mermaid"), 10)
+            for token in (
+                "HMX035CTFT-001",
+                "CMEJ-0413-42-SMT-TR",
+                "AS02404PO",
+                "SKQGADE010",
+                "FTSH-105-01-L-DV-K-P-TR",
+                "USB4105-GF-A",
+                "AEQ10410",
+            ):
+                self.assertIn(token, diagrams)
+
     def test_project_history_is_archived_outside_public_docs(self):
         archive = REPO_ROOT / "drafts/project-history-2026-08-19"
         self.assertTrue((archive / "review/README.md").is_file())

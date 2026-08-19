@@ -2,6 +2,17 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Safety](safety.md)
 
+## Principle component interconnections
+
+[Open the complete principle-diagram set](schematics.md). It is split into
+readable maps for compute owners, UI and storage, C5 and IR, the RP radio
+domain, controls, audio, service and recovery, all nine antenna paths, power
+and hardware safety. Every node represents one physical device and includes
+its MPN and product role; arrows show link purpose and direction.
+
+The [pin table](pinout.md) gives the exact contacts behind these links, while
+the [M1 map](interconnect.md) shows how they cross the two boards.
+
 ## Compute ownership
 
 ```mermaid
