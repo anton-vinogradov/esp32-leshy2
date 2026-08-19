@@ -375,6 +375,28 @@ def validate_sources(
                 errors.append(
                     f"{candidate_id}: antenna policy {field} must be {expected!r}"
                 )
+        exact_external_connectors = {
+            "s3_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
+            "c5_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
+            "receiver_fmsw_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "receiver_amlw_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "nrf0_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "nrf1_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "nrf2_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "cc_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "voice_external_sma": "gct_rfpc_sma31_fn_175_a",
+        }
+        if candidate_id == "G2F-3I":
+            instances = candidate.get("instances", {})
+            for instance, device_id in exact_external_connectors.items():
+                if instances.get(instance) != device_id:
+                    errors.append(
+                        f"{candidate_id}: external RF connector {instance} must be {device_id}"
+                    )
+            if len(exact_external_connectors) != antenna_policy.get("base_onboard_sma_count"):
+                errors.append(
+                    f"{candidate_id}: exact external RF connector count must match antenna policy"
+                )
         for nrf_instance in ("nrf0", "nrf1", "nrf2"):
             if candidate.get("instances", {}).get(nrf_instance) != "ebyte_e01_ml01ipx":
                 errors.append(
@@ -634,7 +656,6 @@ def validate_sources(
                             f"{candidate_id}: {context}: duplicate resolution gate {field}"
                         )
             required_gap_ids = {
-                "external_sma_bodies",
                 "rf_cable_assemblies",
                 "m5_connector_bodies",
                 "external_antenna_kit",
@@ -648,12 +669,6 @@ def validate_sources(
                 row.get("id"): row
                 for row in bom_audit.get("required_uninstantiated_parts", [])
             }
-            if gap_by_id.get("external_sma_bodies", {}).get("quantity") != antenna_policy.get(
-                "base_onboard_sma_count"
-            ):
-                errors.append(
-                    f"{candidate_id}: BOM SMA gap must match antenna-policy connector count"
-                )
             if gap_by_id.get("external_antenna_kit", {}).get("quantity") != antenna_policy.get(
                 "full_field_kit_physical_items"
             ):
@@ -1963,6 +1978,7 @@ def render_target_principled_section(
             "s3": "S3: интерфейс пользователя, storage, audio и native expansion",
             "c5": "C5: native 2,4/5 ГГц, 802.15.4 и IR",
             "rp": "RP: детерминированные радио, voice и U214",
+            "rf_ports": "Девять независимых антенных портов",
             "power": "Питание как отдельный тракт",
             "safety": "Аппаратный STOP и подтверждение фактической передачи",
         }
@@ -1985,6 +2001,15 @@ def render_target_principled_section(
             "cc": "многодиапазонный sub-GHz transceiver",
             "voice": "аналоговый VHF/UHF voice transceiver",
             "u214": "съёмный LoRa/GNSS Cap-модуль",
+            "s3_external_rp_sma": "внешний RP-SMA порт S3 2,4 ГГц",
+            "c5_external_rp_sma": "внешний RP-SMA порт C5 2,4/5 ГГц",
+            "receiver_fmsw_external_sma": "приёмный SMA порт FM/SW",
+            "receiver_amlw_external_sma": "не-50-омный SMA порт AM/LW loop/pod",
+            "nrf0_external_sma": "независимый SMA порт nRF24 №0",
+            "nrf1_external_sma": "независимый SMA порт nRF24 №1",
+            "nrf2_external_sma": "независимый SMA порт nRF24 №2",
+            "cc_external_sma": "многодиапазонный SMA порт sub-GHz",
+            "voice_external_sma": "SMA порт VHF/UHF voice",
             "product_usb_connector": "основной USB-C разъём",
             "product_usb_protector": "защита CC и USB2 порта",
             "pd_vbus_tvs": "шунтирующая защита VBUS 22 В",
@@ -2030,6 +2055,7 @@ def render_target_principled_section(
             "s3": "S3: user interface, storage, audio and native expansion",
             "c5": "C5: native 2.4/5 GHz, 802.15.4 and IR",
             "rp": "RP: deterministic radios, voice and U214",
+            "rf_ports": "Nine independent antenna ports",
             "power": "Power as an independent path",
             "safety": "Hardware STOP and physical transmission evidence",
         }
@@ -2052,6 +2078,15 @@ def render_target_principled_section(
             "cc": "multi-band sub-GHz transceiver",
             "voice": "analog VHF/UHF voice transceiver",
             "u214": "removable LoRa/GNSS Cap module",
+            "s3_external_rp_sma": "external S3 2.4-GHz RP-SMA port",
+            "c5_external_rp_sma": "external C5 2.4/5-GHz RP-SMA port",
+            "receiver_fmsw_external_sma": "receive-only FM/SW SMA port",
+            "receiver_amlw_external_sma": "non-50-Ohm AM/LW loop/pod SMA port",
+            "nrf0_external_sma": "independent nRF24 #0 SMA port",
+            "nrf1_external_sma": "independent nRF24 #1 SMA port",
+            "nrf2_external_sma": "independent nRF24 #2 SMA port",
+            "cc_external_sma": "multi-band sub-GHz SMA port",
+            "voice_external_sma": "VHF/UHF voice SMA port",
             "product_usb_connector": "product USB-C receptacle",
             "product_usb_protector": "CC and USB2 port protector",
             "pd_vbus_tvs": "22-V VBUS shunt protector",
@@ -2134,6 +2169,31 @@ def render_target_principled_section(
                 '  RP <-->|"independent PIO0 SM3"| CC',
                 '  RP <-->|"UART0 + direct PTT"| VOICE',
                 '  RP <-->|"PIO1 + UART1 + I²C0"| U214',
+            ],
+        ),
+        (
+            labels["rf_ports"],
+            [
+                node("s3"), node("s3_external_rp_sma"),
+                node("c5"), node("c5_external_rp_sma"),
+                node("receiver"), node("receiver_fmsw_external_sma"),
+                node("receiver_amlw_external_sma"),
+                node("nrf0"), node("nrf0_external_sma"),
+                node("nrf1"), node("nrf1_external_sma"),
+                node("nrf2"), node("nrf2_external_sma"),
+                node("cc"), node("cc_external_sma"),
+                node("voice"), node("voice_external_sma"),
+            ],
+            [
+                '  S3 -->|"50 Ω"| S3_EXTERNAL_RP_SMA',
+                '  C5 -->|"50 Ω"| C5_EXTERNAL_RP_SMA',
+                '  RECEIVER -->|"FM/SW receive"| RECEIVER_FMSW_EXTERNAL_SMA',
+                '  RECEIVER -->|"AM/LW loop/pod"| RECEIVER_AMLW_EXTERNAL_SMA',
+                '  NRF0 -->|"50 Ω"| NRF0_EXTERNAL_SMA',
+                '  NRF1 -->|"50 Ω"| NRF1_EXTERNAL_SMA',
+                '  NRF2 -->|"50 Ω"| NRF2_EXTERNAL_SMA',
+                '  CC -->|"50 Ω"| CC_EXTERNAL_SMA',
+                '  VOICE -->|"50 Ω"| VOICE_EXTERNAL_SMA',
             ],
         ),
         (
@@ -3245,22 +3305,22 @@ def _render_principled_pinout_bundle(
         "  end",
         "  subgraph RADIO_ACCESSORY[\"Radio and external-accessory devices\"]",
         *[node(instance, native_rf_roles[instance]) for instance in native_rf_support_instance_names],
-        "  S3_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>S3 dedicated external RP-SMA endpoint\"]",
-        "  C5_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>C5 dedicated external RP-SMA endpoint\"]",
+        node("s3_external_rp_sma", "S3 dedicated 6-GHz IP67 RP-SMA edge-launch jack"),
+        node("c5_external_rp_sma", "C5 dedicated 6-GHz IP67 RP-SMA edge-launch jack"),
         *[node(instance, nrf_role(instance)) for instance in nrf_support_instance_names],
-        "  NRF0_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>nRF0 dedicated external standard-SMA endpoint\"]",
-        "  NRF1_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>nRF1 dedicated external standard-SMA endpoint\"]",
-        "  NRF2_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>nRF2 dedicated external standard-SMA endpoint\"]",
+        node("nrf0_external_sma", "nRF0 dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
+        node("nrf1_external_sma", "nRF1 dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
+        node("nrf2_external_sma", "nRF2 dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
         node("cc", "sub-GHz transceiver"),
         *[node(instance, cc_role(instance)) for instance in cc_support_instance_names],
-        "  CC_EXTERNAL_RF[\"MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint\"]",
+        node("cc_external_sma", "CC dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
         "  %% CC layout-only invisible spine: every box above is one physical device.",
         "  " + " ~~~ ".join(instance.upper() for instance in cc_support_instance_names),
         node("voice", "136-174/400-470-MHz analog voice transceiver"),
         *[node(instance, voice_rf_roles[instance]) for instance in voice_rf_support_instance_names],
-        "  VOICE_EXTERNAL_RF[\"MPN TBD after mechanics<br/>voice dedicated external standard-SMA endpoint\"]",
-        "  RX_FMSW_EXTERNAL_RF[\"MPN TBD after mechanics<br/>dedicated FM/SW standard-SMA receive endpoint\"]",
-        "  RX_AMLW_EXTERNAL_RF[\"MPN TBD after mechanics<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA endpoint\"]",
+        node("voice_external_sma", "voice dedicated 6-GHz IP67 standard-SMA edge-launch jack"),
+        node("receiver_fmsw_external_sma", "dedicated FM/SW standard-SMA receive jack"),
+        node("receiver_amlw_external_sma", "dedicated non-50-Ohm AM/LW loop-pod standard-SMA jack"),
         "  %% Voice-RF layout-only invisible spine: every box above is one physical device.",
         "  " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names),
         node("u214", "external LoRa/GNSS Cap module"),
@@ -3402,7 +3462,7 @@ def _render_principled_pinout_bundle(
         "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
-        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_RF ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
+        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_SMA ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
         "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
         "  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
@@ -3602,9 +3662,9 @@ def _render_principled_pinout_bundle(
         "  CC_SWITCH_A -->|\"433 input shunt\"| CC_433_SHUNT_C10P",
         "  CC_433_L15 -->|\"433 output shunt\"| CC_433_SHUNT_C6P2",
         "  CC_SWITCH_A -->|\"RF3 = 868/915 MHz\"| CC_868_915_L10 --> CC_SWITCH_B",
-        "  CC_SWITCH_B --> CC_OUTPUT_L2N2 --> CC_RF_ESD --> CC_EXTERNAL_RF",
+        "  CC_SWITCH_B --> CC_OUTPUT_L2N2 --> CC_RF_ESD --> CC_EXTERNAL_SMA",
         "  CC_OUTPUT_L2N2 -->|\"0.47-pF actual-TX sample\"| CC_DETECTOR_TAP_CAP --> DET_CC",
-        "  VOICE -->|\"short controlled 50-Ohm line\"| VOICE_EXTERNAL_RF",
+        "  VOICE -->|\"short controlled 50-Ohm line\"| VOICE_EXTERNAL_SMA",
         "  VOICE -->|\"24-V shunt at external boundary\"| VOICE_RF_ESD",
         "  VOICE -->|\"5.1-kOhm actual-TX sample\"| VOICE_DETECTOR_SERIES_ATTENUATOR --> DET_VOICE",
         "  DET_VOICE -->|\"52.3-Ohm RFIN shunt\"| VOICE_DETECTOR_MATCH",
@@ -3776,10 +3836,10 @@ def _render_principled_pinout_bundle(
         "  VOICE_IO_POWER_SWITCH --> VOICE_UART_TX_ISO",
         "  VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_ISO",
         "  SLOW_IO -->|\"P14 low-or-open power select\"| VOICE_HL_DRIVER --> VOICE",
-        "  RX_FMSW_EXTERNAL_RF --> RECEIVER_FMI_ESD",
-        "  RX_FMSW_EXTERNAL_RF --> RECEIVER_FMI_MATCH_INDUCTOR --> RECEIVER_FMI_COUPLING_CAP -->|\"FMI contact 6\"| RECEIVER",
-        "  RX_AMLW_EXTERNAL_RF --> RECEIVER_AMI_ESD",
-        "  RX_AMLW_EXTERNAL_RF --> RECEIVER_AMI_COUPLING_CAP -->|\"AMI contact 8\"| RECEIVER",
+        "  RECEIVER_FMSW_EXTERNAL_SMA --> RECEIVER_FMI_ESD",
+        "  RECEIVER_FMSW_EXTERNAL_SMA --> RECEIVER_FMI_MATCH_INDUCTOR --> RECEIVER_FMI_COUPLING_CAP -->|\"FMI contact 6\"| RECEIVER",
+        "  RECEIVER_AMLW_EXTERNAL_SMA --> RECEIVER_AMI_ESD",
+        "  RECEIVER_AMLW_EXTERNAL_SMA --> RECEIVER_AMI_COUPLING_CAP -->|\"AMI contact 8\"| RECEIVER",
         "  STOP_PULLUP -->|\"10 kOhm to AON_SAFE_3V3\"| STOP_LOOP",
         "  STOP_FILTER_CAP -->|\"10 nF to safety ground\"| STOP_LOOP",
         "  STOP_SWITCH -->|\"COM+NC to safety ground\"| STOP_LOOP",
@@ -3818,25 +3878,25 @@ def _render_principled_pinout_bundle(
         "  SAFE_GATE_B --> VOICE_BUCK",
         "  SAFE_GATE_B --> IR_EMITTER",
         "  SAFE_GATE_B --> EXT_BUCK",
-        "  S3 -->|\"placement-qualified U.FL jumper\"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| S3_EXTERNAL_RF_50R",
+        "  S3 -->|\"placement-qualified U.FL jumper\"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| S3_EXTERNAL_RP_SMA",
         "  S3_RF_COUPLER -->|\"-20-dB forward sample\"| S3_DETECTOR_INPUT_CAP --> DET_S3 --> EVIDENCE_CMP_A",
         "  S3_RF_COUPLER --> S3_RF_COUPLER_TERMINATION",
         "  S3_DETECTOR_FEEDBACK_RES --> DET_S3",
         "  S3_DETECTOR_GROUND_RES --> DET_S3",
         "  S3_DETECTOR_OUTPUT_CAP --> DET_S3",
         "  S3_DETECTOR_BYPASS --> DET_S3",
-        "  C5 -->|\"placement-qualified U.FL jumper\"| C5_RF_BOARD_CONNECTOR --> C5_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| C5_EXTERNAL_RF_50R",
+        "  C5 -->|\"placement-qualified U.FL jumper\"| C5_RF_BOARD_CONNECTOR --> C5_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| C5_EXTERNAL_RP_SMA",
         "  C5_RF_COUPLER -->|\"-20/-13-dB forward sample\"| C5_DETECTOR_INPUT_CAP --> DET_C5 --> EVIDENCE_CMP_A",
         "  C5_RF_COUPLER --> C5_RF_COUPLER_TERMINATION",
         "  C5_DETECTOR_FEEDBACK_RES --> DET_C5",
         "  C5_DETECTOR_GROUND_RES --> DET_C5",
         "  C5_DETECTOR_OUTPUT_CAP --> DET_C5",
         "  C5_DETECTOR_BYPASS --> DET_C5",
-        "  NRF0 -->|\"qualified pigtail\"| NRF0_COUPLER -->|\"dedicated SMA\"| NRF0_EXTERNAL_RF_50R",
+        "  NRF0 -->|\"qualified pigtail\"| NRF0_COUPLER -->|\"dedicated SMA\"| NRF0_EXTERNAL_SMA",
         "  NRF0_COUPLER -->|\"10-dB forward sample\"| DET_NRF0 --> EVIDENCE_CMP_A",
-        "  NRF1 -->|\"qualified pigtail\"| NRF1_COUPLER -->|\"dedicated SMA\"| NRF1_EXTERNAL_RF_50R",
+        "  NRF1 -->|\"qualified pigtail\"| NRF1_COUPLER -->|\"dedicated SMA\"| NRF1_EXTERNAL_SMA",
         "  NRF1_COUPLER -->|\"10-dB forward sample\"| DET_NRF1 --> EVIDENCE_CMP_A",
-        "  NRF2 -->|\"qualified pigtail\"| NRF2_COUPLER -->|\"dedicated SMA\"| NRF2_EXTERNAL_RF_50R",
+        "  NRF2 -->|\"qualified pigtail\"| NRF2_COUPLER -->|\"dedicated SMA\"| NRF2_EXTERNAL_SMA",
         "  NRF2_COUPLER -->|\"10-dB forward sample\"| DET_NRF2 --> EVIDENCE_CMP_B",
         "  DET_CC --> EVIDENCE_CMP_B",
         "  DET_VOICE --> EVIDENCE_CMP_B",

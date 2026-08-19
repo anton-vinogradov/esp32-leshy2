@@ -68,6 +68,51 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn("FX8C-80S-SV5(92)", rendered)
             self.assertIn("| `80` |", rendered)
 
+    def test_exact_nine_external_sma_bodies_do_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        expected = {
+            "s3_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
+            "c5_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
+            "receiver_fmsw_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "receiver_amlw_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "nrf0_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "nrf1_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "nrf2_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "cc_external_sma": "gct_rfpc_sma31_fn_175_a",
+            "voice_external_sma": "gct_rfpc_sma31_fn_175_a",
+        }
+        self.assertEqual(9, len(expected))
+        for instance, device_id in expected.items():
+            self.assertEqual(device_id, candidate["instances"][instance])
+            device = self.database["devices"][device_id]
+            contract = device["electrical_contract"]
+            self.assertEqual(6, contract["maximum_frequency_ghz"])
+            self.assertEqual(50, contract["impedance_ohm"])
+            self.assertEqual("IP67 mated and unmated", contract["ingress_protection"])
+            self.assertIn("1.6-mm PCB", contract["mounting"])
+            self.assertEqual(5, len(device["contacts"]))
+            self.assertIn("gct.co", device["source"]["url"])
+            self.assertEqual(100, device["cost"]["target_quantity"])
+
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        self.assertIn(
+            ("s3_rf_coupler.RF_OUT", "s3_external_rp_sma.RF", "S3_EXTERNAL_RF_50R"),
+            routes,
+        )
+        for instance in expected:
+            for contact in (
+                "GROUND_TOP_LEFT", "GROUND_TOP_RIGHT",
+                "GROUND_BOTTOM_LEFT", "GROUND_BOTTOM_RIGHT",
+            ):
+                self.assertTrue(any(
+                    route[0] == f"{instance}.{contact}"
+                    and route[1] == "abstract:rf-ground-dedicated-via"
+                    for route in routes
+                ))
+
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual(
@@ -75,8 +120,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(879, sum(line["quantity"] for line in lines))
-        self.assertEqual(191, len(lines))
+        self.assertEqual(888, sum(line["quantity"] for line in lines))
+        self.assertEqual(193, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -86,11 +131,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            179,
+            181,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            851,
+            860,
             sum(
                 line["quantity"]
                 for line in lines
@@ -134,7 +179,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             row["id"]: row["quantity"]
             for row in candidate["bom_audit"]["required_uninstantiated_parts"]
         }
-        self.assertEqual(9, gap_quantities["external_sma_bodies"])
+        self.assertNotIn("external_sma_bodies", gap_quantities)
         self.assertEqual(5, gap_quantities["rf_cable_assemblies"])
         self.assertEqual(2, gap_quantities["m5_connector_bodies"])
         self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
@@ -145,7 +190,6 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertEqual(
             {
-                "external_sma_bodies": "g3_connector_plane_and_mount_coupon_required",
                 "rf_cable_assemblies": "received_mate_and_routed_length_coupon_required",
                 "m5_connector_bodies": "received_mate_identification_and_retention_coupon_required",
                 "external_antenna_kit": "profile_variant_bom_and_hil_required",
@@ -154,14 +198,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("880", rendered)
-        self.assertIn("879", rendered)
-        self.assertIn("191", rendered)
-        self.assertIn("190/191", rendered)
-        self.assertIn("191/191", rendered)
-        self.assertIn("179/191", rendered)
-        self.assertIn("851/879", rendered)
-        self.assertIn("USD 165.9241", rendered)
+        self.assertIn("889", rendered)
+        self.assertIn("888", rendered)
+        self.assertIn("193", rendered)
+        self.assertIn("192/193", rendered)
+        self.assertIn("193/193", rendered)
+        self.assertIn("181/193", rendered)
+        self.assertIn("860/888", rendered)
+        self.assertIn("USD 188.1051", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -171,7 +215,6 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("display_touch_controller", rendered)
         self.assertIn("Physical purchase families with explicit resolution gates", rendered)
         self.assertIn("I8 paper procurement-feasibility scope reviewed", rendered)
-        self.assertIn("g3_connector_plane_and_mount_coupon_required", rendered)
         self.assertIn("received_mate_and_routed_length_coupon_required", rendered)
         self.assertIn("received_mate_identification_and_retention_coupon_required", rendered)
         self.assertIn("profile_variant_bom_and_hil_required", rendered)
@@ -202,12 +245,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(59, policy["expected_unique_endpoint_count"])
-        self.assertEqual(992, policy["expected_occurrence_count"])
+        self.assertEqual(50, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1017, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
-            18,
+            9,
             len(
                 next(
                     row["endpoints"]
@@ -1998,7 +2041,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             for route in candidate["fixed_routes"]
         }
         for route in (
-            ("voice.ANT", "abstract:VOICE-dedicated-standard-SMA", "VOICE_EXTERNAL_RF_50R"),
+            ("voice.ANT", "voice_external_sma.RF", "VOICE_EXTERNAL_RF_50R"),
             ("voice.ANT", "voice_rf_esd.K1", "VOICE_EXTERNAL_RF_50R"),
             ("voice.ANT", "voice_detector_series_attenuator.END_1", "VOICE_EXTERNAL_RF_50R"),
             ("voice_detector_series_attenuator.END_2", "det_voice.RFIN", "VOICE_RF_SAMPLE"),
@@ -2152,11 +2195,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             for route in candidate["fixed_routes"]
         }
         for route in (
-            ("abstract:RX-FM-SW-dedicated-standard-SMA", "receiver_fmi_esd.K", "RX_FMSW_BOUNDARY_RF"),
+            ("receiver_fmsw_external_sma.RF", "receiver_fmi_esd.K", "RX_FMSW_BOUNDARY_RF"),
             ("receiver_fmi_esd.A", "abstract:rf-ground-dedicated-via", "RX_FMSW_ESD_GROUND"),
             ("receiver_fmi_match_inductor.END_2", "receiver_fmi_coupling_cap.END_1", "RX_FMSW_MATCHED_RF"),
             ("receiver_fmi_coupling_cap.END_2", "receiver.FMI", "RX_FMI_RF"),
-            ("abstract:RX-AM-LW-keyed-loop-pod-standard-SMA", "receiver_ami_esd.K", "RX_AMLW_BOUNDARY_RF"),
+            ("receiver_amlw_external_sma.RF", "receiver_ami_esd.K", "RX_AMLW_BOUNDARY_RF"),
             ("receiver_ami_coupling_cap.END_2", "receiver.AMI", "RX_AMI_RF"),
         ):
             self.assertIn(route, routes)
@@ -2177,7 +2220,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "LQW15AN56NJ00D<br/>56-nH high-Q FM first target on FM/SW port",
             "GRM1555C1H102JA01D<br/>1-nF C0G FMI AC-coupling capacitor",
             "GRM155R71A474KE01D<br/>0.47-uF AMI AC-coupling capacitor",
-            "dedicated non-50-Ohm AM/LW loop-pod standard-SMA endpoint",
+            "GCT RFPC-SMA31-FN-175-A<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA jack",
         ):
             self.assertIn(token, rendered)
 

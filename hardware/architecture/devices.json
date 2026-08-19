@@ -5,6 +5,100 @@
   "generated_target_bom_review": "hardware/architecture/generated/G2F-3I-target-bom-review.md",
   "generated_target_bom_csv": "hardware/architecture/generated/G2F-3I-target-bom.csv",
   "devices": {
+  "gct_rfpc_sma31_fn_175_a": {
+    "mpn": "GCT RFPC-SMA31-FN-175-A",
+    "kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+    "qualification": "verified_exact_external_standard_sma_body",
+    "lifecycle": "active",
+    "dimensions_mm": [15.2, 10.2, 3.9],
+    "source": {
+      "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+      "version": "drawing dated 2025-04-07",
+      "url": "https://gct.co/connector/rfpc-sma31-fn",
+      "checked": "2026-08-19"
+    },
+    "orderable_source": {
+      "document": "DigiKey active exact-MPN listing; 788 shown in stock",
+      "url": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371",
+      "checked": "2026-08-19"
+    },
+    "cost": {
+      "currency": "USD",
+      "target_quantity": 100,
+      "unit_price_usd": 2.46456,
+      "price_break": "DigiKey tray 90-179 quantity tier applied at target quantity 100",
+      "source": {
+        "document": "DigiKey exact-MPN published price table",
+        "url": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371",
+        "checked": "2026-08-19"
+      }
+    },
+    "programmable": false,
+    "electrical_contract": {
+      "impedance_ohm": 50,
+      "maximum_frequency_ghz": 6,
+      "polarity": "standard",
+      "interface": "SMA jack with female centre socket",
+      "mounting": "front-side nut bulkhead plus board-edge launch for 1.6-mm PCB",
+      "ingress_protection": "IP67 mated and unmated",
+      "maximum_plan_envelope_mm": [15.2, 10.2],
+      "profile_above_pcb_mm": 3.9
+    },
+    "contacts": {
+      "RF": {"physical": "centre launch pad", "role": "rf"},
+      "GROUND_TOP_LEFT": {"physical": "top left ground pad", "role": "power"},
+      "GROUND_TOP_RIGHT": {"physical": "top right ground pad", "role": "power"},
+      "GROUND_BOTTOM_LEFT": {"physical": "bottom left ground pad", "role": "power"},
+      "GROUND_BOTTOM_RIGHT": {"physical": "bottom right ground pad", "role": "power"}
+    }
+  },
+  "gct_rfpc_sma32_fn_175_a": {
+    "mpn": "GCT RFPC-SMA32-FN-175-A",
+    "kind": "6ghz_ip67_reverse_polarity_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+    "qualification": "verified_exact_external_reverse_polarity_sma_body",
+    "lifecycle": "active",
+    "dimensions_mm": [15.2, 10.2, 3.9],
+    "source": {
+      "document": "GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing",
+      "version": "RFPC-SMA31/SMA32 IP67 edge-launch family",
+      "url": "https://gct.co/connector/rfpc-sma32-fn",
+      "checked": "2026-08-19"
+    },
+    "orderable_source": {
+      "document": "DigiKey active exact-MPN listing; 556 shown in stock",
+      "url": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/25576372",
+      "checked": "2026-08-19"
+    },
+    "cost": {
+      "currency": "USD",
+      "target_quantity": 100,
+      "unit_price_usd": 2.46456,
+      "price_break": "DigiKey tray 90-179 quantity tier applied at target quantity 100",
+      "source": {
+        "document": "DigiKey exact-MPN published price table",
+        "url": "https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/25576372",
+        "checked": "2026-08-19"
+      }
+    },
+    "programmable": false,
+    "electrical_contract": {
+      "impedance_ohm": 50,
+      "maximum_frequency_ghz": 6,
+      "polarity": "reverse",
+      "interface": "RP-SMA jack with male centre pin",
+      "mounting": "front-side nut bulkhead plus board-edge launch for 1.6-mm PCB",
+      "ingress_protection": "IP67 mated and unmated",
+      "maximum_plan_envelope_mm": [15.2, 10.2],
+      "profile_above_pcb_mm": 3.9
+    },
+    "contacts": {
+      "RF": {"physical": "centre launch pad", "role": "rf"},
+      "GROUND_TOP_LEFT": {"physical": "top left ground pad", "role": "power"},
+      "GROUND_TOP_RIGHT": {"physical": "top right ground pad", "role": "power"},
+      "GROUND_BOTTOM_LEFT": {"physical": "bottom left ground pad", "role": "power"},
+      "GROUND_BOTTOM_RIGHT": {"physical": "bottom right ground pad", "role": "power"}
+    }
+  },
   "hirose_fx8c_80p_sv1_92": {
     "mpn": "Hirose FX8C-80P-SV1(92)",
     "kind": "80_contact_0_6mm_11mm_stack_mezzanine_plug",

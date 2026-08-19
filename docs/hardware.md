@@ -32,11 +32,13 @@ powered down and discharged.
 | IR RX | `TSOP95238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` | RP2354B | Removable rear expansion |
+| External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA; no RF sharing |
 
 Every transmit path has independent actual-TX evidence. Native S3/C5 use their
 own `U.FL-R-SMT-1(10)` and `CP0603Q5425ENTR` directional couplers; each nRF24
-has its own external SMA and `DC2337J5010AHF`. Evidence reports actual transmit
-activity and a relative level; it never grants transmit permission.
+has its own external SMA and `DC2337J5010AHF`. A red antenna-local indicator is
+retained for S3, C5, all three nRF24 paths, CC1101 and voice. Evidence reports
+actual transmit activity and a relative level; it never grants transmit permission.
 
 ## User interface, storage and audio
 

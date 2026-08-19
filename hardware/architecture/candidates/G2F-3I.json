@@ -20,7 +20,7 @@
       }
     ],
     "substitution_policy": {
-      "status": "all_191_current_purchase_lines_have_exactly_one_conservative_disposition_class",
+      "status": "all_193_current_purchase_lines_have_exactly_one_conservative_disposition_class",
       "classes": [
         {
           "id": "SUB-RF",
@@ -119,34 +119,13 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_y78b23214fp", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
           ]
         }
       ]
     },
     "cost_basis": "USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ",
     "required_uninstantiated_parts": [
-      {
-        "id": "external_sma_bodies",
-        "quantity": 9,
-        "scope": "base_product",
-        "role": "two RP-SMA and seven standard-SMA external RF connector bodies",
-        "blocker": "exact attachment style and MPN depend on the physical connector plane; polarity and radio ownership are already fixed",
-        "resolution_gate": {
-          "status": "g3_connector_plane_and_mount_coupon_required",
-          "owner_stage": "G3 target physical/product design before exact connector BOM freeze",
-          "prerequisites": [
-            "freeze all nine external port centres, enclosure-wall versus PCB relationship, panel thickness, service access and retention-load envelope",
-            "preserve two RP-SMA jack/centre-pin and seven standard-SMA jack/centre-socket device-side mating contracts from DEC-0050"
-          ],
-          "acceptance": [
-            "name exact current orderable body MPNs, footprints, mounting hardware and quantities for all nine endpoints without changing polarity or RF ownership",
-            "pass assembly coupon for torque, ground contact, enclosure load, keepout, service access and repeated mate cycles",
-            "pass per-path VNA/continuity/ESD-ground verification and attach quantity-100 cost plus substitution disposition"
-          ],
-          "evidence_refs": ["DEC-0050", "ANT-0001", "FND-0109"]
-        }
-      },
       {
         "id": "rf_cable_assemblies",
         "quantity": 5,
@@ -217,8 +196,8 @@
   "i9_projection_audit": {
     "status": "paper_reviewed_joint_candidate_projection_not_target_architecture",
     "fixed_route_abstract_policy": {
-      "expected_unique_endpoint_count": 59,
-      "expected_occurrence_count": 992,
+      "expected_unique_endpoint_count": 50,
+      "expected_occurrence_count": 1017,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -252,11 +231,7 @@
           "rule": "electrical endpoint is fixed but connector body, cable mate/length or antenna/pod identity is owned by a BOM-0027 G3 received-item/geometry gate",
           "endpoints": [
             "abstract:S3-placement-qualified-double-ended-UFL-jumper", "abstract:C5-placement-qualified-double-ended-UFL-jumper",
-            "abstract:RX-FM-SW-dedicated-standard-SMA", "abstract:RX-AM-LW-keyed-loop-pod-standard-SMA",
             "abstract:NRF0-qualified-module-pigtail-mate", "abstract:NRF1-qualified-module-pigtail-mate", "abstract:NRF2-qualified-module-pigtail-mate",
-            "abstract:S3-dedicated-external-reverse-polarity-SMA", "abstract:C5-dedicated-external-reverse-polarity-SMA",
-            "abstract:NRF0-dedicated-standard-SMA", "abstract:NRF1-dedicated-standard-SMA", "abstract:NRF2-dedicated-standard-SMA",
-            "abstract:CC-dedicated-standard-SMA", "abstract:VOICE-dedicated-standard-SMA",
             "abstract:native-M5-HY2-0-4P-5V", "abstract:native-M5-HY2-0-4P-GND", "abstract:native-M5-HY2-0-4P-SIG0", "abstract:native-M5-HY2-0-4P-SIG1"
           ]
         },
@@ -269,7 +244,7 @@
     },
     "consistency_checks": [
       "all programmable GPIO, module contacts, slow-I/O contacts, service alternatives and scheduled resources are machine-accounted without collision",
-      "all 858 physical architecture instances render one-device-per-node and the 857 supplied placements map to the reviewed I8 purchase boundary",
+      "all 889 physical architecture instances render one-device-per-node and the 888 supplied placements map to the reviewed I8 purchase boundary",
       "all signal groups have complete quiet-state, transition, actual-TX evidence and no-stall contracts without cross-group runtime promotion",
       "all remaining physical, procurement and HIL uncertainty has an owning downstream gate and no unresolved owner decision changes candidate function"
     ],
@@ -380,7 +355,7 @@
     "protection_and_off_state": "two independent 0.2-pF-typical SESD0402X1UN-0020-090 bodies keep protection adjacent to each exposed boundary; each K contact is on signal and A returns through the shortest RF-ground geometry. The receiver power branch and digital isolation still turn off, while the passive RF inputs remain harmless protected receive-only paths and cannot authorize or emit TX",
     "source_applicability": "the exact Si4732-A10 data short assigns FM/SW to FMI and AM/LW to AMI. AN383 is family antenna-interface guidance rather than an Si4732-A10 production reference layout: its 56-nH/1-nF FMI circuit is an FM reference, while its separate SW-on-AMI circuit is explicitly limited to Si4734/35 and is not transferred here. AN332 establishes common receive firmware components, not RF performance; every band and pod remains specimen HIL",
     "availability_and_cost": "the exact tape-and-reel Si4732-A10-GSR is JLCPCB/LCSC C2155558 and was in stock for SMT assembly with minimum quantity one at the 2026-08-18 check; this replaces the out-of-stock tube C1526102 without electrical or footprint change. The selected 56-nH LQW15AN56NJ00D, 1-nF GRM1555C1H102JA01D and 0.47-uF GRM155R71A474KE01D were active with substantial authorized-distributor stock; the already-used SESD0402X SKU is populated twice. The endpoint adds only two ESD bodies and three passives, with no material product-cost or power-budget increase",
-    "remaining_hil": ["received Si4732-A10-GSR identity, FMI/AMI/RFGND orientation, address and firmware-component behavior", "FM 64-108-MHz and SW 2.3-26.1-MHz sensitivity, overload and noise with the complete SMA/feed/whip path; the current antenna shortlist is not accepted below its published 25-MHz edge without measurement", "AM 520-1710-kHz and LW 153-279-kHz direct-ferrite-loop inductance, total parasitic capacitance, transformer alternative, cable bound and enclosure coupling", "both SESD paths, ESD return geometry and RF transparency at every band", "receiver-off no-backpower/current plus wake, tune, scan, RDS, audio and optional owner-supplied SSB-patch behavior", "SG-BROADCAST active with every foreign signal group proven quiet, maximum scheduled system-plane traffic, blocking recovery and no-interface-stall proof; cross-group RF injection is Laboratory characterization only", "mechanics-selected two standard-SMA MPNs, permanent FM/SW versus non-50-Ohm AM/LW labels and wrong-antenna handling"]
+    "remaining_hil": ["received Si4732-A10-GSR identity, FMI/AMI/RFGND orientation, address and firmware-component behavior", "FM 64-108-MHz and SW 2.3-26.1-MHz sensitivity, overload and noise with the complete SMA/feed/whip path; the current antenna shortlist is not accepted below its published 25-MHz edge without measurement", "AM 520-1710-kHz and LW 153-279-kHz direct-ferrite-loop inductance, total parasitic capacitance, transformer alternative, cable bound and enclosure coupling", "both SESD paths, ESD return geometry and RF transparency at every band", "receiver-off no-backpower/current plus wake, tune, scan, RDS, audio and optional owner-supplied SSB-patch behavior", "SG-BROADCAST active with every foreign signal group proven quiet, maximum scheduled system-plane traffic, blocking recovery and no-interface-stall proof; cross-group RF injection is Laboratory characterization only", "received RFPC-SMA31-FN-175-A launch/ground geometry, permanent FM/SW versus non-50-Ohm AM/LW labels and wrong-antenna handling"]
   },
   "i6_consolidated_qualification_contract": {
     "decision": "DEC-0097",
@@ -662,20 +637,20 @@
     "band_selection": "slow_io P03/P04 feed a switched-rail 74LVC2G126DC,125; each output drives the identically named V1/V2 input of both BGS13SN8 bodies. Per-switch 10-kOhm pull-downs force 00 isolation. Firmware may set 10=315, 01=433 or 11=868/915 only while the rail is off and may never hot-switch an energized RF path",
     "rf_path": "two exact BGS13SN8E6327XTSA1 bodies bracket all three branches, so unselected filters are disconnected at both ends. The first-pass coupon uses exact B0310J50100AHF, high-Q Murata 0402 passives and the current U219 reference values; BGS contacts RF1/RF2/RF3 map to 315/433/868-915 respectively. Final external connector MPN remains a mechanics input, not an electrical guess",
     "evidence": "a 0.47-pF GJM1555C1HR47BB01D samples the final 50-Ohm line into an unmatched high-impedance AON-powered AD8314ACPZ-RL7. The same diode/10-kOhm/1-uF hold pattern pre-arms evidence and outlives QOD. The non-directional sample may conservatively remain asserted under strong inbound RF, but can only block or delay shutdown and can never authorize TX",
-    "protection_and_cost": "one exact 0.2-pF SESD0402X1UN-0020-090 protects the external RF line. At quantity 100 the two switches, balun, crystal, buffers, ESD and populated RF passives add roughly USD 3 before the mechanically selected SMA; replacing the old LTC5507 with the already-used AD8314 avoids a new detector SKU",
-    "remaining_hil": ["conducted VNA tuning and sensitivity/output-power proof at all three branches and intended channels", "B0310 amplitude/phase/return-loss margin versus a TI-optimized discrete network", "SPI/GDO timing through buffers and 22-Ohm series resistors", "rail rise, identity, QOD, band-select and no-backpower fault injection", "per-band and per-power AD8314 thresholds including minimum-output false-negative margin and strong-inbound false positives", "spurious/harmonic, EIRP, legal profile and labelled-antenna checks", "SG-CC active with every foreign signal group proven quiet plus desense and no-interface-stall proof under maximum allowed system-plane traffic; cross-group RF injection is Laboratory characterization only", "mechanics-selected standard-SMA MPN and complete-feed loss/return-loss"]
+    "protection_and_cost": "one exact 0.2-pF SESD0402X1UN-0020-090 protects the external RF line. The exact RFPC-SMA31-FN-175-A is included in the machine BOM at USD 2.46456 for quantity 100; replacing the old LTC5507 with the already-used AD8314 avoids a new detector SKU",
+    "remaining_hil": ["conducted VNA tuning and sensitivity/output-power proof at all three branches and intended channels", "B0310 amplitude/phase/return-loss margin versus a TI-optimized discrete network", "SPI/GDO timing through buffers and 22-Ohm series resistors", "rail rise, identity, QOD, band-select and no-backpower fault injection", "per-band and per-power AD8314 thresholds including minimum-output false-negative margin and strong-inbound false positives", "spurious/harmonic, EIRP, legal profile and labelled-antenna checks", "SG-CC active with every foreign signal group proven quiet plus desense and no-interface-stall proof under maximum allowed system-plane traffic; cross-group RF injection is Laboratory characterization only", "received RFPC-SMA31-FN-175-A launch/ground geometry and complete-feed loss/return-loss"]
   },
   "voice_rf_electrical_contract": {
     "decision": "DEC-0094",
     "status": "paper_reviewed_i6_sa518_rf_subblock_physical_and_hil_open",
     "scope": "one full-function NiceRF SA518 136-174/400-470-MHz half-duplex voice path from physical ANT contact 7 to one protected external standard-SMA boundary plus independent actual-TX evidence",
     "module_boundary": "SA518 specification revision 1.1 identifies ANT contact 7 as a 50-Ohm RF port, integrates MCU/transceiver/PA and permits 29-31 dBm high or 26-27.5 dBm low output from the fixed 4.0-V product rail. No unproven external match or filter is inserted before conducted evidence says it is required",
-    "rf_path": "ANT feeds a shortest controlled-50-Ohm PCB path directly to the mechanics-selected standard-SMA boundary. One shunt PESD24VY1BSF at that boundary provides 24-V bidirectional, 0.17-pF-typical antenna ESD protection without approaching its stand-off voltage at the 11.22-V normal 31-dBm peak or the 14.96-V first-order 2:1-VSWR antinode",
+    "rf_path": "ANT feeds a shortest controlled-50-Ohm PCB path directly to the exact RFPC-SMA31-FN-175-A boundary. One shunt PESD24VY1BSF at that boundary provides 24-V bidirectional, 0.17-pF-typical antenna ESD protection without approaching its stand-off voltage at the 11.22-V normal 31-dBm peak or the 14.96-V first-order 2:1-VSWR antinode",
     "evidence": "one RC0402FR-075K1L 5.1-kOhm series sampler and one RC0402FR-0752R3L 52.3-Ohm RFIN shunt implement the AD8314 datasheet series-attenuation method. The nominal tap is about 40 dB, places 26-31-dBm RF near -14 to -9 dBm equivalent at the detector and adds about 0.04 dB shunt loading to the 50-Ohm mainline. The AON-powered AD8314 uses the same exact bypass/filter/enable-hold pattern as CC",
     "failure_semantics": "the tap is non-directional: missing detector evidence during commanded PTT is a fault, while strong inbound VHF/UHF may conservatively delay quiet confirmation but can never authorize PTT or create a TX lease. Antenna identity and legal band/power profile are mandatory before the rail and PTT can be armed",
     "filter_reopen_gate": "external VHF/UHF filter branches remain deliberately unpopulated and consume no P05 control. If conducted spurious, harmonic, return-loss or sensitivity HIL fails, the subblock reopens for exact dual-ended filters and only then may claim the last slow-I/O line",
     "cost_and_availability": "PESD24VY1BSF is a current Nexperia production antenna-protection part with manufacturer sample/distributor path; the 5.1-kOhm resistor had 166,368 units shown at an authorized distributor and USD 0.0097 at quantity 100. Reusing AD8314, 52.3 Ohm, filter, bypass and hold SKUs removes the legacy LTC5507 detector SKU and avoids a USD 10-plus low-frequency directional coupler",
-    "remaining_hil": ["received SA518 identity, physical-contact and exact 136-174/400-470-MHz behavior", "module-to-SMA VNA insertion loss and return loss with enclosure and final connector", "PESD24VY1BSF RF transparency, IEC path and mismatch behavior at high power", "AD8314 threshold and no-false-negative margin at both bands and every permitted H/L power", "strong inbound-RF false-positive behavior and quiet timeout", "output power, sensitivity, deviation, harmonics, spurious, antenna gain/EIRP and regional legal profiles", "SG-VOICE active with every foreign signal group proven quiet plus desense and no-interface-stall proof under maximum allowed system-plane traffic; cross-group RF injection is Laboratory characterization only", "mechanics-selected standard-SMA MPN, labelled separate VHF/UHF antennas and strain relief"]
+    "remaining_hil": ["received SA518 identity, physical-contact and exact 136-174/400-470-MHz behavior", "module-to-SMA VNA insertion loss and return loss with enclosure and final connector", "PESD24VY1BSF RF transparency, IEC path and mismatch behavior at high power", "AD8314 threshold and no-false-negative margin at both bands and every permitted H/L power", "strong inbound-RF false-positive behavior and quiet timeout", "output power, sensitivity, deviation, harmonics, spurious, antenna gain/EIRP and regional legal profiles", "SG-VOICE active with every foreign signal group proven quiet plus desense and no-interface-stall proof under maximum allowed system-plane traffic; cross-group RF injection is Laboratory characterization only", "received RFPC-SMA31-FN-175-A launch/ground geometry, labelled separate VHF/UHF antennas and strain relief"]
   },
   "external_expansion_contract": {
     "decision": "DEC-0098",
@@ -1278,6 +1253,15 @@
     "rp": "rp2354b_a4",
     "m1_ui_plug": "hirose_fx8c_80p_sv1_92",
     "m1_rf_receptacle": "hirose_fx8c_80s_sv5_92",
+    "s3_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
+    "c5_external_rp_sma": "gct_rfpc_sma32_fn_175_a",
+    "receiver_fmsw_external_sma": "gct_rfpc_sma31_fn_175_a",
+    "receiver_amlw_external_sma": "gct_rfpc_sma31_fn_175_a",
+    "nrf0_external_sma": "gct_rfpc_sma31_fn_175_a",
+    "nrf1_external_sma": "gct_rfpc_sma31_fn_175_a",
+    "nrf2_external_sma": "gct_rfpc_sma31_fn_175_a",
+    "cc_external_sma": "gct_rfpc_sma31_fn_175_a",
+    "voice_external_sma": "gct_rfpc_sma31_fn_175_a",
     "u214": "m5_u214",
     "u214_i2c_iso": "tca4307dgkr",
     "u214_i2c_iso_bypass": "tdk_c1005x7r1h104k050bb",
@@ -2319,6 +2303,42 @@
     {"instance":"voice","contacts":["UPDATE","UART_TX","UART_RX","PD"],"method":"permanent fixture breakout for vendor update/recovery plus UART and hardware power-down; UPDATE drive remains inhibited until exact rev-1.1 direction/timing proof"}
   ],
   "fixed_routes": [
+    {"from":"s3_external_rp_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"S3_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"s3_external_rp_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"S3_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"s3_external_rp_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"S3_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"s3_external_rp_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"S3_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"c5_external_rp_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"C5_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"c5_external_rp_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"C5_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"c5_external_rp_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"C5_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"c5_external_rp_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"C5_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_fmsw_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"RX_FMSW_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_fmsw_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"RX_FMSW_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_fmsw_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"RX_FMSW_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_fmsw_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"RX_FMSW_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_amlw_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"RX_AMLW_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_amlw_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"RX_AMLW_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_amlw_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"RX_AMLW_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"receiver_amlw_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"RX_AMLW_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"nrf0_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"NRF0_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"nrf0_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"NRF0_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"nrf0_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"NRF0_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"nrf0_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"NRF0_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"nrf1_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"NRF1_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"nrf1_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"NRF1_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"nrf1_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"NRF1_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"nrf1_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"NRF1_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"nrf2_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"NRF2_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"nrf2_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"NRF2_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"nrf2_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"NRF2_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"nrf2_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"NRF2_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"cc_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"CC_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"cc_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"CC_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"cc_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"CC_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"cc_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"CC_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
+    {"from":"voice_external_sma.GROUND_TOP_LEFT","to":"abstract:rf-ground-dedicated-via","net":"VOICE_SMA_RF_GROUND","safety":"first connector ground pad enters the local stitched RF return"},
+    {"from":"voice_external_sma.GROUND_TOP_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"VOICE_SMA_RF_GROUND","safety":"second connector ground pad enters the local stitched RF return"},
+    {"from":"voice_external_sma.GROUND_BOTTOM_LEFT","to":"abstract:rf-ground-dedicated-via","net":"VOICE_SMA_RF_GROUND","safety":"third connector ground pad enters the local stitched RF return"},
+    {"from":"voice_external_sma.GROUND_BOTTOM_RIGHT","to":"abstract:rf-ground-dedicated-via","net":"VOICE_SMA_RF_GROUND","safety":"fourth connector ground pad enters the local stitched RF return"},
     {"from":"c5_service_usb_connector.A1_GND","to":"c5_service_usb_connector.A12_GND","net":"POWER_GROUND","safety":"all four C5 service-port ground contacts join the local connector return"},
     {"from":"c5_service_usb_connector.A12_GND","to":"c5_service_usb_connector.B1_GND","net":"POWER_GROUND","safety":"second C5 service-port ground pair is physically soldered"},
     {"from":"c5_service_usb_connector.B1_GND","to":"c5_service_usb_connector.B12_GND","net":"POWER_GROUND","safety":"all C5 service-port ground contacts remain present"},
@@ -3231,7 +3251,7 @@
     {"from":"cc_switch_b.RFIN","to":"cc_output_l2n2.END_1","net":"CC_RF_SELECTED","safety":"one antenna-side common port prevents unselected filter stubs from loading the output"},
     {"from":"cc_output_l2n2.END_2","to":"cc_rf_esd.K","net":"CC_EXTERNAL_RF_50R","safety":"exact 2.2-nH final element feeds the low-capacitance protected external line"},
     {"from":"cc_rf_esd.A","to":"abstract:chassis-rf-ground","net":"CC_RF_ESD_RETURN","safety":"0.2-pF IEC-ESD diode returns at the connector boundary through a short via field"},
-    {"from":"cc_output_l2n2.END_2","to":"abstract:CC-dedicated-standard-SMA","net":"CC_EXTERNAL_RF_50R","safety":"exact SMA MPN waits for physical placement; electrical endpoint and polarity remain fixed"},
+    {"from":"cc_output_l2n2.END_2","to":"cc_external_sma.RF","net":"CC_EXTERNAL_RF_50R","safety":"short controlled-50-Ohm end-launch route reaches the exact standard-SMA centre contact"},
     {"from":"cc_output_l2n2.END_2","to":"cc_detector_tap_cap.END_1","net":"CC_EXTERNAL_RF_50R","safety":"0.47-pF high-Q sample is taken after both switches and every populated branch element"},
     {"from":"cc_detector_tap_cap.END_2","to":"det_cc.RFIN","net":"CC_RF_SAMPLE","safety":"unmatched high-impedance AD8314 voltage sample avoids a 50-Ohm mainline shunt"},
     {"from":"abstract:AON_SAFE_3V3","to":"det_cc.VPOS","net":"AON_SAFE_3V3","safety":"actual-TX detector remains alive independently of the CC application rail"},
@@ -3878,14 +3898,14 @@
     {"from":"display_connector.PIN_40","to":"abstract:power-ground","net":"LCD_IM2_LOW","safety":"short fixed board-side QSPI strap"},
     {"from":"slow_io.P10","to":"codec_power_switch.ON","net":"CODEC_PWR_EN","safety":"off-safe exact TPS22919 switch; ES8311 CE remains only its 0x19 address strap"},
     {"from":"slow_io.P15","to":"receiver_power_switch.ON","net":"RX_DOMAIN_EN","safety":"off-safe exact TPS22919 receiver switch"},
-    {"from":"abstract:RX-FM-SW-dedicated-standard-SMA","to":"receiver_fmi_esd.K","net":"RX_FMSW_BOUNDARY_RF","safety":"one exact 0.2-pF-typical shunt protects only the dedicated FM/SW receive boundary"},
+    {"from":"receiver_fmsw_external_sma.RF","to":"receiver_fmi_esd.K","net":"RX_FMSW_BOUNDARY_RF","safety":"one exact 0.2-pF-typical shunt protects only the dedicated FM/SW receive boundary"},
     {"from":"receiver_fmi_esd.A","to":"abstract:rf-ground-dedicated-via","net":"RX_FMSW_ESD_GROUND","safety":"shortest boundary return keeps antenna discharge out of receiver signal-ground routing"},
-    {"from":"abstract:RX-FM-SW-dedicated-standard-SMA","to":"receiver_fmi_match_inductor.END_1","net":"RX_FMSW_PROTECTED_RF","safety":"receive-only FM/SW line enters the exact first-pass 56-nH high-Q series match"},
+    {"from":"receiver_fmsw_external_sma.RF","to":"receiver_fmi_match_inductor.END_1","net":"RX_FMSW_PROTECTED_RF","safety":"receive-only FM/SW line enters the exact first-pass 56-nH high-Q series match"},
     {"from":"receiver_fmi_match_inductor.END_2","to":"receiver_fmi_coupling_cap.END_1","net":"RX_FMSW_MATCHED_RF","safety":"the series elements follow the family FMI whip first target; wideband acceptance remains measured"},
     {"from":"receiver_fmi_coupling_cap.END_2","to":"receiver.FMI","net":"RX_FMI_RF","safety":"exact 1-nF C0G AC coupling is placed immediately at Si4732 physical contact 6"},
-    {"from":"abstract:RX-AM-LW-keyed-loop-pod-standard-SMA","to":"receiver_ami_esd.K","net":"RX_AMLW_BOUNDARY_RF","safety":"a separate exact low-capacitance shunt protects the dedicated non-50-Ohm loop/pod boundary"},
+    {"from":"receiver_amlw_external_sma.RF","to":"receiver_ami_esd.K","net":"RX_AMLW_BOUNDARY_RF","safety":"a separate exact low-capacitance shunt protects the dedicated non-50-Ohm loop/pod boundary"},
     {"from":"receiver_ami_esd.A","to":"abstract:rf-ground-dedicated-via","net":"RX_AMLW_ESD_GROUND","safety":"shortest boundary return keeps discharge current outside the sensitive AMI loop"},
-    {"from":"abstract:RX-AM-LW-keyed-loop-pod-standard-SMA","to":"receiver_ami_coupling_cap.END_1","net":"RX_AMLW_PROTECTED_RF","safety":"only a short labelled ferrite-loop or qualified transformer pod may feed this non-50-Ohm port"},
+    {"from":"receiver_amlw_external_sma.RF","to":"receiver_ami_coupling_cap.END_1","net":"RX_AMLW_PROTECTED_RF","safety":"only a short labelled ferrite-loop or qualified transformer pod may feed this non-50-Ohm port"},
     {"from":"receiver_ami_coupling_cap.END_2","to":"receiver.AMI","net":"RX_AMI_RF","safety":"exact 0.47-uF AC coupling is placed immediately at Si4732 physical contact 8; generic long coax is forbidden"},
     {"from":"abstract:power-ground","to":"audio_ground_link.END_1","net":"POWER_GROUND","safety":"one explicit zero-Ohm star entry prevents class-D return current from crossing the codec input region"},
     {"from":"audio_ground_link.END_2","to":"abstract:audio-ground","net":"AUDIO_GROUND","safety":"audio ground is a routed local region, not a second floating product ground"},
@@ -4126,7 +4146,7 @@
     {"from":"voice.GND_10","to":"abstract:power-ground","net":"POWER_GROUND","safety":"third SA518 ground land is physically connected"},
     {"from":"voice.GND_19","to":"abstract:power-ground","net":"POWER_GROUND","safety":"fourth SA518 ground land is physically connected"},
     {"from":"voice.GND_20","to":"abstract:power-ground","net":"POWER_GROUND","safety":"fifth SA518 ground land is physically connected"},
-    {"from":"voice.ANT","to":"abstract:VOICE-dedicated-standard-SMA","net":"VOICE_EXTERNAL_RF_50R","safety":"physical SA518 ANT contact 7 feeds one shortest controlled-50-Ohm line; exact SMA MPN waits for mechanics"},
+    {"from":"voice.ANT","to":"voice_external_sma.RF","net":"VOICE_EXTERNAL_RF_50R","safety":"physical SA518 ANT contact 7 feeds one shortest controlled-50-Ohm edge-launch route"},
     {"from":"voice.ANT","to":"voice_rf_esd.K1","net":"VOICE_EXTERNAL_RF_50R","safety":"24-V 0.17-pF bidirectional antenna TVS is a shunt at the external boundary, not a series RF body"},
     {"from":"voice_rf_esd.K2","to":"abstract:chassis-rf-ground","net":"VOICE_RF_ESD_RETURN","safety":"PESD24VY1BSF returns through the shortest connector-boundary via field"},
     {"from":"voice.ANT","to":"voice_detector_series_attenuator.END_1","net":"VOICE_EXTERNAL_RF_50R","safety":"actual-TX sample is taken from the complete protected external line without a mainline series element"},
@@ -4418,7 +4438,7 @@
     {"from":"abstract:S3-placement-qualified-double-ended-UFL-jumper","to":"s3_rf_board_connector.CENTER","net":"S3_MODULE_RF_50R","safety":"received cable assembly must pass mate, insertion-loss and return-loss checks"},
     {"from":"s3_rf_board_connector.SHELL","to":"abstract:rf-ground","net":"S3_RF_GROUND","safety":"all three receptacle ground lands receive shortest RF-ground paths"},
     {"from":"s3_rf_board_connector.CENTER","to":"s3_rf_coupler.RF_IN","net":"S3_RF_MAINLINE_IN_50R","safety":"coupler IN faces the module so its sample is forward TX energy"},
-    {"from":"s3_rf_coupler.RF_OUT","to":"abstract:S3-dedicated-external-reverse-polarity-SMA","net":"S3_EXTERNAL_RF_50R","safety":"independent external antenna path; exact chassis/PCB connector waits for physical design"},
+    {"from":"s3_rf_coupler.RF_OUT","to":"s3_external_rp_sma.RF","net":"S3_EXTERNAL_RF_50R","safety":"independent external antenna path reaches the exact 6-GHz RP-SMA edge-launch jack"},
     {"from":"s3_rf_coupler.TERMINATION_50R","to":"s3_rf_coupler_termination.END_1","net":"S3_COUPLER_TERMINATION","safety":"exact 49.9-Ohm termination preserves specified directivity"},
     {"from":"s3_rf_coupler_termination.END_2","to":"abstract:rf-ground","net":"S3_RF_GROUND","safety":"termination returns at the coupler through the shortest via geometry"},
     {"from":"s3_rf_coupler.COUPLED_FWD","to":"s3_detector_input_cap.END_1","net":"S3_FORWARD_RF_SAMPLE_RAW","safety":"-20-dB sample covers the complete S3 2.4-GHz operating band"},
@@ -4439,7 +4459,7 @@
     {"from":"abstract:C5-placement-qualified-double-ended-UFL-jumper","to":"c5_rf_board_connector.CENTER","net":"C5_MODULE_RF_50R","safety":"received cable assembly must pass mate, insertion-loss and return-loss checks through 5.885 GHz"},
     {"from":"c5_rf_board_connector.SHELL","to":"abstract:rf-ground","net":"C5_RF_GROUND","safety":"all three receptacle ground lands receive shortest RF-ground paths"},
     {"from":"c5_rf_board_connector.CENTER","to":"c5_rf_coupler.RF_IN","net":"C5_RF_MAINLINE_IN_50R","safety":"coupler IN faces the module so its sample is forward TX energy"},
-    {"from":"c5_rf_coupler.RF_OUT","to":"abstract:C5-dedicated-external-reverse-polarity-SMA","net":"C5_EXTERNAL_RF_50R","safety":"independent dual-band external antenna path; exact chassis/PCB connector waits for physical design"},
+    {"from":"c5_rf_coupler.RF_OUT","to":"c5_external_rp_sma.RF","net":"C5_EXTERNAL_RF_50R","safety":"independent dual-band external antenna path reaches the exact 6-GHz RP-SMA edge-launch jack"},
     {"from":"c5_rf_coupler.TERMINATION_50R","to":"c5_rf_coupler_termination.END_1","net":"C5_COUPLER_TERMINATION","safety":"exact 49.9-Ohm termination preserves specified directivity"},
     {"from":"c5_rf_coupler_termination.END_2","to":"abstract:rf-ground","net":"C5_RF_GROUND","safety":"termination returns at the coupler through the shortest via geometry"},
     {"from":"c5_rf_coupler.COUPLED_FWD","to":"c5_detector_input_cap.END_1","net":"C5_FORWARD_RF_SAMPLE_RAW","safety":"-20-dB 2.4-GHz and -13-dB 5-GHz sample covers every C5 native band"},
@@ -4457,7 +4477,7 @@
     {"from":"c5_detector_output_cap.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"output capacitor local return"},
     {"from":"nrf0.ANT","to":"abstract:NRF0-qualified-module-pigtail-mate","net":"NRF0_MODULE_RF","safety":"Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze"},
     {"from":"abstract:NRF0-qualified-module-pigtail-mate","to":"nrf0_coupler.RF_IN","net":"NRF0_MODULE_RF_50R","safety":"only a microscope/fit/VNA-qualified pigtail may enter the exact coupler"},
-    {"from":"nrf0_coupler.RF_OUT","to":"abstract:NRF0-dedicated-standard-SMA","net":"NRF0_EXTERNAL_RF_50R","safety":"each radio retains its own external standard-SMA feed with no RF switch"},
+    {"from":"nrf0_coupler.RF_OUT","to":"nrf0_external_sma.RF","net":"NRF0_EXTERNAL_RF_50R","safety":"each radio retains its own exact external standard-SMA feed with no RF switch"},
     {"from":"nrf0_coupler.COUPLED_FWD","to":"det_nrf0.RFIN","net":"NRF0_FORWARD_RF_SAMPLE","safety":"10-dB directional sample covers 2400-2525 MHz and is never shared with peers"},
     {"from":"nrf0_coupler.ISOLATED_REVERSE","to":"nrf0_coupler_termination.END_1","net":"NRF0_REVERSE_ISOLATED_PORT","safety":"exact 49.9-Ohm isolated-port termination preserves directivity"},
     {"from":"nrf0_coupler_termination.END_2","to":"abstract:rf-ground","net":"NRF0_RF_GROUND","safety":"termination return stays at the coupler ground via"},
@@ -4476,7 +4496,7 @@
     {"from":"det_nrf0.V_DN","to":"abstract:no-connect","net":"NRF0_DETECT_VDN_NC","safety":"controller-mode falling output is intentionally unused"},
     {"from":"nrf1.ANT","to":"abstract:NRF1-qualified-module-pigtail-mate","net":"NRF1_MODULE_RF","safety":"Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze"},
     {"from":"abstract:NRF1-qualified-module-pigtail-mate","to":"nrf1_coupler.RF_IN","net":"NRF1_MODULE_RF_50R","safety":"only a microscope/fit/VNA-qualified pigtail may enter the exact coupler"},
-    {"from":"nrf1_coupler.RF_OUT","to":"abstract:NRF1-dedicated-standard-SMA","net":"NRF1_EXTERNAL_RF_50R","safety":"each radio retains its own external standard-SMA feed with no RF switch"},
+    {"from":"nrf1_coupler.RF_OUT","to":"nrf1_external_sma.RF","net":"NRF1_EXTERNAL_RF_50R","safety":"each radio retains its own exact external standard-SMA feed with no RF switch"},
     {"from":"nrf1_coupler.COUPLED_FWD","to":"det_nrf1.RFIN","net":"NRF1_FORWARD_RF_SAMPLE","safety":"10-dB directional sample covers 2400-2525 MHz and is never shared with peers"},
     {"from":"nrf1_coupler.ISOLATED_REVERSE","to":"nrf1_coupler_termination.END_1","net":"NRF1_REVERSE_ISOLATED_PORT","safety":"exact 49.9-Ohm isolated-port termination preserves directivity"},
     {"from":"nrf1_coupler_termination.END_2","to":"abstract:rf-ground","net":"NRF1_RF_GROUND","safety":"termination return stays at the coupler ground via"},
@@ -4495,7 +4515,7 @@
     {"from":"det_nrf1.V_DN","to":"abstract:no-connect","net":"NRF1_DETECT_VDN_NC","safety":"controller-mode falling output is intentionally unused"},
     {"from":"nrf2.ANT","to":"abstract:NRF2-qualified-module-pigtail-mate","net":"NRF2_MODULE_RF","safety":"Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze"},
     {"from":"abstract:NRF2-qualified-module-pigtail-mate","to":"nrf2_coupler.RF_IN","net":"NRF2_MODULE_RF_50R","safety":"only a microscope/fit/VNA-qualified pigtail may enter the exact coupler"},
-    {"from":"nrf2_coupler.RF_OUT","to":"abstract:NRF2-dedicated-standard-SMA","net":"NRF2_EXTERNAL_RF_50R","safety":"each radio retains its own external standard-SMA feed with no RF switch"},
+    {"from":"nrf2_coupler.RF_OUT","to":"nrf2_external_sma.RF","net":"NRF2_EXTERNAL_RF_50R","safety":"each radio retains its own exact external standard-SMA feed with no RF switch"},
     {"from":"nrf2_coupler.COUPLED_FWD","to":"det_nrf2.RFIN","net":"NRF2_FORWARD_RF_SAMPLE","safety":"10-dB directional sample covers 2400-2525 MHz and is never shared with peers"},
     {"from":"nrf2_coupler.ISOLATED_REVERSE","to":"nrf2_coupler_termination.END_1","net":"NRF2_REVERSE_ISOLATED_PORT","safety":"exact 49.9-Ohm isolated-port termination preserves directivity"},
     {"from":"nrf2_coupler_termination.END_2","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"termination return stays at the coupler ground via"},
@@ -4775,7 +4795,7 @@
   "qualification_gaps": [
     "SC1512-A4 is the exact 7-inch-reel order code for RP2354B0A4; received A4 marking/lot identity, power/clock/land pattern and prototype assembly remain implementation gates, so the verified QFN80 contact map is not a BOM freeze",
     "E01-ML01S is a geometry/interface reference, not an accepted three-module RF/power/antenna production choice; nRF24 family lifecycle remains not-recommended-for-new-designs",
-    "DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. Conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence HIL and the mechanics-selected standard-SMA MPN remain blocking before schematic/BOM freeze",
+    "DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. RFPC-SMA31-FN-175-A is now the exact standard-SMA boundary; conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence and received-connector HIL remain blocking before schematic/BOM freeze",
     "DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. DEC-0098 closes the M5 expansion paper subblock with complete TCA4307, independent branch power/readiness and exact signal isolation. Same-rail startup, connector, hot-plug, reverse-source, profile and assembled-bus/no-back-power HIL remain open",
     "HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open",
     "DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; DEC-0093 consumes main slow-I/O P03/P04 for rail-off CC1101 band truth bits and DEC-0098 consumes final P05 for independent native-Unit power, while dedicated UI P7 remains a protected local fixture/growth pad. New direct endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL",
@@ -4788,6 +4808,6 @@
     "DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates. DEC-0090 closes the exact audio/receiver/voice switches, isolation, discharge and no-back-power sequence; DEC-0091 through DEC-0096 close every separate base RF/IR paper endpoint. Whole-device quiet-state EMI, conducted/OTA/optical coexistence and no-stall HIL remain I6 gates, leaving no free direct RP GPIO",
     "DEC-0090 supersedes the abstract DEC-0054 endpoint with exact ES8311, Si4732-A10, SA518, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR microphone, PUI AS02404PO speaker, SJ1-3515-SMT-TR jack and all first-pass passive values. Paper contacts, power, common mode, gain, reset-off behavior and no-backfeed are closed; specimen identity, acoustic gain/noise, pop/click, RF immunity and concurrent-load evidence remain explicit HIL gates before schematic/BOM freeze",
     "DEC-0063 instantiates TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR as the sink-only 30-W USB-PD frontend; DEC-0066 adds MAX17320G20+T and MSPM0C1104SDGS20R as the fail-closed 2S manager pair; DEC-0067 disables in-device deep-cell recovery and instantiates the exact switching path. DEC-0068 adds independent fixed TPS629203/TPS564252 AON/3.3/4.0/5.0-V converters, exact Sunlord inductors and five TPS22919 quiet-state switches; DEC-0069 corrects the connector eFuse to latch-off TPS259470LRPWR; DEC-0070 adds two exact MMBT3904-7-F PG qualifiers; DEC-0071 adds eight exact eFuse passives, an immediately active 1.509-A limit, controlled startup and a bounded post-start 2-A transient; DEC-0072 adds 24 exact converter energy/configuration/feedback passives and fixed tolerance-screened outputs; DEC-0073 originally adds nine exact converter EN/PG/fault resistors and a direct hardware AON enable strap; DEC-0080 amends this to ten physical positions and exact SYS-to-AON, AON-PG/MR, SENSE/CT/POR and main-EN wiring without a programmable sequencer; DEC-0081 adds independent TPS25961DRVR AON cutoff plus two TPS25974LRPWR latch-off protected-PG circuit breakers, exact thresholds, rise/timer networks and single-fault paper containment after every internal buck; DEC-0074 establishes the 10-Ohm pre-admission function, <=50-ms hardware cutoff and corrected PA25/PA26 frontends; DEC-0075 adds the exact BQ25798 750-kHz/2.2-uH energy, TS/ILIM, reset and special-pin profile; DEC-0076 adds the exact TPS25751/CAT24 support circuit, hardware SafeMode, separate raw-VBUS startup path and complete local/host bus pulls; DEC-0077 adds exact polarized Keystone 1048P contacts and three physical NTC roles; DEC-0078 corrects the TPUL WQFN contact map, adds a >=350-ms second-channel hardware refractory lockout and splits the 10-Ohm load across two exact 20-Ohm/2-W branches; DEC-0079 selects two XTAR 18650 4000mAh protected button-top cells as the exact first qualification target and freezes a 2-A charge ceiling. Exact-cell droop thresholds, certification-document/specimen fit, continuity/thermal/hot-copper/source-handover and full injected-fault HIL remain open in I3. DEC-0083 closes the protected product USB endpoint and DEC-0089 replaces the unresolved chassis abstraction with a direct multi-via shell bond to local power/ESD ground. DEC-0084 closes the display paper endpoint and DEC-0089 classifies its FPC as internal service-only/no-live-insertion, with protection reopening if mechanics later expose it. DEC-0085 closes the isolated microSD paper endpoint; DEC-0089 corrects its DAT0 return to real S3 GPIO4. Connector placement/mate, USB/display/storage signal integrity and destructive/thermal HIL remain explicit",
-    "HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open. The I2 hard-stop/evidence circuit and every separate DEC-0091 through DEC-0096 RF/IR endpoint are paper-reviewed; exact mechanics-selected antenna connector bodies, antenna/pod lots, placement, sensitivity, audio/noise, optical, conducted/OTA and coexistence HIL remain gates before target-architecture acceptance"
+    "HMX035CTFT-001 exact contacts and its DEC-0084 power/reset/backlight/first-mate paper circuit plus DM3AT-SF-PEJM5 and its DEC-0085 isolated storage paper circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open. The I2 hard-stop/evidence circuit and every separate DEC-0091 through DEC-0096 RF/IR endpoint are paper-reviewed; RFPC-SMA31-FN-175-A/RFPC-SMA32-FN-175-A bodies are selected, while antenna/pod lots, placement, sensitivity, audio/noise, optical, conducted/OTA and coexistence HIL remain gates before target-architecture acceptance"
   ]
 }

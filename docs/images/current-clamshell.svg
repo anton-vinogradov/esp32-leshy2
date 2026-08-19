@@ -3,88 +3,88 @@
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — dimensioned external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">One millimetre scale; orange dashed shapes are reserves, not selected-MPN geometry.</text>
-<text x="80.0" y="94.7" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
+<text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5"/>
-<circle cx="98.5" cy="168.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="98.5" cy="168.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<circle cx="339.0" cy="168.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="339.0" cy="168.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
+<circle cx="98.5" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="98.5" cy="190.7" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
+<circle cx="339.0" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="339.0" cy="190.7" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="98.5" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="98.5" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="339.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="339.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<text x="465.0" y="94.7" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Rear / battery and expansion face</text>
+<text x="465.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Rear / battery and expansion face</text>
 <rect x="465.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5"/>
-<circle cx="483.5" cy="168.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="483.5" cy="168.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<circle cx="724.0" cy="168.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
-<circle cx="724.0" cy="168.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
+<circle cx="483.5" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="483.5" cy="190.7" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
+<circle cx="724.0" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="724.0" cy="190.7" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="483.5" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="483.5" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="724.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="724.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<rect x="448.4" y="205.5" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
-<text x="603.8" y="251.8" font-family="sans-serif" font-size="7.3" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 · exact 84×24-mm plan envelope</text>
-<text x="603.8" y="268.4" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">rear insertion / removal ⊙</text>
-<rect x="127.5" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="448.4" y="212.9" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+<text x="603.8" y="259.1" font-family="sans-serif" font-size="7.3" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 · exact 84×24-mm plan envelope</text>
+<text x="603.8" y="275.8" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">rear insertion / removal ⊙</text>
+<rect x="127.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="152.0,157.4 139.2,164.8 126.4,157.4 126.4,142.6 139.2,135.2 152.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M139.2 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M139.2 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="139.2" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3-2G4</text>
 <text x="139.2" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">RP-SMA</text>
-<circle cx="154.4" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="154.4" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="179.3" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="162.1" y="174.1" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="165.1" y="172.8" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="179.3" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="203.8,157.4 191.0,164.8 178.2,157.4 178.2,142.6 191.0,135.2 203.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M191.0 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M191.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="191.0" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5-2G4/5</text>
 <text x="191.0" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">RP-SMA</text>
-<circle cx="206.2" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="206.2" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="234.8" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="215.8" y="174.1" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="218.8" y="172.8" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="234.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="259.3,157.4 246.5,164.8 233.7,157.4 233.7,142.6 246.5,135.2 259.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M246.5 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M246.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="246.5" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-FM/SW</text>
 <text x="246.5" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="286.6" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="286.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="311.1,157.4 298.3,164.8 285.5,157.4 285.5,142.6 298.3,135.2 311.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M298.3 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M298.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="298.3" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-AM/LW</text>
 <text x="298.3" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="503.2" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="503.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="527.8,157.4 515.0,164.8 502.1,157.4 502.1,142.6 515.0,135.2 527.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M515.0 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M515.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="515.0" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-0</text>
 <text x="515.0" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<circle cx="530.1" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="530.1" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="547.6" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="512.0" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="515.0" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="547.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="572.2,157.4 559.4,164.8 546.5,157.4 546.5,142.6 559.4,135.2 572.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M559.4 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M559.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="559.4" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">CC-SUB</text>
 <text x="559.4" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<circle cx="574.5" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="574.5" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="592.0" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="556.4" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="559.4" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="592.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="616.6,157.4 603.8,164.8 590.9,157.4 590.9,142.6 603.8,135.2 616.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M603.8 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M603.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="603.8" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1</text>
 <text x="603.8" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<circle cx="618.9" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="618.9" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="636.4" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="600.8" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="603.8" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="636.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="661.0,157.4 648.1,164.8 635.3,157.4 635.3,142.6 648.1,135.2 661.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M648.1 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M648.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="648.1" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VOICE-V/U</text>
 <text x="648.1" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<circle cx="663.3" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="663.3" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="680.8" y="116.7" width="23.5" height="33.3" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<rect x="645.2" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="648.1" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="680.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="705.4,157.4 692.5,164.8 679.7,157.4 679.7,142.6 692.5,135.2 705.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M692.5 118.7 V104.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M692.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="692.5" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2</text>
 <text x="692.5" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<circle cx="707.7" cy="175.9" r="4.1" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
-<text x="707.7" y="183.3" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
+<rect x="689.6" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="692.5" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
 <rect x="117.9" y="179.6" width="201.7" height="375.6" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
 <text x="218.8" y="353.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
 <text x="218.8" y="372.0" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#1d4ed8">54.5×101.5-mm reference envelope</text>
@@ -140,8 +140,6 @@
 <text x="102.9" y="501.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="start" fill="#991b1b">IR actual TX</text>
 <path d="M357.5 445.3 L383.4 445.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="344.6" y="439.3" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">3.5 mm</text>
-<path d="M141.1 705.0 L141.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="141.1" y="697.6" font-family="sans-serif" font-size="4.6" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB/PWR</text>
 <path d="M196.6 705.0 L196.6 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="196.6" y="697.6" font-family="sans-serif" font-size="4.6" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 USB</text>
 <path d="M242.8 705.0 L242.8 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -160,6 +158,8 @@
 <rect x="642.6" y="642.1" width="66.6" height="29.6" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3"/>
 <text x="675.9" y="660.6" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#9a3412">M5 Unit · MPN TBD</text>
 <path d="M675.9 671.7 V697.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M526.0 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="526.0" y="697.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB/PWR</text>
 <path d="M603.8 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="603.8" y="697.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP USB</text>
 <text x="850.0" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What this drawing proves</text>
@@ -181,8 +181,9 @@
 <rect x="850" y="497" width="28" height="15" rx="3" fill="none" stroke="#ea580c" stroke-dasharray="5 3"/>
 <text x="890.0" y="509.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">dashed — reserved space; exact MPN is not selected</text>
 <text x="850.0" y="550.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">RF connectors are barrels with hex nuts, not circles.</text>
-<text x="850.0" y="573.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Their internal 9×12-mm bodies are conservative reserves.</text>
+<text x="850.0" y="573.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.</text>
+<text x="850.0" y="593.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.</text>
 <text x="850.0" y="614.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
-<text x="850.0" y="637.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Exact SMA bodies, caps/knob, wall stack and cable bends remain open.</text>
+<text x="850.0" y="637.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Caps/knob, enclosure wall stack and internal cable lengths remain open.</text>
 <text x="850.0" y="670.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">Controls retain D-pad + OK, BACK, OPT, F1/F2, PTT, STOP and RE-ARM.</text>
 </svg>

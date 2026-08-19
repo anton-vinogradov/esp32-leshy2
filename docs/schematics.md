@@ -74,6 +74,38 @@ U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
   RP <-->|"PIO1 + UART1 + I²C0"| U214
 ```
 
+### Nine independent antenna ports
+
+```mermaid
+flowchart TD
+S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>external S3 2.4-GHz RP-SMA port"]
+C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2.4/5-GHz, IEEE 802.15.4 and IR owner"]
+C5_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>external C5 2.4/5-GHz RP-SMA port"]
+RECEIVER["Si4732-A10-GSR<br/>FM/AM/SW/LW broadcast receiver"]
+RECEIVER_FMSW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>receive-only FM/SW SMA port"]
+RECEIVER_AMLW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>non-50-Ohm AM/LW loop/pod SMA port"]
+NRF0["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #0"]
+NRF0_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>independent nRF24 #0 SMA port"]
+NRF1["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #1"]
+NRF1_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>independent nRF24 #1 SMA port"]
+NRF2["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #2"]
+NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>independent nRF24 #2 SMA port"]
+CC["CC1101RGPR<br/>multi-band sub-GHz transceiver"]
+CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>multi-band sub-GHz SMA port"]
+VOICE["NiceRF SA518<br/>analog VHF/UHF voice transceiver"]
+VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>VHF/UHF voice SMA port"]
+  S3 -->|"50 Ω"| S3_EXTERNAL_RP_SMA
+  C5 -->|"50 Ω"| C5_EXTERNAL_RP_SMA
+  RECEIVER -->|"FM/SW receive"| RECEIVER_FMSW_EXTERNAL_SMA
+  RECEIVER -->|"AM/LW loop/pod"| RECEIVER_AMLW_EXTERNAL_SMA
+  NRF0 -->|"50 Ω"| NRF0_EXTERNAL_SMA
+  NRF1 -->|"50 Ω"| NRF1_EXTERNAL_SMA
+  NRF2 -->|"50 Ω"| NRF2_EXTERNAL_SMA
+  CC -->|"50 Ω"| CC_EXTERNAL_SMA
+  VOICE -->|"50 Ω"| VOICE_EXTERNAL_SMA
+```
+
 ### Power as an independent path
 
 ```mermaid

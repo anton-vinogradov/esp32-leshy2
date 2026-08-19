@@ -74,6 +74,38 @@ U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
   RP <-->|"PIO1 + UART1 + I²C0"| U214
 ```
 
+### Девять независимых антенных портов
+
+```mermaid
+flowchart TD
+S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>внешний RP-SMA порт S3 2,4 ГГц"]
+C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2,4/5 ГГц, IEEE 802.15.4 и IR"]
+C5_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>внешний RP-SMA порт C5 2,4/5 ГГц"]
+RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
+RECEIVER_FMSW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>приёмный SMA порт FM/SW"]
+RECEIVER_AMLW_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>не-50-омный SMA порт AM/LW loop/pod"]
+NRF0["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №0"]
+NRF0_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>независимый SMA порт nRF24 №0"]
+NRF1["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №1"]
+NRF1_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>независимый SMA порт nRF24 №1"]
+NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №2"]
+NRF2_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>независимый SMA порт nRF24 №2"]
+CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
+CC_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>многодиапазонный SMA порт sub-GHz"]
+VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
+VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт VHF/UHF voice"]
+  S3 -->|"50 Ω"| S3_EXTERNAL_RP_SMA
+  C5 -->|"50 Ω"| C5_EXTERNAL_RP_SMA
+  RECEIVER -->|"FM/SW receive"| RECEIVER_FMSW_EXTERNAL_SMA
+  RECEIVER -->|"AM/LW loop/pod"| RECEIVER_AMLW_EXTERNAL_SMA
+  NRF0 -->|"50 Ω"| NRF0_EXTERNAL_SMA
+  NRF1 -->|"50 Ω"| NRF1_EXTERNAL_SMA
+  NRF2 -->|"50 Ω"| NRF2_EXTERNAL_SMA
+  CC -->|"50 Ω"| CC_EXTERNAL_SMA
+  VOICE -->|"50 Ω"| VOICE_EXTERNAL_SMA
+```
+
 ### Питание как отдельный тракт
 
 ```mermaid

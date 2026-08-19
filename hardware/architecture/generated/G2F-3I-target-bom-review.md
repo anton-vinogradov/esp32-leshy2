@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **880** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **879** supplied/costed placements collapse to **191** used exact-device/MPN lines.
-- Current orderability evidence exists for **190/191** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **179/191** lines.
+- **889** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **888** supplied/costed placements collapse to **193** used exact-device/MPN lines.
+- Current orderability evidence exists for **192/193** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **181/193** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **851/879** supplied placements; their partial subtotals are `base_product` — USD 165.9241. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **191/191** lines.
+- Those priced lines cover **860/888** supplied placements; their partial subtotals are `base_product` — USD 188.1051. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **193/193** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 876 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 885 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -303,7 +303,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 18 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 20 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -318,6 +318,8 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
   - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
   - `ck_y78b23214fp` — `C&K Y78B23214FP`.
+  - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
+  - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
   - `hirose_dm3at_sf_pejm5` — `Hirose DM3AT-SF-PEJM5`.
   - `hirose_fh12_40s_0_5sh_55` — `Hirose FH12-40S-0.5SH(55)`.
@@ -490,6 +492,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: JLCPCB assembly-parts quantity-100 tier; captive PCBA inventory; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://jlcpcb.com/partdetail/1044199-ES8311/C962342).
+
+</details>
+
+<details><summary><code>GCT RFPC-SMA31-FN-175-A</code> — 7 × USD 2.4646 = USD 17.2519</summary>
+
+- Device id: `gct_rfpc_sma31_fn_175_a`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey tray 90-179 quantity tier applied at target quantity 100; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371).
+
+</details>
+
+<details><summary><code>GCT RFPC-SMA32-FN-175-A</code> — 2 × USD 2.4646 = USD 4.9291</summary>
+
+- Device id: `gct_rfpc_sma32_fn_175_a`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey tray 90-179 quantity tier applied at target quantity 100; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/25576372).
 
 </details>
 
@@ -2068,22 +2088,6 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - `display_touch_controller` / `Sitronix ST77922` is contained by `display`: Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement.
 
 ## Physical purchase families with explicit resolution gates
-
-### `external_sma_bodies` — 9 item(s)
-
-- Scope: `base_product`.
-- Role: two RP-SMA and seven standard-SMA external RF connector bodies.
-- Blocking evidence: exact attachment style and MPN depend on the physical connector plane; polarity and radio ownership are already fixed.
-- Gate: `g3_connector_plane_and_mount_coupon_required`.
-- Owner stage: G3 target physical/product design before exact connector BOM freeze.
-- Evidence chain: `DEC-0050`, `ANT-0001`, `FND-0109`.
-- Prerequisites:
-  - freeze all nine external port centres, enclosure-wall versus PCB relationship, panel thickness, service access and retention-load envelope.
-  - preserve two RP-SMA jack/centre-pin and seven standard-SMA jack/centre-socket device-side mating contracts from DEC-0050.
-- Acceptance:
-  - name exact current orderable body MPNs, footprints, mounting hardware and quantities for all nine endpoints without changing polarity or RF ownership.
-  - pass assembly coupon for torque, ground contact, enclosure load, keepout, service access and repeated mate cycles.
-  - pass per-path VNA/continuity/ESD-ground verification and attach quantity-100 cost plus substitution disposition.
 
 ### `rf_cable_assemblies` — 5 item(s)
 

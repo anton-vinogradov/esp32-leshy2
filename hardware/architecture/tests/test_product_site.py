@@ -64,6 +64,8 @@ class ProductSiteTests(unittest.TestCase):
             "IR actual TX",
             "physical actual-TX evidence for each transmitting path",
             "M2.5 hole/head keep-outs",
+            "GCT RFPC-SMA31-FN-175-A",
+            "GCT RFPC-SMA32-FN-175-A",
         ):
             self.assertIn(token, layout)
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):

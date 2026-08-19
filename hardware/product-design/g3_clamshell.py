@@ -21,14 +21,21 @@ BOARD_W = 75.0
 BOARD_H = 150.0
 MOUNT_HOLE_D = 2.7
 MOUNT_KEEPOUT_R = 4.0
-HOLES = ((5.0, 5.0), (70.0, 5.0), (5.0, 145.0), (70.0, 145.0))
+HOLES = ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0))
 
-# These are placement reserves, not false MPN claims. Exact connector bodies
-# replace them after the right-angle bulkhead SMA/RP-SMA choice is qualified.
-RF_BODY_W = 9.0
-RF_BODY_D = 12.0
+U214_X = -4.5
+U214_Y = 17.0
+U214_W = 84.0
+U214_H = 24.0
+U214_CLEARANCE = 0.7
+
+# Exact GCT RFPC-SMA31/SMA32 1.6-mm edge-launch family. The 10.2-mm
+# plan width includes the nut envelope; the 6-mm board-side depth comes from
+# the exact land/body drawing rather than the full external threaded length.
+RF_BODY_W = 10.2
+RF_BODY_D = 6.0
 RF_BARREL_D = 6.35
-RF_BARREL_OUT = 9.0
+RF_BARREL_OUT = 11.4
 FRONT_RF = (
     (16.0, "S3-2G4", "RP-SMA"),
     (30.0, "C5-2G4/5", "RP-SMA"),
@@ -44,6 +51,26 @@ REAR_RF = (
 )
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-V/U", "N24-2"
+}
+TX_LED_W = 1.6
+TX_LED_H = 0.8
+TX_LED_BOXES = {
+    "S3-2G4": (22.2, 6.5, TX_LED_W, TX_LED_H),
+    "C5-2G4/5": (36.7, 6.5, TX_LED_W, TX_LED_H),
+    "N24-0": (12.7, 7.0, TX_LED_W, TX_LED_H),
+    "CC-SUB": (24.7, 7.0, TX_LED_W, TX_LED_H),
+    "N24-1": (36.7, 7.0, TX_LED_W, TX_LED_H),
+    "VOICE-V/U": (48.7, 7.0, TX_LED_W, TX_LED_H),
+    "N24-2": (60.7, 7.0, TX_LED_W, TX_LED_H),
+}
+TX_LED_INSTANCES = {
+    "S3-2G4": "s3_tx_led",
+    "C5-2G4/5": "c5_tx_led",
+    "N24-0": "nrf0_tx_led",
+    "CC-SUB": "cc_tx_led",
+    "N24-1": "nrf1_tx_led",
+    "VOICE-V/U": "voice_tx_led",
+    "N24-2": "nrf2_tx_led",
 }
 
 
@@ -171,12 +198,16 @@ def overlaps(a: tuple[float, float, float, float], b: tuple[float, float, float,
     return ax < bx + bw + margin and bx < ax + aw + margin and ay < by + bh + margin and by < ay + ah + margin
 
 
-def hits_hole(rectangle: tuple[float, float, float, float], hole: tuple[float, float]) -> bool:
+def hits_hole(
+    rectangle: tuple[float, float, float, float],
+    hole: tuple[float, float],
+    clearance: float = 0.0,
+) -> bool:
     x, y, w, h = rectangle
     hx, hy = hole
     px = min(max(hx, x), x + w)
     py = min(max(hy, y), y + h)
-    return math.hypot(hx - px, hy - py) < MOUNT_KEEPOUT_R
+    return math.hypot(hx - px, hy - py) < MOUNT_KEEPOUT_R + clearance
 
 
 def validate_items(name: str, items: tuple[Placement, ...], devices: dict, instances: dict) -> list[str]:
@@ -234,8 +265,12 @@ def validate() -> list[str]:
     if u214_dims[:2] != [84.0, 24.0]:
         errors.append("U214 must use the official 84x24-mm plan envelope")
     holder_w, holder_h = placement_size(holder, devices, instances)
-    if overlaps((-4.5, 15.0, 84.0, 24.0), (holder.x, holder.y, holder_w, holder_h)):
-        errors.append("full U214 envelope overlaps the Keystone holder in plan view")
+    u214_box = (U214_X, U214_Y, U214_W, U214_H)
+    if overlaps(u214_box, (holder.x, holder.y, holder_w, holder_h), U214_CLEARANCE):
+        errors.append("full U214 envelope lacks 0.7-mm clearance to the Keystone holder")
+    for hole in HOLES:
+        if hits_hole(u214_box, hole, U214_CLEARANCE):
+            errors.append(f"full U214 envelope lacks 0.7-mm clearance to the M2.5 keep-out at {hole}")
 
     machine_paths = set(candidate["antenna_policy"]["base_onboard_sma_paths"])
     drawn_paths = {path for _, path, _ in FRONT_RF + REAR_RF}
@@ -243,15 +278,39 @@ def validate() -> list[str]:
         errors.append("mechanical projection must retain all nine unique onboard RF paths")
     if len(TX_RF_PATHS) != 7 or not TX_RF_PATHS <= drawn_paths:
         errors.append("seven transmitting RF paths must retain individual TX indicators")
+    display_box = (display.x, display.y, *placement_size(display, devices, instances))
     for bank_name, bank in (("front", FRONT_RF), ("rear", REAR_RF)):
+        bodies = [(centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D) for centre, _, _ in bank]
         for index, (centre, _, _) in enumerate(bank):
-            body = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
+            body = bodies[index]
             for hole in HOLES:
                 if hits_hole(body, hole):
-                    errors.append(f"{bank_name}: RF reserve at x={centre} enters mounting keep-out")
+                    errors.append(f"{bank_name}: RF connector at x={centre} enters mounting keep-out")
             for other, _, _ in bank[index + 1:]:
-                if abs(centre - other) < RF_BODY_W + 2.0:
-                    errors.append(f"{bank_name}: RF reserves overlap at {centre}/{other}")
+                if abs(centre - other) < RF_BODY_W + 0.7:
+                    errors.append(f"{bank_name}: RF connector bodies overlap at {centre}/{other}")
+        bank_leds = []
+        for _, path, _ in bank:
+            if path not in TX_RF_PATHS:
+                continue
+            led_box = TX_LED_BOXES[path]
+            bank_leds.append((path, led_box))
+            led_mpn = devices[instances[TX_LED_INSTANCES[path]]]["mpn"]
+            led_dims = devices[instances[TX_LED_INSTANCES[path]]]["dimensions_mm"][:2]
+            if led_mpn != "LTST-C190KRKT" or led_dims != [TX_LED_W, TX_LED_H]:
+                errors.append(f"{path}: TX indicator must retain exact LTST-C190KRKT geometry")
+            if any(overlaps(led_box, body, 0.7) for body in bodies):
+                errors.append(f"{bank_name}: {path} TX indicator lacks 0.7-mm RF-body clearance")
+            if any(hits_hole(led_box, hole, 0.7) for hole in HOLES):
+                errors.append(f"{bank_name}: {path} TX indicator enters a mounting keep-out")
+            if bank_name == "front" and overlaps(led_box, display_box, 0.7):
+                errors.append(f"front: {path} TX indicator lacks 0.7-mm display clearance")
+            if bank_name == "rear" and overlaps(led_box, u214_box, 0.7):
+                errors.append(f"rear: {path} TX indicator lacks 0.7-mm U214 clearance")
+        for index, (path, led_box) in enumerate(bank_leds):
+            for other_path, other_box in bank_leds[index + 1:]:
+                if overlaps(led_box, other_box, 0.7):
+                    errors.append(f"{bank_name}: {path}/{other_path} TX indicators overlap")
 
     control_roles = {item.role for item in FRONT_CONTROLS}
     for role in ("physical hard STOP", "independent PTT", "F1", "F2", "recessed RE-ARM"):
@@ -307,7 +366,7 @@ def rf_bank(origin, bank, scale, sx, sy, text, rect, show_body):
     rows = []
     for centre, path, polarity in bank:
         if show_body:
-            rows.append(rect(origin, centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#fff7ed", "#ea580c", "5 3", 2))
+            rows.append(rect(origin, centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#eef2f6", "#667085", rx=2))
         x = sx(origin, centre)
         edge_y = sy(origin, 0)
         barrel_top = edge_y - RF_BARREL_OUT * scale
@@ -326,10 +385,9 @@ def rf_bank(origin, bank, scale, sx, sy, text, rect, show_body):
         rows.append(text(x, sy(origin, 15.5), path, 6.2, "bold", "middle", "#1d4ed8"))
         rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
         if path in TX_RF_PATHS:
-            led_x = x + 4.1 * scale
-            led_y = sy(origin, 7.0)
-            rows.append(f'<circle cx="{led_x:.1f}" cy="{led_y:.1f}" r="{1.1*scale:.1f}" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>')
-            rows.append(text(led_x, led_y + 2.0*scale, "TX", 4.7, "bold", "middle", "#991b1b"))
+            led_x, led_y, led_w, led_h = TX_LED_BOXES[path]
+            rows.append(rect(origin, led_x, led_y, led_w, led_h, "#ef4444", "#991b1b", rx=1))
+            rows.append(text(sx(origin,led_x + led_w/2), sy(origin,led_y - 0.35), "TX", 4.7, "bold", "middle", "#991b1b"))
     return rows
 
 
@@ -349,9 +407,9 @@ def render_external(devices, instances):
 
     # The installed Cap is a full-size external envelope. Draw it beneath the
     # RF-port annotation layer so it cannot hide port identity or TX evidence.
-    out.append(rect(rear, -4.5, 15.0, 84.0, 24.0, "#ffedd5", "#ea580c", rx=6))
-    out.append(text(sx(rear,37.5), sy(rear,27.5), "M5Stack U214 · exact 84×24-mm plan envelope", 7.3, "bold", "middle", "#9a3412"))
-    out.append(text(sx(rear,37.5), sy(rear,32), "rear insertion / removal ⊙", 6.2, anchor="middle", colour="#dc2626"))
+    out.append(rect(rear, U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", rx=6))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "M5Stack U214 · exact 84×24-mm plan envelope", 7.3, "bold", "middle", "#9a3412"))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "rear insertion / removal ⊙", 6.2, anchor="middle", colour="#dc2626"))
     out += rf_bank(front, FRONT_RF, scale, sx, sy, text, rect, False)
     out += rf_bank(rear, REAR_RF, scale, sx, sy, text, rect, False)
 
@@ -387,7 +445,7 @@ def render_external(devices, instances):
     out.append(text(sx(front,6.2), sy(front,95), "IR actual TX", 4.8, "bold", colour="#991b1b"))
     out.append(f'<path d="M{sx(front,75):.1f} {sy(front,79.8):.1f} L{sx(front,82):.1f} {sy(front,79.8):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
     out.append(text(sx(front,71.5), sy(front,78.2), "3.5 mm", 4.8, "bold", "middle", "#1d4ed8"))
-    for x, label in ((16.5, "USB/PWR"), (31.5, "C5 USB"), (44.0, "MIC"), (56.0, "microSD")):
+    for x, label in ((31.5, "C5 USB"), (44.0, "MIC"), (56.0, "microSD")):
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(text(sx(front,x), sy(front,148), label, 4.6, "bold", "middle", "#1d4ed8"))
 
@@ -407,8 +465,9 @@ def render_external(devices, instances):
     out.append(rect(rear, 48, 133, 18, 8, "#fff7ed", "#ea580c", "5 3", 3))
     out.append(text(sx(rear,57), sy(rear,138), "M5 Unit · MPN TBD", 5.6, "bold", "middle", "#9a3412"))
     out.append(f'<path d="M{sx(rear,57):.1f} {sy(rear,141):.1f} V{sy(rear,148):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(f'<path d="M{sx(rear,37.5):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(text(sx(rear,37.5), sy(rear,148), "RP USB", 4.8, "bold", "middle", "#1d4ed8"))
+    for x, label in ((16.5, "USB/PWR"), (37.5, "RP USB")):
+        out.append(f'<path d="M{sx(rear,x):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        out.append(text(sx(rear,x), sy(rear,148), label, 4.8, "bold", "middle", "#1d4ed8"))
 
     note_x = 850
     out += [
@@ -431,9 +490,10 @@ def render_external(devices, instances):
         '<rect x="850" y="497" width="28" height="15" rx="3" fill="none" stroke="#ea580c" stroke-dasharray="5 3"/>',
         text(890,509,"dashed — reserved space; exact MPN is not selected",11),
         text(note_x,550,"RF connectors are barrels with hex nuts, not circles.",11,"bold"),
-        text(note_x,573,"Their internal 9×12-mm bodies are conservative reserves.",11),
+        text(note_x,573,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
+        text(note_x,593,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
         text(note_x,614,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
-        text(note_x,637,"Exact SMA bodies, caps/knob, wall stack and cable bends remain open.",11),
+        text(note_x,637,"Caps/knob, enclosure wall stack and internal cable lengths remain open.",11),
         text(note_x,670,"Controls retain D-pad + OK, BACK, OPT, F1/F2, PTT, STOP and RE-ARM.",11,"bold"),
     ]
     out.append("</svg>")
@@ -493,8 +553,10 @@ def render_internal(devices, instances):
         text(left_x,605,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
         text(left_x,626,"• every edge interface has an outward direction arrow",10),
         text(left_x,647,"• microSD is edge-accessible; C5 USB stays with C5",10),
-        text(left_x,681,"Only the orange RF connector bodies remain MPN reserves.",10,"bold",colour="#9a3412"),
-        text(left_x,706,"Placement projection; passives, copper and enclosure stack are omitted.",10,colour="#526076"),
+        text(left_x,668,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
+        text(left_x,688,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
+        text(left_x,714,"Only unselected RF cable bodies remain physical reserves.",9.2,"bold",colour="#9a3412"),
+        text(left_x,737,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"
