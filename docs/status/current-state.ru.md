@@ -494,6 +494,13 @@ scope**. `FND-0116/I9-0001/REV-0005CD` совместно проверяют б�
 design активен; это не G7 atomic architecture. `FND-0115/BOM-0028/REV-0005CC`
 отделяют проверенную G2F procurement feasibility от G3 physical inputs и
 downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
+
+G3 возобновлён через `FND-0117/G3-0001/REV-0005CE`. Active generated view
+переиспользует legacy `75×150-mm` clamshell geometry/checks, но заменяет stale
+owner/device assumptions на current MPNs, полный controls set, девять SMA
+paths, exact battery family и rear U214 envelope. Geometry re-entry проведено
+ревью; complete packing, connectors, ergonomics и HIL остаются открыты, KiCad
+по-прежнему не разрешён.
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` обнаруживают, исправляют и повторно
 проверяют MAX17320/MSPM0 support, который оставался prose/abstract; принятая
 2S topology не меняется.

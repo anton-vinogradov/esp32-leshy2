@@ -1,8 +1,8 @@
 # Stage 3 — target product design
 
-- Статус: **Integrated mockup приостановлен DEC-0058; active internal closure**
-- Дата: 2026-08-18
-- Пререквизит: repeat G2 **Проведено ревью** (`REV-0002AS`)
+- Статус: **G3 active; G3-0001 geometry re-entry проведено ревью**
+- Дата: 2026-08-19
+- Пререквизит: repeat G2 and I1…I9 working-candidate paper scopes **Проведено ревью**
 - Метод: [`FLOW-0001/G3`](../review/architecture/FLOW-0001-product-to-cad-gates.md)
 - Working design: [`DEC-0051`](../review/decisions/DEC-0051-principled-pinout-as-working-design.md) /
   [`PIN-0003`](../review/architecture/PIN-0003-g2f-3i-principled-pinout.md)
@@ -16,6 +16,13 @@
 
 ## Current artifact
 
+[`G3-0001`](../review/product-design/G3-0001-current-clamshell-reentry.md)
+is the active reproducible starting projection. It adapts the reviewed legacy
+`75×150-mm` clamshell geometry to current MPNs, controls, board locality,
+nine SMA identities, exact battery family and rear U214 envelope. Its
+geometry-reentry checkpoint has **«Проведено ревью»**; G3 itself remains
+active and the projection is not a final board split or enclosure.
+
 [`LAY-0001`](../review/product-design/LAY-0001-form-factor-candidates.md)
 сохраняет три преждевременных same-scope physical experiments:
 
@@ -28,18 +35,18 @@ logical/electrical feasibility, а затем к адаптации legacy `75×
 two-board clamshell generator. Его геометрия тоже рабочая гипотеза, не
 обязательный финальный размер.
 
-## Active prerequisite
+## Completed prerequisite and current G3 entry
 
 `DEM-0001` и `SRC-0002` reviewed. `DEC-0042` создал единый источник; теперь он
 содержит три structurally checked maps. `DEC-0044/NIF-0001/REV-0004L` выбрали
 `G2F-3I` leading paper map. `PIN-0003/REV-0004V` дают generated principled
 pinout diagram и exact pad/net tables; after direct-QSPI GPIO41/42, accepted
 audio arm and `DEC-0086` local-control correction the current budget честно
-равен S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow `21/0/3` и UI matrix
+равен S3 `33/3/0`, C5 `14/6/1`, RP `48/0/0`, main slow `24/0/0` и UI matrix
 `7/1/0`. Это выполняет необходимый
-working-baseline checkpoint `DEC-0041`; технически он разрешил перенос в старый
-reproducible mockup, но последующий `DEC-0058` ставит этот перенос на паузу до
-`INT-0001/I9`. `DSP-0003/REV-0004Y` теперь сравнивают старый 4-inch
+working-baseline checkpoint `DEC-0041`; `DEC-0058` поставил перенос на паузу до
+`INT-0001/I9`, а `I9-0001/REV-0005CD` затем провели joint review и возобновили
+G3. `DSP-0003/REV-0004Y` сравнивают старый 4-inch
 1-bit SPI reference, новый 3.5-inch direct-QSPI class и EVE fallback;
 `DEC-0053/REV-0004Z` принимают 3.5-inch portrait `320×480` IPS QSPI+touch
 class. `FND-0063/DSP-0005/REV-0005A` устанавливают exact current assembly
@@ -60,6 +67,12 @@ Paper fit сохраняет base `75×150 mm`, девять верхних SMA 
 толщину, но явно требует переноса legacy encoder. `IMP-0048/D` принято как
 `DEC-0057`. `MEC-0001/FND-0069` переносят работу на exact host receptacle,
 rail/screw stack-up и installed-cap hand/GNSS/RF HIL.
+
+После прохождения I9 `FND-0117/G3-0001/REV-0005CE` исправляют stale legacy
+projection и создают active current generator. Working locality держит S3+C5
+и их UI/display/audio/IR endpoints на UI/control half, а RP+3×nRF/CC/voice,
+U214 и power responsibility — на RF/power half. Все owners и nine-SMA
+identities остаются machine-derived; physical split пока reopenable.
 
 По прямому указанию владельца `DEC-0058` останавливает дальнейший integrated
 mockup до полного project-level закрытия начинки. `INT-0001` задаёт порядок
@@ -144,6 +157,6 @@ HIL, destructive post-buck fault injection и measured thermal consolidation
 
 Physical packing/RF/power/service conflicts возвращаются в `G2F`; working pins
 могут измениться. Whole-device optimality и только затем atomic target остаются
-обязательными. Local exact-part fit checks разрешены как внутренние
-feasibility inputs, но не как продолжение mockup. KiCad по-прежнему
-заблокирован.
+обязательными. Active `G3-0001` generator развивает physical mockup, но не
+заменяет G4 alternatives, G5 optimality, G6 co-design или G7 atomic acceptance.
+KiCad по-прежнему заблокирован.

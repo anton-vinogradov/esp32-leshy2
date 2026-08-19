@@ -624,6 +624,8 @@
       "kind": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
       "qualification": "verified_candidate",
       "lifecycle": "assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified",
+      "dimensions_mm": [54.5, 101.5, 10.0],
+      "mechanical_dimension_scope": "published ES3C35P reference-module envelope used for G3 paper fit; supplier-controlled standalone HMX035CTFT-001 approval drawing remains required",
       "source": {
         "document": "QDtech ES3C35P ESP32-S3 schematic",
         "version": "official published schematic",

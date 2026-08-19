@@ -492,6 +492,13 @@ instances and exhaustive classification of all 970 `abstract:*` occurrences /
 active; this is not G7 atomic architecture. `FND-0115/BOM-0028/REV-0005CC`
 separate reviewed G2F procurement feasibility from G3 physical inputs and
 downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
+
+G3 has resumed through `FND-0117/G3-0001/REV-0005CE`. The active generated
+view reuses the legacy `75×150-mm` clamshell geometry/checks but replaces its
+stale owner/device assumptions with current MPNs, controls, nine SMA paths,
+exact battery family and rear U214 envelope. Geometry re-entry is reviewed;
+complete packing, connectors, ergonomics and HIL remain open, and KiCad is
+still unauthorized.
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` exposed, repaired and re-reviewed the
 MAX17320/MSPM0 support that had remained prose/abstract; this did not change
 the accepted 2S topology.

@@ -1,6 +1,8 @@
 import copy
 import importlib.util
 import re
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -170,6 +172,40 @@ class ArchitectureValidationTests(unittest.TestCase):
                 )
             ),
         )
+
+    def test_g3_current_clamshell_projection_is_current_and_complete(self):
+        script = GENERATOR.REPO_ROOT / "hardware/product-design/g3_clamshell.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=GENERATOR.REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        rendered = (
+            GENERATOR.REPO_ROOT
+            / "docs/review/product-design/img/G3-0001-current-clamshell.svg"
+        ).read_text(encoding="utf-8")
+        for token in (
+            "HMX035CTFT-001",
+            "M5Stack U214",
+            "Keystone 1048P",
+            "S3-2G4",
+            "C5-2G4/5",
+            "N24-0",
+            "N24-1",
+            "N24-2",
+            "RX-FM/SW",
+            "RX-AM/LW",
+            "D-pad + OK",
+            "STOP",
+            "PTT",
+            "RE-ARM",
+            "Numbered physical devices",
+            "not G7 architecture and not KiCad",
+        ):
+            self.assertIn(token, rendered)
 
     def test_rejects_unclassified_i9_abstract_or_owner_decision(self):
         candidates = copy.deepcopy(self.candidates)

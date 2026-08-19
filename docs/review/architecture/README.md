@@ -470,7 +470,7 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
   is accepted as [`DEC-0054`](../decisions/DEC-0054-fail-safe-complete-audio-path.md)
   with propagation reviewed by `REV-0005D`.
 
-## Deferred/reference G3 artifacts
+## Active and reference G3 artifacts
 
 - [`PD-0001`](../product-design/PD-0001-g3-physical-design-inputs.md) translates
   reviewed capabilities into physical field/control/safety/RF/expansion/service
@@ -480,8 +480,13 @@ continuity/thermal coupling, calculated hot loss and HIL remain active.
   content was reviewed, but its direction is superseded by `DEC-0041`; no owner
   choice among P1/P2/P3 is requested.
 - [`PHY-0001`](../product-design/PHY-0001-u214-rear-dock-fit.md) retains the
-  accepted bounded U214 rear-envelope decision; `DEC-0058` pauses further
-  integrated mockup/control/enclosure work until `INT-0001/I9`.
+  accepted bounded U214 rear-envelope decision; its former `DEC-0058` pause is
+  released after `INT-0001/I9` review.
+- [`G3-0001`](../product-design/G3-0001-current-clamshell-reentry.md) is the
+  active generated current clamshell starting projection. It preserves the
+  useful legacy geometry/checks while replacing stale ownership, display,
+  LoRa, antenna, control, service and battery assumptions; geometry re-entry
+  is reviewed and G3 continues.
 
 No electronic zone in `LAY-0001` assigns a chip, bus or pin. Former
 `SYN/PIN/PKG` arithmetic may be reused only after exact-device revalidation.
