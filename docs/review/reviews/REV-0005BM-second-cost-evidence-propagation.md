@@ -24,6 +24,6 @@ receive final review: 164 price lines, one standalone orderability line, four
 uninstantiated physical families, specific alternate qualification and full
 factory COGS remain open.
 
-`BOM-0019/REV-0005BS` preserve this reviewed second-batch checkpoint and
-advance the current snapshot to 91/187 lines / 708 placements / USD 133.4711
+`BOM-0020/REV-0005BT` preserve this reviewed second-batch checkpoint and
+advance the current snapshot to 106/187 lines / 747 placements / USD 140.7642
 partial base subtotal.

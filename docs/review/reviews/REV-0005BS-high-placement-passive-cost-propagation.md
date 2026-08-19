@@ -20,7 +20,9 @@ receives **«Проведено ревью»**. The batch expands comparable mat
 coverage across 65 placements without changing electrical or physical
 architecture.
 
-I8 remains open for 96 prices, standalone display sourcing, four
-uninstantiated physical families, specific alternate qualification and full
-factory COGS. Insufficient stock at one price source is a procurement-watch
-signal, not permission to bypass the accepted substitution policy.
+At this seventh-batch checkpoint I8 remained open for 96 prices, standalone
+display sourcing, four uninstantiated physical families, specific alternate
+qualification and full factory COGS. Insufficient stock at one price source is
+a procurement-watch signal, not permission to bypass the accepted
+substitution policy. `BOM-0020/REV-0005BT` subsequently advance current
+coverage to 106/187 lines / 747 placements / USD 140.7642 and nine gates.

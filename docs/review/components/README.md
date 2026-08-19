@@ -30,7 +30,8 @@ explicit physical-gap register feed the generated manifest.
 16. [`BOM-0016`](BOM-0016-high-value-ic-rf-cost-evidence.md) — high-value IC/RF fourth-batch checkpoint: 52/187 lines / 614 placements / USD 102.2205 partial base subtotal.
 17. [`BOM-0017`](BOM-0017-power-ui-rf-cost-evidence.md) — power/UI/receiver fifth-batch checkpoint: 61/187 lines / 623 placements / USD 109.8573.
 18. [`BOM-0018`](BOM-0018-audio-power-mechanical-cost-evidence.md) — audio/power/mechanical sixth-batch checkpoint plus two currency-comparability gates: 76/187 lines / 643 placements / USD 130.7216 partial base subtotal.
-19. [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md) — high-placement passive/discrete seventh batch, current 91/187 lines / 708 placements / USD 133.4711 partial base subtotal.
+19. [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md) — high-placement passive/discrete seventh-batch checkpoint: 91/187 lines / 708 placements / USD 133.4711 partial base subtotal.
+20. [`BOM-0020`](BOM-0020-control-protection-rf-cost-evidence.md) — control/protection/RF-passive eighth batch plus one RFQ gate, current 106/187 lines / 747 placements / USD 140.7642 partial base subtotal.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -68,6 +69,7 @@ explicit physical-gap register feed the generated manifest.
 - [`BOM-0016`](BOM-0016-high-value-ic-rf-cost-evidence.md) / [`REV-0005BO`](../reviews/REV-0005BO-high-value-cost-evidence-propagation.md) — 13 higher-value IC/RF/interconnect prices; **Проведено ревью fourth-batch checkpoint**, 52/187 lines / 614/857 placements and USD 102.2205 partial base subtotal.
 - [`BOM-0017`](BOM-0017-power-ui-rf-cost-evidence.md) / [`REV-0005BQ`](../reviews/REV-0005BQ-power-ui-rf-cost-evidence-propagation.md) — nine exact power/UI/RF prices and one explicit new-part quotation gate; **Проведено ревью fifth batch**, current coverage 61/187 lines / 623/857 placements and USD 109.8573 partial base subtotal.
 - [`BOM-0018`](BOM-0018-audio-power-mechanical-cost-evidence.md) / [`REV-0005BR`](../reviews/REV-0005BR-audio-power-mechanical-cost-propagation.md) — 15 exact audio/power/mechanical prices, two currency-comparability gates and one exact source-link repair; **Проведено ревью sixth-batch checkpoint**.
-- [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md) / [`REV-0005BS`](../reviews/REV-0005BS-high-placement-passive-cost-propagation.md) — 15 exact high-placement passive/discrete prices; **Проведено ревью seventh batch**, current coverage 91/187 lines / 708/857 placements and USD 133.4711 partial base subtotal.
+- [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md) / [`REV-0005BS`](../reviews/REV-0005BS-high-placement-passive-cost-propagation.md) — 15 exact high-placement passive/discrete prices; **Проведено ревью seventh-batch checkpoint**.
+- [`BOM-0020`](BOM-0020-control-protection-rf-cost-evidence.md) / [`REV-0005BT`](../reviews/REV-0005BT-control-protection-rf-cost-propagation.md) — 15 exact control/protection/RF-passive prices and one high-Q RF quote gate; **Проведено ревью eighth batch**, current coverage 106/187 lines / 747/857 placements and USD 140.7642 partial base subtotal.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

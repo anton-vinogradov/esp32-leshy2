@@ -30,7 +30,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
-| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy, substitution-policy coverage and seven cost batches reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011`, `BOM-0012/DEC-0104/REV-0005BK` and `BOM-0013…0019/DEC-0105…0106/REV-0005BL…BS`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions, 91 costed lines / 708 placements, eight explicit unpriced gates and four explicit uninstantiated physical families; standalone `HMX035CTFT-001`, 96 prices and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
+| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy, substitution-policy coverage and eight cost batches reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011`, `BOM-0012/DEC-0104/REV-0005BK` and `BOM-0013…0020/DEC-0105…0106/REV-0005BL…BT`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions, 106 costed lines / 747 placements, nine explicit unpriced gates and four explicit uninstantiated physical families; standalone `HMX035CTFT-001`, 81 prices and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
@@ -239,9 +239,11 @@ prices. `BOM-0017/REV-0005BQ` then add nine exact power/UI/RF prices and one
 honest new-part quotation gate. `BOM-0018/REV-0005BR` add 15 exact audio,
 power and mechanical prices, two currency-comparability gates and repair the
 TPD2EUSB30A distributor route. `BOM-0019/REV-0005BS` then cover 15 more
-high-placement passive/discrete lines. Current coverage is 91/187 prices / 708
-placements; the USD 133.4711 subtotal is partial base-product material only.
-Eight of 96 remaining price gaps have explicit routes, and full COGS remains
+high-placement passive/discrete lines. `BOM-0020/REV-0005BT` add 15 control,
+protection and RF-passive prices plus one honest high-Q RF quote gate. Current
+coverage is 106/187 prices / 747 placements; the USD 140.7642 subtotal is
+partial base-product material only. Nine of 81 remaining price gaps have
+explicit routes, and full COGS remains
 open.
 I3 paper scope is closed again without claiming layout, exact-lot, thermal or
 fault-injection HIL.

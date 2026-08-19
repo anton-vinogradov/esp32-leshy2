@@ -510,9 +510,9 @@ mockup remain blocked through I8/I9.
 ST77922 node. The corrected 857 supplied/costed placements collapse to 187
 purchase lines, 186 carry dated
 orderability evidence and only standalone `HMX035CTFT-001` remains unresolved.
-`BOM-0013…0019/DEC-0105…0106/REV-0005BL…BS` now give 91/187 lines comparable
-quantity-100 USD evidence covering 708/857 placements and USD 133.4711 partial
-base-product material. Eight of 96 unpriced lines carry explicit RFQ/retail
+`BOM-0013…0020/DEC-0105…0106/REV-0005BL…BT` now give 106/187 lines comparable
+quantity-100 USD evidence covering 747/857 placements and USD 140.7642 partial
+base-product material. Nine of 81 unpriced lines carry explicit RFQ/retail
 gates and contribute no numeric value. `BOM-0012/DEC-0104/REV-0005BK` give
 all 187 lines exactly one alternate/no-substitution
 disposition class; this is a safe replacement boundary, not a claim of 187

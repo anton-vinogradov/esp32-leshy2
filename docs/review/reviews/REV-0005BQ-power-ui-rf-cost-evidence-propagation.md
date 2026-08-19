@@ -24,5 +24,5 @@ I8 remains open for 126 prices, standalone display sourcing, four
 uninstantiated physical families, specific alternate qualification and full
 factory COGS.
 
-`BOM-0019/REV-0005BS` preserve this fifth-batch checkpoint and advance current
-coverage to 91/187 lines / 708 placements / USD 133.4711 partial base subtotal.
+`BOM-0020/REV-0005BT` preserve this fifth-batch checkpoint and advance current
+coverage to 106/187 lines / 747 placements / USD 140.7642 partial base subtotal.

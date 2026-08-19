@@ -116,6 +116,6 @@ the raw-display cost and prevents RFQ-only radios from becoming zero.
 ## Последующий статус
 
 Этот artifact сохраняет проверенный second-batch checkpoint. Текущий итог
-после седьмой партии находится в
-[`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md): 91/187 lines,
-708/857 placements и partial base subtotal USD 133.4711.
+после восьмой партии находится в
+[`BOM-0020`](BOM-0020-control-protection-rf-cost-evidence.md): 106/187 lines,
+747/857 placements и partial base subtotal USD 140.7642.

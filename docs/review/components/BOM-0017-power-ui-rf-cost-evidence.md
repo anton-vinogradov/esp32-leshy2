@@ -47,5 +47,5 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
 This artifact preserves the reviewed fifth-batch checkpoint. Current coverage
-is in [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md): 91/187
-lines, 708/857 placements and partial base subtotal USD 133.4711.
+is in [`BOM-0020`](BOM-0020-control-protection-rf-cost-evidence.md): 106/187
+lines, 747/857 placements and partial base subtotal USD 140.7642.
