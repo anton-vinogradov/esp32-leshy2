@@ -42,3 +42,6 @@ base-product connector/cable bodies и 12 costed-variant antenna items.
 
 No device, owner, GPIO, net, rail, RF path, antenna count, connector polarity
 or target-page diagram node changed.
+
+`FND-0115/BOM-0028/REV-0005CC` subsequently classify these open executions as
+downstream G3/G8 gates and complete the internal I8 paper-feasibility review.

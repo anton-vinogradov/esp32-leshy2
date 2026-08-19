@@ -1394,7 +1394,7 @@ def render_target_bom_review(
     lines = [
         "# G2F-3I — generated target BOM coverage review",
         "",
-        "- Статус: **I8 inventory complete; sourcing/cost/alternate review active**",
+        "- Статус: **I8 paper procurement-feasibility scope reviewed; downstream G3/G8 qualification gated**",
         "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`",
         "- Regenerate: `python3 hardware/architecture/generate.py --write`",
         "",

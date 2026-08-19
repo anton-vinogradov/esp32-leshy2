@@ -1,6 +1,6 @@
 # Аппаратная часть Leshy2 — текущее состояние проработки
 
-> Снимок: 2026-08-18. Здесь указана доказанная зрелость. Образ готового
+> Снимок: 2026-08-19. Здесь указана доказанная зрелость. Образ готового
 > продукта — в [целевом hardware README](../../README.ru.md), software — в
 > [целевом firmware README](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md).
 
@@ -15,8 +15,8 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе; I1…I5 paper reviewed, I6 active**: exact compute, safety, power, UI/storage, audio/receiver, three-nRF, native S3/C5, CC1101 three-band и SA518 RF endpoints входят в machine projection; IR, expansion, physical и HIL evidence открыты |
-| 3. Target physical/product design | **Начинается от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
+| 2F. Logical/electrical feasibility | **В работе на I9; I1…I8 reviewed в paper scope**: complete candidate electronics/procurement evidence входит в machine projection; активны совместная consistency-проверка и atomic paper projection |
+| 3. Target physical/product design | **Приостановлен до I9**; затем возобновляется от `DEC-0051/PIN-0003` visible working design с адаптацией legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
@@ -487,8 +487,10 @@ startup/shutdown/brownout/multi-fault gates остаются обязатель�
 owner, шины или тракта; regression проверяет orientation и покрытие MPN
 текущего candidate.
 
-Текущая зрелость dependency chain: I1…I7 **reviewed в paper scope**. I8
-inventory coverage проведён, а sourcing/lifecycle/cost/alternate work активен.
+Текущая зрелость dependency chain: I1…I8 **reviewed в paper scope**. Активны
+I9 joint self-review и atomic paper projection. `FND-0115/BOM-0028/
+REV-0005CC` отделяют проверенную G2F procurement feasibility от G3 physical
+inputs и downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` обнаруживают, исправляют и повторно
 проверяют MAX17320/MSPM0 support, который оставался prose/abstract; принятая
 2S topology не меняется.
@@ -505,7 +507,7 @@ USB, три keyed DBG10, шесть отдельных controls, exact straps/pa
 passive-drain hard-STOP resets внесены в machine source. GPIO budgets и весь
 набор controls не изменились. Physical connector/mechanics, USB
 SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates; KiCad
-и integrated mockup заблокированы до завершения I8/I9.
+и integrated mockup заблокированы до прохождения I9.
 
 `FND-0109/BOM-0008` теперь генерируют consolidated narrow-screen review и CSV:
 858 architecture instances включают один явно исключённый assembly-internal

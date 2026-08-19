@@ -1,6 +1,6 @@
 # INT-0001 — dependency-ordered internal-design closure sequence
 
-- Статус: **Проведено ревью порядка; I1…I7 paper-reviewed, I8 active**
+- Статус: **Проведено ревью порядка; I1…I8 paper-reviewed, I9 active**
 - Дата: 2026-08-19
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Working map: [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)
@@ -30,8 +30,8 @@ Exact MPN availability повторно проверяется при выбор
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
-| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy, substitution-policy coverage, fourteen cost batches and 4/4 physical-family gate contracts reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011`, `BOM-0012/DEC-0104/REV-0005BK`, `BOM-0013…0026/DEC-0105…0106/REV-0005BL…CA` and `BOM-0027/REV-0005CB`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions, 175 costed lines / 829 placements, twelve explicit unpriced gates and four explicit resolution contracts for 28 physical items; standalone `HMX035CTFT-001`, twelve gated prices, physical gate execution and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
-| `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
+| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **Проведено ревью paper procurement-feasibility scope** by `FND-0115/BOM-0028/REV-0005CC`: 858 architecture nodes include one assembly-internal evidence node, leaving 857 supplied placements / 187 purchase lines; 186 dated sources + one standalone-display sourcing gate, 175 costed lines / 829 placements + twelve price gates, 187 substitution dispositions and 4/4 physical-family resolution contracts / 28 items. G3 executes physical inputs; selected-architecture exact RFQ/alternates/factory COGS belong to downstream G8 | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
+| `I9` | whole internal self-review and atomic paper projection | `I0…I8` | **active** | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
 
@@ -255,5 +255,10 @@ open.
 machine-readable owners, prerequisites and acceptance criteria. This closes
 anonymous gate coverage, not the exact connector/harness/antenna MPNs or their
 physical and RF HIL.
+`FND-0115/BOM-0028/REV-0005CC` correct the remaining workflow cycle: G2F/I8
+cannot wait on G3 geometry or the G8 frozen BOM. I8 therefore receives
+**«Проведено ревью»** in paper procurement-feasibility scope, while exact
+RFQ, named production alternates, physical gate execution and factory COGS
+remain mandatory downstream. I9 joint self-review is now active.
 I3 paper scope is closed again without claiming layout, exact-lot, thermal or
 fault-injection HIL.

@@ -24,3 +24,7 @@ This is not a physical pass. Exact bodies, harnesses, dock stack, antenna kit,
 received-item coupons and assembled RF/HIL remain open at their named gates.
 I8 also remains open for twelve price/RFQ gates, standalone display sourcing,
 specific alternate qualification and complete factory COGS.
+
+`FND-0115/BOM-0028/REV-0005CC` subsequently remove the circular scope: these
+physical results remain mandatory at G3/G8, while internal I8 paper
+procurement-feasibility receives review and I9 becomes active.

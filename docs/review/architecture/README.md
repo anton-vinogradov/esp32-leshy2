@@ -261,6 +261,12 @@ open.
 machine-readable: 4/4 families / 28 items now have owner, prerequisites and
 acceptance. Exact connectors, harnesses, antenna-kit items and physical/RF HIL
 remain open at those gates; no MPN or footprint is guessed.
+`FND-0115/BOM-0028/REV-0005CC` then remove the circular exit condition: G2F/I8
+cannot depend on G3 geometry or the downstream G8 frozen BOM. I8 receives
+**«Проведено ревью»** in paper procurement-feasibility scope; exact physical
+gate execution, target RFQ, named production alternates and factory COGS stay
+mandatory at G3/G8. I9 joint self-review is active, and the integrated mockup
+remains paused until it passes.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

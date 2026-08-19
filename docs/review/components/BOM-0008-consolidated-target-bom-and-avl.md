@@ -1,6 +1,6 @@
 # BOM-0008 — consolidated target BOM, AVL and cost workbench
 
-- Статус: **I8 inventory coverage проведено ревью; qualification active**
+- Статус: **I8 paper procurement-feasibility проведено ревью; downstream G3/G8 qualification gated**
 - Дата: 2026-08-19
 - Finding: [`FND-0109`](../findings/FND-0109-machine-map-was-not-a-complete-physical-bom.md)
 - Generated review: [`G2F-3I-target-bom-review`](generated/G2F-3I-target-bom-review.md)
@@ -72,7 +72,10 @@ future factory RFQ.
    `BOM-0013…0026/DEC-0105…0106/REV-0005BL…CA`; all remaining 12 lines have
    explicit RFQ/retail gates and remain excluded rather than receiving zero or
    a multiplied retail value.
-7. Run the consolidated self-review and only then mark I8 «Проведено ревью».
+7. ~~Run the consolidated self-review and only then mark I8 «Проведено
+   ревью».~~ **Проведено ревью paper procurement-feasibility scope** by
+   `FND-0115/BOM-0028/REV-0005CC`. Exact G3 physical evidence and selected-G7
+   RFQ/alternates/factory COGS remain mandatory downstream G8 inputs.
 
 No incomplete line is assigned a zero price. No broad family name is an AVL.
 No substitute may change a pin, rail, RF path, STOP behavior or product

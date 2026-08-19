@@ -1,6 +1,6 @@
 # Component/BOM workspace
 
-- Статус: **current I8 workbench active; former stage-4 package historical**
+- Статус: **I8 paper procurement-feasibility reviewed; I9 active; former stage-4 package historical**
 - Former prerequisite: superseded `DEC-0028/PKG-0001/SYN-3A`
 - Current use: candidate facts and risks only
 
@@ -39,6 +39,7 @@ explicit physical-gap register feed the generated manifest.
 25. [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md) — specialty-component thirteenth-batch checkpoint: 169/187 lines / 823 placements / USD 157.1927 partial base subtotal and twelve explicit gates.
 26. [`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md) — exact high-Q RF-capacitor fourteenth batch, current 175/187 lines / 829 placements / USD 157.3727 partial base subtotal; all twelve remaining unpriced lines have explicit gates.
 27. [`BOM-0027`](BOM-0027-physical-purchase-family-resolution-gates.md) — machine-readable prerequisite and acceptance gates for all four physical purchase families / 28 items; exact MPN and physical HIL remain open.
+28. [`BOM-0028`](BOM-0028-i8-consolidated-paper-procurement-review.md) — consolidated I8 paper procurement-feasibility review; separates reviewed candidate evidence from downstream G3/G8 exact physical/frozen-BOM work.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -63,7 +64,7 @@ explicit physical-gap register feed the generated manifest.
 - [`REC-0001`](REC-0001-compute-recovery-and-link-prerequisites.md) / [`REV-0004F`](../reviews/REV-0004F-compute-recovery-link-prerequisites.md) — ROM/debug/link prerequisites and corrected C5 strap; **Проведено ревью**.
 - [`SVC-0001`](SVC-0001-three-domain-development-access.md) / [`REV-0004G`](../reviews/REV-0004G-three-domain-development-access.md) — historical permanent-access topology review.
 - [`SVC-0002`](../architecture/SVC-0002-exact-three-domain-service-recovery-boundary.md) / [`REV-0005BE`](../reviews/REV-0005BE-i7-service-recovery-propagation.md) — exact USB/DBG10/BOOT/RESET and conflict-free hard-STOP reset implementation; **Проведено ревью paper electrical scope**, physical/HIL open.
-- [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) / [`FND-0109`](../findings/FND-0109-machine-map-was-not-a-complete-physical-bom.md) — machine-derived I8 coverage and explicit physical-gap register; **Проведено ревью inventory coverage**, qualification active.
+- [`BOM-0008`](BOM-0008-consolidated-target-bom-and-avl.md) / [`FND-0109`](../findings/FND-0109-machine-map-was-not-a-complete-physical-bom.md) — machine-derived I8 coverage and explicit physical-gap register; **Проведено ревью inventory checkpoint**, later consolidated by `BOM-0028/REV-0005CC`.
 - [`PWR-0022`](../architecture/PWR-0022-exact-max17320-2s-support-profile.md) / [`DEC-0100`](../decisions/DEC-0100-exact-max17320-2s-support-closure.md) / [`REV-0005BF`](../reviews/REV-0005BF-max17320-support-repair-propagation.md) — exact MAX17320/MSPM0 support repair; **Проведено ревью paper electrical scope**, physical/HIL open.
 - [`SAFE-0003`](../architecture/SAFE-0003-exact-actual-tx-threshold-and-isolation.md) / [`DEC-0101`](../decisions/DEC-0101-exact-actual-tx-threshold-and-domain-isolation.md) / [`REV-0005BG`](../reviews/REV-0005BG-actual-tx-threshold-propagation.md) — eight exact threshold networks and AON-to-main evidence isolation; **Проведено ревью paper electrical scope**, measured calibration/HIL open.
 - [`BOM-0009`](BOM-0009-current-orderability-recheck.md) / [`FND-0111`](../findings/FND-0111-orderability-audit-exposed-pseudo-mpn-and-display-gap.md) / [`DEC-0102`](../decisions/DEC-0102-exact-sc1512-a4-order-identity.md) / [`REV-0005BH`](../reviews/REV-0005BH-orderability-propagation.md) — previously missing exact-line sources rechecked, `SC1512-A4` order identity repaired and only `HMX035CTFT-001` left unresolved; **Проведено ревью current sourcing batch**, cost/specific-alternate qualification and full I8 remain open.
@@ -85,5 +86,6 @@ explicit physical-gap register feed the generated manifest.
 - [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md) / [`REV-0005BY`](../reviews/REV-0005BY-specialty-cost-gate-propagation.md) — seven exact specialty prices, two explicit gates and one source repair; **Проведено ревью thirteenth-batch checkpoint** at 169/187 lines / 823/857 placements and USD 157.1927 partial base subtotal.
 - [`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md) / [`REV-0005CA`](../reviews/REV-0005CA-high-q-rf-capacitor-cost-propagation.md) — six exact high-Q RF-capacitor prices; **Проведено ревью fourteenth batch**, current coverage 175/187 lines / 829/857 placements and USD 157.3727 partial base subtotal, with explicit gates on all twelve remaining unpriced lines.
 - [`BOM-0027`](BOM-0027-physical-purchase-family-resolution-gates.md) / [`REV-0005CB`](../reviews/REV-0005CB-physical-purchase-gate-propagation.md) — explicit owner/prerequisite/acceptance contracts for 4/4 physical purchase families / 28 items; **Проведено ревью gate coverage**, exact parts and physical/HIL results stay open.
+- [`FND-0115`](../findings/FND-0115-i8-exit-mixed-g2f-with-downstream-g8.md) / [`BOM-0028`](BOM-0028-i8-consolidated-paper-procurement-review.md) / [`REV-0005CC`](../reviews/REV-0005CC-i8-consolidated-paper-procurement-propagation.md) — circular G2F/G3/G8 exit repaired; **I8 paper procurement-feasibility scope проведено ревью**, I9 active.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

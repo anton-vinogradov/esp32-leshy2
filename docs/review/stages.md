@@ -9,15 +9,17 @@ and physical design (`FND-0039`).
 ## Где мы сейчас
 
 `I8` ниже — внутренний шаг закрытия feasibility gate `2F`, а не одноимённый
-верхнеуровневый gate `8`. Поэтому текущая работа над доказательствами BOM не
-означает, что архитектура уже заморожена или что разрешён KiCad.
+верхнеуровневый gate `8`. Он проведён в paper procurement-feasibility scope;
+точный frozen BOM остаётся downstream gate 8. Текущая работа — совместное I9
+self-review, которое не означает, что архитектура уже заморожена или разрешён
+KiCad.
 
 ```mermaid
 flowchart TD
   G02["Gates 0–2<br/>baseline · product intent · capabilities<br/><b>ПРОВЕДЕНО РЕВЬЮ</b>"]
   I17["Gate 2F / I1–I7<br/>compute · safety · power · UI · audio · RF · expansion<br/><b>ПРОВЕДЕНО РЕВЬЮ В PAPER SCOPE</b>"]
-  I8["▶ МЫ ЗДЕСЬ — Gate 2F / I8<br/>components · sources · cost · alternates<br/>175/187 цен · 829/857 placements · USD 157.3727 partial<br/><b>В РАБОТЕ</b>"]
-  I9["Gate 2F / I9<br/>совместное self-review и atomic paper projection<br/><b>ОЖИДАЕТ I8</b>"]
+  I8["Gate 2F / I8<br/>components · sources · cost · alternates<br/>175/187 цен + 12 gates · 4/4 physical-family gates<br/><b>ПРОВЕДЕНО РЕВЬЮ PAPER SCOPE</b>"]
+  I9["▶ МЫ ЗДЕСЬ — Gate 2F / I9<br/>совместное self-review и atomic paper projection<br/><b>В РАБОТЕ</b>"]
   G3["Gate 3<br/>целевой physical/product design<br/>legacy-макет — вход; integrated mockup приостановлен"]
   G48["Gates 4–8<br/>целые кандидаты → optimality → co-design<br/>→ atomic architecture → frozen BOM"]
   G9["Gate 9<br/>electrical/CAD + firmware architecture<br/><b>KICAD НЕ РАЗРЕШЁН</b>"]
@@ -28,9 +30,9 @@ flowchart TD
   classDef reviewed fill:#163d2b,stroke:#35b779,color:#ffffff,stroke-width:2px;
   classDef current fill:#5a4300,stroke:#ffcc4d,color:#ffffff,stroke-width:4px;
   classDef blocked fill:#3b3f46,stroke:#8b949e,color:#ffffff,stroke-width:1px;
-  class G02,I17 reviewed;
-  class I8 current;
-  class I9,G3,G48,G9,G1011 blocked;
+  class G02,I17,I8 reviewed;
+  class I9 current;
+  class G3,G48,G9,G1011 blocked;
 ```
 
 | № | Gate | Основной выход | Статус |
@@ -38,7 +40,7 @@ flowchart TD
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. I1…I7 have **«Проведено ревью»** in paper scope after the MAX17320 and actual-TX support repairs. I8 inventory/current source batch/display sourcing strategy/substitution policy, fourteen cost batches and 4/4 physical-family gate contracts are reviewed at 858 architecture instances / 857 supplied placements / 187 purchase lines, 186/187 source records, 187/187 disposition classes and 175/187 cost records covering 829 placements; all twelve unpriced lines have explicit gates. Standalone display RFQ, twelve gated prices, execution of the four physical gates and specific alternate qualification are active. Gate 2F remains open through I8, antenna lots/feeds/protection, physical RF and peripherals |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе на I9**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. I1…I8 have **«Проведено ревью»** in their paper scopes. `FND-0115/BOM-0028/REV-0005CC` separate internal I8 procurement feasibility from downstream G8 frozen-BOM work: 858 architecture nodes / 857 supplied placements / 187 purchase lines, 186 dated sources + one display source gate, 175 prices / 829 placements + twelve price gates, 187 substitution dispositions and 4/4 physical-family gates. Exact RFQ, named production alternates, physical gate execution and factory COGS remain mandatory at G3/G8. Gate 2F remains open for I9 joint consistency review; KiCad remains unauthorized |
 | 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
@@ -120,5 +122,8 @@ no-silent-substitution policy 187/187; `BOM-0013…0026/DEC-0105…0106/
 REV-0005BL…CA` проводят ревью cost contract, explicit RFQ/retail gates и
 первых 175/187 строк / 829 placements с partial subtotal USD 157.3727. Все 12
 оставшихся цен имеют явные gates; они и specific alternate qualification активны,
-KiCad не разрешён. `FND-0112/BOM-0011/DEC-0103/REV-0005BJ` отдельно исправляют
+KiCad не разрешён. `BOM-0027/REV-0005CB` добавляют 4/4 physical-family gate
+contracts; `FND-0115/BOM-0028/REV-0005CC` проводят I8 paper review и передают
+exact physical/frozen-BOM результаты в их G3/G8 gates. I9 теперь активен.
+`FND-0112/BOM-0011/DEC-0103/REV-0005BJ` отдельно исправляют
 двойной purchasing-счёт internal ST77922 и фиксируют current 857/187.

@@ -3,9 +3,9 @@
   "id": "G2F-3I",
   "title": "Three domains with independent radio IPC and only bounded display/storage sharing",
   "status": "draft_non_interference_candidate",
-  "decisive_open_risk": "I1 through I7 paper scopes are reviewed; I8 sourcing, lifecycle, cost and alternate qualification is active after reviewed inventory coverage, while exact-lot and prototype HIL gates remain explicit",
+  "decisive_open_risk": "I1 through I8 paper feasibility scopes are reviewed; I9 joint self-review is active, while G3 physical design and downstream G8 exact-BOM/RFQ/alternate/factory-cost qualification remain explicit",
   "bom_audit": {
-    "status": "i8_inventory_complete_qualification_active",
+    "status": "i8_paper_procurement_feasibility_reviewed_candidate_only",
     "default_scope": "base_product",
     "scope_overrides": {
       "u214": "optional_external_accessory",

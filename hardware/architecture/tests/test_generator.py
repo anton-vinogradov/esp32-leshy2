@@ -24,6 +24,10 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        self.assertEqual(
+            "i8_paper_procurement_feasibility_reviewed_candidate_only",
+            candidate["bom_audit"]["status"],
+        )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
         self.assertEqual(857, sum(line["quantity"] for line in lines))
         self.assertEqual(187, len(lines))
@@ -120,6 +124,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("assembly-internal evidence node", rendered)
         self.assertIn("display_touch_controller", rendered)
         self.assertIn("Physical purchase families with explicit resolution gates", rendered)
+        self.assertIn("I8 paper procurement-feasibility scope reviewed", rendered)
         self.assertIn("g3_connector_plane_and_mount_coupon_required", rendered)
         self.assertIn("received_mate_and_routed_length_coupon_required", rendered)
         self.assertIn("received_mate_identification_and_retention_coupon_required", rendered)
