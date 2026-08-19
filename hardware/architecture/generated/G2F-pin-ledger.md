@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 5 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 13U/3R/2F` | I1 through I9 paper feasibility scopes are reviewed; G3 target physical/product design is active, and its findings may reopen this working candidate before G4-G7 selection and downstream G8 exact-BOM qualification |
+| `G2F-3I` | 6 | `s3 33U/3R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 13U/3R/2F`, `safety_controller 15U/3R/0F` | I1 through I9 paper feasibility scopes are reviewed; G3 target physical/product design is active, and its findings may reopen this working candidate before G4-G7 selection and downstream G8 exact-BOM qualification |
 
 ## Exact-device provenance used by these drafts
 
@@ -29,7 +29,6 @@
 | `bourns_crm2512_fx_20r0elf` | `Bourns CRM2512-FX-20R0ELF` | `verified_candidate` | `active` | [Bourns CRM2512 high-power resistor datasheet with pulse-load curve Rev. 08/21; current product data checked 2026-08-18](https://www.bourns.com/docs/product-datasheets/CRM.pdf) | same primary source |
 | `cc1101rgpr` | `CC1101RGPR` | `verified_candidate` | `active` | [CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet SWRS061I](https://www.ti.com/lit/ds/symlink/cc1101.pdf) | [TI CC1101RGPR order page](https://www.ti.com/product/CC1101/part-details/CC1101RGPR) |
 | `ck_js102011scqn` | `C&K JS102011SCQN` | `verified_exact_low_current_power_command_switch_mechanical_hil_open` | `active_orderable` | [Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet VL 01/14/26](https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14) | same primary source |
-| `ck_tlsmdt3c020glfs` | `C&K TLSMDT3C020GLFS` | `verified_exact_direct_press_hard_stop_mechanical_hil_open` | `active_orderable` | [C&K TLSM Series official product page and exact TLSM datasheet datasheet revised 2025-04-22; live product page checked 2026-08-19](https://www.ckswitches.com/products/switches/product-details/Tactile/TLSM/) | same primary source |
 | `davies_1227_j` | `Davies Molding 1227-J` | `verified_exact_shaft_and_plan_fit_hil_open` | `active` | [Davies Molding 1227-J official product page and drawing table live product page](https://daviesmolding.com/catalog/series/knobs/control/1227-j/) | same primary source |
 | `diodes_2n7002dw_7_f` | `Diodes Incorporated 2N7002DW-7-F` | `verified_candidate` | `active` | [2N7002DW dual N-channel MOSFET datasheet DS30120 Rev. 22-2, October 2021](https://www.diodes.com/datasheet/download/2N7002DW.pdf) | same primary source |
 | `diodes_bat54_7_f` | `Diodes Incorporated BAT54-7-F` | `verified_candidate` | `active` | [BAT54 surface-mount Schottky barrier diode datasheet DS11005 Rev. 34-2, November 2023](https://www.diodes.com/datasheet/download/BAT54.pdf) | same primary source |
@@ -165,6 +164,7 @@
 | `ti_tps259470l_rpwr` | `Texas Instruments TPS259470LRPWR` | `verified_candidate` | `active` | [TPS25947xx true-reverse-current-blocking eFuse datasheet SLVSFC9C, October 2020, revised May 2026](https://www.ti.com/lit/ds/symlink/tps25947.pdf) | same primary source |
 | `ti_tps25961_drvr` | `Texas Instruments TPS25961DRVR` | `verified_candidate` | `active` | [TPS25961 2.7-V to 19-V, 106-mOhm eFuse datasheet SLVSGT8, December 2022](https://www.ti.com/lit/ds/symlink/tps25961.pdf) | same primary source |
 | `ti_tps25974l_rpwr` | `Texas Instruments TPS25974LRPWR` | `verified_candidate` | `active` | [TPS2597xx 2.7-V to 23-V, 7-A, 9.8-mOhm eFuse datasheet SLVSGG5D, November 2021, revised May 2025](https://www.ti.com/lit/ds/symlink/tps2597.pdf) | same primary source |
+| `ti_tps3435cakagddfr` | `Texas Instruments TPS3435CAKAGDDFR` | `verified_exact_independent_aon_watchdog` | `active_orderable` | [TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet SNVSCF7A, revised August 2024](https://www.ti.com/lit/ds/symlink/tps3435.pdf) | same primary source |
 | `ti_tps3808g33_dbvr` | `TPS3808G33DBVR` | `verified_candidate` | `active` | [TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet Rev. M](https://www.ti.com/lit/ds/symlink/tps3808.pdf) | same primary source |
 | `ti_tps3839k33_dbzr` | `Texas Instruments TPS3839K33DBZR` | `verified_candidate` | `active` | [TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet SBVS193D and current exact-part page checked 2026-08-18](https://www.ti.com/lit/ds/symlink/tps3839.pdf) | same primary source |
 | `ti_tps564252_drlr` | `Texas Instruments TPS564252DRLR` | `verified_candidate` | `active` | [TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet SLUSEQ6A, December 2022, revised May 2023](https://www.ti.com/lit/ds/symlink/tps564252.pdf) | same primary source |
@@ -518,13 +518,13 @@ Decision `DEC-0046`; default `QUIET`.
 |---|---|---|---|---|
 | `N24_QUIET` | `nrf0`, `nrf1`, `nrf2` | pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped | RP.GPIO15 NRF_GROUP_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no I/O back-power, no carrier and active-receiver desense HIL |
 | `CC_QUIET` | `cc` | pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped | RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation | rail discharge/current, no SPI/GDO back-power and active-receiver desense HIL |
-| `U214_CAP_QUIET` | `M5Stack U214 Cap LoRa-1262`, `U214 downstream Port A` | U214 branch eFuse off and discharged; all nine SPI/UART/control paths and both I2C paths isolated/high-Z; RP PIO/UART/I2C activity stopped | slow_io.P17 U214_5V_REQ through STOP-dominant shared-buck and branch gates, TPS259470LRPWR, TPS3808G33DBVR, three 74LVC126APW,118 and TCA4307DGKR | rail discharge, U214 5V_OUT separation, all eleven signals no-back-power, hot-plug/stuck-bus, exact identity and active-group desense HIL |
-| `UNIT_PORT_QUIET` | `native protected HY2.0-4P M5 Unit port` | native Unit branch eFuse off and discharged; both configurable signals isolated/high-Z and no profile polling | slow_io.P05 UNIT_5V_REQ through STOP-dominant shared-buck and branch gates, separate TPS259470LRPWR, TPS3808G33DBVR and TXS0102DCUR OE | rail discharge, reverse-source/backfeed, I2C/UART/GPIO/1-Wire profile, wrong/unknown accessory and hot-plug fault-injection HIL |
-| `VOICE_QUIET` | `voice` | PTT hardware-off; module power-down; qualified 4 V rail off | VOICE_PTT_N, VOICE_DOMAIN_EN and HARD_STOP_N-dominant power/TX gates | actual-TX-off, rail/current and stuck-control fault-injection HIL |
+| `U214_CAP_QUIET` | `M5Stack U214 Cap LoRa-1262`, `U214 downstream Port A` | U214 branch eFuse off and discharged; all nine SPI/UART/control paths and both I2C paths isolated/high-Z; RP PIO/UART/I2C activity stopped | slow_io.P17 U214_5V_REQ through FAULT_KILL-dominant shared-buck and branch gates, TPS259470LRPWR, TPS3808G33DBVR, three 74LVC126APW,118 and TCA4307DGKR | rail discharge, U214 5V_OUT separation, all eleven signals no-back-power, hot-plug/stuck-bus, exact identity and active-group desense HIL |
+| `UNIT_PORT_QUIET` | `native protected HY2.0-4P M5 Unit port` | native Unit branch eFuse off and discharged; both configurable signals isolated/high-Z and no profile polling | slow_io.P05 UNIT_5V_REQ through FAULT_KILL-dominant shared-buck and branch gates, separate TPS259470LRPWR, TPS3808G33DBVR and TXS0102DCUR OE | rail discharge, reverse-source/backfeed, I2C/UART/GPIO/1-Wire profile, wrong/unknown accessory and hot-plug fault-injection HIL |
+| `VOICE_QUIET` | `voice` | PTT hardware-off; module power-down; qualified 4 V rail off | VOICE_PTT_N, VOICE_DOMAIN_EN and FAULT_KILL-dominant power/TX gates | actual-TX-off, rail/current and stuck-control fault-injection HIL |
 | `RECEIVER_QUIET` | `Si4732 receiver` | receiver rail discharged, reset asserted, I2C isolated and both audio outputs passive while the protected receive-only antenna inputs remain harmless | slow_io.P15 RX_DOMAIN_EN plus exact TPS22919DCKR, supervisor and I2C isolation | rail discharge/current, I2C no-back-power, no unintended tune/scan activity and active-group desense HIL |
 | `CODEC_AUDIO_QUIET` | `codec`, `I2S`, `speaker amplifier` | AUDIO_ARM low, capture/playback selectors at reset defaults, PAM8302A off, codec rail discharged with I2C/I2S isolated and I2S clock/DMA stopped | direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10 and exact supervisors/isolators | stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-group desense HIL |
 | `VOICE_INTERFACE_QUIET` | `voice UART`, `voice PTT`, `voice AFOUT`, `voice MIC_IN`, `voice H/L` | PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default | VOICE_PTT_N, slow_io P13/P14/P27 and exact switched-domain digital/analog isolation | no-back-power, no unintended TX/audio injection, stuck-line fault injection and active-group desense HIL |
-| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind HARD_STOP_N | C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, STOP fault injection and active-radio desense HIL |
+| `IR_QUIET` | `IR RX`, `IR TX` | TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL | C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down | rail discharge/no-back-power, dark/current/no-optical-output, FAULT_KILL fault injection and active-radio desense HIL |
 | `S3_RF_QUIET` | `S3 Wi-Fi`, `S3 BLE`, `ESP-NOW` | protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive | native RF power state plus S3_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `C5_RF_QUIET` | `C5 Wi-Fi`, `C5 IEEE 802.15.4` | protocols stopped and native RF block off while C5 may remain alive for IR/recovery | native RF power state plus C5_RF_TX_EVIDENCE | no background frame/carrier and active-receiver desense HIL |
 | `STORAGE_QUIET` | `microSD` | bounded flush then controller static and rail off when no storage session | slow_io.P20 SD_PWR_EN | no corruption/back-power and active-receiver desense HIL |
@@ -534,8 +534,8 @@ Decision `DEC-0046`; default `QUIET`.
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0` | — |
-| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11` | — |
+| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0`, `safety_controller.PA0` | — |
+| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11`, `safety_controller.PA11` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
@@ -625,8 +625,8 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO25`, `GPIO26`, `GPIO27`, `GPIO28`. Free: `GPIO5
 | `GPIO25` | 26 | `S3_RP_IPC_CS_N` | `i` | `SPI1_IPC` | `s3.GPIO9` | — |
 | `GPIO26` | 27 | `S3_RP_IPC_SCK` | `i` | `SPI1_IPC` | `s3.GPIO48` | — |
 | `GPIO27` | 28 | `S3_RP_IPC_MISO` | `o` | `SPI1_IPC` | `s3.GPIO14` | — |
-| `GPIO28` | 36 | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | `u214_i2c_iso.SDAIN`, `evidence_mask.SDA` | — |
-| `GPIO29` | 37 | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | `u214_i2c_iso.SCLIN`, `evidence_mask.SCL` | — |
+| `GPIO28` | 36 | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | `u214_i2c_iso.SDAIN` | — |
+| `GPIO29` | 37 | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | `u214_i2c_iso.SCLIN` | — |
 | `GPIO30` | 38 | `NRF0_MISO` | `i` | `PIO0_SM0_RF_SPI` | `nrf0_miso_series.END_2`, `nrf0_host_miso_pulldown.END_1` | — |
 | `GPIO31` | 39 | `NRF0_SCK` | `o` | `PIO0_SM0_RF_SPI` | `nrf0_host_buffer.3A`, `nrf0_host_sck_pulldown.END_1` | — |
 | `GPIO32` | 40 | `NRF0_MOSI` | `o` | `PIO0_SM0_RF_SPI` | `nrf0_host_buffer.4A`, `nrf0_host_mosi_pulldown.END_1` | — |
@@ -682,6 +682,29 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO6`, `GPIO7`, `GPIO11`. Free: none.
 
 Budget: **13 used + 3 reserved + 2 free = 18 exposed GPIO**.
 Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
+
+### `safety_controller` — `Texas Instruments MSPM0C1104SDGS20R`
+
+| Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
+|---|---:|---|---|---|---|---|
+| `PA0` | 4 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
+| `PA2` | 8 | `SAFETY_EVIDENCE_I2C_SCL` | `io` | `BITBANG_I2C` | `evidence_mask.SCL`, `evidence_mask_scl_pullup.END_2` | — |
+| `PA4` | 9 | `SAFETY_EVIDENCE_I2C_SDA` | `io` | `BITBANG_I2C` | `evidence_mask.SDA`, `evidence_mask_sda_pullup.END_2` | — |
+| `PA6` | 10 | `SAFETY_WATCHDOG_WDI` | `o` | `GPIO` | `safety_watchdog.WDI`, `safety_watchdog_wdi_pulldown.END_1` | — |
+| `PA11` | 11 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
+| `PA17` | 13 | `SAFETY_SERVICE_UART_TX` | `o` | `UART0` | `abstract:safety service fixture` | — |
+| `PA23` | 18 | `S3_FAULT_RESET_REQUEST` | `o` | `GPIO` | `safety_s3_reset_iso.A` | — |
+| `PA16_A8` | 12 | `POWER_FAULT_N` | `i` | `GPIO_IRQ` | `abstract:power-current-thermal-fault` | — |
+| `PA18_A7` | 14 | `SAFETY_SERVICE_UART_RX` | `i` | `UART0` | `abstract:safety service fixture` | — |
+| `PA22_A4` | 17 | `ANY_TX_AON_N` | `i` | `GPIO_IRQ` | `any_tx_aon_pullup.END_2`, `evidence_or_3.A_COMMON` | — |
+| `PA24_A3` | 19 | `RUN_EDGE` | `i` | `GPIO_IRQ` | `safe_conditioner.1Y`, `safe_latch.CLK` | — |
+| `PA25_A2` | 20 | `SAFETY_FAULT_REQUEST` | `o` | `GPIO` | `safety_fault_request_iso.A`, `safety_fault_request_pulldown.END_1` | — |
+| `PA26_A1` | 1 | `POWER_ZONE_TEMP_ADC` | `i` | `ADC` | `power_zone_ntc.END_1`, `power_zone_temp_pullup.END_2`, `power_zone_temp_filter.END_1` | — |
+| `PA27_A0` | 2 | `RF_ZONE_TEMP_ADC` | `i` | `ADC` | `rf_zone_ntc.END_1`, `rf_zone_temp_pullup.END_2`, `rf_zone_temp_filter.END_1` | — |
+| `PA28_A5` | 3 | `UI_ZONE_TEMP_ADC` | `i` | `ADC` | `ui_zone_ntc.END_1`, `ui_zone_temp_pullup.END_2`, `ui_zone_temp_filter.END_1` | — |
+
+Budget: **15 used + 3 reserved + 0 free = 18 exposed GPIO**.
+Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 
 ### Fixed-function/control routes
 
@@ -1110,7 +1133,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `pack_admission.PA24_A3` | the admission MCU receives a bounded, admission-domain command instead of switched pack or system current |
 | `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `power_command_switch.THROW_B` | the maintained OFF position grounds only the filtered logic command |
 | `POWER_GROUND` | `power_command_switch.COMMON` | `abstract:power-ground` | the common contact is a local low-current logic return; it never carries cell, SYS, charge or load current |
-| `POWER_COMMAND_ON_NC` | `power_command_switch.THROW_A` | `abstract:no-connect` | the maintained ON position deliberately leaves the command on its exact pull-up |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `run_loop_pullup.END_1` | the RUN/KILL safety loop remains independent of pack-admission power |
+| `RUN_LOOP_RAW` | `run_loop_pullup.END_2` | `power_command_switch.THROW_A` | the maintained RUN position grounds the AON loop through the same physical switch that releases the pack shutdown command |
+| `RUN_LOOP_RAW` | `run_loop_pullup.END_2` | `run_loop_filter.END_1` | exact 100-nF local filter suppresses contact transients before the Schmitt input |
+| `SAFETY_GROUND` | `run_loop_filter.END_2` | `abstract:safety-ground` | RUN-loop filtering returns only to the safety domain |
+| `RUN_LOOP_RAW` | `run_loop_pullup.END_2` | `safety_control_esd.D1_PLUS` | dedicated low-capacitance IEC channel protects the externally accessible RUN/KILL conductor |
+| `RUN_LOOP_RAW` | `run_loop_pullup.END_2` | `safe_conditioner.1A` | RUN is conditioned high at RUN_EDGE; KILL, transition open time or open wiring produces low |
 | `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `power_command_filter.END_1` | one local 100-nF filter rejects contact transients before PA24/A3 |
 | `POWER_GROUND` | `power_command_filter.END_2` | `abstract:power-ground` | the command filter returns locally in the admission domain |
 | `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_gauge_scl_pullup.END_1` | the private gauge clock pull-up follows the live admission domain rather than REG3 or the off system domain |
@@ -2573,14 +2601,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `SD_CARD_DETECT_N` | `sd_detect_pullup.END_2` | `slow_io.P21` | exact 10-kOhm pull-up reports absent/open wiring as high |
 | `SD_CARD_DETECT_N` | `slow_io.P21` | `sd_detect_cap.END_1` | exact 100-nF hardware filter suppresses the shortest contact chatter before software debounce |
 | `POWER_GROUND` | `sd_detect_cap.END_2` | `abstract:power-ground` | local detect-filter return |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_stop_sense_iso.VCC` | the STOP diagnostic isolator remains valid whenever the hard latch is alive |
-| `SAFETY_GROUND` | `slow_io_stop_sense_iso.GND` | `abstract:safety-ground` | AON buffer return stays in the safety domain |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_stop_sense_iso_bypass.END_1` | exact 100-nF local bypass supports the first open-drain isolator |
-| `SAFETY_GROUND` | `slow_io_stop_sense_iso_bypass.END_2` | `abstract:safety-ground` | first isolator bypass returns locally |
-| `STOP_LATCH_SENSE_AON` | `safe_latch.Q` | `slow_io_stop_sense_iso.A` | read-only mirror cannot influence the non-programmable hard-stop latch |
-| `STOP_LATCH_SENSE` | `slow_io_stop_sense_iso.Y` | `slow_io.P22` | non-inverting open-drain transfer preserves Q polarity without positive AON injection into an unpowered VCCP domain |
-| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_stop_sense_pullup.END_1` | main-domain 10-kOhm pull-up exists only while TCA6424A VCCP is powered |
-| `STOP_LATCH_SENSE` | `slow_io_stop_sense_pullup.END_2` | `slow_io.P22` | low means RUN and high means latched STOP exactly as before isolation |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_fault_sense_iso.VCC` | the FAULT diagnostic isolator remains valid whenever the hardware latch is alive |
+| `SAFETY_GROUND` | `slow_io_fault_sense_iso.GND` | `abstract:safety-ground` | AON buffer return stays in the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_fault_sense_iso_bypass.END_1` | exact 100-nF local bypass supports the open-drain fault isolator |
+| `SAFETY_GROUND` | `slow_io_fault_sense_iso_bypass.END_2` | `abstract:safety-ground` | fault isolator bypass returns locally |
+| `FAULT_LATCH_SENSE_AON` | `safe_latch.Q` | `slow_io_fault_sense_iso.A` | read-only mirror cannot influence the non-programmable FAULT_KILL latch |
+| `FAULT_LATCH_SENSE` | `slow_io_fault_sense_iso.Y` | `slow_io.P22` | non-inverting open-drain transfer preserves Q polarity without positive AON injection into an unpowered VCCP domain |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_fault_sense_pullup.END_1` | main-domain 10-kOhm pull-up exists only while TCA6424A VCCP is powered |
+| `FAULT_LATCH_SENSE` | `slow_io_fault_sense_pullup.END_2` | `slow_io.P22` | low means RUN and high means latched FAULT exactly as before isolation |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_s3_evidence_iso.VCC` | the S3 evidence isolator follows the always-on comparator domain |
 | `SAFETY_GROUND` | `slow_io_s3_evidence_iso.GND` | `abstract:safety-ground` | second AON buffer return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `slow_io_s3_evidence_iso_bypass.END_1` | exact 100-nF local bypass supports the second open-drain isolator |
@@ -2595,27 +2623,21 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `AON_SAFE_SENSE` | `abstract:AON_SAFE_3V3` | `safe_supervisor.SENSE` | factory G33 threshold supervises the actual safety rail |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_por_pullup.END_1` | one exact 10-kOhm resistor is the sole external pull-up on the supervisor's open-drain POR output |
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
-| `POR_N` | `safe_supervisor.RESET_N` | `safe_por_or.1A` | power-good clear input; STOP remains dominant through the second OR input |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `stop_pullup.END_1` | hard-STOP contact current comes only from the independently protected AON rail |
-| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_switch.NC` | 10-kOhm gives approximately 0.33 mA at 3.3 V, above TLSMDT3C020GLFS's qualified 10-uA-at-1-V floor |
-| `SAFETY_GROUND` | `stop_switch.COM` | `abstract:safety-ground` | healthy COM+NC contact holds STOP_LOOP_SENSE low; press or open wire asserts |
-| `STOP_SWITCH_NO_NC` | `stop_switch.NO` | `abstract:no-connect` | unused throw cannot create a second release path |
-| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_filter_cap.END_1` | exact 10-nF X7R filter preserves asynchronous STOP assertion |
-| `SAFETY_GROUND` | `stop_filter_cap.END_2` | `abstract:safety-ground` | STOP filter returns only to safety ground |
-| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safety_control_esd.D1_PLUS` | dedicated low-capacitance IEC channel protects the AON STOP conductor |
-| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safe_conditioner.1A` | healthy closed contact is low; press, disconnect or open wire is high |
-| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safe_por_or.1B` | high forces CLR_N inactive so preset and clear cannot be asserted together |
-| `STOP_ASSERT_N` | `safe_conditioner.1Y` | `safe_latch.PRE_N` | active-low asynchronous preset; software and clocks are outside the path |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `rearm_pullup.END_1` | RE-ARM contact current comes only from the independently protected AON rail |
-| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_1` | 47-kOhm gives approximately 70 uA at 3.3 V, above the B3S minimum applicable load |
-| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_2` | both internally common switch lands are physically routed |
-| `SAFETY_GROUND` | `rearm_switch.SIDE_B_1` | `abstract:safety-ground` | fresh recessed RE-ARM press pulls raw input low |
-| `SAFETY_GROUND` | `rearm_switch.SIDE_B_2` | `abstract:safety-ground` | both internally common switch lands are physically routed |
-| `SAFETY_GROUND` | `rearm_switch.GROUND` | `abstract:safety-ground` | switch ground pin bonds the exposed metal shell only to safety ground |
-| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_filter_cap.END_1` | exact 100-nF X7R filter plus Schmitt input creates the reviewed fresh-edge path |
-| `SAFETY_GROUND` | `rearm_filter_cap.END_2` | `abstract:safety-ground` | RE-ARM filter returns only to safety ground |
-| `REARM_RAW` | `rearm_pullup.END_2` | `safety_control_esd.D1_MINUS` | dedicated low-capacitance IEC channel protects the AON RE-ARM conductor |
-| `REARM_RAW` | `rearm_pullup.END_2` | `safe_conditioner.2A` | fresh press pulls raw input low and produces one or more harmless rising edges at the Schmitt output |
+| `POR_N` | `safe_supervisor.RESET_N` | `safe_latch.CLR_N` | only genuine AON power-on reset clears the latch asynchronously; ordinary firmware cannot drive CLR_N |
+| `RUN_EDGE` | `safe_conditioner.1Y` | `safe_latch.CLK` | only a physical KILL-to-RUN transition supplies the positive edge that clocks fixed D low |
+| `RUN_EDGE` | `safe_conditioner.1Y` | `safety_controller.PA24_A3` | the safety controller may refuse a restart but cannot synthesize the physical edge |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_run_fault_iso.VCC` | the RUN fault buffer remains valid for the full AON lifetime |
+| `SAFETY_GROUND` | `safe_run_fault_iso.GND` | `abstract:safety-ground` | RUN fault buffer returns locally |
+| `NO_CONNECT` | `safe_run_fault_iso.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_run_fault_iso_bypass.END_1` | exact 100-nF RUN fault buffer bypass |
+| `SAFETY_GROUND` | `safe_run_fault_iso_bypass.END_2` | `abstract:safety-ground` | bypass returns locally |
+| `RUN_EDGE` | `safe_conditioner.1Y` | `safe_run_fault_iso.A` | low during KILL/open wiring pulls the wired fault plane low; high in RUN releases it |
+| `FAULT_ASSERT_N` | `safe_run_fault_iso.Y` | `fault_assert_pullup.END_2` | physical KILL is an asynchronous hardware fault source |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `fault_assert_pullup.END_1` | one AON pull-up serves the wired open-drain fault plane |
+| `FAULT_ASSERT_N` | `fault_assert_pullup.END_2` | `safe_latch.PRE_N` | any low fault source presets FAULT_KILL independent of clocks and firmware |
+| `FAULT_ASSERT_N` | `safety_watchdog.WDO_N` | `fault_assert_pullup.END_2` | expired or malformed watchdog service directly presets FAULT_KILL |
+| `FAULT_ASSERT_N` | `safety_fault_request_iso.Y` | `fault_assert_pullup.END_2` | the safety controller may assert but can never electrically force release of the fault plane |
+| `SAFETY_ESD_SPARE_RUN_1` | `safety_control_esd.D1_MINUS` | `abstract:no-connect` | unused safety-domain ESD channel remains unconnected |
 | `SAFETY_ESD_SPARE_0` | `safety_control_esd.D2_PLUS` | `abstract:no-connect` | unused safety-domain ESD channel remains unconnected |
 | `SAFETY_ESD_SPARE_1` | `safety_control_esd.D2_MINUS` | `abstract:no-connect` | unused safety-domain ESD channel remains unconnected |
 | `SAFETY_ESD_GROUND` | `safety_control_esd.GND_3` | `abstract:safety-ground-dedicated-via` | first ESD ground contact receives a shortest path to safety ground |
@@ -2624,35 +2646,96 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `SAFETY_ESD_NC7` | `safety_control_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC9` | `safety_control_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC10` | `safety_control_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `REARM_CLK` | `safe_conditioner.2Y` | `safe_latch.CLK` | only a fresh physical edge can clock fixed D=0 |
-| `STOP_DOMINANT_CLR_N` | `safe_por_or.1Y` | `safe_latch.CLR_N` | CLR_N = POR_N OR STOP_LOOP_SENSE |
 | `SAFE_D_LOW` | `abstract:safety-ground-via-10k` | `safe_latch.D` | fixed logic low; no MCU, expander or connector endpoint |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_controller.VDD` | the safety controller remains alive on battery or product USB whenever the independently protected AON rail exists |
+| `SAFETY_GROUND` | `safety_controller.VSS` | `abstract:safety-ground` | dedicated controller return stays inside the AON safety domain |
+| `AON_SAFE_3V3` | `safety_controller.VDD` | `safety_controller_bulk.END_1` | exact 10-uF local bulk decoupling |
+| `SAFETY_GROUND` | `safety_controller_bulk.END_2` | `abstract:safety-ground` | bulk capacitor returns locally |
+| `AON_SAFE_3V3` | `safety_controller.VDD` | `safety_controller_bypass.END_1` | exact 100-nF high-frequency bypass |
+| `SAFETY_GROUND` | `safety_controller_bypass.END_2` | `abstract:safety-ground` | bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_controller_reset_pullup.END_1` | exact 47-kOhm permanent reset pull-up |
+| `SAFETY_CONTROLLER_NRST_N` | `safety_controller_reset_pullup.END_2` | `safety_controller.PA1_NRST` | controller reset defaults deasserted while remaining fixture-accessible |
+| `SAFETY_CONTROLLER_NRST_N` | `safety_controller.PA1_NRST` | `safety_controller_reset_cap.END_1` | exact 10-nF reset filter |
+| `SAFETY_GROUND` | `safety_controller_reset_cap.END_2` | `abstract:safety-ground` | reset filter returns locally |
+| `SYS_I2C_SDA` | `safety_controller.PA0` | `s3.GPIO1` | the controller is a read-only/status-command target at fixed firmware address 0x2B and cannot become the host |
+| `SYS_I2C_SCL` | `safety_controller.PA11` | `s3.GPIO2` | scheduled host access never replaces the autonomous watchdog and fault paths |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_fault_request_iso.VCC` | fault request isolation remains alive with the latch |
+| `SAFETY_GROUND` | `safety_fault_request_iso.GND` | `abstract:safety-ground` | fault request buffer return |
+| `NO_CONNECT` | `safety_fault_request_iso.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_fault_request_iso_bypass.END_1` | exact 100-nF bypass |
+| `SAFETY_GROUND` | `safety_fault_request_iso_bypass.END_2` | `abstract:safety-ground` | bypass return |
+| `SAFETY_FAULT_REQUEST` | `safety_controller.PA25_A2` | `safety_fault_request_pulldown.END_1` | controller reset or loss defaults to fault request |
+| `SAFETY_GROUND` | `safety_fault_request_pulldown.END_2` | `abstract:safety-ground` | fail-low default |
+| `SAFETY_FAULT_REQUEST` | `safety_controller.PA25_A2` | `safety_fault_request_iso.A` | healthy firmware drives high; low pulls FAULT_ASSERT_N through an open-drain buffer |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_watchdog.VDD` | the independent watchdog shares only the protected AON source, not the controller clock or firmware |
+| `SAFETY_GROUND` | `safety_watchdog.GND` | `abstract:safety-ground` | watchdog return |
+| `AON_SAFE_3V3` | `safety_watchdog.VDD` | `safety_watchdog_bypass.END_1` | exact 100-nF local watchdog bypass |
+| `SAFETY_GROUND` | `safety_watchdog_bypass.END_2` | `abstract:safety-ground` | watchdog bypass return |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_watchdog.WD_EN` | watchdog cannot be disabled by firmware |
+| `SAFETY_GROUND` | `safety_watchdog.SET0` | `abstract:safety-ground` | exact hard strap selects the reviewed base-time option |
+| `SAFETY_GROUND` | `safety_watchdog.SET1` | `abstract:safety-ground` | exact hard strap selects the reviewed base-time option |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_watchdog_mr_pullup.END_1` | manual-reset input remains deasserted by hardware |
+| `SAFETY_WATCHDOG_MR_N` | `safety_watchdog_mr_pullup.END_2` | `safety_watchdog.MR_N` | no application contact can mask watchdog operation |
+| `SAFETY_WATCHDOG_WDI` | `safety_controller.PA6` | `safety_watchdog.WDI` | only the dedicated safety controller can service the independent timeout |
+| `SAFETY_WATCHDOG_WDI` | `safety_controller.PA6` | `safety_watchdog_wdi_pulldown.END_1` | resetting controller does not create an indeterminate service input |
+| `SAFETY_GROUND` | `safety_watchdog_wdi_pulldown.END_2` | `abstract:safety-ground` | watchdog input default |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_watchdog_wdo_pullup.END_1` | open-drain watchdog output has one local AON pull-up |
+| `SAFETY_WATCHDOG_WDO_N` | `safety_watchdog_wdo_pullup.END_2` | `safety_watchdog.WDO_N` | WDO remains observable while directly asserting the fault and S3-reset planes |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_s3_reset_iso.VCC` | S3 reset request remains valid while the safety controller starts |
+| `SAFETY_GROUND` | `safety_s3_reset_iso.GND` | `abstract:safety-ground` | S3 reset request buffer return |
+| `NO_CONNECT` | `safety_s3_reset_iso.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_s3_reset_iso_bypass.END_1` | exact 100-nF bypass |
+| `SAFETY_GROUND` | `safety_s3_reset_iso_bypass.END_2` | `abstract:safety-ground` | bypass return |
+| `S3_FAULT_RESET_REQUEST` | `safety_controller.PA23` | `safety_s3_reset_iso.A` | low requests reset; the open-drain stage permits wired watchdog dominance |
+| `S3_FAULT_RESET_REQUEST_N` | `safety_s3_reset_iso.Y` | `safe_conditioner.2A` | controller reset or explicit request pulls the Schmitt input low |
+| `S3_FAULT_RESET_REQUEST_N` | `safety_watchdog.WDO_N` | `safe_conditioner.2A` | watchdog expiry also resets S3 before any fault-only boot |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `power_zone_temp_pullup.END_1` | POWER hotspot divider uses the independent safety reference |
+| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `power_zone_ntc.END_1` | exact 10-kOhm divider midpoint |
+| `SAFETY_GROUND` | `power_zone_ntc.END_2` | `abstract:safety-ground` | POWER sensor return |
+| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `power_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
+| `SAFETY_GROUND` | `power_zone_temp_filter.END_2` | `abstract:safety-ground` | POWER filter return |
+| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `safety_controller.PA26_A1` | dedicated ADC channel detects temperature and open/short faults |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `rf_zone_temp_pullup.END_1` | RF/VOICE hotspot divider uses the independent safety reference |
+| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `rf_zone_ntc.END_1` | exact 10-kOhm divider midpoint |
+| `SAFETY_GROUND` | `rf_zone_ntc.END_2` | `abstract:safety-ground` | RF/VOICE sensor return |
+| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `rf_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
+| `SAFETY_GROUND` | `rf_zone_temp_filter.END_2` | `abstract:safety-ground` | RF/VOICE filter return |
+| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `safety_controller.PA27_A0` | dedicated ADC channel detects temperature and open/short faults |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ui_zone_temp_pullup.END_1` | UI hotspot divider remains observable before main-domain shutdown |
+| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `ui_zone_ntc.END_1` | exact 10-kOhm divider midpoint crosses one reviewed M1 analog contact |
+| `SAFETY_GROUND` | `ui_zone_ntc.END_2` | `abstract:safety-ground` | UI sensor return uses the adjacent safety plane |
+| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `ui_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
+| `SAFETY_GROUND` | `ui_zone_temp_filter.END_2` | `abstract:safety-ground` | UI filter return |
+| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `safety_controller.PA28_A5` | dedicated ADC channel detects UI temperature and open/short faults |
+| `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `safety_controller.PA16_A8` | the safety controller receives the independent aggregate in parallel with the UI diagnostic expander |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer.VCC` | open-drain reset control remains powered with the non-programmable latch |
 | `SAFETY_GROUND` | `safe_reset_buffer.GND` | `abstract:safety-ground` | local AON logic return |
 | `NO_CONNECT` | `safe_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer_bypass.END_1` | exact 100-nF local bypass |
 | `SAFETY_GROUND` | `safe_reset_buffer_bypass.END_2` | `abstract:safety-ground` | local bypass return |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.A` | one non-programmable permit controls all passive-drain reset sinks |
-| `RESET_KILL_GATE` | `safe_reset_buffer.Y` | `safe_reset_gate_pullup.END_2` | open-drain inverter actively holds the common gates low only while RUN_PERMIT and AON are valid |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_reset_buffer.A` | one non-programmable permit controls the C5/RP passive-drain reset sinks |
+| `RF_RESET_KILL_GATE` | `safe_reset_buffer.Y` | `safe_reset_gate_pullup.END_2` | open-drain inverter actively holds C5/RP reset gates low only while RUN_PERMIT and AON are valid |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `safe_reset_gate_pullup.END_1` | main-domain pull-up asserts reset if the AON driver disappears while compute power remains |
-| `RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G1` | first independent reset sink gate |
-| `RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G2` | second independent reset sink gate |
-| `RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_b.G1` | third independent reset sink gate |
+| `RF_RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_a.G2` | C5 independent reset sink gate |
+| `RF_RESET_KILL_GATE` | `safe_reset_gate_pullup.END_2` | `safe_reset_sink_b.G1` | RP independent reset sink gate |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_reset_gate_pullup.END_1` | S3 reset remains asserted on missing AON drive while main power exists |
+| `S3_RESET_KILL_GATE` | `safe_conditioner.2Y` | `s3_reset_gate_pullup.END_2` | conditioned watchdog/controller request drives only the S3 reset sink |
+| `S3_RESET_KILL_GATE` | `s3_reset_gate_pullup.END_2` | `safe_reset_sink_a.G1` | S3 can be released into bounded fault-only firmware while C5 and RP remain reset |
 | `SAFETY_GROUND` | `safe_reset_sink_a.S1` | `abstract:safety-ground` | S3 reset sink source |
 | `SAFETY_GROUND` | `safe_reset_sink_a.S2` | `abstract:safety-ground` | C5 reset sink source |
 | `SAFETY_GROUND` | `safe_reset_sink_b.S1` | `abstract:safety-ground` | RP reset sink source |
 | `SAFETY_GROUND` | `safe_reset_sink_b.G2` | `abstract:safety-ground` | unused fourth FET is held permanently off |
 | `SAFETY_GROUND` | `safe_reset_sink_b.S2` | `abstract:safety-ground` | unused fourth FET source is grounded |
 | `NO_CONNECT` | `safe_reset_sink_b.D2` | `abstract:no-connect` | unused fourth FET drain remains open |
-| `S3_RESET_N` | `safe_reset_sink_a.D1` | `s3.EN` | STOP-dominant passive-drain S3 reset; no push-pull high contention |
-| `C5_RESET_N` | `safe_reset_sink_a.D2` | `c5.EN` | STOP-dominant passive-drain C5 reset; no push-pull high contention |
-| `RP_RESET_N` | `safe_reset_sink_b.D1` | `rp.RUN` | STOP-dominant passive-drain RP reset; no push-pull high contention |
+| `S3_RESET_N` | `safe_reset_sink_a.D1` | `s3.EN` | bounded fault-reset passive-drain S3 path; no push-pull high contention |
+| `C5_RESET_N` | `safe_reset_sink_a.D2` | `c5.EN` | FAULT_KILL-dominant passive-drain C5 reset; no push-pull high contention |
+| `RP_RESET_N` | `safe_reset_sink_b.D1` | `rp.RUN` | FAULT_KILL-dominant passive-drain RP reset; no push-pull high contention |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_reset_pullup.END_1` | exact passive target pull-up |
-| `S3_RESET_N` | `s3_reset_pullup.END_2` | `s3.EN` | S3 can run only when neither hard STOP nor service control pulls low |
+| `S3_RESET_N` | `s3_reset_pullup.END_2` | `s3.EN` | S3 can run only when neither fault-reset nor service control pulls low |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_reset_pullup.END_1` | exact passive target pull-up |
-| `C5_RESET_N` | `c5_reset_pullup.END_2` | `c5.EN` | C5 can run only when neither hard STOP nor service control pulls low |
+| `C5_RESET_N` | `c5_reset_pullup.END_2` | `c5.EN` | C5 can run only when neither FAULT_KILL nor service control pulls low |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_reset_pullup.END_1` | exact passive target pull-up |
-| `RP_RESET_N` | `rp_reset_pullup.END_2` | `rp.RUN` | RP can run only when neither hard STOP nor service control pulls low |
+| `RP_RESET_N` | `rp_reset_pullup.END_2` | `rp.RUN` | RP can run only when neither FAULT_KILL nor service control pulls low |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.1B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.2B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.3B` | STOP-dominant active-high gate permit |
@@ -2818,10 +2901,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_pg_base_res.END_1` | the qualifier consumes the same STOP-dominant common-source enable evidence |
 | `EXT_PG_QUAL_BASE` | `ext_pg_base_res.END_2` | `ext_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
 | `U214_5V_EN_SAFE` | `ext_branch_gate.1Y` | `ext_efuse.EN_UVLO` | U214 eFuse is independent of the native Unit branch and remains STOP-dominant |
-| `TX_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
-| `STOP_LED_DRIVE` | `safe_latch.Q` | `stop_led_series.END_1` | non-programmable visible latched-stop state |
-| `STOP_LED_A` | `stop_led_series.END_2` | `stop_led.A` | exact 2.2-kOhm current limit |
-| `STOP_LED_K` | `stop_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware |
+| `FAULT_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
+| `FAULT_LED_DRIVE` | `safe_latch.Q` | `fault_led_series.END_1` | non-programmable visible latched-fault state |
+| `FAULT_LED_A` | `fault_led_series.END_2` | `fault_led.A` | exact 2.2-kOhm current limit |
+| `FAULT_LED_K` | `fault_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware and remains available when UI thermal protection turns the display off |
 | `S3_MODULE_RF_50R` | `s3.ANT` | `abstract:S3-placement-qualified-double-ended-UFL-jumper` | module receptacle family is exact, but cable length and strain relief wait for physical placement |
 | `S3_MODULE_RF_50R` | `abstract:S3-placement-qualified-double-ended-UFL-jumper` | `s3_rf_board_connector.CENTER` | received cable assembly must pass mate, insertion-loss and return-loss checks |
 | `S3_RF_GROUND` | `s3_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
@@ -3043,8 +3126,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `SAFETY_GROUND` | `evidence_mask.GND` | `abstract:safety-ground` | evidence-mask return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_bypass.END_1` | exact 100-nF local TCA9534A bypass |
 | `SAFETY_GROUND` | `evidence_mask_bypass.END_2` | `abstract:safety-ground` | evidence-mask bypass returns locally |
-| `U214_I2C_SDA_IN` | `rp.GPIO28` | `evidence_mask.SDA` | local RP I2C0 data reaches the evidence mask before the external stuck-bus isolator |
-| `U214_I2C_SCL_IN` | `rp.GPIO29` | `evidence_mask.SCL` | local RP I2C0 clock reaches the evidence mask before the external stuck-bus isolator |
+| `SAFETY_EVIDENCE_I2C_SDA` | `safety_controller.PA4` | `evidence_mask.SDA` | only the AON safety controller can read source identity; application and external stuck-bus activity cannot block this private bus |
+| `SAFETY_EVIDENCE_I2C_SCL` | `safety_controller.PA2` | `evidence_mask.SCL` | private bit-banged clock remains independent of RP and the U214 port |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_sda_pullup.END_1` | private evidence data pull-up |
+| `SAFETY_EVIDENCE_I2C_SDA` | `evidence_mask_sda_pullup.END_2` | `evidence_mask.SDA` | exact 10-kOhm local open-drain pull-up |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_scl_pullup.END_1` | private evidence clock pull-up |
+| `SAFETY_EVIDENCE_I2C_SCL` | `evidence_mask_scl_pullup.END_2` | `evidence_mask.SCL` | exact 10-kOhm local open-drain pull-up |
 | `EVIDENCE_MASK_INT_N_TP` | `evidence_mask.INT_N` | `abstract:TP_EVIDENCE_MASK_INT_N` | test point only; no safety claim depends on expander interrupt behavior |
 | `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | direct strap fixes 7-bit address 0x38 |
 | `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | direct strap fixes 7-bit address 0x38 |
@@ -3070,6 +3157,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `ANY_TX_AON_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_aon_pullup.END_1` | exact logic pull-up keeps the aggregate deasserted independently of LED leakage |
 | `ANY_TX_AON_N` | `any_tx_aon_pullup.END_2` | `evidence_or_3.A_COMMON` | 10-kOhm AON aggregate pull-up |
+| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `safety_controller.PA22_A4` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
 | `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
 | `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_3.A_COMMON` | asserted diode aggregate lights without firmware |
@@ -3123,6 +3211,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `pd_config_eeprom`: `SDA`, `SCL`, `WP` — first image uses a preprogrammed loose EEPROM or a current-limited raw-VBUS fixture. The fixture observes TPS ReadyForPatch on I2Ct and verifies I2Cc high-Z before direct SDA/SCL/WP programming; it never drives LDO_3V3 externally and does not depend on S3.
 - `pack_gauge`: `ALRT`, `SCL_OD`, `SDA_DQ`, `PFAIL` — direct protected I2C/NVM and hold/fault pads with fixture ground and qualified stack-sense supply; protected image checksum and OvrdEn readback are mandatory before energized cell installation.
 - `pack_admission`: `PA1_NRST`, `PA17`, `PA18_A7`, `PA19_SWDIO`, `PA20_A6_SWCLK`, `VDD`, `VSS` — permanent NRST/SWD/UART plus isolated fixture VDD/VSS; fixture or admitted system rail powers flash programming because MAX17320 AOLDO is not sized for it.
+- `safety_controller`: `PA1_NRST`, `PA17`, `PA18_A7`, `PA19_SWDIO`, `PA20_A6_SWCLK`, `VDD`, `VSS` — permanent isolated NRST/SWD/UART/power fixture path; recovery cannot drive RUN_PERMIT, mask TPS3435 WDO_N or clear the hardware FAULT_KILL latch.
 - `voice`: `UPDATE`, `UART_TX`, `UART_RX`, `PD` — permanent fixture breakout for vendor update/recovery plus UART and hardware power-down; UPDATE drive remains inhibited until exact rev-1.1 direction/timing proof.
 
 ### Non-MCU contact accounting
@@ -3339,7 +3428,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `receiver` lifecycle: `active_orderable`.
 - `slow_io` uses `TCA6424ARGJR` as `verified_exact_main_slow_io_core`, not an accepted production choice.
 - `slow_io_bulk_cap` lifecycle: `active_production`.
-- `slow_io_stop_sense_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `slow_io_fault_sense_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `slow_io_s3_evidence_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `ui_matrix_io` uses `TCA9539PWR` as `verified_exact_direct_control_input_expander`, not an accepted production choice.
 - `ui_matrix_io` lifecycle: `active_orderable`.
@@ -3355,10 +3444,6 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `ui_switch_f2` lifecycle: `active_orderable`.
 - `ptt_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ptt_switch` lifecycle: `active_orderable`.
-- `stop_switch` uses `C&K TLSMDT3C020GLFS` as `verified_exact_direct_press_hard_stop_mechanical_hil_open`, not an accepted production choice.
-- `stop_switch` lifecycle: `active_orderable`.
-- `rearm_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
-- `rearm_switch` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
 - `encoder` lifecycle: `active_standard`.
 - `encoder_knob` uses `Davies Molding 1227-J` as `verified_exact_shaft_and_plan_fit_hil_open`, not an accepted production choice.
@@ -3543,8 +3628,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `rp_dbg0_series` lifecycle: `active_orderable`.
 - `rp_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
 - `rp_dbg1_series` lifecycle: `active_orderable`.
+- `safety_fault_request_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safety_s3_reset_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `safety_watchdog` uses `Texas Instruments TPS3435CAKAGDDFR` as `verified_exact_independent_aon_watchdog`, not an accepted production choice.
+- `safety_watchdog` lifecycle: `active_orderable`.
+- `safe_run_fault_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safe_conditioner` lifecycle: `production`.
-- `safe_por_or` lifecycle: `production`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_reset_buffer` lifecycle: `active_orderable`.
 - `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_local_ir_stop_gate`, not an accepted production choice.

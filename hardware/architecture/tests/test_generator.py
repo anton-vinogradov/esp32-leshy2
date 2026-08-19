@@ -41,13 +41,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         pin_map = contract["pin_map"]
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
         self.assertEqual(8, sum(row["net"] == "3V3_MAIN" for row in pin_map))
-        self.assertEqual(4, sum(row["signal_class"] == "reserved" for row in pin_map))
+        self.assertEqual(2, sum(row["signal_class"] == "reserved" for row in pin_map))
         mapped = {row["net"] for row in pin_map}
         self.assertTrue(
             {
-                "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RESET_KILL_GATE",
+                "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RF_RESET_KILL_GATE",
                 "UI_F1_N", "UI_F2_N", "UI_ENCODER_PUSH_N",
-                "ENCODER_A", "ENCODER_B", "STOP_LATCH_SENSE",
+                "ENCODER_A", "ENCODER_B", "S3_RESET_KILL_GATE",
+                "UI_ZONE_TEMP_ADC", "FAULT_LATCH_SENSE",
                 "MIC_RAW", "SPEAKER_AMP_EN",
             } <= mapped
         )
@@ -156,7 +157,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(884, sum(line["quantity"] for line in lines))
+        self.assertEqual(909, sum(line["quantity"] for line in lines))
         self.assertEqual(198, len(lines))
         self.assertEqual(
             1,
@@ -171,7 +172,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            867,
+            892,
             sum(
                 line["quantity"]
                 for line in lines
@@ -233,13 +234,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**885** architecture instances", rendered)
-        self.assertIn("**884** supplied/costed placements", rendered)
+        self.assertIn("**910** architecture instances", rendered)
+        self.assertIn("**909** supplied/costed placements", rendered)
         self.assertIn("**197/198** used lines", rendered)
         self.assertIn("**198/198** lines", rendered)
         self.assertIn("**187/198** lines", rendered)
-        self.assertIn("**867/884** supplied placements", rendered)
-        self.assertIn("USD 196.8414", rendered)
+        self.assertIn("**892/909** supplied placements", rendered)
+        self.assertIn("USD 197.3075", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -280,7 +281,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(51, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1035, policy["expected_occurrence_count"])
+        self.assertEqual(1073, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -322,9 +323,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "FM/SW RX",
             "AM/LW LOOP",
             'data-part="single-D-pad-cross"',
-            "STOP",
+            "RUN",
+            "KILL",
             "PTT",
-            "RE-ARM",
             "Leshy2 — dimensioned external layout",
             "physical actual-TX evidence for each transmitting path",
             "form one front line below the display",
@@ -337,7 +338,6 @@ class ArchitectureValidationTests(unittest.TestCase):
             "SPEAKER",
             "GRILLE",
             "POWER",
-            "ON / OFF",
         ):
             self.assertIn(token, rendered)
         internal = (
@@ -355,6 +355,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "AS02404PO",
             "CMEJ-0413-42-SMT-TR",
             "JS102011SCQN",
+            "TPS3435CAKAGDDFR",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
         ):
@@ -364,7 +365,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for forbidden_inner_silk in (
             "54 · MIC",
             "AS02404PO · speaker · side grille",
-            "ON/OFF request",
+            "RUN/KILL request",
             "S3/C5 recovery controls and DBG10",
             "RP recovery controls and DBG10",
             "WI-FI/BLE",
@@ -596,6 +597,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "power_command_switch": "ck_js102011scqn",
             "power_command_pullup": "yageo_rc0402fr_0747kl",
             "power_command_filter": "tdk_c1005x7r1h104k050bb",
+            "run_loop_pullup": "yageo_rc0402fr_0710kl",
+            "run_loop_filter": "tdk_c1005x7r1h104k050bb",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -620,7 +623,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("power_command_pullup.END_2", "pack_admission.PA24_A3", "POWER_COMMAND_OFF_N"),
             ("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"),
             ("power_command_switch.COMMON", "abstract:power-ground", "POWER_GROUND"),
-            ("power_command_switch.THROW_A", "abstract:no-connect", "POWER_COMMAND_ON_NC"),
+            ("abstract:AON_SAFE_3V3", "run_loop_pullup.END_1", "AON_SAFE_3V3"),
+            ("run_loop_pullup.END_2", "power_command_switch.THROW_A", "RUN_LOOP_RAW"),
+            ("run_loop_pullup.END_2", "safe_conditioner.1A", "RUN_LOOP_RAW"),
             ("power_command_pullup.END_2", "power_command_filter.END_1", "POWER_COMMAND_OFF_N"),
             ("power_command_filter.END_2", "abstract:power-ground", "POWER_GROUND"),
             ("pack_gauge.TH3", "pack_gauge.GND", "PACK_TH3_UNUSED_LOW"),
@@ -1728,16 +1733,25 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertNotIn("U214_EXT_QUIET", quiet)
         self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
 
-    def test_i2_hard_stop_and_tx_evidence_contract_does_not_regress(self):
+    def test_run_kill_watchdog_and_tx_evidence_contract_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["safety_contract"]
 
-        self.assertEqual("DEC-0061", contract["decision"])
-        self.assertEqual("paper_reviewed_i2_and_exact_i8_threshold_support", contract["status"])
+        self.assertEqual("product RUN/KILL and unattended watchdog architecture", contract["decision"])
         self.assertEqual(
-            ["s3.EN", "c5.EN", "rp.RUN"],
+            "paper_reviewed_exact_watchdog_controller_thermal_and_fault_ui_paths",
+            contract["status"],
+        )
+        self.assertEqual(
+            ["c5.EN", "rp.RUN", "s3.EN through a separate bounded fault-reset request"],
             contract["reset_fanout"]["targets"],
         )
+        self.assertIn("KILL-to-RUN", contract["latch_logic"]["rearm"])
+        self.assertIn("automatic restart is forbidden", contract["latch_logic"]["rearm"])
+        self.assertIn("0x2B", contract["watchdog"]["controller"])
+        self.assertIn("TPS3435CAKAGDDFR", contract["watchdog"]["independent_timer"])
+        self.assertIn("plain-language primary cause", contract["fault_ui"]["required_screen"])
+        self.assertIn("three additional exact TDK", contract["thermal_supervision"]["sensors"])
         self.assertEqual(9, len(contract["tx_gate_map"]))
         self.assertEqual(
             [
@@ -1765,8 +1779,9 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         required_instances = {
             "safe_supervisor": "ti_tps3808g33_dbvr",
+            "safety_controller": "ti_mspm0c1104_sdgs20r",
+            "safety_watchdog": "ti_tps3435cakagddfr",
             "safe_conditioner": "nexperia_74lvc2g14gw_125",
-            "safe_por_or": "nexperia_74lvc1g32gv_125",
             "safe_latch": "ti_sn74lvc1g74_dcur",
             "safe_reset_buffer": "ti_sn74lvc1g06_dckr",
             "safe_reset_sink_a": "diodes_2n7002dw_7_f",
@@ -1788,6 +1803,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "evidence_cmp_voice": "ti_tlv1821_dckr",
             "evidence_mask": "ti_tca9534a_pwr",
             "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
+            "power_zone_ntc": "tdk_b57332v5103f360",
+            "rf_zone_ntc": "tdk_b57332v5103f360",
+            "ui_zone_ntc": "tdk_b57332v5103f360",
         }
         for instance, device_id in required_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -1799,15 +1817,25 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertEqual("RP_ANY_TX_N", rp["GPIO22"]["net"])
         self.assertEqual("i", rp["GPIO22"]["direction"])
-        self.assertIn("evidence_mask.SDA", rp["GPIO28"]["peers"])
-        self.assertIn("evidence_mask.SCL", rp["GPIO29"]["peers"])
+        self.assertNotIn("evidence_mask.SDA", rp["GPIO28"]["peers"])
+        self.assertNotIn("evidence_mask.SCL", rp["GPIO29"]["peers"])
+        safety = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "safety_controller"
+        }
+        self.assertIn("evidence_mask.SDA", safety["PA4"]["peers"])
+        self.assertIn("evidence_mask.SCL", safety["PA2"]["peers"])
+        self.assertEqual("SAFETY_WATCHDOG_WDI", safety["PA6"]["net"])
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for label in (
             "TPS3808G33DBVR<br/>AON rail supervisor and power-on reset",
-            "SN74LVC1G74DCUR<br/>asynchronous latched hard STOP",
+            "MSPM0C1104SDGS20R<br/>independent MSPM0 watchdog, thermal and TX-lease controller",
+            "TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog",
+            "SN74LVC1G74DCUR<br/>asynchronous latched FAULT_KILL",
             "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
-            "TCA9534APWR<br/>AON eight-bit evidence source mask on local RP I2C0",
+            "TCA9534APWR<br/>AON eight-bit evidence source mask on the private safety I2C bus",
             "SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator",
         ):
             self.assertIn(label, rendered)
@@ -1886,8 +1914,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("evidence_main_isolator.2Y", "c5.GPIO24", "IR_TX_EVIDENCE_N"),
             ("evidence_or_3.A_COMMON", "evidence_main_isolator.3A", "ANY_TX_AON_N"),
             ("evidence_main_isolator.3Y", "rp.GPIO22", "RP_ANY_TX_N"),
-            ("rp.GPIO28", "evidence_mask.SDA", "U214_I2C_SDA_IN"),
-            ("rp.GPIO29", "evidence_mask.SCL", "U214_I2C_SCL_IN"),
+            ("safety_controller.PA4", "evidence_mask.SDA", "SAFETY_EVIDENCE_I2C_SDA"),
+            ("safety_controller.PA2", "evidence_mask.SCL", "SAFETY_EVIDENCE_I2C_SCL"),
         ):
             self.assertIn(route, routes)
         self.assertFalse(
@@ -3162,7 +3190,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             errors,
         )
 
-    def test_complete_local_controls_ptt_and_stop_do_not_regress(self):
+    def test_complete_local_controls_ptt_and_run_kill_do_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         contract = candidate["ui_control_contract"]
         self.assertEqual("DEC-0086", contract["decision"])
@@ -3187,8 +3215,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             contract["ordinary_inputs"]["firmware_contract"],
         )
         self.assertIn("RP GPIO21", contract["dedicated_controls"]["ptt"])
-        self.assertIn("normally-closed", contract["dedicated_controls"]["stop"])
-        self.assertIn("never multiplexed", contract["dedicated_controls"]["rearm"])
+        self.assertIn("only physical RUN/KILL control", contract["dedicated_controls"]["run_kill"])
+        self.assertIn("No separate STOP or RE-ARM", contract["dedicated_controls"]["run_kill"])
+        self.assertNotIn("stop", contract["dedicated_controls"])
+        self.assertNotIn("rearm", contract["dedicated_controls"])
 
         self.assertEqual("ti_tca9539_pwr", candidate["instances"]["ui_matrix_io"])
         self.assertEqual("alps_ec11e18244au", candidate["instances"]["encoder"])
@@ -3196,10 +3226,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("alps_skrhade010", candidate["instances"]["ui_dpad_switch"])
         for instance in (
             "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2",
-            "ptt_switch", "rearm_switch",
+            "ptt_switch",
         ):
             self.assertEqual("omron_b3s_1100p", candidate["instances"][instance])
-        self.assertEqual("ck_tlsmdt3c020glfs", candidate["instances"]["stop_switch"])
+        self.assertEqual("ck_js102011scqn", candidate["instances"]["power_command_switch"])
+        self.assertNotIn("stop_switch", candidate["instances"])
+        self.assertNotIn("rearm_switch", candidate["instances"])
         self.assertEqual("ti_tpd8e003_dqdr", candidate["instances"]["ui_matrix_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["rear_control_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["encoder_ptt_esd"])
@@ -3221,15 +3253,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "direct finger press; no separate cap or plunger",
             self.database["devices"]["omron_b3s_1100p"]["electrical_contract"]["user_interface"],
         )
-        rearm_mechanical = self.database["devices"]["omron_b3s_1100p"]["mechanical_contract"]
-        self.assertEqual(3.3, rearm_mechanical["plunger_diameter_mm"])
-        self.assertEqual(4.3, rearm_mechanical["nominal_height_mm"])
-        self.assertEqual(0.2, rearm_mechanical["height_tolerance_mm"])
-        self.assertEqual(9.5, rearm_mechanical["maximum_terminal_span_mm"])
-        self.assertEqual(
-            "10 uA at 1 VDC through 50 mA at 16 VDC",
-            self.database["devices"]["ck_tlsmdt3c020glfs"]["electrical_contract"]["qualified_range"],
-        )
+        run_kill = self.database["devices"]["ck_js102011scqn"]
+        self.assertEqual([8.5, 3.5, 3.6], run_kill["dimensions_mm"])
+        self.assertIn("low-current command input only", run_kill["electrical_contract"]["use"])
         input_io = self.database["devices"]["ti_tca9539_pwr"]
         self.assertEqual("4", input_io["contacts"]["P00"]["physical"])
         self.assertEqual("1", input_io["contacts"]["INT_N"]["physical"])
@@ -3291,11 +3317,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("ui_matrix_io.P12", "encoder.SW1", "UI_ENCODER_PUSH_N"), routes)
         self.assertIn(("ui_matrix_io.P10", "rear_control_esd.D1_PLUS", "UI_F1_N"), routes)
         self.assertIn(("ptt_series.END_2", "rp.GPIO21", "PTT_BUTTON_N"), routes)
-        self.assertIn(("stop_pullup.END_2", "stop_switch.NC", "STOP_LOOP_SENSE"), routes)
-        self.assertIn(("stop_switch.COM", "abstract:safety-ground", "SAFETY_GROUND"), routes)
-        self.assertIn(("rearm_pullup.END_2", "rearm_switch.SIDE_A_1", "REARM_RAW"), routes)
-        self.assertIn(("stop_pullup.END_2", "safety_control_esd.D1_PLUS", "STOP_LOOP_SENSE"), routes)
-        self.assertIn(("rearm_pullup.END_2", "safety_control_esd.D1_MINUS", "REARM_RAW"), routes)
+        self.assertIn(("run_loop_pullup.END_2", "power_command_switch.THROW_A", "RUN_LOOP_RAW"), routes)
+        self.assertIn(("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"), routes)
+        self.assertIn(("power_command_switch.COMMON", "abstract:power-ground", "POWER_GROUND"), routes)
+        self.assertIn(("run_loop_pullup.END_2", "safety_control_esd.D1_PLUS", "RUN_LOOP_RAW"), routes)
+        self.assertIn(("safe_conditioner.1Y", "safe_latch.CLK", "RUN_EDGE"), routes)
         self.assertIn(("display.TP_INT", "display_touch_controller.TP_INT", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("touch_irq_pullup.END_2", "display_connector.PIN_3", "LCD_TOUCH_INT_RAW_N"), routes)
         self.assertIn(("display_connector.PIN_3", "touch_irq_buffer.A", "LCD_TOUCH_INT_RAW_N"), routes)
@@ -3316,18 +3342,18 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
             "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
-            "hold-to-talk PTT control", "normally-closed hard-STOP control",
-            "Alps Alpine SKRHADE010", "B3S-1100P", "TLSMDT3C020GLFS", "TPD8E003DQDR", "Sitronix ST77922",
+            "hold-to-talk PTT control", "single maintained low-current RUN/KILL switch",
+            "Alps Alpine SKRHADE010", "B3S-1100P", "JS102011SCQN", "TPD8E003DQDR", "Sitronix ST77922",
             "active-low ST77922 touch node",
             'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
-            'STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP',
-            'REARM_SWITCH -->|"NO contact to safety ground"| REARM_RAW',
+            'POWER_COMMAND_SWITCH -->|"RUN throw"| RUN_LOOP',
             "TCA9539PWR", "interrupt-capable 16-bit direct-control input expander",
             "four-direction plus center-push navigation switch",
         ):
             self.assertIn(token, rendered)
         self.assertNotIn("PTT_SWITCH --> PTT_PULLUP --> PTT_FILTER_CAP", rendered)
-        self.assertNotIn("STOP_SWITCH --> STOP_PULLUP --> STOP_FILTER_CAP", rendered)
+        self.assertNotIn("STOP_SWITCH", rendered)
+        self.assertNotIn("REARM_SWITCH", rendered)
         self.assertIn("SN74LVC1G06DCKR", rendered)
         self.assertIn("SN74LVC1G07DCKR", rendered)
 
@@ -3463,11 +3489,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             "slow_io_vccp_bypass": "tdk_c1005x7r1h104k050bb",
             "slow_io_bulk_cap": "tdk_c1608x7r1c105k080ac",
             "slow_io_reset_pullup": "yageo_rc0402fr_0710kl",
-            "slow_io_stop_sense_iso": "ti_sn74lvc1g07_dckr",
-            "slow_io_stop_sense_pullup": "yageo_rc0402fr_0710kl",
+            "slow_io_fault_sense_iso": "ti_sn74lvc1g07_dckr",
+            "slow_io_fault_sense_pullup": "yageo_rc0402fr_0710kl",
             "slow_io_s3_evidence_iso": "ti_sn74lvc1g07_dckr",
             "slow_io_s3_evidence_pullup": "yageo_rc0402fr_0710kl",
-            "stop_led_series": "yageo_rc0402fr_072k2l",
+            "fault_led_series": "yageo_rc0402fr_072k2l",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -3485,17 +3511,17 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("slow_io.SCL", "s3.GPIO2", "SYS_I2C_SCL"),
             ("slow_io.SDA", "s3.GPIO1", "SYS_I2C_SDA"),
             ("slow_io.INT", "s3.GPIO37", "SYS_INT_N"),
-            ("safe_latch.Q", "slow_io_stop_sense_iso.A", "STOP_LATCH_SENSE_AON"),
-            ("slow_io_stop_sense_iso.Y", "slow_io.P22", "STOP_LATCH_SENSE"),
+            ("safe_latch.Q", "slow_io_fault_sense_iso.A", "FAULT_LATCH_SENSE_AON"),
+            ("slow_io_fault_sense_iso.Y", "slow_io.P22", "FAULT_LATCH_SENSE"),
             ("evidence_cmp_a.OUT1", "slow_io_s3_evidence_iso.A", "S3_RF_TX_EVIDENCE_AON_N"),
             ("slow_io_s3_evidence_iso.Y", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"),
             ("sd_miso_series.END_2", "s3.GPIO4", "DISPLAY_SD_SPI_D1"),
             ("product_usb_connector.SHIELD", "abstract:power-ground", "USB_C_SHIELD"),
-            ("safe_latch.Q", "stop_led_series.END_1", "STOP_LED_DRIVE"),
-            ("stop_led_series.END_2", "stop_led.A", "STOP_LED_A"),
+            ("safe_latch.Q", "fault_led_series.END_1", "FAULT_LED_DRIVE"),
+            ("fault_led_series.END_2", "fault_led.A", "FAULT_LED_A"),
         ):
             self.assertIn(route, routes)
-        self.assertNotIn(("safe_latch.Q", "slow_io.P22", "STOP_LATCH_SENSE"), routes)
+        self.assertNotIn(("safe_latch.Q", "slow_io.P22", "FAULT_LATCH_SENSE"), routes)
         self.assertNotIn(("evidence_cmp_a.OUT1", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"), routes)
 
         internal_bus = next(
@@ -3509,9 +3535,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
             "main slow-I/O VCCI bypass capacitor",
-            "AON-powered open-drain STOP-sense domain isolator",
+            "AON-powered open-drain FAULT-sense domain isolator",
             "AON-powered open-drain S3-evidence domain isolator",
-            "physical STOP-indicator current limit",
+            "physical FAULT-indicator current limit",
             "SLOW_IO_RESET_N",
         ):
             self.assertIn(token, rendered)
@@ -3523,9 +3549,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         for token in (
             "TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor",
             "TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor",
-            "SN74LVC1G07DCKR<br/>AON-powered open-drain STOP-sense domain isolator",
+            "SN74LVC1G07DCKR<br/>AON-powered open-drain FAULT-sense domain isolator",
             "SN74LVC1G07DCKR<br/>AON-powered open-drain S3-evidence domain isolator",
-            "Yageo RC0402FR-072K2L<br/>2.2-kOhm physical STOP-indicator current limit",
+            "Yageo RC0402FR-072K2L<br/>2.2-kOhm physical FAULT-indicator current limit",
         ):
             self.assertIn(token, rendered, token)
 

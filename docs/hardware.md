@@ -66,30 +66,30 @@ permission.
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
 | Control panel | `TCA9539PWR` | Ten independent active-low inputs for D-pad, BACK, OPT, F1, F2 and encoder push |
 | D-pad switch | `Alps Alpine SKRHADE010` | Four directions plus centre push beneath one cross; mounted 45° clockwise |
-| Direct buttons | `OMRON B3S-1100P` | BACK, OPT, F1, F2, PTT and recessed RE-ARM |
-| Hard STOP | `C&K TLSMDT3C020GLFS` | Same-size direct button; separate normally-closed safety path |
+| Direct buttons | `OMRON B3S-1100P` | BACK, OPT, F1, F2 and PTT |
+| RUN/KILL | `C&K JS102011SCQN` | Sole side control for physical safety state and low-current source command |
+| Safety controller | `Texas Instruments MSPM0C1104SDGS20R` | Independent heartbeat, TX-lease, evidence and three-zone thermal supervisor |
+| Independent watchdog | `Texas Instruments TPS3435CAKAGDDFR` | 1.6-second AON timeout; directly latches FAULT_KILL |
 | Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
 | Encoder knob | `Davies Molding 1227-J` | 15-mm soft-touch interference fit for the 6×4.5-mm D shaft |
 
 The front panel contains one D-pad cross with centre `OK`. The cross is keyed
 to the 3-mm stem of one guided `SKRHADE010`, rather than floating above five
 separate plungers. All ten ordinary controls use independent expander inputs,
-so simultaneous keys need no matrix scan or ghost-key reconstruction. `BACK`, `OPT`, `F1`,
-`F2`, `PTT` and recessed `RE-ARM` are identical directly pressed
-`OMRON B3S-1100P` buttons—there is no separate cap or plunger. F1/F2, the
-encoder, PTT, hardware STOP and RE-ARM surround the rear battery; the encoder
-sits above F1/F2 and carries an exact `Davies Molding 1227-J` knob. `STOP` uses
-a directly pressed 6.0×6.1-mm SPDT tactile switch;
-its normally-closed contact keeps the separate fail-safe path, so a broken wire
-is also interpreted as stop. A phone may provide occasional long-form text
-input but cannot confirm dangerous actions.
+so simultaneous keys need no matrix scan or ghost-key reconstruction. `BACK`,
+`OPT`, `F1`, `F2` and `PTT` are identical directly pressed
+`OMRON B3S-1100P` buttons—there is no separate cap or plunger. F1/F2 and the
+encoder sit to the rear battery's left; PTT sits to its right. The encoder
+carries an exact `Davies Molding 1227-J` knob. The side-facing
+`C&K JS102011SCQN` is the sole `RUN/KILL` control; separate STOP and RE-ARM
+buttons are not fitted. A phone may provide occasional long-form text input but
+cannot confirm dangerous actions.
 
 The battery holder and rear controls mount directly on the external face of the
 RF/power PCB. There is no continuous rear lid over the holder: cells insert
 directly into the open `Keystone 1048P`. `F1/F2` sit to the holder's left and
-`PTT/STOP` to its right, so their actuation axes do not cross the battery
-envelope. The only dashed rear outline is the custom RE-ARM protective recess;
-it is not part of a common cover.
+`PTT` to its right, so their actuation axes do not cross the battery envelope.
+RUN/KILL faces the enclosure side and is labelled on that external edge.
 
 ## Expansion
 
@@ -109,9 +109,8 @@ it is not part of a common cover.
 Solid component outlines use dimensions from the part-number register. The
 violet D-pad cross is a custom product part over the exact rotated
 `Alps Alpine SKRHADE010`, so the cross requires a controlled manufacturing
-drawing rather than a supplier MPN. The orange dashed outline
-marks the only open rear item: the custom RE-ARM enclosure-recess drawing. The
-exact `Davies Molding 1227-J` encoder knob is rendered as a solid 15-mm part.
+drawing rather than a supplier MPN. The exact `Davies Molding 1227-J` encoder
+knob is rendered as a solid 15-mm part.
 The generator rejects component-to-
 component overlap and entry into the 4-mm screw-head keep-outs around the M2.5
 mounting holes.
@@ -125,13 +124,13 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=10)
+![Dimensioned external layout](images/current-clamshell.svg?layout=11)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=7)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=8)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=2)
 
-![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=8)
+![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=9)
 
 ## Power and service
 
@@ -141,11 +140,14 @@ connector body enters the exact 11-mm interboard channel.
   frontend and 2S charger, starting conservatively at 1 A and capped at 2 A.
 - Two replaceable protected button-top `XTAR 18650 4000mAh` cells sit in a
   polarized `Keystone 1048P`; both are required, providing 28.8 Wh total.
-- `MAX17320G20+T` protects and gauges the 2S pack while
-  `MSPM0C1104SDGS20R` performs local fail-closed admission.
-- The maintained `C&K JS102011SCQN` sends only a low-current ON/OFF request
-  to that admission controller. OFF never interrupts USB charging, service
-  recovery, cell current or the protected power path directly.
+- `MAX17320G20+T` protects and gauges the 2S pack while one
+  `MSPM0C1104SDGS20R` performs local fail-closed admission. A second MSPM0,
+  powered by AON, owns heartbeat, transmit leases, evidence and three board NTCs.
+- The maintained `C&K JS102011SCQN` is the sole low-current RUN/KILL control.
+  KILL asks pack admission to shut down and removes RUN_PERMIT; it never carries
+  cell or load current, so USB charging and service recovery remain available.
+- `TPS3435CAKAGDDFR` independently watches the safety MSPM0 and directly
+  latches FAULT_KILL. Restart always requires a physical KILL-to-RUN cycle.
 - Independent fixed rails: 3.3-V always-on from `TPS629203DRLR`, plus separate
   3.3-V main, 4.0-V voice and 5.0-V accessory rails from `TPS564252DRLR`.
 - S3 exposes product USB and keyed UART0/RESET/BOOT; C5 exposes data-only USB

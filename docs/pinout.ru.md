@@ -12,8 +12,8 @@
 
 | Контакт | Сеть | Направление | Периферия | Подключение |
 |---|---|---|---|---|
-| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0 |
-| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11 |
+| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
+| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
 | `GPIO3` | `RP_ALERT_N` | `i` | `GPIO_IRQ` | rp.GPIO19 |
 | `GPIO4` | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | sd_miso_series.END_2<br>sd_host_d1_pullup.END_1<br>display_connector.PIN_10 |
 | `GPIO5` | `SD_SPI_CS_N` | `o` | `SPI2` | sd_host_buffer.3A<br>sd_miso_buffer.OE_N<br>sd_host_cs_pullup.END_1 |
@@ -101,8 +101,8 @@
 | `GPIO25` | `S3_RP_IPC_CS_N` | `i` | `SPI1_IPC` | s3.GPIO9 |
 | `GPIO26` | `S3_RP_IPC_SCK` | `i` | `SPI1_IPC` | s3.GPIO48 |
 | `GPIO27` | `S3_RP_IPC_MISO` | `o` | `SPI1_IPC` | s3.GPIO14 |
-| `GPIO28` | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | u214_i2c_iso.SDAIN<br>evidence_mask.SDA |
-| `GPIO29` | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | u214_i2c_iso.SCLIN<br>evidence_mask.SCL |
+| `GPIO28` | `U214_I2C_SDA_IN` | `io` | `I2C0_EXT` | u214_i2c_iso.SDAIN |
+| `GPIO29` | `U214_I2C_SCL_IN` | `o` | `I2C0_EXT` | u214_i2c_iso.SCLIN |
 | `GPIO30` | `NRF0_MISO` | `i` | `PIO0_SM0_RF_SPI` | nrf0_miso_series.END_2<br>nrf0_host_miso_pulldown.END_1 |
 | `GPIO31` | `NRF0_SCK` | `o` | `PIO0_SM0_RF_SPI` | nrf0_host_buffer.3A<br>nrf0_host_sck_pulldown.END_1 |
 | `GPIO32` | `NRF0_MOSI` | `o` | `PIO0_SM0_RF_SPI` | nrf0_host_buffer.4A<br>nrf0_host_mosi_pulldown.END_1 |

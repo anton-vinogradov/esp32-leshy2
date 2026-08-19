@@ -26,25 +26,26 @@ is built.
 
 ## How it is built
 
-The device contains four isolatable compute domains. The
+The device contains five isolatable compute and control domains. The
 `ESP32-S3-WROOM-1U-N16R2` owns UI, display, storage and audio;
 `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio, IEEE 802.15.4 and IR;
 `SC1512-A4` (RP2354B) owns the three nRF24 radios, Sub-GHz, voice and U214;
-`MSPM0C1104SDGS20R` independently admits the battery pack. Unused interfaces
-are powered down and placed into a verifiable quiet state.
+one `MSPM0C1104SDGS20R` independently admits the battery pack; a second
+`MSPM0C1104SDGS20R` owns the watchdog, thermal supervision and TX leases.
+Unused interfaces are powered down and placed into a verifiable quiet state.
 
 ## Device layout
 
 ### External and inner board faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=10)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=11)
 
-These are the two PCB faces looking into the sandwich. They expose the compute
-and radio modules, speaker, microphone, ON/OFF switch, board-to-board
-connector, USB and every separate programming, reset and recovery button. A
-number inside an outline maps to the adjacent exact MPN and component role.
+The first projection shows only the outward, user-facing PCB sides: display,
+controls, labelled RF ports, indicators and side interfaces. The second shows
+the two mirrored inner faces and the exact devices inside the sandwich. A
+number inside a component outline maps to the adjacent exact MPN and role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=7)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=8)
 
 ### Top view from the antenna edge
 
@@ -59,7 +60,7 @@ overhang.
 Section A–A crosses the LoRa Cap zone; B–B crosses the battery and rear-control
 zone. Different longitudinal zones are never combined in one projection.
 
-![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=8)
+![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=9)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
@@ -113,7 +114,7 @@ IR_CARRIER["Vishay TSMP95000TT<br/>carrier-learning IR receiver"]
 IR_EMITTER["Vishay VSMY14940<br/>940-nm IR transmitter"]
   C5 <-->|"RMT RX0"| IR_DEMOD
   C5 <-->|"RMT RX1"| IR_CARRIER
-  C5 -->|"RMT TX + STOP-qualified power"| IR_EMITTER
+  C5 -->|"RMT TX + FAULT_KILL-qualified power"| IR_EMITTER
 ```
 
 ### RP: deterministic radios, voice and U214
@@ -151,10 +152,11 @@ UI_SWITCH_F1["OMRON B3S-1100P<br/>rear F1 function button"]
 UI_SWITCH_F2["OMRON B3S-1100P<br/>rear F2 function button"]
 ENCODER["Alps Alpine EC11E18244AU<br/>rear rotary encoder with push"]
 PTT_SWITCH["OMRON B3S-1100P<br/>independent rear PTT button"]
-STOP_SWITCH["C&K TLSMDT3C020GLFS<br/>normally-closed hardware STOP button"]
-REARM_SWITCH["OMRON B3S-1100P<br/>recessed hardware RE-ARM button"]
-SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical STOP-loop conditioner"]
-SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous STOP/RE-ARM latch"]
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
+SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
+SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
   UI_DPAD_SWITCH -->|"five independent inputs"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
@@ -164,9 +166,10 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous STOP/RE-ARM latch"]
   UI_MATRIX_IO -->|"I²C0 + IRQ"| S3
   ENCODER -->|"A/B direct PCNT"| S3
   PTT_SWITCH -->|"direct active-low PTT"| RP
-  STOP_SWITCH -->|"fail-open STOP loop"| SAFE_CONDITIONER
-  REARM_SWITCH -->|"fresh physical edge"| SAFE_CONDITIONER
-  SAFE_CONDITIONER -->|"asynchronous set/clock"| SAFE_LATCH
+  POWER_COMMAND_SWITCH -->|"physical KILL / RUN edge"| SAFE_CONDITIONER
+  SAFETY_CONTROLLER -->|"deadline service"| SAFETY_WATCHDOG
+  SAFETY_WATCHDOG -->|"WDO_N"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"KILL / physical re-arm clock"| SAFE_LATCH
 ```
 
 ### Audio path: receive, capture, playback and transmit
@@ -283,7 +286,7 @@ NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S charger and NVDC power path"]
 PACK_HOLDER["Keystone Electronics 1048P<br/>polarized dual-18650 holder"]
 PACK_GAUGE["Analog Devices MAX17320G20+T<br/>2S protection and fuel gauge"]
 PACK_ADMISSION["Texas Instruments MSPM0C1104SDGS20R<br/>local fail-closed 2S pack admission controller"]
-POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>maintained low-current ON/OFF command switch"]
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
 AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on 3.3-V safety converter"]
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>main 3.3-V converter"]
 VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>voice 4.0-V converter"]
@@ -294,7 +297,7 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>accessory 5.0-V converter"]
   PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS
   PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER
   PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER
-  POWER_COMMAND_SWITCH -->|"low-current ON/OFF request; never load current"| PACK_ADMISSION
+  POWER_COMMAND_SWITCH -->|"KILL: low-current pack shutdown; never load current"| PACK_ADMISSION
   PACK_ADMISSION <-->|"local gauge admission and fault evidence"| PACK_GAUGE
   NVDC_CHARGER -->|"VSYS"| AON_BUCK
   NVDC_CHARGER -->|"VSYS"| MAIN_BUCK
@@ -302,13 +305,16 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>accessory 5.0-V converter"]
   NVDC_CHARGER -->|"VSYS"| EXT_BUCK
 ```
 
-### Hardware STOP and physical transmission evidence
+### RUN/KILL, watchdog, thermal supervision and physical TX evidence
 
 ```mermaid
 flowchart TD
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
 SAFE_SUPERVISOR["TPS3808G33DBVR<br/>always-on safety-rail supervisor"]
-SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical STOP-loop conditioner"]
-SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous STOP/RE-ARM latch"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
+SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
+SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
 SAFE_GATE_A["SN74LVC08APWR<br/>hardware permits for three nRF24 radios and their rail"]
 SAFE_GATE_B["SN74LVC08APWR<br/>hardware permits for CC, voice and expansion"]
 IR_SAFE_GATE["SN74LVC1G08DCKR<br/>local hardware permit for the IR carrier"]
@@ -318,7 +324,10 @@ EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>dedicated RF-local physical voice-TX compara
 EVIDENCE_MASK["TCA9534APWR<br/>AON mask register for eight TX evidence sources"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into the main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
-  SAFE_CONDITIONER -->|"STOP assertion"| SAFE_LATCH
+  POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
+  SAFETY_CONTROLLER -->|"deadline service"| SAFETY_WATCHDOG
+  SAFETY_WATCHDOG -->|"WDO_N"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"KILL / physical re-arm clock"| SAFE_LATCH
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_A
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_B
   SAFE_LATCH -->|"one digital permit across M1"| IR_SAFE_GATE
@@ -343,9 +352,11 @@ Exact contacts are in the [pin assignment](docs/pinout.md), while signals crossi
    for an isolated environment or an explicitly authorized target. Every entry
    displays a fresh mandatory warning.
 
-Physical `STOP` dominates transmit hardware and `RE-ARM` requires a separate
-action. Initial setup requires acceptance of a non-aggression agreement; it
-does not replace law, spectrum licensing or the target owner's permission.
+The maintained `RUN/KILL` switch is the only physical admission control. Any
+latched fault disables transmission and requires a real `KILL`→`RUN` cycle;
+software cannot restart the device automatically. Initial setup requires
+acceptance of a non-aggression agreement; it does not replace law, spectrum
+licensing or the target owner's permission.
 
 ## Documentation
 

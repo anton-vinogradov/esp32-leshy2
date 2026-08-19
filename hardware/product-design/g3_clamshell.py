@@ -122,7 +122,7 @@ EDGE_INTERFACES = (
     ("headphone_jack", "front", "right", 79.75, "HEADPHONES / LINE"),
     ("c5_service_usb_connector", "front", "bottom", 31.47, "C5 SERVICE USB"),
     ("sd", "front", "bottom", 55.975, "microSD"),
-    ("power_command_switch", "rear", "right", 112.75, "POWER ON/OFF"),
+    ("power_command_switch", "rear", "right", 112.75, "RUN / KILL"),
     ("product_usb_connector", "rear", "bottom", 16.47, "USB / POWER"),
     ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
     ("unit_connector", "rear", "bottom", 57.0, "M5 UNIT"),
@@ -143,7 +143,7 @@ SIDE_INTERFACE_LABEL_LINES = {
     "ir_carrier": ("IR RAW RX",),
     "ir_emitter": ("IR TX",),
     "headphone_jack": ("HEADPHONES", "LINE OUT"),
-    "power_command_switch": ("POWER", "ON / OFF"),
+    "power_command_switch": ("RUN", "KILL"),
 }
 
 
@@ -178,13 +178,10 @@ UI_INNER = (
     Placement("ir_demod", 0.0, 75.0, "38-kHz IR receiver"),
     Placement("ir_carrier", 0.0, 82.0, "carrier-learning IR receiver"),
     Placement("ir_emitter", 0.0, 89.0, "940-nm IR transmitter"),
-    Placement("ir_safe_gate", 8.0, 75.0, "UI-local STOP-qualified IR carrier gate"),
+    Placement("ir_safe_gate", 8.0, 75.0, "UI-local FAULT_KILL-qualified IR carrier gate"),
     Placement("evidence_cmp_a", 8.0, 82.0, "UI-local S3/C5/IR TX evidence comparator"),
+    Placement("ui_zone_ntc", 12.0, 75.0, "UI/display hotspot safety sensor"),
     Placement("headphone_jack", 60.0, 75.0, "3.5-mm headphone/line connector"),
-    Placement("safe_conditioner", 20.0, 75.0, "front-local STOP input conditioner"),
-    Placement("safe_latch", 23.0, 75.0, "front-local STOP/RE-ARM safety latch"),
-    Placement("safe_reset_buffer", 27.0, 75.0, "front-local reset-kill buffer"),
-    Placement("safe_reset_sink_a", 30.0, 75.0, "S3/C5 reset sinks"),
     Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
     Placement("sd", 48.0, 136.15, "bottom-access push-push microSD", 90),
@@ -210,9 +207,17 @@ RF_INNER = (
     Placement("main_buck", 54.0, 75.0, "main 3.3-V converter"),
     Placement("voice_buck", 59.0, 75.0, "voice 4.0-V converter"),
     Placement("ext_buck", 64.0, 75.0, "accessory 5.0-V converter"),
+    Placement("power_zone_ntc", 46.0, 68.0, "power-conversion hotspot safety sensor"),
+    Placement("rf_zone_ntc", 46.0, 61.0, "RF/voice hotspot safety sensor"),
+    Placement("safety_controller", 36.0, 87.0, "independent watchdog, thermal and TX-lease controller"),
+    Placement("safety_watchdog", 37.0, 94.0, "independent 1.6-s timeout watchdog"),
+    Placement("safe_conditioner", 42.0, 94.0, "RUN and S3 fault-reset conditioner"),
+    Placement("safe_latch", 37.0, 82.0, "asynchronous FAULT_KILL latch"),
+    Placement("safe_reset_buffer", 41.0, 82.0, "C5/RP fault-reset buffer"),
+    Placement("safe_reset_sink_a", 44.0, 82.0, "S3/C5 passive-drain reset sinks"),
     Placement("safe_supervisor", 49.0, 82.0, "always-on safety supervisor"),
     Placement("safe_reset_sink_b", 55.0, 82.0, "RP reset sink"),
-    Placement("safe_ptt_or", 59.0, 82.0, "STOP-dominant voice PTT gate"),
+    Placement("safe_ptt_or", 59.0, 82.0, "FAULT_KILL-dominant voice PTT gate"),
     Placement("safe_gate_b", 49.0, 88.0, "rear-domain transmit safety gates"),
     Placement("evidence_cmp_b", 58.0, 88.0, "RF-local nRF/CC TX evidence comparator"),
     Placement("evidence_cmp_voice", 66.0, 88.0, "RF-local voice TX evidence comparator"),
@@ -229,7 +234,7 @@ RF_INNER = (
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
     Placement("rp_boot_button", 59.5, 104.0, "RP technological USB_BOOT"),
-    Placement("power_command_switch", 65.8, 111.0, "low-current ON/OFF command; charging remains available"),
+    Placement("power_command_switch", 65.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
 )
 
 FRONT_CONTROLS = (
@@ -245,12 +250,10 @@ REAR_CONTROLS = (
     Placement("ui_switch_f1", 4.2, 63.5, "rear F1"),
     Placement("ui_switch_f2", 4.2, 78.5, "rear F2"),
     Placement("ptt_switch", 64.2, 63.5, "rear independent PTT"),
-    Placement("stop_switch", 64.45, 78.5, "rear physical hard STOP"),
-    Placement("rearm_switch", 64.2, 96.5, "rear recessed RE-ARM"),
 )
 
 DIRECT_PRESS_REAR_CONTROLS = {
-    "ui_switch_f1", "ui_switch_f2", "ptt_switch", "stop_switch", "rearm_switch"
+    "ui_switch_f1", "ui_switch_f2", "ptt_switch"
 }
 
 FRONT_CAP_RESERVES = (
@@ -261,16 +264,8 @@ FRONT_CAP_RESERVES = (
     ),
 )
 
-REAR_CAP_RESERVES = (
-    Reserve(
-        "RE-ARM recess", 63.0, 95.0, 9.0, 9.0,
-        "custom enclosure guard around direct button; no cap or supplier MPN",
-        "custom_enclosure_geometry",
-    ),
-)
-REAR_CAP_TO_CONTROL = {
-    "RE-ARM recess": "rearm_switch",
-}
+REAR_CAP_RESERVES = ()
+REAR_CAP_TO_CONTROL = {}
 
 REAR_SELECTED_ACTUATORS = (
     Placement("encoder_knob", 0.5, 43.0, "exact soft-touch knob over rear encoder"),
@@ -509,7 +504,7 @@ def validate() -> list[str]:
         errors.append("SKRHADE010 complete stem-top height must remain 5.0 mm from the PCB")
     if dpad_mechanical.get("stem_diameter_mm") != 3.0:
         errors.append("SKRHADE010 custom actuator interface must retain the exact 3-mm stem")
-    direct_mechanical = devices[instances["rearm_switch"]].get("mechanical_contract", {})
+    direct_mechanical = devices[instances["ptt_switch"]].get("mechanical_contract", {})
     if direct_mechanical.get("plunger_diameter_mm") != 3.3:
         errors.append("B3S-1100P direct-press controls must retain the exact 3.3-mm plunger")
     if direct_mechanical.get("nominal_height_mm") != 4.3:
@@ -715,7 +710,7 @@ def validate() -> list[str]:
         errors.append("external interface labels must be unique")
 
     control_roles = {item.role for item in REAR_CONTROLS}
-    for role in ("rear physical hard STOP", "rear independent PTT", "rear F1", "rear F2", "rear recessed RE-ARM"):
+    for role in ("rear independent PTT", "rear F1", "rear F2"):
         if role not in control_roles:
             errors.append(f"rear controls omit {role}")
     rear_exact_boxes = []
@@ -963,14 +958,14 @@ def render_external(devices, instances):
         out.append(rect(rear, cell_x-9.3, 52.0, 18.6, 65.0, "#ecfdf3", "#22c55e", rx=20))
         out.append(text(sx(rear,cell_x), sy(rear,86), "18650", 7, "bold", "middle", "#166534"))
 
-    # F1/F2/PTT/STOP/RE-ARM are complete, directly pressed switches on the exposed PCB.
+    # F1/F2/PTT are complete, directly pressed switches on the exposed PCB.
     # They therefore render as selected solid parts, not speculative caps.
     for control in REAR_CONTROLS:
         if control.instance not in DIRECT_PRESS_REAR_CONTROLS:
             continue
         control_w, control_h = placement_size(control, devices, instances)
-        fill = "#fee2e2" if control.instance == "stop_switch" else "#e2e8f0"
-        stroke = "#b42318" if control.instance == "stop_switch" else "#64748b"
+        fill = "#e2e8f0"
+        stroke = "#64748b"
         out.append(
             rect(
                 rear, control.x, control.y, control_w, control_h,
@@ -998,9 +993,9 @@ def render_external(devices, instances):
         out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
     for x, y, label in (
         (7.5, 61.5, "ENC"), (7.5, 74.0, "F1"), (7.5, 89.0, "F2"),
-        (67.5, 74.0, "PTT"), (67.5, 89.0, "STOP"), (67.5, 107.0, "RE-ARM"),
+        (67.5, 74.0, "PTT"),
     ):
-        out.append(silk_text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#b42318" if label == "STOP" else "#4c1d95"))
+        out.append(silk_text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#4c1d95"))
 
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "rear" or side not in {"left", "right"}:
@@ -1069,8 +1064,8 @@ def render_external(devices, instances):
         text(note_x,653,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
         text(note_x,676,"D-pad cross is custom over Alps SKRHADE010; its control drawing replaces a cap MPN.",11),
         text(note_x,699,"Davies 1227-J is the exact encoder knob; only its fit HIL remains.",11),
-        text(note_x,722,"BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one SKRH switch and one cross.",11,"bold"),
-        text(note_x,745,"STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.",11),
+        text(note_x,722,"BACK/OPT/F1/F2/PTT are direct buttons; D-pad is one SKRH switch and one cross.",11,"bold"),
+        text(note_x,745,"The side C&K JS102011SCQN is the sole RUN/KILL and source-command control.",11),
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"
@@ -1297,13 +1292,12 @@ def render_rear_face(devices, instances):
         '</g>',
     ]
 
-    # F1/F2/PTT/STOP/RE-ARM are exact directly pressed switch bodies. RE-ARM
-    # keeps only a protective recess.
-    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT-STOP-RE-ARM" data-actuator-reserves="none" data-enclosure-reserves="RE-ARM-recess">')
+    # F1/F2/PTT are exact directly pressed switch bodies; RUN/KILL is side-facing.
+    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT" data-actuator-reserves="none" data-enclosure-reserves="none">')
     for control in REAR_CONTROLS:
         control_w, control_h = placement_size(control, devices, instances)
-        fill = "#fee2e2" if control.instance == "stop_switch" else "#e2e8f0"
-        stroke = "#b42318" if control.instance == "stop_switch" else "#64748b"
+        fill = "#e2e8f0"
+        stroke = "#64748b"
         out.append(r(control.x, control.y, control_w, control_h, fill, stroke, "", 2, f' data-instance="{control.instance}"'))
     knob = REAR_SELECTED_ACTUATORS[0]
     knob_w, knob_h = placement_size(knob, devices, instances)
@@ -1321,8 +1315,6 @@ def render_rear_face(devices, instances):
         (7.5, 74.0, "F1", "#4c1d95"),
         (7.5, 89.0, "F2", "#4c1d95"),
         (67.5, 74.0, "PTT", "#4c1d95"),
-        (67.5, 89.0, "STOP", "#b42318"),
-        (67.5, 107.0, "RE-ARM", "#4c1d95"),
     ):
         out.append(t(x(label_x), y(label_y), label, 7.0, "bold", "middle", colour))
     out.append('</g>')
@@ -1346,21 +1338,21 @@ def render_rear_face(devices, instances):
         t(note_x, 224, "✓ the two envelopes have a 1.0-mm plan gap", 12, "bold", colour="#166534"),
         t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 4.5 mm per side", 12, "bold", colour="#166534"),
         t(note_x, 278, "✓ 56-mm retention pitch remains inside the 75-mm base", 12, "bold", colour="#166534"),
-        t(note_x, 305, "✓ direct buttons, exact knob and recess clear the battery and U214", 12, "bold", colour="#166534"),
+        t(note_x, 305, "✓ direct buttons and exact knob clear the battery and U214", 12, "bold", colour="#166534"),
         t(note_x, 350, "Selected parts", 15, "bold"),
         t(note_x, 378, cap_mpn, 11, "bold", colour="#9a3412"),
         t(note_x, 403, f"{socket_mpn} · vertical 2×7 host socket", 11, "bold", colour="#075985"),
         t(note_x, 428, f"{holder_mpn} · rotated holder", 11, "bold", colour="#166534"),
         t(note_x, 474, "Rear controls shown to scale", 15, "bold"),
-        t(note_x, 502, "OMRON B3S-1100P · direct BACK/OPT/F1/F2/PTT/RE-ARM", 11),
-        t(note_x, 527, "C&K TLSMDT3C020GLFS · direct-press normally-closed STOP", 11),
+        t(note_x, 502, "OMRON B3S-1100P · direct BACK/OPT/F1/F2/PTT", 11),
+        t(note_x, 527, "C&K JS102011SCQN · side-facing RUN/KILL", 11),
         t(note_x, 552, "Alps EC11E18244AU + Davies 1227-J · exact encoder and knob", 11),
         t(note_x, 598, "Meaning of this view", 15, "bold"),
         t(note_x, 626, "Rear face viewed normal to the PCB — not a side section.", 11),
-        t(note_x, 651, "Solid: exact bodies/direct buttons/knob. Dashed: RE-ARM recess.", 11),
+        t(note_x, 651, "Solid: exact bodies/direct buttons/knob; RUN/KILL is visible in the side view.", 11),
         t(note_x, 676, "Orange: removable Cap/controls; blue: raised rail; green: batteries.", 11),
         t(note_x, 716, "Still requires specimen/HIL", 15, "bold", colour="#b42318"),
-        t(note_x, 744, "• STOP 0.85-mm height offset, RE-ARM recess and encoder access", 11),
+        t(note_x, 744, "• RUN/KILL side access, legends, sealing and encoder access", 11),
         t(note_x, 769, "• received-U214 pin fit, rail height, screw engagement and removal", 11),
         t(note_x, 794, "• enclosure-side and depth clearance with every installed accessory", 11),
         t(note_x, 840, "Dimensioned architecture projection — not a production enclosure drawing.", 11, "bold", colour="#b42318"),
@@ -1634,9 +1626,7 @@ def render_sandwich(devices, instances):
                 r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
                 t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
                 r(px(4.2), pz(base_rear_z), 6.6*x_scale, depth("ui_switch_f2")*z_scale, "#e2e8f0", "#64748b", rx=2, extra=' data-instance="F2"'),
-                r(px(64.45), pz(base_rear_z), 6.1*x_scale, depth("stop_switch")*z_scale, "#fee2e2", "#b42318", rx=2, extra=' data-instance="STOP"'),
                 t(px(7.5), pz(base_rear_z+2.7), "F2", 8, "bold", "middle", "#4c1d95"),
-                t(px(67.5), pz(base_rear_z+3.4), "STOP", 8, "bold", "middle", "#b42318"),
                 t(px(37.5), pz(battery_rear_z)+24, "No U214 appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 '</g>',
             ]

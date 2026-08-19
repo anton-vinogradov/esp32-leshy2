@@ -28,16 +28,27 @@ privacy requirements or the target owner's consent.
 - Unused RF and digital interfaces are powered down, isolated and discharged
   into a measurable quiet state.
 
-## STOP and RE-ARM
+## RUN/KILL, watchdog and fault reporting
 
-A dedicated direct-press `C&K TLSMDT3C020GLFS` implements hardware `STOP`.
-Its normally-closed contact asynchronously disables transmitters and voice PTT
-regardless of S3, C5 or RP2354B state. A press, disconnected switch or broken
-trace asserts STOP; firmware can observe it but cannot override it.
+The side `C&K JS102011SCQN` is the only physical `RUN/KILL` control. `KILL`
+removes the hardware transmit permit and asks the pack controller to shut the
+device down; `RUN` supplies the only physical re-arm edge. There are no
+separate STOP or RE-ARM buttons. Firmware, reset, USB and the service headers
+cannot create that edge or clear a latched fault.
 
-After STOP, the device remains disarmed. A separate `RE-ARM` button only makes
-a fresh, deliberate launch possible; it never restores an old lease or pending
-command.
+An AON `MSPM0C1104SDGS20R` supervises system heartbeats, short-lived per-group
+transmit leases, physical TX evidence, rail faults and three independent board
+temperature zones. An external `TPS3435CAKAGDDFR` timeout watchdog directly
+latches `FAULT_KILL` if the safety controller stops making valid 1.6-second
+deadline service. The device never restarts automatically: recovery requires a
+physical `KILL → RUN` cycle after the cause is safe.
+
+For a non-UI fault, C5 and RP remain in reset while S3 may run only the signed,
+bounded fault screen. It states the primary cause, affected zone or signal
+group, measured value and limit when known, action already taken, event ID and
+restart instruction. If the UI/display zone itself overheats or its rail is
+unsafe, hardware protection turns the screen off; the independent amber FAULT
+LED and retained AON record remain available.
 
 ## Power and cells
 
@@ -61,8 +72,9 @@ command.
 - Owners can use their own build keys and install their own firmware.
   Irreversible key lockdown is not enabled by default, preserving device
   openness.
-- S3, C5, RP2354B and MSPM0 have independent physical recovery paths. Every
-  recovery boot starts TX-off and hardware STOP remains effective.
+- S3, C5, RP2354B and both MSPM0 controllers have independent physical
+  recovery paths. Every recovery boot starts TX-off; RUN/KILL, the watchdog
+  and the hardware FAULT_KILL latch remain effective.
 
 An update can be substituted through a compromised server, mirror, download
 path or removable medium. Signatures defeat that substitution by verifying the

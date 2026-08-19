@@ -6378,6 +6378,54 @@
         "PA25_A2": {"physical": "20", "role": "gpio"}
       }
     },
+    "ti_tps3435cakagddfr": {
+      "mpn": "Texas Instruments TPS3435CAKAGDDFR",
+      "kind": "independent_timeout_watchdog_tsot23_8",
+      "qualification": "verified_exact_independent_aon_watchdog",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.9, 1.6, 1.0],
+      "source": {
+        "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
+        "version": "SNVSCF7A, revised August 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+        "checked": "2026-08-20"
+      },
+      "orderable_source": {
+        "document": "TPS3435CAKAGDDFR exact authorized-distributor page; 6,604 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS3435CAKAGDDFR/17748491",
+        "checked": "2026-08-20"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.476,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published USD price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS3435CAKAGDDFR/17748491",
+          "checked": "2026-08-20"
+        }
+      },
+      "electrical_contract": {
+        "watchdog_base_timeout_s": 1.6,
+        "startup_delay": "zero-delay C variant",
+        "output": "active-low open-drain WDO, 200-ms nominal fault pulse",
+        "input_contract": "timeout WDI; the AON safety controller must continue making edges before the 1.6-s deadline",
+        "quiescent_current_typ_na": 250,
+        "use": "independent last-resort monitor; WDO directly presets the hardware FAULT_KILL latch"
+      },
+      "programmable": false,
+      "contacts": {
+        "SET0": {"physical": "1", "role": "strap"},
+        "MR_N": {"physical": "2", "role": "reset"},
+        "WDI": {"physical": "3", "role": "signal"},
+        "GND": {"physical": "4", "role": "power"},
+        "SET1": {"physical": "5", "role": "strap"},
+        "WD_EN": {"physical": "6", "role": "enable"},
+        "WDO_N": {"physical": "7", "role": "safety"},
+        "VDD": {"physical": "8", "role": "power"}
+      }
+    },
     "ti_csd87313dmst": {
       "mpn": "Texas Instruments CSD87313DMST",
       "kind": "dual_common_drain_30v_nmos_battery_protection",

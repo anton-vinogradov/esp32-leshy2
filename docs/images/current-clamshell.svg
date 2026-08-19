@@ -142,20 +142,15 @@
 <rect x="480.5" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f1" data-direct-press="true"/>
 <rect x="480.5" y="440.4" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f2" data-direct-press="true"/>
 <rect x="702.5" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ptt_switch" data-direct-press="true"/>
-<rect x="703.5" y="440.4" width="22.6" height="22.2" rx="2" fill="#fee2e2" stroke="#b42318" stroke-width="1.5" data-instance="stop_switch" data-direct-press="true"/>
-<rect x="702.5" y="507.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="rearm_switch" data-direct-press="true"/>
 <circle cx="494.6" cy="336.9" r="27.8" fill="#dbe4ee" stroke="#475467" stroke-width="1.5" data-instance="encoder_knob" data-selected-part="true"/>
 <path d="M494.6 312.1 V321.1" stroke="#475467" stroke-width="2" data-part="knob-indicator-line"/>
-<rect x="698.1" y="501.5" width="33.3" height="33.3" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <text data-layer="pcb-silkscreen" x="492.8" y="377.6" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
 <text data-layer="pcb-silkscreen" x="492.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
 <text data-layer="pcb-silkscreen" x="492.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
 <text data-layer="pcb-silkscreen" x="714.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
-<text data-layer="pcb-silkscreen" x="714.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
-<text data-layer="pcb-silkscreen" x="714.8" y="545.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
 <path d="M742.5 567.2 L768.4 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">POWER</text>
-<text data-layer="pcb-silkscreen" x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">ON / OFF</text>
+<text data-layer="pcb-silkscreen" x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">RUN</text>
+<text data-layer="pcb-silkscreen" x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">KILL</text>
 <path d="M525.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="525.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
 <path d="M603.6 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -197,6 +192,6 @@
 <text x="850.0" y="653.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
 <text x="850.0" y="676.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">D-pad cross is custom over Alps SKRHADE010; its control drawing replaces a cap MPN.</text>
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
-<text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one SKRH switch and one cross.</text>
-<text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.</text>
+<text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">BACK/OPT/F1/F2/PTT are direct buttons; D-pad is one SKRH switch and one cross.</text>
+<text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
 </svg>

@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **885** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **884** supplied/costed placements collapse to **198** used exact-device/MPN lines.
+- **910** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **909** supplied/costed placements collapse to **198** used exact-device/MPN lines.
 - Current orderability evidence exists for **197/198** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **187/198** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **867/884** supplied placements; their partial subtotals are `base_product` — USD 196.8414. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **892/909** supplied placements; their partial subtotals are `base_product` — USD 197.3075. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **198/198** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 881 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 906 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -241,7 +241,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-PWR-SAFETY</code> — Power, charging, admission and safety-control ICs — 17 line(s)</summary>
+<details><summary><code>SUB-PWR-SAFETY</code> — Power, charging, admission and safety-control ICs — 18 line(s)</summary>
 
 - Disposition: architecture-locked first target; substitute only by reopening and requalifying the complete safety/power subblock.
 - Equivalence envelope:
@@ -264,6 +264,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_tps259470l_rpwr` — `Texas Instruments TPS259470LRPWR`.
   - `ti_tps25961_drvr` — `Texas Instruments TPS25961DRVR`.
   - `ti_tps25974l_rpwr` — `Texas Instruments TPS25974LRPWR`.
+  - `ti_tps3435cakagddfr` — `Texas Instruments TPS3435CAKAGDDFR`.
   - `ti_tps3808g33_dbvr` — `TPS3808G33DBVR`.
   - `ti_tps3839k33_dbzr` — `Texas Instruments TPS3839K33DBZR`.
   - `ti_tps564252_drlr` — `Texas Instruments TPS564252DRLR`.
@@ -303,7 +304,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 25 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 24 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -319,7 +320,6 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
   - `alps_skrhade010` — `Alps Alpine SKRHADE010`.
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
-  - `ck_tlsmdt3c020glfs` — `C&K TLSMDT3C020GLFS`.
   - `davies_1227_j` — `Davies Molding 1227-J`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
@@ -434,15 +434,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835).
-
-</details>
-
-<details><summary><code>C&K TLSMDT3C020GLFS</code> — 1 × USD 1.6200 = USD 1.6200</summary>
-
-- Device id: `ck_tlsmdt3c020glfs`.
-- Scope: `base_product`.
-- Comparable basis: Mouser quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/CK/TLSMDT3C020GLFS?qs=QNEnbhJQKvZpNzUHXUSeJA%3D%3D).
 
 </details>
 
@@ -851,7 +842,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GRM188R60J106ME47D</code> — 17 × USD 0.0377 = USD 0.6409</summary>
+<details><summary><code>Murata GRM188R60J106ME47D</code> — 18 × USD 0.0377 = USD 0.6786</summary>
 
 - Device id: `murata_grm188r60j106me47d`.
 - Scope: `base_product`.
@@ -1013,7 +1004,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>74LVC1G32GV,125</code> — 3 × USD 0.0523 = USD 0.1569</summary>
+<details><summary><code>74LVC1G32GV,125</code> — 2 × USD 0.0523 = USD 0.1046</summary>
 
 - Device id: `nexperia_74lvc1g32gv_125`.
 - Scope: `base_product`.
@@ -1040,7 +1031,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>OMRON B3S-1100P</code> — 6 × USD 0.6405 = USD 3.8430</summary>
+<details><summary><code>OMRON B3S-1100P</code> — 5 × USD 0.6405 = USD 3.2025</summary>
 
 - Device id: `omron_b3s_1100p`.
 - Scope: `base_product`.
@@ -1229,7 +1220,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK B57332V5103F360</code> — 3 × USD 0.1157 = USD 0.3471</summary>
+<details><summary><code>TDK B57332V5103F360</code> — 6 × USD 0.1157 = USD 0.6942</summary>
 
 - Device id: `tdk_b57332v5103f360`.
 - Scope: `base_product`.
@@ -1238,7 +1229,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 103 × USD 0.0258 = USD 2.6574</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 111 × USD 0.0258 = USD 2.8638</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1292,7 +1283,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments MSPM0C1104SDGS20R</code> — 1 × USD 0.4523 = USD 0.4523</summary>
+<details><summary><code>Texas Instruments MSPM0C1104SDGS20R</code> — 2 × USD 0.4523 = USD 0.9046</summary>
 
 - Device id: `ti_mspm0c1104_sdgs20r`.
 - Scope: `base_product`.
@@ -1319,7 +1310,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>SN74LVC1G07DCKR</code> — 5 × USD 0.0509 = USD 0.2545</summary>
+<details><summary><code>SN74LVC1G07DCKR</code> — 8 × USD 0.0509 = USD 0.4072</summary>
 
 - Device id: `ti_sn74lvc1g07_dckr`.
 - Scope: `base_product`.
@@ -1553,6 +1544,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments TPS3435CAKAGDDFR</code> — 1 × USD 1.4760 = USD 1.4760</summary>
+
+- Device id: `ti_tps3435cakagddfr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-20`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS3435CAKAGDDFR/17748491).
+
+</details>
+
 <details><summary><code>TPS3808G33DBVR</code> — 4 × USD 1.0984 = USD 4.3936</summary>
 
 - Device id: `ti_tps3808g33_dbvr`.
@@ -1688,7 +1688,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 169 × USD 0.0097 = USD 1.6393</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 180 × USD 0.0097 = USD 1.7460</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.

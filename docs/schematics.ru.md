@@ -52,7 +52,7 @@ IR_CARRIER["Vishay TSMP95000TT<br/>IR-приёмник обучения несу
 IR_EMITTER["Vishay VSMY14940<br/>IR-передатчик 940 нм"]
   C5 <-->|"RMT RX0"| IR_DEMOD
   C5 <-->|"RMT RX1"| IR_CARRIER
-  C5 -->|"RMT TX + STOP-qualified power"| IR_EMITTER
+  C5 -->|"RMT TX + FAULT_KILL-qualified power"| IR_EMITTER
 ```
 
 ### RP: детерминированные радио, voice и U214
@@ -90,10 +90,11 @@ UI_SWITCH_F1["OMRON B3S-1100P<br/>задняя функциональная кн
 UI_SWITCH_F2["OMRON B3S-1100P<br/>задняя функциональная кнопка F2"]
 ENCODER["Alps Alpine EC11E18244AU<br/>задний энкодер с нажатием"]
 PTT_SWITCH["OMRON B3S-1100P<br/>независимая задняя кнопка PTT"]
-STOP_SWITCH["C&K TLSMDT3C020GLFS<br/>нормально-замкнутая аппаратная кнопка STOP"]
-REARM_SWITCH["OMRON B3S-1100P<br/>утопленная аппаратная кнопка RE-ARM"]
-SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физической линии STOP"]
-SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка STOP/RE-ARM"]
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>независимый AON-контроллер watchdog, thermal и TX lease"]
+SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>независимый timeout-watchdog 1,6 с"]
+SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физического RUN и S3 fault reset"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL"]
   UI_DPAD_SWITCH -->|"five independent inputs"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
@@ -103,9 +104,10 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка STOP/RE-AR
   UI_MATRIX_IO -->|"I²C0 + IRQ"| S3
   ENCODER -->|"A/B direct PCNT"| S3
   PTT_SWITCH -->|"direct active-low PTT"| RP
-  STOP_SWITCH -->|"fail-open STOP loop"| SAFE_CONDITIONER
-  REARM_SWITCH -->|"fresh physical edge"| SAFE_CONDITIONER
-  SAFE_CONDITIONER -->|"asynchronous set/clock"| SAFE_LATCH
+  POWER_COMMAND_SWITCH -->|"physical KILL / RUN edge"| SAFE_CONDITIONER
+  SAFETY_CONTROLLER -->|"deadline service"| SAFETY_WATCHDOG
+  SAFETY_WATCHDOG -->|"WDO_N"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"KILL / physical re-arm clock"| SAFE_LATCH
 ```
 
 ### Аудиотракт: приём, запись, воспроизведение и передача
@@ -222,7 +224,7 @@ NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S зарядка и NVDC power 
 PACK_HOLDER["Keystone Electronics 1048P<br/>поляризованный держатель двух 18650"]
 PACK_GAUGE["Analog Devices MAX17320G20+T<br/>защита и fuel gauge батареи 2S"]
 PACK_ADMISSION["Texas Instruments MSPM0C1104SDGS20R<br/>локальный fail-closed контроллер допуска 2S pack"]
-POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>малотоковый фиксируемый переключатель ON/OFF"]
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
 AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on преобразователь безопасности 3,3 В"]
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>основной преобразователь 3,3 В"]
 VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь voice 4,0 В"]
@@ -233,7 +235,7 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь р�
   PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS
   PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER
   PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER
-  POWER_COMMAND_SWITCH -->|"low-current ON/OFF request; never load current"| PACK_ADMISSION
+  POWER_COMMAND_SWITCH -->|"KILL: low-current pack shutdown; never load current"| PACK_ADMISSION
   PACK_ADMISSION <-->|"local gauge admission and fault evidence"| PACK_GAUGE
   NVDC_CHARGER -->|"VSYS"| AON_BUCK
   NVDC_CHARGER -->|"VSYS"| MAIN_BUCK
@@ -241,13 +243,16 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь р�
   NVDC_CHARGER -->|"VSYS"| EXT_BUCK
 ```
 
-### Аппаратный STOP и подтверждение фактической передачи
+### RUN/KILL, watchdog, thermal и подтверждение фактической передачи
 
 ```mermaid
 flowchart TD
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
 SAFE_SUPERVISOR["TPS3808G33DBVR<br/>контроль always-on питания безопасности"]
-SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физической линии STOP"]
-SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка STOP/RE-ARM"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>независимый AON-контроллер watchdog, thermal и TX lease"]
+SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>независимый timeout-watchdog 1,6 с"]
+SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физического RUN и S3 fault reset"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL"]
 SAFE_GATE_A["SN74LVC08APWR<br/>аппаратные разрешения трёх nRF24 и их питания"]
 SAFE_GATE_B["SN74LVC08APWR<br/>аппаратные разрешения CC, voice и расширений"]
 IR_SAFE_GATE["SN74LVC1G08DCKR<br/>локальное аппаратное разрешение IR carrier"]
@@ -257,7 +262,10 @@ EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>отдельный RF-компаратор �
 EVIDENCE_MASK["TCA9534APWR<br/>AON-регистр маски восьми источников TX"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
-  SAFE_CONDITIONER -->|"STOP assertion"| SAFE_LATCH
+  POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
+  SAFETY_CONTROLLER -->|"deadline service"| SAFETY_WATCHDOG
+  SAFETY_WATCHDOG -->|"WDO_N"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"KILL / physical re-arm clock"| SAFE_LATCH
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_A
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_B
   SAFE_LATCH -->|"one digital permit across M1"| IR_SAFE_GATE

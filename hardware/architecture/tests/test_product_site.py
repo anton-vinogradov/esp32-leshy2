@@ -62,9 +62,9 @@ class ProductSiteTests(unittest.TestCase):
             "insert ⊗ · remove ⊙",
             "Keystone 1048P",
             'data-part="single-D-pad-cross"',
-            "STOP",
+            "RUN",
+            "KILL",
             "PTT",
-            "RE-ARM",
             "physical actual-TX evidence for each transmitting path",
             "form one front line below the display",
             "M2.5 hole/head keep-outs",
@@ -92,7 +92,6 @@ class ProductSiteTests(unittest.TestCase):
             "SPEAKER",
             "GRILLE",
             "POWER",
-            "ON / OFF",
             "USB / POWER",
             "RP SERVICE USB",
             "M5 UNIT",
@@ -101,14 +100,14 @@ class ProductSiteTests(unittest.TestCase):
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):
             self.assertNotIn(process_token, layout)
         self.assertIn(
-            'data-instance="stop_switch" data-direct-press="true"', layout
+            'data-instance="ptt_switch" data-direct-press="true"', layout
         )
         self.assertIn('data-manufacturing-class="custom-actuator"', layout)
         self.assertIn("supplier MPN does not apply", layout)
         self.assertIn('data-instance="encoder_knob" data-selected-part="true"', layout)
         self.assertIn("Davies 1227-J is the exact encoder knob", layout)
-        self.assertIn("same-size SPDT tactile body", layout)
         self.assertNotIn("STOP actuator", layout)
+        self.assertNotIn("RE-ARM", layout)
 
     def test_internal_layout_is_dimensioned_and_separates_devices(self):
         layout = self.read("docs/images/internal-board-layout.svg")
@@ -125,10 +124,12 @@ class ProductSiteTests(unittest.TestCase):
             "AS02404PO",
             "CMEJ-0413-42-SMT-TR",
             "JS102011SCQN",
+            "TPS3435CAKAGDDFR",
+            "TDK B57332V5103F360",
             "1125R-SMT-4P",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
-            "55 · SPK",
+            "60 · SPK",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
@@ -138,7 +139,7 @@ class ProductSiteTests(unittest.TestCase):
         for forbidden_inner_silk in (
             "54 · MIC",
             "AS02404PO · speaker · side grille",
-            "ON/OFF request",
+            "RUN/KILL request",
             "S3/C5 recovery controls and DBG10",
             "RP recovery controls and DBG10",
             "WI-FI/BLE",
@@ -155,9 +156,9 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=10", page)
-            self.assertIn("internal-board-layout.svg?layout=7", page)
-            self.assertIn("sandwich-section.svg?layout=8", page)
+            self.assertIn("current-clamshell.svg?layout=11", page)
+            self.assertIn("internal-board-layout.svg?layout=8", page)
+            self.assertIn("sandwich-section.svg?layout=9", page)
             self.assertIn("top-edge-view.svg?layout=2", page)
             self.assertLess(
                 page.index("current-clamshell.svg"),
@@ -228,8 +229,9 @@ class ProductSiteTests(unittest.TestCase):
                 "SKQGADE010",
                 "FTSH-105-01-L-DV-K-P-TR",
                 "USB4105-GF-A",
-                "TLSMDT3C020GLFS",
                 "JS102011SCQN",
+                "MSPM0C1104SDGS20R",
+                "TPS3435CAKAGDDFR",
                 "1125R-SMT-4P",
                 "SSW-107-02-S-D",
             ):
