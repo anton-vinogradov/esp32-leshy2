@@ -46,3 +46,6 @@ This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
+This artifact preserves the reviewed fifth-batch checkpoint. Current coverage
+is in [`BOM-0018`](BOM-0018-audio-power-mechanical-cost-evidence.md): 76/187
+lines, 643/857 placements and partial base subtotal USD 130.7216.

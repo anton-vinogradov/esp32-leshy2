@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **61/187** lines.
-- Of the remaining **126** unpriced lines, **6** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **623/857** supplied placements; their partial subtotals are `base_product` — USD 109.8573. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **76/187** lines.
+- Of the remaining **111** unpriced lines, **8** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **643/857** supplied placements; their partial subtotals are `base_product` — USD 130.7216. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -390,6 +390,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Diodes Incorporated PAM8302AASCR</code> — 1 × USD 0.3605 = USD 0.3605</summary>
+
+- Device id: `diodes_pam8302a_ascr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/diodes-incorporated/PAM8302AASCR/4033281).
+
+</details>
+
 <details><summary><code>ESP32-C5-WROOM-1U-N8R8</code> — 1 × USD 4.3700 = USD 4.3700</summary>
 
 - Device id: `esp32_c5_wroom_1u_n8r8`.
@@ -405,6 +414,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R2/16162650).
+
+</details>
+
+<details><summary><code>Everest Semiconductor ES8311</code> — 1 × USD 0.3024 = USD 0.3024</summary>
+
+- Device id: `everest_es8311_qfn20`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB assembly-parts quantity-100 tier; captive PCBA inventory; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://jlcpcb.com/partdetail/1044199-ES8311/C962342).
 
 </details>
 
@@ -459,6 +477,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/jae-electronics/DX07S016JA1R1500/11585731).
+
+</details>
+
+<details><summary><code>Keystone Electronics 1048P</code> — 1 × USD 8.5700 = USD 8.5700</summary>
+
+- Device id: `keystone_1048p`.
+- Scope: `base_product`.
+- Comparable basis: Mouser tray quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Keystone-Electronics/1048P?qs=9%252Bwcgl%2FJqd1h8Vx3IFpTxA%3D%3D).
 
 </details>
 
@@ -570,12 +597,39 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>PUI Audio AS02404PO</code> — 1 × USD 2.5294 = USD 2.5294</summary>
+
+- Device id: `pui_as02404po`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey bulk 50-plus tier applicable to an order of 100 pieces; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/pui-audio-inc/AS02404PO/24385608).
+
+</details>
+
 <details><summary><code>SC1512-A4</code> — 1 × USD 1.0000 = USD 1.0000</summary>
 
 - Device id: `rp2354b_a4`.
 - Scope: `base_product`.
 - Comparable basis: Mouser published 1+ cut-tape unit price applied to an order of 100 pieces; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D).
+
+</details>
+
+<details><summary><code>Same Sky CMEJ-0413-42-SMT-TR</code> — 1 × USD 0.3909 = USD 0.3909</summary>
+
+- Device id: `same_sky_cmej_0413_42_smt_tr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/CMEJ-0413-42-SMT-TR/10253447).
+
+</details>
+
+<details><summary><code>Same Sky SJ1-3515-SMT-TR</code> — 1 × USD 1.1166 = USD 1.1166</summary>
+
+- Device id: `same_sky_sj1_3515_smt_tr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/SJ1-3515-SMT-TR/659917).
 
 </details>
 
@@ -594,6 +648,33 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: JLCPCB PCBA-only in-stock-item quantity-100+ tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://jlcpcb.com/partdetail/SILICONLABS-SI4732_A10GSR/C2155558).
+
+</details>
+
+<details><summary><code>Sunlord MWSA0503S-2R2MT</code> — 1 × USD 0.5751 = USD 0.5751</summary>
+
+- Device id: `sunlord_mwsa0503s_2r2mt`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/shenzhen-sunlord-electronics-co-ltd/MWSA0503S-2R2MT/14120103).
+
+</details>
+
+<details><summary><code>Sunlord MWSA0503S-4R7MT</code> — 1 × USD 0.5751 = USD 0.5751</summary>
+
+- Device id: `sunlord_mwsa0503s_4r7mt`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/shenzhen-sunlord-electronics-co-ltd/MWSA0503S-4R7MT/14120288).
+
+</details>
+
+<details><summary><code>Sunlord WPN201612H2R2MT</code> — 1 × USD 0.0426 = USD 0.0426</summary>
+
+- Device id: `sunlord_wpn201612h2r2mt`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB assembly-parts quantity-100 tier; captive PCBA inventory; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://jlcpcb.com/partdetail/Sunlord-WPN201612H2R2MT/C97025).
 
 </details>
 
@@ -633,6 +714,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments CSD87313DMST</code> — 1 × USD 1.4735 = USD 1.4735</summary>
+
+- Device id: `ti_csd87313dmst`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/CSD87313DMST/7219023).
+
+</details>
+
 <details><summary><code>Texas Instruments MSPM0C1104SDGS20R</code> — 1 × USD 0.4523 = USD 0.4523</summary>
 
 - Device id: `ti_mspm0c1104_sdgs20r`.
@@ -660,12 +750,39 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>TCA9534APWR</code> — 2 × USD 1.0212 = USD 2.0424</summary>
+
+- Device id: `ti_tca9534a_pwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9534APWR/5004965).
+
+</details>
+
 <details><summary><code>TLV1824PWR</code> — 2 × USD 1.0518 = USD 2.1036</summary>
 
 - Device id: `ti_tlv1824_pwr`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TLV1824PWR/23028806).
+
+</details>
+
+<details><summary><code>Texas Instruments TLV9061IDBVR</code> — 2 × USD 0.3940 = USD 0.7880</summary>
+
+- Device id: `ti_tlv9061_idbvr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TLV9061IDBVR/9771970).
+
+</details>
+
+<details><summary><code>Texas Instruments TPD2EUSB30ADRTR</code> — 2 × USD 0.4219 = USD 0.8438</summary>
+
+- Device id: `ti_tpd2eusb30a_drtr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPD2EUSB30ADRTR/2520830).
 
 </details>
 
@@ -759,6 +876,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments TPS3839K33DBZR</code> — 2 × USD 0.3940 = USD 0.7880</summary>
+
+- Device id: `ti_tps3839k33_dbzr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS3839K33DBZR/3748986).
+
+</details>
+
 <details><summary><code>Texas Instruments TPS564252DRLR</code> — 3 × USD 0.2953 = USD 0.8859</summary>
 
 - Device id: `ti_tps564252_drlr`.
@@ -774,6 +900,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS629203DRLR/16516661).
+
+</details>
+
+<details><summary><code>Texas Instruments TS5A63157DCKR</code> — 2 × USD 0.2330 = USD 0.4660</summary>
+
+- Device id: `ti_ts5a63157_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; exact line was temporarily out of stock when checked; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TS5A63157DCKR/1216801).
 
 </details>
 
@@ -889,6 +1024,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 These entries are intentionally excluded from the partial subtotal until a comparable quantity-100 USD quote exists.
 
+<details><summary><code>C&K Y78B23214FP</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `ck_y78b23214fp`.
+- Scope: `base_product`; quantity `11`.
+- Reason: The exact authorized-distributor line is live, but the accessible table is regional AUD and skips directly from 25 to 250 pieces; the USD quantity-100 cost baseline requires a same-region quote rather than an FX conversion.
+- Checked: `2026-08-19`; [gate source](https://au.mouser.com/en/ProductDetail/CK/Y78B23214FP).
+
+</details>
+
 <details><summary><code>Ebyte E01-ML01IPX</code> — <code>quantity_100_rfq_required</code></summary>
 
 - Device id: `ebyte_e01_ml01ipx`.
@@ -922,6 +1066,15 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Scope: `base_product`; quantity `1`.
 - Reason: Published prices cover complete donor boards, not the standalone HMX035CTFT-001 LCM+CTP assembly; an exact quantity-100 supplier quote is required.
 - Checked: `2026-08-19`; [gate source](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf).
+
+</details>
+
+<details><summary><code>Sunlord MWSA0503S-3R3MT</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `sunlord_mwsa0503s_3r3mt`.
+- Scope: `base_product`; quantity `2`.
+- Reason: The exact assembly listing publishes only CNY tax-inclusive tiers while the USD cost contract forbids an unstated FX conversion; a same-currency quantity-100 quote is required.
+- Checked: `2026-08-19`; [gate source](https://www.jlc-smt.com/lcsc/detail/C408409.html).
 
 </details>
 

@@ -40,5 +40,5 @@
 
 `DEC-0106/BOM-0014/REV-0005BM` later extend this contract with explicit
 machine-readable gates for researched RFQ/retail-only gaps.
-`BOM-0017/REV-0005BQ` then advance current coverage to 61/187 lines / 623
+`BOM-0018/REV-0005BR` then advance current coverage to 76/187 lines / 643
 placements without changing these rules.

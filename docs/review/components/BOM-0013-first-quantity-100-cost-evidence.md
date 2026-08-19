@@ -71,5 +71,5 @@ Mechanical/interconnect:
 explicit RFQ/retail gates находятся в
 [`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md); текущий итог
 после третьей партии находится в
-[`BOM-0017`](BOM-0017-power-ui-rf-cost-evidence.md): 61/187 lines,
-623/857 placements и partial base subtotal USD 109.8573.
+[`BOM-0018`](BOM-0018-audio-power-mechanical-cost-evidence.md): 76/187 lines,
+643/857 placements и partial base subtotal USD 130.7216.
