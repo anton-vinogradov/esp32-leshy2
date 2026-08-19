@@ -659,7 +659,6 @@ def validate_sources(
                         )
             required_gap_ids = {
                 "rf_cable_assemblies",
-                "m5_connector_bodies",
                 "external_antenna_kit",
             }
             if required_gap_ids - missing_part_ids:
@@ -2028,6 +2027,7 @@ def render_target_principled_section(
             "cc": "многодиапазонный sub-GHz transceiver",
             "voice": "аналоговый VHF/UHF voice transceiver",
             "u214": "съёмный LoRa/GNSS Cap-модуль",
+            "u214_connector": "угловой боковой 14-контактный host Cap-Bus",
             "unit_connector": "защищённый разъём M5 Unit HY2.0-4P",
             "s3_external_rp_sma": "внешний RP-SMA порт S3 2,4 ГГц",
             "c5_external_rp_sma": "внешний RP-SMA порт C5 2,4/5 ГГц",
@@ -2146,6 +2146,7 @@ def render_target_principled_section(
             "cc": "multi-band sub-GHz transceiver",
             "voice": "analog VHF/UHF voice transceiver",
             "u214": "removable LoRa/GNSS Cap module",
+            "u214_connector": "right-angle side-entry 14-contact Cap-Bus host",
             "unit_connector": "protected M5 Unit HY2.0-4P connector",
             "s3_external_rp_sma": "external S3 2.4-GHz RP-SMA port",
             "c5_external_rp_sma": "external C5 2.4/5-GHz RP-SMA port",
@@ -2240,7 +2241,7 @@ def render_target_principled_section(
             labels["rp"],
             [
                 node("rp"), node("nrf0"), node("nrf1"), node("nrf2"),
-                node("cc"), node("voice"), node("u214"),
+                node("cc"), node("voice"), node("u214_connector"), node("u214"),
             ],
             [
                 '  RP <-->|"independent PIO0 SM0"| NRF0',
@@ -2248,7 +2249,8 @@ def render_target_principled_section(
                 '  RP <-->|"independent PIO0 SM2"| NRF2',
                 '  RP <-->|"independent PIO0 SM3"| CC',
                 '  RP <-->|"UART0 + direct PTT"| VOICE',
-                '  RP <-->|"PIO1 + UART1 + I²C0"| U214',
+                '  RP <-->|"PIO1 + UART1 + I²C0"| U214_CONNECTOR',
+                '  U214_CONNECTOR <-->|"2×7 · 2.54 mm · contacts 1…14"| U214',
             ],
         ),
         (
@@ -2548,7 +2550,7 @@ def render_public_interconnect(
         )
         rf_groups = (
             f"Радиодомен реального времени: `{mpn('rp')}`, три `{mpn('nrf0')}`, `{mpn('cc')}` и `{mpn('voice')}`.",
-            f"Внешние модули: съёмный `{mpn('u214')}` и независимый порт M5 Unit на точном `{mpn('unit_connector')}`.",
+            f"Внешние модули: съёмный `{mpn('u214')}` на точном боковом `{mpn('u214_connector')}` и независимый порт M5 Unit на точном `{mpn('unit_connector')}`.",
             f"Питание и основной USB-C: `{mpn('product_usb_connector')}`, защита `{mpn('product_usb_protector')}`, USB-PD `{mpn('pd_controller')}`, заряд, аккумуляторы и все преобразователи питания.",
             f"Выход звука: дифференциальный усилитель `{mpn('speaker_amp')}` и динамик `{mpn('speaker')}`.",
             "Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.",
@@ -2585,7 +2587,7 @@ def render_public_interconnect(
         )
         rf_groups = (
             f"Real-time radio domain: `{mpn('rp')}`, three `{mpn('nrf0')}`, `{mpn('cc')}` and `{mpn('voice')}`.",
-            f"External modules: removable `{mpn('u214')}` and an independent M5 Unit port on exact `{mpn('unit_connector')}`.",
+            f"External modules: removable `{mpn('u214')}` on exact side-entry `{mpn('u214_connector')}` and an independent M5 Unit port on exact `{mpn('unit_connector')}`.",
             f"Power and product USB-C: `{mpn('product_usb_connector')}`, `{mpn('product_usb_protector')}` protection, `{mpn('pd_controller')}` USB-PD, charger, cells and every rail converter.",
             f"Audio output: `{mpn('speaker_amp')}` differential amplifier and `{mpn('speaker')}` speaker.",
             "Rear controls: F1/F2, encoder, PTT, STOP and recessed RE-ARM; PTT connects locally to RP/voice.",
@@ -3045,7 +3047,7 @@ def _render_principled_pinout_bundle(
         return instance.replace("_", " ") + " evidence component"
 
     expansion_instance_names = (
-        "u214_i2c_iso", "u214_i2c_iso_bypass", "u214_i2c_host_sda_pullup",
+        "u214_connector", "u214_i2c_iso", "u214_i2c_iso_bypass", "u214_i2c_host_sda_pullup",
         "u214_i2c_host_scl_pullup", "u214_host_buffer_a", "u214_host_buffer_b",
         "u214_return_buffer", "u214_host_buffer_a_bypass",
         "u214_host_buffer_b_bypass", "u214_return_buffer_bypass",
@@ -3529,6 +3531,7 @@ def _render_principled_pinout_bundle(
         "  %% Voice-RF layout-only invisible spine: every box above is one physical device.",
         "  " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names),
         node("u214", "external LoRa/GNSS Cap module"),
+        node("u214_connector", "right-angle side-entry 14-contact Cap-Bus host socket"),
         node("u214_i2c_iso", "external I2C stuck-bus isolator"),
         node("u214_i2c_iso_bypass", "100-nF external-I2C-isolator bypass capacitor"),
         node("u214_i2c_host_sda_pullup", "2.2-kOhm U214 controller-side SDA pull-up"),
@@ -3667,7 +3670,7 @@ def _render_principled_pinout_bundle(
         "  C5 ~~~ " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names),
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
-        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_SMA ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT_CONNECTOR ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
+        "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_SMA ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT_CONNECTOR ~~~ U214_CONNECTOR ~~~ U214 ~~~ PTT_SWITCH ~~~ STOP_SWITCH ~~~ REARM_SWITCH ~~~ STOP_PULLUP ~~~ STOP_FILTER_CAP ~~~ REARM_PULLUP ~~~ REARM_FILTER_CAP ~~~ SAFETY_CONTROL_ESD",
         "  SAFETY_CONTROL_ESD ~~~ STOP_LOOP ~~~ REARM_RAW ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFE_CONDITIONER ~~~ SAFE_POR_OR ~~~ SAFE_LATCH",
         "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ STOP_LED_SERIES ~~~ STOP_LED",
         "  STOP_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
@@ -3819,7 +3822,7 @@ def _render_principled_pinout_bundle(
         "  SAFE_GATE_B -->|\"EN\"| VOICE_PG_BASE_RES --> VOICE_PG_QUALIFIER",
         "  VOICE_EFUSE -->|\"protected PG\"| VOICE_PG_QUALIFIER -->|\"qualified open collector\"| SLOW_IO",
         "  NVDC_CHARGER -->|\"SYS\"| EXT_BUCK --> EXT_INDUCTOR",
-        "  EXT_INDUCTOR --> EXT_EFUSE -->|\"protected U214 5.0 V\"| U214",
+        "  EXT_INDUCTOR --> EXT_EFUSE -->|\"protected U214 5.0 V\"| U214_CONNECTOR --> U214",
         "  EXT_INDUCTOR --> UNIT_EFUSE -->|\"protected native-Unit 5.0 V\"| UNIT_CONNECTOR",
         "  NVDC_CHARGER -->|\"SYS local bulk\"| EXT_BUCK_INPUT_CAP",
         "  NVDC_CHARGER -->|\"SYS local HF\"| EXT_BUCK_HF_INPUT_CAP",
@@ -3994,14 +3997,15 @@ def _render_principled_pinout_bundle(
         "  PTT_RAW --> ENCODER_PTT_ESD",
         "  PTT_RAW -->|\"direct GPIO21 through 1 kOhm; never in UI matrix\"| PTT_SERIES --> RP",
         "  ENCODER --> ENCODER_PTT_ESD",
-        f"  RP -->|\"PIO1/UART1 outputs: {contacts('rp', ('U214_HOST_',))}\"| U214_HOST_BUFFER_A --> U214",
-        "  RP --> U214_HOST_BUFFER_B --> U214",
-        "  U214 -->|\"BUSY/IRQ/GPS-TX/MISO\"| U214_RETURN_BUFFER --> RP",
+        f"  RP -->|\"PIO1/UART1 outputs: {contacts('rp', ('U214_HOST_',))}\"| U214_HOST_BUFFER_A --> U214_CONNECTOR --> U214",
+        "  RP --> U214_HOST_BUFFER_B --> U214_CONNECTOR",
+        "  U214 --> U214_CONNECTOR -->|\"BUSY/IRQ/GPS-TX/MISO\"| U214_RETURN_BUFFER --> RP",
         "  RP <-->|\"I²C0\"| U214_I2C_ISO",
-        "  U214_I2C_ISO <-->|\"isolated external I²C\"| U214",
-        "  U214_ESD_A -.->|\"I²C/RST/GPS-RX shunt protection\"| U214",
-        "  U214_ESD_B -.->|\"SCK/MOSI/NSS/BUSY shunt protection\"| U214",
-        "  U214_ESD_C -.->|\"IRQ/GPS-TX/MISO shunt protection\"| U214",
+        "  U214_I2C_ISO <-->|\"isolated external I²C\"| U214_CONNECTOR",
+        "  U214_CONNECTOR <-->|\"contacts 1..14\"| U214",
+        "  U214_ESD_A -.->|\"I²C/RST/GPS-RX shunt protection\"| U214_CONNECTOR",
+        "  U214_ESD_B -.->|\"SCK/MOSI/NSS/BUSY shunt protection\"| U214_CONNECTOR",
+        "  U214_ESD_C -.->|\"IRQ/GPS-TX/MISO shunt protection\"| U214_CONNECTOR",
         "  S3 <-->|\"GPIO7/GPIO8 profile signals\"| UNIT_SIGNAL_ISO <-->|\"isolated I²C/UART/GPIO\"| UNIT_CONNECTOR",
         "  UNIT_ESD -.->|\"two signal shunt clamps\"| UNIT_CONNECTOR",
         "  SLOW_IO -->|\"P17/P05 independent requests\"| EXT_REQUEST_OR --> SAFE_GATE_B",

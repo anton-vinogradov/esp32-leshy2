@@ -119,7 +119,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_ssw_107_02_s_d_ra", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -145,27 +145,6 @@
             "pass per-path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition"
           ],
           "evidence_refs": ["ANT-0001", "N24E-0001", "FND-0109"]
-        }
-      },
-      {
-        "id": "m5_connector_bodies",
-        "quantity": 1,
-        "scope": "base_product",
-        "role": "rear U214 Cap-Bus receptacle",
-        "blocker": "M5 does not publish the host-side Cap-Bus connector manufacturer order code; a received U214 mate and retention coupon are required",
-        "resolution_gate": {
-          "status": "received_mate_identification_and_retention_coupon_required",
-          "owner_stage": "G3 U214 dock physical closure before Cap-Bus connector BOM freeze",
-          "prerequisites": [
-            "receive a production U214, then measure Cap-Bus contact sex, pin section, exposed length, insertion depth and housing",
-            "freeze U214 rail/contact planes, 56-mm M2 retention stack and screw engagement"
-          ],
-          "acceptance": [
-            "name an exact current orderable host connector MPN and footprint; generic HDR-SMD_14P-P2.54 is insufficient",
-            "pass adjustable U214 dock coupon without pin bottoming, preload or screw-induced board bending over repeated cycles",
-            "attach Cap-Bus mounting hardware, quantity-100 cost and substitution disposition"
-          ],
-          "evidence_refs": ["MEC-0001", "FND-0069", "EXP-0001"]
         }
       },
       {
@@ -662,10 +641,10 @@
     "u214_signals": "three exact 74LVC126APW,118 bodies isolate five RP-to-Cap and four Cap-to-RP SPI/UART/control paths; every path has an exact 22-Ohm source series element. TCA4307DGKR with complete VCC/GND/bypass, controller-side pulls, EN and READY implements the separate I2C hot-swap/stuck-low boundary. Three TPD4E05U06DQAR arrays protect all eleven exposed signal contacts",
     "unit_signals": "one exact TXS0102DCUR, with both rails at protected 3V3_MAIN and OE held low until UNIT_READY, makes S3 GPIO7/GPIO8 a two-wire bidirectional I2C/UART/GPIO profile boundary with Ioff/VCC isolation. One TPD4E05U06DQAR protects the two connector signals; the remaining two array channels are no-connect. 1-Wire is a specimen HIL profile, not a paper-guaranteed consequence of generic GPIO support",
     "identity_and_hot_plug": "neither connector exposes a presence or identity contact. Unpowered insertion is the default. Firmware first admits an exact signed accessory manifest, powers only that branch, verifies branch READY and profile-specific identity/readback, and only then enables protocol traffic. Unknown, wrong-voltage, overcurrent, stuck-bus or externally powered behavior latches the branch off and requires a new explicit session",
-    "connector_truth": "U214 exact 14-contact numbering and 84x24x15.2-mm envelope come from the official product and V1.1 schematic; only its host receptacle remains MPN TBD pending received-U214 microscopy and a mating coupon. The independent native Unit port uses exact Seeed 1125R-SMT-4P / PCBA SKU 320110032 with the official M5 mating-view order GND, 5V, SIG0, SIG1; received-cable polarity, insertion and retention remain HIL gates",
+    "connector_truth": "U214 exact 14-contact numbering and 84x24x15.287-mm envelope come from the official product, dimension drawing and V1.1 schematic. The official end view places Cap-Bus on the narrow 84x15.287-mm face, so the rear-flat dock uses exact side-entry Samtec SSW-107-02-S-D-RA rather than a vertical socket. Its 2x7 count, 2.54-mm pitch, 0.635-mm square-post class and insertion range are paper-compatible; received-U214 pin section, exposed length, contact bottoming, retention and 56-mm screw/rail stack remain HIL. The independent native Unit port uses exact Seeed 1125R-SMT-4P / PCBA SKU 320110032 with the official M5 mating-view order GND, 5V, SIG0, SIG1; received-cable polarity, insertion and retention remain HIL gates",
     "high_throughput_boundary": "the rejected generic USB-host reservation is not revived. A future high-throughput RF/SDR accessory must first name a concrete device, bandwidth, power, legal and isolation profile; only that derived profile may reopen transport hardware",
-    "pin_and_cost_result": "P05 becomes UNIT_5V_REQ, so main slow I/O closes at 24 used / 0 reserved / 0 free; S3, C5 and RP GPIO maps do not change. Exact Unit connector adds USD 0.042 at quantity 100; first-pass incremental protection/isolation plus this connector is approximately USD 4.54-6.54 before the still-TBD Cap-Bus host receptacle",
-    "remaining_hil": ["received U214 V1.1 identity, exact Cap receptacle mating family and 84-mm installed mechanics", "received native HY2.0-4P cable polarity, insertion/retention and board-edge exit", "shared buck stability and thermal/current envelope with U214, U214 downstream Unit and native Unit at each admitted simultaneous load", "each eFuse current/OVLO/inrush/discharge/reverse-source/latch-off behavior", "TPS3808 threshold, delay, brownout and main-domain-off behavior", "all eleven U214 signal directions, SPI timing, GNSS UART continuity, I2C stuck-low recovery and connector ESD", "native I2C/UART/push-pull GPIO/open-drain and 1-Wire profiles through TXS0102, including external pulls and long-cable edge behavior", "unknown/wrong/miswired/hot-plug/external-power accessory fault injection", "U214 and each exact Unit profile active with every foreign signal group quiet plus maximum allowed system-plane traffic"]
+    "pin_and_cost_result": "P05 becomes UNIT_5V_REQ, so main slow I/O closes at 24 used / 0 reserved / 0 free; S3, C5 and RP GPIO maps do not change. Exact Unit and Cap-Bus host connectors add USD 2.652 at quantity 100; first-pass incremental protection/isolation plus both connectors is approximately USD 7.23-9.23",
+    "remaining_hil": ["received U214 V1.1 identity; verify its pin section and exposed length against SSW-107-02-S-D-RA, then prove no bottoming, preload or intermittent contact over repeated cycles", "freeze and prove the rear-flat U214 contact plane, 56-mm M2 retention stack, screw engagement and slide-in service clearance", "received native HY2.0-4P cable polarity, insertion/retention and board-edge exit", "shared buck stability and thermal/current envelope with U214, U214 downstream Unit and native Unit at each admitted simultaneous load", "each eFuse current/OVLO/inrush/discharge/reverse-source/latch-off behavior", "TPS3808 threshold, delay, brownout and main-domain-off behavior", "all eleven U214 signal directions, SPI timing, GNSS UART continuity, I2C stuck-low recovery and connector ESD", "native I2C/UART/push-pull GPIO/open-drain and 1-Wire profiles through TXS0102, including external pulls and long-cable edge behavior", "unknown/wrong/miswired/hot-plug/external-power accessory fault injection", "U214 and each exact Unit profile active with every foreign signal group quiet plus maximum allowed system-plane traffic"]
   },
   "service_recovery_contract": {
     "decision": "DEC-0099",
@@ -1265,6 +1244,7 @@
     "cc_external_sma": "gct_rfpc_sma31_fn_175_a",
     "voice_external_sma": "gct_rfpc_sma31_fn_175_a",
     "u214": "m5_u214",
+    "u214_connector": "samtec_ssw_107_02_s_d_ra",
     "u214_i2c_iso": "tca4307dgkr",
     "u214_i2c_iso_bypass": "tdk_c1005x7r1h104k050bb",
     "u214_i2c_host_sda_pullup": "yageo_rc0402fr_072k2l",
@@ -3022,8 +3002,10 @@
     {"from":"ext_pg_pullup.END_2","to":"ext_buck.PG","net":"EXT_5V_PG_N","safety":"10-kOhm draws at most about 0.33 mA when the open-drain PG is low, far below its 4-mA rating"},
     {"from":"ext_buck.PG","to":"ext_pg_qualifier.E","net":"EXT_5V_PG_N","safety":"the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain"},
     {"from":"ext_pg_qualifier.C","to":"abstract:power-current-thermal-fault","net":"EXT_5V_FAULT_QUAL_N","safety":"open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N"},
-    {"from":"ext_efuse.OUT","to":"u214.5V_IN","net":"5V_U214_PROTECTED","safety":"a U214-only true-reverse-blocking branch provides bounded inrush and active current limit"},
-    {"from":"u214.5V_OUT","to":"abstract:no-connect","net":"U214_5V_OUT_NC","safety":"the base is the only source in this profile; the cap output contact is not paralleled back into the protected rail"},
+    {"from":"ext_efuse.OUT","to":"u214_connector.PIN_7","net":"5V_U214_PROTECTED","safety":"a U214-only true-reverse-blocking branch reaches exact Cap-Bus host contact 7 with bounded inrush and active current limit"},
+    {"from":"u214_connector.PIN_7","to":"u214.5V_IN","net":"5V_U214_PROTECTED","safety":"SSW mating cavity 7 maps one-to-one to exact U214 5V_IN contact 7"},
+    {"from":"u214.5V_OUT","to":"u214_connector.PIN_5","net":"U214_5V_OUT_NC","safety":"exact U214 output contact 5 reaches only the matching host socket cavity"},
+    {"from":"u214_connector.PIN_5","to":"abstract:no-connect","net":"U214_5V_OUT_NC","safety":"the base is the only source in this profile; host pad 5 is not paralleled back into the protected rail"},
     {"from":"ext_efuse.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"U214 eFuse ground and exposed-pad return are local to the branch"},
     {"from":"ext_efuse.AUXOFF","to":"abstract:power-ground","net":"U214_EFUSE_AUXOFF_LOW","safety":"unused active-high fast-off input is fixed low and cannot float"},
     {"from":"ext_efuse.FLT","to":"abstract:power-current-thermal-fault","net":"U214_EFUSE_FAULT_N","safety":"active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N"},
@@ -3576,9 +3558,11 @@
     {"from":"u214_i2c_host_scl_pullup.END_2","to":"u214_i2c_iso.SCLIN","net":"U214_I2C_SCL_IN","safety":"controller-side clock remains defined independently of Cap power"},
     {"from":"u214_supervisor.RESET_N","to":"u214_i2c_iso.EN","net":"U214_READY","safety":"I2C segments connect only after protected Cap power has remained valid through the delay"},
     {"from":"u214_i2c_iso.SDAOUT","to":"u214_esd_a.D1_PLUS","net":"U214_I2C_SDA_OUT","safety":"low-capacitance connector ESD precedes the exact Cap contact"},
-    {"from":"u214_esd_a.D1_PLUS","to":"u214.SDA","net":"U214_I2C_SDA_OUT","safety":"Cap-side pull-up disclosed by the exact U214 assembly supplies only the powered external segment"},
+    {"from":"u214_esd_a.D1_PLUS","to":"u214_connector.PIN_4","net":"U214_I2C_SDA_OUT","safety":"connector ESD precedes exact Cap-Bus host contact 4"},
+    {"from":"u214_connector.PIN_4","to":"u214.SDA","net":"U214_I2C_SDA_OUT","safety":"SSW mating cavity 4 maps one-to-one to exact U214 SDA contact 4; the Cap-side pull-up supplies only the powered external segment"},
     {"from":"u214_i2c_iso.SCLOUT","to":"u214_esd_a.D1_MINUS","net":"U214_I2C_SCL_OUT","safety":"low-capacitance connector ESD protects the clock path"},
-    {"from":"u214_esd_a.D1_MINUS","to":"u214.SCL","net":"U214_I2C_SCL_OUT","safety":"TCA4307 stuck-low recovery keeps this external segment from stalling the host"},
+    {"from":"u214_esd_a.D1_MINUS","to":"u214_connector.PIN_3","net":"U214_I2C_SCL_OUT","safety":"connector ESD precedes exact Cap-Bus host contact 3"},
+    {"from":"u214_connector.PIN_3","to":"u214.SCL","net":"U214_I2C_SCL_OUT","safety":"SSW mating cavity 3 maps one-to-one to exact U214 SCL contact 3; TCA4307 stuck-low recovery keeps this segment from stalling the host"},
     {"from":"u214_i2c_iso.READY","to":"slow_io.P16","net":"U214_I2C_READY","safety":"read-only status; no safety function depends on firmware polling"},
 
     {"from":"abstract:3V3_MAIN","to":"u214_host_buffer_a.VCC","net":"3V3_MAIN","safety":"first host-to-Cap quad buffer uses the protected host domain and specified Ioff"},
@@ -3613,33 +3597,43 @@
     {"from":"u214_supervisor.RESET_N","to":"u214_return_buffer.4OE","net":"U214_READY","safety":"MISO return isolated before readiness"},
     {"from":"u214_host_buffer_a.1Y","to":"u214_series_rst.END_1","net":"U214_RST_BUFFERED","safety":"exact source series starts at the driving buffer"},
     {"from":"u214_series_rst.END_2","to":"u214_esd_a.D2_PLUS","net":"U214_RST_CONNECTOR","safety":"connector-side reset path is ESD protected"},
-    {"from":"u214_esd_a.D2_PLUS","to":"u214.LORA_RST","net":"U214_RST_CONNECTOR","safety":"exact Cap contact 8"},
+    {"from":"u214_esd_a.D2_PLUS","to":"u214_connector.PIN_8","net":"U214_RST_CONNECTOR","safety":"connector-side reset reaches exact host contact 8"},
+    {"from":"u214_connector.PIN_8","to":"u214.LORA_RST","net":"U214_RST_CONNECTOR","safety":"SSW mating cavity 8 maps one-to-one to exact U214 LoRa reset contact 8"},
     {"from":"u214_host_buffer_a.2Y","to":"u214_series_gps_rx.END_1","net":"U214_GPS_RX_BUFFERED","safety":"host UART TX source termination"},
     {"from":"u214_series_gps_rx.END_2","to":"u214_esd_a.D2_MINUS","net":"U214_GPS_RX_CONNECTOR","safety":"connector ESD for exact Cap GPS_RX contact"},
-    {"from":"u214_esd_a.D2_MINUS","to":"u214.GPS_RX","net":"U214_GPS_RX_CONNECTOR","safety":"exact Cap contact 2"},
+    {"from":"u214_esd_a.D2_MINUS","to":"u214_connector.PIN_2","net":"U214_GPS_RX_CONNECTOR","safety":"connector ESD precedes exact host contact 2"},
+    {"from":"u214_connector.PIN_2","to":"u214.GPS_RX","net":"U214_GPS_RX_CONNECTOR","safety":"SSW mating cavity 2 maps one-to-one to exact U214 GPS_RX contact 2"},
     {"from":"u214_host_buffer_a.3Y","to":"u214_series_sck.END_1","net":"U214_SCK_BUFFERED","safety":"SPI clock source termination"},
     {"from":"u214_series_sck.END_2","to":"u214_esd_b.D1_PLUS","net":"U214_SCK_CONNECTOR","safety":"low-capacitance clock ESD"},
-    {"from":"u214_esd_b.D1_PLUS","to":"u214.SCK","net":"U214_SCK_CONNECTOR","safety":"exact Cap contact 11"},
+    {"from":"u214_esd_b.D1_PLUS","to":"u214_connector.PIN_11","net":"U214_SCK_CONNECTOR","safety":"connector ESD precedes exact host contact 11"},
+    {"from":"u214_connector.PIN_11","to":"u214.SCK","net":"U214_SCK_CONNECTOR","safety":"SSW mating cavity 11 maps one-to-one to exact U214 SCK contact 11"},
     {"from":"u214_host_buffer_a.4Y","to":"u214_series_mosi.END_1","net":"U214_MOSI_BUFFERED","safety":"MOSI source termination"},
     {"from":"u214_series_mosi.END_2","to":"u214_esd_b.D1_MINUS","net":"U214_MOSI_CONNECTOR","safety":"low-capacitance MOSI ESD"},
-    {"from":"u214_esd_b.D1_MINUS","to":"u214.MOSI","net":"U214_MOSI_CONNECTOR","safety":"exact Cap contact 12"},
+    {"from":"u214_esd_b.D1_MINUS","to":"u214_connector.PIN_12","net":"U214_MOSI_CONNECTOR","safety":"connector ESD precedes exact host contact 12"},
+    {"from":"u214_connector.PIN_12","to":"u214.MOSI","net":"U214_MOSI_CONNECTOR","safety":"SSW mating cavity 12 maps one-to-one to exact U214 MOSI contact 12"},
     {"from":"u214_host_buffer_b.1Y","to":"u214_series_nss.END_1","net":"U214_NSS_BUFFERED","safety":"NSS source termination"},
     {"from":"u214_series_nss.END_2","to":"u214_esd_b.D2_PLUS","net":"U214_NSS_CONNECTOR","safety":"low-capacitance NSS ESD"},
-    {"from":"u214_esd_b.D2_PLUS","to":"u214.NSS","net":"U214_NSS_CONNECTOR","safety":"exact Cap contact 14"},
-    {"from":"u214.LORA_BUSY","to":"u214_esd_b.D2_MINUS","net":"U214_BUSY_CONNECTOR","safety":"exact Cap contact 10 receives connector ESD before the return buffer"},
+    {"from":"u214_esd_b.D2_PLUS","to":"u214_connector.PIN_14","net":"U214_NSS_CONNECTOR","safety":"connector ESD precedes exact host contact 14"},
+    {"from":"u214_connector.PIN_14","to":"u214.NSS","net":"U214_NSS_CONNECTOR","safety":"SSW mating cavity 14 maps one-to-one to exact U214 NSS contact 14"},
+    {"from":"u214.LORA_BUSY","to":"u214_connector.PIN_10","net":"U214_BUSY_CONNECTOR","safety":"exact U214 BUSY contact 10 maps one-to-one to the host socket"},
+    {"from":"u214_connector.PIN_10","to":"u214_esd_b.D2_MINUS","net":"U214_BUSY_CONNECTOR","safety":"host contact 10 receives connector ESD before the return buffer"},
     {"from":"u214_esd_b.D2_MINUS","to":"u214_return_buffer.1A","net":"U214_BUSY_CONNECTOR","safety":"powered Cap return cannot back-power RP"},
     {"from":"u214_return_buffer.1Y","to":"u214_series_busy.END_1","net":"U214_BUSY_BUFFERED","safety":"return source termination sits at the buffer"},
-    {"from":"u214.LORA_IRQ","to":"u214_esd_c.D1_PLUS","net":"U214_IRQ_CONNECTOR","safety":"exact Cap contact 9 connector ESD"},
+    {"from":"u214.LORA_IRQ","to":"u214_connector.PIN_9","net":"U214_IRQ_CONNECTOR","safety":"exact U214 IRQ contact 9 maps one-to-one to the host socket"},
+    {"from":"u214_connector.PIN_9","to":"u214_esd_c.D1_PLUS","net":"U214_IRQ_CONNECTOR","safety":"host contact 9 receives connector ESD before the return buffer"},
     {"from":"u214_esd_c.D1_PLUS","to":"u214_return_buffer.2A","net":"U214_IRQ_CONNECTOR","safety":"IRQ return isolated before RP"},
     {"from":"u214_return_buffer.2Y","to":"u214_series_irq.END_1","net":"U214_IRQ_BUFFERED","safety":"IRQ source termination"},
-    {"from":"u214.GPS_TX","to":"u214_esd_c.D1_MINUS","net":"U214_GPS_TX_CONNECTOR","safety":"exact Cap contact 1 connector ESD"},
+    {"from":"u214.GPS_TX","to":"u214_connector.PIN_1","net":"U214_GPS_TX_CONNECTOR","safety":"exact U214 GPS_TX contact 1 maps one-to-one to the host socket"},
+    {"from":"u214_connector.PIN_1","to":"u214_esd_c.D1_MINUS","net":"U214_GPS_TX_CONNECTOR","safety":"host contact 1 receives connector ESD before the return buffer"},
     {"from":"u214_esd_c.D1_MINUS","to":"u214_return_buffer.3A","net":"U214_GPS_TX_CONNECTOR","safety":"continuous GNSS return remains isolated when off"},
     {"from":"u214_return_buffer.3Y","to":"u214_series_gps_tx.END_1","net":"U214_GPS_TX_BUFFERED","safety":"GNSS TX source termination"},
-    {"from":"u214.MISO","to":"u214_esd_c.D2_PLUS","net":"U214_MISO_CONNECTOR","safety":"exact Cap contact 13 connector ESD"},
+    {"from":"u214.MISO","to":"u214_connector.PIN_13","net":"U214_MISO_CONNECTOR","safety":"exact U214 MISO contact 13 maps one-to-one to the host socket"},
+    {"from":"u214_connector.PIN_13","to":"u214_esd_c.D2_PLUS","net":"U214_MISO_CONNECTOR","safety":"host contact 13 receives connector ESD before the return buffer"},
     {"from":"u214_esd_c.D2_PLUS","to":"u214_return_buffer.4A","net":"U214_MISO_CONNECTOR","safety":"MISO return isolated when the Cap is off"},
     {"from":"u214_return_buffer.4Y","to":"u214_series_miso.END_1","net":"U214_MISO_BUFFERED","safety":"MISO source termination"},
     {"from":"u214_esd_c.D2_MINUS","to":"abstract:no-connect","net":"U214_ESD_SPARE_NC","safety":"one spare low-capacitance ESD channel is not tied to a signal"},
-    {"from":"u214.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"exact Cap ground contact 6 has a short return beside power and signal entry"},
+    {"from":"u214.GND","to":"u214_connector.PIN_6","net":"POWER_GROUND","safety":"exact U214 ground contact 6 maps one-to-one to the host socket"},
+    {"from":"u214_connector.PIN_6","to":"abstract:power-ground","net":"POWER_GROUND","safety":"host contact 6 has a short return beside power and signal entry"},
     {"from":"u214_esd_a.GND_3","to":"abstract:power-ground-dedicated-via","net":"U214_ESD_GROUND","safety":"first ESD ground contact receives a shortest entry-zone via"},
     {"from":"u214_esd_a.GND_8","to":"abstract:power-ground-dedicated-via","net":"U214_ESD_GROUND","safety":"second first-array ground contact receives a separate via"},
     {"from":"u214_esd_b.GND_3","to":"abstract:power-ground-dedicated-via","net":"U214_ESD_GROUND","safety":"second-array first ground via"},
@@ -4813,7 +4807,7 @@
     "DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. DEC-0098 closes the M5 expansion paper subblock with complete TCA4307, independent branch power/readiness and exact signal isolation. Same-rail startup, connector, hot-plug, reverse-source, profile and assembled-bus/no-back-power HIL remain open",
     "HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open",
     "DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; DEC-0093 consumes main slow-I/O P03/P04 for rail-off CC1101 band truth bits and DEC-0098 consumes final P05 for independent native-Unit power, while dedicated UI P7 remains a protected local fixture/growth pad. New direct endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL",
-    "DEC-0098 closes the M5 expansion paper electrical endpoint: U214 and native Unit have independent true-reverse-blocking branch power, branch-valid supervisors, complete U214 SPI/UART/control/I2C isolation, native two-signal TXS isolation and connector ESD. Physical connector MPN/specimen, reverse-source, hot-plug, profile identity, long-cable and coexistence HIL remain blocking; neither connector has a presence pin and generic USB host remains rejected",
+    "The M5 expansion endpoint uses independent true-reverse-blocking branch power, branch-valid supervisors, complete U214 SPI/UART/control/I2C isolation, native two-signal TXS isolation and connector ESD. The rear-flat U214 dock now has exact side-entry Samtec SSW-107-02-S-D-RA; received-Cap pin fit, retention mechanics, reverse-source, hot-plug, profile identity, long-cable and coexistence HIL remain blocking. Neither connector has a presence pin and generic USB host remains rejected",
     "C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback",
     "display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate",
     "PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve",

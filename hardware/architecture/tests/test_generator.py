@@ -127,8 +127,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(892, sum(line["quantity"] for line in lines))
-        self.assertEqual(195, len(lines))
+        self.assertEqual(893, sum(line["quantity"] for line in lines))
+        self.assertEqual(196, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -138,11 +138,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            183,
+            184,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            864,
+            865,
             sum(
                 line["quantity"]
                 for line in lines
@@ -188,7 +188,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertNotIn("external_sma_bodies", gap_quantities)
         self.assertEqual(5, gap_quantities["rf_cable_assemblies"])
-        self.assertEqual(1, gap_quantities["m5_connector_bodies"])
+        self.assertNotIn("m5_connector_bodies", gap_quantities)
         self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
         self.assertEqual(12, gap_quantities["external_antenna_kit"])
         physical_gates = {
@@ -198,21 +198,20 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(
             {
                 "rf_cable_assemblies": "received_mate_and_routed_length_coupon_required",
-                "m5_connector_bodies": "received_mate_identification_and_retention_coupon_required",
                 "external_antenna_kit": "profile_variant_bom_and_hil_required",
             },
             physical_gates,
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
+        self.assertIn("894", rendered)
         self.assertIn("893", rendered)
-        self.assertIn("892", rendered)
-        self.assertIn("195", rendered)
-        self.assertIn("194/195", rendered)
-        self.assertIn("195/195", rendered)
-        self.assertIn("183/195", rendered)
-        self.assertIn("864/892", rendered)
-        self.assertIn("USD 188.9649", rendered)
+        self.assertIn("196", rendered)
+        self.assertIn("195/196", rendered)
+        self.assertIn("196/196", rendered)
+        self.assertIn("184/196", rendered)
+        self.assertIn("865/893", rendered)
+        self.assertIn("USD 191.5749", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -223,7 +222,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("Physical purchase families with explicit resolution gates", rendered)
         self.assertIn("I8 paper procurement-feasibility scope reviewed", rendered)
         self.assertIn("received_mate_and_routed_length_coupon_required", rendered)
-        self.assertIn("received_mate_identification_and_retention_coupon_required", rendered)
+        self.assertIn("Samtec SSW-107-02-S-D-RA", rendered)
         self.assertIn("profile_variant_bom_and_hil_required", rendered)
         self.assertNotIn(
             "sitronix_st77922",
@@ -1523,7 +1522,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("voice_efuse.OUT", "voice.VCC", "VVOICE_4V"), routes)
         self.assertIn(("aon_efuse.OUT", "abstract:AON_SAFE_3V3", "AON_SAFE_3V3"), routes)
         self.assertIn(("main_efuse.OUT", "abstract:3V3_MAIN", "3V3_MAIN"), routes)
-        self.assertIn(("ext_efuse.OUT", "u214.5V_IN", "5V_U214_PROTECTED"), routes)
+        self.assertIn(
+            ("ext_efuse.OUT", "u214_connector.PIN_7", "5V_U214_PROTECTED"),
+            routes,
+        )
+        self.assertIn(
+            ("u214_connector.PIN_7", "u214.5V_IN", "5V_U214_PROTECTED"),
+            routes,
+        )
         self.assertIn(("ext_efuse.ILM", "ext_rilm.END_1", "EXT_EFUSE_ILM_SET"), routes)
         self.assertIn(("ext_efuse.DVDT", "ext_dvdt_cap.END_1", "EXT_EFUSE_DVDT"), routes)
         self.assertIn(("ext_efuse.ITIMER", "ext_itimer_cap.END_1", "EXT_EFUSE_ITIMER"), routes)
@@ -1607,7 +1613,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("TXS0102DCUR", contract["unit_signals"])
         self.assertIn("TCA4307DGKR", contract["u214_signals"])
         self.assertIn("presence or identity contact", contract["identity_and_hot_plug"])
-        self.assertIn("MPN TBD", contract["connector_truth"])
+        self.assertIn("Samtec SSW-107-02-S-D-RA", contract["connector_truth"])
+        self.assertIn("side-entry", contract["connector_truth"])
+        self.assertIn("received-U214", contract["connector_truth"])
         self.assertIn("concrete device", contract["high_throughput_boundary"])
 
         expected = {
@@ -1626,9 +1634,23 @@ class ArchitectureValidationTests(unittest.TestCase):
             "u214_esd_c": "ti_tpd4e05u06_dqar",
             "unit_esd": "ti_tpd4e05u06_dqar",
             "unit_connector": "seeed_1125r_smt_4p",
+            "u214_connector": "samtec_ssw_107_02_s_d_ra",
         }
         for instance, device_id in expected.items():
             self.assertEqual(device_id, candidate["instances"][instance])
+
+        connector = self.database["devices"]["samtec_ssw_107_02_s_d_ra"]
+        self.assertEqual("Samtec SSW-107-02-S-D-RA", connector["mpn"])
+        self.assertEqual([18.29, 8.51, 4.95], connector["dimensions_mm"])
+        for pin in range(1, 15):
+            self.assertEqual(
+                2,
+                sum(
+                    endpoint == f"u214_connector.PIN_{pin}"
+                    for route in candidate["fixed_routes"]
+                    for endpoint in (route["from"], route["to"])
+                ),
+            )
 
         routes = {
             (route["from"], route["to"], route["net"])

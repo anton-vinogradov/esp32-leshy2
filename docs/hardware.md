@@ -76,8 +76,9 @@ text input but cannot confirm dangerous actions.
 
 ## Expansion
 
-- The rear 14-contact dock accepts `M5Stack U214 Cap LoRa-1262`; the Cap sits
-  above the batteries and overhangs the enclosure by 4.5 mm on each side.
+- The rear 14-contact dock uses exact side-entry `Samtec SSW-107-02-S-D-RA`
+  and accepts `M5Stack U214 Cap LoRa-1262`. The Cap slides in the rear-board
+  plane above the batteries and overhangs the enclosure by 4.5 mm per side.
 - A separate exact `1125R-SMT-4P` right-angle M5 Unit receptacle provides a
   protected, switchable 5-V branch and two isolated signal lines for qualified
   GNSS, LoRa, NFC, iButton/1-Wire and other modules. Its keyed mating-view order
@@ -96,11 +97,11 @@ In one line below the display, labelled actual-transmit indicators cover `S3`, `
 `N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` and the aggregate `ANY TX`.
 The two Si4732 antenna inputs are receive-only.
 
-![Dimensioned external layout](images/current-clamshell.svg)
+![Dimensioned external layout](images/current-clamshell.svg?layout=3)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=2)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=3)
 
-![Dimensioned sandwich cross-section](images/sandwich-section.svg)
+![Dimensioned sandwich cross-section](images/sandwich-section.svg?layout=3)
 
 ## Power and service
 

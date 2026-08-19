@@ -14,7 +14,7 @@
 ## RF/power-плата
 
 - Радиодомен реального времени: `SC1512-A4`, три `Ebyte E01-ML01IPX`, `CC1101RGPR` и `NiceRF SA518`.
-- Внешние модули: съёмный `M5Stack U214 Cap LoRa-1262` и независимый порт M5 Unit на точном `1125R-SMT-4P`.
+- Внешние модули: съёмный `M5Stack U214 Cap LoRa-1262` на точном боковом `Samtec SSW-107-02-S-D-RA` и независимый порт M5 Unit на точном `1125R-SMT-4P`.
 - Питание и основной USB-C: `JAE DX07S016JA1R1500`, защита `Texas Instruments TPD4S201RUKR`, USB-PD `Texas Instruments TPS25751DREFR`, заряд, аккумуляторы и все преобразователи питания.
 - Выход звука: дифференциальный усилитель `Diodes Incorporated PAM8302AASCR` и динамик `PUI Audio AS02404PO`.
 - Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.

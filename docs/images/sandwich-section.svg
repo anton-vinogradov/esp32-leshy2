@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="720" viewBox="0 0 1450 720">
+<svg xmlns="http://www.w3.org/2000/svg" width="1650" height="720" viewBox="0 0 1650 720">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="30.0" y="34.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — dimensioned front-to-rear sandwich</text>
 <text x="30.0" y="58.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Depth uses exact registered part envelopes; enclosure walls and assembly tolerances remain reserves.</text>
 <text x="88.0" y="105.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FRONT</text>
-<text x="703.6" y="105.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#166534">REAR</text>
+<text x="881.0" y="105.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#166534">REAR</text>
 <rect x="120.0" y="125.0" width="18.0" height="330.0" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6 4"/>
 <rect x="138.0" y="149.0" width="120.0" height="282.0" rx="3" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
 <rect x="258.0" y="125.0" width="19.2" height="330.0" rx="1" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
@@ -12,12 +12,16 @@
 <rect x="409.2" y="125.0" width="19.2" height="330.0" rx="1" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
 <rect x="428.4" y="163.0" width="223.2" height="254.0" rx="18" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5"/>
 <rect x="651.6" y="125.0" width="18.0" height="330.0" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect x="669.6" y="153.0" width="183.4" height="96.0" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="669.6" y="167.0" width="59.4" height="34.0" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
 <text x="198.0" y="290.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
 <text x="198.0" y="307.0" font-family="sans-serif" font-size="9" font-weight="normal" text-anchor="middle" fill="#1d4ed8">10.0 mm</text>
 <text x="267.6" y="479.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#166534">UI/control PCB · 1.6 mm</text>
 <text x="418.8" y="499.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#c2410c">RF/power PCB · 1.6 mm</text>
 <text x="540.0" y="290.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#166534">2× 18650</text>
 <text x="540.0" y="308.0" font-family="sans-serif" font-size="9" font-weight="normal" text-anchor="middle" fill="#166534">Ø18.6 mm</text>
+<text x="761.3" y="233.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#9a3412">U214 · 15.287 mm</text>
+<text x="699.3" y="190.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#075985">SSW · 4.95</text>
 <rect x="277.2" y="167.0" width="39.6" height="52.0" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
 <text x="297.0" y="195.0" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#991b1b">C5 3.3</text>
 <rect x="385.2" y="241.0" width="24.0" height="52.0" rx="2" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
@@ -35,20 +39,22 @@
 <text x="88.0" y="149.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#dc2626">touch/view</text>
 <path d="M643.6 145.0 L706.6 145.0" stroke="#dc2626" stroke-width="1.7" marker-end="url(#arrow)"/>
 <text x="711.6" y="149.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="start" fill="#dc2626">cell insertion / rear controls</text>
-<text x="855.0" y="112.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What is physically represented</text>
-<text x="855.0" y="142.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• display assembly: HMX035CTFT-001 · 10.0-mm envelope</text>
-<text x="855.0" y="168.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• two 1.6-mm PCBs joined by the exact 11-mm FX8C pair</text>
-<text x="855.0" y="194.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• largest shown cavity load: PUI Audio AS02404PO · 4.5 mm</text>
-<text x="855.0" y="220.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• battery region: Keystone Electronics 1048P plus Ø18.6-mm cells</text>
-<text x="855.0" y="246.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• upper rear expansion: M5Stack U214 Cap LoRa-1262 · 15.2-mm envelope</text>
-<text x="855.0" y="292.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Interface directions</text>
-<text x="855.0" y="320.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">← front: touch/view and front labels</text>
-<text x="855.0" y="346.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">→ rear: batteries, U214, encoder, F1/F2, PTT, STOP, RE-ARM</text>
-<text x="855.0" y="372.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑ top: nine separately labelled SMA/RP-SMA antenna ports</text>
-<text x="855.0" y="398.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↓ bottom/sides: USB, microSD, microphone, audio and M5 Unit</text>
-<text x="855.0" y="444.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Clearance meaning</text>
-<text x="855.0" y="472.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The 11-mm value is the selected connector&#x27;s board-to-board height.</text>
-<text x="855.0" y="498.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Component placement uses real package depth; passives and copper are omitted.</text>
-<text x="855.0" y="524.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The enclosure reserve is intentionally not converted into a fake final thickness.</text>
-<text x="855.0" y="566.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned architecture projection — not a production enclosure drawing.</text>
+<text x="1040.0" y="112.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What is physically represented</text>
+<text x="1040.0" y="142.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• display assembly: HMX035CTFT-001 · 10.0-mm envelope</text>
+<text x="1040.0" y="168.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• two 1.6-mm PCBs joined by the exact 11-mm FX8C pair</text>
+<text x="1040.0" y="194.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• largest shown cavity load: PUI Audio AS02404PO · 4.5 mm</text>
+<text x="1040.0" y="220.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• battery region: Keystone Electronics 1048P plus Ø18.6-mm cells</text>
+<text x="1040.0" y="246.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• upper rear expansion: M5Stack U214 Cap LoRa-1262 · 15.287-mm envelope</text>
+<text x="1040.0" y="272.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• Cap-Bus host: Samtec SSW-107-02-S-D-RA · right-angle side-entry</text>
+<text x="1040.0" y="312.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Interface directions</text>
+<text x="1040.0" y="340.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">← front: touch/view and front labels</text>
+<text x="1040.0" y="366.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">→ rear: batteries, encoder, F1/F2, PTT, STOP and RE-ARM</text>
+<text x="1040.0" y="392.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑/↓ on rear face: U214 slides into/out of its side-entry socket</text>
+<text x="1040.0" y="418.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑ top: nine separately labelled SMA/RP-SMA antenna ports</text>
+<text x="1040.0" y="444.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↓ bottom/sides: USB, microSD, microphone, audio and M5 Unit</text>
+<text x="1040.0" y="486.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Clearance meaning</text>
+<text x="1040.0" y="514.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The 11-mm value is the selected connector&#x27;s board-to-board height.</text>
+<text x="1040.0" y="540.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Component placement uses real package depth; passives and copper are omitted.</text>
+<text x="1040.0" y="566.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The enclosure reserve is intentionally not converted into a fake final thickness.</text>
+<text x="1040.0" y="608.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned architecture projection — not a production enclosure drawing.</text>
 </svg>

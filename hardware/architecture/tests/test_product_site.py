@@ -56,6 +56,8 @@ class ProductSiteTests(unittest.TestCase):
             "Leshy2 — dimensioned external layout",
             "HMX035CTFT-001",
             "M5Stack U214",
+            "SSW-107-02-S-D-RA",
+            "mate ↑ toward socket · remove ↓",
             "Keystone 1048P",
             "single D-pad cap",
             "STOP",
@@ -112,8 +114,13 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertIsNotNone(bounds)
         self.assertGreaterEqual(float(bounds.group(2)) - float(bounds.group(1)), 24.0)
-        for path in ("README.md", "docs/hardware.md", "docs/hardware.ru.md"):
-            self.assertIn("internal-board-layout.svg?layout=2", self.read(path))
+        for path in (
+            "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
+        ):
+            page = self.read(path)
+            self.assertIn("current-clamshell.svg?layout=3", page)
+            self.assertIn("internal-board-layout.svg?layout=3", page)
+            self.assertIn("sandwich-section.svg?layout=3", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
@@ -124,6 +131,8 @@ class ProductSiteTests(unittest.TestCase):
             "AS02404PO",
             "Keystone Electronics 1048P",
             "M5Stack U214",
+            "Samtec SSW-107-02-S-D-RA",
+            "U214 slides into/out of its side-entry socket",
             "Dimensioned architecture projection",
         ):
             self.assertIn(token, layout)
@@ -147,6 +156,7 @@ class ProductSiteTests(unittest.TestCase):
                 "AEQ10410",
                 "JS102011SCQN",
                 "1125R-SMT-4P",
+                "SSW-107-02-S-D-RA",
             ):
                 self.assertIn(token, diagrams)
 

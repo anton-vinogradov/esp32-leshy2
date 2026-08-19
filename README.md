@@ -37,7 +37,7 @@ are powered down and placed into a verifiable quiet state.
 
 ### External faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=3)
 
 ### Inner board faces
 
@@ -46,11 +46,11 @@ and radio modules, speaker, microphone, ON/OFF switch, board-to-board
 connector, USB and every separate programming, reset and recovery button. A
 number inside an outline maps to the adjacent exact MPN and component role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=2)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=3)
 
 ### Sandwich cross-section
 
-![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg)
+![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=3)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
@@ -117,13 +117,15 @@ NRF1["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #1"]
 NRF2["Ebyte E01-ML01IPX<br/>full-function nRF24 radio #2"]
 CC["CC1101RGPR<br/>multi-band sub-GHz transceiver"]
 VOICE["NiceRF SA518<br/>analog VHF/UHF voice transceiver"]
+U214_CONNECTOR["Samtec SSW-107-02-S-D-RA<br/>right-angle side-entry 14-contact Cap-Bus host"]
 U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
   RP <-->|"independent PIO0 SM0"| NRF0
   RP <-->|"independent PIO0 SM1"| NRF1
   RP <-->|"independent PIO0 SM2"| NRF2
   RP <-->|"independent PIO0 SM3"| CC
   RP <-->|"UART0 + direct PTT"| VOICE
-  RP <-->|"PIO1 + UART1 + I²C0"| U214
+  RP <-->|"PIO1 + UART1 + I²C0"| U214_CONNECTOR
+  U214_CONNECTOR <-->|"2×7 · 2.54 mm · contacts 1…14"| U214
 ```
 
 ### Controls: from each physical switch to its owner

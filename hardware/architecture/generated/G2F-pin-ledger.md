@@ -57,7 +57,7 @@
 | `liteon_ltst_c190krkt` | `LTST-C190KRKT` | `verified_candidate` | `active` | [LTST-C190KRKT SMD LED datasheet BNS-OD-C131/A4](https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF) | same primary source |
 | `littelfuse_0451005_mrl` | `Littelfuse 0451005.MRL` | `verified_candidate` | `active` | [451/453 Nano2 surface-mount fuse datasheet current product data checked 2026-08-18](https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803) | same primary source |
 | `littelfuse_sesd0402x1un_0020_090` | `Littelfuse SESD0402X1UN-0020-090` | `verified_exact_cc_external_rf_esd` | `active_orderable` | [SESD ultra-low-capacitance discrete TVS datasheet current manufacturer document checked 2026-08-18](https://www.littelfuse.com/assetdocs/littelfuse-tvs-diode-array-sesd-ultra-low-capacitance-discrete-tvs-datasheet?assetguid=645e7b6b-8305-497f-b62b-24df676c444e) | same primary source |
-| `m5_u214` | `M5Stack U214 Cap LoRa-1262` | `verified_candidate` | `active` | [M5Stack Cap LoRa-1262 product documentation live product page](https://docs.m5stack.com/en/cap/Cap_LoRa-1262) | same primary source |
+| `m5_u214` | `M5Stack U214 Cap LoRa-1262` | `verified_candidate` | `active` | [M5Stack Cap LoRa-1262 product documentation and official model-size drawing live product page / U214-00 dimension drawing](https://docs.m5stack.com/en/cap/Cap_LoRa-1262) | same primary source |
 | `murata_blm18pg181sn1d` | `Murata BLM18PG181SN1D` | `verified_candidate` | `active_orderable` | [BLM18PG181SN1 product specification current manufacturer page checked 2026-08-18](https://www.murata.com/en-global/products/productdetail?cate=cgsubChipFerriBead&partno=BLM18PG181SN1%23) | same primary source |
 | `murata_gjm1555c1h100jb01d` | `Murata GJM1555C1H100JB01D` | `verified_exact_cc_matching_passive` | `active_orderable` | [Murata GJM high-frequency capacitor exact product data current exact product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H100JB01D) | same primary source |
 | `murata_gjm1555c1h101jb01d` | `Murata GJM1555C1H101JB01D` | `verified_exact_cc_rf_dc_block_passive` | `active_orderable` | [Murata GJM high-frequency capacitor exact product data current exact product data checked 2026-08-18](https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H101JB01D) | same primary source |
@@ -116,6 +116,7 @@
 | `same_sky_cmej_0413_42_smt_tr` | `Same Sky CMEJ-0413-42-SMT-TR` | `verified_candidate` | `active_orderable` | [CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet Rev. 1.04, September 2024](https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf) | same primary source |
 | `same_sky_sj1_3515_smt_tr` | `Same Sky SJ1-3515-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ1-351X-SMT Audio Jack datasheet Rev. 1.09, September 2024](https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf) | same primary source |
 | `samtec_ftsh_105_01_l_dv_k_p_tr` | `Samtec FTSH-105-01-L-DV-K-P-TR` | `verified_exact_three_domain_dbg10_header` | `active_orderable` | [Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint drawing revision FX; -105/-01/-L/-DV/-K/-P configuration](https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf) | same primary source |
+| `samtec_ssw_107_02_s_d_ra` | `Samtec SSW-107-02-S-D-RA` | `verified_exact_paper_fit_received_u214_mating_hil_open` | `active and manufacturer-orderable` | [Samtec exact product page and SSW series drawing SSW-107-02-S-D-RA / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL](https://www.samtec.com/products/ssw-107-02-s-d-ra) | same primary source |
 | `seeed_1125r_smt_4p` | `1125R-SMT-4P` | `verified_exact_paper_fit_received_cable_hil_open` | `active in Seeed Open Parts Library as PCBA SKU 320110032` | [Seeed 1125R-SMT-4P official manufacturer drawing NS-1125-W00010 Rev.A](https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf) | same primary source |
 | `sitronix_st77922` | `Sitronix ST77922` | `verified_exact_controller_inside_hmx035ctft_001` | `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly` | [ST77922 Single-Chip TFT Controller/Driver/Touch datasheet Preliminary 0.1, 2023-06](https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf) | same primary source |
 | `skyworks_si4732_a10_gsr` | `Si4732-A10-GSR` | `verified_exact_production_candidate` | `active_orderable` | [Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short 2021-09-13](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf) | same primary source |
@@ -1390,8 +1391,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `EXT_5V_PG_N` | `ext_pg_pullup.END_2` | `ext_buck.PG` | 10-kOhm draws at most about 0.33 mA when the open-drain PG is low, far below its 4-mA rating |
 | `EXT_5V_PG_N` | `ext_buck.PG` | `ext_pg_qualifier.E` | the open-drain PG emitter input is qualified by the same STOP-dominant enable request; PG is pulled up only inside the powered 3V3_MAIN diagnostic domain |
 | `EXT_5V_FAULT_QUAL_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
-| `5V_U214_PROTECTED` | `ext_efuse.OUT` | `u214.5V_IN` | a U214-only true-reverse-blocking branch provides bounded inrush and active current limit |
-| `U214_5V_OUT_NC` | `u214.5V_OUT` | `abstract:no-connect` | the base is the only source in this profile; the cap output contact is not paralleled back into the protected rail |
+| `5V_U214_PROTECTED` | `ext_efuse.OUT` | `u214_connector.PIN_7` | a U214-only true-reverse-blocking branch reaches exact Cap-Bus host contact 7 with bounded inrush and active current limit |
+| `5V_U214_PROTECTED` | `u214_connector.PIN_7` | `u214.5V_IN` | SSW mating cavity 7 maps one-to-one to exact U214 5V_IN contact 7 |
+| `U214_5V_OUT_NC` | `u214.5V_OUT` | `u214_connector.PIN_5` | exact U214 output contact 5 reaches only the matching host socket cavity |
+| `U214_5V_OUT_NC` | `u214_connector.PIN_5` | `abstract:no-connect` | the base is the only source in this profile; host pad 5 is not paralleled back into the protected rail |
 | `POWER_GROUND` | `ext_efuse.GND` | `abstract:power-ground` | U214 eFuse ground and exposed-pad return are local to the branch |
 | `U214_EFUSE_AUXOFF_LOW` | `ext_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low and cannot float |
 | `U214_EFUSE_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N |
@@ -1943,9 +1946,11 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `U214_I2C_SCL_IN` | `u214_i2c_host_scl_pullup.END_2` | `u214_i2c_iso.SCLIN` | controller-side clock remains defined independently of Cap power |
 | `U214_READY` | `u214_supervisor.RESET_N` | `u214_i2c_iso.EN` | I2C segments connect only after protected Cap power has remained valid through the delay |
 | `U214_I2C_SDA_OUT` | `u214_i2c_iso.SDAOUT` | `u214_esd_a.D1_PLUS` | low-capacitance connector ESD precedes the exact Cap contact |
-| `U214_I2C_SDA_OUT` | `u214_esd_a.D1_PLUS` | `u214.SDA` | Cap-side pull-up disclosed by the exact U214 assembly supplies only the powered external segment |
+| `U214_I2C_SDA_OUT` | `u214_esd_a.D1_PLUS` | `u214_connector.PIN_4` | connector ESD precedes exact Cap-Bus host contact 4 |
+| `U214_I2C_SDA_OUT` | `u214_connector.PIN_4` | `u214.SDA` | SSW mating cavity 4 maps one-to-one to exact U214 SDA contact 4; the Cap-side pull-up supplies only the powered external segment |
 | `U214_I2C_SCL_OUT` | `u214_i2c_iso.SCLOUT` | `u214_esd_a.D1_MINUS` | low-capacitance connector ESD protects the clock path |
-| `U214_I2C_SCL_OUT` | `u214_esd_a.D1_MINUS` | `u214.SCL` | TCA4307 stuck-low recovery keeps this external segment from stalling the host |
+| `U214_I2C_SCL_OUT` | `u214_esd_a.D1_MINUS` | `u214_connector.PIN_3` | connector ESD precedes exact Cap-Bus host contact 3 |
+| `U214_I2C_SCL_OUT` | `u214_connector.PIN_3` | `u214.SCL` | SSW mating cavity 3 maps one-to-one to exact U214 SCL contact 3; TCA4307 stuck-low recovery keeps this segment from stalling the host |
 | `U214_I2C_READY` | `u214_i2c_iso.READY` | `slow_io.P16` | read-only status; no safety function depends on firmware polling |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_host_buffer_a.VCC` | first host-to-Cap quad buffer uses the protected host domain and specified Ioff |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `u214_host_buffer_b.VCC` | second host-to-Cap quad buffer uses the protected host domain and specified Ioff |
@@ -1979,33 +1984,43 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `U214_READY` | `u214_supervisor.RESET_N` | `u214_return_buffer.4OE` | MISO return isolated before readiness |
 | `U214_RST_BUFFERED` | `u214_host_buffer_a.1Y` | `u214_series_rst.END_1` | exact source series starts at the driving buffer |
 | `U214_RST_CONNECTOR` | `u214_series_rst.END_2` | `u214_esd_a.D2_PLUS` | connector-side reset path is ESD protected |
-| `U214_RST_CONNECTOR` | `u214_esd_a.D2_PLUS` | `u214.LORA_RST` | exact Cap contact 8 |
+| `U214_RST_CONNECTOR` | `u214_esd_a.D2_PLUS` | `u214_connector.PIN_8` | connector-side reset reaches exact host contact 8 |
+| `U214_RST_CONNECTOR` | `u214_connector.PIN_8` | `u214.LORA_RST` | SSW mating cavity 8 maps one-to-one to exact U214 LoRa reset contact 8 |
 | `U214_GPS_RX_BUFFERED` | `u214_host_buffer_a.2Y` | `u214_series_gps_rx.END_1` | host UART TX source termination |
 | `U214_GPS_RX_CONNECTOR` | `u214_series_gps_rx.END_2` | `u214_esd_a.D2_MINUS` | connector ESD for exact Cap GPS_RX contact |
-| `U214_GPS_RX_CONNECTOR` | `u214_esd_a.D2_MINUS` | `u214.GPS_RX` | exact Cap contact 2 |
+| `U214_GPS_RX_CONNECTOR` | `u214_esd_a.D2_MINUS` | `u214_connector.PIN_2` | connector ESD precedes exact host contact 2 |
+| `U214_GPS_RX_CONNECTOR` | `u214_connector.PIN_2` | `u214.GPS_RX` | SSW mating cavity 2 maps one-to-one to exact U214 GPS_RX contact 2 |
 | `U214_SCK_BUFFERED` | `u214_host_buffer_a.3Y` | `u214_series_sck.END_1` | SPI clock source termination |
 | `U214_SCK_CONNECTOR` | `u214_series_sck.END_2` | `u214_esd_b.D1_PLUS` | low-capacitance clock ESD |
-| `U214_SCK_CONNECTOR` | `u214_esd_b.D1_PLUS` | `u214.SCK` | exact Cap contact 11 |
+| `U214_SCK_CONNECTOR` | `u214_esd_b.D1_PLUS` | `u214_connector.PIN_11` | connector ESD precedes exact host contact 11 |
+| `U214_SCK_CONNECTOR` | `u214_connector.PIN_11` | `u214.SCK` | SSW mating cavity 11 maps one-to-one to exact U214 SCK contact 11 |
 | `U214_MOSI_BUFFERED` | `u214_host_buffer_a.4Y` | `u214_series_mosi.END_1` | MOSI source termination |
 | `U214_MOSI_CONNECTOR` | `u214_series_mosi.END_2` | `u214_esd_b.D1_MINUS` | low-capacitance MOSI ESD |
-| `U214_MOSI_CONNECTOR` | `u214_esd_b.D1_MINUS` | `u214.MOSI` | exact Cap contact 12 |
+| `U214_MOSI_CONNECTOR` | `u214_esd_b.D1_MINUS` | `u214_connector.PIN_12` | connector ESD precedes exact host contact 12 |
+| `U214_MOSI_CONNECTOR` | `u214_connector.PIN_12` | `u214.MOSI` | SSW mating cavity 12 maps one-to-one to exact U214 MOSI contact 12 |
 | `U214_NSS_BUFFERED` | `u214_host_buffer_b.1Y` | `u214_series_nss.END_1` | NSS source termination |
 | `U214_NSS_CONNECTOR` | `u214_series_nss.END_2` | `u214_esd_b.D2_PLUS` | low-capacitance NSS ESD |
-| `U214_NSS_CONNECTOR` | `u214_esd_b.D2_PLUS` | `u214.NSS` | exact Cap contact 14 |
-| `U214_BUSY_CONNECTOR` | `u214.LORA_BUSY` | `u214_esd_b.D2_MINUS` | exact Cap contact 10 receives connector ESD before the return buffer |
+| `U214_NSS_CONNECTOR` | `u214_esd_b.D2_PLUS` | `u214_connector.PIN_14` | connector ESD precedes exact host contact 14 |
+| `U214_NSS_CONNECTOR` | `u214_connector.PIN_14` | `u214.NSS` | SSW mating cavity 14 maps one-to-one to exact U214 NSS contact 14 |
+| `U214_BUSY_CONNECTOR` | `u214.LORA_BUSY` | `u214_connector.PIN_10` | exact U214 BUSY contact 10 maps one-to-one to the host socket |
+| `U214_BUSY_CONNECTOR` | `u214_connector.PIN_10` | `u214_esd_b.D2_MINUS` | host contact 10 receives connector ESD before the return buffer |
 | `U214_BUSY_CONNECTOR` | `u214_esd_b.D2_MINUS` | `u214_return_buffer.1A` | powered Cap return cannot back-power RP |
 | `U214_BUSY_BUFFERED` | `u214_return_buffer.1Y` | `u214_series_busy.END_1` | return source termination sits at the buffer |
-| `U214_IRQ_CONNECTOR` | `u214.LORA_IRQ` | `u214_esd_c.D1_PLUS` | exact Cap contact 9 connector ESD |
+| `U214_IRQ_CONNECTOR` | `u214.LORA_IRQ` | `u214_connector.PIN_9` | exact U214 IRQ contact 9 maps one-to-one to the host socket |
+| `U214_IRQ_CONNECTOR` | `u214_connector.PIN_9` | `u214_esd_c.D1_PLUS` | host contact 9 receives connector ESD before the return buffer |
 | `U214_IRQ_CONNECTOR` | `u214_esd_c.D1_PLUS` | `u214_return_buffer.2A` | IRQ return isolated before RP |
 | `U214_IRQ_BUFFERED` | `u214_return_buffer.2Y` | `u214_series_irq.END_1` | IRQ source termination |
-| `U214_GPS_TX_CONNECTOR` | `u214.GPS_TX` | `u214_esd_c.D1_MINUS` | exact Cap contact 1 connector ESD |
+| `U214_GPS_TX_CONNECTOR` | `u214.GPS_TX` | `u214_connector.PIN_1` | exact U214 GPS_TX contact 1 maps one-to-one to the host socket |
+| `U214_GPS_TX_CONNECTOR` | `u214_connector.PIN_1` | `u214_esd_c.D1_MINUS` | host contact 1 receives connector ESD before the return buffer |
 | `U214_GPS_TX_CONNECTOR` | `u214_esd_c.D1_MINUS` | `u214_return_buffer.3A` | continuous GNSS return remains isolated when off |
 | `U214_GPS_TX_BUFFERED` | `u214_return_buffer.3Y` | `u214_series_gps_tx.END_1` | GNSS TX source termination |
-| `U214_MISO_CONNECTOR` | `u214.MISO` | `u214_esd_c.D2_PLUS` | exact Cap contact 13 connector ESD |
+| `U214_MISO_CONNECTOR` | `u214.MISO` | `u214_connector.PIN_13` | exact U214 MISO contact 13 maps one-to-one to the host socket |
+| `U214_MISO_CONNECTOR` | `u214_connector.PIN_13` | `u214_esd_c.D2_PLUS` | host contact 13 receives connector ESD before the return buffer |
 | `U214_MISO_CONNECTOR` | `u214_esd_c.D2_PLUS` | `u214_return_buffer.4A` | MISO return isolated when the Cap is off |
 | `U214_MISO_BUFFERED` | `u214_return_buffer.4Y` | `u214_series_miso.END_1` | MISO source termination |
 | `U214_ESD_SPARE_NC` | `u214_esd_c.D2_MINUS` | `abstract:no-connect` | one spare low-capacitance ESD channel is not tied to a signal |
-| `POWER_GROUND` | `u214.GND` | `abstract:power-ground` | exact Cap ground contact 6 has a short return beside power and signal entry |
+| `POWER_GROUND` | `u214.GND` | `u214_connector.PIN_6` | exact U214 ground contact 6 maps one-to-one to the host socket |
+| `POWER_GROUND` | `u214_connector.PIN_6` | `abstract:power-ground` | host contact 6 has a short return beside power and signal entry |
 | `U214_ESD_GROUND` | `u214_esd_a.GND_3` | `abstract:power-ground-dedicated-via` | first ESD ground contact receives a shortest entry-zone via |
 | `U214_ESD_GROUND` | `u214_esd_a.GND_8` | `abstract:power-ground-dedicated-via` | second first-array ground contact receives a separate via |
 | `U214_ESD_GROUND` | `u214_esd_b.GND_3` | `abstract:power-ground-dedicated-via` | second-array first ground via |
@@ -3190,6 +3205,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `nrf2_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `cc_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `voice_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
+- `u214_connector` uses `Samtec SSW-107-02-S-D-RA` as `verified_exact_paper_fit_received_u214_mating_hil_open`, not an accepted production choice.
+- `u214_connector` lifecycle: `active and manufacturer-orderable`.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
 - `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_a` lifecycle: `production_active_orderable`.
@@ -3582,7 +3599,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. DEC-0098 closes the M5 expansion paper subblock with complete TCA4307, independent branch power/readiness and exact signal isolation. Same-rail startup, connector, hot-plug, reverse-source, profile and assembled-bus/no-back-power HIL remain open
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open
 - DEC-0086 consumes the former free S3 GPIO47 together with GPIO39 for direct PCNT0 encoder phases, so S3 and RP retain no free GPIO and C5 retains one; DEC-0093 consumes main slow-I/O P03/P04 for rail-off CC1101 band truth bits and DEC-0098 consumes final P05 for independent native-Unit power, while dedicated UI P7 remains a protected local fixture/growth pad. New direct endpoints require an explicit remap and repeated review; exact ordinary/PTT/STOP/RE-ARM actuator mechanics and control HIL remain open, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
-- DEC-0098 closes the M5 expansion paper electrical endpoint: U214 and native Unit have independent true-reverse-blocking branch power, branch-valid supervisors, complete U214 SPI/UART/control/I2C isolation, native two-signal TXS isolation and connector ESD. Physical connector MPN/specimen, reverse-source, hot-plug, profile identity, long-cable and coexistence HIL remain blocking; neither connector has a presence pin and generic USB host remains rejected
+- The M5 expansion endpoint uses independent true-reverse-blocking branch power, branch-valid supervisors, complete U214 SPI/UART/control/I2C isolation, native two-signal TXS isolation and connector ESD. The rear-flat U214 dock now has exact side-entry Samtec SSW-107-02-S-D-RA; received-Cap pin fit, retention mechanics, reverse-source, hot-plug, profile identity, long-cable and coexistence HIL remain blocking. Neither connector has a presence pin and generic USB host remains rejected
 - C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate
 - PIO instruction memory, DMA arbitration latency and SRAM-bank contention remain executable firmware/HIL gates even though the state-machine/channel capacity arithmetic closes with explicit reserve

@@ -1119,10 +1119,10 @@
       "kind": "external_cap",
       "qualification": "verified_candidate",
       "lifecycle": "active",
-      "dimensions_mm": [84.0, 24.0, 15.2],
+      "dimensions_mm": [84.0, 24.0, 15.287],
       "source": {
-        "document": "M5Stack Cap LoRa-1262 product documentation",
-        "version": "live product page",
+        "document": "M5Stack Cap LoRa-1262 product documentation and official model-size drawing",
+        "version": "live product page / U214-00 dimension drawing",
         "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
         "checked": "2026-08-17"
       },
@@ -1149,6 +1149,65 @@
         "LORA_IRQ": {"physical": "9", "role": "signal"}, "LORA_BUSY": {"physical": "10", "role": "signal"},
         "SCK": {"physical": "11", "role": "signal"}, "MOSI": {"physical": "12", "role": "signal"},
         "MISO": {"physical": "13", "role": "signal"}, "NSS": {"physical": "14", "role": "signal"}
+      }
+    },
+    "samtec_ssw_107_02_s_d_ra": {
+      "mpn": "Samtec SSW-107-02-S-D-RA",
+      "kind": "14_contact_2x7_2_54mm_right_angle_through_hole_socket",
+      "qualification": "verified_exact_paper_fit_received_u214_mating_hil_open",
+      "lifecycle": "active and manufacturer-orderable",
+      "dimensions_mm": [18.29, 8.51, 4.95],
+      "source": {
+        "document": "Samtec exact product page and SSW series drawing",
+        "version": "SSW-107-02-S-D-RA / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL",
+        "url": "https://www.samtec.com/products/ssw-107-02-s-d-ra",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "Samtec exact-MPN manufacturer stock page; 1132 shown as ships tomorrow",
+        "url": "https://www.samtec.com/products/ssw-107-02-s-d-ra",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 2.61,
+        "price_break": "Samtec OEM quantity-100 tier",
+        "source": {
+          "document": "Samtec exact-MPN published OEM price table",
+          "url": "https://www.samtec.com/products/ssw-107-02-s-d-ra",
+          "checked": "2026-08-19"
+        }
+      },
+      "programmable": false,
+      "mechanical_contract": {
+        "positions": 14,
+        "rows": 2,
+        "positions_per_row": 7,
+        "pitch_mm": 2.54,
+        "orientation": "right-angle side-entry socket with through-hole solder tails",
+        "nominal_body_length_mm": 18.29,
+        "registered_plan_depth_mm": 8.51,
+        "double_row_body_height_mm": 4.95,
+        "accepted_square_post_mm": 0.635,
+        "published_insertion_depth_mm": [3.68, 6.35],
+        "u214_fit_status": "contact count, pitch, sex and required side-entry axis are paper-compatible; received U214 pin section, exposed length, bottoming and repeated-cycle retention remain HIL"
+      },
+      "contacts": {
+        "PIN_1": {"physical": "mating cavity / board pad 1", "role": "signal"},
+        "PIN_2": {"physical": "mating cavity / board pad 2", "role": "signal"},
+        "PIN_3": {"physical": "mating cavity / board pad 3", "role": "signal"},
+        "PIN_4": {"physical": "mating cavity / board pad 4", "role": "signal"},
+        "PIN_5": {"physical": "mating cavity / board pad 5", "role": "power"},
+        "PIN_6": {"physical": "mating cavity / board pad 6", "role": "power"},
+        "PIN_7": {"physical": "mating cavity / board pad 7", "role": "power"},
+        "PIN_8": {"physical": "mating cavity / board pad 8", "role": "signal"},
+        "PIN_9": {"physical": "mating cavity / board pad 9", "role": "signal"},
+        "PIN_10": {"physical": "mating cavity / board pad 10", "role": "signal"},
+        "PIN_11": {"physical": "mating cavity / board pad 11", "role": "signal"},
+        "PIN_12": {"physical": "mating cavity / board pad 12", "role": "signal"},
+        "PIN_13": {"physical": "mating cavity / board pad 13", "role": "signal"},
+        "PIN_14": {"physical": "mating cavity / board pad 14", "role": "signal"}
       }
     },
     "seeed_1125r_smt_4p": {
