@@ -14,7 +14,11 @@
 <rect x="428.4" y="217.4" width="248.4" height="189.2" rx="18" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
 <rect x="441.0" y="239.4" width="223.2" height="143.0" rx="18" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
 </g>
-<rect x="676.8" y="125.0" width="18.0" height="330.0" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<g id="rear-open-frame" data-continuous-battery-lid="false">
+<rect x="676.8" y="125.0" width="18.0" height="37.4" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect x="676.8" y="215.2" width="18.0" height="2.2" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect x="676.8" y="406.6" width="18.0" height="48.4" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="6 4"/>
+</g>
 <g id="u214-zone" data-plan-y-mm="17..41">
 <rect x="694.8" y="162.4" width="183.4" height="52.8" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
 <rect x="694.8" y="183.4" width="102.1" height="10.9" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5"/>
@@ -25,6 +29,7 @@
 <text x="418.8" y="499.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#c2410c">RF/power PCB · 1.6 mm</text>
 <text x="552.6" y="304.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#166534">1048P + 2× 18650</text>
 <text x="552.6" y="322.0" font-family="sans-serif" font-size="8.5" font-weight="normal" text-anchor="middle" fill="#166534">installed depth 20.7 mm</text>
+<text x="700.8" y="399.6" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="start" fill="#166534">open rear frame — no battery lid</text>
 <text x="873.2" y="192.8" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="end" fill="#9a3412">U214 · 15.287 mm</text>
 <text x="745.9" y="191.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#075985">2×7</text>
 <text x="878.2" y="228.2" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="end" fill="#9a3412">separate upper dock</text>
@@ -54,13 +59,13 @@
 <text x="1040.0" y="272.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• Cap-Bus host: Samtec SSW-107-02-S-D · vertical on raised rail</text>
 <text x="1040.0" y="312.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Interface directions</text>
 <text x="1040.0" y="340.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">← front: touch/view and front labels</text>
-<text x="1040.0" y="366.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">→ rear: batteries, encoder, F1/F2, PTT, STOP and RE-ARM</text>
+<text x="1040.0" y="366.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">→ rear: open battery holder; controls sit beside it on the same PCB face</text>
 <text x="1040.0" y="392.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">⊗/⊙ on rear face: U214 presses onto / lifts from the vertical socket</text>
 <text x="1040.0" y="418.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑ top: nine separately labelled SMA/RP-SMA antenna ports</text>
 <text x="1040.0" y="444.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">bottom/sides: USB, microSD, microphone port, headphones and M5 Unit</text>
 <text x="1040.0" y="486.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Clearance meaning</text>
 <text x="1040.0" y="514.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The 11-mm value is the selected connector&#x27;s board-to-board height.</text>
 <text x="1040.0" y="540.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Component placement uses real package depth; passives and copper are omitted.</text>
-<text x="1040.0" y="566.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The enclosure reserve is intentionally not converted into a fake final thickness.</text>
+<text x="1040.0" y="566.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The dashed rear reserve is a perimeter frame, not a continuous battery lid.</text>
 <text x="1040.0" y="608.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned architecture projection — not a production enclosure drawing.</text>
 </svg>

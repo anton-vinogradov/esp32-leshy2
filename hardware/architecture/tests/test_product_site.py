@@ -155,8 +155,10 @@ class ProductSiteTests(unittest.TestCase):
             "U214 presses onto / lifts from the vertical socket",
             'id="u214-zone" data-plan-y-mm="17..41"',
             'id="battery-zone" data-plan-y-mm="42..128"',
+            'id="rear-open-frame" data-continuous-battery-lid="false"',
             "separate upper dock",
             "1048P + 2× 18650",
+            "open rear frame — no battery lid",
             "Dimensioned architecture projection",
         ):
             self.assertIn(token, layout)

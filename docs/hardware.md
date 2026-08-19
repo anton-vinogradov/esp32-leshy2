@@ -74,6 +74,13 @@ surround the rear battery; the encoder sits above F1/F2. The visible `PTT`,
 normally-closed safety switch below. A phone may provide occasional long-form
 text input but cannot confirm dangerous actions.
 
+The battery holder and rear controls mount directly on the external face of the
+RF/power PCB. There is no continuous rear lid over the holder: cells insert
+directly into the open `Keystone 1048P`. `F1/F2` sit to the holder's left and
+`PTT/STOP` to its right, so their actuation axes do not cross the battery
+envelope. Each dashed button cap is only its small external actuator, not part
+of a common cover.
+
 ## Expansion
 
 - The raised rear 14-contact rail uses exact vertical `Samtec SSW-107-02-S-D`
