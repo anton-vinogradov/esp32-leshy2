@@ -861,7 +861,9 @@
         "manufacturer_description": "first-generation external antenna connector",
         "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
         "impedance_ohm": 50,
-        "qualification": "datasheet_verified"
+        "qualification": "datasheet_verified",
+        "center_from_module_top_left_mm": [15.0, 2.46],
+        "position_source": "ESP32-S3-WROOM-1U datasheet v1.8 Figure 10-2 top view; connector axis is 3.0 mm from the right edge and 2.46 mm from the top edge"
       },
       "programmable": true,
       "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2C1_OR_UART1_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART0", "UART1", "UART2", "PCNT0", "GPIO", "GPIO_IRQ", "LEDC"],
@@ -953,7 +955,9 @@
         "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
         "impedance_ohm": 50,
         "qualification": "datasheet_verified",
-        "secondary_path": "ANT2 pad default-disabled; not a second baseline external connector"
+        "secondary_path": "ANT2 pad default-disabled; not a second baseline external connector",
+        "center_from_module_top_left_mm": [15.0, 2.38],
+        "position_source": "ESP32-C5-WROOM-1U datasheet v1.2 Figure 10-2 top view; connector axis is 3.0 mm from the right edge and 2.38 mm from the top edge"
       },
       "programmable": true,
       "controller_capabilities": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SDIO_SLAVE_4BIT", "SPI2", "SPI2_OR_GPIO", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
@@ -4284,6 +4288,53 @@
       "contacts": {
         "CENTER": {"physical": "1", "role": "rf"},
         "SHELL": {"physical": "three manufacturer ground lands", "role": "power"}
+      }
+    },
+    "te_2118651_2": {
+      "mpn": "TE Connectivity 2118651-2",
+      "kind": "double_ended_umcc_gen1_microcoax_jumper",
+      "qualification": "verified_exact_native_rf_jumper",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [30.0, 1.13, 2.5],
+      "source": {
+        "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+        "version": "ENG_CD_2118651_C5; live exact-product record",
+        "url": "https://www.te.com/en/product-2118651-2.html",
+        "checked": "2026-08-20"
+      },
+      "orderable_source": {
+        "document": "2118651-2 active authorized-distributor stock page; 3,082 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
+        "checked": "2026-08-20"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.8211,
+        "price_break": "DigiKey bag quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
+          "checked": "2026-08-20"
+        }
+      },
+      "electrical_contract": {
+        "impedance_ohm": 50,
+        "frequency_max_ghz": 9,
+        "cable_length_mm": 30.0,
+        "cable_outer_diameter_mm": 1.13,
+        "connector_family": "UMCC generation 1; mates with first-generation U.FL, MHF I and AMC receptacles",
+        "end_orientation": "right-angle plug at both ends"
+      },
+      "mechanical_contract": {
+        "maximum_mated_height_mm": 2.5,
+        "route_rule": "the generated 30-mm centreline is a placement corridor; production bend radii and strain relief remain verified by the complete feed coupon",
+        "service_rule": "use the proper vertical extraction tool and keep within the documented 30-cycle connector life"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_A": {"physical": "right-angle UMCC GEN 1 plug A", "role": "rf"},
+        "END_B": {"physical": "right-angle UMCC GEN 1 plug B", "role": "rf"}
       }
     },
     "adi_ltc5507_es6_trmpbf": {

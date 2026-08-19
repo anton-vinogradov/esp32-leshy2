@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **910** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **909** supplied/costed placements collapse to **198** used exact-device/MPN lines.
-- Current orderability evidence exists for **197/198** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **187/198** lines.
+- **912** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **911** supplied/costed placements collapse to **199** used exact-device/MPN lines.
+- Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **188/199** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **892/909** supplied placements; their partial subtotals are `base_product` — USD 197.3075. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **198/198** lines.
+- Those priced lines cover **894/911** supplied placements; their partial subtotals are `base_product` — USD 200.9497. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 906 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 908 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -304,7 +304,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 24 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 25 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -339,6 +339,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
   - `samtec_ssw_107_02_s_d` — `Samtec SSW-107-02-S-D`.
   - `seeed_1125r_smt_4p` — `1125R-SMT-4P`.
+  - `te_2118651_2` — `TE Connectivity 2118651-2`.
   - `xtar_18650_4000mah_protected` — `XTAR 18650 4000mAh`.
 
 </details>
@@ -1265,6 +1266,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>TE Connectivity 2118651-2</code> — 2 × USD 1.8211 = USD 3.6422</summary>
+
+- Device id: `te_2118651_2`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey bag quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-20`; [published source](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824).
+
+</details>
+
 <details><summary><code>Texas Instruments BQ25798RQMR</code> — 1 × USD 3.5140 = USD 3.5140</summary>
 
 - Device id: `ti_bq25798_rqmr`.
@@ -2139,21 +2149,21 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 ## Physical purchase families with explicit resolution gates
 
-### `rf_cable_assemblies` — 5 item(s)
+### `nrf_rf_cable_assemblies` — 3 item(s)
 
 - Scope: `base_product`.
-- Role: two native-radio double-ended microcoax jumpers and three nRF module-to-coupler pigtails.
-- Blocking evidence: exact mating family, length and strain relief require received-module microscopy and internal placement.
+- Role: three nRF module-to-coupler pigtails.
+- Blocking evidence: Ebyte documents only an IPEX label, so the exact mating generation still requires received-module microscopy and fit.
 - Gate: `received_mate_and_routed_length_coupon_required`.
 - Owner stage: G3 placement and received-module qualification before harness BOM freeze.
 - Evidence chain: `ANT-0001`, `N24E-0001`, `FND-0109`.
 - Prerequisites:
-  - receive production-lot S3, C5 and all three E01-ML01IPX specimens and identify every module-side microcoax mate by microscope, dimensions and fit.
-  - freeze endpoint coordinates, routed length, minimum bend radius, pull direction, strain relief and service replacement path.
+  - receive all three production-lot E01-ML01IPX specimens and identify every module-side microcoax mate by microscope, dimensions and fit.
+  - freeze each nRF endpoint coordinate, routed length, minimum bend radius, pull direction, strain relief and service replacement path.
 - Acceptance:
-  - name five exact orderable cable-assembly MPNs or controlled drawing identities with connector generation, polarity, length and quantity.
-  - pass mate retention, flex/pull, no-chafe and repeated-service coupon on every distinct harness profile.
-  - pass per-path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition.
+  - name three exact orderable cable-assembly MPNs or controlled drawing identities with connector generation, polarity, length and quantity.
+  - pass mate retention, flex/pull, no-chafe and repeated-service coupon on every distinct nRF harness profile.
+  - pass each nRF path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition.
 
 ### `external_antenna_kit` — 12 item(s)
 

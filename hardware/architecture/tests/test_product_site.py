@@ -129,7 +129,10 @@ class ProductSiteTests(unittest.TestCase):
             "1125R-SMT-4P",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
-            "60 · SPK",
+            "TE Connectivity 2118651-2",
+            'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
+            'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
+            "66 · SPK",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
@@ -156,10 +159,10 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=11", page)
-            self.assertIn("internal-board-layout.svg?layout=8", page)
+            self.assertIn("current-clamshell.svg?layout=12", page)
+            self.assertIn("internal-board-layout.svg?layout=9", page)
             self.assertIn("sandwich-section.svg?layout=9", page)
-            self.assertIn("top-edge-view.svg?layout=2", page)
+            self.assertIn("top-edge-view.svg?layout=3", page)
             self.assertLess(
                 page.index("current-clamshell.svg"),
                 page.index("internal-board-layout.svg"),

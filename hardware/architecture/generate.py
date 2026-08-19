@@ -658,7 +658,7 @@ def validate_sources(
                             f"{candidate_id}: {context}: duplicate resolution gate {field}"
                         )
             required_gap_ids = {
-                "rf_cable_assemblies",
+                "nrf_rf_cable_assemblies",
                 "external_antenna_kit",
             }
             if required_gap_ids - missing_part_ids:
@@ -2952,6 +2952,7 @@ def _render_principled_pinout_bundle(
         or instance in {"s3_tx_led", "s3_tx_led_series", "c5_tx_led", "c5_tx_led_series"}
     )
     native_rf_roles = {
+        "s3_rf_jumper": "S3 exact 30-mm UMCC Gen1 module jumper",
         "s3_rf_board_connector": "S3 module-jumper board receptacle",
         "s3_rf_coupler": "S3 2.4-GHz forward-power directional coupler",
         "s3_rf_coupler_termination": "S3 coupler 49.9-Ohm termination",
@@ -2960,6 +2961,7 @@ def _render_principled_pinout_bundle(
         "s3_detector_ground_res": "S3 detector gain ground resistor",
         "s3_detector_output_cap": "S3 detector output-load capacitor",
         "s3_detector_bypass": "S3 detector local bypass capacitor",
+        "c5_rf_jumper": "C5 exact 30-mm UMCC Gen1 module jumper",
         "c5_rf_board_connector": "C5 module-jumper board receptacle",
         "c5_rf_coupler": "C5 2.4/5-GHz forward-power directional coupler",
         "c5_rf_coupler_termination": "C5 coupler 49.9-Ohm termination",
@@ -4101,14 +4103,14 @@ def _render_principled_pinout_bundle(
         "  SAFE_GATE_B --> VOICE_BUCK",
         "  SAFE_GATE_B --> IR_EMITTER",
         "  SAFE_GATE_B --> EXT_BUCK",
-        "  S3 -->|\"placement-qualified U.FL jumper\"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| S3_EXTERNAL_RP_SMA",
+        "  S3 -->|\"ANT receptacle\"| S3_RF_JUMPER -->|\"30-mm UMCC Gen1\"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| S3_EXTERNAL_RP_SMA",
         "  S3_RF_COUPLER -->|\"-20-dB forward sample\"| S3_DETECTOR_INPUT_CAP --> DET_S3 --> EVIDENCE_CMP_A",
         "  S3_RF_COUPLER --> S3_RF_COUPLER_TERMINATION",
         "  S3_DETECTOR_FEEDBACK_RES --> DET_S3",
         "  S3_DETECTOR_GROUND_RES --> DET_S3",
         "  S3_DETECTOR_OUTPUT_CAP --> DET_S3",
         "  S3_DETECTOR_BYPASS --> DET_S3",
-        "  C5 -->|\"placement-qualified U.FL jumper\"| C5_RF_BOARD_CONNECTOR --> C5_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| C5_EXTERNAL_RP_SMA",
+        "  C5 -->|\"ANT1 receptacle\"| C5_RF_JUMPER -->|\"30-mm UMCC Gen1\"| C5_RF_BOARD_CONNECTOR --> C5_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| C5_EXTERNAL_RP_SMA",
         "  C5_RF_COUPLER -->|\"-20/-13-dB forward sample\"| C5_DETECTOR_INPUT_CAP --> DET_C5 --> EVIDENCE_CMP_A",
         "  C5_RF_COUPLER --> C5_RF_COUPLER_TERMINATION",
         "  C5_DETECTOR_FEEDBACK_RES --> DET_C5",

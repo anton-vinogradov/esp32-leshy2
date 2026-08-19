@@ -157,8 +157,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(909, sum(line["quantity"] for line in lines))
-        self.assertEqual(198, len(lines))
+        self.assertEqual(911, sum(line["quantity"] for line in lines))
+        self.assertEqual(199, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -168,11 +168,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            187,
+            188,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            892,
+            894,
             sum(
                 line["quantity"]
                 for line in lines
@@ -217,7 +217,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             for row in candidate["bom_audit"]["required_uninstantiated_parts"]
         }
         self.assertNotIn("external_sma_bodies", gap_quantities)
-        self.assertEqual(5, gap_quantities["rf_cable_assemblies"])
+        self.assertEqual(3, gap_quantities["nrf_rf_cable_assemblies"])
+        self.assertNotIn("rf_cable_assemblies", gap_quantities)
         self.assertNotIn("m5_connector_bodies", gap_quantities)
         self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
         self.assertEqual(12, gap_quantities["external_antenna_kit"])
@@ -227,20 +228,20 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertEqual(
             {
-                "rf_cable_assemblies": "received_mate_and_routed_length_coupon_required",
+                "nrf_rf_cable_assemblies": "received_mate_and_routed_length_coupon_required",
                 "external_antenna_kit": "profile_variant_bom_and_hil_required",
             },
             physical_gates,
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**910** architecture instances", rendered)
-        self.assertIn("**909** supplied/costed placements", rendered)
-        self.assertIn("**197/198** used lines", rendered)
-        self.assertIn("**198/198** lines", rendered)
-        self.assertIn("**187/198** lines", rendered)
-        self.assertIn("**892/909** supplied placements", rendered)
-        self.assertIn("USD 197.3075", rendered)
+        self.assertIn("**912** architecture instances", rendered)
+        self.assertIn("**911** supplied/costed placements", rendered)
+        self.assertIn("**198/199** used lines", rendered)
+        self.assertIn("**199/199** lines", rendered)
+        self.assertIn("**188/199** lines", rendered)
+        self.assertIn("**894/911** supplied placements", rendered)
+        self.assertIn("USD 200.9497", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -280,12 +281,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(51, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1073, policy["expected_occurrence_count"])
+        self.assertEqual(49, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1069, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
-            5,
+            3,
             len(
                 next(
                     row["endpoints"]
@@ -2032,7 +2033,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("<=0.4 dB", contract["performance_budget"])
 
         required = {
+            "s3_rf_jumper": "te_2118651_2",
             "s3_rf_board_connector": "hirose_ufl_r_smt_1_10",
+            "c5_rf_jumper": "te_2118651_2",
             "c5_rf_board_connector": "hirose_ufl_r_smt_1_10",
             "s3_rf_coupler": "kyocera_avx_cp0603q5425entr",
             "c5_rf_coupler": "kyocera_avx_cp0603q5425entr",
@@ -2056,17 +2059,23 @@ class ArchitectureValidationTests(unittest.TestCase):
         connector = self.database["devices"]["hirose_ufl_r_smt_1_10"]
         self.assertEqual(6, connector["electrical_contract"]["frequency_max_ghz"])
         self.assertEqual("1", connector["contacts"]["CENTER"]["physical"])
+        jumper = self.database["devices"]["te_2118651_2"]
+        self.assertEqual(30.0, jumper["electrical_contract"]["cable_length_mm"])
+        self.assertEqual(9, jumper["electrical_contract"]["frequency_max_ghz"])
+        self.assertEqual("right-angle UMCC GEN 1 plug A", jumper["contacts"]["END_A"]["physical"])
 
         routes = {
             (route["from"], route["to"], route["net"])
             for route in candidate["fixed_routes"]
         }
         for route in (
-            ("s3.ANT", "abstract:S3-placement-qualified-double-ended-UFL-jumper", "S3_MODULE_RF_50R"),
+            ("s3.ANT", "s3_rf_jumper.END_A", "S3_MODULE_RF_50R"),
+            ("s3_rf_jumper.END_B", "s3_rf_board_connector.CENTER", "S3_MODULE_RF_50R"),
             ("s3_rf_board_connector.CENTER", "s3_rf_coupler.RF_IN", "S3_RF_MAINLINE_IN_50R"),
             ("s3_rf_coupler.COUPLED_FWD", "s3_detector_input_cap.END_1", "S3_FORWARD_RF_SAMPLE_RAW"),
             ("s3_detector_input_cap.END_2", "det_s3.RFIN", "S3_FORWARD_RF_SAMPLE"),
-            ("c5.ANT1", "abstract:C5-placement-qualified-double-ended-UFL-jumper", "C5_MODULE_RF_50R"),
+            ("c5.ANT1", "c5_rf_jumper.END_A", "C5_MODULE_RF_50R"),
+            ("c5_rf_jumper.END_B", "c5_rf_board_connector.CENTER", "C5_MODULE_RF_50R"),
             ("c5.ANT2", "abstract:no-connect", "C5_ANT2_DISABLED_NC"),
             ("c5_rf_board_connector.CENTER", "c5_rf_coupler.RF_IN", "C5_RF_MAINLINE_IN_50R"),
             ("c5_rf_coupler.COUPLED_FWD", "c5_detector_input_cap.END_1", "C5_FORWARD_RF_SAMPLE_RAW"),
@@ -2080,6 +2089,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         ))
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
+            "TE Connectivity 2118651-2<br/>S3 exact 30-mm UMCC Gen1 module jumper",
+            "TE Connectivity 2118651-2<br/>C5 exact 30-mm UMCC Gen1 module jumper",
             "CP0603Q5425ENTR<br/>S3 2.4-GHz forward-power directional coupler",
             "CP0603Q5425ENTR<br/>C5 2.4/5-GHz forward-power directional coupler",
             "U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle",

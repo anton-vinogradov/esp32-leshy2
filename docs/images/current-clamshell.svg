@@ -78,20 +78,20 @@
 <rect x="179.3" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="203.8,157.4 191.0,164.8 178.2,157.4 178.2,142.6 191.0,135.2 203.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M191.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="191.0" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">WI-FI/15.4</text>
-<text data-layer="pcb-silkscreen" x="191.0" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4/5 GHz RP-SMA</text>
+<text data-layer="pcb-silkscreen" x="191.0" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FM/SW RX</text>
+<text data-layer="pcb-silkscreen" x="191.0" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SMA</text>
 <rect x="227.6" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="234.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="259.3,157.4 246.5,164.8 233.7,157.4 233.7,142.6 246.5,135.2 259.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M246.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="246.5" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FM/SW RX</text>
+<text data-layer="pcb-silkscreen" x="246.5" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">AM/LW LOOP</text>
 <text data-layer="pcb-silkscreen" x="246.5" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SMA</text>
 <rect x="279.4" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="286.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="311.1,157.4 298.3,164.8 285.5,157.4 285.5,142.6 298.3,135.2 311.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M298.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="298.3" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">AM/LW LOOP</text>
-<text data-layer="pcb-silkscreen" x="298.3" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SMA</text>
+<text data-layer="pcb-silkscreen" x="298.3" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">WI-FI/15.4</text>
+<text data-layer="pcb-silkscreen" x="298.3" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4/5 GHz RP-SMA</text>
 </g>
 <rect x="94.8" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
 <text data-layer="pcb-silkscreen" x="97.8" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/BLE</text>

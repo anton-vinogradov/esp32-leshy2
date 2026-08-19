@@ -54,9 +54,9 @@ RF_BARREL_D = 6.35
 RF_BARREL_OUT = 11.4
 FRONT_RF = (
     (16.0, "S3-2G4", "RP-SMA"),
-    (30.0, "C5-2G4/5", "RP-SMA"),
-    (45.0, "RX-FM/SW", "SMA"),
-    (59.0, "RX-AM/LW", "SMA"),
+    (30.0, "RX-FM/SW", "SMA"),
+    (45.0, "RX-AM/LW", "SMA"),
+    (59.0, "C5-2G4/5", "RP-SMA"),
 )
 REAR_RF = (
     (13.5, "N24-0", "SMA"),
@@ -157,6 +157,13 @@ class Placement:
 
 
 @dataclass(frozen=True)
+class CableRoute:
+    instance: str
+    points: tuple[tuple[float, float], ...]
+    role: str
+
+
+@dataclass(frozen=True)
 class Reserve:
     name: str
     x: float
@@ -168,6 +175,10 @@ class Reserve:
 
 
 UI_INNER = (
+    Placement("s3_rf_coupler", 15.2, 6.2, "S3 forward-power coupler beside the outward RP-SMA"),
+    Placement("c5_rf_coupler", 58.2, 6.2, "C5 dual-band forward-power coupler beside the outward RP-SMA"),
+    Placement("s3_rf_board_connector", 14.5, 9.0, "S3 30-mm jumper board receptacle"),
+    Placement("c5_rf_board_connector", 57.5, 9.0, "C5 30-mm jumper board receptacle"),
     Placement("s3", 6.0, 22.0, "UI, display, storage and audio owner"),
     Placement("c5", 51.0, 22.0, "native 2.4/5-GHz and IR owner"),
     Placement("display_connector", 25.0, 43.0, "40-contact display FPC mate"),
@@ -191,6 +202,23 @@ UI_INNER = (
     Placement("c5_dbg_header", 47.0, 104.0, "keyed C5 UART0/RESET/BOOT header"),
     Placement("c5_reset_button", 58.0, 104.0, "C5 technological RESET"),
     Placement("c5_boot_button", 66.0, 104.0, "C5 technological BOOT"),
+)
+
+# Exact module-side axes come from the Espressif package drawings.  Each
+# polyline is exactly the selected 30-mm assembly length in plan.  Corners are
+# a route corridor rather than a cable-fold instruction; bend radius and
+# strain relief are verified on the received feed coupon.
+UI_RF_CABLES = (
+    CableRoute(
+        "s3_rf_jumper",
+        ((21.0, 24.46), (26.0, 24.46), (26.0, 14.0), (15.45, 14.0), (15.45, 10.55), (16.0, 10.55)),
+        "exact 30-mm S3 UMCC Gen1 jumper corridor",
+    ),
+    CableRoute(
+        "c5_rf_jumper",
+        ((66.0, 24.38), (66.0, 18.0), (59.4, 18.0), (59.4, 13.0), (64.0, 13.0), (64.0, 10.55), (59.0, 10.55)),
+        "exact 30-mm C5 UMCC Gen1 jumper corridor",
+    ),
 )
 
 RF_INNER = (
@@ -324,6 +352,29 @@ def hits_hole(
     return math.hypot(hx - px, hy - py) < MOUNT_KEEPOUT_R + clearance
 
 
+def polyline_length(points: tuple[tuple[float, float], ...]) -> float:
+    return sum(
+        math.hypot(x2 - x1, y2 - y1)
+        for (x1, y1), (x2, y2) in zip(points, points[1:])
+    )
+
+
+def point_segment_distance(
+    point: tuple[float, float],
+    start: tuple[float, float],
+    end: tuple[float, float],
+) -> float:
+    px, py = point
+    x1, y1 = start
+    x2, y2 = end
+    dx, dy = x2 - x1, y2 - y1
+    denominator = dx * dx + dy * dy
+    if denominator == 0:
+        return math.hypot(px - x1, py - y1)
+    amount = max(0.0, min(1.0, ((px - x1) * dx + (py - y1) * dy) / denominator))
+    return math.hypot(px - (x1 + amount * dx), py - (y1 + amount * dy))
+
+
 def text_bounds_px(element: ET.Element) -> tuple[float, float, float, float]:
     """Conservative sans-serif bounds for generated silkscreen text."""
     x = float(element.attrib["x"])
@@ -446,6 +497,51 @@ def validate_items(name: str, items: tuple[Placement, ...], devices: dict, insta
     return errors
 
 
+def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
+    errors: list[str] = []
+    ui_by_instance = {item.instance: item for item in UI_INNER}
+    module_by_route = {
+        "s3_rf_jumper": ("s3", "s3_rf_board_connector"),
+        "c5_rf_jumper": ("c5", "c5_rf_board_connector"),
+    }
+    for route in UI_RF_CABLES:
+        if route.instance not in instances:
+            errors.append(f"native-rf-cable: unknown instance {route.instance}")
+            continue
+        device = devices[instances[route.instance]]
+        expected_length = float(device["electrical_contract"]["cable_length_mm"])
+        actual_length = polyline_length(route.points)
+        if abs(actual_length - expected_length) > 0.05:
+            errors.append(
+                f"native-rf-cable: {route.instance} route is {actual_length:.2f} mm, "
+                f"not the exact {expected_length:.2f}-mm assembly"
+            )
+        cable_radius = float(device["electrical_contract"]["cable_outer_diameter_mm"]) / 2
+        for point in route.points:
+            if not (cable_radius <= point[0] <= BOARD_W - cable_radius and cable_radius <= point[1] <= BOARD_H - cable_radius):
+                errors.append(f"native-rf-cable: {route.instance} leaves the PCB plan at {point}")
+        for segment in zip(route.points, route.points[1:]):
+            for hole in HOLES:
+                if point_segment_distance(hole, *segment) < MOUNT_KEEPOUT_R + cable_radius:
+                    errors.append(f"native-rf-cable: {route.instance} enters the M2.5 keep-out at {hole}")
+
+        module_instance, board_connector_instance = module_by_route[route.instance]
+        module = ui_by_instance[module_instance]
+        module_rf = devices[instances[module_instance]]["rf_connector"]["center_from_module_top_left_mm"]
+        expected_start = (module.x + float(module_rf[0]), module.y + float(module_rf[1]))
+        connector = ui_by_instance[board_connector_instance]
+        connector_w, connector_h = placement_size(connector, devices, instances)
+        expected_end = (connector.x + connector_w / 2, connector.y + connector_h / 2)
+        if any(abs(a - b) > 0.01 for a, b in zip(route.points[0], expected_start)):
+            errors.append(f"native-rf-cable: {route.instance} does not start at the official module RF axis")
+        if any(abs(a - b) > 0.01 for a, b in zip(route.points[-1], expected_end)):
+            errors.append(f"native-rf-cable: {route.instance} does not end at its board receptacle axis")
+
+    if {route.instance for route in UI_RF_CABLES} != {"s3_rf_jumper", "c5_rf_jumper"}:
+        errors.append("native-rf-cable: exact S3 and C5 jumper routes must both be present")
+    return errors
+
+
 def validate_reserves(name: str, reserves: tuple[Reserve, ...]) -> list[str]:
     errors: list[str] = []
     for reserve in reserves:
@@ -483,6 +579,7 @@ def validate() -> list[str]:
             errors.append(f"{instance}: expected {expected}, got {actual}")
 
     errors += validate_items("ui-inner", UI_INNER, devices, instances)
+    errors += validate_cable_routes(devices, instances)
     errors += validate_items("rf-inner", RF_INNER, devices, instances)
     errors += validate_items("front-controls", FRONT_CONTROLS, devices, instances)
     errors += validate_items("rear-controls", REAR_CONTROLS, devices, instances)
@@ -491,6 +588,9 @@ def validate() -> list[str]:
     errors += validate_reserves("front-caps", FRONT_CAP_RESERVES)
     errors += validate_reserves("rear-caps", REAR_CAP_RESERVES)
     errors += validate_reserves("internal-reserves", INTERNAL_RESERVES)
+    front_path_centres = {path: centre for centre, path, _ in FRONT_RF}
+    if front_path_centres.get("S3-2G4") != 16.0 or front_path_centres.get("C5-2G4/5") != 59.0:
+        errors.append("native RF ports must remain aligned to the two exact 30-mm jumper corridors")
     dpad = next(item for item in FRONT_CONTROLS if item.instance == "ui_dpad_switch")
     dpad_w, dpad_h = placement_size(dpad, devices, instances)
     if dpad.rotation != 45:
@@ -1076,11 +1176,12 @@ def render_internal(devices, instances):
     sx, sy, text, rect = helpers(scale)
 
     ui, rf = (80.0, 150.0), (465.0, 150.0)
-    all_items = UI_INNER + RF_INNER
+    ui_items = UI_INNER + UI_RF_CABLES
+    all_items = ui_items + RF_INNER
     numbers = {item.instance: index for index, item in enumerate(all_items, 1)}
     legend_first_y = 148
     legend_row_height = 21
-    legend_bottom = legend_first_y + (max(len(UI_INNER), len(RF_INNER)) - 1) * legend_row_height + 9
+    legend_bottom = legend_first_y + (max(len(ui_items), len(RF_INNER)) - 1) * legend_row_height + 9
     notes_top = max(560, legend_bottom + 35)
     svg_height = notes_top + 230
     out = [
@@ -1101,6 +1202,34 @@ def render_internal(devices, instances):
     out.append('<g id="rear-rf-reverse-reference" data-connector-bodies="omitted-outer-face">')
     out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, False, mirror=True, show_annotations=False, show_connector=False)
     out.append('</g>')
+
+    out.append('<g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">')
+    for route in UI_RF_CABLES:
+        route_device = devices[instances[route.instance]]
+        cable_od = float(route_device["electrical_contract"]["cable_outer_diameter_mm"])
+        points = " ".join(
+            f"{sx(ui,mirrored_x(x)):.1f},{sy(ui,y):.1f}"
+            for x, y in route.points
+        )
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="#0f766e" '
+            f'stroke-width="{cable_od*scale:.2f}" stroke-linecap="round" stroke-linejoin="round" '
+            f'data-instance="{route.instance}" data-centreline-mm="{polyline_length(route.points):.2f}"/>'
+        )
+        for endpoint_x, endpoint_y in (route.points[0], route.points[-1]):
+            out.append(
+                f'<circle cx="{sx(ui,mirrored_x(endpoint_x)):.1f}" cy="{sy(ui,endpoint_y):.1f}" '
+                f'r="{1.35*scale:.1f}" fill="none" stroke="#0f766e" stroke-width="1.2"/>'
+            )
+        annotation_x, annotation_y = route.points[len(route.points) // 2]
+        out.append(
+            text(
+                sx(ui,mirrored_x(annotation_x)), sy(ui,annotation_y)-5,
+                str(numbers[route.instance]), 6.8, "bold", "middle", "#115e59"
+            )
+        )
+    out.append('</g>')
+
     for origin, items in ((ui, UI_INNER), (rf, RF_INNER)):
         for item in items:
             w, h = placement_size(item, devices, instances)
@@ -1139,7 +1268,7 @@ def render_internal(devices, instances):
     left_x, right_x = 830, 1165
     out += [text(left_x,105,"Numbered physical devices",16,"bold"), text(left_x,128,"UI/control PCB",12,"bold",colour="#1d4ed8")]
     y = legend_first_y
-    for item in UI_INNER:
+    for item in ui_items:
         mpn = devices[instances[item.instance]]["mpn"].replace(" (QDtech schematic assembly marking)", "")
         out.append(text(left_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
         out.append(text(left_x+26,y+9,item.role,7.2,colour="#526076"))
@@ -1160,7 +1289,7 @@ def render_internal(devices, instances):
         text(left_x,notes_top+87,"• antenna arrows reference outer-face ports; their bodies are absent here",10),
         text(left_x,notes_top+108,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(left_x,notes_top+128,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,notes_top+154,"Only unselected RF cable bodies remain physical reserves.",9.2,"bold",colour="#9a3412"),
+        text(left_x,notes_top+154,"S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.",9.2,"bold",colour="#9a3412"),
         text(left_x,notes_top+175,"POWER command: C&K JS102011SCQN; low-current request only, never pack current.",9.2,"bold",colour="#9a3412"),
         text(left_x,notes_top+196,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
         "</g>",
@@ -1721,7 +1850,7 @@ def render_top_edge(devices, instances):
         t(x(-4.5)-24, z(0)+5, "FRONT", 9, "bold", "end", "#1d4ed8"),
         t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
         r(x(10.25), z(0), 54.5*scale_x, 10.0*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
-        t(x(37.5), z(5.2), "HMX035CTFT-001 · display", 9.5, "bold", "middle", "#1d4ed8"),
+        t(x(37.5), z(0)-9, "HMX035CTFT-001 · display", 9.5, "bold", "middle", "#1d4ed8"),
         r(x(0), z(ui_outer_z), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
         r(x(0), z(ui_inner_z), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11" data-antenna-bodies="none"'),
         r(x(0), z(rf_inner_z), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),

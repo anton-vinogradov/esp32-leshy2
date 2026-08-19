@@ -45,12 +45,16 @@ powered down and discharged.
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` | RP2354B | Removable rear expansion |
 | External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
 
-Every transmit path has independent actual-TX evidence. Native S3/C5 use their
-own `U.FL-R-SMT-1(10)` and `CP0603Q5425ENTR` directional couplers; each nRF24
-has its own external SMA and `DC2337J5010AHF`. Eight labelled per-path
-indicators plus a `TX ACTIVE` summary sit in one line on the front below the display. Evidence
-reports actual transmit activity and a relative level; it never grants transmit
-permission.
+Every transmit path has independent actual-TX evidence. Native S3/C5 each use
+an exact 30-mm `TE Connectivity 2118651-2` UMCC Gen1 jumper, their own
+`U.FL-R-SMT-1(10)` and a `CP0603Q5425ENTR` directional coupler beside the
+external RP-SMA. The module and board connector axes and both 30-mm cable
+corridors are fixed in the dimensioned inner-board drawing. Each nRF24 has its
+own external SMA and `DC2337J5010AHF`; its pigtail remains specimen-gated
+because Ebyte documents only `IPEX`, not a mating generation. Eight labelled
+per-path indicators plus a `TX ACTIVE` summary sit in one line on the front below
+the display. Evidence reports actual transmit activity and a relative level; it
+never grants transmit permission.
 
 ## User interface, storage and audio
 
@@ -124,11 +128,11 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=11)
+![Dimensioned external layout](images/current-clamshell.svg?layout=12)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=8)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=9)
 
-![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=2)
+![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=3)
 
 ![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=9)
 

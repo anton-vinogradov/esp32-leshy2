@@ -133,6 +133,7 @@
 | `tdk_c1608x7r1c105k080ac` | `TDK C1608X7R1C105K080AC` | `verified_candidate` | `active_production` | [TDK C1608X7R1C105K080AC product and characterization data production status and DC-bias/temperature curves checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC) | same primary source |
 | `tdk_c1608x7s2a104k080ab` | `TDK C1608X7S2A104K080AB` | `verified_candidate` | `active` | [TDK commercial mid-voltage MLCC datasheet current catalog checked 2026-08-18](https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf) | same primary source |
 | `tdk_cga5l1x7r1e475k160ac` | `TDK CGA5L1X7R1E475K160AC` | `verified_candidate` | `active` | [TDK CGA5L1X7R1E475K160AC product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC) | same primary source |
+| `te_2118651_2` | `TE Connectivity 2118651-2` | `verified_exact_native_rf_jumper` | `active_orderable` | [TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record ENG_CD_2118651_C5; live exact-product record](https://www.te.com/en/product-2118651-2.html) | same primary source |
 | `ti_bq25798_rqmr` | `Texas Instruments BQ25798RQMR` | `verified_candidate` | `active` | [BQ25798 1-to-4-cell 5-A buck-boost charger datasheet SLUSDV2C, May 2020, revised June 2026](https://www.ti.com/lit/ds/symlink/bq25798.pdf) | same primary source |
 | `ti_csd87313dmst` | `Texas Instruments CSD87313DMST` | `verified_candidate` | `active` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
 | `ti_mspm0c1104_sdgs20r` | `Texas Instruments MSPM0C1104SDGS20R` | `verified_candidate` | `active` | [MSPM0C110x mixed-signal microcontroller datasheet SLASF90D, revised January 2026](https://www.ti.com/lit/ds/symlink/mspm0c1104.pdf) | same primary source |
@@ -2905,8 +2906,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `FAULT_LED_DRIVE` | `safe_latch.Q` | `fault_led_series.END_1` | non-programmable visible latched-fault state |
 | `FAULT_LED_A` | `fault_led_series.END_2` | `fault_led.A` | exact 2.2-kOhm current limit |
 | `FAULT_LED_K` | `fault_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware and remains available when UI thermal protection turns the display off |
-| `S3_MODULE_RF_50R` | `s3.ANT` | `abstract:S3-placement-qualified-double-ended-UFL-jumper` | module receptacle family is exact, but cable length and strain relief wait for physical placement |
-| `S3_MODULE_RF_50R` | `abstract:S3-placement-qualified-double-ended-UFL-jumper` | `s3_rf_board_connector.CENTER` | received cable assembly must pass mate, insertion-loss and return-loss checks |
+| `S3_MODULE_RF_50R` | `s3.ANT` | `s3_rf_jumper.END_A` | datasheet-dimensioned module receptacle mates the exact 30-mm UMCC Gen1 jumper |
+| `S3_MODULE_RF_50R` | `s3_rf_jumper.END_B` | `s3_rf_board_connector.CENTER` | generated route preserves the exact jumper length; received feed still passes retention, insertion-loss and return-loss checks |
 | `S3_RF_GROUND` | `s3_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `S3_RF_MAINLINE_IN_50R` | `s3_rf_board_connector.CENTER` | `s3_rf_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
 | `S3_EXTERNAL_RF_50R` | `s3_rf_coupler.RF_OUT` | `s3_external_rp_sma.RF` | independent external antenna path reaches the exact 6-GHz RP-SMA edge-launch jack |
@@ -2925,9 +2926,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `SAFETY_GROUND` | `s3_detector_ground_res.END_2` | `abstract:safety-ground` | gain network local return |
 | `S3_DETECT_V` | `det_s3.VOUT` | `s3_detector_output_cap.END_1` | exact 33-pF output load follows the detector reference circuit |
 | `SAFETY_GROUND` | `s3_detector_output_cap.END_2` | `abstract:safety-ground` | output capacitor local return |
-| `C5_MODULE_RF_50R` | `c5.ANT1` | `abstract:C5-placement-qualified-double-ended-UFL-jumper` | ANT1 is the module's default external connector; exact cable length waits for placement |
+| `C5_MODULE_RF_50R` | `c5.ANT1` | `c5_rf_jumper.END_A` | ANT1 is the module's default external connector and mates the exact 30-mm UMCC Gen1 jumper |
 | `C5_ANT2_DISABLED_NC` | `c5.ANT2` | `abstract:no-connect` | secondary RF pad remains default-disabled and is not a second baseline antenna |
-| `C5_MODULE_RF_50R` | `abstract:C5-placement-qualified-double-ended-UFL-jumper` | `c5_rf_board_connector.CENTER` | received cable assembly must pass mate, insertion-loss and return-loss checks through 5.885 GHz |
+| `C5_MODULE_RF_50R` | `c5_rf_jumper.END_B` | `c5_rf_board_connector.CENTER` | generated route preserves the exact jumper length; received feed still passes retention, insertion-loss and return-loss checks through 5.885 GHz |
 | `C5_RF_GROUND` | `c5_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `C5_RF_MAINLINE_IN_50R` | `c5_rf_board_connector.CENTER` | `c5_rf_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
 | `C5_EXTERNAL_RF_50R` | `c5_rf_coupler.RF_OUT` | `c5_external_rp_sma.RF` | independent dual-band external antenna path reaches the exact 6-GHz RP-SMA edge-launch jack |
@@ -3305,6 +3306,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `unit_signal_iso` lifecycle: `active_production_orderable`.
 - `unit_connector` uses `1125R-SMT-4P` as `verified_exact_paper_fit_received_cable_hil_open`, not an accepted production choice.
 - `unit_connector` lifecycle: `active in Seeed Open Parts Library as PCBA SKU 320110032`.
+- `s3_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `s3_rf_jumper` lifecycle: `active_orderable`.
 - `s3_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `s3_rf_board_connector` lifecycle: `active_orderable`.
 - `s3_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
@@ -3313,6 +3316,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `s3_rf_coupler_termination` lifecycle: `active_orderable`.
 - `s3_detector_input_cap` uses `Murata GRM1555C1H390JA01D` as `verified_exact_ltc5532_rf_input_coupling_capacitor`, not an accepted production choice.
 - `s3_detector_input_cap` lifecycle: `active_orderable`.
+- `c5_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `c5_rf_jumper` lifecycle: `active_orderable`.
 - `c5_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `c5_rf_board_connector` lifecycle: `active_orderable`.
 - `c5_rf_coupler` uses `KYOCERA AVX CP0603Q5425ENTR` as `verified_exact_native_rf_forward_coupler`, not an accepted production choice.
