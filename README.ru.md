@@ -88,7 +88,7 @@ S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, a
 DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3,5-дюймовый QSPI экран и touch assembly"]
 SD["Hirose DM3AT-SF-PEJM5<br/>push-push разъём microSD"]
 SLOW_IO["TCA6424ARGJR<br/>24-линейный slow-control expander"]
-UI_MATRIX_IO["TCA9534APWR<br/>матрица D-pad и функциональных кнопок"]
+UI_MATRIX_IO["TCA9539PWR<br/>16 прямых входов D-pad и функциональных кнопок"]
 CODEC["Everest Semiconductor ES8311<br/>кодек записи и воспроизведения"]
 RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
 UNIT_CONNECTOR["1125R-SMT-4P<br/>защищённый разъём M5 Unit HY2.0-4P"]
@@ -141,12 +141,8 @@ U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
 flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
-UI_MATRIX_IO["TCA9534APWR<br/>матрица D-pad и функциональных кнопок"]
-UI_SWITCH_UP["C&K Y78B23214FP<br/>контакт ↑ под единой крестовиной D-pad"]
-UI_SWITCH_DOWN["C&K Y78B23214FP<br/>контакт ↓ под единой крестовиной D-pad"]
-UI_SWITCH_LEFT["C&K Y78B23214FP<br/>контакт ← под единой крестовиной D-pad"]
-UI_SWITCH_RIGHT["C&K Y78B23214FP<br/>контакт → под единой крестовиной D-pad"]
-UI_SWITCH_OK["C&K Y78B23214FP<br/>центральный контакт OK единого D-pad"]
+UI_MATRIX_IO["TCA9539PWR<br/>16 прямых входов D-pad и функциональных кнопок"]
+UI_DPAD_SWITCH["Alps Alpine SKRHADE010<br/>четыре направления и OK под единой крестовиной D-pad"]
 UI_SWITCH_BACK["OMRON B3S-1100P<br/>кнопка BACK"]
 UI_SWITCH_OPT["OMRON B3S-1100P<br/>кнопка OPT"]
 UI_SWITCH_F1["OMRON B3S-1100P<br/>задняя функциональная кнопка F1"]
@@ -157,16 +153,12 @@ STOP_SWITCH["C&K TLSMDT3C020GLFS<br/>нормально-замкнутая ап�
 REARM_SWITCH["OMRON B3S-1100P<br/>утопленная аппаратная кнопка RE-ARM"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физической линии STOP"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка STOP/RE-ARM"]
-  UI_SWITCH_UP -->|"R0/C0"| UI_MATRIX_IO
-  UI_SWITCH_DOWN -->|"R0/C1"| UI_MATRIX_IO
-  UI_SWITCH_LEFT -->|"R0/C2"| UI_MATRIX_IO
-  UI_SWITCH_RIGHT -->|"R1/C0"| UI_MATRIX_IO
-  UI_SWITCH_OK -->|"R1/C1"| UI_MATRIX_IO
-  UI_SWITCH_BACK -->|"R1/C2"| UI_MATRIX_IO
-  UI_SWITCH_OPT -->|"R2/C0"| UI_MATRIX_IO
-  UI_SWITCH_F1 -->|"R2/C1"| UI_MATRIX_IO
-  UI_SWITCH_F2 -->|"R2/C2"| UI_MATRIX_IO
-  ENCODER -->|"push R3/C0"| UI_MATRIX_IO
+  UI_DPAD_SWITCH -->|"five independent inputs"| UI_MATRIX_IO
+  UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
+  UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
+  UI_SWITCH_F1 -->|"direct P10 across M1"| UI_MATRIX_IO
+  UI_SWITCH_F2 -->|"direct P11 across M1"| UI_MATRIX_IO
+  ENCODER -->|"push P12 across M1"| UI_MATRIX_IO
   UI_MATRIX_IO -->|"I²C0 + IRQ"| S3
   ENCODER -->|"A/B direct PCNT"| S3
   PTT_SWITCH -->|"direct active-low PTT"| RP

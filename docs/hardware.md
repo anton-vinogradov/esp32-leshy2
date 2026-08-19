@@ -64,14 +64,17 @@ permission.
 | Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output through side grille |
 | Headphones | `Same Sky SJ1-3515-SMT-TR` | 3.5-mm connector with detect |
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
-| Control panel | `TCA9534APWR` | D-pad, OK, BACK, OPT, F1, F2 and encoder push |
-| D-pad switches | `C&K Y78B23214FP` | Five low-profile switches beneath one cross |
+| Control panel | `TCA9539PWR` | Ten independent active-low inputs for D-pad, BACK, OPT, F1, F2 and encoder push |
+| D-pad switch | `Alps Alpine SKRHADE010` | Four directions plus centre push beneath one cross; mounted 45° clockwise |
 | Direct buttons | `OMRON B3S-1100P` | BACK, OPT, F1, F2, PTT and recessed RE-ARM |
 | Hard STOP | `C&K TLSMDT3C020GLFS` | Same-size direct button; separate normally-closed safety path |
 | Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
 | Encoder knob | `Davies Molding 1227-J` | 15-mm soft-touch interference fit for the 6×4.5-mm D shaft |
 
-The front panel contains one D-pad cross with centre `OK`. `BACK`, `OPT`, `F1`,
+The front panel contains one D-pad cross with centre `OK`. The cross is keyed
+to the 3-mm stem of one guided `SKRHADE010`, rather than floating above five
+separate plungers. All ten ordinary controls use independent expander inputs,
+so simultaneous keys need no matrix scan or ghost-key reconstruction. `BACK`, `OPT`, `F1`,
 `F2`, `PTT` and recessed `RE-ARM` are identical directly pressed
 `OMRON B3S-1100P` buttons—there is no separate cap or plunger. F1/F2, the
 encoder, PTT, hardware STOP and RE-ARM surround the rear battery; the encoder
@@ -104,8 +107,9 @@ it is not part of a common cover.
 ## Dimensioned layout
 
 Solid component outlines use dimensions from the part-number register. The
-violet D-pad cross is a custom product part, so it requires a controlled
-manufacturing drawing rather than a supplier MPN. The orange dashed outline
+violet D-pad cross is a custom product part over the exact rotated
+`Alps Alpine SKRHADE010`, so the cross requires a controlled manufacturing
+drawing rather than a supplier MPN. The orange dashed outline
 marks the only open rear item: the custom RE-ARM enclosure-recess drawing. The
 exact `Davies Molding 1227-J` encoder knob is rendered as a solid 15-mm part.
 The generator rejects component-to-

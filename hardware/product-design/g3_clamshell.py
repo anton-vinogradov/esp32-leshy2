@@ -160,7 +160,7 @@ UI_INNER = (
     Placement("c5", 51.0, 22.0, "native 2.4/5-GHz and IR owner"),
     Placement("display_connector", 25.0, 43.0, "40-contact display FPC mate"),
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
-    Placement("ui_matrix_io", 33.0, 55.0, "local-control matrix expander"),
+    Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
     Placement("receiver", 51.0, 54.0, "FM/AM/SW/LW receiver"),
     Placement("ir_demod", 0.0, 75.0, "38-kHz IR receiver"),
@@ -222,11 +222,7 @@ RF_INNER = (
 
 FRONT_CONTROLS = (
     Placement("ui_switch_back", 16.8, 134.4, "direct-press BACK"),
-    Placement("ui_switch_up", 35.4, 130.0, "D-pad up"),
-    Placement("ui_switch_left", 29.5, 136.0, "D-pad left"),
-    Placement("ui_switch_ok", 35.4, 136.0, "D-pad OK"),
-    Placement("ui_switch_right", 41.3, 136.0, "D-pad right"),
-    Placement("ui_switch_down", 35.4, 142.0, "D-pad down"),
+    Placement("ui_dpad_switch", 32.21, 132.11, "four directions plus center push", 45),
     Placement("ui_switch_opt", 51.6, 134.4, "direct-press OPT"),
 )
 
@@ -247,8 +243,8 @@ DIRECT_PRESS_REAR_CONTROLS = {
 
 FRONT_CAP_RESERVES = (
     Reserve(
-        "single D-pad cross", 28.8, 127.5, 17.4, 19.0,
-        "custom one-piece D-pad actuator over five switches; supplier MPN does not apply",
+        "single D-pad cross", 28.8, 127.9, 17.4, 19.0,
+        "custom keyed D-pad actuator over one SKRHADE010 stem; supplier MPN does not apply",
         "custom_actuator",
     ),
 )
@@ -291,7 +287,11 @@ def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[flo
     if not dimensions or len(dimensions) < 2 or dimensions[0] is None or dimensions[1] is None:
         raise ValueError(f"{item.instance}: two-dimensional package envelope is missing")
     w, h = float(dimensions[0]), float(dimensions[1])
-    return (h, w) if item.rotation % 180 else (w, h)
+    angle = math.radians(item.rotation % 180)
+    return (
+        abs(w * math.cos(angle)) + abs(h * math.sin(angle)),
+        abs(w * math.sin(angle)) + abs(h * math.cos(angle)),
+    )
 
 
 def mirrored_x(x: float, width: float = 0.0) -> float:
@@ -372,6 +372,7 @@ def validate() -> list[str]:
         "pack_holder": "Keystone Electronics 1048P",
         "unit_connector": "1125R-SMT-4P",
         "encoder_knob": "Davies Molding 1227-J",
+        "ui_dpad_switch": "Alps Alpine SKRHADE010",
     }
     for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
@@ -387,6 +388,12 @@ def validate() -> list[str]:
     errors += validate_reserves("front-caps", FRONT_CAP_RESERVES)
     errors += validate_reserves("rear-caps", REAR_CAP_RESERVES)
     errors += validate_reserves("internal-reserves", INTERNAL_RESERVES)
+    dpad = next(item for item in FRONT_CONTROLS if item.instance == "ui_dpad_switch")
+    dpad_w, dpad_h = placement_size(dpad, devices, instances)
+    if dpad.rotation != 45:
+        errors.append("SKRHADE010 must remain 45 degrees clockwise so A/B/C/D map to up/right/left/down")
+    if abs(dpad.x + dpad_w / 2 - 37.5) > 0.02 or abs(dpad.y + dpad_h / 2 - 137.4) > 0.02:
+        errors.append("SKRHADE010 rotated envelope must remain centred at D-pad axis 37.5,137.4 mm")
     display = Placement("display", 10.25, 11.0, "display")
     holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
@@ -634,8 +641,8 @@ def rf_bank(
 
 
 def dpad_cap(origin, scale, sx, sy, text):
-    """Draw one custom D-pad actuator; the five switches below remain separate parts."""
-    cx, cy = sx(origin, 37.5), sy(origin, 137.0)
+    """Draw one custom D-pad actuator over the selected guided navigation switch."""
+    cx, cy = sx(origin, 37.5), sy(origin, 137.4)
     arm, half = 6.6 * scale, 2.4 * scale
     points = (
         (cx - half, cy - arm), (cx + half, cy - arm),
@@ -859,9 +866,9 @@ def render_external(devices, instances):
         text(note_x,609,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
         text(note_x,630,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
         text(note_x,653,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
-        text(note_x,676,"D-pad cross is custom; its control drawing replaces a supplier MPN.",11),
+        text(note_x,676,"D-pad cross is custom over Alps SKRHADE010; its control drawing replaces a cap MPN.",11),
         text(note_x,699,"Davies 1227-J is the exact encoder knob; only its fit HIL remains.",11),
-        text(note_x,722,"BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one cross.",11,"bold"),
+        text(note_x,722,"BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one SKRH switch and one cross.",11,"bold"),
         text(note_x,745,"STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.",11),
     ]
     out.append("</svg>")

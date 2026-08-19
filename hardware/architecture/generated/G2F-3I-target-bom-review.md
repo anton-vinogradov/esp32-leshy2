@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **895** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **894** supplied/costed placements collapse to **198** used exact-device/MPN lines.
+- **885** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **884** supplied/costed placements collapse to **198** used exact-device/MPN lines.
 - Current orderability evidence exists for **197/198** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **186/198** lines.
-- Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **872/894** supplied placements; their partial subtotals are `base_product` — USD 194.7139. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **187/198** lines.
+- Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **867/884** supplied placements; their partial subtotals are `base_product` — USD 196.8414. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **198/198** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 891 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 881 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -170,7 +170,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-DISCRETE-PROT</code> — Discrete switching, indication and signal-protection semiconductors — 13 line(s)</summary>
+<details><summary><code>SUB-DISCRETE-PROT</code> — Discrete switching, indication and signal-protection semiconductors — 12 line(s)</summary>
 
 - Disposition: no automatic drop-in; a proposed alternate must pass pin/polarity, off-state and fault-boundary review.
 - Equivalence envelope:
@@ -188,7 +188,6 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `diodes_mmbt3904_7_f` — `Diodes Incorporated MMBT3904-7-F`.
   - `liteon_ltst_c190kfkt` — `LTST-C190KFKT`.
   - `liteon_ltst_c190krkt` — `LTST-C190KRKT`.
-  - `onsemi_1n4148wt` — `onsemi 1N4148WT`.
   - `onsemi_bat54alt1g` — `BAT54ALT1G`.
   - `onsemi_bav70lt1g` — `onsemi BAV70LT1G`.
   - `ti_tpd2eusb30a_drtr` — `Texas Instruments TPD2EUSB30ADRTR`.
@@ -198,7 +197,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 28 line(s)</summary>
+<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 29 line(s)</summary>
 
 - Disposition: no drop-in by family name; exact pin/function/electrical equivalent requires owning-interface requalification.
 - Equivalence envelope:
@@ -232,6 +231,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_sn74lvc3g07_dcur` — `SN74LVC3G07DCUR`.
   - `ti_sn74lvc3g34_dcur` — `SN74LVC3G34DCUR`.
   - `ti_tca9534a_pwr` — `TCA9534APWR`.
+  - `ti_tca9539_pwr` — `TCA9539PWR`.
   - `ti_tlv1821_dckr` — `TLV1821DCKR`.
   - `ti_tlv1824_pwr` — `TLV1824PWR`.
   - `ti_tlv9061_idbvr` — `Texas Instruments TLV9061IDBVR`.
@@ -317,9 +317,9 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 - Current lines:
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
   - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
+  - `alps_skrhade010` — `Alps Alpine SKRHADE010`.
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
   - `ck_tlsmdt3c020glfs` — `C&K TLSMDT3C020GLFS`.
-  - `ck_y78b23214fp` — `C&K Y78B23214FP`.
   - `davies_1227_j` — `Davies Molding 1227-J`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
@@ -398,6 +398,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/alps-alpine/SKQGADE010/18109115).
+
+</details>
+
+<details><summary><code>Alps Alpine SKRHADE010</code> — 1 × USD 2.4300 = USD 2.4300</summary>
+
+- Device id: `alps_skrhade010`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Alps-Alpine/SKRHADE010?qs=seHrhfPpLDxlAi0Di%252BJD5Q%3D%3D).
 
 </details>
 
@@ -1040,15 +1049,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>onsemi 1N4148WT</code> — 10 × USD 0.0629 = USD 0.6290</summary>
-
-- Device id: `onsemi_1n4148wt`.
-- Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/1N4148WT/2094398).
-
-</details>
-
 <details><summary><code>BAT54ALT1G</code> — 4 × USD 0.0577 = USD 0.2308</summary>
 
 - Device id: `onsemi_bat54alt1g`.
@@ -1409,12 +1409,21 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TCA9534APWR</code> — 2 × USD 1.0212 = USD 2.0424</summary>
+<details><summary><code>TCA9534APWR</code> — 1 × USD 1.0212 = USD 1.0212</summary>
 
 - Device id: `ti_tca9534a_pwr`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9534APWR/5004965).
+
+</details>
+
+<details><summary><code>TCA9539PWR</code> — 1 × USD 1.0196 = USD 1.0196</summary>
+
+- Device id: `ti_tca9539_pwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9539PWR/2139129).
 
 </details>
 
@@ -1463,7 +1472,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments TPD4E05U06DQAR</code> — 12 × USD 0.3090 = USD 3.7080</summary>
+<details><summary><code>Texas Instruments TPD4E05U06DQAR</code> — 13 × USD 0.3090 = USD 4.0170</summary>
 
 - Device id: `ti_tpd4e05u06_dqar`.
 - Scope: `base_product`.
@@ -1679,7 +1688,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 167 × USD 0.0097 = USD 1.6199</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 169 × USD 0.0097 = USD 1.6393</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -1841,7 +1850,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-073K32L</code> — 3 × USD 0.0097 = USD 0.0291</summary>
+<details><summary><code>Yageo RC0402FR-073K32L</code> — 8 × USD 0.0097 = USD 0.0776</summary>
 
 - Device id: `yageo_rc0402fr_073k32l`.
 - Scope: `base_product`.
@@ -1985,7 +1994,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0603FR-071KL</code> — 8 × USD 0.0122 = USD 0.0976</summary>
+<details><summary><code>Yageo RC0603FR-071KL</code> — 4 × USD 0.0122 = USD 0.0488</summary>
 
 - Device id: `yageo_rc0603fr_071kl`.
 - Scope: `base_product`.
@@ -2024,15 +2033,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 ## Unpriced lines with explicit cost gates
 
 These entries are intentionally excluded from the partial subtotal until a comparable quantity-100 USD quote exists.
-
-<details><summary><code>C&K Y78B23214FP</code> — <code>quantity_100_rfq_required</code></summary>
-
-- Device id: `ck_y78b23214fp`.
-- Scope: `base_product`; quantity `5`.
-- Reason: The exact authorized-distributor line is live, but the accessible table is regional AUD and skips directly from 25 to 250 pieces; the USD quantity-100 cost baseline requires a same-region quote rather than an FX conversion.
-- Checked: `2026-08-19`; [gate source](https://au.mouser.com/en/ProductDetail/CK/Y78B23214FP).
-
-</details>
 
 <details><summary><code>Ebyte E01-ML01IPX</code> — <code>quantity_100_rfq_required</code></summary>
 

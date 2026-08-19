@@ -27,11 +27,11 @@
 - Микрофон и его цепь смещения находятся на RF/power-плате; MIC_RAW проходит через M1 рядом с AUDIO_GROUND к расположенным на UI-плате селекторам записи и передачи.
 - Аналоговые выходы детекторов передачи и IR-несущая обрабатываются на своей плате; через M1 проходят только цифровые признаки передачи.
 - Защёлка STOP/RE-ARM расположена на RF/power-плате рядом с задними кнопками; на UI-плату передаются только цифровые RUN_PERMIT, reset-kill и read-only status.
-- F1/F2 и энкодер используют семь прямых матричных/фазных контактов M1; PTT остаётся локальным для RP/voice.
+- F1/F2 и энкодер используют пять прямых входных/фазных контактов M1; PTT остаётся локальным для RP/voice; четыре контакта M1 зарезервированы и оставлены NC.
 
 ## Бюджет контактов
 
-- Всего 80 контактов; 2 зарезервированы и физически не подключены.
+- Всего 80 контактов; 4 зарезервированы и физически не подключены.
 - 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
 - 22 силовых возвратов, 3 аудиовозврата и 2 возврата безопасности.
 - Сырой VBUS/PD, ток аккумуляторов, аналоговые выходы TX-детекторов, IR-несущая и выходы класса D через M1 не проходят.
@@ -68,11 +68,11 @@
 | `26` | `POWER_FAULT_N` | RF→UI | `control` |
 | `27` | `POWER_GROUND` | return | `return` |
 | `28` | `UNIT_READY` | RF→UI | `control` |
-| `29` | `UI_ROW2_N` | UI→RF | `control` |
+| `29` | `UI_F1_N` | RF→UI | `control` |
 | `30` | `POR_N` | RF→UI | `safety` |
 | `31` | `POWER_GROUND` | return | `return` |
 | `32` | `RUN_PERMIT` | RF→UI | `safety` |
-| `33` | `UI_COL1` | RF→UI | `control` |
+| `33` | `UI_F2_N` | RF→UI | `control` |
 | `34` | `RESET_KILL_GATE` | RF→UI | `safety` |
 | `35` | `POWER_GROUND` | return | `return` |
 | `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
@@ -89,7 +89,7 @@
 | `47` | `SPEAKER_SELECTED_N` | UI→RF | `audio` |
 | `48` | `MIC_RAW` | RF→UI | `audio` |
 | `49` | `AUDIO_GROUND` | return | `return` |
-| `50` | `UI_COL2` | RF→UI | `control` |
+| `50` | `UI_ENCODER_PUSH_N` | RF→UI | `control` |
 | `51` | `3V3_MAIN` | rail | `power` |
 | `52` | `3V3_MAIN` | rail | `power` |
 | `53` | `3V3_MAIN` | rail | `power` |
@@ -114,8 +114,8 @@
 | `72` | `POWER_GROUND` | return | `return` |
 | `73` | `ENCODER_A` | RF→UI | `control` |
 | `74` | `ENCODER_B` | RF→UI | `control` |
-| `75` | `UI_ROW3_N` | UI→RF | `control` |
-| `76` | `UI_COL0` | RF→UI | `control` |
+| `75` | `RESERVED_75` | reserved | `reserved` |
+| `76` | `RESERVED_76` | reserved | `reserved` |
 | `77` | `STOP_LATCH_SENSE` | RF→UI | `safety` |
 | `78` | `SPEAKER_AMP_EN` | UI→RF | `control` |
 | `79` | `RESERVED_79` | reserved | `reserved` |

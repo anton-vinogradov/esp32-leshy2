@@ -3491,6 +3491,56 @@
       },
       "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
     },
+    "alps_skrhade010": {
+      "mpn": "Alps Alpine SKRHADE010",
+      "kind": "smt_four_direction_center_push_navigation_switch_with_guide_bosses",
+      "qualification": "verified_exact_navigation_switch_custom_cross_fit_hil_open",
+      "lifecycle": "standard_active_orderable",
+      "dimensions_mm": [7.45, 7.5, 1.85],
+      "source": {
+        "document": "SKRH Series 4-direction with center-push catalogue and exact product page",
+        "version": "Update 2510",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRHADE010/",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "SKRHADE010 authorized-distributor exact order-code page; 720 shown in stock and 1,300 on order",
+        "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/SKRHADE010?qs=seHrhfPpLDxlAi0Di%252BJD5Q%3D%3D",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 2.43,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/SKRHADE010?qs=seHrhfPpLDxlAi0Di%252BJD5Q%3D%3D", "checked": "2026-08-19"}
+      },
+      "electrical_contract": {
+        "function": "four directional momentary contacts plus independent center push sharing one common",
+        "direction_force_n": "1.2 +/- 0.69",
+        "center_force_n": "2.35 +/- 0.69",
+        "direction_travel_mm": 0.25,
+        "center_travel_mm": 0.15,
+        "minimum_dry_rating": "1 V DC, 10 uA",
+        "maximum_rating": "12 V DC, 50 mA",
+        "operating_life_cycles_each_direction": 1000000,
+        "operating_temperature_c": [-40, 85]
+      },
+      "mechanical_contract": {
+        "stem_diameter_mm": 3.0,
+        "guide_bosses": "two 0.65-mm guide bosses use the official land pattern",
+        "selected_board_rotation_deg_clockwise": 45,
+        "direction_map_at_selected_rotation": {"A_PIN_1": "UP", "B_PIN_4": "RIGHT", "C_PIN_3": "LEFT", "D_PIN_6": "DOWN"},
+        "actuator": "one custom cross keyed to the central stem; retention, tilt, center/direction discrimination and enclosure travel remain HIL"
+      },
+      "programmable": false,
+      "contacts": {
+        "A": {"physical": "1", "role": "switch_contact"},
+        "CENTER": {"physical": "2", "role": "switch_contact"},
+        "C": {"physical": "3", "role": "switch_contact"},
+        "B": {"physical": "4", "role": "switch_contact"},
+        "COMMON": {"physical": "5", "role": "power"},
+        "D": {"physical": "6", "role": "switch_contact"}
+      }
+    },
     "omron_b3s_1100p": {
       "mpn": "OMRON B3S-1100P",
       "kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
@@ -4365,6 +4415,69 @@
         "P6": {"physical": "11", "role": "signal"}, "P7": {"physical": "12", "role": "signal"},
         "INT_N": {"physical": "13", "role": "signal"}, "SCL": {"physical": "14", "role": "signal"},
         "SDA": {"physical": "15", "role": "signal"}, "VCC": {"physical": "16", "role": "power"}
+      }
+    },
+    "ti_tca9539_pwr": {
+      "mpn": "TCA9539PWR",
+      "kind": "tssop24_i2c_16bit_io_expander_with_interrupt_and_reset",
+      "qualification": "verified_exact_direct_control_input_expander",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [7.8, 4.4, 1.2],
+      "source": {
+        "document": "TCA9539 Low Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet",
+        "version": "Rev. C",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9539.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "TCA9539PWR authorized-distributor exact order code; 41,573 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TCA9539PWR/2139129",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.0196,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TCA9539PWR/2139129", "checked": "2026-08-19"}
+      },
+      "electrical_contract": {
+        "supply_range_v": [1.65, 5.5],
+        "bus_max_hz": 400000,
+        "power_on_default": "all P00..P07 and P10..P17 are inputs",
+        "interrupt": "open-drain active-low on any input state change relative to the last read",
+        "reset": "active-low hardware RESET returns registers and the I2C state machine to defaults",
+        "selected_supply": "3V3_MAIN",
+        "selected_address": "0x74 with A1 and A0 tied directly low"
+      },
+      "programmable": false,
+      "i2c_7bit_address_by_a1a0": {
+        "00": "0x74", "01": "0x75", "10": "0x76", "11": "0x77"
+      },
+      "allocatable_contacts": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17"],
+      "contacts": {
+        "INT_N": {"physical": "1", "role": "signal"},
+        "A1": {"physical": "2", "role": "signal"},
+        "RESET_N": {"physical": "3", "role": "reset"},
+        "P00": {"physical": "4", "role": "signal"},
+        "P01": {"physical": "5", "role": "signal"},
+        "P02": {"physical": "6", "role": "signal"},
+        "P03": {"physical": "7", "role": "signal"},
+        "P04": {"physical": "8", "role": "signal"},
+        "P05": {"physical": "9", "role": "signal"},
+        "P06": {"physical": "10", "role": "signal"},
+        "P07": {"physical": "11", "role": "signal"},
+        "GND": {"physical": "12", "role": "power"},
+        "P10": {"physical": "13", "role": "signal"},
+        "P11": {"physical": "14", "role": "signal"},
+        "P12": {"physical": "15", "role": "signal"},
+        "P13": {"physical": "16", "role": "signal"},
+        "P14": {"physical": "17", "role": "signal"},
+        "P15": {"physical": "18", "role": "signal"},
+        "P16": {"physical": "19", "role": "signal"},
+        "P17": {"physical": "20", "role": "signal"},
+        "A0": {"physical": "21", "role": "signal"},
+        "SCL": {"physical": "22", "role": "signal"},
+        "SDA": {"physical": "23", "role": "signal"},
+        "VCC": {"physical": "24", "role": "power"}
       }
     },
     "vishay_vemd1060x01": {

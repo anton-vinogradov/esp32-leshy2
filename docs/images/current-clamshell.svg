@@ -100,10 +100,10 @@
 <text data-layer="pcb-silkscreen" x="343.4" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">TX ACTIVE</text>
 <rect x="142.2" y="647.3" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
 <rect x="270.9" y="647.3" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-direct-press="true"/>
-<rect x="186.6" y="621.8" width="64.4" height="70.3" rx="3" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3" data-reserve-class="custom_actuator"/>
-<polygon points="209.9,632.5 227.6,632.5 227.6,648.0 243.2,648.0 243.2,665.8 227.6,665.8 227.6,681.3 209.9,681.3 209.9,665.8 194.3,665.8 194.3,648.0 209.9,648.0" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross" data-manufacturing-class="custom-actuator"/>
-<circle cx="218.8" cy="656.9" r="7.4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
-<text x="218.8" y="658.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
+<rect x="186.6" y="623.2" width="64.4" height="70.3" rx="3" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3" data-reserve-class="custom_actuator"/>
+<polygon points="209.9,634.0 227.6,634.0 227.6,649.5 243.2,649.5 243.2,667.3 227.6,667.3 227.6,682.8 209.9,682.8 209.9,667.3 194.3,667.3 194.3,649.5 209.9,649.5" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross" data-manufacturing-class="custom-actuator"/>
+<circle cx="218.8" cy="658.4" r="7.4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="218.8" y="660.4" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
 <text data-layer="pcb-silkscreen" x="154.4" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
 <text data-layer="pcb-silkscreen" x="283.1" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -181,8 +181,8 @@
 <text x="850.0" y="609.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.</text>
 <text x="850.0" y="630.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.</text>
 <text x="850.0" y="653.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
-<text x="850.0" y="676.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">D-pad cross is custom; its control drawing replaces a supplier MPN.</text>
+<text x="850.0" y="676.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">D-pad cross is custom over Alps SKRHADE010; its control drawing replaces a cap MPN.</text>
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
-<text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one cross.</text>
+<text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one SKRH switch and one cross.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.</text>
 </svg>

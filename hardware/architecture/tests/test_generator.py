@@ -41,12 +41,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         pin_map = contract["pin_map"]
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
         self.assertEqual(8, sum(row["net"] == "3V3_MAIN" for row in pin_map))
-        self.assertEqual(2, sum(row["signal_class"] == "reserved" for row in pin_map))
+        self.assertEqual(4, sum(row["signal_class"] == "reserved" for row in pin_map))
         mapped = {row["net"] for row in pin_map}
         self.assertTrue(
             {
                 "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RESET_KILL_GATE",
-                "UI_ROW2_N", "UI_ROW3_N", "UI_COL0", "UI_COL1", "UI_COL2",
+                "UI_F1_N", "UI_F2_N", "UI_ENCODER_PUSH_N",
                 "ENCODER_A", "ENCODER_B", "STOP_LATCH_SENSE",
                 "MIC_RAW", "SPEAKER_AMP_EN",
             } <= mapped
@@ -140,22 +140,22 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(894, sum(line["quantity"] for line in lines))
+        self.assertEqual(884, sum(line["quantity"] for line in lines))
         self.assertEqual(198, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            12,
+            11,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            186,
+            187,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            872,
+            867,
             sum(
                 line["quantity"]
                 for line in lines
@@ -167,7 +167,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            12,
+            11,
             sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
@@ -217,14 +217,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**895** architecture instances", rendered)
-        self.assertIn("**894** supplied/costed placements", rendered)
+        self.assertIn("**885** architecture instances", rendered)
+        self.assertIn("**884** supplied/costed placements", rendered)
         self.assertIn("**197/198** used lines", rendered)
         self.assertIn("**198/198** lines", rendered)
-        self.assertIn("**186/198** lines", rendered)
-        self.assertIn("**872/894** supplied placements", rendered)
-        self.assertIn("USD 194.7139", rendered)
-        self.assertIn("12", rendered)
+        self.assertIn("**187/198** lines", rendered)
+        self.assertIn("**867/884** supplied placements", rendered)
+        self.assertIn("USD 196.8414", rendered)
+        self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
         self.assertIn("SUB-RF", rendered)
@@ -263,8 +263,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(46, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1016, policy["expected_occurrence_count"])
+        self.assertEqual(51, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1035, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -3148,28 +3148,29 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "D-PAD UP", "D-PAD DOWN", "D-PAD LEFT", "D-PAD RIGHT", "OK",
                 "BACK", "OPT", "F1", "F2", "ENCODER PUSH",
             },
-            set(contract["ordinary_matrix"]["controls"]),
+            set(contract["ordinary_inputs"]["controls"]),
         )
         self.assertEqual(
-            ["OPT", "F1", "F2"],
-            contract["ordinary_matrix"]["coordinate_map"]["ROW2"],
+            {
+                "P00": "D-PAD UP", "P01": "D-PAD DOWN",
+                "P02": "D-PAD LEFT", "P03": "D-PAD RIGHT", "P04": "OK",
+                "P05": "BACK", "P06": "OPT", "P10": "F1", "P11": "F2",
+                "P12": "ENCODER PUSH",
+            },
+            contract["ordinary_inputs"]["input_map"],
         )
         self.assertIn(
-            "writes P0..P3 output latches low",
-            contract["ordinary_matrix"]["scan_contract"],
+            "row drive, matrix scanning and ghost-key handling are eliminated",
+            contract["ordinary_inputs"]["firmware_contract"],
         )
         self.assertIn("RP GPIO21", contract["dedicated_controls"]["ptt"])
         self.assertIn("normally-closed", contract["dedicated_controls"]["stop"])
         self.assertIn("never multiplexed", contract["dedicated_controls"]["rearm"])
 
-        self.assertEqual("ti_tca9534a_pwr", candidate["instances"]["ui_matrix_io"])
+        self.assertEqual("ti_tca9539_pwr", candidate["instances"]["ui_matrix_io"])
         self.assertEqual("alps_ec11e18244au", candidate["instances"]["encoder"])
         self.assertEqual("ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"])
-        for instance in (
-            "ui_switch_up", "ui_switch_down", "ui_switch_left", "ui_switch_right",
-            "ui_switch_ok",
-        ):
-            self.assertEqual("ck_y78b23214fp", candidate["instances"][instance])
+        self.assertEqual("alps_skrhade010", candidate["instances"]["ui_dpad_switch"])
         for instance in (
             "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2",
             "ptt_switch", "rearm_switch",
@@ -3177,11 +3178,16 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertEqual("omron_b3s_1100p", candidate["instances"][instance])
         self.assertEqual("ck_tlsmdt3c020glfs", candidate["instances"]["stop_switch"])
         self.assertEqual("ti_tpd8e003_dqdr", candidate["instances"]["ui_matrix_esd"])
+        self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["rear_control_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["encoder_ptt_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["safety_control_esd"])
         self.assertEqual(
-            "1 uA at 1.8 VDC",
-            self.database["devices"]["ck_y78b23214fp"]["electrical_contract"]["ulc_minimum"],
+            "1 V DC, 10 uA",
+            self.database["devices"]["alps_skrhade010"]["electrical_contract"]["minimum_dry_rating"],
+        )
+        self.assertEqual(
+            45,
+            self.database["devices"]["alps_skrhade010"]["mechanical_contract"]["selected_board_rotation_deg_clockwise"],
         )
         self.assertEqual(
             "direct finger press; no separate cap or plunger",
@@ -3191,15 +3197,18 @@ class ArchitectureValidationTests(unittest.TestCase):
             "10 uA at 1 VDC through 50 mA at 16 VDC",
             self.database["devices"]["ck_tlsmdt3c020glfs"]["electrical_contract"]["qualified_range"],
         )
-        matrix_io = self.database["devices"]["ti_tca9534a_pwr"]
-        self.assertEqual("4", matrix_io["contacts"]["P0"]["physical"])
-        self.assertEqual("13", matrix_io["contacts"]["INT_N"]["physical"])
+        input_io = self.database["devices"]["ti_tca9539_pwr"]
+        self.assertEqual("4", input_io["contacts"]["P00"]["physical"])
+        self.assertEqual("1", input_io["contacts"]["INT_N"]["physical"])
         self.assertEqual(
-            ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7"],
-            matrix_io["allocatable_contacts"],
+            [
+                "P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07",
+                "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17",
+            ],
+            input_io["allocatable_contacts"],
         )
-        self.assertEqual("0x38", matrix_io["i2c_7bit_address_by_a2a1a0"]["000"])
-        self.assertEqual("0x3F", matrix_io["i2c_7bit_address_by_a2a1a0"]["111"])
+        self.assertEqual("0x74", input_io["i2c_7bit_address_by_a1a0"]["00"])
+        self.assertEqual("0x77", input_io["i2c_7bit_address_by_a1a0"]["11"])
         self.assertIn("ti_sn74lvc1g06_dckr", self.database["devices"])
         self.assertEqual(
             "ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"]
@@ -3231,15 +3240,23 @@ class ArchitectureValidationTests(unittest.TestCase):
             (route["from"], route["to"], route["net"])
             for route in candidate["fixed_routes"]
         }
-        self.assertIn(("ui_matrix_io.P0", "ui_matrix_esd.IO1", "UI_ROW0_N"), routes)
-        self.assertIn(("ui_matrix_io.P4", "ui_matrix_esd.IO5", "UI_COL0"), routes)
+        self.assertIn(("ui_matrix_io.P00", "ui_matrix_esd.IO1", "UI_DPAD_UP_N"), routes)
+        self.assertIn(("ui_matrix_io.P04", "ui_matrix_esd.IO5", "UI_DPAD_OK_N"), routes)
         self.assertIn(("ui_matrix_io.INT_N", "abstract:SYS_INT_N_WIRED_LOW", "SYS_INT_N"), routes)
-        self.assertIn(("abstract:3V3_MAIN", "ui_matrix_io.A2", "UI_MATRIX_ADDR_A2_HIGH"), routes)
+        self.assertIn(("abstract:power-ground", "ui_matrix_io.A0", "UI_INPUT_ADDR_A0_LOW"), routes)
+        self.assertIn(("abstract:power-ground", "ui_matrix_io.A1", "UI_INPUT_ADDR_A1_LOW"), routes)
+        self.assertIn(("s3.EN", "ui_matrix_io.RESET_N", "S3_RESET_N"), routes)
         self.assertIn(("abstract:safety-ground", "evidence_mask.A2", "EVIDENCE_ADDR_A2_LOW"), routes)
-        self.assertIn(("ui_matrix_diode_f1.A", "ui_switch_f1.SIDE_A_1", "UI_F1_ROW_SIDE"), routes)
-        self.assertIn(("ui_switch_f1.SIDE_B_1", "ui_matrix_io.P5", "UI_COL1"), routes)
-        self.assertIn(("ui_matrix_diode_f2.A", "ui_switch_f2.SIDE_A_1", "UI_F2_ROW_SIDE"), routes)
-        self.assertIn(("ui_switch_f2.SIDE_B_1", "ui_matrix_io.P6", "UI_COL2"), routes)
+        self.assertIn(("ui_matrix_io.P00", "ui_dpad_switch.A", "UI_DPAD_UP_N"), routes)
+        self.assertIn(("ui_matrix_io.P01", "ui_dpad_switch.D", "UI_DPAD_DOWN_N"), routes)
+        self.assertIn(("ui_matrix_io.P02", "ui_dpad_switch.C", "UI_DPAD_LEFT_N"), routes)
+        self.assertIn(("ui_matrix_io.P03", "ui_dpad_switch.B", "UI_DPAD_RIGHT_N"), routes)
+        self.assertIn(("ui_matrix_io.P04", "ui_dpad_switch.CENTER", "UI_DPAD_OK_N"), routes)
+        self.assertIn(("ui_dpad_switch.COMMON", "abstract:power-ground", "POWER_GROUND"), routes)
+        self.assertIn(("ui_matrix_io.P10", "ui_switch_f1.SIDE_A_1", "UI_F1_N"), routes)
+        self.assertIn(("ui_matrix_io.P11", "ui_switch_f2.SIDE_A_1", "UI_F2_N"), routes)
+        self.assertIn(("ui_matrix_io.P12", "encoder.SW1", "UI_ENCODER_PUSH_N"), routes)
+        self.assertIn(("ui_matrix_io.P10", "rear_control_esd.D1_PLUS", "UI_F1_N"), routes)
         self.assertIn(("ptt_series.END_2", "rp.GPIO21", "PTT_BUTTON_N"), routes)
         self.assertIn(("stop_pullup.END_2", "stop_switch.NC", "STOP_LOOP_SENSE"), routes)
         self.assertIn(("stop_switch.COM", "abstract:safety-ground", "SAFETY_GROUND"), routes)
@@ -3252,21 +3269,28 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
         self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])
         self.assertEqual(
-            {"P7": "protected local fixture/growth test pad retained after physical-control wish-list closure"},
+            {
+                "P07": "protected local fixture/growth test pad retained after physical-control wish-list closure",
+                "P13": "internal fixture/growth pad retained after physical-control wish-list closure",
+                "P14": "internal fixture/growth pad retained after physical-control wish-list closure",
+                "P15": "internal fixture/growth pad retained after physical-control wish-list closure",
+                "P16": "internal fixture/growth pad retained after physical-control wish-list closure",
+                "P17": "internal fixture/growth pad retained after physical-control wish-list closure",
+            },
             candidate["contact_accounting"]["ui_matrix_io"]["reserved"],
         )
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
-            "D-pad UP ultra-low-current ordinary control",
             "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
             "hold-to-talk PTT control", "normally-closed hard-STOP control",
-            "Y78B23214FP", "B3S-1100P", "TLSMDT3C020GLFS", "TPD8E003DQDR", "Sitronix ST77922",
+            "Alps Alpine SKRHADE010", "B3S-1100P", "TLSMDT3C020GLFS", "TPD8E003DQDR", "Sitronix ST77922",
             "active-low ST77922 touch node",
             'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
             'STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP',
             'REARM_SWITCH -->|"NO contact to safety ground"| REARM_RAW',
-            "TCA9534APWR", "dedicated interrupt-capable 4x3 ordinary-control expander",
+            "TCA9539PWR", "interrupt-capable 16-bit direct-control input expander",
+            "four-direction plus center-push navigation switch",
         ):
             self.assertIn(token, rendered)
         self.assertNotIn("PTT_SWITCH --> PTT_PULLUP --> PTT_FILTER_CAP", rendered)
@@ -3446,7 +3470,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             for resource in candidate["resource_contracts"]
             if resource["id"] == "S3_INTERNAL_I2C"
         )
-        for address in ("0x20", "0x22", "0x2A", "0x38", "0x3F"):
+        for address in ("0x20", "0x22", "0x2A", "0x38", "0x74"):
             self.assertIn(address, internal_bus["proof_gate"])
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
