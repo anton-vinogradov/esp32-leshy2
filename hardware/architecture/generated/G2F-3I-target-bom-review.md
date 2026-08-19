@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **196/197** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **185/197** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **871/893** supplied placements; their partial subtotals are `base_product` — USD 195.1819. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **871/893** supplied placements; their partial subtotals are `base_product` — USD 193.7419. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **197/197** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -318,6 +318,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
   - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
+  - `ck_tlsmdt3c020glfs` — `C&K TLSMDT3C020GLFS`.
   - `ck_y78b23214fp` — `C&K Y78B23214FP`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
@@ -330,7 +331,6 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `jae_dx07s016ja1r1500` — `JAE DX07S016JA1R1500`.
   - `keystone_1048p` — `Keystone Electronics 1048P`.
   - `omron_b3s_1100p` — `OMRON B3S-1100P`.
-  - `panasonic_aeq10410` — `Panasonic AEQ10410`.
   - `pui_as02404po` — `PUI Audio AS02404PO`.
   - `qdtech_hmx035ctft_001` — `HMX035CTFT-001 (QDtech schematic assembly marking)`.
   - `same_sky_cmej_0413_42_smt_tr` — `Same Sky CMEJ-0413-42-SMT-TR`.
@@ -424,6 +424,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835).
+
+</details>
+
+<details><summary><code>C&K TLSMDT3C020GLFS</code> — 1 × USD 1.6200 = USD 1.6200</summary>
+
+- Device id: `ck_tlsmdt3c020glfs`.
+- Scope: `base_product`.
+- Comparable basis: Mouser quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/CK/TLSMDT3C020GLFS?qs=QNEnbhJQKvZpNzUHXUSeJA%3D%3D).
 
 </details>
 
@@ -1063,15 +1072,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/FSUSB42MUX/2036916).
-
-</details>
-
-<details><summary><code>Panasonic AEQ10410</code> — 1 × USD 3.0600 = USD 3.0600</summary>
-
-- Device id: `panasonic_aeq10410`.
-- Scope: `base_product`.
-- Comparable basis: Mouser quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Panasonic-Industrial-Devices/AEQ10410?qs=j9cVjCYuKiedWHJ9UTfBiw%3D%3D).
 
 </details>
 

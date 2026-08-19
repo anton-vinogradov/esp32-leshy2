@@ -53,7 +53,7 @@
 <rect x="1114.3" y="382.2" width="120.9" height="167.4" rx="16" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="cell-right"/>
 <text x="1113.0" y="470.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#166534">Keystone Electronics 1048P + 2× 18650</text>
 <rect x="896.5" y="372.8" width="42.9" height="38.7" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="F2"/>
-<rect x="1264.8" y="372.8" width="86.5" height="48.6" rx="2" fill="#fee2e2" stroke="#b42318" stroke-width="1.5" data-instance="STOP"/>
+<rect x="1288.2" y="372.8" width="39.6" height="31.1" rx="2" fill="#fee2e2" stroke="#b42318" stroke-width="1.5" data-instance="STOP"/>
 <text x="918.0" y="397.1" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
 <text x="1308.0" y="403.4" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
 <text x="1113.0" y="583.1" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#9a3412">No U214 appears: its Y=17…41-mm zone does not cross B–B.</text>

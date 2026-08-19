@@ -67,24 +67,24 @@ permission.
 | Control panel | `TCA9534APWR` | D-pad, OK, BACK, OPT, F1, F2 and encoder push |
 | D-pad switches | `C&K Y78B23214FP` | Five low-profile switches beneath one cross |
 | Direct buttons | `OMRON B3S-1100P` | BACK, OPT, F1, F2, PTT and recessed RE-ARM |
-| Hard STOP | `Panasonic AEQ10410` | Separate normally-closed safety path |
+| Hard STOP | `C&K TLSMDT3C020GLFS` | Same-size direct button; separate normally-closed safety path |
 | Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
 
 The front panel contains one D-pad cross with centre `OK`. `BACK`, `OPT`, `F1`,
 `F2`, `PTT` and recessed `RE-ARM` are identical directly pressed
 `OMRON B3S-1100P` buttons—there is no separate cap or plunger. F1/F2, the
 encoder, PTT, hardware STOP and RE-ARM surround the rear battery; the encoder
-sits above F1/F2. `STOP` is the one functional exception: its similar-size user
-area operates a separate normally-closed safety mechanism, so a broken wire is
-also interpreted as stop. A phone may provide occasional long-form text input
-but cannot confirm dangerous actions.
+sits above F1/F2. `STOP` uses a directly pressed 6.0×6.1-mm SPDT tactile switch;
+its normally-closed contact keeps the separate fail-safe path, so a broken wire
+is also interpreted as stop. A phone may provide occasional long-form text
+input but cannot confirm dangerous actions.
 
 The battery holder and rear controls mount directly on the external face of the
 RF/power PCB. There is no continuous rear lid over the holder: cells insert
 directly into the open `Keystone 1048P`. `F1/F2` sit to the holder's left and
 `PTT/STOP` to its right, so their actuation axes do not cross the battery
-envelope. Dashed rear outlines are limited to the STOP actuator, RE-ARM
-protective recess and encoder knob; they are not part of a common cover.
+envelope. Dashed rear outlines are limited to the RE-ARM protective recess and
+encoder knob; they are not part of a common cover.
 
 ## Expansion
 

@@ -3597,7 +3597,7 @@ def _render_principled_pinout_bundle(
         "  end",
         "  subgraph SAFETY_STOP[\"AON hard-STOP devices\"]",
         node("ptt_switch", "separate normally-open hold-to-talk PTT control"),
-        node("stop_switch", "gold-clad low-level normally-closed hard-STOP control"),
+        node("stop_switch", "direct-press low-level normally-closed hard-STOP control"),
         node("rearm_switch", "normally-open recessed RE-ARM control"),
         node("stop_pullup", "10-kOhm AON STOP contact-current pull-up"),
         node("stop_filter_cap", "10-nF X7R asynchronous STOP filter capacitor"),

@@ -236,11 +236,13 @@ REAR_CONTROLS = (
     Placement("ui_switch_f1", 4.2, 63.5, "rear F1"),
     Placement("ui_switch_f2", 4.2, 78.5, "rear F2"),
     Placement("ptt_switch", 64.2, 63.5, "rear independent PTT"),
-    Placement("stop_switch", 60.85, 76.3, "rear physical hard STOP"),
+    Placement("stop_switch", 64.45, 78.5, "rear physical hard STOP"),
     Placement("rearm_switch", 64.2, 96.5, "rear recessed RE-ARM"),
 )
 
-DIRECT_PRESS_REAR_CONTROLS = {"ui_switch_f1", "ui_switch_f2", "ptt_switch", "rearm_switch"}
+DIRECT_PRESS_REAR_CONTROLS = {
+    "ui_switch_f1", "ui_switch_f2", "ptt_switch", "stop_switch", "rearm_switch"
+}
 
 FRONT_CAP_RESERVES = (
     Reserve("single D-pad cross", 28.8, 127.5, 17.4, 19.0, "one moulded D-pad cap over five switches, MPN TBD"),
@@ -248,12 +250,10 @@ FRONT_CAP_RESERVES = (
 
 REAR_CAP_RESERVES = (
     Reserve("encoder knob", 0.5, 43.0, 15.0, 15.0, "knob/case feature, MPN TBD"),
-    Reserve("STOP cap", 64.0, 78.0, 7.0, 7.0, "similar user area to direct F1/F2/PTT; NC body below"),
     Reserve("RE-ARM recess", 63.0, 95.0, 9.0, 9.0, "enclosure guard around direct button; no cap"),
 )
 REAR_CAP_TO_CONTROL = {
     "encoder knob": "encoder",
-    "STOP cap": "stop_switch",
     "RE-ARM recess": "rearm_switch",
 }
 
@@ -722,16 +722,18 @@ def render_external(devices, instances):
         out.append(rect(rear, cell_x-9.3, 52.0, 18.6, 65.0, "#ecfdf3", "#22c55e", rx=20))
         out.append(text(sx(rear,cell_x), sy(rear,86), "18650", 7, "bold", "middle", "#166534"))
 
-    # F1/F2/PTT/RE-ARM are complete, directly pressed switches on the exposed PCB.
+    # F1/F2/PTT/STOP/RE-ARM are complete, directly pressed switches on the exposed PCB.
     # They therefore render as selected solid parts, not speculative caps.
     for control in REAR_CONTROLS:
         if control.instance not in DIRECT_PRESS_REAR_CONTROLS:
             continue
         control_w, control_h = placement_size(control, devices, instances)
+        fill = "#fee2e2" if control.instance == "stop_switch" else "#e2e8f0"
+        stroke = "#b42318" if control.instance == "stop_switch" else "#64748b"
         out.append(
             rect(
                 rear, control.x, control.y, control_w, control_h,
-                "#e2e8f0", "#64748b", rx=2,
+                fill, stroke, rx=2,
             ).replace(
                 "/>", f' data-instance="{control.instance}" data-direct-press="true"/>'
             )
@@ -746,8 +748,7 @@ def render_external(devices, instances):
                 'data-part="encoder-knob-reserve"/>'
             )
         else:
-            fill = "#fee4e2" if reserve.name == "STOP cap" else "none"
-            out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, fill, "#ea580c", "4 3", 3))
+            out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
     for x, y, label in (
         (7.5, 61.5, "ENC"), (7.5, 74.0, "F1"), (7.5, 89.0, "F2"),
         (67.5, 74.0, "PTT"), (67.5, 89.0, "STOP"), (67.5, 107.0, "RE-ARM"),
@@ -816,9 +817,9 @@ def render_external(devices, instances):
         text(note_x,593,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
         text(note_x,614,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
         text(note_x,637,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
-        text(note_x,660,"D-pad cap, STOP actuator, RE-ARM recess, knob, wall stack and cables remain open.",11),
-        text(note_x,683,"BACK/OPT/F1/F2/PTT/RE-ARM are direct buttons; D-pad is one cross.",11,"bold"),
-        text(note_x,706,"STOP keeps its separate normally-closed mechanism in a similar user area.",11),
+        text(note_x,660,"D-pad cross, RE-ARM recess, knob, wall stack and cables remain open.",11),
+        text(note_x,683,"BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one cross.",11,"bold"),
+        text(note_x,706,"STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.",11),
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"
@@ -1052,9 +1053,9 @@ def render_rear_face(devices, instances):
         '</g>',
     ]
 
-    # F1/F2/PTT/RE-ARM are exact directly pressed switch bodies. STOP keeps a
-    # separate external actuator reserve; RE-ARM only has a protective recess.
-    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT-RE-ARM" data-actuator-reserves="STOP" data-enclosure-reserves="RE-ARM-recess-encoder-knob">')
+    # F1/F2/PTT/STOP/RE-ARM are exact directly pressed switch bodies. RE-ARM
+    # keeps only a protective recess.
+    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT-STOP-RE-ARM" data-actuator-reserves="none" data-enclosure-reserves="RE-ARM-recess-encoder-knob">')
     for control in REAR_CONTROLS:
         control_w, control_h = placement_size(control, devices, instances)
         fill = "#fee2e2" if control.instance == "stop_switch" else "#e2e8f0"
@@ -1068,8 +1069,7 @@ def render_rear_face(devices, instances):
                 'stroke-width="1.6" stroke-dasharray="5 3" data-part="encoder-knob-reserve"/>'
             )
         else:
-            fill = "#fee2e2" if reserve.name == "STOP cap" else "#f5f3ff"
-            out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, fill, "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
+            out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
     for label_x, label_y, label, colour in (
         (8.0, 61.5, "ENC", "#4c1d95"),
         (7.5, 74.0, "F1", "#4c1d95"),
@@ -1107,14 +1107,14 @@ def render_rear_face(devices, instances):
         t(note_x, 428, f"{holder_mpn} · rotated holder", 11, "bold", colour="#166534"),
         t(note_x, 474, "Rear controls shown to scale", 15, "bold"),
         t(note_x, 502, "OMRON B3S-1100P · direct BACK/OPT/F1/F2/PTT/RE-ARM", 11),
-        t(note_x, 527, "Panasonic AEQ10410 · separate normally-closed STOP", 11),
+        t(note_x, 527, "C&K TLSMDT3C020GLFS · direct-press normally-closed STOP", 11),
         t(note_x, 552, "Alps Alpine EC11E18244AU · encoder body; knob remains a reserve", 11),
         t(note_x, 598, "Meaning of this view", 15, "bold"),
         t(note_x, 626, "Rear face viewed normal to the PCB — not a side section.", 11),
-        t(note_x, 651, "Solid: exact bodies/direct buttons. Dashed: STOP actuator, RE-ARM recess, knob.", 11),
+        t(note_x, 651, "Solid: exact bodies/direct buttons. Dashed: RE-ARM recess and encoder knob.", 11),
         t(note_x, 676, "Orange: removable Cap/controls; blue: raised rail; green: batteries.", 11),
         t(note_x, 716, "Still requires specimen/HIL", 15, "bold", colour="#b42318"),
-        t(note_x, 744, "• STOP actuator depth, RE-ARM recess, STOP overtravel and encoder access", 11),
+        t(note_x, 744, "• STOP 0.85-mm height offset, RE-ARM recess and encoder access", 11),
         t(note_x, 769, "• received-U214 pin fit, rail height, screw engagement and removal", 11),
         t(note_x, 794, "• enclosure-side and depth clearance with every installed accessory", 11),
         t(note_x, 840, "Dimensioned architecture projection — not a production enclosure drawing.", 11, "bold", colour="#b42318"),
@@ -1388,7 +1388,7 @@ def render_sandwich(devices, instances):
                 r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
                 t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
                 r(px(4.2), pz(base_rear_z), 6.6*x_scale, depth("ui_switch_f2")*z_scale, "#e2e8f0", "#64748b", rx=2, extra=' data-instance="F2"'),
-                r(px(60.85), pz(base_rear_z), 13.3*x_scale, depth("stop_switch")*z_scale, "#fee2e2", "#b42318", rx=2, extra=' data-instance="STOP"'),
+                r(px(64.45), pz(base_rear_z), 6.1*x_scale, depth("stop_switch")*z_scale, "#fee2e2", "#b42318", rx=2, extra=' data-instance="STOP"'),
                 t(px(7.5), pz(base_rear_z+2.7), "F2", 8, "bold", "middle", "#4c1d95"),
                 t(px(67.5), pz(base_rear_z+3.4), "STOP", 8, "bold", "middle", "#b42318"),
                 t(px(37.5), pz(battery_rear_z)+24, "No U214 appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),

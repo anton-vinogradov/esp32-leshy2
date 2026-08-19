@@ -97,6 +97,11 @@ class ProductSiteTests(unittest.TestCase):
             self.assertIn(token, layout)
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):
             self.assertNotIn(process_token, layout)
+        self.assertIn(
+            'data-instance="stop_switch" data-direct-press="true"', layout
+        )
+        self.assertIn("same-size SPDT tactile body", layout)
+        self.assertNotIn("STOP actuator", layout)
 
     def test_internal_layout_is_dimensioned_and_separates_devices(self):
         layout = self.read("docs/images/internal-board-layout.svg")
@@ -206,7 +211,7 @@ class ProductSiteTests(unittest.TestCase):
                 "SKQGADE010",
                 "FTSH-105-01-L-DV-K-P-TR",
                 "USB4105-GF-A",
-                "AEQ10410",
+                "TLSMDT3C020GLFS",
                 "JS102011SCQN",
                 "1125R-SMT-4P",
                 "SSW-107-02-S-D",

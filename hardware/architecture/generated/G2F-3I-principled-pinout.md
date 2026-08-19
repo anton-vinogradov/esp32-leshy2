@@ -1207,7 +1207,7 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   AON_EFUSE["Texas Instruments TPS25961DRVR<br/>independent AON overvoltage/current/short cutoff"]
   PTT_SWITCH["OMRON B3S-1100P<br/>separate normally-open hold-to-talk PTT control"]
-  STOP_SWITCH["Panasonic AEQ10410<br/>gold-clad low-level normally-closed hard-STOP control"]
+  STOP_SWITCH["C&K TLSMDT3C020GLFS<br/>direct-press low-level normally-closed hard-STOP control"]
   REARM_SWITCH["OMRON B3S-1100P<br/>normally-open recessed RE-ARM control"]
   STOP_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm AON STOP contact-current pull-up"]
   STOP_FILTER_CAP["Murata GRM155R71H103KA88D<br/>10-nF X7R asynchronous STOP filter capacitor"]
@@ -3952,7 +3952,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
 | `POR_N` | `safe_supervisor.RESET_N` | `safe_por_or.1A` | power-good clear input; STOP remains dominant through the second OR input |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `stop_pullup.END_1` | hard-STOP contact current comes only from the independently protected AON rail |
-| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_switch.NC` | 10-kOhm gives approximately 0.33 mA at 3.3 V, above AEQ10410's qualified 100-uA-at-3-V floor |
+| `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_switch.NC` | 10-kOhm gives approximately 0.33 mA at 3.3 V, above TLSMDT3C020GLFS's qualified 10-uA-at-1-V floor |
 | `SAFETY_GROUND` | `stop_switch.COM` | `abstract:safety-ground` | healthy COM+NC contact holds STOP_LOOP_SENSE low; press or open wire asserts |
 | `STOP_SWITCH_NO_NC` | `stop_switch.NO` | `abstract:no-connect` | unused throw cannot create a second release path |
 | `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `stop_filter_cap.END_1` | exact 10-nF X7R filter preserves asynchronous STOP assertion |
@@ -4716,7 +4716,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `ui_switch_f2` lifecycle: `active_orderable`.
 - `ptt_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ptt_switch` lifecycle: `active_orderable`.
-- `stop_switch` uses `Panasonic AEQ10410` as `verified_first_hard_stop_target_actuator_and_mount_hil_open`, not an accepted production choice.
+- `stop_switch` uses `C&K TLSMDT3C020GLFS` as `verified_exact_direct_press_hard_stop_mechanical_hil_open`, not an accepted production choice.
+- `stop_switch` lifecycle: `active_orderable`.
 - `rearm_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `rearm_switch` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.

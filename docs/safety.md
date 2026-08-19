@@ -30,9 +30,10 @@ privacy requirements or the target owner's consent.
 
 ## STOP and RE-ARM
 
-A dedicated `Panasonic AEQ10410` implements hardware `STOP`. It asynchronously
-disables transmitters and voice PTT regardless of S3, C5 or RP2354B state.
-Firmware can observe STOP but cannot override it.
+A dedicated direct-press `C&K TLSMDT3C020GLFS` implements hardware `STOP`.
+Its normally-closed contact asynchronously disables transmitters and voice PTT
+regardless of S3, C5 or RP2354B state. A press, disconnected switch or broken
+trace asserts STOP; firmware can observe it but cannot override it.
 
 After STOP, the device remains disarmed. A separate `RE-ARM` button only makes
 a fresh, deliberate launch possible; it never restores an old lease or pending

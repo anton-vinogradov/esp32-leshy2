@@ -153,7 +153,7 @@ UI_SWITCH_F1["OMRON B3S-1100P<br/>задняя функциональная кн
 UI_SWITCH_F2["OMRON B3S-1100P<br/>задняя функциональная кнопка F2"]
 ENCODER["Alps Alpine EC11E18244AU<br/>задний энкодер с нажатием"]
 PTT_SWITCH["OMRON B3S-1100P<br/>независимая задняя кнопка PTT"]
-STOP_SWITCH["Panasonic AEQ10410<br/>нормально-замкнутая аппаратная кнопка STOP"]
+STOP_SWITCH["C&K TLSMDT3C020GLFS<br/>нормально-замкнутая аппаратная кнопка STOP"]
 REARM_SWITCH["OMRON B3S-1100P<br/>утопленная аппаратная кнопка RE-ARM"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физической линии STOP"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка STOP/RE-ARM"]

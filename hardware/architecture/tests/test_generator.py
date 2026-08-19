@@ -224,7 +224,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("197/197", rendered)
         self.assertIn("185/197", rendered)
         self.assertIn("871/893", rendered)
-        self.assertIn("USD 195.1819", rendered)
+        self.assertIn("USD 193.7419", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -3176,7 +3176,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "ptt_switch", "rearm_switch",
         ):
             self.assertEqual("omron_b3s_1100p", candidate["instances"][instance])
-        self.assertEqual("panasonic_aeq10410", candidate["instances"]["stop_switch"])
+        self.assertEqual("ck_tlsmdt3c020glfs", candidate["instances"]["stop_switch"])
         self.assertEqual("ti_tpd8e003_dqdr", candidate["instances"]["ui_matrix_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["encoder_ptt_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["safety_control_esd"])
@@ -3189,8 +3189,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.database["devices"]["omron_b3s_1100p"]["electrical_contract"]["user_interface"],
         )
         self.assertEqual(
-            "100 uA at 3 VDC through 100 mA at 30 VDC",
-            self.database["devices"]["panasonic_aeq10410"]["electrical_contract"]["qualified_range"],
+            "10 uA at 1 VDC through 50 mA at 16 VDC",
+            self.database["devices"]["ck_tlsmdt3c020glfs"]["electrical_contract"]["qualified_range"],
         )
         matrix_io = self.database["devices"]["ti_tca9534a_pwr"]
         self.assertEqual("4", matrix_io["contacts"]["P0"]["physical"])
@@ -3262,7 +3262,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "D-pad UP ultra-low-current ordinary control",
             "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
             "hold-to-talk PTT control", "normally-closed hard-STOP control",
-            "Y78B23214FP", "B3S-1100P", "AEQ10410", "TPD8E003DQDR", "Sitronix ST77922",
+            "Y78B23214FP", "B3S-1100P", "TLSMDT3C020GLFS", "TPD8E003DQDR", "Sitronix ST77922",
             "active-low ST77922 touch node",
             'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
             'STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP',

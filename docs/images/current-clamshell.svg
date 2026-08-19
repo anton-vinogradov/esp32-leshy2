@@ -129,9 +129,9 @@
 <rect x="480.5" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f1" data-direct-press="true"/>
 <rect x="480.5" y="440.4" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f2" data-direct-press="true"/>
 <rect x="702.5" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ptt_switch" data-direct-press="true"/>
+<rect x="703.5" y="440.4" width="22.6" height="22.2" rx="2" fill="#fee2e2" stroke="#b42318" stroke-width="1.5" data-instance="stop_switch" data-direct-press="true"/>
 <rect x="702.5" y="507.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="rearm_switch" data-direct-press="true"/>
 <circle cx="494.6" cy="336.9" r="27.8" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3" data-part="encoder-knob-reserve"/>
-<rect x="701.8" y="438.6" width="25.9" height="25.9" rx="3" fill="#fee4e2" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="698.1" y="501.5" width="33.3" height="33.3" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <text data-layer="pcb-silkscreen" x="492.8" y="377.6" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
 <text data-layer="pcb-silkscreen" x="492.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
@@ -178,7 +178,7 @@
 <text x="850.0" y="593.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.</text>
 <text x="850.0" y="614.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.</text>
 <text x="850.0" y="637.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
-<text x="850.0" y="660.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">D-pad cap, STOP actuator, RE-ARM recess, knob, wall stack and cables remain open.</text>
-<text x="850.0" y="683.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">BACK/OPT/F1/F2/PTT/RE-ARM are direct buttons; D-pad is one cross.</text>
-<text x="850.0" y="706.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">STOP keeps its separate normally-closed mechanism in a similar user area.</text>
+<text x="850.0" y="660.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">D-pad cross, RE-ARM recess, knob, wall stack and cables remain open.</text>
+<text x="850.0" y="683.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one cross.</text>
+<text x="850.0" y="706.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.</text>
 </svg>
