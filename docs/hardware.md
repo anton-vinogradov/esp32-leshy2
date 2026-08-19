@@ -48,7 +48,7 @@ powered down and discharged.
 Every transmit path has independent actual-TX evidence. Native S3/C5 use their
 own `U.FL-R-SMT-1(10)` and `CP0603Q5425ENTR` directional couplers; each nRF24
 has its own external SMA and `DC2337J5010AHF`. Eight labelled per-path
-indicators plus an `ANY TX` summary sit on the front below the display. Evidence
+indicators plus an `ANY TX` summary sit in one line on the front below the display. Evidence
 reports actual transmit activity and a relative level; it never grants transmit
 permission.
 
@@ -91,7 +91,7 @@ dashed outlines are reserved space whose exact part number has not yet been
 selected. The generator rejects component-to-component overlap and entry into
 the 4-mm screw-head keep-outs around the M2.5 mounting holes.
 
-Below the display, labelled actual-transmit indicators cover `S3`, `C5`,
+In one line below the display, labelled actual-transmit indicators cover `S3`, `C5`,
 `N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` and the aggregate `ANY TX`.
 The two Si4732 antenna inputs are receive-only.
 

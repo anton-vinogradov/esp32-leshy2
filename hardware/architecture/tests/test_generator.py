@@ -298,7 +298,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             "RE-ARM",
             "Leshy2 — dimensioned external layout",
             "physical actual-TX evidence for each transmitting path",
+            "form one front line below the display",
             "M2.5 hole/head keep-outs",
+            "S3-2G4 · RP-SMA",
+            "N24-0 · SMA",
+            "HEADPHONES / LINE",
+            "SPEAKER GRILLE",
+            "POWER ON/OFF",
         ):
             self.assertIn(token, rendered)
         internal = (

@@ -65,15 +65,32 @@ TX_LED_INSTANCES = {
     "N24-2": "nrf2_tx_led",
 }
 FRONT_TX_INDICATORS = (
-    ("s3_tx_led", "S3", 6.0, 112.0),
-    ("c5_tx_led", "C5", 23.0, 112.0),
-    ("nrf0_tx_led", "N24-0", 40.0, 112.0),
-    ("nrf1_tx_led", "N24-1", 57.0, 112.0),
-    ("nrf2_tx_led", "N24-2", 6.0, 120.0),
-    ("cc_tx_led", "CC", 23.0, 120.0),
-    ("voice_tx_led", "VOICE", 40.0, 120.0),
-    ("ir_tx_led", "IR", 57.0, 120.0),
-    ("any_tx_led", "ANY TX", 68.0, 116.0),
+    ("s3_tx_led", "S3", 4.0, 115.0),
+    ("c5_tx_led", "C5", 12.3, 115.0),
+    ("nrf0_tx_led", "N24-0", 20.6, 115.0),
+    ("nrf1_tx_led", "N24-1", 28.9, 115.0),
+    ("nrf2_tx_led", "N24-2", 37.2, 115.0),
+    ("cc_tx_led", "CC", 45.5, 115.0),
+    ("voice_tx_led", "VOICE", 53.8, 115.0),
+    ("ir_tx_led", "IR", 62.1, 115.0),
+    ("any_tx_led", "ANY TX", 70.4, 115.0),
+)
+
+# Every interface that crosses the enclosure is rendered from this inventory.
+# `coordinate` is Y for left/right exits and X for bottom exits.
+EDGE_INTERFACES = (
+    ("ir_demod", "front", "left", 76.5, "IR 38 kHz RX"),
+    ("ir_carrier", "front", "left", 83.5, "IR raw RX"),
+    ("ir_emitter", "front", "left", 90.5, "IR TX"),
+    ("headphone_jack", "front", "right", 79.8, "HEADPHONES / LINE"),
+    ("c5_service_usb_connector", "front", "bottom", 31.5, "C5 SERVICE USB"),
+    ("microphone", "front", "bottom", 44.0, "MICROPHONE"),
+    ("sd", "front", "bottom", 56.0, "microSD"),
+    ("speaker", "rear", "left", 109.0, "SPEAKER GRILLE"),
+    ("power_command_switch", "rear", "right", 113.5, "POWER ON/OFF"),
+    ("product_usb_connector", "rear", "bottom", 16.5, "USB / POWER"),
+    ("rp_service_usb_connector", "rear", "bottom", 37.5, "RP SERVICE USB"),
+    ("unit_port_reserve", "rear", "bottom", 57.0, "M5 UNIT"),
 )
 
 
@@ -290,7 +307,7 @@ def validate() -> list[str]:
     errors += validate_reserves("front-caps", FRONT_CAP_RESERVES)
     errors += validate_reserves("rear-caps", REAR_CAP_RESERVES)
     errors += validate_reserves("internal-reserves", INTERNAL_RESERVES)
-    display = Placement("display", 10.25, 8.0, "display")
+    display = Placement("display", 10.25, 11.0, "display")
     holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
     errors += validate_items("rear-exact", (holder,), devices, instances)
@@ -339,6 +356,18 @@ def validate() -> list[str]:
         for other_label, other_box in indicator_boxes[index + 1:]:
             if overlaps(led_box, other_box, 0.7):
                 errors.append(f"front: {label}/{other_label} TX indicators overlap")
+    if len({y for _, _, _, y in FRONT_TX_INDICATORS}) != 1:
+        errors.append("front: all nine TX indicators must remain in one horizontal line")
+    edge_instances = {item.instance for item in UI_INNER + RF_INNER}
+    for instance, face, side, coordinate, label in EDGE_INTERFACES:
+        if instance != "unit_port_reserve" and instance not in edge_instances:
+            errors.append(f"external interface {label}: source instance {instance} is not placed")
+        if face not in {"front", "rear"} or side not in {"left", "right", "bottom"}:
+            errors.append(f"external interface {label}: invalid face/side")
+        if not label.strip() or not 0 <= coordinate <= BOARD_H:
+            errors.append(f"external interface {instance}: label/coordinate is invalid")
+    if len({label for _, _, _, _, label in EDGE_INTERFACES}) != len(EDGE_INTERFACES):
+        errors.append("external interface labels must be unique")
 
     control_roles = {item.role for item in REAR_CONTROLS}
     for role in ("rear physical hard STOP", "rear independent PTT", "rear F1", "rear F2", "rear recessed RE-ARM"):
@@ -419,8 +448,9 @@ def rf_bank(origin, bank, scale, sx, sy, text, rect, show_body, compact_labels=F
             points.append(f"{x+nut_r*math.cos(angle):.1f},{edge_y+nut_r*math.sin(angle):.1f}")
         rows.append(f'<polygon points="{" ".join(points)}" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>')
         rows.append(f'<path d="M{x:.1f} {barrel_top+2:.1f} V{barrel_top-12:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        label_y = 7.4 if compact_labels else 15.5
-        rows.append(text(x, sy(origin, label_y), path, 5.0 if compact_labels else 6.2, "bold", "middle", "#1d4ed8"))
+        label_y = 9.0 if compact_labels else 15.5
+        visible_label = f"{path} · {polarity}" if compact_labels else path
+        rows.append(text(x, sy(origin, label_y), visible_label, 4.2 if compact_labels else 6.2, "bold", "middle", "#1d4ed8"))
         if not compact_labels:
             rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
     return rows
@@ -465,9 +495,9 @@ def render_external(devices, instances):
     out.append(rect(rear, U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", rx=6))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "M5Stack U214 · exact 84×24-mm plan envelope", 7.3, "bold", "middle", "#9a3412"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "rear insertion / removal ⊙", 6.2, anchor="middle", colour="#dc2626"))
-    out += rf_bank(rear, REAR_RF, scale, sx, sy, text, rect, False)
+    out += rf_bank(rear, REAR_RF, scale, sx, sy, text, rect, False, True)
 
-    display = Placement("display", 10.25, 8.0, "display")
+    display = Placement("display", 10.25, 11.0, "display")
     dw, dh = placement_size(display, devices, instances)
     out.append(rect(front, display.x, display.y, dw, dh, "#dbeafe", "#2563eb", rx=5))
     out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
@@ -485,17 +515,23 @@ def render_external(devices, instances):
     out.append(text(sx(front,20.1), sy(front,145.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
     out.append(text(sx(front,54.9), sy(front,145.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
 
-    # Edge interfaces remain visible on the product projection. Their full
-    # bodies live on the inner-board drawing; here the arrows show access.
-    for y, label in ((76.5, "IR 38k RX"), (83.5, "IR raw RX"), (90.5, "IR TX")):
-        out.append(rect(front, 0, y-1.5, 3.2, 3.0, "#fef3c7", "#d97706", rx=2))
-        out.append(f'<path d="M{sx(front,0):.1f} {sy(front,y):.1f} L{sx(front,-7):.1f} {sy(front,y):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(text(sx(front,4.0), sy(front,y+0.7), label, 4.8, "bold", colour="#92400e"))
-    out.append(f'<path d="M{sx(front,75):.1f} {sy(front,79.8):.1f} L{sx(front,82):.1f} {sy(front,79.8):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(text(sx(front,71.5), sy(front,78.2), "3.5 mm", 4.8, "bold", "middle", "#1d4ed8"))
-    for x, label in ((31.5, "C5 USB"), (44.0, "MIC"), (56.0, "microSD")):
+    # Every side/bottom interface is projected onto the external face even
+    # when its physical body is mounted on the inward PCB side.
+    for instance, face, side, coordinate, label in EDGE_INTERFACES:
+        if face != "front" or side not in {"left", "right"}:
+            continue
+        x = 0.0 if side == "left" else 71.8
+        fill, stroke = ("#fef3c7", "#d97706") if instance.startswith("ir_") else ("#dbeafe", "#2563eb")
+        out.append(rect(front, x, coordinate-1.5, 3.2, 3.0, fill, stroke, rx=2))
+        start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
+        out.append(f'<path d="M{sx(front,start_x):.1f} {sy(front,coordinate):.1f} L{sx(front,end_x):.1f} {sy(front,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        label_x, anchor = (4.0, "start") if side == "left" else (71.0, "end")
+        out.append(text(sx(front,label_x), sy(front,coordinate-2.0), label, 4.5, "bold", anchor, stroke))
+    for _, face, side, x, label in EDGE_INTERFACES:
+        if face != "front" or side != "bottom":
+            continue
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(text(sx(front,x), sy(front,148), label, 4.6, "bold", "middle", "#1d4ed8"))
+        out.append(text(sx(front,x), sy(front,148), label, 4.2, "bold", "middle", "#1d4ed8"))
 
     holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
@@ -515,11 +551,22 @@ def render_external(devices, instances):
         out.append(text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#b42318" if label == "STOP" else "#4c1d95"))
 
     out.append(rect(rear, 48, 133, 18, 8, "#fff7ed", "#ea580c", "5 3", 3))
-    out.append(text(sx(rear,57), sy(rear,138), "M5 Unit · MPN TBD", 5.6, "bold", "middle", "#9a3412"))
-    out.append(f'<path d="M{sx(rear,57):.1f} {sy(rear,141):.1f} V{sy(rear,148):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    for x, label in ((16.5, "USB/PWR"), (37.5, "RP USB")):
+    out.append(text(sx(rear,57), sy(rear,138), "M5 UNIT · MPN TBD", 5.6, "bold", "middle", "#9a3412"))
+    for instance, face, side, coordinate, label in EDGE_INTERFACES:
+        if face != "rear" or side not in {"left", "right"}:
+            continue
+        x = 0.0 if side == "left" else 71.8
+        fill, stroke = ("#dbeafe", "#2563eb") if instance == "speaker" else ("#fff7ed", "#ea580c")
+        out.append(rect(rear, x, coordinate-2.0, 3.2, 4.0, fill, stroke, rx=2))
+        start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
+        out.append(f'<path d="M{sx(rear,start_x):.1f} {sy(rear,coordinate):.1f} L{sx(rear,end_x):.1f} {sy(rear,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        label_x, anchor = (4.0, "start") if side == "left" else (71.0, "end")
+        out.append(text(sx(rear,label_x), sy(rear,coordinate-2.5), label, 4.4, "bold", anchor, stroke))
+    for _, face, side, x, label in EDGE_INTERFACES:
+        if face != "rear" or side != "bottom":
+            continue
         out.append(f'<path d="M{sx(rear,x):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(text(sx(rear,x), sy(rear,148), label, 4.8, "bold", "middle", "#1d4ed8"))
+        out.append(text(sx(rear,x), sy(rear,148), label, 4.2, "bold", "middle", "#1d4ed8"))
 
     note_x = 850
     out += [
@@ -535,7 +582,7 @@ def render_external(devices, instances):
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each transmitting path",11),
-        text(note_x,396,"Eight path indicators plus ANY TX are on the front below the display.",11),
+        text(note_x,396,"Eight path indicators plus ANY TX form one front line below the display.",11),
         text(note_x,419,"Each is labelled S3/C5/N24-0..2/CC/VOICE/IR; Si4732 ports are RX-only.",11),
         text(note_x,450,"Geometry status",15,"bold"),
         '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',

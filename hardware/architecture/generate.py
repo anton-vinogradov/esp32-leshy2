@@ -2472,6 +2472,36 @@ def render_public_schematics(
     return f"{heading}\n\n{navigation}\n\n{detail}\n{remainder}"
 
 
+def render_readme_schematics(
+    current: str, database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
+) -> str:
+    """Keep the complete split principle-diagram set visible on the landing page."""
+
+    begin = "<!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->"
+    end = "<!-- END GENERATED PRINCIPLE DIAGRAMS -->"
+    if begin not in current or end not in current:
+        raise ValueError("README is missing generated principle-diagram markers")
+    section = render_target_principled_section(database, candidates, russian=russian)
+    section = section.rsplit("\n\n", 1)[0]
+    old_heading = "## Принципиальный дизайн решения" if russian else "## Principled solution design"
+    new_heading = "## Принципиальные связи компонентов" if russian else "## Principle component interconnections"
+    section = section.replace(old_heading, new_heading, 1)
+    if russian:
+        footer = (
+            "Точные контакты показаны в [распиновке](docs/pinout.ru.md), а прохождение "
+            "сигналов между платами — в [карте M1](docs/interconnect.ru.md)."
+        )
+    else:
+        footer = (
+            "Exact contacts are in the [pin assignment](docs/pinout.md), while signals "
+            "crossing the two boards are in the [M1 map](docs/interconnect.md)."
+        )
+    generated = f"{begin}\n\n{section}\n\n{footer}\n\n{end}"
+    start = current.index(begin)
+    finish = current.index(end, start) + len(end)
+    return current[:start] + generated + current[finish:]
+
+
 def render_public_interconnect(
     database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
 ) -> str:
@@ -4328,6 +4358,18 @@ def main(argv: list[str] | None = None) -> int:
         database, candidates
     )
     outputs = {
+        REPO_ROOT / "README.md": render_readme_schematics(
+            (REPO_ROOT / "README.md").read_text(encoding="utf-8"),
+            database,
+            candidates,
+            russian=False,
+        ),
+        REPO_ROOT / "README.ru.md": render_readme_schematics(
+            (REPO_ROOT / "README.ru.md").read_text(encoding="utf-8"),
+            database,
+            candidates,
+            russian=True,
+        ),
         REPO_ROOT / database["generated_ledger"]: render_ledger(database, candidates),
         REPO_ROOT / database["generated_principled_pinout"]: principled_pinout,
         REPO_ROOT / "hardware/architecture/generated/G2F-3I-principled-projection.mmd": raw_projection,

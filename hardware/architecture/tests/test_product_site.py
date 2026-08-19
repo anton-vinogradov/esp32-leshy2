@@ -62,9 +62,21 @@ class ProductSiteTests(unittest.TestCase):
             "PTT",
             "RE-ARM",
             "physical actual-TX evidence for each transmitting path",
+            "form one front line below the display",
             "M2.5 hole/head keep-outs",
             "GCT RFPC-SMA31-FN-175-A",
             "GCT RFPC-SMA32-FN-175-A",
+            "S3-2G4 · RP-SMA",
+            "N24-0 · SMA",
+            "HEADPHONES / LINE",
+            "C5 SERVICE USB",
+            "MICROPHONE",
+            "microSD",
+            "SPEAKER GRILLE",
+            "POWER ON/OFF",
+            "USB / POWER",
+            "RP SERVICE USB",
+            "M5 UNIT",
         ):
             self.assertIn(token, layout)
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):
@@ -123,6 +135,19 @@ class ProductSiteTests(unittest.TestCase):
                 "JS102011SCQN",
             ):
                 self.assertIn(token, diagrams)
+
+    def test_landing_pages_show_all_layout_views_and_principle_diagrams_inline(self):
+        for name in ("README.md", "README.ru.md"):
+            landing = self.read(name)
+            for image in (
+                "docs/images/current-clamshell.svg",
+                "docs/images/internal-board-layout.svg",
+                "docs/images/sandwich-section.svg",
+            ):
+                self.assertIn(image, landing, name)
+            self.assertGreaterEqual(landing.count("```mermaid"), 10, name)
+            self.assertIn("HMX035CTFT-001", landing, name)
+            self.assertIn("C&K JS102011SCQN", landing, name)
 
     def test_project_history_is_archived_outside_public_docs(self):
         archive = REPO_ROOT / "drafts/project-history-2026-08-19"
