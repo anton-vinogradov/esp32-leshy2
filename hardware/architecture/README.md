@@ -5,6 +5,8 @@ This directory is the machine-readable source for the Leshy2 device map.
 - `devices.json` contains physical devices, exact/current MPNs and contact data.
 - `candidates/G2F-3I.json` assigns devices, nets and controller resources in the
   consolidated target architecture.
+- `antenna-kit.json` is the dated 12-item full-field antenna manifest, including
+  exact first targets, connector polarity, availability and remaining gates.
 - `generate.py` validates the sources and emits the exact pad/net atlas, pin
   ledger and BOM into `generated/`.
 - `tests/` checks contact accounting, GPIO availability, safety defaults,

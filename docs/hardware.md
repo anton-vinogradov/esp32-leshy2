@@ -136,6 +136,13 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=9)
 
+## External antennas
+
+The [complete 12-item antenna kit](antennas.md) maps every user-facing port
+label to an exact first-target MPN, band and SMA/RP-SMA type. Three antennas
+are interchangeable profiles for the single `SUB-GHz` port and two are
+interchangeable VHF/UHF profiles; the other seven have fixed ports.
+
 ## Power and service
 
 - The main `JAE DX07S016JA1R1500` carries S3 USB 2.0 Full-Speed and sink-only
@@ -165,4 +172,6 @@ The detailed tables serve schematic, verification and manufacturing work:
 - [Exact assignment of every programmable controller](pinout.md)
 - [Device principle diagrams](schematics.md)
 - [Exact M1 inter-board connection](interconnect.md)
+- [Antenna profiles and exact field kit](antennas.md)
 - [Machine-readable BOM CSV](../hardware/architecture/generated/G2F-3I-target-bom.csv)
+- [Machine-readable antenna-kit manifest](../hardware/architecture/antenna-kit.json)

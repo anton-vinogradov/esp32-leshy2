@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-08-20",
+  "variant": "full_field_kit",
+  "physical_item_count": 12,
+  "exact_target_item_count": 11,
+  "maximum_simultaneously_connected": 9,
+  "connector_rule": {
+    "rp_sma_ports": "antenna must have an RP-SMA male plug with socket centre contact",
+    "sma_ports": "antenna must have a standard SMA male plug with pin centre contact"
+  },
+  "items": [
+    {
+      "id": "native_s3",
+      "port_label": "WI-FI/BLE",
+      "quantity": 1,
+      "profile": "2.4/5 GHz native radio",
+      "mpn": "001-0012",
+      "manufacturer": "TE Connectivity",
+      "termination": "RP-SMA male",
+      "specified_bands_mhz": [[2400, 2500], [4910, 5850]],
+      "peak_gain_dbi": 2.0,
+      "status": "selected_first_target_hil_open",
+      "primary_spec": "https://www.te.com/en/product-001-0012.html",
+      "availability": {
+        "source": "Mouser",
+        "url": "https://www.mouser.com/ProductDetail/TE-Connectivity/001-0012?qs=k2piNBSag38h55ME6Wcqyg%3D%3D",
+        "stock": 711,
+        "unit_price_usd_at_100": 16.91
+      }
+    },
+    {
+      "id": "native_c5",
+      "port_label": "WI-FI/15.4",
+      "quantity": 1,
+      "profile": "2.4/5 GHz native radio",
+      "mpn": "001-0012",
+      "manufacturer": "TE Connectivity",
+      "termination": "RP-SMA male",
+      "specified_bands_mhz": [[2400, 2500], [4910, 5850]],
+      "peak_gain_dbi": 2.0,
+      "status": "selected_first_target_hil_open",
+      "primary_spec": "https://www.te.com/en/product-001-0012.html",
+      "availability": {
+        "source": "Mouser",
+        "url": "https://www.mouser.com/ProductDetail/TE-Connectivity/001-0012?qs=k2piNBSag38h55ME6Wcqyg%3D%3D",
+        "stock": 711,
+        "unit_price_usd_at_100": 16.91
+      }
+    },
+    {
+      "id": "nrf24_1",
+      "port_label": "nRF24-1",
+      "quantity": 1,
+      "profile": "2.4 GHz nRF24",
+      "mpn": "TX2400-JW-5",
+      "manufacturer": "Chengdu Ebyte",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[2400, 2520]],
+      "peak_gain_dbi": 2.0,
+      "status": "selected_first_target_direct_rfq_and_hil_open",
+      "primary_spec": "https://www.ebyte.com/product/495.html",
+      "availability": {
+        "source": "Ebyte direct",
+        "url": "https://www.ebyte.com/product/495.html",
+        "order_route": "manufacturer sample purchase or quantity RFQ",
+        "unit_price_usd_at_100": null
+      }
+    },
+    {
+      "id": "nrf24_2",
+      "port_label": "nRF24-2",
+      "quantity": 1,
+      "profile": "2.4 GHz nRF24",
+      "mpn": "TX2400-JW-5",
+      "manufacturer": "Chengdu Ebyte",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[2400, 2520]],
+      "peak_gain_dbi": 2.0,
+      "status": "selected_first_target_direct_rfq_and_hil_open",
+      "primary_spec": "https://www.ebyte.com/product/495.html",
+      "availability": {
+        "source": "Ebyte direct",
+        "url": "https://www.ebyte.com/product/495.html",
+        "order_route": "manufacturer sample purchase or quantity RFQ",
+        "unit_price_usd_at_100": null
+      }
+    },
+    {
+      "id": "nrf24_3",
+      "port_label": "nRF24-3",
+      "quantity": 1,
+      "profile": "2.4 GHz nRF24",
+      "mpn": "TX2400-JW-5",
+      "manufacturer": "Chengdu Ebyte",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[2400, 2520]],
+      "peak_gain_dbi": 2.0,
+      "status": "selected_first_target_direct_rfq_and_hil_open",
+      "primary_spec": "https://www.ebyte.com/product/495.html",
+      "availability": {
+        "source": "Ebyte direct",
+        "url": "https://www.ebyte.com/product/495.html",
+        "order_route": "manufacturer sample purchase or quantity RFQ",
+        "unit_price_usd_at_100": null
+      }
+    },
+    {
+      "id": "sub_315",
+      "port_label": "SUB-GHz",
+      "quantity": 1,
+      "profile": "315 MHz",
+      "mpn": "ANT-315-CW-HW-SMA",
+      "manufacturer": "TE Connectivity Linx",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[304, 325]],
+      "peak_gain_dbi": 0.0,
+      "status": "selected_first_target_hil_open",
+      "primary_spec": "https://www.te.com/en/product-ANT-315-CW-HW-SMA.html",
+      "availability": {
+        "source": "DigiKey",
+        "url": "https://www.digikey.com/en/products/detail/te-connectivity-linx/ANT-315-CW-HW-SMA/5592330",
+        "stock": 424,
+        "unit_price_usd_at_1": 9.60,
+        "unit_price_usd_at_250": 9.275
+      }
+    },
+    {
+      "id": "sub_433",
+      "port_label": "SUB-GHz",
+      "quantity": 1,
+      "profile": "433 MHz",
+      "mpn": "ANT-433-CW-QW-SMA",
+      "manufacturer": "TE Connectivity Linx",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[400, 470]],
+      "peak_gain_dbi": 3.3,
+      "maximum_input_power_w": 10,
+      "status": "selected_first_target_hil_open",
+      "primary_spec": "https://www.te.com/en/product-ANT-433-CW-QW-SMA.html",
+      "availability": {
+        "source": "Mouser",
+        "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-433-CW-QW-SMA?qs=XYAu1o%252BHdOKINRzlq1JrLQ%3D%3D",
+        "stock": 440,
+        "unit_price_usd_at_100": 11.23
+      }
+    },
+    {
+      "id": "sub_868_915",
+      "port_label": "SUB-GHz",
+      "quantity": 1,
+      "profile": "868/915 MHz",
+      "mpn": "TI.08.C.0112",
+      "manufacturer": "Taoglas",
+      "termination": "SMA male right-angle",
+      "specified_bands_mhz": [[862, 874], [910, 920]],
+      "peak_gain_dbi_by_band": {"868": 2.48, "915": 1.70},
+      "maximum_input_power_w": 10,
+      "status": "selected_first_target_hil_open",
+      "primary_spec": "https://www.taoglas.com/datasheets/TI.08.C.0112.pdf",
+      "availability": {
+        "source": "DigiKey",
+        "url": "https://www.digikey.com/en/products/detail/taoglas-limited/TI-08-C-0112/2332694",
+        "stock": 222,
+        "unit_price_usd_at_100": 4.7866,
+        "note": "distributor single-band metadata is superseded by the current Taoglas dual-band datasheet"
+      }
+    },
+    {
+      "id": "voice_vhf",
+      "port_label": "VHF/UHF",
+      "quantity": 1,
+      "profile": "VHF 136-174 MHz",
+      "mpn": "AN0155H13",
+      "manufacturer": "Hytera",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[136, 174]],
+      "status": "selected_first_target_mechanical_seating_and_hil_open",
+      "primary_spec": "https://www.hytera.com/en/product-new/accessories/radio-antennas/an0155h13.html",
+      "availability": {
+        "source": "HiTech Wireless",
+        "url": "https://www.hitechwireless.com/hytera-an0155h13-vhf-helical-antenna-136-174-mhz-gps-sma-male-20-cm/",
+        "unit_price_usd_at_1": 31.70,
+        "unit_price_usd_at_100": null
+      }
+    },
+    {
+      "id": "voice_uhf",
+      "port_label": "VHF/UHF",
+      "quantity": 1,
+      "profile": "UHF 400-470 MHz",
+      "mpn": "ANT-433-CW-QW-SMA",
+      "manufacturer": "TE Connectivity Linx",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[400, 470]],
+      "peak_gain_dbi": 3.3,
+      "maximum_input_power_w": 10,
+      "status": "selected_first_target_hil_open",
+      "primary_spec": "https://www.te.com/en/product-ANT-433-CW-QW-SMA.html",
+      "availability": {
+        "source": "Mouser",
+        "url": "https://www.mouser.com/ProductDetail/TE-Connectivity-Linx-Technologies/ANT-433-CW-QW-SMA?qs=XYAu1o%252BHdOKINRzlq1JrLQ%3D%3D",
+        "stock": 440,
+        "unit_price_usd_at_100": 11.23
+      }
+    },
+    {
+      "id": "receiver_fm_sw",
+      "port_label": "FM/SW RX",
+      "quantity": 1,
+      "profile": "receive-only telescopic whip",
+      "mpn": "SMA-W100RX2",
+      "manufacturer": "Comet",
+      "termination": "SMA male",
+      "specified_bands_mhz": [[25, 1300]],
+      "status": "selected_first_target_receive_hil_below_25mhz_and_strain_open",
+      "primary_spec": "https://www.comet-ant.co.jp/product/638/",
+      "availability": {
+        "source": "Ham Radio Outlet",
+        "url": "https://www.hamradio.com/detail.cfm?pid=X8-000032",
+        "stock_state": "in_stock",
+        "unit_price_usd_at_1": 35.95,
+        "unit_price_usd_at_100": null
+      }
+    },
+    {
+      "id": "receiver_am_lw",
+      "port_label": "AM/LW RX",
+      "quantity": 1,
+      "profile": "receive-only ferrite loop or buffered pod",
+      "mpn": null,
+      "manufacturer": null,
+      "termination": "SMA male",
+      "specified_bands_mhz": [[0.153, 0.279], [0.520, 1.710]],
+      "status": "controlled_design_and_mpn_required",
+      "primary_spec": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+      "availability": null
+    }
+  ],
+  "qualification": {
+    "status": "first_targets_selected_for_11_of_12_items_hil_and_alternates_open",
+    "open_items": [
+      "freeze a controlled AM/LW loop or buffered-pod design and order identity",
+      "qualify an independent alternate for every profile",
+      "measure every antenna on the assembled enclosure and actual ground plane",
+      "verify receive sensitivity, TX EIRP, harmonics, coexistence and connector mechanics",
+      "request quantity-100 quotes where public tiers are absent"
+    ]
+  }
+}

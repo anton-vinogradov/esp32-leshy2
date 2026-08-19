@@ -15,6 +15,9 @@ is built.
   315/433/868/915-MHz Sub-GHz, FM/AM/SW/LW, VHF/UHF voice and IR.
 - Route all nine onboard RF paths to outward-face antenna jacks: two RP-SMA
   and seven SMA ports. Neither connector bank occupies the interboard channel.
+- Use a [profiled 12-item antenna kit](docs/antennas.md): nine can stay
+  connected at once, with clearly labelled interchangeable items for
+  315/433/868/915 MHz and VHF/UHF.
 - Show menus, a spectrum waterfall and path state on a 3.5-inch portrait
   `320×480` touch IPS display driven by direct QSPI.
 - Record data and audio to removable microSD, play through a speaker or

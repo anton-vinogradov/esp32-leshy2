@@ -12,6 +12,8 @@ class ProductSiteTests(unittest.TestCase):
         "README.ru.md",
         "docs/hardware.md",
         "docs/hardware.ru.md",
+        "docs/antennas.md",
+        "docs/antennas.ru.md",
         "docs/schematics.md",
         "docs/schematics.ru.md",
         "docs/interconnect.md",
@@ -108,6 +110,61 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("Davies 1227-J is the exact encoder knob", layout)
         self.assertNotIn("STOP actuator", layout)
         self.assertNotIn("RE-ARM", layout)
+
+    def test_antenna_kit_is_product_facing_and_machine_accounted(self):
+        import json
+
+        manifest = json.loads(
+            (REPO_ROOT / "hardware/architecture/antenna-kit.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        candidate = json.loads(
+            (REPO_ROOT / "hardware/architecture/candidates/G2F-3I.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(12, manifest["physical_item_count"])
+        self.assertEqual(11, manifest["exact_target_item_count"])
+        self.assertEqual(12, sum(item["quantity"] for item in manifest["items"]))
+        self.assertEqual(9, manifest["maximum_simultaneously_connected"])
+        self.assertEqual(
+            candidate["antenna_policy"]["full_field_kit_physical_items"],
+            manifest["physical_item_count"],
+        )
+        self.assertEqual(
+            candidate["antenna_policy"]["max_simultaneously_connected"],
+            manifest["maximum_simultaneously_connected"],
+        )
+        self.assertEqual(
+            manifest["physical_item_count"],
+            next(
+                item["quantity"]
+                for item in candidate["bom_audit"]["required_uninstantiated_parts"]
+                if item["id"] == "external_antenna_kit"
+            ),
+        )
+        self.assertEqual(1, sum(item["mpn"] is None for item in manifest["items"]))
+        self.assertEqual(
+            2,
+            sum(item["mpn"] == "ANT-433-CW-QW-SMA" for item in manifest["items"]),
+        )
+        self.assertEqual(
+            {"WI-FI/BLE", "WI-FI/15.4"},
+            {
+                item["port_label"]
+                for item in manifest["items"]
+                if item["termination"] == "RP-SMA male"
+            },
+        )
+        for name in ("docs/antennas.md", "docs/antennas.ru.md"):
+            page = self.read(name)
+            for token in (
+                "001-0012", "TX2400-JW-5", "ANT-315-CW-HW-SMA",
+                "ANT-433-CW-QW-SMA", "TI.08.C.0112", "AN0155H13",
+                "SMA-W100RX2", "MPN TBD",
+            ):
+                self.assertIn(token, page)
 
     def test_internal_layout_is_dimensioned_and_separates_devices(self):
         layout = self.read("docs/images/internal-board-layout.svg")
