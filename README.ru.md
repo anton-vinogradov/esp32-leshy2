@@ -36,14 +36,14 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 
 ### Внешние стороны
 
-![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=6)
+![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=7)
 
 ### Планка U214 сзади — вид сверху
 
 На плане задней стороны в едином миллиметровом масштабе показаны поднятая
 планка и установленный LoRa Cap 84×24 мм между антеннами и держателем батарей.
 
-![Вид сверху на планку U214 Leshy2](docs/images/u214-dock-top-view.svg?layout=1)
+![Вид сверху на планку U214 Leshy2](docs/images/u214-dock-top-view.svg?layout=2)
 
 ### Внутренние стороны плат
 

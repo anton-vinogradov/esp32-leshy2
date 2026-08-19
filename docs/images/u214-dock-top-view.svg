@@ -6,19 +6,24 @@
 <g id="rear-antenna-bank" data-plan-y-mm="0..6">
 <rect x="203.6" y="105.0" width="40.8" height="24.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
 <rect x="211.3" y="59.4" width="25.4" height="45.6" fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>
-<text x="224.0" y="141.0" font-family="sans-serif" font-size="6.4" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-0</text>
+<text x="224.0" y="138.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-1</text>
+<text x="224.0" y="146.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz SMA</text>
 <rect x="251.6" y="105.0" width="40.8" height="24.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
 <rect x="259.3" y="59.4" width="25.4" height="45.6" fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>
-<text x="272.0" y="141.0" font-family="sans-serif" font-size="6.4" font-weight="bold" text-anchor="middle" fill="#1d4ed8">CC-SUB</text>
+<text x="272.0" y="138.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SUB-GHz</text>
+<text x="272.0" y="146.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SMA</text>
 <rect x="299.6" y="105.0" width="40.8" height="24.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
 <rect x="307.3" y="59.4" width="25.4" height="45.6" fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>
-<text x="320.0" y="141.0" font-family="sans-serif" font-size="6.4" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1</text>
+<text x="320.0" y="138.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-2</text>
+<text x="320.0" y="146.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz SMA</text>
 <rect x="347.6" y="105.0" width="40.8" height="24.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
 <rect x="355.3" y="59.4" width="25.4" height="45.6" fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>
-<text x="368.0" y="141.0" font-family="sans-serif" font-size="6.4" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VOICE-V/U</text>
+<text x="368.0" y="138.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VHF/UHF</text>
+<text x="368.0" y="146.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">SMA</text>
 <rect x="395.6" y="105.0" width="40.8" height="24.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.6"/>
 <rect x="403.3" y="59.4" width="25.4" height="45.6" fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>
-<text x="416.0" y="141.0" font-family="sans-serif" font-size="6.4" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2</text>
+<text x="416.0" y="138.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-3</text>
+<text x="416.0" y="146.6" font-family="sans-serif" font-size="6.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz SMA</text>
 </g>
 <circle cx="190.0" cy="149.0" r="16.0" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="190.0" cy="149.0" r="5.4" fill="#ffffff" stroke="#475467" stroke-width="1.5"/>

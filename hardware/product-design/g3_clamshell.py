@@ -64,6 +64,17 @@ REAR_RF = (
     (49.5, "VOICE-V/U", "SMA"),
     (61.5, "N24-2", "SMA"),
 )
+RF_USER_LABEL_LINES = {
+    "S3-2G4": ("WI-FI/BLE", "2.4 GHz RP-SMA"),
+    "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz RP-SMA"),
+    "RX-FM/SW": ("FM/SW RX", "SMA"),
+    "RX-AM/LW": ("AM/LW LOOP", "SMA"),
+    "N24-0": ("nRF24-1", "2.4 GHz SMA"),
+    "CC-SUB": ("SUB-GHz", "SMA"),
+    "N24-1": ("nRF24-2", "2.4 GHz SMA"),
+    "VOICE-V/U": ("VHF/UHF", "SMA"),
+    "N24-2": ("nRF24-3", "2.4 GHz SMA"),
+}
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-V/U", "N24-2"
 }
@@ -79,15 +90,15 @@ TX_LED_INSTANCES = {
     "N24-2": "nrf2_tx_led",
 }
 FRONT_TX_INDICATORS = (
-    ("s3_tx_led", "S3", 4.0, 115.0),
-    ("c5_tx_led", "C5", 12.3, 115.0),
-    ("nrf0_tx_led", "N24-0", 20.6, 115.0),
-    ("nrf1_tx_led", "N24-1", 28.9, 115.0),
-    ("nrf2_tx_led", "N24-2", 37.2, 115.0),
-    ("cc_tx_led", "CC", 45.5, 115.0),
-    ("voice_tx_led", "VOICE", 53.8, 115.0),
+    ("s3_tx_led", "WI-FI/BLE", 4.0, 115.0),
+    ("c5_tx_led", "WI-FI/15.4", 12.3, 115.0),
+    ("nrf0_tx_led", "nRF24-1", 20.6, 115.0),
+    ("nrf1_tx_led", "nRF24-2", 28.9, 115.0),
+    ("nrf2_tx_led", "nRF24-3", 37.2, 115.0),
+    ("cc_tx_led", "SUB-GHz", 45.5, 115.0),
+    ("voice_tx_led", "VHF/UHF", 53.8, 115.0),
     ("ir_tx_led", "IR", 62.1, 115.0),
-    ("any_tx_led", "ANY TX", 70.4, 115.0),
+    ("any_tx_led", "TX ACTIVE", 70.4, 115.0),
 )
 
 # Every directional interface that crosses the enclosure is rendered here.
@@ -404,6 +415,12 @@ def validate() -> list[str]:
     drawn_paths = {path for _, path, _ in FRONT_RF + REAR_RF}
     if machine_paths != drawn_paths or len(drawn_paths) != 9:
         errors.append("mechanical projection must retain all nine unique onboard RF paths")
+    if set(RF_USER_LABEL_LINES) != drawn_paths:
+        errors.append("every antenna path must have one user-facing silkscreen label")
+    for _, path, polarity in FRONT_RF + REAR_RF:
+        lines = RF_USER_LABEL_LINES.get(path, ())
+        if len(lines) != 2 or polarity not in lines[1]:
+            errors.append(f"{path}: user label must state function plus {polarity} connector type")
     if len(TX_RF_PATHS) != 7 or not TX_RF_PATHS <= drawn_paths:
         errors.append("seven transmitting RF paths must retain individual TX indicators")
     display_box = (display.x, display.y, *placement_size(display, devices, instances))
@@ -435,6 +452,9 @@ def validate() -> list[str]:
                 errors.append(f"front: {label}/{other_label} TX indicators overlap")
     if len({y for _, _, _, y in FRONT_TX_INDICATORS}) != 1:
         errors.append("front: all nine TX indicators must remain in one horizontal line")
+    expected_tx_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "TX ACTIVE"}
+    if {label for _, label, _, _ in FRONT_TX_INDICATORS} != expected_tx_labels:
+        errors.append("front: TX labels must match user-facing antenna names plus IR and TX ACTIVE")
     edge_instances = {item.instance for item in UI_INNER + RF_INNER}
     edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
@@ -553,9 +573,11 @@ def rf_bank(
             rows.append(f'<path d="M{x:.1f} {barrel_top+2:.1f} V{barrel_top-12:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         if show_annotations:
             label_y = (compact_label_y if compact_label_y is not None else 9.0) if compact_labels else 15.5
-            visible_label = f"{path} · {polarity}" if compact_labels else path
-            rows.append(text(x, sy(origin, label_y), visible_label, 4.2 if compact_labels else 6.2, "bold", "middle", "#1d4ed8"))
-            if not compact_labels:
+            if compact_labels:
+                for line_index, visible_label in enumerate(RF_USER_LABEL_LINES[path]):
+                    rows.append(text(x, sy(origin, label_y + 2.0 * line_index), visible_label, 3.8, "bold", "middle", "#1d4ed8"))
+            else:
+                rows.append(text(x, sy(origin, label_y), path, 6.2, "bold", "middle", "#1d4ed8"))
                 rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
     return rows
 
@@ -725,8 +747,8 @@ def render_external(devices, instances):
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each transmitting path",11),
-        text(note_x,396,"Eight path indicators plus ANY TX form one front line below the display.",11),
-        text(note_x,419,"Each is labelled S3/C5/N24-0..2/CC/VOICE/IR; Si4732 ports are RX-only.",11),
+        text(note_x,396,"Eight path indicators plus TX ACTIVE form one front line below the display.",11),
+        text(note_x,419,"Labels match antenna use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF and IR.",11),
         text(note_x,450,"Geometry status",15,"bold"),
         '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',
         text(890,479,"solid — registered MPN/reference assembly envelope",11),
@@ -917,7 +939,8 @@ def render_u214_top(devices, instances):
             f'width="{RF_BARREL_D*scale:.1f}" height="{RF_BARREL_OUT*scale:.1f}" '
             'fill="#d0d5dd" stroke="#344054" stroke-width="1.3"/>'
         )
-        out.append(t(x(centre), y(9.0), path, 6.4, "bold", "middle", "#1d4ed8"))
+        for line_index, visible_label in enumerate(RF_USER_LABEL_LINES[path]):
+            out.append(t(x(centre), y(8.4 + 2.0*line_index), visible_label, 6.0, "bold", "middle", "#1d4ed8"))
     out.append('</g>')
 
     # Existing base mounting holes and head keep-outs.

@@ -70,8 +70,15 @@ class ProductSiteTests(unittest.TestCase):
             "M2.5 hole/head keep-outs",
             "GCT RFPC-SMA31-FN-175-A",
             "GCT RFPC-SMA32-FN-175-A",
-            "S3-2G4 · RP-SMA",
-            "N24-0 · SMA",
+            "WI-FI/BLE",
+            "2.4 GHz RP-SMA",
+            "WI-FI/15.4",
+            "2.4/5 GHz RP-SMA",
+            "nRF24-1",
+            "2.4 GHz SMA",
+            "SUB-GHz",
+            "VHF/UHF",
+            "TX ACTIVE",
             "HEADPHONES",
             "LINE OUT",
             "C5 SERVICE USB",
@@ -130,10 +137,10 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=6", page)
+            self.assertIn("current-clamshell.svg?layout=7", page)
             self.assertIn("internal-board-layout.svg?layout=5", page)
             self.assertIn("sandwich-section.svg?layout=7", page)
-            self.assertIn("u214-dock-top-view.svg?layout=1", page)
+            self.assertIn("u214-dock-top-view.svg?layout=2", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
@@ -178,6 +185,10 @@ class ProductSiteTests(unittest.TestCase):
             "Samtec SSW-107-02-S-D · vertical 2×7 host socket",
             "Keystone Electronics 1048P",
             "insert ⊗ / remove ⊙",
+            "nRF24-1",
+            "2.4 GHz SMA",
+            "SUB-GHz",
+            "VHF/UHF",
         ):
             self.assertIn(token, layout)
 
