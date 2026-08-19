@@ -2189,36 +2189,42 @@
       "mpn": "Murata GJM1555C1HR47BB01D", "kind": "0_47pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_detector_tap_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1HR47BB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1HR47BB01D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1HR47BB01D/7362927", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0346, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1HR47BB01D/7362927", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1hr60bb01d": {
       "mpn": "Murata GJM1555C1HR60BB01D", "kind": "0_6pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1HR60BB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1HR60BB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1HR60BB01D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1HR60BB01D/2593254", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1h1r2bb01d": {
       "mpn": "Murata GJM1555C1H1R2BB01D", "kind": "1_2pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R2BB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1H1R2BB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H1R2BB01D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H1R2BB01D/2592874", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1h6r2db01d": {
       "mpn": "Murata GJM1555C1H6R2DB01D", "kind": "6_2pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H6R2DB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1H6R2DB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H6R2DB01D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.021, "price_break": "Mouser cut-tape quantity-100 tier", "source": {"document": "Mouser filtered category table with exact-MPN published price row", "url": "https://www.mouser.com/c/passive-components/capacitors/ceramic-capacitors/mlccs-multilayer-ceramic-capacitors/multilayer-ceramic-capacitors-mlcc-smd-smt/?capacitance=6.2+pF&case+code+-+in=0402", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1h8r0db01d": {
       "mpn": "Murata GJM1555C1H8R0DB01D", "kind": "8pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H8R0DB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1H8R0DB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H8R0DB01D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0207, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H8R0DB01D/2593153", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1h100jb01d": {
       "mpn": "Murata GJM1555C1H100JB01D", "kind": "10pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H100JB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1H100JB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H100JB01D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0417, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H100JB01D/702306", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1h150jb01d": {

@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **169/187** lines.
-- Of the remaining **18** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **823/857** supplied placements; their partial subtotals are `base_product` — USD 157.1927. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **175/187** lines.
+- Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **829/857** supplied placements; their partial subtotals are `base_product` — USD 157.3727. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -624,12 +624,66 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata GJM1555C1H100JB01D</code> — 1 × USD 0.0417 = USD 0.0417</summary>
+
+- Device id: `murata_gjm1555c1h100jb01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H100JB01D/702306).
+
+</details>
+
 <details><summary><code>Murata GJM1555C1H150JB01D</code> — 2 × USD 0.0392 = USD 0.0784</summary>
 
 - Device id: `murata_gjm1555c1h150jb01d`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H150JB01D/702310).
+
+</details>
+
+<details><summary><code>Murata GJM1555C1H1R2BB01D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_gjm1555c1h1r2bb01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H1R2BB01D/2592874).
+
+</details>
+
+<details><summary><code>Murata GJM1555C1H6R2DB01D</code> — 1 × USD 0.0210 = USD 0.0210</summary>
+
+- Device id: `murata_gjm1555c1h6r2db01d`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/c/passive-components/capacitors/ceramic-capacitors/mlccs-multilayer-ceramic-capacitors/multilayer-ceramic-capacitors-mlcc-smd-smt/?capacitance=6.2+pF&case+code+-+in=0402).
+
+</details>
+
+<details><summary><code>Murata GJM1555C1H8R0DB01D</code> — 1 × USD 0.0207 = USD 0.0207</summary>
+
+- Device id: `murata_gjm1555c1h8r0db01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H8R0DB01D/2593153).
+
+</details>
+
+<details><summary><code>Murata GJM1555C1HR47BB01D</code> — 1 × USD 0.0346 = USD 0.0346</summary>
+
+- Device id: `murata_gjm1555c1hr47bb01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1HR47BB01D/7362927).
+
+</details>
+
+<details><summary><code>Murata GJM1555C1HR60BB01D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_gjm1555c1hr60bb01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1HR60BB01D/2593254).
 
 </details>
 

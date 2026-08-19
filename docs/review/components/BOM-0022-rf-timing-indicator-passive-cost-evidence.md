@@ -42,5 +42,5 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
 This artifact preserves the reviewed tenth-batch checkpoint. Current coverage
-is in [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md): 169/187
-lines, 823/857 placements and partial base subtotal USD 157.1927.
+is in [`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md): 175/187
+lines, 829/857 placements and partial base subtotal USD 157.3727.

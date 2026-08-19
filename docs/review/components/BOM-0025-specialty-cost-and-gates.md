@@ -43,3 +43,7 @@ This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
+The current successor snapshot is
+[`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md): 175/187 lines,
+829/857 placements and USD 157.3727 partial base subtotal; all twelve
+unpriced lines have explicit gates.

@@ -116,6 +116,6 @@ the raw-display cost and prevents RFQ-only radios from becoming zero.
 ## Последующий статус
 
 Этот artifact сохраняет проверенный second-batch checkpoint. Текущий итог
-после десятой партии находится в
-[`BOM-0025`](BOM-0025-specialty-cost-and-gates.md): 169/187 lines,
-823/857 placements и partial base subtotal USD 157.1927.
+после четырнадцатой партии находится в
+[`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md): 175/187 lines,
+829/857 placements и partial base subtotal USD 157.3727.

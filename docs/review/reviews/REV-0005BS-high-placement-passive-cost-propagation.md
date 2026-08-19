@@ -24,5 +24,5 @@ At this seventh-batch checkpoint I8 remained open for 96 prices, standalone
 display sourcing, four uninstantiated physical families, specific alternate
 qualification and full factory COGS. Insufficient stock at one price source is
 a procurement-watch signal, not permission to bypass the accepted
-substitution policy. `BOM-0025/REV-0005BY` subsequently advance current
-coverage to 169/187 lines / 823 placements / USD 157.1927 and twelve gates.
+substitution policy. `BOM-0026/REV-0005CA` subsequently advance current
+coverage to 175/187 lines / 829 placements / USD 157.3727 and twelve gates.

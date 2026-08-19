@@ -26,11 +26,11 @@ calibration или accessory item.
 - 186/187 used lines already carry dated orderability evidence;
 - 1/187 requires current source verification: standalone
   `HMX035CTFT-001` orderability remains unproved;
-- 169/187 now have machine-readable quantity-100 cost by
-  `BOM-0013…0025/DEC-0105…0106/REV-0005BL…BY`; they cover 823/857 placements,
-  18/187 remain unpriced and the USD 157.1927 covered base subtotal is not
+- 175/187 now have machine-readable quantity-100 cost by
+  `BOM-0013…0026/DEC-0105…0106/REV-0005BL…CA`; they cover 829/857 placements,
+  12/187 remain unpriced and the USD 157.3727 covered base subtotal is not
   complete COGS;
-- 12/18 unpriced lines have explicit machine-readable RFQ/retail comparability
+- 12/12 unpriced lines have explicit machine-readable RFQ/retail comparability
   gates; a gate never contributes a numeric subtotal;
 - 187/187 now have alternate/no-substitution disposition by
   `BOM-0012/DEC-0104/REV-0005BK`; this is policy coverage, not 187 qualified
@@ -64,10 +64,10 @@ future factory RFQ.
    to their class gates.
 6. Record comparable USD qty-100 component snapshots and keep PCB, PCBA,
    enclosure, fixture, battery logistics and antenna-kit variants separate.
-   **First 169/187 lines / 823 placements reviewed** by
-   `BOM-0013…0025/DEC-0105…0106/REV-0005BL…BY`; continue through the remaining
-   18 lines without assigning zero or retail multiplication to missing
-   evidence. Twelve researched gaps already carry an explicit RFQ/retail gate.
+   **First 175/187 lines / 829 placements reviewed** by
+   `BOM-0013…0026/DEC-0105…0106/REV-0005BL…CA`; all remaining 12 lines have
+   explicit RFQ/retail gates and remain excluded rather than receiving zero or
+   a multiplied retail value.
 7. Run the consolidated self-review and only then mark I8 «Проведено ревью».
 
 No incomplete line is assigned a zero price. No broad family name is an AVL.

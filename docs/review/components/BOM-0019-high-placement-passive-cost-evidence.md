@@ -56,5 +56,5 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
 The current successor is
-[`BOM-0025`](BOM-0025-specialty-cost-and-gates.md): 169/187 lines,
-823/857 placements and USD 157.1927 partial base subtotal.
+[`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md): 175/187 lines,
+829/857 placements and USD 157.3727 partial base subtotal.

@@ -38,6 +38,6 @@
 - I8 остаётся открыт до полного component/factory cost и физических gaps.
 
 `BOM-0018/REV-0005BR` later preserve the existing gates and add two honest
-currency-comparability gates. `BOM-0025/REV-0005BY` advance numeric coverage
-to 169/187 lines / 823 placements; twelve explicit gates remain and the gate
+currency-comparability gates. `BOM-0026/REV-0005CA` advance numeric coverage
+to 175/187 lines / 829 placements; twelve explicit gates remain and the gate
 contract is unchanged.

@@ -25,5 +25,5 @@ uninstantiated physical families, specific alternate qualification and full
 factory COGS. Out-of-stock state is a procurement-watch signal, not
 permission to bypass the accepted substitution policy.
 
-`BOM-0025/REV-0005BY` preserve this reviewed eleventh-batch checkpoint and
-advance the current snapshot to 169/187 lines / 823 placements / USD 157.1927.
+`BOM-0026/REV-0005CA` preserve this reviewed eleventh-batch checkpoint and
+advance the current snapshot to 175/187 lines / 829 placements / USD 157.3727.

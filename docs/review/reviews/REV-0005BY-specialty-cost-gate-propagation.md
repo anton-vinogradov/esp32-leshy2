@@ -27,3 +27,6 @@ I8 remains open for 18 prices, standalone display sourcing, four
 uninstantiated physical families, specific alternate qualification and full
 factory COGS.
 
+`BOM-0026/REV-0005CA` preserve this reviewed thirteenth-batch checkpoint and
+advance the current snapshot to 175/187 lines / 829 placements / USD 157.3727;
+all twelve remaining unpriced lines have explicit gates.

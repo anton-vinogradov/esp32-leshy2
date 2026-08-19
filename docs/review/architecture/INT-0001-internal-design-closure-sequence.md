@@ -30,7 +30,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I5` | Si4732/audio capture/playback/TX/microphone/speaker and SA518 electrical boundary | `I2/I3/I4`, `DEC-0054` | **Проведено ревью paper electrical scope** by `DEC-0090/AUDIO-0003/REV-0005AU`; exact rails, interfaces, passives and acoustic endpoints instantiated; HIL named | calculated complete circuits and safe reset/powered-off behavior; HIL plan separated |
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
-| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy, substitution-policy coverage and thirteen cost batches reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011`, `BOM-0012/DEC-0104/REV-0005BK` and `BOM-0013…0025/DEC-0105…0106/REV-0005BL…BY`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions, 169 costed lines / 823 placements, twelve explicit unpriced gates and four explicit uninstantiated physical families; standalone `HMX035CTFT-001`, 18 prices and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
+| `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **inventory, current-source batch, display sourcing strategy, substitution-policy coverage and fourteen cost batches reviewed; qualification active** by `FND-0109/BOM-0008`, source repairs, `BOM-0011`, `BOM-0012/DEC-0104/REV-0005BK` and `BOM-0013…0026/DEC-0105…0106/REV-0005BL…CA`: 858 architecture instances include 1 assembly-internal evidence node, leaving 857 supplied/costed placements / 187 purchase lines, 186 source records, 187 alternate/no-substitution dispositions, 175 costed lines / 829 placements, twelve explicit unpriced gates and four explicit uninstantiated physical families; standalone `HMX035CTFT-001`, twelve gated prices and specific alternate qualification remain open | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
 | `I9` | whole internal self-review and atomic paper projection | `I0…I8` | not started | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
@@ -245,11 +245,11 @@ protection and RF-passive prices plus one honest high-Q RF quote gate.
 balance-resistor volume gate. `BOM-0022/REV-0005BV` add 15 RF, timing,
 indicator and passive prices. `BOM-0023/REV-0005BW` add 15 logic, interface
 and IR prices; `BOM-0024/REV-0005BX` add 14 exact resistor prices;
-`BOM-0025/REV-0005BY` add seven specialty prices and two gates. Current
-coverage is 169/187 prices / 823 placements; the USD 157.1927 subtotal is
-partial base-product material only. Twelve of 18 remaining
-price gaps have
-explicit routes, and full COGS remains
+`BOM-0025/REV-0005BY` add seven specialty prices and two gates;
+`BOM-0026/REV-0005CA` add the remaining six published exact high-Q RF
+capacitor prices. Current coverage is 175/187 prices / 829 placements; the
+USD 157.3727 subtotal is partial base-product material only. All twelve
+remaining price gaps have explicit routes, and full COGS remains
 open.
 I3 paper scope is closed again without claiming layout, exact-lot, thermal or
 fault-injection HIL.

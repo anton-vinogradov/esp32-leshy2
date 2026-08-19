@@ -512,10 +512,10 @@ SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates
 узел ST77922. Исправленные 857 supplied/costed placements сворачиваются в 187
 purchase lines, у 186 есть датированное
 orderability evidence, а единственной unresolved standalone строкой остаётся
-`HMX035CTFT-001`. `BOM-0013…0025/DEC-0105…0106/REV-0005BL…BY` дают 169/187
-строкам comparable quantity-100 USD evidence, покрывая 823/857 placements и
-USD 157.1927 частичного base-product material. У двенадцати из оставшихся 18 строк
-есть явные RFQ/retail gates, не добавляющие числовую стоимость.
+`HMX035CTFT-001`. `BOM-0013…0026/DEC-0105…0106/REV-0005BL…CA` дают 175/187
+строкам comparable quantity-100 USD evidence, покрывая 829/857 placements и
+USD 157.3727 частичного base-product material. У всех двенадцати оставшихся
+строк есть явные RFQ/retail gates, не добавляющие числовую стоимость.
 `BOM-0012/DEC-0104/REV-0005BK` дают всем 187 строкам ровно один
 alternate/no-substitution disposition class; это безопасная граница замены, а
 не утверждение о 187 квалифицированных second source.
