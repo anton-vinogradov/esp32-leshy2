@@ -535,3 +535,10 @@ the correction. All four root EN/RU pages are now product landing pages without
 `DEC/REV/FND/IMP` chains or open-gate narrative. Maturity, findings and history
 remain here and in the review ledger; hardware pin groups use a responsive
 `<details>` list linked to the generated atlas.
+
+`FND-0114/REV-0005BZ` correct the remaining diagram usability gap. The target
+pages now begin with S3/C5/RP ownership and separate S3, C5, RP and power
+views instead of a single USB-led chain. The exhaustive one-device-per-node
+projection renders as bounded domain diagrams while its monolithic `.mmd`
+remains available for machine review. This changes no component, pin, net,
+rail, owner or gate; the diagram step is reviewed.

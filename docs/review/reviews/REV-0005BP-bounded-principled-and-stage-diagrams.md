@@ -19,5 +19,8 @@ is corrected. The start pages again provide a useful finished-product diagram,
 while the exhaustive projection stays available without asking GitHub to render
 an unsupported monolith.
 
-I8 remains active. I9, integrated mockup and KiCad remain unauthorized.
+`FND-0114/REV-0005BZ` later supersede the hidden-source presentation with a
+rendered split atlas and replace the USB-led overview with owner-first maps.
+The original electrical/architecture verdict remains unchanged.
 
+I8 remains active. I9, integrated mockup and KiCad remain unauthorized.

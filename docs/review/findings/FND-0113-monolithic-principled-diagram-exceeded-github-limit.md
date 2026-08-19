@@ -18,14 +18,14 @@
 
 1. Обе стартовые страницы теперь содержат ограниченную вертикальную overview
    diagram: один физический компонент на box, exact/current MPN и роль.
-2. Полная one-device-per-node проекция не удалена. Она остаётся скрытым raw
-   source на landing pages и в generated atlas, а pin/net tables продолжают
-   строиться из тех же machine sources.
+2. Первое исправление сохраняло one-device-per-node проекцию как скрытый raw
+   source. `FND-0114/REV-0005BZ` позднее заменили эту неполную публикацию
+   отрисовываемым split-atlas и отдельным монолитным `.mmd` для machine review.
 3. Generated atlas больше не отправляет заведомо слишком большой source в
    Mermaid renderer.
-4. Regression test проверяет current core MPN coverage, `flowchart TD`, размер
-   rendered block `< 12000` characters и сохранение отдельных detailed nodes
-   в raw projection.
+4. Актуальный regression test проверяет current core MPN coverage, несколько
+   `flowchart TD`, размер каждого block `< 12000` characters и сохранение
+   отдельных detailed nodes в raw projection.
 5. Отдельная gate diagram в `docs/review/stages.md` показывает текущее место:
    internal I8 внутри gate 2F; I9, integrated mockup and KiCad remain blocked.
 
@@ -34,4 +34,3 @@
 Component choices, instances, pins, rails, nets, owners, BOM quantities and
 firmware contracts не изменены. Исправлен только способ публикации уже
 существующей архитектурной информации.
-

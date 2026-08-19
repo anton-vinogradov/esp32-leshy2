@@ -1556,9 +1556,398 @@ def render_target_bom_csv(
     return "\n".join(rows) + "\n"
 
 
-def render_principled_pinout(
-    database: dict[str, Any], candidates: list[dict[str, Any]]
+MERMAID_RENDER_LIMIT = 12_000
+MERMAID_NODE_CHUNK_LIMIT = 4_200
+
+
+def _mermaid_node_id(line: str) -> str | None:
+    """Return a declared Mermaid node ID, excluding subgraphs and edges."""
+
+    match = re.match(r"^\s{2}([A-Z][A-Z0-9_]*)\s*(?:\[|\()", line)
+    return match.group(1) if match else None
+
+
+def _render_split_principled_atlas(raw_lines: list[str]) -> list[str]:
+    """Split the exhaustive projection into bounded, renderable domain diagrams."""
+
+    groups: list[dict[str, Any]] = []
+    all_node_lines: dict[str, str] = {}
+    current: dict[str, Any] | None = None
+    final_group_end = -1
+    for index, line in enumerate(raw_lines):
+        subgraph_match = re.match(r'^\s{2}subgraph\s+([A-Z0-9_]+)\["(.*)"\]$', line)
+        if subgraph_match:
+            current = {
+                "id": subgraph_match.group(1),
+                "title": subgraph_match.group(2),
+                "nodes": [],
+            }
+            groups.append(current)
+            continue
+        if current is not None and line == "  end":
+            final_group_end = index
+            current = None
+            continue
+        if current is not None:
+            node_id = _mermaid_node_id(line)
+            if node_id:
+                current["nodes"].append(node_id)
+                all_node_lines[node_id] = line
+
+    edge_lines = [
+        line
+        for line in raw_lines[final_group_end + 1 :]
+        if any(token in line for token in ("-->", "<-->", "-.->"))
+    ]
+    all_node_ids = set(all_node_lines)
+    edge_refs: list[tuple[str, set[str]]] = []
+    for line in edge_lines:
+        unlabeled = re.sub(r'\|".*?"\|', "", line)
+        refs = set(re.findall(r"(?<![A-Z0-9_])([A-Z][A-Z0-9_]*)(?![A-Z0-9_])", unlabeled))
+        if refs and refs <= all_node_ids:
+            edge_refs.append((line, refs))
+
+    titles = {
+        "COMPUTE": "Вычислительные владельцы и межпроцессорные связи",
+        "UI_STORAGE": "Экран, storage и органы управления",
+        "AUDIO_PATH": "Приём, запись, воспроизведение и voice audio",
+        "RADIO_ACCESSORY": "Радиотракты и внешние расширения",
+        "IR_PATH": "Инфракрасный приём, передача и оптическое evidence",
+        "SERVICE_RECOVERY": "Независимая прошивка, recovery и диагностика",
+        "SAFETY_STOP": "Always-on hard STOP и аппаратный запрет передачи",
+        "TX_EVIDENCE": "Физическое evidence фактической передачи",
+        "POWER_RAILS": "Независимые rails и тихое отключение неиспользуемых интерфейсов",
+        "POWER_INPUT": "USB-PD, зарядка, сменные элементы и допуск батареи",
+    }
+    order = tuple(titles)
+    group_by_id = {group["id"]: group for group in groups}
+    ordered_groups = [group_by_id[group_id] for group_id in order if group_id in group_by_id]
+    ordered_groups.extend(group for group in groups if group["id"] not in order)
+
+    context_by_group = {
+        "SERVICE_RECOVERY": ("S3", "C5", "RP"),
+        "UI_STORAGE": ("S3", "MAIN_EFUSE"),
+        "AUDIO_PATH": ("S3", "RP", "SLOW_IO", "MAIN_EFUSE", "VOICE_EFUSE"),
+        "RADIO_ACCESSORY": (
+            "S3", "C5", "RP", "SLOW_IO", "MAIN_EFUSE", "SAFE_GATE_A", "SAFE_GATE_B",
+            "DET_S3", "DET_C5", "DET_NRF0", "DET_NRF1", "DET_NRF2", "DET_CC",
+            "DET_VOICE", "EVIDENCE_CMP_A", "EVIDENCE_CMP_B",
+        ),
+        "IR_PATH": ("C5", "SAFE_GATE_B", "DET_IR"),
+        "SAFETY_STOP": ("S3", "C5", "RP", "SLOW_IO", "AON_EFUSE"),
+        "TX_EVIDENCE": ("S3", "C5", "RP", "SLOW_IO", "SAFE_GATE_A", "SAFE_GATE_B"),
+        "POWER_RAILS": (
+            "NVDC_CHARGER", "S3", "C5", "RP", "SLOW_IO", "VOICE", "U214"
+        ),
+        "POWER_INPUT": ("AON_BUCK", "MAIN_BUCK", "VOICE_BUCK", "EXT_BUCK"),
+    }
+
+    rendered: list[str] = []
+    diagram_number = 0
+    rendered_node_ids: set[str] = set()
+    for group in ordered_groups:
+        node_chunks: list[list[str]] = []
+        chunk: list[str] = []
+        chunk_size = 0
+        for node_id in group["nodes"]:
+            node_size = len(all_node_lines[node_id]) + 1
+            if chunk and chunk_size + node_size > MERMAID_NODE_CHUNK_LIMIT:
+                node_chunks.append(chunk)
+                chunk = []
+                chunk_size = 0
+            chunk.append(node_id)
+            chunk_size += node_size
+        if chunk:
+            node_chunks.append(chunk)
+
+        for chunk_number, node_ids in enumerate(node_chunks, 1):
+            context_ids = [
+                node_id
+                for node_id in context_by_group.get(group["id"], ())
+                if node_id in all_node_lines and node_id not in node_ids
+            ]
+            available_ids = set(node_ids) | set(context_ids)
+            internal_edges = [
+                line
+                for line, refs in edge_refs
+                if refs <= available_ids and refs & set(node_ids)
+            ]
+            base_lines = [
+                "flowchart TD",
+                f'  subgraph {group["id"]}_{chunk_number}["{group["title"]}"]',
+                *[all_node_lines[node_id] for node_id in context_ids],
+                *[all_node_lines[node_id] for node_id in node_ids],
+                "  end",
+            ]
+            spine_ids = context_ids + node_ids
+            for offset in range(0, len(spine_ids), 12):
+                spine = spine_ids[offset : offset + 12]
+                if len(spine) > 1:
+                    base_lines.append("  " + " ~~~ ".join(spine))
+
+            edge_batches: list[list[str]] = [[]]
+            current_size = len("\n".join(base_lines)) + 1
+            for edge in internal_edges:
+                edge_size = len(edge) + 1
+                if edge_batches[-1] and current_size + edge_size >= MERMAID_RENDER_LIMIT:
+                    edge_batches.append([])
+                    current_size = len("\n".join(base_lines)) + 1
+                edge_batches[-1].append(edge)
+                current_size += edge_size
+
+            for edge_batch_number, edge_batch in enumerate(edge_batches, 1):
+                diagram_number += 1
+                title = titles.get(group["id"], group["title"])
+                part_count = len(node_chunks)
+                if part_count > 1:
+                    title += f" — узлы {chunk_number}/{part_count}"
+                if len(edge_batches) > 1:
+                    title += f", связи {edge_batch_number}/{len(edge_batches)}"
+                diagram_lines = base_lines + edge_batch
+                diagram = "\n".join(diagram_lines)
+                if len(diagram) >= MERMAID_RENDER_LIMIT:
+                    raise ValueError(
+                        f"split Mermaid block {group['id']} remains too large: {len(diagram)}"
+                    )
+                rendered += [
+                    f"### {diagram_number}. {title}",
+                    "",
+                    "```mermaid",
+                    diagram,
+                    "```",
+                    "",
+                ]
+            rendered_node_ids.update(node_ids)
+
+    if rendered_node_ids != all_node_ids:
+        missing = sorted(all_node_ids - rendered_node_ids)
+        extra = sorted(rendered_node_ids - all_node_ids)
+        raise ValueError(f"split Mermaid atlas coverage mismatch: missing={missing}, extra={extra}")
+    return rendered
+
+
+def _target_node(
+    devices: dict[str, Any], candidate: dict[str, Any], instance: str, role: str
 ) -> str:
+    mpn = devices[candidate["instances"][instance]]["mpn"]
+    return f'{instance.upper()}["{mpn}<br/>{role}"]'
+
+
+def render_target_principled_section(
+    database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
+) -> str:
+    """Render the bounded landing-page maps from the current machine sources."""
+
+    candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
+    devices = database["devices"]
+    if russian:
+        heading = "## Принципиальный дизайн решения"
+        intro = [
+            "Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.",
+            "Первая схема показывает только межпроцессорные связи; следующие схемы",
+            "разворачивают устройства каждого владельца и отдельный power path.",
+            "Каждый прямоугольник — одно физическое устройство с exact/current MPN",
+            "и ролью; разные устройства не объединяются.",
+        ]
+        labels = {
+            "owners": "Карта вычислительных владельцев",
+            "s3": "S3: интерфейс пользователя, storage, audio и native expansion",
+            "c5": "C5: native 2,4/5 ГГц, 802.15.4 и IR",
+            "rp": "RP: детерминированные радио, voice и U214",
+            "power": "Питание как отдельный тракт",
+        }
+        roles = {
+            "s3": "приложение, UI, экран, storage, audio, BLE/Wi-Fi",
+            "c5": "native 2,4/5 ГГц, IEEE 802.15.4 и IR",
+            "rp": "детерминированные радио и voice",
+            "display": "3,5-дюймовый QSPI экран и touch assembly",
+            "sd": "push-push разъём microSD",
+            "slow_io": "24-линейный slow-control expander",
+            "ui_matrix_io": "матрица D-pad и функциональных кнопок",
+            "codec": "кодек записи и воспроизведения",
+            "receiver": "приёмник FM/AM/SW/LW",
+            "ir_demod": "демодулирующий IR-приёмник 38 кГц",
+            "ir_carrier": "IR-приёмник обучения несущей",
+            "ir_emitter": "IR-передатчик 940 нм",
+            "nrf0": "полнофункциональное nRF24-радио №0",
+            "nrf1": "полнофункциональное nRF24-радио №1",
+            "nrf2": "полнофункциональное nRF24-радио №2",
+            "cc": "многодиапазонный sub-GHz transceiver",
+            "voice": "аналоговый VHF/UHF voice transceiver",
+            "u214": "съёмный LoRa/GNSS Cap-модуль",
+            "product_usb_connector": "основной USB-C разъём",
+            "product_usb_protector": "защита CC и USB2 порта",
+            "pd_controller": "sink-only USB-PD контроллер",
+            "nvdc_charger": "2S зарядка и NVDC power path",
+            "pack_holder": "поляризованный держатель двух 18650",
+            "pack_gauge": "защита и fuel gauge батареи 2S",
+            "aon_buck": "always-on преобразователь безопасности 3,3 В",
+            "main_buck": "основной преобразователь 3,3 В",
+            "voice_buck": "преобразователь voice 4,0 В",
+            "ext_buck": "преобразователь расширений 5,0 В",
+        }
+        atlas_text = (
+            "[Полный отрисовываемый атлас всех физических устройств]"
+            "(docs/review/architecture/generated/G2F-3I-principled-pinout.md) разбит"
+            " на ограниченные Mermaid-диаграммы. Исходная монолитная проекция для"
+            " машинного ревью сохраняется отдельно в"
+            " [`G2F-3I-principled-projection.mmd`]"
+            "(docs/review/architecture/generated/G2F-3I-principled-projection.mmd)."
+        )
+    else:
+        heading = "## Principled solution design"
+        intro = [
+            "Read the architecture from its three compute owners, not from the USB port.",
+            "The first map shows only inter-processor links; the following maps expand",
+            "each owner's devices and the independent power path. Every box is one",
+            "physical device with its exact/current MPN and product role; no box combines",
+            "different devices.",
+        ]
+        labels = {
+            "owners": "Compute ownership map",
+            "s3": "S3: user interface, storage, audio and native expansion",
+            "c5": "C5: native 2.4/5 GHz, 802.15.4 and IR",
+            "rp": "RP: deterministic radios, voice and U214",
+            "power": "Power as an independent path",
+        }
+        roles = {
+            "s3": "application, UI, display, storage, audio, BLE/Wi-Fi owner",
+            "c5": "native 2.4/5-GHz, IEEE 802.15.4 and IR owner",
+            "rp": "deterministic radio and voice owner",
+            "display": "3.5-inch QSPI display and touch assembly",
+            "sd": "push-push microSD connector",
+            "slow_io": "24-line slow-control expander",
+            "ui_matrix_io": "D-pad and function-key matrix expander",
+            "codec": "audio capture and playback codec",
+            "receiver": "FM/AM/SW/LW broadcast receiver",
+            "ir_demod": "38-kHz demodulating IR receiver",
+            "ir_carrier": "carrier-learning IR receiver",
+            "ir_emitter": "940-nm IR transmitter",
+            "nrf0": "full-function nRF24 radio #0",
+            "nrf1": "full-function nRF24 radio #1",
+            "nrf2": "full-function nRF24 radio #2",
+            "cc": "multi-band sub-GHz transceiver",
+            "voice": "analog VHF/UHF voice transceiver",
+            "u214": "removable LoRa/GNSS Cap module",
+            "product_usb_connector": "product USB-C receptacle",
+            "product_usb_protector": "CC and USB2 port protector",
+            "pd_controller": "sink-only USB-PD controller",
+            "nvdc_charger": "2S charger and NVDC power path",
+            "pack_holder": "polarized dual-18650 holder",
+            "pack_gauge": "2S protection and fuel gauge",
+            "aon_buck": "always-on 3.3-V safety converter",
+            "main_buck": "main 3.3-V converter",
+            "voice_buck": "voice 4.0-V converter",
+            "ext_buck": "accessory 5.0-V converter",
+        }
+        atlas_text = (
+            "The [complete rendered physical-device atlas]"
+            "(docs/review/architecture/generated/G2F-3I-principled-pinout.md) is split"
+            " into bounded Mermaid diagrams. The original monolithic projection remains"
+            " available for machine review as"
+            " [`G2F-3I-principled-projection.mmd`]"
+            "(docs/review/architecture/generated/G2F-3I-principled-projection.mmd)."
+        )
+
+    node = lambda instance: _target_node(devices, candidate, instance, roles[instance])
+    diagrams = [
+        (
+            labels["owners"],
+            [node("s3"), node("c5"), node("rp")],
+            ['  S3 <-->|"1-bit SDIO"| C5', '  S3 <-->|"dedicated SPI3 + alert"| RP'],
+        ),
+        (
+            labels["s3"],
+            [
+                node("s3"), node("display"), node("sd"), node("slow_io"),
+                node("ui_matrix_io"), node("codec"), node("receiver"),
+                '  UNIT["MPN TBD after connector mechanics<br/>protected native M5 Unit port"]',
+            ],
+            [
+                '  S3 -->|"direct QSPI + touch"| DISPLAY',
+                '  S3 -->|"scheduled SPI + isolated rail"| SD',
+                '  S3 <-->|"I²C0 + wired-low IRQ"| SLOW_IO',
+                '  S3 <-->|"I²C0 + wired-low IRQ"| UI_MATRIX_IO',
+                '  S3 <-->|"isolated I²S0 + I²C0"| CODEC',
+                '  S3 <-->|"isolated I²C0"| RECEIVER',
+                '  S3 <-->|"isolated profile pair"| UNIT',
+            ],
+        ),
+        (
+            labels["c5"],
+            [node("c5"), node("ir_demod"), node("ir_carrier"), node("ir_emitter")],
+            [
+                '  C5 <-->|"RMT RX0"| IR_DEMOD',
+                '  C5 <-->|"RMT RX1"| IR_CARRIER',
+                '  C5 -->|"RMT TX + STOP-qualified power"| IR_EMITTER',
+            ],
+        ),
+        (
+            labels["rp"],
+            [
+                node("rp"), node("nrf0"), node("nrf1"), node("nrf2"),
+                node("cc"), node("voice"), node("u214"),
+            ],
+            [
+                '  RP <-->|"independent PIO0 SM0"| NRF0',
+                '  RP <-->|"independent PIO0 SM1"| NRF1',
+                '  RP <-->|"independent PIO0 SM2"| NRF2',
+                '  RP <-->|"independent PIO0 SM3"| CC',
+                '  RP <-->|"UART0 + direct PTT"| VOICE',
+                '  RP <-->|"PIO1 + UART1 + I²C0"| U214',
+            ],
+        ),
+        (
+            labels["power"],
+            [
+                node("product_usb_connector"), node("product_usb_protector"),
+                node("pd_controller"), node("nvdc_charger"), node("pack_holder"),
+                node("pack_gauge"), node("aon_buck"), node("main_buck"),
+                node("voice_buck"), node("ext_buck"),
+            ],
+            [
+                "  PRODUCT_USB_CONNECTOR --> PRODUCT_USB_PROTECTOR --> PD_CONTROLLER --> NVDC_CHARGER",
+                "  PACK_HOLDER --> PACK_GAUGE --> NVDC_CHARGER",
+                "  NVDC_CHARGER --> AON_BUCK",
+                "  NVDC_CHARGER --> MAIN_BUCK",
+                "  NVDC_CHARGER --> VOICE_BUCK",
+                "  NVDC_CHARGER --> EXT_BUCK",
+            ],
+        ),
+    ]
+
+    lines = [heading, "", *intro, ""]
+    for diagram_heading, nodes, edges in diagrams:
+        lines += [f"### {diagram_heading}", "", "```mermaid", "flowchart TD", *nodes, *edges, "```", ""]
+    lines += [atlas_text, ""]
+    return "\n".join(lines)
+
+
+def render_target_readme(
+    current: str,
+    database: dict[str, Any],
+    candidates: list[dict[str, Any]],
+    *,
+    russian: bool,
+) -> str:
+    """Replace only the generated principled-design landing-page section."""
+
+    heading = "## Принципиальный дизайн решения" if russian else "## Principled solution design"
+    next_summary = (
+        "<summary><strong>Принципиальная распиновка</strong></summary>"
+        if russian
+        else "<summary><strong>Principled pin assignment</strong></summary>"
+    )
+    start = current.index(heading)
+    summary_start = current.index(next_summary, start)
+    details_start = current.rfind("<details>", start, summary_start)
+    generated = render_target_principled_section(database, candidates, russian=russian)
+    return current[:start] + generated + "\n" + current[details_start:]
+
+
+def _render_principled_pinout_bundle(
+    database: dict[str, Any], candidates: list[dict[str, Any]]
+) -> tuple[str, str]:
     """Render a readable, machine-derived atlas for the leading paper map."""
 
     candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
@@ -2047,7 +2436,7 @@ def render_principled_pinout(
         "Диаграмма — навигатор по owners и физически независимым interface groups.",
         "Она намеренно строится сверху вниз и остаётся живой проекцией текущей",
         "начинки: изменение machine source обязано регенерировать этот atlas и",
-        "синхронно обновить обе стартовые диаграммы.",
+        "синхронно обновить diagram-срезы обеих стартовых страниц.",
         "Каждый прямоугольник физического устройства содержит его exact/current",
         "paper MPN и роль. Разные устройства не объединяются в один прямоугольник.",
         "Если production part ещё не выбран, узел явно помечается `MPN TBD`;",
@@ -2082,7 +2471,51 @@ def render_principled_pinout(
         node("pd_vbus_tvs", "22-V flat-clamp VBUS surge protection"),
         node("pd_controller", "sink-only USB-PD policy and protected high-voltage path"),
         node("pd_config_eeprom", "dedicated PD patch/configuration EEPROM"),
+        node("pd_vin_cap", "10-uF PD-controller VIN_3V3 capacitor"),
+        node("pd_ldo3v3_cap", "10-uF PD-controller 3.3-V LDO capacitor"),
+        node("pd_ldo1v5_cap", "10-uF PD-controller 1.5-V LDO capacitor"),
+        node("pd_pphv_cap0", "22-uF 25-V protected-VBUS capacitor #0"),
+        node("pd_pphv_cap1", "22-uF 25-V protected-VBUS capacitor #1"),
+        node("pd_pphv_cap2", "22-uF 25-V protected-VBUS capacitor #2"),
+        node("pd_pphv_cap3", "22-uF 25-V protected-VBUS capacitor #3"),
+        node("pd_vbus_cap", "4.7-uF 25-V raw-VBUS startup capacitor"),
+        node("pd_eeprom_bypass", "100-nF PD EEPROM bypass capacitor"),
+        node("pd_eeprom_wp_pullup", "10-kOhm reset-high EEPROM write-protect pull-up"),
+        node("pd_local_scl_pullup", "2.2-kOhm local PD-bus SCL pull-up"),
+        node("pd_local_sda_pullup", "2.2-kOhm local PD-bus SDA pull-up"),
+        node("sys_i2c_scl_pullup", "2.2-kOhm system host-bus SCL pull-up"),
+        node("sys_i2c_sda_pullup", "2.2-kOhm system host-bus SDA pull-up"),
+        node("sys_int_pullup", "10-kOhm shared wired-low system IRQ pull-up"),
         node("nvdc_charger", "2S-configured buck-boost charger and NVDC system power path"),
+        node("charger_inductor", "2.2-uH 7-A 750-kHz charger inductor"),
+        node("charger_vbus_cap0", "10-uF 25-V X7R charger VBUS capacitor #0"),
+        node("charger_vbus_cap1", "10-uF 25-V X7R charger VBUS capacitor #1"),
+        node("charger_vbus_hf_cap", "100-nF 50-V charger VBUS HF capacitor"),
+        node("charger_pmid_cap0", "10-uF 25-V X7R charger PMID capacitor #0"),
+        node("charger_pmid_cap1", "10-uF 25-V X7R charger PMID capacitor #1"),
+        node("charger_pmid_cap2", "10-uF 25-V X7R charger PMID capacitor #2"),
+        node("charger_pmid_hf_cap", "100-nF 50-V charger PMID HF capacitor"),
+        node("charger_sys_cap0", "10-uF 25-V X7R charger SYS capacitor #0"),
+        node("charger_sys_cap1", "10-uF 25-V X7R charger SYS capacitor #1"),
+        node("charger_sys_cap2", "10-uF 25-V X7R charger SYS capacitor #2"),
+        node("charger_sys_cap3", "10-uF 25-V X7R charger SYS capacitor #3"),
+        node("charger_sys_cap4", "10-uF 25-V X7R charger SYS capacitor #4"),
+        node("charger_sys_hf_cap", "100-nF 50-V charger SYS HF capacitor"),
+        node("charger_bat_cap0", "10-uF 25-V X7R charger BAT capacitor #0"),
+        node("charger_bat_cap1", "10-uF 25-V X7R charger BAT capacitor #1"),
+        node("charger_btst1_cap", "47-nF 25-V charger bootstrap capacitor #1"),
+        node("charger_btst2_cap", "47-nF 25-V charger bootstrap capacitor #2"),
+        node("charger_regn_cap", "4.7-uF 25-V charger REGN capacitor"),
+        node("charger_sdrv_cap", "1-nF 50-V no-ship-FET SDRV capacitor"),
+        node("charger_prog_res", "8.2-kOhm 1% 2S/750-kHz PROG resistor"),
+        node("charger_batp_res", "100-Ohm 1% BATP sense resistor"),
+        node("charger_ts_top", "5.23-kOhm 1% charger TS upper resistor"),
+        node("charger_ts_bottom", "30.1-kOhm 1% charger TS lower resistor"),
+        node("charger_ts_ntc", "independent 10-kOhm charger battery NTC"),
+        node("charger_ilim_top", "44.2-kOhm 1% hardware ILIM upper resistor"),
+        node("charger_ilim_bottom", "100-kOhm 1% hardware ILIM lower resistor"),
+        node("charger_int_pullup", "10-kOhm charger INT pull-up resistor"),
+        node("charger_ce_pullup", "10-kOhm reset-high charger CE pull-up resistor"),
         node("pack_holder", "polarized dual protected-button-top 18650 retention and four independent contacts"),
         node("pack_cell0", "individually replaceable protected button-top 4-Ah cell #0"),
         node("pack_fuse0", "slot-0 independent 5-A fast fuse"),
@@ -2351,7 +2784,12 @@ def render_principled_pinout(
         "  end",
         "  subgraph RADIO_ACCESSORY[\"Radio and external-accessory devices\"]",
         *[node(instance, native_rf_roles[instance]) for instance in native_rf_support_instance_names],
+        "  S3_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>S3 dedicated external RP-SMA endpoint\"]",
+        "  C5_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>C5 dedicated external RP-SMA endpoint\"]",
         *[node(instance, nrf_role(instance)) for instance in nrf_support_instance_names],
+        "  NRF0_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>nRF0 dedicated external standard-SMA endpoint\"]",
+        "  NRF1_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>nRF1 dedicated external standard-SMA endpoint\"]",
+        "  NRF2_EXTERNAL_RF_50R[\"MPN TBD after mechanics<br/>nRF2 dedicated external standard-SMA endpoint\"]",
         node("cc", "sub-GHz transceiver"),
         *[node(instance, cc_role(instance)) for instance in cc_support_instance_names],
         "  CC_EXTERNAL_RF[\"MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint\"]",
@@ -2482,7 +2920,7 @@ def render_principled_pinout(
         "  PACK_MID_ADC_FILTER ~~~ PACK_STACK_ADC_TOP0 ~~~ PACK_STACK_ADC_TOP1 ~~~ PACK_STACK_ADC_TOP2 ~~~ PACK_STACK_ADC_TOP3 ~~~ PACK_STACK_ADC_TOP4 ~~~ PACK_STACK_ADC_BOTTOM ~~~ PACK_STACK_ADC_FILTER",
         "  PACK_STACK_ADC_FILTER ~~~ AON_BUCK ~~~ AON_INDUCTOR ~~~ AON_MODE_RES ~~~ AON_INPUT_CAP ~~~ AON_OUTPUT_CAP ~~~ AON_EFUSE ~~~ AON_EFUSE_RILIM ~~~ AON_EFUSE_OVLO_TOP ~~~ AON_EFUSE_OVLO_BOTTOM ~~~ AON_EFUSE_INPUT_CAP ~~~ AON_EFUSE_OUTPUT_CAP ~~~ AON_PG_PULLUP",
         "  AON_PG_PULLUP ~~~ MAIN_BUCK ~~~ MAIN_INDUCTOR ~~~ MAIN_INPUT_CAP ~~~ MAIN_HF_INPUT_CAP ~~~ MAIN_FB_TOP ~~~ MAIN_FB_BOTTOM ~~~ MAIN_FF_CAP ~~~ MAIN_OUTPUT_CAP0 ~~~ MAIN_OUTPUT_CAP1 ~~~ MAIN_EFUSE ~~~ MAIN_EFUSE_RILM ~~~ MAIN_EFUSE_DVDT_CAP ~~~ MAIN_EFUSE_ITIMER_CAP ~~~ MAIN_EFUSE_OVLO_TOP ~~~ MAIN_EFUSE_OVLO_BOTTOM ~~~ MAIN_EFUSE_PG_TOP ~~~ MAIN_EFUSE_PG_BOTTOM ~~~ MAIN_EFUSE_OUTPUT_CAP ~~~ MAIN_EN_PULLDOWN ~~~ POWER_FAULT_PULLUP",
-        "  POWER_FAULT_PULLUP ~~~ VOICE_BUCK ~~~ VOICE_INDUCTOR ~~~ VOICE_INPUT_CAP ~~~ VOICE_HF_INPUT_CAP ~~~ VOICE_FB_TOP ~~~ VOICE_FB_BOTTOM ~~~ VOICE_FF_CAP ~~~ VOICE_OUTPUT_CAP0 ~~~ VOICE_OUTPUT_CAP1 ~~~ VOICE_EFUSE ~~~ VOICE_EFUSE_RILIM ~~~ VOICE_EFUSE_DVDT_CAP ~~~ VOICE_EFUSE_ITIMER_CAP ~~~ VOICE_EFUSE_OVLO_TOP ~~~ VOICE_EFUSE_OVLO_BOTTOM ~~~ VOICE_EFUSE_PG_TOP ~~~ VOICE_EFUSE_PG_BOTTOM ~~~ VOICE_EFUSE_OUTPUT_CAP ~~~ VOICE_EN_PULLDOWN ~~~ VOICE_PG_PULLUP ~~~ VOICE_PG_BASE_RES ~~~ VOICE_PG_QUALIFIER",
+        "  POWER_FAULT_PULLUP ~~~ VOICE_BUCK ~~~ VOICE_INDUCTOR ~~~ VOICE_INPUT_CAP ~~~ VOICE_HF_INPUT_CAP ~~~ VOICE_FB_TOP ~~~ VOICE_FB_BOTTOM ~~~ VOICE_FF_CAP ~~~ VOICE_OUTPUT_CAP0 ~~~ VOICE_OUTPUT_CAP1 ~~~ VOICE_EFUSE ~~~ VOICE_EFUSE_RILM ~~~ VOICE_EFUSE_DVDT_CAP ~~~ VOICE_EFUSE_ITIMER_CAP ~~~ VOICE_EFUSE_OVLO_TOP ~~~ VOICE_EFUSE_OVLO_BOTTOM ~~~ VOICE_EFUSE_PG_TOP ~~~ VOICE_EFUSE_PG_BOTTOM ~~~ VOICE_EFUSE_OUTPUT_CAP ~~~ VOICE_EN_PULLDOWN ~~~ VOICE_PG_PULLUP ~~~ VOICE_PG_BASE_RES ~~~ VOICE_PG_QUALIFIER",
         "  VOICE_PG_QUALIFIER ~~~ EXT_BUCK ~~~ EXT_INDUCTOR ~~~ EXT_BUCK_INPUT_CAP ~~~ EXT_BUCK_HF_INPUT_CAP ~~~ EXT_BUCK_FB_TOP ~~~ EXT_BUCK_FB_BOTTOM ~~~ EXT_BUCK_FF_CAP ~~~ EXT_BUCK_OUTPUT_CAP0 ~~~ EXT_BUCK_OUTPUT_CAP1 ~~~ EXT_EN_PULLDOWN ~~~ EXT_PG_PULLUP ~~~ EXT_PG_BASE_RES ~~~ EXT_PG_QUALIFIER ~~~ EXT_EFUSE",
         "  EXT_EFUSE ~~~ EXT_RILM ~~~ EXT_DVDT_CAP ~~~ EXT_ITIMER_CAP ~~~ EXT_OVLO_TOP ~~~ EXT_OVLO_BOTTOM",
         "  EXT_OVLO_BOTTOM ~~~ EXT_INPUT_CAP ~~~ EXT_OUTPUT_CAP ~~~ EXT_BLEEDER ~~~ NRF_POWER_SWITCH ~~~ CC_POWER_SWITCH ~~~ SD_POWER_SWITCH ~~~ CODEC_POWER_SWITCH ~~~ RECEIVER_POWER_SWITCH ~~~ S3 ~~~ SLOW_IO",
@@ -2492,10 +2930,8 @@ def render_principled_pinout(
         "  UI_SWITCH_LEFT ~~~ UI_MATRIX_DIODE_RIGHT ~~~ UI_SWITCH_RIGHT ~~~ UI_MATRIX_DIODE_OK ~~~ UI_SWITCH_OK ~~~ UI_MATRIX_DIODE_BACK ~~~ UI_SWITCH_BACK",
         "  UI_SWITCH_BACK ~~~ UI_MATRIX_DIODE_OPT ~~~ UI_SWITCH_OPT ~~~ UI_MATRIX_DIODE_F1 ~~~ UI_SWITCH_F1 ~~~ UI_MATRIX_DIODE_F2 ~~~ UI_SWITCH_F2",
         "  UI_SWITCH_F2 ~~~ UI_MATRIX_DIODE_ENCODER ~~~ ENCODER ~~~ ENCODER_A_PULLUP ~~~ ENCODER_B_PULLUP ~~~ ENCODER_PTT_ESD ~~~ PTT_PULLUP ~~~ PTT_SERIES ~~~ PTT_FILTER_CAP ~~~ PTT_RAW ~~~ TOUCH_IRQ_PULLUP ~~~ TOUCH_IRQ_RAW ~~~ TOUCH_IRQ_BUFFER ~~~ TOUCH_IRQ_BUFFER_BYPASS",
-        "  TOUCH_IRQ_BUFFER_BYPASS ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ MONOSUM",
-        "  MONOSUM ~~~ AUDIO_RX_MUX ~~~ CAPNET ~~~ AUDIO_CAPTURE_BUFFER ~~~ ADCNET",
-        "  ADCNET ~~~ CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER",
-        "  SPEAKER ~~~ MIC ~~~ TXATT ~~~ AUDIO_TX_SELECTOR ~~~ DISPLAY_CONNECTOR ~~~ DISPLAY ~~~ DISPLAY_TOUCH_CONTROLLER ~~~ DISPLAY_LOGIC_BULK_CAP ~~~ DISPLAY_LOGIC_HF_CAP",
+        "  TOUCH_IRQ_BUFFER_BYPASS ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ AUDIO_RX_MUX ~~~ AUDIO_CAPTURE_BUFFER ~~~ CODEC",
+        "  CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER ~~~ MICROPHONE ~~~ AUDIO_TX_SELECTOR ~~~ DISPLAY_CONNECTOR ~~~ DISPLAY ~~~ DISPLAY_TOUCH_CONTROLLER ~~~ DISPLAY_LOGIC_BULK_CAP ~~~ DISPLAY_LOGIC_HF_CAP",
         "  DISPLAY_LOGIC_HF_CAP ~~~ DISPLAY_RESET_PULLDOWN ~~~ TOUCH_RESET_PULLDOWN ~~~ BACKLIGHT_EFUSE ~~~ BACKLIGHT_EFUSE_ILIM ~~~ BACKLIGHT_EFUSE_INPUT_CAP ~~~ BACKLIGHT_EFUSE_OUTPUT_BULK ~~~ BACKLIGHT_EFUSE_OUTPUT_HF",
         "  BACKLIGHT_EFUSE_OUTPUT_HF ~~~ BACKLIGHT_FAULT_PULLUP ~~~ BACKLIGHT_SERIES_RESISTOR ~~~ BACKLIGHT_MOSFET ~~~ BACKLIGHT_GATE_SERIES ~~~ BACKLIGHT_GATE_PULLDOWN ~~~ SD ~~~ SD_HOST_BUFFER ~~~ SD_MISO_BUFFER ~~~ SD_ESD_A ~~~ SD_ESD_B",
         "  SD_ESD_B ~~~ SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLUP ~~~ SD_HOST_D1_PULLUP",
@@ -2813,8 +3249,8 @@ def render_principled_pinout(
         "  RECEIVER_SUPERVISOR -->|\"reset + 200-ms isolation release\"| RECEIVER_I2C_ISO",
         "  RECEIVER --> RECEIVER_IRQ_ISO --> SLOW_IO",
         f"  S3 <-->|\"profile port: {contacts('s3', ('UNIT_',))}\"| UNIT",
-        f"  C5 <-->|\"RMT RX0/power: {contacts('c5', ('IR_',))}\"| IRDEMOD",
-        "  C5 <-->|\"RMT RX1/power\"| IRCARRIER",
+        f"  C5 <-->|\"RMT RX0/power: {contacts('c5', ('IR_',))}\"| IR_DEMOD",
+        "  C5 <-->|\"RMT RX1/power\"| IR_CARRIER",
         f"  RP -->|\"PIO0 SM0 outputs: {contacts('rp', ('NRF0_',))}\"| NRF0_HOST_BUFFER --> NRF0",
         "  NRF0 -->|\"MISO + IRQ\"| NRF0_RETURN_BUFFER --> RP",
         f"  RP -->|\"PIO0 SM1 outputs: {contacts('rp', ('NRF1_',))}\"| NRF1_HOST_BUFFER --> NRF1",
@@ -2919,7 +3355,7 @@ def render_principled_pinout(
         "  NRF_EVIDENCE_HOLD_DIODE --> DET_NRF2",
         "  SAFE_GATE_B --> CC_POWER_SWITCH",
         "  SAFE_GATE_B --> VOICE_BUCK",
-        "  SAFE_GATE_B --> IRTX",
+        "  SAFE_GATE_B --> IR_EMITTER",
         "  SAFE_GATE_B --> EXT_BUCK",
         "  S3 -->|\"placement-qualified U.FL jumper\"| S3_RF_BOARD_CONNECTOR --> S3_RF_COUPLER -->|\"dedicated RP-SMA boundary\"| S3_EXTERNAL_RF_50R",
         "  S3_RF_COUPLER -->|\"-20-dB forward sample\"| S3_DETECTOR_INPUT_CAP --> DET_S3 --> EVIDENCE_CMP_A",
@@ -2943,7 +3379,7 @@ def render_principled_pinout(
         "  NRF2_COUPLER -->|\"10-dB forward sample\"| DET_NRF2 --> EVIDENCE_CMP_B",
         "  DET_CC --> EVIDENCE_CMP_B",
         "  DET_VOICE --> EVIDENCE_CMP_B",
-        "  IRTX --> DET_IR --> EVIDENCE_CMP_B",
+        "  IR_EMITTER --> DET_IR --> EVIDENCE_CMP_B",
         "  EVIDENCE_CMP_A_BYPASS --> EVIDENCE_CMP_A",
         "  EVIDENCE_CMP_B_BYPASS --> EVIDENCE_CMP_B",
         "  S3_EVIDENCE_THRESHOLD_TOP --> S3_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_A",
@@ -3041,7 +3477,54 @@ def render_principled_pinout(
         "не разрешает KiCad и не является frozen BOM.",
         "",
     ]
-    return "\n".join(lines)
+    projection_heading = lines.index("## Полная машинная проекция owners и pin groups")
+    raw_open = lines.index("```text", projection_heading)
+    raw_close = lines.index("```", raw_open + 1)
+    raw_lines = lines[raw_open + 1 : raw_close]
+    declared_node_ids = {
+        node_id
+        for line in raw_lines
+        if (node_id := _mermaid_node_id(line)) is not None
+    }
+    required_node_ids = {instance.upper() for instance in candidate["instances"]}
+    if missing := sorted(required_node_ids - declared_node_ids):
+        raise ValueError(f"principled projection omits physical instances: {missing}")
+    implicit_nodes: set[str] = set()
+    for line in raw_lines:
+        if not any(token in line for token in ("-->", "<-->", "-.->", "~~~")):
+            continue
+        unlabeled = re.sub(r'\|".*?"\|', "", line)
+        referenced = set(
+            re.findall(r"(?<![A-Z0-9_])([A-Z][A-Z0-9_]*)(?![A-Z0-9_])", unlabeled)
+        )
+        implicit_nodes.update(referenced - declared_node_ids)
+    if implicit_nodes:
+        raise ValueError(
+            f"principled projection contains implicit Mermaid nodes: {sorted(implicit_nodes)}"
+        )
+    details_open = lines.index("<details>", projection_heading)
+    details_close = lines.index("</details>", details_open)
+    lines[projection_heading:details_close + 1] = [
+        "## Отрисовываемый атлас физических устройств",
+        "",
+        "Исчерпывающая one-device-per-node проекция разбита по функциональным",
+        "доменам и автоматически режется дальше до безопасного размера Mermaid.",
+        "Диаграммы показывают внутренние связи своего среза; междоменные pin/net",
+        "связи без потерь перечислены в machine-derived таблицах ниже. Полный",
+        "монолитный исходник сохраняется рядом как",
+        "`G2F-3I-principled-projection.mmd` для машинного diff/review.",
+        "",
+        *_render_split_principled_atlas(raw_lines),
+    ]
+    return "\n".join(lines), "\n".join(raw_lines) + "\n"
+
+
+def render_principled_pinout(
+    database: dict[str, Any], candidates: list[dict[str, Any]]
+) -> str:
+    """Render the human atlas while retaining the raw bundle internally."""
+
+    return _render_principled_pinout_bundle(database, candidates)[0]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -3058,16 +3541,30 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
 
+    principled_pinout, raw_projection = _render_principled_pinout_bundle(
+        database, candidates
+    )
     outputs = {
         REPO_ROOT / database["generated_ledger"]: render_ledger(database, candidates),
-        REPO_ROOT / database["generated_principled_pinout"]: render_principled_pinout(
-            database, candidates
-        ),
+        REPO_ROOT / database["generated_principled_pinout"]: principled_pinout,
+        REPO_ROOT / "docs/review/architecture/generated/G2F-3I-principled-projection.mmd": raw_projection,
         REPO_ROOT / database["generated_target_bom_review"]: render_target_bom_review(
             database, candidates
         ),
         REPO_ROOT / database["generated_target_bom_csv"]: render_target_bom_csv(
             database, candidates
+        ),
+        REPO_ROOT / "README.md": render_target_readme(
+            (REPO_ROOT / "README.md").read_text(encoding="utf-8"),
+            database,
+            candidates,
+            russian=False,
+        ),
+        REPO_ROOT / "README.ru.md": render_target_readme(
+            (REPO_ROOT / "README.ru.md").read_text(encoding="utf-8"),
+            database,
+            candidates,
+            russian=True,
         ),
     }
     if args.write:

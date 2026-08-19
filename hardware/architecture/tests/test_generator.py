@@ -1,5 +1,6 @@
 import copy
 import importlib.util
+import re
 import unittest
 from pathlib import Path
 
@@ -336,7 +337,7 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_principled_diagram_names_each_physical_device_and_role(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("flowchart TD", rendered)
-        self.assertIn("Layout-only invisible spine", rendered)
+        self.assertIn("Отрисовываемый атлас физических устройств", rendered)
         required_labels = (
             "HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly",
             "Sitronix ST77922<br/>integrated display plus capacitive-touch TDDI COG",
@@ -490,7 +491,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "codec", "receiver", "nrf0", "nrf1", "nrf2", "cc", "voice",
             "u214", "product_usb_connector", "product_usb_protector",
             "pd_controller", "nvdc_charger", "pack_holder", "pack_gauge",
-            "aon_buck", "main_buck", "voice_buck", "ext_buck", "stop_switch",
+            "aon_buck", "main_buck", "voice_buck", "ext_buck",
             "ir_demod", "ir_carrier", "ir_emitter",
         )
         current_mpn_tokens = set()
@@ -504,6 +505,44 @@ class ArchitectureValidationTests(unittest.TestCase):
             ]
             current_mpn_tokens.add(max(part_tokens, key=len))
 
+        raw_projection = (
+            GENERATOR.REPO_ROOT
+            / "docs/review/architecture/generated/G2F-3I-principled-projection.mmd"
+        ).read_text(encoding="utf-8")
+
+        def assert_individual_mpn_nodes(expected: dict[str, str], context: str) -> None:
+            for mpn in set(expected.values()):
+                required = sum(1 for value in expected.values() if value == mpn)
+                actual = len(
+                    re.findall(
+                        rf'^  [A-Z0-9_]+\["[^"\n]*{re.escape(mpn)}<br/>',
+                        raw_projection,
+                        re.MULTILINE,
+                    )
+                )
+                self.assertGreaterEqual(
+                    actual,
+                    required,
+                    f"{context}: expected {required} individual {mpn} nodes, found {actual}",
+                )
+
+        def assert_no_implicit_mermaid_nodes(diagram: str, context: str) -> None:
+            declared = set(
+                re.findall(r'^\s{0,2}([A-Z][A-Z0-9_]*)\s*(?:\[|\()', diagram, re.MULTILINE)
+            )
+            for line in diagram.splitlines():
+                if not any(token in line for token in ("-->", "<-->", "-.->", "~~~")):
+                    continue
+                unlabeled = re.sub(r'\|".*?"\|', "", line)
+                referenced = set(
+                    re.findall(r"(?<![A-Z0-9_])([A-Z][A-Z0-9_]*)(?![A-Z0-9_])", unlabeled)
+                )
+                self.assertLessEqual(
+                    referenced,
+                    declared,
+                    f"{context}: implicit Mermaid nodes {sorted(referenced - declared)} in {line}",
+                )
+
         for readme_name in ("README.md", "README.ru.md"):
             readme = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
             section = (
@@ -511,18 +550,22 @@ class ArchitectureValidationTests(unittest.TestCase):
                 if readme_name == "README.md"
                 else "Принципиальный дизайн решения"
             )
-            diagram_start = readme.index("```mermaid", readme.index(section))
-            diagram_end = readme.index("```", diagram_start + len("```mermaid"))
-            diagram = readme[diagram_start:diagram_end]
-            raw_start = readme.index("```text", diagram_end)
-            raw_end = readme.index("```", raw_start + len("```text"))
-            raw_projection = readme[raw_start:raw_end]
-            self.assertIn("flowchart TD", diagram, readme_name)
-            self.assertLess(len(diagram), 12_000, readme_name)
+            section_start = readme.index(section)
+            section_end = readme.index("<details>", section_start)
+            section_text = readme[section_start:section_end]
+            diagrams = re.findall(r"```mermaid\n(.*?)```", section_text, re.DOTALL)
+            self.assertEqual(5, len(diagrams), readme_name)
+            self.assertNotIn("```text", section_text, readme_name)
+            self.assertIn("not from the USB port" if readme_name == "README.md" else "не от USB-порта", section_text)
+            for diagram in diagrams:
+                self.assertIn("flowchart TD", diagram, readme_name)
+                self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT, readme_name)
+                assert_no_implicit_mermaid_nodes(diagram, readme_name)
+            combined_diagrams = "\n".join(diagrams)
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,
-                    diagram,
+                    combined_diagrams,
                     f"{readme_name}: missing current MPN token {mpn_token}",
                 )
             storage_nodes = {
@@ -556,23 +599,13 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "SDDETPU": "RC0402FR-0710KL",
                 "SDDETC": "C1005X7R1H104K050BB",
             }
-            for node_id, mpn in storage_nodes.items():
-                self.assertIn(
-                    f'  {node_id}["{mpn}',
-                    raw_projection,
-                    f"{readme_name}: storage part {node_id}/{mpn} lacks its own box",
-                )
+            assert_individual_mpn_nodes(storage_nodes, f"{readme_name}: storage")
             touch_nodes = {
                 "LCDTDDI": "Sitronix ST77922",
                 "TPIRQPU": "RC0402FR-0710KL",
                 "TPIRQ": "SN74LVC1G07DCKR",
             }
-            for node_id, mpn in touch_nodes.items():
-                self.assertIn(
-                    f'  {node_id}["{mpn}',
-                    raw_projection,
-                    f"{readme_name}: touch part {node_id}/{mpn} lacks its own box",
-                )
+            assert_individual_mpn_nodes(touch_nodes, f"{readme_name}: touch")
             pack_support_nodes = {
                 "PACKINR": "ERJ-P08F10R0V",
                 "PACKINC": "C1005X7R1H104K050BB",
@@ -600,14 +633,17 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "PACKRSTPU": "RC0402FR-0747KL",
                 "PACKRSTC": "GRM155R71H103KA88D",
             }
-            for node_id, mpn in pack_support_nodes.items():
-                self.assertIn(
-                    f'  {node_id}["{mpn}',
-                    raw_projection,
-                    f"{readme_name}: pack-support part {node_id}/{mpn} lacks its own box",
-                )
+            assert_individual_mpn_nodes(pack_support_nodes, f"{readme_name}: pack support")
             self.assertIn("SN74LVC1G06DCKR", raw_projection, readme_name)
             self.assertIn("SN74LVC1G07DCKR", raw_projection, readme_name)
+
+        atlas = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        atlas_diagrams = re.findall(r"```mermaid\n(.*?)```", atlas, re.DOTALL)
+        self.assertGreater(len(atlas_diagrams), 10)
+        for diagram in atlas_diagrams:
+            self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT)
+            assert_no_implicit_mermaid_nodes(diagram, "generated atlas")
+        self.assertNotIn("```text", atlas)
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -3072,17 +3108,16 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         for readme_name in ("README.md", "README.ru.md"):
             target = (GENERATOR.REPO_ROOT / readme_name).read_text(encoding="utf-8")
-            for token in (
-                "TCA6424ARGJR",
-                "C1005X7R1H104K050BB #SLOW-VCCI",
-                "C1608X7R1C105K080AC #SLOW",
-                "SN74LVC1G07DCKR #STOP-SENSE",
-                "SN74LVC1G07DCKR #S3-EVIDENCE",
-                "RC0402FR-072K2L #STOP",
-                "SLOW_IO_RESET_N",
-                "flowchart TD",
-            ):
-                self.assertIn(token, target, f"{readme_name}: {token}")
+            self.assertIn("TCA6424ARGJR", target, readme_name)
+
+        for token in (
+            "TDK C1005X7R1H104K050BB<br/>100-nF main slow-I/O VCCI bypass capacitor",
+            "TDK C1608X7R1C105K080AC<br/>1-uF main slow-I/O local bulk capacitor",
+            "SN74LVC1G07DCKR<br/>AON-powered open-drain STOP-sense domain isolator",
+            "SN74LVC1G07DCKR<br/>AON-powered open-drain S3-evidence domain isolator",
+            "Yageo RC0402FR-072K2L<br/>2.2-kOhm physical STOP-indicator current limit",
+        ):
+            self.assertIn(token, rendered, token)
 
     def test_rejects_missing_required_mux_contract(self):
         candidates = copy.deepcopy(self.candidates)

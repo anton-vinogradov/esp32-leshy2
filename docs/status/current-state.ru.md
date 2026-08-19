@@ -537,3 +537,10 @@ architecture и purchasing и запрещают возврат COG в factory C
 pages без цепочек `DEC/REV/FND/IMP` и open-gate narrative. Здесь и в review
 ledger сохранены вся зрелость, находки и история; hardware pin groups доступны
 в responsive `<details>` и generated atlas.
+
+`FND-0114/REV-0005BZ` закрывают оставшийся usability gap диаграмм. Target pages
+теперь начинаются с владения S3/C5/RP и отдельных срезов S3, C5, RP и power,
+а не с единственной цепочки от USB. Исчерпывающая one-device-per-node проекция
+рендерится ограниченными domain diagrams; её монолитный `.mmd` сохраняется для
+machine review. Компоненты, pins, nets, rails, owners и gates не меняются;
+диаграммный шаг получает статус «Проведено ревью».
