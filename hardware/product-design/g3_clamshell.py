@@ -234,8 +234,8 @@ REAR_CONTROLS = (
     Placement("ui_switch_f1", 5.5, 65.0, "rear F1"),
     Placement("ui_switch_f2", 5.5, 80.0, "rear F2"),
     Placement("ptt_switch", 65.3, 65.0, "rear independent PTT"),
-    Placement("stop_switch", 59.5, 77.0, "rear physical hard STOP"),
-    Placement("rearm_switch", 65.3, 97.0, "rear recessed RE-ARM"),
+    Placement("stop_switch", 60.85, 76.3, "rear physical hard STOP"),
+    Placement("rearm_switch", 65.3, 98.1, "rear recessed RE-ARM"),
 )
 
 FRONT_CAP_RESERVES = (
@@ -252,6 +252,14 @@ REAR_CAP_RESERVES = (
     Reserve("STOP cap", 64.0, 78.0, 7.0, 7.0, "same visible size as PTT/F1/F2; NC body below"),
     Reserve("RE-ARM cap", 64.0, 96.0, 7.0, 7.0, "recessed cap/case feature, MPN TBD"),
 )
+REAR_CAP_TO_CONTROL = {
+    "encoder knob": "encoder",
+    "F1 cap": "ui_switch_f1",
+    "F2 cap": "ui_switch_f2",
+    "PTT cap": "ptt_switch",
+    "STOP cap": "stop_switch",
+    "RE-ARM cap": "rearm_switch",
+}
 
 INTERNAL_RESERVES = ()
 
@@ -406,6 +414,23 @@ def validate() -> list[str]:
         errors.append("vertical U214 host socket must project beneath the installed Cap")
     if any(x < 0.0 or x > BOARD_W for x in U214_RETENTION_X):
         errors.append("U214 56-mm retention pitch must remain inside the 75-mm base")
+    rear_control_by_instance = {item.instance: item for item in REAR_CONTROLS}
+    holder_box = (holder.x, holder.y, holder_w, holder_h)
+    for cap in REAR_CAP_RESERVES:
+        control = rear_control_by_instance[REAR_CAP_TO_CONTROL[cap.name]]
+        control_w, control_h = placement_size(control, devices, instances)
+        control_box = (control.x, control.y, control_w, control_h)
+        cap_box = (cap.x, cap.y, cap.w, cap.h)
+        if abs((control.x + control_w / 2) - (cap.x + cap.w / 2)) > 0.15:
+            errors.append(f"rear: {cap.name} is not centred over {control.instance} in X")
+        if abs((control.y + control_h / 2) - (cap.y + cap.h / 2)) > 0.15:
+            errors.append(f"rear: {cap.name} is not centred over {control.instance} in Y")
+        if overlaps(control_box, holder_box, U214_CLEARANCE):
+            errors.append(f"rear: {control.instance} body lacks battery-holder clearance")
+        if overlaps(cap_box, holder_box, U214_CLEARANCE):
+            errors.append(f"rear: {cap.name} lacks battery-holder clearance")
+        if overlaps(cap_box, u214_box, U214_CLEARANCE):
+            errors.append(f"rear: {cap.name} lacks installed-U214 clearance")
     for centre, _, _ in REAR_RF:
         rf_box = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
         if overlaps(connector_box, rf_box, U214_CLEARANCE):
@@ -690,7 +715,15 @@ def render_external(devices, instances):
         out.append(text(sx(rear,cell_x), sy(rear,86), "18650", 7, "bold", "middle", "#166534"))
 
     for reserve in REAR_CAP_RESERVES:
-        out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "#fee4e2" if reserve.name == "STOP cap" else "#f5f3ff", "#ea580c", "4 3", 3))
+        if reserve.name == "encoder knob":
+            out.append(
+                f'<circle cx="{sx(rear,reserve.x + reserve.w/2):.1f}" '
+                f'cy="{sy(rear,reserve.y + reserve.h/2):.1f}" r="{reserve.w*scale/2:.1f}" '
+                'fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3" '
+                'data-part="encoder-knob-reserve"/>'
+            )
+        else:
+            out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "#fee4e2" if reserve.name == "STOP cap" else "#f5f3ff", "#ea580c", "4 3", 3))
     for x, y, label in (
         (7.5, 61.5, "ENC"), (7.5, 74.0, "F1"), (7.5, 89.0, "F2"),
         (67.5, 74.0, "PTT"), (67.5, 89.0, "STOP"), (67.5, 107.0, "RE-ARM"),
@@ -907,13 +940,20 @@ def render_u214_top(devices, instances):
             t((x1+x2)/2, y_px-7, label, 11, "bold", "middle", "#344054"),
         ]
 
-    def v_dim(y1_mm, y2_mm, x_px, label):
+    def v_dim(y1_mm, y2_mm, x_px, label, rotate_label=False):
         y1, y2 = y(y1_mm), y(y2_mm)
+        if rotate_label:
+            label_x, label_y = x_px + 18, (y1 + y2) / 2
+            label_text = t(label_x, label_y, label, 10, "bold", "middle", "#344054").replace(
+                "<text ", f'<text transform="rotate(-90 {label_x:.1f} {label_y:.1f})" ', 1
+            )
+        else:
+            label_text = t(x_px-9, (y1+y2)/2+4, label, 10, "bold", "end", "#344054")
         return [
             f'<line x1="{x_px:.1f}" y1="{y1:.1f}" x2="{x_px:.1f}" y2="{y2:.1f}" stroke="#344054"/>',
             f'<line x1="{x_px-6:.1f}" y1="{y1:.1f}" x2="{x_px+6:.1f}" y2="{y1:.1f}" stroke="#344054"/>',
             f'<line x1="{x_px-6:.1f}" y1="{y2:.1f}" x2="{x_px+6:.1f}" y2="{y2:.1f}" stroke="#344054"/>',
-            t(x_px-9, (y1+y2)/2+4, label, 10, "bold", "end", "#344054"),
+            label_text,
         ]
 
     cap_mpn = devices[instances["u214"]]["mpn"]
@@ -923,10 +963,10 @@ def render_u214_top(devices, instances):
     holder_w, holder_h = placement_size(holder, devices, instances)
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="840" viewBox="0 0 1400 840" data-view="rear-top">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" data-view="rear-top">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        t(30, 34, "Leshy2 — raised U214 dock, rear-face top view", 22, "bold"),
-        t(30, 58, "One millimetre scale for the 75×150-mm base, installed Cap, exact socket, retention and battery holder.", 11, colour="#526076"),
+        t(30, 34, "Leshy2 — complete rear-face top view", 22, "bold"),
+        t(30, 58, "One millimetre scale for antennas, raised U214 rail, battery holder and every rear control.", 11, colour="#526076"),
         r(0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=8, extra=' data-board-mm="75x150"'),
     ]
 
@@ -988,6 +1028,37 @@ def render_u214_top(devices, instances):
         '</g>',
     ]
 
+    # Draw exact control bodies beneath their visible case caps. The STOP body
+    # is chassis-mounted and larger than the common visible 7x7-mm cap; its
+    # adjusted centre keeps the exterior control line honest without claiming
+    # identical hidden mechanisms.
+    out.append('<g id="rear-controls" data-exterior-cap-contract="PTT-STOP-F1-F2-common-7x7">')
+    for control in REAR_CONTROLS:
+        control_w, control_h = placement_size(control, devices, instances)
+        fill = "#fee2e2" if control.instance == "stop_switch" else "#e2e8f0"
+        stroke = "#b42318" if control.instance == "stop_switch" else "#64748b"
+        out.append(r(control.x, control.y, control_w, control_h, fill, stroke, "", 2, f' data-instance="{control.instance}"'))
+    for reserve in REAR_CAP_RESERVES:
+        if reserve.name == "encoder knob":
+            out.append(
+                f'<circle cx="{x(reserve.x + reserve.w/2):.1f}" cy="{y(reserve.y + reserve.h/2):.1f}" '
+                f'r="{reserve.w*scale/2:.1f}" fill="#f5f3ff" fill-opacity="0.62" stroke="#ea580c" '
+                'stroke-width="1.6" stroke-dasharray="5 3" data-part="encoder-knob-reserve"/>'
+            )
+        else:
+            fill = "#fee2e2" if reserve.name == "STOP cap" else "#f5f3ff"
+            out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, fill, "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
+    for label_x, label_y, label, colour in (
+        (8.0, 61.5, "ENC", "#4c1d95"),
+        (7.5, 74.0, "F1", "#4c1d95"),
+        (7.5, 89.0, "F2", "#4c1d95"),
+        (67.5, 74.0, "PTT", "#4c1d95"),
+        (67.5, 89.0, "STOP", "#b42318"),
+        (67.5, 107.0, "RE-ARM", "#4c1d95"),
+    ):
+        out.append(t(x(label_x), y(label_y), label, 7.0, "bold", "middle", colour))
+    out.append('</g>')
+
     # Dimensions: base, Cap, overhang, retention and the two non-overlapping
     # longitudinal bands. These are documentation annotations, not silk.
     out += h_dim(0, BOARD_W, 744, "base PCB · 75 mm")
@@ -996,7 +1067,7 @@ def render_u214_top(devices, instances):
     out += h_dim(BOARD_W, U214_X+U214_W, y(U214_Y)-10, "4.5")
     out += h_dim(U214_RETENTION_X[0], U214_RETENTION_X[1], 802, "retention · 56 mm")
     out += v_dim(U214_Y, U214_Y+U214_H, x(U214_X)-30, "24 mm")
-    out += v_dim(42.0, 128.0, x(BOARD_W)+34, "86 mm holder")
+    out += v_dim(42.0, 128.0, x(BOARD_W)+52, "86 mm holder", rotate_label=True)
 
     note_x = 560.0
     out += [
@@ -1007,20 +1078,25 @@ def render_u214_top(devices, instances):
         t(note_x, 224, "✓ the two envelopes have a 1.0-mm plan gap", 12, "bold", colour="#166534"),
         t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 4.5 mm per side", 12, "bold", colour="#166534"),
         t(note_x, 278, "✓ 56-mm retention pitch remains inside the 75-mm base", 12, "bold", colour="#166534"),
-        t(note_x, 324, "Selected parts", 15, "bold"),
-        t(note_x, 352, cap_mpn, 11, "bold", colour="#9a3412"),
-        t(note_x, 377, f"{socket_mpn} · vertical 2×7 host socket", 11, "bold", colour="#075985"),
-        t(note_x, 402, f"{holder_mpn} · rotated holder", 11, "bold", colour="#166534"),
-        t(note_x, 448, "Meaning of this view", 15, "bold"),
-        t(note_x, 476, "Rear face viewed normal to the PCB — not a side section.", 11),
-        t(note_x, 501, "Orange: removable Cap envelope; blue: raised host rail/socket.", 11),
-        t(note_x, 526, "Green: holder and cells. Dashed orange: M2.5 keep-outs.", 11),
-        t(note_x, 566, "Still requires specimen/HIL", 15, "bold", colour="#b42318"),
-        t(note_x, 594, "• received-U214 pin length, socket bottoming and repeated-cycle retention", 11),
-        t(note_x, 619, "• rail height/tolerance, screw engagement and enclosure-side clearance", 11),
-        t(note_x, 644, "• connector-to-holder depth clearance in the final enclosure stack", 11),
-        t(note_x, 690, "Dimensioned architecture projection — not a production enclosure drawing.", 11, "bold", colour="#b42318"),
-        t(note_x, 716, "All free text in this mechanical view is documentation annotation, not PCB silkscreen.", 10, colour="#526076"),
+        t(note_x, 305, "✓ exact control bodies and visible caps clear the battery and U214 envelopes", 12, "bold", colour="#166534"),
+        t(note_x, 350, "Selected parts", 15, "bold"),
+        t(note_x, 378, cap_mpn, 11, "bold", colour="#9a3412"),
+        t(note_x, 403, f"{socket_mpn} · vertical 2×7 host socket", 11, "bold", colour="#075985"),
+        t(note_x, 428, f"{holder_mpn} · rotated holder", 11, "bold", colour="#166534"),
+        t(note_x, 474, "Rear controls shown to scale", 15, "bold"),
+        t(note_x, 502, "C&K Y78B23214FP · F1/F2/PTT/RE-ARM bodies", 11),
+        t(note_x, 527, "Panasonic AEQ10410 · chassis-mounted NC STOP body", 11),
+        t(note_x, 552, "Alps Alpine EC11E18244AU · encoder body; knob remains a reserve", 11),
+        t(note_x, 598, "Meaning of this view", 15, "bold"),
+        t(note_x, 626, "Rear face viewed normal to the PCB — not a side section.", 11),
+        t(note_x, 651, "Solid outlines: exact bodies. Dashed outlines: unselected caps/knob.", 11),
+        t(note_x, 676, "Orange: removable Cap/controls; blue: raised rail; green: batteries.", 11),
+        t(note_x, 716, "Still requires specimen/HIL", 15, "bold", colour="#b42318"),
+        t(note_x, 744, "• cap/plunger depths, STOP carrier/overtravel and encoder finger access", 11),
+        t(note_x, 769, "• received-U214 pin fit, rail height, screw engagement and removal", 11),
+        t(note_x, 794, "• enclosure-side and depth clearance with every installed accessory", 11),
+        t(note_x, 840, "Dimensioned architecture projection — not a production enclosure drawing.", 11, "bold", colour="#b42318"),
+        t(note_x, 866, "All free text in this mechanical view is documentation annotation, not PCB silkscreen.", 10, colour="#526076"),
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"

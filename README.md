@@ -37,14 +37,14 @@ are powered down and placed into a verifiable quiet state.
 
 ### External faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=7)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=8)
 
-### Rear U214 dock — top view
+### Complete rear face — top view
 
-This rear-face plan uses one millimetre scale to show the raised rail and
-installed 84×24-mm LoRa Cap between the antenna bank and battery holder.
+This rear-face plan uses one millimetre scale to show the antennas, raised
+rail and installed 84×24-mm LoRa Cap, battery holder and every rear control.
 
-![Leshy2 U214 dock top view](docs/images/u214-dock-top-view.svg?layout=2)
+![Leshy2 complete rear-face top view](docs/images/u214-dock-top-view.svg?layout=3)
 
 ### Inner board faces
 

@@ -100,9 +100,14 @@ In one line below the display, user-facing actual-transmit labels cover
 same names and also states the required frequency and `SMA`/`RP-SMA` type.
 The two Si4732 antenna inputs are receive-only.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=7)
+The complete rear-face top view also projects the exact hidden bodies of the
+encoder, F1/F2, PTT, STOP and RE-ARM beneath their visible cap/knob envelopes.
+Solid bodies are selected parts; dashed caps and the knob remain enclosure
+parts awaiting final depth, feel and sealing qualification.
 
-![Dimensioned U214 dock top view](images/u214-dock-top-view.svg?layout=2)
+![Dimensioned external layout](images/current-clamshell.svg?layout=8)
+
+![Dimensioned complete rear-face top view](images/u214-dock-top-view.svg?layout=3)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=5)
 

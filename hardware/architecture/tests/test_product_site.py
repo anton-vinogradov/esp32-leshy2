@@ -137,10 +137,10 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=7", page)
+            self.assertIn("current-clamshell.svg?layout=8", page)
             self.assertIn("internal-board-layout.svg?layout=5", page)
             self.assertIn("sandwich-section.svg?layout=7", page)
-            self.assertIn("u214-dock-top-view.svg?layout=2", page)
+            self.assertIn("u214-dock-top-view.svg?layout=3", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")
@@ -177,6 +177,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-board-mm="75x150"',
             'id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56"',
             'id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1"',
+            'id="rear-controls" data-exterior-cap-contract="PTT-STOP-F1-F2-common-7x7"',
             "rear-face top view",
             "base PCB · 75 mm",
             "U214 · 84 mm",
@@ -189,6 +190,10 @@ class ProductSiteTests(unittest.TestCase):
             "2.4 GHz SMA",
             "SUB-GHz",
             "VHF/UHF",
+            "C&amp;K Y78B23214FP",
+            "Panasonic AEQ10410",
+            "Alps Alpine EC11E18244AU",
+            "exact control bodies and visible caps clear the battery and U214 envelopes",
         ):
             self.assertIn(token, layout)
 

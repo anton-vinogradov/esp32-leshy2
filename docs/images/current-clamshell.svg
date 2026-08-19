@@ -126,7 +126,7 @@
 <text x="568.6" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
 <rect x="604.5" y="342.4" width="68.8" height="240.5" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5"/>
 <text x="638.9" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
-<rect x="466.9" y="309.1" width="55.5" height="55.5" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="494.6" cy="336.9" r="27.8" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3" data-part="encoder-knob-reserve"/>
 <rect x="479.8" y="383.1" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="479.8" y="438.6" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="701.8" y="383.1" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
