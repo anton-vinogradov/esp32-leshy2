@@ -25,6 +25,7 @@ explicit physical-gap register feed the generated manifest.
 11. [`BOM-0011`](BOM-0011-assembly-internal-purchase-boundary.md) — explicit assembly-internal node exclusion and corrected 857/187 purchase view.
 12. [`BOM-0012`](BOM-0012-complete-substitution-policy.md) — all 187 purchase lines mapped to one conservative no-silent-substitution class.
 13. [`BOM-0013`](BOM-0013-first-quantity-100-cost-evidence.md) — validated USD quantity-100 cost contract and first 15/187 exact-MPN lines.
+14. [`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md) — second high-placement price batch, current 23/187 lines / 440 placements and five explicit RFQ/retail gates.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -57,5 +58,6 @@ explicit physical-gap register feed the generated manifest.
 - [`FND-0112`](../findings/FND-0112-assembly-internal-controller-was-double-counted.md) / [`BOM-0011`](BOM-0011-assembly-internal-purchase-boundary.md) / [`DEC-0103`](../decisions/DEC-0103-separate-architecture-nodes-from-purchase-bom.md) / [`REV-0005BJ`](../reviews/REV-0005BJ-assembly-internal-bom-propagation.md) — ST77922 remains a distinct architecture node but is no longer double-counted as a purchase line; **Проведено ревью corrected purchasing coverage**.
 - [`BOM-0012`](BOM-0012-complete-substitution-policy.md) / [`DEC-0104`](../decisions/DEC-0104-complete-no-silent-substitution-policy.md) / [`REV-0005BK`](../reviews/REV-0005BK-substitution-policy-propagation.md) — exactly one conservative substitution/requalification class for every current purchase line; **Проведено ревью policy coverage 187/187**, specific alternates stay evidence-driven.
 - [`BOM-0013`](BOM-0013-first-quantity-100-cost-evidence.md) / [`DEC-0105`](../decisions/DEC-0105-machine-readable-quantity-100-cost-evidence.md) / [`REV-0005BL`](../reviews/REV-0005BL-first-cost-evidence-propagation.md) — strict comparable-price contract plus first 15/187 lines and 22/857 placements; **Проведено ревью first batch**, USD 57.2502 remains a partial base-product subtotal, not COGS.
+- [`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md) / [`DEC-0106`](../decisions/DEC-0106-explicit-unpriced-cost-gates.md) / [`REV-0005BM`](../reviews/REV-0005BM-second-cost-evidence-propagation.md) — eight high-placement prices plus five explicit RFQ/retail gates; **Проведено ревью second batch**, current coverage 23/187 lines / 440/857 placements and USD 68.8226 partial base subtotal.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

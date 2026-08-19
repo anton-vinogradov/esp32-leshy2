@@ -21,3 +21,7 @@
 «Проведено ревью». I8 does not: 172 purchase lines, four uninstantiated
 physical families, standalone display sourcing and complete factory COGS
 remain open.
+
+Later `BOM-0014/DEC-0106/REV-0005BM` preserve this reviewed first-batch result
+and advance the current snapshot to 23/187 lines / 440 placements with five
+explicit unpriced gates.

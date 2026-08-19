@@ -31,15 +31,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            172,
+            164,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            15,
+            23,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            22,
+            440,
             sum(
                 line["quantity"]
                 for line in lines
@@ -49,6 +49,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(
             0,
             sum(line["alternate_evidence"] == "missing" for line in lines),
+        )
+        self.assertEqual(
+            5,
+            sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
             {
@@ -91,9 +95,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("187", rendered)
         self.assertIn("186/187", rendered)
         self.assertIn("187/187", rendered)
-        self.assertIn("15/187", rendered)
-        self.assertIn("22/857", rendered)
-        self.assertIn("USD 57.2502", rendered)
+        self.assertIn("23/187", rendered)
+        self.assertIn("440/857", rendered)
+        self.assertIn("USD 68.8226", rendered)
+        self.assertIn("5", rendered)
+        self.assertIn("quantity_100_rfq_required", rendered)
+        self.assertIn("retail_only_no_quantity_100_tier", rendered)
         self.assertIn("SUB-RF", rendered)
         self.assertIn("SUB-MECH-OPTICAL", rendered)
         self.assertIn("assembly-internal evidence node", rendered)
@@ -126,6 +133,33 @@ class ArchitectureValidationTests(unittest.TestCase):
                 database["devices"]["esp32_s3_wroom_1u_n16r2"]["cost"].update(update)
                 errors = GENERATOR.validate_sources(database, self.candidates)
                 self.assertIn(expected, "\n".join(errors))
+
+    def test_rejects_invalid_or_conflicting_cost_gate(self):
+        cases = (
+            ({"status": "invented"}, "unknown cost_gate status"),
+            ({"reason": ""}, "cost_gate missing reason"),
+            (
+                {"source": {"document": "test", "url": "http://example.com", "checked": "2026-08-19"}},
+                "cost_gate source must use HTTPS",
+            ),
+            (
+                {"source": {"document": "test", "url": "https://example.com", "checked": "19-08-2026"}},
+                "cost_gate source checked date must be YYYY-MM-DD",
+            ),
+        )
+        for update, expected in cases:
+            with self.subTest(expected=expected):
+                database = copy.deepcopy(self.database)
+                database["devices"]["m5_u214"]["cost_gate"].update(update)
+                errors = GENERATOR.validate_sources(database, self.candidates)
+                self.assertIn(expected, "\n".join(errors))
+
+        database = copy.deepcopy(self.database)
+        database["devices"]["m5_u214"]["cost"] = copy.deepcopy(
+            database["devices"]["esp32_s3_wroom_1u_n16r2"]["cost"]
+        )
+        errors = GENERATOR.validate_sources(database, self.candidates)
+        self.assertIn("cost and cost_gate are mutually exclusive", "\n".join(errors))
 
     def test_rejects_invalid_bom_non_purchase_boundary(self):
         cases = (

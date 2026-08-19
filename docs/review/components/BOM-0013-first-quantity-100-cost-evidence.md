@@ -64,3 +64,10 @@ Mechanical/interconnect:
 3. Не смешивать base product, optional U214 и regional battery kit subtotals.
 4. После полного component coverage добавить PCB/PCBA/enclosure/test quotes и
    только тогда считать product COGS.
+
+## Последующий статус
+
+Эти числа сохраняют исторический результат первой партии. Текущие итоги после
+второй партии и explicit RFQ/retail gates находятся в
+[`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md): 23/187 lines,
+440/857 placements и partial base subtotal USD 68.8226.

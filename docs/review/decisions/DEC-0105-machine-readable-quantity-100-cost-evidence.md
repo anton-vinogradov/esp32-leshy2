@@ -37,3 +37,7 @@
 - изменение exact MPN или substitution class требует нового price evidence и
   соответствующей requalification;
 - решение не меняет электрическую архитектуру, распиновку или диаграмму.
+
+`DEC-0106/BOM-0014/REV-0005BM` later extend this contract with explicit
+machine-readable gates for researched RFQ/retail-only gaps and advance current
+coverage to 23/187 lines / 440 placements without changing these rules.

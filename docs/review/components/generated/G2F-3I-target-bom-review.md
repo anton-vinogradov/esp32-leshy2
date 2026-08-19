@@ -11,8 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **15/187** lines.
-- Those priced lines cover **22/857** supplied placements; their partial subtotals are `base_product` — USD 57.2502. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **23/187** lines.
+- Of the remaining **164** unpriced lines, **5** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **440/857** supplied placements; their partial subtotals are `base_product` — USD 68.8226. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -443,12 +444,57 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata GRM188R60J106ME47D</code> — 17 × USD 0.0377 = USD 0.6409</summary>
+
+- Device id: `murata_grm188r60j106me47d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM188R60J106ME47D/965910).
+
+</details>
+
+<details><summary><code>Murata GRM32ER71E226KE15L</code> — 13 × USD 0.3303 = USD 4.2939</summary>
+
+- Device id: `murata_grm32er71e226ke15l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM32ER71E226KE15L/2039092).
+
+</details>
+
+<details><summary><code>Panasonic ERJ-2RKF22R0X</code> — 45 × USD 0.0155 = USD 0.6975</summary>
+
+- Device id: `panasonic_erj_2rkf22r0x`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-2RKF22R0X/1746157).
+
+</details>
+
 <details><summary><code>SC1512-A4</code> — 1 × USD 1.0000 = USD 1.0000</summary>
 
 - Device id: `rp2354b_a4`.
 - Scope: `base_product`.
 - Comparable basis: Mouser published 1+ cut-tape unit price applied to an order of 100 pieces; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Raspberry-Pi/SC1512-A4?qs=4dK74SdgGtwLCXnn6CRJZQ%3D%3D).
+
+</details>
+
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 100 × USD 0.0258 = USD 2.5800</summary>
+
+- Device id: `tdk_c1005x7r1h104k050bb`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/tdk/C1005X7R1H104K050BB/2443410).
+
+</details>
+
+<details><summary><code>TDK C1608X7R1C105K080AC</code> — 34 × USD 0.0392 = USD 1.3328</summary>
+
+- Device id: `tdk_c1608x7r1c105k080ac`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/tdk-corporation/C1608X7R1C105K080AC/634395).
 
 </details>
 
@@ -467,6 +513,82 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS25751DREFR/23028775).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-07100KL</code> — 28 × USD 0.0097 = USD 0.2716</summary>
+
+- Device id: `yageo_rc0402fr_07100kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726526).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 167 × USD 0.0097 = USD 1.6199</summary>
+
+- Device id: `yageo_rc0402fr_0710kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/726523).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-072K2L</code> — 14 × USD 0.0097 = USD 0.1358</summary>
+
+- Device id: `yageo_rc0402fr_072k2l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553).
+
+</details>
+
+## Unpriced lines with explicit cost gates
+
+These entries are intentionally excluded from the partial subtotal until a comparable quantity-100 USD quote exists.
+
+<details><summary><code>Ebyte E01-ML01IPX</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `ebyte_e01_ml01ipx`.
+- Scope: `base_product`; quantity `3`.
+- Reason: The manufacturer exposes a 100-999-piece tier but withholds its numeric price behind Send Inquiry, so no comparable published quantity-100 USD value is available.
+- Checked: `2026-08-19`; [gate source](https://www.cdebyte.com/products/E01-ML01IPX).
+
+</details>
+
+<details><summary><code>M5Stack U214 Cap LoRa-1262</code> — <code>retail_only_no_quantity_100_tier</code></summary>
+
+- Device id: `m5_u214`.
+- Scope: `optional_external_accessory`; quantity `1`.
+- Reason: The exact U214 is sold as a retail package at USD 14.50 with no published quantity-100 tier; a comparable production quantity quote is required instead of multiplying the retail price.
+- Checked: `2026-08-19`; [gate source](https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633).
+
+</details>
+
+<details><summary><code>NiceRF SA518</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `nicerf_sa518_v11`.
+- Scope: `base_product`; quantity `1`.
+- Reason: The exact current SA518 manufacturer page offers contact/RFQ rather than a published quantity-100 USD price.
+- Checked: `2026-08-19`; [gate source](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html).
+
+</details>
+
+<details><summary><code>HMX035CTFT-001 (QDtech schematic assembly marking)</code> — <code>standalone_raw_assembly_rfq_required</code></summary>
+
+- Device id: `qdtech_hmx035ctft_001`.
+- Scope: `base_product`; quantity `1`.
+- Reason: Published prices cover complete donor boards, not the standalone HMX035CTFT-001 LCM+CTP assembly; an exact quantity-100 supplier quote is required.
+- Checked: `2026-08-19`; [gate source](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf).
+
+</details>
+
+<details><summary><code>XTAR 18650 4000mAh</code> — <code>regional_retail_only_no_quantity_100_tier</code></summary>
+
+- Device id: `xtar_18650_4000mah_protected`.
+- Scope: `regional_replaceable_cell_kit`; quantity `2`.
+- Reason: The official store exposes regional retail pricing but no exact quantity-100 tier or production quote for the protected no-USB cell.
+- Checked: `2026-08-19`; [gate source](https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery).
 
 </details>
 

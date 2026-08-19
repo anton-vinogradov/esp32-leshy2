@@ -138,6 +138,9 @@ def validate_sources(
         if "not_recommended" in device.get("lifecycle", "") and not device.get("lifecycle_source"):
             errors.append(f"device {device_id}: constrained lifecycle lacks lifecycle_source")
         cost = device.get("cost")
+        cost_gate = device.get("cost_gate")
+        if cost is not None and cost_gate is not None:
+            errors.append(f"device {device_id}: cost and cost_gate are mutually exclusive")
         if cost is not None:
             for required in (
                 "currency",
@@ -176,6 +179,45 @@ def validate_sources(
                     errors.append(
                         f"device {device_id}: cost source checked date must be YYYY-MM-DD"
                     )
+        if cost_gate is not None:
+            if not isinstance(cost_gate, dict):
+                errors.append(f"device {device_id}: cost_gate must be an object")
+            else:
+                for required in ("status", "reason", "source"):
+                    if not cost_gate.get(required):
+                        errors.append(f"device {device_id}: cost_gate missing {required}")
+                allowed_cost_gate_statuses = {
+                    "quantity_100_rfq_required",
+                    "retail_only_no_quantity_100_tier",
+                    "regional_retail_only_no_quantity_100_tier",
+                    "standalone_raw_assembly_rfq_required",
+                }
+                if (
+                    cost_gate.get("status")
+                    and cost_gate["status"] not in allowed_cost_gate_statuses
+                ):
+                    errors.append(f"device {device_id}: unknown cost_gate status")
+                gate_source = cost_gate.get("source")
+                if not isinstance(gate_source, dict):
+                    errors.append(f"device {device_id}: cost_gate source must be an object")
+                else:
+                    for required in ("document", "url", "checked"):
+                        if not gate_source.get(required):
+                            errors.append(
+                                f"device {device_id}: cost_gate source missing {required}"
+                            )
+                    if gate_source.get("url") and not gate_source["url"].startswith(
+                        "https://"
+                    ):
+                        errors.append(
+                            f"device {device_id}: cost_gate source must use HTTPS"
+                        )
+                    if gate_source.get("checked") and not re.fullmatch(
+                        r"\d{4}-\d{2}-\d{2}", gate_source["checked"]
+                    ):
+                        errors.append(
+                            f"device {device_id}: cost_gate source checked date must be YYYY-MM-DD"
+                        )
 
     candidate_ids: set[str] = set()
     for candidate in candidates:
@@ -1241,6 +1283,7 @@ def _target_bom_lines(
     for device_id, placements in sorted(grouped.items()):
         device = devices[device_id]
         cost = device.get("cost")
+        cost_gate = device.get("cost_gate")
         scopes = {
             audit.get("scope_overrides", {}).get(instance, audit["default_scope"])
             for instance in placements
@@ -1265,6 +1308,10 @@ def _target_bom_lines(
                 "cost_price_break": cost["price_break"] if cost else "",
                 "cost_source": cost["source"]["url"] if cost else "",
                 "cost_checked": cost["source"]["checked"] if cost else "",
+                "cost_gate_status": cost_gate["status"] if cost_gate else "",
+                "cost_gate_reason": cost_gate["reason"] if cost_gate else "",
+                "cost_gate_source": cost_gate["source"]["url"] if cost_gate else "",
+                "cost_gate_checked": cost_gate["source"]["checked"] if cost_gate else "",
                 "alternate_evidence": "present" if device_id in substitution_class_by_device else "missing",
                 "alternate_policy_class": substitution_class_by_device.get(device_id, "missing"),
                 "placements": sorted(placements),
@@ -1288,6 +1335,7 @@ def render_target_bom_review(
     non_purchase_node_word = "node" if len(non_purchase_instances) == 1 else "nodes"
     orderable = sum(row["orderable_evidence"] == "present" for row in bom)
     costed = sum(row["cost_evidence"] == "present" for row in bom)
+    explicit_cost_gates = sum(bool(row["cost_gate_status"]) for row in bom)
     alternates = sum(row["alternate_evidence"] == "present" for row in bom)
     substitution_classes = {
         row["id"]: row
@@ -1321,6 +1369,7 @@ def render_target_bom_review(
         f"- After excluding those non-purchase nodes, **{purchase_instance_count}** supplied/costed placements collapse to **{len(bom)}** used exact-device/MPN lines.",
         f"- Current orderability evidence exists for **{orderable}/{len(bom)}** used lines; **{len(bom) - orderable}** need a current source check.",
         f"- Machine-readable quantity-100 cost evidence exists for **{costed}/{len(bom)}** lines.",
+        f"- Of the remaining **{len(bom) - costed}** unpriced lines, **{explicit_cost_gates}** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.",
         f"- Those priced lines cover **{costed_placements}/{purchase_instance_count}** supplied placements; their partial subtotals are "
         + "; ".join(
             f"`{scope}` — USD {subtotal:.4f}"
@@ -1376,6 +1425,24 @@ def render_target_bom_review(
             f"- Scope: `{row['scope']}`.",
             f"- Comparable basis: {row['cost_price_break']}; target quantity `{row['cost_target_quantity']}`.",
             f"- Checked: `{row['cost_checked']}`; [published source]({row['cost_source']}).",
+            "",
+            "</details>",
+            "",
+        ]
+    lines += [
+        "## Unpriced lines with explicit cost gates",
+        "",
+        "These entries are intentionally excluded from the partial subtotal until a comparable quantity-100 USD quote exists.",
+        "",
+    ]
+    for row in (row for row in bom if row["cost_gate_status"]):
+        lines += [
+            f"<details><summary><code>{row['mpn']}</code> — <code>{row['cost_gate_status']}</code></summary>",
+            "",
+            f"- Device id: `{row['device_id']}`.",
+            f"- Scope: `{row['scope']}`; quantity `{row['quantity']}`.",
+            f"- Reason: {row['cost_gate_reason']}.",
+            f"- Checked: `{row['cost_gate_checked']}`; [gate source]({row['cost_gate_source']}).",
             "",
             "</details>",
             "",
@@ -1473,6 +1540,10 @@ def render_target_bom_csv(
         "cost_price_break",
         "cost_source",
         "cost_checked",
+        "cost_gate_status",
+        "cost_gate_reason",
+        "cost_gate_source",
+        "cost_gate_checked",
         "alternate_evidence",
         "alternate_policy_class",
         "placements",

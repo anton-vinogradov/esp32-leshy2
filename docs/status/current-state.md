@@ -509,9 +509,12 @@ mockup remain blocked through I8/I9.
 858 architecture instances include one explicitly excluded assembly-internal
 ST77922 node. The corrected 857 supplied/costed placements collapse to 187
 purchase lines, 186 carry dated
-orderability evidence and only standalone `HMX035CTFT-001` remains unresolved;
-no line yet has machine-readable comparable cost. `BOM-0012/DEC-0104/
-REV-0005BK` now give all 187 lines exactly one alternate/no-substitution
+orderability evidence and only standalone `HMX035CTFT-001` remains unresolved.
+`BOM-0013…0014/DEC-0105…0106/REV-0005BL…BM` now give 23/187 lines comparable
+quantity-100 USD evidence covering 440/857 placements and USD 68.8226 partial
+base-product material. Five of 164 unpriced lines carry explicit RFQ/retail
+gates and contribute no numeric value. `BOM-0012/DEC-0104/REV-0005BK` give
+all 187 lines exactly one alternate/no-substitution
 disposition class; this is a safe replacement boundary, not a claim of 187
 qualified second sources. The same audit separately records nine
 SMA bodies, five RF cable assemblies, two M5 connector bodies and the 12-item

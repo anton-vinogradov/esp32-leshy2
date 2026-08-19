@@ -303,9 +303,18 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "U214 active authorized-distributor exact-SKU page; 61 shown in stock",
-        "url": "https://www.digikey.co.uk/en/products/detail/m5stack-technology-co-ltd/U214/29291633",
+        "document": "U214 active authorized-distributor exact-SKU page; 14 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633",
         "checked": "2026-08-19"
+      },
+      "cost_gate": {
+        "status": "retail_only_no_quantity_100_tier",
+        "reason": "The exact U214 is sold as a retail package at USD 14.50 with no published quantity-100 tier; a comparable production quantity quote is required instead of multiplying the retail price",
+        "source": {
+          "document": "DigiKey exact-U214 retail-package price table",
+          "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -604,6 +613,15 @@
           "sample, MOQ, quantity-100/500 pricing, lead time, lifecycle and PCN/EOL terms",
           "brightness, optics/cover-lens option, operating-temperature, RoHS/REACH and lot traceability"
         ]
+      },
+      "cost_gate": {
+        "status": "standalone_raw_assembly_rfq_required",
+        "reason": "Published prices cover complete donor boards, not the standalone HMX035CTFT-001 LCM+CTP assembly; an exact quantity-100 supplier quote is required",
+        "source": {
+          "document": "QDtech ES3C35P official schematic identifying the raw display assembly; commercial route remains RFQ",
+          "url": "https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf",
+          "checked": "2026-08-19"
+        }
       },
       "alternates": {
         "disposition": "no_drop_in_substitute; exact panel or full endpoint requalification required",
@@ -1641,6 +1659,15 @@
         "url": "https://ebyteiot.com/products/ebyte-e01-ml01ipx-nrf24l01p-rf-2-4g-smd-wireless-transceiver-module-iot-electronic-components-ebyte-e01-ml01ipx-spi-interface-antenna-ipex-smd",
         "checked": "2026-08-19"
       },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "The manufacturer exposes a 100-999-piece tier but withholds its numeric price behind Send Inquiry, so no comparable published quantity-100 USD value is available",
+        "source": {
+          "document": "Ebyte exact E01-ML01IPX manufacturer product and wholesale-inquiry page",
+          "url": "https://www.cdebyte.com/products/E01-ML01IPX",
+          "checked": "2026-08-19"
+        }
+      },
       "lifecycle_source": {
         "document": "Nordic nRF24 Series lifecycle page",
         "url": "https://www.nordicsemi.com/Products/nRF24-series",
@@ -2037,6 +2064,15 @@
         "document": "SA518 current manufacturer product/RFQ page; no authorized stocking distributor or public quantity inventory is claimed",
         "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
         "checked": "2026-08-19"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "The exact current SA518 manufacturer page offers contact/RFQ rather than a published quantity-100 USD price",
+        "source": {
+          "document": "NiceRF exact SA518 manufacturer product/RFQ page",
+          "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "controller_capabilities": ["UART_CONTROL", "GPIO_CONTROL"],
@@ -3465,8 +3501,19 @@
       },
       "orderable_source": {
         "document": "RC0402FR-07100KL active authorized-distributor order code",
-        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726525",
-        "checked": "2026-08-18"
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726526",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726526",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -4466,6 +4513,17 @@
         "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0392,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/tdk-corporation/C1608X7R1C105K080AC/634395",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -4564,6 +4622,15 @@
         "document": "XTAR official store exact protected-cell listing",
         "url": "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery",
         "checked": "2026-08-18"
+      },
+      "cost_gate": {
+        "status": "regional_retail_only_no_quantity_100_tier",
+        "reason": "The official store exposes regional retail pricing but no exact quantity-100 tier or production quote for the protected no-USB cell",
+        "source": {
+          "document": "XTAR official-store exact protected-cell retail listing",
+          "url": "https://xtardirect.com/products/xtar-high-capacity-36v-18650-4000mah-10a-protected-lithium-ion-battery",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -4771,6 +4838,17 @@
         "url": "https://www.lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Murata-Electronics-GRM188R60J106ME47D_C77041.html",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0377,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM188R60J106ME47D/965910",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "power"},
@@ -4863,6 +4941,17 @@
         "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-2RKF22R0X/1746157",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0155,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-2RKF22R0X/1746157",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "signal"},
@@ -4885,6 +4974,17 @@
         "document": "RC0402FR-072K2L active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/729500",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -4932,6 +5032,17 @@
         "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM32ER71E226KE15L/2039092",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.3303,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM32ER71E226KE15L/2039092",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "power"},
@@ -4954,6 +5065,17 @@
         "document": "TDK product-page distributor inventory for exact order code",
         "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0258,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/tdk/C1005X7R1H104K050BB/2443410",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -5069,6 +5191,17 @@
         "document": "RC0402FR-0710KL active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/726523",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0710KL/726523",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
