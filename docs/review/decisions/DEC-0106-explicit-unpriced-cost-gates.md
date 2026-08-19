@@ -37,5 +37,6 @@
   меняются;
 - I8 остаётся открыт до полного component/factory cost и физических gaps.
 
-`BOM-0016/REV-0005BO` later preserve all five gates and advance numeric
-coverage to 52/187 lines / 614 placements; the gate contract is unchanged.
+`BOM-0017/REV-0005BQ` later preserve the original five gates, add one honest
+new-part quotation gate and advance numeric coverage to 61/187 lines / 623
+placements; the gate contract is unchanged.

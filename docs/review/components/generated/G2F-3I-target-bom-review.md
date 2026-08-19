@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **52/187** lines.
-- Of the remaining **135** unpriced lines, **5** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **614/857** supplied placements; their partial subtotals are `base_product` — USD 102.2205. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **61/187** lines.
+- Of the remaining **126** unpriced lines, **6** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **623/857** supplied placements; their partial subtotals are `base_product` — USD 109.8573. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -543,6 +543,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>onsemi CAT24C512WI-GT3</code> — 1 × USD 0.7133 = USD 0.7133</summary>
+
+- Device id: `onsemi_cat24c512wi_gt3`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/CAT24C512WI-GT3/2683757).
+
+</details>
+
 <details><summary><code>onsemi FSUSB42MUX</code> — 2 × USD 0.4663 = USD 0.9326</summary>
 
 - Device id: `onsemi_fsusb42_mux`.
@@ -576,6 +585,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/samtec-inc/FTSH-105-01-L-DV-K-P-TR/5305483).
+
+</details>
+
+<details><summary><code>Si4732-A10-GSR</code> — 1 × USD 1.6785 = USD 1.6785</summary>
+
+- Device id: `skyworks_si4732_a10_gsr`.
+- Scope: `base_product`.
+- Comparable basis: JLCPCB PCBA-only in-stock-item quantity-100+ tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://jlcpcb.com/partdetail/SILICONLABS-SI4732_A10GSR/C2155558).
+
+</details>
+
+<details><summary><code>TCA6424ARGJR</code> — 1 × USD 1.7001 = USD 1.7001</summary>
+
+- Device id: `tca6424argjr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA6424ARGJR/2411683).
 
 </details>
 
@@ -651,12 +678,39 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments TPD4S201RUKR</code> — 1 × USD 0.7713 = USD 0.7713</summary>
+
+- Device id: `ti_tpd4s201_rukr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPD4S201RUKR/27685826).
+
+</details>
+
+<details><summary><code>Texas Instruments TPD8E003DQDR</code> — 1 × USD 0.6445 = USD 0.6445</summary>
+
+- Device id: `ti_tpd8e003_dqdr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPD8E003DQDR/2348535).
+
+</details>
+
 <details><summary><code>Texas Instruments TPS22919DCKR</code> — 7 × USD 0.1189 = USD 0.8323</summary>
 
 - Device id: `ti_tps22919_dckr`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS22919DCKR/10435170).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS2553DRVR-1</code> — 1 × USD 0.6093 = USD 0.6093</summary>
+
+- Device id: `ti_tps2553drvr_1`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS2553DRVR-1/2047903).
 
 </details>
 
@@ -675,6 +729,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS259470LRPWR/14124014).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS25961DRVR</code> — 1 × USD 0.4513 = USD 0.4513</summary>
+
+- Device id: `ti_tps25961_drvr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS25961DRVR/17394947).
 
 </details>
 
@@ -702,6 +765,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS564252DRLR/20415586).
+
+</details>
+
+<details><summary><code>Texas Instruments TPS629203DRLR</code> — 1 × USD 0.6192 = USD 0.6192</summary>
+
+- Device id: `ti_tps629203_drlr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TPS629203DRLR/16516661).
+
+</details>
+
+<details><summary><code>Texas Instruments TVS2200DRVR</code> — 1 × USD 0.4493 = USD 0.4493</summary>
+
+- Device id: `ti_tvs2200_drvr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TVS2200DRVR/8567233).
 
 </details>
 
@@ -841,6 +922,15 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Scope: `base_product`; quantity `1`.
 - Reason: Published prices cover complete donor boards, not the standalone HMX035CTFT-001 LCM+CTP assembly; an exact quantity-100 supplier quote is required.
 - Checked: `2026-08-19`; [gate source](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf).
+
+</details>
+
+<details><summary><code>Texas Instruments TPUL2G223BQBR</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `ti_tpul2g223_bqbr`.
+- Scope: `base_product`; quantity `1`.
+- Reason: TI marks the exact new part active/production but the current order page shows no inventory or published quantity-100 price; obtain a traceable distributor or factory quotation before freezing COGS.
+- Checked: `2026-08-19`; [gate source](https://www.ti.com/product/TPUL2G223/part-details/TPUL2G223BQBR).
 
 </details>
 

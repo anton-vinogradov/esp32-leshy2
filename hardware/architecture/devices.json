@@ -418,6 +418,17 @@
         "url": "https://www.ti.com/product/TPS2553-1/part-details/TPS2553DRVR-1",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.6093,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS2553DRVR-1/2047903",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "OUT": {"physical": "1", "role": "power"},
@@ -2050,6 +2061,17 @@
         "url": "https://jlcpcb.com/partdetail/SILICONLABS-SI4732_A10GSR/C2155558",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.6785,
+        "price_break": "JLCPCB PCBA-only in-stock-item quantity-100+ tier",
+        "source": {
+          "document": "JLCPCB exact-MPN assembly-parts published price table",
+          "url": "https://jlcpcb.com/partdetail/SILICONLABS-SI4732_A10GSR/C2155558",
+          "checked": "2026-08-19"
+        }
+      },
       "assembly_contract": {
         "jlcpcb_part_number": "C2155558",
         "packaging": "tape_and_reel",
@@ -2172,6 +2194,17 @@
         "document": "TI exact orderable part page; active status verified, live stock remains an I8 quotation gate",
         "url": "https://www.ti.com/product/TCA6424A/part-details/TCA6424ARGJR",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 1.7001,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TCA6424ARGJR/2411683",
+          "checked": "2026-08-19"
+        }
       },
       "electrical_contract": {
         "i2c_7bit_address_addr_low": "0x22",
@@ -2365,6 +2398,17 @@
         "document": "TPD8E003DQDR authorized-distributor exact order-code page; 3,906 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPD8E003DQDR/2348535",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.6445,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPD8E003DQDR/2348535",
+          "checked": "2026-08-19"
+        }
       },
       "electrical_contract": {
         "channels": 8,
@@ -3180,6 +3224,17 @@
         "url": "https://www.ti.com/product/TPD4S201/part-details/TPD4S201RUKR",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.7713,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPD4S201RUKR/27685826",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "C_SBU1": {"physical": "1", "role": "signal"},
@@ -3348,6 +3403,17 @@
         "document": "TPS629203DRLR exact authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS629203DRLR/16516661",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.6192,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS629203DRLR/16516661",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -3826,6 +3892,15 @@
         "url": "https://www.ti.com/product/TPUL2G223/part-details/TPUL2G223BQBR",
         "checked": "2026-08-18"
       },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "TI marks the exact new part active/production but the current order page shows no inventory or published quantity-100 price; obtain a traceable distributor or factory quotation before freezing COGS",
+        "source": {
+          "document": "TI exact active-production order page without published pricing",
+          "url": "https://www.ti.com/product/TPUL2G223/part-details/TPUL2G223BQBR",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "CH1_T_N": {"physical": "1", "role": "signal"},
@@ -3910,6 +3985,17 @@
         "document": "TPS25961DRVR active production order code and authorized-distributor stock snapshot",
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25961DRVR/17394947",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.4513,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25961DRVR/17394947",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -4916,6 +5002,17 @@
         "url": "https://www.digikey.com/en/products/detail/onsemi/CAT24C512WI-GT3/2683757",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.7133,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/onsemi/CAT24C512WI-GT3/2683757",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "externally_programmed_memory": true,
       "service_required": ["SDA", "SCL", "WP"],
@@ -4946,6 +5043,17 @@
         "document": "TVS2200DRVR product/orderable page",
         "url": "https://www.ti.com/product/TVS2200/part-details/TVS2200DRVR",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.4493,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/TVS2200DRVR/8567233",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {

@@ -253,9 +253,9 @@ no-drop-in disposition without changing the display endpoint.
 policy coverage is complete without pretending that specific second-source
 MPNs are already qualified.
 `BOM-0013…0016/DEC-0105…0106/REV-0005BL…BO` then validate the cost-evidence
-contract, explicit RFQ/retail gaps and first 52/187 prices covering 614
-placements. Their USD 102.2205 base-product subtotal is deliberately partial;
-135 prices and full factory COGS remain open.
+contract, explicit RFQ/retail gaps and first 61/187 prices covering 623
+placements. Their USD 109.8573 base-product subtotal is deliberately partial;
+126 prices and full factory COGS remain open.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

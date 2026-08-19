@@ -31,15 +31,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["orderable_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            135,
+            126,
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            52,
+            61,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            614,
+            623,
             sum(
                 line["quantity"]
                 for line in lines
@@ -51,7 +51,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["alternate_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            5,
+            6,
             sum(bool(line["cost_gate_status"]) for line in lines),
         )
         self.assertEqual(
@@ -95,10 +95,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("187", rendered)
         self.assertIn("186/187", rendered)
         self.assertIn("187/187", rendered)
-        self.assertIn("52/187", rendered)
-        self.assertIn("614/857", rendered)
-        self.assertIn("USD 102.2205", rendered)
-        self.assertIn("5", rendered)
+        self.assertIn("61/187", rendered)
+        self.assertIn("623/857", rendered)
+        self.assertIn("USD 109.8573", rendered)
+        self.assertIn("6", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
         self.assertIn("SUB-RF", rendered)
