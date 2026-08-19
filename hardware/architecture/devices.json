@@ -2657,6 +2657,11 @@
       "kind": "through_hole_incremental_encoder_with_push",
       "qualification": "verified_first_target_mechanical_fit_hil_open",
       "lifecycle": "active_standard",
+      "dimensions_mm": [
+        11.0,
+        11.0,
+        20.0
+      ],
       "source": {
         "document": "EC11E Series Incremental Encoder catalog and product specification",
         "version": "catalog update 2510",

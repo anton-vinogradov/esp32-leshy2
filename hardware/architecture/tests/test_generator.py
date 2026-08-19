@@ -31,7 +31,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(857, sum(line["quantity"] for line in lines))
+        self.assertEqual(873, sum(line["quantity"] for line in lines))
         self.assertEqual(187, len(lines))
         self.assertEqual(
             1,
@@ -46,7 +46,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            829,
+            845,
             sum(
                 line["quantity"]
                 for line in lines
@@ -110,14 +110,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("858", rendered)
-        self.assertIn("857", rendered)
+        self.assertIn("874", rendered)
+        self.assertIn("873", rendered)
         self.assertIn("187", rendered)
         self.assertIn("186/187", rendered)
         self.assertIn("187/187", rendered)
         self.assertIn("175/187", rendered)
-        self.assertIn("829/857", rendered)
-        self.assertIn("USD 157.3727", rendered)
+        self.assertIn("845/873", rendered)
+        self.assertIn("USD 157.9903", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -159,7 +159,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(59, policy["expected_unique_endpoint_count"])
-        self.assertEqual(970, policy["expected_occurrence_count"])
+        self.assertEqual(978, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -202,10 +202,22 @@ class ArchitectureValidationTests(unittest.TestCase):
             "STOP",
             "PTT",
             "RE-ARM",
-            "Numbered physical devices",
-            "Conceptual placement; exact pad/net data is maintained separately.",
+            "Leshy2 — dimensioned external layout",
+            "physical actual-TX evidence for each transmitting path",
+            "M2.5 hole/head keep-outs",
         ):
             self.assertIn(token, rendered)
+        internal = (
+            GENERATOR.REPO_ROOT
+            / "docs/images/internal-board-layout.svg"
+        ).read_text(encoding="utf-8")
+        for token in (
+            "Leshy2 — dimensioned inner-board placement",
+            "Numbered physical devices",
+            "M2.5 hole/head keep-out",
+            "outward direction arrow",
+        ):
+            self.assertIn(token, internal)
 
     def test_rejects_unclassified_i9_abstract_or_owner_decision(self):
         candidates = copy.deepcopy(self.candidates)
@@ -1526,6 +1538,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             ["i2c_7bit_address_by_a2a1a0"]["000"],
         )
         self.assertIn("ANY_TX_AON_N", contract["evidence"]["aggregate"])
+        self.assertIn("each EV_N[0..7]", contract["evidence"]["per_path_indicators"])
+        self.assertIn("receive-only", contract["evidence"]["per_path_indicators"])
         self.assertEqual("DEC-0101", contract["evidence"]["electrical_decision"])
 
         required_instances = {
@@ -1608,6 +1622,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             )
             self.assertIn(
                 (f"{channel}_evidence_output_pullup.END_2", f"{comparator}.{output}", output_net),
+                routes,
+            )
+            self.assertEqual("liteon_ltst_c190krkt", instances[f"{channel}_tx_led"])
+            self.assertEqual("yageo_rc0402fr_072k2l", instances[f"{channel}_tx_led_series"])
+            self.assertIn(
+                (f"{channel}_tx_led.K", f"{comparator}.{output}", output_net),
                 routes,
             )
 

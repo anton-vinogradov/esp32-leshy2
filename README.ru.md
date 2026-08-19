@@ -51,6 +51,7 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 ## Документация
 
 - [Аппаратная архитектура и компоненты](docs/hardware.ru.md)
+- [Принципиальные схемы устройства](docs/schematics.ru.md)
 - [Точная распиновка контроллеров](docs/pinout.ru.md)
 - [Безопасность, питание, обновление и восстановление](docs/safety.ru.md)
 - [Возможности и архитектура прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)

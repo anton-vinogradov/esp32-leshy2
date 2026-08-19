@@ -12,6 +12,8 @@ class ProductSiteTests(unittest.TestCase):
         "README.ru.md",
         "docs/hardware.md",
         "docs/hardware.ru.md",
+        "docs/schematics.md",
+        "docs/schematics.ru.md",
         "docs/pinout.md",
         "docs/pinout.ru.md",
         "docs/safety.md",
@@ -49,7 +51,7 @@ class ProductSiteTests(unittest.TestCase):
     def test_layout_is_product_facing(self):
         layout = self.read("docs/images/current-clamshell.svg")
         for token in (
-            "Leshy2 — two-board clamshell layout",
+            "Leshy2 — dimensioned external layout",
             "HMX035CTFT-001",
             "M5Stack U214",
             "Keystone 1048P",
@@ -57,10 +59,26 @@ class ProductSiteTests(unittest.TestCase):
             "STOP",
             "PTT",
             "RE-ARM",
+            "IR actual TX",
+            "physical actual-TX evidence for each transmitting path",
+            "M2.5 hole/head keep-outs",
         ):
             self.assertIn(token, layout)
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):
             self.assertNotIn(process_token, layout)
+
+    def test_internal_layout_is_dimensioned_and_separates_devices(self):
+        layout = self.read("docs/images/internal-board-layout.svg")
+        for token in (
+            "Leshy2 — dimensioned inner-board placement",
+            "Every grey rectangle is one device",
+            "Numbered physical devices",
+            "UI/control PCB",
+            "RF/power PCB",
+            "outward direction arrow",
+            "M2.5 hole/head keep-out",
+        ):
+            self.assertIn(token, layout)
 
     def test_project_history_is_archived_outside_public_docs(self):
         archive = REPO_ROOT / "drafts/project-history-2026-08-19"

@@ -502,11 +502,13 @@ flowchart TD
   VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice first-population 10-kOhm threshold lower resistor"]
   VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice 1-MOhm evidence-hysteresis feedback resistor"]
   VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice 10-kOhm AON comparator-output pull-up resistor"]
+  VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
+  VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   end
   S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD
   RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS
   VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EVIDENCE_THRESHOLD_TOP
-  VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP
+  VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
   VOICE_SUPERVISOR --> VOICE_IO_POWER_SWITCH --> VOICE_PTT_ISO
   VOICE_IO_POWER_SWITCH --> VOICE_UART_TX_ISO
   VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_ISO
@@ -549,6 +551,10 @@ flowchart TD
   C5_DETECTOR_GROUND_RES["Yageo RC0402FR-0710KL<br/>C5 detector gain ground resistor"]
   C5_DETECTOR_OUTPUT_CAP["KEMET C0402C330J5GACTU<br/>C5 detector output-load capacitor"]
   C5_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>C5 detector local bypass capacitor"]
+  S3_TX_LED["LTST-C190KRKT<br/>S3 antenna-local actual-TX indicator"]
+  S3_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>S3 actual-TX indicator 2.2-kOhm current limit"]
+  C5_TX_LED["LTST-C190KRKT<br/>C5 antenna-local actual-TX indicator"]
+  C5_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>C5 actual-TX indicator 2.2-kOhm current limit"]
   S3_EXTERNAL_RF_50R["MPN TBD after mechanics<br/>S3 dedicated external RP-SMA endpoint"]
   C5_EXTERNAL_RF_50R["MPN TBD after mechanics<br/>C5 dedicated external RP-SMA endpoint"]
   NRF0["Ebyte E01-ML01IPX<br/>nRF24-compatible full-function radio 0"]
@@ -575,15 +581,13 @@ flowchart TD
   NRF0_HOST_CSN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_HOST_SCK_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_HOST_MOSI_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
-  NRF0_HOST_MISO_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
-  NRF0_HOST_IRQ_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
-  NRF0_MODULE_CE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
   DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ S3_RF_BOARD_CONNECTOR ~~~ S3_RF_COUPLER ~~~ S3_RF_COUPLER_TERMINATION ~~~ S3_DETECTOR_INPUT_CAP ~~~ S3_DETECTOR_FEEDBACK_RES ~~~ S3_DETECTOR_GROUND_RES ~~~ S3_DETECTOR_OUTPUT_CAP ~~~ S3_DETECTOR_BYPASS
-  C5_RF_BOARD_CONNECTOR ~~~ C5_RF_COUPLER ~~~ C5_RF_COUPLER_TERMINATION ~~~ C5_DETECTOR_INPUT_CAP ~~~ C5_DETECTOR_FEEDBACK_RES ~~~ C5_DETECTOR_GROUND_RES ~~~ C5_DETECTOR_OUTPUT_CAP ~~~ C5_DETECTOR_BYPASS ~~~ S3_EXTERNAL_RF_50R ~~~ C5_EXTERNAL_RF_50R ~~~ NRF0 ~~~ NRF1
-  NRF2 ~~~ NRF_POWER_INPUT_CAP ~~~ NRF_POWER_ON_PULLDOWN ~~~ NRF_EVIDENCE_HOLD_DIODE ~~~ NRF_EVIDENCE_HOLD_CAP ~~~ NRF_EVIDENCE_HOLD_PULLDOWN ~~~ NRF0_HOST_BUFFER ~~~ NRF0_RETURN_BUFFER ~~~ NRF0_HOST_BUFFER_BYPASS ~~~ NRF0_RETURN_BUFFER_BYPASS ~~~ NRF0_MODULE_BULK_CAP ~~~ NRF0_MODULE_HF_CAP
-  NRF0_CE_SERIES ~~~ NRF0_CSN_SERIES ~~~ NRF0_SCK_SERIES ~~~ NRF0_MOSI_SERIES ~~~ NRF0_MISO_SERIES ~~~ NRF0_IRQ_SERIES ~~~ NRF0_HOST_CE_PULLDOWN ~~~ NRF0_HOST_CSN_PULLUP ~~~ NRF0_HOST_SCK_PULLDOWN ~~~ NRF0_HOST_MOSI_PULLDOWN ~~~ NRF0_HOST_MISO_PULLDOWN ~~~ NRF0_HOST_IRQ_PULLUP
+  C5_RF_BOARD_CONNECTOR ~~~ C5_RF_COUPLER ~~~ C5_RF_COUPLER_TERMINATION ~~~ C5_DETECTOR_INPUT_CAP ~~~ C5_DETECTOR_FEEDBACK_RES ~~~ C5_DETECTOR_GROUND_RES ~~~ C5_DETECTOR_OUTPUT_CAP ~~~ C5_DETECTOR_BYPASS ~~~ S3_TX_LED ~~~ S3_TX_LED_SERIES ~~~ C5_TX_LED ~~~ C5_TX_LED_SERIES
+  S3_EXTERNAL_RF_50R ~~~ C5_EXTERNAL_RF_50R ~~~ NRF0 ~~~ NRF1 ~~~ NRF2 ~~~ NRF_POWER_INPUT_CAP ~~~ NRF_POWER_ON_PULLDOWN ~~~ NRF_EVIDENCE_HOLD_DIODE ~~~ NRF_EVIDENCE_HOLD_CAP ~~~ NRF_EVIDENCE_HOLD_PULLDOWN ~~~ NRF0_HOST_BUFFER ~~~ NRF0_RETURN_BUFFER
+  NRF0_HOST_BUFFER_BYPASS ~~~ NRF0_RETURN_BUFFER_BYPASS ~~~ NRF0_MODULE_BULK_CAP ~~~ NRF0_MODULE_HF_CAP ~~~ NRF0_CE_SERIES ~~~ NRF0_CSN_SERIES ~~~ NRF0_SCK_SERIES ~~~ NRF0_MOSI_SERIES ~~~ NRF0_MISO_SERIES ~~~ NRF0_IRQ_SERIES ~~~ NRF0_HOST_CE_PULLDOWN ~~~ NRF0_HOST_CSN_PULLUP
+  NRF0_HOST_SCK_PULLDOWN ~~~ NRF0_HOST_MOSI_PULLDOWN
   RP -->|"PIO0 SM0 outputs: GPIO0,GPIO1,GPIO2,GPIO30,GPIO31,GPIO32"| NRF0_HOST_BUFFER --> NRF0
   NRF0 -->|"MISO + IRQ"| NRF0_RETURN_BUFFER --> RP
   SAFE_GATE_A -->|"CE0"| NRF0_HOST_BUFFER
@@ -629,6 +633,9 @@ flowchart TD
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  NRF0_HOST_MISO_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  NRF0_HOST_IRQ_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
+  NRF0_MODULE_CE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_MODULE_CSN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_MODULE_SCK_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_MODULE_MOSI_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
@@ -669,15 +676,12 @@ flowchart TD
   NRF1_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
   NRF1_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>AD8314 local bypass capacitor"]
   NRF2_HOST_BUFFER["Nexperia 74LVC126APW,118<br/>CE/CSN/SCK/MOSI switched-rail Ioff buffer"]
-  NRF2_RETURN_BUFFER["Nexperia 74LVC2G126DC,125<br/>MISO/IRQ switched-rail Ioff buffer"]
-  NRF2_HOST_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>host-buffer local bypass capacitor"]
-  NRF2_RETURN_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>return-buffer local bypass capacitor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ NRF0_MODULE_CSN_PULLUP ~~~ NRF0_MODULE_SCK_PULLDOWN ~~~ NRF0_MODULE_MOSI_PULLDOWN ~~~ NRF0_MODULE_MISO_PULLDOWN ~~~ NRF0_MODULE_IRQ_PULLUP ~~~ NRF0_COUPLER ~~~ NRF0_COUPLER_TERMINATION ~~~ NRF0_DETECTOR_MATCH
-  NRF0_DETECTOR_FILTER ~~~ NRF0_DETECTOR_BYPASS ~~~ NRF1_HOST_BUFFER ~~~ NRF1_RETURN_BUFFER ~~~ NRF1_HOST_BUFFER_BYPASS ~~~ NRF1_RETURN_BUFFER_BYPASS ~~~ NRF1_MODULE_BULK_CAP ~~~ NRF1_MODULE_HF_CAP ~~~ NRF1_CE_SERIES ~~~ NRF1_CSN_SERIES ~~~ NRF1_SCK_SERIES ~~~ NRF1_MOSI_SERIES
-  NRF1_MISO_SERIES ~~~ NRF1_IRQ_SERIES ~~~ NRF1_HOST_CE_PULLDOWN ~~~ NRF1_HOST_CSN_PULLUP ~~~ NRF1_HOST_SCK_PULLDOWN ~~~ NRF1_HOST_MOSI_PULLDOWN ~~~ NRF1_HOST_MISO_PULLDOWN ~~~ NRF1_HOST_IRQ_PULLUP ~~~ NRF1_MODULE_CE_PULLDOWN ~~~ NRF1_MODULE_CSN_PULLUP ~~~ NRF1_MODULE_SCK_PULLDOWN ~~~ NRF1_MODULE_MOSI_PULLDOWN
-  NRF1_MODULE_MISO_PULLDOWN ~~~ NRF1_MODULE_IRQ_PULLUP ~~~ NRF1_COUPLER ~~~ NRF1_COUPLER_TERMINATION ~~~ NRF1_DETECTOR_MATCH ~~~ NRF1_DETECTOR_FILTER ~~~ NRF1_DETECTOR_BYPASS ~~~ NRF2_HOST_BUFFER ~~~ NRF2_RETURN_BUFFER ~~~ NRF2_HOST_BUFFER_BYPASS ~~~ NRF2_RETURN_BUFFER_BYPASS
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ NRF0_HOST_MISO_PULLDOWN ~~~ NRF0_HOST_IRQ_PULLUP ~~~ NRF0_MODULE_CE_PULLDOWN ~~~ NRF0_MODULE_CSN_PULLUP ~~~ NRF0_MODULE_SCK_PULLDOWN ~~~ NRF0_MODULE_MOSI_PULLDOWN ~~~ NRF0_MODULE_MISO_PULLDOWN ~~~ NRF0_MODULE_IRQ_PULLUP
+  NRF0_COUPLER ~~~ NRF0_COUPLER_TERMINATION ~~~ NRF0_DETECTOR_MATCH ~~~ NRF0_DETECTOR_FILTER ~~~ NRF0_DETECTOR_BYPASS ~~~ NRF1_HOST_BUFFER ~~~ NRF1_RETURN_BUFFER ~~~ NRF1_HOST_BUFFER_BYPASS ~~~ NRF1_RETURN_BUFFER_BYPASS ~~~ NRF1_MODULE_BULK_CAP ~~~ NRF1_MODULE_HF_CAP ~~~ NRF1_CE_SERIES
+  NRF1_CSN_SERIES ~~~ NRF1_SCK_SERIES ~~~ NRF1_MOSI_SERIES ~~~ NRF1_MISO_SERIES ~~~ NRF1_IRQ_SERIES ~~~ NRF1_HOST_CE_PULLDOWN ~~~ NRF1_HOST_CSN_PULLUP ~~~ NRF1_HOST_SCK_PULLDOWN ~~~ NRF1_HOST_MOSI_PULLDOWN ~~~ NRF1_HOST_MISO_PULLDOWN ~~~ NRF1_HOST_IRQ_PULLUP ~~~ NRF1_MODULE_CE_PULLDOWN
+  NRF1_MODULE_CSN_PULLUP ~~~ NRF1_MODULE_SCK_PULLDOWN ~~~ NRF1_MODULE_MOSI_PULLDOWN ~~~ NRF1_MODULE_MISO_PULLDOWN ~~~ NRF1_MODULE_IRQ_PULLUP ~~~ NRF1_COUPLER ~~~ NRF1_COUPLER_TERMINATION ~~~ NRF1_DETECTOR_MATCH ~~~ NRF1_DETECTOR_FILTER ~~~ NRF1_DETECTOR_BYPASS ~~~ NRF2_HOST_BUFFER
   SAFE_GATE_A -->|"CE1"| NRF1_HOST_BUFFER
   SAFE_GATE_A -->|"CE2"| NRF2_HOST_BUFFER
   NRF0_COUPLER -->|"10-dB forward sample"| DET_NRF0 --> EVIDENCE_CMP_A
@@ -705,6 +709,9 @@ flowchart TD
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  NRF2_RETURN_BUFFER["Nexperia 74LVC2G126DC,125<br/>MISO/IRQ switched-rail Ioff buffer"]
+  NRF2_HOST_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>host-buffer local bypass capacitor"]
+  NRF2_RETURN_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>return-buffer local bypass capacitor"]
   NRF2_MODULE_BULK_CAP["Murata GRM188R60J106ME47D<br/>radio-module local bulk capacitor"]
   NRF2_MODULE_HF_CAP["TDK C1005X7R1H104K050BB<br/>radio-module high-frequency bypass capacitor"]
   NRF2_CE_SERIES["Panasonic ERJ-2RKF22R0X<br/>22-Ohm isolated-interface source resistor"]
@@ -730,6 +737,12 @@ flowchart TD
   NRF2_DETECTOR_MATCH["Yageo RC0402FR-0752R3L<br/>AD8314 52.3-Ohm broadband input match"]
   NRF2_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
   NRF2_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>AD8314 local bypass capacitor"]
+  NRF0_TX_LED["LTST-C190KRKT<br/>antenna-local actual-TX indicator"]
+  NRF0_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
+  NRF1_TX_LED["LTST-C190KRKT<br/>antenna-local actual-TX indicator"]
+  NRF1_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
+  NRF2_TX_LED["LTST-C190KRKT<br/>antenna-local actual-TX indicator"]
+  NRF2_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>antenna-local actual-TX indicator 2.2-kOhm current limit"]
   NRF0_EXTERNAL_RF_50R["MPN TBD after mechanics<br/>nRF0 dedicated external standard-SMA endpoint"]
   NRF1_EXTERNAL_RF_50R["MPN TBD after mechanics<br/>nRF1 dedicated external standard-SMA endpoint"]
   NRF2_EXTERNAL_RF_50R["MPN TBD after mechanics<br/>nRF2 dedicated external standard-SMA endpoint"]
@@ -740,22 +753,12 @@ flowchart TD
   CC_HOST_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
   CC_RETURN_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
   CC_BAND_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
-  CC_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>CC load-switch input bypass capacitor"]
-  CC_LOCAL_BULK_CAP["TDK C1608X7R1C105K080AC<br/>CC switched-rail local bulk capacitor"]
-  CC_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>CC load-switch reset-off resistor"]
-  CC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
-  CC_AVDD9_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
-  CC_AVDD11_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
-  CC_AVDD14_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
-  CC_AVDD15_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
-  CC_DCOUPL_CAP["TDK C1005X7R1H104K050BB<br/>CC1101 DCOUPL capacitor"]
-  CC_RBIAS_RES["Yageo RC0402FR-0756KL<br/>CC1101 56-kOhm RBIAS resistor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ NRF2_MODULE_BULK_CAP ~~~ NRF2_MODULE_HF_CAP ~~~ NRF2_CE_SERIES ~~~ NRF2_CSN_SERIES ~~~ NRF2_SCK_SERIES ~~~ NRF2_MOSI_SERIES ~~~ NRF2_MISO_SERIES ~~~ NRF2_IRQ_SERIES
-  NRF2_HOST_CE_PULLDOWN ~~~ NRF2_HOST_CSN_PULLUP ~~~ NRF2_HOST_SCK_PULLDOWN ~~~ NRF2_HOST_MOSI_PULLDOWN ~~~ NRF2_HOST_MISO_PULLDOWN ~~~ NRF2_HOST_IRQ_PULLUP ~~~ NRF2_MODULE_CE_PULLDOWN ~~~ NRF2_MODULE_CSN_PULLUP ~~~ NRF2_MODULE_SCK_PULLDOWN ~~~ NRF2_MODULE_MOSI_PULLDOWN ~~~ NRF2_MODULE_MISO_PULLDOWN ~~~ NRF2_MODULE_IRQ_PULLUP
-  NRF2_COUPLER ~~~ NRF2_COUPLER_TERMINATION ~~~ NRF2_DETECTOR_MATCH ~~~ NRF2_DETECTOR_FILTER ~~~ NRF2_DETECTOR_BYPASS ~~~ NRF0_EXTERNAL_RF_50R ~~~ NRF1_EXTERNAL_RF_50R ~~~ NRF2_EXTERNAL_RF_50R ~~~ CC ~~~ CC_HOST_BUFFER ~~~ CC_RETURN_BUFFER ~~~ CC_BAND_BUFFER
-  CC_HOST_BUFFER_BYPASS ~~~ CC_RETURN_BUFFER_BYPASS ~~~ CC_BAND_BUFFER_BYPASS ~~~ CC_POWER_INPUT_CAP ~~~ CC_LOCAL_BULK_CAP ~~~ CC_POWER_ON_PULLDOWN ~~~ CC_DVDD_BYPASS ~~~ CC_AVDD9_BYPASS ~~~ CC_AVDD11_BYPASS ~~~ CC_AVDD14_BYPASS ~~~ CC_AVDD15_BYPASS ~~~ CC_DCOUPL_CAP
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ NRF2_RETURN_BUFFER ~~~ NRF2_HOST_BUFFER_BYPASS ~~~ NRF2_RETURN_BUFFER_BYPASS ~~~ NRF2_MODULE_BULK_CAP ~~~ NRF2_MODULE_HF_CAP ~~~ NRF2_CE_SERIES ~~~ NRF2_CSN_SERIES ~~~ NRF2_SCK_SERIES
+  NRF2_MOSI_SERIES ~~~ NRF2_MISO_SERIES ~~~ NRF2_IRQ_SERIES ~~~ NRF2_HOST_CE_PULLDOWN ~~~ NRF2_HOST_CSN_PULLUP ~~~ NRF2_HOST_SCK_PULLDOWN ~~~ NRF2_HOST_MOSI_PULLDOWN ~~~ NRF2_HOST_MISO_PULLDOWN ~~~ NRF2_HOST_IRQ_PULLUP ~~~ NRF2_MODULE_CE_PULLDOWN ~~~ NRF2_MODULE_CSN_PULLUP ~~~ NRF2_MODULE_SCK_PULLDOWN
+  NRF2_MODULE_MOSI_PULLDOWN ~~~ NRF2_MODULE_MISO_PULLDOWN ~~~ NRF2_MODULE_IRQ_PULLUP ~~~ NRF2_COUPLER ~~~ NRF2_COUPLER_TERMINATION ~~~ NRF2_DETECTOR_MATCH ~~~ NRF2_DETECTOR_FILTER ~~~ NRF2_DETECTOR_BYPASS ~~~ NRF0_TX_LED ~~~ NRF0_TX_LED_SERIES ~~~ NRF1_TX_LED ~~~ NRF1_TX_LED_SERIES
+  NRF2_TX_LED ~~~ NRF2_TX_LED_SERIES ~~~ NRF0_EXTERNAL_RF_50R ~~~ NRF1_EXTERNAL_RF_50R ~~~ NRF2_EXTERNAL_RF_50R ~~~ CC ~~~ CC_HOST_BUFFER ~~~ CC_RETURN_BUFFER ~~~ CC_BAND_BUFFER ~~~ CC_HOST_BUFFER_BYPASS ~~~ CC_RETURN_BUFFER_BYPASS ~~~ CC_BAND_BUFFER_BYPASS
   RP -->|"SCLK / SI / CSN"| CC_HOST_BUFFER --> CC
   CC -->|"SO / GDO0 / GDO2"| CC_RETURN_BUFFER --> RP
   SLOW_IO -->|"P03/P04; rail-off only"| CC_BAND_BUFFER
@@ -784,6 +787,16 @@ flowchart TD
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  CC_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>CC load-switch input bypass capacitor"]
+  CC_LOCAL_BULK_CAP["TDK C1608X7R1C105K080AC<br/>CC switched-rail local bulk capacitor"]
+  CC_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>CC load-switch reset-off resistor"]
+  CC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD9_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD11_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD14_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_AVDD15_BYPASS["TDK C1005X7R1H104K050BB<br/>local switched-domain bypass capacitor"]
+  CC_DCOUPL_CAP["TDK C1005X7R1H104K050BB<br/>CC1101 DCOUPL capacitor"]
+  CC_RBIAS_RES["Yageo RC0402FR-0756KL<br/>CC1101 56-kOhm RBIAS resistor"]
   CC_CRYSTAL["Abracon ABM8-26.000MHZ-10-D-1-G-T<br/>CC1101 exact 26-MHz reference crystal"]
   CC_CRYSTAL_LOAD_Q1["Murata GJM1555C1H150JB01D<br/>CC crystal Q1 load capacitor"]
   CC_CRYSTAL_LOAD_Q2["Murata GJM1555C1H150JB01D<br/>CC crystal Q2 load capacitor"]
@@ -821,33 +834,20 @@ flowchart TD
   CC_315_SHUNT_C8P["Murata GJM1555C1H8R0DB01D<br/>315-MHz shunt-trap capacitor"]
   CC_315_L10_OUT["Murata LQG15HS10NJ02D<br/>315-MHz output series inductor"]
   CC_433_SHUNT_C10P["Murata GJM1555C1H100JB01D<br/>433-MHz input shunt capacitor"]
-  CC_433_L15["Murata LQG15HS15NJ02D<br/>433-MHz series inductor"]
-  CC_433_SHUNT_C6P2["Murata GJM1555C1H6R2DB01D<br/>433-MHz output shunt capacitor"]
-  CC_868_915_L10["Murata LQG15HS10NJ02D<br/>combined 868/915-MHz series inductor"]
-  CC_OUTPUT_L2N2["Murata LQG15HS2N2S02D<br/>selected-path output matching inductor"]
-  CC_RF_ESD["Littelfuse SESD0402X1UN-0020-090<br/>external CC RF line ultra-low-capacitance ESD diode"]
-  CC_DETECTOR_TAP_CAP["Murata GJM1555C1HR47BB01D<br/>actual-TX high-impedance RF sample capacitor"]
-  CC_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
-  CC_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>AD8314 local bypass capacitor"]
-  CC_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ CC_CRYSTAL ~~~ CC_CRYSTAL_LOAD_Q1 ~~~ CC_CRYSTAL_LOAD_Q2 ~~~ CC_SCLK_SERIES ~~~ CC_SI_SERIES ~~~ CC_CSN_SERIES ~~~ CC_SO_SERIES ~~~ CC_GDO0_SERIES
-  CC_GDO2_SERIES ~~~ CC_BAND_V1_SERIES ~~~ CC_BAND_V2_SERIES ~~~ CC_HOST_SCLK_PULLDOWN ~~~ CC_HOST_SI_PULLDOWN ~~~ CC_HOST_CSN_PULLUP ~~~ CC_HOST_SO_PULLDOWN ~~~ CC_HOST_GDO0_PULLDOWN ~~~ CC_HOST_GDO2_PULLDOWN ~~~ CC_BAND_V1_HOST_PULLDOWN ~~~ CC_BAND_V2_HOST_PULLDOWN ~~~ CC_SWITCH_A_V1_PULLDOWN
-  CC_SWITCH_A_V2_PULLDOWN ~~~ CC_SWITCH_B_V1_PULLDOWN ~~~ CC_SWITCH_B_V2_PULLDOWN ~~~ CC_RF_P_DC_BLOCK ~~~ CC_RF_N_DC_BLOCK ~~~ CC_RF_DIFF_CAP ~~~ CC_BALUN ~~~ CC_MATCH_L3N3 ~~~ CC_MATCH_C1P2 ~~~ CC_MATCH_L6N8 ~~~ CC_SWITCH_A ~~~ CC_SWITCH_B
-  CC_315_L10_IN ~~~ CC_315_SHUNT_L3N6 ~~~ CC_315_SHUNT_C8P ~~~ CC_315_L10_OUT ~~~ CC_433_SHUNT_C10P ~~~ CC_433_L15 ~~~ CC_433_SHUNT_C6P2 ~~~ CC_868_915_L10 ~~~ CC_OUTPUT_L2N2 ~~~ CC_RF_ESD ~~~ CC_DETECTOR_TAP_CAP ~~~ CC_DETECTOR_FILTER
-  CC_DETECTOR_BYPASS ~~~ CC_EVIDENCE_HOLD_DIODE
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ CC_POWER_INPUT_CAP ~~~ CC_LOCAL_BULK_CAP ~~~ CC_POWER_ON_PULLDOWN ~~~ CC_DVDD_BYPASS ~~~ CC_AVDD9_BYPASS ~~~ CC_AVDD11_BYPASS ~~~ CC_AVDD14_BYPASS ~~~ CC_AVDD15_BYPASS
+  CC_DCOUPL_CAP ~~~ CC_RBIAS_RES ~~~ CC_CRYSTAL ~~~ CC_CRYSTAL_LOAD_Q1 ~~~ CC_CRYSTAL_LOAD_Q2 ~~~ CC_SCLK_SERIES ~~~ CC_SI_SERIES ~~~ CC_CSN_SERIES ~~~ CC_SO_SERIES ~~~ CC_GDO0_SERIES ~~~ CC_GDO2_SERIES ~~~ CC_BAND_V1_SERIES
+  CC_BAND_V2_SERIES ~~~ CC_HOST_SCLK_PULLDOWN ~~~ CC_HOST_SI_PULLDOWN ~~~ CC_HOST_CSN_PULLUP ~~~ CC_HOST_SO_PULLDOWN ~~~ CC_HOST_GDO0_PULLDOWN ~~~ CC_HOST_GDO2_PULLDOWN ~~~ CC_BAND_V1_HOST_PULLDOWN ~~~ CC_BAND_V2_HOST_PULLDOWN ~~~ CC_SWITCH_A_V1_PULLDOWN ~~~ CC_SWITCH_A_V2_PULLDOWN ~~~ CC_SWITCH_B_V1_PULLDOWN
+  CC_SWITCH_B_V2_PULLDOWN ~~~ CC_RF_P_DC_BLOCK ~~~ CC_RF_N_DC_BLOCK ~~~ CC_RF_DIFF_CAP ~~~ CC_BALUN ~~~ CC_MATCH_L3N3 ~~~ CC_MATCH_C1P2 ~~~ CC_MATCH_L6N8 ~~~ CC_SWITCH_A ~~~ CC_SWITCH_B ~~~ CC_315_L10_IN ~~~ CC_315_SHUNT_L3N6
+  CC_315_SHUNT_C8P ~~~ CC_315_L10_OUT ~~~ CC_433_SHUNT_C10P
   CC_RF_P_DC_BLOCK --> CC_RF_DIFF_CAP
   CC_RF_N_DC_BLOCK --> CC_RF_DIFF_CAP
   CC_BALUN --> CC_MATCH_L3N3 --> CC_MATCH_L6N8 --> CC_SWITCH_A
   CC_MATCH_L3N3 -->|"shunt"| CC_MATCH_C1P2
   CC_SWITCH_A -->|"RF1 = 315 MHz"| CC_315_L10_IN --> CC_315_L10_OUT --> CC_SWITCH_B
   CC_315_L10_IN -->|"shunt trap"| CC_315_SHUNT_L3N6 --> CC_315_SHUNT_C8P
-  CC_SWITCH_A -->|"RF2 = 433 MHz"| CC_433_L15 --> CC_SWITCH_B
   CC_SWITCH_A -->|"433 input shunt"| CC_433_SHUNT_C10P
-  CC_433_L15 -->|"433 output shunt"| CC_433_SHUNT_C6P2
-  CC_SWITCH_A -->|"RF3 = 868/915 MHz"| CC_868_915_L10 --> CC_SWITCH_B
-  CC_OUTPUT_L2N2 -->|"0.47-pF actual-TX sample"| CC_DETECTOR_TAP_CAP --> DET_CC
 ```
 
 ### 13. Радиотракты и внешние расширения — узлы 5/6
@@ -871,8 +871,19 @@ flowchart TD
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  CC_433_L15["Murata LQG15HS15NJ02D<br/>433-MHz series inductor"]
+  CC_433_SHUNT_C6P2["Murata GJM1555C1H6R2DB01D<br/>433-MHz output shunt capacitor"]
+  CC_868_915_L10["Murata LQG15HS10NJ02D<br/>combined 868/915-MHz series inductor"]
+  CC_OUTPUT_L2N2["Murata LQG15HS2N2S02D<br/>selected-path output matching inductor"]
+  CC_RF_ESD["Littelfuse SESD0402X1UN-0020-090<br/>external CC RF line ultra-low-capacitance ESD diode"]
+  CC_DETECTOR_TAP_CAP["Murata GJM1555C1HR47BB01D<br/>actual-TX high-impedance RF sample capacitor"]
+  CC_DETECTOR_FILTER["Murata GRM1555C1H121JA01D<br/>AD8314 response filter capacitor"]
+  CC_DETECTOR_BYPASS["TDK C1005X7R1H104K050BB<br/>AD8314 local bypass capacitor"]
+  CC_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
   CC_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>actual-TX evidence enable hold capacitor"]
   CC_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>actual-TX evidence hold discharge resistor"]
+  CC_TX_LED["LTST-C190KRKT<br/>CC antenna-local actual-TX indicator"]
+  CC_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>CC actual-TX indicator 2.2-kOhm current limit"]
   CC_EXTERNAL_RF["MPN TBD after mechanics<br/>CC dedicated external standard-SMA endpoint"]
   VOICE["NiceRF SA518<br/>136-174/400-470-MHz analog voice transceiver"]
   VOICE_RF_ESD["Nexperia PESD24VY1BSF<br/>24-V ultra-low-capacitance external voice RF ESD diode"]
@@ -883,6 +894,8 @@ flowchart TD
   VOICE_EVIDENCE_HOLD_DIODE["Diodes Incorporated BAT54-7-F<br/>actual-TX evidence hold isolation diode"]
   VOICE_EVIDENCE_HOLD_CAP["TDK C1608X7R1C105K080AC<br/>actual-TX evidence enable hold capacitor"]
   VOICE_EVIDENCE_HOLD_PULLDOWN["Yageo RC0402FR-0710KL<br/>actual-TX evidence hold discharge resistor"]
+  VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
+  VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   VOICE_EXTERNAL_RF["MPN TBD after mechanics<br/>voice dedicated external standard-SMA endpoint"]
   RX_FMSW_EXTERNAL_RF["MPN TBD after mechanics<br/>dedicated FM/SW standard-SMA receive endpoint"]
   RX_AMLW_EXTERNAL_RF["MPN TBD after mechanics<br/>dedicated non-50-Ohm AM/LW loop-pod standard-SMA endpoint"]
@@ -903,24 +916,14 @@ flowchart TD
   U214_SERIES_MOSI["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 MOSI source-series resistor"]
   U214_SERIES_NSS["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 NSS source-series resistor"]
   U214_SERIES_BUSY["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 BUSY return-series resistor"]
-  U214_SERIES_IRQ["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 IRQ return-series resistor"]
-  U214_SERIES_GPS_TX["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 GPS-TX return-series resistor"]
-  U214_SERIES_MISO["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 MISO return-series resistor"]
-  U214_ESD_A["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 I2C/RST/GPS-RX ESD array"]
-  U214_ESD_B["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 SCK/MOSI/NSS/BUSY ESD array"]
-  U214_ESD_C["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 IRQ/GPS-TX/MISO ESD array"]
-  EXT_REQUEST_OR["74LVC1G32GV,125<br/>U214/native-Unit branch-request OR gate"]
-  EXT_REQUEST_OR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-request-OR bypass capacitor"]
-  EXT_ANY_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm shared-5-V request fail-low resistor"]
-  EXT_BRANCH_GATE["Texas Instruments SN74LVC2G08DCUR<br/>dual STOP-qualified U214/native-Unit branch gate"]
-  EXT_BRANCH_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-branch-gate bypass capacitor"]
-  U214_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm U214 request fail-low resistor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ CC_EVIDENCE_HOLD_CAP ~~~ CC_EVIDENCE_HOLD_PULLDOWN ~~~ CC_EXTERNAL_RF ~~~ VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER
-  VOICE_DETECTOR_BYPASS ~~~ VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_EXTERNAL_RF ~~~ RX_FMSW_EXTERNAL_RF ~~~ RX_AMLW_EXTERNAL_RF ~~~ U214 ~~~ U214_I2C_ISO ~~~ U214_I2C_ISO_BYPASS ~~~ U214_I2C_HOST_SDA_PULLUP ~~~ U214_I2C_HOST_SCL_PULLUP
-  U214_HOST_BUFFER_A ~~~ U214_HOST_BUFFER_B ~~~ U214_RETURN_BUFFER ~~~ U214_HOST_BUFFER_A_BYPASS ~~~ U214_HOST_BUFFER_B_BYPASS ~~~ U214_RETURN_BUFFER_BYPASS ~~~ U214_SERIES_RST ~~~ U214_SERIES_GPS_RX ~~~ U214_SERIES_SCK ~~~ U214_SERIES_MOSI ~~~ U214_SERIES_NSS ~~~ U214_SERIES_BUSY
-  U214_SERIES_IRQ ~~~ U214_SERIES_GPS_TX ~~~ U214_SERIES_MISO ~~~ U214_ESD_A ~~~ U214_ESD_B ~~~ U214_ESD_C ~~~ EXT_REQUEST_OR ~~~ EXT_REQUEST_OR_BYPASS ~~~ EXT_ANY_REQ_PULLDOWN ~~~ EXT_BRANCH_GATE ~~~ EXT_BRANCH_GATE_BYPASS ~~~ U214_REQ_PULLDOWN
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ CC_433_L15 ~~~ CC_433_SHUNT_C6P2 ~~~ CC_868_915_L10 ~~~ CC_OUTPUT_L2N2 ~~~ CC_RF_ESD ~~~ CC_DETECTOR_TAP_CAP ~~~ CC_DETECTOR_FILTER ~~~ CC_DETECTOR_BYPASS
+  CC_EVIDENCE_HOLD_DIODE ~~~ CC_EVIDENCE_HOLD_CAP ~~~ CC_EVIDENCE_HOLD_PULLDOWN ~~~ CC_TX_LED ~~~ CC_TX_LED_SERIES ~~~ CC_EXTERNAL_RF ~~~ VOICE ~~~ VOICE_RF_ESD ~~~ VOICE_DETECTOR_SERIES_ATTENUATOR ~~~ VOICE_DETECTOR_MATCH ~~~ VOICE_DETECTOR_FILTER ~~~ VOICE_DETECTOR_BYPASS
+  VOICE_EVIDENCE_HOLD_DIODE ~~~ VOICE_EVIDENCE_HOLD_CAP ~~~ VOICE_EVIDENCE_HOLD_PULLDOWN ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES ~~~ VOICE_EXTERNAL_RF ~~~ RX_FMSW_EXTERNAL_RF ~~~ RX_AMLW_EXTERNAL_RF ~~~ U214 ~~~ U214_I2C_ISO ~~~ U214_I2C_ISO_BYPASS ~~~ U214_I2C_HOST_SDA_PULLUP
+  U214_I2C_HOST_SCL_PULLUP ~~~ U214_HOST_BUFFER_A ~~~ U214_HOST_BUFFER_B ~~~ U214_RETURN_BUFFER ~~~ U214_HOST_BUFFER_A_BYPASS ~~~ U214_HOST_BUFFER_B_BYPASS ~~~ U214_RETURN_BUFFER_BYPASS ~~~ U214_SERIES_RST ~~~ U214_SERIES_GPS_RX ~~~ U214_SERIES_SCK ~~~ U214_SERIES_MOSI ~~~ U214_SERIES_NSS
+  CC_433_L15 -->|"433 output shunt"| CC_433_SHUNT_C6P2
+  CC_OUTPUT_L2N2 -->|"0.47-pF actual-TX sample"| CC_DETECTOR_TAP_CAP --> DET_CC
   VOICE -->|"short controlled 50-Ohm line"| VOICE_EXTERNAL_RF
   VOICE -->|"24-V shunt at external boundary"| VOICE_RF_ESD
   VOICE -->|"5.1-kOhm actual-TX sample"| VOICE_DETECTOR_SERIES_ATTENUATOR --> DET_VOICE
@@ -936,11 +939,6 @@ flowchart TD
   U214 -->|"BUSY/IRQ/GPS-TX/MISO"| U214_RETURN_BUFFER --> RP
   RP <-->|"I²C0"| U214_I2C_ISO
   U214_I2C_ISO <-->|"isolated external I²C"| U214
-  U214_ESD_A -.->|"I²C/RST/GPS-RX shunt protection"| U214
-  U214_ESD_B -.->|"SCK/MOSI/NSS/BUSY shunt protection"| U214
-  U214_ESD_C -.->|"IRQ/GPS-TX/MISO shunt protection"| U214
-  SLOW_IO -->|"P17/P05 independent requests"| EXT_REQUEST_OR --> SAFE_GATE_B
-  SAFE_GATE_B --> EXT_BRANCH_GATE
 ```
 
 ### 14. Радиотракты и внешние расширения — узлы 6/6
@@ -964,6 +962,18 @@ flowchart TD
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
   EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  U214_SERIES_IRQ["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 IRQ return-series resistor"]
+  U214_SERIES_GPS_TX["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 GPS-TX return-series resistor"]
+  U214_SERIES_MISO["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 MISO return-series resistor"]
+  U214_ESD_A["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 I2C/RST/GPS-RX ESD array"]
+  U214_ESD_B["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 SCK/MOSI/NSS/BUSY ESD array"]
+  U214_ESD_C["Texas Instruments TPD4E05U06DQAR<br/>four-channel U214 IRQ/GPS-TX/MISO ESD array"]
+  EXT_REQUEST_OR["74LVC1G32GV,125<br/>U214/native-Unit branch-request OR gate"]
+  EXT_REQUEST_OR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-request-OR bypass capacitor"]
+  EXT_ANY_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm shared-5-V request fail-low resistor"]
+  EXT_BRANCH_GATE["Texas Instruments SN74LVC2G08DCUR<br/>dual STOP-qualified U214/native-Unit branch gate"]
+  EXT_BRANCH_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF external-branch-gate bypass capacitor"]
+  U214_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm U214 request fail-low resistor"]
   UNIT_REQ_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm native-Unit request fail-low resistor"]
   U214_SUPERVISOR["TPS3808G33DBVR<br/>protected-U214-5-V readiness supervisor"]
   U214_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF U214-supervisor bypass capacitor"]
@@ -994,12 +1004,16 @@ flowchart TD
   UNIT["MPN TBD<br/>protected HY2.0-4P M5 Unit connector"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2
-  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ UNIT_REQ_PULLDOWN ~~~ U214_SUPERVISOR ~~~ U214_SUPERVISOR_BYPASS ~~~ U214_SUPERVISOR_SENSE_TOP ~~~ U214_SUPERVISOR_SENSE_BOTTOM ~~~ U214_SUPERVISOR_CT ~~~ U214_SUPERVISOR_PULLUP ~~~ UNIT_EFUSE
+  DET_CC ~~~ DET_VOICE ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_B ~~~ U214_SERIES_IRQ ~~~ U214_SERIES_GPS_TX ~~~ U214_SERIES_MISO ~~~ U214_ESD_A ~~~ U214_ESD_B ~~~ U214_ESD_C ~~~ EXT_REQUEST_OR ~~~ EXT_REQUEST_OR_BYPASS
+  EXT_ANY_REQ_PULLDOWN ~~~ EXT_BRANCH_GATE ~~~ EXT_BRANCH_GATE_BYPASS ~~~ U214_REQ_PULLDOWN ~~~ UNIT_REQ_PULLDOWN ~~~ U214_SUPERVISOR ~~~ U214_SUPERVISOR_BYPASS ~~~ U214_SUPERVISOR_SENSE_TOP ~~~ U214_SUPERVISOR_SENSE_BOTTOM ~~~ U214_SUPERVISOR_CT ~~~ U214_SUPERVISOR_PULLUP ~~~ UNIT_EFUSE
   UNIT_RILM ~~~ UNIT_DVDT_CAP ~~~ UNIT_ITIMER_CAP ~~~ UNIT_OVLO_TOP ~~~ UNIT_OVLO_BOTTOM ~~~ UNIT_INPUT_CAP ~~~ UNIT_OUTPUT_CAP ~~~ UNIT_BLEEDER ~~~ UNIT_SUPERVISOR ~~~ UNIT_SUPERVISOR_BYPASS ~~~ UNIT_SUPERVISOR_SENSE_TOP ~~~ UNIT_SUPERVISOR_SENSE_BOTTOM
   UNIT_SUPERVISOR_CT ~~~ UNIT_SUPERVISOR_PULLUP ~~~ UNIT_SIGNAL_ISO ~~~ UNIT_SIGNAL_ISO_VCCA_BYPASS ~~~ UNIT_SIGNAL_ISO_VCCB_BYPASS ~~~ UNIT_SIGNAL_ISO_OE_PULLDOWN ~~~ UNIT_ESD ~~~ UNIT
   S3 <-->|"profile port: GPIO7,GPIO8"| UNIT
   S3 <-->|"GPIO7/GPIO8 profile signals"| UNIT_SIGNAL_ISO <-->|"isolated I²C/UART/GPIO"| UNIT
   UNIT_ESD -.->|"two signal shunt clamps"| UNIT
+  SLOW_IO -->|"P17/P05 independent requests"| EXT_REQUEST_OR --> SAFE_GATE_B
+  SAFE_GATE_B --> EXT_BRANCH_GATE
+  EXT_BRANCH_GATE --> UNIT_EFUSE
   UNIT_EFUSE --> UNIT_SUPERVISOR --> UNIT_SIGNAL_ISO
 ```
 
@@ -1041,10 +1055,12 @@ flowchart TD
   IR_EVIDENCE_VREF_CAP["TDK C1005X7R1H104K050BB<br/>optical-evidence reference filter capacitor"]
   IR_EVIDENCE_FEEDBACK["Yageo RC0402FR-0747KL<br/>47-kOhm optical transimpedance feedback resistor"]
   IR_EVIDENCE_FEEDBACK_CAP["KEMET C0402C102K5RACTU<br/>1-nF optical-evidence response capacitor"]
+  IR_TX_LED["LTST-C190KRKT<br/>IR-local physical-optical actual-TX indicator"]
+  IR_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>IR actual-TX indicator 2.2-kOhm current limit"]
   end
   C5 ~~~ SAFE_GATE_B ~~~ DET_IR ~~~ IR_POWER_SWITCH ~~~ IR_POWER_INPUT_CAP ~~~ IR_POWER_OUTPUT_CAP ~~~ IR_POWER_OUTPUT_BYPASS ~~~ IR_POWER_ON_PULLDOWN ~~~ IR_DEMOD ~~~ IR_DEMOD_SUPPLY_RES ~~~ IR_DEMOD_SUPPLY_CAP ~~~ IR_CARRIER
   IR_CARRIER_SUPPLY_RES ~~~ IR_CARRIER_SUPPLY_CAP ~~~ IR_CARRIER_PULLUP ~~~ IR_RETURN_BUFFER ~~~ IR_RETURN_BUFFER_BYPASS ~~~ IR_DEMOD_SERIES ~~~ IR_CARRIER_SERIES ~~~ IR_DEMOD_HOST_PULLUP ~~~ IR_CARRIER_HOST_PULLUP ~~~ IR_EMITTER ~~~ IR_EMITTER_LIMIT ~~~ IR_TX_MOSFET
-  IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP
+  IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ IR_TX_LED ~~~ IR_TX_LED_SERIES
   C5 <-->|"RMT RX0/power: GPIO0,GPIO1,GPIO4,GPIO6,GPIO24"| IR_DEMOD
   C5 <-->|"RMT RX1/power"| IR_CARRIER
   SAFE_GATE_B --> IR_EMITTER
@@ -4306,6 +4322,30 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
 | `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
 | `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_3.A_COMMON` | asserted diode aggregate lights without firmware |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `S3_TX_LED_A` | `s3_tx_led_series.END_2` | `s3_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N0_S3` | `s3_tx_led.K` | `evidence_cmp_a.OUT1` | S3 antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `c5_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `C5_TX_LED_A` | `c5_tx_led_series.END_2` | `c5_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N1_C5` | `c5_tx_led.K` | `evidence_cmp_a.OUT2` | C5 antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `NRF0_TX_LED_A` | `nrf0_tx_led_series.END_2` | `nrf0_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N2_NRF0` | `nrf0_tx_led.K` | `evidence_cmp_a.OUT3` | nRF24 radio 0 antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `NRF1_TX_LED_A` | `nrf1_tx_led_series.END_2` | `nrf1_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N3_NRF1` | `nrf1_tx_led.K` | `evidence_cmp_a.OUT4` | nRF24 radio 1 antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `NRF2_TX_LED_A` | `nrf2_tx_led_series.END_2` | `nrf2_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N4_NRF2` | `nrf2_tx_led.K` | `evidence_cmp_b.OUT1` | nRF24 radio 2 antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `CC_TX_LED_A` | `cc_tx_led_series.END_2` | `cc_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N5_CC` | `cc_tx_led.K` | `evidence_cmp_b.OUT2` | CC antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `VOICE_TX_LED_A` | `voice_tx_led_series.END_2` | `voice_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N6_VOICE` | `voice_tx_led.K` | `evidence_cmp_b.OUT3` | voice antenna-local LED follows physical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
+| `IR_TX_LED_A` | `ir_tx_led_series.END_2` | `ir_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N7_IR` | `ir_tx_led.K` | `evidence_cmp_b.OUT4` | IR-local LED follows physical optical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator.VCC` | domain isolator remains alive with the evidence plane |
 | `SAFETY_GROUND` | `evidence_main_isolator.GND` | `abstract:safety-ground` | domain-isolator return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator_bypass.END_1` | exact 100-nF local triple-buffer bypass |

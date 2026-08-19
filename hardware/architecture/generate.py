@@ -1904,9 +1904,9 @@ def render_target_principled_section(
         intro = [
             "Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.",
             "Первая схема показывает только межпроцессорные связи; следующие схемы",
-            "разворачивают устройства каждого владельца и отдельный power path.",
-            "Каждый прямоугольник — одно физическое устройство с exact/current MPN",
-            "и ролью; разные устройства не объединяются.",
+            "разворачивают устройства каждого владельца и отдельный тракт питания.",
+            "Каждый прямоугольник — одно физическое устройство с выбранным партномером",
+            "или явной пометкой «партномер не выбран», а также его ролью в продукте.",
         ]
         labels = {
             "owners": "Карта вычислительных владельцев",
@@ -1960,8 +1960,8 @@ def render_target_principled_section(
             "Read the architecture from its three compute owners, not from the USB port.",
             "The first map shows only inter-processor links; the following maps expand",
             "each owner's devices and the independent power path. Every box is one",
-            "physical device with its exact/current MPN and product role; no box combines",
-            "different devices.",
+            "physical device with its selected part number or an explicit ‘not selected’",
+            "mark and product role; no box combines different devices.",
         ]
         labels = {
             "owners": "Compute ownership map",
@@ -2022,7 +2022,11 @@ def render_target_principled_section(
             [
                 node("s3"), node("display"), node("sd"), node("slow_io"),
                 node("ui_matrix_io"), node("codec"), node("receiver"),
-                '  UNIT["MPN TBD after connector mechanics<br/>protected native M5 Unit port"]',
+                (
+                    '  UNIT["Партномер не выбран<br/>защищённый M5 Unit port"]'
+                    if russian
+                    else '  UNIT["Part number not selected<br/>protected M5 Unit port"]'
+                ),
             ],
             [
                 '  S3 -->|"direct QSPI + touch"| DISPLAY',
@@ -2108,6 +2112,36 @@ def render_target_readme(
     details_start = current.rfind("<details>", start, summary_start)
     generated = render_target_principled_section(database, candidates, russian=russian)
     return current[:start] + generated + "\n" + current[details_start:]
+
+
+def render_public_schematics(
+    database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
+) -> str:
+    """Render the product-facing principle diagrams without the review ledger."""
+
+    section = render_target_principled_section(database, candidates, russian=russian)
+    section = section.rsplit("\n\n", 1)[0]
+    old_heading = "## Принципиальный дизайн решения" if russian else "## Principled solution design"
+    new_heading = "# Принципиальные схемы Leshy2" if russian else "# Leshy2 principle diagrams"
+    section = section.replace(old_heading, new_heading, 1)
+    if russian:
+        navigation = "[На главную](../README.ru.md) · [Аппаратная часть](hardware.ru.md) · [English](schematics.md)"
+        detail = (
+            "Схемы ниже показывают конечное устройство по функциональным доменам. "
+            "Точные контакты, направления сигналов и электрические связи находятся в "
+            "[публичной таблице распиновки](pinout.ru.md). Полный состав устройства — в "
+            "[машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv)."
+        )
+    else:
+        navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
+        detail = (
+            "The diagrams below describe the finished device by functional domain. "
+            "Exact contacts, signal directions and electrical connections are in the "
+            "[public pin table](pinout.md). The complete device content is in the "
+            "[machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv)."
+        )
+    heading, remainder = section.split("\n", 1)
+    return f"{heading}\n\n{navigation}\n\n{detail}\n{remainder}"
 
 
 def _render_principled_pinout_bundle(
@@ -2255,6 +2289,10 @@ def _render_principled_pinout_bundle(
     def nrf_role(instance: str) -> str:
         if instance in nrf_roles:
             return nrf_roles[instance]
+        if instance.endswith("_tx_led_series"):
+            return "antenna-local actual-TX indicator 2.2-kOhm current limit"
+        if instance.endswith("_tx_led"):
+            return "antenna-local actual-TX indicator"
         suffix_roles = {
             "host_buffer": "CE/CSN/SCK/MOSI switched-rail Ioff buffer",
             "return_buffer": "MISO/IRQ switched-rail Ioff buffer",
@@ -2324,6 +2362,8 @@ def _render_principled_pinout_bundle(
         "cc_evidence_hold_diode": "actual-TX evidence hold isolation diode",
         "cc_evidence_hold_cap": "actual-TX evidence enable hold capacitor",
         "cc_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
+        "cc_tx_led_series": "CC actual-TX indicator 2.2-kOhm current limit",
+        "cc_tx_led": "CC antenna-local actual-TX indicator",
     }
 
     def cc_role(instance: str) -> str:
@@ -2350,6 +2390,8 @@ def _render_principled_pinout_bundle(
             "voice_evidence_hold_diode",
             "voice_evidence_hold_cap",
             "voice_evidence_hold_pulldown",
+            "voice_tx_led_series",
+            "voice_tx_led",
         }
     )
     voice_rf_roles = {
@@ -2361,6 +2403,8 @@ def _render_principled_pinout_bundle(
         "voice_evidence_hold_diode": "actual-TX evidence hold isolation diode",
         "voice_evidence_hold_cap": "actual-TX evidence enable hold capacitor",
         "voice_evidence_hold_pulldown": "actual-TX evidence hold discharge resistor",
+        "voice_tx_led_series": "voice actual-TX indicator 2.2-kOhm current limit",
+        "voice_tx_led": "voice antenna-local actual-TX indicator",
     }
 
     ir_instance_names = tuple(
@@ -2403,12 +2447,15 @@ def _render_principled_pinout_bundle(
         "ir_evidence_vref_cap": "optical-evidence reference filter capacitor",
         "ir_evidence_feedback": "47-kOhm optical transimpedance feedback resistor",
         "ir_evidence_feedback_cap": "1-nF optical-evidence response capacitor",
+        "ir_tx_led_series": "IR actual-TX indicator 2.2-kOhm current limit",
+        "ir_tx_led": "IR-local physical-optical actual-TX indicator",
     }
 
     native_rf_support_instance_names = tuple(
         instance
         for instance in candidate["instances"]
         if instance.startswith(("s3_rf_", "s3_detector_", "c5_rf_", "c5_detector_"))
+        or instance in {"s3_tx_led", "s3_tx_led_series", "c5_tx_led", "c5_tx_led_series"}
     )
     native_rf_roles = {
         "s3_rf_board_connector": "S3 module-jumper board receptacle",
@@ -2427,6 +2474,10 @@ def _render_principled_pinout_bundle(
         "c5_detector_ground_res": "C5 detector gain ground resistor",
         "c5_detector_output_cap": "C5 detector output-load capacitor",
         "c5_detector_bypass": "C5 detector local bypass capacitor",
+        "s3_tx_led_series": "S3 actual-TX indicator 2.2-kOhm current limit",
+        "s3_tx_led": "S3 antenna-local actual-TX indicator",
+        "c5_tx_led_series": "C5 actual-TX indicator 2.2-kOhm current limit",
+        "c5_tx_led": "C5 antenna-local actual-TX indicator",
     }
 
     evidence_support_instance_names = (
@@ -3805,6 +3856,12 @@ def main(argv: list[str] | None = None) -> int:
             database, candidates, russian=False
         ),
         REPO_ROOT / "docs/pinout.ru.md": render_public_pinout(
+            database, candidates, russian=True
+        ),
+        REPO_ROOT / "docs/schematics.md": render_public_schematics(
+            database, candidates, russian=False
+        ),
+        REPO_ROOT / "docs/schematics.ru.md": render_public_schematics(
             database, candidates, russian=True
         ),
     }

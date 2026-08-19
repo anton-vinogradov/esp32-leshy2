@@ -67,7 +67,20 @@ text input but cannot confirm dangerous actions.
 - High-throughput raw SDR needs a dedicated interface; the low-rate Unit port
   is not presented as a raw RF data path.
 
-![Four-surface enclosure layout](images/current-clamshell.svg)
+## Dimensioned layout
+
+Solid component outlines use dimensions from the part-number register. Orange
+dashed outlines are reserved space whose exact part number has not yet been
+selected. The generator rejects component-to-component overlap and entry into
+the 4-mm screw-head keep-outs around the M2.5 mounting holes.
+
+A red indicator beside a connector reports actual transmission by that path.
+S3, C5, all three nRF24 radios, CC1101 and voice have independent indicators;
+the two Si4732 inputs are receive-only. IR has its own optical TX indicator.
+
+![Dimensioned external layout](images/current-clamshell.svg)
+
+![Dimensioned internal-board layout](images/internal-board-layout.svg)
 
 ## Power and service
 
@@ -90,4 +103,5 @@ text input but cannot confirm dangerous actions.
 The detailed tables serve schematic, verification and manufacturing work:
 
 - [Exact assignment of every programmable controller](pinout.md)
+- [Device principle diagrams](schematics.md)
 - [Machine-readable BOM CSV](../hardware/architecture/generated/G2F-3I-target-bom.csv)

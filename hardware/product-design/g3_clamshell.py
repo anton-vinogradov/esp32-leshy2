@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate and validate the Leshy2 clamshell product layout."""
+"""Generate and validate dimensioned Leshy2 mechanical projections."""
 
 from __future__ import annotations
 
@@ -14,81 +14,149 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
-OUTPUT = REPO / "docs/images/current-clamshell.svg"
+EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
+INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
+MOUNT_HOLE_D = 2.7
+MOUNT_KEEPOUT_R = 4.0
 HOLES = ((5.0, 5.0), (70.0, 5.0), (5.0, 145.0), (70.0, 145.0))
-HOLE_KEEPOUT_R = 2.6
-SMA_R = 3.175
-SMA_KEEPOUT_R = 6.0
-FRONT_SMA = ((15.0, "S3-2G4"), (30.0, "C5-2G4/5"), (45.0, "RX-FM/SW"), (60.0, "RX-AM/LW"))
-REAR_SMA = ((13.0, "N24-0"), (25.5, "CC-SUB"), (38.0, "N24-1"), (50.5, "VOICE-V/U"), (63.0, "N24-2"))
-U214 = (-4.5, 15.0, 84.0, 15.281)
-BATTERY = (17.6, 40.0, 39.8, 86.0)
-DISPLAY = (10.25, 11.0, 54.5, 101.5)
-MEZZ = (23.5, 119.0, 28.0, 7.0)
+
+# These are placement reserves, not false MPN claims. Exact connector bodies
+# replace them after the right-angle bulkhead SMA/RP-SMA choice is qualified.
+RF_BODY_W = 9.0
+RF_BODY_D = 12.0
+RF_BARREL_D = 6.35
+RF_BARREL_OUT = 9.0
+FRONT_RF = (
+    (16.0, "S3-2G4", "RP-SMA"),
+    (30.0, "C5-2G4/5", "RP-SMA"),
+    (45.0, "RX-FM/SW", "SMA"),
+    (59.0, "RX-AM/LW", "SMA"),
+)
+REAR_RF = (
+    (13.5, "N24-0", "SMA"),
+    (25.5, "CC-SUB", "SMA"),
+    (37.5, "N24-1", "SMA"),
+    (49.5, "VOICE-V/U", "SMA"),
+    (61.5, "N24-2", "SMA"),
+)
+TX_RF_PATHS = {
+    "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-V/U", "N24-2"
+}
 
 
 @dataclass(frozen=True)
-class Item:
+class Placement:
     instance: str
+    x: float
+    y: float
+    role: str
+    rotation: int = 0
+
+
+@dataclass(frozen=True)
+class Reserve:
+    name: str
     x: float
     y: float
     w: float
     h: float
     role: str
-    kind: str = "device"
 
 
-FRONT_INNER = (
-    Item("s3", 6.0, 16.0, 18.0, 19.2, "UI/display/audio owner"),
-    Item("c5", 51.0, 16.0, 18.0, 21.2, "native 2.4/5-GHz + IR owner"),
-    Item("display_connector", 25.0, 42.0, 24.1, 6.4, "display FPC mate"),
-    Item("sd", 6.0, 54.0, 13.85, 15.95, "removable microSD"),
-    Item("slow_io", 25.0, 55.0, 5.0, 5.0, "main slow-control expander"),
-    Item("ui_matrix_io", 34.0, 55.0, 5.0, 4.4, "local-control matrix expander"),
-    Item("codec", 43.0, 55.0, 3.0, 3.0, "audio codec"),
-    Item("receiver", 51.0, 54.0, 9.9, 6.0, "FM/AM/SW/LW receiver"),
-    Item("ir_demod", 0.0, 76.0, 6.8, 3.0, "38-kHz IR receiver"),
-    Item("ir_carrier", 0.0, 83.0, 6.8, 3.0, "carrier-learning IR receiver"),
-    Item("ir_emitter", 0.0, 90.0, 3.1, 3.1, "940-nm IR transmitter"),
-    Item("headphone_jack", 60.0, 76.0, 15.0, 9.5, "headphone/line connector"),
-    Item("product_usb_protector", 20.0, 76.0, 3.0, 3.0, "CC/USB2 port protector"),
-    Item("pd_controller", 27.0, 76.0, 4.0, 6.0, "sink-only USB-PD controller"),
-    Item("product_usb_connector", 9.0, 143.0, 8.94, 6.9, "product USB-C data + sink"),
-    Item("microphone", 33.5, 146.0, 4.0, 4.0, "bottom microphone port"),
+UI_INNER = (
+    Placement("s3", 6.0, 22.0, "UI, display, storage and audio owner"),
+    Placement("c5", 51.0, 22.0, "native 2.4/5-GHz and IR owner"),
+    Placement("display_connector", 25.0, 43.0, "40-contact display FPC mate"),
+    Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
+    Placement("ui_matrix_io", 33.0, 55.0, "local-control matrix expander"),
+    Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
+    Placement("receiver", 51.0, 54.0, "FM/AM/SW/LW receiver"),
+    Placement("ir_demod", 0.0, 75.0, "38-kHz IR receiver"),
+    Placement("ir_carrier", 0.0, 82.0, "carrier-learning IR receiver"),
+    Placement("ir_emitter", 0.0, 89.0, "940-nm IR transmitter"),
+    Placement("headphone_jack", 60.0, 75.0, "3.5-mm headphone/line connector"),
+    Placement("product_usb_protector", 20.0, 75.0, "product USB CC/USB2 protector"),
+    Placement("pd_controller", 27.0, 75.0, "sink-only USB-PD controller"),
+    Placement("product_usb_connector", 12.0, 143.1, "product USB-C data and sink"),
+    Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
+    Placement("microphone", 42.0, 146.0, "bottom microphone port"),
+    Placement("sd", 48.0, 136.15, "bottom-access push-push microSD", 90),
 )
 
-REAR_INNER = (
-    Item("rp", 32.5, 14.0, 10.0, 10.0, "deterministic radio owner"),
-    Item("nrf0", 5.0, 30.0, 12.0, 19.0, "full-function nRF24 #0"),
-    Item("nrf1", 31.5, 30.0, 12.0, 19.0, "full-function nRF24 #1"),
-    Item("nrf2", 58.0, 30.0, 12.0, 19.0, "full-function nRF24 #2"),
-    Item("voice", 5.0, 55.0, 39.5, 24.0, "VHF/UHF voice transceiver"),
-    Item("cc", 50.0, 55.0, 4.0, 4.0, "multiband sub-GHz transceiver"),
-    Item("c5_service_usb_connector", 13.0, 143.0, 8.94, 7.0, "C5 data-only service USB"),
-    Item("rp_service_usb_connector", 34.0, 143.0, 8.94, 7.0, "RP data-only service USB"),
+RF_INNER = (
+    Placement("rp", 32.5, 22.0, "deterministic radio owner"),
+    Placement("nrf0", 6.0, 34.5, "full-function nRF24 radio #0"),
+    Placement("nrf1", 31.5, 34.5, "full-function nRF24 radio #1"),
+    Placement("nrf2", 57.0, 34.5, "full-function nRF24 radio #2"),
+    Placement("voice", 5.0, 57.0, "VHF/UHF voice transceiver"),
+    Placement("cc", 50.0, 57.0, "multi-band sub-GHz transceiver"),
+    Placement("nvdc_charger", 49.0, 67.0, "2S charger and NVDC power path"),
+    Placement("pack_gauge", 56.0, 67.0, "2S protection and fuel gauge"),
+    Placement("pack_admission", 63.0, 67.0, "fail-closed battery admission MCU"),
+    Placement("aon_buck", 49.0, 75.0, "always-on 3.3-V converter"),
+    Placement("main_buck", 54.0, 75.0, "main 3.3-V converter"),
+    Placement("voice_buck", 59.0, 75.0, "voice 4.0-V converter"),
+    Placement("ext_buck", 64.0, 75.0, "accessory 5.0-V converter"),
+    Placement("safe_supervisor", 49.0, 82.0, "always-on safety supervisor"),
+    Placement("safe_conditioner", 55.0, 82.0, "STOP input conditioner"),
+    Placement("safe_latch", 60.0, 82.0, "STOP/RE-ARM safety latch"),
+    Placement("safe_gate_b", 49.0, 88.0, "rear-domain transmit safety gates"),
+    Placement("evidence_cmp_b", 58.0, 88.0, "rear-domain TX evidence comparator"),
+    Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
 )
 
-NUMBERED_ITEMS = FRONT_INNER + REAR_INNER
-ITEM_NUMBER = {item.instance: index for index, item in enumerate(NUMBERED_ITEMS, 1)}
+MEZZANINE = Reserve(
+    "M1", 23.5, 119.0, 28.0, 7.0,
+    "board-to-board connector; contact count and exact MPN follow the net budget",
+)
 
-CONTROLS = (
-    ("BACK", "ck_y78b23214fp"), ("F1", "ck_y78b23214fp"),
-    ("D-pad UP", "ck_y78b23214fp"), ("D-pad DOWN", "ck_y78b23214fp"),
-    ("D-pad LEFT", "ck_y78b23214fp"), ("D-pad RIGHT", "ck_y78b23214fp"),
-    ("OK", "ck_y78b23214fp"), ("OPT", "ck_y78b23214fp"),
-    ("F2", "ck_y78b23214fp"), ("ENC push", "alps_ec11e18244au"),
-    ("PTT", "ck_y78b23214fp"), ("STOP", "panasonic_aeq10410"),
-    ("RE-ARM", "ck_y78b23214fp"),
+FRONT_CONTROLS = (
+    Placement("stop_switch", 9.0, 114.0, "physical hard STOP"),
+    Placement("ptt_switch", 14.0, 131.0, "independent PTT"),
+    Placement("ui_switch_back", 24.0, 115.0, "BACK"),
+    Placement("ui_switch_f1", 24.0, 132.0, "F1"),
+    Placement("ui_switch_up", 35.4, 115.0, "D-pad up"),
+    Placement("ui_switch_left", 29.5, 124.5, "D-pad left"),
+    Placement("ui_switch_ok", 35.4, 124.5, "D-pad OK"),
+    Placement("ui_switch_right", 41.3, 124.5, "D-pad right"),
+    Placement("ui_switch_down", 35.4, 134.0, "D-pad down"),
+    Placement("ui_switch_opt", 51.0, 115.0, "OPT"),
+    Placement("ui_switch_f2", 51.0, 132.0, "F2"),
+    Placement("encoder", 59.0, 113.0, "rotary encoder with push"),
+    Placement("rearm_switch", 63.0, 132.0, "recessed RE-ARM"),
+)
+
+CAP_RESERVES = (
+    Reserve("PTT cap", 12.1, 128.9, 8.0, 7.0, "ergonomic cap/case feature, MPN TBD"),
+    Reserve("BACK cap", 23.1, 112.9, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("F1 cap", 23.1, 129.9, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("UP cap", 34.5, 112.9, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("LEFT cap", 28.6, 122.4, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("OK cap", 34.5, 122.4, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("RIGHT cap", 40.4, 122.4, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("DOWN cap", 34.5, 131.9, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("OPT cap", 50.1, 112.9, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("F2 cap", 50.1, 129.9, 6.0, 7.0, "cap/case feature, MPN TBD"),
+    Reserve("encoder knob", 57.0, 111.0, 15.0, 15.0, "knob/case feature, MPN TBD"),
+    Reserve("RE-ARM cap", 61.1, 129.9, 8.0, 7.0, "recessed cap/case feature, MPN TBD"),
 )
 
 
 def load() -> tuple[dict, dict, dict]:
-    database = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
+    devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
-    return database, candidate, candidate["instances"]
+    return devices, candidate, candidate["instances"]
+
+
+def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[float, float]:
+    dimensions = devices[instances[item.instance]].get("dimensions_mm")
+    if not dimensions or len(dimensions) < 2 or dimensions[0] is None or dimensions[1] is None:
+        raise ValueError(f"{item.instance}: two-dimensional package envelope is missing")
+    w, h = float(dimensions[0]), float(dimensions[1])
+    return (h, w) if item.rotation % 180 else (w, h)
 
 
 def overlaps(a: tuple[float, float, float, float], b: tuple[float, float, float, float], margin: float = 0.0) -> bool:
@@ -97,10 +165,44 @@ def overlaps(a: tuple[float, float, float, float], b: tuple[float, float, float,
     return ax < bx + bw + margin and bx < ax + aw + margin and ay < by + bh + margin and by < ay + ah + margin
 
 
+def hits_hole(rectangle: tuple[float, float, float, float], hole: tuple[float, float]) -> bool:
+    x, y, w, h = rectangle
+    hx, hy = hole
+    px = min(max(hx, x), x + w)
+    py = min(max(hy, y), y + h)
+    return math.hypot(hx - px, hy - py) < MOUNT_KEEPOUT_R
+
+
+def validate_items(name: str, items: tuple[Placement, ...], devices: dict, instances: dict) -> list[str]:
+    errors: list[str] = []
+    rectangles = []
+    for item in items:
+        if item.instance not in instances:
+            errors.append(f"{name}: unknown instance {item.instance}")
+            continue
+        try:
+            w, h = placement_size(item, devices, instances)
+        except ValueError as error:
+            errors.append(str(error))
+            continue
+        rectangle = (item.x, item.y, w, h)
+        rectangles.append((item, rectangle))
+        if item.x < 0 or item.y < 0 or item.x + w > BOARD_W + 0.001 or item.y + h > BOARD_H + 0.001:
+            errors.append(f"{name}: {item.instance} is outside the 75x150-mm board")
+        for hole in HOLES:
+            if hits_hole(rectangle, hole):
+                errors.append(f"{name}: {item.instance} enters the M2.5 keep-out at {hole}")
+    for index, (left, left_box) in enumerate(rectangles):
+        for right, right_box in rectangles[index + 1:]:
+            if overlaps(left_box, right_box, 0.7):
+                errors.append(f"{name}: {left.instance} overlaps {right.instance}")
+    return errors
+
+
 def validate() -> list[str]:
     devices, candidate, instances = load()
     errors: list[str] = []
-    required_mpn = {
+    required = {
         "s3": "ESP32-S3-WROOM-1U-N16R2",
         "c5": "ESP32-C5-WROOM-1U-N8R8",
         "rp": "SC1512-A4",
@@ -108,185 +210,287 @@ def validate() -> list[str]:
         "u214": "M5Stack U214 Cap LoRa-1262",
         "pack_holder": "Keystone Electronics 1048P",
     }
-    for instance, mpn in required_mpn.items():
+    for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
-        if actual != mpn:
-            errors.append(f"{instance}: expected current MPN {mpn}, got {actual}")
-    if devices[instances["display"]].get("dimensions_mm") != [54.5, 101.5, 10.0]:
-        errors.append("display G3 envelope must follow the published 54.5x101.5x10-mm reference")
+        if actual != expected:
+            errors.append(f"{instance}: expected {expected}, got {actual}")
 
-    expected_paths = [path for _, path in FRONT_SMA + REAR_SMA]
-    machine_paths = candidate["antenna_policy"]["base_onboard_sma_paths"]
-    if len(expected_paths) != len(set(expected_paths)) or set(expected_paths) != set(machine_paths):
-        errors.append("G3 antenna centres do not preserve the nine machine-source path identities")
-    if len(FRONT_SMA) + len(REAR_SMA) != 9:
-        errors.append("G3 projection must retain exactly nine onboard SMA endpoints")
+    errors += validate_items("ui-inner", UI_INNER, devices, instances)
+    errors += validate_items("rf-inner", RF_INNER, devices, instances)
+    errors += validate_items("front-controls", FRONT_CONTROLS, devices, instances)
+    display = Placement("display", 10.25, 8.0, "display")
+    holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
+    speaker = Placement("speaker", 12.0, 133.0, "speaker")
+    errors += validate_items("front-display", (display,), devices, instances)
+    errors += validate_items("rear-exact", (holder, speaker), devices, instances)
 
-    for face_name, items in (("front-inner", FRONT_INNER), ("rear-inner", REAR_INNER)):
-        for item in items:
-            if item.instance not in instances:
-                errors.append(f"{face_name}: unknown instance {item.instance}")
-            if item.x < 0 or item.y < 0 or item.x + item.w > BOARD_W + 0.01 or item.y + item.h > BOARD_H + 0.01:
-                errors.append(f"{face_name}: {item.instance} is outside the board")
-        for index, left in enumerate(items):
-            for right in items[index + 1 :]:
-                if overlaps((left.x, left.y, left.w, left.h), (right.x, right.y, right.w, right.h), 0.7):
-                    errors.append(f"{face_name}: {left.instance} overlaps {right.instance}")
+    u214_dims = devices[instances["u214"]]["dimensions_mm"]
+    if u214_dims[:2] != [84.0, 24.0]:
+        errors.append("U214 must use the official 84x24-mm plan envelope")
+    holder_w, holder_h = placement_size(holder, devices, instances)
+    if overlaps((-4.5, 15.0, 84.0, 24.0), (holder.x, holder.y, holder_w, holder_h)):
+        errors.append("full U214 envelope overlaps the Keystone holder in plan view")
 
-    if overlaps(U214, BATTERY):
-        errors.append("U214 rear strip overlaps the Keystone holder")
-    if abs(U214[0]) != 4.5 or abs(U214[0] + U214[2] - BOARD_W) != 4.5:
-        errors.append("U214 must retain symmetric 4.5-mm side overhang")
-    if U214[1] + U214[3] >= BATTERY[1]:
-        errors.append("U214 must retain a positive service gap above the holder")
-    if DISPLAY[0] < 0 or DISPLAY[1] < 0 or DISPLAY[0] + DISPLAY[2] > BOARD_W or DISPLAY[1] + DISPLAY[3] > BOARD_H:
-        errors.append("display envelope does not fit the front face")
+    machine_paths = set(candidate["antenna_policy"]["base_onboard_sma_paths"])
+    drawn_paths = {path for _, path, _ in FRONT_RF + REAR_RF}
+    if machine_paths != drawn_paths or len(drawn_paths) != 9:
+        errors.append("mechanical projection must retain all nine unique onboard RF paths")
+    if len(TX_RF_PATHS) != 7 or not TX_RF_PATHS <= drawn_paths:
+        errors.append("seven transmitting RF paths must retain individual TX indicators")
+    for bank_name, bank in (("front", FRONT_RF), ("rear", REAR_RF)):
+        for index, (centre, _, _) in enumerate(bank):
+            body = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
+            for hole in HOLES:
+                if hits_hole(body, hole):
+                    errors.append(f"{bank_name}: RF reserve at x={centre} enters mounting keep-out")
+            for other, _, _ in bank[index + 1:]:
+                if abs(centre - other) < RF_BODY_W + 2.0:
+                    errors.append(f"{bank_name}: RF reserves overlap at {centre}/{other}")
 
-    for bank_name, bank in (("front", FRONT_SMA), ("rear", REAR_SMA)):
-        for index, (centre, _) in enumerate(bank):
-            for other, _ in bank[index + 1 :]:
-                if abs(centre - other) < SMA_KEEPOUT_R * 2:
-                    errors.append(f"{bank_name} SMA keep-outs overlap at {centre}/{other}")
-            for hx, hy in HOLES:
-                if math.hypot(centre - hx, 3.5 - hy) < SMA_R + HOLE_KEEPOUT_R:
-                    errors.append(f"{bank_name} SMA at {centre} hits mounting-hole keep-out")
-    for centre, _ in REAR_SMA:
-        dy = max(U214[1] - 3.5, 0.0, 3.5 - (U214[1] + U214[3]))
-        dx = max(U214[0] - centre, 0.0, centre - (U214[0] + U214[2]))
-        if math.hypot(dx, dy) <= SMA_KEEPOUT_R:
-            errors.append(f"rear SMA at {centre} collides with U214 keep-out")
-
-    if {name for name, _ in CONTROLS} != {
-        "BACK", "F1", "D-pad UP", "D-pad DOWN", "D-pad LEFT", "D-pad RIGHT",
-        "OK", "OPT", "F2", "ENC push", "PTT", "STOP", "RE-ARM",
-    }:
-        errors.append("complete local control inventory is not preserved")
+    control_roles = {item.role for item in FRONT_CONTROLS}
+    for role in ("physical hard STOP", "independent PTT", "F1", "F2", "recessed RE-ARM"):
+        if role not in control_roles:
+            errors.append(f"front controls omit {role}")
     return errors
 
 
-def render() -> str:
-    devices, _, instances = load()
-    scale = 3.0
-    width, height = 1180, 1360
-    origins = {"fo": (70.0, 105.0), "fi": (365.0, 105.0), "ri": (70.0, 625.0), "ro": (365.0, 625.0)}
-
-    def sx(origin: tuple[float, float], mm: float) -> float:
+def helpers(scale: float):
+    def sx(origin, mm):
         return origin[0] + mm * scale
 
-    def sy(origin: tuple[float, float], mm: float) -> float:
+    def sy(origin, mm):
         return origin[1] + mm * scale
 
-    def text(x: float, y: float, value: str, size: float = 12, weight: str = "normal", anchor: str = "start", colour: str = "#172033") -> str:
-        return f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
-
-    def rect(origin: tuple[float, float], x: float, y: float, w: float, h: float, fill: str, stroke: str, dash: str = "", rx: float = 3) -> str:
-        dashed = f' stroke-dasharray="{dash}"' if dash else ""
-        return f'<rect x="{sx(origin, x):.1f}" y="{sy(origin, y):.1f}" width="{w*scale:.1f}" height="{h*scale:.1f}" rx="{rx}" fill="{fill}" stroke="{stroke}" stroke-width="1.6"{dashed}/>'
-
-    def board(origin: tuple[float, float], title: str) -> list[str]:
-        rows = [text(origin[0], origin[1] - 20, title, 15, "bold"), rect(origin, 0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=7)]
-        for hx, hy in HOLES:
-            rows.append(f'<circle cx="{sx(origin,hx):.1f}" cy="{sy(origin,hy):.1f}" r="{2.2*scale:.1f}" fill="white" stroke="#667085" stroke-width="1.4"/>')
-        return rows
-
-    def label_item(origin: tuple[float, float], item: Item) -> list[str]:
-        rows = [rect(origin, item.x, item.y, item.w, item.h, "#eef2f6", "#667085")]
-        cx, cy = sx(origin, item.x + item.w/2), sy(origin, item.y + item.h/2)
-        rows.append(text(cx, cy + 4, str(ITEM_NUMBER[item.instance]), 9, "bold", "middle"))
-        return rows
-
-    out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
-        '<rect width="100%" height="100%" fill="#ffffff"/>',
-        text(32, 34, "Leshy2 — two-board clamshell layout", 22, "bold"),
-        text(32, 58, "75×150-mm boards · compute owners · exact selected MPNs · controls · nine SMA paths · U214", 12, colour="#526076"),
-    ]
-    out += board(origins["fo"], "1 · UI/CONTROL OUTER — front")
-    out += board(origins["fi"], "2 · UI/CONTROL INNER — back view")
-    out += board(origins["ri"], "3 · RF/POWER INNER — back view")
-    out += board(origins["ro"], "4 · RF/POWER OUTER — rear")
-
-    # Front face: product panel and the complete local controls.
-    out.append(rect(origins["fo"], *DISPLAY, "#dbeafe", "#2563eb", rx=5))
-    out.append(text(sx(origins["fo"], 37.5), sy(origins["fo"], 57), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(origins["fo"], 37.5), sy(origins["fo"], 62), "3.5-inch QSPI IPS + touch", 7, anchor="middle", colour="#1d4ed8"))
-    for x, y, label in ((5,120,"BACK"),(5,132,"F1"),(64,120,"OPT"),(64,132,"F2")):
-        out.append(rect(origins["fo"], x, y, 6, 6, "#ede9fe", "#7c3aed", rx=4))
-        out.append(text(sx(origins["fo"],x+3),sy(origins["fo"],y+4),label,5.5,"bold","middle","#6d28d9"))
-    out.append(rect(origins["fo"], 27.5, 120, 20, 20, "#ede9fe", "#7c3aed", rx=8))
-    out.append(text(sx(origins["fo"],37.5),sy(origins["fo"],132),"D-pad + OK",7,"bold","middle","#6d28d9"))
-    for x, y, label, colour in ((0,70,"STOP","#b42318"),(69,70,"PTT","#7c3aed"),(1,143,"RE-ARM","#b42318"),(58,141,"ENC","#7c3aed")):
-        out.append(rect(origins["fo"], x, y, 6 if label != "ENC" else 12, 7, "#fee4e2" if colour == "#b42318" else "#ede9fe", colour, rx=3))
-        out.append(text(sx(origins["fo"],x+(3 if label != "ENC" else 6)),sy(origins["fo"],y+4.8),label,5.2,"bold","middle",colour))
-
-    for origin, bank in ((origins["fo"], FRONT_SMA), (origins["ro"], REAR_SMA)):
-        for centre, path in bank:
-            out.append(f'<circle cx="{sx(origin,centre):.1f}" cy="{sy(origin,3.5):.1f}" r="{SMA_R*scale:.1f}" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>')
-            out.append(text(sx(origin,centre),sy(origin,10.5),path,5.7,"bold","middle","#1d4ed8"))
-
-    for item in FRONT_INNER:
-        out += label_item(origins["fi"], item)
-    for item in REAR_INNER:
-        out += label_item(origins["ri"], item)
-    for origin in (origins["fi"], origins["ri"]):
-        out.append(rect(origin, *MEZZ, "#fce7f3", "#db2777", rx=3))
-        out.append(text(sx(origin,37.5),sy(origin,123.5),"M1 · MPN TBD · power/HV/safety/S3↔RP",6.6,"bold","middle","#be185d"))
-    out.append(rect(origins["ri"], 48, 64, 21, 58, "#fafaf9", "#a8a29e", "5 3", 4))
-    out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],91),"POWER",8,"bold","middle","#78716c"))
-    out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],96),"exact devices",6.5,anchor="middle",colour="#78716c"))
-    out.append(text(sx(origins["ri"],58.5),sy(origins["ri"],101),"power and safety area",6.5,anchor="middle",colour="#78716c"))
-
-    out.append(rect(origins["ro"], *U214, "#ffedd5", "#ea580c", rx=6))
-    out.append(text(sx(origins["ro"],37.5),sy(origins["ro"],23),"M5Stack U214 · LoRa/GNSS Cap · raised rear dock",8,"bold","middle","#9a3412"))
-    out.append(rect(origins["ro"], *BATTERY, "#dcfce7", "#16a34a", rx=10))
-    out.append(text(sx(origins["ro"],37.5),sy(origins["ro"],83),"Keystone 1048P",9,"bold","middle","#166534"))
-    out.append(text(sx(origins["ro"],37.5),sy(origins["ro"],89),"2× XTAR 18650 4000mAh",7.2,anchor="middle",colour="#166534"))
-    out.append(rect(origins["ro"], 57, 132, 18, 8, "#fef3c7", "#d97706", rx=3))
-    out.append(text(sx(origins["ro"],66),sy(origins["ro"],137),"M5 Unit · MPN TBD",6.2,"bold","middle","#92400e"))
-    out.append(rect(origins["ro"], 3, 132, 24, 12, "#dbeafe", "#2563eb", rx=7))
-    out.append(text(sx(origins["ro"],15),sy(origins["ro"],139),"PUI AS02404PO · speaker",6.1,"bold","middle","#1d4ed8"))
-
-    note_x = 650
-    out += [
-        text(note_x, 105, "Current physical split", 16, "bold"),
-        text(note_x, 132, "UI/control board", 12, "bold", colour="#1d4ed8"),
-        text(note_x, 152, "S3 + C5; display, storage, controls, audio/receiver and IR stay local.", 10.5),
-        text(note_x, 178, "RF/power board", 12, "bold", colour="#c2410c"),
-        text(note_x, 198, "RP + 3× E01-ML01IPX + CC1101RGPR + SA518; U214 and power stay local.", 10.5),
-        text(note_x, 234, "No old ownership is inherited", 12, "bold"),
-        text(note_x, 254, "nRF is RP-owned; IR is C5-owned; physical board locality is separate.", 10.5),
-        text(note_x, 290, "Verified geometry retained", 12, "bold"),
-        text(note_x, 310, "75×150 mm · fold/mirror · four M2.5 zones · 11-mm inner gap", 10.5),
-        text(note_x, 330, "9 SMA keep-outs · 4.5-mm U214 overhang · exact 1048P envelope", 10.5),
-        text(note_x, 366, "Visible controls retained", 12, "bold"),
-        text(note_x, 386, "D-pad/OK · BACK · OPT · F1 · F2 · encoder/push · PTT", 10.5),
-        text(note_x, 406, "hard STOP · recessed RE-ARM; phone is only optional text input", 10.5),
-        text(note_x, 442, "Not yet frozen", 12, "bold", colour="#b42318"),
-        text(note_x, 462, "SMA bodies/pigtails, M5 connectors, mezzanine, display approval", 10.5),
-        text(note_x, 482, "drawing, enclosure stack, cable bends and final internal packing.", 10.5),
-        text(note_x, 518, "Next G3 checks", 12, "bold"),
-        text(note_x, 538, "hand/grip + installed-U214 access · side-control discrimination", 10.5),
-        text(note_x, 558, "antenna/cable routing · service hatch · thermal/weight/centre of mass", 10.5),
-        text(note_x, 594, "Conceptual placement; exact pad/net data is maintained separately.", 11, "bold", colour="#526076"),
-        text(650, 655, "Legend", 15, "bold"),
-        '<rect x="650" y="674" width="24" height="14" rx="3" fill="#eef2f6" stroke="#667085"/>',
-        text(684, 686, "one physical device · exact selected MPN + role", 10.5),
-        '<rect x="650" y="702" width="24" height="14" rx="3" fill="#fafaf9" stroke="#a8a29e" stroke-dasharray="5 3"/>',
-        text(684, 714, "placement responsibility, not a combined device", 10.5),
-        '<rect x="650" y="730" width="24" height="14" rx="3" fill="#ffedd5" stroke="#ea580c"/>',
-        text(684, 742, "removable external module/envelope", 10.5),
-        text(650, 778, "Numbered physical devices", 14, "bold"),
-    ]
-    legend_y = 798
-    for item in NUMBERED_ITEMS:
-        mpn = devices[instances[item.instance]]["mpn"].replace(
-            " (QDtech schematic assembly marking)", ""
+    def text(x, y, value, size=12, weight="normal", anchor="start", colour="#172033"):
+        return (
+            f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" '
+            f'font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" '
+            f'fill="{colour}">{html.escape(value)}</text>'
         )
-        number = ITEM_NUMBER[item.instance]
-        out.append(text(650, legend_y, f"{number:02d}  {mpn}", 8.2, "bold"))
-        out.append(text(676, legend_y + 9, item.role, 7.4, colour="#526076"))
-        legend_y += 22
-    out.append(text(650, legend_y + 2, "M1  MPN TBD · board-to-board power/HV/safety/S3↔RP mezzanine", 8.2, "bold", colour="#be185d"))
+
+    def rect(origin, x, y, w, h, fill, stroke, dash="", rx=2.0):
+        dashed = f' stroke-dasharray="{dash}"' if dash else ""
+        return (
+            f'<rect x="{sx(origin,x):.1f}" y="{sy(origin,y):.1f}" '
+            f'width="{w*scale:.1f}" height="{h*scale:.1f}" rx="{rx}" '
+            f'fill="{fill}" stroke="{stroke}" stroke-width="1.5"{dashed}/>'
+        )
+
+    return sx, sy, text, rect
+
+
+def board(origin, title, scale, sx, sy, text, rect):
+    rows = [
+        text(origin[0], origin[1] - RF_BARREL_OUT*scale - 22, title, 15, "bold"),
+        rect(origin, 0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=5),
+    ]
+    for hx, hy in HOLES:
+        rows.append(
+            f'<circle cx="{sx(origin,hx):.1f}" cy="{sy(origin,hy):.1f}" '
+            f'r="{MOUNT_KEEPOUT_R*scale:.1f}" fill="#fff7ed" stroke="#fb923c" '
+            f'stroke-width="1" stroke-dasharray="4 3"/>'
+        )
+        rows.append(
+            f'<circle cx="{sx(origin,hx):.1f}" cy="{sy(origin,hy):.1f}" '
+            f'r="{MOUNT_HOLE_D*scale/2:.1f}" fill="white" stroke="#475467" stroke-width="1.4"/>'
+        )
+    return rows
+
+
+def rf_bank(origin, bank, scale, sx, sy, text, rect, show_body):
+    rows = []
+    for centre, path, polarity in bank:
+        if show_body:
+            rows.append(rect(origin, centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#fff7ed", "#ea580c", "5 3", 2))
+        x = sx(origin, centre)
+        edge_y = sy(origin, 0)
+        barrel_top = edge_y - RF_BARREL_OUT * scale
+        rows.append(
+            f'<rect x="{x-RF_BARREL_D*scale/2:.1f}" y="{barrel_top:.1f}" '
+            f'width="{RF_BARREL_D*scale:.1f}" height="{RF_BARREL_OUT*scale:.1f}" '
+            f'fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>'
+        )
+        nut_r = 4.0 * scale
+        points = []
+        for number in range(6):
+            angle = math.radians(60*number + 30)
+            points.append(f"{x+nut_r*math.cos(angle):.1f},{edge_y+nut_r*math.sin(angle):.1f}")
+        rows.append(f'<polygon points="{" ".join(points)}" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>')
+        rows.append(f'<path d="M{x:.1f} {barrel_top+2:.1f} V{barrel_top-12:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        rows.append(text(x, sy(origin, 15.5), path, 6.2, "bold", "middle", "#1d4ed8"))
+        rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
+        if path in TX_RF_PATHS:
+            led_x = x + 4.1 * scale
+            led_y = sy(origin, 7.0)
+            rows.append(f'<circle cx="{led_x:.1f}" cy="{led_y:.1f}" r="{1.1*scale:.1f}" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>')
+            rows.append(text(led_x, led_y + 2.0*scale, "TX", 4.7, "bold", "middle", "#991b1b"))
+    return rows
+
+
+def render_external(devices, instances):
+    scale = 3.7
+    sx, sy, text, rect = helpers(scale)
+    front, rear = (80.0, 150.0), (465.0, 150.0)
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790">',
+        '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
+        text(30, 56, "One millimetre scale; orange dashed shapes are reserves, not selected-MPN geometry.", 11, colour="#526076"),
+    ]
+    out += board(front, "Front / UI face", scale, sx, sy, text, rect)
+    out += board(rear, "Rear / battery and expansion face", scale, sx, sy, text, rect)
+
+    # The installed Cap is a full-size external envelope. Draw it beneath the
+    # RF-port annotation layer so it cannot hide port identity or TX evidence.
+    out.append(rect(rear, -4.5, 15.0, 84.0, 24.0, "#ffedd5", "#ea580c", rx=6))
+    out.append(text(sx(rear,37.5), sy(rear,27.5), "M5Stack U214 · exact 84×24-mm plan envelope", 7.3, "bold", "middle", "#9a3412"))
+    out.append(text(sx(rear,37.5), sy(rear,32), "rear insertion / removal ⊙", 6.2, anchor="middle", colour="#dc2626"))
+    out += rf_bank(front, FRONT_RF, scale, sx, sy, text, rect, False)
+    out += rf_bank(rear, REAR_RF, scale, sx, sy, text, rect, False)
+
+    display = Placement("display", 10.25, 8.0, "display")
+    dw, dh = placement_size(display, devices, instances)
+    out.append(rect(front, display.x, display.y, dw, dh, "#dbeafe", "#2563eb", rx=5))
+    out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,60), "54.5×101.5-mm reference envelope", 6.5, anchor="middle", colour="#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,65), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
+
+    for item in FRONT_CONTROLS:
+        w, h = placement_size(item, devices, instances)
+        is_stop = item.instance == "stop_switch"
+        out.append(rect(front, item.x, item.y, w, h, "#fee4e2" if is_stop else "#ede9fe", "#b42318" if is_stop else "#7c3aed", rx=2))
+    for reserve in CAP_RESERVES:
+        out.append(rect(front, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
+    labels = (
+        (15.6,120,"STOP"),(16.1,136,"PTT"),(26.1,118,"BACK"),(26.1,135,"F1"),
+        (37.5,118,"↑"),(31.6,127.5,"←"),(37.5,127.5,"OK"),(43.4,127.5,"→"),
+        (37.5,137,"↓"),(53.1,118,"OPT"),(53.1,135,"F2"),(64.5,121,"ENC"),
+        (65.1,135,"RE-ARM"),
+    )
+    for x, y, label in labels:
+        out.append(text(sx(front,x), sy(front,y), label, 5.2, "bold", "middle", "#b42318" if label == "STOP" else "#4c1d95"))
+
+    # Edge interfaces remain visible on the product projection. Their full
+    # bodies live on the inner-board drawing; here the arrows show access.
+    for y, label in ((76.5, "IR 38k RX"), (83.5, "IR raw RX"), (90.5, "IR TX")):
+        out.append(rect(front, 0, y-1.5, 3.2, 3.0, "#fef3c7", "#d97706", rx=2))
+        out.append(f'<path d="M{sx(front,0):.1f} {sy(front,y):.1f} L{sx(front,-7):.1f} {sy(front,y):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        out.append(text(sx(front,4.0), sy(front,y+0.7), label, 4.8, "bold", colour="#92400e"))
+    out.append(f'<circle cx="{sx(front,4.5):.1f}" cy="{sy(front,94):.1f}" r="{1.1*scale:.1f}" fill="#ef4444" stroke="#991b1b"/>')
+    out.append(text(sx(front,6.2), sy(front,95), "IR actual TX", 4.8, "bold", colour="#991b1b"))
+    out.append(f'<path d="M{sx(front,75):.1f} {sy(front,79.8):.1f} L{sx(front,82):.1f} {sy(front,79.8):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    out.append(text(sx(front,71.5), sy(front,78.2), "3.5 mm", 4.8, "bold", "middle", "#1d4ed8"))
+    for x, label in ((16.5, "USB/PWR"), (31.5, "C5 USB"), (44.0, "MIC"), (56.0, "microSD")):
+        out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        out.append(text(sx(front,x), sy(front,148), label, 4.6, "bold", "middle", "#1d4ed8"))
+
+    holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
+    hw, hh = placement_size(holder, devices, instances)
+    out.append(rect(rear, holder.x, holder.y, hw, hh, "#dcfce7", "#16a34a", rx=10))
+    out.append(text(sx(rear,37.5), sy(rear,82), "Keystone 1048P", 9, "bold", "middle", "#166534"))
+    out.append(text(sx(rear,37.5), sy(rear,87), "86×39.8-mm rotated holder", 6.5, anchor="middle", colour="#166534"))
+    for cell_x in (28.0, 47.0):
+        out.append(rect(rear, cell_x-9.3, 52.0, 18.6, 65.0, "#ecfdf3", "#22c55e", rx=20))
+        out.append(text(sx(rear,cell_x), sy(rear,86), "18650", 7, "bold", "middle", "#166534"))
+
+    speaker = Placement("speaker", 12.0, 133.0, "speaker")
+    sw, sh = placement_size(speaker, devices, instances)
+    out.append(rect(rear, speaker.x, speaker.y, sw, sh, "#dbeafe", "#2563eb", rx=8))
+    out.append(text(sx(rear,24), sy(rear,140), "AS02404PO · sound ⊙", 5.8, "bold", "middle", "#1d4ed8"))
+    out.append(rect(rear, 48, 133, 18, 8, "#fff7ed", "#ea580c", "5 3", 3))
+    out.append(text(sx(rear,57), sy(rear,138), "M5 Unit · MPN TBD", 5.6, "bold", "middle", "#9a3412"))
+    out.append(f'<path d="M{sx(rear,57):.1f} {sy(rear,141):.1f} V{sy(rear,148):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    out.append(f'<path d="M{sx(rear,37.5):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    out.append(text(sx(rear,37.5), sy(rear,148), "RP USB", 4.8, "bold", "middle", "#1d4ed8"))
+
+    note_x = 850
+    out += [
+        text(note_x,105,"What this drawing proves",16,"bold"),
+        text(note_x,135,"• both 75×150-mm panels use the same millimetre scale",11),
+        text(note_x,158,"• every solid component envelope comes from the MPN register",11),
+        text(note_x,181,"• full U214 and Keystone holder envelopes do not overlap",11),
+        text(note_x,204,"• exact components clear all M2.5 hole/head keep-outs",11),
+        text(note_x,245,"Interface direction",15,"bold"),
+        text(note_x,273,"↑ / ↓ / ← / →  interface faces through that enclosure edge",11),
+        text(note_x,296,"⊗  touch/press enters face     ⊙  sound/module leaves face",11),
+        text(note_x,337,"TX indication",15,"bold"),
+        '<circle cx="858" cy="360" r="5" fill="#ef4444" stroke="#991b1b"/>',
+        text(875,364,"physical actual-TX evidence for each transmitting path",11),
+        text(note_x,386,"S3, C5, 3×nRF24, CC and voice get antenna-local indicators.",11),
+        text(note_x,409,"IR gets its own indicator; the two Si4732 ports are RX-only.",11),
+        text(note_x,450,"Geometry status",15,"bold"),
+        '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',
+        text(890,479,"solid — registered MPN/reference assembly envelope",11),
+        '<rect x="850" y="497" width="28" height="15" rx="3" fill="none" stroke="#ea580c" stroke-dasharray="5 3"/>',
+        text(890,509,"dashed — reserved space; exact MPN is not selected",11),
+        text(note_x,550,"RF connectors are barrels with hex nuts, not circles.",11,"bold"),
+        text(note_x,573,"Their internal 9×12-mm bodies are conservative reserves.",11),
+        text(note_x,614,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
+        text(note_x,637,"Exact SMA bodies, caps/knob, wall stack and cable bends remain open.",11),
+        text(note_x,670,"Controls retain D-pad + OK, BACK, OPT, F1/F2, PTT, STOP and RE-ARM.",11,"bold"),
+    ]
+    out.append("</svg>")
+    return "\n".join(out) + "\n"
+
+
+def render_internal(devices, instances):
+    scale = 3.7
+    sx, sy, text, rect = helpers(scale)
+    ui, rf = (80.0, 150.0), (465.0, 150.0)
+    all_items = UI_INNER + RF_INNER
+    numbers = {item.instance: index for index, item in enumerate(all_items, 1)}
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="800" viewBox="0 0 1510 800">',
+        '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        text(30,32,"Leshy2 — dimensioned inner-board placement",22,"bold"),
+        text(30,56,"Every grey rectangle is one device at registered MPN size; reserves are orange and dashed.",11,colour="#526076"),
+    ]
+    out += board(ui, "UI/control PCB — inner side", scale, sx, sy, text, rect)
+    out += board(rf, "RF/power PCB — inner side", scale, sx, sy, text, rect)
+    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, True)
+    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, True)
+    for origin, items in ((ui, UI_INNER), (rf, RF_INNER)):
+        for item in items:
+            w, h = placement_size(item, devices, instances)
+            out.append(rect(origin, item.x, item.y, w, h, "#eef2f6", "#667085", rx=2))
+            out.append(text(sx(origin,item.x+w/2), sy(origin,item.y+h/2)+3, str(numbers[item.instance]), 7.5, "bold", "middle"))
+        out.append(rect(origin, MEZZANINE.x, MEZZANINE.y, MEZZANINE.w, MEZZANINE.h, "#fff7ed", "#ea580c", "5 3", 3))
+        out.append(text(sx(origin,37.5), sy(origin,123.5), "M1 · contact budget first · MPN TBD", 6.2, "bold", "middle", "#9a3412"))
+
+    arrows = (
+        (ui,0,76.5,-10,76.5),(ui,0,83.5,-10,83.5),(ui,0,90.5,-10,90.5),
+        (ui,75,79.8,85,79.8),(ui,16.5,150,16.5,159),(ui,31.5,150,31.5,159),
+        (ui,44,150,44,159),(ui,56,150,56,159),(rf,37.5,150,37.5,159),
+    )
+    for origin, x1, y1, x2, y2 in arrows:
+        out.append(f'<path d="M{sx(origin,x1):.1f} {sy(origin,y1):.1f} L{sx(origin,x2):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+
+    left_x, right_x = 830, 1165
+    out += [text(left_x,105,"Numbered physical devices",16,"bold"), text(left_x,128,"UI/control PCB",12,"bold",colour="#1d4ed8")]
+    y = 148
+    for item in UI_INNER:
+        mpn = devices[instances[item.instance]]["mpn"].replace(" (QDtech schematic assembly marking)", "")
+        out.append(text(left_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
+        out.append(text(left_x+26,y+9,item.role,7.2,colour="#526076"))
+        y += 21
+    out.append(text(right_x,128,"RF/power PCB",12,"bold",colour="#c2410c"))
+    y = 148
+    for item in RF_INNER:
+        mpn = devices[instances[item.instance]]["mpn"]
+        out.append(text(right_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
+        out.append(text(right_x+26,y+9,item.role,7.2,colour="#526076"))
+        y += 21
+    out += [
+        text(left_x,560,"Validated clearances",14,"bold"),
+        text(left_x,584,"• device-to-device: ≥0.7 mm in this projection",10),
+        text(left_x,605,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
+        text(left_x,626,"• every edge interface has an outward direction arrow",10),
+        text(left_x,647,"• microSD is edge-accessible; C5 USB stays with C5",10),
+        text(left_x,681,"Orange M1 and RF bodies remain MPN reserves.",10,"bold",colour="#9a3412"),
+        text(left_x,706,"Placement projection; passives, copper and enclosure stack are omitted.",10,colour="#526076"),
+    ]
     out.append("</svg>")
     return "\n".join(out) + "\n"
 
@@ -301,16 +505,23 @@ def main() -> int:
         for error in errors:
             print(f"error: {error}")
         return 1
-    rendered = render()
+    devices, _, instances = load()
+    outputs = {
+        EXTERNAL_OUTPUT: render_external(devices, instances),
+        INTERNAL_OUTPUT: render_internal(devices, instances),
+    }
     if args.write:
-        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-        OUTPUT.write_text(rendered, encoding="utf-8")
-        print(f"wrote {OUTPUT.relative_to(REPO)}")
+        for path, content in outputs.items():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding="utf-8")
+            print(f"wrote {path.relative_to(REPO)}")
     if args.check:
-        if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != rendered:
-            print(f"error: stale {OUTPUT.relative_to(REPO)}")
+        stale = [path.relative_to(REPO) for path, content in outputs.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
+        if stale:
+            for path in stale:
+                print(f"error: stale {path}")
             return 1
-        print("ok: Leshy2 clamshell layout is valid and current")
+        print("ok: external and internal mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0
