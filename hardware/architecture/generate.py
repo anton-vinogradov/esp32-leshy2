@@ -611,6 +611,120 @@ def validate_sources(
                     f"{candidate_id}: BOM antenna-kit gap must match antenna policy"
                 )
 
+        if candidate_id == "G2F-3I":
+            projection_audit = candidate.get("i9_projection_audit", {})
+            if projection_audit.get("status") != (
+                "paper_reviewed_joint_candidate_projection_not_target_architecture"
+            ):
+                errors.append(f"{candidate_id}: I9 projection audit status is not reviewed")
+            for required in (
+                "fixed_route_abstract_policy",
+                "consistency_checks",
+                "unresolved_owner_decisions",
+                "downstream_reopen",
+            ):
+                if required not in projection_audit:
+                    errors.append(f"{candidate_id}: I9 projection audit missing {required}")
+            for field in ("consistency_checks", "downstream_reopen"):
+                values = projection_audit.get(field, [])
+                if not isinstance(values, list) or not values or any(
+                    not isinstance(value, str) or not value.strip()
+                    for value in values
+                ):
+                    errors.append(
+                        f"{candidate_id}: I9 projection audit {field} must be a non-empty string list"
+                    )
+            unresolved_owner_decisions = projection_audit.get(
+                "unresolved_owner_decisions", None
+            )
+            if not isinstance(unresolved_owner_decisions, list):
+                errors.append(
+                    f"{candidate_id}: I9 unresolved_owner_decisions must be a list"
+                )
+            elif unresolved_owner_decisions:
+                errors.append(
+                    f"{candidate_id}: I9 has unresolved owner decisions "
+                    f"{unresolved_owner_decisions}"
+                )
+
+            abstract_policy = projection_audit.get(
+                "fixed_route_abstract_policy", {}
+            )
+            required_abstract_classes = {
+                "electrical_plane_rail_or_wired_logic",
+                "intentional_no_connect_or_open_strap",
+                "pcb_geometry_test_or_reserved_feature",
+                "g3_physical_purchase_resolution_gate",
+                "external_fixture_source_boundary",
+            }
+            class_ids: set[str] = set()
+            classified_abstracts: set[str] = set()
+            for row_number, row in enumerate(abstract_policy.get("classes", []), 1):
+                context = f"I9 abstract class {row_number}"
+                for required in ("id", "rule", "endpoints"):
+                    if not row.get(required):
+                        errors.append(f"{candidate_id}: {context}: missing {required}")
+                class_id = row.get("id", "")
+                if class_id in class_ids:
+                    errors.append(f"{candidate_id}: duplicate I9 abstract class {class_id}")
+                class_ids.add(class_id)
+                endpoints = row.get("endpoints", [])
+                if not isinstance(endpoints, list) or any(
+                    not isinstance(endpoint, str)
+                    or not endpoint.startswith("abstract:")
+                    for endpoint in endpoints
+                ):
+                    errors.append(
+                        f"{candidate_id}: {context}: endpoints must be abstract endpoint strings"
+                    )
+                    continue
+                for endpoint in endpoints:
+                    if endpoint in classified_abstracts:
+                        errors.append(
+                            f"{candidate_id}: duplicate I9 abstract endpoint classification {endpoint}"
+                        )
+                    classified_abstracts.add(endpoint)
+            if class_ids != required_abstract_classes:
+                errors.append(
+                    f"{candidate_id}: I9 abstract classes differ from required set; "
+                    f"missing {sorted(required_abstract_classes - class_ids)}, "
+                    f"unexpected {sorted(class_ids - required_abstract_classes)}"
+                )
+
+            abstract_occurrences = [
+                endpoint
+                for route in candidate.get("fixed_routes", [])
+                for endpoint in (route.get("from"), route.get("to"))
+                if isinstance(endpoint, str) and endpoint.startswith("abstract:")
+            ]
+            actual_abstracts = set(abstract_occurrences)
+            missing_classification = actual_abstracts - classified_abstracts
+            stale_classification = classified_abstracts - actual_abstracts
+            if missing_classification:
+                errors.append(
+                    f"{candidate_id}: I9 unclassified abstract endpoints "
+                    f"{sorted(missing_classification)}"
+                )
+            if stale_classification:
+                errors.append(
+                    f"{candidate_id}: I9 stale abstract endpoint classifications "
+                    f"{sorted(stale_classification)}"
+                )
+            if abstract_policy.get("expected_unique_endpoint_count") != len(
+                actual_abstracts
+            ):
+                errors.append(
+                    f"{candidate_id}: I9 abstract unique count must be "
+                    f"{len(actual_abstracts)}"
+                )
+            if abstract_policy.get("expected_occurrence_count") != len(
+                abstract_occurrences
+            ):
+                errors.append(
+                    f"{candidate_id}: I9 abstract occurrence count must be "
+                    f"{len(abstract_occurrences)}"
+                )
+
         controller_sets: dict[str, set[str]] = {}
         for instance, controller_list in candidate.get("controllers", {}).items():
             if instance not in instances:
@@ -1822,6 +1936,7 @@ def render_target_principled_section(
             "u214": "съёмный LoRa/GNSS Cap-модуль",
             "product_usb_connector": "основной USB-C разъём",
             "product_usb_protector": "защита CC и USB2 порта",
+            "pd_vbus_tvs": "шунтирующая защита VBUS 22 В",
             "pd_controller": "sink-only USB-PD контроллер",
             "nvdc_charger": "2S зарядка и NVDC power path",
             "pack_holder": "поляризованный держатель двух 18650",
@@ -1876,6 +1991,7 @@ def render_target_principled_section(
             "u214": "removable LoRa/GNSS Cap module",
             "product_usb_connector": "product USB-C receptacle",
             "product_usb_protector": "CC and USB2 port protector",
+            "pd_vbus_tvs": "22-V VBUS shunt protector",
             "pd_controller": "sink-only USB-PD controller",
             "nvdc_charger": "2S charger and NVDC power path",
             "pack_holder": "polarized dual-18650 holder",
@@ -1945,18 +2061,22 @@ def render_target_principled_section(
         (
             labels["power"],
             [
-                node("product_usb_connector"), node("product_usb_protector"),
-                node("pd_controller"), node("nvdc_charger"), node("pack_holder"),
-                node("pack_gauge"), node("aon_buck"), node("main_buck"),
-                node("voice_buck"), node("ext_buck"),
+                node("product_usb_connector"), node("product_usb_protector"), node("s3"),
+                node("pd_vbus_tvs"), node("pd_controller"), node("nvdc_charger"),
+                node("pack_holder"), node("pack_gauge"), node("aon_buck"),
+                node("main_buck"), node("voice_buck"), node("ext_buck"),
             ],
             [
-                "  PRODUCT_USB_CONNECTOR --> PRODUCT_USB_PROTECTOR --> PD_CONTROLLER --> NVDC_CHARGER",
-                "  PACK_HOLDER --> PACK_GAUGE --> NVDC_CHARGER",
-                "  NVDC_CHARGER --> AON_BUCK",
-                "  NVDC_CHARGER --> MAIN_BUCK",
-                "  NVDC_CHARGER --> VOICE_BUCK",
-                "  NVDC_CHARGER --> EXT_BUCK",
+                '  PRODUCT_USB_CONNECTOR <-->|"D+/D-"| PRODUCT_USB_PROTECTOR <-->|"protected USB2 GPIO19/20"| S3',
+                '  PRODUCT_USB_CONNECTOR <-->|"CC1/CC2"| PRODUCT_USB_PROTECTOR <-->|"protected CC1/CC2"| PD_CONTROLLER',
+                '  PRODUCT_USB_CONNECTOR -->|"VBUS sink only; never source"| PD_CONTROLLER',
+                '  PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS',
+                '  PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER',
+                '  PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER',
+                '  NVDC_CHARGER -->|"VSYS"| AON_BUCK',
+                '  NVDC_CHARGER -->|"VSYS"| MAIN_BUCK',
+                '  NVDC_CHARGER -->|"VSYS"| VOICE_BUCK',
+                '  NVDC_CHARGER -->|"VSYS"| EXT_BUCK',
             ],
         ),
     ]

@@ -256,6 +256,8 @@ U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
 flowchart TD
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>основной USB-C разъём"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>защита CC и USB2 порта"]
+S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+PD_VBUS_TVS["Texas Instruments TVS2200DRVR<br/>шунтирующая защита VBUS 22 В"]
 PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD контроллер"]
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S зарядка и NVDC power path"]
 PACK_HOLDER["Keystone Electronics 1048P<br/>поляризованный держатель двух 18650"]
@@ -264,12 +266,16 @@ AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on преобразоват
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>основной преобразователь 3,3 В"]
 VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь voice 4,0 В"]
 EXT_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь расширений 5,0 В"]
-  PRODUCT_USB_CONNECTOR --> PRODUCT_USB_PROTECTOR --> PD_CONTROLLER --> NVDC_CHARGER
-  PACK_HOLDER --> PACK_GAUGE --> NVDC_CHARGER
-  NVDC_CHARGER --> AON_BUCK
-  NVDC_CHARGER --> MAIN_BUCK
-  NVDC_CHARGER --> VOICE_BUCK
-  NVDC_CHARGER --> EXT_BUCK
+  PRODUCT_USB_CONNECTOR <-->|"D+/D-"| PRODUCT_USB_PROTECTOR <-->|"protected USB2 GPIO19/20"| S3
+  PRODUCT_USB_CONNECTOR <-->|"CC1/CC2"| PRODUCT_USB_PROTECTOR <-->|"protected CC1/CC2"| PD_CONTROLLER
+  PRODUCT_USB_CONNECTOR -->|"VBUS sink only; never source"| PD_CONTROLLER
+  PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS
+  PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER
+  PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER
+  NVDC_CHARGER -->|"VSYS"| AON_BUCK
+  NVDC_CHARGER -->|"VSYS"| MAIN_BUCK
+  NVDC_CHARGER -->|"VSYS"| VOICE_BUCK
+  NVDC_CHARGER -->|"VSYS"| EXT_BUCK
 ```
 
 [Полный отрисовываемый атлас всех физических устройств](docs/review/architecture/generated/G2F-3I-principled-pinout.md) разбит на ограниченные Mermaid-диаграммы. Исходная монолитная проекция для машинного ревью сохраняется отдельно в [`G2F-3I-principled-projection.mmd`](docs/review/architecture/generated/G2F-3I-principled-projection.mmd).

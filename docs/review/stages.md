@@ -8,19 +8,19 @@ and physical design (`FND-0039`).
 
 ## Где мы сейчас
 
-`I8` ниже — внутренний шаг закрытия feasibility gate `2F`, а не одноимённый
-верхнеуровневый gate `8`. Он проведён в paper procurement-feasibility scope;
-точный frozen BOM остаётся downstream gate 8. Текущая работа — совместное I9
-self-review, которое не означает, что архитектура уже заморожена или разрешён
-KiCad.
+`I8` ниже — внутренний шаг feasibility gate `2F`, а не одноимённый
+верхнеуровневый gate `8`. I1…I9 проведены в working-candidate paper scope;
+точный frozen BOM остаётся downstream gate 8. Текущая работа — G3
+physical/product design от legacy-макета. Архитектура ещё не выбрана и KiCad
+не разрешён.
 
 ```mermaid
 flowchart TD
   G02["Gates 0–2<br/>baseline · product intent · capabilities<br/><b>ПРОВЕДЕНО РЕВЬЮ</b>"]
   I17["Gate 2F / I1–I7<br/>compute · safety · power · UI · audio · RF · expansion<br/><b>ПРОВЕДЕНО РЕВЬЮ В PAPER SCOPE</b>"]
   I8["Gate 2F / I8<br/>components · sources · cost · alternates<br/>175/187 цен + 12 gates · 4/4 physical-family gates<br/><b>ПРОВЕДЕНО РЕВЬЮ PAPER SCOPE</b>"]
-  I9["▶ МЫ ЗДЕСЬ — Gate 2F / I9<br/>совместное self-review и atomic paper projection<br/><b>В РАБОТЕ</b>"]
-  G3["Gate 3<br/>целевой physical/product design<br/>legacy-макет — вход; integrated mockup приостановлен"]
+  I9["Gate 2F / I9<br/>совместное self-review и candidate paper projection<br/><b>ПРОВЕДЕНО РЕВЬЮ PAPER SCOPE</b>"]
+  G3["▶ МЫ ЗДЕСЬ — Gate 3<br/>целевой physical/product design<br/>legacy-макет — вход; integrated mockup возобновлён"]
   G48["Gates 4–8<br/>целые кандидаты → optimality → co-design<br/>→ atomic architecture → frozen BOM"]
   G9["Gate 9<br/>electrical/CAD + firmware architecture<br/><b>KICAD НЕ РАЗРЕШЁН</b>"]
   G1011["Gates 10–11<br/>PCB/pre-fab → prototype/HIL"]
@@ -30,9 +30,9 @@ flowchart TD
   classDef reviewed fill:#163d2b,stroke:#35b779,color:#ffffff,stroke-width:2px;
   classDef current fill:#5a4300,stroke:#ffcc4d,color:#ffffff,stroke-width:4px;
   classDef blocked fill:#3b3f46,stroke:#8b949e,color:#ffffff,stroke-width:1px;
-  class G02,I17,I8 reviewed;
-  class I9 current;
-  class G3,G48,G9,G1011 blocked;
+  class G02,I17,I8,I9 reviewed;
+  class G3 current;
+  class G48,G9,G1011 blocked;
 ```
 
 | № | Gate | Основной выход | Статус |
@@ -40,8 +40,8 @@ flowchart TD
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |
 | 1 | Product intent | назначение, ranked goals, safety/legal and no-loss boundaries | **Проведено ревью**; может быть переоткрыто явным finding |
 | 2 | Capabilities | полный wishlist, competitors, requirements, exclusions, concurrency/failure needs | **Проведено повторное ревью `REV-0002AS`**: `W-EXTRA-11..17` полностью disposed; 6 GHz/Wi-Fi 6E rejected `DEC-0040` |
-| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **В работе на I9**: current G2F-3I projection is `S3 33/3/0`, `C5 14/6/1`, `RP 48/0/0`, main slow I/O `24/0/0` and dedicated UI I/O `7/1/0`. I1…I8 have **«Проведено ревью»** in their paper scopes. `FND-0115/BOM-0028/REV-0005CC` separate internal I8 procurement feasibility from downstream G8 frozen-BOM work: 858 architecture nodes / 857 supplied placements / 187 purchase lines, 186 dated sources + one display source gate, 175 prices / 829 placements + twelve price gates, 187 substitution dispositions and 4/4 physical-family gates. Exact RFQ, named production alternates, physical gate execution and factory COGS remain mandatory at G3/G8. Gate 2F remains open for I9 joint consistency review; KiCad remains unauthorized |
-| 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **В работе от `DEC-0051/PIN-0003` visible working design**: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают G2F |
+| 2F | Logical/electrical feasibility | neutral signal demand, real-device pin provenance, ≥2 complete owner/bus/GPIO maps and working baseline | **Проведено ревью working-candidate paper scope**: `FND-0116/I9-0001/REV-0005CD` jointly check I1…I9, all budgets, 858 architecture nodes / 857 supplied placements / 187 purchase lines and all 970 `abstract:*` occurrences / 59 labels; no unresolved owner decision remains. This is not selection of G7 atomic architecture. Exact RFQ, named production alternates, physical gate execution and factory COGS remain mandatory at G3/G8; KiCad remains unauthorized |
+| 3 | Target product design | adapted legacy physical mockup, form factor, interaction, controls, interfaces, battery, antenna/service/environment/cost envelopes | **Активен** от `DEC-0051/PIN-0003` visible working design: адаптируется legacy generator; `PD-0001` — input, premature `LAY-0001` P1/P2/P3 — reference only; packing/RF/power conflicts переоткрывают их G2F owner |
 | 4 | Whole-device candidates | ≥2 complete architectures covering the same reviewed product | Не начато в исправленном процессе; старые `SYN-2A/2B/3A` — reference studies only |
 | 5 | Optimality decision | reviewed weights, score/Pareto/sensitivity and owner selection | Не начато |
 | 6 | Conceptual co-design | block/board/antenna/power/thermal/service placement and preliminary resource feasibility | Не начато |
@@ -124,6 +124,8 @@ REV-0005BL…CA` проводят ревью cost contract, explicit RFQ/retail 
 оставшихся цен имеют явные gates; они и specific alternate qualification активны,
 KiCad не разрешён. `BOM-0027/REV-0005CB` добавляют 4/4 physical-family gate
 contracts; `FND-0115/BOM-0028/REV-0005CC` проводят I8 paper review и передают
-exact physical/frozen-BOM результаты в их G3/G8 gates. I9 теперь активен.
+exact physical/frozen-BOM результаты в их G3/G8 gates. `FND-0116/I9-0001/
+REV-0005CD` затем проводят совместное I9 working-candidate self-review и
+возобновляют G3; это не G7 atomic architecture и не разрешение KiCad.
 `FND-0112/BOM-0011/DEC-0103/REV-0005BJ` отдельно исправляют
 двойной purchasing-счёт internal ST77922 и фиксируют current 857/187.

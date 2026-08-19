@@ -1,6 +1,6 @@
 # INT-0001 — dependency-ordered internal-design closure sequence
 
-- Статус: **Проведено ревью порядка; I1…I8 paper-reviewed, I9 active**
+- Статус: **Проведено ревью порядка и I1…I9 working-candidate paper scopes; G3 active**
 - Дата: 2026-08-19
 - Decision: [`DEC-0058`](../decisions/DEC-0058-internals-before-integrated-mockup.md)
 - Working map: [`PIN-0003`](PIN-0003-g2f-3i-principled-pinout.md)
@@ -31,7 +31,7 @@ Exact MPN availability повторно проверяется при выбор
 | `I6` | nRF/CC/C5/voice/broadcast/IR RF assemblies, quiet-state isolation and feeds | `I2/I3/I5`, `DEC-0045…0050` | **Проведено ревью paper electrical and qualification scope** by `DEC-0091…0097/COX-0001/REV-0005AV…BC`; physical conducted/OTA/optical/no-stall/thermal/fault HIL is explicitly not executed and can reopen its owner | exact assemblies and feed/protection circuits, power/coexistence budgets and qualification fixtures |
 | `I7` | M5 Unit/Cap, U214, external 5 V, USB/debug and expansion protection | `I1/I2/I3` | **Проведено ревью paper electrical scope** by `DEC-0098/0099`, `EXP-0001/SVC-0002` and `REV-0005BD/BE`; connector/physical/USB/recovery HIL open | profile-safe electrical interface, backfeed/hot-plug/unknown-device behavior and service access |
 | `I8` | consolidated BOM evidence, lifecycle, availability, cost and alternates | `I1…I7` | **Проведено ревью paper procurement-feasibility scope** by `FND-0115/BOM-0028/REV-0005CC`: 858 architecture nodes include one assembly-internal evidence node, leaving 857 supplied placements / 187 purchase lines; 186 dated sources + one standalone-display sourcing gate, 175 costed lines / 829 placements + twelve price gates, 187 substitution dispositions and 4/4 physical-family resolution contracts / 28 items. G3 executes physical inputs; selected-architecture exact RFQ/alternates/factory COGS belong to downstream G8 | every base function maps to exact first target plus equivalence/alternate and sourcing gate |
-| `I9` | whole internal self-review and atomic paper projection | `I0…I8` | **active** | no incompatible fragments, hidden `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
+| `I9` | whole internal self-review and joint candidate paper projection | `I0…I8` | **Проведено ревью working-candidate paper scope** by `FND-0116/I9-0001/REV-0005CD`: all budgets and 858 physical instances agree; 970 `abstract:*` occurrences / 59 labels are exhaustively classified; zero unresolved owner decisions. This is not G7 atomic architecture | no incompatible fragments, hidden unclassified `abstract:*`, unbudgeted rail/pin or unresolved owner decision |
 
 ## Reopen rules
 
@@ -42,6 +42,11 @@ Exact MPN availability повторно проверяется при выбор
   keep an otherwise complete paper block vaguely «open».
 - Any change that removes a capability, service path or safety guarantee returns
   to the owner as an explicit proposal before it changes the machine map.
+
+`I9-0001/REV-0005CD` complete the joint self-review and give I1…I9
+**«Проведено ревью»** in working-candidate paper scope. Per `DEC-0058`, G3
+physical/product design resumes from the legacy layout input. This handoff does
+not select a whole-device candidate, freeze pins/components or authorize KiCad.
 
 ## Completed I3 boundary and current next gate
 

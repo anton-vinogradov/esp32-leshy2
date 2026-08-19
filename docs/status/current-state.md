@@ -15,8 +15,8 @@
 | 0. Review baseline | Reviewed |
 | 1. Product intent and safety/legal boundaries | Reviewed |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Reviewed again**: `REV-0002AS`; competitor delta closed |
-| 2F. Logical/electrical feasibility | **In progress on I9; I1…I8 reviewed in paper scope**: complete candidate electronics/procurement evidence is machine-projected; joint consistency and atomic paper projection are active |
-| 3. Target physical/product design | **Paused until I9**; then resume from the `DEC-0051/PIN-0003` visible working design and adapt the legacy clamshell generator; P1/P2/P3 remain reference-only and conflicts loop back to G2F |
+| 2F. Logical/electrical feasibility | **Reviewed for the working-candidate paper scope**: I1…I9, all current budgets and all 59 unique `abstract:*` boundaries jointly pass; this is not G7 atomic-architecture selection |
+| 3. Target physical/product design | **Active** from the `DEC-0051/PIN-0003` visible working design and legacy clamshell generator; P1/P2/P3 remain reference-only and physical conflicts loop back to their G2F owner |
 | 4–6. Whole-device alternatives, optimality and conceptual co-design | Not started; G2F/G3 form an explicit review loop |
 | 7. Atomic architecture | **Reopened** by `DEC-0032` |
 | 8. Components/BOM | Blocked; previous evidence is candidate/reference only |
@@ -485,10 +485,13 @@ living internals projection. Both target README views and the generated atlas
 must change in the same commit as any accepted device/owner/bus/path change;
 the regression suite checks orientation and current-candidate MPN coverage.
 
-Current dependency maturity is I1…I8 **reviewed in paper scope**. I9 joint
-self-review and atomic paper projection are active. `FND-0115/BOM-0028/
-REV-0005CC` separate reviewed G2F procurement feasibility from G3 physical
-inputs and downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
+Current dependency maturity is I1…I9 **reviewed in working-candidate paper
+scope**. `FND-0116/I9-0001/REV-0005CD` jointly verify the budgets, 858 physical
+instances and exhaustive classification of all 970 `abstract:*` occurrences /
+59 labels, with zero unresolved owner decisions. G3 physical/product design is
+active; this is not G7 atomic architecture. `FND-0115/BOM-0028/REV-0005CC`
+separate reviewed G2F procurement feasibility from G3 physical inputs and
+downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` exposed, repaired and re-reviewed the
 MAX17320/MSPM0 support that had remained prose/abstract; this did not change
 the accepted 2S topology.
@@ -504,8 +507,8 @@ close the remaining service/recovery circuit: two board-off-isolated data-only
 USB ports, three keyed DBG10, six separate controls, exact straps/passives and
 passive-drain hard-STOP resets are machine-instantiated. GPIO budgets and all
 controls remain unchanged. Physical connector/mechanics, USB SI/backfeed/ESD,
-fixture and erased-image HIL remain named reopen gates; KiCad and the integrated
-mockup remain blocked until I9 passes.
+fixture and erased-image HIL remain named reopen gates. I9 has now passed, so
+the integrated G3 mockup resumes; KiCad remains blocked.
 
 `FND-0109/BOM-0008` now generate a consolidated narrow-screen review and CSV:
 858 architecture instances include one explicitly excluded assembly-internal

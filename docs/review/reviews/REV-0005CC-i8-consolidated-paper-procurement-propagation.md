@@ -23,3 +23,6 @@ instead of forming a circular I8 prerequisite.
 
 I9 joint self-review becomes active. G3 remains paused until I9 passes; G4…G8,
 KiCad and physical/HIL claims remain unauthorized.
+
+Successor note: `REV-0005CD` later passes I9 in working-candidate paper scope
+and resumes G3; G4…G8 and KiCad remain unauthorized.

@@ -3,7 +3,7 @@
   "id": "G2F-3I",
   "title": "Three domains with independent radio IPC and only bounded display/storage sharing",
   "status": "draft_non_interference_candidate",
-  "decisive_open_risk": "I1 through I8 paper feasibility scopes are reviewed; I9 joint self-review is active, while G3 physical design and downstream G8 exact-BOM/RFQ/alternate/factory-cost qualification remain explicit",
+  "decisive_open_risk": "I1 through I9 paper feasibility scopes are reviewed; G3 target physical/product design is active, and its findings may reopen this working candidate before G4-G7 selection and downstream G8 exact-BOM qualification",
   "bom_audit": {
     "status": "i8_paper_procurement_feasibility_reviewed_candidate_only",
     "default_scope": "base_product",
@@ -213,6 +213,73 @@
     ],
     "pcb_features_not_mpn_lines": ["ground and via fields", "no-connects and fixed copper straps", "protected test pads", "reserved DNP footprints"],
     "exit": "every installed or supplied physical item has a scope, exact first target or explicit measured/received-item gate, current lifecycle/orderability evidence, cost snapshot and no-silent-substitution policy"
+  },
+  "i9_projection_audit": {
+    "status": "paper_reviewed_joint_candidate_projection_not_target_architecture",
+    "fixed_route_abstract_policy": {
+      "expected_unique_endpoint_count": 59,
+      "expected_occurrence_count": 970,
+      "classes": [
+        {
+          "id": "electrical_plane_rail_or_wired_logic",
+          "rule": "named conductive plane, protected/raw rail, supervised cell node or explicit wired-logic aggregation; never a hidden purchasable component",
+          "endpoints": [
+            "abstract:power-ground", "abstract:3V3_MAIN", "abstract:safety-ground", "abstract:rf-ground", "abstract:AON_SAFE_3V3", "abstract:audio-ground",
+            "abstract:qualified-2s-positive", "abstract:power-current-thermal-fault", "abstract:protected-2s-midpoint", "abstract:SYS_INT_N_WIRED_LOW",
+            "abstract:AON_RAW_3V3", "abstract:admitted-system-3v3", "abstract:VVOICE_RAW_4V", "abstract:MAIN_RAW_3V3"
+          ]
+        },
+        {
+          "id": "intentional_no_connect_or_open_strap",
+          "rule": "datasheet-reviewed no-connect or deliberately open configuration contact; no physical purchase line",
+          "endpoints": ["abstract:no-connect", "abstract:no-connect-open-vset"]
+        },
+        {
+          "id": "pcb_geometry_test_or_reserved_feature",
+          "rule": "copper/via/ground geometry, protected fixture point or reserved local pad whose implementation belongs to later CAD but does not create an MPN line",
+          "endpoints": [
+            "abstract:power-ground-dedicated-via", "abstract:safety-ground-dedicated-via", "abstract:rf-ground-dedicated-via", "abstract:chassis-rf-ground",
+            "abstract:voice-raw-converter-pg-test", "abstract:safety-ground-via-10k", "abstract:rp-service-vbus-high-impedance-test-pad",
+            "abstract:reserved-local-control-expansion-pad", "abstract:power-ground-multivia", "abstract:pd-eeprom-factory-wp-pad",
+            "abstract:pd-eeprom-factory-sda-pad", "abstract:pd-eeprom-factory-scl-pad", "abstract:main-raw-converter-pg-test",
+            "abstract:c5-service-vbus-high-impedance-test-pad", "abstract:c5-gpio27-read-only-test-pad", "abstract:TP_VOICE_UPDATE_WITH_GND",
+            "abstract:TP_VOICE_EFUSE_PG_N", "abstract:TP_USB_PROTECTOR_FAULT_N", "abstract:TP_UNIT_5V_ILM", "abstract:TP_U214_5V_ILM",
+            "abstract:TP_SLOW_IO_RESET_N", "abstract:TP_PACK_NRST_N", "abstract:TP_LCD_BACKLIGHT_FAULT_N", "abstract:TP_EVIDENCE_MASK_INT_N"
+          ]
+        },
+        {
+          "id": "g3_physical_purchase_resolution_gate",
+          "rule": "electrical endpoint is fixed but connector body, cable mate/length or antenna/pod identity is owned by a BOM-0027 G3 received-item/geometry gate",
+          "endpoints": [
+            "abstract:S3-placement-qualified-double-ended-UFL-jumper", "abstract:C5-placement-qualified-double-ended-UFL-jumper",
+            "abstract:RX-FM-SW-dedicated-standard-SMA", "abstract:RX-AM-LW-keyed-loop-pod-standard-SMA",
+            "abstract:NRF0-qualified-module-pigtail-mate", "abstract:NRF1-qualified-module-pigtail-mate", "abstract:NRF2-qualified-module-pigtail-mate",
+            "abstract:S3-dedicated-external-reverse-polarity-SMA", "abstract:C5-dedicated-external-reverse-polarity-SMA",
+            "abstract:NRF0-dedicated-standard-SMA", "abstract:NRF1-dedicated-standard-SMA", "abstract:NRF2-dedicated-standard-SMA",
+            "abstract:CC-dedicated-standard-SMA", "abstract:VOICE-dedicated-standard-SMA",
+            "abstract:native-M5-HY2-0-4P-5V", "abstract:native-M5-HY2-0-4P-GND", "abstract:native-M5-HY2-0-4P-SIG0", "abstract:native-M5-HY2-0-4P-SIG1"
+          ]
+        },
+        {
+          "id": "external_fixture_source_boundary",
+          "rule": "explicit isolated external fixture supply boundary, not a base-product component or normal operating rail",
+          "endpoints": ["abstract:isolated-pack-fixture-3v3"]
+        }
+      ]
+    },
+    "consistency_checks": [
+      "all programmable GPIO, module contacts, slow-I/O contacts, service alternatives and scheduled resources are machine-accounted without collision",
+      "all 858 physical architecture instances render one-device-per-node and the 857 supplied placements map to the reviewed I8 purchase boundary",
+      "all signal groups have complete quiet-state, transition, actual-TX evidence and no-stall contracts without cross-group runtime promotion",
+      "all remaining physical, procurement and HIL uncertainty has an owning downstream gate and no unresolved owner decision changes candidate function"
+    ],
+    "unresolved_owner_decisions": [],
+    "downstream_reopen": [
+      "G3 physical placement, connector plane, enclosure, antenna and received-item evidence may reopen the working candidate",
+      "G4-G7 whole-device alternatives, optimality and atomic architecture may replace any current owner/device/pin assignment",
+      "G8 repeats exact target lifecycle, RFQ, cost, alternate and factory-BOM qualification",
+      "G11 failed electrical, safety, RF, thermal, recovery or no-stall HIL reopens the owning paper block"
+    ]
   },
   "antenna_policy": {"decision":"DEC-0048","exact_count_decision":"DEC-0049","external_connector_decision":"DEC-0050","kit_profile_decision":"DEC-0055","availability_check_gate":"exact_mpn_selection","full_field_kit_physical_items":12,"max_simultaneously_connected":9,"kit_profiles":{"native_wifi":{"paths":["S3-2G4","C5-2G4/5"],"shared_exact_mpn":true,"physical_items":2},"nrf24":{"paths":["N24-0","N24-1","N24-2"],"shared_exact_mpn":true,"physical_items":3},"cc_sub":{"path":"CC-SUB","profiles":["315","433","868_915_combined"],"physical_items":3},"voice":{"path":"VOICE-V/U","profiles":["VHF_136_174","UHF_400_470"],"physical_items":2},"receiver":{"paths":["RX-FM/SW","RX-AM/LW"],"profiles":["FM_SW_whip","AM_LW_loop_or_buffered_pod"],"physical_items":2}},"base_extended_packaging_decision":"deferred_to_costed_product_variants","base_onboard_endpoint":"external_sma","base_onboard_sma_count":9,"base_onboard_sma_paths":["S3-2G4","C5-2G4/5","N24-0","N24-1","N24-2","CC-SUB","VOICE-V/U","RX-FM/SW","RX-AM/LW"],"device_connector_by_path":{"S3-2G4":"rp_sma_jack_pin_center","C5-2G4/5":"rp_sma_jack_pin_center","N24-0":"sma_jack_socket_center","N24-1":"sma_jack_socket_center","N24-2":"sma_jack_socket_center","CC-SUB":"sma_jack_socket_center","VOICE-V/U":"sma_jack_socket_center","RX-FM/SW":"sma_jack_socket_center","RX-AM/LW":"sma_jack_socket_center"},"antenna_mate_by_path":{"S3-2G4":"rp_sma_plug_socket_center","C5-2G4/5":"rp_sma_plug_socket_center","N24-0":"sma_plug_pin_center","N24-1":"sma_plug_pin_center","N24-2":"sma_plug_pin_center","CC-SUB":"sma_plug_pin_center","VOICE-V/U":"sma_plug_pin_center","RX-FM/SW":"sma_plug_pin_center","RX-AM/LW":"sma_plug_pin_center"},"antenna_qualification_gate":{"minimum_orderable_qualified_mpns_per_group":2,"native_wifi_fallback":"standard_sma_if_no_gain_cost_availability_advantage"},"identification_controls":["permanent_path_band_label","color_collar_or_cap","antenna_profile_manifest","tx_interlock"],"nrf_module_interface":"ipex_to_short_pigtail","nrf_dedicated_sma_count":3,"integrated_pcb_antenna_baseline":false,"si4732_port_topology":"dedicated_fmi_and_ami","si4732_shared_switch":false,"si4732_ami_external_profile":"direct_plug_in_loop_or_qualified_buffered_pod","external_accessory_antennas":"owned_by_accessory"},
   "ui_control_contract": {
@@ -510,7 +577,7 @@
     "internal_rail_protection_decision": "DEC-0081",
     "internal_rail_protection_profile": "TPS25961DRVR lies between AON_RAW_3V3 and AON_SAFE_3V3 with RC0402FR-07240KL nominal 0.208-A current limit, RC0402FR-07196KL/RC0402FR-07100KL 3.505-3.809-V OVLO corner window, one local 100-nF input capacitor and one 10-uF protected output capacitor. Main and voice each use latch-off circuit-breaker TPS25974LRPWR, 4.7-nF controlled rise, 120-pF approximately 0.09-ms transient blanking and protected-rail PG. Main uses a 1.65-kOhm 3.2-3.715-A threshold, precision 191/100-kOhm 3.438-3.578-V OVLO window and 45.3/30-kOhm PG divider. Voice uses a 3.32-kOhm 1.55-1.905-A threshold, 270/100-kOhm 4.314-4.610-V OVLO window and 68/33-kOhm PG divider. Every EN/UVLO is tied to its own sub-5-V raw rail; firmware cannot bypass OVLO, overcurrent, short or thermal shutdown",
     "paper_closure_decision": "DEC-0082",
-    "paper_closure_status": "I3 paper electrical scope reviewed; remaining entries are exact-lot, prototype HIL or I8 procurement evidence and do not authorize KiCad",
+    "paper_closure_status": "I3 paper electrical scope reviewed; remaining entries are exact-lot, downstream G8 procurement or G11 prototype HIL evidence and do not authorize KiCad",
     "source_power_reserve": {"paper_efficiency_factor":0.85,"rule":"Icharge <= min(2A, max(0, (0.85 * negotiated_input_watts - max(declared_scenario_load_watts, measured_SYS_load_watts + measurement_margin_watts)) / measured_pack_voltage)); any missing measurement or DPM/thermal/fault state reduces charge to zero","best_case_pdo_sys_w":{"5V_3A":12.75,"9V_3A":22.95,"15V_2A":25.5},"full_2a_charge_sys_headroom_w_at_8v4":{"5V_3A":-4.05,"9V_3A":6.15,"15V_2A":8.7}},
     "diagnostic_decision": "DEC-0078",
     "diagnostic_load_profile": "Two parallel CRM2512-FX-20R0ELF pulse-rated 20-ohm/2-W resistors form an exact 10-ohm 4-W load ahead of a DMN2056U-7 low-side switch across the fused 2S stack. PA22 emits only a rising edge into non-retriggerable TPUL2G223BQBR channel 1; exact 169-kOhm/220-nF C0G timing gives about 34.4 ms typical and a conservative 28.7-40.7 ms paper range, with production accepting only 25-50 ms. At the end of every channel-1 pulse, its falling Q edge starts channel 2. Exact 620-kOhm/1-uF timing holds complementary 2Q low for a paper minimum of 350 ms and asynchronously clears channel 1, so a stuck or hostile MCU can produce at most one bounded pulse per refractory interval. The two load resistors remain below their combined hot derated continuous rating even under that hardware-only worst case; firmware imposes a longer HIL-derived operational cooldown",
@@ -524,7 +591,7 @@
     "external_protection_decision": "DEC-0069",
     "external_protection_profile_decision": "DEC-0071",
     "external_protection": "TPS259470LRPWR follows the 5V converter and provides always-on reverse blocking, latch-off thermal-fault behavior and open-drain fault evidence. RC0402FR-072K21L sets a nominal 1.509A current limit that applies immediately at startup; GRM155R71H472KA01D limits the controlled startup slew. GRM188R71E224KA88D permits only a bounded post-start 2A transient; it does not defer startup current limiting. The exact OVLO divider, local capacitors and passive output bleeder complete the accepted paper profile",
-    "remaining_i3": ["I8/procurement: assembly-matching XTAR certification documents", "prototype HIL: XTAR/1048P continuity, installed fit and three-NTC contact coupling", "prototype HIL: exact-cell droop thresholds, pulse/cooldown lot characterization and hot copper", "prototype HIL: protected AON-PG/POR/main startup, brownout and source removal", "prototype HIL: raw/protected converter startup, OVLO, load step, short, latch recovery and PG", "controlled destructive HIL: complete single-fault containment and thermal map"],
+    "remaining_i3": ["G8 procurement: assembly-matching XTAR certification documents", "G11 prototype HIL: XTAR/1048P continuity, installed fit and three-NTC contact coupling", "G11 prototype HIL: exact-cell droop thresholds, pulse/cooldown lot characterization and hot copper", "G11 prototype HIL: protected AON-PG/POR/main startup, brownout and source removal", "G11 prototype HIL: raw/protected converter startup, OVLO, load step, short, latch recovery and PG", "G11 controlled destructive HIL: complete single-fault containment and thermal map"],
     "deferred_i4": ["product USB connector placement and enclosure cutout HIL", "USB Full-Speed RC tuning, signal-integrity, ESD and short-to-VBUS HIL", "HMX035CTFT-001 standalone procurement identity and exact FPC-tail fit in the first connector candidate", "display QSPI/shared-SPI signal integrity, ST77922 identity/readback/interrupt/reset HIL, backlight current/thermal and injected-fault HIL", "DM3AT-SF-PEJM5 placement, enclosure card access and push-push retention HIL", "microSD media compatibility/endurance, shared-SPI timing/contention, hot-insert, ESD, short, brownout, QOD and unexpected-removal HIL"]
   },
   "display_contract": {
@@ -568,7 +635,7 @@
     "evidence_hold": "all three AD8314 ENBL inputs share a diode-charged 10-kOhm/1-uF hold node derived from NRF_GROUP_PWR_EN_SAFE; the detectors are active before the radio rail rises and remain active through rail/QOD fall, then enter approximately 20-uA shutdown instead of spending about 13.5 mA continuously",
     "frequency_and_margin": "DC2337J5010AHF Rev. H specifies 2000-4000 MHz, with 10.0-11.2-dB coupling and <=0.25-dB insertion loss across 2400-2525 MHz; AD8314 responds through 2700 MHz. A -18-dBm minimum module output therefore reaches the detector near -29.2 dBm before layout tolerance, leaving typical range margin; calibration may never substitute for channel-0/100/125 temperature and lot HIL",
     "antenna_boundary": "each path terminates at its own standard external SMA feed, but the Ebyte-labelled IPX receptacle has no proven mating family; microscope/dimension/fit/VNA qualification of a received module and pigtail blocks connector/PCB freeze and prevents an unverified U.FL assumption",
-    "cost_delta_usd_at_100": "approximately 4.2 for six Ioff buffers and three couplers plus passives; AD8314 replaces the prior three detector bodies rather than adding three more. Exact detector quotation remains an I8 gate",
+    "cost_delta_usd_at_100": "the earlier approximately-USD-4.2 subblock estimate is superseded by current exact-MPN machine cost records; E01 module quotations and physical pigtail/SMA identities remain explicit downstream G8/G3 gates rather than hidden zero-cost lines",
     "remaining_hil": ["received E01-ML01IPX authenticity, pad and RF-receptacle identity", "qualified pigtail mate and three module-to-SMA insertion-loss/return-loss sweeps", "SPI at 10 Mbit/s through all buffers and 22-Ohm resistors", "100-ms POR, three-radio identity and rail/QOD/no-backpower corners", "forward-power threshold and false-negative margin at channels 0, 100 and 125 over voltage, temperature and module lots", "strong inbound RF false-positive behavior and >=18-dB coupler reverse discrimination", "T1 target/peer 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX coexistence fixture"]
   },
   "native_rf_electrical_contract": {
@@ -2138,9 +2205,9 @@
     {"from":"pack_batts_filter_cap.END_2","to":"pack_gauge.CELL3","net":"PACK_CELL1_SENSE","safety":"top-cell filter closes at the shorted CELL3/CELL2/CELL1 midpoint node"},
     {"from":"pack_gauge.TH3","to":"pack_gauge.GND","net":"PACK_TH3_UNUSED_LOW","safety":"unused TH3 is tied to GND, one of the two explicit Rev.12 dispositions"},
     {"from":"pack_gauge.TH4","to":"pack_gauge.GND","net":"PACK_TH4_UNUSED_LOW","safety":"unused TH4 is tied to GND, avoiding the obsolete REG3 connection forbidden by later datasheet revisions"},
-    {"from":"pack_gauge.TH1","to":"pack_ntc0.END_1","net":"PACK_CELL0_TEMP","safety":"one exact 10-kOhm NTC uses a dedicated insulated compliant contact through the open holder window to the middle third of cell 0; compression and response remain I8/HIL gates"},
+    {"from":"pack_gauge.TH1","to":"pack_ntc0.END_1","net":"PACK_CELL0_TEMP","safety":"one exact 10-kOhm NTC uses a dedicated insulated compliant contact through the open holder window to the middle third of cell 0; compression and response remain G11 prototype-HIL gates"},
     {"from":"pack_ntc0.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"TH1 uses the MAX17320 internal pullup and protected 10-kOhm mode"},
-    {"from":"pack_gauge.TH2","to":"pack_ntc1.END_1","net":"PACK_CELL1_TEMP","safety":"one exact 10-kOhm NTC uses a dedicated insulated compliant contact through the open holder window to the middle third of cell 1; compression and response remain I8/HIL gates"},
+    {"from":"pack_gauge.TH2","to":"pack_ntc1.END_1","net":"PACK_CELL1_TEMP","safety":"one exact 10-kOhm NTC uses a dedicated insulated compliant contact through the open holder window to the middle third of cell 1; compression and response remain G11 prototype-HIL gates"},
     {"from":"pack_ntc1.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"TH2 uses the MAX17320 internal pullup and protected 10-kOhm mode"},
     {"from":"pack_cell0.POS","to":"pack_holder.SLOT0_POS","net":"PACK_SLOT0_POSITIVE_RAW","safety":"only the exact protected button-top qualification target is modeled; physical polarity and received-lot identity remain admission prerequisites"},
     {"from":"pack_cell0.NEG","to":"pack_holder.SLOT0_NEG","net":"PACK_LOCAL_GND","safety":"the exact cell negative end reaches local pack ground only through the mechanically polarized holder contact"},

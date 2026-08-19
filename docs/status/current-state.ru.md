@@ -15,8 +15,8 @@
 | 0. Review baseline | Проведено ревью |
 | 1. Product intent и safety/legal boundaries | Проведено ревью |
 | 2. Capabilities, exclusions, concurrency/failure needs | **Повторно проведено ревью**: `REV-0002AS`; competitor delta закрыт |
-| 2F. Logical/electrical feasibility | **В работе на I9; I1…I8 reviewed в paper scope**: complete candidate electronics/procurement evidence входит в machine projection; активны совместная consistency-проверка и atomic paper projection |
-| 3. Target physical/product design | **Приостановлен до I9**; затем возобновляется от `DEC-0051/PIN-0003` visible working design с адаптацией legacy clamshell generator; P1/P2/P3 reference only, конфликты возвращаются в G2F |
+| 2F. Logical/electrical feasibility | **Проведено ревью working-candidate paper scope**: I1…I9, все текущие бюджеты и все 59 уникальных `abstract:*` boundaries совместно проверены; это не выбор G7 atomic architecture |
+| 3. Target physical/product design | **Активен** от `DEC-0051/PIN-0003` visible working design и legacy clamshell generator; P1/P2/P3 reference only, физические конфликты возвращаются к их G2F owner |
 | 4–6. Whole-device alternatives, optimality и conceptual co-design | Не начаты; G2F/G3 образуют проверяемый loop |
 | 7. Atomic architecture | **Переоткрыта** решением `DEC-0032` |
 | 8. Components/BOM | Заблокирован; прежние evidence только candidate/reference |
@@ -487,10 +487,13 @@ startup/shutdown/brownout/multi-fault gates остаются обязатель�
 owner, шины или тракта; regression проверяет orientation и покрытие MPN
 текущего candidate.
 
-Текущая зрелость dependency chain: I1…I8 **reviewed в paper scope**. Активны
-I9 joint self-review и atomic paper projection. `FND-0115/BOM-0028/
-REV-0005CC` отделяют проверенную G2F procurement feasibility от G3 physical
-inputs и downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
+Текущая зрелость dependency chain: I1…I9 **reviewed в working-candidate paper
+scope**. `FND-0116/I9-0001/REV-0005CD` совместно проверяют бюджеты, 858
+физических instances и исчерпывающую классификацию всех 970 вхождений /
+59 labels `abstract:*`; unresolved owner decisions нет. G3 physical/product
+design активен; это не G7 atomic architecture. `FND-0115/BOM-0028/REV-0005CC`
+отделяют проверенную G2F procurement feasibility от G3 physical inputs и
+downstream G8 frozen-BOM/RFQ/alternate/factory-cost qualification.
 `FND-0109/PWR-0022/DEC-0100/REV-0005BF` обнаруживают, исправляют и повторно
 проверяют MAX17320/MSPM0 support, который оставался prose/abstract; принятая
 2S topology не меняется.
@@ -506,8 +509,8 @@ source gaps и исправляют prose-псевдо-MPN RP на exact `SC1512
 USB, три keyed DBG10, шесть отдельных controls, exact straps/passives и
 passive-drain hard-STOP resets внесены в machine source. GPIO budgets и весь
 набор controls не изменились. Physical connector/mechanics, USB
-SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates; KiCad
-и integrated mockup заблокированы до прохождения I9.
+SI/backfeed/ESD, fixture и erased-image HIL остаются named reopen gates. I9
+пройден, поэтому integrated G3 mockup возобновлён; KiCad остаётся заблокирован.
 
 `FND-0109/BOM-0008` теперь генерируют consolidated narrow-screen review и CSV:
 858 architecture instances включают один явно исключённый assembly-internal

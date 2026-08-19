@@ -38,3 +38,6 @@ product BOM and factory COGS will be.
 I8 receives **«Проведено ревью» in paper procurement-feasibility scope**. I9
 joint internal self-review is the next active prerequisite before the paused
 integrated product mockup resumes.
+
+Successor note: `FND-0116/I9-0001/REV-0005CD` later complete that prerequisite;
+G3 is now active. This does not change the I8 evidence boundary above.

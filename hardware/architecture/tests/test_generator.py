@@ -137,6 +137,60 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
 
+    def test_i9_joint_projection_classifies_every_abstract_endpoint(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        audit = candidate["i9_projection_audit"]
+        self.assertEqual(
+            "paper_reviewed_joint_candidate_projection_not_target_architecture",
+            audit["status"],
+        )
+        policy = audit["fixed_route_abstract_policy"]
+        classified = {
+            endpoint
+            for row in policy["classes"]
+            for endpoint in row["endpoints"]
+        }
+        occurrences = [
+            endpoint
+            for route in candidate["fixed_routes"]
+            for endpoint in (route["from"], route["to"])
+            if endpoint.startswith("abstract:")
+        ]
+        self.assertEqual(59, policy["expected_unique_endpoint_count"])
+        self.assertEqual(970, policy["expected_occurrence_count"])
+        self.assertEqual(set(occurrences), classified)
+        self.assertEqual([], audit["unresolved_owner_decisions"])
+        self.assertEqual(
+            18,
+            len(
+                next(
+                    row["endpoints"]
+                    for row in policy["classes"]
+                    if row["id"] == "g3_physical_purchase_resolution_gate"
+                )
+            ),
+        )
+
+    def test_rejects_unclassified_i9_abstract_or_owner_decision(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        policy = candidate["i9_projection_audit"]["fixed_route_abstract_policy"]
+        removed = policy["classes"][0]["endpoints"].pop()
+        self.assertIn(
+            f"I9 unclassified abstract endpoints ['{removed}']",
+            "\n".join(self.errors_for(candidates)),
+        )
+
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        candidate["i9_projection_audit"]["unresolved_owner_decisions"] = [
+            "test undecided owner"
+        ]
+        self.assertIn(
+            "I9 has unresolved owner decisions",
+            "\n".join(self.errors_for(candidates)),
+        )
+
     def test_rejects_incomparable_or_undocumented_cost_evidence(self):
         cases = (
             ({"currency": "EUR"}, "cost currency must be USD"),
@@ -532,7 +586,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "s3", "c5", "rp", "display", "sd", "slow_io", "ui_matrix_io",
             "codec", "receiver", "nrf0", "nrf1", "nrf2", "cc", "voice",
             "u214", "product_usb_connector", "product_usb_protector",
-            "pd_controller", "nvdc_charger", "pack_holder", "pack_gauge",
+            "pd_vbus_tvs", "pd_controller", "nvdc_charger", "pack_holder", "pack_gauge",
             "aon_buck", "main_buck", "voice_buck", "ext_buck",
             "ir_demod", "ir_carrier", "ir_emitter",
         )
@@ -604,6 +658,21 @@ class ArchitectureValidationTests(unittest.TestCase):
                 self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT, readme_name)
                 assert_no_implicit_mermaid_nodes(diagram, readme_name)
             combined_diagrams = "\n".join(diagrams)
+            self.assertIn(
+                'PRODUCT_USB_CONNECTOR <-->|"D+/D-"| PRODUCT_USB_PROTECTOR',
+                combined_diagrams,
+                readme_name,
+            )
+            self.assertIn(
+                'PRODUCT_USB_CONNECTOR -->|"VBUS sink only; never source"| PD_CONTROLLER',
+                combined_diagrams,
+                readme_name,
+            )
+            self.assertNotIn(
+                "PRODUCT_USB_CONNECTOR --> PRODUCT_USB_PROTECTOR --> PD_CONTROLLER",
+                combined_diagrams,
+                readme_name,
+            )
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,

@@ -248,6 +248,8 @@ U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
 flowchart TD
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>product USB-C receptacle"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>CC and USB2 port protector"]
+S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+PD_VBUS_TVS["Texas Instruments TVS2200DRVR<br/>22-V VBUS shunt protector"]
 PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD controller"]
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S charger and NVDC power path"]
 PACK_HOLDER["Keystone Electronics 1048P<br/>polarized dual-18650 holder"]
@@ -256,12 +258,16 @@ AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on 3.3-V safety converter"]
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>main 3.3-V converter"]
 VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>voice 4.0-V converter"]
 EXT_BUCK["Texas Instruments TPS564252DRLR<br/>accessory 5.0-V converter"]
-  PRODUCT_USB_CONNECTOR --> PRODUCT_USB_PROTECTOR --> PD_CONTROLLER --> NVDC_CHARGER
-  PACK_HOLDER --> PACK_GAUGE --> NVDC_CHARGER
-  NVDC_CHARGER --> AON_BUCK
-  NVDC_CHARGER --> MAIN_BUCK
-  NVDC_CHARGER --> VOICE_BUCK
-  NVDC_CHARGER --> EXT_BUCK
+  PRODUCT_USB_CONNECTOR <-->|"D+/D-"| PRODUCT_USB_PROTECTOR <-->|"protected USB2 GPIO19/20"| S3
+  PRODUCT_USB_CONNECTOR <-->|"CC1/CC2"| PRODUCT_USB_PROTECTOR <-->|"protected CC1/CC2"| PD_CONTROLLER
+  PRODUCT_USB_CONNECTOR -->|"VBUS sink only; never source"| PD_CONTROLLER
+  PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS
+  PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER
+  PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER
+  NVDC_CHARGER -->|"VSYS"| AON_BUCK
+  NVDC_CHARGER -->|"VSYS"| MAIN_BUCK
+  NVDC_CHARGER -->|"VSYS"| VOICE_BUCK
+  NVDC_CHARGER -->|"VSYS"| EXT_BUCK
 ```
 
 The [complete rendered physical-device atlas](docs/review/architecture/generated/G2F-3I-principled-pinout.md) is split into bounded Mermaid diagrams. The original monolithic projection remains available for machine review as [`G2F-3I-principled-projection.mmd`](docs/review/architecture/generated/G2F-3I-principled-projection.mmd).

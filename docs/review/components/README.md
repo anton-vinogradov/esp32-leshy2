@@ -1,6 +1,6 @@
 # Component/BOM workspace
 
-- Статус: **I8 paper procurement-feasibility reviewed; I9 active; former stage-4 package historical**
+- Статус: **I8 and I9 working-candidate paper scopes reviewed; G3 active; former stage-4 package historical**
 - Former prerequisite: superseded `DEC-0028/PKG-0001/SYN-3A`
 - Current use: candidate facts and risks only
 
@@ -86,6 +86,7 @@ explicit physical-gap register feed the generated manifest.
 - [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md) / [`REV-0005BY`](../reviews/REV-0005BY-specialty-cost-gate-propagation.md) — seven exact specialty prices, two explicit gates and one source repair; **Проведено ревью thirteenth-batch checkpoint** at 169/187 lines / 823/857 placements and USD 157.1927 partial base subtotal.
 - [`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md) / [`REV-0005CA`](../reviews/REV-0005CA-high-q-rf-capacitor-cost-propagation.md) — six exact high-Q RF-capacitor prices; **Проведено ревью fourteenth batch**, current coverage 175/187 lines / 829/857 placements and USD 157.3727 partial base subtotal, with explicit gates on all twelve remaining unpriced lines.
 - [`BOM-0027`](BOM-0027-physical-purchase-family-resolution-gates.md) / [`REV-0005CB`](../reviews/REV-0005CB-physical-purchase-gate-propagation.md) — explicit owner/prerequisite/acceptance contracts for 4/4 physical purchase families / 28 items; **Проведено ревью gate coverage**, exact parts and physical/HIL results stay open.
-- [`FND-0115`](../findings/FND-0115-i8-exit-mixed-g2f-with-downstream-g8.md) / [`BOM-0028`](BOM-0028-i8-consolidated-paper-procurement-review.md) / [`REV-0005CC`](../reviews/REV-0005CC-i8-consolidated-paper-procurement-propagation.md) — circular G2F/G3/G8 exit repaired; **I8 paper procurement-feasibility scope проведено ревью**, I9 active.
+- [`FND-0115`](../findings/FND-0115-i8-exit-mixed-g2f-with-downstream-g8.md) / [`BOM-0028`](BOM-0028-i8-consolidated-paper-procurement-review.md) / [`REV-0005CC`](../reviews/REV-0005CC-i8-consolidated-paper-procurement-propagation.md) — circular G2F/G3/G8 exit repaired; **I8 paper procurement-feasibility scope проведено ревью**.
+- [`FND-0116`](../findings/FND-0116-i9-abstract-and-stage-labels-were-not-closed.md) / [`I9-0001`](../architecture/I9-0001-joint-candidate-paper-projection-review.md) / [`REV-0005CD`](../reviews/REV-0005CD-i9-joint-candidate-projection-propagation.md) — all machine boundaries jointly classified; **I9 working-candidate paper scope проведено ревью**, G3 active.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.
