@@ -334,7 +334,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             'data-inner-silkscreen="none"',
             "Inner PCB faces contain no silkscreen text",
             "M2.5 hole/head keep-out",
-            "every edge arrow is centred",
+            "antenna arrows reference outer-face ports",
             'data-view="mirrored-x"',
             "AS02404PO",
             "CMEJ-0413-42-SMT-TR",
@@ -344,6 +344,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         ):
             self.assertIn(token, internal)
         self.assertNotIn('data-layer="pcb-silkscreen"', internal)
+        self.assertEqual(2, internal.count('data-connector-bodies="omitted-outer-face"'))
         for forbidden_inner_silk in (
             "54 · MIC",
             "AS02404PO · speaker · side grille",

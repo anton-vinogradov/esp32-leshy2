@@ -43,7 +43,7 @@ powered down and discharged.
 | IR RX | `TSOP95238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` | RP2354B | Removable rear expansion |
-| External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA; no RF sharing |
+| External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
 
 Every transmit path has independent actual-TX evidence. Native S3/C5 use their
 own `U.FL-R-SMT-1(10)` and `CP0603Q5425ENTR` directional couplers; each nRF24
@@ -122,11 +122,11 @@ In one line below the display, user-facing actual-transmit labels cover
 same names and also states the required frequency and `SMA`/`RP-SMA` type.
 The two Si4732 antenna inputs are receive-only.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=9)
+![Dimensioned external layout](images/current-clamshell.svg?layout=10)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=6)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=7)
 
-![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=1)
+![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=2)
 
 ![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=8)
 

@@ -68,6 +68,9 @@ class ProductSiteTests(unittest.TestCase):
             "physical actual-TX evidence for each transmitting path",
             "form one front line below the display",
             "M2.5 hole/head keep-outs",
+            'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',
+            'id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer"',
+            "both RF connector banks mount on the outward PCB faces",
             "GCT RFPC-SMA31-FN-175-A",
             "GCT RFPC-SMA32-FN-175-A",
             "WI-FI/BLE",
@@ -115,7 +118,7 @@ class ProductSiteTests(unittest.TestCase):
             "Numbered physical devices",
             "UI/control PCB",
             "RF/power PCB",
-            "every edge arrow is centred",
+            "antenna arrows reference outer-face ports",
             "M2.5 hole/head keep-out",
             "FX8C-80P-SV1(92)",
             "FX8C-80S-SV5(92)",
@@ -131,6 +134,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn('data-view="mirrored-x"', layout)
         self.assertIn('data-inner-silkscreen="none"', layout)
         self.assertNotIn('data-layer="pcb-silkscreen"', layout)
+        self.assertEqual(2, layout.count('data-connector-bodies="omitted-outer-face"'))
         for forbidden_inner_silk in (
             "54 · MIC",
             "AS02404PO · speaker · side grille",
@@ -151,10 +155,10 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=9", page)
-            self.assertIn("internal-board-layout.svg?layout=6", page)
+            self.assertIn("current-clamshell.svg?layout=10", page)
+            self.assertIn("internal-board-layout.svg?layout=7", page)
             self.assertIn("sandwich-section.svg?layout=8", page)
-            self.assertIn("top-edge-view.svg?layout=1", page)
+            self.assertIn("top-edge-view.svg?layout=2", page)
             self.assertLess(
                 page.index("current-clamshell.svg"),
                 page.index("internal-board-layout.svg"),
@@ -188,15 +192,19 @@ class ProductSiteTests(unittest.TestCase):
     def test_top_edge_view_has_true_axes_and_both_antenna_banks(self):
         layout = self.read("docs/images/top-edge-view.svg")
         for token in (
-            'data-view="top-edge" data-look-direction="antenna-edge-to-bottom"',
+            'data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces"',
             "true top view from the antenna edge",
             "Looking along board +Y",
             'id="front-antenna-bank" data-count="4"',
             'id="rear-antenna-bank" data-count="5"',
+            'data-mount-face="ui-pcb-outer"',
+            'data-mount-face="rf-pcb-outer"',
+            'data-board-gap-mm="11" data-antenna-bodies="none"',
             'data-y-collapsed="true"',
             "base PCB · 75 mm",
             "U214 · 84 mm · symmetric 4.5-mm side overhang",
             "FX8C M1 · 11-mm board gap",
+            "antenna centre planes are separated by 20.55 mm",
             "HMX035CTFT-001",
             "M5Stack U214",
             "Keystone Electronics 1048P",

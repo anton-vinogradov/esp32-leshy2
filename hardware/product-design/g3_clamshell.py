@@ -369,7 +369,7 @@ def validate_external_silkscreen(svg: str, devices: dict, instances: dict) -> li
     }
     for face, bank in (("front", FRONT_RF), ("rear", REAR_RF)):
         visible[face].extend(
-            (f"{path} connector", (centre - 4.0, 0.0, 8.0, 4.0))
+            (f"{path} connector", (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D))
             for centre, path, _ in bank
         )
     for face in visible:
@@ -572,6 +572,20 @@ def validate() -> list[str]:
         errors.append("mechanical projection must retain all nine unique onboard RF paths")
     if set(RF_USER_LABEL_LINES) != drawn_paths:
         errors.append("every antenna path must have one user-facing silkscreen label")
+    ui_outer_z = float(devices[instances["display"]]["dimensions_mm"][2])
+    ui_inner_z = ui_outer_z + 1.6
+    rf_inner_z = ui_inner_z + 11.0
+    rf_outer_z = rf_inner_z + 1.6
+    front_rf_centre_z = ui_outer_z - RF_BARREL_D / 2
+    rear_rf_centre_z = rf_outer_z + RF_BARREL_D / 2
+    if abs(front_rf_centre_z + RF_BARREL_D / 2 - ui_outer_z) > 0.001:
+        errors.append("front antenna bodies must terminate at the UI PCB outer face")
+    if abs(rear_rf_centre_z - RF_BARREL_D / 2 - rf_outer_z) > 0.001:
+        errors.append("rear antenna bodies must begin at the RF/power PCB outer face")
+    if abs((rf_inner_z - ui_inner_z) - 11.0) > 0.001:
+        errors.append("the 11-mm interboard channel must remain free of antenna bodies")
+    if rear_rf_centre_z - front_rf_centre_z < 20.5:
+        errors.append("opposed outer-face antenna banks lost their maximum depth separation")
     for _, path, polarity in FRONT_RF + REAR_RF:
         lines = RF_USER_LABEL_LINES.get(path, ())
         if len(lines) != 2 or polarity not in lines[1]:
@@ -644,9 +658,19 @@ def validate() -> list[str]:
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to the battery holder")
         if overlaps(rectangle, u214_box, 0.7):
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to U214")
-    errors += validate_external_silkscreen(render_external(devices, instances), devices, instances)
-    if 'data-layer="pcb-silkscreen"' in render_internal(devices, instances):
+    external_svg = render_external(devices, instances)
+    for token in (
+        'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',
+        'id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer"',
+    ):
+        if token not in external_svg:
+            errors.append("both antenna banks must render as outward-face assemblies")
+    errors += validate_external_silkscreen(external_svg, devices, instances)
+    internal_svg = render_internal(devices, instances)
+    if 'data-layer="pcb-silkscreen"' in internal_svg:
         errors.append("inner PCB faces must not carry silkscreen text")
+    if internal_svg.count('data-connector-bodies="omitted-outer-face"') != 2:
+        errors.append("inner projections must omit both reverse-side antenna connector banks")
     return errors
 
 
@@ -707,28 +731,31 @@ def rf_bank(
     compact_label_y=None,
     show_annotations=True,
     show_arrows=True,
+    show_connector=True,
 ):
     rows = []
     for source_centre, path, polarity in bank:
         centre = mirrored_x(source_centre) if mirror else source_centre
-        if show_body:
+        if show_body and show_connector:
             rows.append(rect(origin, centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#eef2f6", "#667085", rx=2))
         x = sx(origin, centre)
         edge_y = sy(origin, 0)
         barrel_top = edge_y - RF_BARREL_OUT * scale
-        rows.append(
-            f'<rect x="{x-RF_BARREL_D*scale/2:.1f}" y="{barrel_top:.1f}" '
-            f'width="{RF_BARREL_D*scale:.1f}" height="{RF_BARREL_OUT*scale:.1f}" '
-            f'fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>'
-        )
-        nut_r = 4.0 * scale
-        points = []
-        for number in range(6):
-            angle = math.radians(60*number + 30)
-            points.append(f"{x+nut_r*math.cos(angle):.1f},{edge_y+nut_r*math.sin(angle):.1f}")
-        rows.append(f'<polygon points="{" ".join(points)}" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>')
+        if show_connector:
+            rows.append(
+                f'<rect x="{x-RF_BARREL_D*scale/2:.1f}" y="{barrel_top:.1f}" '
+                f'width="{RF_BARREL_D*scale:.1f}" height="{RF_BARREL_OUT*scale:.1f}" '
+                f'fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>'
+            )
+            nut_r = 4.0 * scale
+            points = []
+            for number in range(6):
+                angle = math.radians(60*number + 30)
+                points.append(f"{x+nut_r*math.cos(angle):.1f},{edge_y+nut_r*math.sin(angle):.1f}")
+            rows.append(f'<polygon points="{" ".join(points)}" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>')
         if show_arrows:
-            rows.append(f'<path d="M{x:.1f} {barrel_top+2:.1f} V{barrel_top-12:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+            arrow_start = barrel_top + 2 if show_connector else edge_y - 2
+            rows.append(f'<path d="M{x:.1f} {arrow_start:.1f} V{arrow_start-14:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         if show_annotations:
             label_y = (compact_label_y if compact_label_y is not None else 9.0) if compact_labels else 15.5
             if compact_labels:
@@ -797,7 +824,9 @@ def render_external(devices, instances):
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · 84×24 mm", 7.0, "bold", "middle", "#9a3412"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "raised rail · SSW-107-02-S-D beneath Cap", 5.0, "bold", "middle", "#075985"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
-    out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.8)
+    out.append('<g id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer">')
+    out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
+    out.append('</g>')
 
     display = Placement("display", 10.25, 11.0, "display")
     dw, dh = placement_size(display, devices, instances)
@@ -805,7 +834,9 @@ def render_external(devices, instances):
     out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,60), "54.5×101.5-mm reference envelope", 6.5, anchor="middle", colour="#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,65), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
-    out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.8)
+    out.append('<g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">')
+    out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
+    out.append('</g>')
 
     for instance, label, x, y in FRONT_TX_INDICATORS:
         out.append(rect(front, x, y, TX_LED_W, TX_LED_H, "#ef4444", "#991b1b", rx=1))
@@ -945,6 +976,7 @@ def render_external(devices, instances):
         text(note_x,158,"• every solid component envelope comes from the MPN register",11),
         text(note_x,181,"• raised U214 rail, vertical host socket and Keystone holder all fit",11),
         text(note_x,204,"• exact components clear all M2.5 hole/head keep-outs",11),
+        text(note_x,225,"• both RF connector banks mount on the outward PCB faces",11),
         text(note_x,245,"Interface direction",15,"bold"),
         text(note_x,273,"↑ / ↓ / ← / →  interface faces through that enclosure edge",11),
         text(note_x,296,"⊗ / ⊙  press toward / remove away from the viewed face",11),
@@ -961,7 +993,7 @@ def render_external(devices, instances):
         text(890,509,"orange dashed — open custom enclosure drawing",11),
         '<rect x="850" y="527" width="28" height="15" rx="3" fill="#ede9fe" stroke="#7c3aed"/>',
         text(890,539,"violet — custom product part; supplier MPN does not apply",11),
-        text(note_x,566,"RF connectors are barrels with hex nuts, not circles.",11,"bold"),
+        text(note_x,566,"RF connectors are outward-face bodies with barrels and hex nuts.",11,"bold"),
         text(note_x,589,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
         text(note_x,609,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
         text(note_x,630,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
@@ -999,8 +1031,12 @@ def render_internal(devices, instances):
     # Looking at either PCB's inner side means physically turning that board
     # over.  Therefore all X coordinates are mirrored relative to the matching
     # external face; this is not a transparent-through-board projection.
-    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, True, mirror=True, show_annotations=False)
-    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, True, mirror=True, show_annotations=False)
+    out.append('<g id="front-rf-reverse-reference" data-connector-bodies="omitted-outer-face">')
+    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, False, mirror=True, show_annotations=False, show_connector=False)
+    out.append('</g>')
+    out.append('<g id="rear-rf-reverse-reference" data-connector-bodies="omitted-outer-face">')
+    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, False, mirror=True, show_annotations=False, show_connector=False)
+    out.append('</g>')
     for origin, items in ((ui, UI_INNER), (rf, RF_INNER)):
         for item in items:
             w, h = placement_size(item, devices, instances)
@@ -1057,7 +1093,7 @@ def render_internal(devices, instances):
         text(left_x,notes_top+24,"• device-to-device: ≥0.7 mm in this projection",10),
         text(left_x,notes_top+45,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
         text(left_x,notes_top+66,"• both inner views are horizontally mirrored from their external faces",10),
-        text(left_x,notes_top+87,"• every edge arrow is centred on its component (or an explicit reserve)",10),
+        text(left_x,notes_top+87,"• antenna arrows reference outer-face ports; their bodies are absent here",10),
         text(left_x,notes_top+108,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(left_x,notes_top+128,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
         text(left_x,notes_top+154,"Only unselected RF cable bodies remain physical reserves.",9.2,"bold",colour="#9a3412"),
@@ -1135,7 +1171,7 @@ def render_rear_face(devices, instances):
     ]
 
     # Exact rear antenna connector bodies and outward barrels.
-    out.append('<g id="rear-antenna-bank" data-plan-y-mm="0..6">')
+    out.append('<g id="rear-antenna-bank" data-plan-y-mm="0..6" data-mount-face="rf-pcb-outer">')
     for centre, path, polarity in REAR_RF:
         out.append(r(centre-RF_BODY_W/2, 0, RF_BODY_W, RF_BODY_D, "#eef2f6", "#667085", rx=2))
         out.append(
@@ -1607,11 +1643,18 @@ def render_top_edge(devices, instances):
     def z(mm):
         return oz + mm * scale_z
 
-    base_rear_z = 10.0 + 1.6 + 11.0 + 1.6
+    ui_outer_z = depth("display")
+    ui_inner_z = ui_outer_z + 1.6
+    rf_inner_z = ui_inner_z + 11.0
+    rf_outer_z = rf_inner_z + 1.6
+    base_rear_z = rf_outer_z
+    front_rf_centre_z = ui_outer_z - RF_BARREL_D / 2
+    rear_rf_centre_z = rf_outer_z + RF_BARREL_D / 2
+    rf_centre_spacing = rear_rf_centre_z - front_rf_centre_z
     holder_depth = float(devices[instances["pack_holder"]]["installed_envelope_mm"][2])
     max_rear_z = base_rear_z + holder_depth
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" data-view="top-edge" data-look-direction="antenna-edge-to-bottom" data-rf-mounting="opposed-outer-faces">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 36, "Leshy2 — true top view from the antenna edge", 23, "bold"),
         t(30, 62, "Looking along board +Y. Horizontal is board X; vertical is front-to-rear depth Z.", 11, "bold", colour="#b42318"),
@@ -1620,9 +1663,9 @@ def render_top_edge(devices, instances):
         t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
         r(x(10.25), z(0), 54.5*scale_x, 10.0*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
         t(x(37.5), z(5.2), "HMX035CTFT-001 · display", 9.5, "bold", "middle", "#1d4ed8"),
-        r(x(0), z(10.0), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
-        r(x(0), z(11.6), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11"'),
-        r(x(0), z(22.6), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
+        r(x(0), z(ui_outer_z), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
+        r(x(0), z(ui_inner_z), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11" data-antenna-bodies="none"'),
+        r(x(0), z(rf_inner_z), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
         t(x(37.5), z(17.7), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
         '<g id="top-edge-rear-envelopes" data-y-collapsed="true">',
         r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
@@ -1630,17 +1673,17 @@ def render_top_edge(devices, instances):
         '</g>',
         t(x(37.5), z(base_rear_z+6.0), "U214 · 84 mm wide · Y=17…41", 9, "bold", "middle", "#9a3412"),
         t(x(37.5), z(base_rear_z+17.9), "1048P + cells · 39.8 mm wide · Y=42…128", 9, "bold", "middle", "#166534"),
-        '<g id="front-antenna-bank" data-count="4">',
+        '<g id="front-antenna-bank" data-count="4" data-mount-face="ui-pcb-outer">',
     ]
     for centre, path, _ in FRONT_RF:
-        out.append(f'<circle cx="{x(centre):.1f}" cy="{z(10.8):.1f}" r="{RF_BARREL_D*scale_x/2:.1f}" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="{path}"/>')
-    out += ['</g>', '<g id="rear-antenna-bank" data-count="5">']
+        out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(front_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="{path}"/>')
+    out += ['</g>', '<g id="rear-antenna-bank" data-count="5" data-mount-face="rf-pcb-outer">']
     for centre, path, _ in REAR_RF:
-        out.append(f'<circle cx="{x(centre):.1f}" cy="{z(23.4):.1f}" r="{RF_BARREL_D*scale_x/2:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{path}"/>')
+        out.append(f'<ellipse cx="{x(centre):.1f}" cy="{z(rear_rf_centre_z):.1f}" rx="{RF_BARREL_D*scale_x/2:.1f}" ry="{RF_BARREL_D*scale_z/2:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" data-path="{path}"/>')
     out += [
         '</g>',
-        t(x(79.5)+45, z(11.2), "4 front antenna ports · UI/control side", 10, "bold", colour="#1d4ed8"),
-        t(x(79.5)+45, z(23.8), "5 rear antenna ports · RF/power side", 10, "bold", colour="#9a3412"),
+        t(885, z(front_rf_centre_z)+4, "4 front ports · UI outer face", 10, "bold", "end", "#1d4ed8"),
+        t(885, z(rear_rf_centre_z)+4, "5 rear ports · RF/power outer face", 10, "bold", "end", "#9a3412"),
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
         f'<line x1="{x(75):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
@@ -1651,12 +1694,12 @@ def render_top_edge(devices, instances):
         t(x(37.5), z(max_rear_z)+80, "U214 · 84 mm · symmetric 4.5-mm side overhang", 10, "bold", "middle", "#9a3412"),
         t(920, 150, "What this view proves", 16, "bold"),
         t(920, 184, "✓ 84-mm Cap overhang is 4.5 mm on each side", 11, "bold", colour="#166534"),
-        t(920, 212, "✓ display width fits the 75-mm base", 11, "bold", colour="#166534"),
-        t(920, 240, "✓ front and rear antenna banks are distinct", 11, "bold", colour="#166534"),
-        t(920, 268, "✓ exact board-to-board spacing is 11 mm", 11, "bold", colour="#166534"),
+        t(920, 212, "✓ both antenna banks mount on opposed outward PCB faces", 11, "bold", colour="#166534"),
+        t(920, 240, "✓ the exact 11-mm interboard channel contains no antenna body", 11, "bold", colour="#166534"),
+        t(920, 268, f"✓ antenna centre planes are separated by {rf_centre_spacing:.2f} mm", 11, "bold", colour="#166534"),
         t(920, 316, "Projection limits", 16, "bold"),
-        t(920, 350, "U214 and battery look superposed only because Y is collapsed.", 11),
-        t(920, 378, "Use the adjacent rear view for their real longitudinal positions.", 11),
+        t(920, 350, "Display/front-bank and U214/battery overlaps are Y-collapse artifacts.", 11),
+        t(920, 378, "Use the adjacent external views for their real longitudinal positions.", 11),
         t(920, 426, "Selected depth references", 16, "bold"),
         t(920, 460, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10.5),
         t(920, 488, f"{mpn('pack_holder')} · {holder_depth:.1f}-mm installed envelope", 10.5),

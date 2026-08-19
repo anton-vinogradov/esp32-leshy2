@@ -13,8 +13,8 @@ is built.
   `2T1R` and `3T` combinations.
 - Work with 2.4/5-GHz Wi-Fi, Bluetooth LE, ESP-NOW, IEEE 802.15.4,
   315/433/868/915-MHz Sub-GHz, FM/AM/SW/LW, VHF/UHF voice and IR.
-- Route all nine onboard RF paths to external antennas: two RP-SMA and seven
-  SMA ports.
+- Route all nine onboard RF paths to outward-face antenna jacks: two RP-SMA
+  and seven SMA ports. Neither connector bank occupies the interboard channel.
 - Show menus, a spectrum waterfall and path state on a 3.5-inch portrait
   `320×480` touch IPS display driven by direct QSPI.
 - Record data and audio to removable microSD, play through a speaker or
@@ -37,14 +37,14 @@ are powered down and placed into a verifiable quiet state.
 
 ### External and inner board faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=9)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=10)
 
 These are the two PCB faces looking into the sandwich. They expose the compute
 and radio modules, speaker, microphone, ON/OFF switch, board-to-board
 connector, USB and every separate programming, reset and recovery button. A
 number inside an outline maps to the adjacent exact MPN and component role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=6)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=7)
 
 ### Top view from the antenna edge
 
@@ -52,7 +52,7 @@ The true top projection looks along the board from its antenna edge and shows
 the sandwich width and depth, both antenna banks and the symmetric Cap
 overhang.
 
-![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=1)
+![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=2)
 
 ### Sandwich sections
 

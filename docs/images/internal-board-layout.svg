@@ -23,42 +23,19 @@
 <circle cx="483.5" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="724.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="724.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<rect x="279.4" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="286.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="311.1,157.4 298.3,164.8 285.5,157.4 285.5,142.6 298.3,135.2 311.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M298.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="227.6" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="234.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="259.3,157.4 246.5,164.8 233.7,157.4 233.7,142.6 246.5,135.2 259.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M246.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="172.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="179.3" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="203.8,157.4 191.0,164.8 178.2,157.4 178.2,142.6 191.0,135.2 203.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M191.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="120.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="127.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="152.0,157.4 139.2,164.8 126.4,157.4 126.4,142.6 139.2,135.2 152.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M139.2 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="673.7" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="680.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="705.4,157.4 692.5,164.8 679.7,157.4 679.7,142.6 692.5,135.2 705.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M692.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="629.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="636.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="661.0,157.4 648.1,164.8 635.3,157.4 635.3,142.6 648.1,135.2 661.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M648.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="584.9" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="592.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="616.6,157.4 603.8,164.8 590.9,157.4 590.9,142.6 603.8,135.2 616.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M603.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="540.5" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="547.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="572.2,157.4 559.4,164.8 546.5,157.4 546.5,142.6 559.4,135.2 572.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M559.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<rect x="496.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<rect x="503.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="527.8,157.4 515.0,164.8 502.1,157.4 502.1,142.6 515.0,135.2 527.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M515.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<g id="front-rf-reverse-reference" data-connector-bodies="omitted-outer-face">
+<path d="M298.3 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M246.5 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M191.0 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M139.2 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+</g>
+<g id="rear-rf-reverse-reference" data-connector-bodies="omitted-outer-face">
+<path d="M692.5 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M648.1 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M603.8 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M559.4 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M515.0 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+</g>
 <rect x="268.7" y="231.4" width="66.6" height="71.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <text x="302.0" y="269.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">1</text>
 <rect x="102.2" y="231.4" width="66.6" height="78.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
@@ -313,7 +290,7 @@
 <text x="830.0" y="888.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• device-to-device: ≥0.7 mm in this projection</text>
 <text x="830.0" y="909.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
 <text x="830.0" y="930.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
-<text x="830.0" y="951.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• every edge arrow is centred on its component (or an explicit reserve)</text>
+<text x="830.0" y="951.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• antenna arrows reference outer-face ports; their bodies are absent here</text>
 <text x="830.0" y="972.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
 <text x="830.0" y="992.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
 <text x="830.0" y="1018.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#9a3412">Only unselected RF cable bodies remain physical reserves.</text>
