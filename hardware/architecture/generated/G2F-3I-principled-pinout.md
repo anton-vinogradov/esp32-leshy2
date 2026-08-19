@@ -1752,6 +1752,9 @@ flowchart TD
   PACK_ADMISSION_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF admission-controller bypass capacitor"]
   PACK_ADMISSION_RESET_PULLUP["Yageo RC0402FR-0747KL<br/>47-kOhm admission-controller NRST pull-up resistor"]
   PACK_ADMISSION_RESET_CAP["Murata GRM155R71H103KA88D<br/>10-nF admission-controller NRST capacitor"]
+  POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>maintained low-current ON/OFF command switch"]
+  POWER_COMMAND_PULLUP["Yageo RC0402FR-0747KL<br/>47-kOhm admission-domain ON-command pull-up resistor"]
+  POWER_COMMAND_FILTER["TDK C1005X7R1H104K050BB<br/>100-nF power-command contact filter capacitor"]
   PACK_DIAG_TIMER["Texas Instruments TPUL2G223BQBR<br/>non-retriggerable pulse limiter and refractory lockout"]
   PACK_DIAG_TIMER_RES["Yageo RC0402FR-07169KL<br/>169-kOhm 1% diagnostic-pulse timing resistor"]
   PACK_DIAG_TIMER_CAP["Murata GRM31C5C1H224JE02L<br/>220-nF 50-V C0G diagnostic-pulse timing capacitor"]
@@ -1775,14 +1778,17 @@ flowchart TD
   PACK_STACK_ADC_BOTTOM["Yageo RC0402FR-07169KL<br/>169-kOhm 1% stack-divider bottom resistor"]
   PACK_STACK_ADC_FILTER["Murata GRM155R71H103KA88D<br/>10-nF 50-V X7R stack ADC filter capacitor"]
   end
-  AON_BUCK ~~~ MAIN_BUCK ~~~ VOICE_BUCK ~~~ EXT_BUCK ~~~ PACK_SYSTEM_DIODE ~~~ PACK_ADMISSION ~~~ PACK_ADMISSION_BULK_CAP ~~~ PACK_ADMISSION_BYPASS ~~~ PACK_ADMISSION_RESET_PULLUP ~~~ PACK_ADMISSION_RESET_CAP ~~~ PACK_DIAG_TIMER ~~~ PACK_DIAG_TIMER_RES
-  PACK_DIAG_TIMER_CAP ~~~ PACK_DIAG_LOCKOUT_RES ~~~ PACK_DIAG_LOCKOUT_CAP ~~~ PACK_DIAG_TIMER_BYPASS ~~~ PACK_DIAG_TRIGGER_PULLDOWN ~~~ PACK_DIAG_GATE_PULLDOWN ~~~ PACK_DIAG_SWITCH ~~~ PACK_DIAG_RES0 ~~~ PACK_DIAG_RES1 ~~~ PACK_MID_ADC_TOP0 ~~~ PACK_MID_ADC_TOP1 ~~~ PACK_MID_ADC_BOTTOM
-  PACK_MID_ADC_FILTER ~~~ PACK_STACK_ADC_TOP0 ~~~ PACK_STACK_ADC_TOP1 ~~~ PACK_STACK_ADC_TOP2 ~~~ PACK_STACK_ADC_TOP3 ~~~ PACK_STACK_ADC_TOP4 ~~~ PACK_STACK_ADC_BOTTOM ~~~ PACK_STACK_ADC_FILTER
+  AON_BUCK ~~~ MAIN_BUCK ~~~ VOICE_BUCK ~~~ EXT_BUCK ~~~ PACK_SYSTEM_DIODE ~~~ PACK_ADMISSION ~~~ PACK_ADMISSION_BULK_CAP ~~~ PACK_ADMISSION_BYPASS ~~~ PACK_ADMISSION_RESET_PULLUP ~~~ PACK_ADMISSION_RESET_CAP ~~~ POWER_COMMAND_SWITCH ~~~ POWER_COMMAND_PULLUP
+  POWER_COMMAND_FILTER ~~~ PACK_DIAG_TIMER ~~~ PACK_DIAG_TIMER_RES ~~~ PACK_DIAG_TIMER_CAP ~~~ PACK_DIAG_LOCKOUT_RES ~~~ PACK_DIAG_LOCKOUT_CAP ~~~ PACK_DIAG_TIMER_BYPASS ~~~ PACK_DIAG_TRIGGER_PULLDOWN ~~~ PACK_DIAG_GATE_PULLDOWN ~~~ PACK_DIAG_SWITCH ~~~ PACK_DIAG_RES0 ~~~ PACK_DIAG_RES1
+  PACK_MID_ADC_TOP0 ~~~ PACK_MID_ADC_TOP1 ~~~ PACK_MID_ADC_BOTTOM ~~~ PACK_MID_ADC_FILTER ~~~ PACK_STACK_ADC_TOP0 ~~~ PACK_STACK_ADC_TOP1 ~~~ PACK_STACK_ADC_TOP2 ~~~ PACK_STACK_ADC_TOP3 ~~~ PACK_STACK_ADC_TOP4 ~~~ PACK_STACK_ADC_BOTTOM ~~~ PACK_STACK_ADC_FILTER
   PACK_SYSTEM_DIODE -->|"admitted 3V3"| PACK_ADMISSION
   PACK_ADMISSION --> PACK_ADMISSION_BULK_CAP
   PACK_ADMISSION --> PACK_ADMISSION_BYPASS
   PACK_ADMISSION -->|"NRST"| PACK_ADMISSION_RESET_PULLUP
   PACK_ADMISSION --> PACK_ADMISSION_RESET_CAP
+  POWER_COMMAND_SWITCH -->|"OFF grounds low-current request"| PACK_ADMISSION
+  POWER_COMMAND_PULLUP -->|"ON default"| PACK_ADMISSION
+  POWER_COMMAND_FILTER -->|"contact transient filter"| PACK_ADMISSION
   PACK_ADMISSION -->|"PA22 edge"| PACK_DIAG_TIMER
   PACK_ADMISSION --> PACK_DIAG_TRIGGER_PULLDOWN
   PACK_DIAG_TIMER -->|"169 kΩ / 220 nF; ≤50 ms"| PACK_DIAG_TIMER_RES --> PACK_DIAG_TIMER_CAP
@@ -2020,11 +2026,12 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO6`, `GPIO7`, `GPIO11`. Free: none.
 | `PA16_A8` | 12 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_status_buffer.D1`, `pack_pfail_pullup.END_2` | — |
 | `PA18_A7` | 14 | `PACK_SERVICE_UART_RX` | `i` | `UART0` | `abstract:pack service fixture` | — |
 | `PA22_A4` | 17 | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | `pack_diag_timer.CH1_T`, `pack_diag_trigger_pulldown.END_1` | — |
+| `PA24_A3` | 19 | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | `power_command_pullup.END_2`, `power_command_filter.END_1`, `power_command_switch.THROW_B` | — |
 | `PA25_A2` | 20 | `PACK_CELL0_ADC` | `i` | `ADC` | `pack_mid_adc_top1.END_2`, `pack_mid_adc_bottom.END_1`, `pack_mid_adc_filter.END_1` | — |
 | `PA26_A1` | 1 | `PACK_STACK_ADC` | `i` | `ADC` | `pack_stack_adc_top4.END_2`, `pack_stack_adc_bottom.END_1`, `pack_stack_adc_filter.END_1` | — |
 
-Budget: **12 used + 3 reserved + 3 free = 18 exposed GPIO**.
-Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`, `PA28_A5`.
+Budget: **13 used + 3 reserved + 2 free = 18 exposed GPIO**.
+Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 
 ### Fixed-function/control routes
 
@@ -2449,6 +2456,13 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `PACK_ADMISSION_NRST_N` | `pack_admission.PA1_NRST` | `pack_admission_reset_cap.END_1` | exact 10-nF reset capacitor implements the TI typical-application profile |
 | `PACK_LOCAL_GND` | `pack_admission_reset_cap.END_2` | `pack_gauge.GND` | reset capacitor returns locally and remains accessible to the isolated service fixture |
 | `PACK_ADMISSION_NRST_N` | `pack_admission.PA1_NRST` | `abstract:TP_PACK_NRST_N` | permanent isolated fixture access can pull reset low without fighting a push-pull source |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `power_command_pullup.END_1` | the exact 47-kOhm pull-up keeps the low-current power command asserted ON when the switch is open |
+| `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `pack_admission.PA24_A3` | the admission MCU receives a bounded, admission-domain command instead of switched pack or system current |
+| `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `power_command_switch.THROW_B` | the maintained OFF position grounds only the filtered logic command |
+| `POWER_GROUND` | `power_command_switch.COMMON` | `abstract:power-ground` | the common contact is a local low-current logic return; it never carries cell, SYS, charge or load current |
+| `POWER_COMMAND_ON_NC` | `power_command_switch.THROW_A` | `abstract:no-connect` | the maintained ON position deliberately leaves the command on its exact pull-up |
+| `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `power_command_filter.END_1` | one local 100-nF filter rejects contact transients before PA24/A3 |
+| `POWER_GROUND` | `power_command_filter.END_2` | `abstract:power-ground` | the command filter returns locally in the admission domain |
 | `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_gauge_scl_pullup.END_1` | the private gauge clock pull-up follows the live admission domain rather than REG3 or the off system domain |
 | `PACK_GAUGE_I2C_SCL` | `pack_gauge_scl_pullup.END_2` | `pack_gauge.SCL_OD` | exact 10-kOhm pull-up overcomes the bounded disconnect-sense pulldown and supports the intentionally low-clock private bus |
 | `PACK_GAUGE_I2C_SCL` | `pack_admission.PA2` | `pack_gauge.SCL_OD` | dedicated bit-banged clock has no other client and remains below the measured pull-up rise-time limit |
@@ -4774,6 +4788,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
+- `power_command_switch` uses `C&K JS102011SCQN` as `verified_exact_low_current_power_command_switch_mechanical_hil_open`, not an accepted production choice.
+- `power_command_switch` lifecycle: `active_orderable`.
 - `pack_holder` uses `Keystone Electronics 1048P` as `verified_mechanical_reference`, not an accepted production choice.
 - `pack_cell0` uses `XTAR 18650 4000mAh` as `selected_qualification_target`, not an accepted production choice.
 - `pack_cell0` lifecycle: `current_catalog`.

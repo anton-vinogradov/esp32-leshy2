@@ -3388,6 +3388,50 @@
       },
       "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
     },
+    "ck_js102011scqn": {
+      "mpn": "C&K JS102011SCQN",
+      "kind": "spdt_on_on_right_angle_smt_power_command_slide_switch",
+      "qualification": "verified_exact_low_current_power_command_switch_mechanical_hil_open",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [8.5, 3.5, 3.6],
+      "source": {
+        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
+        "version": "VL 01/14/26",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "JS102011SCQN authorized-distributor exact order-code page; 535 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.7823,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published USD price table",
+          "url": "https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835",
+          "checked": "2026-08-19"
+        }
+      },
+      "electrical_contract": {
+        "contact_form": "SPDT maintained ON-ON, non-shorting",
+        "rating": "0.3 A at 6 VDC or 0.1 A at 30 VDC",
+        "electrical_life_cycles": 5000,
+        "contact_resistance_max_mohm": 70,
+        "operating_temperature_c": [-40, 85],
+        "travel_mm": 2.0,
+        "use": "low-current command input only; never carries cell, SYS, charge or load current"
+      },
+      "programmable": false,
+      "contacts": {
+        "THROW_A": {"physical": "1", "role": "switch_contact"},
+        "COMMON": {"physical": "2 / C", "role": "switch_common"},
+        "THROW_B": {"physical": "3", "role": "switch_contact"}
+      }
+    },
     "panasonic_aeq10410": {
       "mpn": "Panasonic AEQ10410",
       "kind": "spdt_gold_clad_low_level_chassis_switch_pin_plunger",

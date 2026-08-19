@@ -41,9 +41,16 @@ class ArchitectureValidationTests(unittest.TestCase):
         pin_map = contract["pin_map"]
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
         self.assertEqual(8, sum(row["net"] == "3V3_MAIN" for row in pin_map))
-        self.assertEqual(9, sum(row["signal_class"] == "reserved" for row in pin_map))
+        self.assertEqual(3, sum(row["signal_class"] == "reserved" for row in pin_map))
         mapped = {row["net"] for row in pin_map}
-        self.assertTrue({"S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "TX_KILL"} <= mapped)
+        self.assertTrue(
+            {
+                "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RESET_KILL_GATE",
+                "UI_ROW2_N", "UI_ROW3_N", "UI_COL0", "UI_COL1", "UI_COL2",
+                "ENCODER_A", "ENCODER_B", "STOP_LATCH_SENSE",
+            } <= mapped
+        )
+        self.assertNotIn("TX_KILL", mapped)
         self.assertTrue(
             {
                 "USB_C_VBUS_RAW", "PD_PPHV", "PROTECTED_PACK_POSITIVE",
@@ -120,8 +127,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(888, sum(line["quantity"] for line in lines))
-        self.assertEqual(193, len(lines))
+        self.assertEqual(891, sum(line["quantity"] for line in lines))
+        self.assertEqual(194, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -131,11 +138,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            181,
+            182,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            860,
+            863,
             sum(
                 line["quantity"]
                 for line in lines
@@ -198,14 +205,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("889", rendered)
-        self.assertIn("888", rendered)
-        self.assertIn("193", rendered)
-        self.assertIn("192/193", rendered)
-        self.assertIn("193/193", rendered)
-        self.assertIn("181/193", rendered)
-        self.assertIn("860/888", rendered)
-        self.assertIn("USD 188.1051", rendered)
+        self.assertIn("892", rendered)
+        self.assertIn("891", rendered)
+        self.assertIn("194", rendered)
+        self.assertIn("193/194", rendered)
+        self.assertIn("194/194", rendered)
+        self.assertIn("182/194", rendered)
+        self.assertIn("863/891", rendered)
+        self.assertIn("USD 188.9229", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -246,7 +253,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(50, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1017, policy["expected_occurrence_count"])
+        self.assertEqual(1020, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -285,7 +292,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "N24-2",
             "RX-FM/SW",
             "RX-AM/LW",
-            "D-pad + OK",
+            "single D-pad cap",
             "STOP",
             "PTT",
             "RE-ARM",
@@ -303,8 +310,26 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Numbered physical devices",
             "M2.5 hole/head keep-out",
             "outward direction arrow",
+            "AS02404PO",
+            "CMEJ-0413-42-SMT-TR",
+            "JS102011SCQN",
+            "SKQGADE010",
+            "FTSH-105-01-L-DV-K-P-TR",
         ):
             self.assertIn(token, internal)
+        sandwich = (
+            GENERATOR.REPO_ROOT
+            / "docs/images/sandwich-section.svg"
+        ).read_text(encoding="utf-8")
+        for token in (
+            "Leshy2 — dimensioned front-to-rear sandwich",
+            "HMX035CTFT-001",
+            "FX8C M1 · 11-mm board-to-board",
+            "AS02404PO",
+            "2× 18650",
+            "M5Stack U214",
+        ):
+            self.assertIn(token, sandwich)
 
     def test_rejects_unclassified_i9_abstract_or_owner_decision(self):
         candidates = copy.deepcopy(self.candidates)
@@ -508,6 +533,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "pack_admission_bypass": "tdk_c1005x7r1h104k050bb",
             "pack_admission_reset_pullup": "yageo_rc0402fr_0747kl",
             "pack_admission_reset_cap": "murata_grm155r71h103ka88d",
+            "power_command_switch": "ck_js102011scqn",
+            "power_command_pullup": "yageo_rc0402fr_0747kl",
+            "power_command_filter": "tdk_c1005x7r1h104k050bb",
         }
         for instance, device_id in expected_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -528,6 +556,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("pack_status_buffer.D1", "pack_admission.PA16_A8", "PACK_PFAIL_N"),
             ("pack_admission.PA23", "pack_status_buffer.G2", "PACK_SYS_INT_REQ"),
             ("pack_status_buffer.D2", "s3.GPIO37", "SYS_INT_N"),
+            ("pack_admission.VDD", "power_command_pullup.END_1", "PACK_ADMISSION_VDD"),
+            ("power_command_pullup.END_2", "pack_admission.PA24_A3", "POWER_COMMAND_OFF_N"),
+            ("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"),
+            ("power_command_switch.COMMON", "abstract:power-ground", "POWER_GROUND"),
+            ("power_command_switch.THROW_A", "abstract:no-connect", "POWER_COMMAND_ON_NC"),
+            ("power_command_pullup.END_2", "power_command_filter.END_1", "POWER_COMMAND_OFF_N"),
+            ("power_command_filter.END_2", "abstract:power-ground", "POWER_GROUND"),
             ("pack_gauge.TH3", "pack_gauge.GND", "PACK_TH3_UNUSED_LOW"),
             ("pack_gauge.TH4", "pack_gauge.GND", "PACK_TH4_UNUSED_LOW"),
         ):
@@ -544,6 +579,15 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertGreater(
             balance["rated_power_w"],
             balance["max_2s_cell1_balance_dissipation_w_at_4_3v"],
+        )
+
+        command_switch = self.database["devices"]["ck_js102011scqn"]
+        self.assertEqual("C&K JS102011SCQN", command_switch["mpn"])
+        self.assertEqual("active_orderable", command_switch["lifecycle"])
+        self.assertEqual([8.5, 3.5, 3.6], command_switch["dimensions_mm"])
+        self.assertEqual(
+            "low-current command input only; never carries cell, SYS, charge or load current",
+            command_switch["electrical_contract"]["use"],
         )
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
@@ -1122,14 +1166,15 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertEqual("PACK_CELL0_ADC", admission["PA25_A2"]["net"])
         self.assertEqual("PACK_STACK_ADC", admission["PA26_A1"]["net"])
-        self.assertNotIn("PA24_A3", admission)
+        self.assertEqual("POWER_COMMAND_OFF_N", admission["PA24_A3"]["net"])
+        self.assertEqual("GPIO_IRQ", admission["PA24_A3"]["controller"])
         self.assertEqual(
-            {"PA24_A3", "PA27_A0", "PA28_A5"},
+            {"PA27_A0", "PA28_A5"},
             set(candidate["free_gpio"]["pack_admission"]),
         )
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn(
-            "Budget: **12 used + 3 reserved + 3 free = 18 exposed GPIO**.",
+            "Budget: **13 used + 3 reserved + 2 free = 18 exposed GPIO**.",
             rendered,
         )
         s3 = {

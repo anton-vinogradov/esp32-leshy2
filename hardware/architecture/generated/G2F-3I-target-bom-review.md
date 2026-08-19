@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **889** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **888** supplied/costed placements collapse to **193** used exact-device/MPN lines.
-- Current orderability evidence exists for **192/193** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **181/193** lines.
+- **892** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **891** supplied/costed placements collapse to **194** used exact-device/MPN lines.
+- Current orderability evidence exists for **193/194** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **182/194** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **860/888** supplied placements; their partial subtotals are `base_product` — USD 188.1051. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **193/193** lines.
+- Those priced lines cover **863/891** supplied placements; their partial subtotals are `base_product` — USD 188.9229. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **194/194** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 885 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 888 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -303,7 +303,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 20 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 21 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -317,6 +317,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 - Current lines:
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
   - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
+  - `ck_js102011scqn` — `C&K JS102011SCQN`.
   - `ck_y78b23214fp` — `C&K Y78B23214FP`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
@@ -411,6 +412,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/CC1101RGPR/3947323).
+
+</details>
+
+<details><summary><code>C&K JS102011SCQN</code> — 1 × USD 0.7823 = USD 0.7823</summary>
+
+- Device id: `ck_js102011scqn`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/c-k/JS102011SCQN/7355835).
 
 </details>
 
@@ -1188,7 +1198,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 102 × USD 0.0258 = USD 2.6316</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 103 × USD 0.0258 = USD 2.6574</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1836,7 +1846,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0747KL</code> — 9 × USD 0.0097 = USD 0.0873</summary>
+<details><summary><code>Yageo RC0402FR-0747KL</code> — 10 × USD 0.0097 = USD 0.0970</summary>
 
 - Device id: `yageo_rc0402fr_0747kl`.
 - Scope: `base_product`.

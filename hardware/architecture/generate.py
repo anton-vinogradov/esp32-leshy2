@@ -242,8 +242,8 @@ def validate_sources(
             if contacts != list(range(1, 81)):
                 errors.append(f"{candidate_id}: M1 contacts must cover ordered physical positions 1..80 exactly once")
             reserved = sum(row.get("signal_class") == "reserved" for row in pin_map)
-            if reserved != accounting.get("reserved") or reserved < 8:
-                errors.append(f"{candidate_id}: M1 must retain at least eight explicit no-connect reserves")
+            if reserved != accounting.get("reserved") or reserved < 3:
+                errors.append(f"{candidate_id}: M1 must retain at least three explicit no-connect reserves")
             instances = candidate.get("instances", {})
             expected_connectors = {
                 connector.get("ui_instance"): "hirose_fx8c_80p_sv1_92",
@@ -258,7 +258,9 @@ def validate_sources(
                 "S3_RP_IPC_CS_N", "S3_RP_IPC_SCK", "S3_RP_IPC_MOSI",
                 "S3_RP_IPC_MISO", "RP_ALERT_N", "S3_USB_DM", "S3_USB_DP",
                 "SYS_I2C_SDA", "SYS_I2C_SCL", "SYS_INT_N", "RUN_PERMIT",
-                "TX_KILL", "RESET_KILL_GATE", "EV_N0_S3", "EV_N1_C5",
+                "RESET_KILL_GATE", "UI_ROW2_N", "UI_ROW3_N", "UI_COL0",
+                "UI_COL1", "UI_COL2", "ENCODER_A", "ENCODER_B",
+                "STOP_LATCH_SENSE", "EV_N0_S3", "EV_N1_C5",
                 "EV_N7_IR", "C5_RF_TX_EVIDENCE_N", "IR_TX_EVIDENCE_N",
                 "RX_SA518_AFOUT_ISOLATED", "VOICE_MIC_SELECTED_MAIN",
                 "SPEAKER_SELECTED_P", "SPEAKER_SELECTED_N", "3V3_MAIN",
@@ -2055,6 +2057,8 @@ def render_target_principled_section(
             "nvdc_charger": "2S зарядка и NVDC power path",
             "pack_holder": "поляризованный держатель двух 18650",
             "pack_gauge": "защита и fuel gauge батареи 2S",
+            "pack_admission": "локальный fail-closed контроллер допуска 2S pack",
+            "power_command_switch": "малотоковый фиксируемый переключатель ON/OFF",
             "aon_buck": "always-on преобразователь безопасности 3,3 В",
             "main_buck": "основной преобразователь 3,3 В",
             "voice_buck": "преобразователь voice 4,0 В",
@@ -2170,6 +2174,8 @@ def render_target_principled_section(
             "nvdc_charger": "2S charger and NVDC power path",
             "pack_holder": "polarized dual-18650 holder",
             "pack_gauge": "2S protection and fuel gauge",
+            "pack_admission": "local fail-closed 2S pack admission controller",
+            "power_command_switch": "maintained low-current ON/OFF command switch",
             "aon_buck": "always-on 3.3-V safety converter",
             "main_buck": "main 3.3-V converter",
             "voice_buck": "voice 4.0-V converter",
@@ -2363,7 +2369,8 @@ def render_target_principled_section(
             [
                 node("product_usb_connector"), node("product_usb_protector"), node("s3"),
                 node("pd_vbus_tvs"), node("pd_controller"), node("nvdc_charger"),
-                node("pack_holder"), node("pack_gauge"), node("aon_buck"),
+                node("pack_holder"), node("pack_gauge"), node("pack_admission"),
+                node("power_command_switch"), node("aon_buck"),
                 node("main_buck"), node("voice_buck"), node("ext_buck"),
             ],
             [
@@ -2373,6 +2380,8 @@ def render_target_principled_section(
                 '  PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS',
                 '  PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER',
                 '  PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER',
+                '  POWER_COMMAND_SWITCH -->|"low-current ON/OFF request; never load current"| PACK_ADMISSION',
+                '  PACK_ADMISSION <-->|"local gauge admission and fault evidence"| PACK_GAUGE',
                 '  NVDC_CHARGER -->|"VSYS"| AON_BUCK',
                 '  NVDC_CHARGER -->|"VSYS"| MAIN_BUCK',
                 '  NVDC_CHARGER -->|"VSYS"| VOICE_BUCK',
@@ -2500,13 +2509,13 @@ def render_public_interconnect(
         footer = (
             "Восемь параллельных контактов `3V3_MAIN` дают паспортный потолок 3,2 А, "
             "но допустимый ток готового устройства определяется только измерением нагрева "
-            "разъёма при одновременной нагрузке. Девять резервных контактов остаются "
+            "разъёма при одновременной нагрузке. Три резервных контакта остаются "
             "физически не подключёнными."
         )
         ui_groups = (
             f"Вычислители: `{mpn('s3')}` управляет UI, экраном, картой памяти и аудио; `{mpn('c5')}` — собственными диапазонами 2,4/5 ГГц и IR.",
-            f"Интерфейсы: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, микрофон, наушники и все органы управления.",
-            "Локальная безопасность: формирователь и защёлка STOP/RE-ARM, аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.",
+            f"Интерфейсы: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, микрофон, наушники, D-pad, BACK и OPT.",
+            "Локальная безопасность: аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.",
             f"Обслуживание C5: отдельный data-only USB-C `{mpn('c5_service_usb_connector')}`.",
         )
         rf_groups = (
@@ -2514,7 +2523,8 @@ def render_public_interconnect(
             f"Внешние модули: съёмный `{mpn('u214')}` и независимый порт M5 Unit.",
             f"Питание и основной USB-C: `{mpn('product_usb_connector')}`, защита `{mpn('product_usb_protector')}`, USB-PD `{mpn('pd_controller')}`, заряд, аккумуляторы и все преобразователи питания.",
             f"Выход звука: дифференциальный усилитель `{mpn('speaker_amp')}` и динамик `{mpn('speaker')}`.",
-            "Локальная безопасность: аппаратные гейты nRF/CC/voice/расширений, сброс RP и аналоговое подтверждение передачи nRF/CC/voice.",
+            "Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.",
+            "Локальная безопасность: формирователь и защёлка STOP/RE-ARM, аппаратные гейты nRF/CC/voice/расширений, сброс RP и аналоговое подтверждение передачи nRF/CC/voice.",
         )
     else:
         title = "# M1 inter-board connection"
@@ -2536,13 +2546,13 @@ def render_public_interconnect(
         footer = (
             "Eight paralleled `3V3_MAIN` contacts provide a 3.2-A nameplate ceiling, "
             "but finished-device current is accepted only after connector-temperature "
-            "measurement under simultaneous load. Nine reserve contacts remain physically "
+            "measurement under simultaneous load. Three reserve contacts remain physically "
             "unconnected."
         )
         ui_groups = (
             f"Compute: `{mpn('s3')}` owns UI, display, storage and audio; `{mpn('c5')}` owns native 2.4/5-GHz radio and IR.",
-            f"Interfaces: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, microphone, headphones and all local controls.",
-            "Local safety: STOP/RE-ARM conditioning and latch, S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.",
+            f"Interfaces: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, microphone, headphones, D-pad, BACK and OPT.",
+            "Local safety: S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.",
             f"C5 service: a separate data-only `{mpn('c5_service_usb_connector')}` USB-C receptacle.",
         )
         rf_groups = (
@@ -2550,7 +2560,8 @@ def render_public_interconnect(
             f"External modules: removable `{mpn('u214')}` and an independent M5 Unit port.",
             f"Power and product USB-C: `{mpn('product_usb_connector')}`, `{mpn('product_usb_protector')}` protection, `{mpn('pd_controller')}` USB-PD, charger, cells and every rail converter.",
             f"Audio output: `{mpn('speaker_amp')}` differential amplifier and `{mpn('speaker')}` speaker.",
-            "Local safety: nRF/CC/voice/expansion hardware gates, RP reset and analog nRF/CC/voice transmit evidence.",
+            "Rear controls: F1/F2, encoder, PTT, STOP and recessed RE-ARM; PTT connects locally to RP/voice.",
+            "Local safety: STOP/RE-ARM conditioning and latch, nRF/CC/voice/expansion hardware gates, RP reset and analog nRF/CC/voice transmit evidence.",
         )
 
     lines = [title, "", navigation, "", intro, "", f"## {ui_label}", ""]
@@ -2563,7 +2574,8 @@ def render_public_interconnect(
             "Сырой VBUS, согласованное повышенное напряжение USB-PD, зарядное устройство и аккумуляторы остаются на RF/power-плате.",
             "Класс-D усилитель остаётся рядом с динамиком; через M1 проходит только низкоуровневый дифференциальный аудиосигнал.",
             "Аналоговые выходы детекторов передачи и IR-несущая обрабатываются на своей плате; через M1 проходят только цифровые признаки передачи.",
-            "Защёлка STOP/RE-ARM расположена рядом с органами управления; на вторую плату передаётся цифровое аппаратное разрешение.",
+            "Защёлка STOP/RE-ARM расположена на RF/power-плате рядом с задними кнопками; на UI-плату передаются только цифровые RUN_PERMIT, reset-kill и read-only status.",
+            "F1/F2 и энкодер используют семь прямых матричных/фазных контактов M1; PTT остаётся локальным для RP/voice.",
         )
     else:
         rationale = locality["rationale"]
@@ -3238,6 +3250,9 @@ def _render_principled_pinout_bundle(
         node("pack_admission_bypass", "100-nF admission-controller bypass capacitor"),
         node("pack_admission_reset_pullup", "47-kOhm admission-controller NRST pull-up resistor"),
         node("pack_admission_reset_cap", "10-nF admission-controller NRST capacitor"),
+        node("power_command_switch", "maintained low-current ON/OFF command switch"),
+        node("power_command_pullup", "47-kOhm admission-domain ON-command pull-up resistor"),
+        node("power_command_filter", "100-nF power-command contact filter capacitor"),
         node("pack_diag_timer", "non-retriggerable pulse limiter and refractory lockout"),
         node("pack_diag_timer_res", "169-kOhm 1% diagnostic-pulse timing resistor"),
         node("pack_diag_timer_cap", "220-nF 50-V C0G diagnostic-pulse timing capacitor"),
@@ -3598,7 +3613,7 @@ def _render_principled_pinout_bundle(
         "  PACK_REG2_CAP ~~~ PACK_CELL1_RBAL ~~~ PACK_BATTS_RBAL ~~~ PACK_CELL1_FILTER_CAP ~~~ PACK_BATTS_FILTER_CAP ~~~ PACK_PCKP_RES ~~~ PACK_SHUNT ~~~ PACK_POWER_FET ~~~ PACK_CHG_GATE_CAP ~~~ PACK_DIS_GATE_CAP",
         "  PACK_DIS_GATE_CAP ~~~ PACK_HOLD ~~~ PACK_HOLD_PULLUP ~~~ PACK_HOLD_RELEASE_PULLDOWN ~~~ PACK_ALRT_PULLUP ~~~ PACK_STATUS_BUFFER ~~~ PACK_PFAIL_PULLUP ~~~ PACK_IRQ_GATE_PULLDOWN ~~~ PACK_GAUGE_SCL_PULLUP ~~~ PACK_GAUGE_SDA_PULLUP",
         "  PACK_GAUGE_SDA_PULLUP ~~~ PACK_SUPPLY_OR ~~~ PACK_SYSTEM_DIODE ~~~ PACK_ADMISSION ~~~ PACK_ADMISSION_BULK_CAP ~~~ PACK_ADMISSION_BYPASS ~~~ PACK_ADMISSION_RESET_PULLUP ~~~ PACK_ADMISSION_RESET_CAP",
-        "  PACK_ADMISSION_RESET_CAP ~~~ PACK_DIAG_TIMER ~~~ PACK_DIAG_TIMER_RES ~~~ PACK_DIAG_TIMER_CAP ~~~ PACK_DIAG_LOCKOUT_RES ~~~ PACK_DIAG_LOCKOUT_CAP ~~~ PACK_DIAG_TIMER_BYPASS ~~~ PACK_DIAG_TRIGGER_PULLDOWN ~~~ PACK_DIAG_GATE_PULLDOWN",
+        "  PACK_ADMISSION_RESET_CAP ~~~ POWER_COMMAND_SWITCH ~~~ POWER_COMMAND_PULLUP ~~~ POWER_COMMAND_FILTER ~~~ PACK_DIAG_TIMER ~~~ PACK_DIAG_TIMER_RES ~~~ PACK_DIAG_TIMER_CAP ~~~ PACK_DIAG_LOCKOUT_RES ~~~ PACK_DIAG_LOCKOUT_CAP ~~~ PACK_DIAG_TIMER_BYPASS ~~~ PACK_DIAG_TRIGGER_PULLDOWN ~~~ PACK_DIAG_GATE_PULLDOWN",
         "  PACK_DIAG_GATE_PULLDOWN ~~~ PACK_DIAG_SWITCH ~~~ PACK_DIAG_RES0 ~~~ PACK_DIAG_RES1 ~~~ PACK_MID_ADC_TOP0 ~~~ PACK_MID_ADC_TOP1 ~~~ PACK_MID_ADC_BOTTOM ~~~ PACK_MID_ADC_FILTER",
         "  PACK_MID_ADC_FILTER ~~~ PACK_STACK_ADC_TOP0 ~~~ PACK_STACK_ADC_TOP1 ~~~ PACK_STACK_ADC_TOP2 ~~~ PACK_STACK_ADC_TOP3 ~~~ PACK_STACK_ADC_TOP4 ~~~ PACK_STACK_ADC_BOTTOM ~~~ PACK_STACK_ADC_FILTER",
         "  PACK_STACK_ADC_FILTER ~~~ AON_BUCK ~~~ AON_INDUCTOR ~~~ AON_MODE_RES ~~~ AON_INPUT_CAP ~~~ AON_OUTPUT_CAP ~~~ AON_EFUSE ~~~ AON_EFUSE_RILIM ~~~ AON_EFUSE_OVLO_TOP ~~~ AON_EFUSE_OVLO_BOTTOM ~~~ AON_EFUSE_INPUT_CAP ~~~ AON_EFUSE_OUTPUT_CAP ~~~ AON_PG_PULLUP",
@@ -3697,6 +3712,9 @@ def _render_principled_pinout_bundle(
         "  PACK_ADMISSION --> PACK_ADMISSION_BYPASS",
         "  PACK_ADMISSION -->|\"NRST\"| PACK_ADMISSION_RESET_PULLUP",
         "  PACK_ADMISSION --> PACK_ADMISSION_RESET_CAP",
+        "  POWER_COMMAND_SWITCH -->|\"OFF grounds low-current request\"| PACK_ADMISSION",
+        "  POWER_COMMAND_PULLUP -->|\"ON default\"| PACK_ADMISSION",
+        "  POWER_COMMAND_FILTER -->|\"contact transient filter\"| PACK_ADMISSION",
         "  PACK_GAUGE <-->|\"local I²C + fault\"| PACK_ADMISSION",
         "  PACK_ADMISSION <-->|\"SYS I²C0 + shared IRQ\"| S3",
         "  PACK_ADMISSION -->|\"PA22 edge\"| PACK_DIAG_TIMER",

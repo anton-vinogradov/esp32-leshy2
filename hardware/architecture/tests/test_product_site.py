@@ -57,11 +57,10 @@ class ProductSiteTests(unittest.TestCase):
             "HMX035CTFT-001",
             "M5Stack U214",
             "Keystone 1048P",
-            "D-pad + OK",
+            "single D-pad cap",
             "STOP",
             "PTT",
             "RE-ARM",
-            "IR actual TX",
             "physical actual-TX evidence for each transmitting path",
             "M2.5 hole/head keep-outs",
             "GCT RFPC-SMA31-FN-175-A",
@@ -75,7 +74,7 @@ class ProductSiteTests(unittest.TestCase):
         layout = self.read("docs/images/internal-board-layout.svg")
         for token in (
             "Leshy2 — dimensioned inner-board placement",
-            "Every grey rectangle is one device",
+            "Every solid rectangle is one device",
             "Numbered physical devices",
             "UI/control PCB",
             "RF/power PCB",
@@ -83,6 +82,24 @@ class ProductSiteTests(unittest.TestCase):
             "M2.5 hole/head keep-out",
             "FX8C-80P-SV1(92)",
             "FX8C-80S-SV5(92)",
+            "AS02404PO",
+            "CMEJ-0413-42-SMT-TR",
+            "JS102011SCQN",
+            "SKQGADE010",
+            "FTSH-105-01-L-DV-K-P-TR",
+        ):
+            self.assertIn(token, layout)
+
+    def test_sandwich_section_uses_registered_component_depths(self):
+        layout = self.read("docs/images/sandwich-section.svg")
+        for token in (
+            "Leshy2 — dimensioned front-to-rear sandwich",
+            "HMX035CTFT-001",
+            "FX8C M1 · 11-mm board-to-board",
+            "AS02404PO",
+            "Keystone Electronics 1048P",
+            "M5Stack U214",
+            "Dimensioned architecture projection",
         ):
             self.assertIn(token, layout)
 
@@ -103,6 +120,7 @@ class ProductSiteTests(unittest.TestCase):
                 "FTSH-105-01-L-DV-K-P-TR",
                 "USB4105-GF-A",
                 "AEQ10410",
+                "JS102011SCQN",
             ):
                 self.assertIn(token, diagrams)
 

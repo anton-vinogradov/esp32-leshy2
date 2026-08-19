@@ -7,8 +7,8 @@
 ## UI/control-плата
 
 - Вычислители: `ESP32-S3-WROOM-1U-N16R2` управляет UI, экраном, картой памяти и аудио; `ESP32-C5-WROOM-1U-N8R8` — собственными диапазонами 2,4/5 ГГц и IR.
-- Интерфейсы: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, микрофон, наушники и все органы управления.
-- Локальная безопасность: формирователь и защёлка STOP/RE-ARM, аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.
+- Интерфейсы: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, микрофон, наушники, D-pad, BACK и OPT.
+- Локальная безопасность: аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.
 - Обслуживание C5: отдельный data-only USB-C `GCT USB4105-GF-A`.
 
 ## RF/power-плата
@@ -17,18 +17,20 @@
 - Внешние модули: съёмный `M5Stack U214 Cap LoRa-1262` и независимый порт M5 Unit.
 - Питание и основной USB-C: `JAE DX07S016JA1R1500`, защита `Texas Instruments TPD4S201RUKR`, USB-PD `Texas Instruments TPS25751DREFR`, заряд, аккумуляторы и все преобразователи питания.
 - Выход звука: дифференциальный усилитель `Diodes Incorporated PAM8302AASCR` и динамик `PUI Audio AS02404PO`.
-- Локальная безопасность: аппаратные гейты nRF/CC/voice/расширений, сброс RP и аналоговое подтверждение передачи nRF/CC/voice.
+- Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.
+- Локальная безопасность: формирователь и защёлка STOP/RE-ARM, аппаратные гейты nRF/CC/voice/расширений, сброс RP и аналоговое подтверждение передачи nRF/CC/voice.
 
 ## Почему такое разделение
 
 - Сырой VBUS, согласованное повышенное напряжение USB-PD, зарядное устройство и аккумуляторы остаются на RF/power-плате.
 - Класс-D усилитель остаётся рядом с динамиком; через M1 проходит только низкоуровневый дифференциальный аудиосигнал.
 - Аналоговые выходы детекторов передачи и IR-несущая обрабатываются на своей плате; через M1 проходят только цифровые признаки передачи.
-- Защёлка STOP/RE-ARM расположена рядом с органами управления; на вторую плату передаётся цифровое аппаратное разрешение.
+- Защёлка STOP/RE-ARM расположена на RF/power-плате рядом с задними кнопками; на UI-плату передаются только цифровые RUN_PERMIT, reset-kill и read-only status.
+- F1/F2 и энкодер используют семь прямых матричных/фазных контактов M1; PTT остаётся локальным для RP/voice.
 
 ## Бюджет контактов
 
-- Всего 80 контактов; 9 зарезервированы и физически не подключены.
+- Всего 80 контактов; 3 зарезервированы и физически не подключены.
 - 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
 - 23 силовых возвратов, 2 аудиовозврата и 2 возврата безопасности.
 - Сырой VBUS/PD, ток аккумуляторов, аналоговые выходы TX-детекторов, IR-несущая и выходы класса D через M1 не проходят.
@@ -65,12 +67,12 @@
 | `26` | `POWER_FAULT_N` | RF→UI | `control` |
 | `27` | `POWER_GROUND` | return | `return` |
 | `28` | `UNIT_READY` | RF→UI | `control` |
-| `29` | `PTT_BUTTON_N` | UI→RF | `control` |
+| `29` | `UI_ROW2_N` | UI→RF | `control` |
 | `30` | `POR_N` | RF→UI | `safety` |
 | `31` | `POWER_GROUND` | return | `return` |
-| `32` | `RUN_PERMIT` | UI→RF | `safety` |
-| `33` | `TX_KILL` | UI→RF | `safety` |
-| `34` | `RESET_KILL_GATE` | UI→RF | `safety` |
+| `32` | `RUN_PERMIT` | RF→UI | `safety` |
+| `33` | `UI_COL1` | RF→UI | `control` |
+| `34` | `RESET_KILL_GATE` | RF→UI | `safety` |
 | `35` | `POWER_GROUND` | return | `return` |
 | `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
 | `37` | `EV_N1_C5` | UI→RF | `tx_evidence` |
@@ -86,7 +88,7 @@
 | `47` | `SPEAKER_SELECTED_N` | UI→RF | `audio` |
 | `48` | `SPEAKER_AMP_EN` | UI→RF | `control` |
 | `49` | `POWER_GROUND` | return | `return` |
-| `50` | `RESERVED_50` | reserved | `reserved` |
+| `50` | `UI_COL2` | RF→UI | `control` |
 | `51` | `3V3_MAIN` | rail | `power` |
 | `52` | `3V3_MAIN` | rail | `power` |
 | `53` | `3V3_MAIN` | rail | `power` |
@@ -109,13 +111,13 @@
 | `70` | `POWER_GROUND` | return | `return` |
 | `71` | `POWER_GROUND` | return | `return` |
 | `72` | `POWER_GROUND` | return | `return` |
-| `73` | `RESERVED_73` | reserved | `reserved` |
-| `74` | `RESERVED_74` | reserved | `reserved` |
-| `75` | `RESERVED_75` | reserved | `reserved` |
-| `76` | `RESERVED_76` | reserved | `reserved` |
-| `77` | `RESERVED_77` | reserved | `reserved` |
+| `73` | `ENCODER_A` | RF→UI | `control` |
+| `74` | `ENCODER_B` | RF→UI | `control` |
+| `75` | `UI_ROW3_N` | UI→RF | `control` |
+| `76` | `UI_COL0` | RF→UI | `control` |
+| `77` | `STOP_LATCH_SENSE` | RF→UI | `safety` |
 | `78` | `RESERVED_78` | reserved | `reserved` |
 | `79` | `RESERVED_79` | reserved | `reserved` |
 | `80` | `RESERVED_80` | reserved | `reserved` |
 
-Восемь параллельных контактов `3V3_MAIN` дают паспортный потолок 3,2 А, но допустимый ток готового устройства определяется только измерением нагрева разъёма при одновременной нагрузке. Девять резервных контактов остаются физически не подключёнными.
+Восемь параллельных контактов `3V3_MAIN` дают паспортный потолок 3,2 А, но допустимый ток готового устройства определяется только измерением нагрева разъёма при одновременной нагрузке. Три резервных контакта остаются физически не подключёнными.

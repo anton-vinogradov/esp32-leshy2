@@ -20,7 +20,7 @@
       }
     ],
     "substitution_policy": {
-      "status": "all_193_current_purchase_lines_have_exactly_one_conservative_disposition_class",
+      "status": "all_194_current_purchase_lines_have_exactly_one_conservative_disposition_class",
       "classes": [
         {
           "id": "SUB-RF",
@@ -119,7 +119,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -197,7 +197,7 @@
     "status": "paper_reviewed_joint_candidate_projection_not_target_architecture",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 50,
-      "expected_occurrence_count": 1017,
+      "expected_occurrence_count": 1020,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -244,7 +244,7 @@
     },
     "consistency_checks": [
       "all programmable GPIO, module contacts, slow-I/O contacts, service alternatives and scheduled resources are machine-accounted without collision",
-      "all 889 physical architecture instances render one-device-per-node and the 888 supplied placements map to the reviewed I8 purchase boundary",
+      "all 892 physical architecture instances render one-device-per-node and the 891 supplied placements map to the reviewed I8 purchase boundary",
       "all signal groups have complete quiet-state, transition, actual-TX evidence and no-stall contracts without cross-group runtime promotion",
       "all remaining physical, procurement and HIL uncertainty has an owning downstream gate and no unresolved owner decision changes candidate function"
     ],
@@ -532,6 +532,7 @@
     "battery_thermal_coupling": "PACK_NTC0 and PACK_NTC1 each use a dedicated electrically insulated compliant contact through an open holder window to the middle third of their own cell can. The independent BQ25798 TS NTC uses one of two indexed physical tongue locations and is populated on the thermally worst slot after placement analysis. Open/short/lifted contact blocks admission or charge; compression, insulation, response time and replacement-cycle HIL remain mandatory",
     "battery_manager": "MAX17320G20+T 2S gauge/protector plus independently recoverable MSPM0C1104SDGS20R admission controller; G20 is I2C without SHA-256; blank/wrong gauge NVM or reset/watchdog MCU remains fail-closed",
     "battery_recovery_policy": "base product refuses any cell below the qualified admission floor; MAX17320 zero-volt charge and linear prequal are disabled; any research recovery uses a separate isolated Controlled-Zone fixture",
+    "power_command_profile": "C&K JS102011SCQN is a maintained SPDT low-current ON/OFF command only. OFF grounds MSPM0 PA24/A3 through the common contact; ON leaves that input at its exact 47-kOhm admission-VDD pull-up. One local 100-nF filter rejects contact transients. The admission controller performs an orderly shutdown and then releases the protected pack after a bounded timeout; the switch never carries cell, SYS, charge or load current, so OFF preserves USB charging, independent service recovery and supervised wake policy.",
     "manager_power_path": "one active CSD87313DMST common-drain package provides the fully-switching CHG/DIS pair required by MAX17320; two 0451005.MRL slot fuses, WSL25125L000FEA 5mOhm shunt and two B57332V5103F360 cell NTCs are exact first targets",
     "manager_supply": "MAX17320 AOLDO and isolated fixture enter BAV70LT1G; admitted system 3V3 enters BAT54-7-F and wins by lower drop. One 2N7002DW-7-F asserts ALRT hold during MCU reset; a second exact dual 2N7002DW-7-F translates push-pull PFAIL into admission-domain active-low status and turns PA23 into a passive-drain SYS_INT_N request. Exact IN/CP/REG/AOLDO, 2S CELL1/BATTS, PCKP, CHG/DIS-gate, local-I2C and MSPM0 VDD/NRST support is machine-instantiated; source handover and current remain HIL gates",
     "manager_support_decision": "DEC-0100",
@@ -707,12 +708,8 @@
         "ir_emitter",
         "ir_safe_gate",
         "evidence_cmp_a",
-        "safe_conditioner",
-        "safe_por_or",
-        "safe_latch",
-        "safe_reset_buffer",
         "safe_reset_sink_a",
-        "C5 service USB and all front controls"
+        "C5 service USB and the front D-pad, BACK and OPT controls"
       ],
       "rf_power_board": [
         "rp",
@@ -732,6 +729,10 @@
         "speaker_amp",
         "speaker",
         "safe_supervisor",
+        "safe_conditioner",
+        "safe_por_or",
+        "safe_latch",
+        "safe_reset_buffer",
         "safe_gate_a",
         "safe_gate_b",
         "safe_ptt_or",
@@ -739,13 +740,15 @@
         "evidence_cmp_b",
         "evidence_cmp_voice",
         "evidence_mask",
-        "evidence_main_isolator"
+        "evidence_main_isolator",
+        "rear F1/F2, encoder, PTT, STOP and recessed RE-ARM controls"
       ],
       "rationale": [
         "raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board",
         "speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND",
         "S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board",
-        "hard STOP and RE-ARM conditioning/latch remain beside the physical controls; only digital safety state crosses M1"
+        "hard STOP and RE-ARM conditioning/latch remain beside the rear physical controls; only digital RUN_PERMIT, reset-kill and read-only status cross M1",
+        "rear F1/F2 and encoder use seven direct matrix/phase contacts across M1; PTT is local to the RP/voice domain"
       ]
     },
     "pin_map": [
@@ -919,7 +922,7 @@
       },
       {
         "contact": 29,
-        "net": "PTT_BUTTON_N",
+        "net": "UI_ROW2_N",
         "direction": "UI→RF",
         "signal_class": "control"
       },
@@ -938,19 +941,19 @@
       {
         "contact": 32,
         "net": "RUN_PERMIT",
-        "direction": "UI→RF",
+        "direction": "RF→UI",
         "signal_class": "safety"
       },
       {
         "contact": 33,
-        "net": "TX_KILL",
-        "direction": "UI→RF",
-        "signal_class": "safety"
+        "net": "UI_COL1",
+        "direction": "RF→UI",
+        "signal_class": "control"
       },
       {
         "contact": 34,
         "net": "RESET_KILL_GATE",
-        "direction": "UI→RF",
+        "direction": "RF→UI",
         "signal_class": "safety"
       },
       {
@@ -1045,9 +1048,9 @@
       },
       {
         "contact": 50,
-        "net": "RESERVED_50",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "UI_COL2",
+        "direction": "RF→UI",
+        "signal_class": "control"
       },
       {
         "contact": 51,
@@ -1183,33 +1186,33 @@
       },
       {
         "contact": 73,
-        "net": "RESERVED_73",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "ENCODER_A",
+        "direction": "RF→UI",
+        "signal_class": "control"
       },
       {
         "contact": 74,
-        "net": "RESERVED_74",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "ENCODER_B",
+        "direction": "RF→UI",
+        "signal_class": "control"
       },
       {
         "contact": 75,
-        "net": "RESERVED_75",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "UI_ROW3_N",
+        "direction": "UI→RF",
+        "signal_class": "control"
       },
       {
         "contact": 76,
-        "net": "RESERVED_76",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "UI_COL0",
+        "direction": "RF→UI",
+        "signal_class": "control"
       },
       {
         "contact": 77,
-        "net": "RESERVED_77",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "STOP_LATCH_SENSE",
+        "direction": "RF→UI",
+        "signal_class": "safety"
       },
       {
         "contact": 78,
@@ -1232,7 +1235,7 @@
     ],
     "accounting": {
       "positions": 80,
-      "reserved": 9,
+      "reserved": 3,
       "main_3v3_contacts": 8,
       "aon_contacts": 2,
       "power_ground_contacts": 23,
@@ -1243,7 +1246,7 @@
     "routing_contract": [
       "USB2 D+/D- and S3↔RP IPC use impedance-controlled pairs/groups with the shown adjacent returns and no stubs",
       "low-level audio is routed as guarded differential/paired traces away from IPC, USB and buck switch nodes",
-      "all nine reserved contacts remain no-connect in the first PCB and may not be silently consumed",
+      "all three reserved contacts remain no-connect in the first PCB and may not be silently consumed",
       "3V3_MAIN current capacity is accepted only after connector-temperature and simultaneous-load HIL; 8 × 0.4 A is a connector-rating ceiling, not a product-current promise"
     ]
   },
@@ -1846,6 +1849,9 @@
     "charger_ce_pullup": "yageo_rc0402fr_0710kl",
     "pack_gauge": "adi_max17320_g20_t",
     "pack_admission": "ti_mspm0c1104_sdgs20r",
+    "power_command_switch": "ck_js102011scqn",
+    "power_command_pullup": "yageo_rc0402fr_0747kl",
+    "power_command_filter": "tdk_c1005x7r1h104k050bb",
     "pack_power_fet": "ti_csd87313dmst",
     "pack_fuse0": "littelfuse_0451005_mrl",
     "pack_fuse1": "littelfuse_0451005_mrl",
@@ -2260,6 +2266,7 @@
     {"instance":"pack_admission","contact":"PA18_A7","net":"PACK_SERVICE_UART_RX","direction":"i","controller":"UART0","peers":["abstract:pack service fixture"]},
     {"instance":"pack_admission","contact":"PA22_A4","net":"PACK_DIAG_TRIGGER","direction":"o","controller":"GPIO","peers":["pack_diag_timer.CH1_T","pack_diag_trigger_pulldown.END_1"],"reset_proof":"external pull-down prevents a reset or fixture transition from triggering the non-retriggerable hardware one-shot"},
     {"instance":"pack_admission","contact":"PA23","net":"PACK_SYS_INT_REQ","direction":"o","controller":"GPIO","peers":["pack_status_buffer.G2","pack_irq_gate_pulldown.END_1"],"reset_proof":"exact 10-kOhm gate pull-down keeps 2N7002DW Q2 off through reset; firmware drives PA23 high only to assert the passive-drain shared interrupt"},
+    {"instance":"pack_admission","contact":"PA24_A3","net":"POWER_COMMAND_OFF_N","direction":"i","controller":"GPIO_IRQ","peers":["power_command_pullup.END_2","power_command_filter.END_1","power_command_switch.THROW_B"],"reset_proof":"exact 47-kOhm admission-VDD pull-up means ON/open; OFF grounds the filtered low-current command through the maintained switch; no cell, SYS, charge or load current crosses the switch"},
     {"instance":"pack_admission","contact":"PA25_A2","net":"PACK_CELL0_ADC","direction":"i","controller":"ADC","peers":["pack_mid_adc_top1.END_2","pack_mid_adc_bottom.END_1","pack_mid_adc_filter.END_1"],"reset_proof":"read-only divided midpoint evidence remains below the internal 1.4-V reference at the defined 4.3-V screen corner"},
     {"instance":"pack_admission","contact":"PA26_A1","net":"PACK_STACK_ADC","direction":"i","controller":"ADC","peers":["pack_stack_adc_top4.END_2","pack_stack_adc_bottom.END_1","pack_stack_adc_filter.END_1"],"reset_proof":"read-only divided stack evidence remains below the internal 1.4-V reference at the defined 8.6-V screen corner; upper-cell evidence is stack minus midpoint"}
   ],
@@ -2291,7 +2298,7 @@
       "PA20_A6_SWCLK": "permanent SWD service contact; runtime/ADC repurposing is forbidden"
     }
   },
-  "free_gpio": {"s3": [], "c5": ["GPIO5"], "rp": [], "pd_controller": [], "pack_admission": ["PA24_A3", "PA27_A0", "PA28_A5"]},
+  "free_gpio": {"s3": [], "c5": ["GPIO5"], "rp": [], "pd_controller": [], "pack_admission": ["PA27_A0", "PA28_A5"]},
   "services": [
     {"instance":"s3","contacts":["EN","GPIO0","GPIO19","GPIO20","GPIO43","GPIO44"],"method":"protected product USB Serial/JTAG plus separately ESD-protected keyed DBG10 UART0/RESET/BOOT and separate Alps RESET/BOOT controls; DBG10 passive ID 00"},
     {"instance":"c5","contacts":["EN","GPIO28","GPIO27","GPIO11","GPIO12","GPIO13","GPIO14"],"method":"independent GCT USB4105 data-only USB through TPD2EUSB30A and board-powered FSUSB42MUX, plus separately ESD-protected keyed DBG10 UART0/RESET/BOOT and Alps controls; GPIO27 fixed high/read-only, DBG10 passive ID 01"},
@@ -2728,6 +2735,13 @@
     {"from":"pack_admission.PA1_NRST","to":"pack_admission_reset_cap.END_1","net":"PACK_ADMISSION_NRST_N","safety":"exact 10-nF reset capacitor implements the TI typical-application profile"},
     {"from":"pack_admission_reset_cap.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"reset capacitor returns locally and remains accessible to the isolated service fixture"},
     {"from":"pack_admission.PA1_NRST","to":"abstract:TP_PACK_NRST_N","net":"PACK_ADMISSION_NRST_N","safety":"permanent isolated fixture access can pull reset low without fighting a push-pull source"},
+    {"from":"pack_admission.VDD","to":"power_command_pullup.END_1","net":"PACK_ADMISSION_VDD","safety":"the exact 47-kOhm pull-up keeps the low-current power command asserted ON when the switch is open"},
+    {"from":"power_command_pullup.END_2","to":"pack_admission.PA24_A3","net":"POWER_COMMAND_OFF_N","safety":"the admission MCU receives a bounded, admission-domain command instead of switched pack or system current"},
+    {"from":"power_command_pullup.END_2","to":"power_command_switch.THROW_B","net":"POWER_COMMAND_OFF_N","safety":"the maintained OFF position grounds only the filtered logic command"},
+    {"from":"power_command_switch.COMMON","to":"abstract:power-ground","net":"POWER_GROUND","safety":"the common contact is a local low-current logic return; it never carries cell, SYS, charge or load current"},
+    {"from":"power_command_switch.THROW_A","to":"abstract:no-connect","net":"POWER_COMMAND_ON_NC","safety":"the maintained ON position deliberately leaves the command on its exact pull-up"},
+    {"from":"power_command_pullup.END_2","to":"power_command_filter.END_1","net":"POWER_COMMAND_OFF_N","safety":"one local 100-nF filter rejects contact transients before PA24/A3"},
+    {"from":"power_command_filter.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"the command filter returns locally in the admission domain"},
     {"from":"pack_admission.VDD","to":"pack_gauge_scl_pullup.END_1","net":"PACK_ADMISSION_VDD","safety":"the private gauge clock pull-up follows the live admission domain rather than REG3 or the off system domain"},
     {"from":"pack_gauge_scl_pullup.END_2","to":"pack_gauge.SCL_OD","net":"PACK_GAUGE_I2C_SCL","safety":"exact 10-kOhm pull-up overcomes the bounded disconnect-sense pulldown and supports the intentionally low-clock private bus"},
     {"from":"pack_admission.PA2","to":"pack_gauge.SCL_OD","net":"PACK_GAUGE_I2C_SCL","safety":"dedicated bit-banged clock has no other client and remains below the measured pull-up rise-time limit"},

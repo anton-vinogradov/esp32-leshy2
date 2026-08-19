@@ -47,9 +47,10 @@ powered down and discharged.
 
 Every transmit path has independent actual-TX evidence. Native S3/C5 use their
 own `U.FL-R-SMT-1(10)` and `CP0603Q5425ENTR` directional couplers; each nRF24
-has its own external SMA and `DC2337J5010AHF`. A red antenna-local indicator is
-retained for S3, C5, all three nRF24 paths, CC1101 and voice. Evidence reports
-actual transmit activity and a relative level; it never grants transmit permission.
+has its own external SMA and `DC2337J5010AHF`. Eight labelled per-path
+indicators plus an `ANY TX` summary sit on the front below the display. Evidence
+reports actual transmit activity and a relative level; it never grants transmit
+permission.
 
 ## User interface, storage and audio
 
@@ -66,8 +67,11 @@ actual transmit activity and a relative level; it never grants transmit permissi
 | Control panel | `TCA9534APWR` | D-pad, OK, BACK, OPT, F1, F2 and encoder push |
 | Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
 
-The local panel includes D-pad, `OK`, `BACK`, `OPT`, `F1`, `F2`, encoder,
-`PTT`, hardware `STOP` and `RE-ARM`. A phone may provide occasional long-form
+The front panel contains one D-pad cross with centre `OK`, plus `BACK` and
+`OPT`. `F1`, `F2`, the encoder, `PTT`, hardware `STOP` and recessed `RE-ARM`
+surround the rear battery; the encoder sits above F1/F2. The visible `PTT`,
+`STOP`, `F1` and `F2` caps have the same size, while `STOP` retains its separate
+normally-closed safety switch below. A phone may provide occasional long-form
 text input but cannot confirm dangerous actions.
 
 ## Expansion
@@ -87,13 +91,15 @@ dashed outlines are reserved space whose exact part number has not yet been
 selected. The generator rejects component-to-component overlap and entry into
 the 4-mm screw-head keep-outs around the M2.5 mounting holes.
 
-A red indicator beside a connector reports actual transmission by that path.
-S3, C5, all three nRF24 radios, CC1101 and voice have independent indicators;
-the two Si4732 inputs are receive-only. IR has its own optical TX indicator.
+Below the display, labelled actual-transmit indicators cover `S3`, `C5`,
+`N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` and the aggregate `ANY TX`.
+The two Si4732 antenna inputs are receive-only.
 
 ![Dimensioned external layout](images/current-clamshell.svg)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg)
+
+![Dimensioned sandwich cross-section](images/sandwich-section.svg)
 
 ## Power and service
 
@@ -105,6 +111,9 @@ the two Si4732 inputs are receive-only. IR has its own optical TX indicator.
   polarized `Keystone 1048P`; both are required, providing 28.8 Wh total.
 - `MAX17320G20+T` protects and gauges the 2S pack while
   `MSPM0C1104SDGS20R` performs local fail-closed admission.
+- The maintained `C&K JS102011SCQN` sends only a low-current ON/OFF request
+  to that admission controller. OFF never interrupts USB charging, service
+  recovery, cell current or the protected power path directly.
 - Independent fixed rails: 3.3-V always-on from `TPS629203DRLR`, plus separate
   3.3-V main, 4.0-V voice and 5.0-V accessory rails from `TPS564252DRLR`.
 - S3 exposes product USB and keyed UART0/RESET/BOOT; C5 exposes data-only USB

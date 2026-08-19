@@ -26,107 +26,77 @@
 <rect x="448.4" y="212.9" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
 <text x="603.8" y="259.1" font-family="sans-serif" font-size="7.3" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 · exact 84×24-mm plan envelope</text>
 <text x="603.8" y="275.8" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">rear insertion / removal ⊙</text>
-<rect x="127.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="152.0,157.4 139.2,164.8 126.4,157.4 126.4,142.6 139.2,135.2 152.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M139.2 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="139.2" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3-2G4</text>
-<text x="139.2" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">RP-SMA</text>
-<rect x="162.1" y="174.1" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="165.1" y="172.8" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="179.3" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="203.8,157.4 191.0,164.8 178.2,157.4 178.2,142.6 191.0,135.2 203.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M191.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="191.0" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5-2G4/5</text>
-<text x="191.0" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">RP-SMA</text>
-<rect x="215.8" y="174.1" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="218.8" y="172.8" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
-<rect x="234.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="259.3,157.4 246.5,164.8 233.7,157.4 233.7,142.6 246.5,135.2 259.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M246.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="246.5" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-FM/SW</text>
-<text x="246.5" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="286.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
-<polygon points="311.1,157.4 298.3,164.8 285.5,157.4 285.5,142.6 298.3,135.2 311.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
-<path d="M298.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="298.3" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-AM/LW</text>
-<text x="298.3" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
 <rect x="503.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="527.8,157.4 515.0,164.8 502.1,157.4 502.1,142.6 515.0,135.2 527.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M515.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="515.0" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-0</text>
 <text x="515.0" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="512.0" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="515.0" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
 <rect x="547.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="572.2,157.4 559.4,164.8 546.5,157.4 546.5,142.6 559.4,135.2 572.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M559.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="559.4" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">CC-SUB</text>
 <text x="559.4" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="556.4" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="559.4" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
 <rect x="592.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="616.6,157.4 603.8,164.8 590.9,157.4 590.9,142.6 603.8,135.2 616.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M603.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="603.8" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1</text>
 <text x="603.8" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="600.8" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="603.8" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
 <rect x="636.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="661.0,157.4 648.1,164.8 635.3,157.4 635.3,142.6 648.1,135.2 661.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M648.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="648.1" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VOICE-V/U</text>
 <text x="648.1" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="645.2" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="648.1" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
 <rect x="680.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="705.4,157.4 692.5,164.8 679.7,157.4 679.7,142.6 692.5,135.2 705.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M692.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="692.5" y="207.3" font-family="sans-serif" font-size="6.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2</text>
 <text x="692.5" y="217.3" font-family="sans-serif" font-size="5.2" font-weight="normal" text-anchor="middle" fill="#526076">SMA</text>
-<rect x="689.6" y="175.9" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="692.5" y="174.6" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#991b1b">TX</text>
 <rect x="117.9" y="179.6" width="201.7" height="375.6" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
 <text x="218.8" y="353.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
 <text x="218.8" y="372.0" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#1d4ed8">54.5×101.5-mm reference envelope</text>
 <text x="218.8" y="390.5" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#dc2626">touch / view ⊗</text>
-<rect x="113.3" y="571.8" width="49.2" height="38.5" rx="2" fill="#fee4e2" stroke="#b42318" stroke-width="1.5"/>
-<rect x="131.8" y="634.7" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="168.8" y="575.5" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="168.8" y="638.4" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="211.0" y="575.5" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="189.2" y="610.7" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="211.0" y="610.7" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="232.8" y="610.7" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="211.0" y="645.8" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="268.7" y="575.5" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="268.7" y="638.4" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="298.3" y="568.1" width="40.7" height="40.7" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="313.1" y="638.4" width="15.5" height="10.4" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<rect x="124.8" y="626.9" width="29.6" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="165.5" y="567.7" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="165.5" y="630.6" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="207.7" y="567.7" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="185.8" y="602.9" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="207.7" y="602.9" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="229.5" y="602.9" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="207.7" y="638.0" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="265.4" y="567.7" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="265.4" y="630.6" width="22.2" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="290.9" y="560.7" width="55.5" height="55.5" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect x="306.1" y="630.6" width="29.6" height="25.9" rx="3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<text x="137.7" y="594.0" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
-<text x="139.6" y="653.2" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
-<text x="176.6" y="586.6" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
-<text x="176.6" y="649.5" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
-<text x="218.8" y="586.6" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">↑</text>
-<text x="196.9" y="621.8" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">←</text>
-<text x="218.8" y="621.8" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
-<text x="240.6" y="621.8" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">→</text>
-<text x="218.8" y="656.9" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">↓</text>
-<text x="276.5" y="586.6" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
-<text x="276.5" y="649.5" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
-<text x="318.6" y="597.7" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
-<text x="320.9" y="649.5" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
+<rect x="127.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="152.0,157.4 139.2,164.8 126.4,157.4 126.4,142.6 139.2,135.2 152.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M139.2 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="139.2" y="177.4" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3-2G4</text>
+<rect x="179.3" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="203.8,157.4 191.0,164.8 178.2,157.4 178.2,142.6 191.0,135.2 203.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M191.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="191.0" y="177.4" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5-2G4/5</text>
+<rect x="234.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="259.3,157.4 246.5,164.8 233.7,157.4 233.7,142.6 246.5,135.2 259.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M246.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="246.5" y="177.4" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-FM/SW</text>
+<rect x="286.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
+<polygon points="311.1,157.4 298.3,164.8 285.5,157.4 285.5,142.6 298.3,135.2 311.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
+<path d="M298.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="298.3" y="177.4" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-AM/LW</text>
+<rect x="102.2" y="564.4" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="105.2" y="574.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">S3</text>
+<rect x="165.1" y="564.4" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="168.1" y="574.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">C5</text>
+<rect x="228.0" y="564.4" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="231.0" y="574.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-0</text>
+<rect x="290.9" y="564.4" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="293.9" y="574.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-1</text>
+<rect x="102.2" y="594.0" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="105.2" y="603.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-2</text>
+<rect x="165.1" y="594.0" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="168.1" y="603.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">CC</text>
+<rect x="228.0" y="594.0" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="231.0" y="603.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VOICE</text>
+<rect x="290.9" y="594.0" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="293.9" y="603.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
+<rect x="331.6" y="579.2" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text x="334.6" y="588.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">ANY TX</text>
+<rect x="141.4" y="645.4" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="186.6" y="621.8" width="64.4" height="70.3" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="270.2" y="645.4" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="209.9,632.5 227.6,632.5 227.6,648.0 243.2,648.0 243.2,665.8 227.6,665.8 227.6,681.3 209.9,681.3 209.9,665.8 194.3,665.8 194.3,648.0 209.9,648.0" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7"/>
+<circle cx="218.8" cy="656.9" r="7.4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="218.8" y="658.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
+<text x="154.4" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
+<text x="283.1" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
 <rect x="80.0" y="427.5" width="11.8" height="11.1" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="94.8" y="435.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="start" fill="#92400e">IR 38k RX</text>
@@ -136,8 +106,6 @@
 <rect x="80.0" y="479.3" width="11.8" height="11.1" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
 <path d="M80.0 484.9 L54.1 484.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="94.8" y="487.4" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="start" fill="#92400e">IR TX</text>
-<circle cx="96.7" cy="497.8" r="4.1" fill="#ef4444" stroke="#991b1b"/>
-<text x="102.9" y="501.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="start" fill="#991b1b">IR actual TX</text>
 <path d="M357.5 445.3 L383.4 445.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="344.6" y="439.3" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">3.5 mm</text>
 <path d="M196.6 705.0 L196.6 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -153,8 +121,18 @@
 <text x="568.6" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
 <rect x="604.5" y="342.4" width="68.8" height="240.5" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5"/>
 <text x="638.9" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
-<rect x="509.4" y="642.1" width="88.8" height="44.4" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<text x="553.8" y="668.0" font-family="sans-serif" font-size="5.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">AS02404PO · sound ⊙</text>
+<rect x="466.9" y="309.1" width="55.5" height="55.5" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="479.8" y="383.1" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="479.8" y="438.6" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="701.8" y="383.1" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="701.8" y="438.6" width="25.9" height="25.9" rx="3" fill="#fee4e2" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="701.8" y="505.2" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="492.8" y="377.6" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
+<text x="492.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
+<text x="492.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
+<text x="714.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
+<text x="714.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
+<text x="714.8" y="545.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
 <rect x="642.6" y="642.1" width="66.6" height="29.6" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3"/>
 <text x="675.9" y="660.6" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#9a3412">M5 Unit · MPN TBD</text>
 <path d="M675.9 671.7 V697.6" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -170,11 +148,12 @@
 <text x="850.0" y="245.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Interface direction</text>
 <text x="850.0" y="273.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑ / ↓ / ← / →  interface faces through that enclosure edge</text>
 <text x="850.0" y="296.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">⊗  touch/press enters face     ⊙  sound/module leaves face</text>
-<text x="850.0" y="337.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">TX indication</text>
-<circle cx="858" cy="360" r="5" fill="#ef4444" stroke="#991b1b"/>
-<text x="875.0" y="364.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">physical actual-TX evidence for each transmitting path</text>
-<text x="850.0" y="386.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">S3, C5, 3×nRF24, CC and voice get antenna-local indicators.</text>
-<text x="850.0" y="409.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">IR gets its own indicator; the two Si4732 ports are RX-only.</text>
+<text x="850.0" y="316.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The front uses one moulded single D-pad cap over five exact switches.</text>
+<text x="850.0" y="347.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">TX indication</text>
+<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>
+<text x="875.0" y="374.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">physical actual-TX evidence for each transmitting path</text>
+<text x="850.0" y="396.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Eight path indicators plus ANY TX are on the front below the display.</text>
+<text x="850.0" y="419.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Each is labelled S3/C5/N24-0..2/CC/VOICE/IR; Si4732 ports are RX-only.</text>
 <text x="850.0" y="450.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Geometry status</text>
 <rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>
 <text x="890.0" y="479.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">solid — registered MPN/reference assembly envelope</text>
@@ -185,5 +164,6 @@
 <text x="850.0" y="593.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.</text>
 <text x="850.0" y="614.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
 <text x="850.0" y="637.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Caps/knob, enclosure wall stack and internal cable lengths remain open.</text>
-<text x="850.0" y="670.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">Controls retain D-pad + OK, BACK, OPT, F1/F2, PTT, STOP and RE-ARM.</text>
+<text x="850.0" y="670.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">Front: one D-pad + BACK/OPT. Rear: ENC, F1/F2, PTT, STOP, RE-ARM.</text>
+<text x="850.0" y="693.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">STOP uses the same visible 7×7-mm cap as F1/F2/PTT over its NC safety body.</text>
 </svg>

@@ -227,6 +227,8 @@ PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD controller"]
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S charger and NVDC power path"]
 PACK_HOLDER["Keystone Electronics 1048P<br/>polarized dual-18650 holder"]
 PACK_GAUGE["Analog Devices MAX17320G20+T<br/>2S protection and fuel gauge"]
+PACK_ADMISSION["Texas Instruments MSPM0C1104SDGS20R<br/>local fail-closed 2S pack admission controller"]
+POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>maintained low-current ON/OFF command switch"]
 AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on 3.3-V safety converter"]
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>main 3.3-V converter"]
 VOICE_BUCK["Texas Instruments TPS564252DRLR<br/>voice 4.0-V converter"]
@@ -237,6 +239,8 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>accessory 5.0-V converter"]
   PRODUCT_USB_CONNECTOR -->|"VBUS shunt only"| PD_VBUS_TVS
   PD_CONTROLLER -->|"negotiated protected HV input"| NVDC_CHARGER
   PACK_HOLDER -->|"two removable cells"| PACK_GAUGE -->|"supervised 2S pack"| NVDC_CHARGER
+  POWER_COMMAND_SWITCH -->|"low-current ON/OFF request; never load current"| PACK_ADMISSION
+  PACK_ADMISSION <-->|"local gauge admission and fault evidence"| PACK_GAUGE
   NVDC_CHARGER -->|"VSYS"| AON_BUCK
   NVDC_CHARGER -->|"VSYS"| MAIN_BUCK
   NVDC_CHARGER -->|"VSYS"| VOICE_BUCK
