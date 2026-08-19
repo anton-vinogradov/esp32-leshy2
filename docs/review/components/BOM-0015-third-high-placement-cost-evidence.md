@@ -182,5 +182,5 @@ revision for this batch.
 ## Последующий статус
 
 Этот artifact сохраняет проверенный third-batch checkpoint. Текущий итог
-находится в [`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md):
-133/187 lines, 787/857 placements и partial base subtotal USD 143.6995.
+находится в [`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md):
+148/187 lines, 802/857 placements и partial base subtotal USD 150.1783.

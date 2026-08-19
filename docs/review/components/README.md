@@ -33,7 +33,8 @@ explicit physical-gap register feed the generated manifest.
 19. [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md) — high-placement passive/discrete seventh-batch checkpoint: 91/187 lines / 708 placements / USD 133.4711 partial base subtotal.
 20. [`BOM-0020`](BOM-0020-control-protection-rf-cost-evidence.md) — control/protection/RF-passive eighth-batch checkpoint: 106/187 lines / 747 placements / USD 140.7642 partial base subtotal.
 21. [`BOM-0021`](BOM-0021-control-logic-passive-cost-evidence.md) — control/logic/passive ninth-batch checkpoint plus one RFQ gate: 118/187 lines / 771 placements / USD 142.1808 partial base subtotal.
-22. [`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md) — RF/timing/indicator/passive tenth batch, current 133/187 lines / 787 placements / USD 143.6995 partial base subtotal.
+22. [`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md) — RF/timing/indicator/passive tenth-batch checkpoint: 133/187 lines / 787 placements / USD 143.6995 partial base subtotal.
+23. [`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md) — logic/interface/IR eleventh batch, current 148/187 lines / 802 placements / USD 150.1783 partial base subtotal.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -74,6 +75,7 @@ explicit physical-gap register feed the generated manifest.
 - [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md) / [`REV-0005BS`](../reviews/REV-0005BS-high-placement-passive-cost-propagation.md) — 15 exact high-placement passive/discrete prices; **Проведено ревью seventh-batch checkpoint**.
 - [`BOM-0020`](BOM-0020-control-protection-rf-cost-evidence.md) / [`REV-0005BT`](../reviews/REV-0005BT-control-protection-rf-cost-propagation.md) — 15 exact control/protection/RF-passive prices and one high-Q RF quote gate; **Проведено ревью eighth-batch checkpoint** at 106/187 lines / 747/857 placements and USD 140.7642 partial base subtotal.
 - [`BOM-0021`](BOM-0021-control-logic-passive-cost-evidence.md) / [`REV-0005BU`](../reviews/REV-0005BU-control-logic-passive-cost-propagation.md) — 12 exact control/logic/passive prices and one balance-resistor quote gate; **Проведено ревью ninth-batch checkpoint**.
-- [`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md) / [`REV-0005BV`](../reviews/REV-0005BV-rf-timing-indicator-passive-cost-propagation.md) — 15 exact RF/timing/indicator/passive prices; **Проведено ревью tenth batch**, current coverage 133/187 lines / 787/857 placements and USD 143.6995 partial base subtotal.
+- [`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md) / [`REV-0005BV`](../reviews/REV-0005BV-rf-timing-indicator-passive-cost-propagation.md) — 15 exact RF/timing/indicator/passive prices; **Проведено ревью tenth-batch checkpoint**.
+- [`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md) / [`REV-0005BW`](../reviews/REV-0005BW-logic-interface-ir-cost-propagation.md) — 15 exact logic/interface/IR prices; **Проведено ревью eleventh batch**, current coverage 148/187 lines / 802/857 placements and USD 150.1783 partial base subtotal.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.

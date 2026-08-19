@@ -457,6 +457,11 @@
         "url": "https://www.findchips.com/detail/RC0402FR-07133KL/YAGEO-Corporation",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07133KL/5280830", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -827,6 +832,11 @@
         "url": "https://www.ti.com/product/TMUX1136/part-details/TMUX1136DGSR",
         "checked": "2026-08-17"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 2.0581,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TMUX1136DGSR/10273239", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "SEL1": {"physical": "1", "role": "signal"},
@@ -960,6 +970,11 @@
         "document": "SN74LVC1G3157DBVR product/orderable page",
         "url": "https://www.ti.com/product/SN74LVC1G3157/part-details/SN74LVC1G3157DBVR",
         "checked": "2026-08-17"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1301,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G3157DBVR/562896", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -1328,6 +1343,11 @@
         "url": "https://www.digikey.pl/pl/products/detail/yageo/RC0402FR-07220RL/726565",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220RL/729512", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "passive"},
@@ -1693,6 +1713,11 @@
         "document": "SN74LVC1G125DCKR authorized-distributor stock page",
         "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G125DCKR",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0583,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G125DCKR/385743", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -2440,6 +2465,11 @@
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G07DCUR/484588",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.4087,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G07DCUR/484588", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "function": "three non-inverting buffers with open-drain outputs",
         "supply_range_v": [1.65, 5.5],
@@ -2670,6 +2700,11 @@
         "url": "https://www.ti.com/product/TCA4307/part-details/TCA4307DGKR",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 2.0137,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TCA4307DGKR/13169411", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "supply_v": [2.3, 5.5],
         "maximum_bus_hz": 400000,
@@ -2701,6 +2736,11 @@
         "document": "TXS0102DCUR active authorized-distributor stock page; 91,204 shown in stock",
         "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/TXS0102DCUR",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.348,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/TXS0102DCUR", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "vcca_v": [1.65, 3.6],
@@ -2892,6 +2932,11 @@
         "document": "SN74LVC3G34DCUR ACTIVE exact TI order page; no local TI inventory is implied",
         "url": "https://www.ti.com/product/SN74LVC3G34/part-details/SN74LVC3G34DCUR",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.2616,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G34DCUR/484593", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -3148,6 +3193,11 @@
         "url": "https://www.vishay.com/en/product/84295/",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.5371,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VEMD1060X01/5879087", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "spectral_band_nm": [350, 1070],
         "peak_wavelength_nm": 820,
@@ -3242,6 +3292,11 @@
         "document": "VSMY14940 active stocked exact order code",
         "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4494435",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.5035,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4494435", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "peak_wavelength_nm": 940,
@@ -4354,6 +4409,11 @@
         "url": "https://www.mouser.com/ProductDetail/YAGEO/RC0402FR-07196KL",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07196KL/5281889", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -4445,6 +4505,11 @@
         "document": "RC0402FR-071K65L LCSC C185453 stocked exact order code",
         "url": "https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0402FR-071K65L_C185453.html",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K65L/5281908", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -5274,6 +5339,11 @@
         "document": "BAV70LT1G active authorized-distributor exact order-code page",
         "url": "https://www.digikey.com/en/products/detail/onsemi/BAV70LT1G/918324",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.046,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/onsemi/BAV70LT1G/918324", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -6494,6 +6564,11 @@
         "document": "SN74LVC1G06DCKR active authorized-distributor listing; more than 148,000 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0749,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "function": "single inverting buffer with open-drain output",

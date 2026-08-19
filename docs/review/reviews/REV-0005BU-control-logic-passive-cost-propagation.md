@@ -26,6 +26,6 @@ uninstantiated physical families, specific alternate qualification and full
 factory COGS. The accepted balance resistor is not silently replaced for
 procurement convenience.
 
-`BOM-0022/REV-0005BV` preserve this reviewed ninth-batch checkpoint and
-advance current coverage to 133/187 lines / 787 placements / USD 143.6995
+`BOM-0023/REV-0005BW` preserve this reviewed ninth-batch checkpoint and
+advance current coverage to 148/187 lines / 802 placements / USD 150.1783
 partial base subtotal.

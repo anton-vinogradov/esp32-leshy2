@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **133/187** lines.
-- Of the remaining **54** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **787/857** supplied placements; their partial subtotals are `base_product` — USD 143.6995. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **148/187** lines.
+- Of the remaining **39** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **802/857** supplied placements; their partial subtotals are `base_product` — USD 150.1783. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -903,6 +903,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>onsemi BAV70LT1G</code> — 1 × USD 0.0460 = USD 0.0460</summary>
+
+- Device id: `onsemi_bav70lt1g`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/BAV70LT1G/918324).
+
+</details>
+
 <details><summary><code>onsemi CAT24C512WI-GT3</code> — 1 × USD 0.7133 = USD 0.7133</summary>
 
 - Device id: `onsemi_cat24c512wi_gt3`.
@@ -1029,6 +1038,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>TCA4307DGKR</code> — 1 × USD 2.0137 = USD 2.0137</summary>
+
+- Device id: `tca4307dgkr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA4307DGKR/13169411).
+
+</details>
+
 <details><summary><code>TCA6424ARGJR</code> — 1 × USD 1.7001 = USD 1.7001</summary>
 
 - Device id: `tca6424argjr`.
@@ -1119,6 +1137,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments SN74LVC1G06DCKR</code> — 1 × USD 0.0749 = USD 0.0749</summary>
+
+- Device id: `ti_sn74lvc1g06_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G06DCKR/377452).
+
+</details>
+
 <details><summary><code>SN74LVC1G07DCKR</code> — 5 × USD 0.0509 = USD 0.2545</summary>
 
 - Device id: `ti_sn74lvc1g07_dckr`.
@@ -1128,12 +1155,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments SN74LVC1G125DCKR</code> — 1 × USD 0.0583 = USD 0.0583</summary>
+
+- Device id: `ti_sn74lvc1g125_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G125DCKR/385743).
+
+</details>
+
 <details><summary><code>Texas Instruments SN74LVC1G126DCKR</code> — 6 × USD 0.0546 = USD 0.3276</summary>
 
 - Device id: `ti_sn74lvc1g126_dckr`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G126DCKR/385723).
+
+</details>
+
+<details><summary><code>Texas Instruments SN74LVC1G3157DBVR</code> — 1 × USD 0.1301 = USD 0.1301</summary>
+
+- Device id: `ti_sn74lvc1g3157_dbvr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G3157DBVR/562896).
 
 </details>
 
@@ -1152,6 +1197,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Texas-Instruments/SN74LVC2G66DCUR?qs=N6WZOzgtpqWMpNL31DMvDQ%3D%3D).
+
+</details>
+
+<details><summary><code>SN74LVC3G07DCUR</code> — 1 × USD 0.4087 = USD 0.4087</summary>
+
+- Device id: `ti_sn74lvc3g07_dcur`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G07DCUR/484588).
+
+</details>
+
+<details><summary><code>SN74LVC3G34DCUR</code> — 1 × USD 0.2616 = USD 0.2616</summary>
+
+- Device id: `ti_sn74lvc3g34_dcur`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G34DCUR/484593).
 
 </details>
 
@@ -1179,6 +1242,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TLV9061IDBVR/9771970).
+
+</details>
+
+<details><summary><code>Texas Instruments TMUX1136DGSR</code> — 1 × USD 2.0581 = USD 2.0581</summary>
+
+- Device id: `ti_tmux1136_dgsr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TMUX1136DGSR/10273239).
 
 </details>
 
@@ -1326,12 +1398,39 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Texas Instruments TXS0102DCUR</code> — 1 × USD 0.3480 = USD 0.3480</summary>
+
+- Device id: `ti_txs0102_dcur`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Texas-Instruments/TXS0102DCUR).
+
+</details>
+
 <details><summary><code>TTM Technologies DC2337J5010AHF</code> — 3 × USD 1.0291 = USD 3.0873</summary>
 
 - Device id: `ttm_dc2337j5010ahf`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC2337J5010AHF/3069211).
+
+</details>
+
+<details><summary><code>VEMD1060X01</code> — 1 × USD 0.5371 = USD 0.5371</summary>
+
+- Device id: `vishay_vemd1060x01`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VEMD1060X01/5879087).
+
+</details>
+
+<details><summary><code>Vishay VSMY14940</code> — 1 × USD 0.5035 = USD 0.5035</summary>
+
+- Device id: `vishay_vsmy14940`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4494435).
 
 </details>
 
@@ -1380,12 +1479,39 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-07133KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_07133kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07133KL/5280830).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-07169KL</code> — 5 × USD 0.0097 = USD 0.0485</summary>
 
 - Device id: `yageo_rc0402fr_07169kl`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07169KL/5280860).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-07196KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_07196kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07196KL/5281889).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-071K65L</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_071k65l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-071K65L/5281908).
 
 </details>
 
@@ -1413,6 +1539,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220KL/726564).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-07220RL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_07220rl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220RL/729512).
 
 </details>
 

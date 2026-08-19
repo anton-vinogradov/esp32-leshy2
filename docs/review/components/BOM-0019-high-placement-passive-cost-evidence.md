@@ -56,5 +56,5 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
 The current successor is
-[`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md): 133/187
-lines, 787/857 placements and USD 143.6995 partial base subtotal.
+[`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md): 148/187 lines,
+802/857 placements and USD 150.1783 partial base subtotal.
