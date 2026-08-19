@@ -22,3 +22,7 @@ without weakening RF identity or fabricating values for quote-only lines.
 I8 remains open for the twelve explicit price/RFQ gates, standalone display
 sourcing, four uninstantiated physical families, specific alternate
 qualification and full factory COGS.
+
+`BOM-0027/REV-0005CB` subsequently replace the anonymous physical-family
+residue with four explicit owner/prerequisite/acceptance gates; exact physical
+parts and HIL remain open without changing this price checkpoint.

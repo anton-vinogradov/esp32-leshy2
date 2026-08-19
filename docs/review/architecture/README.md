@@ -246,7 +246,7 @@ source lines, replace the RP prose pseudo-MPN with exact `SC1512-A4`
 (`RP2354B0A4`) and, after the internal-node correction, leave current
 orderability coverage at 186/187. Exact
 standalone `HMX035CTFT-001` sourcing is the sole used-line residue; cost and
-the four physical-gap families remain open. `DSP-0008/BOM-0010/REV-0005BI` then prove current complete-board
+the four physical purchase families remain open. `DSP-0008/BOM-0010/REV-0005BI` then prove current complete-board
 specimen access, define the exact standalone-panel RFQ and record the first
 no-drop-in disposition without changing the display endpoint.
 `BOM-0012/DEC-0104/REV-0005BK` subsequently classify all 187 purchase lines:
@@ -257,6 +257,10 @@ contract, explicit RFQ/retail gaps and first 175/187 prices covering 829
 placements. Their USD 157.3727 base-product subtotal is deliberately partial;
 all twelve remaining prices have explicit gates and full factory COGS remains
 open.
+`BOM-0027/REV-0005CB` subsequently make the four physical-family boundaries
+machine-readable: 4/4 families / 28 items now have owner, prerequisites and
+acceptance. Exact connectors, harnesses, antenna-kit items and physical/RF HIL
+remain open at those gates; no MPN or footprint is guessed.
 `PWR-0013/DEC-0074/REV-0005AE` then close the exact 10-Ohm pre-admission
 load, independent non-retriggerable timer, 28.7-40.7-ms C0G paper window,
 25-50-ms production acceptance and both divider/filter frontends. `FND-0078`

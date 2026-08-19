@@ -2027,31 +2027,71 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 - `display_touch_controller` / `Sitronix ST77922` is contained by `display`: Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement.
 
-## Physical items not yet instantiated
+## Physical purchase families with explicit resolution gates
 
 ### `external_sma_bodies` — 9 item(s)
 
 - Scope: `base_product`.
 - Role: two RP-SMA and seven standard-SMA external RF connector bodies.
 - Blocking evidence: exact attachment style and MPN depend on the physical connector plane; polarity and radio ownership are already fixed.
+- Gate: `g3_connector_plane_and_mount_coupon_required`.
+- Owner stage: G3 target physical/product design before exact connector BOM freeze.
+- Evidence chain: `DEC-0050`, `ANT-0001`, `FND-0109`.
+- Prerequisites:
+  - freeze all nine external port centres, enclosure-wall versus PCB relationship, panel thickness, service access and retention-load envelope.
+  - preserve two RP-SMA jack/centre-pin and seven standard-SMA jack/centre-socket device-side mating contracts from DEC-0050.
+- Acceptance:
+  - name exact current orderable body MPNs, footprints, mounting hardware and quantities for all nine endpoints without changing polarity or RF ownership.
+  - pass assembly coupon for torque, ground contact, enclosure load, keepout, service access and repeated mate cycles.
+  - pass per-path VNA/continuity/ESD-ground verification and attach quantity-100 cost plus substitution disposition.
 
 ### `rf_cable_assemblies` — 5 item(s)
 
 - Scope: `base_product`.
 - Role: two native-radio double-ended microcoax jumpers and three nRF module-to-coupler pigtails.
 - Blocking evidence: exact mating family, length and strain relief require received-module microscopy and internal placement.
+- Gate: `received_mate_and_routed_length_coupon_required`.
+- Owner stage: G3 placement and received-module qualification before harness BOM freeze.
+- Evidence chain: `ANT-0001`, `N24E-0001`, `FND-0109`.
+- Prerequisites:
+  - receive production-lot S3, C5 and all three E01-ML01IPX specimens and identify every module-side microcoax mate by microscope, dimensions and fit.
+  - freeze endpoint coordinates, routed length, minimum bend radius, pull direction, strain relief and service replacement path.
+- Acceptance:
+  - name five exact orderable cable-assembly MPNs or controlled drawing identities with connector generation, polarity, length and quantity.
+  - pass mate retention, flex/pull, no-chafe and repeated-service coupon on every distinct harness profile.
+  - pass per-path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition.
 
 ### `m5_connector_bodies` — 2 item(s)
 
 - Scope: `base_product`.
 - Role: rear Cap-Bus receptacle and native HY2.0-4P Unit receptacle.
 - Blocking evidence: manufacturer order codes are not published; received U214/cable mate and retention coupon are required.
+- Gate: `received_mate_identification_and_retention_coupon_required`.
+- Owner stage: G3 U214 dock and Unit-port physical closure before connector BOM freeze.
+- Evidence chain: `MEC-0001`, `FND-0069`, `EXP-0001`.
+- Prerequisites:
+  - receive a production U214 and native HY2.0-4P cable, then measure contact sex, pin section, exposed length, insertion depth, housing and polarity.
+  - freeze U214 rail/contact planes, 56-mm M2 retention stack, screw engagement and native Unit cable-exit envelope.
+- Acceptance:
+  - name exact current orderable host connector MPNs and footprints for both interfaces; generic HDR-SMD_14P-P2.54 and HY2.0-4P labels are insufficient.
+  - pass adjustable U214 dock coupon without pin bottoming, preload or screw-induced board bending over repeated cycles.
+  - pass Unit polarity/retention/hot-plug coupon and attach mounting hardware, quantity-100 cost and substitution disposition.
 
 ### `external_antenna_kit` — 12 item(s)
 
 - Scope: `costed_product_variant`.
 - Role: two native, three nRF, three CC, two voice and two receiver antennas/pods.
 - Blocking evidence: one first target exists for most profiles, but second-source, AM/LW pod and package-variant disposition remain open.
+- Gate: `profile_variant_bom_and_hil_required`.
+- Owner stage: G3 physical design plus product-variant qualification before antenna-kit freeze.
+- Evidence chain: `DEC-0055`, `ANT-0002`, `FND-0058`.
+- Prerequisites:
+  - freeze final external connector plane, target ground/counterpoise environment and the twelve-item profiled-kit packaging manifest.
+  - complete an exact AM/LW loop or buffered-pod design and retain fail-closed TX profile selection from DEC-0055.
+- Acceptance:
+  - name exact current orderable first-target and qualified-alternate MPNs for every antenna profile, with twelve physical kit items and no missing AM/LW identity.
+  - pass assembled VNA, receive sensitivity, TX EIRP/harmonic, coexistence, mechanical and environmental HIL for every affected path/profile.
+  - attach current availability, variant quantities, factory kitting instructions, quantity-100 cost and substitution disposition.
 
 ## Used lines without current orderability evidence
 

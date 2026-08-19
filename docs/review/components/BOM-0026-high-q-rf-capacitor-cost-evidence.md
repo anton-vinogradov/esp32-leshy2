@@ -33,3 +33,6 @@ This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates. The numeric price-search pass has no silent
 unknowns left: each unpriced line now exposes its exact RFQ/retail boundary.
+
+`BOM-0027/REV-0005CB` subsequently add complete resolution contracts to all
+four physical purchase families without changing this cost snapshot.

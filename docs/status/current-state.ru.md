@@ -521,8 +521,10 @@ alternate/no-substitution disposition class; это безопасная гра�
 не утверждение о 187 квалифицированных second source.
 Тот же аудит отдельно учитывает 9 SMA bodies, 5 RF cable assemblies, 2 M5
 connector bodies и 12-item antenna-kit variant вместо выдачи этих абстракций
-за нулевую стоимость. Бывшие MAX17320 и threshold gaps теперь представлены
-exact physical placements.
+за нулевую стоимость. `BOM-0027/REV-0005CB` теперь дают всем 4/4 families / 28
+items явных владельцев, prerequisites и acceptance criteria. Это закрывает
+anonymous gate coverage, но не exact MPN, coupons или physical/RF HIL. Бывшие
+MAX17320 и threshold gaps теперь представлены exact physical placements.
 `DSP-0008/BOM-0010/REV-0005BI` дополнительно доказывают, что exact HMX
 specimen можно получить внутри текущей платы `DLE06235B/ES3C35P-QD`, но
 standalone raw-panel sourcing честно остаётся открытым. Exact RFQ и

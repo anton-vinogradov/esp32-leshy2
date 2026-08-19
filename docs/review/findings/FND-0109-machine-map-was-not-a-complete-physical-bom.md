@@ -59,6 +59,9 @@ current orderability evidence, а standalone
 - RF/M5 connector MPN могут быть first-target candidates с явным
   mechanics/specimen reopen gate; отсутствие final enclosure ещё не разрешает
   скрыть их из BOM.
+- `BOM-0027/REV-0005CB` subsequently give all 4/4 remaining physical families
+  machine-readable owner/prerequisite/acceptance contracts. Gate coverage is
+  reviewed; exact parts, coupons, cost and physical/RF HIL remain open.
 - KiCad и total COGS остаются заблокированы.
 
 ## Сводная таблица исправлений MAX17320

@@ -47,8 +47,12 @@ future factory RFQ.
 2. ~~Instantiate eight actual-TX threshold/hysteresis networks and repair the
    AON-to-main observation boundary.~~ **Проведено ревью** by
    `SAFE-0003/DEC-0101/REV-0005BG`.
-3. Convert the four remaining connector/cable/antenna gap families into exact
-   first-target or received-item gates without guessing unavailable contacts.
+3. ~~Convert the four remaining connector/cable/antenna gap families into exact
+   first-target or received-item gates without guessing unavailable contacts.~~
+   **Проведено ревью gate coverage** by `BOM-0027/REV-0005CB`: all 4/4
+   families / 28 items have machine-readable owner, prerequisites and
+   acceptance. Exact MPN, coupons and physical/HIL results remain open at
+   those gates.
 4. ~~Recheck the 33 used lines with no dated orderable source.~~ **32 lines
    closed** by `BOM-0009/DEC-0102/REV-0005BH`; `HMX035CTFT-001` remains an
    explicit unresolved sourcing line. Replace a part automatically only when

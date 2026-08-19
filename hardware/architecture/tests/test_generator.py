@@ -89,6 +89,19 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(2, gap_quantities["m5_connector_bodies"])
         self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
         self.assertEqual(12, gap_quantities["external_antenna_kit"])
+        physical_gates = {
+            row["id"]: row["resolution_gate"]["status"]
+            for row in candidate["bom_audit"]["required_uninstantiated_parts"]
+        }
+        self.assertEqual(
+            {
+                "external_sma_bodies": "g3_connector_plane_and_mount_coupon_required",
+                "rf_cable_assemblies": "received_mate_and_routed_length_coupon_required",
+                "m5_connector_bodies": "received_mate_identification_and_retention_coupon_required",
+                "external_antenna_kit": "profile_variant_bom_and_hil_required",
+            },
+            physical_gates,
+        )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("858", rendered)
@@ -106,6 +119,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("SUB-MECH-OPTICAL", rendered)
         self.assertIn("assembly-internal evidence node", rendered)
         self.assertIn("display_touch_controller", rendered)
+        self.assertIn("Physical purchase families with explicit resolution gates", rendered)
+        self.assertIn("g3_connector_plane_and_mount_coupon_required", rendered)
+        self.assertIn("received_mate_and_routed_length_coupon_required", rendered)
+        self.assertIn("received_mate_identification_and_retention_coupon_required", rendered)
+        self.assertIn("profile_variant_bom_and_hil_required", rendered)
         self.assertNotIn(
             "sitronix_st77922",
             {line["device_id"] for line in lines},
@@ -186,6 +204,25 @@ class ArchitectureValidationTests(unittest.TestCase):
                 candidate = next(c for c in candidates if c["id"] == "G2F-3I")
                 candidate["bom_audit"]["non_purchase_instances"] = rows
                 self.assertIn(expected, "\n".join(self.errors_for(candidates)))
+
+    def test_rejects_incomplete_physical_purchase_resolution_gate(self):
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        gaps = candidate["bom_audit"]["required_uninstantiated_parts"]
+        del gaps[0]["resolution_gate"]["acceptance"]
+        self.assertIn(
+            "resolution gate missing acceptance",
+            "\n".join(self.errors_for(candidates)),
+        )
+
+        candidates = copy.deepcopy(self.candidates)
+        candidate = next(c for c in candidates if c["id"] == "G2F-3I")
+        gaps = candidate["bom_audit"]["required_uninstantiated_parts"]
+        gaps[0]["resolution_gate"]["status"] = "generic_tbd"
+        self.assertIn(
+            "unsupported resolution gate status 'generic_tbd'",
+            "\n".join(self.errors_for(candidates)),
+        )
 
     def test_rejects_incomplete_or_duplicate_substitution_policy(self):
         candidates = copy.deepcopy(self.candidates)

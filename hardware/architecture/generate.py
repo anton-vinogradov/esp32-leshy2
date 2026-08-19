@@ -534,6 +534,12 @@ def validate_sources(
                     f"{sorted(unexpected_substitution)}"
                 )
             missing_part_ids: set[str] = set()
+            allowed_physical_gate_statuses = {
+                "g3_connector_plane_and_mount_coupon_required",
+                "received_mate_and_routed_length_coupon_required",
+                "received_mate_identification_and_retention_coupon_required",
+                "profile_variant_bom_and_hil_required",
+            }
             for row_number, row in enumerate(
                 bom_audit.get("required_uninstantiated_parts", []), 1
             ):
@@ -546,6 +552,37 @@ def validate_sources(
                         f"{candidate_id}: duplicate BOM uninstantiated id {row.get('id')}"
                     )
                 missing_part_ids.add(row.get("id", ""))
+                gate = row.get("resolution_gate", {})
+                for required in (
+                    "status",
+                    "owner_stage",
+                    "prerequisites",
+                    "acceptance",
+                    "evidence_refs",
+                ):
+                    if not gate.get(required):
+                        errors.append(
+                            f"{candidate_id}: {context}: resolution gate missing {required}"
+                        )
+                if gate.get("status") not in allowed_physical_gate_statuses:
+                    errors.append(
+                        f"{candidate_id}: {context}: unsupported resolution gate status "
+                        f"{gate.get('status')!r}"
+                    )
+                for field in ("prerequisites", "acceptance", "evidence_refs"):
+                    values = gate.get(field, [])
+                    if not isinstance(values, list) or any(
+                        not isinstance(value, str) or not value.strip()
+                        for value in values
+                    ):
+                        errors.append(
+                            f"{candidate_id}: {context}: resolution gate {field} "
+                            "must be a non-empty string list"
+                        )
+                    elif len(values) != len(set(values)):
+                        errors.append(
+                            f"{candidate_id}: {context}: duplicate resolution gate {field}"
+                        )
             required_gap_ids = {
                 "external_sma_bodies",
                 "rf_cable_assemblies",
@@ -1460,16 +1497,24 @@ def render_target_bom_review(
         ]
     lines += [
         "",
-        "## Physical items not yet instantiated",
+        "## Physical purchase families with explicit resolution gates",
         "",
     ]
     for gap in audit["required_uninstantiated_parts"]:
+        gate = gap["resolution_gate"]
         lines += [
             f"### `{gap['id']}` — {gap['quantity']} item(s)",
             "",
             f"- Scope: `{gap['scope']}`.",
             f"- Role: {gap['role']}.",
             f"- Blocking evidence: {gap['blocker']}.",
+            f"- Gate: `{gate['status']}`.",
+            f"- Owner stage: {gate['owner_stage']}.",
+            f"- Evidence chain: {', '.join(f'`{ref}`' for ref in gate['evidence_refs'])}.",
+            "- Prerequisites:",
+            *[f"  - {item}." for item in gate["prerequisites"]],
+            "- Acceptance:",
+            *[f"  - {item}." for item in gate["acceptance"]],
             "",
         ]
 

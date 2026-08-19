@@ -519,6 +519,9 @@ disposition class; this is a safe replacement boundary, not a claim of 187
 qualified second sources. The same audit separately records nine
 SMA bodies, five RF cable assemblies, two M5 connector bodies and the 12-item
 antenna-kit variant instead of treating them as zero-cost abstractions. The
+`BOM-0027/REV-0005CB` pass now gives all 4/4 families / 28 items explicit
+owners, prerequisites and acceptance criteria. It closes anonymous gate
+coverage, not exact MPNs, coupons or physical/RF HIL. The
 former MAX17320 and threshold gaps are now exact physical placements.
 `DSP-0008/BOM-0010/REV-0005BI` additionally prove that an exact HMX specimen
 can be obtained inside a current `DLE06235B/ES3C35P-QD` board, but correctly

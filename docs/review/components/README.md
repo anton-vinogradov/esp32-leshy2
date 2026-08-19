@@ -38,6 +38,7 @@ explicit physical-gap register feed the generated manifest.
 24. [`BOM-0024`](BOM-0024-resistor-cost-evidence.md) — exact-resistor twelfth-batch checkpoint: 162/187 lines / 816 placements / USD 150.4157 partial base subtotal.
 25. [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md) — specialty-component thirteenth-batch checkpoint: 169/187 lines / 823 placements / USD 157.1927 partial base subtotal and twelve explicit gates.
 26. [`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md) — exact high-Q RF-capacitor fourteenth batch, current 175/187 lines / 829 placements / USD 157.3727 partial base subtotal; all twelve remaining unpriced lines have explicit gates.
+27. [`BOM-0027`](BOM-0027-physical-purchase-family-resolution-gates.md) — machine-readable prerequisite and acceptance gates for all four physical purchase families / 28 items; exact MPN and physical HIL remain open.
 
 Каждый `BOM-*` сначала проверяет primary facts, затем electrical/reset/pin fit, supply/AVL/cost и HIL/substitution evidence. Следующий artifact не использует строку как закрытый пререквизит, пока соответствующее review явно не дало статус **«Проведено ревью»**.
 
@@ -83,5 +84,6 @@ explicit physical-gap register feed the generated manifest.
 - [`BOM-0024`](BOM-0024-resistor-cost-evidence.md) / [`REV-0005BX`](../reviews/REV-0005BX-resistor-cost-propagation.md) — 14 exact resistor prices; **Проведено ревью twelfth-batch checkpoint**.
 - [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md) / [`REV-0005BY`](../reviews/REV-0005BY-specialty-cost-gate-propagation.md) — seven exact specialty prices, two explicit gates and one source repair; **Проведено ревью thirteenth-batch checkpoint** at 169/187 lines / 823/857 placements and USD 157.1927 partial base subtotal.
 - [`BOM-0026`](BOM-0026-high-q-rf-capacitor-cost-evidence.md) / [`REV-0005CA`](../reviews/REV-0005CA-high-q-rf-capacitor-cost-propagation.md) — six exact high-Q RF-capacitor prices; **Проведено ревью fourteenth batch**, current coverage 175/187 lines / 829/857 placements and USD 157.3727 partial base subtotal, with explicit gates on all twelve remaining unpriced lines.
+- [`BOM-0027`](BOM-0027-physical-purchase-family-resolution-gates.md) / [`REV-0005CB`](../reviews/REV-0005CB-physical-purchase-gate-propagation.md) — explicit owner/prerequisite/acceptance contracts for 4/4 physical purchase families / 28 items; **Проведено ревью gate coverage**, exact parts and physical/HIL results stay open.
 
 Статус `REV-0004A` относится к полноте входного реестра, а не к квалификации перечисленных компонентов.
