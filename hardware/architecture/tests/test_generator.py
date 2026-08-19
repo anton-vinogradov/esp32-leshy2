@@ -41,14 +41,27 @@ class ArchitectureValidationTests(unittest.TestCase):
         pin_map = contract["pin_map"]
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
         self.assertEqual(8, sum(row["net"] == "3V3_MAIN" for row in pin_map))
-        self.assertEqual(3, sum(row["signal_class"] == "reserved" for row in pin_map))
+        self.assertEqual(2, sum(row["signal_class"] == "reserved" for row in pin_map))
         mapped = {row["net"] for row in pin_map}
         self.assertTrue(
             {
                 "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RESET_KILL_GATE",
                 "UI_ROW2_N", "UI_ROW3_N", "UI_COL0", "UI_COL1", "UI_COL2",
                 "ENCODER_A", "ENCODER_B", "STOP_LATCH_SENSE",
+                "MIC_RAW", "SPEAKER_AMP_EN",
             } <= mapped
+        )
+        by_contact = {row["contact"]: row for row in pin_map}
+        self.assertEqual(
+            {"net": "MIC_RAW", "direction": "RF→UI", "signal_class": "audio"},
+            {key: by_contact[48][key] for key in ("net", "direction", "signal_class")},
+        )
+        self.assertEqual("AUDIO_GROUND", by_contact[49]["net"])
+        self.assertEqual("SPEAKER_AMP_EN", by_contact[78]["net"])
+        locality = contract["physical_locality"]
+        self.assertNotIn("microphone", locality["ui_control_board"])
+        self.assertTrue(
+            any(item.startswith("microphone") for item in locality["rf_power_board"])
         )
         self.assertNotIn("TX_KILL", mapped)
         self.assertTrue(

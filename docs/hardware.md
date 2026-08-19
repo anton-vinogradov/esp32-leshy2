@@ -60,8 +60,8 @@ permission.
 | FPC mate | `Hirose FH12-40S-0.5SH(55)` | 40 contacts, 0.5-mm pitch |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; independently powered and isolated |
 | Audio codec | `Everest ES8311` | I²S capture and playback |
-| Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Built-in electret input |
-| Speaker | `PUI Audio AS02404PO` | 4-ohm differential output |
+| Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Rear RF/power board; bottom acoustic port |
+| Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output through side grille |
 | Headphones | `Same Sky SJ1-3515-SMT-TR` | 3.5-mm connector with detect |
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
 | Control panel | `TCA9534APWR` | D-pad, OK, BACK, OPT, F1, F2 and encoder push |
@@ -97,11 +97,11 @@ In one line below the display, labelled actual-transmit indicators cover `S3`, `
 `N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` and the aggregate `ANY TX`.
 The two Si4732 antenna inputs are receive-only.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=3)
+![Dimensioned external layout](images/current-clamshell.svg?layout=4)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=3)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=4)
 
-![Dimensioned sandwich cross-section](images/sandwich-section.svg?layout=3)
+![Dimensioned sandwich cross-section](images/sandwich-section.svg?layout=4)
 
 ## Power and service
 

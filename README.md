@@ -37,7 +37,7 @@ are powered down and placed into a verifiable quiet state.
 
 ### External faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=3)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=4)
 
 ### Inner board faces
 
@@ -46,11 +46,11 @@ and radio modules, speaker, microphone, ON/OFF switch, board-to-board
 connector, USB and every separate programming, reset and recovery button. A
 number inside an outline maps to the adjacent exact MPN and component role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=3)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=4)
 
 ### Sandwich cross-section
 
-![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=3)
+![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=4)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
@@ -188,7 +188,7 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>3.5-mm headphone output with detect
   RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX
   VOICE -->|"received AF"| AUDIO_RX_MUX
   AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR
-  MICROPHONE -->|"local voice/capture"| AUDIO_CAPTURE_SELECTOR
+  MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR
   AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC
   CODEC <-->|"I²S0 + I²C0"| S3
   AUDIO_RX_MUX -->|"reset-default receive bypass"| AUDIO_SPEAKER_SELECTOR

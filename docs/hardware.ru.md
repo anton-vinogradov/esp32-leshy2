@@ -61,8 +61,8 @@ Native S3/C5 используют собственные `U.FL-R-SMT-1(10)` и �
 | FPC mate | `Hirose FH12-40S-0.5SH(55)` | 40 контактов, шаг 0,5 мм |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; отдельное питание и изоляция данных |
 | Audio codec | `Everest ES8311` | Захват и воспроизведение I²S |
-| Микрофон | `Same Sky CMEJ-0413-42-SMT-TR` | Встроенный electret input |
-| Динамик | `PUI Audio AS02404PO` | 4-Ом differential output |
+| Микрофон | `Same Sky CMEJ-0413-42-SMT-TR` | Задняя RF/power-плата; нижний акустический порт |
+| Динамик | `PUI Audio AS02404PO` | Задняя RF/power-плата; 4-Ом differential output через боковую решётку |
 | Наушники | `Same Sky SJ1-3515-SMT-TR` | 3,5-мм разъём с detect |
 | Основной I/O expander | `TCA6424ARGJR` | Питание, режимы и медленные сигналы |
 | Панель управления | `TCA9534APWR` | D-pad, OK, BACK, OPT, F1, F2 и encoder push |
@@ -100,11 +100,11 @@ Native S3/C5 используют собственные `U.FL-R-SMT-1(10)` и �
 `N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` и сводный `ANY TX`. Два входа
 Si4732 работают только на приём.
 
-![Размерная внешняя компоновка](images/current-clamshell.svg?layout=3)
+![Размерная внешняя компоновка](images/current-clamshell.svg?layout=4)
 
-![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=3)
+![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=4)
 
-![Размерный поперечный разрез бутерброда](images/sandwich-section.svg?layout=3)
+![Размерный поперечный разрез бутерброда](images/sandwich-section.svg?layout=4)
 
 ## Питание и сервис
 

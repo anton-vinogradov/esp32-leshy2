@@ -136,7 +136,7 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>3.5-mm headphone output with detect
   RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX
   VOICE -->|"received AF"| AUDIO_RX_MUX
   AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR
-  MICROPHONE -->|"local voice/capture"| AUDIO_CAPTURE_SELECTOR
+  MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR
   AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC
   CODEC <-->|"I²S0 + I²C0"| S3
   AUDIO_RX_MUX -->|"reset-default receive bypass"| AUDIO_SPEAKER_SELECTOR

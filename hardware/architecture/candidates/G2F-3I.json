@@ -679,7 +679,6 @@
         "ui_matrix_io",
         "codec",
         "receiver",
-        "microphone",
         "headphone_jack",
         "ir_demod",
         "ir_carrier",
@@ -704,6 +703,7 @@
         "nvdc_charger",
         "battery protection and holders",
         "all rail converters",
+        "microphone and its local bias/filter network",
         "speaker_amp",
         "speaker",
         "safe_supervisor",
@@ -724,6 +724,7 @@
       "rationale": [
         "raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board",
         "speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND",
+        "the microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND before the UI-local capture and transmit selectors",
         "S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board",
         "hard STOP and RE-ARM conditioning/latch remain beside the rear physical controls; only digital RUN_PERMIT, reset-kill and read-only status cross M1",
         "rear F1/F2 and encoder use seven direct matrix/phase contacts across M1; PTT is local to the RP/voice domain"
@@ -1014,13 +1015,13 @@
       },
       {
         "contact": 48,
-        "net": "SPEAKER_AMP_EN",
-        "direction": "UI→RF",
-        "signal_class": "control"
+        "net": "MIC_RAW",
+        "direction": "RF→UI",
+        "signal_class": "audio"
       },
       {
         "contact": 49,
-        "net": "POWER_GROUND",
+        "net": "AUDIO_GROUND",
         "direction": "return",
         "signal_class": "return"
       },
@@ -1194,9 +1195,9 @@
       },
       {
         "contact": 78,
-        "net": "RESERVED_78",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "SPEAKER_AMP_EN",
+        "direction": "UI→RF",
+        "signal_class": "control"
       },
       {
         "contact": 79,
@@ -1213,18 +1214,18 @@
     ],
     "accounting": {
       "positions": 80,
-      "reserved": 3,
+      "reserved": 2,
       "main_3v3_contacts": 8,
       "aon_contacts": 2,
-      "power_ground_contacts": 23,
-      "audio_ground_contacts": 2,
+      "power_ground_contacts": 22,
+      "audio_ground_contacts": 3,
       "safety_ground_contacts": 2,
       "maximum_nominal_main_contact_capacity_a": 3.2
     },
     "routing_contract": [
       "USB2 D+/D- and S3↔RP IPC use impedance-controlled pairs/groups with the shown adjacent returns and no stubs",
       "low-level audio is routed as guarded differential/paired traces away from IPC, USB and buck switch nodes",
-      "all three reserved contacts remain no-connect in the first PCB and may not be silently consumed",
+      "both remaining reserved contacts stay no-connect in the first PCB and may not be silently consumed",
       "3V3_MAIN current capacity is accepted only after connector-temperature and simultaneous-load HIL; 8 × 0.4 A is a connector-rating ceiling, not a product-current promise"
     ]
   },

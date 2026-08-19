@@ -82,7 +82,7 @@ FRONT_TX_INDICATORS = (
     ("any_tx_led", "ANY TX", 70.4, 115.0),
 )
 
-# Every interface that crosses the enclosure is rendered from this inventory.
+# Every directional interface that crosses the enclosure is rendered here.
 # `coordinate` is Y for left/right exits and X for bottom exits.
 EDGE_INTERFACES = (
     ("ir_demod", "front", "left", 76.5, "IR 38 kHz RX"),
@@ -90,13 +90,17 @@ EDGE_INTERFACES = (
     ("ir_emitter", "front", "left", 90.255, "IR TX"),
     ("headphone_jack", "front", "right", 79.75, "HEADPHONES / LINE"),
     ("c5_service_usb_connector", "front", "bottom", 31.47, "C5 SERVICE USB"),
-    ("microphone", "front", "bottom", 44.0, "MICROPHONE"),
     ("sd", "front", "bottom", 55.975, "microSD"),
-    ("speaker", "rear", "left", 109.0, "SPEAKER GRILLE"),
     ("power_command_switch", "rear", "right", 112.75, "POWER ON/OFF"),
     ("product_usb_connector", "rear", "bottom", 16.47, "USB / POWER"),
     ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
     ("unit_connector", "rear", "bottom", 57.0, "M5 UNIT"),
+)
+
+# Acoustic openings have a physical location but no electrical direction.
+ACOUSTIC_OPENINGS = (
+    ("speaker", "rear", "left", 109.0, "SPEAKER / GRILLE"),
+    ("microphone", "rear", "bottom", 47.0, "MICROPHONE"),
 )
 
 # External side projections show only real silkscreen labels and an enclosure
@@ -108,7 +112,6 @@ SIDE_INTERFACE_LABEL_LINES = {
     "ir_carrier": ("IR RAW RX",),
     "ir_emitter": ("IR TX",),
     "headphone_jack": ("HEADPHONES", "LINE OUT"),
-    "speaker": ("SPEAKER", "GRILLE"),
     "power_command_switch": ("POWER", "ON / OFF"),
 }
 
@@ -152,7 +155,6 @@ UI_INNER = (
     Placement("safe_reset_sink_a", 30.0, 75.0, "S3/C5 reset sinks"),
     Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
-    Placement("microphone", 42.0, 146.0, "bottom microphone port"),
     Placement("sd", 48.0, 136.15, "bottom-access push-push microSD", 90),
     Placement("s3_dbg_header", 5.0, 104.0, "keyed S3 UART0/RESET/BOOT header"),
     Placement("s3_reset_button", 16.0, 104.0, "S3 technological RESET"),
@@ -190,6 +192,7 @@ RF_INNER = (
     Placement("product_usb_connector", 12.0, 143.1, "product USB-C data and sink"),
     Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
     Placement("unit_connector", 51.0, 140.9, "native M5 Unit HY2.0-4P edge receptacle"),
+    Placement("microphone", 45.0, 146.0, "rear bottom microphone port"),
     Placement("speaker", 5.0, 103.0, "internal 4-Ohm differential speaker"),
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
@@ -348,6 +351,15 @@ def validate() -> list[str]:
     holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
     errors += validate_items("rear-exact", (holder,), devices, instances)
+    ui_instances = {item.instance for item in UI_INNER}
+    rf_instances = {item.instance for item in RF_INNER}
+    if "microphone" in ui_instances or "microphone" not in rf_instances:
+        errors.append("microphone must remain on the RF/power PCB inner side")
+    if {(instance, face, side) for instance, face, side, _, _ in ACOUSTIC_OPENINGS} != {
+        ("speaker", "rear", "left"),
+        ("microphone", "rear", "bottom"),
+    }:
+        errors.append("speaker and microphone must use non-directional rear acoustic openings")
 
     u214_dims = devices[instances["u214"]]["dimensions_mm"]
     if u214_dims != [84.0, 24.0, 15.287]:
@@ -640,7 +652,7 @@ def render_external(devices, instances):
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "rear" or side not in {"left", "right"}:
             continue
-        stroke = "#2563eb" if instance == "speaker" else "#ea580c"
+        stroke = "#ea580c"
         start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
         out.append(f'<path d="M{sx(rear,start_x):.1f} {sy(rear,coordinate):.1f} L{sx(rear,end_x):.1f} {sy(rear,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         label_x = 5.0 if side == "left" else 70.0
@@ -654,6 +666,25 @@ def render_external(devices, instances):
         out.append(f'<path d="M{sx(rear,x):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(text(sx(rear,x), sy(rear,148), label, 4.2, "bold", "middle", "#1d4ed8"))
 
+    # Speaker grille and microphone port are labelled openings, not arrows.
+    for instance, face, side, coordinate, label in ACOUSTIC_OPENINGS:
+        if face != "rear":
+            continue
+        if side == "left":
+            for offset in (-2.0, 0.0, 2.0):
+                out.append(
+                    f'<line x1="{sx(rear,0):.1f}" y1="{sy(rear,coordinate + offset):.1f}" '
+                    f'x2="{sx(rear,3):.1f}" y2="{sy(rear,coordinate + offset):.1f}" '
+                    'stroke="#2563eb" stroke-width="1.4"/>'
+                )
+            out.append(text(sx(rear,7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
+        elif side == "bottom":
+            out.append(
+                f'<circle cx="{sx(rear,coordinate):.1f}" cy="{sy(rear,149):.1f}" r="3.2" '
+                'fill="none" stroke="#d97706" stroke-width="1.4" data-interface-kind="acoustic-opening"/>'
+            )
+            out.append(text(sx(rear,coordinate), sy(rear,146.8), label, 4.2, "bold", "middle", "#92400e"))
+
     note_x = 850
     out += [
         text(note_x,105,"What this drawing proves",16,"bold"),
@@ -664,7 +695,7 @@ def render_external(devices, instances):
         text(note_x,245,"Interface direction",15,"bold"),
         text(note_x,273,"↑ / ↓ / ← / →  interface faces through that enclosure edge",11),
         text(note_x,296,"⊗  touch/press enters face     ↑/↓  U214 slides in the rear-board plane",11),
-        text(note_x,316,"The front uses one moulded single D-pad cap over five exact switches.",11),
+        text(note_x,319,"○ / ≋  microphone port and speaker grille are locations, not signal directions",11),
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each transmitting path",11),
@@ -681,7 +712,7 @@ def render_external(devices, instances):
         text(note_x,614,"Cap-Bus host: Samtec SSW-107-02-S-D-RA · 2×7 · 2.54 mm · side-entry.",11),
         text(note_x,637,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
         text(note_x,660,"Caps/knob, enclosure wall stack and internal cable lengths remain open.",11),
-        text(note_x,683,"Front: one D-pad + BACK/OPT. Rear: ENC, F1/F2, PTT, STOP, RE-ARM.",11,"bold"),
+        text(note_x,683,"Front: single D-pad cap + BACK/OPT. Rear: ENC, F1/F2, PTT, STOP, RE-ARM.",11,"bold"),
         text(note_x,706,"STOP uses the same visible 7×7-mm cap as F1/F2/PTT over its NC safety body.",11),
     ]
     out.append("</svg>")
@@ -728,7 +759,12 @@ def render_internal(devices, instances):
             else:
                 fill, stroke = "#eef2f6", "#667085"
             out.append(rect(origin, view_x, item.y, w, h, fill, stroke, rx=2))
-            out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, str(numbers[item.instance]), 7.5, "bold", "middle"))
+            component_number = str(numbers[item.instance])
+            if item.instance == "speaker":
+                component_number += " · SPK"
+            elif item.instance == "microphone":
+                out.append(text(sx(origin,view_x+w/2), sy(origin,item.y - 0.8), f"{component_number} · MIC", 5.2, "bold", "middle", "#92400e"))
+            out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
     for reserve in INTERNAL_RESERVES:
         view_x = mirrored_x(reserve.x, reserve.w)
         out.append(rect(rf, view_x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "5 3", 3))
@@ -745,8 +781,7 @@ def render_internal(devices, instances):
             arrows.append((origin, coordinate, BOARD_H, coordinate, BOARD_H + 9.0))
     for origin, x1, y1, x2, y2 in arrows:
         out.append(f'<path d="M{sx(origin,mirrored_x(x1)):.1f} {sy(origin,y1):.1f} L{sx(origin,mirrored_x(x2)):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(text(sx(ui,mirrored_x(44)), sy(ui,144.5), "MIC", 5.2, "bold", "middle", "#92400e"))
-    out.append(text(sx(rf,mirrored_x(17)), sy(rf,101.5), "AS02404PO · side grille →", 4.8, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(rf,mirrored_x(17)), sy(rf,101.5), "AS02404PO · speaker · side grille", 4.8, "bold", "middle", "#1d4ed8"))
     out.append(text(sx(rf,mirrored_x(73.5)), sy(rf,109.5), "ON/OFF request", 4.6, "bold", "start", "#9a3412"))
     out.append(text(sx(ui,mirrored_x(37.5)), sy(ui,101.5), "S3/C5 recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
     out.append(text(sx(rf,mirrored_x(54.5)), sy(rf,101.5), "RP recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
@@ -898,7 +933,7 @@ def render_sandwich(devices, instances):
         t(note_x, 366, "→ rear: batteries, encoder, F1/F2, PTT, STOP and RE-ARM", 11),
         t(note_x, 392, "↑/↓ on rear face: U214 slides into/out of its side-entry socket", 11),
         t(note_x, 418, "↑ top: nine separately labelled SMA/RP-SMA antenna ports", 11),
-        t(note_x, 444, "↓ bottom/sides: USB, microSD, microphone, audio and M5 Unit", 11),
+        t(note_x, 444, "bottom/sides: USB, microSD, microphone port, headphones and M5 Unit", 11),
         t(note_x, 486, "Clearance meaning", 15, "bold"),
         t(note_x, 514, "The 11-mm value is the selected connector's board-to-board height.", 11),
         t(note_x, 540, "Component placement uses real package depth; passives and copper are omitted.", 11),

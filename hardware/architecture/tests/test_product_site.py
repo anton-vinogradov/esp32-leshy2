@@ -74,6 +74,8 @@ class ProductSiteTests(unittest.TestCase):
             "LINE OUT",
             "C5 SERVICE USB",
             "MICROPHONE",
+            "SPEAKER / GRILLE",
+            'data-interface-kind="acoustic-opening"',
             "microSD",
             "SPEAKER",
             "GRILLE",
@@ -105,6 +107,8 @@ class ProductSiteTests(unittest.TestCase):
             "1125R-SMT-4P",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
+            "54 · MIC",
+            "55 · SPK",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
@@ -118,9 +122,9 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=3", page)
-            self.assertIn("internal-board-layout.svg?layout=3", page)
-            self.assertIn("sandwich-section.svg?layout=3", page)
+            self.assertIn("current-clamshell.svg?layout=4", page)
+            self.assertIn("internal-board-layout.svg?layout=4", page)
+            self.assertIn("sandwich-section.svg?layout=4", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")

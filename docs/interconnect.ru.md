@@ -7,7 +7,7 @@
 ## UI/control-плата
 
 - Вычислители: `ESP32-S3-WROOM-1U-N16R2` управляет UI, экраном, картой памяти и аудио; `ESP32-C5-WROOM-1U-N8R8` — собственными диапазонами 2,4/5 ГГц и IR.
-- Интерфейсы: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, микрофон, наушники, D-pad, BACK и OPT.
+- Интерфейсы: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, наушники, D-pad, BACK и OPT.
 - Локальная безопасность: аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.
 - Обслуживание C5: отдельный data-only USB-C `GCT USB4105-GF-A`.
 
@@ -16,7 +16,7 @@
 - Радиодомен реального времени: `SC1512-A4`, три `Ebyte E01-ML01IPX`, `CC1101RGPR` и `NiceRF SA518`.
 - Внешние модули: съёмный `M5Stack U214 Cap LoRa-1262` на точном боковом `Samtec SSW-107-02-S-D-RA` и независимый порт M5 Unit на точном `1125R-SMT-4P`.
 - Питание и основной USB-C: `JAE DX07S016JA1R1500`, защита `Texas Instruments TPD4S201RUKR`, USB-PD `Texas Instruments TPS25751DREFR`, заряд, аккумуляторы и все преобразователи питания.
-- Выход звука: дифференциальный усилитель `Diodes Incorporated PAM8302AASCR` и динамик `PUI Audio AS02404PO`.
+- Аудио на задней плате: микрофон `Same Sky CMEJ-0413-42-SMT-TR` с локальным смещением, дифференциальный усилитель `Diodes Incorporated PAM8302AASCR` и динамик `PUI Audio AS02404PO`.
 - Задние органы управления: F1/F2, энкодер, PTT, STOP и утопленный RE-ARM; PTT подключён локально к RP/voice.
 - Локальная безопасность: формирователь и защёлка STOP/RE-ARM, аппаратные гейты nRF/CC/voice/расширений, сброс RP и аналоговое подтверждение передачи nRF/CC/voice.
 
@@ -24,15 +24,16 @@
 
 - Сырой VBUS, согласованное повышенное напряжение USB-PD, зарядное устройство и аккумуляторы остаются на RF/power-плате.
 - Класс-D усилитель остаётся рядом с динамиком; через M1 проходит только низкоуровневый дифференциальный аудиосигнал.
+- Микрофон и его цепь смещения находятся на RF/power-плате; MIC_RAW проходит через M1 рядом с AUDIO_GROUND к расположенным на UI-плате селекторам записи и передачи.
 - Аналоговые выходы детекторов передачи и IR-несущая обрабатываются на своей плате; через M1 проходят только цифровые признаки передачи.
 - Защёлка STOP/RE-ARM расположена на RF/power-плате рядом с задними кнопками; на UI-плату передаются только цифровые RUN_PERMIT, reset-kill и read-only status.
 - F1/F2 и энкодер используют семь прямых матричных/фазных контактов M1; PTT остаётся локальным для RP/voice.
 
 ## Бюджет контактов
 
-- Всего 80 контактов; 3 зарезервированы и физически не подключены.
+- Всего 80 контактов; 2 зарезервированы и физически не подключены.
 - 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
-- 23 силовых возвратов, 2 аудиовозврата и 2 возврата безопасности.
+- 22 силовых возвратов, 3 аудиовозврата и 2 возврата безопасности.
 - Сырой VBUS/PD, ток аккумуляторов, аналоговые выходы TX-детекторов, IR-несущая и выходы класса D через M1 не проходят.
 
 ## Точная карта контактов
@@ -86,8 +87,8 @@
 | `45` | `AUDIO_GROUND` | return | `return` |
 | `46` | `SPEAKER_SELECTED_P` | UI→RF | `audio` |
 | `47` | `SPEAKER_SELECTED_N` | UI→RF | `audio` |
-| `48` | `SPEAKER_AMP_EN` | UI→RF | `control` |
-| `49` | `POWER_GROUND` | return | `return` |
+| `48` | `MIC_RAW` | RF→UI | `audio` |
+| `49` | `AUDIO_GROUND` | return | `return` |
 | `50` | `UI_COL2` | RF→UI | `control` |
 | `51` | `3V3_MAIN` | rail | `power` |
 | `52` | `3V3_MAIN` | rail | `power` |
@@ -116,7 +117,7 @@
 | `75` | `UI_ROW3_N` | UI→RF | `control` |
 | `76` | `UI_COL0` | RF→UI | `control` |
 | `77` | `STOP_LATCH_SENSE` | RF→UI | `safety` |
-| `78` | `RESERVED_78` | reserved | `reserved` |
+| `78` | `SPEAKER_AMP_EN` | UI→RF | `control` |
 | `79` | `RESERVED_79` | reserved | `reserved` |
 | `80` | `RESERVED_80` | reserved | `reserved` |
 

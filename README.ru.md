@@ -36,7 +36,7 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 
 ### Внешние стороны
 
-![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=3)
+![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=4)
 
 ### Внутренние стороны плат
 
@@ -45,11 +45,11 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 USB и все отдельные кнопки прошивки, сброса и восстановления. Номер внутри
 контура соответствует расположенному рядом точному MPN и роли компонента.
 
-![Внутренние стороны плат Leshy2](docs/images/internal-board-layout.svg?layout=3)
+![Внутренние стороны плат Leshy2](docs/images/internal-board-layout.svg?layout=4)
 
 ### Поперечный разрез бутерброда
 
-![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=3)
+![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=4)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
@@ -187,7 +187,7 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>выход наушников 3,5 �
   RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX
   VOICE -->|"received AF"| AUDIO_RX_MUX
   AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR
-  MICROPHONE -->|"local voice/capture"| AUDIO_CAPTURE_SELECTOR
+  MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR
   AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC
   CODEC <-->|"I²S0 + I²C0"| S3
   AUDIO_RX_MUX -->|"reset-default receive bypass"| AUDIO_SPEAKER_SELECTOR

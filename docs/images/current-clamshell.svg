@@ -106,8 +106,6 @@
 <text x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">LINE OUT</text>
 <path d="M196.4 705.0 L196.4 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="196.4" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
-<path d="M242.8 705.0 L242.8 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="242.8" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="287.1" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
@@ -129,9 +127,6 @@
 <text x="714.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
 <text x="714.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
 <text x="714.8" y="545.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
-<path d="M465.0 553.3 L439.1 553.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="483.5" y="548.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER</text>
-<text x="483.5" y="558.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">GRILLE</text>
 <path d="M742.5 567.2 L768.4 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">POWER</text>
 <text x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">ON / OFF</text>
@@ -141,6 +136,12 @@
 <text x="603.6" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="675.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
+<line x1="465.0" y1="545.9" x2="476.1" y2="545.9" stroke="#2563eb" stroke-width="1.4"/>
+<line x1="465.0" y1="553.3" x2="476.1" y2="553.3" stroke="#2563eb" stroke-width="1.4"/>
+<line x1="465.0" y1="560.7" x2="476.1" y2="560.7" stroke="#2563eb" stroke-width="1.4"/>
+<text x="490.9" y="557.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER / GRILLE</text>
+<circle cx="638.9" cy="701.3" r="3.2" fill="none" stroke="#d97706" stroke-width="1.4" data-interface-kind="acoustic-opening"/>
+<text x="638.9" y="693.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#92400e">MICROPHONE</text>
 <text x="850.0" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What this drawing proves</text>
 <text x="850.0" y="135.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• both 75×150-mm panels use the same millimetre scale</text>
 <text x="850.0" y="158.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• every solid component envelope comes from the MPN register</text>
@@ -149,7 +150,7 @@
 <text x="850.0" y="245.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Interface direction</text>
 <text x="850.0" y="273.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑ / ↓ / ← / →  interface faces through that enclosure edge</text>
 <text x="850.0" y="296.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">⊗  touch/press enters face     ↑/↓  U214 slides in the rear-board plane</text>
-<text x="850.0" y="316.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The front uses one moulded single D-pad cap over five exact switches.</text>
+<text x="850.0" y="319.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">○ / ≋  microphone port and speaker grille are locations, not signal directions</text>
 <text x="850.0" y="347.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">TX indication</text>
 <circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>
 <text x="875.0" y="374.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">physical actual-TX evidence for each transmitting path</text>
@@ -166,6 +167,6 @@
 <text x="850.0" y="614.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Cap-Bus host: Samtec SSW-107-02-S-D-RA · 2×7 · 2.54 mm · side-entry.</text>
 <text x="850.0" y="637.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
 <text x="850.0" y="660.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Caps/knob, enclosure wall stack and internal cable lengths remain open.</text>
-<text x="850.0" y="683.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">Front: one D-pad + BACK/OPT. Rear: ENC, F1/F2, PTT, STOP, RE-ARM.</text>
+<text x="850.0" y="683.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">Front: single D-pad cap + BACK/OPT. Rear: ENC, F1/F2, PTT, STOP, RE-ARM.</text>
 <text x="850.0" y="706.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">STOP uses the same visible 7×7-mm cap as F1/F2/PTT over its NC safety body.</text>
 </svg>

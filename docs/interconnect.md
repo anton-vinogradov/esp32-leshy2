@@ -7,7 +7,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 ## UI/control board
 
 - Compute: `ESP32-S3-WROOM-1U-N16R2` owns UI, display, storage and audio; `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio and IR.
-- Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, microphone, headphones, D-pad, BACK and OPT.
+- Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, headphones, D-pad, BACK and OPT.
 - Local safety: S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.
 - C5 service: a separate data-only `GCT USB4105-GF-A` USB-C receptacle.
 
@@ -16,7 +16,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 - Real-time radio domain: `SC1512-A4`, three `Ebyte E01-ML01IPX`, `CC1101RGPR` and `NiceRF SA518`.
 - External modules: removable `M5Stack U214 Cap LoRa-1262` on exact side-entry `Samtec SSW-107-02-S-D-RA` and an independent M5 Unit port on exact `1125R-SMT-4P`.
 - Power and product USB-C: `JAE DX07S016JA1R1500`, `Texas Instruments TPD4S201RUKR` protection, `Texas Instruments TPS25751DREFR` USB-PD, charger, cells and every rail converter.
-- Audio output: `Diodes Incorporated PAM8302AASCR` differential amplifier and `PUI Audio AS02404PO` speaker.
+- Rear-board audio: `Same Sky CMEJ-0413-42-SMT-TR` microphone with local bias, `Diodes Incorporated PAM8302AASCR` differential amplifier and `PUI Audio AS02404PO` speaker.
 - Rear controls: F1/F2, encoder, PTT, STOP and recessed RE-ARM; PTT connects locally to RP/voice.
 - Local safety: STOP/RE-ARM conditioning and latch, nRF/CC/voice/expansion hardware gates, RP reset and analog nRF/CC/voice transmit evidence.
 
@@ -24,15 +24,16 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 - raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board
 - speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND
+- the microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND before the UI-local capture and transmit selectors
 - S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board
 - hard STOP and RE-ARM conditioning/latch remain beside the rear physical controls; only digital RUN_PERMIT, reset-kill and read-only status cross M1
 - rear F1/F2 and encoder use seven direct matrix/phase contacts across M1; PTT is local to the RP/voice domain
 
 ## Contact budget
 
-- 80 positions total; 3 reserved and no-connect.
+- 80 positions total; 2 reserved and no-connect.
 - 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
-- 23 power returns, 2 audio returns and 2 safety returns.
+- 22 power returns, 3 audio returns and 2 safety returns.
 - Raw VBUS/PD high voltage, battery current, analog TX-detector outputs, IR carrier and class-D speaker outputs do not cross M1.
 
 ## Exact contact map
@@ -86,8 +87,8 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 | `45` | `AUDIO_GROUND` | return | `return` |
 | `46` | `SPEAKER_SELECTED_P` | UI→RF | `audio` |
 | `47` | `SPEAKER_SELECTED_N` | UI→RF | `audio` |
-| `48` | `SPEAKER_AMP_EN` | UI→RF | `control` |
-| `49` | `POWER_GROUND` | return | `return` |
+| `48` | `MIC_RAW` | RF→UI | `audio` |
+| `49` | `AUDIO_GROUND` | return | `return` |
 | `50` | `UI_COL2` | RF→UI | `control` |
 | `51` | `3V3_MAIN` | rail | `power` |
 | `52` | `3V3_MAIN` | rail | `power` |
@@ -116,7 +117,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 | `75` | `UI_ROW3_N` | UI→RF | `control` |
 | `76` | `UI_COL0` | RF→UI | `control` |
 | `77` | `STOP_LATCH_SENSE` | RF→UI | `safety` |
-| `78` | `RESERVED_78` | reserved | `reserved` |
+| `78` | `SPEAKER_AMP_EN` | UI→RF | `control` |
 | `79` | `RESERVED_79` | reserved | `reserved` |
 | `80` | `RESERVED_80` | reserved | `reserved` |
 
