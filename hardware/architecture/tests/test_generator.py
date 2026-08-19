@@ -133,6 +133,22 @@ class ArchitectureValidationTests(unittest.TestCase):
                     for route in routes
                 ))
 
+        planes = candidate["interboard_contract"]["antenna_connector_planes"]
+        self.assertEqual(
+            "reviewed_exact_gct_outward_face_mounting_geometry",
+            planes["status"],
+        )
+        self.assertEqual("outward_front", planes["ui_outer_face"]["face"])
+        self.assertEqual("outward_rear", planes["rf_power_outer_face"]["face"])
+        self.assertEqual(4, len(planes["ui_outer_face"]["ports"]))
+        self.assertEqual(5, len(planes["rf_power_outer_face"]["ports"]))
+        self.assertEqual(11.0, planes["separation"]["interboard_channel_mm"])
+        self.assertEqual(14.2, planes["separation"]["outer_pcb_face_separation_mm"])
+        self.assertEqual(20.55, planes["separation"]["antenna_centre_plane_separation_mm"])
+        self.assertFalse(
+            planes["separation"]["interboard_channel_contains_connector_bodies"]
+        )
+
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual(

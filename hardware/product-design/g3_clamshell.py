@@ -65,6 +65,17 @@ REAR_RF = (
     (49.5, "VOICE-V/U", "SMA"),
     (61.5, "N24-2", "SMA"),
 )
+RF_INSTANCE_BY_PATH = {
+    "S3-2G4": "s3_external_rp_sma",
+    "C5-2G4/5": "c5_external_rp_sma",
+    "RX-FM/SW": "receiver_fmsw_external_sma",
+    "RX-AM/LW": "receiver_amlw_external_sma",
+    "N24-0": "nrf0_external_sma",
+    "CC-SUB": "cc_external_sma",
+    "N24-1": "nrf1_external_sma",
+    "VOICE-V/U": "voice_external_sma",
+    "N24-2": "nrf2_external_sma",
+}
 RF_USER_LABEL_LINES = {
     "S3-2G4": ("WI-FI/BLE", "2.4 GHz RP-SMA"),
     "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz RP-SMA"),
@@ -572,6 +583,52 @@ def validate() -> list[str]:
         errors.append("mechanical projection must retain all nine unique onboard RF paths")
     if set(RF_USER_LABEL_LINES) != drawn_paths:
         errors.append("every antenna path must have one user-facing silkscreen label")
+    antenna_planes = candidate["interboard_contract"].get("antenna_connector_planes", {})
+    connector_family = antenna_planes.get("connector_family", {})
+    expected_family = {
+        "standard_sma_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "reverse_sma_mpn": "GCT RFPC-SMA32-FN-175-A",
+        "pcb_thickness_mm": 1.6,
+        "body_width_mm": RF_BODY_W,
+        "board_side_launch_depth_mm": RF_BODY_D,
+        "thread_major_diameter_mm": RF_BARREL_D,
+        "maximum_profile_above_pcb_mm": 3.9,
+        "external_thread_length_mm": RF_BARREL_OUT,
+    }
+    for field, expected in expected_family.items():
+        if connector_family.get(field) != expected:
+            errors.append(f"antenna connector plane contract has invalid {field}")
+    for face_key, expected_face, bank in (
+        ("ui_outer_face", "outward_front", FRONT_RF),
+        ("rf_power_outer_face", "outward_rear", REAR_RF),
+    ):
+        face = antenna_planes.get(face_key, {})
+        if face.get("face") != expected_face:
+            errors.append(f"{face_key}: antenna bank must remain on {expected_face}")
+        actual_ports = [
+            (port.get("instance"), port.get("path"), float(port.get("x_center_mm", -1)))
+            for port in face.get("ports", [])
+        ]
+        expected_ports = [
+            (RF_INSTANCE_BY_PATH[path], path, centre)
+            for centre, path, _ in bank
+        ]
+        if actual_ports != expected_ports:
+            errors.append(f"{face_key}: machine port order/coordinates differ from the product layout")
+        for instance, path, _ in actual_ports:
+            if instance not in instances or path not in drawn_paths:
+                errors.append(f"{face_key}: unknown antenna instance/path {instance}/{path}")
+    separation = antenna_planes.get("separation", {})
+    expected_outer_face_separation = float(candidate["interboard_contract"]["working_inner_gap_mm"]) + 2 * 1.6
+    expected_centre_plane_separation = expected_outer_face_separation + RF_BARREL_D
+    if separation.get("interboard_channel_mm") != 11.0:
+        errors.append("antenna contract must preserve the exact 11-mm interboard channel")
+    if abs(float(separation.get("outer_pcb_face_separation_mm", -1)) - expected_outer_face_separation) > 0.001:
+        errors.append("antenna contract has invalid outward PCB face separation")
+    if abs(float(separation.get("antenna_centre_plane_separation_mm", -1)) - expected_centre_plane_separation) > 0.001:
+        errors.append("antenna contract has invalid connector centre-plane separation")
+    if separation.get("interboard_channel_contains_connector_bodies") is not False:
+        errors.append("antenna connector bodies may not occupy the interboard channel")
     ui_outer_z = float(devices[instances["display"]]["dimensions_mm"][2])
     ui_inner_z = ui_outer_z + 1.6
     rf_inner_z = ui_inner_z + 11.0
