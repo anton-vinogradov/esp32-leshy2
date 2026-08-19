@@ -25,3 +25,7 @@ I8 remains open for 81 prices, standalone display sourcing, four
 uninstantiated physical families, specific alternate qualification and full
 factory COGS. The high-Q RF part is not silently replaced for procurement
 convenience.
+
+`BOM-0021/REV-0005BU` subsequently advance current coverage to 118/187 lines /
+771 placements / USD 142.1808 and ten explicit gates without changing this
+reviewed eighth-batch checkpoint.

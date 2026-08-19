@@ -24,6 +24,6 @@ I8 remains open for 135 prices, one standalone orderability line, four
 uninstantiated physical families, specific alternate qualification and full
 factory COGS.
 
-Subsequent `BOM-0020/REV-0005BT` preserve this fourth-batch checkpoint and
-advance current coverage to 106/187 lines / 747 placements / USD 140.7642;
-81 prices and nine explicit gates remain.
+Subsequent `BOM-0021/REV-0005BU` preserve this fourth-batch checkpoint and
+advance current coverage to 118/187 lines / 771 placements / USD 142.1808;
+69 prices and ten explicit gates remain.

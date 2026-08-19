@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **106/187** lines.
-- Of the remaining **81** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **747/857** supplied placements; their partial subtotals are `base_product` — USD 140.7642. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **118/187** lines.
+- Of the remaining **69** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **771/857** supplied placements; their partial subtotals are `base_product` — USD 142.1808. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -624,6 +624,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata GRM155R71E473KA88D</code> — 2 × USD 0.0126 = USD 0.0252</summary>
+
+- Device id: `murata_grm155r71e473ka88d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71E473KA88D/702519).
+
+</details>
+
 <details><summary><code>Murata GRM155R71H103KA88D</code> — 8 × USD 0.0121 = USD 0.0968</summary>
 
 - Device id: `murata_grm155r71h103ka88d`.
@@ -651,12 +660,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata GRM188R71E224KA88D</code> — 2 × USD 0.0306 = USD 0.0612</summary>
+
+- Device id: `murata_grm188r71e224ka88d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM188R71E224KA88D/702554).
+
+</details>
+
 <details><summary><code>Murata GRM188R71E474KA12D</code> — 4 × USD 0.0496 = USD 0.1984</summary>
 
 - Device id: `murata_grm188r71e474ka12d`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM188R71E474KA12D/702555).
+
+</details>
+
+<details><summary><code>Murata GRM188Z71A475ME15D</code> — 2 × USD 0.0899 = USD 0.1798</summary>
+
+- Device id: `murata_grm188z71a475me15d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM188Z71A475ME15D/13904814).
 
 </details>
 
@@ -774,6 +801,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-2RKF22R0X/1746157).
+
+</details>
+
+<details><summary><code>Panasonic ERJ-2RKF27R0X</code> — 2 × USD 0.0155 = USD 0.0310</summary>
+
+- Device id: `panasonic_erj_2rkf27r0x`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-2RKF27R0X/1746179).
+
+</details>
+
+<details><summary><code>Panasonic ERJ-P08F10R0V</code> — 2 × USD 0.0689 = USD 0.1378</summary>
+
+- Device id: `panasonic_erj_p08f10r0v`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-P08F10R0V/5722446).
 
 </details>
 
@@ -930,6 +975,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>SN74LVC08APWR</code> — 2 × USD 0.2127 = USD 0.4254</summary>
+
+- Device id: `ti_sn74lvc08a_pwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC08APWR/276489).
+
+</details>
+
 <details><summary><code>SN74LVC1G07DCKR</code> — 5 × USD 0.0509 = USD 0.2545</summary>
 
 - Device id: `ti_sn74lvc1g07_dckr`.
@@ -945,6 +999,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G126DCKR/385723).
+
+</details>
+
+<details><summary><code>Texas Instruments SN74LVC2G08DCUR</code> — 2 × USD 0.2296 = USD 0.4592</summary>
+
+- Device id: `ti_sn74lvc2g08_dcur`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC2G08DCUR/484830).
 
 </details>
 
@@ -1164,6 +1227,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-07110KL</code> — 2 × USD 0.0097 = USD 0.0194</summary>
+
+- Device id: `yageo_rc0402fr_07110kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07110KL/729478).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0712KL</code> — 2 × USD 0.0097 = USD 0.0194</summary>
+
+- Device id: `yageo_rc0402fr_0712kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0712KL/729479).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-07169KL</code> — 5 × USD 0.0097 = USD 0.0485</summary>
 
 - Device id: `yageo_rc0402fr_07169kl`.
@@ -1200,12 +1281,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-072K21L</code> — 2 × USD 0.0097 = USD 0.0194</summary>
+
+- Device id: `yageo_rc0402fr_072k21l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K21L/726554).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-072K2L</code> — 14 × USD 0.0097 = USD 0.1358</summary>
 
 - Device id: `yageo_rc0402fr_072k2l`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0730KL</code> — 2 × USD 0.0097 = USD 0.0194</summary>
+
+- Device id: `yageo_rc0402fr_0730kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0730KL/726586).
 
 </details>
 
@@ -1224,6 +1323,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-073K32L/2827627).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0745K3L</code> — 2 × USD 0.0097 = USD 0.0194</summary>
+
+- Device id: `yageo_rc0402fr_0745k3l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0745K3L/726613).
 
 </details>
 
@@ -1336,6 +1444,15 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Scope: `base_product`; quantity `1`.
 - Reason: The exact current SA518 manufacturer page offers contact/RFQ rather than a published quantity-100 USD price.
 - Checked: `2026-08-19`; [gate source](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html).
+
+</details>
+
+<details><summary><code>Panasonic ERJ-P08F49R9V</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `panasonic_erj_p08f49r9v`.
+- Scope: `base_product`; quantity `2`.
+- Reason: The authorized-distributor exact-MPN page offers only a 5,000-piece full reel, while accessible quantity-100 reference prices require a broker RFQ; no comparable published authorized USD quantity-100 tier is available.
+- Checked: `2026-08-19`; [gate source](https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-P08F49R9V/9813007).
 
 </details>
 

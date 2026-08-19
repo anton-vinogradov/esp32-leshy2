@@ -503,6 +503,17 @@
         "url": "https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-P08F10R0V/5722446",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0689,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-P08F10R0V/5722446",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "power"},
@@ -525,6 +536,15 @@
         "document": "ERJ-P08F49R9V active authorized-distributor order page",
         "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-P08F49R9V/9813007",
         "checked": "2026-08-19"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "The authorized-distributor exact-MPN page offers only a 5,000-piece full reel, while accessible quantity-100 reference prices require a broker RFQ; no comparable published authorized USD quantity-100 tier is available",
+        "source": {
+          "document": "DigiKey exact-MPN authorized order page with 5,000-piece minimum package",
+          "url": "https://www.digikey.com/en/products/detail/panasonic-industry/ERJ-P08F49R9V/9813007",
+          "checked": "2026-08-19"
+        }
       },
       "electrical_contract": {
         "resistance_ohm": 49.9,
@@ -900,6 +920,17 @@
         "document": "SN74LVC2G08DCUR product/orderable page",
         "url": "https://www.ti.com/product/SN74LVC2G08/part-details/SN74LVC2G08DCUR",
         "checked": "2026-08-17"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.2296,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC2G08DCUR/484830",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -2797,6 +2828,17 @@
         "url": "https://www.mouser.com/ProductDetail/Texas-Instruments/SN74LVC08APWR?qs=FM6NhYOeeBVuqx5y44y2yw%3D%3D",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.2127,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC08APWR/276489",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "1A": {"physical": "1", "role": "signal"}, "1B": {"physical": "2", "role": "signal"},
@@ -3618,6 +3660,17 @@
         "url": "https://www.lcsc.com/product-detail/C77017.html",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0126,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71E473KA88D/702519",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "power"},
@@ -3640,6 +3693,17 @@
         "document": "GRM188Z71A475ME15D active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM188Z71A475ME15D/13904814",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0899,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM188Z71A475ME15D/13904814",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -4417,6 +4481,17 @@
         "url": "https://www.lcsc.com/product-detail/C138019.html",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K21L/726554",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -4541,6 +4616,17 @@
         "document": "GRM188R71E224KA88D stocked exact order code",
         "url": "https://www.mouser.com/ProductDetail/Murata-Electronics/GRM188R71E224KA88D",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0306,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM188R71E224KA88D/702554",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -5661,6 +5747,17 @@
         "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0745K3L/726613",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0745K3L/726613",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -5717,6 +5814,17 @@
         "document": "RC0402FR-07110KL active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07110KL/729478",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-07110KL/729478",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -5775,6 +5883,17 @@
         "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0712KL/729479",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0712KL/729479",
+          "checked": "2026-08-19"
+        }
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -5831,6 +5950,17 @@
         "document": "RC0402FR-0730KL stocked distributor page",
         "url": "https://www.lcsc.com/product-detail/C138075.html",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0097,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0730KL/726586",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {
@@ -6345,6 +6475,17 @@
         "document": "ERJ-2RKF27R0X active authorized-distributor listing; 105,965 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-2RKF27R0X/1746179",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.0155,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-2RKF27R0X/1746179",
+          "checked": "2026-08-19"
+        }
       },
       "programmable": false,
       "contacts": {"END_1": {"physical": "1", "role": "signal"}, "END_2": {"physical": "2", "role": "signal"}}

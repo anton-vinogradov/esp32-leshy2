@@ -25,6 +25,6 @@ I8 does not receive final review: 148 price lines, one standalone orderability
 line, four uninstantiated physical families, specific alternate qualification
 and full factory COGS remain open.
 
-`BOM-0020/REV-0005BT` preserve this reviewed third-batch checkpoint and advance
-the current snapshot to 106/187 lines / 747 placements / USD 140.7642 partial
+`BOM-0021/REV-0005BU` preserve this reviewed third-batch checkpoint and advance
+the current snapshot to 118/187 lines / 771 placements / USD 142.1808 partial
 base subtotal.

@@ -49,3 +49,6 @@ substitution requalification, so no numeric value or replacement is invented.
 This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
+
+The current successor is [`BOM-0021`](BOM-0021-control-logic-passive-cost-evidence.md):
+118/187 lines, 771/857 placements and USD 142.1808 partial base subtotal.
