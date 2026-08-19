@@ -3526,10 +3526,15 @@
       },
       "mechanical_contract": {
         "stem_diameter_mm": 3.0,
+        "body_thickness_mm": 1.85,
+        "overall_to_stem_top_mm": 5.0,
+        "direction_force_reference_height_from_pcb_mm": 4.3,
+        "maximum_terminal_corner_envelope_mm": 8.7,
         "guide_bosses": "two 0.65-mm guide bosses use the official land pattern",
         "selected_board_rotation_deg_clockwise": 45,
         "direction_map_at_selected_rotation": {"A_PIN_1": "UP", "B_PIN_4": "RIGHT", "C_PIN_3": "LEFT", "D_PIN_6": "DOWN"},
-        "actuator": "one custom cross keyed to the central stem; retention, tilt, center/direction discrimination and enclosure travel remain HIL"
+        "actuator": "one custom cross fits the central stem; its pocket, retention, anti-rotation, tilt, center/direction discrimination and enclosure travel remain controlled-mechanical and HIL gates",
+        "source_boundary": "the public catalogue is an outline specification and requires formal supply specifications before a production fit is released"
       },
       "programmable": false,
       "contacts": {
@@ -3578,6 +3583,16 @@
         "operating_life": 500000,
         "ingress": "IEC IP67 equivalent excluding terminal sealing boundary",
         "user_interface": "direct finger press; no separate cap or plunger"
+      },
+      "mechanical_contract": {
+        "body_width_mm": 6.6,
+        "body_depth_mm": 6.0,
+        "plunger_diameter_mm": 3.3,
+        "nominal_height_mm": 4.3,
+        "height_tolerance_mm": 0.2,
+        "maximum_terminal_span_mm": 9.5,
+        "unspecified_dimension_tolerance_mm": 0.3,
+        "rearm_boundary": "the same direct-press switch remains uncapped; enclosure recess aperture and guard height determine whether RE-ARM is finger-accessible or tool-accessible"
       },
       "programmable": false,
       "contacts": {

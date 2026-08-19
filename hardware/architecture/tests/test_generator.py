@@ -3212,10 +3212,20 @@ class ArchitectureValidationTests(unittest.TestCase):
             45,
             self.database["devices"]["alps_skrhade010"]["mechanical_contract"]["selected_board_rotation_deg_clockwise"],
         )
+        dpad_mechanical = self.database["devices"]["alps_skrhade010"]["mechanical_contract"]
+        self.assertEqual(1.85, dpad_mechanical["body_thickness_mm"])
+        self.assertEqual(5.0, dpad_mechanical["overall_to_stem_top_mm"])
+        self.assertEqual(4.3, dpad_mechanical["direction_force_reference_height_from_pcb_mm"])
+        self.assertEqual(8.7, dpad_mechanical["maximum_terminal_corner_envelope_mm"])
         self.assertEqual(
             "direct finger press; no separate cap or plunger",
             self.database["devices"]["omron_b3s_1100p"]["electrical_contract"]["user_interface"],
         )
+        rearm_mechanical = self.database["devices"]["omron_b3s_1100p"]["mechanical_contract"]
+        self.assertEqual(3.3, rearm_mechanical["plunger_diameter_mm"])
+        self.assertEqual(4.3, rearm_mechanical["nominal_height_mm"])
+        self.assertEqual(0.2, rearm_mechanical["height_tolerance_mm"])
+        self.assertEqual(9.5, rearm_mechanical["maximum_terminal_span_mm"])
         self.assertEqual(
             "10 uA at 1 VDC through 50 mA at 16 VDC",
             self.database["devices"]["ck_tlsmdt3c020glfs"]["electrical_contract"]["qualified_range"],

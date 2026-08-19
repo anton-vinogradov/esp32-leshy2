@@ -502,6 +502,18 @@ def validate() -> list[str]:
         errors.append("SKRHADE010 must remain 45 degrees clockwise so A/B/C/D map to up/right/left/down")
     if abs(dpad.x + dpad_w / 2 - 37.5) > 0.02 or abs(dpad.y + dpad_h / 2 - 137.4) > 0.02:
         errors.append("SKRHADE010 rotated envelope must remain centred at D-pad axis 37.5,137.4 mm")
+    dpad_mechanical = devices[instances["ui_dpad_switch"]].get("mechanical_contract", {})
+    if dpad_mechanical.get("body_thickness_mm") != 1.85:
+        errors.append("SKRHADE010 body thickness must remain distinct from its complete stem height")
+    if dpad_mechanical.get("overall_to_stem_top_mm") != 5.0:
+        errors.append("SKRHADE010 complete stem-top height must remain 5.0 mm from the PCB")
+    if dpad_mechanical.get("stem_diameter_mm") != 3.0:
+        errors.append("SKRHADE010 custom actuator interface must retain the exact 3-mm stem")
+    direct_mechanical = devices[instances["rearm_switch"]].get("mechanical_contract", {})
+    if direct_mechanical.get("plunger_diameter_mm") != 3.3:
+        errors.append("B3S-1100P direct-press controls must retain the exact 3.3-mm plunger")
+    if direct_mechanical.get("nominal_height_mm") != 4.3:
+        errors.append("B3S-1100P nominal direct-press height must remain 4.3 mm")
     display = Placement("display", 10.25, 11.0, "display")
     holder = Placement("pack_holder", 17.6, 42.0, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
