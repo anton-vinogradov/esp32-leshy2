@@ -104,4 +104,5 @@ The detailed tables serve schematic, verification and manufacturing work:
 
 - [Exact assignment of every programmable controller](pinout.md)
 - [Device principle diagrams](schematics.md)
+- [Exact M1 inter-board connection](interconnect.md)
 - [Machine-readable BOM CSV](../hardware/architecture/generated/G2F-3I-target-bom.csv)

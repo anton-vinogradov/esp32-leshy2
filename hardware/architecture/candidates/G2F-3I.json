@@ -20,7 +20,7 @@
       }
     ],
     "substitution_policy": {
-      "status": "all_187_current_purchase_lines_have_exactly_one_conservative_disposition_class",
+      "status": "all_191_current_purchase_lines_have_exactly_one_conservative_disposition_class",
       "classes": [
         {
           "id": "SUB-RF",
@@ -88,8 +88,8 @@
           "requalification": ["datasheet/errata and pin-by-pin review", "power-sequence/back-power/reset/bus-contention HIL", "audio, analog threshold or latency/no-stall HIL for every affected path"],
           "device_ids": [
             "diodes_pam8302a_ascr", "everest_es8311_qfn20", "nexperia_74lvc126apw_118", "nexperia_74lvc1g32gv_125", "nexperia_74lvc2g126dc_125", "nexperia_74lvc2g14gw_125", "onsemi_fsusb42_mux", "tca4307dgkr", "tca6424argjr",
-            "ti_sn74lvc08a_pwr", "ti_sn74lvc1g06_dckr", "ti_sn74lvc1g07_dckr", "ti_sn74lvc1g125_dckr", "ti_sn74lvc1g126_dckr", "ti_sn74lvc1g3157_dbvr", "ti_sn74lvc1g74_dcur", "ti_sn74lvc2g08_dcur", "ti_sn74lvc2g66_dcur", "ti_sn74lvc3g07_dcur", "ti_sn74lvc3g34_dcur",
-            "ti_tca9534a_pwr", "ti_tlv1824_pwr", "ti_tlv9061_idbvr", "ti_tmux1136_dgsr", "ti_ts5a63157_dckr", "ti_txs0102_dcur"
+            "ti_sn74lvc08a_pwr", "ti_sn74lvc1g06_dckr", "ti_sn74lvc1g07_dckr", "ti_sn74lvc1g08_dckr", "ti_sn74lvc1g125_dckr", "ti_sn74lvc1g126_dckr", "ti_sn74lvc1g3157_dbvr", "ti_sn74lvc1g74_dcur", "ti_sn74lvc2g08_dcur", "ti_sn74lvc2g66_dcur", "ti_sn74lvc3g07_dcur", "ti_sn74lvc3g34_dcur",
+            "ti_tca9534a_pwr", "ti_tlv1821_dckr", "ti_tlv1824_pwr", "ti_tlv9061_idbvr", "ti_tmux1136_dgsr", "ti_ts5a63157_dckr", "ti_txs0102_dcur"
           ]
         },
         {
@@ -119,7 +119,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_y78b23214fp", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_y78b23214fp", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -218,7 +218,7 @@
     "status": "paper_reviewed_joint_candidate_projection_not_target_architecture",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 59,
-      "expected_occurrence_count": 978,
+      "expected_occurrence_count": 992,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -363,7 +363,7 @@
     "robust_receive": "exact TSOP95238TT on a separately filtered switched rail provides only the active-low 38-kHz AGC2 demodulated envelope; it never creates measured carrier provenance",
     "carrier_learning": "exact TSMP95000TT on a separately filtered switched rail provides active-low carrier cycles only in its documented 30-60-kHz range; its output has the recommended 4.7-kOhm pull-up and is the only onboard source allowed to label carrier provenance measured",
     "power_and_isolation": "TPS22919DCKR with input/output energy, QOD and 10-kOhm ON pull-down powers only the two receive paths and one 74LVC2G126DC,125 Ioff buffer; two 100-Ohm/4.7-uF local filters suppress supply disturbance, while host-side 10-kOhm pull-ups hold both C5 inputs idle-high without back-power when the rail is off",
-    "transmit": "one side-view VSMY14940 is driven from protected 3V3_MAIN by DMN2056U-7 through exact 33-Ohm 1206 current limit; a 100-Ohm gate resistor, 10-kOhm gate pull-down and AON HARD_STOP_N-dominated safe_gate_b channel 3 make reset/STOP/off states dark",
+    "transmit": "one side-view VSMY14940 is driven from protected 3V3_MAIN by DMN2056U-7 through exact 33-Ohm 1206 current limit; a 100-Ohm gate resistor, 10-kOhm gate pull-down and UI-board-local AON SN74LVC1G08DCKR qualified by RUN_PERMIT make reset/STOP/off states dark without routing the carrier through the rear board",
     "current_bound": "at a conservative 3.4-V rail and the emitter datasheet 1.1-V minimum measured at 20 mA, 33 Ohm bounds the first-order current to 69.7 mA before MOSFET drop, below the 70-mA 25-C continuous absolute rating; protocol duty, enclosure temperature and IEC 62471 remain measured admission limits rather than inferred safety",
     "actual_optical_evidence": "VEMD1060X01 in a light-tight internal tunnel views the physical emitter, not drive current; AON TLV9061IDBVR uses 0.30-V nominal reference, 47-kOhm/1-nF transimpedance response and feeds comparator channel IR_OPTICAL; evidence never authorizes TX, missing light revokes TX, and ambient or optical crosstalk can only delay quiet",
     "phase_exclusion": "receive/learn and transmit are separate SG-IR phases; the receive rail stays off during transmit, the emitter stays dark during receive/learn, and the C5 native radio block remains independently quiet",
@@ -457,7 +457,7 @@
       {"id":"RECEIVER_QUIET","interfaces":["Si4732 receiver"],"inactive_state":"receiver rail discharged, reset asserted, I2C isolated and both audio outputs passive while the protected receive-only antenna inputs remain harmless","control":"slow_io.P15 RX_DOMAIN_EN plus exact TPS22919DCKR, supervisor and I2C isolation","proof_gate":"rail discharge/current, I2C no-back-power, no unintended tune/scan activity and active-group desense HIL"},
       {"id":"CODEC_AUDIO_QUIET","interfaces":["codec","I2S","speaker amplifier"],"inactive_state":"AUDIO_ARM low, capture/playback selectors at reset defaults, PAM8302A off, codec rail discharged with I2C/I2S isolated and I2S clock/DMA stopped","control":"direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10 and exact supervisors/isolators","proof_gate":"stale-selector reset/watchdog/brownout override, no-back-power, pop/click, clock spectrum, current and active-group desense HIL"},
       {"id":"VOICE_INTERFACE_QUIET","interfaces":["voice UART","voice PTT","voice AFOUT","voice MIC_IN","voice H/L"],"inactive_state":"PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default","control":"VOICE_PTT_N, slow_io P13/P14/P27 and exact switched-domain digital/analog isolation","proof_gate":"no-back-power, no unintended TX/audio injection, stuck-line fault injection and active-group desense HIL"},
-      {"id":"IR_QUIET","interfaces":["IR RX","IR TX"],"inactive_state":"TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind HARD_STOP_N","control":"C5.GPIO4 IR_FRONTEND_PWR_EN plus safe_gate_b channel 3, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down","proof_gate":"rail discharge/no-back-power, dark/current/no-optical-output, STOP fault injection and active-radio desense HIL"},
+      {"id":"IR_QUIET","interfaces":["IR RX","IR TX"],"inactive_state":"TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind HARD_STOP_N","control":"C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down","proof_gate":"rail discharge/no-back-power, dark/current/no-optical-output, STOP fault injection and active-radio desense HIL"},
       {"id":"S3_RF_QUIET","interfaces":["S3 Wi-Fi","S3 BLE","ESP-NOW"],"inactive_state":"protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive","control":"native RF power state plus S3_RF_TX_EVIDENCE","proof_gate":"no background frame/carrier and active-receiver desense HIL"},
       {"id":"C5_RF_QUIET","interfaces":["C5 Wi-Fi","C5 IEEE 802.15.4"],"inactive_state":"protocols stopped and native RF block off while C5 may remain alive for IR/recovery","control":"native RF power state plus C5_RF_TX_EVIDENCE","proof_gate":"no background frame/carrier and active-receiver desense HIL"},
       {"id":"STORAGE_QUIET","interfaces":["microSD"],"inactive_state":"bounded flush then controller static and rail off when no storage session","control":"slow_io.P20 SD_PWR_EN","proof_gate":"no corruption/back-power and active-receiver desense HIL"},
@@ -472,7 +472,7 @@
       "source_decision": "I3",
       "brownout_threshold": "TPS3808G33 factory threshold; SENSE tied to AON_SAFE_3V3",
       "por_delay": "10 nF C0G on CT gives approximately 57.6 ms typical",
-      "powered_instances": ["safe_supervisor","safe_conditioner","safe_por_or","safe_latch","safe_reset_buffer","safe_gate_a","safe_gate_b","safe_ptt_or","slow_io_stop_sense_iso","slow_io_s3_evidence_iso","det_s3","det_c5","det_nrf0","det_nrf1","det_nrf2","det_cc","det_voice","evidence_cmp_a","evidence_cmp_b","evidence_mask","evidence_main_isolator","any_tx_led","s3_tx_led","c5_tx_led","nrf0_tx_led","nrf1_tx_led","nrf2_tx_led","cc_tx_led","voice_tx_led","ir_tx_led","stop_led"],
+      "powered_instances": ["safe_supervisor","safe_conditioner","safe_por_or","safe_latch","safe_reset_buffer","safe_gate_a","safe_gate_b","ir_safe_gate","safe_ptt_or","slow_io_stop_sense_iso","slow_io_s3_evidence_iso","det_s3","det_c5","det_nrf0","det_nrf1","det_nrf2","det_cc","det_voice","evidence_cmp_a","evidence_cmp_b","evidence_cmp_voice","evidence_mask","evidence_main_isolator","any_tx_led","s3_tx_led","c5_tx_led","nrf0_tx_led","nrf1_tx_led","nrf2_tx_led","cc_tx_led","voice_tx_led","ir_tx_led","stop_led"],
       "additional_powered_loads": [{"instance":"pd_controller","contact":"VIN_3V3","maximum_active_ma":6,"startup":"raw VBUS internal LDO before AON exists"}],
       "loss_behavior": "all partial-power-down outputs become high-Z; the main-domain RESET_KILL_GATE pull-up then turns on the three passive-drain reset sinks while 10-kOhm TX-enable pulls force safe state"
     },
@@ -502,7 +502,7 @@
       {"request":"RP.GPIO15 NRF_GROUP_PWR_EN","gate":"safe_gate_a channel 4","safe_output":"nRF group rail enable"},
       {"request":"RP.GPIO23 CC_PWR_EN","gate":"safe_gate_b channel 1","safe_output":"CC1101 rail enable"},
       {"request":"slow_io.P13 VOICE_DOMAIN_REQ","gate":"safe_gate_b channel 2","safe_output":"SA518 rail enable"},
-      {"request":"C5.GPIO6 IR_TX_CARRIER","gate":"safe_gate_b channel 3","safe_output":"IR LED driver waveform"},
+      {"request":"C5.GPIO6 IR_TX_CARRIER","gate":"UI-local SN74LVC1G08DCKR with RUN_PERMIT","safe_output":"IR LED driver waveform without rear-board carrier transit"},
       {"request":"slow_io.P17 U214_5V_REQ OR slow_io.P05 UNIT_5V_REQ","gate":"74LVC1G32 request OR then safe_gate_b channel 4","safe_output":"shared fixed-5-V converter enable; SN74LVC2G08 separately gates each true-reverse-blocking connector eFuse"},
       {"request":"RP.GPIO18 VOICE_PTT_REQ_N","gate":"safe_ptt_or with TX_KILL","safe_output":"voice.PTT high/RX on kill or AON loss via 10 kOhm module-side pull-up"}
     ],
@@ -515,6 +515,7 @@
       "source_mask": "AON-powered and locally bypassed TCA9534APWR at 7-bit address 0x38 on local RP I2C0 before TCA4307; A2/A1/A0 are directly grounded, P0..P7 follow channel order and INT_N is test-point only",
       "aggregate": "four BAT54ALT1G common-anode pairs diode-OR EV_N[0..7] into separately pulled-up ANY_TX_AON_N; LTST-C190KRKT plus exact 2.2 kOhm lights without firmware",
       "per_path_indicators": "each EV_N[0..7] independently sinks one LTST-C190KRKT through its own exact 2.2-kOhm AON resistor; seven LEDs sit beside the seven transmitting RF ports and the eighth sits beside IR TX, while the two Si4732 antenna inputs remain correctly unlit because they are receive-only",
+      "physical_localization": "the UI board keeps S3, C5 and IR analog detector outputs at its local TLV1824 and gates the C5 IR carrier through a local SN74LVC1G08; the RF board keeps nRF0/nRF1/nRF2/CC detector outputs at its local TLV1824 and voice at a local TLV1821. Only active-low digital evidence plus RUN_PERMIT cross M1; no detector analog signal and no IR carrier makes an inter-board round trip",
       "main_domain_isolation": "AON-powered SN74LVC3G07DCUR preserves active-low polarity and transfers C5 RF evidence, IR evidence and ANY_TX_AON_N as passive-drain outputs; three separate 10-kOhm 3V3_MAIN pull-ups prevent positive AON injection into C5 or RP while main power is absent",
       "stop_indicator": "SN74LVC1G74 Q drives LTST-C190KFKT through 2.2 kOhm",
       "unqualified_behavior": "unknown/unavailable; mandatory-proof TX remains disabled or fixture-only",
@@ -702,10 +703,581 @@
     "cost": "first-pass quantity-100 active-component and exact-passive addition is approximately USD 10.5-11.5, dominated by three permanently populated keyed Samtec headers; it excludes fixture cables, enclosure hatches and assembly quotation",
     "remaining_hil": ["received connector/header/switch footprint and enclosure-actuation coupons", "USB Full-Speed eye/edge and attach-detach behavior through each FSUSB42MUX", "board-off D-line and VBUS backfeed with one and three simultaneous hosts", "erased, corrupt and wrong-image recovery independently over every USB/UART/SWD path", "held/misordered RESET/BOOT, invalid DBG10 ID, fixture overdrive and ESD fault injection", "hard-STOP and AON-loss reset assertion during every recovery mode without RF re-arm"]
   },
+  "interboard_contract": {
+    "status": "reviewed_physical_locality_and_80_contact_budget",
+    "working_inner_gap_mm": 11,
+    "connector_pair": {
+      "ui_instance": "m1_ui_plug",
+      "rf_power_instance": "m1_rf_receptacle",
+      "positions": 80,
+      "pitch_mm": 0.6,
+      "mated_height_mm": 11,
+      "rated_current_per_contact_a": 0.4,
+      "transmission_rate_gbps": 8
+    },
+    "physical_locality": {
+      "ui_control_board": [
+        "s3",
+        "c5",
+        "display",
+        "sd",
+        "slow_io",
+        "ui_matrix_io",
+        "codec",
+        "receiver",
+        "microphone",
+        "headphone_jack",
+        "ir_demod",
+        "ir_carrier",
+        "ir_emitter",
+        "ir_safe_gate",
+        "evidence_cmp_a",
+        "safe_conditioner",
+        "safe_por_or",
+        "safe_latch",
+        "safe_reset_buffer",
+        "safe_reset_sink_a",
+        "C5 service USB and all front controls"
+      ],
+      "rf_power_board": [
+        "rp",
+        "nrf0",
+        "nrf1",
+        "nrf2",
+        "cc",
+        "voice",
+        "u214",
+        "native M5 Unit port",
+        "product_usb_connector",
+        "product_usb_protector",
+        "pd_controller",
+        "nvdc_charger",
+        "battery protection and holders",
+        "all rail converters",
+        "speaker_amp",
+        "speaker",
+        "safe_supervisor",
+        "safe_gate_a",
+        "safe_gate_b",
+        "safe_ptt_or",
+        "safe_reset_sink_b",
+        "evidence_cmp_b",
+        "evidence_cmp_voice",
+        "evidence_mask",
+        "evidence_main_isolator"
+      ],
+      "rationale": [
+        "raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board",
+        "speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND",
+        "S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board",
+        "hard STOP and RE-ARM conditioning/latch remain beside the physical controls; only digital safety state crosses M1"
+      ]
+    },
+    "pin_map": [
+      {
+        "contact": 1,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 2,
+        "net": "RP_ALERT_N",
+        "direction": "RF→UI",
+        "signal_class": "ipc_high_speed"
+      },
+      {
+        "contact": 3,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 4,
+        "net": "S3_RP_IPC_CS_N",
+        "direction": "UI→RF",
+        "signal_class": "ipc_high_speed"
+      },
+      {
+        "contact": 5,
+        "net": "S3_RP_IPC_SCK",
+        "direction": "UI→RF",
+        "signal_class": "ipc_high_speed"
+      },
+      {
+        "contact": 6,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 7,
+        "net": "S3_RP_IPC_MOSI",
+        "direction": "UI→RF",
+        "signal_class": "ipc_high_speed"
+      },
+      {
+        "contact": 8,
+        "net": "S3_RP_IPC_MISO",
+        "direction": "RF→UI",
+        "signal_class": "ipc_high_speed"
+      },
+      {
+        "contact": 9,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 10,
+        "net": "S3_USB_DM",
+        "direction": "bidirectional",
+        "signal_class": "usb2_high_speed"
+      },
+      {
+        "contact": 11,
+        "net": "S3_USB_DP",
+        "direction": "bidirectional",
+        "signal_class": "usb2_high_speed"
+      },
+      {
+        "contact": 12,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 13,
+        "net": "SYS_I2C_SDA",
+        "direction": "bidirectional",
+        "signal_class": "control"
+      },
+      {
+        "contact": 14,
+        "net": "SYS_I2C_SCL",
+        "direction": "bidirectional",
+        "signal_class": "control"
+      },
+      {
+        "contact": 15,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 16,
+        "net": "SYS_INT_N",
+        "direction": "RF→UI",
+        "signal_class": "control"
+      },
+      {
+        "contact": 17,
+        "net": "CC_BAND_V1_REQ",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 18,
+        "net": "CC_BAND_V2_REQ",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 19,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 20,
+        "net": "U214_I2C_READY",
+        "direction": "RF→UI",
+        "signal_class": "control"
+      },
+      {
+        "contact": 21,
+        "net": "VOICE_DOMAIN_REQ",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 22,
+        "net": "VOICE_HL_RELEASE_REQ",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 23,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 24,
+        "net": "U214_5V_REQ",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 25,
+        "net": "UNIT_5V_REQ",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 26,
+        "net": "POWER_FAULT_N",
+        "direction": "RF→UI",
+        "signal_class": "control"
+      },
+      {
+        "contact": 27,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 28,
+        "net": "UNIT_READY",
+        "direction": "RF→UI",
+        "signal_class": "control"
+      },
+      {
+        "contact": 29,
+        "net": "PTT_BUTTON_N",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 30,
+        "net": "POR_N",
+        "direction": "RF→UI",
+        "signal_class": "safety"
+      },
+      {
+        "contact": 31,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 32,
+        "net": "RUN_PERMIT",
+        "direction": "UI→RF",
+        "signal_class": "safety"
+      },
+      {
+        "contact": 33,
+        "net": "TX_KILL",
+        "direction": "UI→RF",
+        "signal_class": "safety"
+      },
+      {
+        "contact": 34,
+        "net": "RESET_KILL_GATE",
+        "direction": "UI→RF",
+        "signal_class": "safety"
+      },
+      {
+        "contact": 35,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 36,
+        "net": "EV_N0_S3",
+        "direction": "UI→RF",
+        "signal_class": "tx_evidence"
+      },
+      {
+        "contact": 37,
+        "net": "EV_N1_C5",
+        "direction": "UI→RF",
+        "signal_class": "tx_evidence"
+      },
+      {
+        "contact": 38,
+        "net": "EV_N7_IR",
+        "direction": "UI→RF",
+        "signal_class": "tx_evidence"
+      },
+      {
+        "contact": 39,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 40,
+        "net": "C5_RF_TX_EVIDENCE_N",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
+      },
+      {
+        "contact": 41,
+        "net": "IR_TX_EVIDENCE_N",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
+      },
+      {
+        "contact": 42,
+        "net": "RX_SA518_AFOUT_ISOLATED",
+        "direction": "RF→UI",
+        "signal_class": "audio"
+      },
+      {
+        "contact": 43,
+        "net": "AUDIO_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 44,
+        "net": "VOICE_MIC_SELECTED_MAIN",
+        "direction": "UI→RF",
+        "signal_class": "audio"
+      },
+      {
+        "contact": 45,
+        "net": "AUDIO_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 46,
+        "net": "SPEAKER_SELECTED_P",
+        "direction": "UI→RF",
+        "signal_class": "audio"
+      },
+      {
+        "contact": 47,
+        "net": "SPEAKER_SELECTED_N",
+        "direction": "UI→RF",
+        "signal_class": "audio"
+      },
+      {
+        "contact": 48,
+        "net": "SPEAKER_AMP_EN",
+        "direction": "UI→RF",
+        "signal_class": "control"
+      },
+      {
+        "contact": 49,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 50,
+        "net": "RESERVED_50",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 51,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 52,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 53,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 54,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 55,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 56,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 57,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 58,
+        "net": "3V3_MAIN",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 59,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 60,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 61,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 62,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 63,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 64,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 65,
+        "net": "AON_SAFE_3V3",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 66,
+        "net": "AON_SAFE_3V3",
+        "direction": "rail",
+        "signal_class": "power"
+      },
+      {
+        "contact": 67,
+        "net": "SAFETY_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 68,
+        "net": "SAFETY_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 69,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 70,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 71,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 72,
+        "net": "POWER_GROUND",
+        "direction": "return",
+        "signal_class": "return"
+      },
+      {
+        "contact": 73,
+        "net": "RESERVED_73",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 74,
+        "net": "RESERVED_74",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 75,
+        "net": "RESERVED_75",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 76,
+        "net": "RESERVED_76",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 77,
+        "net": "RESERVED_77",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 78,
+        "net": "RESERVED_78",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 79,
+        "net": "RESERVED_79",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      },
+      {
+        "contact": 80,
+        "net": "RESERVED_80",
+        "direction": "reserved",
+        "signal_class": "reserved"
+      }
+    ],
+    "accounting": {
+      "positions": 80,
+      "reserved": 9,
+      "main_3v3_contacts": 8,
+      "aon_contacts": 2,
+      "power_ground_contacts": 23,
+      "audio_ground_contacts": 2,
+      "safety_ground_contacts": 2,
+      "maximum_nominal_main_contact_capacity_a": 3.2
+    },
+    "routing_contract": [
+      "USB2 D+/D- and S3↔RP IPC use impedance-controlled pairs/groups with the shown adjacent returns and no stubs",
+      "low-level audio is routed as guarded differential/paired traces away from IPC, USB and buck switch nodes",
+      "all nine reserved contacts remain no-connect in the first PCB and may not be silently consumed",
+      "3V3_MAIN current capacity is accepted only after connector-temperature and simultaneous-load HIL; 8 × 0.4 A is a connector-rating ceiling, not a product-current promise"
+    ]
+  },
   "instances": {
     "s3": "esp32_s3_wroom_1u_n16r2",
     "c5": "esp32_c5_wroom_1u_n8r8",
     "rp": "rp2354b_a4",
+    "m1_ui_plug": "hirose_fx8c_80p_sv1_92",
+    "m1_rf_receptacle": "hirose_fx8c_80s_sv5_92",
     "u214": "m5_u214",
     "u214_i2c_iso": "tca4307dgkr",
     "u214_i2c_iso_bypass": "tdk_c1005x7r1h104k050bb",
@@ -1500,6 +2072,8 @@
     "rp_reset_pullup": "yageo_rc0402fr_0710kl",
     "safe_gate_a": "ti_sn74lvc08a_pwr",
     "safe_gate_b": "ti_sn74lvc08a_pwr",
+    "ir_safe_gate": "ti_sn74lvc1g08_dckr",
+    "ir_safe_gate_bypass": "tdk_c1005x7r1h104k050bb",
     "safe_ptt_or": "nexperia_74lvc1g32gv_125",
     "det_s3": "adi_ltc5532_es6_trmpbf",
     "det_c5": "adi_ltc5532_es6_trmpbf",
@@ -1511,8 +2085,10 @@
     "det_ir": "vishay_vemd1060x01",
     "evidence_cmp_a": "ti_tlv1824_pwr",
     "evidence_cmp_b": "ti_tlv1824_pwr",
+    "evidence_cmp_voice": "ti_tlv1821_dckr",
     "evidence_cmp_a_bypass": "tdk_c1005x7r1h104k050bb",
     "evidence_cmp_b_bypass": "tdk_c1005x7r1h104k050bb",
+    "evidence_cmp_voice_bypass": "tdk_c1005x7r1h104k050bb",
     "evidence_mask": "ti_tca9534a_pwr",
     "evidence_mask_bypass": "tdk_c1005x7r1h104k050bb",
     "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
@@ -1623,7 +2199,7 @@
     {"instance":"c5","contact":"GPIO0","net":"IR_RX_DEMOD","direction":"i","controller":"RMT_RX0","peers":["ir_demod_series.END_2","ir_demod_host_pullup.END_1"],"sharing_proof":"dedicated active-low demodulated-envelope input remains idle-high behind an Ioff buffer when the receive rail is off"},
     {"instance":"c5","contact":"GPIO1","net":"IR_RX_CARRIER","direction":"i","controller":"RMT_RX1","peers":["ir_carrier_series.END_2","ir_carrier_host_pullup.END_1"],"sharing_proof":"dedicated active-low carrier-cycle input remains idle-high behind a separate Ioff-buffer channel when the receive rail is off"},
     {"instance":"c5","contact":"GPIO4","net":"IR_FRONTEND_PWR_EN","direction":"o","controller":"GPIO","peers":["ir_power_switch.ON","ir_power_on_pulldown.END_1"],"reset_proof":"external 10-kOhm pull-down and TPS22919 QOD keep both receive paths discharged until explicit admission"},
-    {"instance":"c5","contact":"GPIO6","net":"IR_TX_CARRIER","direction":"o","controller":"RMT_TX0","peers":["safe_gate_b.3A"]},
+    {"instance":"c5","contact":"GPIO6","net":"IR_TX_CARRIER","direction":"o","controller":"RMT_TX0","peers":["ir_safe_gate.A"]},
     {"instance":"c5","contact":"GPIO7","net":"S3_C5_SDIO_D1_IRQ","direction":"io","controller":"SDIO_SLAVE","peers":["s3.GPIO13"],"strap_proof":"external pull-up and documented SDIO edge profile are verified before runtime ownership"},
     {"instance":"c5","contact":"GPIO8","net":"S3_C5_SDIO_D0","direction":"io","controller":"SDIO_SLAVE","peers":["s3.GPIO12"]},
     {"instance":"c5","contact":"GPIO9","net":"S3_C5_SDIO_CLK","direction":"i","controller":"SDIO_SLAVE","peers":["s3.GPIO10"]},
@@ -3675,7 +4251,8 @@
     {"from":"safe_latch.Q_N","to":"safe_gate_a.4B","net":"RUN_PERMIT","safety":"STOP-dominant active-high gate permit"},
     {"from":"safe_latch.Q_N","to":"safe_gate_b.1B","net":"RUN_PERMIT","safety":"STOP-dominant active-high gate permit"},
     {"from":"safe_latch.Q_N","to":"safe_gate_b.2B","net":"RUN_PERMIT","safety":"STOP-dominant active-high gate permit"},
-    {"from":"safe_latch.Q_N","to":"safe_gate_b.3B","net":"RUN_PERMIT","safety":"STOP-dominant active-high gate permit"},
+    {"from":"c5.GPIO6","to":"ir_safe_gate.A","net":"IR_TX_CARRIER","safety":"C5 RMT carrier stays on the UI board and enters the local hardware safety gate directly"},
+    {"from":"safe_latch.Q_N","to":"ir_safe_gate.B","net":"RUN_PERMIT","safety":"one digital permit crosses to the UI board; the IR carrier itself remains local to C5"},
     {"from":"safe_latch.Q_N","to":"safe_gate_b.4B","net":"RUN_PERMIT","safety":"STOP-dominant active-high gate permit"},
     {"from":"safe_gate_a.1Y","to":"nrf0_host_buffer.1A","net":"NRF0_CE_SAFE","safety":"STOP-dominant CE enters the switched-domain Ioff buffer rather than the module directly"},
     {"from":"nrf0_host_buffer.1Y","to":"nrf0_ce_series.END_1","net":"NRF0_CE_BUFFERED","safety":"exact switched-domain buffer isolates CE while off"},
@@ -3819,7 +4396,14 @@
     {"from":"voice_en_pulldown.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"external fail-low default is independent of converter internal bias"},
     {"from":"safe_gate_b.2Y","to":"voice_pg_base_res.END_1","net":"VOICE_DOMAIN_EN_SAFE","safety":"the qualifier consumes the same STOP-dominant voice enable evidence"},
     {"from":"voice_pg_base_res.END_2","to":"voice_pg_qualifier.B","net":"VOICE_PG_QUAL_BASE","safety":"exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin"},
-    {"from":"safe_gate_b.3Y","to":"ir_tx_gate_series.END_1","net":"IR_TX_CARRIER_SAFE","safety":"STOP-dominant carrier reaches the exact emitter gate network only while RUN_PERMIT is high"},
+    {"from":"abstract:AON_SAFE_3V3","to":"ir_safe_gate.VCC","net":"AON_SAFE_3V3","safety":"UI-local IR gate stays on the non-programmable safety rail"},
+    {"from":"ir_safe_gate.GND","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"IR gate return stays local to the UI safety island"},
+    {"from":"abstract:AON_SAFE_3V3","to":"ir_safe_gate_bypass.END_1","net":"AON_SAFE_3V3","safety":"exact 100-nF local bypass at SN74LVC1G08DCKR"},
+    {"from":"ir_safe_gate_bypass.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"IR gate bypass returns locally"},
+    {"from":"ir_safe_gate.Y","to":"ir_tx_gate_series.END_1","net":"IR_TX_CARRIER_SAFE","safety":"STOP-dominant carrier reaches the exact emitter gate network without a rear-board round trip"},
+    {"from":"safe_gate_b.3A","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"unused rear quad-gate channel input A is fixed low"},
+    {"from":"safe_gate_b.3B","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"unused rear quad-gate channel input B is fixed low"},
+    {"from":"safe_gate_b.3Y","to":"abstract:no-connect","net":"NO_CONNECT","safety":"unused rear quad-gate output remains unconnected"},
     {"from":"safe_gate_b.4Y","to":"ext_buck.EN","net":"EXT_ANY_5V_EN_SAFE","safety":"STOP and AON loss disable the shared fixed-5-V converter; either admitted branch may request it"},
     {"from":"ext_buck.EN","to":"ext_en_pulldown.END_1","net":"EXT_ANY_5V_EN_SAFE","safety":"one exact 10-kOhm pull-down defines the common converter off if the safety-gate output is high-impedance"},
     {"from":"ext_en_pulldown.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"external fail-low default is independent of the converter's internal 2-MOhm pull-down"},
@@ -3962,12 +4546,12 @@
     {"from":"ir_evidence_feedback_cap.END_2","to":"ir_evidence_amp.IN_MINUS","net":"IR_OPTICAL_SUM","safety":"feedback capacitor closes at the summing node"},
     {"from":"det_s3.VOUT","to":"evidence_cmp_a.IN1_N","net":"S3_DETECT_V","safety":"RF above the qualified threshold makes active-low comparator output assert"},
     {"from":"det_c5.VOUT","to":"evidence_cmp_a.IN2_N","net":"C5_DETECT_V","safety":"RF above the qualified threshold makes active-low comparator output assert"},
-    {"from":"det_nrf0.V_UP","to":"evidence_cmp_a.IN3_N","net":"NRF0_DETECT_V","safety":"forward RF above the channel-qualified threshold makes active-low comparator output assert"},
-    {"from":"det_nrf1.V_UP","to":"evidence_cmp_a.IN4_N","net":"NRF1_DETECT_V","safety":"forward RF above the channel-qualified threshold makes active-low comparator output assert"},
-    {"from":"det_nrf2.V_UP","to":"evidence_cmp_b.IN1_N","net":"NRF2_DETECT_V","safety":"forward RF above the channel-qualified threshold makes active-low comparator output assert"},
-    {"from":"det_cc.V_UP","to":"evidence_cmp_b.IN2_N","net":"CC_DETECT_V","safety":"RF above the qualified threshold makes active-low comparator output assert"},
-    {"from":"det_voice.V_UP","to":"evidence_cmp_b.IN3_N","net":"VOICE_DETECT_V","safety":"RF above the qualified threshold makes active-low comparator output assert"},
-    {"from":"ir_evidence_amp.OUT","to":"evidence_cmp_b.IN4_N","net":"IR_DETECT_V","safety":"physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute"},
+    {"from":"det_nrf0.V_UP","to":"evidence_cmp_b.IN1_N","net":"NRF0_DETECT_V","safety":"rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert"},
+    {"from":"det_nrf1.V_UP","to":"evidence_cmp_b.IN2_N","net":"NRF1_DETECT_V","safety":"rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert"},
+    {"from":"det_nrf2.V_UP","to":"evidence_cmp_b.IN3_N","net":"NRF2_DETECT_V","safety":"rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert"},
+    {"from":"det_cc.V_UP","to":"evidence_cmp_b.IN4_N","net":"CC_DETECT_V","safety":"rear-local RF above the qualified threshold makes active-low comparator output assert"},
+    {"from":"det_voice.V_UP","to":"evidence_cmp_voice.IN_N","net":"VOICE_DETECT_V","safety":"rear-local RF above the qualified threshold makes the dedicated active-low comparator output assert"},
+    {"from":"ir_evidence_amp.OUT","to":"evidence_cmp_a.IN3_N","net":"IR_DETECT_V","safety":"UI-local physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute"},
     {"from":"abstract:AON_SAFE_3V3","to":"evidence_cmp_a.VPLUS","net":"AON_SAFE_3V3","safety":"first quad comparator remains alive with the hard-STOP evidence plane"},
     {"from":"evidence_cmp_a.VMINUS","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"first comparator return stays in the AON evidence domain"},
     {"from":"abstract:AON_SAFE_3V3","to":"evidence_cmp_a_bypass.END_1","net":"AON_SAFE_3V3","safety":"exact 100-nF local bypass required at the first TLV1824 package"},
@@ -3976,6 +4560,13 @@
     {"from":"evidence_cmp_b.VMINUS","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"second comparator return stays in the AON evidence domain"},
     {"from":"abstract:AON_SAFE_3V3","to":"evidence_cmp_b_bypass.END_1","net":"AON_SAFE_3V3","safety":"exact 100-nF local bypass required at the second TLV1824 package"},
     {"from":"evidence_cmp_b_bypass.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"second comparator bypass returns locally"},
+    {"from":"abstract:AON_SAFE_3V3","to":"evidence_cmp_voice.VPLUS","net":"AON_SAFE_3V3","safety":"dedicated voice comparator remains alive with the hard-STOP evidence plane"},
+    {"from":"evidence_cmp_voice.VMINUS","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"voice comparator return stays in the rear AON evidence domain"},
+    {"from":"abstract:AON_SAFE_3V3","to":"evidence_cmp_voice_bypass.END_1","net":"AON_SAFE_3V3","safety":"exact 100-nF local bypass required at TLV1821DCKR"},
+    {"from":"evidence_cmp_voice_bypass.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"voice comparator bypass returns locally"},
+    {"from":"evidence_cmp_a.IN4_N","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"unused UI comparator channel negative input is fixed low"},
+    {"from":"evidence_cmp_a.IN4_P","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"unused UI comparator channel positive input is fixed low"},
+    {"from":"evidence_cmp_a.OUT4","to":"abstract:no-connect","net":"NO_CONNECT","safety":"unused UI comparator open-drain output remains unconnected"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"s3_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the S3 first threshold population"},
     {"from":"s3_evidence_threshold_top.END_2","to":"evidence_cmp_a.IN1_P","net":"EV_THRESH_0_S3","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
@@ -3996,58 +4587,58 @@
     {"from":"c5_evidence_output_pullup.END_2","to":"evidence_cmp_a.OUT2","net":"EV_N1_C5","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"nrf0_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the nRF0 first threshold population"},
-    {"from":"nrf0_evidence_threshold_top.END_2","to":"evidence_cmp_a.IN3_P","net":"EV_THRESH_2_NRF0","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
-    {"from":"evidence_cmp_a.IN3_P","to":"nrf0_evidence_threshold_bottom.END_1","net":"EV_THRESH_2_NRF0","safety":"10-kOhm lower leg is the first measured-calibration population"},
+    {"from":"nrf0_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN1_P","net":"EV_THRESH_2_NRF0","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
+    {"from":"evidence_cmp_b.IN1_P","to":"nrf0_evidence_threshold_bottom.END_1","net":"EV_THRESH_2_NRF0","safety":"10-kOhm lower leg is the first measured-calibration population"},
     {"from":"nrf0_evidence_threshold_bottom.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"nRF0 threshold returns locally"},
-    {"from":"evidence_cmp_a.OUT3","to":"nrf0_evidence_hysteresis.END_1","net":"EV_N2_NRF0","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
-    {"from":"nrf0_evidence_hysteresis.END_2","to":"evidence_cmp_a.IN3_P","net":"EV_THRESH_2_NRF0","safety":"nRF0 threshold clears near 0.297 V nominal"},
+    {"from":"evidence_cmp_b.OUT1","to":"nrf0_evidence_hysteresis.END_1","net":"EV_N2_NRF0","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
+    {"from":"nrf0_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN1_P","net":"EV_THRESH_2_NRF0","safety":"nRF0 threshold clears near 0.297 V nominal"},
     {"from":"abstract:AON_SAFE_3V3","to":"nrf0_evidence_output_pullup.END_1","net":"AON_SAFE_3V3","safety":"separate 10-kOhm comparator-output pull-up"},
-    {"from":"nrf0_evidence_output_pullup.END_2","to":"evidence_cmp_a.OUT3","net":"EV_N2_NRF0","safety":"individually readable active-low evidence"},
+    {"from":"nrf0_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT1","net":"EV_N2_NRF0","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"nrf1_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the nRF1 first threshold population"},
-    {"from":"nrf1_evidence_threshold_top.END_2","to":"evidence_cmp_a.IN4_P","net":"EV_THRESH_3_NRF1","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
-    {"from":"evidence_cmp_a.IN4_P","to":"nrf1_evidence_threshold_bottom.END_1","net":"EV_THRESH_3_NRF1","safety":"10-kOhm lower leg is the first measured-calibration population"},
+    {"from":"nrf1_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN2_P","net":"EV_THRESH_3_NRF1","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
+    {"from":"evidence_cmp_b.IN2_P","to":"nrf1_evidence_threshold_bottom.END_1","net":"EV_THRESH_3_NRF1","safety":"10-kOhm lower leg is the first measured-calibration population"},
     {"from":"nrf1_evidence_threshold_bottom.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"nRF1 threshold returns locally"},
-    {"from":"evidence_cmp_a.OUT4","to":"nrf1_evidence_hysteresis.END_1","net":"EV_N3_NRF1","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
-    {"from":"nrf1_evidence_hysteresis.END_2","to":"evidence_cmp_a.IN4_P","net":"EV_THRESH_3_NRF1","safety":"nRF1 threshold clears near 0.297 V nominal"},
+    {"from":"evidence_cmp_b.OUT2","to":"nrf1_evidence_hysteresis.END_1","net":"EV_N3_NRF1","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
+    {"from":"nrf1_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN2_P","net":"EV_THRESH_3_NRF1","safety":"nRF1 threshold clears near 0.297 V nominal"},
     {"from":"abstract:AON_SAFE_3V3","to":"nrf1_evidence_output_pullup.END_1","net":"AON_SAFE_3V3","safety":"separate 10-kOhm comparator-output pull-up"},
-    {"from":"nrf1_evidence_output_pullup.END_2","to":"evidence_cmp_a.OUT4","net":"EV_N3_NRF1","safety":"individually readable active-low evidence"},
+    {"from":"nrf1_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT2","net":"EV_N3_NRF1","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"nrf2_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the nRF2 first threshold population"},
-    {"from":"nrf2_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN1_P","net":"EV_THRESH_4_NRF2","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
-    {"from":"evidence_cmp_b.IN1_P","to":"nrf2_evidence_threshold_bottom.END_1","net":"EV_THRESH_4_NRF2","safety":"10-kOhm lower leg is the first measured-calibration population"},
+    {"from":"nrf2_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN3_P","net":"EV_THRESH_4_NRF2","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
+    {"from":"evidence_cmp_b.IN3_P","to":"nrf2_evidence_threshold_bottom.END_1","net":"EV_THRESH_4_NRF2","safety":"10-kOhm lower leg is the first measured-calibration population"},
     {"from":"nrf2_evidence_threshold_bottom.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"nRF2 threshold returns locally"},
-    {"from":"evidence_cmp_b.OUT1","to":"nrf2_evidence_hysteresis.END_1","net":"EV_N4_NRF2","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
-    {"from":"nrf2_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN1_P","net":"EV_THRESH_4_NRF2","safety":"nRF2 threshold clears near 0.297 V nominal"},
+    {"from":"evidence_cmp_b.OUT3","to":"nrf2_evidence_hysteresis.END_1","net":"EV_N4_NRF2","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
+    {"from":"nrf2_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN3_P","net":"EV_THRESH_4_NRF2","safety":"nRF2 threshold clears near 0.297 V nominal"},
     {"from":"abstract:AON_SAFE_3V3","to":"nrf2_evidence_output_pullup.END_1","net":"AON_SAFE_3V3","safety":"separate 10-kOhm comparator-output pull-up"},
-    {"from":"nrf2_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT1","net":"EV_N4_NRF2","safety":"individually readable active-low evidence"},
+    {"from":"nrf2_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT3","net":"EV_N4_NRF2","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"cc_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the CC first threshold population"},
-    {"from":"cc_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN2_P","net":"EV_THRESH_5_CC","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
-    {"from":"evidence_cmp_b.IN2_P","to":"cc_evidence_threshold_bottom.END_1","net":"EV_THRESH_5_CC","safety":"10-kOhm lower leg is the first measured-calibration population"},
+    {"from":"cc_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN4_P","net":"EV_THRESH_5_CC","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
+    {"from":"evidence_cmp_b.IN4_P","to":"cc_evidence_threshold_bottom.END_1","net":"EV_THRESH_5_CC","safety":"10-kOhm lower leg is the first measured-calibration population"},
     {"from":"cc_evidence_threshold_bottom.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"CC threshold returns locally"},
-    {"from":"evidence_cmp_b.OUT2","to":"cc_evidence_hysteresis.END_1","net":"EV_N5_CC","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
-    {"from":"cc_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN2_P","net":"EV_THRESH_5_CC","safety":"CC threshold clears near 0.297 V nominal"},
+    {"from":"evidence_cmp_b.OUT4","to":"cc_evidence_hysteresis.END_1","net":"EV_N5_CC","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
+    {"from":"cc_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN4_P","net":"EV_THRESH_5_CC","safety":"CC threshold clears near 0.297 V nominal"},
     {"from":"abstract:AON_SAFE_3V3","to":"cc_evidence_output_pullup.END_1","net":"AON_SAFE_3V3","safety":"separate 10-kOhm comparator-output pull-up"},
-    {"from":"cc_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT2","net":"EV_N5_CC","safety":"individually readable active-low evidence"},
+    {"from":"cc_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT4","net":"EV_N5_CC","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"voice_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the voice first threshold population"},
-    {"from":"voice_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN3_P","net":"EV_THRESH_6_VOICE","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
-    {"from":"evidence_cmp_b.IN3_P","to":"voice_evidence_threshold_bottom.END_1","net":"EV_THRESH_6_VOICE","safety":"10-kOhm lower leg is the first measured-calibration population"},
+    {"from":"voice_evidence_threshold_top.END_2","to":"evidence_cmp_voice.IN_P","net":"EV_THRESH_6_VOICE","safety":"approximately 0.327-V rising assert threshold at nominal 3.3 V"},
+    {"from":"evidence_cmp_voice.IN_P","to":"voice_evidence_threshold_bottom.END_1","net":"EV_THRESH_6_VOICE","safety":"10-kOhm lower leg is the first measured-calibration population"},
     {"from":"voice_evidence_threshold_bottom.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"voice threshold returns locally"},
-    {"from":"evidence_cmp_b.OUT3","to":"voice_evidence_hysteresis.END_1","net":"EV_N6_VOICE","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
-    {"from":"voice_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN3_P","net":"EV_THRESH_6_VOICE","safety":"voice threshold clears near 0.297 V nominal"},
+    {"from":"evidence_cmp_voice.OUT","to":"voice_evidence_hysteresis.END_1","net":"EV_N6_VOICE","safety":"1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis"},
+    {"from":"voice_evidence_hysteresis.END_2","to":"evidence_cmp_voice.IN_P","net":"EV_THRESH_6_VOICE","safety":"voice threshold clears near 0.297 V nominal"},
     {"from":"abstract:AON_SAFE_3V3","to":"voice_evidence_output_pullup.END_1","net":"AON_SAFE_3V3","safety":"separate 10-kOhm comparator-output pull-up"},
-    {"from":"voice_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT3","net":"EV_N6_VOICE","safety":"individually readable active-low evidence"},
+    {"from":"voice_evidence_output_pullup.END_2","to":"evidence_cmp_voice.OUT","net":"EV_N6_VOICE","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"ir_evidence_threshold_top.END_1","net":"AON_SAFE_3V3","safety":"100-kOhm upper leg starts the IR first threshold population"},
-    {"from":"ir_evidence_threshold_top.END_2","to":"evidence_cmp_b.IN4_P","net":"EV_THRESH_7_IR","safety":"12-kOhm lower leg raises nominal optical assert threshold to approximately 0.384 V"},
-    {"from":"evidence_cmp_b.IN4_P","to":"ir_evidence_threshold_bottom.END_1","net":"EV_THRESH_7_IR","safety":"IR population differs because the optical TIA idles near 0.30 V"},
+    {"from":"ir_evidence_threshold_top.END_2","to":"evidence_cmp_a.IN3_P","net":"EV_THRESH_7_IR","safety":"12-kOhm lower leg raises nominal optical assert threshold to approximately 0.384 V"},
+    {"from":"evidence_cmp_a.IN3_P","to":"ir_evidence_threshold_bottom.END_1","net":"EV_THRESH_7_IR","safety":"IR population differs because the optical TIA idles near 0.30 V"},
     {"from":"ir_evidence_threshold_bottom.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"IR threshold returns locally"},
-    {"from":"evidence_cmp_b.OUT4","to":"ir_evidence_hysteresis.END_1","net":"EV_N7_IR","safety":"1-MOhm positive feedback provides approximately 34.7-mV nominal optical hysteresis"},
-    {"from":"ir_evidence_hysteresis.END_2","to":"evidence_cmp_b.IN4_P","net":"EV_THRESH_7_IR","safety":"IR threshold clears near 0.350 V, above nominal dark idle"},
+    {"from":"evidence_cmp_a.OUT3","to":"ir_evidence_hysteresis.END_1","net":"EV_N7_IR","safety":"1-MOhm positive feedback provides approximately 34.7-mV nominal optical hysteresis"},
+    {"from":"ir_evidence_hysteresis.END_2","to":"evidence_cmp_a.IN3_P","net":"EV_THRESH_7_IR","safety":"IR threshold clears near 0.350 V, above nominal dark idle"},
     {"from":"abstract:AON_SAFE_3V3","to":"ir_evidence_output_pullup.END_1","net":"AON_SAFE_3V3","safety":"separate 10-kOhm comparator-output pull-up"},
-    {"from":"ir_evidence_output_pullup.END_2","to":"evidence_cmp_b.OUT4","net":"EV_N7_IR","safety":"individually readable active-low evidence"},
+    {"from":"ir_evidence_output_pullup.END_2","to":"evidence_cmp_a.OUT3","net":"EV_N7_IR","safety":"individually readable active-low evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"evidence_mask.VCC","net":"AON_SAFE_3V3","safety":"source identity remains readable whenever the AON evidence plane is alive"},
     {"from":"evidence_mask.GND","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"evidence-mask return stays local"},
@@ -4062,20 +4653,20 @@
 
     {"from":"evidence_cmp_a.OUT1","to":"evidence_mask.P0","net":"EV_N0_S3","safety":"individually readable active-low evidence"},
     {"from":"evidence_cmp_a.OUT2","to":"evidence_mask.P1","net":"EV_N1_C5","safety":"individually readable active-low evidence"},
-    {"from":"evidence_cmp_a.OUT3","to":"evidence_mask.P2","net":"EV_N2_NRF0","safety":"individually readable active-low evidence"},
-    {"from":"evidence_cmp_a.OUT4","to":"evidence_mask.P3","net":"EV_N3_NRF1","safety":"individually readable active-low evidence"},
-    {"from":"evidence_cmp_b.OUT1","to":"evidence_mask.P4","net":"EV_N4_NRF2","safety":"individually readable active-low evidence"},
-    {"from":"evidence_cmp_b.OUT2","to":"evidence_mask.P5","net":"EV_N5_CC","safety":"individually readable active-low evidence"},
-    {"from":"evidence_cmp_b.OUT3","to":"evidence_mask.P6","net":"EV_N6_VOICE","safety":"individually readable active-low evidence"},
-    {"from":"evidence_cmp_b.OUT4","to":"evidence_mask.P7","net":"EV_N7_IR","safety":"individually readable active-low evidence"},
+    {"from":"evidence_cmp_b.OUT1","to":"evidence_mask.P2","net":"EV_N2_NRF0","safety":"rear-local comparator output crosses only as digital evidence"},
+    {"from":"evidence_cmp_b.OUT2","to":"evidence_mask.P3","net":"EV_N3_NRF1","safety":"rear-local comparator output crosses only as digital evidence"},
+    {"from":"evidence_cmp_b.OUT3","to":"evidence_mask.P4","net":"EV_N4_NRF2","safety":"individually readable active-low evidence"},
+    {"from":"evidence_cmp_b.OUT4","to":"evidence_mask.P5","net":"EV_N5_CC","safety":"individually readable active-low evidence"},
+    {"from":"evidence_cmp_voice.OUT","to":"evidence_mask.P6","net":"EV_N6_VOICE","safety":"dedicated rear-local comparator produces individually readable evidence"},
+    {"from":"evidence_cmp_a.OUT3","to":"evidence_mask.P7","net":"EV_N7_IR","safety":"UI-local comparator output crosses only as digital evidence"},
     {"from":"evidence_cmp_a.OUT1","to":"evidence_or_0.K1","net":"EV_N0_S3","safety":"diode-isolated hardware aggregate"},
     {"from":"evidence_cmp_a.OUT2","to":"evidence_or_0.K2","net":"EV_N1_C5","safety":"diode-isolated hardware aggregate"},
-    {"from":"evidence_cmp_a.OUT3","to":"evidence_or_1.K1","net":"EV_N2_NRF0","safety":"diode-isolated hardware aggregate"},
-    {"from":"evidence_cmp_a.OUT4","to":"evidence_or_1.K2","net":"EV_N3_NRF1","safety":"diode-isolated hardware aggregate"},
-    {"from":"evidence_cmp_b.OUT1","to":"evidence_or_2.K1","net":"EV_N4_NRF2","safety":"diode-isolated hardware aggregate"},
-    {"from":"evidence_cmp_b.OUT2","to":"evidence_or_2.K2","net":"EV_N5_CC","safety":"diode-isolated hardware aggregate"},
-    {"from":"evidence_cmp_b.OUT3","to":"evidence_or_3.K1","net":"EV_N6_VOICE","safety":"diode-isolated hardware aggregate"},
-    {"from":"evidence_cmp_b.OUT4","to":"evidence_or_3.K2","net":"EV_N7_IR","safety":"diode-isolated hardware aggregate"},
+    {"from":"evidence_cmp_b.OUT1","to":"evidence_or_1.K1","net":"EV_N2_NRF0","safety":"diode-isolated hardware aggregate"},
+    {"from":"evidence_cmp_b.OUT2","to":"evidence_or_1.K2","net":"EV_N3_NRF1","safety":"diode-isolated hardware aggregate"},
+    {"from":"evidence_cmp_b.OUT3","to":"evidence_or_2.K1","net":"EV_N4_NRF2","safety":"diode-isolated hardware aggregate"},
+    {"from":"evidence_cmp_b.OUT4","to":"evidence_or_2.K2","net":"EV_N5_CC","safety":"diode-isolated hardware aggregate"},
+    {"from":"evidence_cmp_voice.OUT","to":"evidence_or_3.K1","net":"EV_N6_VOICE","safety":"diode-isolated hardware aggregate"},
+    {"from":"evidence_cmp_a.OUT3","to":"evidence_or_3.K2","net":"EV_N7_IR","safety":"diode-isolated hardware aggregate"},
     {"from":"evidence_or_0.A_COMMON","to":"evidence_or_1.A_COMMON","net":"ANY_TX_AON_N","safety":"common anodes form the active-low AON aggregate without merging source lines"},
     {"from":"evidence_or_1.A_COMMON","to":"evidence_or_2.A_COMMON","net":"ANY_TX_AON_N","safety":"common anodes form the active-low AON aggregate without merging source lines"},
     {"from":"evidence_or_2.A_COMMON","to":"evidence_or_3.A_COMMON","net":"ANY_TX_AON_N","safety":"common anodes form the active-low AON aggregate without merging source lines"},
@@ -4092,22 +4683,22 @@
     {"from":"c5_tx_led.K","to":"evidence_cmp_a.OUT2","net":"EV_N1_C5","safety":"C5 antenna-local LED follows physical active-low TX evidence"},
     {"from":"abstract:AON_SAFE_3V3","to":"nrf0_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"nrf0_tx_led_series.END_2","to":"nrf0_tx_led.A","net":"NRF0_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
-    {"from":"nrf0_tx_led.K","to":"evidence_cmp_a.OUT3","net":"EV_N2_NRF0","safety":"nRF24 radio 0 antenna-local LED follows physical active-low TX evidence"},
+    {"from":"nrf0_tx_led.K","to":"evidence_cmp_b.OUT1","net":"EV_N2_NRF0","safety":"nRF24 radio 0 antenna-local LED follows physical active-low TX evidence"},
     {"from":"abstract:AON_SAFE_3V3","to":"nrf1_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"nrf1_tx_led_series.END_2","to":"nrf1_tx_led.A","net":"NRF1_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
-    {"from":"nrf1_tx_led.K","to":"evidence_cmp_a.OUT4","net":"EV_N3_NRF1","safety":"nRF24 radio 1 antenna-local LED follows physical active-low TX evidence"},
+    {"from":"nrf1_tx_led.K","to":"evidence_cmp_b.OUT2","net":"EV_N3_NRF1","safety":"nRF24 radio 1 antenna-local LED follows physical active-low TX evidence"},
     {"from":"abstract:AON_SAFE_3V3","to":"nrf2_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"nrf2_tx_led_series.END_2","to":"nrf2_tx_led.A","net":"NRF2_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
-    {"from":"nrf2_tx_led.K","to":"evidence_cmp_b.OUT1","net":"EV_N4_NRF2","safety":"nRF24 radio 2 antenna-local LED follows physical active-low TX evidence"},
+    {"from":"nrf2_tx_led.K","to":"evidence_cmp_b.OUT3","net":"EV_N4_NRF2","safety":"nRF24 radio 2 antenna-local LED follows physical active-low TX evidence"},
     {"from":"abstract:AON_SAFE_3V3","to":"cc_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"cc_tx_led_series.END_2","to":"cc_tx_led.A","net":"CC_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
-    {"from":"cc_tx_led.K","to":"evidence_cmp_b.OUT2","net":"EV_N5_CC","safety":"CC antenna-local LED follows physical active-low TX evidence"},
+    {"from":"cc_tx_led.K","to":"evidence_cmp_b.OUT4","net":"EV_N5_CC","safety":"CC antenna-local LED follows physical active-low TX evidence"},
     {"from":"abstract:AON_SAFE_3V3","to":"voice_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"voice_tx_led_series.END_2","to":"voice_tx_led.A","net":"VOICE_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
-    {"from":"voice_tx_led.K","to":"evidence_cmp_b.OUT3","net":"EV_N6_VOICE","safety":"voice antenna-local LED follows physical active-low TX evidence"},
+    {"from":"voice_tx_led.K","to":"evidence_cmp_voice.OUT","net":"EV_N6_VOICE","safety":"voice antenna-local LED follows physical active-low TX evidence"},
     {"from":"abstract:AON_SAFE_3V3","to":"ir_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"ir_tx_led_series.END_2","to":"ir_tx_led.A","net":"IR_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
-    {"from":"ir_tx_led.K","to":"evidence_cmp_b.OUT4","net":"EV_N7_IR","safety":"IR-local LED follows physical optical active-low TX evidence"},
+    {"from":"ir_tx_led.K","to":"evidence_cmp_a.OUT3","net":"EV_N7_IR","safety":"IR-local LED follows physical optical active-low TX evidence"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"evidence_main_isolator.VCC","net":"AON_SAFE_3V3","safety":"domain isolator remains alive with the evidence plane"},
     {"from":"evidence_main_isolator.GND","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"domain-isolator return stays local"},
@@ -4117,7 +4708,7 @@
     {"from":"evidence_main_isolator.1Y","to":"c5.GPIO23","net":"C5_RF_TX_EVIDENCE_N","safety":"passive-drain transfer preserves active-low polarity without positive AON injection"},
     {"from":"abstract:3V3_MAIN","to":"c5_evidence_main_pullup.END_1","net":"3V3_MAIN","safety":"pull-up exists only while C5 is powered"},
     {"from":"c5_evidence_main_pullup.END_2","to":"c5.GPIO23","net":"C5_RF_TX_EVIDENCE_N","safety":"10-kOhm main-domain C5 evidence pull-up"},
-    {"from":"evidence_cmp_b.OUT4","to":"evidence_main_isolator.2A","net":"EV_N7_IR","safety":"IR evidence remains in the AON domain before isolation"},
+    {"from":"evidence_cmp_a.OUT3","to":"evidence_main_isolator.2A","net":"EV_N7_IR","safety":"IR evidence remains UI-local in the AON domain before digital isolation"},
     {"from":"evidence_main_isolator.2Y","to":"c5.GPIO24","net":"IR_TX_EVIDENCE_N","safety":"passive-drain transfer preserves active-low polarity without positive AON injection"},
     {"from":"abstract:3V3_MAIN","to":"ir_evidence_main_pullup.END_1","net":"3V3_MAIN","safety":"pull-up exists only while C5 is powered"},
     {"from":"ir_evidence_main_pullup.END_2","to":"c5.GPIO24","net":"IR_TX_EVIDENCE_N","safety":"10-kOhm main-domain IR evidence pull-up"},

@@ -101,3 +101,31 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь р�
   NVDC_CHARGER -->|"VSYS"| VOICE_BUCK
   NVDC_CHARGER -->|"VSYS"| EXT_BUCK
 ```
+
+### Аппаратный STOP и подтверждение фактической передачи
+
+```mermaid
+flowchart TD
+SAFE_SUPERVISOR["TPS3808G33DBVR<br/>контроль always-on питания безопасности"]
+SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физической линии STOP"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка STOP/RE-ARM"]
+SAFE_GATE_A["SN74LVC08APWR<br/>аппаратные разрешения трёх nRF24 и их питания"]
+SAFE_GATE_B["SN74LVC08APWR<br/>аппаратные разрешения CC, voice и расширений"]
+IR_SAFE_GATE["SN74LVC1G08DCKR<br/>локальное аппаратное разрешение IR carrier"]
+EVIDENCE_CMP_A["TLV1824PWR<br/>UI-компаратор фактического TX S3, C5 и IR"]
+EVIDENCE_CMP_B["TLV1824PWR<br/>RF-компаратор фактического TX 3×nRF24 и CC"]
+EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>отдельный RF-компаратор фактического voice TX"]
+EVIDENCE_MASK["TCA9534APWR<br/>AON-регистр маски восьми источников TX"]
+EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
+  SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"STOP assertion"| SAFE_LATCH
+  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_A
+  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_B
+  SAFE_LATCH -->|"one digital permit across M1"| IR_SAFE_GATE
+  EVIDENCE_CMP_A -->|"three UI-local digital evidence lines"| EVIDENCE_MASK
+  EVIDENCE_CMP_B -->|"four RF-local digital evidence lines"| EVIDENCE_MASK
+  EVIDENCE_CMP_VOICE -->|"one RF-local digital evidence line"| EVIDENCE_MASK
+  EVIDENCE_CMP_A -->|"C5 / IR evidence"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_B -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_VOICE -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR
+```

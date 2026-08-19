@@ -230,6 +230,56 @@ def validate_sources(
         if not candidate.get("decisive_open_risk"):
             errors.append(f"{candidate_id}: missing decisive_open_risk")
 
+        interboard = candidate.get("interboard_contract")
+        if interboard is not None:
+            connector = interboard.get("connector_pair", {})
+            pin_map = interboard.get("pin_map", [])
+            accounting = interboard.get("accounting", {})
+            positions = connector.get("positions")
+            contacts = [row.get("contact") for row in pin_map]
+            if positions != 80 or accounting.get("positions") != 80:
+                errors.append(f"{candidate_id}: M1 must retain the reviewed 80-position budget")
+            if contacts != list(range(1, 81)):
+                errors.append(f"{candidate_id}: M1 contacts must cover ordered physical positions 1..80 exactly once")
+            reserved = sum(row.get("signal_class") == "reserved" for row in pin_map)
+            if reserved != accounting.get("reserved") or reserved < 8:
+                errors.append(f"{candidate_id}: M1 must retain at least eight explicit no-connect reserves")
+            instances = candidate.get("instances", {})
+            expected_connectors = {
+                connector.get("ui_instance"): "hirose_fx8c_80p_sv1_92",
+                connector.get("rf_power_instance"): "hirose_fx8c_80s_sv5_92",
+            }
+            for instance, device_id in expected_connectors.items():
+                if not instance or instances.get(instance) != device_id:
+                    errors.append(f"{candidate_id}: M1 connector instance {instance!r} must be {device_id}")
+                elif devices[device_id]["electrical_contract"]["positions"] != positions:
+                    errors.append(f"{candidate_id}: M1 device/contact budget mismatch at {instance}")
+            required_nets = {
+                "S3_RP_IPC_CS_N", "S3_RP_IPC_SCK", "S3_RP_IPC_MOSI",
+                "S3_RP_IPC_MISO", "RP_ALERT_N", "S3_USB_DM", "S3_USB_DP",
+                "SYS_I2C_SDA", "SYS_I2C_SCL", "SYS_INT_N", "RUN_PERMIT",
+                "TX_KILL", "RESET_KILL_GATE", "EV_N0_S3", "EV_N1_C5",
+                "EV_N7_IR", "C5_RF_TX_EVIDENCE_N", "IR_TX_EVIDENCE_N",
+                "RX_SA518_AFOUT_ISOLATED", "VOICE_MIC_SELECTED_MAIN",
+                "SPEAKER_SELECTED_P", "SPEAKER_SELECTED_N", "3V3_MAIN",
+                "AON_SAFE_3V3", "POWER_GROUND", "SAFETY_GROUND", "AUDIO_GROUND",
+            }
+            mapped_nets = {row.get("net") for row in pin_map}
+            missing = required_nets - mapped_nets
+            if missing:
+                errors.append(f"{candidate_id}: M1 misses required cross-board nets {sorted(missing)}")
+            forbidden = {
+                "USB_C_VBUS_RAW", "PD_PPHV", "PROTECTED_PACK_POSITIVE",
+                "IR_TX_CARRIER", "S3_DETECT_V", "C5_DETECT_V", "IR_DETECT_V",
+                "NRF0_DETECT_V", "NRF1_DETECT_V", "NRF2_DETECT_V",
+                "CC_DETECT_V", "VOICE_DETECT_V", "SPEAKER_BTL_P", "SPEAKER_BTL_N",
+            }
+            leaked = forbidden & mapped_nets
+            if leaked:
+                errors.append(f"{candidate_id}: M1 carries forbidden power/analog/high-slew nets {sorted(leaked)}")
+            if sum(row.get("net") == "3V3_MAIN" for row in pin_map) != 8:
+                errors.append(f"{candidate_id}: M1 must retain eight paralleled 3V3_MAIN contacts")
+
         antenna_policy = candidate.get("antenna_policy", {})
         expected_antenna_policy = {
             "decision": "DEC-0048",
@@ -1914,6 +1964,7 @@ def render_target_principled_section(
             "c5": "C5: native 2,4/5 ГГц, 802.15.4 и IR",
             "rp": "RP: детерминированные радио, voice и U214",
             "power": "Питание как отдельный тракт",
+            "safety": "Аппаратный STOP и подтверждение фактической передачи",
         }
         roles = {
             "s3": "приложение, UI, экран, storage, audio, BLE/Wi-Fi",
@@ -1945,6 +1996,17 @@ def render_target_principled_section(
             "main_buck": "основной преобразователь 3,3 В",
             "voice_buck": "преобразователь voice 4,0 В",
             "ext_buck": "преобразователь расширений 5,0 В",
+            "safe_supervisor": "контроль always-on питания безопасности",
+            "safe_conditioner": "формирователь физической линии STOP",
+            "safe_latch": "асинхронная защёлка STOP/RE-ARM",
+            "safe_gate_a": "аппаратные разрешения трёх nRF24 и их питания",
+            "safe_gate_b": "аппаратные разрешения CC, voice и расширений",
+            "ir_safe_gate": "локальное аппаратное разрешение IR carrier",
+            "evidence_cmp_a": "UI-компаратор фактического TX S3, C5 и IR",
+            "evidence_cmp_b": "RF-компаратор фактического TX 3×nRF24 и CC",
+            "evidence_cmp_voice": "отдельный RF-компаратор фактического voice TX",
+            "evidence_mask": "AON-регистр маски восьми источников TX",
+            "evidence_main_isolator": "развязка цифровых TX-свидетельств в main domain",
         }
         atlas_text = (
             "[Полный отрисовываемый атлас всех физических устройств]"
@@ -1969,6 +2031,7 @@ def render_target_principled_section(
             "c5": "C5: native 2.4/5 GHz, 802.15.4 and IR",
             "rp": "RP: deterministic radios, voice and U214",
             "power": "Power as an independent path",
+            "safety": "Hardware STOP and physical transmission evidence",
         }
         roles = {
             "s3": "application, UI, display, storage, audio, BLE/Wi-Fi owner",
@@ -2000,6 +2063,17 @@ def render_target_principled_section(
             "main_buck": "main 3.3-V converter",
             "voice_buck": "voice 4.0-V converter",
             "ext_buck": "accessory 5.0-V converter",
+            "safe_supervisor": "always-on safety-rail supervisor",
+            "safe_conditioner": "physical STOP-loop conditioner",
+            "safe_latch": "asynchronous STOP/RE-ARM latch",
+            "safe_gate_a": "hardware permits for three nRF24 radios and their rail",
+            "safe_gate_b": "hardware permits for CC, voice and expansion",
+            "ir_safe_gate": "local hardware permit for the IR carrier",
+            "evidence_cmp_a": "UI-local physical-TX comparator for S3, C5 and IR",
+            "evidence_cmp_b": "RF-local physical-TX comparator for 3×nRF24 and CC",
+            "evidence_cmp_voice": "dedicated RF-local physical voice-TX comparator",
+            "evidence_mask": "AON mask register for eight TX evidence sources",
+            "evidence_main_isolator": "digital TX-evidence isolation into the main domain",
         }
         atlas_text = (
             "The [complete rendered physical-device atlas]"
@@ -2083,6 +2157,29 @@ def render_target_principled_section(
                 '  NVDC_CHARGER -->|"VSYS"| EXT_BUCK',
             ],
         ),
+        (
+            labels["safety"],
+            [
+                node("safe_supervisor"), node("safe_conditioner"), node("safe_latch"),
+                node("safe_gate_a"), node("safe_gate_b"), node("ir_safe_gate"),
+                node("evidence_cmp_a"), node("evidence_cmp_b"),
+                node("evidence_cmp_voice"), node("evidence_mask"),
+                node("evidence_main_isolator"),
+            ],
+            [
+                '  SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH',
+                '  SAFE_CONDITIONER -->|"STOP assertion"| SAFE_LATCH',
+                '  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_A',
+                '  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_B',
+                '  SAFE_LATCH -->|"one digital permit across M1"| IR_SAFE_GATE',
+                '  EVIDENCE_CMP_A -->|"three UI-local digital evidence lines"| EVIDENCE_MASK',
+                '  EVIDENCE_CMP_B -->|"four RF-local digital evidence lines"| EVIDENCE_MASK',
+                '  EVIDENCE_CMP_VOICE -->|"one RF-local digital evidence line"| EVIDENCE_MASK',
+                '  EVIDENCE_CMP_A -->|"C5 / IR evidence"| EVIDENCE_MAIN_ISOLATOR',
+                '  EVIDENCE_CMP_B -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR',
+                '  EVIDENCE_CMP_VOICE -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR',
+            ],
+        ),
     ]
 
     lines = [heading, "", *intro, ""]
@@ -2142,6 +2239,144 @@ def render_public_schematics(
         )
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n{remainder}"
+
+
+def render_public_interconnect(
+    database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
+) -> str:
+    """Render the final board-locality and exact M1 contact budget."""
+
+    candidate = next(candidate for candidate in candidates if candidate["id"] == "G2F-3I")
+    devices = database["devices"]
+    contract = candidate["interboard_contract"]
+    connector = contract["connector_pair"]
+    plug = devices[candidate["instances"][connector["ui_instance"]]]
+    receptacle = devices[candidate["instances"][connector["rf_power_instance"]]]
+    accounting = contract["accounting"]
+    locality = contract["physical_locality"]
+
+    def mpn(instance: str) -> str:
+        return devices[candidate["instances"][instance]]["mpn"]
+
+    if russian:
+        title = "# Межплатное соединение M1"
+        navigation = "[На главную](../README.ru.md) · [Аппаратная часть](hardware.ru.md) · [English](interconnect.md)"
+        intro = (
+            "Две платы соединяет одна точная 80-контактная пара с рабочим "
+            f"межплатным расстоянием {contract['working_inner_gap_mm']:g} мм: "
+            f"`{plug['mpn']}` на UI-плате и `{receptacle['mpn']}` на RF/power-плате. "
+            f"Шаг — 0,6 мм, паспортная скорость — {connector['transmission_rate_gbps']} Гбит/с, "
+            f"ток одного контакта — до {connector['rated_current_per_contact_a']:g} А; "
+            "разъём не является механическим крепежом корпуса."
+        )
+        ui_label = "UI/control-плата"
+        rf_label = "RF/power-плата"
+        principles = "Почему такое разделение"
+        budget = "Бюджет контактов"
+        table_heading = "Точная карта контактов"
+        columns = ("Контакт", "Цепь", "Направление", "Класс")
+        footer = (
+            "Восемь параллельных контактов `3V3_MAIN` дают паспортный потолок 3,2 А, "
+            "но допустимый ток готового устройства определяется только измерением нагрева "
+            "разъёма при одновременной нагрузке. Девять резервных контактов остаются "
+            "физически не подключёнными."
+        )
+        ui_groups = (
+            f"Вычислители: `{mpn('s3')}` управляет UI, экраном, картой памяти и аудио; `{mpn('c5')}` — собственными диапазонами 2,4/5 ГГц и IR.",
+            f"Интерфейсы: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, микрофон, наушники и все органы управления.",
+            "Локальная безопасность: формирователь и защёлка STOP/RE-ARM, аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.",
+            f"Обслуживание C5: отдельный data-only USB-C `{mpn('c5_service_usb_connector')}`.",
+        )
+        rf_groups = (
+            f"Радиодомен реального времени: `{mpn('rp')}`, три `{mpn('nrf0')}`, `{mpn('cc')}` и `{mpn('voice')}`.",
+            f"Внешние модули: съёмный `{mpn('u214')}` и независимый порт M5 Unit.",
+            f"Питание и основной USB-C: `{mpn('product_usb_connector')}`, защита `{mpn('product_usb_protector')}`, USB-PD `{mpn('pd_controller')}`, заряд, аккумуляторы и все преобразователи питания.",
+            f"Выход звука: дифференциальный усилитель `{mpn('speaker_amp')}` и динамик `{mpn('speaker')}`.",
+            "Локальная безопасность: аппаратные гейты nRF/CC/voice/расширений, сброс RP и аналоговое подтверждение передачи nRF/CC/voice.",
+        )
+    else:
+        title = "# M1 inter-board connection"
+        navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](interconnect.ru.md)"
+        intro = (
+            "The two boards use one exact 80-contact pair at the working "
+            f"{contract['working_inner_gap_mm']:g}-mm board spacing: `{plug['mpn']}` on "
+            f"the UI board and `{receptacle['mpn']}` on the RF/power board. Both parts "
+            f"use 0.6-mm pitch, are rated for {connector['transmission_rate_gbps']} Gbit/s and "
+            f"up to {connector['rated_current_per_contact_a']:g} A per contact; the connector is not "
+            "an enclosure fastener."
+        )
+        ui_label = "UI/control board"
+        rf_label = "RF/power board"
+        principles = "Why the split is arranged this way"
+        budget = "Contact budget"
+        table_heading = "Exact contact map"
+        columns = ("Contact", "Net", "Direction", "Class")
+        footer = (
+            "Eight paralleled `3V3_MAIN` contacts provide a 3.2-A nameplate ceiling, "
+            "but finished-device current is accepted only after connector-temperature "
+            "measurement under simultaneous load. Nine reserve contacts remain physically "
+            "unconnected."
+        )
+        ui_groups = (
+            f"Compute: `{mpn('s3')}` owns UI, display, storage and audio; `{mpn('c5')}` owns native 2.4/5-GHz radio and IR.",
+            f"Interfaces: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, microphone, headphones and all local controls.",
+            "Local safety: STOP/RE-ARM conditioning and latch, S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.",
+            f"C5 service: a separate data-only `{mpn('c5_service_usb_connector')}` USB-C receptacle.",
+        )
+        rf_groups = (
+            f"Real-time radio domain: `{mpn('rp')}`, three `{mpn('nrf0')}`, `{mpn('cc')}` and `{mpn('voice')}`.",
+            f"External modules: removable `{mpn('u214')}` and an independent M5 Unit port.",
+            f"Power and product USB-C: `{mpn('product_usb_connector')}`, `{mpn('product_usb_protector')}` protection, `{mpn('pd_controller')}` USB-PD, charger, cells and every rail converter.",
+            f"Audio output: `{mpn('speaker_amp')}` differential amplifier and `{mpn('speaker')}` speaker.",
+            "Local safety: nRF/CC/voice/expansion hardware gates, RP reset and analog nRF/CC/voice transmit evidence.",
+        )
+
+    lines = [title, "", navigation, "", intro, "", f"## {ui_label}", ""]
+    lines.extend(f"- {item}" for item in ui_groups)
+    lines += ["", f"## {rf_label}", ""]
+    lines.extend(f"- {item}" for item in rf_groups)
+    lines += ["", f"## {principles}", ""]
+    if russian:
+        rationale = (
+            "Сырой VBUS, согласованное повышенное напряжение USB-PD, зарядное устройство и аккумуляторы остаются на RF/power-плате.",
+            "Класс-D усилитель остаётся рядом с динамиком; через M1 проходит только низкоуровневый дифференциальный аудиосигнал.",
+            "Аналоговые выходы детекторов передачи и IR-несущая обрабатываются на своей плате; через M1 проходят только цифровые признаки передачи.",
+            "Защёлка STOP/RE-ARM расположена рядом с органами управления; на вторую плату передаётся цифровое аппаратное разрешение.",
+        )
+    else:
+        rationale = locality["rationale"]
+    lines.extend(f"- {reason}" for reason in rationale)
+    if russian:
+        budget_lines = (
+            f"- Всего {accounting['positions']} контактов; {accounting['reserved']} зарезервированы и физически не подключены.",
+            f"- {accounting['main_3v3_contacts']} × `3V3_MAIN`, {accounting['aon_contacts']} × `AON_SAFE_3V3`.",
+            f"- {accounting['power_ground_contacts']} силовых возвратов, {accounting['audio_ground_contacts']} аудиовозврата и {accounting['safety_ground_contacts']} возврата безопасности.",
+            "- Сырой VBUS/PD, ток аккумуляторов, аналоговые выходы TX-детекторов, IR-несущая и выходы класса D через M1 не проходят.",
+        )
+    else:
+        budget_lines = (
+            f"- {accounting['positions']} positions total; {accounting['reserved']} reserved and no-connect.",
+            f"- {accounting['main_3v3_contacts']} × `3V3_MAIN`, {accounting['aon_contacts']} × `AON_SAFE_3V3`.",
+            f"- {accounting['power_ground_contacts']} power returns, {accounting['audio_ground_contacts']} audio returns and {accounting['safety_ground_contacts']} safety returns.",
+            "- Raw VBUS/PD high voltage, battery current, analog TX-detector outputs, IR carrier and class-D speaker outputs do not cross M1.",
+        )
+    lines += [
+        "",
+        f"## {budget}",
+        "",
+        *budget_lines,
+        "",
+        f"## {table_heading}",
+        "",
+        f"| {columns[0]} | {columns[1]} | {columns[2]} | {columns[3]} |",
+        "|---:|---|---|---|",
+    ]
+    for row in contract["pin_map"]:
+        lines.append(
+            f"| `{row['contact']}` | `{row['net']}` | {row['direction']} | `{row['signal_class']}` |"
+        )
+    lines += ["", footer, ""]
+    return "\n".join(lines)
 
 
 def _render_principled_pinout_bundle(
@@ -2440,6 +2675,8 @@ def _render_principled_pinout_bundle(
         "ir_tx_mosfet": "STOP-qualified low-side IR emitter switch",
         "ir_tx_gate_series": "100-Ohm IR-switch gate resistor",
         "ir_tx_gate_pulldown": "10-kOhm IR-switch fail-low resistor",
+        "ir_safe_gate": "UI-local STOP-qualified IR carrier gate",
+        "ir_safe_gate_bypass": "IR safety-gate local bypass capacitor",
         "ir_evidence_amp": "AON physical-optical transimpedance amplifier",
         "ir_evidence_amp_bypass": "optical-evidence amplifier bypass capacitor",
         "ir_evidence_vref_top": "optical-evidence 100-kOhm reference upper leg",
@@ -2483,6 +2720,7 @@ def _render_principled_pinout_bundle(
     evidence_support_instance_names = (
         "evidence_cmp_a", "evidence_cmp_a_bypass",
         "evidence_cmp_b", "evidence_cmp_b_bypass",
+        "evidence_cmp_voice", "evidence_cmp_voice_bypass",
         "s3_evidence_threshold_top", "s3_evidence_threshold_bottom",
         "s3_evidence_hysteresis", "s3_evidence_output_pullup",
         "c5_evidence_threshold_top", "c5_evidence_threshold_bottom",
@@ -2509,10 +2747,12 @@ def _render_principled_pinout_bundle(
 
     def evidence_role(instance: str) -> str:
         fixed = {
-            "evidence_cmp_a": "S3/C5/nRF0/nRF1 AON evidence comparator",
-            "evidence_cmp_a_bypass": "first evidence-comparator local bypass capacitor",
-            "evidence_cmp_b": "nRF2/CC/voice/IR AON evidence comparator",
-            "evidence_cmp_b_bypass": "second evidence-comparator local bypass capacitor",
+            "evidence_cmp_a": "UI-local S3/C5/IR AON evidence comparator; fourth channel inert",
+            "evidence_cmp_a_bypass": "UI evidence-comparator local bypass capacitor",
+            "evidence_cmp_b": "RF-local nRF0/nRF1/nRF2/CC AON evidence comparator",
+            "evidence_cmp_b_bypass": "RF evidence-comparator local bypass capacitor",
+            "evidence_cmp_voice": "RF-local dedicated voice AON evidence comparator",
+            "evidence_cmp_voice_bypass": "voice evidence-comparator local bypass capacitor",
             "evidence_mask": "AON eight-bit evidence source mask on local RP I2C0",
             "evidence_mask_bypass": "evidence-mask local bypass capacitor",
             "evidence_or_0": "evidence diode-OR pair 0/1",
@@ -2566,6 +2806,7 @@ def _render_principled_pinout_bundle(
     )
 
     service_instance_names = (
+        "m1_ui_plug", "m1_rf_receptacle",
         "c5_service_usb_connector", "c5_service_usb_esd",
         "c5_service_usb_switch", "c5_service_usb_switch_bypass",
         "c5_service_usb_cc1_rd", "c5_service_usb_cc2_rd",
@@ -2591,6 +2832,10 @@ def _render_principled_pinout_bundle(
     )
 
     def service_role(instance: str) -> str:
+        if instance == "m1_ui_plug":
+            return "UI-board half of the exact 80-contact 11-mm inter-board link"
+        if instance == "m1_rf_receptacle":
+            return "RF/power-board half of the exact 80-contact 11-mm inter-board link"
         domain = "C5" if instance.startswith("c5_") else "RP" if instance.startswith("rp_") else "S3"
         if instance.endswith("service_usb_connector"):
             return f"{domain} independent data-only USB-C service receptacle"
@@ -3862,6 +4107,12 @@ def main(argv: list[str] | None = None) -> int:
             database, candidates, russian=False
         ),
         REPO_ROOT / "docs/schematics.ru.md": render_public_schematics(
+            database, candidates, russian=True
+        ),
+        REPO_ROOT / "docs/interconnect.md": render_public_interconnect(
+            database, candidates, russian=False
+        ),
+        REPO_ROOT / "docs/interconnect.ru.md": render_public_interconnect(
             database, candidates, russian=True
         ),
     }

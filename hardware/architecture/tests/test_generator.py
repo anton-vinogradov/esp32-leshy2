@@ -24,6 +24,50 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
 
+    def test_exact_m1_pair_locality_and_contact_budget_do_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        contract = candidate["interboard_contract"]
+        pair = contract["connector_pair"]
+        self.assertEqual(80, pair["positions"])
+        self.assertEqual(11, pair["mated_height_mm"])
+        self.assertEqual(
+            "hirose_fx8c_80p_sv1_92",
+            candidate["instances"][pair["ui_instance"]],
+        )
+        self.assertEqual(
+            "hirose_fx8c_80s_sv5_92",
+            candidate["instances"][pair["rf_power_instance"]],
+        )
+        pin_map = contract["pin_map"]
+        self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
+        self.assertEqual(8, sum(row["net"] == "3V3_MAIN" for row in pin_map))
+        self.assertEqual(9, sum(row["signal_class"] == "reserved" for row in pin_map))
+        mapped = {row["net"] for row in pin_map}
+        self.assertTrue({"S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "TX_KILL"} <= mapped)
+        self.assertTrue(
+            {
+                "USB_C_VBUS_RAW", "PD_PPHV", "PROTECTED_PACK_POSITIVE",
+                "IR_TX_CARRIER", "SPEAKER_BTL_P", "SPEAKER_BTL_N",
+            }.isdisjoint(mapped)
+        )
+        for device_id in (
+            "hirose_fx8c_80p_sv1_92",
+            "hirose_fx8c_80s_sv5_92",
+        ):
+            device = self.database["devices"][device_id]
+            self.assertEqual("active", device["lifecycle"])
+            self.assertEqual(80, len(device["contacts"]))
+            self.assertIn("hirose.com", device["source"]["url"])
+            self.assertEqual(100, device["cost"]["target_quantity"])
+
+        for language in (False, True):
+            rendered = GENERATOR.render_public_interconnect(
+                self.database, self.candidates, russian=language
+            )
+            self.assertIn("FX8C-80P-SV1(92)", rendered)
+            self.assertIn("FX8C-80S-SV5(92)", rendered)
+            self.assertIn("| `80` |", rendered)
+
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual(
@@ -31,8 +75,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(873, sum(line["quantity"] for line in lines))
-        self.assertEqual(187, len(lines))
+        self.assertEqual(879, sum(line["quantity"] for line in lines))
+        self.assertEqual(191, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -42,11 +86,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            175,
+            179,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            845,
+            851,
             sum(
                 line["quantity"]
                 for line in lines
@@ -110,14 +154,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("874", rendered)
-        self.assertIn("873", rendered)
-        self.assertIn("187", rendered)
-        self.assertIn("186/187", rendered)
-        self.assertIn("187/187", rendered)
-        self.assertIn("175/187", rendered)
-        self.assertIn("845/873", rendered)
-        self.assertIn("USD 157.9903", rendered)
+        self.assertIn("880", rendered)
+        self.assertIn("879", rendered)
+        self.assertIn("191", rendered)
+        self.assertIn("190/191", rendered)
+        self.assertIn("191/191", rendered)
+        self.assertIn("179/191", rendered)
+        self.assertIn("851/879", rendered)
+        self.assertIn("USD 165.9241", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -159,7 +203,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(59, policy["expected_unique_endpoint_count"])
-        self.assertEqual(978, policy["expected_occurrence_count"])
+        self.assertEqual(992, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -1552,6 +1596,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "safe_reset_sink_b": "diodes_2n7002dw_7_f",
             "safe_gate_a": "ti_sn74lvc08a_pwr",
             "safe_gate_b": "ti_sn74lvc08a_pwr",
+            "ir_safe_gate": "ti_sn74lvc1g08_dckr",
             "safe_ptt_or": "nexperia_74lvc1g32gv_125",
             "det_s3": "adi_ltc5532_es6_trmpbf",
             "det_c5": "adi_ltc5532_es6_trmpbf",
@@ -1563,6 +1608,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "det_ir": "vishay_vemd1060x01",
             "evidence_cmp_a": "ti_tlv1824_pwr",
             "evidence_cmp_b": "ti_tlv1824_pwr",
+            "evidence_cmp_voice": "ti_tlv1821_dckr",
             "evidence_mask": "ti_tca9534a_pwr",
             "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
         }
@@ -1600,12 +1646,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         channels = {
             "s3": ("evidence_cmp_a", "IN1_P", "OUT1", "EV_THRESH_0_S3", "EV_N0_S3", "yageo_rc0402fr_0710kl"),
             "c5": ("evidence_cmp_a", "IN2_P", "OUT2", "EV_THRESH_1_C5", "EV_N1_C5", "yageo_rc0402fr_0710kl"),
-            "nrf0": ("evidence_cmp_a", "IN3_P", "OUT3", "EV_THRESH_2_NRF0", "EV_N2_NRF0", "yageo_rc0402fr_0710kl"),
-            "nrf1": ("evidence_cmp_a", "IN4_P", "OUT4", "EV_THRESH_3_NRF1", "EV_N3_NRF1", "yageo_rc0402fr_0710kl"),
-            "nrf2": ("evidence_cmp_b", "IN1_P", "OUT1", "EV_THRESH_4_NRF2", "EV_N4_NRF2", "yageo_rc0402fr_0710kl"),
-            "cc": ("evidence_cmp_b", "IN2_P", "OUT2", "EV_THRESH_5_CC", "EV_N5_CC", "yageo_rc0402fr_0710kl"),
-            "voice": ("evidence_cmp_b", "IN3_P", "OUT3", "EV_THRESH_6_VOICE", "EV_N6_VOICE", "yageo_rc0402fr_0710kl"),
-            "ir": ("evidence_cmp_b", "IN4_P", "OUT4", "EV_THRESH_7_IR", "EV_N7_IR", "yageo_rc0402fr_0712kl"),
+            "nrf0": ("evidence_cmp_b", "IN1_P", "OUT1", "EV_THRESH_2_NRF0", "EV_N2_NRF0", "yageo_rc0402fr_0710kl"),
+            "nrf1": ("evidence_cmp_b", "IN2_P", "OUT2", "EV_THRESH_3_NRF1", "EV_N3_NRF1", "yageo_rc0402fr_0710kl"),
+            "nrf2": ("evidence_cmp_b", "IN3_P", "OUT3", "EV_THRESH_4_NRF2", "EV_N4_NRF2", "yageo_rc0402fr_0710kl"),
+            "cc": ("evidence_cmp_b", "IN4_P", "OUT4", "EV_THRESH_5_CC", "EV_N5_CC", "yageo_rc0402fr_0710kl"),
+            "voice": ("evidence_cmp_voice", "IN_P", "OUT", "EV_THRESH_6_VOICE", "EV_N6_VOICE", "yageo_rc0402fr_0710kl"),
+            "ir": ("evidence_cmp_a", "IN3_P", "OUT3", "EV_THRESH_7_IR", "EV_N7_IR", "yageo_rc0402fr_0712kl"),
         }
         for channel, (comparator, input_p, output, threshold_net, output_net, bottom_device) in channels.items():
             self.assertEqual("yageo_rc0402fr_07100kl", instances[f"{channel}_evidence_threshold_top"])
@@ -1648,7 +1694,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertAlmostEqual(0.384, ir_assert, places=3)
         self.assertAlmostEqual(0.350, ir_clear, places=3)
 
-        for instance in ("evidence_cmp_a_bypass", "evidence_cmp_b_bypass", "evidence_mask_bypass", "evidence_main_isolator_bypass"):
+        for instance in ("evidence_cmp_a_bypass", "evidence_cmp_b_bypass", "evidence_cmp_voice_bypass", "evidence_mask_bypass", "evidence_main_isolator_bypass"):
             self.assertEqual("tdk_c1005x7r1h104k050bb", instances[instance])
         self.assertEqual("ti_sn74lvc3g07_dcur", instances["evidence_main_isolator"])
         isolator = self.database["devices"]["ti_sn74lvc3g07_dcur"]
@@ -1659,7 +1705,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for route in (
             ("evidence_cmp_a.OUT2", "evidence_main_isolator.1A", "EV_N1_C5"),
             ("evidence_main_isolator.1Y", "c5.GPIO23", "C5_RF_TX_EVIDENCE_N"),
-            ("evidence_cmp_b.OUT4", "evidence_main_isolator.2A", "EV_N7_IR"),
+            ("evidence_cmp_a.OUT3", "evidence_main_isolator.2A", "EV_N7_IR"),
             ("evidence_main_isolator.2Y", "c5.GPIO24", "IR_TX_EVIDENCE_N"),
             ("evidence_or_3.A_COMMON", "evidence_main_isolator.3A", "ANY_TX_AON_N"),
             ("evidence_main_isolator.3Y", "rp.GPIO22", "RP_ANY_TX_N"),
@@ -1669,7 +1715,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(route, routes)
         self.assertFalse(
             any(
-                route["from"] in {"evidence_cmp_a.OUT2", "evidence_cmp_b.OUT4"}
+                route["from"] in {"evidence_cmp_a.OUT2", "evidence_cmp_a.OUT3"}
                 and route["to"] in {"c5.GPIO23", "c5.GPIO24"}
                 for route in candidate["fixed_routes"]
             )
@@ -1887,7 +1933,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("cc_868_915_l10.END_2", "cc_switch_b.RF3", "CC_RF_868_915_OUT"),
             ("cc_detector_tap_cap.END_2", "det_cc.RFIN", "CC_RF_SAMPLE"),
             ("cc_evidence_hold_diode.K", "det_cc.ENBL", "CC_EVIDENCE_HOLD"),
-            ("det_cc.V_UP", "evidence_cmp_b.IN2_N", "CC_DETECT_V"),
+            ("det_cc.V_UP", "evidence_cmp_b.IN4_N", "CC_DETECT_V"),
         ):
             self.assertIn(route, routes)
 
@@ -1958,7 +2004,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("voice_detector_series_attenuator.END_2", "det_voice.RFIN", "VOICE_RF_SAMPLE"),
             ("det_voice.RFIN", "voice_detector_match.END_1", "VOICE_RF_SAMPLE"),
             ("voice_evidence_hold_diode.K", "det_voice.ENBL", "VOICE_EVIDENCE_HOLD"),
-            ("det_voice.V_UP", "evidence_cmp_b.IN3_N", "VOICE_DETECT_V"),
+            ("det_voice.V_UP", "evidence_cmp_voice.IN_N", "VOICE_DETECT_V"),
         ):
             self.assertIn(route, routes)
 
@@ -2019,11 +2065,23 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("ir_demod.OUT", "ir_return_buffer.1A", "IR_DEMOD_LOCAL_N"),
             ("ir_carrier.CARRIER_OUT", "ir_return_buffer.2A", "IR_CARRIER_LOCAL_N"),
             ("ir_emitter_limit.END_2", "ir_emitter.ANODE", "IR_LED_ANODE_LIMITED"),
-            ("safe_gate_b.3Y", "ir_tx_gate_series.END_1", "IR_TX_CARRIER_SAFE"),
+            ("c5.GPIO6", "ir_safe_gate.A", "IR_TX_CARRIER"),
+            ("safe_latch.Q_N", "ir_safe_gate.B", "RUN_PERMIT"),
+            ("ir_safe_gate.Y", "ir_tx_gate_series.END_1", "IR_TX_CARRIER_SAFE"),
             ("det_ir.CATHODE", "ir_evidence_amp.IN_MINUS", "IR_OPTICAL_SUM"),
-            ("ir_evidence_amp.OUT", "evidence_cmp_b.IN4_N", "IR_DETECT_V"),
+            ("ir_evidence_amp.OUT", "evidence_cmp_a.IN3_N", "IR_DETECT_V"),
         ):
             self.assertIn(route, routes)
+
+        localization = candidate["safety_contract"]["evidence"]["physical_localization"]
+        self.assertIn("no detector analog signal", localization)
+        self.assertIn("no IR carrier", localization)
+        ir_gate = self.database["devices"]["ti_sn74lvc1g08_dckr"]
+        self.assertEqual("1", ir_gate["contacts"]["A"]["physical"])
+        self.assertEqual("4", ir_gate["contacts"]["Y"]["physical"])
+        voice_cmp = self.database["devices"]["ti_tlv1821_dckr"]
+        self.assertEqual("1", voice_cmp["contacts"]["OUT"]["physical"])
+        self.assertEqual("5", voice_cmp["contacts"]["VPLUS"]["physical"])
 
         self.assertEqual([], candidate["contact_accounting"]["slow_io"]["free"])
         self.assertIn("P05", candidate["contact_accounting"]["slow_io"]["used"])

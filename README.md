@@ -52,6 +52,7 @@ does not replace law, spectrum licensing or the target owner's permission.
 
 - [Hardware architecture and components](docs/hardware.md)
 - [Device principle diagrams](docs/schematics.md)
+- [Exact M1 inter-board connection](docs/interconnect.md)
 - [Exact controller pin assignment](docs/pinout.md)
 - [Safety, power, update and recovery](docs/safety.md)
 - [Firmware capabilities and architecture](https://github.com/anton-vinogradov/esp32-leshy2-firmware)

@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **874** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **873** supplied/costed placements collapse to **187** used exact-device/MPN lines.
-- Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **175/187** lines.
+- **880** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **879** supplied/costed placements collapse to **191** used exact-device/MPN lines.
+- Current orderability evidence exists for **190/191** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **179/191** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **845/873** supplied placements; their partial subtotals are `base_product` — USD 157.9903. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
+- Those priced lines cover **851/879** supplied placements; their partial subtotals are `base_product` — USD 165.9241. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **191/191** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 870 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 876 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -198,7 +198,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 26 line(s)</summary>
+<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 28 line(s)</summary>
 
 - Disposition: no drop-in by family name; exact pin/function/electrical equivalent requires owning-interface requalification.
 - Equivalence envelope:
@@ -222,6 +222,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_sn74lvc08a_pwr` — `SN74LVC08APWR`.
   - `ti_sn74lvc1g06_dckr` — `Texas Instruments SN74LVC1G06DCKR`.
   - `ti_sn74lvc1g07_dckr` — `SN74LVC1G07DCKR`.
+  - `ti_sn74lvc1g08_dckr` — `SN74LVC1G08DCKR`.
   - `ti_sn74lvc1g125_dckr` — `Texas Instruments SN74LVC1G125DCKR`.
   - `ti_sn74lvc1g126_dckr` — `Texas Instruments SN74LVC1G126DCKR`.
   - `ti_sn74lvc1g3157_dbvr` — `Texas Instruments SN74LVC1G3157DBVR`.
@@ -231,6 +232,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_sn74lvc3g07_dcur` — `SN74LVC3G07DCUR`.
   - `ti_sn74lvc3g34_dcur` — `SN74LVC3G34DCUR`.
   - `ti_tca9534a_pwr` — `TCA9534APWR`.
+  - `ti_tlv1821_dckr` — `TLV1821DCKR`.
   - `ti_tlv1824_pwr` — `TLV1824PWR`.
   - `ti_tlv9061_idbvr` — `Texas Instruments TLV9061IDBVR`.
   - `ti_tmux1136_dgsr` — `Texas Instruments TMUX1136DGSR`.
@@ -301,7 +303,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 16 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 18 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -319,6 +321,8 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
   - `hirose_dm3at_sf_pejm5` — `Hirose DM3AT-SF-PEJM5`.
   - `hirose_fh12_40s_0_5sh_55` — `Hirose FH12-40S-0.5SH(55)`.
+  - `hirose_fx8c_80p_sv1_92` — `Hirose FX8C-80P-SV1(92)`.
+  - `hirose_fx8c_80s_sv5_92` — `Hirose FX8C-80S-SV5(92)`.
   - `hirose_ufl_r_smt_1_10` — `Hirose U.FL-R-SMT-1(10)`.
   - `jae_dx07s016ja1r1500` — `JAE DX07S016JA1R1500`.
   - `keystone_1048p` — `Keystone Electronics 1048P`.
@@ -513,6 +517,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328).
+
+</details>
+
+<details><summary><code>Hirose FX8C-80P-SV1(92)</code> — 1 × USD 3.1759 = USD 3.1759</summary>
+
+- Device id: `hirose_fx8c_80p_sv1_92`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FX8C-80P-SV1-92/4284726).
+
+</details>
+
+<details><summary><code>Hirose FX8C-80S-SV5(92)</code> — 1 × USD 3.9133 = USD 3.9133</summary>
+
+- Device id: `hirose_fx8c_80s_sv5_92`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FX8C-80S-SV5-92/4284737).
 
 </details>
 
@@ -1146,7 +1168,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 100 × USD 0.0258 = USD 2.5800</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 102 × USD 0.0258 = USD 2.6316</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1236,6 +1258,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>SN74LVC1G08DCKR</code> — 1 × USD 0.0490 = USD 0.0490</summary>
+
+- Device id: `ti_sn74lvc1g08_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G08DCKR/385741).
+
+</details>
+
 <details><summary><code>Texas Instruments SN74LVC1G125DCKR</code> — 1 × USD 0.0583 = USD 0.0583</summary>
 
 - Device id: `ti_sn74lvc1g125_dckr`.
@@ -1314,6 +1345,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9534APWR/5004965).
+
+</details>
+
+<details><summary><code>TLV1821DCKR</code> — 1 × USD 0.7440 = USD 0.7440</summary>
+
+- Device id: `ti_tlv1821_dckr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TLV1821DCKR/22147288).
 
 </details>
 

@@ -105,4 +105,5 @@ Si4732 работают только на приём. У IR есть отдел�
 
 - [Точная распиновка всех программируемых контроллеров](pinout.ru.md)
 - [Принципиальные схемы устройства](schematics.ru.md)
+- [Точное межплатное соединение M1](interconnect.ru.md)
 - [Машинный BOM CSV](../hardware/architecture/generated/G2F-3I-target-bom.csv)

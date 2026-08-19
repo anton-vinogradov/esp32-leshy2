@@ -5,6 +5,736 @@
   "generated_target_bom_review": "hardware/architecture/generated/G2F-3I-target-bom-review.md",
   "generated_target_bom_csv": "hardware/architecture/generated/G2F-3I-target-bom.csv",
   "devices": {
+  "hirose_fx8c_80p_sv1_92": {
+    "mpn": "Hirose FX8C-80P-SV1(92)",
+    "kind": "80_contact_0_6mm_11mm_stack_mezzanine_plug",
+    "qualification": "verified_exact_m1_11mm_plug",
+    "lifecycle": "active",
+    "dimensions_mm": [
+      30.6,
+      6.5,
+      5.85
+    ],
+    "source": {
+      "document": "Hirose FX8C-80P-SV1(92) official product data, 2D drawing and FX8C mating table",
+      "version": "product specifications updated 2026-02-07",
+      "url": "https://www.hirose.com/product/p/CL0578-0523-1-92",
+      "checked": "2026-08-19"
+    },
+    "orderable_source": {
+      "document": "DigiKey active exact-MPN listing; 408 shown in stock",
+      "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FX8C-80P-SV1-92/4284726",
+      "checked": "2026-08-19"
+    },
+    "cost": {
+      "currency": "USD",
+      "target_quantity": 100,
+      "unit_price_usd": 3.1759,
+      "price_break": "DigiKey cut-tape quantity-100 tier",
+      "source": {
+        "document": "DigiKey exact-MPN published price table",
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FX8C-80P-SV1-92/4284726",
+        "checked": "2026-08-19"
+      }
+    },
+    "programmable": false,
+    "electrical_contract": {
+      "positions": 80,
+      "pitch_mm": 0.6,
+      "mated_height_with_fx8c_80s_sv5_mm": 11,
+      "rated_current_per_contact_a": 0.4,
+      "transmission_rate_gbps": 8,
+      "mating_cycles": 50,
+      "contact_resistance_max_mohm": 80
+    },
+    "contacts": {
+      "P1": {
+        "physical": "1",
+        "role": "io"
+      },
+      "P2": {
+        "physical": "2",
+        "role": "io"
+      },
+      "P3": {
+        "physical": "3",
+        "role": "io"
+      },
+      "P4": {
+        "physical": "4",
+        "role": "io"
+      },
+      "P5": {
+        "physical": "5",
+        "role": "io"
+      },
+      "P6": {
+        "physical": "6",
+        "role": "io"
+      },
+      "P7": {
+        "physical": "7",
+        "role": "io"
+      },
+      "P8": {
+        "physical": "8",
+        "role": "io"
+      },
+      "P9": {
+        "physical": "9",
+        "role": "io"
+      },
+      "P10": {
+        "physical": "10",
+        "role": "io"
+      },
+      "P11": {
+        "physical": "11",
+        "role": "io"
+      },
+      "P12": {
+        "physical": "12",
+        "role": "io"
+      },
+      "P13": {
+        "physical": "13",
+        "role": "io"
+      },
+      "P14": {
+        "physical": "14",
+        "role": "io"
+      },
+      "P15": {
+        "physical": "15",
+        "role": "io"
+      },
+      "P16": {
+        "physical": "16",
+        "role": "io"
+      },
+      "P17": {
+        "physical": "17",
+        "role": "io"
+      },
+      "P18": {
+        "physical": "18",
+        "role": "io"
+      },
+      "P19": {
+        "physical": "19",
+        "role": "io"
+      },
+      "P20": {
+        "physical": "20",
+        "role": "io"
+      },
+      "P21": {
+        "physical": "21",
+        "role": "io"
+      },
+      "P22": {
+        "physical": "22",
+        "role": "io"
+      },
+      "P23": {
+        "physical": "23",
+        "role": "io"
+      },
+      "P24": {
+        "physical": "24",
+        "role": "io"
+      },
+      "P25": {
+        "physical": "25",
+        "role": "io"
+      },
+      "P26": {
+        "physical": "26",
+        "role": "io"
+      },
+      "P27": {
+        "physical": "27",
+        "role": "io"
+      },
+      "P28": {
+        "physical": "28",
+        "role": "io"
+      },
+      "P29": {
+        "physical": "29",
+        "role": "io"
+      },
+      "P30": {
+        "physical": "30",
+        "role": "io"
+      },
+      "P31": {
+        "physical": "31",
+        "role": "io"
+      },
+      "P32": {
+        "physical": "32",
+        "role": "io"
+      },
+      "P33": {
+        "physical": "33",
+        "role": "io"
+      },
+      "P34": {
+        "physical": "34",
+        "role": "io"
+      },
+      "P35": {
+        "physical": "35",
+        "role": "io"
+      },
+      "P36": {
+        "physical": "36",
+        "role": "io"
+      },
+      "P37": {
+        "physical": "37",
+        "role": "io"
+      },
+      "P38": {
+        "physical": "38",
+        "role": "io"
+      },
+      "P39": {
+        "physical": "39",
+        "role": "io"
+      },
+      "P40": {
+        "physical": "40",
+        "role": "io"
+      },
+      "P41": {
+        "physical": "41",
+        "role": "io"
+      },
+      "P42": {
+        "physical": "42",
+        "role": "io"
+      },
+      "P43": {
+        "physical": "43",
+        "role": "io"
+      },
+      "P44": {
+        "physical": "44",
+        "role": "io"
+      },
+      "P45": {
+        "physical": "45",
+        "role": "io"
+      },
+      "P46": {
+        "physical": "46",
+        "role": "io"
+      },
+      "P47": {
+        "physical": "47",
+        "role": "io"
+      },
+      "P48": {
+        "physical": "48",
+        "role": "io"
+      },
+      "P49": {
+        "physical": "49",
+        "role": "io"
+      },
+      "P50": {
+        "physical": "50",
+        "role": "io"
+      },
+      "P51": {
+        "physical": "51",
+        "role": "io"
+      },
+      "P52": {
+        "physical": "52",
+        "role": "io"
+      },
+      "P53": {
+        "physical": "53",
+        "role": "io"
+      },
+      "P54": {
+        "physical": "54",
+        "role": "io"
+      },
+      "P55": {
+        "physical": "55",
+        "role": "io"
+      },
+      "P56": {
+        "physical": "56",
+        "role": "io"
+      },
+      "P57": {
+        "physical": "57",
+        "role": "io"
+      },
+      "P58": {
+        "physical": "58",
+        "role": "io"
+      },
+      "P59": {
+        "physical": "59",
+        "role": "io"
+      },
+      "P60": {
+        "physical": "60",
+        "role": "io"
+      },
+      "P61": {
+        "physical": "61",
+        "role": "io"
+      },
+      "P62": {
+        "physical": "62",
+        "role": "io"
+      },
+      "P63": {
+        "physical": "63",
+        "role": "io"
+      },
+      "P64": {
+        "physical": "64",
+        "role": "io"
+      },
+      "P65": {
+        "physical": "65",
+        "role": "io"
+      },
+      "P66": {
+        "physical": "66",
+        "role": "io"
+      },
+      "P67": {
+        "physical": "67",
+        "role": "io"
+      },
+      "P68": {
+        "physical": "68",
+        "role": "io"
+      },
+      "P69": {
+        "physical": "69",
+        "role": "io"
+      },
+      "P70": {
+        "physical": "70",
+        "role": "io"
+      },
+      "P71": {
+        "physical": "71",
+        "role": "io"
+      },
+      "P72": {
+        "physical": "72",
+        "role": "io"
+      },
+      "P73": {
+        "physical": "73",
+        "role": "io"
+      },
+      "P74": {
+        "physical": "74",
+        "role": "io"
+      },
+      "P75": {
+        "physical": "75",
+        "role": "io"
+      },
+      "P76": {
+        "physical": "76",
+        "role": "io"
+      },
+      "P77": {
+        "physical": "77",
+        "role": "io"
+      },
+      "P78": {
+        "physical": "78",
+        "role": "io"
+      },
+      "P79": {
+        "physical": "79",
+        "role": "io"
+      },
+      "P80": {
+        "physical": "80",
+        "role": "io"
+      }
+    }
+  },
+  "hirose_fx8c_80s_sv5_92": {
+    "mpn": "Hirose FX8C-80S-SV5(92)",
+    "kind": "80_contact_0_6mm_11mm_stack_mezzanine_receptacle",
+    "qualification": "verified_exact_m1_11mm_receptacle",
+    "lifecycle": "active",
+    "dimensions_mm": [
+      30.6,
+      7,
+      8.95
+    ],
+    "source": {
+      "document": "Hirose FX8C-80S-SV5(92) official product data, 2D drawing and FX8C mating table",
+      "version": "product specifications updated 2026-02-07",
+      "url": "https://www.hirose.com/en/product/p/CL0578-0823-5-92",
+      "checked": "2026-08-19"
+    },
+    "orderable_source": {
+      "document": "DigiKey active exact-MPN listing; 1,548 shown in stock",
+      "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FX8C-80S-SV5-92/4284737",
+      "checked": "2026-08-19"
+    },
+    "cost": {
+      "currency": "USD",
+      "target_quantity": 100,
+      "unit_price_usd": 3.9133,
+      "price_break": "DigiKey cut-tape quantity-100 tier",
+      "source": {
+        "document": "DigiKey exact-MPN published price table",
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FX8C-80S-SV5-92/4284737",
+        "checked": "2026-08-19"
+      }
+    },
+    "programmable": false,
+    "electrical_contract": {
+      "positions": 80,
+      "pitch_mm": 0.6,
+      "mated_height_with_fx8c_80p_sv1_mm": 11,
+      "rated_current_per_contact_a": 0.4,
+      "transmission_rate_gbps": 8,
+      "mating_cycles": 50,
+      "contact_resistance_max_mohm": 80
+    },
+    "contacts": {
+      "P1": {
+        "physical": "1",
+        "role": "io"
+      },
+      "P2": {
+        "physical": "2",
+        "role": "io"
+      },
+      "P3": {
+        "physical": "3",
+        "role": "io"
+      },
+      "P4": {
+        "physical": "4",
+        "role": "io"
+      },
+      "P5": {
+        "physical": "5",
+        "role": "io"
+      },
+      "P6": {
+        "physical": "6",
+        "role": "io"
+      },
+      "P7": {
+        "physical": "7",
+        "role": "io"
+      },
+      "P8": {
+        "physical": "8",
+        "role": "io"
+      },
+      "P9": {
+        "physical": "9",
+        "role": "io"
+      },
+      "P10": {
+        "physical": "10",
+        "role": "io"
+      },
+      "P11": {
+        "physical": "11",
+        "role": "io"
+      },
+      "P12": {
+        "physical": "12",
+        "role": "io"
+      },
+      "P13": {
+        "physical": "13",
+        "role": "io"
+      },
+      "P14": {
+        "physical": "14",
+        "role": "io"
+      },
+      "P15": {
+        "physical": "15",
+        "role": "io"
+      },
+      "P16": {
+        "physical": "16",
+        "role": "io"
+      },
+      "P17": {
+        "physical": "17",
+        "role": "io"
+      },
+      "P18": {
+        "physical": "18",
+        "role": "io"
+      },
+      "P19": {
+        "physical": "19",
+        "role": "io"
+      },
+      "P20": {
+        "physical": "20",
+        "role": "io"
+      },
+      "P21": {
+        "physical": "21",
+        "role": "io"
+      },
+      "P22": {
+        "physical": "22",
+        "role": "io"
+      },
+      "P23": {
+        "physical": "23",
+        "role": "io"
+      },
+      "P24": {
+        "physical": "24",
+        "role": "io"
+      },
+      "P25": {
+        "physical": "25",
+        "role": "io"
+      },
+      "P26": {
+        "physical": "26",
+        "role": "io"
+      },
+      "P27": {
+        "physical": "27",
+        "role": "io"
+      },
+      "P28": {
+        "physical": "28",
+        "role": "io"
+      },
+      "P29": {
+        "physical": "29",
+        "role": "io"
+      },
+      "P30": {
+        "physical": "30",
+        "role": "io"
+      },
+      "P31": {
+        "physical": "31",
+        "role": "io"
+      },
+      "P32": {
+        "physical": "32",
+        "role": "io"
+      },
+      "P33": {
+        "physical": "33",
+        "role": "io"
+      },
+      "P34": {
+        "physical": "34",
+        "role": "io"
+      },
+      "P35": {
+        "physical": "35",
+        "role": "io"
+      },
+      "P36": {
+        "physical": "36",
+        "role": "io"
+      },
+      "P37": {
+        "physical": "37",
+        "role": "io"
+      },
+      "P38": {
+        "physical": "38",
+        "role": "io"
+      },
+      "P39": {
+        "physical": "39",
+        "role": "io"
+      },
+      "P40": {
+        "physical": "40",
+        "role": "io"
+      },
+      "P41": {
+        "physical": "41",
+        "role": "io"
+      },
+      "P42": {
+        "physical": "42",
+        "role": "io"
+      },
+      "P43": {
+        "physical": "43",
+        "role": "io"
+      },
+      "P44": {
+        "physical": "44",
+        "role": "io"
+      },
+      "P45": {
+        "physical": "45",
+        "role": "io"
+      },
+      "P46": {
+        "physical": "46",
+        "role": "io"
+      },
+      "P47": {
+        "physical": "47",
+        "role": "io"
+      },
+      "P48": {
+        "physical": "48",
+        "role": "io"
+      },
+      "P49": {
+        "physical": "49",
+        "role": "io"
+      },
+      "P50": {
+        "physical": "50",
+        "role": "io"
+      },
+      "P51": {
+        "physical": "51",
+        "role": "io"
+      },
+      "P52": {
+        "physical": "52",
+        "role": "io"
+      },
+      "P53": {
+        "physical": "53",
+        "role": "io"
+      },
+      "P54": {
+        "physical": "54",
+        "role": "io"
+      },
+      "P55": {
+        "physical": "55",
+        "role": "io"
+      },
+      "P56": {
+        "physical": "56",
+        "role": "io"
+      },
+      "P57": {
+        "physical": "57",
+        "role": "io"
+      },
+      "P58": {
+        "physical": "58",
+        "role": "io"
+      },
+      "P59": {
+        "physical": "59",
+        "role": "io"
+      },
+      "P60": {
+        "physical": "60",
+        "role": "io"
+      },
+      "P61": {
+        "physical": "61",
+        "role": "io"
+      },
+      "P62": {
+        "physical": "62",
+        "role": "io"
+      },
+      "P63": {
+        "physical": "63",
+        "role": "io"
+      },
+      "P64": {
+        "physical": "64",
+        "role": "io"
+      },
+      "P65": {
+        "physical": "65",
+        "role": "io"
+      },
+      "P66": {
+        "physical": "66",
+        "role": "io"
+      },
+      "P67": {
+        "physical": "67",
+        "role": "io"
+      },
+      "P68": {
+        "physical": "68",
+        "role": "io"
+      },
+      "P69": {
+        "physical": "69",
+        "role": "io"
+      },
+      "P70": {
+        "physical": "70",
+        "role": "io"
+      },
+      "P71": {
+        "physical": "71",
+        "role": "io"
+      },
+      "P72": {
+        "physical": "72",
+        "role": "io"
+      },
+      "P73": {
+        "physical": "73",
+        "role": "io"
+      },
+      "P74": {
+        "physical": "74",
+        "role": "io"
+      },
+      "P75": {
+        "physical": "75",
+        "role": "io"
+      },
+      "P76": {
+        "physical": "76",
+        "role": "io"
+      },
+      "P77": {
+        "physical": "77",
+        "role": "io"
+      },
+      "P78": {
+        "physical": "78",
+        "role": "io"
+      },
+      "P79": {
+        "physical": "79",
+        "role": "io"
+      },
+      "P80": {
+        "physical": "80",
+        "role": "io"
+      }
+    }
+  },
     "esp32_s3_wroom_1u_n16r2": {
       "mpn": "ESP32-S3-WROOM-1U-N16R2",
       "kind": "soldered_module",
@@ -2970,6 +3700,43 @@
         "4B": {"physical": "13", "role": "signal"}, "VCC": {"physical": "14", "role": "power"}
       }
     },
+    "ti_sn74lvc1g08_dckr": {
+      "mpn": "SN74LVC1G08DCKR",
+      "kind": "sc70_5_single_and_gate_partial_power_down",
+      "qualification": "verified_exact_local_ir_stop_gate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "SN74LVC1G08 Single 2-Input Positive-AND Gate datasheet",
+        "version": "Rev. AA",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "SN74LVC1G08DCKR active authorized-distributor exact order-code page; more than 322,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G08DCKR/385741",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.049,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published USD price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G08DCKR/385741", "checked": "2026-08-19"}
+      },
+      "electrical_contract": {
+        "function": "single two-input positive AND gate",
+        "supply_range_v": [1.65, 5.5],
+        "partial_power_down": "Ioff keeps the output high impedance and prevents back-drive while AON_SAFE_3V3 is absent; inputs tolerate up to 5.5 V",
+        "usage": "UI-board-local C5 IR carrier gate; RUN_PERMIT remains the independent hardware qualifier"
+      },
+      "programmable": false,
+      "contacts": {
+        "A": {"physical": "1", "role": "signal"},
+        "B": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "3", "role": "power"},
+        "Y": {"physical": "4", "role": "signal"},
+        "VCC": {"physical": "5", "role": "power"}
+      }
+    },
     "ti_sn74lvc3g34_dcur": {
       "mpn": "SN74LVC3G34DCUR",
       "kind": "vssop8_triple_buffer_partial_power_down",
@@ -3182,6 +3949,44 @@
         "IN3_P": {"physical": "9", "role": "analog"}, "IN4_N": {"physical": "10", "role": "analog"},
         "IN4_P": {"physical": "11", "role": "analog"}, "VMINUS": {"physical": "12", "role": "power"},
         "OUT4": {"physical": "13", "role": "signal"}, "OUT3": {"physical": "14", "role": "signal"}
+      }
+    },
+    "ti_tlv1821_dckr": {
+      "mpn": "TLV1821DCKR",
+      "kind": "sc70_5_single_open_drain_comparator",
+      "qualification": "verified_exact_local_voice_evidence_comparator",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {
+        "document": "TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1821.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "TLV1821DCKR active authorized-distributor exact order-code page; 319 shown in stock at check time",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TLV1821DCKR/22147288",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.744,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published USD price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TLV1821DCKR/22147288", "checked": "2026-08-19"}
+      },
+      "electrical_contract": {
+        "supply_range_v": [2.4, 40.0],
+        "output": "open drain with power-on reset to a known high-impedance state",
+        "selected_supply": "AON_SAFE_3V3",
+        "local_bypass": "one exact 100-nF low-ESR capacitor at the package",
+        "pinout_note": "standard TLV1821 DCK pinout, not the reversed-supply TLV1821L variant"
+      },
+      "programmable": false,
+      "contacts": {
+        "OUT": {"physical": "1", "role": "signal"},
+        "VMINUS": {"physical": "2", "role": "power"},
+        "IN_P": {"physical": "3", "role": "analog"},
+        "IN_N": {"physical": "4", "role": "analog"},
+        "VPLUS": {"physical": "5", "role": "power"}
       }
     },
     "ti_tca9534a_pwr": {

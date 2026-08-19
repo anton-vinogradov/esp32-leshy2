@@ -533,8 +533,8 @@ flowchart TD
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   S3_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(10)<br/>S3 module-jumper board receptacle"]
   S3_RF_COUPLER["KYOCERA AVX CP0603Q5425ENTR<br/>S3 2.4-GHz forward-power directional coupler"]
   S3_RF_COUPLER_TERMINATION["Yageo RC0402FR-0749R9L<br/>S3 coupler 49.9-Ohm termination"]
@@ -631,8 +631,8 @@ flowchart TD
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   NRF0_HOST_MISO_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_HOST_IRQ_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
   NRF0_MODULE_CE_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm deterministic interface-state resistor"]
@@ -707,8 +707,8 @@ flowchart TD
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   NRF2_RETURN_BUFFER["Nexperia 74LVC2G126DC,125<br/>MISO/IRQ switched-rail Ioff buffer"]
   NRF2_HOST_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>host-buffer local bypass capacitor"]
   NRF2_RETURN_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>return-buffer local bypass capacitor"]
@@ -785,8 +785,8 @@ flowchart TD
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   CC_POWER_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>CC load-switch input bypass capacitor"]
   CC_LOCAL_BULK_CAP["TDK C1608X7R1C105K080AC<br/>CC switched-rail local bulk capacitor"]
   CC_POWER_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>CC load-switch reset-off resistor"]
@@ -869,8 +869,8 @@ flowchart TD
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   CC_433_L15["Murata LQG15HS15NJ02D<br/>433-MHz series inductor"]
   CC_433_SHUNT_C6P2["Murata GJM1555C1H6R2DB01D<br/>433-MHz output shunt capacitor"]
   CC_868_915_L10["Murata LQG15HS10NJ02D<br/>combined 868/915-MHz series inductor"]
@@ -960,8 +960,8 @@ flowchart TD
   DET_NRF2["Analog Devices AD8314ACPZ-RL7<br/>nRF2 2.4-GHz RF power detector"]
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
   U214_SERIES_IRQ["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 IRQ return-series resistor"]
   U214_SERIES_GPS_TX["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 GPS-TX return-series resistor"]
   U214_SERIES_MISO["Panasonic ERJ-2RKF22R0X<br/>22-Ohm U214 MISO return-series resistor"]
@@ -1055,12 +1055,14 @@ flowchart TD
   IR_EVIDENCE_VREF_CAP["TDK C1005X7R1H104K050BB<br/>optical-evidence reference filter capacitor"]
   IR_EVIDENCE_FEEDBACK["Yageo RC0402FR-0747KL<br/>47-kOhm optical transimpedance feedback resistor"]
   IR_EVIDENCE_FEEDBACK_CAP["KEMET C0402C102K5RACTU<br/>1-nF optical-evidence response capacitor"]
+  IR_SAFE_GATE["SN74LVC1G08DCKR<br/>UI-local STOP-qualified IR carrier gate"]
+  IR_SAFE_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>IR safety-gate local bypass capacitor"]
   IR_TX_LED["LTST-C190KRKT<br/>IR-local physical-optical actual-TX indicator"]
   IR_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>IR actual-TX indicator 2.2-kOhm current limit"]
   end
   C5 ~~~ SAFE_GATE_B ~~~ DET_IR ~~~ IR_POWER_SWITCH ~~~ IR_POWER_INPUT_CAP ~~~ IR_POWER_OUTPUT_CAP ~~~ IR_POWER_OUTPUT_BYPASS ~~~ IR_POWER_ON_PULLDOWN ~~~ IR_DEMOD ~~~ IR_DEMOD_SUPPLY_RES ~~~ IR_DEMOD_SUPPLY_CAP ~~~ IR_CARRIER
   IR_CARRIER_SUPPLY_RES ~~~ IR_CARRIER_SUPPLY_CAP ~~~ IR_CARRIER_PULLUP ~~~ IR_RETURN_BUFFER ~~~ IR_RETURN_BUFFER_BYPASS ~~~ IR_DEMOD_SERIES ~~~ IR_CARRIER_SERIES ~~~ IR_DEMOD_HOST_PULLUP ~~~ IR_CARRIER_HOST_PULLUP ~~~ IR_EMITTER ~~~ IR_EMITTER_LIMIT ~~~ IR_TX_MOSFET
-  IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ IR_TX_LED ~~~ IR_TX_LED_SERIES
+  IR_TX_GATE_SERIES ~~~ IR_TX_GATE_PULLDOWN ~~~ IR_EVIDENCE_AMP ~~~ IR_EVIDENCE_AMP_BYPASS ~~~ IR_EVIDENCE_VREF_TOP ~~~ IR_EVIDENCE_VREF_BOTTOM ~~~ IR_EVIDENCE_VREF_CAP ~~~ IR_EVIDENCE_FEEDBACK ~~~ IR_EVIDENCE_FEEDBACK_CAP ~~~ IR_SAFE_GATE ~~~ IR_SAFE_GATE_BYPASS ~~~ IR_TX_LED
   C5 <-->|"RMT RX0/power: GPIO0,GPIO1,GPIO4,GPIO6,GPIO24"| IR_DEMOD
   C5 <-->|"RMT RX1/power"| IR_CARRIER
   SAFE_GATE_B --> IR_EMITTER
@@ -1074,6 +1076,8 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
+  M1_UI_PLUG["Hirose FX8C-80P-SV1(92)<br/>UI-board half of the exact 80-contact 11-mm inter-board link"]
+  M1_RF_RECEPTACLE["Hirose FX8C-80S-SV5(92)<br/>RF/power-board half of the exact 80-contact 11-mm inter-board link"]
   C5_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>C5 independent data-only USB-C service receptacle"]
   C5_SERVICE_USB_ESD["Texas Instruments TPD2EUSB30ADRTR<br/>C5 service USB D+/D- low-capacitance ESD shunt"]
   C5_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>C5 board-off D+/D- backfeed-isolation switch"]
@@ -1115,13 +1119,11 @@ flowchart TD
   C5_DBG_RESET_SERIES["Yageo RC0402FR-071KL<br/>C5 active-low RESET fixture-current resistor"]
   C5_DBG_BOOT_SERIES["Yageo RC0402FR-071KL<br/>C5 active-low BOOT fixture-current resistor"]
   C5_DBG0_SERIES["Yageo RC0402FR-07470RL<br/>C5 UART/SWD fixture-current and edge resistor"]
-  C5_DBG1_SERIES["Yageo RC0402FR-07470RL<br/>C5 UART/SWD fixture-current and edge resistor"]
-  C5_DBG_ID0_STRAP["Yageo RC0402FR-0710KL<br/>C5 passive DBG10 identity strap resistor"]
   end
-  S3 ~~~ C5 ~~~ RP ~~~ C5_SERVICE_USB_CONNECTOR ~~~ C5_SERVICE_USB_ESD ~~~ C5_SERVICE_USB_SWITCH ~~~ C5_SERVICE_USB_SWITCH_BYPASS ~~~ C5_SERVICE_USB_CC1_RD ~~~ C5_SERVICE_USB_CC2_RD ~~~ C5_SERVICE_USB_VBUS_BLEEDER ~~~ C5_SERVICE_USB_DM_SERIES ~~~ C5_SERVICE_USB_DP_SERIES
-  RP_SERVICE_USB_CONNECTOR ~~~ RP_SERVICE_USB_ESD ~~~ RP_SERVICE_USB_SWITCH ~~~ RP_SERVICE_USB_SWITCH_BYPASS ~~~ RP_SERVICE_USB_CC1_RD ~~~ RP_SERVICE_USB_CC2_RD ~~~ RP_SERVICE_USB_VBUS_BLEEDER ~~~ RP_SERVICE_USB_DM_SERIES ~~~ RP_SERVICE_USB_DP_SERIES ~~~ S3_DBG_HEADER ~~~ C5_DBG_HEADER ~~~ RP_DBG_HEADER
-  S3_DBG_ESD ~~~ C5_DBG_ESD ~~~ RP_DBG_ESD ~~~ S3_RESET_BUTTON ~~~ S3_BOOT_BUTTON ~~~ C5_RESET_BUTTON ~~~ C5_BOOT_BUTTON ~~~ RP_RESET_BUTTON ~~~ RP_BOOT_BUTTON ~~~ S3_DBG_VTREF_SERIES ~~~ S3_DBG_RESET_SERIES ~~~ S3_DBG_BOOT_SERIES
-  S3_DBG0_SERIES ~~~ S3_DBG1_SERIES ~~~ S3_DBG_ID0_STRAP ~~~ S3_DBG_ID1_STRAP ~~~ C5_DBG_VTREF_SERIES ~~~ C5_DBG_RESET_SERIES ~~~ C5_DBG_BOOT_SERIES ~~~ C5_DBG0_SERIES ~~~ C5_DBG1_SERIES ~~~ C5_DBG_ID0_STRAP
+  S3 ~~~ C5 ~~~ RP ~~~ M1_UI_PLUG ~~~ M1_RF_RECEPTACLE ~~~ C5_SERVICE_USB_CONNECTOR ~~~ C5_SERVICE_USB_ESD ~~~ C5_SERVICE_USB_SWITCH ~~~ C5_SERVICE_USB_SWITCH_BYPASS ~~~ C5_SERVICE_USB_CC1_RD ~~~ C5_SERVICE_USB_CC2_RD ~~~ C5_SERVICE_USB_VBUS_BLEEDER
+  C5_SERVICE_USB_DM_SERIES ~~~ C5_SERVICE_USB_DP_SERIES ~~~ RP_SERVICE_USB_CONNECTOR ~~~ RP_SERVICE_USB_ESD ~~~ RP_SERVICE_USB_SWITCH ~~~ RP_SERVICE_USB_SWITCH_BYPASS ~~~ RP_SERVICE_USB_CC1_RD ~~~ RP_SERVICE_USB_CC2_RD ~~~ RP_SERVICE_USB_VBUS_BLEEDER ~~~ RP_SERVICE_USB_DM_SERIES ~~~ RP_SERVICE_USB_DP_SERIES ~~~ S3_DBG_HEADER
+  C5_DBG_HEADER ~~~ RP_DBG_HEADER ~~~ S3_DBG_ESD ~~~ C5_DBG_ESD ~~~ RP_DBG_ESD ~~~ S3_RESET_BUTTON ~~~ S3_BOOT_BUTTON ~~~ C5_RESET_BUTTON ~~~ C5_BOOT_BUTTON ~~~ RP_RESET_BUTTON ~~~ RP_BOOT_BUTTON ~~~ S3_DBG_VTREF_SERIES
+  S3_DBG_RESET_SERIES ~~~ S3_DBG_BOOT_SERIES ~~~ S3_DBG0_SERIES ~~~ S3_DBG1_SERIES ~~~ S3_DBG_ID0_STRAP ~~~ S3_DBG_ID1_STRAP ~~~ C5_DBG_VTREF_SERIES ~~~ C5_DBG_RESET_SERIES ~~~ C5_DBG_BOOT_SERIES ~~~ C5_DBG0_SERIES
   C5_SERVICE_USB_CONNECTOR <-->|"D+/D-; VBUS sense-only"| C5_SERVICE_USB_ESD
   C5_SERVICE_USB_CONNECTOR <-->|"board-off isolated data"| C5_SERVICE_USB_SWITCH <-->|"22 Ω D+/D-"| C5
   RP_SERVICE_USB_CONNECTOR <-->|"D+/D-; VBUS sense-only"| RP_SERVICE_USB_ESD
@@ -1139,6 +1141,8 @@ flowchart TD
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
+  C5_DBG1_SERIES["Yageo RC0402FR-07470RL<br/>C5 UART/SWD fixture-current and edge resistor"]
+  C5_DBG_ID0_STRAP["Yageo RC0402FR-0710KL<br/>C5 passive DBG10 identity strap resistor"]
   C5_DBG_ID1_STRAP["Yageo RC0402FR-0710KL<br/>C5 passive DBG10 identity strap resistor"]
   RP_DBG_VTREF_SERIES["Yageo RC0402FR-071KL<br/>RP fixture VTREF sense-current resistor"]
   RP_DBG_RESET_SERIES["Yageo RC0402FR-071KL<br/>RP active-low RESET fixture-current resistor"]
@@ -1152,8 +1156,8 @@ flowchart TD
   RP_BOOT_PULLUP["Yageo RC0402FR-0710KL<br/>RP deterministic normal-boot pull-up resistor"]
   C5_GPIO27_PULLUP["Yageo RC0402FR-0710KL<br/>C5 fixed-high normal-boot and ROM-log strap resistor"]
   end
-  S3 ~~~ C5 ~~~ RP ~~~ C5_DBG_ID1_STRAP ~~~ RP_DBG_VTREF_SERIES ~~~ RP_DBG_RESET_SERIES ~~~ RP_DBG_BOOT_SERIES ~~~ RP_DBG0_SERIES ~~~ RP_DBG1_SERIES ~~~ RP_DBG_ID0_STRAP ~~~ RP_DBG_ID1_STRAP ~~~ S3_BOOT_PULLUP
-  C5_BOOT_PULLUP ~~~ RP_BOOT_PULLUP ~~~ C5_GPIO27_PULLUP
+  S3 ~~~ C5 ~~~ RP ~~~ C5_DBG1_SERIES ~~~ C5_DBG_ID0_STRAP ~~~ C5_DBG_ID1_STRAP ~~~ RP_DBG_VTREF_SERIES ~~~ RP_DBG_RESET_SERIES ~~~ RP_DBG_BOOT_SERIES ~~~ RP_DBG0_SERIES ~~~ RP_DBG1_SERIES ~~~ RP_DBG_ID0_STRAP
+  RP_DBG_ID1_STRAP ~~~ S3_BOOT_PULLUP ~~~ C5_BOOT_PULLUP ~~~ RP_BOOT_PULLUP ~~~ C5_GPIO27_PULLUP
 ```
 
 ### 18. Always-on hard STOP и аппаратный запрет передачи
@@ -1249,10 +1253,12 @@ flowchart TD
   DET_CC["Analog Devices AD8314ACPZ-RL7<br/>CC1101 sub-GHz RF power detector"]
   DET_VOICE["Analog Devices AD8314ACPZ-RL7<br/>SA518 VHF/UHF RF power detector"]
   DET_IR["VEMD1060X01<br/>IR optical-evidence photodiode"]
-  EVIDENCE_CMP_A["TLV1824PWR<br/>S3/C5/nRF0/nRF1 AON evidence comparator"]
-  EVIDENCE_CMP_A_BYPASS["TDK C1005X7R1H104K050BB<br/>first evidence-comparator local bypass capacitor"]
-  EVIDENCE_CMP_B["TLV1824PWR<br/>nRF2/CC/voice/IR AON evidence comparator"]
-  EVIDENCE_CMP_B_BYPASS["TDK C1005X7R1H104K050BB<br/>second evidence-comparator local bypass capacitor"]
+  EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local S3/C5/IR AON evidence comparator; fourth channel inert"]
+  EVIDENCE_CMP_A_BYPASS["TDK C1005X7R1H104K050BB<br/>UI evidence-comparator local bypass capacitor"]
+  EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local nRF0/nRF1/nRF2/CC AON evidence comparator"]
+  EVIDENCE_CMP_B_BYPASS["TDK C1005X7R1H104K050BB<br/>RF evidence-comparator local bypass capacitor"]
+  EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>RF-local dedicated voice AON evidence comparator"]
+  EVIDENCE_CMP_VOICE_BYPASS["TDK C1005X7R1H104K050BB<br/>voice evidence-comparator local bypass capacitor"]
   S3_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>s3 first-population 100-kOhm threshold upper resistor"]
   S3_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>s3 first-population 10-kOhm threshold lower resistor"]
   S3_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>s3 1-MOhm evidence-hysteresis feedback resistor"]
@@ -1280,13 +1286,11 @@ flowchart TD
   VOICE_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>voice first-population 100-kOhm threshold upper resistor"]
   VOICE_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0710KL<br/>voice first-population 10-kOhm threshold lower resistor"]
   VOICE_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>voice 1-MOhm evidence-hysteresis feedback resistor"]
-  VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice 10-kOhm AON comparator-output pull-up resistor"]
-  IR_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>ir first-population 100-kOhm threshold upper resistor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2 ~~~ DET_CC
-  DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_A_BYPASS ~~~ EVIDENCE_CMP_B ~~~ EVIDENCE_CMP_B_BYPASS ~~~ S3_EVIDENCE_THRESHOLD_TOP ~~~ S3_EVIDENCE_THRESHOLD_BOTTOM ~~~ S3_EVIDENCE_HYSTERESIS ~~~ S3_EVIDENCE_OUTPUT_PULLUP ~~~ C5_EVIDENCE_THRESHOLD_TOP ~~~ C5_EVIDENCE_THRESHOLD_BOTTOM
-  C5_EVIDENCE_HYSTERESIS ~~~ C5_EVIDENCE_OUTPUT_PULLUP ~~~ NRF0_EVIDENCE_THRESHOLD_TOP ~~~ NRF0_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF0_EVIDENCE_HYSTERESIS ~~~ NRF0_EVIDENCE_OUTPUT_PULLUP ~~~ NRF1_EVIDENCE_THRESHOLD_TOP ~~~ NRF1_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF1_EVIDENCE_HYSTERESIS ~~~ NRF1_EVIDENCE_OUTPUT_PULLUP ~~~ NRF2_EVIDENCE_THRESHOLD_TOP ~~~ NRF2_EVIDENCE_THRESHOLD_BOTTOM
-  NRF2_EVIDENCE_HYSTERESIS ~~~ NRF2_EVIDENCE_OUTPUT_PULLUP ~~~ CC_EVIDENCE_THRESHOLD_TOP ~~~ CC_EVIDENCE_THRESHOLD_BOTTOM ~~~ CC_EVIDENCE_HYSTERESIS ~~~ CC_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ IR_EVIDENCE_THRESHOLD_TOP
+  DET_VOICE ~~~ DET_IR ~~~ EVIDENCE_CMP_A ~~~ EVIDENCE_CMP_A_BYPASS ~~~ EVIDENCE_CMP_B ~~~ EVIDENCE_CMP_B_BYPASS ~~~ EVIDENCE_CMP_VOICE ~~~ EVIDENCE_CMP_VOICE_BYPASS ~~~ S3_EVIDENCE_THRESHOLD_TOP ~~~ S3_EVIDENCE_THRESHOLD_BOTTOM ~~~ S3_EVIDENCE_HYSTERESIS ~~~ S3_EVIDENCE_OUTPUT_PULLUP
+  C5_EVIDENCE_THRESHOLD_TOP ~~~ C5_EVIDENCE_THRESHOLD_BOTTOM ~~~ C5_EVIDENCE_HYSTERESIS ~~~ C5_EVIDENCE_OUTPUT_PULLUP ~~~ NRF0_EVIDENCE_THRESHOLD_TOP ~~~ NRF0_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF0_EVIDENCE_HYSTERESIS ~~~ NRF0_EVIDENCE_OUTPUT_PULLUP ~~~ NRF1_EVIDENCE_THRESHOLD_TOP ~~~ NRF1_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF1_EVIDENCE_HYSTERESIS ~~~ NRF1_EVIDENCE_OUTPUT_PULLUP
+  NRF2_EVIDENCE_THRESHOLD_TOP ~~~ NRF2_EVIDENCE_THRESHOLD_BOTTOM ~~~ NRF2_EVIDENCE_HYSTERESIS ~~~ NRF2_EVIDENCE_OUTPUT_PULLUP ~~~ CC_EVIDENCE_THRESHOLD_TOP ~~~ CC_EVIDENCE_THRESHOLD_BOTTOM ~~~ CC_EVIDENCE_HYSTERESIS ~~~ CC_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS
   DET_CC --> EVIDENCE_CMP_B
   DET_VOICE --> EVIDENCE_CMP_B
   EVIDENCE_CMP_A_BYPASS --> EVIDENCE_CMP_A
@@ -1311,7 +1315,6 @@ flowchart TD
   CC_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
   VOICE_EVIDENCE_THRESHOLD_TOP --> VOICE_EVIDENCE_THRESHOLD_BOTTOM --> EVIDENCE_CMP_B
   VOICE_EVIDENCE_HYSTERESIS --> EVIDENCE_CMP_B
-  VOICE_EVIDENCE_OUTPUT_PULLUP --> EVIDENCE_CMP_B
 ```
 
 ### 20. Физическое evidence фактической передачи — узлы 2/2
@@ -1325,6 +1328,8 @@ flowchart TD
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   SAFE_GATE_A["SN74LVC08APWR<br/>four STOP-dominant nRF request gates"]
   SAFE_GATE_B["SN74LVC08APWR<br/>four STOP-dominant rail/IR/accessory gates"]
+  VOICE_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>voice 10-kOhm AON comparator-output pull-up resistor"]
+  IR_EVIDENCE_THRESHOLD_TOP["Yageo RC0402FR-07100KL<br/>ir first-population 100-kOhm threshold upper resistor"]
   IR_EVIDENCE_THRESHOLD_BOTTOM["Yageo RC0402FR-0712KL<br/>ir first-population 12-kOhm threshold lower resistor"]
   IR_EVIDENCE_HYSTERESIS["Yageo RC0402FR-071ML<br/>ir 1-MOhm evidence-hysteresis feedback resistor"]
   IR_EVIDENCE_OUTPUT_PULLUP["Yageo RC0402FR-0710KL<br/>ir 10-kOhm AON comparator-output pull-up resistor"]
@@ -1343,8 +1348,8 @@ flowchart TD
   IR_EVIDENCE_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain IR-evidence pull-up resistor"]
   RP_ANY_TX_MAIN_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm main-domain RP ANY-TX pull-up resistor"]
   end
-  S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ IR_EVIDENCE_THRESHOLD_BOTTOM ~~~ IR_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_OUTPUT_PULLUP ~~~ EVIDENCE_MASK ~~~ EVIDENCE_MASK_BYPASS ~~~ EVIDENCE_OR_0
-  EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_AON_PULLUP ~~~ ANY_TX_LED_SERIES ~~~ ANY_TX_LED ~~~ EVIDENCE_MAIN_ISOLATOR ~~~ EVIDENCE_MAIN_ISOLATOR_BYPASS ~~~ C5_EVIDENCE_MAIN_PULLUP ~~~ IR_EVIDENCE_MAIN_PULLUP ~~~ RP_ANY_TX_MAIN_PULLUP
+  S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ IR_EVIDENCE_THRESHOLD_TOP ~~~ IR_EVIDENCE_THRESHOLD_BOTTOM ~~~ IR_EVIDENCE_HYSTERESIS ~~~ IR_EVIDENCE_OUTPUT_PULLUP ~~~ EVIDENCE_MASK
+  EVIDENCE_MASK_BYPASS ~~~ EVIDENCE_OR_0 ~~~ EVIDENCE_OR_1 ~~~ EVIDENCE_OR_2 ~~~ EVIDENCE_OR_3 ~~~ ANY_TX_AON_PULLUP ~~~ ANY_TX_LED_SERIES ~~~ ANY_TX_LED ~~~ EVIDENCE_MAIN_ISOLATOR ~~~ EVIDENCE_MAIN_ISOLATOR_BYPASS ~~~ C5_EVIDENCE_MAIN_PULLUP ~~~ IR_EVIDENCE_MAIN_PULLUP
   EVIDENCE_MASK_BYPASS --> EVIDENCE_MASK
   EVIDENCE_OR_0 --> ANY_TX_AON_PULLUP
   EVIDENCE_OR_1 --> ANY_TX_AON_PULLUP
@@ -1892,7 +1897,7 @@ Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: none.
 | `GPIO0` | 6 | `IR_RX_DEMOD` | `i` | `RMT_RX0` | `ir_demod_series.END_2`, `ir_demod_host_pullup.END_1` | — |
 | `GPIO1` | 7 | `IR_RX_CARRIER` | `i` | `RMT_RX1` | `ir_carrier_series.END_2`, `ir_carrier_host_pullup.END_1` | — |
 | `GPIO4` | 17 | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | `ir_power_switch.ON`, `ir_power_on_pulldown.END_1` | — |
-| `GPIO6` | 8 | `IR_TX_CARRIER` | `o` | `RMT_TX0` | `safe_gate_b.3A` | — |
+| `GPIO6` | 8 | `IR_TX_CARRIER` | `o` | `RMT_TX0` | `ir_safe_gate.A` | — |
 | `GPIO7` | 9 | `S3_C5_SDIO_D1_IRQ` | `io` | `SDIO_SLAVE` | `s3.GPIO13` | external pull-up and documented SDIO edge profile are verified before runtime ownership |
 | `GPIO8` | 10 | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE` | `s3.GPIO12` | — |
 | `GPIO9` | 11 | `S3_C5_SDIO_CLK` | `i` | `SDIO_SLAVE` | `s3.GPIO10` | — |
@@ -3923,7 +3928,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.4B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.1B` | STOP-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.2B` | STOP-dominant active-high gate permit |
-| `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.3B` | STOP-dominant active-high gate permit |
+| `IR_TX_CARRIER` | `c5.GPIO6` | `ir_safe_gate.A` | C5 RMT carrier stays on the UI board and enters the local hardware safety gate directly |
+| `RUN_PERMIT` | `safe_latch.Q_N` | `ir_safe_gate.B` | one digital permit crosses to the UI board; the IR carrier itself remains local to C5 |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_b.4B` | STOP-dominant active-high gate permit |
 | `NRF0_CE_SAFE` | `safe_gate_a.1Y` | `nrf0_host_buffer.1A` | STOP-dominant CE enters the switched-domain Ioff buffer rather than the module directly |
 | `NRF0_CE_BUFFERED` | `nrf0_host_buffer.1Y` | `nrf0_ce_series.END_1` | exact switched-domain buffer isolates CE while off |
@@ -4067,7 +4073,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `POWER_GROUND` | `voice_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of converter internal bias |
 | `VOICE_DOMAIN_EN_SAFE` | `safe_gate_b.2Y` | `voice_pg_base_res.END_1` | the qualifier consumes the same STOP-dominant voice enable evidence |
 | `VOICE_PG_QUAL_BASE` | `voice_pg_base_res.END_2` | `voice_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
-| `IR_TX_CARRIER_SAFE` | `safe_gate_b.3Y` | `ir_tx_gate_series.END_1` | STOP-dominant carrier reaches the exact emitter gate network only while RUN_PERMIT is high |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_safe_gate.VCC` | UI-local IR gate stays on the non-programmable safety rail |
+| `SAFETY_GROUND` | `ir_safe_gate.GND` | `abstract:safety-ground` | IR gate return stays local to the UI safety island |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_safe_gate_bypass.END_1` | exact 100-nF local bypass at SN74LVC1G08DCKR |
+| `SAFETY_GROUND` | `ir_safe_gate_bypass.END_2` | `abstract:safety-ground` | IR gate bypass returns locally |
+| `IR_TX_CARRIER_SAFE` | `ir_safe_gate.Y` | `ir_tx_gate_series.END_1` | STOP-dominant carrier reaches the exact emitter gate network without a rear-board round trip |
+| `SAFETY_GROUND` | `safe_gate_b.3A` | `abstract:safety-ground` | unused rear quad-gate channel input A is fixed low |
+| `SAFETY_GROUND` | `safe_gate_b.3B` | `abstract:safety-ground` | unused rear quad-gate channel input B is fixed low |
+| `NO_CONNECT` | `safe_gate_b.3Y` | `abstract:no-connect` | unused rear quad-gate output remains unconnected |
 | `EXT_ANY_5V_EN_SAFE` | `safe_gate_b.4Y` | `ext_buck.EN` | STOP and AON loss disable the shared fixed-5-V converter; either admitted branch may request it |
 | `EXT_ANY_5V_EN_SAFE` | `ext_buck.EN` | `ext_en_pulldown.END_1` | one exact 10-kOhm pull-down defines the common converter off if the safety-gate output is high-impedance |
 | `POWER_GROUND` | `ext_en_pulldown.END_2` | `abstract:power-ground` | external fail-low default is independent of the converter's internal 2-MOhm pull-down |
@@ -4210,12 +4223,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `IR_OPTICAL_SUM` | `ir_evidence_feedback_cap.END_2` | `ir_evidence_amp.IN_MINUS` | feedback capacitor closes at the summing node |
 | `S3_DETECT_V` | `det_s3.VOUT` | `evidence_cmp_a.IN1_N` | RF above the qualified threshold makes active-low comparator output assert |
 | `C5_DETECT_V` | `det_c5.VOUT` | `evidence_cmp_a.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `NRF0_DETECT_V` | `det_nrf0.V_UP` | `evidence_cmp_a.IN3_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
-| `NRF1_DETECT_V` | `det_nrf1.V_UP` | `evidence_cmp_a.IN4_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
-| `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN1_N` | forward RF above the channel-qualified threshold makes active-low comparator output assert |
-| `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN2_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `VOICE_DETECT_V` | `det_voice.V_UP` | `evidence_cmp_b.IN3_N` | RF above the qualified threshold makes active-low comparator output assert |
-| `IR_DETECT_V` | `ir_evidence_amp.OUT` | `evidence_cmp_b.IN4_N` | physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute |
+| `NRF0_DETECT_V` | `det_nrf0.V_UP` | `evidence_cmp_b.IN1_N` | rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert |
+| `NRF1_DETECT_V` | `det_nrf1.V_UP` | `evidence_cmp_b.IN2_N` | rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert |
+| `NRF2_DETECT_V` | `det_nrf2.V_UP` | `evidence_cmp_b.IN3_N` | rear-local forward RF above the channel-qualified threshold makes active-low comparator output assert |
+| `CC_DETECT_V` | `det_cc.V_UP` | `evidence_cmp_b.IN4_N` | rear-local RF above the qualified threshold makes active-low comparator output assert |
+| `VOICE_DETECT_V` | `det_voice.V_UP` | `evidence_cmp_voice.IN_N` | rear-local RF above the qualified threshold makes the dedicated active-low comparator output assert |
+| `IR_DETECT_V` | `ir_evidence_amp.OUT` | `evidence_cmp_a.IN3_N` | UI-local physical optical energy above the qualified HIL threshold makes active-low comparator output assert; drive current cannot substitute |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_a.VPLUS` | first quad comparator remains alive with the hard-STOP evidence plane |
 | `SAFETY_GROUND` | `evidence_cmp_a.VMINUS` | `abstract:safety-ground` | first comparator return stays in the AON evidence domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_a_bypass.END_1` | exact 100-nF local bypass required at the first TLV1824 package |
@@ -4224,6 +4237,13 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `SAFETY_GROUND` | `evidence_cmp_b.VMINUS` | `abstract:safety-ground` | second comparator return stays in the AON evidence domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_b_bypass.END_1` | exact 100-nF local bypass required at the second TLV1824 package |
 | `SAFETY_GROUND` | `evidence_cmp_b_bypass.END_2` | `abstract:safety-ground` | second comparator bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_voice.VPLUS` | dedicated voice comparator remains alive with the hard-STOP evidence plane |
+| `SAFETY_GROUND` | `evidence_cmp_voice.VMINUS` | `abstract:safety-ground` | voice comparator return stays in the rear AON evidence domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_cmp_voice_bypass.END_1` | exact 100-nF local bypass required at TLV1821DCKR |
+| `SAFETY_GROUND` | `evidence_cmp_voice_bypass.END_2` | `abstract:safety-ground` | voice comparator bypass returns locally |
+| `SAFETY_GROUND` | `evidence_cmp_a.IN4_N` | `abstract:safety-ground` | unused UI comparator channel negative input is fixed low |
+| `SAFETY_GROUND` | `evidence_cmp_a.IN4_P` | `abstract:safety-ground` | unused UI comparator channel positive input is fixed low |
+| `NO_CONNECT` | `evidence_cmp_a.OUT4` | `abstract:no-connect` | unused UI comparator open-drain output remains unconnected |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the S3 first threshold population |
 | `EV_THRESH_0_S3` | `s3_evidence_threshold_top.END_2` | `evidence_cmp_a.IN1_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
 | `EV_THRESH_0_S3` | `evidence_cmp_a.IN1_P` | `s3_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
@@ -4241,53 +4261,53 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `c5_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
 | `EV_N1_C5` | `c5_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT2` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the nRF0 first threshold population |
-| `EV_THRESH_2_NRF0` | `nrf0_evidence_threshold_top.END_2` | `evidence_cmp_a.IN3_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
-| `EV_THRESH_2_NRF0` | `evidence_cmp_a.IN3_P` | `nrf0_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `EV_THRESH_2_NRF0` | `nrf0_evidence_threshold_top.END_2` | `evidence_cmp_b.IN1_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_2_NRF0` | `evidence_cmp_b.IN1_P` | `nrf0_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
 | `SAFETY_GROUND` | `nrf0_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | nRF0 threshold returns locally |
-| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `nrf0_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
-| `EV_THRESH_2_NRF0` | `nrf0_evidence_hysteresis.END_2` | `evidence_cmp_a.IN3_P` | nRF0 threshold clears near 0.297 V nominal |
+| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `nrf0_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_2_NRF0` | `nrf0_evidence_hysteresis.END_2` | `evidence_cmp_b.IN1_P` | nRF0 threshold clears near 0.297 V nominal |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
-| `EV_N2_NRF0` | `nrf0_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT3` | individually readable active-low evidence |
+| `EV_N2_NRF0` | `nrf0_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT1` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the nRF1 first threshold population |
-| `EV_THRESH_3_NRF1` | `nrf1_evidence_threshold_top.END_2` | `evidence_cmp_a.IN4_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
-| `EV_THRESH_3_NRF1` | `evidence_cmp_a.IN4_P` | `nrf1_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `EV_THRESH_3_NRF1` | `nrf1_evidence_threshold_top.END_2` | `evidence_cmp_b.IN2_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_3_NRF1` | `evidence_cmp_b.IN2_P` | `nrf1_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
 | `SAFETY_GROUND` | `nrf1_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | nRF1 threshold returns locally |
-| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `nrf1_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
-| `EV_THRESH_3_NRF1` | `nrf1_evidence_hysteresis.END_2` | `evidence_cmp_a.IN4_P` | nRF1 threshold clears near 0.297 V nominal |
+| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `nrf1_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_3_NRF1` | `nrf1_evidence_hysteresis.END_2` | `evidence_cmp_b.IN2_P` | nRF1 threshold clears near 0.297 V nominal |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
-| `EV_N3_NRF1` | `nrf1_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT4` | individually readable active-low evidence |
+| `EV_N3_NRF1` | `nrf1_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT2` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the nRF2 first threshold population |
-| `EV_THRESH_4_NRF2` | `nrf2_evidence_threshold_top.END_2` | `evidence_cmp_b.IN1_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
-| `EV_THRESH_4_NRF2` | `evidence_cmp_b.IN1_P` | `nrf2_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `EV_THRESH_4_NRF2` | `nrf2_evidence_threshold_top.END_2` | `evidence_cmp_b.IN3_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_4_NRF2` | `evidence_cmp_b.IN3_P` | `nrf2_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
 | `SAFETY_GROUND` | `nrf2_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | nRF2 threshold returns locally |
-| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `nrf2_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
-| `EV_THRESH_4_NRF2` | `nrf2_evidence_hysteresis.END_2` | `evidence_cmp_b.IN1_P` | nRF2 threshold clears near 0.297 V nominal |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `nrf2_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_4_NRF2` | `nrf2_evidence_hysteresis.END_2` | `evidence_cmp_b.IN3_P` | nRF2 threshold clears near 0.297 V nominal |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
-| `EV_N4_NRF2` | `nrf2_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT1` | individually readable active-low evidence |
+| `EV_N4_NRF2` | `nrf2_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT3` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the CC first threshold population |
-| `EV_THRESH_5_CC` | `cc_evidence_threshold_top.END_2` | `evidence_cmp_b.IN2_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
-| `EV_THRESH_5_CC` | `evidence_cmp_b.IN2_P` | `cc_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `EV_THRESH_5_CC` | `cc_evidence_threshold_top.END_2` | `evidence_cmp_b.IN4_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_5_CC` | `evidence_cmp_b.IN4_P` | `cc_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
 | `SAFETY_GROUND` | `cc_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | CC threshold returns locally |
-| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `cc_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
-| `EV_THRESH_5_CC` | `cc_evidence_hysteresis.END_2` | `evidence_cmp_b.IN2_P` | CC threshold clears near 0.297 V nominal |
+| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `cc_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_5_CC` | `cc_evidence_hysteresis.END_2` | `evidence_cmp_b.IN4_P` | CC threshold clears near 0.297 V nominal |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
-| `EV_N5_CC` | `cc_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT2` | individually readable active-low evidence |
+| `EV_N5_CC` | `cc_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT4` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the voice first threshold population |
-| `EV_THRESH_6_VOICE` | `voice_evidence_threshold_top.END_2` | `evidence_cmp_b.IN3_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
-| `EV_THRESH_6_VOICE` | `evidence_cmp_b.IN3_P` | `voice_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
+| `EV_THRESH_6_VOICE` | `voice_evidence_threshold_top.END_2` | `evidence_cmp_voice.IN_P` | approximately 0.327-V rising assert threshold at nominal 3.3 V |
+| `EV_THRESH_6_VOICE` | `evidence_cmp_voice.IN_P` | `voice_evidence_threshold_bottom.END_1` | 10-kOhm lower leg is the first measured-calibration population |
 | `SAFETY_GROUND` | `voice_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | voice threshold returns locally |
-| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `voice_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
-| `EV_THRESH_6_VOICE` | `voice_evidence_hysteresis.END_2` | `evidence_cmp_b.IN3_P` | voice threshold clears near 0.297 V nominal |
+| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `voice_evidence_hysteresis.END_1` | 1-MOhm positive feedback produces approximately 29.5-mV nominal hysteresis |
+| `EV_THRESH_6_VOICE` | `voice_evidence_hysteresis.END_2` | `evidence_cmp_voice.IN_P` | voice threshold clears near 0.297 V nominal |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
-| `EV_N6_VOICE` | `voice_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT3` | individually readable active-low evidence |
+| `EV_N6_VOICE` | `voice_evidence_output_pullup.END_2` | `evidence_cmp_voice.OUT` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_threshold_top.END_1` | 100-kOhm upper leg starts the IR first threshold population |
-| `EV_THRESH_7_IR` | `ir_evidence_threshold_top.END_2` | `evidence_cmp_b.IN4_P` | 12-kOhm lower leg raises nominal optical assert threshold to approximately 0.384 V |
-| `EV_THRESH_7_IR` | `evidence_cmp_b.IN4_P` | `ir_evidence_threshold_bottom.END_1` | IR population differs because the optical TIA idles near 0.30 V |
+| `EV_THRESH_7_IR` | `ir_evidence_threshold_top.END_2` | `evidence_cmp_a.IN3_P` | 12-kOhm lower leg raises nominal optical assert threshold to approximately 0.384 V |
+| `EV_THRESH_7_IR` | `evidence_cmp_a.IN3_P` | `ir_evidence_threshold_bottom.END_1` | IR population differs because the optical TIA idles near 0.30 V |
 | `SAFETY_GROUND` | `ir_evidence_threshold_bottom.END_2` | `abstract:safety-ground` | IR threshold returns locally |
-| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `ir_evidence_hysteresis.END_1` | 1-MOhm positive feedback provides approximately 34.7-mV nominal optical hysteresis |
-| `EV_THRESH_7_IR` | `ir_evidence_hysteresis.END_2` | `evidence_cmp_b.IN4_P` | IR threshold clears near 0.350 V, above nominal dark idle |
+| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `ir_evidence_hysteresis.END_1` | 1-MOhm positive feedback provides approximately 34.7-mV nominal optical hysteresis |
+| `EV_THRESH_7_IR` | `ir_evidence_hysteresis.END_2` | `evidence_cmp_a.IN3_P` | IR threshold clears near 0.350 V, above nominal dark idle |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_evidence_output_pullup.END_1` | separate 10-kOhm comparator-output pull-up |
-| `EV_N7_IR` | `ir_evidence_output_pullup.END_2` | `evidence_cmp_b.OUT4` | individually readable active-low evidence |
+| `EV_N7_IR` | `ir_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT3` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask.VCC` | source identity remains readable whenever the AON evidence plane is alive |
 | `SAFETY_GROUND` | `evidence_mask.GND` | `abstract:safety-ground` | evidence-mask return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_bypass.END_1` | exact 100-nF local TCA9534A bypass |
@@ -4300,20 +4320,20 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | direct strap fixes 7-bit address 0x38 |
 | `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_mask.P0` | individually readable active-low evidence |
 | `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_mask.P1` | individually readable active-low evidence |
-| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_mask.P2` | individually readable active-low evidence |
-| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `evidence_mask.P3` | individually readable active-low evidence |
-| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `evidence_mask.P4` | individually readable active-low evidence |
-| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_mask.P5` | individually readable active-low evidence |
-| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_mask.P6` | individually readable active-low evidence |
-| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_mask.P7` | individually readable active-low evidence |
+| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `evidence_mask.P2` | rear-local comparator output crosses only as digital evidence |
+| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `evidence_mask.P3` | rear-local comparator output crosses only as digital evidence |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `evidence_mask.P4` | individually readable active-low evidence |
+| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `evidence_mask.P5` | individually readable active-low evidence |
+| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `evidence_mask.P6` | dedicated rear-local comparator produces individually readable evidence |
+| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `evidence_mask.P7` | UI-local comparator output crosses only as digital evidence |
 | `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_or_0.K1` | diode-isolated hardware aggregate |
 | `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_or_0.K2` | diode-isolated hardware aggregate |
-| `EV_N2_NRF0` | `evidence_cmp_a.OUT3` | `evidence_or_1.K1` | diode-isolated hardware aggregate |
-| `EV_N3_NRF1` | `evidence_cmp_a.OUT4` | `evidence_or_1.K2` | diode-isolated hardware aggregate |
-| `EV_N4_NRF2` | `evidence_cmp_b.OUT1` | `evidence_or_2.K1` | diode-isolated hardware aggregate |
-| `EV_N5_CC` | `evidence_cmp_b.OUT2` | `evidence_or_2.K2` | diode-isolated hardware aggregate |
-| `EV_N6_VOICE` | `evidence_cmp_b.OUT3` | `evidence_or_3.K1` | diode-isolated hardware aggregate |
-| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_or_3.K2` | diode-isolated hardware aggregate |
+| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `evidence_or_1.K1` | diode-isolated hardware aggregate |
+| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `evidence_or_1.K2` | diode-isolated hardware aggregate |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `evidence_or_2.K1` | diode-isolated hardware aggregate |
+| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `evidence_or_2.K2` | diode-isolated hardware aggregate |
+| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `evidence_or_3.K1` | diode-isolated hardware aggregate |
+| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `evidence_or_3.K2` | diode-isolated hardware aggregate |
 | `ANY_TX_AON_N` | `evidence_or_0.A_COMMON` | `evidence_or_1.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
 | `ANY_TX_AON_N` | `evidence_or_1.A_COMMON` | `evidence_or_2.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
 | `ANY_TX_AON_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
@@ -4330,22 +4350,22 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `EV_N1_C5` | `c5_tx_led.K` | `evidence_cmp_a.OUT2` | C5 antenna-local LED follows physical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf0_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `NRF0_TX_LED_A` | `nrf0_tx_led_series.END_2` | `nrf0_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
-| `EV_N2_NRF0` | `nrf0_tx_led.K` | `evidence_cmp_a.OUT3` | nRF24 radio 0 antenna-local LED follows physical active-low TX evidence |
+| `EV_N2_NRF0` | `nrf0_tx_led.K` | `evidence_cmp_b.OUT1` | nRF24 radio 0 antenna-local LED follows physical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf1_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `NRF1_TX_LED_A` | `nrf1_tx_led_series.END_2` | `nrf1_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
-| `EV_N3_NRF1` | `nrf1_tx_led.K` | `evidence_cmp_a.OUT4` | nRF24 radio 1 antenna-local LED follows physical active-low TX evidence |
+| `EV_N3_NRF1` | `nrf1_tx_led.K` | `evidence_cmp_b.OUT2` | nRF24 radio 1 antenna-local LED follows physical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `nrf2_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `NRF2_TX_LED_A` | `nrf2_tx_led_series.END_2` | `nrf2_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
-| `EV_N4_NRF2` | `nrf2_tx_led.K` | `evidence_cmp_b.OUT1` | nRF24 radio 2 antenna-local LED follows physical active-low TX evidence |
+| `EV_N4_NRF2` | `nrf2_tx_led.K` | `evidence_cmp_b.OUT3` | nRF24 radio 2 antenna-local LED follows physical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `cc_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `CC_TX_LED_A` | `cc_tx_led_series.END_2` | `cc_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
-| `EV_N5_CC` | `cc_tx_led.K` | `evidence_cmp_b.OUT2` | CC antenna-local LED follows physical active-low TX evidence |
+| `EV_N5_CC` | `cc_tx_led.K` | `evidence_cmp_b.OUT4` | CC antenna-local LED follows physical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `voice_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `VOICE_TX_LED_A` | `voice_tx_led_series.END_2` | `voice_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
-| `EV_N6_VOICE` | `voice_tx_led.K` | `evidence_cmp_b.OUT3` | voice antenna-local LED follows physical active-low TX evidence |
+| `EV_N6_VOICE` | `voice_tx_led.K` | `evidence_cmp_voice.OUT` | voice antenna-local LED follows physical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `IR_TX_LED_A` | `ir_tx_led_series.END_2` | `ir_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
-| `EV_N7_IR` | `ir_tx_led.K` | `evidence_cmp_b.OUT4` | IR-local LED follows physical optical active-low TX evidence |
+| `EV_N7_IR` | `ir_tx_led.K` | `evidence_cmp_a.OUT3` | IR-local LED follows physical optical active-low TX evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator.VCC` | domain isolator remains alive with the evidence plane |
 | `SAFETY_GROUND` | `evidence_main_isolator.GND` | `abstract:safety-ground` | domain-isolator return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator_bypass.END_1` | exact 100-nF local triple-buffer bypass |
@@ -4354,7 +4374,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 | `C5_RF_TX_EVIDENCE_N` | `evidence_main_isolator.1Y` | `c5.GPIO23` | passive-drain transfer preserves active-low polarity without positive AON injection |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_evidence_main_pullup.END_1` | pull-up exists only while C5 is powered |
 | `C5_RF_TX_EVIDENCE_N` | `c5_evidence_main_pullup.END_2` | `c5.GPIO23` | 10-kOhm main-domain C5 evidence pull-up |
-| `EV_N7_IR` | `evidence_cmp_b.OUT4` | `evidence_main_isolator.2A` | IR evidence remains in the AON domain before isolation |
+| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `evidence_main_isolator.2A` | IR evidence remains UI-local in the AON domain before digital isolation |
 | `IR_TX_EVIDENCE_N` | `evidence_main_isolator.2Y` | `c5.GPIO24` | passive-drain transfer preserves active-low polarity without positive AON injection |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_evidence_main_pullup.END_1` | pull-up exists only while C5 is powered |
 | `IR_TX_EVIDENCE_N` | `ir_evidence_main_pullup.END_2` | `c5.GPIO24` | 10-kOhm main-domain IR evidence pull-up |
@@ -4437,6 +4457,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 
 - `rp` uses `SC1512-A4` as `verified_exact_rp2354b0a4_7inch_reel_order_code`, not an accepted production choice.
 - `rp` lifecycle: `active_orderable`.
+- `m1_ui_plug` uses `Hirose FX8C-80P-SV1(92)` as `verified_exact_m1_11mm_plug`, not an accepted production choice.
+- `m1_rf_receptacle` uses `Hirose FX8C-80S-SV5(92)` as `verified_exact_m1_11mm_receptacle`, not an accepted production choice.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
 - `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_a` lifecycle: `production_active_orderable`.
@@ -4783,6 +4805,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `safe_por_or` lifecycle: `production`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_reset_buffer` lifecycle: `active_orderable`.
+- `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_local_ir_stop_gate`, not an accepted production choice.
+- `ir_safe_gate` lifecycle: `active_orderable`.
 - `safe_ptt_or` lifecycle: `production`.
 - `det_s3` lifecycle: `production`.
 - `det_c5` lifecycle: `production`.
@@ -4797,6 +4821,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA24_A3`, `PA27_A0`,
 - `det_voice` uses `Analog Devices AD8314ACPZ-RL7` as `verified_exact_wideband_rf_power_detector`, not an accepted production choice.
 - `det_voice` lifecycle: `production_active_orderable`.
 - `det_ir` uses `VEMD1060X01` as `verified_exact_ir_actual_optical_evidence_sensor`, not an accepted production choice.
+- `evidence_cmp_voice` uses `TLV1821DCKR` as `verified_exact_local_voice_evidence_comparator`, not an accepted production choice.
+- `evidence_cmp_voice` lifecycle: `active_orderable`.
 - `evidence_main_isolator` uses `SN74LVC3G07DCUR` as `verified_exact_aon_to_main_open_drain_isolator`, not an accepted production choice.
 - `evidence_main_isolator` lifecycle: `active_orderable`.
 - `s3_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.

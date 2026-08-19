@@ -14,6 +14,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/hardware.ru.md",
         "docs/schematics.md",
         "docs/schematics.ru.md",
+        "docs/interconnect.md",
+        "docs/interconnect.ru.md",
         "docs/pinout.md",
         "docs/pinout.ru.md",
         "docs/safety.md",
@@ -77,6 +79,8 @@ class ProductSiteTests(unittest.TestCase):
             "RF/power PCB",
             "outward direction arrow",
             "M2.5 hole/head keep-out",
+            "FX8C-80P-SV1(92)",
+            "FX8C-80S-SV5(92)",
         ):
             self.assertIn(token, layout)
 

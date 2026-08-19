@@ -55,7 +55,7 @@
 | `GPIO0` | `IR_RX_DEMOD` | `i` | `RMT_RX0` | ir_demod_series.END_2<br>ir_demod_host_pullup.END_1 |
 | `GPIO1` | `IR_RX_CARRIER` | `i` | `RMT_RX1` | ir_carrier_series.END_2<br>ir_carrier_host_pullup.END_1 |
 | `GPIO4` | `IR_FRONTEND_PWR_EN` | `o` | `GPIO` | ir_power_switch.ON<br>ir_power_on_pulldown.END_1 |
-| `GPIO6` | `IR_TX_CARRIER` | `o` | `RMT_TX0` | safe_gate_b.3A |
+| `GPIO6` | `IR_TX_CARRIER` | `o` | `RMT_TX0` | ir_safe_gate.A |
 | `GPIO7` | `S3_C5_SDIO_D1_IRQ` | `io` | `SDIO_SLAVE` | s3.GPIO13 |
 | `GPIO8` | `S3_C5_SDIO_D0` | `io` | `SDIO_SLAVE` | s3.GPIO12 |
 | `GPIO9` | `S3_C5_SDIO_CLK` | `i` | `SDIO_SLAVE` | s3.GPIO10 |

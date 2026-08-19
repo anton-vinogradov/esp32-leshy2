@@ -101,3 +101,31 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>accessory 5.0-V converter"]
   NVDC_CHARGER -->|"VSYS"| VOICE_BUCK
   NVDC_CHARGER -->|"VSYS"| EXT_BUCK
 ```
+
+### Hardware STOP and physical transmission evidence
+
+```mermaid
+flowchart TD
+SAFE_SUPERVISOR["TPS3808G33DBVR<br/>always-on safety-rail supervisor"]
+SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical STOP-loop conditioner"]
+SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous STOP/RE-ARM latch"]
+SAFE_GATE_A["SN74LVC08APWR<br/>hardware permits for three nRF24 radios and their rail"]
+SAFE_GATE_B["SN74LVC08APWR<br/>hardware permits for CC, voice and expansion"]
+IR_SAFE_GATE["SN74LVC1G08DCKR<br/>local hardware permit for the IR carrier"]
+EVIDENCE_CMP_A["TLV1824PWR<br/>UI-local physical-TX comparator for S3, C5 and IR"]
+EVIDENCE_CMP_B["TLV1824PWR<br/>RF-local physical-TX comparator for 3×nRF24 and CC"]
+EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>dedicated RF-local physical voice-TX comparator"]
+EVIDENCE_MASK["TCA9534APWR<br/>AON mask register for eight TX evidence sources"]
+EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into the main domain"]
+  SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
+  SAFE_CONDITIONER -->|"STOP assertion"| SAFE_LATCH
+  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_A
+  SAFE_LATCH -->|"RUN_PERMIT"| SAFE_GATE_B
+  SAFE_LATCH -->|"one digital permit across M1"| IR_SAFE_GATE
+  EVIDENCE_CMP_A -->|"three UI-local digital evidence lines"| EVIDENCE_MASK
+  EVIDENCE_CMP_B -->|"four RF-local digital evidence lines"| EVIDENCE_MASK
+  EVIDENCE_CMP_VOICE -->|"one RF-local digital evidence line"| EVIDENCE_MASK
+  EVIDENCE_CMP_A -->|"C5 / IR evidence"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_B -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_VOICE -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR
+```

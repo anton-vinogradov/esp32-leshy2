@@ -77,10 +77,14 @@ UI_INNER = (
     Placement("ir_demod", 0.0, 75.0, "38-kHz IR receiver"),
     Placement("ir_carrier", 0.0, 82.0, "carrier-learning IR receiver"),
     Placement("ir_emitter", 0.0, 89.0, "940-nm IR transmitter"),
+    Placement("ir_safe_gate", 8.0, 75.0, "UI-local STOP-qualified IR carrier gate"),
+    Placement("evidence_cmp_a", 8.0, 82.0, "UI-local S3/C5/IR TX evidence comparator"),
     Placement("headphone_jack", 60.0, 75.0, "3.5-mm headphone/line connector"),
-    Placement("product_usb_protector", 20.0, 75.0, "product USB CC/USB2 protector"),
-    Placement("pd_controller", 27.0, 75.0, "sink-only USB-PD controller"),
-    Placement("product_usb_connector", 12.0, 143.1, "product USB-C data and sink"),
+    Placement("safe_conditioner", 20.0, 75.0, "front-local STOP input conditioner"),
+    Placement("safe_latch", 23.0, 75.0, "front-local STOP/RE-ARM safety latch"),
+    Placement("safe_reset_buffer", 27.0, 75.0, "front-local reset-kill buffer"),
+    Placement("safe_reset_sink_a", 30.0, 75.0, "S3/C5 reset sinks"),
+    Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
     Placement("microphone", 42.0, 146.0, "bottom microphone port"),
     Placement("sd", 48.0, 136.15, "bottom-access push-push microSD", 90),
@@ -101,16 +105,18 @@ RF_INNER = (
     Placement("voice_buck", 59.0, 75.0, "voice 4.0-V converter"),
     Placement("ext_buck", 64.0, 75.0, "accessory 5.0-V converter"),
     Placement("safe_supervisor", 49.0, 82.0, "always-on safety supervisor"),
-    Placement("safe_conditioner", 55.0, 82.0, "STOP input conditioner"),
-    Placement("safe_latch", 60.0, 82.0, "STOP/RE-ARM safety latch"),
+    Placement("safe_reset_sink_b", 55.0, 82.0, "RP reset sink"),
+    Placement("safe_ptt_or", 59.0, 82.0, "STOP-dominant voice PTT gate"),
     Placement("safe_gate_b", 49.0, 88.0, "rear-domain transmit safety gates"),
-    Placement("evidence_cmp_b", 58.0, 88.0, "rear-domain TX evidence comparator"),
+    Placement("evidence_cmp_b", 58.0, 88.0, "RF-local nRF/CC TX evidence comparator"),
+    Placement("evidence_cmp_voice", 66.0, 88.0, "RF-local voice TX evidence comparator"),
+    Placement("product_usb_protector", 20.0, 87.0, "product USB CC/USB2 protector"),
+    Placement("pd_controller", 25.0, 87.0, "sink-only USB-PD controller"),
+    Placement("speaker_amp", 31.0, 87.0, "rear-local differential speaker amplifier"),
+    Placement("safe_gate_a", 49.0, 94.0, "nRF-domain transmit safety gates"),
+    Placement("m1_rf_receptacle", 22.2, 119.0, "80-contact M1 receptacle; 11-mm board stack"),
+    Placement("product_usb_connector", 12.0, 143.1, "product USB-C data and sink"),
     Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
-)
-
-MEZZANINE = Reserve(
-    "M1", 23.5, 119.0, 28.0, 7.0,
-    "board-to-board connector; contact count and exact MPN follow the net budget",
 )
 
 FRONT_CONTROLS = (
@@ -456,13 +462,12 @@ def render_internal(devices, instances):
             w, h = placement_size(item, devices, instances)
             out.append(rect(origin, item.x, item.y, w, h, "#eef2f6", "#667085", rx=2))
             out.append(text(sx(origin,item.x+w/2), sy(origin,item.y+h/2)+3, str(numbers[item.instance]), 7.5, "bold", "middle"))
-        out.append(rect(origin, MEZZANINE.x, MEZZANINE.y, MEZZANINE.w, MEZZANINE.h, "#fff7ed", "#ea580c", "5 3", 3))
-        out.append(text(sx(origin,37.5), sy(origin,123.5), "M1 · contact budget first · MPN TBD", 6.2, "bold", "middle", "#9a3412"))
 
     arrows = (
         (ui,0,76.5,-10,76.5),(ui,0,83.5,-10,83.5),(ui,0,90.5,-10,90.5),
-        (ui,75,79.8,85,79.8),(ui,16.5,150,16.5,159),(ui,31.5,150,31.5,159),
-        (ui,44,150,44,159),(ui,56,150,56,159),(rf,37.5,150,37.5,159),
+        (ui,75,79.8,85,79.8),(ui,31.5,150,31.5,159),
+        (ui,44,150,44,159),(ui,56,150,56,159),(rf,16.5,150,16.5,159),
+        (rf,37.5,150,37.5,159),
     )
     for origin, x1, y1, x2, y2 in arrows:
         out.append(f'<path d="M{sx(origin,x1):.1f} {sy(origin,y1):.1f} L{sx(origin,x2):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
@@ -488,7 +493,7 @@ def render_internal(devices, instances):
         text(left_x,605,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
         text(left_x,626,"• every edge interface has an outward direction arrow",10),
         text(left_x,647,"• microSD is edge-accessible; C5 USB stays with C5",10),
-        text(left_x,681,"Orange M1 and RF bodies remain MPN reserves.",10,"bold",colour="#9a3412"),
+        text(left_x,681,"Only the orange RF connector bodies remain MPN reserves.",10,"bold",colour="#9a3412"),
         text(left_x,706,"Placement projection; passives, copper and enclosure stack are omitted.",10,colour="#526076"),
     ]
     out.append("</svg>")
