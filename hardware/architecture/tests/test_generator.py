@@ -485,8 +485,17 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_target_readme_principled_diagrams_stay_vertical_and_current(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        overview_instances = (
+            "s3", "c5", "rp", "display", "sd", "slow_io", "ui_matrix_io",
+            "codec", "receiver", "nrf0", "nrf1", "nrf2", "cc", "voice",
+            "u214", "product_usb_connector", "product_usb_protector",
+            "pd_controller", "nvdc_charger", "pack_holder", "pack_gauge",
+            "aon_buck", "main_buck", "voice_buck", "ext_buck", "stop_switch",
+            "ir_demod", "ir_carrier", "ir_emitter",
+        )
         current_mpn_tokens = set()
-        for device_id in candidate["instances"].values():
+        for instance in overview_instances:
+            device_id = candidate["instances"][instance]
             mpn = self.database["devices"][device_id]["mpn"]
             part_tokens = [
                 token.strip("(),")
@@ -505,8 +514,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             diagram_start = readme.index("```mermaid", readme.index(section))
             diagram_end = readme.index("```", diagram_start + len("```mermaid"))
             diagram = readme[diagram_start:diagram_end]
+            raw_start = readme.index("```text", diagram_end)
+            raw_end = readme.index("```", raw_start + len("```text"))
+            raw_projection = readme[raw_start:raw_end]
             self.assertIn("flowchart TD", diagram, readme_name)
-            self.assertIn("Layout-only invisible spine", diagram, readme_name)
+            self.assertLess(len(diagram), 12_000, readme_name)
             for mpn_token in current_mpn_tokens:
                 self.assertIn(
                     mpn_token,
@@ -547,7 +559,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             for node_id, mpn in storage_nodes.items():
                 self.assertIn(
                     f'  {node_id}["{mpn}',
-                    diagram,
+                    raw_projection,
                     f"{readme_name}: storage part {node_id}/{mpn} lacks its own box",
                 )
             touch_nodes = {
@@ -558,7 +570,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             for node_id, mpn in touch_nodes.items():
                 self.assertIn(
                     f'  {node_id}["{mpn}',
-                    diagram,
+                    raw_projection,
                     f"{readme_name}: touch part {node_id}/{mpn} lacks its own box",
                 )
             pack_support_nodes = {
@@ -591,11 +603,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             for node_id, mpn in pack_support_nodes.items():
                 self.assertIn(
                     f'  {node_id}["{mpn}',
-                    diagram,
+                    raw_projection,
                     f"{readme_name}: pack-support part {node_id}/{mpn} lacks its own box",
                 )
-            self.assertIn("SN74LVC1G06DCKR", diagram, readme_name)
-            self.assertIn("SN74LVC1G07DCKR", diagram, readme_name)
+            self.assertIn("SN74LVC1G06DCKR", raw_projection, readme_name)
+            self.assertIn("SN74LVC1G07DCKR", raw_projection, readme_name)
 
     def test_target_readmes_publish_the_current_principled_pin_groups(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

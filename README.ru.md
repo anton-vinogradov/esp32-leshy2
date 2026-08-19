@@ -185,11 +185,75 @@ Leshy2 — открытый автономный портативный инст
 радиотракт ждать дисплей, карту памяти или соседнее радио. Неиспользуемые
 интерфейсы переводятся в тихое аппаратное состояние.
 
-Диаграмма поддерживается как узкая вертикальная проекция целевой начинки.
-Каждый квадрат обозначает один физический компонент и содержит его MPN или
-явный `MPN TBD`, а также роль в готовом устройстве.
+Отрисовываемая обзорная диаграмма намеренно ограничена, чтобы GitHub мог её
+показать. Каждый квадрат обозначает один физический компонент и содержит его
+MPN и роль в готовом устройстве; разные устройства не объединяются. Полная
+машинная проекция и pin/net-таблицы находятся в
+[атласе принципиальной распиновки](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
+Отдельная [диаграмма gate-ов](docs/review/stages.md#где-мы-сейчас) показывает,
+где проект находится сейчас в последовательности ревью.
 
 ```mermaid
+flowchart TD
+  USB["JAE DX07S016JA1R1500<br/>основной USB-C разъём"]
+  USBP["Texas Instruments TPD4S201RUKR<br/>защита CC и USB2 порта"]
+  PD["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD контроллер"]
+  CHG["Texas Instruments BQ25798RQMR<br/>2S-зарядка и NVDC power path"]
+  HOLDER["Keystone Electronics 1048P<br/>поляризованный держатель двух 18650"]
+  GAUGE["Analog Devices MAX17320G20+T<br/>защита и fuel gauge батареи 2S"]
+  AON["Texas Instruments TPS629203DRLR<br/>always-on преобразователь безопасности 3,3 В"]
+  MAIN["Texas Instruments TPS564252DRLR #MAIN<br/>основной преобразователь 3,3 В"]
+  VOICERAIL["Texas Instruments TPS564252DRLR #VOICE<br/>преобразователь voice 4,0 В"]
+  EXTRAIL["Texas Instruments TPS564252DRLR #EXT<br/>преобразователь расширений 5,0 В"]
+
+  S3["ESP32-S3-WROOM-1U-N16R2<br/>владелец приложения, UI, экрана, storage и audio"]
+  C5["ESP32-C5-WROOM-1U-N8R8<br/>владелец 2,4/5 ГГц, 802.15.4 и IR"]
+  RP["SC1512-A4<br/>владелец детерминированных радио и voice"]
+
+  DISP["HMX035CTFT-001<br/>3,5-дюймовый QSPI экран с touch"]
+  SD["Hirose DM3AT-SF-PEJM5<br/>push-push разъём microSD"]
+  SLOW["Texas Instruments TCA6424ARGJR<br/>24-линейный slow-control expander"]
+  UIIO["Texas Instruments TCA9534APWR<br/>expander матрицы D-pad и функциональных кнопок"]
+  CODEC["Everest Semiconductor ES8311<br/>кодек захвата и воспроизведения audio"]
+  RX["Skyworks Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
+
+  NRF0["Ebyte E01-ML01IPX #0<br/>полнофункциональное nRF24-радио"]
+  NRF1["Ebyte E01-ML01IPX #1<br/>полнофункциональное nRF24-радио"]
+  NRF2["Ebyte E01-ML01IPX #2<br/>полнофункциональное nRF24-радио"]
+  CC["Texas Instruments CC1101RGPR<br/>sub-GHz transceiver"]
+  VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
+  IR38["Vishay TSOP95238TT<br/>демодулирующий IR-приёмник 38 кГц"]
+  IRRAW["Vishay TSMP95000TT<br/>IR-приёмник обучения несущей"]
+  IRTX["Vishay VSMY14940<br/>IR-передатчик 940 нм"]
+  U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
+  STOP["Panasonic AEQ10410<br/>нормально-замкнутая кнопка hard STOP"]
+
+  USB --> USBP --> PD --> CHG --> HOLDER --> GAUGE --> AON --> MAIN
+  GAUGE --> VOICERAIL
+  GAUGE --> EXTRAIL
+  MAIN --> S3
+  MAIN --> C5
+  MAIN --> RP
+  AON --> STOP
+  S3 --> DISP
+  S3 --> SD
+  S3 --> SLOW --> UIIO
+  S3 --> CODEC --> RX
+  RP --> NRF0
+  RP --> NRF1
+  RP --> NRF2
+  RP --> CC
+  VOICERAIL --> VOICE
+  C5 --> IR38
+  C5 --> IRRAW
+  C5 --> IRTX
+  EXTRAIL --> U214
+```
+
+<details>
+<summary><strong>Полная исходная проекция «одно устройство — один узел»</strong> — сохранена для машинного ревью; не рендерится, потому что превышает лимит текста Mermaid на GitHub</summary>
+
+```text
 flowchart TD
   USBC["DX07S016JA1R1500<br/>основной USB-C: защищённые USB2-линии S3 и только приём питания"]
   PORTPROT["TPD4S201RUKR<br/>защита CC1/CC2 и USB2 D+/D- от short-to-VBUS/ESD"]
@@ -1466,6 +1530,8 @@ flowchart TD
   EVISO --> IREVMPU -->|"GPIO24 active-low"| C5
   EVISO --> RPEVMPU -->|"GPIO22 active-low"| RP
 ```
+
+</details>
 
 <details>
 <summary><strong>Принципиальная распиновка</strong></summary>

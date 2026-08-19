@@ -177,11 +177,75 @@ deterministic radio service. Independent buses keep an active radio path from
 waiting for the display, storage or another radio. Unused interfaces enter a
 verified electrically quiet state.
 
-The diagram is maintained as a narrow top-to-bottom projection of the target
-internals. Every box represents one physical component and includes its MPN or
-an explicit `MPN TBD`, together with its role in the finished device.
+The rendered overview below is deliberately bounded so GitHub can display it.
+Every box is one physical component and names its MPN plus product role; it
+does not combine different devices. The exhaustive machine projection and
+pin/net tables remain in the
+[principled pinout atlas](docs/review/architecture/generated/G2F-3I-principled-pinout.md).
+The separate [gate diagram](docs/review/stages.md#где-мы-сейчас) shows where the
+project currently is in the review sequence.
 
 ```mermaid
+flowchart TD
+  USB["JAE DX07S016JA1R1500<br/>product USB-C receptacle"]
+  USBP["Texas Instruments TPD4S201RUKR<br/>CC and USB2 port protector"]
+  PD["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD controller"]
+  CHG["Texas Instruments BQ25798RQMR<br/>2S charger and NVDC power path"]
+  HOLDER["Keystone Electronics 1048P<br/>polarized dual-18650 holder"]
+  GAUGE["Analog Devices MAX17320G20+T<br/>2S protection and fuel gauge"]
+  AON["Texas Instruments TPS629203DRLR<br/>always-on 3.3-V safety converter"]
+  MAIN["Texas Instruments TPS564252DRLR #MAIN<br/>main 3.3-V converter"]
+  VOICERAIL["Texas Instruments TPS564252DRLR #VOICE<br/>voice 4.0-V converter"]
+  EXTRAIL["Texas Instruments TPS564252DRLR #EXT<br/>accessory 5.0-V converter"]
+
+  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage and audio owner"]
+  C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5-GHz, 802.15.4 and IR owner"]
+  RP["SC1512-A4<br/>deterministic radio and voice owner"]
+
+  DISP["HMX035CTFT-001<br/>3.5-inch QSPI display and touch assembly"]
+  SD["Hirose DM3AT-SF-PEJM5<br/>push-push microSD connector"]
+  SLOW["Texas Instruments TCA6424ARGJR<br/>24-line slow-control expander"]
+  UIIO["Texas Instruments TCA9534APWR<br/>D-pad and function-key matrix expander"]
+  CODEC["Everest Semiconductor ES8311<br/>audio capture and playback codec"]
+  RX["Skyworks Si4732-A10-GSR<br/>FM/AM/SW/LW broadcast receiver"]
+
+  NRF0["Ebyte E01-ML01IPX #0<br/>full-function nRF24 radio"]
+  NRF1["Ebyte E01-ML01IPX #1<br/>full-function nRF24 radio"]
+  NRF2["Ebyte E01-ML01IPX #2<br/>full-function nRF24 radio"]
+  CC["Texas Instruments CC1101RGPR<br/>sub-GHz transceiver"]
+  VOICE["NiceRF SA518<br/>VHF/UHF analog voice transceiver"]
+  IR38["Vishay TSOP95238TT<br/>38-kHz demodulating IR receiver"]
+  IRRAW["Vishay TSMP95000TT<br/>carrier-learning IR receiver"]
+  IRTX["Vishay VSMY14940<br/>940-nm IR transmitter"]
+  U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
+  STOP["Panasonic AEQ10410<br/>normally-closed hard-STOP control"]
+
+  USB --> USBP --> PD --> CHG --> HOLDER --> GAUGE --> AON --> MAIN
+  GAUGE --> VOICERAIL
+  GAUGE --> EXTRAIL
+  MAIN --> S3
+  MAIN --> C5
+  MAIN --> RP
+  AON --> STOP
+  S3 --> DISP
+  S3 --> SD
+  S3 --> SLOW --> UIIO
+  S3 --> CODEC --> RX
+  RP --> NRF0
+  RP --> NRF1
+  RP --> NRF2
+  RP --> CC
+  VOICERAIL --> VOICE
+  C5 --> IR38
+  C5 --> IRRAW
+  C5 --> IRTX
+  EXTRAIL --> U214
+```
+
+<details>
+<summary><strong>Exhaustive raw one-device-per-node projection</strong> — retained for machine review; not rendered because it exceeds GitHub's Mermaid text limit</summary>
+
+```text
 flowchart TD
   USBC["DX07S016JA1R1500<br/>product USB-C receptacle: protected S3 USB2 data and sink-only power"]
   PORTPROT["TPD4S201RUKR<br/>CC1/CC2 and USB2 D+/D- short-to-VBUS/ESD protector"]
@@ -1458,6 +1522,8 @@ flowchart TD
   EVISO --> IREVMPU -->|"GPIO24 active-low"| C5
   EVISO --> RPEVMPU -->|"GPIO22 active-low"| RP
 ```
+
+</details>
 
 <details>
 <summary><strong>Principled pin assignment</strong></summary>

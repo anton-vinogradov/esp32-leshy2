@@ -237,6 +237,10 @@ and antenna-kit gap families. `FND-0110/SAFE-0003/DEC-0101/REV-0005BG`
 subsequently instantiate every actual-TX threshold network and repair the
 AON-to-main evidence boundary. I8 inventory coverage is reviewed;
 orderability, cost and alternate qualification remain active.
+`FND-0113/REV-0005BP` then repair the product-site projection itself: a bounded
+vertical overview renders on GitHub, while the exhaustive one-device-per-node
+source and pin/net tables stay machine-derived. No architecture content changes;
+I8 remains active and KiCad remains unauthorized.
 `FND-0111/BOM-0009/DEC-0102/REV-0005BH` subsequently recheck all 33 missing
 source lines, replace the RP prose pseudo-MPN with exact `SC1512-A4`
 (`RP2354B0A4`) and, after the internal-node correction, leave current

@@ -6,6 +6,33 @@
 прежняя последовательность ошибочно ставила architecture/BOM раньше product
 and physical design (`FND-0039`).
 
+## Где мы сейчас
+
+`I8` ниже — внутренний шаг закрытия feasibility gate `2F`, а не одноимённый
+верхнеуровневый gate `8`. Поэтому текущая работа над доказательствами BOM не
+означает, что архитектура уже заморожена или что разрешён KiCad.
+
+```mermaid
+flowchart TD
+  G02["Gates 0–2<br/>baseline · product intent · capabilities<br/><b>ПРОВЕДЕНО РЕВЬЮ</b>"]
+  I17["Gate 2F / I1–I7<br/>compute · safety · power · UI · audio · RF · expansion<br/><b>ПРОВЕДЕНО РЕВЬЮ В PAPER SCOPE</b>"]
+  I8["▶ МЫ ЗДЕСЬ — Gate 2F / I8<br/>components · sources · cost · alternates<br/>52/187 цен · 614/857 placements · USD 102.2205 partial<br/><b>В РАБОТЕ</b>"]
+  I9["Gate 2F / I9<br/>совместное self-review и atomic paper projection<br/><b>ОЖИДАЕТ I8</b>"]
+  G3["Gate 3<br/>целевой physical/product design<br/>legacy-макет — вход; integrated mockup приостановлен"]
+  G48["Gates 4–8<br/>целые кандидаты → optimality → co-design<br/>→ atomic architecture → frozen BOM"]
+  G9["Gate 9<br/>electrical/CAD + firmware architecture<br/><b>KICAD НЕ РАЗРЕШЁН</b>"]
+  G1011["Gates 10–11<br/>PCB/pre-fab → prototype/HIL"]
+
+  G02 --> I17 --> I8 --> I9 --> G3 --> G48 --> G9 --> G1011
+
+  classDef reviewed fill:#163d2b,stroke:#35b779,color:#ffffff,stroke-width:2px;
+  classDef current fill:#5a4300,stroke:#ffcc4d,color:#ffffff,stroke-width:4px;
+  classDef blocked fill:#3b3f46,stroke:#8b949e,color:#ffffff,stroke-width:1px;
+  class G02,I17 reviewed;
+  class I8 current;
+  class I9,G3,G48,G9,G1011 blocked;
+```
+
 | № | Gate | Основной выход | Статус |
 |---:|---|---|---|
 | 0 | Review baseline | правила, evidence/decision/finding ledgers | **Проведено ревью** |

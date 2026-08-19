@@ -22,9 +22,17 @@ paper MPN и роль. Разные устройства не объединяю
 для которой exact peripheral MPN/electrical circuit ещё не принят; это не
 разрешение рисовать вымышленный pin в KiCad.
 
-## Принципиальная структура owners и pin groups
+## Полная машинная проекция owners и pin groups
 
-```mermaid
+GitHub не рендерит эту исчерпывающую one-device-per-node проекцию из-за
+лимита текста Mermaid. Она сохранена как проверяемый исходник; рабочая
+обзорная диаграмма находится на стартовой странице проекта, а точные
+pin/net-данные — в таблицах ниже.
+
+<details>
+<summary><strong>Исходник полной проекции</strong></summary>
+
+```text
 flowchart TD
   subgraph POWER_INPUT["Sink-only USB-PD and replaceable-cell power path"]
   PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>product USB-C receptacle: protected S3 USB2 data and sink-only power"]
@@ -1416,6 +1424,8 @@ flowchart TD
   EVIDENCE_MAIN_ISOLATOR --> IR_EVIDENCE_MAIN_PULLUP -->|"GPIO24 active-low"| C5
   EVIDENCE_MAIN_ISOLATOR --> RP_ANY_TX_MAIN_PULLUP -->|"GPIO22 active-low"| RP
 ```
+
+</details>
 
 ## Сводный pin budget
 
