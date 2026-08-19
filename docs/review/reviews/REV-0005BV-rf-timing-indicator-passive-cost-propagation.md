@@ -25,6 +25,6 @@ uninstantiated physical families, specific alternate qualification and full
 factory COGS. Temporary stock state is a procurement-watch signal, not
 permission to bypass the accepted substitution policy.
 
-`BOM-0023/REV-0005BW` preserve this reviewed tenth-batch checkpoint and
-advance current coverage to 148/187 lines / 802 placements / USD 150.1783
+`BOM-0024/REV-0005BX` preserve this reviewed tenth-batch checkpoint and
+advance current coverage to 162/187 lines / 816 placements / USD 150.4157
 partial base subtotal.

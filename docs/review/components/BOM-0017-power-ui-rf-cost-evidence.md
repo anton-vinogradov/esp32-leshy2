@@ -47,5 +47,5 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
 This artifact preserves the reviewed fifth-batch checkpoint. Current coverage
-is in [`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md): 148/187
-lines, 802/857 placements and partial base subtotal USD 150.1783.
+is in [`BOM-0024`](BOM-0024-resistor-cost-evidence.md): 162/187
+lines, 816/857 placements and partial base subtotal USD 150.4157.

@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **148/187** lines.
-- Of the remaining **39** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **802/857** supplied placements; their partial subtotals are `base_product` — USD 150.1783. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **162/187** lines.
+- Of the remaining **25** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **816/857** supplied placements; their partial subtotals are `base_product` — USD 150.4157. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -1551,6 +1551,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-07240KL</code> — 1 × USD 0.0009 = USD 0.0009</summary>
+
+- Device id: `yageo_rc0402fr_07240kl`.
+- Scope: `base_product`.
+- Comparable basis: LCSC quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO-RC0402FR-07240KL_C138029.html).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-07270KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_07270kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07270KL/729522).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-072K21L</code> — 2 × USD 0.0097 = USD 0.0194</summary>
 
 - Device id: `yageo_rc0402fr_072k21l`.
@@ -1566,6 +1584,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0730K1L</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_0730k1l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0730K1L/726587).
 
 </details>
 
@@ -1593,6 +1620,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-073K32L/2827627).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0742K2L</code> — 1 × USD 0.0049 = USD 0.0049</summary>
+
+- Device id: `yageo_rc0402fr_0742k2l`.
+- Scope: `base_product`.
+- Comparable basis: LCSC quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/Others_YAGEO-RC0402FR-0742K2L_C276270.html).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0744K2L</code> — 1 × USD 0.0052 = USD 0.0052</summary>
+
+- Device id: `yageo_rc0402fr_0744k2l`.
+- Scope: `base_product`.
+- Comparable basis: LCSC quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-image/C354260.html).
 
 </details>
 
@@ -1632,12 +1677,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-074K7L</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_074k7l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-074K7L/2827563).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-0752R3L</code> — 4 × USD 0.0097 = USD 0.0388</summary>
 
 - Device id: `yageo_rc0402fr_0752r3l`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0752R3L/5281040).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0756KL</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_0756kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0756KL/726635).
 
 </details>
 
@@ -1650,6 +1713,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-075K23L</code> — 1 × USD 0.0097 = USD 0.0097</summary>
+
+- Device id: `yageo_rc0402fr_075k23l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-075K23L/5281055).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-07620KL</code> — 1 × USD 0.0009 = USD 0.0009</summary>
+
+- Device id: `yageo_rc0402fr_07620kl`.
+- Scope: `base_product`.
+- Comparable basis: LCSC quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/chip-resistor-surface-mount_yageo-rc0402fr-07620kl_C137952.html).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-0768KL</code> — 4 × USD 0.0097 = USD 0.0388</summary>
 
 - Device id: `yageo_rc0402fr_0768kl`.
@@ -1659,12 +1740,57 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-078K2L</code> — 1 × USD 0.0009 = USD 0.0009</summary>
+
+- Device id: `yageo_rc0402fr_078k2l`.
+- Scope: `base_product`.
+- Comparable basis: LCSC quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/Chip-Resistor-Surface-Mount_YAGEO_C137929.html).
+
+</details>
+
+<details><summary><code>Yageo RC0402JR-070RL</code> — 1 × USD 0.0048 = USD 0.0048</summary>
+
+- Device id: `yageo_rc0402jr_070rl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402JR-070RL/729353).
+
+</details>
+
 <details><summary><code>Yageo RC0603FR-071KL</code> — 8 × USD 0.0122 = USD 0.0976</summary>
 
 - Device id: `yageo_rc0603fr_071kl`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0603FR-071KL/729790).
+
+</details>
+
+<details><summary><code>Yageo RC1206FR-0733RL</code> — 1 × USD 0.0247 = USD 0.0247</summary>
+
+- Device id: `yageo_rc1206fr_0733rl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC1206FR-0733RL/728818).
+
+</details>
+
+<details><summary><code>Yageo RT0402BRD07100KL</code> — 1 × USD 0.0646 = USD 0.0646</summary>
+
+- Device id: `yageo_rt0402brd07100kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RT0402BRD07100KL/5138791).
+
+</details>
+
+<details><summary><code>Yageo RT0402BRD07191KL</code> — 1 × USD 0.0820 = USD 0.0820</summary>
+
+- Device id: `yageo_rt0402brd07191kl`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://br.mouser.com/ProductDetail/YAGEO/RT0402BRD07191KL?qs=k2KEx2DUIRTNCS4INNWkNA%3D%3D).
 
 </details>
 

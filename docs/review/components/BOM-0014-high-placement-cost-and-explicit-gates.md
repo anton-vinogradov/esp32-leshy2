@@ -117,5 +117,5 @@ the raw-display cost and prevents RFQ-only radios from becoming zero.
 
 Этот artifact сохраняет проверенный second-batch checkpoint. Текущий итог
 после десятой партии находится в
-[`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md): 148/187 lines,
-802/857 placements и partial base subtotal USD 150.1783.
+[`BOM-0024`](BOM-0024-resistor-cost-evidence.md): 162/187 lines,
+816/857 placements и partial base subtotal USD 150.4157.

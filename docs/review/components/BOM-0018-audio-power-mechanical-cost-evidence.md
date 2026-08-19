@@ -57,5 +57,5 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
 The current successor is
-[`BOM-0023`](BOM-0023-logic-interface-ir-cost-evidence.md): 148/187 lines,
-802/857 placements and USD 150.1783 partial base subtotal.
+[`BOM-0024`](BOM-0024-resistor-cost-evidence.md): 162/187 lines,
+816/857 placements and USD 150.4157 partial base subtotal.
