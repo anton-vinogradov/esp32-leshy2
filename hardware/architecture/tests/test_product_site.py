@@ -20,6 +20,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/interconnect.ru.md",
         "docs/pinout.md",
         "docs/pinout.ru.md",
+        "docs/memory.md",
+        "docs/memory.ru.md",
         "docs/safety.md",
         "docs/safety.ru.md",
     )
@@ -51,6 +53,17 @@ class ProductSiteTests(unittest.TestCase):
                     continue
                 resolved = (page_path.parent / re.split(r"[?#]", target, maxsplit=1)[0]).resolve()
                 self.assertTrue(resolved.exists(), f"{name}: missing {target}")
+
+    def test_s3_memory_and_boot_contract_is_public(self):
+        for name in ("docs/memory.md", "docs/memory.ru.md"):
+            page = self.read(name)
+            for token in (
+                "ESP32-S3-WROOM-1U-N16R8", "16", "8", "GPIO0",
+                "GPIO18", "GPIO45", "GPIO46", "ECC", "BOOT",
+                "CONFIG_SPIRAM_ECC_ENABLE=y", "0x780000", "self-test",
+            ):
+                self.assertIn(token, page, f"{name}: {token}")
+            self.assertRegex(page, r"7[.,]5")
 
     def test_layout_is_product_facing(self):
         layout = self.read("docs/images/current-clamshell.svg")
@@ -222,13 +235,14 @@ class ProductSiteTests(unittest.TestCase):
             "JS102011SCQN",
             "TPS3435CAKAGDDFR",
             "TDK B57332V5103F360",
+            "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0",
             "1125R-SMT-4P",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
             "TE Connectivity 2118651-2",
             'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
             'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
-            "66 · SPK",
+            "67 · SPK",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)

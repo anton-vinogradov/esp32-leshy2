@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **912** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **911** supplied/costed placements collapse to **199** used exact-device/MPN lines.
+- **914** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **913** supplied/costed placements collapse to **199** used exact-device/MPN lines.
 - Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **188/199** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **894/911** supplied placements; their partial subtotals are `base_product` — USD 200.9497. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **896/913** supplied placements; their partial subtotals are `base_product` — USD 201.3584. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 908 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 910 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -291,7 +291,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `cc1101rgpr` — `CC1101RGPR`.
   - `ebyte_e01_ml01ipx` — `Ebyte E01-ML01IPX`.
   - `esp32_c5_wroom_1u_n8r8` — `ESP32-C5-WROOM-1U-N8R8`.
-  - `esp32_s3_wroom_1u_n16r2` — `ESP32-S3-WROOM-1U-N16R2`.
+  - `esp32_s3_wroom_1u_n16r8` — `ESP32-S3-WROOM-1U-N16R8`.
   - `infineon_bgs13sn8e6327xtsa1` — `Infineon BGS13SN8E6327XTSA1`.
   - `m5_u214` — `M5Stack U214 Cap LoRa-1262`.
   - `nicerf_sa518_v11` — `NiceRF SA518`.
@@ -510,12 +510,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>ESP32-S3-WROOM-1U-N16R2</code> — 1 × USD 4.7741 = USD 4.7741</summary>
+<details><summary><code>ESP32-S3-WROOM-1U-N16R8</code> — 1 × USD 5.1080 = USD 5.1080</summary>
 
-- Device id: `esp32_s3_wroom_1u_n16r2`.
+- Device id: `esp32_s3_wroom_1u_n16r8`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R2/16162650).
+- Checked: `2026-08-20`; [published source](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R8/16162641).
 
 </details>
 
@@ -1230,7 +1230,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 111 × USD 0.0258 = USD 2.8638</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 112 × USD 0.0258 = USD 2.8896</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1329,7 +1329,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>SN74LVC1G08DCKR</code> — 1 × USD 0.0490 = USD 0.0490</summary>
+<details><summary><code>SN74LVC1G08DCKR</code> — 2 × USD 0.0490 = USD 0.0980</summary>
 
 - Device id: `ti_sn74lvc1g08_dckr`.
 - Scope: `base_product`.

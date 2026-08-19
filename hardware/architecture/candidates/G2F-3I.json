@@ -109,7 +109,7 @@
           "equivalence_envelope": ["same exposed real-device contacts, package/mechanics, memory/resources and independent programming/recovery", "all accepted bands, modes, full nRF concurrency, timing, sensitivity, power, evidence and quiet-state controls preserved", "regulatory/profile and toolchain support no worse"],
           "requalification": ["zero-based pin/resource/owner and firmware contract review", "programming/recovery/diagnostic and inter-domain IPC HIL", "conducted/OTA/optical/audio/coexistence/no-stall qualification for every affected group"],
           "device_ids": [
-            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r2", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa518_v11", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop95238tt", "vishay_vemd1060x01", "vishay_vsmy14940"
+            "adi_ad8314acpz_rl7", "adi_ltc5532_es6_trmpbf", "cc1101rgpr", "ebyte_e01_ml01ipx", "esp32_c5_wroom_1u_n8r8", "esp32_s3_wroom_1u_n16r8", "infineon_bgs13sn8e6327xtsa1", "m5_u214", "nicerf_sa518_v11", "rp2354b_a4", "skyworks_si4732_a10_gsr", "vishay_tsmp95000tt", "vishay_tsop95238tt", "vishay_vemd1060x01", "vishay_vsmy14940"
           ]
         },
         {
@@ -176,7 +176,7 @@
     "status": "paper_reviewed_joint_candidate_projection_not_target_architecture",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 49,
-      "expected_occurrence_count": 1069,
+      "expected_occurrence_count": 1073,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -270,15 +270,26 @@
     "touch_irq": {
       "controller": "exact Sitronix ST77922 TDDI integrated inside HMX035CTFT-001; this is not a separate FT6x36-class device",
       "bus": "SYS_I2C at exact 7-bit address 0x38, up to the controller's 400-kHz limit",
-      "route": "active-low display TP_INT has an exact 10-kOhm raw pull-up, enters SN74LVC1G07DCKR and joins SYS_INT_N on S3 GPIO37 as open drain; firmware reads touch status after the shared interrupt",
+      "route": "active-low display TP_INT has an exact 10-kOhm raw pull-up, enters SN74LVC1G07DCKR and joins SYS_INT_N on S3 GPIO45 as open drain; the N16R8 module fixes VDD_SPI by eFuse so this post-strap runtime input cannot alter memory voltage; firmware reads touch status after the shared interrupt",
       "polarity_source": "the exact ES3C35P/HMX035CTFT-001 product specification states that the interrupt input line is low during a touch event",
       "behavior": "touch remains interrupt-driven; no polling-only downgrade or inverting population alternative is accepted",
       "remaining_hil": "specimen identity/readback, idle voltage, interrupt pulse/hold/clear semantics, reset/recovery and shared-line source identification"
     },
-    "pin_budget_result": "S3 is 33 used / 3 reserved / 0 free; main slow_io is 24 used / 0 reserved / 0 free; the dedicated UI input expander is 10 used / 6 reserved / 0 free; M1 has two reserved no-connect contacts after the S3 fault-reset and UI-temperature paths; PTT, RUN/KILL, full D-pad, F1 and F2 all have complete assigned paths",
+    "pin_budget_result": "ESP32-S3-WROOM-1U-N16R8 is 33 used / 0 reserved / 0 free: GPIO35/36/37 belong to octal PSRAM, while GPIO0/45/46 are safely reclaimed with explicit boot-strap circuitry and HIL gates; main slow_io is 24 used / 0 reserved / 0 free; the dedicated UI input expander is 10 used / 6 reserved / 0 free; M1 has two reserved no-connect contacts after the S3 fault-reset and UI-temperature paths; PTT, RUN/KILL, full D-pad, F1 and F2 all have complete assigned paths",
     "direct_input_cost_result": "at quantity 100, TCA9539PWR is USD 1.0196 versus USD 1.0212 for TCA9534APWR. The new SKRHADE010 is USD 2.43; ten USD-0.0629 diodes are removed, while three USD-0.0097 pull-ups and one USD-0.309 rear ESD array are added. Excluding the five superseded Y78/KMR switch bodies whose comparable USD quantity-100 price remains RFQ-only, the priced delta is +USD 2.1375; the new topology is cheaper whenever those five switches total more than USD 2.1375 (USD 0.4275 each), and it always removes ten placed bodies",
     "exact_switch_boundary_cost_note": "the USD-1.62 separate TLSMDT3C020GLFS STOP and one separate B3S RE-ARM placement are removed. The existing USD-0.7823 JS102011SCQN performs both source command and RUN/KILL safety command; production costing remains a supplier-quote gate",
     "remaining_hil": ["custom cross fit on the SKRHADE010 3-mm stem, retention, tilt, center/direction discrimination, operating force and enclosure travel", "45-degree SKRHADE010 land pattern, guide-boss drilling and mounted orientation coupon", "B3S-1100P direct finger access, 1.57-N feel, spacing and board-edge protection for BACK/OPT/F1/F2/PTT", "JS102011SCQN RUN/KILL legends, side access, travel, sealing and unmistakable KILL-to-RUN recovery action", "Davies 1227-J insertion depth, retention, EC11 push travel and rear access with U214 installed", "physical SYS-I2C address collision scan, TCA9539 reset and interrupt behavior", "direct-input ESD/contact-current/debounce and multi-key semantics", "encoder/PTT/safety ESD return and transient behavior", "encoder speed, chatter, EMI and simultaneous UI/radio/storage load", "ST77922 specimen identity/readback, exact 0x38 response, TP_INT idle voltage/pulse persistence/clear semantics and shared-line source identification"]
+  },
+  "s3_memory_contract": {
+    "status": "paper_reviewed_exact_n16r8_memory_and_boot_remap_hil_open",
+    "module": "ESP32-S3-WROOM-1U-N16R8: 16 MB quad flash, 8 MB 3.3-V octal PSRAM and the same 18.0x19.2x3.2-mm external-antenna module envelope as N16R2",
+    "temperature": "production build input CONFIG_SPIRAM_ECC_ENABLE=y is mandatory; the official module contract then retains -40..85 degC and exposes at least 7.5 MB (0x780000 bytes) usable PSRAM after the documented 1/16 ECC capacity cost. CI rejects a production image without ECC, and startup self-test gates UI/radio admission on the usable-size floor and bounded scratch write/read",
+    "pin_truth": "GPIO35/36/37 are unavailable because the exact N16R8 uses them internally. Display/storage SCK moves to GPIO18, display/storage D0 moves to strap GPIO46 with a physical 10-kOhm pull-down, shared SYS_INT_N moves to eFuse-neutral GPIO45, and codec I2S DIN moves to GPIO0 behind a CODEC_READY AND AUDIO_ARM gate",
+    "recovery": "GPIO0 retains its exact 10-kOhm normal-boot pull-up plus protected 1-kOhm BOOT fixture/button path. During every reset AUDIO_ARM is physically low, so the codec DIN buffer is high-Z and cannot defeat ROM download. GPIO46 is externally low throughout strap sampling. Native USB, UART0 and the keyed DBG10 recovery paths remain unchanged",
+    "power_delta": "official typical PSRAM light-sleep current rises by about 100 uA versus N16R2: about 4.8 mAh over 48 hours, or 0.06 percent of the selected 8-Ah pack; active workload current remains a measured firmware/HIL budget",
+    "firmware_storage": "the 16-MB flash remains the maximum external-antenna WROOM-1U capacity. Production keeps two rollback-capable application slots; bulk RF captures, recordings, dictionaries, maps and replaceable UI assets belong on microSD rather than inside either executable image",
+    "cost": "current DigiKey quantity-100 module delta versus N16R2 is +USD 0.3339. One SN74LVC1G08DCKR and one 100-nF bypass add about USD 0.05 plus capacitor cost; no user-visible function, interface, recovery path or thermal envelope is removed",
+    "remaining_hil": ["read and archive the received module marking, flash/PSRAM identity and VDD_SPI eFuse state", "prove cold/warm/native-USB/UART0/DBG10 recovery with codec powered, unpowered and faulted", "scope GPIO0, GPIO45 and GPIO46 through reset, strap sampling and runtime handoff", "prove the CONFIG_SPIRAM_ECC_ENABLE production guard plus startup self-test and stress at temperature with at least 0x780000 bytes usable allocation", "simultaneous full-duplex audio capture/playback plus display, storage and radio-event stress", "48-hour workload and light-sleep energy regression against the pack budget"]
   },
   "slow_io_contract": {
     "decision": "DEC-0089",
@@ -578,7 +589,7 @@
     "logic_supply": "VDDI, VDD and IM1 use protected 3V3_MAIN with exact 10-uF plus 100-nF local decoupling; a separate logic load switch is intentionally rejected because a tripped rail could be back-powered by the live QSPI/I2C/reset pins without costly isolation",
     "backlight": "LEDA alone uses TPS2553DRVR-1 latch-off/reverse-blocking protection; 133-kOhm RILIM gives the datasheet table's approximately 174-to-234-mA system range around 200 mA nominal, above the QDtech 120-mA backlight reference; three LEDK contacts share one exact 10-Ohm 0.66-W anti-surge resistor and one DMN2056U-7 low-side PWM MOSFET",
     "reset_defaults": "separate exact 10-kOhm pull-downs hold display RESX and touch TP_RESXP low while the TCA6424 outputs are reset/high-Z; release display reset only after rail stability, wait at least 120 ms before Sleep Out, and wait at least 100 ms after touch-reset release",
-    "interface": "direct QSPI plus common SYS_I2C; ST77922 touch uses exact 7-bit address 0x38 and up to 400 kHz; the existing single exact 2.2-kOhm host pull-up pair is not duplicated; active-low TP_INT receives an exact 10-kOhm raw pull-up and a fixed non-inverting SN74LVC1G07DCKR open-drain normalization before shared S3 GPIO37",
+    "interface": "direct QSPI plus common SYS_I2C; ST77922 touch uses exact 7-bit address 0x38 and up to 400 kHz; the existing single exact 2.2-kOhm host pull-up pair is not duplicated; active-low TP_INT receives an exact 10-kOhm raw pull-up and a fixed non-inverting SN74LVC1G07DCKR open-drain normalization before shared S3 GPIO45",
     "signal_integrity": "reserve source-series and shunt tuning footprints as DNP near the S3/connector boundary; values become populated BOM only from shared display/microSD RC and contention HIL",
     "fpc_esd_boundary": "the display FPC is an internal service-only connection and is not live-insertable; no additional connector-side ESD array is populated in the base design. Reopen protection if the enclosure exposes the tail or product requirements later permit live replacement",
     "fault_behavior": "backlight overcurrent longer than the internal deglitch latches LEDA off; recovery requires main-rail power cycling, not firmware auto-retry; FAULT_N is pulled up and exposed to the fixture only",
@@ -617,7 +628,7 @@
   "native_rf_electrical_contract": {
     "decision": "DEC-0092",
     "status": "paper_reviewed_i6_s3_c5_native_rf_subblock_and_g3_route_hil_open",
-    "scope": "independent external-antenna paths for ESP32-S3-WROOM-1U-N16R2 and ESP32-C5-WROOM-1U-N8R8, with exact 30-mm double-ended UMCC Gen1 jumpers, board-side first-generation U.FL mates, dual-band directional forward-power samples and complete LTC5532 support circuits",
+    "scope": "independent external-antenna paths for ESP32-S3-WROOM-1U-N16R8 and ESP32-C5-WROOM-1U-N8R8, with exact 30-mm double-ended UMCC Gen1 jumpers, board-side first-generation U.FL mates, dual-band directional forward-power samples and complete LTC5532 support circuits",
     "path_topology": "each datasheet-dimensioned module ANT receptacle uses an exact TE Connectivity 2118651-2, 30-mm, double-ended UMCC Gen1 microcoax jumper into a separate Hirose U.FL-R-SMT-1(10); each board receptacle and KYOCERA AVX CP0603Q5425ENTR sits beside its outward RP-SMA port, and the front port order keeps S3 at x=16 mm and moves C5 to x=59 mm so both generated cable centrelines fit without crossing",
     "band_coverage": "the same CP0603Q5425ENTR SKU covers S3 2400-2484 MHz and C5 2400-2484 plus 5180-5885 MHz inside its exact 2400-2496 and 4900-5950 MHz bands; ANT2 on C5 remains default-disabled and is not a second product antenna",
     "evidence_circuit": "each COUPLING land feeds its AON-powered LTC5532 through an exact 39-pF C0G DC-block; VOS is grounded, two exact 10-kOhm resistors set gain 2, exact 33-pF output loading and 100-nF local bypass implement the datasheet first target, and the coupler 50-OHM land has its own exact 49.9-Ohm termination",
@@ -672,7 +683,7 @@
     "scope": "permanent independent programming, recovery and diagnostics for S3, C5 and RP2354B without permitting a service cable or fixture to power the product or bypass RUN/KILL, watchdog or FAULT_KILL",
     "usb": "S3 retains the protected product USB-C. C5 and RP each use a separate GCT USB4105-GF-A data-only USB-C, connector-side TPD2EUSB30ADRTR and board-powered FSUSB42MUX. OE and SEL are hard-low so HSD1 is selected only while 3V3_MAIN powers the switch; power-off Ioff blocks D+/D- backfeed. CC1/CC2 each use exact 5.1-kOhm Rd. VBUS reaches only an exact 1-MOhm bleeder and a high-impedance test pad; no board-power path exists",
     "debug": "three separately populated Samtec FTSH-105-01-L-DV-K-P-TR keyed DBG10 headers share pinout VTREF,GND,RESET,BOOT,DBG0,DBG1,GND,ID0,GND,ID1. Pins 3-6 have one TPD4E05U06DQAR per header; target paths use 1-kOhm RESET/BOOT and 470-Ohm UART/SWD series resistors. Passive IDs are 00 S3, 01 C5 and 10 RP",
-    "controls": "six separate Alps Alpine SKQGADE010 SPST-NO switches expose RESET and BOOT for each domain. S3 GPIO0, C5 GPIO28 and RP QSPI_SS_USB_BOOT have exact 10-kOhm normal-boot pull-ups; C5 GPIO27 is independently fixed high by exact 10 kOhm and remains observable at a read-only test point",
+    "controls": "six separate Alps Alpine SKQGADE010 SPST-NO switches expose RESET and BOOT for each domain. S3 GPIO0, C5 GPIO28 and RP QSPI_SS_USB_BOOT have exact 10-kOhm normal-boot pull-ups; S3 GPIO0 is also the gated runtime I2S_DIN input but its codec driver is physically disabled throughout reset; C5 GPIO27 is independently fixed high by exact 10 kOhm and remains observable at a read-only test point",
     "reset": "an AON-powered SN74LVC1G06DCKR, the second channel of the exact Schmitt conditioner and two 2N7002DW-7-F packages implement three passive-drain reset sinks. RUN_PERMIT holds RF_RESET_KILL_GATE low for C5/RP; the safety controller and TPS3435 independently drive S3_RESET_KILL_GATE so S3 may later boot bounded fault-only UI. Each EN/RUN has an exact 10-kOhm main-domain pull-up, so manual and fixture reset can only pull low and never fight a push-pull source",
     "cost": "first-pass quantity-100 active-component and exact-passive addition is approximately USD 10.5-11.5, dominated by three permanently populated keyed Samtec headers; it excludes fixture cables, enclosure hatches and assembly quotation",
     "remaining_hil": ["received connector/header/switch footprint and enclosure-actuation coupons", "USB Full-Speed eye/edge and attach-detach behavior through each FSUSB42MUX", "board-off D-line and VBUS backfeed with one and three simultaneous hosts", "erased, corrupt and wrong-image recovery independently over every USB/UART/SWD path", "held/misordered RESET/BOOT, invalid DBG10 ID, fixture overdrive and ESD fault injection", "hard-STOP and AON-loss reset assertion during every recovery mode without RF re-arm"]
@@ -1296,7 +1307,7 @@
     ]
   },
   "instances": {
-    "s3": "esp32_s3_wroom_1u_n16r2",
+    "s3": "esp32_s3_wroom_1u_n16r8",
     "c5": "esp32_c5_wroom_1u_n8r8",
     "rp": "rp2354b_a4",
     "m1_ui_plug": "hirose_fx8c_80p_sv1_92",
@@ -1628,7 +1639,7 @@
     "sd_miso_buffer_bypass": "tdk_c1005x7r1h104k050bb",
     "sd_on_pulldown": "yageo_rc0402fr_0710kl",
     "sd_host_sck_pulldown": "yageo_rc0402fr_0710kl",
-    "sd_host_d0_pullup": "yageo_rc0402fr_0710kl",
+    "sd_host_d0_pulldown": "yageo_rc0402fr_0710kl",
     "sd_host_d1_pullup": "yageo_rc0402fr_0710kl",
     "sd_host_cs_pullup": "yageo_rc0402fr_0710kl",
     "lcd_host_cs_pullup": "yageo_rc0402fr_0710kl",
@@ -1736,10 +1747,12 @@
     "codec_i2s_ws_iso": "ti_sn74lvc1g126_dckr",
     "codec_i2s_dout_iso": "ti_sn74lvc1g126_dckr",
     "codec_i2s_din_iso": "ti_sn74lvc1g126_dckr",
+    "codec_i2s_din_boot_gate": "ti_sn74lvc1g08_dckr",
     "codec_i2s_bclk_iso_bypass": "tdk_c1005x7r1h104k050bb",
     "codec_i2s_ws_iso_bypass": "tdk_c1005x7r1h104k050bb",
     "codec_i2s_dout_iso_bypass": "tdk_c1005x7r1h104k050bb",
     "codec_i2s_din_iso_bypass": "tdk_c1005x7r1h104k050bb",
+    "codec_i2s_din_boot_gate_bypass": "tdk_c1005x7r1h104k050bb",
     "codec_pvdd_bypass": "tdk_c1005x7r1h104k050bb",
     "codec_dvdd_bead": "murata_blm18pg181sn1d",
     "codec_dvdd_bypass": "tdk_c1005x7r1h104k050bb",
@@ -2223,7 +2236,7 @@
     {"instance":"s3","contact":"GPIO3","net":"RP_ALERT_N","direction":"i","controller":"GPIO_IRQ","peers":["rp.GPIO19"],"strap_proof":"RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state"},
     {"instance":"s3","contact":"GPIO4","net":"DISPLAY_SD_SPI_D1","direction":"io","controller":"SPI2","peers":["sd_miso_series.END_2","sd_host_d1_pullup.END_1","display_connector.PIN_10"],"sharing_proof":"SN74LVC1G125DCKR can return SD DAT0/MISO only while SD_CS_N is low; its Ioff output is high-Z when card power is absent, so display QSPI D1 no longer depends solely on card behavior, while specimen contention and timing still remain HIL"},
     {"instance":"s3","contact":"GPIO5","net":"SD_SPI_CS_N","direction":"o","controller":"SPI2","peers":["sd_host_buffer.3A","sd_miso_buffer.OE_N","sd_host_cs_pullup.END_1"]},
-    {"instance":"s3","contact":"GPIO6","net":"AUDIO_ARM","direction":"o","controller":"GPIO","peers":["audio_safe_gate.1B","audio_safe_gate.2B"],"reset_proof":"external pull-down forces both analog defaults from reset until firmware verifies codec power, address, clocks, levels and selector state"},
+    {"instance":"s3","contact":"GPIO6","net":"AUDIO_ARM","direction":"o","controller":"GPIO","peers":["audio_safe_gate.1B","audio_safe_gate.2B","codec_i2s_din_boot_gate.B"],"reset_proof":"external pull-down forces both analog defaults and the GPIO0 codec-data isolator off from reset until firmware verifies codec power, address, clocks, levels and selector state"},
     {"instance":"s3","contact":"GPIO7","net":"UNIT_HOST_SIG0","direction":"io","controller":"I2C1_OR_UART1_OR_GPIO","peers":["unit_signal_iso.A1"]},
     {"instance":"s3","contact":"GPIO8","net":"UNIT_HOST_SIG1","direction":"io","controller":"I2C1_OR_UART1_OR_GPIO","peers":["unit_signal_iso.A2"]},
     {"instance":"s3","contact":"GPIO9","net":"S3_RP_IPC_CS_N","direction":"o","controller":"SPI3","peers":["rp.GPIO25"]},
@@ -2235,13 +2248,13 @@
     {"instance":"s3","contact":"GPIO15","net":"I2S_BCLK","direction":"o","controller":"I2S0","peers":["codec_i2s_bclk_iso.A"]},
     {"instance":"s3","contact":"GPIO16","net":"I2S_WS","direction":"o","controller":"I2S0","peers":["codec_i2s_ws_iso.A"]},
     {"instance":"s3","contact":"GPIO17","net":"I2S_DOUT","direction":"o","controller":"I2S0","peers":["codec_i2s_dout_iso.A"]},
-    {"instance":"s3","contact":"GPIO18","net":"I2S_DIN","direction":"i","controller":"I2S0","peers":["codec_i2s_din_iso.Y"]},
+    {"instance":"s3","contact":"GPIO18","net":"DISPLAY_SD_SPI_SCK","direction":"o","controller":"SPI2","peers":["sd_host_buffer.1A","sd_host_sck_pulldown.END_1","display_connector.PIN_11"]},
     {"instance":"s3","contact":"GPIO19","net":"S3_USB_DM","direction":"io","controller":"USB_SERIAL_JTAG","peers":["product_usb_dm_series.END_2"],"sharing_proof":"dedicated protected USB Full-Speed D- path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"},
     {"instance":"s3","contact":"GPIO20","net":"S3_USB_DP","direction":"io","controller":"USB_SERIAL_JTAG","peers":["product_usb_dp_series.END_2"],"sharing_proof":"dedicated protected USB Full-Speed D+ path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"},
     {"instance":"s3","contact":"GPIO21","net":"S3_RP_IPC_MOSI","direction":"o","controller":"SPI3","peers":["rp.GPIO24"]},
-    {"instance":"s3","contact":"GPIO35","net":"DISPLAY_SD_SPI_SCK","direction":"o","controller":"SPI2","peers":["sd_host_buffer.1A","sd_host_sck_pulldown.END_1","display_connector.PIN_11"]},
-    {"instance":"s3","contact":"GPIO36","net":"DISPLAY_SD_SPI_D0","direction":"o","controller":"SPI2","peers":["sd_host_buffer.2A","sd_host_d0_pullup.END_1","display_connector.PIN_13"]},
-    {"instance":"s3","contact":"GPIO37","net":"SYS_INT_N","direction":"i","controller":"GPIO_IRQ","peers":["slow_io.INT","ui_matrix_io.INT_N","pd_controller.I2Ct_IRQ","touch_irq_buffer.Y","pack_status_buffer.D2"],"sharing_proof":"all sources are active-low/open-drain with an external pull-up; exact 2N7002DW Q2 translates the pack-admission request into a passive drain, and firmware reads both expanders, touch, PD and pack-admission status after a shared interrupt"},
+    {"instance":"s3","contact":"GPIO0","net":"I2S_DIN","direction":"i","controller":"I2S0","peers":["codec_i2s_din_iso.Y","s3_boot_pullup.END_2","s3_dbg_boot_series.END_2"],"strap_proof":"the exact 10-kOhm pull-up preserves normal boot; CODEC_READY is ANDed with reset-low AUDIO_ARM before the DIN buffer can drive, so GPIO0 remains fixture-controllable throughout ROM strap sampling; the 1-kOhm service path bounds accidental runtime contention"},
+    {"instance":"s3","contact":"GPIO45","net":"SYS_INT_N","direction":"i","controller":"GPIO_IRQ","peers":["slow_io.INT","ui_matrix_io.INT_N","pd_controller.I2Ct_IRQ","touch_irq_buffer.Y","pack_status_buffer.D2"],"strap_proof":"the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling","sharing_proof":"all sources are active-low/open-drain with an external pull-up; exact 2N7002DW Q2 translates the pack-admission request into a passive drain, and firmware reads both expanders, touch, PD and pack-admission status after a shared interrupt"},
+    {"instance":"s3","contact":"GPIO46","net":"DISPLAY_SD_SPI_D0","direction":"o","controller":"SPI2","peers":["sd_host_buffer.2A","sd_host_d0_pulldown.END_1","display_connector.PIN_13"],"strap_proof":"one physical 10-kOhm pull-down holds GPIO46 low through ROM sampling, including joint-download entry, then becomes only a weak defined idle load on the push-pull QSPI D0 output"},
     {"instance":"s3","contact":"GPIO38","net":"LCD_CS_N","direction":"o","controller":"SPI2","peers":["display_connector.PIN_9","lcd_host_cs_pullup.END_1"]},
     {"instance":"s3","contact":"GPIO39","net":"ENCODER_A","direction":"i","controller":"PCNT0","peers":["encoder.A","encoder_a_pullup.END_1"],"sharing_proof":"dedicated hardware quadrature phase; external pull-up and valid Gray-state/full-detent firmware semantics remain effective during display, storage and radio load"},
     {"instance":"s3","contact":"GPIO40","net":"LCD_BL_PWM","direction":"o","controller":"LEDC","peers":["backlight_gate_series.END_1"],"reset_proof":"exact 10-kOhm MOSFET gate pull-down keeps every LEDK path off before S3 output configuration"},
@@ -2318,7 +2331,7 @@
 
     {"instance":"pd_controller","contact":"I2Ct_SDA","net":"SYS_I2C_SDA","direction":"io","controller":"I2C_TARGET","peers":["s3.GPIO1"]},
     {"instance":"pd_controller","contact":"I2Ct_SCL","net":"SYS_I2C_SCL","direction":"i","controller":"I2C_TARGET","peers":["s3.GPIO2"]},
-    {"instance":"pd_controller","contact":"I2Ct_IRQ","net":"SYS_INT_N","direction":"od","controller":"I2C_TARGET","peers":["s3.GPIO37"],"sharing_proof":"active-low output with external pull-up shares the wired-low system interrupt; S3 reads TPS and TCA6424 status to identify all asserting sources"},
+    {"instance":"pd_controller","contact":"I2Ct_IRQ","net":"SYS_INT_N","direction":"od","controller":"I2C_TARGET","peers":["s3.GPIO45"],"sharing_proof":"active-low output with external pull-up shares the wired-low system interrupt; S3 reads TPS and TCA6424 status to identify all asserting sources"},
     {"instance":"pd_controller","contact":"GPIO0","net":"PD_EEPROM_WP","direction":"od","controller":"GPIO","peers":["pd_config_eeprom.WP"],"reset_proof":"Hi-Z reset plus exact 10-kOhm LDO_3V3 pull-up keeps EEPROM write-protected; authorized policy may only sink WP during a signed update window"},
     {"instance":"pd_controller","contact":"GPIO1","net":"CHARGE_EN_N","direction":"od","controller":"GPIO","peers":["nvdc_charger.CE"],"reset_proof":"Hi-Z reset plus exact REGN-referenced 10-kOhm pull-up keeps the active-low charger enable deasserted; valid policy uses GPIO1 only as an open-drain sink"},
 
@@ -2352,11 +2365,7 @@
     {"instance":"safety_controller","contact":"PA28_A5","net":"UI_ZONE_TEMP_ADC","direction":"i","controller":"ADC","peers":["ui_zone_ntc.END_1","ui_zone_temp_pullup.END_2","ui_zone_temp_filter.END_1"]}
   ],
   "reservations": {
-    "s3": {
-      "GPIO0": "physical ROM boot control; native USB is the recovery data path",
-      "GPIO45": "3.3 V memory/boot strap; no runtime load",
-      "GPIO46": "boot strap; no runtime load"
-    },
+    "s3": {},
     "c5": {
       "GPIO2": "strap with no function worth reset-state coupling in this candidate",
       "GPIO3": "documented pull fixes the accepted boot/JTAG state; no runtime load",
@@ -2525,7 +2534,7 @@
     {"from":"s3_boot_button.A1","to":"s3_boot_button.A2","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
     {"from":"s3_boot_button.B1","to":"s3_boot_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
     {"from":"s3_boot_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
-    {"from":"s3_dbg_boot_series.END_2","to":"s3.GPIO0","net":"S3_BOOT_N","safety":"physical GPIO0 is exposed without adding a runtime load"},
+    {"from":"s3_dbg_boot_series.END_2","to":"s3.GPIO0","net":"I2S_DIN","safety":"the protected 1-kOhm service path retains physical BOOT control on the runtime codec-data input; the separately gated DIN driver is high-Z throughout reset and ROM sampling"},
     {"from":"s3_dbg_header.P5","to":"s3_dbg_esd.D2_PLUS","net":"S3_DBG0_CONNECTOR","safety":"UART TX connector ESD shunt"},
     {"from":"s3_dbg_header.P5","to":"s3_dbg0_series.END_1","net":"S3_DBG0_CONNECTOR","safety":"exact 470-Ohm fixture-current and edge limit"},
     {"from":"s3_dbg0_series.END_2","to":"s3.GPIO43","net":"S3_UART_SERVICE_TX","safety":"real exposed module UART0 TX contact"},
@@ -2616,7 +2625,7 @@
     {"from":"rp_dbg_esd.NC_10","to":"abstract:no-connect","net":"NO_CONNECT","safety":"manufacturer NC remains open"},
 
     {"from":"abstract:3V3_MAIN","to":"s3_boot_pullup.END_1","net":"3V3_MAIN","safety":"exact normal-boot pull-up"},
-    {"from":"s3_boot_pullup.END_2","to":"s3.GPIO0","net":"S3_BOOT_N","safety":"S3 normal boot remains deterministic without a fixture"},
+    {"from":"s3_boot_pullup.END_2","to":"s3.GPIO0","net":"I2S_DIN","safety":"the exact 10-kOhm target-side pull-up preserves deterministic normal boot and is a weak load after GPIO0 becomes the codec-data input"},
     {"from":"abstract:3V3_MAIN","to":"c5_boot_pullup.END_1","net":"3V3_MAIN","safety":"exact normal-boot pull-up"},
     {"from":"c5_boot_pullup.END_2","to":"c5.GPIO28","net":"C5_BOOT_N","safety":"C5 normal boot remains deterministic without a fixture"},
     {"from":"abstract:3V3_MAIN","to":"rp_boot_pullup.END_1","net":"3V3_MAIN","safety":"exact normal-boot pull-up"},
@@ -2778,7 +2787,7 @@
     {"from":"abstract:3V3_MAIN","to":"sys_i2c_sda_pullup.END_1","net":"3V3_MAIN","safety":"host data pull-up uses the common live logic domain"},
     {"from":"sys_i2c_sda_pullup.END_2","to":"s3.GPIO1","net":"SYS_I2C_SDA","safety":"one exact 2.2-kOhm pull-up serves the complete scheduled host-control bus"},
     {"from":"abstract:3V3_MAIN","to":"sys_int_pullup.END_1","net":"3V3_MAIN","safety":"the shared interrupt pull-up exists only with the host domain"},
-    {"from":"sys_int_pullup.END_2","to":"s3.GPIO37","net":"SYS_INT_N","safety":"one exact 10-kOhm pull-up completes the wired-low interrupt tree without consuming another dedicated GPIO"},
+    {"from":"sys_int_pullup.END_2","to":"s3.GPIO45","net":"SYS_INT_N","safety":"one exact 10-kOhm pull-up completes the wired-low interrupt tree; the exact N16R8 module's fixed VDD_SPI eFuse makes this GPIO45 runtime load strap-neutral"},
     {"from":"abstract:3V3_MAIN","to":"slow_io.VCCI","net":"3V3_MAIN","safety":"the TCA6424A I2C interface domain shares the protected host rail"},
     {"from":"abstract:3V3_MAIN","to":"slow_io.VCCP","net":"3V3_MAIN","safety":"the TCA6424A P-port domain uses the same protected rail as VCCI, avoiding a second partial-power sequence"},
     {"from":"abstract:3V3_MAIN","to":"slow_io_vcci_bypass.END_1","net":"3V3_MAIN","safety":"one exact 100-nF capacitor is local to VCCI"},
@@ -2795,7 +2804,7 @@
     {"from":"slow_io.RESET","to":"abstract:TP_SLOW_IO_RESET_N","net":"SLOW_IO_RESET_N","safety":"fixture access provides direct reset diagnostics; product recovery uses bus recovery then a full main-rail power cycle below 0.2 V"},
     {"from":"slow_io.SCL","to":"s3.GPIO2","net":"SYS_I2C_SCL","safety":"exact TCA6424A clock endpoint shares the single host pull-up and stays at or below 400 kHz"},
     {"from":"slow_io.SDA","to":"s3.GPIO1","net":"SYS_I2C_SDA","safety":"exact TCA6424A data endpoint joins the scheduled host-control bus"},
-    {"from":"slow_io.INT","to":"s3.GPIO37","net":"SYS_INT_N","safety":"open-drain interrupt shares the single host-domain pull-up; firmware reads expander status before release"},
+    {"from":"slow_io.INT","to":"s3.GPIO45","net":"SYS_INT_N","safety":"open-drain interrupt shares the single host-domain pull-up; firmware reads expander status before release"},
     {"from":"nvdc_charger.QON","to":"abstract:no-connect","net":"CHARGER_QON_NC","safety":"QON uses its specified internal pull-up; no external system-reset or ship-FET function is claimed"},
     {"from":"nvdc_charger.STAT","to":"abstract:no-connect","net":"CHARGER_STAT_NC","safety":"unused open-drain STAT is disabled in the charger image; status and faults use INT/I2C"},
     {"from":"pd_controller.I2Cc_SDA","to":"pd_config_eeprom.SDA","net":"PD_LOCAL_I2C_SDA","safety":"dedicated address-0x50 boot image; one EEPROM per controller"},
@@ -2890,7 +2899,7 @@
     {"from":"pack_admission.PA23","to":"pack_irq_gate_pulldown.END_1","net":"PACK_SYS_INT_REQ","safety":"exact 10-kOhm gate pull-down prevents spurious shared-IRQ assertion through reset"},
     {"from":"pack_irq_gate_pulldown.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"IRQ request defaults inactive even when the main system rail is absent"},
     {"from":"pack_status_buffer.S2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"IRQ translator Q2 has a passive local source return"},
-    {"from":"pack_status_buffer.D2","to":"s3.GPIO37","net":"SYS_INT_N","safety":"exact 2N7002DW passive drain cannot drive the shared host interrupt high or back-power an off main domain"},
+    {"from":"pack_status_buffer.D2","to":"s3.GPIO45","net":"SYS_INT_N","safety":"exact 2N7002DW passive drain cannot drive the shared host interrupt high or back-power an off main domain"},
     {"from":"abstract:qualified-2s-positive","to":"pack_in_res.END_1","net":"BATTERY_STACK_POSITIVE","safety":"MAX17320 IN begins at the fused top of the accepted 2S stack"},
     {"from":"pack_in_res.END_2","to":"pack_gauge.IN","net":"PACK_GAUGE_IN","safety":"exact 10-Ohm 0.66-W resistor implements the Rev.12 IN requirement while reusing an active BOM line"},
     {"from":"pack_gauge.IN","to":"pack_in_bypass.END_1","net":"PACK_GAUGE_IN","safety":"exact 100-nF 50-V X7R bypass exceeds the required 25-V rating"},
@@ -3398,7 +3407,7 @@
     {"from":"sd_power_switch.VOUT","to":"sd_miso_buffer_bypass.END_1","net":"SD_CARD_3V3","safety":"separate exact 100-nF return-buffer bypass"},
     {"from":"sd_miso_buffer_bypass.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"local return-buffer bypass return"},
     {"from":"sd_host_sck_pulldown.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"10-kOhm host-side default keeps shared SPI2 clock low across reset"},
-    {"from":"abstract:3V3_MAIN","to":"sd_host_d0_pullup.END_2","net":"3V3_MAIN","safety":"10-kOhm host default prevents a powered card buffer from seeing floating MOSI across S3 reset"},
+    {"from":"sd_host_d0_pulldown.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"10-kOhm host default holds strap GPIO46 and shared QSPI D0 low through reset; firmware takes push-pull ownership only after ROM sampling"},
     {"from":"abstract:3V3_MAIN","to":"sd_host_d1_pullup.END_2","net":"3V3_MAIN","safety":"10-kOhm host default prevents the shared QSPI D1/MISO node from floating"},
     {"from":"abstract:3V3_MAIN","to":"sd_host_cs_pullup.END_2","net":"3V3_MAIN","safety":"10-kOhm host default deselects the card and disables its return buffer before firmware"},
     {"from":"abstract:3V3_MAIN","to":"lcd_host_cs_pullup.END_2","net":"3V3_MAIN","safety":"10-kOhm host default keeps the display deselected during card SPI-mode admission"},
@@ -3479,10 +3488,16 @@
     {"from":"codec_i2s_ws_iso.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"WS buffer return"},
     {"from":"codec_i2s_dout_iso.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"DOUT buffer return"},
     {"from":"codec_i2s_din_iso.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"DIN buffer return"},
+    {"from":"abstract:3V3_MAIN","to":"codec_i2s_din_boot_gate.VCC","net":"3V3_MAIN","safety":"host-powered AND gate remains available to enforce the reset-time GPIO0 boundary"},
+    {"from":"codec_i2s_din_boot_gate.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short local boot-gate return"},
+    {"from":"abstract:3V3_MAIN","to":"codec_i2s_din_boot_gate_bypass.END_1","net":"3V3_MAIN","safety":"exact 100-nF local boot-gate bypass"},
+    {"from":"codec_i2s_din_boot_gate_bypass.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short local bypass return"},
     {"from":"codec_supervisor.RESET_N","to":"codec_i2s_bclk_iso.OE","net":"CODEC_READY","safety":"BCLK output is high impedance until valid codec power"},
     {"from":"codec_supervisor.RESET_N","to":"codec_i2s_ws_iso.OE","net":"CODEC_READY","safety":"WS output is high impedance until valid codec power"},
     {"from":"codec_supervisor.RESET_N","to":"codec_i2s_dout_iso.OE","net":"CODEC_READY","safety":"playback data is high impedance until valid codec power"},
-    {"from":"codec_supervisor.RESET_N","to":"codec_i2s_din_iso.OE","net":"CODEC_READY","safety":"S3 capture input is disconnected from a collapsing codec domain"},
+    {"from":"codec_supervisor.RESET_N","to":"codec_i2s_din_boot_gate.A","net":"CODEC_READY","safety":"a powered codec alone cannot enable its GPIO0 driver"},
+    {"from":"s3.GPIO6","to":"codec_i2s_din_boot_gate.B","net":"AUDIO_ARM","safety":"the physical reset pull-down keeps the codec-data driver disabled throughout every S3 reset and ROM strap window"},
+    {"from":"codec_i2s_din_boot_gate.Y","to":"codec_i2s_din_iso.OE","net":"CODEC_DIN_READY","safety":"capture data reaches boot GPIO0 only after both codec readiness and explicit post-boot AUDIO_ARM"},
     {"from":"s3.GPIO15","to":"codec_i2s_bclk_iso.A","net":"I2S_BCLK","safety":"dedicated I2S0 BCLK never shares a controller with display or storage"},
     {"from":"codec_i2s_bclk_iso.Y","to":"codec.SCLK","net":"CODEC_I2S_BCLK","safety":"ES8311 derives its internal master clock from the admitted BCLK mode"},
     {"from":"s3.GPIO16","to":"codec_i2s_ws_iso.A","net":"I2S_WS","safety":"dedicated I2S0 word select"},
@@ -3490,7 +3505,7 @@
     {"from":"s3.GPIO17","to":"codec_i2s_dout_iso.A","net":"I2S_DOUT","safety":"dedicated playback data"},
     {"from":"codec_i2s_dout_iso.Y","to":"codec.DSDIN","net":"CODEC_I2S_DOUT","safety":"playback data reaches only the powered codec"},
     {"from":"codec.ASDOUT","to":"codec_i2s_din_iso.A","net":"CODEC_I2S_DIN_LOCAL","safety":"codec capture data enters a host-powered receive buffer"},
-    {"from":"codec_i2s_din_iso.Y","to":"s3.GPIO18","net":"I2S_DIN","safety":"S3 sees high impedance rather than an off-domain codec output"},
+    {"from":"codec_i2s_din_iso.Y","to":"s3.GPIO0","net":"I2S_DIN","safety":"S3 sees high impedance throughout reset and whenever codec readiness or AUDIO_ARM is absent; the target-side boot pull-up is only a weak runtime load"},
     {"from":"abstract:3V3_MAIN","to":"codec_i2s_bclk_iso_bypass.END_1","net":"3V3_MAIN","safety":"exact 100-nF BCLK-buffer bypass"},
     {"from":"codec_i2s_bclk_iso_bypass.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"BCLK bypass return"},
     {"from":"abstract:3V3_MAIN","to":"codec_i2s_ws_iso_bypass.END_1","net":"3V3_MAIN","safety":"exact 100-nF WS-buffer bypass"},

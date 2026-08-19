@@ -157,7 +157,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(911, sum(line["quantity"] for line in lines))
+        self.assertEqual(913, sum(line["quantity"] for line in lines))
         self.assertEqual(199, len(lines))
         self.assertEqual(
             1,
@@ -172,7 +172,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            894,
+            896,
             sum(
                 line["quantity"]
                 for line in lines
@@ -235,13 +235,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**912** architecture instances", rendered)
-        self.assertIn("**911** supplied/costed placements", rendered)
+        self.assertIn("**914** architecture instances", rendered)
+        self.assertIn("**913** supplied/costed placements", rendered)
         self.assertIn("**198/199** used lines", rendered)
         self.assertIn("**199/199** lines", rendered)
         self.assertIn("**188/199** lines", rendered)
-        self.assertIn("**894/911** supplied placements", rendered)
-        self.assertIn("USD 200.9497", rendered)
+        self.assertIn("**896/913** supplied placements", rendered)
+        self.assertIn("USD 201.3584", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -282,7 +282,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(49, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1069, policy["expected_occurrence_count"])
+        self.assertEqual(1073, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -619,7 +619,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("pack_gauge.PFAIL", "pack_status_buffer.G1", "PACK_PFAIL_RAW"),
             ("pack_status_buffer.D1", "pack_admission.PA16_A8", "PACK_PFAIL_N"),
             ("pack_admission.PA23", "pack_status_buffer.G2", "PACK_SYS_INT_REQ"),
-            ("pack_status_buffer.D2", "s3.GPIO37", "SYS_INT_N"),
+            ("pack_status_buffer.D2", "s3.GPIO45", "SYS_INT_N"),
             ("pack_admission.VDD", "power_command_pullup.END_1", "PACK_ADMISSION_VDD"),
             ("power_command_pullup.END_2", "pack_admission.PA24_A3", "POWER_COMMAND_OFF_N"),
             ("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"),
@@ -667,7 +667,7 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_principled_pinout_is_derived_from_current_leading_budget(self):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
-        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 33 | 3 | 0 | 36 |", rendered)
+        self.assertIn("| `s3` | `ESP32-S3-WROOM-1U-N16R8` | 33 | 0 | 0 | 33 |", rendered)
         self.assertIn("| `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |", rendered)
         self.assertIn("| `rp` | `SC1512-A4` |", rendered)
         self.assertIn("| 48 | 0 | 0 | 48 |", rendered)
@@ -893,7 +893,7 @@ class ArchitectureValidationTests(unittest.TestCase):
                 self.assertLess(len(diagram), GENERATOR.MERMAID_RENDER_LIMIT, doc_name)
                 assert_no_implicit_mermaid_nodes(diagram, doc_name)
             combined_diagrams = "\n".join(diagrams)
-            for token in ("ESP32-S3-WROOM-1U-N16R2", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
+            for token in ("ESP32-S3-WROOM-1U-N16R8", "ESP32-C5-WROOM-1U-N8R8", "SC1512-A4"):
                 self.assertIn(token, combined_diagrams, doc_name)
             self.assertIn('S3 <-->|"1-bit SDIO"| C5', combined_diagrams, doc_name)
             self.assertIn('S3 <-->|"dedicated SPI3 + alert"| RP', combined_diagrams, doc_name)
@@ -1250,7 +1250,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertIn("pd_controller.I2Ct_SDA", s3["GPIO1"]["peers"])
         self.assertIn("pd_controller.I2Ct_SCL", s3["GPIO2"]["peers"])
-        self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO37"]["peers"])
+        self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO45"]["peers"])
         self.assertEqual([], candidate["free_gpio"]["s3"])
 
     def test_exact_bq25798_passive_profile_does_not_regress(self):
@@ -1379,7 +1379,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("pd_eeprom_wp_pullup.END_2", "pd_config_eeprom.WP", "PD_EEPROM_WP"),
             ("pd_local_scl_pullup.END_2", "nvdc_charger.SCL", "PD_LOCAL_I2C_SCL"),
             ("sys_i2c_sda_pullup.END_2", "s3.GPIO1", "SYS_I2C_SDA"),
-            ("sys_int_pullup.END_2", "s3.GPIO37", "SYS_INT_N"),
+            ("sys_int_pullup.END_2", "s3.GPIO45", "SYS_INT_N"),
             ("pd_controller.DRAIN_30", "pd_controller.DRAIN_PAD", "PD_DRAIN_COPPER"),
         ):
             self.assertIn(route, routes)
@@ -2539,10 +2539,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             ],
             s3["GPIO4"]["peers"],
         )
-        self.assertIn("sd_host_buffer.1A", s3["GPIO35"]["peers"])
-        self.assertIn("display_connector.PIN_11", s3["GPIO35"]["peers"])
-        self.assertIn("sd_host_buffer.2A", s3["GPIO36"]["peers"])
-        self.assertIn("display_connector.PIN_13", s3["GPIO36"]["peers"])
+        self.assertIn("sd_host_buffer.1A", s3["GPIO18"]["peers"])
+        self.assertIn("display_connector.PIN_11", s3["GPIO18"]["peers"])
+        self.assertIn("sd_host_buffer.2A", s3["GPIO46"]["peers"])
+        self.assertIn("display_connector.PIN_13", s3["GPIO46"]["peers"])
         self.assertEqual("display_connector.PIN_9", s3["GPIO38"]["peers"][0])
         self.assertIn("lcd_host_cs_pullup.END_1", s3["GPIO38"]["peers"])
         self.assertEqual("ENCODER_A", s3["GPIO39"]["net"])
@@ -2551,7 +2551,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("encoder.A", s3["GPIO39"]["peers"])
         self.assertEqual("ENCODER_B", s3["GPIO47"]["net"])
         self.assertEqual("PCNT0", s3["GPIO47"]["controller"])
-        self.assertIn("touch_irq_buffer.Y", s3["GPIO37"]["peers"])
+        self.assertIn("touch_irq_buffer.Y", s3["GPIO45"]["peers"])
         self.assertEqual(["backlight_gate_series.END_1"], s3["GPIO40"]["peers"])
         self.assertEqual(["display_connector.PIN_17"], s3["GPIO41"]["peers"])
         self.assertEqual(["display_connector.PIN_18"], s3["GPIO42"]["peers"])
@@ -2631,8 +2631,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             if row["instance"] == "s3"
         }
         self.assertIn("sd_miso_buffer.OE_N", s3["GPIO5"]["peers"])
-        self.assertIn("sd_host_buffer.1A", s3["GPIO35"]["peers"])
-        self.assertIn("sd_host_buffer.2A", s3["GPIO36"]["peers"])
+        self.assertIn("sd_host_buffer.1A", s3["GPIO18"]["peers"])
+        self.assertIn("sd_host_buffer.2A", s3["GPIO46"]["peers"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -2714,7 +2714,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(["codec_i2s_bclk_iso.A"], s3["GPIO15"]["peers"])
         self.assertEqual(["codec_i2s_ws_iso.A"], s3["GPIO16"]["peers"])
         self.assertEqual(["codec_i2s_dout_iso.A"], s3["GPIO17"]["peers"])
-        self.assertEqual(["codec_i2s_din_iso.Y"], s3["GPIO18"]["peers"])
+        self.assertIn("codec_i2s_din_iso.Y", s3["GPIO0"]["peers"])
+        self.assertIn("s3_boot_pullup.END_2", s3["GPIO0"]["peers"])
 
         routes = {
             (route["from"], route["to"], route["net"])
@@ -2743,7 +2744,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual({}, candidate["contact_accounting"]["slow_io"]["reserved"])
         self.assertEqual([], candidate["free_gpio"]["s3"])
         self.assertEqual("AUDIO_ARM", s3["GPIO6"]["net"])
-        self.assertEqual(["audio_safe_gate.1B", "audio_safe_gate.2B"], s3["GPIO6"]["peers"])
+        self.assertEqual(
+            [
+                "audio_safe_gate.1B",
+                "audio_safe_gate.2B",
+                "codec_i2s_din_boot_gate.B",
+            ],
+            s3["GPIO6"]["peers"],
+        )
         expected_audio_instances = {
             "audio_rx_mux": "ti_sn74lvc1g3157_dbvr",
             "audio_capture_buffer": "ti_tlv9061_idbvr",
@@ -2857,7 +2865,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("slow_io.P01", "speaker_amp.SD", "SPEAKER_AMP_EN"),
             ("headphone_jack.TIP_SWITCH", "slow_io.P02", "HEADPHONE_ABSENT"),
             ("codec_supervisor.RESET_N", "codec_i2c_iso.1C", "CODEC_READY"),
-            ("codec_supervisor.RESET_N", "codec_i2s_din_iso.OE", "CODEC_READY"),
+            ("codec_supervisor.RESET_N", "codec_i2s_din_boot_gate.A", "CODEC_READY"),
+            ("s3.GPIO6", "codec_i2s_din_boot_gate.B", "AUDIO_ARM"),
+            ("codec_i2s_din_boot_gate.Y", "codec_i2s_din_iso.OE", "CODEC_DIN_READY"),
             ("receiver_supervisor.RESET_N", "receiver.RST", "RX_RST_N"),
             ("receiver_supervisor.RESET_N", "receiver_i2c_iso.1C", "RECEIVER_READY"),
             ("safe_ptt_or.1Y", "voice_ptt_iso.A", "VOICE_PTT_SAFE_N"),
@@ -2890,6 +2900,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "codec_i2s_ws_iso",
             "codec_i2s_dout_iso",
             "codec_i2s_din_iso",
+            "codec_i2s_din_boot_gate",
             "receiver",
             "receiver_power_switch",
             "receiver_supervisor",
@@ -3521,7 +3532,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("slow_io.RESET", "abstract:TP_SLOW_IO_RESET_N", "SLOW_IO_RESET_N"),
             ("slow_io.SCL", "s3.GPIO2", "SYS_I2C_SCL"),
             ("slow_io.SDA", "s3.GPIO1", "SYS_I2C_SDA"),
-            ("slow_io.INT", "s3.GPIO37", "SYS_INT_N"),
+            ("slow_io.INT", "s3.GPIO45", "SYS_INT_N"),
             ("safe_latch.Q", "slow_io_fault_sense_iso.A", "FAULT_LATCH_SENSE_AON"),
             ("slow_io_fault_sense_iso.Y", "slow_io.P22", "FAULT_LATCH_SENSE"),
             ("evidence_cmp_a.OUT1", "slow_io_s3_evidence_iso.A", "S3_RF_TX_EVIDENCE_AON_N"),

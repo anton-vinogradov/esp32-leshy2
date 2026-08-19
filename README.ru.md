@@ -28,7 +28,7 @@ Leshy2 — открытый автономный прибор для наблю�
 
 ## Как устроено
 
-Внутри пять изолируемых вычислительных и управляющих доменов. `ESP32-S3-WROOM-1U-N16R2`
+Внутри пять изолируемых вычислительных и управляющих доменов. `ESP32-S3-WROOM-1U-N16R8`
 ведёт интерфейс, дисплей, storage и audio; `ESP32-C5-WROOM-1U-N8R8` — native
 2,4/5‑ГГц radio, IEEE 802.15.4 и IR; `SC1512-A4` (RP2354B) — три nRF24,
 Sub‑GHz, voice и U214; один `MSPM0C1104SDGS20R` независимо допускает батарейный
@@ -77,7 +77,7 @@ Sub‑GHz, voice и U214; один `MSPM0C1104SDGS20R` независимо до
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2,4/5 ГГц, IEEE 802.15.4 и IR"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
   S3 <-->|"1-bit SDIO"| C5
@@ -88,7 +88,7 @@ RP["SC1512-A4<br/>детерминированные радио и voice"]
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3,5-дюймовый QSPI экран и touch assembly"]
 SD["Hirose DM3AT-SF-PEJM5<br/>push-push разъём microSD"]
 SLOW_IO["TCA6424ARGJR<br/>24-линейный slow-control expander"]
@@ -143,7 +143,7 @@ U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
 UI_MATRIX_IO["TCA9539PWR<br/>16 прямых входов D-pad и функциональных кнопок"]
 UI_DPAD_SWITCH["Alps Alpine SKRHADE010<br/>четыре направления и OK под единой крестовиной D-pad"]
@@ -177,7 +177,7 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
 VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
 MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>внутренний электретный микрофон"]
@@ -185,6 +185,9 @@ AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>выбор источни�
 AUDIO_CAPTURE_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/RX для записи"]
 AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>буфер АЦП кодека"]
 CODEC["Everest Semiconductor ES8311<br/>кодек записи и воспроизведения"]
+CODEC_SUPERVISOR["Texas Instruments TPS3839K33DBZR<br/>контроль готовности питания кодека"]
+CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>аппаратный gate CODEC_READY AND AUDIO_ARM"]
+CODEC_I2S_DIN_ISO["Texas Instruments SN74LVC1G126DCKR<br/>трёхстабильный буфер capture data на boot GPIO0"]
 AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>выбор RX-bypass/codec для динамика"]
 AUDIO_TX_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/codec для voice TX"]
 SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>дифференциальный усилитель динамика"]
@@ -195,7 +198,11 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>выход наушников 3,5 �
   AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR
   MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR
   AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC
-  CODEC <-->|"I²S0 + I²C0"| S3
+  S3 -->|"I²S0 outputs + I²C0 control"| CODEC
+  CODEC -->|"ASDOUT capture"| CODEC_I2S_DIN_ISO -->|"I²S DIN on GPIO0"| S3
+  CODEC_SUPERVISOR -->|"CODEC_READY"| CODEC_I2S_DIN_BOOT_GATE
+  S3 -->|"GPIO6 AUDIO_ARM; reset-low"| CODEC_I2S_DIN_BOOT_GATE
+  CODEC_I2S_DIN_BOOT_GATE -->|"output enable"| CODEC_I2S_DIN_ISO
   AUDIO_RX_MUX -->|"reset-default receive bypass"| AUDIO_SPEAKER_SELECTOR
   CODEC -->|"differential playback"| AUDIO_SPEAKER_SELECTOR
   AUDIO_SPEAKER_SELECTOR -->|"differential low-level across M1"| SPEAKER_AMP
@@ -210,7 +217,7 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>выход наушников 3,5 �
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>основной USB-C разъём"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>защита CC и USB2 порта"]
 S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: UART0/RESET/BOOT"]
@@ -231,7 +238,7 @@ RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кно
   PRODUCT_USB_CONNECTOR <-->|"USB2 data"| PRODUCT_USB_PROTECTOR <-->|"native USB"| S3
   S3_DBG_HEADER <-->|"UART0 + RESET + BOOT"| S3
   S3_RESET_BUTTON -->|"RESET"| S3
-  S3_BOOT_BUTTON -->|"GPIO0"| S3
+  S3_BOOT_BUTTON -->|"GPIO0; gated I²S_DIN only after boot"| S3
   C5_SERVICE_USB_CONNECTOR <-->|"data only; VBUS sense only"| C5_SERVICE_USB_SWITCH <-->|"native USB"| C5
   C5_DBG_HEADER <-->|"UART0 + RESET + BOOT"| C5
   C5_RESET_BUTTON -->|"RESET"| C5
@@ -246,7 +253,7 @@ RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кно
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 S3_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>внешний RP-SMA порт S3 2,4 ГГц"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2,4/5 ГГц, IEEE 802.15.4 и IR"]
 C5_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>внешний RP-SMA порт C5 2,4/5 ГГц"]
@@ -280,7 +287,7 @@ VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>SMA порт VHF/UHF voice"]
 flowchart TD
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>основной USB-C разъём"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>защита CC и USB2 порта"]
-S3["ESP32-S3-WROOM-1U-N16R2<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 PD_VBUS_TVS["Texas Instruments TVS2200DRVR<br/>шунтирующая защита VBUS 22 В"]
 PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD контроллер"]
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S зарядка и NVDC power path"]
@@ -365,5 +372,6 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
 - [Принципиальные схемы устройства](docs/schematics.ru.md)
 - [Точное межплатное соединение M1](docs/interconnect.ru.md)
 - [Точная распиновка контроллеров](docs/pinout.ru.md)
+- [Память S3 и загрузочные линии](docs/memory.ru.md)
 - [Безопасность, питание, обновление и восстановление](docs/safety.ru.md)
 - [Возможности и архитектура прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)

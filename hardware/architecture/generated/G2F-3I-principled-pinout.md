@@ -36,7 +36,7 @@ paper MPN и роль. Разные устройства не объединяю
 ```mermaid
 flowchart TD
   subgraph COMPUTE_1["Compute owners"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   end
@@ -50,7 +50,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph UI_STORAGE_1["UI and storage devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   DISPLAY_CONNECTOR["Hirose FH12-40S-0.5SH(55)<br/>first 40-position 0.5-mm bottom-contact ZIF panel-mate candidate"]
   DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
@@ -81,7 +81,7 @@ flowchart TD
   SD_MISO_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF return-buffer bypass capacitor"]
   SD_ON_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm storage-power reset-off pull-down"]
   SD_HOST_SCK_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm shared-clock reset-low pull-down"]
-  SD_HOST_D0_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm shared-D0 reset-high pull-up"]
+  SD_HOST_D0_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm GPIO46/QSPI-D0 reset-low pull-down"]
   SD_HOST_D1_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm shared-D1 reset-high pull-up"]
   SD_HOST_CS_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm card-CS reset-high pull-up"]
   LCD_HOST_CS_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm display-CS reset-high pull-up"]
@@ -98,11 +98,11 @@ flowchart TD
   end
   S3 ~~~ MAIN_EFUSE ~~~ DISPLAY_CONNECTOR ~~~ DISPLAY ~~~ DISPLAY_TOUCH_CONTROLLER ~~~ DISPLAY_LOGIC_BULK_CAP ~~~ DISPLAY_LOGIC_HF_CAP ~~~ DISPLAY_RESET_PULLDOWN ~~~ TOUCH_RESET_PULLDOWN ~~~ BACKLIGHT_EFUSE ~~~ BACKLIGHT_EFUSE_ILIM ~~~ BACKLIGHT_EFUSE_INPUT_CAP
   BACKLIGHT_EFUSE_OUTPUT_BULK ~~~ BACKLIGHT_EFUSE_OUTPUT_HF ~~~ BACKLIGHT_FAULT_PULLUP ~~~ BACKLIGHT_SERIES_RESISTOR ~~~ BACKLIGHT_MOSFET ~~~ BACKLIGHT_GATE_SERIES ~~~ BACKLIGHT_GATE_PULLDOWN ~~~ SD ~~~ SD_HOST_BUFFER ~~~ SD_MISO_BUFFER ~~~ SD_ESD_A ~~~ SD_ESD_B
-  SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLUP ~~~ SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP
+  SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLDOWN ~~~ SD_HOST_D1_PULLUP ~~~ SD_HOST_CS_PULLUP ~~~ LCD_HOST_CS_PULLUP ~~~ SD_CARD_CMD_PULLUP
   SD_CARD_DAT0_PULLUP ~~~ SD_CARD_DAT1_PULLUP ~~~ SD_CARD_DAT2_PULLUP ~~~ SD_CARD_DAT3_PULLUP ~~~ SD_SCK_SERIES ~~~ SD_CMD_SERIES ~~~ SD_CS_SERIES ~~~ SD_MISO_SERIES ~~~ SD_DETECT_SERIES
   MAIN_EFUSE -->|"local input bypass"| SD_POWER_INPUT_CAP
   SD_HOST_SCK_PULLDOWN -->|"reset low"| S3
-  MAIN_EFUSE --> SD_HOST_D0_PULLUP --> S3
+  SD_HOST_D0_PULLDOWN -->|"reset low"| S3
   MAIN_EFUSE --> SD_HOST_D1_PULLUP --> S3
   MAIN_EFUSE --> SD_HOST_CS_PULLUP --> S3
   MAIN_EFUSE --> LCD_HOST_CS_PULLUP --> S3
@@ -114,7 +114,7 @@ flowchart TD
   S3 -->|"SD_CS_N output enable"| SD_MISO_BUFFER
   SD_ESD_A -.->|"CLK/CMD/DAT0/DAT3 shunt clamps"| SD
   SD_ESD_B -.->|"DAT1/DAT2/VDD/detect shunt clamps"| SD
-  S3 -->|"QSPI/touch/PWM: GPIO4,GPIO35,GPIO36,GPIO38,GPIO40,GPIO41,GPIO42"| DISPLAY_CONNECTOR
+  S3 -->|"QSPI/touch/PWM: GPIO4,GPIO18,GPIO38,GPIO40,GPIO41,GPIO42,GPIO46"| DISPLAY_CONNECTOR
   DISPLAY_CONNECTOR <-->|"40-contact FPC; physical mate HIL open"| DISPLAY
   DISPLAY -->|"integrated exact COG"| DISPLAY_TOUCH_CONTROLLER
   DISPLAY_RESET_PULLDOWN -->|"RESX default low"| DISPLAY_CONNECTOR
@@ -130,7 +130,7 @@ flowchart TD
   DISPLAY_CONNECTOR -->|"3 x LEDK"| BACKLIGHT_SERIES_RESISTOR --> BACKLIGHT_MOSFET
   S3 -->|"GPIO40 PWM"| BACKLIGHT_GATE_SERIES --> BACKLIGHT_MOSFET
   BACKLIGHT_GATE_PULLDOWN -->|"reset off"| BACKLIGHT_MOSFET
-  S3 -.->|"logical scheduler contract; no electrical bypass: GPIO4,GPIO5,GPIO35,GPIO36"| SD
+  S3 -.->|"logical scheduler contract; no electrical bypass: GPIO4,GPIO5,GPIO18,GPIO46"| SD
 ```
 
 ### 3. Экран, storage и органы управления — узлы 2/2
@@ -138,7 +138,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph UI_STORAGE_2["UI and storage devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   SD_DETECT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm always-readable card-detect pull-up"]
   SD_DETECT_CAP["TDK C1005X7R1H104K050BB<br/>100-nF card-detect hardware filter capacitor"]
@@ -239,7 +239,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph AUDIO_PATH_1["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
@@ -310,7 +310,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph AUDIO_PATH_2["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
@@ -382,7 +382,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph AUDIO_PATH_3["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
@@ -405,10 +405,12 @@ flowchart TD
   CODEC_I2S_WS_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical word-select tri-state isolation buffer"]
   CODEC_I2S_DOUT_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical playback-data tri-state isolation buffer"]
   CODEC_I2S_DIN_ISO["Texas Instruments SN74LVC1G126DCKR<br/>physical capture-data tri-state isolation buffer"]
+  CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>codec i2s din boot gate physical component"]
   CODEC_I2S_BCLK_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s bclk iso bypass physical component"]
   CODEC_I2S_WS_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s ws iso bypass physical component"]
   CODEC_I2S_DOUT_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s dout iso bypass physical component"]
   CODEC_I2S_DIN_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s din iso bypass physical component"]
+  CODEC_I2S_DIN_BOOT_GATE_BYPASS["TDK C1005X7R1H104K050BB<br/>codec i2s din boot gate bypass physical component"]
   CODEC_PVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec pvdd bypass physical component"]
   CODEC_DVDD_BEAD["Murata BLM18PG181SN1D<br/>codec dvdd bead physical component"]
   CODEC_DVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>codec dvdd bypass physical component"]
@@ -427,16 +429,16 @@ flowchart TD
   RECEIVER_I2C_ISO["Texas Instruments SN74LVC2G66DCUR<br/>dual bilateral receiver-I2C power isolation"]
   RECEIVER_I2C_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>receiver i2c iso bypass physical component"]
   RECEIVER_I2C_SCL_PULLUP["Yageo RC0402FR-072K2L<br/>receiver i2c scl pullup physical component"]
-  RECEIVER_I2C_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>receiver i2c sda pullup physical component"]
-  RECEIVER_IRQ_ISO["SN74LVC1G07DCKR<br/>Ioff open-drain receiver-interrupt isolator"]
-  RECEIVER_IRQ_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>receiver irq iso bypass physical component"]
   end
   S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ HEADPHONE_L_SERIES ~~~ HEADPHONE_R_SERIES ~~~ HEADPHONE_TIP_DETECT_PULLUP ~~~ HEADPHONE_ABSENT_PULLDOWN ~~~ CODEC_POWER_INPUT_CAP ~~~ CODEC_POWER_OUTPUT_CAP ~~~ CODEC_POWER_ON_PULLDOWN
-  CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_BCLK_ISO_BYPASS
-  CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP ~~~ CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP
-  RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS
+  CODEC_SUPERVISOR ~~~ CODEC_SUPERVISOR_BYPASS ~~~ CODEC_READY_PULLDOWN ~~~ CODEC_I2C_ISO ~~~ CODEC_I2C_ISO_BYPASS ~~~ CODEC_I2C_SCL_PULLUP ~~~ CODEC_I2C_SDA_PULLUP ~~~ CODEC_I2S_BCLK_ISO ~~~ CODEC_I2S_WS_ISO ~~~ CODEC_I2S_DOUT_ISO ~~~ CODEC_I2S_DIN_ISO ~~~ CODEC_I2S_DIN_BOOT_GATE
+  CODEC_I2S_BCLK_ISO_BYPASS ~~~ CODEC_I2S_WS_ISO_BYPASS ~~~ CODEC_I2S_DOUT_ISO_BYPASS ~~~ CODEC_I2S_DIN_ISO_BYPASS ~~~ CODEC_I2S_DIN_BOOT_GATE_BYPASS ~~~ CODEC_PVDD_BYPASS ~~~ CODEC_DVDD_BEAD ~~~ CODEC_DVDD_BYPASS ~~~ CODEC_AVDD_BEAD ~~~ CODEC_AVDD_BYPASS ~~~ CODEC_DACVREF_CAP ~~~ CODEC_ADCVREF_CAP
+  CODEC_VMID_CAP ~~~ CODEC_CE_PULLUP ~~~ RECEIVER_POWER_INPUT_CAP ~~~ RECEIVER_POWER_OUTPUT_CAP ~~~ RECEIVER_POWER_ON_PULLDOWN ~~~ RECEIVER_SUPERVISOR ~~~ RECEIVER_SUPERVISOR_BYPASS ~~~ RECEIVER_READY_PULLDOWN ~~~ RECEIVER_I2C_ISO ~~~ RECEIVER_I2C_ISO_BYPASS ~~~ RECEIVER_I2C_SCL_PULLUP
   S3 <-->|"I²C0 host side: GPIO1,GPIO2"| CODEC_I2C_ISO
-  S3 -->|"I²S0 outputs: GPIO15,GPIO16,GPIO17,GPIO18"| CODEC_I2S_BCLK_ISO
+  S3 -->|"I²S0 outputs: GPIO15,GPIO16,GPIO17"| CODEC_I2S_BCLK_ISO
+  CODEC_SUPERVISOR -->|"CODEC_READY"| CODEC_I2S_DIN_BOOT_GATE
+  S3 -->|"GPIO6 AUDIO_ARM; reset-low"| CODEC_I2S_DIN_BOOT_GATE
+  CODEC_I2S_DIN_BOOT_GATE -->|"output enable"| CODEC_I2S_DIN_ISO
   S3 <-->|"I²C0 host side"| RECEIVER_I2C_ISO
   RECEIVER_SUPERVISOR -->|"reset + 200-ms isolation release"| RECEIVER_I2C_ISO
   CODEC_SUPERVISOR --> CODEC_I2S_BCLK_ISO
@@ -447,11 +449,14 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph AUDIO_PATH_4["Broadcast, voice and fail-safe audio devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
   VOICE_EFUSE["Texas Instruments TPS25974LRPWR<br/>voice latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  RECEIVER_I2C_SDA_PULLUP["Yageo RC0402FR-072K2L<br/>receiver i2c sda pullup physical component"]
+  RECEIVER_IRQ_ISO["SN74LVC1G07DCKR<br/>Ioff open-drain receiver-interrupt isolator"]
+  RECEIVER_IRQ_ISO_BYPASS["TDK C1005X7R1H104K050BB<br/>receiver irq iso bypass physical component"]
   RECEIVER_IRQ_PULLUP["Yageo RC0402FR-0710KL<br/>receiver irq pullup physical component"]
   RECEIVER_VDD_BYPASS["TDK C1005X7R1H104K050BB<br/>receiver vdd bypass physical component"]
   RECEIVER_CLOCK["Seiko Epson Q13FC13500005<br/>32.768-kHz receiver reference crystal"]
@@ -492,10 +497,10 @@ flowchart TD
   VOICE_TX_LED["LTST-C190KRKT<br/>voice antenna-local actual-TX indicator"]
   VOICE_TX_LED_SERIES["Yageo RC0402FR-072K2L<br/>voice actual-TX indicator 2.2-kOhm current limit"]
   end
-  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK ~~~ RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD
-  RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT ~~~ VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP
-  VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER ~~~ VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO
-  VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
+  S3 ~~~ RP ~~~ SLOW_IO ~~~ MAIN_EFUSE ~~~ VOICE_EFUSE ~~~ RECEIVER_I2C_SDA_PULLUP ~~~ RECEIVER_IRQ_ISO ~~~ RECEIVER_IRQ_ISO_BYPASS ~~~ RECEIVER_IRQ_PULLUP ~~~ RECEIVER_VDD_BYPASS ~~~ RECEIVER_CLOCK ~~~ RECEIVER_CLOCK_CAP_RCLK
+  RECEIVER_CLOCK_CAP_GPO3 ~~~ RECEIVER_SENB_PULLDOWN ~~~ RECEIVER_FMI_ESD ~~~ RECEIVER_FMI_MATCH_INDUCTOR ~~~ RECEIVER_FMI_COUPLING_CAP ~~~ RECEIVER_AMI_ESD ~~~ RECEIVER_AMI_COUPLING_CAP ~~~ VOICE_SUPERVISOR ~~~ VOICE_SUPERVISOR_BYPASS ~~~ VOICE_SUPERVISOR_SENSE_TOP ~~~ VOICE_SUPERVISOR_SENSE_BOTTOM ~~~ VOICE_SUPERVISOR_CT
+  VOICE_SUPERVISOR_PULLUP ~~~ VOICE_IO_POWER_SWITCH ~~~ VOICE_IO_POWER_INPUT_CAP ~~~ VOICE_IO_POWER_OUTPUT_CAP ~~~ VOICE_PTT_ISO ~~~ VOICE_PTT_ISO_BYPASS ~~~ VOICE_PTT_PULLUP ~~~ VOICE_UART_TX_ISO ~~~ VOICE_UART_TX_ISO_BYPASS ~~~ VOICE_UART_RX_PULLDOWN ~~~ VOICE_UART_TX_PULLDOWN ~~~ VOICE_HL_DRIVER
+  VOICE_HL_DRIVER_BYPASS ~~~ VOICE_HL_REQ_PULLDOWN ~~~ VOICE_AUDIO_ISO ~~~ VOICE_AUDIO_ISO_BYPASS ~~~ VOICE_AUDIO_ON_PULLDOWN ~~~ VOICE_EVIDENCE_THRESHOLD_TOP ~~~ VOICE_EVIDENCE_THRESHOLD_BOTTOM ~~~ VOICE_EVIDENCE_HYSTERESIS ~~~ VOICE_EVIDENCE_OUTPUT_PULLUP ~~~ VOICE_TX_LED ~~~ VOICE_TX_LED_SERIES
   VOICE_SUPERVISOR --> VOICE_IO_POWER_SWITCH --> VOICE_PTT_ISO
   VOICE_IO_POWER_SWITCH --> VOICE_UART_TX_ISO
   VOICE_IO_POWER_SWITCH --> VOICE_AUDIO_ISO
@@ -506,7 +511,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_1["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -604,7 +609,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_2["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -679,7 +684,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_3["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -755,7 +760,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_4["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -835,7 +840,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_5["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -933,7 +938,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_6["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1009,7 +1014,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph RADIO_ACCESSORY_7["Radio and external-accessory devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1093,7 +1098,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph SERVICE_RECOVERY_1["Independent three-domain service and recovery devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   M1_UI_PLUG["Hirose FX8C-80P-SV1(92)<br/>UI-board half of the exact 80-contact 11-mm inter-board link"]
@@ -1158,7 +1163,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph SERVICE_RECOVERY_2["Independent three-domain service and recovery devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   C5_DBG1_SERIES["Yageo RC0402FR-07470RL<br/>C5 UART/SWD fixture-current and edge resistor"]
@@ -1185,7 +1190,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph SAFETY_STOP_1["AON RUN/KILL, watchdog and thermal-safety devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1275,7 +1280,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph SAFETY_STOP_2["AON RUN/KILL, watchdog and thermal-safety devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1296,7 +1301,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph TX_EVIDENCE_1["Per-path physical TX-evidence devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1379,7 +1384,7 @@ flowchart TD
 ```mermaid
 flowchart TD
   subgraph TX_EVIDENCE_2["Per-path physical TX-evidence devices"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1430,7 +1435,7 @@ flowchart TD
 flowchart TD
   subgraph POWER_RAILS_1["Independent fixed rails and quiet-state switches"]
   NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1530,7 +1535,7 @@ flowchart TD
 flowchart TD
   subgraph POWER_RAILS_2["Independent fixed rails and quiet-state switches"]
   NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path"]
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
@@ -1834,7 +1839,7 @@ flowchart TD
 
 | Domain | Exact exposed boundary | Used | Reserved | Free | Total |
 |---|---|---:|---:|---:|---:|
-| `s3` | `ESP32-S3-WROOM-1U-N16R2` | 33 | 3 | 0 | 36 |
+| `s3` | `ESP32-S3-WROOM-1U-N16R8` | 33 | 0 | 0 | 33 |
 | `c5` | `ESP32-C5-WROOM-1U-N8R8` | 14 | 6 | 1 | 21 |
 | `rp` | `SC1512-A4` | 48 | 0 | 0 | 48 |
 | `slow_io` | `TCA6424ARGJR` | 24 | 0 | 0 | 24 |
@@ -1905,16 +1910,17 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 
 ## Exact pin/net tables
 
-### `s3` — `ESP32-S3-WROOM-1U-N16R2`
+### `s3` — `ESP32-S3-WROOM-1U-N16R8`
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
+| `GPIO0` | 27 | `I2S_DIN` | `i` | `I2S0` | `codec_i2s_din_iso.Y`, `s3_boot_pullup.END_2`, `s3_dbg_boot_series.END_2` | the exact 10-kOhm pull-up preserves normal boot; CODEC_READY is ANDed with reset-low AUDIO_ARM before the DIN buffer can drive, so GPIO0 remains fixture-controllable throughout ROM strap sampling; the 1-kOhm service path bounds accidental runtime contention |
 | `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0`, `safety_controller.PA0` | — |
 | `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11`, `safety_controller.PA11` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
-| `GPIO6` | 6 | `AUDIO_ARM` | `o` | `GPIO` | `audio_safe_gate.1B`, `audio_safe_gate.2B` | — |
+| `GPIO6` | 6 | `AUDIO_ARM` | `o` | `GPIO` | `audio_safe_gate.1B`, `audio_safe_gate.2B`, `codec_i2s_din_boot_gate.B` | — |
 | `GPIO7` | 7 | `UNIT_HOST_SIG0` | `io` | `I2C1_OR_UART1_OR_GPIO` | `unit_signal_iso.A1` | — |
 | `GPIO8` | 12 | `UNIT_HOST_SIG1` | `io` | `I2C1_OR_UART1_OR_GPIO` | `unit_signal_iso.A2` | — |
 | `GPIO9` | 17 | `S3_RP_IPC_CS_N` | `o` | `SPI3` | `rp.GPIO25` | — |
@@ -1926,13 +1932,10 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO15` | 8 | `I2S_BCLK` | `o` | `I2S0` | `codec_i2s_bclk_iso.A` | — |
 | `GPIO16` | 9 | `I2S_WS` | `o` | `I2S0` | `codec_i2s_ws_iso.A` | — |
 | `GPIO17` | 10 | `I2S_DOUT` | `o` | `I2S0` | `codec_i2s_dout_iso.A` | — |
-| `GPIO18` | 11 | `I2S_DIN` | `i` | `I2S0` | `codec_i2s_din_iso.Y` | — |
+| `GPIO18` | 11 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd_host_buffer.1A`, `sd_host_sck_pulldown.END_1`, `display_connector.PIN_11` | — |
 | `GPIO19` | 13 | `S3_USB_DM` | `io` | `USB_SERIAL_JTAG` | `product_usb_dm_series.END_2` | — |
 | `GPIO20` | 14 | `S3_USB_DP` | `io` | `USB_SERIAL_JTAG` | `product_usb_dp_series.END_2` | — |
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
-| `GPIO35` | 28 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd_host_buffer.1A`, `sd_host_sck_pulldown.END_1`, `display_connector.PIN_11` | — |
-| `GPIO36` | 29 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd_host_buffer.2A`, `sd_host_d0_pullup.END_1`, `display_connector.PIN_13` | — |
-| `GPIO37` | 30 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `pack_status_buffer.D2` | — |
 | `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `display_connector.PIN_9`, `lcd_host_cs_pullup.END_1` | — |
 | `GPIO39` | 32 | `ENCODER_A` | `i` | `PCNT0` | `encoder.A`, `encoder_a_pullup.END_1` | — |
 | `GPIO40` | 33 | `LCD_BL_PWM` | `o` | `LEDC` | `backlight_gate_series.END_1` | — |
@@ -1940,11 +1943,13 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `display_connector.PIN_18` | — |
 | `GPIO43` | 37 | `S3_UART_SERVICE_TX` | `o` | `UART0` | `s3_dbg0_series.END_2` | — |
 | `GPIO44` | 36 | `S3_UART_SERVICE_RX` | `i` | `UART0` | `s3_dbg1_series.END_2` | — |
+| `GPIO45` | 26 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `pack_status_buffer.D2` | the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling |
+| `GPIO46` | 16 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd_host_buffer.2A`, `sd_host_d0_pulldown.END_1`, `display_connector.PIN_13` | one physical 10-kOhm pull-down holds GPIO46 low through ROM sampling, including joint-download entry, then becomes only a weak defined idle load on the push-pull QSPI D0 output |
 | `GPIO47` | 24 | `ENCODER_B` | `i` | `PCNT0` | `encoder.B`, `encoder_b_pullup.END_1` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
 
-Budget: **33 used + 3 reserved + 0 free = 36 exposed GPIO**.
-Reserved: `GPIO0`, `GPIO45`, `GPIO46`. Free: none.
+Budget: **33 used + 0 reserved + 0 free = 33 exposed GPIO**.
+Reserved: none. Free: none.
 
 ### `c5` — `ESP32-C5-WROOM-1U-N8R8`
 
@@ -2030,7 +2035,7 @@ Reserved: none. Free: none.
 |---|---:|---|---|---|---|---|
 | `GPIO0` | 5 | `PD_EEPROM_WP` | `od` | `GPIO` | `pd_config_eeprom.WP` | — |
 | `GPIO1` | 6 | `CHARGE_EN_N` | `od` | `GPIO` | `nvdc_charger.CE` | — |
-| `I2Ct_IRQ` | 10 (I2C target IRQ / GPIO10) | `SYS_INT_N` | `od` | `I2C_TARGET` | `s3.GPIO37` | — |
+| `I2Ct_IRQ` | 10 (I2C target IRQ / GPIO10) | `SYS_INT_N` | `od` | `I2C_TARGET` | `s3.GPIO45` | — |
 | `I2Ct_SCL` | 9 (fixed I2C target clock) | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
 | `I2Ct_SDA` | 8 (fixed I2C target data) | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
 
@@ -2211,7 +2216,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.A1` | `s3_boot_button.A2` | both same-side switch terminals are represented |
 | `POWER_GROUND` | `s3_boot_button.B1` | `s3_boot_button.B2` | both ground-side switch terminals are represented |
 | `POWER_GROUND` | `s3_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
-| `S3_BOOT_N` | `s3_dbg_boot_series.END_2` | `s3.GPIO0` | physical GPIO0 is exposed without adding a runtime load |
+| `I2S_DIN` | `s3_dbg_boot_series.END_2` | `s3.GPIO0` | the protected 1-kOhm service path retains physical BOOT control on the runtime codec-data input; the separately gated DIN driver is high-Z throughout reset and ROM sampling |
 | `S3_DBG0_CONNECTOR` | `s3_dbg_header.P5` | `s3_dbg_esd.D2_PLUS` | UART TX connector ESD shunt |
 | `S3_DBG0_CONNECTOR` | `s3_dbg_header.P5` | `s3_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
 | `S3_UART_SERVICE_TX` | `s3_dbg0_series.END_2` | `s3.GPIO43` | real exposed module UART0 TX contact |
@@ -2299,7 +2304,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `NO_CONNECT` | `rp_dbg_esd.NC_9` | `abstract:no-connect` | manufacturer NC remains open |
 | `NO_CONNECT` | `rp_dbg_esd.NC_10` | `abstract:no-connect` | manufacturer NC remains open |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_boot_pullup.END_1` | exact normal-boot pull-up |
-| `S3_BOOT_N` | `s3_boot_pullup.END_2` | `s3.GPIO0` | S3 normal boot remains deterministic without a fixture |
+| `I2S_DIN` | `s3_boot_pullup.END_2` | `s3.GPIO0` | the exact 10-kOhm target-side pull-up preserves deterministic normal boot and is a weak load after GPIO0 becomes the codec-data input |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_boot_pullup.END_1` | exact normal-boot pull-up |
 | `C5_BOOT_N` | `c5_boot_pullup.END_2` | `c5.GPIO28` | C5 normal boot remains deterministic without a fixture |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_boot_pullup.END_1` | exact normal-boot pull-up |
@@ -2460,7 +2465,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sys_i2c_sda_pullup.END_1` | host data pull-up uses the common live logic domain |
 | `SYS_I2C_SDA` | `sys_i2c_sda_pullup.END_2` | `s3.GPIO1` | one exact 2.2-kOhm pull-up serves the complete scheduled host-control bus |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sys_int_pullup.END_1` | the shared interrupt pull-up exists only with the host domain |
-| `SYS_INT_N` | `sys_int_pullup.END_2` | `s3.GPIO37` | one exact 10-kOhm pull-up completes the wired-low interrupt tree without consuming another dedicated GPIO |
+| `SYS_INT_N` | `sys_int_pullup.END_2` | `s3.GPIO45` | one exact 10-kOhm pull-up completes the wired-low interrupt tree; the exact N16R8 module's fixed VDD_SPI eFuse makes this GPIO45 runtime load strap-neutral |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io.VCCI` | the TCA6424A I2C interface domain shares the protected host rail |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io.VCCP` | the TCA6424A P-port domain uses the same protected rail as VCCI, avoiding a second partial-power sequence |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `slow_io_vcci_bypass.END_1` | one exact 100-nF capacitor is local to VCCI |
@@ -2477,7 +2482,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `SLOW_IO_RESET_N` | `slow_io.RESET` | `abstract:TP_SLOW_IO_RESET_N` | fixture access provides direct reset diagnostics; product recovery uses bus recovery then a full main-rail power cycle below 0.2 V |
 | `SYS_I2C_SCL` | `slow_io.SCL` | `s3.GPIO2` | exact TCA6424A clock endpoint shares the single host pull-up and stays at or below 400 kHz |
 | `SYS_I2C_SDA` | `slow_io.SDA` | `s3.GPIO1` | exact TCA6424A data endpoint joins the scheduled host-control bus |
-| `SYS_INT_N` | `slow_io.INT` | `s3.GPIO37` | open-drain interrupt shares the single host-domain pull-up; firmware reads expander status before release |
+| `SYS_INT_N` | `slow_io.INT` | `s3.GPIO45` | open-drain interrupt shares the single host-domain pull-up; firmware reads expander status before release |
 | `CHARGER_QON_NC` | `nvdc_charger.QON` | `abstract:no-connect` | QON uses its specified internal pull-up; no external system-reset or ship-FET function is claimed |
 | `CHARGER_STAT_NC` | `nvdc_charger.STAT` | `abstract:no-connect` | unused open-drain STAT is disabled in the charger image; status and faults use INT/I2C |
 | `PD_LOCAL_I2C_SDA` | `pd_controller.I2Cc_SDA` | `pd_config_eeprom.SDA` | dedicated address-0x50 boot image; one EEPROM per controller |
@@ -2572,7 +2577,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `PACK_SYS_INT_REQ` | `pack_admission.PA23` | `pack_irq_gate_pulldown.END_1` | exact 10-kOhm gate pull-down prevents spurious shared-IRQ assertion through reset |
 | `PACK_LOCAL_GND` | `pack_irq_gate_pulldown.END_2` | `pack_gauge.GND` | IRQ request defaults inactive even when the main system rail is absent |
 | `PACK_LOCAL_GND` | `pack_status_buffer.S2` | `pack_gauge.GND` | IRQ translator Q2 has a passive local source return |
-| `SYS_INT_N` | `pack_status_buffer.D2` | `s3.GPIO37` | exact 2N7002DW passive drain cannot drive the shared host interrupt high or back-power an off main domain |
+| `SYS_INT_N` | `pack_status_buffer.D2` | `s3.GPIO45` | exact 2N7002DW passive drain cannot drive the shared host interrupt high or back-power an off main domain |
 | `BATTERY_STACK_POSITIVE` | `abstract:qualified-2s-positive` | `pack_in_res.END_1` | MAX17320 IN begins at the fused top of the accepted 2S stack |
 | `PACK_GAUGE_IN` | `pack_in_res.END_2` | `pack_gauge.IN` | exact 10-Ohm 0.66-W resistor implements the Rev.12 IN requirement while reusing an active BOM line |
 | `PACK_GAUGE_IN` | `pack_gauge.IN` | `pack_in_bypass.END_1` | exact 100-nF 50-V X7R bypass exceeds the required 25-V rating |
@@ -3080,7 +3085,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `SD_CARD_3V3` | `sd_power_switch.VOUT` | `sd_miso_buffer_bypass.END_1` | separate exact 100-nF return-buffer bypass |
 | `POWER_GROUND` | `sd_miso_buffer_bypass.END_2` | `abstract:power-ground` | local return-buffer bypass return |
 | `POWER_GROUND` | `sd_host_sck_pulldown.END_2` | `abstract:power-ground` | 10-kOhm host-side default keeps shared SPI2 clock low across reset |
-| `3V3_MAIN` | `abstract:3V3_MAIN` | `sd_host_d0_pullup.END_2` | 10-kOhm host default prevents a powered card buffer from seeing floating MOSI across S3 reset |
+| `POWER_GROUND` | `sd_host_d0_pulldown.END_2` | `abstract:power-ground` | 10-kOhm host default holds strap GPIO46 and shared QSPI D0 low through reset; firmware takes push-pull ownership only after ROM sampling |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sd_host_d1_pullup.END_2` | 10-kOhm host default prevents the shared QSPI D1/MISO node from floating |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `sd_host_cs_pullup.END_2` | 10-kOhm host default deselects the card and disables its return buffer before firmware |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `lcd_host_cs_pullup.END_2` | 10-kOhm host default keeps the display deselected during card SPI-mode admission |
@@ -3161,10 +3166,16 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `POWER_GROUND` | `codec_i2s_ws_iso.GND` | `abstract:power-ground` | WS buffer return |
 | `POWER_GROUND` | `codec_i2s_dout_iso.GND` | `abstract:power-ground` | DOUT buffer return |
 | `POWER_GROUND` | `codec_i2s_din_iso.GND` | `abstract:power-ground` | DIN buffer return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_din_boot_gate.VCC` | host-powered AND gate remains available to enforce the reset-time GPIO0 boundary |
+| `POWER_GROUND` | `codec_i2s_din_boot_gate.GND` | `abstract:power-ground` | short local boot-gate return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_din_boot_gate_bypass.END_1` | exact 100-nF local boot-gate bypass |
+| `POWER_GROUND` | `codec_i2s_din_boot_gate_bypass.END_2` | `abstract:power-ground` | short local bypass return |
 | `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_bclk_iso.OE` | BCLK output is high impedance until valid codec power |
 | `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_ws_iso.OE` | WS output is high impedance until valid codec power |
 | `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_dout_iso.OE` | playback data is high impedance until valid codec power |
-| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_din_iso.OE` | S3 capture input is disconnected from a collapsing codec domain |
+| `CODEC_READY` | `codec_supervisor.RESET_N` | `codec_i2s_din_boot_gate.A` | a powered codec alone cannot enable its GPIO0 driver |
+| `AUDIO_ARM` | `s3.GPIO6` | `codec_i2s_din_boot_gate.B` | the physical reset pull-down keeps the codec-data driver disabled throughout every S3 reset and ROM strap window |
+| `CODEC_DIN_READY` | `codec_i2s_din_boot_gate.Y` | `codec_i2s_din_iso.OE` | capture data reaches boot GPIO0 only after both codec readiness and explicit post-boot AUDIO_ARM |
 | `I2S_BCLK` | `s3.GPIO15` | `codec_i2s_bclk_iso.A` | dedicated I2S0 BCLK never shares a controller with display or storage |
 | `CODEC_I2S_BCLK` | `codec_i2s_bclk_iso.Y` | `codec.SCLK` | ES8311 derives its internal master clock from the admitted BCLK mode |
 | `I2S_WS` | `s3.GPIO16` | `codec_i2s_ws_iso.A` | dedicated I2S0 word select |
@@ -3172,7 +3183,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `I2S_DOUT` | `s3.GPIO17` | `codec_i2s_dout_iso.A` | dedicated playback data |
 | `CODEC_I2S_DOUT` | `codec_i2s_dout_iso.Y` | `codec.DSDIN` | playback data reaches only the powered codec |
 | `CODEC_I2S_DIN_LOCAL` | `codec.ASDOUT` | `codec_i2s_din_iso.A` | codec capture data enters a host-powered receive buffer |
-| `I2S_DIN` | `codec_i2s_din_iso.Y` | `s3.GPIO18` | S3 sees high impedance rather than an off-domain codec output |
+| `I2S_DIN` | `codec_i2s_din_iso.Y` | `s3.GPIO0` | S3 sees high impedance throughout reset and whenever codec readiness or AUDIO_ARM is absent; the target-side boot pull-up is only a weak runtime load |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_bclk_iso_bypass.END_1` | exact 100-nF BCLK-buffer bypass |
 | `POWER_GROUND` | `codec_i2s_bclk_iso_bypass.END_2` | `abstract:power-ground` | BCLK bypass return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `codec_i2s_ws_iso_bypass.END_1` | exact 100-nF WS-buffer bypass |
@@ -4650,6 +4661,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 
 ### Open qualification gaps
 
+- `s3` uses `ESP32-S3-WROOM-1U-N16R8` as `verified_exact_16mb_flash_8mb_octal_psram_external_antenna`, not an accepted production choice.
+- `s3` lifecycle: `active_orderable`.
 - `rp` uses `SC1512-A4` as `verified_exact_rp2354b0a4_7inch_reel_order_code`, not an accepted production choice.
 - `rp` lifecycle: `active_orderable`.
 - `m1_ui_plug` uses `Hirose FX8C-80P-SV1(92)` as `verified_exact_m1_11mm_plug`, not an accepted production choice.
@@ -4865,6 +4878,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `headphone_jack` lifecycle: `active_orderable`.
 - `codec_power_input_cap` lifecycle: `active_production`.
+- `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
+- `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.
 - `codec_dvdd_bead` lifecycle: `active_orderable`.
 - `codec_avdd_bead` lifecycle: `active_orderable`.
 - `codec_dacvref_cap` lifecycle: `active_production`.
@@ -5015,7 +5030,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `safe_conditioner` lifecycle: `production`.
 - `safe_reset_buffer` uses `Texas Instruments SN74LVC1G06DCKR` as `verified_exact_fail_low_reset_gate_driver`, not an accepted production choice.
 - `safe_reset_buffer` lifecycle: `active_orderable`.
-- `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_local_ir_stop_gate`, not an accepted production choice.
+- `ir_safe_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `ir_safe_gate` lifecycle: `active_orderable`.
 - `safe_ptt_or` lifecycle: `production`.
 - `det_s3` lifecycle: `production`.

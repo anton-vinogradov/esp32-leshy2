@@ -192,6 +192,7 @@ UI_INNER = (
     Placement("ir_safe_gate", 8.0, 75.0, "UI-local FAULT_KILL-qualified IR carrier gate"),
     Placement("evidence_cmp_a", 8.0, 82.0, "UI-local S3/C5/IR TX evidence comparator"),
     Placement("ui_zone_ntc", 12.0, 75.0, "UI/display hotspot safety sensor"),
+    Placement("codec_i2s_din_boot_gate", 18.0, 75.0, "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0"),
     Placement("headphone_jack", 60.0, 75.0, "3.5-mm headphone/line connector"),
     Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
@@ -562,7 +563,7 @@ def validate() -> list[str]:
     devices, candidate, instances = load()
     errors: list[str] = []
     required = {
-        "s3": "ESP32-S3-WROOM-1U-N16R2",
+        "s3": "ESP32-S3-WROOM-1U-N16R8",
         "c5": "ESP32-C5-WROOM-1U-N8R8",
         "rp": "SC1512-A4",
         "display": "HMX035CTFT-001 (QDtech schematic assembly marking)",

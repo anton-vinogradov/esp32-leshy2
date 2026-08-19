@@ -40,11 +40,11 @@
 <polyline points="279.8,240.5 261.3,240.5 261.3,201.8 300.3,201.8 300.3,189.0 298.3,189.0" fill="none" stroke="#0f766e" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="s3_rf_jumper" data-centreline-mm="30.01"/>
 <circle cx="279.8" cy="240.5" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
 <circle cx="298.3" cy="189.0" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
-<text x="300.3" y="196.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#115e59">28</text>
+<text x="300.3" y="196.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#115e59">29</text>
 <polyline points="113.3,240.2 113.3,216.6 137.7,216.6 137.7,198.1 120.7,198.1 120.7,189.0 139.2,189.0" fill="none" stroke="#0f766e" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="c5_rf_jumper" data-centreline-mm="30.03"/>
 <circle cx="113.3" cy="240.2" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
 <circle cx="139.2" cy="189.0" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
-<text x="137.7" y="193.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#115e59">29</text>
+<text x="137.7" y="193.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#115e59">30</text>
 </g>
 <rect x="295.3" y="172.9" width="5.9" height="3.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <text x="298.3" y="177.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">1</text>
@@ -80,108 +80,110 @@
 <text x="318.6" y="464.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">16</text>
 <rect x="307.2" y="427.5" width="5.9" height="3.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <text x="310.1" y="432.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">17</text>
+<rect x="283.5" y="427.5" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
+<text x="287.2" y="432.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">18</text>
 <rect x="80.0" y="427.5" width="55.5" height="35.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="107.8" y="448.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">18</text>
+<text x="107.8" y="448.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">19</text>
 <rect x="162.1" y="590.3" width="113.2" height="24.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="218.8" y="605.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">19</text>
+<text x="218.8" y="605.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">20</text>
 <rect x="224.5" y="677.8" width="33.1" height="27.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="241.1" y="694.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">20</text>
+<text x="241.1" y="694.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">21</text>
 <rect x="120.9" y="653.8" width="59.0" height="51.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="150.4" y="682.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">21</text>
+<text x="150.4" y="682.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">22</text>
 <rect x="303.3" y="534.8" width="35.7" height="21.6" rx="2" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<text x="321.1" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">22</text>
+<text x="321.1" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">23</text>
 <rect x="274.6" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<text x="286.5" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">23</text>
+<text x="286.5" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">24</text>
 <rect x="245.0" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<text x="256.9" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">24</text>
+<text x="256.9" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">25</text>
 <rect x="147.9" y="534.8" width="35.7" height="21.6" rx="2" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<text x="165.7" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">25</text>
+<text x="165.7" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">26</text>
 <rect x="119.2" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<text x="131.1" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">26</text>
+<text x="131.1" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">27</text>
 <rect x="89.6" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<text x="101.5" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">27</text>
+<text x="101.5" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">28</text>
 <rect x="585.2" y="231.4" width="37.0" height="37.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="603.8" y="252.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">30</text>
+<text x="603.8" y="252.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">31</text>
 <rect x="675.9" y="277.6" width="44.4" height="70.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="698.1" y="315.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">31</text>
+<text x="698.1" y="315.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">32</text>
 <rect x="581.5" y="277.6" width="44.4" height="70.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="603.8" y="315.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">32</text>
+<text x="603.8" y="315.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">33</text>
 <rect x="487.2" y="277.6" width="44.4" height="70.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="509.4" y="315.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">33</text>
+<text x="509.4" y="315.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">34</text>
 <rect x="577.9" y="360.9" width="146.2" height="88.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="650.9" y="408.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">34</text>
+<text x="650.9" y="408.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">35</text>
 <rect x="542.7" y="360.9" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="550.1" y="371.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">35</text>
+<text x="550.1" y="371.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">36</text>
 <rect x="546.4" y="397.9" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="553.8" y="408.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">36</text>
+<text x="553.8" y="408.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">37</text>
 <rect x="520.5" y="397.9" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="527.9" y="408.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">37</text>
+<text x="527.9" y="408.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">38</text>
 <rect x="490.5" y="397.9" width="18.9" height="18.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="500.0" y="410.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">38</text>
+<text x="500.0" y="410.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">39</text>
 <rect x="555.3" y="427.5" width="5.9" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="558.2" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">39</text>
+<text x="558.2" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">40</text>
 <rect x="536.8" y="427.5" width="5.9" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="539.7" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">40</text>
+<text x="539.7" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">41</text>
 <rect x="518.3" y="427.5" width="5.9" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="521.2" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">41</text>
+<text x="521.2" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">42</text>
 <rect x="499.8" y="427.5" width="5.9" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="502.7" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">42</text>
+<text x="502.7" y="433.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">43</text>
 <rect x="566.4" y="401.6" width="5.9" height="3.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="569.3" y="406.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">43</text>
+<text x="569.3" y="406.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">44</text>
 <rect x="566.4" y="375.7" width="5.9" height="3.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="569.3" y="380.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">44</text>
+<text x="569.3" y="380.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">45</text>
 <rect x="590.4" y="471.9" width="18.9" height="18.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="599.9" y="484.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">45</text>
+<text x="599.9" y="484.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">46</text>
 <rect x="594.9" y="497.8" width="10.7" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="600.2" y="503.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">46</text>
+<text x="600.2" y="503.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">47</text>
 <rect x="579.7" y="497.8" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="583.4" y="503.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">47</text>
+<text x="583.4" y="503.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">48</text>
 <rect x="594.1" y="453.4" width="11.5" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="599.9" y="460.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">48</text>
+<text x="599.9" y="460.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">49</text>
 <rect x="583.4" y="453.4" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="587.1" y="458.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">49</text>
+<text x="587.1" y="458.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">50</text>
 <rect x="572.3" y="453.4" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="576.0" y="458.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">50</text>
+<text x="576.0" y="458.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">51</text>
 <rect x="550.5" y="453.4" width="10.7" height="5.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="555.8" y="459.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">51</text>
+<text x="555.8" y="459.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">52</text>
 <rect x="531.6" y="453.4" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="535.3" y="458.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">52</text>
+<text x="535.3" y="458.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">53</text>
 <rect x="513.5" y="453.4" width="10.7" height="5.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="518.8" y="459.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">53</text>
+<text x="518.8" y="459.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">54</text>
 <rect x="542.7" y="475.6" width="18.5" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="552.0" y="486.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">54</text>
+<text x="552.0" y="486.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">55</text>
 <rect x="509.4" y="475.6" width="18.5" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="518.6" y="486.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">55</text>
+<text x="518.6" y="486.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">56</text>
 <rect x="490.9" y="475.6" width="7.4" height="4.6" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="494.6" y="480.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">56</text>
+<text x="494.6" y="480.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">57</text>
 <rect x="657.4" y="471.9" width="11.1" height="11.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="663.0" y="480.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">57</text>
+<text x="663.0" y="480.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">58</text>
 <rect x="635.2" y="471.9" width="14.8" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="642.6" y="486.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">58</text>
+<text x="642.6" y="486.0" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">59</text>
 <rect x="616.7" y="471.9" width="11.1" height="11.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="622.2" y="480.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">59</text>
+<text x="622.2" y="480.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">60</text>
 <rect x="542.7" y="497.8" width="18.5" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="552.0" y="508.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">60</text>
+<text x="552.0" y="508.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">61</text>
 <rect x="547.1" y="590.3" width="113.2" height="25.9" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="603.8" y="606.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">61</text>
+<text x="603.8" y="606.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">62</text>
 <rect x="665.0" y="679.5" width="33.1" height="25.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="681.6" y="695.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">62</text>
+<text x="681.6" y="695.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">63</text>
 <rect x="587.3" y="677.8" width="33.1" height="27.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="603.9" y="694.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">63</text>
+<text x="603.9" y="694.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">64</text>
 <rect x="509.4" y="671.3" width="44.4" height="33.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="531.6" y="691.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">64</text>
+<text x="531.6" y="691.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">65</text>
 <rect x="561.2" y="690.2" width="14.8" height="14.8" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-<text x="568.6" y="700.6" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#172033">65</text>
+<text x="568.6" y="700.6" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#172033">66</text>
 <rect x="635.2" y="531.1" width="88.8" height="44.4" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<text x="679.6" y="556.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">66 · SPK</text>
+<text x="679.6" y="556.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">67 · SPK</text>
 <rect x="558.8" y="534.8" width="35.7" height="21.6" rx="2" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<text x="576.6" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">67</text>
+<text x="576.6" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">68</text>
 <rect x="530.1" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<text x="542.0" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">68</text>
+<text x="542.0" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">69</text>
 <rect x="498.7" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-<text x="510.5" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">69</text>
+<text x="510.5" y="547.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">70</text>
 <rect x="467.6" y="560.7" width="31.5" height="13.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
-<text x="483.3" y="570.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">70</text>
+<text x="483.3" y="570.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">71</text>
 <path d="M357.5 433.1 L394.5 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M357.5 458.9 L394.5 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M357.5 483.9 L394.5 483.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -202,7 +204,7 @@
 <text x="856.0" y="199.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 30-mm jumper board receptacle</text>
 <text x="830.0" y="211.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">04  Hirose U.FL-R-SMT-1(10)</text>
 <text x="856.0" y="220.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 30-mm jumper board receptacle</text>
-<text x="830.0" y="232.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">05  ESP32-S3-WROOM-1U-N16R2</text>
+<text x="830.0" y="232.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">05  ESP32-S3-WROOM-1U-N16R8</text>
 <text x="856.0" y="241.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner</text>
 <text x="830.0" y="253.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">06  ESP32-C5-WROOM-1U-N8R8</text>
 <text x="856.0" y="262.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner</text>
@@ -228,112 +230,114 @@
 <text x="856.0" y="472.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">UI-local S3/C5/IR TX evidence comparator</text>
 <text x="830.0" y="484.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">17  TDK B57332V5103F360</text>
 <text x="856.0" y="493.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">UI/display hotspot safety sensor</text>
-<text x="830.0" y="505.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">18  Same Sky SJ1-3515-SMT-TR</text>
-<text x="856.0" y="514.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">3.5-mm headphone/line connector</text>
-<text x="830.0" y="526.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">19  Hirose FX8C-80P-SV1(92)</text>
-<text x="856.0" y="535.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">80-contact M1 plug; 11-mm board stack</text>
-<text x="830.0" y="547.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">20  GCT USB4105-GF-A</text>
-<text x="856.0" y="556.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 data-only service USB</text>
-<text x="830.0" y="568.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">21  Hirose DM3AT-SF-PEJM5</text>
-<text x="856.0" y="577.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">bottom-access push-push microSD</text>
-<text x="830.0" y="589.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">22  Samtec FTSH-105-01-L-DV-K-P-TR</text>
-<text x="856.0" y="598.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">keyed S3 UART0/RESET/BOOT header</text>
-<text x="830.0" y="610.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">23  Alps Alpine SKQGADE010</text>
-<text x="856.0" y="619.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 technological RESET</text>
+<text x="830.0" y="505.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">18  SN74LVC1G08DCKR</text>
+<text x="856.0" y="514.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0</text>
+<text x="830.0" y="526.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">19  Same Sky SJ1-3515-SMT-TR</text>
+<text x="856.0" y="535.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">3.5-mm headphone/line connector</text>
+<text x="830.0" y="547.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">20  Hirose FX8C-80P-SV1(92)</text>
+<text x="856.0" y="556.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">80-contact M1 plug; 11-mm board stack</text>
+<text x="830.0" y="568.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">21  GCT USB4105-GF-A</text>
+<text x="856.0" y="577.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 data-only service USB</text>
+<text x="830.0" y="589.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">22  Hirose DM3AT-SF-PEJM5</text>
+<text x="856.0" y="598.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">bottom-access push-push microSD</text>
+<text x="830.0" y="610.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">23  Samtec FTSH-105-01-L-DV-K-P-TR</text>
+<text x="856.0" y="619.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">keyed S3 UART0/RESET/BOOT header</text>
 <text x="830.0" y="631.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">24  Alps Alpine SKQGADE010</text>
-<text x="856.0" y="640.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 technological BOOT</text>
-<text x="830.0" y="652.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">25  Samtec FTSH-105-01-L-DV-K-P-TR</text>
-<text x="856.0" y="661.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">keyed C5 UART0/RESET/BOOT header</text>
-<text x="830.0" y="673.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">26  Alps Alpine SKQGADE010</text>
-<text x="856.0" y="682.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 technological RESET</text>
+<text x="856.0" y="640.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 technological RESET</text>
+<text x="830.0" y="652.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">25  Alps Alpine SKQGADE010</text>
+<text x="856.0" y="661.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3 technological BOOT</text>
+<text x="830.0" y="673.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">26  Samtec FTSH-105-01-L-DV-K-P-TR</text>
+<text x="856.0" y="682.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">keyed C5 UART0/RESET/BOOT header</text>
 <text x="830.0" y="694.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">27  Alps Alpine SKQGADE010</text>
-<text x="856.0" y="703.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 technological BOOT</text>
-<text x="830.0" y="715.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">28  TE Connectivity 2118651-2</text>
-<text x="856.0" y="724.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">exact 30-mm S3 UMCC Gen1 jumper corridor</text>
+<text x="856.0" y="703.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 technological RESET</text>
+<text x="830.0" y="715.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">28  Alps Alpine SKQGADE010</text>
+<text x="856.0" y="724.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5 technological BOOT</text>
 <text x="830.0" y="736.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">29  TE Connectivity 2118651-2</text>
-<text x="856.0" y="745.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">exact 30-mm C5 UMCC Gen1 jumper corridor</text>
+<text x="856.0" y="745.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">exact 30-mm S3 UMCC Gen1 jumper corridor</text>
+<text x="830.0" y="757.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">30  TE Connectivity 2118651-2</text>
+<text x="856.0" y="766.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">exact 30-mm C5 UMCC Gen1 jumper corridor</text>
 <text x="1165.0" y="128.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#c2410c">RF/power PCB</text>
-<text x="1165.0" y="148.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">30  SC1512-A4</text>
+<text x="1165.0" y="148.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">31  SC1512-A4</text>
 <text x="1191.0" y="157.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">deterministic radio owner</text>
-<text x="1165.0" y="169.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">31  Ebyte E01-ML01IPX</text>
+<text x="1165.0" y="169.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">32  Ebyte E01-ML01IPX</text>
 <text x="1191.0" y="178.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 radio #0</text>
-<text x="1165.0" y="190.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">32  Ebyte E01-ML01IPX</text>
+<text x="1165.0" y="190.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">33  Ebyte E01-ML01IPX</text>
 <text x="1191.0" y="199.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 radio #1</text>
-<text x="1165.0" y="211.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">33  Ebyte E01-ML01IPX</text>
+<text x="1165.0" y="211.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">34  Ebyte E01-ML01IPX</text>
 <text x="1191.0" y="220.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 radio #2</text>
-<text x="1165.0" y="232.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">34  NiceRF SA518</text>
+<text x="1165.0" y="232.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">35  NiceRF SA518</text>
 <text x="1191.0" y="241.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">VHF/UHF voice transceiver</text>
-<text x="1165.0" y="253.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">35  CC1101RGPR</text>
+<text x="1165.0" y="253.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">36  CC1101RGPR</text>
 <text x="1191.0" y="262.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">multi-band sub-GHz transceiver</text>
-<text x="1165.0" y="274.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">36  Texas Instruments BQ25798RQMR</text>
+<text x="1165.0" y="274.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">37  Texas Instruments BQ25798RQMR</text>
 <text x="1191.0" y="283.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">2S charger and NVDC power path</text>
-<text x="1165.0" y="295.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">37  Analog Devices MAX17320G20+T</text>
+<text x="1165.0" y="295.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">38  Analog Devices MAX17320G20+T</text>
 <text x="1191.0" y="304.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">2S protection and fuel gauge</text>
-<text x="1165.0" y="316.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">38  Texas Instruments MSPM0C1104SDGS20R</text>
+<text x="1165.0" y="316.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">39  Texas Instruments MSPM0C1104SDGS20R</text>
 <text x="1191.0" y="325.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">fail-closed battery admission MCU</text>
-<text x="1165.0" y="337.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">39  Texas Instruments TPS629203DRLR</text>
+<text x="1165.0" y="337.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">40  Texas Instruments TPS629203DRLR</text>
 <text x="1191.0" y="346.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">always-on 3.3-V converter</text>
-<text x="1165.0" y="358.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">40  Texas Instruments TPS564252DRLR</text>
+<text x="1165.0" y="358.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">41  Texas Instruments TPS564252DRLR</text>
 <text x="1191.0" y="367.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">main 3.3-V converter</text>
-<text x="1165.0" y="379.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">41  Texas Instruments TPS564252DRLR</text>
+<text x="1165.0" y="379.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">42  Texas Instruments TPS564252DRLR</text>
 <text x="1191.0" y="388.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">voice 4.0-V converter</text>
-<text x="1165.0" y="400.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">42  Texas Instruments TPS564252DRLR</text>
+<text x="1165.0" y="400.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">43  Texas Instruments TPS564252DRLR</text>
 <text x="1191.0" y="409.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">accessory 5.0-V converter</text>
-<text x="1165.0" y="421.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">43  TDK B57332V5103F360</text>
+<text x="1165.0" y="421.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">44  TDK B57332V5103F360</text>
 <text x="1191.0" y="430.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">power-conversion hotspot safety sensor</text>
-<text x="1165.0" y="442.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">44  TDK B57332V5103F360</text>
+<text x="1165.0" y="442.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">45  TDK B57332V5103F360</text>
 <text x="1191.0" y="451.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RF/voice hotspot safety sensor</text>
-<text x="1165.0" y="463.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">45  Texas Instruments MSPM0C1104SDGS20R</text>
+<text x="1165.0" y="463.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">46  Texas Instruments MSPM0C1104SDGS20R</text>
 <text x="1191.0" y="472.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">independent watchdog, thermal and TX-lease controller</text>
-<text x="1165.0" y="484.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">46  Texas Instruments TPS3435CAKAGDDFR</text>
+<text x="1165.0" y="484.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">47  Texas Instruments TPS3435CAKAGDDFR</text>
 <text x="1191.0" y="493.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">independent 1.6-s timeout watchdog</text>
-<text x="1165.0" y="505.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">47  74LVC2G14GW,125</text>
+<text x="1165.0" y="505.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">48  74LVC2G14GW,125</text>
 <text x="1191.0" y="514.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RUN and S3 fault-reset conditioner</text>
-<text x="1165.0" y="526.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">48  SN74LVC1G74DCUR</text>
+<text x="1165.0" y="526.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">49  SN74LVC1G74DCUR</text>
 <text x="1191.0" y="535.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">asynchronous FAULT_KILL latch</text>
-<text x="1165.0" y="547.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">49  Texas Instruments SN74LVC1G06DCKR</text>
+<text x="1165.0" y="547.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">50  Texas Instruments SN74LVC1G06DCKR</text>
 <text x="1191.0" y="556.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">C5/RP fault-reset buffer</text>
-<text x="1165.0" y="568.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">50  Diodes Incorporated 2N7002DW-7-F</text>
+<text x="1165.0" y="568.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">51  Diodes Incorporated 2N7002DW-7-F</text>
 <text x="1191.0" y="577.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">S3/C5 passive-drain reset sinks</text>
-<text x="1165.0" y="589.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">51  TPS3808G33DBVR</text>
+<text x="1165.0" y="589.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">52  TPS3808G33DBVR</text>
 <text x="1191.0" y="598.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">always-on safety supervisor</text>
-<text x="1165.0" y="610.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">52  Diodes Incorporated 2N7002DW-7-F</text>
+<text x="1165.0" y="610.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">53  Diodes Incorporated 2N7002DW-7-F</text>
 <text x="1191.0" y="619.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RP reset sink</text>
-<text x="1165.0" y="631.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">53  74LVC1G32GV,125</text>
+<text x="1165.0" y="631.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">54  74LVC1G32GV,125</text>
 <text x="1191.0" y="640.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">FAULT_KILL-dominant voice PTT gate</text>
-<text x="1165.0" y="652.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">54  SN74LVC08APWR</text>
+<text x="1165.0" y="652.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">55  SN74LVC08APWR</text>
 <text x="1191.0" y="661.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">rear-domain transmit safety gates</text>
-<text x="1165.0" y="673.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">55  TLV1824PWR</text>
+<text x="1165.0" y="673.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">56  TLV1824PWR</text>
 <text x="1191.0" y="682.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RF-local nRF/CC TX evidence comparator</text>
-<text x="1165.0" y="694.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">56  TLV1821DCKR</text>
+<text x="1165.0" y="694.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">57  TLV1821DCKR</text>
 <text x="1191.0" y="703.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RF-local voice TX evidence comparator</text>
-<text x="1165.0" y="715.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">57  Texas Instruments TPD4S201RUKR</text>
+<text x="1165.0" y="715.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">58  Texas Instruments TPD4S201RUKR</text>
 <text x="1191.0" y="724.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">product USB CC/USB2 protector</text>
-<text x="1165.0" y="736.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">58  Texas Instruments TPS25751DREFR</text>
+<text x="1165.0" y="736.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">59  Texas Instruments TPS25751DREFR</text>
 <text x="1191.0" y="745.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">sink-only USB-PD controller</text>
-<text x="1165.0" y="757.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">59  Diodes Incorporated PAM8302AASCR</text>
+<text x="1165.0" y="757.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">60  Diodes Incorporated PAM8302AASCR</text>
 <text x="1191.0" y="766.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">rear-local differential speaker amplifier</text>
-<text x="1165.0" y="778.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">60  SN74LVC08APWR</text>
+<text x="1165.0" y="778.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">61  SN74LVC08APWR</text>
 <text x="1191.0" y="787.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF-domain transmit safety gates</text>
-<text x="1165.0" y="799.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">61  Hirose FX8C-80S-SV5(92)</text>
+<text x="1165.0" y="799.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">62  Hirose FX8C-80S-SV5(92)</text>
 <text x="1191.0" y="808.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">80-contact M1 receptacle; 11-mm board stack</text>
-<text x="1165.0" y="820.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">62  JAE DX07S016JA1R1500</text>
+<text x="1165.0" y="820.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">63  JAE DX07S016JA1R1500</text>
 <text x="1191.0" y="829.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">product USB-C data and sink</text>
-<text x="1165.0" y="841.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">63  GCT USB4105-GF-A</text>
+<text x="1165.0" y="841.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">64  GCT USB4105-GF-A</text>
 <text x="1191.0" y="850.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RP data-only service USB</text>
-<text x="1165.0" y="862.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">64  1125R-SMT-4P</text>
+<text x="1165.0" y="862.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">65  1125R-SMT-4P</text>
 <text x="1191.0" y="871.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">native M5 Unit HY2.0-4P edge receptacle</text>
-<text x="1165.0" y="883.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">65  Same Sky CMEJ-0413-42-SMT-TR</text>
+<text x="1165.0" y="883.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">66  Same Sky CMEJ-0413-42-SMT-TR</text>
 <text x="1191.0" y="892.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">rear bottom microphone port</text>
-<text x="1165.0" y="904.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">66  PUI Audio AS02404PO</text>
+<text x="1165.0" y="904.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">67  PUI Audio AS02404PO</text>
 <text x="1191.0" y="913.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">internal 4-Ohm differential speaker</text>
-<text x="1165.0" y="925.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">67  Samtec FTSH-105-01-L-DV-K-P-TR</text>
+<text x="1165.0" y="925.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">68  Samtec FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1191.0" y="934.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">keyed RP SWD/RUN/USB_BOOT header</text>
-<text x="1165.0" y="946.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">68  Alps Alpine SKQGADE010</text>
+<text x="1165.0" y="946.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">69  Alps Alpine SKQGADE010</text>
 <text x="1191.0" y="955.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RP technological RUN/RESET</text>
-<text x="1165.0" y="967.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">69  Alps Alpine SKQGADE010</text>
+<text x="1165.0" y="967.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">70  Alps Alpine SKQGADE010</text>
 <text x="1191.0" y="976.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RP technological USB_BOOT</text>
-<text x="1165.0" y="988.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">70  C&amp;K JS102011SCQN</text>
+<text x="1165.0" y="988.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">71  C&amp;K JS102011SCQN</text>
 <text x="1191.0" y="997.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">single low-current RUN/KILL; charging remains available in KILL</text>
 <g id="validated-clearances" data-legend-bottom="997" data-top="1032">
 <text x="830.0" y="1032.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>

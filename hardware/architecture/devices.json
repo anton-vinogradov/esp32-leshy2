@@ -922,6 +922,107 @@
         "GPIO22..GPIO34": "not exposed by this module; GPIO26..GPIO32 are module-memory signals"
       }
     },
+    "esp32_s3_wroom_1u_n16r8": {
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "kind": "soldered_module",
+      "qualification": "verified_exact_16mb_flash_8mb_octal_psram_external_antenna",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [18.0, 19.2, 3.2],
+      "source": {
+        "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
+        "version": "v1.8",
+        "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+        "checked": "2026-08-20"
+      },
+      "orderable_source": {
+        "document": "ESP32-S3-WROOM-1U-N16R8 active authorized-distributor exact-MPN page; 1,882 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R8/16162641",
+        "checked": "2026-08-20"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 5.108,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published USD price table",
+          "url": "https://www.digikey.com/en/products/detail/espressif-systems/ESP32-S3-WROOM-1U-N16R8/16162641",
+          "checked": "2026-08-20"
+        }
+      },
+      "memory_contract": {
+        "flash_mb": 16,
+        "flash_interface": "quad",
+        "psram_mb_physical": 8,
+        "psram_interface": "octal_3v3",
+        "production_psram_ecc": "mandatory to retain the module's -40..85-degC operating envelope",
+        "psram_mb_minimum_usable_with_ecc": 7.5,
+        "light_sleep_increment_vs_n16r2_typical_ua": 100,
+        "light_sleep_pack_impact_48h_at_8ah_percent": 0.06
+      },
+      "rf_connector": {
+        "manufacturer_description": "first-generation external antenna connector",
+        "compatible_mating_families": ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"],
+        "impedance_ohm": 50,
+        "qualification": "datasheet_verified",
+        "center_from_module_top_left_mm": [15.0, 2.46],
+        "position_source": "ESP32-S3-WROOM-1U datasheet v1.8 Figure 10-2 top view; connector axis is 3.0 mm from the right edge and 2.46 mm from the top edge"
+      },
+      "programmable": true,
+      "controller_capabilities": ["USB_SERIAL_JTAG", "SDMMC_SLOT0_1BIT", "SDMMC_SLOT1_1BIT", "SDMMC_SLOT0_4BIT", "SDMMC_SLOT1_4BIT", "I2C0", "I2C1_OR_UART0_OR_GPIO", "I2C1_OR_UART1_OR_GPIO", "I2S0", "SPI2", "SPI3", "UART0", "UART1", "UART2", "PCNT0", "GPIO", "GPIO_IRQ", "LEDC"],
+      "controller_notes": {
+        "SDMMC_SLOT0/SDMMC_SLOT1": "one S3 SD/MMC host exposes slot 0 up to 8-bit and slot 1 up to 4-bit through the GPIO matrix; two 4-bit links remain one scheduled-controller concurrency gate",
+        "I2C1_OR_UART0_OR_GPIO": "historical candidates only: GPIO7/8 use the S3 second hardware I2C controller, UART0 through the GPIO matrix or custom GPIO as one mutually exclusive Unit profile",
+        "I2C1_OR_UART1_OR_GPIO": "current G2F-3I Unit profile: GPIO7/8 use the S3 second hardware I2C controller, UART1 through the GPIO matrix or custom GPIO; default UART0 remains dedicated to service GPIO43/44",
+        "UART0": "default service and RF-test route on exposed GPIO43=U0TXD and GPIO44=U0RXD",
+        "PCNT0": "hardware quadrature capture for the local rotary encoder through the GPIO matrix; detent semantics and contact-bounce rejection remain a firmware/HIL contract"
+      },
+      "contacts": {
+        "3V3": {"physical": "2", "role": "power"},
+        "EN": {"physical": "3", "role": "reset"},
+        "GPIO4": {"physical": "4", "role": "gpio"},
+        "GPIO5": {"physical": "5", "role": "gpio"},
+        "GPIO6": {"physical": "6", "role": "gpio"},
+        "GPIO7": {"physical": "7", "role": "gpio"},
+        "GPIO15": {"physical": "8", "role": "gpio"},
+        "GPIO16": {"physical": "9", "role": "gpio"},
+        "GPIO17": {"physical": "10", "role": "gpio"},
+        "GPIO18": {"physical": "11", "role": "gpio"},
+        "GPIO8": {"physical": "12", "role": "gpio"},
+        "GPIO19": {"physical": "13", "role": "gpio"},
+        "GPIO20": {"physical": "14", "role": "gpio"},
+        "GPIO3": {"physical": "15", "role": "gpio"},
+        "GPIO46": {"physical": "16", "role": "gpio"},
+        "GPIO9": {"physical": "17", "role": "gpio"},
+        "GPIO10": {"physical": "18", "role": "gpio"},
+        "GPIO11": {"physical": "19", "role": "gpio"},
+        "GPIO12": {"physical": "20", "role": "gpio"},
+        "GPIO13": {"physical": "21", "role": "gpio"},
+        "GPIO14": {"physical": "22", "role": "gpio"},
+        "GPIO21": {"physical": "23", "role": "gpio"},
+        "GPIO47": {"physical": "24", "role": "gpio"},
+        "GPIO48": {"physical": "25", "role": "gpio"},
+        "GPIO45": {"physical": "26", "role": "gpio"},
+        "GPIO0": {"physical": "27", "role": "gpio"},
+        "GPIO38": {"physical": "31", "role": "gpio"},
+        "GPIO39": {"physical": "32", "role": "gpio"},
+        "GPIO40": {"physical": "33", "role": "gpio"},
+        "GPIO41": {"physical": "34", "role": "gpio"},
+        "GPIO42": {"physical": "35", "role": "gpio"},
+        "GPIO44": {"physical": "36", "role": "gpio"},
+        "GPIO43": {"physical": "37", "role": "gpio"},
+        "GPIO2": {"physical": "38", "role": "gpio"},
+        "GPIO1": {"physical": "39", "role": "gpio"},
+        "GND": {"physical": "1/40/41", "role": "power"},
+        "ANT": {"physical": "first-generation on-module receptacle compatible with U.FL/MHF I/AMC", "role": "rf"}
+      },
+      "strapping_contacts": ["GPIO0", "GPIO3", "GPIO45", "GPIO46"],
+      "service_required": ["EN", "GPIO0", "GPIO19", "GPIO20"],
+      "unavailable_gpio": {
+        "GPIO22..GPIO34": "not exposed by this module; GPIO26..GPIO32 are module-memory signals",
+        "GPIO35..GPIO37": "occupied inside the exact N16R8 module by the octal PSRAM interface and not available to the product"
+      }
+    },
     "esp32_c5_wroom_1u_n8r8": {
       "mpn": "ESP32-C5-WROOM-1U-N8R8",
       "kind": "soldered_module",
@@ -4104,7 +4205,7 @@
     "ti_sn74lvc1g08_dckr": {
       "mpn": "SN74LVC1G08DCKR",
       "kind": "sc70_5_single_and_gate_partial_power_down",
-      "qualification": "verified_exact_local_ir_stop_gate",
+      "qualification": "verified_exact_partial_power_down_and_gate",
       "lifecycle": "active_orderable",
       "dimensions_mm": [2.0, 1.25, 1.1],
       "source": {
@@ -4127,7 +4228,7 @@
         "function": "single two-input positive AND gate",
         "supply_range_v": [1.65, 5.5],
         "partial_power_down": "Ioff keeps the output high impedance and prevents back-drive while AON_SAFE_3V3 is absent; inputs tolerate up to 5.5 V",
-        "usage": "UI-board-local C5 IR carrier gate; RUN_PERMIT remains the independent hardware qualifier"
+        "usage": "UI-board-local C5 IR carrier gate with independent RUN_PERMIT qualification, and codec-capture boot gate that keeps the codec output disconnected from S3 GPIO0 until both CODEC_READY and reset-low AUDIO_ARM are valid"
       },
       "programmable": false,
       "contacts": {

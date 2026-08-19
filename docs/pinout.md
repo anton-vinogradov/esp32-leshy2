@@ -8,16 +8,17 @@ This page is generated from the same device and net map used by the electrical c
 
 ## S3 — application, UI, display, storage and audio
 
-**MPN:** `ESP32-S3-WROOM-1U-N16R2`
+**MPN:** `ESP32-S3-WROOM-1U-N16R8`
 
 | Contact | Net | Direction | Peripheral | Connected endpoint |
 |---|---|---|---|---|
+| `GPIO0` | `I2S_DIN` | `i` | `I2S0` | codec_i2s_din_iso.Y<br>s3_boot_pullup.END_2<br>s3_dbg_boot_series.END_2 |
 | `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
 | `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
 | `GPIO3` | `RP_ALERT_N` | `i` | `GPIO_IRQ` | rp.GPIO19 |
 | `GPIO4` | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | sd_miso_series.END_2<br>sd_host_d1_pullup.END_1<br>display_connector.PIN_10 |
 | `GPIO5` | `SD_SPI_CS_N` | `o` | `SPI2` | sd_host_buffer.3A<br>sd_miso_buffer.OE_N<br>sd_host_cs_pullup.END_1 |
-| `GPIO6` | `AUDIO_ARM` | `o` | `GPIO` | audio_safe_gate.1B<br>audio_safe_gate.2B |
+| `GPIO6` | `AUDIO_ARM` | `o` | `GPIO` | audio_safe_gate.1B<br>audio_safe_gate.2B<br>codec_i2s_din_boot_gate.B |
 | `GPIO7` | `UNIT_HOST_SIG0` | `io` | `I2C1_OR_UART1_OR_GPIO` | unit_signal_iso.A1 |
 | `GPIO8` | `UNIT_HOST_SIG1` | `io` | `I2C1_OR_UART1_OR_GPIO` | unit_signal_iso.A2 |
 | `GPIO9` | `S3_RP_IPC_CS_N` | `o` | `SPI3` | rp.GPIO25 |
@@ -29,13 +30,10 @@ This page is generated from the same device and net map used by the electrical c
 | `GPIO15` | `I2S_BCLK` | `o` | `I2S0` | codec_i2s_bclk_iso.A |
 | `GPIO16` | `I2S_WS` | `o` | `I2S0` | codec_i2s_ws_iso.A |
 | `GPIO17` | `I2S_DOUT` | `o` | `I2S0` | codec_i2s_dout_iso.A |
-| `GPIO18` | `I2S_DIN` | `i` | `I2S0` | codec_i2s_din_iso.Y |
+| `GPIO18` | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | sd_host_buffer.1A<br>sd_host_sck_pulldown.END_1<br>display_connector.PIN_11 |
 | `GPIO19` | `S3_USB_DM` | `io` | `USB_SERIAL_JTAG` | product_usb_dm_series.END_2 |
 | `GPIO20` | `S3_USB_DP` | `io` | `USB_SERIAL_JTAG` | product_usb_dp_series.END_2 |
 | `GPIO21` | `S3_RP_IPC_MOSI` | `o` | `SPI3` | rp.GPIO24 |
-| `GPIO35` | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | sd_host_buffer.1A<br>sd_host_sck_pulldown.END_1<br>display_connector.PIN_11 |
-| `GPIO36` | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | sd_host_buffer.2A<br>sd_host_d0_pullup.END_1<br>display_connector.PIN_13 |
-| `GPIO37` | `SYS_INT_N` | `i` | `GPIO_IRQ` | slow_io.INT<br>ui_matrix_io.INT_N<br>pd_controller.I2Ct_IRQ<br>touch_irq_buffer.Y<br>pack_status_buffer.D2 |
 | `GPIO38` | `LCD_CS_N` | `o` | `SPI2` | display_connector.PIN_9<br>lcd_host_cs_pullup.END_1 |
 | `GPIO39` | `ENCODER_A` | `i` | `PCNT0` | encoder.A<br>encoder_a_pullup.END_1 |
 | `GPIO40` | `LCD_BL_PWM` | `o` | `LEDC` | backlight_gate_series.END_1 |
@@ -43,6 +41,8 @@ This page is generated from the same device and net map used by the electrical c
 | `GPIO42` | `LCD_QSPI_D3` | `o` | `SPI2` | display_connector.PIN_18 |
 | `GPIO43` | `S3_UART_SERVICE_TX` | `o` | `UART0` | s3_dbg0_series.END_2 |
 | `GPIO44` | `S3_UART_SERVICE_RX` | `i` | `UART0` | s3_dbg1_series.END_2 |
+| `GPIO45` | `SYS_INT_N` | `i` | `GPIO_IRQ` | slow_io.INT<br>ui_matrix_io.INT_N<br>pd_controller.I2Ct_IRQ<br>touch_irq_buffer.Y<br>pack_status_buffer.D2 |
+| `GPIO46` | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | sd_host_buffer.2A<br>sd_host_d0_pulldown.END_1<br>display_connector.PIN_13 |
 | `GPIO47` | `ENCODER_B` | `i` | `PCNT0` | encoder.B<br>encoder_b_pullup.END_1 |
 | `GPIO48` | `S3_RP_IPC_SCK` | `o` | `SPI3` | rp.GPIO26 |
 
@@ -130,7 +130,7 @@ This page is generated from the same device and net map used by the electrical c
 |---|---|---|---|---|
 | `GPIO0` | `PD_EEPROM_WP` | `od` | `GPIO` | pd_config_eeprom.WP |
 | `GPIO1` | `CHARGE_EN_N` | `od` | `GPIO` | nvdc_charger.CE |
-| `I2Ct_IRQ` | `SYS_INT_N` | `od` | `I2C_TARGET` | s3.GPIO37 |
+| `I2Ct_IRQ` | `SYS_INT_N` | `od` | `I2C_TARGET` | s3.GPIO45 |
 | `I2Ct_SCL` | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | s3.GPIO2 |
 | `I2Ct_SDA` | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | s3.GPIO1 |
 

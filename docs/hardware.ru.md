@@ -18,7 +18,7 @@
 
 ```mermaid
 flowchart TB
-  S3["ESP32-S3-WROOM-1U-N16R2<br/>UI, display, storage, audio, BLE/Wi-Fi"]
+  S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, display, storage, audio, BLE/Wi-Fi"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2,4/5 ГГц, 802.15.4, IR"]
   RP["SC1512-A4 · RP2354B<br/>nRF24 ×3, Sub-GHz, voice, U214"]
   S3 <-->|"1-bit SDIO"| C5
@@ -35,7 +35,7 @@ flowchart TB
 
 | Тракт | Основной MPN | Владелец | Возможность |
 |---|---|---|---|
-| Native S3 | `ESP32-S3-WROOM-1U-N16R2` | S3 | Wi‑Fi 2,4 ГГц, BLE, ESP‑NOW |
+| Native S3 | `ESP32-S3-WROOM-1U-N16R8` | S3 | Wi‑Fi 2,4 ГГц, BLE, ESP‑NOW |
 | Native C5 | `ESP32-C5-WROOM-1U-N8R8` | C5 | Wi‑Fi 2,4/5 ГГц, IEEE 802.15.4 |
 | nRF24 ×3 | `Ebyte E01-ML01IPX` | RP2354B | Одновременные `3R`, `1T2R`, `2T1R`, `3T` |
 | Sub‑GHz | `CC1101RGPR` | RP2354B | 315, 433, 868 и 915 МГц |

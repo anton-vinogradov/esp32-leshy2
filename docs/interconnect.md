@@ -6,7 +6,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 ## UI/control board
 
-- Compute: `ESP32-S3-WROOM-1U-N16R2` owns UI, display, storage and audio; `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio and IR.
+- Compute: `ESP32-S3-WROOM-1U-N16R8` owns UI, display, storage and audio; `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio and IR.
 - Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, headphones, D-pad, BACK and OPT.
 - Local safety: S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.
 - C5 service: a separate data-only `GCT USB4105-GF-A` USB-C receptacle.

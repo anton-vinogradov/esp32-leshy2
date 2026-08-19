@@ -14,7 +14,7 @@ mark and product role; no box combines different devices.
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2.4/5-GHz, IEEE 802.15.4 and IR owner"]
 RP["SC1512-A4<br/>deterministic radio and voice owner"]
   S3 <-->|"1-bit SDIO"| C5
@@ -25,7 +25,7 @@ RP["SC1512-A4<br/>deterministic radio and voice owner"]
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI display and touch assembly"]
 SD["Hirose DM3AT-SF-PEJM5<br/>push-push microSD connector"]
 SLOW_IO["TCA6424ARGJR<br/>24-line slow-control expander"]
@@ -80,7 +80,7 @@ U214["M5Stack U214 Cap LoRa-1262<br/>removable LoRa/GNSS Cap module"]
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 RP["SC1512-A4<br/>deterministic radio and voice owner"]
 UI_MATRIX_IO["TCA9539PWR<br/>16 direct D-pad and function-key inputs"]
 UI_DPAD_SWITCH["Alps Alpine SKRHADE010<br/>four directions and centre push below the single D-pad cross"]
@@ -114,7 +114,7 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 RECEIVER["Si4732-A10-GSR<br/>FM/AM/SW/LW broadcast receiver"]
 VOICE["NiceRF SA518<br/>analog VHF/UHF voice transceiver"]
 MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>internal electret microphone"]
@@ -122,6 +122,9 @@ AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>received-audio source sele
 AUDIO_CAPTURE_SELECTOR["Texas Instruments TS5A63157DCKR<br/>microphone/RX capture selector"]
 AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>codec ADC buffer"]
 CODEC["Everest Semiconductor ES8311<br/>audio capture and playback codec"]
+CODEC_SUPERVISOR["Texas Instruments TPS3839K33DBZR<br/>codec-power readiness supervisor"]
+CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>hardware CODEC_READY AND AUDIO_ARM gate"]
+CODEC_I2S_DIN_ISO["Texas Instruments SN74LVC1G126DCKR<br/>capture-data tri-state buffer onto boot GPIO0"]
 AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>RX-bypass/codec speaker selector"]
 AUDIO_TX_SELECTOR["Texas Instruments TS5A63157DCKR<br/>microphone/codec voice-TX selector"]
 SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>differential speaker amplifier"]
@@ -132,7 +135,11 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>3.5-mm headphone output with detect
   AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR
   MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR
   AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC
-  CODEC <-->|"I²S0 + I²C0"| S3
+  S3 -->|"I²S0 outputs + I²C0 control"| CODEC
+  CODEC -->|"ASDOUT capture"| CODEC_I2S_DIN_ISO -->|"I²S DIN on GPIO0"| S3
+  CODEC_SUPERVISOR -->|"CODEC_READY"| CODEC_I2S_DIN_BOOT_GATE
+  S3 -->|"GPIO6 AUDIO_ARM; reset-low"| CODEC_I2S_DIN_BOOT_GATE
+  CODEC_I2S_DIN_BOOT_GATE -->|"output enable"| CODEC_I2S_DIN_ISO
   AUDIO_RX_MUX -->|"reset-default receive bypass"| AUDIO_SPEAKER_SELECTOR
   CODEC -->|"differential playback"| AUDIO_SPEAKER_SELECTOR
   AUDIO_SPEAKER_SELECTOR -->|"differential low-level across M1"| SPEAKER_AMP
@@ -147,7 +154,7 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>3.5-mm headphone output with detect
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>product USB-C receptacle"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>CC and USB2 port protector"]
 S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>keyed DBG10: UART0/RESET/BOOT"]
@@ -168,7 +175,7 @@ RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>RP service USB_BOOT button"]
   PRODUCT_USB_CONNECTOR <-->|"USB2 data"| PRODUCT_USB_PROTECTOR <-->|"native USB"| S3
   S3_DBG_HEADER <-->|"UART0 + RESET + BOOT"| S3
   S3_RESET_BUTTON -->|"RESET"| S3
-  S3_BOOT_BUTTON -->|"GPIO0"| S3
+  S3_BOOT_BUTTON -->|"GPIO0; gated I²S_DIN only after boot"| S3
   C5_SERVICE_USB_CONNECTOR <-->|"data only; VBUS sense only"| C5_SERVICE_USB_SWITCH <-->|"native USB"| C5
   C5_DBG_HEADER <-->|"UART0 + RESET + BOOT"| C5
   C5_RESET_BUTTON -->|"RESET"| C5
@@ -183,7 +190,7 @@ RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>RP service USB_BOOT button"]
 
 ```mermaid
 flowchart TD
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 S3_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>external S3 2.4-GHz RP-SMA port"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2.4/5-GHz, IEEE 802.15.4 and IR owner"]
 C5_EXTERNAL_RP_SMA["GCT RFPC-SMA32-FN-175-A<br/>external C5 2.4/5-GHz RP-SMA port"]
@@ -217,7 +224,7 @@ VOICE_EXTERNAL_SMA["GCT RFPC-SMA31-FN-175-A<br/>VHF/UHF voice SMA port"]
 flowchart TD
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>product USB-C receptacle"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>CC and USB2 port protector"]
-S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
+S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 PD_VBUS_TVS["Texas Instruments TVS2200DRVR<br/>22-V VBUS shunt protector"]
 PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD controller"]
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S charger and NVDC power path"]
