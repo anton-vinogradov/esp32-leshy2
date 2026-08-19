@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **894** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **893** supplied/costed placements collapse to **197** used exact-device/MPN lines.
-- Current orderability evidence exists for **196/197** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **185/197** lines.
+- **895** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **894** supplied/costed placements collapse to **198** used exact-device/MPN lines.
+- Current orderability evidence exists for **197/198** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **186/198** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **871/893** supplied placements; their partial subtotals are `base_product` — USD 193.7419. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **197/197** lines.
+- Those priced lines cover **872/894** supplied placements; their partial subtotals are `base_product` — USD 194.7139. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **198/198** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 890 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 891 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -303,7 +303,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 24 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 25 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -320,6 +320,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
   - `ck_tlsmdt3c020glfs` — `C&K TLSMDT3C020GLFS`.
   - `ck_y78b23214fp` — `C&K Y78B23214FP`.
+  - `davies_1227_j` — `Davies Molding 1227-J`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
@@ -433,6 +434,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: Mouser quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/CK/TLSMDT3C020GLFS?qs=QNEnbhJQKvZpNzUHXUSeJA%3D%3D).
+
+</details>
+
+<details><summary><code>Davies Molding 1227-J</code> — 1 × USD 0.9720 = USD 0.9720</summary>
+
+- Device id: `davies_1227_j`.
+- Scope: `base_product`.
+- Comparable basis: Mouser quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J?qs=AaRlLUpeMszUlt7gcGM9fQ%3D%3D).
 
 </details>
 

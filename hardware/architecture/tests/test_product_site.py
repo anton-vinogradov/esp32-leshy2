@@ -100,6 +100,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn(
             'data-instance="stop_switch" data-direct-press="true"', layout
         )
+        self.assertIn('data-manufacturing-class="custom-actuator"', layout)
+        self.assertIn("supplier MPN does not apply", layout)
+        self.assertIn('data-instance="encoder_knob" data-selected-part="true"', layout)
+        self.assertIn("Davies 1227-J is the exact encoder knob", layout)
         self.assertIn("same-size SPDT tactile body", layout)
         self.assertNotIn("STOP actuator", layout)
 

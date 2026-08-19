@@ -184,14 +184,14 @@ flowchart TD
   UI_SWITCH_F1["OMRON B3S-1100P<br/>F1 ultra-low-current ordinary control"]
   UI_SWITCH_F2["OMRON B3S-1100P<br/>F2 ultra-low-current ordinary control"]
   ENCODER["Alps Alpine EC11E18244AU<br/>36-detent/18-pulse rotary encoder with push"]
+  ENCODER_KNOB["Davies Molding 1227-J<br/>15-mm soft-touch 6x4.5-mm D-shaft encoder knob"]
   ENCODER_A_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-A contact-current pull-up"]
   ENCODER_B_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-B contact-current pull-up"]
-  ENCODER_PTT_ESD["Texas Instruments TPD4E05U06DQAR<br/>four-channel encoder/PTT low-capacitance ESD array"]
   end
   S3 ~~~ MAIN_EFUSE ~~~ SD_DETECT_PULLUP ~~~ SD_DETECT_CAP ~~~ SLOW_IO ~~~ SLOW_IO_VCCI_BYPASS ~~~ SLOW_IO_VCCP_BYPASS ~~~ SLOW_IO_BULK_CAP ~~~ SLOW_IO_RESET_PULLUP ~~~ SLOW_IO_RESET ~~~ SLOW_IO_STOP_SENSE_ISO ~~~ SLOW_IO_STOP_SENSE_ISO_BYPASS
   SLOW_IO_STOP_SENSE_PULLUP ~~~ SLOW_IO_S3_EVIDENCE_ISO ~~~ SLOW_IO_S3_EVIDENCE_ISO_BYPASS ~~~ SLOW_IO_S3_EVIDENCE_PULLUP ~~~ UI_MATRIX_IO ~~~ UI_MATRIX_IO_BYPASS ~~~ UI_MATRIX_ROW0_PULLDOWN ~~~ UI_MATRIX_ROW1_PULLDOWN ~~~ UI_MATRIX_ROW2_PULLDOWN ~~~ UI_MATRIX_ROW3_PULLDOWN ~~~ UI_MATRIX_COL0_PULLUP ~~~ UI_MATRIX_COL1_PULLUP
   UI_MATRIX_COL2_PULLUP ~~~ UI_MATRIX_ESD ~~~ UI_MATRIX_DIODE_UP ~~~ UI_MATRIX_DIODE_DOWN ~~~ UI_MATRIX_DIODE_LEFT ~~~ UI_MATRIX_DIODE_RIGHT ~~~ UI_MATRIX_DIODE_OK ~~~ UI_MATRIX_DIODE_BACK ~~~ UI_MATRIX_DIODE_OPT ~~~ UI_MATRIX_DIODE_F1 ~~~ UI_MATRIX_DIODE_F2 ~~~ UI_MATRIX_DIODE_ENCODER
-  UI_SWITCH_UP ~~~ UI_SWITCH_DOWN ~~~ UI_SWITCH_LEFT ~~~ UI_SWITCH_RIGHT ~~~ UI_SWITCH_OK ~~~ UI_SWITCH_BACK ~~~ UI_SWITCH_OPT ~~~ UI_SWITCH_F1 ~~~ UI_SWITCH_F2 ~~~ ENCODER ~~~ ENCODER_A_PULLUP ~~~ ENCODER_B_PULLUP
+  UI_SWITCH_UP ~~~ UI_SWITCH_DOWN ~~~ UI_SWITCH_LEFT ~~~ UI_SWITCH_RIGHT ~~~ UI_SWITCH_OK ~~~ UI_SWITCH_BACK ~~~ UI_SWITCH_OPT ~~~ UI_SWITCH_F1 ~~~ UI_SWITCH_F2 ~~~ ENCODER ~~~ ENCODER_KNOB ~~~ ENCODER_A_PULLUP
   MAIN_EFUSE -->|"protected PG to fault aggregate"| SLOW_IO
   MAIN_EFUSE -->|"3V3_MAIN: VCCI/VCCP"| SLOW_IO
   MAIN_EFUSE --> SLOW_IO_VCCI_BYPASS --> SLOW_IO
@@ -225,8 +225,8 @@ flowchart TD
   UI_MATRIX_COL2_PULLUP --> UI_MATRIX_IO
   ENCODER_A_PULLUP --> ENCODER
   ENCODER_B_PULLUP --> ENCODER
+  ENCODER_KNOB -->|"6x4.5-mm D-shaft interference fit"| ENCODER
   ENCODER -->|"GPIO39/GPIO47 PCNT0 quadrature"| S3
-  ENCODER --> ENCODER_PTT_ESD
 ```
 
 ### 4. Экран, storage и органы управления — узлы 3/3
@@ -236,6 +236,7 @@ flowchart TD
   subgraph UI_STORAGE_3["UI and storage devices"]
   S3["ESP32-S3-WROOM-1U-N16R2<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
+  ENCODER_PTT_ESD["Texas Instruments TPD4E05U06DQAR<br/>four-channel encoder/PTT low-capacitance ESD array"]
   PTT_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm direct-PTT contact-current pull-up"]
   PTT_SERIES["Yageo RC0603FR-071KL<br/>1-kOhm direct-PTT input series resistor"]
   PTT_FILTER_CAP["TDK C1005X7R1H104K050BB<br/>100-nF direct-PTT hardware filter capacitor"]
@@ -245,11 +246,12 @@ flowchart TD
   TOUCH_IRQ_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF touch-interrupt-buffer bypass capacitor"]
   TOUCH_IRQ_RAW(("LCD_TOUCH_INT_RAW_N<br/>active-low ST77922 touch node"))
   end
-  S3 ~~~ MAIN_EFUSE ~~~ PTT_PULLUP ~~~ PTT_SERIES ~~~ PTT_FILTER_CAP ~~~ PTT_RAW ~~~ TOUCH_IRQ_BUFFER ~~~ TOUCH_IRQ_PULLUP ~~~ TOUCH_IRQ_BUFFER_BYPASS ~~~ TOUCH_IRQ_RAW
+  S3 ~~~ MAIN_EFUSE ~~~ ENCODER_PTT_ESD ~~~ PTT_PULLUP ~~~ PTT_SERIES ~~~ PTT_FILTER_CAP ~~~ PTT_RAW ~~~ TOUCH_IRQ_BUFFER ~~~ TOUCH_IRQ_PULLUP ~~~ TOUCH_IRQ_BUFFER_BYPASS ~~~ TOUCH_IRQ_RAW
   TOUCH_IRQ_PULLUP -->|"10 kOhm to 3V3_MAIN"| TOUCH_IRQ_RAW
   TOUCH_IRQ_RAW --> TOUCH_IRQ_BUFFER -->|"open-drain SYS_INT_N"| S3
   PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW
   PTT_FILTER_CAP -->|"100 nF to power ground"| PTT_RAW
+  PTT_RAW --> ENCODER_PTT_ESD
 ```
 
 ### 5. Приём, запись, воспроизведение и voice audio — узлы 1/4
@@ -4722,6 +4724,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `rearm_switch` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
 - `encoder` lifecycle: `active_standard`.
+- `encoder_knob` uses `Davies Molding 1227-J` as `verified_exact_shaft_and_plan_fit_hil_open`, not an accepted production choice.
 - `display_touch_controller` uses `Sitronix ST77922` as `verified_exact_controller_inside_hmx035ctft_001`, not an accepted production choice.
 - `display_touch_controller` lifecycle: `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly`.
 - `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.

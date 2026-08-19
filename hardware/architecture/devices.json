@@ -3713,6 +3713,48 @@
         "SW2": {"physical": "E", "role": "push_switch"}
       }
     },
+    "davies_1227_j": {
+      "mpn": "Davies Molding 1227-J",
+      "kind": "soft_touch_interference_fit_encoder_knob",
+      "qualification": "verified_exact_shaft_and_plan_fit_hil_open",
+      "lifecycle": "active",
+      "dimensions_mm": [
+        15.0,
+        15.0,
+        21.0
+      ],
+      "source": {
+        "document": "Davies Molding 1227-J official product page and drawing table",
+        "version": "live product page",
+        "url": "https://daviesmolding.com/catalog/series/knobs/control/1227-j/",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "1227-J authorized-distributor exact order-code page; 524 shown in stock",
+        "url": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J?qs=AaRlLUpeMszUlt7gcGM9fQ%3D%3D",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.972,
+        "price_break": "Mouser quantity-100 tier",
+        "source": {
+          "document": "Mouser exact-MPN published price table",
+          "url": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J?qs=AaRlLUpeMszUlt7gcGM9fQ%3D%3D",
+          "checked": "2026-08-19"
+        }
+      },
+      "programmable": false,
+      "mechanical_contract": {
+        "mounting": "interference fit",
+        "shaft": "6-mm D shaft flatted to 4.5 mm",
+        "material": "black thermoplastic elastomer",
+        "indicator": "side line",
+        "fit_boundary": "EC11E18244AU is the exact 6-mm flat-shaft, 20-mm actuator target; received-part insertion depth, retention, push travel and overall rear depth remain HIL"
+      },
+      "contacts": {}
+    },
     "onsemi_1n4148wt": {
       "mpn": "onsemi 1N4148WT",
       "kind": "sod523_switching_diode",

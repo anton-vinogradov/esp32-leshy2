@@ -152,6 +152,7 @@ class Reserve:
     w: float
     h: float
     role: str
+    reserve_class: str
 
 
 UI_INNER = (
@@ -245,17 +246,27 @@ DIRECT_PRESS_REAR_CONTROLS = {
 }
 
 FRONT_CAP_RESERVES = (
-    Reserve("single D-pad cross", 28.8, 127.5, 17.4, 19.0, "one moulded D-pad cap over five switches, MPN TBD"),
+    Reserve(
+        "single D-pad cross", 28.8, 127.5, 17.4, 19.0,
+        "custom one-piece D-pad actuator over five switches; supplier MPN does not apply",
+        "custom_actuator",
+    ),
 )
 
 REAR_CAP_RESERVES = (
-    Reserve("encoder knob", 0.5, 43.0, 15.0, 15.0, "knob/case feature, MPN TBD"),
-    Reserve("RE-ARM recess", 63.0, 95.0, 9.0, 9.0, "enclosure guard around direct button; no cap"),
+    Reserve(
+        "RE-ARM recess", 63.0, 95.0, 9.0, 9.0,
+        "custom enclosure guard around direct button; no cap or supplier MPN",
+        "custom_enclosure_geometry",
+    ),
 )
 REAR_CAP_TO_CONTROL = {
-    "encoder knob": "encoder",
     "RE-ARM recess": "rearm_switch",
 }
+
+REAR_SELECTED_ACTUATORS = (
+    Placement("encoder_knob", 0.5, 43.0, "exact soft-touch knob over rear encoder"),
+)
 
 INTERNAL_RESERVES = ()
 
@@ -335,6 +346,10 @@ def validate_items(name: str, items: tuple[Placement, ...], devices: dict, insta
 def validate_reserves(name: str, reserves: tuple[Reserve, ...]) -> list[str]:
     errors: list[str] = []
     for reserve in reserves:
+        if reserve.reserve_class not in {
+            "custom_actuator", "custom_enclosure_geometry", "unselected_bom_part",
+        }:
+            errors.append(f"{name}: {reserve.name} has invalid reserve class {reserve.reserve_class}")
         rectangle = (reserve.x, reserve.y, reserve.w, reserve.h)
         if reserve.x < 0 or reserve.y < 0 or reserve.x + reserve.w > BOARD_W or reserve.y + reserve.h > BOARD_H:
             errors.append(f"{name}: {reserve.name} is outside the 75x150-mm board")
@@ -356,6 +371,7 @@ def validate() -> list[str]:
         "u214_connector": "Samtec SSW-107-02-S-D",
         "pack_holder": "Keystone Electronics 1048P",
         "unit_connector": "1125R-SMT-4P",
+        "encoder_knob": "Davies Molding 1227-J",
     }
     for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
@@ -367,6 +383,7 @@ def validate() -> list[str]:
     errors += validate_items("front-controls", FRONT_CONTROLS, devices, instances)
     errors += validate_items("rear-controls", REAR_CONTROLS, devices, instances)
     errors += validate_items("rear-outer", REAR_OUTER, devices, instances)
+    errors += validate_items("rear-selected-actuators", REAR_SELECTED_ACTUATORS, devices, instances)
     errors += validate_reserves("front-caps", FRONT_CAP_RESERVES)
     errors += validate_reserves("rear-caps", REAR_CAP_RESERVES)
     errors += validate_reserves("internal-reserves", INTERNAL_RESERVES)
@@ -427,6 +444,19 @@ def validate() -> list[str]:
             errors.append(f"rear: {cap.name} lacks battery-holder clearance")
         if overlaps(cap_box, u214_box, U214_CLEARANCE):
             errors.append(f"rear: {cap.name} lacks installed-U214 clearance")
+    encoder = rear_control_by_instance["encoder"]
+    encoder_w, encoder_h = placement_size(encoder, devices, instances)
+    knob = REAR_SELECTED_ACTUATORS[0]
+    knob_w, knob_h = placement_size(knob, devices, instances)
+    knob_box = (knob.x, knob.y, knob_w, knob_h)
+    if abs((encoder.x + encoder_w / 2) - (knob.x + knob_w / 2)) > 0.15:
+        errors.append("rear: exact encoder knob is not centred over the encoder in X")
+    if abs((encoder.y + encoder_h / 2) - (knob.y + knob_h / 2)) > 0.15:
+        errors.append("rear: exact encoder knob is not centred over the encoder in Y")
+    if overlaps(knob_box, holder_box, U214_CLEARANCE):
+        errors.append("rear: exact encoder knob lacks battery-holder clearance")
+    if overlaps(knob_box, u214_box, U214_CLEARANCE):
+        errors.append("rear: exact encoder knob lacks installed-U214 clearance")
     for centre, _, _ in REAR_RF:
         rf_box = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
         if overlaps(connector_box, rf_box, U214_CLEARANCE):
@@ -604,7 +634,7 @@ def rf_bank(
 
 
 def dpad_cap(origin, scale, sx, sy, text):
-    """Draw one moulded D-pad cap; the five switches below remain separate parts."""
+    """Draw one custom D-pad actuator; the five switches below remain separate parts."""
     cx, cy = sx(origin, 37.5), sy(origin, 137.0)
     arm, half = 6.6 * scale, 2.4 * scale
     points = (
@@ -617,7 +647,7 @@ def dpad_cap(origin, scale, sx, sy, text):
     )
     path = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
     return [
-        f'<polygon points="{path}" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross"/>',
+        f'<polygon points="{path}" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross" data-manufacturing-class="custom-actuator"/>',
         f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{2.0*scale:.1f}" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>',
         text(cx, cy + 2.0, "OK", 5.0, "bold", "middle", "#4c1d95"),
     ]
@@ -687,7 +717,11 @@ def render_external(devices, instances):
             )
         )
     for reserve in FRONT_CAP_RESERVES:
-        out.append(rect(front, reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "4 3", 3))
+        out.append(
+            rect(front, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#7c3aed", "4 3", 3).replace(
+                "/>", f' data-reserve-class="{reserve.reserve_class}"/>',
+            )
+        )
     out += dpad_cap(front, scale, sx, sy, text)
     out.append(silk_text(sx(front,20.1), sy(front,145.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
     out.append(silk_text(sx(front,54.9), sy(front,145.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
@@ -739,16 +773,22 @@ def render_external(devices, instances):
             )
         )
 
+    knob = REAR_SELECTED_ACTUATORS[0]
+    knob_w, knob_h = placement_size(knob, devices, instances)
+    knob_cx = sx(rear, knob.x + knob_w / 2)
+    knob_cy = sy(rear, knob.y + knob_h / 2)
+    out.append(
+        f'<circle cx="{knob_cx:.1f}" cy="{knob_cy:.1f}" r="{knob_w*scale/2:.1f}" '
+        'fill="#dbe4ee" stroke="#475467" stroke-width="1.5" '
+        'data-instance="encoder_knob" data-selected-part="true"/>'
+    )
+    out.append(
+        f'<path d="M{knob_cx:.1f} {knob_cy-knob_h*scale/2+3:.1f} '
+        f'V{knob_cy-knob_h*scale/2+12:.1f}" stroke="#475467" stroke-width="2" '
+        'data-part="knob-indicator-line"/>'
+    )
     for reserve in REAR_CAP_RESERVES:
-        if reserve.name == "encoder knob":
-            out.append(
-                f'<circle cx="{sx(rear,reserve.x + reserve.w/2):.1f}" '
-                f'cy="{sy(rear,reserve.y + reserve.h/2):.1f}" r="{reserve.w*scale/2:.1f}" '
-                'fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3" '
-                'data-part="encoder-knob-reserve"/>'
-            )
-        else:
-            out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
+        out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
     for x, y, label in (
         (7.5, 61.5, "ENC"), (7.5, 74.0, "F1"), (7.5, 89.0, "F2"),
         (67.5, 74.0, "PTT"), (67.5, 89.0, "STOP"), (67.5, 107.0, "RE-ARM"),
@@ -811,15 +851,18 @@ def render_external(devices, instances):
         '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',
         text(890,479,"solid — registered MPN/reference assembly envelope",11),
         '<rect x="850" y="497" width="28" height="15" rx="3" fill="none" stroke="#ea580c" stroke-dasharray="5 3"/>',
-        text(890,509,"dashed — reserved space; exact MPN is not selected",11),
-        text(note_x,550,"RF connectors are barrels with hex nuts, not circles.",11,"bold"),
-        text(note_x,573,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
-        text(note_x,593,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
-        text(note_x,614,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
-        text(note_x,637,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
-        text(note_x,660,"D-pad cross, RE-ARM recess, knob, wall stack and cables remain open.",11),
-        text(note_x,683,"BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one cross.",11,"bold"),
-        text(note_x,706,"STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.",11),
+        text(890,509,"orange dashed — open custom enclosure drawing",11),
+        '<rect x="850" y="527" width="28" height="15" rx="3" fill="#ede9fe" stroke="#7c3aed"/>',
+        text(890,539,"violet — custom product part; supplier MPN does not apply",11),
+        text(note_x,566,"RF connectors are barrels with hex nuts, not circles.",11,"bold"),
+        text(note_x,589,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
+        text(note_x,609,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
+        text(note_x,630,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
+        text(note_x,653,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
+        text(note_x,676,"D-pad cross is custom; its control drawing replaces a supplier MPN.",11),
+        text(note_x,699,"Davies 1227-J is the exact encoder knob; only its fit HIL remains.",11),
+        text(note_x,722,"BACK/OPT/F1/F2/PTT/STOP/RE-ARM are direct buttons; D-pad is one cross.",11,"bold"),
+        text(note_x,745,"STOP uses a same-size SPDT tactile body and its normally-closed fail-safe contact.",11),
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"
@@ -1055,21 +1098,23 @@ def render_rear_face(devices, instances):
 
     # F1/F2/PTT/STOP/RE-ARM are exact directly pressed switch bodies. RE-ARM
     # keeps only a protective recess.
-    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT-STOP-RE-ARM" data-actuator-reserves="none" data-enclosure-reserves="RE-ARM-recess-encoder-knob">')
+    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT-STOP-RE-ARM" data-actuator-reserves="none" data-enclosure-reserves="RE-ARM-recess">')
     for control in REAR_CONTROLS:
         control_w, control_h = placement_size(control, devices, instances)
         fill = "#fee2e2" if control.instance == "stop_switch" else "#e2e8f0"
         stroke = "#b42318" if control.instance == "stop_switch" else "#64748b"
         out.append(r(control.x, control.y, control_w, control_h, fill, stroke, "", 2, f' data-instance="{control.instance}"'))
+    knob = REAR_SELECTED_ACTUATORS[0]
+    knob_w, knob_h = placement_size(knob, devices, instances)
+    knob_cx = x(knob.x + knob_w / 2)
+    knob_cy = y(knob.y + knob_h / 2)
+    out.append(
+        f'<circle cx="{knob_cx:.1f}" cy="{knob_cy:.1f}" r="{knob_w*scale/2:.1f}" '
+        'fill="#dbe4ee" stroke="#475467" stroke-width="1.6" '
+        'data-instance="encoder_knob" data-selected-part="true"/>'
+    )
     for reserve in REAR_CAP_RESERVES:
-        if reserve.name == "encoder knob":
-            out.append(
-                f'<circle cx="{x(reserve.x + reserve.w/2):.1f}" cy="{y(reserve.y + reserve.h/2):.1f}" '
-                f'r="{reserve.w*scale/2:.1f}" fill="#f5f3ff" fill-opacity="0.62" stroke="#ea580c" '
-                'stroke-width="1.6" stroke-dasharray="5 3" data-part="encoder-knob-reserve"/>'
-            )
-        else:
-            out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
+        out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
     for label_x, label_y, label, colour in (
         (8.0, 61.5, "ENC", "#4c1d95"),
         (7.5, 74.0, "F1", "#4c1d95"),
@@ -1100,7 +1145,7 @@ def render_rear_face(devices, instances):
         t(note_x, 224, "✓ the two envelopes have a 1.0-mm plan gap", 12, "bold", colour="#166534"),
         t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 4.5 mm per side", 12, "bold", colour="#166534"),
         t(note_x, 278, "✓ 56-mm retention pitch remains inside the 75-mm base", 12, "bold", colour="#166534"),
-        t(note_x, 305, "✓ direct buttons and remaining actuator reserves clear the battery and U214 envelopes", 12, "bold", colour="#166534"),
+        t(note_x, 305, "✓ direct buttons, exact knob and recess clear the battery and U214", 12, "bold", colour="#166534"),
         t(note_x, 350, "Selected parts", 15, "bold"),
         t(note_x, 378, cap_mpn, 11, "bold", colour="#9a3412"),
         t(note_x, 403, f"{socket_mpn} · vertical 2×7 host socket", 11, "bold", colour="#075985"),
@@ -1108,10 +1153,10 @@ def render_rear_face(devices, instances):
         t(note_x, 474, "Rear controls shown to scale", 15, "bold"),
         t(note_x, 502, "OMRON B3S-1100P · direct BACK/OPT/F1/F2/PTT/RE-ARM", 11),
         t(note_x, 527, "C&K TLSMDT3C020GLFS · direct-press normally-closed STOP", 11),
-        t(note_x, 552, "Alps Alpine EC11E18244AU · encoder body; knob remains a reserve", 11),
+        t(note_x, 552, "Alps EC11E18244AU + Davies 1227-J · exact encoder and knob", 11),
         t(note_x, 598, "Meaning of this view", 15, "bold"),
         t(note_x, 626, "Rear face viewed normal to the PCB — not a side section.", 11),
-        t(note_x, 651, "Solid: exact bodies/direct buttons. Dashed: RE-ARM recess and encoder knob.", 11),
+        t(note_x, 651, "Solid: exact bodies/direct buttons/knob. Dashed: RE-ARM recess.", 11),
         t(note_x, 676, "Orange: removable Cap/controls; blue: raised rail; green: batteries.", 11),
         t(note_x, 716, "Still requires specimen/HIL", 15, "bold", colour="#b42318"),
         t(note_x, 744, "• STOP 0.85-mm height offset, RE-ARM recess and encoder access", 11),

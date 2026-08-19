@@ -30,6 +30,7 @@
 | `ck_js102011scqn` | `C&K JS102011SCQN` | `verified_exact_low_current_power_command_switch_mechanical_hil_open` | `active_orderable` | [Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet VL 01/14/26](https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14) | same primary source |
 | `ck_tlsmdt3c020glfs` | `C&K TLSMDT3C020GLFS` | `verified_exact_direct_press_hard_stop_mechanical_hil_open` | `active_orderable` | [C&K TLSM Series official product page and exact TLSM datasheet datasheet revised 2025-04-22; live product page checked 2026-08-19](https://www.ckswitches.com/products/switches/product-details/Tactile/TLSM/) | same primary source |
 | `ck_y78b23214fp` | `C&K Y78B23214FP` | `verified_first_target_mechanical_cap_and_enclosure_hil_open` | `active_orderable` | [C&K KMR2 Series Micro Miniature Tactile Switch datasheet VL 01/28/26](https://www.ckswitches.com/media/1479/kmr2.pdf) | same primary source |
+| `davies_1227_j` | `Davies Molding 1227-J` | `verified_exact_shaft_and_plan_fit_hil_open` | `active` | [Davies Molding 1227-J official product page and drawing table live product page](https://daviesmolding.com/catalog/series/knobs/control/1227-j/) | same primary source |
 | `diodes_2n7002dw_7_f` | `Diodes Incorporated 2N7002DW-7-F` | `verified_candidate` | `active` | [2N7002DW dual N-channel MOSFET datasheet DS30120 Rev. 22-2, October 2021](https://www.diodes.com/datasheet/download/2N7002DW.pdf) | same primary source |
 | `diodes_bat54_7_f` | `Diodes Incorporated BAT54-7-F` | `verified_candidate` | `active` | [BAT54 surface-mount Schottky barrier diode datasheet DS11005 Rev. 34-2, November 2023](https://www.diodes.com/datasheet/download/BAT54.pdf) | same primary source |
 | `diodes_dmn2056u_7` | `Diodes Incorporated DMN2056U-7` | `verified_candidate` | `active` | [DMN2056U 20-V N-channel enhancement-mode MOSFET datasheet DS38480 Rev. 2-2, July 2021; product status checked 2026-08-18](https://www.diodes.com/datasheet/download/DMN2056U.pdf) | same primary source |
@@ -3374,6 +3375,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `rearm_switch` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
 - `encoder` lifecycle: `active_standard`.
+- `encoder_knob` uses `Davies Molding 1227-J` as `verified_exact_shaft_and_plan_fit_hil_open`, not an accepted production choice.
 - `display_touch_controller` uses `Sitronix ST77922` as `verified_exact_controller_inside_hmx035ctft_001`, not an accepted production choice.
 - `display_touch_controller` lifecycle: `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly`.
 - `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.

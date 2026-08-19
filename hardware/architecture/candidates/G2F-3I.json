@@ -20,7 +20,7 @@
       }
     ],
     "substitution_policy": {
-      "status": "all_195_current_purchase_lines_have_exactly_one_conservative_disposition_class",
+      "status": "all_196_current_purchase_lines_have_exactly_one_conservative_disposition_class",
       "classes": [
         {
           "id": "SUB-RF",
@@ -119,7 +119,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_tlsmdt3c020glfs", "ck_y78b23214fp", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_ssw_107_02_s_d", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_tlsmdt3c020glfs", "ck_y78b23214fp", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_ssw_107_02_s_d", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -254,7 +254,7 @@
       "scan_contract": "initialization writes P0..P3 output latches low before changing their configuration from reset inputs to outputs; interrupt starts a bounded scan that drives the selected row low and the other three rows high, then restores all rows low; debounce and multi-key interpretation are firmware/HIL gates"
     },
     "encoder": {
-      "first_target": "Alps Alpine EC11E18244AU: 36 detents, 18 pulses and integrated push switch; physical rear fit remains open",
+      "first_target": "Alps Alpine EC11E18244AU with Davies Molding 1227-J: 36 detents, 18 pulses, integrated push and an exact 15-mm soft-touch knob for the 6x4.5-mm D shaft; received-part fit remains HIL",
       "phase_a": "S3 GPIO39 through PCNT0",
       "phase_b": "S3 GPIO47 through PCNT0",
       "common": "power ground",
@@ -279,7 +279,7 @@
     "pin_budget_result": "S3 remains 33 used / 3 reserved / 0 free; I7 consumes final main slow_io P05 for independent native-Unit power, closing that plane at 24 used / 0 reserved / 0 free; dedicated ui_matrix_io is 7 used / 1 reserved / 0 free; PTT, STOP, RE-ARM, full D-pad, F1 and F2 are unchanged",
     "paper_cost_delta_usd_at_1000_excluding_switch_mechanics": "approximately 0.95 to 1.15 for one already-used-family TCA9534APWR, touch buffer, one additional isolation diode and supporting passives; no additional MCU",
     "exact_switch_boundary_cost_note": "TLSMDT3C020GLFS is USD 1.62 at quantity 100 on the checked authorized source; five Y78B23214FP D-pad switches, six B3S-1100P direct-press buttons and three ESD arrays crystallize mandatory controls rather than adding product functions; production costing remains a supplier-quote gate",
-    "remaining_hil": ["five front Y78B23214FP switches beneath the single D-pad cross", "B3S-1100P direct finger access, 1.57-N feel, spacing and board-edge protection for BACK/OPT/F1/F2/PTT", "TLSMDT3C020GLFS STOP direct finger access, 2-N feel, 0.85-mm height offset versus B3S, board-edge protection and enclosure sealing", "direct B3S-1100P RE-ARM recess and wrong-button discrimination", "encoder rear placement with U214 installed", "physical SYS-I2C address collision scan and TCA9534A interrupt behavior", "matrix ESD/contact-current/ghosting/debounce, bounded high-row current and multi-key semantics", "encoder/PTT/safety ESD return and transient behavior", "encoder speed, chatter, EMI and simultaneous UI/radio/storage load", "ST77922 specimen identity/readback, exact 0x38 response, TP_INT idle voltage/pulse persistence/clear semantics and shared-line source identification"]
+    "remaining_hil": ["five front Y78B23214FP switches beneath the single D-pad cross", "B3S-1100P direct finger access, 1.57-N feel, spacing and board-edge protection for BACK/OPT/F1/F2/PTT", "TLSMDT3C020GLFS STOP direct finger access, 2-N feel, 0.85-mm height offset versus B3S, board-edge protection and enclosure sealing", "direct B3S-1100P RE-ARM recess and wrong-button discrimination", "Davies 1227-J insertion depth, retention, EC11 push travel and rear access with U214 installed", "physical SYS-I2C address collision scan and TCA9534A interrupt behavior", "matrix ESD/contact-current/ghosting/debounce, bounded high-row current and multi-key semantics", "encoder/PTT/safety ESD return and transient behavior", "encoder speed, chatter, EMI and simultaneous UI/radio/storage load", "ST77922 specimen identity/readback, exact 0x38 response, TP_INT idle voltage/pulse persistence/clear semantics and shared-line source identification"]
   },
   "slow_io_contract": {
     "decision": "DEC-0089",
@@ -1533,6 +1533,7 @@
     "rearm_pullup": "yageo_rc0402fr_0747kl",
     "rearm_filter_cap": "tdk_c1005x7r1h104k050bb",
     "encoder": "alps_ec11e18244au",
+    "encoder_knob": "davies_1227_j",
     "display_touch_controller": "sitronix_st77922",
     "touch_irq_buffer": "ti_sn74lvc1g07_dckr",
     "touch_irq_pullup": "yageo_rc0402fr_0710kl",

@@ -140,8 +140,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(893, sum(line["quantity"] for line in lines))
-        self.assertEqual(197, len(lines))
+        self.assertEqual(894, sum(line["quantity"] for line in lines))
+        self.assertEqual(198, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -151,11 +151,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            185,
+            186,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            871,
+            872,
             sum(
                 line["quantity"]
                 for line in lines
@@ -217,14 +217,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("894", rendered)
-        self.assertIn("893", rendered)
-        self.assertIn("197", rendered)
-        self.assertIn("196/197", rendered)
-        self.assertIn("197/197", rendered)
-        self.assertIn("185/197", rendered)
-        self.assertIn("871/893", rendered)
-        self.assertIn("USD 193.7419", rendered)
+        self.assertIn("**895** architecture instances", rendered)
+        self.assertIn("**894** supplied/costed placements", rendered)
+        self.assertIn("**197/198** used lines", rendered)
+        self.assertIn("**198/198** lines", rendered)
+        self.assertIn("**186/198** lines", rendered)
+        self.assertIn("**872/894** supplied placements", rendered)
+        self.assertIn("USD 194.7139", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)

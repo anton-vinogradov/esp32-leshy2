@@ -359,6 +359,7 @@ flowchart TD
   UI_SWITCH_F1["OMRON B3S-1100P<br/>F1 ultra-low-current ordinary control"]
   UI_SWITCH_F2["OMRON B3S-1100P<br/>F2 ultra-low-current ordinary control"]
   ENCODER["Alps Alpine EC11E18244AU<br/>36-detent/18-pulse rotary encoder with push"]
+  ENCODER_KNOB["Davies Molding 1227-J<br/>15-mm soft-touch 6x4.5-mm D-shaft encoder knob"]
   ENCODER_A_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-A contact-current pull-up"]
   ENCODER_B_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-B contact-current pull-up"]
   ENCODER_PTT_ESD["Texas Instruments TPD4E05U06DQAR<br/>four-channel encoder/PTT low-capacitance ESD array"]
@@ -1270,6 +1271,7 @@ flowchart TD
   UI_MATRIX_COL2_PULLUP --> UI_MATRIX_IO
   ENCODER_A_PULLUP --> ENCODER
   ENCODER_B_PULLUP --> ENCODER
+  ENCODER_KNOB -->|"6x4.5-mm D-shaft interference fit"| ENCODER
   ENCODER -->|"GPIO39/GPIO47 PCNT0 quadrature"| S3
   DISPLAY_RESET_PULLDOWN -->|"RESX default low"| DISPLAY_CONNECTOR
   TOUCH_RESET_PULLDOWN -->|"TP_RESXP default low"| DISPLAY_CONNECTOR
