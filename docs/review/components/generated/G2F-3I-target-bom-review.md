@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **76/187** lines.
-- Of the remaining **111** unpriced lines, **8** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **643/857** supplied placements; their partial subtotals are `base_product` — USD 130.7216. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **91/187** lines.
+- Of the remaining **96** unpriced lines, **8** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **708/857** supplied placements; their partial subtotals are `base_product` — USD 133.4711. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -390,6 +390,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Diodes Incorporated 2N7002DW-7-F</code> — 4 × USD 0.1277 = USD 0.5108</summary>
+
+- Device id: `diodes_2n7002dw_7_f`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/diodes-incorporated/2N7002DW-7-F/749948).
+
+</details>
+
+<details><summary><code>Diodes Incorporated BAT54-7-F</code> — 4 × USD 0.0698 = USD 0.2792</summary>
+
+- Device id: `diodes_bat54_7_f`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/diodes-incorporated/BAT54-7-F/717699).
+
+</details>
+
 <details><summary><code>Diodes Incorporated PAM8302AASCR</code> — 1 × USD 0.3605 = USD 0.3605</summary>
 
 - Device id: `diodes_pam8302a_ascr`.
@@ -480,6 +498,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>KEMET C0402C330J5GACTU</code> — 5 × USD 0.0213 = USD 0.1065</summary>
+
+- Device id: `kemet_c0402c330j5gactu`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/kemet/C0402C330J5GACTU/411019).
+
+</details>
+
 <details><summary><code>Keystone Electronics 1048P</code> — 1 × USD 8.5700 = USD 8.5700</summary>
 
 - Device id: `keystone_1048p`.
@@ -498,12 +525,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata BLM18PG181SN1D</code> — 4 × USD 0.0431 = USD 0.1724</summary>
+
+- Device id: `murata_blm18pg181sn1d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/BLM18PG181SN1D/1634634).
+
+</details>
+
 <details><summary><code>Murata GRM1555C1H121JA01D</code> — 7 × USD 0.0197 = USD 0.1379</summary>
 
 - Device id: `murata_grm1555c1h121ja01d`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H121JA01D/587178).
+
+</details>
+
+<details><summary><code>Murata GRM1555C1H221JA01D</code> — 4 × USD 0.0177 = USD 0.0708</summary>
+
+- Device id: `murata_grm1555c1h221ja01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H221JA01D/587204).
 
 </details>
 
@@ -516,12 +561,48 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata GRM155R71H472KA01D</code> — 4 × USD 0.0098 = USD 0.0392</summary>
+
+- Device id: `murata_grm155r71h472ka01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71H472KA01D/587946).
+
+</details>
+
 <details><summary><code>Murata GRM188R60J106ME47D</code> — 17 × USD 0.0377 = USD 0.6409</summary>
 
 - Device id: `murata_grm188r60j106me47d`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM188R60J106ME47D/965910).
+
+</details>
+
+<details><summary><code>Murata GRM188R71E474KA12D</code> — 4 × USD 0.0496 = USD 0.1984</summary>
+
+- Device id: `murata_grm188r71e474ka12d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM188R71E474KA12D/702555).
+
+</details>
+
+<details><summary><code>Murata GRM21BR60J226ME39L</code> — 5 × USD 0.1341 = USD 0.6705</summary>
+
+- Device id: `murata_grm21br60j226me39l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR60J226ME39L/587424).
+
+</details>
+
+<details><summary><code>Murata GRM21BR71E225KE11L</code> — 4 × USD 0.0612 = USD 0.2448</summary>
+
+- Device id: `murata_grm21br71e225ke11l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71E225KE11L/6606096).
 
 </details>
 
@@ -567,6 +648,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/1N4148WT/2094398).
+
+</details>
+
+<details><summary><code>BAT54ALT1G</code> — 4 × USD 0.0577 = USD 0.2308</summary>
+
+- Device id: `onsemi_bat54alt1g`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/BAT54ALT1G/917808).
 
 </details>
 
@@ -957,6 +1047,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Yageo RC0402FR-07169KL</code> — 5 × USD 0.0097 = USD 0.0485</summary>
+
+- Device id: `yageo_rc0402fr_07169kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-07169KL/5280860).
+
+</details>
+
 <details><summary><code>Yageo RC0402FR-071KL</code> — 10 × USD 0.0097 = USD 0.0970</summary>
 
 - Device id: `yageo_rc0402fr_071kl`.
@@ -1008,6 +1107,42 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0747KL/726616).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0749R9L</code> — 5 × USD 0.0097 = USD 0.0485</summary>
+
+- Device id: `yageo_rc0402fr_0749r9l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0749R9L/726621).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0752R3L</code> — 4 × USD 0.0097 = USD 0.0388</summary>
+
+- Device id: `yageo_rc0402fr_0752r3l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0752R3L/5281040).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-075K1L</code> — 5 × USD 0.0103 = USD 0.0515</summary>
+
+- Device id: `yageo_rc0402fr_075k1l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-075K1L/726624).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0768KL</code> — 4 × USD 0.0097 = USD 0.0388</summary>
+
+- Device id: `yageo_rc0402fr_0768kl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0768KL/729598).
 
 </details>
 

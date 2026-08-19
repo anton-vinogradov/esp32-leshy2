@@ -43,7 +43,7 @@ identify this order code.
   tiers. It also receives `quantity_100_rfq_required`; a CNY value is not
   silently converted into the USD contract.
 
-## Current snapshot
+## Sixth-batch checkpoint
 
 - cost evidence: **76/187 purchase lines**;
 - covered placements: **643/857**;
@@ -55,3 +55,6 @@ identify this order code.
 This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
+
+The current successor is [`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md):
+91/187 lines, 708/857 placements and USD 133.4711 partial base subtotal.

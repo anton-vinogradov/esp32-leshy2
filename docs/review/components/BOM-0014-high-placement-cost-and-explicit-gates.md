@@ -116,6 +116,6 @@ the raw-display cost and prevents RFQ-only radios from becoming zero.
 ## Последующий статус
 
 Этот artifact сохраняет проверенный second-batch checkpoint. Текущий итог
-после третьей партии находится в
-[`BOM-0018`](BOM-0018-audio-power-mechanical-cost-evidence.md): 76/187 lines,
-643/857 placements и partial base subtotal USD 130.7216.
+после седьмой партии находится в
+[`BOM-0019`](BOM-0019-high-placement-passive-cost-evidence.md): 91/187 lines,
+708/857 placements и partial base subtotal USD 133.4711.

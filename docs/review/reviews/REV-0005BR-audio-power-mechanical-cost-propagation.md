@@ -21,7 +21,9 @@ receives **«Проведено ревью»**. The batch expands comparable mat
 coverage and repairs one procurement URL without changing electrical or
 physical architecture.
 
-I8 remains open for 111 prices, standalone display sourcing, four
-uninstantiated physical families, specific alternate qualification and full
-factory COGS. The temporarily unstocked exact `TS5A63157DCKR` line remains a
-procurement-watch item; its accepted electrical target is unchanged.
+At this sixth-batch checkpoint I8 remained open for 111 prices, standalone
+display sourcing, four uninstantiated physical families, specific alternate
+qualification and full factory COGS. The temporarily unstocked exact
+`TS5A63157DCKR` line remains a procurement-watch item; its accepted electrical
+target is unchanged. `BOM-0019/REV-0005BS` subsequently advance current
+coverage to 91/187 lines / 708 placements / USD 133.4711.

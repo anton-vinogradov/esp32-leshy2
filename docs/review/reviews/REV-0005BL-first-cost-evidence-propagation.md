@@ -23,5 +23,5 @@ physical families, standalone display sourcing and complete factory COGS
 remain open.
 
 Later `BOM-0014/DEC-0106/REV-0005BM` preserve this reviewed first-batch result
-and add five explicit unpriced gates. `BOM-0018/REV-0005BR` later advance the
-current snapshot to 76/187 lines / 643 placements and eight explicit gates.
+and add five explicit unpriced gates. `BOM-0019/REV-0005BS` later advance the
+current snapshot to 91/187 lines / 708 placements and eight explicit gates.
