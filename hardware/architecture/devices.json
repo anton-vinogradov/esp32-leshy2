@@ -1379,6 +1379,11 @@
         "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0724,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "inductance_nh": 56,
         "tolerance_percent": 5,
@@ -1410,6 +1415,11 @@
         "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H102JA01D/702785",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0181,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H102JA01D/702509", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "capacitance_pf": 1000,
         "tolerance_percent": 5,
@@ -1438,6 +1448,11 @@
         "document": "GRM155R71A474KE01D active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71A474KE01D/6605995",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1771,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71A474KE01D/6605995", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "capacitance_uf": 0.47,
@@ -2001,6 +2016,11 @@
         "url": "https://www.digikey.com/en/products/detail/abracon-llc/ABM8-26-000MHZ-10-D-1-G-T/9998081",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.3257,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/abracon-llc/ABM8-26-000MHZ-10-D-1-G-T/9997912", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "frequency_mhz": 26.0,
         "load_capacitance_pf": 10,
@@ -2077,24 +2097,28 @@
       "mpn": "Murata LQG15HS2N2S02D", "kind": "2_2nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
       "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS2N2S02D", "checked": "2026-08-18"},
       "orderable_source": {"document": "LQG15HS2N2S02D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS2N2S02D/662863", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS2N2S02D/662863", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_lqg15hs3n3s02d": {
       "mpn": "Murata LQG15HS3N3S02D", "kind": "3_3nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
       "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS3N3S02D", "checked": "2026-08-18"},
       "orderable_source": {"document": "LQG15HS3N3S02D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=LQG15HS3N3S02D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS3N3S02D/662896", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_lqg15hs3n6s02d": {
       "mpn": "Murata LQG15HS3N6S02D", "kind": "3_6nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
       "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS3N6S02D", "checked": "2026-08-18"},
       "orderable_source": {"document": "LQG15HS3N6S02D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=LQG15HS3N6S02D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS3N6S02D/2594221", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_lqg15hs6n8j02d": {
       "mpn": "Murata LQG15HS6N8J02D", "kind": "6_8nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
       "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS6N8J02D", "checked": "2026-08-18"},
       "orderable_source": {"document": "LQG15HS6N8J02D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=LQG15HS6N8J02D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS6N8J02D/662870", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_lqg15hs10nj02d": {
@@ -2108,6 +2132,7 @@
       "mpn": "Murata LQG15HS15NJ02D", "kind": "15nh_0402_rf_inductor", "qualification": "verified_exact_cc_matching_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.55],
       "source": {"document": "Murata LQG15HS_02 RF inductor series specification", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=LQG15HS15NJ02D", "checked": "2026-08-18"},
       "orderable_source": {"document": "LQG15HS15NJ02D authorized-distributor stock page", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS15NJ02D/662874", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.031, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS15NJ02D/662874", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "rf"}, "END_2": {"physical": "2", "role": "rf"}}
     },
     "murata_gjm1555c1hr47bb01d": {
@@ -2150,6 +2175,7 @@
       "mpn": "Murata GJM1555C1H150JB01D", "kind": "15pf_50v_c0g_0402_high_q_rf_capacitor", "qualification": "verified_exact_cc_crystal_load_passive", "lifecycle": "active_orderable", "dimensions_mm": [1.0, 0.5, 0.5],
       "source": {"document": "Murata GJM high-frequency capacitor exact product data", "version": "current exact product data checked 2026-08-18", "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H150JB01D", "checked": "2026-08-18"},
       "orderable_source": {"document": "GJM1555C1H150JB01D authorized-distributor exact-part search", "url": "https://www.digikey.com/en/products/result?keywords=GJM1555C1H150JB01D", "checked": "2026-08-18"},
+      "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0392, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H150JB01D/702310", "checked": "2026-08-19"}},
       "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "clock"}, "END_2": {"physical": "2", "role": "power"}}
     },
     "murata_gjm1555c1h101jb01d": {
@@ -3283,6 +3309,11 @@
         "url": "https://www.mouser.pl/ProductDetail/LITEON/LTST-C190KRKT?qs=kAD5fFa1n5VY3YYNWPC1Fg%3D%3D",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0675,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/liteon/LTST-C190KRKT/386817", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "K": {"physical": "cathode land", "role": "signal"},
@@ -3305,6 +3336,11 @@
         "document": "LTST-C190KFKT active authorized-distributor exact order-code page",
         "url": "https://www.digikey.jp/ja/products/detail/liteon/LTST-C190KFKT/386813",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0637,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/liteon/LTST-C190KFKT/386813", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -4651,6 +4687,11 @@
         "url": "https://www.lcsc.com/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_murata-electronics-grm31c5c1h224je02l_C464977.html",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.3198,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM31C5C1H224JE02L/10691338", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "analog"},
@@ -5484,6 +5525,11 @@
         "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7S2A104K080AB",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0526,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/tdk/C1608X7S2A104K080AB/2116317", "checked": "2026-08-19"}
+      },
       "programmable": false,
       "contacts": {
         "END_1": {"physical": "1", "role": "signal"},
@@ -5574,6 +5620,11 @@
         "document": "GRM31CR71A226KE15L active authorized-distributor stock page",
         "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM31CR71A226KE15L/2039036",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1884,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/murata-electronics/GRM31CR71A226KE15L/2039036", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {

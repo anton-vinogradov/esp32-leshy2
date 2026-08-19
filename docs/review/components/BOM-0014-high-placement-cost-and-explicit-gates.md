@@ -116,6 +116,6 @@ the raw-display cost and prevents RFQ-only radios from becoming zero.
 ## Последующий статус
 
 Этот artifact сохраняет проверенный second-batch checkpoint. Текущий итог
-после восьмой партии находится в
-[`BOM-0021`](BOM-0021-control-logic-passive-cost-evidence.md): 118/187 lines,
-771/857 placements и partial base subtotal USD 142.1808.
+после десятой партии находится в
+[`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md): 133/187
+lines, 787/857 placements и partial base subtotal USD 143.6995.

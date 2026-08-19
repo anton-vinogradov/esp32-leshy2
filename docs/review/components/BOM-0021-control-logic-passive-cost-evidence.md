@@ -46,3 +46,6 @@ This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
+This artifact preserves the reviewed ninth-batch checkpoint. Current coverage
+is in [`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md):
+133/187 lines, 787/857 placements and partial base subtotal USD 143.6995.

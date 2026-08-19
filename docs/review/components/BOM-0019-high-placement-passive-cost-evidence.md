@@ -55,5 +55,6 @@ This is component material only, not complete COGS. PCB, PCBA, test, enclosure,
 yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates.
 
-The current successor is [`BOM-0021`](BOM-0021-control-logic-passive-cost-evidence.md):
-118/187 lines, 771/857 placements and USD 142.1808 partial base subtotal.
+The current successor is
+[`BOM-0022`](BOM-0022-rf-timing-indicator-passive-cost-evidence.md): 133/187
+lines, 787/857 placements and USD 143.6995 partial base subtotal.

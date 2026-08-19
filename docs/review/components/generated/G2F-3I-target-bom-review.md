@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **118/187** lines.
-- Of the remaining **69** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **771/857** supplied placements; their partial subtotals are `base_product` — USD 142.1808. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **133/187** lines.
+- Of the remaining **54** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **787/857** supplied placements; their partial subtotals are `base_product` — USD 143.6995. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -336,6 +336,15 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 Only exact-MPN published USD prices that apply to a 100-piece purchase are listed. Taxes, tariffs, freight, PCB, assembly, test, enclosure, yield and tooling are excluded. The sum below is intentionally partial while any purchase line remains unpriced.
 
+<details><summary><code>Abracon ABM8-26.000MHZ-10-D-1-G-T</code> — 1 × USD 0.3257 = USD 0.3257</summary>
+
+- Device id: `abracon_abm8_26mhz_10_d_1_g_t`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/abracon-llc/ABM8-26-000MHZ-10-D-1-G-T/9997912).
+
+</details>
+
 <details><summary><code>Analog Devices AD8314ACPZ-RL7</code> — 5 × USD 2.8570 = USD 14.2850</summary>
 
 - Device id: `adi_ad8314acpz_rl7`.
@@ -561,6 +570,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>LTST-C190KFKT</code> — 1 × USD 0.0637 = USD 0.0637</summary>
+
+- Device id: `liteon_ltst_c190kfkt`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/liteon/LTST-C190KFKT/386813).
+
+</details>
+
+<details><summary><code>LTST-C190KRKT</code> — 1 × USD 0.0675 = USD 0.0675</summary>
+
+- Device id: `liteon_ltst_c190krkt`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/liteon/LTST-C190KRKT/386817).
+
+</details>
+
 <details><summary><code>Littelfuse 0451005.MRL</code> — 2 × USD 1.4488 = USD 2.8976</summary>
 
 - Device id: `littelfuse_0451005_mrl`.
@@ -585,6 +612,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/BLM18PG181SN1D/1634634).
+
+</details>
+
+<details><summary><code>Murata GJM1555C1H150JB01D</code> — 2 × USD 0.0392 = USD 0.0784</summary>
+
+- Device id: `murata_gjm1555c1h150jb01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GJM1555C1H150JB01D/702310).
+
+</details>
+
+<details><summary><code>Murata GRM1555C1H102JA01D</code> — 1 × USD 0.0181 = USD 0.0181</summary>
+
+- Device id: `murata_grm1555c1h102ja01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H102JA01D/702509).
 
 </details>
 
@@ -621,6 +666,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Murata-Electronics/GRM1555C1H390JA01D?qs=4k9rjS6ZRl5FP2mUYTju2g%3D%3D).
+
+</details>
+
+<details><summary><code>Murata GRM155R71A474KE01D</code> — 1 × USD 0.1771 = USD 0.1771</summary>
+
+- Device id: `murata_grm155r71a474ke01d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM155R71A474KE01D/6605995).
 
 </details>
 
@@ -705,6 +759,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Murata GRM31C5C1H224JE02L</code> — 1 × USD 0.3198 = USD 0.3198</summary>
+
+- Device id: `murata_grm31c5c1h224je02l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM31C5C1H224JE02L/10691338).
+
+</details>
+
+<details><summary><code>Murata GRM31CR71A226KE15L</code> — 1 × USD 0.1884 = USD 0.1884</summary>
+
+- Device id: `murata_grm31cr71a226ke15l`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/GRM31CR71A226KE15L/2039036).
+
+</details>
+
 <details><summary><code>Murata GRM31CR71E106MA12L</code> — 12 × USD 0.1224 = USD 1.4688</summary>
 
 - Device id: `murata_grm31cr71e106ma12l`.
@@ -729,6 +801,60 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS10NJ02D/662903).
+
+</details>
+
+<details><summary><code>Murata LQG15HS15NJ02D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_lqg15hs15nj02d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS15NJ02D/662874).
+
+</details>
+
+<details><summary><code>Murata LQG15HS2N2S02D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_lqg15hs2n2s02d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS2N2S02D/662863).
+
+</details>
+
+<details><summary><code>Murata LQG15HS3N3S02D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_lqg15hs3n3s02d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS3N3S02D/662896).
+
+</details>
+
+<details><summary><code>Murata LQG15HS3N6S02D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_lqg15hs3n6s02d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS3N6S02D/2594221).
+
+</details>
+
+<details><summary><code>Murata LQG15HS6N8J02D</code> — 1 × USD 0.0310 = USD 0.0310</summary>
+
+- Device id: `murata_lqg15hs6n8j02d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQG15HS6N8J02D/662870).
+
+</details>
+
+<details><summary><code>Murata LQW15AN56NJ00D</code> — 1 × USD 0.0724 = USD 0.0724</summary>
+
+- Device id: `murata_lqw15an56nj00d`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/murata-electronics/LQW15AN56NJ00D/584364).
 
 </details>
 
@@ -936,6 +1062,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/tdk-corporation/C1608X7R1C105K080AC/634395).
+
+</details>
+
+<details><summary><code>TDK C1608X7S2A104K080AB</code> — 1 × USD 0.0526 = USD 0.0526</summary>
+
+- Device id: `tdk_c1608x7s2a104k080ab`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/tdk/C1608X7S2A104K080AB/2116317).
 
 </details>
 

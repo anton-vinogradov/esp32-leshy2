@@ -25,5 +25,5 @@ At this sixth-batch checkpoint I8 remained open for 111 prices, standalone
 display sourcing, four uninstantiated physical families, specific alternate
 qualification and full factory COGS. The temporarily unstocked exact
 `TS5A63157DCKR` line remains a procurement-watch item; its accepted electrical
-target is unchanged. `BOM-0021/REV-0005BU` subsequently advance current
-coverage to 118/187 lines / 771 placements / USD 142.1808.
+target is unchanged. `BOM-0022/REV-0005BV` subsequently advance current
+coverage to 133/187 lines / 787 placements / USD 143.6995.
