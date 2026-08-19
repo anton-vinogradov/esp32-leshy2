@@ -179,10 +179,10 @@ flowchart TD
   UI_SWITCH_LEFT["C&K Y78B23214FP<br/>D-pad LEFT ultra-low-current ordinary control"]
   UI_SWITCH_RIGHT["C&K Y78B23214FP<br/>D-pad RIGHT ultra-low-current ordinary control"]
   UI_SWITCH_OK["C&K Y78B23214FP<br/>D-pad OK ultra-low-current ordinary control"]
-  UI_SWITCH_BACK["C&K Y78B23214FP<br/>BACK ultra-low-current ordinary control"]
-  UI_SWITCH_OPT["C&K Y78B23214FP<br/>OPT ultra-low-current ordinary control"]
-  UI_SWITCH_F1["C&K Y78B23214FP<br/>F1 ultra-low-current ordinary control"]
-  UI_SWITCH_F2["C&K Y78B23214FP<br/>F2 ultra-low-current ordinary control"]
+  UI_SWITCH_BACK["OMRON B3S-1100P<br/>BACK ultra-low-current ordinary control"]
+  UI_SWITCH_OPT["OMRON B3S-1100P<br/>OPT ultra-low-current ordinary control"]
+  UI_SWITCH_F1["OMRON B3S-1100P<br/>F1 ultra-low-current ordinary control"]
+  UI_SWITCH_F2["OMRON B3S-1100P<br/>F2 ultra-low-current ordinary control"]
   ENCODER["Alps Alpine EC11E18244AU<br/>36-detent/18-pulse rotary encoder with push"]
   ENCODER_A_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-A contact-current pull-up"]
   ENCODER_B_PULLUP["Yageo RC0402FR-073K32L<br/>3.32-kOhm encoder-phase-B contact-current pull-up"]
@@ -1206,9 +1206,9 @@ flowchart TD
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   AON_EFUSE["Texas Instruments TPS25961DRVR<br/>independent AON overvoltage/current/short cutoff"]
-  PTT_SWITCH["C&K Y78B23214FP<br/>separate normally-open hold-to-talk PTT control"]
+  PTT_SWITCH["OMRON B3S-1100P<br/>separate normally-open hold-to-talk PTT control"]
   STOP_SWITCH["Panasonic AEQ10410<br/>gold-clad low-level normally-closed hard-STOP control"]
-  REARM_SWITCH["C&K Y78B23214FP<br/>normally-open recessed RE-ARM control"]
+  REARM_SWITCH["OMRON B3S-1100P<br/>normally-open recessed RE-ARM control"]
   STOP_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm AON STOP contact-current pull-up"]
   STOP_FILTER_CAP["Murata GRM155R71H103KA88D<br/>10-nF X7R asynchronous STOP filter capacitor"]
   REARM_PULLUP["Yageo RC0402FR-0747KL<br/>47-kOhm AON RE-ARM contact-current pull-up"]
@@ -3455,22 +3455,22 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `UI_COL1` | `ui_switch_ok.SIDE_B_1` | `ui_matrix_io.P5` | D-pad OK occupies row 1, column 1 |
 | `UI_COL1` | `ui_switch_ok.SIDE_B_2` | `ui_matrix_io.P5` | both internally common column-side lands are physically routed |
 | `UI_ROW1_N` | `ui_matrix_io.P1` | `ui_matrix_diode_back.K` | one exact diode isolates BACK from other rows |
-| `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `ui_switch_back.SIDE_A_1` | exact ultra-low-current BACK switch first row-side land |
+| `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `ui_switch_back.SIDE_A_1` | exact direct-press BACK switch first row-side land |
 | `UI_BACK_ROW_SIDE` | `ui_matrix_diode_back.A` | `ui_switch_back.SIDE_A_2` | both internally common row-side lands are physically routed |
 | `UI_COL2` | `ui_switch_back.SIDE_B_1` | `ui_matrix_io.P6` | BACK occupies row 1, column 2 |
 | `UI_COL2` | `ui_switch_back.SIDE_B_2` | `ui_matrix_io.P6` | both internally common column-side lands are physically routed |
 | `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_diode_opt.K` | one exact diode isolates OPT from other rows |
-| `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `ui_switch_opt.SIDE_A_1` | exact ultra-low-current OPT switch first row-side land |
+| `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `ui_switch_opt.SIDE_A_1` | exact direct-press OPT switch first row-side land |
 | `UI_OPT_ROW_SIDE` | `ui_matrix_diode_opt.A` | `ui_switch_opt.SIDE_A_2` | both internally common row-side lands are physically routed |
 | `UI_COL0` | `ui_switch_opt.SIDE_B_1` | `ui_matrix_io.P4` | OPT occupies row 2, column 0 |
 | `UI_COL0` | `ui_switch_opt.SIDE_B_2` | `ui_matrix_io.P4` | both internally common column-side lands are physically routed |
 | `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_diode_f1.K` | one exact diode isolates F1 from other rows |
-| `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `ui_switch_f1.SIDE_A_1` | exact ultra-low-current F1 switch first row-side land |
+| `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `ui_switch_f1.SIDE_A_1` | exact direct-press F1 switch first row-side land |
 | `UI_F1_ROW_SIDE` | `ui_matrix_diode_f1.A` | `ui_switch_f1.SIDE_A_2` | both internally common row-side lands are physically routed |
 | `UI_COL1` | `ui_switch_f1.SIDE_B_1` | `ui_matrix_io.P5` | F1 occupies row 2, column 1 |
 | `UI_COL1` | `ui_switch_f1.SIDE_B_2` | `ui_matrix_io.P5` | both internally common column-side lands are physically routed |
 | `UI_ROW2_N` | `ui_matrix_io.P2` | `ui_matrix_diode_f2.K` | one exact diode isolates F2 from other rows |
-| `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `ui_switch_f2.SIDE_A_1` | exact ultra-low-current F2 switch first row-side land |
+| `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `ui_switch_f2.SIDE_A_1` | exact direct-press F2 switch first row-side land |
 | `UI_F2_ROW_SIDE` | `ui_matrix_diode_f2.A` | `ui_switch_f2.SIDE_A_2` | both internally common row-side lands are physically routed |
 | `UI_COL2` | `ui_switch_f2.SIDE_B_1` | `ui_matrix_io.P6` | F2 occupies row 2, column 2 |
 | `UI_COL2` | `ui_switch_f2.SIDE_B_2` | `ui_matrix_io.P6` | both internally common column-side lands are physically routed |
@@ -3494,7 +3494,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `ENCODER_A` | `encoder.A` | `encoder_ptt_esd.D1_PLUS` | first low-capacitance IEC channel protects the direct PCNT phase |
 | `ENCODER_B` | `encoder.B` | `encoder_ptt_esd.D1_MINUS` | second low-capacitance IEC channel protects the direct PCNT phase |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ptt_pullup.END_1` | PTT has an exact external pull-up and does not depend on the RP internal pull |
-| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_switch.SIDE_A_1` | 10-kOhm pull-up provides about 0.33 mA closed-contact current, above the switch ULC floor |
+| `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_switch.SIDE_A_1` | 10-kOhm pull-up provides about 0.33 mA closed-contact current, above the B3S minimum applicable load |
 | `PTT_BUTTON_RAW_N` | `ptt_pullup.END_2` | `ptt_switch.SIDE_A_2` | both internally common switch lands are physically routed |
 | `POWER_GROUND` | `ptt_switch.SIDE_B_1` | `abstract:power-ground` | PTT is active low and normally open |
 | `POWER_GROUND` | `ptt_switch.SIDE_B_2` | `abstract:power-ground` | both internally common switch lands are physically routed |
@@ -3962,7 +3962,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 | `STOP_LOOP_SENSE` | `stop_pullup.END_2` | `safe_por_or.1B` | high forces CLR_N inactive so preset and clear cannot be asserted together |
 | `STOP_ASSERT_N` | `safe_conditioner.1Y` | `safe_latch.PRE_N` | active-low asynchronous preset; software and clocks are outside the path |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `rearm_pullup.END_1` | RE-ARM contact current comes only from the independently protected AON rail |
-| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_1` | 47-kOhm gives approximately 70 uA at 3.3 V, well above the Y78B23214FP ULC floor |
+| `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_1` | 47-kOhm gives approximately 70 uA at 3.3 V, above the B3S minimum applicable load |
 | `REARM_RAW` | `rearm_pullup.END_2` | `rearm_switch.SIDE_A_2` | both internally common switch lands are physically routed |
 | `SAFETY_GROUND` | `rearm_switch.SIDE_B_1` | `abstract:safety-ground` | fresh recessed RE-ARM press pulls raw input low |
 | `SAFETY_GROUND` | `rearm_switch.SIDE_B_2` | `abstract:safety-ground` | both internally common switch lands are physically routed |
@@ -4706,18 +4706,18 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
 - `ui_switch_right` lifecycle: `active_orderable`.
 - `ui_switch_ok` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
 - `ui_switch_ok` lifecycle: `active_orderable`.
-- `ui_switch_back` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_back` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ui_switch_back` lifecycle: `active_orderable`.
-- `ui_switch_opt` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_opt` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ui_switch_opt` lifecycle: `active_orderable`.
-- `ui_switch_f1` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_f1` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ui_switch_f1` lifecycle: `active_orderable`.
-- `ui_switch_f2` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ui_switch_f2` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ui_switch_f2` lifecycle: `active_orderable`.
-- `ptt_switch` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `ptt_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ptt_switch` lifecycle: `active_orderable`.
 - `stop_switch` uses `Panasonic AEQ10410` as `verified_first_hard_stop_target_actuator_and_mount_hil_open`, not an accepted production choice.
-- `rearm_switch` uses `C&K Y78B23214FP` as `verified_first_target_mechanical_cap_and_enclosure_hil_open`, not an accepted production choice.
+- `rearm_switch` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `rearm_switch` lifecycle: `active_orderable`.
 - `encoder` uses `Alps Alpine EC11E18244AU` as `verified_first_target_mechanical_fit_hil_open`, not an accepted production choice.
 - `encoder` lifecycle: `active_standard`.

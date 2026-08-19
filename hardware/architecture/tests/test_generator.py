@@ -141,7 +141,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
         self.assertEqual(893, sum(line["quantity"] for line in lines))
-        self.assertEqual(196, len(lines))
+        self.assertEqual(197, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -151,11 +151,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            184,
+            185,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            865,
+            871,
             sum(
                 line["quantity"]
                 for line in lines
@@ -219,12 +219,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("894", rendered)
         self.assertIn("893", rendered)
-        self.assertIn("196", rendered)
-        self.assertIn("195/196", rendered)
-        self.assertIn("196/196", rendered)
-        self.assertIn("184/196", rendered)
-        self.assertIn("865/893", rendered)
-        self.assertIn("USD 191.3389", rendered)
+        self.assertIn("197", rendered)
+        self.assertIn("196/197", rendered)
+        self.assertIn("197/197", rendered)
+        self.assertIn("185/197", rendered)
+        self.assertIn("871/893", rendered)
+        self.assertIn("USD 195.1819", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -306,7 +306,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "nRF24-3",
             "FM/SW RX",
             "AM/LW LOOP",
-            "single D-pad cap",
+            'data-part="single-D-pad-cross"',
             "STOP",
             "PTT",
             "RE-ARM",
@@ -3167,10 +3167,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"])
         for instance in (
             "ui_switch_up", "ui_switch_down", "ui_switch_left", "ui_switch_right",
-            "ui_switch_ok", "ui_switch_back", "ui_switch_opt", "ui_switch_f1",
-            "ui_switch_f2", "ptt_switch", "rearm_switch",
+            "ui_switch_ok",
         ):
             self.assertEqual("ck_y78b23214fp", candidate["instances"][instance])
+        for instance in (
+            "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2",
+            "ptt_switch", "rearm_switch",
+        ):
+            self.assertEqual("omron_b3s_1100p", candidate["instances"][instance])
         self.assertEqual("panasonic_aeq10410", candidate["instances"]["stop_switch"])
         self.assertEqual("ti_tpd8e003_dqdr", candidate["instances"]["ui_matrix_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["encoder_ptt_esd"])
@@ -3178,6 +3182,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(
             "1 uA at 1.8 VDC",
             self.database["devices"]["ck_y78b23214fp"]["electrical_contract"]["ulc_minimum"],
+        )
+        self.assertEqual(
+            "direct finger press; no separate cap or plunger",
+            self.database["devices"]["omron_b3s_1100p"]["electrical_contract"]["user_interface"],
         )
         self.assertEqual(
             "100 uA at 3 VDC through 100 mA at 30 VDC",
@@ -3253,7 +3261,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "D-pad UP ultra-low-current ordinary control",
             "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
             "hold-to-talk PTT control", "normally-closed hard-STOP control",
-            "Y78B23214FP", "AEQ10410", "TPD8E003DQDR", "Sitronix ST77922",
+            "Y78B23214FP", "B3S-1100P", "AEQ10410", "TPD8E003DQDR", "Sitronix ST77922",
             "active-low ST77922 touch node",
             'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
             'STOP_SWITCH -->|"COM+NC to safety ground"| STOP_LOOP',

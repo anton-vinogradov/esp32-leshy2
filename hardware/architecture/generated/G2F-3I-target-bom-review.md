@@ -9,12 +9,12 @@
 ## Что уже посчитано
 
 - **894** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **893** supplied/costed placements collapse to **196** used exact-device/MPN lines.
-- Current orderability evidence exists for **195/196** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **184/196** lines.
+- After excluding those non-purchase nodes, **893** supplied/costed placements collapse to **197** used exact-device/MPN lines.
+- Current orderability evidence exists for **196/197** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **185/197** lines.
 - Of the remaining **12** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **865/893** supplied placements; their partial subtotals are `base_product` — USD 191.3389. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **196/196** lines.
+- Those priced lines cover **871/893** supplied placements; their partial subtotals are `base_product` — USD 195.1819. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **197/197** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
 Scopes: `base_product` — 890 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
@@ -303,7 +303,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 23 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 24 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -329,6 +329,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `hirose_ufl_r_smt_1_10` — `Hirose U.FL-R-SMT-1(10)`.
   - `jae_dx07s016ja1r1500` — `JAE DX07S016JA1R1500`.
   - `keystone_1048p` — `Keystone Electronics 1048P`.
+  - `omron_b3s_1100p` — `OMRON B3S-1100P`.
   - `panasonic_aeq10410` — `Panasonic AEQ10410`.
   - `pui_as02404po` — `PUI Audio AS02404PO`.
   - `qdtech_hmx035ctft_001` — `HMX035CTFT-001 (QDtech schematic assembly marking)`.
@@ -1008,6 +1009,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536).
+
+</details>
+
+<details><summary><code>OMRON B3S-1100P</code> — 6 × USD 0.6405 = USD 3.8430</summary>
+
+- Device id: `omron_b3s_1100p`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393).
 
 </details>
 
@@ -2008,7 +2018,7 @@ These entries are intentionally excluded from the partial subtotal until a compa
 <details><summary><code>C&K Y78B23214FP</code> — <code>quantity_100_rfq_required</code></summary>
 
 - Device id: `ck_y78b23214fp`.
-- Scope: `base_product`; quantity `11`.
+- Scope: `base_product`; quantity `5`.
 - Reason: The exact authorized-distributor line is live, but the accessible table is regional AUD and skips directly from 25 to 250 pieces; the USD quantity-100 cost baseline requires a same-region quote rather than an FX conversion.
 - Checked: `2026-08-19`; [gate source](https://au.mouser.com/en/ProductDetail/CK/Y78B23214FP).
 

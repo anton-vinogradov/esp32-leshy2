@@ -61,7 +61,7 @@ class ProductSiteTests(unittest.TestCase):
             "SSW-107-02-S-D",
             "insert ⊗ · remove ⊙",
             "Keystone 1048P",
-            "single D-pad cap",
+            'data-part="single-D-pad-cross"',
             "STOP",
             "PTT",
             "RE-ARM",
@@ -179,7 +179,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-board-mm="75x150"',
             'id="u214-zone" data-plan-y-mm="17..41" data-overhang-mm="4.5" data-retention-pitch-mm="56"',
             'id="battery-zone" data-plan-y-mm="42..128" data-gap-from-u214-mm="1"',
-            'id="rear-controls" data-exterior-cap-contract="PTT-STOP-F1-F2-common-7x7"',
+            'id="rear-controls" data-direct-press="F1-F2-PTT-RE-ARM" data-actuator-reserves="STOP" data-enclosure-reserves="RE-ARM-recess-encoder-knob"',
             "rear-face top view",
             "base PCB · 75 mm",
             "U214 · 84 mm",
@@ -192,10 +192,10 @@ class ProductSiteTests(unittest.TestCase):
             "2.4 GHz SMA",
             "SUB-GHz",
             "VHF/UHF",
-            "C&amp;K Y78B23214FP",
+            "OMRON B3S-1100P",
             "Panasonic AEQ10410",
             "Alps Alpine EC11E18244AU",
-            "exact control bodies and visible caps clear the battery and U214 envelopes",
+            "direct buttons and remaining actuator reserves clear the battery and U214 envelopes",
         ):
             self.assertIn(token, layout)
 

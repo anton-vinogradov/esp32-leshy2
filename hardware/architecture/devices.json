@@ -3491,6 +3491,54 @@
       },
       "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
     },
+    "omron_b3s_1100p": {
+      "mpn": "OMRON B3S-1100P",
+      "kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [6.6, 6.0, 4.3],
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "orderable_source": {
+        "document": "B3S-1100P authorized-distributor exact order-code page; 30,852 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393",
+        "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.6405,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published USD price table",
+          "url": "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393",
+          "checked": "2026-08-19"
+        }
+      },
+      "electrical_contract": {
+        "contact_form": "SPST normally open, momentary",
+        "minimum_applicable_load": "10 uA at 1 VDC reference value",
+        "operating_force_n_max": 1.57,
+        "travel_mm": "0.25 +0.2/-0.1",
+        "bounce_max_ms": 5,
+        "operating_life": 500000,
+        "ingress": "IEC IP67 equivalent excluding terminal sealing boundary",
+        "user_interface": "direct finger press; no separate cap or plunger"
+      },
+      "programmable": false,
+      "contacts": {
+        "SIDE_A_1": {"physical": "1", "role": "switch_contact"},
+        "SIDE_A_2": {"physical": "3", "role": "switch_contact"},
+        "SIDE_B_1": {"physical": "2", "role": "switch_contact"},
+        "SIDE_B_2": {"physical": "4", "role": "switch_contact"},
+        "GROUND": {"physical": "5", "role": "shield_ground"}
+      },
+      "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
+    },
     "ck_js102011scqn": {
       "mpn": "C&K JS102011SCQN",
       "kind": "spdt_on_on_right_angle_smt_power_command_slide_switch",

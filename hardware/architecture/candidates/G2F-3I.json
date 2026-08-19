@@ -119,7 +119,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_ssw_107_02_s_d", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "ck_y78b23214fp", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh12_40s_0_5sh_55", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "panasonic_aeq10410", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj1_3515_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_ssw_107_02_s_d", "seeed_1125r_smt_4p", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -249,7 +249,7 @@
       "reset_and_idle": "TCA9534A powers up with every P-port as an input; exact 1-kOhm row pull-downs make all four rows low at reset, and firmware holds all rows low in idle so any ordinary control pulls a 10-kOhm column low and asserts the open-drain interrupt",
       "address": "A0/A1/A2 are strapped high for candidate 7-bit address 0x3F; the complete physical-bus collision scan remains an I4 HIL gate",
       "isolation": "one onsemi 1N4148WT per populated control, quantity 10; every column has an exact 10-kOhm pull-up",
-      "exact_switches": "nine discrete ordinary controls use exact C&K Y78B23214FP / KMR232G ULC LFS; encoder push remains the integrated EC11E18244AU contact",
+      "exact_switches": "the five D-pad directions use exact C&K Y78B23214FP / KMR232G ULC LFS beneath one cross; BACK, OPT, F1 and F2 use directly finger-operated OMRON B3S-1100P; encoder push remains the integrated EC11E18244AU contact",
       "protection": "TPD8E003DQDR shunts P0..P7 independently to a shortest-path local ground; all eight expander contacts, including the reserved P7 pad, are protected",
       "scan_contract": "initialization writes P0..P3 output latches low before changing their configuration from reset inputs to outputs; interrupt starts a bounded scan that drives the selected row low and the other three rows high, then restores all rows low; debounce and multi-key interpretation are firmware/HIL gates"
     },
@@ -263,9 +263,9 @@
       "deadline": "no lost or invented detents while display dirty-region updates, storage and the active signal-group service run at their qualified worst case"
     },
     "dedicated_controls": {
-      "ptt": "exact C&K Y78B23214FP normally-open hold-to-talk switch; 10-kOhm/100-nF raw filter and 1-kOhm series feed direct RP GPIO21; never multiplexed into the UI matrix",
+      "ptt": "exact directly finger-operated OMRON B3S-1100P normally-open hold-to-talk switch; 10-kOhm/100-nF raw filter and 1-kOhm series feed direct RP GPIO21; never multiplexed into the UI matrix",
       "stop": "exact Panasonic AEQ10410 gold-clad low-level SPDT uses its normally-closed COM+NC path on the AON hard-STOP loop; its 100-uA-at-3-V floor is met by the 10-kOhm pull-up; asynchronous and independent of every MCU, I2C and UI matrix",
-      "rearm": "exact recessed C&K Y78B23214FP normally-open AON RE-ARM control uses 47-kOhm/100-nF conditioning; never multiplexed into the UI matrix",
+      "rearm": "exact recessed direct-press OMRON B3S-1100P normally-open AON RE-ARM control uses 47-kOhm/100-nF conditioning; never multiplexed into the UI matrix",
       "safety_protection": "a dedicated TPD4E05U06DQAR returns STOP and RE-ARM ESD only to safety ground; ordinary-control surge return is not shared with the AON input pair"
     },
     "touch_irq": {
@@ -278,8 +278,8 @@
     },
     "pin_budget_result": "S3 remains 33 used / 3 reserved / 0 free; I7 consumes final main slow_io P05 for independent native-Unit power, closing that plane at 24 used / 0 reserved / 0 free; dedicated ui_matrix_io is 7 used / 1 reserved / 0 free; PTT, STOP, RE-ARM, full D-pad, F1 and F2 are unchanged",
     "paper_cost_delta_usd_at_1000_excluding_switch_mechanics": "approximately 0.95 to 1.15 for one already-used-family TCA9534APWR, touch buffer, one additional isolation diode and supporting passives; no additional MCU",
-    "exact_switch_boundary_cost_note": "AEQ10410 is approximately USD 2.60 at quantity 1000 on the checked authorized source; eleven Y78B23214FP switches and three ESD arrays crystallize previously mandatory but MPN-TBD controls rather than adding product functions; production costing remains a supplier-quote gate",
-    "remaining_hil": ["Y78B23214FP cap/plunger coupling, 3-N feel, sealing and placement", "AEQ10410 STOP guard, chassis mount, short harness/strain relief, prescribed overtravel and enclosure sealing", "recessed RE-ARM access and wrong-button discrimination", "encoder rear placement with U214 installed", "physical SYS-I2C address collision scan and TCA9534A interrupt behavior", "matrix ESD/contact-current/ghosting/debounce, bounded high-row current and multi-key semantics", "encoder/PTT/safety ESD return and transient behavior", "encoder speed, chatter, EMI and simultaneous UI/radio/storage load", "ST77922 specimen identity/readback, exact 0x38 response, TP_INT idle voltage/pulse persistence/clear semantics and shared-line source identification"]
+    "exact_switch_boundary_cost_note": "AEQ10410 is approximately USD 2.60 at quantity 1000 on the checked authorized source; five Y78B23214FP D-pad switches, six B3S-1100P direct-press buttons and three ESD arrays crystallize previously mandatory controls rather than adding product functions; production costing remains a supplier-quote gate",
+    "remaining_hil": ["five front Y78B23214FP switches beneath the single D-pad cross", "B3S-1100P direct finger access, 1.57-N feel, spacing and board-edge protection for BACK/OPT/F1/F2/PTT", "AEQ10410 STOP guard, chassis mount, short harness/strain relief, prescribed overtravel and enclosure sealing", "direct B3S-1100P RE-ARM recess and wrong-button discrimination", "encoder rear placement with U214 installed", "physical SYS-I2C address collision scan and TCA9534A interrupt behavior", "matrix ESD/contact-current/ghosting/debounce, bounded high-row current and multi-key semantics", "encoder/PTT/safety ESD return and transient behavior", "encoder speed, chatter, EMI and simultaneous UI/radio/storage load", "ST77922 specimen identity/readback, exact 0x38 response, TP_INT idle voltage/pulse persistence/clear semantics and shared-line source identification"]
   },
   "slow_io_contract": {
     "decision": "DEC-0089",
@@ -1515,13 +1515,13 @@
     "ui_switch_left": "ck_y78b23214fp",
     "ui_switch_right": "ck_y78b23214fp",
     "ui_switch_ok": "ck_y78b23214fp",
-    "ui_switch_back": "ck_y78b23214fp",
-    "ui_switch_opt": "ck_y78b23214fp",
-    "ui_switch_f1": "ck_y78b23214fp",
-    "ui_switch_f2": "ck_y78b23214fp",
-    "ptt_switch": "ck_y78b23214fp",
+    "ui_switch_back": "omron_b3s_1100p",
+    "ui_switch_opt": "omron_b3s_1100p",
+    "ui_switch_f1": "omron_b3s_1100p",
+    "ui_switch_f2": "omron_b3s_1100p",
+    "ptt_switch": "omron_b3s_1100p",
     "stop_switch": "panasonic_aeq10410",
-    "rearm_switch": "ck_y78b23214fp",
+    "rearm_switch": "omron_b3s_1100p",
     "ui_matrix_esd": "ti_tpd8e003_dqdr",
     "encoder_ptt_esd": "ti_tpd4e05u06_dqar",
     "safety_control_esd": "ti_tpd4e05u06_dqar",
@@ -3721,22 +3721,22 @@
     {"from":"ui_switch_ok.SIDE_B_1","to":"ui_matrix_io.P5","net":"UI_COL1","safety":"D-pad OK occupies row 1, column 1"},
     {"from":"ui_switch_ok.SIDE_B_2","to":"ui_matrix_io.P5","net":"UI_COL1","safety":"both internally common column-side lands are physically routed"},
     {"from":"ui_matrix_io.P1","to":"ui_matrix_diode_back.K","net":"UI_ROW1_N","safety":"one exact diode isolates BACK from other rows"},
-    {"from":"ui_matrix_diode_back.A","to":"ui_switch_back.SIDE_A_1","net":"UI_BACK_ROW_SIDE","safety":"exact ultra-low-current BACK switch first row-side land"},
+    {"from":"ui_matrix_diode_back.A","to":"ui_switch_back.SIDE_A_1","net":"UI_BACK_ROW_SIDE","safety":"exact direct-press BACK switch first row-side land"},
     {"from":"ui_matrix_diode_back.A","to":"ui_switch_back.SIDE_A_2","net":"UI_BACK_ROW_SIDE","safety":"both internally common row-side lands are physically routed"},
     {"from":"ui_switch_back.SIDE_B_1","to":"ui_matrix_io.P6","net":"UI_COL2","safety":"BACK occupies row 1, column 2"},
     {"from":"ui_switch_back.SIDE_B_2","to":"ui_matrix_io.P6","net":"UI_COL2","safety":"both internally common column-side lands are physically routed"},
     {"from":"ui_matrix_io.P2","to":"ui_matrix_diode_opt.K","net":"UI_ROW2_N","safety":"one exact diode isolates OPT from other rows"},
-    {"from":"ui_matrix_diode_opt.A","to":"ui_switch_opt.SIDE_A_1","net":"UI_OPT_ROW_SIDE","safety":"exact ultra-low-current OPT switch first row-side land"},
+    {"from":"ui_matrix_diode_opt.A","to":"ui_switch_opt.SIDE_A_1","net":"UI_OPT_ROW_SIDE","safety":"exact direct-press OPT switch first row-side land"},
     {"from":"ui_matrix_diode_opt.A","to":"ui_switch_opt.SIDE_A_2","net":"UI_OPT_ROW_SIDE","safety":"both internally common row-side lands are physically routed"},
     {"from":"ui_switch_opt.SIDE_B_1","to":"ui_matrix_io.P4","net":"UI_COL0","safety":"OPT occupies row 2, column 0"},
     {"from":"ui_switch_opt.SIDE_B_2","to":"ui_matrix_io.P4","net":"UI_COL0","safety":"both internally common column-side lands are physically routed"},
     {"from":"ui_matrix_io.P2","to":"ui_matrix_diode_f1.K","net":"UI_ROW2_N","safety":"one exact diode isolates F1 from other rows"},
-    {"from":"ui_matrix_diode_f1.A","to":"ui_switch_f1.SIDE_A_1","net":"UI_F1_ROW_SIDE","safety":"exact ultra-low-current F1 switch first row-side land"},
+    {"from":"ui_matrix_diode_f1.A","to":"ui_switch_f1.SIDE_A_1","net":"UI_F1_ROW_SIDE","safety":"exact direct-press F1 switch first row-side land"},
     {"from":"ui_matrix_diode_f1.A","to":"ui_switch_f1.SIDE_A_2","net":"UI_F1_ROW_SIDE","safety":"both internally common row-side lands are physically routed"},
     {"from":"ui_switch_f1.SIDE_B_1","to":"ui_matrix_io.P5","net":"UI_COL1","safety":"F1 occupies row 2, column 1"},
     {"from":"ui_switch_f1.SIDE_B_2","to":"ui_matrix_io.P5","net":"UI_COL1","safety":"both internally common column-side lands are physically routed"},
     {"from":"ui_matrix_io.P2","to":"ui_matrix_diode_f2.K","net":"UI_ROW2_N","safety":"one exact diode isolates F2 from other rows"},
-    {"from":"ui_matrix_diode_f2.A","to":"ui_switch_f2.SIDE_A_1","net":"UI_F2_ROW_SIDE","safety":"exact ultra-low-current F2 switch first row-side land"},
+    {"from":"ui_matrix_diode_f2.A","to":"ui_switch_f2.SIDE_A_1","net":"UI_F2_ROW_SIDE","safety":"exact direct-press F2 switch first row-side land"},
     {"from":"ui_matrix_diode_f2.A","to":"ui_switch_f2.SIDE_A_2","net":"UI_F2_ROW_SIDE","safety":"both internally common row-side lands are physically routed"},
     {"from":"ui_switch_f2.SIDE_B_1","to":"ui_matrix_io.P6","net":"UI_COL2","safety":"F2 occupies row 2, column 2"},
     {"from":"ui_switch_f2.SIDE_B_2","to":"ui_matrix_io.P6","net":"UI_COL2","safety":"both internally common column-side lands are physically routed"},
@@ -3760,7 +3760,7 @@
     {"from":"encoder.A","to":"encoder_ptt_esd.D1_PLUS","net":"ENCODER_A","safety":"first low-capacitance IEC channel protects the direct PCNT phase"},
     {"from":"encoder.B","to":"encoder_ptt_esd.D1_MINUS","net":"ENCODER_B","safety":"second low-capacitance IEC channel protects the direct PCNT phase"},
     {"from":"abstract:3V3_MAIN","to":"ptt_pullup.END_1","net":"3V3_MAIN","safety":"PTT has an exact external pull-up and does not depend on the RP internal pull"},
-    {"from":"ptt_pullup.END_2","to":"ptt_switch.SIDE_A_1","net":"PTT_BUTTON_RAW_N","safety":"10-kOhm pull-up provides about 0.33 mA closed-contact current, above the switch ULC floor"},
+    {"from":"ptt_pullup.END_2","to":"ptt_switch.SIDE_A_1","net":"PTT_BUTTON_RAW_N","safety":"10-kOhm pull-up provides about 0.33 mA closed-contact current, above the B3S minimum applicable load"},
     {"from":"ptt_pullup.END_2","to":"ptt_switch.SIDE_A_2","net":"PTT_BUTTON_RAW_N","safety":"both internally common switch lands are physically routed"},
     {"from":"ptt_switch.SIDE_B_1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"PTT is active low and normally open"},
     {"from":"ptt_switch.SIDE_B_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"both internally common switch lands are physically routed"},
@@ -4228,7 +4228,7 @@
     {"from":"stop_pullup.END_2","to":"safe_por_or.1B","net":"STOP_LOOP_SENSE","safety":"high forces CLR_N inactive so preset and clear cannot be asserted together"},
     {"from":"safe_conditioner.1Y","to":"safe_latch.PRE_N","net":"STOP_ASSERT_N","safety":"active-low asynchronous preset; software and clocks are outside the path"},
     {"from":"abstract:AON_SAFE_3V3","to":"rearm_pullup.END_1","net":"AON_SAFE_3V3","safety":"RE-ARM contact current comes only from the independently protected AON rail"},
-    {"from":"rearm_pullup.END_2","to":"rearm_switch.SIDE_A_1","net":"REARM_RAW","safety":"47-kOhm gives approximately 70 uA at 3.3 V, well above the Y78B23214FP ULC floor"},
+    {"from":"rearm_pullup.END_2","to":"rearm_switch.SIDE_A_1","net":"REARM_RAW","safety":"47-kOhm gives approximately 70 uA at 3.3 V, above the B3S minimum applicable load"},
     {"from":"rearm_pullup.END_2","to":"rearm_switch.SIDE_A_2","net":"REARM_RAW","safety":"both internally common switch lands are physically routed"},
     {"from":"rearm_switch.SIDE_B_1","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"fresh recessed RE-ARM press pulls raw input low"},
     {"from":"rearm_switch.SIDE_B_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"both internally common switch lands are physically routed"},
