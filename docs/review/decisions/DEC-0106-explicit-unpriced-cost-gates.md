@@ -36,3 +36,6 @@
 - это procurement metadata: функции, состав, контакты, питание и diagram не
   меняются;
 - I8 остаётся открыт до полного component/factory cost и физических gaps.
+
+`BOM-0015/REV-0005BN` later preserve all five gates and advance numeric
+coverage to 39/187 lines / 578 placements; the gate contract is unchanged.

@@ -67,7 +67,9 @@ Mechanical/interconnect:
 
 ## Последующий статус
 
-Эти числа сохраняют исторический результат первой партии. Текущие итоги после
-второй партии и explicit RFQ/retail gates находятся в
-[`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md): 23/187 lines,
-440/857 placements и partial base subtotal USD 68.8226.
+Эти числа сохраняют исторический результат первой партии. Вторая партия и
+explicit RFQ/retail gates находятся в
+[`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md); текущий итог
+после третьей партии находится в
+[`BOM-0015`](BOM-0015-third-high-placement-cost-evidence.md): 39/187 lines,
+578/857 placements и partial base subtotal USD 79.0660.

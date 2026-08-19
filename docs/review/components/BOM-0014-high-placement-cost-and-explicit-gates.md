@@ -112,3 +112,10 @@ the raw-display cost and prevents RFQ-only radios from becoming zero.
 3. Instantiate SMA, RF cable, M5 connector and antenna-kit physical families.
 4. Add PCB/PCBA/enclosure/test quotes only after component coverage is
    complete enough to define a stable factory package.
+
+## Последующий статус
+
+Этот artifact сохраняет проверенный second-batch checkpoint. Текущий итог
+после третьей партии находится в
+[`BOM-0015`](BOM-0015-third-high-placement-cost-evidence.md): 39/187 lines,
+578/857 placements и partial base subtotal USD 79.0660.
