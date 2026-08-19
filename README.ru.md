@@ -36,7 +36,7 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 
 ### Внешние стороны
 
-![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=4)
+![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=5)
 
 ### Внутренние стороны плат
 
@@ -45,11 +45,11 @@ Sub‑GHz, voice и U214; `MSPM0C1104SDGS20R` независимо допуск�
 USB и все отдельные кнопки прошивки, сброса и восстановления. Номер внутри
 контура соответствует расположенному рядом точному MPN и роли компонента.
 
-![Внутренние стороны плат Leshy2](docs/images/internal-board-layout.svg?layout=4)
+![Внутренние стороны плат Leshy2](docs/images/internal-board-layout.svg?layout=5)
 
 ### Поперечный разрез бутерброда
 
-![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=4)
+![Поперечный разрез бутерброда Leshy2](docs/images/sandwich-section.svg?layout=5)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 

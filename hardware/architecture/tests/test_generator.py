@@ -329,6 +329,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         for token in (
             "Leshy2 — dimensioned inner-board placement",
             "Numbered physical devices",
+            'data-inner-free-text="pcb-silkscreen"',
+            'data-layer="pcb-silkscreen"',
             "M2.5 hole/head keep-out",
             "every edge arrow is centred",
             'data-view="mirrored-x"',
@@ -337,6 +339,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             "JS102011SCQN",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
+            "54 · MIC",
+            "AS02404PO · speaker · side grille",
+            "ON/OFF request",
+            "S3/C5 recovery controls and DBG10",
+            "RP recovery controls and DBG10",
         ):
             self.assertIn(token, internal)
         sandwich = (

@@ -2,7 +2,7 @@
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — dimensioned external layout</text>
-<text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">One millimetre scale; orange dashed shapes are reserves, not selected-MPN geometry.</text>
+<text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Text outside component outlines is intended PCB silkscreen; text inside is drawing annotation.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5"/>
 <circle cx="98.5" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
@@ -32,23 +32,23 @@
 <rect x="503.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="527.8,157.4 515.0,164.8 502.1,157.4 502.1,142.6 515.0,135.2 527.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M515.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="515.0" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-0 · SMA</text>
+<text data-layer="pcb-silkscreen" x="515.0" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-0 · SMA</text>
 <rect x="547.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="572.2,157.4 559.4,164.8 546.5,157.4 546.5,142.6 559.4,135.2 572.2,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M559.4 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="559.4" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">CC-SUB · SMA</text>
+<text data-layer="pcb-silkscreen" x="559.4" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">CC-SUB · SMA</text>
 <rect x="592.0" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="616.6,157.4 603.8,164.8 590.9,157.4 590.9,142.6 603.8,135.2 616.6,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M603.8 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="603.8" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1 · SMA</text>
+<text data-layer="pcb-silkscreen" x="603.8" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-1 · SMA</text>
 <rect x="636.4" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="661.0,157.4 648.1,164.8 635.3,157.4 635.3,142.6 648.1,135.2 661.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M648.1 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="648.1" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VOICE-V/U · SMA</text>
+<text data-layer="pcb-silkscreen" x="648.1" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">VOICE-V/U · SMA</text>
 <rect x="680.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="705.4,157.4 692.5,164.8 679.7,157.4 679.7,142.6 692.5,135.2 705.4,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M692.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="692.5" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2 · SMA</text>
+<text data-layer="pcb-silkscreen" x="692.5" y="176.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">N24-2 · SMA</text>
 <rect x="117.9" y="190.7" width="201.7" height="375.6" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
 <text x="218.8" y="353.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
 <text x="218.8" y="372.0" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#1d4ed8">54.5×101.5-mm reference envelope</text>
@@ -56,58 +56,58 @@
 <rect x="127.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="152.0,157.4 139.2,164.8 126.4,157.4 126.4,142.6 139.2,135.2 152.0,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M139.2 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="139.2" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3-2G4 · RP-SMA</text>
+<text data-layer="pcb-silkscreen" x="139.2" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">S3-2G4 · RP-SMA</text>
 <rect x="179.3" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="203.8,157.4 191.0,164.8 178.2,157.4 178.2,142.6 191.0,135.2 203.8,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M191.0 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="191.0" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5-2G4/5 · RP-SMA</text>
+<text data-layer="pcb-silkscreen" x="191.0" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5-2G4/5 · RP-SMA</text>
 <rect x="234.8" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="259.3,157.4 246.5,164.8 233.7,157.4 233.7,142.6 246.5,135.2 259.3,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M246.5 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="246.5" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-FM/SW · SMA</text>
+<text data-layer="pcb-silkscreen" x="246.5" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-FM/SW · SMA</text>
 <rect x="286.6" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
 <polygon points="311.1,157.4 298.3,164.8 285.5,157.4 285.5,142.6 298.3,135.2 311.1,142.6" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>
 <path d="M298.3 109.8 V95.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="298.3" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-AM/LW · SMA</text>
+<text data-layer="pcb-silkscreen" x="298.3" y="183.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RX-AM/LW · SMA</text>
 <rect x="94.8" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="97.8" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">S3</text>
+<text data-layer="pcb-silkscreen" x="97.8" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">S3</text>
 <rect x="125.5" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="128.5" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">C5</text>
+<text data-layer="pcb-silkscreen" x="128.5" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">C5</text>
 <rect x="156.2" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="159.2" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-0</text>
+<text data-layer="pcb-silkscreen" x="159.2" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-0</text>
 <rect x="186.9" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="189.9" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-1</text>
+<text data-layer="pcb-silkscreen" x="189.9" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-1</text>
 <rect x="217.6" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="220.6" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-2</text>
+<text data-layer="pcb-silkscreen" x="220.6" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">N24-2</text>
 <rect x="248.3" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="251.3" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">CC</text>
+<text data-layer="pcb-silkscreen" x="251.3" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">CC</text>
 <rect x="279.1" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="282.0" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VOICE</text>
+<text data-layer="pcb-silkscreen" x="282.0" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VOICE</text>
 <rect x="309.8" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="312.7" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
+<text data-layer="pcb-silkscreen" x="312.7" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
 <rect x="340.5" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text x="343.4" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">ANY TX</text>
+<text data-layer="pcb-silkscreen" x="343.4" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">ANY TX</text>
 <rect x="141.4" y="645.4" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="186.6" y="621.8" width="64.4" height="70.3" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="270.2" y="645.4" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <polygon points="209.9,632.5 227.6,632.5 227.6,648.0 243.2,648.0 243.2,665.8 227.6,665.8 227.6,681.3 209.9,681.3 209.9,665.8 194.3,665.8 194.3,648.0 209.9,648.0" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7"/>
 <circle cx="218.8" cy="656.9" r="7.4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
 <text x="218.8" y="658.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
-<text x="154.4" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
-<text x="283.1" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
+<text data-layer="pcb-silkscreen" x="154.4" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
+<text data-layer="pcb-silkscreen" x="283.1" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="99.0" y="433.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR 38 kHz RX</text>
+<text data-layer="pcb-silkscreen" x="99.0" y="433.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR 38 kHz RX</text>
 <path d="M80.0 458.9 L54.1 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="99.0" y="458.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR RAW RX</text>
+<text data-layer="pcb-silkscreen" x="99.0" y="458.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR RAW RX</text>
 <path d="M80.0 483.9 L54.1 483.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="99.0" y="483.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR TX</text>
+<text data-layer="pcb-silkscreen" x="99.0" y="483.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR TX</text>
 <path d="M357.5 445.1 L383.4 445.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="338.5" y="440.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">HEADPHONES</text>
-<text x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">LINE OUT</text>
+<text data-layer="pcb-silkscreen" x="338.5" y="440.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">HEADPHONES</text>
+<text data-layer="pcb-silkscreen" x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">LINE OUT</text>
 <path d="M196.4 705.0 L196.4 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="196.4" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
+<text data-layer="pcb-silkscreen" x="196.4" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="287.1" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
+<text data-layer="pcb-silkscreen" x="287.1" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <text x="603.8" y="453.4" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#166534">Keystone 1048P</text>
 <text x="603.8" y="471.9" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#166534">86×39.8-mm rotated holder</text>
@@ -121,27 +121,27 @@
 <rect x="701.8" y="383.1" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="701.8" y="438.6" width="25.9" height="25.9" rx="3" fill="#fee4e2" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect x="701.8" y="505.2" width="25.9" height="25.9" rx="3" fill="#f5f3ff" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3"/>
-<text x="492.8" y="377.6" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
-<text x="492.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
-<text x="492.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
-<text x="714.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
-<text x="714.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
-<text x="714.8" y="545.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
+<text data-layer="pcb-silkscreen" x="492.8" y="377.6" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
+<text data-layer="pcb-silkscreen" x="492.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
+<text data-layer="pcb-silkscreen" x="492.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
+<text data-layer="pcb-silkscreen" x="714.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
+<text data-layer="pcb-silkscreen" x="714.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#b42318">STOP</text>
+<text data-layer="pcb-silkscreen" x="714.8" y="545.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">RE-ARM</text>
 <path d="M742.5 567.2 L768.4 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">POWER</text>
-<text x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">ON / OFF</text>
+<text data-layer="pcb-silkscreen" x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">POWER</text>
+<text data-layer="pcb-silkscreen" x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">ON / OFF</text>
 <path d="M525.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="525.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
+<text data-layer="pcb-silkscreen" x="525.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
 <path d="M603.6 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="603.6" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
+<text data-layer="pcb-silkscreen" x="603.6" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="675.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
+<text data-layer="pcb-silkscreen" x="675.9" y="697.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
 <line x1="465.0" y1="545.9" x2="476.1" y2="545.9" stroke="#2563eb" stroke-width="1.4"/>
 <line x1="465.0" y1="553.3" x2="476.1" y2="553.3" stroke="#2563eb" stroke-width="1.4"/>
 <line x1="465.0" y1="560.7" x2="476.1" y2="560.7" stroke="#2563eb" stroke-width="1.4"/>
-<text x="490.9" y="557.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER / GRILLE</text>
+<text data-layer="pcb-silkscreen" x="490.9" y="557.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER / GRILLE</text>
 <circle cx="638.9" cy="701.3" r="3.2" fill="none" stroke="#d97706" stroke-width="1.4" data-interface-kind="acoustic-opening"/>
-<text x="638.9" y="693.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#92400e">MICROPHONE</text>
+<text data-layer="pcb-silkscreen" x="638.9" y="693.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#92400e">MICROPHONE</text>
 <text x="850.0" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What this drawing proves</text>
 <text x="850.0" y="135.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• both 75×150-mm panels use the same millimetre scale</text>
 <text x="850.0" y="158.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">• every solid component envelope comes from the MPN register</text>

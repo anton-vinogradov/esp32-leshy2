@@ -37,7 +37,7 @@ are powered down and placed into a verifiable quiet state.
 
 ### External faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=4)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=5)
 
 ### Inner board faces
 
@@ -46,11 +46,11 @@ and radio modules, speaker, microphone, ON/OFF switch, board-to-board
 connector, USB and every separate programming, reset and recovery button. A
 number inside an outline maps to the adjacent exact MPN and component role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=4)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=5)
 
 ### Sandwich cross-section
 
-![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=4)
+![Leshy2 sandwich cross-section](docs/images/sandwich-section.svg?layout=5)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 

@@ -100,11 +100,11 @@ Native S3/C5 используют собственные `U.FL-R-SMT-1(10)` и �
 `N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` и сводный `ANY TX`. Два входа
 Si4732 работают только на приём.
 
-![Размерная внешняя компоновка](images/current-clamshell.svg?layout=4)
+![Размерная внешняя компоновка](images/current-clamshell.svg?layout=5)
 
-![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=4)
+![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=5)
 
-![Размерный поперечный разрез бутерброда](images/sandwich-section.svg?layout=4)
+![Размерный поперечный разрез бутерброда](images/sandwich-section.svg?layout=5)
 
 ## Питание и сервис
 

@@ -97,11 +97,11 @@ In one line below the display, labelled actual-transmit indicators cover `S3`, `
 `N24-0`, `N24-1`, `N24-2`, `CC`, `VOICE`, `IR` and the aggregate `ANY TX`.
 The two Si4732 antenna inputs are receive-only.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=4)
+![Dimensioned external layout](images/current-clamshell.svg?layout=5)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=4)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=5)
 
-![Dimensioned sandwich cross-section](images/sandwich-section.svg?layout=4)
+![Dimensioned sandwich cross-section](images/sandwich-section.svg?layout=5)
 
 ## Power and service
 

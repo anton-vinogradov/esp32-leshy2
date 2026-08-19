@@ -54,6 +54,8 @@ class ProductSiteTests(unittest.TestCase):
         layout = self.read("docs/images/current-clamshell.svg")
         for token in (
             "Leshy2 — dimensioned external layout",
+            "Text outside component outlines is intended PCB silkscreen",
+            'data-layer="pcb-silkscreen"',
             "HMX035CTFT-001",
             "M5Stack U214",
             "SSW-107-02-S-D-RA",
@@ -93,7 +95,7 @@ class ProductSiteTests(unittest.TestCase):
         layout = self.read("docs/images/internal-board-layout.svg")
         for token in (
             "Leshy2 — dimensioned inner-board placement",
-            "Every solid rectangle is one device",
+            "Text outside component outlines on each PCB is intended PCB silkscreen",
             "Numbered physical devices",
             "UI/control PCB",
             "RF/power PCB",
@@ -109,9 +111,15 @@ class ProductSiteTests(unittest.TestCase):
             "FTSH-105-01-L-DV-K-P-TR",
             "54 · MIC",
             "55 · SPK",
+            "AS02404PO · speaker · side grille",
+            "ON/OFF request",
+            "S3/C5 recovery controls and DBG10",
+            "RP recovery controls and DBG10",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
+        self.assertIn('data-inner-free-text="pcb-silkscreen"', layout)
+        self.assertIn('data-layer="pcb-silkscreen"', layout)
         bounds = re.search(
             r'id="validated-clearances" data-legend-bottom="([0-9.]+)" data-top="([0-9.]+)"',
             layout,
@@ -122,9 +130,9 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=4", page)
-            self.assertIn("internal-board-layout.svg?layout=4", page)
-            self.assertIn("sandwich-section.svg?layout=4", page)
+            self.assertIn("current-clamshell.svg?layout=5", page)
+            self.assertIn("internal-board-layout.svg?layout=5", page)
+            self.assertIn("sandwich-section.svg?layout=5", page)
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")

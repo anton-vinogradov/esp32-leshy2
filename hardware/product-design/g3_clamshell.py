@@ -515,6 +515,8 @@ def rf_bank(
     compact_labels=False,
     mirror=False,
     compact_label_y=None,
+    show_annotations=True,
+    show_arrows=True,
 ):
     rows = []
     for source_centre, path, polarity in bank:
@@ -535,12 +537,14 @@ def rf_bank(
             angle = math.radians(60*number + 30)
             points.append(f"{x+nut_r*math.cos(angle):.1f},{edge_y+nut_r*math.sin(angle):.1f}")
         rows.append(f'<polygon points="{" ".join(points)}" fill="#e4e7ec" stroke="#344054" stroke-width="1.2"/>')
-        rows.append(f'<path d="M{x:.1f} {barrel_top+2:.1f} V{barrel_top-12:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        label_y = (compact_label_y if compact_label_y is not None else 9.0) if compact_labels else 15.5
-        visible_label = f"{path} · {polarity}" if compact_labels else path
-        rows.append(text(x, sy(origin, label_y), visible_label, 4.2 if compact_labels else 6.2, "bold", "middle", "#1d4ed8"))
-        if not compact_labels:
-            rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
+        if show_arrows:
+            rows.append(f'<path d="M{x:.1f} {barrel_top+2:.1f} V{barrel_top-12:.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        if show_annotations:
+            label_y = (compact_label_y if compact_label_y is not None else 9.0) if compact_labels else 15.5
+            visible_label = f"{path} · {polarity}" if compact_labels else path
+            rows.append(text(x, sy(origin, label_y), visible_label, 4.2 if compact_labels else 6.2, "bold", "middle", "#1d4ed8"))
+            if not compact_labels:
+                rows.append(text(x, sy(origin, 18.2), polarity, 5.2, anchor="middle", colour="#526076"))
     return rows
 
 
@@ -567,13 +571,18 @@ def dpad_cap(origin, scale, sx, sy, text):
 def render_external(devices, instances):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
+    def silk_text(*args, **kwargs):
+        return text(*args, **kwargs).replace(
+            "<text ", '<text data-layer="pcb-silkscreen" ', 1
+        )
+
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
-        text(30, 56, "One millimetre scale; orange dashed shapes are reserves, not selected-MPN geometry.", 11, colour="#526076"),
+        text(30, 56, "Text outside component outlines is intended PCB silkscreen; text inside is drawing annotation.", 11, colour="#526076"),
     ]
     out += board(front, "Front / UI face", scale, sx, sy, text, rect)
     out += board(rear, "Rear / battery and expansion face", scale, sx, sy, text, rect)
@@ -591,7 +600,7 @@ def render_external(devices, instances):
     out.append(rect(rear, U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", rx=6))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "M5Stack U214 · exact 84×24-mm plan envelope", 7.3, "bold", "middle", "#9a3412"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "mate ↑ toward socket · remove ↓", 6.2, anchor="middle", colour="#dc2626"))
-    out += rf_bank(rear, REAR_RF, scale, sx, sy, text, rect, False, True, compact_label_y=7.1)
+    out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.1)
 
     display = Placement("display", 10.25, 11.0, "display")
     dw, dh = placement_size(display, devices, instances)
@@ -599,17 +608,17 @@ def render_external(devices, instances):
     out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,60), "54.5×101.5-mm reference envelope", 6.5, anchor="middle", colour="#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,65), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
-    out += rf_bank(front, FRONT_RF, scale, sx, sy, text, rect, False, True)
+    out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, False, True)
 
     for instance, label, x, y in FRONT_TX_INDICATORS:
         out.append(rect(front, x, y, TX_LED_W, TX_LED_H, "#ef4444", "#991b1b", rx=1))
-        out.append(text(sx(front,x + TX_LED_W/2), sy(front,y + 2.6), label, 4.2, "bold", "middle", "#991b1b"))
+        out.append(silk_text(sx(front,x + TX_LED_W/2), sy(front,y + 2.6), label, 4.2, "bold", "middle", "#991b1b"))
 
     for reserve in FRONT_CAP_RESERVES:
         out.append(rect(front, reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "4 3", 3))
     out += dpad_cap(front, scale, sx, sy, text)
-    out.append(text(sx(front,20.1), sy(front,145.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
-    out.append(text(sx(front,54.9), sy(front,145.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(silk_text(sx(front,20.1), sy(front,145.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(silk_text(sx(front,54.9), sy(front,145.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
 
     # Every side/bottom interface is projected onto the external face even
     # when its physical body is mounted on the inward PCB side.
@@ -625,12 +634,12 @@ def render_external(devices, instances):
         lines = SIDE_INTERFACE_LABEL_LINES[instance]
         first_y = coordinate - 1.3 * (len(lines) - 1)
         for line_index, line in enumerate(lines):
-            out.append(text(sx(front,label_x), sy(front,first_y + 2.6 * line_index), line, 4.2, "bold", "middle", stroke))
+            out.append(silk_text(sx(front,label_x), sy(front,first_y + 2.6 * line_index), line, 4.2, "bold", "middle", stroke))
     for _, face, side, x, label in EDGE_INTERFACES:
         if face != "front" or side != "bottom":
             continue
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(text(sx(front,x), sy(front,148), label, 4.2, "bold", "middle", "#1d4ed8"))
+        out.append(silk_text(sx(front,x), sy(front,148), label, 4.2, "bold", "middle", "#1d4ed8"))
 
     holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
@@ -647,7 +656,7 @@ def render_external(devices, instances):
         (7.5, 61.5, "ENC"), (7.5, 74.0, "F1"), (7.5, 89.0, "F2"),
         (67.5, 74.0, "PTT"), (67.5, 89.0, "STOP"), (67.5, 107.0, "RE-ARM"),
     ):
-        out.append(text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#b42318" if label == "STOP" else "#4c1d95"))
+        out.append(silk_text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#b42318" if label == "STOP" else "#4c1d95"))
 
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "rear" or side not in {"left", "right"}:
@@ -659,12 +668,12 @@ def render_external(devices, instances):
         lines = SIDE_INTERFACE_LABEL_LINES[instance]
         first_y = coordinate - 1.3 * (len(lines) - 1)
         for line_index, line in enumerate(lines):
-            out.append(text(sx(rear,label_x), sy(rear,first_y + 2.6 * line_index), line, 4.2, "bold", "middle", stroke))
+            out.append(silk_text(sx(rear,label_x), sy(rear,first_y + 2.6 * line_index), line, 4.2, "bold", "middle", stroke))
     for _, face, side, x, label in EDGE_INTERFACES:
         if face != "rear" or side != "bottom":
             continue
         out.append(f'<path d="M{sx(rear,x):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(text(sx(rear,x), sy(rear,148), label, 4.2, "bold", "middle", "#1d4ed8"))
+        out.append(silk_text(sx(rear,x), sy(rear,148), label, 4.2, "bold", "middle", "#1d4ed8"))
 
     # Speaker grille and microphone port are labelled openings, not arrows.
     for instance, face, side, coordinate, label in ACOUSTIC_OPENINGS:
@@ -677,13 +686,13 @@ def render_external(devices, instances):
                     f'x2="{sx(rear,3):.1f}" y2="{sy(rear,coordinate + offset):.1f}" '
                     'stroke="#2563eb" stroke-width="1.4"/>'
                 )
-            out.append(text(sx(rear,7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
+            out.append(silk_text(sx(rear,7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
         elif side == "bottom":
             out.append(
                 f'<circle cx="{sx(rear,coordinate):.1f}" cy="{sy(rear,149):.1f}" r="3.2" '
                 'fill="none" stroke="#d97706" stroke-width="1.4" data-interface-kind="acoustic-opening"/>'
             )
-            out.append(text(sx(rear,coordinate), sy(rear,146.8), label, 4.2, "bold", "middle", "#92400e"))
+            out.append(silk_text(sx(rear,coordinate), sy(rear,146.8), label, 4.2, "bold", "middle", "#92400e"))
 
     note_x = 850
     out += [
@@ -722,6 +731,11 @@ def render_external(devices, instances):
 def render_internal(devices, instances):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
+    def silk_text(*args, **kwargs):
+        return text(*args, **kwargs).replace(
+            "<text ", '<text data-layer="pcb-silkscreen" ', 1
+        )
+
     ui, rf = (80.0, 150.0), (465.0, 150.0)
     all_items = UI_INNER + RF_INNER
     numbers = {item.instance: index for index, item in enumerate(all_items, 1)}
@@ -731,19 +745,19 @@ def render_internal(devices, instances):
     notes_top = max(560, legend_bottom + 35)
     svg_height = notes_top + 230
     out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-free-text="pcb-silkscreen">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30,32,"Leshy2 — dimensioned inner-board placement",22,"bold"),
-        text(30,56,"Every solid rectangle is one device at registered MPN size; reserves are orange and dashed.",11,colour="#526076"),
+        text(30,56,"Text outside component outlines on each PCB is intended PCB silkscreen; text inside is drawing annotation.",11,colour="#526076"),
     ]
     out += board(ui, "UI/control PCB — inner side", scale, sx, sy, text, rect)
     out += board(rf, "RF/power PCB — inner side", scale, sx, sy, text, rect)
     # Looking at either PCB's inner side means physically turning that board
     # over.  Therefore all X coordinates are mirrored relative to the matching
     # external face; this is not a transparent-through-board projection.
-    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, True, mirror=True)
-    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, True, mirror=True)
+    out += rf_bank(ui, FRONT_RF, scale, sx, sy, silk_text, rect, True, mirror=True)
+    out += rf_bank(rf, REAR_RF, scale, sx, sy, silk_text, rect, True, mirror=True)
     for origin, items in ((ui, UI_INNER), (rf, RF_INNER)):
         for item in items:
             w, h = placement_size(item, devices, instances)
@@ -763,7 +777,7 @@ def render_internal(devices, instances):
             if item.instance == "speaker":
                 component_number += " · SPK"
             elif item.instance == "microphone":
-                out.append(text(sx(origin,view_x+w/2), sy(origin,item.y - 0.8), f"{component_number} · MIC", 5.2, "bold", "middle", "#92400e"))
+                out.append(silk_text(sx(origin,view_x+w/2), sy(origin,item.y - 0.8), f"{component_number} · MIC", 5.2, "bold", "middle", "#92400e"))
             out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
     for reserve in INTERNAL_RESERVES:
         view_x = mirrored_x(reserve.x, reserve.w)
@@ -781,10 +795,10 @@ def render_internal(devices, instances):
             arrows.append((origin, coordinate, BOARD_H, coordinate, BOARD_H + 9.0))
     for origin, x1, y1, x2, y2 in arrows:
         out.append(f'<path d="M{sx(origin,mirrored_x(x1)):.1f} {sy(origin,y1):.1f} L{sx(origin,mirrored_x(x2)):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(text(sx(rf,mirrored_x(17)), sy(rf,101.5), "AS02404PO · speaker · side grille", 4.8, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(rf,mirrored_x(73.5)), sy(rf,109.5), "ON/OFF request", 4.6, "bold", "start", "#9a3412"))
-    out.append(text(sx(ui,mirrored_x(37.5)), sy(ui,101.5), "S3/C5 recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
-    out.append(text(sx(rf,mirrored_x(54.5)), sy(rf,101.5), "RP recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(silk_text(sx(rf,mirrored_x(17)), sy(rf,101.5), "AS02404PO · speaker · side grille", 4.8, "bold", "middle", "#1d4ed8"))
+    out.append(silk_text(sx(rf,mirrored_x(73.5)), sy(rf,109.5), "ON/OFF request", 4.6, "bold", "start", "#9a3412"))
+    out.append(silk_text(sx(ui,mirrored_x(37.5)), sy(ui,101.5), "S3/C5 recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(silk_text(sx(rf,mirrored_x(54.5)), sy(rf,101.5), "RP recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
 
     left_x, right_x = 830, 1165
     out += [text(left_x,105,"Numbered physical devices",16,"bold"), text(left_x,128,"UI/control PCB",12,"bold",colour="#1d4ed8")]
