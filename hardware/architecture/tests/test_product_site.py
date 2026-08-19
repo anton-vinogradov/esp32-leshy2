@@ -111,7 +111,7 @@ class ProductSiteTests(unittest.TestCase):
         layout = self.read("docs/images/internal-board-layout.svg")
         for token in (
             "Leshy2 — dimensioned inner-board placement",
-            "Text outside component outlines on each PCB is intended PCB silkscreen",
+            "Inner PCB faces contain no silkscreen text",
             "Numbered physical devices",
             "UI/control PCB",
             "RF/power PCB",
@@ -125,17 +125,22 @@ class ProductSiteTests(unittest.TestCase):
             "1125R-SMT-4P",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
-            "54 · MIC",
             "55 · SPK",
+        ):
+            self.assertIn(token, layout)
+        self.assertIn('data-view="mirrored-x"', layout)
+        self.assertIn('data-inner-silkscreen="none"', layout)
+        self.assertNotIn('data-layer="pcb-silkscreen"', layout)
+        for forbidden_inner_silk in (
+            "54 · MIC",
             "AS02404PO · speaker · side grille",
             "ON/OFF request",
             "S3/C5 recovery controls and DBG10",
             "RP recovery controls and DBG10",
+            "WI-FI/BLE",
+            "nRF24-1",
         ):
-            self.assertIn(token, layout)
-        self.assertIn('data-view="mirrored-x"', layout)
-        self.assertIn('data-inner-free-text="pcb-silkscreen"', layout)
-        self.assertIn('data-layer="pcb-silkscreen"', layout)
+            self.assertNotIn(forbidden_inner_silk, layout)
         bounds = re.search(
             r'id="validated-clearances" data-legend-bottom="([0-9.]+)" data-top="([0-9.]+)"',
             layout,
@@ -146,8 +151,8 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=8", page)
-            self.assertIn("internal-board-layout.svg?layout=5", page)
+            self.assertIn("current-clamshell.svg?layout=9", page)
+            self.assertIn("internal-board-layout.svg?layout=6", page)
             self.assertIn("sandwich-section.svg?layout=8", page)
             self.assertIn("top-edge-view.svg?layout=1", page)
             self.assertLess(

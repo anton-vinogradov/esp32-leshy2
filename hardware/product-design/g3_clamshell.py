@@ -7,6 +7,7 @@ import argparse
 import html
 import json
 import math
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -317,6 +318,102 @@ def hits_hole(
     return math.hypot(hx - px, hy - py) < MOUNT_KEEPOUT_R + clearance
 
 
+def text_bounds_px(element: ET.Element) -> tuple[float, float, float, float]:
+    """Conservative sans-serif bounds for generated silkscreen text."""
+    x = float(element.attrib["x"])
+    baseline = float(element.attrib["y"])
+    size = float(element.attrib["font-size"])
+    value = "".join(element.itertext())
+    width = max(size * 0.6, len(value) * size * 0.58)
+    anchor = element.attrib.get("text-anchor", "start")
+    if anchor == "middle":
+        left = x - width / 2
+    elif anchor == "end":
+        left = x - width
+    else:
+        left = x
+    return left, baseline - size, width, size * 1.25
+
+
+def validate_external_silkscreen(svg: str, devices: dict, instances: dict) -> list[str]:
+    """Prove that every physical silk label is on an outer face and unobscured."""
+    errors: list[str] = []
+    scale = 3.7
+    origins = {"front": (80.0, 150.0), "rear": (465.0, 150.0)}
+
+    def px_box(origin, box):
+        x, y, w, h = box
+        return origin[0] + x * scale, origin[1] + y * scale, w * scale, h * scale
+
+    display = Placement("display", 10.25, 11.0, "display")
+    holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
+    knob = REAR_SELECTED_ACTUATORS[0]
+    visible = {
+        "front": [
+            ("display", (display.x, display.y, *placement_size(display, devices, instances))),
+            *(
+                (item.instance, (item.x, item.y, *placement_size(item, devices, instances)))
+                for item in FRONT_CONTROLS
+                if item.instance in DIRECT_PRESS_FRONT_CONTROLS
+            ),
+            *((reserve.name, (reserve.x, reserve.y, reserve.w, reserve.h)) for reserve in FRONT_CAP_RESERVES),
+            *((label + " LED", (x, y, TX_LED_W, TX_LED_H)) for _, label, x, y in FRONT_TX_INDICATORS),
+        ],
+        "rear": [
+            ("U214", (U214_X, U214_Y, U214_W, U214_H)),
+            ("battery holder", (holder.x, holder.y, *placement_size(holder, devices, instances))),
+            *((item.instance, (item.x, item.y, *placement_size(item, devices, instances))) for item in REAR_CONTROLS),
+            ("encoder knob", (knob.x, knob.y, *placement_size(knob, devices, instances))),
+            *((reserve.name, (reserve.x, reserve.y, reserve.w, reserve.h)) for reserve in REAR_CAP_RESERVES),
+        ],
+    }
+    for face, bank in (("front", FRONT_RF), ("rear", REAR_RF)):
+        visible[face].extend(
+            (f"{path} connector", (centre - 4.0, 0.0, 8.0, 4.0))
+            for centre, path, _ in bank
+        )
+    for face in visible:
+        visible[face].extend(
+            (f"M2.5 keep-out {index}", (hx - MOUNT_KEEPOUT_R, hy - MOUNT_KEEPOUT_R, 2 * MOUNT_KEEPOUT_R, 2 * MOUNT_KEEPOUT_R))
+            for index, (hx, hy) in enumerate(HOLES, 1)
+        )
+
+    root = ET.fromstring(svg)
+    labels: dict[str, list[tuple[str, tuple[float, float, float, float]]]] = {"front": [], "rear": []}
+    for element in root.iter("{http://www.w3.org/2000/svg}text"):
+        if element.attrib.get("data-layer") != "pcb-silkscreen":
+            continue
+        value = "".join(element.itertext())
+        box = text_bounds_px(element)
+        face = next(
+            (
+                name
+                for name, origin in origins.items()
+                if origin[0] <= box[0]
+                and box[0] + box[2] <= origin[0] + BOARD_W * scale
+                and origin[1] <= box[1]
+                and box[1] + box[3] <= origin[1] + BOARD_H * scale
+            ),
+            None,
+        )
+        if face is None:
+            errors.append(f"external silk '{value}' is not wholly inside an outer PCB face")
+            continue
+        labels[face].append((value, box))
+        for component, component_mm in visible[face]:
+            if overlaps(box, px_box(origins[face], component_mm)):
+                errors.append(f"{face}: silk '{value}' overlaps {component}")
+
+    for face, face_labels in labels.items():
+        for index, (value, box) in enumerate(face_labels):
+            for other_value, other_box in face_labels[index + 1:]:
+                if overlaps(box, other_box):
+                    errors.append(f"{face}: silk '{value}' overlaps silk '{other_value}'")
+    if not labels["front"] or not labels["rear"]:
+        errors.append("both outer PCB faces must carry their generated user silkscreen labels")
+    return errors
+
+
 def validate_items(name: str, items: tuple[Placement, ...], devices: dict, instances: dict) -> list[str]:
     errors: list[str] = []
     rectangles = []
@@ -547,6 +644,9 @@ def validate() -> list[str]:
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to the battery holder")
         if overlaps(rectangle, u214_box, 0.7):
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to U214")
+    errors += validate_external_silkscreen(render_external(devices, instances), devices, instances)
+    if 'data-layer="pcb-silkscreen"' in render_internal(devices, instances):
+        errors.append("inner PCB faces must not carry silkscreen text")
     return errors
 
 
@@ -697,7 +797,7 @@ def render_external(devices, instances):
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · 84×24 mm", 7.0, "bold", "middle", "#9a3412"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "raised rail · SSW-107-02-S-D beneath Cap", 5.0, "bold", "middle", "#075985"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
-    out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.1)
+    out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.8)
 
     display = Placement("display", 10.25, 11.0, "display")
     dw, dh = placement_size(display, devices, instances)
@@ -705,7 +805,7 @@ def render_external(devices, instances):
     out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,60), "54.5×101.5-mm reference envelope", 6.5, anchor="middle", colour="#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,65), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
-    out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, False, True)
+    out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, False, True, compact_label_y=7.8)
 
     for instance, label, x, y in FRONT_TX_INDICATORS:
         out.append(rect(front, x, y, TX_LED_W, TX_LED_H, "#ef4444", "#991b1b", rx=1))
@@ -752,7 +852,7 @@ def render_external(devices, instances):
         if face != "front" or side != "bottom":
             continue
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(silk_text(sx(front,x), sy(front,148), label, 4.2, "bold", "middle", "#1d4ed8"))
+        out.append(silk_text(sx(front,x), sy(front,149), label, 4.2, "bold", "middle", "#1d4ed8"))
 
     holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
@@ -817,7 +917,7 @@ def render_external(devices, instances):
         if face != "rear" or side != "bottom":
             continue
         out.append(f'<path d="M{sx(rear,x):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        out.append(silk_text(sx(rear,x), sy(rear,148), label, 4.2, "bold", "middle", "#1d4ed8"))
+        out.append(silk_text(sx(rear,x), sy(rear,149), label, 4.2, "bold", "middle", "#1d4ed8"))
 
     # Speaker grille and microphone port are labelled openings, not arrows.
     for instance, face, side, coordinate, label in ACOUSTIC_OPENINGS:
@@ -878,10 +978,6 @@ def render_external(devices, instances):
 def render_internal(devices, instances):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
-    def silk_text(*args, **kwargs):
-        return text(*args, **kwargs).replace(
-            "<text ", '<text data-layer="pcb-silkscreen" ', 1
-        )
 
     ui, rf = (80.0, 150.0), (465.0, 150.0)
     all_items = UI_INNER + RF_INNER
@@ -892,19 +988,19 @@ def render_internal(devices, instances):
     notes_top = max(560, legend_bottom + 35)
     svg_height = notes_top + 230
     out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-free-text="pcb-silkscreen">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-silkscreen="none">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30,32,"Leshy2 — dimensioned inner-board placement",22,"bold"),
-        text(30,56,"Text outside component outlines on each PCB is intended PCB silkscreen; text inside is drawing annotation.",11,colour="#526076"),
+        text(30,56,"Inner PCB faces contain no silkscreen text; numbers inside outlines are drawing annotations.",11,colour="#526076"),
     ]
     out += board(ui, "UI/control PCB — inner side", scale, sx, sy, text, rect)
     out += board(rf, "RF/power PCB — inner side", scale, sx, sy, text, rect)
     # Looking at either PCB's inner side means physically turning that board
     # over.  Therefore all X coordinates are mirrored relative to the matching
     # external face; this is not a transparent-through-board projection.
-    out += rf_bank(ui, FRONT_RF, scale, sx, sy, silk_text, rect, True, mirror=True)
-    out += rf_bank(rf, REAR_RF, scale, sx, sy, silk_text, rect, True, mirror=True)
+    out += rf_bank(ui, FRONT_RF, scale, sx, sy, text, rect, True, mirror=True, show_annotations=False)
+    out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, True, mirror=True, show_annotations=False)
     for origin, items in ((ui, UI_INNER), (rf, RF_INNER)):
         for item in items:
             w, h = placement_size(item, devices, instances)
@@ -923,8 +1019,6 @@ def render_internal(devices, instances):
             component_number = str(numbers[item.instance])
             if item.instance == "speaker":
                 component_number += " · SPK"
-            elif item.instance == "microphone":
-                out.append(silk_text(sx(origin,view_x+w/2), sy(origin,item.y - 0.8), f"{component_number} · MIC", 5.2, "bold", "middle", "#92400e"))
             out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
     for reserve in INTERNAL_RESERVES:
         view_x = mirrored_x(reserve.x, reserve.w)
@@ -942,11 +1036,6 @@ def render_internal(devices, instances):
             arrows.append((origin, coordinate, BOARD_H, coordinate, BOARD_H + 9.0))
     for origin, x1, y1, x2, y2 in arrows:
         out.append(f'<path d="M{sx(origin,mirrored_x(x1)):.1f} {sy(origin,y1):.1f} L{sx(origin,mirrored_x(x2)):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(silk_text(sx(rf,mirrored_x(17)), sy(rf,101.5), "AS02404PO · speaker · side grille", 4.8, "bold", "middle", "#1d4ed8"))
-    out.append(silk_text(sx(rf,mirrored_x(73.5)), sy(rf,109.5), "ON/OFF request", 4.6, "bold", "start", "#9a3412"))
-    out.append(silk_text(sx(ui,mirrored_x(37.5)), sy(ui,101.5), "S3/C5 recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
-    out.append(silk_text(sx(rf,mirrored_x(54.5)), sy(rf,101.5), "RP recovery controls and DBG10", 5.0, "bold", "middle", "#4c1d95"))
-
     left_x, right_x = 830, 1165
     out += [text(left_x,105,"Numbered physical devices",16,"bold"), text(left_x,128,"UI/control PCB",12,"bold",colour="#1d4ed8")]
     y = legend_first_y

@@ -125,9 +125,9 @@ tact-switch 6,0×6,1 мм; его нормально-замкнутый
 антенн используются те же имена, а также диапазон и тип `SMA`/`RP-SMA`.
 Два входа Si4732 работают только на приём.
 
-![Размерная внешняя компоновка](images/current-clamshell.svg?layout=8)
+![Размерная внешняя компоновка](images/current-clamshell.svg?layout=9)
 
-![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=5)
+![Размерная компоновка внутренних плат](images/internal-board-layout.svg?layout=6)
 
 ![Размерный вид сверху со стороны антенного торца](images/top-edge-view.svg?layout=1)
 

@@ -331,8 +331,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         for token in (
             "Leshy2 — dimensioned inner-board placement",
             "Numbered physical devices",
-            'data-inner-free-text="pcb-silkscreen"',
-            'data-layer="pcb-silkscreen"',
+            'data-inner-silkscreen="none"',
+            "Inner PCB faces contain no silkscreen text",
             "M2.5 hole/head keep-out",
             "every edge arrow is centred",
             'data-view="mirrored-x"',
@@ -341,13 +341,19 @@ class ArchitectureValidationTests(unittest.TestCase):
             "JS102011SCQN",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
+        ):
+            self.assertIn(token, internal)
+        self.assertNotIn('data-layer="pcb-silkscreen"', internal)
+        for forbidden_inner_silk in (
             "54 · MIC",
             "AS02404PO · speaker · side grille",
             "ON/OFF request",
             "S3/C5 recovery controls and DBG10",
             "RP recovery controls and DBG10",
+            "WI-FI/BLE",
+            "nRF24-1",
         ):
-            self.assertIn(token, internal)
+            self.assertNotIn(forbidden_inner_silk, internal)
         sandwich = (
             GENERATOR.REPO_ROOT
             / "docs/images/sandwich-section.svg"

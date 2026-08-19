@@ -122,9 +122,9 @@ In one line below the display, user-facing actual-transmit labels cover
 same names and also states the required frequency and `SMA`/`RP-SMA` type.
 The two Si4732 antenna inputs are receive-only.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=8)
+![Dimensioned external layout](images/current-clamshell.svg?layout=9)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=5)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=6)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=1)
 
