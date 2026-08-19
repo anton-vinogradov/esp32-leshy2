@@ -1157,6 +1157,11 @@
         "url": "https://www.lcsc.com/product-detail/crystals_seiko-epson-q13fc13500005_C841881.html",
         "checked": "2026-08-19"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.2154,
+        "price_break": "LCSC quantity-50 tier applicable to a 100-piece purchase",
+        "source": {"document": "LCSC exact-MPN published price table", "url": "https://www.lcsc.com/product-detail/crystals_seiko-epson-q13fc13500005_C841881.html", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "frequency_hz": 32768,
         "load_capacitance_pf": 12.5,
@@ -2018,6 +2023,11 @@
         "url": "https://www.digikey.com/en/products/filter/balun/849?keywords=B0310J50100AHF",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.9929,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/ttm-technologies-inc/B0310J50100AHF/3069172", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "frequency_mhz": [300, 1000],
         "unbalanced_ohm": 50,
@@ -2116,6 +2126,11 @@
         "document": "Nexperia production product page with manufacturer sample and authorized-distributor ordering path; independent distributor aggregation showed 9,338 units",
         "url": "https://www.nexperia.com/product/PESD24VY1BSF",
         "checked": "2026-08-18"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "No published comparable exact-Nexperia quantity-100 USD tier was found; the same base marking sold by ElecSuper is a different manufacturer and cannot be priced as the accepted Nexperia device",
+        "source": {"document": "Nexperia exact product/order page", "url": "https://www.nexperia.com/product/PESD24VY1BSF", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "reverse_stand_off_v": 24,
@@ -2558,6 +2573,11 @@
         "url": "https://www.mouser.com/ProductDetail/Panasonic-Industrial-Devices/AEQ10410",
         "checked": "2026-08-18"
       },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 3.06,
+        "price_break": "Mouser quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://www.mouser.com/ProductDetail/Panasonic-Industrial-Devices/AEQ10410?qs=j9cVjCYuKiedWHJ9UTfBiw%3D%3D", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "contact_form": "SPDT",
         "qualified_range": "100 uA at 3 VDC through 100 mA at 30 VDC",
@@ -2818,9 +2838,14 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "74LVC2G14GW,125 exact authorized-distributor replacement listing; 72,597 shown in stock under the current Nexperia line",
-        "url": "https://www.digikey.com/en/products/detail/nxp-usa-inc/74LVC2G14GW-125/10476011",
+        "document": "74LVC2G14GW,125 exact current Nexperia authorized-distributor line; 71,287 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0587,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -2875,6 +2900,11 @@
         "document": "SN74LVC1G74DCUR ACTIVE exact TI order page; authorized-distributor stock independently observed",
         "url": "https://www.ti.com/product/SN74LVC1G74/part-details/SN74LVC1G74DCUR",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.33,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G74DCUR?qs=DS7Z8uEdLNyRBKrHxqRXjA%3D%3D", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {
@@ -3238,6 +3268,11 @@
         "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191",
         "checked": "2026-08-18"
       },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "The current exact authorized-distributor line publishes only 2200-piece full-reel pricing and no comparable quantity-100 USD tier",
+        "source": {"document": "DigiKey exact-MPN full-reel-only price table", "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191", "checked": "2026-08-19"}
+      },
       "electrical_contract": {
         "supply_v": [2.0, 3.6],
         "carrier_khz": 38,
@@ -3270,6 +3305,11 @@
         "document": "TSMP95000TT active exact order code; authorized distributor stock checked",
         "url": "https://www.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT",
         "checked": "2026-08-18"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.06,
+        "price_break": "Mouser quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://br.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT?qs=ulEaXIWI0c%252BKGdRJO7yKyQ%3D%3D", "checked": "2026-08-19"}
       },
       "electrical_contract": {
         "supply_v": [2.0, 5.5],
@@ -5240,6 +5280,11 @@
         "document": "WSL25125L000FEA authorized-distributor exact order-code page; 8,905 shown in regional stock",
         "url": "https://www.mouser.ch/ProductDetail/Vishay-Dale/WSL25125L000FEA?qs=ViWNInbc%252BeWBpJ7mz8KqSA%3D%3D",
         "checked": "2026-08-19"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.06,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published USD price table; exact line backorderable with incoming stock", "url": "https://www.mouser.com/ProductDetail/Vishay-Dale/WSL25125L000FEA?qs=ViWNInbc%252BeWBpJ7mz8KqSA%3D%3D", "checked": "2026-08-19"}
       },
       "programmable": false,
       "contacts": {

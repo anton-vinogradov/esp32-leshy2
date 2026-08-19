@@ -26,6 +26,6 @@ uninstantiated physical families, specific alternate qualification and full
 factory COGS. The high-Q RF part is not silently replaced for procurement
 convenience.
 
-`BOM-0024/REV-0005BX` subsequently advance current coverage to 162/187 lines /
-816 placements / USD 150.4157 and ten explicit gates without changing this
+`BOM-0025/REV-0005BY` subsequently advance current coverage to 169/187 lines /
+823 placements / USD 157.1927 and twelve explicit gates without changing this
 reviewed eighth-batch checkpoint.

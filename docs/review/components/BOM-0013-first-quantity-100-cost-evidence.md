@@ -71,5 +71,5 @@ Mechanical/interconnect:
 explicit RFQ/retail gates находятся в
 [`BOM-0014`](BOM-0014-high-placement-cost-and-explicit-gates.md); текущий итог
 после десятой партии находится в
-[`BOM-0024`](BOM-0024-resistor-cost-evidence.md): 162/187 lines,
-816/857 placements и partial base subtotal USD 150.4157.
+[`BOM-0025`](BOM-0025-specialty-cost-and-gates.md): 169/187 lines,
+823/857 placements и partial base subtotal USD 157.1927.

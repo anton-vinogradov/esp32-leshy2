@@ -41,3 +41,6 @@ yield, tooling, freight, tax, batteries and optional accessory pricing remain
 separate until their correct gates. The low exact stock observed for
 `RC0402FR-0756KL` is a procurement watch, not permission to substitute it.
 
+The current successor snapshot is [`BOM-0025`](BOM-0025-specialty-cost-and-gates.md):
+169/187 lines, 823/857 placements and USD 157.1927 partial base subtotal;
+twelve unpriced lines have explicit gates.

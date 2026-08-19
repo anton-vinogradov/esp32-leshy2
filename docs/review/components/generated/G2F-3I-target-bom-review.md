@@ -11,9 +11,9 @@
 - **858** architecture instances include **1** explicit assembly-internal evidence node.
 - After excluding those non-purchase nodes, **857** supplied/costed placements collapse to **187** used exact-device/MPN lines.
 - Current orderability evidence exists for **186/187** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **162/187** lines.
-- Of the remaining **25** unpriced lines, **10** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **816/857** supplied placements; their partial subtotals are `base_product` — USD 150.4157. These are coverage diagnostics, not product COGS.
+- Machine-readable quantity-100 cost evidence exists for **169/187** lines.
+- Of the remaining **18** unpriced lines, **12** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
+- Those priced lines cover **823/857** supplied placements; their partial subtotals are `base_product` — USD 157.1927. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **187/187** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -453,6 +453,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Seiko Epson Q13FC13500005</code> — 1 × USD 0.2154 = USD 0.2154</summary>
+
+- Device id: `epson_q13fc13500005`.
+- Scope: `base_product`.
+- Comparable basis: LCSC quantity-50 tier applicable to a 100-piece purchase; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.lcsc.com/product-detail/crystals_seiko-epson-q13fc13500005_C841881.html).
+
+</details>
+
 <details><summary><code>ESP32-C5-WROOM-1U-N8R8</code> — 1 × USD 4.3700 = USD 4.3700</summary>
 
 - Device id: `esp32_c5_wroom_1u_n8r8`.
@@ -885,6 +894,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>74LVC2G14GW,125</code> — 1 × USD 0.0587 = USD 0.0587</summary>
+
+- Device id: `nexperia_74lvc2g14gw_125`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC2G14GW-125/2116536).
+
+</details>
+
 <details><summary><code>onsemi 1N4148WT</code> — 10 × USD 0.0629 = USD 0.6290</summary>
 
 - Device id: `onsemi_1n4148wt`.
@@ -927,6 +945,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/onsemi/FSUSB42MUX/2036916).
+
+</details>
+
+<details><summary><code>Panasonic AEQ10410</code> — 1 × USD 3.0600 = USD 3.0600</summary>
+
+- Device id: `panasonic_aeq10410`.
+- Scope: `base_product`.
+- Comparable basis: Mouser quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Panasonic-Industrial-Devices/AEQ10410?qs=j9cVjCYuKiedWHJ9UTfBiw%3D%3D).
 
 </details>
 
@@ -1182,6 +1209,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>SN74LVC1G74DCUR</code> — 1 × USD 0.3300 = USD 0.3300</summary>
+
+- Device id: `ti_sn74lvc1g74_dcur`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Texas-Instruments/SN74LVC1G74DCUR?qs=DS7Z8uEdLNyRBKrHxqRXjA%3D%3D).
+
+</details>
+
 <details><summary><code>Texas Instruments SN74LVC2G08DCUR</code> — 2 × USD 0.2296 = USD 0.4592</summary>
 
 - Device id: `ti_sn74lvc2g08_dcur`.
@@ -1407,12 +1443,30 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>TTM Technologies B0310J50100AHF</code> — 1 × USD 0.9929 = USD 0.9929</summary>
+
+- Device id: `ttm_b0310j50100ahf`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/ttm-technologies-inc/B0310J50100AHF/3069172).
+
+</details>
+
 <details><summary><code>TTM Technologies DC2337J5010AHF</code> — 3 × USD 1.0291 = USD 3.0873</summary>
 
 - Device id: `ttm_dc2337j5010ahf`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC2337J5010AHF/3069211).
+
+</details>
+
+<details><summary><code>Vishay TSMP95000TT</code> — 1 × USD 1.0600 = USD 1.0600</summary>
+
+- Device id: `vishay_tsmp95000tt`.
+- Scope: `base_product`.
+- Comparable basis: Mouser quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://br.mouser.com/ProductDetail/Vishay-Semiconductors/TSMP95000TT?qs=ulEaXIWI0c%252BKGdRJO7yKyQ%3D%3D).
 
 </details>
 
@@ -1431,6 +1485,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMY14940/4494435).
+
+</details>
+
+<details><summary><code>Vishay WSL25125L000FEA</code> — 1 × USD 1.0600 = USD 1.0600</summary>
+
+- Device id: `vishay_wsl25125l000fea`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.mouser.com/ProductDetail/Vishay-Dale/WSL25125L000FEA?qs=ViWNInbc%252BeWBpJ7mz8KqSA%3D%3D).
 
 </details>
 
@@ -1834,6 +1897,15 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 </details>
 
+<details><summary><code>Nexperia PESD24VY1BSF</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `nexperia_pesd24vy1bsf`.
+- Scope: `base_product`; quantity `1`.
+- Reason: No published comparable exact-Nexperia quantity-100 USD tier was found; the same base marking sold by ElecSuper is a different manufacturer and cannot be priced as the accepted Nexperia device.
+- Checked: `2026-08-19`; [gate source](https://www.nexperia.com/product/PESD24VY1BSF).
+
+</details>
+
 <details><summary><code>NiceRF SA518</code> — <code>quantity_100_rfq_required</code></summary>
 
 - Device id: `nicerf_sa518_v11`.
@@ -1876,6 +1948,15 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Scope: `base_product`; quantity `1`.
 - Reason: TI marks the exact new part active/production but the current order page shows no inventory or published quantity-100 price; obtain a traceable distributor or factory quotation before freezing COGS.
 - Checked: `2026-08-19`; [gate source](https://www.ti.com/product/TPUL2G223/part-details/TPUL2G223BQBR).
+
+</details>
+
+<details><summary><code>Vishay TSOP95238TT</code> — <code>quantity_100_rfq_required</code></summary>
+
+- Device id: `vishay_tsop95238tt`.
+- Scope: `base_product`; quantity `1`.
+- Reason: The current exact authorized-distributor line publishes only 2200-piece full-reel pricing and no comparable quantity-100 USD tier.
+- Checked: `2026-08-19`; [gate source](https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/TSOP95238TT/10658191).
 
 </details>
 
