@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "assembly_id": "L2-ANT-AM-LW-001",
+  "revision": "A0",
+  "status": "selected_first_target_hil_open",
+  "role": "passive receive-only direct-plug ferrite pod for the dedicated non-50-Ohm AMI port",
+  "supported_receiver_bands_mhz": [[0.153, 0.279], [0.520, 1.710]],
+  "interface": {
+    "device_port_label": "AM/LW LOOP",
+    "termination": "standard-polarity SMA male with centre pin",
+    "connector_mpn": "RF2-154-T-17-50-G",
+    "connector_manufacturer": "Adam Tech",
+    "connector_role_note": "SMA is only the mechanical interface; the completed pod is not a 50-Ohm antenna",
+    "long_cable_allowed": false,
+    "power_required": false,
+    "gpio_required": false
+  },
+  "electrical_design": {
+    "topology": "one unshielded ferrite loop directly between SMA centre and shell; no buffer, selector, transformer or tuning capacitor in the pod",
+    "core": {
+      "mpn": "3061990901",
+      "manufacturer": "Fair-Rite",
+      "material": "61",
+      "diameter_mm": 6.0,
+      "length_mm": 40.0,
+      "rod_permeability": 22,
+      "manufacturer_suggested_frequency_mhz": [0.2, 5.0]
+    },
+    "winding": {
+      "wire_mpn": "38SNSP.125",
+      "manufacturer": "Remington Industries",
+      "wire": "38-AWG single-build solderable polyurethane magnet wire, NEMA MW 79-C",
+      "initial_setup_turns": 124,
+      "construction": "single layer centred on the rod; initial calculated winding length is approximately 14.2 mm",
+      "final_acceptance_overrides_turn_count": true,
+      "inductance_target_uh_at_100khz": 300,
+      "inductance_tolerance_percent": 5
+    },
+    "device_side_components": {
+      "esd_mpn": "SESD0402X1UN-0020-090",
+      "coupling_capacitor_mpn": "GRM155R71A474KE01D",
+      "coupling_capacitance_uf": 0.47,
+      "si4732_ami_input_capacitance_pf_from_family_guidance": 8
+    },
+    "derived_limits": {
+      "total_ami_capacitance_max_pf_at_300uh_1710khz": 29,
+      "external_capacitance_budget_max_pf_after_8pf_input": 21,
+      "standalone_pod_self_resonance_target_min_mhz": 2.5,
+      "note": "The 29-pF limit is derived from the current AN383 family equation and is an acceptance target, not measured evidence for Si4732-A10."
+    }
+  },
+  "mechanical_design": {
+    "maximum_envelope_mm": {"width": 12, "length_from_mating_plane": 58, "thickness": 10},
+    "orientation": "the narrow pod continues outward from the antenna edge and fits between the neighbouring 14-mm connector centrelines",
+    "core_carrier": "non-conductive controlled housing; no metal shield around the rod",
+    "copper_keepout": "no plane, switching trace or digital circuit under or alongside the rod; the small interface PCB remains at the SMA end",
+    "load_path": "housing supports connector torque and bending; coil wire is not structural",
+    "permanent_marking": ["AM/LW LOOP", "RX ONLY", "NON-50 OHM", "rotate for best signal"]
+  },
+  "availability_snapshot": {
+    "date": "2026-08-20",
+    "core": {
+      "source": "Mouser",
+      "url": "https://www.mouser.com/ProductDetail/Fair-Rite/3061990901?qs=aTFcLA2Dbqse8BP%2FGZW4NQ%3D%3D",
+      "stock": 1790,
+      "unit_price_usd_at_100": 1.60
+    },
+    "connector": {
+      "source": "DigiKey",
+      "url": "https://www.digikey.com/en/products/detail/adam-tech/RF2-154-T-17-50-G/9831243",
+      "stock": 839,
+      "unit_price_usd_at_100": 2.7163
+    },
+    "wire": {
+      "source": "Remington Industries",
+      "url": "https://www.remingtonindustries.com/magnet-wire/magnet-wire-38-awg-enameled-copper-6-spool-sizes/",
+      "smallest_spool_price_usd": 13.33,
+      "smallest_spool_length_ft": 2494
+    },
+    "estimated_component_material_usd_at_100": 4.36,
+    "excluded_from_estimate": ["interface PCB", "housing", "winding and assembly", "test", "packaging", "yield", "freight", "tax"]
+  },
+  "qualification": {
+    "status": "open",
+    "required_evidence": [
+      "measure every finished winding at 100 kHz and accept only 285-315 uH",
+      "measure standalone self-resonance and complete AMI capacitance budget before receiver HIL",
+      "prove AM 520-1710-kHz tuning, sensitivity, overload and enclosure-noise performance on the assembled device",
+      "prove LW 153-279-kHz tuning and sensitivity, explicitly including 153-200 kHz below the core maker's suggested 0.2-MHz boundary",
+      "prove that the unselected radios, display, storage and power converters enter their quiet states during AM/LW receive",
+      "prove ESD, connector torque, bending, repeated mating, drop and orientation-null behaviour"
+    ],
+    "claim_boundary": "The assembly identity and constituent first-target MPNs are selected; AM/LW performance is not production-qualified until every required measurement passes."
+  },
+  "sources": {
+    "si4732_data_short": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+    "family_antenna_guidance": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/application-notes/AN383.pdf",
+    "core_spec": "https://fair-rite.com/product/antennarfid-rods-3061990901/",
+    "connector_spec": "https://app.adam-tech.com/products/index/page%3A8/category%3A3121?return=%2Fcategories",
+    "wire_spec": "https://www.remingtonindustries.com/content/Polyurethane%20Magnet%20Wire%20Data%20Sheet.pdf"
+  }
+}

@@ -3,7 +3,7 @@
   "snapshot_date": "2026-08-20",
   "variant": "full_field_kit",
   "physical_item_count": 12,
-  "exact_target_item_count": 11,
+  "exact_target_item_count": 12,
   "maximum_simultaneously_connected": 9,
   "connector_rule": {
     "rp_sma_ports": "antenna must have an RP-SMA male plug with socket centre contact",
@@ -225,22 +225,28 @@
     },
     {
       "id": "receiver_am_lw",
-      "port_label": "AM/LW RX",
+      "port_label": "AM/LW LOOP",
       "quantity": 1,
-      "profile": "receive-only ferrite loop or buffered pod",
-      "mpn": null,
-      "manufacturer": null,
+      "profile": "passive receive-only direct-plug ferrite pod",
+      "mpn": "L2-ANT-AM-LW-001",
+      "manufacturer": "Leshy2 controlled assembly",
       "termination": "SMA male",
       "specified_bands_mhz": [[0.153, 0.279], [0.520, 1.710]],
-      "status": "controlled_design_and_mpn_required",
-      "primary_spec": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
-      "availability": null
+      "status": "selected_first_target_hil_open_including_153_200khz",
+      "primary_spec": "am-lw-pod.json",
+      "constituent_mpns": ["3061990901", "38SNSP.125", "RF2-154-T-17-50-G"],
+      "availability": {
+        "source": "controlled assembly from currently orderable constituents",
+        "url": "am-lw-pod.json",
+        "estimated_component_material_usd_at_100": 4.36,
+        "note": "PCB, housing, winding, assembly, test, packaging, yield, freight and tax are excluded"
+      }
     }
   ],
   "qualification": {
-    "status": "first_targets_selected_for_11_of_12_items_hil_and_alternates_open",
+    "status": "first_targets_selected_for_12_of_12_items_hil_and_alternates_open",
     "open_items": [
-      "freeze a controlled AM/LW loop or buffered-pod design and order identity",
+      "qualify the selected AM/LW controlled assembly across its complete band, especially 153-200 kHz",
       "qualify an independent alternate for every profile",
       "measure every antenna on the assembled enclosure and actual ground plane",
       "verify receive sensitivity, TX EIRP, harmonics, coexistence and connector mechanics",

@@ -125,7 +125,7 @@ class ProductSiteTests(unittest.TestCase):
             )
         )
         self.assertEqual(12, manifest["physical_item_count"])
-        self.assertEqual(11, manifest["exact_target_item_count"])
+        self.assertEqual(12, manifest["exact_target_item_count"])
         self.assertEqual(12, sum(item["quantity"] for item in manifest["items"]))
         self.assertEqual(9, manifest["maximum_simultaneously_connected"])
         self.assertEqual(
@@ -144,7 +144,7 @@ class ProductSiteTests(unittest.TestCase):
                 if item["id"] == "external_antenna_kit"
             ),
         )
-        self.assertEqual(1, sum(item["mpn"] is None for item in manifest["items"]))
+        self.assertEqual(0, sum(item["mpn"] is None for item in manifest["items"]))
         self.assertEqual(
             2,
             sum(item["mpn"] == "ANT-433-CW-QW-SMA" for item in manifest["items"]),
@@ -162,9 +162,26 @@ class ProductSiteTests(unittest.TestCase):
             for token in (
                 "001-0012", "TX2400-JW-5", "ANT-315-CW-HW-SMA",
                 "ANT-433-CW-QW-SMA", "TI.08.C.0112", "AN0155H13",
-                "SMA-W100RX2", "MPN TBD",
+                "SMA-W100RX2", "L2-ANT-AM-LW-001", "3061990901",
             ):
                 self.assertIn(token, page)
+
+        pod = json.loads(
+            (REPO_ROOT / "hardware/architecture/am-lw-pod.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual("L2-ANT-AM-LW-001", pod["assembly_id"])
+        self.assertFalse(pod["interface"]["power_required"])
+        self.assertFalse(pod["interface"]["gpio_required"])
+        self.assertEqual("3061990901", pod["electrical_design"]["core"]["mpn"])
+        self.assertEqual(
+            "RF2-154-T-17-50-G", pod["interface"]["connector_mpn"]
+        )
+        self.assertEqual(
+            300,
+            pod["electrical_design"]["winding"]["inductance_target_uh_at_100khz"],
+        )
 
     def test_internal_layout_is_dimensioned_and_separates_devices(self):
         layout = self.read("docs/images/internal-board-layout.svg")

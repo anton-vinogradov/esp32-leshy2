@@ -2169,13 +2169,13 @@ These entries are intentionally excluded from the partial subtotal until a compa
 
 - Scope: `costed_product_variant`.
 - Role: two native, three nRF, three CC, two voice and two receiver antennas/pods.
-- Blocking evidence: exact first targets are selected for 11 of 12 physical items; the AM/LW pod, qualified alternates, assembled-device HIL and package-variant costing remain open.
+- Blocking evidence: exact first targets are selected for all 12 physical items; qualified alternates, assembled-device HIL and package-variant costing remain open.
 - Gate: `profile_variant_bom_and_hil_required`.
 - Owner stage: G3 physical design plus product-variant qualification before antenna-kit freeze.
 - Evidence chain: `DEC-0055`, `ANT-0002`, `FND-0058`.
 - Prerequisites:
   - freeze final external connector plane, target ground/counterpoise environment and the twelve-item profiled-kit packaging manifest.
-  - complete an exact AM/LW loop or buffered-pod design and retain fail-closed TX profile selection from DEC-0055.
+  - retain the exact L2-ANT-AM-LW-001 controlled passive-pod design and fail-closed TX profile selection from DEC-0055.
 - Acceptance:
   - name exact current orderable first-target and qualified-alternate MPNs for every antenna profile, with twelve physical kit items and no missing AM/LW identity.
   - pass assembled VNA, receive sensitivity, TX EIRP/harmonic, coexistence, mechanical and environmental HIL for every affected path/profile.

@@ -152,13 +152,13 @@
         "quantity": 12,
         "scope": "costed_product_variant",
         "role": "two native, three nRF, three CC, two voice and two receiver antennas/pods",
-        "blocker": "exact first targets are selected for 11 of 12 physical items; the AM/LW pod, qualified alternates, assembled-device HIL and package-variant costing remain open",
+        "blocker": "exact first targets are selected for all 12 physical items; qualified alternates, assembled-device HIL and package-variant costing remain open",
         "resolution_gate": {
           "status": "profile_variant_bom_and_hil_required",
           "owner_stage": "G3 physical design plus product-variant qualification before antenna-kit freeze",
           "prerequisites": [
             "freeze final external connector plane, target ground/counterpoise environment and the twelve-item profiled-kit packaging manifest",
-            "complete an exact AM/LW loop or buffered-pod design and retain fail-closed TX profile selection from DEC-0055"
+            "retain the exact L2-ANT-AM-LW-001 controlled passive-pod design and fail-closed TX profile selection from DEC-0055"
           ],
           "acceptance": [
             "name exact current orderable first-target and qualified-alternate MPNs for every antenna profile, with twelve physical kit items and no missing AM/LW identity",
@@ -328,7 +328,7 @@
     "device_boundary": "the exact SOIC-16 exposes FMI on physical contact 6, RFGND on contact 7 and AMI on contact 8; the manufacturer data-short assigns FM/SW to FMI and AM/LW to AMI, with bands FM 64-108 MHz, AM 520-1710 kHz, SW 2.3-26.1 MHz and LW 153-279 kHz",
     "fmi_path": "the dedicated standard-SMA FM/SW boundary first shunts through one SESD0402X1UN-0020-090 to a shortest RF return, then reaches FMI through exact LQW15AN56NJ00D 56-nH high-Q series matching and GRM1555C1H102JA01D 1-nF C0G AC coupling placed at the IC; AN383 qualifies this first-pass network for FM, while exact-device SW operation on the same published FMI port remains complete-path HIL rather than inferred acceptance",
     "ami_path": "the separately labelled standard-SMA AM/LW boundary first shunts through its own SESD0402X1UN-0020-090, then reaches AMI through exact GRM155R71A474KE01D 0.47-uF coupling placed at the IC; it is an electrically non-50-Ohm loop/pod interface despite the common mechanical connector family",
-    "external_pod_contract": "the first direct pod is a short plug-in ferrite loop whose complete inductance/parasitic envelope is HIL-tuned near the family-guidance 180-450 uH range; an alternate external 10-20-uH air loop may use a physically remote 1:5-to-1:7 transformer so the base sees the same order of equivalent inductance. Arbitrary long coax is forbidden because cable and protection capacitance consume the AMI tuning budget",
+    "external_pod_contract": "the exact first direct pod is controlled assembly L2-ANT-AM-LW-001: a passive short plug-in loop using Fair-Rite 3061990901, 38SNSP.125 wire and RF2-154-T-17-50-G SMA male, accepted by measured 300 uH +/-5% rather than nominal turn count. It has no buffer, power, GPIO or selector. Its material-61 core is supplier-guided from 0.2 MHz, so 153-200-kHz LW performance is explicitly HIL-open. An alternate external 10-20-uH air loop may use a physically remote 1:5-to-1:7 transformer so the base sees the same order of equivalent inductance. Arbitrary long coax is forbidden because cable and protection capacitance consume the AMI tuning budget",
     "protection_and_off_state": "two independent 0.2-pF-typical SESD0402X1UN-0020-090 bodies keep protection adjacent to each exposed boundary; each K contact is on signal and A returns through the shortest RF-ground geometry. The receiver power branch and digital isolation still turn off, while the passive RF inputs remain harmless protected receive-only paths and cannot authorize or emit TX",
     "source_applicability": "the exact Si4732-A10 data short assigns FM/SW to FMI and AM/LW to AMI. AN383 is family antenna-interface guidance rather than an Si4732-A10 production reference layout: its 56-nH/1-nF FMI circuit is an FM reference, while its separate SW-on-AMI circuit is explicitly limited to Si4734/35 and is not transferred here. AN332 establishes common receive firmware components, not RF performance; every band and pod remains specimen HIL",
     "availability_and_cost": "the exact tape-and-reel Si4732-A10-GSR is JLCPCB/LCSC C2155558 and was in stock for SMT assembly with minimum quantity one at the 2026-08-18 check; this replaces the out-of-stock tube C1526102 without electrical or footprint change. The selected 56-nH LQW15AN56NJ00D, 1-nF GRM1555C1H102JA01D and 0.47-uF GRM155R71A474KE01D were active with substantial authorized-distributor stock; the already-used SESD0402X SKU is populated twice. The endpoint adds only two ESD bodies and three passives, with no material product-cost or power-budget increase",
