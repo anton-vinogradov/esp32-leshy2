@@ -1064,7 +1064,18 @@
       "controller_capabilities": ["USB_SERIAL_JTAG", "SDIO_SLAVE", "SDIO_SLAVE_4BIT", "SPI2", "SPI2_OR_GPIO", "UART0", "RMT_RX0", "RMT_RX1", "RMT_TX0", "GPIO", "GPIO_IRQ"],
       "controller_notes": {
         "SPI2_OR_GPIO": "the shared data pin changes between GP-SPI2 MOSI and software latch-data mode; concurrent use is not implied",
-        "SDIO_SLAVE_4BIT": "fixed C5 signals: CLK GPIO9, CMD GPIO10, DAT0 GPIO8, DAT1 GPIO7, DAT2 GPIO14 and DAT3 GPIO13; GPIO13/14 therefore cannot simultaneously provide native USB"
+        "SDIO_SLAVE_4BIT": "fixed C5 signals: CLK GPIO9, CMD GPIO10, DAT0 GPIO8, DAT1 GPIO7, DAT2 GPIO14 and DAT3 GPIO13; GPIO13/14 therefore cannot simultaneously provide native USB",
+        "SDIO_SILICON_FLOOR": "production and prototype lots must identify ESP32-C5 chip revision v1.0 or later; Espressif states that the SDIO peripheral is not supported by revision v0.1"
+      },
+      "silicon_revision_requirement": {
+        "minimum": "v1.0",
+        "rejected": "v0.1",
+        "reason": "the selected 1-bit SDIO architecture requires the peripheral that Espressif marks unsupported on revision v0.1",
+        "source": {
+          "document": "Espressif ESP32-C5 Schematic Checklist — SDIO note",
+          "url": "https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32c5/schematic-checklist.html",
+          "checked": "2026-08-20"
+        }
       },
       "contacts": {
         "3V3": {"physical": "2", "role": "power"},

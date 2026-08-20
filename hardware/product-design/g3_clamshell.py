@@ -1148,7 +1148,7 @@ def render_external(devices, instances):
         text(note_x,319,"○ / ≋  microphone port and speaker grille are locations, not signal directions",11),
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
-        text(875,374,"physical actual-TX evidence for each transmitting path",11),
+        text(875,374,"physical actual-TX evidence for each built-in transmitting path",11),
         text(note_x,396,"Eight path indicators plus TX ACTIVE form one front line below the display.",11),
         text(note_x,419,"Labels match antenna use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF and IR.",11),
         text(note_x,450,"Geometry status",15,"bold"),

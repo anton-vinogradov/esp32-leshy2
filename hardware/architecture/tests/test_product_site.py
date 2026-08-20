@@ -98,7 +98,7 @@ class ProductSiteTests(unittest.TestCase):
             "RUN",
             "KILL",
             "PTT",
-            "physical actual-TX evidence for each transmitting path",
+            "physical actual-TX evidence for each built-in transmitting path",
             "form one front line below the display",
             "M2.5 hole/head keep-outs",
             'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',

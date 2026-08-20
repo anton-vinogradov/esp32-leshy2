@@ -328,7 +328,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "KILL",
             "PTT",
             "Leshy2 — dimensioned external layout",
-            "physical actual-TX evidence for each transmitting path",
+            "physical actual-TX evidence for each built-in transmitting path",
             "form one front line below the display",
             "M2.5 hole/head keep-outs",
             "SUB-GHz",
@@ -3474,7 +3474,20 @@ class ArchitectureValidationTests(unittest.TestCase):
             if item["id"] == "S3_C5_IPC"
         )
         self.assertIn("1-bit SDIO at 20 MHz raw 2.5 MB/s", ipc["deadline"])
+        self.assertIn("revision v1.0 or later", ipc["proof_gate"])
         self.assertIn("4-bit fallback only if this gate fails", ipc["proof_gate"])
+
+        c5 = self.database["devices"]["esp32_c5_wroom_1u_n8r8"]
+        self.assertIn(
+            "revision v1.0 or later",
+            c5["controller_notes"]["SDIO_SILICON_FLOOR"],
+        )
+        self.assertEqual("v1.0", c5["silicon_revision_requirement"]["minimum"])
+        self.assertEqual("v0.1", c5["silicon_revision_requirement"]["rejected"])
+        self.assertIn(
+            "docs.espressif.com",
+            c5["silicon_revision_requirement"]["source"]["url"],
+        )
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13", rendered)
@@ -3612,8 +3625,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             for resource in candidate["resource_contracts"]
             if resource["id"] == "S3_INTERNAL_I2C"
         )
-        for address in ("0x20", "0x22", "0x2A", "0x38", "0x74"):
+        for address in ("0x20", "0x22", "0x2A", "0x2B", "0x38", "0x74"):
             self.assertIn(address, internal_bus["proof_gate"])
+        self.assertIn("safety_controller", internal_bus["clients"])
 
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for token in (
