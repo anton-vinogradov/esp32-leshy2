@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **188/199** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **896/913** supplied placements; their partial subtotals are `base_product` — USD 201.3584. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **896/913** supplied placements; their partial subtotals are `base_product` — USD 202.1306. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -257,7 +257,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `onsemi_cat24c512wi_gt3` — `onsemi CAT24C512WI-GT3`.
   - `ti_bq25798_rqmr` — `Texas Instruments BQ25798RQMR`.
   - `ti_csd87313dmst` — `Texas Instruments CSD87313DMST`.
-  - `ti_mspm0c1104_sdgs20r` — `Texas Instruments MSPM0C1104SDGS20R`.
+  - `ti_mspm0c1106_sdgs20r` — `Texas Instruments MSPM0C1106SDGS20R`.
   - `ti_tps22919_dckr` — `Texas Instruments TPS22919DCKR`.
   - `ti_tps2553drvr_1` — `Texas Instruments TPS2553DRVR-1`.
   - `ti_tps25751d_refr` — `Texas Instruments TPS25751DREFR`.
@@ -1293,12 +1293,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments MSPM0C1104SDGS20R</code> — 2 × USD 0.4523 = USD 0.9046</summary>
+<details><summary><code>Texas Instruments MSPM0C1106SDGS20R</code> — 2 × USD 0.8384 = USD 1.6768</summary>
 
-- Device id: `ti_mspm0c1104_sdgs20r`.
+- Device id: `ti_mspm0c1106_sdgs20r`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1104SDGS20R/24709068).
+- Checked: `2026-08-20`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1106SDGS20R/28264017).
 
 </details>
 

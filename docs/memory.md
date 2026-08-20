@@ -31,10 +31,7 @@ prevents an audio-domain fault from blocking ROM download.
 The machine build defaults and exact flash layout live in the
 [firmware repository](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/sdkconfig.defaults.esp32s3).
 
-The larger PSRAM adds about 100 µA of typical light-sleep current compared with
-the former 2-MB module: roughly 4.8 mAh over 48 hours, or 0.06% of the selected
-8-Ah cell set. Active current, temperature stress, strap waveforms and recovery
-with a powered, unpowered and faulted codec are prototype acceptance tests.
-
-The exact module and current supply evidence are listed in the
-[generated BOM](../hardware/architecture/generated/G2F-3I-target-bom-review.md).
+Production validation covers active and sleep current, temperature stress,
+strap waveforms and recovery with the codec powered, unpowered and faulted.
+The exact module is also present in the
+[machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv).

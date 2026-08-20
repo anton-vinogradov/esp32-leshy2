@@ -18,7 +18,7 @@
 - Питание и основной USB-C: `JAE DX07S016JA1R1500`, защита `Texas Instruments TPD4S201RUKR`, USB-PD `Texas Instruments TPS25751DREFR`, заряд, аккумуляторы и все преобразователи питания.
 - Аудио на задней плате: микрофон `Same Sky CMEJ-0413-42-SMT-TR` с локальным смещением, дифференциальный усилитель `Diodes Incorporated PAM8302AASCR` и динамик `PUI Audio AS02404PO`.
 - Задние органы управления: F1/F2, энкодер и PTT; единственный боковой RUN/KILL одновременно задаёт safety-состояние и малотоковую команду источнику.
-- Локальная безопасность: `Texas Instruments MSPM0C1104SDGS20R`, `Texas Instruments TPS3435CAKAGDDFR`, защёлка FAULT_KILL, три температурные зоны, аппаратные гейты и физическое подтверждение передачи.
+- Локальная безопасность: `Texas Instruments MSPM0C1106SDGS20R`, `Texas Instruments TPS3435CAKAGDDFR`, защёлка FAULT_KILL, три температурные зоны, аппаратные гейты и физическое подтверждение передачи.
 
 ## Почему такое разделение
 

@@ -72,7 +72,7 @@ never grants transmit permission.
 | D-pad switch | `Alps Alpine SKRHADE010` | Four directions plus centre push beneath one cross; mounted 45° clockwise |
 | Direct buttons | `OMRON B3S-1100P` | BACK, OPT, F1, F2 and PTT |
 | RUN/KILL | `C&K JS102011SCQN` | Sole side control for physical safety state and low-current source command |
-| Safety controller | `Texas Instruments MSPM0C1104SDGS20R` | Independent heartbeat, TX-lease, evidence and three-zone thermal supervisor |
+| Safety controller | `Texas Instruments MSPM0C1106SDGS20R` | Independent heartbeat, TX-lease, evidence and three-zone thermal supervisor |
 | Independent watchdog | `Texas Instruments TPS3435CAKAGDDFR` | 1.6-second AON timeout; directly latches FAULT_KILL |
 | Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
 | Encoder knob | `Davies Molding 1227-J` | 15-mm soft-touch interference fit for the 6×4.5-mm D shaft |
@@ -152,7 +152,7 @@ interchangeable VHF/UHF profiles; the other seven have fixed ports.
 - Two replaceable protected button-top `XTAR 18650 4000mAh` cells sit in a
   polarized `Keystone 1048P`; both are required, providing 28.8 Wh total.
 - `MAX17320G20+T` protects and gauges the 2S pack while one
-  `MSPM0C1104SDGS20R` performs local fail-closed admission. A second MSPM0,
+  `MSPM0C1106SDGS20R` performs local fail-closed admission. A second MSPM0,
   powered by AON, owns heartbeat, transmit leases, evidence and three board NTCs.
 - The maintained `C&K JS102011SCQN` is the sole low-current RUN/KILL control.
   KILL asks pack admission to shut down and removes RUN_PERMIT; it never carries

@@ -74,7 +74,7 @@ Native S3/C5 используют по одной точной 30-мм сбор�
 | Переключатель D-pad | `Alps Alpine SKRHADE010` | Четыре направления и центральное нажатие под одной крестовиной; поворот на плате 45° по часовой стрелке |
 | Обычные кнопки | `OMRON B3S-1100P` | BACK, OPT, F1, F2 и PTT |
 | RUN/KILL | `C&K JS102011SCQN` | Единственный боковой орган физической безопасности и малотоковой команды источнику |
-| Safety-контроллер | `Texas Instruments MSPM0C1104SDGS20R` | Независимый heartbeat, TX-lease, evidence и три температурные зоны |
+| Safety-контроллер | `Texas Instruments MSPM0C1106SDGS20R` | Независимый heartbeat, TX-lease, evidence и три температурные зоны |
 | Независимый watchdog | `Texas Instruments TPS3435CAKAGDDFR` | AON-timeout 1,6 с; напрямую защёлкивает FAULT_KILL |
 | Энкодер | `Alps Alpine EC11E18244AU` | Фазы напрямую на S3 PCNT |
 | Ручка энкодера | `Davies Molding 1227-J` | 15-мм soft-touch посадка на D-вал 6×4,5 мм |
@@ -153,7 +153,7 @@ Native S3/C5 используют по одной точной 30-мм сбор�
 - Две сменные защищённые button-top `XTAR 18650 4000mAh` установлены в
   поляризованный `Keystone 1048P`; обе нужны для работы, суммарно 28,8 Вт·ч.
 - `MAX17320G20+T` защищает и измеряет 2S pack, а один
-  `MSPM0C1104SDGS20R` локально выполняет fail-closed admission. Второй MSPM0
+  `MSPM0C1106SDGS20R` локально выполняет fail-closed admission. Второй MSPM0
   питается от AON и следит за heartbeat, TX-lease, evidence и тремя NTC платы.
 - Фиксируемый `C&K JS102011SCQN` — единственный малотоковый RUN/KILL. KILL
   просит admission выключить устройство и снимает RUN_PERMIT, но не несёт ток

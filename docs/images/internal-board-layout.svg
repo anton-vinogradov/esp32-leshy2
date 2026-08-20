@@ -273,7 +273,7 @@
 <text x="1191.0" y="283.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">2S charger and NVDC power path</text>
 <text x="1165.0" y="295.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">38  Analog Devices MAX17320G20+T</text>
 <text x="1191.0" y="304.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">2S protection and fuel gauge</text>
-<text x="1165.0" y="316.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">39  Texas Instruments MSPM0C1104SDGS20R</text>
+<text x="1165.0" y="316.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">39  Texas Instruments MSPM0C1106SDGS20R</text>
 <text x="1191.0" y="325.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">fail-closed battery admission MCU</text>
 <text x="1165.0" y="337.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">40  Texas Instruments TPS629203DRLR</text>
 <text x="1191.0" y="346.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">always-on 3.3-V converter</text>
@@ -287,7 +287,7 @@
 <text x="1191.0" y="430.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">power-conversion hotspot safety sensor</text>
 <text x="1165.0" y="442.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">45  TDK B57332V5103F360</text>
 <text x="1191.0" y="451.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RF/voice hotspot safety sensor</text>
-<text x="1165.0" y="463.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">46  Texas Instruments MSPM0C1104SDGS20R</text>
+<text x="1165.0" y="463.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">46  Texas Instruments MSPM0C1106SDGS20R</text>
 <text x="1191.0" y="472.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">independent watchdog, thermal and TX-lease controller</text>
 <text x="1165.0" y="484.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">47  Texas Instruments TPS3435CAKAGDDFR</text>
 <text x="1191.0" y="493.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">independent 1.6-s timeout watchdog</text>

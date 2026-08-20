@@ -65,6 +65,24 @@ class ProductSiteTests(unittest.TestCase):
                 self.assertIn(token, page, f"{name}: {token}")
             self.assertRegex(page, r"7[.,]5")
 
+    def test_all_in_one_update_and_open_recovery_are_public(self):
+        expected = {
+            "docs/safety.md": (
+                "one bundle", "owner/release-signed manifest", "RUN=KILL",
+                "12 seconds", "16.7-second TBYB", "MSPM0C1106SDGS20R",
+                "16-KiB", "22-KiB", "UART1", "not enabled by default",
+            ),
+            "docs/safety.ru.md": (
+                "один bundle", "owner/release-signed manifest", "RUN=KILL",
+                "12 секундам", "16,7 с", "MSPM0C1106SDGS20R",
+                "16 КиБ", "22 КиБ", "UART1", "не включается по умолчанию",
+            ),
+        }
+        for name, tokens in expected.items():
+            page = " ".join(self.read(name).split())
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+
     def test_layout_is_product_facing(self):
         layout = self.read("docs/images/current-clamshell.svg")
         for token in (
@@ -343,7 +361,7 @@ class ProductSiteTests(unittest.TestCase):
                 "FTSH-105-01-L-DV-K-P-TR",
                 "USB4105-GF-A",
                 "JS102011SCQN",
-                "MSPM0C1104SDGS20R",
+                "MSPM0C1106SDGS20R",
                 "TPS3435CAKAGDDFR",
                 "1125R-SMT-4P",
                 "SSW-107-02-S-D",

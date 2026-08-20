@@ -136,7 +136,7 @@ This page is generated from the same device and net map used by the electrical c
 
 ## Battery-pack admission controller
 
-**MPN:** `Texas Instruments MSPM0C1104SDGS20R`
+**MPN:** `Texas Instruments MSPM0C1106SDGS20R`
 
 | Contact | Net | Direction | Peripheral | Connected endpoint |
 |---|---|---|---|---|
@@ -145,13 +145,13 @@ This page is generated from the same device and net map used by the electrical c
 | `PA4` | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | pack_gauge.SDA_DQ<br>pack_gauge_sda_pullup.END_2 |
 | `PA6` | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | pack_hold.G2<br>pack_hold_release_pulldown.END_1 |
 | `PA11` | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | s3.GPIO2 |
-| `PA17` | `PACK_SERVICE_UART_TX` | `o` | `UART0` | abstract:pack service fixture |
+| `PA16` | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | pack_status_buffer.D1<br>pack_pfail_pullup.END_2 |
+| `PA17` | `PACK_SERVICE_UART_TX` | `o` | `UART1` | abstract:pack service fixture |
+| `PA18` | `PACK_SERVICE_UART_RX` | `i` | `UART1` | abstract:pack service fixture |
+| `PA22` | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | pack_diag_timer.CH1_T<br>pack_diag_trigger_pulldown.END_1 |
 | `PA23` | `PACK_SYS_INT_REQ` | `o` | `GPIO` | pack_status_buffer.G2<br>pack_irq_gate_pulldown.END_1 |
-| `PA16_A8` | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | pack_status_buffer.D1<br>pack_pfail_pullup.END_2 |
-| `PA18_A7` | `PACK_SERVICE_UART_RX` | `i` | `UART0` | abstract:pack service fixture |
-| `PA22_A4` | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | pack_diag_timer.CH1_T<br>pack_diag_trigger_pulldown.END_1 |
-| `PA24_A3` | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | power_command_pullup.END_2<br>power_command_filter.END_1<br>power_command_switch.THROW_B |
-| `PA25_A2` | `PACK_CELL0_ADC` | `i` | `ADC` | pack_mid_adc_top1.END_2<br>pack_mid_adc_bottom.END_1<br>pack_mid_adc_filter.END_1 |
-| `PA26_A1` | `PACK_STACK_ADC` | `i` | `ADC` | pack_stack_adc_top4.END_2<br>pack_stack_adc_bottom.END_1<br>pack_stack_adc_filter.END_1 |
+| `PA24` | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | power_command_pullup.END_2<br>power_command_filter.END_1<br>power_command_switch.THROW_B |
+| `PA25` | `PACK_CELL0_ADC` | `i` | `ADC` | pack_mid_adc_top1.END_2<br>pack_mid_adc_bottom.END_1<br>pack_mid_adc_filter.END_1 |
+| `PA26` | `PACK_STACK_ADC` | `i` | `ADC` | pack_stack_adc_top4.END_2<br>pack_stack_adc_bottom.END_1<br>pack_stack_adc_filter.END_1 |
 
 `i` means input, `o` output and `io` bidirectional. Service, power and fixed-function contacts remain accounted in the complete machine map even when they are not GPIO.

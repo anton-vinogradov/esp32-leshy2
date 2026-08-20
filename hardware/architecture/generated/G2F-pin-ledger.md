@@ -137,7 +137,7 @@
 | `te_2118651_2` | `TE Connectivity 2118651-2` | `verified_exact_native_rf_jumper` | `active_orderable` | [TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record ENG_CD_2118651_C5; live exact-product record](https://www.te.com/en/product-2118651-2.html) | same primary source |
 | `ti_bq25798_rqmr` | `Texas Instruments BQ25798RQMR` | `verified_candidate` | `active` | [BQ25798 1-to-4-cell 5-A buck-boost charger datasheet SLUSDV2C, May 2020, revised June 2026](https://www.ti.com/lit/ds/symlink/bq25798.pdf) | same primary source |
 | `ti_csd87313dmst` | `Texas Instruments CSD87313DMST` | `verified_candidate` | `active` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
-| `ti_mspm0c1104_sdgs20r` | `Texas Instruments MSPM0C1104SDGS20R` | `verified_candidate` | `active` | [MSPM0C110x mixed-signal microcontroller datasheet SLASF90D, revised January 2026](https://www.ti.com/lit/ds/symlink/mspm0c1104.pdf) | same primary source |
+| `ti_mspm0c1106_sdgs20r` | `Texas Instruments MSPM0C1106SDGS20R` | `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate` | `active_orderable` | [MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet SLASFJ6B, revised January 2026](https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf) | same primary source |
 | `ti_sn74lvc08a_pwr` | `SN74LVC08APWR` | `verified_candidate` | `active` | [SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet Rev. W](https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf) | same primary source |
 | `ti_sn74lvc1g06_dckr` | `Texas Instruments SN74LVC1G06DCKR` | `verified_exact_fail_low_reset_gate_driver` | `active_orderable` | [SN74LVC1G06 single inverter with open-drain output datasheet Rev. AB](https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf) | same primary source |
 | `ti_sn74lvc1g07_dckr` | `SN74LVC1G07DCKR` | `verified_exact_open_drain_partial_power_buffer` | `active` | [SN74LVC1G07 Single Buffer/Driver With Open-Drain Output datasheet Rev. V](https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf) | same primary source |
@@ -664,49 +664,49 @@ Reserved: none. Free: none.
 Budget: **5 used + 5 reserved + 0 free = 10 exposed GPIO**.
 Reserved: `GPIO2`, `GPIO3`, `GPIO6`, `GPIO7`, `GPIO11`. Free: none.
 
-### `pack_admission` — `Texas Instruments MSPM0C1104SDGS20R`
+### `pack_admission` — `Texas Instruments MSPM0C1106SDGS20R`
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `PA0` | 4 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
-| `PA2` | 8 | `PACK_GAUGE_I2C_SCL` | `io` | `BITBANG_I2C` | `pack_gauge.SCL_OD`, `pack_gauge_scl_pullup.END_2` | — |
-| `PA4` | 9 | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | `pack_gauge.SDA_DQ`, `pack_gauge_sda_pullup.END_2` | — |
-| `PA6` | 10 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `pack_hold.G2`, `pack_hold_release_pulldown.END_1` | — |
-| `PA11` | 11 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
-| `PA17` | 13 | `PACK_SERVICE_UART_TX` | `o` | `UART0` | `abstract:pack service fixture` | — |
-| `PA23` | 18 | `PACK_SYS_INT_REQ` | `o` | `GPIO` | `pack_status_buffer.G2`, `pack_irq_gate_pulldown.END_1` | — |
-| `PA16_A8` | 12 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_status_buffer.D1`, `pack_pfail_pullup.END_2` | — |
-| `PA18_A7` | 14 | `PACK_SERVICE_UART_RX` | `i` | `UART0` | `abstract:pack service fixture` | — |
-| `PA22_A4` | 17 | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | `pack_diag_timer.CH1_T`, `pack_diag_trigger_pulldown.END_1` | — |
-| `PA24_A3` | 19 | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | `power_command_pullup.END_2`, `power_command_filter.END_1`, `power_command_switch.THROW_B` | — |
-| `PA25_A2` | 20 | `PACK_CELL0_ADC` | `i` | `ADC` | `pack_mid_adc_top1.END_2`, `pack_mid_adc_bottom.END_1`, `pack_mid_adc_filter.END_1` | — |
-| `PA26_A1` | 1 | `PACK_STACK_ADC` | `i` | `ADC` | `pack_stack_adc_top4.END_2`, `pack_stack_adc_bottom.END_1`, `pack_stack_adc_filter.END_1` | — |
+| `PA0` | 14 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
+| `PA2` | 17 | `PACK_GAUGE_I2C_SCL` | `io` | `BITBANG_I2C` | `pack_gauge.SCL_OD`, `pack_gauge_scl_pullup.END_2` | — |
+| `PA4` | 18 | `PACK_GAUGE_I2C_SDA` | `io` | `BITBANG_I2C` | `pack_gauge.SDA_DQ`, `pack_gauge_sda_pullup.END_2` | — |
+| `PA6` | 19 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `pack_hold.G2`, `pack_hold_release_pulldown.END_1` | — |
+| `PA11` | 20 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
+| `PA16` | 10 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_status_buffer.D1`, `pack_pfail_pullup.END_2` | — |
+| `PA17` | 9 | `PACK_SERVICE_UART_TX` | `o` | `UART1` | `abstract:pack service fixture` | — |
+| `PA18` | 8 | `PACK_SERVICE_UART_RX` | `i` | `UART1` | `abstract:pack service fixture` | — |
+| `PA22` | 5 | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | `pack_diag_timer.CH1_T`, `pack_diag_trigger_pulldown.END_1` | — |
+| `PA23` | 4 | `PACK_SYS_INT_REQ` | `o` | `GPIO` | `pack_status_buffer.G2`, `pack_irq_gate_pulldown.END_1` | — |
+| `PA24` | 3 | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | `power_command_pullup.END_2`, `power_command_filter.END_1`, `power_command_switch.THROW_B` | — |
+| `PA25` | 2 | `PACK_CELL0_ADC` | `i` | `ADC` | `pack_mid_adc_top1.END_2`, `pack_mid_adc_bottom.END_1`, `pack_mid_adc_filter.END_1` | — |
+| `PA26` | 11 | `PACK_STACK_ADC` | `i` | `ADC` | `pack_stack_adc_top4.END_2`, `pack_stack_adc_bottom.END_1`, `pack_stack_adc_filter.END_1` | — |
 
 Budget: **13 used + 3 reserved + 2 free = 18 exposed GPIO**.
-Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: `PA27_A0`, `PA28_A5`.
+Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: `PA27`, `PA30`.
 
-### `safety_controller` — `Texas Instruments MSPM0C1104SDGS20R`
+### `safety_controller` — `Texas Instruments MSPM0C1106SDGS20R`
 
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
-| `PA0` | 4 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
-| `PA2` | 8 | `SAFETY_EVIDENCE_I2C_SCL` | `io` | `BITBANG_I2C` | `evidence_mask.SCL`, `evidence_mask_scl_pullup.END_2` | — |
-| `PA4` | 9 | `SAFETY_EVIDENCE_I2C_SDA` | `io` | `BITBANG_I2C` | `evidence_mask.SDA`, `evidence_mask_sda_pullup.END_2` | — |
-| `PA6` | 10 | `SAFETY_WATCHDOG_WDI` | `o` | `GPIO` | `safety_watchdog.WDI`, `safety_watchdog_wdi_pulldown.END_1` | — |
-| `PA11` | 11 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
-| `PA17` | 13 | `SAFETY_SERVICE_UART_TX` | `o` | `UART0` | `abstract:safety service fixture` | — |
-| `PA23` | 18 | `S3_FAULT_RESET_REQUEST` | `o` | `GPIO` | `safety_s3_reset_iso.A` | — |
-| `PA16_A8` | 12 | `POWER_FAULT_N` | `i` | `GPIO_IRQ` | `abstract:power-current-thermal-fault` | — |
-| `PA18_A7` | 14 | `SAFETY_SERVICE_UART_RX` | `i` | `UART0` | `abstract:safety service fixture` | — |
-| `PA22_A4` | 17 | `ANY_TX_AON_N` | `i` | `GPIO_IRQ` | `any_tx_aon_pullup.END_2`, `evidence_or_3.A_COMMON` | — |
-| `PA24_A3` | 19 | `RUN_EDGE` | `i` | `GPIO_IRQ` | `safe_conditioner.1Y`, `safe_latch.CLK` | — |
-| `PA25_A2` | 20 | `SAFETY_FAULT_REQUEST` | `o` | `GPIO` | `safety_fault_request_iso.A`, `safety_fault_request_pulldown.END_1` | — |
-| `PA26_A1` | 1 | `POWER_ZONE_TEMP_ADC` | `i` | `ADC` | `power_zone_ntc.END_1`, `power_zone_temp_pullup.END_2`, `power_zone_temp_filter.END_1` | — |
-| `PA27_A0` | 2 | `RF_ZONE_TEMP_ADC` | `i` | `ADC` | `rf_zone_ntc.END_1`, `rf_zone_temp_pullup.END_2`, `rf_zone_temp_filter.END_1` | — |
-| `PA28_A5` | 3 | `UI_ZONE_TEMP_ADC` | `i` | `ADC` | `ui_zone_ntc.END_1`, `ui_zone_temp_pullup.END_2`, `ui_zone_temp_filter.END_1` | — |
+| `PA0` | 14 | `SYS_I2C_SDA` | `io` | `I2C_TARGET` | `s3.GPIO1` | — |
+| `PA2` | 17 | `SAFETY_EVIDENCE_I2C_SCL` | `io` | `BITBANG_I2C` | `evidence_mask.SCL`, `evidence_mask_scl_pullup.END_2` | — |
+| `PA4` | 18 | `SAFETY_EVIDENCE_I2C_SDA` | `io` | `BITBANG_I2C` | `evidence_mask.SDA`, `evidence_mask_sda_pullup.END_2` | — |
+| `PA6` | 19 | `SAFETY_WATCHDOG_WDI` | `o` | `GPIO` | `safety_watchdog.WDI`, `safety_watchdog_wdi_pulldown.END_1` | — |
+| `PA11` | 20 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
+| `PA16` | 10 | `UI_ZONE_TEMP_ADC` | `i` | `ADC` | `ui_zone_ntc.END_1`, `ui_zone_temp_pullup.END_2`, `ui_zone_temp_filter.END_1` | — |
+| `PA17` | 9 | `SAFETY_SERVICE_UART_TX` | `o` | `UART1` | `abstract:safety service fixture` | — |
+| `PA18` | 8 | `SAFETY_SERVICE_UART_RX` | `i` | `UART1` | `abstract:safety service fixture` | — |
+| `PA22` | 5 | `ANY_TX_AON_N` | `i` | `GPIO_IRQ` | `any_tx_aon_pullup.END_2`, `evidence_or_3.A_COMMON` | — |
+| `PA23` | 4 | `S3_FAULT_RESET_REQUEST` | `o` | `GPIO` | `safety_s3_reset_iso.A` | — |
+| `PA24` | 3 | `RUN_EDGE` | `i` | `GPIO_IRQ` | `safe_conditioner.1Y`, `safe_latch.CLK` | — |
+| `PA25` | 2 | `SAFETY_FAULT_REQUEST` | `o` | `GPIO` | `safety_fault_request_iso.A`, `safety_fault_request_pulldown.END_1` | — |
+| `PA26` | 11 | `POWER_ZONE_TEMP_ADC` | `i` | `ADC` | `power_zone_ntc.END_1`, `power_zone_temp_pullup.END_2`, `power_zone_temp_filter.END_1` | — |
+| `PA27` | 12 | `RF_ZONE_TEMP_ADC` | `i` | `ADC` | `rf_zone_ntc.END_1`, `rf_zone_temp_pullup.END_2`, `rf_zone_temp_filter.END_1` | — |
+| `PA30` | 13 | `POWER_FAULT_N` | `i` | `GPIO_IRQ` | `abstract:power-current-thermal-fault` | — |
 
 Budget: **15 used + 3 reserved + 0 free = 18 exposed GPIO**.
-Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
+Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 
 ### Fixed-function/control routes
 
@@ -1122,17 +1122,17 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `PACK_ADMISSION_VDD` | `pack_supply_or.K_COMMON` | `pack_admission.VDD` | common cathode passively ORs AOLDO and fixture sources without firmware control |
 | `PACK_SYSTEM_3V3` | `abstract:admitted-system-3v3` | `pack_system_diode.A` | system source exists only after complete pair admission and uses the lower-drop branch |
 | `PACK_ADMISSION_VDD` | `pack_system_diode.K` | `pack_admission.VDD` | BAT54-7-F blocks admission VDD from back-powering the admitted system rail |
-| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_bulk_cap.END_1` | exact 10-uF low-ESR ceramic implements the MSPM0C1104 recommended local bulk decoupling after source isolation |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_bulk_cap.END_1` | exact 10-uF low-ESR ceramic implements the MSPM0C1106 recommended local bulk decoupling after source isolation |
 | `PACK_LOCAL_GND` | `pack_admission_bulk_cap.END_2` | `pack_gauge.GND` | bulk return is within millimeters of the admission-controller supply pair |
-| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_bypass.END_1` | exact 100-nF ceramic implements the MSPM0C1104 high-frequency bypass recommendation |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_bypass.END_1` | exact 100-nF ceramic implements the MSPM0C1106 high-frequency bypass recommendation |
 | `PACK_LOCAL_GND` | `pack_admission_bypass.END_2` | `pack_gauge.GND` | high-frequency bypass has a separate short return |
-| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_reset_pullup.END_1` | exact 47-kOhm external pull-up follows the MSPM0C1104 PA1/NRST recommendation and remains valid on every admitted or fixture supply source |
+| `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_admission_reset_pullup.END_1` | exact 47-kOhm external pull-up follows the MSPM0C1106 NRST recommendation and remains valid on every admitted or fixture supply source |
 | `PACK_ADMISSION_NRST_N` | `pack_admission_reset_pullup.END_2` | `pack_admission.PA1_NRST` | NRST defaults deasserted without consuming PA1 as runtime GPIO |
 | `PACK_ADMISSION_NRST_N` | `pack_admission.PA1_NRST` | `pack_admission_reset_cap.END_1` | exact 10-nF reset capacitor implements the TI typical-application profile |
 | `PACK_LOCAL_GND` | `pack_admission_reset_cap.END_2` | `pack_gauge.GND` | reset capacitor returns locally and remains accessible to the isolated service fixture |
 | `PACK_ADMISSION_NRST_N` | `pack_admission.PA1_NRST` | `abstract:TP_PACK_NRST_N` | permanent isolated fixture access can pull reset low without fighting a push-pull source |
 | `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `power_command_pullup.END_1` | the exact 47-kOhm pull-up keeps the low-current power command asserted ON when the switch is open |
-| `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `pack_admission.PA24_A3` | the admission MCU receives a bounded, admission-domain command instead of switched pack or system current |
+| `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `pack_admission.PA24` | the admission MCU receives a bounded, admission-domain command instead of switched pack or system current |
 | `POWER_COMMAND_OFF_N` | `power_command_pullup.END_2` | `power_command_switch.THROW_B` | the maintained OFF position grounds only the filtered logic command |
 | `POWER_GROUND` | `power_command_switch.COMMON` | `abstract:power-ground` | the common contact is a local low-current logic return; it never carries cell, SYS, charge or load current |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `run_loop_pullup.END_1` | the RUN/KILL safety loop remains independent of pack-admission power |
@@ -1155,8 +1155,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `PACK_DIAG_TIMER_VCC` | `pack_diag_timer.VCC` | `pack_diag_timer_bypass.END_1` | one exact 100-nF local bypass capacitor supports one-shot switching without coupling the diagnostic edge into the admission ADC reference |
 | `PACK_LOCAL_GND` | `pack_diag_timer_bypass.END_2` | `pack_gauge.GND` | timer bypass return stays local to the admission controller and gauge |
 | `PACK_LOCAL_GND` | `pack_diag_timer.GND` | `pack_gauge.GND` | one-shot and admission MCU share the same pack-side logic reference |
-| `PACK_DIAG_TRIGGER` | `pack_admission.PA22_A4` | `pack_diag_timer.CH1_T` | firmware emits a rising edge only; holding or repeatedly toggling the pin cannot extend an active non-retriggerable pulse |
-| `PACK_DIAG_TRIGGER` | `pack_admission.PA22_A4` | `pack_diag_trigger_pulldown.END_1` | the exact 10-kOhm pull-down prevents a reset-default high-impedance contact from producing a diagnostic pulse |
+| `PACK_DIAG_TRIGGER` | `pack_admission.PA22` | `pack_diag_timer.CH1_T` | firmware emits a rising edge only; holding or repeatedly toggling the pin cannot extend an active non-retriggerable pulse |
+| `PACK_DIAG_TRIGGER` | `pack_admission.PA22` | `pack_diag_trigger_pulldown.END_1` | the exact 10-kOhm pull-down prevents a reset-default high-impedance contact from producing a diagnostic pulse |
 | `PACK_LOCAL_GND` | `pack_diag_trigger_pulldown.END_2` | `pack_gauge.GND` | trigger default is low in reset, fixture handover and unpowered-MCU states |
 | `PACK_DIAG_CH1_FALLING_TRIGGER_DISABLED` | `pack_diag_timer.CH1_T_N` | `pack_gauge.GND` | the unused falling-edge trigger is fixed low for rising-edge-only operation |
 | `PACK_DIAG_REFRACTORY_CLEAR_N` | `pack_diag_timer.CH2_Q_N` | `pack_diag_timer.CH1_CLR_N` | complementary channel-2 output is high while ready and asynchronously holds channel 1 clear throughout every hardware refractory interval |
@@ -1192,7 +1192,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `PACK_FET_OVERRIDE_N` | `pack_alrt_pullup.END_2` | `pack_gauge.ALRT` | exact 10-kOhm pull-up produces a deterministic release level while Q1 can still sink only about 0.34 mA |
 | `PACK_PFAIL_RAW` | `pack_gauge.PFAIL` | `pack_status_buffer.G1` | push-pull REG3-referenced permanent-failure indication drives only a MOSFET gate and never a lower-voltage standard MCU input directly |
 | `PACK_LOCAL_GND` | `pack_status_buffer.S1` | `pack_gauge.GND` | PFAIL translator Q1 uses the admission reference |
-| `PACK_PFAIL_N` | `pack_status_buffer.D1` | `pack_admission.PA16_A8` | Q1 inverts permanent failure into an admission-VDD-referenced active-low MCU input |
+| `PACK_PFAIL_N` | `pack_status_buffer.D1` | `pack_admission.PA16` | Q1 inverts permanent failure into an admission-VDD-referenced active-low MCU input |
 | `PACK_ADMISSION_VDD` | `pack_admission.VDD` | `pack_pfail_pullup.END_1` | status pull-up cannot exceed the standard PA16 input supply |
 | `PACK_PFAIL_N` | `pack_pfail_pullup.END_2` | `pack_status_buffer.D1` | exact 10-kOhm pull-up completes the safe PFAIL level translator |
 | `PACK_SYS_INT_REQ` | `pack_admission.PA23` | `pack_status_buffer.G2` | firmware high means assert; the system-facing node remains a passive drain |
@@ -1254,20 +1254,20 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `PACK_LOCAL_GND` | `pack_diag_switch.S` | `pack_gauge.GND` | the 20-V low-gate-drive MOSFET closes only the bounded pre-admission diagnostic path |
 | `PACK_MID_DIV_TOP` | `abstract:protected-2s-midpoint` | `pack_mid_adc_top0.END_1` | first 220-kOhm series element begins the protected midpoint divider |
 | `PACK_MID_DIV_SERIES` | `pack_mid_adc_top0.END_2` | `pack_mid_adc_top1.END_1` | two physical top resistors limit fault and injection current rather than relying on one high-side element |
-| `PACK_CELL0_ADC` | `pack_mid_adc_top1.END_2` | `pack_admission.PA25_A2` | 2x220-kOhm over 169-kOhm keeps the 4.3-V screen corner below 1.21 V with 1% resistor tolerance |
-| `PACK_CELL0_ADC` | `pack_admission.PA25_A2` | `pack_mid_adc_bottom.END_1` | 169-kOhm bottom resistor reuses an active stocked BOM value |
+| `PACK_CELL0_ADC` | `pack_mid_adc_top1.END_2` | `pack_admission.PA25` | 2x220-kOhm over 169-kOhm keeps the 4.3-V screen corner below 1.21 V with 1% resistor tolerance |
+| `PACK_CELL0_ADC` | `pack_admission.PA25` | `pack_mid_adc_bottom.END_1` | 169-kOhm bottom resistor reuses an active stocked BOM value |
 | `PACK_LOCAL_GND` | `pack_mid_adc_bottom.END_2` | `pack_gauge.GND` | midpoint divider return shares the quiet admission ADC reference |
-| `PACK_CELL0_ADC` | `pack_admission.PA25_A2` | `pack_mid_adc_filter.END_1` | 10-nF filter supports a bounded settled sample rather than sampling the load edge |
+| `PACK_CELL0_ADC` | `pack_admission.PA25` | `pack_mid_adc_filter.END_1` | 10-nF filter supports a bounded settled sample rather than sampling the load edge |
 | `PACK_LOCAL_GND` | `pack_mid_adc_filter.END_2` | `pack_gauge.GND` | midpoint ADC filter return stays at the admission reference |
 | `PACK_STACK_DIV_TOP` | `abstract:qualified-2s-positive` | `pack_stack_adc_top0.END_1` | first of five 220-kOhm series elements begins the fused full-stack divider |
 | `PACK_STACK_DIV_SERIES_01` | `pack_stack_adc_top0.END_2` | `pack_stack_adc_top1.END_1` | series construction distributes voltage and bounds single-element stress |
 | `PACK_STACK_DIV_SERIES_12` | `pack_stack_adc_top1.END_2` | `pack_stack_adc_top2.END_1` | series construction distributes voltage and bounds single-element stress |
 | `PACK_STACK_DIV_SERIES_23` | `pack_stack_adc_top2.END_2` | `pack_stack_adc_top3.END_1` | series construction distributes voltage and bounds single-element stress |
 | `PACK_STACK_DIV_SERIES_34` | `pack_stack_adc_top3.END_2` | `pack_stack_adc_top4.END_1` | series construction distributes voltage and bounds single-element stress |
-| `PACK_STACK_ADC` | `pack_stack_adc_top4.END_2` | `pack_admission.PA26_A1` | 5x220-kOhm over 169-kOhm keeps the 8.6-V screen corner below 1.17 V with 1% resistor tolerance |
-| `PACK_STACK_ADC` | `pack_admission.PA26_A1` | `pack_stack_adc_bottom.END_1` | 169-kOhm bottom resistor completes the full-stack divider |
+| `PACK_STACK_ADC` | `pack_stack_adc_top4.END_2` | `pack_admission.PA26` | 5x220-kOhm over 169-kOhm keeps the 8.6-V screen corner below 1.17 V with 1% resistor tolerance |
+| `PACK_STACK_ADC` | `pack_admission.PA26` | `pack_stack_adc_bottom.END_1` | 169-kOhm bottom resistor completes the full-stack divider |
 | `PACK_LOCAL_GND` | `pack_stack_adc_bottom.END_2` | `pack_gauge.GND` | stack divider return shares the quiet admission ADC reference |
-| `PACK_STACK_ADC` | `pack_admission.PA26_A1` | `pack_stack_adc_filter.END_1` | 10-nF filter supports a bounded settled sample and rejects the load-switch edge |
+| `PACK_STACK_ADC` | `pack_admission.PA26` | `pack_stack_adc_filter.END_1` | 10-nF filter supports a bounded settled sample and rejects the load-switch edge |
 | `PACK_LOCAL_GND` | `pack_stack_adc_filter.END_2` | `pack_gauge.GND` | stack ADC filter return stays at the admission reference |
 | `CHARGER_INT_N` | `nvdc_charger.INT` | `pd_controller.I2Cc_IRQ` | active-low charger status/fault returns to the PD controller without a new MCU contact |
 | `PD_EEPROM_WP` | `pd_controller.GPIO0` | `pd_config_eeprom.WP` | external pull-up protects the image at reset; TPS may drive low only inside an S3-authorized signed update window |
@@ -2633,7 +2633,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
 | `POR_N` | `safe_supervisor.RESET_N` | `safe_latch.CLR_N` | only genuine AON power-on reset clears the latch asynchronously; ordinary firmware cannot drive CLR_N |
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safe_latch.CLK` | only a physical KILL-to-RUN transition supplies the positive edge that clocks fixed D low |
-| `RUN_EDGE` | `safe_conditioner.1Y` | `safety_controller.PA24_A3` | the safety controller may refuse a restart but cannot synthesize the physical edge |
+| `RUN_EDGE` | `safe_conditioner.1Y` | `safety_controller.PA24` | the safety controller may refuse a restart but cannot synthesize the physical edge |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_run_fault_iso.VCC` | the RUN fault buffer remains valid for the full AON lifetime |
 | `SAFETY_GROUND` | `safe_run_fault_iso.GND` | `abstract:safety-ground` | RUN fault buffer returns locally |
 | `NO_CONNECT` | `safe_run_fault_iso.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
@@ -2672,9 +2672,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `NO_CONNECT` | `safety_fault_request_iso.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_fault_request_iso_bypass.END_1` | exact 100-nF bypass |
 | `SAFETY_GROUND` | `safety_fault_request_iso_bypass.END_2` | `abstract:safety-ground` | bypass return |
-| `SAFETY_FAULT_REQUEST` | `safety_controller.PA25_A2` | `safety_fault_request_pulldown.END_1` | controller reset or loss defaults to fault request |
+| `SAFETY_FAULT_REQUEST` | `safety_controller.PA25` | `safety_fault_request_pulldown.END_1` | controller reset or loss defaults to fault request |
 | `SAFETY_GROUND` | `safety_fault_request_pulldown.END_2` | `abstract:safety-ground` | fail-low default |
-| `SAFETY_FAULT_REQUEST` | `safety_controller.PA25_A2` | `safety_fault_request_iso.A` | healthy firmware drives high; low pulls FAULT_ASSERT_N through an open-drain buffer |
+| `SAFETY_FAULT_REQUEST` | `safety_controller.PA25` | `safety_fault_request_iso.A` | healthy firmware drives high; low pulls FAULT_ASSERT_N through an open-drain buffer |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_watchdog.VDD` | the independent watchdog shares only the protected AON source, not the controller clock or firmware |
 | `SAFETY_GROUND` | `safety_watchdog.GND` | `abstract:safety-ground` | watchdog return |
 | `AON_SAFE_3V3` | `safety_watchdog.VDD` | `safety_watchdog_bypass.END_1` | exact 100-nF local watchdog bypass |
@@ -2702,20 +2702,20 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `SAFETY_GROUND` | `power_zone_ntc.END_2` | `abstract:safety-ground` | POWER sensor return |
 | `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `power_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
 | `SAFETY_GROUND` | `power_zone_temp_filter.END_2` | `abstract:safety-ground` | POWER filter return |
-| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `safety_controller.PA26_A1` | dedicated ADC channel detects temperature and open/short faults |
+| `POWER_ZONE_TEMP_ADC` | `power_zone_temp_pullup.END_2` | `safety_controller.PA26` | dedicated PA26/ADC0_1 channel detects temperature and open/short faults |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `rf_zone_temp_pullup.END_1` | RF/VOICE hotspot divider uses the independent safety reference |
 | `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `rf_zone_ntc.END_1` | exact 10-kOhm divider midpoint |
 | `SAFETY_GROUND` | `rf_zone_ntc.END_2` | `abstract:safety-ground` | RF/VOICE sensor return |
 | `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `rf_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
 | `SAFETY_GROUND` | `rf_zone_temp_filter.END_2` | `abstract:safety-ground` | RF/VOICE filter return |
-| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `safety_controller.PA27_A0` | dedicated ADC channel detects temperature and open/short faults |
+| `RF_ZONE_TEMP_ADC` | `rf_zone_temp_pullup.END_2` | `safety_controller.PA27` | dedicated PA27/ADC0_0 channel detects temperature and open/short faults |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ui_zone_temp_pullup.END_1` | UI hotspot divider remains observable before main-domain shutdown |
 | `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `ui_zone_ntc.END_1` | exact 10-kOhm divider midpoint crosses one reviewed M1 analog contact |
 | `SAFETY_GROUND` | `ui_zone_ntc.END_2` | `abstract:safety-ground` | UI sensor return uses the adjacent safety plane |
 | `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `ui_zone_temp_filter.END_1` | exact 100-nF local ADC filter |
 | `SAFETY_GROUND` | `ui_zone_temp_filter.END_2` | `abstract:safety-ground` | UI filter return |
-| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `safety_controller.PA28_A5` | dedicated ADC channel detects UI temperature and open/short faults |
-| `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `safety_controller.PA16_A8` | the safety controller receives the independent aggregate in parallel with the UI diagnostic expander |
+| `UI_ZONE_TEMP_ADC` | `ui_zone_temp_pullup.END_2` | `safety_controller.PA16` | dedicated PA16/ADC0_14 channel detects UI temperature and open/short faults |
+| `POWER_FAULT_N` | `abstract:power-current-thermal-fault` | `safety_controller.PA30` | the safety controller receives the independent aggregate in parallel with the UI diagnostic expander |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_reset_buffer.VCC` | open-drain reset control remains powered with the non-programmable latch |
 | `SAFETY_GROUND` | `safe_reset_buffer.GND` | `abstract:safety-ground` | local AON logic return |
 | `NO_CONNECT` | `safe_reset_buffer.NC` | `abstract:no-connect` | manufacturer no-connect remains open |
@@ -3165,7 +3165,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `ANY_TX_AON_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_aon_pullup.END_1` | exact logic pull-up keeps the aggregate deasserted independently of LED leakage |
 | `ANY_TX_AON_N` | `any_tx_aon_pullup.END_2` | `evidence_or_3.A_COMMON` | 10-kOhm AON aggregate pull-up |
-| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `safety_controller.PA22_A4` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
+| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `safety_controller.PA22` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
 | `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
 | `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_3.A_COMMON` | asserted diode aggregate lights without firmware |
@@ -3218,8 +3218,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `pd_controller`: `I2Ct_SDA`, `I2Ct_SCL`, `I2Ct_IRQ` — S3 shared SYS_I2C0 host control plus shared wired-low IRQ; same bus is exposed on protected service pads for controller status/recovery.
 - `pd_config_eeprom`: `SDA`, `SCL`, `WP` — first image uses a preprogrammed loose EEPROM or a current-limited raw-VBUS fixture. The fixture observes TPS ReadyForPatch on I2Ct and verifies I2Cc high-Z before direct SDA/SCL/WP programming; it never drives LDO_3V3 externally and does not depend on S3.
 - `pack_gauge`: `ALRT`, `SCL_OD`, `SDA_DQ`, `PFAIL` — direct protected I2C/NVM and hold/fault pads with fixture ground and qualified stack-sense supply; protected image checksum and OvrdEn readback are mandatory before energized cell installation.
-- `pack_admission`: `PA1_NRST`, `PA17`, `PA18_A7`, `PA19_SWDIO`, `PA20_A6_SWCLK`, `VDD`, `VSS` — permanent NRST/SWD/UART plus isolated fixture VDD/VSS; fixture or admitted system rail powers flash programming because MAX17320 AOLDO is not sized for it.
-- `safety_controller`: `PA1_NRST`, `PA17`, `PA18_A7`, `PA19_SWDIO`, `PA20_A6_SWCLK`, `VDD`, `VSS` — permanent isolated NRST/SWD/UART/power fixture path; recovery cannot drive RUN_PERMIT, mask TPS3435 WDO_N or clear the hardware FAULT_KILL latch.
+- `pack_admission`: `PA1_NRST`, `PA17`, `PA18`, `PA19_SWDIO`, `PA20_SWCLK`, `VDD`, `VSS` — permanent NRST/SWD/UART1 plus isolated fixture VDD/VSS; fixture or admitted system rail powers flash programming because MAX17320 AOLDO is not sized for it.
+- `safety_controller`: `PA1_NRST`, `PA17`, `PA18`, `PA19_SWDIO`, `PA20_SWCLK`, `VDD`, `VSS` — permanent isolated NRST/SWD/UART1/power fixture path; recovery cannot drive RUN_PERMIT, mask TPS3435 WDO_N or clear the hardware FAULT_KILL latch.
 - `voice`: `UPDATE`, `UART_TX`, `UART_RX`, `PD` — permanent fixture breakout for vendor update/recovery plus UART and hardware power-down; UPDATE drive remains inhibited until exact rev-1.1 direction/timing proof.
 
 ### Non-MCU contact accounting
@@ -3279,7 +3279,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 | `RP_UART1_GNSS` | `rp.UART1` | `GPIO40`, `GPIO41` | RP2354B bank-0 mux pair is UART1 TX/RX |
 | `RP_I2C0_U214` | `rp.I2C0_EXT` | `GPIO28`, `GPIO29` | RP2354B bank-0 mux pair is I2C0 SDA/SCL |
 | `PACK_SYSTEM_I2C` | `pack_admission.I2C_TARGET` | `PA0`, `PA11` | DGS20 exposes I2C0 SDA on PA0 pin 4 and alternate SCL on PA11 pin 11, preserving PA1/NRST pin 5 |
-| `PACK_UART0_SERVICE` | `pack_admission.UART0` | `PA17`, `PA18_A7` | DGS20 exposes UART0 TX/RX on PA17 pin 13 and PA18 pin 14 independently of SWD and reset |
+| `PACK_UART1_SERVICE` | `pack_admission.UART1` | `PA17`, `PA18` | the exact C1106 DGS20 exposes UART1 TX on PA17 pin 9 and UART1 RX on PA18 pin 8 independently of PA19/PA20 SWD and NRST pin 1 |
 
 ### Open qualification gaps
 
@@ -3545,6 +3545,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `voice_hl_driver` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `product_usb_vpwr_cap` lifecycle: `active_production`.
 - `pack_gauge` lifecycle: `recommended_for_new_designs`.
+- `pack_admission` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
+- `pack_admission` lifecycle: `active_orderable`.
 - `power_command_switch` uses `C&K JS102011SCQN` as `verified_exact_low_current_power_command_switch_mechanical_hil_open`, not an accepted production choice.
 - `power_command_switch` lifecycle: `active_orderable`.
 - `pack_holder` uses `Keystone Electronics 1048P` as `verified_mechanical_reference`, not an accepted production choice.
@@ -3644,6 +3646,8 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_A6_SWCLK`. Free: none.
 - `rp_dbg0_series` lifecycle: `active_orderable`.
 - `rp_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
 - `rp_dbg1_series` lifecycle: `active_orderable`.
+- `safety_controller` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
+- `safety_controller` lifecycle: `active_orderable`.
 - `safety_fault_request_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safety_s3_reset_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `safety_watchdog` uses `Texas Instruments TPS3435CAKAGDDFR` as `verified_exact_independent_aon_watchdog`, not an accepted production choice.

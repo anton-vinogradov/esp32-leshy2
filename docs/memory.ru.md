@@ -33,11 +33,7 @@ ROM download.
 Машинные build defaults и точная разметка flash находятся в
 [репозитории прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/sdkconfig.defaults.esp32s3).
 
-По сравнению с прежним модулем на 2 МБ типичный ток PSRAM в light-sleep выше
-примерно на 100 мкА: около 4,8 мА·ч за 48 часов, или 0,06% выбранного комплекта
-на 8 А·ч. Active-current, температурный stress, strap-осциллограммы и recovery
-при включённом, выключенном и неисправном кодеке входят в приёмочные испытания
-прототипа.
-
-Точный модуль и актуальная доступность приведены в
-[генерируемом BOM](../hardware/architecture/generated/G2F-3I-target-bom-review.md).
+Production validation проверяет active/sleep current, температурный stress,
+strap-осциллограммы и recovery при включённом, выключенном и неисправном
+кодеке. Точный модуль также присутствует в
+[машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv).

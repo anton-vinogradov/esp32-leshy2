@@ -31,7 +31,7 @@ Leshy2 — открытый автономный прибор для наблю�
 Внутри пять изолируемых вычислительных и управляющих доменов. `ESP32-S3-WROOM-1U-N16R8`
 ведёт интерфейс, дисплей, storage и audio; `ESP32-C5-WROOM-1U-N8R8` — native
 2,4/5‑ГГц radio, IEEE 802.15.4 и IR; `SC1512-A4` (RP2354B) — три nRF24,
-Sub‑GHz, voice и U214; один `MSPM0C1104SDGS20R` независимо допускает батарейный
+Sub‑GHz, voice и U214; один `MSPM0C1106SDGS20R` независимо допускает батарейный
 пакет, а второй ведёт watchdog, температурный контроль и разрешения TX.
 Неиспользуемые интерфейсы отключаются и переводятся в проверяемое тихое состояние.
 
@@ -154,7 +154,7 @@ UI_SWITCH_F2["OMRON B3S-1100P<br/>задняя функциональная кн
 ENCODER["Alps Alpine EC11E18244AU<br/>задний энкодер с нажатием"]
 PTT_SWITCH["OMRON B3S-1100P<br/>независимая задняя кнопка PTT"]
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
-SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>независимый AON-контроллер watchdog, thermal и TX lease"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>независимый AON-контроллер watchdog, thermal и TX lease"]
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>независимый timeout-watchdog 1,6 с"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физического RUN и S3 fault reset"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL"]
@@ -293,7 +293,7 @@ PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD контро
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S зарядка и NVDC power path"]
 PACK_HOLDER["Keystone Electronics 1048P<br/>поляризованный держатель двух 18650"]
 PACK_GAUGE["Analog Devices MAX17320G20+T<br/>защита и fuel gauge батареи 2S"]
-PACK_ADMISSION["Texas Instruments MSPM0C1104SDGS20R<br/>локальный fail-closed контроллер допуска 2S pack"]
+PACK_ADMISSION["Texas Instruments MSPM0C1106SDGS20R<br/>локальный fail-closed контроллер допуска 2S pack"]
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
 AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on преобразователь безопасности 3,3 В"]
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>основной преобразователь 3,3 В"]
@@ -319,7 +319,7 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>преобразователь р�
 flowchart TD
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
 SAFE_SUPERVISOR["TPS3808G33DBVR<br/>контроль always-on питания безопасности"]
-SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>независимый AON-контроллер watchdog, thermal и TX lease"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>независимый AON-контроллер watchdog, thermal и TX lease"]
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>независимый timeout-watchdog 1,6 с"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физического RUN и S3 fault reset"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL"]

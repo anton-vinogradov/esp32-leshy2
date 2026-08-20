@@ -33,8 +33,8 @@ The device contains five isolatable compute and control domains. The
 `ESP32-S3-WROOM-1U-N16R8` owns UI, display, storage and audio;
 `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio, IEEE 802.15.4 and IR;
 `SC1512-A4` (RP2354B) owns the three nRF24 radios, Sub-GHz, voice and U214;
-one `MSPM0C1104SDGS20R` independently admits the battery pack; a second
-`MSPM0C1104SDGS20R` owns the watchdog, thermal supervision and TX leases.
+one `MSPM0C1106SDGS20R` independently admits the battery pack; a second
+`MSPM0C1106SDGS20R` owns the watchdog, thermal supervision and TX leases.
 Unused interfaces are powered down and placed into a verifiable quiet state.
 
 ## Device layout
@@ -156,7 +156,7 @@ UI_SWITCH_F2["OMRON B3S-1100P<br/>rear F2 function button"]
 ENCODER["Alps Alpine EC11E18244AU<br/>rear rotary encoder with push"]
 PTT_SWITCH["OMRON B3S-1100P<br/>independent rear PTT button"]
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
-SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
@@ -295,7 +295,7 @@ PD_CONTROLLER["Texas Instruments TPS25751DREFR<br/>sink-only USB-PD controller"]
 NVDC_CHARGER["Texas Instruments BQ25798RQMR<br/>2S charger and NVDC power path"]
 PACK_HOLDER["Keystone Electronics 1048P<br/>polarized dual-18650 holder"]
 PACK_GAUGE["Analog Devices MAX17320G20+T<br/>2S protection and fuel gauge"]
-PACK_ADMISSION["Texas Instruments MSPM0C1104SDGS20R<br/>local fail-closed 2S pack admission controller"]
+PACK_ADMISSION["Texas Instruments MSPM0C1106SDGS20R<br/>local fail-closed 2S pack admission controller"]
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
 AON_BUCK["Texas Instruments TPS629203DRLR<br/>always-on 3.3-V safety converter"]
 MAIN_BUCK["Texas Instruments TPS564252DRLR<br/>main 3.3-V converter"]
@@ -321,7 +321,7 @@ EXT_BUCK["Texas Instruments TPS564252DRLR<br/>accessory 5.0-V converter"]
 flowchart TD
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
 SAFE_SUPERVISOR["TPS3808G33DBVR<br/>always-on safety-rail supervisor"]
-SAFETY_CONTROLLER["Texas Instruments MSPM0C1104SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
+SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>independent AON watchdog, thermal and TX-lease controller"]
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]

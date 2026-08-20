@@ -36,7 +36,7 @@ device down; `RUN` supplies the only physical re-arm edge. There are no
 separate STOP or RE-ARM buttons. Firmware, reset, USB and the service headers
 cannot create that edge or clear a latched fault.
 
-An AON `MSPM0C1104SDGS20R` supervises system heartbeats, short-lived per-group
+An AON `MSPM0C1106SDGS20R` supervises system heartbeats, short-lived per-group
 transmit leases, physical TX evidence, rail faults and three independent board
 temperature zones. An external `TPS3435CAKAGDDFR` timeout watchdog directly
 latches `FAULT_KILL` if the safety controller stops making valid 1.6-second
@@ -64,19 +64,29 @@ LED and retained AON record remain available.
 
 ## Update and recovery
 
-- Each controller accepts only an image for its target and verifies its
-  signature. The package carries a compatible manifest for the complete image
-  set.
-- A new image is written to an inactive slot first. Failed startup causes
-  rollback rather than loss of the working image.
+- The user installs one bundle. Its owner/release-signed manifest binds each
+  image to S3, C5, RP2354B, Pack or Safety and fixes the compatible cross-domain
+  protocol set.
+- Physical `RUN=KILL`, quiet TX evidence and stable power are required. Every
+  inactive image is written and read back before activation. Pack, Safety, C5
+  and RP boot pending, then S3 boots last and globally commits only after every
+  target identifies and passes its own checks. The full activation deadline is
+  12 seconds, below RP2350's fixed 16.7-second TBYB watchdog window. A bad
+  signature, reset, timeout or missing confirmation restores the previous set.
+- Each 64-KiB MSPM0 keeps a statically protected 16-KiB boot-manager/BSL region,
+  two 22-KiB application slots and 4 KiB of duplicated boot state. MSPM0 update
+  additionally requires physical `RUN=KILL`, quiet TX evidence and qualified
+  stable power.
 - Owners can use their own build keys and install their own firmware.
   Irreversible key lockdown is not enabled by default, preserving device
   openness.
-- S3, C5, RP2354B and both MSPM0 controllers have independent physical
-  recovery paths. Every recovery boot starts TX-off; RUN/KILL, the watchdog
-  and the hardware FAULT_KILL latch remain effective.
+- S3, C5, RP2354B and both MSPM0 controllers have independent physical recovery
+  paths. The MSPM0 paths permanently expose NRST, SWDIO, SWCLK, UART1 and
+  isolated fixture power. Every recovery boot starts TX-off; RUN/KILL, the
+  watchdog and the hardware FAULT_KILL latch remain effective.
 
 An update can be substituted through a compromised server, mirror, download
-path or removable medium. Signatures defeat that substitution by verifying the
-author and integrity locally before execution. They neither hide the source nor
-prevent an owner from signing a custom build.
+path or removable medium. Signatures defeat that substitution in the normal
+update path by verifying the author and integrity locally. Physical debug/flash
+access remains the explicit owner-recovery boundary; signatures neither hide
+the source nor prevent an owner from installing a custom build.

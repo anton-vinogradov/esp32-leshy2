@@ -6482,52 +6482,60 @@
         "BATTS": {"physical": "24", "role": "analog"}
       }
     },
-    "ti_mspm0c1104_sdgs20r": {
-      "mpn": "Texas Instruments MSPM0C1104SDGS20R",
-      "kind": "24mhz_cortex_m0plus_admission_controller",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
+    "ti_mspm0c1106_sdgs20r": {
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "kind": "32mhz_cortex_m0plus_safety_controller",
+      "qualification": "verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate",
+      "lifecycle": "active_orderable",
       "dimensions_mm": [5.1, 4.9, null],
       "source": {
-        "document": "MSPM0C110x mixed-signal microcontroller datasheet",
-        "version": "SLASF90D, revised January 2026",
-        "url": "https://www.ti.com/lit/ds/symlink/mspm0c1104.pdf",
-        "checked": "2026-08-18"
+        "document": "MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet",
+        "version": "SLASFJ6B, revised January 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+        "checked": "2026-08-20"
       },
       "orderable_source": {
-        "document": "MSPM0C1104SDGS20R exact orderable page",
-        "url": "https://www.ti.com/product/MSPM0C1104/part-details/MSPM0C1104SDGS20R",
-        "checked": "2026-08-18"
+        "document": "DigiKey exact-MPN page; active, 4,813 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1106SDGS20R/28264017",
+        "checked": "2026-08-20"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.4523,
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.8384,
         "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1104SDGS20R/24709068", "checked": "2026-08-19"}
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/MSPM0C1106SDGS20R/28264017", "checked": "2026-08-20"}
+      },
+      "memory_contract": {
+        "flash_kb": 64,
+        "sram_kb": 8,
+        "boot_path": "ROM bootcode invokes a statically protected flash BSL; factory-fresh provisioning remains available through permanent SWD",
+        "production_update": "two target-bound application slots, signed owner/release manifest verification, pending health confirmation and automatic rollback are mandatory",
+        "irreversible_lock_policy": "disabled by default; permanent NRST, SWDIO and SWCLK keep owner recovery available",
+        "closure_gate": "boot-manager code size, signature verification, power-loss interruption, corrupt-slot rollback and fault-default behavior require measured build and HIL evidence before release"
       },
       "programmable": true,
-      "controller_capabilities": ["I2C_TARGET", "BITBANG_I2C", "UART0", "ADC", "GPIO", "GPIO_IRQ", "SWD"],
-      "service_required": ["PA1_NRST", "PA17", "PA18_A7", "PA19_SWDIO", "PA20_A6_SWCLK", "VDD", "VSS"],
+      "controller_capabilities": ["I2C_TARGET", "BITBANG_I2C", "UART1", "ADC", "GPIO", "GPIO_IRQ", "SWD", "HYBRID_BSL", "IWDT"],
+      "service_required": ["PA1_NRST", "PA17", "PA18", "PA19_SWDIO", "PA20_SWCLK", "VDD", "VSS"],
       "contacts": {
-        "PA26_A1": {"physical": "1", "role": "gpio"},
-        "PA27_A0": {"physical": "2", "role": "gpio"},
-        "PA28_A5": {"physical": "3", "role": "gpio"},
-        "PA0": {"physical": "4", "role": "gpio"},
-        "PA1_NRST": {"physical": "5 (PA1 / NRST)", "role": "gpio"},
-        "VDD": {"physical": "6", "role": "power"},
-        "VSS": {"physical": "7", "role": "power"},
-        "PA2": {"physical": "8", "role": "gpio"},
-        "PA4": {"physical": "9", "role": "gpio"},
-        "PA6": {"physical": "10", "role": "gpio"},
-        "PA11": {"physical": "11", "role": "gpio"},
-        "PA16_A8": {"physical": "12", "role": "gpio"},
-        "PA17": {"physical": "13", "role": "gpio"},
-        "PA18_A7": {"physical": "14", "role": "gpio"},
-        "PA19_SWDIO": {"physical": "15 (PA19 / SWDIO)", "role": "gpio"},
-        "PA20_A6_SWCLK": {"physical": "16 (PA20 / A6 / SWCLK)", "role": "gpio"},
-        "PA22_A4": {"physical": "17", "role": "gpio"},
-        "PA23": {"physical": "18", "role": "gpio"},
-        "PA24_A3": {"physical": "19", "role": "gpio"},
-        "PA25_A2": {"physical": "20", "role": "gpio"}
+        "PA1_NRST": {"physical": "1 (PA1 / NRST)", "role": "gpio"},
+        "PA25": {"physical": "2", "role": "gpio"},
+        "PA24": {"physical": "3", "role": "gpio"},
+        "PA23": {"physical": "4", "role": "gpio"},
+        "PA22": {"physical": "5", "role": "gpio"},
+        "PA20_SWCLK": {"physical": "6 (PA20 / SWCLK)", "role": "gpio"},
+        "PA19_SWDIO": {"physical": "7 (PA19 / SWDIO)", "role": "gpio"},
+        "PA18": {"physical": "8", "role": "gpio"},
+        "PA17": {"physical": "9", "role": "gpio"},
+        "PA16": {"physical": "10", "role": "gpio"},
+        "PA26": {"physical": "11", "role": "gpio"},
+        "PA27": {"physical": "12", "role": "gpio"},
+        "PA30": {"physical": "13", "role": "gpio"},
+        "PA0": {"physical": "14", "role": "gpio"},
+        "VDD": {"physical": "15", "role": "power"},
+        "VSS": {"physical": "16", "role": "power"},
+        "PA2": {"physical": "17", "role": "gpio"},
+        "PA4": {"physical": "18", "role": "gpio"},
+        "PA6": {"physical": "19", "role": "gpio"},
+        "PA11": {"physical": "20", "role": "gpio"}
       }
     },
     "ti_tps3435cakagddfr": {

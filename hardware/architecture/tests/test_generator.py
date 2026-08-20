@@ -241,7 +241,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**199/199** lines", rendered)
         self.assertIn("**188/199** lines", rendered)
         self.assertIn("**896/913** supplied placements", rendered)
-        self.assertIn("USD 201.3584", rendered)
+        self.assertIn("USD 202.1306", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -617,11 +617,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("pack_holder.SLOT0_NEG", "pack_shunt.END_1", "BATTERY_STACK_NEGATIVE_CELL_SIDE"),
             ("pack_shunt.END_2", "abstract:power-ground", "POWER_GROUND"),
             ("pack_gauge.PFAIL", "pack_status_buffer.G1", "PACK_PFAIL_RAW"),
-            ("pack_status_buffer.D1", "pack_admission.PA16_A8", "PACK_PFAIL_N"),
+            ("pack_status_buffer.D1", "pack_admission.PA16", "PACK_PFAIL_N"),
             ("pack_admission.PA23", "pack_status_buffer.G2", "PACK_SYS_INT_REQ"),
             ("pack_status_buffer.D2", "s3.GPIO45", "SYS_INT_N"),
             ("pack_admission.VDD", "power_command_pullup.END_1", "PACK_ADMISSION_VDD"),
-            ("power_command_pullup.END_2", "pack_admission.PA24_A3", "POWER_COMMAND_OFF_N"),
+            ("power_command_pullup.END_2", "pack_admission.PA24", "POWER_COMMAND_OFF_N"),
             ("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"),
             ("power_command_switch.COMMON", "abstract:power-ground", "POWER_GROUND"),
             ("abstract:AON_SAFE_3V3", "run_loop_pullup.END_1", "AON_SAFE_3V3"),
@@ -697,7 +697,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TVS2200DRVR<br/>22-V flat-clamp VBUS surge protection",
             "Texas Instruments BQ25798RQMR<br/>2S-configured buck-boost charger and NVDC system power path",
             "Analog Devices MAX17320G20+T<br/>2S high-side protection, gauging, temperature and balancing",
-            "Texas Instruments MSPM0C1104SDGS20R<br/>fail-closed pair admission, watchdog and service bridge",
+            "Texas Instruments MSPM0C1106SDGS20R<br/>fail-closed pair admission, watchdog and service bridge",
             "Texas Instruments CSD87313DMST<br/>fully-switching common-drain CHG/DIS power pair",
             "Littelfuse 0451005.MRL<br/>slot-0 independent 5-A fast fuse",
             "Littelfuse 0451005.MRL<br/>slot-1 independent 5-A fast fuse",
@@ -1039,11 +1039,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         expected = {
             "docs/hardware.md": (
                 "XTAR 18650 4000mAh", "28.8 Wh", "both are required",
-                "MAX17320G20+T", "MSPM0C1104SDGS20R",
+                "MAX17320G20+T", "MSPM0C1106SDGS20R",
             ),
             "docs/hardware.ru.md": (
                 "XTAR 18650 4000mAh", "28,8 Вт·ч", "обе нужны",
-                "MAX17320G20+T", "MSPM0C1104SDGS20R",
+                "MAX17320G20+T", "MSPM0C1106SDGS20R",
             ),
         }
         for doc_name, phrases in expected.items():
@@ -1062,7 +1062,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("supervised 2S", contract["battery_topology"])
         self.assertIn("both cells required", contract["battery_topology"])
         self.assertIn("MAX17320G20+T", contract["battery_manager"])
-        self.assertIn("MSPM0C1104SDGS20R", contract["battery_manager"])
+        self.assertIn("MSPM0C1106SDGS20R", contract["battery_manager"])
         self.assertIn("refuses any cell", contract["battery_recovery_policy"])
         self.assertIn("prequal are disabled", contract["battery_recovery_policy"])
         self.assertEqual(
@@ -1080,9 +1080,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("non-retriggerable", contract["diagnostic_load_profile"])
         self.assertIn("28.7-40.7 ms", contract["diagnostic_load_profile"])
         self.assertIn("25-50 ms", contract["diagnostic_load_profile"])
-        self.assertIn("PA25/A2", contract["admission_adc_profile"])
-        self.assertIn("PA26/A1", contract["admission_adc_profile"])
-        self.assertIn("forbids injection current", contract["admission_adc_profile"])
+        self.assertIn("PA25/ADC0_2", contract["admission_adc_profile"])
+        self.assertIn("PA26/ADC0_1", contract["admission_adc_profile"])
+        self.assertIn("PA16/ADC0_14", contract["admission_adc_profile"])
+        self.assertIn("PA27/ADC0_0", contract["admission_adc_profile"])
         self.assertEqual("DEC-0079", contract["battery_cell_decision"])
         self.assertIn("XTAR 18650 4000mAh", contract["battery_cell_profile"])
         self.assertIn("28.8Wh", contract["battery_cell_profile"])
@@ -1230,12 +1231,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             for row in candidate["allocations"]
             if row["instance"] == "pack_admission"
         }
-        self.assertEqual("PACK_CELL0_ADC", admission["PA25_A2"]["net"])
-        self.assertEqual("PACK_STACK_ADC", admission["PA26_A1"]["net"])
-        self.assertEqual("POWER_COMMAND_OFF_N", admission["PA24_A3"]["net"])
-        self.assertEqual("GPIO_IRQ", admission["PA24_A3"]["controller"])
+        self.assertEqual("PACK_CELL0_ADC", admission["PA25"]["net"])
+        self.assertEqual("PACK_STACK_ADC", admission["PA26"]["net"])
+        self.assertEqual("POWER_COMMAND_OFF_N", admission["PA24"]["net"])
+        self.assertEqual("GPIO_IRQ", admission["PA24"]["controller"])
         self.assertEqual(
-            {"PA27_A0", "PA28_A5"},
+            {"PA27", "PA30"},
             set(candidate["free_gpio"]["pack_admission"]),
         )
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
@@ -1252,6 +1253,66 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("pd_controller.I2Ct_SCL", s3["GPIO2"]["peers"])
         self.assertIn("pd_controller.I2Ct_IRQ", s3["GPIO45"]["peers"])
         self.assertEqual([], candidate["free_gpio"]["s3"])
+
+    def test_exact_mspm0c1106_memory_update_and_recovery_contract_does_not_regress(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        self.assertNotIn("ti_mspm0c1104_sdgs20r", self.database["devices"])
+        device = self.database["devices"]["ti_mspm0c1106_sdgs20r"]
+        self.assertEqual("Texas Instruments MSPM0C1106SDGS20R", device["mpn"])
+        self.assertEqual(64, device["memory_contract"]["flash_kb"])
+        self.assertEqual(8, device["memory_contract"]["sram_kb"])
+        self.assertIn("HYBRID_BSL", device["controller_capabilities"])
+        self.assertIn("IWDT", device["controller_capabilities"])
+        self.assertEqual("6 (PA20 / SWCLK)", device["contacts"]["PA20_SWCLK"]["physical"])
+        self.assertEqual("7 (PA19 / SWDIO)", device["contacts"]["PA19_SWDIO"]["physical"])
+        self.assertEqual("8", device["contacts"]["PA18"]["physical"])
+        self.assertEqual("9", device["contacts"]["PA17"]["physical"])
+
+        contract = candidate["mspm0_memory_update_contract"]
+        for region in (
+            "0x0000-0x3FFF",
+            "0x4000-0x97FF",
+            "0x9800-0xEFFF",
+            "0xF000-0xFFFF",
+        ):
+            self.assertIn(region, contract["flash_layout"])
+        self.assertIn("physical RUN=KILL", contract["update_sequence"])
+        self.assertIn("TX evidence quiet", contract["update_sequence"])
+        self.assertIn("inactive slot", contract["update_sequence"])
+        self.assertIn("automatic rollback", device["memory_contract"]["production_update"])
+        self.assertIn("irreversible key/debug lock is not enabled", contract["open_recovery"])
+        self.assertIn("+USD 0.748 per complete device", contract["cost"])
+
+        for instance in ("pack_admission", "safety_controller"):
+            self.assertEqual(
+                "ti_mspm0c1106_sdgs20r",
+                candidate["instances"][instance],
+            )
+            allocation = {
+                row["contact"]: row
+                for row in candidate["allocations"]
+                if row["instance"] == instance
+            }
+            self.assertEqual("UART1", allocation["PA17"]["controller"])
+            self.assertEqual("UART1", allocation["PA18"]["controller"])
+
+        pack = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "pack_admission"
+        }
+        self.assertEqual("PACK_PFAIL_N", pack["PA16"]["net"])
+        self.assertEqual("PACK_CELL0_ADC", pack["PA25"]["net"])
+        self.assertEqual("PACK_STACK_ADC", pack["PA26"]["net"])
+        safety = {
+            row["contact"]: row
+            for row in candidate["allocations"]
+            if row["instance"] == "safety_controller"
+        }
+        self.assertEqual("POWER_FAULT_N", safety["PA30"]["net"])
+        self.assertEqual("UI_ZONE_TEMP_ADC", safety["PA16"]["net"])
+        self.assertEqual("POWER_ZONE_TEMP_ADC", safety["PA26"]["net"])
+        self.assertEqual("RF_ZONE_TEMP_ADC", safety["PA27"]["net"])
 
     def test_exact_bq25798_passive_profile_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -1780,7 +1841,7 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         required_instances = {
             "safe_supervisor": "ti_tps3808g33_dbvr",
-            "safety_controller": "ti_mspm0c1104_sdgs20r",
+            "safety_controller": "ti_mspm0c1106_sdgs20r",
             "safety_watchdog": "ti_tps3435cakagddfr",
             "safe_conditioner": "nexperia_74lvc2g14gw_125",
             "safe_latch": "ti_sn74lvc1g74_dcur",
@@ -1832,7 +1893,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_principled_pinout(self.database, self.candidates)
         for label in (
             "TPS3808G33DBVR<br/>AON rail supervisor and power-on reset",
-            "MSPM0C1104SDGS20R<br/>independent MSPM0 watchdog, thermal and TX-lease controller",
+            "MSPM0C1106SDGS20R<br/>independent MSPM0 watchdog, thermal and TX-lease controller",
             "TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog",
             "SN74LVC1G74DCUR<br/>asynchronous latched FAULT_KILL",
             "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
