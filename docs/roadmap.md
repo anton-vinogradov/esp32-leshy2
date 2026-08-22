@@ -40,22 +40,22 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Current H1 breakdown
 
-<!-- current-substep: H1.1.2 -->
+<!-- current-substep: H1.1.3 -->
 
-**Exact marker: `H1.1.2`** — normalize manufacturer dimensions, coordinate
-datums and outward directions for every body used by the mockup. Later views
-already exist as provisional projections, but none is a reviewed later
-substep while this source-data gate is open.
+**Exact marker: `H1.1.3`** — classify every remaining mechanical uncertainty
+as an H1 blocker or an explicit received-sample H5 gate. Later views already
+exist as provisional projections, but none is a reviewed later substep while
+this source-data gate is open.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
   - ✅ `H1.1.1` — every selected body or explicit `MPN TBD` has exactly one
     product role in the machine source.
-  - ▶️ **`H1.1.2` — current:** for each rendered body, reconcile published or
-    evidence-backed `L×W×H`, coordinate origin, orientation and outward
-    connector/actuator direction.
-  - ⏳ `H1.1.3` — classify each unresolved item as an H1 blocker or an explicit
-    received-sample H5 gate; inferred dimensions cannot silently become exact.
+  - ✅ `H1.1.2` — every rendered body has evidence-backed `L×W×H`, a named
+    datum, orientation and connector/actuator-direction classification.
+  - ▶️ **`H1.1.3` — current:** classify each unresolved item as an H1 blocker or
+    an explicit received-sample H5 gate; inferred dimensions cannot silently
+    become exact.
   - ⏳ `H1.1.4` — freeze the renderer's dimension/source table.
 - ⏳ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
@@ -82,12 +82,13 @@ substep while this source-data gate is open.
   automatic-check results and all changes since the earlier view gates.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
-`H1.1.2` exits when every rendered body has a traceable source, dimensions,
-datum, orientation and interface direction, or a named sample-only gate with
-no invented geometry. Closing any substep requires changing the exact marker
-on both landing and roadmap pages in the same commit before advancing work. A
-later change that affects an accepted view reopens that user gate and all
-dependent gates; earlier approval is never silently carried over.
+`H1.1.3` exits when every physical-source uncertainty has one explicit
+disposition, its evidence boundary and a named closure gate; an H1 blocker
+cannot be relabelled as sample-only if the mockup depends on its unknown
+geometry. Closing any substep requires changing the exact marker on both
+landing and roadmap pages in the same commit before advancing work. A later
+change that affects an accepted view reopens that user gate and all dependent
+gates; earlier approval is never silently carried over.
 
 ## Hardware sequence and firmware intersections
 

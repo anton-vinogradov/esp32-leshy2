@@ -30,20 +30,20 @@ target-emulator run, and no order is authorized.
 
 ### Current phase H1 — detailed position
 
-<!-- current-substep: H1.1.2 -->
+<!-- current-substep: H1.1.3 -->
 
-**Exact marker: `H1.1.2`** — normalize manufacturer dimensions, coordinate
-datums and outward directions for every body used by the mockup. Existing
-rendered views are provisional outputs; they do not complete later substeps.
+**Exact marker: `H1.1.3`** — classify every remaining mechanical uncertainty
+as an H1 blocker or an explicit received-sample H5 gate. Existing rendered
+views are provisional outputs; they do not complete later substeps.
 
 - ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
 - `H1.1` — build the physical-source register.
   - ✅ `H1.1.1` — register every selected body or explicit `MPN TBD` with one
     product role.
-  - ▶️ **`H1.1.2` — current:** reconcile dimensions, origin, orientation and
+  - ✅ `H1.1.2` — reconcile dimensions, origin, orientation and
     connector/actuator direction with manufacturer evidence.
-  - ⏳ `H1.1.3` — classify every remaining uncertainty as an H1 blocker or a
-    received-sample H5 gate.
+  - ▶️ **`H1.1.3` — current:** classify every remaining uncertainty as an H1
+    blocker or a received-sample H5 gate.
   - ⏳ `H1.1.4` — freeze the dimension/source table used by the renderer.
 - ⏳ `H1.2` — create one coordinate model for both boards and the enclosure.
 - ⏳ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
@@ -59,11 +59,12 @@ rendered views are provisional outputs; they do not complete later substeps.
 - 🔒 `H1.7.1` — user review gate for the consolidated layout and all deltas.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
-`H1.1.2` exits only when each rendered body has a sourced `L×W×H`, datum,
-orientation and interface direction, or an explicit non-invented sample gate.
-When any substep closes, this marker and both roadmap pages are updated in the
-same commit before work advances. A later correction that changes an already
-reviewed view reopens its user gate and every dependent gate.
+`H1.1.3` exits only when every physical-source uncertainty has one explicit
+disposition, evidence boundary and closure gate; no H1 blocker may be hidden
+behind a future sample test. When any substep closes, this marker and both
+roadmap pages are updated in the same commit before work advances. A later
+correction that changes an already reviewed view reopens its user gate and
+every dependent gate.
 
 Leshy2 is an open, autonomous instrument for radio observation,
 communications, diagnostics and authorized research of wireless and contact

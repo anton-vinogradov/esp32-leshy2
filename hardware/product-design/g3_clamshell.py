@@ -173,6 +173,16 @@ class CableRoute:
 
 
 @dataclass(frozen=True)
+class BodyProjectionContract:
+    """Mechanical meaning of one rendered body outside the placement maps."""
+
+    instance: str
+    frame: str
+    rotation: int
+    direction: str
+
+
+@dataclass(frozen=True)
 class Reserve:
     name: str
     x: float
@@ -394,6 +404,7 @@ MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {"display_touch_controller"}
 MECHANICAL_EXTERIOR_INSTANCES = {
     "display", "u214", "pack_holder", "pack_cell0", "pack_cell1",
     *RF_INSTANCE_BY_PATH.values(),
+    *TX_LED_INSTANCES.values(),
     *(route.instance for route in UI_RF_CABLES),
 }
 
@@ -403,6 +414,106 @@ REAR_OUTER = (
         U214_CONNECTOR_X,
         U214_CONNECTOR_Y,
         "vertical host socket on the raised rear Cap-Bus rail",
+    ),
+)
+
+# H1.1.2 source-normalisation contract. Placement coordinates always use the
+# top-left of the rotated, axis-aligned manufacturer envelope. Rotations are
+# clockwise in the named view. Each PCB face is authored as seen from its own
+# exterior, so the rear board is mirrored only when it is transformed into the
+# front-board datum for interboard collision checks.
+MECHANICAL_PROJECTION_FRAMES = {
+    "ui-inner": "UI PCB top-left, viewed from the front/exterior",
+    "rf-inner": "RF/power PCB top-left, viewed from the rear/exterior",
+    "front-outer": "UI PCB top-left, viewed from the front/exterior",
+    "rear-outer": "RF/power PCB top-left, viewed from the rear/exterior",
+    "ui-inner-route": "UI PCB top-left, viewed from the front/exterior",
+    "display-assembly": "HMX035CTFT-001 screen-body top-left, front view",
+}
+
+PLACEMENT_PROJECTION_GROUPS = (
+    ("ui-inner", UI_INNER),
+    ("rf-inner", RF_INNER),
+    ("front-outer", FRONT_CONTROLS),
+    ("rear-outer", REAR_CONTROLS),
+    ("rear-outer", REAR_OUTER),
+    ("rear-outer", REAR_SELECTED_ACTUATORS),
+)
+
+INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
+    "display_connector": "FPC insertion in the UI-inner plane; received-tail fit remains a named sample gate",
+    "s3_rf_board_connector": "normal to the UI-inner face toward the cable plug",
+    "c5_rf_board_connector": "normal to the UI-inner face toward the cable plug",
+    "m1_ui_plug": "normal to the UI-inner face toward the RF/power board",
+    "m1_rf_receptacle": "normal to the RF-inner face toward the UI board",
+    "s3_dbg_header": "normal to the UI-inner face; enclosure-open service only",
+    "c5_dbg_header": "normal to the UI-inner face; enclosure-open service only",
+    "rp_dbg_header": "normal to the RF-inner face; enclosure-open service only",
+    "s3_reset_button": "normal to the UI-inner face; enclosure-open service only",
+    "s3_boot_button": "normal to the UI-inner face; enclosure-open service only",
+    "c5_reset_button": "normal to the UI-inner face; enclosure-open service only",
+    "c5_boot_button": "normal to the UI-inner face; enclosure-open service only",
+    "rp_reset_button": "normal to the RF-inner face; enclosure-open service only",
+    "rp_boot_button": "normal to the RF-inner face; enclosure-open service only",
+    "nrf0": "normal to the RF-inner face at the module IPX interface; exact mate/axis remains a named sample gate",
+    "nrf1": "normal to the RF-inner face at the module IPX interface; exact mate/axis remains a named sample gate",
+    "nrf2": "normal to the RF-inner face at the module IPX interface; exact mate/axis remains a named sample gate",
+    "voice": "contact 7 faces the antenna edge along the straight VHF/UHF corridor",
+}
+
+DIRECTIONAL_BODY_DIRECTIONS = {
+    **INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS,
+    **{
+        instance: f"{face} {side} enclosure exit"
+        for instance, face, side, _, _ in EDGE_INTERFACES
+    },
+    **{
+        instance: f"{face} {side} acoustic opening"
+        for instance, face, side, _, _ in ACOUSTIC_OPENINGS
+    },
+    **{item.instance: "front-normal outward actuation" for item in FRONT_CONTROLS},
+    **{item.instance: "rear-normal outward actuation" for item in REAR_CONTROLS},
+    **{item.instance: "rear-normal outward actuation" for item in REAR_SELECTED_ACTUATORS},
+    "u214_connector": "rear-normal outward mating into the removable Cap",
+}
+
+EXTERIOR_BODY_CONTRACTS = (
+    BodyProjectionContract("display", "front-outer", 0, "front-normal outward view/touch"),
+    BodyProjectionContract("u214", "rear-outer", 0, "rear-normal dock mating/removal"),
+    BodyProjectionContract("pack_holder", "rear-outer", 90, "rear-normal open-cell access"),
+    BodyProjectionContract("pack_cell0", "rear-outer", 90, "rear-normal cell insertion/removal"),
+    BodyProjectionContract("pack_cell1", "rear-outer", 90, "rear-normal cell insertion/removal"),
+    *(
+        BodyProjectionContract(
+            RF_INSTANCE_BY_PATH[path],
+            "front-outer",
+            0,
+            "toward the antenna edge along board -Y",
+        )
+        for _, path, _ in FRONT_RF
+    ),
+    *(
+        BodyProjectionContract(
+            RF_INSTANCE_BY_PATH[path],
+            "rear-outer",
+            0,
+            "toward the antenna edge along board -Y",
+        )
+        for _, path, _ in REAR_RF
+    ),
+    *(
+        BodyProjectionContract(instance, "front-outer", 0, "front-normal optical emission")
+        for instance in TX_LED_INSTANCES.values()
+    ),
+    *(
+        BodyProjectionContract(route.instance, "ui-inner-route", 0, "module-to-board RF cable path")
+        for route in UI_RF_CABLES
+    ),
+    BodyProjectionContract(
+        "display_touch_controller",
+        "display-assembly",
+        0,
+        "embedded in HMX035CTFT-001; no separate mechanical interface",
     ),
 )
 
@@ -780,6 +891,92 @@ def validate_reserves(name: str, reserves: tuple[Reserve, ...]) -> list[str]:
     return errors
 
 
+def mechanical_body_contracts() -> tuple[dict[str, BodyProjectionContract], list[str]]:
+    """Build one traceable datum/orientation/direction contract per body."""
+    contracts: dict[str, BodyProjectionContract] = {}
+    errors: list[str] = []
+
+    def register(contract: BodyProjectionContract) -> None:
+        if contract.instance in contracts:
+            errors.append(f"mechanical-source: duplicate body contract for {contract.instance}")
+            return
+        contracts[contract.instance] = contract
+
+    for frame, items in PLACEMENT_PROJECTION_GROUPS:
+        if frame not in MECHANICAL_PROJECTION_FRAMES:
+            errors.append(f"mechanical-source: unknown projection frame {frame}")
+        for item in items:
+            register(
+                BodyProjectionContract(
+                    item.instance,
+                    frame,
+                    item.rotation,
+                    DIRECTIONAL_BODY_DIRECTIONS.get(item.instance, "not applicable"),
+                )
+            )
+    for contract in EXTERIOR_BODY_CONTRACTS:
+        register(contract)
+    return contracts, errors
+
+
+def validate_mechanical_sources(devices: dict, instances: dict) -> tuple[set[str], list[str]]:
+    """Enforce the H1.1.2 manufacturer-envelope and projection contract."""
+    contracts, errors = mechanical_body_contracts()
+    expected = (
+        {
+            item.instance
+            for _, items in PLACEMENT_PROJECTION_GROUPS
+            for item in items
+        }
+        | MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES
+        | MECHANICAL_EXTERIOR_INSTANCES
+    )
+    actual = set(contracts)
+    if actual != expected:
+        missing = ", ".join(sorted(expected - actual)) or "none"
+        extra = ", ".join(sorted(actual - expected)) or "none"
+        errors.append(f"mechanical-source: contract coverage differs; missing={missing}; extra={extra}")
+
+    for instance, contract in contracts.items():
+        if instance not in instances:
+            errors.append(f"mechanical-source: unknown instance {instance}")
+            continue
+        device = devices[instances[instance]]
+        mpn = device.get("mpn", "")
+        if not isinstance(mpn, str) or not mpn.strip():
+            errors.append(f"mechanical-source: {instance} has no exact MPN or explicit MPN TBD")
+        if not device.get("qualification"):
+            errors.append(f"mechanical-source: {instance} has no evidence qualification")
+
+        dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
+        if not isinstance(dimensions, list) or len(dimensions) < 3:
+            errors.append(f"mechanical-source: {instance} lacks sourced LxWxH")
+        elif any(value is None or float(value) <= 0 for value in dimensions[:3]):
+            errors.append(f"mechanical-source: {instance} has a non-positive LxWxH envelope")
+
+        source = device.get("mechanical_source", device.get("source", {}))
+        for field in ("document", "url", "checked"):
+            if not source.get(field):
+                errors.append(f"mechanical-source: {instance} dimension source lacks {field}")
+        if source.get("url") and not str(source["url"]).startswith("https://"):
+            errors.append(f"mechanical-source: {instance} dimension source is not HTTPS")
+
+        if contract.frame not in MECHANICAL_PROJECTION_FRAMES:
+            errors.append(f"mechanical-source: {instance} has unknown datum frame {contract.frame}")
+        if contract.rotation not in {0, 45, 90, 180, 270}:
+            errors.append(f"mechanical-source: {instance} has unsupported orientation {contract.rotation}")
+        if not contract.direction.strip():
+            errors.append(f"mechanical-source: {instance} has no interface-direction classification")
+
+    for instance, direction in DIRECTIONAL_BODY_DIRECTIONS.items():
+        contract = contracts.get(instance)
+        if contract is None:
+            errors.append(f"mechanical-source: directional body {instance} is not rendered")
+        elif contract.direction != direction:
+            errors.append(f"mechanical-source: {instance} lost its explicit interface direction")
+    return actual, errors
+
+
 def validate() -> list[str]:
     devices, candidate, instances = load()
     errors: list[str] = []
@@ -800,18 +997,10 @@ def validate() -> list[str]:
         if actual != expected:
             errors.append(f"{instance}: expected {expected}, got {actual}")
 
-    placed_instances = {
-        item.instance
-        for item in (
-            UI_INNER + RF_INNER + FRONT_CONTROLS + REAR_CONTROLS
-            + REAR_OUTER + REAR_SELECTED_ACTUATORS
-        )
-    }
-    mechanically_accounted = (
-        placed_instances
-        | MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES
-        | MECHANICAL_EXTERIOR_INSTANCES
+    mechanically_accounted, mechanical_source_errors = validate_mechanical_sources(
+        devices, instances
     )
+    errors += mechanical_source_errors
     for instance, device_key in instances.items():
         device = devices[device_key]
         dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
@@ -1019,6 +1208,26 @@ def validate() -> list[str]:
         errors.append("rear: exact encoder knob lacks battery-holder clearance")
     if overlaps(knob_box, u214_box, U214_CLEARANCE):
         errors.append("rear: exact encoder knob lacks installed-U214 clearance")
+    cell_boxes = []
+    for instance, centre_x in (("pack_cell0", 28.0), ("pack_cell1", 47.0)):
+        cell = Placement(instance, 0.0, 0.0, "protected 18650 cell", 90)
+        cell_w, cell_h = placement_size(cell, devices, instances)
+        cell_box = (
+            centre_x - cell_w / 2,
+            holder.y + (holder_h - cell_h) / 2,
+            cell_w,
+            cell_h,
+        )
+        cell_boxes.append((instance, cell_box))
+        if not (
+            holder.x <= cell_box[0]
+            and holder.y <= cell_box[1]
+            and cell_box[0] + cell_box[2] <= holder.x + holder_w
+            and cell_box[1] + cell_box[3] <= holder.y + holder_h
+        ):
+            errors.append(f"rear: {instance} exact envelope leaves the Keystone holder")
+    if overlaps(cell_boxes[0][1], cell_boxes[1][1]):
+        errors.append("rear: exact protected-cell envelopes overlap")
     for centre, _, _ in REAR_RF:
         rf_box = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
         if overlaps(connector_box, rf_box, U214_CLEARANCE):
@@ -1166,6 +1375,16 @@ def validate() -> list[str]:
                 errors.append(
                     f"external interface {label}: label centre {coordinate:.3f} does not "
                     f"match {instance} centre {component_centre:.3f}"
+                )
+            edge_gap = {
+                "left": item.x,
+                "right": BOARD_W - item.x - w,
+                "bottom": BOARD_H - item.y - h,
+            }[side]
+            if edge_gap < -0.001 or edge_gap > 1.001:
+                errors.append(
+                    f"external interface {label}: {instance} is {edge_gap:.3f} mm "
+                    f"from its declared {side} exit"
                 )
     if len({label for _, _, _, _, label in EDGE_INTERFACES}) != len(EDGE_INTERFACES):
         errors.append("external interface labels must be unique")
@@ -1415,8 +1634,23 @@ def render_external(devices, instances):
     out.append(rect(rear, holder.x, holder.y, hw, hh, "#dcfce7", "#16a34a", rx=10))
     out.append(text(sx(rear,37.5), sy(rear,82), "Keystone 1048P", 9, "bold", "middle", "#166534"))
     out.append(text(sx(rear,37.5), sy(rear,87), "86×39.8-mm rotated holder", 6.5, anchor="middle", colour="#166534"))
-    for cell_x in (28.0, 47.0):
-        out.append(rect(rear, cell_x-9.3, 52.0, 18.6, 65.0, "#ecfdf3", "#22c55e", rx=20))
+    for cell_instance, cell_x in (("pack_cell0", 28.0), ("pack_cell1", 47.0)):
+        cell = Placement(cell_instance, 0.0, 0.0, "protected 18650 cell", 90)
+        cell_w, cell_h = placement_size(cell, devices, instances)
+        cell_y = holder.y + (hh - cell_h) / 2
+        out.append(
+            rect(
+                rear,
+                cell_x - cell_w / 2,
+                cell_y,
+                cell_w,
+                cell_h,
+                "#ecfdf3",
+                "#22c55e",
+                rx=20,
+                extra=f' data-instance="{cell_instance}" data-source-envelope="true"',
+            )
+        )
         out.append(text(sx(rear,cell_x), sy(rear,86), "18650", 7, "bold", "middle", "#166534"))
 
     # F1/F2/PTT are complete, directly pressed switches on the exposed PCB.
