@@ -1,5 +1,6 @@
 import copy
 import importlib.util
+import json
 import re
 import subprocess
 import sys
@@ -23,6 +24,62 @@ class ArchitectureValidationTests(unittest.TestCase):
 
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
+
+    def test_hwfw_target_integration_contract_matches_architecture(self):
+        contract = json.loads(
+            (GENERATOR.REPO_ROOT / "hardware/architecture/target-integration-contract.json")
+            .read_text(encoding="utf-8")
+        )
+        candidate = next(c for c in self.candidates if c["id"] == contract["hardware_architecture"])
+        self.assertEqual("LESHY2-HWFW-1", contract["contract_id"])
+        self.assertEqual("pre_schematic_reviewed", contract["review_status"])
+
+        for controller in contract["controllers"]:
+            device_id = candidate["instances"][controller["instance"]]
+            self.assertEqual(controller["mpn"], self.database["devices"][device_id]["mpn"])
+
+        allocation_net = {
+            f"{row['instance']}.{row['contact']}": row["net"]
+            for row in candidate["allocations"]
+        }
+        resources = {row["id"]: row for row in candidate["resource_contracts"]}
+        for transport in contract["transports"]:
+            resource_id = transport.get("hardware_resource")
+            if resource_id:
+                self.assertIn(resource_id, resources)
+                self.assertIn("20 MHz", resources[resource_id]["deadline"])
+                self.assertIn(">=1.5 MB/s", resources[resource_id]["deadline"])
+            for endpoints in transport["pins"].values():
+                nets = {allocation_net[endpoint] for endpoint in endpoints}
+                self.assertEqual(1, len(nets), endpoints)
+
+        hardware_groups = {
+            row["id"] for row in candidate["signal_group_policy"]["groups"]
+        }
+        for row in contract["signal_groups"]:
+            if row["hardware"] is not None:
+                self.assertIn(row["hardware"], hardware_groups)
+        evidence = candidate["safety_contract"]["evidence"]
+        self.assertEqual(
+            [
+                "S3_RF", "C5_RF", "NRF0_RF", "NRF1_RF", "NRF2_RF",
+                "CC_RF", "VOICE_RF", "IR_OPTICAL", "LORA_EXT_RF",
+            ],
+            evidence["channels"],
+        )
+
+        cap = json.loads(
+            (GENERATOR.REPO_ROOT / "hardware/accessories/leshy2-lora-cap-01.json")
+            .read_text(encoding="utf-8")
+        )
+        for profile in contract["lora_cap_profiles"]:
+            variant = cap["variants"][profile["assembly"]]
+            module = self.database["devices"][variant["module"]]["mpn"]
+            self.assertEqual(profile["module"], module)
+            self.assertIn(
+                f"{profile['allowed_frequency_mhz'][0]}–{profile['allowed_frequency_mhz'][1]} MHz",
+                variant["band_label"],
+            )
 
     def test_exact_m1_pair_locality_and_contact_budget_do_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
@@ -153,7 +210,7 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_i8_generated_bom_inventory_exposes_every_current_gap(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual(
-            "i8_paper_procurement_feasibility_reviewed_candidate_only",
+            "i8_paper_procurement_feasibility_reviewed_target_input_not_bom_freeze",
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
@@ -266,7 +323,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         audit = candidate["i9_projection_audit"]
         self.assertEqual(
-            "paper_reviewed_joint_candidate_projection_not_target_architecture",
+            "paper_reviewed_joint_target_projection",
             audit["status"],
         )
         policy = audit["fixed_route_abstract_policy"]
@@ -295,6 +352,27 @@ class ArchitectureValidationTests(unittest.TestCase):
                 )
             ),
         )
+
+    def test_g2f_3i_records_joint_pre_schematic_review_without_authorizing_kicad(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        self.assertEqual(
+            "target_architecture_pre_schematic_reviewed",
+            candidate["status"],
+        )
+        review = candidate["pre_schematic_review"]
+        self.assertEqual("reviewed", review["status"])
+        self.assertEqual("coherent_target_architecture", review["result"])
+        self.assertEqual("not_granted_by_this_review", review["kicad_authorization"])
+        self.assertIn(
+            "cross-repository hardware/firmware integration contract",
+            review["scope"],
+        )
+        rendered = GENERATOR.render_ledger(self.database, self.candidates)
+        self.assertIn("G2F-3I — проведено сводное предсхемное ревью", rendered)
+        self.assertIn("does not by itself authorize KiCad", rendered)
+        pinout = GENERATOR.render_principled_pinout(self.database, self.candidates)
+        self.assertIn("целевая принципиальная распиновка G2F-3I", pinout)
+        self.assertNotIn("не target architecture", pinout)
 
     def test_g3_current_clamshell_projection_is_current_and_complete(self):
         script = GENERATOR.REPO_ROOT / "hardware/product-design/g3_clamshell.py"

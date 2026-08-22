@@ -3743,7 +3743,7 @@
         "height_tolerance_mm": 0.2,
         "maximum_terminal_span_mm": 9.5,
         "unspecified_dimension_tolerance_mm": 0.3,
-        "rearm_boundary": "the same direct-press switch remains uncapped; enclosure recess aperture and guard height determine whether RE-ARM is finger-accessible or tool-accessible"
+        "product_boundary": "the same uncapped direct-press body is used for BACK, OPT, F1, F2 and PTT; enclosure apertures must preserve direct actuation, label visibility and accidental-press clearance"
       },
       "programmable": false,
       "contacts": {
@@ -8278,7 +8278,7 @@
         "function": "single inverting buffer with open-drain output",
         "supply_range_v": [1.65, 5.5],
         "partial_power_down": "Ioff makes output high impedance when AON_SAFE_3V3 is absent",
-        "usage": "RUN_PERMIT high actively holds the common reset-sink gates low; STOP or AON loss releases the gate pull-up and asserts all three resets"
+        "usage": "RUN_PERMIT high actively holds the common reset-sink gates low; KILL/FAULT_KILL or AON loss releases the gate pull-up and asserts all three resets"
       },
       "programmable": false,
       "contacts": {

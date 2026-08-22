@@ -230,6 +230,21 @@ def validate_sources(
         if not candidate.get("decisive_open_risk"):
             errors.append(f"{candidate_id}: missing decisive_open_risk")
 
+        if candidate.get("status") == "target_architecture_pre_schematic_reviewed":
+            review = candidate.get("pre_schematic_review", {})
+            if review.get("status") != "reviewed":
+                errors.append(f"{candidate_id}: pre-schematic review status is not reviewed")
+            if review.get("result") != "coherent_target_architecture":
+                errors.append(f"{candidate_id}: pre-schematic review result is not coherent")
+            if review.get("kicad_authorization") != "not_granted_by_this_review":
+                errors.append(f"{candidate_id}: review must not imply KiCad authorization")
+            for field in ("scope", "open_evidence_is_not_an_architecture_decision"):
+                values = review.get(field, [])
+                if not isinstance(values, list) or not values or any(
+                    not isinstance(value, str) or not value.strip() for value in values
+                ):
+                    errors.append(f"{candidate_id}: invalid pre-schematic review {field}")
+
         interboard = candidate.get("interboard_contract")
         if interboard is not None:
             connector = interboard.get("connector_pair", {})
@@ -679,9 +694,7 @@ def validate_sources(
 
         if candidate_id == "G2F-3I":
             projection_audit = candidate.get("i9_projection_audit", {})
-            if projection_audit.get("status") != (
-                "paper_reviewed_joint_candidate_projection_not_target_architecture"
-            ):
+            if projection_audit.get("status") != "paper_reviewed_joint_target_projection":
                 errors.append(f"{candidate_id}: I9 projection audit status is not reviewed")
             for required in (
                 "fixed_route_abstract_policy",
@@ -1175,10 +1188,22 @@ def validate_sources(
 def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) -> str:
     devices = database["devices"]
     referenced_ids = sorted({device_id for c in candidates for device_id in c["instances"].values()})
+    reviewed_targets = [
+        candidate["id"]
+        for candidate in candidates
+        if candidate.get("status") == "target_architecture_pre_schematic_reviewed"
+    ]
+    review_status = (
+        "- Статус: **"
+        + ", ".join(reviewed_targets)
+        + " — проведено сводное предсхемное ревью; остальные варианты являются сравнительными; это не разрешение начинать KiCad**"
+        if reviewed_targets
+        else "- Статус: **машинные проверки проведены; target architecture ещё не принята**"
+    )
     lines = [
         "# G2F — generated exact-device pin ledger",
         "",
-        "- Статус: **машинные проверки проведены; кандидаты не приняты и не являются target architecture**",
+        review_status,
         "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/*.json`",
         "- Regenerate: `python3 hardware/architecture/generate.py --write`",
         "- Verify: `python3 hardware/architecture/generate.py --check`",
@@ -1465,7 +1490,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
         "## Machine-check result and review boundary",
         "",
-        "All source candidates pass structural validation. This proves that their listed programmable GPIO exist on the exact compute packages/modules and are fully accounted without collisions. Where declared, non-MCU contacts, interface resource contracts, controller GPIO-window selections, fixed-mux contact contracts, capacity arithmetic, signal-group declarations and quiet-state contract coverage are also complete. It does **not** close electrical feasibility: abstract peers, reference-only modules, RF networks, quiet-state circuitry, timing/EMI HIL, power and physical integration remain open. Therefore no candidate receives «Проведено ревью» as a complete target architecture in this generated artifact.",
+        "All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. This status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not by itself authorize KiCad.",
         "",
     ]
     return "\n".join(lines)
@@ -3212,7 +3237,7 @@ def _render_principled_pinout_bundle(
     lines = [
         "# G2F-3I — generated principled pinout atlas",
         "",
-        "- Статус: **машинная принципиальная распиновка ведущего paper candidate; не target architecture**",
+        "- Статус: **целевая принципиальная распиновка G2F-3I — проведено сводное предсхемное ревью; это не разрешение начинать KiCad**",
         "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`",
         "- Regenerate: `python3 hardware/architecture/generate.py --write`",
         "- Verify: `python3 hardware/architecture/generate.py --check`",

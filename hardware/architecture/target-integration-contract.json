@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "contract_id": "LESHY2-HWFW-1",
+  "review_status": "pre_schematic_reviewed",
+  "hardware_architecture": "G2F-3I",
+  "protocol": {"name": "L2IP", "major": 1, "minor": 0},
+  "controllers": [
+    {"domain": "S3", "instance": "s3", "mpn": "ESP32-S3-WROOM-1U-N16R8"},
+    {"domain": "C5", "instance": "c5", "mpn": "ESP32-C5-WROOM-1U-N8R8"},
+    {"domain": "RP", "instance": "rp", "mpn": "SC1512-A4"},
+    {"domain": "PACK", "instance": "pack_admission", "mpn": "Texas Instruments MSPM0C1106SDGS20R"},
+    {"domain": "SAFETY", "instance": "safety_controller", "mpn": "Texas Instruments MSPM0C1106SDGS20R"}
+  ],
+  "transports": [
+    {
+      "id": "S3_C5",
+      "hardware_resource": "S3_C5_IPC",
+      "kind": "SDIO_1BIT",
+      "clock_hz": 20000000,
+      "raw_bytes_per_second": 2500000,
+      "qualified_payload_bytes_per_second_min": 1500000,
+      "control_round_trip_ms_max": 2,
+      "pins": {
+        "CLK": ["s3.GPIO10", "c5.GPIO9"],
+        "CMD": ["s3.GPIO11", "c5.GPIO10"],
+        "D0": ["s3.GPIO12", "c5.GPIO8"],
+        "D1_IRQ": ["s3.GPIO13", "c5.GPIO7"]
+      }
+    },
+    {
+      "id": "S3_RP",
+      "hardware_resource": "S3_RP_IPC",
+      "kind": "SPI_FULL_DUPLEX",
+      "clock_hz": 20000000,
+      "raw_bytes_per_second": 2500000,
+      "qualified_payload_bytes_per_second_min": 1500000,
+      "control_round_trip_ms_max": 2,
+      "alert_to_read_us_max": 250,
+      "pins": {
+        "CS_N": ["s3.GPIO9", "rp.GPIO25"],
+        "SCK": ["s3.GPIO48", "rp.GPIO26"],
+        "MOSI": ["s3.GPIO21", "rp.GPIO24"],
+        "MISO": ["s3.GPIO14", "rp.GPIO27"],
+        "ALERT_N": ["s3.GPIO3", "rp.GPIO19"]
+      }
+    },
+    {
+      "id": "S3_PACK",
+      "kind": "I2C_TARGET",
+      "bus_hz": 400000,
+      "address_7bit": "0x2A",
+      "pins": {"SDA": ["s3.GPIO1", "pack_admission.PA0"], "SCL": ["s3.GPIO2", "pack_admission.PA11"]}
+    },
+    {
+      "id": "S3_SAFETY",
+      "kind": "I2C_TARGET",
+      "bus_hz": 400000,
+      "address_7bit": "0x2B",
+      "pins": {"SDA": ["s3.GPIO1", "safety_controller.PA0"], "SCL": ["s3.GPIO2", "safety_controller.PA11"]}
+    }
+  ],
+  "signal_groups": [
+    {"firmware": "NONE", "hardware": null, "owner": "S3", "tx_evidence_bits": []},
+    {"firmware": "S3_RF", "hardware": "SG-S3-24", "owner": "S3", "tx_evidence_bits": [0]},
+    {"firmware": "C5_RF", "hardware": "SG-C5-NATIVE", "owner": "C5", "tx_evidence_bits": [1]},
+    {"firmware": "NRF24", "hardware": "SG-N24", "owner": "RP", "tx_evidence_bits": [2, 3, 4]},
+    {"firmware": "CC1101", "hardware": "SG-CC", "owner": "RP", "tx_evidence_bits": [5]},
+    {"firmware": "VOICE", "hardware": "SG-VOICE", "owner": "RP", "tx_evidence_bits": [6]},
+    {"firmware": "IR", "hardware": "SG-IR", "owner": "C5", "tx_evidence_bits": [7]},
+    {"firmware": "LORA_CAP", "hardware": "SG-U214", "owner": "RP", "tx_evidence_bits": [8]},
+    {"firmware": "M5_UNIT", "hardware": "SG-EXT-*", "owner": "S3", "tx_evidence_bits": []},
+    {"firmware": "BROADCAST_RX", "hardware": "SG-BROADCAST", "owner": "S3", "tx_evidence_bits": []}
+  ],
+  "safety_timing_ms": {
+    "heartbeat_period": 50,
+    "heartbeat_gap_max": 200,
+    "tx_lease_lifetime_max": 100,
+    "tx_lease_renew_period_max": 40,
+    "unexpected_evidence_fault_max": 10,
+    "post_revoke_evidence_clear_grace": 20,
+    "safety_loop_period_max": 5,
+    "external_watchdog_timeout": 1600,
+    "external_watchdog_service_period_max": 400
+  },
+  "lora_cap_profiles": [
+    {"assembly": "LESHY2-LORA-CAP-01-EU868", "module": "NiceRF LoRa1262-868", "allowed_frequency_mhz": [848, 888]},
+    {"assembly": "LESHY2-LORA-CAP-01-US915", "module": "NiceRF LoRa1262-915", "allowed_frequency_mhz": [900, 940]}
+  ]
+}

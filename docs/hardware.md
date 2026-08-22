@@ -12,6 +12,10 @@ its MPN and product role; arrows show link purpose and direction.
 
 The [pin table](pinout.md) gives the exact contacts behind these links, while
 the [M1 map](interconnect.md) shows how they cross the two boards.
+The machine-readable
+[HW/FW integration contract](../hardware/architecture/target-integration-contract.json)
+freezes the same controller MPNs, transports, pins, signal-group mapping,
+safety timings and regional LoRa profiles for both repositories.
 
 ## Compute ownership
 
@@ -59,8 +63,8 @@ never grants transmit permission.
 
 The stock U214 provides receive and GNSS but no independent actual-RF evidence,
 so its TX remains blocked. Cap-Bus contact 5 is monitored through the exact
-5-V-tolerant `SN74LVC1G07DCKR`: stock `5V_OUT` reads inactive, while a qualified
-The [exact Leshy LoRa Cap](lora-cap.md) uses `NiceRF LoRa1262-868` or
+5-V-tolerant `SN74LVC1G07DCKR`: stock `5V_OUT` reads inactive. The
+[exact Leshy LoRa Cap](lora-cap.md) uses `NiceRF LoRa1262-868` or
 `LoRa1262-915` and may assert open-drain `EXT_TX_EVIDENCE_N` only from a
 `DC0710J5020AHF`/`AD8314ACPZ-RL7` detector on its final external 50-ohm RF
 feed. `BUSY`, `IRQ`, branch power and firmware state are diagnostic context,
