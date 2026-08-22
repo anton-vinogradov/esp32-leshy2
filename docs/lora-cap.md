@@ -28,7 +28,7 @@ a module certificate is not a certificate for the complete Leshy2 assembly.
 ```mermaid
 flowchart TB
   RP["SC1512-A4 · RP2354B<br/>LoRa owner and signed-profile enforcement"]
-  HOST["Samtec SSW-107-02-S-D<br/>14-contact protected host socket"]
+  HOST["Samtec HLE-107-02-G-DV-PE-LC<br/>14-contact pass-through protected host socket"]
   PLUG["Samtec TSW-107-07-G-D<br/>14-contact Cap plug"]
   RADIO_EU["NiceRF LoRa1262-868<br/>EU868 SX1262 transceiver"]
   RADIO_US["NiceRF LoRa1262-915<br/>US915 SX1262 transceiver"]

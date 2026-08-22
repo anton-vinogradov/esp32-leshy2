@@ -27,8 +27,8 @@ Before any quotation or purchase, please provide:
    clearance, insertion/withdrawal force and mating-cycle rating;
 4. the controlled mechanical drawing or STEP assembly that includes the fitted
    header, not only the enclosure shell;
-5. confirmation whether Samtec `SSW-107-02-S-D` is an approved compatible host
-   receptacle; otherwise, the exact recommended part;
+5. confirmation whether pass-through Samtec `HLE-107-02-G-DV-PE-LC` is an
+   approved compatible host receptacle; otherwise, the exact recommended part;
 6. retention-hole/thread specification, screw engagement and permissible host
    rail Z tolerance.
 

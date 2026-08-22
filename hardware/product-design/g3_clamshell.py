@@ -41,8 +41,10 @@ U214_Y = 17.0
 U214_W = 84.0
 U214_H = 24.0
 U214_CLEARANCE = 0.7
-U214_CONNECTOR_W = 18.29
-U214_CONNECTOR_D = 4.95
+U214_CONNECTOR_W = 17.78
+U214_CONNECTOR_D = 5.08
+U214_CONNECTOR_PTH_KEEPOUT_W = 17.78
+U214_CONNECTOR_PTH_KEEPOUT_D = 3.81
 U214_CONNECTOR_X = (BOARD_W - U214_CONNECTOR_W) / 2
 # The U214 male Cap-Bus exits normal to its broad rear face.  The exact host
 # socket is therefore vertical on the raised Cardputer-like rear rail and is
@@ -1019,7 +1021,6 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: gate IDs must be present and unique")
     required_h1 = {
         "H1-MECH-DISPLAY-TAIL",
-        "H1-MECH-U214-MATING-STACK",
     }
     actual_h1 = {
         gate["id"] for gate in gates if gate.get("disposition") == "h1_blocker"
@@ -1233,7 +1234,7 @@ def validate() -> list[str]:
         "rp": "SC1512-A4",
         "display": "HMX035CTFT-001 (QDtech schematic assembly marking)",
         "u214": "M5Stack U214 Cap LoRa-1262",
-        "u214_connector": "Samtec SSW-107-02-S-D",
+        "u214_connector": "Samtec HLE-107-02-G-DV-PE-LC",
         "pack_holder": "Keystone Electronics 1048P",
         "unit_connector": "1125R-SMT-4P",
         "encoder_knob": "Davies Molding 1227-J",
@@ -1410,7 +1411,7 @@ def validate() -> list[str]:
     connector = REAR_OUTER[0]
     connector_w, connector_d = placement_size(connector, devices, instances)
     if (connector_w, connector_d) != (U214_CONNECTOR_W, U214_CONNECTOR_D):
-        errors.append("U214 host socket must retain the exact 18.29x4.95-mm plan envelope")
+        errors.append("U214 host socket must retain the exact 17.78x5.08-mm plan envelope")
     if abs(connector.x + connector_w / 2 - (U214_X + U214_W / 2)) > 0.001:
         errors.append("U214 host socket and Cap must share the same 84-mm centreline")
     if abs(connector.y + connector_d / 2 - (U214_Y + U214_H / 2)) > 0.001:
@@ -1428,17 +1429,28 @@ def validate() -> list[str]:
     connector_box = (connector.x, connector.y, connector_w, connector_d)
     if not overlaps(connector_box, u214_box):
         errors.append("vertical U214 host socket must project beneath the installed Cap")
+    # Only the exact through-hole pad/locking-clip keep-out reaches the inner
+    # PCB face.  Projecting the complete 5.08-mm external moulding through the
+    # board would create a false collision with the SA518 and CC reference
+    # zone.  The 3.81-mm opposite-face depth is the two 2.54-mm rows plus the
+    # controlled pad radius from the Samtec through-hole footprint.
+    opposite_connector_box = (
+        connector.x,
+        connector.y + (connector_d - U214_CONNECTOR_PTH_KEEPOUT_D) / 2,
+        U214_CONNECTOR_PTH_KEEPOUT_W,
+        U214_CONNECTOR_PTH_KEEPOUT_D,
+    )
     for item in RF_INNER:
         item_w, item_h = placement_size(item, devices, instances)
         if overlaps(
-            connector_box,
+            opposite_connector_box,
             (item.x, item.y, item_w, item_h),
             OPPOSITE_FACE_CLEARANCE_MM,
         ):
             errors.append(f"rear opposite faces: U214 through-hole socket conflicts with {item.instance}")
     for zone in INTERNAL_RESERVES:
         if overlaps(
-            connector_box,
+            opposite_connector_box,
             (zone.x, zone.y, zone.w, zone.h),
             OPPOSITE_FACE_CLEARANCE_MM,
         ):
@@ -1843,7 +1855,7 @@ def render_external(devices, instances, dpad_design):
             f'r="{1.6*scale:.1f}" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>'
         )
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · installed worst-case · 84×24 mm", 6.3, "bold", "middle", "#9a3412"))
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "shared Cap-Bus rail · SSW-107-02-S-D beneath", 5.0, "bold", "middle", "#075985"))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath", 5.0, "bold", "middle", "#075985"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
     out.append('<g id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer">')
     out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
@@ -2056,7 +2068,7 @@ def render_external(devices, instances, dpad_design):
         text(note_x,566,"RF connectors are outward-face bodies with barrels and hex nuts.",11,"bold"),
         text(note_x,589,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
         text(note_x,609,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
-        text(note_x,630,"Cap-Bus host: Samtec SSW-107-02-S-D · 2×7 · 2.54 mm · vertical.",11),
+        text(note_x,630,"Cap-Bus host: Samtec HLE-107-02-G-DV-PE-LC · 2×7 · 2.54 mm · pass-through.",11),
         text(note_x,653,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
         text(note_x,676,"D-pad cross is custom over Alps SKRHADE010; its control drawing replaces a cap MPN.",11),
         text(note_x,699,"Davies 1227-J is the exact encoder knob; only its fit HIL remains.",11),
@@ -2689,7 +2701,7 @@ def render_sandwich(devices, instances):
                 f'<g id="section-u214" data-cut-y-mm="{cut_y:.0f}" data-contains="u214-no-battery">',
                 r(px(U214_X), pz(base_rear_z), U214_W*x_scale, depth("u214")*z_scale, "#ffedd5", "#ea580c", rx=5, extra=' fill-opacity="0.75" data-instance="u214"'),
                 r(px(U214_CONNECTOR_X), pz(base_rear_z), U214_CONNECTOR_W*x_scale, depth("u214_connector")*z_scale, "#bae6fd", "#0369a1", "4 2", 2, ' data-instance="u214-connector"'),
-                t(px(37.5), pz(base_rear_z+4.7), "Samtec SSW-107-02-S-D · vertical host socket", 7.2, "bold", "middle", "#075985"),
+                t(px(37.5), pz(base_rear_z+4.7), "Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket", 7.2, "bold", "middle", "#075985"),
                 t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 worst-case · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
                 t(px(37.5), pz(cap_rear_z)+24, "No battery appears: its Y=42…128-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
                 '</g>',

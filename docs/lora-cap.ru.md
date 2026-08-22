@@ -27,7 +27,7 @@ Bus. Готовому продукту всё равно нужна регион
 ```mermaid
 flowchart TB
   RP["SC1512-A4 · RP2354B<br/>владелец LoRa и проверка подписанного профиля"]
-  HOST["Samtec SSW-107-02-S-D<br/>защищённая 14-контактная host-розетка"]
+  HOST["Samtec HLE-107-02-G-DV-PE-LC<br/>защищённая проходная 14-контактная host-розетка"]
   PLUG["Samtec TSW-107-07-G-D<br/>14-контактная планка Cap"]
   RADIO_EU["NiceRF LoRa1262-868<br/>EU868 SX1262-приёмопередатчик"]
   RADIO_US["NiceRF LoRa1262-915<br/>US915 SX1262-приёмопередатчик"]

@@ -33,13 +33,13 @@
       "blocks": ["H8"]
     },
     {
-      "id": "H1-MECH-U214-MATING-STACK",
-      "disposition": "h1_blocker",
+      "id": "H5-MECH-U214-MATING-STACK",
+      "disposition": "h5_received_sample_gate",
       "affected_instances": ["u214", "u214_connector"],
-      "evidence_boundary": "M5Stack proves the 84x24x15.287-mm Cap envelope, 2x7 topology and 56-mm retention pitch; Samtec proves the SSW-107-02-S-D body and published insertion range.",
-      "unknown": "U214 male-post section, exposed length, actual bottoming, retained rail Z, insertion force and repeated-cycle fit with the selected socket.",
-      "closure": "Controlled M5 mating drawing or accepted measurements of one current U214 with the exact Samtec socket coupon; update the section and dock rail from that evidence.",
-      "blocks": ["H1.1.4", "H1.2", "H1.5.0", "H1.6"]
+      "evidence_boundary": "M5Stack proves the 84x24x15.287-mm Cap envelope, 2x7 2.54-mm topology and 56-mm retention pitch. Samtec proves the exact HLE-107-02-G-DV-PE-LC pass-through body, standard 0.635-mm square-post class, 1.78-mm minimum insertion and absence of a closed bottoming limit. H1 fixes the Cap body to the retention datums and lets the undocumented post length pass through the raised rail.",
+      "unknown": "Current-lot U214 post section, insertion force, contact retention, repeated-cycle fit, retention-screw engagement and final compliant rail preload remain received-part properties; none changes the bounded H1 exterior envelope or main-board placement.",
+      "closure": "Incoming inspection and an exact HLE coupon verify the current U214 post, insertion/withdrawal force, contact continuity, cycle life and retention engagement before fabrication release.",
+      "blocks": ["H8"]
     },
     {
       "id": "H5-MECH-DPAD-ACTUATOR-FIT",

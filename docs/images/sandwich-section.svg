@@ -18,8 +18,8 @@
 <line x1="636.8" y1="155.0" x2="636.8" y2="497.9" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
 <g id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery">
 <rect x="120.0" y="311.6" width="546.0" height="137.6" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" fill-opacity="0.75" data-instance="u214"/>
-<rect x="333.6" y="311.6" width="118.9" height="76.6" rx="2" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2" data-instance="u214-connector"/>
-<text x="393.0" y="353.9" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#075985">Samtec SSW-107-02-S-D · vertical host socket</text>
+<rect x="335.2" y="311.6" width="115.6" height="68.6" rx="2" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2" data-instance="u214-connector"/>
+<text x="393.0" y="353.9" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#075985">Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket</text>
 <text x="393.0" y="423.2" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 worst-case · 84 × 24 × 15.287 mm</text>
 <text x="393.0" y="473.2" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#166534">No battery appears: its Y=42…128-mm zone does not cross A–A.</text>
 </g>

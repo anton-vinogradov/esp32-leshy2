@@ -223,7 +223,7 @@ NRF1["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-рад�
 NRF2["Ebyte E01-ML01IPX<br/>полнофункциональное nRF24-радио №2"]
 CC["CC1101RGPR<br/>многодиапазонный sub-GHz transceiver"]
 VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
-U214_CONNECTOR["Samtec SSW-107-02-S-D<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
+U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
 U214["M5Stack U214 Cap LoRa-1262<br/>съёмный LoRa/GNSS Cap-модуль"]
   RP <-->|"independent PIO0 SM0"| NRF0
   RP <-->|"independent PIO0 SM1"| NRF1
@@ -424,7 +424,7 @@ IR_SAFE_GATE["SN74LVC1G08DCKR<br/>локальное аппаратное раз
 EVIDENCE_CMP_A["TLV1824PWR<br/>UI-компаратор фактического TX S3, C5 и IR"]
 EVIDENCE_CMP_B["TLV1824PWR<br/>RF-компаратор фактического TX 3×nRF24 и CC"]
 EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>отдельный RF-компаратор фактического voice TX"]
-U214_CONNECTOR["Samtec SSW-107-02-S-D<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
+U214_CONNECTOR["Samtec HLE-107-02-G-DV-PE-LC<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
 EXT_EVIDENCE_BUFFER["SN74LVC1G07DCKR<br/>5-В-стойкая развязка evidence от LoRa Cap"]
 EVIDENCE_MASK["TCA9535PWR<br/>16-битный AON-регистр маски девяти источников TX"]
 EVIDENCE_OR_0["BAT54ALT1G<br/>диодное объединение evidence S3 и C5"]

@@ -32,14 +32,14 @@ class ArchitectureValidationTests(unittest.TestCase):
         for token in (
             "HMX035CTFT-001",
             "M5Stack `U214` | 1",
-            "Samtec `SSW-107-02-S-D` | 5",
+            "Samtec `HLE-107-02-G-DV-PE-LC` | 5",
             "Hirose `FH12-40S-0.5SH(55)` | 5",
             "Ebyte `E01-ML01IPX` | 4",
             "NiceRF `SA518` | 2",
             "KiCad remains unauthorized",
         ):
             self.assertIn(token, plan)
-        self.assertIn("$151.815", plan)
+        self.assertIn("$153.44", plan)
         self.assertIn("not a finished-product page", plan)
         self.assertIn("Purchasing is the\nlast resort", plan)
 
@@ -345,7 +345,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**199/199** lines", rendered)
         self.assertIn("**188/199** lines", rendered)
         self.assertIn("**917/934** supplied placements", rendered)
-        self.assertIn("USD 211.5401", rendered)
+        self.assertIn("USD 211.7081", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -356,7 +356,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("Physical purchase families with explicit resolution gates", rendered)
         self.assertIn("I8 paper procurement-feasibility scope reviewed", rendered)
         self.assertNotIn("received_mate_and_routed_length_coupon_required", rendered)
-        self.assertIn("Samtec SSW-107-02-S-D", rendered)
+        self.assertIn("Samtec HLE-107-02-G-DV-PE-LC", rendered)
         self.assertIn("profile_variant_bom_and_hil_required", rendered)
         self.assertNotIn(
             "sitronix_st77922",
@@ -366,9 +366,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
 
-        cap_socket = self.database["devices"]["samtec_ssw_107_02_s_d"]
-        self.assertIn("214 shown in stock", cap_socket["orderable_source"]["document"])
-        self.assertIn("SSW-107-02-T-D", cap_socket["availability_note"])
+        cap_socket = self.database["devices"]["samtec_hle_107_02_g_dv_pe_lc"]
+        self.assertIn("138 shown", cap_socket["orderable_source"]["document"])
+        self.assertIn("locking-clip suffixes", cap_socket["availability_note"])
         self.assertEqual("not_drop_in_approved", cap_socket["alternate_gate"]["status"])
 
     def test_i9_joint_projection_classifies_every_abstract_endpoint(self):
@@ -1897,11 +1897,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("TXS0102DCUR", contract["unit_signals"])
         self.assertIn("TCA4307DGKR", contract["u214_signals"])
         self.assertIn("presence or identity contact", contract["identity_and_hot_plug"])
-        self.assertIn("Samtec SSW-107-02-S-D", contract["connector_truth"])
+        self.assertIn("Samtec HLE-107-02-G-DV-PE-LC", contract["connector_truth"])
+        self.assertIn("pass-through entry", contract["connector_truth"])
         self.assertIn("vertical", contract["connector_truth"])
         self.assertIn("Y=17..41 mm", contract["connector_truth"])
         self.assertIn("4.5 mm per side", contract["connector_truth"])
-        self.assertIn("Received-U214", contract["connector_truth"])
+        self.assertIn("Current-lot post section", contract["connector_truth"])
         self.assertIn("concrete device", contract["high_throughput_boundary"])
 
         expected = {
@@ -1920,14 +1921,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "u214_esd_c": "ti_tpd4e05u06_dqar",
             "unit_esd": "ti_tpd4e05u06_dqar",
             "unit_connector": "seeed_1125r_smt_4p",
-            "u214_connector": "samtec_ssw_107_02_s_d",
+            "u214_connector": "samtec_hle_107_02_g_dv_pe_lc",
         }
         for instance, device_id in expected.items():
             self.assertEqual(device_id, candidate["instances"][instance])
 
-        connector = self.database["devices"]["samtec_ssw_107_02_s_d"]
-        self.assertEqual("Samtec SSW-107-02-S-D", connector["mpn"])
-        self.assertEqual([18.29, 4.95, 8.51], connector["dimensions_mm"])
+        connector = self.database["devices"]["samtec_hle_107_02_g_dv_pe_lc"]
+        self.assertEqual("Samtec HLE-107-02-G-DV-PE-LC", connector["mpn"])
+        self.assertEqual([17.78, 5.08, 7.62], connector["dimensions_mm"])
+        self.assertEqual([17.78, 3.81], connector["mechanical_contract"]["opposite_face_pth_keepout_mm"])
         for pin in range(1, 15):
             self.assertEqual(
                 2,

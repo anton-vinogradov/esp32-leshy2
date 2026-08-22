@@ -111,12 +111,15 @@ RUN/KILL faces the enclosure side and is labelled on that external edge.
 
 ## Expansion
 
-- The raised rear 14-contact rail uses exact vertical `Samtec SSW-107-02-S-D`
+- The raised rear 14-contact rail uses exact pass-through
+  `Samtec HLE-107-02-G-DV-PE-LC`
   and accepts either `M5Stack U214 Cap LoRa-1262` or
   `LESHY2-LORA-CAP-01-EU868/US915` normal to the rear face. Both share the
   84×24-mm envelope and 56-mm retention pitch; the stock U214 remains the
   worst-case depth. The Cap sits between the antenna bank and battery holder
   and overhangs the 75-mm base by 4.5 mm per side.
+  Pass-through entry prevents an undocumented long Cap post from bottoming;
+  current-lot fit, force and cycle life are verified at incoming inspection.
 - A separate exact `1125R-SMT-4P` right-angle M5 Unit receptacle provides a
   protected, switchable 5-V branch and two isolated signal lines for qualified
   GNSS, LoRa, NFC, iButton/1-Wire and other modules. Its keyed mating-view order

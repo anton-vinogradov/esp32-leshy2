@@ -186,7 +186,7 @@ class ProductSiteTests(unittest.TestCase):
             "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
             "54.5×83.0×3.2 mm LCD/CTP body",
             "M5Stack U214",
-            "SSW-107-02-S-D",
+            "HLE-107-02-G-DV-PE-LC",
             "insert ⊗ · remove ⊙",
             "Keystone 1048P",
             'data-part="single-D-pad-cross"',
@@ -418,7 +418,7 @@ class ProductSiteTests(unittest.TestCase):
             "AS02404PO",
             "Keystone Electronics 1048P",
             "M5Stack U214",
-            "Samtec SSW-107-02-S-D",
+            "Samtec HLE-107-02-G-DV-PE-LC",
             'id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery"',
             'id="section-battery" data-cut-y-mm="82" data-contains="battery-controls-no-u214"',
             "No battery appears",
@@ -472,7 +472,7 @@ class ProductSiteTests(unittest.TestCase):
                 "MSPM0C1106SDGS20R",
                 "TPS3435CAKAGDDFR",
                 "1125R-SMT-4P",
-                "SSW-107-02-S-D",
+                "HLE-107-02-G-DV-PE-LC",
             ):
                 self.assertIn(token, diagrams)
 

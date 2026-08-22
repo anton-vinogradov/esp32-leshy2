@@ -1267,38 +1267,38 @@
         "MISO": {"physical": "13", "role": "signal"}, "NSS": {"physical": "14", "role": "signal"}
       }
     },
-    "samtec_ssw_107_02_s_d": {
-      "mpn": "Samtec SSW-107-02-S-D",
-      "kind": "14_contact_2x7_2_54mm_vertical_through_hole_socket",
-      "qualification": "verified_exact_paper_fit_received_u214_mating_hil_open",
-      "lifecycle": "active and authorized-distributor-orderable",
-      "dimensions_mm": [18.29, 4.95, 8.51],
+    "samtec_hle_107_02_g_dv_pe_lc": {
+      "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+      "kind": "14_contact_2x7_2_54mm_vertical_pass_through_socket_with_locking_clips",
+      "qualification": "verified_bounded_paper_fit_received_u214_mating_hil_open",
+      "lifecycle": "active Extended Life Product; 138 exact parts shown as ships-tomorrow stock",
+      "dimensions_mm": [17.78, 5.08, 7.62],
       "source": {
-        "document": "Samtec exact product page and SSW series drawing",
-        "version": "SSW-107-02-S-D / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL",
-        "url": "https://www.samtec.com/products/ssw-107-02-s-d",
-        "checked": "2026-08-19"
+        "document": "Samtec exact HLE product page, series print and HLE catalog",
+        "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+        "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+        "checked": "2026-08-23"
       },
       "orderable_source": {
-        "document": "Mouser exact-MPN authorized-distributor page; 214 shown in stock for immediate shipment",
-        "url": "https://www.mouser.fr/ProductDetail/Samtec/SSW-107-02-S-D?qs=XtX6y9BSeMh%252BITruJPqgTA%3D%3D",
-        "checked": "2026-08-22"
+        "document": "Samtec exact-MPN page; 138 shown in ships-tomorrow stock",
+        "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+        "checked": "2026-08-23"
       },
-      "availability_note": "Samtec's exact-MPN page publishes pricing but its 1132-piece Ships Tomorrow row is explicitly the plating-different SSW-107-02-T-D, not the selected SSW-107-02-S-D. Exact-S stock is instead evidenced by Mouser; the T variant must not be treated as a silent substitute.",
+      "availability_note": "The exact tube-packed G-DV-PE-LC configuration is shown by Samtec as stocked. Packaging, plating, tail and locking-clip suffixes are controlled and may not be silently substituted.",
       "alternate_gate": {
-        "candidate": "Samtec SSW-107-02-T-D",
+        "candidate": "Samtec BCS-107-F-D-PE-BE",
         "status": "not_drop_in_approved",
-        "reason": "The geometry is nominally compatible, but T changes the mating contact from selective 30-microinch gold to matte tin and lowers the published temperature ceiling from 125 C to 105 C; exposed removable-Cap retention, oxidation and cycle life would require requalification."
+        "reason": "BCS is also pass-through, but its published 4.34-mm minimum insertion is materially less tolerant of an undocumented short U214 post than HLE's 1.78-mm minimum insertion depth."
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 2.374,
+        "unit_price_usd": 2.542,
         "price_break": "Samtec OEM quantity-100 tier",
         "source": {
           "document": "Samtec exact-MPN published OEM price table",
-          "url": "https://www.samtec.com/products/ssw-107-02-s-d",
-          "checked": "2026-08-22"
+          "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+          "checked": "2026-08-23"
         }
       },
       "programmable": false,
@@ -1307,13 +1307,16 @@
         "rows": 2,
         "positions_per_row": 7,
         "pitch_mm": 2.54,
-        "orientation": "vertical socket normal to the raised rear dock plane with through-hole solder tails",
-        "nominal_body_length_mm": 18.29,
-        "registered_plan_depth_mm": 4.95,
-        "double_row_body_height_mm": 8.51,
+        "orientation": "vertical socket normal to the raised rear dock plane with pass-through entry, through-hole terminations and two locking clips",
+        "nominal_body_length_mm": 17.78,
+        "registered_plan_depth_mm": 5.08,
+        "opposite_face_pth_keepout_mm": [17.78, 3.81],
+        "body_height_above_board_mm": 3.51,
+        "registered_total_z_envelope_mm": 7.62,
         "accepted_square_post_mm": 0.635,
-        "published_insertion_depth_mm": [3.68, 6.35],
-        "u214_fit_status": "official U214 photos and size drawing place the male 2x7 normal to its broad rear face; contact count, pitch, sex and vertical mating axis are paper-compatible, while received U214 pin section, exposed length, bottoming and repeated-cycle retention remain HIL"
+        "published_minimum_insertion_depth_mm": 1.78,
+        "bottoming_limit": "none; the selected -PE pass-through entry removes a closed socket floor from the mating stack",
+        "u214_fit_status": "official U214 photos and drawing place the male 2x7 normal to its broad rear face; contact count, pitch, sex and vertical axis are paper-compatible. The HLE pass-through path accepts the standard 0.635-mm square-post class from 1.78 mm insertion without a bottoming maximum, so unknown post length no longer sets dock height. Current-lot section, fit, force and endurance remain H5 incoming inspection."
       },
       "contacts": {
         "PIN_1": {"physical": "mating cavity / board pad 1", "role": "signal"},
@@ -8729,7 +8732,7 @@
       },
       "electrical_contract": {
         "positions": 14, "rows": 2, "pitch_mm": 2.54, "post_section_mm": 0.635,
-        "mating_post_length_mm": 5.84, "host_mate": "Samtec SSW-107-02-S-D accepted insertion 3.68 to 6.35 mm"
+        "mating_post_length_mm": 5.84, "host_mate": "Samtec HLE-107-02-G-DV-PE-LC pass-through entry; 1.78-mm minimum insertion and no closed-end bottoming limit"
       },
       "programmable": false,
       "contacts": {

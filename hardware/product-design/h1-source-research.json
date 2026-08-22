@@ -105,7 +105,7 @@
     },
     {
       "id": "u214",
-      "selected": "M5Stack U214 with Samtec SSW-107-02-S-D host socket",
+      "selected": "M5Stack U214 with Samtec HLE-107-02-G-DV-PE-LC pass-through host socket",
       "official_findings": [
         {
           "source": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
@@ -122,9 +122,17 @@
         {
           "source": "https://docs.m5stack.com/en/core/Cardputer-Adv",
           "finding": "The reference host exposes an EXT 2.54-14P bus with the matching electrical pin map."
+        },
+        {
+          "source": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+          "finding": "The exact active HLE configuration is a vertical 2x7 2.54-mm through-hole socket with pass-through entry and locking clips; Samtec lists it as an Extended Life Product and publishes current stock and pricing."
+        },
+        {
+          "source": "https://suddendocs.samtec.com/catalog_english/hle.pdf",
+          "finding": "The controlled HLE series data accepts the standard 0.635-mm square-post class from 1.78-mm minimum insertion and does not impose the closed-end bottoming maximum that made the previous socket dependent on undocumented U214 post length."
         }
       ],
-      "remaining_gap": "Neither public schematic names the fitted male/female connector MPN or guarantees male-post section, exposed length, bottoming and repeated-cycle insertion with the selected Samtec socket.",
+      "remaining_gap": "M5Stack still does not name the fitted male header or guarantee current-lot post section, insertion force and cycle life. The pass-through host makes those received-part checks H5 release evidence rather than an H1 geometry blocker.",
       "replacement_review": [
         {
           "candidate": "generic alternative LoRa module or E22 carrier",
@@ -132,12 +140,17 @@
           "reason": "It loses direct compatibility with the accepted U214/Cardputer Cap ecosystem and does not remove the need for a controlled removable mechanical interface."
         },
         {
-          "candidate": "different 2x7 2.54-mm host socket",
-          "result": "not_yet_justified",
-          "reason": "A different receptacle cannot prove the undocumented U214 post geometry; the Samtec part already has a controlled body, contact range and broad availability."
+          "candidate": "Samtec HLE-107-02-G-DV-PE-LC pass-through host socket",
+          "result": "selected",
+          "reason": "The pass-through contact removes unknown post-length bottoming from the retained dock-height geometry while preserving the 2x7 2.54-mm Cap-Bus, active lifecycle and near-identical cost."
+        },
+        {
+          "candidate": "Samtec BCS-107-F-D-PE-BE pass-through host socket",
+          "result": "rejected_as_preferred",
+          "reason": "It preserves topology but requires 4.34-mm minimum insertion versus HLE's 1.78 mm, giving less tolerance to the still-undocumented U214 post."
         }
       ],
-      "current_disposition": "retain_selected_and_request_m5stack_mating_data"
+      "current_disposition": "select_pass_through_host_and_move_current_lot_fit_to_h5"
     }
   ]
 }
