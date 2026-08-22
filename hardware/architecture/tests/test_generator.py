@@ -42,6 +42,21 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("$151.815", plan)
         self.assertIn("not a finished-product page", plan)
 
+        procurement = GENERATOR.REPO_ROOT / "hardware/procurement"
+        index = (procurement / "README.md").read_text(encoding="utf-8")
+        for artifact, token in (
+            ("HMX035CTFT-001-display-rfq.md", "supplier-controlled approval drawing"),
+            ("E01-ML01IPX-sample-rfq.md", "exact series/MPN"),
+            ("SA518-sample-rfq.md", "contact-17 contradiction"),
+        ):
+            self.assertIn(artifact, index)
+            self.assertIn(token, (procurement / artifact).read_text(encoding="utf-8"))
+
+        voice = self.database["devices"]["nicerf_sa518_v11"]
+        conflicts = " ".join(voice["documentation_conflicts"])
+        self.assertIn("UPDATE", conflicts)
+        self.assertIn("H/L", conflicts)
+
     def test_hwfw_target_integration_contract_matches_architecture(self):
         contract = json.loads(
             (GENERATOR.REPO_ROOT / "hardware/architecture/target-integration-contract.json")

@@ -3423,8 +3423,12 @@
         "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
         "version": "1.1 / 2026-05",
         "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-22"
       },
+      "documentation_conflicts": [
+        "Rev 1.1 contact 17 UPDATE is marked output in the pin table but described as an externally pulled-low update-mode input; runtime drive remains forbidden until supplier response and specimen HIL",
+        "Rev 1.1 advertises 0.5-W/1-W as optional while contact 12 H/L is also described as a live power selector; exact delivered variant behavior requires supplier confirmation and specimen HIL"
+      ],
       "orderable_source": {
         "document": "SA518 current manufacturer product/RFQ page; no authorized stocking distributor or public quantity inventory is claimed",
         "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
