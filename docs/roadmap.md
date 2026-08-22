@@ -38,6 +38,44 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
+## Current H1 breakdown
+
+<!-- current-substep: H1.1.2 -->
+
+**Exact marker: `H1.1.2`** — normalize manufacturer dimensions, coordinate
+datums and outward directions for every body used by the mockup. Later views
+already exist as provisional projections, but none is a reviewed later
+substep while this source-data gate is open.
+
+- ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
+- `H1.1` — physical-source register.
+  - ✅ `H1.1.1` — every selected body or explicit `MPN TBD` has exactly one
+    product role in the machine source.
+  - ▶️ **`H1.1.2` — current:** for each rendered body, reconcile published or
+    evidence-backed `L×W×H`, coordinate origin, orientation and outward
+    connector/actuator direction.
+  - ⏳ `H1.1.3` — classify each unresolved item as an H1 blocker or an explicit
+    received-sample H5 gate; inferred dimensions cannot silently become exact.
+  - ⏳ `H1.1.4` — freeze the renderer's dimension/source table.
+- ⏳ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
+  accessory keep-outs; existing independent projections are inputs only.
+- ⏳ `H1.3` — outer faces: screen, D-pad, keys, encoder, LEDs, arrows, external
+  interfaces and visible, unobscured silkscreen.
+- ⏳ `H1.4` — mirrored inner board faces: every body, speaker, microphone,
+  RUN/KILL, service controls and board-to-board stack without inner silkscreen.
+- ⏳ `H1.5` — real antenna-edge top view and separate sections through the
+  U214 rail and battery/control zone, including insertion and service paths.
+- ⏳ `H1.6` — automated collision, hole/keep-out, clearance, label visibility,
+  antenna spacing, actuator travel and service-access checks.
+- ⏳ `H1.7` — repeat the pin/resource allocation against the physical result
+  and generate one acceptance package from the same source.
+- ⏳ `H1.8` — explicit user acceptance; only then may H2 begin.
+
+`H1.1.2` exits when every rendered body has a traceable source, dimensions,
+datum, orientation and interface direction, or a named sample-only gate with
+no invented geometry. Closing any substep requires changing the exact marker
+on both landing and roadmap pages in the same commit before advancing work.
+
 ## Hardware sequence and firmware intersections
 
 ```mermaid

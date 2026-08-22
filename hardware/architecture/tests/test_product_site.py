@@ -103,6 +103,24 @@ class ProductSiteTests(unittest.TestCase):
             for stage in range(2, 10):
                 self.assertNotIn(reviewed, rows[stage], f"{name}: H{stage}")
 
+    def test_current_hardware_substep_is_visible_and_synchronized(self):
+        pages = ("README.md", "README.ru.md", "docs/roadmap.md", "docs/roadmap.ru.md")
+        markers = {}
+        for name in pages:
+            page = self.read(name)
+            found = re.findall(r"<!-- current-substep: (H\d+(?:\.\d+)+) -->", page)
+            self.assertEqual(1, len(found), name)
+            markers[name] = found[0]
+            self.assertIn(f"`{found[0]}`", page, name)
+            self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
+            self.assertIn("commit", page, name)
+
+        self.assertEqual({"H1.1.2"}, set(markers.values()))
+        for name in ("README.md", "README.ru.md"):
+            page = self.read(name)
+            for substep in ("H1.0", "H1.1.1", "H1.1.2", "H1.1.3", "H1.8"):
+                self.assertIn(f"`{substep}`", page, f"{name}: {substep}")
+
     def test_all_local_public_links_exist(self):
         for name in self.PUBLIC_PAGES:
             page_path = REPO_ROOT / name

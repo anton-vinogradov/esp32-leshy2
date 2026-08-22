@@ -28,6 +28,37 @@ dependencies and exit criteria.
 **Hardware is at H1.** There is no current production schematic, PCB layout or
 target-emulator run, and no order is authorized.
 
+### Current phase H1 — detailed position
+
+<!-- current-substep: H1.1.2 -->
+
+**Exact marker: `H1.1.2`** — normalize manufacturer dimensions, coordinate
+datums and outward directions for every body used by the mockup. Existing
+rendered views are provisional outputs; they do not complete later substeps.
+
+- ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
+- `H1.1` — build the physical-source register.
+  - ✅ `H1.1.1` — register every selected body or explicit `MPN TBD` with one
+    product role.
+  - ▶️ **`H1.1.2` — current:** reconcile dimensions, origin, orientation and
+    connector/actuator direction with manufacturer evidence.
+  - ⏳ `H1.1.3` — classify every remaining uncertainty as an H1 blocker or a
+    received-sample H5 gate.
+  - ⏳ `H1.1.4` — freeze the dimension/source table used by the renderer.
+- ⏳ `H1.2` — create one coordinate model for both boards and the enclosure.
+- ⏳ `H1.3` — close outer faces, controls, arrows and readable silkscreen.
+- ⏳ `H1.4` — close mirrored inner faces and the board-to-board stack.
+- ⏳ `H1.5` — close the real antenna-edge top view, sections, U214 and battery
+  access.
+- ⏳ `H1.6` — pass collision, clearance, visibility and service-access checks.
+- ⏳ `H1.7` — repeat the pin/resource fit and assemble the acceptance package.
+- ⏳ `H1.8` — obtain explicit user acceptance of the complete mockup.
+
+`H1.1.2` exits only when each rendered body has a sourced `L×W×H`, datum,
+orientation and interface direction, or an explicit non-invented sample gate.
+When any substep closes, this marker and both roadmap pages are updated in the
+same commit before work advances.
+
 Leshy2 is an open, autonomous instrument for radio observation,
 communications, diagnostics and authorized research of wireless and contact
 systems. This documentation describes what the target device does and how it
