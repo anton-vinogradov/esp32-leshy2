@@ -1,109 +1,113 @@
-# Leshy2 — roadmap to a finished product
+# Leshy2 hardware — roadmap to manufacturing
 
-[Русский](roadmap.ru.md) · [Home](../README.md)
+[Русский](roadmap.ru.md) · [Home](../README.md) ·
+[Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current: R1 — product and mechanical design.** Architecture and the
-> portable executable firmware model are reviewed, but the external and inner
-> mockup has not been accepted. There is no current production schematic, PCB
-> layout, target build or target-emulator run. Component and PCB orders remain
-> blocked.
+> **▶️ Current hardware stage: H1 — physical product design.** H0 is
+> reviewed. The external and internal mockup is not yet accepted, so there is
+> no current production ECAD schematic, PCB layout or authorized order.
 
-Status last reconciled: **23 August 2026**. This page follows the project until
-full completion and is updated whenever a stage changes.
+Status last reconciled: **23 August 2026**. This is the hardware repository's
+own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
+results appear here only where they are prerequisites of a hardware gate.
 
 ## Status key
 
-- ✅ **Reviewed** — the artifact and its evidence exist; a later mismatch may
-  reopen the stage.
-- ▶️ **Current** — the main active stage.
-- ⏳ **Waiting** — prerequisites are not closed.
-- 🔒 **Blocked** — the action is forbidden until the stated gate passes.
+- ✅ **Reviewed** — this stage's artifact and evidence exist; a later mismatch
+  can reopen it.
+- ▶️ **Current** — the first unfinished hardware stage.
+- ⏳ **Waiting** — the immediately preceding hardware stage is not closed.
+- 🔒 **Blocked** — an order or downstream action is forbidden until its gate.
 
-## Where we are
+## Where the hardware is
 
 | Area | Actual state |
 |---|---|
-| Capabilities, physical owners, buses and pin assignment | ✅ Reviewed for working architecture G2F-3I |
-| Portable safety, L2IP, update and five-domain logic | ✅ Reviewed: 24 deterministic host scenarios; clean ASan/UBSan |
-| External and inner product design | ▶️ A dimensioned projection exists, but it is not user-approved production mechanics |
-| Principle diagrams on the site | ✅ Conceptual component relationships are published |
-| Current production ECAD schematic | ⏳ Not created; the incompatible former implementation is archived |
-| KiCad placement and PCB routing | 🔒 Not started and not authorized |
-| Electrical and transient simulation | ⏳ Not run |
-| Five target images | ⏳ Not created |
-| Emulators | ⏳ No target run; the host model is not called MCU emulation |
+| Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
+| Physical product design | ▶️ H1: dimensioned projections and working allocation exist, but the complete mockup is not accepted |
+| Principle diagrams on the site | Included as H1 working artifacts; they are not production ECAD |
+| Current production ECAD schematic | ⏳ H2: not created; the incompatible former implementation is archived |
+| Electrical and transient evidence | ⏳ H3: not run |
+| Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
+| KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
 | Physical samples and HIL | 🔒 Not ordered or run |
-| Production PCB order | 🔒 Forbidden before R8 |
+| Prototype PCB order | 🔒 Forbidden before H7 |
+| Production order | 🔒 Forbidden before H9 |
 
-Principle diagrams explain **what connects to what**. A production ECAD
-schematic must additionally contain exact symbols, contacts, values, rails,
-protection, footprints and ERC evidence. PCB layout begins later still.
+Principle diagrams explain **what connects to what**. Production ECAD must add
+exact symbols, contacts, values, rails, protection, footprints and ERC
+evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Stage dependencies
+## Hardware sequence and firmware intersections
 
 ```mermaid
 flowchart TD
-  R0["✅ R0<br/>requirements and architecture"]
-  R1["▶️ R1<br/>product and mechanical design"]
-  R2["R2<br/>production ECAD schematic"]
-  R3["R3<br/>virtual electrical verification"]
-  R4["✅ R4<br/>portable firmware model"]
-  R5["R5<br/>target builds and emulation"]
-  R6["R6<br/>joined pre-layout review"]
-  R7["R7<br/>component evidence samples"]
-  R8["R8<br/>PCB placement and routing"]
-  R9["R9<br/>prototype and bring-up"]
-  R10["R10<br/>HIL, RF, power and safety"]
-  R11["R11<br/>complete product firmware"]
-  R12["R12<br/>release and manufacturing"]
+  subgraph HW["Hardware roadmap — sequential"]
+    H0["✅ H0<br/>requirements and functional architecture"]
+    H1["▶️ H1<br/>physical product design"]
+    H2["H2<br/>production ECAD schematic"]
+    H3["H3<br/>virtual electrical verification"]
+    H4["H4<br/>joined pre-layout gate"]
+    H5["H5<br/>component evidence samples"]
+    H6["H6<br/>PCB placement and routing"]
+    H7["H7<br/>prototype and bring-up"]
+    H8["H8<br/>physical qualification"]
+    H9["H9<br/>manufacturing release"]
+    H0 --> H1 --> H2 --> H3 --> H4 --> H5 --> H6 --> H7 --> H8 --> H9
+  end
 
-  R0 --> R1 --> R2 --> R3 --> R6
-  R0 --> R4 --> R5 --> R6
-  R2 --> R5
-  R1 --> R6
-  R6 --> R7 --> R8 --> R9 --> R10 --> R12
-  R5 --> R11 --> R12
-  R9 --> R11
+  subgraph FW["External gates from the firmware roadmap"]
+    F2["firmware F2<br/>target projects"]
+    F3["firmware F3<br/>boot and emulation"]
+    F10["firmware F10<br/>HIL qualification"]
+    F11["firmware F11<br/>release"]
+    F2 --> F3
+    F10 --> F11
+  end
+
+  H2 -. "pin/BSP contract" .-> F2
+  F3 -. "target evidence" .-> H4
+  H7 -. "prototype" .-> F10
+  H8 -. "physical evidence" .-> F11
+  F11 -. "compatible release" .-> H9
 ```
 
-Evidence-component ordering is allowed only at R7. Prototype PCB ordering is
-allowed at R9. A production order is possible only after R12.
+Evidence-component ordering is allowed at H5 after its separate cost approval.
+Prototype PCB submission is allowed at H7 after H6 acceptance and explicit
+order approval. A production order is possible only after H9.
 
-## Complete path
+## Complete hardware path
 
 | Stage | Status | Stage output | Exit criterion |
 |---|---|---|---|
-| **R0. Requirements and architecture** | ✅ Reviewed | Complete capability set, five compute domains, every radio/interface owner, pin/resource budget, one active signal group and full-function 3×nRF24 | Architecture checks pass; no required interface, contact or physical owner is unknown |
-| **R1. Product and mechanical design** | ▶️ Current | Accepted exterior, both outer and inner faces, true antenna-edge view, physical sections and assembly sequence | Dimensions come from selected MPNs; no component, fastener, silkscreen or accessory collision; battery, U214, controls, ports, microphone and speaker are accessible; the user accepts the mockup |
-| **R2. Production ECAD schematic** | ⏳ Waiting for R1 | A new current schematic split into reviewable sheets | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; machine net map matches architecture; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed |
-| **R3. Virtual electrical verification** | ⏳ Waiting for R2 | Calculations and simulation before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; display/backlight, audio and IR corners; timing/levels; RF corridors, returns and pre-layout constraints |
-| **R4. Portable executable model** | ✅ Reviewed | Common C safety, L2IP, atomic update/rollback and five-domain fault-injection cores | 24 scenarios pass normal and ASan/UBSan builds; CRC, replay, deadlines, queue saturation, TX lease/evidence, thermal, heartbeat, watchdog, fault viewer and rollback are covered |
-| **R5. Target builds and available emulation** | ⏳ Waiting for R2 and using R4 | Buildable S3, C5, RP, Pack and Safety skeleton images on production SDKs | All five images build reproducibly; map files fit flash/RAM/rollback; S3 runs boot/fault/update in official QEMU; shared code runs on host platforms; non-emulated peripherals have a mandatory dev-board matrix |
-| **R6. Joined pre-layout review** | 🔒 Waiting for R1–R5 | One mechanical/electrical/firmware review | No virtually testable blocker remains; every residual physical uncertainty has a named measurement and bring-up test |
-| **R7. Component evidence samples** | 🔒 Waiting for R6 and separate cost approval | Minimum evidence purchase, not a production basket | Received display/U214/connectors/radios are identified and measured; raw records are retained; a mismatch returns to its source stage |
-| **R8. PCB placement and routing** | 🔒 Waiting for R7 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package separately accepted |
-| **R9. Prototype and bring-up** | 🔒 Waiting for R8 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five MCUs program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
-| **R10. Complete physical qualification** | 🔒 Waiting for R9 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; the active group is not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
-| **R11. Complete product firmware** | ⏳ Starts after R5; closes after R9/R10 | Real five-target features, UI and update system | Menu/waterfall, radio profiles, recording, audio, M5 expansion, three functional levels, fresh Controlled Zone banner, target authorization, installation non-aggression agreement, signed open update, recovery and fault viewer pass automatic and HIL tests |
-| **R12. Release and manufacturing** | 🔒 Waiting for R10 and R11 | Reproducible finished product | No blocker; residual risks explicitly accepted; BOM, Gerber/ODB++, placement, assembly, fixture, calibration, firmware bundles, keys, recovery, licensing and site agree; both repositories receive compatible release tags |
+| **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
+| **H1. Physical product design** | ▶️ Current | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepts the mockup |
+| **H2. Production ECAD schematic** | ⏳ Waiting for H1 | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 can consume the contract without invented pins |
+| **H3. Virtual electrical verification** | ⏳ Waiting for H2 | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; display/backlight, audio and IR corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
+| **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
+| **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
+| **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
+| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
+| **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
+| **H9. Manufacturing release** | 🔒 Waiting for H8 and firmware F11 | Reproducible hardware manufacturing and test package paired with released firmware | Zero blocker; residual risks accepted; BOM, Gerber/ODB++, placement, assembly, fixture, calibration and hardware tests agree; firmware bundle and both compatible release tags are named |
 
 ## Advancement rules
 
-1. Each stage consumes reviewed source artifacts from its prerequisites rather
-   than manually restating earlier decisions.
-2. A mismatch is fixed in its source artifact and downstream files are
+1. Hardware stages are sequential: no later `H` stage can be reviewed while
+   an earlier `H` stage remains unfinished.
+2. A cross-repository dependency is named by its real firmware `F` stage; it
+   never becomes a duplicate hardware stage.
+3. A mismatch is fixed in its source artifact and downstream files are
    regenerated.
-3. An unexpected extra feature is not silently removed: first check whether a
+4. An unexpected extra feature is not silently removed: first check whether a
    requirement was omitted.
-4. A low-cost improvement that does not change product behavior is accepted
-   automatically. Functional or material-cost changes require a separate
-   decision.
-5. **Reviewed** means evidence exists; a later fact may reopen the stage.
+5. A low-cost improvement that does not change product behavior is accepted
+   automatically. Functional or material-cost changes require a decision.
 6. RF transmission and dangerous fault tests run only on owned loads, with
    target-owner authorization or in an isolated laboratory.
 
 ## Next action
 
-Work is currently limited to R1: turn the exterior and inner mockup into one
-clear package for user acceptance. Production ECAD, PCB routing and purchasing
-do not start first.
+Work is limited to H1: turn the exterior and internal mockup into one clear,
+dimensionally consistent acceptance package. Production ECAD, PCB routing and
+purchasing do not start first.

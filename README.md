@@ -2,9 +2,9 @@
 
 [Русский](README.ru.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
 
-> **Project status: R1 — product and mechanical design.** The current mockup
+> **Hardware status: H1 — physical product design.** The current mockup
 > is not accepted; production ECAD, PCB routing and purchasing remain blocked.
-> Follow the [roadmap to the finished product](docs/roadmap.md).
+> Follow the [hardware roadmap](docs/roadmap.md).
 
 ## Roadmap and current position
 
@@ -14,21 +14,18 @@ dependencies and exit criteria.
 
 | Stage | Status | Result |
 |---|---|---|
-| R0 · Requirements and architecture | ✅ Reviewed | capabilities, five domains, ownership, buses and pin/resource budget |
-| **R1 · Product and mechanical design** | **▶️ Current** | accepted exterior, inner faces, top view, sections and assembly sequence |
-| R2 · Production ECAD schematic | ⏳ Waiting for R1 | exact schematic, footprints, values, net map and clean ERC |
-| R3 · Virtual electrical verification | ⏳ Waiting for R2 | power, transient, thermal, timing, RF and fault evidence |
-| R4 · Portable executable firmware model | ✅ Reviewed | 24 host scenarios plus clean ASan/UBSan |
-| R5 · Target builds and emulation | ⏳ Waiting for R2; uses R4 | five target images, size gates, S3 QEMU and dev-board matrix |
-| R6 · Joined pre-layout review | 🔒 Blocked by R1–R5 | closed virtual blockers and named physical uncertainties |
-| R7 · Component evidence samples | 🔒 Blocked by R6 and cost approval | received-part identity, dimensions and first HIL evidence |
-| R8 · PCB placement and routing | 🔒 Blocked by R7 | reviewed two-board layout, DRC and manufacturing package |
-| R9 · Prototype fabrication and bring-up | 🔒 Blocked by R8 and order approval | prototype boards, rail/boot/recovery and interface smoke tests |
-| R10 · Physical qualification | 🔒 Blocked by R9 | RF, power, thermal, safety, endurance and full 3×nRF24 HIL |
-| R11 · Complete product firmware | ⏳ Starts after R5; closes after R9/R10 | five-target features, UI, signed update, recovery and safety levels |
-| R12 · Release and manufacturing | 🔒 Blocked by R10/R11 | reproducible BOM/fab/test/firmware/site release with no blocker |
+| H0 · Product requirements and functional architecture | ✅ Reviewed | capability scope, compute domains, owners, interfaces and safety rules |
+| **H1 · Physical product design** | **▶️ Current** | accepted exterior/inner arrangement, real dimensions, controls, labels and feasible resource allocation |
+| H2 · Production ECAD schematic | ⏳ Waiting for H1 | exact symbols, pins, footprints, values, nets and clean ERC |
+| H3 · Virtual electrical verification | ⏳ Waiting for H2 | power, transient, thermal, timing, RF and fault evidence |
+| H4 · Joined pre-layout gate | 🔒 Waiting for H1–H3 and firmware F3 | closed virtual blockers and named physical uncertainties |
+| H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | received-part identity, dimensions and fit evidence |
+| H6 · PCB placement and routing | 🔒 Waiting for H5 | reviewed two-board layout, DRC and manufacturing package |
+| H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6 and order approval | prototype boards, rail/boot/recovery and interface smoke tests |
+| H8 · Physical qualification | 🔒 Waiting for H7 | RF, power, thermal, safety, endurance and full 3×nRF24 HIL |
+| H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | reproducible BOM/fab/test package and compatible release tags |
 
-**We are at R1.** There is no current production schematic, PCB layout or
+**Hardware is at H1.** There is no current production schematic, PCB layout or
 target-emulator run, and no order is authorized.
 
 Leshy2 is an open, autonomous instrument for radio observation,

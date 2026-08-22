@@ -53,14 +53,15 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current: R1", "not been accepted", "24 deterministic host scenarios",
-                "no current production schematic", "No target run",
-                "R12. Release and manufacturing", "Production ECAD",
+                "Current hardware stage: H1", "not accepted",
+                "F3 target boot/emulation is not closed",
+                "no current production ECAD schematic",
+                "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Сейчас: R1", "пользователем не принят",
-                "24 детерминированных host-сценария", "Не создана",
-                "Target-прогонов не было", "R12. Release и производство",
+                "Текущий аппаратный этап: H1", "целостный мокап не принят",
+                "F3 не закрыт", "не создана",
+                "H9. Производственный release",
                 "Production ECAD",
             ),
         }
@@ -68,21 +69,39 @@ class ProductSiteTests(unittest.TestCase):
             page = " ".join(self.read(name).split())
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
-            for stage in range(13):
-                self.assertIn(f"R{stage}", page, f"{name}: missing R{stage}")
+            for stage in range(10):
+                self.assertIn(f"H{stage}", page, f"{name}: missing H{stage}")
 
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "We are at R1", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Мы на R1", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H1", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H1", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
-            for stage in range(13):
-                self.assertIn(f"R{stage} ·", page, f"{name}: missing R{stage}")
+            for stage in range(10):
+                self.assertIn(f"H{stage} ·", page, f"{name}: missing H{stage}")
+
+    def test_hardware_stages_are_strictly_sequential(self):
+        for name, reviewed in (
+            ("README.md", "Reviewed"),
+            ("README.ru.md", "Проведено ревью"),
+        ):
+            page = self.read(name)
+            rows = {
+                int(stage): row
+                for stage, row in re.findall(
+                    r"^\| \**H(\d+) ·([^\n]+)$", page, flags=re.MULTILINE
+                )
+            }
+            self.assertEqual(set(range(10)), set(rows), name)
+            self.assertIn(reviewed, rows[0], name)
+            self.assertIn("Current" if name == "README.md" else "Сейчас", rows[1], name)
+            for stage in range(2, 10):
+                self.assertNotIn(reviewed, rows[stage], f"{name}: H{stage}")
 
     def test_all_local_public_links_exist(self):
         for name in self.PUBLIC_PAGES:
