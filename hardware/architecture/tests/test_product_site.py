@@ -47,7 +47,7 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/status", "docs/stages",
             ):
                 self.assertNotIn(forbidden, page, f"{name}: {forbidden}")
-            if "roadmap" not in name:
+            if "roadmap" not in name and not name.startswith("README"):
                 self.assertNotIn("проведено ревью", page, name)
 
     def test_roadmap_reports_current_truth_and_complete_route(self):
@@ -73,6 +73,16 @@ class ProductSiteTests(unittest.TestCase):
 
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
+        landing_pages = {
+            "README.md": ("Roadmap and current position", "We are at R1", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Мы на R1", "печать/на фабрику"),
+        }
+        for name, tokens in landing_pages.items():
+            page = self.read(name)
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+            for stage in range(13):
+                self.assertIn(f"R{stage} ·", page, f"{name}: missing R{stage}")
 
     def test_all_local_public_links_exist(self):
         for name in self.PUBLIC_PAGES:
