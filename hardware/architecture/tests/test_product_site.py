@@ -263,16 +263,18 @@ class ProductSiteTests(unittest.TestCase):
             "TE Connectivity 2118651-2",
             'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
             'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
-            "67 · SPK",
-            'data-opposing-pairs="17"',
+            " · SPK",
+            'data-opposing-pairs="41"',
             'data-intentional-mates="1"',
-            'data-min-z-clearance-mm="2.85"',
+            'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
-            'data-opposing-cable-pairs="0"',
+            'data-opposing-cable-pairs="3"',
             'data-cable-od-max-mm="1.13"',
-            "opposing inner faces: 17 non-mating XY pairs checked; minimum Z gap 2.85 mm",
-            "native RF coax: 2 routes checked; 0 opposing-body crossings; maximum OD 1.13 mm",
-            "limiting pair: 19 3.5-mm headphone/line connector / 35 VHF/UHF voice transceiver",
+            'data-functional-zones="1"',
+            'data-voice-rf-route-mm="33.00"',
+            "opposing inner faces: 41 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm",
+            "limiting pair: 20 3.5-mm headphone/line connector / 115 protected-pack branch fuse #0",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
@@ -299,8 +301,8 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=13", page)
-            self.assertIn("internal-board-layout.svg?layout=10", page)
+            self.assertIn("current-clamshell.svg?layout=14", page)
+            self.assertIn("internal-board-layout.svg?layout=11", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(

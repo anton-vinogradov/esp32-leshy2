@@ -1888,7 +1888,9 @@
       "kind": "dual_spdt_analog_switch",
       "qualification": "reference_only",
       "lifecycle": "active",
-      "dimensions_mm": [3.0, 4.9, null],
+      "dimensions_mm": [3.0, 4.9, 1.1],
+      "maximum_dimensions_mm": [3.1, 5.05, 1.1],
+      "mechanical_height_basis": "TI DGS0010A package outline: VSSOP body 2.9–3.1 by 4.75–5.05 mm, 1.1-mm maximum height",
       "source": {
         "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
         "version": "SCDS402B, June 2019, revised February 2024",
@@ -2914,6 +2916,8 @@
       "qualification": "verified_reference",
       "lifecycle": "nrf24_family_not_recommended_for_new_designs",
       "dimensions_mm": [12.0, 19.0, 2.0],
+      "maximum_dimensions_mm": [12.1, 19.1, 2.1],
+      "mechanical_height_basis": "Ebyte mechanical drawing: 12.0±0.1 by 19.0±0.1 mm; maximum 2.1-mm overall module profile from the 2.0±0.1-mm side view",
       "source": {
         "document": "E01-ML01IPX product specification",
         "version": "2025-01-16",
@@ -3371,6 +3375,17 @@
       "qualification": "verified_candidate",
       "lifecycle": "current_product",
       "dimensions_mm": [39.5, 24.0, 3.15],
+      "maximum_dimensions_mm": [40.0, 24.5, 3.25],
+      "mechanical_height_basis": "NiceRF SA518 Rev 1.1 mechanical drawing: 39.50±0.5 by 24.00±0.5 by 3.15±0.1 mm",
+      "mechanical_contract": {
+        "antenna_contact": {
+          "physical": "7",
+          "illustrated_edge": "bottom edge in the manufacturer underside view",
+          "nominal_center_from_illustrated_top_left_mm": [4.5, 24.0],
+          "coordinate_qualification": "working nominal inferred from the 4.50-mm pad pitch and drawing artwork; exact edge offset remains a received-specimen/land-pattern gate"
+        },
+        "placement_rule": "rotate 180 degrees so contact 7 faces the VHF/UHF SMA and retains a short straight RF corridor"
+      },
       "source": {
         "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
         "version": "1.1 / 2026-05",
@@ -3995,7 +4010,9 @@
       "kind": "vssop8",
       "qualification": "verified_exact_u214_i2c_hot_swap_boundary",
       "lifecycle": "active",
-      "dimensions_mm": [3.0, 4.9],
+      "dimensions_mm": [3.0, 4.9, 1.1],
+      "maximum_dimensions_mm": [3.1, 5.05, 1.1],
+      "mechanical_height_basis": "TI DGK0008A package outline: VSSOP body 2.9–3.1 by 4.75–5.05 mm, 1.1-mm maximum height",
       "source": {
         "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
         "version": "SCPS270B",

@@ -359,6 +359,18 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TPS3435CAKAGDDFR",
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
+            "Texas Instruments TMUX1136DGSR",
+            "TCA4307DGKR",
+            "Sunlord MWSA0503S-2R2MT",
+            "Murata GRM31CR71E106MA12L",
+            'data-zone="cc-reference-rf-network"',
+            'data-route="SA518.7-to-VOICE-V/U"',
+            'data-opposing-pairs="41"',
+            'data-min-z-clearance-mm="3.31"',
+            'data-opposing-cable-pairs="3"',
+            'data-voice-rf-route-mm="33.00"',
+            "outward connector / through-hole tail clearance on the opposite face: ≥1.5 mm",
+            "all mechanically significant bodies are accounted",
         ):
             self.assertIn(token, internal)
         self.assertNotIn('data-layer="pcb-silkscreen"', internal)
@@ -373,6 +385,22 @@ class ArchitectureValidationTests(unittest.TestCase):
             "nRF24-1",
         ):
             self.assertNotIn(forbidden_inner_silk, internal)
+        self.assertEqual(
+            [12.1, 19.1, 2.1],
+            self.database["devices"]["ebyte_e01_ml01ipx"]["maximum_dimensions_mm"],
+        )
+        self.assertEqual(
+            [40.0, 24.5, 3.25],
+            self.database["devices"]["nicerf_sa518_v11"]["maximum_dimensions_mm"],
+        )
+        self.assertEqual(
+            [3.1, 5.05, 1.1],
+            self.database["devices"]["ti_tmux1136_dgsr"]["maximum_dimensions_mm"],
+        )
+        self.assertEqual(
+            [3.1, 5.05, 1.1],
+            self.database["devices"]["tca4307dgkr"]["maximum_dimensions_mm"],
+        )
         sandwich = (
             GENERATOR.REPO_ROOT
             / "docs/images/sandwich-section.svg"

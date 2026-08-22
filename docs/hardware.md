@@ -138,16 +138,23 @@ component overlap and entry into the 4-mm screw-head keep-outs around the M2.5
 mounting holes.
 
 Every placed body on both inner faces must also have a manufacturer-backed body
-height. The generator mirrors the RF/power board into the UI-board physical
-datum and checks all 17 non-mating pairs whose XY projections overlap across
-the exact 11-mm channel. The current limiting pair—the headphone jack opposite
-the VHF/UHF radio—retains a 2.85-mm nominal Z gap, above the enforced 0.7-mm
-minimum. The aligned FX8C plug and receptacle are validated separately as the
-single intentional mate. Both exact 30-mm native RF coax routes are checked
-against same-face bodies, screw keep-outs and all opposing bodies; their current
-1.13-mm-OD corridors have no opposing-body XY crossing. Passives and
-manufacturing tolerances remain outside this architecture projection and must
-close in ECAD before fabrication.
+height. Maximum tolerance envelopes are used where the manufacturer publishes
+them. The generator mirrors the RF/power board into the UI-board physical datum
+and checks all 41 non-mating pairs whose XY projections overlap across the exact
+11-mm channel. The current limiting pair—the headphone jack opposite a protected
+pack fuse—retains a 3.31-mm Z gap, above the enforced 0.7-mm minimum. The aligned
+FX8C plug and receptacle are validated separately as the single intentional mate.
+The opposite-face bodies and through-hole tails of the external RF jacks and U214
+socket retain at least 1.5 mm of plan clearance from inner components. The
+central nRF24 module is rotated 90 degrees to clear the U214 tails; the SA518
+contact 7 is aligned to a straight 33-mm VHF/UHF corridor; and the CC1101 plus
+its reference matching network occupy a dedicated dashed RF zone at the
+`SUB-GHz` jack. Both exact 30-mm native RF coax routes are checked against
+same-face bodies, screw keep-outs and all opposing bodies. Their three opposing
+XY crossings retain 7.77 mm of Z clearance. All mechanically significant
+bodies—including power inductors, bulk capacitors, pack protection, interface
+buffers and audio selectors—must appear in a physical projection. Only small
+passives, unshown copper and manufacturing tolerances remain for ECAD closure.
 
 In one line below the display, user-facing actual-transmit labels cover
 `WI-FI/BLE`, `WI-FI/15.4`, `nRF24-1`, `nRF24-2`, `nRF24-3`, `SUB-GHz`,
@@ -158,9 +165,9 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=13)
+![Dimensioned external layout](images/current-clamshell.svg?layout=14)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=10)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=11)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

@@ -71,6 +71,8 @@ REAR_RF = (
     (49.5, "VOICE-V/U", "SMA"),
     (61.5, "N24-2", "SMA"),
 )
+VOICE_RF_CORRIDOR = ((49.5, 0.0), (49.5, 33.0))
+OPPOSITE_FACE_CLEARANCE_MM = 1.5
 RF_INSTANCE_BY_PATH = {
     "S3-2G4": "s3_external_rp_sma",
     "C5-2G4/5": "c5_external_rp_sma",
@@ -137,7 +139,7 @@ EDGE_INTERFACES = (
 
 # Acoustic openings have a physical location but no electrical direction.
 ACOUSTIC_OPENINGS = (
-    ("speaker", "rear", "left", 133.0, "SPEAKER / GRILLE"),
+    ("speaker", "rear", "right", 133.0, "SPEAKER / GRILLE"),
     ("microphone", "rear", "bottom", 47.0, "MICROPHONE"),
 )
 
@@ -192,6 +194,7 @@ UI_INNER = (
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
     Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
+    Placement("audio_speaker_selector", 42.0, 62.0, "active differential speaker-path selector"),
     Placement("receiver", 51.0, 54.0, "FM/AM/SW/LW receiver"),
     Placement("ir_demod", 0.0, 75.0, "38-kHz IR receiver"),
     Placement("ir_carrier", 0.0, 82.0, "carrier-learning IR receiver"),
@@ -230,21 +233,21 @@ UI_RF_CABLES = (
 )
 
 RF_INNER = (
-    Placement("rp", 32.5, 22.0, "deterministic radio owner"),
-    Placement("nrf0", 6.0, 34.5, "full-function nRF24 radio #0"),
-    Placement("nrf1", 31.5, 34.5, "full-function nRF24 radio #1"),
-    Placement("nrf2", 57.0, 34.5, "full-function nRF24 radio #2"),
-    Placement("voice", 5.0, 57.0, "VHF/UHF voice transceiver"),
-    Placement("cc", 50.0, 57.0, "multi-band sub-GHz transceiver"),
-    Placement("nvdc_charger", 49.0, 67.0, "2S charger and NVDC power path"),
-    Placement("pack_gauge", 56.0, 67.0, "2S protection and fuel gauge"),
-    Placement("pack_admission", 63.0, 67.0, "fail-closed battery admission MCU"),
-    Placement("aon_buck", 49.0, 75.0, "always-on 3.3-V converter"),
-    Placement("main_buck", 54.0, 75.0, "main 3.3-V converter"),
-    Placement("voice_buck", 59.0, 75.0, "voice 4.0-V converter"),
-    Placement("ext_buck", 64.0, 75.0, "accessory 5.0-V converter"),
-    Placement("power_zone_ntc", 46.0, 68.0, "power-conversion hotspot safety sensor"),
-    Placement("rf_zone_ntc", 46.0, 61.0, "RF/voice hotspot safety sensor"),
+    Placement("rp", 0.0, 33.0, "deterministic radio owner"),
+    Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
+    Placement("nrf1", 31.5, 7.5, "full-function nRF24 radio #1; rotated for U214 tail clearance", 90),
+    Placement("nrf2", 52.9, 7.5, "full-function nRF24 radio #2"),
+    Placement("voice", 14.5, 33.0, "VHF/UHF voice transceiver; contact 7 faces its SMA", 180),
+    Placement("cc", 24.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
+    Placement("nvdc_charger", 1.0, 63.0, "2S charger and NVDC power path"),
+    Placement("pack_gauge", 1.0, 84.0, "2S protection and fuel gauge"),
+    Placement("pack_admission", 5.7, 84.0, "fail-closed battery admission MCU"),
+    Placement("aon_buck", 43.0, 61.0, "always-on 3.3-V converter"),
+    Placement("main_buck", 20.0, 61.0, "main 3.3-V converter"),
+    Placement("voice_buck", 28.0, 61.0, "voice 4.0-V converter"),
+    Placement("ext_buck", 36.0, 61.0, "accessory 5.0-V converter"),
+    Placement("power_zone_ntc", 25.5, 84.0, "power-conversion hotspot safety sensor"),
+    Placement("rf_zone_ntc", 72.0, 56.0, "RF/voice hotspot safety sensor"),
     Placement("safety_controller", 36.0, 87.0, "independent watchdog, thermal and TX-lease controller"),
     Placement("safety_watchdog", 37.0, 94.0, "independent 1.6-s timeout watchdog"),
     Placement("safe_conditioner", 42.0, 94.0, "RUN and S3 fault-reset conditioner"),
@@ -257,8 +260,8 @@ RF_INNER = (
     Placement("safe_gate_b", 49.0, 88.0, "rear-domain transmit safety gates"),
     Placement("evidence_cmp_b", 58.0, 88.0, "RF-local nRF/CC TX evidence comparator"),
     Placement("evidence_cmp_voice", 66.0, 88.0, "RF-local voice TX evidence comparator"),
-    Placement("product_usb_protector", 20.0, 87.0, "product USB CC/USB2 protector"),
-    Placement("pd_controller", 25.0, 87.0, "sink-only USB-PD controller"),
+    Placement("product_usb_protector", 7.5, 135.0, "product USB CC/USB2 protector"),
+    Placement("pd_controller", 11.5, 134.5, "sink-only USB-PD controller"),
     Placement("speaker_amp", 31.0, 87.0, "rear-local differential speaker amplifier"),
     Placement("safe_gate_a", 49.0, 94.0, "nRF-domain transmit safety gates"),
     Placement("m1_rf_receptacle", 22.2, 119.0, "80-contact M1 receptacle; 11-mm board stack"),
@@ -266,11 +269,74 @@ RF_INNER = (
     Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
     Placement("unit_connector", 51.0, 140.9, "native M5 Unit HY2.0-4P edge receptacle"),
     Placement("microphone", 45.0, 146.0, "rear bottom microphone port"),
-    Placement("speaker", 5.0, 127.0, "internal 4-Ohm differential speaker"),
+    Placement("speaker", 50.0, 127.0, "internal 4-Ohm differential speaker"),
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
     Placement("rp_boot_button", 59.5, 104.0, "RP technological USB_BOOT"),
     Placement("power_command_switch", 65.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
+
+    Placement("u214_host_buffer_a", 55.3, 27.3, "U214 host-command buffer A"),
+    Placement("u214_host_buffer_b", 61.2, 27.3, "U214 host-command buffer B"),
+    Placement("u214_return_buffer", 67.1, 27.3, "U214 return-path buffer"),
+    Placement("u214_i2c_iso", 67.1, 34.0, "U214 hot-swap I2C isolation and stuck-bus recovery"),
+    Placement("nrf0_host_buffer", 0.0, 44.0, "nRF24 #0 host-command buffer"),
+    Placement("nrf0_return_buffer", 6.0, 44.0, "nRF24 #0 return-path buffer"),
+    Placement("nrf1_host_buffer", 55.3, 34.0, "nRF24 #1 host-command buffer"),
+    Placement("nrf1_return_buffer", 61.2, 34.0, "nRF24 #1 return-path buffer"),
+    Placement("nrf2_host_buffer", 55.3, 40.0, "nRF24 #2 host-command buffer"),
+    Placement("nrf2_return_buffer", 61.2, 40.0, "nRF24 #2 return-path buffer"),
+    Placement("cc_host_buffer", 55.3, 58.0, "CC1101 host-command buffer"),
+    Placement("cc_return_buffer", 61.2, 58.0, "CC1101 return-path buffer"),
+    Placement("cc_band_buffer", 67.1, 58.0, "CC1101 band-select buffer"),
+
+    # High-profile and high-current support parts are explicit physical bodies,
+    # not hidden inside a generic power-zone rectangle.
+    Placement("charger_inductor", 6.0, 62.4, "BQ25798 2.2-uH switching inductor"),
+    Placement("charger_vbus_cap0", 1.0, 69.0, "BQ25798 VBUS bulk capacitor #0"),
+    Placement("charger_vbus_cap1", 4.9, 69.0, "BQ25798 VBUS bulk capacitor #1"),
+    Placement("charger_pmid_cap0", 8.8, 69.0, "BQ25798 PMID bulk capacitor #0"),
+    Placement("charger_pmid_cap1", 12.7, 69.0, "BQ25798 PMID bulk capacitor #1"),
+    Placement("charger_pmid_cap2", 1.0, 71.3, "BQ25798 PMID bulk capacitor #2"),
+    Placement("charger_sys_cap0", 4.9, 71.3, "BQ25798 SYS bulk capacitor #0"),
+    Placement("charger_sys_cap1", 8.8, 71.3, "BQ25798 SYS bulk capacitor #1"),
+    Placement("charger_sys_cap2", 12.7, 71.3, "BQ25798 SYS bulk capacitor #2"),
+    Placement("charger_sys_cap3", 1.0, 73.6, "BQ25798 SYS bulk capacitor #3"),
+    Placement("charger_sys_cap4", 4.9, 73.6, "BQ25798 SYS bulk capacitor #4"),
+    Placement("charger_bat_cap0", 8.8, 73.6, "BQ25798 BAT bulk capacitor #0"),
+    Placement("charger_bat_cap1", 12.7, 73.6, "BQ25798 BAT bulk capacitor #1"),
+    Placement("charger_regn_cap", 1.0, 75.9, "BQ25798 REGN local capacitor"),
+
+    Placement("main_inductor", 19.0, 64.0, "main 3.3-V 3.3-uH switching inductor"),
+    Placement("main_input_cap", 19.0, 70.0, "main 3.3-V input bulk capacitor"),
+    Placement("main_output_cap0", 22.9, 70.0, "main 3.3-V output bulk capacitor #0"),
+    Placement("main_output_cap1", 19.0, 73.2, "main 3.3-V output bulk capacitor #1"),
+    Placement("voice_inductor", 27.0, 64.0, "voice 4.0-V 3.3-uH switching inductor"),
+    Placement("voice_input_cap", 27.0, 70.0, "voice 4.0-V input bulk capacitor"),
+    Placement("voice_output_cap0", 30.9, 70.0, "voice 4.0-V output bulk capacitor #0"),
+    Placement("voice_output_cap1", 27.0, 73.2, "voice 4.0-V output bulk capacitor #1"),
+    Placement("ext_inductor", 35.0, 64.0, "accessory 5.0-V 4.7-uH switching inductor"),
+    Placement("ext_buck_input_cap", 35.0, 70.0, "accessory 5.0-V input bulk capacitor"),
+    Placement("ext_buck_output_cap0", 39.0, 70.0, "accessory 5.0-V output bulk capacitor #0"),
+    Placement("ext_buck_output_cap1", 35.0, 73.2, "accessory 5.0-V output bulk capacitor #1"),
+    Placement("aon_inductor", 46.0, 64.0, "always-on 3.3-V 2.2-uH switching inductor"),
+    Placement("aon_input_cap", 42.0, 64.0, "always-on 3.3-V input capacitor"),
+    Placement("aon_output_cap", 42.0, 66.3, "always-on 3.3-V output capacitor"),
+
+    Placement("pack_fuse0", 1.0, 80.0, "protected-pack branch fuse #0"),
+    Placement("pack_fuse1", 7.8, 80.0, "protected-pack branch fuse #1"),
+    Placement("pack_shunt", 14.6, 80.0, "Kelvin pack-current shunt"),
+    Placement("pack_power_fet", 21.7, 80.0, "back-to-back pack admission FET"),
+    Placement("pack_diag_res0", 11.5, 84.0, "pack diagnostic pulse resistor #0"),
+    Placement("pack_diag_res1", 18.5, 84.0, "pack diagnostic pulse resistor #1"),
+    Placement("evidence_mask", 50.0, 67.0, "AON evidence-source mask expander"),
+
+    Placement("pd_pphv_cap0", 1.0, 127.0, "USB-PD high-voltage bulk capacitor #0"),
+    Placement("pd_pphv_cap1", 4.9, 127.0, "USB-PD high-voltage bulk capacitor #1"),
+    Placement("pd_pphv_cap2", 8.8, 127.0, "USB-PD high-voltage bulk capacitor #2"),
+    Placement("pd_pphv_cap3", 12.7, 127.0, "USB-PD high-voltage bulk capacitor #3"),
+    Placement("pd_config_eeprom", 16.3, 134.5, "TPS25751 configuration EEPROM"),
+    Placement("pd_vbus_cap", 22.0, 134.5, "raw VBUS local capacitor"),
+    Placement("pd_vbus_tvs", 26.0, 134.5, "raw VBUS flat-clamp TVS"),
 )
 
 FRONT_CONTROLS = (
@@ -307,7 +373,29 @@ REAR_SELECTED_ACTUATORS = (
     Placement("encoder_knob", 0.5, 43.0, "exact soft-touch knob over rear encoder"),
 )
 
-INTERNAL_RESERVES = ()
+INTERNAL_RESERVES = (
+    Reserve(
+        "cc-reference-rf-network",
+        22.9,
+        7.5,
+        7.9,
+        17.5,
+        "CC1101 broadband balun, switched band matching, detector tap and ESD zone",
+        "selected_support_placement_zone",
+    ),
+)
+INTERNAL_ZONE_ALLOWED_INSTANCES = {
+    "cc-reference-rf-network": {"cc"},
+}
+
+# Bodies that are mechanically accounted for by a dedicated assembly or
+# exterior projection rather than by one of the two inner-face placement maps.
+MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {"display_touch_controller"}
+MECHANICAL_EXTERIOR_INSTANCES = {
+    "display", "u214", "pack_holder", "pack_cell0", "pack_cell1",
+    *RF_INSTANCE_BY_PATH.values(),
+    *(route.instance for route in UI_RF_CABLES),
+}
 
 REAR_OUTER = (
     Placement(
@@ -326,7 +414,8 @@ def load() -> tuple[dict, dict, dict]:
 
 
 def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[float, float]:
-    dimensions = devices[instances[item.instance]].get("dimensions_mm")
+    device = devices[instances[item.instance]]
+    dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
     if not dimensions or len(dimensions) < 2 or dimensions[0] is None or dimensions[1] is None:
         raise ValueError(f"{item.instance}: two-dimensional package envelope is missing")
     w, h = float(dimensions[0]), float(dimensions[1])
@@ -339,7 +428,8 @@ def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[flo
 
 def placement_height(item: Placement, devices: dict, instances: dict) -> float:
     """Return the manufacturer-backed body height recorded for a placed part."""
-    dimensions = devices[instances[item.instance]].get("dimensions_mm")
+    device = devices[instances[item.instance]]
+    dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
     if not dimensions or len(dimensions) < 3 or dimensions[2] is None:
         raise ValueError(f"{item.instance}: package height is missing")
     height = float(dimensions[2])
@@ -678,6 +768,7 @@ def validate_reserves(name: str, reserves: tuple[Reserve, ...]) -> list[str]:
     for reserve in reserves:
         if reserve.reserve_class not in {
             "custom_actuator", "custom_enclosure_geometry", "unselected_bom_part",
+            "selected_support_placement_zone",
         }:
             errors.append(f"{name}: {reserve.name} has invalid reserve class {reserve.reserve_class}")
         rectangle = (reserve.x, reserve.y, reserve.w, reserve.h)
@@ -708,6 +799,38 @@ def validate() -> list[str]:
         actual = devices[instances[instance]]["mpn"]
         if actual != expected:
             errors.append(f"{instance}: expected {expected}, got {actual}")
+
+    placed_instances = {
+        item.instance
+        for item in (
+            UI_INNER + RF_INNER + FRONT_CONTROLS + REAR_CONTROLS
+            + REAR_OUTER + REAR_SELECTED_ACTUATORS
+        )
+    }
+    mechanically_accounted = (
+        placed_instances
+        | MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES
+        | MECHANICAL_EXTERIOR_INSTANCES
+    )
+    for instance, device_key in instances.items():
+        device = devices[device_key]
+        dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
+        if not dimensions or len(dimensions) < 2 or dimensions[0] is None or dimensions[1] is None:
+            continue
+        plan_area = float(dimensions[0]) * float(dimensions[1])
+        height = (
+            float(dimensions[2])
+            if len(dimensions) > 2 and dimensions[2] is not None
+            else 0.0
+        )
+        if (plan_area >= 12.0 or height >= 2.0) and instance not in mechanically_accounted:
+            errors.append(
+                f"mechanical-accounting: significant body {instance} ({device['mpn']}) "
+                "is absent from every physical projection"
+            )
+    touch = devices[instances["display_touch_controller"]]
+    if touch.get("assembly_contract", {}).get("assembly") != "HMX035CTFT-001":
+        errors.append("mechanical-accounting: display touch die must remain embedded in HMX035CTFT-001")
 
     errors += validate_items("ui-inner", UI_INNER, devices, instances)
     errors += validate_cable_routes(devices, instances)
@@ -749,6 +872,47 @@ def validate() -> list[str]:
     errors += validate_reserves("front-caps", FRONT_CAP_RESERVES)
     errors += validate_reserves("rear-caps", REAR_CAP_RESERVES)
     errors += validate_reserves("internal-reserves", INTERNAL_RESERVES)
+    rf_by_instance = {item.instance: item for item in RF_INNER}
+    for zone in INTERNAL_RESERVES:
+        zone_box = (zone.x, zone.y, zone.w, zone.h)
+        allowed = INTERNAL_ZONE_ALLOWED_INSTANCES.get(zone.name, set())
+        for item in RF_INNER:
+            item_w, item_h = placement_size(item, devices, instances)
+            item_box = (item.x, item.y, item_w, item_h)
+            if item.instance in allowed:
+                if not (
+                    zone.x <= item.x
+                    and zone.y <= item.y
+                    and item.x + item_w <= zone.x + zone.w
+                    and item.y + item_h <= zone.y + zone.h
+                ):
+                    errors.append(f"internal-zone: {zone.name} does not contain {item.instance}")
+            elif overlaps(zone_box, item_box, MIN_INTERBOARD_Z_CLEARANCE_MM):
+                errors.append(f"internal-zone: {zone.name} lacks clearance to {item.instance}")
+
+    voice = rf_by_instance["voice"]
+    voice_device = devices[instances["voice"]]
+    voice_contact = voice_device.get("mechanical_contract", {}).get("antenna_contact", {})
+    voice_nominal_w, voice_nominal_h = map(float, voice_device["dimensions_mm"][:2])
+    voice_contact_xy = voice_contact.get("nominal_center_from_illustrated_top_left_mm", [])
+    if voice.rotation != 180 or len(voice_contact_xy) != 2:
+        errors.append("SA518 must retain its manufacturer-drawing contact-7 orientation contract")
+    else:
+        voice_ant_x = voice.x + voice_nominal_w - float(voice_contact_xy[0])
+        voice_ant_y = voice.y + voice_nominal_h - float(voice_contact_xy[1])
+        voice_port_x = next(centre for centre, path, _ in REAR_RF if path == "VOICE-V/U")
+        if abs(voice_ant_x - voice_port_x) > 0.01 or abs(voice_ant_y - VOICE_RF_CORRIDOR[1][1]) > 0.01:
+            errors.append("SA518 contact 7 must remain nominally aligned to the VHF/UHF RF corridor")
+        if VOICE_RF_CORRIDOR != ((voice_port_x, 0.0), (voice_ant_x, voice_ant_y)):
+            errors.append("SA518 RF corridor must remain a straight controlled path to the VHF/UHF SMA")
+
+    cc_zone = next(zone for zone in INTERNAL_RESERVES if zone.name == "cc-reference-rf-network")
+    cc_port_x = next(centre for centre, path, _ in REAR_RF if path == "CC-SUB")
+    if not (
+        cc_zone.x <= cc_port_x <= cc_zone.x + cc_zone.w
+        and cc_zone.y >= RF_BODY_D + OPPOSITE_FACE_CLEARANCE_MM
+    ):
+        errors.append("CC1101 reference RF zone must align to SUB-GHz and clear the outer connector land")
     front_path_centres = {path: centre for centre, path, _ in FRONT_RF}
     if front_path_centres.get("S3-2G4") != 16.0 or front_path_centres.get("C5-2G4/5") != 59.0:
         errors.append("native RF ports must remain aligned to the two exact 30-mm jumper corridors")
@@ -779,7 +943,7 @@ def validate() -> list[str]:
     if "microphone" in ui_instances or "microphone" not in rf_instances:
         errors.append("microphone must remain on the RF/power PCB inner side")
     if {(instance, face, side) for instance, face, side, _, _ in ACOUSTIC_OPENINGS} != {
-        ("speaker", "rear", "left"),
+        ("speaker", "rear", "right"),
         ("microphone", "rear", "bottom"),
     }:
         errors.append("speaker and microphone must use non-directional rear acoustic openings")
@@ -808,6 +972,21 @@ def validate() -> list[str]:
     connector_box = (connector.x, connector.y, connector_w, connector_d)
     if not overlaps(connector_box, u214_box):
         errors.append("vertical U214 host socket must project beneath the installed Cap")
+    for item in RF_INNER:
+        item_w, item_h = placement_size(item, devices, instances)
+        if overlaps(
+            connector_box,
+            (item.x, item.y, item_w, item_h),
+            OPPOSITE_FACE_CLEARANCE_MM,
+        ):
+            errors.append(f"rear opposite faces: U214 through-hole socket conflicts with {item.instance}")
+    for zone in INTERNAL_RESERVES:
+        if overlaps(
+            connector_box,
+            (zone.x, zone.y, zone.w, zone.h),
+            OPPOSITE_FACE_CLEARANCE_MM,
+        ):
+            errors.append(f"rear opposite faces: U214 through-hole socket conflicts with {zone.name}")
     if any(x < 0.0 or x > BOARD_W for x in U214_RETENTION_X):
         errors.append("U214 56-mm retention pitch must remain inside the 75-mm base")
     rear_control_by_instance = {item.instance: item for item in REAR_CONTROLS}
@@ -844,6 +1023,25 @@ def validate() -> list[str]:
         rf_box = (centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D)
         if overlaps(connector_box, rf_box, U214_CLEARANCE):
             errors.append("U214 host socket lacks 0.7-mm clearance to the rear RF connector bank")
+        for item in RF_INNER:
+            item_w, item_h = placement_size(item, devices, instances)
+            if overlaps(
+                rf_box,
+                (item.x, item.y, item_w, item_h),
+                OPPOSITE_FACE_CLEARANCE_MM,
+            ):
+                errors.append(
+                    f"rear opposite faces: outward RF connector at x={centre} conflicts with {item.instance}"
+                )
+        for zone in INTERNAL_RESERVES:
+            if overlaps(
+                rf_box,
+                (zone.x, zone.y, zone.w, zone.h),
+                OPPOSITE_FACE_CLEARANCE_MM,
+            ):
+                errors.append(
+                    f"rear opposite faces: outward RF connector at x={centre} conflicts with {zone.name}"
+                )
 
     machine_paths = set(candidate["antenna_policy"]["base_onboard_sma_paths"])
     drawn_paths = {path for _, path, _ in FRONT_RF + REAR_RF}
@@ -1015,12 +1213,12 @@ def helpers(scale: float):
             f'fill="{colour}">{html.escape(value)}</text>'
         )
 
-    def rect(origin, x, y, w, h, fill, stroke, dash="", rx=2.0):
+    def rect(origin, x, y, w, h, fill, stroke, dash="", rx=2.0, extra=""):
         dashed = f' stroke-dasharray="{dash}"' if dash else ""
         return (
             f'<rect x="{sx(origin,x):.1f}" y="{sy(origin,y):.1f}" '
             f'width="{w*scale:.1f}" height="{h*scale:.1f}" rx="{rx}" '
-            f'fill="{fill}" stroke="{stroke}" stroke-width="1.5"{dashed}/>'
+            f'fill="{fill}" stroke="{stroke}" stroke-width="1.5"{dashed}{extra}/>'
         )
 
     return sx, sy, text, rect
@@ -1289,6 +1487,14 @@ def render_external(devices, instances):
                     'stroke="#2563eb" stroke-width="1.4"/>'
                 )
             out.append(silk_text(sx(rear,7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
+        elif side == "right":
+            for offset in (-2.0, 0.0, 2.0):
+                out.append(
+                    f'<line x1="{sx(rear,BOARD_W-3):.1f}" y1="{sy(rear,coordinate + offset):.1f}" '
+                    f'x2="{sx(rear,BOARD_W):.1f}" y2="{sy(rear,coordinate + offset):.1f}" '
+                    'stroke="#2563eb" stroke-width="1.4"/>'
+                )
+            out.append(silk_text(sx(rear,BOARD_W-7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
         elif side == "bottom":
             out.append(
                 f'<circle cx="{sx(rear,coordinate):.1f}" cy="{sy(rear,149):.1f}" r="3.2" '
@@ -1342,9 +1548,11 @@ def render_internal(devices, instances):
     ui_items = UI_INNER + UI_RF_CABLES
     all_items = ui_items + RF_INNER
     numbers = {item.instance: index for index, item in enumerate(all_items, 1)}
-    legend_first_y = 148
+    legend_first_y = 795
     legend_row_height = 21
-    legend_bottom = legend_first_y + (max(len(ui_items), len(RF_INNER)) - 1) * legend_row_height + 9
+    rf_legend_columns = 3
+    rf_legend_rows = math.ceil(len(RF_INNER) / rf_legend_columns)
+    legend_bottom = legend_first_y + (max(len(ui_items), rf_legend_rows) - 1) * legend_row_height + 9
     notes_top = max(560, legend_bottom + 35)
     clearance_pairs = interboard_clearance_pairs(devices, instances)
     cable_clearance_pairs = cable_interboard_clearance_pairs(devices, instances)
@@ -1353,13 +1561,14 @@ def render_internal(devices, instances):
         for route in UI_RF_CABLES
     )
     minimum_clearance, minimum_ui, minimum_rf = clearance_pairs[0]
-    svg_height = notes_top + 296
+    svg_height = notes_top + 317
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-silkscreen="none">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30,32,"Leshy2 — dimensioned inner-board placement",22,"bold"),
         text(30,56,"Inner PCB faces contain no silkscreen text; numbers inside outlines are drawing annotations.",11,colour="#526076"),
+        text(30,72,"Red antenna arrows reference outer-face ports; other red arrows show enclosure exits.",9.2,colour="#526076"),
     ]
     out += board(ui, "UI/control PCB — inner side", scale, sx, sy, text, rect)
     out += board(rf, "RF/power PCB — inner side", scale, sx, sy, text, rect)
@@ -1372,6 +1581,33 @@ def render_internal(devices, instances):
     out.append('<g id="rear-rf-reverse-reference" data-connector-bodies="omitted-outer-face">')
     out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, False, mirror=True, show_annotations=False, show_connector=False)
     out.append('</g>')
+
+    for zone in INTERNAL_RESERVES:
+        view_x = mirrored_x(zone.x, zone.w)
+        out.append(
+            rect(
+                rf,
+                view_x,
+                zone.y,
+                zone.w,
+                zone.h,
+                "#fff7ed",
+                "#ea580c",
+                "5 3",
+                3,
+                f' data-zone-kind="{zone.reserve_class}" data-zone="{zone.name}"',
+            )
+        )
+        out.append(text(sx(rf,view_x+zone.w/2), sy(rf,zone.y+zone.h/2)+2, "CC RF REF", 5.2, "bold", "middle", "#9a3412"))
+
+    voice_route_points = " ".join(
+        f"{sx(rf,mirrored_x(x)):.1f},{sy(rf,y):.1f}"
+        for x, y in VOICE_RF_CORRIDOR
+    )
+    out.append(
+        f'<polyline points="{voice_route_points}" fill="none" stroke="#0f766e" stroke-width="2.2" '
+        f'data-route="SA518.7-to-VOICE-V/U" data-centreline-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}"/>'
+    )
 
     out.append('<g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">')
     for route in UI_RF_CABLES:
@@ -1419,11 +1655,6 @@ def render_internal(devices, instances):
             if item.instance == "speaker":
                 component_number += " · SPK"
             out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
-    for reserve in INTERNAL_RESERVES:
-        view_x = mirrored_x(reserve.x, reserve.w)
-        out.append(rect(rf, view_x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "5 3", 3))
-        out.append(text(sx(rf,view_x+reserve.w/2), sy(rf,reserve.y+reserve.h/2)+2, "PWR", 5.0, "bold", "middle", "#9a3412"))
-
     arrows = []
     for _, face, side, coordinate, _ in EDGE_INTERFACES:
         origin = ui if face == "front" else rf
@@ -1435,40 +1666,56 @@ def render_internal(devices, instances):
             arrows.append((origin, coordinate, BOARD_H, coordinate, BOARD_H + 9.0))
     for origin, x1, y1, x2, y2 in arrows:
         out.append(f'<path d="M{sx(origin,mirrored_x(x1)):.1f} {sy(origin,y1):.1f} L{sx(origin,mirrored_x(x2)):.1f} {sy(origin,y2):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    left_x, right_x = 830, 1165
-    out += [text(left_x,105,"Numbered physical devices",16,"bold"), text(left_x,128,"UI/control PCB",12,"bold",colour="#1d4ed8")]
+    ui_legend_x = 30
+    rf_legend_x = (400, 770, 1140)
+    out += [
+        text(30,750,"Numbered physical devices",16,"bold"),
+        text(ui_legend_x,775,"UI/control PCB",12,"bold",colour="#1d4ed8"),
+    ]
     y = legend_first_y
     for item in ui_items:
         mpn = devices[instances[item.instance]]["mpn"].replace(" (QDtech schematic assembly marking)", "")
-        out.append(text(left_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
-        out.append(text(left_x+26,y+9,item.role,7.2,colour="#526076"))
+        out.append(text(ui_legend_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
+        out.append(text(ui_legend_x+26,y+9,item.role,7.2,colour="#526076"))
         y += legend_row_height
-    out.append(text(right_x,128,"RF/power PCB",12,"bold",colour="#c2410c"))
-    y = legend_first_y
-    for item in RF_INNER:
-        mpn = devices[instances[item.instance]]["mpn"]
-        out.append(text(right_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
-        out.append(text(right_x+26,y+9,item.role,7.2,colour="#526076"))
-        y += legend_row_height
+    for column_index, column_x in enumerate(rf_legend_x):
+        first = column_index * rf_legend_rows
+        last = min(first + rf_legend_rows, len(RF_INNER))
+        out.append(
+            text(
+                column_x, 775,
+                f"RF/power PCB · {column_index + 1}/{rf_legend_columns}",
+                12, "bold", colour="#c2410c",
+            )
+        )
+        y = legend_first_y
+        for item in RF_INNER[first:last]:
+            mpn = devices[instances[item.instance]]["mpn"]
+            out.append(text(column_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
+            out.append(text(column_x+26,y+9,item.role,7.2,colour="#526076"))
+            y += legend_row_height
+    note_x = 30
     out += [
         f'<g id="validated-clearances" data-legend-bottom="{legend_bottom}" data-top="{notes_top}" '
         f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
         f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
-        f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}">',
-        text(left_x,notes_top,"Validated clearances",14,"bold"),
-        text(left_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
-        text(left_x,notes_top+45,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
-        text(left_x,notes_top+66,f"• native RF coax: {len(UI_RF_CABLES)} routes checked; {len(cable_clearance_pairs)} opposing-body crossings; maximum OD {maximum_cable_od:.2f} mm",10),
-        text(left_x,notes_top+87,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
-        text(left_x,notes_top+108,"• exact M1 plug/receptacle is one intentional mate, not a clearance pair",10),
-        text(left_x,notes_top+129,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
-        text(left_x,notes_top+150,"• both inner views are horizontally mirrored from their external faces",10),
-        text(left_x,notes_top+171,"• antenna arrows reference outer-face ports; their bodies are absent here",10),
-        text(left_x,notes_top+192,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,notes_top+212,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,notes_top+238,"S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.",9.2,"bold",colour="#9a3412"),
-        text(left_x,notes_top+259,"POWER command: C&K JS102011SCQN; low-current request only, never pack current.",9.2,"bold",colour="#9a3412"),
-        text(left_x,notes_top+280,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
+        f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}" '
+        f'data-functional-zones="{len(INTERNAL_RESERVES)}" data-voice-rf-route-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">',
+        text(note_x,notes_top,"Validated clearances",14,"bold"),
+        text(note_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
+        text(note_x,notes_top+45,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
+        text(note_x,notes_top+66,f"• outward connector / through-hole tail clearance on the opposite face: ≥{OPPOSITE_FACE_CLEARANCE_MM:.1f} mm",10),
+        text(note_x,notes_top+87,f"• native RF coax: {len(UI_RF_CABLES)} routes checked; {len(cable_clearance_pairs)} opposing-body crossings; maximum OD {maximum_cable_od:.2f} mm",10),
+        text(note_x,notes_top+108,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
+        text(note_x,notes_top+129,"• exact M1 plug/receptacle is one intentional mate, not a clearance pair",10),
+        text(note_x,notes_top+150,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
+        text(note_x,notes_top+171,"• both inner views are horizontally mirrored from their external faces",10),
+        text(note_x,notes_top+192,f"• outer antenna bodies are absent; the {polyline_length(VOICE_RF_CORRIDOR):.2f}-mm SA518.7 copper corridor is shown",10),
+        text(note_x,notes_top+213,"• orange dashed boundary is a placement zone, not one combined device",10),
+        text(note_x,notes_top+234,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
+        text(note_x,notes_top+254,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
+        text(note_x,notes_top+280,"S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.",9.2,"bold",colour="#9a3412"),
+        text(note_x,notes_top+301,"Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.",9.2,colour="#526076"),
         "</g>",
     ]
     out.append("</svg>")

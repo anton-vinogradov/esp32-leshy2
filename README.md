@@ -42,14 +42,14 @@ Unused interfaces are powered down and placed into a verifiable quiet state.
 
 ### External and inner board faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=13)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=14)
 
 The first projection shows only the outward, user-facing PCB sides: display,
 controls, labelled RF ports, indicators and side interfaces. The second shows
 the two mirrored inner faces and the exact devices inside the sandwich. A
 number inside a component outline maps to the adjacent exact MPN and role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=10)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=11)
 
 ### Top view from the antenna edge
 
