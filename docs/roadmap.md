@@ -59,22 +59,35 @@ substep while this source-data gate is open.
   - ⏳ `H1.1.4` — freeze the renderer's dimension/source table.
 - ⏳ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
-- ⏳ `H1.3` — outer faces: screen, D-pad, keys, encoder, LEDs, arrows, external
-  interfaces and visible, unobscured silkscreen.
-- ⏳ `H1.4` — mirrored inner board faces: every body, speaker, microphone,
-  RUN/KILL, service controls and board-to-board stack without inner silkscreen.
-- ⏳ `H1.5` — real antenna-edge top view and separate sections through the
-  U214 rail and battery/control zone, including insertion and service paths.
+- ⏳ `H1.3.0` — generate the outer faces from the unified source: screen,
+  D-pad, keys, encoder, LEDs, arrows, external interfaces and visible,
+  unobscured silkscreen.
+- 🔒 `H1.3.1` — **user review gate:** accept the complete front and rear
+  exterior, including labels and control locations.
+- ⏳ `H1.4.0` — generate mirrored inner board faces: every body, speaker,
+  microphone, RUN/KILL, service controls and board-to-board stack without
+  inner silkscreen.
+- 🔒 `H1.4.1` — **user review gate:** accept both internal faces and the
+  sandwich relationship.
+- ⏳ `H1.5.0` — generate the real antenna-edge top view and separate sections
+  through the U214 rail and battery/control zone, including insertion and
+  service paths.
+- 🔒 `H1.5.1` — **user review gate:** accept top/section geometry, U214 and
+  battery/service access.
 - ⏳ `H1.6` — automated collision, hole/keep-out, clearance, label visibility,
   antenna spacing, actuator travel and service-access checks.
-- ⏳ `H1.7` — repeat the pin/resource allocation against the physical result
-  and generate one acceptance package from the same source.
-- ⏳ `H1.8` — explicit user acceptance; only then may H2 begin.
+- ⏳ `H1.7.0` — repeat the pin/resource allocation against the physical result
+  and generate one cross-view acceptance package from the same source.
+- 🔒 `H1.7.1` — **user review gate:** accept the consolidated layout, all
+  automatic-check results and all changes since the earlier view gates.
+- 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
 `H1.1.2` exits when every rendered body has a traceable source, dimensions,
 datum, orientation and interface direction, or a named sample-only gate with
 no invented geometry. Closing any substep requires changing the exact marker
-on both landing and roadmap pages in the same commit before advancing work.
+on both landing and roadmap pages in the same commit before advancing work. A
+later change that affects an accepted view reopens that user gate and all
+dependent gates; earlier approval is never silently carried over.
 
 ## Hardware sequence and firmware intersections
 

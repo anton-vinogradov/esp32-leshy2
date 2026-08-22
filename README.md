@@ -46,18 +46,24 @@ rendered views are provisional outputs; they do not complete later substeps.
     received-sample H5 gate.
   - ⏳ `H1.1.4` — freeze the dimension/source table used by the renderer.
 - ⏳ `H1.2` — create one coordinate model for both boards and the enclosure.
-- ⏳ `H1.3` — close outer faces, controls, arrows and readable silkscreen.
-- ⏳ `H1.4` — close mirrored inner faces and the board-to-board stack.
-- ⏳ `H1.5` — close the real antenna-edge top view, sections, U214 and battery
-  access.
+- ⏳ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
+  from the unified source.
+- 🔒 `H1.3.1` — user review gate for the complete front and rear exterior.
+- ⏳ `H1.4.0` — generate mirrored inner faces and the board-to-board stack.
+- 🔒 `H1.4.1` — user review gate for both internal board faces and sandwich.
+- ⏳ `H1.5.0` — generate the real antenna-edge top view, sections, U214 and
+  battery-access paths.
+- 🔒 `H1.5.1` — user review gate for top/section geometry and service access.
 - ⏳ `H1.6` — pass collision, clearance, visibility and service-access checks.
-- ⏳ `H1.7` — repeat the pin/resource fit and assemble the acceptance package.
-- ⏳ `H1.8` — obtain explicit user acceptance of the complete mockup.
+- ⏳ `H1.7.0` — repeat the pin/resource fit and assemble one cross-view package.
+- 🔒 `H1.7.1` — user review gate for the consolidated layout and all deltas.
+- 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
 `H1.1.2` exits only when each rendered body has a sourced `L×W×H`, datum,
 orientation and interface direction, or an explicit non-invented sample gate.
 When any substep closes, this marker and both roadmap pages are updated in the
-same commit before work advances.
+same commit before work advances. A later correction that changes an already
+reviewed view reopens its user gate and every dependent gate.
 
 Leshy2 is an open, autonomous instrument for radio observation,
 communications, diagnostics and authorized research of wireless and contact

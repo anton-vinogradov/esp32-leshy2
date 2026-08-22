@@ -121,6 +121,22 @@ class ProductSiteTests(unittest.TestCase):
             for substep in ("H1.0", "H1.1.1", "H1.1.2", "H1.1.3", "H1.8"):
                 self.assertIn(f"`{substep}`", page, f"{name}: {substep}")
 
+    def test_mockup_has_staged_user_review_gates(self):
+        gates = ("H1.3.1", "H1.4.1", "H1.5.1", "H1.7.1", "H1.8")
+        for name in ("README.md", "docs/roadmap.md"):
+            page = self.read(name)
+            for gate in gates:
+                self.assertIn(f"`{gate}`", page, f"{name}: {gate}")
+            self.assertIn("user review gate", page, name)
+            self.assertIn("reopens", page, name)
+
+        for name in ("README.ru.md", "docs/roadmap.ru.md"):
+            page = self.read(name)
+            for gate in gates:
+                self.assertIn(f"`{gate}`", page, f"{name}: {gate}")
+            self.assertIn("пользовательское согласование", page, name)
+            self.assertIn("повторно открывает", page, name)
+
     def test_all_local_public_links_exist(self):
         for name in self.PUBLIC_PAGES:
             page_path = REPO_ROOT / name
