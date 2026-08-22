@@ -998,7 +998,7 @@ def render_external(devices, instances):
     dw, dh = placement_size(display, devices, instances)
     out.append(rect(front, display.x, display.y, dw, dh, "#dbeafe", "#2563eb", rx=5))
     out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,60), "54.5×101.5-mm reference envelope", 6.5, anchor="middle", colour="#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,60), "54.5×83.0×3.2 mm LCD/CTP body", 6.5, anchor="middle", colour="#1d4ed8"))
     out.append(text(sx(front,37.5), sy(front,65), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
     out.append('<g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">')
     out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
@@ -1595,7 +1595,7 @@ def _render_sandwich_legacy(devices, instances):
         r(x_rear_outer, connector_y, u214_connector_z, connector_h, "#e0f2fe", "#0369a1", rx=2),
         '</g>',
         t(x_display + display_z/2, top + height/2, "HMX035CTFT-001", 10, "bold", "middle", "#1d4ed8"),
-        t(x_display + display_z/2, top + height/2 + 17, "10.0 mm", 9, anchor="middle", colour="#1d4ed8"),
+        t(x_display + display_z/2, top + height/2 + 17, f"{depth('display'):.1f} mm", 9, anchor="middle", colour="#1d4ed8"),
         t(x_ui + pcb_z/2, top + height + 24, "UI/control PCB · 1.6 mm", 10, "bold", "middle", "#166534"),
         t(x_rf + pcb_z/2, top + height + 44, "RF/power PCB · 1.6 mm", 10, "bold", "middle", "#c2410c"),
         t(x_holder + holder_installed_z/2, holder_y + holder_h/2 - 8, "1048P + 2× 18650", 10, "bold", "middle", "#166534"),
@@ -1790,7 +1790,7 @@ def render_sandwich(devices, instances):
     out += panel(780, "B–B · battery/control zone", 82.0, "battery")
     out += [
         line(745, 105, 745, 750, "#d0d5dd", "6 5"),
-        t(60, 750, f"Display: {mpn('display')} · 10.0-mm envelope", 10.5, "bold"),
+        t(60, 750, f"Display: {mpn('display')} · {depth('display'):.1f}-mm LCD/CTP body", 10.5, "bold"),
         t(60, 774, f"Inner component positions—including {mpn('speaker')}—are documented in the adjacent inner-face view.", 10.5, colour="#526076"),
         t(780, 750, "The sections exclude enclosure walls, solder and manufacturing tolerances.", 10.5, "bold", colour="#b42318"),
         t(780, 774, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, colour="#526076"),
@@ -1851,7 +1851,7 @@ def render_top_edge(devices, instances):
         t(30, 84, "Board Y is collapsed in this orthographic projection; the rear view separately proves Cap/battery longitudinal clearance.", 11, colour="#526076"),
         t(x(-4.5)-24, z(0)+5, "FRONT", 9, "bold", "end", "#1d4ed8"),
         t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
-        r(x(10.25), z(0), 54.5*scale_x, 10.0*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
+        r(x(10.25), z(0), 54.5*scale_x, depth("display")*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
         t(x(37.5), z(0)-9, "HMX035CTFT-001 · display", 9.5, "bold", "middle", "#1d4ed8"),
         r(x(0), z(ui_outer_z), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
         r(x(0), z(ui_inner_z), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11" data-antenna-bodies="none"'),
@@ -1894,7 +1894,7 @@ def render_top_edge(devices, instances):
         t(920, 460, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10.5),
         t(920, 488, f"{mpn('pack_holder')} · {holder_depth:.1f}-mm installed envelope", 10.5),
         t(920, 516, f"{mpn('display')} · {depth('display'):.1f} mm", 10.5),
-        t(920, 564, "Nominal maximum selected-part depth: 44.9 mm", 11, "bold", colour="#b42318"),
+        t(920, 564, f"Nominal maximum selected-part depth: {max_rear_z:.1f} mm", 11, "bold", colour="#b42318"),
         t(920, 590, "Excludes enclosure walls, solder and manufacturing tolerances.", 10.5, colour="#526076"),
         t(30, 690, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, "bold", colour="#b42318"),
         '</svg>',

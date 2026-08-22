@@ -70,7 +70,7 @@ never substitutes for measured RF.
 
 | Device | MPN | Implementation |
 |---|---|---|
-| Display | `HMX035CTFT-001` | 3.5-inch `320×480` IPS, direct QSPI, capacitive touch |
+| Display | `HMX035CTFT-001` | 3.5-inch `320×480` IPS, direct QSPI, capacitive touch; proven 54.5×83.0×3.2-mm LCD/CTP body |
 | FPC mate | `Hirose FH12-40S-0.5SH(55)` | 40 contacts, 0.5-mm pitch |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; independently powered and isolated |
 | Audio codec | `Everest ES8311` | I²S capture and playback |
@@ -123,7 +123,13 @@ RUN/KILL faces the enclosure side and is labelled on that external edge.
 ## Dimensioned layout
 
 Solid component outlines use dimensions from the part-number register. The
-violet D-pad cross is a custom product part over the exact rotated
+display uses the published `54.5×83.0×3.2 mm` LCD/CTP screen-body envelope,
+not the complete ES3C35P donor-board envelope of `54.5×101.5×≈10 mm`. The
+published 3.2-mm depth excludes the flex and adhesive. The integral
+40-contact tail geometry and its exact fit in
+`FH12-40S-0.5SH(55)` remain gated on a supplier approval drawing and a real
+specimen; the mockup does not present them as already proven. The violet
+D-pad cross is a custom product part over the exact rotated
 `Alps Alpine SKRHADE010`, so the cross requires a controlled manufacturing
 drawing rather than a supplier MPN. The exact `Davies Molding 1227-J` encoder
 knob is rendered as a solid 15-mm part.
@@ -140,13 +146,13 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=12)
+![Dimensioned external layout](images/current-clamshell.svg?layout=13)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=9)
 
-![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=3)
+![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 
-![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=9)
+![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=10)
 
 ![Dimensioned custom LoRa Cap component zones](images/lora-cap-layout.svg?layout=1)
 

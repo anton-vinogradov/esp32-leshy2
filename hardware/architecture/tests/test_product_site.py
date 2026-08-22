@@ -92,6 +92,7 @@ class ProductSiteTests(unittest.TestCase):
             "Text outside component outlines is intended PCB silkscreen",
             'data-layer="pcb-silkscreen"',
             "HMX035CTFT-001",
+            "54.5×83.0×3.2 mm LCD/CTP body",
             "M5Stack U214",
             "SSW-107-02-S-D",
             "insert ⊗ · remove ⊙",
@@ -289,10 +290,10 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=12", page)
+            self.assertIn("current-clamshell.svg?layout=13", page)
             self.assertIn("internal-board-layout.svg?layout=9", page)
-            self.assertIn("sandwich-section.svg?layout=9", page)
-            self.assertIn("top-edge-view.svg?layout=3", page)
+            self.assertIn("sandwich-section.svg?layout=10", page)
+            self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
                 page.index("current-clamshell.svg"),
                 page.index("internal-board-layout.svg"),
@@ -342,7 +343,7 @@ class ProductSiteTests(unittest.TestCase):
             "HMX035CTFT-001",
             "M5Stack U214",
             "Keystone Electronics 1048P",
-            "Nominal maximum selected-part depth: 44.9 mm",
+            "Nominal maximum selected-part depth: 38.1 mm",
         ):
             self.assertIn(token, layout)
 

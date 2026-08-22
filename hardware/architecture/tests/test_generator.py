@@ -2598,6 +2598,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(
             "HMX035CTFT-001 (QDtech schematic assembly marking)", display["mpn"]
         )
+        self.assertEqual([54.5, 83.0, 3.2], display["dimensions_mm"])
+        self.assertEqual(
+            [54.5, 101.5, 10.0], display["donor_module_dimensions_mm_published_pdf"]
+        )
+        self.assertEqual(10.5, display["donor_module_depth_current_product_page_mm"])
+        self.assertIn("screen body", display["mechanical_dimension_scope"])
+        self.assertIn("excluding flex and adhesive", display["mechanical_dimension_scope"])
         expected_physical = {
             "TP_I2C_SCL": "1",
             "TP_I2C_SDA": "2",

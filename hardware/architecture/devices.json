@@ -1667,8 +1667,24 @@
       "kind": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
       "qualification": "verified_candidate",
       "lifecycle": "assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified",
-      "dimensions_mm": [54.5, 101.5, 10.0],
-      "mechanical_dimension_scope": "published ES3C35P reference-module envelope used for G3 paper fit; supplier-controlled standalone HMX035CTFT-001 approval drawing remains required",
+      "dimensions_mm": [54.5, 83.0, 3.2],
+      "mechanical_dimension_tolerance_mm": [0.2, 0.2, 0.1],
+      "mechanical_dimension_scope": "published ES3C35P sources separate the 54.50x83.00x3.20-mm LCD/CTP screen body, explicitly excluding flex and adhesive, from the complete 54.50x101.50-mm donor module; only the screen-body envelope is used for G3 placement, while the integral tail, adhesive, bonding and mating geometry still require a supplier-controlled standalone HMX035CTFT-001 approval drawing",
+      "donor_module_dimensions_mm_published_pdf": [54.5, 101.5, 10.0],
+      "donor_module_depth_current_product_page_mm": 10.5,
+      "donor_module_depth_disposition": "reference-source discrepancy does not affect the product because the complete ES3C35P donor PCB is not installed",
+      "mechanical_source": {
+        "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
+        "version": "V1.0; outline drawing dated 2025-07-24",
+        "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+        "checked": "2026-08-22"
+      },
+      "current_product_source": {
+        "document": "QDtech LCDWIKI 3.5-inch ESP32-S3 Display product page",
+        "url": "https://www.lcdwiki.com/3.5inch_ESP32-S3_Display",
+        "checked": "2026-08-22",
+        "scope": "confirms 54.50x83.00x3.20-mm LCD screen size and states that flex and adhesive are excluded; reports 10.50-mm complete-module depth"
+      },
       "source": {
         "document": "QDtech ES3C35P ESP32-S3 schematic",
         "version": "official published schematic",
@@ -1692,6 +1708,7 @@
       "procurement_gate": {
         "status": "standalone_raw_assembly_rfq_required",
         "supplier_route": "Shenzhen QDtech/QDTFT through the current ES3C35P product channel",
+        "rfq_artifact": "hardware/procurement/HMX035CTFT-001-display-rfq.md",
         "required_evidence": [
           "quote explicitly naming standalone HMX035CTFT-001 LCM+CTP assembly",
           "supplier-controlled approval drawing with 40-contact FPC pitch, tail thickness, exposed-contact side, stiffener and keepout",

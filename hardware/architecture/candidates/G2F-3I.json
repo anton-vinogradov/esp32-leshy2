@@ -596,7 +596,7 @@
   "display_contract": {
     "decision": "DEC-0084",
     "status": "paper_reviewed_exact_electrical_endpoint_physical_mate_hil_open",
-    "assembly": "HMX035CTFT-001 exact marking and 40-contact map from the official QDtech schematic; exact integrated controller is Sitronix ST77922 TDDI, while standalone assembly orderability and lifecycle remain unproved",
+    "assembly": "HMX035CTFT-001 exact marking and 40-contact map come from the official QDtech schematic; the exact integrated controller is Sitronix ST77922 TDDI. Official ES3C35P sources separately prove a 54.50x83.00x3.20-mm LCD/CTP screen body excluding flex and adhesive, and a 54.50x101.50-mm complete donor module whose published depth differs between 10.00- and 10.50-mm revisions. Only the smaller screen body is used in product placement; standalone assembly orderability, integral-tail/adhesive geometry and lifecycle remain unproved",
     "first_connector_candidate": "Hirose FH12-40S-0.5SH(55), active 40-position 0.5-mm bottom-contact ZIF for 0.30-mm FPC; logical contacts are mapped 1:1, but footprint/orientation freeze is blocked until a real HMX tail proves thickness, contact side, insertion direction and stiffener",
     "logic_supply": "VDDI, VDD and IM1 use protected 3V3_MAIN with exact 10-uF plus 100-nF local decoupling; a separate logic load switch is intentionally rejected because a tripped rail could be back-powered by the live QSPI/I2C/reset pins without costly isolation",
     "backlight": "LEDA alone uses TPS2553DRVR-1 latch-off/reverse-blocking protection; 133-kOhm RILIM gives the datasheet table's approximately 174-to-234-mA system range around 200 mA nominal, above the QDtech 120-mA backlight reference; three LEDK contacts share one exact 10-Ohm 0.66-W anti-surge resistor and one DMN2056U-7 low-side PWM MOSFET",
@@ -606,7 +606,7 @@
     "fpc_esd_boundary": "the display FPC is an internal service-only connection and is not live-insertable; no additional connector-side ESD array is populated in the base design. Reopen protection if the enclosure exposes the tail or product requirements later permit live replacement",
     "fault_behavior": "backlight overcurrent longer than the internal deglitch latches LEDA off; recovery requires main-rail power cycling, not firmware auto-retry; FAULT_N is pulled up and exposed to the fixture only",
     "paper_cost_delta_usd_at_100_excluding_panel": "approximately 2.5 to 2.9 including the already-required connector; protection, MOSFET and passives are below about 1 USD, connector dominates",
-    "remaining_hil": ["real-tail connector fit and orientation", "standalone panel procurement identity and lifecycle", "QSPI timing and shared-CS high-Z/contention", "ST77922 specimen identity/readback, exact 0x38 response, touch IRQ pulse/clear semantics and reset/recovery", "backlight current corners, PWM EMI, thermals and latch recovery", "ESD/abuse boundary for the internal FPC and enclosure"]
+    "remaining_hil": ["supplier approval drawing and real-tail connector fit, thickness, contact side, stiffener, bend corridor and orientation", "standalone panel procurement identity and lifecycle", "QSPI timing and shared-CS high-Z/contention", "ST77922 specimen identity/readback, exact 0x38 response, touch IRQ pulse/clear semantics and reset/recovery", "backlight current corners, PWM EMI, thermals and latch recovery", "ESD/abuse boundary for the internal FPC and enclosure"]
   },
   "storage_contract": {
     "decision": "DEC-0085",

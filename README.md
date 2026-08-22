@@ -42,7 +42,7 @@ Unused interfaces are powered down and placed into a verifiable quiet state.
 
 ### External and inner board faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=12)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=13)
 
 The first projection shows only the outward, user-facing PCB sides: display,
 controls, labelled RF ports, indicators and side interfaces. The second shows
@@ -57,14 +57,14 @@ The true top projection looks along the board from its antenna edge and shows
 the sandwich width and depth, both antenna banks and the symmetric Cap
 overhang.
 
-![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=3)
+![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=4)
 
 ### Sandwich sections
 
 Section A–A crosses the LoRa Cap zone; B–B crosses the battery and rear-control
 zone. Different longitudinal zones are never combined in one projection.
 
-![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=9)
+![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=10)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 

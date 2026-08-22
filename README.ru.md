@@ -40,7 +40,7 @@ Sub‑GHz, voice и U214; один `MSPM0C1106SDGS20R` независимо до
 
 ### Внешние и внутренние стороны плат
 
-![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=12)
+![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=13)
 
 Первая проекция показывает только внешние, доступные пользователю стороны:
 экран, органы управления, подписанные RF-разъёмы, индикаторы и боковые
@@ -55,14 +55,14 @@ Sub‑GHz, voice и U214; один `MSPM0C1106SDGS20R` независимо до
 Настоящая верхняя проекция смотрит вдоль платы от антенн и показывает ширину,
 глубину бутерброда, две антенные группы и симметричный вылет LoRa Cap.
 
-![Вид Leshy2 сверху со стороны антенного торца](docs/images/top-edge-view.svg?layout=3)
+![Вид Leshy2 сверху со стороны антенного торца](docs/images/top-edge-view.svg?layout=4)
 
 ### Разрезы бутерброда
 
 Разрез A–A проходит через зону LoRa Cap, а B–B — через батареи и органы
 управления. Разные продольные зоны не смешиваются в одной проекции.
 
-![Разрезы бутерброда Leshy2](docs/images/sandwich-section.svg?layout=9)
+![Разрезы бутерброда Leshy2](docs/images/sandwich-section.svg?layout=10)
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
