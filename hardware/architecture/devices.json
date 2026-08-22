@@ -1784,7 +1784,8 @@
       "kind": "mono_audio_codec",
       "qualification": "verified_candidate",
       "lifecycle": "current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open",
-      "dimensions_mm": [3.0, 3.0, null],
+      "dimensions_mm": [3.0, 3.0, 0.6],
+      "mechanical_height_basis": "manufacturer Revision 17.0 QFN-20 package table: total thickness A, 0.60-mm maximum",
       "source": {
         "document": "ES8311 Low Power Mono Audio CODEC Product Brief",
         "version": "Revision 17.0, February 2026",
@@ -2058,7 +2059,8 @@
       "kind": "mono_class_d_speaker_amplifier",
       "qualification": "verified_reference",
       "lifecycle": "active",
-      "dimensions_mm": [3.0, 3.0, null],
+      "dimensions_mm": [3.0, 3.0, 0.63],
+      "mechanical_height_basis": "Diodes Incorporated U-DFN3030-8 Type E package outline: total height A, 0.63-mm maximum",
       "source": {
         "document": "PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet",
         "version": "DS41333 Rev. 6-2, May 2021",
@@ -3449,7 +3451,8 @@
       "kind": "uqfn32",
       "qualification": "verified_exact_main_slow_io_core",
       "lifecycle": "active",
-      "dimensions_mm": [5.0, 5.0],
+      "dimensions_mm": [5.0, 5.0, 0.6],
+      "mechanical_height_basis": "TI RGJ0032A UQFN package outline: 0.60-mm maximum height",
       "source": {
         "document": "TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet",
         "version": "SCPS193D",
@@ -5019,7 +5022,8 @@
       "kind": "four_channel_type_c_ovp_esd_usb2_port_protector",
       "qualification": "verified_candidate",
       "lifecycle": "active",
-      "dimensions_mm": [3.0, 3.0, null],
+      "dimensions_mm": [3.0, 3.0, 0.8],
+      "mechanical_height_basis": "TI RUK0020B WQFN package outline: 0.80-mm maximum height",
       "source": {
         "document": "TPD4S201 USB Type-C port-protection datasheet",
         "version": "SLVSIF2, July 2025",
@@ -5072,7 +5076,8 @@
       "kind": "usb_pd_controller_integrated_20v_5a_path",
       "qualification": "verified_candidate",
       "lifecycle": "active",
-      "dimensions_mm": [4.0, 6.0, null],
+      "dimensions_mm": [4.0, 6.0, 0.8],
+      "mechanical_height_basis": "TI REF0038A WQFN package outline: 0.80-mm maximum height",
       "source": {
         "document": "TPS25751 USB Type-C and USB PD Controller datasheet",
         "version": "SLVSH93A, October 2023, revised March 2024",
@@ -5140,7 +5145,8 @@
       "kind": "one_to_four_cell_5a_nvdc_buck_boost_charger",
       "qualification": "verified_candidate",
       "lifecycle": "active",
-      "dimensions_mm": [4.0, 4.0, null],
+      "dimensions_mm": [4.0, 4.0, 1.0],
+      "mechanical_height_basis": "TI RQM0029A VQFN-HR package outline: 1.00-mm maximum height",
       "source": {
         "document": "BQ25798 1-to-4-cell 5-A buck-boost charger datasheet",
         "version": "SLUSDV2C, May 2020, revised June 2026",
@@ -5199,7 +5205,8 @@
       "kind": "300ma_low_iq_always_on_synchronous_buck",
       "qualification": "verified_candidate",
       "lifecycle": "active",
-      "dimensions_mm": [1.6, 1.6, null],
+      "dimensions_mm": [1.6, 1.6, 0.6],
+      "mechanical_height_basis": "TI DRL0008A SOT-5X3 package outline: 0.60-mm maximum height",
       "source": {
         "document": "TPS629203 300-mA, 3-V to 17-V low-IQ buck converter datasheet",
         "version": "SLVSGE2, March 2022",
@@ -5629,7 +5636,8 @@
       "kind": "4a_600khz_eco_synchronous_buck_with_power_good",
       "qualification": "verified_candidate",
       "lifecycle": "active",
-      "dimensions_mm": [1.6, 1.6, null],
+      "dimensions_mm": [1.6, 1.6, 0.6],
+      "mechanical_height_basis": "TI DRL0006A SOT package outline: 0.60-mm maximum height",
       "source": {
         "document": "TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet",
         "version": "SLUSEQ6A, December 2022, revised May 2023",
@@ -6568,7 +6576,8 @@
       "kind": "32mhz_cortex_m0plus_safety_controller",
       "qualification": "verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate",
       "lifecycle": "active_orderable",
-      "dimensions_mm": [5.1, 4.9, null],
+      "dimensions_mm": [5.1, 4.9, 1.1],
+      "mechanical_height_basis": "TI DGS0020A VSSOP package outline: 1.10-mm maximum height",
       "source": {
         "document": "MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet",
         "version": "SLASFJ6B, revised January 2026",

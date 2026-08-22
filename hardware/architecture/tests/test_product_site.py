@@ -264,6 +264,15 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
             'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
             "67 · SPK",
+            'data-opposing-pairs="17"',
+            'data-intentional-mates="1"',
+            'data-min-z-clearance-mm="2.85"',
+            'data-rf-cable-routes="2"',
+            'data-opposing-cable-pairs="0"',
+            'data-cable-od-max-mm="1.13"',
+            "opposing inner faces: 17 non-mating XY pairs checked; minimum Z gap 2.85 mm",
+            "native RF coax: 2 routes checked; 0 opposing-body crossings; maximum OD 1.13 mm",
+            "limiting pair: 19 3.5-mm headphone/line connector / 35 VHF/UHF voice transceiver",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
@@ -291,7 +300,7 @@ class ProductSiteTests(unittest.TestCase):
         ):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=13", page)
-            self.assertIn("internal-board-layout.svg?layout=9", page)
+            self.assertIn("internal-board-layout.svg?layout=10", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -320,6 +329,7 @@ class ProductSiteTests(unittest.TestCase):
             "No battery appears",
             "No installed Cap appears",
             "Keystone Electronics 1048P + 2× 18650",
+            "Complete opposing-body Z clearance",
             "Dimensioned architecture projection",
         ):
             self.assertIn(token, layout)

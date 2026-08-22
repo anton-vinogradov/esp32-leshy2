@@ -66,7 +66,7 @@
 <text x="1113.0" y="548.9" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#344054">base PCB · 75 mm</text>
 <line x1="745.0" y1="105.0" x2="745.0" y2="750.0" stroke="#d0d5dd" stroke-width="1.2" stroke-dasharray="6 5"/>
 <text x="60.0" y="750.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#172033">Display: HMX035CTFT-001 · 3.2-mm LCD/CTP body</text>
-<text x="60.0" y="774.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">Inner component positions—including PUI Audio AS02404PO—are documented in the adjacent inner-face view.</text>
+<text x="60.0" y="774.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">Complete opposing-body Z clearance—including PUI Audio AS02404PO—is audited in the inner-face view.</text>
 <text x="780.0" y="750.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#b42318">The sections exclude enclosure walls, solder and manufacturing tolerances.</text>
 <text x="780.0" y="774.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">Dimensioned architecture projection — not a production enclosure drawing.</text>
 </svg>

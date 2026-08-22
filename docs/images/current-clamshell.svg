@@ -159,10 +159,10 @@
 <text data-layer="pcb-silkscreen" x="603.6" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="675.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
-<line x1="465.0" y1="545.9" x2="476.1" y2="545.9" stroke="#2563eb" stroke-width="1.4"/>
-<line x1="465.0" y1="553.3" x2="476.1" y2="553.3" stroke="#2563eb" stroke-width="1.4"/>
-<line x1="465.0" y1="560.7" x2="476.1" y2="560.7" stroke="#2563eb" stroke-width="1.4"/>
-<text data-layer="pcb-silkscreen" x="490.9" y="557.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER / GRILLE</text>
+<line x1="465.0" y1="634.7" x2="476.1" y2="634.7" stroke="#2563eb" stroke-width="1.4"/>
+<line x1="465.0" y1="642.1" x2="476.1" y2="642.1" stroke="#2563eb" stroke-width="1.4"/>
+<line x1="465.0" y1="649.5" x2="476.1" y2="649.5" stroke="#2563eb" stroke-width="1.4"/>
+<text data-layer="pcb-silkscreen" x="490.9" y="646.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER / GRILLE</text>
 <circle cx="638.9" cy="701.3" r="3.2" fill="none" stroke="#d97706" stroke-width="1.4" data-interface-kind="acoustic-opening"/>
 <text data-layer="pcb-silkscreen" x="638.9" y="693.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#92400e">MICROPHONE</text>
 <text x="850.0" y="105.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">What this drawing proves</text>

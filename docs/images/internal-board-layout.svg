@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="1262" viewBox="0 0 1510 1262" data-view="mirrored-x" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="1328" viewBox="0 0 1510 1328" data-view="mirrored-x" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — dimensioned inner-board placement</text>
@@ -174,8 +174,8 @@
 <text x="531.6" y="691.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">65</text>
 <rect x="561.2" y="690.2" width="14.8" height="14.8" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
 <text x="568.6" y="700.6" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#172033">66</text>
-<rect x="635.2" y="531.1" width="88.8" height="44.4" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<text x="679.6" y="556.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">67 · SPK</text>
+<rect x="635.2" y="619.9" width="88.8" height="44.4" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="679.6" y="645.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">67 · SPK</text>
 <rect x="558.8" y="534.8" width="35.7" height="21.6" rx="2" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <text x="576.6" y="548.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">68</text>
 <rect x="530.1" y="534.8" width="23.7" height="19.2" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
@@ -339,16 +339,20 @@
 <text x="1191.0" y="976.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">RP technological USB_BOOT</text>
 <text x="1165.0" y="988.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">71  C&amp;K JS102011SCQN</text>
 <text x="1191.0" y="997.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">single low-current RUN/KILL; charging remains available in KILL</text>
-<g id="validated-clearances" data-legend-bottom="997" data-top="1032">
+<g id="validated-clearances" data-legend-bottom="997" data-top="1032" data-opposing-pairs="17" data-intentional-mates="1" data-min-z-clearance-mm="2.85" data-rf-cable-routes="2" data-opposing-cable-pairs="0" data-cable-od-max-mm="1.13">
 <text x="830.0" y="1032.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
-<text x="830.0" y="1056.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• device-to-device: ≥0.7 mm in this projection</text>
-<text x="830.0" y="1077.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
-<text x="830.0" y="1098.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
-<text x="830.0" y="1119.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• antenna arrows reference outer-face ports; their bodies are absent here</text>
-<text x="830.0" y="1140.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
-<text x="830.0" y="1160.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
-<text x="830.0" y="1186.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#9a3412">S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.</text>
-<text x="830.0" y="1207.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#9a3412">POWER command: C&amp;K JS102011SCQN; low-current request only, never pack current.</text>
-<text x="830.0" y="1228.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Placement projection; passives, copper and enclosure stack are omitted.</text>
+<text x="830.0" y="1056.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
+<text x="830.0" y="1077.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 17 non-mating XY pairs checked; minimum Z gap 2.85 mm</text>
+<text x="830.0" y="1098.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• native RF coax: 2 routes checked; 0 opposing-body crossings; maximum OD 1.13 mm</text>
+<text x="830.0" y="1119.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• limiting pair: 19 3.5-mm headphone/line connector / 35 VHF/UHF voice transceiver</text>
+<text x="830.0" y="1140.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• exact M1 plug/receptacle is one intentional mate, not a clearance pair</text>
+<text x="830.0" y="1161.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
+<text x="830.0" y="1182.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
+<text x="830.0" y="1203.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• antenna arrows reference outer-face ports; their bodies are absent here</text>
+<text x="830.0" y="1224.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
+<text x="830.0" y="1244.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
+<text x="830.0" y="1270.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#9a3412">S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.</text>
+<text x="830.0" y="1291.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#9a3412">POWER command: C&amp;K JS102011SCQN; low-current request only, never pack current.</text>
+<text x="830.0" y="1312.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Placement projection; passives, copper and enclosure stack are omitted.</text>
 </g>
 </svg>

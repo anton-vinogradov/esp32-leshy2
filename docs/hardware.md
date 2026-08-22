@@ -137,6 +137,18 @@ The generator rejects component-to-
 component overlap and entry into the 4-mm screw-head keep-outs around the M2.5
 mounting holes.
 
+Every placed body on both inner faces must also have a manufacturer-backed body
+height. The generator mirrors the RF/power board into the UI-board physical
+datum and checks all 17 non-mating pairs whose XY projections overlap across
+the exact 11-mm channel. The current limiting pair—the headphone jack opposite
+the VHF/UHF radio—retains a 2.85-mm nominal Z gap, above the enforced 0.7-mm
+minimum. The aligned FX8C plug and receptacle are validated separately as the
+single intentional mate. Both exact 30-mm native RF coax routes are checked
+against same-face bodies, screw keep-outs and all opposing bodies; their current
+1.13-mm-OD corridors have no opposing-body XY crossing. Passives and
+manufacturing tolerances remain outside this architecture projection and must
+close in ECAD before fabrication.
+
 In one line below the display, user-facing actual-transmit labels cover
 `WI-FI/BLE`, `WI-FI/15.4`, `nRF24-1`, `nRF24-2`, `nRF24-3`, `SUB-GHz`,
 `VHF/UHF`, `IR`, `LORA/EXT` and the aggregate `TX ACTIVE`. Antenna silkscreen uses the
@@ -148,7 +160,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned external layout](images/current-clamshell.svg?layout=13)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=9)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=10)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

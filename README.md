@@ -49,7 +49,7 @@ controls, labelled RF ports, indicators and side interfaces. The second shows
 the two mirrored inner faces and the exact devices inside the sandwich. A
 number inside a component outline maps to the adjacent exact MPN and role.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=9)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=10)
 
 ### Top view from the antenna edge
 

@@ -2582,6 +2582,27 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("<=1 ms", display_contract["arbitration"])
         self.assertNotIn("256 B", display_contract["arbitration"])
 
+    def test_inner_face_package_heights_are_manufacturer_bounded(self):
+        candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
+        expected = {
+            "slow_io": (0.60, "RGJ0032A"),
+            "codec": (0.60, "Revision 17.0"),
+            "nvdc_charger": (1.00, "RQM0029A"),
+            "pack_admission": (1.10, "DGS0020A"),
+            "safety_controller": (1.10, "DGS0020A"),
+            "aon_buck": (0.60, "DRL0008A"),
+            "main_buck": (0.60, "DRL0006A"),
+            "voice_buck": (0.60, "DRL0006A"),
+            "ext_buck": (0.60, "DRL0006A"),
+            "product_usb_protector": (0.80, "RUK0020B"),
+            "pd_controller": (0.80, "REF0038A"),
+            "speaker_amp": (0.63, "U-DFN3030-8 Type E"),
+        }
+        for instance, (height, basis) in expected.items():
+            device = self.database["devices"][candidate["instances"][instance]]
+            self.assertEqual(height, device["dimensions_mm"][2], instance)
+            self.assertIn(basis, device["mechanical_height_basis"], instance)
+
     def test_exact_hmx_display_electrical_fit_does_not_regress(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual("qdtech_hmx035ctft_001", candidate["instances"]["display"])

@@ -26,6 +26,12 @@ MOUNT_HOLE_D = 2.7
 MOUNT_KEEPOUT_R = 4.0
 HOLES = ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0))
 
+INTERBOARD_GAP_MM = 11.0
+MIN_INTERBOARD_Z_CLEARANCE_MM = 0.7
+INTENTIONAL_INTERBOARD_MATES = {
+    ("m1_ui_plug", "m1_rf_receptacle"),
+}
+
 U214_X = -4.5
 U214_Y = 17.0
 U214_W = 84.0
@@ -131,7 +137,7 @@ EDGE_INTERFACES = (
 
 # Acoustic openings have a physical location but no electrical direction.
 ACOUSTIC_OPENINGS = (
-    ("speaker", "rear", "left", 109.0, "SPEAKER / GRILLE"),
+    ("speaker", "rear", "left", 133.0, "SPEAKER / GRILLE"),
     ("microphone", "rear", "bottom", 47.0, "MICROPHONE"),
 )
 
@@ -260,7 +266,7 @@ RF_INNER = (
     Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
     Placement("unit_connector", 51.0, 140.9, "native M5 Unit HY2.0-4P edge receptacle"),
     Placement("microphone", 45.0, 146.0, "rear bottom microphone port"),
-    Placement("speaker", 5.0, 103.0, "internal 4-Ohm differential speaker"),
+    Placement("speaker", 5.0, 127.0, "internal 4-Ohm differential speaker"),
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
     Placement("rp_boot_button", 59.5, 104.0, "RP technological USB_BOOT"),
@@ -331,6 +337,17 @@ def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[flo
     )
 
 
+def placement_height(item: Placement, devices: dict, instances: dict) -> float:
+    """Return the manufacturer-backed body height recorded for a placed part."""
+    dimensions = devices[instances[item.instance]].get("dimensions_mm")
+    if not dimensions or len(dimensions) < 3 or dimensions[2] is None:
+        raise ValueError(f"{item.instance}: package height is missing")
+    height = float(dimensions[2])
+    if height <= 0:
+        raise ValueError(f"{item.instance}: package height must be positive")
+    return height
+
+
 def mirrored_x(x: float, width: float = 0.0) -> float:
     """Mirror a point or left edge across the 75-mm board centreline."""
     return BOARD_W - x - width
@@ -340,6 +357,36 @@ def overlaps(a: tuple[float, float, float, float], b: tuple[float, float, float,
     ax, ay, aw, ah = a
     bx, by, bw, bh = b
     return ax < bx + bw + margin and bx < ax + aw + margin and ay < by + bh + margin and by < ay + ah + margin
+
+
+def interboard_clearance_pairs(
+    devices: dict,
+    instances: dict,
+) -> list[tuple[float, Placement, Placement]]:
+    """Calculate every non-mating pair projected into the same physical datum.
+
+    Placement X is authored as seen from each board's external face.  The rear
+    RF/power board therefore has to be mirrored into the front-board datum
+    before the two inner faces can be compared.
+    """
+    pairs: list[tuple[float, Placement, Placement]] = []
+    for ui_item in UI_INNER:
+        ui_w, ui_h = placement_size(ui_item, devices, instances)
+        ui_box = (ui_item.x, ui_item.y, ui_w, ui_h)
+        for rf_item in RF_INNER:
+            rf_w, rf_h = placement_size(rf_item, devices, instances)
+            rf_box = (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h)
+            if not overlaps(ui_box, rf_box):
+                continue
+            if (ui_item.instance, rf_item.instance) in INTENTIONAL_INTERBOARD_MATES:
+                continue
+            clearance = (
+                INTERBOARD_GAP_MM
+                - placement_height(ui_item, devices, instances)
+                - placement_height(rf_item, devices, instances)
+            )
+            pairs.append((clearance, ui_item, rf_item))
+    return sorted(pairs, key=lambda row: (row[0], row[1].instance, row[2].instance))
 
 
 def hits_hole(
@@ -375,6 +422,51 @@ def point_segment_distance(
         return math.hypot(px - x1, py - y1)
     amount = max(0.0, min(1.0, ((px - x1) * dx + (py - y1) * dy) / denominator))
     return math.hypot(px - (x1 + amount * dx), py - (y1 + amount * dy))
+
+
+def axis_aligned_segment_hits_box(
+    start: tuple[float, float],
+    end: tuple[float, float],
+    rectangle: tuple[float, float, float, float],
+    margin: float = 0.0,
+) -> bool:
+    """Return whether a horizontal/vertical route corridor meets a box."""
+    x1, y1 = start
+    x2, y2 = end
+    x, y, w, h = rectangle
+    left, right = x - margin, x + w + margin
+    top, bottom = y - margin, y + h + margin
+    if abs(y1 - y2) < 0.001:
+        return top <= y1 <= bottom and max(min(x1, x2), left) <= min(max(x1, x2), right)
+    if abs(x1 - x2) < 0.001:
+        return left <= x1 <= right and max(min(y1, y2), top) <= min(max(y1, y2), bottom)
+    raise ValueError(f"non-orthogonal cable segment {start}/{end}")
+
+
+def cable_interboard_clearance_pairs(
+    devices: dict,
+    instances: dict,
+) -> list[tuple[float, CableRoute, Placement]]:
+    """Calculate cable/body pairs that overlap across the inner channel."""
+    pairs: list[tuple[float, CableRoute, Placement]] = []
+    for route in UI_RF_CABLES:
+        device = devices[instances[route.instance]]
+        cable_od = float(device["electrical_contract"]["cable_outer_diameter_mm"])
+        cable_radius = cable_od / 2
+        for rf_item in RF_INNER:
+            rf_w, rf_h = placement_size(rf_item, devices, instances)
+            rf_box = (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h)
+            if any(
+                axis_aligned_segment_hits_box(start, end, rf_box, cable_radius)
+                for start, end in zip(route.points, route.points[1:])
+            ):
+                clearance = (
+                    INTERBOARD_GAP_MM
+                    - cable_od
+                    - placement_height(rf_item, devices, instances)
+                )
+                pairs.append((clearance, route, rf_item))
+    return sorted(pairs, key=lambda row: (row[0], row[1].instance, row[2].instance))
 
 
 def text_bounds_px(element: ET.Element) -> tuple[float, float, float, float]:
@@ -519,10 +611,17 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
                 f"not the exact {expected_length:.2f}-mm assembly"
             )
         cable_radius = float(device["electrical_contract"]["cable_outer_diameter_mm"]) / 2
+        cable_od = cable_radius * 2
+        if INTERBOARD_GAP_MM - cable_od < MIN_INTERBOARD_Z_CLEARANCE_MM:
+            errors.append(f"native-rf-cable: {route.instance} does not fit the interboard channel")
         for point in route.points:
             if not (cable_radius <= point[0] <= BOARD_W - cable_radius and cable_radius <= point[1] <= BOARD_H - cable_radius):
                 errors.append(f"native-rf-cable: {route.instance} leaves the PCB plan at {point}")
         for segment in zip(route.points, route.points[1:]):
+            try:
+                axis_aligned_segment_hits_box(*segment, (0.0, 0.0, 0.0, 0.0))
+            except ValueError as error:
+                errors.append(f"native-rf-cable: {route.instance}: {error}")
             for hole in HOLES:
                 if point_segment_distance(hole, *segment) < MOUNT_KEEPOUT_R + cable_radius:
                     errors.append(f"native-rf-cable: {route.instance} enters the M2.5 keep-out at {hole}")
@@ -539,8 +638,38 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
         if any(abs(a - b) > 0.01 for a, b in zip(route.points[-1], expected_end)):
             errors.append(f"native-rf-cable: {route.instance} does not end at its board receptacle axis")
 
+        allowed_contacts = {module_instance, board_connector_instance}
+        for item in UI_INNER:
+            if item.instance in allowed_contacts:
+                continue
+            item_w, item_h = placement_size(item, devices, instances)
+            item_box = (item.x, item.y, item_w, item_h)
+            try:
+                route_hits = any(
+                    axis_aligned_segment_hits_box(
+                        start,
+                        end,
+                        item_box,
+                        cable_radius + MIN_INTERBOARD_Z_CLEARANCE_MM,
+                    )
+                    for start, end in zip(route.points, route.points[1:])
+                )
+            except ValueError:
+                route_hits = False
+            if route_hits:
+                errors.append(
+                    f"native-rf-cable: {route.instance} lacks {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm "
+                    f"same-face clearance to {item.instance}"
+                )
+
     if {route.instance for route in UI_RF_CABLES} != {"s3_rf_jumper", "c5_rf_jumper"}:
         errors.append("native-rf-cable: exact S3 and C5 jumper routes must both be present")
+    for clearance, route, rf_item in cable_interboard_clearance_pairs(devices, instances):
+        if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
+            errors.append(
+                f"native-rf-cable: {route.instance}/{rf_item.instance} leaves only "
+                f"{clearance:.2f} mm across the interboard channel"
+            )
     return errors
 
 
@@ -583,6 +712,36 @@ def validate() -> list[str]:
     errors += validate_items("ui-inner", UI_INNER, devices, instances)
     errors += validate_cable_routes(devices, instances)
     errors += validate_items("rf-inner", RF_INNER, devices, instances)
+    inner_height_errors = []
+    for item in UI_INNER + RF_INNER:
+        try:
+            placement_height(item, devices, instances)
+        except ValueError as error:
+            inner_height_errors.append(str(error))
+    errors += inner_height_errors
+    if not inner_height_errors:
+        clearance_pairs = interboard_clearance_pairs(devices, instances)
+        for clearance, ui_item, rf_item in clearance_pairs:
+            if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
+                errors.append(
+                    f"interboard: {ui_item.instance}/{rf_item.instance} leaves only "
+                    f"{clearance:.2f} mm, below the {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm minimum"
+                )
+        ui_by_instance = {item.instance: item for item in UI_INNER}
+        rf_by_instance = {item.instance: item for item in RF_INNER}
+        for ui_instance, rf_instance in INTENTIONAL_INTERBOARD_MATES:
+            ui_item = ui_by_instance.get(ui_instance)
+            rf_item = rf_by_instance.get(rf_instance)
+            if ui_item is None or rf_item is None:
+                errors.append(f"interboard: intentional mate {ui_instance}/{rf_instance} is absent")
+                continue
+            ui_w, ui_h = placement_size(ui_item, devices, instances)
+            rf_w, rf_h = placement_size(rf_item, devices, instances)
+            if not overlaps(
+                (ui_item.x, ui_item.y, ui_w, ui_h),
+                (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h),
+            ):
+                errors.append(f"interboard: intentional mate {ui_instance}/{rf_instance} is not aligned")
     errors += validate_items("front-controls", FRONT_CONTROLS, devices, instances)
     errors += validate_items("rear-controls", REAR_CONTROLS, devices, instances)
     errors += validate_items("rear-outer", REAR_OUTER, devices, instances)
@@ -728,9 +887,11 @@ def validate() -> list[str]:
             if instance not in instances or path not in drawn_paths:
                 errors.append(f"{face_key}: unknown antenna instance/path {instance}/{path}")
     separation = antenna_planes.get("separation", {})
+    if float(candidate["interboard_contract"].get("working_inner_gap_mm", -1)) != INTERBOARD_GAP_MM:
+        errors.append("mechanical clearance audit requires the exact 11-mm working inner gap")
     expected_outer_face_separation = float(candidate["interboard_contract"]["working_inner_gap_mm"]) + 2 * 1.6
     expected_centre_plane_separation = expected_outer_face_separation + RF_BARREL_D
-    if separation.get("interboard_channel_mm") != 11.0:
+    if separation.get("interboard_channel_mm") != INTERBOARD_GAP_MM:
         errors.append("antenna contract must preserve the exact 11-mm interboard channel")
     if abs(float(separation.get("outer_pcb_face_separation_mm", -1)) - expected_outer_face_separation) > 0.001:
         errors.append("antenna contract has invalid outward PCB face separation")
@@ -740,7 +901,7 @@ def validate() -> list[str]:
         errors.append("antenna connector bodies may not occupy the interboard channel")
     ui_outer_z = float(devices[instances["display"]]["dimensions_mm"][2])
     ui_inner_z = ui_outer_z + 1.6
-    rf_inner_z = ui_inner_z + 11.0
+    rf_inner_z = ui_inner_z + INTERBOARD_GAP_MM
     rf_outer_z = rf_inner_z + 1.6
     front_rf_centre_z = ui_outer_z - RF_BARREL_D / 2
     rear_rf_centre_z = rf_outer_z + RF_BARREL_D / 2
@@ -748,7 +909,7 @@ def validate() -> list[str]:
         errors.append("front antenna bodies must terminate at the UI PCB outer face")
     if abs(rear_rf_centre_z - RF_BARREL_D / 2 - rf_outer_z) > 0.001:
         errors.append("rear antenna bodies must begin at the RF/power PCB outer face")
-    if abs((rf_inner_z - ui_inner_z) - 11.0) > 0.001:
+    if abs((rf_inner_z - ui_inner_z) - INTERBOARD_GAP_MM) > 0.001:
         errors.append("the 11-mm interboard channel must remain free of antenna bodies")
     if rear_rf_centre_z - front_rf_centre_z < 20.5:
         errors.append("opposed outer-face antenna banks lost their maximum depth separation")
@@ -1185,7 +1346,14 @@ def render_internal(devices, instances):
     legend_row_height = 21
     legend_bottom = legend_first_y + (max(len(ui_items), len(RF_INNER)) - 1) * legend_row_height + 9
     notes_top = max(560, legend_bottom + 35)
-    svg_height = notes_top + 230
+    clearance_pairs = interboard_clearance_pairs(devices, instances)
+    cable_clearance_pairs = cable_interboard_clearance_pairs(devices, instances)
+    maximum_cable_od = max(
+        float(devices[instances[route.instance]]["electrical_contract"]["cable_outer_diameter_mm"])
+        for route in UI_RF_CABLES
+    )
+    minimum_clearance, minimum_ui, minimum_rf = clearance_pairs[0]
+    svg_height = notes_top + 296
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-silkscreen="none">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
@@ -1283,17 +1451,24 @@ def render_internal(devices, instances):
         out.append(text(right_x+26,y+9,item.role,7.2,colour="#526076"))
         y += legend_row_height
     out += [
-        f'<g id="validated-clearances" data-legend-bottom="{legend_bottom}" data-top="{notes_top}">',
+        f'<g id="validated-clearances" data-legend-bottom="{legend_bottom}" data-top="{notes_top}" '
+        f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
+        f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
+        f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}">',
         text(left_x,notes_top,"Validated clearances",14,"bold"),
-        text(left_x,notes_top+24,"• device-to-device: ≥0.7 mm in this projection",10),
-        text(left_x,notes_top+45,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
-        text(left_x,notes_top+66,"• both inner views are horizontally mirrored from their external faces",10),
-        text(left_x,notes_top+87,"• antenna arrows reference outer-face ports; their bodies are absent here",10),
-        text(left_x,notes_top+108,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,notes_top+128,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(left_x,notes_top+154,"S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.",9.2,"bold",colour="#9a3412"),
-        text(left_x,notes_top+175,"POWER command: C&K JS102011SCQN; low-current request only, never pack current.",9.2,"bold",colour="#9a3412"),
-        text(left_x,notes_top+196,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
+        text(left_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
+        text(left_x,notes_top+45,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
+        text(left_x,notes_top+66,f"• native RF coax: {len(UI_RF_CABLES)} routes checked; {len(cable_clearance_pairs)} opposing-body crossings; maximum OD {maximum_cable_od:.2f} mm",10),
+        text(left_x,notes_top+87,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
+        text(left_x,notes_top+108,"• exact M1 plug/receptacle is one intentional mate, not a clearance pair",10),
+        text(left_x,notes_top+129,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
+        text(left_x,notes_top+150,"• both inner views are horizontally mirrored from their external faces",10),
+        text(left_x,notes_top+171,"• antenna arrows reference outer-face ports; their bodies are absent here",10),
+        text(left_x,notes_top+192,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
+        text(left_x,notes_top+212,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
+        text(left_x,notes_top+238,"S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.",9.2,"bold",colour="#9a3412"),
+        text(left_x,notes_top+259,"POWER command: C&K JS102011SCQN; low-current request only, never pack current.",9.2,"bold",colour="#9a3412"),
+        text(left_x,notes_top+280,"Placement projection; passives, copper and enclosure stack are omitted.",9.2,colour="#526076"),
         "</g>",
     ]
     out.append("</svg>")
@@ -1791,7 +1966,7 @@ def render_sandwich(devices, instances):
     out += [
         line(745, 105, 745, 750, "#d0d5dd", "6 5"),
         t(60, 750, f"Display: {mpn('display')} · {depth('display'):.1f}-mm LCD/CTP body", 10.5, "bold"),
-        t(60, 774, f"Inner component positions—including {mpn('speaker')}—are documented in the adjacent inner-face view.", 10.5, colour="#526076"),
+        t(60, 774, f"Complete opposing-body Z clearance—including {mpn('speaker')}—is audited in the inner-face view.", 10.5, colour="#526076"),
         t(780, 750, "The sections exclude enclosure walls, solder and manufacturing tolerances.", 10.5, "bold", colour="#b42318"),
         t(780, 774, "Dimensioned architecture projection — not a production enclosure drawing.", 10.5, colour="#526076"),
         '</svg>',
