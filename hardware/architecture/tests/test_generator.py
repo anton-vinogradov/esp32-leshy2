@@ -25,6 +25,23 @@ class ArchitectureValidationTests(unittest.TestCase):
     def test_checked_in_sources_are_valid(self):
         self.assertEqual([], self.errors_for())
 
+    def test_pre_kicad_sample_plan_preserves_minimum_evidence_lot_and_gate(self):
+        plan = (
+            GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
+        ).read_text(encoding="utf-8")
+        for token in (
+            "HMX035CTFT-001",
+            "M5Stack `U214` | 1",
+            "Samtec `SSW-107-02-S-D` | 5",
+            "Hirose `FH12-40S-0.5SH(55)` | 5",
+            "Ebyte `E01-ML01IPX` | 4",
+            "NiceRF `SA518` | 2",
+            "KiCad remains unauthorized",
+        ):
+            self.assertIn(token, plan)
+        self.assertIn("$151.815", plan)
+        self.assertIn("not a finished-product page", plan)
+
     def test_hwfw_target_integration_contract_matches_architecture(self):
         contract = json.loads(
             (GENERATOR.REPO_ROOT / "hardware/architecture/target-integration-contract.json")
@@ -312,7 +329,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**199/199** lines", rendered)
         self.assertIn("**188/199** lines", rendered)
         self.assertIn("**911/928** supplied placements", rendered)
-        self.assertIn("USD 202.6095", rendered)
+        self.assertIn("USD 202.8803", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -332,6 +349,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("HMX035CTFT-001", rendered)
         self.assertIn("narrow screen", rendered)
         self.assertIn("KiCad remains unauthorized", rendered)
+
+        cap_socket = self.database["devices"]["samtec_ssw_107_02_s_d"]
+        self.assertIn("214 shown in stock", cap_socket["orderable_source"]["document"])
+        self.assertIn("SSW-107-02-T-D", cap_socket["availability_note"])
+        self.assertEqual("not_drop_in_approved", cap_socket["alternate_gate"]["status"])
 
     def test_i9_joint_projection_classifies_every_abstract_endpoint(self):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")

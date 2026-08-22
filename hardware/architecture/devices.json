@@ -1243,9 +1243,9 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "U214 active authorized-distributor exact-SKU page; 14 shown in stock",
+        "document": "U214 active authorized-distributor exact-SKU page; 38 shown in stock",
         "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633",
-        "checked": "2026-08-19"
+        "checked": "2026-08-22"
       },
       "cost_gate": {
         "status": "retail_only_no_quantity_100_tier",
@@ -1253,7 +1253,7 @@
         "source": {
           "document": "DigiKey exact-U214 retail-package price table",
           "url": "https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633",
-          "checked": "2026-08-19"
+          "checked": "2026-08-22"
         }
       },
       "programmable": false,
@@ -1271,7 +1271,7 @@
       "mpn": "Samtec SSW-107-02-S-D",
       "kind": "14_contact_2x7_2_54mm_vertical_through_hole_socket",
       "qualification": "verified_exact_paper_fit_received_u214_mating_hil_open",
-      "lifecycle": "active and manufacturer-orderable",
+      "lifecycle": "active and authorized-distributor-orderable",
       "dimensions_mm": [18.29, 4.95, 8.51],
       "source": {
         "document": "Samtec exact product page and SSW series drawing",
@@ -1280,9 +1280,15 @@
         "checked": "2026-08-19"
       },
       "orderable_source": {
-        "document": "Samtec exact-MPN manufacturer stock page; 1132 shown as ships tomorrow",
-        "url": "https://www.samtec.com/products/ssw-107-02-s-d",
-        "checked": "2026-08-19"
+        "document": "Mouser exact-MPN authorized-distributor page; 214 shown in stock for immediate shipment",
+        "url": "https://www.mouser.fr/ProductDetail/Samtec/SSW-107-02-S-D?qs=XtX6y9BSeMh%252BITruJPqgTA%3D%3D",
+        "checked": "2026-08-22"
+      },
+      "availability_note": "Samtec's exact-MPN page publishes pricing but its 1132-piece Ships Tomorrow row is explicitly the plating-different SSW-107-02-T-D, not the selected SSW-107-02-S-D. Exact-S stock is instead evidenced by Mouser; the T variant must not be treated as a silent substitute.",
+      "alternate_gate": {
+        "candidate": "Samtec SSW-107-02-T-D",
+        "status": "not_drop_in_approved",
+        "reason": "The geometry is nominally compatible, but T changes the mating contact from selective 30-microinch gold to matte tin and lowers the published temperature ceiling from 125 C to 105 C; exposed removable-Cap retention, oxidation and cycle life would require requalification."
       },
       "cost": {
         "currency": "USD",
@@ -1292,7 +1298,7 @@
         "source": {
           "document": "Samtec exact-MPN published OEM price table",
           "url": "https://www.samtec.com/products/ssw-107-02-s-d",
-          "checked": "2026-08-19"
+          "checked": "2026-08-22"
         }
       },
       "programmable": false,
@@ -1384,18 +1390,18 @@
       },
       "orderable_source": {
         "document": "FH12-40S-0.5SH(55) active authorized-distributor stock page",
-        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110388",
-        "checked": "2026-08-18"
+        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328",
+        "checked": "2026-08-22"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 2.2948,
+        "unit_price_usd": 2.5656,
         "price_break": "DigiKey cut-tape quantity-100 tier",
         "source": {
           "document": "DigiKey exact-MPN published price table",
           "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328",
-          "checked": "2026-08-19"
+          "checked": "2026-08-22"
         }
       },
       "programmable": false,
@@ -2952,9 +2958,9 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "E01-ML01IPX current Ebyte official-store exact-product page",
+        "document": "E01-ML01IPX current Ebyte official-store exact-product page; USD 2.02 is published, but the same page shows both In Stock and Out of stock/pre-order states, so immediate fulfillment requires confirmation",
         "url": "https://ebyteiot.com/products/ebyte-e01-ml01ipx-nrf24l01p-rf-2-4g-smd-wireless-transceiver-module-iot-electronic-components-ebyte-e01-ml01ipx-spi-interface-antenna-ipex-smd",
-        "checked": "2026-08-19"
+        "checked": "2026-08-22"
       },
       "cost_gate": {
         "status": "quantity_100_rfq_required",
@@ -2962,7 +2968,7 @@
         "source": {
           "document": "Ebyte exact E01-ML01IPX manufacturer product and wholesale-inquiry page",
           "url": "https://www.cdebyte.com/products/E01-ML01IPX",
-          "checked": "2026-08-19"
+          "checked": "2026-08-22"
         }
       },
       "lifecycle_source": {
@@ -3422,7 +3428,7 @@
       "orderable_source": {
         "document": "SA518 current manufacturer product/RFQ page; no authorized stocking distributor or public quantity inventory is claimed",
         "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
-        "checked": "2026-08-19"
+        "checked": "2026-08-22"
       },
       "cost_gate": {
         "status": "quantity_100_rfq_required",
@@ -3430,7 +3436,7 @@
         "source": {
           "document": "NiceRF exact SA518 manufacturer product/RFQ page",
           "url": "https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html",
-          "checked": "2026-08-19"
+          "checked": "2026-08-22"
         }
       },
       "programmable": false,

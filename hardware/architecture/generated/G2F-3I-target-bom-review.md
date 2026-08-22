@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **188/199** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **911/928** supplied placements; their partial subtotals are `base_product` — USD 202.6095. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **911/928** supplied placements; their partial subtotals are `base_product` — USD 202.8803. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -564,12 +564,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Hirose FH12-40S-0.5SH(55)</code> — 1 × USD 2.2948 = USD 2.2948</summary>
+<details><summary><code>Hirose FH12-40S-0.5SH(55)</code> — 1 × USD 2.5656 = USD 2.5656</summary>
 
 - Device id: `hirose_fh12_40s_0_5sh_55`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328).
+- Checked: `2026-08-22`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328).
 
 </details>
 
@@ -1154,7 +1154,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Device id: `samtec_ssw_107_02_s_d`.
 - Scope: `base_product`.
 - Comparable basis: Samtec OEM quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.samtec.com/products/ssw-107-02-s-d).
+- Checked: `2026-08-22`; [published source](https://www.samtec.com/products/ssw-107-02-s-d).
 
 </details>
 
@@ -2049,7 +2049,7 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Device id: `ebyte_e01_ml01ipx`.
 - Scope: `base_product`; quantity `3`.
 - Reason: The manufacturer exposes a 100-999-piece tier but withholds its numeric price behind Send Inquiry, so no comparable published quantity-100 USD value is available.
-- Checked: `2026-08-19`; [gate source](https://www.cdebyte.com/products/E01-ML01IPX).
+- Checked: `2026-08-22`; [gate source](https://www.cdebyte.com/products/E01-ML01IPX).
 
 </details>
 
@@ -2058,7 +2058,7 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Device id: `m5_u214`.
 - Scope: `optional_external_accessory`; quantity `1`.
 - Reason: The exact U214 is sold as a retail package at USD 14.50 with no published quantity-100 tier; a comparable production quantity quote is required instead of multiplying the retail price.
-- Checked: `2026-08-19`; [gate source](https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633).
+- Checked: `2026-08-22`; [gate source](https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633).
 
 </details>
 
@@ -2085,7 +2085,7 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - Device id: `nicerf_sa518_v11`.
 - Scope: `base_product`; quantity `1`.
 - Reason: The exact current SA518 manufacturer page offers contact/RFQ rather than a published quantity-100 USD price.
-- Checked: `2026-08-19`; [gate source](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html).
+- Checked: `2026-08-22`; [gate source](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html).
 
 </details>
 

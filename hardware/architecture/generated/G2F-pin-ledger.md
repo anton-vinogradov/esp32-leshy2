@@ -117,7 +117,7 @@
 | `same_sky_cmej_0413_42_smt_tr` | `Same Sky CMEJ-0413-42-SMT-TR` | `verified_candidate` | `active_orderable` | [CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet Rev. 1.04, September 2024](https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf) | same primary source |
 | `same_sky_sj1_3515_smt_tr` | `Same Sky SJ1-3515-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ1-351X-SMT Audio Jack datasheet Rev. 1.09, September 2024](https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf) | same primary source |
 | `samtec_ftsh_105_01_l_dv_k_p_tr` | `Samtec FTSH-105-01-L-DV-K-P-TR` | `verified_exact_three_domain_dbg10_header` | `active_orderable` | [Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint drawing revision FX; -105/-01/-L/-DV/-K/-P configuration](https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf) | same primary source |
-| `samtec_ssw_107_02_s_d` | `Samtec SSW-107-02-S-D` | `verified_exact_paper_fit_received_u214_mating_hil_open` | `active and manufacturer-orderable` | [Samtec exact product page and SSW series drawing SSW-107-02-S-D / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL](https://www.samtec.com/products/ssw-107-02-s-d) | same primary source |
+| `samtec_ssw_107_02_s_d` | `Samtec SSW-107-02-S-D` | `verified_exact_paper_fit_received_u214_mating_hil_open` | `active and authorized-distributor-orderable` | [Samtec exact product page and SSW series drawing SSW-107-02-S-D / SSW-1XX-XX-XXX-X-XX-XXX-XX Rev.CL](https://www.samtec.com/products/ssw-107-02-s-d) | same primary source |
 | `seeed_1125r_smt_4p` | `1125R-SMT-4P` | `verified_exact_paper_fit_received_cable_hil_open` | `active in Seeed Open Parts Library as PCBA SKU 320110032` | [Seeed 1125R-SMT-4P official manufacturer drawing NS-1125-W00010 Rev.A](https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf) | same primary source |
 | `sitronix_st77922` | `Sitronix ST77922` | `verified_exact_controller_inside_hmx035ctft_001` | `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly` | [ST77922 Single-Chip TFT Controller/Driver/Touch datasheet Preliminary 0.1, 2023-06](https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf) | same primary source |
 | `skyworks_si4732_a10_gsr` | `Si4732-A10-GSR` | `verified_exact_production_candidate` | `active_orderable` | [Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short 2021-09-13](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf) | same primary source |
@@ -3330,7 +3330,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `cc_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `voice_external_sma` uses `GCT RFPC-SMA31-FN-175-A` as `verified_exact_external_standard_sma_body`, not an accepted production choice.
 - `u214_connector` uses `Samtec SSW-107-02-S-D` as `verified_exact_paper_fit_received_u214_mating_hil_open`, not an accepted production choice.
-- `u214_connector` lifecycle: `active and manufacturer-orderable`.
+- `u214_connector` lifecycle: `active and authorized-distributor-orderable`.
 - `u214_i2c_iso` uses `TCA4307DGKR` as `verified_exact_u214_i2c_hot_swap_boundary`, not an accepted production choice.
 - `u214_host_buffer_a` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.
 - `u214_host_buffer_a` lifecycle: `production_active_orderable`.
