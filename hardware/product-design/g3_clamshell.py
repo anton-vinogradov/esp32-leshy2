@@ -16,6 +16,7 @@ REPO = Path(__file__).resolve().parents[2]
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 MECHANICAL_GATES_PATH = REPO / "hardware/product-design/mechanical-evidence-gates.json"
+SOURCE_RESEARCH_PATH = REPO / "hardware/product-design/h1-source-research.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
@@ -985,8 +986,12 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3":
         errors.append("mechanical-gates: schema/stage mismatch")
     constraint = data.get("execution_constraint", {})
-    if constraint.get("status") != "user_decision_required":
-        errors.append("mechanical-gates: evidence-lot decision state must remain explicit")
+    if constraint.get("status") != "research_first_active":
+        errors.append("mechanical-gates: research-first evidence policy must remain explicit")
+    if constraint.get("order_authorized") is not False:
+        errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
+    if constraint.get("current_step") != "H1.1.3.3.3":
+        errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
     identifiers = [gate.get("id") for gate in gates]
@@ -1042,6 +1047,42 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
     return errors
 
 
+def validate_source_research() -> list[str]:
+    """Keep the accepted research-first / purchase-last sequence machine-checkable."""
+    data = json.loads(SOURCE_RESEARCH_PATH.read_text(encoding="utf-8"))
+    errors: list[str] = []
+    if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
+        errors.append("source-research: schema/stage mismatch")
+    if data.get("current_substep") != "H1.1.3.3.3":
+        errors.append("source-research: exact current substep drifted")
+    policy = data.get("policy", {})
+    if policy.get("order_authorized") is not False:
+        errors.append("source-research: sample order must remain unauthorized")
+    if policy.get("purchase_is_last_resort") is not True:
+        errors.append("source-research: purchase-last policy was lost")
+    sequence = policy.get("sequence", [])
+    expected = [
+        ("H1.1.3.3.1", "reviewed"),
+        ("H1.1.3.3.2", "reviewed"),
+        ("H1.1.3.3.3", "current"),
+        ("H1.1.3.3.4", "blocked"),
+    ]
+    actual = [(row.get("id"), row.get("status")) for row in sequence]
+    if actual != expected:
+        errors.append("source-research: research/replacement/request/sample order drifted")
+    subjects = {row.get("id"): row for row in data.get("subjects", [])}
+    if set(subjects) != {"display", "nrf24", "u214"}:
+        errors.append("source-research: exact H1 source subjects drifted")
+    for subject_id, subject in subjects.items():
+        if not subject.get("official_findings"):
+            errors.append(f"source-research: {subject_id} lacks official findings")
+        if not subject.get("replacement_review"):
+            errors.append(f"source-research: {subject_id} lacks replacement review")
+        if not subject.get("remaining_gap") or not subject.get("current_disposition"):
+            errors.append(f"source-research: {subject_id} lacks disposition")
+    return errors
+
+
 def validate() -> list[str]:
     devices, candidate, instances = load()
     errors: list[str] = []
@@ -1067,6 +1108,7 @@ def validate() -> list[str]:
     )
     errors += mechanical_source_errors
     errors += validate_mechanical_evidence_gates(instances, mechanically_accounted)
+    errors += validate_source_research()
     for instance, device_key in instances.items():
         device = devices[device_key]
         dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))

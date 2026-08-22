@@ -58,6 +58,7 @@ class PreorderGateTests(unittest.TestCase):
         self.assertIn("P1–P6", index)
         self.assertIn("not the next project step", plan)
         self.assertIn("Sample ordering remains unauthorized", plan)
+        self.assertIn("Purchasing is the\nlast resort", plan)
 
 
 if __name__ == "__main__":

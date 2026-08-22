@@ -7,10 +7,11 @@
     "no_silent_inference": true
   },
   "execution_constraint": {
-    "status": "user_decision_required",
-    "legacy_rule": "hardware/procurement/pre-kicad-sample-plan.md currently forbids evidence-sample ordering until preorder P1-P6 pass",
-    "conflict": "Three H1 source blockers require received evidence before the dimension/source table and mockup can be frozen, creating a circular dependency if the legacy rule is retained unchanged.",
-    "decision": "Either authorize a narrow non-fabrication H1 evidence lot or replace the affected parts with alternatives having complete controlled mechanical data."
+    "status": "research_first_active",
+    "policy_source": "hardware/product-design/h1-source-research.json",
+    "order_authorized": false,
+    "sequence": "Exhaust controlled public sources, compare function-preserving documented replacements, request missing manufacturer data without an order, and consider a smallest evidence sample only as a separately approved last resort.",
+    "current_step": "H1.1.3.3.3"
   },
   "gates": [
     {

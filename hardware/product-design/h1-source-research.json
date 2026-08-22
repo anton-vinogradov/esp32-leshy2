@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "stage": "H1.1.3.3",
+  "as_of": "2026-08-23",
+  "current_substep": "H1.1.3.3.3",
+  "policy": {
+    "order_authorized": false,
+    "purchase_is_last_resort": true,
+    "sequence": [
+      {
+        "id": "H1.1.3.3.1",
+        "action": "Exhaust public manufacturer-controlled sources and current authorized-distributor lifecycle data.",
+        "status": "reviewed"
+      },
+      {
+        "id": "H1.1.3.3.2",
+        "action": "Compare fully documented replacements and reject any option that degrades an accepted function or creates a larger uncontrolled risk.",
+        "status": "reviewed"
+      },
+      {
+        "id": "H1.1.3.3.3",
+        "action": "Request missing controlled drawings or written mating data from the manufacturer without placing an order.",
+        "status": "current"
+      },
+      {
+        "id": "H1.1.3.3.4",
+        "action": "Only if the preceding routes fail, prepare a smallest-possible evidence-sample proposal for separate user approval.",
+        "status": "blocked"
+      }
+    ]
+  },
+  "subjects": [
+    {
+      "id": "display",
+      "selected": "HMX035CTFT-001",
+      "official_findings": [
+        {
+          "source": "https://www.lcdwiki.com/res/ES3C35P/",
+          "finding": "QDtech publishes the donor schematic, display specification package and a board STEP file. The STEP assembly contains the controller PCB and its components, not the LCD/CTP flex body."
+        },
+        {
+          "source": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_ESP32-S3_Schematic.pdf",
+          "finding": "The schematic controls the HMX035CTFT-001 assembly marking and 40-contact electrical map, but is not a standalone panel ordering or mechanical drawing."
+        }
+      ],
+      "remaining_gap": "No public manufacturer-controlled standalone order code, complete flex outline, contact-side/stiffener drawing or lifecycle statement was found.",
+      "replacement_review": [
+        {
+          "candidate": "Waveshare 3.5inch Capacitive Touch LCD, SKU 29318",
+          "result": "rejected_as_equivalent",
+          "reason": "It is orderable and dimensioned but uses 4-wire SPI, is 61.00x92.44 mm and therefore does not preserve the accepted direct-QSPI occupancy contract."
+        },
+        {
+          "candidate": "Riverdi RVT35HITNWC00-B",
+          "result": "rejected_as_equivalent",
+          "reason": "It has an excellent controlled drawing and lifecycle surface, but uses RGB/4-line SPI, a 50-contact tail, a 59.56x93.34x5.66-mm body and a 13.5-17 V backlight."
+        },
+        {
+          "candidate": "Waveshare ESP32-S3-Touch-LCD-3.5B donor",
+          "result": "rejected_as_evidence_fix",
+          "reason": "It preserves QSPI through AXS15231B, but the raw LCD/CTP assembly still lacks a separately controlled order identity and flex drawing, reproducing the same procurement gap."
+        }
+      ],
+      "current_disposition": "retain_selected_pending_controlled_supplier_data"
+    },
+    {
+      "id": "nrf24",
+      "selected": "3x Ebyte E01-ML01IPX",
+      "official_findings": [
+        {
+          "source": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+          "finding": "The current Ebyte specification fixes the 12x19-mm module, nRF24L01+ function, IPX external interface and recommends Ebyte's 2.4-GHz IPX antenna family."
+        },
+        {
+          "source": "https://www.ebyte.com/pdf-down/2947.html",
+          "finding": "The official Altium PcbLib contains the PE01-ML01IPX footprint and controlled connector-end axis."
+        },
+        {
+          "source": "https://www.ebyte.com/product/367.html",
+          "finding": "Ebyte identifies its mating 2.4-GHz antenna interface as IPX/IPEX generation 1."
+        },
+        {
+          "source": "https://www.te.com/en/product-2118651-2.html",
+          "finding": "TE 2118651-2 is an active 30-mm UMCC Gen1-to-Gen1 assembly with full drawing and CAD data."
+        },
+        {
+          "source": "https://www.te.com/content/dam/te-com/documents/consumer-devices/global/linx-te-competitive-cross-ref-guide.pdf",
+          "finding": "TE cross-references UMCC Gen1/MHF1 to Hirose U.FL-R-SMT-1(10); authorized-distributor stock exists for 2118651-2."
+        }
+      ],
+      "remaining_gap": "Ebyte does not print the receptacle manufacturer's exact MPN in the module manual; current-lot identity remains an incoming-inspection item.",
+      "replacement_review": [
+        {
+          "candidate": "3x bare Nordic NRF24L01P-R7 with local RF matching",
+          "result": "fallback_only",
+          "reason": "The chip and reference layout are fully controlled and currently orderable, but Nordic marks the family not recommended for new designs; direct RF integration also creates three new matching/layout qualifications."
+        },
+        {
+          "candidate": "Ebyte E01-ML01DP5 or E01-2G4M27D with SMA-K",
+          "result": "rejected_as_equivalent",
+          "reason": "The larger high-power PA/LNA modules change current, RF output, coexistence risk and the accepted compact three-radio layout."
+        }
+      ],
+      "current_disposition": "retain_selected_gen1_path_and_move_exact_lot_identity_to_received_inspection"
+    },
+    {
+      "id": "u214",
+      "selected": "M5Stack U214 with Samtec SSW-107-02-S-D host socket",
+      "official_findings": [
+        {
+          "source": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+          "finding": "M5Stack controls the U214 84x24x15.2-mm product envelope, 14-contact Cap-Bus map, mating products and current application."
+        },
+        {
+          "source": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-00-cap1262-model-size.pdf",
+          "finding": "The model-size drawing controls the 84-mm width, 24-mm depth, 15.287-mm maximum thickness and 56-mm retention pitch."
+        },
+        {
+          "source": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-sche-Cap-LoRa1262_SCH_V1.1_20251029_2025_11_07_22_53_19.pdf",
+          "finding": "The official schematic identifies P1 as a 14-position 2.54-mm SMD header and controls every contact."
+        },
+        {
+          "source": "https://docs.m5stack.com/en/core/Cardputer-Adv",
+          "finding": "The reference host exposes an EXT 2.54-14P bus with the matching electrical pin map."
+        }
+      ],
+      "remaining_gap": "Neither public schematic names the fitted male/female connector MPN or guarantees male-post section, exposed length, bottoming and repeated-cycle insertion with the selected Samtec socket.",
+      "replacement_review": [
+        {
+          "candidate": "generic alternative LoRa module or E22 carrier",
+          "result": "rejected_as_equivalent",
+          "reason": "It loses direct compatibility with the accepted U214/Cardputer Cap ecosystem and does not remove the need for a controlled removable mechanical interface."
+        },
+        {
+          "candidate": "different 2x7 2.54-mm host socket",
+          "result": "not_yet_justified",
+          "reason": "A different receptacle cannot prove the undocumented U214 post geometry; the Samtec part already has a controlled body, contact range and broad availability."
+        }
+      ],
+      "current_disposition": "retain_selected_and_request_m5stack_mating_data"
+    }
+  ]
+}

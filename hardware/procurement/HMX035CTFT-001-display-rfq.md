@@ -1,11 +1,12 @@
-# RFQ — standalone HMX035CTFT-001 LCD/CTP assembly
+# No-order technical data request — HMX035CTFT-001 LCD/CTP assembly
 
 Supplier route: Shenzhen QDtech / LCDWIKI product channel  
 Public contact: `Lcdwiki@163.com`, `goodtft@163.com`  
 Target product: Leshy2 handheld radio instrument  
-Requested quantities: 5 engineering samples, then 100 and 500 production units
+Current request: controlled technical and lifecycle data only; no quotation,
+sample or purchase order is authorized
 
-## Current evidence and prototype route
+## Current evidence
 
 QDtech's current product page and its official one-page front/back outline
 confirm the `ES3C35P` donor, a drawing date of `2025-07-24`, the
@@ -14,23 +15,11 @@ outline describes the **complete donor board**; it does not disclose the raw
 `HMX035CTFT-001` flex outline, contact side, stiffener or standalone order
 identity and therefore does not replace the requested approval drawing.
 
-Elecrow currently lists the complete `DLE06235B/ES3C35P` donor in stock at
-USD 20.90. Five donors provide a USD 104.50 published-material route for
-specimen measurement and electrical HIL before a raw-panel quote arrives.
-This route may prove the received flex and connector fit, but it must never be
-used as evidence of standalone production price, lifecycle or lot supply.
+The public QDtech resource package was rechecked before preparing this request.
+Its STEP file models the controller PCB rather than the LCD/CTP flex, so it does
+not close the missing tail geometry.
 
-Donor acceptance sequence:
-
-1. retain one board intact as the electrical and visual reference;
-2. photograph panel, flex and lot markings before disassembly;
-3. measure at least three flexes, including outline, pitch, thickness,
-   exposed-contact side, stiffener and bend keepout;
-4. prove insertion, retention and contact orientation in
-   `FH12-40S-0.5SH(55)`;
-5. run QSPI, touch `0x38`, reset, IRQ, backlight-current and temperature HIL.
-
-## Supplier request
+## Technical-data request
 
 Please quote the **standalone display and capacitive-touch assembly marked
 `HMX035CTFT-001`** used on the QDtech `ES3C35P` product. We do not need the
@@ -51,22 +40,20 @@ Please confirm whether `HMX035CTFT-001` is the supplier-controlled production
 MPN. If it is only an internal marking, provide the exact orderable MPN and
 state whether its electrical and mechanical configuration is identical.
 
-## Required quotation data
+## Required lifecycle data
 
 Please include:
 
-1. unit prices for 5 samples, 100 units and 500 units;
-2. MOQ, sample lead time, production lead time and Incoterms;
-3. lifecycle status plus PCN/EOL notification terms;
-4. country of origin, RoHS/REACH declarations and lot traceability;
-5. available brightness, cover-lens, bonding and surface-treatment options;
-6. operating/storage temperature and reliability/test reports;
-7. packing format and shipping dimensions.
+1. lifecycle status plus PCN/EOL notification terms;
+2. whether the standalone assembly can be ordered independently of `ES3C35P`;
+3. country of origin, RoHS/REACH declarations and lot traceability;
+4. available brightness, cover-lens, bonding and surface-treatment options;
+5. operating/storage temperature and reliability/test reports.
 
 ## Required approval drawing
 
-The quotation is not sufficient without a supplier-controlled approval drawing
-for the standalone assembly. It must show:
+Please provide a supplier-controlled approval drawing for the standalone
+assembly. It must show:
 
 - LCD, CTP, backlight and active/viewing areas with tolerances;
 - total stack including adhesive and any stiffener;
@@ -87,12 +74,9 @@ bottom-contact 40-position 0.5-mm ZIF for 0.30-mm FPC. Please explicitly state
 whether this exact connector is compatible. A logical 40-contact match alone
 is not acceptance.
 
-## Sample acceptance
-
-Samples will be checked for marking/lot identity, drawing dimensions, FPC mate
-and retention, QSPI operation, `0x38` touch identity, reset/IRQ behaviour,
-backlight current and temperature. Production approval is conditional on those
-checks and on a signed drawing revision matching the quoted MPN.
+Commercial quotation and sample acceptance are intentionally deferred until
+this no-order technical request either closes the interface or proves that a
+different display must be selected.
 
 ## Public reference evidence
 
@@ -104,5 +88,3 @@ checks and on a signed drawing revision matching the quoted MPN.
   <https://www.lcdwiki.com/3.5inch_ESP32-S3_Display>
 - QDtech complete-donor front/back and stack outline, V1.0 dated 2025-07-24:
   <https://www.lcdwiki.com/res/ES3C35P/3.5inch_ESP32-S3_touch_Size.pdf>
-- Current Elecrow donor listing:
-  <https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html>

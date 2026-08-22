@@ -41,12 +41,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.assertIn(token, plan)
         self.assertIn("$151.815", plan)
         self.assertIn("not a finished-product page", plan)
+        self.assertIn("Purchasing is the\nlast resort", plan)
 
         procurement = GENERATOR.REPO_ROOT / "hardware/procurement"
         index = (procurement / "README.md").read_text(encoding="utf-8")
         for artifact, token in (
             ("HMX035CTFT-001-display-rfq.md", "supplier-controlled approval drawing"),
-            ("E01-ML01IPX-sample-rfq.md", "exact series/MPN"),
+            ("E01-ML01IPX-data-request.md", "exact series/MPN"),
+            ("U214-mating-data-request.md", "exact MPN"),
             ("SA518-sample-rfq.md", "contact-17 contradiction"),
         ):
             self.assertIn(artifact, index)

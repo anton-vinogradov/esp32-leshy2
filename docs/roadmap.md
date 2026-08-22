@@ -40,12 +40,13 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Current H1 breakdown
 
-<!-- current-substep: H1.1.3.3 -->
+<!-- current-substep: H1.1.3.3.3 -->
 
-**Exact marker: `H1.1.3.3`** — resolve four classified H1 mechanical blockers:
-display tail/order identity, three nRF IPX paths, the U214 mating stack and the
-custom D-pad actuator. Later views already exist as provisional projections,
-but none is a reviewed later substep while this source-data gate is open.
+**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display, nRF
+and U214 data from their manufacturers without placing an order. Public-source
+research and replacement review are complete; no sample order is authorized.
+Later views already exist as provisional projections, but none is a reviewed
+later substep while this source-data gate is open.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -58,8 +59,16 @@ but none is a reviewed later substep while this source-data gate is open.
     - ✅ `H1.1.3.1` — inventory every open mechanical evidence boundary.
     - ✅ `H1.1.3.2` — record four H1 blockers and nine H5 received-sample gates
       in the machine source.
-    - ▶️ **`H1.1.3.3` — current:** close the display, nRF and U214 evidence
-      blockers plus the custom D-pad actuator design.
+    - `H1.1.3.3` — close the remaining source-data blockers and the D-pad
+      actuator design.
+      - ✅ `H1.1.3.3.1` — exhaust public manufacturer-controlled sources and
+        current lifecycle/stock evidence.
+      - ✅ `H1.1.3.3.2` — compare fully documented replacements without
+        degrading an accepted function.
+      - ▶️ **`H1.1.3.3.3` — current:** request any still-missing controlled data
+        from the manufacturer without placing an order.
+      - 🔒 `H1.1.3.3.4` — only if all prior routes fail, prepare a smallest
+        evidence-sample proposal for separate user approval.
   - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
 - ⏳ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
@@ -90,12 +99,14 @@ but none is a reviewed later substep while this source-data gate is open.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
 `H1.1.3.3` exits only when the display, nRF and U214 evidence blockers have
-controlled or accepted received evidence and the D-pad actuator has a
-dimensioned, testable design. The parked procurement rule postponing all
-samples until preorder P1-P6 conflicts with those prerequisites and must be
-resolved explicitly. Closing any substep requires changing the exact marker on
-both landing and roadmap pages in the same commit before advancing work. A
-later correction reopens every affected user review gate and its dependants.
+controlled evidence or a reviewed bounded design fallback and the D-pad
+actuator has a dimensioned, testable design. Purchasing is not an H1 shortcut:
+source research, documented replacement review and a no-order manufacturer
+data request come first. A sample can be proposed only as the last resort and
+still needs separate user approval. Closing any substep requires changing the
+exact marker on both landing and roadmap pages in the same commit before
+advancing work. A later correction reopens every affected user review gate and
+its dependants.
 
 ## Hardware sequence and firmware intersections
 

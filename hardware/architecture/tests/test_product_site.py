@@ -115,7 +115,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H1.1.3.3"}, set(markers.values()))
+        self.assertEqual({"H1.1.3.3.3"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.0", "H1.1.1", "H1.1.2", "H1.1.3", "H1.8"):

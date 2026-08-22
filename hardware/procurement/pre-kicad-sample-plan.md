@@ -1,9 +1,13 @@
-# Pre-KiCad evidence sample plan
+# Last-resort pre-KiCad evidence sample plan
 
 This is a parked engineering working artifact, not a finished-product page,
-not the next project step and not an order authorization. It defines the
-smallest later purchase that can close residual physical-only evidence gates.
-Before it may be proposed for approval, P1–P6 of the
+not the next project step and not an order authorization. Purchasing is the
+last resort, not the normal way to close an H1 source gap. The project first
+exhausts manufacturer-controlled public sources, compares fully documented
+function-preserving replacements and requests missing drawings or mating data
+without an order. Only an uncertainty left after those three routes may enter
+this plan, and it still requires separate user approval. Before any such
+proposal, P1–P6 of the
 [`LESHY2-PREORDER-1` contract](../verification/preorder-verification-contract.json)
 must pass: industrial/mechanical design review, current schematic and ERC,
 virtual electrical analysis, executable firmware simulation, target
@@ -70,7 +74,10 @@ acceptance record; a pass/fail summary alone is not enough to authorize KiCad.
 
 ## Release rule
 
-Sample ordering remains unauthorized until the pre-order contract reaches P7.
+Sample ordering remains unauthorized until the pre-order contract reaches P7,
+the research/replacement/data-request sequence is recorded as exhausted for
+the exact unresolved item, and the user separately approves that last-resort
+purchase.
 KiCad remains unauthorized for PCB placement/routing until the
 measurements above are either accepted or recorded as an explicit architectural
 exception. A received mismatch returns to the machine architecture and
