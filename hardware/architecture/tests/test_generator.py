@@ -466,6 +466,19 @@ class ArchitectureValidationTests(unittest.TestCase):
             "POWER",
         ):
             self.assertIn(token, rendered)
+        dpad = (
+            GENERATOR.REPO_ROOT
+            / "docs/images/dpad-actuator.svg"
+        ).read_text(encoding="utf-8")
+        for token in (
+            'data-view="dpad-controlled-design"',
+            'data-design-id="L2-DPAD-001-A"',
+            'data-part="square-anti-rotation-guide"',
+            'data-part="four-jaw-socket"',
+            'data-datum="PCB-Z0"',
+            "SKRH Series Drawing No.4, Update 2510",
+        ):
+            self.assertIn(token, dpad)
         internal = (
             GENERATOR.REPO_ROOT
             / "docs/images/internal-board-layout.svg"

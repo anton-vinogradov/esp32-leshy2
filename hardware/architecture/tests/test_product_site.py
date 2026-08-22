@@ -394,6 +394,7 @@ class ProductSiteTests(unittest.TestCase):
         ):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
+            self.assertIn("dpad-actuator.svg?layout=3", page)
             self.assertIn("internal-board-layout.svg?layout=11", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
@@ -522,6 +523,7 @@ class ProductSiteTests(unittest.TestCase):
             landing = self.read(name)
             for image in (
                 "docs/images/current-clamshell.svg",
+                "docs/images/dpad-actuator.svg",
                 "docs/images/internal-board-layout.svg",
                 "docs/images/sandwich-section.svg",
                 "docs/images/top-edge-view.svg",
@@ -530,6 +532,22 @@ class ProductSiteTests(unittest.TestCase):
             self.assertGreaterEqual(landing.count("```mermaid"), 10, name)
             self.assertIn("HMX035CTFT-001", landing, name)
             self.assertIn("C&K JS102011SCQN", landing, name)
+
+    def test_dpad_actuator_has_one_controlled_motion_budget(self):
+        drawing = self.read("docs/images/dpad-actuator.svg")
+        for token in (
+            'data-design-id="L2-DPAD-001-A"',
+            "Alps Alpine SKRHADE010",
+            "14.0 mm overall span",
+            "Square guide: 5.6 mm",
+            "Panel aperture: 7.5 × 7.5 mm",
+            "Four-jaw socket: Ø2.9 bore / Ø5.0 body",
+            "worst-case lateral margin: 0.293 mm",
+            "worst-case panel gap: 0.341 mm",
+            "dimensioned paper design complete",
+            "received switch + PA12 tolerance coupon",
+        ):
+            self.assertIn(token, drawing)
 
     def test_project_history_is_archived_outside_public_docs(self):
         archive = REPO_ROOT / "drafts/project-history-2026-08-19"

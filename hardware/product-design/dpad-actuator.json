@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "stage": "H1.1.3.3",
+  "design_id": "L2-DPAD-001",
+  "revision": "A",
+  "title": "Captive guided cross for Alps Alpine SKRHADE010",
+  "manufacturing_class": "custom_product_part_no_supplier_mpn",
+  "coordinate_system": {
+    "origin": "SKRHADE010 stem axis on the UI PCB",
+    "xy": "X right and Y down when reading the front silkscreen",
+    "z": "outward from the UI PCB; PCB component-side copper datum is Z=0"
+  },
+  "source_switch": {
+    "mpn": "Alps Alpine SKRHADE010",
+    "drawing": "SKRH Series Drawing No.4, Update 2510",
+    "url": "https://tech.alpsalpine.com/cms.media/product_catalog_mu_02_skrh_en_34aeb8c2e3.pdf",
+    "checked": "2026-08-23",
+    "body_mm": [7.45, 7.5, 1.85],
+    "stem_diameter_mm": 3.0,
+    "stem_top_z_mm": 5.0,
+    "stem_rotation_centre_z_mm": 0.49,
+    "direction_travel_at_reference_mm": 0.25,
+    "direction_travel_reference_z_mm": 4.3,
+    "centre_push_travel_mm": 0.15,
+    "board_rotation_deg_clockwise": 45
+  },
+  "actuator": {
+    "part_id": "L2-DPAD-001-A",
+    "material_for_prototype": "PA12 SLS, natural or black",
+    "top_cross": {
+      "overall_span_mm": 14.0,
+      "arm_width_mm": 8.4,
+      "thickness_mm": 1.8,
+      "underside_neutral_z_mm": 5.4
+    },
+    "square_anti_rotation_guide": {
+      "width_mm": 5.6,
+      "drop_below_top_cross_mm": 2.1
+    },
+    "split_stem_socket": {
+      "outside_diameter_mm": 5.0,
+      "nominal_bore_mm": 2.9,
+      "engagement_mm": 2.0,
+      "pocket_roof_z_mm": 5.0,
+      "socket_lower_z_mm": 3.0,
+      "slot_count": 4,
+      "slot_width_mm": 0.6,
+      "retention_principle": "four compliant jaws retain the cap on the round 3.0-mm stem; the square guide, not the stem, prevents rotation"
+    },
+    "general_external_tolerance_mm": 0.15,
+    "socket_bore_tolerance_mm": 0.1
+  },
+  "front_panel_interface": {
+    "part_id": "L2-ENC-DPAD-001-A",
+    "local_outer_surface_z_mm": 4.4,
+    "local_wall_thickness_mm": 1.0,
+    "square_aperture_width_mm": 7.5,
+    "aperture_tolerance_mm": 0.15,
+    "axis_registration_tolerance_mm": 0.1,
+    "neutral_cap_to_panel_gap_mm": 1.0,
+    "anti_rotation_principle": "the 5.6-mm square guide moves inside the 7.5-mm square aperture while the visible cross remains axis-aligned to the product legends"
+  },
+  "paper_checks": {
+    "direction_tilt_deg": 3.754,
+    "guide_lateral_motion_at_panel_outer_surface_mm": 0.257,
+    "nominal_guide_clearance_per_side_mm": 0.95,
+    "worst_case_remaining_lateral_margin_mm": 0.293,
+    "cross_edge_vertical_sweep_mm": 0.459,
+    "worst_case_remaining_edge_gap_mm": 0.341,
+    "worst_case_remaining_centre_push_gap_mm": 0.65,
+    "tolerance_model": "guide and aperture each +/-0.15 mm, axis registration +/-0.10 mm, cap/panel Z stack +/-0.10 mm each"
+  },
+  "prototype_acceptance": [
+    "all four directions and centre push actuate independently with no enclosure contact",
+    "a direction may be held while the firmware still reads an unambiguous single direction; adjacent-direction ambiguity is rejected",
+    "centre push does not create a directional event and a directional press does not create centre push",
+    "cap cannot rotate enough to swap user-visible direction semantics",
+    "cap survives removal and refit without cracking the switch stem; pull-off force and operating feel are recorded",
+    "aperture coupon spans nominal and tolerance-limit guide sizes before the complete front enclosure is released"
+  ],
+  "release_boundary": "The dimensioned paper geometry closes H1 source design. Received switch, PA12 coupon, fit, feel, retention and endurance remain an H5 gate before fabrication release."
+}

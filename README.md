@@ -57,6 +57,9 @@ Existing rendered views remain provisional outputs.
         - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
           three exact `2118651-2` jumpers and three exact
           `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
+        - ✅ D-pad paper design closed: `L2-DPAD-001-A` defines the 14-mm
+          cross, split stem socket, square anti-rotation guide, panel aperture
+          and positive worst-case movement margins; received fit moved to H5.
       - 🔒 `H1.1.3.3.4` — only if all prior routes fail, prepare a smallest
         evidence-sample proposal for separate user approval.
   - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
@@ -127,6 +130,11 @@ Unused interfaces are powered down and placed into a verifiable quiet state.
 ### External and inner board faces
 
 ![Leshy2 external faces](docs/images/current-clamshell.svg?layout=15)
+
+The custom `L2-DPAD-001-A` cross and its enclosure aperture have a separate
+machine-checked movement and tolerance drawing.
+
+![Leshy2 D-pad actuator](docs/images/dpad-actuator.svg?layout=3)
 
 The first projection shows only the outward, user-facing PCB sides: display,
 controls, labelled RF ports, indicators and side interfaces. The second shows

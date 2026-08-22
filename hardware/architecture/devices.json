@@ -3737,7 +3737,7 @@
         "guide_bosses": "two 0.65-mm guide bosses use the official land pattern",
         "selected_board_rotation_deg_clockwise": 45,
         "direction_map_at_selected_rotation": {"A_PIN_1": "UP", "B_PIN_4": "RIGHT", "C_PIN_3": "LEFT", "D_PIN_6": "DOWN"},
-        "actuator": "one custom cross fits the central stem; its pocket, retention, anti-rotation, tilt, center/direction discrimination and enclosure travel remain controlled-mechanical and HIL gates",
+        "actuator": "controlled custom part L2-DPAD-001-A uses a split four-jaw socket on the round stem and a square enclosure guide for anti-rotation; the dimensioned paper motion budget is closed and received fit, feel, retention, discrimination and endurance remain an H5 gate",
         "source_boundary": "the public catalogue is an outline specification and requires formal supply specifications before a production fit is released"
       },
       "programmable": false,

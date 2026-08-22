@@ -133,9 +133,13 @@ published 3.2-mm depth excludes the flex and adhesive. The integral
 40-contact tail geometry and its exact fit in
 `FH12-40S-0.5SH(55)` remain gated on a supplier approval drawing and a real
 specimen; the mockup does not present them as already proven. The violet
-D-pad cross is a custom product part over the exact rotated
-`Alps Alpine SKRHADE010`, so the cross requires a controlled manufacturing
-drawing rather than a supplier MPN. The exact `Davies Molding 1227-J` encoder
+D-pad cross is custom part `L2-DPAD-001-A` over the exact rotated
+`Alps Alpine SKRHADE010`. Its 14.0-mm cross uses a four-jaw split socket on the
+round 3-mm stem and a separate square guide: the enclosure aperture, rather
+than the rotationally symmetric stem, fixes user-facing direction. A motion
+budget derived from the official Alps pivot and travel leaves positive
+worst-case directional and centre-push clearances; received fit, feel and
+endurance remain H5 tests. The exact `Davies Molding 1227-J` encoder
 knob is rendered as a solid 15-mm part.
 The generator rejects component-to-
 component overlap and entry into the 4-mm screw-head keep-outs around the M2.5
@@ -170,6 +174,8 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned external layout](images/current-clamshell.svg?layout=15)
+
+![Dimensioned D-pad actuator design](images/dpad-actuator.svg?layout=3)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=11)
 

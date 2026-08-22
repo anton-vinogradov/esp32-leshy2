@@ -42,13 +42,13 @@
       "blocks": ["H1.1.4", "H1.2", "H1.5.0", "H1.6"]
     },
     {
-      "id": "H1-MECH-DPAD-ACTUATOR",
-      "disposition": "h1_blocker",
+      "id": "H5-MECH-DPAD-ACTUATOR-FIT",
+      "disposition": "h5_received_sample_gate",
       "affected_instances": ["ui_dpad_switch"],
-      "evidence_boundary": "Alps Alpine proves the SKRHADE010 body, 3.0-mm stem, 5.0-mm stem-top height and selected 45-degree electrical direction map.",
-      "unknown": "Custom cross pocket, retention, anti-rotation, tilt, centre-versus-direction discrimination, aperture and complete travel stack.",
-      "closure": "Dimensioned parametric actuator/aperture design passes travel, clearance and print-tolerance checks and is accepted at H1.3.1/H1.6.",
-      "blocks": ["H1.3.1", "H1.6", "H1.8"]
+      "evidence_boundary": "Alps Alpine Drawing No.4 proves the SKRHADE010 body, round 3.0-mm stem, 5.0-mm stem-top height, Z=0.49-mm pivot and 0.25-mm directional travel at Z=4.3 mm. L2-DPAD-001-A defines the 14.0-mm PA12 cross, split four-jaw socket, square anti-rotation guide, panel aperture and a positive worst-case paper movement budget.",
+      "unknown": "Received PA12 shrinkage, exact interference/retention on the switch stem, tactile feel, centre-versus-direction discrimination and endurance.",
+      "closure": "A tolerance coupon and complete received switch/cap/front-panel assembly pass fit, pull-off, four-direction/centre discrimination, operating-force and endurance tests in H5.",
+      "blocks": ["H8"]
     },
     {
       "id": "H5-MECH-SA518-LAND-FIT",

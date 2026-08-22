@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" data-view="dpad-controlled-design" data-design-id="L2-DPAD-001-A">
+<defs><marker id="dim-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M0,1 L7,4 L0,7 Z" fill="#344054"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="38.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — L2-DPAD-001-A controlled D-pad actuator</text>
+<text x="32.0" y="64.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">One custom PA12 cross, one Alps Alpine SKRHADE010 and one square panel guide; supplier MPN does not apply to the cross.</text>
+<rect x="30" y="92" width="410" height="500" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="460" y="92" width="410" height="500" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<rect x="890" y="92" width="480" height="500" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="50.0" y="124.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Front plan — user-facing</text>
+<text x="480.0" y="124.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Underside — anti-rotation and retention</text>
+<text x="910.0" y="124.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Section through one arm — PCB Z datum</text>
+<rect x="163.8" y="228.8" width="142.5" height="142.5" fill="#ffffff" stroke="#475467" stroke-width="2" stroke-dasharray="7 4" data-part="panel-aperture"/>
+<polygon points="155.2,167.0 314.8,167.0 314.8,220.2 368.0,220.2 368.0,379.8 314.8,379.8 314.8,433.0 155.2,433.0 155.2,379.8 102.0,379.8 102.0,220.2 155.2,220.2" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.2" data-part="L2-DPAD-001-A-top-cross"/>
+<circle cx="235.0" cy="300.0" r="38.9" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="235.0" y="305.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
+<line x1="102.0" y1="470" x2="368.0" y2="470" stroke="#344054" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"/>
+<text x="235.0" y="462.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#172033">14.0 mm overall span</text>
+<text x="50.0" y="520.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Visible arm width: 8.4 mm</text>
+<text x="50.0" y="544.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Panel aperture: 7.5 × 7.5 mm</text>
+<text x="50.0" y="568.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Cross remains aligned to UP/RIGHT/DOWN/LEFT legends.</text>
+<polygon points="585.2,167.0 744.8,167.0 744.8,220.2 798.0,220.2 798.0,379.8 744.8,379.8 744.8,433.0 585.2,433.0 585.2,379.8 532.0,379.8 532.0,220.2 585.2,220.2" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.7"/>
+<rect x="611.8" y="246.8" width="106.4" height="106.4" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2" data-part="square-anti-rotation-guide"/>
+<circle cx="665.0" cy="300.0" r="47.5" fill="#ffffff" stroke="#6d28d9" stroke-width="2" data-part="four-jaw-socket"/>
+<circle cx="665.0" cy="300.0" r="27.6" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5"/>
+<rect x="659.3" y="250.5" width="11.4" height="99.0" fill="#ffffff"/>
+<rect x="615.5" y="294.3" width="99.0" height="11.4" fill="#ffffff"/>
+<circle cx="665.0" cy="300.0" r="27.6" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="480.0" y="500.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Square guide: 5.6 mm; aperture clearance: 0.95 mm/side</text>
+<text x="480.0" y="524.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Four-jaw socket: Ø2.9 bore / Ø5.0 body</text>
+<text x="480.0" y="548.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Stem engagement: 2.0 mm; four 0.6-mm slots</text>
+<text x="480.0" y="572.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Square guide carries anti-rotation; the round stem is not treated as keyed.</text>
+<line x1="930" y1="548.0" x2="1330" y2="548.0" stroke="#16a34a" stroke-width="6" data-datum="PCB-Z0"/>
+<text x="1328.0" y="540.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="end" fill="#166534">UI PCB · Z=0</text>
+<rect x="1047.5" y="479.6" width="165.0" height="68.5" fill="#e2e8f0" stroke="#64748b" data-part="SKRHADE010-body"/>
+<rect x="1097.0" y="363.0" width="66.0" height="116.5" fill="#f1f5f9" stroke="#475467" data-part="SKRHADE010-stem"/>
+<path d="M930 385.2 H1051.9 V422.2 H930 Z M1208.1 385.2 H1330 V422.2 H1208.1 Z" fill="#ffedd5" stroke="#ea580c" data-part="panel-wall"/>
+<rect x="1068.4" y="348.2" width="123.2" height="77.7" fill="#ddd6fe" stroke="#7c3aed" data-part="square-guide-section"/>
+<rect x="976.0" y="281.6" width="308.0" height="66.6" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" data-part="top-cross-section"/>
+<path d="M1075.0 348.2 V437.0 H1098.1 V363.0 H1161.9 V437.0 H1185.0 V348.2 Z" fill="#c4b5fd" stroke="#6d28d9" data-part="split-socket-section"/>
+<line x1="920" y1="385.2" x2="920" y2="348.2" stroke="#344054" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"/>
+<text x="910.0" y="370.7" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="end" fill="#172033">1.0</text>
+<text x="910.0" y="494.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#526076">neutral cap/panel gap</text>
+<text x="910.0" y="568.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#172033">Alps Alps Alpine SKRHADE010</text>
+<text x="32.0" y="630.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Machine-checked motion budget</text>
+<text x="32.0" y="660.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Directional tilt: 3.754° from 0.25-mm travel at Z=4.3 mm and the official Z=0.49-mm pivot.</text>
+<text x="32.0" y="686.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Guide motion at the panel: 0.257 mm; worst-case lateral margin: 0.293 mm.</text>
+<text x="32.0" y="712.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Cross-edge sweep: 0.459 mm; worst-case panel gap: 0.341 mm.</text>
+<text x="32.0" y="738.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Centre travel: 0.15 mm; worst-case remaining panel gap: 0.650 mm.</text>
+<text x="32.0" y="780.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#166534">H1 result</text>
+<text x="132.0" y="780.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">dimensioned paper design complete</text>
+<text x="32.0" y="808.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#b42318">H5 gate</text>
+<text x="132.0" y="808.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#b42318">received switch + PA12 tolerance coupon: fit, feel, retention, discrimination and endurance</text>
+<text x="32.0" y="850.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">Source: Alps Alpine SKRH Series Drawing No.4, Update 2510. This is a controlled product-design drawing, not an enclosure release.</text>
+</svg>
