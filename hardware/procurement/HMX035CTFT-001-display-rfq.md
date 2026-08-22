@@ -5,6 +5,31 @@ Public contact: `Lcdwiki@163.com`, `goodtft@163.com`
 Target product: Leshy2 handheld radio instrument  
 Requested quantities: 5 engineering samples, then 100 and 500 production units
 
+## Current evidence and prototype route
+
+QDtech's current product page and its official one-page front/back outline
+confirm the `ES3C35P` donor, a drawing date of `2025-07-24`, the
+`54.50 × 83.00 mm` CTP/LCD envelope and the CTP/LCD/glue/PCB stack. That
+outline describes the **complete donor board**; it does not disclose the raw
+`HMX035CTFT-001` flex outline, contact side, stiffener or standalone order
+identity and therefore does not replace the requested approval drawing.
+
+Elecrow currently lists the complete `DLE06235B/ES3C35P` donor in stock at
+USD 20.90. Five donors provide a USD 104.50 published-material route for
+specimen measurement and electrical HIL before a raw-panel quote arrives.
+This route may prove the received flex and connector fit, but it must never be
+used as evidence of standalone production price, lifecycle or lot supply.
+
+Donor acceptance sequence:
+
+1. retain one board intact as the electrical and visual reference;
+2. photograph panel, flex and lot markings before disassembly;
+3. measure at least three flexes, including outline, pitch, thickness,
+   exposed-contact side, stiffener and bend keepout;
+4. prove insertion, retention and contact orientation in
+   `FH12-40S-0.5SH(55)`;
+5. run QSPI, touch `0x38`, reset, IRQ, backlight-current and temperature HIL.
+
 ## Supplier request
 
 Please quote the **standalone display and capacitive-touch assembly marked
@@ -77,4 +102,7 @@ checks and on a signed drawing revision matching the quoted MPN.
   <https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf>
 - Current QDtech product page:
   <https://www.lcdwiki.com/3.5inch_ESP32-S3_Display>
-
+- QDtech complete-donor front/back and stack outline, V1.0 dated 2025-07-24:
+  <https://www.lcdwiki.com/res/ES3C35P/3.5inch_ESP32-S3_touch_Size.pdf>
+- Current Elecrow donor listing:
+  <https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html>

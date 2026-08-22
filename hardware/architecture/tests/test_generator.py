@@ -268,6 +268,20 @@ class ArchitectureValidationTests(unittest.TestCase):
             "no_drop_in_substitute",
             display["alternates"]["disposition"],
         )
+        self.assertIn(
+            "complete-donor geometry",
+            display["donor_outline_source"]["scope"],
+        )
+        donor = display["prototype_donor_route"]
+        self.assertEqual(
+            "current_in_stock_donor_can_close_specimen_measurements_only",
+            donor["status"],
+        )
+        self.assertEqual(104.5, donor["published_sample_material_usd"])
+        self.assertIn(
+            "standalone raw-assembly orderable MPN",
+            donor["does_not_close"],
+        )
 
         gap_quantities = {
             row["id"]: row["quantity"]

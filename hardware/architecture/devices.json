@@ -1679,6 +1679,13 @@
         "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
         "checked": "2026-08-22"
       },
+      "donor_outline_source": {
+        "document": "QDtech ES3C35P front/back and stack outline drawing",
+        "version": "V1.0; drawing dated 2025-07-24",
+        "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_ESP32-S3_touch_Size.pdf",
+        "checked": "2026-08-22",
+        "scope": "official complete-donor geometry and CTP/LCD/glue/PCB stack only; it does not disclose the standalone HMX035CTFT-001 FPC outline, contact side, stiffener or raw-assembly order identity"
+      },
       "current_product_source": {
         "document": "QDtech LCDWIKI 3.5-inch ESP32-S3 Display product page",
         "url": "https://www.lcdwiki.com/3.5inch_ESP32-S3_Display",
@@ -1695,7 +1702,7 @@
         {
           "document": "Elecrow DLE06235B current in-stock complete-board page; official schematic proves that the bundled display assembly is HMX035CTFT-001",
           "url": "https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html",
-          "checked": "2026-08-19",
+          "checked": "2026-08-22",
           "scope": "prototype donor/specimen only; listed USD 20.90 complete-board price is not a raw-panel BOM cost"
         },
         {
@@ -1705,6 +1712,26 @@
           "scope": "prototype complete-board source and direct-supplier inquiry route; it does not prove standalone raw-panel sale"
         }
       ],
+      "prototype_donor_route": {
+        "status": "current_in_stock_donor_can_close_specimen_measurements_only",
+        "exact_product": "Elecrow DLE06235B / QDtech ES3C35P complete board",
+        "published_unit_price_usd": 20.9,
+        "recommended_sample_quantity": 5,
+        "published_sample_material_usd": 104.5,
+        "acceptance_actions": [
+          "keep one donor intact as the electrical and visual reference",
+          "photograph assembly, flex and lot markings before disassembly",
+          "measure flex outline, pitch, thickness, exposed-contact side, stiffener and bend keepout on at least three specimens",
+          "prove insertion, retention and contact orientation with FH12-40S-0.5SH(55)",
+          "run QSPI, touch 0x38, reset, IRQ, backlight-current and temperature HIL"
+        ],
+        "does_not_close": [
+          "standalone raw-assembly orderable MPN",
+          "quantity-100 or quantity-500 raw-panel price",
+          "supplier-controlled approval drawing and tolerance ownership",
+          "lifecycle, PCN/EOL terms or production lot traceability"
+        ]
+      },
       "procurement_gate": {
         "status": "standalone_raw_assembly_rfq_required",
         "supplier_route": "Shenzhen QDtech/QDTFT through the current ES3C35P product channel",
