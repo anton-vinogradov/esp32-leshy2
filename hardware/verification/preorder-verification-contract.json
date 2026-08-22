@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "contract_id": "LESHY2-PREORDER-1",
+  "purpose": "prevent engineering-sample or final-PCB ordering before all inexpensive virtual and design evidence has been exhausted",
+  "current_truth": {
+    "target_architecture": "G2F-3I paper-reviewed; pin, owner, resource, safety and HW/FW boundary checks pass",
+    "mechanical_projection": "dimensioned two-board placement validates registered component envelopes and clearances but is not an approved industrial design or enclosure release",
+    "current_ecad": "absent; superseded tscircuit and partial KiCad exports are archived and are not evidence for G2F-3I",
+    "executable_firmware": "partial; portable C safety, L2IP and update cores pass 16 host scenarios, while deterministic five-domain integration, scheduler saturation and all five target images remain open",
+    "instruction_emulation": "not run; exact ESP32-S3 QEMU is feasible after an S3 image exists, while C5, RP2354B and MSPM0C1106 require portable-core tests plus target/dev-board evidence where exact peripheral emulation is unavailable",
+    "physical_hil": "not run"
+  },
+  "gates": [
+    {
+      "id": "P0_REQUIREMENTS_ARCHITECTURE",
+      "status": "reviewed",
+      "required_evidence": [
+        "capability and safety scope",
+        "exact controller ownership and pin/resource budget",
+        "one-active-signal-group and full nRF24 concurrency contracts",
+        "cross-repository HW/FW contract"
+      ]
+    },
+    {
+      "id": "P1_MECHANICAL_DESIGN",
+      "status": "open_user_review_required",
+      "required_evidence": [
+        "user-approved external control, antenna, indicator and connector layout",
+        "user-approved internal two-board placement and mirrored-face interpretation",
+        "dimensioned enclosure, actuator, acoustic, battery access and service-access concept",
+        "assembly/disassembly sequence and cable bend/strain paths",
+        "no component, silkscreen, fastener or installed-accessory collision"
+      ]
+    },
+    {
+      "id": "P2_CURRENT_SCHEMATIC",
+      "status": "not_started",
+      "required_evidence": [
+        "current G2F-3I one-device-per-symbol schematic split into reviewable sheets",
+        "exact symbols, footprints, pin numbers, rails, net classes and no-connect intent",
+        "zero unexplained ERC errors and a machine cross-check against the architecture net map",
+        "independent review of reset, boot, recovery, quiet-state, no-back-power and FAULT_KILL paths"
+      ]
+    },
+    {
+      "id": "P3_VIRTUAL_ELECTRICAL",
+      "status": "not_started",
+      "required_evidence": [
+        "worst-case DC rail and source-transition budget",
+        "startup, shutdown, brownout, watchdog, e-fuse and load-switch transient simulation",
+        "battery protection, thermal sensing and fault-tree analysis",
+        "display/backlight, audio and IR analog corner analysis",
+        "digital timing/level/no-back-power review for every inter-domain and expansion interface",
+        "pre-layout impedance, return-path, RF-corridor and coexistence constraints"
+      ]
+    },
+    {
+      "id": "P4_EXECUTABLE_FIRMWARE_MODEL",
+      "status": "in_progress_portable_cores_16_host_scenarios_passed",
+      "required_evidence": [
+        "portable executable L2IP framing and safety state machines",
+        "deterministic five-domain host simulation with fault injection",
+        "golden CRC, duplicate, deadline, priority and saturation tests",
+        "lease expiry, unexpected evidence, heartbeat loss, thermal fault and watchdog tests",
+        "all-in-one update activation/rollback and retained fault-viewer tests"
+      ]
+    },
+    {
+      "id": "P5_TARGET_BUILDS_EMULATION",
+      "status": "not_started",
+      "required_evidence": [
+        "buildable S3, C5, RP, PACK and SAFETY skeleton images using the selected production SDKs",
+        "map-file size gates for every image and rollback slot",
+        "ESP32-S3 boot/self-test/update-failure execution in official QEMU",
+        "host-peripheral simulation for code shared by targets without exact emulators",
+        "documented dev-board tests for silicon/peripherals that no emulator represents"
+      ]
+    },
+    {
+      "id": "P6_PRE_LAYOUT_REVIEW",
+      "status": "blocked_by_P1_to_P5",
+      "required_evidence": [
+        "joined mechanical/electrical/firmware review",
+        "closed blocker list and explicit residual physical-only uncertainties",
+        "reviewed prototype measurement and bring-up plan"
+      ]
+    },
+    {
+      "id": "P7_ENGINEERING_SAMPLE_ORDER",
+      "status": "not_authorized",
+      "required_evidence": [
+        "P1 through P6 complete",
+        "each purchased item closes a named physical-only uncertainty",
+        "exact basket, shipping and total cost approved by the user"
+      ]
+    },
+    {
+      "id": "P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB",
+      "status": "not_authorized",
+      "required_evidence": [
+        "current schematic and received-part geometry released",
+        "placement review on both sides of both boards",
+        "DRC, impedance, return-current, RF isolation and manufacturing review",
+        "fabrication package explicitly approved by the user"
+      ]
+    }
+  ],
+  "order_rules": {
+    "rfq_without_commitment": "may be prepared but not sent as a purchase order",
+    "engineering_samples": "not the next automatic step; permitted only after P1-P6 and explicit user approval",
+    "final_components_or_pcbs": "forbidden before P8 release",
+    "kicad": "a new current schematic may begin at P2; PCB placement/routing remains blocked until P6"
+  }
+}

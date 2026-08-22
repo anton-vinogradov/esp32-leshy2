@@ -13,7 +13,7 @@ sym-lib-table.bak
 /gerbers/
 *.zip
 
-# Node / tscircuit CLI (installed via `npm install` in hardware/tscircuit)
+# Node / archived or future ECAD tooling
 node_modules/
 npm-debug.log*
 package-lock.json

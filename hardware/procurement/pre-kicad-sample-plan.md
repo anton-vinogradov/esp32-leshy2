@@ -1,10 +1,15 @@
 # Pre-KiCad evidence sample plan
 
-This is an engineering working artifact, not a finished-product page and not
-an order authorization. It defines the smallest first purchase that can close
-the remaining physical evidence gates before PCB layout starts. Prices are
-public reference values checked on 22 August 2026; freight, tax and RFQ-only
-items are deliberately excluded from totals.
+This is a parked engineering working artifact, not a finished-product page,
+not the next project step and not an order authorization. It defines the
+smallest later purchase that can close residual physical-only evidence gates.
+Before it may be proposed for approval, P1–P6 of the
+[`LESHY2-PREORDER-1` contract](../verification/preorder-verification-contract.json)
+must pass: industrial/mechanical design review, current schematic and ERC,
+virtual electrical analysis, executable firmware simulation, target
+build/emulation and joined pre-layout review. Prices are public reference values
+checked on 22 August 2026; freight, tax and RFQ-only items are deliberately
+excluded from totals.
 
 ## First evidence lot
 
@@ -65,7 +70,8 @@ acceptance record; a pass/fail summary alone is not enough to authorize KiCad.
 
 ## Release rule
 
-KiCad remains unauthorized until the measurements above are either accepted or
-recorded as an explicit architectural exception. A received mismatch returns
-to the machine architecture and dimensioned mockup first; it is not patched
-silently in PCB layout.
+Sample ordering remains unauthorized until the pre-order contract reaches P7.
+KiCad remains unauthorized for PCB placement/routing until the
+measurements above are either accepted or recorded as an explicit architectural
+exception. A received mismatch returns to the machine architecture and
+dimensioned mockup first; it is not patched silently in PCB layout.
