@@ -266,7 +266,14 @@ IR_SAFE_GATE["SN74LVC1G08DCKR<br/>локальное аппаратное раз
 EVIDENCE_CMP_A["TLV1824PWR<br/>UI-компаратор фактического TX S3, C5 и IR"]
 EVIDENCE_CMP_B["TLV1824PWR<br/>RF-компаратор фактического TX 3×nRF24 и CC"]
 EVIDENCE_CMP_VOICE["TLV1821DCKR<br/>отдельный RF-компаратор фактического voice TX"]
-EVIDENCE_MASK["TCA9534APWR<br/>AON-регистр маски восьми источников TX"]
+U214_CONNECTOR["Samtec SSW-107-02-S-D<br/>вертикальный 14-контактный host Cap-Bus на поднятой планке"]
+EXT_EVIDENCE_BUFFER["SN74LVC1G07DCKR<br/>5-В-стойкая развязка evidence от LoRa Cap"]
+EVIDENCE_MASK["TCA9535PWR<br/>16-битный AON-регистр маски девяти источников TX"]
+EVIDENCE_OR_0["BAT54ALT1G<br/>диодное объединение evidence S3 и C5"]
+EVIDENCE_OR_1["BAT54ALT1G<br/>диодное объединение evidence nRF24 №1 и №2"]
+EVIDENCE_OR_2["BAT54ALT1G<br/>диодное объединение evidence nRF24 №3 и Sub-GHz"]
+EVIDENCE_OR_3["BAT54ALT1G<br/>диодное объединение evidence voice и IR"]
+EVIDENCE_OR_4["BAT54ALT1G<br/>диодное объединение evidence LoRa/EXT"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -279,7 +286,18 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
   EVIDENCE_CMP_A -->|"three UI-local digital evidence lines"| EVIDENCE_MASK
   EVIDENCE_CMP_B -->|"four RF-local digital evidence lines"| EVIDENCE_MASK
   EVIDENCE_CMP_VOICE -->|"one RF-local digital evidence line"| EVIDENCE_MASK
+  U214_CONNECTOR -->|"stock 5V_OUT high or qualified EXT_TX_EVIDENCE_N low"| EXT_EVIDENCE_BUFFER
+  EXT_EVIDENCE_BUFFER -->|"ninth active-low evidence line"| EVIDENCE_MASK
   EVIDENCE_CMP_A -->|"C5 / IR evidence"| EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_CMP_B -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR
-  EVIDENCE_CMP_VOICE -->|"hardware ANY-TX aggregate"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_A -->|"sources 0 / 1"| EVIDENCE_OR_0
+  EVIDENCE_CMP_B -->|"sources 2 / 3"| EVIDENCE_OR_1
+  EVIDENCE_CMP_B -->|"sources 4 / 5"| EVIDENCE_OR_2
+  EVIDENCE_CMP_VOICE -->|"source 6"| EVIDENCE_OR_3
+  EVIDENCE_CMP_A -->|"source 7"| EVIDENCE_OR_3
+  EXT_EVIDENCE_BUFFER -->|"source 8"| EVIDENCE_OR_4
+  EVIDENCE_OR_0 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_OR_1 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
 ```

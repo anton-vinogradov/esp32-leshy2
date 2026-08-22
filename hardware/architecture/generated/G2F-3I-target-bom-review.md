@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **914** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **913** supplied/costed placements collapse to **199** used exact-device/MPN lines.
+- **929** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **928** supplied/costed placements collapse to **199** used exact-device/MPN lines.
 - Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **188/199** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **896/913** supplied placements; their partial subtotals are `base_product` — USD 202.1306. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **911/928** supplied placements; their partial subtotals are `base_product` — USD 202.6095. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 910 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 925 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -230,7 +230,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_sn74lvc2g66_dcur` — `Texas Instruments SN74LVC2G66DCUR`.
   - `ti_sn74lvc3g07_dcur` — `SN74LVC3G07DCUR`.
   - `ti_sn74lvc3g34_dcur` — `SN74LVC3G34DCUR`.
-  - `ti_tca9534a_pwr` — `TCA9534APWR`.
+  - `ti_tca9535_pwr` — `TCA9535PWR`.
   - `ti_tca9539_pwr` — `TCA9539PWR`.
   - `ti_tlv1821_dckr` — `TLV1821DCKR`.
   - `ti_tlv1824_pwr` — `TLV1824PWR`.
@@ -663,7 +663,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>LTST-C190KRKT</code> — 9 × USD 0.0675 = USD 0.6075</summary>
+<details><summary><code>LTST-C190KRKT</code> — 10 × USD 0.0675 = USD 0.6750</summary>
 
 - Device id: `liteon_ltst_c190krkt`.
 - Scope: `base_product`.
@@ -1041,7 +1041,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>BAT54ALT1G</code> — 4 × USD 0.0577 = USD 0.2308</summary>
+<details><summary><code>BAT54ALT1G</code> — 5 × USD 0.0577 = USD 0.2885</summary>
 
 - Device id: `onsemi_bat54alt1g`.
 - Scope: `base_product`.
@@ -1230,7 +1230,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 112 × USD 0.0258 = USD 2.8896</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 113 × USD 0.0258 = USD 2.9154</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1320,7 +1320,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>SN74LVC1G07DCKR</code> — 8 × USD 0.0509 = USD 0.4072</summary>
+<details><summary><code>SN74LVC1G07DCKR</code> — 9 × USD 0.0509 = USD 0.4581</summary>
 
 - Device id: `ti_sn74lvc1g07_dckr`.
 - Scope: `base_product`.
@@ -1410,12 +1410,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TCA9534APWR</code> — 1 × USD 1.0212 = USD 1.0212</summary>
+<details><summary><code>TCA9535PWR</code> — 1 × USD 1.1915 = USD 1.1915</summary>
 
-- Device id: `ti_tca9534a_pwr`.
+- Device id: `ti_tca9535_pwr`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9534APWR/5004965).
+- Checked: `2026-08-20`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9535PWR/2139128).
 
 </details>
 
@@ -1698,7 +1698,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 180 × USD 0.0097 = USD 1.7460</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 189 × USD 0.0097 = USD 1.8333</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -1761,7 +1761,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-071KL</code> — 10 × USD 0.0097 = USD 0.0970</summary>
+<details><summary><code>Yageo RC0402FR-071KL</code> — 11 × USD 0.0097 = USD 0.1067</summary>
 
 - Device id: `yageo_rc0402fr_071kl`.
 - Scope: `base_product`.
@@ -1824,7 +1824,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-072K2L</code> — 22 × USD 0.0097 = USD 0.2134</summary>
+<details><summary><code>Yageo RC0402FR-072K2L</code> — 23 × USD 0.0097 = USD 0.2231</summary>
 
 - Device id: `yageo_rc0402fr_072k2l`.
 - Scope: `base_product`.

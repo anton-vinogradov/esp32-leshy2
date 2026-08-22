@@ -157,7 +157,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(913, sum(line["quantity"] for line in lines))
+        self.assertEqual(928, sum(line["quantity"] for line in lines))
         self.assertEqual(199, len(lines))
         self.assertEqual(
             1,
@@ -172,7 +172,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            896,
+            911,
             sum(
                 line["quantity"]
                 for line in lines
@@ -235,13 +235,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**914** architecture instances", rendered)
-        self.assertIn("**913** supplied/costed placements", rendered)
+        self.assertIn("**929** architecture instances", rendered)
+        self.assertIn("**928** supplied/costed placements", rendered)
         self.assertIn("**198/199** used lines", rendered)
         self.assertIn("**199/199** lines", rendered)
         self.assertIn("**188/199** lines", rendered)
-        self.assertIn("**896/913** supplied placements", rendered)
-        self.assertIn("USD 202.1306", rendered)
+        self.assertIn("**911/928** supplied placements", rendered)
+        self.assertIn("USD 202.6095", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -282,7 +282,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(49, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1073, policy["expected_occurrence_count"])
+        self.assertEqual(1087, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertEqual(
@@ -1825,18 +1825,20 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "CC_RF",
                 "VOICE_RF",
                 "IR_OPTICAL",
+                "LORA_EXT_RF",
             ],
             contract["evidence"]["channels"],
         )
-        self.assertIn("0x38", contract["evidence"]["source_mask"])
+        self.assertIn("0x20", contract["evidence"]["source_mask"])
         self.assertEqual(
-            "0x38",
-            self.database["devices"]["ti_tca9534a_pwr"]
+            "0x20",
+            self.database["devices"]["ti_tca9535_pwr"]
             ["i2c_7bit_address_by_a2a1a0"]["000"],
         )
         self.assertIn("ANY_TX_AON_N", contract["evidence"]["aggregate"])
-        self.assertIn("each EV_N[0..7]", contract["evidence"]["per_path_indicators"])
+        self.assertIn("each EV_N[0..8]", contract["evidence"]["per_path_indicators"])
         self.assertIn("receive-only", contract["evidence"]["per_path_indicators"])
+        self.assertIn("5-V stock level", contract["evidence"]["external_cap_input"])
         self.assertEqual("DEC-0101", contract["evidence"]["electrical_decision"])
 
         required_instances = {
@@ -1863,7 +1865,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "evidence_cmp_a": "ti_tlv1824_pwr",
             "evidence_cmp_b": "ti_tlv1824_pwr",
             "evidence_cmp_voice": "ti_tlv1821_dckr",
-            "evidence_mask": "ti_tca9534a_pwr",
+            "ext_evidence_buffer": "ti_sn74lvc1g07_dckr",
+            "evidence_mask": "ti_tca9535_pwr",
             "evidence_main_isolator": "ti_sn74lvc3g07_dcur",
             "power_zone_ntc": "tdk_b57332v5103f360",
             "rf_zone_ntc": "tdk_b57332v5103f360",
@@ -1871,6 +1874,33 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         for instance, device_id in required_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
+
+        mask = self.database["devices"]["ti_tca9535_pwr"]
+        self.assertEqual("13", mask["contacts"]["P10"]["physical"])
+        self.assertEqual("24", mask["contacts"]["VCC"]["physical"])
+        self.assertEqual(5.0, mask["electrical_contract"]["io_input_tolerance_v_max"])
+        routes = {
+            (route["from"], route["to"], route["net"])
+            for route in candidate["fixed_routes"]
+        }
+        for route in (
+            ("u214_connector.PIN_5", "u214_esd_c.D2_MINUS", "U214_PIN5_PROFILE"),
+            ("ext_evidence_input_series.END_2", "ext_evidence_buffer.A", "U214_PIN5_SENSE"),
+            ("ext_evidence_buffer.Y", "evidence_mask.P10", "EV_N8_LORA_EXT"),
+            ("ext_evidence_buffer.Y", "evidence_or_4.K1", "EV_N8_LORA_EXT"),
+            ("ext_tx_led.K", "ext_evidence_buffer.Y", "EV_N8_LORA_EXT"),
+            ("evidence_or_4.A_COMMON", "safety_controller.PA22", "ANY_TX_AON_N"),
+        ):
+            self.assertIn(route, routes)
+        for port in range(11, 18):
+            self.assertEqual(
+                "yageo_rc0402fr_0710kl",
+                candidate["instances"][f"evidence_mask_p{port}_pulldown"],
+            )
+            self.assertIn(
+                (f"evidence_mask.P{port}", f"evidence_mask_p{port}_pulldown.END_1", f"EVIDENCE_MASK_UNUSED_P{port}"),
+                routes,
+            )
 
         rp = {
             row["contact"]: row
@@ -1897,7 +1927,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog",
             "SN74LVC1G74DCUR<br/>asynchronous latched FAULT_KILL",
             "LTC5532ES6#TRMPBF<br/>S3 2.4-GHz RF power detector",
-            "TCA9534APWR<br/>AON eight-bit evidence source mask on the private safety I2C bus",
+            "SN74LVC1G07DCKR<br/>5-V-tolerant non-inverting open-drain LoRa Cap evidence boundary",
+            "TCA9535PWR<br/>AON 16-bit evidence source mask on the private safety I2C bus",
             "SN74LVC3G07DCUR<br/>triple AON-to-main open-drain evidence isolator",
         ):
             self.assertIn(label, rendered)
@@ -1974,7 +2005,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("evidence_main_isolator.1Y", "c5.GPIO23", "C5_RF_TX_EVIDENCE_N"),
             ("evidence_cmp_a.OUT3", "evidence_main_isolator.2A", "EV_N7_IR"),
             ("evidence_main_isolator.2Y", "c5.GPIO24", "IR_TX_EVIDENCE_N"),
-            ("evidence_or_3.A_COMMON", "evidence_main_isolator.3A", "ANY_TX_AON_N"),
+            ("evidence_or_4.A_COMMON", "evidence_main_isolator.3A", "ANY_TX_AON_N"),
             ("evidence_main_isolator.3Y", "rp.GPIO22", "RP_ANY_TX_N"),
             ("safety_controller.PA4", "evidence_mask.SDA", "SAFETY_EVIDENCE_I2C_SDA"),
             ("safety_controller.PA2", "evidence_mask.SCL", "SAFETY_EVIDENCE_I2C_SCL"),

@@ -150,7 +150,7 @@
 | `ti_sn74lvc2g66_dcur` | `Texas Instruments SN74LVC2G66DCUR` | `verified_candidate` | `active` | [SN74LVC2G66 Dual Bilateral Analog Switch datasheet SCES325N, July 2001, revised August 2018](https://www.ti.com/lit/ds/symlink/sn74lvc2g66.pdf) | same primary source |
 | `ti_sn74lvc3g07_dcur` | `SN74LVC3G07DCUR` | `verified_exact_aon_to_main_open_drain_isolator` | `active_orderable` | [SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet Rev. R](https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf) | same primary source |
 | `ti_sn74lvc3g34_dcur` | `SN74LVC3G34DCUR` | `verified_candidate` | `active` | [SN74LVC3G34 Triple Buffer Gate datasheet Rev. L](https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf) | same primary source |
-| `ti_tca9534a_pwr` | `TCA9534APWR` | `verified_candidate` | `active` | [TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9534a.pdf) | same primary source |
+| `ti_tca9535_pwr` | `TCA9535PWR` | `verified_exact_aon_evidence_mask_expander` | `active_orderable` | [TCA9535 Low-Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tca9535.pdf) | same primary source |
 | `ti_tca9539_pwr` | `TCA9539PWR` | `verified_exact_direct_control_input_expander` | `active_orderable` | [TCA9539 Low Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9539.pdf) | same primary source |
 | `ti_tlv1821_dckr` | `TLV1821DCKR` | `verified_exact_local_voice_evidence_comparator` | `active_orderable` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1821.pdf) | same primary source |
 | `ti_tlv1824_pwr` | `TLV1824PWR` | `verified_candidate` | `active` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1824.pdf) | same primary source |
@@ -508,7 +508,7 @@ Decision `DEC-0045`; default `NONE`; exclusive groups: `true`.
 | `SG-CC` | `cc` | RX or one controlled TX phase | — | — |
 | `SG-VOICE` | `voice` | half-duplex RX or TX phase | — | — |
 | `SG-BROADCAST` | `receiver`, `audio support` | receive-only | — | — |
-| `SG-U214` | `u214 LoRa`, `declared u214 GNSS support` | one exact accessory manifest; joint HIL required | — | — |
+| `SG-U214` | `stock U214 receive and GNSS`, `evidence-aware LoRa Cap RX/TX` | one exact accessory manifest; stock U214 TX is blocked, while a qualified Cap with physical EXT_TX_EVIDENCE_N on contact 5 may receive a lease; joint HIL required | — | — |
 | `SG-IR` | `c5 IR` | learn/RX or TX phase | — | — |
 | `SG-EXT-*` | `one exact accessory profile` | manifest-declared members only | — | — |
 
@@ -697,7 +697,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: `PA27`, `PA30`.
 | `PA16` | 10 | `UI_ZONE_TEMP_ADC` | `i` | `ADC` | `ui_zone_ntc.END_1`, `ui_zone_temp_pullup.END_2`, `ui_zone_temp_filter.END_1` | — |
 | `PA17` | 9 | `SAFETY_SERVICE_UART_TX` | `o` | `UART1` | `abstract:safety service fixture` | — |
 | `PA18` | 8 | `SAFETY_SERVICE_UART_RX` | `i` | `UART1` | `abstract:safety service fixture` | — |
-| `PA22` | 5 | `ANY_TX_AON_N` | `i` | `GPIO_IRQ` | `any_tx_aon_pullup.END_2`, `evidence_or_3.A_COMMON` | — |
+| `PA22` | 5 | `ANY_TX_AON_N` | `i` | `GPIO_IRQ` | `any_tx_aon_pullup.END_2`, `evidence_or_4.A_COMMON` | — |
 | `PA23` | 4 | `S3_FAULT_RESET_REQUEST` | `o` | `GPIO` | `safety_s3_reset_iso.A` | — |
 | `PA24` | 3 | `RUN_EDGE` | `i` | `GPIO_IRQ` | `safe_conditioner.1Y`, `safe_latch.CLK` | — |
 | `PA25` | 2 | `SAFETY_FAULT_REQUEST` | `o` | `GPIO` | `safety_fault_request_iso.A`, `safety_fault_request_pulldown.END_1` | — |
@@ -1425,8 +1425,17 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `EXT_5V_FAULT_QUAL_N` | `ext_pg_qualifier.C` | `abstract:power-current-thermal-fault` | open collector sinks only for EN=1 and PG=0; a normally disabled accessory converter releases POWER_FAULT_N |
 | `5V_U214_PROTECTED` | `ext_efuse.OUT` | `u214_connector.PIN_7` | a U214-only true-reverse-blocking branch reaches exact Cap-Bus host contact 7 with bounded inrush and active current limit |
 | `5V_U214_PROTECTED` | `u214_connector.PIN_7` | `u214.5V_IN` | SSW mating cavity 7 maps one-to-one to exact U214 5V_IN contact 7 |
-| `U214_5V_OUT_NC` | `u214.5V_OUT` | `u214_connector.PIN_5` | exact U214 output contact 5 reaches only the matching host socket cavity |
-| `U214_5V_OUT_NC` | `u214_connector.PIN_5` | `abstract:no-connect` | the base is the only source in this profile; host pad 5 is not paralleled back into the protected rail |
+| `U214_PIN5_PROFILE` | `u214.5V_OUT` | `u214_connector.PIN_5` | stock U214 presents 5V_OUT high; an evidence-aware Cap instead presents only open-drain active-low EXT_TX_EVIDENCE_N on the same contact |
+| `U214_PIN5_PROFILE` | `u214_connector.PIN_5` | `u214_esd_c.D2_MINUS` | the previously spare twelfth U214 ESD channel protects the dual-profile contact before any AON circuit |
+| `U214_PIN5_PROFILE` | `u214_esd_c.D2_MINUS` | `ext_evidence_input_series.END_1` | exact 1-kOhm series resistance bounds connector injection and transient current |
+| `U214_PIN5_SENSE` | `ext_evidence_input_series.END_2` | `ext_evidence_buffer.A` | 5-V-tolerant LVC input accepts stock U214 5V_OUT without exposing the 3.3-V evidence plane |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_evidence_input_pullup.END_1` | absence or a high-impedance accessory is defined as no external TX evidence |
+| `U214_PIN5_SENSE` | `ext_evidence_input_pullup.END_2` | `ext_evidence_buffer.A` | exact 10-kOhm AON pull-up; an evidence-aware Cap can assert low through the 1-kOhm series path |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_evidence_buffer.VCC` | the external-evidence level boundary remains alive whenever safety evidence is evaluated |
+| `SAFETY_GROUND` | `ext_evidence_buffer.GND` | `abstract:safety-ground` | short AON evidence return |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_evidence_buffer_bypass.END_1` | exact 100-nF local buffer bypass |
+| `SAFETY_GROUND` | `ext_evidence_buffer_bypass.END_2` | `abstract:safety-ground` | local bypass return |
+| `EXT_EVIDENCE_BUFFER_NC` | `ext_evidence_buffer.NC` | `abstract:no-connect` | datasheet no-connect remains open |
 | `POWER_GROUND` | `ext_efuse.GND` | `abstract:power-ground` | U214 eFuse ground and exposed-pad return are local to the branch |
 | `U214_EFUSE_AUXOFF_LOW` | `ext_efuse.AUXOFF` | `abstract:power-ground` | unused active-high fast-off input is fixed low and cannot float |
 | `U214_EFUSE_FAULT_N` | `ext_efuse.FLT` | `abstract:power-current-thermal-fault` | active-low open-drain current/thermal/voltage fault joins POWER_FAULT_N |
@@ -2056,7 +2065,6 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `U214_MISO_CONNECTOR` | `u214_connector.PIN_13` | `u214_esd_c.D2_PLUS` | host contact 13 receives connector ESD before the return buffer |
 | `U214_MISO_CONNECTOR` | `u214_esd_c.D2_PLUS` | `u214_return_buffer.4A` | MISO return isolated when the Cap is off |
 | `U214_MISO_BUFFERED` | `u214_return_buffer.4Y` | `u214_series_miso.END_1` | MISO source termination |
-| `U214_ESD_SPARE_NC` | `u214_esd_c.D2_MINUS` | `abstract:no-connect` | one spare low-capacitance ESD channel is not tied to a signal |
 | `POWER_GROUND` | `u214.GND` | `u214_connector.PIN_6` | exact U214 ground contact 6 maps one-to-one to the host socket |
 | `POWER_GROUND` | `u214_connector.PIN_6` | `abstract:power-ground` | host contact 6 has a short return beside power and signal entry |
 | `U214_ESD_GROUND` | `u214_esd_a.GND_3` | `abstract:power-ground-dedicated-via` | first ESD ground contact receives a shortest entry-zone via |
@@ -3132,7 +3140,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `EV_N7_IR` | `ir_evidence_output_pullup.END_2` | `evidence_cmp_a.OUT3` | individually readable active-low evidence |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask.VCC` | source identity remains readable whenever the AON evidence plane is alive |
 | `SAFETY_GROUND` | `evidence_mask.GND` | `abstract:safety-ground` | evidence-mask return stays local |
-| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_bypass.END_1` | exact 100-nF local TCA9534A bypass |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_bypass.END_1` | exact 100-nF local TCA9535 bypass |
 | `SAFETY_GROUND` | `evidence_mask_bypass.END_2` | `abstract:safety-ground` | evidence-mask bypass returns locally |
 | `SAFETY_EVIDENCE_I2C_SDA` | `safety_controller.PA4` | `evidence_mask.SDA` | only the AON safety controller can read source identity; application and external stuck-bus activity cannot block this private bus |
 | `SAFETY_EVIDENCE_I2C_SCL` | `safety_controller.PA2` | `evidence_mask.SCL` | private bit-banged clock remains independent of RP and the U214 port |
@@ -3141,17 +3149,34 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_mask_scl_pullup.END_1` | private evidence clock pull-up |
 | `SAFETY_EVIDENCE_I2C_SCL` | `evidence_mask_scl_pullup.END_2` | `evidence_mask.SCL` | exact 10-kOhm local open-drain pull-up |
 | `EVIDENCE_MASK_INT_N_TP` | `evidence_mask.INT_N` | `abstract:TP_EVIDENCE_MASK_INT_N` | test point only; no safety claim depends on expander interrupt behavior |
-| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | direct strap fixes 7-bit address 0x38 |
-| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | direct strap fixes 7-bit address 0x38 |
-| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | direct strap fixes 7-bit address 0x38 |
-| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_mask.P0` | individually readable active-low evidence |
-| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_mask.P1` | individually readable active-low evidence |
-| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `evidence_mask.P2` | rear-local comparator output crosses only as digital evidence |
-| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `evidence_mask.P3` | rear-local comparator output crosses only as digital evidence |
-| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `evidence_mask.P4` | individually readable active-low evidence |
-| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `evidence_mask.P5` | individually readable active-low evidence |
-| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `evidence_mask.P6` | dedicated rear-local comparator produces individually readable evidence |
-| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `evidence_mask.P7` | UI-local comparator output crosses only as digital evidence |
+| `EVIDENCE_ADDR_A0_LOW` | `abstract:safety-ground` | `evidence_mask.A0` | direct strap fixes 7-bit address 0x20 |
+| `EVIDENCE_ADDR_A1_LOW` | `abstract:safety-ground` | `evidence_mask.A1` | direct strap fixes 7-bit address 0x20 |
+| `EVIDENCE_ADDR_A2_LOW` | `abstract:safety-ground` | `evidence_mask.A2` | direct strap fixes 7-bit address 0x20 |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_mask.P00` | individually readable active-low evidence |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_mask.P01` | individually readable active-low evidence |
+| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `evidence_mask.P02` | rear-local comparator output crosses only as digital evidence |
+| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `evidence_mask.P03` | rear-local comparator output crosses only as digital evidence |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `evidence_mask.P04` | individually readable active-low evidence |
+| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `evidence_mask.P05` | individually readable active-low evidence |
+| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `evidence_mask.P06` | dedicated rear-local comparator produces individually readable evidence |
+| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `evidence_mask.P07` | UI-local comparator output crosses only as digital evidence |
+| `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `ext_evidence_output_pullup.END_2` | open-drain output contains the stock 5-V level on the connector side |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_evidence_output_pullup.END_1` | exact 10-kOhm AON pull-up defines the ninth evidence bit |
+| `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `evidence_mask.P10` | ninth active-low evidence bit is independently readable |
+| `EVIDENCE_MASK_UNUSED_P11` | `evidence_mask.P11` | `evidence_mask_p11_pulldown.END_1` | unused power-on input cannot float |
+| `EVIDENCE_MASK_UNUSED_P12` | `evidence_mask.P12` | `evidence_mask_p12_pulldown.END_1` | unused power-on input cannot float |
+| `EVIDENCE_MASK_UNUSED_P13` | `evidence_mask.P13` | `evidence_mask_p13_pulldown.END_1` | unused power-on input cannot float |
+| `EVIDENCE_MASK_UNUSED_P14` | `evidence_mask.P14` | `evidence_mask_p14_pulldown.END_1` | unused power-on input cannot float |
+| `EVIDENCE_MASK_UNUSED_P15` | `evidence_mask.P15` | `evidence_mask_p15_pulldown.END_1` | unused power-on input cannot float |
+| `EVIDENCE_MASK_UNUSED_P16` | `evidence_mask.P16` | `evidence_mask_p16_pulldown.END_1` | unused power-on input cannot float |
+| `EVIDENCE_MASK_UNUSED_P17` | `evidence_mask.P17` | `evidence_mask_p17_pulldown.END_1` | unused power-on input cannot float |
+| `SAFETY_GROUND` | `evidence_mask_p11_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
+| `SAFETY_GROUND` | `evidence_mask_p12_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
+| `SAFETY_GROUND` | `evidence_mask_p13_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
+| `SAFETY_GROUND` | `evidence_mask_p14_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
+| `SAFETY_GROUND` | `evidence_mask_p15_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
+| `SAFETY_GROUND` | `evidence_mask_p16_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
+| `SAFETY_GROUND` | `evidence_mask_p17_pulldown.END_2` | `abstract:safety-ground` | exact 10-kOhm unused-input return |
 | `EV_N0_S3` | `evidence_cmp_a.OUT1` | `evidence_or_0.K1` | diode-isolated hardware aggregate |
 | `EV_N1_C5` | `evidence_cmp_a.OUT2` | `evidence_or_0.K2` | diode-isolated hardware aggregate |
 | `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `evidence_or_1.K1` | diode-isolated hardware aggregate |
@@ -3160,15 +3185,18 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `EV_N5_CC` | `evidence_cmp_b.OUT4` | `evidence_or_2.K2` | diode-isolated hardware aggregate |
 | `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `evidence_or_3.K1` | diode-isolated hardware aggregate |
 | `EV_N7_IR` | `evidence_cmp_a.OUT3` | `evidence_or_3.K2` | diode-isolated hardware aggregate |
+| `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `evidence_or_4.K1` | external physical evidence joins the same firmware-independent aggregate |
+| `EVIDENCE_OR_4_UNUSED_DIODE_NC` | `evidence_or_4.K2` | `abstract:no-connect` | unused second cathode remains open and cannot create a false source |
 | `ANY_TX_AON_N` | `evidence_or_0.A_COMMON` | `evidence_or_1.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
 | `ANY_TX_AON_N` | `evidence_or_1.A_COMMON` | `evidence_or_2.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
 | `ANY_TX_AON_N` | `evidence_or_2.A_COMMON` | `evidence_or_3.A_COMMON` | common anodes form the active-low AON aggregate without merging source lines |
+| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `evidence_or_4.A_COMMON` | fifth package extends the active-low AON aggregate to the ninth source |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_aon_pullup.END_1` | exact logic pull-up keeps the aggregate deasserted independently of LED leakage |
-| `ANY_TX_AON_N` | `any_tx_aon_pullup.END_2` | `evidence_or_3.A_COMMON` | 10-kOhm AON aggregate pull-up |
-| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `safety_controller.PA22` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
+| `ANY_TX_AON_N` | `any_tx_aon_pullup.END_2` | `evidence_or_4.A_COMMON` | 10-kOhm AON aggregate pull-up |
+| `ANY_TX_AON_N` | `evidence_or_4.A_COMMON` | `safety_controller.PA22` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
 | `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
-| `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_3.A_COMMON` | asserted diode aggregate lights without firmware |
+| `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_4.A_COMMON` | asserted diode aggregate lights without firmware |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `S3_TX_LED_A` | `s3_tx_led_series.END_2` | `s3_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
 | `EV_N0_S3` | `s3_tx_led.K` | `evidence_cmp_a.OUT1` | S3 antenna-local LED follows physical active-low TX evidence |
@@ -3193,6 +3221,9 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ir_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `IR_TX_LED_A` | `ir_tx_led_series.END_2` | `ir_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
 | `EV_N7_IR` | `ir_tx_led.K` | `evidence_cmp_a.OUT3` | IR-local LED follows physical optical active-low TX evidence |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_tx_led_series.END_1` | external-path actual-TX indicator remains firmware-independent |
+| `EXT_TX_LED_A` | `ext_tx_led_series.END_2` | `ext_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
+| `EV_N8_LORA_EXT` | `ext_tx_led.K` | `ext_evidence_buffer.Y` | front LORA/EXT LED follows only the isolated physical Cap evidence output |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator.VCC` | domain isolator remains alive with the evidence plane |
 | `SAFETY_GROUND` | `evidence_main_isolator.GND` | `abstract:safety-ground` | domain-isolator return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator_bypass.END_1` | exact 100-nF local triple-buffer bypass |
@@ -3205,7 +3236,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `IR_TX_EVIDENCE_N` | `evidence_main_isolator.2Y` | `c5.GPIO24` | passive-drain transfer preserves active-low polarity without positive AON injection |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ir_evidence_main_pullup.END_1` | pull-up exists only while C5 is powered |
 | `IR_TX_EVIDENCE_N` | `ir_evidence_main_pullup.END_2` | `c5.GPIO24` | 10-kOhm main-domain IR evidence pull-up |
-| `ANY_TX_AON_N` | `evidence_or_3.A_COMMON` | `evidence_main_isolator.3A` | hardware aggregate remains AON-side before isolation |
+| `ANY_TX_AON_N` | `evidence_or_4.A_COMMON` | `evidence_main_isolator.3A` | hardware aggregate remains AON-side before isolation |
 | `RP_ANY_TX_N` | `evidence_main_isolator.3Y` | `rp.GPIO22` | passive-drain transfer preserves active-low aggregate polarity without AON back-power |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_any_tx_main_pullup.END_1` | pull-up exists only while RP is powered |
 | `RP_ANY_TX_N` | `rp_any_tx_main_pullup.END_2` | `rp.GPIO22` | 10-kOhm main-domain RP ANY-TX pull-up |
@@ -3674,6 +3705,11 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `det_ir` uses `VEMD1060X01` as `verified_exact_ir_actual_optical_evidence_sensor`, not an accepted production choice.
 - `evidence_cmp_voice` uses `TLV1821DCKR` as `verified_exact_local_voice_evidence_comparator`, not an accepted production choice.
 - `evidence_cmp_voice` lifecycle: `active_orderable`.
+- `ext_evidence_input_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `ext_evidence_input_series` lifecycle: `active_orderable`.
+- `ext_evidence_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
+- `evidence_mask` uses `TCA9535PWR` as `verified_exact_aon_evidence_mask_expander`, not an accepted production choice.
+- `evidence_mask` lifecycle: `active_orderable`.
 - `evidence_main_isolator` uses `SN74LVC3G07DCUR` as `verified_exact_aon_to_main_open_drain_isolator`, not an accepted production choice.
 - `evidence_main_isolator` lifecycle: `active_orderable`.
 - `s3_evidence_hysteresis` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.

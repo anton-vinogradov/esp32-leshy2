@@ -102,14 +102,15 @@ TX_LED_INSTANCES = {
     "N24-2": "nrf2_tx_led",
 }
 FRONT_TX_INDICATORS = (
-    ("s3_tx_led", "WI-FI/BLE", 4.0, 115.0),
-    ("c5_tx_led", "WI-FI/15.4", 12.3, 115.0),
-    ("nrf0_tx_led", "nRF24-1", 20.6, 115.0),
-    ("nrf1_tx_led", "nRF24-2", 28.9, 115.0),
-    ("nrf2_tx_led", "nRF24-3", 37.2, 115.0),
-    ("cc_tx_led", "SUB-GHz", 45.5, 115.0),
-    ("voice_tx_led", "VHF/UHF", 53.8, 115.0),
-    ("ir_tx_led", "IR", 62.1, 115.0),
+    ("s3_tx_led", "WI-FI/BLE", 2.5, 115.0),
+    ("c5_tx_led", "WI-FI/15.4", 10.04, 115.0),
+    ("nrf0_tx_led", "nRF24-1", 17.59, 115.0),
+    ("nrf1_tx_led", "nRF24-2", 25.13, 115.0),
+    ("nrf2_tx_led", "nRF24-3", 32.68, 115.0),
+    ("cc_tx_led", "SUB-GHz", 40.22, 115.0),
+    ("voice_tx_led", "VHF/UHF", 47.77, 115.0),
+    ("ir_tx_led", "IR", 55.31, 115.0),
+    ("ext_tx_led", "LORA/EXT", 62.86, 115.0),
     ("any_tx_led", "TX ACTIVE", 70.4, 115.0),
 )
 
@@ -785,8 +786,8 @@ def validate() -> list[str]:
             if overlaps(led_box, other_box, 0.7):
                 errors.append(f"front: {label}/{other_label} TX indicators overlap")
     if len({y for _, _, _, y in FRONT_TX_INDICATORS}) != 1:
-        errors.append("front: all nine TX indicators must remain in one horizontal line")
-    expected_tx_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "TX ACTIVE"}
+        errors.append("front: all ten TX indicators must remain in one horizontal line")
+    expected_tx_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "LORA/EXT", "TX ACTIVE"}
     if {label for _, label, _, _ in FRONT_TX_INDICATORS} != expected_tx_labels:
         errors.append("front: TX labels must match user-facing antenna names plus IR and TX ACTIVE")
     edge_instances = {item.instance for item in UI_INNER + RF_INNER}
@@ -1149,8 +1150,8 @@ def render_external(devices, instances):
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each built-in transmitting path",11),
-        text(note_x,396,"Eight path indicators plus TX ACTIVE form one front line below the display.",11),
-        text(note_x,419,"Labels match antenna use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF and IR.",11),
+        text(note_x,396,"Nine path indicators plus TX ACTIVE form one front line below the display.",11),
+        text(note_x,419,"Labels match use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF, IR and LORA/EXT.",11),
         text(note_x,450,"Geometry status",15,"bold"),
         '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',
         text(890,479,"solid — registered MPN/reference assembly envelope",11),

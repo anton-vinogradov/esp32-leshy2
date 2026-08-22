@@ -4595,6 +4595,59 @@
         "SDA": {"physical": "15", "role": "signal"}, "VCC": {"physical": "16", "role": "power"}
       }
     },
+    "ti_tca9535_pwr": {
+      "mpn": "TCA9535PWR",
+      "kind": "tssop24_i2c_16bit_5v_tolerant_io_expander",
+      "qualification": "verified_exact_aon_evidence_mask_expander",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [7.8, 4.4, 1.2],
+      "source": {
+        "document": "TCA9535 Low-Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9535.pdf",
+        "checked": "2026-08-20"
+      },
+      "orderable_source": {
+        "document": "TCA9535PWR active authorized-distributor exact order-code page; 16,432 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/TCA9535PWR/2139128",
+        "checked": "2026-08-20"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.1915,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published USD price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TCA9535PWR/2139128", "checked": "2026-08-20"}
+      },
+      "electrical_contract": {
+        "supply_range_v": [1.65, 5.5],
+        "bus_max_hz": 400000,
+        "power_on_default": "all P00..P07 and P10..P17 are inputs",
+        "io_input_tolerance_v_max": 5.0,
+        "unused_input_rule": "each unused input is held by its own approximately 10-kOhm pull-up or pull-down",
+        "evidence_mask_supply": "AON_SAFE_3V3 with one exact 100-nF local bypass",
+        "evidence_mask_address": "A2/A1/A0 tied directly to safety ground selects 0x20",
+        "evidence_mask_bus": "safety-controller-private bit-banged I2C; no application or expansion device shares this bus"
+      },
+      "programmable": false,
+      "i2c_7bit_address_by_a2a1a0": {
+        "000": "0x20", "001": "0x21", "010": "0x22", "011": "0x23",
+        "100": "0x24", "101": "0x25", "110": "0x26", "111": "0x27"
+      },
+      "allocatable_contacts": ["P00", "P01", "P02", "P03", "P04", "P05", "P06", "P07", "P10", "P11", "P12", "P13", "P14", "P15", "P16", "P17"],
+      "contacts": {
+        "INT_N": {"physical": "1", "role": "signal"}, "A1": {"physical": "2", "role": "signal"},
+        "A2": {"physical": "3", "role": "signal"}, "P00": {"physical": "4", "role": "signal"},
+        "P01": {"physical": "5", "role": "signal"}, "P02": {"physical": "6", "role": "signal"},
+        "P03": {"physical": "7", "role": "signal"}, "P04": {"physical": "8", "role": "signal"},
+        "P05": {"physical": "9", "role": "signal"}, "P06": {"physical": "10", "role": "signal"},
+        "P07": {"physical": "11", "role": "signal"}, "GND": {"physical": "12", "role": "power"},
+        "P10": {"physical": "13", "role": "signal"}, "P11": {"physical": "14", "role": "signal"},
+        "P12": {"physical": "15", "role": "signal"}, "P13": {"physical": "16", "role": "signal"},
+        "P14": {"physical": "17", "role": "signal"}, "P15": {"physical": "18", "role": "signal"},
+        "P16": {"physical": "19", "role": "signal"}, "P17": {"physical": "20", "role": "signal"},
+        "A0": {"physical": "21", "role": "signal"}, "SCL": {"physical": "22", "role": "signal"},
+        "SDA": {"physical": "23", "role": "signal"}, "VCC": {"physical": "24", "role": "power"}
+      }
+    },
     "ti_tca9539_pwr": {
       "mpn": "TCA9539PWR",
       "kind": "tssop24_i2c_16bit_io_expander_with_interrupt_and_reset",
