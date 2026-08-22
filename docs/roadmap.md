@@ -8,7 +8,7 @@
 > layout, target build or target-emulator run. Component and PCB orders remain
 > blocked.
 
-Status last reconciled: **22 August 2026**. This page follows the project until
+Status last reconciled: **23 August 2026**. This page follows the project until
 full completion and is updated whenever a stage changes.
 
 ## Status key
