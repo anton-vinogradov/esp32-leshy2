@@ -389,7 +389,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             'id="section-u214" data-cut-y-mm="29"',
             'id="section-battery" data-cut-y-mm="82"',
             "No battery appears",
-            "No U214 appears",
+            "No installed Cap appears",
         ):
             self.assertIn(token, sandwich)
 

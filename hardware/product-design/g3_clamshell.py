@@ -308,7 +308,7 @@ REAR_OUTER = (
         "u214_connector",
         U214_CONNECTOR_X,
         U214_CONNECTOR_Y,
-        "vertical host socket on the raised rear U214 rail",
+        "vertical host socket on the raised rear Cap-Bus rail",
     ),
 )
 
@@ -635,10 +635,10 @@ def validate() -> list[str]:
     if abs(connector.x + connector_w / 2 - (U214_X + U214_W / 2)) > 0.001:
         errors.append("U214 host socket and Cap must share the same 84-mm centreline")
     if abs(connector.y + connector_d / 2 - (U214_Y + U214_H / 2)) > 0.001:
-        errors.append("U214 host socket must be centred beneath the Cap envelope")
+        errors.append("Cap-Bus host socket must be centred beneath the Cap envelope")
     mechanical = devices[instances["u214_connector"]].get("mechanical_contract", {})
     if not mechanical.get("orientation", "").startswith("vertical socket"):
-        errors.append("raised rear U214 rail requires a vertical socket normal to its plane")
+        errors.append("raised rear Cap-Bus rail requires a vertical socket normal to its plane")
     holder_w, holder_h = placement_size(holder, devices, instances)
     u214_box = (U214_X, U214_Y, U214_W, U214_H)
     if overlaps(u214_box, (holder.x, holder.y, holder_w, holder_h), U214_CLEARANCE):
@@ -987,8 +987,8 @@ def render_external(devices, instances):
             f'<circle cx="{sx(rear,retention_x):.1f}" cy="{sy(rear,U214_RETENTION_Y):.1f}" '
             f'r="{1.6*scale:.1f}" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>'
         )
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · 84×24 mm", 7.0, "bold", "middle", "#9a3412"))
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "raised rail · SSW-107-02-S-D beneath Cap", 5.0, "bold", "middle", "#075985"))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · installed worst-case · 84×24 mm", 6.3, "bold", "middle", "#9a3412"))
+    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "shared Cap-Bus rail · SSW-107-02-S-D beneath", 5.0, "bold", "middle", "#075985"))
     out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
     out.append('<g id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer">')
     out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
@@ -1140,7 +1140,7 @@ def render_external(devices, instances):
         text(note_x,105,"What this drawing proves",16,"bold"),
         text(note_x,135,"• both 75×150-mm panels use the same millimetre scale",11),
         text(note_x,158,"• every solid component envelope comes from the MPN register",11),
-        text(note_x,181,"• raised U214 rail, vertical host socket and Keystone holder all fit",11),
+        text(note_x,181,"• shared Cap-Bus rail, vertical host socket and Keystone holder all fit",11),
         text(note_x,204,"• exact components clear all M2.5 hole/head keep-outs",11),
         text(note_x,225,"• both RF connector banks mount on the outward PCB faces",11),
         text(note_x,245,"Interface direction",15,"bold"),
@@ -1453,7 +1453,7 @@ def render_rear_face(devices, instances):
     # Dimensions: base, Cap, overhang, retention and the two non-overlapping
     # longitudinal bands. These are documentation annotations, not silk.
     out += h_dim(0, BOARD_W, 744, "base PCB · 75 mm")
-    out += h_dim(U214_X, U214_X+U214_W, 773, "U214 · 84 mm")
+    out += h_dim(U214_X, U214_X+U214_W, 773, "installed U214 worst-case · 84 mm")
     out += h_dim(U214_X, 0, y(U214_Y)-10, "4.5")
     out += h_dim(BOARD_W, U214_X+U214_W, y(U214_Y)-10, "4.5")
     out += h_dim(U214_RETENTION_X[0], U214_RETENTION_X[1], 802, "retention · 56 mm")
@@ -1601,7 +1601,7 @@ def _render_sandwich_legacy(devices, instances):
         t(x_holder + holder_installed_z/2, holder_y + holder_h/2 - 8, "1048P + 2× 18650", 10, "bold", "middle", "#166534"),
         t(x_holder + holder_installed_z/2, holder_y + holder_h/2 + 10, "installed depth 20.7 mm", 8.5, anchor="middle", colour="#166534"),
         t(x_shell_rear + shell + 6, holder_y + holder_h - 7, "open rear frame — no battery lid", 8.5, "bold", colour="#166534"),
-        t(x_rear_outer + u214_z - 5, u214_y + u214_h/2 + 4, "U214 · 15.287 mm", 8.5, "bold", "end", "#9a3412"),
+        t(x_rear_outer + u214_z - 5, u214_y + u214_h/2 + 4, "stock U214 worst-case · 15.287 mm", 8.5, "bold", "end", "#9a3412"),
         t(x_rear_outer + u214_connector_z/2, connector_y + connector_h/2 + 3, "2×7", 7.5, "bold", "middle", "#075985"),
         t(x_rear_outer + u214_z, u214_y + u214_h + 13, "separate upper dock", 8.5, "bold", "end", "#9a3412"),
     ]
@@ -1741,7 +1741,7 @@ def render_sandwich(devices, instances):
                 r(px(U214_X), pz(base_rear_z), U214_W*x_scale, depth("u214")*z_scale, "#ffedd5", "#ea580c", rx=5, extra=' fill-opacity="0.75" data-instance="u214"'),
                 r(px(U214_CONNECTOR_X), pz(base_rear_z), U214_CONNECTOR_W*x_scale, depth("u214_connector")*z_scale, "#bae6fd", "#0369a1", "4 2", 2, ' data-instance="u214-connector"'),
                 t(px(37.5), pz(base_rear_z+4.7), "Samtec SSW-107-02-S-D · vertical host socket", 7.2, "bold", "middle", "#075985"),
-                t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
+                t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 worst-case · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
                 t(px(37.5), pz(cap_rear_z)+24, "No battery appears: its Y=42…128-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
                 '</g>',
             ]
@@ -1758,7 +1758,7 @@ def render_sandwich(devices, instances):
                 t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
                 r(px(4.2), pz(base_rear_z), 6.6*x_scale, depth("ui_switch_f2")*z_scale, "#e2e8f0", "#64748b", rx=2, extra=' data-instance="F2"'),
                 t(px(7.5), pz(base_rear_z+2.7), "F2", 8, "bold", "middle", "#4c1d95"),
-                t(px(37.5), pz(battery_rear_z)+24, "No U214 appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
+                t(px(37.5), pz(battery_rear_z)+24, "No installed Cap appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 '</g>',
             ]
             rear_z = battery_rear_z
@@ -1782,11 +1782,11 @@ def render_sandwich(devices, instances):
                 line(px(U214_X), pz(rear_z)+88, px(U214_X+U214_W), pz(rear_z)+88),
                 line(px(U214_X), pz(rear_z)+82, px(U214_X), pz(rear_z)+94),
                 line(px(U214_X+U214_W), pz(rear_z)+82, px(U214_X+U214_W), pz(rear_z)+94),
-                t(px(37.5), pz(rear_z)+81, "U214 · 84 mm · 4.5-mm overhang per side", 9.5, "bold", "middle", "#9a3412"),
+                t(px(37.5), pz(rear_z)+81, "installed U214 worst-case · 84 mm · 4.5-mm overhang per side", 9.2, "bold", "middle", "#9a3412"),
             ]
         return parts
 
-    out += panel(60, "A–A · U214 dock zone", 29.0, "u214")
+    out += panel(60, "A–A · Cap-Bus dock · stock U214 worst-case", 29.0, "u214")
     out += panel(780, "B–B · battery/control zone", 82.0, "battery")
     out += [
         line(745, 105, 745, 750, "#d0d5dd", "6 5"),
@@ -1848,7 +1848,7 @@ def render_top_edge(devices, instances):
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 36, "Leshy2 — true top view from the antenna edge", 23, "bold"),
         t(30, 62, "Looking along board +Y. Horizontal is board X; vertical is front-to-rear depth Z.", 11, "bold", colour="#b42318"),
-        t(30, 84, "Board Y is collapsed in this orthographic projection; the rear view separately proves U214/battery longitudinal clearance.", 11, colour="#526076"),
+        t(30, 84, "Board Y is collapsed in this orthographic projection; the rear view separately proves Cap/battery longitudinal clearance.", 11, colour="#526076"),
         t(x(-4.5)-24, z(0)+5, "FRONT", 9, "bold", "end", "#1d4ed8"),
         t(x(-4.5)-24, z(base_rear_z)+5, "REAR", 9, "bold", "end", "#166534"),
         r(x(10.25), z(0), 54.5*scale_x, 10.0*scale_z, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
@@ -1861,7 +1861,7 @@ def render_top_edge(devices, instances):
         r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
         r(x(17.6), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
         '</g>',
-        t(x(37.5), z(base_rear_z+6.0), "U214 · 84 mm wide · Y=17…41", 9, "bold", "middle", "#9a3412"),
+        t(x(37.5), z(base_rear_z+6.0), "stock U214 worst-case · 84 mm wide · Y=17…41", 8.7, "bold", "middle", "#9a3412"),
         t(x(37.5), z(base_rear_z+17.9), "1048P + cells · 39.8 mm wide · Y=42…128", 9, "bold", "middle", "#166534"),
         '<g id="front-antenna-bank" data-count="4" data-mount-face="ui-pcb-outer">',
     ]
@@ -1881,14 +1881,14 @@ def render_top_edge(devices, instances):
         f'<line x1="{x(U214_X):.1f}" y1="{z(max_rear_z)+88:.1f}" x2="{x(U214_X+U214_W):.1f}" y2="{z(max_rear_z)+88:.1f}" stroke="#344054"/>',
         f'<line x1="{x(U214_X):.1f}" y1="{z(max_rear_z)+82:.1f}" x2="{x(U214_X):.1f}" y2="{z(max_rear_z)+94:.1f}" stroke="#344054"/>',
         f'<line x1="{x(U214_X+U214_W):.1f}" y1="{z(max_rear_z)+82:.1f}" x2="{x(U214_X+U214_W):.1f}" y2="{z(max_rear_z)+94:.1f}" stroke="#344054"/>',
-        t(x(37.5), z(max_rear_z)+80, "U214 · 84 mm · symmetric 4.5-mm side overhang", 10, "bold", "middle", "#9a3412"),
+        t(x(37.5), z(max_rear_z)+80, "installed U214 worst-case · symmetric 4.5-mm side overhang", 9.5, "bold", "middle", "#9a3412"),
         t(920, 150, "What this view proves", 16, "bold"),
         t(920, 184, "✓ 84-mm Cap overhang is 4.5 mm on each side", 11, "bold", colour="#166534"),
         t(920, 212, "✓ both antenna banks mount on opposed outward PCB faces", 11, "bold", colour="#166534"),
         t(920, 240, "✓ the exact 11-mm interboard channel contains no antenna body", 11, "bold", colour="#166534"),
         t(920, 268, f"✓ antenna centre planes are separated by {rf_centre_spacing:.2f} mm", 11, "bold", colour="#166534"),
         t(920, 316, "Projection limits", 16, "bold"),
-        t(920, 350, "Display/front-bank and U214/battery overlaps are Y-collapse artifacts.", 11),
+        t(920, 350, "Display/front-bank and installed-Cap/battery overlaps are Y-collapse artifacts.", 11),
         t(920, 378, "Use the adjacent external views for their real longitudinal positions.", 11),
         t(920, 426, "Selected depth references", 16, "bold"),
         t(920, 460, f"{mpn('u214')} · {depth('u214'):.3f} mm", 10.5),

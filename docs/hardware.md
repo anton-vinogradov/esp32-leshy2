@@ -19,7 +19,7 @@ the [M1 map](interconnect.md) shows how they cross the two boards.
 flowchart TB
   S3["ESP32-S3-WROOM-1U-N16R8<br/>UI, display, storage, audio, BLE/Wi-Fi"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, 802.15.4, IR"]
-  RP["SC1512-A4 · RP2354B<br/>nRF24 ×3, Sub-GHz, voice, U214"]
+  RP["SC1512-A4 · RP2354B<br/>nRF24 ×3, Sub-GHz, voice, Cap Bus"]
   S3 <-->|"1-bit SDIO"| C5
   S3 <-->|"dedicated SPI3 + alert"| RP
 ```
@@ -43,7 +43,7 @@ later because Espressif does not support SDIO on revision v0.1.
 | Voice | `NiceRF SA518` | RP2354B | Analog VHF/UHF communications |
 | IR RX | `TSOP95238TT` + `TSMP95000TT` | C5 | 38-kHz demodulation and 30–60-kHz learning |
 | IR TX | `VSMY14940` | C5 | Controlled 940-nm transmit with optical evidence |
-| LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or evidence-aware Leshy Cap | RP2354B | Stock Cap: RX/GNSS; evidence-aware Cap: qualified RX/TX |
+| LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Stock Cap: RX/GNSS; exact Leshy Cap: qualified regional RX/TX |
 | External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
 
 Every built-in transmit path has independent actual-TX evidence. Native S3/C5 each use
@@ -60,9 +60,11 @@ never grants transmit permission.
 The stock U214 provides receive and GNSS but no independent actual-RF evidence,
 so its TX remains blocked. Cap-Bus contact 5 is monitored through the exact
 5-V-tolerant `SN74LVC1G07DCKR`: stock `5V_OUT` reads inactive, while a qualified
-Leshy LoRa Cap may assert open-drain `EXT_TX_EVIDENCE_N` only from a detector on
-its final external 50-ohm RF feed. `BUSY`, `IRQ`, branch power and firmware state
-are diagnostic context, never substitutes for measured RF.
+The [exact Leshy LoRa Cap](lora-cap.md) uses `NiceRF LoRa1262-868` or
+`LoRa1262-915` and may assert open-drain `EXT_TX_EVIDENCE_N` only from a
+`DC0710J5020AHF`/`AD8314ACPZ-RL7` detector on its final external 50-ohm RF
+feed. `BUSY`, `IRQ`, branch power and firmware state are diagnostic context,
+never substitutes for measured RF.
 
 ## User interface, storage and audio
 
@@ -106,9 +108,11 @@ RUN/KILL faces the enclosure side and is labelled on that external edge.
 ## Expansion
 
 - The raised rear 14-contact rail uses exact vertical `Samtec SSW-107-02-S-D`
-  and accepts `M5Stack U214 Cap LoRa-1262` normal to the rear face. The Cap sits
-  between the antenna bank and battery holder and overhangs the 75-mm base by
-  4.5 mm per side.
+  and accepts either `M5Stack U214 Cap LoRa-1262` or
+  `LESHY2-LORA-CAP-01-EU868/US915` normal to the rear face. Both share the
+  84×24-mm envelope and 56-mm retention pitch; the stock U214 remains the
+  worst-case depth. The Cap sits between the antenna bank and battery holder
+  and overhangs the 75-mm base by 4.5 mm per side.
 - A separate exact `1125R-SMT-4P` right-angle M5 Unit receptacle provides a
   protected, switchable 5-V branch and two isolated signal lines for qualified
   GNSS, LoRa, NFC, iButton/1-Wire and other modules. Its keyed mating-view order
@@ -143,6 +147,8 @@ connector body enters the exact 11-mm interboard channel.
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=3)
 
 ![Dimensioned sections through the LoRa Cap and battery zones](images/sandwich-section.svg?layout=9)
+
+![Dimensioned custom LoRa Cap component zones](images/lora-cap-layout.svg?layout=1)
 
 ## External antennas
 
@@ -183,3 +189,5 @@ The detailed tables serve schematic, verification and manufacturing work:
 - [Antenna profiles and exact field kit](antennas.md)
 - [Machine-readable BOM CSV](../hardware/architecture/generated/G2F-3I-target-bom.csv)
 - [Machine-readable antenna-kit manifest](../hardware/architecture/antenna-kit.json)
+- [Exact removable LoRa Cap](lora-cap.md)
+- [Machine-readable LoRa Cap source](../hardware/accessories/leshy2-lora-cap-01.json)

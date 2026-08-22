@@ -8370,6 +8370,282 @@
       "programmable": false,
       "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
     },
+    "nicerf_lora1262_868": {
+      "mpn": "NiceRF LoRa1262-868",
+      "kind": "16x16mm_sx1262_868mhz_tcxo_lora_module",
+      "qualification": "verified_exact_lora_cap_eu868_module",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [16.0, 16.0, 2.1],
+      "source": {
+        "document": "NiceRF LoRa126X product specification",
+        "version": "Rev 2.3, 2025-02",
+        "url": "https://www.nicerf.com/upload/20250221/de9b54f154b08f9d0b56e798e5ec622e.pdf",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "LCSC LORA1262-868TCXO exact regional module listing C5356644",
+        "url": "https://www.lcsc.com/product-detail/C5356644.html",
+        "checked": "2026-08-22"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "published stock and price do not establish a stable quantity-100 production tier",
+        "source": {
+          "document": "LCSC exact-module retail listing C5356644",
+          "url": "https://www.lcsc.com/product-detail/C5356644.html",
+          "checked": "2026-08-22"
+        }
+      },
+      "electrical_contract": {
+        "working_frequency_mhz": [848, 888],
+        "nominal_frequency_mhz": 868,
+        "supply_v": [1.8, 3.7],
+        "selected_supply_v": 3.3,
+        "maximum_output_dbm": 22,
+        "maximum_tx_current_ma": 130,
+        "maximum_rx_current_ma": 6.5,
+        "oscillator": "default 0.5-ppm TCXO; DIO3 is internal TCXO control",
+        "rf_switch": "integrated and controlled by SX1262; no host RF-switch GPIO",
+        "certification": "CE"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND_1": {"physical": "1", "role": "power"}, "MISO": {"physical": "2", "role": "signal"},
+        "MOSI": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
+        "NSS": {"physical": "5", "role": "signal"}, "NRESET": {"physical": "6", "role": "reset"},
+        "NC_7": {"physical": "7", "role": "no_connect"}, "GND_8": {"physical": "8", "role": "power"},
+        "ANT": {"physical": "9", "role": "rf"}, "GND_10": {"physical": "10", "role": "power"},
+        "DIO3_TCXO": {"physical": "11", "role": "internal"}, "NC_12": {"physical": "12", "role": "no_connect"},
+        "VCC": {"physical": "13", "role": "power"}, "NC_14": {"physical": "14", "role": "no_connect"},
+        "DIO1": {"physical": "15", "role": "signal"}, "BUSY": {"physical": "16", "role": "signal"}
+      }
+    },
+    "nicerf_lora1262_915": {
+      "mpn": "NiceRF LoRa1262-915",
+      "kind": "16x16mm_sx1262_915mhz_tcxo_lora_module",
+      "qualification": "verified_exact_lora_cap_us915_module",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [16.0, 16.0, 2.1],
+      "source": {
+        "document": "NiceRF LoRa126X product specification",
+        "version": "Rev 2.3, 2025-02",
+        "url": "https://www.nicerf.com/upload/20250221/de9b54f154b08f9d0b56e798e5ec622e.pdf",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "LCSC LORA1262-915TCXO exact regional module listing C5356643",
+        "url": "https://www.lcsc.com/product-detail/C5356643.html",
+        "checked": "2026-08-22"
+      },
+      "cost_gate": {
+        "status": "quantity_100_rfq_required",
+        "reason": "published stock and price do not establish a stable quantity-100 production tier",
+        "source": {
+          "document": "LCSC exact-module retail listing C5356643",
+          "url": "https://www.lcsc.com/product-detail/C5356643.html",
+          "checked": "2026-08-22"
+        }
+      },
+      "electrical_contract": {
+        "working_frequency_mhz": [900, 940],
+        "nominal_frequency_mhz": 915,
+        "supply_v": [1.8, 3.7],
+        "selected_supply_v": 3.3,
+        "maximum_output_dbm": 22,
+        "maximum_tx_current_ma": 130,
+        "maximum_rx_current_ma": 6.5,
+        "oscillator": "default 0.5-ppm TCXO; DIO3 is internal TCXO control",
+        "rf_switch": "integrated and controlled by SX1262; no host RF-switch GPIO",
+        "certification": "FCC"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND_1": {"physical": "1", "role": "power"}, "MISO": {"physical": "2", "role": "signal"},
+        "MOSI": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
+        "NSS": {"physical": "5", "role": "signal"}, "NRESET": {"physical": "6", "role": "reset"},
+        "NC_7": {"physical": "7", "role": "no_connect"}, "GND_8": {"physical": "8", "role": "power"},
+        "ANT": {"physical": "9", "role": "rf"}, "GND_10": {"physical": "10", "role": "power"},
+        "DIO3_TCXO": {"physical": "11", "role": "internal"}, "NC_12": {"physical": "12", "role": "no_connect"},
+        "VCC": {"physical": "13", "role": "power"}, "NC_14": {"physical": "14", "role": "no_connect"},
+        "DIO1": {"physical": "15", "role": "signal"}, "BUSY": {"physical": "16", "role": "signal"}
+      }
+    },
+    "ttm_dc0710j5020ahf": {
+      "mpn": "TTM Technologies DC0710J5020AHF",
+      "kind": "0805_700_1000mhz_20db_directional_coupler",
+      "qualification": "verified_exact_lora_cap_final_feed_coupler",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.04, 1.29, 0.58],
+      "source": {
+        "document": "DC0710J5020AHF Ultra Low Profile 0805 20 dB Directional Coupler",
+        "version": "Rev J",
+        "url": "https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC0710J5020AHF/DC0710J5020AHF.pdf",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "DigiKey exact-MPN listing; more than 33,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC0710J5020AHF/16538438",
+        "checked": "2026-08-22"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.9906,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/ttm-technologies-inc/DC0710J5020AHF/16538438", "checked": "2026-08-22"}
+      },
+      "electrical_contract": {
+        "frequency_mhz": [700, 1000], "coupling_db_nominal": 20,
+        "insertion_loss_db_max": 0.28, "power_handling_w_at_105c": 3,
+        "minimum_directivity_db_869_894": 17.6, "minimum_directivity_db_925_960": 15.6,
+        "configuration": "configuration 2: pin 1 input, pin 2 forward coupled, pin 5 isolated, pin 6 direct"
+      },
+      "programmable": false,
+      "contacts": {
+        "RF_IN": {"physical": "1", "role": "rf"}, "COUPLED_FWD": {"physical": "2", "role": "rf"},
+        "GND_3": {"physical": "3", "role": "power"}, "GND_4": {"physical": "4", "role": "power"},
+        "ISOLATED": {"physical": "5", "role": "rf"}, "RF_OUT": {"physical": "6", "role": "rf"}
+      }
+    },
+    "ti_sn74lvc1g123_dctr": {
+      "mpn": "SN74LVC1G123DCTR",
+      "kind": "ssop8_retriggerable_monostable_multivibrator",
+      "qualification": "verified_exact_lora_cap_evidence_pulse_extender",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [4.0, 2.95, 1.55],
+      "source": {
+        "document": "SN74LVC1G123 Single Retriggerable Monostable Multivibrator With Schmitt-Trigger Inputs",
+        "version": "Rev E, 2024-03",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g123.pdf",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "DigiKey exact-MPN listing; more than 70,000 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G123DCTR/863597",
+        "checked": "2026-08-22"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.9633,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G123DCTR/863597", "checked": "2026-08-22"}
+      },
+      "electrical_contract": {
+        "supply_v": [1.65, 5.5], "inputs": "Schmitt trigger with 5.5-V acceptance and Ioff",
+        "selected_trigger": "A low, CLR high, rising edge on B",
+        "pulse_formula": "tw = K * Rext * Cext; selected nominal 133 kOhm and 100 nF gives about 13 ms",
+        "power_up": "glitch-free reset on outputs"
+      },
+      "programmable": false,
+      "contacts": {
+        "A": {"physical": "1", "role": "signal"}, "B": {"physical": "2", "role": "signal"},
+        "CLR_N": {"physical": "3", "role": "reset"}, "GND": {"physical": "4", "role": "power"},
+        "Q": {"physical": "5", "role": "signal"}, "CEXT": {"physical": "6", "role": "analog"},
+        "REXT_CEXT": {"physical": "7", "role": "analog"}, "VCC": {"physical": "8", "role": "power"}
+      }
+    },
+    "ti_tps7a2033_pdbvr": {
+      "mpn": "TPS7A2033PDBVR",
+      "kind": "sot23_5_300ma_low_noise_fixed_3v3_ldo",
+      "qualification": "verified_exact_lora_cap_local_rf_regulator",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.9, 2.8, 1.45],
+      "source": {
+        "document": "TPS7A20 300-mA Ultra-Low-Noise Low-IQ High-PSRR LDO datasheet",
+        "version": "Rev H",
+        "url": "https://www.ti.com/lit/ds/symlink/tps7a20.pdf",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "TI exact active order-code page",
+        "url": "https://www.ti.com/product/TPS7A20/part-details/TPS7A2033PDBVR",
+        "checked": "2026-08-22"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.167,
+        "price_break": "published authorized-distributor quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS7A2033PDBVR/11328948", "checked": "2026-08-22"}
+      },
+      "electrical_contract": {
+        "input_v": [1.6, 6.0], "output_v": 3.3, "maximum_output_ma": 300,
+        "minimum_output_capacitance_uf": 1, "enable": "smart pulldown; tied to protected 5-V input for power-domain following"
+      },
+      "programmable": false,
+      "contacts": {
+        "IN": {"physical": "1", "role": "power"}, "GND": {"physical": "2", "role": "power"},
+        "EN": {"physical": "3", "role": "signal"}, "NC": {"physical": "4", "role": "no_connect"},
+        "OUT": {"physical": "5", "role": "power"}
+      }
+    },
+    "microchip_24aa02uidt_i_ot": {
+      "mpn": "Microchip 24AA02UIDT-I/OT",
+      "kind": "sot23_5_2kbit_i2c_eeprom_factory_unique_id",
+      "qualification": "verified_exact_lora_cap_identity_anchor",
+      "lifecycle": "in_production_orderable",
+      "dimensions_mm": [3.1, 1.8, 1.45],
+      "source": {
+        "document": "24AA02UID/24AA025UID Data Sheet",
+        "version": "DS20005202A",
+        "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/20005202A.pdf",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "Microchip 24AA02UID product page, in production",
+        "url": "https://www.microchip.com/en-us/product/24aa02uid",
+        "checked": "2026-08-22"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.30,
+        "price_break": "Mouser published 1-999 tier",
+        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/Microchip-Technology/24AA02UIDT-I-OT", "checked": "2026-08-22"}
+      },
+      "electrical_contract": {
+        "supply_v": [1.7, 5.5], "capacity_bits": 2048,
+        "factory_identity": "factory-programmed write-protected 32-bit serial number",
+        "selected_bus": "Cap-Bus I2C at 3.3 V and 400 kHz",
+        "security_boundary": "identity convenience only; never authorization"
+      },
+      "programmable": false,
+      "contacts": {
+        "SCL": {"physical": "1", "role": "signal"}, "VSS": {"physical": "2", "role": "power"},
+        "SDA": {"physical": "3", "role": "signal"}, "VCC": {"physical": "4", "role": "power"},
+        "NC": {"physical": "5", "role": "no_connect"}
+      }
+    },
+    "samtec_tsw_107_07_g_d": {
+      "mpn": "Samtec TSW-107-07-G-D",
+      "kind": "2x7_2_54mm_vertical_square_post_header",
+      "qualification": "verified_exact_lora_cap_male_header",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [17.78, 5.08, 10.92],
+      "source": {
+        "document": "Samtec TSW-107-07-G-D product page and TSW series drawing",
+        "version": "current product data checked 2026-08-22",
+        "url": "https://www.samtec.com/products/tsw-107-07-g-d",
+        "checked": "2026-08-22"
+      },
+      "orderable_source": {
+        "document": "Samtec exact configuration page; more than 1,000 available to ship",
+        "url": "https://www.samtec.com/products/tsw-107-07-g-d",
+        "checked": "2026-08-22"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.49,
+        "price_break": "Samtec published 1-249 tier",
+        "source": {"document": "Samtec exact configuration price", "url": "https://www.samtec.com/products/tsw-107-07-g-d", "checked": "2026-08-22"}
+      },
+      "electrical_contract": {
+        "positions": 14, "rows": 2, "pitch_mm": 2.54, "post_section_mm": 0.635,
+        "mating_post_length_mm": 5.84, "host_mate": "Samtec SSW-107-02-S-D accepted insertion 3.68 to 6.35 mm"
+      },
+      "programmable": false,
+      "contacts": {
+        "PIN_1": {"physical": "1", "role": "signal"}, "PIN_2": {"physical": "2", "role": "signal"},
+        "PIN_3": {"physical": "3", "role": "signal"}, "PIN_4": {"physical": "4", "role": "signal"},
+        "PIN_5": {"physical": "5", "role": "signal"}, "PIN_6": {"physical": "6", "role": "power"},
+        "PIN_7": {"physical": "7", "role": "power"}, "PIN_8": {"physical": "8", "role": "reset"},
+        "PIN_9": {"physical": "9", "role": "signal"}, "PIN_10": {"physical": "10", "role": "signal"},
+        "PIN_11": {"physical": "11", "role": "signal"}, "PIN_12": {"physical": "12", "role": "signal"},
+        "PIN_13": {"physical": "13", "role": "signal"}, "PIN_14": {"physical": "14", "role": "signal"}
+      }
+    },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",
       "kind": "tssop16",

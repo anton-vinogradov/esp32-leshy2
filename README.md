@@ -22,8 +22,9 @@ is built.
   `320×480` touch IPS display driven by direct QSPI.
 - Record data and audio to removable microSD, play through a speaker or
   headphones and capture from the built-in microphone.
-- Accept a rear M5Stack U214 LoRa/GNSS Cap and a separately protected M5 Unit
-  port for external GNSS, LoRa, NFC, iButton/1-Wire and other modules.
+- Accept a rear M5Stack U214 for LoRa receive/GNSS or the exact
+  [Leshy LoRa Cap](docs/lora-cap.md) for evidence-qualified EU868/US915 RX/TX,
+  plus a separately protected M5 Unit port for other external modules.
 - Give the owner independent programming, recovery and diagnostic paths for
   every programmable controller.
 
@@ -120,7 +121,7 @@ IR_EMITTER["Vishay VSMY14940<br/>940-nm IR transmitter"]
   C5 -->|"RMT TX + FAULT_KILL-qualified power"| IR_EMITTER
 ```
 
-### RP: deterministic radios, voice and U214
+### RP: deterministic radios, voice and Cap Bus
 
 ```mermaid
 flowchart TD
@@ -389,6 +390,7 @@ licensing or the target owner's permission.
 ## Documentation
 
 - [Hardware architecture and components](docs/hardware.md)
+- [Exact removable LoRa Cap](docs/lora-cap.md)
 - [Device principle diagrams](docs/schematics.md)
 - [Exact M1 inter-board connection](docs/interconnect.md)
 - [Exact controller pin assignment](docs/pinout.md)

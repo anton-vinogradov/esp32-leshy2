@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-The diagrams below describe the finished device by functional domain. Exact contacts, signal directions and electrical connections are in the [public pin table](pinout.md). The complete device content is in the [machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv).
+The diagrams below describe the finished device by functional domain. Exact contacts, signal directions and electrical connections are in the [public pin table](pinout.md). The complete device content is in the [machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). The removable transmitting accessory has its own split principle diagrams on the [Leshy LoRa Cap](lora-cap.md) page.
 
 Read the architecture from its three compute owners, not from the USB port.
 The first map shows only inter-processor links; the following maps expand
@@ -55,7 +55,7 @@ IR_EMITTER["Vishay VSMY14940<br/>940-nm IR transmitter"]
   C5 -->|"RMT TX + FAULT_KILL-qualified power"| IR_EMITTER
 ```
 
-### RP: deterministic radios, voice and U214
+### RP: deterministic radios, voice and Cap Bus
 
 ```mermaid
 flowchart TD

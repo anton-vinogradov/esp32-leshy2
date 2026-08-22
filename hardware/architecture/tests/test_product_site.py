@@ -24,6 +24,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/memory.ru.md",
         "docs/safety.md",
         "docs/safety.ru.md",
+        "docs/lora-cap.md",
+        "docs/lora-cap.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -315,7 +317,7 @@ class ProductSiteTests(unittest.TestCase):
             'id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery"',
             'id="section-battery" data-cut-y-mm="82" data-contains="battery-controls-no-u214"',
             "No battery appears",
-            "No U214 appears",
+            "No installed Cap appears",
             "Keystone Electronics 1048P + 2× 18650",
             "Dimensioned architecture projection",
         ):
@@ -334,7 +336,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-board-gap-mm="11" data-antenna-bodies="none"',
             'data-y-collapsed="true"',
             "base PCB · 75 mm",
-            "U214 · 84 mm · symmetric 4.5-mm side overhang",
+            "installed U214 worst-case · symmetric 4.5-mm side overhang",
             "FX8C M1 · 11-mm board gap",
             "antenna centre planes are separated by 20.55 mm",
             "HMX035CTFT-001",
@@ -367,6 +369,48 @@ class ProductSiteTests(unittest.TestCase):
                 "SSW-107-02-S-D",
             ):
                 self.assertIn(token, diagrams)
+
+    def test_exact_lora_cap_is_product_facing_and_keeps_one_device_per_node(self):
+        for page_name in ("docs/lora-cap.md", "docs/lora-cap.ru.md"):
+            page = self.read(page_name)
+            self.assertEqual(3, page.count("```mermaid"), page_name)
+            for token in (
+                "LESHY2-LORA-CAP-01-EU868",
+                "LESHY2-LORA-CAP-01-US915",
+                "NiceRF LoRa1262-868",
+                "NiceRF LoRa1262-915",
+                "DC0710J5020AHF",
+                "AD8314ACPZ-RL7",
+                "TLV1821DCKR",
+                "SN74LVC1G123DCTR",
+                "SN74LVC1G06DCKR",
+                "24AA02UIDT-I/OT",
+                "TPS7A2033PDBVR",
+                "EXT_TX_EVIDENCE_N",
+            ):
+                self.assertIn(token, page, f"{page_name}: {token}")
+            for combined in (
+                "AD8314ACPZ-RL7 + TLV1821DCKR",
+                "SN74LVC1G123DCTR + SN74LVC1G06DCKR",
+                "LoRa1262-868 or LoRa1262-915<br/>",
+            ):
+                self.assertNotIn(combined, page, f"{page_name}: {combined}")
+
+        layout = self.read("docs/images/lora-cap-layout.svg")
+        self.assertEqual(27, layout.count("data-instance="))
+        for token in (
+            "exact-device envelope projection",
+            "every numbered outline is one physical device",
+            "OUTER FACE",
+            "accessible silkscreen is green",
+            "INNER FACE",
+            "mirrored from outer face",
+            "no silkscreen",
+            "DOCUMENTATION LEGEND · not PCB silkscreen",
+            "RF / antenna outward",
+            "mating ⊗",
+        ):
+            self.assertIn(token, layout)
 
     def test_landing_pages_show_all_layout_views_and_principle_diagrams_inline(self):
         for name in ("README.md", "README.ru.md"):

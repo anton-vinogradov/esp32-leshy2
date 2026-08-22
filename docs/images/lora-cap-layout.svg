@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="730" viewBox="0 0 1500 730">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Inter,Arial,sans-serif}.title{font-size:22px;font-weight:700;fill:#172033}.sub{font-size:12px;fill:#526076}.label{font-size:11px;font-weight:700;fill:#172033}.small{font-size:9px;fill:#344054}.tiny{font-size:6px;font-weight:700;fill:#172033}.silk{font-size:9px;font-weight:700;fill:#166534}</style>
+<text class="title" x="40" y="42">LESHY2-LORA-CAP-01 · exact-device envelope projection</text>
+<text class="sub" x="40" y="68">True millimetre scale. Outer and directly viewed mirrored inner faces are separated; every numbered outline is one physical device.</text>
+<rect x="40.0" y="260.0" width="840.0" height="240.0" rx="10" fill="#f8fafc" stroke="#344054" stroke-width="2"/>
+<text class="label" x="40.0" y="242.0">OUTER FACE · accessible silkscreen is green</text>
+<circle cx="180.0" cy="380.0" r="40" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6 4"/>
+<circle cx="180.0" cy="380.0" r="10" fill="#fff" stroke="#526076" stroke-width="2"/>
+<circle cx="740.0" cy="380.0" r="40" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6 4"/>
+<circle cx="740.0" cy="380.0" r="10" fill="#fff" stroke="#526076" stroke-width="2"/>
+<rect x="230.0" y="300.0" width="160.0" height="160.0" rx="4.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="variant_module"/>
+<text class="tiny" x="310.0" y="382.0" text-anchor="middle">1</text>
+<rect x="400.0" y="300.0" width="20.4" height="12.9" rx="2.58" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="rf_coupler"/>
+<text class="tiny" x="410.2" y="308.45" text-anchor="middle">2</text>
+<rect x="409.0" y="108.0" width="102.0" height="152.0" rx="4.0" fill="#ffedd5" stroke="#ea580c" stroke-width="1.4" data-instance="rf_sma"/>
+<text class="tiny" x="460.0" y="186.0" text-anchor="middle">3</text>
+<rect x="430.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="rf_isolated_termination"/>
+<text class="tiny" x="435.0" y="304.5" text-anchor="middle">4</text>
+<rect x="450.0" y="300.0" width="30.0" height="20.0" rx="4.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="rf_detector"/>
+<text class="tiny" x="465.0" y="312.0" text-anchor="middle">5</text>
+<rect x="490.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="rf_detector_match"/>
+<text class="tiny" x="495.0" y="304.5" text-anchor="middle">6</text>
+<rect x="510.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="rf_detector_bypass"/>
+<text class="tiny" x="515.0" y="304.5" text-anchor="middle">7</text>
+<rect x="530.0" y="300.0" width="20.0" height="12.5" rx="2.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_comparator"/>
+<text class="tiny" x="540.0" y="308.25" text-anchor="middle">8</text>
+<rect x="560.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_threshold_top"/>
+<text class="tiny" x="565.0" y="304.5" text-anchor="middle">9</text>
+<rect x="573.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_threshold_bottom"/>
+<text class="tiny" x="578.0" y="304.5" text-anchor="middle">10</text>
+<rect x="586.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_comparator_pullup"/>
+<text class="tiny" x="591.0" y="304.5" text-anchor="middle">11</text>
+<rect x="599.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_comparator_bypass"/>
+<text class="tiny" x="604.0" y="304.5" text-anchor="middle">12</text>
+<rect x="615.0" y="300.0" width="40.0" height="29.5" rx="4.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_monostable"/>
+<text class="tiny" x="635.0" y="316.75" text-anchor="middle">13</text>
+<rect x="660.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_timing_resistor"/>
+<text class="tiny" x="665.0" y="304.5" text-anchor="middle">14</text>
+<rect x="673.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_timing_capacitor"/>
+<text class="tiny" x="678.0" y="304.5" text-anchor="middle">15</text>
+<rect x="686.0" y="300.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_monostable_bypass"/>
+<text class="tiny" x="691.0" y="304.5" text-anchor="middle">16</text>
+<rect x="410.0" y="340.0" width="20.0" height="12.5" rx="2.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_driver"/>
+<text class="tiny" x="420.0" y="348.25" text-anchor="middle">17</text>
+<rect x="435.0" y="340.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="evidence_driver_bypass"/>
+<text class="tiny" x="440.0" y="344.5" text-anchor="middle">18</text>
+<rect x="450.0" y="340.0" width="29.0" height="28.0" rx="4.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="local_regulator"/>
+<text class="tiny" x="464.5" y="356.0" text-anchor="middle">19</text>
+<rect x="485.0" y="340.0" width="16.0" height="8.0" rx="1.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="local_regulator_input"/>
+<text class="tiny" x="493.0" y="346.0" text-anchor="middle">20</text>
+<rect x="505.0" y="340.0" width="16.0" height="8.0" rx="1.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="local_regulator_output"/>
+<text class="tiny" x="513.0" y="346.0" text-anchor="middle">21</text>
+<rect x="525.0" y="340.0" width="16.0" height="8.0" rx="1.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="radio_bulk"/>
+<text class="tiny" x="533.0" y="346.0" text-anchor="middle">22</text>
+<rect x="550.0" y="340.0" width="31.0" height="18.0" rx="3.6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="identity"/>
+<text class="tiny" x="565.5" y="351.0" text-anchor="middle">23</text>
+<rect x="585.0" y="340.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="identity_bypass"/>
+<text class="tiny" x="590.0" y="344.5" text-anchor="middle">24</text>
+<rect x="598.0" y="340.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="identity_scl_pullup"/>
+<text class="tiny" x="603.0" y="344.5" text-anchor="middle">25</text>
+<rect x="611.0" y="340.0" width="10.0" height="5.0" rx="1.0" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" data-instance="identity_sda_pullup"/>
+<text class="tiny" x="616.0" y="344.5" text-anchor="middle">26</text>
+<text class="silk" x="460.0" y="280.0" text-anchor="middle">LORA SMA</text>
+<text class="silk" x="550.0" y="434.0" text-anchor="middle">LESHY2 LORA CAP 01</text>
+<text class="silk" x="550.0" y="454.0" text-anchor="middle">EU868 or US915 · exactly one assembly marking</text>
+<line x1="460.0" y1="106.0" x2="460.0" y2="70.0" stroke="#dc2626" stroke-width="2"/>
+<polygon points="460.0,60.0 454.0,72.0 466.0,72.0" fill="#dc2626"/>
+<text class="small" x="478.0" y="96.0" fill="#dc2626">RF / antenna outward</text>
+<line x1="40.0" y1="538.0" x2="880.0" y2="538.0" stroke="#344054"/>
+<text class="label" x="460.0" y="562.0" text-anchor="middle">84.0 mm board; 56.0-mm retention pitch</text>
+<rect x="910" y="92" width="560" height="470" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text class="label" x="930" y="118">DOCUMENTATION LEGEND · not PCB silkscreen</text>
+<text class="small" x="930" y="142"><tspan font-weight="700">01 · NiceRF LoRa1262-868 / LoRa1262-915</tspan><tspan> — LoRa1262 regional radio</tspan></text>
+<text class="small" x="930" y="157"><tspan font-weight="700">02 · TTM Technologies DC0710J5020AHF</tspan><tspan> — forward RF coupler</tspan></text>
+<text class="small" x="930" y="172"><tspan font-weight="700">03 · GCT RFPC-SMA31-FN-175-A</tspan><tspan> — external LORA SMA</tspan></text>
+<text class="small" x="930" y="187"><tspan font-weight="700">04 · Yageo RC0402FR-0749R9L</tspan><tspan> — coupler isolated termination</tspan></text>
+<text class="small" x="930" y="202"><tspan font-weight="700">05 · Analog Devices AD8314ACPZ-RL7</tspan><tspan> — log RF detector</tspan></text>
+<text class="small" x="930" y="217"><tspan font-weight="700">06 · Yageo RC0402FR-0752R3L</tspan><tspan> — detector RF match</tspan></text>
+<text class="small" x="930" y="232"><tspan font-weight="700">07 · TDK C1005X7R1H104K050BB</tspan><tspan> — detector bypass</tspan></text>
+<text class="small" x="930" y="247"><tspan font-weight="700">08 · TLV1821DCKR</tspan><tspan> — evidence comparator</tspan></text>
+<text class="small" x="930" y="262"><tspan font-weight="700">09 · Yageo RC0402FR-07220KL</tspan><tspan> — threshold top</tspan></text>
+<text class="small" x="930" y="277"><tspan font-weight="700">10 · Yageo RC0402FR-0710KL</tspan><tspan> — threshold bottom</tspan></text>
+<text class="small" x="930" y="292"><tspan font-weight="700">11 · Yageo RC0402FR-0710KL</tspan><tspan> — comparator pull-up</tspan></text>
+<text class="small" x="930" y="307"><tspan font-weight="700">12 · TDK C1005X7R1H104K050BB</tspan><tspan> — comparator bypass</tspan></text>
+<text class="small" x="930" y="322"><tspan font-weight="700">13 · SN74LVC1G123DCTR</tspan><tspan> — evidence pulse extender</tspan></text>
+<text class="small" x="930" y="337"><tspan font-weight="700">14 · Yageo RC0402FR-07133KL</tspan><tspan> — pulse timing resistor</tspan></text>
+<text class="small" x="930" y="352"><tspan font-weight="700">15 · TDK C1005X7R1H104K050BB</tspan><tspan> — pulse timing capacitor</tspan></text>
+<text class="small" x="930" y="367"><tspan font-weight="700">16 · TDK C1005X7R1H104K050BB</tspan><tspan> — pulse extender bypass</tspan></text>
+<text class="small" x="930" y="382"><tspan font-weight="700">17 · Texas Instruments SN74LVC1G06DCKR</tspan><tspan> — active-low evidence driver</tspan></text>
+<text class="small" x="930" y="397"><tspan font-weight="700">18 · TDK C1005X7R1H104K050BB</tspan><tspan> — evidence driver bypass</tspan></text>
+<text class="small" x="930" y="412"><tspan font-weight="700">19 · TPS7A2033PDBVR</tspan><tspan> — local 3.3-V LDO</tspan></text>
+<text class="small" x="930" y="427"><tspan font-weight="700">20 · TDK C1608X7R1C105K080AC</tspan><tspan> — LDO input capacitor</tspan></text>
+<text class="small" x="930" y="442"><tspan font-weight="700">21 · TDK C1608X7R1C105K080AC</tspan><tspan> — LDO output capacitor</tspan></text>
+<text class="small" x="930" y="457"><tspan font-weight="700">22 · Murata GRM188R60J106ME47D</tspan><tspan> — radio bulk capacitor</tspan></text>
+<text class="small" x="930" y="472"><tspan font-weight="700">23 · Microchip 24AA02UIDT-I/OT</tspan><tspan> — factory UID EEPROM</tspan></text>
+<text class="small" x="930" y="487"><tspan font-weight="700">24 · TDK C1005X7R1H104K050BB</tspan><tspan> — UID bypass</tspan></text>
+<text class="small" x="930" y="502"><tspan font-weight="700">25 · Yageo RC0402FR-072K2L</tspan><tspan> — identity SCL pull-up</tspan></text>
+<text class="small" x="930" y="517"><tspan font-weight="700">26 · Yageo RC0402FR-072K2L</tspan><tspan> — identity SDA pull-up</tspan></text>
+<text class="small" x="930" y="532"><tspan font-weight="700">27 · Samtec TSW-107-07-G-D</tspan><tspan> — Cap-Bus male header</tspan></text>
+<text class="label" x="40.0" y="576.0">INNER FACE · direct view, mirrored from outer face · no silkscreen</text>
+<rect x="40.0" y="590.0" width="420.0" height="120.0" rx="7" fill="#f8fafc" stroke="#344054" stroke-width="2"/>
+<rect x="205.55" y="675.0" width="88.9" height="25.4" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="cap_header"/>
+<text class="small" x="250.0" y="690.7" text-anchor="middle">27 · mating ⊗</text>
+<text class="label" x="930" y="590">Exact regional assemblies</text>
+<text class="small" x="930" y="611">LESHY2-LORA-CAP-01-EU868 · NiceRF LoRa1262-868 · 848–888 MHz</text>
+<text class="small" x="930" y="628">LESHY2-LORA-CAP-01-US915 · NiceRF LoRa1262-915 · 900–940 MHz</text>
+<text class="small" x="930" y="650">Known quantity-100 electronics: $10.40; radio module, PCB and assembly remain RFQ gates.</text>
+<text class="small" x="930" y="680">Pre-KiCad envelope proof; exact pads and copper follow only after architecture release.</text>
+</svg>

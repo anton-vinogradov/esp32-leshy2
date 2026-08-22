@@ -67,7 +67,7 @@ This page is generated from the same device and net map used by the electrical c
 | `GPIO23` | `C5_RF_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | evidence_main_isolator.1Y<br>c5_evidence_main_pullup.END_2 |
 | `GPIO24` | `IR_TX_EVIDENCE_N` | `i` | `GPIO_IRQ` | evidence_main_isolator.2Y<br>ir_evidence_main_pullup.END_2 |
 
-## RP2354B — nRF24 ×3, Sub-GHz, voice and U214
+## RP2354B — nRF24 ×3, Sub-GHz, voice and Cap Bus
 
 **MPN:** `SC1512-A4`
 

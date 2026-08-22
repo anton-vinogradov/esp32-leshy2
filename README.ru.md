@@ -21,8 +21,9 @@ Leshy2 — открытый автономный прибор для наблю�
   сенсорном IPS-дисплее 3,5″ `320×480` с прямым QSPI.
 - Записывает данные и аудио на съёмную microSD, воспроизводит звук через
   динамик или наушники и принимает звук со встроенного микрофона.
-- Поддерживает задний M5Stack U214 LoRa/GNSS Cap и отдельный защищённый M5 Unit
-  port для внешних GNSS, LoRa, NFC, iButton/1‑Wire и других модулей.
+- Поддерживает задний M5Stack U214 для LoRa RX/GNSS или точный
+  [Leshy LoRa Cap](docs/lora-cap.ru.md) для evidence-qualified EU868/US915
+  RX/TX, а также отдельный защищённый M5 Unit port для других модулей.
 - Даёт владельцу независимые пути прошивки, восстановления и диагностики
   каждого программируемого контроллера.
 
@@ -118,7 +119,7 @@ IR_EMITTER["Vishay VSMY14940<br/>IR-передатчик 940 нм"]
   C5 -->|"RMT TX + FAULT_KILL-qualified power"| IR_EMITTER
 ```
 
-### RP: детерминированные радио, voice и U214
+### RP: детерминированные радио, voice и Cap Bus
 
 ```mermaid
 flowchart TD
@@ -387,6 +388,7 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
 ## Документация
 
 - [Аппаратная архитектура и компоненты](docs/hardware.ru.md)
+- [Точный съёмный LoRa Cap](docs/lora-cap.ru.md)
 - [Принципиальные схемы устройства](docs/schematics.ru.md)
 - [Точное межплатное соединение M1](docs/interconnect.ru.md)
 - [Точная распиновка контроллеров](docs/pinout.ru.md)

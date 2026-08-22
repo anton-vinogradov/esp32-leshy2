@@ -1978,7 +1978,7 @@ def render_target_principled_section(
             "owners": "Карта вычислительных владельцев",
             "s3": "S3: интерфейс пользователя, storage, audio и native expansion",
             "c5": "C5: native 2,4/5 ГГц, 802.15.4 и IR",
-            "rp": "RP: детерминированные радио, voice и U214",
+            "rp": "RP: детерминированные радио, voice и Cap Bus",
             "controls": "Органы управления: от физической кнопки до владельца",
             "audio": "Аудиотракт: приём, запись, воспроизведение и передача",
             "service": "Прошивка, восстановление и диагностика трёх вычислителей",
@@ -2102,7 +2102,7 @@ def render_target_principled_section(
             "owners": "Compute ownership map",
             "s3": "S3: user interface, storage, audio and native expansion",
             "c5": "C5: native 2.4/5 GHz, 802.15.4 and IR",
-            "rp": "RP: deterministic radios, voice and U214",
+            "rp": "RP: deterministic radios, voice and Cap Bus",
             "controls": "Controls: from each physical switch to its owner",
             "audio": "Audio path: receive, capture, playback and transmit",
             "service": "Programming, recovery and diagnostics for all three compute owners",
@@ -2489,7 +2489,9 @@ def render_public_schematics(
             "Схемы ниже показывают конечное устройство по функциональным доменам. "
             "Точные контакты, направления сигналов и электрические связи находятся в "
             "[публичной таблице распиновки](pinout.ru.md). Полный состав устройства — в "
-            "[машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv)."
+            "[машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). "
+            "Отдельные принципиальные схемы съёмного передающего аксессуара находятся "
+            "на странице [Leshy LoRa Cap](lora-cap.ru.md)."
         )
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2497,7 +2499,9 @@ def render_public_schematics(
             "The diagrams below describe the finished device by functional domain. "
             "Exact contacts, signal directions and electrical connections are in the "
             "[public pin table](pinout.md). The complete device content is in the "
-            "[machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv)."
+            "[machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). "
+            "The removable transmitting accessory has its own split principle diagrams "
+            "on the [Leshy LoRa Cap](lora-cap.md) page."
         )
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n{remainder}"
@@ -4365,7 +4369,7 @@ def render_public_pinout(
     owners = (
         ("s3", "S3 — application, UI, display, storage and audio"),
         ("c5", "C5 — native 2.4/5-GHz radio, IEEE 802.15.4 and IR"),
-        ("rp", "RP2354B — nRF24 ×3, Sub-GHz, voice and U214"),
+        ("rp", "RP2354B — nRF24 ×3, Sub-GHz, voice and Cap Bus"),
         ("pd_controller", "USB-PD controller"),
         ("pack_admission", "Battery-pack admission controller"),
     )
@@ -4379,7 +4383,7 @@ def render_public_pinout(
         headings = {
             "s3": "S3 — приложение, UI, display, storage и audio",
             "c5": "C5 — native 2,4/5 ГГц, IEEE 802.15.4 и IR",
-            "rp": "RP2354B — nRF24 ×3, Sub-GHz, voice и U214",
+            "rp": "RP2354B — nRF24 ×3, Sub-GHz, voice и Cap Bus",
             "pd_controller": "USB-PD controller",
             "pack_admission": "Контроллер допуска батарейного pack",
         }
