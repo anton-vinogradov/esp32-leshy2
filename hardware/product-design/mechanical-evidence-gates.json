@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "stage": "H1.1.3",
+  "policy": {
+    "h1_blocker": "Unknown geometry or mating truth changes the dimensioned mockup, routing corridor, enclosure aperture or user-reviewed placement and must close before H1.1.4 is frozen.",
+    "h5_received_sample_gate": "The paper geometry is sufficient for H1; received-part fit, feel, endurance, electrical, RF, acoustic or thermal behaviour closes in H5 before fabrication release.",
+    "no_silent_inference": true
+  },
+  "execution_constraint": {
+    "status": "user_decision_required",
+    "legacy_rule": "hardware/procurement/pre-kicad-sample-plan.md currently forbids evidence-sample ordering until preorder P1-P6 pass",
+    "conflict": "Three H1 source blockers require received evidence before the dimension/source table and mockup can be frozen, creating a circular dependency if the legacy rule is retained unchanged.",
+    "decision": "Either authorize a narrow non-fabrication H1 evidence lot or replace the affected parts with alternatives having complete controlled mechanical data."
+  },
+  "gates": [
+    {
+      "id": "H1-MECH-DISPLAY-TAIL",
+      "disposition": "h1_blocker",
+      "affected_instances": ["display", "display_connector"],
+      "evidence_boundary": "Official QDtech sources prove the HMX035CTFT-001 marking, 40-contact electrical map and 54.5x83.0x3.2-mm LCD/CTP screen-body envelope; Hirose proves the selected connector body.",
+      "unknown": "Standalone order identity, complete FPC outline, pitch/tolerance, thickness, exposed-contact side, stiffener, adhesive and bend keep-out, plus actual FH12 insertion fit.",
+      "closure": "Supplier-controlled approval drawing and quote for the standalone assembly, plus accepted tail-to-FH12 evidence; otherwise select and requalify a different orderable display endpoint.",
+      "blocks": ["H1.1.4", "H1.2", "H1.4.0"]
+    },
+    {
+      "id": "H1-MECH-NRF-IPX-PATHS",
+      "disposition": "h1_blocker",
+      "affected_instances": ["nrf0", "nrf1", "nrf2", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma"],
+      "evidence_boundary": "The current Ebyte specification and official PcbLib prove the E01-ML01IPX module outline, land pattern and presence of an IPX RF interface.",
+      "unknown": "Exact miniature-coax family/generation, controlled connector axis, compatible pigtail MPN and three physical pigtail routes to the outward SMA bank.",
+      "closure": "Ebyte names the current-lot receptacle/mate and supplies a controlled coordinate, or received modules identify and prove the mate; then select exact pigtails and add all three sourced cable routes to the collision model.",
+      "blocks": ["H1.1.4", "H1.2", "H1.4.0", "H1.6"]
+    },
+    {
+      "id": "H1-MECH-U214-MATING-STACK",
+      "disposition": "h1_blocker",
+      "affected_instances": ["u214", "u214_connector"],
+      "evidence_boundary": "M5Stack proves the 84x24x15.287-mm Cap envelope, 2x7 topology and 56-mm retention pitch; Samtec proves the SSW-107-02-S-D body and published insertion range.",
+      "unknown": "U214 male-post section, exposed length, actual bottoming, retained rail Z, insertion force and repeated-cycle fit with the selected socket.",
+      "closure": "Controlled M5 mating drawing or accepted measurements of one current U214 with the exact Samtec socket coupon; update the section and dock rail from that evidence.",
+      "blocks": ["H1.1.4", "H1.2", "H1.5.0", "H1.6"]
+    },
+    {
+      "id": "H1-MECH-DPAD-ACTUATOR",
+      "disposition": "h1_blocker",
+      "affected_instances": ["ui_dpad_switch"],
+      "evidence_boundary": "Alps Alpine proves the SKRHADE010 body, 3.0-mm stem, 5.0-mm stem-top height and selected 45-degree electrical direction map.",
+      "unknown": "Custom cross pocket, retention, anti-rotation, tilt, centre-versus-direction discrimination, aperture and complete travel stack.",
+      "closure": "Dimensioned parametric actuator/aperture design passes travel, clearance and print-tolerance checks and is accepted at H1.3.1/H1.6.",
+      "blocks": ["H1.3.1", "H1.6", "H1.8"]
+    },
+    {
+      "id": "H5-MECH-SA518-LAND-FIT",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["voice"],
+      "evidence_boundary": "Rev 1.1 dimensionally fixes contact 7 at 2.00+/-0.10 mm from the board end; the corrected mockup aligns that nominal axis to the VHF/UHF SMA.",
+      "unknown": "Received castellated-pad tolerance, solder fillet, thermal behaviour and conducted RF performance.",
+      "closure": "Incoming measurement, land-pattern coupon, solder inspection and RF/thermal HIL pass in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-ENCODER-KNOB",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["encoder", "encoder_knob"],
+      "evidence_boundary": "Exact shaft, knob and plan envelopes are manufacturer-dimensioned and fit the H1 rear-face reserve.",
+      "unknown": "Insertion depth, retention, push travel, feel and final rear depth on received parts.",
+      "closure": "Received fit/travel/endurance coupon passes in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2", "ptt_switch"],
+      "evidence_boundary": "The exact B3S-1100P body, 3.3-mm plunger and height/tolerance are manufacturer-dimensioned; no speculative cap is used.",
+      "unknown": "PCB/enclosure press feel, accidental-press margin and endurance.",
+      "closure": "Received control coupon passes travel, force, accessibility and endurance tests in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-RUN-KILL",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["power_command_switch"],
+      "evidence_boundary": "The exact C&K body and side-actuator envelope are manufacturer-dimensioned and the opening direction is explicit.",
+      "unknown": "Received side access, detent force, accidental motion and endurance.",
+      "closure": "Received switch/aperture coupon passes access, force and endurance tests in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-M5-UNIT-MATE",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["unit_connector"],
+      "evidence_boundary": "The exact Seeed 1125R-SMT-4P body, land pattern and outward cable direction are controlled.",
+      "unknown": "Received Grove cable insertion, retention, strain relief and repeated mating.",
+      "closure": "Exact connector and ecosystem cable pass received fit/endurance checks in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-CELL-HOLDER-FIT",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["pack_holder", "pack_cell0", "pack_cell1"],
+      "evidence_boundary": "The corrected mockup uses the exact 69.7x18.7-mm protected-cell envelopes inside the manufacturer-dimensioned rotated Keystone 1048P holder.",
+      "unknown": "Received insertion force, contact compression, polarity protection, vibration and thermal cycling.",
+      "closure": "Two accepted cell lots and holder samples pass dimensional, insertion, retention, vibration and thermal tests in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-NATIVE-RF-JUMPERS",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["s3_rf_jumper", "c5_rf_jumper", "s3_rf_board_connector", "c5_rf_board_connector"],
+      "evidence_boundary": "Exact 30-mm cable assemblies, module RF axes, U.FL board mates and conservative routed corridors are in the H1 collision model.",
+      "unknown": "Actual bend radius, strain relief, insertion force, retention and RF loss after assembly.",
+      "closure": "Received cables and connector coupons pass fit, bend, retention and conducted-RF tests in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-DISPLAY-PERFORMANCE",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["display", "display_connector"],
+      "evidence_boundary": "After H1-MECH-DISPLAY-TAIL closes, the controlled physical assembly and connector geometry are sufficient for layout.",
+      "unknown": "QSPI/touch operation, optical quality, backlight current/thermal, flex endurance and lot repeatability.",
+      "closure": "Received display lot passes electrical, optical, thermal and flex-endurance qualification in H5.",
+      "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-ACOUSTIC-PATHS",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["speaker", "microphone"],
+      "evidence_boundary": "Exact speaker/microphone bodies and rear acoustic-opening locations fit the sourced envelopes without inventing directional electrical interfaces.",
+      "unknown": "Grille loss, cavity resonance, sealing, feedback, microphone port response and vibration.",
+      "closure": "Received acoustic stack passes level, response, feedback, sealing and vibration tests in H5.",
+      "blocks": ["H8"]
+    }
+  ]
+}

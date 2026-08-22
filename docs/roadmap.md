@@ -40,12 +40,12 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Current H1 breakdown
 
-<!-- current-substep: H1.1.3 -->
+<!-- current-substep: H1.1.3.3 -->
 
-**Exact marker: `H1.1.3`** — classify every remaining mechanical uncertainty
-as an H1 blocker or an explicit received-sample H5 gate. Later views already
-exist as provisional projections, but none is a reviewed later substep while
-this source-data gate is open.
+**Exact marker: `H1.1.3.3`** — resolve four classified H1 mechanical blockers:
+display tail/order identity, three nRF IPX paths, the U214 mating stack and the
+custom D-pad actuator. Later views already exist as provisional projections,
+but none is a reviewed later substep while this source-data gate is open.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -53,10 +53,14 @@ this source-data gate is open.
     product role in the machine source.
   - ✅ `H1.1.2` — every rendered body has evidence-backed `L×W×H`, a named
     datum, orientation and connector/actuator-direction classification.
-  - ▶️ **`H1.1.3` — current:** classify each unresolved item as an H1 blocker or
-    an explicit received-sample H5 gate; inferred dimensions cannot silently
-    become exact.
-  - ⏳ `H1.1.4` — freeze the renderer's dimension/source table.
+  - `H1.1.3` — classify each unresolved physical item; inferred dimensions
+    cannot silently become exact.
+    - ✅ `H1.1.3.1` — inventory every open mechanical evidence boundary.
+    - ✅ `H1.1.3.2` — record four H1 blockers and nine H5 received-sample gates
+      in the machine source.
+    - ▶️ **`H1.1.3.3` — current:** close the display, nRF and U214 evidence
+      blockers plus the custom D-pad actuator design.
+  - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
 - ⏳ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
 - ⏳ `H1.3.0` — generate the outer faces from the unified source: screen,
@@ -82,13 +86,13 @@ this source-data gate is open.
   automatic-check results and all changes since the earlier view gates.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
-`H1.1.3` exits when every physical-source uncertainty has one explicit
-disposition, its evidence boundary and a named closure gate; an H1 blocker
-cannot be relabelled as sample-only if the mockup depends on its unknown
-geometry. Closing any substep requires changing the exact marker on both
-landing and roadmap pages in the same commit before advancing work. A later
-change that affects an accepted view reopens that user gate and all dependent
-gates; earlier approval is never silently carried over.
+`H1.1.3.3` exits only when the display, nRF and U214 evidence blockers have
+controlled or accepted received evidence and the D-pad actuator has a
+dimensioned, testable design. The parked procurement rule postponing all
+samples until preorder P1-P6 conflicts with those prerequisites and must be
+resolved explicitly. Closing any substep requires changing the exact marker on
+both landing and roadmap pages in the same commit before advancing work. A
+later correction reopens every affected user review gate and its dependants.
 
 ## Hardware sequence and firmware intersections
 

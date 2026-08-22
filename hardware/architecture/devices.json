@@ -3414,8 +3414,8 @@
         "antenna_contact": {
           "physical": "7",
           "illustrated_edge": "bottom edge in the manufacturer underside view",
-          "nominal_center_from_illustrated_top_left_mm": [4.5, 24.0],
-          "coordinate_qualification": "working nominal inferred from the 4.50-mm pad pitch and drawing artwork; exact edge offset remains a received-specimen/land-pattern gate"
+          "nominal_center_from_illustrated_top_left_mm": [2.0, 24.0],
+          "coordinate_qualification": "manufacturer-dimensioned nominal: Rev 1.1 page 9 shows the end castellated-pad axis 2.00±0.10 mm from the board edge; received land-pattern and solder-fit qualification remains H5"
         },
         "placement_rule": "rotate 180 degrees so contact 7 faces the VHF/UHF SMA and retains a short straight RF corridor"
       },

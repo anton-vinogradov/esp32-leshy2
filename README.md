@@ -30,11 +30,11 @@ target-emulator run, and no order is authorized.
 
 ### Current phase H1 — detailed position
 
-<!-- current-substep: H1.1.3 -->
+<!-- current-substep: H1.1.3.3 -->
 
-**Exact marker: `H1.1.3`** — classify every remaining mechanical uncertainty
-as an H1 blocker or an explicit received-sample H5 gate. Existing rendered
-views are provisional outputs; they do not complete later substeps.
+**Exact marker: `H1.1.3.3`** — resolve four classified H1 mechanical blockers:
+display tail/order identity, three nRF IPX paths, the U214 mating stack and the
+custom D-pad actuator. Existing rendered views remain provisional outputs.
 
 - ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
 - `H1.1` — build the physical-source register.
@@ -42,9 +42,12 @@ views are provisional outputs; they do not complete later substeps.
     product role.
   - ✅ `H1.1.2` — reconcile dimensions, origin, orientation and
     connector/actuator direction with manufacturer evidence.
-  - ▶️ **`H1.1.3` — current:** classify every remaining uncertainty as an H1
-    blocker or a received-sample H5 gate.
-  - ⏳ `H1.1.4` — freeze the dimension/source table used by the renderer.
+  - `H1.1.3` — classify every remaining physical uncertainty.
+    - ✅ `H1.1.3.1` — inventory all open mechanical evidence boundaries.
+    - ✅ `H1.1.3.2` — classify four H1 blockers and nine H5 sample gates.
+    - ▶️ **`H1.1.3.3` — current:** resolve the four H1 blockers; three need
+      controlled/received evidence and one needs the D-pad actuator design.
+  - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
 - ⏳ `H1.2` — create one coordinate model for both boards and the enclosure.
 - ⏳ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
   from the unified source.
@@ -59,12 +62,13 @@ views are provisional outputs; they do not complete later substeps.
 - 🔒 `H1.7.1` — user review gate for the consolidated layout and all deltas.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
-`H1.1.3` exits only when every physical-source uncertainty has one explicit
-disposition, evidence boundary and closure gate; no H1 blocker may be hidden
-behind a future sample test. When any substep closes, this marker and both
-roadmap pages are updated in the same commit before work advances. A later
-correction that changes an already reviewed view reopens its user gate and
-every dependent gate.
+`H1.1.3.3` exits only when the display, nRF and U214 evidence blockers have
+controlled or accepted received evidence and the D-pad actuator has a
+dimensioned, testable design. The old rule that postpones every evidence sample
+until after P1-P6 currently creates a circular dependency and requires an
+explicit resolution. When any substep closes, this marker and both roadmap
+pages are updated in the same commit before work advances. A later correction
+reopens every affected user review gate and its dependent gates.
 
 Leshy2 is an open, autonomous instrument for radio observation,
 communications, diagnostics and authorized research of wireless and contact

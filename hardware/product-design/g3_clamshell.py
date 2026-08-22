@@ -15,6 +15,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
+MECHANICAL_GATES_PATH = REPO / "hardware/product-design/mechanical-evidence-gates.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
@@ -247,7 +248,7 @@ RF_INNER = (
     Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
     Placement("nrf1", 31.5, 7.5, "full-function nRF24 radio #1; rotated for U214 tail clearance", 90),
     Placement("nrf2", 52.9, 7.5, "full-function nRF24 radio #2"),
-    Placement("voice", 14.5, 33.0, "VHF/UHF voice transceiver; contact 7 faces its SMA", 180),
+    Placement("voice", 12.0, 33.0, "VHF/UHF voice transceiver; contact 7 faces its SMA", 180),
     Placement("cc", 24.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
     Placement("nvdc_charger", 1.0, 63.0, "2S charger and NVDC power path"),
     Placement("pack_gauge", 1.0, 84.0, "2S protection and fuel gauge"),
@@ -977,6 +978,70 @@ def validate_mechanical_sources(devices: dict, instances: dict) -> tuple[set[str
     return actual, errors
 
 
+def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> list[str]:
+    """Require one explicit H1/H5 disposition for every open physical fit."""
+    data = json.loads(MECHANICAL_GATES_PATH.read_text(encoding="utf-8"))
+    errors: list[str] = []
+    if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3":
+        errors.append("mechanical-gates: schema/stage mismatch")
+    constraint = data.get("execution_constraint", {})
+    if constraint.get("status") != "user_decision_required":
+        errors.append("mechanical-gates: evidence-lot decision state must remain explicit")
+
+    gates = data.get("gates", [])
+    identifiers = [gate.get("id") for gate in gates]
+    if len(identifiers) != len(set(identifiers)) or any(not item for item in identifiers):
+        errors.append("mechanical-gates: gate IDs must be present and unique")
+    required_h1 = {
+        "H1-MECH-DISPLAY-TAIL",
+        "H1-MECH-NRF-IPX-PATHS",
+        "H1-MECH-U214-MATING-STACK",
+        "H1-MECH-DPAD-ACTUATOR",
+    }
+    actual_h1 = {
+        gate["id"] for gate in gates if gate.get("disposition") == "h1_blocker"
+    }
+    if actual_h1 != required_h1:
+        errors.append("mechanical-gates: exact H1 blocker set is not classified")
+
+    covered: set[str] = set()
+    for gate in gates:
+        if gate.get("disposition") not in {"h1_blocker", "h5_received_sample_gate"}:
+            errors.append(f"mechanical-gates: {gate.get('id')} has invalid disposition")
+        for field in ("evidence_boundary", "unknown", "closure", "blocks"):
+            if not gate.get(field):
+                errors.append(f"mechanical-gates: {gate.get('id')} lacks {field}")
+        affected = gate.get("affected_instances", [])
+        if not affected:
+            errors.append(f"mechanical-gates: {gate.get('id')} has no affected instances")
+        for instance in affected:
+            covered.add(instance)
+            if instance not in instances:
+                errors.append(f"mechanical-gates: {gate.get('id')} names unknown {instance}")
+            elif instance not in rendered:
+                errors.append(f"mechanical-gates: {gate.get('id')} names unrendered {instance}")
+        if gate.get("disposition") == "h5_received_sample_gate" and "H8" not in gate.get("blocks", []):
+            errors.append(f"mechanical-gates: {gate.get('id')} must block H8")
+
+    required_open_instances = {
+        "display", "display_connector",
+        "nrf0", "nrf1", "nrf2",
+        "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma",
+        "u214", "u214_connector", "ui_dpad_switch",
+        "voice", "encoder", "encoder_knob", "power_command_switch",
+        "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2", "ptt_switch",
+        "unit_connector", "pack_holder", "pack_cell0", "pack_cell1",
+        "s3_rf_jumper", "c5_rf_jumper", "s3_rf_board_connector", "c5_rf_board_connector",
+        "speaker", "microphone",
+    }
+    if not required_open_instances <= covered:
+        errors.append(
+            "mechanical-gates: open physical fits lack dispositions: "
+            + ", ".join(sorted(required_open_instances - covered))
+        )
+    return errors
+
+
 def validate() -> list[str]:
     devices, candidate, instances = load()
     errors: list[str] = []
@@ -1001,6 +1066,7 @@ def validate() -> list[str]:
         devices, instances
     )
     errors += mechanical_source_errors
+    errors += validate_mechanical_evidence_gates(instances, mechanically_accounted)
     for instance, device_key in instances.items():
         device = devices[device_key]
         dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
