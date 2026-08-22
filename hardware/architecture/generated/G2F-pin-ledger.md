@@ -2962,8 +2962,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SAFETY_GROUND` | `c5_detector_ground_res.END_2` | `abstract:safety-ground` | gain network local return |
 | `C5_DETECT_V` | `det_c5.VOUT` | `c5_detector_output_cap.END_1` | exact 33-pF output load follows the detector reference circuit |
 | `SAFETY_GROUND` | `c5_detector_output_cap.END_2` | `abstract:safety-ground` | output capacitor local return |
-| `NRF0_MODULE_RF` | `nrf0.ANT` | `abstract:NRF0-qualified-module-pigtail-mate` | Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze |
-| `NRF0_MODULE_RF_50R` | `abstract:NRF0-qualified-module-pigtail-mate` | `nrf0_coupler.RF_IN` | only a microscope/fit/VNA-qualified pigtail may enter the exact coupler |
+| `NRF0_MODULE_RF_50R` | `nrf0.ANT` | `nrf0_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF0_MODULE_RF_50R` | `nrf0_rf_jumper.END_B` | `nrf0_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
+| `NRF0_RF_GROUND` | `nrf0_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
+| `NRF0_MODULE_RF_50R` | `nrf0_rf_board_connector.CENTER` | `nrf0_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
 | `NRF0_EXTERNAL_RF_50R` | `nrf0_coupler.RF_OUT` | `nrf0_external_sma.RF` | each radio retains its own exact external standard-SMA feed with no RF switch |
 | `NRF0_FORWARD_RF_SAMPLE` | `nrf0_coupler.COUPLED_FWD` | `det_nrf0.RFIN` | 10-dB directional sample covers 2400-2525 MHz and is never shared with peers |
 | `NRF0_REVERSE_ISOLATED_PORT` | `nrf0_coupler.ISOLATED_REVERSE` | `nrf0_coupler_termination.END_1` | exact 49.9-Ohm isolated-port termination preserves directivity |
@@ -2981,8 +2983,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NRF0_DETECT_FILTER` | `det_nrf0.FLTR` | `nrf0_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF0_DETECT_V` | `nrf0_detector_filter.END_2` | `det_nrf0.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF0_DETECT_VDN_NC` | `det_nrf0.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `NRF1_MODULE_RF` | `nrf1.ANT` | `abstract:NRF1-qualified-module-pigtail-mate` | Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze |
-| `NRF1_MODULE_RF_50R` | `abstract:NRF1-qualified-module-pigtail-mate` | `nrf1_coupler.RF_IN` | only a microscope/fit/VNA-qualified pigtail may enter the exact coupler |
+| `NRF1_MODULE_RF_50R` | `nrf1.ANT` | `nrf1_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF1_MODULE_RF_50R` | `nrf1_rf_jumper.END_B` | `nrf1_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
+| `NRF1_RF_GROUND` | `nrf1_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
+| `NRF1_MODULE_RF_50R` | `nrf1_rf_board_connector.CENTER` | `nrf1_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
 | `NRF1_EXTERNAL_RF_50R` | `nrf1_coupler.RF_OUT` | `nrf1_external_sma.RF` | each radio retains its own exact external standard-SMA feed with no RF switch |
 | `NRF1_FORWARD_RF_SAMPLE` | `nrf1_coupler.COUPLED_FWD` | `det_nrf1.RFIN` | 10-dB directional sample covers 2400-2525 MHz and is never shared with peers |
 | `NRF1_REVERSE_ISOLATED_PORT` | `nrf1_coupler.ISOLATED_REVERSE` | `nrf1_coupler_termination.END_1` | exact 49.9-Ohm isolated-port termination preserves directivity |
@@ -3000,8 +3004,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NRF1_DETECT_FILTER` | `det_nrf1.FLTR` | `nrf1_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF1_DETECT_V` | `nrf1_detector_filter.END_2` | `det_nrf1.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF1_DETECT_VDN_NC` | `det_nrf1.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `NRF2_MODULE_RF` | `nrf2.ANT` | `abstract:NRF2-qualified-module-pigtail-mate` | Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze |
-| `NRF2_MODULE_RF_50R` | `abstract:NRF2-qualified-module-pigtail-mate` | `nrf2_coupler.RF_IN` | only a microscope/fit/VNA-qualified pigtail may enter the exact coupler |
+| `NRF2_MODULE_RF_50R` | `nrf2.ANT` | `nrf2_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF2_MODULE_RF_50R` | `nrf2_rf_jumper.END_B` | `nrf2_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
+| `NRF2_RF_GROUND` | `nrf2_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
+| `NRF2_MODULE_RF_50R` | `nrf2_rf_board_connector.CENTER` | `nrf2_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
 | `NRF2_EXTERNAL_RF_50R` | `nrf2_coupler.RF_OUT` | `nrf2_external_sma.RF` | each radio retains its own exact external standard-SMA feed with no RF switch |
 | `NRF2_FORWARD_RF_SAMPLE` | `nrf2_coupler.COUPLED_FWD` | `det_nrf2.RFIN` | 10-dB directional sample covers 2400-2525 MHz and is never shared with peers |
 | `NRF2_REVERSE_ISOLATED_PORT` | `nrf2_coupler.ISOLATED_REVERSE` | `nrf2_coupler_termination.END_1` | exact 49.9-Ohm isolated-port termination preserves directivity |
@@ -3372,6 +3378,18 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf2` uses `Ebyte E01-ML01IPX` as `verified_reference`, not an accepted production choice.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
+- `nrf0_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf0_rf_jumper` lifecycle: `active_orderable`.
+- `nrf1_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf1_rf_jumper` lifecycle: `active_orderable`.
+- `nrf2_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf2_rf_jumper` lifecycle: `active_orderable`.
+- `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf0_rf_board_connector` lifecycle: `active_orderable`.
+- `nrf1_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf1_rf_board_connector` lifecycle: `active_orderable`.
+- `nrf2_rf_board_connector` uses `Hirose U.FL-R-SMT-1(10)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
+- `nrf2_rf_board_connector` lifecycle: `active_orderable`.
 - `nrf_power_input_cap` lifecycle: `active_production`.
 - `nrf_evidence_hold_cap` lifecycle: `active_production`.
 - `nrf0_host_buffer` uses `Nexperia 74LVC126APW,118` as `verified_exact_nrf_host_to_switched_domain_isolator`, not an accepted production choice.

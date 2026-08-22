@@ -356,7 +356,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
             'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
             " · SPK",
-            'data-opposing-pairs="41"',
+            'data-opposing-pairs="43"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
@@ -364,9 +364,9 @@ class ProductSiteTests(unittest.TestCase):
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
             'data-voice-rf-route-mm="33.00"',
-            "opposing inner faces: 41 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "opposing inner faces: 43 non-mating XY pairs checked; minimum Z gap 3.31 mm",
             "native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm",
-            "limiting pair: 20 3.5-mm headphone/line connector / 115 protected-pack branch fuse #0",
+            "limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)

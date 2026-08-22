@@ -245,6 +245,9 @@ UI_RF_CABLES = (
 )
 
 RF_INNER = (
+    Placement("nrf0_rf_board_connector", 23.0, 28.0, "nRF24 #0 Gen1 jumper board receptacle"),
+    Placement("nrf1_rf_board_connector", 50.0, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
+    Placement("nrf2_rf_board_connector", 70.0, 22.0, "nRF24 #2 Gen1 jumper board receptacle"),
     Placement("rp", 0.0, 33.0, "deterministic radio owner"),
     Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
     Placement("nrf1", 31.5, 7.5, "full-function nRF24 radio #1; rotated for U214 tail clearance", 90),
@@ -408,6 +411,7 @@ MECHANICAL_EXTERIOR_INSTANCES = {
     *RF_INSTANCE_BY_PATH.values(),
     *TX_LED_INSTANCES.values(),
     *(route.instance for route in UI_RF_CABLES),
+    "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper",
 }
 
 REAR_OUTER = (
@@ -430,6 +434,7 @@ MECHANICAL_PROJECTION_FRAMES = {
     "front-outer": "UI PCB top-left, viewed from the front/exterior",
     "rear-outer": "RF/power PCB top-left, viewed from the rear/exterior",
     "ui-inner-route": "UI PCB top-left, viewed from the front/exterior",
+    "rf-inner-route": "RF/power PCB top-left, viewed from the rear/exterior",
     "display-assembly": "HMX035CTFT-001 screen-body top-left, front view",
 }
 
@@ -446,6 +451,9 @@ INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
     "display_connector": "FPC insertion in the UI-inner plane; received-tail fit remains a named sample gate",
     "s3_rf_board_connector": "normal to the UI-inner face toward the cable plug",
     "c5_rf_board_connector": "normal to the UI-inner face toward the cable plug",
+    "nrf0_rf_board_connector": "normal to the RF-inner face toward the Gen1 cable plug",
+    "nrf1_rf_board_connector": "normal to the RF-inner face toward the Gen1 cable plug",
+    "nrf2_rf_board_connector": "normal to the RF-inner face toward the Gen1 cable plug",
     "m1_ui_plug": "normal to the UI-inner face toward the RF/power board",
     "m1_rf_receptacle": "normal to the RF-inner face toward the UI board",
     "s3_dbg_header": "normal to the UI-inner face; enclosure-open service only",
@@ -457,9 +465,9 @@ INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
     "c5_boot_button": "normal to the UI-inner face; enclosure-open service only",
     "rp_reset_button": "normal to the RF-inner face; enclosure-open service only",
     "rp_boot_button": "normal to the RF-inner face; enclosure-open service only",
-    "nrf0": "normal to the RF-inner face at the module IPX interface; exact mate/axis remains a named sample gate",
-    "nrf1": "normal to the RF-inner face at the module IPX interface; exact mate/axis remains a named sample gate",
-    "nrf2": "normal to the RF-inner face at the module IPX interface; exact mate/axis remains a named sample gate",
+    "nrf0": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
+    "nrf1": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
+    "nrf2": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "voice": "contact 7 faces the antenna edge along the straight VHF/UHF corridor",
 }
 
@@ -510,6 +518,15 @@ EXTERIOR_BODY_CONTRACTS = (
     *(
         BodyProjectionContract(route.instance, "ui-inner-route", 0, "module-to-board RF cable path")
         for route in UI_RF_CABLES
+    ),
+    *(
+        BodyProjectionContract(
+            instance,
+            "rf-inner-route",
+            0,
+            "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+        )
+        for instance in ("nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper")
     ),
     BodyProjectionContract(
         "display_touch_controller",
@@ -999,7 +1016,6 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: gate IDs must be present and unique")
     required_h1 = {
         "H1-MECH-DISPLAY-TAIL",
-        "H1-MECH-NRF-IPX-PATHS",
         "H1-MECH-U214-MATING-STACK",
         "H1-MECH-DPAD-ACTUATOR",
     }
@@ -1031,6 +1047,8 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
     required_open_instances = {
         "display", "display_connector",
         "nrf0", "nrf1", "nrf2",
+        "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper",
+        "nrf0_rf_board_connector", "nrf1_rf_board_connector", "nrf2_rf_board_connector",
         "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma",
         "u214", "u214_connector", "ui_dpad_switch",
         "voice", "encoder", "encoder_knob", "power_command_switch",
@@ -2094,7 +2112,7 @@ def render_internal(devices, instances):
         text(note_x,notes_top+213,"• orange dashed boundary is a placement zone, not one combined device",10),
         text(note_x,notes_top+234,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+254,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(note_x,notes_top+280,"S3/C5 use exact 30-mm 2118651-2 jumpers; only three nRF pigtails remain open.",9.2,"bold",colour="#9a3412"),
+        text(note_x,notes_top+280,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
         text(note_x,notes_top+301,"Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.",9.2,colour="#526076"),
         "</g>",
     ]

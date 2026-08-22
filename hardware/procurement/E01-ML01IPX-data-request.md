@@ -2,8 +2,9 @@
 
 Recipient: `ebyteiot@cdebyte.com`  
 Target product: Leshy2 handheld radio instrument  
-Current request: controlled connector, revision and lifecycle data only; no
-quotation, sample or purchase order is authorized
+Current request: optional current-lot connector, revision and lifecycle
+confirmation only; H1 no longer waits for a reply, and no quotation, sample or
+purchase order is authorized
 
 ## Message
 
@@ -12,8 +13,10 @@ Subject: E01-ML01IPX current-lot RF connector and controlled mechanical data
 Hello,
 
 We are evaluating three `E01-ML01IPX` modules for simultaneous full-function
-nRF24 radio paths. Before any quotation or purchase, please confirm the exact
-current production configuration:
+nRF24 radio paths. Public manufacturer evidence identifies the matching class
+as generation 1, so the paper design now uses exact TE `2118651-2` jumpers and
+Hirose `U.FL-R-SMT-1(10)` board mates. Before any quotation or purchase, please
+confirm the exact current production configuration:
 
 1. Name the manufacturer and exact series/MPN of the miniature RF receptacle.
    Your current manual identifies `IPX/IPEX`, recommends a generation-1 antenna

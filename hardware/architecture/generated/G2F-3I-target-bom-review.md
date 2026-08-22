@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **929** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **928** supplied/costed placements collapse to **199** used exact-device/MPN lines.
+- **935** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **934** supplied/costed placements collapse to **199** used exact-device/MPN lines.
 - Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **188/199** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **911/928** supplied placements; their partial subtotals are `base_product` — USD 202.8803. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **917/934** supplied placements; their partial subtotals are `base_product` — USD 211.5401. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 925 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 931 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -591,7 +591,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Hirose U.FL-R-SMT-1(10)</code> — 2 × USD 1.0655 = USD 2.1310</summary>
+<details><summary><code>Hirose U.FL-R-SMT-1(10)</code> — 5 × USD 1.0655 = USD 5.3275</summary>
 
 - Device id: `hirose_ufl_r_smt_1_10`.
 - Scope: `base_product`.
@@ -1266,7 +1266,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TE Connectivity 2118651-2</code> — 2 × USD 1.8211 = USD 3.6422</summary>
+<details><summary><code>TE Connectivity 2118651-2</code> — 5 × USD 1.8211 = USD 9.1055</summary>
 
 - Device id: `te_2118651_2`.
 - Scope: `base_product`.
@@ -2148,22 +2148,6 @@ These entries are intentionally excluded from the partial subtotal until a compa
 - `display_touch_controller` / `Sitronix ST77922` is contained by `display`: Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement.
 
 ## Physical purchase families with explicit resolution gates
-
-### `nrf_rf_cable_assemblies` — 3 item(s)
-
-- Scope: `base_product`.
-- Role: three nRF module-to-coupler pigtails.
-- Blocking evidence: Ebyte documents only an IPEX label, so the exact mating generation still requires received-module microscopy and fit.
-- Gate: `received_mate_and_routed_length_coupon_required`.
-- Owner stage: G3 placement and received-module qualification before harness BOM freeze.
-- Evidence chain: `ANT-0001`, `N24E-0001`, `FND-0109`.
-- Prerequisites:
-  - receive all three production-lot E01-ML01IPX specimens and identify every module-side microcoax mate by microscope, dimensions and fit.
-  - freeze each nRF endpoint coordinate, routed length, minimum bend radius, pull direction, strain relief and service replacement path.
-- Acceptance:
-  - name three exact orderable cable-assembly MPNs or controlled drawing identities with connector generation, polarity, length and quantity.
-  - pass mate retention, flex/pull, no-chafe and repeated-service coupon on every distinct nRF harness profile.
-  - pass each nRF path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition.
 
 ### `external_antenna_kit` — 12 item(s)
 

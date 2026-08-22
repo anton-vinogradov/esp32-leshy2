@@ -32,8 +32,8 @@ target-emulator run, and no order is authorized.
 
 <!-- current-substep: H1.1.3.3.3 -->
 
-**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display, nRF
-and U214 data from their manufacturers without placing an order. Public-source
+**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display and
+U214 data from their manufacturers without placing an order. Public-source
 research and replacement review are complete; no sample order is authorized.
 Existing rendered views remain provisional outputs.
 
@@ -45,7 +45,7 @@ Existing rendered views remain provisional outputs.
     connector/actuator direction with manufacturer evidence.
   - `H1.1.3` — classify every remaining physical uncertainty.
     - ✅ `H1.1.3.1` — inventory all open mechanical evidence boundaries.
-    - ✅ `H1.1.3.2` — classify four H1 blockers and nine H5 sample gates.
+    - ✅ `H1.1.3.2` — classify every H1 blocker and H5 sample gate.
     - `H1.1.3.3` — resolve the remaining source-data blockers before freezing
       the physical renderer.
       - ✅ `H1.1.3.3.1` — exhaust public manufacturer-controlled sources and
@@ -54,6 +54,9 @@ Existing rendered views remain provisional outputs.
         degrading an accepted function.
       - ▶️ **`H1.1.3.3.3` — current:** request any still-missing controlled data
         from the manufacturer without placing an order.
+        - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
+          three exact `2118651-2` jumpers and three exact
+          `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
       - 🔒 `H1.1.3.3.4` — only if all prior routes fail, prepare a smallest
         evidence-sample proposal for separate user approval.
   - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
@@ -74,7 +77,7 @@ Existing rendered views remain provisional outputs.
 - 🔒 `H1.7.1` — user review gate for the consolidated layout and all deltas.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
-`H1.1.3.3` exits only when the display, nRF and U214 evidence blockers have
+`H1.1.3.3` exits only when the display and U214 evidence blockers have
 controlled evidence or a reviewed bounded design fallback and the D-pad
 actuator has a dimensioned, testable design. Purchasing is not an H1 shortcut:
 source research, documented replacement review and a no-order manufacturer

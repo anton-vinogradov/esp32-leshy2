@@ -19,7 +19,7 @@
     "open_evidence_is_not_an_architecture_decision": [
       "standalone HMX035CTFT-001 supplier approval drawing, orderability and received-tail fit",
       "received U214, Samtec rail and retention fit",
-      "received E01-ML01IPX microcoax mate identity and routed pigtail coupons",
+      "received E01-ML01IPX Gen1 mate fit and routed 30-mm jumper coupons",
       "received SA518 contact offset plus antenna-feed coupon",
       "prototype electrical, thermal, RF, optical, acoustic, recovery and coexistence HIL"
     ],
@@ -148,27 +148,6 @@
     "cost_basis": "USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ",
     "required_uninstantiated_parts": [
       {
-        "id": "nrf_rf_cable_assemblies",
-        "quantity": 3,
-        "scope": "base_product",
-        "role": "three nRF module-to-coupler pigtails",
-        "blocker": "Ebyte documents only an IPEX label, so the exact mating generation still requires received-module microscopy and fit",
-        "resolution_gate": {
-          "status": "received_mate_and_routed_length_coupon_required",
-          "owner_stage": "G3 placement and received-module qualification before harness BOM freeze",
-          "prerequisites": [
-            "receive all three production-lot E01-ML01IPX specimens and identify every module-side microcoax mate by microscope, dimensions and fit",
-            "freeze each nRF endpoint coordinate, routed length, minimum bend radius, pull direction, strain relief and service replacement path"
-          ],
-          "acceptance": [
-            "name three exact orderable cable-assembly MPNs or controlled drawing identities with connector generation, polarity, length and quantity",
-            "pass mate retention, flex/pull, no-chafe and repeated-service coupon on every distinct nRF harness profile",
-            "pass each nRF path VNA insertion/return-loss sweep and attach quantity-100 cost plus substitution disposition"
-          ],
-          "evidence_refs": ["ANT-0001", "N24E-0001", "FND-0109"]
-        }
-      },
-      {
         "id": "external_antenna_kit",
         "quantity": 12,
         "scope": "costed_product_variant",
@@ -196,8 +175,8 @@
   "i9_projection_audit": {
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
-      "expected_unique_endpoint_count": 49,
-      "expected_occurrence_count": 1087,
+      "expected_unique_endpoint_count": 46,
+      "expected_occurrence_count": 1084,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -226,13 +205,6 @@
             "abstract:TP_SLOW_IO_RESET_N", "abstract:TP_PACK_NRST_N", "abstract:TP_LCD_BACKLIGHT_FAULT_N", "abstract:TP_EVIDENCE_MASK_INT_N",
             "abstract:reserved-internal-ui-input-p13-pad", "abstract:reserved-internal-ui-input-p14-pad", "abstract:reserved-internal-ui-input-p15-pad",
             "abstract:reserved-internal-ui-input-p16-pad", "abstract:reserved-internal-ui-input-p17-pad"
-          ]
-        },
-        {
-          "id": "g3_physical_purchase_resolution_gate",
-          "rule": "electrical endpoint is fixed but connector body, cable mate/length or antenna/pod identity is owned by a BOM-0027 G3 received-item/geometry gate",
-          "endpoints": [
-            "abstract:NRF0-qualified-module-pigtail-mate", "abstract:NRF1-qualified-module-pigtail-mate", "abstract:NRF2-qualified-module-pigtail-mate"
           ]
         },
         {
@@ -654,9 +626,9 @@
     "rf_evidence": "each module feed passes through its own TTM DC2337J5010AHF 10-dB directional coupler in datasheet configuration 2; its forward sample drives an AON-powered AD8314ACPZ-RL7 with exact 52.3-Ohm input shunt, while the isolated/reverse port has an exact 49.9-Ohm termination; external receive is directionally rejected rather than being treated as transmit",
     "evidence_hold": "all three AD8314 ENBL inputs share a diode-charged 10-kOhm/1-uF hold node derived from NRF_GROUP_PWR_EN_SAFE; the detectors are active before the radio rail rises and remain active through rail/QOD fall, then enter approximately 20-uA shutdown instead of spending about 13.5 mA continuously",
     "frequency_and_margin": "DC2337J5010AHF Rev. H specifies 2000-4000 MHz, with 10.0-11.2-dB coupling and <=0.25-dB insertion loss across 2400-2525 MHz; AD8314 responds through 2700 MHz. A -18-dBm minimum module output therefore reaches the detector near -29.2 dBm before layout tolerance, leaving typical range margin; calibration may never substitute for channel-0/100/125 temperature and lot HIL",
-    "antenna_boundary": "each path terminates at its own standard external SMA feed, but the Ebyte-labelled IPX receptacle has no proven mating family; microscope/dimension/fit/VNA qualification of a received module and pigtail blocks connector/PCB freeze and prevents an unverified U.FL assumption",
-    "cost_delta_usd_at_100": "the earlier approximately-USD-4.2 subblock estimate is superseded by current exact-MPN machine cost records; E01 module quotations and physical pigtail/SMA identities remain explicit downstream G8/G3 gates rather than hidden zero-cost lines",
-    "remaining_hil": ["received E01-ML01IPX authenticity, pad and RF-receptacle identity", "qualified pigtail mate and three module-to-SMA insertion-loss/return-loss sweeps", "SPI at 10 Mbit/s through all buffers and 22-Ohm resistors", "100-ms POR, three-radio identity and rail/QOD/no-backpower corners", "forward-power threshold and false-negative margin at channels 0, 100 and 125 over voltage, temperature and module lots", "strong inbound RF false-positive behavior and >=18-dB coupler reverse discrimination", "T1 target/peer 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX coexistence fixture"]
+    "antenna_boundary": "each Ebyte module uses a separate exact TE Connectivity 2118651-2 30-mm UMCC Gen1 jumper into a separate Hirose U.FL-R-SMT-1(10) board receptacle, then its own directional coupler and standard external SMA feed; Ebyte's official accessory declaration closes the Gen1 paper mating class while the PcbLib controls only the module land/body envelope, and current-lot axis/fit remain an H5 incoming gate",
+    "cost_delta_usd_at_100": "three exact jumpers and three exact board receptacles add USD 8.6598 per device at the checked quantity-100 tiers; E01 module quotation remains an explicit procurement gate rather than a hidden zero-cost line",
+    "remaining_hil": ["received E01-ML01IPX authenticity, pad and Gen1 RF-receptacle fit", "three 2118651-2 jumper route/retention coupons and module-to-SMA insertion-loss/return-loss sweeps", "SPI at 10 Mbit/s through all buffers and 22-Ohm resistors", "100-ms POR, three-radio identity and rail/QOD/no-backpower corners", "forward-power threshold and false-negative margin at channels 0, 100 and 125 over voltage, temperature and module lots", "strong inbound RF false-positive behavior and >=18-dB coupler reverse discrimination", "T1 target/peer 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX coexistence fixture"]
   },
   "native_rf_electrical_contract": {
     "decision": "DEC-0092",
@@ -1434,6 +1406,12 @@
     "nrf0": "ebyte_e01_ml01ipx",
     "nrf1": "ebyte_e01_ml01ipx",
     "nrf2": "ebyte_e01_ml01ipx",
+    "nrf0_rf_jumper": "te_2118651_2",
+    "nrf1_rf_jumper": "te_2118651_2",
+    "nrf2_rf_jumper": "te_2118651_2",
+    "nrf0_rf_board_connector": "hirose_ufl_r_smt_1_10",
+    "nrf1_rf_board_connector": "hirose_ufl_r_smt_1_10",
+    "nrf2_rf_board_connector": "hirose_ufl_r_smt_1_10",
     "nrf_power_input_cap": "tdk_c1608x7r1c105k080ac",
     "nrf_power_on_pulldown": "yageo_rc0402fr_0710kl",
     "nrf_evidence_hold_diode": "diodes_bat54_7_f",
@@ -4718,8 +4696,10 @@
     {"from":"c5_detector_ground_res.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"gain network local return"},
     {"from":"det_c5.VOUT","to":"c5_detector_output_cap.END_1","net":"C5_DETECT_V","safety":"exact 33-pF output load follows the detector reference circuit"},
     {"from":"c5_detector_output_cap.END_2","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"output capacitor local return"},
-    {"from":"nrf0.ANT","to":"abstract:NRF0-qualified-module-pigtail-mate","net":"NRF0_MODULE_RF","safety":"Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze"},
-    {"from":"abstract:NRF0-qualified-module-pigtail-mate","to":"nrf0_coupler.RF_IN","net":"NRF0_MODULE_RF_50R","safety":"only a microscope/fit/VNA-qualified pigtail may enter the exact coupler"},
+    {"from":"nrf0.ANT","to":"nrf0_rf_jumper.END_A","net":"NRF0_MODULE_RF_50R","safety":"Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate"},
+    {"from":"nrf0_rf_jumper.END_B","to":"nrf0_rf_board_connector.CENTER","net":"NRF0_MODULE_RF_50R","safety":"the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle"},
+    {"from":"nrf0_rf_board_connector.SHELL","to":"abstract:rf-ground","net":"NRF0_RF_GROUND","safety":"all three receptacle ground lands receive shortest RF-ground paths"},
+    {"from":"nrf0_rf_board_connector.CENTER","to":"nrf0_coupler.RF_IN","net":"NRF0_MODULE_RF_50R","safety":"coupler IN faces the module so its sample is forward TX energy"},
     {"from":"nrf0_coupler.RF_OUT","to":"nrf0_external_sma.RF","net":"NRF0_EXTERNAL_RF_50R","safety":"each radio retains its own exact external standard-SMA feed with no RF switch"},
     {"from":"nrf0_coupler.COUPLED_FWD","to":"det_nrf0.RFIN","net":"NRF0_FORWARD_RF_SAMPLE","safety":"10-dB directional sample covers 2400-2525 MHz and is never shared with peers"},
     {"from":"nrf0_coupler.ISOLATED_REVERSE","to":"nrf0_coupler_termination.END_1","net":"NRF0_REVERSE_ISOLATED_PORT","safety":"exact 49.9-Ohm isolated-port termination preserves directivity"},
@@ -4737,8 +4717,10 @@
     {"from":"det_nrf0.FLTR","to":"nrf0_detector_filter.END_1","net":"NRF0_DETECT_FILTER","safety":"exact 120-pF C0G filter position bounds burst response without hiding TX"},
     {"from":"nrf0_detector_filter.END_2","to":"det_nrf0.V_UP","net":"NRF0_DETECT_V","safety":"AD8314 filter capacitor is placed between FLTR and V_UP per datasheet"},
     {"from":"det_nrf0.V_DN","to":"abstract:no-connect","net":"NRF0_DETECT_VDN_NC","safety":"controller-mode falling output is intentionally unused"},
-    {"from":"nrf1.ANT","to":"abstract:NRF1-qualified-module-pigtail-mate","net":"NRF1_MODULE_RF","safety":"Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze"},
-    {"from":"abstract:NRF1-qualified-module-pigtail-mate","to":"nrf1_coupler.RF_IN","net":"NRF1_MODULE_RF_50R","safety":"only a microscope/fit/VNA-qualified pigtail may enter the exact coupler"},
+    {"from":"nrf1.ANT","to":"nrf1_rf_jumper.END_A","net":"NRF1_MODULE_RF_50R","safety":"Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate"},
+    {"from":"nrf1_rf_jumper.END_B","to":"nrf1_rf_board_connector.CENTER","net":"NRF1_MODULE_RF_50R","safety":"the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle"},
+    {"from":"nrf1_rf_board_connector.SHELL","to":"abstract:rf-ground","net":"NRF1_RF_GROUND","safety":"all three receptacle ground lands receive shortest RF-ground paths"},
+    {"from":"nrf1_rf_board_connector.CENTER","to":"nrf1_coupler.RF_IN","net":"NRF1_MODULE_RF_50R","safety":"coupler IN faces the module so its sample is forward TX energy"},
     {"from":"nrf1_coupler.RF_OUT","to":"nrf1_external_sma.RF","net":"NRF1_EXTERNAL_RF_50R","safety":"each radio retains its own exact external standard-SMA feed with no RF switch"},
     {"from":"nrf1_coupler.COUPLED_FWD","to":"det_nrf1.RFIN","net":"NRF1_FORWARD_RF_SAMPLE","safety":"10-dB directional sample covers 2400-2525 MHz and is never shared with peers"},
     {"from":"nrf1_coupler.ISOLATED_REVERSE","to":"nrf1_coupler_termination.END_1","net":"NRF1_REVERSE_ISOLATED_PORT","safety":"exact 49.9-Ohm isolated-port termination preserves directivity"},
@@ -4756,8 +4738,10 @@
     {"from":"det_nrf1.FLTR","to":"nrf1_detector_filter.END_1","net":"NRF1_DETECT_FILTER","safety":"exact 120-pF C0G filter position bounds burst response without hiding TX"},
     {"from":"nrf1_detector_filter.END_2","to":"det_nrf1.V_UP","net":"NRF1_DETECT_V","safety":"AD8314 filter capacitor is placed between FLTR and V_UP per datasheet"},
     {"from":"det_nrf1.V_DN","to":"abstract:no-connect","net":"NRF1_DETECT_VDN_NC","safety":"controller-mode falling output is intentionally unused"},
-    {"from":"nrf2.ANT","to":"abstract:NRF2-qualified-module-pigtail-mate","net":"NRF2_MODULE_RF","safety":"Ebyte IPX label is not treated as a mating-family proof; received-module qualification blocks freeze"},
-    {"from":"abstract:NRF2-qualified-module-pigtail-mate","to":"nrf2_coupler.RF_IN","net":"NRF2_MODULE_RF_50R","safety":"only a microscope/fit/VNA-qualified pigtail may enter the exact coupler"},
+    {"from":"nrf2.ANT","to":"nrf2_rf_jumper.END_A","net":"NRF2_MODULE_RF_50R","safety":"Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate"},
+    {"from":"nrf2_rf_jumper.END_B","to":"nrf2_rf_board_connector.CENTER","net":"NRF2_MODULE_RF_50R","safety":"the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle"},
+    {"from":"nrf2_rf_board_connector.SHELL","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"all three receptacle ground lands receive shortest RF-ground paths"},
+    {"from":"nrf2_rf_board_connector.CENTER","to":"nrf2_coupler.RF_IN","net":"NRF2_MODULE_RF_50R","safety":"coupler IN faces the module so its sample is forward TX energy"},
     {"from":"nrf2_coupler.RF_OUT","to":"nrf2_external_sma.RF","net":"NRF2_EXTERNAL_RF_50R","safety":"each radio retains its own exact external standard-SMA feed with no RF switch"},
     {"from":"nrf2_coupler.COUPLED_FWD","to":"det_nrf2.RFIN","net":"NRF2_FORWARD_RF_SAMPLE","safety":"10-dB directional sample covers 2400-2525 MHz and is never shared with peers"},
     {"from":"nrf2_coupler.ISOLATED_REVERSE","to":"nrf2_coupler_termination.END_1","net":"NRF2_REVERSE_ISOLATED_PORT","safety":"exact 49.9-Ohm isolated-port termination preserves directivity"},

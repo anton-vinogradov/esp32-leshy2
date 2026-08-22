@@ -673,7 +673,6 @@ def validate_sources(
                             f"{candidate_id}: {context}: duplicate resolution gate {field}"
                         )
             required_gap_ids = {
-                "nrf_rf_cable_assemblies",
                 "external_antenna_kit",
             }
             if required_gap_ids - missing_part_ids:
@@ -733,7 +732,6 @@ def validate_sources(
                 "electrical_plane_rail_or_wired_logic",
                 "intentional_no_connect_or_open_strap",
                 "pcb_geometry_test_or_reserved_feature",
-                "g3_physical_purchase_resolution_gate",
                 "external_fixture_source_boundary",
             }
             class_ids: set[str] = set()

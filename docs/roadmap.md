@@ -42,8 +42,8 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 <!-- current-substep: H1.1.3.3.3 -->
 
-**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display, nRF
-and U214 data from their manufacturers without placing an order. Public-source
+**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display and
+U214 data from their manufacturers without placing an order. Public-source
 research and replacement review are complete; no sample order is authorized.
 Later views already exist as provisional projections, but none is a reviewed
 later substep while this source-data gate is open.
@@ -57,8 +57,8 @@ later substep while this source-data gate is open.
   - `H1.1.3` — classify each unresolved physical item; inferred dimensions
     cannot silently become exact.
     - ✅ `H1.1.3.1` — inventory every open mechanical evidence boundary.
-    - ✅ `H1.1.3.2` — record four H1 blockers and nine H5 received-sample gates
-      in the machine source.
+    - ✅ `H1.1.3.2` — record every H1 blocker and H5 received-sample gate in
+      the machine source.
     - `H1.1.3.3` — close the remaining source-data blockers and the D-pad
       actuator design.
       - ✅ `H1.1.3.3.1` — exhaust public manufacturer-controlled sources and
@@ -67,6 +67,9 @@ later substep while this source-data gate is open.
         degrading an accepted function.
       - ▶️ **`H1.1.3.3.3` — current:** request any still-missing controlled data
         from the manufacturer without placing an order.
+        - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
+          three exact `2118651-2` jumpers and three exact
+          `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
       - 🔒 `H1.1.3.3.4` — only if all prior routes fail, prepare a smallest
         evidence-sample proposal for separate user approval.
   - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
@@ -98,7 +101,7 @@ later substep while this source-data gate is open.
   automatic-check results and all changes since the earlier view gates.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
-`H1.1.3.3` exits only when the display, nRF and U214 evidence blockers have
+`H1.1.3.3` exits only when the display and U214 evidence blockers have
 controlled evidence or a reviewed bounded design fallback and the D-pad
 actuator has a dimensioned, testable design. Purchasing is not an H1 shortcut:
 source research, documented replacement review and a no-order manufacturer

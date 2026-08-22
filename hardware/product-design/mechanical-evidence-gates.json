@@ -24,13 +24,13 @@
       "blocks": ["H1.1.4", "H1.2", "H1.4.0"]
     },
     {
-      "id": "H1-MECH-NRF-IPX-PATHS",
-      "disposition": "h1_blocker",
-      "affected_instances": ["nrf0", "nrf1", "nrf2", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma"],
-      "evidence_boundary": "The current Ebyte specification and official PcbLib prove the E01-ML01IPX module outline, land pattern and presence of an IPX RF interface.",
-      "unknown": "Exact miniature-coax family/generation, controlled connector axis, compatible pigtail MPN and three physical pigtail routes to the outward SMA bank.",
-      "closure": "Ebyte names the current-lot receptacle/mate and supplies a controlled coordinate, or received modules identify and prove the mate; then select exact pigtails and add all three sourced cable routes to the collision model.",
-      "blocks": ["H1.1.4", "H1.2", "H1.4.0", "H1.6"]
+      "id": "H5-MECH-NRF-GEN1-FEEDS",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["nrf0", "nrf1", "nrf2", "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper", "nrf0_rf_board_connector", "nrf1_rf_board_connector", "nrf2_rf_board_connector", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma"],
+      "evidence_boundary": "Ebyte's current specification and official PcbLib prove the E01-ML01IPX outline and land pattern; Ebyte's current accessory catalog identifies the matching interface as IPX/IPEX Gen1. Exact active TE 2118651-2 30-mm UMCC Gen1 jumpers and Hirose U.FL-R-SMT-1(10) board mates define all three paper feed assemblies. H1 reserves a cable corridor from the complete module-face envelope instead of inventing a connector axis absent from the PcbLib.",
+      "unknown": "The connector axis and current-lot receptacle manufacturer's exact MPN, actual fit/retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1.2/H1.6 must prove the conservative module-face-to-board-receptacle corridor without relying on a nominal axis.",
+      "closure": "Incoming inspection confirms the fitted receptacle is Gen1, and all three complete feed coupons pass fit, retention, flex/service, insertion-loss and return-loss tests in H5.",
+      "blocks": ["H8"]
     },
     {
       "id": "H1-MECH-U214-MATING-STACK",

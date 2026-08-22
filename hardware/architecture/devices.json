@@ -2983,11 +2983,21 @@
         "checked": "2026-08-17"
       },
       "rf_connector": {
-        "manufacturer_description": "IPX external antenna interface, approximately 50 ohm",
-        "compatible_mating_families": [],
+        "manufacturer_description": "IPX/IPEX generation-1 external antenna interface, approximately 50 ohm",
+        "compatible_mating_families": ["UMCC generation 1", "Hirose U.FL plug", "I-PEX MHF I plug"],
         "impedance_ohm": 50,
-        "qualification": "exact_mating_family_unproven_requires_specimen_gate",
-        "finding": "FND-0057"
+        "qualification": "manufacturer_ecosystem_gen1_class_verified_exact_receptacle_mpn_received_gate",
+        "footprint_source": {
+          "document": "Ebyte E01 series official Altium PcbLib PE01-ML01IPX land pattern; binary extraction confirms it does not contain the RF receptacle body or axis",
+          "url": "https://www.ebyte.com/pdf-down/2947.html",
+          "checked": "2026-08-23"
+        },
+        "family_source": {
+          "document": "Ebyte 2.4-GHz antenna catalog identifying the current matching interface as IPX/IPEX generation 1",
+          "url": "https://www.ebyte.com/product/367.html",
+          "checked": "2026-08-23"
+        },
+        "finding": "H1 paper mating class closed with a conservative whole-module-face route reserve; connector axis, exact current-lot receptacle identity and fit remain H5 incoming evidence"
       },
       "programmable": false,
       "contacts": {
@@ -2995,7 +3005,7 @@
         "CSN": {"physical": "3", "role": "signal"}, "SCK": {"physical": "4", "role": "signal"},
         "MOSI": {"physical": "5", "role": "signal"}, "MISO": {"physical": "6", "role": "signal"},
         "IRQ": {"physical": "7", "role": "signal"}, "GND": {"physical": "8", "role": "power"},
-        "ANT": {"physical": "manufacturer-labelled IPX receptacle; exact mating family/generation unproven", "role": "rf"}
+        "ANT": {"physical": "manufacturer-labelled IPX/IPEX Gen1 receptacle; exact current-lot receptacle MPN remains incoming evidence", "role": "rf"}
       }
     },
     "ebyte_e01_2g4m27d": {

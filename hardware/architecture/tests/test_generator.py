@@ -248,7 +248,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(928, sum(line["quantity"] for line in lines))
+        self.assertEqual(934, sum(line["quantity"] for line in lines))
         self.assertEqual(199, len(lines))
         self.assertEqual(
             1,
@@ -263,7 +263,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            911,
+            917,
             sum(
                 line["quantity"]
                 for line in lines
@@ -322,7 +322,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             for row in candidate["bom_audit"]["required_uninstantiated_parts"]
         }
         self.assertNotIn("external_sma_bodies", gap_quantities)
-        self.assertEqual(3, gap_quantities["nrf_rf_cable_assemblies"])
+        self.assertNotIn("nrf_rf_cable_assemblies", gap_quantities)
         self.assertNotIn("rf_cable_assemblies", gap_quantities)
         self.assertNotIn("m5_connector_bodies", gap_quantities)
         self.assertNotIn("actual_tx_threshold_networks", gap_quantities)
@@ -333,20 +333,19 @@ class ArchitectureValidationTests(unittest.TestCase):
         }
         self.assertEqual(
             {
-                "nrf_rf_cable_assemblies": "received_mate_and_routed_length_coupon_required",
                 "external_antenna_kit": "profile_variant_bom_and_hil_required",
             },
             physical_gates,
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**929** architecture instances", rendered)
-        self.assertIn("**928** supplied/costed placements", rendered)
+        self.assertIn("**935** architecture instances", rendered)
+        self.assertIn("**934** supplied/costed placements", rendered)
         self.assertIn("**198/199** used lines", rendered)
         self.assertIn("**199/199** lines", rendered)
         self.assertIn("**188/199** lines", rendered)
-        self.assertIn("**911/928** supplied placements", rendered)
-        self.assertIn("USD 202.8803", rendered)
+        self.assertIn("**917/934** supplied placements", rendered)
+        self.assertIn("USD 211.5401", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -356,7 +355,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("display_touch_controller", rendered)
         self.assertIn("Physical purchase families with explicit resolution gates", rendered)
         self.assertIn("I8 paper procurement-feasibility scope reviewed", rendered)
-        self.assertIn("received_mate_and_routed_length_coupon_required", rendered)
+        self.assertNotIn("received_mate_and_routed_length_coupon_required", rendered)
         self.assertIn("Samtec SSW-107-02-S-D", rendered)
         self.assertIn("profile_variant_bom_and_hil_required", rendered)
         self.assertNotIn(
@@ -391,19 +390,13 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(49, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1087, policy["expected_occurrence_count"])
+        self.assertEqual(46, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1084, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
-        self.assertEqual(
-            3,
-            len(
-                next(
-                    row["endpoints"]
-                    for row in policy["classes"]
-                    if row["id"] == "g3_physical_purchase_resolution_gate"
-                )
-            ),
+        self.assertNotIn(
+            "g3_physical_purchase_resolution_gate",
+            {row["id"] for row in policy["classes"]},
         )
 
     def test_g2f_3i_records_joint_pre_schematic_review_without_authorizing_kicad(self):
@@ -497,7 +490,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
             'data-route="SA518.7-to-VOICE-V/U"',
-            'data-opposing-pairs="41"',
+            'data-opposing-pairs="43"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="3"',
             'data-voice-rf-route-mm="33.00"',
@@ -2019,6 +2012,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             "det_nrf0": "adi_ad8314acpz_rl7",
             "det_nrf1": "adi_ad8314acpz_rl7",
             "det_nrf2": "adi_ad8314acpz_rl7",
+            "nrf0_rf_jumper": "te_2118651_2",
+            "nrf1_rf_jumper": "te_2118651_2",
+            "nrf2_rf_jumper": "te_2118651_2",
+            "nrf0_rf_board_connector": "hirose_ufl_r_smt_1_10",
+            "nrf1_rf_board_connector": "hirose_ufl_r_smt_1_10",
+            "nrf2_rf_board_connector": "hirose_ufl_r_smt_1_10",
             "det_cc": "adi_ad8314acpz_rl7",
             "det_voice": "adi_ad8314acpz_rl7",
             "det_ir": "vishay_vemd1060x01",
@@ -2238,7 +2237,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         for radio in range(3):
             prefix = f"nrf{radio}"
             self.assertIn(
-                (f"{prefix}.ANT", f"abstract:NRF{radio}-qualified-module-pigtail-mate", f"NRF{radio}_MODULE_RF"),
+                (f"{prefix}.ANT", f"{prefix}_rf_jumper.END_A", f"NRF{radio}_MODULE_RF_50R"),
+                routes,
+            )
+            self.assertIn(
+                (f"{prefix}_rf_jumper.END_B", f"{prefix}_rf_board_connector.CENTER", f"NRF{radio}_MODULE_RF_50R"),
                 routes,
             )
             self.assertIn(
@@ -3355,12 +3358,15 @@ class ArchitectureValidationTests(unittest.TestCase):
         expected_families = ["Hirose U.FL", "I-PEX MHF I", "Amphenol AMC"]
         self.assertEqual(expected_families, s3["compatible_mating_families"])
         self.assertEqual(expected_families, c5["compatible_mating_families"])
-        self.assertEqual([], nrf["compatible_mating_families"])
         self.assertEqual(
-            "exact_mating_family_unproven_requires_specimen_gate",
+            ["UMCC generation 1", "Hirose U.FL plug", "I-PEX MHF I plug"],
+            nrf["compatible_mating_families"],
+        )
+        self.assertEqual(
+            "manufacturer_ecosystem_gen1_class_verified_exact_receptacle_mpn_received_gate",
             nrf["qualification"],
         )
-        self.assertEqual("FND-0057", nrf["finding"])
+        self.assertIn("H1 paper mating class closed", nrf["finding"])
 
     def test_rejects_allocated_strap_without_proof(self):
         candidates = copy.deepcopy(self.candidates)

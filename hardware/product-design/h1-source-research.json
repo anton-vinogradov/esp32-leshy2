@@ -73,7 +73,7 @@
         },
         {
           "source": "https://www.ebyte.com/pdf-down/2947.html",
-          "finding": "The official Altium PcbLib contains the PE01-ML01IPX footprint and controlled connector-end axis."
+          "finding": "The official Altium PcbLib contains the exact PE01-ML01IPX land pattern and body outline. Binary primitive extraction confirms that it does not contain the RF receptacle body or axis, so H1 must reserve the complete module-face endpoint zone rather than infer a coordinate."
         },
         {
           "source": "https://www.ebyte.com/product/367.html",
@@ -88,7 +88,7 @@
           "finding": "TE cross-references UMCC Gen1/MHF1 to Hirose U.FL-R-SMT-1(10); authorized-distributor stock exists for 2118651-2."
         }
       ],
-      "remaining_gap": "Ebyte does not print the receptacle manufacturer's exact MPN in the module manual; current-lot identity remains an incoming-inspection item.",
+      "remaining_gap": "Ebyte does not publish the receptacle axis or manufacturer's exact MPN; H1 uses a conservative module-face route reserve, while current-lot axis, identity and fit remain incoming-inspection items.",
       "replacement_review": [
         {
           "candidate": "3x bare Nordic NRF24L01P-R7 with local RF matching",
