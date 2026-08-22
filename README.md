@@ -2,6 +2,10 @@
 
 [Русский](README.ru.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
 
+> **Project status: R1 — product and mechanical design.** The current mockup
+> is not accepted; production ECAD, PCB routing and purchasing remain blocked.
+> Follow the [roadmap to the finished product](docs/roadmap.md).
+
 Leshy2 is an open, autonomous instrument for radio observation,
 communications, diagnostics and authorized research of wireless and contact
 systems. This documentation describes what the target device does and how it
@@ -389,6 +393,7 @@ licensing or the target owner's permission.
 
 ## Documentation
 
+- [Roadmap and current project position](docs/roadmap.md)
 - [Hardware architecture and components](docs/hardware.md)
 - [Exact removable LoRa Cap](docs/lora-cap.md)
 - [Device principle diagrams](docs/schematics.md)

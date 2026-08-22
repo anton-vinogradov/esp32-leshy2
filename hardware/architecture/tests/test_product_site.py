@@ -26,6 +26,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/safety.ru.md",
         "docs/lora-cap.md",
         "docs/lora-cap.ru.md",
+        "docs/roadmap.md",
+        "docs/roadmap.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -42,9 +44,35 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             for forbidden in (
                 "DEC-", "FND-", "REV-", "IMP-", "docs/review",
-                "docs/status", "docs/stages", "проведено ревью",
+                "docs/status", "docs/stages",
             ):
                 self.assertNotIn(forbidden, page, f"{name}: {forbidden}")
+            if "roadmap" not in name:
+                self.assertNotIn("проведено ревью", page, name)
+
+    def test_roadmap_reports_current_truth_and_complete_route(self):
+        pages = {
+            "docs/roadmap.md": (
+                "Current: R1", "not been accepted", "24 deterministic host scenarios",
+                "no current production schematic", "No target run",
+                "R12. Release and manufacturing", "Production ECAD",
+            ),
+            "docs/roadmap.ru.md": (
+                "Сейчас: R1", "пользователем не принят",
+                "24 детерминированных host-сценария", "Не создана",
+                "Target-прогонов не было", "R12. Release и производство",
+                "Production ECAD",
+            ),
+        }
+        for name, tokens in pages.items():
+            page = " ".join(self.read(name).split())
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+            for stage in range(13):
+                self.assertIn(f"R{stage}", page, f"{name}: missing R{stage}")
+
+        self.assertIn("docs/roadmap.md", self.read("README.md"))
+        self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
 
     def test_all_local_public_links_exist(self):
         for name in self.PUBLIC_PAGES:
