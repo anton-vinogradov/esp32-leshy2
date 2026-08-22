@@ -51,6 +51,9 @@ custom D-pad actuator. Existing rendered views remain provisional outputs.
 - ⏳ `H1.2` — create one coordinate model for both boards and the enclosure.
 - ⏳ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
   from the unified source.
+  - ✅ Latest provisional correction: ten TX indicators are aligned as two
+    rows of five, the front controls are raised 5 mm, and the display now
+    separates its 54.5×83.0-mm body from the exact 48.96×73.44-mm 2:3 active area.
 - 🔒 `H1.3.1` — user review gate for the complete front and rear exterior.
 - ⏳ `H1.4.0` — generate mirrored inner faces and the board-to-board stack.
 - 🔒 `H1.4.1` — user review gate for both internal board faces and sandwich.
@@ -110,7 +113,7 @@ Unused interfaces are powered down and placed into a verifiable quiet state.
 
 ### External and inner board faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=14)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=15)
 
 The first projection shows only the outward, user-facing PCB sides: display,
 controls, labelled RF ports, indicators and side interfaces. The second shows

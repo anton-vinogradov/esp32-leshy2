@@ -74,7 +74,7 @@ never substitutes for measured RF.
 
 | Device | MPN | Implementation |
 |---|---|---|
-| Display | `HMX035CTFT-001` | 3.5-inch `320×480` IPS, direct QSPI, capacitive touch; proven 54.5×83.0×3.2-mm LCD/CTP body |
+| Display | `HMX035CTFT-001` | 3.5-inch `320×480` IPS, direct QSPI, capacitive touch; proven 54.5×83.0×3.2-mm LCD/CTP body and 48.96×73.44-mm 2:3 active area |
 | FPC mate | `Hirose FH12-40S-0.5SH(55)` | 40 contacts, 0.5-mm pitch |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; independently powered and isolated |
 | Audio codec | `Everest ES8311` | I²S capture and playback |
@@ -160,7 +160,7 @@ bodies—including power inductors, bulk capacitors, pack protection, interface
 buffers and audio selectors—must appear in a physical projection. Only small
 passives, unshown copper and manufacturing tolerances remain for ECAD closure.
 
-In one line below the display, user-facing actual-transmit labels cover
+In two aligned rows of five below the display, user-facing actual-transmit labels cover
 `WI-FI/BLE`, `WI-FI/15.4`, `nRF24-1`, `nRF24-2`, `nRF24-3`, `SUB-GHz`,
 `VHF/UHF`, `IR`, `LORA/EXT` and the aggregate `TX ACTIVE`. Antenna silkscreen uses the
 same names and also states the required frequency and `SMA`/`RP-SMA` type.
@@ -169,7 +169,7 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=14)
+![Dimensioned external layout](images/current-clamshell.svg?layout=15)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=11)
 

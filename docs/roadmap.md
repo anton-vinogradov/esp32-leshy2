@@ -66,6 +66,9 @@ but none is a reviewed later substep while this source-data gate is open.
 - ⏳ `H1.3.0` — generate the outer faces from the unified source: screen,
   D-pad, keys, encoder, LEDs, arrows, external interfaces and visible,
   unobscured silkscreen.
+  - ✅ Latest provisional correction: ten TX indicators are aligned as two
+    rows of five, the front controls are raised 5 mm, and the display now
+    separates its 54.5×83.0-mm body from the exact 48.96×73.44-mm 2:3 active area.
 - 🔒 `H1.3.1` — **user review gate:** accept the complete front and rear
   exterior, including labels and control locations.
 - ⏳ `H1.4.0` — generate mirrored inner board faces: every body, speaker,

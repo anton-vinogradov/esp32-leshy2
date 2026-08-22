@@ -458,7 +458,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "PTT",
             "Leshy2 — dimensioned external layout",
             "physical actual-TX evidence for each built-in transmitting path",
-            "form one front line below the display",
+            "form two aligned rows of five",
+            "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
             "M2.5 hole/head keep-outs",
             "SUB-GHz",
             "VHF/UHF",
@@ -2777,6 +2778,16 @@ class ArchitectureValidationTests(unittest.TestCase):
             "HMX035CTFT-001 (QDtech schematic assembly marking)", display["mpn"]
         )
         self.assertEqual([54.5, 83.0, 3.2], display["dimensions_mm"])
+        self.assertEqual([320, 480], display["pixel_resolution"])
+        self.assertEqual([48.96, 73.44], display["active_area_mm"])
+        self.assertEqual(
+            [2.77, 2.15], display["active_area_offset_from_body_top_left_mm"]
+        )
+        self.assertEqual([49.96, 74.44], display["viewing_area_mm"])
+        self.assertEqual(
+            [2.27, 1.65], display["viewing_area_offset_from_body_top_left_mm"]
+        )
+        self.assertEqual([54.5, 83.0], display["effective_touch_area_mm"])
         self.assertEqual(
             [54.5, 101.5, 10.0], display["donor_module_dimensions_mm_published_pdf"]
         )

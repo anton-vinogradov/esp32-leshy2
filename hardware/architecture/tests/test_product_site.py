@@ -183,6 +183,7 @@ class ProductSiteTests(unittest.TestCase):
             "Text outside component outlines is intended PCB silkscreen",
             'data-layer="pcb-silkscreen"',
             "HMX035CTFT-001",
+            "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
             "54.5×83.0×3.2 mm LCD/CTP body",
             "M5Stack U214",
             "SSW-107-02-S-D",
@@ -193,7 +194,7 @@ class ProductSiteTests(unittest.TestCase):
             "KILL",
             "PTT",
             "physical actual-TX evidence for each built-in transmitting path",
-            "form one front line below the display",
+            "form two aligned rows of five",
             "M2.5 hole/head keep-outs",
             'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',
             'id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer"',
@@ -392,7 +393,7 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=14", page)
+            self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("internal-board-layout.svg?layout=11", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)

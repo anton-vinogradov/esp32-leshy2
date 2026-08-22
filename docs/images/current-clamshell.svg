@@ -63,10 +63,13 @@
 <text data-layer="pcb-silkscreen" x="692.5" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">nRF24-3</text>
 <text data-layer="pcb-silkscreen" x="692.5" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4 GHz SMA</text>
 </g>
-<rect x="117.9" y="190.7" width="201.7" height="307.1" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
-<text x="218.8" y="353.5" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
-<text x="218.8" y="372.0" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#1d4ed8">54.5×83.0×3.2 mm LCD/CTP body</text>
-<text x="218.8" y="390.5" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#dc2626">touch / view ⊗</text>
+<rect x="117.9" y="190.7" width="201.7" height="307.1" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="128.2" y="198.7" width="181.2" height="271.7" rx="3" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+<rect x="126.3" y="196.8" width="184.9" height="275.4" rx="3" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 2"/>
+<text x="218.8" y="336.9" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#1d4ed8">HMX035CTFT-001</text>
+<text x="218.8" y="355.4" font-family="sans-serif" font-size="6.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ACTIVE 48.96×73.44 mm · 320×480 · 2:3</text>
+<text x="218.8" y="373.9" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#1d4ed8">54.5×83.0×3.2 mm LCD/CTP body</text>
+<text x="218.8" y="392.4" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#dc2626">touch / view ⊗</text>
 <g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">
 <rect x="120.3" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="127.5" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
@@ -93,34 +96,34 @@
 <text data-layer="pcb-silkscreen" x="298.3" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">WI-FI/15.4</text>
 <text data-layer="pcb-silkscreen" x="298.3" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4/5 GHz RP-SMA</text>
 </g>
-<rect x="89.2" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="92.2" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/BLE</text>
-<rect x="117.1" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="120.1" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/15.4</text>
-<rect x="145.1" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="148.0" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-1</text>
-<rect x="173.0" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="175.9" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-2</text>
-<rect x="200.9" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="203.9" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-3</text>
-<rect x="228.8" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="231.8" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">SUB-GHz</text>
-<rect x="256.7" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="259.7" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VHF/UHF</text>
-<rect x="284.6" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="287.6" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
-<rect x="312.6" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="315.5" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">LORA/EXT</text>
-<rect x="340.5" y="575.5" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
-<text data-layer="pcb-silkscreen" x="343.4" y="585.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">TX ACTIVE</text>
-<rect x="142.2" y="647.3" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
-<rect x="270.9" y="647.3" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-direct-press="true"/>
-<rect x="186.6" y="623.2" width="64.4" height="70.3" rx="3" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3" data-reserve-class="custom_actuator"/>
-<polygon points="209.9,634.0 227.6,634.0 227.6,649.5 243.2,649.5 243.2,667.3 227.6,667.3 227.6,682.8 209.9,682.8 209.9,667.3 194.3,667.3 194.3,649.5 209.9,649.5" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross" data-manufacturing-class="custom-actuator"/>
-<circle cx="218.8" cy="658.4" r="7.4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
-<text x="218.8" y="660.4" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
-<text data-layer="pcb-silkscreen" x="154.4" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
-<text data-layer="pcb-silkscreen" x="283.1" y="686.5" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
+<rect x="98.9" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="101.8" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/BLE</text>
+<rect x="157.3" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="160.3" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/15.4</text>
+<rect x="215.8" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="218.8" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-1</text>
+<rect x="274.2" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="277.2" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-2</text>
+<rect x="332.7" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="335.7" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-3</text>
+<rect x="98.9" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="101.8" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">SUB-GHz</text>
+<rect x="157.3" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="160.3" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VHF/UHF</text>
+<rect x="215.8" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="218.8" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
+<rect x="274.2" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="277.2" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">LORA/EXT</text>
+<rect x="332.7" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<text data-layer="pcb-silkscreen" x="335.7" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">TX ACTIVE</text>
+<rect x="142.2" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
+<rect x="270.9" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-direct-press="true"/>
+<rect x="186.6" y="604.7" width="64.4" height="70.3" rx="3" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3" data-reserve-class="custom_actuator"/>
+<polygon points="209.9,615.5 227.6,615.5 227.6,631.0 243.2,631.0 243.2,648.8 227.6,648.8 227.6,664.3 209.9,664.3 209.9,648.8 194.3,648.8 194.3,631.0 209.9,631.0" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross" data-manufacturing-class="custom-actuator"/>
+<circle cx="218.8" cy="639.9" r="7.4" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="218.8" y="641.9" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
+<text data-layer="pcb-silkscreen" x="154.4" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
+<text data-layer="pcb-silkscreen" x="283.1" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="99.0" y="433.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR 38 kHz RX</text>
 <path d="M80.0 458.9 L54.1 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -178,7 +181,7 @@
 <text x="850.0" y="347.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">TX indication</text>
 <circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>
 <text x="875.0" y="374.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">physical actual-TX evidence for each built-in transmitting path</text>
-<text x="850.0" y="396.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Nine path indicators plus TX ACTIVE form one front line below the display.</text>
+<text x="850.0" y="396.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Nine path indicators plus TX ACTIVE form two aligned rows of five.</text>
 <text x="850.0" y="419.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Labels match use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF, IR and LORA/EXT.</text>
 <text x="850.0" y="450.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Geometry status</text>
 <rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>

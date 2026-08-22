@@ -111,16 +111,16 @@ TX_LED_INSTANCES = {
     "N24-2": "nrf2_tx_led",
 }
 FRONT_TX_INDICATORS = (
-    ("s3_tx_led", "WI-FI/BLE", 2.5, 115.0),
-    ("c5_tx_led", "WI-FI/15.4", 10.04, 115.0),
-    ("nrf0_tx_led", "nRF24-1", 17.59, 115.0),
-    ("nrf1_tx_led", "nRF24-2", 25.13, 115.0),
-    ("nrf2_tx_led", "nRF24-3", 32.68, 115.0),
-    ("cc_tx_led", "SUB-GHz", 40.22, 115.0),
-    ("voice_tx_led", "VHF/UHF", 47.77, 115.0),
-    ("ir_tx_led", "IR", 55.31, 115.0),
-    ("ext_tx_led", "LORA/EXT", 62.86, 115.0),
-    ("any_tx_led", "TX ACTIVE", 70.4, 115.0),
+    ("s3_tx_led", "WI-FI/BLE", 5.1, 104.5),
+    ("c5_tx_led", "WI-FI/15.4", 20.9, 104.5),
+    ("nrf0_tx_led", "nRF24-1", 36.7, 104.5),
+    ("nrf1_tx_led", "nRF24-2", 52.5, 104.5),
+    ("nrf2_tx_led", "nRF24-3", 68.3, 104.5),
+    ("cc_tx_led", "SUB-GHz", 5.1, 111.0),
+    ("voice_tx_led", "VHF/UHF", 20.9, 111.0),
+    ("ir_tx_led", "IR", 36.7, 111.0),
+    ("ext_tx_led", "LORA/EXT", 52.5, 111.0),
+    ("any_tx_led", "TX ACTIVE", 68.3, 111.0),
 )
 
 # Every directional interface that crosses the enclosure is rendered here.
@@ -351,9 +351,9 @@ RF_INNER = (
 )
 
 FRONT_CONTROLS = (
-    Placement("ui_switch_back", 16.8, 134.4, "direct-press BACK"),
-    Placement("ui_dpad_switch", 32.21, 132.11, "four directions plus center push", 45),
-    Placement("ui_switch_opt", 51.6, 134.4, "direct-press OPT"),
+    Placement("ui_switch_back", 16.8, 129.4, "direct-press BACK"),
+    Placement("ui_dpad_switch", 32.21, 127.11, "four directions plus center push", 45),
+    Placement("ui_switch_opt", 51.6, 129.4, "direct-press OPT"),
 )
 
 DIRECT_PRESS_FRONT_CONTROLS = {"ui_switch_back", "ui_switch_opt"}
@@ -371,7 +371,7 @@ DIRECT_PRESS_REAR_CONTROLS = {
 
 FRONT_CAP_RESERVES = (
     Reserve(
-        "single D-pad cross", 28.8, 127.9, 17.4, 19.0,
+        "single D-pad cross", 28.8, 122.9, 17.4, 19.0,
         "custom keyed D-pad actuator over one SKRHADE010 stem; supplier MPN does not apply",
         "custom_actuator",
     ),
@@ -1175,8 +1175,25 @@ def validate() -> list[str]:
     dpad_w, dpad_h = placement_size(dpad, devices, instances)
     if dpad.rotation != 45:
         errors.append("SKRHADE010 must remain 45 degrees clockwise so A/B/C/D map to up/right/left/down")
-    if abs(dpad.x + dpad_w / 2 - 37.5) > 0.02 or abs(dpad.y + dpad_h / 2 - 137.4) > 0.02:
-        errors.append("SKRHADE010 rotated envelope must remain centred at D-pad axis 37.5,137.4 mm")
+    if abs(dpad.x + dpad_w / 2 - 37.5) > 0.02 or abs(dpad.y + dpad_h / 2 - 132.4) > 0.02:
+        errors.append("SKRHADE010 rotated envelope must remain centred at D-pad axis 37.5,132.4 mm")
+
+    display_device = devices[instances["display"]]
+    if display_device.get("pixel_resolution") != [320, 480]:
+        errors.append("display: exact HMX035CTFT-001 resolution must remain 320x480")
+    if display_device.get("active_area_mm") != [48.96, 73.44]:
+        errors.append("display: exact active area must remain 48.96x73.44 mm")
+    if display_device.get("active_area_offset_from_body_top_left_mm") != [2.77, 2.15]:
+        errors.append("display: active area must retain the exact 2.77x2.15-mm body offset")
+    if display_device.get("viewing_area_mm") != [49.96, 74.44]:
+        errors.append("display: exact viewing window must remain 49.96x74.44 mm")
+    if display_device.get("viewing_area_offset_from_body_top_left_mm") != [2.27, 1.65]:
+        errors.append("display: viewing window must retain the exact 2.27x1.65-mm body offset")
+    if display_device.get("effective_touch_area_mm") != [54.5, 83.0]:
+        errors.append("display: exact effective touch area must remain 54.5x83.0 mm")
+    active_w, active_h = map(float, display_device.get("active_area_mm", [0, 1]))
+    if not math.isclose(active_w / active_h, 2 / 3, rel_tol=0, abs_tol=1e-9):
+        errors.append("display: active area must retain the exact 2:3 portrait ratio")
     dpad_mechanical = devices[instances["ui_dpad_switch"]].get("mechanical_contract", {})
     if dpad_mechanical.get("body_thickness_mm") != 1.85:
         errors.append("SKRHADE010 body thickness must remain distinct from its complete stem height")
@@ -1419,8 +1436,13 @@ def validate() -> list[str]:
         for other_label, other_box in indicator_boxes[index + 1:]:
             if overlaps(led_box, other_box, 0.7):
                 errors.append(f"front: {label}/{other_label} TX indicators overlap")
-    if len({y for _, _, _, y in FRONT_TX_INDICATORS}) != 1:
-        errors.append("front: all ten TX indicators must remain in one horizontal line")
+    indicator_rows = {}
+    for _, _, x, y in FRONT_TX_INDICATORS:
+        indicator_rows.setdefault(y, []).append(x)
+    if len(indicator_rows) != 2 or sorted(map(len, indicator_rows.values())) != [5, 5]:
+        errors.append("front: all ten TX indicators must remain in two rows of five")
+    if len({tuple(sorted(xs)) for xs in indicator_rows.values()}) != 1:
+        errors.append("front: both five-indicator rows must retain aligned columns")
     expected_tx_labels = {RF_USER_LABEL_LINES[path][0] for path in TX_RF_PATHS} | {"IR", "LORA/EXT", "TX ACTIVE"}
     if {label for _, label, _, _ in FRONT_TX_INDICATORS} != expected_tx_labels:
         errors.append("front: TX labels must match user-facing antenna names plus IR and TX ACTIVE")
@@ -1579,7 +1601,7 @@ def rf_bank(
 
 def dpad_cap(origin, scale, sx, sy, text):
     """Draw one custom D-pad actuator over the selected guided navigation switch."""
-    cx, cy = sx(origin, 37.5), sy(origin, 137.4)
+    cx, cy = sx(origin, 37.5), sy(origin, 132.4)
     arm, half = 6.6 * scale, 2.4 * scale
     points = (
         (cx - half, cy - arm), (cx + half, cy - arm),
@@ -1640,10 +1662,26 @@ def render_external(devices, instances):
 
     display = Placement("display", 10.25, 11.0, "display")
     dw, dh = placement_size(display, devices, instances)
-    out.append(rect(front, display.x, display.y, dw, dh, "#dbeafe", "#2563eb", rx=5))
-    out.append(text(sx(front,37.5), sy(front,55), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,60), "54.5×83.0×3.2 mm LCD/CTP body", 6.5, anchor="middle", colour="#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,65), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
+    display_device = devices[instances["display"]]
+    active_w, active_h = map(float, display_device["active_area_mm"])
+    active_dx, active_dy = map(
+        float, display_device["active_area_offset_from_body_top_left_mm"]
+    )
+    view_w, view_h = map(float, display_device["viewing_area_mm"])
+    view_dx, view_dy = map(
+        float, display_device["viewing_area_offset_from_body_top_left_mm"]
+    )
+    active_x = display.x + active_dx
+    active_y = display.y + active_dy
+    view_x = display.x + view_dx
+    view_y = display.y + view_dy
+    out.append(rect(front, display.x, display.y, dw, dh, "#eff6ff", "#2563eb", rx=5))
+    out.append(rect(front, active_x, active_y, active_w, active_h, "#bfdbfe", "#1d4ed8", rx=3))
+    out.append(rect(front, view_x, view_y, view_w, view_h, "none", "#60a5fa", "3 2", 3))
+    out.append(text(sx(front,37.5), sy(front,50.5), "HMX035CTFT-001", 9, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,55.5), "ACTIVE 48.96×73.44 mm · 320×480 · 2:3", 6.5, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,60.5), "54.5×83.0×3.2 mm LCD/CTP body", 6.5, anchor="middle", colour="#1d4ed8"))
+    out.append(text(sx(front,37.5), sy(front,65.5), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
     out.append('<g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">')
     out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
     out.append('</g>')
@@ -1671,8 +1709,8 @@ def render_external(devices, instances):
             )
         )
     out += dpad_cap(front, scale, sx, sy, text)
-    out.append(silk_text(sx(front,20.1), sy(front,145.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
-    out.append(silk_text(sx(front,54.9), sy(front,145.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(silk_text(sx(front,20.1), sy(front,140.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
+    out.append(silk_text(sx(front,54.9), sy(front,140.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
 
     # Every side/bottom interface is projected onto the external face even
     # when its physical body is mounted on the inward PCB side.
@@ -1817,7 +1855,7 @@ def render_external(devices, instances):
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each built-in transmitting path",11),
-        text(note_x,396,"Nine path indicators plus TX ACTIVE form one front line below the display.",11),
+        text(note_x,396,"Nine path indicators plus TX ACTIVE form two aligned rows of five.",11),
         text(note_x,419,"Labels match use: WI-FI/BLE, WI-FI/15.4, nRF24-1..3, SUB-GHz, VHF/UHF, IR and LORA/EXT.",11),
         text(note_x,450,"Geometry status",15,"bold"),
         '<rect x="850" y="467" width="28" height="15" rx="3" fill="#eef2f6" stroke="#667085"/>',
