@@ -18,7 +18,7 @@ class PreorderGateTests(unittest.TestCase):
         truth = self.contract["current_truth"]
         self.assertIn("not an approved industrial design", truth["mechanical_projection"])
         self.assertIn("absent", truth["current_ecad"])
-        self.assertIn("portable C safety, L2IP and update cores", truth["executable_firmware"])
+        self.assertIn("reviewed portable C safety, L2IP, update", truth["executable_firmware"])
         self.assertIn("all five target images remain open", truth["executable_firmware"])
         self.assertEqual("not run", truth["physical_hil"])
 
@@ -28,10 +28,10 @@ class PreorderGateTests(unittest.TestCase):
             "P1_MECHANICAL_DESIGN",
             "P2_CURRENT_SCHEMATIC",
             "P3_VIRTUAL_ELECTRICAL",
-            "P4_EXECUTABLE_FIRMWARE_MODEL",
             "P5_TARGET_BUILDS_EMULATION",
         ):
             self.assertNotEqual("reviewed", gates[gate_id]["status"])
+        self.assertEqual("reviewed", gates["P4_EXECUTABLE_FIRMWARE_MODEL"]["status"])
         self.assertEqual("not_authorized", gates["P7_ENGINEERING_SAMPLE_ORDER"]["status"])
         self.assertEqual("not_authorized", gates["P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB"]["status"])
 

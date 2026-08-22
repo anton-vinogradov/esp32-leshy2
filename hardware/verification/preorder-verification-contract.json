@@ -6,7 +6,7 @@
     "target_architecture": "G2F-3I paper-reviewed; pin, owner, resource, safety and HW/FW boundary checks pass",
     "mechanical_projection": "dimensioned two-board placement validates registered component envelopes and clearances but is not an approved industrial design or enclosure release",
     "current_ecad": "absent; superseded tscircuit and partial KiCad exports are archived and are not evidence for G2F-3I",
-    "executable_firmware": "partial; portable C safety, L2IP and update cores pass 16 host scenarios, while deterministic five-domain integration, scheduler saturation and all five target images remain open",
+    "executable_firmware": "partial; the reviewed portable C safety, L2IP, update and deterministic five-domain model passes 24 host scenarios plus address/undefined-behavior sanitizers, while all five target images remain open",
     "instruction_emulation": "not run; exact ESP32-S3 QEMU is feasible after an S3 image exists, while C5, RP2354B and MSPM0C1106 require portable-core tests plus target/dev-board evidence where exact peripheral emulation is unavailable",
     "physical_hil": "not run"
   },
@@ -56,7 +56,8 @@
     },
     {
       "id": "P4_EXECUTABLE_FIRMWARE_MODEL",
-      "status": "in_progress_portable_cores_16_host_scenarios_passed",
+      "status": "reviewed",
+      "review_evidence": "24 deterministic host scenarios plus clean address/undefined-behavior sanitizer execution on 2026-08-22",
       "required_evidence": [
         "portable executable L2IP framing and safety state machines",
         "deterministic five-domain host simulation with fault injection",
