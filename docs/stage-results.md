@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.3.5`.
+**Status:** ▶️ current, exact marker `H2.3.6`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -43,8 +43,13 @@ are satisfied.
   content and status.
 - [Complete instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- The complete UI/control PCB and first four RF/power sheets are reviewed;
-  exact RP2354B core/USB/recovery work is active.
+- The complete UI/control PCB and the first five RF/power sheets are reviewed.
+- [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
+  contains 48 exact components, all 81 SC1512-A4 package contacts, the official
+  core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit
+  no-connects; its [machine review](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json)
+  passes native KiCad.
+- Three independent full-function nRF24 paths are now active work.
 
 <a id="h3"></a>
 ## H3 · Virtual electrical verification

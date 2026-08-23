@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **969** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **968** supplied/costed placements collapse to **201** used exact-device/MPN lines.
-- Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **190/201** lines.
+- **993** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **992** supplied/costed placements collapse to **205** used exact-device/MPN lines.
+- Current orderability evidence exists for **204/205** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **194/205** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **951/968** supplied placements; their partial subtotals are `base_product` — USD 220.1662. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
+- Those priced lines cover **975/992** supplied placements; their partial subtotals are `base_product` — USD 221.5467. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **205/205** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 965 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 989 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -25,7 +25,7 @@ The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused c
 
 Every purchase line below belongs to exactly one validated class. A class is a disposition and requalification envelope, not a claim that a second MPN is already qualified.
 
-<details><summary><code>SUB-RF</code> — RF, clock and frequency-selective parts — 28 line(s)</summary>
+<details><summary><code>SUB-RF</code> — RF, clock and frequency-selective parts — 29 line(s)</summary>
 
 - Disposition: no drop-in substitution; exact part remains first target until full RF/clock requalification.
 - Equivalence envelope:
@@ -38,6 +38,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - conducted/OTA sensitivity, power, harmonics, detector threshold and coexistence HIL for every affected signal group.
 - Current lines:
   - `abracon_abm8_26mhz_10_d_1_g_t` — `Abracon ABM8-26.000MHZ-10-D-1-G-T`.
+  - `abracon_abm8_272_t3` — `Abracon ABM8-272-T3`.
   - `epson_q13fc13500005` — `Seiko Epson Q13FC13500005`.
   - `kyocera_avx_cp0603q5425entr` — `KYOCERA AVX CP0603Q5425ENTR`.
   - `littelfuse_sesd0402x1un_0020_090` — `Littelfuse SESD0402X1UN-0020-090`.
@@ -68,7 +69,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-PWR-PASSIVE</code> — Power conversion, decoupling and energy-storage passives — 16 line(s)</summary>
+<details><summary><code>SUB-PWR-PASSIVE</code> — Power conversion, decoupling and energy-storage passives — 18 line(s)</summary>
 
 - Disposition: controlled alternate only after converter/rail stability, loss and thermal requalification.
 - Equivalence envelope:
@@ -80,6 +81,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - startup/load-step/short/brownout/ripple/thermal HIL on every affected rail.
   - EMI and RF-noise regression with the active signal group.
 - Current lines:
+  - `abracon_aota_b201610s3r3_101_t` — `Abracon AOTA-B201610S3R3-101-T`.
   - `murata_blm18pg181sn1d` — `Murata BLM18PG181SN1D`.
   - `murata_grm188r60j106me47d` — `Murata GRM188R60J106ME47D`.
   - `murata_grm188r71e474ka12d` — `Murata GRM188R71E474KA12D`.
@@ -93,13 +95,14 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `sunlord_mwsa0503s_3r3mt` — `Sunlord MWSA0503S-3R3MT`.
   - `sunlord_mwsa0503s_4r7mt` — `Sunlord MWSA0503S-4R7MT`.
   - `sunlord_wpn201612h2r2mt` — `Sunlord WPN201612H2R2MT`.
+  - `tdk_c1005x5r0j475k050bc` — `TDK C1005X5R0J475K050BC`.
   - `tdk_c1005x7r1h104k050bb` — `TDK C1005X7R1H104K050BB`.
   - `tdk_c1608x7s2a104k080ab` — `TDK C1608X7S2A104K080AB`.
   - `tdk_cga5l1x7r1e475k160ac` — `TDK CGA5L1X7R1E475K160AC`.
 
 </details>
 
-<details><summary><code>SUB-CTRL-PASSIVE</code> — Control, timing, precision, protection-current and sensing passives — 56 line(s)</summary>
+<details><summary><code>SUB-CTRL-PASSIVE</code> — Control, timing, precision, protection-current and sensing passives — 57 line(s)</summary>
 
 - Disposition: controlled parametric substitution; no value-family or tolerance relaxation without owning-subblock review.
 - Equivalence envelope:
@@ -150,6 +153,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `yageo_rc0402fr_0730k1l` — `Yageo RC0402FR-0730K1L`.
   - `yageo_rc0402fr_0730kl` — `Yageo RC0402FR-0730KL`.
   - `yageo_rc0402fr_0733kl` — `Yageo RC0402FR-0733KL`.
+  - `yageo_rc0402fr_0733rl` — `Yageo RC0402FR-0733RL`.
   - `yageo_rc0402fr_073k32l` — `Yageo RC0402FR-073K32L`.
   - `yageo_rc0402fr_0742k2l` — `Yageo RC0402FR-0742K2L`.
   - `yageo_rc0402fr_0744k2l` — `Yageo RC0402FR-0744K2L`.
@@ -356,6 +360,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/abracon-llc/ABM8-26-000MHZ-10-D-1-G-T/9997912).
+
+</details>
+
+<details><summary><code>Abracon ABM8-272-T3</code> — 1 × USD 0.4085 = USD 0.4085</summary>
+
+- Device id: `abracon_abm8_272_t3`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/abracon-llc/ABM8-272-T3/22472366).
+
+</details>
+
+<details><summary><code>Abracon AOTA-B201610S3R3-101-T</code> — 1 × USD 0.1512 = USD 0.1512</summary>
+
+- Device id: `abracon_aota_b201610s3r3_101_t`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/abracon-llc/AOTA-B201610S3R3-101-T/25621527).
 
 </details>
 
@@ -719,7 +741,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GJM1555C1H150JB01D</code> — 2 × USD 0.0392 = USD 0.0784</summary>
+<details><summary><code>Murata GJM1555C1H150JB01D</code> — 4 × USD 0.0392 = USD 0.1568</summary>
 
 - Device id: `murata_gjm1555c1h150jb01d`.
 - Scope: `base_product`.
@@ -1241,7 +1263,16 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 116 × USD 0.0258 = USD 2.9928</summary>
+<details><summary><code>TDK C1005X5R0J475K050BC</code> — 4 × USD 0.0903 = USD 0.3612</summary>
+
+- Device id: `tdk_c1005x5r0j475k050bc`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/tdk-corporation/C1005X5R0J475K050BC/2443425).
+
+</details>
+
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 130 × USD 0.0258 = USD 3.3540</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1781,7 +1812,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-071KL</code> — 11 × USD 0.0097 = USD 0.1067</summary>
+<details><summary><code>Yageo RC0402FR-071KL</code> — 12 × USD 0.0097 = USD 0.1164</summary>
 
 - Device id: `yageo_rc0402fr_071kl`.
 - Scope: `base_product`.
@@ -1877,6 +1908,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0733KL/726592).
+
+</details>
+
+<details><summary><code>Yageo RC0402FR-0733RL</code> — 1 × USD 0.0103 = USD 0.0103</summary>
+
+- Device id: `yageo_rc0402fr_0733rl`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/yageo/RC0402FR-0733RL/726593).
 
 </details>
 

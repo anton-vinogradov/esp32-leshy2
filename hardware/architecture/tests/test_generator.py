@@ -281,8 +281,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(968, sum(line["quantity"] for line in lines))
-        self.assertEqual(201, len(lines))
+        self.assertEqual(992, sum(line["quantity"] for line in lines))
+        self.assertEqual(205, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -292,11 +292,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            190,
+            194,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            951,
+            975,
             sum(
                 line["quantity"]
                 for line in lines
@@ -372,13 +372,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**969** architecture instances", rendered)
-        self.assertIn("**968** supplied/costed placements", rendered)
-        self.assertIn("**200/201** used lines", rendered)
-        self.assertIn("**201/201** lines", rendered)
-        self.assertIn("**190/201** lines", rendered)
-        self.assertIn("**951/968** supplied placements", rendered)
-        self.assertIn("USD 220.1662", rendered)
+        self.assertIn("**993** architecture instances", rendered)
+        self.assertIn("**992** supplied/costed placements", rendered)
+        self.assertIn("**204/205** used lines", rendered)
+        self.assertIn("**205/205** lines", rendered)
+        self.assertIn("**194/205** lines", rendered)
+        self.assertIn("**975/992** supplied placements", rendered)
+        self.assertIn("USD 221.5467", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1155, policy["expected_occurrence_count"])
+        self.assertEqual(1197, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(

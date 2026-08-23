@@ -1,0 +1,538 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.5",
+  "status": "reviewed_exact_rp2354_core_service_sheet",
+  "project": "LESHY2-RF",
+  "sheet": "RF_30_RP2354_CORE_SERVICE",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "ef0a0bd53e8577f9aa934b3a774b78ec2fcf993b524308f7f96e0dba583f6060",
+    "hardware/architecture/devices.json": "618c400159127254d0fce2ecee04f97abf6d16fe7313352a665708540739c534",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1e7fab8e0fbb29ddeffa02d74d26e421dfeeacf1f95a9e875f4befd39521d5f5",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "eec3a3d8b80951dada5599f2a37485d1b6346fdef61f2b1e790321210df8d421"
+  },
+  "summary": {
+    "ledger_instances": 48,
+    "schematic_symbols": 48,
+    "board_fitted_symbols": 48,
+    "hierarchical_interfaces": 51,
+    "physical_package_contacts": 219,
+    "rp2354_package_contacts": 81,
+    "dedicated_100nf_supply_bypasses": 14,
+    "reference_4_7uf_caps": 4,
+    "intentional_no_connect_pins": 13,
+    "custom_footprints": 1,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "rp",
+      "symbol_uuid": "fca9e5ad-f51f-507e-8bac-5c3ff2013fee",
+      "reference": "U1",
+      "mpn": "SC1512-A4",
+      "footprint": "Package_DFN_QFN:QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm",
+      "pin_count": 81,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_vreg_inductor",
+      "symbol_uuid": "82989309-4676-5832-835e-b2ce87ce2135",
+      "reference": "L1",
+      "mpn": "Abracon AOTA-B201610S3R3-101-T",
+      "footprint": "Inductor_SMD:L_Murata_DFE201610P",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_vreg_vin_bulk",
+      "symbol_uuid": "e7a7d24d-bbbd-5e53-857c-c638c062df30",
+      "reference": "C1",
+      "mpn": "TDK C1005X5R0J475K050BC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_vreg_output_bulk",
+      "symbol_uuid": "58c3d707-92ed-529a-a9ce-9df1b4fd0f15",
+      "reference": "C2",
+      "mpn": "TDK C1005X5R0J475K050BC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_vreg_avdd_filter_res",
+      "symbol_uuid": "71037dab-373d-5672-83d8-a4dda75cafdf",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0733RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_vreg_avdd_filter_cap",
+      "symbol_uuid": "c5a08690-7f5c-509d-8c1e-576f8772c806",
+      "reference": "C3",
+      "mpn": "TDK C1005X5R0J475K050BC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dvdd_remote_bulk",
+      "symbol_uuid": "e0dc0c7e-bb1a-52aa-83c4-60d5171a24e2",
+      "reference": "C4",
+      "mpn": "TDK C1005X5R0J475K050BC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_clock",
+      "symbol_uuid": "2a2e5885-3b09-5038-9b03-003d07728856",
+      "reference": "Y1",
+      "mpn": "Abracon ABM8-272-T3",
+      "footprint": "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm",
+      "pin_count": 4,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_clock_series",
+      "symbol_uuid": "85e6fed3-10a8-58c5-b112-0e0b37b07e7d",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_clock_load_xin",
+      "symbol_uuid": "282b2832-b723-5132-b48f-161d1585d2d0",
+      "reference": "C5",
+      "mpn": "Murata GJM1555C1H150JB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_clock_load_xout",
+      "symbol_uuid": "d98fb640-cce3-52da-88fb-6ff954c6878b",
+      "reference": "C6",
+      "mpn": "Murata GJM1555C1H150JB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dvdd10_bypass",
+      "symbol_uuid": "6dafb548-b1db-58df-b9d2-af35e401b1dd",
+      "reference": "C7",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dvdd32_bypass",
+      "symbol_uuid": "cbc4aa63-8298-5d71-80ed-093d457b0b33",
+      "reference": "C8",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dvdd51_bypass",
+      "symbol_uuid": "c38e74eb-cbcd-5e2a-95c0-86986a823e7b",
+      "reference": "C9",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd5_bypass",
+      "symbol_uuid": "a7155fab-cd88-51f6-9bc0-7b1c7e1c5a58",
+      "reference": "C10",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd15_bypass",
+      "symbol_uuid": "812e0801-69b6-56ec-9068-528fc7f80a7e",
+      "reference": "C11",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd24_bypass",
+      "symbol_uuid": "92c878ef-f681-5c8c-9e7a-ceaed284a6de",
+      "reference": "C12",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd29_bypass",
+      "symbol_uuid": "fdadae23-fa5a-547f-b608-279a45ab0046",
+      "reference": "C13",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd41_bypass",
+      "symbol_uuid": "023d8e42-6ec9-51b0-8c13-427aa3766af5",
+      "reference": "C14",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd50_bypass",
+      "symbol_uuid": "0cbe7db9-0081-5a5f-9da5-19a9dd7290f8",
+      "reference": "C15",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd60_bypass",
+      "symbol_uuid": "4b904b28-7706-50f0-b534-448fd6e24820",
+      "reference": "C16",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_iovdd76_bypass",
+      "symbol_uuid": "6bf86232-61c5-59cb-ae62-8c2191e42da7",
+      "reference": "C17",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_adc_avdd_bypass",
+      "symbol_uuid": "a881a722-0c3f-5266-98f0-c9db820f5f92",
+      "reference": "C18",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_usb_otp_vdd_bypass",
+      "symbol_uuid": "f93402ba-664b-56d8-94e5-5b65b7ef625e",
+      "reference": "C19",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_qspi_iovdd_bypass",
+      "symbol_uuid": "641383e3-a8aa-5d9a-8acf-bc945124a503",
+      "reference": "C20",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_connector",
+      "symbol_uuid": "1563fbd4-a1c9-5ef9-a989-66849b329b3a",
+      "reference": "J1",
+      "mpn": "GCT USB4105-GF-A",
+      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+      "pin_count": 17,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_esd",
+      "symbol_uuid": "45771a32-c672-554c-bce8-1e71d2f78f10",
+      "reference": "D1",
+      "mpn": "Texas Instruments TPD2EUSB30ADRTR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pin_count": 3,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_switch",
+      "symbol_uuid": "73a01f48-4f63-5c49-893d-43af6f98449a",
+      "reference": "U2",
+      "mpn": "onsemi FSUSB42MUX",
+      "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_switch_bypass",
+      "symbol_uuid": "1c8c35ee-b0d9-5762-a5cd-4ef855479a0d",
+      "reference": "C21",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_cc1_rd",
+      "symbol_uuid": "fd358c24-b923-5407-852d-c3e204e715ff",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-075K1L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_cc2_rd",
+      "symbol_uuid": "58a25893-ba86-5686-9679-fd4b353079e2",
+      "reference": "R4",
+      "mpn": "Yageo RC0402FR-075K1L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_vbus_bleeder",
+      "symbol_uuid": "a67e1d81-9586-58d0-b6a9-25a26c4e9960",
+      "reference": "R5",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_dm_series",
+      "symbol_uuid": "1c7c201e-7e11-5085-98f0-cdf6a12ad852",
+      "reference": "R6",
+      "mpn": "Panasonic ERJ-2RKF27R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_service_usb_dp_series",
+      "symbol_uuid": "4eea8ee0-3688-5126-b7bf-5948f8a618a3",
+      "reference": "R7",
+      "mpn": "Panasonic ERJ-2RKF27R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_header",
+      "symbol_uuid": "4cc5ca0e-8a4c-573a-9822-38bd67a24b23",
+      "reference": "J2",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_esd",
+      "symbol_uuid": "4f7db882-28bf-5971-90f7-85baccf7df00",
+      "reference": "D2",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_reset_button",
+      "symbol_uuid": "97ce1610-3e69-5d19-b129-2e204da04186",
+      "reference": "SW1",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "pin_count": 3,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_boot_button",
+      "symbol_uuid": "81bab4a6-4201-5aab-b92b-6304edc89400",
+      "reference": "SW2",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "pin_count": 3,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_vtref_series",
+      "symbol_uuid": "14c24c5c-51ec-51a5-85f4-4819895b6122",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_reset_series",
+      "symbol_uuid": "bd3c8d14-ccea-5959-9813-98a6b91436f8",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_boot_series",
+      "symbol_uuid": "2ea9e8a2-4402-5d01-89fd-6c24321371ee",
+      "reference": "R10",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg0_series",
+      "symbol_uuid": "20441805-1970-583b-a784-22060bd36878",
+      "reference": "R11",
+      "mpn": "Yageo RC0402FR-07470RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg1_series",
+      "symbol_uuid": "23bb2121-b6a0-52c2-802f-4b766ce5f8e0",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-07470RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_id0_strap",
+      "symbol_uuid": "72577000-ab04-597a-9e1c-e9261d09fc44",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_dbg_id1_strap",
+      "symbol_uuid": "b62dd23b-fe31-5669-a582-b708306a4b29",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_boot_pullup",
+      "symbol_uuid": "acc15167-9e5e-5f28-aa5a-a12d6c324115",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_reset_pullup",
+      "symbol_uuid": "3ed2a35f-1aaa-5350-8fe6-25c85375a0ba",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "rp_any_tx_main_pullup",
+      "symbol_uuid": "2569c439-387a-5bf6-aed3-7eab1f1915a7",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "RP_DBG_ESD_RETURN": "POWER_GROUND",
+    "RP_SERVICE_USB_ESD_RETURN": "POWER_GROUND",
+    "RP_SERVICE_USB_SHIELD": "POWER_GROUND",
+    "RP_SERVICE_USB_SWITCH_ENABLE_N": "POWER_GROUND",
+    "RP_SERVICE_USB_SWITCH_SELECT": "POWER_GROUND",
+    "RP_VREG_POWER_GROUND": "POWER_GROUND"
+  },
+  "intentional_no_connect_endpoints": [
+    "rp.QSPI_SCLK",
+    "rp.QSPI_SD0",
+    "rp.QSPI_SD1",
+    "rp.QSPI_SD2",
+    "rp.QSPI_SD3",
+    "rp_dbg_esd.NC_10",
+    "rp_dbg_esd.NC_6",
+    "rp_dbg_esd.NC_7",
+    "rp_dbg_esd.NC_9",
+    "rp_service_usb_connector.A8_SBU1",
+    "rp_service_usb_connector.B8_SBU2",
+    "rp_service_usb_switch.HSD2_MINUS",
+    "rp_service_usb_switch.HSD2_PLUS"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "SC1512-A4",
+      "footprint": "Package_DFN_QFN:QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm",
+      "source": {
+        "document": "RP2350 Datasheet and Hardware design with RP2350; RP2354B uses the B-package pinout and stacked 2 MB flash",
+        "version": "build-date 2025-02-20",
+        "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+        "checked": "2026-08-23"
+      }
+    },
+    {
+      "mpn": "Abracon ABM8-272-T3",
+      "footprint": "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm",
+      "source": {
+        "document": "ABM8-272-T3 source-control drawing and Raspberry Pi Hardware design with RP2350 chapter 4",
+        "version": "Abracon drawing 456603 revision B; Raspberry Pi guide current 2026-08-23",
+        "url": "https://abracon.com/datasheets/ABM8-272-T3.pdf",
+        "checked": "2026-08-23"
+      }
+    },
+    {
+      "mpn": "Abracon AOTA-B201610S3R3-101-T",
+      "footprint": "Inductor_SMD:L_Murata_DFE201610P",
+      "source": {
+        "document": "AOTA-B201610S3R3-101-T exact datasheet and Raspberry Pi Hardware design with RP2350 chapter 2",
+        "version": "Abracon revision A 2024-09-13; Raspberry Pi guide current 2026-08-23",
+        "url": "https://abracon.com/datasheets/AOTA-B201610S3R3-101-T.pdf",
+        "checked": "2026-08-23"
+      },
+      "boundary": "package-compatible 2.0x1.6-mm H2 contact pattern; final Abracon recommended-land transcription closes before H6 routing"
+    }
+  ],
+  "corrections_closed": [
+    "all 80 perimeter contacts and exposed-pad contact 81 of the real SC1512-A4 package are explicit",
+    "the internal 1.1-V switchmode regulator uses the official 3.3-uH inductor, four 4.7-uF capacitors and the required 33-Ohm AVDD filter",
+    "every DVDD, IOVDD, ADC_AVDD, USB_OTP_VDD and QSPI_IOVDD supply contact has its own 100-nF local bypass",
+    "the exact 12-MHz crystal circuit uses two 15-pF C0G loads and the official 1-kOhm XOUT series resistor",
+    "native USB, SWD, RUN and USB_BOOT remain externally recoverable without creating a service-port power path",
+    "the stacked 2-MB die is used; unused external-QSPI data/clock contacts are explicit no-connects rather than a fictitious second flash"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all 48 RF30 ledger instances and all 219 physical package contacts are explicit",
+      "all 51 hierarchy interfaces terminate on real package contacts",
+      "the core regulator, clock, USB and recovery circuits match primary manufacturer references",
+      "native KiCad parses RF30 in the live RF/power hierarchy with every remaining finding machine-accounted"
+    ],
+    "deferred": [
+      "received SC1512-A4 die identity, boot-ROM USB behavior and debug recovery HIL",
+      "oscillator startup margin and USB timing measurements in H3/H8",
+      "the final AOTA manufacturer recommended land, switch-node geometry, crystal placement, impedance and DRC in H6",
+      "firmware boot manager, USB descriptors and rollback behavior in firmware phases"
+    ]
+  }
+}

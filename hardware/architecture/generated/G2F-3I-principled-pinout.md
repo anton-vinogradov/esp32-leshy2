@@ -1262,9 +1262,35 @@ flowchart TD
   C5_BOOT_PULLUP["Yageo RC0402FR-0710KL<br/>C5 deterministic normal-boot pull-up resistor"]
   RP_BOOT_PULLUP["Yageo RC0402FR-0710KL<br/>RP deterministic normal-boot pull-up resistor"]
   C5_GPIO27_PULLUP["Yageo RC0402FR-0710KL<br/>C5 fixed-high normal-boot and ROM-log strap resistor"]
+  RP_VREG_INDUCTOR["Abracon AOTA-B201610S3R3-101-T<br/>RP2354B exact dot-oriented 3.3-uH core-regulator inductor"]
+  RP_VREG_VIN_BULK["TDK C1005X5R0J475K050BC<br/>RP2354B internal-regulator 4.7-uF input capacitor"]
+  RP_VREG_OUTPUT_BULK["TDK C1005X5R0J475K050BC<br/>RP2354B internal-regulator 4.7-uF switching-loop output capacitor"]
+  RP_VREG_AVDD_FILTER_RES["Yageo RC0402FR-0733RL<br/>RP2354B regulator-analogue 33-Ohm filter resistor"]
+  RP_VREG_AVDD_FILTER_CAP["TDK C1005X5R0J475K050BC<br/>RP2354B regulator-analogue 4.7-uF filter capacitor"]
+  RP_DVDD_REMOTE_BULK["TDK C1005X5R0J475K050BC<br/>RP2354B remote-side 4.7-uF core-rail capacitor"]
+  RP_CLOCK["Abracon ABM8-272-T3<br/>RP2354B exact 12-MHz USB reference crystal"]
+  RP_CLOCK_SERIES["Yageo RC0402FR-071KL<br/>RP2354B crystal-drive 1-kOhm series resistor"]
+  RP_CLOCK_LOAD_XIN["Murata GJM1555C1H150JB01D<br/>RP2354B XIN 15-pF crystal load capacitor"]
+  RP_CLOCK_LOAD_XOUT["Murata GJM1555C1H150JB01D<br/>RP2354B XOUT 15-pF crystal load capacitor"]
+  RP_DVDD10_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 1.1-V core-contact 100-nF bypass capacitor"]
+  RP_DVDD32_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 1.1-V core-contact 100-nF bypass capacitor"]
+  RP_DVDD51_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 1.1-V core-contact 100-nF bypass capacitor"]
+  RP_IOVDD5_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD15_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD24_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD29_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD41_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD50_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD60_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_IOVDD76_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"]
+  RP_ADC_AVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated ADC analogue-supply 100-nF bypass capacitor"]
+  RP_USB_OTP_VDD_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated USB-PHY/OTP 100-nF bypass capacitor"]
+  RP_QSPI_IOVDD_BYPASS["TDK C1005X7R1H104K050BB<br/>RP2354B dedicated stacked-flash I/O 100-nF bypass capacitor"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ C5_DBG1_SERIES ~~~ C5_DBG_ID0_STRAP ~~~ C5_DBG_ID1_STRAP ~~~ RP_DBG_VTREF_SERIES ~~~ RP_DBG_RESET_SERIES ~~~ RP_DBG_BOOT_SERIES ~~~ RP_DBG0_SERIES ~~~ RP_DBG1_SERIES ~~~ RP_DBG_ID0_STRAP
-  RP_DBG_ID1_STRAP ~~~ S3_BOOT_PULLUP ~~~ C5_BOOT_PULLUP ~~~ RP_BOOT_PULLUP ~~~ C5_GPIO27_PULLUP
+  RP_DBG_ID1_STRAP ~~~ S3_BOOT_PULLUP ~~~ C5_BOOT_PULLUP ~~~ RP_BOOT_PULLUP ~~~ C5_GPIO27_PULLUP ~~~ RP_VREG_INDUCTOR ~~~ RP_VREG_VIN_BULK ~~~ RP_VREG_OUTPUT_BULK ~~~ RP_VREG_AVDD_FILTER_RES ~~~ RP_VREG_AVDD_FILTER_CAP ~~~ RP_DVDD_REMOTE_BULK ~~~ RP_CLOCK
+  RP_CLOCK_SERIES ~~~ RP_CLOCK_LOAD_XIN ~~~ RP_CLOCK_LOAD_XOUT ~~~ RP_DVDD10_BYPASS ~~~ RP_DVDD32_BYPASS ~~~ RP_DVDD51_BYPASS ~~~ RP_IOVDD5_BYPASS ~~~ RP_IOVDD15_BYPASS ~~~ RP_IOVDD24_BYPASS ~~~ RP_IOVDD29_BYPASS ~~~ RP_IOVDD41_BYPASS ~~~ RP_IOVDD50_BYPASS
+  RP_IOVDD60_BYPASS ~~~ RP_IOVDD76_BYPASS ~~~ RP_ADC_AVDD_BYPASS ~~~ RP_USB_OTP_VDD_BYPASS ~~~ RP_QSPI_IOVDD_BYPASS
 ```
 
 ### 20. Always-on RUN/KILL, watchdog и аппаратный запрет передачи — узлы 1/2
@@ -2267,6 +2293,77 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NO_CONNECT` | `c5_service_usb_switch.HSD2_MINUS` | `abstract:no-connect` | no hidden second data destination |
 | `NO_CONNECT` | `c5_service_usb_connector.A8_SBU1` | `abstract:no-connect` | service port implements no Alt Mode |
 | `NO_CONNECT` | `c5_service_usb_connector.B8_SBU2` | `abstract:no-connect` | service port implements no Alt Mode |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_5` | first real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_15` | second real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_24` | third real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_29` | fourth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_41` | fifth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_50` | sixth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_60` | seventh real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_76` | eighth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.ADC_AVDD` | ADC analogue supply is present even when ADC functionality is not the active signal group |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.USB_OTP_VDD` | USB PHY and OTP supply is present for independent recovery |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.QSPI_IOVDD` | stacked-flash QSPI I/O supply is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.VREG_VIN` | the internal 1.1-V regulator input follows the official 3.3-V reference circuit |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_vreg_vin_bulk.END_1` | exact 4.7-uF regulator input capacitor follows the official reference |
+| `POWER_GROUND` | `rp_vreg_vin_bulk.END_2` | `abstract:power-ground` | regulator input loop returns locally to the package power ground |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_vreg_avdd_filter_res.END_1` | exact 33-Ohm regulator-analogue RC filter input |
+| `RP_VREG_AVDD_FILTERED` | `rp_vreg_avdd_filter_res.END_2` | `rp.VREG_AVDD` | noise-sensitive regulator analogue supply is not tied directly to the noisy input rail |
+| `RP_VREG_AVDD_FILTERED` | `rp.VREG_AVDD` | `rp_vreg_avdd_filter_cap.END_1` | exact 4.7-uF filter capacitor follows the official reference |
+| `POWER_GROUND` | `rp_vreg_avdd_filter_cap.END_2` | `abstract:power-ground` | regulator analogue filter returns outside the switching-current loop |
+| `RP_VREG_LX_SW` | `rp.VREG_LX` | `rp_vreg_inductor.END_2` | switched package contact reaches the non-dot end of the exact reference inductor |
+| `RP_CORE_1V1` | `rp_vreg_inductor.END_1` | `rp.VREG_FB` | dot-marked inductor end faces the filtered 1.1-V node exactly as in the qualified reference layout |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp.DVDD_10` | first digital-core supply contact is fed by the filtered regulator output |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp.DVDD_32` | second digital-core supply contact is fed by the filtered regulator output |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp.DVDD_51` | third digital-core supply contact is fed by the filtered regulator output |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp_vreg_output_bulk.END_1` | exact 4.7-uF regulator output capacitor sits inside the switching loop |
+| `RP_VREG_POWER_GROUND` | `rp_vreg_output_bulk.END_2` | `rp.VREG_PGND` | regulator output return closes directly at the dedicated package power-ground contact |
+| `RP_VREG_POWER_GROUND` | `rp.VREG_PGND` | `abstract:power-ground-dedicated-via` | the high-current switching return joins the ground plane only at its controlled local node |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp_dvdd_remote_bulk.END_1` | official remote-side 4.7-uF core capacitor improves regulator stability |
+| `POWER_GROUND` | `rp_dvdd_remote_bulk.END_2` | `abstract:power-ground` | remote core bulk returns locally on the opposite package side |
+| `POWER_GROUND` | `rp.GND_EP` | `abstract:power-ground-multivia` | real exposed pad 81 is explicitly bonded through a low-impedance via array |
+| `RP_CORE_1V1` | `rp.DVDD_10` | `rp_dvdd10_bypass.END_1` | one 100-nF capacitor is reserved at DVDD contact 10 |
+| `POWER_GROUND` | `rp_dvdd10_bypass.END_2` | `abstract:power-ground` | DVDD10 high-frequency return |
+| `RP_CORE_1V1` | `rp.DVDD_32` | `rp_dvdd32_bypass.END_1` | one 100-nF capacitor is reserved at DVDD contact 32 |
+| `POWER_GROUND` | `rp_dvdd32_bypass.END_2` | `abstract:power-ground` | DVDD32 high-frequency return |
+| `RP_CORE_1V1` | `rp.DVDD_51` | `rp_dvdd51_bypass.END_1` | one 100-nF capacitor is reserved at DVDD contact 51 |
+| `POWER_GROUND` | `rp_dvdd51_bypass.END_2` | `abstract:power-ground` | DVDD51 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_5` | `rp_iovdd5_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd5_bypass.END_2` | `abstract:power-ground` | IOVDD5 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_15` | `rp_iovdd15_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd15_bypass.END_2` | `abstract:power-ground` | IOVDD15 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_24` | `rp_iovdd24_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd24_bypass.END_2` | `abstract:power-ground` | IOVDD24 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_29` | `rp_iovdd29_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd29_bypass.END_2` | `abstract:power-ground` | IOVDD29 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_41` | `rp_iovdd41_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd41_bypass.END_2` | `abstract:power-ground` | IOVDD41 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_50` | `rp_iovdd50_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd50_bypass.END_2` | `abstract:power-ground` | IOVDD50 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_60` | `rp_iovdd60_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd60_bypass.END_2` | `abstract:power-ground` | IOVDD60 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_76` | `rp_iovdd76_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd76_bypass.END_2` | `abstract:power-ground` | IOVDD76 high-frequency return |
+| `3V3_MAIN` | `rp.ADC_AVDD` | `rp_adc_avdd_bypass.END_1` | dedicated 100-nF ADC supply bypass |
+| `POWER_GROUND` | `rp_adc_avdd_bypass.END_2` | `abstract:power-ground` | ADC analogue supply high-frequency return |
+| `3V3_MAIN` | `rp.USB_OTP_VDD` | `rp_usb_otp_vdd_bypass.END_1` | dedicated 100-nF USB PHY and OTP supply bypass |
+| `POWER_GROUND` | `rp_usb_otp_vdd_bypass.END_2` | `abstract:power-ground` | USB PHY and OTP supply high-frequency return |
+| `3V3_MAIN` | `rp.QSPI_IOVDD` | `rp_qspi_iovdd_bypass.END_1` | dedicated 100-nF stacked-flash I/O supply bypass |
+| `POWER_GROUND` | `rp_qspi_iovdd_bypass.END_2` | `abstract:power-ground` | QSPI I/O supply high-frequency return |
+| `RP_XIN` | `rp.XIN` | `rp_clock.X1` | exact 12-MHz reference crystal is required for reliable USB timing |
+| `RP_XIN` | `rp.XIN` | `rp_clock_load_xin.END_1` | official 15-pF XIN load capacitor |
+| `POWER_GROUND` | `rp_clock_load_xin.END_2` | `abstract:power-ground` | short crystal-load return |
+| `RP_XOUT_CRYSTAL` | `rp_clock.X2` | `rp_clock_series.END_1` | official crystal-side XOUT node |
+| `RP_XOUT_CRYSTAL` | `rp_clock.X2` | `rp_clock_load_xout.END_1` | official 15-pF XOUT load capacitor stays on the crystal side of the series resistor |
+| `POWER_GROUND` | `rp_clock_load_xout.END_2` | `abstract:power-ground` | short crystal-load return |
+| `RP_XOUT` | `rp_clock_series.END_2` | `rp.XOUT` | official 1-kOhm series resistance prevents crystal overdrive at 3.3-V IOVDD |
+| `POWER_GROUND` | `rp_clock.GND_2` | `abstract:power-ground` | first crystal case pad is grounded |
+| `POWER_GROUND` | `rp_clock.GND_4` | `abstract:power-ground` | second crystal case pad is grounded |
+| `NO_CONNECT` | `rp.QSPI_SD3` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SCLK` | `abstract:no-connect` | stacked-flash clock remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SD0` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SD2` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SD1` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
 | `POWER_GROUND` | `rp_service_usb_connector.A1_GND` | `rp_service_usb_connector.A12_GND` | all four RP service-port ground contacts join the local connector return |
 | `POWER_GROUND` | `rp_service_usb_connector.A12_GND` | `rp_service_usb_connector.B1_GND` | second RP service-port ground pair is physically soldered |
 | `POWER_GROUND` | `rp_service_usb_connector.B1_GND` | `rp_service_usb_connector.B12_GND` | all RP service-port ground contacts remain present |
@@ -4997,6 +5094,26 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `s3` lifecycle: `active_orderable`.
 - `rp` uses `SC1512-A4` as `verified_exact_rp2354b0a4_7inch_reel_order_code`, not an accepted production choice.
 - `rp` lifecycle: `active_orderable`.
+- `rp_vreg_inductor` uses `Abracon AOTA-B201610S3R3-101-T` as `verified_exact_rp2350_reference_regulator_inductor`, not an accepted production choice.
+- `rp_vreg_inductor` lifecycle: `active_orderable`.
+- `rp_vreg_vin_bulk` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_vreg_vin_bulk` lifecycle: `active_orderable`.
+- `rp_vreg_output_bulk` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_vreg_output_bulk` lifecycle: `active_orderable`.
+- `rp_vreg_avdd_filter_res` uses `Yageo RC0402FR-0733RL` as `verified_exact_rp2350_reference_regulator_resistor`, not an accepted production choice.
+- `rp_vreg_avdd_filter_res` lifecycle: `active_orderable`.
+- `rp_vreg_avdd_filter_cap` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_vreg_avdd_filter_cap` lifecycle: `active_orderable`.
+- `rp_dvdd_remote_bulk` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_dvdd_remote_bulk` lifecycle: `active_orderable`.
+- `rp_clock` uses `Abracon ABM8-272-T3` as `verified_exact_rp2350_reference_crystal`, not an accepted production choice.
+- `rp_clock` lifecycle: `active_orderable`.
+- `rp_clock_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `rp_clock_series` lifecycle: `active_orderable`.
+- `rp_clock_load_xin` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
+- `rp_clock_load_xin` lifecycle: `active_orderable`.
+- `rp_clock_load_xout` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
+- `rp_clock_load_xout` lifecycle: `active_orderable`.
 - `m1_ui_plug` uses `Hirose FX8C-80P-SV1(92)` as `verified_exact_m1_11mm_plug`, not an accepted production choice.
 - `m1_rf_receptacle` uses `Hirose FX8C-80S-SV5(92)` as `verified_exact_m1_11mm_receptacle`, not an accepted production choice.
 - `s3_external_rp_sma` uses `GCT RFPC-SMA32-FN-175-A` as `verified_exact_external_reverse_polarity_sma_body`, not an accepted production choice.

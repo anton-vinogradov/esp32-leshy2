@@ -3466,10 +3466,10 @@
       ],
       "qualification": "verified_exact_rp2354b0a4_7inch_reel_order_code",
       "source": {
-        "document": "RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash",
+        "document": "RP2350 Datasheet and Hardware design with RP2350; RP2354B uses the B-package pinout and stacked 2 MB flash",
         "version": "build-date 2025-02-20",
         "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [

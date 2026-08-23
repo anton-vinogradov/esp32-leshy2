@@ -1223,10 +1223,10 @@
       "ordering_identity_note": "SC1512-A4 is Raspberry Pi's actual 7-inch-reel order code for RP2354B0A4; SC1512(13)-A4 is the same A4 silicon on a 13-inch reel and is not the first-target purchasing line",
       "dimensions_mm": [10.0, 10.0, 0.9],
       "source": {
-        "document": "RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash",
+        "document": "RP2350 Datasheet and Hardware design with RP2350; RP2354B uses the B-package pinout and stacked 2 MB flash",
         "version": "build-date 2025-02-20",
         "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-23"
       },
       "orderable_source": {
         "document": "SC1512-A4 exact authorized-distributor identity and stock page; cut tape is available from the 500-piece 7-inch reel",
@@ -1261,30 +1261,54 @@
         "GPIO2": {"physical": "79", "role": "gpio"}, "GPIO3": {"physical": "80", "role": "gpio"},
         "GPIO4": {"physical": "1", "role": "gpio"}, "GPIO5": {"physical": "2", "role": "gpio"},
         "GPIO6": {"physical": "3", "role": "gpio"}, "GPIO7": {"physical": "4", "role": "gpio"},
+        "IOVDD_5": {"physical": "5", "role": "power"},
         "GPIO8": {"physical": "6", "role": "gpio"}, "GPIO9": {"physical": "7", "role": "gpio"},
         "GPIO10": {"physical": "8", "role": "gpio"}, "GPIO11": {"physical": "9", "role": "gpio"},
+        "DVDD_10": {"physical": "10", "role": "power"},
         "GPIO12": {"physical": "11", "role": "gpio"}, "GPIO13": {"physical": "12", "role": "gpio"},
         "GPIO14": {"physical": "13", "role": "gpio"}, "GPIO15": {"physical": "14", "role": "gpio"},
+        "IOVDD_15": {"physical": "15", "role": "power"},
         "GPIO16": {"physical": "16", "role": "gpio"}, "GPIO17": {"physical": "17", "role": "gpio"},
         "GPIO18": {"physical": "18", "role": "gpio"}, "GPIO19": {"physical": "19", "role": "gpio"},
         "GPIO20": {"physical": "20", "role": "gpio"}, "GPIO21": {"physical": "21", "role": "gpio"},
         "GPIO22": {"physical": "22", "role": "gpio"}, "GPIO23": {"physical": "23", "role": "gpio"},
+        "IOVDD_24": {"physical": "24", "role": "power"},
         "GPIO24": {"physical": "25", "role": "gpio"}, "GPIO25": {"physical": "26", "role": "gpio"},
         "GPIO26": {"physical": "27", "role": "gpio"}, "GPIO27": {"physical": "28", "role": "gpio"},
+        "IOVDD_29": {"physical": "29", "role": "power"},
+        "XIN": {"physical": "30", "role": "clock"}, "XOUT": {"physical": "31", "role": "clock"},
+        "DVDD_32": {"physical": "32", "role": "power"},
         "SWCLK": {"physical": "33", "role": "service"}, "SWDIO": {"physical": "34", "role": "service"},
         "RUN": {"physical": "35", "role": "reset"},
         "GPIO28": {"physical": "36", "role": "gpio"}, "GPIO29": {"physical": "37", "role": "gpio"},
         "GPIO30": {"physical": "38", "role": "gpio"}, "GPIO31": {"physical": "39", "role": "gpio"},
         "GPIO32": {"physical": "40", "role": "gpio"}, "GPIO33": {"physical": "42", "role": "gpio"},
+        "IOVDD_41": {"physical": "41", "role": "power"},
         "GPIO34": {"physical": "43", "role": "gpio"}, "GPIO35": {"physical": "44", "role": "gpio"},
         "GPIO36": {"physical": "45", "role": "gpio"}, "GPIO37": {"physical": "46", "role": "gpio"},
         "GPIO38": {"physical": "47", "role": "gpio"}, "GPIO39": {"physical": "48", "role": "gpio"},
         "GPIO40": {"physical": "49", "role": "gpio"}, "GPIO41": {"physical": "52", "role": "gpio"},
+        "IOVDD_50": {"physical": "50", "role": "power"}, "DVDD_51": {"physical": "51", "role": "power"},
         "GPIO42": {"physical": "53", "role": "gpio"}, "GPIO43": {"physical": "54", "role": "gpio"},
         "GPIO44": {"physical": "55", "role": "gpio"}, "GPIO45": {"physical": "56", "role": "gpio"},
         "GPIO46": {"physical": "57", "role": "gpio"}, "GPIO47": {"physical": "58", "role": "gpio"},
+        "ADC_AVDD": {"physical": "59", "role": "power"}, "IOVDD_60": {"physical": "60", "role": "power"},
+        "VREG_AVDD": {"physical": "61", "role": "power"}, "VREG_PGND": {"physical": "62", "role": "power"},
+        "VREG_LX": {"physical": "63", "role": "power"}, "VREG_VIN": {"physical": "64", "role": "power"},
+        "VREG_FB": {"physical": "65", "role": "power"},
         "USB_DM": {"physical": "66", "role": "service"}, "USB_DP": {"physical": "67", "role": "service"},
-        "QSPI_SS_USB_BOOT": {"physical": "75", "role": "service"}
+        "USB_OTP_VDD": {"physical": "68", "role": "power"}, "QSPI_IOVDD": {"physical": "69", "role": "power"},
+        "QSPI_SD3": {"physical": "70", "role": "internal_flash_bus"}, "QSPI_SCLK": {"physical": "71", "role": "internal_flash_bus"},
+        "QSPI_SD0": {"physical": "72", "role": "internal_flash_bus"}, "QSPI_SD2": {"physical": "73", "role": "internal_flash_bus"},
+        "QSPI_SD1": {"physical": "74", "role": "internal_flash_bus"},
+        "QSPI_SS_USB_BOOT": {"physical": "75", "role": "service"}, "IOVDD_76": {"physical": "76", "role": "power"},
+        "GND_EP": {"physical": "81", "role": "power"}
+      },
+      "package_contact_contract": {
+        "perimeter_contacts": 80,
+        "exposed_pad_contact": 81,
+        "embedded_flash_mbytes": 2,
+        "qspi_bus_note": "QSPI contacts remain real package contacts even though the first 2 MB flash die is stacked; QSPI_SS is also USB_BOOT and the other QSPI contacts are explicitly left open unless a secondary flash is populated."
       },
       "strapping_contacts": [],
       "service_required": ["RUN", "SWCLK", "SWDIO", "USB_DM", "USB_DP", "QSPI_SS_USB_BOOT"],
@@ -3389,6 +3413,76 @@
         "X1": {"physical": "1", "role": "clock"}, "GND_2": {"physical": "2", "role": "power"},
         "X2": {"physical": "3", "role": "clock"}, "GND_4": {"physical": "4", "role": "power"}
       }
+    },
+    "abracon_abm8_272_t3": {
+      "mpn": "Abracon ABM8-272-T3",
+      "kind": "3_2x2_5mm_12mhz_10pf_rp2350_reference_crystal",
+      "qualification": "verified_exact_rp2350_reference_crystal",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [3.2, 2.5, 0.8],
+      "source": {
+        "document": "ABM8-272-T3 source-control drawing and Raspberry Pi Hardware design with RP2350 chapter 4",
+        "version": "Abracon drawing 456603 revision B; Raspberry Pi guide current 2026-08-23",
+        "url": "https://abracon.com/datasheets/ABM8-272-T3.pdf",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "ABM8-272-T3 active authorized-distributor exact-part page; 31,774 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/abracon-llc/ABM8-272-T3/22472366",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.4085,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/abracon-llc/ABM8-272-T3/22472366", "checked": "2026-08-23"}
+      },
+      "electrical_contract": {
+        "frequency_mhz": 12.0,
+        "load_capacitance_pf": 10,
+        "esr_ohm_max": 50,
+        "frequency_tolerance_ppm": 30,
+        "frequency_stability_ppm": 30,
+        "reference_load_capacitance_pf_each": 15,
+        "reference_series_resistance_ohm": 1000
+      },
+      "programmable": false,
+      "contacts": {
+        "X1": {"physical": "1", "role": "clock"}, "GND_2": {"physical": "2", "role": "power"},
+        "X2": {"physical": "3", "role": "clock"}, "GND_4": {"physical": "4", "role": "power"}
+      }
+    },
+    "abracon_aota_b201610s3r3_101_t": {
+      "mpn": "Abracon AOTA-B201610S3R3-101-T",
+      "kind": "3_3uh_2_1a_0806_rp2350_reference_regulator_inductor",
+      "qualification": "verified_exact_rp2350_reference_regulator_inductor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [2.0, 1.6, 1.0],
+      "source": {
+        "document": "AOTA-B201610S3R3-101-T exact datasheet and Raspberry Pi Hardware design with RP2350 chapter 2",
+        "version": "Abracon revision A 2024-09-13; Raspberry Pi guide current 2026-08-23",
+        "url": "https://abracon.com/datasheets/AOTA-B201610S3R3-101-T.pdf",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "AOTA-B201610S3R3-101-T active authorized-distributor exact-part page; 1,581 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/abracon-llc/AOTA-B201610S3R3-101-T/25621527",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1512,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/abracon-llc/AOTA-B201610S3R3-101-T/25621527", "checked": "2026-08-23"}
+      },
+      "electrical_contract": {
+        "inductance_uh": 3.3,
+        "rated_current_a": 2.1,
+        "saturation_current_a": 2.4,
+        "dcr_ohm_max": 0.14,
+        "orientation_marking_required": true,
+        "layout_note": "The dot-marked end and the regulator-loop placement follow the Raspberry Pi reference layout; arbitrary rotation is not allowed."
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
     },
     "littelfuse_sesd0402x1un_0020_090": {
       "mpn": "Littelfuse SESD0402X1UN-0020-090",
@@ -7682,6 +7776,38 @@
         "END_2": {"physical": "2", "role": "power"}
       }
     },
+    "tdk_c1005x5r0j475k050bc": {
+      "mpn": "TDK C1005X5R0J475K050BC",
+      "kind": "4_7uf_10pct_6_3v_x5r_0402_rp2350_reference_capacitor",
+      "qualification": "verified_exact_rp2350_reference_regulator_capacitor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.65],
+      "source": {
+        "document": "TDK C1005X5R0J475K050BC product data and characteristic model; Raspberry Pi Hardware design with RP2350 chapter 2",
+        "version": "production status and exact characteristics checked 2026-08-23",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X5R0J475K050BC",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "C1005X5R0J475K050BC active authorized-distributor exact-part page; 35,565 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/tdk-corporation/C1005X5R0J475K050BC/2443425",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0903,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/tdk-corporation/C1005X5R0J475K050BC/2443425", "checked": "2026-08-23"}
+      },
+      "electrical_contract": {
+        "capacitance_uf": 4.7,
+        "tolerance_pct": 10,
+        "rated_voltage_v": 6.3,
+        "dielectric": "X5R",
+        "reference_note": "Tighter than the Raspberry Pi 20-percent reference tolerance; DC-bias and placement still close with the exact regulator layout."
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
+    },
     "kemet_c0402c330j5gactu": {
       "mpn": "KEMET C0402C330J5GACTU",
       "kind": "33pf_5pct_50v_c0g_0402_buck_feedforward_capacitor",
@@ -8614,6 +8740,37 @@
       },
       "programmable": false,
       "contacts": {"END_1": {"physical": "1", "role": "signal"}, "END_2": {"physical": "2", "role": "signal"}}
+    },
+    "yageo_rc0402fr_0733rl": {
+      "mpn": "Yageo RC0402FR-0733RL",
+      "kind": "33ohm_1pct_0402_rp2350_vreg_avdd_filter_resistor",
+      "qualification": "verified_exact_rp2350_reference_regulator_resistor",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [1.0, 0.5, 0.4],
+      "source": {
+        "document": "RC0402FR-0733RL exact product specification and Raspberry Pi Hardware design with RP2350 chapter 2",
+        "version": "Yageo generated 2025-11-12; Raspberry Pi guide current 2026-08-23",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733RL",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "RC0402FR-0733RL active authorized-distributor exact-part page; 1,514,753 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0733RL/726593",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0103,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/yageo/RC0402FR-0733RL/726593", "checked": "2026-08-23"}
+      },
+      "electrical_contract": {
+        "resistance_ohm": 33,
+        "tolerance_pct": 1,
+        "temperature_coefficient_ppm_per_c": 100,
+        "power_w": 0.063
+      },
+      "programmable": false,
+      "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
     },
     "yageo_rc0402fr_07470rl": {
       "mpn": "Yageo RC0402FR-07470RL",

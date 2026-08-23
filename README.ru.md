@@ -110,13 +110,13 @@ target/emulator gate ещё не закрыты, ни один заказ не �
 <details open>
 <summary><strong>⭐ Текущая фаза H2 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H2.3.5 -->
+<!-- current-substep: H2.3.6 -->
 
-**Точный маркер: `H2.3.5`** — реализовать и проверить RP2354 core, встроенный
-flash, native USB, recovery и service access на `RF_30_RP2354_CORE_SERVICE`.
+**Точный маркер: `H2.3.6`** — реализовать и проверить три независимых
+полнофункциональных nRF24-тракта RX/TX/mix на `RF_31_NRF24_X3`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
-- ✅ `H2.0.1` — проверен полный реестр из 997 схемных строк.
+- ✅ `H2.0.1` — проверен полный реестр из 1 021 схемной строки.
 - ✅ `H2.0.2` — проверены четыре проекта, границы плат и имена цепей.
 - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт и drift checks двух репозиториев.
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта и 28 native-листов.
@@ -126,8 +126,8 @@ flash, native USB, recovery и service access на `RF_30_RP2354_CORE_SERVICE`.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`.
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`.
-  - ▶️ **`H2.3.5` — сейчас:** `RF_30_RP2354_CORE_SERVICE`.
-  - ⏳ `H2.3.6` — `RF_31_NRF24_X3`.
+  - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
+  - ▶️ **`H2.3.6` — сейчас:** `RF_31_NRF24_X3`.
   - ⏳ `H2.3.7` — `RF_32_SUBGHZ_VOICE`.
   - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
   - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.

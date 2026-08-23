@@ -20,6 +20,8 @@
 | Device id | Exact MPN / boundary | Qualification | Lifecycle | Primary source | Lifecycle evidence |
 |---|---|---|---|---|---|
 | `abracon_abm8_26mhz_10_d_1_g_t` | `Abracon ABM8-26.000MHZ-10-D-1-G-T` | `verified_exact_cc_reference_crystal` | `active_orderable` | [ABM8 low-profile SMD crystal datasheet and exact order-code data current product data checked 2026-08-18](https://abracon.com/Resonators/ABM8.pdf) | same primary source |
+| `abracon_abm8_272_t3` | `Abracon ABM8-272-T3` | `verified_exact_rp2350_reference_crystal` | `active_orderable` | [ABM8-272-T3 source-control drawing and Raspberry Pi Hardware design with RP2350 chapter 4 Abracon drawing 456603 revision B; Raspberry Pi guide current 2026-08-23](https://abracon.com/datasheets/ABM8-272-T3.pdf) | same primary source |
+| `abracon_aota_b201610s3r3_101_t` | `Abracon AOTA-B201610S3R3-101-T` | `verified_exact_rp2350_reference_regulator_inductor` | `active_orderable` | [AOTA-B201610S3R3-101-T exact datasheet and Raspberry Pi Hardware design with RP2350 chapter 2 Abracon revision A 2024-09-13; Raspberry Pi guide current 2026-08-23](https://abracon.com/datasheets/AOTA-B201610S3R3-101-T.pdf) | same primary source |
 | `adi_ad8314acpz_rl7` | `Analog Devices AD8314ACPZ-RL7` | `verified_exact_wideband_rf_power_detector` | `production_active_orderable` | [AD8314 100 MHz to 2.7 GHz RF detector/controller datasheet Rev. C](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | same primary source |
 | `adi_ltc5532_es6_trmpbf` | `LTC5532ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5532 Precision 300MHz to 7GHz RF Detector datasheet 5532f](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | same primary source |
 | `adi_max17320_g20_t` | `Analog Devices MAX17320G20+T` | `verified_candidate` | `recommended_for_new_designs` | [MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet Rev. 12, July 2025](https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf) | same primary source |
@@ -114,7 +116,7 @@
 | `pui_as02404po` | `PUI Audio AS02404PO` | `verified_candidate` | `active_orderable` | [AS02404PO Speaker datasheet 2024 current datasheet checked 2026-08-18](https://api.puiaudio.com/filename/AS02404PO.pdf) | same primary source |
 | `qdtech_hmx035ctft_001` | `HMX035CTFT-001 (QDtech schematic assembly marking)` | `verified_candidate` | `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified` | [QDtech ES3C35P ESP32-S3 schematic official published schematic](https://www.lcdwiki.com/res/ES3C35P/ESP32-S3%E5%8E%9F%E7%90%86%E5%9B%BE.pdf) | same primary source |
 | `rp2354a_a4` | `RP2354A A4 (exact order code required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354A uses the same A-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
-| `rp2354b_a4` | `SC1512-A4` | `verified_exact_rp2354b0a4_7inch_reel_order_code` | `active_orderable` | [RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
+| `rp2354b_a4` | `SC1512-A4` | `verified_exact_rp2354b0a4_7inch_reel_order_code` | `active_orderable` | [RP2350 Datasheet and Hardware design with RP2350; RP2354B uses the B-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
 | `same_sky_cmej_0413_42_smt_tr` | `Same Sky CMEJ-0413-42-SMT-TR` | `verified_candidate` | `active_orderable` | [CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet Rev. 1.04, September 2024](https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf) | same primary source |
 | `same_sky_sj_43504_smt_tr` | `Same Sky SJ-43504-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ-43504-SMT-TR Audio Jack datasheet Rev. 1.06, September 2024](https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf) | same primary source |
 | `samtec_ftsh_105_01_l_dv_k_p_tr` | `Samtec FTSH-105-01-L-DV-K-P-TR` | `verified_exact_three_domain_dbg10_header` | `active_orderable` | [Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint drawing revision FX; -105/-01/-L/-DV/-K/-P configuration](https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf) | same primary source |
@@ -131,6 +133,7 @@
 | `tca6424argjr` | `TCA6424ARGJR` | `verified_exact_main_slow_io_core` | `active` | [TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet SCPS193D](https://www.ti.com/lit/ds/symlink/tca6424a.pdf) | same primary source |
 | `tca9535pwr` | `TCA9535PWR` | `verified_candidate` | `active` | [TCA9535 Remote 16-Bit I2C/SMBus I/O Expander datasheet SCPS201E](https://www.ti.com/lit/ds/symlink/tca9535.pdf) | same primary source |
 | `tdk_b57332v5103f360` | `TDK B57332V5103F360` | `verified_candidate` | `active` | [B57 V5 automotive SMD NTC datasheet and exact product page PPD ML PD 2025-10-30](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360) | same primary source |
+| `tdk_c1005x5r0j475k050bc` | `TDK C1005X5R0J475K050BC` | `verified_exact_rp2350_reference_regulator_capacitor` | `active_orderable` | [TDK C1005X5R0J475K050BC product data and characteristic model; Raspberry Pi Hardware design with RP2350 chapter 2 production status and exact characteristics checked 2026-08-23](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X5R0J475K050BC) | same primary source |
 | `tdk_c1005x7r1h104k050bb` | `TDK C1005X7R1H104K050BB` | `verified_candidate` | `active` | [TDK C1005X7R1H104K050BB product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB) | same primary source |
 | `tdk_c1608x7r1c105k080ac` | `TDK C1608X7R1C105K080AC` | `verified_candidate` | `active_production` | [TDK C1608X7R1C105K080AC product and characterization data production status and DC-bias/temperature curves checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC) | same primary source |
 | `tdk_c1608x7s2a104k080ab` | `TDK C1608X7S2A104K080AB` | `verified_candidate` | `active` | [TDK commercial mid-voltage MLCC datasheet current catalog checked 2026-08-18](https://product.tdk.com/info/en/catalog/datasheets/mlcc_commercial_midvoltage_en.pdf) | same primary source |
@@ -205,6 +208,7 @@
 | `yageo_rc0402fr_0730k1l` | `Yageo RC0402FR-0730K1L` | `verified_candidate` | `active` | [Yageo RC0402FR-0730K1L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730K1L) | same primary source |
 | `yageo_rc0402fr_0730kl` | `Yageo RC0402FR-0730KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0730KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0730KL) | same primary source |
 | `yageo_rc0402fr_0733kl` | `Yageo RC0402FR-0733KL` | `verified_candidate` | `active` | [Yageo RC0402FR-0733KL product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733KL) | same primary source |
+| `yageo_rc0402fr_0733rl` | `Yageo RC0402FR-0733RL` | `verified_exact_rp2350_reference_regulator_resistor` | `active_orderable` | [RC0402FR-0733RL exact product specification and Raspberry Pi Hardware design with RP2350 chapter 2 Yageo generated 2025-11-12; Raspberry Pi guide current 2026-08-23](https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0733RL) | same primary source |
 | `yageo_rc0402fr_073k32l` | `Yageo RC0402FR-073K32L` | `verified_candidate` | `active` | [Yageo RC0402FR-073K32L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-073K32L) | same primary source |
 | `yageo_rc0402fr_0742k2l` | `Yageo RC0402FR-0742K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-0742K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0742K2L) | same primary source |
 | `yageo_rc0402fr_0744k2l` | `Yageo RC0402FR-0744K2L` | `verified_candidate` | `active` | [Yageo RC0402FR-0744K2L product specification current product data checked 2026-08-18](https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0744K2L) | same primary source |
@@ -786,6 +790,77 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NO_CONNECT` | `c5_service_usb_switch.HSD2_MINUS` | `abstract:no-connect` | no hidden second data destination |
 | `NO_CONNECT` | `c5_service_usb_connector.A8_SBU1` | `abstract:no-connect` | service port implements no Alt Mode |
 | `NO_CONNECT` | `c5_service_usb_connector.B8_SBU2` | `abstract:no-connect` | service port implements no Alt Mode |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_5` | first real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_15` | second real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_24` | third real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_29` | fourth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_41` | fifth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_50` | sixth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_60` | seventh real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.IOVDD_76` | eighth real RP2354B I/O supply contact is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.ADC_AVDD` | ADC analogue supply is present even when ADC functionality is not the active signal group |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.USB_OTP_VDD` | USB PHY and OTP supply is present for independent recovery |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.QSPI_IOVDD` | stacked-flash QSPI I/O supply is explicitly powered |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp.VREG_VIN` | the internal 1.1-V regulator input follows the official 3.3-V reference circuit |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_vreg_vin_bulk.END_1` | exact 4.7-uF regulator input capacitor follows the official reference |
+| `POWER_GROUND` | `rp_vreg_vin_bulk.END_2` | `abstract:power-ground` | regulator input loop returns locally to the package power ground |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_vreg_avdd_filter_res.END_1` | exact 33-Ohm regulator-analogue RC filter input |
+| `RP_VREG_AVDD_FILTERED` | `rp_vreg_avdd_filter_res.END_2` | `rp.VREG_AVDD` | noise-sensitive regulator analogue supply is not tied directly to the noisy input rail |
+| `RP_VREG_AVDD_FILTERED` | `rp.VREG_AVDD` | `rp_vreg_avdd_filter_cap.END_1` | exact 4.7-uF filter capacitor follows the official reference |
+| `POWER_GROUND` | `rp_vreg_avdd_filter_cap.END_2` | `abstract:power-ground` | regulator analogue filter returns outside the switching-current loop |
+| `RP_VREG_LX_SW` | `rp.VREG_LX` | `rp_vreg_inductor.END_2` | switched package contact reaches the non-dot end of the exact reference inductor |
+| `RP_CORE_1V1` | `rp_vreg_inductor.END_1` | `rp.VREG_FB` | dot-marked inductor end faces the filtered 1.1-V node exactly as in the qualified reference layout |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp.DVDD_10` | first digital-core supply contact is fed by the filtered regulator output |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp.DVDD_32` | second digital-core supply contact is fed by the filtered regulator output |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp.DVDD_51` | third digital-core supply contact is fed by the filtered regulator output |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp_vreg_output_bulk.END_1` | exact 4.7-uF regulator output capacitor sits inside the switching loop |
+| `RP_VREG_POWER_GROUND` | `rp_vreg_output_bulk.END_2` | `rp.VREG_PGND` | regulator output return closes directly at the dedicated package power-ground contact |
+| `RP_VREG_POWER_GROUND` | `rp.VREG_PGND` | `abstract:power-ground-dedicated-via` | the high-current switching return joins the ground plane only at its controlled local node |
+| `RP_CORE_1V1` | `rp.VREG_FB` | `rp_dvdd_remote_bulk.END_1` | official remote-side 4.7-uF core capacitor improves regulator stability |
+| `POWER_GROUND` | `rp_dvdd_remote_bulk.END_2` | `abstract:power-ground` | remote core bulk returns locally on the opposite package side |
+| `POWER_GROUND` | `rp.GND_EP` | `abstract:power-ground-multivia` | real exposed pad 81 is explicitly bonded through a low-impedance via array |
+| `RP_CORE_1V1` | `rp.DVDD_10` | `rp_dvdd10_bypass.END_1` | one 100-nF capacitor is reserved at DVDD contact 10 |
+| `POWER_GROUND` | `rp_dvdd10_bypass.END_2` | `abstract:power-ground` | DVDD10 high-frequency return |
+| `RP_CORE_1V1` | `rp.DVDD_32` | `rp_dvdd32_bypass.END_1` | one 100-nF capacitor is reserved at DVDD contact 32 |
+| `POWER_GROUND` | `rp_dvdd32_bypass.END_2` | `abstract:power-ground` | DVDD32 high-frequency return |
+| `RP_CORE_1V1` | `rp.DVDD_51` | `rp_dvdd51_bypass.END_1` | one 100-nF capacitor is reserved at DVDD contact 51 |
+| `POWER_GROUND` | `rp_dvdd51_bypass.END_2` | `abstract:power-ground` | DVDD51 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_5` | `rp_iovdd5_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd5_bypass.END_2` | `abstract:power-ground` | IOVDD5 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_15` | `rp_iovdd15_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd15_bypass.END_2` | `abstract:power-ground` | IOVDD15 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_24` | `rp_iovdd24_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd24_bypass.END_2` | `abstract:power-ground` | IOVDD24 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_29` | `rp_iovdd29_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd29_bypass.END_2` | `abstract:power-ground` | IOVDD29 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_41` | `rp_iovdd41_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd41_bypass.END_2` | `abstract:power-ground` | IOVDD41 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_50` | `rp_iovdd50_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd50_bypass.END_2` | `abstract:power-ground` | IOVDD50 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_60` | `rp_iovdd60_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd60_bypass.END_2` | `abstract:power-ground` | IOVDD60 high-frequency return |
+| `3V3_MAIN` | `rp.IOVDD_76` | `rp_iovdd76_bypass.END_1` | one 100-nF capacitor per IOVDD contact avoids the two-layer reference compromise |
+| `POWER_GROUND` | `rp_iovdd76_bypass.END_2` | `abstract:power-ground` | IOVDD76 high-frequency return |
+| `3V3_MAIN` | `rp.ADC_AVDD` | `rp_adc_avdd_bypass.END_1` | dedicated 100-nF ADC supply bypass |
+| `POWER_GROUND` | `rp_adc_avdd_bypass.END_2` | `abstract:power-ground` | ADC analogue supply high-frequency return |
+| `3V3_MAIN` | `rp.USB_OTP_VDD` | `rp_usb_otp_vdd_bypass.END_1` | dedicated 100-nF USB PHY and OTP supply bypass |
+| `POWER_GROUND` | `rp_usb_otp_vdd_bypass.END_2` | `abstract:power-ground` | USB PHY and OTP supply high-frequency return |
+| `3V3_MAIN` | `rp.QSPI_IOVDD` | `rp_qspi_iovdd_bypass.END_1` | dedicated 100-nF stacked-flash I/O supply bypass |
+| `POWER_GROUND` | `rp_qspi_iovdd_bypass.END_2` | `abstract:power-ground` | QSPI I/O supply high-frequency return |
+| `RP_XIN` | `rp.XIN` | `rp_clock.X1` | exact 12-MHz reference crystal is required for reliable USB timing |
+| `RP_XIN` | `rp.XIN` | `rp_clock_load_xin.END_1` | official 15-pF XIN load capacitor |
+| `POWER_GROUND` | `rp_clock_load_xin.END_2` | `abstract:power-ground` | short crystal-load return |
+| `RP_XOUT_CRYSTAL` | `rp_clock.X2` | `rp_clock_series.END_1` | official crystal-side XOUT node |
+| `RP_XOUT_CRYSTAL` | `rp_clock.X2` | `rp_clock_load_xout.END_1` | official 15-pF XOUT load capacitor stays on the crystal side of the series resistor |
+| `POWER_GROUND` | `rp_clock_load_xout.END_2` | `abstract:power-ground` | short crystal-load return |
+| `RP_XOUT` | `rp_clock_series.END_2` | `rp.XOUT` | official 1-kOhm series resistance prevents crystal overdrive at 3.3-V IOVDD |
+| `POWER_GROUND` | `rp_clock.GND_2` | `abstract:power-ground` | first crystal case pad is grounded |
+| `POWER_GROUND` | `rp_clock.GND_4` | `abstract:power-ground` | second crystal case pad is grounded |
+| `NO_CONNECT` | `rp.QSPI_SD3` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SCLK` | `abstract:no-connect` | stacked-flash clock remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SD0` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SD2` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
+| `NO_CONNECT` | `rp.QSPI_SD1` | `abstract:no-connect` | stacked-flash bus remains package-visible but no secondary external flash is populated |
 | `POWER_GROUND` | `rp_service_usb_connector.A1_GND` | `rp_service_usb_connector.A12_GND` | all four RP service-port ground contacts join the local connector return |
 | `POWER_GROUND` | `rp_service_usb_connector.A12_GND` | `rp_service_usb_connector.B1_GND` | second RP service-port ground pair is physically soldered |
 | `POWER_GROUND` | `rp_service_usb_connector.B1_GND` | `rp_service_usb_connector.B12_GND` | all RP service-port ground contacts remain present |
@@ -3516,6 +3591,26 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `s3` lifecycle: `active_orderable`.
 - `rp` uses `SC1512-A4` as `verified_exact_rp2354b0a4_7inch_reel_order_code`, not an accepted production choice.
 - `rp` lifecycle: `active_orderable`.
+- `rp_vreg_inductor` uses `Abracon AOTA-B201610S3R3-101-T` as `verified_exact_rp2350_reference_regulator_inductor`, not an accepted production choice.
+- `rp_vreg_inductor` lifecycle: `active_orderable`.
+- `rp_vreg_vin_bulk` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_vreg_vin_bulk` lifecycle: `active_orderable`.
+- `rp_vreg_output_bulk` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_vreg_output_bulk` lifecycle: `active_orderable`.
+- `rp_vreg_avdd_filter_res` uses `Yageo RC0402FR-0733RL` as `verified_exact_rp2350_reference_regulator_resistor`, not an accepted production choice.
+- `rp_vreg_avdd_filter_res` lifecycle: `active_orderable`.
+- `rp_vreg_avdd_filter_cap` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_vreg_avdd_filter_cap` lifecycle: `active_orderable`.
+- `rp_dvdd_remote_bulk` uses `TDK C1005X5R0J475K050BC` as `verified_exact_rp2350_reference_regulator_capacitor`, not an accepted production choice.
+- `rp_dvdd_remote_bulk` lifecycle: `active_orderable`.
+- `rp_clock` uses `Abracon ABM8-272-T3` as `verified_exact_rp2350_reference_crystal`, not an accepted production choice.
+- `rp_clock` lifecycle: `active_orderable`.
+- `rp_clock_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
+- `rp_clock_series` lifecycle: `active_orderable`.
+- `rp_clock_load_xin` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
+- `rp_clock_load_xin` lifecycle: `active_orderable`.
+- `rp_clock_load_xout` uses `Murata GJM1555C1H150JB01D` as `verified_exact_cc_crystal_load_passive`, not an accepted production choice.
+- `rp_clock_load_xout` lifecycle: `active_orderable`.
 - `m1_ui_plug` uses `Hirose FX8C-80P-SV1(92)` as `verified_exact_m1_11mm_plug`, not an accepted production choice.
 - `m1_rf_receptacle` uses `Hirose FX8C-80S-SV5(92)` as `verified_exact_m1_11mm_receptacle`, not an accepted production choice.
 - `s3_external_rp_sma` uses `GCT RFPC-SMA32-FN-175-A` as `verified_exact_external_reverse_polarity_sma_body`, not an accepted production choice.

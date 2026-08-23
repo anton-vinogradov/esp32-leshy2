@@ -30,11 +30,13 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "RF_01_USB_PD_CHARGE": ECAD / "generated/H2-RF01-usb-pd-charge.json",
     "RF_02_PACK_SAFETY_AON": ECAD / "generated/H2-RF02-pack-safety-aon.json",
     "RF_03_MAIN_RAILS_DOMAIN_GATES": ECAD / "generated/H2-RF03-main-rails-domain-gates.json",
+    "RF_30_RP2354_CORE_SERVICE": ECAD / "generated/H2-RF30-rp2354-core-service.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "RF_01_USB_PD_CHARGE": "reviewed_exact_usb_pd_charge_sheet",
     "RF_02_PACK_SAFETY_AON": "reviewed_exact_pack_safety_aon_sheet",
     "RF_03_MAIN_RAILS_DOMAIN_GATES": "reviewed_exact_main_rails_domain_gates_sheet",
+    "RF_30_RP2354_CORE_SERVICE": "reviewed_exact_rp2354_core_service_sheet",
 }
 
 
@@ -376,9 +378,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "child_sheet_count": 12, "cross_sheet_net_count": 133,
         "root_hierarchical_pin_count": 305,
         "child_hierarchical_label_count": 305,
-        "known_child_stub_erc_violations": 211,
-        "implemented_child_sheet_count": 3, "circuit_symbols_placed": 182,
-        "known_generated_library_copy_warnings": 182,
+        "known_child_stub_erc_violations": 113,
+        "implemented_child_sheet_count": 4, "circuit_symbols_placed": 230,
+        "known_generated_library_copy_warnings": 230,
         "known_deferred_fixture_erc_violations": 6, "pcb_files_created": 0,
     }
     if summary != expected:

@@ -3350,7 +3350,15 @@ def _render_principled_pinout_bundle(
         "rp_dbg_reset_series", "rp_dbg_boot_series", "rp_dbg0_series",
         "rp_dbg1_series", "rp_dbg_id0_strap", "rp_dbg_id1_strap",
         "s3_boot_pullup", "c5_boot_pullup", "rp_boot_pullup",
-        "c5_gpio27_pullup",
+        "c5_gpio27_pullup", "rp_vreg_inductor", "rp_vreg_vin_bulk",
+        "rp_vreg_output_bulk", "rp_vreg_avdd_filter_res",
+        "rp_vreg_avdd_filter_cap", "rp_dvdd_remote_bulk", "rp_clock",
+        "rp_clock_series", "rp_clock_load_xin", "rp_clock_load_xout",
+        "rp_dvdd10_bypass", "rp_dvdd32_bypass", "rp_dvdd51_bypass",
+        "rp_iovdd5_bypass", "rp_iovdd15_bypass", "rp_iovdd24_bypass",
+        "rp_iovdd29_bypass", "rp_iovdd41_bypass", "rp_iovdd50_bypass",
+        "rp_iovdd60_bypass", "rp_iovdd76_bypass", "rp_adc_avdd_bypass",
+        "rp_usb_otp_vdd_bypass", "rp_qspi_iovdd_bypass",
     )
 
     def service_role(instance: str) -> str:
@@ -3397,6 +3405,30 @@ def _render_principled_pinout_bundle(
             return f"{domain} deterministic normal-boot pull-up resistor"
         if instance == "c5_gpio27_pullup":
             return "C5 fixed-high normal-boot and ROM-log strap resistor"
+        rp_core_roles = {
+            "rp_vreg_inductor": "RP2354B exact dot-oriented 3.3-uH core-regulator inductor",
+            "rp_vreg_vin_bulk": "RP2354B internal-regulator 4.7-uF input capacitor",
+            "rp_vreg_output_bulk": "RP2354B internal-regulator 4.7-uF switching-loop output capacitor",
+            "rp_vreg_avdd_filter_res": "RP2354B regulator-analogue 33-Ohm filter resistor",
+            "rp_vreg_avdd_filter_cap": "RP2354B regulator-analogue 4.7-uF filter capacitor",
+            "rp_dvdd_remote_bulk": "RP2354B remote-side 4.7-uF core-rail capacitor",
+            "rp_clock": "RP2354B exact 12-MHz USB reference crystal",
+            "rp_clock_series": "RP2354B crystal-drive 1-kOhm series resistor",
+            "rp_clock_load_xin": "RP2354B XIN 15-pF crystal load capacitor",
+            "rp_clock_load_xout": "RP2354B XOUT 15-pF crystal load capacitor",
+        }
+        if instance in rp_core_roles:
+            return rp_core_roles[instance]
+        if instance.startswith("rp_dvdd") and instance.endswith("_bypass"):
+            return "RP2354B dedicated 1.1-V core-contact 100-nF bypass capacitor"
+        if instance.startswith("rp_iovdd") and instance.endswith("_bypass"):
+            return "RP2354B dedicated 3.3-V I/O-contact 100-nF bypass capacitor"
+        if instance == "rp_adc_avdd_bypass":
+            return "RP2354B dedicated ADC analogue-supply 100-nF bypass capacitor"
+        if instance == "rp_usb_otp_vdd_bypass":
+            return "RP2354B dedicated USB-PHY/OTP 100-nF bypass capacitor"
+        if instance == "rp_qspi_iovdd_bypass":
+            return "RP2354B dedicated stacked-flash I/O 100-nF bypass capacitor"
         return instance.replace("_", " ") + " service component"
 
     full_ledger = render_ledger(database, candidates)

@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.3.5: RP2354 core, flash и service access; H2.3.4 независимые rails/domain gates проверен |
+| Актуальная production ECAD-схема | ▶️ H2.3.6: три независимых полнофункциональных nRF24-тракта; H2.3.5 с точным ядром/service RP2354B проверен |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.3.5 -->
+<!-- current-substep: H2.3.6 -->
 
-**Точный маркер: `H2.3.5`** — реализовать и проверить RP2354 core, flash,
-native USB, recovery и service access на `RF_30_RP2354_CORE_SERVICE`.
+**Точный маркер: `H2.3.6`** — реализовать и проверить три независимых
+полнофункциональных nRF24-тракта RX/TX/mix на `RF_31_NRF24_X3`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -175,8 +175,11 @@ native USB, recovery и service access на `RF_30_RP2354_CORE_SERVICE`.
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`: 69 точных компонентов,
     186 физических контактов, независимые защищённые AON/main/accessory rails,
     20 hierarchy-интерфейсов и три объяснённых NC; native KiCad пройден.
-  - ▶️ **`H2.3.5` — сейчас:** `RF_30_RP2354_CORE_SERVICE`.
-  - ⏳ `H2.3.6` — `RF_31_NRF24_X3`.
+  - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`: 48 точных компонентов,
+    все 81 контакта SC1512-A4 и 219 физических контактов всего, референсные
+    цепи regulator/clock RP2350, 51 интерфейс и 13 объяснённых NC;
+    native KiCad review пройден.
+  - ▶️ **`H2.3.6` — сейчас:** `RF_31_NRF24_X3`.
   - ⏳ `H2.3.7` — `RF_32_SUBGHZ_VOICE`.
   - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
   - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.
