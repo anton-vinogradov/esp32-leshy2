@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.2.6: C5 native radio, IR and service; UI root and H2.2.2–H2.2.5 are reviewed |
+| Current production ECAD schematic | ▶️ H2.2.7: FM/AM/SW/LW receiver; UI root and H2.2.2–H2.2.6 are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.2.6 -->
+<!-- current-substep: H2.2.7 -->
 
-**Exact marker: `H2.2.6`** — implement and review exact C5 native-radio, IR
-and external-service circuitry on `UI_20_C5_RADIO_IR_SERVICE`.
+**Exact marker: `H2.2.7`** — implement and review exact FM/AM/SW/LW receiver
+circuitry on `UI_21_FM_AM_RECEIVER`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -145,8 +145,10 @@ Current H2 execution:
     ES8311 contacts, six CTIA-jack contacts, five analog selectors, six digital
     isolation/gate devices, 24 hierarchy interfaces and eight explained
     no-connects; native KiCad review passed.
-  - ▶️ **`H2.2.6` — current:** `UI_20_C5_RADIO_IR_SERVICE`.
-  - ⏳ `H2.2.7` — `UI_21_FM_AM_RECEIVER`.
+  - ✅ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`: 59 exact BOM instances plus
+    factory ANT1, all 32 C5 carrier pads, dual IR RX, fail-closed IR TX,
+    data-only USB/recovery and 15 interfaces; native KiCad review passed.
+  - ▶️ **`H2.2.7` — current:** `UI_21_FM_AM_RECEIVER`.
   - ⏳ `H2.2.8` — `UI_40_INTERBOARD_M1`.
   - ⏳ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`.

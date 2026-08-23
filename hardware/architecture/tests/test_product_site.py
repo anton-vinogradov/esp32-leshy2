@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.6"}, set(markers.values()))
+        self.assertEqual({"H2.2.7"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.6", plan["current_substep"])
+        self.assertEqual("H2.2.7", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -192,7 +192,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["children"][2]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][3]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][4]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][5]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][5]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][6]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
@@ -258,10 +259,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 91,
                 "root_hierarchical_pin_count": 218,
                 "child_hierarchical_label_count": 218,
-                "known_child_stub_erc_violations": 20,
-                "implemented_child_sheet_count": 4,
-                "circuit_symbols_placed": 255,
-                "known_generated_library_copy_warnings": 255,
+                "known_child_stub_erc_violations": 4,
+                "implemented_child_sheet_count": 5,
+                "circuit_symbols_placed": 315,
+                "known_generated_library_copy_warnings": 315,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -556,6 +557,51 @@ class ProductSiteTests(unittest.TestCase):
             "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod"
         )
         self.assertTrue(all(f'(pad "{number}"' in jack for number in range(1, 7)))
+
+    def test_h2_2_6_exact_c5_radio_ir_service_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_c5_radio_ir_service.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json")
+        )
+        self.assertEqual("H2.2.6", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_c5_radio_ir_service_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 59,
+                "schematic_symbols": 60,
+                "board_fitted_symbols": 58,
+                "hierarchical_interfaces": 15,
+                "c5_carrier_pads": 32,
+                "factory_rf_assembly_boundaries": 1,
+                "ir_receiver_channels": 2,
+                "custom_footprints": 6,
+                "intentional_no_connect_pins": 18,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertIn("c5.ANT2", manifest["intentional_no_connect_endpoints"])
+        self.assertIn("c5.NC_PSRAM_GPIO15", manifest["intentional_no_connect_endpoints"])
+        self.assertEqual(
+            60, len({row["symbol_uuid"] for row in manifest["instances"]})
+        )
+        module = self.read(
+            "hardware/ecad/libraries/Leshy2.pretty/ESP32-C5-WROOM-1U.kicad_mod"
+        )
+        self.assertTrue(all(f'(pad "{number}"' in module for number in range(1, 33)))
+        self.assertIn('"c5_factory_ant1"', json.dumps(manifest))
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json

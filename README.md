@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.6 -->
+<!-- current-substep: H2.2.7 -->
 
-**Exact marker: `H2.2.6`** — implement and review the exact C5 native-radio,
-IR and external-service circuitry on `UI_20_C5_RADIO_IR_SERVICE`.
+**Exact marker: `H2.2.7`** — implement and review the exact FM/AM/SW/LW
+receiver circuitry on `UI_21_FM_AM_RECEIVER`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -57,8 +57,11 @@ IR and external-service circuitry on `UI_20_C5_RADIO_IR_SERVICE`.
   - ✅ `H2.2.5` — reviewed 102 exact codec/headset components: all 21 ES8311
     contacts, the six-contact CTIA jack, five analog selectors, power/interface
     isolation, 24 hierarchy interfaces and eight explained NC pins.
-  - ▶️ **`H2.2.6` — current:** C5 native radio, IR and service paths.
-  - ⏳ `H2.2.7–H2.2.10` — receiver; M1; TX safety;
+  - ✅ `H2.2.6` — reviewed 59 exact C5/IR/service BOM instances plus the
+    factory ANT1 boundary: all 32 carrier pads, two IR receive paths,
+    fail-closed IR TX, data-only USB, recovery and 15 hierarchy interfaces.
+  - ▶️ **`H2.2.7` — current:** FM/AM/SW/LW receiver.
+  - ⏳ `H2.2.8–H2.2.10` — M1; TX safety;
     manufacturing/test points, in that order.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.

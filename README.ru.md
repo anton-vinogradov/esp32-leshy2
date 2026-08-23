@@ -30,10 +30,10 @@ target-прогонов в эмуляторах ещё нет, ни один з�
 
 ### Текущая фаза H2 — детальная позиция
 
-<!-- current-substep: H2.2.6 -->
+<!-- current-substep: H2.2.7 -->
 
-**Точный маркер: `H2.2.6`** — реализовать и проверить точные цепи native-radio
-C5, IR и внешнего service на `UI_20_C5_RADIO_IR_SERVICE`.
+**Точный маркер: `H2.2.7`** — реализовать и проверить точные цепи приёмника
+FM/AM/SW/LW на `UI_21_FM_AM_RECEIVER`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - `H2.0` — зафиксировать авторитетные входы схемы и структуру проектов.
@@ -57,8 +57,11 @@ C5, IR и внешнего service на `UI_20_C5_RADIO_IR_SERVICE`.
   - ✅ `H2.2.5` — проверены 102 точных компонента codec/headset: все 21 контакт
     ES8311, шесть контактов CTIA jack, пять аналоговых селекторов,
     power/interface isolation, 24 hierarchy-интерфейса и восемь объяснённых NC.
-  - ▶️ **`H2.2.6` — сейчас:** native-radio C5, IR и service paths.
-  - ⏳ `H2.2.7–H2.2.10` — receiver; M1; TX safety;
+  - ✅ `H2.2.6` — проверены 59 точных BOM-экземпляров C5/IR/service плюс
+    заводская граница ANT1: все 32 carrier-pad, два IR RX-тракта,
+    fail-closed IR TX, data-only USB, recovery и 15 hierarchy-интерфейсов.
+  - ▶️ **`H2.2.7` — сейчас:** приёмник FM/AM/SW/LW.
+  - ⏳ `H2.2.8–H2.2.10` — M1; TX safety;
     manufacturing/test points — по порядку.
 - ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
 - ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
