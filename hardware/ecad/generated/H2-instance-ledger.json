@@ -18,13 +18,13 @@
     "purchasing": false
   },
   "summary": {
-    "registered_inventory_rows": 1021,
-    "main_candidate_instances": 993,
+    "registered_inventory_rows": 1028,
+    "main_candidate_instances": 1000,
     "lora_cap_common_instances": 26,
     "lora_cap_alternative_module_instances": 2,
     "h1_dimensioned_instances": 181,
-    "schematic_only_main_instances": 812,
-    "main_board_fitted_components": 981,
+    "schematic_only_main_instances": 819,
+    "main_board_fitted_components": 988,
     "main_fitted_interconnect_assemblies": 6,
     "main_external_mating_products": 6,
     "lora_cap_rows": 28,
@@ -19312,6 +19312,28 @@
       }
     },
     {
+      "instance_uid": "LESHY2-RF:safe_supervisor_bypass",
+      "instance": "safe_supervisor_bypass",
+      "project": "LESHY2-RF",
+      "device_key": "tdk_c1005x7r1h104k050bb",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "role": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      }
+    },
+    {
       "instance_uid": "LESHY2-RF:power_zone_ntc",
       "instance": "power_zone_ntc",
       "project": "LESHY2-RF",
@@ -19532,6 +19554,28 @@
       }
     },
     {
+      "instance_uid": "LESHY2-RF:safe_conditioner_bypass",
+      "instance": "safe_conditioner_bypass",
+      "project": "LESHY2-RF",
+      "device_key": "tdk_c1005x7r1h104k050bb",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "role": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      }
+    },
+    {
       "instance_uid": "LESHY2-RF:safe_latch",
       "instance": "safe_latch",
       "project": "LESHY2-RF",
@@ -19551,6 +19595,50 @@
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
         "checked": "2026-08-17"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-RF:safe_latch_bypass",
+      "instance": "safe_latch_bypass",
+      "project": "LESHY2-RF",
+      "device_key": "tdk_c1005x7r1h104k050bb",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "role": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-RF:safe_latch_d_pulldown",
+      "instance": "safe_latch_d_pulldown",
+      "project": "LESHY2-RF",
+      "device_key": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "role": "10kohm_1pct_0402_main_feedback_bottom_resistor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "Yageo RC0402FR-0710KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+        "checked": "2026-08-18"
       }
     },
     {
@@ -19774,6 +19862,28 @@
       }
     },
     {
+      "instance_uid": "LESHY2-RF:safe_gate_a_bypass",
+      "instance": "safe_gate_a_bypass",
+      "project": "LESHY2-RF",
+      "device_key": "tdk_c1005x7r1h104k050bb",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "role": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
+      }
+    },
+    {
       "instance_uid": "LESHY2-RF:safe_gate_b",
       "instance": "safe_gate_b",
       "project": "LESHY2-RF",
@@ -19793,6 +19903,28 @@
         "version": "Rev. W",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf",
         "checked": "2026-08-17"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-RF:safe_gate_b_bypass",
+      "instance": "safe_gate_b_bypass",
+      "project": "LESHY2-RF",
+      "device_key": "tdk_c1005x7r1h104k050bb",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "role": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
       }
     },
     {
@@ -19859,6 +19991,28 @@
         "version": "2024-09-03",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
         "checked": "2026-08-17"
+      }
+    },
+    {
+      "instance_uid": "LESHY2-RF:safe_ptt_or_bypass",
+      "instance": "safe_ptt_or_bypass",
+      "project": "LESHY2-RF",
+      "device_key": "tdk_c1005x7r1h104k050bb",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "role": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
+      "board": "rf-power-pcb",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "electrical_disposition": "board_fitted_component",
+      "physical_registration": "schematic_only_body",
+      "contact_count": 2,
+      "contact_evidence_status": "registered_exact_contact_map",
+      "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
+      "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
+      "manufacturer_evidence": {
+        "document": "TDK C1005X7R1H104K050BB product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X7R1H104K050BB",
+        "checked": "2026-08-18"
       }
     },
     {

@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 6 | `s3 33U/0R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 13U/3R/2F`, `safety_controller 15U/3R/0F` | The complete target architecture, pin budget, resource ownership, power and safety paths, dimensioned product geometry and HW/FW boundary have passed joint pre-schematic review. H1 final acceptance authorizes H2 production-schematic work only; KiCad PCB placement/routing remains a later gate, and exact supplier drawings, received-part fit and prototype/HIL evidence close at their owning stages. |
+| `G2F-3I` | 6 | `s3 33U/0R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 13U/3R/2F`, `safety_controller 17U/1R/0F` | The complete target architecture, pin budget, resource ownership, power and safety paths, dimensioned product geometry and HW/FW boundary have passed joint pre-schematic review. H1 final acceptance authorizes H2 production-schematic work only; KiCad PCB placement/routing remains a later gate, and exact supplier drawings, received-part fit and prototype/HIL evidence close at their owning stages. |
 
 ## Exact-device provenance used by these drafts
 
@@ -710,9 +710,11 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: `PA27`, `PA30`.
 | `PA26` | 1 | `POWER_ZONE_TEMP_ADC` | `i` | `ADC` | `power_zone_ntc.END_1`, `power_zone_temp_pullup.END_2`, `power_zone_temp_filter.END_1` | — |
 | `PA27` | 2 | `RF_ZONE_TEMP_ADC` | `i` | `ADC` | `rf_zone_ntc.END_1`, `rf_zone_temp_pullup.END_2`, `rf_zone_temp_filter.END_1` | — |
 | `PA30` | 3 | `POWER_FAULT_N` | `i` | `GPIO_IRQ` | `abstract:power-current-thermal-fault` | — |
+| `PA19_SWDIO` | 15 (PA19 / SWDIO) | `SAFETY_SWDIO` | `io` | `SWD` | `abstract:safety SWD fixture` | — |
+| `PA20_SWCLK` | 16 (PA20 / SWCLK) | `SAFETY_SWCLK` | `i` | `SWD` | `abstract:safety SWD fixture` | — |
 
-Budget: **15 used + 3 reserved + 0 free = 18 exposed GPIO**.
-Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
+Budget: **17 used + 1 reserved + 0 free = 18 exposed GPIO**.
+Reserved: `PA1_NRST`. Free: none.
 
 ### Fixed-function/control routes
 
@@ -2801,6 +2803,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_iso.VCC` | one physical tri-state buffer owns module PTT drive |
 | `AUDIO_GROUND` | `voice_ptt_iso.GND` | `abstract:audio-ground` | PTT-isolator return |
 | `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_ptt_iso.OE` | module-side PTT is high impedance until power is qualified |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_ptt_or.VCC` | the voice PTT safety OR remains valid whenever the AON safety rail exists |
+| `SAFETY_GROUND` | `safe_ptt_or.GND` | `abstract:safety-ground` | voice PTT safety-gate return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_ptt_or_bypass.END_1` | exact 100-nF local PTT-gate bypass |
+| `SAFETY_GROUND` | `safe_ptt_or_bypass.END_2` | `abstract:safety-ground` | PTT-gate bypass returns locally |
 | `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice_ptt_iso.A` | AON KILL/FAULT_KILL gate remains dominant over the active-low PTT request |
 | `VOICE_PTT_MODULE_N` | `voice_ptt_iso.Y` | `voice.PTT` | buffer cannot create TX while its interface rail or enable is absent |
 | `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_pullup.END_1` | exact 10-kOhm module-side pull-up forces RX during buffer startup |
@@ -2908,9 +2914,21 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `UNIT_READY` | `unit_supervisor.RESET_N` | `slow_io.P26` | read-only electrical readiness replaces the impossible connector-presence claim; no safety function depends on firmware polling |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor.VDD` | always-on source and hold-up are selected and budgeted in I3 |
 | `AON_SAFE_SENSE` | `abstract:AON_SAFE_3V3` | `safe_supervisor.SENSE` | factory G33 threshold supervises the actual safety rail |
+| `SAFETY_GROUND` | `safe_supervisor.GND` | `abstract:safety-ground` | the AON supervisor has an explicit local safety-domain return |
+| `SAFE_SUPERVISOR_CT_NC` | `safe_supervisor.CT` | `abstract:no-connect` | open CT selects the documented fixed reset delay; the open contact is explicit rather than omitted |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor_bypass.END_1` | exact 100-nF local supervisor bypass prevents AON rail edges from corrupting POR |
+| `SAFETY_GROUND` | `safe_supervisor_bypass.END_2` | `abstract:safety-ground` | supervisor bypass returns directly to the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_por_pullup.END_1` | one exact 10-kOhm resistor is the sole external pull-up on the supervisor's open-drain POR output |
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
 | `POR_N` | `safe_supervisor.RESET_N` | `safe_latch.CLR_N` | only genuine AON power-on reset clears the latch asynchronously; ordinary firmware cannot drive CLR_N |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_conditioner.VCC` | the RUN and fault-reset Schmitt conditioner remains powered for the full AON lifetime |
+| `SAFETY_GROUND` | `safe_conditioner.GND` | `abstract:safety-ground` | conditioner return is explicit and local to the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_conditioner_bypass.END_1` | exact 100-nF local conditioner bypass |
+| `SAFETY_GROUND` | `safe_conditioner_bypass.END_2` | `abstract:safety-ground` | conditioner bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_latch.VCC` | the asynchronous kill latch remains powered independently of the application domains |
+| `SAFETY_GROUND` | `safe_latch.GND` | `abstract:safety-ground` | kill-latch return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_latch_bypass.END_1` | exact 100-nF local kill-latch bypass |
+| `SAFETY_GROUND` | `safe_latch_bypass.END_2` | `abstract:safety-ground` | kill-latch bypass returns locally |
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safe_latch.CLK` | only a physical KILL-to-RUN transition supplies the positive edge that clocks fixed D low |
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safety_controller.PA24` | the safety controller may refuse a restart but cannot synthesize the physical edge |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_run_fault_iso.VCC` | the RUN fault buffer remains valid for the full AON lifetime |
@@ -2933,9 +2951,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SAFETY_ESD_NC7` | `safety_control_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC9` | `safety_control_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC10` | `safety_control_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `SAFE_D_LOW` | `abstract:safety-ground-via-10k` | `safe_latch.D` | fixed logic low; no MCU, expander or connector endpoint |
+| `SAFE_D_LOW` | `safe_latch_d_pulldown.END_1` | `safe_latch.D` | exact physical 10-kOhm pull-down fixes D low; no MCU, expander or connector can release the latch |
+| `SAFETY_GROUND` | `safe_latch_d_pulldown.END_2` | `abstract:safety-ground` | the fixed-D resistor returns directly to the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_controller.VDD` | the safety controller remains alive on battery or product USB whenever the independently protected AON rail exists |
 | `SAFETY_GROUND` | `safety_controller.VSS` | `abstract:safety-ground` | dedicated controller return stays inside the AON safety domain |
+| `SAFETY_SWDIO` | `safety_controller.PA19_SWDIO` | `abstract:safety SWD fixture` | permanent SWD data access reaches the real DGS20 pin 15 for blank-device programming and recovery |
+| `SAFETY_SWCLK` | `safety_controller.PA20_SWCLK` | `abstract:safety SWD fixture` | permanent SWD clock access reaches the real DGS20 pin 16 and cannot itself release the hardware kill latch |
 | `AON_SAFE_3V3` | `safety_controller.VDD` | `safety_controller_bulk.END_1` | exact 10-uF local bulk decoupling |
 | `SAFETY_GROUND` | `safety_controller_bulk.END_2` | `abstract:safety-ground` | bulk capacitor returns locally |
 | `AON_SAFE_3V3` | `safety_controller.VDD` | `safety_controller_bypass.END_1` | exact 100-nF high-frequency bypass |
@@ -3023,6 +3044,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `C5_RESET_N` | `c5_reset_pullup.END_2` | `c5.EN` | C5 can run only when neither FAULT_KILL nor service control pulls low |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_reset_pullup.END_1` | exact passive target pull-up |
 | `RP_RESET_N` | `rp_reset_pullup.END_2` | `rp.RUN` | RP can run only when neither FAULT_KILL nor service control pulls low |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_a.VCC` | all four nRF-domain safety gates remain powered by the independent AON rail |
+| `SAFETY_GROUND` | `safe_gate_a.GND` | `abstract:safety-ground` | nRF safety-gate return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_a_bypass.END_1` | exact 100-nF local nRF safety-gate bypass |
+| `SAFETY_GROUND` | `safe_gate_a_bypass.END_2` | `abstract:safety-ground` | nRF safety-gate bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_b.VCC` | rear-domain transmit gates remain powered by the independent AON rail |
+| `SAFETY_GROUND` | `safe_gate_b.GND` | `abstract:safety-ground` | rear-domain safety-gate return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_b_bypass.END_1` | exact 100-nF local rear-domain safety-gate bypass |
+| `SAFETY_GROUND` | `safe_gate_b_bypass.END_2` | `abstract:safety-ground` | rear-domain safety-gate bypass returns locally |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.3B` | KILL/FAULT_KILL-dominant active-high gate permit |

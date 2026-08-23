@@ -120,13 +120,13 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>⭐ Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.3.12 -->
+<!-- current-substep: H2.3.13 -->
 
-**Exact marker: `H2.3.12`** — implement and review RF-side TX safety and
-physical evidence on `RF_50_TX_SAFETY_EVIDENCE`.
+**Exact marker: `H2.3.13`** — implement and review RF/power manufacturing and
+diagnostic test points on `RF_60_TESTPOINTS_MANUFACTURING`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
-- ✅ `H2.0.1` — complete 1,021-row circuit inventory reviewed.
+- ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
 - ✅ `H2.0.2` — four projects, PCB boundaries and net names reviewed.
 - ✅ `H2.0.3` — HW↔FW/BSP contract and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects and 28 native sheets created.
@@ -150,8 +150,10 @@ physical evidence on `RF_50_TX_SAFETY_EVIDENCE`.
     reviewed.
   - ✅ `H2.3.11` — `RF_40_INTERBOARD_M1`: all 80 physical contacts and 51
     interfaces match UI-side M1 row-for-row; reviewed.
-  - ▶️ **`H2.3.12` — current:** `RF_50_TX_SAFETY_EVIDENCE`.
-  - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.
+  - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 components and 369
+    contacts, explicit AON power/bypass, hardware watchdog/latch/reset and five
+    independent physical-RF evidence channels; reviewed.
+  - ▶️ **`H2.3.13` — current:** `RF_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.4` — display-adapter and LoRa Cap schematics.
 - ⏳ `H2.5` — independent power/boot/recovery/quiet-state/`FAULT_KILL` review.
 - ⏳ `H2.6` — close ERC and every intentional NC.

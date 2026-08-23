@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.12: RF-side TX safety and physical evidence; H2.3.11 M1 is reviewed |
+| Current production ECAD schematic | ▶️ H2.3.13: RF/power manufacturing and diagnostic test points; H2.3.12 safety/evidence is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.12 -->
+<!-- current-substep: H2.3.13 -->
 
-**Exact marker: `H2.3.12`** — implement and review RF-side TX safety and
-physical evidence on `RF_50_TX_SAFETY_EVIDENCE`.
+**Exact marker: `H2.3.13`** — implement and review RF/power manufacturing and
+diagnostic test points on `RF_60_TESTPOINTS_MANUFACTURING`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -115,13 +115,13 @@ physical evidence on `RF_50_TX_SAFETY_EVIDENCE`.
 Current H2 execution:
 
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 1,021-row inventory reviewed: all 993 main-device
+  - ✅ `H2.0.1` — complete 1,028-row inventory reviewed: all 1,000 main-device
     circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
-    181 H1 bodies and all 812 schematic-only main-device parts are reconciled.
+    181 H1 bodies and all 819 schematic-only main-device parts are reconciled.
   - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
     rechecked against all 1,021 inventory rows; four intentionally component-empty
     root/test sheets are explicitly classified.
-  - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
+  - ✅ `H2.0.3` — generated 125-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
   repository-controlled library tables created; every sheet passed the KiCad
   10 parser and empty-sheet ERC. No PCB file exists.
@@ -193,8 +193,10 @@ Current H2 execution:
     native KiCad review passed.
   - ✅ `H2.3.11` — `RF_40_INTERBOARD_M1`: all 80 physical contacts and 51
     interfaces match UI-side M1 row-for-row; native KiCad review passed.
-  - ▶️ **`H2.3.12` — current:** `RF_50_TX_SAFETY_EVIDENCE`.
-  - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.
+  - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 components, 369
+    contacts, explicit AON supply/bypass, watchdog/latch/reset and five
+    physical-RF evidence channels; native KiCad review passed.
+  - ▶️ **`H2.3.13` — current:** `RF_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,
   no-back-power, quiet-state and `FAULT_KILL` paths.

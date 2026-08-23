@@ -2592,6 +2592,7 @@ def render_public_schematics(
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | точный ECAD | 7 устанавливаемых компонентов и 36 контактов: отдельные encoder A/B/push и PTT, локальная ESD-защита; серийная ручка остаётся внешней механической деталью |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | точный ECAD | 14 символов и 34 контакта: направленный вниз микрофон, reset-safe U-DFN amplifier и два независимых floating-BTL выхода к проводному динамику |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C receptacle, 80 отдельных физических контактов, 51 интерфейс и построчное равенство UI-side M1 без резервов/NC |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 97 компонентов и 369 контактов: независимые RUN/KILL, POR, watchdog/latch/reset и TX-gates, пять физических RF detector, пять comparator-каналов, 63 интерфейса и 22 объяснённых NC |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2613,7 +2614,8 @@ def render_public_schematics(
 [U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json) и
 [rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json) и
 [audio I/O/amplifier](../hardware/ecad/generated/H2-RF36-audio-io-amp.json) и
-[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json).
+[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json) и
+[RF-side TX safety/evidence](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2655,6 +2657,7 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | exact ECAD | 7 fitted components and 36 contacts: independent encoder A/B/push and PTT with local ESD; the serial knob remains an external mechanical item |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | exact ECAD | 14 symbols and 34 contacts: downward-facing microphone, reset-safe U-DFN amplifier and two independent floating-BTL outputs to the wired speaker assembly |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C receptacle, 80 separate physical contacts, 51 interfaces and row-for-row equality with UI-side M1, with no reserves/NCs |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 97 components and 369 contacts: independent RUN/KILL, POR, watchdog/latch/reset and TX gates, five physical RF detectors, five comparator channels, 63 interfaces and 22 explained NCs |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2676,7 +2679,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json), and
 [rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json), and
 [audio I/O/amplifier](../hardware/ecad/generated/H2-RF36-audio-io-amp.json), and
-[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json).
+[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json), and
+[RF-side TX safety/evidence](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"
@@ -3933,6 +3937,7 @@ def _render_principled_pinout_bundle(
         node("safety_control_esd", "dedicated four-channel RUN/KILL ESD array"),
         "  RUN_LOOP((\"RUN_LOOP_RAW<br/>physical RUN/KILL node\"))",
         node("safe_supervisor", "AON rail supervisor and power-on reset"),
+        node("safe_supervisor_bypass", "100-nF AON-supervisor bypass capacitor"),
         node("safe_por_pullup", "10-kOhm 1% AON POR pull-up resistor"),
         node("safety_controller", "independent MSPM0 watchdog, thermal and TX-lease controller"),
         node("safety_controller_bulk", "10-uF safety-controller bulk capacitor"),
@@ -3962,7 +3967,10 @@ def _render_principled_pinout_bundle(
         node("ui_zone_temp_pullup", "10-kOhm UI/DISPLAY-zone ADC pull-up"),
         node("ui_zone_temp_filter", "100-nF UI/DISPLAY-zone ADC filter"),
         node("safe_conditioner", "physical RUN and S3 fault-reset Schmitt conditioner"),
+        node("safe_conditioner_bypass", "100-nF Schmitt-conditioner bypass capacitor"),
         node("safe_latch", "asynchronous latched FAULT_KILL"),
+        node("safe_latch_bypass", "100-nF asynchronous-latch bypass capacitor"),
+        node("safe_latch_d_pulldown", "10-kOhm physical fail-low latch-D resistor"),
         node("safe_reset_buffer", "AON open-drain RUN-permit inverter"),
         node("safe_reset_buffer_bypass", "100-nF AON reset-driver bypass capacitor"),
         node("safe_reset_gate_pullup", "10-kOhm C5/RP fail-reset gate pull-up"),
@@ -3973,8 +3981,11 @@ def _render_principled_pinout_bundle(
         node("c5_reset_pullup", "10-kOhm passive C5 CHIP_PU pull-up resistor"),
         node("rp_reset_pullup", "10-kOhm passive RP RUN pull-up resistor"),
         node("safe_gate_a", "four FAULT_KILL-dominant nRF request gates"),
+        node("safe_gate_a_bypass", "100-nF nRF safety-gate bypass capacitor"),
         node("safe_gate_b", "four FAULT_KILL-dominant rail/IR/accessory gates"),
+        node("safe_gate_b_bypass", "100-nF rear-domain safety-gate bypass capacitor"),
         node("safe_ptt_or", "active-low voice PTT force-RX gate"),
+        node("safe_ptt_or_bypass", "100-nF voice-PTT safety-gate bypass capacitor"),
         node("fault_led", "orange physical latched-FAULT indicator"),
         node("fault_led_series", "2.2-kOhm physical FAULT-indicator current limit"),
         "  end",
@@ -4026,8 +4037,8 @@ def _render_principled_pinout_bundle(
         "  " + " ~~~ ".join(instance.upper() for instance in native_rf_support_instance_names) + " ~~~ RP",
         "  RP ~~~ " + " ~~~ ".join(instance.upper() for instance in nrf_support_instance_names) + " ~~~ CC ~~~ VOICE",
         "  VOICE ~~~ " + " ~~~ ".join(instance.upper() for instance in voice_rf_support_instance_names) + " ~~~ VOICE_EXTERNAL_SMA ~~~ " + " ~~~ ".join(instance.upper() for instance in expansion_instance_names) + " ~~~ UNIT_CONNECTOR ~~~ U214_CONNECTOR ~~~ U214 ~~~ PTT_SWITCH ~~~ POWER_COMMAND_SWITCH ~~~ RUN_LOOP_PULLUP ~~~ RUN_LOOP_FILTER ~~~ SAFETY_CONTROL_ESD",
-        "  SAFETY_CONTROL_ESD ~~~ RUN_LOOP ~~~ SAFE_SUPERVISOR ~~~ SAFE_POR_PULLUP ~~~ SAFETY_CONTROLLER ~~~ SAFETY_WATCHDOG ~~~ SAFE_CONDITIONER ~~~ SAFE_LATCH",
-        "  SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ S3_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ FAULT_LED_SERIES ~~~ FAULT_LED",
+        "  SAFETY_CONTROL_ESD ~~~ RUN_LOOP ~~~ SAFE_SUPERVISOR ~~~ SAFE_SUPERVISOR_BYPASS ~~~ SAFE_POR_PULLUP ~~~ SAFETY_CONTROLLER ~~~ SAFETY_WATCHDOG ~~~ SAFE_CONDITIONER ~~~ SAFE_CONDITIONER_BYPASS ~~~ SAFE_LATCH ~~~ SAFE_LATCH_BYPASS ~~~ SAFE_LATCH_D_PULLDOWN",
+        "  SAFE_LATCH_D_PULLDOWN ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ S3_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_A_BYPASS ~~~ SAFE_GATE_B ~~~ SAFE_GATE_B_BYPASS ~~~ SAFE_PTT_OR ~~~ SAFE_PTT_OR_BYPASS ~~~ FAULT_LED_SERIES ~~~ FAULT_LED",
         "  FAULT_LED ~~~ DET_S3 ~~~ DET_C5 ~~~ DET_NRF0 ~~~ DET_NRF1 ~~~ DET_NRF2",
         "  DET_NRF2 ~~~ DET_CC ~~~ DET_VOICE ~~~ DET_IR ~~~ " + " ~~~ ".join(instance.upper() for instance in evidence_support_instance_names),
         "  PRODUCT_USB_CONNECTOR -->|\"VBUS sink only\"| PD_CONTROLLER",
@@ -4441,7 +4452,10 @@ def _render_principled_pinout_bundle(
         "  POWER_COMMAND_SWITCH -->|\"RUN throw\"| RUN_LOOP",
         "  RUN_LOOP --> SAFETY_CONTROL_ESD",
         "  RUN_LOOP --> SAFE_CONDITIONER --> SAFE_LATCH",
-        "  SAFE_SUPERVISOR --> SAFE_LATCH",
+        "  SAFE_CONDITIONER_BYPASS --> SAFE_CONDITIONER",
+        "  SAFE_SUPERVISOR_BYPASS --> SAFE_SUPERVISOR --> SAFE_LATCH",
+        "  SAFE_LATCH_BYPASS --> SAFE_LATCH",
+        "  SAFE_LATCH_D_PULLDOWN -->|\"fixed D=0\"| SAFE_LATCH",
         "  SAFETY_CONTROLLER --> SAFETY_WATCHDOG --> SAFE_LATCH",
         "  SAFETY_CONTROLLER --> SAFETY_FAULT_REQUEST_ISO --> SAFE_LATCH",
         "  SAFETY_CONTROLLER --> POWER_ZONE_NTC",
@@ -4452,8 +4466,11 @@ def _render_principled_pinout_bundle(
         "  SAFE_RESET_BUFFER -->|\"RUN\"| RP",
         "  SAFETY_CONTROLLER -->|\"bounded fault reset\"| SAFE_CONDITIONER -->|\"CHIP_PU\"| S3",
         "  SAFE_LATCH --> SAFE_GATE_A",
+        "  SAFE_GATE_A_BYPASS --> SAFE_GATE_A",
         "  SAFE_LATCH --> SAFE_GATE_B",
+        "  SAFE_GATE_B_BYPASS --> SAFE_GATE_B",
         "  SAFE_LATCH --> SAFE_PTT_OR",
+        "  SAFE_PTT_OR_BYPASS --> SAFE_PTT_OR",
         "  SAFE_LATCH --> FAULT_LED_SERIES --> FAULT_LED",
         "  RP -->|\"3×CE + nRF rail requests\"| SAFE_GATE_A",
         "  RP -->|\"CC rail request\"| SAFE_GATE_B",

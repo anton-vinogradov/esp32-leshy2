@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.3.12`.
+**Статус:** ▶️ сейчас, точный маркер `H2.3.13`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,7 +43,8 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB и первых девяти RF/power-листов.
+- Проведено ревью всей UI/control PCB, RF/power root и первых одиннадцати
+  функциональных RF child-листов; текущий — производственный test-лист.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -79,7 +80,13 @@
   [Машинное ревью](../hardware/ecad/generated/H2-RF40-interboard-m1.json)
   доказывает построчное равенство с UI-side M1, включая все повторные rails и
   returns, без reserve и NC.
-- Текущая работа — RF-side TX safety и физическое evidence.
+- [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch)
+  содержит 97 компонентов и 369 физических контактов.
+  [Машинное ревью](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json)
+  закрывает явные AON supply/bypass, единый RUN/KILL, независимые
+  watchdog/latch/reset и пять каналов физического RF evidence; native KiCad
+  проходит с 22 точными намеренными NC.
+- Текущая работа — производственные и диагностические test-площадки RF/power.
 
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка

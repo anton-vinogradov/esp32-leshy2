@@ -11,9 +11,9 @@
   ],
   "source_sha256": {
     "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/architecture/candidates/G2F-3I.json": "57614f43bd9e30a3c879e33fa547262438eb224be30c4642643c5df0b881028c",
+    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "8f3b7522d7cf712bada1c9508b1ed5e4bb5f5fce2553e800fa5e20a718b10342"
+    "hardware/ecad/H2-sheet-contract.json": "7f7dd1aa2722eed83d1c9a7a65c3635c16463a29fd8149d0afdfa0cef324ca33"
   },
   "integration_contract": {
     "schema": 2,
@@ -1646,7 +1646,7 @@
         "domain": "SAFETY",
         "instance": "safety_controller",
         "mpn": "Texas Instruments MSPM0C1106SDGS20R",
-        "allocated_contact_count": 15,
+        "allocated_contact_count": 17,
         "pins": [
           {
             "instance": "safety_controller",
@@ -1734,6 +1734,26 @@
           },
           {
             "instance": "safety_controller",
+            "contact": "PA19_SWDIO",
+            "net": "SAFETY_SWDIO",
+            "direction": "io",
+            "controller": "SWD",
+            "peers": [
+              "abstract:safety SWD fixture"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA20_SWCLK",
+            "net": "SAFETY_SWCLK",
+            "direction": "i",
+            "controller": "SWD",
+            "peers": [
+              "abstract:safety SWD fixture"
+            ]
+          },
+          {
+            "instance": "safety_controller",
             "contact": "PA22",
             "net": "ANY_TX_AON_N",
             "direction": "i",
@@ -1816,7 +1836,7 @@
         ]
       }
     ],
-    "total_allocated_contacts": 123
+    "total_allocated_contacts": 125
   },
   "schematic_projects": {
     "LESHY2-UI": [

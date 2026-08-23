@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **993** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **992** supplied/costed placements collapse to **205** used exact-device/MPN lines.
+- **1000** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **999** supplied/costed placements collapse to **205** used exact-device/MPN lines.
 - Current orderability evidence exists for **204/205** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **194/205** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **975/992** supplied placements; their partial subtotals are `base_product` — USD 221.5372. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **982/999** supplied placements; their partial subtotals are `base_product` — USD 221.7017. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **205/205** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 989 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 996 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -1272,7 +1272,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 130 × USD 0.0258 = USD 3.3540</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 136 × USD 0.0258 = USD 3.5088</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1749,7 +1749,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 190 × USD 0.0097 = USD 1.8430</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 191 × USD 0.0097 = USD 1.8527</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.

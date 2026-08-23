@@ -281,7 +281,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(992, sum(line["quantity"] for line in lines))
+        self.assertEqual(999, sum(line["quantity"] for line in lines))
         self.assertEqual(205, len(lines))
         self.assertEqual(
             1,
@@ -296,7 +296,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            975,
+            982,
             sum(
                 line["quantity"]
                 for line in lines
@@ -372,13 +372,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**993** architecture instances", rendered)
-        self.assertIn("**992** supplied/costed placements", rendered)
+        self.assertIn("**1000** architecture instances", rendered)
+        self.assertIn("**999** supplied/costed placements", rendered)
         self.assertIn("**204/205** used lines", rendered)
         self.assertIn("**205/205** lines", rendered)
         self.assertIn("**194/205** lines", rendered)
-        self.assertIn("**975/992** supplied placements", rendered)
-        self.assertIn("USD 221.5372", rendered)
+        self.assertIn("**982/999** supplied placements", rendered)
+        self.assertIn("USD 221.7017", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1198, policy["expected_occurrence_count"])
+        self.assertEqual(1224, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(

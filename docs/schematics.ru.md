@@ -34,6 +34,7 @@
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | точный ECAD | 7 устанавливаемых компонентов и 36 контактов: отдельные encoder A/B/push и PTT, локальная ESD-защита; серийная ручка остаётся внешней механической деталью |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | точный ECAD | 14 символов и 34 контакта: направленный вниз микрофон, reset-safe U-DFN amplifier и два независимых floating-BTL выхода к проводному динамику |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C receptacle, 80 отдельных физических контактов, 51 интерфейс и построчное равенство UI-side M1 без резервов/NC |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 97 компонентов и 369 контактов: независимые RUN/KILL, POR, watchdog/latch/reset и TX-gates, пять физических RF detector, пять comparator-каналов, 63 интерфейса и 22 объяснённых NC |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -55,7 +56,8 @@
 [U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json) и
 [rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json) и
 [audio I/O/amplifier](../hardware/ecad/generated/H2-RF36-audio-io-amp.json) и
-[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json).
+[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json) и
+[RF-side TX safety/evidence](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.

@@ -1310,6 +1310,7 @@ flowchart TD
   SAFETY_CONTROL_ESD["Texas Instruments TPD4E05U06DQAR<br/>dedicated four-channel RUN/KILL ESD array"]
   RUN_LOOP(("RUN_LOOP_RAW<br/>physical RUN/KILL node"))
   SAFE_SUPERVISOR["TPS3808G33DBVR<br/>AON rail supervisor and power-on reset"]
+  SAFE_SUPERVISOR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF AON-supervisor bypass capacitor"]
   SAFE_POR_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm 1% AON POR pull-up resistor"]
   SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>independent MSPM0 watchdog, thermal and TX-lease controller"]
   SAFETY_CONTROLLER_BULK["Murata GRM188R60J106ME47D<br/>10-uF safety-controller bulk capacitor"]
@@ -1339,37 +1340,36 @@ flowchart TD
   UI_ZONE_TEMP_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm UI/DISPLAY-zone ADC pull-up"]
   UI_ZONE_TEMP_FILTER["TDK C1005X7R1H104K050BB<br/>100-nF UI/DISPLAY-zone ADC filter"]
   SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset Schmitt conditioner"]
+  SAFE_CONDITIONER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF Schmitt-conditioner bypass capacitor"]
   SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous latched FAULT_KILL"]
+  SAFE_LATCH_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF asynchronous-latch bypass capacitor"]
+  SAFE_LATCH_D_PULLDOWN["Yageo RC0402FR-0710KL<br/>10-kOhm physical fail-low latch-D resistor"]
   SAFE_RESET_BUFFER["Texas Instruments SN74LVC1G06DCKR<br/>AON open-drain RUN-permit inverter"]
   SAFE_RESET_BUFFER_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF AON reset-driver bypass capacitor"]
   SAFE_RESET_GATE_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm C5/RP fail-reset gate pull-up"]
   S3_RESET_GATE_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm S3 fault-reset gate pull-up"]
   SAFE_RESET_SINK_A["Diodes Incorporated 2N7002DW-7-F<br/>independent passive-drain S3/C5 reset sinks"]
-  SAFE_RESET_SINK_B["Diodes Incorporated 2N7002DW-7-F<br/>independent passive-drain RP reset sink plus inert spare"]
-  S3_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive S3 EN pull-up resistor"]
-  C5_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive C5 CHIP_PU pull-up resistor"]
-  RP_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive RP RUN pull-up resistor"]
-  SAFE_GATE_A["SN74LVC08APWR<br/>four FAULT_KILL-dominant nRF request gates"]
   end
   S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ AON_EFUSE ~~~ PTT_SWITCH ~~~ POWER_COMMAND_SWITCH ~~~ RUN_LOOP_PULLUP ~~~ RUN_LOOP_FILTER ~~~ SAFETY_CONTROL_ESD ~~~ RUN_LOOP ~~~ SAFE_SUPERVISOR
-  SAFE_POR_PULLUP ~~~ SAFETY_CONTROLLER ~~~ SAFETY_CONTROLLER_BULK ~~~ SAFETY_CONTROLLER_BYPASS ~~~ SAFETY_CONTROLLER_RESET_PULLUP ~~~ SAFETY_CONTROLLER_RESET_CAP ~~~ SAFETY_WATCHDOG ~~~ SAFETY_WATCHDOG_BYPASS ~~~ SAFETY_WATCHDOG_WDO_PULLUP ~~~ SAFETY_WATCHDOG_WDI_PULLDOWN ~~~ SAFETY_WATCHDOG_MR_PULLUP ~~~ SAFETY_FAULT_REQUEST_PULLDOWN
-  SAFETY_FAULT_REQUEST_ISO ~~~ SAFETY_FAULT_REQUEST_ISO_BYPASS ~~~ SAFE_RUN_FAULT_ISO ~~~ SAFE_RUN_FAULT_ISO_BYPASS ~~~ FAULT_ASSERT_PULLUP ~~~ SAFETY_S3_RESET_ISO ~~~ SAFETY_S3_RESET_ISO_BYPASS ~~~ POWER_ZONE_NTC ~~~ POWER_ZONE_TEMP_PULLUP ~~~ POWER_ZONE_TEMP_FILTER ~~~ RF_ZONE_NTC ~~~ RF_ZONE_TEMP_PULLUP
-  RF_ZONE_TEMP_FILTER ~~~ UI_ZONE_NTC ~~~ UI_ZONE_TEMP_PULLUP ~~~ UI_ZONE_TEMP_FILTER ~~~ SAFE_CONDITIONER ~~~ SAFE_LATCH ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS ~~~ SAFE_RESET_GATE_PULLUP ~~~ S3_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A ~~~ SAFE_RESET_SINK_B
-  S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A
+  SAFE_SUPERVISOR_BYPASS ~~~ SAFE_POR_PULLUP ~~~ SAFETY_CONTROLLER ~~~ SAFETY_CONTROLLER_BULK ~~~ SAFETY_CONTROLLER_BYPASS ~~~ SAFETY_CONTROLLER_RESET_PULLUP ~~~ SAFETY_CONTROLLER_RESET_CAP ~~~ SAFETY_WATCHDOG ~~~ SAFETY_WATCHDOG_BYPASS ~~~ SAFETY_WATCHDOG_WDO_PULLUP ~~~ SAFETY_WATCHDOG_WDI_PULLDOWN ~~~ SAFETY_WATCHDOG_MR_PULLUP
+  SAFETY_FAULT_REQUEST_PULLDOWN ~~~ SAFETY_FAULT_REQUEST_ISO ~~~ SAFETY_FAULT_REQUEST_ISO_BYPASS ~~~ SAFE_RUN_FAULT_ISO ~~~ SAFE_RUN_FAULT_ISO_BYPASS ~~~ FAULT_ASSERT_PULLUP ~~~ SAFETY_S3_RESET_ISO ~~~ SAFETY_S3_RESET_ISO_BYPASS ~~~ POWER_ZONE_NTC ~~~ POWER_ZONE_TEMP_PULLUP ~~~ POWER_ZONE_TEMP_FILTER ~~~ RF_ZONE_NTC
+  RF_ZONE_TEMP_PULLUP ~~~ RF_ZONE_TEMP_FILTER ~~~ UI_ZONE_NTC ~~~ UI_ZONE_TEMP_PULLUP ~~~ UI_ZONE_TEMP_FILTER ~~~ SAFE_CONDITIONER ~~~ SAFE_CONDITIONER_BYPASS ~~~ SAFE_LATCH ~~~ SAFE_LATCH_BYPASS ~~~ SAFE_LATCH_D_PULLDOWN ~~~ SAFE_RESET_BUFFER ~~~ SAFE_RESET_BUFFER_BYPASS
+  SAFE_RESET_GATE_PULLUP ~~~ S3_RESET_GATE_PULLUP ~~~ SAFE_RESET_SINK_A
   SAFETY_CONTROLLER -->|"deadline service"| SAFETY_WATCHDOG -->|"FAULT_ASSERT_N"| SAFE_LATCH
   SAFE_LATCH -->|"RUN_PERMIT"| SAFE_RESET_BUFFER -->|"RF_RESET_KILL_GATE"| SAFE_RESET_SINK_A
-  SAFE_RESET_BUFFER -->|"RF_RESET_KILL_GATE"| SAFE_RESET_SINK_B
   SAFETY_CONTROLLER -->|"bounded S3 reset"| SAFE_CONDITIONER -->|"S3_RESET_KILL_GATE"| SAFE_RESET_SINK_A
   SAFE_RESET_SINK_A -->|"passive-drain EN"| S3
   SAFE_RESET_SINK_A -->|"passive-drain CHIP_PU"| C5
-  SAFE_RESET_SINK_B -->|"passive-drain RUN"| RP
   AON_EFUSE -->|"POR pull-up"| SAFE_POR_PULLUP --> SAFE_SUPERVISOR
   RUN_LOOP_PULLUP -->|"10 kOhm to AON_SAFE_3V3"| RUN_LOOP
   RUN_LOOP_FILTER -->|"100 nF to safety ground"| RUN_LOOP
   POWER_COMMAND_SWITCH -->|"RUN throw"| RUN_LOOP
   RUN_LOOP --> SAFETY_CONTROL_ESD
   RUN_LOOP --> SAFE_CONDITIONER --> SAFE_LATCH
-  SAFE_SUPERVISOR --> SAFE_LATCH
+  SAFE_CONDITIONER_BYPASS --> SAFE_CONDITIONER
+  SAFE_SUPERVISOR_BYPASS --> SAFE_SUPERVISOR --> SAFE_LATCH
+  SAFE_LATCH_BYPASS --> SAFE_LATCH
+  SAFE_LATCH_D_PULLDOWN -->|"fixed D=0"| SAFE_LATCH
   SAFETY_CONTROLLER --> SAFETY_WATCHDOG --> SAFE_LATCH
   SAFETY_CONTROLLER --> SAFETY_FAULT_REQUEST_ISO --> SAFE_LATCH
   SAFETY_CONTROLLER --> POWER_ZONE_NTC
@@ -1379,8 +1379,6 @@ flowchart TD
   SAFE_RESET_BUFFER -->|"CHIP_PU"| C5
   SAFE_RESET_BUFFER -->|"RUN"| RP
   SAFETY_CONTROLLER -->|"bounded fault reset"| SAFE_CONDITIONER -->|"CHIP_PU"| S3
-  SAFE_LATCH --> SAFE_GATE_A
-  RP -->|"3×CE + nRF rail requests"| SAFE_GATE_A
 ```
 
 ### 21. Always-on RUN/KILL, watchdog и аппаратный запрет передачи — узлы 2/2
@@ -1393,12 +1391,26 @@ flowchart TD
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   SLOW_IO["TCA6424ARGJR<br/>24-line main slow-control expander; all P00-P27 contacts allocated"]
   AON_EFUSE["Texas Instruments TPS25961DRVR<br/>independent AON overvoltage/current/short cutoff"]
+  SAFE_RESET_SINK_B["Diodes Incorporated 2N7002DW-7-F<br/>independent passive-drain RP reset sink plus inert spare"]
+  S3_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive S3 EN pull-up resistor"]
+  C5_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive C5 CHIP_PU pull-up resistor"]
+  RP_RESET_PULLUP["Yageo RC0402FR-0710KL<br/>10-kOhm passive RP RUN pull-up resistor"]
+  SAFE_GATE_A["SN74LVC08APWR<br/>four FAULT_KILL-dominant nRF request gates"]
+  SAFE_GATE_A_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF nRF safety-gate bypass capacitor"]
   SAFE_GATE_B["SN74LVC08APWR<br/>four FAULT_KILL-dominant rail/IR/accessory gates"]
+  SAFE_GATE_B_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF rear-domain safety-gate bypass capacitor"]
   SAFE_PTT_OR["74LVC1G32GV,125<br/>active-low voice PTT force-RX gate"]
+  SAFE_PTT_OR_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF voice-PTT safety-gate bypass capacitor"]
   FAULT_LED["LTST-C190KFKT<br/>orange physical latched-FAULT indicator"]
   FAULT_LED_SERIES["Yageo RC0402FR-072K2L<br/>2.2-kOhm physical FAULT-indicator current limit"]
   end
-  S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ AON_EFUSE ~~~ SAFE_GATE_B ~~~ SAFE_PTT_OR ~~~ FAULT_LED ~~~ FAULT_LED_SERIES
+  S3 ~~~ C5 ~~~ RP ~~~ SLOW_IO ~~~ AON_EFUSE ~~~ SAFE_RESET_SINK_B ~~~ S3_RESET_PULLUP ~~~ C5_RESET_PULLUP ~~~ RP_RESET_PULLUP ~~~ SAFE_GATE_A ~~~ SAFE_GATE_A_BYPASS ~~~ SAFE_GATE_B
+  SAFE_GATE_B_BYPASS ~~~ SAFE_PTT_OR ~~~ SAFE_PTT_OR_BYPASS ~~~ FAULT_LED ~~~ FAULT_LED_SERIES
+  SAFE_RESET_SINK_B -->|"passive-drain RUN"| RP
+  SAFE_GATE_A_BYPASS --> SAFE_GATE_A
+  SAFE_GATE_B_BYPASS --> SAFE_GATE_B
+  SAFE_PTT_OR_BYPASS --> SAFE_PTT_OR
+  RP -->|"3×CE + nRF rail requests"| SAFE_GATE_A
   RP -->|"CC rail request"| SAFE_GATE_B
   C5 -->|"IR carrier request"| SAFE_GATE_B
   SLOW_IO -->|"voice/accessory rail requests"| SAFE_GATE_B
@@ -2030,10 +2042,10 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 - `rf-ground`
 - `rf-ground-dedicated-via`
 - `rp-service-vbus-high-impedance-test-pad`
+- `safety SWD fixture`
 - `safety service fixture`
 - `safety-ground`
 - `safety-ground-dedicated-via`
-- `safety-ground-via-10k`
 - `voice-raw-converter-pg-test`
 
 Эти строки блокируют final schematic/BOM, но не нарушают проверенную
@@ -2213,9 +2225,11 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: `PA27`, `PA30`.
 | `PA26` | 1 | `POWER_ZONE_TEMP_ADC` | `i` | `ADC` | `power_zone_ntc.END_1`, `power_zone_temp_pullup.END_2`, `power_zone_temp_filter.END_1` | — |
 | `PA27` | 2 | `RF_ZONE_TEMP_ADC` | `i` | `ADC` | `rf_zone_ntc.END_1`, `rf_zone_temp_pullup.END_2`, `rf_zone_temp_filter.END_1` | — |
 | `PA30` | 3 | `POWER_FAULT_N` | `i` | `GPIO_IRQ` | `abstract:power-current-thermal-fault` | — |
+| `PA19_SWDIO` | 15 (PA19 / SWDIO) | `SAFETY_SWDIO` | `io` | `SWD` | `abstract:safety SWD fixture` | — |
+| `PA20_SWCLK` | 16 (PA20 / SWCLK) | `SAFETY_SWCLK` | `i` | `SWD` | `abstract:safety SWD fixture` | — |
 
-Budget: **15 used + 3 reserved + 0 free = 18 exposed GPIO**.
-Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
+Budget: **17 used + 1 reserved + 0 free = 18 exposed GPIO**.
+Reserved: `PA1_NRST`. Free: none.
 
 ### Fixed-function/control routes
 
@@ -4304,6 +4318,10 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_iso.VCC` | one physical tri-state buffer owns module PTT drive |
 | `AUDIO_GROUND` | `voice_ptt_iso.GND` | `abstract:audio-ground` | PTT-isolator return |
 | `VOICE_READY` | `voice_supervisor.RESET_N` | `voice_ptt_iso.OE` | module-side PTT is high impedance until power is qualified |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_ptt_or.VCC` | the voice PTT safety OR remains valid whenever the AON safety rail exists |
+| `SAFETY_GROUND` | `safe_ptt_or.GND` | `abstract:safety-ground` | voice PTT safety-gate return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_ptt_or_bypass.END_1` | exact 100-nF local PTT-gate bypass |
+| `SAFETY_GROUND` | `safe_ptt_or_bypass.END_2` | `abstract:safety-ground` | PTT-gate bypass returns locally |
 | `VOICE_PTT_SAFE_N` | `safe_ptt_or.1Y` | `voice_ptt_iso.A` | AON KILL/FAULT_KILL gate remains dominant over the active-low PTT request |
 | `VOICE_PTT_MODULE_N` | `voice_ptt_iso.Y` | `voice.PTT` | buffer cannot create TX while its interface rail or enable is absent |
 | `VVOICE_IO_3V3` | `voice_io_power_switch.VOUT` | `voice_ptt_pullup.END_1` | exact 10-kOhm module-side pull-up forces RX during buffer startup |
@@ -4411,9 +4429,21 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `UNIT_READY` | `unit_supervisor.RESET_N` | `slow_io.P26` | read-only electrical readiness replaces the impossible connector-presence claim; no safety function depends on firmware polling |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor.VDD` | always-on source and hold-up are selected and budgeted in I3 |
 | `AON_SAFE_SENSE` | `abstract:AON_SAFE_3V3` | `safe_supervisor.SENSE` | factory G33 threshold supervises the actual safety rail |
+| `SAFETY_GROUND` | `safe_supervisor.GND` | `abstract:safety-ground` | the AON supervisor has an explicit local safety-domain return |
+| `SAFE_SUPERVISOR_CT_NC` | `safe_supervisor.CT` | `abstract:no-connect` | open CT selects the documented fixed reset delay; the open contact is explicit rather than omitted |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_supervisor_bypass.END_1` | exact 100-nF local supervisor bypass prevents AON rail edges from corrupting POR |
+| `SAFETY_GROUND` | `safe_supervisor_bypass.END_2` | `abstract:safety-ground` | supervisor bypass returns directly to the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_por_pullup.END_1` | one exact 10-kOhm resistor is the sole external pull-up on the supervisor's open-drain POR output |
 | `POR_N` | `safe_por_pullup.END_2` | `safe_supervisor.RESET_N` | POR_N is pulled only to AON_SAFE_3V3; a missing AON rail cannot produce a main-enable high |
 | `POR_N` | `safe_supervisor.RESET_N` | `safe_latch.CLR_N` | only genuine AON power-on reset clears the latch asynchronously; ordinary firmware cannot drive CLR_N |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_conditioner.VCC` | the RUN and fault-reset Schmitt conditioner remains powered for the full AON lifetime |
+| `SAFETY_GROUND` | `safe_conditioner.GND` | `abstract:safety-ground` | conditioner return is explicit and local to the safety domain |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_conditioner_bypass.END_1` | exact 100-nF local conditioner bypass |
+| `SAFETY_GROUND` | `safe_conditioner_bypass.END_2` | `abstract:safety-ground` | conditioner bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_latch.VCC` | the asynchronous kill latch remains powered independently of the application domains |
+| `SAFETY_GROUND` | `safe_latch.GND` | `abstract:safety-ground` | kill-latch return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_latch_bypass.END_1` | exact 100-nF local kill-latch bypass |
+| `SAFETY_GROUND` | `safe_latch_bypass.END_2` | `abstract:safety-ground` | kill-latch bypass returns locally |
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safe_latch.CLK` | only a physical KILL-to-RUN transition supplies the positive edge that clocks fixed D low |
 | `RUN_EDGE` | `safe_conditioner.1Y` | `safety_controller.PA24` | the safety controller may refuse a restart but cannot synthesize the physical edge |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_run_fault_iso.VCC` | the RUN fault buffer remains valid for the full AON lifetime |
@@ -4436,9 +4466,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SAFETY_ESD_NC7` | `safety_control_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC9` | `safety_control_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `SAFETY_ESD_NC10` | `safety_control_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `SAFE_D_LOW` | `abstract:safety-ground-via-10k` | `safe_latch.D` | fixed logic low; no MCU, expander or connector endpoint |
+| `SAFE_D_LOW` | `safe_latch_d_pulldown.END_1` | `safe_latch.D` | exact physical 10-kOhm pull-down fixes D low; no MCU, expander or connector can release the latch |
+| `SAFETY_GROUND` | `safe_latch_d_pulldown.END_2` | `abstract:safety-ground` | the fixed-D resistor returns directly to the safety domain |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safety_controller.VDD` | the safety controller remains alive on battery or product USB whenever the independently protected AON rail exists |
 | `SAFETY_GROUND` | `safety_controller.VSS` | `abstract:safety-ground` | dedicated controller return stays inside the AON safety domain |
+| `SAFETY_SWDIO` | `safety_controller.PA19_SWDIO` | `abstract:safety SWD fixture` | permanent SWD data access reaches the real DGS20 pin 15 for blank-device programming and recovery |
+| `SAFETY_SWCLK` | `safety_controller.PA20_SWCLK` | `abstract:safety SWD fixture` | permanent SWD clock access reaches the real DGS20 pin 16 and cannot itself release the hardware kill latch |
 | `AON_SAFE_3V3` | `safety_controller.VDD` | `safety_controller_bulk.END_1` | exact 10-uF local bulk decoupling |
 | `SAFETY_GROUND` | `safety_controller_bulk.END_2` | `abstract:safety-ground` | bulk capacitor returns locally |
 | `AON_SAFE_3V3` | `safety_controller.VDD` | `safety_controller_bypass.END_1` | exact 100-nF high-frequency bypass |
@@ -4526,6 +4559,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `C5_RESET_N` | `c5_reset_pullup.END_2` | `c5.EN` | C5 can run only when neither FAULT_KILL nor service control pulls low |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_reset_pullup.END_1` | exact passive target pull-up |
 | `RP_RESET_N` | `rp_reset_pullup.END_2` | `rp.RUN` | RP can run only when neither FAULT_KILL nor service control pulls low |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_a.VCC` | all four nRF-domain safety gates remain powered by the independent AON rail |
+| `SAFETY_GROUND` | `safe_gate_a.GND` | `abstract:safety-ground` | nRF safety-gate return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_a_bypass.END_1` | exact 100-nF local nRF safety-gate bypass |
+| `SAFETY_GROUND` | `safe_gate_a_bypass.END_2` | `abstract:safety-ground` | nRF safety-gate bypass returns locally |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_b.VCC` | rear-domain transmit gates remain powered by the independent AON rail |
+| `SAFETY_GROUND` | `safe_gate_b.GND` | `abstract:safety-ground` | rear-domain safety-gate return is explicit and local |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `safe_gate_b_bypass.END_1` | exact 100-nF local rear-domain safety-gate bypass |
+| `SAFETY_GROUND` | `safe_gate_b_bypass.END_2` | `abstract:safety-ground` | rear-domain safety-gate bypass returns locally |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.1B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.2B` | KILL/FAULT_KILL-dominant active-high gate permit |
 | `RUN_PERMIT` | `safe_latch.Q_N` | `safe_gate_a.3B` | KILL/FAULT_KILL-dominant active-high gate permit |

@@ -34,6 +34,7 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | exact ECAD | 7 fitted components and 36 contacts: independent encoder A/B/push and PTT with local ESD; the serial knob remains an external mechanical item |
 | [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | exact ECAD | 14 symbols and 34 contacts: downward-facing microphone, reset-safe U-DFN amplifier and two independent floating-BTL outputs to the wired speaker assembly |
 | [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C receptacle, 80 separate physical contacts, 51 interfaces and row-for-row equality with UI-side M1, with no reserves/NCs |
+| [`RF_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 97 components and 369 contacts: independent RUN/KILL, POR, watchdog/latch/reset and TX gates, five physical RF detectors, five comparator channels, 63 interfaces and 22 explained NCs |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -55,7 +56,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json), and
 [rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json), and
 [audio I/O/amplifier](../hardware/ecad/generated/H2-RF36-audio-io-amp.json), and
-[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json).
+[RF-side M1](../hardware/ecad/generated/H2-RF40-interboard-m1.json), and
+[RF-side TX safety/evidence](../hardware/ecad/generated/H2-RF50-tx-safety-evidence.json).
 These sheets do not yet authorize PCB placement, routing or fabrication.
 
 Read the architecture from its three compute owners, not from the USB port.

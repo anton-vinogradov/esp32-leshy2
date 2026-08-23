@@ -76,7 +76,7 @@
       "rp": 48,
       "pd_controller": 5,
       "pack_admission": 13,
-      "safety_controller": 15
+      "safety_controller": 17
     },
     "free_gpio": {
       "s3": [],

@@ -37,6 +37,7 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "RF_35_REAR_CONTROLS": ECAD / "generated/H2-RF35-rear-controls.json",
     "RF_36_AUDIO_IO_AMP": ECAD / "generated/H2-RF36-audio-io-amp.json",
     "RF_40_INTERBOARD_M1": ECAD / "generated/H2-RF40-interboard-m1.json",
+    "RF_50_TX_SAFETY_EVIDENCE": ECAD / "generated/H2-RF50-tx-safety-evidence.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "RF_01_USB_PD_CHARGE": "reviewed_exact_usb_pd_charge_sheet",
@@ -49,6 +50,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "RF_35_REAR_CONTROLS": "reviewed_exact_rear_controls_sheet",
     "RF_36_AUDIO_IO_AMP": "reviewed_exact_audio_io_amplifier_sheet",
     "RF_40_INTERBOARD_M1": "reviewed_exact_rf_interboard_m1_sheet",
+    "RF_50_TX_SAFETY_EVIDENCE": "reviewed_exact_rf_tx_safety_evidence_sheet",
 }
 
 
@@ -391,9 +393,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "root_hierarchical_pin_count": 305,
         "child_hierarchical_label_count": 305,
         "known_child_stub_erc_violations": 0,
-        "implemented_child_sheet_count": 10, "circuit_symbols_placed": 529,
-        "known_generated_library_copy_warnings": 529,
-        "known_deferred_fixture_erc_violations": 8, "pcb_files_created": 0,
+        "implemented_child_sheet_count": 11, "circuit_symbols_placed": 626,
+        "known_generated_library_copy_warnings": 626,
+        "known_deferred_fixture_erc_violations": 13, "pcb_files_created": 0,
     }
     if summary != expected:
         raise ValueError(f"reviewed H2.3.1 interface accounting drifted: {summary}")
