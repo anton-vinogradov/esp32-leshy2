@@ -30,11 +30,10 @@ target-emulator run, and no order is authorized.
 
 ### Current phase H1 — detailed position
 
-<!-- current-substep: H1.2 -->
+<!-- current-substep: H1.3.0 -->
 
-**Exact marker: `H1.2`** — place both boards, enclosure, fasteners, external
-organs and accessory keep-outs in one coordinate model. Later views remain
-provisional outputs.
+**Exact marker: `H1.3.0`** — generate the final external faces from the unified
+coordinate source before the `H1.3.1` user gate.
 
 - ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
 - `H1.1` — build the physical-source register.
@@ -65,8 +64,8 @@ provisional outputs.
           DF40 pair and dual-contact ZIF preserve all 40 contacts one-to-one.
       - ✅ `H1.1.3.3.4` — not required; the sample plan remains parked.
   - ✅ `H1.1.4` — freeze the renderer source table.
-- ▶️ **`H1.2` — current:** create one coordinate model for both boards and the enclosure.
-- ⏳ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
+- ✅ `H1.2` — create one coordinate model for both boards and the enclosure.
+- ▶️ **`H1.3.0` — current:** generate outer faces, controls, arrows and readable silkscreen
   from the unified source.
   - ✅ Latest provisional correction: ten TX indicators are aligned as two
     rows of five, the front controls are raised 5 mm, and the display now

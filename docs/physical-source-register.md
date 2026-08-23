@@ -30,4 +30,6 @@ remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
 
 The complete per-instance table is retained as
 [`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)
-for deterministic rendering, review and later ECAD transfer.
+for deterministic rendering, review and later ECAD transfer. The resolved
+front-facing X/Y/Z projection is
+[`H1-unified-coordinate-table.json`](../hardware/product-design/generated/H1-unified-coordinate-table.json).

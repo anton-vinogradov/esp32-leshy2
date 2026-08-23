@@ -40,11 +40,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Current H1 breakdown
 
-<!-- current-substep: H1.2 -->
+<!-- current-substep: H1.3.0 -->
 
-**Exact marker: `H1.2`** — place both boards, enclosure, fasteners, external
-organs and accessory keep-outs in one coordinate model. The H1.1 register is
-frozen; later views remain provisional and are not reviewed substeps.
+**Exact marker: `H1.3.0`** — generate the final external faces from the unified
+coordinate source before the `H1.3.1` user gate.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -79,9 +78,9 @@ frozen; later views remain provisional and are not reviewed substeps.
       - ✅ `H1.1.3.3.4` — not required; the minimum sample plan remains a
         parked H5 artifact and authorizes no purchase.
   - ✅ `H1.1.4` — freeze the renderer source table.
-- ▶️ **`H1.2` — current:** one coordinate model for both boards, enclosure, fasteners and
+- ✅ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
-- ⏳ `H1.3.0` — generate the outer faces from the unified source: screen,
+- ▶️ **`H1.3.0` — current:** generate the outer faces from the unified source: screen,
   D-pad, keys, encoder, LEDs, arrows, external interfaces and visible,
   unobscured silkscreen.
   - ✅ Latest provisional correction: ten TX indicators are aligned as two

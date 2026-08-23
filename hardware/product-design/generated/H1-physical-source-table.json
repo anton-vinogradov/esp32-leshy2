@@ -6,6 +6,7 @@
     "hardware/architecture/devices.json",
     "hardware/architecture/candidates/G2F-3I.json",
     "hardware/product-design/mechanical-evidence-gates.json",
+    "hardware/product-design/assembly-coordinate-model.json",
     "hardware/product-design/g3_clamshell.py"
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",

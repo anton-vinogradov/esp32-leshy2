@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "model_id": "L2-ASM-COORD-001-A",
+  "stage": "H1.2",
+  "status": "reviewed",
+  "units": "mm",
+  "world": {
+    "origin": "front-left corner of the HMX035CTFT-001 touch/view plane at the antenna-side edge",
+    "x_axis": "right when viewing the finished front face",
+    "y_axis": "from the antenna edge toward the bottom/service edge",
+    "z_axis": "from the touch/view plane toward the rear battery face"
+  },
+  "board_outline_mm": [75.0, 150.0],
+  "stack": {
+    "display_front_z": 0.0,
+    "display_depth_mm": 3.2,
+    "ui_outer_face_z": 3.2,
+    "ui_pcb_thickness_mm": 1.6,
+    "ui_inner_face_z": 4.8,
+    "interboard_gap_mm": 11.0,
+    "rf_inner_face_z": 15.8,
+    "rf_pcb_thickness_mm": 1.6,
+    "rf_outer_face_z": 17.4,
+    "selected_base_stack_depth_mm": 17.4
+  },
+  "frames": {
+    "front-outer": {
+      "local_view": "normal to the front exterior",
+      "world_transform": "xw=x, yw=y, zw=3.2 for the UI PCB surface; outward bodies extend toward -z"
+    },
+    "ui-inner": {
+      "local_view": "authored in the front-face X/Y datum; rendered from the inner side by visual X mirroring only",
+      "world_transform": "xw=x, yw=y, zw=4.8; bodies extend toward +z"
+    },
+    "rf-inner": {
+      "local_view": "authored as seen from the rear exterior",
+      "world_transform": "xw=75-x-width, yw=y, zw=15.8; bodies extend toward -z"
+    },
+    "rear-outer": {
+      "local_view": "normal to the rear exterior",
+      "world_transform": "xw=75-x-width for bodies or xw=75-x for axes, yw=y, zw=17.4; outward bodies extend toward +z"
+    }
+  },
+  "mounting_holes": {
+    "diameter_mm": 2.7,
+    "head_keepout_radius_mm": 4.0,
+    "world_xy": [[5.0, 11.0], [70.0, 11.0], [5.0, 145.0], [70.0, 145.0]],
+    "axis": "parallel to world Z through both PCBs"
+  },
+  "antenna_planes": {
+    "front_bank_mount_face_z": 3.2,
+    "front_bank_centre_z": 0.025,
+    "rear_bank_mount_face_z": 17.4,
+    "rear_bank_centre_z": 20.575,
+    "centre_plane_separation_mm": 20.55,
+    "mounting": "both GCT connector banks are soldered on outward PCB faces and no connector body enters the 11-mm interboard channel"
+  },
+  "longitudinal_zones": {
+    "antenna_connector_zone_y_mm": [0.0, 6.0],
+    "u214_cap_y_mm": [17.0, 41.0],
+    "battery_holder_y_mm": [42.0, 128.0],
+    "bottom_service_edge_y_mm": 150.0
+  },
+  "accessory_envelopes": {
+    "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.4, 32.687]},
+    "battery_holder": {"x_mm": [17.6, 57.4], "y_mm": [42.0, 128.0], "z_mm": [17.4, 38.1]},
+    "display_adapter_bay": {"x_mm": [24.75, 50.25], "y_mm": [90.5, 102.5], "z_mm": [4.8, 8.6]}
+  },
+  "enclosure_reference": {
+    "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
+    "not_yet_locked": "wall thickness, ribs, seals, bezel, grille, external fillets and manufacturing tolerance stack",
+    "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently"
+  }
+}

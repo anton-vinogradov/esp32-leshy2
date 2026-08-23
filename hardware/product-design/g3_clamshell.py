@@ -19,6 +19,7 @@ MECHANICAL_GATES_PATH = REPO / "hardware/product-design/mechanical-evidence-gate
 SOURCE_RESEARCH_PATH = REPO / "hardware/product-design/h1-source-research.json"
 DPAD_DESIGN_PATH = REPO / "hardware/product-design/dpad-actuator.json"
 DISPLAY_ADAPTER_DESIGN_PATH = REPO / "hardware/product-design/display-adapter.json"
+ASSEMBLY_COORDINATE_MODEL_PATH = REPO / "hardware/product-design/assembly-coordinate-model.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
@@ -27,6 +28,7 @@ DPAD_OUTPUT = REPO / "docs/images/dpad-actuator.svg"
 DISPLAY_ADAPTER_OUTPUT = REPO / "docs/images/display-adapter.svg"
 SOURCE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 SOURCE_REGISTER_OUTPUT = REPO / "docs/physical-source-register.md"
+UNIFIED_COORDINATE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-unified-coordinate-table.json"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -562,12 +564,16 @@ EXTERIOR_BODY_CONTRACTS = (
 )
 
 
-def load() -> tuple[dict, dict, dict, dict, dict]:
+def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
     dpad_design = json.loads(DPAD_DESIGN_PATH.read_text(encoding="utf-8"))
     display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
-    return devices, candidate, candidate["instances"], dpad_design, display_adapter_design
+    assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
+    return (
+        devices, candidate, candidate["instances"], dpad_design,
+        display_adapter_design, assembly_coordinate_model,
+    )
 
 
 def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[float, float]:
@@ -1034,7 +1040,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H1.2":
+    if constraint.get("current_step") != "H1.3.0":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
@@ -1094,7 +1100,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.2":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.3.0":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1352,8 +1358,102 @@ def validate_display_adapter_design(
     return errors
 
 
+def validate_assembly_coordinate_model(
+    model: dict, devices: dict, instances: dict, display_adapter_design: dict
+) -> list[str]:
+    """Prove that every view shares one X/Y/Z datum and board transformation."""
+    errors: list[str] = []
+    if (
+        model.get("schema_version") != 1
+        or model.get("model_id") != "L2-ASM-COORD-001-A"
+        or model.get("stage") != "H1.2"
+        or model.get("status") != "reviewed"
+    ):
+        errors.append("coordinate-model: schema, identity, stage or review status drifted")
+    if [float(value) for value in model.get("board_outline_mm", [])] != [BOARD_W, BOARD_H]:
+        errors.append("coordinate-model: board outline disagrees with the renderers")
+    holes = model.get("mounting_holes", {})
+    if float(holes.get("diameter_mm", 0)) != MOUNT_HOLE_D:
+        errors.append("coordinate-model: mounting-hole diameter drifted")
+    if float(holes.get("head_keepout_radius_mm", 0)) != MOUNT_KEEPOUT_R:
+        errors.append("coordinate-model: mounting keep-out drifted")
+    if [tuple(map(float, row)) for row in holes.get("world_xy", [])] != list(HOLES):
+        errors.append("coordinate-model: mounting axes disagree with every board view")
+
+    stack = model.get("stack", {})
+    display_depth = float(devices[instances["display"]]["dimensions_mm"][2])
+    expected_stack = {
+        "display_front_z": 0.0,
+        "display_depth_mm": display_depth,
+        "ui_outer_face_z": display_depth,
+        "ui_pcb_thickness_mm": 1.6,
+        "ui_inner_face_z": display_depth + 1.6,
+        "interboard_gap_mm": INTERBOARD_GAP_MM,
+        "rf_inner_face_z": display_depth + 1.6 + INTERBOARD_GAP_MM,
+        "rf_pcb_thickness_mm": 1.6,
+        "rf_outer_face_z": display_depth + 1.6 + INTERBOARD_GAP_MM + 1.6,
+        "selected_base_stack_depth_mm": display_depth + 1.6 + INTERBOARD_GAP_MM + 1.6,
+    }
+    for field, expected in expected_stack.items():
+        if not math.isclose(float(stack.get(field, -999)), expected, abs_tol=1e-9):
+            errors.append(f"coordinate-model: {field} is stale (expected {expected:.3f})")
+
+    planes = model.get("antenna_planes", {})
+    front_centre = float(stack.get("ui_outer_face_z", 0)) - RF_BARREL_D / 2
+    rear_centre = float(stack.get("rf_outer_face_z", 0)) + RF_BARREL_D / 2
+    if not math.isclose(float(planes.get("front_bank_centre_z", -1)), front_centre, abs_tol=0.001):
+        errors.append("coordinate-model: front antenna centre plane drifted")
+    if not math.isclose(float(planes.get("rear_bank_centre_z", -1)), rear_centre, abs_tol=0.001):
+        errors.append("coordinate-model: rear antenna centre plane drifted")
+    if not math.isclose(
+        float(planes.get("centre_plane_separation_mm", -1)),
+        rear_centre - front_centre,
+        abs_tol=0.001,
+    ):
+        errors.append("coordinate-model: antenna centre-plane separation drifted")
+
+    zones = model.get("longitudinal_zones", {})
+    u214_y = list(map(float, zones.get("u214_cap_y_mm", [])))
+    battery_y = list(map(float, zones.get("battery_holder_y_mm", [])))
+    if u214_y != [U214_Y, U214_Y + U214_H] or battery_y != [42.0, 128.0]:
+        errors.append("coordinate-model: U214 or battery Y zone drifted")
+    elif u214_y[1] + 1.0 > battery_y[0]:
+        errors.append("coordinate-model: U214 and battery longitudinal zones overlap")
+
+    envelopes = model.get("accessory_envelopes", {})
+    adapter = envelopes.get("display_adapter_bay", {})
+    board = display_adapter_design["board"]
+    adapter_x, adapter_y = map(float, board["ui_inner_position_mm"])
+    expected_adapter = {
+        "x_mm": [adapter_x, adapter_x + float(board["width_mm"])],
+        "y_mm": [adapter_y, adapter_y + float(board["height_mm"])],
+        "z_mm": [
+            float(stack.get("ui_inner_face_z", 0)),
+            float(stack.get("ui_inner_face_z", 0))
+            + float(display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]),
+        ],
+    }
+    for axis, expected in expected_adapter.items():
+        if [float(value) for value in adapter.get(axis, [])] != expected:
+            errors.append(f"coordinate-model: display-adapter {axis} envelope drifted")
+    if expected_adapter["z_mm"][1] + MIN_INTERBOARD_Z_CLEARANCE_MM > float(stack.get("rf_inner_face_z", 0)):
+        errors.append("coordinate-model: display adapter violates the unified Z channel")
+
+    u214 = envelopes.get("u214", {})
+    if [float(value) for value in u214.get("x_mm", [])] != [U214_X, U214_X + U214_W]:
+        errors.append("coordinate-model: U214 X envelope drifted")
+    if [float(value) for value in u214.get("y_mm", [])] != [U214_Y, U214_Y + U214_H]:
+        errors.append("coordinate-model: U214 Y envelope drifted")
+    if not model.get("enclosure_reference", {}).get("not_yet_locked"):
+        errors.append("coordinate-model: enclosure-open boundary must remain explicit")
+    return errors
+
+
 def validate() -> list[str]:
-    devices, candidate, instances, dpad_design, display_adapter_design = load()
+    (
+        devices, candidate, instances, dpad_design,
+        display_adapter_design, assembly_coordinate_model,
+    ) = load()
     errors: list[str] = []
     required = {
         "s3": "ESP32-S3-WROOM-1U-N16R8",
@@ -1384,6 +1484,9 @@ def validate() -> list[str]:
     errors += validate_dpad_design(dpad_design, devices[instances["ui_dpad_switch"]])
     errors += validate_display_adapter_design(
         display_adapter_design, devices, candidate, instances
+    )
+    errors += validate_assembly_coordinate_model(
+        assembly_coordinate_model, devices, instances, display_adapter_design
     )
     for instance, device_key in instances.items():
         device = devices[device_key]
@@ -3258,6 +3361,7 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
             str(DEVICES_PATH.relative_to(REPO)),
             str(CANDIDATE_PATH.relative_to(REPO)),
             str(MECHANICAL_GATES_PATH.relative_to(REPO)),
+            str(ASSEMBLY_COORDINATE_MODEL_PATH.relative_to(REPO)),
             str(Path(__file__).resolve().relative_to(REPO)),
         ],
         "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
@@ -3268,6 +3372,62 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
             "h1_blockers": sum(gate["disposition"] == "h1_blocker" for gate in gates),
             "h5_received_sample_gates": sum(gate["disposition"] == "h5_received_sample_gate" for gate in gates),
         },
+        "rows": rows,
+    }
+
+
+def build_unified_coordinate_table(source_table: dict, model: dict) -> dict:
+    """Resolve local view coordinates into the shared front-facing world datum."""
+    stack = model["stack"]
+    rows = []
+    for source in source_table["rows"]:
+        if "position_mm" not in source:
+            continue
+        x, y = map(float, source["position_mm"])
+        width, height, body_z = map(float, source["envelope_mm"])
+        angle = math.radians(int(source["rotation_deg"]) % 180)
+        rotated_w = abs(width * math.cos(angle)) + abs(height * math.sin(angle))
+        rotated_h = abs(width * math.sin(angle)) + abs(height * math.cos(angle))
+        frame = source["frame"]
+        if frame in {"front-outer", "ui-inner"}:
+            world_x = x
+        elif frame in {"rear-outer", "rf-inner"}:
+            world_x = BOARD_W - x - rotated_w
+        else:
+            continue
+        if frame == "front-outer":
+            z_range = [float(stack["ui_outer_face_z"]) - body_z, float(stack["ui_outer_face_z"])]
+        elif frame == "ui-inner":
+            z_range = [float(stack["ui_inner_face_z"]), float(stack["ui_inner_face_z"]) + body_z]
+        elif frame == "rf-inner":
+            z_range = [float(stack["rf_inner_face_z"]) - body_z, float(stack["rf_inner_face_z"])]
+        else:
+            z_range = [float(stack["rf_outer_face_z"]), float(stack["rf_outer_face_z"]) + body_z]
+        rows.append(
+            {
+                "instance": source["instance"],
+                "source_frame": frame,
+                "world_bbox_mm": {
+                    "x": [round(world_x, 6), round(world_x + rotated_w, 6)],
+                    "y": [round(y, 6), round(y + rotated_h, 6)],
+                    "z": [round(z_range[0], 6), round(z_range[1], 6)],
+                },
+                "direction": source["direction"],
+            }
+        )
+    return {
+        "schema_version": 1,
+        "stage": "H1.2",
+        "status": "reviewed",
+        "model_id": model["model_id"],
+        "world": model["world"],
+        "stack": model["stack"],
+        "mounting_holes": model["mounting_holes"],
+        "antenna_planes": model["antenna_planes"],
+        "longitudinal_zones": model["longitudinal_zones"],
+        "accessory_envelopes": model["accessory_envelopes"],
+        "enclosure_reference": model["enclosure_reference"],
+        "resolved_body_count": len(rows),
         "rows": rows,
     }
 
@@ -3307,7 +3467,9 @@ def render_physical_source_register(source_table: dict) -> str:
         "",
         "The complete per-instance table is retained as",
         "[`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)",
-        "for deterministic rendering, review and later ECAD transfer.",
+        "for deterministic rendering, review and later ECAD transfer. The resolved",
+        "front-facing X/Y/Z projection is",
+        "[`H1-unified-coordinate-table.json`](../hardware/product-design/generated/H1-unified-coordinate-table.json).",
         "",
     ]
     return "\n".join(lines)
@@ -3349,6 +3511,8 @@ def render_physical_source_register_ru(source_table: dict) -> str:
         "Полная таблица по каждому экземпляру хранится в",
         "[`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)",
         "и является детерминированным входом для отрисовки, ревью и переноса в ECAD.",
+        "Единая front-facing проекция X/Y/Z записана в",
+        "[`H1-unified-coordinate-table.json`](../hardware/product-design/generated/H1-unified-coordinate-table.json).",
         "",
     ]
     return "\n".join(lines)
@@ -3364,8 +3528,14 @@ def main() -> int:
         for error in errors:
             print(f"error: {error}")
         return 1
-    devices, _, instances, dpad_design, display_adapter_design = load()
+    (
+        devices, _, instances, dpad_design,
+        display_adapter_design, assembly_coordinate_model,
+    ) = load()
     source_table = build_physical_source_table(devices, instances)
+    unified_coordinate_table = build_unified_coordinate_table(
+        source_table, assembly_coordinate_model
+    )
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances, dpad_design),
         INTERNAL_OUTPUT: render_internal(devices, instances),
@@ -3374,6 +3544,9 @@ def main() -> int:
         DPAD_OUTPUT: render_dpad_detail(dpad_design),
         DISPLAY_ADAPTER_OUTPUT: render_display_adapter(display_adapter_design),
         SOURCE_TABLE_OUTPUT: json.dumps(source_table, ensure_ascii=False, indent=2) + "\n",
+        UNIFIED_COORDINATE_TABLE_OUTPUT: json.dumps(
+            unified_coordinate_table, ensure_ascii=False, indent=2
+        ) + "\n",
         SOURCE_REGISTER_OUTPUT: render_physical_source_register(source_table),
         REPO / "docs/physical-source-register.ru.md": render_physical_source_register_ru(source_table),
     }

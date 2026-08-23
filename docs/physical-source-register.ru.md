@@ -32,3 +32,5 @@
 Полная таблица по каждому экземпляру хранится в
 [`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)
 и является детерминированным входом для отрисовки, ревью и переноса в ECAD.
+Единая front-facing проекция X/Y/Z записана в
+[`H1-unified-coordinate-table.json`](../hardware/product-design/generated/H1-unified-coordinate-table.json).
