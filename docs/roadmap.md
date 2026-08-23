@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.11: RF/power side of the 80-contact M1 contract; H2.3.10 audio I/O is reviewed |
+| Current production ECAD schematic | ▶️ H2.3.12: RF-side TX safety and physical evidence; H2.3.11 M1 is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.11 -->
+<!-- current-substep: H2.3.12 -->
 
-**Exact marker: `H2.3.11`** — implement and review the RF/power side of the
-80-contact M1 contract on `RF_40_INTERBOARD_M1`.
+**Exact marker: `H2.3.12`** — implement and review RF-side TX safety and
+physical evidence on `RF_50_TX_SAFETY_EVIDENCE`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -191,8 +191,9 @@ Current H2 execution:
   - ✅ `H2.3.10` — `RF_36_AUDIO_IO_AMP`: 14 symbols, 34 contacts, exact
     microphone/amplifier footprints and two independent floating-BTL paths;
     native KiCad review passed.
-  - ▶️ **`H2.3.11` — current:** `RF_40_INTERBOARD_M1`.
-  - ⏳ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`.
+  - ✅ `H2.3.11` — `RF_40_INTERBOARD_M1`: all 80 physical contacts and 51
+    interfaces match UI-side M1 row-for-row; native KiCad review passed.
+  - ▶️ **`H2.3.12` — current:** `RF_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,

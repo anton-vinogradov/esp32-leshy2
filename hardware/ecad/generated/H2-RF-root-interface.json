@@ -14,10 +14,10 @@
     "cross_sheet_net_count": 133,
     "root_hierarchical_pin_count": 305,
     "child_hierarchical_label_count": 305,
-    "known_child_stub_erc_violations": 32,
-    "implemented_child_sheet_count": 9,
-    "circuit_symbols_placed": 528,
-    "known_generated_library_copy_warnings": 528,
+    "known_child_stub_erc_violations": 0,
+    "implemented_child_sheet_count": 10,
+    "circuit_symbols_placed": 529,
+    "known_generated_library_copy_warnings": 529,
     "known_deferred_fixture_erc_violations": 8,
     "pcb_files_created": 0
   },
@@ -1387,7 +1387,8 @@
       "RF_32_SUBGHZ_VOICE",
       "RF_34_U214_M5_EXT",
       "RF_35_REAR_CONTROLS",
-      "RF_36_AUDIO_IO_AMP"
+      "RF_36_AUDIO_IO_AMP",
+      "RF_40_INTERBOARD_M1"
     ]
   },
   "review_boundary": {

@@ -1,0 +1,649 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.11",
+  "status": "reviewed_exact_rf_interboard_m1_sheet",
+  "project": "LESHY2-RF",
+  "sheet": "RF_40_INTERBOARD_M1",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "57614f43bd9e30a3c879e33fa547262438eb224be30c4642643c5df0b881028c",
+    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
+    "hardware/ecad/generated/H2-instance-ledger.json": "812af6ab3f7453d7dedcd4026dafb008455f257d73bc60ddedb699a79689e335",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "ef411bb44779c7fc062f7fad7bb7b7fd3553a98c2a4c54c35c0da0944ebe03bd",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c978009d00ff99d7d01f5cbe118378c2c96ecbce1c0a6a53b1a77825d8d5e02a"
+  },
+  "summary": {
+    "ledger_instances": 1,
+    "schematic_symbols": 1,
+    "board_fitted_symbols": 1,
+    "physical_contacts": 80,
+    "unique_nets": 51,
+    "hierarchical_interfaces": 51,
+    "power_ground_contacts": 20,
+    "main_3v3_contacts": 7,
+    "reserved_contacts": 0,
+    "cross_project_contact_mismatches": 0,
+    "intentional_no_connect_pins": 0,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "m1_rf_receptacle",
+      "symbol_uuid": "2bb5667f-a16f-5378-a0b8-3a12117e7b67",
+      "reference": "J1",
+      "mpn": "Hirose FX8C-80S-SV5(92)",
+      "footprint": "Connector_Hirose_FX8:Hirose_FX8-80S-SV_2x40_P0.6mm",
+      "pin_count": 80,
+      "board_fitted": true
+    }
+  ],
+  "contacts": [
+    {
+      "contact": 1,
+      "symbol_pin": "1",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 2,
+      "symbol_pin": "2",
+      "net": "RP_ALERT_N",
+      "direction": "RF→UI",
+      "signal_class": "ipc_high_speed"
+    },
+    {
+      "contact": 3,
+      "symbol_pin": "3",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 4,
+      "symbol_pin": "4",
+      "net": "S3_RP_IPC_CS_N",
+      "direction": "UI→RF",
+      "signal_class": "ipc_high_speed"
+    },
+    {
+      "contact": 5,
+      "symbol_pin": "5",
+      "net": "S3_RP_IPC_SCK",
+      "direction": "UI→RF",
+      "signal_class": "ipc_high_speed"
+    },
+    {
+      "contact": 6,
+      "symbol_pin": "6",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 7,
+      "symbol_pin": "7",
+      "net": "S3_RP_IPC_MOSI",
+      "direction": "UI→RF",
+      "signal_class": "ipc_high_speed"
+    },
+    {
+      "contact": 8,
+      "symbol_pin": "8",
+      "net": "S3_RP_IPC_MISO",
+      "direction": "RF→UI",
+      "signal_class": "ipc_high_speed"
+    },
+    {
+      "contact": 9,
+      "symbol_pin": "9",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 10,
+      "symbol_pin": "10",
+      "net": "S3_USB_DM",
+      "direction": "bidirectional",
+      "signal_class": "usb2_high_speed"
+    },
+    {
+      "contact": 11,
+      "symbol_pin": "11",
+      "net": "S3_USB_DP",
+      "direction": "bidirectional",
+      "signal_class": "usb2_high_speed"
+    },
+    {
+      "contact": 12,
+      "symbol_pin": "12",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 13,
+      "symbol_pin": "13",
+      "net": "SYS_I2C_SDA",
+      "direction": "bidirectional",
+      "signal_class": "control"
+    },
+    {
+      "contact": 14,
+      "symbol_pin": "14",
+      "net": "SYS_I2C_SCL",
+      "direction": "bidirectional",
+      "signal_class": "control"
+    },
+    {
+      "contact": 15,
+      "symbol_pin": "15",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 16,
+      "symbol_pin": "16",
+      "net": "SYS_INT_N",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 17,
+      "symbol_pin": "17",
+      "net": "CC_BAND_V1_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 18,
+      "symbol_pin": "18",
+      "net": "CC_BAND_V2_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 19,
+      "symbol_pin": "19",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 20,
+      "symbol_pin": "20",
+      "net": "U214_I2C_READY",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 21,
+      "symbol_pin": "21",
+      "net": "VOICE_DOMAIN_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 22,
+      "symbol_pin": "22",
+      "net": "VOICE_HL_RELEASE_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 23,
+      "symbol_pin": "23",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 24,
+      "symbol_pin": "24",
+      "net": "U214_5V_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 25,
+      "symbol_pin": "25",
+      "net": "UNIT_5V_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 26,
+      "symbol_pin": "26",
+      "net": "POWER_FAULT_N",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 27,
+      "symbol_pin": "27",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 28,
+      "symbol_pin": "28",
+      "net": "UNIT_READY",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 29,
+      "symbol_pin": "29",
+      "net": "EV_N2_NRF0",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 30,
+      "symbol_pin": "30",
+      "net": "EV_N3_NRF1",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 31,
+      "symbol_pin": "31",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 32,
+      "symbol_pin": "32",
+      "net": "RUN_PERMIT",
+      "direction": "RF→UI",
+      "signal_class": "safety"
+    },
+    {
+      "contact": 33,
+      "symbol_pin": "33",
+      "net": "EV_N4_NRF2",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 34,
+      "symbol_pin": "34",
+      "net": "RF_RESET_KILL_GATE",
+      "direction": "RF→UI",
+      "signal_class": "safety"
+    },
+    {
+      "contact": 35,
+      "symbol_pin": "35",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 36,
+      "symbol_pin": "36",
+      "net": "EV_N0_S3",
+      "direction": "UI→RF",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 37,
+      "symbol_pin": "37",
+      "net": "EV_N1_C5",
+      "direction": "UI→RF",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 38,
+      "symbol_pin": "38",
+      "net": "EV_N7_IR",
+      "direction": "UI→RF",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 39,
+      "symbol_pin": "39",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 40,
+      "symbol_pin": "40",
+      "net": "C5_RF_TX_EVIDENCE_N",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 41,
+      "symbol_pin": "41",
+      "net": "IR_TX_EVIDENCE_N",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 42,
+      "symbol_pin": "42",
+      "net": "RX_SA518_AFOUT_ISOLATED",
+      "direction": "RF→UI",
+      "signal_class": "audio"
+    },
+    {
+      "contact": 43,
+      "symbol_pin": "43",
+      "net": "AUDIO_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 44,
+      "symbol_pin": "44",
+      "net": "VOICE_MIC_SELECTED_MAIN",
+      "direction": "UI→RF",
+      "signal_class": "audio"
+    },
+    {
+      "contact": 45,
+      "symbol_pin": "45",
+      "net": "AUDIO_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 46,
+      "symbol_pin": "46",
+      "net": "SPEAKER_SELECTED_P",
+      "direction": "UI→RF",
+      "signal_class": "audio"
+    },
+    {
+      "contact": 47,
+      "symbol_pin": "47",
+      "net": "SPEAKER_SELECTED_N",
+      "direction": "UI→RF",
+      "signal_class": "audio"
+    },
+    {
+      "contact": 48,
+      "symbol_pin": "48",
+      "net": "MIC_RAW",
+      "direction": "RF→UI",
+      "signal_class": "audio"
+    },
+    {
+      "contact": 49,
+      "symbol_pin": "49",
+      "net": "AUDIO_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 50,
+      "symbol_pin": "50",
+      "net": "UI_ENCODER_PUSH_N",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 51,
+      "symbol_pin": "51",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 52,
+      "symbol_pin": "52",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 53,
+      "symbol_pin": "53",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 54,
+      "symbol_pin": "54",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 55,
+      "symbol_pin": "55",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 56,
+      "symbol_pin": "56",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 57,
+      "symbol_pin": "57",
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 58,
+      "symbol_pin": "58",
+      "net": "EV_N5_CC",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 59,
+      "symbol_pin": "59",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 60,
+      "symbol_pin": "60",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 61,
+      "symbol_pin": "61",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 62,
+      "symbol_pin": "62",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 63,
+      "symbol_pin": "63",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 64,
+      "symbol_pin": "64",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 65,
+      "symbol_pin": "65",
+      "net": "AON_SAFE_3V3",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 66,
+      "symbol_pin": "66",
+      "net": "AON_SAFE_3V3",
+      "direction": "rail",
+      "signal_class": "power"
+    },
+    {
+      "contact": 67,
+      "symbol_pin": "67",
+      "net": "SAFETY_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 68,
+      "symbol_pin": "68",
+      "net": "SAFETY_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 69,
+      "symbol_pin": "69",
+      "net": "UNIT_HOST_SIG0",
+      "direction": "bidirectional",
+      "signal_class": "unit_configurable"
+    },
+    {
+      "contact": 70,
+      "symbol_pin": "70",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 71,
+      "symbol_pin": "71",
+      "net": "UNIT_HOST_SIG1",
+      "direction": "bidirectional",
+      "signal_class": "unit_configurable"
+    },
+    {
+      "contact": 72,
+      "symbol_pin": "72",
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return"
+    },
+    {
+      "contact": 73,
+      "symbol_pin": "73",
+      "net": "ENCODER_A",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 74,
+      "symbol_pin": "74",
+      "net": "ENCODER_B",
+      "direction": "RF→UI",
+      "signal_class": "control"
+    },
+    {
+      "contact": 75,
+      "symbol_pin": "75",
+      "net": "S3_RESET_KILL_GATE",
+      "direction": "RF→UI",
+      "signal_class": "safety"
+    },
+    {
+      "contact": 76,
+      "symbol_pin": "76",
+      "net": "UI_ZONE_TEMP_ADC",
+      "direction": "UI→RF",
+      "signal_class": "analog"
+    },
+    {
+      "contact": 77,
+      "symbol_pin": "77",
+      "net": "FAULT_LATCH_SENSE_AON",
+      "direction": "RF→UI",
+      "signal_class": "safety"
+    },
+    {
+      "contact": 78,
+      "symbol_pin": "78",
+      "net": "SPEAKER_AMP_EN",
+      "direction": "UI→RF",
+      "signal_class": "control"
+    },
+    {
+      "contact": 79,
+      "symbol_pin": "79",
+      "net": "EV_N6_VOICE",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    },
+    {
+      "contact": 80,
+      "symbol_pin": "80",
+      "net": "EV_N8_LORA_EXT",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence"
+    }
+  ],
+  "accounting_source": {
+    "positions": 80,
+    "reserved": 0,
+    "main_3v3_contacts": 7,
+    "aon_contacts": 2,
+    "power_ground_contacts": 20,
+    "audio_ground_contacts": 3,
+    "safety_ground_contacts": 2,
+    "maximum_nominal_main_contact_capacity_a": 2.8
+  },
+  "cross_project_equality": {
+    "ui_manifest": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
+    "status": "all_80_contact_net_direction_and_signal_class_rows_equal"
+  },
+  "footprint_evidence": [
+    {
+      "mpn": "Hirose FX8C-80S-SV5(92)",
+      "footprint": "Connector_Hirose_FX8:Hirose_FX8-80S-SV_2x40_P0.6mm",
+      "source": {
+        "document": "Hirose FX8C-80S-SV5(92) official product data, 2D drawing and FX8C mating table",
+        "version": "product specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0578-0823-5-92",
+        "checked": "2026-08-19"
+      },
+      "fit": "official FX8/FX8C common receptacle land pattern: 2x40 at 0.6-mm pitch, 0.35x1.50-mm lands and asymmetric locating holes; SV5 with the selected SV1 plug gives the reviewed 11-mm stack"
+    }
+  ],
+  "corrections_closed": [
+    "the RF receptacle is a separate exact serial MPN and footprint; it is not mixed with the UI plug in one schematic node",
+    "all 80 physical contacts are checked row-for-row against the reviewed UI-side manifest, including net, direction and signal class",
+    "all 20 POWER_GROUND and seven 3V3_MAIN contacts stay physically separate instead of collapsing into aggregate connector pins",
+    "the complete 80-contact budget contains no reserve or silent no-connect"
+  ],
+  "known_deferred_fixture_labels": [],
+  "review_boundary": {
+    "complete": [
+      "all 80 RF-receptacle contacts are explicit numbered symbol pins",
+      "all 51 unique M1 nets terminate the exact RF hierarchy interfaces",
+      "RF and UI project manifests are bit-for-bit equal across all contact semantics",
+      "the selected active SV5 receptacle and SV1 plug form the exact reviewed 11-mm mating pair",
+      "native KiCad parses the live RF hierarchy with the exact M1 sheet"
+    ],
+    "deferred": [
+      "connector temperature, contact-drop, simultaneous-load, skew/crosstalk and hot/unpowered boundary HIL",
+      "received mating-height, coplanarity, cycle-life and separation-force proof in H5/H8",
+      "PCB placement, paired-net fan-out, return geometry and DRC in H6"
+    ]
+  }
+}

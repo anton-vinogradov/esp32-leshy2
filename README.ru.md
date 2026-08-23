@@ -121,10 +121,10 @@ target/emulator gate ещё не закрыты, ни один заказ не �
 <details open>
 <summary><strong>⭐ Текущая фаза H2 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H2.3.11 -->
+<!-- current-substep: H2.3.12 -->
 
-**Точный маркер: `H2.3.11`** — реализовать и проверить RF/power-сторону
-80-контактного контракта M1 на `RF_40_INTERBOARD_M1`.
+**Точный маркер: `H2.3.12`** — реализовать и проверить RF-side TX safety и
+физическое evidence на `RF_50_TX_SAFETY_EVIDENCE`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 021 схемной строки.
@@ -149,8 +149,9 @@ target/emulator gate ещё не закрыты, ни один заказ не �
   - ✅ `H2.3.10` — `RF_36_AUDIO_IO_AMP`: 14 символов, 34 контакта, точные
     footprints микрофона/усилителя и два независимых floating-BTL тракта;
     проведено ревью.
-  - ▶️ **`H2.3.11` — сейчас:** `RF_40_INTERBOARD_M1`.
-  - ⏳ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`.
+  - ✅ `H2.3.11` — `RF_40_INTERBOARD_M1`: все 80 физических контактов и 51
+    интерфейс построчно совпадают с UI-side M1; проведено ревью.
+  - ▶️ **`H2.3.12` — сейчас:** `RF_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.4` — схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимое ревью power/boot/recovery/quiet-state/`FAULT_KILL`.

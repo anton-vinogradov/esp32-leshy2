@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.3.11`.
+**Статус:** ▶️ сейчас, точный маркер `H2.3.12`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,7 +43,7 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB и первых восьми RF/power-листов.
+- Проведено ревью всей UI/control PCB и первых девяти RF/power-листов.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -74,7 +74,12 @@
   [Машинное ревью](../hardware/ecad/generated/H2-RF36-audio-io-amp.json)
   закрывает точный направленный вниз микрофон, исправленный компактный
   U-DFN-усилитель, reset-low shutdown и два независимых floating-BTL выхода.
-- Текущая работа — RF/power-сторона 80-контактного контракта M1.
+- [`RF_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch)
+  содержит точный 80-контактный receptacle и 51 hierarchy interface.
+  [Машинное ревью](../hardware/ecad/generated/H2-RF40-interboard-m1.json)
+  доказывает построчное равенство с UI-side M1, включая все повторные rails и
+  returns, без reserve и NC.
+- Текущая работа — RF-side TX safety и физическое evidence.
 
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
