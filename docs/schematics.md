@@ -32,6 +32,7 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | exact electrical ECAD | 116 components, 363 physical contacts, independent CC1101 data and SA518 voice power/control/RF paths, 30 interfaces and 11 explained NCs; SA518 land fit remains an H5 gate |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | exact ECAD | 53 symbols, 52 board-fitted components, 228 contacts, 27 interfaces and separate protected U214/native M5 Unit branches; U214 itself remains an external product |
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | exact ECAD | 7 fitted components and 36 contacts: independent encoder A/B/push and PTT with local ESD; the serial knob remains an external mechanical item |
+| [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | exact ECAD | 14 symbols and 34 contacts: downward-facing microphone, reset-safe U-DFN amplifier and two independent floating-BTL outputs to the wired speaker assembly |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -51,7 +52,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [three nRF24 paths](../hardware/ecad/generated/H2-RF31-nrf24-x3.json), and
 [Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json), and
 [U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json), and
-[rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json).
+[rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json), and
+[audio I/O/amplifier](../hardware/ecad/generated/H2-RF36-audio-io-amp.json).
 These sheets do not yet authorize PCB placement, routing or fabrication.
 
 Read the architecture from its three compute owners, not from the USB port.
@@ -200,7 +202,7 @@ CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>hardware CODEC_READY AND AUDIO_ARM 
 CODEC_I2S_DIN_ISO["Texas Instruments SN74LVC1G126DCKR<br/>capture-data tri-state buffer onto boot GPIO0"]
 AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>RX-bypass/codec speaker selector"]
 AUDIO_TX_SELECTOR["Texas Instruments TS5A63157DCKR<br/>microphone/codec voice-TX selector"]
-SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>differential speaker amplifier"]
+SPEAKER_AMP["Diodes Incorporated PAM8302AAYCR<br/>differential speaker amplifier"]
 SPEAKER["PUI Audio AS02404PO<br/>internal 4-Ohm speaker"]
 HEADPHONE_JACK["Same Sky SJ-43504-SMT-TR<br/>3.5-mm CTIA headset jack with detect"]
   RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX

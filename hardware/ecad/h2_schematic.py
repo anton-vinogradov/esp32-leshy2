@@ -35,6 +35,7 @@ INTERCONNECT_ASSEMBLIES = {
     "nrf0_rf_jumper",
     "nrf1_rf_jumper",
     "nrf2_rf_jumper",
+    "speaker",
 }
 FIRMWARE_DOMAINS = {
     "s3": "S3",

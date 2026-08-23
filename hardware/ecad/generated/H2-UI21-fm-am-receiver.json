@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_21_FM_AM_RECEIVER",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "6ae79ff167e17a197258191c7ba5f6d309f1d021c600b9dbe209360dd495dab6",
-    "hardware/architecture/devices.json": "618c400159127254d0fce2ecee04f97abf6d16fe7313352a665708540739c534",
-    "hardware/ecad/generated/H2-instance-ledger.json": "1e7fab8e0fbb29ddeffa02d74d26e421dfeeacf1f95a9e875f4befd39521d5f5",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "7613178dcc95411c8d58c24009b621cc3fc9a3cb1d6881f5adbfe9b33f19f434"
+    "hardware/architecture/candidates/G2F-3I.json": "57614f43bd9e30a3c879e33fa547262438eb224be30c4642643c5df0b881028c",
+    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
+    "hardware/ecad/generated/H2-instance-ledger.json": "812af6ab3f7453d7dedcd4026dafb008455f257d73bc60ddedb699a79689e335",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "a562afbee1362ec1233351532555b54d8ff414faa06267bb9af4e7da5cf1497e"
   },
   "summary": {
     "ledger_instances": 32,

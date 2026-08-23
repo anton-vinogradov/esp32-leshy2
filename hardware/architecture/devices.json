@@ -2265,10 +2265,10 @@
         "S": {"physical": "6", "role": "signal"}
       }
     },
-    "diodes_pam8302a_ascr": {
-      "mpn": "Diodes Incorporated PAM8302AASCR",
+    "diodes_pam8302a_aycr": {
+      "mpn": "Diodes Incorporated PAM8302AAYCR",
       "kind": "mono_class_d_speaker_amplifier",
-      "qualification": "verified_reference",
+      "qualification": "verified_candidate",
       "lifecycle": "active",
       "dimensions_mm": [3.0, 3.0, 0.63],
       "mechanical_height_basis": "Diodes Incorporated U-DFN3030-8 Type E package outline: total height A, 0.63-mm maximum",
@@ -2279,16 +2279,21 @@
         "checked": "2026-08-17"
       },
       "orderable_source": {
-        "document": "PAM8302AASCR authorized-distributor exact order-code page; 141,272 shown in stock",
-        "url": "https://www.mouser.fr/ProductDetail/Diodes-Incorporated/PAM8302AASCR?qs=pYVYkI7xuRXTVZEQSGcDyg%3D%3D",
-        "checked": "2026-08-19"
+        "document": "PAM8302AAYCR authorized-distributor exact order-code page; 1,126 shown in stock",
+        "url": "https://www.mouser.com/en/ProductDetail/Diodes-Incorporated/PAM8302AAYCR?qs=pYVYkI7xuRX9VhIMiIHWEw%3D%3D",
+        "checked": "2026-08-23"
       },
       "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.3605,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
-        "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/diodes-incorporated/PAM8302AASCR/4033281", "checked": "2026-08-19"}
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.351,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://www.mouser.com/en/ProductDetail/Diodes-Incorporated/PAM8302AAYCR?qs=pYVYkI7xuRX9VhIMiIHWEw%3D%3D", "checked": "2026-08-23"}
       },
       "programmable": false,
+      "mechanical_contract": {
+        "package": "U-DFN3030-8 Type E",
+        "electrical_pins": 8,
+        "central_pad": "manufacturer drawing includes an unnumbered central thermal pad; keep electrically unassigned because the device datasheet does not authorize a net connection"
+      },
       "contacts": {
         "SD": {"physical": "1", "role": "signal"},
         "NC": {"physical": "2", "role": "nc"},
@@ -2590,6 +2595,11 @@
         "rated_power_w": 2.0,
         "maximum_power_w": 2.5,
         "free_air_resonance_hz": 450
+      },
+      "mechanical_contract": {
+        "mounting": "internal wired acoustic assembly; the manufacturer drawing does not define a direct-PCB land pattern",
+        "board_interface": "two fabricated solder pads plus strain relief, with polarity preserved",
+        "clearance": "preserve the manufacturer front movement allowance and validate enclosure acoustics in H5/H8"
       },
       "programmable": false,
       "contacts": {

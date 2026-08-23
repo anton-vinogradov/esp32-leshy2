@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.3.10`.
+**Status:** ▶️ current, exact marker `H2.3.11`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -43,7 +43,7 @@ are satisfied.
   content and status.
 - [Complete instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- The complete UI/control PCB and the first seven RF/power sheets are reviewed.
+- The complete UI/control PCB and the first eight RF/power sheets are reviewed.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   contains 48 exact components, all 81 SC1512-A4 package contacts, the official
   core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit
@@ -69,7 +69,12 @@ are satisfied.
   [machine review](../hardware/ecad/generated/H2-RF35-rear-controls.json)
   closes independent encoder A/B/push and PTT paths with local ESD; the knob
   remains an external mechanical mating item.
-- Speaker, microphone and voice-audio amplification are now active work.
+- [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch)
+  contains 14 symbols and 34 contacts. Its
+  [machine review](../hardware/ecad/generated/H2-RF36-audio-io-amp.json)
+  closes the exact downward-facing microphone, corrected compact U-DFN
+  amplifier, reset-low shutdown and two independent floating-BTL outputs.
+- The RF/power side of the 80-contact M1 contract is now active work.
 
 <a id="h3"></a>
 ## H3 · Virtual electrical verification

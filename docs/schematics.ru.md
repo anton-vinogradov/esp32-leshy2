@@ -32,6 +32,7 @@
 | [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 116 компонентов, 363 физических контакта, независимые CC1101 data и SA518 voice power/control/RF-тракты, 30 интерфейсов и 11 объяснённых NC; land-fit SA518 остаётся gate H5 |
 | [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch) | точный ECAD | 53 символа, 52 устанавливаемых компонента, 228 контактов, 27 интерфейсов, отдельные защищённые ветви U214 и нативного M5 Unit; сам U214 остаётся внешним изделием |
 | [`RF_35_REAR_CONTROLS`](../hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch) | точный ECAD | 7 устанавливаемых компонентов и 36 контактов: отдельные encoder A/B/push и PTT, локальная ESD-защита; серийная ручка остаётся внешней механической деталью |
+| [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch) | точный ECAD | 14 символов и 34 контакта: направленный вниз микрофон, reset-safe U-DFN amplifier и два независимых floating-BTL выхода к проводному динамику |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -51,7 +52,8 @@
 [три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) и
 [Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json) и
 [U214/M5 expansion](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json) и
-[rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json).
+[rear controls](../hardware/ecad/generated/H2-RF35-rear-controls.json) и
+[audio I/O/amplifier](../hardware/ecad/generated/H2-RF36-audio-io-amp.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.
@@ -200,7 +202,7 @@ CODEC_I2S_DIN_BOOT_GATE["SN74LVC1G08DCKR<br/>аппаратный gate CODEC_REA
 CODEC_I2S_DIN_ISO["Texas Instruments SN74LVC1G126DCKR<br/>трёхстабильный буфер capture data на boot GPIO0"]
 AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>выбор RX-bypass/codec для динамика"]
 AUDIO_TX_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/codec для voice TX"]
-SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>дифференциальный усилитель динамика"]
+SPEAKER_AMP["Diodes Incorporated PAM8302AAYCR<br/>дифференциальный усилитель динамика"]
 SPEAKER["PUI Audio AS02404PO<br/>внутренний 4-Ом динамик"]
 HEADPHONE_JACK["Same Sky SJ-43504-SMT-TR<br/>гарнитурный разъём 3,5 мм CTIA с detect"]
   RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX

@@ -108,7 +108,7 @@
           "equivalence_envelope": ["same package/contact map, truth table, enable/reset defaults and active polarity", "rail range, thresholds, drive, leakage, Ioff/power-off protection, bandwidth, Ron, distortion, noise and timing no worse", "address, bus semantics, clocking and fault behavior remain compatible"],
           "requalification": ["datasheet/errata and pin-by-pin review", "power-sequence/back-power/reset/bus-contention HIL", "audio, analog threshold or latency/no-stall HIL for every affected path"],
           "device_ids": [
-            "diodes_pam8302a_ascr", "everest_es8311_qfn20", "nexperia_74lvc126apw_118", "nexperia_74lvc1g32gv_125", "nexperia_74lvc2g126dc_125", "nexperia_74lvc2g14gw_125", "onsemi_fsusb42_mux", "tca4307dgkr", "tca6424argjr",
+            "diodes_pam8302a_aycr", "everest_es8311_qfn20", "nexperia_74lvc126apw_118", "nexperia_74lvc1g32gv_125", "nexperia_74lvc2g126dc_125", "nexperia_74lvc2g14gw_125", "onsemi_fsusb42_mux", "tca4307dgkr", "tca6424argjr",
             "ti_sn74lvc08a_pwr", "ti_sn74lvc1g06_dckr", "ti_sn74lvc1g07_dckr", "ti_sn74lvc1g08_dckr", "ti_sn74lvc1g125_dckr", "ti_sn74lvc1g126_dckr", "ti_sn74lvc1g3157_dbvr", "ti_sn74lvc1g74_dcur", "ti_sn74lvc2g08_dcur", "ti_sn74lvc2g66_dcur", "ti_sn74lvc3g07_dcur", "ti_sn74lvc3g34_dcur",
             "ti_tca9534a_pwr", "ti_tca9535_pwr", "ti_tca9539_pwr", "ti_tlv1821_dckr", "ti_tlv1824_pwr", "ti_tlv9061_idbvr", "ti_tmux1136_dgsr", "ti_ts5a63157_dckr", "ti_txs0102_dcur"
           ]
@@ -1769,7 +1769,7 @@
     "audio_arm_pulldown": "yageo_rc0402fr_0710kl",
     "audio_speaker_safe_pulldown": "yageo_rc0402fr_0710kl",
     "audio_tx_safe_pulldown": "yageo_rc0402fr_0710kl",
-    "speaker_amp": "diodes_pam8302a_ascr",
+    "speaker_amp": "diodes_pam8302a_aycr",
     "speaker_amp_input_cap": "tdk_c1608x7r1c105k080ac",
     "speaker_amp_bulk_cap": "murata_grm188r60j106me47d",
     "speaker_amp_enable_pulldown": "yageo_rc0402fr_0710kl",
@@ -4493,7 +4493,7 @@
     {"from":"slow_io.P01","to":"speaker_amp.SD","net":"SPEAKER_AMP_EN","safety":"speaker is explicitly enabled only while needed; headphone insertion and quiet-state policy force this contact low"},
     {"from":"speaker_amp.SD","to":"speaker_amp_enable_pulldown.END_1","net":"SPEAKER_AMP_EN","safety":"10-kOhm reset default keeps the class-D stage off"},
     {"from":"speaker_amp_enable_pulldown.END_2","to":"abstract:audio-ground","net":"AUDIO_GROUND","safety":"amplifier enable fails low"},
-    {"from":"speaker_amp.NC","to":"abstract:no-connect","net":"PAM_NC","safety":"MSOP physical pin 2 remains open"},
+    {"from":"speaker_amp.NC","to":"abstract:no-connect","net":"PAM_NC","safety":"U-DFN physical pin 2 remains open; the unnumbered central thermal pad remains electrically unassigned per the manufacturer drawing"},
     {"from":"speaker_amp.VO_PLUS","to":"speaker_output_bead_p.END_1","net":"SPEAKER_BTL_P_RAW","safety":"exact EMI bead starts the positive output branch"},
     {"from":"speaker_output_bead_p.END_2","to":"speaker.PLUS","net":"SPEAKER_BTL_P","safety":"positive 4-Ohm speaker terminal is never grounded"},
     {"from":"speaker_output_bead_p.END_2","to":"speaker_output_cap_p.END_1","net":"SPEAKER_BTL_P","safety":"exact 220-pF connector-side shunt reduces class-D cable radiation"},

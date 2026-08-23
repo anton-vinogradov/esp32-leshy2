@@ -378,7 +378,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("**205/205** lines", rendered)
         self.assertIn("**194/205** lines", rendered)
         self.assertIn("**975/992** supplied placements", rendered)
-        self.assertIn("USD 221.5467", rendered)
+        self.assertIn("USD 221.5372", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -924,7 +924,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Texas Instruments TMUX1136DGSR<br/>dual differential RX-bypass/codec speaker selector",
             "Texas Instruments TS5A63157DCKR<br/>electret/codec transmit-audio selector",
             "Texas Instruments SN74LVC2G08DCUR<br/>direct-AUDIO_ARM dual selector-request gate",
-            "Diodes Incorporated PAM8302AASCR<br/>reset-off mono Class-D speaker amplifier",
+            "Diodes Incorporated PAM8302AAYCR<br/>reset-off mono Class-D speaker amplifier",
             "Texas Instruments TPS3839K33DBZR<br/>3.08-V 200-ms codec interface supervisor",
             "Same Sky CMEJ-0413-42-SMT-TR<br/>top-port analog electret microphone",
             "PUI Audio AS02404PO<br/>24-by-12-mm 4-Ohm internal loudspeaker",
@@ -3158,7 +3158,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "audio_speaker_selector": "ti_tmux1136_dgsr",
             "audio_tx_selector": "ti_ts5a63157_dckr",
             "audio_safe_gate": "ti_sn74lvc2g08_dcur",
-            "speaker_amp": "diodes_pam8302a_ascr",
+            "speaker_amp": "diodes_pam8302a_aycr",
         }
         for instance, device_id in expected_audio_instances.items():
             self.assertEqual(device_id, candidate["instances"][instance])
@@ -3212,8 +3212,8 @@ class ArchitectureValidationTests(unittest.TestCase):
                 "Texas Instruments SN74LVC1G3157DBVR",
                 {"B2": "1", "GND": "2", "B1": "3", "A_COM": "4", "VCC": "5", "S": "6"},
             ),
-            "diodes_pam8302a_ascr": (
-                "Diodes Incorporated PAM8302AASCR",
+            "diodes_pam8302a_aycr": (
+                "Diodes Incorporated PAM8302AAYCR",
                 {"SD": "1", "NC": "2", "IN_PLUS": "3", "IN_MINUS": "4", "VO_PLUS": "5", "VDD": "6", "GND": "7", "VO_MINUS": "8"},
             ),
         }
@@ -3221,7 +3221,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             with self.subTest(device=device_id):
                 device = self.database["devices"][device_id]
                 self.assertEqual(mpn, device["mpn"])
-                self.assertIn(device["qualification"], ("reference_only", "verified_reference"))
+                self.assertIn(
+                    device["qualification"],
+                    ("reference_only", "verified_reference", "verified_candidate"),
+                )
                 for contact, physical in contacts.items():
                     self.assertEqual(physical, device["contacts"][contact]["physical"])
 

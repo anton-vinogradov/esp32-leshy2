@@ -988,7 +988,7 @@
       {
         "instance": "speaker_amp",
         "frame": "rf-inner",
-        "mpn": "Diodes Incorporated PAM8302AASCR",
+        "mpn": "Diodes Incorporated PAM8302AAYCR",
         "height_mm": 0.63,
         "remaining_to_opposite_pcb_plane_mm": 10.37
       },

@@ -383,7 +383,7 @@ flowchart TD
   AUDIO_ARM_PULLDOWN["Yageo RC0402FR-0710KL<br/>audio arm pulldown physical component"]
   AUDIO_SPEAKER_SAFE_PULLDOWN["Yageo RC0402FR-0710KL<br/>audio speaker safe pulldown physical component"]
   AUDIO_TX_SAFE_PULLDOWN["Yageo RC0402FR-0710KL<br/>audio tx safe pulldown physical component"]
-  SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>reset-off mono Class-D speaker amplifier"]
+  SPEAKER_AMP["Diodes Incorporated PAM8302AAYCR<br/>reset-off mono Class-D speaker amplifier"]
   SPEAKER_AMP_INPUT_CAP["TDK C1608X7R1C105K080AC<br/>speaker amp input cap physical component"]
   SPEAKER_AMP_BULK_CAP["Murata GRM188R60J106ME47D<br/>speaker amp bulk cap physical component"]
   SPEAKER_AMP_ENABLE_PULLDOWN["Yageo RC0402FR-0710KL<br/>speaker amp enable pulldown physical component"]
@@ -4202,7 +4202,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `SPEAKER_AMP_EN` | `slow_io.P01` | `speaker_amp.SD` | speaker is explicitly enabled only while needed; headphone insertion and quiet-state policy force this contact low |
 | `SPEAKER_AMP_EN` | `speaker_amp.SD` | `speaker_amp_enable_pulldown.END_1` | 10-kOhm reset default keeps the class-D stage off |
 | `AUDIO_GROUND` | `speaker_amp_enable_pulldown.END_2` | `abstract:audio-ground` | amplifier enable fails low |
-| `PAM_NC` | `speaker_amp.NC` | `abstract:no-connect` | MSOP physical pin 2 remains open |
+| `PAM_NC` | `speaker_amp.NC` | `abstract:no-connect` | U-DFN physical pin 2 remains open; the unnumbered central thermal pad remains electrically unassigned per the manufacturer drawing |
 | `SPEAKER_BTL_P_RAW` | `speaker_amp.VO_PLUS` | `speaker_output_bead_p.END_1` | exact EMI bead starts the positive output branch |
 | `SPEAKER_BTL_P` | `speaker_output_bead_p.END_2` | `speaker.PLUS` | positive 4-Ohm speaker terminal is never grounded |
 | `SPEAKER_BTL_P` | `speaker_output_bead_p.END_2` | `speaker_output_cap_p.END_1` | exact 220-pF connector-side shunt reduces class-D cable radiation |
@@ -5355,7 +5355,6 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `codec_tx_coupling` lifecycle: `active_production`.
 - `voice_mic_coupling` lifecycle: `active_production`.
 - `audio_safe_gate` uses `Texas Instruments SN74LVC2G08DCUR` as `reference_only`, not an accepted production choice.
-- `speaker_amp` uses `Diodes Incorporated PAM8302AASCR` as `verified_reference`, not an accepted production choice.
 - `speaker_amp_input_cap` lifecycle: `active_production`.
 - `speaker_output_bead_p` lifecycle: `active_orderable`.
 - `speaker_output_bead_n` lifecycle: `active_orderable`.

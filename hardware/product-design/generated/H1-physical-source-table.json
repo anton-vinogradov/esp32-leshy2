@@ -4221,8 +4221,8 @@
     },
     {
       "instance": "speaker_amp",
-      "device_key": "diodes_pam8302a_ascr",
-      "mpn": "Diodes Incorporated PAM8302AASCR",
+      "device_key": "diodes_pam8302a_aycr",
+      "mpn": "Diodes Incorporated PAM8302AAYCR",
       "role": "rear-local differential speaker amplifier",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
@@ -4233,7 +4233,7 @@
         3.0,
         0.63
       ],
-      "qualification": "verified_reference",
+      "qualification": "verified_candidate",
       "source": {
         "document": "PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet",
         "version": "DS41333 Rev. 6-2, May 2021",

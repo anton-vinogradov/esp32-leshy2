@@ -140,7 +140,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.3.10"}, set(markers.values()))
+        self.assertEqual({"H2.3.11"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -167,7 +167,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.3.10", plan["current_substep"])
+        self.assertEqual("H2.3.11", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -214,11 +214,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][3]["children"][6]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][7]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][8]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][9]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][9]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][10]["status"])
         self.assertTrue(
             all(
                 item["status"] == "waiting"
-                for item in plan["substeps"][3]["children"][10:]
+                for item in plan["substeps"][3]["children"][11:]
             )
         )
         sheet_contract = json.loads(
@@ -333,8 +334,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(2, summary["lora_cap_alternative_module_instances"])
         self.assertEqual(181, summary["h1_dimensioned_instances"])
         self.assertEqual(812, summary["schematic_only_main_instances"])
-        self.assertEqual(982, summary["main_board_fitted_components"])
-        self.assertEqual(5, summary["main_fitted_interconnect_assemblies"])
+        self.assertEqual(981, summary["main_board_fitted_components"])
+        self.assertEqual(6, summary["main_fitted_interconnect_assemblies"])
         self.assertEqual(6, summary["main_external_mating_products"])
         self.assertEqual(28, summary["lora_cap_rows"])
         self.assertEqual(27, summary["lora_cap_components_per_assembled_variant"])
@@ -410,10 +411,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 133,
                 "root_hierarchical_pin_count": 305,
                 "child_hierarchical_label_count": 305,
-                "known_child_stub_erc_violations": 40,
-                "implemented_child_sheet_count": 8,
-                "circuit_symbols_placed": 514,
-                "known_generated_library_copy_warnings": 514,
+                "known_child_stub_erc_violations": 32,
+                "implemented_child_sheet_count": 9,
+                "circuit_symbols_placed": 528,
+                "known_generated_library_copy_warnings": 528,
                 "known_deferred_fixture_erc_violations": 8,
                 "pcb_files_created": 0,
             },
@@ -925,6 +926,59 @@ class ProductSiteTests(unittest.TestCase):
         self.assertNotIn("REARM", sheet)
         self.assertIn("RF_35_REAR_CONTROLS", self.read("docs/schematics.md"))
         self.assertIn("RF_35_REAR_CONTROLS", self.read("docs/schematics.ru.md"))
+
+    def test_h2_3_10_exact_audio_io_amplifier_sheet_is_reviewed(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_rf_audio_io_amp.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check", "--kicad-check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-RF36-audio-io-amp.json")
+        )
+        self.assertEqual("H2.3.10", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_audio_io_amplifier_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 14,
+                "schematic_symbols": 14,
+                "board_fitted_symbols": 13,
+                "fitted_interconnect_assemblies": 1,
+                "hierarchical_interfaces": 7,
+                "physical_package_or_interface_contacts": 34,
+                "board_component_contacts": 32,
+                "floating_btl_output_branches": 2,
+                "intentional_no_connect_pins": 1,
+                "custom_footprints": 3,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        amplifier = next(
+            row for row in manifest["instances"] if row["instance"] == "speaker_amp"
+        )
+        self.assertIn("PAM8302AAYCR", amplifier["mpn"])
+        self.assertIn("UDFN3030", amplifier["footprint"])
+        speaker = next(
+            row for row in manifest["instances"] if row["instance"] == "speaker"
+        )
+        self.assertEqual("fitted_interconnect_assembly", speaker["electrical_disposition"])
+        sheet = self.read(
+            "hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch"
+        )
+        self.assertEqual(14, sheet.count("\n\t(symbol\n"))
+        self.assertEqual(7, sheet.count("\n\t(hierarchical_label \""))
+        self.assertEqual(1, sheet.count("\n\t(no_connect "))
+        self.assertIn("RF_36_AUDIO_IO_AMP", self.read("docs/schematics.md"))
+        self.assertIn("RF_36_AUDIO_IO_AMP", self.read("docs/schematics.ru.md"))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json

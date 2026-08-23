@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.3.10`.
+**Статус:** ▶️ сейчас, точный маркер `H2.3.11`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,7 +43,7 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB и первых семи RF/power-листов.
+- Проведено ревью всей UI/control PCB и первых восьми RF/power-листов.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -69,7 +69,12 @@
   [Машинное ревью](../hardware/ecad/generated/H2-RF35-rear-controls.json)
   закрывает независимые encoder A/B/push и PTT с локальной ESD-защитой;
   ручка остаётся внешней механической деталью.
-- Текущая работа — динамик, микрофон и усилитель voice-audio.
+- [`RF_36_AUDIO_IO_AMP`](../hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch)
+  содержит 14 символов и 34 контакта.
+  [Машинное ревью](../hardware/ecad/generated/H2-RF36-audio-io-amp.json)
+  закрывает точный направленный вниз микрофон, исправленный компактный
+  U-DFN-усилитель, reset-low shutdown и два независимых floating-BTL выхода.
+- Текущая работа — RF/power-сторона 80-контактного контракта M1.
 
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка

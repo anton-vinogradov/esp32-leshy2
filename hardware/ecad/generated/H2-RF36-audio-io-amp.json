@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.10",
+  "status": "reviewed_exact_audio_io_amplifier_sheet",
+  "project": "LESHY2-RF",
+  "sheet": "RF_36_AUDIO_IO_AMP",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "57614f43bd9e30a3c879e33fa547262438eb224be30c4642643c5df0b881028c",
+    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
+    "hardware/ecad/generated/H2-instance-ledger.json": "812af6ab3f7453d7dedcd4026dafb008455f257d73bc60ddedb699a79689e335",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "ace1d4efb6aeb5f4bd933427f0151b2973f3e019a6c64ba888742dd187f7ad9a"
+  },
+  "summary": {
+    "ledger_instances": 14,
+    "schematic_symbols": 14,
+    "board_fitted_symbols": 13,
+    "fitted_interconnect_assemblies": 1,
+    "hierarchical_interfaces": 7,
+    "physical_package_or_interface_contacts": 34,
+    "board_component_contacts": 32,
+    "floating_btl_output_branches": 2,
+    "intentional_no_connect_pins": 1,
+    "custom_footprints": 3,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "speaker_input_p_coupling",
+      "symbol_uuid": "eb9d12f7-cf96-553b-8f4e-fe3f39c9e4ac",
+      "reference": "C1",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_input_n_coupling",
+      "symbol_uuid": "a9ac8dca-98cd-584c-a190-226a7710b451",
+      "reference": "C2",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_input_p_gain",
+      "symbol_uuid": "91b9d651-8ee6-5537-90fd-eaadf49c2f87",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_input_n_gain",
+      "symbol_uuid": "bce62d28-86bf-56a9-80c8-8023be243153",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_amp",
+      "symbol_uuid": "b00ddef3-35b0-5d48-b5b6-26b3e1e5cbd4",
+      "reference": "U1",
+      "mpn": "Diodes Incorporated PAM8302AAYCR",
+      "footprint": "Leshy2:PAM8302AAYCR-UDFN3030-8E",
+      "pin_count": 8,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_amp_input_cap",
+      "symbol_uuid": "9d860239-34a0-5fc3-9752-386d9406ffc5",
+      "reference": "C3",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_amp_bulk_cap",
+      "symbol_uuid": "6cbfc8e6-b52a-5569-94f6-bd8d4b858ad9",
+      "reference": "C4",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_amp_enable_pulldown",
+      "symbol_uuid": "62744ee8-1897-5bb0-aae2-4376f79b15ed",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_output_bead_p",
+      "symbol_uuid": "5a2b2031-bf07-5362-bc8c-84094c0a3e55",
+      "reference": "FB1",
+      "mpn": "Murata BLM18PG181SN1D",
+      "footprint": "Inductor_SMD:L_0603_1608Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_output_bead_n",
+      "symbol_uuid": "02e7e34c-e0dd-513c-976f-a1286954dd2c",
+      "reference": "FB2",
+      "mpn": "Murata BLM18PG181SN1D",
+      "footprint": "Inductor_SMD:L_0603_1608Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_output_cap_p",
+      "symbol_uuid": "30ca37b0-6c73-57b2-9c52-0c6d08e03db0",
+      "reference": "C5",
+      "mpn": "Murata GRM1555C1H221JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker_output_cap_n",
+      "symbol_uuid": "1832b63b-d439-5ea8-b890-76c76975ba0e",
+      "reference": "C6",
+      "mpn": "Murata GRM1555C1H221JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    },
+    {
+      "instance": "speaker",
+      "symbol_uuid": "2e5df86a-0e63-529b-a8db-20da2d6e24c7",
+      "reference": "LS1",
+      "mpn": "PUI Audio AS02404PO",
+      "footprint": "Leshy2:Speaker-Wire-Termination-2P",
+      "pin_count": 2,
+      "electrical_disposition": "fitted_interconnect_assembly"
+    },
+    {
+      "instance": "microphone",
+      "symbol_uuid": "4c168281-8330-50e9-8e41-c277db0fe13b",
+      "reference": "MIC1",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+      "pin_count": 2,
+      "electrical_disposition": "board_fitted_component"
+    }
+  ],
+  "physical_net_aliases_collapsed": {},
+  "intentional_no_connect_endpoints": [
+    "speaker_amp.NC"
+  ],
+  "known_deferred_fixture_labels": [],
+  "footprint_evidence": [
+    {
+      "mpn": "Diodes Incorporated PAM8302AAYCR",
+      "footprint": "Leshy2:PAM8302AAYCR-UDFN3030-8E",
+      "status": "official U-DFN3030-8 Type E suggested land pattern; central pad remains unnumbered and electrically unassigned"
+    },
+    {
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+      "status": "official Rev.1.04 single-sided concentric recommended copper geometry"
+    },
+    {
+      "mpn": "PUI Audio AS02404PO",
+      "footprint": "Leshy2:Speaker-Wire-Termination-2P",
+      "status": "fabricated polarity-keyed PCB wire termination only; speaker body remains the exact registered 24x12x4.5-mm assembly"
+    }
+  ],
+  "corrections_closed": [
+    "PAM8302AASCR was rejected because ASCR is MSOP-8; the accepted AYCR order code is the intended compact U-DFN3030-8 Type E and costs slightly less at the recorded quantity tier",
+    "the amplifier central package pad is physically present but remains unnumbered instead of being assigned to ground without manufacturer authorization",
+    "the speaker is a wired fitted assembly with an explicit two-pad PCB termination instead of a fictitious direct-body land pattern",
+    "microphone orientation remains a placement constraint: the exact top-port serial capsule is fitted on the RF-board face that points toward the bottom enclosure exit",
+    "both class-D outputs remain floating BTL conductors through independent beads and shunt capacitors; neither speaker terminal is grounded"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all fourteen ledger instances, 34 electrical contacts, seven hierarchy interfaces and one intentional NC pin are explicit",
+      "the differential selected-audio input, reset-low shutdown, local bypass and both independent BTL output branches are complete",
+      "exact serial microphone, amplifier and speaker MPNs are tied to manufacturer drawings without inventing unavailable component contacts",
+      "native KiCad parses RF36 in the live RF/power hierarchy with every remaining finding machine-accounted"
+    ],
+    "deferred": [
+      "received microphone acoustic orientation, speaker carrier/wire strain relief, excursion clearance and enclosure response close in H5/H8",
+      "audio gain, clipping, noise, class-D EMI and thermal behavior close by H3 calculation and H8 HIL",
+      "pad-mask tuning, return geometry, placement and complete DRC close in H6",
+      "codec/source selection, quiet-state sequencing and UI policy close in firmware F3/F4 and H8"
+    ]
+  }
+}

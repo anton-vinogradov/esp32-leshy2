@@ -13,7 +13,7 @@
 - Current orderability evidence exists for **204/205** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **194/205** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **975/992** supplied placements; their partial subtotals are `base_product` — USD 221.5467. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **975/992** supplied placements; their partial subtotals are `base_product` — USD 221.5372. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **205/205** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
@@ -213,7 +213,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - power-sequence/back-power/reset/bus-contention HIL.
   - audio, analog threshold or latency/no-stall HIL for every affected path.
 - Current lines:
-  - `diodes_pam8302a_ascr` — `Diodes Incorporated PAM8302AASCR`.
+  - `diodes_pam8302a_aycr` — `Diodes Incorporated PAM8302AAYCR`.
   - `everest_es8311_qfn20` — `Everest Semiconductor ES8311`.
   - `nexperia_74lvc126apw_118` — `Nexperia 74LVC126APW,118`.
   - `nexperia_74lvc1g32gv_125` — `74LVC1G32GV,125`.
@@ -498,12 +498,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Diodes Incorporated PAM8302AASCR</code> — 1 × USD 0.3605 = USD 0.3605</summary>
+<details><summary><code>Diodes Incorporated PAM8302AAYCR</code> — 1 × USD 0.3510 = USD 0.3510</summary>
 
-- Device id: `diodes_pam8302a_ascr`.
+- Device id: `diodes_pam8302a_aycr`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/diodes-incorporated/PAM8302AASCR/4033281).
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.mouser.com/en/ProductDetail/Diodes-Incorporated/PAM8302AAYCR?qs=pYVYkI7xuRX9VhIMiIHWEw%3D%3D).
 
 </details>
 
