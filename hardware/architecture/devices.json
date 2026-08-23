@@ -6796,7 +6796,8 @@
         "CELL1": {"physical": "21", "role": "analog"},
         "CELL2": {"physical": "22", "role": "analog"},
         "CELL3": {"physical": "23", "role": "analog"},
-        "BATTS": {"physical": "24", "role": "analog"}
+        "BATTS": {"physical": "24", "role": "analog"},
+        "EP_GND": {"physical": "25 (exposed pad)", "role": "power"}
       }
     },
     "ti_mspm0c1106_sdgs20r": {
@@ -6834,26 +6835,26 @@
       "controller_capabilities": ["I2C_TARGET", "BITBANG_I2C", "UART1", "ADC", "GPIO", "GPIO_IRQ", "SWD", "HYBRID_BSL", "IWDT"],
       "service_required": ["PA1_NRST", "PA17", "PA18", "PA19_SWDIO", "PA20_SWCLK", "VDD", "VSS"],
       "contacts": {
-        "PA1_NRST": {"physical": "1 (PA1 / NRST)", "role": "gpio"},
-        "PA25": {"physical": "2", "role": "gpio"},
-        "PA24": {"physical": "3", "role": "gpio"},
-        "PA23": {"physical": "4", "role": "gpio"},
-        "PA22": {"physical": "5", "role": "gpio"},
-        "PA20_SWCLK": {"physical": "6 (PA20 / SWCLK)", "role": "gpio"},
-        "PA19_SWDIO": {"physical": "7 (PA19 / SWDIO)", "role": "gpio"},
-        "PA18": {"physical": "8", "role": "gpio"},
-        "PA17": {"physical": "9", "role": "gpio"},
-        "PA16": {"physical": "10", "role": "gpio"},
-        "PA26": {"physical": "11", "role": "gpio"},
-        "PA27": {"physical": "12", "role": "gpio"},
-        "PA30": {"physical": "13", "role": "gpio"},
-        "PA0": {"physical": "14", "role": "gpio"},
-        "VDD": {"physical": "15", "role": "power"},
-        "VSS": {"physical": "16", "role": "power"},
-        "PA2": {"physical": "17", "role": "gpio"},
-        "PA4": {"physical": "18", "role": "gpio"},
-        "PA6": {"physical": "19", "role": "gpio"},
-        "PA11": {"physical": "20", "role": "gpio"}
+        "PA26": {"physical": "1", "role": "gpio"},
+        "PA27": {"physical": "2", "role": "gpio"},
+        "PA30": {"physical": "3", "role": "gpio"},
+        "PA0": {"physical": "4", "role": "gpio"},
+        "PA1_NRST": {"physical": "5 (PA1 / NRST)", "role": "gpio"},
+        "VDD": {"physical": "6", "role": "power"},
+        "VSS": {"physical": "7", "role": "power"},
+        "PA2": {"physical": "8", "role": "gpio"},
+        "PA4": {"physical": "9", "role": "gpio"},
+        "PA6": {"physical": "10", "role": "gpio"},
+        "PA11": {"physical": "11", "role": "gpio"},
+        "PA16": {"physical": "12", "role": "gpio"},
+        "PA17": {"physical": "13", "role": "gpio"},
+        "PA18": {"physical": "14", "role": "gpio"},
+        "PA19_SWDIO": {"physical": "15 (PA19 / SWDIO)", "role": "gpio"},
+        "PA20_SWCLK": {"physical": "16 (PA20 / SWCLK)", "role": "gpio"},
+        "PA22": {"physical": "17", "role": "gpio"},
+        "PA23": {"physical": "18", "role": "gpio"},
+        "PA24": {"physical": "19", "role": "gpio"},
+        "PA25": {"physical": "20", "role": "gpio"}
       }
     },
     "ti_tps3435cakagddfr": {

@@ -5,8 +5,8 @@
   "project": "LESHY2-UI",
   "root_sheet": "UI_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "81c1df824d83582b46a30d2efb365a7f9a7b017a3051d325bbee151511485f1e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
+    "hardware/architecture/candidates/G2F-3I.json": "c6c5e8d7cb83adcd787ba38884b2d694a852c10fbb9503c9f60af24c243d103d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e0d3cb5d6a2100844905ed66c14ccf2e4f34a203651675bbaa33b490d00353cb",
     "hardware/ecad/H2-sheet-contract.json": "bc126f32dadd73fb0ec68b64ae9917f4083bbd0d45a8bcaf3c419574d2516a42"
   },
   "summary": {

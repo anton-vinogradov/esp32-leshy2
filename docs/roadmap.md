@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.3: pack admission and always-on safety; H2.3.2 USB-PD/charging is reviewed |
+| Current production ECAD schematic | ▶️ H2.3.4: main rails and quietable domain gates; H2.3.3 pack admission is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.3 -->
+<!-- current-substep: H2.3.4 -->
 
-**Exact marker: `H2.3.3`** — implement and review pack admission, always-on
-safety and independent supervision on `RF_02_PACK_SAFETY_AON`.
+**Exact marker: `H2.3.4`** — implement and review main rails and independently
+quietable domain gates on `RF_03_MAIN_RAILS_DOMAIN_GATES`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -161,13 +161,15 @@ Current H2 execution:
     complete UI hierarchy passed native KiCad review.
 - ▶️ `H2.3` — implement and review RF/power PCB sheets.
   - ✅ `H2.3.1` — `RF_00_ROOT`: 12 child sheets, 133 exact cross-sheet nets
-    and 301 explicit pins/labels; native KiCad accepted the hierarchy and its
+    and 302 explicit pins/labels; native KiCad accepted the hierarchy and its
     current ERC findings are the exact component-empty child-stub set.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`: 52 exact components, 208 physical
     package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, nine
     hierarchy interfaces and ten explained NC contacts; native KiCad passed.
-  - ▶️ **`H2.3.3` — current:** `RF_02_PACK_SAFETY_AON`.
-  - ⏳ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`.
+  - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`: 61 exact symbols, 198 physical
+    package/interface contacts, complete fail-closed 2S admission, eight
+    hierarchy interfaces and six explained NC contacts; native KiCad passed.
+  - ▶️ **`H2.3.4` — current:** `RF_03_MAIN_RAILS_DOMAIN_GATES`.
   - ⏳ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
   - ⏳ `H2.3.6` — `RF_31_NRF24_X3`.
   - ⏳ `H2.3.7` — `RF_32_SUBGHZ_VOICE`.

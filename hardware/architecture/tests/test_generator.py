@@ -423,8 +423,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             for endpoint in (route["from"], route["to"])
             if endpoint.startswith("abstract:")
         ]
-        self.assertEqual(40, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1144, policy["expected_occurrence_count"])
+        self.assertEqual(45, policy["expected_unique_endpoint_count"])
+        self.assertEqual(1152, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -1455,7 +1455,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             routes,
         )
         self.assertIn(
-            ("abstract:qualified-2s-positive", "pack_diag_res0.END_1", "PACK_DIAG_LOAD_POSITIVE"),
+            ("abstract:qualified-2s-positive", "pack_diag_res0.END_1", "BATTERY_STACK_POSITIVE"),
             routes,
         )
         self.assertNotIn(
@@ -1499,10 +1499,26 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(8, device["memory_contract"]["sram_kb"])
         self.assertIn("HYBRID_BSL", device["controller_capabilities"])
         self.assertIn("IWDT", device["controller_capabilities"])
-        self.assertEqual("6 (PA20 / SWCLK)", device["contacts"]["PA20_SWCLK"]["physical"])
-        self.assertEqual("7 (PA19 / SWDIO)", device["contacts"]["PA19_SWDIO"]["physical"])
-        self.assertEqual("8", device["contacts"]["PA18"]["physical"])
-        self.assertEqual("9", device["contacts"]["PA17"]["physical"])
+        self.assertEqual("16 (PA20 / SWCLK)", device["contacts"]["PA20_SWCLK"]["physical"])
+        self.assertEqual("15 (PA19 / SWDIO)", device["contacts"]["PA19_SWDIO"]["physical"])
+        self.assertEqual("14", device["contacts"]["PA18"]["physical"])
+        self.assertEqual("13", device["contacts"]["PA17"]["physical"])
+        self.assertEqual("5 (PA1 / NRST)", device["contacts"]["PA1_NRST"]["physical"])
+        self.assertEqual("1", device["contacts"]["PA26"]["physical"])
+        self.assertEqual("2", device["contacts"]["PA27"]["physical"])
+        self.assertEqual("3", device["contacts"]["PA30"]["physical"])
+
+        routes = {
+            (row["from"], row["to"], row["net"])
+            for row in candidate["fixed_routes"]
+        }
+        for route in (
+            ("pack_admission.PA17", "abstract:TP_PACK_UART_TX", "PACK_ADMISSION_UART_TX"),
+            ("pack_admission.PA18", "abstract:TP_PACK_UART_RX", "PACK_ADMISSION_UART_RX"),
+            ("pack_admission.PA19_SWDIO", "abstract:TP_PACK_SWDIO", "PACK_ADMISSION_SWDIO"),
+            ("pack_admission.PA20_SWCLK", "abstract:TP_PACK_SWCLK", "PACK_ADMISSION_SWCLK"),
+        ):
+            self.assertIn(route, routes)
 
         contract = candidate["mspm0_memory_update_contract"]
         for region in (

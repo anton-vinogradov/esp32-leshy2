@@ -175,8 +175,8 @@
   "i9_projection_audit": {
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
-      "expected_unique_endpoint_count": 40,
-        "expected_occurrence_count": 1144,
+      "expected_unique_endpoint_count": 45,
+        "expected_occurrence_count": 1152,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -184,7 +184,8 @@
           "endpoints": [
             "abstract:power-ground", "abstract:3V3_MAIN", "abstract:safety-ground", "abstract:rf-ground", "abstract:AON_SAFE_3V3", "abstract:audio-ground",
             "abstract:qualified-2s-positive", "abstract:power-current-thermal-fault", "abstract:protected-2s-midpoint", "abstract:SYS_INT_N_WIRED_LOW",
-            "abstract:AON_RAW_3V3", "abstract:admitted-system-3v3", "abstract:VVOICE_RAW_4V", "abstract:MAIN_RAW_3V3"
+            "abstract:AON_RAW_3V3", "abstract:admitted-system-3v3", "abstract:VVOICE_RAW_4V", "abstract:MAIN_RAW_3V3",
+            "abstract:internal-pack-fet-common-drain"
           ]
         },
         {
@@ -202,7 +203,8 @@
             "abstract:pd-eeprom-factory-sda-pad", "abstract:pd-eeprom-factory-scl-pad", "abstract:main-raw-converter-pg-test",
             "abstract:c5-service-vbus-high-impedance-test-pad", "abstract:c5-gpio27-read-only-test-pad", "abstract:TP_VOICE_UPDATE_WITH_GND",
             "abstract:TP_VOICE_EFUSE_PG_N", "abstract:TP_USB_PROTECTOR_FAULT_N", "abstract:TP_UNIT_5V_ILM", "abstract:TP_U214_5V_ILM",
-            "abstract:TP_SLOW_IO_RESET_N", "abstract:TP_PACK_NRST_N", "abstract:TP_LCD_BACKLIGHT_FAULT_N", "abstract:TP_EVIDENCE_MASK_INT_N"
+            "abstract:TP_SLOW_IO_RESET_N", "abstract:TP_PACK_NRST_N", "abstract:TP_PACK_UART_TX", "abstract:TP_PACK_UART_RX",
+            "abstract:TP_PACK_SWDIO", "abstract:TP_PACK_SWCLK", "abstract:TP_LCD_BACKLIGHT_FAULT_N", "abstract:TP_EVIDENCE_MASK_INT_N"
           ]
         },
         {
@@ -2883,7 +2885,7 @@
     {"from":"pack_gauge.AOLDO","to":"pack_supply_or.A1","net":"PACK_AOLDO","safety":"AOLDO is configured for 3.4 V and supplies only measured low-clock admission below the MAX17320 2-mA source budget; BAV70LT1G blocks fixture/system backfeed"},
     {"from":"abstract:isolated-pack-fixture-3v3","to":"pack_supply_or.A2","net":"PACK_FIXTURE_3V3","safety":"fixture supply is isolated from USB/system power and is used for blank-device programming and recovery"},
     {"from":"pack_supply_or.K_COMMON","to":"pack_admission.VDD","net":"PACK_ADMISSION_VDD","safety":"common cathode passively ORs AOLDO and fixture sources without firmware control"},
-    {"from":"abstract:admitted-system-3v3","to":"pack_system_diode.A","net":"PACK_SYSTEM_3V3","safety":"system source exists only after complete pair admission and uses the lower-drop branch"},
+    {"from":"abstract:admitted-system-3v3","to":"pack_system_diode.A","net":"3V3_MAIN","safety":"the admitted main system rail exists only after complete pair admission and uses the lower-drop branch"},
     {"from":"pack_system_diode.K","to":"pack_admission.VDD","net":"PACK_ADMISSION_VDD","safety":"BAT54-7-F blocks admission VDD from back-powering the admitted system rail"},
     {"from":"pack_admission.VDD","to":"pack_admission_bulk_cap.END_1","net":"PACK_ADMISSION_VDD","safety":"exact 10-uF low-ESR ceramic implements the MSPM0C1106 recommended local bulk decoupling after source isolation"},
     {"from":"pack_admission_bulk_cap.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"bulk return is within millimeters of the admission-controller supply pair"},
@@ -2894,6 +2896,12 @@
     {"from":"pack_admission.PA1_NRST","to":"pack_admission_reset_cap.END_1","net":"PACK_ADMISSION_NRST_N","safety":"exact 10-nF reset capacitor implements the TI typical-application profile"},
     {"from":"pack_admission_reset_cap.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"reset capacitor returns locally and remains accessible to the isolated service fixture"},
     {"from":"pack_admission.PA1_NRST","to":"abstract:TP_PACK_NRST_N","net":"PACK_ADMISSION_NRST_N","safety":"permanent isolated fixture access can pull reset low without fighting a push-pull source"},
+    {"from":"pack_admission.PA17","to":"abstract:TP_PACK_UART_TX","net":"PACK_ADMISSION_UART_TX","safety":"permanent isolated fixture access exposes the physical DGS20 UART1 transmit contact without powering the product or releasing the pack FET hold"},
+    {"from":"pack_admission.PA18","to":"abstract:TP_PACK_UART_RX","net":"PACK_ADMISSION_UART_RX","safety":"permanent isolated fixture access exposes the physical DGS20 UART1 receive contact; fixture drive remains bounded to the live admission-VDD domain"},
+    {"from":"pack_admission.PA19_SWDIO","to":"abstract:TP_PACK_SWDIO","net":"PACK_ADMISSION_SWDIO","safety":"permanent owner SWD access reaches the real DGS20 pin 15 and cannot itself release the fail-closed external hold"},
+    {"from":"pack_admission.PA20_SWCLK","to":"abstract:TP_PACK_SWCLK","net":"PACK_ADMISSION_SWCLK","safety":"permanent owner SWD clock reaches the real DGS20 pin 16 and remains available for blank-device recovery"},
+    {"from":"pack_admission.PA27","to":"abstract:no-connect","net":"PACK_ADMISSION_PA27_NC","safety":"unused physical DGS20 pin 2 is intentionally open and remains recorded as free GPIO"},
+    {"from":"pack_admission.PA30","to":"abstract:no-connect","net":"PACK_ADMISSION_PA30_NC","safety":"unused physical DGS20 pin 3 is intentionally open and remains recorded as free GPIO"},
     {"from":"pack_admission.VDD","to":"power_command_pullup.END_1","net":"PACK_ADMISSION_VDD","safety":"the exact 47-kOhm pull-up keeps the low-current power command asserted ON when the switch is open"},
     {"from":"power_command_pullup.END_2","to":"pack_admission.PA24","net":"POWER_COMMAND_OFF_N","safety":"the admission MCU receives a bounded, admission-domain command instead of switched pack or system current"},
     {"from":"power_command_pullup.END_2","to":"power_command_switch.THROW_B","net":"POWER_COMMAND_OFF_N","safety":"the maintained OFF position grounds only the filtered logic command"},
@@ -2970,6 +2978,7 @@
     {"from":"pack_gauge.CP","to":"pack_cp_cap.END_1","net":"PACK_CHARGE_PUMP","safety":"exact 0.47-uF 25-V X7R implements the Rev.12 charge-pump bypass"},
     {"from":"pack_cp_cap.END_2","to":"pack_gauge.IN","net":"PACK_GAUGE_IN","safety":"CP bypass returns to IN, not ground, exactly as required"},
     {"from":"pack_gauge.CHG","to":"pack_power_fet.G1","net":"PACK_CHG_GATE","safety":"CSD87313DMST FET1 source is the cell-stack side required by MAX17320 CHG referenced to IN"},
+    {"from":"pack_power_fet.D_COMMON","to":"abstract:internal-pack-fet-common-drain","net":"PACK_FET_COMMON_DRAIN","safety":"the two drain leads and exposed clip are one internal common-drain island; all three copper pads are soldered together but intentionally reach no other circuit node"},
     {"from":"pack_power_fet.G1","to":"pack_chg_gate_cap.END_1","net":"PACK_CHG_GATE","safety":"exact 100-nF gate capacitor is placed at charge-FET gate"},
     {"from":"pack_chg_gate_cap.END_2","to":"pack_power_fet.S1","net":"BATTERY_STACK_POSITIVE","safety":"charge gate capacitor returns to its battery-side source as required"},
     {"from":"pack_gauge.DIS","to":"pack_power_fet.G2","net":"PACK_DIS_GATE","safety":"CSD87313DMST FET2 source is the protected-pack side required by MAX17320 DIS referenced to PCKP"},
@@ -2978,6 +2987,8 @@
     {"from":"pack_gauge.PCKP","to":"pack_pckp_res.END_1","net":"PACK_PCKP_SENSE","safety":"the exact Rev.12 pack-positive sense path begins at pin 6"},
     {"from":"pack_pckp_res.END_2","to":"pack_power_fet.S2","net":"PROTECTED_PACK_POSITIVE","safety":"exact 1-kOhm series resistance connects PCKP to the protected pack terminal"},
     {"from":"pack_gauge.ZVC","to":"abstract:no-connect","net":"PACK_ZVC_UNUSED","safety":"DEC-0067 forbids in-device zero-volt recovery; the datasheet requires ZVC open when unused"},
+    {"from":"pack_system_diode.NC","to":"abstract:no-connect","net":"PACK_SYSTEM_DIODE_NC","safety":"the BAT54 SOT-23 center pin is physically not connected and remains explicitly open"},
+    {"from":"pack_gauge.EP_GND","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"the 24-TQFN exposed pad is explicitly soldered to the local gauge ground per the manufacturer pack-layout guide and never joins the CSP Kelvin trace"},
     {"from":"abstract:qualified-2s-positive","to":"pack_power_fet.S1","net":"BATTERY_STACK_POSITIVE","safety":"battery-side source enters a common-drain back-to-back pair; zero-volt and prequal recovery remain disabled"},
     {"from":"pack_power_fet.S2","to":"nvdc_charger.BAT","net":"PROTECTED_PACK_POSITIVE","safety":"pack-side source reaches the charger only after complete admission and MAX17320 protection permission"},
     {"from":"pack_gauge.CSP","to":"pack_shunt.END_1","net":"PACK_SHUNT_CSP","safety":"Kelvin pickup follows the ADI Figure-24 current-sense orientation"},
@@ -3010,19 +3021,19 @@
     {"from":"pack_holder.SLOT1_NEG","to":"abstract:protected-2s-midpoint","net":"PACK_2S_MIDPOINT","safety":"the upper-cell negative contact is independently exposed and forms the supervised 2S midpoint only in the PCB routing"},
     {"from":"pack_holder.SLOT1_POS","to":"pack_fuse1.END_1","net":"PACK_SLOT1_POSITIVE_RAW","safety":"the polarized holder exposes the upper-cell positive contact separately and the adjacent 5-A fuse remains slot-specific"},
     {"from":"pack_fuse1.END_2","to":"abstract:qualified-2s-positive","net":"BATTERY_STACK_POSITIVE","safety":"slot-1 fuse opens independently; holder polarity and reverse-insertion blocking remain mechanical/electrical gates"},
-    {"from":"abstract:qualified-2s-positive","to":"pack_diag_res0.END_1","net":"PACK_DIAG_LOAD_POSITIVE","safety":"the first 20-Ohm 2-W pulse-rated branch samples the fused full stack ahead of the normally-open CHG/DIS pair"},
-    {"from":"abstract:qualified-2s-positive","to":"pack_diag_res1.END_1","net":"PACK_DIAG_LOAD_POSITIVE","safety":"the second equal branch provides exact 10-Ohm total resistance and shares both pulse and hostile-repetition heat"},
+    {"from":"abstract:qualified-2s-positive","to":"pack_diag_res0.END_1","net":"BATTERY_STACK_POSITIVE","safety":"the first 20-Ohm 2-W pulse-rated branch samples the fused full stack ahead of the normally-open CHG/DIS pair"},
+    {"from":"abstract:qualified-2s-positive","to":"pack_diag_res1.END_1","net":"BATTERY_STACK_POSITIVE","safety":"the second equal branch provides exact 10-Ohm total resistance and shares both pulse and hostile-repetition heat"},
     {"from":"pack_diag_res0.END_2","to":"pack_diag_switch.D","net":"PACK_DIAG_LOAD_DRAIN","safety":"one-percent matched-value branches bound effective load resistance to 9.9-10.1 Ohm before MOSFET resistance"},
     {"from":"pack_diag_res1.END_2","to":"pack_diag_switch.D","net":"PACK_DIAG_LOAD_DRAIN","safety":"each resistor sees half the approximately 7.82-W worst-screen load and remains below the official 50-ms pulse curve"},
     {"from":"pack_diag_switch.S","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"the 20-V low-gate-drive MOSFET closes only the bounded pre-admission diagnostic path"},
-    {"from":"abstract:protected-2s-midpoint","to":"pack_mid_adc_top0.END_1","net":"PACK_MID_DIV_TOP","safety":"first 220-kOhm series element begins the protected midpoint divider"},
+    {"from":"abstract:protected-2s-midpoint","to":"pack_mid_adc_top0.END_1","net":"PACK_2S_MIDPOINT","safety":"first 220-kOhm series element begins directly at the protected physical midpoint"},
     {"from":"pack_mid_adc_top0.END_2","to":"pack_mid_adc_top1.END_1","net":"PACK_MID_DIV_SERIES","safety":"two physical top resistors limit fault and injection current rather than relying on one high-side element"},
     {"from":"pack_mid_adc_top1.END_2","to":"pack_admission.PA25","net":"PACK_CELL0_ADC","safety":"2x220-kOhm over 169-kOhm keeps the 4.3-V screen corner below 1.21 V with 1% resistor tolerance"},
     {"from":"pack_admission.PA25","to":"pack_mid_adc_bottom.END_1","net":"PACK_CELL0_ADC","safety":"169-kOhm bottom resistor reuses an active stocked BOM value"},
     {"from":"pack_mid_adc_bottom.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"midpoint divider return shares the quiet admission ADC reference"},
     {"from":"pack_admission.PA25","to":"pack_mid_adc_filter.END_1","net":"PACK_CELL0_ADC","safety":"10-nF filter supports a bounded settled sample rather than sampling the load edge"},
     {"from":"pack_mid_adc_filter.END_2","to":"pack_gauge.GND","net":"PACK_LOCAL_GND","safety":"midpoint ADC filter return stays at the admission reference"},
-    {"from":"abstract:qualified-2s-positive","to":"pack_stack_adc_top0.END_1","net":"PACK_STACK_DIV_TOP","safety":"first of five 220-kOhm series elements begins the fused full-stack divider"},
+    {"from":"abstract:qualified-2s-positive","to":"pack_stack_adc_top0.END_1","net":"BATTERY_STACK_POSITIVE","safety":"first of five 220-kOhm series elements begins directly at the fused physical full-stack node"},
     {"from":"pack_stack_adc_top0.END_2","to":"pack_stack_adc_top1.END_1","net":"PACK_STACK_DIV_SERIES_01","safety":"series construction distributes voltage and bounds single-element stress"},
     {"from":"pack_stack_adc_top1.END_2","to":"pack_stack_adc_top2.END_1","net":"PACK_STACK_DIV_SERIES_12","safety":"series construction distributes voltage and bounds single-element stress"},
     {"from":"pack_stack_adc_top2.END_2","to":"pack_stack_adc_top3.END_1","net":"PACK_STACK_DIV_SERIES_23","safety":"series construction distributes voltage and bounds single-element stress"},
@@ -5239,7 +5250,7 @@
     {"id":"RP_UART1_GNSS","instance":"rp","controller":"UART1","contacts":["GPIO40","GPIO41"],"proof":"RP2354B bank-0 mux pair is UART1 TX/RX"},
     {"id":"RP_I2C0_U214","instance":"rp","controller":"I2C0_EXT","contacts":["GPIO28","GPIO29"],"proof":"RP2354B bank-0 mux pair is I2C0 SDA/SCL"},
     {"id":"PACK_SYSTEM_I2C","instance":"pack_admission","controller":"I2C_TARGET","contacts":["PA0","PA11"],"proof":"DGS20 exposes I2C0 SDA on PA0 pin 4 and alternate SCL on PA11 pin 11, preserving PA1/NRST pin 5"},
-    {"id":"PACK_UART1_SERVICE","instance":"pack_admission","controller":"UART1","contacts":["PA17","PA18"],"proof":"the exact C1106 DGS20 exposes UART1 TX on PA17 pin 9 and UART1 RX on PA18 pin 8 independently of PA19/PA20 SWD and NRST pin 1"}
+    {"id":"PACK_UART1_SERVICE","instance":"pack_admission","controller":"UART1","contacts":["PA17","PA18"],"proof":"the exact C1106 DGS20 exposes UART1 TX on PA17 pin 13 and UART1 RX on PA18 pin 14 independently of PA19/PA20 SWD and NRST pin 5"}
   ],
   "required_resource_contracts": ["NRF0_SPI", "NRF1_SPI", "NRF2_SPI", "CC_SPI", "U214_SPI", "U214_UART", "U214_I2C", "DISPLAY_SD_SPI", "S3_RP_IPC", "S3_C5_IPC", "S3_INTERNAL_I2C", "S3_ENCODER_PCNT", "PD_LOCAL_I2C", "PACK_LOCAL_I2C", "S3_UNIT_PORT", "S3_I2S"],
   "exclusive_resource_contracts": ["NRF0_SPI", "NRF1_SPI", "NRF2_SPI", "CC_SPI", "U214_SPI", "U214_UART", "U214_I2C", "S3_RP_IPC", "S3_C5_IPC", "PACK_LOCAL_I2C", "S3_UNIT_PORT", "S3_I2S"],

@@ -28,9 +28,11 @@ ROOT_PATH = PROJECT_DIR / f"{PROJECT_ID}.kicad_sch"
 OUTPUT = ECAD / "generated/H2-RF-root-interface.json"
 IMPLEMENTED_CHILD_MANIFESTS = {
     "RF_01_USB_PD_CHARGE": ECAD / "generated/H2-RF01-usb-pd-charge.json",
+    "RF_02_PACK_SAFETY_AON": ECAD / "generated/H2-RF02-pack-safety-aon.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "RF_01_USB_PD_CHARGE": "reviewed_exact_usb_pd_charge_sheet",
+    "RF_02_PACK_SAFETY_AON": "reviewed_exact_pack_safety_aon_sheet",
 }
 
 
@@ -228,6 +230,10 @@ def outputs() -> tuple[dict[Path, str], dict]:
                 child["summary"]["schematic_symbols"]
                 for child in implemented_children.values()
             ),
+            "known_deferred_fixture_erc_violations": sum(
+                len(child.get("known_deferred_fixture_labels", []))
+                for child in implemented_children.values()
+            ),
             "pcb_files_created": 0,
         },
         "sheets": [
@@ -250,10 +256,10 @@ def outputs() -> tuple[dict[Path, str], dict]:
         "review_boundary": {
             "complete": [
                 "all twelve RF/power child sheets are instantiated by the KiCad root",
-                "all 133 derived cross-sheet nets are represented by 301 explicit named pins and child labels",
+                "all 133 derived cross-sheet nets are represented by 302 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
                 "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
-                "native KiCad accepts the hierarchy with the exact component-empty child-stub set",
+                "native KiCad accepts the hierarchy with the exact remaining component-empty child-stub set",
             ],
             "deferred": [
                 "functional circuit symbols and exact electrical sheet-pin directions in H2.3.2-H2.3.13",
@@ -325,6 +331,13 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
             if child.get("status") == IMPLEMENTED_CHILD_STATUSES.get(child.get("sheet"))
             for instance in child["instances"]
         }
+        expected_isolated = {
+            row["label_uuid"]
+            for path in IMPLEMENTED_CHILD_MANIFESTS.values() if path.is_file()
+            for child in [json.loads(path.read_text(encoding="utf-8"))]
+            if child.get("status") == IMPLEMENTED_CHILD_STATUSES.get(child.get("sheet"))
+            for row in child.get("known_deferred_fixture_labels", [])
+        }
         actual_labels = {
             violation["items"][0]["uuid"] for violation in violations
             if violation.get("type") == "label_dangling"
@@ -335,15 +348,22 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
             if violation.get("type") == "lib_symbol_mismatch"
             and len(violation.get("items", [])) == 1
         }
+        actual_isolated = {
+            violation["items"][0]["uuid"] for violation in violations
+            if violation.get("type") == "isolated_pin_label"
+            and len(violation.get("items", [])) == 1
+        }
         if (
-            len(violations) != len(expected_labels) + len(expected_mismatches)
+            len(violations) != len(expected_labels) + len(expected_mismatches) + len(expected_isolated)
             or actual_labels != expected_labels
             or actual_mismatches != expected_mismatches
+            or actual_isolated != expected_isolated
         ):
             raise RuntimeError(
                 "RF/power ERC differs from the exact reviewed finding sets: "
                 f"violations={len(violations)}, expected-stubs={len(expected_labels)}, "
-                f"expected-generated-symbol-warnings={len(expected_mismatches)}"
+                f"expected-generated-symbol-warnings={len(expected_mismatches)}, "
+                f"expected-deferred-fixture-boundaries={len(expected_isolated)}"
             )
     print("ok: KiCad parsed the exact RF/power hierarchy and accounted every reviewed finding")
 
@@ -352,27 +372,28 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
         "child_sheet_count": 12, "cross_sheet_net_count": 133,
-        "root_hierarchical_pin_count": 301,
-        "child_hierarchical_label_count": 301,
-        "known_child_stub_erc_violations": 263,
-        "implemented_child_sheet_count": 1, "circuit_symbols_placed": 52,
-        "known_generated_library_copy_warnings": 52, "pcb_files_created": 0,
+        "root_hierarchical_pin_count": 302,
+        "child_hierarchical_label_count": 302,
+        "known_child_stub_erc_violations": 250,
+        "implemented_child_sheet_count": 2, "circuit_symbols_placed": 113,
+        "known_generated_library_copy_warnings": 113,
+        "known_deferred_fixture_erc_violations": 5, "pcb_files_created": 0,
     }
     if summary != expected:
         raise ValueError(f"reviewed H2.3.1 interface accounting drifted: {summary}")
     root = generated[ROOT_PATH]
     if root.count("\n\t(sheet\n") != 12:
         raise ValueError("RF/power root child-sheet count mismatch")
-    if root.count("\n\t\t(pin \"") != 301:
+    if root.count("\n\t\t(pin \"") != 302:
         raise ValueError("RF/power root hierarchical-pin count mismatch")
-    if root.count("\n\t(wire\n") != 434 or root.count("\n\t(junction ") != 301:
+    if root.count("\n\t(wire\n") != 435 or root.count("\n\t(junction ") != 302:
         raise ValueError("RF/power root rail accounting mismatch")
     labels = sum(
         content.count("\n\t(hierarchical_label \"")
         for path, content in generated.items()
         if path.suffix == ".kicad_sch" and path != ROOT_PATH
     )
-    if labels != 301:
+    if labels != 302:
         raise ValueError("RF/power child-label count mismatch")
     if "\n\t(label \"" in root or "\n\t(global_label \"" in root:
         raise ValueError("RF/power root may not hide interfaces behind labels")

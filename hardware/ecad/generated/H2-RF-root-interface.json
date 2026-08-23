@@ -5,19 +5,20 @@
   "project": "LESHY2-RF",
   "root_sheet": "RF_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "81c1df824d83582b46a30d2efb365a7f9a7b017a3051d325bbee151511485f1e",
-    "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
+    "hardware/architecture/candidates/G2F-3I.json": "c6c5e8d7cb83adcd787ba38884b2d694a852c10fbb9503c9f60af24c243d103d",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e0d3cb5d6a2100844905ed66c14ccf2e4f34a203651675bbaa33b490d00353cb",
     "hardware/ecad/H2-sheet-contract.json": "bc126f32dadd73fb0ec68b64ae9917f4083bbd0d45a8bcaf3c419574d2516a42"
   },
   "summary": {
     "child_sheet_count": 12,
     "cross_sheet_net_count": 133,
-    "root_hierarchical_pin_count": 301,
-    "child_hierarchical_label_count": 301,
-    "known_child_stub_erc_violations": 263,
-    "implemented_child_sheet_count": 1,
-    "circuit_symbols_placed": 52,
-    "known_generated_library_copy_warnings": 52,
+    "root_hierarchical_pin_count": 302,
+    "child_hierarchical_label_count": 302,
+    "known_child_stub_erc_violations": 250,
+    "implemented_child_sheet_count": 2,
+    "circuit_symbols_placed": 113,
+    "known_generated_library_copy_warnings": 113,
+    "known_deferred_fixture_erc_violations": 5,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -38,8 +39,9 @@
     },
     {
       "id": "RF_02_PACK_SAFETY_AON",
-      "interface_count": 7,
+      "interface_count": 8,
       "interfaces": [
+        "3V3_MAIN",
         "PACK_ADMISSION_VDD",
         "POWER_COMMAND_OFF_N",
         "POWER_GROUND",
@@ -398,6 +400,7 @@
     {
       "name": "3V3_MAIN",
       "sheets": [
+        "RF_02_PACK_SAFETY_AON",
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_30_RP2354_CORE_SERVICE",
         "RF_31_NRF24_X3",
@@ -1370,16 +1373,17 @@
     "root_is_component_free": true,
     "root_page": "A0 portrait; all sheet bodies and 133 net rails remain inside the page",
     "implemented_children_are_preserved": [
-      "RF_01_USB_PD_CHARGE"
+      "RF_01_USB_PD_CHARGE",
+      "RF_02_PACK_SAFETY_AON"
     ]
   },
   "review_boundary": {
     "complete": [
       "all twelve RF/power child sheets are instantiated by the KiCad root",
-      "all 133 derived cross-sheet nets are represented by 301 explicit named pins and child labels",
+      "all 133 derived cross-sheet nets are represented by 302 explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
       "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
-      "native KiCad accepts the hierarchy with the exact component-empty child-stub set"
+      "native KiCad accepts the hierarchy with the exact remaining component-empty child-stub set"
     ],
     "deferred": [
       "functional circuit symbols and exact electrical sheet-pin directions in H2.3.2-H2.3.13",

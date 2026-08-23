@@ -13844,7 +13844,7 @@
       "sheet": "RF_02_PACK_SAFETY_AON",
       "electrical_disposition": "board_fitted_component",
       "physical_registration": "h1_dimensioned_body",
-      "contact_count": 24,
+      "contact_count": 25,
       "contact_evidence_status": "registered_exact_contact_map",
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
