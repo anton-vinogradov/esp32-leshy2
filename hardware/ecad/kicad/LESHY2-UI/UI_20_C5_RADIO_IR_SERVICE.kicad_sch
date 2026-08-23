@@ -8432,16 +8432,6 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "6a304b22-c186-5fb1-89f7-db65888ff073")
 	)
-	(label "C5_RF_GROUND"
-		(at 276.86 43.18 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4651185c-fc48-59a7-92cc-db4f0d0f7d29")
-	)
-	(label "C5_RF_GROUND"
-		(at 419.10 43.18 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "9695e620-3dd2-5015-b875-2f5951e5fc4e")
-	)
 	(hierarchical_label "C5_RF_TX_EVIDENCE_N"
 		(shape bidirectional)
 		(at 63.50 53.34 180)
@@ -8552,26 +8542,6 @@
 		(at 312.42 170.18 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ecc793d8-1634-567f-b048-0f626d780527")
-	)
-	(label "C5_SMA_RF_GROUND"
-		(at 99.06 45.72 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "fbd2e2af-c446-5e60-8c44-a156bf6a4b91")
-	)
-	(label "C5_SMA_RF_GROUND"
-		(at 99.06 48.26 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "b2aa7285-38cb-59fb-8351-430a4f891a45")
-	)
-	(label "C5_SMA_RF_GROUND"
-		(at 134.62 43.18 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "e102837b-a784-5cbb-bcca-9ee7c79d91f2")
-	)
-	(label "C5_SMA_RF_GROUND"
-		(at 134.62 45.72 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4b9a5816-4a99-5621-961b-ad58ad8320dc")
 	)
 	(label "C5_UART_SERVICE_RX"
 		(at 63.50 60.96 180)
@@ -8928,6 +8898,36 @@
 		(at 63.50 81.28 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5d17433a-a5db-550c-a542-9c91359085bb")
+	)
+	(label "POWER_GROUND"
+		(at 99.06 45.72 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "86e32493-a874-523b-9644-4c592f5c6847")
+	)
+	(label "POWER_GROUND"
+		(at 99.06 48.26 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "28c358c3-4d1f-515f-9ff7-f3ec2e4201f7")
+	)
+	(label "POWER_GROUND"
+		(at 134.62 43.18 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "98a2f4ea-de97-54ae-b874-b92b2389ce29")
+	)
+	(label "POWER_GROUND"
+		(at 134.62 45.72 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "adc1c79b-c5fe-5992-802f-7c6d1f2ab03b")
+	)
+	(label "POWER_GROUND"
+		(at 276.86 43.18 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "97c29341-9150-57d8-8be3-4a16ffb4806a")
+	)
+	(label "POWER_GROUND"
+		(at 419.10 43.18 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "14487e43-e0ab-5515-b454-7375b25dd43a")
 	)
 	(label "POWER_GROUND"
 		(at 383.54 71.12 0)

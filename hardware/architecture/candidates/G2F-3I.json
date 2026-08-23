@@ -3711,7 +3711,7 @@
     {"from":"ir_tx_mosfet.G","to":"ir_tx_gate_pulldown.END_1","net":"IR_TX_GATE","safety":"external 10-kOhm pull-down makes reset, disconnect and high-impedance states dark"},
     {"from":"ir_tx_gate_pulldown.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"MOSFET gate fail-low return"},
     {"from":"receiver.GPO1","to":"abstract:no-connect","net":"RX_GPO1_NC","safety":"unused multifunction output remains open"},
-    {"from":"receiver.NC","to":"abstract:no-connect","net":"RX_PACKAGE_NC","safety":"SOIC physical pin 8 remains open"},
+    {"from":"receiver.NC","to":"abstract:no-connect","net":"RX_PACKAGE_NC","safety":"SOIC physical pin 5 remains open"},
     {"from":"nrf_power_switch.NC","to":"abstract:no-connect","net":"NRF_SWITCH_NC","safety":"SC70 pin 4 is left floating as required"},
     {"from":"cc_power_switch.NC","to":"abstract:no-connect","net":"CC_SWITCH_NC","safety":"SC70 pin 4 is left floating as required"},
     {"from":"sd_power_switch.NC","to":"abstract:no-connect","net":"SD_SWITCH_NC","safety":"SC70 pin 4 is left floating as required"},

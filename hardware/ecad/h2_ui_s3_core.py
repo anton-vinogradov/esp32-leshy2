@@ -275,17 +275,26 @@ def pins_for(instance: str, device: dict) -> list[Pin]:
 
 def endpoint_nets(candidate: dict, local_instances: set[str]) -> dict[tuple[str, str], str]:
     found: dict[tuple[str, str], set[str]] = defaultdict(set)
+    aliases: dict[str, str] = {}
     for route in candidate["fixed_routes"]:
+        abstract_endpoints = {route["from"], route["to"]}
+        if any(endpoint.startswith("abstract:power-ground") or endpoint.startswith("abstract:rf-ground") for endpoint in abstract_endpoints):
+            aliases[route["net"]] = "POWER_GROUND"
+        elif "abstract:3V3_MAIN" in abstract_endpoints:
+            aliases[route["net"]] = "3V3_MAIN"
+        net = aliases.get(route["net"], route["net"])
         for endpoint in (route["from"], route["to"]):
             if "." not in endpoint:
                 continue
             instance, contact = endpoint.split(".", 1)
             if instance in local_instances:
-                found[(instance, contact)].add(route["net"])
+                found[(instance, contact)].add(net)
     for allocation in candidate["allocations"]:
         instance = allocation["instance"]
         if instance in local_instances:
-            found[(instance, allocation["contact"])].add(allocation["net"])
+            found[(instance, allocation["contact"])].add(
+                aliases.get(allocation["net"], allocation["net"])
+            )
     result: dict[tuple[str, str], str] = {}
     for endpoint, nets in found.items():
         meaningful = {net for net in nets if net != "NO_CONNECT"}
@@ -606,6 +615,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "USB D+/D- 22-Ohm source terminations are on the UI board beside S3, after M1",
             "the factory module U.FL is an assembly interface, not a fictitious carrier-PCB pad",
             "the board U.FL centre, PCB trace and coupler input use one continuous S3_MODULE_RF_50R net",
+            "the SMA shell, board-U.FL shell, coupler termination, RF ESD and debug ESD returns all terminate on physical POWER_GROUND",
             "UNIT_HOST_SIG0/1 now cross M1 contacts 69/71, each beside a retained POWER_GROUND return",
         ],
         "review_boundary": {

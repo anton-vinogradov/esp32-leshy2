@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_13_AUDIO_CODEC_HEADSET",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "4addbed71c9df95ba401465434f1cbeb3e9c4c5479bda2fc74f30cc72e9cbb94",
+    "hardware/architecture/candidates/G2F-3I.json": "3e521cf9acac2598cffadc6ee0a9da174fdbac84368f5a5e1bfb5656ab8dc52b",
     "hardware/architecture/devices.json": "7328acff8420d50b5d779d8b8001f4ee8e5a4ebb720bed2fdfe9dee1ee3b2f48",
     "hardware/ecad/generated/H2-instance-ledger.json": "1b01d1ecef8d44e02d39ece052014a14dcc5d92d21c2427afe1b29b4b377f81b",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "ba3edaf4164cb5c68d01c1bcb676069c88a39c443d74ac439d592c777b6daea9"
+    "hardware/ecad/generated/H2-UI-root-interface.json": "af6744a78c6e4796840965420fe7b1f64d2917eb3dcb0ad5b86a6feeee0e6245"
   },
   "summary": {
     "ledger_instances": 102,

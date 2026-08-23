@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.2.7: приёмник FM/AM/SW/LW; UI root и H2.2.2–H2.2.6 проверены |
+| Актуальная production ECAD-схема | ▶️ H2.2.8: UI-сторона 80-контактного M1; UI root и H2.2.2–H2.2.7 проверены |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.2.7 -->
+<!-- current-substep: H2.2.8 -->
 
-**Точный маркер: `H2.2.7`** — реализовать и проверить точные цепи приёмника
-FM/AM/SW/LW на `UI_21_FM_AM_RECEIVER`.
+**Точный маркер: `H2.2.8`** — реализовать и проверить точную UI-сторону
+80-контактного межплатного контракта на `UI_40_INTERBOARD_M1`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -150,7 +150,10 @@ FM/AM/SW/LW на `UI_21_FM_AM_RECEIVER`.
   - ✅ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`: 59 точных BOM-экземпляров
     плюс заводской ANT1, все 32 carrier-pad C5, два IR RX, fail-closed IR TX,
     data-only USB/recovery и 15 интерфейсов; native KiCad review пройден.
-  - ▶️ **`H2.2.7` — сейчас:** `UI_21_FM_AM_RECEIVER`.
+  - ✅ `H2.2.7` — `UI_21_FM_AM_RECEIVER`: 32 точных компонента, отдельные
+    антенные порты FM/SW и AM/LW, полные цепи power/control/clock/audio Si4732,
+    восемь интерфейсов и четыре объяснённых NC; native KiCad review пройден.
+  - ▶️ **`H2.2.8` — сейчас:** `UI_40_INTERBOARD_M1`.
   - ⏳ `H2.2.8` — `UI_40_INTERBOARD_M1`.
   - ⏳ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`.

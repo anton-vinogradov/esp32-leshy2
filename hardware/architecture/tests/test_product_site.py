@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.7"}, set(markers.values()))
+        self.assertEqual({"H2.2.8"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.7", plan["current_substep"])
+        self.assertEqual("H2.2.8", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -193,7 +193,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["children"][3]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][4]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][5]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][6]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][6]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][7]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
@@ -260,9 +261,9 @@ class ProductSiteTests(unittest.TestCase):
                 "root_hierarchical_pin_count": 218,
                 "child_hierarchical_label_count": 218,
                 "known_child_stub_erc_violations": 4,
-                "implemented_child_sheet_count": 5,
-                "circuit_symbols_placed": 315,
-                "known_generated_library_copy_warnings": 315,
+                "implemented_child_sheet_count": 6,
+                "circuit_symbols_placed": 347,
+                "known_generated_library_copy_warnings": 347,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -602,6 +603,50 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertTrue(all(f'(pad "{number}"' in module for number in range(1, 33)))
         self.assertIn('"c5_factory_ant1"', json.dumps(manifest))
+
+    def test_h2_2_7_exact_fm_am_receiver_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_fm_am_receiver.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI21-fm-am-receiver.json")
+        )
+        self.assertEqual("H2.2.7", manifest["stage"])
+        self.assertEqual("reviewed_exact_fm_am_receiver_sheet", manifest["status"])
+        self.assertEqual(
+            {
+                "ledger_instances": 32,
+                "schematic_symbols": 32,
+                "board_fitted_symbols": 32,
+                "hierarchical_interfaces": 8,
+                "receiver_contacts": 16,
+                "external_receive_ports": 2,
+                "custom_footprints": 2,
+                "intentional_no_connect_pins": 4,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            ["receiver.GPO1", "receiver.NC", "receiver_irq_iso.NC", "receiver_power_switch.NC"],
+            manifest["intentional_no_connect_endpoints"],
+        )
+        aliases = manifest["physical_net_aliases_collapsed"]
+        self.assertEqual("POWER_GROUND", aliases["RX_FMSW_SMA_RF_GROUND"])
+        self.assertEqual("POWER_GROUND", aliases["RX_AMLW_ESD_GROUND"])
+        crystal = self.read(
+            "hardware/ecad/libraries/Leshy2.pretty/FC-135-Q13FC13500005.kicad_mod"
+        )
+        self.assertIn('(pad "1" smd roundrect (at -1.250 0.000)', crystal)
+        self.assertIn('(pad "2" smd roundrect (at 1.250 0.000)', crystal)
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json

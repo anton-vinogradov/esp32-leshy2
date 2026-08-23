@@ -18,13 +18,15 @@
 | [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | точный ECAD | 71 компонент, 15 серийных кнопок, 9 фактических TX LED, аппаратный FAULT LED, thermal/ESD и 45 интерфейсов |
 | [`UI_13_AUDIO_CODEC_HEADSET`](../hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch) | точный ECAD | 102 компонента, 21 контакт codec, 6 контактов CTIA jack, 5 аналоговых селекторов, power/interface isolation и 24 интерфейса |
 | [`UI_20_C5_RADIO_IR_SERVICE`](../hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch) | точный ECAD | 59 BOM-компонентов плюс заводской ANT1, 32 carrier-pad C5, два IR RX, fail-closed IR TX, data-only USB/recovery и 15 интерфейсов |
+| [`UI_21_FM_AM_RECEIVER`](../hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch) | точный ECAD | 32 компонента, отдельные FM/SW и AM/LW порты, полные цепи Si4732 power/control/clock/audio и 8 интерфейсов |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
 [display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json) и
 [controls/indicators](../hardware/ecad/generated/H2-UI12-controls-indicators.json) и
 [codec/headset audio](../hardware/ecad/generated/H2-UI13-audio-codec-headset.json) и
-[C5 radio/IR/service](../hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json).
+[C5 radio/IR/service](../hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json) и
+[FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.

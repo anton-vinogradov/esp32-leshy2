@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.7 -->
+<!-- current-substep: H2.2.8 -->
 
-**Exact marker: `H2.2.7`** — implement and review the exact FM/AM/SW/LW
-receiver circuitry on `UI_21_FM_AM_RECEIVER`.
+**Exact marker: `H2.2.8`** — implement and review the exact UI side of the
+80-contact inter-board contract on `UI_40_INTERBOARD_M1`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -60,8 +60,11 @@ receiver circuitry on `UI_21_FM_AM_RECEIVER`.
   - ✅ `H2.2.6` — reviewed 59 exact C5/IR/service BOM instances plus the
     factory ANT1 boundary: all 32 carrier pads, two IR receive paths,
     fail-closed IR TX, data-only USB, recovery and 15 hierarchy interfaces.
-  - ▶️ **`H2.2.7` — current:** FM/AM/SW/LW receiver.
-  - ⏳ `H2.2.8–H2.2.10` — M1; TX safety;
+  - ✅ `H2.2.7` — reviewed 32 exact FM/AM/SW/LW receiver components: two
+    distinct antenna ports, full Si4732 power/control/clock/audio circuitry,
+    eight hierarchy interfaces and four explained NC pins.
+  - ▶️ **`H2.2.8` — current:** UI side of the 80-contact M1 contract.
+  - ⏳ `H2.2.9–H2.2.10` — TX safety;
     manufacturing/test points, in that order.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.

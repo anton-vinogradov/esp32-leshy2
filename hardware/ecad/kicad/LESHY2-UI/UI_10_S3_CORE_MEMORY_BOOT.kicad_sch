@@ -4736,6 +4736,36 @@
 		(uuid "cec26a21-be2b-5028-b472-59ff6691d2ff")
 	)
 	(label "POWER_GROUND"
+		(at 134.62 50.80 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "79b79b1a-cd69-53f5-845a-1445cc6fff06")
+	)
+	(label "POWER_GROUND"
+		(at 134.62 53.34 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "3b0a681b-02c6-5c6b-8eab-03027f004892")
+	)
+	(label "POWER_GROUND"
+		(at 170.18 48.26 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "951f8613-1a07-5d55-9c28-643c0238307f")
+	)
+	(label "POWER_GROUND"
+		(at 170.18 50.80 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "245d5763-f960-50f2-9dfb-f957ee6ebd47")
+	)
+	(label "POWER_GROUND"
+		(at 353.06 48.26 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "f266497d-e7c1-5b1f-ae04-a6fbdb5849f4")
+	)
+	(label "POWER_GROUND"
+		(at 261.62 76.20 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "50aff004-eac3-56a0-9da9-d976b068e579")
+	)
+	(label "POWER_GROUND"
 		(at 408.94 134.62 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "abb6c7cf-dedf-56e9-a383-38d191bb6501")
@@ -4749,6 +4779,16 @@
 		(at 444.50 139.70 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "4ab0585d-a8f2-5b6d-ae69-701a2d200871")
+	)
+	(label "POWER_GROUND"
+		(at 134.62 139.70 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "9b033629-0018-5ce0-aa78-1260e8143573")
+	)
+	(label "POWER_GROUND"
+		(at 170.18 139.70 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "83f5ce15-6f7b-50b1-bdae-39e88c70c0e4")
 	)
 	(label "POWER_GROUND"
 		(at 43.18 157.48 0)
@@ -4879,16 +4919,6 @@
 		(at 134.62 170.18 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ed9bdedd-540f-5aaf-8959-a65360f7832c")
-	)
-	(label "S3_DBG_ESD_RETURN"
-		(at 134.62 139.70 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "9a16895c-f6dc-5f94-bd4d-86ff6758ea39")
-	)
-	(label "S3_DBG_ESD_RETURN"
-		(at 170.18 139.70 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "8a300bc0-81eb-51e8-99d3-7a13023eb620")
 	)
 	(label "S3_DBG_ID0"
 		(at 444.50 137.16 180)
@@ -5039,16 +5069,6 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "b42604fa-120a-593c-acc4-c23d20809b0c")
 	)
-	(label "S3_RF_GROUND"
-		(at 353.06 48.26 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "b67c74f6-3222-5b7c-b398-e7778a5f2ecb")
-	)
-	(label "S3_RF_GROUND"
-		(at 261.62 76.20 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "736526d1-a99c-5889-ba6d-64fe196cf864")
-	)
 	(hierarchical_label "S3_RP_IPC_CS_N"
 		(shape bidirectional)
 		(at 43.18 91.44 0)
@@ -5072,26 +5092,6 @@
 		(at 78.74 58.42 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "4c1e561d-78ba-51d8-a97f-51d83de5ade4")
-	)
-	(label "S3_SMA_RF_GROUND"
-		(at 134.62 50.80 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "9da54c41-842b-5e51-ba82-abad9560b9e8")
-	)
-	(label "S3_SMA_RF_GROUND"
-		(at 134.62 53.34 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "511456d4-5d3c-5232-8765-e26fe53869d9")
-	)
-	(label "S3_SMA_RF_GROUND"
-		(at 170.18 48.26 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "37007a48-5cd6-5f20-9e30-7532852c86f1")
-	)
-	(label "S3_SMA_RF_GROUND"
-		(at 170.18 50.80 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "863d14c7-e290-5337-8831-205370a3f7fc")
 	)
 	(label "S3_UART_SERVICE_RX"
 		(at 78.74 86.36 180)

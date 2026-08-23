@@ -370,6 +370,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "all 32 physical C5 carrier pads are represented, including seven grounds, manufacturer NCs and the disabled ANT2 pad",
             "factory ANT1 U.FL is an assembly boundary and never a fictitious carrier-PCB pad",
             "C5 3V3 and every carrier ground now terminate on explicit product rails",
+            "the SMA shell, board-U.FL shell, coupler termination and RF/debug ESD returns terminate on physical POWER_GROUND",
             "IR demodulated receive, measured carrier receive and fail-closed transmit are separate complete circuits",
             "the C5 USB receptacle is data-only and hardware-isolated when product 3V3 is absent",
         ],

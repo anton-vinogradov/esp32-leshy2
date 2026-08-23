@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.7",
+  "status": "reviewed_exact_fm_am_receiver_sheet",
+  "project": "LESHY2-UI",
+  "sheet": "UI_21_FM_AM_RECEIVER",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "3e521cf9acac2598cffadc6ee0a9da174fdbac84368f5a5e1bfb5656ab8dc52b",
+    "hardware/architecture/devices.json": "7328acff8420d50b5d779d8b8001f4ee8e5a4ebb720bed2fdfe9dee1ee3b2f48",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1b01d1ecef8d44e02d39ece052014a14dcc5d92d21c2427afe1b29b4b377f81b",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "af6744a78c6e4796840965420fe7b1f64d2917eb3dcb0ad5b86a6feeee0e6245"
+  },
+  "summary": {
+    "ledger_instances": 32,
+    "schematic_symbols": 32,
+    "board_fitted_symbols": 32,
+    "hierarchical_interfaces": 8,
+    "receiver_contacts": 16,
+    "external_receive_ports": 2,
+    "custom_footprints": 2,
+    "intentional_no_connect_pins": 4,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "receiver_fmsw_external_sma",
+      "symbol_uuid": "afb696cc-eb5d-5aec-8281-cb14fb519330",
+      "reference": "J1",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_amlw_external_sma",
+      "symbol_uuid": "c1d4d1b5-713f-550d-9419-61b0ff31db94",
+      "reference": "J2",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver",
+      "symbol_uuid": "fa732f1e-51cb-5e46-a615-396d45358f40",
+      "reference": "U1",
+      "mpn": "Si4732-A10-GSR",
+      "footprint": "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm",
+      "pin_count": 16,
+      "board_fitted": true
+    },
+    {
+      "instance": "si_audio_l_coupling",
+      "symbol_uuid": "db172187-55e1-58f9-8287-c41462275c74",
+      "reference": "C1",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "si_audio_r_coupling",
+      "symbol_uuid": "6d4d7f23-a22e-5c38-9305-d6486fc8b125",
+      "reference": "C2",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "si_audio_l_sum",
+      "symbol_uuid": "4a6258ad-122e-508c-9884-bbe36e802427",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "si_audio_r_sum",
+      "symbol_uuid": "41bc0962-24ce-5b0d-8f8e-e4f470b41db2",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "si_audio_sum_bias",
+      "symbol_uuid": "2f9a53d5-482f-5271-a653-d32d17dd9cb9",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_power_input_cap",
+      "symbol_uuid": "405695d7-ec46-59b4-ad69-6cca8bf613d9",
+      "reference": "C3",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_power_output_cap",
+      "symbol_uuid": "58f418d2-cb72-59bd-ac62-b71c98eb2c5e",
+      "reference": "C4",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_power_on_pulldown",
+      "symbol_uuid": "ffe6d430-ed72-51ba-abf7-422aad3ab030",
+      "reference": "R4",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_supervisor",
+      "symbol_uuid": "2f96c3d5-9c29-529a-bd1c-a63a6ee22a40",
+      "reference": "U2",
+      "mpn": "Texas Instruments TPS3839K33DBZR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pin_count": 3,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_supervisor_bypass",
+      "symbol_uuid": "9a01d7ef-c2d7-56df-849e-b149c78e4a90",
+      "reference": "C5",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_ready_pulldown",
+      "symbol_uuid": "c7b42a5c-6829-56ba-93e4-8b7cca9f0c54",
+      "reference": "R5",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_i2c_iso",
+      "symbol_uuid": "0fb1f3bd-dfec-532b-a4fe-e13946949498",
+      "reference": "U3",
+      "mpn": "Texas Instruments SN74LVC2G66DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_i2c_iso_bypass",
+      "symbol_uuid": "c69ddd41-bf12-5bd2-bef8-a46c4fc10304",
+      "reference": "C6",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_i2c_scl_pullup",
+      "symbol_uuid": "e9a33ffe-cbb4-58b5-889a-979515c044ac",
+      "reference": "R6",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_i2c_sda_pullup",
+      "symbol_uuid": "a8dec165-d815-5482-823e-e9f80290a025",
+      "reference": "R7",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_irq_iso",
+      "symbol_uuid": "d5083027-cc39-5589-805d-df8c3609126b",
+      "reference": "U4",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_irq_iso_bypass",
+      "symbol_uuid": "7fe4627f-9129-552c-87c4-a36fe1db3018",
+      "reference": "C7",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_irq_pullup",
+      "symbol_uuid": "43cde9d7-6fd4-5f17-9d6d-9e896d0941cb",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_vdd_bypass",
+      "symbol_uuid": "0fdf16c4-fbcd-5af3-92c0-070975201546",
+      "reference": "C8",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_clock",
+      "symbol_uuid": "5403a3a8-a7a0-5d1e-9468-2dbe6d8ed793",
+      "reference": "Y1",
+      "mpn": "Seiko Epson Q13FC13500005",
+      "footprint": "Leshy2:FC-135-Q13FC13500005",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_clock_cap_rclk",
+      "symbol_uuid": "516d034e-9173-59dc-86a4-b766224d7619",
+      "reference": "C9",
+      "mpn": "Murata GRM1555C1H220JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_clock_cap_gpo3",
+      "symbol_uuid": "53b18756-4778-5421-8070-241af92ee356",
+      "reference": "C10",
+      "mpn": "Murata GRM1555C1H220JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_senb_pulldown",
+      "symbol_uuid": "de2c7c87-0367-5f38-97aa-18585a0a934a",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_fmi_esd",
+      "symbol_uuid": "23999db9-84f2-5920-957c-87155e88e389",
+      "reference": "D1",
+      "mpn": "Littelfuse SESD0402X1UN-0020-090",
+      "footprint": "Diode_SMD:D_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_fmi_match_inductor",
+      "symbol_uuid": "deab1913-03de-5c33-a002-374bbb5c0615",
+      "reference": "L1",
+      "mpn": "Murata LQW15AN56NJ00D",
+      "footprint": "Inductor_SMD:L_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_fmi_coupling_cap",
+      "symbol_uuid": "33c47927-2dfe-5384-89e5-2bf4e439331d",
+      "reference": "C11",
+      "mpn": "Murata GRM1555C1H102JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_ami_esd",
+      "symbol_uuid": "220e2593-1d2c-5661-8cd8-b133f5e5aece",
+      "reference": "D2",
+      "mpn": "Littelfuse SESD0402X1UN-0020-090",
+      "footprint": "Diode_SMD:D_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_ami_coupling_cap",
+      "symbol_uuid": "fd08e4b5-52ca-5c6d-9687-5f3eb85ea61d",
+      "reference": "C12",
+      "mpn": "Murata GRM155R71A474KE01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "receiver_power_switch",
+      "symbol_uuid": "2d79e051-262e-5cc6-b7de-3bfebe6c8db1",
+      "reference": "U5",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "pin_count": 6,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "RECEIVER_QOD": "3V3_RECEIVER_SWITCHED",
+    "RX_AMLW_ESD_GROUND": "POWER_GROUND",
+    "RX_AMLW_PROTECTED_RF": "RX_AMLW_BOUNDARY_RF",
+    "RX_AMLW_SMA_RF_GROUND": "POWER_GROUND",
+    "RX_FMSW_ESD_GROUND": "POWER_GROUND",
+    "RX_FMSW_PROTECTED_RF": "RX_FMSW_BOUNDARY_RF",
+    "RX_FMSW_SMA_RF_GROUND": "POWER_GROUND",
+    "RX_RF_GROUND": "POWER_GROUND",
+    "RX_RST_N": "RECEIVER_READY"
+  },
+  "intentional_no_connect_endpoints": [
+    "receiver.GPO1",
+    "receiver.NC",
+    "receiver_irq_iso.NC",
+    "receiver_power_switch.NC"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "Si4732-A10-GSR",
+      "footprint": "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm",
+      "source": {
+        "document": "Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short",
+        "version": "2021-09-13",
+        "url": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "mpn": "Seiko Epson Q13FC13500005",
+      "footprint": "Leshy2:FC-135-Q13FC13500005",
+      "source": {
+        "document": "FC-135 32.768-kHz crystal-unit specification",
+        "version": "current product specification checked 2026-08-18",
+        "url": "https://download.epsondevice.com/td/pdf/td_xtal_32khz/FC-135_Q13FC13500005_en.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      }
+    }
+  ],
+  "corrections_closed": [
+    "all SMA shell lands and both RF-ESD shunts collapse to the physical POWER_GROUND plane",
+    "Si4732 manufacturer NC is physical SOIC pin 5 and remains explicitly open",
+    "FM/SW 50-ohm boundary and non-50-ohm AM/LW loop/pod boundary are separate labelled ports",
+    "power-off isolates I2C and IRQ while the receiver rail is actively discharged",
+    "stereo outputs are AC-coupled and passively summed around AUDIO_VMID_MAIN without consuming a new GPIO"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all 32 UI21 ledger instances have exact MPN, contacts, footprint and circuit nets",
+      "all eight hierarchy interfaces terminate on real pins",
+      "receive-only RF, power/reset, I2C/IRQ, clock and mono-audio paths are explicit",
+      "native KiCad parses the live hierarchy and the controlled SMA footprint library"
+    ],
+    "deferred": [
+      "received Si4732 identity, I2C address/boot-state and radio-firmware command HIL",
+      "FM/SW match sweep and qualified AM/LW ferrite-loop or transformer-pod HIL",
+      "clock load/frequency, sensitivity, selectivity, audio level/noise and EMI HIL",
+      "PCB placement, RF return/impedance geometry and DRC in H6"
+    ]
+  }
+}

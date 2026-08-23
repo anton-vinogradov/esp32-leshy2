@@ -38,6 +38,7 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "UI_12_CONTROLS_INDICATORS": ECAD / "generated/H2-UI12-controls-indicators.json",
     "UI_13_AUDIO_CODEC_HEADSET": ECAD / "generated/H2-UI13-audio-codec-headset.json",
     "UI_20_C5_RADIO_IR_SERVICE": ECAD / "generated/H2-UI20-c5-radio-ir-service.json",
+    "UI_21_FM_AM_RECEIVER": ECAD / "generated/H2-UI21-fm-am-receiver.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "UI_10_S3_CORE_MEMORY_BOOT": "reviewed_exact_s3_core_sheet",
@@ -45,6 +46,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "UI_12_CONTROLS_INDICATORS": "reviewed_exact_controls_indicators_sheet",
     "UI_13_AUDIO_CODEC_HEADSET": "reviewed_exact_audio_codec_headset_sheet",
     "UI_20_C5_RADIO_IR_SERVICE": "reviewed_exact_c5_radio_ir_service_sheet",
+    "UI_21_FM_AM_RECEIVER": "reviewed_exact_fm_am_receiver_sheet",
 }
 NAMESPACE = uuid.UUID("4ed50bf6-dbd9-44f6-a71f-9f07341b4db6")
 
@@ -499,9 +501,9 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "root_hierarchical_pin_count": 218,
         "child_hierarchical_label_count": 218,
         "known_child_stub_erc_violations": 4,
-        "implemented_child_sheet_count": 5,
-        "circuit_symbols_placed": 315,
-        "known_generated_library_copy_warnings": 315,
+        "implemented_child_sheet_count": 6,
+        "circuit_symbols_placed": 347,
+        "known_generated_library_copy_warnings": 347,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")
