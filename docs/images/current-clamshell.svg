@@ -151,6 +151,26 @@
 <path d="M357.5 445.1 L383.4 445.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="338.5" y="440.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">HEADSET</text>
 <text data-layer="pcb-silkscreen" x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">CTIA</text>
+<rect x="80.0" y="575.5" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="s3_reset_button" data-projection="inner-mounted-side-switch"/>
+<rect x="77.0" y="574.6" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="s3_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M84.4 578.6 V589.0" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="s3_reset_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M54.1 583.8 L84.4 583.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="105.9" y="583.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">S3 RST</text>
+<rect x="80.0" y="601.4" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="s3_boot_button" data-projection="inner-mounted-side-switch"/>
+<rect x="77.0" y="600.5" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="s3_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M84.4 604.5 V614.9" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="s3_boot_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M54.1 609.7 L84.4 609.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="105.9" y="609.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">S3 BOOT</text>
+<rect x="344.9" y="575.5" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="c5_reset_button" data-projection="inner-mounted-side-switch"/>
+<rect x="351.2" y="574.6" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="c5_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M353.1 578.6 V589.0" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="c5_reset_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 583.8 L353.1 583.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="583.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">C5 RST</text>
+<rect x="344.9" y="601.4" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="c5_boot_button" data-projection="inner-mounted-side-switch"/>
+<rect x="351.2" y="600.5" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="c5_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M353.1 604.5 V614.9" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="c5_boot_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 609.7 L353.1 609.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="609.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">C5 BOOT</text>
 <path d="M196.4 705.0 L196.4 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="196.4" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -172,6 +192,16 @@
 <path d="M742.5 567.2 L768.4 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">RUN</text>
 <text data-layer="pcb-silkscreen" x="724.0" y="572.0" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">KILL</text>
+<rect x="465.0" y="542.2" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="rp_reset_button" data-projection="inner-mounted-side-switch"/>
+<rect x="462.0" y="541.3" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="rp_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M469.4 545.3 V555.7" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="rp_reset_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M439.1 550.5 L469.4 550.5" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="490.9" y="550.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">RP RST</text>
+<rect x="465.0" y="568.1" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="rp_boot_button" data-projection="inner-mounted-side-switch"/>
+<rect x="462.0" y="567.2" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="rp_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M469.4 571.2 V581.6" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="rp_boot_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M439.1 576.4 L469.4 576.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="490.9" y="576.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">RP BOOT</text>
 <path d="M525.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="525.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
 <path d="M603.6 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>

@@ -182,29 +182,29 @@
     },
     {
       "instance": "c5_boot_button",
-      "device_key": "alps_skqgade010",
-      "mpn": "Alps Alpine SKQGADE010",
-      "role": "C5 technological BOOT",
+      "device_key": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "role": "external right-side C5 BOOT service control",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
-      "rotation_deg": 0,
-      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "rotation_deg": 270,
+      "direction": "front right enclosure exit",
       "envelope_mm": [
-        6.4,
-        5.2,
-        1.5
+        4.5,
+        3.4,
+        3.3
       ],
-      "qualification": "verified_exact_service_boot_reset_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
       "source": {
-        "document": "SKQGADE010 product page, product specification and official land-pattern images",
-        "version": "October 2025 product specification",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
-        "checked": "2026-08-19"
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [
-        66.0,
-        104.0
+        71.6,
+        122.0
       ]
     },
     {
@@ -259,29 +259,29 @@
     },
     {
       "instance": "c5_reset_button",
-      "device_key": "alps_skqgade010",
-      "mpn": "Alps Alpine SKQGADE010",
-      "role": "C5 technological RESET",
+      "device_key": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "role": "external right-side C5 RESET service control",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
-      "rotation_deg": 0,
-      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "rotation_deg": 270,
+      "direction": "front right enclosure exit",
       "envelope_mm": [
-        6.4,
-        5.2,
-        1.5
+        4.5,
+        3.4,
+        3.3
       ],
-      "qualification": "verified_exact_service_boot_reset_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
       "source": {
-        "document": "SKQGADE010 product page, product specification and official land-pattern images",
-        "version": "October 2025 product specification",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
-        "checked": "2026-08-19"
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [
-        58.0,
-        104.0
+        71.6,
+        115.0
       ]
     },
     {
@@ -3410,29 +3410,29 @@
     },
     {
       "instance": "rp_boot_button",
-      "device_key": "alps_skqgade010",
-      "mpn": "Alps Alpine SKQGADE010",
-      "role": "RP technological USB_BOOT",
+      "device_key": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "role": "external left-side RP USB_BOOT service control",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
-      "rotation_deg": 0,
-      "direction": "normal to the RF-inner face; enclosure-open service only",
+      "rotation_deg": 90,
+      "direction": "rear left enclosure exit",
       "envelope_mm": [
-        6.4,
-        5.2,
-        1.5
+        4.5,
+        3.4,
+        3.3
       ],
-      "qualification": "verified_exact_service_boot_reset_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
       "source": {
-        "document": "SKQGADE010 product page, product specification and official land-pattern images",
-        "version": "October 2025 product specification",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
-        "checked": "2026-08-19"
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [
-        59.5,
-        104.0
+        0.0,
+        113.0
       ]
     },
     {
@@ -3464,29 +3464,29 @@
     },
     {
       "instance": "rp_reset_button",
-      "device_key": "alps_skqgade010",
-      "mpn": "Alps Alpine SKQGADE010",
-      "role": "RP technological RUN/RESET",
+      "device_key": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "role": "external left-side RP RUN/RESET service control",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
-      "rotation_deg": 0,
-      "direction": "normal to the RF-inner face; enclosure-open service only",
+      "rotation_deg": 90,
+      "direction": "rear left enclosure exit",
       "envelope_mm": [
-        6.4,
-        5.2,
-        1.5
+        4.5,
+        3.4,
+        3.3
       ],
-      "qualification": "verified_exact_service_boot_reset_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
       "source": {
-        "document": "SKQGADE010 product page, product specification and official land-pattern images",
-        "version": "October 2025 product specification",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
-        "checked": "2026-08-19"
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [
-        51.0,
-        104.0
+        0.0,
+        106.0
       ]
     },
     {
@@ -3545,29 +3545,29 @@
     },
     {
       "instance": "s3_boot_button",
-      "device_key": "alps_skqgade010",
-      "mpn": "Alps Alpine SKQGADE010",
-      "role": "S3 technological BOOT",
+      "device_key": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "role": "external left-side S3 BOOT service control",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
-      "rotation_deg": 0,
-      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "rotation_deg": 90,
+      "direction": "front left enclosure exit",
       "envelope_mm": [
-        6.4,
-        5.2,
-        1.5
+        4.5,
+        3.4,
+        3.3
       ],
-      "qualification": "verified_exact_service_boot_reset_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
       "source": {
-        "document": "SKQGADE010 product page, product specification and official land-pattern images",
-        "version": "October 2025 product specification",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
-        "checked": "2026-08-19"
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [
-        24.0,
-        104.0
+        0.0,
+        122.0
       ]
     },
     {
@@ -3622,29 +3622,29 @@
     },
     {
       "instance": "s3_reset_button",
-      "device_key": "alps_skqgade010",
-      "mpn": "Alps Alpine SKQGADE010",
-      "role": "S3 technological RESET",
+      "device_key": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "role": "external left-side S3 RESET service control",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
-      "rotation_deg": 0,
-      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "rotation_deg": 90,
+      "direction": "front left enclosure exit",
       "envelope_mm": [
-        6.4,
-        5.2,
-        1.5
+        4.5,
+        3.4,
+        3.3
       ],
-      "qualification": "verified_exact_service_boot_reset_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
       "source": {
-        "document": "SKQGADE010 product page, product specification and official land-pattern images",
-        "version": "October 2025 product specification",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
-        "checked": "2026-08-19"
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
       },
       "evidence_gates": [],
       "position_mm": [
-        16.0,
-        104.0
+        0.0,
+        115.0
       ]
     },
     {
@@ -3933,9 +3933,9 @@
       "instance": "safe_reset_sink_a",
       "device_key": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
-      "role": "S3/C5 passive-drain reset sinks",
-      "frame": "rf-inner",
-      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "role": "UI-local S3/C5 passive-drain reset sinks",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
       "direction": "not applicable",
       "envelope_mm": [
@@ -3952,7 +3952,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        44.0,
+        18.0,
         82.0
       ]
     },

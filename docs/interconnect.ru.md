@@ -31,8 +31,8 @@
 
 ## Бюджет контактов
 
-- Всего 80 контактов; 4 зарезервированы и физически не подключены.
-- 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
+- Всего 80 контактов; 0 зарезервированы и физически не подключены.
+- 7 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
 - 22 силовых возвратов, 3 аудиовозврата и 2 возврата безопасности.
 - Сырой VBUS/PD, ток аккумуляторов, аналоговые выходы TX-детекторов, IR-несущая и выходы класса D через M1 не проходят.
 
@@ -74,11 +74,11 @@
 | `26` | `POWER_FAULT_N` | RF→UI | `control` |
 | `27` | `POWER_GROUND` | return | `return` |
 | `28` | `UNIT_READY` | RF→UI | `control` |
-| `29` | `RESERVED_29` | reserved | `reserved` |
-| `30` | `POR_N` | RF→UI | `safety` |
+| `29` | `EV_N2_NRF0` | RF→UI | `tx_evidence` |
+| `30` | `EV_N3_NRF1` | RF→UI | `tx_evidence` |
 | `31` | `POWER_GROUND` | return | `return` |
 | `32` | `RUN_PERMIT` | RF→UI | `safety` |
-| `33` | `RESERVED_33` | reserved | `reserved` |
+| `33` | `EV_N4_NRF2` | RF→UI | `tx_evidence` |
 | `34` | `RF_RESET_KILL_GATE` | RF→UI | `safety` |
 | `35` | `POWER_GROUND` | return | `return` |
 | `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
@@ -103,7 +103,7 @@
 | `55` | `3V3_MAIN` | rail | `power` |
 | `56` | `3V3_MAIN` | rail | `power` |
 | `57` | `3V3_MAIN` | rail | `power` |
-| `58` | `3V3_MAIN` | rail | `power` |
+| `58` | `EV_N5_CC` | RF→UI | `tx_evidence` |
 | `59` | `POWER_GROUND` | return | `return` |
 | `60` | `POWER_GROUND` | return | `return` |
 | `61` | `POWER_GROUND` | return | `return` |
@@ -122,9 +122,9 @@
 | `74` | `ENCODER_B` | RF→UI | `control` |
 | `75` | `S3_RESET_KILL_GATE` | RF→UI | `safety` |
 | `76` | `UI_ZONE_TEMP_ADC` | UI→RF | `analog` |
-| `77` | `FAULT_LATCH_SENSE` | RF→UI | `safety` |
+| `77` | `FAULT_LATCH_SENSE_AON` | RF→UI | `safety` |
 | `78` | `SPEAKER_AMP_EN` | UI→RF | `control` |
-| `79` | `RESERVED_79` | reserved | `reserved` |
-| `80` | `RESERVED_80` | reserved | `reserved` |
+| `79` | `EV_N6_VOICE` | RF→UI | `tx_evidence` |
+| `80` | `EV_N8_LORA_EXT` | RF→UI | `tx_evidence` |
 
-Восемь параллельных контактов `3V3_MAIN` дают паспортный потолок 3,2 А, но допустимый ток готового устройства определяется только измерением нагрева разъёма при одновременной нагрузке. Четыре резервных контакта остаются физически не подключёнными.
+Семь параллельных контактов `3V3_MAIN` дают паспортный потолок 2,8 А, но допустимый ток готового устройства определяется только измерением нагрева разъёма при одновременной нагрузке. Все 80 контактов назначены; шесть цифровых линий RF evidence выделены для лицевых индикаторов передачи.

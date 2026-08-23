@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "stage": "H2",
+  "status": "in_progress",
+  "current_substep": "H2.2.2",
+  "accepted_input": {
+    "physical_design_gate": "H1.8",
+    "status": "accepted",
+    "date": "2026-08-23",
+    "coordinate_model": "L2-ASM-COORD-001-A",
+    "architecture_candidate": "G2F-3I"
+  },
+  "authorization": {
+    "production_schematic": true,
+    "symbol_and_footprint_library_work": true,
+    "pcb_placement_and_routing": false,
+    "fabrication": false,
+    "purchasing": false
+  },
+  "projects": [
+    {
+      "id": "LESHY2-UI",
+      "role": "UI/control board",
+      "boards": ["UI/control PCB"]
+    },
+    {
+      "id": "LESHY2-RF",
+      "role": "RF/power board",
+      "boards": ["RF/power PCB"]
+    },
+    {
+      "id": "L2-DISP-ADP-001-A",
+      "role": "replaceable 40-contact display adapter",
+      "boards": ["display adapter PCB"]
+    },
+    {
+      "id": "LESHY2-LORA-CAP-01",
+      "role": "optional removable LoRa Cap",
+      "boards": ["LoRa Cap PCB"]
+    }
+  ],
+  "substeps": [
+    {
+      "id": "H2.0",
+      "title": "Freeze authoritative schematic inputs and project structure",
+      "status": "reviewed",
+      "children": [
+        {
+          "id": "H2.0.1",
+          "title": "Inventory every circuit instance, MPN, owning sheet, required contacts and current symbol/footprint evidence state",
+          "status": "reviewed"
+        },
+        {
+          "id": "H2.0.2",
+          "title": "Freeze hierarchical sheet graph, board boundaries, rail names, net classes and cross-sheet naming",
+          "status": "reviewed"
+        },
+        {
+          "id": "H2.0.3",
+          "title": "Define machine-readable HW-to-FW export and drift checks consumed by firmware F2",
+          "status": "reviewed"
+        }
+      ]
+    },
+    {
+      "id": "H2.1",
+      "title": "Create the KiCad schematic projects and controlled symbol/footprint libraries",
+      "status": "reviewed"
+    },
+    {
+      "id": "H2.2",
+      "title": "Implement and review UI/control PCB sheets",
+      "status": "current",
+      "children": [
+        {"id": "H2.2.1", "title": "Implement the UI project root and explicit hierarchical interfaces", "sheet": "UI_00_ROOT", "status": "reviewed"},
+        {"id": "H2.2.2", "title": "Implement S3 core, memory and boot", "sheet": "UI_10_S3_CORE_MEMORY_BOOT", "status": "current"},
+        {"id": "H2.2.3", "title": "Implement display, touch and storage", "sheet": "UI_11_DISPLAY_TOUCH_STORAGE", "status": "waiting"},
+        {"id": "H2.2.4", "title": "Implement user controls and indicators", "sheet": "UI_12_CONTROLS_INDICATORS", "status": "waiting"},
+        {"id": "H2.2.5", "title": "Implement codec and CTIA headset audio", "sheet": "UI_13_AUDIO_CODEC_HEADSET", "status": "waiting"},
+        {"id": "H2.2.6", "title": "Implement C5 radio, IR and service paths", "sheet": "UI_20_C5_RADIO_IR_SERVICE", "status": "waiting"},
+        {"id": "H2.2.7", "title": "Implement FM/AM/SW/LW receiver", "sheet": "UI_21_FM_AM_RECEIVER", "status": "waiting"},
+        {"id": "H2.2.8", "title": "Implement the UI side of the 80-contact M1 contract", "sheet": "UI_40_INTERBOARD_M1", "status": "waiting"},
+        {"id": "H2.2.9", "title": "Implement UI-side TX safety and evidence", "sheet": "UI_50_TX_SAFETY_EVIDENCE", "status": "waiting"},
+        {"id": "H2.2.10", "title": "Implement UI manufacturing and diagnostic test points", "sheet": "UI_60_TESTPOINTS_MANUFACTURING", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H2.3",
+      "title": "Implement and review RF/power PCB sheets",
+      "status": "waiting"
+    },
+    {
+      "id": "H2.4",
+      "title": "Implement and review display-adapter and optional LoRa-Cap sheets",
+      "status": "waiting"
+    },
+    {
+      "id": "H2.5",
+      "title": "Independently review power, reset, boot, recovery, no-back-power, quiet-state and FAULT_KILL paths",
+      "status": "waiting"
+    },
+    {
+      "id": "H2.6",
+      "title": "Close ERC, explain every intentional no-connect and remove every unexplained warning",
+      "status": "waiting"
+    },
+    {
+      "id": "H2.7",
+      "title": "Reconcile schematic contacts and nets with H1, the pin ledger, M1 and firmware F2",
+      "status": "waiting"
+    },
+    {
+      "id": "H2.8",
+      "title": "Formal final user acceptance of H2 before virtual electrical verification H3",
+      "status": "waiting"
+    }
+  ],
+  "project_model": "one_independent_kicad_project_per_pcb",
+  "proposed_sheet_graphs": {
+    "LESHY2-UI": [
+      "UI_00_ROOT",
+      "UI_10_S3_CORE_MEMORY_BOOT",
+      "UI_11_DISPLAY_TOUCH_STORAGE",
+      "UI_12_CONTROLS_INDICATORS",
+      "UI_13_AUDIO_CODEC_HEADSET",
+      "UI_20_C5_RADIO_IR_SERVICE",
+      "UI_21_FM_AM_RECEIVER",
+      "UI_40_INTERBOARD_M1",
+      "UI_50_TX_SAFETY_EVIDENCE",
+      "UI_60_TESTPOINTS_MANUFACTURING"
+    ],
+    "LESHY2-RF": [
+      "RF_00_ROOT",
+      "RF_01_USB_PD_CHARGE",
+      "RF_02_PACK_SAFETY_AON",
+      "RF_03_MAIN_RAILS_DOMAIN_GATES",
+      "RF_30_RP2354_CORE_SERVICE",
+      "RF_31_NRF24_X3",
+      "RF_32_SUBGHZ_VOICE",
+      "RF_34_U214_M5_EXT",
+      "RF_35_REAR_CONTROLS",
+      "RF_36_AUDIO_IO_AMP",
+      "RF_40_INTERBOARD_M1",
+      "RF_50_TX_SAFETY_EVIDENCE",
+      "RF_60_TESTPOINTS_MANUFACTURING"
+    ],
+    "L2-DISP-ADP-001-A": ["ADP_00_DISPLAY_ADAPTER"],
+    "LESHY2-LORA-CAP-01": [
+      "CAP_00_ROOT",
+      "CAP_10_RADIO_CONTROL",
+      "CAP_20_POWER_BUS",
+      "CAP_30_TX_EVIDENCE"
+    ]
+  },
+  "exit_criteria": [
+    "Every fitted instance has an exact symbol, footprint, MPN, value, contact map and owning sheet.",
+    "Every intentional no-connect is named and justified.",
+    "ERC has no unexplained errors or warnings.",
+    "Reset, boot, recovery, power-off isolation, quiet state and FAULT_KILL pass independent review.",
+    "The generated HW-to-FW contract contains no invented pins and is accepted by firmware F2.",
+    "No schematic action is represented as PCB placement, routing, fabrication or purchase authorization."
+  ]
+}

@@ -24,15 +24,16 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 - raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board
 - speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND
-- the internal microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND to the UI-local internal/headset selector, after which one MIC_SELECTED_RAW source feeds both capture and transmit selectors
+- the internal microphone body remains on the RF/power board; its quiet bias/filter network and the headset bias remain UI-local, so the single biased MIC_RAW conductor crosses M1 once beside AUDIO_GROUND to the internal/headset selector, after which one MIC_SELECTED_RAW source feeds both capture and transmit selectors
 - S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board
 - RUN/KILL conditioning, the independent watchdog, safety controller and FAULT_KILL latch remain on the RF/power board; only digital RUN_PERMIT, split reset gates, UI temperature and read-only status cross M1
-- only encoder push and phases cross M1; F1 through F8 are UI-local, PTT is local to the RP/voice domain, and M1 retains four reserved no-connect contacts
+- six RF-board TX-evidence lines cross M1 to the front indicators; the UI-local BAT54ALT1G aggregate adds them to the three UI-local paths without consuming another contact or depending on firmware
+- only encoder push and phases cross M1; F1 through F8 are UI-local and PTT is local to the RP/voice domain
 
 ## Contact budget
 
-- 80 positions total; 4 reserved and no-connect.
-- 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
+- 80 positions total; 0 reserved and no-connect.
+- 7 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
 - 22 power returns, 3 audio returns and 2 safety returns.
 - Raw VBUS/PD high voltage, battery current, analog TX-detector outputs, IR carrier and class-D speaker outputs do not cross M1.
 
@@ -74,11 +75,11 @@ This closes physical bodies and the inter-board air channel, not PCB routing. Fa
 | `26` | `POWER_FAULT_N` | RF→UI | `control` |
 | `27` | `POWER_GROUND` | return | `return` |
 | `28` | `UNIT_READY` | RF→UI | `control` |
-| `29` | `RESERVED_29` | reserved | `reserved` |
-| `30` | `POR_N` | RF→UI | `safety` |
+| `29` | `EV_N2_NRF0` | RF→UI | `tx_evidence` |
+| `30` | `EV_N3_NRF1` | RF→UI | `tx_evidence` |
 | `31` | `POWER_GROUND` | return | `return` |
 | `32` | `RUN_PERMIT` | RF→UI | `safety` |
-| `33` | `RESERVED_33` | reserved | `reserved` |
+| `33` | `EV_N4_NRF2` | RF→UI | `tx_evidence` |
 | `34` | `RF_RESET_KILL_GATE` | RF→UI | `safety` |
 | `35` | `POWER_GROUND` | return | `return` |
 | `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
@@ -103,7 +104,7 @@ This closes physical bodies and the inter-board air channel, not PCB routing. Fa
 | `55` | `3V3_MAIN` | rail | `power` |
 | `56` | `3V3_MAIN` | rail | `power` |
 | `57` | `3V3_MAIN` | rail | `power` |
-| `58` | `3V3_MAIN` | rail | `power` |
+| `58` | `EV_N5_CC` | RF→UI | `tx_evidence` |
 | `59` | `POWER_GROUND` | return | `return` |
 | `60` | `POWER_GROUND` | return | `return` |
 | `61` | `POWER_GROUND` | return | `return` |
@@ -122,9 +123,9 @@ This closes physical bodies and the inter-board air channel, not PCB routing. Fa
 | `74` | `ENCODER_B` | RF→UI | `control` |
 | `75` | `S3_RESET_KILL_GATE` | RF→UI | `safety` |
 | `76` | `UI_ZONE_TEMP_ADC` | UI→RF | `analog` |
-| `77` | `FAULT_LATCH_SENSE` | RF→UI | `safety` |
+| `77` | `FAULT_LATCH_SENSE_AON` | RF→UI | `safety` |
 | `78` | `SPEAKER_AMP_EN` | UI→RF | `control` |
-| `79` | `RESERVED_79` | reserved | `reserved` |
-| `80` | `RESERVED_80` | reserved | `reserved` |
+| `79` | `EV_N6_VOICE` | RF→UI | `tx_evidence` |
+| `80` | `EV_N8_LORA_EXT` | RF→UI | `tx_evidence` |
 
-Eight paralleled `3V3_MAIN` contacts provide a 3.2-A nameplate ceiling, but finished-device current is accepted only after connector-temperature measurement under simultaneous load. Four reserve contacts remain physically unconnected.
+Seven paralleled `3V3_MAIN` contacts provide a 2.8-A nameplate ceiling, but finished-device current is accepted only after connector-temperature measurement under simultaneous load. All 80 contacts are assigned; six digital RF-evidence lines are dedicated to the front transmit indicators.

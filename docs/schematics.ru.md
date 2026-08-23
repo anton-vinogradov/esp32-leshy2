@@ -185,21 +185,21 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>основной USB-C разъём"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>защита CC и USB2 порта"]
-S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: UART0/RESET/BOOT"]
-S3_RESET_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка RESET S3"]
-S3_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка BOOT S3"]
+S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>внутренний резервный DBG10: UART0/RESET/BOOT"]
+S3_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка RESET S3"]
+S3_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка BOOT S3"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2,4/5 ГГц, IEEE 802.15.4 и IR"]
 C5_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>data-only USB-C восстановления C5"]
 C5_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>power-off-защищённый USB2 ключ C5"]
-C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: UART0/RESET/BOOT"]
-C5_RESET_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка RESET C5"]
-C5_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка BOOT C5"]
+C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>внутренний резервный DBG10: UART0/RESET/BOOT"]
+C5_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка RESET C5"]
+C5_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка BOOT C5"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
 RP_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>data-only USB-C восстановления RP"]
 RP_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>power-off-защищённый USB2 ключ RP"]
-RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: SWD/RUN/USB_BOOT"]
-RP_RESET_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка RUN/RESET RP"]
-RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка USB_BOOT RP"]
+RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>внутренний резервный DBG10: SWD/RUN/USB_BOOT"]
+RP_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка RUN/RESET RP"]
+RP_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка USB_BOOT RP"]
   PRODUCT_USB_CONNECTOR <-->|"USB2 data"| PRODUCT_USB_PROTECTOR <-->|"native USB"| S3
   S3_DBG_HEADER <-->|"UART0 + RESET + BOOT"| S3
   S3_RESET_BUTTON -->|"RESET"| S3
@@ -302,6 +302,12 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>диодное объединение evidence nRF
 EVIDENCE_OR_2["BAT54ALT1G<br/>диодное объединение evidence nRF24 №3 и Sub-GHz"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>диодное объединение evidence voice и IR"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>диодное объединение evidence LoRa/EXT"]
+UI_EVIDENCE_OR_0["BAT54ALT1G<br/>лицевое диодное объединение evidence S3 и C5"]
+UI_EVIDENCE_OR_1["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №1 и №2"]
+UI_EVIDENCE_OR_2["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №3 и Sub-GHz"]
+UI_EVIDENCE_OR_3["BAT54ALT1G<br/>лицевое диодное объединение evidence voice и IR"]
+UI_EVIDENCE_OR_4["BAT54ALT1G<br/>лицевое диодное объединение evidence LoRa/EXT"]
+UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>локальная лицевая подтяжка общего индикатора передачи"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -328,4 +334,15 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
+  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
+  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
+  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
+  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
+  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
+  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```

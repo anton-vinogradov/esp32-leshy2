@@ -1,0 +1,825 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.1",
+  "status": "reviewed_ui_root_hierarchy",
+  "project": "LESHY2-UI",
+  "root_sheet": "UI_00_ROOT",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "0246125142d8cb23d1783397f530f7957696e63a4f9563f05977c2857ad24319",
+    "hardware/ecad/generated/H2-instance-ledger.json": "4a2633afd3bced59ce7a033302083711099c94efbe030e494d73f158628ed3a5",
+    "hardware/ecad/H2-sheet-contract.json": "66570d01d59138868742bd337d512d1fe0bfb9ed87509825f7d2e73b06893747"
+  },
+  "summary": {
+    "child_sheet_count": 9,
+    "cross_sheet_net_count": 73,
+    "root_hierarchical_pin_count": 180,
+    "child_hierarchical_label_count": 180,
+    "known_child_stub_erc_violations": 180,
+    "circuit_symbols_placed": 0,
+    "pcb_files_created": 0
+  },
+  "sheets": [
+    {
+      "id": "UI_10_S3_CORE_MEMORY_BOOT",
+      "interface_count": 19,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "AUDIO_ARM",
+        "DISPLAY_SD_SPI_D1",
+        "I2S_BCLK",
+        "I2S_DIN",
+        "I2S_DOUT",
+        "I2S_WS",
+        "POWER_GROUND",
+        "S3_DETECT_V",
+        "S3_DETECT_VM",
+        "S3_FORWARD_RF_SAMPLE",
+        "S3_RESET_N",
+        "S3_USB_DM",
+        "S3_USB_DP",
+        "SAFETY_GROUND",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N"
+      ]
+    },
+    {
+      "id": "UI_11_DISPLAY_TOUCH_STORAGE",
+      "interface_count": 10,
+      "interfaces": [
+        "3V3_MAIN",
+        "DISPLAY_SD_SPI_D1",
+        "LCD_RST_N",
+        "POWER_GROUND",
+        "SD_CARD_DETECT_N",
+        "SD_PWR_EN",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N",
+        "TOUCH_RST_N"
+      ]
+    },
+    {
+      "id": "UI_12_CONTROLS_INDICATORS",
+      "interface_count": 45,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "AUDIO_CAPTURE_MIC_SEL",
+        "AUDIO_SPK_CODEC_REQ",
+        "AUDIO_TX_CODEC_REQ",
+        "CC_BAND_V1_REQ",
+        "CC_BAND_V2_REQ",
+        "CODEC_PWR_EN",
+        "ENCODER_A",
+        "ENCODER_B",
+        "EV_N0_S3",
+        "EV_N1_C5",
+        "EV_N2_NRF0",
+        "EV_N3_NRF1",
+        "EV_N4_NRF2",
+        "EV_N5_CC",
+        "EV_N6_VOICE",
+        "EV_N7_IR",
+        "EV_N8_LORA_EXT",
+        "FAULT_LATCH_SENSE_AON",
+        "HEADSET_ABSENT",
+        "LCD_RST_N",
+        "POWER_FAULT_N",
+        "POWER_GROUND",
+        "RX_AUDIO_SOURCE_SEL",
+        "RX_DOMAIN_EN",
+        "RX_STATUS_N",
+        "S3_RESET_N",
+        "S3_RF_TX_EVIDENCE_AON_N",
+        "SAFETY_GROUND",
+        "SD_CARD_DETECT_N",
+        "SD_PWR_EN",
+        "SPEAKER_AMP_EN",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N",
+        "TOUCH_RST_N",
+        "U214_5V_REQ",
+        "U214_I2C_READY",
+        "UI_ENCODER_PUSH_N",
+        "UI_ZONE_TEMP_ADC",
+        "UNIT_5V_REQ",
+        "UNIT_READY",
+        "VOICE_DOMAIN_REQ",
+        "VOICE_HL_RELEASE_REQ"
+      ]
+    },
+    {
+      "id": "UI_13_AUDIO_CODEC_HEADSET",
+      "interface_count": 24,
+      "interfaces": [
+        "3V3_MAIN",
+        "AUDIO_ARM",
+        "AUDIO_CAPTURE_MIC_SEL",
+        "AUDIO_GROUND",
+        "AUDIO_SPK_CODEC_REQ",
+        "AUDIO_TX_CODEC_REQ",
+        "AUDIO_VMID_MAIN",
+        "CODEC_PWR_EN",
+        "HEADSET_ABSENT",
+        "I2S_BCLK",
+        "I2S_DIN",
+        "I2S_DOUT",
+        "I2S_WS",
+        "MIC_RAW",
+        "POWER_GROUND",
+        "RX_AUDIO_SOURCE_SEL",
+        "RX_SA518_AFOUT_ISOLATED",
+        "RX_SI4732_MONO",
+        "SPEAKER_SELECTED_N",
+        "SPEAKER_SELECTED_P",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N",
+        "VOICE_MIC_SELECTED_MAIN"
+      ]
+    },
+    {
+      "id": "UI_20_C5_RADIO_IR_SERVICE",
+      "interface_count": 11,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "C5_DETECT_V",
+        "C5_DETECT_VM",
+        "C5_FORWARD_RF_SAMPLE",
+        "C5_RESET_N",
+        "C5_RF_TX_EVIDENCE_N",
+        "IR_TX_EVIDENCE_N",
+        "POWER_GROUND",
+        "RUN_PERMIT",
+        "SAFETY_GROUND"
+      ]
+    },
+    {
+      "id": "UI_21_FM_AM_RECEIVER",
+      "interface_count": 8,
+      "interfaces": [
+        "3V3_MAIN",
+        "AUDIO_VMID_MAIN",
+        "POWER_GROUND",
+        "RX_DOMAIN_EN",
+        "RX_SI4732_MONO",
+        "RX_STATUS_N",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA"
+      ]
+    },
+    {
+      "id": "UI_40_INTERBOARD_M1",
+      "interface_count": 44,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "AUDIO_GROUND",
+        "C5_RF_TX_EVIDENCE_N",
+        "CC_BAND_V1_REQ",
+        "CC_BAND_V2_REQ",
+        "ENCODER_A",
+        "ENCODER_B",
+        "EV_N0_S3",
+        "EV_N1_C5",
+        "EV_N2_NRF0",
+        "EV_N3_NRF1",
+        "EV_N4_NRF2",
+        "EV_N5_CC",
+        "EV_N6_VOICE",
+        "EV_N7_IR",
+        "EV_N8_LORA_EXT",
+        "FAULT_LATCH_SENSE_AON",
+        "IR_TX_EVIDENCE_N",
+        "MIC_RAW",
+        "POWER_FAULT_N",
+        "POWER_GROUND",
+        "RF_RESET_KILL_GATE",
+        "RUN_PERMIT",
+        "RX_SA518_AFOUT_ISOLATED",
+        "S3_RESET_KILL_GATE",
+        "S3_USB_DM",
+        "S3_USB_DP",
+        "SAFETY_GROUND",
+        "SPEAKER_AMP_EN",
+        "SPEAKER_SELECTED_N",
+        "SPEAKER_SELECTED_P",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N",
+        "U214_5V_REQ",
+        "U214_I2C_READY",
+        "UI_ENCODER_PUSH_N",
+        "UI_ZONE_TEMP_ADC",
+        "UNIT_5V_REQ",
+        "UNIT_READY",
+        "VOICE_DOMAIN_REQ",
+        "VOICE_HL_RELEASE_REQ",
+        "VOICE_MIC_SELECTED_MAIN"
+      ]
+    },
+    {
+      "id": "UI_50_TX_SAFETY_EVIDENCE",
+      "interface_count": 19,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "C5_DETECT_V",
+        "C5_DETECT_VM",
+        "C5_FORWARD_RF_SAMPLE",
+        "C5_RESET_N",
+        "C5_RF_TX_EVIDENCE_N",
+        "EV_N0_S3",
+        "EV_N1_C5",
+        "EV_N7_IR",
+        "IR_TX_EVIDENCE_N",
+        "RF_RESET_KILL_GATE",
+        "S3_DETECT_V",
+        "S3_DETECT_VM",
+        "S3_FORWARD_RF_SAMPLE",
+        "S3_RESET_KILL_GATE",
+        "S3_RESET_N",
+        "S3_RF_TX_EVIDENCE_AON_N",
+        "SAFETY_GROUND"
+      ]
+    },
+    {
+      "id": "UI_60_TESTPOINTS_MANUFACTURING",
+      "interface_count": 0,
+      "interfaces": []
+    }
+  ],
+  "nets": [
+    {
+      "name": "3V3_MAIN",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_21_FM_AM_RECEIVER",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "AON_SAFE_3V3",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "AUDIO_ARM",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "AUDIO_CAPTURE_MIC_SEL",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "AUDIO_GROUND",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "AUDIO_SPK_CODEC_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "AUDIO_TX_CODEC_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "AUDIO_VMID_MAIN",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_21_FM_AM_RECEIVER"
+      ]
+    },
+    {
+      "name": "C5_DETECT_V",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "C5_DETECT_VM",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "C5_FORWARD_RF_SAMPLE",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "C5_RESET_N",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "C5_RF_TX_EVIDENCE_N",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_BAND_V1_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "CC_BAND_V2_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "CODEC_PWR_EN",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "DISPLAY_SD_SPI_D1",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
+      "name": "ENCODER_A",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "ENCODER_B",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N0_S3",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N1_C5",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N2_NRF0",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N3_NRF1",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N4_NRF2",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N5_CC",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N6_VOICE",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N7_IR",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N8_LORA_EXT",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "FAULT_LATCH_SENSE_AON",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "HEADSET_ABSENT",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "I2S_BCLK",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "I2S_DIN",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "I2S_DOUT",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "I2S_WS",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "IR_TX_EVIDENCE_N",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "LCD_RST_N",
+      "sheets": [
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS"
+      ]
+    },
+    {
+      "name": "MIC_RAW",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "POWER_FAULT_N",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "POWER_GROUND",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_21_FM_AM_RECEIVER",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "RF_RESET_KILL_GATE",
+      "sheets": [
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RUN_PERMIT",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "RX_AUDIO_SOURCE_SEL",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET"
+      ]
+    },
+    {
+      "name": "RX_DOMAIN_EN",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_21_FM_AM_RECEIVER"
+      ]
+    },
+    {
+      "name": "RX_SA518_AFOUT_ISOLATED",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "RX_SI4732_MONO",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_21_FM_AM_RECEIVER"
+      ]
+    },
+    {
+      "name": "RX_STATUS_N",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_21_FM_AM_RECEIVER"
+      ]
+    },
+    {
+      "name": "S3_DETECT_V",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_DETECT_VM",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_FORWARD_RF_SAMPLE",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_RESET_KILL_GATE",
+      "sheets": [
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_RESET_N",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_RF_TX_EVIDENCE_AON_N",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_USB_DM",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_USB_DP",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SAFETY_GROUND",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "SD_CARD_DETECT_N",
+      "sheets": [
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS"
+      ]
+    },
+    {
+      "name": "SD_PWR_EN",
+      "sheets": [
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS"
+      ]
+    },
+    {
+      "name": "SPEAKER_AMP_EN",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SPEAKER_SELECTED_N",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SPEAKER_SELECTED_P",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SYS_I2C_SCL",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_21_FM_AM_RECEIVER",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SYS_I2C_SDA",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_21_FM_AM_RECEIVER",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SYS_INT_N",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "TOUCH_RST_N",
+      "sheets": [
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS"
+      ]
+    },
+    {
+      "name": "U214_5V_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "U214_I2C_READY",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UI_ENCODER_PUSH_N",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UI_ZONE_TEMP_ADC",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UNIT_5V_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UNIT_READY",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "VOICE_DOMAIN_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "VOICE_HL_RELEASE_REQ",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "VOICE_MIC_SELECTED_MAIN",
+      "sheets": [
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_40_INTERBOARD_M1"
+      ]
+    }
+  ],
+  "rules": {
+    "derivation": "fixed-route endpoints plus exact M1 contact membership",
+    "pin_type": "bidirectional at H2.2.1; exact electrical pin types close with each implemented functional sheet",
+    "no_hidden_cross_sheet_globals": true,
+    "no_no_connect_aggregation": true,
+    "root_is_component_free": true
+  },
+  "review_boundary": {
+    "complete": [
+      "all nine UI child sheets instantiated by the KiCad root",
+      "all 73 derived cross-sheet nets represented by explicit named pins and child labels",
+      "one direct root rail joins only sheet pins carrying the same reviewed net name",
+      "native KiCad parser accepts the complete UI hierarchy and the root has zero ERC violations"
+    ],
+    "deferred": [
+      "functional circuit symbols and exact electrical sheet-pin directions in H2.2.2-H2.2.9",
+      "the 180 exact child-stub label_dangling findings disappear as functional circuit pins are placed",
+      "manufacturing test-point interfaces in H2.2.10",
+      "final full-project ERC closure in H2.6",
+      "all PCB placement, routing, fabrication and purchasing"
+    ]
+  }
+}

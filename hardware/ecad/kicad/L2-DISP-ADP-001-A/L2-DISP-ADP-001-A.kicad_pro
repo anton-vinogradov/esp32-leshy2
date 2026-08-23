@@ -1,0 +1,24 @@
+{
+  "board": {},
+  "boards": [],
+  "cvpcb": {},
+  "erc": {},
+  "libraries": {},
+  "meta": {
+    "filename": "L2-DISP-ADP-001-A.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [],
+    "meta": {
+      "version": 3
+    }
+  },
+  "pcbnew": {},
+  "schematic": {},
+  "sheets": [],
+  "text_variables": {
+    "LESHY2_PCB_PROJECT": "L2-DISP-ADP-001-A",
+    "LESHY2_STAGE": "H2.1"
+  }
+}

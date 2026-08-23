@@ -1,7 +1,7 @@
 {
-  "schema": 1,
+  "schema": 2,
   "contract_id": "LESHY2-HWFW-1",
-  "review_status": "pre_schematic_reviewed",
+  "review_status": "h2_0_3_reviewed",
   "hardware_architecture": "G2F-3I",
   "protocol": {"name": "L2IP", "major": 1, "minor": 0},
   "controllers": [
@@ -81,6 +81,77 @@
     "safety_loop_period_max": 5,
     "external_watchdog_timeout": 1600,
     "external_watchdog_service_period_max": 400
+  },
+  "physical_service": {
+    "external_usb": [
+      {"domain": "S3", "instance": "product_usb_connector", "label": "USB / POWER", "power_role": "product_power_and_native_usb"},
+      {"domain": "C5", "instance": "c5_service_usb_connector", "label": "C5 SERVICE USB", "power_role": "data_only_no_target_power"},
+      {"domain": "RP", "instance": "rp_service_usb_connector", "label": "RP SERVICE USB", "power_role": "data_only_no_target_power"}
+    ],
+    "external_side_controls": [
+      {"domain": "S3", "instance": "s3_reset_button", "mpn": "Alps Alpine SKRTLAE010", "label": "S3 RST", "function": "RESET"},
+      {"domain": "S3", "instance": "s3_boot_button", "mpn": "Alps Alpine SKRTLAE010", "label": "S3 BOOT", "function": "BOOT"},
+      {"domain": "C5", "instance": "c5_reset_button", "mpn": "Alps Alpine SKRTLAE010", "label": "C5 RST", "function": "RESET"},
+      {"domain": "C5", "instance": "c5_boot_button", "mpn": "Alps Alpine SKRTLAE010", "label": "C5 BOOT", "function": "BOOT"},
+      {"domain": "RP", "instance": "rp_reset_button", "mpn": "Alps Alpine SKRTLAE010", "label": "RP RST", "function": "RUN_RESET"},
+      {"domain": "RP", "instance": "rp_boot_button", "mpn": "Alps Alpine SKRTLAE010", "label": "RP BOOT", "function": "USB_BOOT"}
+    ],
+    "internal_fallback_headers": [
+      {"domain": "S3", "instance": "s3_dbg_header", "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR", "access": "open_sandwich_only"},
+      {"domain": "C5", "instance": "c5_dbg_header", "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR", "access": "open_sandwich_only"},
+      {"domain": "RP", "instance": "rp_dbg_header", "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR", "access": "open_sandwich_only"}
+    ]
+  },
+  "audio_headset": {
+    "owner": "S3",
+    "jack": {
+      "instance": "headphone_jack",
+      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "wiring": "CTIA/AHJ",
+      "contacts": {
+        "TIP": "left headphone",
+        "RING1": "right headphone",
+        "RING2": "audio ground",
+        "SLEEVE": "biased headset microphone"
+      }
+    },
+    "detect": {
+      "endpoint": "slow_io.P02",
+      "net": "HEADSET_ABSENT",
+      "direction": "input_only",
+      "levels": {"high": "absent", "low": "inserted_or_open_wire"},
+      "protection": "10-kOhm series plus 100-kOhm pull-down",
+      "rule": "firmware never configures P02 as an output"
+    },
+    "microphone_select": {
+      "controller": "TCA9534APWR",
+      "i2c_address_7bit": "0x39",
+      "endpoint": "headset_control_io.P0",
+      "net": "HEADSET_INTERNAL_MIC_SEL",
+      "levels": {"high_or_input": "internal microphone", "low": "headset microphone"},
+      "reset_default": "P0 input plus 100-kOhm pull-up selects internal microphone",
+      "reserve_endpoints": ["P1", "P2", "P3", "P4", "P5", "P6", "P7"],
+      "reserve_default": "inputs with individual 100-kOhm pull-downs and shared interrupt capability"
+    },
+    "state_policy": [
+      {"state": "ABSENT", "detect": "high_stable", "microphone": "internal", "speaker": "policy_controlled"},
+      {"state": "INSERTED_HEADSET", "detect": "low_stable", "microphone": "headset", "speaker": "forced_off"},
+      {"state": "INSERTED_INTERNAL_MIC", "detect": "low_stable", "microphone": "internal", "speaker": "forced_off"},
+      {"state": "UNKNOWN_OR_IO_FAULT", "detect": "ambiguous_or_unreadable", "microphone": "internal_reset_default", "speaker": "forced_off"}
+    ],
+    "transition_rules": [
+      "a raw low immediately disables the loudspeaker before debounce or microphone-source change",
+      "stable insertion defaults to headset microphone; an explicit user choice may retain the internal microphone for a TRS plug",
+      "removal restores P0 to input/internal default before loudspeaker policy may enable playback",
+      "detect, selector and I2C readback disagreement is an audio fault and never enables the loudspeaker",
+      "SA518 PTT remains independent of audio samples and microphone choice"
+    ],
+    "qualification": [
+      "CTIA headset and TRS headphone insertion/removal including contact chatter",
+      "reset, I2C loss, stuck detect, selector readback mismatch and rapid unplug/replug",
+      "pop/click, bias, gain, ESD, RF immunity and simultaneous capture/playback",
+      "all seven reserve pins remain quiet and do not create interrupt storms"
+    ]
   },
   "lora_cap_profiles": [
     {"assembly": "LESHY2-LORA-CAP-01-EU868", "module": "NiceRF LoRa1262-868", "allowed_frequency_mhz": [848, 888]},

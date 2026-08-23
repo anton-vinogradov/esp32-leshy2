@@ -23,9 +23,9 @@ remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
 | `display-assembly` | HMX035CTFT-001 screen-body top-left, front view | 1 |
 | `front-outer` | UI PCB top-left, viewed from the front/exterior | 27 |
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |
-| `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 100 |
+| `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 99 |
 | `rf-inner-route` | RF/power PCB top-left, viewed from the rear/exterior | 3 |
-| `ui-inner` | UI PCB top-left, viewed from the front/exterior | 30 |
+| `ui-inner` | UI PCB top-left, viewed from the front/exterior | 31 |
 | `ui-inner-route` | UI PCB top-left, viewed from the front/exterior | 2 |
 
 The complete per-instance table is retained as

@@ -3,9 +3,9 @@
 [Русский](roadmap.ru.md) · [Home](../README.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶️ Current hardware stage: H1 — physical product design.** H0 is
-> reviewed. The external and internal mockup is not yet accepted, so there is
-> no current production ECAD schematic, PCB layout or authorized order.
+> **▶️ Current hardware stage: H2 — production ECAD schematic.** H0 and H1
+> are reviewed. Schematic work is active; there is no PCB layout or authorized
+> order.
 
 Status last reconciled: **23 August 2026**. This is the hardware repository's
 own, sequential roadmap. Firmware work has its own `F0–F11` stages. Firmware
@@ -24,11 +24,12 @@ results appear here only where they are prerequisites of a hardware gate.
 | Area | Actual state |
 |---|---|
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
-| Physical product design | ▶️ H1: dimensioned projections and working allocation exist, but the complete mockup is not accepted |
-| Principle diagrams on the site | Included as H1 working artifacts; they are not production ECAD |
-| Current production ECAD schematic | ⏳ H2: not created; the incompatible former implementation is archived |
+| Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
+| Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
+| Current production ECAD schematic | ▶️ H2.2.2: exact S3 core, memory, boot, USB and service/reset; UI root H2.2.1 is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
+| KiCad schematic work | ▶️ H2: authorized |
 | KiCad placement and PCB routing | 🔒 H6: not started and not authorized |
 | Physical samples and HIL | 🔒 Not ordered or run |
 | Prototype PCB order | 🔒 Forbidden before H7 |
@@ -38,12 +39,12 @@ Principle diagrams explain **what connects to what**. Production ECAD must add
 exact symbols, contacts, values, rails, protection, footprints and ERC
 evidence. PCB placement and routing begin only after the earlier gates close.
 
-## Current H1 breakdown
+## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H1.8 -->
+<!-- current-substep: H2.2.2 -->
 
-**Exact marker: `H1.8`** — formal final acceptance of the complete H1 physical
-design package before production schematic work may begin.
+**Exact marker: `H2.2.2`** — implement and review exact S3 core, memory, boot,
+native USB and service/reset circuitry on `UI_10_S3_CORE_MEMORY_BOOT`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -109,18 +110,47 @@ design package before production schematic work may begin.
   result and generated one cross-view acceptance package from the same source.
 - ✅ `H1.7.1` — consolidated layout, automatic-check results and all changes
   since the earlier view gates accepted after authorized self-review.
-- ▶️ **`H1.8` — current:** formal final user acceptance of H1; only then may
-  H2 begin.
+- ✅ `H1.8` — complete H1 physical design accepted by the user on 23 August 2026.
 
-`H1.1.3.3` exits only when the display and U214 evidence blockers have
-controlled evidence or a reviewed bounded design fallback and all navigation
-controls are selected serial components. Purchasing is not an H1 shortcut:
-source research, documented replacement review and a no-order manufacturer
-data request come first. A sample can be proposed only as the last resort and
-still needs separate user approval. Closing any substep requires changing the
-exact marker on both landing and roadmap pages in the same commit before
-advancing work. A later correction reopens every affected user review gate and
-its dependants.
+Current H2 execution:
+
+- `H2.0` — freeze authoritative schematic inputs and project structure.
+  - ✅ `H2.0.1` — complete 1002-row inventory reviewed: all 974 main-device
+    circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
+    178 H1 bodies and all 796 schematic-only main-device parts are reconciled.
+  - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
+    rechecked against all 1002 inventory rows; four intentionally component-empty
+    root/test sheets are explicitly classified.
+  - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
+- ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
+  repository-controlled library tables created; every sheet passed the KiCad
+  10 parser and empty-sheet ERC. No PCB file exists.
+- `H2.2` — implement and review UI/control PCB sheets.
+  - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 73 exact cross-sheet nets
+    and 180 explicit pins/labels; one direct root rail per net, no hidden global
+    labels, native KiCad parse passed. The exact 180 empty-child stub findings
+    are machine-accounted and close only as H2.2.2–H2.2.9 place circuit pins.
+  - ▶️ **`H2.2.2` — current:** `UI_10_S3_CORE_MEMORY_BOOT`.
+  - ⏳ `H2.2.3` — `UI_11_DISPLAY_TOUCH_STORAGE`.
+  - ⏳ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`.
+  - ⏳ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`.
+  - ⏳ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`.
+  - ⏳ `H2.2.7` — `UI_21_FM_AM_RECEIVER`.
+  - ⏳ `H2.2.8` — `UI_40_INTERBOARD_M1`.
+  - ⏳ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`.
+  - ⏳ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`.
+- ⏳ `H2.3` — implement and review RF/power PCB sheets.
+- ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
+- ⏳ `H2.5` — independently review power, reset, boot, recovery,
+  no-back-power, quiet-state and `FAULT_KILL` paths.
+- ⏳ `H2.6` — close ERC and justify every intentional no-connect.
+- ⏳ `H2.7` — reconcile schematic contacts and nets with H1, M1 and firmware F2.
+- 🔒 `H2.8` — formal final user acceptance before H3.
+
+The machine-readable execution plan is
+[`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Closing any
+substep changes the exact marker on both landing and roadmap pages in the same
+commit. A later correction reopens every affected review gate and its dependants.
 
 ## Hardware sequence and firmware intersections
 
@@ -128,8 +158,8 @@ its dependants.
 flowchart TD
   subgraph HW["Hardware roadmap — sequential"]
     H0["✅ H0<br/>requirements and functional architecture"]
-    H1["▶️ H1<br/>physical product design"]
-    H2["H2<br/>production ECAD schematic"]
+    H1["✅ H1<br/>physical product design"]
+    H2["▶️ H2<br/>production ECAD schematic"]
     H3["H3<br/>virtual electrical verification"]
     H4["H4<br/>joined pre-layout gate"]
     H5["H5<br/>component evidence samples"]
@@ -165,8 +195,8 @@ order approval. A production order is possible only after H9.
 | Stage | Status | Stage output | Exit criterion |
 |---|---|---|---|
 | **H0. Product requirements and functional architecture** | ✅ Reviewed | Complete capability scope, five compute domains, radio/interface owners, interface classes, one active signal group, full-function 3×nRF24 and safety boundaries | Requirements and architecture checks pass; every required function has an owner and a defined hardware boundary |
-| **H1. Physical product design** | ▶️ Current | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepts the mockup |
-| **H2. Production ECAD schematic** | ⏳ Waiting for H1 | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 can consume the contract without invented pins |
+| **H1. Physical product design** | ✅ Reviewed | Accepted exterior, both outer and inner faces, true antenna-edge view, sections, assembly sequence, selected-part envelopes and feasible pin/resource allocation | Dimensions come from selected MPNs; no component, fastener, silkscreen, antenna or accessory collision; controls, battery, U214, ports, microphone and speaker are accessible; allocation still fits; the user accepted the mockup |
+| **H2. Production ECAD schematic** | ▶️ Current | New current schematic split into reviewable sheets and a machine-readable HW↔FW contract | Exact symbol/footprint/pin/net/value; intentional NCs explained; no unexplained ERC error; reset, boot, recovery, no-back-power, quiet state and `FAULT_KILL` independently reviewed; firmware F2 can consume the contract without invented pins |
 | **H3. Virtual electrical verification** | ⏳ Waiting for H2 | Calculations and simulations before expensive physical work | Worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse and load steps; thermal/fault tree; display/backlight, audio and IR corners; timing/levels; RF corridors, returns and pre-layout constraints pass |
 | **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
@@ -192,6 +222,6 @@ order approval. A production order is possible only after H9.
 
 ## Next action
 
-Work is limited to H1: turn the exterior and internal mockup into one clear,
-dimensionally consistent acceptance package. Production ECAD, PCB routing and
-purchasing do not start first.
+The current work is H2: create the exact production schematic and HW↔FW
+contract from the accepted H1 package. PCB placement/routing and purchasing
+remain blocked.

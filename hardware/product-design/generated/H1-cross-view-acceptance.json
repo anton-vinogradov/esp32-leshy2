@@ -3,12 +3,25 @@
   "stage": "H1.7.0",
   "status": "reviewed",
   "review_gate": "H1.7.1",
+  "final_acceptance": {
+    "gate": "H1.8",
+    "status": "accepted",
+    "date": "2026-08-23",
+    "basis": "explicit user acceptance after the complete H1 self-review report"
+  },
   "coordinate_model": "L2-ASM-COORD-001-A",
   "artifacts": {
     "external_faces": {
       "path": "docs/images/current-clamshell.svg",
       "review_gate": "H1.3.1",
       "status": "reviewed"
+    },
+    "external_service_access": {
+      "path": "docs/images/service-access.svg",
+      "status": "reviewed",
+      "external_usb_ports": 3,
+      "external_recovery_buttons": 6,
+      "internal_dbg10_headers": 3
     },
     "inner_faces": {
       "path": "docs/images/internal-board-layout.svg",
@@ -105,15 +118,16 @@
     },
     "m1": {
       "positions": 80,
-      "assigned": 76,
-      "reserved_no_connect": 4
+      "assigned": 80,
+      "reserved_no_connect": 0
     },
     "summary": "ESP32-S3-WROOM-1U-N16R8 is 33 used / 0 reserved / 0 free: GPIO35/36/37 belong to octal PSRAM, while GPIO0/45/46 are safely reclaimed with explicit boot-strap circuitry and HIL gates; main slow_io is 24 used / 0 reserved / 0 free; the dedicated UI input expander is 16 used / 0 reserved / 0 free; the exact 0x39 headset-control expander uses P0 and keeps P1-P7 as seven pulled, interrupt-capable local reserves; moving F1/F2 to the UI face leaves four M1 contacts reserved and no-connect; PTT, RUN/KILL, full D-pad and F1 through F8 all have complete assigned paths"
   },
   "not_claimed": {
-    "production_schematic": false,
+    "production_schematic_complete": false,
+    "production_schematic_authorized": true,
     "pcb_copper_and_vias": "not_yet_proven_pre_kicad",
-    "kicad_authorized": false,
+    "pcb_placement_and_routing_authorized": false,
     "purchase_authorized": false
   },
   "remaining_gates": [

@@ -83,7 +83,8 @@ Sample ordering remains unauthorized until the pre-order contract reaches P7,
 the research/replacement/data-request sequence is recorded as exhausted for
 the exact unresolved item, and the user separately approves that last-resort
 purchase.
-KiCad remains unauthorized for PCB placement/routing until the
-measurements above are either accepted or recorded as an explicit architectural
-exception. A received mismatch returns to the machine architecture and
-dimensioned mockup first; it is not patched silently in PCB layout.
+PCB placement/routing, fabrication and purchasing remain unauthorized until
+their respective gates pass. The measurements above must be accepted or
+recorded as an explicit architectural exception before layout. A received
+mismatch returns to the machine architecture and dimensioned mockup first; it
+is not patched silently in PCB layout.

@@ -1,0 +1,1865 @@
+{
+  "schema_version": 1,
+  "stage": "H2.0.3",
+  "status": "reviewed_hwfw_export",
+  "export_id": "LESHY2-H2-HWFW-1",
+  "generated_from": [
+    "hardware/architecture/devices.json",
+    "hardware/architecture/candidates/G2F-3I.json",
+    "hardware/architecture/target-integration-contract.json",
+    "hardware/ecad/H2-sheet-contract.json"
+  ],
+  "source_sha256": {
+    "hardware/architecture/devices.json": "fc3c07399725d363a8109a0f6b1c80b2267cd90d7440510e6f4c3837b6fcfbc4",
+    "hardware/architecture/candidates/G2F-3I.json": "0246125142d8cb23d1783397f530f7957696e63a4f9563f05977c2857ad24319",
+    "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
+    "hardware/ecad/H2-sheet-contract.json": "66570d01d59138868742bd337d512d1fe0bfb9ed87509825f7d2e73b06893747"
+  },
+  "integration_contract": {
+    "schema": 2,
+    "contract_id": "LESHY2-HWFW-1",
+    "review_status": "h2_0_3_reviewed",
+    "hardware_architecture": "G2F-3I",
+    "protocol": {
+      "name": "L2IP",
+      "major": 1,
+      "minor": 0
+    },
+    "controllers": [
+      {
+        "domain": "S3",
+        "instance": "s3",
+        "mpn": "ESP32-S3-WROOM-1U-N16R8"
+      },
+      {
+        "domain": "C5",
+        "instance": "c5",
+        "mpn": "ESP32-C5-WROOM-1U-N8R8"
+      },
+      {
+        "domain": "RP",
+        "instance": "rp",
+        "mpn": "SC1512-A4"
+      },
+      {
+        "domain": "PACK",
+        "instance": "pack_admission",
+        "mpn": "Texas Instruments MSPM0C1106SDGS20R"
+      },
+      {
+        "domain": "SAFETY",
+        "instance": "safety_controller",
+        "mpn": "Texas Instruments MSPM0C1106SDGS20R"
+      }
+    ],
+    "transports": [
+      {
+        "id": "S3_C5",
+        "hardware_resource": "S3_C5_IPC",
+        "kind": "SDIO_1BIT",
+        "clock_hz": 20000000,
+        "raw_bytes_per_second": 2500000,
+        "qualified_payload_bytes_per_second_min": 1500000,
+        "control_round_trip_ms_max": 2,
+        "pins": {
+          "CLK": [
+            "s3.GPIO10",
+            "c5.GPIO9"
+          ],
+          "CMD": [
+            "s3.GPIO11",
+            "c5.GPIO10"
+          ],
+          "D0": [
+            "s3.GPIO12",
+            "c5.GPIO8"
+          ],
+          "D1_IRQ": [
+            "s3.GPIO13",
+            "c5.GPIO7"
+          ]
+        }
+      },
+      {
+        "id": "S3_RP",
+        "hardware_resource": "S3_RP_IPC",
+        "kind": "SPI_FULL_DUPLEX",
+        "clock_hz": 20000000,
+        "raw_bytes_per_second": 2500000,
+        "qualified_payload_bytes_per_second_min": 1500000,
+        "control_round_trip_ms_max": 2,
+        "alert_to_read_us_max": 250,
+        "pins": {
+          "CS_N": [
+            "s3.GPIO9",
+            "rp.GPIO25"
+          ],
+          "SCK": [
+            "s3.GPIO48",
+            "rp.GPIO26"
+          ],
+          "MOSI": [
+            "s3.GPIO21",
+            "rp.GPIO24"
+          ],
+          "MISO": [
+            "s3.GPIO14",
+            "rp.GPIO27"
+          ],
+          "ALERT_N": [
+            "s3.GPIO3",
+            "rp.GPIO19"
+          ]
+        }
+      },
+      {
+        "id": "S3_PACK",
+        "kind": "I2C_TARGET",
+        "bus_hz": 400000,
+        "address_7bit": "0x2A",
+        "pins": {
+          "SDA": [
+            "s3.GPIO1",
+            "pack_admission.PA0"
+          ],
+          "SCL": [
+            "s3.GPIO2",
+            "pack_admission.PA11"
+          ]
+        }
+      },
+      {
+        "id": "S3_SAFETY",
+        "kind": "I2C_TARGET",
+        "bus_hz": 400000,
+        "address_7bit": "0x2B",
+        "pins": {
+          "SDA": [
+            "s3.GPIO1",
+            "safety_controller.PA0"
+          ],
+          "SCL": [
+            "s3.GPIO2",
+            "safety_controller.PA11"
+          ]
+        }
+      }
+    ],
+    "signal_groups": [
+      {
+        "firmware": "NONE",
+        "hardware": null,
+        "owner": "S3",
+        "tx_evidence_bits": []
+      },
+      {
+        "firmware": "S3_RF",
+        "hardware": "SG-S3-24",
+        "owner": "S3",
+        "tx_evidence_bits": [
+          0
+        ]
+      },
+      {
+        "firmware": "C5_RF",
+        "hardware": "SG-C5-NATIVE",
+        "owner": "C5",
+        "tx_evidence_bits": [
+          1
+        ]
+      },
+      {
+        "firmware": "NRF24",
+        "hardware": "SG-N24",
+        "owner": "RP",
+        "tx_evidence_bits": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "firmware": "CC1101",
+        "hardware": "SG-CC",
+        "owner": "RP",
+        "tx_evidence_bits": [
+          5
+        ]
+      },
+      {
+        "firmware": "VOICE",
+        "hardware": "SG-VOICE",
+        "owner": "RP",
+        "tx_evidence_bits": [
+          6
+        ]
+      },
+      {
+        "firmware": "IR",
+        "hardware": "SG-IR",
+        "owner": "C5",
+        "tx_evidence_bits": [
+          7
+        ]
+      },
+      {
+        "firmware": "LORA_CAP",
+        "hardware": "SG-U214",
+        "owner": "RP",
+        "tx_evidence_bits": [
+          8
+        ]
+      },
+      {
+        "firmware": "M5_UNIT",
+        "hardware": "SG-EXT-*",
+        "owner": "S3",
+        "tx_evidence_bits": []
+      },
+      {
+        "firmware": "BROADCAST_RX",
+        "hardware": "SG-BROADCAST",
+        "owner": "S3",
+        "tx_evidence_bits": []
+      }
+    ],
+    "safety_timing_ms": {
+      "heartbeat_period": 50,
+      "heartbeat_gap_max": 200,
+      "tx_lease_lifetime_max": 100,
+      "tx_lease_renew_period_max": 40,
+      "unexpected_evidence_fault_max": 10,
+      "post_revoke_evidence_clear_grace": 20,
+      "safety_loop_period_max": 5,
+      "external_watchdog_timeout": 1600,
+      "external_watchdog_service_period_max": 400
+    },
+    "physical_service": {
+      "external_usb": [
+        {
+          "domain": "S3",
+          "instance": "product_usb_connector",
+          "label": "USB / POWER",
+          "power_role": "product_power_and_native_usb"
+        },
+        {
+          "domain": "C5",
+          "instance": "c5_service_usb_connector",
+          "label": "C5 SERVICE USB",
+          "power_role": "data_only_no_target_power"
+        },
+        {
+          "domain": "RP",
+          "instance": "rp_service_usb_connector",
+          "label": "RP SERVICE USB",
+          "power_role": "data_only_no_target_power"
+        }
+      ],
+      "external_side_controls": [
+        {
+          "domain": "S3",
+          "instance": "s3_reset_button",
+          "mpn": "Alps Alpine SKRTLAE010",
+          "label": "S3 RST",
+          "function": "RESET"
+        },
+        {
+          "domain": "S3",
+          "instance": "s3_boot_button",
+          "mpn": "Alps Alpine SKRTLAE010",
+          "label": "S3 BOOT",
+          "function": "BOOT"
+        },
+        {
+          "domain": "C5",
+          "instance": "c5_reset_button",
+          "mpn": "Alps Alpine SKRTLAE010",
+          "label": "C5 RST",
+          "function": "RESET"
+        },
+        {
+          "domain": "C5",
+          "instance": "c5_boot_button",
+          "mpn": "Alps Alpine SKRTLAE010",
+          "label": "C5 BOOT",
+          "function": "BOOT"
+        },
+        {
+          "domain": "RP",
+          "instance": "rp_reset_button",
+          "mpn": "Alps Alpine SKRTLAE010",
+          "label": "RP RST",
+          "function": "RUN_RESET"
+        },
+        {
+          "domain": "RP",
+          "instance": "rp_boot_button",
+          "mpn": "Alps Alpine SKRTLAE010",
+          "label": "RP BOOT",
+          "function": "USB_BOOT"
+        }
+      ],
+      "internal_fallback_headers": [
+        {
+          "domain": "S3",
+          "instance": "s3_dbg_header",
+          "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+          "access": "open_sandwich_only"
+        },
+        {
+          "domain": "C5",
+          "instance": "c5_dbg_header",
+          "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+          "access": "open_sandwich_only"
+        },
+        {
+          "domain": "RP",
+          "instance": "rp_dbg_header",
+          "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+          "access": "open_sandwich_only"
+        }
+      ]
+    },
+    "audio_headset": {
+      "owner": "S3",
+      "jack": {
+        "instance": "headphone_jack",
+        "mpn": "Same Sky SJ-43504-SMT-TR",
+        "wiring": "CTIA/AHJ",
+        "contacts": {
+          "TIP": "left headphone",
+          "RING1": "right headphone",
+          "RING2": "audio ground",
+          "SLEEVE": "biased headset microphone"
+        }
+      },
+      "detect": {
+        "endpoint": "slow_io.P02",
+        "net": "HEADSET_ABSENT",
+        "direction": "input_only",
+        "levels": {
+          "high": "absent",
+          "low": "inserted_or_open_wire"
+        },
+        "protection": "10-kOhm series plus 100-kOhm pull-down",
+        "rule": "firmware never configures P02 as an output"
+      },
+      "microphone_select": {
+        "controller": "TCA9534APWR",
+        "i2c_address_7bit": "0x39",
+        "endpoint": "headset_control_io.P0",
+        "net": "HEADSET_INTERNAL_MIC_SEL",
+        "levels": {
+          "high_or_input": "internal microphone",
+          "low": "headset microphone"
+        },
+        "reset_default": "P0 input plus 100-kOhm pull-up selects internal microphone",
+        "reserve_endpoints": [
+          "P1",
+          "P2",
+          "P3",
+          "P4",
+          "P5",
+          "P6",
+          "P7"
+        ],
+        "reserve_default": "inputs with individual 100-kOhm pull-downs and shared interrupt capability"
+      },
+      "state_policy": [
+        {
+          "state": "ABSENT",
+          "detect": "high_stable",
+          "microphone": "internal",
+          "speaker": "policy_controlled"
+        },
+        {
+          "state": "INSERTED_HEADSET",
+          "detect": "low_stable",
+          "microphone": "headset",
+          "speaker": "forced_off"
+        },
+        {
+          "state": "INSERTED_INTERNAL_MIC",
+          "detect": "low_stable",
+          "microphone": "internal",
+          "speaker": "forced_off"
+        },
+        {
+          "state": "UNKNOWN_OR_IO_FAULT",
+          "detect": "ambiguous_or_unreadable",
+          "microphone": "internal_reset_default",
+          "speaker": "forced_off"
+        }
+      ],
+      "transition_rules": [
+        "a raw low immediately disables the loudspeaker before debounce or microphone-source change",
+        "stable insertion defaults to headset microphone; an explicit user choice may retain the internal microphone for a TRS plug",
+        "removal restores P0 to input/internal default before loudspeaker policy may enable playback",
+        "detect, selector and I2C readback disagreement is an audio fault and never enables the loudspeaker",
+        "SA518 PTT remains independent of audio samples and microphone choice"
+      ],
+      "qualification": [
+        "CTIA headset and TRS headphone insertion/removal including contact chatter",
+        "reset, I2C loss, stuck detect, selector readback mismatch and rapid unplug/replug",
+        "pop/click, bias, gain, ESD, RF immunity and simultaneous capture/playback",
+        "all seven reserve pins remain quiet and do not create interrupt storms"
+      ]
+    },
+    "lora_cap_profiles": [
+      {
+        "assembly": "LESHY2-LORA-CAP-01-EU868",
+        "module": "NiceRF LoRa1262-868",
+        "allowed_frequency_mhz": [
+          848,
+          888
+        ]
+      },
+      {
+        "assembly": "LESHY2-LORA-CAP-01-US915",
+        "module": "NiceRF LoRa1262-915",
+        "allowed_frequency_mhz": [
+          900,
+          940
+        ]
+      }
+    ]
+  },
+  "bsp": {
+    "pin_source": "hardware/architecture/candidates/G2F-3I.json#/allocations",
+    "temporary_pin_assignments_allowed": false,
+    "domains": [
+      {
+        "domain": "S3",
+        "instance": "s3",
+        "mpn": "ESP32-S3-WROOM-1U-N16R8",
+        "allocated_contact_count": 33,
+        "pins": [
+          {
+            "instance": "s3",
+            "contact": "GPIO1",
+            "net": "SYS_I2C_SDA",
+            "direction": "io",
+            "controller": "I2C0",
+            "peers": [
+              "slow_io.SDA",
+              "ui_matrix_io.SDA",
+              "headset_control_io.SDA",
+              "receiver_i2c_iso.1A",
+              "display_connector.PIN_2",
+              "codec_i2c_iso.1A",
+              "pd_controller.I2Ct_SDA",
+              "pack_admission.PA0",
+              "safety_controller.PA0"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO2",
+            "net": "SYS_I2C_SCL",
+            "direction": "o",
+            "controller": "I2C0",
+            "peers": [
+              "slow_io.SCL",
+              "ui_matrix_io.SCL",
+              "headset_control_io.SCL",
+              "receiver_i2c_iso.2A",
+              "display_connector.PIN_1",
+              "codec_i2c_iso.2A",
+              "pd_controller.I2Ct_SCL",
+              "pack_admission.PA11",
+              "safety_controller.PA11"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO3",
+            "net": "RP_ALERT_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "rp.GPIO19"
+            ],
+            "strap_proof": "RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO4",
+            "net": "DISPLAY_SD_SPI_D1",
+            "direction": "io",
+            "controller": "SPI2",
+            "peers": [
+              "sd_miso_series.END_2",
+              "sd_host_d1_pullup.END_1",
+              "display_connector.PIN_10"
+            ],
+            "sharing_proof": "SN74LVC1G125DCKR can return SD DAT0/MISO only while SD_CS_N is low; its Ioff output is high-Z when card power is absent, so display QSPI D1 no longer depends solely on card behavior, while specimen contention and timing still remain HIL"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO5",
+            "net": "SD_SPI_CS_N",
+            "direction": "o",
+            "controller": "SPI2",
+            "peers": [
+              "sd_host_buffer.3A",
+              "sd_miso_buffer.OE_N",
+              "sd_host_cs_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO6",
+            "net": "AUDIO_ARM",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "audio_safe_gate.1B",
+              "audio_safe_gate.2B",
+              "codec_i2s_din_boot_gate.B"
+            ],
+            "reset_proof": "external pull-down forces both analog defaults and the GPIO0 codec-data isolator off from reset until firmware verifies codec power, address, clocks, levels and selector state"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO7",
+            "net": "UNIT_HOST_SIG0",
+            "direction": "io",
+            "controller": "I2C1_OR_UART1_OR_GPIO",
+            "peers": [
+              "unit_signal_iso.A1"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO8",
+            "net": "UNIT_HOST_SIG1",
+            "direction": "io",
+            "controller": "I2C1_OR_UART1_OR_GPIO",
+            "peers": [
+              "unit_signal_iso.A2"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO9",
+            "net": "S3_RP_IPC_CS_N",
+            "direction": "o",
+            "controller": "SPI3",
+            "peers": [
+              "rp.GPIO25"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO10",
+            "net": "S3_C5_SDIO_CLK",
+            "direction": "o",
+            "controller": "SDMMC_SLOT1_1BIT",
+            "peers": [
+              "c5.GPIO9"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO11",
+            "net": "S3_C5_SDIO_CMD",
+            "direction": "io",
+            "controller": "SDMMC_SLOT1_1BIT",
+            "peers": [
+              "c5.GPIO10"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO12",
+            "net": "S3_C5_SDIO_D0",
+            "direction": "io",
+            "controller": "SDMMC_SLOT1_1BIT",
+            "peers": [
+              "c5.GPIO8"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO13",
+            "net": "S3_C5_SDIO_D1_IRQ",
+            "direction": "io",
+            "controller": "SDMMC_SLOT1_1BIT",
+            "peers": [
+              "c5.GPIO7"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO14",
+            "net": "S3_RP_IPC_MISO",
+            "direction": "i",
+            "controller": "SPI3",
+            "peers": [
+              "rp.GPIO27"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO15",
+            "net": "I2S_BCLK",
+            "direction": "o",
+            "controller": "I2S0",
+            "peers": [
+              "codec_i2s_bclk_iso.A"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO16",
+            "net": "I2S_WS",
+            "direction": "o",
+            "controller": "I2S0",
+            "peers": [
+              "codec_i2s_ws_iso.A"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO17",
+            "net": "I2S_DOUT",
+            "direction": "o",
+            "controller": "I2S0",
+            "peers": [
+              "codec_i2s_dout_iso.A"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO18",
+            "net": "DISPLAY_SD_SPI_SCK",
+            "direction": "o",
+            "controller": "SPI2",
+            "peers": [
+              "sd_host_buffer.1A",
+              "sd_host_sck_pulldown.END_1",
+              "display_connector.PIN_11"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO19",
+            "net": "S3_USB_DM",
+            "direction": "io",
+            "controller": "USB_SERIAL_JTAG",
+            "peers": [
+              "product_usb_dm_series.END_2"
+            ],
+            "sharing_proof": "dedicated protected USB Full-Speed D- path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO20",
+            "net": "S3_USB_DP",
+            "direction": "io",
+            "controller": "USB_SERIAL_JTAG",
+            "peers": [
+              "product_usb_dp_series.END_2"
+            ],
+            "sharing_proof": "dedicated protected USB Full-Speed D+ path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO21",
+            "net": "S3_RP_IPC_MOSI",
+            "direction": "o",
+            "controller": "SPI3",
+            "peers": [
+              "rp.GPIO24"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO0",
+            "net": "I2S_DIN",
+            "direction": "i",
+            "controller": "I2S0",
+            "peers": [
+              "codec_i2s_din_iso.Y",
+              "s3_boot_pullup.END_2",
+              "s3_dbg_boot_series.END_2"
+            ],
+            "strap_proof": "the exact 10-kOhm pull-up preserves normal boot; CODEC_READY is ANDed with reset-low AUDIO_ARM before the DIN buffer can drive, so GPIO0 remains fixture-controllable throughout ROM strap sampling; the 1-kOhm service path bounds accidental runtime contention"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO45",
+            "net": "SYS_INT_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "slow_io.INT",
+              "ui_matrix_io.INT_N",
+              "headset_control_io.INT_N",
+              "pd_controller.I2Ct_IRQ",
+              "touch_irq_buffer.Y",
+              "pack_status_buffer.D2"
+            ],
+            "strap_proof": "the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling",
+            "sharing_proof": "all sources are active-low/open-drain with an external pull-up; exact 2N7002DW Q2 translates the pack-admission request into a passive drain, and firmware reads all three expanders, touch, PD and pack-admission status after a shared interrupt"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO46",
+            "net": "DISPLAY_SD_SPI_D0",
+            "direction": "o",
+            "controller": "SPI2",
+            "peers": [
+              "sd_host_buffer.2A",
+              "sd_host_d0_pulldown.END_1",
+              "display_connector.PIN_13"
+            ],
+            "strap_proof": "one physical 10-kOhm pull-down holds GPIO46 low through ROM sampling, including joint-download entry, then becomes only a weak defined idle load on the push-pull QSPI D0 output"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO38",
+            "net": "LCD_CS_N",
+            "direction": "o",
+            "controller": "SPI2",
+            "peers": [
+              "display_connector.PIN_9",
+              "lcd_host_cs_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO39",
+            "net": "ENCODER_A",
+            "direction": "i",
+            "controller": "PCNT0",
+            "peers": [
+              "encoder.A",
+              "encoder_a_pullup.END_1"
+            ],
+            "sharing_proof": "dedicated hardware quadrature phase; external pull-up and valid Gray-state/full-detent firmware semantics remain effective during display, storage and radio load"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO40",
+            "net": "LCD_BL_PWM",
+            "direction": "o",
+            "controller": "LEDC",
+            "peers": [
+              "backlight_gate_series.END_1"
+            ],
+            "reset_proof": "exact 10-kOhm MOSFET gate pull-down keeps every LEDK path off before S3 output configuration"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO41",
+            "net": "LCD_QSPI_D2",
+            "direction": "o",
+            "controller": "SPI2",
+            "peers": [
+              "display_connector.PIN_17"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO42",
+            "net": "LCD_QSPI_D3",
+            "direction": "o",
+            "controller": "SPI2",
+            "peers": [
+              "display_connector.PIN_18"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO43",
+            "net": "S3_UART_SERVICE_TX",
+            "direction": "o",
+            "controller": "UART0",
+            "peers": [
+              "s3_dbg0_series.END_2"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO44",
+            "net": "S3_UART_SERVICE_RX",
+            "direction": "i",
+            "controller": "UART0",
+            "peers": [
+              "s3_dbg1_series.END_2"
+            ]
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO47",
+            "net": "ENCODER_B",
+            "direction": "i",
+            "controller": "PCNT0",
+            "peers": [
+              "encoder.B",
+              "encoder_b_pullup.END_1"
+            ],
+            "sharing_proof": "dedicated hardware quadrature phase; external pull-up and PCNT capture prevent I2C UI scanning from consuming encoder edges"
+          },
+          {
+            "instance": "s3",
+            "contact": "GPIO48",
+            "net": "S3_RP_IPC_SCK",
+            "direction": "o",
+            "controller": "SPI3",
+            "peers": [
+              "rp.GPIO26"
+            ]
+          }
+        ]
+      },
+      {
+        "domain": "C5",
+        "instance": "c5",
+        "mpn": "ESP32-C5-WROOM-1U-N8R8",
+        "allocated_contact_count": 14,
+        "pins": [
+          {
+            "instance": "c5",
+            "contact": "GPIO0",
+            "net": "IR_RX_DEMOD",
+            "direction": "i",
+            "controller": "RMT_RX0",
+            "peers": [
+              "ir_demod_series.END_2",
+              "ir_demod_host_pullup.END_1"
+            ],
+            "sharing_proof": "dedicated active-low demodulated-envelope input remains idle-high behind an Ioff buffer when the receive rail is off"
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO1",
+            "net": "IR_RX_CARRIER",
+            "direction": "i",
+            "controller": "RMT_RX1",
+            "peers": [
+              "ir_carrier_series.END_2",
+              "ir_carrier_host_pullup.END_1"
+            ],
+            "sharing_proof": "dedicated active-low carrier-cycle input remains idle-high behind a separate Ioff-buffer channel when the receive rail is off"
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO4",
+            "net": "IR_FRONTEND_PWR_EN",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "ir_power_switch.ON",
+              "ir_power_on_pulldown.END_1"
+            ],
+            "reset_proof": "external 10-kOhm pull-down and TPS22919 QOD keep both receive paths discharged until explicit admission"
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO6",
+            "net": "IR_TX_CARRIER",
+            "direction": "o",
+            "controller": "RMT_TX0",
+            "peers": [
+              "ir_safe_gate.A"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO7",
+            "net": "S3_C5_SDIO_D1_IRQ",
+            "direction": "io",
+            "controller": "SDIO_SLAVE",
+            "peers": [
+              "s3.GPIO13"
+            ],
+            "strap_proof": "external pull-up and documented SDIO edge profile are verified before runtime ownership"
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO8",
+            "net": "S3_C5_SDIO_D0",
+            "direction": "io",
+            "controller": "SDIO_SLAVE",
+            "peers": [
+              "s3.GPIO12"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO9",
+            "net": "S3_C5_SDIO_CLK",
+            "direction": "i",
+            "controller": "SDIO_SLAVE",
+            "peers": [
+              "s3.GPIO10"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO10",
+            "net": "S3_C5_SDIO_CMD",
+            "direction": "io",
+            "controller": "SDIO_SLAVE",
+            "peers": [
+              "s3.GPIO11"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO11",
+            "net": "C5_UART_SERVICE_TX",
+            "direction": "o",
+            "controller": "UART0",
+            "peers": [
+              "c5_dbg0_series.END_2"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO12",
+            "net": "C5_UART_SERVICE_RX",
+            "direction": "i",
+            "controller": "UART0",
+            "peers": [
+              "c5_dbg1_series.END_2"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO13",
+            "net": "C5_USB_DM",
+            "direction": "io",
+            "controller": "USB_SERIAL_JTAG",
+            "peers": [
+              "c5_service_usb_dm_series.END_2"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO14",
+            "net": "C5_USB_DP",
+            "direction": "io",
+            "controller": "USB_SERIAL_JTAG",
+            "peers": [
+              "c5_service_usb_dp_series.END_2"
+            ]
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO23",
+            "net": "C5_RF_TX_EVIDENCE_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "evidence_main_isolator.1Y",
+              "c5_evidence_main_pullup.END_2"
+            ],
+            "sharing_proof": "AON-powered open-drain isolator preserves active-low evidence while the separate 3V3_MAIN pull-up prevents positive injection when C5 is unpowered"
+          },
+          {
+            "instance": "c5",
+            "contact": "GPIO24",
+            "net": "IR_TX_EVIDENCE_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "evidence_main_isolator.2Y",
+              "ir_evidence_main_pullup.END_2"
+            ],
+            "sharing_proof": "AON-powered open-drain isolator preserves active-low evidence while the separate 3V3_MAIN pull-up prevents positive injection when C5 is unpowered"
+          }
+        ]
+      },
+      {
+        "domain": "RP",
+        "instance": "rp",
+        "mpn": "SC1512-A4",
+        "allocated_contact_count": 48,
+        "pins": [
+          {
+            "instance": "rp",
+            "contact": "GPIO0",
+            "net": "NRF0_CSN_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "nrf0_host_buffer.2A",
+              "nrf0_host_csn_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO1",
+            "net": "NRF0_CE_REQ",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safe_gate_a.1A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO2",
+            "net": "NRF0_IRQ_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "nrf0_irq_series.END_2",
+              "nrf0_host_irq_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO3",
+            "net": "NRF1_CSN_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "nrf1_host_buffer.2A",
+              "nrf1_host_csn_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO4",
+            "net": "NRF1_CE_REQ",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safe_gate_a.2A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO5",
+            "net": "NRF1_IRQ_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "nrf1_irq_series.END_2",
+              "nrf1_host_irq_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO6",
+            "net": "NRF2_CSN_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "nrf2_host_buffer.2A",
+              "nrf2_host_csn_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO7",
+            "net": "NRF2_CE_REQ",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safe_gate_a.3A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO8",
+            "net": "NRF2_IRQ_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "nrf2_irq_series.END_2",
+              "nrf2_host_irq_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO9",
+            "net": "CC_CSN_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "cc_host_buffer.3A",
+              "cc_host_csn_pullup.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO10",
+            "net": "CC_GDO0",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "cc_gdo0_series.END_2",
+              "cc_host_gdo0_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO11",
+            "net": "CC_GDO2",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "cc_gdo2_series.END_2",
+              "cc_host_gdo2_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO12",
+            "net": "U214_HOST_BUSY",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "u214_series_busy.END_2"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO13",
+            "net": "U214_HOST_IRQ",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "u214_series_irq.END_2"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO14",
+            "net": "U214_HOST_RST_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "u214_host_buffer_a.1A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO15",
+            "net": "NRF_GROUP_PWR_EN",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safe_gate_a.4A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO16",
+            "net": "VOICE_UART_TX",
+            "direction": "o",
+            "controller": "UART0",
+            "peers": [
+              "voice_uart_tx_iso.A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO17",
+            "net": "VOICE_UART_RX",
+            "direction": "i",
+            "controller": "UART0",
+            "peers": [
+              "voice.UART_TX"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO18",
+            "net": "VOICE_PTT_REQ_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safe_ptt_or.1A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO19",
+            "net": "RP_ALERT_N",
+            "direction": "od",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "s3.GPIO3"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO20",
+            "net": "VOICE_AUDIO_ON_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "voice.AUDIO_ON",
+              "voice_audio_on_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO21",
+            "net": "PTT_BUTTON_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "ptt_series.END_2"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO22",
+            "net": "RP_ANY_TX_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "evidence_main_isolator.3Y",
+              "rp_any_tx_main_pullup.END_2"
+            ],
+            "sharing_proof": "the diode aggregate and physical LED stay AON-side; an open-drain isolator and main-domain pull-up prevent AON back-power into RP"
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO23",
+            "net": "CC_PWR_EN",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safe_gate_b.1A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO24",
+            "net": "S3_RP_IPC_MOSI",
+            "direction": "i",
+            "controller": "SPI1_IPC",
+            "peers": [
+              "s3.GPIO21"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO25",
+            "net": "S3_RP_IPC_CS_N",
+            "direction": "i",
+            "controller": "SPI1_IPC",
+            "peers": [
+              "s3.GPIO9"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO26",
+            "net": "S3_RP_IPC_SCK",
+            "direction": "i",
+            "controller": "SPI1_IPC",
+            "peers": [
+              "s3.GPIO48"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO27",
+            "net": "S3_RP_IPC_MISO",
+            "direction": "o",
+            "controller": "SPI1_IPC",
+            "peers": [
+              "s3.GPIO14"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO28",
+            "net": "U214_I2C_SDA_IN",
+            "direction": "io",
+            "controller": "I2C0_EXT",
+            "peers": [
+              "u214_i2c_iso.SDAIN"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO29",
+            "net": "U214_I2C_SCL_IN",
+            "direction": "o",
+            "controller": "I2C0_EXT",
+            "peers": [
+              "u214_i2c_iso.SCLIN"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO30",
+            "net": "NRF0_MISO",
+            "direction": "i",
+            "controller": "PIO0_SM0_RF_SPI",
+            "peers": [
+              "nrf0_miso_series.END_2",
+              "nrf0_host_miso_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO31",
+            "net": "NRF0_SCK",
+            "direction": "o",
+            "controller": "PIO0_SM0_RF_SPI",
+            "peers": [
+              "nrf0_host_buffer.3A",
+              "nrf0_host_sck_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO32",
+            "net": "NRF0_MOSI",
+            "direction": "o",
+            "controller": "PIO0_SM0_RF_SPI",
+            "peers": [
+              "nrf0_host_buffer.4A",
+              "nrf0_host_mosi_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO33",
+            "net": "NRF1_MISO",
+            "direction": "i",
+            "controller": "PIO0_SM1_RF_SPI",
+            "peers": [
+              "nrf1_miso_series.END_2",
+              "nrf1_host_miso_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO34",
+            "net": "NRF1_SCK",
+            "direction": "o",
+            "controller": "PIO0_SM1_RF_SPI",
+            "peers": [
+              "nrf1_host_buffer.3A",
+              "nrf1_host_sck_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO35",
+            "net": "NRF1_MOSI",
+            "direction": "o",
+            "controller": "PIO0_SM1_RF_SPI",
+            "peers": [
+              "nrf1_host_buffer.4A",
+              "nrf1_host_mosi_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO36",
+            "net": "NRF2_MISO",
+            "direction": "i",
+            "controller": "PIO0_SM2_RF_SPI",
+            "peers": [
+              "nrf2_miso_series.END_2",
+              "nrf2_host_miso_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO37",
+            "net": "NRF2_SCK",
+            "direction": "o",
+            "controller": "PIO0_SM2_RF_SPI",
+            "peers": [
+              "nrf2_host_buffer.3A",
+              "nrf2_host_sck_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO38",
+            "net": "NRF2_MOSI",
+            "direction": "o",
+            "controller": "PIO0_SM2_RF_SPI",
+            "peers": [
+              "nrf2_host_buffer.4A",
+              "nrf2_host_mosi_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO39",
+            "net": "CC_MISO",
+            "direction": "i",
+            "controller": "PIO0_SM3_RF_SPI",
+            "peers": [
+              "cc_so_series.END_2",
+              "cc_host_so_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO40",
+            "net": "U214_HOST_GPS_TX",
+            "direction": "o",
+            "controller": "UART1",
+            "peers": [
+              "u214_host_buffer_a.2A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO41",
+            "net": "U214_HOST_GPS_RX",
+            "direction": "i",
+            "controller": "UART1",
+            "peers": [
+              "u214_series_gps_tx.END_2"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO42",
+            "net": "CC_SCK",
+            "direction": "o",
+            "controller": "PIO0_SM3_RF_SPI",
+            "peers": [
+              "cc_host_buffer.1A",
+              "cc_host_sclk_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO43",
+            "net": "CC_MOSI",
+            "direction": "o",
+            "controller": "PIO0_SM3_RF_SPI",
+            "peers": [
+              "cc_host_buffer.2A",
+              "cc_host_si_pulldown.END_1"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO44",
+            "net": "U214_HOST_MISO",
+            "direction": "i",
+            "controller": "PIO1_SM0_EXT_SPI",
+            "peers": [
+              "u214_series_miso.END_2"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO45",
+            "net": "U214_HOST_SCK",
+            "direction": "o",
+            "controller": "PIO1_SM0_EXT_SPI",
+            "peers": [
+              "u214_host_buffer_a.3A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO46",
+            "net": "U214_HOST_MOSI",
+            "direction": "o",
+            "controller": "PIO1_SM0_EXT_SPI",
+            "peers": [
+              "u214_host_buffer_a.4A"
+            ]
+          },
+          {
+            "instance": "rp",
+            "contact": "GPIO47",
+            "net": "U214_HOST_NSS_N",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "u214_host_buffer_b.1A"
+            ]
+          }
+        ]
+      },
+      {
+        "domain": "PACK",
+        "instance": "pack_admission",
+        "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+        "allocated_contact_count": 13,
+        "pins": [
+          {
+            "instance": "pack_admission",
+            "contact": "PA0",
+            "net": "SYS_I2C_SDA",
+            "direction": "io",
+            "controller": "I2C_TARGET",
+            "peers": [
+              "s3.GPIO1"
+            ]
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA2",
+            "net": "PACK_GAUGE_I2C_SCL",
+            "direction": "io",
+            "controller": "BITBANG_I2C",
+            "peers": [
+              "pack_gauge.SCL_OD",
+              "pack_gauge_scl_pullup.END_2"
+            ]
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA4",
+            "net": "PACK_GAUGE_I2C_SDA",
+            "direction": "io",
+            "controller": "BITBANG_I2C",
+            "peers": [
+              "pack_gauge.SDA_DQ",
+              "pack_gauge_sda_pullup.END_2"
+            ]
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA6",
+            "net": "PACK_FET_HOLD_RELEASE",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "pack_hold.G2",
+              "pack_hold_release_pulldown.END_1"
+            ],
+            "reset_proof": "2N7002DW-7-F Q1 asserts ALRT low independently of MCU reset; exact 10-kOhm PA6/Q2-gate pull-down prevents release until complete admission"
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA11",
+            "net": "SYS_I2C_SCL",
+            "direction": "i",
+            "controller": "I2C_TARGET",
+            "peers": [
+              "s3.GPIO2"
+            ]
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA16",
+            "net": "PACK_PFAIL_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "pack_status_buffer.D1",
+              "pack_pfail_pullup.END_2"
+            ],
+            "reset_proof": "exact 2N7002DW Q1 converts REG3-referenced push-pull PFAIL into an admission-VDD-referenced active-low input without overdriving the standard GPIO"
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA17",
+            "net": "PACK_SERVICE_UART_TX",
+            "direction": "o",
+            "controller": "UART1",
+            "peers": [
+              "abstract:pack service fixture"
+            ]
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA18",
+            "net": "PACK_SERVICE_UART_RX",
+            "direction": "i",
+            "controller": "UART1",
+            "peers": [
+              "abstract:pack service fixture"
+            ]
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA22",
+            "net": "PACK_DIAG_TRIGGER",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "pack_diag_timer.CH1_T",
+              "pack_diag_trigger_pulldown.END_1"
+            ],
+            "reset_proof": "external pull-down prevents a reset or fixture transition from triggering the non-retriggerable hardware one-shot"
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA23",
+            "net": "PACK_SYS_INT_REQ",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "pack_status_buffer.G2",
+              "pack_irq_gate_pulldown.END_1"
+            ],
+            "reset_proof": "exact 10-kOhm gate pull-down keeps 2N7002DW Q2 off through reset; firmware drives PA23 high only to assert the passive-drain shared interrupt"
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA24",
+            "net": "POWER_COMMAND_OFF_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "power_command_pullup.END_2",
+              "power_command_filter.END_1",
+              "power_command_switch.THROW_B"
+            ],
+            "reset_proof": "exact 47-kOhm admission-VDD pull-up means ON/open; OFF grounds the filtered low-current command through the maintained switch; no cell, SYS, charge or load current crosses the switch"
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA25",
+            "net": "PACK_CELL0_ADC",
+            "direction": "i",
+            "controller": "ADC",
+            "peers": [
+              "pack_mid_adc_top1.END_2",
+              "pack_mid_adc_bottom.END_1",
+              "pack_mid_adc_filter.END_1"
+            ],
+            "reset_proof": "read-only divided midpoint evidence remains below the internal 1.4-V reference at the defined 4.3-V screen corner"
+          },
+          {
+            "instance": "pack_admission",
+            "contact": "PA26",
+            "net": "PACK_STACK_ADC",
+            "direction": "i",
+            "controller": "ADC",
+            "peers": [
+              "pack_stack_adc_top4.END_2",
+              "pack_stack_adc_bottom.END_1",
+              "pack_stack_adc_filter.END_1"
+            ],
+            "reset_proof": "read-only divided stack evidence remains below the internal 1.4-V reference at the defined 8.6-V screen corner; upper-cell evidence is stack minus midpoint"
+          }
+        ]
+      },
+      {
+        "domain": "SAFETY",
+        "instance": "safety_controller",
+        "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+        "allocated_contact_count": 15,
+        "pins": [
+          {
+            "instance": "safety_controller",
+            "contact": "PA0",
+            "net": "SYS_I2C_SDA",
+            "direction": "io",
+            "controller": "I2C_TARGET",
+            "peers": [
+              "s3.GPIO1"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA2",
+            "net": "SAFETY_EVIDENCE_I2C_SCL",
+            "direction": "io",
+            "controller": "BITBANG_I2C",
+            "peers": [
+              "evidence_mask.SCL",
+              "evidence_mask_scl_pullup.END_2"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA4",
+            "net": "SAFETY_EVIDENCE_I2C_SDA",
+            "direction": "io",
+            "controller": "BITBANG_I2C",
+            "peers": [
+              "evidence_mask.SDA",
+              "evidence_mask_sda_pullup.END_2"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA6",
+            "net": "SAFETY_WATCHDOG_WDI",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safety_watchdog.WDI",
+              "safety_watchdog_wdi_pulldown.END_1"
+            ],
+            "reset_proof": "exact external pull-down prevents a floating or resetting safety controller from accidentally servicing the independent timeout watchdog"
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA11",
+            "net": "SYS_I2C_SCL",
+            "direction": "i",
+            "controller": "I2C_TARGET",
+            "peers": [
+              "s3.GPIO2"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA30",
+            "net": "POWER_FAULT_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "abstract:power-current-thermal-fault"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA17",
+            "net": "SAFETY_SERVICE_UART_TX",
+            "direction": "o",
+            "controller": "UART1",
+            "peers": [
+              "abstract:safety service fixture"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA18",
+            "net": "SAFETY_SERVICE_UART_RX",
+            "direction": "i",
+            "controller": "UART1",
+            "peers": [
+              "abstract:safety service fixture"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA22",
+            "net": "ANY_TX_AON_N",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "any_tx_aon_pullup.END_2",
+              "evidence_or_4.A_COMMON"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA23",
+            "net": "S3_FAULT_RESET_REQUEST",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safety_s3_reset_iso.A"
+            ],
+            "reset_proof": "default-low GPIO plus open-drain isolation asserts S3 reset while the safety controller is starting or failed"
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA24",
+            "net": "RUN_EDGE",
+            "direction": "i",
+            "controller": "GPIO_IRQ",
+            "peers": [
+              "safe_conditioner.1Y",
+              "safe_latch.CLK"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA25",
+            "net": "SAFETY_FAULT_REQUEST",
+            "direction": "o",
+            "controller": "GPIO",
+            "peers": [
+              "safety_fault_request_iso.A",
+              "safety_fault_request_pulldown.END_1"
+            ],
+            "reset_proof": "external pull-down makes controller reset or absence request FAULT_KILL; healthy firmware must drive high continuously"
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA26",
+            "net": "POWER_ZONE_TEMP_ADC",
+            "direction": "i",
+            "controller": "ADC",
+            "peers": [
+              "power_zone_ntc.END_1",
+              "power_zone_temp_pullup.END_2",
+              "power_zone_temp_filter.END_1"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA27",
+            "net": "RF_ZONE_TEMP_ADC",
+            "direction": "i",
+            "controller": "ADC",
+            "peers": [
+              "rf_zone_ntc.END_1",
+              "rf_zone_temp_pullup.END_2",
+              "rf_zone_temp_filter.END_1"
+            ]
+          },
+          {
+            "instance": "safety_controller",
+            "contact": "PA16",
+            "net": "UI_ZONE_TEMP_ADC",
+            "direction": "i",
+            "controller": "ADC",
+            "peers": [
+              "ui_zone_ntc.END_1",
+              "ui_zone_temp_pullup.END_2",
+              "ui_zone_temp_filter.END_1"
+            ]
+          }
+        ]
+      }
+    ],
+    "total_allocated_contacts": 123
+  },
+  "schematic_projects": {
+    "LESHY2-UI": [
+      "UI_00_ROOT",
+      "UI_10_S3_CORE_MEMORY_BOOT",
+      "UI_11_DISPLAY_TOUCH_STORAGE",
+      "UI_12_CONTROLS_INDICATORS",
+      "UI_13_AUDIO_CODEC_HEADSET",
+      "UI_20_C5_RADIO_IR_SERVICE",
+      "UI_21_FM_AM_RECEIVER",
+      "UI_40_INTERBOARD_M1",
+      "UI_50_TX_SAFETY_EVIDENCE",
+      "UI_60_TESTPOINTS_MANUFACTURING"
+    ],
+    "LESHY2-RF": [
+      "RF_00_ROOT",
+      "RF_01_USB_PD_CHARGE",
+      "RF_02_PACK_SAFETY_AON",
+      "RF_03_MAIN_RAILS_DOMAIN_GATES",
+      "RF_30_RP2354_CORE_SERVICE",
+      "RF_31_NRF24_X3",
+      "RF_32_SUBGHZ_VOICE",
+      "RF_34_U214_M5_EXT",
+      "RF_35_REAR_CONTROLS",
+      "RF_36_AUDIO_IO_AMP",
+      "RF_40_INTERBOARD_M1",
+      "RF_50_TX_SAFETY_EVIDENCE",
+      "RF_60_TESTPOINTS_MANUFACTURING"
+    ],
+    "L2-DISP-ADP-001-A": [
+      "ADP_00_DISPLAY_ADAPTER"
+    ],
+    "LESHY2-LORA-CAP-01": [
+      "CAP_00_ROOT",
+      "CAP_10_RADIO_CONTROL",
+      "CAP_20_POWER_BUS",
+      "CAP_30_TX_EVIDENCE"
+    ]
+  },
+  "drift_policy": {
+    "firmware_canonical_copy": "config/hardware_bsp_contract.json",
+    "firmware_integration_view": "config/hardware_integration_contract.json",
+    "comparison": "byte-stable canonical JSON after generation",
+    "failure": "block firmware F2 and hardware H2.7 until regenerated in both repositories"
+  }
+}

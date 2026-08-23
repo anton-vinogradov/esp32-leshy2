@@ -223,6 +223,48 @@
         "remaining_to_opposite_pcb_plane_mm": 7.7
       },
       {
+        "instance": "c5_boot_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
+        "instance": "c5_reset_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
+        "instance": "rp_boot_button",
+        "frame": "rf-inner",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
+        "instance": "rp_reset_button",
+        "frame": "rf-inner",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
+        "instance": "s3_boot_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
+        "instance": "s3_reset_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
         "instance": "voice",
         "frame": "rf-inner",
         "mpn": "NiceRF SA518",
@@ -587,48 +629,6 @@
         "remaining_to_opposite_pcb_plane_mm": 9.4
       },
       {
-        "instance": "c5_boot_button",
-        "frame": "ui-inner",
-        "mpn": "Alps Alpine SKQGADE010",
-        "height_mm": 1.5,
-        "remaining_to_opposite_pcb_plane_mm": 9.5
-      },
-      {
-        "instance": "c5_reset_button",
-        "frame": "ui-inner",
-        "mpn": "Alps Alpine SKQGADE010",
-        "height_mm": 1.5,
-        "remaining_to_opposite_pcb_plane_mm": 9.5
-      },
-      {
-        "instance": "rp_boot_button",
-        "frame": "rf-inner",
-        "mpn": "Alps Alpine SKQGADE010",
-        "height_mm": 1.5,
-        "remaining_to_opposite_pcb_plane_mm": 9.5
-      },
-      {
-        "instance": "rp_reset_button",
-        "frame": "rf-inner",
-        "mpn": "Alps Alpine SKQGADE010",
-        "height_mm": 1.5,
-        "remaining_to_opposite_pcb_plane_mm": 9.5
-      },
-      {
-        "instance": "s3_boot_button",
-        "frame": "ui-inner",
-        "mpn": "Alps Alpine SKQGADE010",
-        "height_mm": 1.5,
-        "remaining_to_opposite_pcb_plane_mm": 9.5
-      },
-      {
-        "instance": "s3_reset_button",
-        "frame": "ui-inner",
-        "mpn": "Alps Alpine SKQGADE010",
-        "height_mm": 1.5,
-        "remaining_to_opposite_pcb_plane_mm": 9.5
-      },
-      {
         "instance": "safe_supervisor",
         "frame": "rf-inner",
         "mpn": "TPS3808G33DBVR",
@@ -805,7 +805,7 @@
       },
       {
         "instance": "safe_reset_sink_a",
-        "frame": "rf-inner",
+        "frame": "ui-inner",
         "mpn": "Diodes Incorporated 2N7002DW-7-F",
         "height_mm": 1.1,
         "remaining_to_opposite_pcb_plane_mm": 9.9
@@ -1049,7 +1049,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.4
       }
     ],
-    "opposing_non_mating_pair_count": 36,
+    "opposing_non_mating_pair_count": 35,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1071,25 +1071,18 @@
         "remaining_z_clearance_mm": 3.31
       },
       {
-        "ui_instance": "s3_boot_button",
-        "rf_instance": "rp_dbg_header",
-        "ui_height_mm": 1.5,
-        "rf_height_mm": 5.56,
-        "remaining_z_clearance_mm": 3.94
-      },
-      {
-        "ui_instance": "s3_dbg_header",
-        "rf_instance": "rp_boot_button",
-        "ui_height_mm": 5.56,
-        "rf_height_mm": 1.5,
-        "remaining_z_clearance_mm": 3.94
-      },
-      {
         "ui_instance": "c5_service_usb_connector",
         "rf_instance": "rp_service_usb_connector",
         "ui_height_mm": 3.31,
         "rf_height_mm": 3.31,
         "remaining_z_clearance_mm": 4.38
+      },
+      {
+        "ui_instance": "c5_reset_button",
+        "rf_instance": "rp_boot_button",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 3.3,
+        "remaining_z_clearance_mm": 4.4
       },
       {
         "ui_instance": "headphone_jack",
@@ -1281,13 +1274,6 @@
         "remaining_z_clearance_mm": 7.57
       },
       {
-        "ui_instance": "s3_reset_button",
-        "rf_instance": "rp_reset_button",
-        "ui_height_mm": 1.5,
-        "rf_height_mm": 1.5,
-        "remaining_z_clearance_mm": 8.0
-      },
-      {
         "ui_instance": "sd",
         "rf_instance": "pd_controller",
         "ui_height_mm": 1.68,
@@ -1300,6 +1286,13 @@
         "ui_height_mm": 1.68,
         "rf_height_mm": 0.8,
         "remaining_z_clearance_mm": 8.52
+      },
+      {
+        "ui_instance": "safe_reset_sink_a",
+        "rf_instance": "safe_reset_sink_b",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.8
       },
       {
         "ui_instance": "headset_control_io",
@@ -1972,19 +1965,19 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          66.0,
-          72.4
+          71.6,
+          75.0
         ],
         "y": [
-          104.0,
-          109.2
+          122.0,
+          126.5
         ],
         "z": [
           4.8,
-          6.3
+          8.1
         ]
       },
-      "direction": "normal to the UI-inner face; enclosure-open service only"
+      "direction": "front right enclosure exit"
     },
     {
       "instance": "c5_dbg_header",
@@ -2010,19 +2003,19 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          58.0,
-          64.4
+          71.6,
+          75.0
         ],
         "y": [
-          104.0,
-          109.2
+          115.0,
+          119.5
         ],
         "z": [
           4.8,
-          6.3
+          8.1
         ]
       },
-      "direction": "normal to the UI-inner face; enclosure-open service only"
+      "direction": "front right enclosure exit"
     },
     {
       "instance": "c5_rf_board_connector",
@@ -3663,19 +3656,19 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          9.1,
-          15.5
+          71.6,
+          75.0
         ],
         "y": [
-          104.0,
-          109.2
+          113.0,
+          117.5
         ],
         "z": [
-          14.3,
+          12.5,
           15.8
         ]
       },
-      "direction": "normal to the RF-inner face; enclosure-open service only"
+      "direction": "rear left enclosure exit"
     },
     {
       "instance": "rp_dbg_header",
@@ -3701,19 +3694,19 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          17.6,
-          24.0
+          71.6,
+          75.0
         ],
         "y": [
-          104.0,
-          109.2
+          106.0,
+          110.5
         ],
         "z": [
-          14.3,
+          12.5,
           15.8
         ]
       },
-      "direction": "normal to the RF-inner face; enclosure-open service only"
+      "direction": "rear left enclosure exit"
     },
     {
       "instance": "rp_service_usb_connector",
@@ -3758,19 +3751,19 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          24.0,
-          30.4
+          0.0,
+          3.4
         ],
         "y": [
-          104.0,
-          109.2
+          122.0,
+          126.5
         ],
         "z": [
           4.8,
-          6.3
+          8.1
         ]
       },
-      "direction": "normal to the UI-inner face; enclosure-open service only"
+      "direction": "front left enclosure exit"
     },
     {
       "instance": "s3_dbg_header",
@@ -3796,19 +3789,19 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          16.0,
-          22.4
+          0.0,
+          3.4
         ],
         "y": [
-          104.0,
-          109.2
+          115.0,
+          119.5
         ],
         "z": [
           4.8,
-          6.3
+          8.1
         ]
       },
-      "direction": "normal to the UI-inner face; enclosure-open service only"
+      "direction": "front left enclosure exit"
     },
     {
       "instance": "s3_rf_board_connector",
@@ -3964,19 +3957,19 @@
     },
     {
       "instance": "safe_reset_sink_a",
-      "source_frame": "rf-inner",
+      "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          29.0,
-          31.0
+          18.0,
+          20.0
         ],
         "y": [
           82.0,
           83.25
         ],
         "z": [
-          14.7,
-          15.8
+          4.8,
+          5.9
         ]
       },
       "direction": "not applicable"

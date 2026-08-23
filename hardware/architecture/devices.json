@@ -8325,6 +8325,57 @@
         "B1": {"physical": "3", "role": "power"}, "B2": {"physical": "4", "role": "power"}
       }
     },
+    "alps_skrtlae010": {
+      "mpn": "Alps Alpine SKRTLAE010",
+      "kind": "spst_no_side_actuated_smt_tact_switch",
+      "qualification": "verified_exact_external_service_boot_reset_switch",
+      "lifecycle": "standard_active_orderable",
+      "dimensions_mm": [4.5, 3.4, 3.3],
+      "source": {
+        "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
+        "version": "live manufacturer product record",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "SKRTLAE010 authorized-distributor listing; 2,949 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/alps-alpine/SKRTLAE010/19529044",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.2433,
+        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "source": {
+          "document": "DigiKey exact-MPN published price table",
+          "url": "https://www.digikey.com/en/products/detail/alps-alpine/SKRTLAE010/19529044",
+          "checked": "2026-08-23"
+        }
+      },
+      "electrical_contract": {
+        "function": "normally-open manual momentary contact; physical terminals 1 and 3 are internally common",
+        "actuation": "side-actuated; actuator length from body 2.05 mm",
+        "operating_force_n": 1.6,
+        "travel_mm": 0.2,
+        "minimum_dry_rating": "1 V DC, 10 uA",
+        "maximum_bounce_ms": 10,
+        "operating_life_cycles": 100000,
+        "environment": "-40 to +90 C; exposed only through a bounded side service opening"
+      },
+      "mechanical_contract": {
+        "body_envelope_mm": [4.5, 3.4, 3.3],
+        "mounting": "right-angle SMT with two 0.9-mm guide-boss holes",
+        "actuator_orientation": "parallel to the PCB plane toward the selected enclosure side",
+        "forbidden_copper_region": "retain the official SKRTLAE010 land-pattern forbidden area"
+      },
+      "programmable": false,
+      "contacts": {
+        "C1": {"physical": "1", "role": "signal"},
+        "NO": {"physical": "2", "role": "power"},
+        "C2": {"physical": "3", "role": "signal"}
+      }
+    },
     "ti_tpd2eusb30a_drtr": {
       "mpn": "Texas Instruments TPD2EUSB30ADRTR",
       "kind": "two_channel_low_capacitance_usb_esd_array",

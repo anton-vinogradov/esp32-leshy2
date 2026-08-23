@@ -1,6 +1,6 @@
 # G2F — generated exact-device pin ledger
 
-- Статус: **G2F-3I — проведено сводное предсхемное ревью; остальные варианты являются сравнительными; это не разрешение начинать KiCad**
+- Статус: **G2F-3I — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, а PCB placement/routing остаётся отдельным gate**
 - Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/*.json`
 - Regenerate: `python3 hardware/architecture/generate.py --write`
 - Verify: `python3 hardware/architecture/generate.py --check`
@@ -13,7 +13,7 @@
 |---|---:|---|---|
 | `G2F-2R` | 2 | `s3 32U/4R/0F`, `c5 17U/4R/0F` | zero free safe GPIO on both domains; C5 worst-case native-radio/IR/3x-nRF/CC latency needs HIL |
 | `G2F-3D` | 3 | `s3 33U/3R/0F`, `c5 11U/5R/5F`, `rp 30U/0R/0F` | third image/power/clock/service burden; S3 and RP have zero free GPIO |
-| `G2F-3I` | 6 | `s3 33U/0R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 13U/3R/2F`, `safety_controller 15U/3R/0F` | The complete target architecture, pin budget, resource ownership, power and safety paths, dimensioned product geometry and HW/FW boundary have passed joint pre-schematic review. KiCad authorization remains separate; exact supplier drawings, received-part fit and the named prototype/HIL gates must close at their owning implementation stages. |
+| `G2F-3I` | 6 | `s3 33U/0R/0F`, `c5 14U/6R/1F`, `rp 48U/0R/0F`, `pd_controller 5U/5R/0F`, `pack_admission 13U/3R/2F`, `safety_controller 15U/3R/0F` | The complete target architecture, pin budget, resource ownership, power and safety paths, dimensioned product geometry and HW/FW boundary have passed joint pre-schematic review. H1 final acceptance authorizes H2 production-schematic work only; KiCad PCB placement/routing remains a later gate, and exact supplier drawings, received-part fit and prototype/HIL evidence close at their owning stages. |
 
 ## Exact-device provenance used by these drafts
 
@@ -24,7 +24,7 @@
 | `adi_ltc5532_es6_trmpbf` | `LTC5532ES6#TRMPBF` | `verified_candidate` | `production` | [LTC5532 Precision 300MHz to 7GHz RF Detector datasheet 5532f](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | same primary source |
 | `adi_max17320_g20_t` | `Analog Devices MAX17320G20+T` | `verified_candidate` | `recommended_for_new_designs` | [MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet Rev. 12, July 2025](https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf) | same primary source |
 | `alps_ec11e18244au` | `Alps Alpine EC11E18244AU` | `verified_first_target_mechanical_fit_hil_open` | `active_standard` | [EC11E Series Incremental Encoder catalog and product specification catalog update 2510](https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf) | same primary source |
-| `alps_skqgade010` | `Alps Alpine SKQGADE010` | `verified_exact_service_boot_reset_switch` | `standard_active_orderable` | [SKQGADE010 product page, product specification and official land-pattern images October 2025 product specification](https://tech.alpsalpine.com/e/products/detail/SKQGADE010/) | same primary source |
+| `alps_skrtlae010` | `Alps Alpine SKRTLAE010` | `verified_exact_external_service_boot_reset_switch` | `standard_active_orderable` | [SKRTLAE010 official product page, dimensions, land pattern and circuit diagram live manufacturer product record](https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/) | same primary source |
 | `bourns_crm2512_fx_20r0elf` | `Bourns CRM2512-FX-20R0ELF` | `verified_candidate` | `active` | [Bourns CRM2512 high-power resistor datasheet with pulse-load curve Rev. 08/21; current product data checked 2026-08-18](https://www.bourns.com/docs/product-datasheets/CRM.pdf) | same primary source |
 | `cc1101rgpr` | `CC1101RGPR` | `verified_candidate` | `active` | [CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet SWRS061I](https://www.ti.com/lit/ds/symlink/cc1101.pdf) | [TI CC1101RGPR order page](https://www.ti.com/product/CC1101/part-details/CC1101RGPR) |
 | `ck_js102011scqn` | `C&K JS102011SCQN` | `verified_exact_low_current_power_command_switch_mechanical_hil_open` | `active_orderable` | [Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet VL 01/14/26](https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14) | same primary source |
@@ -829,17 +829,15 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `POWER_GROUND` | `s3_dbg_header.P9` | `abstract:power-ground` | identity guard return |
 | `S3_DBG_RESET_CONNECTOR_N` | `s3_dbg_header.P3` | `s3_dbg_esd.D1_PLUS` | header-side active-low reset has connector ESD protection |
 | `S3_DBG_RESET_CONNECTOR_N` | `s3_dbg_header.P3` | `s3_dbg_reset_series.END_1` | exact 1-kOhm fixture current limit |
-| `S3_DBG_RESET_CONNECTOR_N` | `s3_reset_button.A1` | `s3_dbg_reset_series.END_1` | physical button joins the protected header side |
-| `S3_DBG_RESET_CONNECTOR_N` | `s3_reset_button.A1` | `s3_reset_button.A2` | both same-side switch terminals are represented |
-| `POWER_GROUND` | `s3_reset_button.B1` | `s3_reset_button.B2` | both ground-side switch terminals are represented |
-| `POWER_GROUND` | `s3_reset_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `S3_DBG_RESET_CONNECTOR_N` | `s3_reset_button.C1` | `s3_dbg_reset_series.END_1` | external side button joins the protected header side |
+| `S3_DBG_RESET_CONNECTOR_N` | `s3_reset_button.C1` | `s3_reset_button.C2` | the exact switch's internally common physical terminals 1 and 3 are represented |
+| `POWER_GROUND` | `s3_reset_button.NO` | `abstract:power-ground` | momentary terminal 2 can only pull low |
 | `S3_RESET_N` | `s3_dbg_reset_series.END_2` | `s3.EN` | manual and fixture reset meet only a passive pull-up and open-drain safety sink |
 | `S3_DBG_BOOT_CONNECTOR_N` | `s3_dbg_header.P4` | `s3_dbg_esd.D1_MINUS` | header-side active-low boot control has connector ESD protection |
 | `S3_DBG_BOOT_CONNECTOR_N` | `s3_dbg_header.P4` | `s3_dbg_boot_series.END_1` | exact 1-kOhm fixture current limit |
-| `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.A1` | `s3_dbg_boot_series.END_1` | physical button joins the protected header side |
-| `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.A1` | `s3_boot_button.A2` | both same-side switch terminals are represented |
-| `POWER_GROUND` | `s3_boot_button.B1` | `s3_boot_button.B2` | both ground-side switch terminals are represented |
-| `POWER_GROUND` | `s3_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.C1` | `s3_dbg_boot_series.END_1` | external side button joins the protected header side |
+| `S3_DBG_BOOT_CONNECTOR_N` | `s3_boot_button.C1` | `s3_boot_button.C2` | the exact switch's internally common physical terminals 1 and 3 are represented |
+| `POWER_GROUND` | `s3_boot_button.NO` | `abstract:power-ground` | momentary terminal 2 can only pull low |
 | `I2S_DIN` | `s3_dbg_boot_series.END_2` | `s3.GPIO0` | the protected 1-kOhm service path retains physical BOOT control on the runtime codec-data input; the separately gated DIN driver is high-Z throughout reset and ROM sampling |
 | `S3_DBG0_CONNECTOR` | `s3_dbg_header.P5` | `s3_dbg_esd.D2_PLUS` | UART TX connector ESD shunt |
 | `S3_DBG0_CONNECTOR` | `s3_dbg_header.P5` | `s3_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
@@ -864,17 +862,15 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `POWER_GROUND` | `c5_dbg_header.P9` | `abstract:power-ground` | identity guard return |
 | `C5_DBG_RESET_CONNECTOR_N` | `c5_dbg_header.P3` | `c5_dbg_esd.D1_PLUS` | header-side active-low reset has connector ESD protection |
 | `C5_DBG_RESET_CONNECTOR_N` | `c5_dbg_header.P3` | `c5_dbg_reset_series.END_1` | exact 1-kOhm fixture current limit |
-| `C5_DBG_RESET_CONNECTOR_N` | `c5_reset_button.A1` | `c5_dbg_reset_series.END_1` | physical button joins the protected header side |
-| `C5_DBG_RESET_CONNECTOR_N` | `c5_reset_button.A1` | `c5_reset_button.A2` | both same-side switch terminals are represented |
-| `POWER_GROUND` | `c5_reset_button.B1` | `c5_reset_button.B2` | both ground-side switch terminals are represented |
-| `POWER_GROUND` | `c5_reset_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `C5_DBG_RESET_CONNECTOR_N` | `c5_reset_button.C1` | `c5_dbg_reset_series.END_1` | external side button joins the protected header side |
+| `C5_DBG_RESET_CONNECTOR_N` | `c5_reset_button.C1` | `c5_reset_button.C2` | the exact switch's internally common physical terminals 1 and 3 are represented |
+| `POWER_GROUND` | `c5_reset_button.NO` | `abstract:power-ground` | momentary terminal 2 can only pull low |
 | `C5_RESET_N` | `c5_dbg_reset_series.END_2` | `c5.EN` | manual and fixture reset meet only a passive pull-up and open-drain safety sink |
 | `C5_DBG_BOOT_CONNECTOR_N` | `c5_dbg_header.P4` | `c5_dbg_esd.D1_MINUS` | header-side active-low boot control has connector ESD protection |
 | `C5_DBG_BOOT_CONNECTOR_N` | `c5_dbg_header.P4` | `c5_dbg_boot_series.END_1` | exact 1-kOhm fixture current limit |
-| `C5_DBG_BOOT_CONNECTOR_N` | `c5_boot_button.A1` | `c5_dbg_boot_series.END_1` | physical button joins the protected header side |
-| `C5_DBG_BOOT_CONNECTOR_N` | `c5_boot_button.A1` | `c5_boot_button.A2` | both same-side switch terminals are represented |
-| `POWER_GROUND` | `c5_boot_button.B1` | `c5_boot_button.B2` | both ground-side switch terminals are represented |
-| `POWER_GROUND` | `c5_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `C5_DBG_BOOT_CONNECTOR_N` | `c5_boot_button.C1` | `c5_dbg_boot_series.END_1` | external side button joins the protected header side |
+| `C5_DBG_BOOT_CONNECTOR_N` | `c5_boot_button.C1` | `c5_boot_button.C2` | the exact switch's internally common physical terminals 1 and 3 are represented |
+| `POWER_GROUND` | `c5_boot_button.NO` | `abstract:power-ground` | momentary terminal 2 can only pull low |
 | `C5_BOOT_N` | `c5_dbg_boot_series.END_2` | `c5.GPIO28` | real exposed GPIO28 selects joint-download boot |
 | `C5_DBG0_CONNECTOR` | `c5_dbg_header.P5` | `c5_dbg_esd.D2_PLUS` | UART TX connector ESD shunt |
 | `C5_DBG0_CONNECTOR` | `c5_dbg_header.P5` | `c5_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
@@ -899,17 +895,15 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `POWER_GROUND` | `rp_dbg_header.P9` | `abstract:power-ground` | identity guard return |
 | `RP_DBG_RESET_CONNECTOR_N` | `rp_dbg_header.P3` | `rp_dbg_esd.D1_PLUS` | header-side active-low reset has connector ESD protection |
 | `RP_DBG_RESET_CONNECTOR_N` | `rp_dbg_header.P3` | `rp_dbg_reset_series.END_1` | exact 1-kOhm fixture current limit |
-| `RP_DBG_RESET_CONNECTOR_N` | `rp_reset_button.A1` | `rp_dbg_reset_series.END_1` | physical button joins the protected header side |
-| `RP_DBG_RESET_CONNECTOR_N` | `rp_reset_button.A1` | `rp_reset_button.A2` | both same-side switch terminals are represented |
-| `POWER_GROUND` | `rp_reset_button.B1` | `rp_reset_button.B2` | both ground-side switch terminals are represented |
-| `POWER_GROUND` | `rp_reset_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `RP_DBG_RESET_CONNECTOR_N` | `rp_reset_button.C1` | `rp_dbg_reset_series.END_1` | external side button joins the protected header side |
+| `RP_DBG_RESET_CONNECTOR_N` | `rp_reset_button.C1` | `rp_reset_button.C2` | the exact switch's internally common physical terminals 1 and 3 are represented |
+| `POWER_GROUND` | `rp_reset_button.NO` | `abstract:power-ground` | momentary terminal 2 can only pull low |
 | `RP_RESET_N` | `rp_dbg_reset_series.END_2` | `rp.RUN` | manual and fixture reset meet only a passive pull-up and open-drain safety sink |
 | `RP_DBG_BOOT_CONNECTOR_N` | `rp_dbg_header.P4` | `rp_dbg_esd.D1_MINUS` | header-side active-low boot control has connector ESD protection |
 | `RP_DBG_BOOT_CONNECTOR_N` | `rp_dbg_header.P4` | `rp_dbg_boot_series.END_1` | exact 1-kOhm path follows the RP2350 USB_BOOT reference |
-| `RP_DBG_BOOT_CONNECTOR_N` | `rp_boot_button.A1` | `rp_dbg_boot_series.END_1` | physical button joins the protected header side |
-| `RP_DBG_BOOT_CONNECTOR_N` | `rp_boot_button.A1` | `rp_boot_button.A2` | both same-side switch terminals are represented |
-| `POWER_GROUND` | `rp_boot_button.B1` | `rp_boot_button.B2` | both ground-side switch terminals are represented |
-| `POWER_GROUND` | `rp_boot_button.B1` | `abstract:power-ground` | momentary button can only pull low |
+| `RP_DBG_BOOT_CONNECTOR_N` | `rp_boot_button.C1` | `rp_dbg_boot_series.END_1` | external side button joins the protected header side |
+| `RP_DBG_BOOT_CONNECTOR_N` | `rp_boot_button.C1` | `rp_boot_button.C2` | the exact switch's internally common physical terminals 1 and 3 are represented |
+| `POWER_GROUND` | `rp_boot_button.NO` | `abstract:power-ground` | momentary terminal 2 can only pull low |
 | `RP_USB_BOOT_N` | `rp_dbg_boot_series.END_2` | `rp.QSPI_SS_USB_BOOT` | real RP2354B package contact reaches BOOTSEL without consuming a GPIO |
 | `RP_DBG0_CONNECTOR` | `rp_dbg_header.P5` | `rp_dbg_esd.D2_PLUS` | SWDIO connector ESD shunt |
 | `RP_DBG0_CONNECTOR` | `rp_dbg_header.P5` | `rp_dbg0_series.END_1` | exact 470-Ohm fixture-current and edge limit |
@@ -2521,7 +2515,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `AUDIO_GROUND` | `headset_mic_selector.GND` | `abstract:audio-ground` | headset selector quiet return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector_bypass.END_1` | exact 100-nF headset-selector bypass |
 | `AUDIO_GROUND` | `headset_mic_selector_bypass.END_2` | `abstract:audio-ground` | headset-selector bypass return |
-| `MIC_INTERNAL_RAW` | `microphone.OUT_PLUS` | `headset_mic_selector.NO` | logic-high/no-plug selection preserves the internal electret |
+| `MIC_RAW` | `microphone.OUT_PLUS` | `headset_mic_selector.NO` | the single biased internal-microphone conductor crosses M1 contact 48 and reaches the UI-local selector without a hidden alias |
 | `HEADSET_MIC_RAW` | `headphone_jack.SLEEVE` | `headset_mic_selector.NC` | logic-low/plugged selection admits only the protected CTIA sleeve microphone |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_control_io.VCC` | dedicated headset control remains in the same protected host domain as SYS_I2C |
 | `AUDIO_GROUND` | `headset_control_io.GND` | `abstract:audio-ground` | headset control return joins the quiet audio-entry region |
@@ -3095,7 +3089,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `EXT_PG_QUAL_BASE` | `ext_pg_base_res.END_2` | `ext_pg_qualifier.B` | exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin |
 | `U214_5V_EN_SAFE` | `ext_branch_gate.1Y` | `ext_efuse.EN_UVLO` | U214 eFuse is independent of the native Unit branch and remains KILL/FAULT_KILL-dominant |
 | `FAULT_KILL` | `safe_latch.Q` | `safe_ptt_or.1B` | active-high kill forces active-low PTT high/RX |
-| `FAULT_LED_DRIVE` | `safe_latch.Q` | `fault_led_series.END_1` | non-programmable visible latched-fault state |
+| `FAULT_LATCH_SENSE_AON` | `safe_latch.Q` | `fault_led_series.END_1` | the same raw AON latch output crosses M1 once for the non-programmable front indicator and the isolated read-only diagnostic tap |
 | `FAULT_LED_A` | `fault_led_series.END_2` | `fault_led.A` | exact 2.2-kOhm current limit |
 | `FAULT_LED_K` | `fault_led.K` | `abstract:safety-ground` | indicator stays outside UI and firmware and remains available when UI thermal protection turns the display off |
 | `S3_MODULE_RF_50R` | `s3.ANT` | `s3_rf_jumper.END_A` | datasheet-dimensioned module receptacle mates the exact 30-mm UMCC Gen1 jumper |
@@ -3379,7 +3373,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `ANY_TX_AON_N` | `evidence_or_4.A_COMMON` | `safety_controller.PA22` | the safety controller samples the physical aggregate directly and compares it with the active group lease |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `any_tx_led_series.END_1` | exact 2.2-kOhm indicator-current source |
 | `ANY_TX_LED_A` | `any_tx_led_series.END_2` | `any_tx_led.A` | red physical indicator current limit |
-| `ANY_TX_AON_N` | `any_tx_led.K` | `evidence_or_4.A_COMMON` | asserted diode aggregate lights without firmware |
+| `UI_ANY_TX_AON_N` | `any_tx_led.K` | `ui_evidence_or_4.A_COMMON` | the front-local passive aggregate lights without firmware and does not consume another M1 contact |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `s3_tx_led_series.END_1` | independent actual-TX indicator remains firmware-independent |
 | `S3_TX_LED_A` | `s3_tx_led_series.END_2` | `s3_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
 | `EV_N0_S3` | `s3_tx_led.K` | `evidence_cmp_a.OUT1` | S3 antenna-local LED follows physical active-low TX evidence |
@@ -3407,6 +3401,22 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ext_tx_led_series.END_1` | external-path actual-TX indicator remains firmware-independent |
 | `EXT_TX_LED_A` | `ext_tx_led_series.END_2` | `ext_tx_led.A` | exact 2.2-kOhm visible-indicator current limit |
 | `EV_N8_LORA_EXT` | `ext_tx_led.K` | `ext_evidence_buffer.Y` | front LORA/EXT LED follows only the isolated physical Cap evidence output |
+| `EV_N0_S3` | `evidence_cmp_a.OUT1` | `ui_evidence_or_0.K1` | UI-local S3 evidence joins the independent front aggregate |
+| `EV_N1_C5` | `evidence_cmp_a.OUT2` | `ui_evidence_or_0.K2` | UI-local C5 evidence joins the independent front aggregate |
+| `EV_N2_NRF0` | `evidence_cmp_b.OUT1` | `ui_evidence_or_1.K1` | M1 contact 29 delivers only the active-low digital nRF0 evidence |
+| `EV_N3_NRF1` | `evidence_cmp_b.OUT2` | `ui_evidence_or_1.K2` | M1 contact 30 delivers only the active-low digital nRF1 evidence |
+| `EV_N4_NRF2` | `evidence_cmp_b.OUT3` | `ui_evidence_or_2.K1` | M1 contact 33 delivers only the active-low digital nRF2 evidence |
+| `EV_N5_CC` | `evidence_cmp_b.OUT4` | `ui_evidence_or_2.K2` | M1 contact 58 delivers only the active-low digital CC evidence |
+| `EV_N6_VOICE` | `evidence_cmp_voice.OUT` | `ui_evidence_or_3.K1` | M1 contact 79 delivers only the active-low digital voice evidence |
+| `EV_N7_IR` | `evidence_cmp_a.OUT3` | `ui_evidence_or_3.K2` | UI-local optical evidence joins the independent front aggregate |
+| `EV_N8_LORA_EXT` | `ext_evidence_buffer.Y` | `ui_evidence_or_4.K1` | M1 contact 80 delivers only the active-low isolated accessory evidence |
+| `UI_EVIDENCE_OR_4_UNUSED_DIODE_NC` | `ui_evidence_or_4.K2` | `abstract:no-connect` | unused second cathode remains open |
+| `UI_ANY_TX_AON_N` | `ui_evidence_or_0.A_COMMON` | `ui_evidence_or_1.A_COMMON` | front common anodes form a passive active-low aggregate |
+| `UI_ANY_TX_AON_N` | `ui_evidence_or_1.A_COMMON` | `ui_evidence_or_2.A_COMMON` | front aggregate keeps every source diode-isolated |
+| `UI_ANY_TX_AON_N` | `ui_evidence_or_2.A_COMMON` | `ui_evidence_or_3.A_COMMON` | front aggregate does not feed back into any evidence source |
+| `UI_ANY_TX_AON_N` | `ui_evidence_or_3.A_COMMON` | `ui_evidence_or_4.A_COMMON` | fifth package extends the front aggregate to all nine paths |
+| `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `ui_any_tx_pullup.END_1` | exact UI-local logic pull-up keeps the front aggregate deasserted |
+| `UI_ANY_TX_AON_N` | `ui_any_tx_pullup.END_2` | `ui_evidence_or_4.A_COMMON` | 10-kOhm front aggregate pull-up is independent of LED leakage |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator.VCC` | domain isolator remains alive with the evidence plane |
 | `SAFETY_GROUND` | `evidence_main_isolator.GND` | `abstract:safety-ground` | domain-isolator return stays local |
 | `AON_SAFE_3V3` | `abstract:AON_SAFE_3V3` | `evidence_main_isolator_bypass.END_1` | exact 100-nF local triple-buffer bypass |
@@ -3855,17 +3865,17 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `c5_dbg_header` lifecycle: `active_orderable`.
 - `rp_dbg_header` uses `Samtec FTSH-105-01-L-DV-K-P-TR` as `verified_exact_three_domain_dbg10_header`, not an accepted production choice.
 - `rp_dbg_header` lifecycle: `active_orderable`.
-- `s3_reset_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `s3_reset_button` uses `Alps Alpine SKRTLAE010` as `verified_exact_external_service_boot_reset_switch`, not an accepted production choice.
 - `s3_reset_button` lifecycle: `standard_active_orderable`.
-- `s3_boot_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `s3_boot_button` uses `Alps Alpine SKRTLAE010` as `verified_exact_external_service_boot_reset_switch`, not an accepted production choice.
 - `s3_boot_button` lifecycle: `standard_active_orderable`.
-- `c5_reset_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `c5_reset_button` uses `Alps Alpine SKRTLAE010` as `verified_exact_external_service_boot_reset_switch`, not an accepted production choice.
 - `c5_reset_button` lifecycle: `standard_active_orderable`.
-- `c5_boot_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `c5_boot_button` uses `Alps Alpine SKRTLAE010` as `verified_exact_external_service_boot_reset_switch`, not an accepted production choice.
 - `c5_boot_button` lifecycle: `standard_active_orderable`.
-- `rp_reset_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `rp_reset_button` uses `Alps Alpine SKRTLAE010` as `verified_exact_external_service_boot_reset_switch`, not an accepted production choice.
 - `rp_reset_button` lifecycle: `standard_active_orderable`.
-- `rp_boot_button` uses `Alps Alpine SKQGADE010` as `verified_exact_service_boot_reset_switch`, not an accepted production choice.
+- `rp_boot_button` uses `Alps Alpine SKRTLAE010` as `verified_exact_external_service_boot_reset_switch`, not an accepted production choice.
 - `rp_boot_button` lifecycle: `standard_active_orderable`.
 - `s3_dbg_vtref_series` uses `Yageo RC0402FR-071KL` as `verified_exact_dbg10_and_boot_series_resistor`, not an accepted production choice.
 - `s3_dbg_vtref_series` lifecycle: `active_orderable`.
@@ -3967,4 +3977,4 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 
 ## Machine-check result and review boundary
 
-All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. This status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not by itself authorize KiCad.
+All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. H1 final acceptance now authorizes H2 production-schematic work only; this status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not authorize PCB placement/routing.

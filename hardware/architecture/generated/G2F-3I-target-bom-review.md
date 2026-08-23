@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **968** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **967** supplied/costed placements collapse to **201** used exact-device/MPN lines.
+- **974** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **973** supplied/costed placements collapse to **201** used exact-device/MPN lines.
 - Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **190/201** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **950/967** supplied placements; their partial subtotals are `base_product` — USD 219.9333. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **956/973** supplied placements; their partial subtotals are `base_product` — USD 220.3425. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 964 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 970 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -318,7 +318,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - display, battery, UI and acoustic acceptance tests for the owning product scenario.
 - Current lines:
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
-  - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
+  - `alps_skrtlae010` — `Alps Alpine SKRTLAE010`.
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
   - `davies_1227_j` — `Davies Molding 1227-J`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
@@ -395,12 +395,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Alps Alpine SKQGADE010</code> — 6 × USD 0.2248 = USD 1.3488</summary>
+<details><summary><code>Alps Alpine SKRTLAE010</code> — 6 × USD 0.2433 = USD 1.4598</summary>
 
-- Device id: `alps_skqgade010`.
+- Device id: `alps_skrtlae010`.
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/alps-alpine/SKQGADE010/18109115).
+- Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/alps-alpine/SKRTLAE010/19529044).
 
 </details>
 
@@ -1052,7 +1052,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>BAT54ALT1G</code> — 5 × USD 0.0577 = USD 0.2885</summary>
+<details><summary><code>BAT54ALT1G</code> — 10 × USD 0.0577 = USD 0.5770</summary>
 
 - Device id: `onsemi_bat54alt1g`.
 - Scope: `base_product`.
@@ -1718,7 +1718,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 190 × USD 0.0097 = USD 1.8430</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 191 × USD 0.0097 = USD 1.8527</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -2212,4 +2212,4 @@ These need exact library/geometry and manufacturing rules, but must not be padde
 
 every installed or supplied physical item has a scope, exact first target or explicit measured/received-item gate, current lifecycle/orderability evidence, cost snapshot and no-silent-substitution policy.
 
-Until those conditions pass, the BOM has **not** received «Проведено ревью», no total COGS is claimed and KiCad remains unauthorized.
+Until those conditions pass, the BOM has **not** received «Проведено ревью», no total COGS is claimed and PCB placement/routing, fabrication and purchasing remain unauthorized.

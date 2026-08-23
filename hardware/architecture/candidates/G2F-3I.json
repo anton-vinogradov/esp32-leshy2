@@ -3,7 +3,7 @@
   "id": "G2F-3I",
   "title": "Three domains with independent radio IPC and only bounded display/storage sharing",
   "status": "target_architecture_pre_schematic_reviewed",
-  "decisive_open_risk": "The complete target architecture, pin budget, resource ownership, power and safety paths, dimensioned product geometry and HW/FW boundary have passed joint pre-schematic review. KiCad authorization remains separate; exact supplier drawings, received-part fit and the named prototype/HIL gates must close at their owning implementation stages.",
+  "decisive_open_risk": "The complete target architecture, pin budget, resource ownership, power and safety paths, dimensioned product geometry and HW/FW boundary have passed joint pre-schematic review. H1 final acceptance authorizes H2 production-schematic work only; KiCad PCB placement/routing remains a later gate, and exact supplier drawings, received-part fit and prototype/HIL evidence close at their owning stages.",
   "pre_schematic_review": {
     "status": "reviewed",
     "reviewed_on": "2026-08-22",
@@ -140,7 +140,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["received-sample dimensional/fit and assembly coupon", "contact/current/ESD/wear/drop/vibration/environmental HIL as applicable", "display, battery, UI and acoustic acceptance tests for the owning product scenario"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skqgade010", "ck_js102011scqn", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh34srj_40s_0_5sh_99", "hirose_df40c_2_0_40ds_0_4v_58", "hirose_df40c_40dp_0_4v_51", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj_43504_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_hle_107_02_g_dv_pe_lc", "seeed_1125r_smt_4p", "te_2118651_2", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skrtlae010", "ck_js102011scqn", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh34srj_40s_0_5sh_99", "hirose_df40c_2_0_40ds_0_4v_58", "hirose_df40c_40dp_0_4v_51", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj_43504_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_hle_107_02_g_dv_pe_lc", "seeed_1125r_smt_4p", "te_2118651_2", "xtar_18650_4000mah_protected"
           ]
         }
       ]
@@ -176,7 +176,7 @@
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 40,
-      "expected_occurrence_count": 1135,
+      "expected_occurrence_count": 1137,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -498,8 +498,8 @@
       "channels": ["S3_RF","C5_RF","NRF0_RF","NRF1_RF","NRF2_RF","CC_RF","VOICE_RF","IR_OPTICAL","LORA_EXT_RF"],
       "first_population": "RF channels use R1=100 kOhm AON-to-IN_P, R2=10 kOhm IN_P-to-ground, R3=1 MOhm OUT-to-IN_P and 10 kOhm AON output pull-up: approximately 0.327-V assert and 0.297-V clear at 3.3 V. IR uses 12 kOhm for R2: approximately 0.384-V assert and 0.350-V clear above the 0.30-V nominal optical-TIA idle. Production values remain measured per-path calibration outputs.",
       "source_mask": "AON-powered and locally bypassed TCA9535PWR at 7-bit address 0x20 on the safety controller's private bit-banged I2C bus; A2/A1/A0 are directly grounded, P00..P07 and P10 follow channel order, P11..P17 each have an exact 10-kOhm pull-down and INT_N is test-point only",
-      "aggregate": "five BAT54ALT1G common-anode packages diode-OR EV_N[0..8] into separately pulled-up ANY_TX_AON_N; the unused fifth-package diode is no-connect and LTST-C190KRKT plus exact 2.2 kOhm lights without firmware",
-      "per_path_indicators": "each EV_N[0..8] independently sinks one LTST-C190KRKT through its own exact 2.2-kOhm AON resistor; all nine source LEDs plus TX ACTIVE form one front-face line, while the two Si4732 antenna inputs remain correctly unlit because they are receive-only",
+      "aggregate": "the RF/power safety plane uses five BAT54ALT1G common-anode packages to diode-OR EV_N[0..8] into separately pulled-up ANY_TX_AON_N. The front UI repeats only the passive diode aggregation with five additional BAT54ALT1G packages and one 10-kOhm pull-up; six RF-side active-low source lines cross M1, the other three remain UI-local, and the unused diode in each fifth package is no-connect",
+      "per_path_indicators": "each EV_N[0..8] independently sinks one LTST-C190KRKT through its own exact 2.2-kOhm AON resistor; the UI-local aggregate drives TX ACTIVE without firmware. All nine source LEDs plus TX ACTIVE form two aligned front-face rows of five, while the two Si4732 antenna inputs remain correctly unlit because they are receive-only",
       "external_cap_input": "Cap-Bus contact 5 is a dual-profile input. Stock U214 drives 5V_OUT high and therefore never asserts evidence; an evidence-aware Leshy LoRa Cap provides open-drain active-low EXT_TX_EVIDENCE_N. Exact SN74LVC1G07DCKR accepts the 5-V stock level, preserves active-low polarity and isolates the 3.3-V AON evidence plane. Absence, high-Z, unknown identity or unreadable evidence can never authorize TX",
       "physical_localization": "the UI board keeps S3, C5 and IR analog detector outputs at its local TLV1824 and gates the C5 IR carrier through a local SN74LVC1G08; the RF board keeps nRF0/nRF1/nRF2/CC detector outputs at its local TLV1824 and voice at a local TLV1821. Only active-low digital evidence plus RUN_PERMIT cross M1; no detector analog signal and no IR carrier makes an inter-board round trip",
       "main_domain_isolation": "AON-powered SN74LVC3G07DCUR preserves active-low polarity and transfers C5 RF evidence, IR evidence and ANY_TX_AON_N as passive-drain outputs; three separate 10-kOhm 3V3_MAIN pull-ups prevent positive AON injection into C5 or RP while main power is absent",
@@ -569,7 +569,7 @@
     "internal_rail_protection_decision": "DEC-0081",
     "internal_rail_protection_profile": "TPS25961DRVR lies between AON_RAW_3V3 and AON_SAFE_3V3 with RC0402FR-07240KL nominal 0.208-A current limit, RC0402FR-07196KL/RC0402FR-07100KL 3.505-3.809-V OVLO corner window, one local 100-nF input capacitor and one 10-uF protected output capacitor. Main and voice each use latch-off circuit-breaker TPS25974LRPWR, 4.7-nF controlled rise, 120-pF approximately 0.09-ms transient blanking and protected-rail PG. Main uses a 1.65-kOhm 3.2-3.715-A threshold, precision 191/100-kOhm 3.438-3.578-V OVLO window and 45.3/30-kOhm PG divider. Voice uses a 3.32-kOhm 1.55-1.905-A threshold, 270/100-kOhm 4.314-4.610-V OVLO window and 68/33-kOhm PG divider. Every EN/UVLO is tied to its own sub-5-V raw rail; firmware cannot bypass OVLO, overcurrent, short or thermal shutdown",
     "paper_closure_decision": "DEC-0082",
-    "paper_closure_status": "I3 paper electrical scope reviewed; remaining entries are exact-lot, downstream G8 procurement or G11 prototype HIL evidence and do not authorize KiCad",
+    "paper_closure_status": "I3 paper electrical scope reviewed; remaining entries are exact-lot, downstream G8 procurement or G11 prototype HIL evidence and do not authorize PCB placement/routing, fabrication or purchasing",
     "source_power_reserve": {"paper_efficiency_factor":0.85,"rule":"Icharge <= min(2A, max(0, (0.85 * negotiated_input_watts - max(declared_scenario_load_watts, measured_SYS_load_watts + measurement_margin_watts)) / measured_pack_voltage)); any missing measurement or DPM/thermal/fault state reduces charge to zero","best_case_pdo_sys_w":{"5V_3A":12.75,"9V_3A":22.95,"15V_2A":25.5},"full_2a_charge_sys_headroom_w_at_8v4":{"5V_3A":-4.05,"9V_3A":6.15,"15V_2A":8.7}},
     "diagnostic_decision": "DEC-0078",
     "diagnostic_load_profile": "Two parallel CRM2512-FX-20R0ELF pulse-rated 20-ohm/2-W resistors form an exact 10-ohm 4-W load ahead of a DMN2056U-7 low-side switch across the fused 2S stack. PA22 emits only a rising edge into non-retriggerable TPUL2G223BQBR channel 1; exact 169-kOhm/220-nF C0G timing gives about 34.4 ms typical and a conservative 28.7-40.7 ms paper range, with production accepting only 25-50 ms. At the end of every channel-1 pulse, its falling Q edge starts channel 2. Exact 620-kOhm/1-uF timing holds complementary 2Q low for a paper minimum of 350 ms and asynchronously clears channel 1, so a stuck or hostile MCU can produce at most one bounded pulse per refractory interval. The two load resistors remain below their combined hot derated continuous rating even under that hardware-only worst case; firmware imposes a longer HIL-derived operational cooldown",
@@ -688,8 +688,8 @@
     "status": "paper_reviewed_i7_service_recovery_subblock_hil_open",
     "scope": "permanent independent programming, recovery and diagnostics for S3, C5 and RP2354B without permitting a service cable or fixture to power the product or bypass RUN/KILL, watchdog or FAULT_KILL",
     "usb": "S3 retains the protected product USB-C. C5 and RP each use a separate GCT USB4105-GF-A data-only USB-C, connector-side TPD2EUSB30ADRTR and board-powered FSUSB42MUX. OE and SEL are hard-low so HSD1 is selected only while 3V3_MAIN powers the switch; power-off Ioff blocks D+/D- backfeed. CC1/CC2 each use exact 5.1-kOhm Rd. VBUS reaches only an exact 1-MOhm bleeder and a high-impedance test pad; no board-power path exists",
-    "debug": "three separately populated Samtec FTSH-105-01-L-DV-K-P-TR keyed DBG10 headers share pinout VTREF,GND,RESET,BOOT,DBG0,DBG1,GND,ID0,GND,ID1. Pins 3-6 have one TPD4E05U06DQAR per header; target paths use 1-kOhm RESET/BOOT and 470-Ohm UART/SWD series resistors. Passive IDs are 00 S3, 01 C5 and 10 RP",
-    "controls": "six separate Alps Alpine SKQGADE010 SPST-NO switches expose RESET and BOOT for each domain. S3 GPIO0, C5 GPIO28 and RP QSPI_SS_USB_BOOT have exact 10-kOhm normal-boot pull-ups; S3 GPIO0 is also the gated runtime I2S_DIN input but its codec driver is physically disabled throughout reset; C5 GPIO27 is independently fixed high by exact 10 kOhm and remains observable at a read-only test point",
+    "debug": "three separately populated but internal-only Samtec FTSH-105-01-L-DV-K-P-TR keyed DBG10 fallback headers share pinout VTREF,GND,RESET,BOOT,DBG0,DBG1,GND,ID0,GND,ID1. They are available after opening the board sandwich and are not user-facing enclosure interfaces. Pins 3-6 have one TPD4E05U06DQAR per header; target paths use 1-kOhm RESET/BOOT and 470-Ohm UART/SWD series resistors. Passive IDs are 00 S3, 01 C5 and 10 RP",
+    "controls": "six separate Alps Alpine SKRTLAE010 side-actuated SPST-NO switches expose externally labelled RESET and BOOT for each domain. S3 GPIO0, C5 GPIO28 and RP QSPI_SS_USB_BOOT have exact 10-kOhm normal-boot pull-ups; S3 GPIO0 is also the gated runtime I2S_DIN input but its codec driver is physically disabled throughout reset; C5 GPIO27 is independently fixed high by exact 10 kOhm and remains observable at a read-only test point",
     "reset": "an AON-powered SN74LVC1G06DCKR, the second channel of the exact Schmitt conditioner and two 2N7002DW-7-F packages implement three passive-drain reset sinks. RUN_PERMIT holds RF_RESET_KILL_GATE low for C5/RP; the safety controller and TPS3435 independently drive S3_RESET_KILL_GATE so S3 may later boot bounded fault-only UI. Each EN/RUN has an exact 10-kOhm main-domain pull-up, so manual and fixture reset can only pull low and never fight a push-pull source",
     "cost": "first-pass quantity-100 active-component and exact-passive addition is approximately USD 10.5-11.5, dominated by three permanently populated keyed Samtec headers; it excludes fixture cables, enclosure hatches and assembly quotation",
     "remaining_hil": ["received connector/header/switch footprint and enclosure-actuation coupons", "USB Full-Speed eye/edge and attach-detach behavior through each FSUSB42MUX", "board-off D-line and VBUS backfeed with one and three simultaneous hosts", "erased, corrupt and wrong-image recovery independently over every USB/UART/SWD path", "held/misordered RESET/BOOT, invalid DBG10 ID, fixture overdrive and ESD fault injection", "KILL/FAULT_KILL and AON-loss reset assertion during every recovery mode without RF re-arm"]
@@ -768,6 +768,7 @@
         "ir_safe_gate",
         "evidence_cmp_a",
         "safe_reset_sink_a",
+        "front TX LEDs and their UI-local diode aggregate",
         "C5 service USB and the front D-pad, BACK, OPT and F1 through F8 controls"
       ],
       "rf_power_board": [
@@ -807,10 +808,11 @@
       "rationale": [
         "raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board",
         "speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND",
-        "the internal microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND to the UI-local internal/headset selector, after which one MIC_SELECTED_RAW source feeds both capture and transmit selectors",
+        "the internal microphone body remains on the RF/power board; its quiet bias/filter network and the headset bias remain UI-local, so the single biased MIC_RAW conductor crosses M1 once beside AUDIO_GROUND to the internal/headset selector, after which one MIC_SELECTED_RAW source feeds both capture and transmit selectors",
         "S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board",
         "RUN/KILL conditioning, the independent watchdog, safety controller and FAULT_KILL latch remain on the RF/power board; only digital RUN_PERMIT, split reset gates, UI temperature and read-only status cross M1",
-        "only encoder push and phases cross M1; F1 through F8 are UI-local, PTT is local to the RP/voice domain, and M1 retains four reserved no-connect contacts"
+        "six RF-board TX-evidence lines cross M1 to the front indicators; the UI-local BAT54ALT1G aggregate adds them to the three UI-local paths without consuming another contact or depending on firmware",
+        "only encoder push and phases cross M1; F1 through F8 are UI-local and PTT is local to the RP/voice domain"
       ]
     },
     "pin_map": [
@@ -984,15 +986,15 @@
       },
       {
         "contact": 29,
-        "net": "RESERVED_29",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "EV_N2_NRF0",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
       },
       {
         "contact": 30,
-        "net": "POR_N",
+        "net": "EV_N3_NRF1",
         "direction": "RF→UI",
-        "signal_class": "safety"
+        "signal_class": "tx_evidence"
       },
       {
         "contact": 31,
@@ -1008,9 +1010,9 @@
       },
       {
         "contact": 33,
-        "net": "RESERVED_33",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "EV_N4_NRF2",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
       },
       {
         "contact": 34,
@@ -1158,9 +1160,9 @@
       },
       {
         "contact": 58,
-        "net": "3V3_MAIN",
-        "direction": "rail",
-        "signal_class": "power"
+        "net": "EV_N5_CC",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
       },
       {
         "contact": 59,
@@ -1272,7 +1274,7 @@
       },
       {
         "contact": 77,
-        "net": "FAULT_LATCH_SENSE",
+        "net": "FAULT_LATCH_SENSE_AON",
         "direction": "RF→UI",
         "signal_class": "safety"
       },
@@ -1284,32 +1286,32 @@
       },
       {
         "contact": 79,
-        "net": "RESERVED_79",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "EV_N6_VOICE",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
       },
       {
         "contact": 80,
-        "net": "RESERVED_80",
-        "direction": "reserved",
-        "signal_class": "reserved"
+        "net": "EV_N8_LORA_EXT",
+        "direction": "RF→UI",
+        "signal_class": "tx_evidence"
       }
     ],
     "accounting": {
       "positions": 80,
-      "reserved": 4,
-      "main_3v3_contacts": 8,
+      "reserved": 0,
+      "main_3v3_contacts": 7,
       "aon_contacts": 2,
       "power_ground_contacts": 22,
       "audio_ground_contacts": 3,
       "safety_ground_contacts": 2,
-      "maximum_nominal_main_contact_capacity_a": 3.2
+      "maximum_nominal_main_contact_capacity_a": 2.8
     },
     "routing_contract": [
       "USB2 D+/D- and S3↔RP IPC use impedance-controlled pairs/groups with the shown adjacent returns and no stubs",
       "low-level audio is routed as guarded differential/paired traces away from IPC, USB and buck switch nodes",
-      "all four reserved contacts stay no-connect in the first PCB and may not be silently consumed",
-      "3V3_MAIN current capacity is accepted only after connector-temperature and simultaneous-load HIL; 8 × 0.4 A is a connector-rating ceiling, not a product-current promise"
+      "six active-low RF-board evidence lines use the former four reserves, the unused POR crossing and contact 58; their front aggregate is local and firmware-independent",
+      "3V3_MAIN current capacity is accepted only after connector-temperature and simultaneous-load HIL; 7 × 0.4 A is a connector-rating ceiling, not a product-current promise"
     ]
   },
   "instances": {
@@ -2110,12 +2112,12 @@
     "s3_dbg_esd": "ti_tpd4e05u06_dqar",
     "c5_dbg_esd": "ti_tpd4e05u06_dqar",
     "rp_dbg_esd": "ti_tpd4e05u06_dqar",
-    "s3_reset_button": "alps_skqgade010",
-    "s3_boot_button": "alps_skqgade010",
-    "c5_reset_button": "alps_skqgade010",
-    "c5_boot_button": "alps_skqgade010",
-    "rp_reset_button": "alps_skqgade010",
-    "rp_boot_button": "alps_skqgade010",
+    "s3_reset_button": "alps_skrtlae010",
+    "s3_boot_button": "alps_skrtlae010",
+    "c5_reset_button": "alps_skrtlae010",
+    "c5_boot_button": "alps_skrtlae010",
+    "rp_reset_button": "alps_skrtlae010",
+    "rp_boot_button": "alps_skrtlae010",
     "s3_dbg_vtref_series": "yageo_rc0402fr_071kl",
     "s3_dbg_reset_series": "yageo_rc0402fr_071kl",
     "s3_dbg_boot_series": "yageo_rc0402fr_071kl",
@@ -2259,6 +2261,12 @@
     "evidence_or_2": "onsemi_bat54alt1g",
     "evidence_or_3": "onsemi_bat54alt1g",
     "evidence_or_4": "onsemi_bat54alt1g",
+    "ui_evidence_or_0": "onsemi_bat54alt1g",
+    "ui_evidence_or_1": "onsemi_bat54alt1g",
+    "ui_evidence_or_2": "onsemi_bat54alt1g",
+    "ui_evidence_or_3": "onsemi_bat54alt1g",
+    "ui_evidence_or_4": "onsemi_bat54alt1g",
+    "ui_any_tx_pullup": "yageo_rc0402fr_0710kl",
     "any_tx_led": "liteon_ltst_c190krkt",
     "any_tx_led_series": "yageo_rc0402fr_072k2l",
     "s3_tx_led": "liteon_ltst_c190krkt",
@@ -2583,17 +2591,15 @@
     {"from":"s3_dbg_header.P9","to":"abstract:power-ground","net":"POWER_GROUND","safety":"identity guard return"},
     {"from":"s3_dbg_header.P3","to":"s3_dbg_esd.D1_PLUS","net":"S3_DBG_RESET_CONNECTOR_N","safety":"header-side active-low reset has connector ESD protection"},
     {"from":"s3_dbg_header.P3","to":"s3_dbg_reset_series.END_1","net":"S3_DBG_RESET_CONNECTOR_N","safety":"exact 1-kOhm fixture current limit"},
-    {"from":"s3_reset_button.A1","to":"s3_dbg_reset_series.END_1","net":"S3_DBG_RESET_CONNECTOR_N","safety":"physical button joins the protected header side"},
-    {"from":"s3_reset_button.A1","to":"s3_reset_button.A2","net":"S3_DBG_RESET_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
-    {"from":"s3_reset_button.B1","to":"s3_reset_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
-    {"from":"s3_reset_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
+    {"from":"s3_reset_button.C1","to":"s3_dbg_reset_series.END_1","net":"S3_DBG_RESET_CONNECTOR_N","safety":"external side button joins the protected header side"},
+    {"from":"s3_reset_button.C1","to":"s3_reset_button.C2","net":"S3_DBG_RESET_CONNECTOR_N","safety":"the exact switch's internally common physical terminals 1 and 3 are represented"},
+    {"from":"s3_reset_button.NO","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary terminal 2 can only pull low"},
     {"from":"s3_dbg_reset_series.END_2","to":"s3.EN","net":"S3_RESET_N","safety":"manual and fixture reset meet only a passive pull-up and open-drain safety sink"},
     {"from":"s3_dbg_header.P4","to":"s3_dbg_esd.D1_MINUS","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"header-side active-low boot control has connector ESD protection"},
     {"from":"s3_dbg_header.P4","to":"s3_dbg_boot_series.END_1","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"exact 1-kOhm fixture current limit"},
-    {"from":"s3_boot_button.A1","to":"s3_dbg_boot_series.END_1","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"physical button joins the protected header side"},
-    {"from":"s3_boot_button.A1","to":"s3_boot_button.A2","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
-    {"from":"s3_boot_button.B1","to":"s3_boot_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
-    {"from":"s3_boot_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
+    {"from":"s3_boot_button.C1","to":"s3_dbg_boot_series.END_1","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"external side button joins the protected header side"},
+    {"from":"s3_boot_button.C1","to":"s3_boot_button.C2","net":"S3_DBG_BOOT_CONNECTOR_N","safety":"the exact switch's internally common physical terminals 1 and 3 are represented"},
+    {"from":"s3_boot_button.NO","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary terminal 2 can only pull low"},
     {"from":"s3_dbg_boot_series.END_2","to":"s3.GPIO0","net":"I2S_DIN","safety":"the protected 1-kOhm service path retains physical BOOT control on the runtime codec-data input; the separately gated DIN driver is high-Z throughout reset and ROM sampling"},
     {"from":"s3_dbg_header.P5","to":"s3_dbg_esd.D2_PLUS","net":"S3_DBG0_CONNECTOR","safety":"UART TX connector ESD shunt"},
     {"from":"s3_dbg_header.P5","to":"s3_dbg0_series.END_1","net":"S3_DBG0_CONNECTOR","safety":"exact 470-Ohm fixture-current and edge limit"},
@@ -2619,17 +2625,15 @@
     {"from":"c5_dbg_header.P9","to":"abstract:power-ground","net":"POWER_GROUND","safety":"identity guard return"},
     {"from":"c5_dbg_header.P3","to":"c5_dbg_esd.D1_PLUS","net":"C5_DBG_RESET_CONNECTOR_N","safety":"header-side active-low reset has connector ESD protection"},
     {"from":"c5_dbg_header.P3","to":"c5_dbg_reset_series.END_1","net":"C5_DBG_RESET_CONNECTOR_N","safety":"exact 1-kOhm fixture current limit"},
-    {"from":"c5_reset_button.A1","to":"c5_dbg_reset_series.END_1","net":"C5_DBG_RESET_CONNECTOR_N","safety":"physical button joins the protected header side"},
-    {"from":"c5_reset_button.A1","to":"c5_reset_button.A2","net":"C5_DBG_RESET_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
-    {"from":"c5_reset_button.B1","to":"c5_reset_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
-    {"from":"c5_reset_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
+    {"from":"c5_reset_button.C1","to":"c5_dbg_reset_series.END_1","net":"C5_DBG_RESET_CONNECTOR_N","safety":"external side button joins the protected header side"},
+    {"from":"c5_reset_button.C1","to":"c5_reset_button.C2","net":"C5_DBG_RESET_CONNECTOR_N","safety":"the exact switch's internally common physical terminals 1 and 3 are represented"},
+    {"from":"c5_reset_button.NO","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary terminal 2 can only pull low"},
     {"from":"c5_dbg_reset_series.END_2","to":"c5.EN","net":"C5_RESET_N","safety":"manual and fixture reset meet only a passive pull-up and open-drain safety sink"},
     {"from":"c5_dbg_header.P4","to":"c5_dbg_esd.D1_MINUS","net":"C5_DBG_BOOT_CONNECTOR_N","safety":"header-side active-low boot control has connector ESD protection"},
     {"from":"c5_dbg_header.P4","to":"c5_dbg_boot_series.END_1","net":"C5_DBG_BOOT_CONNECTOR_N","safety":"exact 1-kOhm fixture current limit"},
-    {"from":"c5_boot_button.A1","to":"c5_dbg_boot_series.END_1","net":"C5_DBG_BOOT_CONNECTOR_N","safety":"physical button joins the protected header side"},
-    {"from":"c5_boot_button.A1","to":"c5_boot_button.A2","net":"C5_DBG_BOOT_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
-    {"from":"c5_boot_button.B1","to":"c5_boot_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
-    {"from":"c5_boot_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
+    {"from":"c5_boot_button.C1","to":"c5_dbg_boot_series.END_1","net":"C5_DBG_BOOT_CONNECTOR_N","safety":"external side button joins the protected header side"},
+    {"from":"c5_boot_button.C1","to":"c5_boot_button.C2","net":"C5_DBG_BOOT_CONNECTOR_N","safety":"the exact switch's internally common physical terminals 1 and 3 are represented"},
+    {"from":"c5_boot_button.NO","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary terminal 2 can only pull low"},
     {"from":"c5_dbg_boot_series.END_2","to":"c5.GPIO28","net":"C5_BOOT_N","safety":"real exposed GPIO28 selects joint-download boot"},
     {"from":"c5_dbg_header.P5","to":"c5_dbg_esd.D2_PLUS","net":"C5_DBG0_CONNECTOR","safety":"UART TX connector ESD shunt"},
     {"from":"c5_dbg_header.P5","to":"c5_dbg0_series.END_1","net":"C5_DBG0_CONNECTOR","safety":"exact 470-Ohm fixture-current and edge limit"},
@@ -2655,17 +2659,15 @@
     {"from":"rp_dbg_header.P9","to":"abstract:power-ground","net":"POWER_GROUND","safety":"identity guard return"},
     {"from":"rp_dbg_header.P3","to":"rp_dbg_esd.D1_PLUS","net":"RP_DBG_RESET_CONNECTOR_N","safety":"header-side active-low reset has connector ESD protection"},
     {"from":"rp_dbg_header.P3","to":"rp_dbg_reset_series.END_1","net":"RP_DBG_RESET_CONNECTOR_N","safety":"exact 1-kOhm fixture current limit"},
-    {"from":"rp_reset_button.A1","to":"rp_dbg_reset_series.END_1","net":"RP_DBG_RESET_CONNECTOR_N","safety":"physical button joins the protected header side"},
-    {"from":"rp_reset_button.A1","to":"rp_reset_button.A2","net":"RP_DBG_RESET_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
-    {"from":"rp_reset_button.B1","to":"rp_reset_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
-    {"from":"rp_reset_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
+    {"from":"rp_reset_button.C1","to":"rp_dbg_reset_series.END_1","net":"RP_DBG_RESET_CONNECTOR_N","safety":"external side button joins the protected header side"},
+    {"from":"rp_reset_button.C1","to":"rp_reset_button.C2","net":"RP_DBG_RESET_CONNECTOR_N","safety":"the exact switch's internally common physical terminals 1 and 3 are represented"},
+    {"from":"rp_reset_button.NO","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary terminal 2 can only pull low"},
     {"from":"rp_dbg_reset_series.END_2","to":"rp.RUN","net":"RP_RESET_N","safety":"manual and fixture reset meet only a passive pull-up and open-drain safety sink"},
     {"from":"rp_dbg_header.P4","to":"rp_dbg_esd.D1_MINUS","net":"RP_DBG_BOOT_CONNECTOR_N","safety":"header-side active-low boot control has connector ESD protection"},
     {"from":"rp_dbg_header.P4","to":"rp_dbg_boot_series.END_1","net":"RP_DBG_BOOT_CONNECTOR_N","safety":"exact 1-kOhm path follows the RP2350 USB_BOOT reference"},
-    {"from":"rp_boot_button.A1","to":"rp_dbg_boot_series.END_1","net":"RP_DBG_BOOT_CONNECTOR_N","safety":"physical button joins the protected header side"},
-    {"from":"rp_boot_button.A1","to":"rp_boot_button.A2","net":"RP_DBG_BOOT_CONNECTOR_N","safety":"both same-side switch terminals are represented"},
-    {"from":"rp_boot_button.B1","to":"rp_boot_button.B2","net":"POWER_GROUND","safety":"both ground-side switch terminals are represented"},
-    {"from":"rp_boot_button.B1","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary button can only pull low"},
+    {"from":"rp_boot_button.C1","to":"rp_dbg_boot_series.END_1","net":"RP_DBG_BOOT_CONNECTOR_N","safety":"external side button joins the protected header side"},
+    {"from":"rp_boot_button.C1","to":"rp_boot_button.C2","net":"RP_DBG_BOOT_CONNECTOR_N","safety":"the exact switch's internally common physical terminals 1 and 3 are represented"},
+    {"from":"rp_boot_button.NO","to":"abstract:power-ground","net":"POWER_GROUND","safety":"momentary terminal 2 can only pull low"},
     {"from":"rp_dbg_boot_series.END_2","to":"rp.QSPI_SS_USB_BOOT","net":"RP_USB_BOOT_N","safety":"real RP2354B package contact reaches BOOTSEL without consuming a GPIO"},
     {"from":"rp_dbg_header.P5","to":"rp_dbg_esd.D2_PLUS","net":"RP_DBG0_CONNECTOR","safety":"SWDIO connector ESD shunt"},
     {"from":"rp_dbg_header.P5","to":"rp_dbg0_series.END_1","net":"RP_DBG0_CONNECTOR","safety":"exact 470-Ohm fixture-current and edge limit"},
@@ -4287,7 +4289,7 @@
     {"from":"headset_mic_selector.GND","to":"abstract:audio-ground","net":"AUDIO_GROUND","safety":"headset selector quiet return"},
     {"from":"abstract:3V3_MAIN","to":"headset_mic_selector_bypass.END_1","net":"3V3_MAIN","safety":"exact 100-nF headset-selector bypass"},
     {"from":"headset_mic_selector_bypass.END_2","to":"abstract:audio-ground","net":"AUDIO_GROUND","safety":"headset-selector bypass return"},
-    {"from":"microphone.OUT_PLUS","to":"headset_mic_selector.NO","net":"MIC_INTERNAL_RAW","safety":"logic-high/no-plug selection preserves the internal electret"},
+    {"from":"microphone.OUT_PLUS","to":"headset_mic_selector.NO","net":"MIC_RAW","safety":"the single biased internal-microphone conductor crosses M1 contact 48 and reaches the UI-local selector without a hidden alias"},
     {"from":"headphone_jack.SLEEVE","to":"headset_mic_selector.NC","net":"HEADSET_MIC_RAW","safety":"logic-low/plugged selection admits only the protected CTIA sleeve microphone"},
     {"from":"abstract:3V3_MAIN","to":"headset_control_io.VCC","net":"3V3_MAIN","safety":"dedicated headset control remains in the same protected host domain as SYS_I2C"},
     {"from":"headset_control_io.GND","to":"abstract:audio-ground","net":"AUDIO_GROUND","safety":"headset control return joins the quiet audio-entry region"},
@@ -4861,7 +4863,7 @@
     {"from":"ext_pg_base_res.END_2","to":"ext_pg_qualifier.B","net":"EXT_PG_QUAL_BASE","safety":"exact 68-kOhm 1% base resistor limits drive while preserving the reviewed forced-beta margin"},
     {"from":"ext_branch_gate.1Y","to":"ext_efuse.EN_UVLO","net":"U214_5V_EN_SAFE","safety":"U214 eFuse is independent of the native Unit branch and remains KILL/FAULT_KILL-dominant"},
     {"from":"safe_latch.Q","to":"safe_ptt_or.1B","net":"FAULT_KILL","safety":"active-high kill forces active-low PTT high/RX"},
-    {"from":"safe_latch.Q","to":"fault_led_series.END_1","net":"FAULT_LED_DRIVE","safety":"non-programmable visible latched-fault state"},
+    {"from":"safe_latch.Q","to":"fault_led_series.END_1","net":"FAULT_LATCH_SENSE_AON","safety":"the same raw AON latch output crosses M1 once for the non-programmable front indicator and the isolated read-only diagnostic tap"},
     {"from":"fault_led_series.END_2","to":"fault_led.A","net":"FAULT_LED_A","safety":"exact 2.2-kOhm current limit"},
     {"from":"fault_led.K","to":"abstract:safety-ground","net":"FAULT_LED_K","safety":"indicator stays outside UI and firmware and remains available when UI thermal protection turns the display off"},
     {"from":"s3.ANT","to":"s3_rf_jumper.END_A","net":"S3_MODULE_RF_50R","safety":"datasheet-dimensioned module receptacle mates the exact 30-mm UMCC Gen1 jumper"},
@@ -5155,7 +5157,7 @@
     {"from":"evidence_or_4.A_COMMON","to":"safety_controller.PA22","net":"ANY_TX_AON_N","safety":"the safety controller samples the physical aggregate directly and compares it with the active group lease"},
     {"from":"abstract:AON_SAFE_3V3","to":"any_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"exact 2.2-kOhm indicator-current source"},
     {"from":"any_tx_led_series.END_2","to":"any_tx_led.A","net":"ANY_TX_LED_A","safety":"red physical indicator current limit"},
-    {"from":"any_tx_led.K","to":"evidence_or_4.A_COMMON","net":"ANY_TX_AON_N","safety":"asserted diode aggregate lights without firmware"},
+    {"from":"any_tx_led.K","to":"ui_evidence_or_4.A_COMMON","net":"UI_ANY_TX_AON_N","safety":"the front-local passive aggregate lights without firmware and does not consume another M1 contact"},
     {"from":"abstract:AON_SAFE_3V3","to":"s3_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"independent actual-TX indicator remains firmware-independent"},
     {"from":"s3_tx_led_series.END_2","to":"s3_tx_led.A","net":"S3_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
     {"from":"s3_tx_led.K","to":"evidence_cmp_a.OUT1","net":"EV_N0_S3","safety":"S3 antenna-local LED follows physical active-low TX evidence"},
@@ -5183,6 +5185,23 @@
     {"from":"abstract:AON_SAFE_3V3","to":"ext_tx_led_series.END_1","net":"AON_SAFE_3V3","safety":"external-path actual-TX indicator remains firmware-independent"},
     {"from":"ext_tx_led_series.END_2","to":"ext_tx_led.A","net":"EXT_TX_LED_A","safety":"exact 2.2-kOhm visible-indicator current limit"},
     {"from":"ext_tx_led.K","to":"ext_evidence_buffer.Y","net":"EV_N8_LORA_EXT","safety":"front LORA/EXT LED follows only the isolated physical Cap evidence output"},
+
+    {"from":"evidence_cmp_a.OUT1","to":"ui_evidence_or_0.K1","net":"EV_N0_S3","safety":"UI-local S3 evidence joins the independent front aggregate"},
+    {"from":"evidence_cmp_a.OUT2","to":"ui_evidence_or_0.K2","net":"EV_N1_C5","safety":"UI-local C5 evidence joins the independent front aggregate"},
+    {"from":"evidence_cmp_b.OUT1","to":"ui_evidence_or_1.K1","net":"EV_N2_NRF0","safety":"M1 contact 29 delivers only the active-low digital nRF0 evidence"},
+    {"from":"evidence_cmp_b.OUT2","to":"ui_evidence_or_1.K2","net":"EV_N3_NRF1","safety":"M1 contact 30 delivers only the active-low digital nRF1 evidence"},
+    {"from":"evidence_cmp_b.OUT3","to":"ui_evidence_or_2.K1","net":"EV_N4_NRF2","safety":"M1 contact 33 delivers only the active-low digital nRF2 evidence"},
+    {"from":"evidence_cmp_b.OUT4","to":"ui_evidence_or_2.K2","net":"EV_N5_CC","safety":"M1 contact 58 delivers only the active-low digital CC evidence"},
+    {"from":"evidence_cmp_voice.OUT","to":"ui_evidence_or_3.K1","net":"EV_N6_VOICE","safety":"M1 contact 79 delivers only the active-low digital voice evidence"},
+    {"from":"evidence_cmp_a.OUT3","to":"ui_evidence_or_3.K2","net":"EV_N7_IR","safety":"UI-local optical evidence joins the independent front aggregate"},
+    {"from":"ext_evidence_buffer.Y","to":"ui_evidence_or_4.K1","net":"EV_N8_LORA_EXT","safety":"M1 contact 80 delivers only the active-low isolated accessory evidence"},
+    {"from":"ui_evidence_or_4.K2","to":"abstract:no-connect","net":"UI_EVIDENCE_OR_4_UNUSED_DIODE_NC","safety":"unused second cathode remains open"},
+    {"from":"ui_evidence_or_0.A_COMMON","to":"ui_evidence_or_1.A_COMMON","net":"UI_ANY_TX_AON_N","safety":"front common anodes form a passive active-low aggregate"},
+    {"from":"ui_evidence_or_1.A_COMMON","to":"ui_evidence_or_2.A_COMMON","net":"UI_ANY_TX_AON_N","safety":"front aggregate keeps every source diode-isolated"},
+    {"from":"ui_evidence_or_2.A_COMMON","to":"ui_evidence_or_3.A_COMMON","net":"UI_ANY_TX_AON_N","safety":"front aggregate does not feed back into any evidence source"},
+    {"from":"ui_evidence_or_3.A_COMMON","to":"ui_evidence_or_4.A_COMMON","net":"UI_ANY_TX_AON_N","safety":"fifth package extends the front aggregate to all nine paths"},
+    {"from":"abstract:AON_SAFE_3V3","to":"ui_any_tx_pullup.END_1","net":"AON_SAFE_3V3","safety":"exact UI-local logic pull-up keeps the front aggregate deasserted"},
+    {"from":"ui_any_tx_pullup.END_2","to":"ui_evidence_or_4.A_COMMON","net":"UI_ANY_TX_AON_N","safety":"10-kOhm front aggregate pull-up is independent of LED leakage"},
 
     {"from":"abstract:AON_SAFE_3V3","to":"evidence_main_isolator.VCC","net":"AON_SAFE_3V3","safety":"domain isolator remains alive with the evidence plane"},
     {"from":"evidence_main_isolator.GND","to":"abstract:safety-ground","net":"SAFETY_GROUND","safety":"domain-isolator return stays local"},

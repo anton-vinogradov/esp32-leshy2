@@ -20,6 +20,10 @@
     "silkscreen_unobscured": true,
     "silkscreen_labels_nonoverlapping": true,
     "external_interface_directions_present": true,
+    "exactly_three_external_usb_ports": true,
+    "six_external_compute_rst_boot_controls": true,
+    "all_six_service_buttons_recessed": true,
+    "dbg10_headers_internal_only": true,
     "both_antenna_banks_on_outward_faces": true,
     "function_key_columns_clear_display_and_mounting_keepouts": true
   },
@@ -417,6 +421,61 @@
         ]
       }
     ],
+    "service_side_controls": [
+      {
+        "instance": "s3_reset_button",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "role": "external left-side S3 RESET service control",
+        "position_mm": [
+          0.0,
+          115.0
+        ],
+        "envelope_mm": [
+          3.4,
+          4.5
+        ]
+      },
+      {
+        "instance": "s3_boot_button",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "role": "external left-side S3 BOOT service control",
+        "position_mm": [
+          0.0,
+          122.0
+        ],
+        "envelope_mm": [
+          3.4,
+          4.5
+        ]
+      },
+      {
+        "instance": "c5_reset_button",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "role": "external right-side C5 RESET service control",
+        "position_mm": [
+          71.6,
+          115.0
+        ],
+        "envelope_mm": [
+          3.4,
+          4.5
+        ]
+      },
+      {
+        "instance": "c5_boot_button",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "role": "external right-side C5 BOOT service control",
+        "position_mm": [
+          71.6,
+          122.0
+        ],
+        "envelope_mm": [
+          3.4,
+          4.5
+        ]
+      }
+    ],
+    "service_button_recess_mm": 1.2,
     "navigation_cluster": {
       "design_id": "L2-NAV-5B-001-A",
       "manufacturing_class": "serial_components_only",
@@ -464,6 +523,30 @@
         "edge": "bottom",
         "coordinate_mm": 47.0,
         "silkscreen": "MICROPHONE"
+      },
+      {
+        "instance": "s3_reset_button",
+        "edge": "left",
+        "coordinate_mm": 117.25,
+        "silkscreen": "S3 RST"
+      },
+      {
+        "instance": "s3_boot_button",
+        "edge": "left",
+        "coordinate_mm": 124.25,
+        "silkscreen": "S3 BOOT"
+      },
+      {
+        "instance": "c5_reset_button",
+        "edge": "right",
+        "coordinate_mm": 117.25,
+        "silkscreen": "C5 RST"
+      },
+      {
+        "instance": "c5_boot_button",
+        "edge": "right",
+        "coordinate_mm": 124.25,
+        "silkscreen": "C5 BOOT"
       }
     ]
   },
@@ -573,6 +656,35 @@
         ]
       }
     ],
+    "service_side_controls": [
+      {
+        "instance": "rp_reset_button",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "role": "external left-side RP RUN/RESET service control",
+        "position_mm": [
+          0.0,
+          106.0
+        ],
+        "envelope_mm": [
+          3.4,
+          4.5
+        ]
+      },
+      {
+        "instance": "rp_boot_button",
+        "mpn": "Alps Alpine SKRTLAE010",
+        "role": "external left-side RP USB_BOOT service control",
+        "position_mm": [
+          0.0,
+          113.0
+        ],
+        "envelope_mm": [
+          3.4,
+          4.5
+        ]
+      }
+    ],
+    "service_button_recess_mm": 1.2,
     "encoder_actuator_mpn": "Davies Molding 1227-J",
     "edge_interfaces": [
       {
@@ -598,6 +710,18 @@
         "edge": "bottom",
         "coordinate_mm": 57.0,
         "silkscreen": "M5 UNIT"
+      },
+      {
+        "instance": "rp_reset_button",
+        "edge": "left",
+        "coordinate_mm": 108.25,
+        "silkscreen": "RP RST"
+      },
+      {
+        "instance": "rp_boot_button",
+        "edge": "left",
+        "coordinate_mm": 115.25,
+        "silkscreen": "RP BOOT"
       }
     ],
     "external_component_labels": [
@@ -606,6 +730,50 @@
         "edge": "right",
         "coordinate_mm": 133.0,
         "silkscreen": "SPEAKER"
+      }
+    ]
+  },
+  "internal_fallback_diagnostics": {
+    "classification": "not_user_facing; accessible only after opening the board sandwich",
+    "headers": [
+      {
+        "instance": "s3_dbg_header",
+        "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+        "role": "keyed S3 UART0/RESET/BOOT header",
+        "position_mm": [
+          5.0,
+          104.0
+        ],
+        "envelope_mm": [
+          9.65,
+          5.84
+        ]
+      },
+      {
+        "instance": "c5_dbg_header",
+        "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+        "role": "keyed C5 UART0/RESET/BOOT header",
+        "position_mm": [
+          47.0,
+          104.0
+        ],
+        "envelope_mm": [
+          9.65,
+          5.84
+        ]
+      },
+      {
+        "instance": "rp_dbg_header",
+        "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+        "role": "keyed RP SWD/RUN/USB_BOOT header",
+        "position_mm": [
+          40.0,
+          104.0
+        ],
+        "envelope_mm": [
+          9.65,
+          5.84
+        ]
       }
     ]
   }

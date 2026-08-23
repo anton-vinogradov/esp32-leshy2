@@ -2,8 +2,8 @@
 
 [English](README.md) · [Прошивка](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/README.ru.md)
 
-> **Статус железа: H1 — физический дизайн устройства.** Текущий мокап не
-> принят; production ECAD, PCB routing и закупка заблокированы. Полный путь и
+> **Статус железа: H2 — production ECAD-схема.** Физический дизайн H1 принят.
+> Работа над схемой начата; PCB routing и закупка заблокированы. Полный путь и
 > текущая позиция показаны в [аппаратном роадмапе](docs/roadmap.ru.md).
 
 ## Роадмап и текущая позиция
@@ -15,8 +15,8 @@
 | Этап | Статус | Результат |
 |---|---|---|
 | H0 · Требования и функциональная архитектура | ✅ Проведено ревью | границы возможностей, вычислительные домены, владельцы, интерфейсы и safety rules |
-| **H1 · Физический дизайн устройства** | **▶️ Сейчас** | принятая внешняя/внутренняя компоновка, реальные размеры, органы управления, подписи и сходящийся resource budget |
-| H2 · Production ECAD-схема | ⏳ Ожидает H1 | точные symbols, pins, footprints, номиналы, nets и чистый ERC |
+| H1 · Физический дизайн устройства | ✅ Проведено ревью | принятая внешняя/внутренняя компоновка, реальные размеры, органы управления, подписи и сходящийся resource budget |
+| **H2 · Production ECAD-схема** | **▶️ Сейчас** | точные symbols, pins, footprints, номиналы, nets и чистый ERC |
 | H3 · Виртуальная электрическая проверка | ⏳ Ожидает H2 | power, transient, thermal, timing, RF и fault evidence |
 | H4 · Объединённый pre-layout gate | 🔒 Ожидает H1–H3 и firmware F3 | закрытые виртуальные blockers и названные физические неопределённости |
 | H5 · Образцы компонентов | 🔒 Ожидает H4 и одобрение стоимости | подтверждённые MPN, размеры и физическая совместимость |
@@ -25,82 +25,42 @@
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | RF, power, thermal, safety, endurance и полный HIL 3×nRF24 |
 | H9 · Производственный release | 🔒 Ожидает H8 и firmware F11 | воспроизводимый BOM/fab/test package и совместимые release tags |
 
-**Железо находится на H1.** Актуальной production-схемы, PCB layout и target-прогонов в
-эмуляторах ещё нет; ни один заказ не разрешён.
+**Железо находится на H2.** Production-схема создаётся; PCB layout и
+target-прогонов в эмуляторах ещё нет, ни один заказ не разрешён.
 
-### Текущая фаза H1 — детальная позиция
+### Текущая фаза H2 — детальная позиция
 
-<!-- current-substep: H1.8 -->
+<!-- current-substep: H2.2.2 -->
 
-**Точный маркер: `H1.8`** — формальная финальная приёмка полного пакета
-физического дизайна H1 до начала production-схемы.
+**Точный маркер: `H2.2.2`** — реализовать и проверить точные S3 core, memory,
+boot, native USB и service/reset paths на `UI_10_S3_CORE_MEMORY_BOOT`.
 
-- ✅ `H1.0` — перенести требования H0 в механический acceptance list.
-- `H1.1` — собрать реестр физических первоисточников.
-  - ✅ `H1.1.1` — зарегистрировать каждый выбранный корпус или явный `MPN TBD`
-    ровно с одной ролью в продукте.
-  - ✅ `H1.1.2` — сверить размеры, origin, ориентацию и направление
-    connector/actuator с evidence производителя.
-  - `H1.1.3` — классифицировать каждую оставшуюся физическую неопределённость.
-    - ✅ `H1.1.3.1` — собрать все открытые границы механических evidence.
-    - ✅ `H1.1.3.2` — классифицировать все H1 blocker и received-sample gate H5.
-    - `H1.1.3.3` — закрыть оставшиеся source-data blocker до фиксации renderer.
-      - ✅ `H1.1.3.3.1` — исчерпать открытые controlled-источники
-        производителей и актуальные evidence жизненного цикла/наличия.
-      - ✅ `H1.1.3.3.2` — сравнить полностью документированные замены без
-        ухудшения принятого функционала.
-      - ✅ `H1.1.3.3.3` — закрыть оставшиеся controlled-данные без заказа или
-        ограничить их влияние документированной сменной конструкцией.
-        - ✅ Бумажный nRF-тракт закрыт без закупки: evidence Ebyte Gen1, три
-          точных кабеля `2118651-2` и три точных платных разъёма
-          `U.FL-R-SMT-1(10)`; проверка реальной партии перенесена в H5.
-        - ✅ Навигация закрыта пятью точными серийными кнопками
-          `OMRON B3S-1100P` для ВВЕРХ, ВНИЗ, ВЛЕВО, ВПРАВО и OK; заказные
-          колпачки, толкатели и приводы не нужны.
-        - ✅ U214 закрыт проходной точной розеткой
-          `HLE-107-02-G-DV-PE-LC`; неизвестная длина штырей не меняет док.
-        - ✅ Дисплей закрыт сменной платой `L2-DISP-ADP-001-A`: точная пара
-          DF40 и двухсторонний ZIF сохраняют 40 цепей 1→1.
-      - ✅ `H1.1.3.3.4` — не потребовался; sample-план остаётся отложенным.
-  - ✅ `H1.1.4` — зафиксировать source table renderer.
-- ✅ `H1.2` — создать единую систему координат двух плат и корпуса.
-- ✅ `H1.3.0` — сгенерировать из единого source внешние стороны, органы
-  управления, стрелки и читаемую шелкографию. Десять TX-индикаторов образуют
-  два выровненных ряда по пять; экран разделён на корпус 54,5×83,0 мм и точную
-  активную область 48,96×73,44 мм с пропорцией 2:3.
-  - ✅ `H1.3.0.1` — разместить у экрана колонки точных серийных кнопок F1–F4
-    и F5–F8, убрать F1/F2 с задней стороны и M1, распределить все 16 прямых
-    входов и добавить локальную ESD-защиту без изменения дисплея.
-  - ✅ `H1.3.0.2` — заменить разъём только для наушников точным CTIA
-    `SJ-43504-SMT-TR`, сохранить непрерывный detect, добавить отдельный чистый
-    выбор микрофона и семь подтянутых локальных I/O по адресу I²C `0x39`.
-- ✅ `H1.3.1` — лицевая и задняя стороны приняты после разрешённого саморевью
-  подписей, направлений интерфейсов и мест органов управления.
-- ✅ `H1.4.0` — зеркальные внутренние стороны и межплатный stack сгенерированы
-  и машинно проверены со всеми корпусами, пересечениями и зазорами.
-- ✅ `H1.4.1` — обе внутренние стороны и их взаимное положение приняты после
-  разрешённого саморевью.
-- ✅ `H1.5.0` — сгенерированы и машинно проверены настоящий вид от антенного торца, разрезы, U214 и
-  траектории доступа к батареям.
-- ✅ `H1.5.1` — геометрия сверху/на разрезах и service access приняты после
-  разрешённого саморевью.
-- ✅ `H1.6` — проверки коллизий, зазоров, видимости, расстояний антенн, хода
-  органов управления и service access пройдены.
-- ✅ `H1.7.0` — pin/resource fit повторно сверен с физическим результатом и
-  собран единый cross-view package.
-- ✅ `H1.7.1` — пользовательское согласование сводной компоновки,
-  автоматических проверок и дельт проведено разрешённым саморевью.
-- ▶️ **`H1.8` — сейчас:** формальная финальная приёмка H1; только после неё
-  начинается H2.
+- ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
+- `H2.0` — зафиксировать авторитетные входы схемы и структуру проектов.
+  - ✅ `H2.0.1` — проверен полный реестр из 1002 строк: 974 экземпляра
+    основного устройства, 26 общих и 2 альтернативных экземпляра LoRa Cap.
+  - ✅ `H2.0.2` — проверены четыре проекта, границы плат и имена цепей.
+  - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт на 123 контакта и drift checks двух репозиториев.
+- ✅ `H2.1` — созданы четыре независимых KiCad-проекта, 28 native-листов и
+  репозиторные таблицы библиотек; пройдены parser/empty ERC в KiCad 10.
+- `H2.2` — реализовать и проверить листы UI/control PCB.
+  - ✅ `H2.2.1` — проверен корень UI: девять дочерних листов, 73 точные
+    межлистовые цепи и 180 именованных pins/child labels; прямые rails приняты KiCad.
+  - ▶️ **`H2.2.2` — сейчас:** S3 core, memory, boot, USB и service/reset.
+  - ⏳ `H2.2.3–H2.2.10` — display/storage; controls; audio; C5/IR;
+    receiver; M1; TX safety; manufacturing/test points — по порядку.
+- ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
+- ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
+- ⏳ `H2.5` — независимо проверить питание, boot, recovery, quiet-state и
+  `FAULT_KILL`.
+- ⏳ `H2.6` — закрыть ERC и объяснить каждый намеренный no-connect.
+- ⏳ `H2.7` — сверить контакты схемы с H1, M1 и firmware F2.
+- 🔒 `H2.8` — формальная финальная приёмка перед H3.
 
-`H1.1.3.3` завершается, когда по дисплею и U214 есть controlled evidence
-или проверенный ограничивающий дизайн, а все органы навигации выбраны из
-серийных компонентов. Закупка не служит коротким путём: сначала идут поиск источников, ревью
-документированной замены и запрос данных у производителя без заказа. Sample
-можно предложить только последним резервом и всё равно отдельно согласовать.
-После закрытия любой подзадачи этот маркер и обе страницы роадмапа обновляются
-тем же commit до перехода дальше. Поздняя правка повторно открывает
-затронутый пользовательский gate и все зависящие от него gates.
+Точный машиночитаемый план находится в
+[`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). После
+закрытия подзадачи маркер и обе страницы роадмапа обновляются в том же commit.
+Поздняя функциональная или физическая правка повторно открывает затронутые gates.
 
 Leshy2 — открытый автономный прибор для наблюдения за радиоэфиром, связи,
 диагностики и разрешённого исследования беспроводных и контактных систем.
@@ -141,7 +101,9 @@ Sub‑GHz, voice и U214; один `MSPM0C1106SDGS20R` независимо до
 
 ### Внешние и внутренние стороны плат
 
-![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=16)
+![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=17)
+
+![Внешний сервисный доступ Leshy2](docs/images/service-access.svg?layout=1)
 
 Для пяти точных серийных кнопок навигации и их зазоров есть отдельный
 машинно проверяемый чертёж размещения.
@@ -372,21 +334,21 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>основной USB-C разъём"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>защита CC и USB2 порта"]
-S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: UART0/RESET/BOOT"]
-S3_RESET_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка RESET S3"]
-S3_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка BOOT S3"]
+S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>внутренний резервный DBG10: UART0/RESET/BOOT"]
+S3_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка RESET S3"]
+S3_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка BOOT S3"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2,4/5 ГГц, IEEE 802.15.4 и IR"]
 C5_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>data-only USB-C восстановления C5"]
 C5_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>power-off-защищённый USB2 ключ C5"]
-C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: UART0/RESET/BOOT"]
-C5_RESET_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка RESET C5"]
-C5_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка BOOT C5"]
+C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>внутренний резервный DBG10: UART0/RESET/BOOT"]
+C5_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка RESET C5"]
+C5_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка BOOT C5"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
 RP_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>data-only USB-C восстановления RP"]
 RP_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>power-off-защищённый USB2 ключ RP"]
-RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>ключевой DBG10: SWD/RUN/USB_BOOT"]
-RP_RESET_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка RUN/RESET RP"]
-RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>технологическая кнопка USB_BOOT RP"]
+RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>внутренний резервный DBG10: SWD/RUN/USB_BOOT"]
+RP_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка RUN/RESET RP"]
+RP_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>внешняя боковая кнопка USB_BOOT RP"]
   PRODUCT_USB_CONNECTOR <-->|"USB2 data"| PRODUCT_USB_PROTECTOR <-->|"native USB"| S3
   S3_DBG_HEADER <-->|"UART0 + RESET + BOOT"| S3
   S3_RESET_BUTTON -->|"RESET"| S3
@@ -489,6 +451,12 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>диодное объединение evidence nRF
 EVIDENCE_OR_2["BAT54ALT1G<br/>диодное объединение evidence nRF24 №3 и Sub-GHz"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>диодное объединение evidence voice и IR"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>диодное объединение evidence LoRa/EXT"]
+UI_EVIDENCE_OR_0["BAT54ALT1G<br/>лицевое диодное объединение evidence S3 и C5"]
+UI_EVIDENCE_OR_1["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №1 и №2"]
+UI_EVIDENCE_OR_2["BAT54ALT1G<br/>лицевое диодное объединение evidence nRF24 №3 и Sub-GHz"]
+UI_EVIDENCE_OR_3["BAT54ALT1G<br/>лицевое диодное объединение evidence voice и IR"]
+UI_EVIDENCE_OR_4["BAT54ALT1G<br/>лицевое диодное объединение evidence LoRa/EXT"]
+UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>локальная лицевая подтяжка общего индикатора передачи"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX-свидетельств в main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -515,6 +483,17 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>развязка цифровых TX
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
+  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
+  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
+  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
+  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
+  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
+  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```
 
 Точные контакты показаны в [распиновке](docs/pinout.ru.md), а прохождение сигналов между платами — в [карте M1](docs/interconnect.ru.md).

@@ -38,7 +38,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Hirose `DF40C-40DP-0.4V(51)` | 5",
             "Ebyte `E01-ML01IPX` | 4",
             "NiceRF `SA518` | 2",
-            "KiCad remains unauthorized",
+            "PCB placement/routing, fabrication and purchasing remain unauthorized",
         ):
             self.assertIn(token, plan)
         self.assertIn("$164.54", plan)
@@ -68,7 +68,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         candidate = next(c for c in self.candidates if c["id"] == contract["hardware_architecture"])
         self.assertEqual("LESHY2-HWFW-1", contract["contract_id"])
-        self.assertEqual("pre_schematic_reviewed", contract["review_status"])
+        self.assertEqual(2, contract["schema"])
+        self.assertEqual("h2_0_3_reviewed", contract["review_status"])
 
         for controller in contract["controllers"]:
             device_id = candidate["instances"][controller["instance"]]
@@ -133,21 +134,28 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         pin_map = contract["pin_map"]
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
-        self.assertEqual(8, sum(row["net"] == "3V3_MAIN" for row in pin_map))
-        self.assertEqual(4, sum(row["signal_class"] == "reserved" for row in pin_map))
+        self.assertEqual(7, sum(row["net"] == "3V3_MAIN" for row in pin_map))
+        self.assertEqual(0, sum(row["signal_class"] == "reserved" for row in pin_map))
         mapped = {row["net"] for row in pin_map}
         self.assertTrue(
             {
                 "S3_USB_DM", "S3_USB_DP", "RUN_PERMIT", "RF_RESET_KILL_GATE",
                 "UI_ENCODER_PUSH_N",
                 "ENCODER_A", "ENCODER_B", "S3_RESET_KILL_GATE",
-                "UI_ZONE_TEMP_ADC", "FAULT_LATCH_SENSE",
+                "UI_ZONE_TEMP_ADC", "FAULT_LATCH_SENSE_AON",
+                "EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2",
+                "EV_N5_CC", "EV_N6_VOICE", "EV_N8_LORA_EXT",
                 "MIC_RAW", "SPEAKER_AMP_EN",
             } <= mapped
         )
         by_contact = {row["contact"]: row for row in pin_map}
-        self.assertEqual("reserved", by_contact[29]["signal_class"])
-        self.assertEqual("reserved", by_contact[33]["signal_class"])
+        self.assertEqual("EV_N2_NRF0", by_contact[29]["net"])
+        self.assertEqual("EV_N3_NRF1", by_contact[30]["net"])
+        self.assertEqual("EV_N4_NRF2", by_contact[33]["net"])
+        self.assertEqual("EV_N5_CC", by_contact[58]["net"])
+        self.assertEqual("FAULT_LATCH_SENSE_AON", by_contact[77]["net"])
+        self.assertEqual("EV_N6_VOICE", by_contact[79]["net"])
+        self.assertEqual("EV_N8_LORA_EXT", by_contact[80]["net"])
         self.assertEqual(
             {"net": "MIC_RAW", "direction": "RF→UI", "signal_class": "audio"},
             {key: by_contact[48][key] for key in ("net", "direction", "signal_class")},
@@ -252,7 +260,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(967, sum(line["quantity"] for line in lines))
+        self.assertEqual(973, sum(line["quantity"] for line in lines))
         self.assertEqual(201, len(lines))
         self.assertEqual(
             1,
@@ -267,7 +275,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            950,
+            956,
             sum(
                 line["quantity"]
                 for line in lines
@@ -343,13 +351,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**968** architecture instances", rendered)
-        self.assertIn("**967** supplied/costed placements", rendered)
+        self.assertIn("**974** architecture instances", rendered)
+        self.assertIn("**973** supplied/costed placements", rendered)
         self.assertIn("**200/201** used lines", rendered)
         self.assertIn("**201/201** lines", rendered)
         self.assertIn("**190/201** lines", rendered)
-        self.assertIn("**950/967** supplied placements", rendered)
-        self.assertIn("USD 219.9333", rendered)
+        self.assertIn("**956/973** supplied placements", rendered)
+        self.assertIn("USD 220.3425", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -368,7 +376,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertIn("HMX035CTFT-001", rendered)
         self.assertIn("narrow screen", rendered)
-        self.assertIn("KiCad remains unauthorized", rendered)
+        self.assertIn("PCB placement/routing, fabrication and purchasing remain unauthorized", rendered)
 
         cap_socket = self.database["devices"]["samtec_hle_107_02_g_dv_pe_lc"]
         self.assertIn("138 shown", cap_socket["orderable_source"]["document"])
@@ -395,7 +403,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(40, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1135, policy["expected_occurrence_count"])
+        self.assertEqual(1137, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -419,7 +427,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         rendered = GENERATOR.render_ledger(self.database, self.candidates)
         self.assertIn("G2F-3I — проведено сводное предсхемное ревью", rendered)
-        self.assertIn("does not by itself authorize KiCad", rendered)
+        self.assertIn("does not authorize PCB placement/routing", rendered)
         pinout = GENERATOR.render_principled_pinout(self.database, self.candidates)
         self.assertIn("целевая принципиальная распиновка G2F-3I", pinout)
         self.assertNotIn("не target architecture", pinout)
@@ -472,6 +480,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             "SPEAKER",
             "MICROPHONE",
             "POWER",
+            "S3 RST",
+            "S3 BOOT",
+            "C5 RST",
+            "C5 BOOT",
+            "RP RST",
+            "RP BOOT",
         ):
             self.assertIn(token, rendered)
         self.assertNotIn("SPEAKER / GRILLE", rendered)
@@ -506,14 +520,14 @@ class ArchitectureValidationTests(unittest.TestCase):
             "CMEJ-0413-42-SMT-TR",
             "JS102011SCQN",
             "TPS3435CAKAGDDFR",
-            "SKQGADE010",
+            "SKRTLAE010",
             "FTSH-105-01-L-DV-K-P-TR",
             "Texas Instruments TMUX1136DGSR",
             "TCA4307DGKR",
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="36"',
+            'data-opposing-pairs="35"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="9"',
@@ -3842,12 +3856,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             "s3_dbg_header": "samtec_ftsh_105_01_l_dv_k_p_tr",
             "c5_dbg_header": "samtec_ftsh_105_01_l_dv_k_p_tr",
             "rp_dbg_header": "samtec_ftsh_105_01_l_dv_k_p_tr",
-            "s3_reset_button": "alps_skqgade010",
-            "s3_boot_button": "alps_skqgade010",
-            "c5_reset_button": "alps_skqgade010",
-            "c5_boot_button": "alps_skqgade010",
-            "rp_reset_button": "alps_skqgade010",
-            "rp_boot_button": "alps_skqgade010",
+            "s3_reset_button": "alps_skrtlae010",
+            "s3_boot_button": "alps_skrtlae010",
+            "c5_reset_button": "alps_skrtlae010",
+            "c5_boot_button": "alps_skrtlae010",
+            "rp_reset_button": "alps_skrtlae010",
+            "rp_boot_button": "alps_skrtlae010",
             "safe_reset_buffer": "ti_sn74lvc1g06_dckr",
             "safe_reset_sink_a": "diodes_2n7002dw_7_f",
             "safe_reset_sink_b": "diodes_2n7002dw_7_f",
@@ -3891,7 +3905,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for token in (
             "GCT USB4105-GF-A",
             "Samtec FTSH-105-01-L-DV-K-P-TR",
-            "Alps Alpine SKQGADE010",
+            "Alps Alpine SKRTLAE010",
             "onsemi FSUSB42MUX",
             "SN74LVC1G06DCKR",
             "2N7002DW-7-F",
@@ -3945,7 +3959,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("slow_io_s3_evidence_iso.Y", "slow_io.P23", "S3_RF_TX_EVIDENCE_N"),
             ("sd_miso_series.END_2", "s3.GPIO4", "DISPLAY_SD_SPI_D1"),
             ("product_usb_connector.SHIELD", "abstract:power-ground", "USB_C_SHIELD"),
-            ("safe_latch.Q", "fault_led_series.END_1", "FAULT_LED_DRIVE"),
+            ("safe_latch.Q", "fault_led_series.END_1", "FAULT_LATCH_SENSE_AON"),
             ("fault_led_series.END_2", "fault_led.A", "FAULT_LED_A"),
         ):
             self.assertIn(route, routes)

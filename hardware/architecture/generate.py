@@ -257,8 +257,8 @@ def validate_sources(
             if contacts != list(range(1, 81)):
                 errors.append(f"{candidate_id}: M1 contacts must cover ordered physical positions 1..80 exactly once")
             reserved = sum(row.get("signal_class") == "reserved" for row in pin_map)
-            if reserved != accounting.get("reserved") or reserved < 2:
-                errors.append(f"{candidate_id}: M1 must retain at least two explicit no-connect reserves")
+            if reserved != accounting.get("reserved"):
+                errors.append(f"{candidate_id}: M1 reserved-contact accounting is inconsistent")
             instances = candidate.get("instances", {})
             expected_connectors = {
                 connector.get("ui_instance"): "hirose_fx8c_80p_sv1_92",
@@ -275,7 +275,9 @@ def validate_sources(
                 "SYS_I2C_SDA", "SYS_I2C_SCL", "SYS_INT_N", "RUN_PERMIT",
                 "RF_RESET_KILL_GATE", "S3_RESET_KILL_GATE",
                 "UI_ENCODER_PUSH_N", "ENCODER_A", "ENCODER_B",
-                "FAULT_LATCH_SENSE", "UI_ZONE_TEMP_ADC", "EV_N0_S3", "EV_N1_C5",
+                "FAULT_LATCH_SENSE_AON", "UI_ZONE_TEMP_ADC", "EV_N0_S3", "EV_N1_C5",
+                "EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2", "EV_N5_CC",
+                "EV_N6_VOICE", "EV_N8_LORA_EXT",
                 "EV_N7_IR", "C5_RF_TX_EVIDENCE_N", "IR_TX_EVIDENCE_N",
                 "RX_SA518_AFOUT_ISOLATED", "VOICE_MIC_SELECTED_MAIN", "MIC_RAW",
                 "SPEAKER_SELECTED_P", "SPEAKER_SELECTED_N", "SPEAKER_AMP_EN", "3V3_MAIN",
@@ -294,8 +296,8 @@ def validate_sources(
             leaked = forbidden & mapped_nets
             if leaked:
                 errors.append(f"{candidate_id}: M1 carries forbidden power/analog/high-slew nets {sorted(leaked)}")
-            if sum(row.get("net") == "3V3_MAIN" for row in pin_map) != 8:
-                errors.append(f"{candidate_id}: M1 must retain eight paralleled 3V3_MAIN contacts")
+            if sum(row.get("net") == "3V3_MAIN" for row in pin_map) != 7:
+                errors.append(f"{candidate_id}: M1 must retain seven paralleled 3V3_MAIN contacts")
 
         antenna_policy = candidate.get("antenna_policy", {})
         expected_antenna_policy = {
@@ -1194,7 +1196,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
     review_status = (
         "- Статус: **"
         + ", ".join(reviewed_targets)
-        + " — проведено сводное предсхемное ревью; остальные варианты являются сравнительными; это не разрешение начинать KiCad**"
+        + " — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, а PCB placement/routing остаётся отдельным gate**"
         if reviewed_targets
         else "- Статус: **машинные проверки проведены; target architecture ещё не принята**"
     )
@@ -1488,7 +1490,7 @@ def render_ledger(database: dict[str, Any], candidates: list[dict[str, Any]]) ->
         "",
         "## Machine-check result and review boundary",
         "",
-        "All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. This status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not by itself authorize KiCad.",
+        "All source candidates pass structural validation: exact exposed contacts and programmable GPIO are accounted without collisions. For G2F-3I, non-MCU contacts, interface resources, controller windows, fixed-mux contacts, capacity arithmetic, signal groups, quiet states, power/safety paths, product geometry and the HW/FW boundary have also passed the joint pre-schematic review. G2F-3I therefore has status «Проведено ревью» as the target architecture. H1 final acceptance now authorizes H2 production-schematic work only; this status does not replace received-part, electrical, RF, thermal, acoustic or coexistence qualification and does not authorize PCB placement/routing.",
         "",
     ]
     return "\n".join(lines)
@@ -1757,7 +1759,7 @@ def render_target_bom_review(
         "",
         audit["exit"] + ".",
         "",
-        "Until those conditions pass, the BOM has **not** received «Проведено ревью», no total COGS is claimed and KiCad remains unauthorized.",
+        "Until those conditions pass, the BOM has **not** received «Проведено ревью», no total COGS is claimed and PCB placement/routing, fabrication and purchasing remain unauthorized.",
         "",
     ]
     return "\n".join(lines)
@@ -2076,15 +2078,15 @@ def render_target_principled_section(
             "c5_service_usb_switch": "power-off-защищённый USB2 ключ C5",
             "rp_service_usb_connector": "data-only USB-C восстановления RP",
             "rp_service_usb_switch": "power-off-защищённый USB2 ключ RP",
-            "s3_dbg_header": "ключевой DBG10: UART0/RESET/BOOT",
-            "c5_dbg_header": "ключевой DBG10: UART0/RESET/BOOT",
-            "rp_dbg_header": "ключевой DBG10: SWD/RUN/USB_BOOT",
-            "s3_reset_button": "технологическая кнопка RESET S3",
-            "s3_boot_button": "технологическая кнопка BOOT S3",
-            "c5_reset_button": "технологическая кнопка RESET C5",
-            "c5_boot_button": "технологическая кнопка BOOT C5",
-            "rp_reset_button": "технологическая кнопка RUN/RESET RP",
-            "rp_boot_button": "технологическая кнопка USB_BOOT RP",
+            "s3_dbg_header": "внутренний резервный DBG10: UART0/RESET/BOOT",
+            "c5_dbg_header": "внутренний резервный DBG10: UART0/RESET/BOOT",
+            "rp_dbg_header": "внутренний резервный DBG10: SWD/RUN/USB_BOOT",
+            "s3_reset_button": "внешняя боковая кнопка RESET S3",
+            "s3_boot_button": "внешняя боковая кнопка BOOT S3",
+            "c5_reset_button": "внешняя боковая кнопка RESET C5",
+            "c5_boot_button": "внешняя боковая кнопка BOOT C5",
+            "rp_reset_button": "внешняя боковая кнопка RUN/RESET RP",
+            "rp_boot_button": "внешняя боковая кнопка USB_BOOT RP",
             "pd_vbus_tvs": "шунтирующая защита VBUS 22 В",
             "pd_controller": "sink-only USB-PD контроллер",
             "nvdc_charger": "2S зарядка и NVDC power path",
@@ -2114,6 +2116,12 @@ def render_target_principled_section(
             "evidence_or_2": "диодное объединение evidence nRF24 №3 и Sub-GHz",
             "evidence_or_3": "диодное объединение evidence voice и IR",
             "evidence_or_4": "диодное объединение evidence LoRa/EXT",
+            "ui_evidence_or_0": "лицевое диодное объединение evidence S3 и C5",
+            "ui_evidence_or_1": "лицевое диодное объединение evidence nRF24 №1 и №2",
+            "ui_evidence_or_2": "лицевое диодное объединение evidence nRF24 №3 и Sub-GHz",
+            "ui_evidence_or_3": "лицевое диодное объединение evidence voice и IR",
+            "ui_evidence_or_4": "лицевое диодное объединение evidence LoRa/EXT",
+            "ui_any_tx_pullup": "локальная лицевая подтяжка общего индикатора передачи",
             "evidence_main_isolator": "развязка цифровых TX-свидетельств в main domain",
         }
         atlas_text = (
@@ -2212,15 +2220,15 @@ def render_target_principled_section(
             "c5_service_usb_switch": "power-off-protected C5 USB2 switch",
             "rp_service_usb_connector": "data-only RP recovery USB-C",
             "rp_service_usb_switch": "power-off-protected RP USB2 switch",
-            "s3_dbg_header": "keyed DBG10: UART0/RESET/BOOT",
-            "c5_dbg_header": "keyed DBG10: UART0/RESET/BOOT",
-            "rp_dbg_header": "keyed DBG10: SWD/RUN/USB_BOOT",
-            "s3_reset_button": "S3 service RESET button",
-            "s3_boot_button": "S3 service BOOT button",
-            "c5_reset_button": "C5 service RESET button",
-            "c5_boot_button": "C5 service BOOT button",
-            "rp_reset_button": "RP service RUN/RESET button",
-            "rp_boot_button": "RP service USB_BOOT button",
+            "s3_dbg_header": "internal fallback DBG10: UART0/RESET/BOOT",
+            "c5_dbg_header": "internal fallback DBG10: UART0/RESET/BOOT",
+            "rp_dbg_header": "internal fallback DBG10: SWD/RUN/USB_BOOT",
+            "s3_reset_button": "external side S3 RESET button",
+            "s3_boot_button": "external side S3 BOOT button",
+            "c5_reset_button": "external side C5 RESET button",
+            "c5_boot_button": "external side C5 BOOT button",
+            "rp_reset_button": "external side RP RUN/RESET button",
+            "rp_boot_button": "external side RP USB_BOOT button",
             "pd_vbus_tvs": "22-V VBUS shunt protector",
             "pd_controller": "sink-only USB-PD controller",
             "nvdc_charger": "2S charger and NVDC power path",
@@ -2250,6 +2258,12 @@ def render_target_principled_section(
             "evidence_or_2": "nRF24 #3 and sub-GHz evidence diode combiner",
             "evidence_or_3": "voice and IR evidence diode combiner",
             "evidence_or_4": "LoRa/EXT evidence diode combiner",
+            "ui_evidence_or_0": "front-local S3 and C5 evidence diode combiner",
+            "ui_evidence_or_1": "front-local nRF24 #1 and #2 evidence diode combiner",
+            "ui_evidence_or_2": "front-local nRF24 #3 and sub-GHz evidence diode combiner",
+            "ui_evidence_or_3": "front-local voice and IR evidence diode combiner",
+            "ui_evidence_or_4": "front-local LoRa/EXT evidence diode combiner",
+            "ui_any_tx_pullup": "front-local aggregate-TX indicator pull-up",
             "evidence_main_isolator": "digital TX-evidence isolation into the main domain",
         }
         atlas_text = (
@@ -2479,6 +2493,9 @@ def render_target_principled_section(
                 node("evidence_or_0"), node("evidence_or_1"),
                 node("evidence_or_2"), node("evidence_or_3"),
                 node("evidence_or_4"),
+                node("ui_evidence_or_0"), node("ui_evidence_or_1"),
+                node("ui_evidence_or_2"), node("ui_evidence_or_3"),
+                node("ui_evidence_or_4"), node("ui_any_tx_pullup"),
                 node("evidence_main_isolator"),
             ],
             [
@@ -2507,6 +2524,17 @@ def render_target_principled_section(
                 '  EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR',
                 '  EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR',
                 '  EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR',
+                '  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0',
+                '  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3',
+                '  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1',
+                '  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2',
+                '  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3',
+                '  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4',
+                '  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
+                '  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
+                '  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
+                '  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
+                '  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP',
             ],
         ),
     ]
@@ -2656,10 +2684,10 @@ def render_public_interconnect(
         table_heading = "Точная карта контактов"
         columns = ("Контакт", "Цепь", "Направление", "Класс")
         footer = (
-            "Восемь параллельных контактов `3V3_MAIN` дают паспортный потолок 3,2 А, "
+            "Семь параллельных контактов `3V3_MAIN` дают паспортный потолок 2,8 А, "
             "но допустимый ток готового устройства определяется только измерением нагрева "
-            "разъёма при одновременной нагрузке. Четыре резервных контакта остаются "
-            "физически не подключёнными."
+            "разъёма при одновременной нагрузке. Все 80 контактов назначены; шесть "
+            "цифровых линий RF evidence выделены для лицевых индикаторов передачи."
         )
         ui_groups = (
             f"Вычислители: `{mpn('s3')}` управляет UI, экраном, картой памяти и аудио; `{mpn('c5')}` — собственными диапазонами 2,4/5 ГГц и IR.",
@@ -2710,10 +2738,10 @@ def render_public_interconnect(
         table_heading = "Exact contact map"
         columns = ("Contact", "Net", "Direction", "Class")
         footer = (
-            "Eight paralleled `3V3_MAIN` contacts provide a 3.2-A nameplate ceiling, "
+            "Seven paralleled `3V3_MAIN` contacts provide a 2.8-A nameplate ceiling, "
             "but finished-device current is accepted only after connector-temperature "
-            "measurement under simultaneous load. Four reserve contacts remain physically "
-            "unconnected."
+            "measurement under simultaneous load. All 80 contacts are assigned; six "
+            "digital RF-evidence lines are dedicated to the front transmit indicators."
         )
         ui_groups = (
             f"Compute: `{mpn('s3')}` owns UI, display, storage and audio; `{mpn('c5')}` owns native 2.4/5-GHz radio and IR.",
@@ -3162,6 +3190,8 @@ def _render_principled_pinout_bundle(
         "evidence_mask_p15_pulldown", "evidence_mask_p16_pulldown",
         "evidence_mask_p17_pulldown",
         "evidence_or_0", "evidence_or_1", "evidence_or_2", "evidence_or_3", "evidence_or_4",
+        "ui_evidence_or_0", "ui_evidence_or_1", "ui_evidence_or_2",
+        "ui_evidence_or_3", "ui_evidence_or_4", "ui_any_tx_pullup",
         "any_tx_aon_pullup", "any_tx_led_series", "any_tx_led",
         "ext_tx_led_series", "ext_tx_led",
         "evidence_main_isolator", "evidence_main_isolator_bypass",
@@ -3198,6 +3228,12 @@ def _render_principled_pinout_bundle(
             "evidence_or_2": "evidence diode-OR pair 4/5",
             "evidence_or_3": "evidence diode-OR pair 6/7",
             "evidence_or_4": "evidence diode-OR source 8 with one unused diode",
+            "ui_evidence_or_0": "front-local evidence diode-OR pair 0/1",
+            "ui_evidence_or_1": "front-local evidence diode-OR pair 2/3",
+            "ui_evidence_or_2": "front-local evidence diode-OR pair 4/5",
+            "ui_evidence_or_3": "front-local evidence diode-OR pair 6/7",
+            "ui_evidence_or_4": "front-local evidence diode-OR source 8 with one unused diode",
+            "ui_any_tx_pullup": "10-kOhm front-local ANY-TX logic pull-up resistor",
             "any_tx_aon_pullup": "10-kOhm AON ANY-TX logic pull-up resistor",
             "any_tx_led_series": "2.2-kOhm physical ANY-TX indicator current limit",
             "any_tx_led": "red physical ANY-TX indicator",
@@ -3326,7 +3362,7 @@ def _render_principled_pinout_bundle(
     lines = [
         "# G2F-3I — generated principled pinout atlas",
         "",
-        "- Статус: **целевая принципиальная распиновка G2F-3I — проведено сводное предсхемное ревью; это не разрешение начинать KiCad**",
+        "- Статус: **целевая принципиальная распиновка G2F-3I — проведено сводное предсхемное ревью; H1 принят; разрешена только H2 production-схема, не PCB placement/routing**",
         "- Source of truth: `hardware/architecture/devices.json` and `hardware/architecture/candidates/G2F-3I.json`",
         "- Regenerate: `python3 hardware/architecture/generate.py --write`",
         "- Verify: `python3 hardware/architecture/generate.py --check`",
@@ -4406,7 +4442,18 @@ def _render_principled_pinout_bundle(
         "  EVIDENCE_OR_2 --> ANY_TX_AON_PULLUP",
         "  EVIDENCE_OR_3 --> ANY_TX_AON_PULLUP",
         "  EVIDENCE_OR_4 --> ANY_TX_AON_PULLUP",
-        "  ANY_TX_LED_SERIES --> ANY_TX_LED --> ANY_TX_AON_PULLUP",
+        "  EVIDENCE_CMP_A --> UI_EVIDENCE_OR_0",
+        "  EVIDENCE_CMP_A --> UI_EVIDENCE_OR_3",
+        "  EVIDENCE_CMP_B --> UI_EVIDENCE_OR_1",
+        "  EVIDENCE_CMP_B --> UI_EVIDENCE_OR_2",
+        "  EVIDENCE_CMP_VOICE --> UI_EVIDENCE_OR_3",
+        "  EXT_EVIDENCE_BUFFER --> UI_EVIDENCE_OR_4",
+        "  UI_EVIDENCE_OR_0 --> UI_ANY_TX_PULLUP",
+        "  UI_EVIDENCE_OR_1 --> UI_ANY_TX_PULLUP",
+        "  UI_EVIDENCE_OR_2 --> UI_ANY_TX_PULLUP",
+        "  UI_EVIDENCE_OR_3 --> UI_ANY_TX_PULLUP",
+        "  UI_EVIDENCE_OR_4 --> UI_ANY_TX_PULLUP",
+        "  ANY_TX_LED_SERIES --> ANY_TX_LED --> UI_ANY_TX_PULLUP",
         "  EXT_TX_LED_SERIES --> EXT_TX_LED --> EXT_EVIDENCE_BUFFER",
         "  EVIDENCE_MASK <-->|\"private bit-banged I²C source mask\"| SAFETY_CONTROLLER",
         "  EVIDENCE_CMP_A -->|\"C5 RF evidence\"| EVIDENCE_MAIN_ISOLATOR",
@@ -4464,7 +4511,7 @@ def _render_principled_pinout_bundle(
         "PIO/DMA capacity, independent radio/IPC resources и exact paper-level",
         "AON RUN/KILL, watchdog, thermal and physical-TX evidence circuit. Remaining peripheral MPN, branch power,",
         "signal/power integrity, RF taps/layout and HIL are later gates; этот atlas",
-        "не разрешает KiCad и не является frozen BOM.",
+        "не разрешает PCB placement/routing, печать или закупку и не является frozen BOM.",
         "",
     ]
     projection_heading = lines.index("## Полная машинная проекция owners и pin groups")

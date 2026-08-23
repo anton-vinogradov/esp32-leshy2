@@ -2,8 +2,8 @@
 
 [Русский](README.ru.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
 
-> **Hardware status: H1 — physical product design.** The current mockup
-> is not accepted; production ECAD, PCB routing and purchasing remain blocked.
+> **Hardware status: H2 — production ECAD schematic.** The H1 physical design
+> is accepted. Schematic work is active; PCB routing and purchasing remain blocked.
 > Follow the [hardware roadmap](docs/roadmap.md).
 
 ## Roadmap and current position
@@ -15,8 +15,8 @@ dependencies and exit criteria.
 | Stage | Status | Result |
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ Reviewed | capability scope, compute domains, owners, interfaces and safety rules |
-| **H1 · Physical product design** | **▶️ Current** | accepted exterior/inner arrangement, real dimensions, controls, labels and feasible resource allocation |
-| H2 · Production ECAD schematic | ⏳ Waiting for H1 | exact symbols, pins, footprints, values, nets and clean ERC |
+| H1 · Physical product design | ✅ Reviewed | accepted exterior/inner arrangement, real dimensions, controls, labels and feasible resource allocation |
+| **H2 · Production ECAD schematic** | **▶️ Current** | exact symbols, pins, footprints, values, nets and clean ERC |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | power, transient, thermal, timing, RF and fault evidence |
 | H4 · Joined pre-layout gate | 🔒 Waiting for H1–H3 and firmware F3 | closed virtual blockers and named physical uncertainties |
 | H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | received-part identity, dimensions and fit evidence |
@@ -25,83 +25,42 @@ dependencies and exit criteria.
 | H8 · Physical qualification | 🔒 Waiting for H7 | RF, power, thermal, safety, endurance and full 3×nRF24 HIL |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | reproducible BOM/fab/test package and compatible release tags |
 
-**Hardware is at H1.** There is no current production schematic, PCB layout or
-target-emulator run, and no order is authorized.
+**Hardware is at H2.** The production schematic is being created; there is no
+PCB layout or target-emulator run, and no order is authorized.
 
-### Current phase H1 — detailed position
+### Current phase H2 — detailed position
 
-<!-- current-substep: H1.8 -->
+<!-- current-substep: H2.2.2 -->
 
-**Exact marker: `H1.8`** — formal final acceptance of the complete H1 physical
-design package before production schematic work may begin.
+**Exact marker: `H2.2.2`** — implement and review the exact S3 core, memory,
+boot, native USB and service/reset paths on `UI_10_S3_CORE_MEMORY_BOOT`.
 
-- ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
-- `H1.1` — build the physical-source register.
-  - ✅ `H1.1.1` — register every selected body or explicit `MPN TBD` with one
-    product role.
-  - ✅ `H1.1.2` — reconcile dimensions, origin, orientation and
-    connector/actuator direction with manufacturer evidence.
-  - `H1.1.3` — classify every remaining physical uncertainty.
-    - ✅ `H1.1.3.1` — inventory all open mechanical evidence boundaries.
-    - ✅ `H1.1.3.2` — classify every H1 blocker and H5 sample gate.
-    - `H1.1.3.3` — resolve the remaining source-data blockers before freezing
-      the physical renderer.
-      - ✅ `H1.1.3.3.1` — exhaust public manufacturer-controlled sources and
-        current lifecycle/stock evidence.
-      - ✅ `H1.1.3.3.2` — compare fully documented replacements without
-        degrading an accepted function.
-      - ✅ `H1.1.3.3.3` — close remaining controlled data without an order or
-        bound its effect with a documented replaceable design.
-        - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
-          three exact `2118651-2` jumpers and three exact
-          `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
-        - ✅ Navigation controls closed with five exact series
-          `OMRON B3S-1100P` buttons for UP, DOWN, LEFT, RIGHT and OK; no
-          custom cap, plunger or actuator is required.
-        - ✅ U214 closed with exact pass-through
-          `HLE-107-02-G-DV-PE-LC`; unknown post length cannot change the dock.
-        - ✅ Display closed with replaceable `L2-DISP-ADP-001-A`: an exact
-          DF40 pair and dual-contact ZIF preserve all 40 contacts one-to-one.
-      - ✅ `H1.1.3.3.4` — not required; the sample plan remains parked.
-  - ✅ `H1.1.4` — freeze the renderer source table.
-- ✅ `H1.2` — create one coordinate model for both boards and the enclosure.
-- ✅ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
-  from the unified source. Ten TX indicators form two aligned rows of five;
-  the display distinguishes its 54.5×83.0-mm body from the exact
-  48.96×73.44-mm 2:3 active area.
-  - ✅ `H1.3.0.1` — place exact serial F1–F4 and F5–F8 columns beside the
-    display, move F1/F2 off the rear face and M1, allocate all 16 direct-input
-    contacts and add local ESD protection without changing the display.
-  - ✅ `H1.3.0.2` — replace the headphone-only socket with exact CTIA
-    `SJ-43504-SMT-TR`, preserve continuous plug detection, add clean dedicated
-    microphone selection and seven pulled local I/O reserves at I²C `0x39`.
-- ✅ `H1.3.1` — complete front and rear exterior accepted after authorized
-  self-review of labels, interface directions and control locations.
-- ✅ `H1.4.0` — mirrored inner faces and the board-to-board stack generated and
-  machine-reviewed with all bodies, crossings and clearances accounted.
-- ✅ `H1.4.1` — both internal faces and their sandwich relationship accepted
-  after authorized self-review.
-- ✅ `H1.5.0` — generated and machine-reviewed the real antenna-edge top view, sections, U214 and
-  battery-access paths.
-- ✅ `H1.5.1` — top/section geometry and service access accepted after
-  authorized self-review.
-- ✅ `H1.6` — collision, clearance, visibility, antenna-spacing, actuation and
-  service-access checks passed.
-- ✅ `H1.7.0` — pin/resource fit repeated against the physical result and one
-  cross-view package assembled.
-- ✅ `H1.7.1` — consolidated layout, automatic checks and deltas accepted
-  after authorized self-review.
-- ▶️ **`H1.8` — current:** formal final user acceptance of H1; only then may
-  H2 begin.
+- ✅ `H1.8` — complete physical design accepted on 23 August 2026.
+- `H2.0` — freeze authoritative schematic inputs and project structure.
+  - ✅ `H2.0.1` — complete 1002-row circuit inventory reviewed: 974 main-device
+    instances plus 26 common and 2 alternative LoRa-Cap instances.
+  - ✅ `H2.0.2` — four-project sheet graph, board boundaries and net naming reviewed.
+  - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP contract and cross-repository drift checks reviewed.
+- ✅ `H2.1` — four independent KiCad projects, 28 native sheet files and
+  repository-controlled library tables created; KiCad 10 parser/empty ERC passed.
+- `H2.2` — implement and review UI/control PCB sheets.
+  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 73 exact cross-sheet
+    nets and 180 named pins/child labels; direct root rails parse in KiCad.
+  - ▶️ **`H2.2.2` — current:** S3 core, memory, boot, USB and service/reset.
+  - ⏳ `H2.2.3–H2.2.10` — display/storage; controls; audio; C5/IR;
+    receiver; M1; TX safety; manufacturing/test points, in that order.
+- ⏳ `H2.3` — implement and review RF/power PCB sheets.
+- ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
+- ⏳ `H2.5` — independently review power, boot, recovery, quiet-state and
+  `FAULT_KILL` paths.
+- ⏳ `H2.6` — close ERC and justify every intentional no-connect.
+- ⏳ `H2.7` — reconcile schematic contacts with H1, M1 and firmware F2.
+- 🔒 `H2.8` — formal final user acceptance before H3.
 
-`H1.1.3.3` exits only when the display and U214 evidence blockers have
-controlled evidence or a reviewed bounded design fallback and all navigation
-controls are selected serial components. Purchasing is not an H1 shortcut:
-source research, documented replacement review and a no-order manufacturer
-data request come first. A sample can be proposed only as the last resort and
-still needs separate user approval. When any substep closes, this marker and
-both roadmap pages are updated in the same commit before work advances. A later
-correction reopens every affected user review gate and its dependent gates.
+The exact machine-readable execution plan is
+[`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Closing any
+substep updates this marker and both roadmap pages in the same commit. A later
+functional or physical correction reopens every affected review gate.
 
 Leshy2 is an open, autonomous instrument for radio observation,
 communications, diagnostics and authorized research of wireless and contact
@@ -143,7 +102,9 @@ Unused interfaces are powered down and placed into a verifiable quiet state.
 
 ### External and inner board faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=16)
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=17)
+
+![Leshy2 external service access](docs/images/service-access.svg?layout=1)
 
 Five exact series navigation buttons and their clearances have a separate
 machine-checked placement drawing.
@@ -375,21 +336,21 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 PRODUCT_USB_CONNECTOR["JAE DX07S016JA1R1500<br/>product USB-C receptacle"]
 PRODUCT_USB_PROTECTOR["Texas Instruments TPD4S201RUKR<br/>CC and USB2 port protector"]
-S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>keyed DBG10: UART0/RESET/BOOT"]
-S3_RESET_BUTTON["Alps Alpine SKQGADE010<br/>S3 service RESET button"]
-S3_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>S3 service BOOT button"]
+S3_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>internal fallback DBG10: UART0/RESET/BOOT"]
+S3_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>external side S3 RESET button"]
+S3_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>external side S3 BOOT button"]
 C5["ESP32-C5-WROOM-1U-N8R8<br/>native 2.4/5-GHz, IEEE 802.15.4 and IR owner"]
 C5_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>data-only C5 recovery USB-C"]
 C5_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>power-off-protected C5 USB2 switch"]
-C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>keyed DBG10: UART0/RESET/BOOT"]
-C5_RESET_BUTTON["Alps Alpine SKQGADE010<br/>C5 service RESET button"]
-C5_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>C5 service BOOT button"]
+C5_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>internal fallback DBG10: UART0/RESET/BOOT"]
+C5_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>external side C5 RESET button"]
+C5_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>external side C5 BOOT button"]
 RP["SC1512-A4<br/>deterministic radio and voice owner"]
 RP_SERVICE_USB_CONNECTOR["GCT USB4105-GF-A<br/>data-only RP recovery USB-C"]
 RP_SERVICE_USB_SWITCH["onsemi FSUSB42MUX<br/>power-off-protected RP USB2 switch"]
-RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>keyed DBG10: SWD/RUN/USB_BOOT"]
-RP_RESET_BUTTON["Alps Alpine SKQGADE010<br/>RP service RUN/RESET button"]
-RP_BOOT_BUTTON["Alps Alpine SKQGADE010<br/>RP service USB_BOOT button"]
+RP_DBG_HEADER["Samtec FTSH-105-01-L-DV-K-P-TR<br/>internal fallback DBG10: SWD/RUN/USB_BOOT"]
+RP_RESET_BUTTON["Alps Alpine SKRTLAE010<br/>external side RP RUN/RESET button"]
+RP_BOOT_BUTTON["Alps Alpine SKRTLAE010<br/>external side RP USB_BOOT button"]
   PRODUCT_USB_CONNECTOR <-->|"USB2 data"| PRODUCT_USB_PROTECTOR <-->|"native USB"| S3
   S3_DBG_HEADER <-->|"UART0 + RESET + BOOT"| S3
   S3_RESET_BUTTON -->|"RESET"| S3
@@ -492,6 +453,12 @@ EVIDENCE_OR_1["BAT54ALT1G<br/>nRF24 #1 and #2 evidence diode combiner"]
 EVIDENCE_OR_2["BAT54ALT1G<br/>nRF24 #3 and sub-GHz evidence diode combiner"]
 EVIDENCE_OR_3["BAT54ALT1G<br/>voice and IR evidence diode combiner"]
 EVIDENCE_OR_4["BAT54ALT1G<br/>LoRa/EXT evidence diode combiner"]
+UI_EVIDENCE_OR_0["BAT54ALT1G<br/>front-local S3 and C5 evidence diode combiner"]
+UI_EVIDENCE_OR_1["BAT54ALT1G<br/>front-local nRF24 #1 and #2 evidence diode combiner"]
+UI_EVIDENCE_OR_2["BAT54ALT1G<br/>front-local nRF24 #3 and sub-GHz evidence diode combiner"]
+UI_EVIDENCE_OR_3["BAT54ALT1G<br/>front-local voice and IR evidence diode combiner"]
+UI_EVIDENCE_OR_4["BAT54ALT1G<br/>front-local LoRa/EXT evidence diode combiner"]
+UI_ANY_TX_PULLUP["Yageo RC0402FR-0710KL<br/>front-local aggregate-TX indicator pull-up"]
 EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into the main domain"]
   SAFE_SUPERVISOR -->|"power-on reset"| SAFE_LATCH
   POWER_COMMAND_SWITCH -->|"KILL / physical RUN edge"| SAFE_CONDITIONER
@@ -518,6 +485,17 @@ EVIDENCE_MAIN_ISOLATOR["SN74LVC3G07DCUR<br/>digital TX-evidence isolation into t
   EVIDENCE_OR_2 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_3 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
   EVIDENCE_OR_4 -->|"wired ANY_TX_AON_N"| EVIDENCE_MAIN_ISOLATOR
+  EVIDENCE_CMP_A -->|"front sources 0 / 1 / 7"| UI_EVIDENCE_OR_0
+  EVIDENCE_CMP_A -->|"front source 7"| UI_EVIDENCE_OR_3
+  EVIDENCE_CMP_B -->|"front sources 2 / 3"| UI_EVIDENCE_OR_1
+  EVIDENCE_CMP_B -->|"front sources 4 / 5"| UI_EVIDENCE_OR_2
+  EVIDENCE_CMP_VOICE -->|"front source 6"| UI_EVIDENCE_OR_3
+  EXT_EVIDENCE_BUFFER -->|"front source 8"| UI_EVIDENCE_OR_4
+  UI_EVIDENCE_OR_0 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_1 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_2 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_3 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
+  UI_EVIDENCE_OR_4 -->|"front-local aggregate"| UI_ANY_TX_PULLUP
 ```
 
 Exact contacts are in the [pin assignment](docs/pinout.md), while signals crossing the two boards are in the [M1 map](docs/interconnect.md).

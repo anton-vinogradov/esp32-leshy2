@@ -11,7 +11,8 @@ Those files are retained only as historical implementation material. They must
 not be built, reviewed as the current circuit or sent to a PCB manufacturer.
 
 The current electrical source is the machine-reviewed `G2F-3I` architecture in
-[`hardware/architecture`](../architecture/). A new reviewable schematic is the
-next ECAD artifact and must be generated from that source. KiCad PCB placement
-and routing remain unauthorized until the current schematic, ERC, power/fault
-simulation and joined mechanical/electrical/firmware review pass.
+[`hardware/architecture`](../architecture/). H1 has been accepted and H2 now
+authorizes a new reviewable production schematic generated from that source.
+KiCad PCB placement and routing remain unauthorized until the current
+schematic, ERC, power/fault simulation and joined mechanical/electrical/firmware
+review pass.

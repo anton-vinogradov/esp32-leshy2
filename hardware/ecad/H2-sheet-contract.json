@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "stage": "H2.0.2",
+  "status": "reviewed",
+  "project_model": "one_independent_kicad_project_per_pcb",
+  "rules": {
+    "one_physical_pcb_per_project": true,
+    "sheet_may_span_multiple_pcbs": false,
+    "hidden_global_labels_across_projects": false,
+    "cross_project_connections_require_named_connector_contacts": true,
+    "pcb_placement_and_routing_authorized": false
+  },
+  "inventory_binding": {
+    "status": "reviewed_against_complete_h2_0_1_inventory",
+    "source": "hardware/ecad/generated/H2-instance-ledger.json",
+    "source_schema_version": 2,
+    "registered_inventory_rows": 1002,
+    "main_candidate_instances": 974,
+    "lora_cap_common_instances": 26,
+    "lora_cap_alternative_module_instances": 2,
+    "project_row_counts": {
+      "LESHY2-UI": 377,
+      "LESHY2-RF": 595,
+      "L2-DISP-ADP-001-A": 2,
+      "LESHY2-LORA-CAP-01": 28
+    },
+    "sheet_row_counts": {
+      "ADP_00_DISPLAY_ADAPTER": 2,
+      "CAP_00_ROOT": 1,
+      "CAP_10_RADIO_CONTROL": 8,
+      "CAP_20_POWER_BUS": 8,
+      "CAP_30_TX_EVIDENCE": 11,
+      "RF_01_USB_PD_CHARGE": 54,
+      "RF_02_PACK_SAFETY_AON": 61,
+      "RF_03_MAIN_RAILS_DOMAIN_GATES": 69,
+      "RF_30_RP2354_CORE_SERVICE": 24,
+      "RF_31_NRF24_X3": 105,
+      "RF_32_SUBGHZ_VOICE": 116,
+      "RF_34_U214_M5_EXT": 53,
+      "RF_35_REAR_CONTROLS": 8,
+      "RF_36_AUDIO_IO_AMP": 14,
+      "RF_40_INTERBOARD_M1": 1,
+      "RF_50_TX_SAFETY_EVIDENCE": 90,
+      "UI_10_S3_CORE_MEMORY_BOOT": 27,
+      "UI_11_DISPLAY_TOUCH_STORAGE": 49,
+      "UI_12_CONTROLS_INDICATORS": 79,
+      "UI_13_AUDIO_CODEC_HEADSET": 102,
+      "UI_20_C5_RADIO_IR_SERVICE": 59,
+      "UI_21_FM_AM_RECEIVER": 32,
+      "UI_40_INTERBOARD_M1": 1,
+      "UI_50_TX_SAFETY_EVIDENCE": 28
+    },
+    "intentionally_component_empty_sheets": {
+      "UI_00_ROOT": "hierarchy and named sheet interfaces only",
+      "UI_60_TESTPOINTS_MANUFACTURING": "virtual/physical test-point symbols are added with the implemented nets in H2.2.10",
+      "RF_00_ROOT": "hierarchy and named sheet interfaces only",
+      "RF_60_TESTPOINTS_MANUFACTURING": "virtual/physical test-point symbols are added with the implemented nets in H2.3"
+    },
+    "rule": "Every inventory row has exactly one project, physical-board disposition and owning functional sheet; alternative LoRa modules are distinct assembly variants, not simultaneously fitted parts."
+  },
+  "projects": [
+    {
+      "id": "LESHY2-UI",
+      "board": "UI/control PCB",
+      "root": "UI_00_ROOT",
+      "sheets": [
+        "UI_00_ROOT",
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_13_AUDIO_CODEC_HEADSET",
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_21_FM_AM_RECEIVER",
+        "UI_40_INTERBOARD_M1",
+        "UI_50_TX_SAFETY_EVIDENCE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "id": "LESHY2-RF",
+      "board": "RF/power PCB",
+      "root": "RF_00_ROOT",
+      "sheets": [
+        "RF_00_ROOT",
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_34_U214_M5_EXT",
+        "RF_35_REAR_CONTROLS",
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "id": "L2-DISP-ADP-001-A",
+      "board": "display adapter PCB",
+      "root": "ADP_00_DISPLAY_ADAPTER",
+      "sheets": ["ADP_00_DISPLAY_ADAPTER"]
+    },
+    {
+      "id": "LESHY2-LORA-CAP-01",
+      "board": "LoRa Cap PCB",
+      "root": "CAP_00_ROOT",
+      "sheets": [
+        "CAP_00_ROOT",
+        "CAP_10_RADIO_CONTROL",
+        "CAP_20_POWER_BUS",
+        "CAP_30_TX_EVIDENCE"
+      ]
+    }
+  ],
+  "cross_project_contracts": [
+    {
+      "id": "M1",
+      "endpoints": ["UI_40_INTERBOARD_M1", "RF_40_INTERBOARD_M1"],
+      "source": "hardware/architecture/candidates/G2F-3I.json#/interboard_contract",
+      "rule": "contact number, net name, direction and quiet-state metadata must match exactly in both projects"
+    },
+    {
+      "id": "DISPLAY_ADAPTER_40",
+      "endpoints": ["UI_11_DISPLAY_TOUCH_STORAGE", "ADP_00_DISPLAY_ADAPTER"],
+      "source": "hardware/product-design/display-adapter.json",
+      "rule": "all 40 contacts remain one-to-one; the adapter may not reinterpret any signal"
+    },
+    {
+      "id": "CAP_BUS_14",
+      "endpoints": ["RF_34_U214_M5_EXT", "CAP_00_ROOT"],
+      "source": "hardware/accessories/leshy2-lora-cap-01.json",
+      "rule": "all 14 host and accessory contacts, power states and TX evidence semantics must match"
+    }
+  ],
+  "net_naming": {
+    "authoritative_existing_names": [
+      "hardware/architecture/candidates/G2F-3I.json#/interboard_contract",
+      "hardware/architecture/candidates/G2F-3I.json#/fixed_routes",
+      "hardware/architecture/candidates/G2F-3I.json#/power_contract",
+      "hardware/architecture/target-integration-contract.json"
+    ],
+    "active_low_suffix": "_N",
+    "connector_contact_names_may_not_be_aliased": true,
+    "power_rail_names_may_not_be_invented_in_ecad": true,
+    "local_unnamed_nets": "allowed only for passive implementation nodes that do not cross a sheet or connector",
+    "reserved_contacts": "retain the source name and explicit NC/reserved disposition"
+  },
+  "sheet_interface_policy": {
+    "power": "named hierarchical pins with source rail name and direction",
+    "digital_bus": "named hierarchical pins; clock, data, chip-select and IRQ remain separate",
+    "analog": "named source and return; never collapse guarded/differential paths",
+    "rf": "named source, reference impedance and connector endpoint; PCB geometry closes later",
+    "safety": "permit, evidence, watchdog and FAULT_KILL never hide behind a generic bus",
+    "test": "test points are outputs of the owning functional sheet and are collected only on the project test sheet"
+  }
+}

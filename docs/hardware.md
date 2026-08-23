@@ -278,14 +278,17 @@ connector body enters the exact 11-mm interboard channel.
 | Opposing inner faces | 36 non-mating pairs; minimum Z clearance 3.31 mm against the 0.7-mm requirement |
 | Interconnect passage | Exact 80-contact M1 mate, five RF microcoaxes, nine outward antenna tails and seven encoder through-features accounted |
 | Pin/resources | S3 33 used / 0 free; C5 `GPIO5` free; RP 48 used / 0 free; slow I/O 24/24; UI inputs 16/16; headset expander keeps seven local reserves |
-| M1 contacts | 76 assigned and four intentional reserved no-connects |
+| M1 contacts | all 80 assigned; seven parallel 3V3_MAIN contacts and six RF-evidence crossings |
 | Still open | Production schematic, footprint escape/routing, PCB copper, ERC/DRC, H5 received-part fit and assembled HIL |
 
 The machine-readable source for this table is
 [`H1-cross-view-acceptance.json`](../hardware/product-design/generated/H1-cross-view-acceptance.json).
-It explicitly does not authorize KiCad or purchasing.
+It authorizes H2 schematic work only; PCB placement/routing and purchasing
+remain unauthorized.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=16)
+![Dimensioned external layout](images/current-clamshell.svg?layout=17)
+
+![External service access: three USB ports and six recovery buttons](images/service-access.svg?layout=1)
 
 ![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
 
@@ -324,9 +327,13 @@ interchangeable VHF/UHF profiles; the other seven have fixed ports.
   latches FAULT_KILL. Restart always requires a physical KILL-to-RUN cycle.
 - Independent fixed rails: 3.3-V always-on from `TPS629203DRLR`, plus separate
   3.3-V main, 4.0-V voice and 5.0-V accessory rails from `TPS564252DRLR`.
-- S3 exposes product USB and keyed UART0/RESET/BOOT; C5 exposes data-only USB
-  and UART0/RESET/BOOT; RP2354B exposes data-only USB and SWD/RUN/USB_BOOT.
-  Service USB ports never power the device.
+- Three labelled USB-C ports are externally accessible: S3 `USB / POWER`,
+  `C5 SERVICE USB` and `RP SERVICE USB`. The two service ports never power the
+  device. Six labelled side buttons expose RST/BOOT for S3, C5 and RP. All six
+  sit 1.2 mm behind DIV-like protective side pockets: they cannot be struck as
+  protruding controls but remain finger/tool accessible. Three keyed DBG10
+  headers are internal fallback diagnostics, accessible only after
+  opening the board sandwich; they are not user-interface connectors.
 
 ## Implementation data
 

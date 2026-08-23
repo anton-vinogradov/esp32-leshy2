@@ -21,6 +21,7 @@ NAVIGATION_CLUSTER_PATH = REPO / "hardware/product-design/navigation-cluster.jso
 DISPLAY_ADAPTER_DESIGN_PATH = REPO / "hardware/product-design/display-adapter.json"
 ASSEMBLY_COORDINATE_MODEL_PATH = REPO / "hardware/product-design/assembly-coordinate-model.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
+SERVICE_OUTPUT = REPO / "docs/images/service-access.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
 TOP_EDGE_OUTPUT = REPO / "docs/images/top-edge-view.svg"
@@ -170,7 +171,22 @@ EDGE_INTERFACES = (
     ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
     ("microphone", "front", "bottom", 47.0, "MICROPHONE"),
     ("unit_connector", "rear", "bottom", 57.0, "M5 UNIT"),
+    ("s3_reset_button", "front", "left", 117.25, "S3 RST"),
+    ("s3_boot_button", "front", "left", 124.25, "S3 BOOT"),
+    ("c5_reset_button", "front", "right", 117.25, "C5 RST"),
+    ("c5_boot_button", "front", "right", 124.25, "C5 BOOT"),
+    ("rp_reset_button", "rear", "left", 108.25, "RP RST"),
+    ("rp_boot_button", "rear", "left", 115.25, "RP BOOT"),
 )
+
+EXTERNAL_SERVICE_BUTTONS = frozenset(
+    {
+        "s3_reset_button", "s3_boot_button",
+        "c5_reset_button", "c5_boot_button",
+        "rp_reset_button", "rp_boot_button",
+    }
+)
+SERVICE_BUTTON_RECESS_MM = 1.2
 
 # Internal acoustic components can require an exterior label without inventing
 # enclosure-slot geometry on the PCB-face projection.
@@ -188,6 +204,12 @@ SIDE_INTERFACE_LABEL_LINES = {
     "ir_emitter": ("IR TX",),
     "headphone_jack": ("HEADSET", "CTIA"),
     "power_command_switch": ("RUN", "KILL"),
+    "s3_reset_button": ("S3 RST",),
+    "s3_boot_button": ("S3 BOOT",),
+    "c5_reset_button": ("C5 RST",),
+    "c5_boot_button": ("C5 BOOT",),
+    "rp_reset_button": ("RP RST",),
+    "rp_boot_button": ("RP BOOT",),
 }
 
 
@@ -286,17 +308,18 @@ UI_INNER = (
     Placement("evidence_cmp_a", 8.0, 82.0, "UI-local S3/C5/IR TX evidence comparator"),
     Placement("ui_zone_ntc", 12.0, 75.0, "UI/display hotspot safety sensor"),
     Placement("codec_i2s_din_boot_gate", 18.0, 75.0, "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0"),
+    Placement("safe_reset_sink_a", 18.0, 82.0, "UI-local S3/C5 passive-drain reset sinks"),
     Placement("headphone_jack", 60.4, 76.0, "3.5-mm CTIA headset TRRS mid-mount connector"),
     Placement("headset_control_io", 54.2, 77.0, "dedicated 0x39 headset source controller and seven reserve I/O lines"),
     Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
     Placement("sd", 48.0, 136.15, "bottom-access push-push microSD", 90),
     Placement("s3_dbg_header", 5.0, 104.0, "keyed S3 UART0/RESET/BOOT header"),
-    Placement("s3_reset_button", 16.0, 104.0, "S3 technological RESET"),
-    Placement("s3_boot_button", 24.0, 104.0, "S3 technological BOOT"),
+    Placement("s3_reset_button", 0.0, 115.0, "external left-side S3 RESET service control", 90),
+    Placement("s3_boot_button", 0.0, 122.0, "external left-side S3 BOOT service control", 90),
     Placement("c5_dbg_header", 47.0, 104.0, "keyed C5 UART0/RESET/BOOT header"),
-    Placement("c5_reset_button", 58.0, 104.0, "C5 technological RESET"),
-    Placement("c5_boot_button", 66.0, 104.0, "C5 technological BOOT"),
+    Placement("c5_reset_button", 71.6, 115.0, "external right-side C5 RESET service control", 270),
+    Placement("c5_boot_button", 71.6, 122.0, "external right-side C5 BOOT service control", 270),
 )
 
 # Exact module-side axes come from the Espressif package drawings. The visible
@@ -428,7 +451,6 @@ RF_INNER = (
     Placement("safe_conditioner", 42.0, 94.0, "RUN and S3 fault-reset conditioner"),
     Placement("safe_latch", 37.0, 82.0, "asynchronous FAULT_KILL latch"),
     Placement("safe_reset_buffer", 41.0, 82.0, "C5/RP fault-reset buffer"),
-    Placement("safe_reset_sink_a", 44.0, 82.0, "S3/C5 passive-drain reset sinks"),
     Placement("safe_supervisor", 49.0, 82.0, "always-on safety supervisor"),
     Placement("safe_reset_sink_b", 55.0, 82.0, "RP reset sink"),
     Placement("safe_ptt_or", 59.0, 82.0, "FAULT_KILL-dominant voice PTT gate"),
@@ -446,8 +468,8 @@ RF_INNER = (
     Placement("microphone", 45.0, 146.0, "rear bottom-facing microphone"),
     Placement("speaker", 50.0, 127.0, "internal 4-Ohm differential speaker"),
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
-    Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
-    Placement("rp_boot_button", 59.5, 104.0, "RP technological USB_BOOT"),
+    Placement("rp_reset_button", 0.0, 106.0, "external left-side RP RUN/RESET service control", 90),
+    Placement("rp_boot_button", 0.0, 113.0, "external left-side RP USB_BOOT service control", 90),
     Placement("power_command_switch", 65.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
 
     Placement("u214_host_buffer_a", 56.5, 27.3, "U214 host-command buffer A"),
@@ -659,12 +681,12 @@ INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
     "s3_dbg_header": "normal to the UI-inner face; enclosure-open service only",
     "c5_dbg_header": "normal to the UI-inner face; enclosure-open service only",
     "rp_dbg_header": "normal to the RF-inner face; enclosure-open service only",
-    "s3_reset_button": "normal to the UI-inner face; enclosure-open service only",
-    "s3_boot_button": "normal to the UI-inner face; enclosure-open service only",
-    "c5_reset_button": "normal to the UI-inner face; enclosure-open service only",
-    "c5_boot_button": "normal to the UI-inner face; enclosure-open service only",
-    "rp_reset_button": "normal to the RF-inner face; enclosure-open service only",
-    "rp_boot_button": "normal to the RF-inner face; enclosure-open service only",
+    "s3_reset_button": "parallel to the UI PCB toward the left enclosure side; externally operable",
+    "s3_boot_button": "parallel to the UI PCB toward the left enclosure side; externally operable",
+    "c5_reset_button": "parallel to the UI PCB toward the right enclosure side; externally operable",
+    "c5_boot_button": "parallel to the UI PCB toward the right enclosure side; externally operable",
+    "rp_reset_button": "parallel to the RF PCB toward the left enclosure side; externally operable",
+    "rp_boot_button": "parallel to the RF PCB toward the left enclosure side; externally operable",
     "nrf0": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "nrf1": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "nrf2": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
@@ -1532,7 +1554,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H1.8":
+    if constraint.get("current_step") != "H2.2.1":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
@@ -1595,7 +1617,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.8":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H2.2.1":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -2437,6 +2459,38 @@ def validate() -> list[str]:
                 )
     if len({label for _, _, _, _, label in EDGE_INTERFACES}) != len(EDGE_INTERFACES):
         errors.append("external interface labels must be unique")
+    required_usb_edges = {
+        ("product_usb_connector", "rear", "bottom", "USB / POWER"),
+        ("c5_service_usb_connector", "front", "bottom", "C5 SERVICE USB"),
+        ("rp_service_usb_connector", "rear", "bottom", "RP SERVICE USB"),
+    }
+    actual_usb_edges = {
+        (instance, face, side, label)
+        for instance, face, side, _, label in EDGE_INTERFACES
+        if "usb" in instance
+    }
+    if actual_usb_edges != required_usb_edges:
+        errors.append("external layout must expose and label exactly the three selected USB ports")
+    if any("dbg_header" in instance for instance, _, _, _, _ in EDGE_INTERFACES):
+        errors.append("DBG10 headers are internal fallback diagnostics, not exterior user interfaces")
+    required_service_edges = {
+        ("s3_reset_button", "front", "left", "S3 RST"),
+        ("s3_boot_button", "front", "left", "S3 BOOT"),
+        ("c5_reset_button", "front", "right", "C5 RST"),
+        ("c5_boot_button", "front", "right", "C5 BOOT"),
+        ("rp_reset_button", "rear", "left", "RP RST"),
+        ("rp_boot_button", "rear", "left", "RP BOOT"),
+    }
+    actual_service_edges = {
+        (instance, face, side, label)
+        for instance, face, side, _, label in EDGE_INTERFACES
+        if instance in EXTERNAL_SERVICE_BUTTONS
+    }
+    if actual_service_edges != required_service_edges:
+        errors.append("all six compute-domain RST/BOOT controls must remain externally labelled")
+    for instance in EXTERNAL_SERVICE_BUTTONS:
+        if devices[instances[instance]]["mpn"] != "Alps Alpine SKRTLAE010":
+            errors.append(f"{instance}: external service control must use the exact side switch")
 
     control_roles = {item.role for item in REAR_CONTROLS}
     for role in ("rear independent PTT",):
@@ -2482,6 +2536,40 @@ def validate() -> list[str]:
         (str(row), str(column)) for row in (1, 2) for column in range(1, 6)
     ]:
         errors.append("external layout must identify the two aligned five-indicator rows")
+    service_root = ET.fromstring(render_service_access(devices, instances))
+    if (
+        service_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A"
+        or service_root.attrib.get("data-view") != "external-service-access"
+    ):
+        errors.append("service-access view must retain the unified external coordinate model")
+    service_instances = {
+        element.attrib.get("data-instance")
+        for element in service_root.iter("{http://www.w3.org/2000/svg}rect")
+        if element.attrib.get("data-instance")
+    }
+    required_service_instances = set(EXTERNAL_SERVICE_BUTTONS) | {
+        "product_usb_connector",
+        "c5_service_usb_connector",
+        "rp_service_usb_connector",
+    }
+    if service_instances != required_service_instances:
+        errors.append("service-access view must show exactly three USB ports and six recovery buttons")
+    if any("dbg_header" in instance for instance in service_instances):
+        errors.append("internal DBG10 headers may not appear as external service bodies")
+    recessed_buttons = [
+        element
+        for element in service_root.iter("{http://www.w3.org/2000/svg}rect")
+        if element.attrib.get("data-instance") in EXTERNAL_SERVICE_BUTTONS
+    ]
+    protective_recesses = [
+        element
+        for element in service_root.iter("{http://www.w3.org/2000/svg}rect")
+        if element.attrib.get("data-part") == "protective-recess"
+    ]
+    if len(recessed_buttons) != 6 or any(
+        element.attrib.get("data-recessed") != "true" for element in recessed_buttons
+    ) or len(protective_recesses) != 6:
+        errors.append("all six external recovery buttons require a protective recessed pocket")
     for token in (
         'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',
         'id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer"',
@@ -2597,6 +2685,47 @@ def render_external(devices, instances):
         return text(*args, **kwargs).replace(
             "<text ", '<text data-layer="pcb-silkscreen" ', 1
         )
+
+    edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
+
+    def service_button_projection(origin, instance, side):
+        """Show the exact footprint and a DIV-like recessed side actuator."""
+        item = edge_placements[instance]
+        width, height = placement_size(item, devices, instances)
+        body = rect(
+            origin,
+            item.x,
+            item.y,
+            width,
+            height,
+            "none",
+            "#7c3aed",
+            "2 2",
+            1,
+            f' data-instance="{instance}" data-projection="inner-mounted-side-switch"',
+        )
+        centre_y = item.y + height / 2
+        recess_x = -0.8 if side == "left" else BOARD_W - 1.7
+        recess = rect(
+            origin,
+            recess_x,
+            centre_y - 2.5,
+            2.5,
+            5.0,
+            "none",
+            "#ea580c",
+            "3 2",
+            2,
+            f' data-instance="{instance}" data-part="protective-recess" data-recess-mm="{SERVICE_BUTTON_RECESS_MM}"',
+        )
+        actuator_x = SERVICE_BUTTON_RECESS_MM if side == "left" else BOARD_W - SERVICE_BUTTON_RECESS_MM
+        actuator = (
+            f'<path d="M{sx(origin,actuator_x):.1f} {sy(origin,centre_y-1.4):.1f} '
+            f'V{sy(origin,centre_y+1.4):.1f}" '
+            'stroke="#7c3aed" stroke-width="4" stroke-linecap="square" '
+            f'data-instance="{instance}" data-part="side-actuator" data-recessed="true"/>'
+        )
+        return [body, recess, actuator]
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
@@ -2723,12 +2852,22 @@ def render_external(devices, instances):
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "front" or side not in {"left", "right"}:
             continue
+        if instance in EXTERNAL_SERVICE_BUTTONS:
+            out += service_button_projection(front, instance, side)
         stroke = "#d97706" if instance.startswith("ir_") else "#2563eb"
-        start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
+        if instance in EXTERNAL_SERVICE_BUTTONS:
+            stroke = "#7c3aed"
+        if instance in EXTERNAL_SERVICE_BUTTONS:
+            start_x, end_x = (-7.0, SERVICE_BUTTON_RECESS_MM) if side == "left" else (82.0, BOARD_W - SERVICE_BUTTON_RECESS_MM)
+        else:
+            start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
         out.append(f'<path d="M{sx(front,start_x):.1f} {sy(front,coordinate):.1f} L{sx(front,end_x):.1f} {sy(front,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         # Display spans x=10.25..64.75 mm; these are the exact centres of
         # the remaining equal 10.25-mm silkscreen gutters.
-        label_x = 5.125 if side == "left" else 69.875
+        if instance in EXTERNAL_SERVICE_BUTTONS:
+            label_x = 7.0 if side == "left" else 68.0
+        else:
+            label_x = 5.125 if side == "left" else 69.875
         lines = SIDE_INTERFACE_LABEL_LINES[instance]
         first_y = coordinate - 1.3 * (len(lines) - 1)
         for line_index, line in enumerate(lines):
@@ -2801,10 +2940,15 @@ def render_external(devices, instances):
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
         if face != "rear" or side not in {"left", "right"}:
             continue
-        stroke = "#ea580c"
-        start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
+        if instance in EXTERNAL_SERVICE_BUTTONS:
+            out += service_button_projection(rear, instance, side)
+        stroke = "#7c3aed" if instance in EXTERNAL_SERVICE_BUTTONS else "#ea580c"
+        if instance in EXTERNAL_SERVICE_BUTTONS:
+            start_x, end_x = (-7.0, SERVICE_BUTTON_RECESS_MM) if side == "left" else (82.0, BOARD_W - SERVICE_BUTTON_RECESS_MM)
+        else:
+            start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
         out.append(f'<path d="M{sx(rear,start_x):.1f} {sy(rear,coordinate):.1f} L{sx(rear,end_x):.1f} {sy(rear,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        label_x = 5.0 if side == "left" else 70.0
+        label_x = (7.0 if side == "left" else 68.0) if instance in EXTERNAL_SERVICE_BUTTONS else (5.0 if side == "left" else 70.0)
         lines = SIDE_INTERFACE_LABEL_LINES[instance]
         first_y = coordinate - 1.3 * (len(lines) - 1)
         for line_index, line in enumerate(lines):
@@ -2861,6 +3005,131 @@ def render_external(devices, instances):
     return "\n".join(out) + "\n"
 
 
+def render_service_access(devices, instances):
+    """Render an uncluttered user view of the external recovery interfaces."""
+    scale = 2.8
+    sx, sy, text, rect = helpers(scale)
+
+    front = (190.0, 150.0)
+    rear = (700.0, 150.0)
+    edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
+
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" '
+        'viewBox="0 0 1200 690" data-coordinate-model="L2-ASM-COORD-001-A" '
+        'data-view="external-service-access">',
+        '<defs><marker id="service-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        text(30, 34, "Leshy2 — external service access", 23, "bold"),
+        text(30, 59, "Three independent USB paths and six serial side controls; DBG10 headers remain inside the opened sandwich.", 12, colour="#526076"),
+    ]
+    out += board(
+        front, "Front / UI face", scale, sx, sy, text, rect,
+        ' data-face="front-outer" data-board-mm="75x150"',
+    )
+    out += board(
+        rear, "Rear / battery face", scale, sx, sy, text, rect,
+        ' data-face="rear-outer" data-board-mm="75x150"',
+    )
+
+    # Orientation cues only: the service drawing intentionally suppresses all
+    # unrelated controls and RF parts so each recovery interface is legible.
+    out.append(rect(front, 10.25, 11.0, 54.5, 83.0, "#eff6ff", "#93c5fd", rx=5))
+    out.append(text(sx(front, 37.5), sy(front, 53.0), "DISPLAY", 11, "bold", "middle", "#60a5fa"))
+    out.append(rect(rear, 17.6, 42.0, 39.8, 86.0, "#ecfdf3", "#86efac", rx=10))
+    out.append(text(sx(rear, 37.5), sy(rear, 85.0), "2× 18650", 11, "bold", "middle", "#4ade80"))
+
+    def side_control(origin, instance, side, silk):
+        item = edge_placements[instance]
+        width, height = placement_size(item, devices, instances)
+        centre_y = item.y + height / 2
+        edge_x = 0.0 if side == "left" else BOARD_W
+        edge_px = sx(origin, edge_x)
+        actuator_x = edge_px + (SERVICE_BUTTON_RECESS_MM * scale if side == "left" else -SERVICE_BUTTON_RECESS_MM * scale)
+        label_x = sx(origin, 7.0 if side == "left" else 68.0)
+        anchor = "start" if side == "left" else "end"
+        out.append(
+            f'<rect x="{edge_px - (3 if side == "left" else 11):.1f}" y="{sy(origin, centre_y) - 9:.1f}" '
+            'width="14" height="18" rx="3" fill="none" stroke="#ea580c" stroke-dasharray="4 2" '
+            f'data-part="protective-recess" data-recess-mm="{SERVICE_BUTTON_RECESS_MM}"/>'
+        )
+        out.append(
+            f'<rect x="{actuator_x - 3:.1f}" y="{sy(origin, centre_y) - 6:.1f}" '
+            'width="6" height="12" rx="2" fill="#ede9fe" stroke="#7c3aed" '
+            f'data-instance="{instance}" data-mpn="Alps Alpine SKRTLAE010" data-recessed="true"/>'
+        )
+        out.append(
+            f'<path d="M{edge_px + (-28 if side == "left" else 28):.1f} {sy(origin, centre_y):.1f} '
+            f'L{actuator_x:.1f} {sy(origin, centre_y):.1f}" '
+            'stroke="#dc2626" stroke-width="1.5" marker-end="url(#service-arrow)"/>'
+        )
+        out.append(
+            text(label_x, sy(origin, centre_y - 2.2), silk, 7.2, "bold", anchor, "#5b21b6").replace(
+                "<text ", '<text data-layer="pcb-silkscreen" ', 1
+            )
+        )
+
+    for instance, side, silk in (
+        ("s3_reset_button", "left", "S3 RST"),
+        ("s3_boot_button", "left", "S3 BOOT"),
+        ("c5_reset_button", "right", "C5 RST"),
+        ("c5_boot_button", "right", "C5 BOOT"),
+    ):
+        side_control(front, instance, side, silk)
+    for instance, side, silk in (
+        ("rp_reset_button", "left", "RP RST"),
+        ("rp_boot_button", "left", "RP BOOT"),
+    ):
+        side_control(rear, instance, side, silk)
+
+    def usb_port(origin, instance, centre_x, silk, role, role_y_offset=47):
+        device = devices[instances[instance]]
+        port_w = float(device["dimensions_mm"][0])
+        cx = sx(origin, centre_x)
+        edge_y = sy(origin, BOARD_H)
+        out.append(
+            f'<rect x="{cx - port_w * scale / 2:.1f}" y="{edge_y - 4:.1f}" '
+            f'width="{port_w * scale:.1f}" height="12" rx="5" fill="#dbeafe" '
+            f'stroke="#2563eb" stroke-width="1.5" data-instance="{instance}" '
+            f'data-mpn="{html.escape(device["mpn"])}"/>'
+        )
+        out.append(
+            f'<path d="M{cx:.1f} {edge_y + 9:.1f} V{edge_y + 28:.1f}" '
+            'stroke="#dc2626" stroke-width="1.5" marker-end="url(#service-arrow)"/>'
+        )
+        out.append(
+            text(cx, edge_y - 8, silk, 7.0, "bold", "middle", "#1d4ed8").replace(
+                "<text ", '<text data-layer="pcb-silkscreen" ', 1
+            )
+        )
+        out.append(text(cx, edge_y + role_y_offset, role, 6.4, "normal", "middle", "#526076"))
+
+    usb_port(front, "c5_service_usb_connector", 31.47, "C5 SERVICE USB", "data only · no device power")
+    usb_port(rear, "product_usb_connector", 16.47, "USB / POWER", "S3 native USB + power/charge", 47)
+    usb_port(rear, "rp_service_usb_connector", 37.47, "RP SERVICE USB", "data only · no device power", 65)
+
+    note_x = 965
+    out += [
+        text(note_x, 120, "External recovery map", 16, "bold", "middle"),
+        text(870, 160, "S3", 13, "bold", colour="#5b21b6"),
+        text(910, 160, "USB / POWER + RST + BOOT", 11),
+        text(870, 195, "C5", 13, "bold", colour="#5b21b6"),
+        text(910, 195, "SERVICE USB + RST + BOOT", 11),
+        text(870, 230, "RP", 13, "bold", colour="#5b21b6"),
+        text(910, 230, "SERVICE USB + RST + BOOT", 11),
+        text(870, 280, "Port roles", 15, "bold"),
+        text(870, 310, "• USB / POWER is the sole powered USB port", 10),
+        text(870, 336, "• C5/RP service VBUS is sense-only", 10),
+        text(870, 362, "• every RST/BOOT switch is recessed yet independently reachable", 10),
+        text(870, 412, "Inside after opening", 15, "bold"),
+        text(870, 442, "3× keyed DBG10 fallback headers", 10),
+        text(870, 466, "S3/C5: UART0 · RESET · BOOT", 10),
+        text(870, 490, "RP: SWD · RUN · USB_BOOT", 10),
+    ]
+    out.append("</svg>")
+    return "\n".join(out) + "\n"
+
+
 def render_internal(devices, instances, display_adapter_design):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
@@ -2906,7 +3175,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(30,56,"Inner PCB faces contain no silkscreen text; numbers inside outlines are drawing annotations.",11,colour="#526076"),
         text(30,72,"Red antenna arrows reference outer-face ports; other red arrows show enclosure exits.",9.2,colour="#526076"),
     ]
-    out += board(ui, "UI/control PCB — inner side", scale, sx, sy, text, rect)
+    out += board(ui, "Front/display PCB — inner side (not user-facing)", scale, sx, sy, text, rect)
     out += board(rf, "RF/power PCB — inner side", scale, sx, sy, text, rect)
     # Looking at either PCB's inner side means physically turning that board
     # over.  Therefore all X coordinates are mirrored relative to the matching
@@ -3285,7 +3554,7 @@ def render_internal(devices, instances, display_adapter_design):
     rf_legend_x = (400, 770, 1140)
     out += [
         text(30,750,"Numbered physical devices",16,"bold"),
-        text(ui_legend_x,775,"UI/control PCB",12,"bold",colour="#1d4ed8"),
+        text(ui_legend_x,775,"Front/display PCB — internal components",12,"bold",colour="#1d4ed8"),
     ]
     y = legend_first_y
     for item in ui_items:
@@ -4711,6 +4980,10 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
             "silkscreen_unobscured": True,
             "silkscreen_labels_nonoverlapping": True,
             "external_interface_directions_present": True,
+            "exactly_three_external_usb_ports": True,
+            "six_external_compute_rst_boot_controls": True,
+            "all_six_service_buttons_recessed": True,
+            "dbg10_headers_internal_only": True,
             "both_antenna_banks_on_outward_faces": True,
             "function_key_columns_clear_display_and_mounting_keepouts": True,
         },
@@ -4750,6 +5023,10 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
                 for index, (instance, label, x, y) in enumerate(FRONT_TX_INDICATORS)
             ],
             "controls": controls(FRONT_CONTROLS),
+            "service_side_controls": controls(
+                tuple(item for item in UI_INNER if item.instance in EXTERNAL_SERVICE_BUTTONS)
+            ),
+            "service_button_recess_mm": SERVICE_BUTTON_RECESS_MM,
             "navigation_cluster": {
                 "design_id": "L2-NAV-5B-001-A",
                 "manufacturing_class": "serial_components_only",
@@ -4772,9 +5049,23 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
                 "cells": ["pack_cell0", "pack_cell1"],
             },
             "controls": controls(REAR_CONTROLS),
+            "service_side_controls": controls(
+                tuple(item for item in RF_INNER if item.instance in EXTERNAL_SERVICE_BUTTONS)
+            ),
+            "service_button_recess_mm": SERVICE_BUTTON_RECESS_MM,
             "encoder_actuator_mpn": devices[instances["encoder_knob"]]["mpn"],
             "edge_interfaces": rear_edges,
             "external_component_labels": rear_component_labels,
+        },
+        "internal_fallback_diagnostics": {
+            "classification": "not_user_facing; accessible only after opening the board sandwich",
+            "headers": controls(
+                tuple(
+                    item
+                    for item in UI_INNER + RF_INNER
+                    if item.instance in {"s3_dbg_header", "c5_dbg_header", "rp_dbg_header"}
+                )
+            ),
         },
     }
 
@@ -4807,12 +5098,25 @@ def build_cross_view_acceptance(
         "stage": "H1.7.0",
         "status": "reviewed",
         "review_gate": "H1.7.1",
+        "final_acceptance": {
+            "gate": "H1.8",
+            "status": "accepted",
+            "date": "2026-08-23",
+            "basis": "explicit user acceptance after the complete H1 self-review report",
+        },
         "coordinate_model": coordinate_table["model_id"],
         "artifacts": {
             "external_faces": {
                 "path": "docs/images/current-clamshell.svg",
                 "review_gate": external_acceptance["review_gate"],
                 "status": external_acceptance["status"],
+            },
+            "external_service_access": {
+                "path": "docs/images/service-access.svg",
+                "status": "reviewed",
+                "external_usb_ports": 3,
+                "external_recovery_buttons": 6,
+                "internal_dbg10_headers": 3,
             },
             "inner_faces": {
                 "path": "docs/images/internal-board-layout.svg",
@@ -4888,9 +5192,10 @@ def build_cross_view_acceptance(
             "summary": candidate["ui_control_contract"]["pin_budget_result"],
         },
         "not_claimed": {
-            "production_schematic": False,
+            "production_schematic_complete": False,
+            "production_schematic_authorized": True,
             "pcb_copper_and_vias": passage["pcb_copper_and_vias"]["result"],
-            "kicad_authorized": False,
+            "pcb_placement_and_routing_authorized": False,
             "purchase_authorized": False,
         },
         "remaining_gates": passage["remaining_gates"],
@@ -5011,6 +5316,7 @@ def main() -> int:
     )
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances),
+        SERVICE_OUTPUT: render_service_access(devices, instances),
         INTERNAL_OUTPUT: render_internal(devices, instances, display_adapter_design),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
         TOP_EDGE_OUTPUT: render_top_edge(devices, instances),

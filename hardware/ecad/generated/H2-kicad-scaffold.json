@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "stage": "H2.1",
+  "status": "reviewed_scaffold",
+  "source": "hardware/ecad/H2-sheet-contract.json",
+  "project_model": "one_independent_kicad_project_per_pcb",
+  "projects": [
+    {
+      "id": "LESHY2-UI",
+      "physical_board": "UI/control PCB",
+      "root_sheet_id": "UI_00_ROOT",
+      "root_file": "LESHY2-UI.kicad_sch",
+      "child_sheet_files": [
+        "UI_10_S3_CORE_MEMORY_BOOT.kicad_sch",
+        "UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch",
+        "UI_12_CONTROLS_INDICATORS.kicad_sch",
+        "UI_13_AUDIO_CODEC_HEADSET.kicad_sch",
+        "UI_20_C5_RADIO_IR_SERVICE.kicad_sch",
+        "UI_21_FM_AM_RECEIVER.kicad_sch",
+        "UI_40_INTERBOARD_M1.kicad_sch",
+        "UI_50_TX_SAFETY_EVIDENCE.kicad_sch",
+        "UI_60_TESTPOINTS_MANUFACTURING.kicad_sch"
+      ],
+      "sheet_count": 10,
+      "project_file": "LESHY2-UI.kicad_pro",
+      "symbol_table": "sym-lib-table",
+      "footprint_table": "fp-lib-table"
+    },
+    {
+      "id": "LESHY2-RF",
+      "physical_board": "RF/power PCB",
+      "root_sheet_id": "RF_00_ROOT",
+      "root_file": "LESHY2-RF.kicad_sch",
+      "child_sheet_files": [
+        "RF_01_USB_PD_CHARGE.kicad_sch",
+        "RF_02_PACK_SAFETY_AON.kicad_sch",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch",
+        "RF_30_RP2354_CORE_SERVICE.kicad_sch",
+        "RF_31_NRF24_X3.kicad_sch",
+        "RF_32_SUBGHZ_VOICE.kicad_sch",
+        "RF_34_U214_M5_EXT.kicad_sch",
+        "RF_35_REAR_CONTROLS.kicad_sch",
+        "RF_36_AUDIO_IO_AMP.kicad_sch",
+        "RF_40_INTERBOARD_M1.kicad_sch",
+        "RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
+        "RF_60_TESTPOINTS_MANUFACTURING.kicad_sch"
+      ],
+      "sheet_count": 13,
+      "project_file": "LESHY2-RF.kicad_pro",
+      "symbol_table": "sym-lib-table",
+      "footprint_table": "fp-lib-table"
+    },
+    {
+      "id": "L2-DISP-ADP-001-A",
+      "physical_board": "display adapter PCB",
+      "root_sheet_id": "ADP_00_DISPLAY_ADAPTER",
+      "root_file": "L2-DISP-ADP-001-A.kicad_sch",
+      "child_sheet_files": [],
+      "sheet_count": 1,
+      "project_file": "L2-DISP-ADP-001-A.kicad_pro",
+      "symbol_table": "sym-lib-table",
+      "footprint_table": "fp-lib-table"
+    },
+    {
+      "id": "LESHY2-LORA-CAP-01",
+      "physical_board": "LoRa Cap PCB",
+      "root_sheet_id": "CAP_00_ROOT",
+      "root_file": "LESHY2-LORA-CAP-01.kicad_sch",
+      "child_sheet_files": [
+        "CAP_10_RADIO_CONTROL.kicad_sch",
+        "CAP_20_POWER_BUS.kicad_sch",
+        "CAP_30_TX_EVIDENCE.kicad_sch"
+      ],
+      "sheet_count": 4,
+      "project_file": "LESHY2-LORA-CAP-01.kicad_pro",
+      "symbol_table": "sym-lib-table",
+      "footprint_table": "fp-lib-table"
+    }
+  ],
+  "summary": {
+    "project_count": 4,
+    "physical_board_count": 4,
+    "sheet_file_count": 28,
+    "repository_symbol_libraries": [
+      "hardware/ecad/libraries/leshy2.kicad_sym"
+    ],
+    "repository_footprint_libraries": [
+      "hardware/ecad/libraries/Leshy2.pretty"
+    ],
+    "pcb_files_created": 0,
+    "circuit_symbols_placed": 0
+  },
+  "scope": {
+    "complete": [
+      "one independent KiCad project per reviewed physical PCB",
+      "all reviewed sheet files exist",
+      "all projects resolve the same repository-controlled symbol and footprint libraries",
+      "every schematic file parses and passes empty-sheet ERC in KiCad 10"
+    ],
+    "deferred": [
+      "sheet hierarchy symbols and circuit population (H2.2-H2.4)",
+      "exact manufacturer symbols and footprints as each circuit is populated",
+      "full populated-project ERC closure (H2.6)",
+      "all PCB placement, routing, fabrication and purchasing"
+    ]
+  },
+  "generated_files": [
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/fp-lib-table",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/sym-lib-table",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_20_POWER_BUS.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_30_TX_EVIDENCE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_pro",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/fp-lib-table",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/sym-lib-table",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_pro",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-RF/fp-lib-table",
+    "hardware/ecad/kicad/LESHY2-RF/sym-lib-table",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_pro",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch",
+    "hardware/ecad/kicad/LESHY2-UI/fp-lib-table",
+    "hardware/ecad/kicad/LESHY2-UI/sym-lib-table",
+    "hardware/ecad/libraries/Leshy2.pretty/README.md",
+    "hardware/ecad/libraries/leshy2.kicad_sym"
+  ]
+}
