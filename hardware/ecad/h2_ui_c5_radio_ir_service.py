@@ -397,12 +397,12 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     if summary["ledger_instances"] != 59 or summary["schematic_symbols"] != 60:
         raise ValueError(f"H2.2.6 instance accounting drifted: {summary}")
-    if summary["hierarchical_interfaces"] != 15 or summary["c5_carrier_pads"] != 32:
+    if summary["hierarchical_interfaces"] != 18 or summary["c5_carrier_pads"] != 32:
         raise ValueError(f"H2.2.6 interface/C5-pad accounting drifted: {summary}")
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 60:
         raise ValueError("UI20 schematic symbol count mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 15:
+    if schematic.count("\n\t(hierarchical_label \"") != 18:
         raise ValueError("UI20 hierarchy-interface count mismatch")
     for row in manifest["instances"]:
         if row["board_fitted"] and not row["footprint"]:

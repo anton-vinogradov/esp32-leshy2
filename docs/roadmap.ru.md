@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.2.10: UI manufacturing/test points; UI root и H2.2.2–H2.2.9 проверены |
+| Актуальная production ECAD-схема | ▶️ H2.3.1: корень RF/power; все UI-листы H2.2.1–H2.2.10 проверены |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.2.10 -->
+<!-- current-substep: H2.3.1 -->
 
-**Точный маркер: `H2.2.10`** — реализовать и проверить производственные и
-диагностические test points UI-платы на `UI_60_TESTPOINTS_MANUFACTURING`.
+**Точный маркер: `H2.3.1`** — реализовать и проверить корень KiCad RF/power-
+платы и все явные межлистовые интерфейсы на `RF_00_ROOT`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -127,20 +127,20 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта, 28 native-файлов схем
   и репозиторные таблицы библиотек; каждый лист прошёл parser и empty-sheet ERC
   в KiCad 10. PCB-файлов нет.
-- `H2.2` — реализовать и проверить листы UI/control PCB.
-  - ✅ `H2.2.1` — `UI_00_ROOT`: девять дочерних листов, 90 точных межлистовых
-    цепей и 216 явных pins/labels; одна прямая root-rail на цепь, без скрытых
-    global labels, native parse KiCad пройден. После заполнения UI10–UI40
-    пустых child-stubs не осталось; 376 предупреждений о копиях сгенерированных
-    символов машинно учтены.
+- ✅ `H2.2` — реализовать и проверить листы UI/control PCB.
+  - ✅ `H2.2.1` — `UI_00_ROOT`: девять дочерних листов, 95 точных межлистовых
+    цепей и 232 явных pins/labels; одна прямая root-rail на цепь, без скрытых
+    global labels, native parse KiCad пройден. Все child-листы заполнены;
+    пустых stubs нет, 387 предупреждений о копиях сгенерированных символов
+    машинно учтены.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 точных компонента реестра плюс
     символ границы встроенного U.FL модуля, все 41 carrier-контакт S3, 39 hierarchy-
     интерфейсов, семь намеренных no-connect и три проверенных custom-footprint.
   - ✅ `H2.2.3` — `UI_11_DISPLAY_TOUCH_STORAGE`: 49 экземпляров, 40 контактов
-    панели, 11 контактов microSD, 17 hierarchy-интерфейсов и 33 объяснённых
+    панели, 11 контактов microSD, 18 hierarchy-интерфейсов и 33 объяснённых
     no-connect; native KiCad review пройден.
   - ✅ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`: 71 точный компонент, 15 серийных
-    кнопок B3S-1100P, 44 hierarchy-интерфейса, девять actual-TX LED, один
+    кнопок B3S-1100P, 45 hierarchy-интерфейсов, девять actual-TX LED, один
     аппаратный FAULT LED, три custom-footprint и три объяснённых no-connect;
     native KiCad review пройден.
   - ✅ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`: 102 точных компонента, все 21
@@ -149,7 +149,7 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     объяснённых no-connect; native KiCad review пройден.
   - ✅ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`: 59 точных BOM-экземпляров
     плюс заводской ANT1, все 32 carrier-pad C5, два IR RX, fail-closed IR TX,
-    data-only USB/recovery и 15 интерфейсов; native KiCad review пройден.
+    data-only USB/recovery и 18 интерфейсов; native KiCad review пройден.
   - ✅ `H2.2.7` — `UI_21_FM_AM_RECEIVER`: 32 точных компонента, отдельные
     антенные порты FM/SW и AM/LW, полные цепи power/control/clock/audio Si4732,
     восемь интерфейсов и четыре объяснённых NC; native KiCad review пройден.
@@ -159,8 +159,23 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`: 28 точных компонентов, два
     RF detector, физический optical IR sensor, четыре comparator-канала, два
     reset-sink, 18 интерфейсов и один объяснённый NC; native KiCad review пройден.
-  - ▶️ **`H2.2.10` — сейчас:** `UI_60_TESTPOINTS_MANUFACTURING`.
-- ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
+  - ✅ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`: 11 точных физических
+    test-площадок 1,0 мм, каждая на одной проверенной цепи, без ложного BOM/MPN;
+    полная UI-иерархия прошла native KiCad review.
+- ▶️ `H2.3` — реализовать и проверить листы RF/power PCB.
+  - ▶️ **`H2.3.1` — сейчас:** иерархия `RF_00_ROOT` и явные интерфейсы.
+  - ⏳ `H2.3.2` — `RF_01_USB_PD_CHARGE`.
+  - ⏳ `H2.3.3` — `RF_02_PACK_SAFETY_AON`.
+  - ⏳ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`.
+  - ⏳ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
+  - ⏳ `H2.3.6` — `RF_31_NRF24_X3`.
+  - ⏳ `H2.3.7` — `RF_32_SUBGHZ_VOICE`.
+  - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
+  - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.
+  - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.
+  - ⏳ `H2.3.11` — `RF_40_INTERBOARD_M1`.
+  - ⏳ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`.
+  - ⏳ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимо проверить питание, reset, boot, recovery,
   no-back-power, quiet-state и `FAULT_KILL`.

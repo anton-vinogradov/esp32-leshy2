@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.10",
+  "status": "reviewed_exact_ui_testpoints_manufacturing_sheet",
+  "project": "LESHY2-UI",
+  "sheet": "UI_60_TESTPOINTS_MANUFACTURING",
+  "source_hashes": {
+    "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
+    "hardware/ecad/H2-sheet-contract.json": "bc126f32dadd73fb0ec68b64ae9917f4083bbd0d45a8bcaf3c419574d2516a42",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "59d2b9a36f2dd7e19615290c90b339b4e62fd5e9146b9b7c18da988134784edc"
+  },
+  "summary": {
+    "ledger_instances": 0,
+    "schematic_symbols": 11,
+    "board_fitted_symbols": 11,
+    "bom_symbols": 0,
+    "physical_test_pads": 11,
+    "hierarchical_interfaces": 11,
+    "intentional_no_connect_pins": 0,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "TP_S3_RUN",
+      "symbol_uuid": "e9aba113-50f3-5b7d-9ef7-93daaf88e5f9",
+      "reference": "TP1",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "S3_RESET_N",
+      "owner_sheet": "UI_50_TX_SAFETY_EVIDENCE",
+      "purpose": "fixture observation and assertion of the S3 reset/run path",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_C5_RUN",
+      "symbol_uuid": "7b9a1932-8e22-593c-93a2-50b4b1ddf5ac",
+      "reference": "TP2",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "C5_RESET_N",
+      "owner_sheet": "UI_50_TX_SAFETY_EVIDENCE",
+      "purpose": "fixture observation and assertion of the C5 reset/run path",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_UI_TEMP",
+      "symbol_uuid": "2fea6a66-c384-5c57-a354-bef01acfdfcd",
+      "reference": "TP3",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "UI_ZONE_TEMP_ADC",
+      "owner_sheet": "UI_12_CONTROLS_INDICATORS",
+      "purpose": "UI-board thermal-channel injection and observation",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_IR_TX_SAFE",
+      "symbol_uuid": "82d5a1f7-f3b5-554a-ab84-01b65a5ab8f7",
+      "reference": "TP4",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "IR_TX_CARRIER_SAFE",
+      "owner_sheet": "UI_20_C5_RADIO_IR_SERVICE",
+      "purpose": "post-RUN_PERMIT IR carrier observation only",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_EV_N0",
+      "symbol_uuid": "c368f04d-8ac9-5a21-9f3e-4af3ab519f1d",
+      "reference": "TP5",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "EV_N0_S3",
+      "owner_sheet": "UI_50_TX_SAFETY_EVIDENCE",
+      "purpose": "S3 physical-TX evidence calibration and fault injection",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_EV_N1",
+      "symbol_uuid": "9dd245be-3f21-56a7-9e1a-ccb4a1d6d6f8",
+      "reference": "TP6",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "EV_N1_C5",
+      "owner_sheet": "UI_50_TX_SAFETY_EVIDENCE",
+      "purpose": "C5 physical-TX evidence calibration and fault injection",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_EV_N7",
+      "symbol_uuid": "0acbcde7-ac62-5996-8fe7-68490be3ef4d",
+      "reference": "TP7",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "EV_N7_IR",
+      "owner_sheet": "UI_50_TX_SAFETY_EVIDENCE",
+      "purpose": "IR physical-light evidence calibration and fault injection",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_C5_SERVICE_VBUS_SENSE",
+      "symbol_uuid": "9f41994f-84fd-5978-b245-9a9c4a9305ed",
+      "reference": "TP8",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "C5_SERVICE_VBUS_SENSE_ONLY",
+      "owner_sheet": "UI_20_C5_RADIO_IR_SERVICE",
+      "purpose": "high-impedance service-cable attach diagnosis without a power path",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_C5_GPIO27_FIXED_HIGH",
+      "symbol_uuid": "b770442e-47e4-5e8e-bf14-51b1f3a990e7",
+      "reference": "TP9",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "C5_GPIO27_FIXED_HIGH",
+      "owner_sheet": "UI_20_C5_RADIO_IR_SERVICE",
+      "purpose": "read-only fixed-high strap observation",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_SLOW_IO_RESET_N",
+      "symbol_uuid": "a684e8ba-2731-5fde-a098-4ec6625ea438",
+      "reference": "TP10",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "SLOW_IO_RESET_N",
+      "owner_sheet": "UI_12_CONTROLS_INDICATORS",
+      "purpose": "protected fixture reset and recovery diagnosis for the main slow-I/O expander",
+      "board_fitted": true,
+      "in_bom": false
+    },
+    {
+      "instance": "TP_LCD_BACKLIGHT_FAULT_N",
+      "symbol_uuid": "11b399a7-d20a-58dd-bde8-f913c092bf03",
+      "reference": "TP11",
+      "mpn": null,
+      "manufacturing_identity": "etched PCB copper feature — no purchased part",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "net": "LCD_BACKLIGHT_FAULT_N",
+      "owner_sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
+      "purpose": "latched display-backlight fault diagnosis",
+      "board_fitted": true,
+      "in_bom": false
+    }
+  ],
+  "rules": {
+    "fixture_side": "UI-board accessible side; final position is closed by H6 placement review",
+    "pad_geometry": "stock KiCad 1.0-mm circular exposed SMD copper pad",
+    "no_bom_or_mpn": "test points are fabricated copper, not components or purchasing lines",
+    "no_direct_unpermitted_tx": "IR carrier pad is post-RUN_PERMIT; RF evidence pads expose detector/comparator outputs only"
+  },
+  "review_boundary": {
+    "complete": [
+      "all eleven reviewed manufacturing nets terminate on one physical 1.0-mm pad each",
+      "every pad has a stable reference, purpose, owning functional sheet and exact hierarchy net",
+      "all pads are excluded from BOM and purchasing while remaining real board features",
+      "native KiCad parses the complete UI hierarchy with no unimplemented child stubs"
+    ],
+    "deferred": [
+      "fixture pitch, side accessibility, keepouts and final pad coordinates in H6 placement review",
+      "probe current limits and automated fixture procedures in manufacturing/HIL phases",
+      "RF/power-board manufacturing test pads in H2.3"
+    ]
+  }
+}

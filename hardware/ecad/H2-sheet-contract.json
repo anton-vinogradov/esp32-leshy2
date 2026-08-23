@@ -52,7 +52,7 @@
     },
     "intentionally_component_empty_sheets": {
       "UI_00_ROOT": "hierarchy and named sheet interfaces only",
-      "UI_60_TESTPOINTS_MANUFACTURING": "virtual/physical test-point symbols are added with the implemented nets in H2.2.10",
+      "UI_60_TESTPOINTS_MANUFACTURING": "eleven reviewed physical PCB-copper test-point symbols terminate exact implemented nets in H2.2.10",
       "RF_00_ROOT": "hierarchy and named sheet interfaces only",
       "RF_60_TESTPOINTS_MANUFACTURING": "virtual/physical test-point symbols are added with the implemented nets in H2.3"
     },
@@ -113,6 +113,19 @@
         "CAP_30_TX_EVIDENCE"
       ]
     }
+  ],
+  "test_point_contracts": [
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_S3_RUN","net":"S3_RESET_N","owner_sheet":"UI_50_TX_SAFETY_EVIDENCE","purpose":"fixture observation and assertion of the S3 reset/run path"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_C5_RUN","net":"C5_RESET_N","owner_sheet":"UI_50_TX_SAFETY_EVIDENCE","purpose":"fixture observation and assertion of the C5 reset/run path"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_UI_TEMP","net":"UI_ZONE_TEMP_ADC","owner_sheet":"UI_12_CONTROLS_INDICATORS","purpose":"UI-board thermal-channel injection and observation"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_IR_TX_SAFE","net":"IR_TX_CARRIER_SAFE","owner_sheet":"UI_20_C5_RADIO_IR_SERVICE","purpose":"post-RUN_PERMIT IR carrier observation only"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N0","net":"EV_N0_S3","owner_sheet":"UI_50_TX_SAFETY_EVIDENCE","purpose":"S3 physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N1","net":"EV_N1_C5","owner_sheet":"UI_50_TX_SAFETY_EVIDENCE","purpose":"C5 physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N7","net":"EV_N7_IR","owner_sheet":"UI_50_TX_SAFETY_EVIDENCE","purpose":"IR physical-light evidence calibration and fault injection"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_C5_SERVICE_VBUS_SENSE","net":"C5_SERVICE_VBUS_SENSE_ONLY","owner_sheet":"UI_20_C5_RADIO_IR_SERVICE","purpose":"high-impedance service-cable attach diagnosis without a power path"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_C5_GPIO27_FIXED_HIGH","net":"C5_GPIO27_FIXED_HIGH","owner_sheet":"UI_20_C5_RADIO_IR_SERVICE","purpose":"read-only fixed-high strap observation"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_SLOW_IO_RESET_N","net":"SLOW_IO_RESET_N","owner_sheet":"UI_12_CONTROLS_INDICATORS","purpose":"protected fixture reset and recovery diagnosis for the main slow-I/O expander"},
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_LCD_BACKLIGHT_FAULT_N","net":"LCD_BACKLIGHT_FAULT_N","owner_sheet":"UI_11_DISPLAY_TOUCH_STORAGE","purpose":"latched display-backlight fault diagnosis"}
   ],
   "cross_project_contracts": [
     {

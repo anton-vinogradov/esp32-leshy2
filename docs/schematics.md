@@ -7,20 +7,22 @@ The diagrams below describe the finished device by functional domain. Exact cont
 ## Current production ECAD schematic
 
 The functional diagrams below remain the overview of the finished product.
-The implemented KiCad sheets are the exact electrical schematic: every device
-has an MPN, physical contacts, footprint, nets and explicit no-connects.
+The implemented KiCad sheets are the exact electrical schematic: every
+purchased device has an MPN, physical contacts, footprint, nets and explicit
+no-connects; fabricated test pads are explicitly excluded from the BOM.
 
 | Sheet | State | Closed electrical content |
 |---|---|---|
-| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 90 cross-sheet nets and 216 explicit pins/labels |
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 95 cross-sheet nets and 232 explicit pins/labels |
 | [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | exact ECAD | 32 components, 41 S3 carrier pads, boot/recovery/USB/RF and 39 interfaces |
-| [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 17 interfaces |
-| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | exact ECAD | 71 components, 15 serial switches, 9 actual-TX LEDs, hardware FAULT LED, thermal/ESD and 44 interfaces |
+| [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 18 interfaces |
+| [`UI_12_CONTROLS_INDICATORS`](../hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch) | exact ECAD | 71 components, 15 serial switches, 9 actual-TX LEDs, hardware FAULT LED, thermal/ESD and 45 interfaces |
 | [`UI_13_AUDIO_CODEC_HEADSET`](../hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch) | exact ECAD | 102 components, 21 codec contacts, 6 CTIA-jack contacts, 5 analog selectors, power/interface isolation and 24 interfaces |
-| [`UI_20_C5_RADIO_IR_SERVICE`](../hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch) | exact ECAD | 59 BOM components plus factory ANT1, 32 C5 carrier pads, dual IR RX, fail-closed IR TX, data-only USB/recovery and 15 interfaces |
+| [`UI_20_C5_RADIO_IR_SERVICE`](../hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch) | exact ECAD | 59 BOM components plus factory ANT1, 32 C5 carrier pads, dual IR RX, fail-closed IR TX, data-only USB/recovery and 18 interfaces |
 | [`UI_21_FM_AM_RECEIVER`](../hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch) | exact ECAD | 32 components, separate FM/SW and AM/LW ports, complete Si4732 power/control/clock/audio paths and 8 interfaces |
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C plug, 80 separate physical contacts, 51 interfaces, 20 `POWER_GROUND`, 7 `3V3_MAIN`, no reserves or NCs |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 28 components, two RF detectors, a physical optical IR sensor, four comparator channels, two reset sinks, 18 interfaces and one NC |
+| [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | exact ECAD | 11 physical 1.0-mm test pads on exact nets; fabricated PCB copper with no purchased MPN/BOM |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -30,7 +32,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [C5 radio/IR/service](../hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json) and
 [FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json), and
 [UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json), and
-[UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json).
+[UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json), and
+[UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json).
 These sheets do not yet authorize PCB placement, routing or fabrication.
 
 Read the architecture from its three compute owners, not from the USB port.

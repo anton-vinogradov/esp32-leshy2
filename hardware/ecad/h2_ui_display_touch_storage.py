@@ -421,7 +421,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "external_assembly_interface_symbols": 2,
         "display_contacts": 40,
         "microsd_socket_contacts": 11,
-        "hierarchical_interfaces": 17,
+        "hierarchical_interfaces": 18,
         "intentional_no_connect_pins": 33,
         "pcb_files_created": 0,
     }
@@ -430,7 +430,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     sch = generated[OUTPUT_SCH]
     if sch.count("\n\t(symbol\n") != 49:
         raise ValueError("UI11 schematic symbol instance count mismatch")
-    if sch.count("\n\t(hierarchical_label \"") != 17:
+    if sch.count("\n\t(hierarchical_label \"") != 18:
         raise ValueError("UI11 hierarchical label count mismatch")
     fitted = [row for row in manifest["instances"] if row["board_fitted"]]
     if any(not row["footprint"] for row in fitted):

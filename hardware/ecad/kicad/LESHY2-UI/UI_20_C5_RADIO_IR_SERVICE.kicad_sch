@@ -8381,7 +8381,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "0ff82fb5-55d6-5dda-8d96-f3c8f2059b33")
 	)
-	(label "C5_GPIO27_FIXED_HIGH"
+	(hierarchical_label "C5_GPIO27_FIXED_HIGH"
+		(shape bidirectional)
 		(at 63.50 45.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "49fb6078-6399-514e-b3b2-2d3b7f77cccf")
@@ -8518,7 +8519,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "f7705236-2760-5ec1-a7a9-327d6aea63f3")
 	)
-	(label "C5_SERVICE_VBUS_SENSE_ONLY"
+	(hierarchical_label "C5_SERVICE_VBUS_SENSE_ONLY"
+		(shape bidirectional)
 		(at 525.78 147.32 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "4f4dd972-b542-5a11-ab11-65b670c29655")
@@ -8788,7 +8790,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "a1bae458-856e-5649-a379-3b3144efffb7")
 	)
-	(label "IR_TX_CARRIER_SAFE"
+	(hierarchical_label "IR_TX_CARRIER_SAFE"
+		(shape bidirectional)
 		(at 312.42 144.78 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "5e4414ec-2181-5b4c-a657-a1b15b21fb2b")

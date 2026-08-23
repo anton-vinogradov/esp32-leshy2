@@ -41,6 +41,7 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "UI_21_FM_AM_RECEIVER": ECAD / "generated/H2-UI21-fm-am-receiver.json",
     "UI_40_INTERBOARD_M1": ECAD / "generated/H2-UI40-interboard-m1.json",
     "UI_50_TX_SAFETY_EVIDENCE": ECAD / "generated/H2-UI50-tx-safety-evidence.json",
+    "UI_60_TESTPOINTS_MANUFACTURING": ECAD / "generated/H2-UI60-testpoints-manufacturing.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "UI_10_S3_CORE_MEMORY_BOOT": "reviewed_exact_s3_core_sheet",
@@ -51,6 +52,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "UI_21_FM_AM_RECEIVER": "reviewed_exact_fm_am_receiver_sheet",
     "UI_40_INTERBOARD_M1": "reviewed_exact_ui_interboard_m1_sheet",
     "UI_50_TX_SAFETY_EVIDENCE": "reviewed_exact_ui_tx_safety_evidence_sheet",
+    "UI_60_TESTPOINTS_MANUFACTURING": "reviewed_exact_ui_testpoints_manufacturing_sheet",
 }
 NAMESPACE = uuid.UUID("4ed50bf6-dbd9-44f6-a71f-9f07341b4db6")
 
@@ -95,6 +97,12 @@ def build_interfaces(candidate: dict, ledger: dict, sheet_contract: dict) -> dic
                     net_sheets[net].add(sheet)
         if net in m1_nets:
             net_sheets[net].add("UI_40_INTERBOARD_M1")
+    for test_point in sheet_contract.get("test_point_contracts", []):
+        if test_point.get("project") != "LESHY2-UI":
+            continue
+        net_sheets[test_point["net"]].update(
+            {test_point["owner_sheet"], test_point["test_sheet"]}
+        )
     for allocation in candidate["allocations"]:
         net = allocation["net"]
         if net == "NO_CONNECT" or net.endswith("_NC"):
@@ -365,14 +373,12 @@ def outputs() -> tuple[dict[Path, str], dict]:
         "review_boundary": {
             "complete": [
                 "all nine UI child sheets instantiated by the KiCad root",
-                "all 90 derived cross-sheet nets represented by 216 explicit named pins and child labels",
+                "all 95 derived cross-sheet nets represented by 232 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
                 "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted",
             ],
             "deferred": [
-                "functional circuit symbols and exact electrical sheet-pin directions in H2.2.2-H2.2.9",
-                "each remaining exact child-stub label_dangling finding disappears as its functional circuit sheet is placed",
-                "manufacturing test-point interfaces in H2.2.10",
+                "RF/power-board functional circuit symbols and exact electrical sheet-pin directions in H2.3",
                 "final full-project ERC closure in H2.6",
                 "all PCB placement, routing, fabrication and purchasing",
             ],
@@ -471,10 +477,16 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
                 f"violations={len(violations)}, expected-stubs={len(expected_label_uuids)}, "
                 f"expected-generated-symbol-warnings={len(expected_mismatch_uuids)}"
             )
-    print(
-        "ok: KiCad parsed the live UI hierarchy; only exact unimplemented child stubs "
-        "and generated-library copy warnings remain"
-    )
+    if manifest["summary"]["known_child_stub_erc_violations"]:
+        print(
+            "ok: KiCad parsed the live UI hierarchy; only exact unimplemented child "
+            "stubs and generated-library copy warnings remain"
+        )
+    else:
+        print(
+            "ok: KiCad parsed the complete UI hierarchy with no unimplemented child "
+            "stubs; only exact generated-library copy warnings remain"
+        )
 
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
@@ -501,13 +513,13 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         raise ValueError("UI child hierarchical-label count mismatch")
     if summary != {
         "child_sheet_count": 9,
-        "cross_sheet_net_count": 90,
-        "root_hierarchical_pin_count": 216,
-        "child_hierarchical_label_count": 216,
+        "cross_sheet_net_count": 95,
+        "root_hierarchical_pin_count": 232,
+        "child_hierarchical_label_count": 232,
         "known_child_stub_erc_violations": 0,
-        "implemented_child_sheet_count": 8,
-        "circuit_symbols_placed": 376,
-        "known_generated_library_copy_warnings": 376,
+        "implemented_child_sheet_count": 9,
+        "circuit_symbols_placed": 387,
+        "known_generated_library_copy_warnings": 387,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")
@@ -526,9 +538,15 @@ def main() -> int:
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--write", action="store_true")
     mode.add_argument("--check", action="store_true")
+    mode.add_argument("--write-interface-contract", action="store_true")
     parser.add_argument("--kicad-check", action="store_true")
     args = parser.parse_args()
     generated, manifest = outputs()
+    if args.write_interface_contract:
+        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+        OUTPUT.write_text(generated[OUTPUT], encoding="utf-8")
+        print(f"wrote {OUTPUT.relative_to(REPO)}")
+        return 0
     structural_check(generated, manifest)
     if args.write:
         for path, content in generated.items():

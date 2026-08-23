@@ -7,17 +7,17 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "e1ca648053a5f54c1face3b71ada224864508d0f280144f3f3b87a6bf9153bcf",
     "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
-    "hardware/ecad/H2-sheet-contract.json": "6eecefd76af9892562045463a1ca96c2647b7b759af4470f45b121a2fa365f8b"
+    "hardware/ecad/H2-sheet-contract.json": "bc126f32dadd73fb0ec68b64ae9917f4083bbd0d45a8bcaf3c419574d2516a42"
   },
   "summary": {
     "child_sheet_count": 9,
-    "cross_sheet_net_count": 90,
-    "root_hierarchical_pin_count": 216,
-    "child_hierarchical_label_count": 216,
+    "cross_sheet_net_count": 95,
+    "root_hierarchical_pin_count": 232,
+    "child_hierarchical_label_count": 232,
     "known_child_stub_erc_violations": 0,
-    "implemented_child_sheet_count": 8,
-    "circuit_symbols_placed": 376,
-    "known_generated_library_copy_warnings": 376,
+    "implemented_child_sheet_count": 9,
+    "circuit_symbols_placed": 387,
+    "known_generated_library_copy_warnings": 387,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -68,12 +68,13 @@
     },
     {
       "id": "UI_11_DISPLAY_TOUCH_STORAGE",
-      "interface_count": 17,
+      "interface_count": 18,
       "interfaces": [
         "3V3_MAIN",
         "DISPLAY_SD_SPI_D0",
         "DISPLAY_SD_SPI_D1",
         "DISPLAY_SD_SPI_SCK",
+        "LCD_BACKLIGHT_FAULT_N",
         "LCD_BL_PWM",
         "LCD_CS_N",
         "LCD_QSPI_D2",
@@ -91,7 +92,7 @@
     },
     {
       "id": "UI_12_CONTROLS_INDICATORS",
-      "interface_count": 44,
+      "interface_count": 45,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -124,6 +125,7 @@
         "SAFETY_GROUND",
         "SD_CARD_DETECT_N",
         "SD_PWR_EN",
+        "SLOW_IO_RESET_N",
         "SPEAKER_AMP_EN",
         "SYS_I2C_SCL",
         "SYS_I2C_SDA",
@@ -171,15 +173,18 @@
     },
     {
       "id": "UI_20_C5_RADIO_IR_SERVICE",
-      "interface_count": 15,
+      "interface_count": 18,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
         "C5_DETECT_V",
         "C5_DETECT_VM",
         "C5_FORWARD_RF_SAMPLE",
+        "C5_GPIO27_FIXED_HIGH",
         "C5_RESET_N",
         "C5_RF_TX_EVIDENCE_N",
+        "C5_SERVICE_VBUS_SENSE_ONLY",
+        "IR_TX_CARRIER_SAFE",
         "IR_TX_EVIDENCE_N",
         "POWER_GROUND",
         "RUN_PERMIT",
@@ -287,8 +292,20 @@
     },
     {
       "id": "UI_60_TESTPOINTS_MANUFACTURING",
-      "interface_count": 0,
-      "interfaces": []
+      "interface_count": 11,
+      "interfaces": [
+        "C5_GPIO27_FIXED_HIGH",
+        "C5_RESET_N",
+        "C5_SERVICE_VBUS_SENSE_ONLY",
+        "EV_N0_S3",
+        "EV_N1_C5",
+        "EV_N7_IR",
+        "IR_TX_CARRIER_SAFE",
+        "LCD_BACKLIGHT_FAULT_N",
+        "S3_RESET_N",
+        "SLOW_IO_RESET_N",
+        "UI_ZONE_TEMP_ADC"
+      ]
     }
   ],
   "nets": [
@@ -379,10 +396,18 @@
       ]
     },
     {
+      "name": "C5_GPIO27_FIXED_HIGH",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
       "name": "C5_RESET_N",
       "sheets": [
         "UI_20_C5_RADIO_IR_SERVICE",
-        "UI_50_TX_SAFETY_EVIDENCE"
+        "UI_50_TX_SAFETY_EVIDENCE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -391,6 +416,13 @@
         "UI_20_C5_RADIO_IR_SERVICE",
         "UI_40_INTERBOARD_M1",
         "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "C5_SERVICE_VBUS_SENSE_ONLY",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -456,7 +488,8 @@
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
         "UI_40_INTERBOARD_M1",
-        "UI_50_TX_SAFETY_EVIDENCE"
+        "UI_50_TX_SAFETY_EVIDENCE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -464,7 +497,8 @@
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
         "UI_40_INTERBOARD_M1",
-        "UI_50_TX_SAFETY_EVIDENCE"
+        "UI_50_TX_SAFETY_EVIDENCE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -507,7 +541,8 @@
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
         "UI_40_INTERBOARD_M1",
-        "UI_50_TX_SAFETY_EVIDENCE"
+        "UI_50_TX_SAFETY_EVIDENCE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -560,11 +595,25 @@
       ]
     },
     {
+      "name": "IR_TX_CARRIER_SAFE",
+      "sheets": [
+        "UI_20_C5_RADIO_IR_SERVICE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
       "name": "IR_TX_EVIDENCE_N",
       "sheets": [
         "UI_20_C5_RADIO_IR_SERVICE",
         "UI_40_INTERBOARD_M1",
         "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "LCD_BACKLIGHT_FAULT_N",
+      "sheets": [
+        "UI_11_DISPLAY_TOUCH_STORAGE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -745,7 +794,8 @@
       "sheets": [
         "UI_10_S3_CORE_MEMORY_BOOT",
         "UI_12_CONTROLS_INDICATORS",
-        "UI_50_TX_SAFETY_EVIDENCE"
+        "UI_50_TX_SAFETY_EVIDENCE",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -819,6 +869,13 @@
       "sheets": [
         "UI_10_S3_CORE_MEMORY_BOOT",
         "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
+      "name": "SLOW_IO_RESET_N",
+      "sheets": [
+        "UI_12_CONTROLS_INDICATORS",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -906,7 +963,8 @@
       "name": "UI_ZONE_TEMP_ADC",
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
-        "UI_40_INTERBOARD_M1"
+        "UI_40_INTERBOARD_M1",
+        "UI_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -973,21 +1031,20 @@
       "UI_20_C5_RADIO_IR_SERVICE",
       "UI_21_FM_AM_RECEIVER",
       "UI_40_INTERBOARD_M1",
-      "UI_50_TX_SAFETY_EVIDENCE"
+      "UI_50_TX_SAFETY_EVIDENCE",
+      "UI_60_TESTPOINTS_MANUFACTURING"
     ],
     "generated_library_copy_warning_proof": "the controlled and embedded symbol definitions are generated from one object; validation requires one lib_symbol_mismatch per generated symbol and rejects every other mismatch/finding"
   },
   "review_boundary": {
     "complete": [
       "all nine UI child sheets instantiated by the KiCad root",
-      "all 90 derived cross-sheet nets represented by 216 explicit named pins and child labels",
+      "all 95 derived cross-sheet nets represented by 232 explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
       "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted"
     ],
     "deferred": [
-      "functional circuit symbols and exact electrical sheet-pin directions in H2.2.2-H2.2.9",
-      "each remaining exact child-stub label_dangling finding disappears as its functional circuit sheet is placed",
-      "manufacturing test-point interfaces in H2.2.10",
+      "RF/power-board functional circuit symbols and exact electrical sheet-pin directions in H2.3",
       "final full-project ERC closure in H2.6",
       "all PCB placement, routing, fabrication and purchasing"
     ]

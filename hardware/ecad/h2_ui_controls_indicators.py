@@ -374,7 +374,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "ledger_instances": 71,
         "schematic_symbols": 71,
         "board_fitted_symbols": 71,
-        "hierarchical_interfaces": 44,
+        "hierarchical_interfaces": 45,
         "slow_io_contacts": 33,
         "matrix_io_contacts": 24,
         "serial_tactile_switches": 15,
@@ -389,7 +389,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 71:
         raise ValueError("UI12 schematic symbol instance count mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 44:
+    if schematic.count("\n\t(hierarchical_label \"") != 45:
         raise ValueError("UI12 hierarchy-interface count mismatch")
     if manifest["intentional_no_connect_endpoints"] != [
         "front_function_esd.IO8", "slow_io_fault_sense_iso.NC", "slow_io_s3_evidence_iso.NC"

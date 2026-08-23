@@ -10498,7 +10498,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "2119bc4b-e780-5650-bb88-7b023d66f2f9")
 	)
-	(label "SLOW_IO_RESET_N"
+	(hierarchical_label "SLOW_IO_RESET_N"
+		(shape bidirectional)
 		(at 68.58 68.58 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5ec2082c-d3f2-57f1-b652-2f1099507d46")

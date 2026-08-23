@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.10 -->
+<!-- current-substep: H2.3.1 -->
 
-**Exact marker: `H2.2.10`** — implement and review UI-board manufacturing and
-diagnostic test points on `UI_60_TESTPOINTS_MANUFACTURING`.
+**Exact marker: `H2.3.1`** — implement and review the RF/power KiCad root and
+all explicit cross-sheet interfaces on `RF_00_ROOT`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -43,23 +43,23 @@ diagnostic test points on `UI_60_TESTPOINTS_MANUFACTURING`.
   - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP contract and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native sheet files and
   repository-controlled library tables created; KiCad 10 parser/empty ERC passed.
-- `H2.2` — implement and review UI/control PCB sheets.
-  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 90 exact cross-sheet
-    nets and 216 named pins/child labels; direct root rails parse in KiCad.
+- ✅ `H2.2` — implement and review UI/control PCB sheets.
+  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 95 exact cross-sheet
+    nets and 232 named pins/child labels; direct root rails parse in KiCad.
   - ✅ `H2.2.2` — S3 core reviewed: 32 exact ledger components plus the module
     U.FL assembly boundary, all 41 carrier pads and 39 hierarchy interfaces.
   - ✅ `H2.2.3` — reviewed 49 exact display/touch/storage instances: the
     40-contact panel, all 11 microSD contacts, protected backlight, data
-    isolation and all 17 hierarchy interfaces.
+    isolation and all 18 hierarchy interfaces.
   - ✅ `H2.2.4` — reviewed 71 exact control/indicator components: 15 serial
     switches, slow/matrix I/O, thermal/ESD paths, nine actual-TX LEDs, the
-    hardware FAULT LED, 44 hierarchy interfaces and three explained NC pins.
+    hardware FAULT LED, 45 hierarchy interfaces and three explained NC pins.
   - ✅ `H2.2.5` — reviewed 102 exact codec/headset components: all 21 ES8311
     contacts, the six-contact CTIA jack, five analog selectors, power/interface
     isolation, 24 hierarchy interfaces and eight explained NC pins.
   - ✅ `H2.2.6` — reviewed 59 exact C5/IR/service BOM instances plus the
     factory ANT1 boundary: all 32 carrier pads, two IR receive paths,
-    fail-closed IR TX, data-only USB, recovery and 15 hierarchy interfaces.
+    fail-closed IR TX, data-only USB, recovery and 18 hierarchy interfaces.
   - ✅ `H2.2.7` — reviewed 32 exact FM/AM/SW/LW receiver components: two
     distinct antenna ports, full Si4732 power/control/clock/audio circuitry,
     eight hierarchy interfaces and four explained NC pins.
@@ -68,8 +68,22 @@ diagnostic test points on `UI_60_TESTPOINTS_MANUFACTURING`.
   - ✅ `H2.2.9` — reviewed 28 exact TX safety/evidence components: two RF
     detectors, a physical optical IR sensor, four comparator channels, two
     reset sinks and 18 hierarchy interfaces; one NC is explained.
-  - ▶️ **`H2.2.10` — current:** manufacturing/test points.
-- ⏳ `H2.3` — implement and review RF/power PCB sheets.
+  - ✅ `H2.2.10` — reviewed 11 exact physical 1.0-mm manufacturing/test pads;
+    each has one real net, stable fixture identity and no false BOM/MPN entry.
+- ▶️ `H2.3` — implement and review RF/power PCB sheets.
+  - ▶️ **`H2.3.1` — current:** `RF_00_ROOT` hierarchy and explicit interfaces.
+  - ⏳ `H2.3.2` — USB-PD input and dual-cell charging.
+  - ⏳ `H2.3.3` — pack admission and always-on safety.
+  - ⏳ `H2.3.4` — main rails and quietable domain gates.
+  - ⏳ `H2.3.5` — RP2354 core, flash and service access.
+  - ⏳ `H2.3.6` — three independent full-function nRF24 paths.
+  - ⏳ `H2.3.7` — Sub-GHz and VHF/UHF voice paths.
+  - ⏳ `H2.3.8` — U214 and protected M5 Unit expansion.
+  - ⏳ `H2.3.9` — rear controls and encoder.
+  - ⏳ `H2.3.10` — speaker, microphone and audio amplification.
+  - ⏳ `H2.3.11` — RF/power side of the exact 80-contact M1 contract.
+  - ⏳ `H2.3.12` — RF-side TX safety and physical evidence.
+  - ⏳ `H2.3.13` — RF/power manufacturing/test pads.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, boot, recovery, quiet-state and
   `FAULT_KILL` paths.

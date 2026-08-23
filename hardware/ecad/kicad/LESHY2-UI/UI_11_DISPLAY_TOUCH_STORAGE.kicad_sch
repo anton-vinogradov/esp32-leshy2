@@ -7389,7 +7389,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "7d4063ff-8e79-57d0-8fdf-6879c49d9d1a")
 	)
-	(label "LCD_BACKLIGHT_FAULT_N"
+	(hierarchical_label "LCD_BACKLIGHT_FAULT_N"
+		(shape bidirectional)
 		(at 276.86 99.06 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "377d7c99-ee3e-59a8-9684-2bd521f88767")
