@@ -82,8 +82,8 @@ evidence, поэтому его TX заблокирован. Контакт 5 Ca
 | ZIF хвоста дисплея | `Hirose FH34SRJ-40S-0.5SH(99)` | 40 контактов, шаг 0,5 мм, контакты сверху и снизу |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; отдельное питание и изоляция данных |
 | Audio codec | `Everest ES8311` | Захват и воспроизведение I²S |
-| Микрофон | `Same Sky CMEJ-0413-42-SMT-TR` | Задняя RF/power-плата; нижний акустический порт |
-| Динамик | `PUI Audio AS02404PO` | Задняя RF/power-плата; 4-Ом differential output через боковую решётку |
+| Микрофон | `Same Sky CMEJ-0413-42-SMT-TR` | Задняя RF/power-плата; направлен к нижнему торцу |
+| Динамик | `PUI Audio AS02404PO` | Задняя RF/power-плата; 4-Ом differential output; акустическое оформление корпуса проверяется позднее |
 | Наушники | `Same Sky SJ1-3515-SMT-TR` | 3,5-мм разъём с detect |
 | Основной I/O expander | `TCA6424ARGJR` | Питание, режимы и медленные сигналы |
 | Панель управления | `TCA9539PWR` | Десять независимых active-low входов для D-pad, BACK, OPT, F1, F2 и encoder push |

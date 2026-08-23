@@ -147,13 +147,14 @@ EDGE_INTERFACES = (
     ("power_command_switch", "rear", "right", 112.75, "RUN / KILL"),
     ("product_usb_connector", "rear", "bottom", 16.47, "USB / POWER"),
     ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
+    ("microphone", "rear", "bottom", 47.0, "MICROPHONE"),
     ("unit_connector", "rear", "bottom", 57.0, "M5 UNIT"),
 )
 
-# Acoustic openings have a physical location but no electrical direction.
-ACOUSTIC_OPENINGS = (
-    ("speaker", "rear", "right", 133.0, "SPEAKER / GRILLE"),
-    ("microphone", "rear", "bottom", 47.0, "MICROPHONE"),
+# Internal acoustic components can require an exterior label without inventing
+# enclosure-slot geometry on the PCB-face projection.
+EXTERNAL_COMPONENT_LABELS = (
+    ("speaker", "rear", "right", 133.0, "SPEAKER"),
 )
 
 # External side projections show only real silkscreen labels and an enclosure
@@ -294,7 +295,7 @@ RF_INNER = (
     Placement("product_usb_connector", 12.0, 143.1, "product USB-C data and sink"),
     Placement("rp_service_usb_connector", 33.0, 142.65, "RP data-only service USB"),
     Placement("unit_connector", 51.0, 140.9, "native M5 Unit HY2.0-4P edge receptacle"),
-    Placement("microphone", 45.0, 146.0, "rear bottom microphone port"),
+    Placement("microphone", 45.0, 146.0, "rear bottom-facing microphone"),
     Placement("speaker", 50.0, 127.0, "internal 4-Ohm differential speaker"),
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 51.0, 104.0, "RP technological RUN/RESET"),
@@ -492,8 +493,8 @@ DIRECTIONAL_BODY_DIRECTIONS = {
         for instance, face, side, _, _ in EDGE_INTERFACES
     },
     **{
-        instance: f"{face} {side} acoustic opening"
-        for instance, face, side, _, _ in ACOUSTIC_OPENINGS
+        instance: f"{face} {side} labelled internal acoustic component"
+        for instance, face, side, _, _ in EXTERNAL_COMPONENT_LABELS
     },
     **{item.instance: "front-normal outward actuation" for item in FRONT_CONTROLS},
     **{item.instance: "rear-normal outward actuation" for item in REAR_CONTROLS},
@@ -1572,11 +1573,14 @@ def validate() -> list[str]:
     rf_instances = {item.instance for item in RF_INNER}
     if "microphone" in ui_instances or "microphone" not in rf_instances:
         errors.append("microphone must remain on the RF/power PCB inner side")
-    if {(instance, face, side) for instance, face, side, _, _ in ACOUSTIC_OPENINGS} != {
-        ("speaker", "rear", "right"),
-        ("microphone", "rear", "bottom"),
+    if ("microphone", "rear", "bottom") not in {
+        (instance, face, side) for instance, face, side, _, _ in EDGE_INTERFACES
     }:
-        errors.append("speaker and microphone must use non-directional rear acoustic openings")
+        errors.append("microphone must retain its labelled downward external direction")
+    if {(instance, face, side) for instance, face, side, _, _ in EXTERNAL_COMPONENT_LABELS} != {
+        ("speaker", "rear", "right"),
+    }:
+        errors.append("speaker must retain its external label without invented grille geometry")
 
     u214_dims = devices[instances["u214"]]["dimensions_mm"]
     if u214_dims != [84.0, 24.0, 15.287]:
@@ -2211,32 +2215,13 @@ def render_external(devices, instances):
         out.append(f'<path d="M{sx(rear,x):.1f} {sy(rear,150):.1f} V{sy(rear,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(silk_text(sx(rear,x), sy(rear,149), label, 4.2, "bold", "middle", "#1d4ed8"))
 
-    # Speaker grille and microphone port are labelled openings, not arrows.
-    for instance, face, side, coordinate, label in ACOUSTIC_OPENINGS:
+    # The speaker is labelled externally, but enclosure-slot geometry is not
+    # invented on this PCB-face projection.
+    for instance, face, side, coordinate, label in EXTERNAL_COMPONENT_LABELS:
         if face != "rear":
             continue
-        if side == "left":
-            for offset in (-2.0, 0.0, 2.0):
-                out.append(
-                    f'<line x1="{sx(rear,0):.1f}" y1="{sy(rear,coordinate + offset):.1f}" '
-                    f'x2="{sx(rear,3):.1f}" y2="{sy(rear,coordinate + offset):.1f}" '
-                    'stroke="#2563eb" stroke-width="1.4"/>'
-                )
-            out.append(silk_text(sx(rear,7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
-        elif side == "right":
-            for offset in (-2.0, 0.0, 2.0):
-                out.append(
-                    f'<line x1="{sx(rear,BOARD_W-3):.1f}" y1="{sy(rear,coordinate + offset):.1f}" '
-                    f'x2="{sx(rear,BOARD_W):.1f}" y2="{sy(rear,coordinate + offset):.1f}" '
-                    'stroke="#2563eb" stroke-width="1.4"/>'
-                )
+        if side == "right":
             out.append(silk_text(sx(rear,BOARD_W-7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
-        elif side == "bottom":
-            out.append(
-                f'<circle cx="{sx(rear,coordinate):.1f}" cy="{sy(rear,149):.1f}" r="3.2" '
-                'fill="none" stroke="#d97706" stroke-width="1.4" data-interface-kind="acoustic-opening"/>'
-            )
-            out.append(silk_text(sx(rear,coordinate), sy(rear,146.8), label, 4.2, "bold", "middle", "#92400e"))
 
     note_x = 850
     out += [
@@ -2249,7 +2234,7 @@ def render_external(devices, instances):
         text(note_x,245,"Interface direction",15,"bold"),
         text(note_x,273,"↑ / ↓ / ← / →  interface faces through that enclosure edge",11),
         text(note_x,296,"⊗ / ⊙  press toward / remove away from the viewed face",11),
-        text(note_x,319,"○ / ≋  microphone port and speaker grille are locations, not signal directions",11),
+        text(note_x,319,"MICROPHONE uses the ordinary downward interface arrow; SPEAKER is a component label.",11),
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each built-in transmitting path",11),
@@ -2807,7 +2792,7 @@ def _render_sandwich_legacy(devices, instances):
         t(note_x, 366, "→ rear: open battery holder; controls sit beside it on the same PCB face", 11),
         t(note_x, 392, "⊗/⊙ on rear face: U214 presses onto / lifts from the vertical socket", 11),
         t(note_x, 418, "↑ top: nine separately labelled SMA/RP-SMA antenna ports", 11),
-        t(note_x, 444, "bottom/sides: USB, microSD, microphone port, headphones and M5 Unit", 11),
+        t(note_x, 444, "bottom/sides: USB, microSD, downward microphone, headphones and M5 Unit", 11),
         t(note_x, 486, "Clearance meaning", 15, "bold"),
         t(note_x, 514, "The 11-mm value is the selected connector's board-to-board height.", 11),
         t(note_x, 540, "Component placement uses real package depth; passives and copper are omitted.", 11),
@@ -3400,9 +3385,9 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
         for instance, face, side, coordinate, label in EDGE_INTERFACES
         if face == "rear"
     ]
-    rear_acoustics = [
+    rear_component_labels = [
         {"instance": instance, "edge": side, "coordinate_mm": coordinate, "silkscreen": label}
-        for instance, face, side, coordinate, label in ACOUSTIC_OPENINGS
+        for instance, face, side, coordinate, label in EXTERNAL_COMPONENT_LABELS
         if face == "rear"
     ]
     return {
@@ -3474,7 +3459,7 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
             "controls": controls(REAR_CONTROLS),
             "encoder_actuator_mpn": devices[instances["encoder_knob"]]["mpn"],
             "edge_interfaces": rear_edges,
-            "acoustic_openings": rear_acoustics,
+            "external_component_labels": rear_component_labels,
         },
     }
 

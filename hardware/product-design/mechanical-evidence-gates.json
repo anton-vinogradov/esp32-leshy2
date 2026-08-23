@@ -126,8 +126,8 @@
       "id": "H5-MECH-ACOUSTIC-PATHS",
       "disposition": "h5_received_sample_gate",
       "affected_instances": ["speaker", "microphone"],
-      "evidence_boundary": "Exact speaker/microphone bodies and rear acoustic-opening locations fit the sourced envelopes without inventing directional electrical interfaces.",
-      "unknown": "Grille loss, cavity resonance, sealing, feedback, microphone port response and vibration.",
+      "evidence_boundary": "Exact speaker/microphone bodies fit the sourced envelopes; the microphone retains a downward interface direction without inventing aperture geometry on the PCB-face view.",
+      "unknown": "Enclosure acoustic treatment, cavity resonance, sealing, feedback, microphone response and vibration.",
       "closure": "Received acoustic stack passes level, response, feedback, sealing and vibration tests in H5.",
       "blocks": ["H8"]
     }

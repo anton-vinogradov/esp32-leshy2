@@ -1827,11 +1827,11 @@
       "instance": "microphone",
       "device_key": "same_sky_cmej_0413_42_smt_tr",
       "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
-      "role": "rear bottom microphone port",
+      "role": "rear bottom-facing microphone",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
-      "direction": "rear bottom acoustic opening",
+      "direction": "rear bottom enclosure exit",
       "envelope_mm": [
         4.0,
         4.0,
@@ -3995,7 +3995,7 @@
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
-      "direction": "rear right acoustic opening",
+      "direction": "rear right labelled internal acoustic component",
       "envelope_mm": [
         24.0,
         12.0,

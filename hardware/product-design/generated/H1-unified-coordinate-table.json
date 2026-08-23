@@ -1199,7 +1199,7 @@
           15.8
         ]
       },
-      "direction": "rear bottom acoustic opening"
+      "direction": "rear bottom enclosure exit"
     },
     {
       "instance": "nrf0",
@@ -2358,7 +2358,7 @@
           15.8
         ]
       },
-      "direction": "rear right acoustic opening"
+      "direction": "rear right labelled internal acoustic component"
     },
     {
       "instance": "speaker_amp",

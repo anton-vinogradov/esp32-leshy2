@@ -485,24 +485,24 @@
         "silkscreen": "RP SERVICE USB"
       },
       {
+        "instance": "microphone",
+        "edge": "bottom",
+        "coordinate_mm": 47.0,
+        "silkscreen": "MICROPHONE"
+      },
+      {
         "instance": "unit_connector",
         "edge": "bottom",
         "coordinate_mm": 57.0,
         "silkscreen": "M5 UNIT"
       }
     ],
-    "acoustic_openings": [
+    "external_component_labels": [
       {
         "instance": "speaker",
         "edge": "right",
         "coordinate_mm": 133.0,
-        "silkscreen": "SPEAKER / GRILLE"
-      },
-      {
-        "instance": "microphone",
-        "edge": "bottom",
-        "coordinate_mm": 47.0,
-        "silkscreen": "MICROPHONE"
+        "silkscreen": "SPEAKER"
       }
     ]
   }

@@ -223,17 +223,16 @@ class ProductSiteTests(unittest.TestCase):
             "LINE OUT",
             "C5 SERVICE USB",
             "MICROPHONE",
-            "SPEAKER / GRILLE",
-            'data-interface-kind="acoustic-opening"',
-            "microSD",
             "SPEAKER",
-            "GRILLE",
+            "microSD",
             "POWER",
             "USB / POWER",
             "RP SERVICE USB",
             "M5 UNIT",
         ):
             self.assertIn(token, layout)
+        self.assertNotIn("SPEAKER / GRILLE", layout)
+        self.assertNotIn('data-interface-kind="acoustic-opening"', layout)
         for connector_silkscreen in ("2.4 GHz RP-SMA", "2.4/5 GHz RP-SMA", "2.4 GHz SMA"):
             self.assertNotIn(connector_silkscreen, layout)
         for process_token in ("G3-0001", "not G7", "not KiCad", "Working projection"):

@@ -80,8 +80,8 @@ never substitutes for measured RF.
 | Panel ZIF | `Hirose FH34SRJ-40S-0.5SH(99)` | 40 contacts, 0.5-mm pitch, top-and-bottom contact |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; independently powered and isolated |
 | Audio codec | `Everest ES8311` | I²S capture and playback |
-| Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Rear RF/power board; bottom acoustic port |
-| Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output through side grille |
+| Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Rear RF/power board; faces the bottom edge |
+| Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output; enclosure acoustic treatment is verified later |
 | Headphones | `Same Sky SJ1-3515-SMT-TR` | 3.5-mm connector with detect |
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
 | Control panel | `TCA9539PWR` | Ten independent active-low inputs for D-pad, BACK, OPT, F1, F2 and encoder push |

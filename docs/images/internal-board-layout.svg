@@ -317,6 +317,7 @@
 <path d="M465.0 567.2 L428.0 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M681.6 705.0 L681.6 738.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M603.9 705.0 L603.9 738.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M568.6 705.0 L568.6 738.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M531.6 705.0 L531.6 738.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="30.0" y="750.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Numbered physical devices</text>
 <text x="30.0" y="775.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#1d4ed8">UI/control PCB</text>
@@ -461,7 +462,7 @@
 <text x="770.0" y="858.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">69  1125R-SMT-4P</text>
 <text x="796.0" y="867.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">native M5 Unit HY2.0-4P edge receptacle</text>
 <text x="770.0" y="879.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">70  Same Sky CMEJ-0413-42-SMT-TR</text>
-<text x="796.0" y="888.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">rear bottom microphone port</text>
+<text x="796.0" y="888.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">rear bottom-facing microphone</text>
 <text x="770.0" y="900.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">71  PUI Audio AS02404PO</text>
 <text x="796.0" y="909.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">internal 4-Ohm differential speaker</text>
 <text x="770.0" y="921.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">72  Samtec FTSH-105-01-L-DV-K-P-TR</text>

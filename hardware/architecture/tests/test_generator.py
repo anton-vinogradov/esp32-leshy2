@@ -468,10 +468,12 @@ class ArchitectureValidationTests(unittest.TestCase):
             "HEADPHONES",
             "LINE OUT",
             "SPEAKER",
-            "GRILLE",
+            "MICROPHONE",
             "POWER",
         ):
             self.assertIn(token, rendered)
+        self.assertNotIn("SPEAKER / GRILLE", rendered)
+        self.assertNotIn('data-interface-kind="acoustic-opening"', rendered)
         for connector_silkscreen in ("2.4 GHz RP-SMA", "2.4/5 GHz RP-SMA", "2.4 GHz SMA"):
             self.assertNotIn(connector_silkscreen, rendered)
         navigation = (
