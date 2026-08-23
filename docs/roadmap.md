@@ -41,9 +41,9 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.4.4 -->
+<!-- current-substep: H2.4.5 -->
 
-**Exact marker: `H2.4.4`** — implement protected LoRa Cap power and identity bus.
+**Exact marker: `H2.4.5`** — implement independent physical-TX evidence for LoRa Cap.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -207,8 +207,9 @@ Current H2 execution:
   - ✅ `H2.4.3` — `CAP_10_RADIO_CONTROL`: seven fitted symbols per regional
     variant, 42 contacts, direct 50-Ohm final feed and full detector circuit;
     native KiCad review passed.
-  - ▶️ **`H2.4.4` — current:** `CAP_20_POWER_BUS`.
-  - ⏳ `H2.4.5` — `CAP_30_TX_EVIDENCE`.
+  - ✅ `H2.4.4` — `CAP_20_POWER_BUS`: protected fixed 3.3-V supply,
+    identity EEPROM and pull-ups; native KiCad review passed.
+  - ▶️ **`H2.4.5` — current:** `CAP_30_TX_EVIDENCE`.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,
   no-back-power, quiet-state and `FAULT_KILL` paths.
 - ⏳ `H2.6` — close ERC and justify every intentional no-connect.

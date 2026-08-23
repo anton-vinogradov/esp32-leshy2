@@ -20,9 +20,9 @@
     "host_physical_contacts": 14,
     "host_connected_contacts": 12,
     "host_reserved_no_connects": 2,
-    "implemented_child_sheet_count": 1,
+    "implemented_child_sheet_count": 2,
     "known_child_stub_erc_violations": 0,
-    "known_generated_library_copy_warnings": 8,
+    "known_generated_library_copy_warnings": 16,
     "pcb_files_created": 0
   },
   "host_connector": {
@@ -299,7 +299,8 @@
     "no_hidden_cross_sheet_globals": true,
     "root_owns_only_physical_host_connector": true,
     "implemented_children_are_preserved": [
-      "CAP_10_RADIO_CONTROL"
+      "CAP_10_RADIO_CONTROL",
+      "CAP_20_POWER_BUS"
     ],
     "selected_header_footprint_matches": "2x7 rows, 2.54-mm pitch and 0.635-mm square through-hole posts"
   },

@@ -118,9 +118,9 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.4.4 -->
+<!-- current-substep: H2.4.5 -->
 
-**Exact marker: `H2.4.4`** — implement protected LoRa Cap power and identity bus.
+**Exact marker: `H2.4.5`** — implement independent physical-TX evidence for LoRa Cap.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -161,8 +161,9 @@ and the full target/emulator gate are not closed, and no order is authorized.
     14-contact host boundary; native KiCad review passed.
   - ✅ `H2.4.3` — two exact regional one-of-two module options, direct final
     RF path, directional coupler, SMA and forward-power detector; reviewed.
-  - ▶️ **`H2.4.4` — current:** protected power and identity bus.
-  - ⏳ `H2.4.5` — independent physical-TX evidence.
+  - ✅ `H2.4.4` — protected 3.3-V power and identity bus; eight serial
+    components, 22 contacts and all five interfaces pass native KiCad review.
+  - ▶️ **`H2.4.5` — current:** independent physical-TX evidence.
 - ⏳ `H2.5` — independent power/boot/recovery/quiet-state/`FAULT_KILL` review.
 - ⏳ `H2.6` — close ERC and every intentional NC.
 - ⏳ `H2.7` — reconcile schematic contacts with H1, M1 and firmware F2.
