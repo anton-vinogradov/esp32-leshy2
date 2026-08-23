@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **937** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **936** supplied/costed placements collapse to **201** used exact-device/MPN lines.
-- Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **190/201** lines.
+- **941** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **940** supplied/costed placements collapse to **200** used exact-device/MPN lines.
+- Current orderability evidence exists for **199/200** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **189/200** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **919/936** supplied placements; their partial subtotals are `base_product` — USD 213.3985. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
+- Those priced lines cover **923/940** supplied placements; their partial subtotals are `base_product` — USD 214.1710. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **200/200** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 933 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 937 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -304,7 +304,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 27 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 26 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -318,7 +318,6 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 - Current lines:
   - `alps_ec11e18244au` — `Alps Alpine EC11E18244AU`.
   - `alps_skqgade010` — `Alps Alpine SKQGADE010`.
-  - `alps_skrhade010` — `Alps Alpine SKRHADE010`.
   - `ck_js102011scqn` — `C&K JS102011SCQN`.
   - `davies_1227_j` — `Davies Molding 1227-J`.
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
@@ -401,15 +400,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/alps-alpine/SKQGADE010/18109115).
-
-</details>
-
-<details><summary><code>Alps Alpine SKRHADE010</code> — 1 × USD 2.4300 = USD 2.4300</summary>
-
-- Device id: `alps_skrhade010`.
-- Scope: `base_product`.
-- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.mouser.com/en/ProductDetail/Alps-Alpine/SKRHADE010?qs=seHrhfPpLDxlAi0Di%252BJD5Q%3D%3D).
 
 </details>
 
@@ -1052,7 +1042,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>OMRON B3S-1100P</code> — 5 × USD 0.6405 = USD 3.2025</summary>
+<details><summary><code>OMRON B3S-1100P</code> — 10 × USD 0.6405 = USD 6.4050</summary>
 
 - Device id: `omron_b3s_1100p`.
 - Scope: `base_product`.

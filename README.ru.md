@@ -54,9 +54,9 @@
         - ✅ Бумажный nRF-тракт закрыт без закупки: evidence Ebyte Gen1, три
           точных кабеля `2118651-2` и три точных платных разъёма
           `U.FL-R-SMT-1(10)`; проверка реальной партии перенесена в H5.
-        - ✅ Бумажный дизайн D-pad закрыт: `L2-DPAD-001-A` задаёт 14-мм
-          крестовину, разрезную посадку на шток, квадратную направляющую, окно
-          корпуса и положительные худшие зазоры; реальная посадка перенесена в H5.
+        - ✅ Навигация закрыта пятью точными серийными кнопками
+          `OMRON B3S-1100P` для ВВЕРХ, ВНИЗ, ВЛЕВО, ВПРАВО и OK; заказные
+          колпачки, толкатели и приводы не нужны.
         - ✅ U214 закрыт проходной точной розеткой
           `HLE-107-02-G-DV-PE-LC`; неизвестная длина штырей не меняет док.
         - ✅ Дисплей закрыт сменной платой `L2-DISP-ADP-001-A`: точная пара
@@ -84,8 +84,8 @@
 - 🔒 `H1.8` — формальная финальная приёмка H1; только после неё начинается H2.
 
 `H1.1.3.3` завершается, когда по дисплею и U214 есть controlled evidence
-или проверенный ограничивающий дизайн, а D-pad имеет размерный проверяемый
-дизайн. Закупка не служит коротким путём: сначала идут поиск источников, ревью
+или проверенный ограничивающий дизайн, а все органы навигации выбраны из
+серийных компонентов. Закупка не служит коротким путём: сначала идут поиск источников, ревью
 документированной замены и запрос данных у производителя без заказа. Sample
 можно предложить только последним резервом и всё равно отдельно согласовать.
 После закрытия любой подзадачи этот маркер и обе страницы роадмапа обновляются
@@ -132,10 +132,10 @@ Sub‑GHz, voice и U214; один `MSPM0C1106SDGS20R` независимо до
 
 ![Внешние стороны Leshy2](docs/images/current-clamshell.svg?layout=15)
 
-Для заказной крестовины `L2-DPAD-001-A` и окна корпуса есть отдельный
-машинно проверяемый чертёж движения и допусков.
+Для пяти точных серийных кнопок навигации и их зазоров есть отдельный
+машинно проверяемый чертёж размещения.
 
-![Привод D-pad Leshy2](docs/images/dpad-actuator.svg?layout=3)
+![Серийный блок навигации Leshy2](docs/images/navigation-cluster.svg?layout=1)
 
 ![Сменный переходник дисплея Leshy2](docs/images/display-adapter.svg?layout=1)
 
@@ -244,7 +244,11 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
 UI_MATRIX_IO["TCA9539PWR<br/>16 прямых входов D-pad и функциональных кнопок"]
-UI_DPAD_SWITCH["Alps Alpine SKRHADE010<br/>четыре направления и OK под единой крестовиной D-pad"]
+UI_DPAD_UP["OMRON B3S-1100P<br/>отдельная кнопка навигации ВВЕРХ"]
+UI_DPAD_DOWN["OMRON B3S-1100P<br/>отдельная кнопка навигации ВНИЗ"]
+UI_DPAD_LEFT["OMRON B3S-1100P<br/>отдельная кнопка навигации ВЛЕВО"]
+UI_DPAD_RIGHT["OMRON B3S-1100P<br/>отдельная кнопка навигации ВПРАВО"]
+UI_DPAD_OK["OMRON B3S-1100P<br/>отдельная кнопка подтверждения OK"]
 UI_SWITCH_BACK["OMRON B3S-1100P<br/>кнопка BACK"]
 UI_SWITCH_OPT["OMRON B3S-1100P<br/>кнопка OPT"]
 UI_SWITCH_F1["OMRON B3S-1100P<br/>задняя функциональная кнопка F1"]
@@ -256,7 +260,11 @@ SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>независимы�
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>независимый timeout-watchdog 1,6 с"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физического RUN и S3 fault reset"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL"]
-  UI_DPAD_SWITCH -->|"five independent inputs"| UI_MATRIX_IO
+  UI_DPAD_UP -->|"direct P00"| UI_MATRIX_IO
+  UI_DPAD_DOWN -->|"direct P01"| UI_MATRIX_IO
+  UI_DPAD_LEFT -->|"direct P02"| UI_MATRIX_IO
+  UI_DPAD_RIGHT -->|"direct P03"| UI_MATRIX_IO
+  UI_DPAD_OK -->|"direct P04"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
   UI_SWITCH_F1 -->|"direct P10 across M1"| UI_MATRIX_IO

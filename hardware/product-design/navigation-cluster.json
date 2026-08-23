@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "stage": "H1.3.0",
+  "design_id": "L2-NAV-5B-001-A",
+  "status": "selected",
+  "title": "Five-series-button navigation cluster",
+  "manufacturing_class": "serial_components_only",
+  "coordinate_system": {
+    "origin": "front UI PCB top-left, viewed from the user-facing side",
+    "xy": "X right and Y down",
+    "units": "mm"
+  },
+  "component": {
+    "device_key": "omron_b3s_1100p",
+    "mpn": "OMRON B3S-1100P",
+    "quantity": 5,
+    "body_mm": [6.6, 6.0, 4.3],
+    "actuation": "direct finger press; no separate cap, plunger or custom actuator",
+    "manufacturer_document": "OMRON B3S Sealed Tactile Switch SMT datasheet A204-E1",
+    "manufacturer_url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+    "orderable_url": "https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/368393",
+    "checked": "2026-08-23"
+  },
+  "layout": {
+    "cluster_center_mm": [37.5, 132.4],
+    "centre_pitch_mm": 9.0,
+    "bounding_box_mm": [25.2, 120.4, 24.6, 24.0],
+    "buttons": [
+      {"instance": "ui_dpad_up", "label": "UP", "symbol": "▲", "position_mm": [34.2, 120.4]},
+      {"instance": "ui_dpad_down", "label": "DOWN", "symbol": "▼", "position_mm": [34.2, 138.4]},
+      {"instance": "ui_dpad_left", "label": "LEFT", "symbol": "◀", "position_mm": [25.2, 129.4]},
+      {"instance": "ui_dpad_right", "label": "RIGHT", "symbol": "▶", "position_mm": [43.2, 129.4]},
+      {"instance": "ui_dpad_ok", "label": "OK", "symbol": "OK", "position_mm": [34.2, 129.4]}
+    ]
+  },
+  "electrical_contract": {
+    "independent_active_low_inputs": 5,
+    "input_nets": [
+      "UI_DPAD_UP_N",
+      "UI_DPAD_DOWN_N",
+      "UI_DPAD_LEFT_N",
+      "UI_DPAD_RIGHT_N",
+      "UI_DPAD_OK_N"
+    ],
+    "expander_contacts_consumed": 5,
+    "simultaneous_press_policy": "hardware reports every closed switch independently; firmware rejects contradictory UP+DOWN or LEFT+RIGHT combinations"
+  },
+  "cost_at_quantity_100_usd": {
+    "five_b3s_1100p": 3.2025,
+    "excludes": "PCB, assembly, enclosure, freight and tax"
+  },
+  "paper_checks": {
+    "back_clearance_mm": 1.8,
+    "opt_clearance_mm": 1.8,
+    "bottom_board_margin_mm": 5.6,
+    "all_five_bodies_inside_board": true,
+    "mounting_keepouts_clear": true,
+    "custom_mechanical_parts": 0
+  },
+  "h5_acceptance": [
+    "verify direct finger access through the enclosure openings",
+    "verify each direction and OK actuate independently",
+    "verify adjacent simultaneous presses remain readable and contradictory pairs are rejected by firmware",
+    "verify force, accidental-press margin, sealing boundary and endurance on the assembled front panel"
+  ],
+  "release_boundary": "The five selected controls and their positions close the H1 paper layout. Enclosure aperture feel and assembled endurance remain H5 checks."
+}

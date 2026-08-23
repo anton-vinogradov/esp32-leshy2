@@ -250,8 +250,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(936, sum(line["quantity"] for line in lines))
-        self.assertEqual(201, len(lines))
+        self.assertEqual(940, sum(line["quantity"] for line in lines))
+        self.assertEqual(200, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -261,11 +261,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            190,
+            189,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            919,
+            923,
             sum(
                 line["quantity"]
                 for line in lines
@@ -341,13 +341,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**937** architecture instances", rendered)
-        self.assertIn("**936** supplied/costed placements", rendered)
-        self.assertIn("**200/201** used lines", rendered)
-        self.assertIn("**201/201** lines", rendered)
-        self.assertIn("**190/201** lines", rendered)
-        self.assertIn("**919/936** supplied placements", rendered)
-        self.assertIn("USD 213.3985", rendered)
+        self.assertIn("**941** architecture instances", rendered)
+        self.assertIn("**940** supplied/costed placements", rendered)
+        self.assertIn("**199/200** used lines", rendered)
+        self.assertIn("**200/200** lines", rendered)
+        self.assertIn("**189/200** lines", rendered)
+        self.assertIn("**923/940** supplied placements", rendered)
+        self.assertIn("USD 214.1710", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -393,7 +393,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(46, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1084, policy["expected_occurrence_count"])
+        self.assertEqual(1093, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -449,7 +449,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             "nRF24-3",
             "FM/SW RX",
             "AM/LW LOOP",
-            'data-part="single-D-pad-cross"',
+            'data-instance="ui_dpad_up" data-direct-press="true"',
+            'data-instance="ui_dpad_down" data-direct-press="true"',
+            'data-instance="ui_dpad_left" data-direct-press="true"',
+            'data-instance="ui_dpad_right" data-direct-press="true"',
+            'data-instance="ui_dpad_ok" data-direct-press="true"',
             "RUN",
             "KILL",
             "PTT",
@@ -468,19 +472,18 @@ class ArchitectureValidationTests(unittest.TestCase):
             "POWER",
         ):
             self.assertIn(token, rendered)
-        dpad = (
+        navigation = (
             GENERATOR.REPO_ROOT
-            / "docs/images/dpad-actuator.svg"
+            / "docs/images/navigation-cluster.svg"
         ).read_text(encoding="utf-8")
         for token in (
-            'data-view="dpad-controlled-design"',
-            'data-design-id="L2-DPAD-001-A"',
-            'data-part="square-anti-rotation-guide"',
-            'data-part="four-jaw-socket"',
-            'data-datum="PCB-Z0"',
-            "SKRH Series Drawing No.4, Update 2510",
+            'data-view="series-navigation-cluster"',
+            'data-design-id="L2-NAV-5B-001-A"',
+            'data-manufacturing-class="serial-components-only"',
+            "Five exact series buttons",
+            "OMRON B3S-1100P",
         ):
-            self.assertIn(token, dpad)
+            self.assertIn(token, navigation)
         internal = (
             GENERATOR.REPO_ROOT
             / "docs/images/internal-board-layout.svg"
@@ -3564,8 +3567,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("ti_tca9539_pwr", candidate["instances"]["ui_matrix_io"])
         self.assertEqual("alps_ec11e18244au", candidate["instances"]["encoder"])
         self.assertEqual("ti_sn74lvc1g07_dckr", candidate["instances"]["touch_irq_buffer"])
-        self.assertEqual("alps_skrhade010", candidate["instances"]["ui_dpad_switch"])
         for instance in (
+            "ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right",
+            "ui_dpad_ok",
             "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2",
             "ptt_switch",
         ):
@@ -3577,19 +3581,6 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["rear_control_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["encoder_ptt_esd"])
         self.assertEqual("ti_tpd4e05u06_dqar", candidate["instances"]["safety_control_esd"])
-        self.assertEqual(
-            "1 V DC, 10 uA",
-            self.database["devices"]["alps_skrhade010"]["electrical_contract"]["minimum_dry_rating"],
-        )
-        self.assertEqual(
-            45,
-            self.database["devices"]["alps_skrhade010"]["mechanical_contract"]["selected_board_rotation_deg_clockwise"],
-        )
-        dpad_mechanical = self.database["devices"]["alps_skrhade010"]["mechanical_contract"]
-        self.assertEqual(1.85, dpad_mechanical["body_thickness_mm"])
-        self.assertEqual(5.0, dpad_mechanical["overall_to_stem_top_mm"])
-        self.assertEqual(4.3, dpad_mechanical["direction_force_reference_height_from_pcb_mm"])
-        self.assertEqual(8.7, dpad_mechanical["maximum_terminal_corner_envelope_mm"])
         self.assertEqual(
             "direct finger press; no separate cap or plunger",
             self.database["devices"]["omron_b3s_1100p"]["electrical_contract"]["user_interface"],
@@ -3647,17 +3638,21 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("abstract:power-ground", "ui_matrix_io.A1", "UI_INPUT_ADDR_A1_LOW"), routes)
         self.assertIn(("s3.EN", "ui_matrix_io.RESET_N", "S3_RESET_N"), routes)
         self.assertIn(("abstract:safety-ground", "evidence_mask.A2", "EVIDENCE_ADDR_A2_LOW"), routes)
-        self.assertIn(("ui_matrix_io.P00", "ui_dpad_switch.A", "UI_DPAD_UP_N"), routes)
-        self.assertIn(("ui_matrix_io.P01", "ui_dpad_switch.D", "UI_DPAD_DOWN_N"), routes)
-        self.assertIn(("ui_matrix_io.P02", "ui_dpad_switch.C", "UI_DPAD_LEFT_N"), routes)
-        self.assertIn(("ui_matrix_io.P03", "ui_dpad_switch.B", "UI_DPAD_RIGHT_N"), routes)
-        self.assertIn(("ui_matrix_io.P04", "ui_dpad_switch.CENTER", "UI_DPAD_OK_N"), routes)
-        self.assertIn(("ui_dpad_switch.COMMON", "abstract:power-ground", "POWER_GROUND"), routes)
+        for contact, instance, net in (
+            ("P00", "ui_dpad_up", "UI_DPAD_UP_N"),
+            ("P01", "ui_dpad_down", "UI_DPAD_DOWN_N"),
+            ("P02", "ui_dpad_left", "UI_DPAD_LEFT_N"),
+            ("P03", "ui_dpad_right", "UI_DPAD_RIGHT_N"),
+            ("P04", "ui_dpad_ok", "UI_DPAD_OK_N"),
+        ):
+            self.assertIn((f"ui_matrix_io.{contact}", f"{instance}.SIDE_A_1", net), routes)
+            self.assertIn((f"{instance}.SIDE_B_1", "abstract:power-ground", "POWER_GROUND"), routes)
         self.assertIn(("ui_matrix_io.P10", "ui_switch_f1.SIDE_A_1", "UI_F1_N"), routes)
         self.assertIn(("ui_matrix_io.P11", "ui_switch_f2.SIDE_A_1", "UI_F2_N"), routes)
         self.assertIn(("ui_matrix_io.P12", "encoder.SW1", "UI_ENCODER_PUSH_N"), routes)
         self.assertIn(("ui_matrix_io.P10", "rear_control_esd.D1_PLUS", "UI_F1_N"), routes)
         self.assertIn(("ptt_series.END_2", "rp.GPIO21", "PTT_BUTTON_N"), routes)
+        self.assertIn(("abstract:3V3_MAIN", "ptt_pullup.END_1", "3V3_MAIN"), routes)
         self.assertIn(("run_loop_pullup.END_2", "power_command_switch.THROW_A", "RUN_LOOP_RAW"), routes)
         self.assertIn(("power_command_pullup.END_2", "power_command_switch.THROW_B", "POWER_COMMAND_OFF_N"), routes)
         self.assertIn(("power_command_switch.COMMON", "abstract:power-ground", "POWER_GROUND"), routes)
@@ -3684,12 +3679,15 @@ class ArchitectureValidationTests(unittest.TestCase):
         for token in (
             "F1 ultra-low-current ordinary control", "F2 ultra-low-current ordinary control",
             "hold-to-talk PTT control", "single maintained low-current RUN/KILL switch",
-            "Alps Alpine SKRHADE010", "B3S-1100P", "JS102011SCQN", "TPD8E003DQDR", "Sitronix ST77922",
+            "B3S-1100P", "JS102011SCQN", "TPD8E003DQDR", "Sitronix ST77922",
             "active-low ST77922 touch node",
-            'PTT_PULLUP -->|"10 kOhm to 3V3_MAIN"| PTT_RAW',
             'POWER_COMMAND_SWITCH -->|"RUN throw"| RUN_LOOP',
             "TCA9539PWR", "interrupt-capable 16-bit direct-control input expander",
-            "four-direction plus center-push navigation switch",
+            "independent UP navigation button",
+            "independent DOWN navigation button",
+            "independent LEFT navigation button",
+            "independent RIGHT navigation button",
+            "independent OK confirmation button",
         ):
             self.assertIn(token, rendered)
         self.assertNotIn("PTT_SWITCH --> PTT_PULLUP --> PTT_FILTER_CAP", rendered)

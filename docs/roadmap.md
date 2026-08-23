@@ -56,8 +56,8 @@ exterior generated from the unified coordinate source.
     - ✅ `H1.1.3.1` — inventory every open mechanical evidence boundary.
     - ✅ `H1.1.3.2` — record every H1 blocker and H5 received-sample gate in
       the machine source.
-    - `H1.1.3.3` — close the remaining source-data blockers and the D-pad
-      actuator design.
+    - `H1.1.3.3` — close the remaining source-data blockers and navigation
+      control selection.
       - ✅ `H1.1.3.3.1` — exhaust public manufacturer-controlled sources and
         current lifecycle/stock evidence.
       - ✅ `H1.1.3.3.2` — compare fully documented replacements without
@@ -67,9 +67,9 @@ exterior generated from the unified coordinate source.
         - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
           three exact `2118651-2` jumpers and three exact
           `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
-        - ✅ D-pad paper design closed: `L2-DPAD-001-A` defines the 14-mm
-          cross, split stem socket, square anti-rotation guide, panel aperture
-          and positive worst-case movement margins; received fit moved to H5.
+        - ✅ Navigation controls closed with five exact series
+          `OMRON B3S-1100P` buttons for UP, DOWN, LEFT, RIGHT and OK; no
+          custom cap, plunger or actuator is required.
         - ✅ U214 closed with exact pass-through
           `HLE-107-02-G-DV-PE-LC`; unknown post length no longer changes the dock.
         - ✅ Display closed with replaceable `L2-DISP-ADP-001-A`: an exact
@@ -81,7 +81,7 @@ exterior generated from the unified coordinate source.
 - ✅ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
 - ✅ `H1.3.0` — generate the outer faces from the unified source: screen,
-  D-pad, keys, encoder, LEDs, arrows, external interfaces and visible,
+  five navigation buttons, keys, encoder, LEDs, arrows, external interfaces and visible,
   unobscured silkscreen. Ten TX indicators form two aligned rows of five;
   the display distinguishes its 54.5×83.0-mm body from the exact
   48.96×73.44-mm 2:3 active area.
@@ -107,8 +107,8 @@ exterior generated from the unified coordinate source.
 - 🔒 `H1.8` — formal final user acceptance of H1; only then may H2 begin.
 
 `H1.1.3.3` exits only when the display and U214 evidence blockers have
-controlled evidence or a reviewed bounded design fallback and the D-pad
-actuator has a dimensioned, testable design. Purchasing is not an H1 shortcut:
+controlled evidence or a reviewed bounded design fallback and all navigation
+controls are selected serial components. Purchasing is not an H1 shortcut:
 source research, documented replacement review and a no-order manufacturer
 data request come first. A sample can be proposed only as the last resort and
 still needs separate user approval. Closing any substep requires changing the

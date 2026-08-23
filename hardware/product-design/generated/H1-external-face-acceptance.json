@@ -212,16 +212,68 @@
         ]
       },
       {
-        "instance": "ui_dpad_switch",
-        "mpn": "Alps Alpine SKRHADE010",
-        "role": "four directions plus center push",
+        "instance": "ui_dpad_up",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press navigation UP",
         "position_mm": [
-          32.21,
-          127.11
+          34.2,
+          120.4
         ],
         "envelope_mm": [
-          10.571246,
-          10.571246
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_dpad_down",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press navigation DOWN",
+        "position_mm": [
+          34.2,
+          138.4
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_dpad_left",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press navigation LEFT",
+        "position_mm": [
+          25.2,
+          129.4
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_dpad_right",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press navigation RIGHT",
+        "position_mm": [
+          43.2,
+          129.4
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_dpad_ok",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press navigation OK",
+        "position_mm": [
+          34.2,
+          129.4
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
         ]
       },
       {
@@ -238,7 +290,11 @@
         ]
       }
     ],
-    "dpad_actuator": "L2-DPAD-001-A",
+    "navigation_cluster": {
+      "design_id": "L2-NAV-5B-001-A",
+      "manufacturing_class": "serial_components_only",
+      "custom_mechanical_parts": 0
+    },
     "edge_interfaces": [
       {
         "instance": "ir_demod",

@@ -11,8 +11,8 @@
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
   "summary": {
-    "rendered_physical_instances": 167,
-    "exact_mpn_instances": 167,
+    "rendered_physical_instances": 171,
+    "exact_mpn_instances": 171,
     "explicit_mpn_tbd_instances": 0,
     "h1_blockers": 0,
     "h5_received_sample_gates": 13
@@ -4215,35 +4215,163 @@
       ]
     },
     {
-      "instance": "ui_dpad_switch",
-      "device_key": "alps_skrhade010",
-      "mpn": "Alps Alpine SKRHADE010",
-      "role": "four directions plus center push",
+      "instance": "ui_dpad_down",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press navigation DOWN",
       "frame": "front-outer",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
-      "rotation_deg": 45,
+      "rotation_deg": 0,
       "direction": "front-normal outward actuation",
       "envelope_mm": [
-        7.45,
-        7.5,
-        1.85
+        6.6,
+        6.0,
+        4.3
       ],
-      "qualification": "verified_exact_navigation_switch_custom_cross_fit_hil_open",
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
-        "document": "SKRH Series 4-direction with center-push catalogue and exact product page",
-        "version": "Update 2510",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKRHADE010/",
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
         "checked": "2026-08-19"
       },
       "evidence_gates": [
         {
-          "id": "H5-MECH-DPAD-ACTUATOR-FIT",
+          "id": "H5-MECH-NAVIGATION-CONTROLS",
           "disposition": "h5_received_sample_gate"
         }
       ],
       "position_mm": [
-        32.21,
-        127.11
+        34.2,
+        138.4
+      ]
+    },
+    {
+      "instance": "ui_dpad_left",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press navigation LEFT",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NAVIGATION-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        25.2,
+        129.4
+      ]
+    },
+    {
+      "instance": "ui_dpad_ok",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press navigation OK",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NAVIGATION-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        34.2,
+        129.4
+      ]
+    },
+    {
+      "instance": "ui_dpad_right",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press navigation RIGHT",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NAVIGATION-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        43.2,
+        129.4
+      ]
+    },
+    {
+      "instance": "ui_dpad_up",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press navigation UP",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NAVIGATION-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        34.2,
+        120.4
       ]
     },
     {

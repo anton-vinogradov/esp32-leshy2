@@ -3781,61 +3781,6 @@
       },
       "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
     },
-    "alps_skrhade010": {
-      "mpn": "Alps Alpine SKRHADE010",
-      "kind": "smt_four_direction_center_push_navigation_switch_with_guide_bosses",
-      "qualification": "verified_exact_navigation_switch_custom_cross_fit_hil_open",
-      "lifecycle": "standard_active_orderable",
-      "dimensions_mm": [7.45, 7.5, 1.85],
-      "source": {
-        "document": "SKRH Series 4-direction with center-push catalogue and exact product page",
-        "version": "Update 2510",
-        "url": "https://tech.alpsalpine.com/e/products/detail/SKRHADE010/",
-        "checked": "2026-08-19"
-      },
-      "orderable_source": {
-        "document": "SKRHADE010 authorized-distributor exact order-code page; 720 shown in stock and 1,300 on order",
-        "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/SKRHADE010?qs=seHrhfPpLDxlAi0Di%252BJD5Q%3D%3D",
-        "checked": "2026-08-19"
-      },
-      "cost": {
-        "currency": "USD", "target_quantity": 100, "unit_price_usd": 2.43,
-        "price_break": "Mouser cut-tape quantity-100 tier",
-        "source": {"document": "Mouser exact-MPN published USD price table", "url": "https://www.mouser.com/en/ProductDetail/Alps-Alpine/SKRHADE010?qs=seHrhfPpLDxlAi0Di%252BJD5Q%3D%3D", "checked": "2026-08-19"}
-      },
-      "electrical_contract": {
-        "function": "four directional momentary contacts plus independent center push sharing one common",
-        "direction_force_n": "1.2 +/- 0.69",
-        "center_force_n": "2.35 +/- 0.69",
-        "direction_travel_mm": 0.25,
-        "center_travel_mm": 0.15,
-        "minimum_dry_rating": "1 V DC, 10 uA",
-        "maximum_rating": "12 V DC, 50 mA",
-        "operating_life_cycles_each_direction": 1000000,
-        "operating_temperature_c": [-40, 85]
-      },
-      "mechanical_contract": {
-        "stem_diameter_mm": 3.0,
-        "body_thickness_mm": 1.85,
-        "overall_to_stem_top_mm": 5.0,
-        "direction_force_reference_height_from_pcb_mm": 4.3,
-        "maximum_terminal_corner_envelope_mm": 8.7,
-        "guide_bosses": "two 0.65-mm guide bosses use the official land pattern",
-        "selected_board_rotation_deg_clockwise": 45,
-        "direction_map_at_selected_rotation": {"A_PIN_1": "UP", "B_PIN_4": "RIGHT", "C_PIN_3": "LEFT", "D_PIN_6": "DOWN"},
-        "actuator": "controlled custom part L2-DPAD-001-A uses a split four-jaw socket on the round stem and a square enclosure guide for anti-rotation; the dimensioned paper motion budget is closed and received fit, feel, retention, discrimination and endurance remain an H5 gate",
-        "source_boundary": "the public catalogue is an outline specification and requires formal supply specifications before a production fit is released"
-      },
-      "programmable": false,
-      "contacts": {
-        "A": {"physical": "1", "role": "switch_contact"},
-        "CENTER": {"physical": "2", "role": "switch_contact"},
-        "C": {"physical": "3", "role": "switch_contact"},
-        "B": {"physical": "4", "role": "switch_contact"},
-        "COMMON": {"physical": "5", "role": "power"},
-        "D": {"physical": "6", "role": "switch_contact"}
-      }
-    },
     "omron_b3s_1100p": {
       "mpn": "OMRON B3S-1100P",
       "kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",

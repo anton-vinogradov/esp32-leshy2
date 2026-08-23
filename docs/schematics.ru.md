@@ -83,7 +83,11 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
 RP["SC1512-A4<br/>детерминированные радио и voice"]
 UI_MATRIX_IO["TCA9539PWR<br/>16 прямых входов D-pad и функциональных кнопок"]
-UI_DPAD_SWITCH["Alps Alpine SKRHADE010<br/>четыре направления и OK под единой крестовиной D-pad"]
+UI_DPAD_UP["OMRON B3S-1100P<br/>отдельная кнопка навигации ВВЕРХ"]
+UI_DPAD_DOWN["OMRON B3S-1100P<br/>отдельная кнопка навигации ВНИЗ"]
+UI_DPAD_LEFT["OMRON B3S-1100P<br/>отдельная кнопка навигации ВЛЕВО"]
+UI_DPAD_RIGHT["OMRON B3S-1100P<br/>отдельная кнопка навигации ВПРАВО"]
+UI_DPAD_OK["OMRON B3S-1100P<br/>отдельная кнопка подтверждения OK"]
 UI_SWITCH_BACK["OMRON B3S-1100P<br/>кнопка BACK"]
 UI_SWITCH_OPT["OMRON B3S-1100P<br/>кнопка OPT"]
 UI_SWITCH_F1["OMRON B3S-1100P<br/>задняя функциональная кнопка F1"]
@@ -95,7 +99,11 @@ SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>независимы�
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>независимый timeout-watchdog 1,6 с"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>формирователь физического RUN и S3 fault reset"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL"]
-  UI_DPAD_SWITCH -->|"five independent inputs"| UI_MATRIX_IO
+  UI_DPAD_UP -->|"direct P00"| UI_MATRIX_IO
+  UI_DPAD_DOWN -->|"direct P01"| UI_MATRIX_IO
+  UI_DPAD_LEFT -->|"direct P02"| UI_MATRIX_IO
+  UI_DPAD_RIGHT -->|"direct P03"| UI_MATRIX_IO
+  UI_DPAD_OK -->|"direct P04"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
   UI_SWITCH_F1 -->|"direct P10 across M1"| UI_MATRIX_IO

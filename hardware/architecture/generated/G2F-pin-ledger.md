@@ -25,7 +25,6 @@
 | `adi_max17320_g20_t` | `Analog Devices MAX17320G20+T` | `verified_candidate` | `recommended_for_new_designs` | [MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet Rev. 12, July 2025](https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf) | same primary source |
 | `alps_ec11e18244au` | `Alps Alpine EC11E18244AU` | `verified_first_target_mechanical_fit_hil_open` | `active_standard` | [EC11E Series Incremental Encoder catalog and product specification catalog update 2510](https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf) | same primary source |
 | `alps_skqgade010` | `Alps Alpine SKQGADE010` | `verified_exact_service_boot_reset_switch` | `standard_active_orderable` | [SKQGADE010 product page, product specification and official land-pattern images October 2025 product specification](https://tech.alpsalpine.com/e/products/detail/SKQGADE010/) | same primary source |
-| `alps_skrhade010` | `Alps Alpine SKRHADE010` | `verified_exact_navigation_switch_custom_cross_fit_hil_open` | `standard_active_orderable` | [SKRH Series 4-direction with center-push catalogue and exact product page Update 2510](https://tech.alpsalpine.com/e/products/detail/SKRHADE010/) | same primary source |
 | `bourns_crm2512_fx_20r0elf` | `Bourns CRM2512-FX-20R0ELF` | `verified_candidate` | `active` | [Bourns CRM2512 high-power resistor datasheet with pulse-load curve Rev. 08/21; current product data checked 2026-08-18](https://www.bourns.com/docs/product-datasheets/CRM.pdf) | same primary source |
 | `cc1101rgpr` | `CC1101RGPR` | `verified_candidate` | `active` | [CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet SWRS061I](https://www.ti.com/lit/ds/symlink/cc1101.pdf) | [TI CC1101RGPR order page](https://www.ti.com/product/CC1101/part-details/CC1101RGPR) |
 | `ck_js102011scqn` | `C&K JS102011SCQN` | `verified_exact_low_current_power_command_switch_mechanical_hil_open` | `active_orderable` | [Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet VL 01/14/26](https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14) | same primary source |
@@ -2115,21 +2114,35 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `UI_INPUT_P07_RESERVE` | `ui_matrix_io.P07` | `abstract:reserved-local-control-expansion-pad` | protected local reserve remains unallocated after physical-control wish-list closure |
 | `UI_INPUT_ESD_GROUND` | `ui_matrix_esd.GND` | `abstract:power-ground-dedicated-via` | exposed pad receives a shortest-path local ESD return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_input_up_pullup.END_1` | exact 10-kOhm UP input pull-up source |
-| `UI_DPAD_UP_N` | `ui_input_up_pullup.END_2` | `ui_matrix_io.P00` | SKRH minimum dry rating is exceeded |
-| `UI_DPAD_UP_N` | `ui_matrix_io.P00` | `ui_dpad_switch.A` | 45-degree clockwise mounting maps official A/pin 1 to UP |
+| `UI_DPAD_UP_N` | `ui_input_up_pullup.END_2` | `ui_matrix_io.P00` | B3S minimum applicable load is exceeded |
+| `UI_DPAD_UP_N` | `ui_matrix_io.P00` | `ui_dpad_up.SIDE_A_1` | independent direct UP button |
+| `UI_DPAD_UP_N` | `ui_matrix_io.P00` | `ui_dpad_up.SIDE_A_2` | both internally common signal lands are routed |
+| `POWER_GROUND` | `ui_dpad_up.SIDE_B_1` | `abstract:power-ground` | UP closes directly to ground |
+| `POWER_GROUND` | `ui_dpad_up.SIDE_B_2` | `abstract:power-ground` | both internally common return lands are routed |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_input_down_pullup.END_1` | exact 10-kOhm DOWN input pull-up source |
-| `UI_DPAD_DOWN_N` | `ui_input_down_pullup.END_2` | `ui_matrix_io.P01` | SKRH minimum dry rating is exceeded |
-| `UI_DPAD_DOWN_N` | `ui_matrix_io.P01` | `ui_dpad_switch.D` | 45-degree clockwise mounting maps official D/pin 6 to DOWN |
+| `UI_DPAD_DOWN_N` | `ui_input_down_pullup.END_2` | `ui_matrix_io.P01` | B3S minimum applicable load is exceeded |
+| `UI_DPAD_DOWN_N` | `ui_matrix_io.P01` | `ui_dpad_down.SIDE_A_1` | independent direct DOWN button |
+| `UI_DPAD_DOWN_N` | `ui_matrix_io.P01` | `ui_dpad_down.SIDE_A_2` | both internally common signal lands are routed |
+| `POWER_GROUND` | `ui_dpad_down.SIDE_B_1` | `abstract:power-ground` | DOWN closes directly to ground |
+| `POWER_GROUND` | `ui_dpad_down.SIDE_B_2` | `abstract:power-ground` | both internally common return lands are routed |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_input_left_pullup.END_1` | exact 10-kOhm LEFT input pull-up source |
-| `UI_DPAD_LEFT_N` | `ui_input_left_pullup.END_2` | `ui_matrix_io.P02` | SKRH minimum dry rating is exceeded |
-| `UI_DPAD_LEFT_N` | `ui_matrix_io.P02` | `ui_dpad_switch.C` | 45-degree clockwise mounting maps official C/pin 3 to LEFT |
+| `UI_DPAD_LEFT_N` | `ui_input_left_pullup.END_2` | `ui_matrix_io.P02` | B3S minimum applicable load is exceeded |
+| `UI_DPAD_LEFT_N` | `ui_matrix_io.P02` | `ui_dpad_left.SIDE_A_1` | independent direct LEFT button |
+| `UI_DPAD_LEFT_N` | `ui_matrix_io.P02` | `ui_dpad_left.SIDE_A_2` | both internally common signal lands are routed |
+| `POWER_GROUND` | `ui_dpad_left.SIDE_B_1` | `abstract:power-ground` | LEFT closes directly to ground |
+| `POWER_GROUND` | `ui_dpad_left.SIDE_B_2` | `abstract:power-ground` | both internally common return lands are routed |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_input_right_pullup.END_1` | exact 10-kOhm RIGHT input pull-up source |
-| `UI_DPAD_RIGHT_N` | `ui_input_right_pullup.END_2` | `ui_matrix_io.P03` | SKRH minimum dry rating is exceeded |
-| `UI_DPAD_RIGHT_N` | `ui_matrix_io.P03` | `ui_dpad_switch.B` | 45-degree clockwise mounting maps official B/pin 4 to RIGHT |
+| `UI_DPAD_RIGHT_N` | `ui_input_right_pullup.END_2` | `ui_matrix_io.P03` | B3S minimum applicable load is exceeded |
+| `UI_DPAD_RIGHT_N` | `ui_matrix_io.P03` | `ui_dpad_right.SIDE_A_1` | independent direct RIGHT button |
+| `UI_DPAD_RIGHT_N` | `ui_matrix_io.P03` | `ui_dpad_right.SIDE_A_2` | both internally common signal lands are routed |
+| `POWER_GROUND` | `ui_dpad_right.SIDE_B_1` | `abstract:power-ground` | RIGHT closes directly to ground |
+| `POWER_GROUND` | `ui_dpad_right.SIDE_B_2` | `abstract:power-ground` | both internally common return lands are routed |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_input_ok_pullup.END_1` | exact 10-kOhm center-push input pull-up source |
-| `UI_DPAD_OK_N` | `ui_input_ok_pullup.END_2` | `ui_matrix_io.P04` | SKRH minimum dry rating is exceeded |
-| `UI_DPAD_OK_N` | `ui_matrix_io.P04` | `ui_dpad_switch.CENTER` | official pin 2 is the independent center push |
-| `POWER_GROUND` | `ui_dpad_switch.COMMON` | `abstract:power-ground` | official common pin 5 is a short local active-low return |
+| `UI_DPAD_OK_N` | `ui_input_ok_pullup.END_2` | `ui_matrix_io.P04` | B3S minimum applicable load is exceeded |
+| `UI_DPAD_OK_N` | `ui_matrix_io.P04` | `ui_dpad_ok.SIDE_A_1` | independent direct OK button |
+| `UI_DPAD_OK_N` | `ui_matrix_io.P04` | `ui_dpad_ok.SIDE_A_2` | both internally common signal lands are routed |
+| `POWER_GROUND` | `ui_dpad_ok.SIDE_B_1` | `abstract:power-ground` | OK closes directly to ground |
+| `POWER_GROUND` | `ui_dpad_ok.SIDE_B_2` | `abstract:power-ground` | both internally common return lands are routed |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `ui_input_back_pullup.END_1` | exact 3.32-kOhm BACK contact-current pull-up source |
 | `UI_BACK_N` | `ui_input_back_pullup.END_2` | `ui_matrix_io.P05` | approximately 1-mA closed-contact current |
 | `UI_BACK_N` | `ui_matrix_io.P05` | `ui_switch_back.SIDE_A_1` | direct independent BACK input |
@@ -3577,8 +3590,16 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `slow_io_s3_evidence_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `ui_matrix_io` uses `TCA9539PWR` as `verified_exact_direct_control_input_expander`, not an accepted production choice.
 - `ui_matrix_io` lifecycle: `active_orderable`.
-- `ui_dpad_switch` uses `Alps Alpine SKRHADE010` as `verified_exact_navigation_switch_custom_cross_fit_hil_open`, not an accepted production choice.
-- `ui_dpad_switch` lifecycle: `standard_active_orderable`.
+- `ui_dpad_up` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
+- `ui_dpad_up` lifecycle: `active_orderable`.
+- `ui_dpad_down` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
+- `ui_dpad_down` lifecycle: `active_orderable`.
+- `ui_dpad_left` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
+- `ui_dpad_left` lifecycle: `active_orderable`.
+- `ui_dpad_right` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
+- `ui_dpad_right` lifecycle: `active_orderable`.
+- `ui_dpad_ok` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
+- `ui_dpad_ok` lifecycle: `active_orderable`.
 - `ui_switch_back` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
 - `ui_switch_back` lifecycle: `active_orderable`.
 - `ui_switch_opt` uses `OMRON B3S-1100P` as `verified_exact_direct_press_control_mechanical_hil_open`, not an accepted production choice.
@@ -3837,7 +3858,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - DEC-0093 closes the first exact CC1101 paper endpoint with dual-ended band switching, exact oscillator, first-pass 315/433/868-915 coupon, switched-domain digital isolation, low-capacitance ESD and AD8314 actual-TX evidence. RFPC-SMA31-FN-175-A is now the exact standard-SMA boundary; conducted VNA/tuning, sensitivity/output/spurious/legal-profile/coexistence and received-connector HIL remain blocking before schematic/BOM freeze
 - DEC-0089 closes the exact TCA6424ARGJR main slow-I/O core at address 0x22: VCCI/VCCP on protected 3V3_MAIN, independent bypass, grounded exposed pad, pulled-up fixture RESET, shared open-drain INT and AON-to-main isolation on P22/P23 are instantiated. DEC-0098 closes the M5 expansion paper subblock with complete TCA4307, independent branch power/readiness and exact signal isolation. Same-rail startup, connector, hot-plug, reverse-source, profile and assembled-bus/no-back-power HIL remain open
 - HMX035CTFT-001 is the exact assembly marking disclosed by the QDtech reference schematic and contains exact integrated Sitronix ST77922 display/touch TDDI; it is a paper candidate, not a production-qualified orderable assembly. DEC-0084 closes exact paper power/reset/backlight and the first connector candidate, while DEC-0088 closes touch identity, exact address, active-low IRQ normalization and raw pull-up; exact drawing/FPC mechanics, lifecycle, real-tail mate and specimen HIL remain open
-- S3 and RP retain no free GPIO and C5 retains one; main slow-I/O P03/P04 carry rail-off CC1101 band truth and final P05 carries independent native-Unit power. The exact TCA9539 direct-control bank uses ten inputs and protects six reserves, while one SKRHADE010 supplies the complete D-pad and releases two M1 contacts. New direct endpoints require an explicit remap and repeated review; exact D-pad cross plus direct BACK/OPT/F1/F2/PTT and RUN/KILL mechanics remain HIL gates, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
+- S3 and RP retain no free GPIO and C5 retains one; main slow-I/O P03/P04 carry rail-off CC1101 band truth and final P05 carries independent native-Unit power. The exact TCA9539 direct-control bank uses ten inputs and protects six reserves. Five separate OMRON B3S-1100P buttons provide UP/DOWN/LEFT/RIGHT/OK on P00..P04; BACK/OPT/F1/F2 and encoder push use P05/P06/P10/P11/P12. All navigation and ordinary buttons are serial direct-press components. Button accessibility, feel and assembled endurance remain HIL gates, while touch identity/address/polarity are exact paper inputs and pulse/clear/reset behavior remains HIL
 - The M5 expansion endpoint uses independent true-reverse-blocking branch power, branch-valid supervisors, complete U214 SPI/UART/control/I2C isolation, native two-signal TXS isolation and connector ESD. The Cardputer-like raised rear U214 rail uses exact vertical pass-through Samtec HLE-107-02-G-DV-PE-LC and places the Cap between the antenna bank and battery holder; current-lot contact fit, rail/retention mechanics, reverse-source, hot-plug, profile identity, long-cable and coexistence HIL remain blocking. Neither connector has a presence pin and generic USB host remains rejected
 - C5 1-bit SDIO has exclusive ownership of the S3 SD/MMC host and leaves C5 native USB GPIO13/14 independent. Espressif explicitly excludes ESP32-C5 revision v0.1 from SDIO support, so received modules must prove chip revision v1.0 or later. S3 and C5 each retain both native USB and permanent default UART service; 1-bit framed throughput, control priority and reset recovery remain HIL gates, with 4-bit plus explicit service isolation only as fallback
 - display and microSD are the only scheduled high-rate pair on one SPI2 controller; DEC-0085 closes the exact isolated microSD paper endpoint with card-side Ioff buffers, CS-gated MISO, switched mandatory pulls, complete contact ESD and always-readable detect, but >=4.0 MB/s storage plus <=100 ms visible UI under card stalls remains a mandatory HIL gate

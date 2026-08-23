@@ -42,12 +42,12 @@
       "blocks": ["H8"]
     },
     {
-      "id": "H5-MECH-DPAD-ACTUATOR-FIT",
+      "id": "H5-MECH-NAVIGATION-CONTROLS",
       "disposition": "h5_received_sample_gate",
-      "affected_instances": ["ui_dpad_switch"],
-      "evidence_boundary": "Alps Alpine Drawing No.4 proves the SKRHADE010 body, round 3.0-mm stem, 5.0-mm stem-top height, Z=0.49-mm pivot and 0.25-mm directional travel at Z=4.3 mm. L2-DPAD-001-A defines the 14.0-mm PA12 cross, split four-jaw socket, square anti-rotation guide, panel aperture and a positive worst-case paper movement budget.",
-      "unknown": "Received PA12 shrinkage, exact interference/retention on the switch stem, tactile feel, centre-versus-direction discrimination and endurance.",
-      "closure": "A tolerance coupon and complete received switch/cap/front-panel assembly pass fit, pull-off, four-direction/centre discrimination, operating-force and endurance tests in H5.",
+      "affected_instances": ["ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right", "ui_dpad_ok"],
+      "evidence_boundary": "Five exact, active and orderable OMRON B3S-1100P switches form UP, DOWN, LEFT, RIGHT and OK. Every direction is a separate direct-press serial component; no custom cap, plunger, cross or guide exists. The manufacturer drawing fixes each 6.6x6.0x4.3-mm body, 3.3-mm plunger, force, travel and IEC IP67-equivalent switch boundary.",
+      "unknown": "Assembled enclosure opening access, accidental-press margin, multi-button feel, sealing boundary and endurance.",
+      "closure": "The received five-button/front-panel assembly passes access, force, independent and adjacent actuation, contradictory-pair rejection, sealing-boundary and endurance tests in H5.",
       "blocks": ["H8"]
     },
     {

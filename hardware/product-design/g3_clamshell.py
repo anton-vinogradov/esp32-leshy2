@@ -17,14 +17,14 @@ DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 MECHANICAL_GATES_PATH = REPO / "hardware/product-design/mechanical-evidence-gates.json"
 SOURCE_RESEARCH_PATH = REPO / "hardware/product-design/h1-source-research.json"
-DPAD_DESIGN_PATH = REPO / "hardware/product-design/dpad-actuator.json"
+NAVIGATION_CLUSTER_PATH = REPO / "hardware/product-design/navigation-cluster.json"
 DISPLAY_ADAPTER_DESIGN_PATH = REPO / "hardware/product-design/display-adapter.json"
 ASSEMBLY_COORDINATE_MODEL_PATH = REPO / "hardware/product-design/assembly-coordinate-model.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
 TOP_EDGE_OUTPUT = REPO / "docs/images/top-edge-view.svg"
-DPAD_OUTPUT = REPO / "docs/images/dpad-actuator.svg"
+NAVIGATION_OUTPUT = REPO / "docs/images/navigation-cluster.svg"
 DISPLAY_ADAPTER_OUTPUT = REPO / "docs/images/display-adapter.svg"
 SOURCE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 SOURCE_REGISTER_OUTPUT = REPO / "docs/physical-source-register.md"
@@ -367,11 +367,15 @@ RF_INNER = (
 
 FRONT_CONTROLS = (
     Placement("ui_switch_back", 16.8, 129.4, "direct-press BACK"),
-    Placement("ui_dpad_switch", 32.21, 127.11, "four directions plus center push", 45),
+    Placement("ui_dpad_up", 34.2, 120.4, "direct-press navigation UP"),
+    Placement("ui_dpad_down", 34.2, 138.4, "direct-press navigation DOWN"),
+    Placement("ui_dpad_left", 25.2, 129.4, "direct-press navigation LEFT"),
+    Placement("ui_dpad_right", 43.2, 129.4, "direct-press navigation RIGHT"),
+    Placement("ui_dpad_ok", 34.2, 129.4, "direct-press navigation OK"),
     Placement("ui_switch_opt", 51.6, 129.4, "direct-press OPT"),
 )
 
-DIRECT_PRESS_FRONT_CONTROLS = {"ui_switch_back", "ui_switch_opt"}
+DIRECT_PRESS_FRONT_CONTROLS = {item.instance for item in FRONT_CONTROLS}
 
 REAR_CONTROLS = (
     Placement("encoder", 2.5, 45.0, "rear encoder above F1/F2"),
@@ -384,13 +388,7 @@ DIRECT_PRESS_REAR_CONTROLS = {
     "ui_switch_f1", "ui_switch_f2", "ptt_switch"
 }
 
-FRONT_CAP_RESERVES = (
-    Reserve(
-        "single D-pad cross", 28.8, 122.9, 17.4, 19.0,
-        "L2-DPAD-001-A guided split-socket actuator over one SKRHADE010 stem; supplier MPN does not apply",
-        "custom_actuator",
-    ),
-)
+FRONT_CAP_RESERVES = ()
 
 REAR_CAP_RESERVES = ()
 REAR_CAP_TO_CONTROL = {}
@@ -568,11 +566,11 @@ EXTERIOR_BODY_CONTRACTS = (
 def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
-    dpad_design = json.loads(DPAD_DESIGN_PATH.read_text(encoding="utf-8"))
+    navigation_cluster = json.loads(NAVIGATION_CLUSTER_PATH.read_text(encoding="utf-8"))
     display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
     assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
     return (
-        devices, candidate, candidate["instances"], dpad_design,
+        devices, candidate, candidate["instances"], navigation_cluster,
         display_adapter_design, assembly_coordinate_model,
     )
 
@@ -1080,7 +1078,8 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper",
         "nrf0_rf_board_connector", "nrf1_rf_board_connector", "nrf2_rf_board_connector",
         "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma",
-        "u214", "u214_connector", "ui_dpad_switch",
+        "u214", "u214_connector",
+        "ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right", "ui_dpad_ok",
         "voice", "encoder", "encoder_knob", "power_command_switch",
         "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2", "ptt_switch",
         "unit_connector", "pack_holder", "pack_cell0", "pack_cell1",
@@ -1131,124 +1130,58 @@ def validate_source_research() -> list[str]:
     return errors
 
 
-def validate_dpad_design(design: dict, switch: dict) -> list[str]:
-    """Prove the custom cross and panel aperture from the official switch motion."""
+def validate_navigation_cluster(design: dict, devices: dict, instances: dict) -> list[str]:
+    """Prove that the navigation cluster contains only exact serial buttons."""
     errors: list[str] = []
-    if design.get("schema_version") != 1 or design.get("stage") != "H1.1.3.3":
-        errors.append("dpad-design: schema/stage mismatch")
-    if design.get("design_id") != "L2-DPAD-001" or design.get("revision") != "A":
-        errors.append("dpad-design: controlled design identity drifted")
-    if design.get("manufacturing_class") != "custom_product_part_no_supplier_mpn":
-        errors.append("dpad-design: custom part must not claim a supplier MPN")
-
-    source = design.get("source_switch", {})
-    mechanical = switch.get("mechanical_contract", {})
-    electrical = switch.get("electrical_contract", {})
-    exact_pairs = (
-        (source.get("mpn"), switch.get("mpn"), "MPN"),
-        (source.get("body_mm"), switch.get("dimensions_mm"), "body"),
-        (source.get("stem_diameter_mm"), mechanical.get("stem_diameter_mm"), "stem diameter"),
-        (source.get("stem_top_z_mm"), mechanical.get("overall_to_stem_top_mm"), "stem-top Z"),
-        (source.get("direction_travel_at_reference_mm"), electrical.get("direction_travel_mm"), "direction travel"),
-        (source.get("direction_travel_reference_z_mm"), mechanical.get("direction_force_reference_height_from_pcb_mm"), "direction reference Z"),
-        (source.get("centre_push_travel_mm"), electrical.get("center_travel_mm"), "centre travel"),
-        (source.get("board_rotation_deg_clockwise"), mechanical.get("selected_board_rotation_deg_clockwise"), "board rotation"),
-    )
-    for actual, expected, label in exact_pairs:
-        if actual != expected:
-            errors.append(f"dpad-design: official {label} does not match the selected switch")
-    if source.get("drawing") != "SKRH Series Drawing No.4, Update 2510":
-        errors.append("dpad-design: exact SKRHADE010 drawing reference drifted")
-    if not str(source.get("url", "")).startswith("https://tech.alpsalpine.com/"):
-        errors.append("dpad-design: source must remain the official Alps drawing")
-
-    actuator = design.get("actuator", {})
-    cross = actuator.get("top_cross", {})
-    guide = actuator.get("square_anti_rotation_guide", {})
-    socket = actuator.get("split_stem_socket", {})
-    panel = design.get("front_panel_interface", {})
-    paper = design.get("paper_checks", {})
-    numeric_fields = {
-        "cross span": cross.get("overall_span_mm"),
-        "cross arm width": cross.get("arm_width_mm"),
-        "cross thickness": cross.get("thickness_mm"),
-        "guide width": guide.get("width_mm"),
-        "guide drop": guide.get("drop_below_top_cross_mm"),
-        "socket outside diameter": socket.get("outside_diameter_mm"),
-        "socket bore": socket.get("nominal_bore_mm"),
-        "socket engagement": socket.get("engagement_mm"),
-        "panel outer Z": panel.get("local_outer_surface_z_mm"),
-        "panel thickness": panel.get("local_wall_thickness_mm"),
-        "aperture width": panel.get("square_aperture_width_mm"),
-    }
-    for label, value in numeric_fields.items():
-        if not isinstance(value, (int, float)) or float(value) <= 0:
-            errors.append(f"dpad-design: {label} must be a positive dimension")
-    if errors:
-        return errors
-
-    span = float(cross["overall_span_mm"])
-    arm_width = float(cross["arm_width_mm"])
-    guide_width = float(guide["width_mm"])
-    aperture_width = float(panel["square_aperture_width_mm"])
-    cap_underside_z = float(cross["underside_neutral_z_mm"])
-    panel_outer_z = float(panel["local_outer_surface_z_mm"])
-    panel_inner_z = panel_outer_z - float(panel["local_wall_thickness_mm"])
-    guide_lower_z = cap_underside_z - float(guide["drop_below_top_cross_mm"])
-    socket_lower_z = float(socket["socket_lower_z_mm"])
-    pocket_roof_z = float(socket["pocket_roof_z_mm"])
-    if not (0 < arm_width < span <= 14.0):
-        errors.append("dpad-design: visible cross must remain inside its 14-mm controlled envelope")
-    if not (float(socket["outside_diameter_mm"]) <= guide_width < aperture_width < arm_width):
-        errors.append("dpad-design: socket/guide/aperture/cross widths lost their containment order")
-    if not (guide_lower_z <= panel_inner_z < panel_outer_z < cap_underside_z):
-        errors.append("dpad-design: anti-rotation guide no longer crosses the complete panel wall")
-    if not math.isclose(
-        cap_underside_z - panel_outer_z,
-        float(panel["neutral_cap_to_panel_gap_mm"]),
-        abs_tol=1e-9,
+    if (
+        design.get("schema_version") != 1
+        or design.get("stage") != "H1.3.0"
+        or design.get("design_id") != "L2-NAV-5B-001-A"
+        or design.get("status") != "selected"
     ):
-        errors.append("dpad-design: neutral cap/panel gap disagrees with the controlled Z stack")
-    if not math.isclose(pocket_roof_z, float(source["stem_top_z_mm"]), abs_tol=1e-9):
-        errors.append("dpad-design: pocket roof must seat on the official 5.0-mm stem top")
-    if not math.isclose(pocket_roof_z - socket_lower_z, float(socket["engagement_mm"]), abs_tol=1e-9):
-        errors.append("dpad-design: socket engagement and controlled Z limits disagree")
-    if not (
-        float(socket["nominal_bore_mm"]) < float(source["stem_diameter_mm"])
-        < float(socket["outside_diameter_mm"])
-        and socket.get("slot_count") == 4
-    ):
-        errors.append("dpad-design: split four-jaw socket no longer retains the 3-mm stem")
-
-    pivot_z = float(source["stem_rotation_centre_z_mm"])
-    reference_z = float(source["direction_travel_reference_z_mm"])
-    direction_travel = float(source["direction_travel_at_reference_mm"])
-    tilt_deg = math.degrees(math.atan(direction_travel / (reference_z - pivot_z)))
-    lateral_at_panel = math.tan(math.radians(tilt_deg)) * (panel_outer_z - pivot_z)
-    nominal_clearance = (aperture_width - guide_width) / 2
-    lateral_margin = nominal_clearance - lateral_at_panel - float(actuator["general_external_tolerance_mm"]) - float(panel["aperture_tolerance_mm"]) - float(panel["axis_registration_tolerance_mm"])
-    edge_sweep = math.sin(math.radians(tilt_deg)) * span / 2
-    z_tolerance = 0.2
-    edge_margin = float(panel["neutral_cap_to_panel_gap_mm"]) - edge_sweep - z_tolerance
-    centre_margin = float(panel["neutral_cap_to_panel_gap_mm"]) - float(source["centre_push_travel_mm"]) - z_tolerance
-    derived = {
-        "direction_tilt_deg": tilt_deg,
-        "guide_lateral_motion_at_panel_outer_surface_mm": lateral_at_panel,
-        "nominal_guide_clearance_per_side_mm": nominal_clearance,
-        "worst_case_remaining_lateral_margin_mm": lateral_margin,
-        "cross_edge_vertical_sweep_mm": edge_sweep,
-        "worst_case_remaining_edge_gap_mm": edge_margin,
-        "worst_case_remaining_centre_push_gap_mm": centre_margin,
+        errors.append("navigation-cluster: schema, stage, identity or status drifted")
+    if design.get("manufacturing_class") != "serial_components_only":
+        errors.append("navigation-cluster: only serial components are allowed")
+    component = design.get("component", {})
+    if component.get("device_key") != "omron_b3s_1100p" or component.get("mpn") != "OMRON B3S-1100P":
+        errors.append("navigation-cluster: exact serial button MPN drifted")
+    switch = devices.get(component.get("device_key"), {})
+    if component.get("body_mm") != switch.get("dimensions_mm") or component.get("quantity") != 5:
+        errors.append("navigation-cluster: serial button quantity or envelope drifted")
+    if "no separate cap" not in str(component.get("actuation", "")):
+        errors.append("navigation-cluster: a hidden cap or custom actuator was introduced")
+    if not str(component.get("manufacturer_url", "")).startswith("https://components.omron.com/"):
+        errors.append("navigation-cluster: manufacturer source must remain OMRON-controlled")
+    expected_instances = {
+        "ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right", "ui_dpad_ok"
     }
-    for field, value in derived.items():
-        if not math.isclose(float(paper.get(field, -999)), value, abs_tol=0.001):
-            errors.append(f"dpad-design: stored {field} is stale (expected {value:.3f})")
-    if min(lateral_margin, edge_margin, centre_margin) <= 0:
-        errors.append("dpad-design: a worst-case movement/clearance margin is non-positive")
-    if len(design.get("prototype_acceptance", [])) < 6:
-        errors.append("dpad-design: received-part acceptance is incomplete")
-    if "H5" not in design.get("release_boundary", ""):
-        errors.append("dpad-design: received fit/feel/endurance must remain an H5 gate")
+    buttons = design.get("layout", {}).get("buttons", [])
+    button_by_instance = {row.get("instance"): row for row in buttons}
+    if set(button_by_instance) != expected_instances or len(buttons) != 5:
+        errors.append("navigation-cluster: exact five-button instance set drifted")
+    selected = {item.instance: item for item in FRONT_CONTROLS if item.instance in expected_instances}
+    if set(selected) != expected_instances:
+        errors.append("navigation-cluster: a direction or OK is absent from the front placement")
+    for instance in expected_instances:
+        if instances.get(instance) != "omron_b3s_1100p":
+            errors.append(f"navigation-cluster: {instance} is not the selected serial B3S-1100P")
+            continue
+        expected_position = [selected[instance].x, selected[instance].y]
+        if button_by_instance.get(instance, {}).get("position_mm") != expected_position:
+            errors.append(f"navigation-cluster: {instance} position disagrees with the renderer")
+    if design.get("electrical_contract", {}).get("expander_contacts_consumed") != 5:
+        errors.append("navigation-cluster: exact five-input pin budget drifted")
+    cost = design.get("cost_at_quantity_100_usd", {})
+    selected_unit = float(switch.get("cost", {}).get("unit_price_usd", 0))
+    if not math.isclose(float(cost.get("five_b3s_1100p", -1)), 5 * selected_unit, abs_tol=1e-9):
+        errors.append("navigation-cluster: five-button cost is stale")
+    checks = design.get("paper_checks", {})
+    if checks.get("custom_mechanical_parts") != 0:
+        errors.append("navigation-cluster: custom mechanical parts are forbidden")
+    if not all(checks.get(field) is True for field in ("all_five_bodies_inside_board", "mounting_keepouts_clear")):
+        errors.append("navigation-cluster: paper containment checks are incomplete")
+    if len(design.get("h5_acceptance", [])) < 4 or "H5" not in design.get("release_boundary", ""):
+        errors.append("navigation-cluster: assembled control H5 gate is incomplete")
     return errors
 
 
@@ -1452,7 +1385,7 @@ def validate_assembly_coordinate_model(
 
 def validate() -> list[str]:
     (
-        devices, candidate, instances, dpad_design,
+        devices, candidate, instances, navigation_cluster,
         display_adapter_design, assembly_coordinate_model,
     ) = load()
     errors: list[str] = []
@@ -1466,7 +1399,11 @@ def validate() -> list[str]:
         "pack_holder": "Keystone Electronics 1048P",
         "unit_connector": "1125R-SMT-4P",
         "encoder_knob": "Davies Molding 1227-J",
-        "ui_dpad_switch": "Alps Alpine SKRHADE010",
+        "ui_dpad_up": "OMRON B3S-1100P",
+        "ui_dpad_down": "OMRON B3S-1100P",
+        "ui_dpad_left": "OMRON B3S-1100P",
+        "ui_dpad_right": "OMRON B3S-1100P",
+        "ui_dpad_ok": "OMRON B3S-1100P",
         "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(58)",
         "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
         "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
@@ -1482,7 +1419,7 @@ def validate() -> list[str]:
     errors += mechanical_source_errors
     errors += validate_mechanical_evidence_gates(instances, mechanically_accounted)
     errors += validate_source_research()
-    errors += validate_dpad_design(dpad_design, devices[instances["ui_dpad_switch"]])
+    errors += validate_navigation_cluster(navigation_cluster, devices, instances)
     errors += validate_display_adapter_design(
         display_adapter_design, devices, candidate, instances
     )
@@ -1593,12 +1530,18 @@ def validate() -> list[str]:
     front_path_centres = {path: centre for centre, path, _ in FRONT_RF}
     if front_path_centres.get("S3-2G4") != 16.0 or front_path_centres.get("C5-2G4/5") != 59.0:
         errors.append("native RF ports must remain aligned to the two exact 30-mm jumper corridors")
-    dpad = next(item for item in FRONT_CONTROLS if item.instance == "ui_dpad_switch")
-    dpad_w, dpad_h = placement_size(dpad, devices, instances)
-    if dpad.rotation != 45:
-        errors.append("SKRHADE010 must remain 45 degrees clockwise so A/B/C/D map to up/right/left/down")
-    if abs(dpad.x + dpad_w / 2 - 37.5) > 0.02 or abs(dpad.y + dpad_h / 2 - 132.4) > 0.02:
-        errors.append("SKRHADE010 rotated envelope must remain centred at D-pad axis 37.5,132.4 mm")
+    navigation_items = {
+        item.instance: item
+        for item in FRONT_CONTROLS
+        if item.instance.startswith("ui_dpad_")
+    }
+    if set(navigation_items) != {
+        "ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right", "ui_dpad_ok"
+    }:
+        errors.append("front navigation must retain five independent serial buttons")
+    for item in navigation_items.values():
+        if item.rotation != 0:
+            errors.append(f"{item.instance}: direct B3S button must retain drawing orientation")
 
     display_device = devices[instances["display"]]
     if display_device.get("pixel_resolution") != [320, 480]:
@@ -1616,13 +1559,6 @@ def validate() -> list[str]:
     active_w, active_h = map(float, display_device.get("active_area_mm", [0, 1]))
     if not math.isclose(active_w / active_h, 2 / 3, rel_tol=0, abs_tol=1e-9):
         errors.append("display: active area must retain the exact 2:3 portrait ratio")
-    dpad_mechanical = devices[instances["ui_dpad_switch"]].get("mechanical_contract", {})
-    if dpad_mechanical.get("body_thickness_mm") != 1.85:
-        errors.append("SKRHADE010 body thickness must remain distinct from its complete stem height")
-    if dpad_mechanical.get("overall_to_stem_top_mm") != 5.0:
-        errors.append("SKRHADE010 complete stem-top height must remain 5.0 mm from the PCB")
-    if dpad_mechanical.get("stem_diameter_mm") != 3.0:
-        errors.append("SKRHADE010 custom actuator interface must retain the exact 3-mm stem")
     direct_mechanical = devices[instances["ptt_switch"]].get("mechanical_contract", {})
     if direct_mechanical.get("plunger_diameter_mm") != 3.3:
         errors.append("B3S-1100P direct-press controls must retain the exact 3.3-mm plunger")
@@ -1923,7 +1859,7 @@ def validate() -> list[str]:
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to the battery holder")
         if overlaps(rectangle, u214_box, 0.7):
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to U214")
-    external_svg = render_external(devices, instances, dpad_design)
+    external_svg = render_external(devices, instances)
     external_root = ET.fromstring(external_svg)
     if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
         errors.append("external layout must identify the unified coordinate model")
@@ -2062,32 +1998,7 @@ def rf_bank(
     return rows
 
 
-def dpad_cap(origin, scale, sx, sy, text, design):
-    """Draw one custom D-pad actuator over the selected guided navigation switch."""
-    cx, cy = sx(origin, 37.5), sy(origin, 132.4)
-    cross = design["actuator"]["top_cross"]
-    panel = design["front_panel_interface"]
-    arm = float(cross["overall_span_mm"]) * scale / 2
-    half = float(cross["arm_width_mm"]) * scale / 2
-    aperture = float(panel["square_aperture_width_mm"]) * scale
-    points = (
-        (cx - half, cy - arm), (cx + half, cy - arm),
-        (cx + half, cy - half), (cx + arm, cy - half),
-        (cx + arm, cy + half), (cx + half, cy + half),
-        (cx + half, cy + arm), (cx - half, cy + arm),
-        (cx - half, cy + half), (cx - arm, cy + half),
-        (cx - arm, cy - half), (cx - half, cy - half),
-    )
-    path = " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
-    return [
-        f'<rect x="{cx-aperture/2:.1f}" y="{cy-aperture/2:.1f}" width="{aperture:.1f}" height="{aperture:.1f}" fill="#ffffff" stroke="#475467" stroke-width="1.1" data-interface="L2-ENC-DPAD-001-A-aperture"/>',
-        f'<polygon points="{path}" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.7" data-part="single-D-pad-cross" data-design-id="L2-DPAD-001-A" data-manufacturing-class="custom-actuator"/>',
-        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{2.0*scale:.1f}" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2"/>',
-        text(cx, cy + 2.0, "OK", 5.0, "bold", "middle", "#4c1d95"),
-    ]
-
-
-def render_external(devices, instances, dpad_design):
+def render_external(devices, instances):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
     def silk_text(*args, **kwargs):
@@ -2188,7 +2099,14 @@ def render_external(devices, instances, dpad_design):
                 "/>", f' data-reserve-class="{reserve.reserve_class}"/>',
             )
         )
-    out += dpad_cap(front, scale, sx, sy, text, dpad_design)
+    for label_x, label_y, label in (
+        (37.5, 119.1, "▲"),
+        (37.5, 147.8, "▼"),
+        (23.9, 133.2, "◀"),
+        (51.1, 133.2, "▶"),
+        (33.2, 127.9, "OK"),
+    ):
+        out.append(silk_text(sx(front,label_x), sy(front,label_y), label, 4.2, "bold", "middle", "#4c1d95"))
     out.append(silk_text(sx(front,20.1), sy(front,140.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
     out.append(silk_text(sx(front,54.9), sy(front,140.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
 
@@ -2343,15 +2261,15 @@ def render_external(devices, instances, dpad_design):
         '<rect x="850" y="497" width="28" height="15" rx="3" fill="none" stroke="#ea580c" stroke-dasharray="5 3"/>',
         text(890,509,"orange dashed — open custom enclosure drawing",11),
         '<rect x="850" y="527" width="28" height="15" rx="3" fill="#ede9fe" stroke="#7c3aed"/>',
-        text(890,539,"violet — custom product part; supplier MPN does not apply",11),
+        text(890,539,"violet — selected navigation controls",11),
         text(note_x,566,"RF connectors are outward-face bodies with barrels and hex nuts.",11,"bold"),
         text(note_x,589,"SMA: GCT RFPC-SMA31-FN-175-A · 6 GHz · IP67 · 1.6-mm PCB.",11),
         text(note_x,609,"RP-SMA: GCT RFPC-SMA32-FN-175-A · same panel cut-out.",11),
         text(note_x,630,"Cap-Bus host: Samtec HLE-107-02-G-DV-PE-LC · 2×7 · 2.54 mm · pass-through.",11),
         text(note_x,653,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
-        text(note_x,676,"D-pad cross is custom over Alps SKRHADE010; its control drawing replaces a cap MPN.",11),
+        text(note_x,676,"Navigation is five exact OMRON B3S-1100P direct buttons; no custom cap or actuator.",11),
         text(note_x,699,"Davies 1227-J is the exact encoder knob; only its fit HIL remains.",11),
-        text(note_x,722,"BACK/OPT/F1/F2/PTT are direct buttons; D-pad is one SKRH switch and one cross.",11,"bold"),
+        text(note_x,722,"UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1/F2/PTT are serial direct buttons.",11,"bold"),
         text(note_x,745,"The side C&K JS102011SCQN is the sole RUN/KILL and source-command control.",11),
     ]
     out.append("</svg>")
@@ -3142,125 +3060,91 @@ def render_top_edge(devices, instances):
     return "\n".join(out) + "\n"
 
 
-def render_dpad_detail(design):
-    """Render the controlled custom actuator and its movement/clearance stack."""
+def render_navigation_cluster(design, devices, instances):
+    """Render the exact five-series-button navigation cluster and neighbours."""
+    scale = 8.0
+    ox, oy = 50.0, 105.0
+    band_y = 112.0
 
-    def t(x, y, value, size=12, weight="normal", anchor="start", colour="#172033"):
+    def x(value):
+        return ox + float(value) * scale
+
+    def y(value):
+        return oy + (float(value) - band_y) * scale
+
+    def t(px, py, value, size=12, weight="normal", anchor="start", colour="#172033"):
         return (
-            f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" '
+            f'<text x="{px:.1f}" y="{py:.1f}" font-family="sans-serif" font-size="{size}" '
             f'font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
         )
 
-    def cross_points(cx, cy, span, width):
-        arm, half = span / 2, width / 2
-        return " ".join(
-            f"{x:.1f},{y:.1f}"
-            for x, y in (
-                (cx-half, cy-arm), (cx+half, cy-arm),
-                (cx+half, cy-half), (cx+arm, cy-half),
-                (cx+arm, cy+half), (cx+half, cy+half),
-                (cx+half, cy+arm), (cx-half, cy+arm),
-                (cx-half, cy+half), (cx-arm, cy+half),
-                (cx-arm, cy-half), (cx-half, cy-half),
+    labels = {
+        "ui_dpad_up": "▲",
+        "ui_dpad_down": "▼",
+        "ui_dpad_left": "◀",
+        "ui_dpad_right": "▶",
+        "ui_dpad_ok": "OK",
+        "ui_switch_back": "BACK",
+        "ui_switch_opt": "OPT",
+    }
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="560" viewBox="0 0 1250 560" data-view="series-navigation-cluster" data-design-id="L2-NAV-5B-001-A" data-manufacturing-class="serial-components-only">',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        t(30, 34, "Leshy2 — five-series-button navigation cluster", 22, "bold"),
+        t(30, 60, "Every control is an orderable OMRON B3S-1100P; there is no custom cross, cap, plunger or guide.", 11, colour="#526076"),
+        f'<rect x="{x(0):.1f}" y="{y(112):.1f}" width="{75*scale:.1f}" height="{38*scale:.1f}" rx="6" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-board-band-mm="75x38"/>',
+        t(x(37.5), y(115.5), "front UI PCB · y=112…150 mm", 10, "bold", "middle", "#526076"),
+    ]
+    for hx, hy in HOLES:
+        if hy < band_y:
+            continue
+        out.append(
+            f'<circle cx="{x(hx):.1f}" cy="{y(hy):.1f}" r="{MOUNT_KEEPOUT_R*scale:.1f}" '
+            'fill="#fff7ed" stroke="#fb923c" stroke-dasharray="5 3"/>'
+        )
+        out.append(
+            f'<circle cx="{x(hx):.1f}" cy="{y(hy):.1f}" r="{MOUNT_HOLE_D*scale/2:.1f}" '
+            'fill="#ffffff" stroke="#475467"/>'
+        )
+    for item in FRONT_CONTROLS:
+        width, height = placement_size(item, devices, instances)
+        is_navigation = item.instance.startswith("ui_dpad_")
+        out.append(
+            f'<rect x="{x(item.x):.1f}" y="{y(item.y):.1f}" width="{width*scale:.1f}" '
+            f'height="{height*scale:.1f}" rx="3" fill="{"#ede9fe" if is_navigation else "#e2e8f0"}" '
+            f'stroke="{"#7c3aed" if is_navigation else "#64748b"}" stroke-width="1.5" '
+            f'data-instance="{item.instance}" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>'
+        )
+        out.append(
+            t(
+                x(item.x + width / 2), y(item.y + height / 2) + 4,
+                labels[item.instance], 9, "bold", "middle", "#4c1d95",
             )
         )
-
-    actuator = design["actuator"]
-    cross = actuator["top_cross"]
-    guide = actuator["square_anti_rotation_guide"]
-    socket = actuator["split_stem_socket"]
-    panel = design["front_panel_interface"]
-    source = design["source_switch"]
-    paper = design["paper_checks"]
-    plan_scale = 19.0
-    span = float(cross["overall_span_mm"]) * plan_scale
-    arm = float(cross["arm_width_mm"]) * plan_scale
-    aperture = float(panel["square_aperture_width_mm"]) * plan_scale
-    guide_size = float(guide["width_mm"]) * plan_scale
-    socket_od = float(socket["outside_diameter_mm"]) * plan_scale
-    socket_id = float(socket["nominal_bore_mm"]) * plan_scale
-    out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" data-view="dpad-controlled-design" data-design-id="L2-DPAD-001-A">',
-        '<defs><marker id="dim-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M0,1 L7,4 L0,7 Z" fill="#344054"/></marker></defs>',
-        '<rect width="100%" height="100%" fill="#ffffff"/>',
-        t(32, 38, "Leshy2 — L2-DPAD-001-A controlled D-pad actuator", 24, "bold"),
-        t(32, 64, "One custom PA12 cross, one Alps Alpine SKRHADE010 and one square panel guide; supplier MPN does not apply to the cross.", 11, colour="#526076"),
-        '<rect x="30" y="92" width="410" height="500" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>',
-        '<rect x="460" y="92" width="410" height="500" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>',
-        '<rect x="890" y="92" width="480" height="500" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>',
-        t(50, 124, "Front plan — user-facing", 16, "bold"),
-        t(480, 124, "Underside — anti-rotation and retention", 16, "bold"),
-        t(910, 124, "Section through one arm — PCB Z datum", 16, "bold"),
-    ]
-
-    front_cx, front_cy = 235.0, 300.0
+    cluster = design["layout"]
+    bbox_x, bbox_y, bbox_w, bbox_h = map(float, cluster["bounding_box_mm"])
+    out.append(
+        f'<rect x="{x(bbox_x):.1f}" y="{y(bbox_y):.1f}" width="{bbox_w*scale:.1f}" '
+        f'height="{bbox_h*scale:.1f}" fill="none" stroke="#7c3aed" stroke-width="1.4" '
+        'stroke-dasharray="6 4" data-cluster-envelope="true"/>'
+    )
+    note_x = 700
+    cost = design["cost_at_quantity_100_usd"]
     out += [
-        f'<rect x="{front_cx-aperture/2:.1f}" y="{front_cy-aperture/2:.1f}" width="{aperture:.1f}" height="{aperture:.1f}" fill="#ffffff" stroke="#475467" stroke-width="2" stroke-dasharray="7 4" data-part="panel-aperture"/>',
-        f'<polygon points="{cross_points(front_cx, front_cy, span, arm)}" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.2" data-part="L2-DPAD-001-A-top-cross"/>',
-        f'<circle cx="{front_cx:.1f}" cy="{front_cy:.1f}" r="{2.05*plan_scale:.1f}" fill="#ffffff" stroke="#7c3aed" stroke-width="1.8"/>',
-        t(front_cx, front_cy+5, "OK", 13, "bold", "middle", "#4c1d95"),
-        f'<line x1="{front_cx-span/2:.1f}" y1="470" x2="{front_cx+span/2:.1f}" y2="470" stroke="#344054" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"/>',
-        t(front_cx, 462, f'{cross["overall_span_mm"]:.1f} mm overall span', 12, "bold", "middle"),
-        t(50, 520, f'Visible arm width: {cross["arm_width_mm"]:.1f} mm', 11),
-        t(50, 544, f'Panel aperture: {panel["square_aperture_width_mm"]:.1f} × {panel["square_aperture_width_mm"]:.1f} mm', 11),
-        t(50, 568, "Cross remains aligned to UP/RIGHT/DOWN/LEFT legends.", 11, colour="#526076"),
-    ]
-
-    under_cx, under_cy = 665.0, 300.0
-    out += [
-        f'<polygon points="{cross_points(under_cx, under_cy, span, arm)}" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.7"/>',
-        f'<rect x="{under_cx-guide_size/2:.1f}" y="{under_cy-guide_size/2:.1f}" width="{guide_size:.1f}" height="{guide_size:.1f}" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2" data-part="square-anti-rotation-guide"/>',
-        f'<circle cx="{under_cx:.1f}" cy="{under_cy:.1f}" r="{socket_od/2:.1f}" fill="#ffffff" stroke="#6d28d9" stroke-width="2" data-part="four-jaw-socket"/>',
-        f'<circle cx="{under_cx:.1f}" cy="{under_cy:.1f}" r="{socket_id/2:.1f}" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5"/>',
-    ]
-    slot_half = socket_od / 2
-    slot_gap = float(socket["slot_width_mm"]) * plan_scale
-    out += [
-        f'<rect x="{under_cx-slot_gap/2:.1f}" y="{under_cy-slot_half-2:.1f}" width="{slot_gap:.1f}" height="{socket_od+4:.1f}" fill="#ffffff"/>',
-        f'<rect x="{under_cx-slot_half-2:.1f}" y="{under_cy-slot_gap/2:.1f}" width="{socket_od+4:.1f}" height="{slot_gap:.1f}" fill="#ffffff"/>',
-        f'<circle cx="{under_cx:.1f}" cy="{under_cy:.1f}" r="{socket_id/2:.1f}" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5"/>',
-        t(480, 500, f'Square guide: {guide["width_mm"]:.1f} mm; aperture clearance: {paper["nominal_guide_clearance_per_side_mm"]:.2f} mm/side', 11),
-        t(480, 524, f'Four-jaw socket: Ø{socket["nominal_bore_mm"]:.1f} bore / Ø{socket["outside_diameter_mm"]:.1f} body', 11),
-        t(480, 548, f'Stem engagement: {socket["engagement_mm"]:.1f} mm; four {socket["slot_width_mm"]:.1f}-mm slots', 11),
-        t(480, 572, "Square guide carries anti-rotation; the round stem is not treated as keyed.", 11, colour="#526076"),
-    ]
-
-    section_cx = 1130.0
-    section_scale_x = 22.0
-    section_scale_z = 37.0
-    pcb_y = 548.0
-    z = lambda value: pcb_y - float(value) * section_scale_z
-    x = lambda value: section_cx + float(value) * section_scale_x
-    panel_outer = float(panel["local_outer_surface_z_mm"])
-    panel_inner = panel_outer - float(panel["local_wall_thickness_mm"])
-    cap_under = float(cross["underside_neutral_z_mm"])
-    cap_top = cap_under + float(cross["thickness_mm"])
-    out += [
-        f'<line x1="930" y1="{z(0):.1f}" x2="1330" y2="{z(0):.1f}" stroke="#16a34a" stroke-width="6" data-datum="PCB-Z0"/>',
-        t(1328, z(0)-8, "UI PCB · Z=0", 10, "bold", "end", "#166534"),
-        f'<rect x="{x(-3.75):.1f}" y="{z(1.85):.1f}" width="{7.5*section_scale_x:.1f}" height="{1.85*section_scale_z:.1f}" fill="#e2e8f0" stroke="#64748b" data-part="SKRHADE010-body"/>',
-        f'<rect x="{x(-1.5):.1f}" y="{z(5.0):.1f}" width="{3.0*section_scale_x:.1f}" height="{(5.0-1.85)*section_scale_z:.1f}" fill="#f1f5f9" stroke="#475467" data-part="SKRHADE010-stem"/>',
-        f'<path d="M930 {z(panel_outer):.1f} H{x(-3.55):.1f} V{z(panel_inner):.1f} H930 Z M{x(3.55):.1f} {z(panel_outer):.1f} H1330 V{z(panel_inner):.1f} H{x(3.55):.1f} Z" fill="#ffedd5" stroke="#ea580c" data-part="panel-wall"/>',
-        f'<rect x="{x(-2.8):.1f}" y="{z(cap_under):.1f}" width="{5.6*section_scale_x:.1f}" height="{(cap_under-(cap_under-float(guide["drop_below_top_cross_mm"])))*section_scale_z:.1f}" fill="#ddd6fe" stroke="#7c3aed" data-part="square-guide-section"/>',
-        f'<rect x="{x(-7):.1f}" y="{z(cap_top):.1f}" width="{14*section_scale_x:.1f}" height="{float(cross["thickness_mm"])*section_scale_z:.1f}" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" data-part="top-cross-section"/>',
-        f'<path d="M{x(-2.5):.1f} {z(cap_under):.1f} V{z(3.0):.1f} H{x(-1.45):.1f} V{z(5.0):.1f} H{x(1.45):.1f} V{z(3.0):.1f} H{x(2.5):.1f} V{z(cap_under):.1f} Z" fill="#c4b5fd" stroke="#6d28d9" data-part="split-socket-section"/>',
-        f'<line x1="920" y1="{z(panel_outer):.1f}" x2="920" y2="{z(cap_under):.1f}" stroke="#344054" marker-start="url(#dim-arrow)" marker-end="url(#dim-arrow)"/>',
-        t(910, (z(panel_outer)+z(cap_under))/2+4, f'{panel["neutral_cap_to_panel_gap_mm"]:.1f}', 10, "bold", "end"),
-        t(910, 494, "neutral cap/panel gap", 9.5, "normal", "start", "#526076"),
-        t(910, 568, f'Alps {source["mpn"]}', 10.5, "bold"),
-    ]
-
-    out += [
-        t(32, 630, "Machine-checked motion budget", 17, "bold"),
-        t(32, 660, f'Directional tilt: {paper["direction_tilt_deg"]:.3f}° from 0.25-mm travel at Z=4.3 mm and the official Z=0.49-mm pivot.', 11),
-        t(32, 686, f'Guide motion at the panel: {paper["guide_lateral_motion_at_panel_outer_surface_mm"]:.3f} mm; worst-case lateral margin: {paper["worst_case_remaining_lateral_margin_mm"]:.3f} mm.', 11),
-        t(32, 712, f'Cross-edge sweep: {paper["cross_edge_vertical_sweep_mm"]:.3f} mm; worst-case panel gap: {paper["worst_case_remaining_edge_gap_mm"]:.3f} mm.', 11),
-        t(32, 738, f'Centre travel: {source["centre_push_travel_mm"]:.2f} mm; worst-case remaining panel gap: {paper["worst_case_remaining_centre_push_gap_mm"]:.3f} mm.', 11),
-        t(32, 780, "H1 result", 15, "bold", colour="#166534"),
-        t(132, 780, "dimensioned paper design complete", 12, "bold", colour="#166534"),
-        t(32, 808, "H5 gate", 15, "bold", colour="#b42318"),
-        t(132, 808, "received switch + PA12 tolerance coupon: fit, feel, retention, discrimination and endurance", 12, colour="#b42318"),
-        t(32, 850, "Source: Alps Alpine SKRH Series Drawing No.4, Update 2510. This is a controlled product-design drawing, not an enclosure release.", 10.5, colour="#526076"),
+        t(note_x, 112, "Five exact series buttons", 16, "bold"),
+        t(note_x, 143, "5× OMRON B3S-1100P · direct finger press", 12, "bold"),
+        t(note_x, 169, "UP · DOWN · LEFT · RIGHT · OK", 11),
+        t(note_x, 195, "Each body: 6.6×6.0×4.3 mm · SPST-NO · IEC IP67-equivalent", 11),
+        t(note_x, 221, "Five independent active-low TCA9539 inputs; pin budget unchanged.", 11),
+        t(note_x, 263, "Mechanical result", 16, "bold"),
+        t(note_x, 294, f"Cluster envelope: {bbox_w:.1f}×{bbox_h:.1f} mm", 11),
+        t(note_x, 320, f"Button-centre pitch: {cluster['centre_pitch_mm']:.1f} mm", 11),
+        t(note_x, 346, f"BACK/OPT clearance: {design['paper_checks']['back_clearance_mm']:.1f} mm each", 11),
+        t(note_x, 372, f"Bottom PCB margin: {design['paper_checks']['bottom_board_margin_mm']:.1f} mm", 11),
+        t(note_x, 414, "Quantity-100 component cost", 16, "bold"),
+        t(note_x, 445, f"Five selected buttons: ${cost['five_b3s_1100p']:.4f} per device", 11),
+        t(note_x, 471, "PCB, assembly, enclosure, freight and tax excluded", 11, colour="#526076"),
+        t(30, 530, "Dimensioned component placement; enclosure opening feel and endurance remain H5 checks.", 10.5, "bold", colour="#b42318"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -3566,7 +3450,11 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
                 for index, (instance, label, x, y) in enumerate(FRONT_TX_INDICATORS)
             ],
             "controls": controls(FRONT_CONTROLS),
-            "dpad_actuator": "L2-DPAD-001-A",
+            "navigation_cluster": {
+                "design_id": "L2-NAV-5B-001-A",
+                "manufacturing_class": "serial_components_only",
+                "custom_mechanical_parts": 0,
+            },
             "edge_interfaces": front_edges,
         },
         "rear": {
@@ -3688,7 +3576,7 @@ def main() -> int:
             print(f"error: {error}")
         return 1
     (
-        devices, _, instances, dpad_design,
+        devices, _, instances, navigation_cluster,
         display_adapter_design, assembly_coordinate_model,
     ) = load()
     source_table = build_physical_source_table(devices, instances)
@@ -3699,11 +3587,11 @@ def main() -> int:
         devices, instances, assembly_coordinate_model
     )
     outputs = {
-        EXTERNAL_OUTPUT: render_external(devices, instances, dpad_design),
+        EXTERNAL_OUTPUT: render_external(devices, instances),
         INTERNAL_OUTPUT: render_internal(devices, instances),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
         TOP_EDGE_OUTPUT: render_top_edge(devices, instances),
-        DPAD_OUTPUT: render_dpad_detail(dpad_design),
+        NAVIGATION_OUTPUT: render_navigation_cluster(navigation_cluster, devices, instances),
         DISPLAY_ADAPTER_OUTPUT: render_display_adapter(display_adapter_design),
         SOURCE_TABLE_OUTPUT: json.dumps(source_table, ensure_ascii=False, indent=2) + "\n",
         UNIFIED_COORDINATE_TABLE_OUTPUT: json.dumps(
@@ -3726,7 +3614,7 @@ def main() -> int:
             for path in stale:
                 print(f"error: stale {path}")
             return 1
-        print("ok: external, internal, top-edge, section, D-pad and display-adapter mechanical projections are valid and current")
+        print("ok: external, internal, top-edge, section, navigation and display-adapter mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0

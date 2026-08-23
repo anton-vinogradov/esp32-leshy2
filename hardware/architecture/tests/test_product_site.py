@@ -195,7 +195,11 @@ class ProductSiteTests(unittest.TestCase):
             "HLE-107-02-G-DV-PE-LC",
             "insert ⊗ · remove ⊙",
             "Keystone 1048P",
-            'data-part="single-D-pad-cross"',
+            'data-instance="ui_dpad_up" data-direct-press="true"',
+            'data-instance="ui_dpad_down" data-direct-press="true"',
+            'data-instance="ui_dpad_left" data-direct-press="true"',
+            'data-instance="ui_dpad_right" data-direct-press="true"',
+            'data-instance="ui_dpad_ok" data-direct-press="true"',
             "RUN",
             "KILL",
             "PTT",
@@ -236,8 +240,9 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn(
             'data-instance="ptt_switch" data-direct-press="true"', layout
         )
-        self.assertIn('data-manufacturing-class="custom-actuator"', layout)
-        self.assertIn("supplier MPN does not apply", layout)
+        self.assertIn("Navigation is five exact OMRON B3S-1100P direct buttons", layout)
+        self.assertNotIn('data-manufacturing-class="custom-actuator"', layout)
+        self.assertNotIn("supplier MPN does not apply", layout)
         self.assertIn('data-instance="encoder_knob" data-selected-part="true"', layout)
         self.assertIn("Davies 1227-J is the exact encoder knob", layout)
         self.assertNotIn("STOP actuator", layout)
@@ -424,7 +429,7 @@ class ProductSiteTests(unittest.TestCase):
         ):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
-            self.assertIn("dpad-actuator.svg?layout=3", page)
+            self.assertIn("navigation-cluster.svg?layout=1", page)
             self.assertIn("internal-board-layout.svg?layout=11", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
@@ -553,7 +558,7 @@ class ProductSiteTests(unittest.TestCase):
             landing = self.read(name)
             for image in (
                 "docs/images/current-clamshell.svg",
-                "docs/images/dpad-actuator.svg",
+                "docs/images/navigation-cluster.svg",
                 "docs/images/display-adapter.svg",
                 "docs/images/internal-board-layout.svg",
                 "docs/images/sandwich-section.svg",
@@ -564,19 +569,19 @@ class ProductSiteTests(unittest.TestCase):
             self.assertIn("HMX035CTFT-001", landing, name)
             self.assertIn("C&K JS102011SCQN", landing, name)
 
-    def test_dpad_actuator_has_one_controlled_motion_budget(self):
-        drawing = self.read("docs/images/dpad-actuator.svg")
+    def test_navigation_cluster_uses_only_series_controls(self):
+        drawing = self.read("docs/images/navigation-cluster.svg")
         for token in (
-            'data-design-id="L2-DPAD-001-A"',
-            "Alps Alpine SKRHADE010",
-            "14.0 mm overall span",
-            "Square guide: 5.6 mm",
-            "Panel aperture: 7.5 × 7.5 mm",
-            "Four-jaw socket: Ø2.9 bore / Ø5.0 body",
-            "worst-case lateral margin: 0.293 mm",
-            "worst-case panel gap: 0.341 mm",
-            "dimensioned paper design complete",
-            "received switch + PA12 tolerance coupon",
+            'data-view="series-navigation-cluster"',
+            'data-design-id="L2-NAV-5B-001-A"',
+            'data-manufacturing-class="serial-components-only"',
+            "Five exact series buttons",
+            "OMRON B3S-1100P",
+            "UP",
+            "DOWN",
+            "LEFT",
+            "RIGHT",
+            "OK",
         ):
             self.assertIn(token, drawing)
 

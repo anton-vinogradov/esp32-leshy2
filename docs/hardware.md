@@ -85,20 +85,19 @@ never substitutes for measured RF.
 | Headphones | `Same Sky SJ1-3515-SMT-TR` | 3.5-mm connector with detect |
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
 | Control panel | `TCA9539PWR` | Ten independent active-low inputs for D-pad, BACK, OPT, F1, F2 and encoder push |
-| D-pad switch | `Alps Alpine SKRHADE010` | Four directions plus centre push beneath one cross; mounted 45° clockwise |
-| Direct buttons | `OMRON B3S-1100P` | BACK, OPT, F1, F2 and PTT |
+| Navigation buttons | `5× OMRON B3S-1100P` | Independent direct-press UP, DOWN, LEFT, RIGHT and OK |
+| Other direct buttons | `5× OMRON B3S-1100P` | BACK, OPT, F1, F2 and PTT |
 | RUN/KILL | `C&K JS102011SCQN` | Sole side control for physical safety state and low-current source command |
 | Safety controller | `Texas Instruments MSPM0C1106SDGS20R` | Independent heartbeat, TX-lease, evidence and three-zone thermal supervisor |
 | Independent watchdog | `Texas Instruments TPS3435CAKAGDDFR` | 1.6-second AON timeout; directly latches FAULT_KILL |
 | Encoder | `Alps Alpine EC11E18244AU` | Phases wired directly to S3 PCNT |
 | Encoder knob | `Davies Molding 1227-J` | 15-mm soft-touch interference fit for the 6×4.5-mm D shaft |
 
-The front panel contains one D-pad cross with centre `OK`. The cross is keyed
-to the 3-mm stem of one guided `SKRHADE010`, rather than floating above five
-separate plungers. All ten ordinary controls use independent expander inputs,
-so simultaneous keys need no matrix scan or ghost-key reconstruction. `BACK`,
-`OPT`, `F1`, `F2` and `PTT` are identical directly pressed
-`OMRON B3S-1100P` buttons—there is no separate cap or plunger. F1/F2 and the
+The front navigation cluster uses five independent, directly pressed
+`OMRON B3S-1100P` buttons for UP, DOWN, LEFT, RIGHT and `OK`. All ten ordinary
+controls use independent expander inputs, so simultaneous keys need no matrix
+scan or ghost-key reconstruction. `BACK`, `OPT`, `F1`, `F2` and `PTT` use the
+same series button; no control needs a custom cap or plunger. F1/F2 and the
 encoder sit to the rear battery's left; PTT sits to its right. The encoder
 carries an exact `Davies Molding 1227-J` knob. The side-facing
 `C&K JS102011SCQN` is the sole `RUN/KILL` control; separate STOP and RE-ARM
@@ -140,14 +139,11 @@ published 3.2-mm depth excludes the flex and adhesive. Replaceable adapter
 2-mm mate, while dual-contact `FH34SRJ-40S-0.5SH(99)` accepts either exposed-
 contact orientation. All 40 contacts map one-to-one. Received-tail thickness,
 outline, stiffener and bend clearance remain H5 checks and may revise only
-the small adapter, not the main PCB or enclosure datum. The violet
-D-pad cross is custom part `L2-DPAD-001-A` over the exact rotated
-`Alps Alpine SKRHADE010`. Its 14.0-mm cross uses a four-jaw split socket on the
-round 3-mm stem and a separate square guide: the enclosure aperture, rather
-than the rotationally symmetric stem, fixes user-facing direction. A motion
-budget derived from the official Alps pivot and travel leaves positive
-worst-case directional and centre-push clearances; received fit, feel and
-endurance remain H5 tests. The exact `Davies Molding 1227-J` encoder
+the small adapter, not the main PCB or enclosure datum. Navigation is a
+24.6×24.0-mm cluster of five exact `OMRON B3S-1100P` series switches on 9-mm
+centre pitch. Each switch is pressed directly; there is no custom cap,
+plunger, guide or actuator. Button accessibility, feel and endurance in the
+assembled enclosure remain H5 tests. The exact `Davies Molding 1227-J` encoder
 knob is rendered as a solid 15-mm part.
 The generator rejects component-to-
 component overlap and entry into the 4-mm screw-head keep-outs around the M2.5
@@ -183,7 +179,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned external layout](images/current-clamshell.svg?layout=15)
 
-![Dimensioned D-pad actuator design](images/dpad-actuator.svg?layout=3)
+![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 

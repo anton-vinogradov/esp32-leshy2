@@ -83,7 +83,11 @@ flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display, storage, audio, BLE/Wi-Fi owner"]
 RP["SC1512-A4<br/>deterministic radio and voice owner"]
 UI_MATRIX_IO["TCA9539PWR<br/>16 direct D-pad and function-key inputs"]
-UI_DPAD_SWITCH["Alps Alpine SKRHADE010<br/>four directions and centre push below the single D-pad cross"]
+UI_DPAD_UP["OMRON B3S-1100P<br/>independent UP navigation button"]
+UI_DPAD_DOWN["OMRON B3S-1100P<br/>independent DOWN navigation button"]
+UI_DPAD_LEFT["OMRON B3S-1100P<br/>independent LEFT navigation button"]
+UI_DPAD_RIGHT["OMRON B3S-1100P<br/>independent RIGHT navigation button"]
+UI_DPAD_OK["OMRON B3S-1100P<br/>independent OK confirmation button"]
 UI_SWITCH_BACK["OMRON B3S-1100P<br/>BACK button"]
 UI_SWITCH_OPT["OMRON B3S-1100P<br/>OPT button"]
 UI_SWITCH_F1["OMRON B3S-1100P<br/>rear F1 function button"]
@@ -95,7 +99,11 @@ SAFETY_CONTROLLER["Texas Instruments MSPM0C1106SDGS20R<br/>independent AON watch
 SAFETY_WATCHDOG["Texas Instruments TPS3435CAKAGDDFR<br/>independent 1.6-s timeout watchdog"]
 SAFE_CONDITIONER["74LVC2G14GW,125<br/>physical RUN and S3 fault-reset conditioner"]
 SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
-  UI_DPAD_SWITCH -->|"five independent inputs"| UI_MATRIX_IO
+  UI_DPAD_UP -->|"direct P00"| UI_MATRIX_IO
+  UI_DPAD_DOWN -->|"direct P01"| UI_MATRIX_IO
+  UI_DPAD_LEFT -->|"direct P02"| UI_MATRIX_IO
+  UI_DPAD_RIGHT -->|"direct P03"| UI_MATRIX_IO
+  UI_DPAD_OK -->|"direct P04"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
   UI_SWITCH_F1 -->|"direct P10 across M1"| UI_MATRIX_IO
