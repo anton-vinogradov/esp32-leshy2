@@ -148,7 +148,7 @@ Sub‑GHz, voice и U214; один `MSPM0C1106SDGS20R` независимо до
 точные устройства внутри бутерброда. Номер внутри компонента соответствует
 указанным рядом точному MPN и роли.
 
-![Внутренние стороны плат Leshy2](docs/images/internal-board-layout.svg?layout=11)
+![Внутренние стороны плат Leshy2](docs/images/internal-board-layout.svg?layout=12)
 
 ### Вид сверху со стороны антенного торца
 

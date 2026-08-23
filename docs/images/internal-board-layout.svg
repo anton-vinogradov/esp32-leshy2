@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="1849" viewBox="0 0 1510 1849" data-view="mirrored-x" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="1891" viewBox="0 0 1510 1891" data-view="mirrored-x" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — dimensioned inner-board placement</text>
@@ -586,21 +586,23 @@
 <text x="1166.0" y="1434.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">raw VBUS local capacitor</text>
 <text x="1140.0" y="1446.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">131  Texas Instruments TVS2200DRVR</text>
 <text x="1166.0" y="1455.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">raw VBUS flat-clamp TVS</text>
-<g id="validated-clearances" data-legend-bottom="1497" data-top="1532" data-opposing-pairs="42" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-opposing-cable-pairs="3" data-cable-od-max-mm="1.13" data-functional-zones="1" data-voice-rf-route-mm="33.00">
+<g id="validated-clearances" data-legend-bottom="1497" data-top="1532" data-inner-body-count="129" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="5" data-min-display-adapter-clearance-mm="6.00" data-opposing-pairs="42" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-opposing-cable-pairs="3" data-cable-od-max-mm="1.13" data-functional-zones="1" data-voice-rf-route-mm="33.00">
 <text x="30.0" y="1532.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
 <text x="30.0" y="1556.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
-<text x="30.0" y="1577.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 42 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
-<text x="30.0" y="1598.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outward connector / through-hole tail clearance on the opposite face: ≥1.5 mm</text>
-<text x="30.0" y="1619.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm</text>
-<text x="30.0" y="1640.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0</text>
-<text x="30.0" y="1661.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• exact M1 plug/receptacle is one intentional mate, not a clearance pair</text>
-<text x="30.0" y="1682.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
-<text x="30.0" y="1703.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
-<text x="30.0" y="1724.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outer antenna bodies are absent; the 33.00-mm SA518.7 copper corridor is shown</text>
-<text x="30.0" y="1745.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>
-<text x="30.0" y="1766.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
-<text x="30.0" y="1786.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
-<text x="30.0" y="1812.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#166534">All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.</text>
-<text x="30.0" y="1833.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.</text>
+<text x="30.0" y="1577.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm</text>
+<text x="30.0" y="1598.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm to safe_gate_a</text>
+<text x="30.0" y="1619.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 42 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
+<text x="30.0" y="1640.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outward connector / through-hole tail clearance on the opposite face: ≥1.5 mm</text>
+<text x="30.0" y="1661.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm</text>
+<text x="30.0" y="1682.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0</text>
+<text x="30.0" y="1703.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair</text>
+<text x="30.0" y="1724.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
+<text x="30.0" y="1745.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
+<text x="30.0" y="1766.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outer antenna bodies are absent; the 33.00-mm SA518.7 copper corridor is shown</text>
+<text x="30.0" y="1787.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>
+<text x="30.0" y="1808.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
+<text x="30.0" y="1828.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
+<text x="30.0" y="1854.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#166534">All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.</text>
+<text x="30.0" y="1875.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.</text>
 </g>
 </svg>

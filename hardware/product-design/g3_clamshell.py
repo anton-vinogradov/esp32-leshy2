@@ -611,6 +611,18 @@ def placement_height(item: Placement, devices: dict, instances: dict) -> float:
     return height
 
 
+def interboard_individual_clearances(
+    devices: dict,
+    instances: dict,
+) -> list[tuple[float, Placement]]:
+    """Return each inner body's remaining distance to the opposite PCB plane."""
+    rows = [
+        (INTERBOARD_GAP_MM - placement_height(item, devices, instances), item)
+        for item in UI_INNER + RF_INNER
+    ]
+    return sorted(rows, key=lambda row: (row[0], row[1].instance))
+
+
 def mirrored_x(x: float, width: float = 0.0) -> float:
     """Mirror a point or left edge across the 75-mm board centreline."""
     return BOARD_W - x - width
@@ -650,6 +662,37 @@ def interboard_clearance_pairs(
             )
             pairs.append((clearance, ui_item, rf_item))
     return sorted(pairs, key=lambda row: (row[0], row[1].instance, row[2].instance))
+
+
+def display_adapter_opposing_clearance_pairs(
+    design: dict,
+    devices: dict,
+    instances: dict,
+) -> list[tuple[float, Placement]]:
+    """Check the complete elevated display-adapter envelope against RF-inner."""
+    board = design["board"]
+    adapter_x, adapter_y = map(float, board["ui_inner_position_mm"])
+    adapter_box = (
+        adapter_x,
+        adapter_y,
+        float(board["width_mm"]),
+        float(board["height_mm"]),
+    )
+    adapter_height = float(design["stack"]["ui_board_to_panel_connector_top_mm"])
+    rows: list[tuple[float, Placement]] = []
+    for rf_item in RF_INNER:
+        rf_w, rf_h = placement_size(rf_item, devices, instances)
+        rf_box = (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h)
+        if overlaps(adapter_box, rf_box):
+            rows.append(
+                (
+                    INTERBOARD_GAP_MM
+                    - adapter_height
+                    - placement_height(rf_item, devices, instances),
+                    rf_item,
+                )
+            )
+    return sorted(rows, key=lambda row: (row[0], row[1].instance))
 
 
 def hits_hole(
@@ -1292,6 +1335,23 @@ def validate_display_adapter_design(
         errors.append("display-adapter: stored Z stack is stale")
     if derived_height + float(stack.get("minimum_reserved_clearance_mm", 0)) > INTERBOARD_GAP_MM:
         errors.append("display-adapter: connector stack exceeds the interboard gap")
+    adapter_box = (board_x, board_y, board_w, board_h)
+    for item in UI_INNER:
+        if item.instance == "display_connector":
+            continue
+        if overlaps(adapter_box, (item.x, item.y, *placement_size(item, devices, instances))):
+            errors.append(f"display-adapter: board projection conflicts with {item.instance}")
+    for hole in HOLES:
+        if hits_hole(adapter_box, hole, MIN_INTERBOARD_Z_CLEARANCE_MM):
+            errors.append(f"display-adapter: board projection enters mounting keep-out at {hole}")
+    for clearance, rf_item in display_adapter_opposing_clearance_pairs(
+        design, devices, instances
+    ):
+        if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
+            errors.append(
+                f"display-adapter: complete stack opposite {rf_item.instance} leaves only "
+                f"{clearance:.2f} mm, below the {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm minimum"
+            )
 
     routes = candidate.get("fixed_routes", [])
     route_pairs = {(row.get("from"), row.get("to"), row.get("net")) for row in routes}
@@ -1483,6 +1543,13 @@ def validate() -> list[str]:
             inner_height_errors.append(str(error))
     errors += inner_height_errors
     if not inner_height_errors:
+        individual_clearances = interboard_individual_clearances(devices, instances)
+        for clearance, item in individual_clearances:
+            if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
+                errors.append(
+                    f"interboard: {item.instance} alone leaves only {clearance:.2f} mm "
+                    f"to the opposite PCB plane, below the {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm minimum"
+                )
         clearance_pairs = interboard_clearance_pairs(devices, instances)
         for clearance, ui_item, rf_item in clearance_pairs:
             if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
@@ -1505,6 +1572,16 @@ def validate() -> list[str]:
                 (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h),
             ):
                 errors.append(f"interboard: intentional mate {ui_instance}/{rf_instance} is not aligned")
+        m1_contract = candidate["interboard_contract"]["connector_pair"]
+        m1_gap = float(m1_contract.get("mated_height_mm", -1))
+        if m1_gap != INTERBOARD_GAP_MM:
+            errors.append("interboard: exact M1 mated height must equal the 11-mm inner gap")
+        m1_ui_device = devices[instances[m1_contract["ui_instance"]]]
+        m1_rf_device = devices[instances[m1_contract["rf_power_instance"]]]
+        if float(m1_ui_device["electrical_contract"].get("mated_height_with_fx8c_80s_sv5_mm", -1)) != INTERBOARD_GAP_MM:
+            errors.append("interboard: M1 UI plug does not declare the exact 11-mm mate")
+        if float(m1_rf_device["electrical_contract"].get("mated_height_with_fx8c_80p_sv1_mm", -1)) != INTERBOARD_GAP_MM:
+            errors.append("interboard: M1 RF receptacle does not declare the exact 11-mm mate")
     errors += validate_items("front-controls", FRONT_CONTROLS, devices, instances)
     errors += validate_items("rear-controls", REAR_CONTROLS, devices, instances)
     errors += validate_items("rear-outer", REAR_OUTER, devices, instances)
@@ -1930,7 +2007,7 @@ def validate() -> list[str]:
         if token not in external_svg:
             errors.append("both antenna banks must render as outward-face assemblies")
     errors += validate_external_silkscreen(external_svg, devices, instances)
-    internal_svg = render_internal(devices, instances)
+    internal_svg = render_internal(devices, instances, display_adapter_design)
     if 'data-layer="pcb-silkscreen"' in internal_svg:
         errors.append("inner PCB faces must not carry silkscreen text")
     if internal_svg.count('data-connector-bodies="omitted-outer-face"') != 2:
@@ -2302,7 +2379,7 @@ def render_external(devices, instances):
     return "\n".join(out) + "\n"
 
 
-def render_internal(devices, instances):
+def render_internal(devices, instances, display_adapter_design):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
 
@@ -2317,13 +2394,20 @@ def render_internal(devices, instances):
     legend_bottom = legend_first_y + (max(len(ui_items), rf_legend_rows) - 1) * legend_row_height + 9
     notes_top = max(560, legend_bottom + 35)
     clearance_pairs = interboard_clearance_pairs(devices, instances)
+    individual_clearances = interboard_individual_clearances(devices, instances)
+    adapter_clearance_pairs = display_adapter_opposing_clearance_pairs(
+        display_adapter_design, devices, instances
+    )
     cable_clearance_pairs = cable_interboard_clearance_pairs(devices, instances)
     maximum_cable_od = max(
         float(devices[instances[route.instance]]["electrical_contract"]["cable_outer_diameter_mm"])
         for route in UI_RF_CABLES
     )
     minimum_clearance, minimum_ui, minimum_rf = clearance_pairs[0]
-    svg_height = notes_top + 317
+    minimum_individual_clearance, tallest_item = individual_clearances[0]
+    minimum_adapter_clearance, minimum_adapter_body = adapter_clearance_pairs[0]
+    tallest_height = placement_height(tallest_item, devices, instances)
+    svg_height = notes_top + 359
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-silkscreen="none">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
@@ -2462,25 +2546,31 @@ def render_internal(devices, instances):
     note_x = 30
     out += [
         f'<g id="validated-clearances" data-legend-bottom="{legend_bottom}" data-top="{notes_top}" '
+        f'data-inner-body-count="{len(individual_clearances)}" data-max-inner-height-mm="{tallest_height:.2f}" '
+        f'data-min-single-body-clearance-mm="{minimum_individual_clearance:.2f}" '
+        f'data-display-adapter-opposing-pairs="{len(adapter_clearance_pairs)}" '
+        f'data-min-display-adapter-clearance-mm="{minimum_adapter_clearance:.2f}" '
         f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
         f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
         f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}" '
         f'data-functional-zones="{len(INTERNAL_RESERVES)}" data-voice-rf-route-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">',
         text(note_x,notes_top,"Validated clearances",14,"bold"),
         text(note_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
-        text(note_x,notes_top+45,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
-        text(note_x,notes_top+66,f"• outward connector / through-hole tail clearance on the opposite face: ≥{OPPOSITE_FACE_CLEARANCE_MM:.1f} mm",10),
-        text(note_x,notes_top+87,f"• native RF coax: {len(UI_RF_CABLES)} routes checked; {len(cable_clearance_pairs)} opposing-body crossings; maximum OD {maximum_cable_od:.2f} mm",10),
-        text(note_x,notes_top+108,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
-        text(note_x,notes_top+129,"• exact M1 plug/receptacle is one intentional mate, not a clearance pair",10),
-        text(note_x,notes_top+150,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
-        text(note_x,notes_top+171,"• both inner views are horizontally mirrored from their external faces",10),
-        text(note_x,notes_top+192,f"• outer antenna bodies are absent; the {polyline_length(VOICE_RF_CORRIDOR):.2f}-mm SA518.7 copper corridor is shown",10),
-        text(note_x,notes_top+213,"• orange dashed boundary is a placement zone, not one combined device",10),
-        text(note_x,notes_top+234,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
-        text(note_x,notes_top+254,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(note_x,notes_top+280,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
-        text(note_x,notes_top+301,"Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.",9.2,colour="#526076"),
+        text(note_x,notes_top+45,f"• all {len(individual_clearances)} inner bodies checked individually; tallest {tallest_height:.2f} mm; opposite-plane remainder {minimum_individual_clearance:.2f} mm",10),
+        text(note_x,notes_top+66,f"• complete 3.80-mm display adapter: {len(adapter_clearance_pairs)} opposing crossings; minimum Z gap {minimum_adapter_clearance:.2f} mm to {minimum_adapter_body.instance}",10),
+        text(note_x,notes_top+87,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
+        text(note_x,notes_top+108,f"• outward connector / through-hole tail clearance on the opposite face: ≥{OPPOSITE_FACE_CLEARANCE_MM:.1f} mm",10),
+        text(note_x,notes_top+129,f"• native RF coax: {len(UI_RF_CABLES)} routes checked; {len(cable_clearance_pairs)} opposing-body crossings; maximum OD {maximum_cable_od:.2f} mm",10),
+        text(note_x,notes_top+150,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
+        text(note_x,notes_top+171,"• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair",10),
+        text(note_x,notes_top+192,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
+        text(note_x,notes_top+213,"• both inner views are horizontally mirrored from their external faces",10),
+        text(note_x,notes_top+234,f"• outer antenna bodies are absent; the {polyline_length(VOICE_RF_CORRIDOR):.2f}-mm SA518.7 copper corridor is shown",10),
+        text(note_x,notes_top+255,"• orange dashed boundary is a placement zone, not one combined device",10),
+        text(note_x,notes_top+276,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
+        text(note_x,notes_top+296,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
+        text(note_x,notes_top+322,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
+        text(note_x,notes_top+343,"Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.",9.2,colour="#526076"),
         "</g>",
     ]
     out.append("</svg>")
@@ -3328,7 +3418,13 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
     }
 
 
-def build_unified_coordinate_table(source_table: dict, model: dict) -> dict:
+def build_unified_coordinate_table(
+    source_table: dict,
+    model: dict,
+    devices: dict,
+    instances: dict,
+    display_adapter_design: dict,
+) -> dict:
     """Resolve local view coordinates into the shared front-facing world datum."""
     stack = model["stack"]
     rows = []
@@ -3367,6 +3463,30 @@ def build_unified_coordinate_table(source_table: dict, model: dict) -> dict:
                 "direction": source["direction"],
             }
         )
+    individual_clearances = interboard_individual_clearances(devices, instances)
+    opposing_pairs = interboard_clearance_pairs(devices, instances)
+    cable_pairs = cable_interboard_clearance_pairs(devices, instances)
+    adapter_pairs = display_adapter_opposing_clearance_pairs(
+        display_adapter_design, devices, instances
+    )
+    minimum_individual_clearance, tallest_item = individual_clearances[0]
+    minimum_pair_clearance, minimum_ui, minimum_rf = opposing_pairs[0]
+    minimum_cable_clearance, minimum_cable, minimum_cable_body = cable_pairs[0]
+    minimum_adapter_clearance, minimum_adapter_body = adapter_pairs[0]
+    mate_instances = {
+        instance
+        for pair in INTENTIONAL_INTERBOARD_MATES
+        for instance in pair
+    }
+    free_bodies = [
+        (placement_height(item, devices, instances), item)
+        for item in UI_INNER + RF_INNER
+        if item.instance not in mate_instances
+    ]
+    tallest_free_height, tallest_free_item = max(
+        free_bodies, key=lambda row: (row[0], row[1].instance)
+    )
+    ui_instances = {item.instance for item in UI_INNER}
     return {
         "schema_version": 1,
         "stage": "H1.2",
@@ -3379,6 +3499,112 @@ def build_unified_coordinate_table(source_table: dict, model: dict) -> dict:
         "longitudinal_zones": model["longitudinal_zones"],
         "accessory_envelopes": model["accessory_envelopes"],
         "enclosure_reference": model["enclosure_reference"],
+        "interboard_fit_audit": {
+            "result": "paper_geometry_passed",
+            "interboard_gap_mm": INTERBOARD_GAP_MM,
+            "minimum_required_clearance_mm": MIN_INTERBOARD_Z_CLEARANCE_MM,
+            "inner_body_count": len(individual_clearances),
+            "total_inner_component_count_including_adapter": len(individual_clearances) + 2,
+            "all_inner_bodies_have_sourced_positive_height": True,
+            "no_inner_body_exceeds_gap": minimum_individual_clearance >= 0,
+            "no_inner_body_violates_minimum_clearance": (
+                minimum_individual_clearance >= MIN_INTERBOARD_Z_CLEARANCE_MM
+            ),
+            "tallest_inner_body": {
+                "instance": tallest_item.instance,
+                "mpn": devices[instances[tallest_item.instance]]["mpn"],
+                "height_mm": round(placement_height(tallest_item, devices, instances), 6),
+                "remaining_to_opposite_pcb_plane_mm": round(minimum_individual_clearance, 6),
+            },
+            "tallest_non_mating_body": {
+                "instance": tallest_free_item.instance,
+                "mpn": devices[instances[tallest_free_item.instance]]["mpn"],
+                "height_mm": round(tallest_free_height, 6),
+                "remaining_to_opposite_pcb_plane_mm": round(
+                    INTERBOARD_GAP_MM - tallest_free_height, 6
+                ),
+            },
+            "individual_body_clearances": [
+                {
+                    "instance": item.instance,
+                    "frame": "ui-inner" if item.instance in ui_instances else "rf-inner",
+                    "mpn": devices[instances[item.instance]]["mpn"],
+                    "height_mm": round(placement_height(item, devices, instances), 6),
+                    "remaining_to_opposite_pcb_plane_mm": round(clearance, 6),
+                }
+                for clearance, item in individual_clearances
+            ],
+            "opposing_non_mating_pair_count": len(opposing_pairs),
+            "minimum_opposing_pair": {
+                "ui_instance": minimum_ui.instance,
+                "rf_instance": minimum_rf.instance,
+                "remaining_z_clearance_mm": round(minimum_pair_clearance, 6),
+            },
+            "opposing_non_mating_pairs": [
+                {
+                    "ui_instance": ui_item.instance,
+                    "rf_instance": rf_item.instance,
+                    "ui_height_mm": round(placement_height(ui_item, devices, instances), 6),
+                    "rf_height_mm": round(placement_height(rf_item, devices, instances), 6),
+                    "remaining_z_clearance_mm": round(clearance, 6),
+                }
+                for clearance, ui_item, rf_item in opposing_pairs
+            ],
+            "display_adapter_assembly": {
+                "component_instances": [
+                    "display_adapter_plug",
+                    "display_panel_connector",
+                ],
+                "board_envelope_mm": [
+                    float(display_adapter_design["board"]["width_mm"]),
+                    float(display_adapter_design["board"]["height_mm"]),
+                    float(display_adapter_design["board"]["thickness_mm"]),
+                ],
+                "complete_height_from_ui_inner_mm": float(
+                    display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]
+                ),
+                "remaining_to_opposite_pcb_plane_mm": round(
+                    INTERBOARD_GAP_MM
+                    - float(display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]),
+                    6,
+                ),
+                "opposing_pair_count": len(adapter_pairs),
+                "minimum_opposing_body": minimum_adapter_body.instance,
+                "minimum_opposing_z_clearance_mm": round(minimum_adapter_clearance, 6),
+                "opposing_pairs": [
+                    {
+                        "rf_instance": rf_item.instance,
+                        "rf_height_mm": round(placement_height(rf_item, devices, instances), 6),
+                        "remaining_z_clearance_mm": round(clearance, 6),
+                    }
+                    for clearance, rf_item in adapter_pairs
+                ],
+            },
+            "intentional_mate": {
+                "ui_instance": "m1_ui_plug",
+                "rf_instance": "m1_rf_receptacle",
+                "mpns": [
+                    devices[instances["m1_ui_plug"]]["mpn"],
+                    devices[instances["m1_rf_receptacle"]]["mpn"],
+                ],
+                "mated_height_mm": INTERBOARD_GAP_MM,
+            },
+            "native_rf_cable_opposing_body_crossings": len(cable_pairs),
+            "minimum_native_rf_cable_crossing": {
+                "cable_instance": minimum_cable.instance,
+                "rf_instance": minimum_cable_body.instance,
+                "remaining_z_clearance_mm": round(minimum_cable_clearance, 6),
+            },
+            "native_rf_cable_crossings": [
+                {
+                    "cable_instance": cable.instance,
+                    "rf_instance": rf_item.instance,
+                    "remaining_z_clearance_mm": round(clearance, 6),
+                }
+                for clearance, cable, rf_item in cable_pairs
+            ],
+            "remaining_gate": "Final PCB, assembly and enclosure tolerance stack plus assembled HIL remain required before production release.",
+        },
         "resolved_body_count": len(rows),
         "rows": rows,
     }
@@ -3637,14 +3863,15 @@ def main() -> int:
     ) = load()
     source_table = build_physical_source_table(devices, instances)
     unified_coordinate_table = build_unified_coordinate_table(
-        source_table, assembly_coordinate_model
+        source_table, assembly_coordinate_model, devices, instances,
+        display_adapter_design,
     )
     external_face_acceptance = build_external_face_acceptance(
         devices, instances, assembly_coordinate_model
     )
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances),
-        INTERNAL_OUTPUT: render_internal(devices, instances),
+        INTERNAL_OUTPUT: render_internal(devices, instances, display_adapter_design),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
         TOP_EDGE_OUTPUT: render_top_edge(devices, instances),
         NAVIGATION_OUTPUT: render_navigation_cluster(navigation_cluster, devices, instances),

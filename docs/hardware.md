@@ -167,8 +167,13 @@ mounting holes.
 Every placed body on both inner faces must also have a manufacturer-backed body
 height. Maximum tolerance envelopes are used where the manufacturer publishes
 them. The generator mirrors the RF/power board into the UI-board physical datum
-and checks all 41 non-mating pairs whose XY projections overlap across the exact
-11-mm channel. The current limiting pair—the headphone jack opposite a protected
+datum. All 129 bodies on the two main inner faces are first checked individually
+against the opposite PCB plane: the tallest body is 8.95 mm and leaves 2.05 mm
+in the 11-mm channel. The two additional display-adapter connectors are checked
+as one complete 3.8-mm assembly; its five rear-board crossings retain at least
+6.00 mm, bringing the covered internal component count to 131. The audit then
+checks all 42 non-mating main-board pairs whose XY projections overlap. The
+current limiting pair—the headphone jack opposite a protected
 pack fuse—retains a 3.31-mm Z gap, above the enforced 0.7-mm minimum. The aligned
 FX8C plug and receptacle are validated separately as the single intentional mate.
 The opposite-face bodies and through-hole tails of the external RF jacks and U214
@@ -199,7 +204,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=11)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=12)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

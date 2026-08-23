@@ -443,6 +443,11 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
             'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
             " · SPK",
+            'data-inner-body-count="129"',
+            'data-max-inner-height-mm="8.95"',
+            'data-min-single-body-clearance-mm="2.05"',
+            'data-display-adapter-opposing-pairs="5"',
+            'data-min-display-adapter-clearance-mm="6.00"',
             'data-opposing-pairs="42"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
@@ -451,6 +456,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
             'data-voice-rf-route-mm="33.00"',
+            "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
+            "complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm",
             "opposing inner faces: 42 non-mating XY pairs checked; minimum Z gap 3.31 mm",
             "native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm",
             "limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0",
@@ -482,7 +489,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=11", page)
+            self.assertIn("internal-board-layout.svg?layout=12", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -493,6 +500,42 @@ class ProductSiteTests(unittest.TestCase):
                 page.index("internal-board-layout.svg"),
                 page.index("top-edge-view.svg"),
             )
+        import json
+
+        coordinate_table = json.loads(
+            self.read("hardware/product-design/generated/H1-unified-coordinate-table.json")
+        )
+        audit = coordinate_table["interboard_fit_audit"]
+        self.assertEqual("paper_geometry_passed", audit["result"])
+        self.assertEqual(129, audit["inner_body_count"])
+        self.assertEqual(131, audit["total_inner_component_count_including_adapter"])
+        self.assertTrue(audit["all_inner_bodies_have_sourced_positive_height"])
+        self.assertTrue(audit["no_inner_body_exceeds_gap"])
+        self.assertTrue(audit["no_inner_body_violates_minimum_clearance"])
+        self.assertEqual(8.95, audit["tallest_inner_body"]["height_mm"])
+        self.assertEqual(2.05, audit["tallest_inner_body"]["remaining_to_opposite_pcb_plane_mm"])
+        self.assertEqual(129, len(audit["individual_body_clearances"]))
+        self.assertTrue(
+            all(
+                row["remaining_to_opposite_pcb_plane_mm"] >= 0.7
+                for row in audit["individual_body_clearances"]
+            )
+        )
+        self.assertEqual(42, audit["opposing_non_mating_pair_count"])
+        self.assertEqual(3.31, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
+        self.assertEqual(42, len(audit["opposing_non_mating_pairs"]))
+        self.assertTrue(
+            all(
+                row["remaining_z_clearance_mm"] >= 0.7
+                for row in audit["opposing_non_mating_pairs"]
+            )
+        )
+        self.assertEqual(11.0, audit["intentional_mate"]["mated_height_mm"])
+        self.assertEqual(3.8, audit["display_adapter_assembly"]["complete_height_from_ui_inner_mm"])
+        self.assertEqual(5, audit["display_adapter_assembly"]["opposing_pair_count"])
+        self.assertEqual(6.0, audit["display_adapter_assembly"]["minimum_opposing_z_clearance_mm"])
+        self.assertEqual(7.77, audit["minimum_native_rf_cable_crossing"]["remaining_z_clearance_mm"])
+        self.assertEqual(3, len(audit["native_rf_cable_crossings"]))
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")

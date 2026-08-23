@@ -116,6 +116,1311 @@
     "not_yet_locked": "wall thickness, ribs, seals, bezel, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently"
   },
+  "interboard_fit_audit": {
+    "result": "paper_geometry_passed",
+    "interboard_gap_mm": 11.0,
+    "minimum_required_clearance_mm": 0.7,
+    "inner_body_count": 129,
+    "total_inner_component_count_including_adapter": 131,
+    "all_inner_bodies_have_sourced_positive_height": true,
+    "no_inner_body_exceeds_gap": true,
+    "no_inner_body_violates_minimum_clearance": true,
+    "tallest_inner_body": {
+      "instance": "m1_rf_receptacle",
+      "mpn": "Hirose FX8C-80S-SV5(92)",
+      "height_mm": 8.95,
+      "remaining_to_opposite_pcb_plane_mm": 2.05
+    },
+    "tallest_non_mating_body": {
+      "instance": "s3_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "height_mm": 5.56,
+      "remaining_to_opposite_pcb_plane_mm": 5.44
+    },
+    "individual_body_clearances": [
+      {
+        "instance": "m1_rf_receptacle",
+        "frame": "rf-inner",
+        "mpn": "Hirose FX8C-80S-SV5(92)",
+        "height_mm": 8.95,
+        "remaining_to_opposite_pcb_plane_mm": 2.05
+      },
+      {
+        "instance": "m1_ui_plug",
+        "frame": "ui-inner",
+        "mpn": "Hirose FX8C-80P-SV1(92)",
+        "height_mm": 5.85,
+        "remaining_to_opposite_pcb_plane_mm": 5.15
+      },
+      {
+        "instance": "c5_dbg_header",
+        "frame": "ui-inner",
+        "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+        "height_mm": 5.56,
+        "remaining_to_opposite_pcb_plane_mm": 5.44
+      },
+      {
+        "instance": "rp_dbg_header",
+        "frame": "rf-inner",
+        "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+        "height_mm": 5.56,
+        "remaining_to_opposite_pcb_plane_mm": 5.44
+      },
+      {
+        "instance": "s3_dbg_header",
+        "frame": "ui-inner",
+        "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+        "height_mm": 5.56,
+        "remaining_to_opposite_pcb_plane_mm": 5.44
+      },
+      {
+        "instance": "unit_connector",
+        "frame": "rf-inner",
+        "mpn": "1125R-SMT-4P",
+        "height_mm": 5.1,
+        "remaining_to_opposite_pcb_plane_mm": 5.9
+      },
+      {
+        "instance": "headphone_jack",
+        "frame": "ui-inner",
+        "mpn": "Same Sky SJ1-3515-SMT-TR",
+        "height_mm": 5.0,
+        "remaining_to_opposite_pcb_plane_mm": 6.0
+      },
+      {
+        "instance": "speaker",
+        "frame": "rf-inner",
+        "mpn": "PUI Audio AS02404PO",
+        "height_mm": 4.5,
+        "remaining_to_opposite_pcb_plane_mm": 6.5
+      },
+      {
+        "instance": "power_command_switch",
+        "frame": "rf-inner",
+        "mpn": "C&K JS102011SCQN",
+        "height_mm": 3.6,
+        "remaining_to_opposite_pcb_plane_mm": 7.4
+      },
+      {
+        "instance": "c5_service_usb_connector",
+        "frame": "ui-inner",
+        "mpn": "GCT USB4105-GF-A",
+        "height_mm": 3.31,
+        "remaining_to_opposite_pcb_plane_mm": 7.69
+      },
+      {
+        "instance": "rp_service_usb_connector",
+        "frame": "rf-inner",
+        "mpn": "GCT USB4105-GF-A",
+        "height_mm": 3.31,
+        "remaining_to_opposite_pcb_plane_mm": 7.69
+      },
+      {
+        "instance": "c5",
+        "frame": "ui-inner",
+        "mpn": "ESP32-C5-WROOM-1U-N8R8",
+        "height_mm": 3.3,
+        "remaining_to_opposite_pcb_plane_mm": 7.7
+      },
+      {
+        "instance": "voice",
+        "frame": "rf-inner",
+        "mpn": "NiceRF SA518",
+        "height_mm": 3.25,
+        "remaining_to_opposite_pcb_plane_mm": 7.75
+      },
+      {
+        "instance": "ir_carrier",
+        "frame": "ui-inner",
+        "mpn": "Vishay TSMP95000TT",
+        "height_mm": 3.2,
+        "remaining_to_opposite_pcb_plane_mm": 7.8
+      },
+      {
+        "instance": "ir_demod",
+        "frame": "ui-inner",
+        "mpn": "Vishay TSOP95238TT",
+        "height_mm": 3.2,
+        "remaining_to_opposite_pcb_plane_mm": 7.8
+      },
+      {
+        "instance": "s3",
+        "frame": "ui-inner",
+        "mpn": "ESP32-S3-WROOM-1U-N16R8",
+        "height_mm": 3.2,
+        "remaining_to_opposite_pcb_plane_mm": 7.8
+      },
+      {
+        "instance": "product_usb_connector",
+        "frame": "rf-inner",
+        "mpn": "JAE DX07S016JA1R1500",
+        "height_mm": 3.16,
+        "remaining_to_opposite_pcb_plane_mm": 7.84
+      },
+      {
+        "instance": "charger_inductor",
+        "frame": "rf-inner",
+        "mpn": "Sunlord MWSA0503S-2R2MT",
+        "height_mm": 3.0,
+        "remaining_to_opposite_pcb_plane_mm": 8.0
+      },
+      {
+        "instance": "ext_inductor",
+        "frame": "rf-inner",
+        "mpn": "Sunlord MWSA0503S-4R7MT",
+        "height_mm": 3.0,
+        "remaining_to_opposite_pcb_plane_mm": 8.0
+      },
+      {
+        "instance": "main_inductor",
+        "frame": "rf-inner",
+        "mpn": "Sunlord MWSA0503S-3R3MT",
+        "height_mm": 3.0,
+        "remaining_to_opposite_pcb_plane_mm": 8.0
+      },
+      {
+        "instance": "voice_inductor",
+        "frame": "rf-inner",
+        "mpn": "Sunlord MWSA0503S-3R3MT",
+        "height_mm": 3.0,
+        "remaining_to_opposite_pcb_plane_mm": 8.0
+      },
+      {
+        "instance": "ext_buck_input_cap",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "ext_buck_output_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "ext_buck_output_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "main_input_cap",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "main_output_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "main_output_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "pd_pphv_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "pd_pphv_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "pd_pphv_cap2",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "pd_pphv_cap3",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "voice_input_cap",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "voice_output_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "voice_output_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM32ER71E226KE15L",
+        "height_mm": 2.7,
+        "remaining_to_opposite_pcb_plane_mm": 8.3
+      },
+      {
+        "instance": "pack_fuse0",
+        "frame": "rf-inner",
+        "mpn": "Littelfuse 0451005.MRL",
+        "height_mm": 2.69,
+        "remaining_to_opposite_pcb_plane_mm": 8.31
+      },
+      {
+        "instance": "pack_fuse1",
+        "frame": "rf-inner",
+        "mpn": "Littelfuse 0451005.MRL",
+        "height_mm": 2.69,
+        "remaining_to_opposite_pcb_plane_mm": 8.31
+      },
+      {
+        "instance": "c5_rf_board_connector",
+        "frame": "ui-inner",
+        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "height_mm": 2.4,
+        "remaining_to_opposite_pcb_plane_mm": 8.6
+      },
+      {
+        "instance": "nrf0_rf_board_connector",
+        "frame": "rf-inner",
+        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "height_mm": 2.4,
+        "remaining_to_opposite_pcb_plane_mm": 8.6
+      },
+      {
+        "instance": "nrf1_rf_board_connector",
+        "frame": "rf-inner",
+        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "height_mm": 2.4,
+        "remaining_to_opposite_pcb_plane_mm": 8.6
+      },
+      {
+        "instance": "nrf2_rf_board_connector",
+        "frame": "rf-inner",
+        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "height_mm": 2.4,
+        "remaining_to_opposite_pcb_plane_mm": 8.6
+      },
+      {
+        "instance": "s3_rf_board_connector",
+        "frame": "ui-inner",
+        "mpn": "Hirose U.FL-R-SMT-1(10)",
+        "height_mm": 2.4,
+        "remaining_to_opposite_pcb_plane_mm": 8.6
+      },
+      {
+        "instance": "nrf0",
+        "frame": "rf-inner",
+        "mpn": "Ebyte E01-ML01IPX",
+        "height_mm": 2.1,
+        "remaining_to_opposite_pcb_plane_mm": 8.9
+      },
+      {
+        "instance": "nrf1",
+        "frame": "rf-inner",
+        "mpn": "Ebyte E01-ML01IPX",
+        "height_mm": 2.1,
+        "remaining_to_opposite_pcb_plane_mm": 8.9
+      },
+      {
+        "instance": "nrf2",
+        "frame": "rf-inner",
+        "mpn": "Ebyte E01-ML01IPX",
+        "height_mm": 2.1,
+        "remaining_to_opposite_pcb_plane_mm": 8.9
+      },
+      {
+        "instance": "display_connector",
+        "frame": "ui-inner",
+        "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+        "height_mm": 1.95,
+        "remaining_to_opposite_pcb_plane_mm": 9.05
+      },
+      {
+        "instance": "pd_config_eeprom",
+        "frame": "rf-inner",
+        "mpn": "onsemi CAT24C512WI-GT3",
+        "height_mm": 1.75,
+        "remaining_to_opposite_pcb_plane_mm": 9.25
+      },
+      {
+        "instance": "receiver",
+        "frame": "ui-inner",
+        "mpn": "Si4732-A10-GSR",
+        "height_mm": 1.75,
+        "remaining_to_opposite_pcb_plane_mm": 9.25
+      },
+      {
+        "instance": "sd",
+        "frame": "ui-inner",
+        "mpn": "Hirose DM3AT-SF-PEJM5",
+        "height_mm": 1.68,
+        "remaining_to_opposite_pcb_plane_mm": 9.32
+      },
+      {
+        "instance": "aon_input_cap",
+        "frame": "rf-inner",
+        "mpn": "TDK CGA5L1X7R1E475K160AC",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "aon_output_cap",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71A226KE15L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_bat_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_bat_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_pmid_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_pmid_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_pmid_cap2",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_regn_cap",
+        "frame": "rf-inner",
+        "mpn": "TDK CGA5L1X7R1E475K160AC",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_sys_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_sys_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_sys_cap2",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_sys_cap3",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_sys_cap4",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_vbus_cap0",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "charger_vbus_cap1",
+        "frame": "rf-inner",
+        "mpn": "Murata GRM31CR71E106MA12L",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "pd_vbus_cap",
+        "frame": "rf-inner",
+        "mpn": "TDK CGA5L1X7R1E475K160AC",
+        "height_mm": 1.6,
+        "remaining_to_opposite_pcb_plane_mm": 9.4
+      },
+      {
+        "instance": "c5_boot_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKQGADE010",
+        "height_mm": 1.5,
+        "remaining_to_opposite_pcb_plane_mm": 9.5
+      },
+      {
+        "instance": "c5_reset_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKQGADE010",
+        "height_mm": 1.5,
+        "remaining_to_opposite_pcb_plane_mm": 9.5
+      },
+      {
+        "instance": "rp_boot_button",
+        "frame": "rf-inner",
+        "mpn": "Alps Alpine SKQGADE010",
+        "height_mm": 1.5,
+        "remaining_to_opposite_pcb_plane_mm": 9.5
+      },
+      {
+        "instance": "rp_reset_button",
+        "frame": "rf-inner",
+        "mpn": "Alps Alpine SKQGADE010",
+        "height_mm": 1.5,
+        "remaining_to_opposite_pcb_plane_mm": 9.5
+      },
+      {
+        "instance": "s3_boot_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKQGADE010",
+        "height_mm": 1.5,
+        "remaining_to_opposite_pcb_plane_mm": 9.5
+      },
+      {
+        "instance": "s3_reset_button",
+        "frame": "ui-inner",
+        "mpn": "Alps Alpine SKQGADE010",
+        "height_mm": 1.5,
+        "remaining_to_opposite_pcb_plane_mm": 9.5
+      },
+      {
+        "instance": "safe_supervisor",
+        "frame": "rf-inner",
+        "mpn": "TPS3808G33DBVR",
+        "height_mm": 1.45,
+        "remaining_to_opposite_pcb_plane_mm": 9.55
+      },
+      {
+        "instance": "microphone",
+        "frame": "rf-inner",
+        "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+        "height_mm": 1.3,
+        "remaining_to_opposite_pcb_plane_mm": 9.7
+      },
+      {
+        "instance": "aon_inductor",
+        "frame": "rf-inner",
+        "mpn": "Sunlord WPN201612H2R2MT",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "evidence_cmp_a",
+        "frame": "ui-inner",
+        "mpn": "TLV1824PWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "evidence_cmp_b",
+        "frame": "rf-inner",
+        "mpn": "TLV1824PWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "evidence_mask",
+        "frame": "rf-inner",
+        "mpn": "TCA9535PWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "ir_emitter",
+        "frame": "ui-inner",
+        "mpn": "Vishay VSMY14940",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "safe_gate_a",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC08APWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "safe_gate_b",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC08APWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "ui_matrix_io",
+        "frame": "ui-inner",
+        "mpn": "TCA9539PWR",
+        "height_mm": 1.2,
+        "remaining_to_opposite_pcb_plane_mm": 9.8
+      },
+      {
+        "instance": "audio_speaker_selector",
+        "frame": "ui-inner",
+        "mpn": "Texas Instruments TMUX1136DGSR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "cc_host_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "cc_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "codec_i2s_din_boot_gate",
+        "frame": "ui-inner",
+        "mpn": "SN74LVC1G08DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "evidence_cmp_voice",
+        "frame": "rf-inner",
+        "mpn": "TLV1821DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "ir_safe_gate",
+        "frame": "ui-inner",
+        "mpn": "SN74LVC1G08DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "nrf0_host_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "nrf1_host_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "nrf2_host_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "pack_admission",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_conditioner",
+        "frame": "rf-inner",
+        "mpn": "74LVC2G14GW,125",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_latch",
+        "frame": "rf-inner",
+        "mpn": "SN74LVC1G74DCUR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_ptt_or",
+        "frame": "rf-inner",
+        "mpn": "74LVC1G32GV,125",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_reset_buffer",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments SN74LVC1G06DCKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_reset_sink_a",
+        "frame": "rf-inner",
+        "mpn": "Diodes Incorporated 2N7002DW-7-F",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safe_reset_sink_b",
+        "frame": "rf-inner",
+        "mpn": "Diodes Incorporated 2N7002DW-7-F",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "safety_controller",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "u214_host_buffer_a",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "u214_host_buffer_b",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "u214_i2c_iso",
+        "frame": "rf-inner",
+        "mpn": "TCA4307DGKR",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "u214_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC126APW,118",
+        "height_mm": 1.1,
+        "remaining_to_opposite_pcb_plane_mm": 9.9
+      },
+      {
+        "instance": "cc",
+        "frame": "rf-inner",
+        "mpn": "CC1101RGPR",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "cc_band_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DC,125",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "nrf0_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DC,125",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "nrf1_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DC,125",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "nrf2_return_buffer",
+        "frame": "rf-inner",
+        "mpn": "Nexperia 74LVC2G126DC,125",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "nvdc_charger",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments BQ25798RQMR",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "pack_power_fet",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments CSD87313DMST",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "safety_watchdog",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPS3435CAKAGDDFR",
+        "height_mm": 1.0,
+        "remaining_to_opposite_pcb_plane_mm": 10.0
+      },
+      {
+        "instance": "pack_diag_res0",
+        "frame": "rf-inner",
+        "mpn": "Bourns CRM2512-FX-20R0ELF",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
+        "instance": "pack_diag_res1",
+        "frame": "rf-inner",
+        "mpn": "Bourns CRM2512-FX-20R0ELF",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
+        "instance": "power_zone_ntc",
+        "frame": "rf-inner",
+        "mpn": "TDK B57332V5103F360",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
+        "instance": "rf_zone_ntc",
+        "frame": "rf-inner",
+        "mpn": "TDK B57332V5103F360",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
+        "instance": "rp",
+        "frame": "rf-inner",
+        "mpn": "SC1512-A4",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
+        "instance": "ui_zone_ntc",
+        "frame": "ui-inner",
+        "mpn": "TDK B57332V5103F360",
+        "height_mm": 0.9,
+        "remaining_to_opposite_pcb_plane_mm": 10.1
+      },
+      {
+        "instance": "pd_controller",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPS25751DREFR",
+        "height_mm": 0.8,
+        "remaining_to_opposite_pcb_plane_mm": 10.2
+      },
+      {
+        "instance": "pd_vbus_tvs",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TVS2200DRVR",
+        "height_mm": 0.8,
+        "remaining_to_opposite_pcb_plane_mm": 10.2
+      },
+      {
+        "instance": "product_usb_protector",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPD4S201RUKR",
+        "height_mm": 0.8,
+        "remaining_to_opposite_pcb_plane_mm": 10.2
+      },
+      {
+        "instance": "pack_gauge",
+        "frame": "rf-inner",
+        "mpn": "Analog Devices MAX17320G20+T",
+        "height_mm": 0.75,
+        "remaining_to_opposite_pcb_plane_mm": 10.25
+      },
+      {
+        "instance": "pack_shunt",
+        "frame": "rf-inner",
+        "mpn": "Vishay WSL25125L000FEA",
+        "height_mm": 0.635,
+        "remaining_to_opposite_pcb_plane_mm": 10.365
+      },
+      {
+        "instance": "speaker_amp",
+        "frame": "rf-inner",
+        "mpn": "Diodes Incorporated PAM8302AASCR",
+        "height_mm": 0.63,
+        "remaining_to_opposite_pcb_plane_mm": 10.37
+      },
+      {
+        "instance": "aon_buck",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPS629203DRLR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "c5_rf_coupler",
+        "frame": "ui-inner",
+        "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "codec",
+        "frame": "ui-inner",
+        "mpn": "Everest Semiconductor ES8311",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "ext_buck",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPS564252DRLR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "main_buck",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPS564252DRLR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "s3_rf_coupler",
+        "frame": "ui-inner",
+        "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "slow_io",
+        "frame": "ui-inner",
+        "mpn": "TCA6424ARGJR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      },
+      {
+        "instance": "voice_buck",
+        "frame": "rf-inner",
+        "mpn": "Texas Instruments TPS564252DRLR",
+        "height_mm": 0.6,
+        "remaining_to_opposite_pcb_plane_mm": 10.4
+      }
+    ],
+    "opposing_non_mating_pair_count": 42,
+    "minimum_opposing_pair": {
+      "ui_instance": "headphone_jack",
+      "rf_instance": "pack_fuse0",
+      "remaining_z_clearance_mm": 3.31
+    },
+    "opposing_non_mating_pairs": [
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "pack_fuse0",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 2.69,
+        "remaining_z_clearance_mm": 3.31
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "pack_fuse1",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 2.69,
+        "remaining_z_clearance_mm": 3.31
+      },
+      {
+        "ui_instance": "s3_boot_button",
+        "rf_instance": "rp_dbg_header",
+        "ui_height_mm": 1.5,
+        "rf_height_mm": 5.56,
+        "remaining_z_clearance_mm": 3.94
+      },
+      {
+        "ui_instance": "s3_dbg_header",
+        "rf_instance": "rp_boot_button",
+        "ui_height_mm": 5.56,
+        "rf_height_mm": 1.5,
+        "remaining_z_clearance_mm": 3.94
+      },
+      {
+        "ui_instance": "c5_service_usb_connector",
+        "rf_instance": "rp_service_usb_connector",
+        "ui_height_mm": 3.31,
+        "rf_height_mm": 3.31,
+        "remaining_z_clearance_mm": 4.38
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "charger_bat_cap0",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 1.6,
+        "remaining_z_clearance_mm": 4.4
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "charger_bat_cap1",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 1.6,
+        "remaining_z_clearance_mm": 4.4
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "charger_regn_cap",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 1.6,
+        "remaining_z_clearance_mm": 4.4
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "charger_sys_cap3",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 1.6,
+        "remaining_z_clearance_mm": 4.4
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "charger_sys_cap4",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 1.6,
+        "remaining_z_clearance_mm": 4.4
+      },
+      {
+        "ui_instance": "c5",
+        "rf_instance": "voice",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 3.25,
+        "remaining_z_clearance_mm": 4.45
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "voice",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 3.25,
+        "remaining_z_clearance_mm": 4.55
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "pack_admission",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 4.9
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "pack_diag_res0",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 0.9,
+        "remaining_z_clearance_mm": 5.1
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "pack_gauge",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 0.75,
+        "remaining_z_clearance_mm": 5.25
+      },
+      {
+        "ui_instance": "c5",
+        "rf_instance": "nrf0_rf_board_connector",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 2.4,
+        "remaining_z_clearance_mm": 5.3
+      },
+      {
+        "ui_instance": "headphone_jack",
+        "rf_instance": "pack_shunt",
+        "ui_height_mm": 5.0,
+        "rf_height_mm": 0.635,
+        "remaining_z_clearance_mm": 5.365
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "nrf1_rf_board_connector",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 2.4,
+        "remaining_z_clearance_mm": 5.4
+      },
+      {
+        "ui_instance": "c5",
+        "rf_instance": "nrf0",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 2.1,
+        "remaining_z_clearance_mm": 5.6
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "nrf2",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 2.1,
+        "remaining_z_clearance_mm": 5.7
+      },
+      {
+        "ui_instance": "receiver",
+        "rf_instance": "voice",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 3.25,
+        "remaining_z_clearance_mm": 6.0
+      },
+      {
+        "ui_instance": "sd",
+        "rf_instance": "product_usb_connector",
+        "ui_height_mm": 1.68,
+        "rf_height_mm": 3.16,
+        "remaining_z_clearance_mm": 6.16
+      },
+      {
+        "ui_instance": "c5_service_usb_connector",
+        "rf_instance": "microphone",
+        "ui_height_mm": 3.31,
+        "rf_height_mm": 1.3,
+        "remaining_z_clearance_mm": 6.39
+      },
+      {
+        "ui_instance": "c5_rf_board_connector",
+        "rf_instance": "nrf0",
+        "ui_height_mm": 2.4,
+        "rf_height_mm": 2.1,
+        "remaining_z_clearance_mm": 6.5
+      },
+      {
+        "ui_instance": "s3_rf_board_connector",
+        "rf_instance": "nrf2",
+        "ui_height_mm": 2.4,
+        "rf_height_mm": 2.1,
+        "remaining_z_clearance_mm": 6.5
+      },
+      {
+        "ui_instance": "ui_matrix_io",
+        "rf_instance": "voice",
+        "ui_height_mm": 1.2,
+        "rf_height_mm": 3.25,
+        "remaining_z_clearance_mm": 6.55
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "nrf1_host_buffer",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "nrf2_host_buffer",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "u214_host_buffer_a",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "u214_host_buffer_b",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "u214_i2c_iso",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "u214_return_buffer",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "c5",
+        "rf_instance": "rp",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 0.9,
+        "remaining_z_clearance_mm": 6.8
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "nrf1_return_buffer",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.0,
+        "remaining_z_clearance_mm": 6.8
+      },
+      {
+        "ui_instance": "s3",
+        "rf_instance": "nrf2_return_buffer",
+        "ui_height_mm": 3.2,
+        "rf_height_mm": 1.0,
+        "remaining_z_clearance_mm": 6.8
+      },
+      {
+        "ui_instance": "audio_speaker_selector",
+        "rf_instance": "voice_inductor",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 3.0,
+        "remaining_z_clearance_mm": 6.9
+      },
+      {
+        "ui_instance": "codec",
+        "rf_instance": "voice",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 3.25,
+        "remaining_z_clearance_mm": 7.15
+      },
+      {
+        "ui_instance": "slow_io",
+        "rf_instance": "voice",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 3.25,
+        "remaining_z_clearance_mm": 7.15
+      },
+      {
+        "ui_instance": "sd",
+        "rf_instance": "pd_config_eeprom",
+        "ui_height_mm": 1.68,
+        "rf_height_mm": 1.75,
+        "remaining_z_clearance_mm": 7.57
+      },
+      {
+        "ui_instance": "s3_reset_button",
+        "rf_instance": "rp_reset_button",
+        "ui_height_mm": 1.5,
+        "rf_height_mm": 1.5,
+        "remaining_z_clearance_mm": 8.0
+      },
+      {
+        "ui_instance": "sd",
+        "rf_instance": "pd_controller",
+        "ui_height_mm": 1.68,
+        "rf_height_mm": 0.8,
+        "remaining_z_clearance_mm": 8.52
+      },
+      {
+        "ui_instance": "sd",
+        "rf_instance": "pd_vbus_tvs",
+        "ui_height_mm": 1.68,
+        "rf_height_mm": 0.8,
+        "remaining_z_clearance_mm": 8.52
+      }
+    ],
+    "display_adapter_assembly": {
+      "component_instances": [
+        "display_adapter_plug",
+        "display_panel_connector"
+      ],
+      "board_envelope_mm": [
+        25.5,
+        12.0,
+        0.8
+      ],
+      "complete_height_from_ui_inner_mm": 3.8,
+      "remaining_to_opposite_pcb_plane_mm": 7.2,
+      "opposing_pair_count": 5,
+      "minimum_opposing_body": "safe_gate_a",
+      "minimum_opposing_z_clearance_mm": 6.0,
+      "opposing_pairs": [
+        {
+          "rf_instance": "safe_gate_a",
+          "rf_height_mm": 1.2,
+          "remaining_z_clearance_mm": 6.0
+        },
+        {
+          "rf_instance": "safe_gate_b",
+          "rf_height_mm": 1.2,
+          "remaining_z_clearance_mm": 6.0
+        },
+        {
+          "rf_instance": "safe_conditioner",
+          "rf_height_mm": 1.1,
+          "remaining_z_clearance_mm": 6.1
+        },
+        {
+          "rf_instance": "safety_controller",
+          "rf_height_mm": 1.1,
+          "remaining_z_clearance_mm": 6.1
+        },
+        {
+          "rf_instance": "safety_watchdog",
+          "rf_height_mm": 1.0,
+          "remaining_z_clearance_mm": 6.2
+        }
+      ]
+    },
+    "intentional_mate": {
+      "ui_instance": "m1_ui_plug",
+      "rf_instance": "m1_rf_receptacle",
+      "mpns": [
+        "Hirose FX8C-80P-SV1(92)",
+        "Hirose FX8C-80S-SV5(92)"
+      ],
+      "mated_height_mm": 11.0
+    },
+    "native_rf_cable_opposing_body_crossings": 3,
+    "minimum_native_rf_cable_crossing": {
+      "cable_instance": "c5_rf_jumper",
+      "rf_instance": "nrf0",
+      "remaining_z_clearance_mm": 7.77
+    },
+    "native_rf_cable_crossings": [
+      {
+        "cable_instance": "c5_rf_jumper",
+        "rf_instance": "nrf0",
+        "remaining_z_clearance_mm": 7.77
+      },
+      {
+        "cable_instance": "s3_rf_jumper",
+        "rf_instance": "nrf1",
+        "remaining_z_clearance_mm": 7.77
+      },
+      {
+        "cable_instance": "s3_rf_jumper",
+        "rf_instance": "nrf2",
+        "remaining_z_clearance_mm": 7.77
+      }
+    ],
+    "remaining_gate": "Final PCB, assembly and enclosure tolerance stack plus assembled HIL remain required before production release."
+  },
   "resolved_body_count": 148,
   "rows": [
     {
