@@ -140,7 +140,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.3.8"}, set(markers.values()))
+        self.assertEqual({"H2.3.9"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -167,7 +167,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.3.8", plan["current_substep"])
+        self.assertEqual("H2.3.9", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -212,11 +212,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][3]["children"][4]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][5]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][6]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][7]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][7]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][8]["status"])
         self.assertTrue(
             all(
                 item["status"] == "waiting"
-                for item in plan["substeps"][3]["children"][8:]
+                for item in plan["substeps"][3]["children"][9:]
             )
         )
         sheet_contract = json.loads(
@@ -408,10 +409,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 133,
                 "root_hierarchical_pin_count": 305,
                 "child_hierarchical_label_count": 305,
-                "known_child_stub_erc_violations": 54,
-                "implemented_child_sheet_count": 6,
-                "circuit_symbols_placed": 454,
-                "known_generated_library_copy_warnings": 454,
+                "known_child_stub_erc_violations": 46,
+                "implemented_child_sheet_count": 7,
+                "circuit_symbols_placed": 507,
+                "known_generated_library_copy_warnings": 507,
                 "known_deferred_fixture_erc_violations": 8,
                 "pcb_files_created": 0,
             },
@@ -802,6 +803,67 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(11, sheet.count("\n\t(no_connect "))
         self.assertIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.md"))
         self.assertIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.ru.md"))
+
+    def test_h2_3_8_exact_u214_m5_expansion_sheet_is_reviewed(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_rf_u214_m5_ext.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check", "--kicad-check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-RF34-u214-m5-ext.json")
+        )
+        self.assertEqual("H2.3.8", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_u214_m5_expansion_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 53,
+                "schematic_symbols": 53,
+                "board_fitted_symbols": 52,
+                "external_mating_product_symbols": 1,
+                "hierarchical_interfaces": 27,
+                "physical_package_or_interface_contacts": 228,
+                "board_physical_contacts": 214,
+                "u214_cap_bus_contacts": 14,
+                "native_unit_contacts": 4,
+                "independent_protected_power_branches": 2,
+                "intentional_no_connect_pins": 22,
+                "custom_footprints": 1,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        cap = next(row for row in manifest["instances"] if row["instance"] == "u214")
+        self.assertFalse(cap["board_fitted"])
+        self.assertEqual("", cap["footprint"])
+        host = next(
+            row for row in manifest["instances"]
+            if row["instance"] == "u214_connector"
+        )
+        self.assertTrue(host["board_fitted"])
+        self.assertIn("Samtec_HLE-107", host["footprint"])
+        unit = next(
+            row for row in manifest["instances"]
+            if row["instance"] == "unit_connector"
+        )
+        self.assertEqual("Leshy2:1125R-SMT-4P", unit["footprint"])
+        self.assertEqual(3, len(manifest["connector_cad_cross_checks"]))
+        sheet = self.read(
+            "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch"
+        )
+        self.assertEqual(53, sheet.count("\n\t(symbol\n"))
+        self.assertEqual(27, sheet.count("\n\t(hierarchical_label \""))
+        self.assertEqual(22, sheet.count("\n\t(no_connect "))
+        self.assertIn("RF_34_U214_M5_EXT", self.read("docs/schematics.md"))
+        self.assertIn("RF_34_U214_M5_EXT", self.read("docs/schematics.ru.md"))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json

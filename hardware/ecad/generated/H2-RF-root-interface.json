@@ -14,10 +14,10 @@
     "cross_sheet_net_count": 133,
     "root_hierarchical_pin_count": 305,
     "child_hierarchical_label_count": 305,
-    "known_child_stub_erc_violations": 54,
-    "implemented_child_sheet_count": 6,
-    "circuit_symbols_placed": 454,
-    "known_generated_library_copy_warnings": 454,
+    "known_child_stub_erc_violations": 46,
+    "implemented_child_sheet_count": 7,
+    "circuit_symbols_placed": 507,
+    "known_generated_library_copy_warnings": 507,
     "known_deferred_fixture_erc_violations": 8,
     "pcb_files_created": 0
   },
@@ -1384,7 +1384,8 @@
       "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "RF_30_RP2354_CORE_SERVICE",
       "RF_31_NRF24_X3",
-      "RF_32_SUBGHZ_VOICE"
+      "RF_32_SUBGHZ_VOICE",
+      "RF_34_U214_M5_EXT"
     ]
   },
   "review_boundary": {

@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.3.8`.
+**Status:** ▶️ current, exact marker `H2.3.9`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -59,7 +59,12 @@ are satisfied.
   and SA518 voice power/control/RF paths, 30 interfaces and 11 explicit
   no-connects; its [machine review](../hardware/ecad/generated/H2-RF32-subghz-voice.json)
   passes native KiCad. The SA518 footprint remains an honest H5 land-fit gate.
-- U214 Cap Bus and protected M5 Unit expansion are now active work.
+- [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch)
+  contains 53 symbols, 52 board-fitted components, 228 contacts and 27
+  interfaces. Its [machine review](../hardware/ecad/generated/H2-RF34-u214-m5-ext.json)
+  confirms separate protected U214 and native M5 Unit paths; U214 itself is an
+  external mating product, not a fictitious board component.
+- Rear controls and encoder are now active work.
 
 <a id="h3"></a>
 ## H3 · Virtual electrical verification

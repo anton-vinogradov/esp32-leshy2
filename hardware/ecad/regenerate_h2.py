@@ -40,6 +40,7 @@ IMPLEMENTED_CHILD_GENERATORS = (
     "hardware/ecad/h2_rf_rp2354_core_service.py",
     "hardware/ecad/h2_rf_nrf24_x3.py",
     "hardware/ecad/h2_rf_subghz_voice.py",
+    "hardware/ecad/h2_rf_u214_m5_ext.py",
 )
 
 

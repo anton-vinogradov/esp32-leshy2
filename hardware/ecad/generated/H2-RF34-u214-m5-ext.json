@@ -1,0 +1,672 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.8",
+  "status": "reviewed_exact_u214_m5_expansion_sheet",
+  "project": "LESHY2-RF",
+  "sheet": "RF_34_U214_M5_EXT",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "6ae79ff167e17a197258191c7ba5f6d309f1d021c600b9dbe209360dd495dab6",
+    "hardware/architecture/devices.json": "618c400159127254d0fce2ecee04f97abf6d16fe7313352a665708540739c534",
+    "hardware/ecad/generated/H2-instance-ledger.json": "1e7fab8e0fbb29ddeffa02d74d26e421dfeeacf1f95a9e875f4befd39521d5f5",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "813246e2a181a4779afe31d1ef5adb1dd896a46dccb3742dc195416c6474ab54"
+  },
+  "summary": {
+    "ledger_instances": 53,
+    "schematic_symbols": 53,
+    "board_fitted_symbols": 52,
+    "external_mating_product_symbols": 1,
+    "hierarchical_interfaces": 27,
+    "physical_package_or_interface_contacts": 228,
+    "board_physical_contacts": 214,
+    "u214_cap_bus_contacts": 14,
+    "native_unit_contacts": 4,
+    "independent_protected_power_branches": 2,
+    "intentional_no_connect_pins": 22,
+    "custom_footprints": 1,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "u214",
+      "symbol_uuid": "bdfdc902-18da-522a-b65c-7d79801d1b4b",
+      "reference": "X1",
+      "mpn": "M5Stack U214 Cap LoRa-1262",
+      "footprint": "",
+      "pin_count": 14,
+      "board_fitted": false
+    },
+    {
+      "instance": "u214_connector",
+      "symbol_uuid": "1b18f78d-6bae-5b9a-8de4-3a62f73b40c4",
+      "reference": "J1",
+      "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+      "footprint": "Connector_Samtec_HLE_THT:Samtec_HLE-107-02-xx-DV-PE-LC_2x07_P2.54mm_Horizontal",
+      "pin_count": 14,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_i2c_iso",
+      "symbol_uuid": "83397120-39d8-56c3-8470-8b6c467a9f66",
+      "reference": "U1",
+      "mpn": "TCA4307DGKR",
+      "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_i2c_iso_bypass",
+      "symbol_uuid": "548a2510-3bcd-5c5f-9d2f-ef4e88658df7",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_i2c_host_sda_pullup",
+      "symbol_uuid": "545772d0-e56b-5c18-8f91-768f43fee8ef",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_i2c_host_scl_pullup",
+      "symbol_uuid": "a40d6a32-8574-5420-8fd5-93d10181d6ad",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_host_buffer_a",
+      "symbol_uuid": "6528af85-1e85-55f6-9a4b-0be913349a3f",
+      "reference": "U2",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pin_count": 14,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_host_buffer_b",
+      "symbol_uuid": "cd5e685a-1422-5382-ac0e-d8eaa6b899c1",
+      "reference": "U3",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pin_count": 14,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_return_buffer",
+      "symbol_uuid": "afa2fabc-72e6-5271-bb51-9e88f0e9e58d",
+      "reference": "U4",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "pin_count": 14,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_host_buffer_a_bypass",
+      "symbol_uuid": "278f7173-76d7-5f40-ba6c-0bb199a0868e",
+      "reference": "C2",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_host_buffer_b_bypass",
+      "symbol_uuid": "92499e84-807f-589e-a11a-aaeca9b55200",
+      "reference": "C3",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_return_buffer_bypass",
+      "symbol_uuid": "97f78483-71b9-501e-b74b-f142ad7c7271",
+      "reference": "C4",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_rst",
+      "symbol_uuid": "c1d5d2f6-dade-515a-b392-2a9816736915",
+      "reference": "R3",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_gps_rx",
+      "symbol_uuid": "7423ade4-7920-57a5-bd27-b9479daaf73d",
+      "reference": "R4",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_sck",
+      "symbol_uuid": "200a7f28-e089-59e0-9f6c-70d2877af1c0",
+      "reference": "R5",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_mosi",
+      "symbol_uuid": "dffc641c-ca69-5ada-8c9f-59b6e2d2cba5",
+      "reference": "R6",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_nss",
+      "symbol_uuid": "fd45107f-0e55-501e-b797-d672deeceffd",
+      "reference": "R7",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_busy",
+      "symbol_uuid": "324f97bc-941a-5263-8e89-feb202426ec8",
+      "reference": "R8",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_irq",
+      "symbol_uuid": "cab67574-9582-5c73-b2f0-65f51ce272b7",
+      "reference": "R9",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_gps_tx",
+      "symbol_uuid": "17ea31f0-a5fb-598d-914a-eb1f6f293bf6",
+      "reference": "R10",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_series_miso",
+      "symbol_uuid": "40bcd62b-e0de-55b5-b214-ecb69f7d36eb",
+      "reference": "R11",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_esd_a",
+      "symbol_uuid": "9baa506b-d603-5e4d-802b-ecbff3dcd13a",
+      "reference": "U5",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_esd_b",
+      "symbol_uuid": "f1c072f9-5bf4-5bdb-a7c5-8309a65aef3a",
+      "reference": "U6",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_esd_c",
+      "symbol_uuid": "efc05d42-94a5-580f-8593-a6357576231a",
+      "reference": "U7",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_req_pulldown",
+      "symbol_uuid": "b82f821e-ef81-5f3f-8cd0-2f012d1655d8",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_req_pulldown",
+      "symbol_uuid": "73973436-8056-5cad-9f94-b55c5f3722f3",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_supervisor",
+      "symbol_uuid": "e24e67bc-cbc0-51b5-ae52-6a58d06fca9b",
+      "reference": "U8",
+      "mpn": "TPS3808G33DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_supervisor_bypass",
+      "symbol_uuid": "8f479d28-02a7-5c96-989b-bae52c407b13",
+      "reference": "C5",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_supervisor_sense_top",
+      "symbol_uuid": "f3855ac1-cc12-5328-86c7-2bc8af1eada1",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-07110KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_supervisor_sense_bottom",
+      "symbol_uuid": "af3e5636-dd95-5643-b224-0640db2dabf3",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_supervisor_ct",
+      "symbol_uuid": "ecb1f74b-a034-5e4b-8a9d-57fc301a1cad",
+      "reference": "C6",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "u214_supervisor_pullup",
+      "symbol_uuid": "1f19afdb-1b38-5bb3-80c5-12b37d30fbf4",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_efuse",
+      "symbol_uuid": "911953b3-3e24-5dd5-8c81-e55319810523",
+      "reference": "U9",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_rilm",
+      "symbol_uuid": "c74c4e1c-7294-5a73-a94a-b5acec08c9e1",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-072K21L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_dvdt_cap",
+      "symbol_uuid": "09f2bc14-792c-5194-b672-d2b5e117618a",
+      "reference": "C7",
+      "mpn": "Murata GRM155R71H472KA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_itimer_cap",
+      "symbol_uuid": "a32a7bdc-0662-5eed-9688-1a97d2a37908",
+      "reference": "C8",
+      "mpn": "Murata GRM188R71E224KA88D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_ovlo_top",
+      "symbol_uuid": "65658318-9b4c-59c8-8148-8a3bfec3e4ac",
+      "reference": "R18",
+      "mpn": "Yageo RC0402FR-07169KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_ovlo_bottom",
+      "symbol_uuid": "9b57b6f6-dda2-5e18-b9f5-b3aed17429ea",
+      "reference": "R19",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_input_cap",
+      "symbol_uuid": "0ce7a9ba-6501-50e2-bcab-a2228450cd90",
+      "reference": "C9",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_output_cap",
+      "symbol_uuid": "7613dfaf-d72e-59d5-91bc-5cdf8454a8b5",
+      "reference": "C10",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_bleeder",
+      "symbol_uuid": "cfa57dec-b592-549d-8405-7d9b242e3e19",
+      "reference": "R20",
+      "mpn": "Yageo RC0603FR-071KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_supervisor",
+      "symbol_uuid": "624a38f4-c25b-5fee-b3b9-6b5175f3df5c",
+      "reference": "U10",
+      "mpn": "TPS3808G33DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "pin_count": 6,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_supervisor_bypass",
+      "symbol_uuid": "773af74d-0c34-5f14-a53f-45223524e5df",
+      "reference": "C11",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_supervisor_sense_top",
+      "symbol_uuid": "56e44816-00d3-5f36-aaa8-05ad3abc43ea",
+      "reference": "R21",
+      "mpn": "Yageo RC0402FR-07110KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_supervisor_sense_bottom",
+      "symbol_uuid": "c7524c04-b829-5606-aa85-350ef6c761d8",
+      "reference": "R22",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_supervisor_ct",
+      "symbol_uuid": "de7bf757-9682-5a13-9ae8-900b9bac98c4",
+      "reference": "C12",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_supervisor_pullup",
+      "symbol_uuid": "5dc43af0-528e-5b31-bcfe-af9be40b05da",
+      "reference": "R23",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_signal_iso",
+      "symbol_uuid": "05040e53-8f86-5c19-b87c-bfb749872619",
+      "reference": "U11",
+      "mpn": "Texas Instruments TXS0102DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_signal_iso_vcca_bypass",
+      "symbol_uuid": "24999d6b-6522-59e3-9015-ebe140eaef76",
+      "reference": "C13",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_signal_iso_vccb_bypass",
+      "symbol_uuid": "7d567fc1-8a9d-5c59-a048-13fb9af08fba",
+      "reference": "C14",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_signal_iso_oe_pulldown",
+      "symbol_uuid": "ec19e63e-c626-5ae8-a8c3-221b47418f2b",
+      "reference": "R24",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_esd",
+      "symbol_uuid": "503eb6f8-ff66-5216-986b-17481fbe8f79",
+      "reference": "U12",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "unit_connector",
+      "symbol_uuid": "dc6b6f4d-c324-5ac3-b0d6-452e5be310ec",
+      "reference": "J2",
+      "mpn": "1125R-SMT-4P",
+      "footprint": "Leshy2:1125R-SMT-4P",
+      "pin_count": 4,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "U214_ESD_GROUND": "POWER_GROUND",
+    "U214_UNUSED_A_LOW": "POWER_GROUND",
+    "U214_UNUSED_OE_LOW": "POWER_GROUND",
+    "UNIT_EFUSE_ILM_SET": "UNIT_5V_CURRENT_MONITOR",
+    "UNIT_ESD_GROUND": "POWER_GROUND"
+  },
+  "intentional_no_connect_endpoints": [
+    "u214_esd_a.NC_10",
+    "u214_esd_a.NC_6",
+    "u214_esd_a.NC_7",
+    "u214_esd_a.NC_9",
+    "u214_esd_b.NC_10",
+    "u214_esd_b.NC_6",
+    "u214_esd_b.NC_7",
+    "u214_esd_b.NC_9",
+    "u214_esd_c.NC_10",
+    "u214_esd_c.NC_6",
+    "u214_esd_c.NC_7",
+    "u214_esd_c.NC_9",
+    "u214_host_buffer_b.2Y",
+    "u214_host_buffer_b.3Y",
+    "u214_host_buffer_b.4Y",
+    "unit_efuse.AUXOFF",
+    "unit_esd.D2_MINUS",
+    "unit_esd.D2_PLUS",
+    "unit_esd.NC_10",
+    "unit_esd.NC_6",
+    "unit_esd.NC_7",
+    "unit_esd.NC_9"
+  ],
+  "known_deferred_fixture_labels": [],
+  "footprint_evidence": [
+    {
+      "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+      "footprint": "Connector_Samtec_HLE_THT:Samtec_HLE-107-02-xx-DV-PE-LC_2x07_P2.54mm_Horizontal",
+      "source": {
+        "document": "Samtec exact HLE product page, series print and HLE catalog",
+        "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+        "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+        "checked": "2026-08-23"
+      },
+      "status": "exact KiCad 10 generator transcription of the Samtec series print"
+    },
+    {
+      "mpn": "1125R-SMT-4P",
+      "footprint": "Leshy2:1125R-SMT-4P",
+      "source": {
+        "document": "Seeed 1125R-SMT-4P official manufacturer drawing",
+        "version": "NS-1125-W00010 Rev.A",
+        "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+        "checked": "2026-08-19"
+      },
+      "status": "exact manufacturer geometry, independently cross-checked against published OrCAD/KiCad CAD"
+    },
+    {
+      "mpn": "TCA4307DGKR",
+      "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
+      "source": {
+        "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
+        "version": "SCPS270B",
+        "url": "https://www.ti.com/lit/ds/symlink/tca4307.pdf",
+        "checked": "2026-08-17"
+      },
+      "status": "exact TI DGK package"
+    },
+    {
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "status": "exact Nexperia TSSOP14 package"
+    },
+    {
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "source": {
+        "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+        "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+        "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+        "checked": "2026-08-18"
+      },
+      "status": "exact TI DQA package"
+    },
+    {
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
+      "source": {
+        "document": "TPS25947xx true-reverse-current-blocking eFuse datasheet",
+        "version": "SLVSFC9C, October 2020, revised May 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+        "checked": "2026-08-18"
+      },
+      "status": "exact TI RPW package already controlled by RF03"
+    },
+    {
+      "mpn": "TPS3808G33DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "source": {
+        "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
+        "version": "Rev. M",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+        "checked": "2026-08-17"
+      },
+      "status": "exact TI DBV package"
+    },
+    {
+      "mpn": "Texas Instruments TXS0102DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "source": {
+        "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
+        "version": "SCES640L, revised January 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
+        "checked": "2026-08-18"
+      },
+      "status": "exact TI DCU package"
+    }
+  ],
+  "connector_cad_cross_checks": [
+    {
+      "mpn": "1125R-SMT-4P",
+      "source": "Seeed/NS-Tech NS-1125-W00010 Rev.A manufacturer drawing",
+      "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+      "role": "authoritative body, pitch, land-width and anchor geometry"
+    },
+    {
+      "mpn": "1125R-SMT-4P",
+      "source": "Blues OrCAD-derived KiCad library",
+      "url": "https://github.com/blues/blues-kicad-lib/blob/43a444c407770574958df7fc5fb36ab590af02f3/blues-kicad-lib.pretty/J-4-0200-MOS-GROVE.kicad_mod",
+      "role": "independent full-axis and land-length cross-check"
+    },
+    {
+      "mpn": "1125R-SMT-4P",
+      "source": "Jeff Makes KiCad library",
+      "url": "https://github.com/jeffmakes/jeffmakes-kicad-library/blob/main/jeffmakes-kicad-library.pretty/1125R-SMT-4P.kicad_mod",
+      "role": "second independent pitch, land and anchor cross-check"
+    }
+  ],
+  "corrections_closed": [
+    "the stock U214 remains an external interface-only symbol and cannot appear in the board BOM or placement set",
+    "the exact fourteen-contact U214 map terminates one-to-one at the pass-through HLE host socket",
+    "the native M5 Unit port has the user-visible GND, 5V, SIG0, SIG1 order bound to four real footprint lands",
+    "U214 SPI, UART, reset and return paths are independently Ioff-buffered, source-terminated and connector-ESD-protected",
+    "U214 I2C uses a separate hot-swap/stuck-bus boundary and cannot stall the internal system I2C bus",
+    "the two exposed 5-V branches remain reverse-blocked, current-limited, slew-controlled, discharged and independently qualified"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all 53 RF34 ledger instances, 228 physical contacts, 27 hierarchy interfaces and intentional NC contacts are explicit",
+      "the U214 and native Unit connectors have separate protected power, readiness, signal-isolation and ESD boundaries",
+      "the exact HLE footprint and complete documented 1125R land pattern remove any pre-KiCad sample dependency",
+      "native KiCad parses RF34 in the live RF/power hierarchy with every remaining finding machine-accounted"
+    ],
+    "deferred": [
+      "received U214 insertion force, retention, repeated-cycle continuity and 56-mm screw preload close in H5/H8",
+      "received HY2.0 cable polarity, retention and strain relief close in H8 without changing footprint geometry",
+      "branch inrush, reverse-source, current limit, brownout, stuck-bus and wrong-accessory fault injection close in H3/H8",
+      "placement, exposed-connector return geometry, ESD via fields and complete DRC close in H6",
+      "accessory manifests, protocol profiles and fail-closed admission behavior close in firmware F3/F4 and H8"
+    ]
+  }
+}
