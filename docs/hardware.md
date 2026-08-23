@@ -104,6 +104,11 @@ carries an exact `Davies Molding 1227-J` knob. The side-facing
 buttons are not fitted. A phone may provide occasional long-form text input but
 cannot confirm dangerous actions.
 
+The `TCA9539PWR` retains six unassigned inputs: `P07` and `P13…P17`. `P07`
+already has front-panel ESD protection; exposing the other five as user keys
+requires appropriate external-input protection. This is electrical capacity,
+not six pre-committed face buttons.
+
 The battery holder and rear controls mount directly on the external face of the
 RF/power PCB. There is no continuous rear lid over the holder: cells insert
 directly into the open `Keystone 1048P`. `F1/F2` sit to the holder's left and

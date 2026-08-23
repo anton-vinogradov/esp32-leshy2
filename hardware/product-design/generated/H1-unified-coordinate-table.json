@@ -2593,8 +2593,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          16.8,
-          23.4
+          11.0,
+          17.6
         ],
         "y": [
           129.4,
@@ -2650,8 +2650,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          51.6,
-          58.2
+          57.4,
+          64.0
         ],
         "y": [
           129.4,

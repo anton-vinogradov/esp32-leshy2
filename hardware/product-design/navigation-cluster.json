@@ -50,8 +50,8 @@
     "excludes": "PCB, assembly, enclosure, freight and tax"
   },
   "paper_checks": {
-    "back_clearance_mm": 1.8,
-    "opt_clearance_mm": 1.8,
+    "back_clearance_mm": 7.6,
+    "opt_clearance_mm": 7.6,
     "bottom_board_margin_mm": 5.6,
     "all_five_bodies_inside_board": true,
     "mounting_keepouts_clear": true,

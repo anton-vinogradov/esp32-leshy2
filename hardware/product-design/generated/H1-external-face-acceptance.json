@@ -201,7 +201,7 @@
         "mpn": "OMRON B3S-1100P",
         "role": "direct-press BACK",
         "position_mm": [
-          16.8,
+          11.0,
           129.4
         ],
         "envelope_mm": [
@@ -279,7 +279,7 @@
         "mpn": "OMRON B3S-1100P",
         "role": "direct-press OPT",
         "position_mm": [
-          51.6,
+          57.4,
           129.4
         ],
         "envelope_mm": [

@@ -112,20 +112,20 @@
 <text data-layer="pcb-silkscreen" x="277.2" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">LORA/EXT</text>
 <rect x="332.7" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="any_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="5"/>
 <text data-layer="pcb-silkscreen" x="335.7" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">TX ACTIVE</text>
-<rect x="142.2" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
+<rect x="120.7" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
 <rect x="206.5" y="595.5" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_up" data-direct-press="true"/>
 <rect x="206.5" y="662.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_down" data-direct-press="true"/>
 <rect x="173.2" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_left" data-direct-press="true"/>
 <rect x="239.8" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_right" data-direct-press="true"/>
 <rect x="206.5" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_ok" data-direct-press="true"/>
-<rect x="270.9" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-direct-press="true"/>
+<rect x="292.4" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-direct-press="true"/>
 <text data-layer="pcb-silkscreen" x="218.8" y="590.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">▲</text>
 <text data-layer="pcb-silkscreen" x="218.8" y="696.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">▼</text>
 <text data-layer="pcb-silkscreen" x="168.4" y="642.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">◀</text>
 <text data-layer="pcb-silkscreen" x="269.1" y="642.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">▶</text>
 <text data-layer="pcb-silkscreen" x="202.8" y="623.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
-<text data-layer="pcb-silkscreen" x="154.4" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
-<text data-layer="pcb-silkscreen" x="283.1" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
+<text data-layer="pcb-silkscreen" x="132.9" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
+<text data-layer="pcb-silkscreen" x="304.6" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="99.0" y="433.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR 38 kHz RX</text>
 <path d="M80.0 458.9 L54.1 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>

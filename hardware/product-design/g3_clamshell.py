@@ -367,13 +367,13 @@ RF_INNER = (
 )
 
 FRONT_CONTROLS = (
-    Placement("ui_switch_back", 16.8, 129.4, "direct-press BACK"),
+    Placement("ui_switch_back", 11.0, 129.4, "direct-press BACK"),
     Placement("ui_dpad_up", 34.2, 120.4, "direct-press navigation UP"),
     Placement("ui_dpad_down", 34.2, 138.4, "direct-press navigation DOWN"),
     Placement("ui_dpad_left", 25.2, 129.4, "direct-press navigation LEFT"),
     Placement("ui_dpad_right", 43.2, 129.4, "direct-press navigation RIGHT"),
     Placement("ui_dpad_ok", 34.2, 129.4, "direct-press navigation OK"),
-    Placement("ui_switch_opt", 51.6, 129.4, "direct-press OPT"),
+    Placement("ui_switch_opt", 57.4, 129.4, "direct-press OPT"),
 )
 
 DIRECT_PRESS_FRONT_CONTROLS = {item.instance for item in FRONT_CONTROLS}
@@ -1177,6 +1177,19 @@ def validate_navigation_cluster(design: dict, devices: dict, instances: dict) ->
     if not math.isclose(float(cost.get("five_b3s_1100p", -1)), 5 * selected_unit, abs_tol=1e-9):
         errors.append("navigation-cluster: five-button cost is stale")
     checks = design.get("paper_checks", {})
+    control_by_instance = {item.instance: item for item in FRONT_CONTROLS}
+    switch_w = float(component.get("body_mm", [0, 0, 0])[0])
+    cluster_x, _, cluster_w, _ = map(float, design.get("layout", {}).get("bounding_box_mm", [0, 0, 0, 0]))
+    expected_back_clearance = cluster_x - (
+        control_by_instance["ui_switch_back"].x + switch_w
+    )
+    expected_opt_clearance = control_by_instance["ui_switch_opt"].x - (
+        cluster_x + cluster_w
+    )
+    if not math.isclose(float(checks.get("back_clearance_mm", -1)), expected_back_clearance, abs_tol=1e-9):
+        errors.append("navigation-cluster: BACK clearance disagrees with the renderer")
+    if not math.isclose(float(checks.get("opt_clearance_mm", -1)), expected_opt_clearance, abs_tol=1e-9):
+        errors.append("navigation-cluster: OPT clearance disagrees with the renderer")
     if checks.get("custom_mechanical_parts") != 0:
         errors.append("navigation-cluster: custom mechanical parts are forbidden")
     if not all(checks.get(field) is True for field in ("all_five_bodies_inside_board", "mounting_keepouts_clear")):
@@ -2111,8 +2124,16 @@ def render_external(devices, instances):
         (33.2, 127.9, "OK"),
     ):
         out.append(silk_text(sx(front,label_x), sy(front,label_y), label, 4.2, "bold", "middle", "#4c1d95"))
-    out.append(silk_text(sx(front,20.1), sy(front,140.0), "BACK", 5.0, "bold", "middle", "#4c1d95"))
-    out.append(silk_text(sx(front,54.9), sy(front,140.0), "OPT", 5.0, "bold", "middle", "#4c1d95"))
+    front_control_by_instance = {item.instance: item for item in FRONT_CONTROLS}
+    for instance, label in (("ui_switch_back", "BACK"), ("ui_switch_opt", "OPT")):
+        control = front_control_by_instance[instance]
+        width, _ = placement_size(control, devices, instances)
+        out.append(
+            silk_text(
+                sx(front, control.x + width / 2), sy(front, 140.0),
+                label, 5.0, "bold", "middle", "#4c1d95",
+            )
+        )
 
     # Every side/bottom interface is projected onto the external face even
     # when its physical body is mounted on the inward PCB side.
