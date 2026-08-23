@@ -68,6 +68,16 @@ per-path indicators plus a `TX ACTIVE` summary sit in one line on the front belo
 the display. Evidence reports actual transmit activity and a relative level; it
 never grants transmit permission.
 
+The two board-mounted U.FL receptacles are not substitutes for available RF
+module lands. The selected S3 module exposes no RF/ANT land: its supported RF
+output is the connector built into `ESP32-S3-WROOM-1U-N16R8`. The C5 module
+does expose `ANT2` on contact 31, but the exact standard module enables its
+built-in `ANT1` connector and leaves `ANT2` disabled; Espressif requires prior
+contact before `ANT2` is used. Therefore each cable returns to the PCB through
+the numbered board U.FL, where the real forward-power TX detector branches off
+before the outward RP-SMA. A direct cable-to-SMA path would remove that
+measurement rather than merely remove a redundant connector.
+
 The stock U214 provides receive and GNSS but no independent actual-RF evidence,
 so its TX remains blocked. Cap-Bus contact 5 is monitored through the exact
 5-V-tolerant `SN74LVC1G07DCKR`: stock `5V_OUT` reads inactive. The

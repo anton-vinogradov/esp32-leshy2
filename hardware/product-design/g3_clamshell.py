@@ -2929,10 +2929,15 @@ def render_internal(devices, instances, display_adapter_design):
         module_mpn: str,
         path_id: str,
     ) -> list[str]:
+        module_rf_role = (
+            "module · no RF land; output is built-in U.FL"
+            if path_id == "s3"
+            else "module · ANT1 U.FL active; ANT2 land disabled"
+        )
         rows = [
-            (module_mpn, "radio module · built-in U.FL antenna port", "#eef2ff", "#4f46e5"),
+            (module_mpn, module_rf_role, "#eef2ff", "#4f46e5"),
             ("TE Connectivity 2118651-2", "removable 30-mm microcoax cable", "#ecfdf5", "#0f766e"),
-            ("Hirose U.FL-R-SMT-1(10)", "PCB receptacle · the green cable ends here", "#ecfdf5", "#0f766e"),
+            ("Hirose U.FL-R-SMT-1(10)", "PCB re-entry · feeds TX coupler and outer RP-SMA", "#ecfdf5", "#0f766e"),
             ("KYOCERA AVX CP0603Q5425ENTR", "PCB 50 Ω mainline · forward TX sample", "#eff6ff", "#2563eb"),
             ("GCT RFPC-SMA32-FN-175-A", "outward RP-SMA · antenna screws on here", "#fff7ed", "#ea580c"),
         ]
