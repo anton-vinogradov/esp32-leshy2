@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.4.2`.
+**Статус:** ▶️ сейчас, точный маркер `H2.4.3`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -44,7 +44,8 @@
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
 - Проведено ревью всей UI/control PCB, всех двенадцати RF/power child-листов
-  и пассивного display-adapter; текущий — корневой лист LoRa Cap.
+  пассивного display-adapter и корневого листа LoRa Cap; текущий — лист
+  radio/control аксессуара.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13

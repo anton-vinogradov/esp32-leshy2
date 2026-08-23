@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "stage": "H2.4.2",
+  "status": "reviewed_exact_lora_cap_root",
+  "project": "LESHY2-LORA-CAP-01",
+  "root_sheet": "CAP_00_ROOT",
+  "source_hashes": {
+    "hardware/accessories/leshy2-lora-cap-01.json": "5c14b5934c5c3659944f44fb2ad76e2ff85817bf1e0e468b4a36c159af8abbf8",
+    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
+    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
+    "hardware/ecad/H2-sheet-contract.json": "6adabe1a49ae9bcc7171a46e1de11cf68e240dd4e13226f0896998c6ae8fc60a"
+  },
+  "summary": {
+    "root_ledger_instances": 1,
+    "root_schematic_symbols": 1,
+    "child_sheet_count": 3,
+    "unique_root_nets": 14,
+    "root_hierarchical_pin_count": 19,
+    "child_hierarchical_label_count": 19,
+    "host_physical_contacts": 14,
+    "host_connected_contacts": 12,
+    "host_reserved_no_connects": 2,
+    "implemented_child_sheet_count": 0,
+    "known_child_stub_erc_violations": 5,
+    "known_generated_library_copy_warnings": 1,
+    "pcb_files_created": 0
+  },
+  "host_connector": {
+    "instance": "cap_header",
+    "reference": "J1",
+    "mpn": "Samtec TSW-107-07-G-D",
+    "symbol_uuid": "7e5b00f8-5f34-5beb-9891-9d74825324b4",
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical",
+    "pin_map": [
+      {
+        "pin": 1,
+        "stock_u214": "GPS_TX",
+        "custom_cap": "NC",
+        "direction_at_host": "input/reserved",
+        "root_net": "NC",
+        "disposition": "intentional_no_connect"
+      },
+      {
+        "pin": 2,
+        "stock_u214": "GPS_RX",
+        "custom_cap": "NC",
+        "direction_at_host": "output/reserved",
+        "root_net": "NC",
+        "disposition": "intentional_no_connect"
+      },
+      {
+        "pin": 3,
+        "stock_u214": "SCL",
+        "custom_cap": "IDENTITY_SCL",
+        "direction_at_host": "output",
+        "root_net": "IDENTITY_SCL",
+        "disposition": "connected"
+      },
+      {
+        "pin": 4,
+        "stock_u214": "SDA",
+        "custom_cap": "IDENTITY_SDA",
+        "direction_at_host": "bidirectional",
+        "root_net": "IDENTITY_SDA",
+        "disposition": "connected"
+      },
+      {
+        "pin": 5,
+        "stock_u214": "5V_OUT",
+        "custom_cap": "EXT_TX_EVIDENCE_N",
+        "direction_at_host": "input",
+        "root_net": "EXT_TX_EVIDENCE_N",
+        "disposition": "connected"
+      },
+      {
+        "pin": 6,
+        "stock_u214": "GND",
+        "custom_cap": "GND",
+        "direction_at_host": "power return",
+        "root_net": "GND",
+        "disposition": "connected"
+      },
+      {
+        "pin": 7,
+        "stock_u214": "5V_IN",
+        "custom_cap": "5V_IN",
+        "direction_at_host": "power output",
+        "root_net": "5V_IN",
+        "disposition": "connected"
+      },
+      {
+        "pin": 8,
+        "stock_u214": "LORA_RST",
+        "custom_cap": "LORA_NRESET",
+        "direction_at_host": "output",
+        "root_net": "LORA_NRESET",
+        "disposition": "connected"
+      },
+      {
+        "pin": 9,
+        "stock_u214": "LORA_IRQ",
+        "custom_cap": "LORA_DIO1",
+        "direction_at_host": "input",
+        "root_net": "LORA_DIO1",
+        "disposition": "connected"
+      },
+      {
+        "pin": 10,
+        "stock_u214": "LORA_BUSY",
+        "custom_cap": "LORA_BUSY",
+        "direction_at_host": "input",
+        "root_net": "LORA_BUSY",
+        "disposition": "connected"
+      },
+      {
+        "pin": 11,
+        "stock_u214": "SCK",
+        "custom_cap": "LORA_SCK",
+        "direction_at_host": "output",
+        "root_net": "LORA_SCK",
+        "disposition": "connected"
+      },
+      {
+        "pin": 12,
+        "stock_u214": "MOSI",
+        "custom_cap": "LORA_MOSI",
+        "direction_at_host": "output",
+        "root_net": "LORA_MOSI",
+        "disposition": "connected"
+      },
+      {
+        "pin": 13,
+        "stock_u214": "MISO",
+        "custom_cap": "LORA_MISO",
+        "direction_at_host": "input",
+        "root_net": "LORA_MISO",
+        "disposition": "connected"
+      },
+      {
+        "pin": 14,
+        "stock_u214": "NSS",
+        "custom_cap": "LORA_NSS",
+        "direction_at_host": "output",
+        "root_net": "LORA_NSS",
+        "disposition": "connected"
+      }
+    ]
+  },
+  "intentional_no_connect_endpoints": [
+    "cap_header.PIN_1",
+    "cap_header.PIN_2"
+  ],
+  "sheets": [
+    {
+      "id": "CAP_10_RADIO_CONTROL",
+      "interface_count": 10,
+      "interfaces": [
+        "CAP_3V3",
+        "GND",
+        "LORA_NRESET",
+        "LORA_DIO1",
+        "LORA_BUSY",
+        "LORA_SCK",
+        "LORA_MOSI",
+        "LORA_MISO",
+        "LORA_NSS",
+        "RF_FORWARD_LEVEL"
+      ]
+    },
+    {
+      "id": "CAP_20_POWER_BUS",
+      "interface_count": 5,
+      "interfaces": [
+        "5V_IN",
+        "GND",
+        "CAP_3V3",
+        "IDENTITY_SCL",
+        "IDENTITY_SDA"
+      ]
+    },
+    {
+      "id": "CAP_30_TX_EVIDENCE",
+      "interface_count": 4,
+      "interfaces": [
+        "CAP_3V3",
+        "GND",
+        "RF_FORWARD_LEVEL",
+        "EXT_TX_EVIDENCE_N"
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "5V_IN",
+      "sheets": [
+        "CAP_20_POWER_BUS"
+      ],
+      "host_pin": 7
+    },
+    {
+      "name": "CAP_3V3",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL",
+        "CAP_20_POWER_BUS",
+        "CAP_30_TX_EVIDENCE"
+      ],
+      "host_pin": null
+    },
+    {
+      "name": "EXT_TX_EVIDENCE_N",
+      "sheets": [
+        "CAP_30_TX_EVIDENCE"
+      ],
+      "host_pin": 5
+    },
+    {
+      "name": "GND",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL",
+        "CAP_20_POWER_BUS",
+        "CAP_30_TX_EVIDENCE"
+      ],
+      "host_pin": 6
+    },
+    {
+      "name": "IDENTITY_SCL",
+      "sheets": [
+        "CAP_20_POWER_BUS"
+      ],
+      "host_pin": 3
+    },
+    {
+      "name": "IDENTITY_SDA",
+      "sheets": [
+        "CAP_20_POWER_BUS"
+      ],
+      "host_pin": 4
+    },
+    {
+      "name": "LORA_BUSY",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 10
+    },
+    {
+      "name": "LORA_DIO1",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 9
+    },
+    {
+      "name": "LORA_MISO",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 13
+    },
+    {
+      "name": "LORA_MOSI",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 12
+    },
+    {
+      "name": "LORA_NRESET",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 8
+    },
+    {
+      "name": "LORA_NSS",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 14
+    },
+    {
+      "name": "LORA_SCK",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL"
+      ],
+      "host_pin": 11
+    },
+    {
+      "name": "RF_FORWARD_LEVEL",
+      "sheets": [
+        "CAP_10_RADIO_CONTROL",
+        "CAP_30_TX_EVIDENCE"
+      ],
+      "host_pin": null
+    }
+  ],
+  "rules": {
+    "host_contract_source": "hardware/accessories/leshy2-lora-cap-01.json#/pin_contract",
+    "no_hidden_cross_sheet_globals": true,
+    "root_owns_only_physical_host_connector": true,
+    "implemented_children_are_preserved": [],
+    "selected_header_footprint_matches": "2x7 rows, 2.54-mm pitch and 0.635-mm square through-hole posts"
+  },
+  "root_geometry_accounting": {
+    "header_footprint": "Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical",
+    "header_symbol_uuid": "7e5b00f8-5f34-5beb-9891-9d74825324b4",
+    "no_connects": [
+      "cap_header.PIN_1",
+      "cap_header.PIN_2"
+    ],
+    "net_rails": {
+      "5V_IN": 200.66,
+      "CAP_3V3": 203.2,
+      "EXT_TX_EVIDENCE_N": 205.74,
+      "GND": 208.28,
+      "IDENTITY_SCL": 210.82,
+      "IDENTITY_SDA": 213.35999999999999,
+      "LORA_BUSY": 340.36,
+      "LORA_DIO1": 342.90000000000003,
+      "LORA_MISO": 345.44,
+      "LORA_MOSI": 347.98,
+      "LORA_NRESET": 350.52000000000004,
+      "LORA_NSS": 353.06,
+      "LORA_SCK": 355.6,
+      "RF_FORWARD_LEVEL": 215.9
+    },
+    "root_wire_count": 45,
+    "root_junction_count": 31
+  },
+  "review_boundary": {
+    "complete": [
+      "all three LoRa Cap child sheets are instantiated with nineteen explicit named hierarchy contacts",
+      "the exact 14-contact custom-Cap map is fixed to J1 pins 1..14 and matches the host-side contract",
+      "reserved stock-GPS contacts J1.1/J1.2 are explicit no-connects rather than invented functions",
+      "all twelve used host contacts and both Cap-local cross-sheet nets join children through visible root wires",
+      "native KiCad parses the root hierarchy with only exact unimplemented-child and generated-symbol findings"
+    ],
+    "deferred": [
+      "radio/control, power/identity and physical-TX evidence circuits in H2.4.3-H2.4.5",
+      "connector placement, drill tolerances, routing, retention-hole clearance and DRC in H6",
+      "installed-Cap mating, power, identity, RF and evidence HIL in H8"
+    ]
+  }
+}

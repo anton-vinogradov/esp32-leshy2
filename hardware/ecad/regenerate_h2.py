@@ -23,6 +23,7 @@ SCHEMATIC_LEDGER_GENERATOR = "hardware/ecad/h2_schematic.py"
 ROOT_GENERATORS = (
     "hardware/ecad/h2_ui_root.py",
     "hardware/ecad/h2_rf_root.py",
+    "hardware/ecad/h2_lora_cap_root.py",
 )
 IMPLEMENTED_CHILD_GENERATORS = (
     "hardware/ecad/h2_ui_s3_core.py",

@@ -118,10 +118,9 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.4.2 -->
+<!-- current-substep: H2.4.3 -->
 
-**Exact marker: `H2.4.2`** — implement the LoRa Cap project root and exact
-14-contact host interface.
+**Exact marker: `H2.4.3`** — implement the LoRa radio, control and RF path.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -158,8 +157,9 @@ and the full target/emulator gate are not closed, and no order is authorized.
   - ✅ `H2.4.1` — passive display adapter: both exact serial connectors, all
     40 one-to-one conductors and the manufacturer-derived FH34 footprint pass
     native KiCad review.
-  - ▶️ **`H2.4.2` — current:** LoRa Cap root and 14-contact host interface.
-  - ⏳ `H2.4.3` — LoRa radio, control and RF path.
+  - ✅ `H2.4.2` — LoRa Cap root, all three child sheets and the exact
+    14-contact host boundary; native KiCad review passed.
+  - ▶️ **`H2.4.3` — current:** LoRa radio, control and RF path.
   - ⏳ `H2.4.4` — protected power and identity bus.
   - ⏳ `H2.4.5` — independent physical-TX evidence.
 - ⏳ `H2.5` — independent power/boot/recovery/quiet-state/`FAULT_KILL` review.

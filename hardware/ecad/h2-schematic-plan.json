@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H2",
   "status": "in_progress",
-  "current_substep": "H2.4.2",
+  "current_substep": "H2.4.3",
   "accepted_input": {
     "physical_design_gate": "H1.8",
     "status": "accepted",
@@ -110,8 +110,8 @@
       "status": "current",
       "children": [
         {"id": "H2.4.1", "title": "Implement the passive one-to-one display adapter", "sheet": "ADP_00_DISPLAY_ADAPTER", "status": "reviewed"},
-        {"id": "H2.4.2", "title": "Implement the LoRa Cap project root and exact 14-contact host interface", "sheet": "CAP_00_ROOT", "status": "current"},
-        {"id": "H2.4.3", "title": "Implement LoRa radio, control and RF path", "sheet": "CAP_10_RADIO_CONTROL", "status": "waiting"},
+        {"id": "H2.4.2", "title": "Implement the LoRa Cap project root and exact 14-contact host interface", "sheet": "CAP_00_ROOT", "status": "reviewed"},
+        {"id": "H2.4.3", "title": "Implement LoRa radio, control and RF path", "sheet": "CAP_10_RADIO_CONTROL", "status": "current"},
         {"id": "H2.4.4", "title": "Implement protected power and identity bus", "sheet": "CAP_20_POWER_BUS", "status": "waiting"},
         {"id": "H2.4.5", "title": "Implement independent physical-TX evidence", "sheet": "CAP_30_TX_EVIDENCE", "status": "waiting"}
       ]
