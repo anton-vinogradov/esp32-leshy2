@@ -16830,7 +16830,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "429c3250-107e-517f-a8f7-a8ea15c036a8")
 	)
-	(label "VOICE_RAW_4V_PG_N"
+	(hierarchical_label "VOICE_RAW_4V_PG_N"
+		(shape bidirectional)
 		(at 337.82 228.60 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "cc72f4c9-c458-5760-aea6-d6a11ea4cd10")
@@ -16928,7 +16929,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "bf11384e-3f41-5658-9f17-a23b1ef241be")
 	)
-	(label "VOICE_UPDATE_FIXTURE"
+	(hierarchical_label "VOICE_UPDATE_FIXTURE"
+		(shape bidirectional)
 		(at 281.94 180.34 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "f1e4d582-0cad-5293-8a2c-292c26005b93")

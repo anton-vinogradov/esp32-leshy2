@@ -38,6 +38,7 @@ IMPLEMENTED_CHILD_MANIFESTS = {
     "RF_36_AUDIO_IO_AMP": ECAD / "generated/H2-RF36-audio-io-amp.json",
     "RF_40_INTERBOARD_M1": ECAD / "generated/H2-RF40-interboard-m1.json",
     "RF_50_TX_SAFETY_EVIDENCE": ECAD / "generated/H2-RF50-tx-safety-evidence.json",
+    "RF_60_TESTPOINTS_MANUFACTURING": ECAD / "generated/H2-RF60-testpoints-manufacturing.json",
 }
 IMPLEMENTED_CHILD_STATUSES = {
     "RF_01_USB_PD_CHARGE": "reviewed_exact_usb_pd_charge_sheet",
@@ -51,6 +52,7 @@ IMPLEMENTED_CHILD_STATUSES = {
     "RF_36_AUDIO_IO_AMP": "reviewed_exact_audio_io_amplifier_sheet",
     "RF_40_INTERBOARD_M1": "reviewed_exact_rf_interboard_m1_sheet",
     "RF_50_TX_SAFETY_EVIDENCE": "reviewed_exact_rf_tx_safety_evidence_sheet",
+    "RF_60_TESTPOINTS_MANUFACTURING": "reviewed_exact_rf_testpoints_manufacturing_sheet",
 }
 
 
@@ -268,20 +270,18 @@ def outputs() -> tuple[dict[Path, str], dict]:
             "no_hidden_cross_sheet_globals": True,
             "no_no_connect_aggregation": True,
             "root_is_component_free": True,
-            "root_page": "A0 portrait; all sheet bodies and 133 net rails remain inside the page",
+            "root_page": "A0 portrait; all sheet bodies and 149 net rails remain inside the page",
             "implemented_children_are_preserved": sorted(implemented_children),
         },
         "review_boundary": {
             "complete": [
                 "all twelve RF/power child sheets are instantiated by the KiCad root",
-                "all 133 derived cross-sheet nets are represented by 305 explicit named pins and child labels",
+                "all 149 derived cross-sheet nets are represented by 351 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
                 "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
-                "native KiCad accepts the hierarchy with the exact remaining component-empty child-stub set",
+                "native KiCad accepts the complete hierarchy with no child stubs or deferred fixture labels",
             ],
             "deferred": [
-                "functional circuit symbols and exact electrical sheet-pin directions in H2.3.2-H2.3.13",
-                "each exact child-stub finding disappears as its functional circuit sheet is placed",
                 "final full-project ERC closure in H2.6",
                 "all PCB placement, routing, fabrication and purchasing",
             ],
@@ -389,29 +389,29 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
-        "child_sheet_count": 12, "cross_sheet_net_count": 133,
-        "root_hierarchical_pin_count": 305,
-        "child_hierarchical_label_count": 305,
+        "child_sheet_count": 12, "cross_sheet_net_count": 149,
+        "root_hierarchical_pin_count": 351,
+        "child_hierarchical_label_count": 351,
         "known_child_stub_erc_violations": 0,
-        "implemented_child_sheet_count": 11, "circuit_symbols_placed": 626,
-        "known_generated_library_copy_warnings": 626,
-        "known_deferred_fixture_erc_violations": 13, "pcb_files_created": 0,
+        "implemented_child_sheet_count": 12, "circuit_symbols_placed": 656,
+        "known_generated_library_copy_warnings": 656,
+        "known_deferred_fixture_erc_violations": 0, "pcb_files_created": 0,
     }
     if summary != expected:
         raise ValueError(f"reviewed H2.3.1 interface accounting drifted: {summary}")
     root = generated[ROOT_PATH]
     if root.count("\n\t(sheet\n") != 12:
         raise ValueError("RF/power root child-sheet count mismatch")
-    if root.count("\n\t\t(pin \"") != 305:
+    if root.count("\n\t\t(pin \"") != 351:
         raise ValueError("RF/power root hierarchical-pin count mismatch")
-    if root.count("\n\t(wire\n") != 438 or root.count("\n\t(junction ") != 305:
+    if root.count("\n\t(wire\n") != 500 or root.count("\n\t(junction ") != 351:
         raise ValueError("RF/power root rail accounting mismatch")
     labels = sum(
         content.count("\n\t(hierarchical_label \"")
         for path, content in generated.items()
         if path.suffix == ".kicad_sch" and path != ROOT_PATH
     )
-    if labels != 305:
+    if labels != 351:
         raise ValueError("RF/power child-label count mismatch")
     if "\n\t(label \"" in root or "\n\t(global_label \"" in root:
         raise ValueError("RF/power root may not hide interfaces behind labels")

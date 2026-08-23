@@ -9294,7 +9294,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "14fe19bf-1c32-52ce-8752-6aa208626d6a")
 	)
-	(label "MAIN_RAW_3V3_PG_N"
+	(hierarchical_label "MAIN_RAW_3V3_PG_N"
+		(shape bidirectional)
 		(at 68.58 96.52 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "9fcc9ba4-31fb-5336-86ef-7c5d6a7e79cf")

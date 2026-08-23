@@ -8,13 +8,13 @@
     "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
     "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
     "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "663ccf90cbc2135873f651296d4ba3962eaed5810dd5e834beebe7e8745112fa"
+    "hardware/ecad/generated/H2-RF-root-interface.json": "5671ccb8124364aa46173c4759832a45ffa541658063b94db06cd342d3ec1cd0"
   },
   "summary": {
     "ledger_instances": 97,
     "schematic_symbols": 97,
     "board_fitted_symbols": 97,
-    "hierarchical_interfaces": 63,
+    "hierarchical_interfaces": 70,
     "physical_contacts": 369,
     "rf_detector_channels": 5,
     "comparator_channels": 5,
@@ -933,33 +933,7 @@
     "safety_s3_reset_iso.NC",
     "voice_evidence_hold_diode.NC"
   ],
-  "known_deferred_fixture_labels": [
-    {
-      "endpoint": "evidence_mask.INT_N",
-      "net": "EVIDENCE_MASK_INT_N_TP",
-      "label_uuid": "e5dbcc22-a5b9-50a4-be58-57195a9a9958"
-    },
-    {
-      "endpoint": "safety_controller.PA17",
-      "net": "SAFETY_SERVICE_UART_TX",
-      "label_uuid": "1e26b3fe-aabd-5b4f-b15b-3ab284ee6e9c"
-    },
-    {
-      "endpoint": "safety_controller.PA18",
-      "net": "SAFETY_SERVICE_UART_RX",
-      "label_uuid": "de7dc999-35e4-5fe6-978c-571d2fed4254"
-    },
-    {
-      "endpoint": "safety_controller.PA19_SWDIO",
-      "net": "SAFETY_SWDIO",
-      "label_uuid": "48afc3fd-c2d8-5a8a-a773-c273b8fb28c4"
-    },
-    {
-      "endpoint": "safety_controller.PA20_SWCLK",
-      "net": "SAFETY_SWCLK",
-      "label_uuid": "b9754071-1771-578f-9a56-319c2cd9a273"
-    }
-  ],
+  "known_deferred_fixture_labels": [],
   "footprint_evidence": [
     {
       "mpn": "C&K JS102011SCQN",

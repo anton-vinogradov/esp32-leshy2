@@ -8,14 +8,14 @@
     "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
     "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
     "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "663ccf90cbc2135873f651296d4ba3962eaed5810dd5e834beebe7e8745112fa"
+    "hardware/ecad/generated/H2-RF-root-interface.json": "5671ccb8124364aa46173c4759832a45ffa541658063b94db06cd342d3ec1cd0"
   },
   "summary": {
     "ledger_instances": 61,
     "schematic_symbols": 61,
     "board_fitted_symbols": 59,
     "external_cell_interface_symbols": 2,
-    "hierarchical_interfaces": 8,
+    "hierarchical_interfaces": 14,
     "physical_package_or_interface_contacts": 198,
     "board_physical_pads": 194,
     "pack_gauge_package_pads": 25,
@@ -605,33 +605,7 @@
     "pack_gauge.ZVC",
     "pack_system_diode.NC"
   ],
-  "known_deferred_fixture_labels": [
-    {
-      "endpoint": "pack_supply_or.A2",
-      "net": "PACK_FIXTURE_3V3",
-      "label_uuid": "45ebc739-b60c-57ca-af44-ac5c20f7dbe2"
-    },
-    {
-      "endpoint": "pack_admission.PA17",
-      "net": "PACK_ADMISSION_UART_TX",
-      "label_uuid": "af93784a-9032-5b33-891d-cd15521f9090"
-    },
-    {
-      "endpoint": "pack_admission.PA18",
-      "net": "PACK_ADMISSION_UART_RX",
-      "label_uuid": "acc0aee0-dfc2-5cd5-87ba-4ed18342cd60"
-    },
-    {
-      "endpoint": "pack_admission.PA19_SWDIO",
-      "net": "PACK_ADMISSION_SWDIO",
-      "label_uuid": "9841e807-5984-535e-8c20-1e16cce17d82"
-    },
-    {
-      "endpoint": "pack_admission.PA20_SWCLK",
-      "net": "PACK_ADMISSION_SWCLK",
-      "label_uuid": "09a2ffac-7f45-5312-81de-705c65812094"
-    }
-  ],
+  "known_deferred_fixture_labels": [],
   "review_boundary": {
     "complete": [
       "all 61 RF02 ledger instances and all 198 physical package/interface contacts are explicit",
@@ -639,7 +613,7 @@
       "MAX17320, the common-drain FET, two slot fuses, four holder contacts, two protected cells and both NTCs are fully connected",
       "blank-device NRST, UART1 and SWD access are permanent and cannot bypass the external fail-closed hold",
       "the diagnostic load pulse is hardware-limited and non-retriggerable with a hardware refractory interval",
-      "all eight hierarchy interfaces and six intentional no-connect contacts are explicit"
+      "all fourteen hierarchy interfaces and six intentional no-connect contacts are explicit"
     ],
     "deferred": [
       "MAX17320 NVM image, checksum/readback, MSPM0 boot manager and admission thresholds in firmware/virtual/HIL phases",

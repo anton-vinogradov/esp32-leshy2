@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.3.13: производственные и диагностические test-площадки RF/power; H2.3.12 safety/evidence проведено ревью |
+| Актуальная production ECAD-схема | ▶️ H2.4: схемы display-adapter и опционального LoRa Cap; все RF/power-листы прошли ревью |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.3.13 -->
+<!-- current-substep: H2.4 -->
 
-**Точный маркер: `H2.3.13`** — реализовать и проверить производственные и
-диагностические test-площадки RF/power на `RF_60_TESTPOINTS_MANUFACTURING`.
+**Точный маркер: `H2.4`** — реализовать и проверить схемы
+сменного display-adapter и опционального Leshy LoRa Cap.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -121,7 +121,7 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     экземпляров основного устройства, 26 общих компонентов LoRa Cap и 2
     альтернативных радиомодуля; сверены 181 тело H1 и 819 схемных компонентов.
   - ✅ `H2.0.2` — четыре проекта, границы плат, rails и net naming повторно
-    сверены со всеми 1 021 строкой; четыре намеренно пустых root/test-листа
+    сверены со всеми 1 028 строками; четыре намеренно пустых root/test-листа
     классифицированы явно.
   - ✅ `H2.0.3` — проверены HW↔FW/BSP export на 125 контактов и drift checks двух репозиториев.
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта, 28 native-файлов схем
@@ -162,19 +162,19 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`: 11 точных физических
     test-площадок 1,0 мм, каждая на одной проверенной цепи, без ложного BOM/MPN;
     полная UI-иерархия прошла native KiCad review.
-- ▶️ `H2.3` — реализовать и проверить листы RF/power PCB.
-  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 дочерних листов, 133 точные межлистовые
-    цепи и 305 явных pin/label; native KiCad принял иерархию, а текущие
-    ERC-находки — точный набор пустых функциональных child-stubs.
+- ✅ `H2.3` — все листы RF/power PCB реализованы и прошли ревью.
+  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 заполненных дочерних листов, 149 точных
+    межлистовых цепей и 351 явный pin/label; native KiCad принимает
+    иерархию без child stub и отложенных fixture labels.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`: 52 точных компонента, 208 физических
     контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка,
     девять hierarchy-интерфейсов и десять объяснённых NC; native KiCad пройден.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`: 61 точный symbol, 198 физических
-    контактов корпусов/интерфейсов, полный fail-closed допуск 2S pack, восемь
+    контактов корпусов/интерфейсов, полный fail-closed допуск 2S pack, четырнадцать
     hierarchy-интерфейсов и шесть объяснённых NC; native KiCad пройден.
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`: 69 точных компонентов,
     186 физических контактов, независимые защищённые AON/main/accessory rails,
-    20 hierarchy-интерфейсов и три объяснённых NC; native KiCad пройден.
+    21 hierarchy-интерфейс и три объяснённых NC; native KiCad пройден.
   - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`: 48 точных компонентов,
     все 81 контакта SC1512-A4 и 219 физических контактов всего, референсные
     цепи regulator/clock RP2350, 51 интерфейс и 13 объяснённых NC;
@@ -184,7 +184,7 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     и RF-тракта, 33 интерфейса и два объяснённых NC; native KiCad пройден.
   - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 точных компонентов, 363
     физических контакта, независимые CC1101 data и SA518 voice power/control/RF-
-    тракты, 30 интерфейсов и 11 объяснённых NC; native KiCad review пройден.
+    тракты, 32 интерфейса и 11 объяснённых NC; native KiCad review пройден.
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 символа, 52 устанавливаемых
     компонента, 228 контактов, 27 интерфейсов и отдельные защищённые ветви
     U214/native Unit; native KiCad review пройдено.
@@ -199,8 +199,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 компонентов, 369
     контактов, явные AON supply/bypass, watchdog/latch/reset и пять каналов
     физического RF evidence; native KiCad review пройдено.
-  - ▶️ **`H2.3.13` — сейчас:** `RF_60_TESTPOINTS_MANUFACTURING`.
-- ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 физических test-
+    площадок 1,0 мм, 7 recovery-путей и 6 RF-evidence каналов;
+    полная RF/power-иерархия проходит native KiCad без stub и отложенных fixture labels.
+- ▶️ **`H2.4` — сейчас:** реализовать и проверить схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимо проверить питание, reset, boot, recovery,
   no-back-power, quiet-state и `FAULT_KILL`.
 - ⏳ `H2.6` — закрыть ERC и объяснить каждый намеренный no-connect.

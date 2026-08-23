@@ -8169,7 +8169,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "bf58b036-943b-515e-b81d-5814bbb7225c")
 	)
-	(label "PACK_ADMISSION_NRST_N"
+	(hierarchical_label "PACK_ADMISSION_NRST_N"
+		(shape bidirectional)
 		(at 114.30 55.88 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "379315a3-3290-57bd-bd34-b7c52687f435")
@@ -8184,22 +8185,26 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "70c53284-c15d-52ee-9e59-24506cdedf70")
 	)
-	(label "PACK_ADMISSION_SWCLK"
+	(hierarchical_label "PACK_ADMISSION_SWCLK"
+		(shape bidirectional)
 		(at 149.86 58.42 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "09a2ffac-7f45-5312-81de-705c65812094")
 	)
-	(label "PACK_ADMISSION_SWDIO"
+	(hierarchical_label "PACK_ADMISSION_SWDIO"
+		(shape bidirectional)
 		(at 149.86 55.88 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "9841e807-5984-535e-8c20-1e16cce17d82")
 	)
-	(label "PACK_ADMISSION_UART_RX"
+	(hierarchical_label "PACK_ADMISSION_UART_RX"
+		(shape bidirectional)
 		(at 149.86 53.34 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "acc0aee0-dfc2-5cd5-87ba-4ed18342cd60")
 	)
-	(label "PACK_ADMISSION_UART_TX"
+	(hierarchical_label "PACK_ADMISSION_UART_TX"
+		(shape bidirectional)
 		(at 149.86 50.80 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "af93784a-9032-5b33-891d-cd15521f9090")
@@ -8560,7 +8565,8 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "2ee6a205-bae2-5ecc-aca9-0b7b2c356918")
 	)
-	(label "PACK_FIXTURE_3V3"
+	(hierarchical_label "PACK_FIXTURE_3V3"
+		(shape bidirectional)
 		(at 114.30 170.18 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "45ebc739-b60c-57ca-af44-ac5c20f7dbe2")

@@ -121,10 +121,10 @@ target/emulator gate ещё не закрыты, ни один заказ не �
 <details open>
 <summary><strong>⭐ Текущая фаза H2 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H2.3.13 -->
+<!-- current-substep: H2.4 -->
 
-**Точный маркер: `H2.3.13`** — реализовать и проверить производственные и
-диагностические test-площадки RF/power на `RF_60_TESTPOINTS_MANUFACTURING`.
+**Точный маркер: `H2.4`** — реализовать и проверить схемы
+сменного display-adapter и опционального Leshy LoRa Cap.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 028 схемных строк.
@@ -132,7 +132,7 @@ target/emulator gate ещё не закрыты, ни один заказ не �
 - ✅ `H2.0.3` — проверены HW↔FW/BSP-контракт и drift checks двух репозиториев.
 - ✅ `H2.1` — созданы четыре независимых KiCad-проекта и 28 native-листов.
 - ✅ `H2.2` — проведено ревью всех десяти листов UI/control PCB.
-- ▶️ `H2.3` — реализуются листы RF/power PCB.
+- ✅ `H2.3` — все 12 функциональных листов RF/power PCB реализованы и прошли ревью.
   - ✅ `H2.3.1` — `RF_00_ROOT`.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`.
@@ -154,8 +154,10 @@ target/emulator gate ещё не закрыты, ни один заказ не �
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 компонентов и 369
     контактов, явные AON power/bypass, аппаратные watchdog/latch/reset и пять
     независимых каналов физического RF evidence; проведено ревью.
-  - ▶️ **`H2.3.13` — сейчас:** `RF_60_TESTPOINTS_MANUFACTURING`.
-- ⏳ `H2.4` — схемы display-adapter и LoRa Cap.
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 физических
+    test-площадок, 7 recovery-путей и 6 RF-evidence каналов;
+    без покупных деталей, stub и отложенных fixture labels; проведено ревью.
+- ▶️ **`H2.4` — сейчас:** схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимое ревью power/boot/recovery/quiet-state/`FAULT_KILL`.
 - ⏳ `H2.6` — закрытие ERC и всех намеренных NC.
 - ⏳ `H2.7` — сверка схемы с H1, M1 и firmware F2.

@@ -7,18 +7,18 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
     "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/H2-sheet-contract.json": "7f7dd1aa2722eed83d1c9a7a65c3635c16463a29fd8149d0afdfa0cef324ca33"
+    "hardware/ecad/H2-sheet-contract.json": "6adabe1a49ae9bcc7171a46e1de11cf68e240dd4e13226f0896998c6ae8fc60a"
   },
   "summary": {
     "child_sheet_count": 12,
-    "cross_sheet_net_count": 133,
-    "root_hierarchical_pin_count": 305,
-    "child_hierarchical_label_count": 305,
+    "cross_sheet_net_count": 149,
+    "root_hierarchical_pin_count": 351,
+    "child_hierarchical_label_count": 351,
     "known_child_stub_erc_violations": 0,
-    "implemented_child_sheet_count": 11,
-    "circuit_symbols_placed": 626,
-    "known_generated_library_copy_warnings": 626,
-    "known_deferred_fixture_erc_violations": 13,
+    "implemented_child_sheet_count": 12,
+    "circuit_symbols_placed": 656,
+    "known_generated_library_copy_warnings": 656,
+    "known_deferred_fixture_erc_violations": 0,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -39,10 +39,16 @@
     },
     {
       "id": "RF_02_PACK_SAFETY_AON",
-      "interface_count": 8,
+      "interface_count": 14,
       "interfaces": [
         "3V3_MAIN",
+        "PACK_ADMISSION_NRST_N",
+        "PACK_ADMISSION_SWCLK",
+        "PACK_ADMISSION_SWDIO",
+        "PACK_ADMISSION_UART_RX",
+        "PACK_ADMISSION_UART_TX",
         "PACK_ADMISSION_VDD",
+        "PACK_FIXTURE_3V3",
         "POWER_COMMAND_OFF_N",
         "POWER_GROUND",
         "PROTECTED_PACK_POSITIVE",
@@ -53,7 +59,7 @@
     },
     {
       "id": "RF_03_MAIN_RAILS_DOMAIN_GATES",
-      "interface_count": 20,
+      "interface_count": 21,
       "interfaces": [
         "3V3_MAIN",
         "5V_EXT_PREPROTECT",
@@ -63,6 +69,7 @@
         "EV_N8_LORA_EXT",
         "EXT_ANY_5V_EN_SAFE",
         "EXT_ANY_5V_REQ",
+        "MAIN_RAW_3V3_PG_N",
         "NVDC_SYS",
         "POR_N",
         "POWER_FAULT_N",
@@ -175,7 +182,7 @@
     },
     {
       "id": "RF_32_SUBGHZ_VOICE",
-      "interface_count": 30,
+      "interface_count": 32,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -204,9 +211,11 @@
         "VOICE_HL_RELEASE_REQ",
         "VOICE_MIC_SELECTED_MAIN",
         "VOICE_PTT_SAFE_N",
+        "VOICE_RAW_4V_PG_N",
         "VOICE_RF_SAMPLE",
         "VOICE_UART_RX",
-        "VOICE_UART_TX"
+        "VOICE_UART_TX",
+        "VOICE_UPDATE_FIXTURE"
       ]
     },
     {
@@ -326,9 +335,10 @@
     },
     {
       "id": "RF_50_TX_SAFETY_EVIDENCE",
-      "interface_count": 63,
+      "interface_count": 70,
       "interfaces": [
         "3V3_MAIN",
+        "ANY_TX_AON_N",
         "AON_PG_N",
         "AON_SAFE_3V3",
         "C5_RF_TX_EVIDENCE_N",
@@ -337,6 +347,7 @@
         "CC_PWR_EN",
         "CC_PWR_EN_SAFE",
         "CC_RF_SAMPLE",
+        "EVIDENCE_MASK_INT_N_TP",
         "EV_N0_S3",
         "EV_N1_C5",
         "EV_N2_NRF0",
@@ -380,7 +391,12 @@
         "RP_RESET_N",
         "RUN_PERMIT",
         "S3_RESET_KILL_GATE",
+        "SAFETY_CONTROLLER_NRST_N",
         "SAFETY_GROUND",
+        "SAFETY_SERVICE_UART_RX",
+        "SAFETY_SERVICE_UART_TX",
+        "SAFETY_SWCLK",
+        "SAFETY_SWDIO",
         "SYS_I2C_SCL",
         "SYS_I2C_SDA",
         "UI_ZONE_TEMP_ADC",
@@ -395,8 +411,39 @@
     },
     {
       "id": "RF_60_TESTPOINTS_MANUFACTURING",
-      "interface_count": 0,
-      "interfaces": []
+      "interface_count": 30,
+      "interfaces": [
+        "3V3_MAIN",
+        "ANY_TX_AON_N",
+        "AON_SAFE_3V3",
+        "EVIDENCE_MASK_INT_N_TP",
+        "EV_N2_NRF0",
+        "EV_N3_NRF1",
+        "EV_N4_NRF2",
+        "EV_N5_CC",
+        "EV_N6_VOICE",
+        "EV_N8_LORA_EXT",
+        "MAIN_RAW_3V3_PG_N",
+        "PACK_ADMISSION_NRST_N",
+        "PACK_ADMISSION_SWCLK",
+        "PACK_ADMISSION_SWDIO",
+        "PACK_ADMISSION_UART_RX",
+        "PACK_ADMISSION_UART_TX",
+        "PACK_FIXTURE_3V3",
+        "POWER_FAULT_N",
+        "POWER_GROUND",
+        "POWER_ZONE_TEMP_ADC",
+        "RF_ZONE_TEMP_ADC",
+        "RP_RESET_N",
+        "RUN_PERMIT",
+        "SAFETY_CONTROLLER_NRST_N",
+        "SAFETY_SERVICE_UART_RX",
+        "SAFETY_SERVICE_UART_TX",
+        "SAFETY_SWCLK",
+        "SAFETY_SWDIO",
+        "VOICE_RAW_4V_PG_N",
+        "VOICE_UPDATE_FIXTURE"
+      ]
     }
   ],
   "nets": [
@@ -412,7 +459,8 @@
         "RF_35_REAR_CONTROLS",
         "RF_36_AUDIO_IO_AMP",
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -427,6 +475,13 @@
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "ANY_TX_AON_N",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -445,7 +500,8 @@
         "RF_32_SUBGHZ_VOICE",
         "RF_34_U214_M5_EXT",
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -569,6 +625,13 @@
       ]
     },
     {
+      "name": "EVIDENCE_MASK_INT_N_TP",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
       "name": "EV_N0_S3",
       "sheets": [
         "RF_40_INTERBOARD_M1",
@@ -586,35 +649,40 @@
       "name": "EV_N2_NRF0",
       "sheets": [
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
       "name": "EV_N3_NRF1",
       "sheets": [
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
       "name": "EV_N4_NRF2",
       "sheets": [
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
       "name": "EV_N5_CC",
       "sheets": [
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
       "name": "EV_N6_VOICE",
       "sheets": [
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -629,7 +697,8 @@
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -658,6 +727,13 @@
       "sheets": [
         "RF_40_INTERBOARD_M1",
         "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "MAIN_RAW_3V3_PG_N",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -907,10 +983,52 @@
       ]
     },
     {
+      "name": "PACK_ADMISSION_NRST_N",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "PACK_ADMISSION_SWCLK",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "PACK_ADMISSION_SWDIO",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "PACK_ADMISSION_UART_RX",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "PACK_ADMISSION_UART_TX",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
       "name": "PACK_ADMISSION_VDD",
       "sheets": [
         "RF_02_PACK_SAFETY_AON",
         "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "PACK_FIXTURE_3V3",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -934,7 +1052,8 @@
         "RF_32_SUBGHZ_VOICE",
         "RF_34_U214_M5_EXT",
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -950,14 +1069,16 @@
         "RF_35_REAR_CONTROLS",
         "RF_36_AUDIO_IO_AMP",
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
       "name": "POWER_ZONE_TEMP_ADC",
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -985,7 +1106,8 @@
       "name": "RF_ZONE_TEMP_ADC",
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -1006,14 +1128,16 @@
       "name": "RP_RESET_N",
       "sheets": [
         "RF_30_RP2354_CORE_SERVICE",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
       "name": "RUN_PERMIT",
       "sheets": [
         "RF_40_INTERBOARD_M1",
-        "RF_50_TX_SAFETY_EVIDENCE"
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -1073,6 +1197,13 @@
       ]
     },
     {
+      "name": "SAFETY_CONTROLLER_NRST_N",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
       "name": "SAFETY_GROUND",
       "sheets": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -1081,6 +1212,34 @@
         "RF_34_U214_M5_EXT",
         "RF_40_INTERBOARD_M1",
         "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "SAFETY_SERVICE_UART_RX",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "SAFETY_SERVICE_UART_TX",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "SAFETY_SWCLK",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
+      "name": "SAFETY_SWDIO",
+      "sheets": [
+        "RF_50_TX_SAFETY_EVIDENCE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
       ]
     },
     {
@@ -1350,6 +1509,13 @@
       ]
     },
     {
+      "name": "VOICE_RAW_4V_PG_N",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
+    },
+    {
       "name": "VOICE_RF_SAMPLE",
       "sheets": [
         "RF_32_SUBGHZ_VOICE",
@@ -1369,6 +1535,13 @@
         "RF_30_RP2354_CORE_SERVICE",
         "RF_32_SUBGHZ_VOICE"
       ]
+    },
+    {
+      "name": "VOICE_UPDATE_FIXTURE",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_60_TESTPOINTS_MANUFACTURING"
+      ]
     }
   ],
   "rules": {
@@ -1377,7 +1550,7 @@
     "no_hidden_cross_sheet_globals": true,
     "no_no_connect_aggregation": true,
     "root_is_component_free": true,
-    "root_page": "A0 portrait; all sheet bodies and 133 net rails remain inside the page",
+    "root_page": "A0 portrait; all sheet bodies and 149 net rails remain inside the page",
     "implemented_children_are_preserved": [
       "RF_01_USB_PD_CHARGE",
       "RF_02_PACK_SAFETY_AON",
@@ -1389,20 +1562,19 @@
       "RF_35_REAR_CONTROLS",
       "RF_36_AUDIO_IO_AMP",
       "RF_40_INTERBOARD_M1",
-      "RF_50_TX_SAFETY_EVIDENCE"
+      "RF_50_TX_SAFETY_EVIDENCE",
+      "RF_60_TESTPOINTS_MANUFACTURING"
     ]
   },
   "review_boundary": {
     "complete": [
       "all twelve RF/power child sheets are instantiated by the KiCad root",
-      "all 133 derived cross-sheet nets are represented by 305 explicit named pins and child labels",
+      "all 149 derived cross-sheet nets are represented by 351 explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
       "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
-      "native KiCad accepts the hierarchy with the exact remaining component-empty child-stub set"
+      "native KiCad accepts the complete hierarchy with no child stubs or deferred fixture labels"
     ],
     "deferred": [
-      "functional circuit symbols and exact electrical sheet-pin directions in H2.3.2-H2.3.13",
-      "each exact child-stub finding disappears as its functional circuit sheet is placed",
       "final full-project ERC closure in H2.6",
       "all PCB placement, routing, fabrication and purchasing"
     ]

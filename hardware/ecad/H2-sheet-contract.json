@@ -54,7 +54,7 @@
       "UI_00_ROOT": "hierarchy and named sheet interfaces only",
       "UI_60_TESTPOINTS_MANUFACTURING": "eleven reviewed physical PCB-copper test-point symbols terminate exact implemented nets in H2.2.10",
       "RF_00_ROOT": "hierarchy and named sheet interfaces only",
-      "RF_60_TESTPOINTS_MANUFACTURING": "virtual/physical test-point symbols are added with the implemented nets in H2.3"
+      "RF_60_TESTPOINTS_MANUFACTURING": "thirty reviewed physical PCB-copper test-point symbols terminate exact implemented nets in H2.3.13"
     },
     "rule": "Every inventory row has exactly one project, physical-board disposition and owning functional sheet; alternative LoRa modules are distinct assembly variants, not simultaneously fitted parts."
   },
@@ -125,7 +125,37 @@
     {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_C5_SERVICE_VBUS_SENSE","net":"C5_SERVICE_VBUS_SENSE_ONLY","owner_sheet":"UI_20_C5_RADIO_IR_SERVICE","purpose":"high-impedance service-cable attach diagnosis without a power path"},
     {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_C5_GPIO27_FIXED_HIGH","net":"C5_GPIO27_FIXED_HIGH","owner_sheet":"UI_20_C5_RADIO_IR_SERVICE","purpose":"read-only fixed-high strap observation"},
     {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_SLOW_IO_RESET_N","net":"SLOW_IO_RESET_N","owner_sheet":"UI_12_CONTROLS_INDICATORS","purpose":"protected fixture reset and recovery diagnosis for the main slow-I/O expander"},
-    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_LCD_BACKLIGHT_FAULT_N","net":"LCD_BACKLIGHT_FAULT_N","owner_sheet":"UI_11_DISPLAY_TOUCH_STORAGE","purpose":"latched display-backlight fault diagnosis"}
+    {"project":"LESHY2-UI","test_sheet":"UI_60_TESTPOINTS_MANUFACTURING","id":"TP_LCD_BACKLIGHT_FAULT_N","net":"LCD_BACKLIGHT_FAULT_N","owner_sheet":"UI_11_DISPLAY_TOUCH_STORAGE","purpose":"latched display-backlight fault diagnosis"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_FIXTURE_3V3","net":"PACK_FIXTURE_3V3","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"current-limited pack-admission fixture supply"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_UART_TX","net":"PACK_ADMISSION_UART_TX","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller service UART transmit"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_UART_RX","net":"PACK_ADMISSION_UART_RX","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller service UART receive"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_SWDIO","net":"PACK_ADMISSION_SWDIO","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller SWD data and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_SWCLK","net":"PACK_ADMISSION_SWCLK","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller SWD clock and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_NRST","net":"PACK_ADMISSION_NRST_N","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller reset assertion and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_MAIN_RAW_PG_N","net":"MAIN_RAW_3V3_PG_N","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"raw main-converter power-good diagnosis"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_UPDATE","net":"VOICE_UPDATE_FIXTURE","owner_sheet":"RF_32_SUBGHZ_VOICE","purpose":"voice-module controlled update fixture signal"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_RAW_PG_N","net":"VOICE_RAW_4V_PG_N","owner_sheet":"RF_32_SUBGHZ_VOICE","purpose":"raw voice-converter power-good diagnosis"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EVIDENCE_MASK_INT_N","net":"EVIDENCE_MASK_INT_N_TP","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"evidence-mask interrupt observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SAFETY_UART_TX","net":"SAFETY_SERVICE_UART_TX","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent safety-controller service UART transmit"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SAFETY_UART_RX","net":"SAFETY_SERVICE_UART_RX","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent safety-controller service UART receive"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SAFETY_SWDIO","net":"SAFETY_SWDIO","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent safety-controller SWD data and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SAFETY_SWCLK","net":"SAFETY_SWCLK","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent safety-controller SWD clock and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SAFETY_NRST","net":"SAFETY_CONTROLLER_NRST_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent safety-controller reset assertion and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N2","net":"EV_N2_NRF0","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24-0 physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N3","net":"EV_N3_NRF1","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24-1 physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N4","net":"EV_N4_NRF2","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24-2 physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N5","net":"EV_N5_CC","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"CC1101 physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N6","net":"EV_N6_VOICE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"VHF/UHF voice physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EV_N8","net":"EV_N8_LORA_EXT","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"LoRa/extension physical-TX evidence calibration and fault injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_ANY_TX_AON_N","net":"ANY_TX_AON_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"always-on aggregate physical-TX evidence observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_POWER_TEMP","net":"POWER_ZONE_TEMP_ADC","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"power-zone thermal-channel injection and observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RF_TEMP","net":"RF_ZONE_TEMP_ADC","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"RF-zone thermal-channel injection and observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RP_RESET_N","net":"RP_RESET_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"RP2354 reset/kill-path observation and assertion"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RUN_PERMIT","net":"RUN_PERMIT","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"hardware run-permit latch observation only"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_POWER_FAULT_N","net":"POWER_FAULT_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"qualified aggregate power-fault diagnosis"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_POWER_GROUND","net":"POWER_GROUND","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"fixture power-ground reference"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_AON_SAFE_3V3","net":"AON_SAFE_3V3","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"always-on safety-rail voltage diagnosis"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_3V3_MAIN","net":"3V3_MAIN","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"main 3.3-V rail voltage diagnosis"}
   ],
   "cross_project_contracts": [
     {

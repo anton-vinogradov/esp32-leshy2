@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.3.13`.
+**Статус:** ▶️ сейчас, точный маркер `H2.4`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,8 +43,8 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB, RF/power root и первых одиннадцати
-  функциональных RF child-листов; текущий — производственный test-лист.
+- Проведено ревью всей UI/control PCB и всех двенадцати RF/power
+  child-листов; текущие — схемы display-adapter и LoRa Cap.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -57,7 +57,7 @@
   native KiCad.
 - [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch)
   содержит 116 компонентов и 363 физических контакта: независимые CC1101 data
-  и SA518 voice power/control/RF-тракты, 30 интерфейсов и 11 явных NC;
+  и SA518 voice power/control/RF-тракты, 32 интерфейса и 11 явных NC;
   [машинное ревью](../hardware/ecad/generated/H2-RF32-subghz-voice.json) проходит
   native KiCad. Посадка SA518 остаётся честно ограниченным H5 land-fit gate.
 - [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch)
@@ -86,7 +86,12 @@
   закрывает явные AON supply/bypass, единый RUN/KILL, независимые
   watchdog/latch/reset и пять каналов физического RF evidence; native KiCad
   проходит с 22 точными намеренными NC.
-- Текущая работа — производственные и диагностические test-площадки RF/power.
+- [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch)
+  выводит 30 точных медных площадок 1,0 мм без покупного MPN и BOM-
+  строк. [Машинное ревью](../hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json)
+  покрывает 7 recovery-путей, 6 RF-evidence каналов, thermal, RUN/FAULT и
+  rail references; native KiCad принимает полную RF-иерархию без child stub и
+  отложенных fixture labels.
 
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка

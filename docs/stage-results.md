@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.3.13`.
+**Status:** ▶️ current, exact marker `H2.4`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -43,8 +43,8 @@ are satisfied.
   content and status.
 - [Complete instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- The complete UI/control PCB, RF/power root and first eleven functional RF
-  child sheets are reviewed; the manufacturing-test sheet is current.
+- The complete UI/control PCB and all twelve RF/power child sheets are reviewed;
+  the display-adapter and LoRa-Cap sheets are current.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   contains 48 exact components, all 81 SC1512-A4 package contacts, the official
   core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit
@@ -57,7 +57,7 @@ are satisfied.
   passes native KiCad.
 - [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch)
   contains 116 components and 363 physical contacts: independent CC1101 data
-  and SA518 voice power/control/RF paths, 30 interfaces and 11 explicit
+  and SA518 voice power/control/RF paths, 32 interfaces and 11 explicit
   no-connects; its [machine review](../hardware/ecad/generated/H2-RF32-subghz-voice.json)
   passes native KiCad. The SA518 footprint remains an honest H5 land-fit gate.
 - [`RF_34_U214_M5_EXT`](../hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch)
@@ -86,7 +86,12 @@ are satisfied.
   closes explicit AON supply/bypass, maintained RUN/KILL, independent
   watchdog/latch/reset and five physical-RF evidence channels; native KiCad
   passes with 22 exact intentional NCs.
-- RF/power manufacturing and diagnostic test points are now active work.
+- [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch)
+  exposes 30 exact 1.0-mm copper pads with no purchased MPN or BOM line. Its
+  [machine review](../hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json)
+  covers 7 recovery paths, 6 RF-evidence channels, thermal, RUN/FAULT and rail
+  references; native KiCad passes the complete RF hierarchy with no child
+  stubs or deferred fixture labels.
 
 <a id="h3"></a>
 ## H3 · Virtual electrical verification

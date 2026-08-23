@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.13: RF/power manufacturing and diagnostic test points; H2.3.12 safety/evidence is reviewed |
+| Current production ECAD schematic | ▶️ H2.4: display-adapter and optional LoRa-Cap sheets; all RF/power sheets are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.13 -->
+<!-- current-substep: H2.4 -->
 
-**Exact marker: `H2.3.13`** — implement and review RF/power manufacturing and
-diagnostic test points on `RF_60_TESTPOINTS_MANUFACTURING`.
+**Exact marker: `H2.4`** — implement and review the replaceable display-adapter
+and optional Leshy LoRa Cap schematics.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -119,7 +119,7 @@ Current H2 execution:
     circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
     181 H1 bodies and all 819 schematic-only main-device parts are reconciled.
   - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
-    rechecked against all 1,021 inventory rows; four intentionally component-empty
+    rechecked against all 1,028 inventory rows; four intentionally component-empty
     root/test sheets are explicitly classified.
   - ✅ `H2.0.3` — generated 125-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
@@ -159,19 +159,19 @@ Current H2 execution:
   - ✅ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`: 11 exact physical
     1.0-mm test pads, each on one reviewed net with no false BOM/MPN entry;
     complete UI hierarchy passed native KiCad review.
-- ▶️ `H2.3` — implement and review RF/power PCB sheets.
-  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 child sheets, 133 exact cross-sheet nets
-    and 305 explicit pins/labels; native KiCad accepted the hierarchy and its
-    current ERC findings are the exact component-empty child-stub set.
+- ✅ `H2.3` — all RF/power PCB sheets implemented and reviewed.
+  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 populated child sheets, 149 exact
+    cross-sheet nets and 351 explicit pins/labels; native KiCad accepts the
+    hierarchy with no child stubs or deferred fixture labels.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`: 52 exact components, 208 physical
     package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, nine
     hierarchy interfaces and ten explained NC contacts; native KiCad passed.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`: 61 exact symbols, 198 physical
-    package/interface contacts, complete fail-closed 2S admission, eight
+    package/interface contacts, complete fail-closed 2S admission, fourteen
     hierarchy interfaces and six explained NC contacts; native KiCad passed.
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`: 69 exact components,
     186 physical contacts, independent protected AON/main/accessory rails,
-    20 hierarchy interfaces and three explained NC contacts; native KiCad passed.
+    21 hierarchy interfaces and three explained NC contacts; native KiCad passed.
   - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`: 48 exact components,
     all 81 SC1512-A4 contacts and 219 total physical contacts, official
     RP2350 regulator/clock circuits, 51 interfaces and 13 explained NCs;
@@ -181,7 +181,7 @@ Current H2 execution:
     and RF paths, 33 interfaces and two explained NCs; native KiCad passed.
   - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 exact components, 363 physical
     contacts, independent CC1101 data and SA518 voice power/control/RF paths,
-    30 interfaces and 11 explained NCs; native KiCad review passed.
+    32 interfaces and 11 explained NCs; native KiCad review passed.
   - ✅ `H2.3.8` — `RF_34_U214_M5_EXT`: 53 symbols, 52 board-fitted
     components, 228 contacts, 27 interfaces and separate protected U214/native
     Unit branches; native KiCad review passed.
@@ -196,8 +196,10 @@ Current H2 execution:
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 components, 369
     contacts, explicit AON supply/bypass, watchdog/latch/reset and five
     physical-RF evidence channels; native KiCad review passed.
-  - ▶️ **`H2.3.13` — current:** `RF_60_TESTPOINTS_MANUFACTURING`.
-- ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 physical 1.0-mm
+    test pads, 7 recovery paths and 6 RF-evidence channels; complete RF/power
+    hierarchy passes native KiCad with no child stubs or deferred fixture labels.
+- ▶️ **`H2.4` — current:** implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,
   no-back-power, quiet-state and `FAULT_KILL` paths.
 - ⏳ `H2.6` — close ERC and justify every intentional no-connect.

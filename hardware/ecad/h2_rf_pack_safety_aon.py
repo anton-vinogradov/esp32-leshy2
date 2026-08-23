@@ -319,11 +319,12 @@ def build() -> tuple[dict[Path, str], dict]:
         spec = next(row for row in specs if row["instance"] == instance)
         pin = next(row for row in spec["pins"] if row.contact == contact)
         net = endpoints[(instance, contact)]
-        deferred_fixture_labels.append({
-            "endpoint": endpoint,
-            "net": net,
-            "label_uuid": stable_uuid(f"label:{instance}:{pin.number}:{net}"),
-        })
+        if net not in interfaces:
+            deferred_fixture_labels.append({
+                "endpoint": endpoint,
+                "net": net,
+                "label_uuid": stable_uuid(f"label:{instance}:{pin.number}:{net}"),
+            })
     lines += [
         "\t(sheet_instances", '\t\t(path "/"', '\t\t\t(page "1")', "\t\t)", "\t)",
         "\t(embedded_fonts no)", ")", "",
@@ -376,7 +377,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "MAX17320, the common-drain FET, two slot fuses, four holder contacts, two protected cells and both NTCs are fully connected",
                 "blank-device NRST, UART1 and SWD access are permanent and cannot bypass the external fail-closed hold",
                 "the diagnostic load pulse is hardware-limited and non-retriggerable with a hardware refractory interval",
-                "all eight hierarchy interfaces and six intentional no-connect contacts are explicit",
+                "all fourteen hierarchy interfaces and six intentional no-connect contacts are explicit",
             ],
             "deferred": [
                 "MAX17320 NVM image, checksum/readback, MSPM0 boot manager and admission thresholds in firmware/virtual/HIL phases",
@@ -394,7 +395,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
         "ledger_instances": 61, "schematic_symbols": 61,
         "board_fitted_symbols": 59, "external_cell_interface_symbols": 2,
-        "hierarchical_interfaces": 8,
+        "hierarchical_interfaces": 14,
         "physical_package_or_interface_contacts": 198, "board_physical_pads": 194,
         "pack_gauge_package_pads": 25, "admission_mcu_package_pins": 20,
         "pack_fet_package_pads": 9, "diagnostic_timer_package_pads": 17,
@@ -407,7 +408,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 61:
         raise ValueError("RF02 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 8:
+    if schematic.count("\n\t(hierarchical_label \"") != 14:
         raise ValueError("RF02 hierarchy accounting mismatch")
     expected_nc = {
         "pack_admission.PA27", "pack_admission.PA30",
@@ -416,10 +417,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     }
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:
         raise ValueError(f"RF02 no-connect set drifted: {manifest['intentional_no_connect_endpoints']}")
-    expected_fixture_endpoints = {
-        "pack_supply_or.A2", "pack_admission.PA17", "pack_admission.PA18",
-        "pack_admission.PA19_SWDIO", "pack_admission.PA20_SWCLK",
-    }
+    expected_fixture_endpoints = set()
     if {
         row["endpoint"] for row in manifest["known_deferred_fixture_labels"]
     } != expected_fixture_endpoints:

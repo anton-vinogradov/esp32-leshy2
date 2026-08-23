@@ -284,6 +284,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 ("safety_controller", "PA19_SWDIO", "15", "SAFETY_SWDIO"),
                 ("safety_controller", "PA20_SWCLK", "16", "SAFETY_SWCLK"),
             )
+            if net not in interfaces
         ],
         "footprint_evidence": [
             {"mpn": devices[key]["mpn"], "footprint": footprint,
@@ -329,7 +330,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
         "ledger_instances": 97, "schematic_symbols": 97,
-        "board_fitted_symbols": 97, "hierarchical_interfaces": 63,
+        "board_fitted_symbols": 97, "hierarchical_interfaces": 70,
         "physical_contacts": 369, "rf_detector_channels": 5,
         "comparator_channels": 5, "independent_watchdogs": 2,
         "tx_gate_packages": 3, "evidence_mask_inputs": 9,
@@ -341,7 +342,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 97:
         raise ValueError("RF50 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 63:
+    if schematic.count("\n\t(hierarchical_label \"") != 70:
         raise ValueError("RF50 hierarchy interface accounting mismatch")
     for row in manifest["instances"]:
         if not row["footprint"]:
@@ -363,7 +364,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     forbidden_nc_suffixes = (".VCC", ".VDD", ".GND", ".VSS", ".EPAD", ".PA19_SWDIO", ".PA20_SWCLK")
     if any(row.endswith(forbidden_nc_suffixes) for row in manifest["intentional_no_connect_endpoints"]):
         raise ValueError("RF50 left a power, exposed-pad or safety-debug contact unconnected")
-    if len(manifest["known_deferred_fixture_labels"]) != 5:
+    if manifest["known_deferred_fixture_labels"]:
         raise ValueError("RF50 safety-controller fixture boundary accounting drifted")
     switch = generated[FOOTPRINT_DIR / "JS102011SCQN.kicad_mod"]
     for number, x in (("1", "-2.500"), ("2", "0.000"), ("3", "2.500")):

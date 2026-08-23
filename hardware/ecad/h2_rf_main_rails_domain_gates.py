@@ -261,10 +261,11 @@ def build() -> tuple[dict[Path, str], dict]:
         spec = next(row for row in specs if row["instance"] == instance)
         pin = next(row for row in spec["pins"] if row.contact == contact)
         net = endpoints[(instance, contact)]
-        deferred_fixture_labels.append({
-            "endpoint": endpoint, "net": net,
-            "label_uuid": stable_uuid(f"label:{instance}:{pin.number}:{net}"),
-        })
+        if net not in interfaces:
+            deferred_fixture_labels.append({
+                "endpoint": endpoint, "net": net,
+                "label_uuid": stable_uuid(f"label:{instance}:{pin.number}:{net}"),
+            })
 
     lines += [
         "\t(sheet_instances", '\t\t(path "/"', '\t\t\t(page "1")', "\t\t)", "\t)",
@@ -317,7 +318,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "AON eFuse exposed pad is explicit and both HotRod eFuses expose all ten real package contacts",
                 "TPS259470 AUXOFF is correctly treated as an unused open-drain output rather than a fast-off input",
                 "main PG and all qualified accessory current, thermal and voltage faults share one POWER_FAULT_N aggregate",
-                "all twenty hierarchy interfaces and three intentional no-connect contacts are explicit",
+                "all twenty-one hierarchy interfaces and three intentional no-connect contacts are explicit",
             ],
             "deferred": [
                 "the single raw main-converter PG diagnostic pad is instantiated by RF60",
@@ -334,7 +335,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
         "ledger_instances": 69, "schematic_symbols": 69,
-        "board_fitted_symbols": 69, "hierarchical_interfaces": 20,
+        "board_fitted_symbols": 69, "hierarchical_interfaces": 21,
         "physical_package_contacts": 186, "aon_buck_package_pins": 8,
         "aon_efuse_package_pads": 7, "main_efuse_package_pads": 10,
         "external_efuse_package_pads": 10, "independent_switchmode_domains": 3,
@@ -346,12 +347,12 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 69:
         raise ValueError("RF03 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 20:
+    if schematic.count("\n\t(hierarchical_label \"") != 21:
         raise ValueError("RF03 hierarchy accounting mismatch")
     expected_nc = {"aon_buck.FB_VSET", "ext_efuse.AUXOFF", "ext_evidence_buffer.NC"}
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:
         raise ValueError(f"RF03 no-connect set drifted: {manifest['intentional_no_connect_endpoints']}")
-    if {row["endpoint"] for row in manifest["known_deferred_fixture_labels"]} != {"main_buck.PG"}:
+    if manifest["known_deferred_fixture_labels"]:
         raise ValueError("RF03 deferred fixture-boundary set drifted")
     for row in manifest["instances"]:
         if not row["footprint"]:

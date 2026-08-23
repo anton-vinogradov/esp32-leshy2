@@ -8,13 +8,13 @@
     "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
     "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
     "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "663ccf90cbc2135873f651296d4ba3962eaed5810dd5e834beebe7e8745112fa"
+    "hardware/ecad/generated/H2-RF-root-interface.json": "5671ccb8124364aa46173c4759832a45ffa541658063b94db06cd342d3ec1cd0"
   },
   "summary": {
     "ledger_instances": 69,
     "schematic_symbols": 69,
     "board_fitted_symbols": 69,
-    "hierarchical_interfaces": 20,
+    "hierarchical_interfaces": 21,
     "physical_package_contacts": 186,
     "aon_buck_package_pins": 8,
     "aon_efuse_package_pads": 7,
@@ -659,13 +659,7 @@
     "ext_efuse.AUXOFF",
     "ext_evidence_buffer.NC"
   ],
-  "known_deferred_fixture_labels": [
-    {
-      "endpoint": "main_buck.PG",
-      "net": "MAIN_RAW_3V3_PG_N",
-      "label_uuid": "9fcc9ba4-31fb-5336-86ef-7c5d6a7e79cf"
-    }
-  ],
+  "known_deferred_fixture_labels": [],
   "review_boundary": {
     "complete": [
       "all 69 RF03 ledger instances and all 186 physical package contacts are explicit",
@@ -673,7 +667,7 @@
       "AON eFuse exposed pad is explicit and both HotRod eFuses expose all ten real package contacts",
       "TPS259470 AUXOFF is correctly treated as an unused open-drain output rather than a fast-off input",
       "main PG and all qualified accessory current, thermal and voltage faults share one POWER_FAULT_N aggregate",
-      "all twenty hierarchy interfaces and three intentional no-connect contacts are explicit"
+      "all twenty-one hierarchy interfaces and three intentional no-connect contacts are explicit"
     ],
     "deferred": [
       "the single raw main-converter PG diagnostic pad is instantiated by RF60",

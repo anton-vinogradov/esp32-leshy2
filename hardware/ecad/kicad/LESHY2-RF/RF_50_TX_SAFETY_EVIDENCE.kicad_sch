@@ -13333,7 +13333,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "c2043a0a-3c09-59cb-8cae-696473d77a74")
 	)
-	(label "ANY_TX_AON_N"
+	(hierarchical_label "ANY_TX_AON_N"
+		(shape bidirectional)
 		(at 543.56 78.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "22abcc07-30a4-5748-a799-71fbe2ac4878")
@@ -13746,7 +13747,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "2257fda3-3541-5dad-b951-2cd3772c6d5b")
 	)
-	(label "EVIDENCE_MASK_INT_N_TP"
+	(hierarchical_label "EVIDENCE_MASK_INT_N_TP"
+		(shape bidirectional)
 		(at 27.94 190.50 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "e5dbcc22-a5b9-50a4-be58-57195a9a9958")
@@ -14595,7 +14597,8 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "566747d4-054c-5f0c-8dd8-65d4cefe7bb6")
 	)
-	(label "SAFETY_CONTROLLER_NRST_N"
+	(hierarchical_label "SAFETY_CONTROLLER_NRST_N"
+		(shape bidirectional)
 		(at 508.00 73.66 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "92b771ff-1d89-5f23-a634-859600d9545b")
@@ -15036,22 +15039,26 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "35e6a1bc-0222-5d5a-88c0-77e4d9af6b5f")
 	)
-	(label "SAFETY_SERVICE_UART_RX"
+	(hierarchical_label "SAFETY_SERVICE_UART_RX"
+		(shape bidirectional)
 		(at 543.56 71.12 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "de7dc999-35e4-5fe6-978c-571d2fed4254")
 	)
-	(label "SAFETY_SERVICE_UART_TX"
+	(hierarchical_label "SAFETY_SERVICE_UART_TX"
+		(shape bidirectional)
 		(at 543.56 68.58 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "1e26b3fe-aabd-5b4f-b15b-3ab284ee6e9c")
 	)
-	(label "SAFETY_SWCLK"
+	(hierarchical_label "SAFETY_SWCLK"
+		(shape bidirectional)
 		(at 543.56 76.20 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "b9754071-1771-578f-9a56-319c2cd9a273")
 	)
-	(label "SAFETY_SWDIO"
+	(hierarchical_label "SAFETY_SWDIO"
+		(shape bidirectional)
 		(at 543.56 73.66 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "48afc3fd-c2d8-5a8a-a773-c273b8fb28c4")

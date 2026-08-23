@@ -13,7 +13,7 @@
     "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
     "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "7f7dd1aa2722eed83d1c9a7a65c3635c16463a29fd8149d0afdfa0cef324ca33"
+    "hardware/ecad/H2-sheet-contract.json": "6adabe1a49ae9bcc7171a46e1de11cf68e240dd4e13226f0896998c6ae8fc60a"
   },
   "integration_contract": {
     "schema": 2,

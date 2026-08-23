@@ -334,11 +334,12 @@ def build() -> tuple[dict[Path, str], dict]:
         spec = next(row for row in specs if row["instance"] == instance)
         pin = next(row for row in spec["pins"] if row.contact == contact)
         net = endpoints[(instance, contact)]
-        deferred_fixture_labels.append({
-            "endpoint": endpoint,
-            "net": net,
-            "label_uuid": stable_uuid(f"label:{instance}:{pin.number}:{net}"),
-        })
+        if net not in interfaces:
+            deferred_fixture_labels.append({
+                "endpoint": endpoint,
+                "net": net,
+                "label_uuid": stable_uuid(f"label:{instance}:{pin.number}:{net}"),
+            })
 
     lines += [
         "\t(sheet_instances", '\t\t(path "/"', '\t\t\t(page "1")', "\t\t)", "\t)",
@@ -417,7 +418,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "review_boundary": {
             "complete": [
-                "all 116 RF32 ledger instances, 363 physical contacts, 30 hierarchy interfaces and eleven intentional NC contacts are explicit",
+                "all 116 RF32 ledger instances, 363 physical contacts, 32 hierarchy interfaces and eleven intentional NC contacts are explicit",
                 "CC1101 and SA518 have independent command, power, RF, ESD and actual-transmit sample paths",
                 "primary TI, NiceRF, TTM, Infineon, Nexperia and GCT sources determine the selected bodies and physical contacts",
                 "native KiCad parses RF32 in the live RF/power hierarchy with every remaining finding machine-accounted",
@@ -440,13 +441,13 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "ledger_instances": 116,
         "schematic_symbols": 116,
         "board_fitted_symbols": 116,
-        "hierarchical_interfaces": 30,
+        "hierarchical_interfaces": 32,
         "physical_package_contacts": 363,
         "cc1101_package_contacts": 21,
         "sa518_module_contacts": 20,
         "independent_rf_paths": 2,
         "intentional_no_connect_pins": 11,
-        "known_deferred_fixture_boundaries": 2,
+        "known_deferred_fixture_boundaries": 0,
         "custom_footprints": 3,
         "pcb_files_created": 0,
     }
@@ -455,7 +456,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 116:
         raise ValueError("RF32 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 30:
+    if schematic.count("\n\t(hierarchical_label \"") != 32:
         raise ValueError("RF32 hierarchy accounting mismatch")
     expected_nc = {
         "cc_balun.DNC_5", "cc_balun.DNC_6", "cc_host_buffer.4Y",
@@ -465,9 +466,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     }
     if set(manifest["intentional_no_connect_endpoints"]) != expected_nc:
         raise ValueError(f"RF32 no-connect set drifted: {manifest['intentional_no_connect_endpoints']}")
-    if {row["endpoint"] for row in manifest["known_deferred_fixture_labels"]} != {
-        "voice.UPDATE", "voice_buck.PG"
-    }:
+    if manifest["known_deferred_fixture_labels"]:
         raise ValueError("RF32 deferred fixture-boundary set drifted")
     for row in manifest["instances"]:
         if not row["footprint"]:
