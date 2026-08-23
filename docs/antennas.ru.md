@@ -10,7 +10,7 @@
 
 | Подпись на устройстве | Профиль | Антенна первого выбора | В комплекте | Разъём антенны |
 |---|---|---|---:|---|
-| `WI-FI/BLE` | 2,4/5 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
+| `WI-FI/BLE` | 2,4 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
 | `WI-FI/15.4` | 2,4/5 ГГц | [TE `001-0012`](https://www.te.com/en/product-001-0012.html) | 1 | RP-SMA male |
 | `nRF24-1` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
 | `nRF24-2` | 2,4 ГГц | [Ebyte `TX2400-JW-5`](https://www.ebyte.com/product/495.html) | 1 | SMA male |
