@@ -32,6 +32,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/roadmap.ru.md",
         "docs/physical-source-register.md",
         "docs/physical-source-register.ru.md",
+        "docs/stage-results.md",
+        "docs/stage-results.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -51,7 +53,7 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/status", "docs/stages",
             ):
                 self.assertNotIn(forbidden, page, f"{name}: {forbidden}")
-            if "roadmap" not in name and not name.startswith("README"):
+            if not any(token in name for token in ("roadmap", "stage-results")) and not name.startswith("README"):
                 self.assertNotIn("проведено ревью", page, name)
 
     def test_roadmap_reports_current_truth_and_complete_route(self):
@@ -1208,6 +1210,22 @@ class ProductSiteTests(unittest.TestCase):
         }
         self.assertEqual(5, len(note_text))
         self.assertGreaterEqual(min(note_text.values()) - rear_right, 40.0)
+        service_buttons = {
+            node.attrib["data-instance"]: node
+            for node in service.iter(f"{namespace}rect")
+            if node.attrib.get("data-recessed") == "true"
+        }
+        service_labels = {
+            node.attrib["data-instance"]: node
+            for node in service.iter(f"{namespace}text")
+            if node.attrib.get("data-role") == "service-control-label"
+        }
+        self.assertEqual(set(service_buttons), set(service_labels))
+        for instance, label in service_labels.items():
+            button = service_buttons[instance]
+            button_centre = float(button.attrib["y"]) + float(button.attrib["height"]) / 2
+            label_centre = float(label.attrib["y"]) - float(label.attrib["font-size"]) / 3
+            self.assertAlmostEqual(button_centre, label_centre, places=1, msg=instance)
 
         internal = ET.fromstring(self.read("docs/images/internal-board-layout.svg"))
         internal_text = list(internal.iter(f"{namespace}text"))
@@ -1251,7 +1269,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual([75.0, 150.0], package["front"]["board_outline_mm"])
         self.assertEqual([75.0, 150.0], package["rear"]["board_outline_mm"])
         self.assertEqual(
-            {"text": "Леший", "position_mm": [37.5, 99.5], "font_size_px_at_drawing_scale": 8.5},
+            {"text": "Леший", "position_mm": [37.5, 99.5], "font_size_px_at_drawing_scale": 10.5},
             package["front"]["product_silkscreen"],
         )
         self.assertEqual(
@@ -1566,7 +1584,7 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=17", page)
+            self.assertIn("current-clamshell.svg?layout=19", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
             self.assertIn("internal-board-layout.svg?layout=18", page)
             self.assertIn("sandwich-section.svg?layout=11", page)
@@ -1790,8 +1808,11 @@ class ProductSiteTests(unittest.TestCase):
         ):
             self.assertIn(token, layout)
 
-    def test_landing_pages_show_all_layout_views_and_principle_diagrams_inline(self):
-        for name in ("README.md", "README.ru.md"):
+    def test_landing_pages_show_all_layout_views_and_link_exact_principle_diagrams(self):
+        for name, schematics in (
+            ("README.md", "docs/schematics.md"),
+            ("README.ru.md", "docs/schematics.ru.md"),
+        ):
             landing = self.read(name)
             for image in (
                 "docs/images/current-clamshell.svg",
@@ -1802,9 +1823,10 @@ class ProductSiteTests(unittest.TestCase):
                 "docs/images/top-edge-view.svg",
             ):
                 self.assertIn(image, landing, name)
-            self.assertGreaterEqual(landing.count("```mermaid"), 10, name)
-            self.assertIn("HMX035CTFT-001", landing, name)
-            self.assertIn("C&K JS102011SCQN", landing, name)
+            self.assertEqual(0, landing.count("```mermaid"), name)
+            self.assertIn(schematics, landing, name)
+            self.assertIn("docs/pinout", landing, name)
+            self.assertIn("docs/interconnect", landing, name)
 
     def test_navigation_cluster_uses_only_series_controls(self):
         drawing = self.read("docs/images/navigation-cluster.svg")

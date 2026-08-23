@@ -2657,28 +2657,31 @@ These sheets do not yet authorize PCB placement, routing or fabrication."""
 def render_readme_schematics(
     current: str, database: dict[str, Any], candidates: list[dict[str, Any]], *, russian: bool
 ) -> str:
-    """Keep the complete split principle-diagram set visible on the landing page."""
+    """Keep a compact, generated route from the landing page to exact diagrams."""
 
     begin = "<!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->"
     end = "<!-- END GENERATED PRINCIPLE DIAGRAMS -->"
     if begin not in current or end not in current:
         raise ValueError("README is missing generated principle-diagram markers")
-    section = render_target_principled_section(database, candidates, russian=russian)
-    section = section.rsplit("\n\n", 1)[0]
-    old_heading = "## Принципиальный дизайн решения" if russian else "## Principled solution design"
-    new_heading = "## Принципиальные связи компонентов" if russian else "## Principle component interconnections"
-    section = section.replace(old_heading, new_heading, 1)
     if russian:
-        footer = (
-            "Точные контакты показаны в [распиновке](docs/pinout.ru.md), а прохождение "
-            "сигналов между платами — в [карте M1](docs/interconnect.ru.md)."
+        section = (
+            "## ⭐ Принципиальные схемы и электрическая реализация\n\n"
+            "Принципиальные схемы устройства остаются частью сайта, но вынесены из "
+            "главной страницы в [читаемый комплект по функциональным доменам]"
+            "(docs/schematics.ru.md). Рядом доступны [точная распиновка]"
+            "(docs/pinout.ru.md), [карта межплатного M1](docs/interconnect.ru.md) и "
+            "[описание аппаратной архитектуры](docs/hardware.ru.md)."
         )
     else:
-        footer = (
-            "Exact contacts are in the [pin assignment](docs/pinout.md), while signals "
-            "crossing the two boards are in the [M1 map](docs/interconnect.md)."
+        section = (
+            "## ⭐ Principle diagrams and electrical implementation\n\n"
+            "The device principle diagrams remain part of the site, but the landing "
+            "page now routes to a [readable functional-domain atlas](docs/schematics.md). "
+            "The [exact pin assignment](docs/pinout.md), [inter-board M1 map]"
+            "(docs/interconnect.md) and [hardware architecture](docs/hardware.md) are "
+            "published alongside it."
         )
-    generated = f"{begin}\n\n{section}\n\n{footer}\n\n{end}"
+    generated = f"{begin}\n\n{section}\n\n{end}"
     start = current.index(begin)
     finish = current.index(end, start) + len(end)
     return current[:start] + generated + current[finish:]

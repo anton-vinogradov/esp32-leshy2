@@ -228,8 +228,13 @@ flowchart TD
 ```
 
 Evidence-component ordering is allowed at H5 after its separate cost approval.
-Prototype PCB submission is allowed at H7 after H6 acceptance and explicit
-order approval. A production order is possible only after H9.
+Firmware F3 is a mandatory H4 input: target skeletons for all five domains,
+image-size/rollback gates, available S3 QEMU and portable/host models for
+targets without exact emulators must run before layout and fabrication.
+Prototype PCB submission is allowed at H7 only after H6 acceptance, inherited
+F3 closure through H4 and explicit order approval. Emulation does not replace
+physical bring-up, but fabrication cannot be the first execution of the code.
+A production order is possible only after H9.
 
 ## Complete hardware path
 
@@ -242,7 +247,7 @@ order approval. A production order is possible only after H9.
 | **H4. Joined pre-layout gate** | 🔒 Waiting for H1–H3 and firmware F3 | One review of mechanics, production ECAD, electrical evidence and target-visible contracts | No virtually testable blocker remains; target skeletons consume the real contract; every residual physical uncertainty has a named measurement and bring-up test |
 | **H5. Component evidence samples** | 🔒 Waiting for H4 and separate cost approval | Minimum evidence purchase, not a production basket | Received display, U214, connectors and radios are identified and measured; connector mating and critical stack-up fit are proven; raw records are retained; mismatch reopens its source stage |
 | **H6. PCB placement and routing** | 🔒 Waiting for H5 | Two real boards implementing the accepted schematic and mechanics | Both-side placement review; DRC; impedance and return-current review; RF isolation, antenna feeds, thermal copper, creepage, test points, assembly and manufacturability pass; fab package is separately accepted |
-| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
+| **H7. Prototype fabrication and bring-up** | 🔒 Waiting for H6, inherited firmware F3 and order approval | Small prototype PCB lot and retained bring-up log | Rails sequence correctly; all five controllers program and recover; interfaces, display, storage, audio, radio and expansion pass smoke tests; every rework is reflected in source |
 | **H8. Physical qualification** | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | 3×nRF24 pass `3R/1T2R/2T1R/3T`; active signals are not stalled by neighbors; inactive interfaces are physically quiet; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog and single-fault tests pass |
 | **H9. Manufacturing release** | 🔒 Waiting for H8 and firmware F11 | Reproducible hardware manufacturing and test package paired with released firmware | Zero blocker; residual risks accepted; BOM, Gerber/ODB++, placement, assembly, fixture, calibration and hardware tests agree; firmware bundle and both compatible release tags are named |
 

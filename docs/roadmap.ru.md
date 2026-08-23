@@ -231,8 +231,13 @@ flowchart TD
 ```
 
 Заказ проверочных компонентов разрешается на H5 после отдельного одобрения
-стоимости. Подача прототипных PCB в печать разрешается на H7 после принятия H6
-и явного одобрения заказа. Production-заказ возможен только после H9.
+стоимости. Firmware F3 является обязательным входом H4: до layout и печати
+уже должны собираться target-skeleton образы пяти доменов, пройти
+size/rollback gates, доступный S3 QEMU и portable/host-модели для targets без
+точного эмулятора. Подача прототипных PCB в печать разрешается на H7 только
+после принятия H6, унаследованного закрытия F3 через H4 и явного одобрения
+заказа. Эмуляция не заменяет физический bring-up, но печать не может быть
+первым запуском кода. Production-заказ возможен только после H9.
 
 ## Полный аппаратный путь
 
@@ -245,7 +250,7 @@ flowchart TD
 | **H4. Объединённый pre-layout gate** | 🔒 Ожидает H1–H3 и firmware F3 | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
 | **H5. Образцы компонентов** | 🔒 Ожидает H4 и отдельное одобрение стоимости | Минимальная доказательная закупка, а не production basket | Полученные display, U214, connectors и radios идентифицированы и измерены; доказаны mating и критический stack-up; raw records сохранены; расхождение повторно открывает исходный этап |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
-| **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6 и одобрение заказа | Небольшая партия прототипных PCB и сохранённый bring-up log | Rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
+| **H7. Печать прототипа и bring-up** | 🔒 Ожидает H6, унаследованный firmware F3 и одобрение заказа | Небольшая партия прототипных PCB и сохранённый bring-up log | Rails запускаются по контракту; все пять контроллеров прошиваются и восстанавливаются; интерфейсы, display, storage, audio, radio и expansion проходят smoke tests; каждый rework отражён в исходниках |
 | **H8. Физическая квалификация** | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | 3×nRF24 проходят `3R/1T2R/2T1R/3T`; активные сигналы не тормозятся соседями; выключенные интерфейсы физически тихие; coexistence, antenna/VNA, endurance, charge, handover, thermal, watchdog и single-fault tests пройдены |
 | **H9. Производственный release** | 🔒 Ожидает H8 и firmware F11 | Воспроизводимый аппаратный manufacturing/test package, связанный с выпущенной прошивкой | Ноль blocker; residual risks приняты; BOM, Gerber/ODB++, placement, assembly, fixture, calibration и hardware tests согласованы; названы firmware bundle и оба совместимых release tags |
 

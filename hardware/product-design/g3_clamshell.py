@@ -157,7 +157,7 @@ FRONT_FACE_INDICATORS = (
     ("fault_led", "FAULT", 68.3, 111.0),
 )
 OUTER_FACE_PRODUCT_MARKS = (
-    ("front", "Леший", 37.5, 99.5, 8.5),
+    ("front", "Леший", 37.5, 99.5, 10.5),
     ("rear", "ESP32-LESHY2", 37.5, 136.0, 7.5),
 )
 
@@ -2584,6 +2584,35 @@ def validate() -> list[str]:
         element.attrib.get("data-recessed") != "true" for element in recessed_buttons
     ) or len(protective_recesses) != 6:
         errors.append("all six external recovery buttons require a protective recessed pocket")
+    service_labels = {
+        element.attrib.get("data-instance"): element
+        for element in service_root.iter("{http://www.w3.org/2000/svg}text")
+        if element.attrib.get("data-role") == "service-control-label"
+    }
+    service_buttons = {
+        element.attrib.get("data-instance"): element for element in recessed_buttons
+    }
+    if set(service_labels) != set(EXTERNAL_SERVICE_BUTTONS):
+        errors.append("all six external recovery buttons require one machine-bound silk label")
+    else:
+        for instance, label_node in service_labels.items():
+            button_node = service_buttons[instance]
+            button_box = tuple(
+                float(button_node.attrib[key]) for key in ("x", "y", "width", "height")
+            )
+            label_box = text_bounds_px(label_node)
+            # Four drawing pixels are intentionally more conservative than
+            # the visible gap needed at the final silkscreen scale.
+            expanded_button = (
+                button_box[0] - 4.0, button_box[1] - 4.0,
+                button_box[2] + 8.0, button_box[3] + 8.0,
+            )
+            if overlaps(label_box, expanded_button):
+                errors.append(f"{instance}: service silk lacks clearance to the recessed switch")
+            label_visual_centre = float(label_node.attrib["y"]) - float(label_node.attrib["font-size"]) / 3
+            button_centre = button_box[1] + button_box[3] / 2
+            if abs(label_visual_centre - button_centre) > 0.11:
+                errors.append(f"{instance}: service silk is not vertically centred on its switch")
     for token in (
         'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',
         'id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer"',
@@ -3105,9 +3134,15 @@ def render_service_access(devices, instances):
             f'L{actuator_x:.1f} {sy(origin, centre_y):.1f}" '
             'stroke="#dc2626" stroke-width="1.5" marker-end="url(#service-arrow)"/>'
         )
+        # SVG text uses a baseline, not a visual centre.  Keep the baseline a
+        # fixed font-derived offset below the switch centre so left- and
+        # right-edge labels remain optically centred beside their actuators.
+        label_baseline = sy(origin, centre_y) + 7.2 / 3
         out.append(
-            text(label_x, sy(origin, centre_y - 2.2), silk, 7.2, "bold", anchor, "#5b21b6").replace(
-                "<text ", '<text data-layer="pcb-silkscreen" ', 1
+            text(label_x, label_baseline, silk, 7.2, "bold", anchor, "#5b21b6").replace(
+                "<text ",
+                f'<text data-layer="pcb-silkscreen" data-role="service-control-label" data-instance="{instance}" ',
+                1,
             )
         )
 

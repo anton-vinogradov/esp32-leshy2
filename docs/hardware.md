@@ -286,9 +286,9 @@ The machine-readable source for this table is
 It authorizes H2 schematic work only; PCB placement/routing and purchasing
 remain unauthorized.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=17)
+![Dimensioned external layout](images/current-clamshell.svg?layout=19)
 
-![External service access: three USB ports and six recovery buttons](images/service-access.svg?layout=1)
+![External service access: three USB ports and six recovery buttons](images/service-access.svg?layout=3)
 
 ![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
 

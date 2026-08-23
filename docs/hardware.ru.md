@@ -289,9 +289,9 @@ H5-evidence. Все механически значимые корпуса — �
 Он разрешает только работу над схемой H2; PCB placement/routing и закупка
 остаются запрещены.
 
-![Размерная внешняя компоновка](images/current-clamshell.svg?layout=17)
+![Размерная внешняя компоновка](images/current-clamshell.svg?layout=19)
 
-![Внешний сервисный доступ: три USB и шесть кнопок восстановления](images/service-access.svg?layout=1)
+![Внешний сервисный доступ: три USB и шесть кнопок восстановления](images/service-access.svg?layout=3)
 
 ![Размерный серийный блок навигации](images/navigation-cluster.svg?layout=1)
 
