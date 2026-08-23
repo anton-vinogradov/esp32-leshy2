@@ -14,10 +14,10 @@
     "cross_sheet_net_count": 91,
     "root_hierarchical_pin_count": 218,
     "child_hierarchical_label_count": 218,
-    "known_child_stub_erc_violations": 36,
-    "implemented_child_sheet_count": 3,
-    "circuit_symbols_placed": 153,
-    "known_generated_library_copy_warnings": 153,
+    "known_child_stub_erc_violations": 20,
+    "implemented_child_sheet_count": 4,
+    "circuit_symbols_placed": 255,
+    "known_generated_library_copy_warnings": 255,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -977,7 +977,8 @@
     "implemented_children_are_preserved": [
       "UI_10_S3_CORE_MEMORY_BOOT",
       "UI_11_DISPLAY_TOUCH_STORAGE",
-      "UI_12_CONTROLS_INDICATORS"
+      "UI_12_CONTROLS_INDICATORS",
+      "UI_13_AUDIO_CODEC_HEADSET"
     ],
     "generated_library_copy_warning_proof": "the controlled and embedded symbol definitions are generated from one object; validation requires one lib_symbol_mismatch per generated symbol and rejects every other mismatch/finding"
   },

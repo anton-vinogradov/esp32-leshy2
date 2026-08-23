@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.2.5: codec и CTIA headset audio; UI root и H2.2.2–H2.2.4 проверены |
+| Актуальная production ECAD-схема | ▶️ H2.2.6: native-radio C5, IR и service; UI root и H2.2.2–H2.2.5 проверены |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.2.5 -->
+<!-- current-substep: H2.2.6 -->
 
-**Точный маркер: `H2.2.5`** — реализовать и проверить точные цепи codec и
-CTIA headset audio на `UI_13_AUDIO_CODEC_HEADSET`.
+**Точный маркер: `H2.2.6`** — реализовать и проверить точные цепи native-radio
+C5, IR и внешнего service на `UI_20_C5_RADIO_IR_SERVICE`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -130,8 +130,8 @@ CTIA headset audio на `UI_13_AUDIO_CODEC_HEADSET`.
 - `H2.2` — реализовать и проверить листы UI/control PCB.
   - ✅ `H2.2.1` — `UI_00_ROOT`: девять дочерних листов, 91 точная межлистовая
     цепь и 218 явных pins/labels; одна прямая root-rail на цепь, без скрытых
-    global labels, native parse KiCad пройден. После заполнения UI10–UI12
-    машинно учтены 36 finding пустых child-stubs и 153 предупреждения о копиях
+    global labels, native parse KiCad пройден. После заполнения UI10–UI13
+    машинно учтены 20 finding пустых child-stubs и 255 предупреждений о копиях
     сгенерированных символов.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 точных компонента реестра плюс
     символ границы встроенного U.FL модуля, все 41 carrier-контакт S3, 39 hierarchy-
@@ -143,8 +143,11 @@ CTIA headset audio на `UI_13_AUDIO_CODEC_HEADSET`.
     кнопок B3S-1100P, 45 hierarchy-интерфейсов, девять actual-TX LED, один
     аппаратный FAULT LED, три custom-footprint и три объяснённых no-connect;
     native KiCad review пройден.
-  - ▶️ **`H2.2.5` — сейчас:** `UI_13_AUDIO_CODEC_HEADSET`.
-  - ⏳ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`.
+  - ✅ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`: 102 точных компонента, все 21
+    контакт ES8311, шесть контактов CTIA jack, пять аналоговых селекторов, шесть
+    устройств digital isolation/gate, 24 hierarchy-интерфейса и восемь
+    объяснённых no-connect; native KiCad review пройден.
+  - ▶️ **`H2.2.6` — сейчас:** `UI_20_C5_RADIO_IR_SERVICE`.
   - ⏳ `H2.2.7` — `UI_21_FM_AM_RECEIVER`.
   - ⏳ `H2.2.8` — `UI_40_INTERBOARD_M1`.
   - ⏳ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`.

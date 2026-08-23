@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.5 -->
+<!-- current-substep: H2.2.6 -->
 
-**Exact marker: `H2.2.5`** — implement and review the exact codec and CTIA
-headset-audio circuitry on `UI_13_AUDIO_CODEC_HEADSET`.
+**Exact marker: `H2.2.6`** — implement and review the exact C5 native-radio,
+IR and external-service circuitry on `UI_20_C5_RADIO_IR_SERVICE`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -54,9 +54,12 @@ headset-audio circuitry on `UI_13_AUDIO_CODEC_HEADSET`.
   - ✅ `H2.2.4` — reviewed 71 exact control/indicator components: 15 serial
     switches, slow/matrix I/O, thermal/ESD paths, nine actual-TX LEDs, the
     hardware FAULT LED, 45 hierarchy interfaces and three explained NC pins.
-  - ▶️ **`H2.2.5` — current:** codec and CTIA headset audio.
-  - ⏳ `H2.2.6–H2.2.10` — C5/IR;
-    receiver; M1; TX safety; manufacturing/test points, in that order.
+  - ✅ `H2.2.5` — reviewed 102 exact codec/headset components: all 21 ES8311
+    contacts, the six-contact CTIA jack, five analog selectors, power/interface
+    isolation, 24 hierarchy interfaces and eight explained NC pins.
+  - ▶️ **`H2.2.6` — current:** C5 native radio, IR and service paths.
+  - ⏳ `H2.2.7–H2.2.10` — receiver; M1; TX safety;
+    manufacturing/test points, in that order.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, boot, recovery, quiet-state and

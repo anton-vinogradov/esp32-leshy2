@@ -30,10 +30,10 @@ target-прогонов в эмуляторах ещё нет, ни один з�
 
 ### Текущая фаза H2 — детальная позиция
 
-<!-- current-substep: H2.2.5 -->
+<!-- current-substep: H2.2.6 -->
 
-**Точный маркер: `H2.2.5`** — реализовать и проверить точные цепи codec и
-CTIA headset audio на `UI_13_AUDIO_CODEC_HEADSET`.
+**Точный маркер: `H2.2.6`** — реализовать и проверить точные цепи native-radio
+C5, IR и внешнего service на `UI_20_C5_RADIO_IR_SERVICE`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - `H2.0` — зафиксировать авторитетные входы схемы и структуру проектов.
@@ -54,9 +54,12 @@ CTIA headset audio на `UI_13_AUDIO_CODEC_HEADSET`.
   - ✅ `H2.2.4` — проверен 71 точный компонент controls/indicators: 15 серийных
     кнопок, slow/matrix I/O, thermal/ESD, девять actual-TX LED, аппаратный
     FAULT LED, 45 hierarchy-интерфейсов и три объяснённых NC-контакта.
-  - ▶️ **`H2.2.5` — сейчас:** codec и CTIA headset audio.
-  - ⏳ `H2.2.6–H2.2.10` — C5/IR;
-    receiver; M1; TX safety; manufacturing/test points — по порядку.
+  - ✅ `H2.2.5` — проверены 102 точных компонента codec/headset: все 21 контакт
+    ES8311, шесть контактов CTIA jack, пять аналоговых селекторов,
+    power/interface isolation, 24 hierarchy-интерфейса и восемь объяснённых NC.
+  - ▶️ **`H2.2.6` — сейчас:** native-radio C5, IR и service paths.
+  - ⏳ `H2.2.7–H2.2.10` — receiver; M1; TX safety;
+    manufacturing/test points — по порядку.
 - ⏳ `H2.3` — реализовать и проверить листы RF/power PCB.
 - ⏳ `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
 - ⏳ `H2.5` — независимо проверить питание, boot, recovery, quiet-state и

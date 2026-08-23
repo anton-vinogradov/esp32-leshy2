@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.5"}, set(markers.values()))
+        self.assertEqual({"H2.2.6"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.5", plan["current_substep"])
+        self.assertEqual("H2.2.6", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -191,7 +191,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["children"][1]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][2]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][3]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][4]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][4]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][5]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
@@ -257,10 +258,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 91,
                 "root_hierarchical_pin_count": 218,
                 "child_hierarchical_label_count": 218,
-                "known_child_stub_erc_violations": 36,
-                "implemented_child_sheet_count": 3,
-                "circuit_symbols_placed": 153,
-                "known_generated_library_copy_warnings": 153,
+                "known_child_stub_erc_violations": 20,
+                "implemented_child_sheet_count": 4,
+                "circuit_symbols_placed": 255,
+                "known_generated_library_copy_warnings": 255,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -497,6 +498,64 @@ class ProductSiteTests(unittest.TestCase):
         self.assertNotIn("any_tx_led", instances)
         b3s = self.read("hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod")
         self.assertTrue(all(f'(pad "{number}"' in b3s for number in range(1, 6)))
+
+    def test_h2_2_5_exact_audio_codec_headset_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_audio_codec_headset.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI13-audio-codec-headset.json")
+        )
+        self.assertEqual("H2.2.5", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_audio_codec_headset_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 102,
+                "schematic_symbols": 102,
+                "board_fitted_symbols": 102,
+                "hierarchical_interfaces": 24,
+                "codec_contacts": 21,
+                "headset_contacts": 6,
+                "analog_selectors": 5,
+                "io_isolators_and_boot_gate": 6,
+                "custom_footprints": 1,
+                "intentional_no_connect_pins": 8,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            [
+                "codec.MCLK",
+                "codec_power_switch.NC",
+                "headphone_esd.D2_MINUS",
+                "headphone_esd.NC_10",
+                "headphone_esd.NC_6",
+                "headphone_esd.NC_7",
+                "headphone_esd.NC_9",
+                "headphone_jack.RING1_SWITCH",
+            ],
+            manifest["intentional_no_connect_endpoints"],
+        )
+        aliases = manifest["physical_net_aliases_collapsed"]
+        self.assertEqual("CODEC_DAC_OUT_P", aliases["CODEC_HP_L_RAW"])
+        self.assertEqual("3V3_CODEC_SWITCHED", aliases["CODEC_QOD"])
+        self.assertEqual("AUDIO_GROUND", aliases["HEADSET_RING2_GROUND"])
+        self.assertEqual(102, len({row["symbol_uuid"] for row in manifest["instances"]}))
+        jack = self.read(
+            "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod"
+        )
+        self.assertTrue(all(f'(pad "{number}"' in jack for number in range(1, 7)))
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json
