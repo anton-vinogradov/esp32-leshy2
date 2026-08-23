@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_01_USB_PD_CHARGE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ef0a0bd53e8577f9aa934b3a774b78ec2fcf993b524308f7f96e0dba583f6060",
+    "hardware/architecture/candidates/G2F-3I.json": "6ae79ff167e17a197258191c7ba5f6d309f1d021c600b9dbe209360dd495dab6",
     "hardware/architecture/devices.json": "618c400159127254d0fce2ecee04f97abf6d16fe7313352a665708540739c534",
     "hardware/ecad/generated/H2-instance-ledger.json": "1e7fab8e0fbb29ddeffa02d74d26e421dfeeacf1f95a9e875f4befd39521d5f5",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "81c53618b7c12f5ac560a63f5d086dd0df643f59bef2ddf550bb5a67bdd6a0df"
+    "hardware/ecad/generated/H2-RF-root-interface.json": "344bff87c8a1b5dff463c028c905b36e5e4af45846adbc656a9bd8505b915ce5"
   },
   "summary": {
     "ledger_instances": 52,

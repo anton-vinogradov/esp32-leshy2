@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.3.7`.
+**Status:** ▶️ current, exact marker `H2.3.8`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -43,7 +43,7 @@ are satisfied.
   content and status.
 - [Complete instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- The complete UI/control PCB and the first six RF/power sheets are reviewed.
+- The complete UI/control PCB and the first seven RF/power sheets are reviewed.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   contains 48 exact components, all 81 SC1512-A4 package contacts, the official
   core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit
@@ -54,7 +54,12 @@ are satisfied.
   physical contacts, three independent PIO SPI and RF paths, and two explicit
   no-connects; its [machine review](../hardware/ecad/generated/H2-RF31-nrf24-x3.json)
   passes native KiCad.
-- Independent Sub-GHz data and VHF/UHF voice paths are now active work.
+- [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch)
+  contains 116 components and 363 physical contacts: independent CC1101 data
+  and SA518 voice power/control/RF paths, 30 interfaces and 11 explicit
+  no-connects; its [machine review](../hardware/ecad/generated/H2-RF32-subghz-voice.json)
+  passes native KiCad. The SA518 footprint remains an honest H5 land-fit gate.
+- U214 Cap Bus and protected M5 Unit expansion are now active work.
 
 <a id="h3"></a>
 ## H3 · Virtual electrical verification

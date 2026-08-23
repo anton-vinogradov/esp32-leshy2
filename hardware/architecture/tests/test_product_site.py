@@ -140,7 +140,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.3.7"}, set(markers.values()))
+        self.assertEqual({"H2.3.8"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -167,7 +167,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.3.7", plan["current_substep"])
+        self.assertEqual("H2.3.8", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -211,11 +211,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][3]["children"][3]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][4]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][5]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][6]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][6]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][7]["status"])
         self.assertTrue(
             all(
                 item["status"] == "waiting"
-                for item in plan["substeps"][3]["children"][7:]
+                for item in plan["substeps"][3]["children"][8:]
             )
         )
         sheet_contract = json.loads(
@@ -407,11 +408,11 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 133,
                 "root_hierarchical_pin_count": 305,
                 "child_hierarchical_label_count": 305,
-                "known_child_stub_erc_violations": 85,
-                "implemented_child_sheet_count": 5,
-                "circuit_symbols_placed": 338,
-                "known_generated_library_copy_warnings": 338,
-                "known_deferred_fixture_erc_violations": 6,
+                "known_child_stub_erc_violations": 54,
+                "implemented_child_sheet_count": 6,
+                "circuit_symbols_placed": 454,
+                "known_generated_library_copy_warnings": 454,
+                "known_deferred_fixture_erc_violations": 8,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -736,6 +737,71 @@ class ProductSiteTests(unittest.TestCase):
             self.assertFalse(boundary["ledger_component"])
         self.assertIn("RF_31_NRF24_X3", self.read("docs/schematics.md"))
         self.assertIn("RF_31_NRF24_X3", self.read("docs/schematics.ru.md"))
+
+    def test_h2_3_7_exact_subghz_voice_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_rf_subghz_voice.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check", "--kicad-check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-RF32-subghz-voice.json")
+        )
+        self.assertEqual("H2.3.7", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_electrical_subghz_voice_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 116,
+                "schematic_symbols": 116,
+                "board_fitted_symbols": 116,
+                "hierarchical_interfaces": 30,
+                "physical_package_contacts": 363,
+                "cc1101_package_contacts": 21,
+                "sa518_module_contacts": 20,
+                "independent_rf_paths": 2,
+                "intentional_no_connect_pins": 11,
+                "known_deferred_fixture_boundaries": 2,
+                "custom_footprints": 3,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            {
+                "cc_balun.DNC_5", "cc_balun.DNC_6", "cc_host_buffer.4Y",
+                "cc_power_switch.NC", "cc_return_buffer.4Y", "voice.NC_15",
+                "voice.NC_5", "voice.NC_6", "voice.VOXEN",
+                "voice_hl_driver.NC", "voice_io_power_switch.NC",
+            },
+            set(manifest["intentional_no_connect_endpoints"]),
+        )
+        self.assertEqual(
+            {"voice.UPDATE", "voice_buck.PG"},
+            {row["endpoint"] for row in manifest["known_deferred_fixture_labels"]},
+        )
+        cc_switch = next(
+            row for row in manifest["instances"] if row["instance"] == "cc_power_switch"
+        )
+        self.assertEqual(6, cc_switch["pin_count"])
+        voice = next(row for row in manifest["instances"] if row["instance"] == "voice")
+        self.assertEqual("h5_received_module_land_fit_required", voice["footprint_status"])
+        self.assertTrue(all(row["footprint"] for row in manifest["instances"]))
+        sheet = self.read(
+            "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch"
+        )
+        self.assertEqual(116, sheet.count("\n\t(symbol\n"))
+        self.assertEqual(30, sheet.count("\n\t(hierarchical_label \""))
+        self.assertEqual(11, sheet.count("\n\t(no_connect "))
+        self.assertIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.md"))
+        self.assertIn("RF_32_SUBGHZ_VOICE", self.read("docs/schematics.ru.md"))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json

@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.3.7`.
+**Статус:** ▶️ сейчас, точный маркер `H2.3.8`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,7 +43,7 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB и первых шести RF/power-листов.
+- Проведено ревью всей UI/control PCB и первых семи RF/power-листов.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -54,7 +54,12 @@
   физических контактов, три независимых PIO SPI- и RF-тракта и два явных NC;
   [машинное ревью](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) проходит
   native KiCad.
-- Текущая работа — независимые тракты Sub-GHz data и VHF/UHF voice.
+- [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch)
+  содержит 116 компонентов и 363 физических контакта: независимые CC1101 data
+  и SA518 voice power/control/RF-тракты, 30 интерфейсов и 11 явных NC;
+  [машинное ревью](../hardware/ecad/generated/H2-RF32-subghz-voice.json) проходит
+  native KiCad. Посадка SA518 остаётся честно ограниченным H5 land-fit gate.
+- Текущая работа — U214 Cap Bus и защищённый M5 Unit expansion.
 
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка

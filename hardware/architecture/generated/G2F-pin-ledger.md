@@ -1619,6 +1619,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NRF2_RF_GROUND` | `nrf2_module_bulk_cap.END_2` | `abstract:rf-ground` | module-local bulk return |
 | `NRF2_RF_GROUND` | `nrf2_module_hf_cap.END_2` | `abstract:rf-ground` | module-local high-frequency return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_power_switch.IN` | compatibility radio receives an independent reset-off branch |
+| `POWER_GROUND` | `cc_power_switch.GND` | `abstract:power-ground` | the physical TPS22919 ground contact closes the independent CC1101 load-switch control and discharge path |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `cc_power_input_cap.END_1` | exact 1-uF switch-input bypass is local to the CC branch |
 | `POWER_GROUND` | `cc_power_input_cap.END_2` | `abstract:power-ground` | CC branch input bypass has a short local return |
 | `CC_PWR_EN_SAFE` | `safe_gate_b.1Y` | `cc_power_on_pulldown.END_1` | exact 10-kOhm reset-off pull shares the KILL/FAULT_KILL-dominant enable |

@@ -5,7 +5,7 @@
   "project": "LESHY2-RF",
   "root_sheet": "RF_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ef0a0bd53e8577f9aa934b3a774b78ec2fcf993b524308f7f96e0dba583f6060",
+    "hardware/architecture/candidates/G2F-3I.json": "6ae79ff167e17a197258191c7ba5f6d309f1d021c600b9dbe209360dd495dab6",
     "hardware/ecad/generated/H2-instance-ledger.json": "1e7fab8e0fbb29ddeffa02d74d26e421dfeeacf1f95a9e875f4befd39521d5f5",
     "hardware/ecad/H2-sheet-contract.json": "8f3b7522d7cf712bada1c9508b1ed5e4bb5f5fce2553e800fa5e20a718b10342"
   },
@@ -14,11 +14,11 @@
     "cross_sheet_net_count": 133,
     "root_hierarchical_pin_count": 305,
     "child_hierarchical_label_count": 305,
-    "known_child_stub_erc_violations": 85,
-    "implemented_child_sheet_count": 5,
-    "circuit_symbols_placed": 338,
-    "known_generated_library_copy_warnings": 338,
-    "known_deferred_fixture_erc_violations": 6,
+    "known_child_stub_erc_violations": 54,
+    "implemented_child_sheet_count": 6,
+    "circuit_symbols_placed": 454,
+    "known_generated_library_copy_warnings": 454,
+    "known_deferred_fixture_erc_violations": 8,
     "pcb_files_created": 0
   },
   "sheets": [
@@ -1383,7 +1383,8 @@
       "RF_02_PACK_SAFETY_AON",
       "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "RF_30_RP2354_CORE_SERVICE",
-      "RF_31_NRF24_X3"
+      "RF_31_NRF24_X3",
+      "RF_32_SUBGHZ_VOICE"
     ]
   },
   "review_boundary": {

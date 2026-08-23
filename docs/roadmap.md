@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.7: independent Sub-GHz data and VHF/UHF voice paths; H2.3.6 three-radio nRF24 sheet is reviewed |
+| Current production ECAD schematic | ▶️ H2.3.8: U214 Cap Bus and protected M5 Unit expansion; H2.3.7 independent CC1101/SA518 sheet is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.7 -->
+<!-- current-substep: H2.3.8 -->
 
-**Exact marker: `H2.3.7`** — implement and review the independent Sub-GHz
-data and VHF/UHF voice paths on `RF_32_SUBGHZ_VOICE`.
+**Exact marker: `H2.3.8`** — implement and review the removable U214 Cap Bus
+and protected M5 Unit expansion on `RF_34_U214_M5_EXT`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -115,11 +115,11 @@ data and VHF/UHF voice paths on `RF_32_SUBGHZ_VOICE`.
 Current H2 execution:
 
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 997-row inventory reviewed: all 969 main-device
+  - ✅ `H2.0.1` — complete 1,021-row inventory reviewed: all 993 main-device
     circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
-    181 H1 bodies and all 788 schematic-only main-device parts are reconciled.
+    181 H1 bodies and all 812 schematic-only main-device parts are reconciled.
   - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
-    rechecked against all 997 inventory rows; four intentionally component-empty
+    rechecked against all 1,021 inventory rows; four intentionally component-empty
     root/test sheets are explicitly classified.
   - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
@@ -179,8 +179,10 @@ Current H2 execution:
   - ✅ `H2.3.6` — `RF_31_NRF24_X3`: 105 exact ledger components plus three
     factory-IPEX boundaries, 311 physical contacts, three independent PIO SPI
     and RF paths, 33 interfaces and two explained NCs; native KiCad passed.
-  - ▶️ **`H2.3.7` — current:** `RF_32_SUBGHZ_VOICE`.
-  - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
+  - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 exact components, 363 physical
+    contacts, independent CC1101 data and SA518 voice power/control/RF paths,
+    30 interfaces and 11 explained NCs; native KiCad review passed.
+  - ▶️ **`H2.3.8` — current:** `RF_34_U214_M5_EXT`.
   - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.
   - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.
   - ⏳ `H2.3.11` — `RF_40_INTERBOARD_M1`.

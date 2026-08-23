@@ -176,7 +176,7 @@
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 45,
-      "expected_occurrence_count": 1197,
+      "expected_occurrence_count": 1198,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -3405,6 +3405,7 @@
     {"from":"nrf2_module_bulk_cap.END_2","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"module-local bulk return"},
     {"from":"nrf2_module_hf_cap.END_2","to":"abstract:rf-ground","net":"NRF2_RF_GROUND","safety":"module-local high-frequency return"},
     {"from":"abstract:3V3_MAIN","to":"cc_power_switch.IN","net":"3V3_MAIN","safety":"compatibility radio receives an independent reset-off branch"},
+    {"from":"cc_power_switch.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"the physical TPS22919 ground contact closes the independent CC1101 load-switch control and discharge path"},
     {"from":"abstract:3V3_MAIN","to":"cc_power_input_cap.END_1","net":"3V3_MAIN","safety":"exact 1-uF switch-input bypass is local to the CC branch"},
     {"from":"cc_power_input_cap.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"CC branch input bypass has a short local return"},
     {"from":"safe_gate_b.1Y","to":"cc_power_on_pulldown.END_1","net":"CC_PWR_EN_SAFE","safety":"exact 10-kOhm reset-off pull shares the KILL/FAULT_KILL-dominant enable"},

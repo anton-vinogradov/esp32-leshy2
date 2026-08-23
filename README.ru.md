@@ -121,10 +121,10 @@ target/emulator gate ещё не закрыты, ни один заказ не �
 <details open>
 <summary><strong>⭐ Текущая фаза H2 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H2.3.7 -->
+<!-- current-substep: H2.3.8 -->
 
-**Точный маркер: `H2.3.7`** — реализовать и проверить независимые тракты
-Sub-GHz data и VHF/UHF voice на `RF_32_SUBGHZ_VOICE`.
+**Точный маркер: `H2.3.8`** — реализовать и проверить съёмный U214 Cap Bus и
+защищённый M5 Unit expansion на `RF_34_U214_M5_EXT`.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 021 схемной строки.
@@ -139,8 +139,9 @@ Sub-GHz data и VHF/UHF voice на `RF_32_SUBGHZ_VOICE`.
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`.
   - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
   - ✅ `H2.3.6` — `RF_31_NRF24_X3`.
-  - ▶️ **`H2.3.7` — сейчас:** `RF_32_SUBGHZ_VOICE`.
-  - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
+  - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 компонентов, 363 физических
+    контакта, независимые CC1101/SA518 power, control и RF-тракты; проведено ревью.
+  - ▶️ **`H2.3.8` — сейчас:** `RF_34_U214_M5_EXT`.
   - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.
   - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.
   - ⏳ `H2.3.11` — `RF_40_INTERBOARD_M1`.

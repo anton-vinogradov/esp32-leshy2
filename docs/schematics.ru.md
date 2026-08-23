@@ -29,6 +29,7 @@
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | точный ECAD | 69 компонентов, 186 физических контактов, независимые AON/main/accessory rails, eFuse и domain gates, 20 интерфейсов и 3 объяснённых NC |
 | [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | точный ECAD | 48 компонентов, все 81 контакта SC1512-A4, референсные regulator/clock, USB/recovery, 51 интерфейс и 13 объяснённых NC |
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | точный ECAD | 105 компонентов ledger плюс 3 границы заводских IPEX, 311 физических контактов, 3 независимых PIO SPI/RF-тракта, 33 интерфейса и 2 объяснённых NC |
+| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 116 компонентов, 363 физических контакта, независимые CC1101 data и SA518 voice power/control/RF-тракты, 30 интерфейсов и 11 объяснённых NC; land-fit SA518 остаётся gate H5 |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -45,7 +46,8 @@
 [RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json) и
 [RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json),
 [ядро/service RP2354](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json) и
-[три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json).
+[три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) и
+[Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json).
 PCB placement, routing и производство этими листами ещё не разрешены.
 
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.

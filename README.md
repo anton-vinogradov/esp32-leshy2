@@ -120,10 +120,10 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>⭐ Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.3.7 -->
+<!-- current-substep: H2.3.8 -->
 
-**Exact marker: `H2.3.7`** — implement and review the independent Sub-GHz
-data and VHF/UHF voice paths on `RF_32_SUBGHZ_VOICE`.
+**Exact marker: `H2.3.8`** — implement and review the removable U214 Cap Bus
+and protected M5 Unit expansion on `RF_34_U214_M5_EXT`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,021-row circuit inventory reviewed.
@@ -138,8 +138,9 @@ data and VHF/UHF voice paths on `RF_32_SUBGHZ_VOICE`.
   - ✅ `H2.3.4` — `RF_03_MAIN_RAILS_DOMAIN_GATES`.
   - ✅ `H2.3.5` — `RF_30_RP2354_CORE_SERVICE`.
   - ✅ `H2.3.6` — `RF_31_NRF24_X3`.
-  - ▶️ **`H2.3.7` — current:** `RF_32_SUBGHZ_VOICE`.
-  - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
+  - ✅ `H2.3.7` — `RF_32_SUBGHZ_VOICE`: 116 components, 363 physical
+    contacts, independent CC1101/SA518 power, control and RF paths; reviewed.
+  - ▶️ **`H2.3.8` — current:** `RF_34_U214_M5_EXT`.
   - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.
   - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.
   - ⏳ `H2.3.11` — `RF_40_INTERBOARD_M1`.

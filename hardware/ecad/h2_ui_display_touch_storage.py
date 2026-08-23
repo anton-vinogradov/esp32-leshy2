@@ -112,6 +112,8 @@ def abstract_canonical(endpoint: str) -> str | None:
         return "POWER_GROUND"
     if endpoint.startswith("abstract:rf-ground"):
         return "POWER_GROUND"
+    if endpoint == "abstract:chassis-rf-ground":
+        return "POWER_GROUND"
     if endpoint == "abstract:audio-ground":
         return "AUDIO_GROUND"
     if endpoint == "abstract:safety-ground":

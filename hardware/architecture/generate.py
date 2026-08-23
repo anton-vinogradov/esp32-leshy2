@@ -2587,6 +2587,7 @@ def render_public_schematics(
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | точный ECAD | 69 компонентов, 186 физических контактов, независимые AON/main/accessory rails, eFuse и domain gates, 20 интерфейсов и 3 объяснённых NC |
 | [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | точный ECAD | 48 компонентов, все 81 контакта SC1512-A4, референсные regulator/clock, USB/recovery, 51 интерфейс и 13 объяснённых NC |
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | точный ECAD | 105 компонентов ledger плюс 3 границы заводских IPEX, 311 физических контактов, 3 независимых PIO SPI/RF-тракта, 33 интерфейса и 2 объяснённых NC |
+| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | точный electrical ECAD | 116 компонентов, 363 физических контакта, независимые CC1101 data и SA518 voice power/control/RF-тракты, 30 интерфейсов и 11 объяснённых NC; land-fit SA518 остаётся gate H5 |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2603,7 +2604,8 @@ def render_public_schematics(
 [RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json) и
 [RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json),
 [ядро/service RP2354](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json) и
-[три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json).
+[три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) и
+[Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2640,6 +2642,7 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | exact ECAD | 69 components, 186 physical contacts, independent AON/main/accessory rails, eFuses and domain gates, 20 interfaces and 3 explained NCs |
 | [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | exact ECAD | 48 components, all 81 SC1512-A4 contacts, official regulator/clock circuits, USB/recovery, 51 interfaces and 13 explained NCs |
 | [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | exact ECAD | 105 ledger components plus 3 factory-IPEX boundaries, 311 physical contacts, 3 independent PIO SPI/RF paths, 33 interfaces and 2 explained NCs |
+| [`RF_32_SUBGHZ_VOICE`](../hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch) | exact electrical ECAD | 116 components, 363 physical contacts, independent CC1101 data and SA518 voice power/control/RF paths, 30 interfaces and 11 explained NCs; SA518 land fit remains an H5 gate |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2656,7 +2659,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json), and
 [RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json),
 [RP2354 core/service](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json), and
-[three nRF24 paths](../hardware/ecad/generated/H2-RF31-nrf24-x3.json).
+[three nRF24 paths](../hardware/ecad/generated/H2-RF31-nrf24-x3.json), and
+[Sub-GHz/voice](../hardware/ecad/generated/H2-RF32-subghz-voice.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"
@@ -2673,7 +2677,7 @@ def render_readme_schematics(
         raise ValueError("README is missing generated principle-diagram markers")
     if russian:
         section = (
-            "## ⭐ Принципиальные схемы и электрическая реализация\n\n"
+            "## ⭐⭐ Принципиальные схемы и электрическая реализация\n\n"
             "Принципиальные схемы устройства остаются частью сайта, но вынесены из "
             "главной страницы в [читаемый комплект по функциональным доменам]"
             "(docs/schematics.ru.md). Рядом доступны [точная распиновка]"
@@ -2682,7 +2686,7 @@ def render_readme_schematics(
         )
     else:
         section = (
-            "## ⭐ Principle diagrams and electrical implementation\n\n"
+            "## ⭐⭐ Principle diagrams and electrical implementation\n\n"
             "The device principle diagrams remain part of the site, but the landing "
             "page now routes to a [readable functional-domain atlas](docs/schematics.md). "
             "The [exact pin assignment](docs/pinout.md), [inter-board M1 map]"

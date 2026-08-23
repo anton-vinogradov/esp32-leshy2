@@ -424,7 +424,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(45, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1197, policy["expected_occurrence_count"])
+        self.assertEqual(1198, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
