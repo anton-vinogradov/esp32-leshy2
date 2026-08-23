@@ -94,7 +94,7 @@ class ProductSiteTests(unittest.TestCase):
     def test_landing_page_is_a_product_front_door(self):
         expectations = {
             "README.md": (
-                "✨⭐ Leshy2 ⭐✨",
+                "⭐ Leshy2",
                 "What Leshy2 is",
                 "Target device mockup",
                 "Roadmap and current position",
@@ -102,7 +102,7 @@ class ProductSiteTests(unittest.TestCase):
                 "Stage results",
             ),
             "README.ru.md": (
-                "✨⭐ Leshy2 ⭐✨",
+                "⭐ Leshy2",
                 "Что такое Leshy2",
                 "Макет целевого устройства",
                 "Роадмап и текущая позиция",
@@ -112,7 +112,7 @@ class ProductSiteTests(unittest.TestCase):
         }
         for name, tokens in expectations.items():
             page = self.read(name)
-            self.assertGreaterEqual(page.count("⭐"), 20, name)
+            self.assertEqual(1, page.count("⭐"), name)
             self.assertIn("docs/images/current-clamshell.svg", page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")

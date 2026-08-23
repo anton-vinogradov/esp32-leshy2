@@ -2701,7 +2701,7 @@ def render_readme_schematics(
         raise ValueError("README is missing generated principle-diagram markers")
     if russian:
         section = (
-            "## ⭐⭐ Принципиальные схемы и электрическая реализация\n\n"
+            "## Принципиальные схемы и электрическая реализация\n\n"
             "Принципиальные схемы устройства остаются частью сайта, но вынесены из "
             "главной страницы в [читаемый комплект по функциональным доменам]"
             "(docs/schematics.ru.md). Рядом доступны [точная распиновка]"
@@ -2710,7 +2710,7 @@ def render_readme_schematics(
         )
     else:
         section = (
-            "## ⭐⭐ Principle diagrams and electrical implementation\n\n"
+            "## Principle diagrams and electrical implementation\n\n"
             "The device principle diagrams remain part of the site, but the landing "
             "page now routes to a [readable functional-domain atlas](docs/schematics.md). "
             "The [exact pin assignment](docs/pinout.md), [inter-board M1 map]"

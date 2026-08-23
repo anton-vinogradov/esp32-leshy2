@@ -1,16 +1,14 @@
 <div align="center">
 
-# ✨⭐ Leshy2 ⭐✨
-
-### ⭐ ⭐ ⭐ ⭐ ⭐
+# ⭐ Leshy2
 
 ### An open autonomous multi-tool for radio, communications and authorized research
 
 **2.4/5-GHz Wi‑Fi · BLE · 802.15.4 · 3× nRF24 · Sub‑GHz · VHF/UHF · FM/AM/SW/LW · IR · LoRa**
 
-[⭐ Capabilities](docs/hardware.md) · [⭐ Mockup](#-target-device-mockup) · [⭐ Schematics](docs/schematics.md) · [⭐ Roadmap](docs/roadmap.md) · [⭐ Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware) · [Русский](README.ru.md)
+[Capabilities](docs/hardware.md) · [Mockup](#target-device-mockup) · [Schematics](docs/schematics.md) · [Roadmap](docs/roadmap.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware) · [Русский](README.ru.md)
 
-⭐ **OPEN HARDWARE**　⭐ **MODULAR RF**　⭐ **FAIL-SAFE TX**　⭐ **REPAIRABLE** ⭐
+**OPEN HARDWARE**　·　**MODULAR RF**　·　**FAIL-SAFE TX**　·　**REPAIRABLE**
 
 </div>
 
@@ -21,18 +19,18 @@
 
 ![Leshy2 external faces](docs/images/current-clamshell.svg?layout=19)
 
-⭐ **Nine independent antenna paths · five compute domains · one autonomous instrument** ⭐
+**Nine independent antenna paths · five compute domains · one autonomous instrument**
 
 </div>
 
-## ⭐⭐ What Leshy2 is
+## What Leshy2 is
 
 Leshy2 is a portable open instrument for radio observation, communications,
 diagnostics and authorized security work. It brings different radio paths into
 one autonomous device while physically separating loaded buses, power domains
 and transmit safety.
 
-| ⭐ Capability | What the user gets |
+| Capability | What the user gets |
 |---|---|
 | **Three independent nRF24 radios** | Concurrent `3R`, `1T2R`, `2T1R` and `3T`, with full RX/TX/mix |
 | **Broad radio coverage** | 2.4/5-GHz Wi‑Fi, BLE, ESP‑NOW, 802.15.4, Sub‑GHz, VHF/UHF, broadcast RX and IR |
@@ -42,7 +40,7 @@ and transmit safety.
 | **Recovery access** | Independent USB, RST/BOOT and internal DBG10 for compute owners |
 | **Safety** | Quiet-state, TX evidence, watchdog, thermal shutdown and retained fault reason |
 
-## ⭐⭐ How it is built
+## How it is built
 
 Five isolatable domains split the user interface, native radio/IR,
 deterministic radio paths, battery-pack admission and independent safety
@@ -60,41 +58,41 @@ See the [hardware architecture](docs/hardware.md) and
 
 ---
 
-## ⭐⭐⭐ Target device mockup
+## Target device mockup
 
 Every view below is generated from the real envelopes of selected MPNs and one
 coordinate model. Text outside component bodies on outer PCB faces is intended
 silkscreen; inner faces carry no silkscreen.
 
-### ⭐ Outer faces
+### Outer faces
 
 The main view opens this page; the detailed service, inner and edge views follow below.
 
-### ⭐ Programming and recovery
+### Programming and recovery
 
 ![Leshy2 external service access](docs/images/service-access.svg?layout=3)
 
-### ⭐ Series navigation and replaceable display
+### Series navigation and replaceable display
 
 ![Leshy2 series navigation cluster](docs/images/navigation-cluster.svg?layout=1)
 
 ![Leshy2 replaceable display adapter](docs/images/display-adapter.svg?layout=1)
 
-### ⭐ Inner sandwich faces
+### Inner sandwich faces
 
 ![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=18)
 
-### ⭐ Antenna-edge view
+### Antenna-edge view
 
 ![Leshy2 top view from the antenna edge](docs/images/top-edge-view.svg?layout=5)
 
-### ⭐ Cross-sections
+### Cross-sections
 
 ![Leshy2 sandwich sections](docs/images/sandwich-section.svg?layout=11)
 
 ---
 
-## ⭐⭐⭐ Roadmap and current position
+## Roadmap and current position
 
 The roadmap remains on the landing page through printing/fabrication until manufacturing files are
 explicitly released. The [full roadmap](docs/roadmap.md) contains dependencies
@@ -103,9 +101,9 @@ drawings, schematics, contracts and checks.
 
 | Stage | Status | Result |
 |---|---|---|
-| H0 · Product requirements and functional architecture | ✅ Reviewed | [⭐ Open H0](docs/stage-results.md#h0) |
-| H1 · Physical product design | ✅ Reviewed | [⭐ Open H1](docs/stage-results.md#h1) |
-| **H2 · Production ECAD schematic** | **▶️ Current** | [⭐ Current H2 results](docs/stage-results.md#h2) |
+| H0 · Product requirements and functional architecture | ✅ Reviewed | [Open H0](docs/stage-results.md#h0) |
+| H1 · Physical product design | ✅ Reviewed | [Open H1](docs/stage-results.md#h1) |
+| **H2 · Production ECAD schematic** | **▶️ Current** | [Current H2 results](docs/stage-results.md#h2) |
 | H3 · Virtual electrical verification | ⏳ Waiting for H2 | [H3 plan](docs/stage-results.md#h3) |
 | H4 · Joined pre-layout gate | 🔒 Waiting for H1–H3 and firmware F3 | [H4 plan](docs/stage-results.md#h4) |
 | H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | [H5 plan](docs/stage-results.md#h5) |
@@ -118,7 +116,7 @@ drawings, schematics, contracts and checks.
 and the full target/emulator gate are not closed, and no order is authorized.
 
 <details open>
-<summary><strong>⭐ Current H2 phase — exact detailed position</strong></summary>
+<summary><strong>Current H2 phase — exact detailed position</strong></summary>
 
 <!-- current-substep: H2.4 -->
 
@@ -176,13 +174,13 @@ cannot bypass it.
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
-## ⭐⭐ Principle diagrams and electrical implementation
+## Principle diagrams and electrical implementation
 
 The device principle diagrams remain part of the site, but the landing page now routes to a [readable functional-domain atlas](docs/schematics.md). The [exact pin assignment](docs/pinout.md), [inter-board M1 map](docs/interconnect.md) and [hardware architecture](docs/hardware.md) are published alongside it.
 
 <!-- END GENERATED PRINCIPLE DIAGRAMS -->
 
-## ⭐⭐ Documentation
+## Documentation
 
 | Section | Contents |
 |---|---|
@@ -197,8 +195,6 @@ The device principle diagrams remain part of the site, but the landing page now 
 | [Stage results](docs/stage-results.md) | H0…H9 artifacts and evidence |
 
 <div align="center">
-
-### ⭐ ⭐ ⭐ ⭐ ⭐
 
 **Leshy2 — see the spectrum, understand the path, stay in control.**
 
