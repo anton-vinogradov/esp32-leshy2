@@ -108,6 +108,15 @@ RF_SOURCE_INSTANCE_BY_PATH = {
     "VOICE-V/U": "voice",
     "N24-2": "nrf2",
 }
+BOARD_RF_CABLE_TO_TRACE_HANDOFFS = frozenset(
+    {
+        "s3_rf_board_connector",
+        "c5_rf_board_connector",
+        "nrf0_rf_board_connector",
+        "nrf1_rf_board_connector",
+        "nrf2_rf_board_connector",
+    }
+)
 RF_USER_LABEL_LINES = {
     "S3-2G4": ("WI-FI/BLE", "2.4 GHz"),
     "C5-2G4/5": ("WI-FI/15.4", "2.4/5 GHz"),
@@ -2249,6 +2258,13 @@ def validate() -> list[str]:
                     errors.append(
                         f"antenna topology {guide.path}: guide enters the M2.5 keep-out at {hole}"
                     )
+    cable_fed_paths = {"S3-2G4", "C5-2G4/5", "N24-0", "N24-1", "N24-2"}
+    if {
+        guide.source_instance
+        for guide in ANTENNA_TOPOLOGY_GUIDES
+        if guide.path in cable_fed_paths
+    } != BOARD_RF_CABLE_TO_TRACE_HANDOFFS:
+        errors.append("every physical RF cable must end at one explicit cable-to-PCB handoff")
     if set(RF_USER_LABEL_LINES) != drawn_paths:
         errors.append("every antenna path must have one user-facing silkscreen label")
     antenna_planes = candidate["interboard_contract"].get("antenna_connector_planes", {})
@@ -2974,6 +2990,7 @@ def render_internal(devices, instances, display_adapter_design):
     out += [
         text(820, 102, "Antenna-to-radio map · all nine paths", 17, "bold"),
         text(820, 122, "Drawing explanation — not PCB silkscreen.", 9.5, colour="#526076"),
+        text(820, 535, "ring inside S3/C5 = built-in U.FL · numbered ring = cable-to-PCB U.FL handoff", 9.5, "bold", colour="#0f766e"),
         text(820, 562, "green = S3/C5 cable · cyan = nRF24 cable · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
         text(820, 581, "The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.", 9.2, colour="#526076"),
         text(820, 608, "UI board: S3 · FM/SW · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
@@ -3011,7 +3028,7 @@ def render_internal(devices, instances, display_adapter_design):
         )
         out.append(text(sx(rf,view_x+zone.w/2), sy(rf,zone.y+zone.h/2)+2, "CC RF REF", 5.2, "bold", "middle", "#9a3412"))
 
-    out.append('<g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">')
+    out.append('<g id="exact-native-rf-jumpers" data-medium="removable-microcoax" data-route-units="mm" data-bend-state="coupon-open">')
     for route in UI_RF_CABLES:
         route_device = devices[instances[route.instance]]
         cable_od = float(route_device["electrical_contract"]["cable_outer_diameter_mm"])
@@ -3038,7 +3055,7 @@ def render_internal(devices, instances, display_adapter_design):
         )
     out.append('</g>')
 
-    out.append('<g id="nrf-module-face-cable-reserves" data-axis-state="H5-open" data-route-units="mm">')
+    out.append('<g id="nrf-module-face-cable-reserves" data-medium="removable-microcoax" data-axis-state="H5-open" data-route-units="mm">')
     for reserve in RF_NRF_CABLE_RESERVES:
         module_x, module_y, module_w, module_h = nrf_cable_reserve_module_box(
             reserve, devices, instances
@@ -3117,6 +3134,64 @@ def render_internal(devices, instances, display_adapter_design):
             if item.instance == "speaker":
                 component_number += " · SPK"
             out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
+
+    def ufl_symbol(
+        origin: tuple[float, float],
+        centre: tuple[float, float],
+        instance: str,
+        relation: str,
+        number: int | None = None,
+    ) -> list[str]:
+        centre_x = sx(origin, mirrored_x(centre[0]))
+        centre_y = sy(origin, centre[1])
+        outer_r = 1.40 * scale
+        inner_r = 0.38 * scale
+        rendered = [
+            f'<g data-instance="{instance}" data-rf-connector="U.FL-compatible Gen1" '
+            f'data-relation="{relation}">',
+            f'<circle cx="{centre_x:.1f}" cy="{centre_y:.1f}" r="{outer_r:.1f}" '
+            f'fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>',
+            f'<circle cx="{centre_x:.1f}" cy="{centre_y:.1f}" r="{inner_r:.1f}" '
+            f'fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>',
+        ]
+        if number is not None:
+            badge_x = centre_x + outer_r * 0.78
+            badge_y = centre_y - outer_r * 0.78
+            rendered.extend(
+                [
+                    f'<circle cx="{badge_x:.1f}" cy="{badge_y:.1f}" r="3.8" '
+                    f'fill="#ffffff" stroke="#667085" stroke-width="1.0"/>',
+                    text(badge_x, badge_y + 2.2, str(number), 5.6, "bold", "middle"),
+                ]
+            )
+        rendered.append('</g>')
+        return rendered
+
+    out.append('<g id="module-integrated-rf-connectors" data-count="2" data-position-state="datasheet-exact">')
+    for route in UI_RF_CABLES:
+        module_instance = route.instance.removesuffix("_rf_jumper")
+        out += ufl_symbol(
+            ui,
+            route.points[0],
+            f"{module_instance}_integrated_ufl",
+            "module-output-and-cable-start",
+        )
+    out.append('</g>')
+
+    out.append('<g id="board-rf-cable-to-trace-handoffs" data-count="5">')
+    for origin, placements in ((ui, UI_INNER), (rf, RF_INNER)):
+        for item in placements:
+            if item.instance not in BOARD_RF_CABLE_TO_TRACE_HANDOFFS:
+                continue
+            item_w, item_h = placement_size(item, devices, instances)
+            out += ufl_symbol(
+                origin,
+                (item.x + item_w / 2, item.y + item_h / 2),
+                item.instance,
+                "physical-cable-end-and-pcb-trace-start",
+                numbers[item.instance],
+            )
+    out.append('</g>')
     arrows = []
     ui_inner_instances = {item.instance for item in UI_INNER}
     for instance, _face, side, coordinate, _ in EDGE_INTERFACES:
@@ -4339,6 +4414,22 @@ def build_unified_coordinate_table(
                 "result": "all_nine_onboard_paths_accounted_topology_only",
                 "guide_count": len(ANTENNA_TOPOLOGY_GUIDES),
                 "final_copper_status": "open_until_kicad_drc",
+                "rendered_medium_boundaries": {
+                    "exact_module_integrated_connector_instances": [
+                        "s3_integrated_ufl",
+                        "c5_integrated_ufl",
+                    ],
+                    "exact_module_integrated_connector_count": 2,
+                    "physical_cable_medium": "solid_removable_microcoax",
+                    "cable_to_pcb_handoff_instances": sorted(
+                        BOARD_RF_CABLE_TO_TRACE_HANDOFFS
+                    ),
+                    "cable_to_pcb_handoff_count": len(
+                        BOARD_RF_CABLE_TO_TRACE_HANDOFFS
+                    ),
+                    "pcb_guide_medium": "dashed_controlled_50_ohm_topology_only",
+                    "nrf_module_connector_axis": "H5_open_not_drawn_as_exact_point",
+                },
                 "guides": [
                     {
                         "path": guide.path,

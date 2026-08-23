@@ -1558,6 +1558,24 @@
       "result": "all_nine_onboard_paths_accounted_topology_only",
       "guide_count": 9,
       "final_copper_status": "open_until_kicad_drc",
+      "rendered_medium_boundaries": {
+        "exact_module_integrated_connector_instances": [
+          "s3_integrated_ufl",
+          "c5_integrated_ufl"
+        ],
+        "exact_module_integrated_connector_count": 2,
+        "physical_cable_medium": "solid_removable_microcoax",
+        "cable_to_pcb_handoff_instances": [
+          "c5_rf_board_connector",
+          "nrf0_rf_board_connector",
+          "nrf1_rf_board_connector",
+          "nrf2_rf_board_connector",
+          "s3_rf_board_connector"
+        ],
+        "cable_to_pcb_handoff_count": 5,
+        "pcb_guide_medium": "dashed_controlled_50_ohm_topology_only",
+        "nrf_module_connector_axis": "H5_open_not_drawn_as_exact_point"
+      },
       "guides": [
         {
           "path": "S3-2G4",

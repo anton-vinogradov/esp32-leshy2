@@ -78,6 +78,13 @@ the numbered board U.FL, where the real forward-power TX detector branches off
 before the outward RP-SMA. A direct cable-to-SMA path would remove that
 measurement rather than merely remove a redundant connector.
 
+The internal drawing renders those media separately. A concentric ring inside
+the S3 or C5 module is the module-integrated U.FL at its datasheet axis. A
+numbered ring is the distinct board-mounted U.FL where the solid cable stops
+and the dashed PCB guide begins. The nRF24 modules retain a whole-face cable
+head reserve instead of a fictional connector point until H5 establishes the
+current-lot IPX axis.
+
 The stock U214 provides receive and GNSS but no independent actual-RF evidence,
 so its TX remains blocked. Cap-Bus contact 5 is monitored through the exact
 5-V-tolerant `SN74LVC1G07DCKR`: stock `5V_OUT` reads inactive. The
@@ -251,7 +258,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=15)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=16)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

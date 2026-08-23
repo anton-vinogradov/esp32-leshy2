@@ -493,6 +493,11 @@ class ProductSiteTests(unittest.TestCase):
             "module · no RF land; output is built-in U.FL",
             "module · ANT1 U.FL active; ANT2 land disabled",
             "PCB re-entry · feeds TX coupler and outer RP-SMA",
+            'id="module-integrated-rf-connectors" data-count="2"',
+            'id="board-rf-cable-to-trace-handoffs" data-count="5"',
+            'data-medium="removable-microcoax"',
+            'data-medium="controlled-50-ohm-pcb"',
+            "ring inside S3/C5 = built-in U.FL",
             "outward RP-SMA · antenna screws on here",
             "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
             "complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm",
@@ -529,7 +534,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=15", page)
+            self.assertIn("internal-board-layout.svg?layout=16", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -601,6 +606,13 @@ class ProductSiteTests(unittest.TestCase):
             antenna_topology["result"],
         )
         self.assertEqual(9, antenna_topology["guide_count"])
+        medium_boundaries = antenna_topology["rendered_medium_boundaries"]
+        self.assertEqual(2, medium_boundaries["exact_module_integrated_connector_count"])
+        self.assertEqual(5, medium_boundaries["cable_to_pcb_handoff_count"])
+        self.assertEqual(
+            "H5_open_not_drawn_as_exact_point",
+            medium_boundaries["nrf_module_connector_axis"],
+        )
         self.assertEqual(
             {
                 "S3-2G4", "RX-FM/SW", "RX-AM/LW", "C5-2G4/5",

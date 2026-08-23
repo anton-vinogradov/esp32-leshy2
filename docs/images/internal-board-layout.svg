@@ -79,6 +79,7 @@
 </g>
 <text x="820.0" y="102.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Antenna-to-radio map · all nine paths</text>
 <text x="820.0" y="122.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#526076">Drawing explanation — not PCB silkscreen.</text>
+<text x="820.0" y="535.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#0f766e">ring inside S3/C5 = built-in U.FL · numbered ring = cable-to-PCB U.FL handoff</text>
 <text x="820.0" y="562.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#344054">green = S3/C5 cable · cyan = nRF24 cable · dashed blue = future 50 Ω PCB mainline</text>
 <text x="820.0" y="581.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.</text>
 <text x="820.0" y="608.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">UI board: S3 · FM/SW · AM/LW · C5</text>
@@ -130,7 +131,7 @@
 </g>
 <rect x="628.5" y="177.8" width="29.2" height="64.8" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3" data-zone-kind="selected_support_placement_zone" data-zone="cc-reference-rf-network"/>
 <text x="643.2" y="212.1" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#9a3412">CC RF REF</text>
-<g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">
+<g id="exact-native-rf-jumpers" data-medium="removable-microcoax" data-route-units="mm" data-bend-state="coupon-open">
 <polyline points="279.8,240.5 261.3,240.5 261.3,201.8 300.3,201.8 300.3,189.0 298.3,189.0" fill="none" stroke="#0f766e" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="s3_rf_jumper" data-centreline-mm="30.01"/>
 <circle cx="279.8" cy="240.5" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
 <circle cx="298.3" cy="189.0" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
@@ -140,7 +141,7 @@
 <circle cx="139.2" cy="189.0" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
 <text x="137.7" y="193.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#115e59">31</text>
 </g>
-<g id="nrf-module-face-cable-reserves" data-axis-state="H5-open" data-route-units="mm">
+<g id="nrf-module-face-cable-reserves" data-medium="removable-microcoax" data-axis-state="H5-open" data-route-units="mm">
 <rect x="660.7" y="177.8" width="44.8" height="70.7" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf0_rf_jumper" data-reserve="module-face"/>
 <polyline points="660.7,242.5 651.9,242.5 651.9,259.3" fill="none" stroke="#0891b2" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf0_rf_jumper" data-reserve="escape"/>
 <text x="651.9" y="238.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">132</text>
@@ -418,6 +419,48 @@
 <text x="655.2" y="653.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">130</text>
 <rect x="638.9" y="647.7" width="7.4" height="7.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <text x="642.6" y="654.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">131</text>
+<g id="module-integrated-rf-connectors" data-count="2" data-position-state="datasheet-exact">
+<g data-instance="s3_integrated_ufl" data-rf-connector="U.FL-compatible Gen1" data-relation="module-output-and-cable-start">
+<circle cx="279.8" cy="240.5" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="279.8" cy="240.5" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+</g>
+<g data-instance="c5_integrated_ufl" data-rf-connector="U.FL-compatible Gen1" data-relation="module-output-and-cable-start">
+<circle cx="113.3" cy="240.2" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="113.3" cy="240.2" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+</g>
+</g>
+<g id="board-rf-cable-to-trace-handoffs" data-count="5">
+<g data-instance="s3_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start">
+<circle cx="298.3" cy="189.0" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="298.3" cy="189.0" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="302.3" cy="185.0" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
+<text x="302.3" y="187.2" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">3</text>
+</g>
+<g data-instance="c5_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start">
+<circle cx="139.2" cy="189.0" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="139.2" cy="189.0" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="143.2" cy="185.0" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
+<text x="143.2" y="187.2" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">4</text>
+</g>
+<g data-instance="nrf0_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start">
+<circle cx="651.9" cy="259.3" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="651.9" cy="259.3" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="655.9" cy="255.3" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
+<text x="655.9" y="257.5" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">32</text>
+</g>
+<g data-instance="nrf1_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start">
+<circle cx="552.0" cy="259.3" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="552.0" cy="259.3" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="556.0" cy="255.3" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
+<text x="556.0" y="257.5" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">33</text>
+</g>
+<g data-instance="nrf2_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start">
+<circle cx="477.9" cy="237.1" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="477.9" cy="237.1" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="482.0" cy="233.1" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
+<text x="482.0" y="235.3" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">34</text>
+</g>
+</g>
 <path d="M357.5 433.1 L394.5 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M357.5 458.9 L394.5 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M357.5 483.9 L394.5 483.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
