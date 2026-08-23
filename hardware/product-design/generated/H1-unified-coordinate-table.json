@@ -1403,21 +1403,16 @@
       ],
       "mated_height_mm": 11.0
     },
-    "native_rf_cable_opposing_body_crossings": 3,
-    "minimum_native_rf_cable_crossing": {
+    "native_rf_cable_direct_projection_opposing_body_crossings": 2,
+    "minimum_native_rf_cable_direct_projection_crossing": {
       "cable_instance": "c5_rf_jumper",
       "rf_instance": "nrf0",
       "remaining_z_clearance_mm": 7.77
     },
-    "native_rf_cable_crossings": [
+    "native_rf_cable_direct_projection_crossings": [
       {
         "cable_instance": "c5_rf_jumper",
         "rf_instance": "nrf0",
-        "remaining_z_clearance_mm": 7.77
-      },
-      {
-        "cable_instance": "s3_rf_jumper",
-        "rf_instance": "nrf1",
         "remaining_z_clearance_mm": 7.77
       },
       {
@@ -1438,13 +1433,48 @@
       "opposing_body_treatment": "one intentional exact mate"
     },
     "rf_microcoax": {
-      "exact_polyline_route_count": 2,
+      "direct_endpoint_projection_count": 2,
       "conservative_nrf_module_face_reserve_count": 3,
       "all_five_feed_assemblies_accounted": true,
       "exact_jumper_mpn": "TE Connectivity 2118651-2",
       "same_face_keepouts_passed": true,
-      "exact_route_opposing_crossing_count": 3,
-      "minimum_exact_route_opposing_z_clearance_mm": 7.77,
+      "direct_projection_opposing_crossing_count": 2,
+      "minimum_direct_projection_opposing_z_clearance_mm": 7.77,
+      "native_direct_projections": [
+        {
+          "cable_instance": "s3_rf_jumper",
+          "points_mm": [
+            [
+              21.0,
+              24.46
+            ],
+            [
+              16.0,
+              10.55
+            ]
+          ],
+          "projected_chord_mm": 14.781343,
+          "assembly_length_mm": 30.0,
+          "unprojected_3d_slack_mm": 15.218657
+        },
+        {
+          "cable_instance": "c5_rf_jumper",
+          "points_mm": [
+            [
+              66.0,
+              24.38
+            ],
+            [
+              59.0,
+              10.55
+            ]
+          ],
+          "projected_chord_mm": 15.50061,
+          "assembly_length_mm": 30.0,
+          "unprojected_3d_slack_mm": 14.49939
+        }
+      ],
+      "native_slack_bend_and_retention_status": "H5_open",
       "nrf_reserve_opposing_crossing_count": 5,
       "minimum_nrf_reserve_opposing_crossing": {
         "cable_instance": "nrf0_rf_jumper",
@@ -1462,13 +1492,9 @@
             12.1,
             19.1
           ],
-          "escape_points_mm": [
+          "direct_projection_points_mm": [
             [
               22.1,
-              25.0
-            ],
-            [
-              24.5,
               25.0
             ],
             [
@@ -1476,8 +1502,8 @@
               29.55
             ]
           ],
-          "escape_length_mm": 6.95,
-          "uncommitted_slack_mm": 23.05,
+          "projected_chord_mm": 5.144171,
+          "unprojected_3d_slack_mm": 24.855829,
           "axis_status": "H5 received-module evidence"
         },
         {
@@ -1490,13 +1516,9 @@
             19.1,
             12.1
           ],
-          "escape_points_mm": [
+          "direct_projection_points_mm": [
             [
               49.0,
-              19.6
-            ],
-            [
-              51.5,
               19.6
             ],
             [
@@ -1504,8 +1526,8 @@
               29.55
             ]
           ],
-          "escape_length_mm": 12.45,
-          "uncommitted_slack_mm": 17.55,
+          "projected_chord_mm": 10.259264,
+          "unprojected_3d_slack_mm": 19.740736,
           "axis_status": "H5 received-module evidence"
         },
         {
@@ -1518,7 +1540,7 @@
             12.1,
             19.1
           ],
-          "escape_points_mm": [
+          "direct_projection_points_mm": [
             [
               65.0,
               23.55
@@ -1528,8 +1550,8 @@
               23.55
             ]
           ],
-          "escape_length_mm": 6.5,
-          "uncommitted_slack_mm": 23.5,
+          "projected_chord_mm": 6.5,
+          "unprojected_3d_slack_mm": 23.5,
           "axis_status": "H5 received-module evidence"
         }
       ],
@@ -1559,11 +1581,16 @@
       "guide_count": 9,
       "final_copper_status": "open_until_kicad_drc",
       "rendered_medium_boundaries": {
-        "exact_module_integrated_connector_instances": [
+        "module_integrated_connector_instances": [
           "s3_integrated_ufl",
-          "c5_integrated_ufl"
+          "c5_integrated_ufl",
+          "nrf0_integrated_ipex",
+          "nrf1_integrated_ipex",
+          "nrf2_integrated_ipex"
         ],
+        "module_integrated_connector_count": 5,
         "exact_module_integrated_connector_count": 2,
+        "schematic_position_module_integrated_connector_count": 3,
         "physical_cable_medium": "solid_removable_microcoax",
         "cable_to_pcb_handoff_instances": [
           "c5_rf_board_connector",
@@ -1574,7 +1601,7 @@
         ],
         "cable_to_pcb_handoff_count": 5,
         "pcb_guide_medium": "dashed_controlled_50_ohm_topology_only",
-        "nrf_module_connector_axis": "H5_open_not_drawn_as_exact_point"
+        "nrf_module_connector_axis": "rendered_schematically_exact_axis_H5_open"
       },
       "guides": [
         {

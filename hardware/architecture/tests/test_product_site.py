@@ -458,8 +458,8 @@ class ProductSiteTests(unittest.TestCase):
             "SKQGADE010",
             "FTSH-105-01-L-DV-K-P-TR",
             "TE Connectivity 2118651-2",
-            'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
-            'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
+            'data-instance="s3_rf_jumper" data-projected-chord-mm="14.78" data-assembly-length-mm="30.00" data-unprojected-slack-mm="15.22"',
+            'data-instance="c5_rf_jumper" data-projected-chord-mm="15.50" data-assembly-length-mm="30.00" data-unprojected-slack-mm="14.50"',
             " · SPK",
             'data-inner-body-count="129"',
             'data-max-inner-height-mm="8.95"',
@@ -473,7 +473,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-rf-pcb-topology-guides="9"',
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
-            'data-opposing-cable-pairs="3"',
+            'data-opposing-cable-pairs="2"',
             'data-nrf-reserve-opposing-pairs="5"',
             'data-encoder-through-features="7"',
             'data-cable-od-max-mm="1.13"',
@@ -489,20 +489,20 @@ class ProductSiteTests(unittest.TestCase):
             'data-path="VOICE-V/U"',
             'data-path="N24-2"',
             "Antenna-to-radio map · all nine paths",
-            "cyan = nRF24 cable",
+            "solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline",
             "module · no RF land; output is built-in U.FL",
             "module · ANT1 U.FL active; ANT2 land disabled",
             "PCB re-entry · feeds TX coupler and outer RP-SMA",
-            'id="module-integrated-rf-connectors" data-count="2"',
+            'id="module-integrated-rf-connectors" data-count="5" data-exact-position-count="2" data-schematic-position-count="3"',
             'id="board-rf-cable-to-trace-handoffs" data-count="5"',
             'data-medium="removable-microcoax"',
             'data-medium="controlled-50-ohm-pcb"',
-            "ring inside S3/C5 = built-in U.FL",
+            "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL",
             "outward RP-SMA · antenna screws on here",
             "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
             "complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm",
             "opposing inner faces: 43 non-mating XY pairs checked; minimum Z gap 3.31 mm",
-            "RF coax: 2 exact routes + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
+            "RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
             "nRF reserve crossings: 5; minimum Z gap 5.20 mm",
             "EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm",
             "limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0",
@@ -534,7 +534,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=16", page)
+            self.assertIn("internal-board-layout.svg?layout=17", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -579,15 +579,26 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(3.8, audit["display_adapter_assembly"]["complete_height_from_ui_inner_mm"])
         self.assertEqual(5, audit["display_adapter_assembly"]["opposing_pair_count"])
         self.assertEqual(6.0, audit["display_adapter_assembly"]["minimum_opposing_z_clearance_mm"])
-        self.assertEqual(7.77, audit["minimum_native_rf_cable_crossing"]["remaining_z_clearance_mm"])
-        self.assertEqual(3, len(audit["native_rf_cable_crossings"]))
+        self.assertEqual(
+            7.77,
+            audit["minimum_native_rf_cable_direct_projection_crossing"][
+                "remaining_z_clearance_mm"
+            ],
+        )
+        self.assertEqual(2, len(audit["native_rf_cable_direct_projection_crossings"]))
         interconnect = coordinate_table["physical_interconnect_clearance_audit"]
         self.assertEqual(
             "paper_keepouts_passed_final_ecad_and_h5_open", interconnect["result"]
         )
         self.assertEqual(80, interconnect["m1_interboard_connector"]["contact_count"])
         coax = interconnect["rf_microcoax"]
-        self.assertEqual(2, coax["exact_polyline_route_count"])
+        self.assertEqual(2, coax["direct_endpoint_projection_count"])
+        self.assertEqual(2, coax["direct_projection_opposing_crossing_count"])
+        self.assertEqual("H5_open", coax["native_slack_bend_and_retention_status"])
+        self.assertEqual(
+            [14.781343, 15.50061],
+            [row["projected_chord_mm"] for row in coax["native_direct_projections"]],
+        )
         self.assertEqual(3, coax["conservative_nrf_module_face_reserve_count"])
         self.assertTrue(coax["all_five_feed_assemblies_accounted"])
         self.assertEqual(5.2, coax["minimum_nrf_reserve_opposing_crossing"]["remaining_z_clearance_mm"])
@@ -607,10 +618,15 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(9, antenna_topology["guide_count"])
         medium_boundaries = antenna_topology["rendered_medium_boundaries"]
+        self.assertEqual(5, medium_boundaries["module_integrated_connector_count"])
         self.assertEqual(2, medium_boundaries["exact_module_integrated_connector_count"])
+        self.assertEqual(
+            3,
+            medium_boundaries["schematic_position_module_integrated_connector_count"],
+        )
         self.assertEqual(5, medium_boundaries["cable_to_pcb_handoff_count"])
         self.assertEqual(
-            "H5_open_not_drawn_as_exact_point",
+            "rendered_schematically_exact_axis_H5_open",
             medium_boundaries["nrf_module_connector_axis"],
         )
         self.assertEqual(

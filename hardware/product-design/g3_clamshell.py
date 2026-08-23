@@ -297,20 +297,20 @@ UI_INNER = (
     Placement("c5_boot_button", 66.0, 104.0, "C5 technological BOOT"),
 )
 
-# Exact module-side axes come from the Espressif package drawings.  Each
-# polyline is exactly the selected 30-mm assembly length in plan.  Corners are
-# a route corridor rather than a cable-fold instruction; bend radius and
-# strain relief are verified on the received feed coupon.
+# Exact module-side axes come from the Espressif package drawings. The visible
+# line is only the direct 2D projection between connector axes: a flexible
+# cable has no PCB-like orthogonal route. The selected assembly is 30 mm long;
+# its remaining 3D slack, bend radius and retention close on the H5 coupon.
 UI_RF_CABLES = (
     CableRoute(
         "s3_rf_jumper",
-        ((21.0, 24.46), (26.0, 24.46), (26.0, 14.0), (15.45, 14.0), (15.45, 10.55), (16.0, 10.55)),
-        "exact 30-mm S3 UMCC Gen1 jumper corridor",
+        ((21.0, 24.46), (16.0, 10.55)),
+        "direct S3 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
     ),
     CableRoute(
         "c5_rf_jumper",
-        ((66.0, 24.38), (66.0, 18.0), (59.4, 18.0), (59.4, 13.0), (64.0, 13.0), (64.0, 10.55), (59.0, 10.55)),
-        "exact 30-mm C5 UMCC Gen1 jumper corridor",
+        ((66.0, 24.38), (59.0, 10.55)),
+        "direct C5 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
     ),
 )
 
@@ -521,22 +521,22 @@ RF_NRF_CABLE_RESERVES = (
         "nrf0_rf_jumper",
         "nrf0",
         "nrf0_rf_board_connector",
-        ((22.1, 25.0), (24.5, 25.0), (24.5, 29.55)),
-        "30-mm nRF24 #0 module-face reserve and board-receptacle escape",
+        ((22.1, 25.0), (24.5, 29.55)),
+        "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
     CableReserve(
         "nrf1_rf_jumper",
         "nrf1",
         "nrf1_rf_board_connector",
-        ((49.0, 19.6), (51.5, 19.6), (51.5, 29.55)),
-        "30-mm nRF24 #1 module-face reserve and board-receptacle escape",
+        ((49.0, 19.6), (51.5, 29.55)),
+        "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
     CableReserve(
         "nrf2_rf_jumper",
         "nrf2",
         "nrf2_rf_board_connector",
         ((65.0, 23.55), (71.5, 23.55)),
-        "30-mm nRF24 #2 module-face reserve and board-receptacle escape",
+        "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
 )
 
@@ -976,6 +976,39 @@ def axis_aligned_segment_hits_box(
     raise ValueError(f"non-orthogonal cable segment {start}/{end}")
 
 
+def segment_hits_box(
+    start: tuple[float, float],
+    end: tuple[float, float],
+    rectangle: tuple[float, float, float, float],
+    margin: float = 0.0,
+) -> bool:
+    """Return whether any straight segment meets an expanded axis-aligned box."""
+    x, y, w, h = rectangle
+    left, right = x - margin, x + w + margin
+    top, bottom = y - margin, y + h + margin
+    x1, y1 = start
+    x2, y2 = end
+    dx, dy = x2 - x1, y2 - y1
+    lower, upper = 0.0, 1.0
+    for direction, near_delta, far_delta in (
+        (dx, x1 - left, right - x1),
+        (dy, y1 - top, bottom - y1),
+    ):
+        if abs(direction) < 1e-12:
+            if near_delta < 0 or far_delta < 0:
+                return False
+            continue
+        first = -near_delta / direction
+        second = far_delta / direction
+        if first > second:
+            first, second = second, first
+        lower = max(lower, first)
+        upper = min(upper, second)
+        if lower > upper:
+            return False
+    return True
+
+
 def cable_interboard_clearance_pairs(
     devices: dict,
     instances: dict,
@@ -990,7 +1023,7 @@ def cable_interboard_clearance_pairs(
             rf_w, rf_h = placement_size(rf_item, devices, instances)
             rf_box = (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h)
             if any(
-                axis_aligned_segment_hits_box(start, end, rf_box, cable_radius)
+                segment_hits_box(start, end, rf_box, cable_radius)
                 for start, end in zip(route.points, route.points[1:])
             ):
                 clearance = (
@@ -1024,7 +1057,7 @@ def nrf_cable_reserve_opposing_pairs(
             ui_w, ui_h = placement_size(ui_item, devices, instances)
             ui_box = (mirrored_x(ui_item.x, ui_w), ui_item.y, ui_w, ui_h)
             if overlaps(module_box, ui_box) or any(
-                axis_aligned_segment_hits_box(start, end, ui_box, radius)
+                segment_hits_box(start, end, ui_box, radius)
                 for start, end in zip(reserve.escape_points, reserve.escape_points[1:])
             ):
                 clearance = (
@@ -1192,11 +1225,15 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
             continue
         device = devices[instances[route.instance]]
         expected_length = float(device["electrical_contract"]["cable_length_mm"])
-        actual_length = polyline_length(route.points)
-        if abs(actual_length - expected_length) > 0.05:
+        projected_length = polyline_length(route.points)
+        if len(route.points) != 2:
             errors.append(
-                f"native-rf-cable: {route.instance} route is {actual_length:.2f} mm, "
-                f"not the exact {expected_length:.2f}-mm assembly"
+                f"native-rf-cable: {route.instance} must render as one direct connector-to-connector projection"
+            )
+        if projected_length >= expected_length:
+            errors.append(
+                f"native-rf-cable: {route.instance} {projected_length:.2f}-mm connector chord "
+                f"cannot fit the selected {expected_length:.2f}-mm assembly"
             )
         cable_radius = float(device["electrical_contract"]["cable_outer_diameter_mm"]) / 2
         cable_od = cable_radius * 2
@@ -1206,10 +1243,6 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
             if not (cable_radius <= point[0] <= BOARD_W - cable_radius and cable_radius <= point[1] <= BOARD_H - cable_radius):
                 errors.append(f"native-rf-cable: {route.instance} leaves the PCB plan at {point}")
         for segment in zip(route.points, route.points[1:]):
-            try:
-                axis_aligned_segment_hits_box(*segment, (0.0, 0.0, 0.0, 0.0))
-            except ValueError as error:
-                errors.append(f"native-rf-cable: {route.instance}: {error}")
             for hole in HOLES:
                 if point_segment_distance(hole, *segment) < MOUNT_KEEPOUT_R + cable_radius:
                     errors.append(f"native-rf-cable: {route.instance} enters the M2.5 keep-out at {hole}")
@@ -1232,18 +1265,15 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
                 continue
             item_w, item_h = placement_size(item, devices, instances)
             item_box = (item.x, item.y, item_w, item_h)
-            try:
-                route_hits = any(
-                    axis_aligned_segment_hits_box(
-                        start,
-                        end,
-                        item_box,
-                        cable_radius + MIN_INTERBOARD_Z_CLEARANCE_MM,
-                    )
-                    for start, end in zip(route.points, route.points[1:])
+            route_hits = any(
+                segment_hits_box(
+                    start,
+                    end,
+                    item_box,
+                    cable_radius + MIN_INTERBOARD_Z_CLEARANCE_MM,
                 )
-            except ValueError:
-                route_hits = False
+                for start, end in zip(route.points, route.points[1:])
+            )
             if route_hits:
                 errors.append(
                     f"native-rf-cable: {route.instance} lacks {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm "
@@ -1280,6 +1310,10 @@ def validate_nrf_cable_reserves(devices: dict, instances: dict) -> list[str]:
         escape_length = polyline_length(reserve.escape_points)
         if not 0 < escape_length < exact_length:
             errors.append(f"nrf-rf-cable: {reserve.instance} escape cannot retain 30-mm cable slack")
+        if len(reserve.escape_points) != 2:
+            errors.append(
+                f"nrf-rf-cable: {reserve.instance} must render as one direct IPEX-zone-to-U.FL projection"
+            )
         module = rf_by_instance[reserve.module_instance]
         connector = rf_by_instance[reserve.board_connector_instance]
         module_box = nrf_cable_reserve_module_box(reserve, devices, instances)
@@ -1303,11 +1337,6 @@ def validate_nrf_cable_reserves(devices: dict, instances: dict) -> list[str]:
             errors.append(f"nrf-rf-cable: {reserve.instance} escape misses its exact board receptacle")
         allowed = {reserve.module_instance, reserve.board_connector_instance}
         for segment in zip(reserve.escape_points, reserve.escape_points[1:]):
-            try:
-                axis_aligned_segment_hits_box(*segment, (0.0, 0.0, 0.0, 0.0))
-            except ValueError as error:
-                errors.append(f"nrf-rf-cable: {reserve.instance}: {error}")
-                continue
             for hole in HOLES:
                 if point_segment_distance(hole, *segment) < MOUNT_KEEPOUT_R + cable_radius:
                     errors.append(f"nrf-rf-cable: {reserve.instance} enters the M2.5 keep-out at {hole}")
@@ -1315,7 +1344,7 @@ def validate_nrf_cable_reserves(devices: dict, instances: dict) -> list[str]:
                 if item.instance in allowed:
                     continue
                 item_w, item_h = placement_size(item, devices, instances)
-                if axis_aligned_segment_hits_box(
+                if segment_hits_box(
                     *segment,
                     (item.x, item.y, item_w, item_h),
                     cable_radius + MIN_INTERBOARD_Z_CLEARANCE_MM,
@@ -2990,12 +3019,13 @@ def render_internal(devices, instances, display_adapter_design):
     out += [
         text(820, 102, "Antenna-to-radio map · all nine paths", 17, "bold"),
         text(820, 122, "Drawing explanation — not PCB silkscreen.", 9.5, colour="#526076"),
-        text(820, 535, "ring inside S3/C5 = built-in U.FL · numbered ring = cable-to-PCB U.FL handoff", 9.5, "bold", colour="#0f766e"),
-        text(820, 562, "green = S3/C5 cable · cyan = nRF24 cable · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
-        text(820, 581, "The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.", 9.2, colour="#526076"),
-        text(820, 608, "UI board: S3 · FM/SW · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
-        text(820, 628, "RF board: nRF24-1 · SUB-GHz · nRF24-2 · VHF/UHF · nRF24-3", 10, "bold", colour="#1d4ed8"),
-        text(820, 648, "Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.", 9.2, colour="#526076"),
+        text(820, 529, "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL", 9.5, "bold", colour="#0f766e"),
+        text(820, 547, "nRF ring position is schematic; its connector exists, while generation and exact axis close at H5", 9.2, colour="#0e7490"),
+        text(820, 570, "solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
+        text(820, 589, "The 30-mm cable has 3D slack; the forward TX sample branches only after the board U.FL.", 9.2, colour="#526076"),
+        text(820, 616, "UI board: S3 · FM/SW · AM/LW · C5", 10, "bold", colour="#1d4ed8"),
+        text(820, 636, "RF board: nRF24-1 · SUB-GHz · nRF24-2 · VHF/UHF · nRF24-3", 10, "bold", colour="#1d4ed8"),
+        text(820, 656, "Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.", 9.2, colour="#526076"),
     ]
     out += rf_feed_path_callout(
         820.0,
@@ -3028,7 +3058,7 @@ def render_internal(devices, instances, display_adapter_design):
         )
         out.append(text(sx(rf,view_x+zone.w/2), sy(rf,zone.y+zone.h/2)+2, "CC RF REF", 5.2, "bold", "middle", "#9a3412"))
 
-    out.append('<g id="exact-native-rf-jumpers" data-medium="removable-microcoax" data-route-units="mm" data-bend-state="coupon-open">')
+    out.append('<g id="exact-native-rf-jumpers" data-medium="removable-microcoax" data-route-units="mm" data-rendering="direct-axis-projection" data-slack-state="H5-open">')
     for route in UI_RF_CABLES:
         route_device = devices[instances[route.instance]]
         cable_od = float(route_device["electrical_contract"]["cable_outer_diameter_mm"])
@@ -3039,14 +3069,18 @@ def render_internal(devices, instances, display_adapter_design):
         out.append(
             f'<polyline points="{points}" fill="none" stroke="#0f766e" '
             f'stroke-width="{cable_od*scale:.2f}" stroke-linecap="round" stroke-linejoin="round" '
-            f'data-instance="{route.instance}" data-centreline-mm="{polyline_length(route.points):.2f}"/>'
+            f'data-instance="{route.instance}" '
+            f'data-projected-chord-mm="{polyline_length(route.points):.2f}" '
+            f'data-assembly-length-mm="{float(route_device["electrical_contract"]["cable_length_mm"]):.2f}" '
+            f'data-unprojected-slack-mm="{float(route_device["electrical_contract"]["cable_length_mm"])-polyline_length(route.points):.2f}"/>'
         )
         for endpoint_x, endpoint_y in (route.points[0], route.points[-1]):
             out.append(
                 f'<circle cx="{sx(ui,mirrored_x(endpoint_x)):.1f}" cy="{sy(ui,endpoint_y):.1f}" '
                 f'r="{1.35*scale:.1f}" fill="none" stroke="#0f766e" stroke-width="1.2"/>'
             )
-        annotation_x, annotation_y = route.points[len(route.points) // 2]
+        annotation_x = (route.points[0][0] + route.points[-1][0]) / 2
+        annotation_y = (route.points[0][1] + route.points[-1][1]) / 2
         out.append(
             text(
                 sx(ui,mirrored_x(annotation_x)), sy(ui,annotation_y)-5,
@@ -3055,7 +3089,7 @@ def render_internal(devices, instances, display_adapter_design):
         )
     out.append('</g>')
 
-    out.append('<g id="nrf-module-face-cable-reserves" data-medium="removable-microcoax" data-axis-state="H5-open" data-route-units="mm">')
+    out.append('<g id="nrf-module-face-cable-reserves" data-medium="removable-microcoax" data-rendering="direct-connector-projection" data-axis-state="schematic-position-H5-open" data-route-units="mm">')
     for reserve in RF_NRF_CABLE_RESERVES:
         module_x, module_y, module_w, module_h = nrf_cable_reserve_module_box(
             reserve, devices, instances
@@ -3083,12 +3117,21 @@ def render_internal(devices, instances, display_adapter_design):
                 "cable_outer_diameter_mm"
             ]
         )
+        assembly_length = float(
+            devices[instances[reserve.instance]]["electrical_contract"][
+                "cable_length_mm"
+            ]
+        )
         out.append(
             f'<polyline points="{points}" fill="none" stroke="#0891b2" '
             f'stroke-width="{cable_od*scale:.2f}" stroke-linecap="round" stroke-linejoin="round" '
-            f'data-instance="{reserve.instance}" data-reserve="escape"/>'
+            f'data-instance="{reserve.instance}" data-reserve="whole-module-face-plus-direct-projection" '
+            f'data-projected-chord-mm="{polyline_length(reserve.escape_points):.2f}" '
+            f'data-assembly-length-mm="{assembly_length:.2f}" '
+            f'data-unprojected-slack-mm="{assembly_length-polyline_length(reserve.escape_points):.2f}"/>'
         )
-        annotation_x, annotation_y = reserve.escape_points[-2]
+        annotation_x = (reserve.escape_points[0][0] + reserve.escape_points[-1][0]) / 2
+        annotation_y = (reserve.escape_points[0][1] + reserve.escape_points[-1][1]) / 2
         out.append(
             text(
                 sx(rf,mirrored_x(annotation_x)), sy(rf,annotation_y)-4,
@@ -3141,16 +3184,19 @@ def render_internal(devices, instances, display_adapter_design):
         instance: str,
         relation: str,
         number: int | None = None,
+        connector_kind: str = "U.FL-compatible Gen1",
+        position_state: str = "exact",
+        stroke: str = "#0f766e",
     ) -> list[str]:
         centre_x = sx(origin, mirrored_x(centre[0]))
         centre_y = sy(origin, centre[1])
         outer_r = 1.40 * scale
         inner_r = 0.38 * scale
         rendered = [
-            f'<g data-instance="{instance}" data-rf-connector="U.FL-compatible Gen1" '
-            f'data-relation="{relation}">',
+            f'<g data-instance="{instance}" data-rf-connector="{connector_kind}" '
+            f'data-relation="{relation}" data-position-state="{position_state}">',
             f'<circle cx="{centre_x:.1f}" cy="{centre_y:.1f}" r="{outer_r:.1f}" '
-            f'fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>',
+            f'fill="#ffffff" stroke="{stroke}" stroke-width="1.6"/>',
             f'<circle cx="{centre_x:.1f}" cy="{centre_y:.1f}" r="{inner_r:.1f}" '
             f'fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>',
         ]
@@ -3167,7 +3213,7 @@ def render_internal(devices, instances, display_adapter_design):
         rendered.append('</g>')
         return rendered
 
-    out.append('<g id="module-integrated-rf-connectors" data-count="2" data-position-state="datasheet-exact">')
+    out.append('<g id="module-integrated-rf-connectors" data-count="5" data-exact-position-count="2" data-schematic-position-count="3">')
     for route in UI_RF_CABLES:
         module_instance = route.instance.removesuffix("_rf_jumper")
         out += ufl_symbol(
@@ -3175,6 +3221,16 @@ def render_internal(devices, instances, display_adapter_design):
             route.points[0],
             f"{module_instance}_integrated_ufl",
             "module-output-and-cable-start",
+        )
+    for reserve in RF_NRF_CABLE_RESERVES:
+        out += ufl_symbol(
+            rf,
+            reserve.escape_points[0],
+            f"{reserve.module_instance}_integrated_ipex",
+            "module-IPEX-output-and-cable-start",
+            connector_kind="Ebyte-published IPEX; generation H5-open",
+            position_state="schematic-within-published-module-face",
+            stroke="#0891b2",
         )
     out.append('</g>')
 
@@ -3255,12 +3311,12 @@ def render_internal(devices, instances, display_adapter_design):
         text(note_x,notes_top+66,f"• complete 3.80-mm display adapter: {len(adapter_clearance_pairs)} opposing crossings; minimum Z gap {minimum_adapter_clearance:.2f} mm to {minimum_adapter_body.instance}",10),
         text(note_x,notes_top+87,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
         text(note_x,notes_top+108,f"• outward connector / through-hole tail clearance on the opposite face: ≥{OPPOSITE_FACE_CLEARANCE_MM:.1f} mm",10),
-        text(note_x,notes_top+129,f"• RF coax: {len(UI_RF_CABLES)} exact routes + {len(RF_NRF_CABLE_RESERVES)} nRF module-face reserves; all five 30-mm assemblies accounted",10),
+        text(note_x,notes_top+129,f"• RF coax: {len(UI_RF_CABLES)} direct exact-endpoint projections + {len(RF_NRF_CABLE_RESERVES)} nRF module-face reserves; all five 30-mm assemblies accounted",10),
         text(note_x,notes_top+150,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
         text(note_x,notes_top+171,"• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair",10),
         text(note_x,notes_top+192,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
         text(note_x,notes_top+213,"• both inner views are horizontally mirrored from their external faces",10),
-        text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; exact module axes close in H5",10),
+        text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; drawn IPEX positions are schematic and close in H5",10),
         text(note_x,notes_top+255,f"• EC11E through-board features: 7 checked; {len(through_board_clearance_pairs)} opposing crossings; minimum Z gap {minimum_through_board_clearance:.2f} mm",10),
         text(note_x,notes_top+276,f"• all {len(ANTENNA_TOPOLOGY_GUIDES)} onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work",10),
         text(note_x,notes_top+297,"• orange dashed boundary is a placement zone, not one combined device",10),
@@ -4322,13 +4378,13 @@ def build_unified_coordinate_table(
                 ],
                 "mated_height_mm": INTERBOARD_GAP_MM,
             },
-            "native_rf_cable_opposing_body_crossings": len(cable_pairs),
-            "minimum_native_rf_cable_crossing": {
+            "native_rf_cable_direct_projection_opposing_body_crossings": len(cable_pairs),
+            "minimum_native_rf_cable_direct_projection_crossing": {
                 "cable_instance": minimum_cable.instance,
                 "rf_instance": minimum_cable_body.instance,
                 "remaining_z_clearance_mm": round(minimum_cable_clearance, 6),
             },
-            "native_rf_cable_crossings": [
+            "native_rf_cable_direct_projection_crossings": [
                 {
                     "cable_instance": cable.instance,
                     "rf_instance": rf_item.instance,
@@ -4348,17 +4404,40 @@ def build_unified_coordinate_table(
                 "opposing_body_treatment": "one intentional exact mate",
             },
             "rf_microcoax": {
-                "exact_polyline_route_count": len(UI_RF_CABLES),
+                "direct_endpoint_projection_count": len(UI_RF_CABLES),
                 "conservative_nrf_module_face_reserve_count": len(RF_NRF_CABLE_RESERVES),
                 "all_five_feed_assemblies_accounted": (
                     len(UI_RF_CABLES) + len(RF_NRF_CABLE_RESERVES) == 5
                 ),
                 "exact_jumper_mpn": devices[instances["s3_rf_jumper"]]["mpn"],
                 "same_face_keepouts_passed": True,
-                "exact_route_opposing_crossing_count": len(cable_pairs),
-                "minimum_exact_route_opposing_z_clearance_mm": round(
+                "direct_projection_opposing_crossing_count": len(cable_pairs),
+                "minimum_direct_projection_opposing_z_clearance_mm": round(
                     minimum_cable_clearance, 6
                 ),
+                "native_direct_projections": [
+                    {
+                        "cable_instance": route.instance,
+                        "points_mm": [list(point) for point in route.points],
+                        "projected_chord_mm": round(polyline_length(route.points), 6),
+                        "assembly_length_mm": float(
+                            devices[instances[route.instance]]["electrical_contract"][
+                                "cable_length_mm"
+                            ]
+                        ),
+                        "unprojected_3d_slack_mm": round(
+                            float(
+                                devices[instances[route.instance]]["electrical_contract"][
+                                    "cable_length_mm"
+                                ]
+                            )
+                            - polyline_length(route.points),
+                            6,
+                        ),
+                    }
+                    for route in UI_RF_CABLES
+                ],
+                "native_slack_bend_and_retention_status": "H5_open",
                 "nrf_reserve_opposing_crossing_count": len(nrf_reserve_pairs),
                 "minimum_nrf_reserve_opposing_crossing": {
                     "cable_instance": minimum_nrf_reserve.instance,
@@ -4376,9 +4455,9 @@ def build_unified_coordinate_table(
                                 reserve, devices, instances
                             )
                         ],
-                        "escape_points_mm": [list(point) for point in reserve.escape_points],
-                        "escape_length_mm": round(polyline_length(reserve.escape_points), 6),
-                        "uncommitted_slack_mm": round(
+                        "direct_projection_points_mm": [list(point) for point in reserve.escape_points],
+                        "projected_chord_mm": round(polyline_length(reserve.escape_points), 6),
+                        "unprojected_3d_slack_mm": round(
                             float(
                                 devices[instances[reserve.instance]]["electrical_contract"][
                                     "cable_length_mm"
@@ -4415,11 +4494,16 @@ def build_unified_coordinate_table(
                 "guide_count": len(ANTENNA_TOPOLOGY_GUIDES),
                 "final_copper_status": "open_until_kicad_drc",
                 "rendered_medium_boundaries": {
-                    "exact_module_integrated_connector_instances": [
+                    "module_integrated_connector_instances": [
                         "s3_integrated_ufl",
                         "c5_integrated_ufl",
+                        "nrf0_integrated_ipex",
+                        "nrf1_integrated_ipex",
+                        "nrf2_integrated_ipex",
                     ],
+                    "module_integrated_connector_count": 5,
                     "exact_module_integrated_connector_count": 2,
+                    "schematic_position_module_integrated_connector_count": 3,
                     "physical_cable_medium": "solid_removable_microcoax",
                     "cable_to_pcb_handoff_instances": sorted(
                         BOARD_RF_CABLE_TO_TRACE_HANDOFFS
@@ -4428,7 +4512,7 @@ def build_unified_coordinate_table(
                         BOARD_RF_CABLE_TO_TRACE_HANDOFFS
                     ),
                     "pcb_guide_medium": "dashed_controlled_50_ohm_topology_only",
-                    "nrf_module_connector_axis": "H5_open_not_drawn_as_exact_point",
+                    "nrf_module_connector_axis": "rendered_schematically_exact_axis_H5_open",
                 },
                 "guides": [
                     {

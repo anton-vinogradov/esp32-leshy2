@@ -81,9 +81,10 @@ measurement rather than merely remove a redundant connector.
 The internal drawing renders those media separately. A concentric ring inside
 the S3 or C5 module is the module-integrated U.FL at its datasheet axis. A
 numbered ring is the distinct board-mounted U.FL where the solid cable stops
-and the dashed PCB guide begins. The nRF24 modules retain a whole-face cable
-head reserve instead of a fictional connector point until H5 establishes the
-current-lot IPX axis.
+and the dashed PCB guide begins. Each nRF24 module also carries a visible IPEX
+ring connected directly to its board U.FL. Its position is schematic inside
+the whole-face reserve until H5 establishes the current-lot generation and
+axis.
 
 The stock U214 provides receive and GNSS but no independent actual-RF evidence,
 so its TX remains blocked. Cap-Bus contact 5 is monitored through the exact
@@ -196,10 +197,13 @@ FX8C plug and receptacle are validated separately as the single intentional mate
 The opposite-face bodies and tails of the nine external RF jacks and the exact
 pass-through U214 socket retain at least 1.5 mm of plan clearance from inner
 components. All five 30-mm `TE Connectivity 2118651-2` RF feeds are now in the
-mechanical audit. S3 and C5 use exact axis-to-axis polylines; their three
-opposing XY crossings retain 7.77 mm of Z clearance. The three Ebyte feeds use
-the complete module face as a conservative cable-head reserve plus a fixed
-escape to the exact board receptacle. Their five opposing crossings retain at
+mechanical audit. S3 and C5 use direct projections between exact connector
+axes: their chords are 14.78 and 15.50 mm, leaving 15.22 and 14.50 mm of the
+selected assemblies as three-dimensional slack. Their two direct-chord
+opposing XY crossings retain 7.77 mm of Z clearance; final slack bend and
+retention remain H5 work. The three Ebyte feeds use the complete module face as
+a conservative cable-head reserve plus a direct projection to the exact board
+receptacle. Their five opposing crossings retain at
 least 5.20 mm; the current-lot module connector axes and cable bends remain an
 explicit H5 received-part gate rather than invented geometry.
 
@@ -207,7 +211,8 @@ The solid green lines on the UI board have one bounded meaning. Each starts at
 the built-in U.FL of the S3 or C5 radio module and represents one removable
 30-mm `TE Connectivity 2118651-2` cable. Its other end snaps onto a
 UI-board-mounted `Hirose U.FL-R-SMT-1(10)` receptacle, where the green line
-ends. There is no further loose cable: the signal continues on a future 50-ohm
+ends. The solid line is the direct 2D connector chord, not the shape imposed on
+the flexible 30-mm cable. There is no further loose cable: the signal continues on a future 50-ohm
 PCB mainline through its own `KYOCERA AVX CP0603Q5425ENTR`, which takes a small
 forward sample for the TX detector, and then reaches the outward
 `GCT RFPC-SMA32-FN-175-A` RP-SMA. Dashed blue lines show only that topology;
@@ -258,7 +263,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=16)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=17)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

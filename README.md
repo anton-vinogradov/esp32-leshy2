@@ -155,11 +155,15 @@ shows the future 50-ohm PCB mainline through the TX coupler to the outward RP-SM
 On the RF board, the same physical nRF24 cable sections are cyan.
 The concentric ring inside each S3/C5 module is its built-in U.FL; the numbered
 ring at the other end is the separate board receptacle and visible cable/trace
-boundary. No exact nRF module-side connector point is invented before H5.
+boundary. Each nRF module also shows its published IPEX connector; its position
+is schematic because the exact generation and axis remain an H5 specimen check.
+Every solid cable is a direct connector-to-connector 2D projection. The selected
+assembly is 30 mm long, so its excess over the roughly 15-mm S3/C5 chord is 3D
+slack rather than a PCB-like sequence of right-angle bends.
 Matching blue topology guides connect all nine labelled antenna ports to S3,
 the two Si4732 inputs, C5, all three nRF24 modules, CC1101 and SA518.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=16)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=17)
 
 ### Top view from the antenna edge
 
