@@ -1,21 +1,31 @@
 <div align="center">
 
-# ⭐ Leshy2 ⭐
+# ✨⭐ Leshy2 ⭐✨
+
+### ⭐ ⭐ ⭐ ⭐ ⭐
 
 ### An open autonomous multi-tool for radio, communications and authorized research
 
 **2.4/5-GHz Wi‑Fi · BLE · 802.15.4 · 3× nRF24 · Sub‑GHz · VHF/UHF · FM/AM/SW/LW · IR · LoRa**
 
-[Русский](README.ru.md) · [Capabilities](docs/hardware.md) · [Principle diagrams](docs/schematics.md) · [Roadmap](docs/roadmap.md) · [Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware)
+[⭐ Capabilities](docs/hardware.md) · [⭐ Mockup](#-target-device-mockup) · [⭐ Schematics](docs/schematics.md) · [⭐ Roadmap](docs/roadmap.md) · [⭐ Firmware](https://github.com/anton-vinogradov/esp32-leshy2-firmware) · [Русский](README.ru.md)
 
-⭐ **OPEN HARDWARE**　⭐ **MODULAR RF**　⭐ **FAIL-SAFE TX**　⭐ **REPAIRABLE**
+⭐ **OPEN HARDWARE**　⭐ **MODULAR RF**　⭐ **FAIL-SAFE TX**　⭐ **REPAIRABLE** ⭐
 
 </div>
 
 > **Now: H2 · production ECAD schematic.** H1 physical design is accepted.
 > PCB routing, purchasing and fabrication remain blocked.
 
-## ⭐ What Leshy2 is
+<div align="center">
+
+![Leshy2 external faces](docs/images/current-clamshell.svg?layout=19)
+
+⭐ **Nine independent antenna paths · five compute domains · one autonomous instrument** ⭐
+
+</div>
+
+## ⭐⭐ What Leshy2 is
 
 Leshy2 is a portable open instrument for radio observation, communications,
 diagnostics and authorized security work. It brings different radio paths into
@@ -32,7 +42,7 @@ and transmit safety.
 | **Recovery access** | Independent USB, RST/BOOT and internal DBG10 for compute owners |
 | **Safety** | Quiet-state, TX evidence, watchdog, thermal shutdown and retained fault reason |
 
-## ⭐ How it is built
+## ⭐⭐ How it is built
 
 Five isolatable domains split the user interface, native radio/IR,
 deterministic radio paths, battery-pack admission and independent safety
@@ -50,7 +60,7 @@ See the [hardware architecture](docs/hardware.md) and
 
 ---
 
-## ⭐ Target device mockup
+## ⭐⭐⭐ Target device mockup
 
 Every view below is generated from the real envelopes of selected MPNs and one
 coordinate model. Text outside component bodies on outer PCB faces is intended
@@ -58,7 +68,7 @@ silkscreen; inner faces carry no silkscreen.
 
 ### ⭐ Outer faces
 
-![Leshy2 external faces](docs/images/current-clamshell.svg?layout=19)
+The main view opens this page; the detailed service, inner and edge views follow below.
 
 ### ⭐ Programming and recovery
 
@@ -84,7 +94,7 @@ silkscreen; inner faces carry no silkscreen.
 
 ---
 
-## ⭐ Roadmap and current position
+## ⭐⭐⭐ Roadmap and current position
 
 The roadmap remains on the landing page through printing/fabrication until manufacturing files are
 explicitly released. The [full roadmap](docs/roadmap.md) contains dependencies
@@ -155,13 +165,13 @@ cannot bypass it.
 
 <!-- BEGIN GENERATED PRINCIPLE DIAGRAMS -->
 
-## ⭐ Principle diagrams and electrical implementation
+## ⭐⭐ Principle diagrams and electrical implementation
 
 The device principle diagrams remain part of the site, but the landing page now routes to a [readable functional-domain atlas](docs/schematics.md). The [exact pin assignment](docs/pinout.md), [inter-board M1 map](docs/interconnect.md) and [hardware architecture](docs/hardware.md) are published alongside it.
 
 <!-- END GENERATED PRINCIPLE DIAGRAMS -->
 
-## ⭐ Documentation
+## ⭐⭐ Documentation
 
 | Section | Contents |
 |---|---|
@@ -177,7 +187,7 @@ The device principle diagrams remain part of the site, but the landing page now 
 
 <div align="center">
 
-### ⭐ ⭐ ⭐
+### ⭐ ⭐ ⭐ ⭐ ⭐
 
 **Leshy2 — see the spectrum, understand the path, stay in control.**
 
