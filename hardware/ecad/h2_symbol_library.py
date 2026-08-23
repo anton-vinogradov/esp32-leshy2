@@ -81,7 +81,6 @@ def build(replacements: dict[Path, str] | None = None) -> str:
             path
             for project_dir in PROJECT_DIRS
             for path in project_dir.glob("*.kicad_sch")
-            if path.name != f"{project_dir.name}.kicad_sch"
         }
         | set(replacements)
     )

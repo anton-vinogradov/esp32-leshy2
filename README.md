@@ -118,10 +118,10 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.4 -->
+<!-- current-substep: H2.4.2 -->
 
-**Exact marker: `H2.4`** — implement and review the replaceable display-adapter
-and optional Leshy LoRa Cap schematics.
+**Exact marker: `H2.4.2`** — implement the LoRa Cap project root and exact
+14-contact host interface.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -154,7 +154,14 @@ and optional Leshy LoRa Cap schematics.
   - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 physical test pads,
     7 recovery paths and 6 RF-evidence channels; no purchased parts, child
     stubs or deferred fixture labels; reviewed.
-- ▶️ **`H2.4` — current:** display-adapter and LoRa Cap schematics.
+- `H2.4` — display-adapter and LoRa Cap schematics.
+  - ✅ `H2.4.1` — passive display adapter: both exact serial connectors, all
+    40 one-to-one conductors and the manufacturer-derived FH34 footprint pass
+    native KiCad review.
+  - ▶️ **`H2.4.2` — current:** LoRa Cap root and 14-contact host interface.
+  - ⏳ `H2.4.3` — LoRa radio, control and RF path.
+  - ⏳ `H2.4.4` — protected power and identity bus.
+  - ⏳ `H2.4.5` — independent physical-TX evidence.
 - ⏳ `H2.5` — independent power/boot/recovery/quiet-state/`FAULT_KILL` review.
 - ⏳ `H2.6` — close ERC and every intentional NC.
 - ⏳ `H2.7` — reconcile schematic contacts with H1, M1 and firmware F2.

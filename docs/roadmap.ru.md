@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.4 -->
+<!-- current-substep: H2.4.2 -->
 
-**Точный маркер: `H2.4`** — реализовать и проверить схемы
-сменного display-adapter и опционального Leshy LoRa Cap.
+**Точный маркер: `H2.4.2`** — реализовать корневой лист LoRa Cap и точный
+14-контактный интерфейс с основным устройством.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -202,7 +202,14 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 физических test-
     площадок 1,0 мм, 7 recovery-путей и 6 RF-evidence каналов;
     полная RF/power-иерархия проходит native KiCad без stub и отложенных fixture labels.
-- ▶️ **`H2.4` — сейчас:** реализовать и проверить схемы display-adapter и LoRa Cap.
+- `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
+  - ✅ `H2.4.1` — `ADP_00_DISPLAY_ADAPTER`: два серийных разъёма, 40 точных
+    проводников один-к-одному, две только механические лапы и один footprint
+    по заводскому чертежу; native KiCad review пройдено.
+  - ▶️ **`H2.4.2` — сейчас:** `CAP_00_ROOT`, точная 14-контактная host-граница.
+  - ⏳ `H2.4.3` — `CAP_10_RADIO_CONTROL`.
+  - ⏳ `H2.4.4` — `CAP_20_POWER_BUS`.
+  - ⏳ `H2.4.5` — `CAP_30_TX_EVIDENCE`.
 - ⏳ `H2.5` — независимо проверить питание, reset, boot, recovery,
   no-back-power, quiet-state и `FAULT_KILL`.
 - ⏳ `H2.6` — закрыть ERC и объяснить каждый намеренный no-connect.

@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "stage": "H2.4.1",
+  "status": "reviewed_exact_passive_display_adapter_sheet",
+  "project": "L2-DISP-ADP-001-A",
+  "sheet": "ADP_00_DISPLAY_ADAPTER",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
+    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
+    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
+    "hardware/product-design/display-adapter.json": "958eed3c8d7a5250746c709a9123cc026151f2d1d0b1ef64c6c44d13e62cd3b9",
+    "hardware/ecad/H2-sheet-contract.json": "6adabe1a49ae9bcc7171a46e1de11cf68e240dd4e13226f0896998c6ae8fc60a"
+  },
+  "summary": {
+    "ledger_instances": 2,
+    "schematic_symbols": 2,
+    "board_fitted_symbols": 2,
+    "one_to_one_conductors": 40,
+    "electrical_contact_endpoints": 80,
+    "mechanical_only_fittings": 2,
+    "custom_footprints": 1,
+    "active_devices": 0,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "display_adapter_plug",
+      "symbol_uuid": "5f143bce-3a2d-5597-a6ec-fa58ff26e119",
+      "reference": "J1",
+      "mpn": "Hirose DF40C-40DP-0.4V(51)",
+      "footprint": "Connector_Hirose_DF40:Hirose_DF40C-40DP-0.4V_2x20-1MP_P0.4mm",
+      "pin_count": 40,
+      "board_fitted": true
+    },
+    {
+      "instance": "display_panel_connector",
+      "symbol_uuid": "f17c9847-fa16-5da9-b4b2-b5bac126f335",
+      "reference": "J2",
+      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "footprint": "Leshy2:FH34SRJ-40S-0.5SH-99",
+      "pin_count": 42,
+      "board_fitted": true
+    }
+  ],
+  "contact_map": [
+    {
+      "contact": 1,
+      "net": "SYS_I2C_SCL",
+      "adapter_plug": "J1.1",
+      "panel_connector": "J2.1"
+    },
+    {
+      "contact": 2,
+      "net": "SYS_I2C_SDA",
+      "adapter_plug": "J1.2",
+      "panel_connector": "J2.2"
+    },
+    {
+      "contact": 3,
+      "net": "LCD_TOUCH_INT_RAW_N",
+      "adapter_plug": "J1.3",
+      "panel_connector": "J2.3"
+    },
+    {
+      "contact": 4,
+      "net": "TOUCH_RST_N",
+      "adapter_plug": "J1.4",
+      "panel_connector": "J2.4"
+    },
+    {
+      "contact": 5,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.5",
+      "panel_connector": "J2.5"
+    },
+    {
+      "contact": 6,
+      "net": "3V3_MAIN",
+      "adapter_plug": "J1.6",
+      "panel_connector": "J2.6"
+    },
+    {
+      "contact": 7,
+      "net": "3V3_MAIN",
+      "adapter_plug": "J1.7",
+      "panel_connector": "J2.7"
+    },
+    {
+      "contact": 8,
+      "net": "LCD_TE_NC",
+      "adapter_plug": "J1.8",
+      "panel_connector": "J2.8"
+    },
+    {
+      "contact": 9,
+      "net": "LCD_CS_N",
+      "adapter_plug": "J1.9",
+      "panel_connector": "J2.9"
+    },
+    {
+      "contact": 10,
+      "net": "DISPLAY_SD_SPI_D1",
+      "adapter_plug": "J1.10",
+      "panel_connector": "J2.10"
+    },
+    {
+      "contact": 11,
+      "net": "DISPLAY_SD_SPI_SCK",
+      "adapter_plug": "J1.11",
+      "panel_connector": "J2.11"
+    },
+    {
+      "contact": 12,
+      "net": "LCD_RD_NC",
+      "adapter_plug": "J1.12",
+      "panel_connector": "J2.12"
+    },
+    {
+      "contact": 13,
+      "net": "DISPLAY_SD_SPI_D0",
+      "adapter_plug": "J1.13",
+      "panel_connector": "J2.13"
+    },
+    {
+      "contact": 14,
+      "net": "LCD_NC_14",
+      "adapter_plug": "J1.14",
+      "panel_connector": "J2.14"
+    },
+    {
+      "contact": 15,
+      "net": "LCD_RST_N",
+      "adapter_plug": "J1.15",
+      "panel_connector": "J2.15"
+    },
+    {
+      "contact": 16,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.16",
+      "panel_connector": "J2.16"
+    },
+    {
+      "contact": 17,
+      "net": "LCD_QSPI_D2",
+      "adapter_plug": "J1.17",
+      "panel_connector": "J2.17"
+    },
+    {
+      "contact": 18,
+      "net": "LCD_QSPI_D3",
+      "adapter_plug": "J1.18",
+      "panel_connector": "J2.18"
+    },
+    {
+      "contact": 19,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.19",
+      "panel_connector": "J2.19"
+    },
+    {
+      "contact": 20,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.20",
+      "panel_connector": "J2.20"
+    },
+    {
+      "contact": 21,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.21",
+      "panel_connector": "J2.21"
+    },
+    {
+      "contact": 22,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.22",
+      "panel_connector": "J2.22"
+    },
+    {
+      "contact": 23,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.23",
+      "panel_connector": "J2.23"
+    },
+    {
+      "contact": 24,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.24",
+      "panel_connector": "J2.24"
+    },
+    {
+      "contact": 25,
+      "net": "LCD_NC_25",
+      "adapter_plug": "J1.25",
+      "panel_connector": "J2.25"
+    },
+    {
+      "contact": 26,
+      "net": "LCD_NC_26",
+      "adapter_plug": "J1.26",
+      "panel_connector": "J2.26"
+    },
+    {
+      "contact": 27,
+      "net": "LCD_NC_27",
+      "adapter_plug": "J1.27",
+      "panel_connector": "J2.27"
+    },
+    {
+      "contact": 28,
+      "net": "LCD_NC_28",
+      "adapter_plug": "J1.28",
+      "panel_connector": "J2.28"
+    },
+    {
+      "contact": 29,
+      "net": "LCD_NC_29",
+      "adapter_plug": "J1.29",
+      "panel_connector": "J2.29"
+    },
+    {
+      "contact": 30,
+      "net": "LCD_NC_30",
+      "adapter_plug": "J1.30",
+      "panel_connector": "J2.30"
+    },
+    {
+      "contact": 31,
+      "net": "LCD_NC_31",
+      "adapter_plug": "J1.31",
+      "panel_connector": "J2.31"
+    },
+    {
+      "contact": 32,
+      "net": "LCD_NC_32",
+      "adapter_plug": "J1.32",
+      "panel_connector": "J2.32"
+    },
+    {
+      "contact": 33,
+      "net": "LCD_LEDA_PROTECTED",
+      "adapter_plug": "J1.33",
+      "panel_connector": "J2.33"
+    },
+    {
+      "contact": 34,
+      "net": "LCD_LEDK",
+      "adapter_plug": "J1.34",
+      "panel_connector": "J2.34"
+    },
+    {
+      "contact": 35,
+      "net": "LCD_LEDK",
+      "adapter_plug": "J1.35",
+      "panel_connector": "J2.35"
+    },
+    {
+      "contact": 36,
+      "net": "LCD_LEDK",
+      "adapter_plug": "J1.36",
+      "panel_connector": "J2.36"
+    },
+    {
+      "contact": 37,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.37",
+      "panel_connector": "J2.37"
+    },
+    {
+      "contact": 38,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.38",
+      "panel_connector": "J2.38"
+    },
+    {
+      "contact": 39,
+      "net": "3V3_MAIN",
+      "adapter_plug": "J1.39",
+      "panel_connector": "J2.39"
+    },
+    {
+      "contact": 40,
+      "net": "POWER_GROUND",
+      "adapter_plug": "J1.40",
+      "panel_connector": "J2.40"
+    }
+  ],
+  "intentional_no_connect_endpoints": [
+    "display_panel_connector.FITTING_1",
+    "display_panel_connector.FITTING_2"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "Hirose DF40C-40DP-0.4V(51)",
+      "footprint": "Connector_Hirose_DF40:Hirose_DF40C-40DP-0.4V_2x20-1MP_P0.4mm",
+      "source": {
+        "document": "Hirose exact product page, 2D drawing and specification sheet",
+        "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+        "checked": "2026-08-23"
+      },
+      "manufacturer_dimensions_mm": {
+        "body": [
+          9.52,
+          2.97,
+          1.14
+        ],
+        "pitch": 0.4
+      }
+    },
+    {
+      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "footprint": "Leshy2:FH34SRJ-40S-0.5SH-99",
+      "source": {
+        "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
+        "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+        "checked": "2026-08-23"
+      },
+      "manufacturer_dimensions_mm": {
+        "body": [
+          22.0,
+          3.8,
+          1.0
+        ],
+        "pitch": 0.5,
+        "contact_span_B": 19.5,
+        "fitting_centres_E": 21.1
+      }
+    }
+  ],
+  "review_boundary": {
+    "complete": [
+      "both serial orderable connectors are exact MPNs with exact physical contact counts",
+      "all 40 numbered contacts are preserved one-to-one with no active device or signal reinterpretation",
+      "the stock DF40 footprint and manufacturer-derived FH34 footprint preserve pin-1 orientation and mechanical lands",
+      "native KiCad parses the standalone adapter project and its custom footprint"
+    ],
+    "deferred": [
+      "received HMX035CTFT-001 tail thickness, stiffener and insertion fit in H5",
+      "adapter placement, routing, bend radius, DRC and panel keep-out in H6",
+      "continuity, insertion retention and display HIL in H8"
+    ]
+  }
+}

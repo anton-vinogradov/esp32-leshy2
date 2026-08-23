@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.4 -->
+<!-- current-substep: H2.4.2 -->
 
-**Exact marker: `H2.4`** — implement and review the replaceable display-adapter
-and optional Leshy LoRa Cap schematics.
+**Exact marker: `H2.4.2`** — implement the LoRa Cap project root and exact
+14-contact host interface.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -199,7 +199,14 @@ Current H2 execution:
   - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 physical 1.0-mm
     test pads, 7 recovery paths and 6 RF-evidence channels; complete RF/power
     hierarchy passes native KiCad with no child stubs or deferred fixture labels.
-- ▶️ **`H2.4` — current:** implement and review display-adapter and LoRa-Cap sheets.
+- `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
+  - ✅ `H2.4.1` — `ADP_00_DISPLAY_ADAPTER`: two serial connectors, 40 exact
+    one-to-one conductors, two mechanical-only fittings and one
+    manufacturer-derived footprint; native KiCad review passed.
+  - ▶️ **`H2.4.2` — current:** `CAP_00_ROOT`, exact 14-contact host boundary.
+  - ⏳ `H2.4.3` — `CAP_10_RADIO_CONTROL`.
+  - ⏳ `H2.4.4` — `CAP_20_POWER_BUS`.
+  - ⏳ `H2.4.5` — `CAP_30_TX_EVIDENCE`.
 - ⏳ `H2.5` — independently review power, reset, boot, recovery,
   no-back-power, quiet-state and `FAULT_KILL` paths.
 - ⏳ `H2.6` — close ERC and justify every intentional no-connect.
