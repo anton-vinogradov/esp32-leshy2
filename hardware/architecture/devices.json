@@ -1016,6 +1016,24 @@
         "GND": {"physical": "1/40/41", "role": "power"},
         "ANT": {"physical": "first-generation on-module receptacle compatible with U.FL/MHF I/AMC", "role": "rf"}
       },
+      "pcb_pad_contract": {
+        "pad_count": 41,
+        "source": "ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8, Table 3-1 and Figure 10-2 recommended land pattern",
+        "variant_rule": "N16R8 uses octal PSRAM; physical pads 28/29/30 remain present but GPIO35/GPIO36/GPIO37 are unavailable and must be no-connect on the carrier PCB",
+        "pads": {
+          "1": "GND", "2": "3V3", "3": "EN", "4": "GPIO4", "5": "GPIO5",
+          "6": "GPIO6", "7": "GPIO7", "8": "GPIO15", "9": "GPIO16", "10": "GPIO17",
+          "11": "GPIO18", "12": "GPIO8", "13": "GPIO19", "14": "GPIO20", "15": "GPIO3",
+          "16": "GPIO46", "17": "GPIO9", "18": "GPIO10", "19": "GPIO11", "20": "GPIO12",
+          "21": "GPIO13", "22": "GPIO14", "23": "GPIO21", "24": "GPIO47", "25": "GPIO48",
+          "26": "GPIO45", "27": "GPIO0", "28": "NC_PSRAM_GPIO35", "29": "NC_PSRAM_GPIO36", "30": "NC_PSRAM_GPIO37",
+          "31": "GPIO38", "32": "GPIO39", "33": "GPIO40", "34": "GPIO41", "35": "GPIO42",
+          "36": "GPIO44", "37": "GPIO43", "38": "GPIO2", "39": "GPIO1", "40": "GND", "41": "EPAD_GND"
+        }
+      },
+      "non_pcb_interfaces": {
+        "ANT": "factory-fitted on-module first-generation micro-coax receptacle; never represented as a carrier-PCB pad"
+      },
       "strapping_contacts": ["GPIO0", "GPIO3", "GPIO45", "GPIO46"],
       "service_required": ["EN", "GPIO0", "GPIO19", "GPIO20"],
       "unavailable_gpio": {

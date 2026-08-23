@@ -115,9 +115,9 @@ This closes physical bodies and the inter-board air channel, not PCB routing. Fa
 | `66` | `AON_SAFE_3V3` | rail | `power` |
 | `67` | `SAFETY_GROUND` | return | `return` |
 | `68` | `SAFETY_GROUND` | return | `return` |
-| `69` | `POWER_GROUND` | return | `return` |
+| `69` | `UNIT_HOST_SIG0` | bidirectional | `unit_configurable` |
 | `70` | `POWER_GROUND` | return | `return` |
-| `71` | `POWER_GROUND` | return | `return` |
+| `71` | `UNIT_HOST_SIG1` | bidirectional | `unit_configurable` |
 | `72` | `POWER_GROUND` | return | `return` |
 | `73` | `ENCODER_A` | RF→UI | `control` |
 | `74` | `ENCODER_B` | RF→UI | `control` |

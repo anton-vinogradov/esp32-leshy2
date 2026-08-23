@@ -3,9 +3,11 @@
 
 The root is intentionally component-free.  It instantiates every reviewed UI
 functional sheet and exposes every net which crosses between two UI sheets.
-The interface set is derived from the architecture route graph and the exact
-M1 contact map, so a later circuit edit cannot silently invent or omit a
-cross-sheet connection.
+The interface set is derived from both the architecture route graph and the
+reviewed controller allocation graph, plus the exact M1 contact map.  The
+allocation graph is required because a controller-to-peer assignment is an
+electrical connection even when the verbose fixed-route table has no duplicate
+entry for that direct digital link.
 """
 
 from __future__ import annotations
@@ -30,6 +32,9 @@ SHEET_CONTRACT_PATH = ECAD / "H2-sheet-contract.json"
 ROOT_PATH = ECAD / "kicad/LESHY2-UI/LESHY2-UI.kicad_sch"
 PROJECT_DIR = ROOT_PATH.parent
 OUTPUT = ECAD / "generated/H2-UI-root-interface.json"
+IMPLEMENTED_CHILD_MANIFESTS = {
+    "UI_10_S3_CORE_MEMORY_BOOT": ECAD / "generated/H2-UI10-S3-core.json",
+}
 NAMESPACE = uuid.UUID("4ed50bf6-dbd9-44f6-a71f-9f07341b4db6")
 
 
@@ -66,6 +71,22 @@ def build_interfaces(candidate: dict, ledger: dict, sheet_contract: dict) -> dic
         if net == "NO_CONNECT" or net.endswith("_NC"):
             continue
         for endpoint in (route["from"], route["to"]):
+            instance = instance_name(endpoint)
+            if instance in instance_sheets:
+                sheet = instance_sheets[instance]
+                if sheet in child_sheets:
+                    net_sheets[net].add(sheet)
+        if net in m1_nets:
+            net_sheets[net].add("UI_40_INTERBOARD_M1")
+    for allocation in candidate["allocations"]:
+        net = allocation["net"]
+        if net == "NO_CONNECT" or net.endswith("_NC"):
+            continue
+        endpoints = [
+            f"{allocation['instance']}.{allocation['contact']}",
+            *allocation.get("peers", []),
+        ]
+        for endpoint in endpoints:
             instance = instance_name(endpoint)
             if instance in instance_sheets:
                 sheet = instance_sheets[instance]
@@ -253,13 +274,23 @@ def outputs() -> tuple[dict[Path, str], dict]:
             f"UI root sheet set differs: missing {sorted(expected_sheets - set(interfaces))}, "
             f"unexpected {sorted(set(interfaces) - expected_sheets)}"
         )
+    implemented_children = {}
+    for sheet, manifest_path in IMPLEMENTED_CHILD_MANIFESTS.items():
+        sheet_path = PROJECT_DIR / f"{sheet}.kicad_sch"
+        if not manifest_path.is_file() or not sheet_path.is_file():
+            continue
+        child_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if child_manifest.get("status") != "reviewed_exact_s3_core_sheet":
+            continue
+        implemented_children[sheet] = child_manifest
     generated = {ROOT_PATH: root_schematic(interfaces)}
-    generated.update(
-        {
-            PROJECT_DIR / f"{sheet}.kicad_sch": child_schematic(sheet, nets)
-            for sheet, nets in interfaces.items()
-        }
-    )
+    for sheet, nets in interfaces.items():
+        sheet_path = PROJECT_DIR / f"{sheet}.kicad_sch"
+        generated[sheet_path] = (
+            sheet_path.read_text(encoding="utf-8")
+            if sheet in implemented_children
+            else child_schematic(sheet, nets)
+        )
     net_sheets: dict[str, list[str]] = defaultdict(list)
     for sheet, nets in interfaces.items():
         for net in nets:
@@ -279,8 +310,22 @@ def outputs() -> tuple[dict[Path, str], dict]:
             "cross_sheet_net_count": len(net_sheets),
             "root_hierarchical_pin_count": sum(map(len, interfaces.values())),
             "child_hierarchical_label_count": sum(map(len, interfaces.values())),
-            "known_child_stub_erc_violations": sum(map(len, interfaces.values())),
-            "circuit_symbols_placed": 0,
+            "known_child_stub_erc_violations": sum(
+                1
+                for sheet, nets in interfaces.items()
+                if sheet not in implemented_children
+                for net in nets
+                if not any(net in interfaces[implemented] for implemented in implemented_children)
+            ),
+            "implemented_child_sheet_count": len(implemented_children),
+            "circuit_symbols_placed": sum(
+                child["summary"]["schematic_symbols"]
+                for child in implemented_children.values()
+            ),
+            "known_generated_library_copy_warnings": sum(
+                child["summary"]["schematic_symbols"]
+                for child in implemented_children.values()
+            ),
             "pcb_files_created": 0,
         },
         "sheets": [
@@ -292,22 +337,24 @@ def outputs() -> tuple[dict[Path, str], dict]:
             for net, sheets in sorted(net_sheets.items())
         ],
         "rules": {
-            "derivation": "fixed-route endpoints plus exact M1 contact membership",
+            "derivation": "fixed-route endpoints, allocated contacts and exact M1 contact membership",
             "pin_type": "bidirectional at H2.2.1; exact electrical pin types close with each implemented functional sheet",
             "no_hidden_cross_sheet_globals": True,
             "no_no_connect_aggregation": True,
             "root_is_component_free": True,
+            "implemented_children_are_preserved": sorted(implemented_children),
+            "generated_library_copy_warning_proof": "the controlled and embedded symbol definitions are generated from one object; validation requires one lib_symbol_mismatch per generated symbol and rejects every other mismatch/finding",
         },
         "review_boundary": {
             "complete": [
                 "all nine UI child sheets instantiated by the KiCad root",
-                "all 73 derived cross-sheet nets represented by explicit named pins and child labels",
+                "all 91 derived cross-sheet nets represented by explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
-                "native KiCad parser accepts the complete UI hierarchy and the root has zero ERC violations",
+                "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted",
             ],
             "deferred": [
                 "functional circuit symbols and exact electrical sheet-pin directions in H2.2.2-H2.2.9",
-                "the 180 exact child-stub label_dangling findings disappear as functional circuit pins are placed",
+                "each remaining exact child-stub label_dangling finding disappears as its functional circuit sheet is placed",
                 "manufacturing test-point interfaces in H2.2.10",
                 "final full-project ERC closure in H2.6",
                 "all PCB placement, routing, fabrication and purchasing",
@@ -331,8 +378,16 @@ def find_kicad_cli() -> str:
 def parse_check(generated: dict[Path, str], manifest: dict) -> None:
     cli = find_kicad_cli()
     with tempfile.TemporaryDirectory(prefix="leshy2-h2-ui-root-") as temp:
-        staged = Path(temp) / "LESHY2-UI"
-        staged.mkdir()
+        staged_ecad = Path(temp) / "hardware/ecad"
+        staged = staged_ecad / "kicad/LESHY2-UI"
+        staged.mkdir(parents=True)
+        for support in (
+            PROJECT_DIR / "LESHY2-UI.kicad_pro",
+            PROJECT_DIR / "sym-lib-table",
+            PROJECT_DIR / "fp-lib-table",
+        ):
+            shutil.copy2(support, staged / support.name)
+        shutil.copytree(ECAD / "libraries", staged_ecad / "libraries")
         for path, content in generated.items():
             if path.suffix == ".kicad_sch":
                 (staged / path.name).write_text(content, encoding="utf-8")
@@ -355,10 +410,27 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
             for sheet in erc.get("sheets", [])
             for violation in sheet.get("violations", [])
         ]
+        implemented_children = set(manifest["rules"]["implemented_children_are_preserved"])
+        implemented_nets = {
+            net
+            for row in manifest["sheets"]
+            if row["id"] in implemented_children
+            for net in row["interfaces"]
+        }
         expected_label_uuids = {
             stable_uuid(f"child-label:{row['id']}:{net}")
             for row in manifest["sheets"]
+            if row["id"] not in implemented_children
             for net in row["interfaces"]
+            if net not in implemented_nets
+        }
+        expected_mismatch_uuids = {
+            instance["symbol_uuid"]
+            for path in IMPLEMENTED_CHILD_MANIFESTS.values()
+            if path.is_file()
+            for child in [json.loads(path.read_text(encoding="utf-8"))]
+            if child.get("status") == "reviewed_exact_s3_core_sheet"
+            for instance in child["instances"]
         }
         actual_label_uuids = {
             violation["items"][0]["uuid"]
@@ -366,15 +438,26 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
             if violation.get("type") == "label_dangling"
             and len(violation.get("items", [])) == 1
         }
+        actual_mismatch_uuids = {
+            violation["items"][0]["uuid"]
+            for violation in violations
+            if violation.get("type") == "lib_symbol_mismatch"
+            and len(violation.get("items", [])) == 1
+        }
         if (
-            len(violations) != len(expected_label_uuids)
+            len(violations) != len(expected_label_uuids) + len(expected_mismatch_uuids)
             or actual_label_uuids != expected_label_uuids
+            or actual_mismatch_uuids != expected_mismatch_uuids
         ):
             raise RuntimeError(
-                "child-stub ERC differs from the exact H2.2.1 interface set: "
-                f"violations={len(violations)}, expected={len(expected_label_uuids)}"
+                "UI ERC differs from the exact reviewed finding sets: "
+                f"violations={len(violations)}, expected-stubs={len(expected_label_uuids)}, "
+                f"expected-generated-symbol-warnings={len(expected_mismatch_uuids)}"
             )
-    print("ok: KiCad parsed H2.2.1; only the exact declared child-stub findings remain")
+    print(
+        "ok: KiCad parsed the live UI hierarchy; only exact unimplemented child stubs "
+        "and generated-library copy warnings remain"
+    )
 
 
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
@@ -401,11 +484,13 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         raise ValueError("UI child hierarchical-label count mismatch")
     if summary != {
         "child_sheet_count": 9,
-        "cross_sheet_net_count": 73,
-        "root_hierarchical_pin_count": 180,
-        "child_hierarchical_label_count": 180,
-        "known_child_stub_erc_violations": 180,
-        "circuit_symbols_placed": 0,
+        "cross_sheet_net_count": 91,
+        "root_hierarchical_pin_count": 218,
+        "child_hierarchical_label_count": 218,
+        "known_child_stub_erc_violations": 109,
+        "implemented_child_sheet_count": 1,
+        "circuit_symbols_placed": 33,
+        "known_generated_library_copy_warnings": 33,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")

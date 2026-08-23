@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **974** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **973** supplied/costed placements collapse to **201** used exact-device/MPN lines.
+- **977** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **976** supplied/costed placements collapse to **201** used exact-device/MPN lines.
 - Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **190/201** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **956/973** supplied placements; their partial subtotals are `base_product` — USD 220.3425. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **959/976** supplied placements; their partial subtotals are `base_product` — USD 220.5416. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 970 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 973 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -890,7 +890,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Murata GRM21BR60J226ME39L</code> — 5 × USD 0.1341 = USD 0.6705</summary>
+<details><summary><code>Murata GRM21BR60J226ME39L</code> — 6 × USD 0.1341 = USD 0.8046</summary>
 
 - Device id: `murata_grm21br60j226me39l`.
 - Scope: `base_product`.
@@ -1241,7 +1241,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 115 × USD 0.0258 = USD 2.9670</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 116 × USD 0.0258 = USD 2.9928</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1250,7 +1250,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1608X7R1C105K080AC</code> — 34 × USD 0.0392 = USD 1.3328</summary>
+<details><summary><code>TDK C1608X7R1C105K080AC</code> — 35 × USD 0.0392 = USD 1.3720</summary>
 
 - Device id: `tdk_c1608x7r1c105k080ac`.
 - Scope: `base_product`.

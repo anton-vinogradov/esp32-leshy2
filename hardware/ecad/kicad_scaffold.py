@@ -95,8 +95,14 @@ def fp_table() -> str:
 
 
 def expected_files(contract: dict) -> dict[Path, str]:
+    controlled_symbol_library = LIBRARIES / "leshy2.kicad_sym"
+    populated_ui10 = ECAD / "generated/H2-UI10-S3-core.json"
     outputs: dict[Path, str] = {
-        LIBRARIES / "leshy2.kicad_sym": symbol_library(),
+        controlled_symbol_library: (
+            controlled_symbol_library.read_text(encoding="utf-8")
+            if populated_ui10.is_file() and controlled_symbol_library.is_file()
+            else symbol_library()
+        ),
         LIBRARIES / "Leshy2.pretty/README.md": (
             "# Leshy2 controlled footprints\n\n"
             "Exact manufacturer-derived footprints are added and reviewed with "

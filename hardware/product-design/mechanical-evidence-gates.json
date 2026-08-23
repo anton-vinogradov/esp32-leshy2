@@ -11,7 +11,7 @@
     "policy_source": "hardware/product-design/h1-source-research.json",
     "order_authorized": false,
     "sequence": "Exhaust controlled public sources, compare function-preserving documented replacements, request missing manufacturer data without an order, and consider a smallest evidence sample only as a separately approved last resort.",
-    "current_step": "H2.2.1"
+    "current_step": "H2.2.3"
   },
   "gates": [
     {

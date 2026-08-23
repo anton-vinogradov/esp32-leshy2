@@ -10,10 +10,10 @@
     "hardware/ecad/H2-sheet-contract.json"
   ],
   "source_sha256": {
-    "hardware/architecture/devices.json": "fc3c07399725d363a8109a0f6b1c80b2267cd90d7440510e6f4c3837b6fcfbc4",
-    "hardware/architecture/candidates/G2F-3I.json": "0246125142d8cb23d1783397f530f7957696e63a4f9563f05977c2857ad24319",
+    "hardware/architecture/devices.json": "0a0be015c67d7fb49f09cc3e9a61c486cb20216bbd16072f851a67478588ae90",
+    "hardware/architecture/candidates/G2F-3I.json": "2fe699d4b171c98bfc17cef414d1ddd7d3b066832c02efaeb86274ecb320a752",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "66570d01d59138868742bd337d512d1fe0bfb9ed87509825f7d2e73b06893747"
+    "hardware/ecad/H2-sheet-contract.json": "a4465effc17f388b83029bbfccd205bfae5f0c62032d4bc6ba27645811005952"
   },
   "integration_contract": {
     "schema": 2,
@@ -644,24 +644,24 @@
           {
             "instance": "s3",
             "contact": "GPIO19",
-            "net": "S3_USB_DM",
+            "net": "S3_USB_DM_LOCAL",
             "direction": "io",
             "controller": "USB_SERIAL_JTAG",
             "peers": [
               "product_usb_dm_series.END_2"
             ],
-            "sharing_proof": "dedicated protected USB Full-Speed D- path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"
+            "sharing_proof": "dedicated protected USB Full-Speed D- path after the exact UI-side 22-Ohm source termination; no SBU/Alt-Mode sharing"
           },
           {
             "instance": "s3",
             "contact": "GPIO20",
-            "net": "S3_USB_DP",
+            "net": "S3_USB_DP_LOCAL",
             "direction": "io",
             "controller": "USB_SERIAL_JTAG",
             "peers": [
               "product_usb_dp_series.END_2"
             ],
-            "sharing_proof": "dedicated protected USB Full-Speed D+ path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"
+            "sharing_proof": "dedicated protected USB Full-Speed D+ path after the exact UI-side 22-Ohm source termination; no SBU/Alt-Mode sharing"
           },
           {
             "instance": "s3",

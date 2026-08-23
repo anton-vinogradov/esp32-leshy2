@@ -1,0 +1,449 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.2",
+  "status": "reviewed_exact_s3_core_sheet",
+  "project": "LESHY2-UI",
+  "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "2fe699d4b171c98bfc17cef414d1ddd7d3b066832c02efaeb86274ecb320a752",
+    "hardware/architecture/devices.json": "0a0be015c67d7fb49f09cc3e9a61c486cb20216bbd16072f851a67478588ae90",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b23cffc3ad4e06b89904e60dac80753760346674d49d1c839a59c049ce3bc7bf",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "8dafdc3bdf9d789052731ea84dd255f405443688f6147dfbd91437d4d1b33b7e"
+  },
+  "summary": {
+    "ledger_instances": 32,
+    "schematic_symbols": 33,
+    "assembly_interface_symbols": 1,
+    "s3_carrier_pads": 41,
+    "hierarchical_interfaces": 39,
+    "intentional_no_connect_pins": 7,
+    "custom_footprints": 3,
+    "pcb_files_created": 0
+  },
+  "s3_pad_contract": {
+    "pad_count": 41,
+    "source": "ESP32-S3-WROOM-1/WROOM-1U Datasheet v1.8, Table 3-1 and Figure 10-2 recommended land pattern",
+    "variant_rule": "N16R8 uses octal PSRAM; physical pads 28/29/30 remain present but GPIO35/GPIO36/GPIO37 are unavailable and must be no-connect on the carrier PCB",
+    "pads": {
+      "1": "GND",
+      "2": "3V3",
+      "3": "EN",
+      "4": "GPIO4",
+      "5": "GPIO5",
+      "6": "GPIO6",
+      "7": "GPIO7",
+      "8": "GPIO15",
+      "9": "GPIO16",
+      "10": "GPIO17",
+      "11": "GPIO18",
+      "12": "GPIO8",
+      "13": "GPIO19",
+      "14": "GPIO20",
+      "15": "GPIO3",
+      "16": "GPIO46",
+      "17": "GPIO9",
+      "18": "GPIO10",
+      "19": "GPIO11",
+      "20": "GPIO12",
+      "21": "GPIO13",
+      "22": "GPIO14",
+      "23": "GPIO21",
+      "24": "GPIO47",
+      "25": "GPIO48",
+      "26": "GPIO45",
+      "27": "GPIO0",
+      "28": "NC_PSRAM_GPIO35",
+      "29": "NC_PSRAM_GPIO36",
+      "30": "NC_PSRAM_GPIO37",
+      "31": "GPIO38",
+      "32": "GPIO39",
+      "33": "GPIO40",
+      "34": "GPIO41",
+      "35": "GPIO42",
+      "36": "GPIO44",
+      "37": "GPIO43",
+      "38": "GPIO2",
+      "39": "GPIO1",
+      "40": "GND",
+      "41": "EPAD_GND"
+    }
+  },
+  "non_pcb_interfaces": {
+    "ANT": "factory-fitted on-module first-generation micro-coax receptacle; never represented as a carrier-PCB pad"
+  },
+  "instances": [
+    {
+      "instance": "s3",
+      "symbol_uuid": "8bb93fa8-bc3a-5be3-8bec-f7794e9f0842",
+      "reference": "U1",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "footprint": "RF_Module:ESP32-S3-WROOM-1U",
+      "pin_count": 41,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_external_rp_sma",
+      "symbol_uuid": "411079bc-ea4f-5ee3-983b-c5363097b296",
+      "reference": "J1",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "footprint": "Leshy2:RFPC-SMA32-FN-175-A",
+      "pin_count": 5,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_rf_jumper",
+      "symbol_uuid": "c77607c3-f452-5b67-b078-1bad600d7502",
+      "reference": "W1",
+      "mpn": "TE Connectivity 2118651-2",
+      "footprint": null,
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_rf_board_connector",
+      "symbol_uuid": "f6c53017-5b9c-5bcb-81ea-65a62225ed9e",
+      "reference": "J2",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "footprint": "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_rf_coupler",
+      "symbol_uuid": "3cc0d809-8110-5d41-945c-69c940e24771",
+      "reference": "U2",
+      "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+      "footprint": "Leshy2:CP0603Q5425ENTR",
+      "pin_count": 4,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_rf_coupler_termination",
+      "symbol_uuid": "f6d9fbf3-4a9e-5070-aaa5-9d17d2a3193c",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0749R9L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_detector_input_cap",
+      "symbol_uuid": "eae7baf7-ec7d-58ef-bb37-f6db4923fb74",
+      "reference": "C1",
+      "mpn": "Murata GRM1555C1H390JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_detector_feedback_res",
+      "symbol_uuid": "a7358eb9-002a-5e6d-9e56-69165901611f",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_detector_ground_res",
+      "symbol_uuid": "b2a6b5af-38d7-51e2-a1a4-41f8acc4f5a0",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_detector_output_cap",
+      "symbol_uuid": "c5f5641e-4881-5079-ba04-f7ed671fe587",
+      "reference": "C2",
+      "mpn": "KEMET C0402C330J5GACTU",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_detector_bypass",
+      "symbol_uuid": "2f68bb44-7184-5996-84a7-2767baa115b4",
+      "reference": "C3",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "product_usb_dp_series",
+      "symbol_uuid": "43f10353-678f-5f76-b25c-7cebfda97d41",
+      "reference": "R4",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "product_usb_dm_series",
+      "symbol_uuid": "4df987fd-4421-5586-a18a-46820667c32a",
+      "reference": "R5",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "sys_i2c_scl_pullup",
+      "symbol_uuid": "7ee38f98-06b5-5a46-af67-227b29e7609e",
+      "reference": "R6",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "sys_i2c_sda_pullup",
+      "symbol_uuid": "ebf2cca7-180d-5056-b066-7dc671ff481c",
+      "reference": "R7",
+      "mpn": "Yageo RC0402FR-072K2L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "sys_int_pullup",
+      "symbol_uuid": "d3d81d47-2162-5bc5-8057-ad9247049695",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_header",
+      "symbol_uuid": "9077d2af-0464-53c3-bb44-63567a3cd71e",
+      "reference": "J3",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR",
+      "pin_count": 10,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_esd",
+      "symbol_uuid": "ece9096c-f30a-5bd3-9112-2444476c61bd",
+      "reference": "U3",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_reset_button",
+      "symbol_uuid": "6f71d5f2-0a55-5be2-aaea-0eb3a2776927",
+      "reference": "SW1",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "pin_count": 3,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_boot_button",
+      "symbol_uuid": "b094bfa2-0c90-5273-8381-642f1bd06d34",
+      "reference": "SW2",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "pin_count": 3,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_vtref_series",
+      "symbol_uuid": "8fef9704-2b10-5cb0-b056-cd3e2c2f9169",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_reset_series",
+      "symbol_uuid": "0b871390-c0b5-5bca-9a79-8c541786f963",
+      "reference": "R10",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_boot_series",
+      "symbol_uuid": "5a2d82b4-2f2f-51a5-8924-8e84c44c5ee6",
+      "reference": "R11",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg0_series",
+      "symbol_uuid": "a91d8b2f-20f7-5b7a-a6ec-eba80e2016d3",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-07470RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg1_series",
+      "symbol_uuid": "e05b1385-c151-5609-b833-66fcfe824547",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-07470RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_id0_strap",
+      "symbol_uuid": "0b3891da-023c-5060-b9b3-3948b55ffd16",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_dbg_id1_strap",
+      "symbol_uuid": "6f33c81d-4b52-547a-97f1-6b7e3de36b1d",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_boot_pullup",
+      "symbol_uuid": "a2fb2c29-c652-5633-95f6-508c54487238",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_supply_bulk",
+      "symbol_uuid": "cd29bff4-5825-5308-b39d-4e27b2fc3130",
+      "reference": "U4",
+      "mpn": "Murata GRM21BR60J226ME39L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_supply_bypass",
+      "symbol_uuid": "441befe9-d8fa-51fc-a6be-dc5fd6f893fc",
+      "reference": "C4",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_reset_delay_cap",
+      "symbol_uuid": "5d990215-d537-5c6b-974d-8cf2d1870de6",
+      "reference": "C5",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_reset_pullup",
+      "symbol_uuid": "9cc04932-2828-5cc2-bf00-7badc27de723",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "ledger_component": true
+    },
+    {
+      "instance": "s3_factory_ant",
+      "symbol_uuid": "ccc69487-b644-5c0d-bed7-7a0311a5f0d2",
+      "reference": "X1",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8 factory U.FL",
+      "footprint": null,
+      "pin_count": 1,
+      "ledger_component": false
+    }
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+      "source": "TDS-RFM-0055 Rev.2, CP0603 page",
+      "url": "https://datasheets.kyocera-avx.com/cp0302.pdf",
+      "checked": "2026-08-23",
+      "locked_geometry_mm": {
+        "overall_land_span": [
+          1.75,
+          1.1
+        ],
+        "inter_land_gap": [
+          0.75,
+          0.3
+        ],
+        "land_size": [
+          0.5,
+          0.4
+        ]
+      }
+    },
+    {
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "source": "FTSH-1XX-XX-XXX-DV-XXX footprint Rev.H Figure 1",
+      "url": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-footprint.pdf",
+      "checked": "2026-08-23",
+      "locked_geometry_mm": {
+        "positions_per_row": 5,
+        "pitch": 1.27,
+        "land_size": [
+          0.74,
+          2.79
+        ],
+        "overall_row_land_span": 6.86
+      }
+    },
+    {
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "source": "RFPC-SMA32-FN drawing A1 dated 2025-02-25",
+      "url": "https://gct.co/connector/rfpc-sma32-fn",
+      "checked": "2026-08-23",
+      "locked_geometry_mm": {
+        "pcb_thickness": 1.6,
+        "top_land_count": 3,
+        "bottom_land_count": 2,
+        "land_size": [
+          1.6,
+          3.3
+        ],
+        "outer_land_span": 5.1
+      }
+    }
+  ],
+  "corrections_closed": [
+    "N16R8 carrier pads 28/29/30 are physical no-connects because octal PSRAM consumes GPIO35/36/37 internally",
+    "all three physical module ground lands 1/40/41 are distinct schematic pins on POWER_GROUND",
+    "22-uF and 100-nF local module supply capacitors plus the recommended 10-kOhm/1-uF EN network are fitted",
+    "USB D+/D- 22-Ohm source terminations are on the UI board beside S3, after M1",
+    "the factory module U.FL is an assembly interface, not a fictitious carrier-PCB pad",
+    "the board U.FL centre, PCB trace and coupler input use one continuous S3_MODULE_RF_50R net",
+    "UNIT_HOST_SIG0/1 now cross M1 contacts 69/71, each beside a retained POWER_GROUND return"
+  ],
+  "review_boundary": {
+    "complete": [
+      "every H2 ledger instance owned by UI10 is placed once with exact MPN and contact map",
+      "every S3 carrier pad is connected or explicitly no-connect",
+      "every one of the live UI10 hierarchy interfaces terminates on a real circuit pin",
+      "exact boot, reset, native USB, UART0 fallback, RF feed and local supply networks are represented",
+      "native KiCad parses the populated hierarchy; no unexplained UI10 ERC finding remains"
+    ],
+    "deferred": [
+      "PCB placement, controlled-impedance routing, via/return geometry and DRC in H6",
+      "USB eye/edge, RF loss/match/directivity, reset timing and service-control HIL",
+      "received-part dimensional and mating evidence in H5"
+    ]
+  }
+}

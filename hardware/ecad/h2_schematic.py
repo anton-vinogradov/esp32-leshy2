@@ -48,6 +48,8 @@ FIRMWARE_DOMAINS = {
 def sheet_for(instance: str, frame: str) -> str:
     if frame == "display-adapter":
         return "ADP_00_DISPLAY_ADAPTER"
+    if instance in {"product_usb_dp_series", "product_usb_dm_series"}:
+        return "UI_10_S3_CORE_MEMORY_BOOT"
     if instance in {
         "microphone_bias_filter_res", "microphone_bias_filter_cap",
         "microphone_bias_res", "voice_rx_coupling", "voice_rx_series",

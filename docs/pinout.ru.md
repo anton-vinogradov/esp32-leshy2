@@ -31,8 +31,8 @@
 | `GPIO16` | `I2S_WS` | `o` | `I2S0` | codec_i2s_ws_iso.A |
 | `GPIO17` | `I2S_DOUT` | `o` | `I2S0` | codec_i2s_dout_iso.A |
 | `GPIO18` | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | sd_host_buffer.1A<br>sd_host_sck_pulldown.END_1<br>display_connector.PIN_11 |
-| `GPIO19` | `S3_USB_DM` | `io` | `USB_SERIAL_JTAG` | product_usb_dm_series.END_2 |
-| `GPIO20` | `S3_USB_DP` | `io` | `USB_SERIAL_JTAG` | product_usb_dp_series.END_2 |
+| `GPIO19` | `S3_USB_DM_LOCAL` | `io` | `USB_SERIAL_JTAG` | product_usb_dm_series.END_2 |
+| `GPIO20` | `S3_USB_DP_LOCAL` | `io` | `USB_SERIAL_JTAG` | product_usb_dp_series.END_2 |
 | `GPIO21` | `S3_RP_IPC_MOSI` | `o` | `SPI3` | rp.GPIO24 |
 | `GPIO38` | `LCD_CS_N` | `o` | `SPI2` | display_connector.PIN_9<br>lcd_host_cs_pullup.END_1 |
 | `GPIO39` | `ENCODER_A` | `i` | `PCNT0` | encoder.A<br>encoder_a_pullup.END_1 |

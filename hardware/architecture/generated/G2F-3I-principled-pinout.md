@@ -37,10 +37,13 @@ paper MPN и роль. Разные устройства не объединяю
 flowchart TD
   subgraph COMPUTE_1["Compute owners"]
   S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
+  S3_SUPPLY_BULK["Murata GRM21BR60J226ME39L<br/>22-uF local S3 module bulk capacitor"]
+  S3_SUPPLY_BYPASS["TDK C1005X7R1H104K050BB<br/>100-nF local S3 module high-frequency bypass capacitor"]
+  S3_RESET_DELAY_CAP["TDK C1608X7R1C105K080AC<br/>1-uF S3 EN power-up delay capacitor"]
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, IEEE 802.15.4 and IR owner"]
   RP["SC1512-A4<br/>deterministic radio and voice owner"]
   end
-  S3 ~~~ C5 ~~~ RP
+  S3 ~~~ S3_SUPPLY_BULK ~~~ S3_SUPPLY_BYPASS ~~~ S3_RESET_DELAY_CAP ~~~ C5 ~~~ RP
   S3 <-->|"1-bit SDIO: S3 GPIO10,GPIO11,GPIO12,GPIO13 ↔ C5 GPIO7,GPIO8,GPIO9,GPIO10"| C5
   S3 <-->|"SPI3+alert: S3 GPIO3,GPIO9,GPIO14,GPIO21,GPIO48 ↔ RP GPIO19,GPIO24,GPIO25,GPIO26,GPIO27"| RP
 ```
@@ -2045,8 +2048,8 @@ BOOTSEL не входят в GPIO budget и остаются выведенны�
 | `GPIO16` | 9 | `I2S_WS` | `o` | `I2S0` | `codec_i2s_ws_iso.A` | — |
 | `GPIO17` | 10 | `I2S_DOUT` | `o` | `I2S0` | `codec_i2s_dout_iso.A` | — |
 | `GPIO18` | 11 | `DISPLAY_SD_SPI_SCK` | `o` | `SPI2` | `sd_host_buffer.1A`, `sd_host_sck_pulldown.END_1`, `display_connector.PIN_11` | — |
-| `GPIO19` | 13 | `S3_USB_DM` | `io` | `USB_SERIAL_JTAG` | `product_usb_dm_series.END_2` | — |
-| `GPIO20` | 14 | `S3_USB_DP` | `io` | `USB_SERIAL_JTAG` | `product_usb_dp_series.END_2` | — |
+| `GPIO19` | 13 | `S3_USB_DM_LOCAL` | `io` | `USB_SERIAL_JTAG` | `product_usb_dm_series.END_2` | — |
+| `GPIO20` | 14 | `S3_USB_DP_LOCAL` | `io` | `USB_SERIAL_JTAG` | `product_usb_dp_series.END_2` | — |
 | `GPIO21` | 23 | `S3_RP_IPC_MOSI` | `o` | `SPI3` | `rp.GPIO24` | — |
 | `GPIO38` | 31 | `LCD_CS_N` | `o` | `SPI2` | `display_connector.PIN_9`, `lcd_host_cs_pullup.END_1` | — |
 | `GPIO39` | 32 | `ENCODER_A` | `i` | `PCNT0` | `encoder.A`, `encoder_a_pullup.END_1` | — |
@@ -2411,6 +2414,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `NO_CONNECT` | `rp_dbg_esd.NC_10` | `abstract:no-connect` | manufacturer NC remains open |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_boot_pullup.END_1` | exact normal-boot pull-up |
 | `I2S_DIN` | `s3_boot_pullup.END_2` | `s3.GPIO0` | the exact 10-kOhm target-side pull-up preserves deterministic normal boot and is a weak load after GPIO0 becomes the codec-data input |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_supply_bulk.END_1` | exact 22-uF local module bulk follows the ESP32-S3-WROOM-1U peripheral schematic and bounds transmit-current rail steps |
+| `POWER_GROUND` | `s3_supply_bulk.END_2` | `abstract:power-ground` | short local return for the S3 module bulk capacitor |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `s3_supply_bypass.END_1` | exact 100-nF high-frequency bypass stays at the S3 module 3V3 contact |
+| `POWER_GROUND` | `s3_supply_bypass.END_2` | `abstract:power-ground` | short local return for the S3 module high-frequency bypass |
+| `S3_RESET_N` | `s3.EN` | `s3_reset_delay_cap.END_1` | exact 1-uF EN delay capacitor implements Espressif's usual 10-kOhm/1-uF power-up target without weakening any active-low reset sink |
+| `POWER_GROUND` | `s3_reset_delay_cap.END_2` | `abstract:power-ground` | EN delay capacitor returns directly to local power ground |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `c5_boot_pullup.END_1` | exact normal-boot pull-up |
 | `C5_BOOT_N` | `c5_boot_pullup.END_2` | `c5.GPIO28` | C5 normal boot remains deterministic without a fixture |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `rp_boot_pullup.END_1` | exact normal-boot pull-up |
@@ -2438,12 +2447,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `USB_C_CC2_CONNECTOR` | `product_usb_protector.RPD_G2` | `product_usb_protector.C_CC2` | TI dead-battery ground-loop contact stays on connector-side CC2 exactly as required |
 | `USB2_DP_CONNECTOR` | `product_usb_connector.A6_DP` | `product_usb_connector.B6_DP` | both orientation-dependent D+ contacts join at the receptacle before protection |
 | `USB2_DP_CONNECTOR` | `product_usb_connector.B6_DP` | `product_usb_protector.C_SBU1` | the first explicitly USB2-capable protector channel carries D+; it is not an Alt-Mode SBU route |
-| `USB2_DP_PROTECTED` | `product_usb_protector.SBU1` | `product_usb_dp_series.END_1` | protected USB2 D+ reaches the exact 22-Ohm first-target source-termination position |
-| `S3_USB_DP` | `product_usb_dp_series.END_2` | `s3.GPIO20` | series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL |
+| `S3_USB_DP` | `product_usb_protector.SBU1` | `product_usb_dp_series.END_1` | protected USB2 D+ crosses M1 before reaching the UI-side source-termination position |
+| `S3_USB_DP_LOCAL` | `product_usb_dp_series.END_2` | `s3.GPIO20` | series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL |
 | `USB2_DM_CONNECTOR` | `product_usb_connector.A7_DM` | `product_usb_connector.B7_DM` | both orientation-dependent D- contacts join at the receptacle before protection |
 | `USB2_DM_CONNECTOR` | `product_usb_connector.B7_DM` | `product_usb_protector.C_SBU2` | the second explicitly USB2-capable protector channel carries D-; it is not an Alt-Mode SBU route |
-| `USB2_DM_PROTECTED` | `product_usb_protector.SBU2` | `product_usb_dm_series.END_1` | protected USB2 D- reaches the exact 22-Ohm first-target source-termination position |
-| `S3_USB_DM` | `product_usb_dm_series.END_2` | `s3.GPIO19` | series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL |
+| `S3_USB_DM` | `product_usb_protector.SBU2` | `product_usb_dm_series.END_1` | protected USB2 D- crosses M1 before reaching the UI-side source-termination position |
+| `S3_USB_DM_LOCAL` | `product_usb_dm_series.END_2` | `s3.GPIO19` | series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL |
 | `NO_CONNECT` | `product_usb_connector.A8_SBU1` | `abstract:no-connect` | the base product implements no Type-C Alt Mode or SBU accessory path |
 | `NO_CONNECT` | `product_usb_connector.B8_SBU2` | `abstract:no-connect` | the base product implements no Type-C Alt Mode or SBU accessory path |
 | `PD_LOCAL_3V3` | `pd_controller.LDO_3V3` | `product_usb_protector.VPWR` | the port protector is powered from the autonomous TPS local rail during dead-battery attach |
@@ -4583,7 +4592,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `S3_MODULE_RF_50R` | `s3.ANT` | `s3_rf_jumper.END_A` | datasheet-dimensioned module receptacle mates the exact 30-mm UMCC Gen1 jumper |
 | `S3_MODULE_RF_50R` | `s3_rf_jumper.END_B` | `s3_rf_board_connector.CENTER` | generated route preserves the exact jumper length; received feed still passes retention, insertion-loss and return-loss checks |
 | `S3_RF_GROUND` | `s3_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
-| `S3_RF_MAINLINE_IN_50R` | `s3_rf_board_connector.CENTER` | `s3_rf_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
+| `S3_MODULE_RF_50R` | `s3_rf_board_connector.CENTER` | `s3_rf_coupler.RF_IN` | the board receptacle centre and its PCB trace are one continuous 50-Ohm net; coupler IN faces the module so its sample is forward TX energy |
 | `S3_EXTERNAL_RF_50R` | `s3_rf_coupler.RF_OUT` | `s3_external_rp_sma.RF` | independent external antenna path reaches the exact 6-GHz RP-SMA edge-launch jack |
 | `S3_COUPLER_TERMINATION` | `s3_rf_coupler.TERMINATION_50R` | `s3_rf_coupler_termination.END_1` | exact 49.9-Ohm termination preserves specified directivity |
 | `S3_RF_GROUND` | `s3_rf_coupler_termination.END_2` | `abstract:rf-ground` | termination returns at the coupler through the shortest via geometry |
@@ -5395,6 +5404,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `rp_dbg0_series` lifecycle: `active_orderable`.
 - `rp_dbg1_series` uses `Yageo RC0402FR-07470RL` as `verified_exact_dbg10_uart_swd_series_resistor`, not an accepted production choice.
 - `rp_dbg1_series` lifecycle: `active_orderable`.
+- `s3_reset_delay_cap` lifecycle: `active_production`.
 - `safety_controller` uses `Texas Instruments MSPM0C1106SDGS20R` as `verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate`, not an accepted production choice.
 - `safety_controller` lifecycle: `active_orderable`.
 - `safety_fault_request_iso` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.

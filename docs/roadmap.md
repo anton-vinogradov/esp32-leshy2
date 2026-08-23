@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.2.2: exact S3 core, memory, boot, USB and service/reset; UI root H2.2.1 is reviewed |
+| Current production ECAD schematic | ▶️ H2.2.3: exact display, integrated touch and isolated microSD; S3 core H2.2.2 is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.2.2 -->
+<!-- current-substep: H2.2.3 -->
 
-**Exact marker: `H2.2.2`** — implement and review exact S3 core, memory, boot,
-native USB and service/reset circuitry on `UI_10_S3_CORE_MEMORY_BOOT`.
+**Exact marker: `H2.2.3`** — implement and review exact display, integrated
+touch and isolated microSD circuitry on `UI_11_DISPLAY_TOUCH_STORAGE`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -115,23 +115,25 @@ native USB and service/reset circuitry on `UI_10_S3_CORE_MEMORY_BOOT`.
 Current H2 execution:
 
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 1002-row inventory reviewed: all 974 main-device
+  - ✅ `H2.0.1` — complete 1005-row inventory reviewed: all 977 main-device
     circuit instances, 26 common LoRa-Cap parts and 2 alternative radio modules;
-    178 H1 bodies and all 796 schematic-only main-device parts are reconciled.
+    178 H1 bodies and all 799 schematic-only main-device parts are reconciled.
   - ✅ `H2.0.2` — four-project hierarchy, board boundaries, rails and net naming
-    rechecked against all 1002 inventory rows; four intentionally component-empty
+    rechecked against all 1005 inventory rows; four intentionally component-empty
     root/test sheets are explicitly classified.
   - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP export and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native schematic files and
   repository-controlled library tables created; every sheet passed the KiCad
   10 parser and empty-sheet ERC. No PCB file exists.
 - `H2.2` — implement and review UI/control PCB sheets.
-  - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 73 exact cross-sheet nets
-    and 180 explicit pins/labels; one direct root rail per net, no hidden global
-    labels, native KiCad parse passed. The exact 180 empty-child stub findings
-    are machine-accounted and close only as H2.2.2–H2.2.9 place circuit pins.
-  - ▶️ **`H2.2.2` — current:** `UI_10_S3_CORE_MEMORY_BOOT`.
-  - ⏳ `H2.2.3` — `UI_11_DISPLAY_TOUCH_STORAGE`.
+  - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 91 exact cross-sheet nets
+    and 218 explicit pins/labels; one direct root rail per net, no hidden global
+    labels, native KiCad parse passed. With UI10 populated, 109 exact empty-child
+    stub findings and 33 generated-library copy warnings are machine-accounted.
+  - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 exact ledger components plus
+    one module U.FL assembly-boundary symbol, all 41 S3 carrier pads, 39 hierarchy
+    interfaces, seven intentional no-connects and three checked custom footprints.
+  - ▶️ **`H2.2.3` — current:** `UI_11_DISPLAY_TOUCH_STORAGE`.
   - ⏳ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`.
   - ⏳ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`.
   - ⏳ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`.

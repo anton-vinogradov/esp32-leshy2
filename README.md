@@ -30,24 +30,26 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.2 -->
+<!-- current-substep: H2.2.3 -->
 
-**Exact marker: `H2.2.2`** — implement and review the exact S3 core, memory,
-boot, native USB and service/reset paths on `UI_10_S3_CORE_MEMORY_BOOT`.
+**Exact marker: `H2.2.3`** — implement and review the exact display, integrated
+touch and isolated microSD circuitry on `UI_11_DISPLAY_TOUCH_STORAGE`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
-  - ✅ `H2.0.1` — complete 1002-row circuit inventory reviewed: 974 main-device
+  - ✅ `H2.0.1` — complete 1005-row circuit inventory reviewed: 977 main-device
     instances plus 26 common and 2 alternative LoRa-Cap instances.
   - ✅ `H2.0.2` — four-project sheet graph, board boundaries and net naming reviewed.
   - ✅ `H2.0.3` — generated 123-contact HW↔FW/BSP contract and cross-repository drift checks reviewed.
 - ✅ `H2.1` — four independent KiCad projects, 28 native sheet files and
   repository-controlled library tables created; KiCad 10 parser/empty ERC passed.
 - `H2.2` — implement and review UI/control PCB sheets.
-  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 73 exact cross-sheet
-    nets and 180 named pins/child labels; direct root rails parse in KiCad.
-  - ▶️ **`H2.2.2` — current:** S3 core, memory, boot, USB and service/reset.
-  - ⏳ `H2.2.3–H2.2.10` — display/storage; controls; audio; C5/IR;
+  - ✅ `H2.2.1` — UI root reviewed: nine child sheets, 91 exact cross-sheet
+    nets and 218 named pins/child labels; direct root rails parse in KiCad.
+  - ✅ `H2.2.2` — S3 core reviewed: 32 exact ledger components plus the module
+    U.FL assembly boundary, all 41 carrier pads and 39 hierarchy interfaces.
+  - ▶️ **`H2.2.3` — current:** display, integrated touch and isolated microSD.
+  - ⏳ `H2.2.4–H2.2.10` — controls; audio; C5/IR;
     receiver; M1; TX safety; manufacturing/test points, in that order.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.

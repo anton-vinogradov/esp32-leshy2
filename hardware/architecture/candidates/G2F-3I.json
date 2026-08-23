@@ -176,7 +176,7 @@
     "status": "paper_reviewed_joint_target_projection",
     "fixed_route_abstract_policy": {
       "expected_unique_endpoint_count": 40,
-      "expected_occurrence_count": 1137,
+      "expected_occurrence_count": 1142,
       "classes": [
         {
           "id": "electrical_plane_rail_or_wired_logic",
@@ -214,7 +214,7 @@
     },
     "consistency_checks": [
       "all programmable GPIO, module contacts, slow-I/O contacts, service alternatives and scheduled resources are machine-accounted without collision",
-      "all 954 physical architecture instances render one-device-per-node and the 953 supplied placements map to the reviewed I8 purchase boundary",
+      "all 957 physical architecture instances render one-device-per-node and the 956 supplied placements map to the reviewed I8 purchase boundary",
       "all signal groups have complete quiet-state, transition, actual-TX evidence and no-stall contracts without cross-group runtime promotion",
       "all remaining physical, procurement and HIL uncertainty has an owning downstream gate and no unresolved owner decision changes target function"
     ],
@@ -579,7 +579,7 @@
     "pd_support_decision": "DEC-0076",
     "pd_support_profile": "TPS25751D hardware SafeMode straps ADCIN1 high and ADCIN2 low for target address 0x20. Raw USB VBUS feeds both VBUS and VBUS_IN; PP5V is grounded for sink-only operation. VIN_3V3 uses AON_SAFE_3V3 after autonomous dead-battery startup. Exact 10-uF VIN/LDO capacitors, 4.7-uF VBUS, four 22-uF PPHV capacitors, 220-pF C0G per protected CC, EEPROM bypass/WP pull-up, 2.2-kOhm local and host I2C pull-ups and a 10-kOhm host IRQ pull-up complete the paper circuit. EEPROM address straps are low; GPIO0 is open-drain and may sink WP only in an authorized signed-update window; every unused TPS GPIO is grounded",
     "product_usb_decision": "DEC-0083",
-    "product_usb_profile": "JAE DX07S016JA1R1500 terminates the product port. A single TI TPD4S201RUKR protects connector-side CC1/CC2 and repurposes its two explicitly USB2-capable SBU channels for D+/D-, adding 28-V short-to-VBUS and IEC ESD isolation before TPS25751D and S3. Two exact 22-Ohm series resistors at S3 follow the Espressif initial USB Full-Speed RC recommendation; two 0402 shunt-capacitor positions are reserved DNP and therefore are not BOM instances until measured tuning requires them. RPD_G1/G2 loop to connector-side CC for dead-battery attach. VPWR uses TPS LDO_3V3 with an exact 1-uF capacitor; VBIAS uses an exact 100-nF/100-V capacitor. FLT has a 10-kOhm LDO_3V3 pull-up and protected test point without consuming a GPIO. Two exact 220-pF C0G CC shunts replace 330 pF so TPS 120-pF input plus 40-120-pF protector and capacitor tolerance remain at 369-471 pF before route parasitics, leaving 129 pF to the USB-PD 600-pF ceiling. SBU and Alt Mode are unsupported; VBUS remains on the existing TVS2200/TPS sink-only path",
+    "product_usb_profile": "JAE DX07S016JA1R1500 terminates the product port. A single TI TPD4S201RUKR protects connector-side CC1/CC2 and repurposes its two explicitly USB2-capable SBU channels for D+/D-, adding 28-V short-to-VBUS and IEC ESD isolation before TPS25751D and S3. The protected D+/D- pair crosses M1 first; two exact 22-Ohm series resistors are then placed on the UI PCB at the S3 pins, following the Espressif initial USB Full-Speed recommendation instead of incorrectly terminating beside the remote receptacle. Two 0402 shunt-capacitor positions are reserved DNP and therefore are not BOM instances until measured tuning requires them. RPD_G1/G2 loop to connector-side CC for dead-battery attach. VPWR uses TPS LDO_3V3 with an exact 1-uF capacitor; VBIAS uses an exact 100-nF/100-V capacitor. FLT has a 10-kOhm LDO_3V3 pull-up and protected test point without consuming a GPIO. Two exact 220-pF C0G CC shunts replace 330 pF so TPS 120-pF input plus 40-120-pF protector and capacitor tolerance remain at 369-471 pF before route parasitics, leaving 129 pF to the USB-PD 600-pF ceiling. SBU and Alt Mode are unsupported; VBUS remains on the existing TVS2200/TPS sink-only path",
     "external_protection_decision": "DEC-0069",
     "external_protection_profile_decision": "DEC-0071",
     "external_protection": "TPS259470LRPWR follows the 5V converter and provides always-on reverse blocking, latch-off thermal-fault behavior and open-drain fault evidence. RC0402FR-072K21L sets a nominal 1.509A current limit that applies immediately at startup; GRM155R71H472KA01D limits the controlled startup slew. GRM188R71E224KA88D permits only a bounded post-start 2A transient; it does not defer startup current limiting. The exact OVLO divider, local capacitors and passive output bleeder complete the accepted paper profile",
@@ -1226,9 +1226,9 @@
       },
       {
         "contact": 69,
-        "net": "POWER_GROUND",
-        "direction": "return",
-        "signal_class": "return"
+        "net": "UNIT_HOST_SIG0",
+        "direction": "bidirectional",
+        "signal_class": "unit_configurable"
       },
       {
         "contact": 70,
@@ -1238,9 +1238,9 @@
       },
       {
         "contact": 71,
-        "net": "POWER_GROUND",
-        "direction": "return",
-        "signal_class": "return"
+        "net": "UNIT_HOST_SIG1",
+        "direction": "bidirectional",
+        "signal_class": "unit_configurable"
       },
       {
         "contact": 72,
@@ -2140,6 +2140,9 @@
     "rp_dbg_id0_strap": "yageo_rc0402fr_0710kl",
     "rp_dbg_id1_strap": "yageo_rc0402fr_0710kl",
     "s3_boot_pullup": "yageo_rc0402fr_0710kl",
+    "s3_supply_bulk": "murata_grm21br60j226me39l",
+    "s3_supply_bypass": "tdk_c1005x7r1h104k050bb",
+    "s3_reset_delay_cap": "tdk_c1608x7r1c105k080ac",
     "c5_boot_pullup": "yageo_rc0402fr_0710kl",
     "rp_boot_pullup": "yageo_rc0402fr_0710kl",
     "c5_gpio27_pullup": "yageo_rc0402fr_0710kl",
@@ -2317,8 +2320,8 @@
     {"instance":"s3","contact":"GPIO16","net":"I2S_WS","direction":"o","controller":"I2S0","peers":["codec_i2s_ws_iso.A"]},
     {"instance":"s3","contact":"GPIO17","net":"I2S_DOUT","direction":"o","controller":"I2S0","peers":["codec_i2s_dout_iso.A"]},
     {"instance":"s3","contact":"GPIO18","net":"DISPLAY_SD_SPI_SCK","direction":"o","controller":"SPI2","peers":["sd_host_buffer.1A","sd_host_sck_pulldown.END_1","display_connector.PIN_11"]},
-    {"instance":"s3","contact":"GPIO19","net":"S3_USB_DM","direction":"io","controller":"USB_SERIAL_JTAG","peers":["product_usb_dm_series.END_2"],"sharing_proof":"dedicated protected USB Full-Speed D- path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"},
-    {"instance":"s3","contact":"GPIO20","net":"S3_USB_DP","direction":"io","controller":"USB_SERIAL_JTAG","peers":["product_usb_dp_series.END_2"],"sharing_proof":"dedicated protected USB Full-Speed D+ path through the exact initial 22-Ohm source termination; no SBU/Alt-Mode sharing"},
+    {"instance":"s3","contact":"GPIO19","net":"S3_USB_DM_LOCAL","direction":"io","controller":"USB_SERIAL_JTAG","peers":["product_usb_dm_series.END_2"],"sharing_proof":"dedicated protected USB Full-Speed D- path after the exact UI-side 22-Ohm source termination; no SBU/Alt-Mode sharing"},
+    {"instance":"s3","contact":"GPIO20","net":"S3_USB_DP_LOCAL","direction":"io","controller":"USB_SERIAL_JTAG","peers":["product_usb_dp_series.END_2"],"sharing_proof":"dedicated protected USB Full-Speed D+ path after the exact UI-side 22-Ohm source termination; no SBU/Alt-Mode sharing"},
     {"instance":"s3","contact":"GPIO21","net":"S3_RP_IPC_MOSI","direction":"o","controller":"SPI3","peers":["rp.GPIO24"]},
     {"instance":"s3","contact":"GPIO0","net":"I2S_DIN","direction":"i","controller":"I2S0","peers":["codec_i2s_din_iso.Y","s3_boot_pullup.END_2","s3_dbg_boot_series.END_2"],"strap_proof":"the exact 10-kOhm pull-up preserves normal boot; CODEC_READY is ANDed with reset-low AUDIO_ARM before the DIN buffer can drive, so GPIO0 remains fixture-controllable throughout ROM strap sampling; the 1-kOhm service path bounds accidental runtime contention"},
     {"instance":"s3","contact":"GPIO45","net":"SYS_INT_N","direction":"i","controller":"GPIO_IRQ","peers":["slow_io.INT","ui_matrix_io.INT_N","headset_control_io.INT_N","pd_controller.I2Ct_IRQ","touch_irq_buffer.Y","pack_status_buffer.D2"],"strap_proof":"the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling","sharing_proof":"all sources are active-low/open-drain with an external pull-up; exact 2N7002DW Q2 translates the pack-admission request into a passive drain, and firmware reads all three expanders, touch, PD and pack-admission status after a shared interrupt"},
@@ -2688,6 +2691,12 @@
 
     {"from":"abstract:3V3_MAIN","to":"s3_boot_pullup.END_1","net":"3V3_MAIN","safety":"exact normal-boot pull-up"},
     {"from":"s3_boot_pullup.END_2","to":"s3.GPIO0","net":"I2S_DIN","safety":"the exact 10-kOhm target-side pull-up preserves deterministic normal boot and is a weak load after GPIO0 becomes the codec-data input"},
+    {"from":"abstract:3V3_MAIN","to":"s3_supply_bulk.END_1","net":"3V3_MAIN","safety":"exact 22-uF local module bulk follows the ESP32-S3-WROOM-1U peripheral schematic and bounds transmit-current rail steps"},
+    {"from":"s3_supply_bulk.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short local return for the S3 module bulk capacitor"},
+    {"from":"abstract:3V3_MAIN","to":"s3_supply_bypass.END_1","net":"3V3_MAIN","safety":"exact 100-nF high-frequency bypass stays at the S3 module 3V3 contact"},
+    {"from":"s3_supply_bypass.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short local return for the S3 module high-frequency bypass"},
+    {"from":"s3.EN","to":"s3_reset_delay_cap.END_1","net":"S3_RESET_N","safety":"exact 1-uF EN delay capacitor implements Espressif's usual 10-kOhm/1-uF power-up target without weakening any active-low reset sink"},
+    {"from":"s3_reset_delay_cap.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"EN delay capacitor returns directly to local power ground"},
     {"from":"abstract:3V3_MAIN","to":"c5_boot_pullup.END_1","net":"3V3_MAIN","safety":"exact normal-boot pull-up"},
     {"from":"c5_boot_pullup.END_2","to":"c5.GPIO28","net":"C5_BOOT_N","safety":"C5 normal boot remains deterministic without a fixture"},
     {"from":"abstract:3V3_MAIN","to":"rp_boot_pullup.END_1","net":"3V3_MAIN","safety":"exact normal-boot pull-up"},
@@ -2716,12 +2725,12 @@
     {"from":"product_usb_protector.RPD_G2","to":"product_usb_protector.C_CC2","net":"USB_C_CC2_CONNECTOR","safety":"TI dead-battery ground-loop contact stays on connector-side CC2 exactly as required"},
     {"from":"product_usb_connector.A6_DP","to":"product_usb_connector.B6_DP","net":"USB2_DP_CONNECTOR","safety":"both orientation-dependent D+ contacts join at the receptacle before protection"},
     {"from":"product_usb_connector.B6_DP","to":"product_usb_protector.C_SBU1","net":"USB2_DP_CONNECTOR","safety":"the first explicitly USB2-capable protector channel carries D+; it is not an Alt-Mode SBU route"},
-    {"from":"product_usb_protector.SBU1","to":"product_usb_dp_series.END_1","net":"USB2_DP_PROTECTED","safety":"protected USB2 D+ reaches the exact 22-Ohm first-target source-termination position"},
-    {"from":"product_usb_dp_series.END_2","to":"s3.GPIO20","net":"S3_USB_DP","safety":"series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL"},
+    {"from":"product_usb_protector.SBU1","to":"product_usb_dp_series.END_1","net":"S3_USB_DP","safety":"protected USB2 D+ crosses M1 before reaching the UI-side source-termination position"},
+    {"from":"product_usb_dp_series.END_2","to":"s3.GPIO20","net":"S3_USB_DP_LOCAL","safety":"series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL"},
     {"from":"product_usb_connector.A7_DM","to":"product_usb_connector.B7_DM","net":"USB2_DM_CONNECTOR","safety":"both orientation-dependent D- contacts join at the receptacle before protection"},
     {"from":"product_usb_connector.B7_DM","to":"product_usb_protector.C_SBU2","net":"USB2_DM_CONNECTOR","safety":"the second explicitly USB2-capable protector channel carries D-; it is not an Alt-Mode SBU route"},
-    {"from":"product_usb_protector.SBU2","to":"product_usb_dm_series.END_1","net":"USB2_DM_PROTECTED","safety":"protected USB2 D- reaches the exact 22-Ohm first-target source-termination position"},
-    {"from":"product_usb_dm_series.END_2","to":"s3.GPIO19","net":"S3_USB_DM","safety":"series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL"},
+    {"from":"product_usb_protector.SBU2","to":"product_usb_dm_series.END_1","net":"S3_USB_DM","safety":"protected USB2 D- crosses M1 before reaching the UI-side source-termination position"},
+    {"from":"product_usb_dm_series.END_2","to":"s3.GPIO19","net":"S3_USB_DM_LOCAL","safety":"series termination stays close to the S3 module; a 0402 shunt-capacitor position is reserved DNP pending Full-Speed signal-integrity HIL"},
     {"from":"product_usb_connector.A8_SBU1","to":"abstract:no-connect","net":"NO_CONNECT","safety":"the base product implements no Type-C Alt Mode or SBU accessory path"},
     {"from":"product_usb_connector.B8_SBU2","to":"abstract:no-connect","net":"NO_CONNECT","safety":"the base product implements no Type-C Alt Mode or SBU accessory path"},
     {"from":"pd_controller.LDO_3V3","to":"product_usb_protector.VPWR","net":"PD_LOCAL_3V3","safety":"the port protector is powered from the autonomous TPS local rail during dead-battery attach"},
@@ -4869,7 +4878,7 @@
     {"from":"s3.ANT","to":"s3_rf_jumper.END_A","net":"S3_MODULE_RF_50R","safety":"datasheet-dimensioned module receptacle mates the exact 30-mm UMCC Gen1 jumper"},
     {"from":"s3_rf_jumper.END_B","to":"s3_rf_board_connector.CENTER","net":"S3_MODULE_RF_50R","safety":"generated route preserves the exact jumper length; received feed still passes retention, insertion-loss and return-loss checks"},
     {"from":"s3_rf_board_connector.SHELL","to":"abstract:rf-ground","net":"S3_RF_GROUND","safety":"all three receptacle ground lands receive shortest RF-ground paths"},
-    {"from":"s3_rf_board_connector.CENTER","to":"s3_rf_coupler.RF_IN","net":"S3_RF_MAINLINE_IN_50R","safety":"coupler IN faces the module so its sample is forward TX energy"},
+    {"from":"s3_rf_board_connector.CENTER","to":"s3_rf_coupler.RF_IN","net":"S3_MODULE_RF_50R","safety":"the board receptacle centre and its PCB trace are one continuous 50-Ohm net; coupler IN faces the module so its sample is forward TX energy"},
     {"from":"s3_rf_coupler.RF_OUT","to":"s3_external_rp_sma.RF","net":"S3_EXTERNAL_RF_50R","safety":"independent external antenna path reaches the exact 6-GHz RP-SMA edge-launch jack"},
     {"from":"s3_rf_coupler.TERMINATION_50R","to":"s3_rf_coupler_termination.END_1","net":"S3_COUPLER_TERMINATION","safety":"exact 49.9-Ohm termination preserves specified directivity"},
     {"from":"s3_rf_coupler_termination.END_2","to":"abstract:rf-ground","net":"S3_RF_GROUND","safety":"termination returns at the coupler through the shortest via geometry"},

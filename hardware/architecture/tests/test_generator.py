@@ -260,7 +260,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(973, sum(line["quantity"] for line in lines))
+        self.assertEqual(976, sum(line["quantity"] for line in lines))
         self.assertEqual(201, len(lines))
         self.assertEqual(
             1,
@@ -275,7 +275,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            956,
+            959,
             sum(
                 line["quantity"]
                 for line in lines
@@ -351,13 +351,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**974** architecture instances", rendered)
-        self.assertIn("**973** supplied/costed placements", rendered)
+        self.assertIn("**977** architecture instances", rendered)
+        self.assertIn("**976** supplied/costed placements", rendered)
         self.assertIn("**200/201** used lines", rendered)
         self.assertIn("**201/201** lines", rendered)
         self.assertIn("**190/201** lines", rendered)
-        self.assertIn("**956/973** supplied placements", rendered)
-        self.assertIn("USD 220.3425", rendered)
+        self.assertIn("**959/976** supplied placements", rendered)
+        self.assertIn("USD 220.5416", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -403,7 +403,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(40, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1137, policy["expected_occurrence_count"])
+        self.assertEqual(1142, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -1711,10 +1711,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("product_usb_connector.B5_CC2", "product_usb_protector.C_CC2", "USB_C_CC2_CONNECTOR"),
             ("product_usb_protector.CC1", "pd_controller.CC1", "USB_C_CC1_PROTECTED"),
             ("product_usb_protector.CC2", "pd_controller.CC2", "USB_C_CC2_PROTECTED"),
-            ("product_usb_protector.SBU1", "product_usb_dp_series.END_1", "USB2_DP_PROTECTED"),
-            ("product_usb_dp_series.END_2", "s3.GPIO20", "S3_USB_DP"),
-            ("product_usb_protector.SBU2", "product_usb_dm_series.END_1", "USB2_DM_PROTECTED"),
-            ("product_usb_dm_series.END_2", "s3.GPIO19", "S3_USB_DM"),
+            ("product_usb_protector.SBU1", "product_usb_dp_series.END_1", "S3_USB_DP"),
+            ("product_usb_dp_series.END_2", "s3.GPIO20", "S3_USB_DP_LOCAL"),
+            ("product_usb_protector.SBU2", "product_usb_dm_series.END_1", "S3_USB_DM"),
+            ("product_usb_dm_series.END_2", "s3.GPIO19", "S3_USB_DM_LOCAL"),
             ("product_usb_protector.RPD_G1", "product_usb_protector.C_CC1", "USB_C_CC1_CONNECTOR"),
             ("product_usb_protector.RPD_G2", "product_usb_protector.C_CC2", "USB_C_CC2_CONNECTOR"),
             ("product_usb_protector.VBIAS", "product_usb_vbias_cap.END_1", "USB_PROTECTOR_VBIAS"),
@@ -2390,7 +2390,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for route in (
             ("s3.ANT", "s3_rf_jumper.END_A", "S3_MODULE_RF_50R"),
             ("s3_rf_jumper.END_B", "s3_rf_board_connector.CENTER", "S3_MODULE_RF_50R"),
-            ("s3_rf_board_connector.CENTER", "s3_rf_coupler.RF_IN", "S3_RF_MAINLINE_IN_50R"),
+            ("s3_rf_board_connector.CENTER", "s3_rf_coupler.RF_IN", "S3_MODULE_RF_50R"),
             ("s3_rf_coupler.COUPLED_FWD", "s3_detector_input_cap.END_1", "S3_FORWARD_RF_SAMPLE_RAW"),
             ("s3_detector_input_cap.END_2", "det_s3.RFIN", "S3_FORWARD_RF_SAMPLE"),
             ("c5.ANT1", "c5_rf_jumper.END_A", "C5_MODULE_RF_50R"),

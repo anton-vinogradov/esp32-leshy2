@@ -5,55 +5,84 @@
   "project": "LESHY2-UI",
   "root_sheet": "UI_00_ROOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "0246125142d8cb23d1783397f530f7957696e63a4f9563f05977c2857ad24319",
-    "hardware/ecad/generated/H2-instance-ledger.json": "4a2633afd3bced59ce7a033302083711099c94efbe030e494d73f158628ed3a5",
-    "hardware/ecad/H2-sheet-contract.json": "66570d01d59138868742bd337d512d1fe0bfb9ed87509825f7d2e73b06893747"
+    "hardware/architecture/candidates/G2F-3I.json": "2fe699d4b171c98bfc17cef414d1ddd7d3b066832c02efaeb86274ecb320a752",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b23cffc3ad4e06b89904e60dac80753760346674d49d1c839a59c049ce3bc7bf",
+    "hardware/ecad/H2-sheet-contract.json": "a4465effc17f388b83029bbfccd205bfae5f0c62032d4bc6ba27645811005952"
   },
   "summary": {
     "child_sheet_count": 9,
-    "cross_sheet_net_count": 73,
-    "root_hierarchical_pin_count": 180,
-    "child_hierarchical_label_count": 180,
-    "known_child_stub_erc_violations": 180,
-    "circuit_symbols_placed": 0,
+    "cross_sheet_net_count": 91,
+    "root_hierarchical_pin_count": 218,
+    "child_hierarchical_label_count": 218,
+    "known_child_stub_erc_violations": 109,
+    "implemented_child_sheet_count": 1,
+    "circuit_symbols_placed": 33,
+    "known_generated_library_copy_warnings": 33,
     "pcb_files_created": 0
   },
   "sheets": [
     {
       "id": "UI_10_S3_CORE_MEMORY_BOOT",
-      "interface_count": 19,
+      "interface_count": 39,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
         "AUDIO_ARM",
+        "DISPLAY_SD_SPI_D0",
         "DISPLAY_SD_SPI_D1",
+        "DISPLAY_SD_SPI_SCK",
+        "ENCODER_A",
+        "ENCODER_B",
         "I2S_BCLK",
         "I2S_DIN",
         "I2S_DOUT",
         "I2S_WS",
+        "LCD_BL_PWM",
+        "LCD_CS_N",
+        "LCD_QSPI_D2",
+        "LCD_QSPI_D3",
         "POWER_GROUND",
+        "RP_ALERT_N",
+        "S3_C5_SDIO_CLK",
+        "S3_C5_SDIO_CMD",
+        "S3_C5_SDIO_D0",
+        "S3_C5_SDIO_D1_IRQ",
         "S3_DETECT_V",
         "S3_DETECT_VM",
         "S3_FORWARD_RF_SAMPLE",
         "S3_RESET_N",
+        "S3_RP_IPC_CS_N",
+        "S3_RP_IPC_MISO",
+        "S3_RP_IPC_MOSI",
+        "S3_RP_IPC_SCK",
         "S3_USB_DM",
         "S3_USB_DP",
         "SAFETY_GROUND",
+        "SD_SPI_CS_N",
         "SYS_I2C_SCL",
         "SYS_I2C_SDA",
-        "SYS_INT_N"
+        "SYS_INT_N",
+        "UNIT_HOST_SIG0",
+        "UNIT_HOST_SIG1"
       ]
     },
     {
       "id": "UI_11_DISPLAY_TOUCH_STORAGE",
-      "interface_count": 10,
+      "interface_count": 17,
       "interfaces": [
         "3V3_MAIN",
+        "DISPLAY_SD_SPI_D0",
         "DISPLAY_SD_SPI_D1",
+        "DISPLAY_SD_SPI_SCK",
+        "LCD_BL_PWM",
+        "LCD_CS_N",
+        "LCD_QSPI_D2",
+        "LCD_QSPI_D3",
         "LCD_RST_N",
         "POWER_GROUND",
         "SD_CARD_DETECT_N",
         "SD_PWR_EN",
+        "SD_SPI_CS_N",
         "SYS_I2C_SCL",
         "SYS_I2C_SDA",
         "SYS_INT_N",
@@ -143,7 +172,7 @@
     },
     {
       "id": "UI_20_C5_RADIO_IR_SERVICE",
-      "interface_count": 11,
+      "interface_count": 15,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -155,6 +184,10 @@
         "IR_TX_EVIDENCE_N",
         "POWER_GROUND",
         "RUN_PERMIT",
+        "S3_C5_SDIO_CLK",
+        "S3_C5_SDIO_CMD",
+        "S3_C5_SDIO_D0",
+        "S3_C5_SDIO_D1_IRQ",
         "SAFETY_GROUND"
       ]
     },
@@ -174,7 +207,7 @@
     },
     {
       "id": "UI_40_INTERBOARD_M1",
-      "interface_count": 44,
+      "interface_count": 51,
       "interfaces": [
         "3V3_MAIN",
         "AON_SAFE_3V3",
@@ -199,9 +232,14 @@
         "POWER_FAULT_N",
         "POWER_GROUND",
         "RF_RESET_KILL_GATE",
+        "RP_ALERT_N",
         "RUN_PERMIT",
         "RX_SA518_AFOUT_ISOLATED",
         "S3_RESET_KILL_GATE",
+        "S3_RP_IPC_CS_N",
+        "S3_RP_IPC_MISO",
+        "S3_RP_IPC_MOSI",
+        "S3_RP_IPC_SCK",
         "S3_USB_DM",
         "S3_USB_DP",
         "SAFETY_GROUND",
@@ -216,6 +254,8 @@
         "UI_ENCODER_PUSH_N",
         "UI_ZONE_TEMP_ADC",
         "UNIT_5V_REQ",
+        "UNIT_HOST_SIG0",
+        "UNIT_HOST_SIG1",
         "UNIT_READY",
         "VOICE_DOMAIN_REQ",
         "VOICE_HL_RELEASE_REQ",
@@ -377,7 +417,21 @@
       ]
     },
     {
+      "name": "DISPLAY_SD_SPI_D0",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
       "name": "DISPLAY_SD_SPI_D1",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
+      "name": "DISPLAY_SD_SPI_SCK",
       "sheets": [
         "UI_10_S3_CORE_MEMORY_BOOT",
         "UI_11_DISPLAY_TOUCH_STORAGE"
@@ -386,6 +440,7 @@
     {
       "name": "ENCODER_A",
       "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
         "UI_12_CONTROLS_INDICATORS",
         "UI_40_INTERBOARD_M1"
       ]
@@ -393,6 +448,7 @@
     {
       "name": "ENCODER_B",
       "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
         "UI_12_CONTROLS_INDICATORS",
         "UI_40_INTERBOARD_M1"
       ]
@@ -514,6 +570,34 @@
       ]
     },
     {
+      "name": "LCD_BL_PWM",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
+      "name": "LCD_CS_N",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
+      "name": "LCD_QSPI_D2",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
+      "name": "LCD_QSPI_D3",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
+      ]
+    },
+    {
       "name": "LCD_RST_N",
       "sheets": [
         "UI_11_DISPLAY_TOUCH_STORAGE",
@@ -551,6 +635,13 @@
       "sheets": [
         "UI_40_INTERBOARD_M1",
         "UI_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RP_ALERT_N",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
       ]
     },
     {
@@ -593,6 +684,34 @@
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
         "UI_21_FM_AM_RECEIVER"
+      ]
+    },
+    {
+      "name": "S3_C5_SDIO_CLK",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_20_C5_RADIO_IR_SERVICE"
+      ]
+    },
+    {
+      "name": "S3_C5_SDIO_CMD",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_20_C5_RADIO_IR_SERVICE"
+      ]
+    },
+    {
+      "name": "S3_C5_SDIO_D0",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_20_C5_RADIO_IR_SERVICE"
+      ]
+    },
+    {
+      "name": "S3_C5_SDIO_D1_IRQ",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_20_C5_RADIO_IR_SERVICE"
       ]
     },
     {
@@ -639,6 +758,34 @@
       ]
     },
     {
+      "name": "S3_RP_IPC_CS_N",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_MISO",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_MOSI",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_SCK",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
       "name": "S3_USB_DM",
       "sheets": [
         "UI_10_S3_CORE_MEMORY_BOOT",
@@ -674,6 +821,13 @@
       "sheets": [
         "UI_11_DISPLAY_TOUCH_STORAGE",
         "UI_12_CONTROLS_INDICATORS"
+      ]
+    },
+    {
+      "name": "SD_SPI_CS_N",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_11_DISPLAY_TOUCH_STORAGE"
       ]
     },
     {
@@ -772,6 +926,20 @@
       ]
     },
     {
+      "name": "UNIT_HOST_SIG0",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UNIT_HOST_SIG1",
+      "sheets": [
+        "UI_10_S3_CORE_MEMORY_BOOT",
+        "UI_40_INTERBOARD_M1"
+      ]
+    },
+    {
       "name": "UNIT_READY",
       "sheets": [
         "UI_12_CONTROLS_INDICATORS",
@@ -801,22 +969,26 @@
     }
   ],
   "rules": {
-    "derivation": "fixed-route endpoints plus exact M1 contact membership",
+    "derivation": "fixed-route endpoints, allocated contacts and exact M1 contact membership",
     "pin_type": "bidirectional at H2.2.1; exact electrical pin types close with each implemented functional sheet",
     "no_hidden_cross_sheet_globals": true,
     "no_no_connect_aggregation": true,
-    "root_is_component_free": true
+    "root_is_component_free": true,
+    "implemented_children_are_preserved": [
+      "UI_10_S3_CORE_MEMORY_BOOT"
+    ],
+    "generated_library_copy_warning_proof": "the controlled and embedded symbol definitions are generated from one object; validation requires one lib_symbol_mismatch per generated symbol and rejects every other mismatch/finding"
   },
   "review_boundary": {
     "complete": [
       "all nine UI child sheets instantiated by the KiCad root",
-      "all 73 derived cross-sheet nets represented by explicit named pins and child labels",
+      "all 91 derived cross-sheet nets represented by explicit named pins and child labels",
       "one direct root rail joins only sheet pins carrying the same reviewed net name",
-      "native KiCad parser accepts the complete UI hierarchy and the root has zero ERC violations"
+      "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted"
     ],
     "deferred": [
       "functional circuit symbols and exact electrical sheet-pin directions in H2.2.2-H2.2.9",
-      "the 180 exact child-stub label_dangling findings disappear as functional circuit pins are placed",
+      "each remaining exact child-stub label_dangling finding disappears as its functional circuit sheet is placed",
       "manufacturing test-point interfaces in H2.2.10",
       "final full-project ERC closure in H2.6",
       "all PCB placement, routing, fabrication and purchasing"
