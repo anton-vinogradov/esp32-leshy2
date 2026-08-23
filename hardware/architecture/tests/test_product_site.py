@@ -531,6 +531,8 @@ class ProductSiteTests(unittest.TestCase):
             "HLE-107-02-G-DV-PE-LC",
             "insert ⊗ · remove ⊙",
             "Keystone 1048P",
+            "Леший",
+            "ESP32-LESHY2",
             'data-instance="ui_dpad_up" data-direct-press="true"',
             'data-instance="ui_dpad_down" data-direct-press="true"',
             'data-instance="ui_dpad_left" data-direct-press="true"',
@@ -660,6 +662,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("L2-ASM-COORD-001-A", package["coordinate_model"])
         self.assertEqual([75.0, 150.0], package["front"]["board_outline_mm"])
         self.assertEqual([75.0, 150.0], package["rear"]["board_outline_mm"])
+        self.assertEqual(
+            {"text": "Леший", "position_mm": [37.5, 99.5], "font_size_px_at_drawing_scale": 8.5},
+            package["front"]["product_silkscreen"],
+        )
+        self.assertEqual(
+            {"text": "ESP32-LESHY2", "position_mm": [37.5, 136.0], "font_size_px_at_drawing_scale": 7.5},
+            package["rear"]["product_silkscreen"],
+        )
         self.assertEqual([320, 480], package["front"]["display"]["pixels"])
         self.assertEqual([48.96, 73.44], package["front"]["display"]["active_area_mm"])
         function_keys = package["front"]["function_key_columns"]

@@ -156,6 +156,10 @@ FRONT_TX_INDICATORS = (
     ("ext_tx_led", "LORA/EXT", 52.5, 111.0),
     ("any_tx_led", "TX ACTIVE", 68.3, 111.0),
 )
+OUTER_FACE_PRODUCT_MARKS = (
+    ("front", "Леший", 37.5, 99.5, 8.5),
+    ("rear", "ESP32-LESHY2", 37.5, 136.0, 7.5),
+)
 
 # Every directional interface that crosses the enclosure is rendered here.
 # `coordinate` is Y for left/right exits and X for bottom exits.
@@ -2966,6 +2970,16 @@ def render_external(devices, instances):
         if side == "right":
             out.append(silk_text(sx(rear,BOARD_W-7.0), sy(rear,coordinate + 1.2), label, 4.2, "bold", "middle", "#2563eb"))
 
+    for face, value, x, y, size in OUTER_FACE_PRODUCT_MARKS:
+        origin = front if face == "front" else rear
+        out.append(
+            silk_text(
+                sx(origin, x), sy(origin, y), value, size, "bold", "middle", "#172033"
+            ).replace(
+                "<text ", f'<text data-role="product-mark" data-face="{face}" ', 1
+            )
+        )
+
     note_x = 850
     out += [
         text(note_x,105,"What this drawing proves",16,"bold"),
@@ -5000,6 +5014,15 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
         },
         "front": {
             "board_outline_mm": [BOARD_W, BOARD_H],
+            "product_silkscreen": next(
+                {
+                    "text": value,
+                    "position_mm": [x, y],
+                    "font_size_px_at_drawing_scale": size,
+                }
+                for face, value, x, y, size in OUTER_FACE_PRODUCT_MARKS
+                if face == "front"
+            ),
             "display": {
                 "mpn": display["mpn"],
                 "body_mm": display["dimensions_mm"],
@@ -5047,6 +5070,15 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
         },
         "rear": {
             "board_outline_mm": [BOARD_W, BOARD_H],
+            "product_silkscreen": next(
+                {
+                    "text": value,
+                    "position_mm": [x, y],
+                    "font_size_px_at_drawing_scale": size,
+                }
+                for face, value, x, y, size in OUTER_FACE_PRODUCT_MARKS
+                if face == "rear"
+            ),
             "antenna_ports": antenna_ports(REAR_RF),
             "u214": {
                 "mpn": devices[instances["u214"]]["mpn"],
