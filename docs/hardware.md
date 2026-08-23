@@ -50,6 +50,13 @@ later because Espressif does not support SDIO on revision v0.1.
 | LoRa/GNSS Cap | `M5Stack U214 Cap LoRa-1262` or `LESHY2-LORA-CAP-01-EU868/US915` | RP2354B | Stock Cap: RX/GNSS; exact Leshy Cap: qualified regional RX/TX |
 | External antenna jacks | `7× GCT RFPC-SMA31-FN-175-A` + `2× GCT RFPC-SMA32-FN-175-A` | Dedicated per path | 6-GHz, 50-ohm board-edge SMA/RP-SMA on the two outward PCB faces; no RF sharing or connector bodies in the interboard channel |
 
+FM/AM/SW/LW broadcast transmission is not a device capability: both Si4732
+ports remain receive-only. No custom transmitter or RF Cap is developed for
+them. The function may appear only through an exact orderable off-the-shelf
+self-contained module with manufacturer documentation, integrated RF-output
+protection and a qualified product interface. No suitable module is currently
+selected.
+
 Every built-in transmit path has independent actual-TX evidence. Native S3/C5 each use
 an exact 30-mm `TE Connectivity 2118651-2` UMCC Gen1 jumper, their own
 `U.FL-R-SMT-1(10)` and a `CP0603Q5425ENTR` directional coupler beside the

@@ -372,6 +372,18 @@ class ProductSiteTests(unittest.TestCase):
                 if item["termination"] == "RP-SMA male"
             },
         )
+        candidate_policy = candidate["audio_receiver_contract"]["broadcast_transmit_policy"]
+        self.assertIn("no custom transmitter", candidate_policy)
+        self.assertIn("not a current product capability", candidate_policy)
+        self.assertIn("receive-only", candidate_policy)
+        self.assertIn(
+            "Вещательная передача FM/AM/SW/LW не является возможностью устройства",
+            self.read("docs/hardware.ru.md"),
+        )
+        self.assertIn(
+            "FM/AM/SW/LW broadcast transmission is not a device capability",
+            self.read("docs/hardware.md"),
+        )
         for name in ("docs/antennas.md", "docs/antennas.ru.md"):
             page = self.read(name)
             for token in (
