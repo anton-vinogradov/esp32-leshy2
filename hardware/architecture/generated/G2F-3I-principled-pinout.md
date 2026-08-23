@@ -2195,8 +2195,8 @@ Reserved: `GPIO2`, `GPIO3`, `GPIO6`, `GPIO7`, `GPIO11`. Free: none.
 | `PA6` | 10 | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | `pack_hold.G2`, `pack_hold_release_pulldown.END_1` | — |
 | `PA11` | 11 | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | `s3.GPIO2` | — |
 | `PA16` | 12 | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | `pack_status_buffer.D1`, `pack_pfail_pullup.END_2` | — |
-| `PA17` | 13 | `PACK_SERVICE_UART_TX` | `o` | `UART1` | `abstract:pack service fixture` | — |
-| `PA18` | 14 | `PACK_SERVICE_UART_RX` | `i` | `UART1` | `abstract:pack service fixture` | — |
+| `PA17` | 13 | `PACK_ADMISSION_UART_TX` | `o` | `UART1` | `abstract:pack service fixture` | — |
+| `PA18` | 14 | `PACK_ADMISSION_UART_RX` | `i` | `UART1` | `abstract:pack service fixture` | — |
 | `PA22` | 17 | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | `pack_diag_timer.CH1_T`, `pack_diag_trigger_pulldown.END_1` | — |
 | `PA23` | 18 | `PACK_SYS_INT_REQ` | `o` | `GPIO` | `pack_status_buffer.G2`, `pack_irq_gate_pulldown.END_1` | — |
 | `PA24` | 19 | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | `power_command_pullup.END_2`, `power_command_filter.END_1`, `power_command_switch.THROW_B` | — |
@@ -2815,7 +2815,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `PROTECTED_PACK_POSITIVE` | `pack_dis_gate_cap.END_2` | `pack_power_fet.S2` | discharge gate capacitor returns to its pack-side source |
 | `PACK_PCKP_SENSE` | `pack_gauge.PCKP` | `pack_pckp_res.END_1` | the exact Rev.12 pack-positive sense path begins at pin 6 |
 | `PROTECTED_PACK_POSITIVE` | `pack_pckp_res.END_2` | `pack_power_fet.S2` | exact 1-kOhm series resistance connects PCKP to the protected pack terminal |
-| `PACK_ZVC_UNUSED` | `pack_gauge.ZVC` | `abstract:no-connect` | DEC-0067 forbids in-device zero-volt recovery; the datasheet requires ZVC open when unused |
+| `PACK_ZVC_UNUSED` | `pack_gauge.ZVC` | `abstract:no-connect` | The product does not implement in-device zero-volt recovery; the datasheet requires ZVC open when unused |
 | `PACK_SYSTEM_DIODE_NC` | `pack_system_diode.NC` | `abstract:no-connect` | the BAT54 SOT-23 center pin is physically not connected and remains explicitly open |
 | `PACK_LOCAL_GND` | `pack_gauge.EP_GND` | `pack_gauge.GND` | the 24-TQFN exposed pad is explicitly soldered to the local gauge ground per the manufacturer pack-layout guide and never joins the CSP Kelvin trace |
 | `BATTERY_STACK_POSITIVE` | `abstract:qualified-2s-positive` | `pack_power_fet.S1` | battery-side source enters a common-drain back-to-back pair; zero-volt and prequal recovery remain disabled |

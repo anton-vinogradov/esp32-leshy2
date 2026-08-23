@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_35_REAR_CONTROLS",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "5671ccb8124364aa46173c4759832a45ffa541658063b94db06cd342d3ec1cd0"
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "d955608e84d27556f4e7be69d53f86e1f8e297355ad1e0171b9c294b6cdd8aff"
   },
   "summary": {
     "ledger_instances": 8,
@@ -26,7 +26,7 @@
     {
       "instance": "ptt_switch",
       "symbol_uuid": "98ce3324-0202-512f-8337-cf4f7d64a2b5",
-      "reference": "SW1",
+      "reference": "SW35001",
       "mpn": "OMRON B3S-1100P",
       "footprint": "Leshy2:B3S-1100P",
       "pin_count": 5,
@@ -35,7 +35,7 @@
     {
       "instance": "rear_control_esd",
       "symbol_uuid": "988c3ef2-3d2e-58ff-a683-84a91585dafa",
-      "reference": "D1",
+      "reference": "D35001",
       "mpn": "Texas Instruments TPD4E05U06DQAR",
       "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
       "pin_count": 10,
@@ -44,7 +44,7 @@
     {
       "instance": "encoder_ptt_esd",
       "symbol_uuid": "03295d55-81a0-5bca-8a6d-e770a50d7041",
-      "reference": "D2",
+      "reference": "D35002",
       "mpn": "Texas Instruments TPD4E05U06DQAR",
       "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
       "pin_count": 10,
@@ -53,7 +53,7 @@
     {
       "instance": "ptt_pullup",
       "symbol_uuid": "ed6b9fac-494b-5993-92c8-cb995e585cd2",
-      "reference": "R1",
+      "reference": "R35001",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -62,7 +62,7 @@
     {
       "instance": "ptt_series",
       "symbol_uuid": "291efce9-93dd-5aed-93a0-7008b00da05b",
-      "reference": "R2",
+      "reference": "R35002",
       "mpn": "Yageo RC0603FR-071KL",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "pin_count": 2,
@@ -71,7 +71,7 @@
     {
       "instance": "ptt_filter_cap",
       "symbol_uuid": "2a1b4ff9-dbec-589c-91ee-8b76383df0b3",
-      "reference": "C1",
+      "reference": "C35001",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -80,7 +80,7 @@
     {
       "instance": "encoder",
       "symbol_uuid": "ffb03927-4dad-5151-803b-bd44e3523e07",
-      "reference": "ENC1",
+      "reference": "ENC35001",
       "mpn": "Alps Alpine EC11E18244AU",
       "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
       "pin_count": 5,

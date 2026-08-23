@@ -53,6 +53,30 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sheet_reference_base(sheet_id: str) -> int:
+    """Reserve a collision-free 1000-reference block per project sheet."""
+    match = re.search(r"(?:UI|RF|CAP)_(\d+)", sheet_id)
+    return int(match.group(1)) * 1000 if match else 0
+
+
+def scoped_reference(sheet_id: str, reference: str) -> str:
+    match = re.fullmatch(r"([A-Z]+)(\d+)", reference)
+    if not match:
+        raise ValueError(f"cannot scope malformed schematic reference: {reference}")
+    return f"{match.group(1)}{sheet_reference_base(sheet_id) + int(match.group(2))}"
+
+
+class ScopedReferenceCounter(Counter[str]):
+    """Counter whose first generated number begins in the sheet's block."""
+
+    def __init__(self, sheet_id: str):
+        super().__init__()
+        self.base = sheet_reference_base(sheet_id)
+
+    def __missing__(self, key: str) -> int:
+        return self.base
+
+
 def escaped(value: str) -> str:
     return value.replace("\\", "\\\\").replace('"', '\\"')
 
@@ -408,7 +432,7 @@ def build() -> tuple[dict[Path, str], dict]:
     endpoints = endpoint_nets(candidate, local_instances)
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         instance = row["instance"]
         device = devices[row["device_key"]]
@@ -432,7 +456,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "mpn": "ESP32-S3-WROOM-1U-N16R8 factory U.FL",
         "role": "non-PCB assembly boundary; the receptacle is fitted to the module by Espressif",
         "pins": pins_for("s3_factory_ant", devices["esp32_s3_wroom_1u_n16r8"]),
-        "reference": "X1",
+        "reference": scoped_reference(SHEET_ID, "X1"),
         "footprint": "",
         "on_board": False,
         "in_bom": False,
@@ -491,6 +515,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     hierarchy_used: set[str] = set()
     no_connect_count = 0
+    no_connect_endpoints: list[str] = []
     for net, points in sorted(net_endpoints.items()):
         for instance, pin, x, y, side in points:
             if net == "NO_CONNECT" or net.endswith("_NC"):
@@ -500,6 +525,7 @@ def build() -> tuple[dict[Path, str], dict]:
                     "\t)",
                 ]
                 no_connect_count += 1
+                no_connect_endpoints.append(f"{instance}.{pin.contact}")
                 continue
             is_hierarchical = net in interfaces and net not in hierarchy_used
             hierarchy_used.add(net) if is_hierarchical else None
@@ -557,6 +583,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "pcb_files_created": 0,
         },
         "s3_pad_contract": s3_device["pcb_pad_contract"],
+        "intentional_no_connect_endpoints": sorted(no_connect_endpoints),
         "non_pcb_interfaces": s3_device["non_pcb_interfaces"],
         "instances": [
             {

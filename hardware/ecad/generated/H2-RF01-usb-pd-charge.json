@@ -5,16 +5,16 @@
   "project": "LESHY2-RF",
   "sheet": "RF_01_USB_PD_CHARGE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "5671ccb8124364aa46173c4759832a45ffa541658063b94db06cd342d3ec1cd0"
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "d955608e84d27556f4e7be69d53f86e1f8e297355ad1e0171b9c294b6cdd8aff"
   },
   "summary": {
     "ledger_instances": 52,
     "schematic_symbols": 52,
     "board_fitted_symbols": 52,
-    "hierarchical_interfaces": 9,
+    "hierarchical_interfaces": 12,
     "physical_package_pads": 208,
     "usb_c_electrical_contacts": 17,
     "usb_port_protector_pads": 21,
@@ -30,7 +30,7 @@
     {
       "instance": "product_usb_connector",
       "symbol_uuid": "e6153a13-c14d-5853-91ab-839a00811f4b",
-      "reference": "J1",
+      "reference": "J1001",
       "mpn": "JAE DX07S016JA1R1500",
       "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500",
       "pin_count": 17,
@@ -39,7 +39,7 @@
     {
       "instance": "product_usb_protector",
       "symbol_uuid": "0965d670-c9eb-5e6e-88b0-ab54142affdf",
-      "reference": "U1",
+      "reference": "U1001",
       "mpn": "Texas Instruments TPD4S201RUKR",
       "footprint": "Package_DFN_QFN:Texas_RUK0020B_WQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm",
       "pin_count": 21,
@@ -48,7 +48,7 @@
     {
       "instance": "product_usb_vbias_cap",
       "symbol_uuid": "252b0723-aca9-55e2-8add-decdcb4c3129",
-      "reference": "C1",
+      "reference": "C1001",
       "mpn": "TDK C1608X7S2A104K080AB",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -57,7 +57,7 @@
     {
       "instance": "product_usb_vpwr_cap",
       "symbol_uuid": "57051d9f-e2c8-5450-b8f9-edc3dd390b98",
-      "reference": "C2",
+      "reference": "C1002",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -66,7 +66,7 @@
     {
       "instance": "product_usb_fault_pullup",
       "symbol_uuid": "3149af7d-056a-5d71-8795-8f0feb4e101c",
-      "reference": "R1",
+      "reference": "R1001",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -75,7 +75,7 @@
     {
       "instance": "pd_controller",
       "symbol_uuid": "c4c0e906-4549-5f14-bab9-bb89db08ba1c",
-      "reference": "U2",
+      "reference": "U1002",
       "mpn": "Texas Instruments TPS25751DREFR",
       "footprint": "Package_DFN_QFN:Texas_REF0038A_WQFN-38-2EP_6x4mm_P0.4",
       "pin_count": 34,
@@ -84,7 +84,7 @@
     {
       "instance": "pd_config_eeprom",
       "symbol_uuid": "ab0f1ddf-5b88-5d6e-8925-9e635ee8f537",
-      "reference": "U3",
+      "reference": "U1003",
       "mpn": "onsemi CAT24C512WI-GT3",
       "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
       "pin_count": 8,
@@ -93,7 +93,7 @@
     {
       "instance": "pd_vbus_tvs",
       "symbol_uuid": "c974cde0-afe6-506f-9ff4-92442593be9b",
-      "reference": "D1",
+      "reference": "D1001",
       "mpn": "Texas Instruments TVS2200DRVR",
       "footprint": "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm",
       "pin_count": 7,
@@ -102,7 +102,7 @@
     {
       "instance": "pd_vin_cap",
       "symbol_uuid": "f45c8972-1908-5aa4-a838-1e36e8949529",
-      "reference": "C3",
+      "reference": "C1003",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -111,7 +111,7 @@
     {
       "instance": "pd_ldo3v3_cap",
       "symbol_uuid": "2c256b35-7c11-5b5e-82b3-1ffa16f1b7f9",
-      "reference": "C4",
+      "reference": "C1004",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -120,7 +120,7 @@
     {
       "instance": "pd_ldo1v5_cap",
       "symbol_uuid": "0f107c6e-dcbb-5e79-9682-bace2939097f",
-      "reference": "C5",
+      "reference": "C1005",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -129,7 +129,7 @@
     {
       "instance": "pd_pphv_cap0",
       "symbol_uuid": "5346bd8d-19df-503d-bd0e-221b5193be4a",
-      "reference": "C6",
+      "reference": "C1006",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "pin_count": 2,
@@ -138,7 +138,7 @@
     {
       "instance": "pd_pphv_cap1",
       "symbol_uuid": "56877b6f-3505-561b-9320-3f02397d2bee",
-      "reference": "C7",
+      "reference": "C1007",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "pin_count": 2,
@@ -147,7 +147,7 @@
     {
       "instance": "pd_pphv_cap2",
       "symbol_uuid": "4764e61a-65e4-5854-b4d9-aafeafa535f7",
-      "reference": "C8",
+      "reference": "C1008",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "pin_count": 2,
@@ -156,7 +156,7 @@
     {
       "instance": "pd_pphv_cap3",
       "symbol_uuid": "2e576d38-7673-5aec-b442-f255c52a805b",
-      "reference": "C9",
+      "reference": "C1009",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "pin_count": 2,
@@ -165,7 +165,7 @@
     {
       "instance": "pd_vbus_cap",
       "symbol_uuid": "85c4b20b-4d7d-500b-9618-5b6a532462d1",
-      "reference": "C10",
+      "reference": "C1010",
       "mpn": "TDK CGA5L1X7R1E475K160AC",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -174,7 +174,7 @@
     {
       "instance": "pd_cc1_cap",
       "symbol_uuid": "247b94e3-eee8-5590-b643-bc2227f29eaa",
-      "reference": "C11",
+      "reference": "C1011",
       "mpn": "Murata GRM1555C1H221JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -183,7 +183,7 @@
     {
       "instance": "pd_cc2_cap",
       "symbol_uuid": "785dbfa6-6779-5844-bfbf-d5c5c8aa3625",
-      "reference": "C12",
+      "reference": "C1012",
       "mpn": "Murata GRM1555C1H221JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -192,7 +192,7 @@
     {
       "instance": "pd_eeprom_bypass",
       "symbol_uuid": "38c842c6-9ba7-5ba2-b9c8-00afa1f9cef4",
-      "reference": "C13",
+      "reference": "C1013",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -201,7 +201,7 @@
     {
       "instance": "pd_eeprom_wp_pullup",
       "symbol_uuid": "1d68e154-ee30-5a57-8716-1afa4246f754",
-      "reference": "R2",
+      "reference": "R1002",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -210,7 +210,7 @@
     {
       "instance": "pd_local_scl_pullup",
       "symbol_uuid": "710837fb-8268-5145-8b5a-34a0d77b55a6",
-      "reference": "R3",
+      "reference": "R1003",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -219,7 +219,7 @@
     {
       "instance": "pd_local_sda_pullup",
       "symbol_uuid": "71037f7a-faee-5e3c-a5c2-dc8dc8a403da",
-      "reference": "R4",
+      "reference": "R1004",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -228,7 +228,7 @@
     {
       "instance": "nvdc_charger",
       "symbol_uuid": "4477ed8a-dcd9-5765-8171-d9d79bb0b009",
-      "reference": "U4",
+      "reference": "U1004",
       "mpn": "Texas Instruments BQ25798RQMR",
       "footprint": "Package_DFN_QFN:Texas_RQM0029A_VQFN-29_4x4mm_P0.4mm",
       "pin_count": 29,
@@ -237,7 +237,7 @@
     {
       "instance": "charger_inductor",
       "symbol_uuid": "09cffbb8-b1e5-519c-9357-baa5868c1bea",
-      "reference": "L1",
+      "reference": "L1001",
       "mpn": "Sunlord MWSA0503S-2R2MT",
       "footprint": "Inductor_SMD:L_Sunlord_MWSA0503S",
       "pin_count": 2,
@@ -246,7 +246,7 @@
     {
       "instance": "charger_vbus_cap0",
       "symbol_uuid": "3a5a1311-9b73-5f81-9407-e0c5e0f0cd69",
-      "reference": "C14",
+      "reference": "C1014",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -255,7 +255,7 @@
     {
       "instance": "charger_vbus_cap1",
       "symbol_uuid": "82179f95-97d5-5006-adfc-218ee337cd07",
-      "reference": "C15",
+      "reference": "C1015",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -264,7 +264,7 @@
     {
       "instance": "charger_vbus_hf_cap",
       "symbol_uuid": "2d1c3a8b-042f-5b2d-bbc3-0aabc3f36fb4",
-      "reference": "C16",
+      "reference": "C1016",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -273,7 +273,7 @@
     {
       "instance": "charger_pmid_cap0",
       "symbol_uuid": "21722557-487d-5fce-8624-40cad0af8bf7",
-      "reference": "C17",
+      "reference": "C1017",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -282,7 +282,7 @@
     {
       "instance": "charger_pmid_cap1",
       "symbol_uuid": "aa680374-1708-5134-9714-77203343808c",
-      "reference": "C18",
+      "reference": "C1018",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -291,7 +291,7 @@
     {
       "instance": "charger_pmid_cap2",
       "symbol_uuid": "c7ff32cf-7ea5-5ab7-aaaa-537ab4cc0930",
-      "reference": "C19",
+      "reference": "C1019",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -300,7 +300,7 @@
     {
       "instance": "charger_pmid_hf_cap",
       "symbol_uuid": "ac2712e3-3cc6-5a29-8fd5-d3ea2700d9f1",
-      "reference": "C20",
+      "reference": "C1020",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -309,7 +309,7 @@
     {
       "instance": "charger_sys_cap0",
       "symbol_uuid": "4a31ccf7-71db-5626-84d8-cfca4e55cf12",
-      "reference": "C21",
+      "reference": "C1021",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -318,7 +318,7 @@
     {
       "instance": "charger_sys_cap1",
       "symbol_uuid": "6813984c-4522-5833-b7f9-02daf2d8b443",
-      "reference": "C22",
+      "reference": "C1022",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -327,7 +327,7 @@
     {
       "instance": "charger_sys_cap2",
       "symbol_uuid": "c3a7e71e-8915-51d5-94c9-e86733b49c1f",
-      "reference": "C23",
+      "reference": "C1023",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -336,7 +336,7 @@
     {
       "instance": "charger_sys_cap3",
       "symbol_uuid": "6fbe7439-29e0-5ffd-ab35-951768158977",
-      "reference": "C24",
+      "reference": "C1024",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -345,7 +345,7 @@
     {
       "instance": "charger_sys_cap4",
       "symbol_uuid": "36b1409a-0aab-56e1-8f59-afc3796e66f2",
-      "reference": "C25",
+      "reference": "C1025",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -354,7 +354,7 @@
     {
       "instance": "charger_sys_hf_cap",
       "symbol_uuid": "ce03fd64-104e-5a4a-97e2-d903afea2cec",
-      "reference": "C26",
+      "reference": "C1026",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -363,7 +363,7 @@
     {
       "instance": "charger_bat_cap0",
       "symbol_uuid": "465f3d4f-c5c8-5d2b-bf56-5f8773018405",
-      "reference": "C27",
+      "reference": "C1027",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -372,7 +372,7 @@
     {
       "instance": "charger_bat_cap1",
       "symbol_uuid": "76f7546f-976f-514c-9a4c-e48df870b31d",
-      "reference": "C28",
+      "reference": "C1028",
       "mpn": "Murata GRM31CR71E106MA12L",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -381,7 +381,7 @@
     {
       "instance": "charger_btst1_cap",
       "symbol_uuid": "d78d2c3f-0342-50c4-b4c8-fccfa49846fb",
-      "reference": "C29",
+      "reference": "C1029",
       "mpn": "Murata GRM155R71E473KA88D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -390,7 +390,7 @@
     {
       "instance": "charger_btst2_cap",
       "symbol_uuid": "eb1ac9dc-78b0-5c2f-b8ba-900801ea8617",
-      "reference": "C30",
+      "reference": "C1030",
       "mpn": "Murata GRM155R71E473KA88D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -399,7 +399,7 @@
     {
       "instance": "charger_regn_cap",
       "symbol_uuid": "b39689bc-8857-5dbc-9aea-1f424a57cbe5",
-      "reference": "C31",
+      "reference": "C1031",
       "mpn": "TDK CGA5L1X7R1E475K160AC",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "pin_count": 2,
@@ -408,7 +408,7 @@
     {
       "instance": "charger_sdrv_cap",
       "symbol_uuid": "cc536c48-4982-547e-a5dc-87ae6eb873f2",
-      "reference": "C32",
+      "reference": "C1032",
       "mpn": "KEMET C0402C102K5RACTU",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -417,7 +417,7 @@
     {
       "instance": "charger_prog_res",
       "symbol_uuid": "6412c406-a442-5002-82b4-9e96e0a6b316",
-      "reference": "R5",
+      "reference": "R1005",
       "mpn": "Yageo RC0402FR-078K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -426,7 +426,7 @@
     {
       "instance": "charger_batp_res",
       "symbol_uuid": "bb971479-41c9-534a-a3ca-f92a671d6285",
-      "reference": "R6",
+      "reference": "R1006",
       "mpn": "Yageo RC0402FR-07100RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -435,7 +435,7 @@
     {
       "instance": "charger_ts_top",
       "symbol_uuid": "a652768e-453d-501f-b842-4fdfd1eab4b2",
-      "reference": "R7",
+      "reference": "R1007",
       "mpn": "Yageo RC0402FR-075K23L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -444,7 +444,7 @@
     {
       "instance": "charger_ts_bottom",
       "symbol_uuid": "7800d92f-60f4-5b19-b128-8cd2e5816c0f",
-      "reference": "R8",
+      "reference": "R1008",
       "mpn": "Yageo RC0402FR-0730K1L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -453,7 +453,7 @@
     {
       "instance": "charger_ts_ntc",
       "symbol_uuid": "34839e82-3fbd-5d7e-8628-5533a5ae13c9",
-      "reference": "TH1",
+      "reference": "TH1001",
       "mpn": "TDK B57332V5103F360",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "pin_count": 2,
@@ -462,7 +462,7 @@
     {
       "instance": "charger_ilim_top",
       "symbol_uuid": "691256d6-1b54-5daa-919c-fe8b7b9b0c0c",
-      "reference": "R9",
+      "reference": "R1009",
       "mpn": "Yageo RC0402FR-0744K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -471,7 +471,7 @@
     {
       "instance": "charger_ilim_bottom",
       "symbol_uuid": "c0502277-fcb3-5bb6-ae3c-6722fd0d8df3",
-      "reference": "R10",
+      "reference": "R1010",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -480,7 +480,7 @@
     {
       "instance": "charger_int_pullup",
       "symbol_uuid": "1e5c4858-cfad-5254-815e-5a1d51e58306",
-      "reference": "R11",
+      "reference": "R1011",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -489,7 +489,7 @@
     {
       "instance": "charger_ce_pullup",
       "symbol_uuid": "819c556d-5df2-5060-9060-0b374477be46",
-      "reference": "R12",
+      "reference": "R1012",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -591,7 +591,7 @@
       "TPD4S201 uses its manufacturer-approved USB2-capable channels while SBU and Alt Mode remain unsupported",
       "BQ25798 has a physical 8.2-kohm 2S/750-kHz strap, matching 2.2-uH inductor and complete bypass/bootstrap network",
       "the local PD controller bus owns charger configuration while system I2C remains a separate target interface",
-      "all nine hierarchy interfaces and ten intentional no-connect pins are explicit"
+      "all twelve hierarchy interfaces and ten intentional no-connect pins are explicit"
     ],
     "deferred": [
       "TPS25751 configuration image, EEPROM programming and negotiated power policy verification in firmware/virtual/HIL phases",

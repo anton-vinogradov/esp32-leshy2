@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "stage": "H2.7.5",
+  "status": "reviewed_h2_7_end_to_end_reconciliation",
+  "source_hashes": {
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "d36a0116901d291943935762bb5c18d76b6765c052da612cfdabe78e7d43e5ab",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "209b20914a1907e029c0b0ee77562f991a9aa59a0023045e9f0effdce8be1905",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "f3271e237174b207f6dd6b189936430a44bf4dcc5e1062dbabda49bde1d0a3e1",
+    "hardware/ecad/generated/H2-REV74-firmware-contract.json": "9ef5e86cb8a1817709a32dd263e8875480ae0cdca6397c8b7a8a6d565c7e27af"
+  },
+  "subreviews": [
+    {
+      "stage": "H2.7.1",
+      "artifact": "hardware/ecad/generated/H2-REV71-canonical-inventories.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.7.2",
+      "artifact": "hardware/ecad/generated/H2-REV72-physical-contacts.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.7.3",
+      "artifact": "hardware/ecad/generated/H2-REV73-named-nets-m1.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.7.4",
+      "artifact": "hardware/ecad/generated/H2-REV74-firmware-contract.json",
+      "status": "reviewed"
+    }
+  ],
+  "corrected_findings": [
+    {
+      "stage": "H2.7.2",
+      "id": "H2.7.2-F01",
+      "finding": "the instance ledger called logical-function counts physical contacts for ten expanded-pad/module cases",
+      "correction": "every row now carries logical_contact_count and physical_pcb_contact_count separately; contact_count follows the actual carrier/package land count",
+      "affected_classes": [
+        "ESP32-S3 carrier",
+        "ESP32-C5 carrier",
+        "E01-ML01IPX carrier",
+        "TVS2200",
+        "BQ25798",
+        "CSD87313DMS",
+        "TPUL2G223"
+      ]
+    },
+    {
+      "stage": "H2.7.4",
+      "id": "H2.7.4-F01",
+      "finding": "PACK UART allocations used PACK_SERVICE_UART_TX/RX while KiCad, fixture pads and fixed routes used PACK_ADMISSION_UART_TX/RX",
+      "correction": "the two allocation/F2 names now use the established PACK_ADMISSION_UART_TX/RX canonical nets"
+    }
+  ],
+  "closure": {
+    "ledger_rows": 1028,
+    "electrical_identities": 1026,
+    "root_named_nets": 266,
+    "m1_contacts": 80,
+    "m1_unique_nets": 51,
+    "controller_allocations": 130,
+    "firmware_contacts": 125,
+    "mpn_contact_net_or_firmware_mismatches": 0,
+    "next_substep": "H2.8.1 — prepare the formal H2 acceptance package and deferred-gate boundary"
+  },
+  "open_findings": []
+}

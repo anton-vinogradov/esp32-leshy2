@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "stage": "H2.6.3",
+  "status": "reviewed_clean_native_erc",
+  "tool": {
+    "name": "kicad-cli",
+    "version": "10.0.5"
+  },
+  "method": "fresh native ERC after corrections plus exact controlled-library reconstruction and closed NC prerequisite",
+  "source_hashes": {
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_pro": "8d6db426a22f3adc2ab52b66429dbc5de928a3708e4b70212ab409a74b796fe3",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch": "fada4565940c8b67dd240679eddf3427baa6204a5161b7b4c6ca8654170555e4",
+    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "8266a54568c290ebf89715bb0be60d2eb546a80f7c9b70b373531761f5323e19",
+    "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "eb43e17113fda9f8daebe0a7c7edcb6d38576a19c6ab01a5e00f18d82db1ca15",
+    "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "b7da025d96f79aba0b23220c265340fb54bdeda6524392edff1159ef23049fc8",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "71623157620e9856b4fa7b09bb3e1ebde4a5f3b83f1e6e1204157f3c6cab2b17",
+    "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "8d3a9c3cb2e54d240715f33a1921274cb63309ef6f7bc069fd8b1c8c51d97031",
+    "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch": "ae7ce70fbdbf27b374154315dfe094ee35b5727cfd58ce490dc14e9dce32db3e",
+    "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch": "262795238b9be8df92ecf92dd92c439ed60007b0d0e8948edc0fa25b6b0a23b1",
+    "hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "a7546175ef1faa02458a553ab23a94fd9aa55cb82989a36f3c95347ab59b9088",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_pro": "08e872b4c8416b22f2b5b185179d580e04d6c3aaf851cfc833ddc51b00aaf790",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
+    "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch": "6d8ff093ffafe32630cfdf94a26baea5cac5d7c6b0eccfe1a63ea8df598cd0c0",
+    "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch": "7ab060f920c464bb2586b741b39e99fdfef175754ec7f24243a28ed335714086",
+    "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "dfe74e7c4cce872459d589d4677778585fc173c56c4e633acf7049d764402ae8",
+    "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch": "560096616cfc22bafb2f71164d39ee331c320957640fff571e03b95a3ef10129",
+    "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch": "c1de12da7032903bf3220af6069fb59d2b8374bab694fce58642a40172381e49",
+    "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch": "01256125b98a12de0be33527caf7ddc2f5ab244919b58788843c36bf409155cb",
+    "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch": "1a7536796df33b46423cee35608739ab67defb88f5884d00a44fd8cd6b11caf6",
+    "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch": "e4141665bd8e84ca2fabfcda26580b94c8633ce8bb87f547c88860363da896a9",
+    "hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch": "db5b66ff82b001fdb529a529c914190d2034834d9094781e0ec00aabae314615",
+    "hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch": "70b83ba7ada784e2d569be24b49835a8a03b7cc1fba0704abd925b0c07268e5b",
+    "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "dd724245804b9573cb672a1a94255dfa61910e9bb916ee4d7402c2e0ddc5639a",
+    "hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch": "e699a1589ea81f6e0c44989ddad9fd8d97b48d31a83c2dd07b73ca15bfe9b585",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_pro": "4d391970b8b6b6bf1e14c0d7826284a6160577a62a2dad55c8e3817019169291",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch": "ea71ce96852afce595971244cf7ebda11afe2ec482d483f490bce03a6cead6b4",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_20_POWER_BUS.kicad_sch": "97cf38639e29ff75e7f2ea2c4459d0efcb2dfe023eab6219a764cd53f457a883",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_30_TX_EVIDENCE.kicad_sch": "ed8af8e0d9073eb790f88a3e866f75a8365485df9aef0f870a549839e4890774",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
+    "hardware/ecad/libraries/leshy2.kicad_sym": "161eaa9d58f0dd1de043e77c35239460716c967c6c02926e0d6dd943f2a7aa6a",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "ce7f33ca875bfb9cc03ace3dcddd6755c6b4e0ef884884d0d1ef048e7f3696b5"
+  },
+  "projects": [
+    {
+      "project": "LESHY2-UI",
+      "root": "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch",
+      "native_violation_count": 0,
+      "classification": [],
+      "scoped_suppression": {
+        "rule": "lib_symbol_mismatch",
+        "reason": "all symbols are repository-generated and the shared library is independently checked against the exact union of embedded definitions",
+        "covered_local_symbols": 387
+      }
+    },
+    {
+      "project": "LESHY2-RF",
+      "root": "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch",
+      "native_violation_count": 0,
+      "classification": [],
+      "scoped_suppression": {
+        "rule": "lib_symbol_mismatch",
+        "reason": "all symbols are repository-generated and the shared library is independently checked against the exact union of embedded definitions",
+        "covered_local_symbols": 678
+      }
+    },
+    {
+      "project": "LESHY2-LORA-CAP-01",
+      "root": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch",
+      "native_violation_count": 0,
+      "classification": [],
+      "scoped_suppression": {
+        "rule": "lib_symbol_mismatch",
+        "reason": "all symbols are repository-generated and the shared library is independently checked against the exact union of embedded definitions",
+        "covered_local_symbols": 27
+      }
+    },
+    {
+      "project": "L2-DISP-ADP-001-A",
+      "root": "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch",
+      "native_violation_count": 0,
+      "classification": [],
+      "scoped_suppression": {
+        "rule": "lib_symbol_mismatch",
+        "reason": "all symbols are repository-generated and the shared library is independently checked against the exact union of embedded definitions",
+        "covered_local_symbols": 2
+      }
+    }
+  ],
+  "checks": {
+    "native_error_or_warning_count": 0,
+    "shared_symbol_library_equals_embedded_union": true,
+    "only_ignored_erc_rule": "lib_symbol_mismatch",
+    "intentional_no_connects_reconciled": 189,
+    "unexplained_or_unaccounted_findings": 0
+  },
+  "corrected_findings": [
+    {
+      "id": "H2.6.3-F01",
+      "finding": "the root native checks previously treated locally generated symbol-copy diagnostics as expected visible warnings",
+      "correction": "root checks now require empty native ERC and the exact library-copy invariant is enforced outside ERC"
+    }
+  ],
+  "open_findings": []
+}

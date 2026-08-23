@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.4: display-adapter and optional LoRa-Cap sheets; all RF/power sheets are reviewed |
+| Current production ECAD schematic | ▶️ H2.8.2: the complete reviewed H2 package awaits explicit user acceptance before H3 |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.5.1 -->
+<!-- current-substep: H2.8.2 -->
 
-**Exact marker: `H2.5.1`** — independently trace every power source,
-pack-admission, charge and generated-rail path.
+**Exact marker: `H2.8.2`** — record explicit user acceptance of the complete
+H2 package or reopen a concrete finding before H3.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -160,11 +160,11 @@ Current H2 execution:
     1.0-mm test pads, each on one reviewed net with no false BOM/MPN entry;
     complete UI hierarchy passed native KiCad review.
 - ✅ `H2.3` — all RF/power PCB sheets implemented and reviewed.
-  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 populated child sheets, 149 exact
-    cross-sheet nets and 351 explicit pins/labels; native KiCad accepts the
+  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 populated child sheets, 152 exact
+    cross-sheet nets and 360 explicit pins/labels; native KiCad accepts the
     hierarchy with no child stubs or deferred fixture labels.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`: 52 exact components, 208 physical
-    package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, nine
+    package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, 12
     hierarchy interfaces and ten explained NC contacts; native KiCad passed.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`: 61 exact symbols, 198 physical
     package/interface contacts, complete fail-closed 2S admission, fourteen
@@ -196,8 +196,8 @@ Current H2 execution:
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 components, 369
     contacts, explicit AON supply/bypass, watchdog/latch/reset and five
     physical-RF evidence channels; native KiCad review passed.
-  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 physical 1.0-mm
-    test pads, 7 recovery paths and 6 RF-evidence channels; complete RF/power
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 52 physical 1.0-mm
+    test pads, 13 recovery paths and 6 RF-evidence channels; complete RF/power
     hierarchy passes native KiCad with no child stubs or deferred fixture labels.
 - `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
   - ✅ `H2.4.1` — `ADP_00_DISPLAY_ADAPTER`: two serial connectors, 40 exact
@@ -212,16 +212,26 @@ Current H2 execution:
     identity EEPROM and pull-ups; native KiCad review passed.
   - ✅ `H2.4.5` — `CAP_30_TX_EVIDENCE`: comparator, pulse extender and
     active-low open-drain evidence output; native KiCad review passed.
-- ▶️ **`H2.5` — current:** independently review safety-critical paths.
-  - ▶️ **`H2.5.1` — current:** power sources, pack admission, charging and rails.
-  - ⏳ `H2.5.2` — reset, boot, service and recovery for all processors.
-  - ⏳ `H2.5.3` — no-back-power across USB, interboard and expansions.
-  - ⏳ `H2.5.4` — reset-safe quiet state and unused-interface isolation.
-  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`.
-  - ⏳ `H2.5.6` — consolidate findings and close the review.
-- ⏳ `H2.6` — close ERC and justify every intentional no-connect.
-- ⏳ `H2.7` — reconcile schematic contacts and nets with H1, M1 and firmware F2.
-- 🔒 `H2.8` — formal final user acceptance before H3.
+- ✅ **`H2.5` — reviewed:** independently review safety-critical paths.
+  - ✅ `H2.5.1` — sources, pack admission, charging and all rails:
+    [reviewed](power-architecture.md), including corrected global annotation
+    across all three complete KiCad hierarchies.
+  - ✅ `H2.5.2` — reset, boot, service and recovery for every programmable
+    domain: [reviewed](service-recovery.md), including corrected missing
+    PD/EEPROM fixture pads.
+  - ✅ `H2.5.3` — no-back-power across USB, interboard and expansions:
+    [reviewed](interface-isolation.md).
+  - ✅ `H2.5.4` — reset-safe quiet state and unused-interface isolation:
+    [reviewed](quiet-state.md).
+  - ✅ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`:
+    [reviewed](fault-shutdown.md).
+  - ✅ `H2.5.6` — [consolidated findings and closed review](safety-review.md).
+- ✅ `H2.6` — [native ERC and every intentional NC reviewed](erc-review.md):
+  four clean projects, 189 physical NC contacts and no missing rationale.
+- ✅ `H2.7` — [physical, net, M1 and firmware F2 reconciliation closed](hwfw-reconciliation.md).
+- ▶️ **`H2.8` — current:** formal final user acceptance before H3.
+  - ✅ `H2.8.1` — [acceptance scope and every deferred gate published](h2-acceptance.md).
+  - ▶️ **`H2.8.2` — current:** record explicit acceptance or a concrete finding.
 
 The machine-readable execution plan is
 [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Closing any

@@ -20,6 +20,7 @@ FIRMWARE_REPO = REPO.parent / "esp32-leshy2-firmware"
 ARCHITECTURE_GENERATOR = "hardware/architecture/generate.py"
 PRODUCT_GENERATOR = "hardware/product-design/g3_clamshell.py"
 SCHEMATIC_LEDGER_GENERATOR = "hardware/ecad/h2_schematic.py"
+SYMBOL_LIBRARY_GENERATOR = "hardware/ecad/h2_symbol_library.py"
 ROOT_GENERATORS = (
     "hardware/ecad/h2_ui_root.py",
     "hardware/ecad/h2_rf_root.py",
@@ -52,6 +53,24 @@ IMPLEMENTED_CHILD_GENERATORS = (
     "hardware/ecad/h2_lora_cap_power_bus.py",
     "hardware/ecad/h2_lora_cap_tx_evidence.py",
 )
+REVIEW_GENERATORS = (
+    "hardware/ecad/h2_review_power_paths.py",
+    "hardware/ecad/h2_review_recovery_paths.py",
+    "hardware/ecad/h2_review_no_back_power.py",
+    "hardware/ecad/h2_review_quiet_state.py",
+    "hardware/ecad/h2_review_fault_kill.py",
+    "hardware/ecad/h2_review_safety_consolidated.py",
+    "hardware/ecad/h2_review_erc_snapshot.py",
+    "hardware/ecad/h2_review_no_connects.py",
+    "hardware/ecad/h2_review_erc_clean.py",
+    "hardware/ecad/h2_review_erc_consolidated.py",
+    "hardware/ecad/h2_review_canonical_inventories.py",
+    "hardware/ecad/h2_review_physical_contacts.py",
+    "hardware/ecad/h2_review_named_nets_m1.py",
+    "hardware/ecad/h2_review_firmware_contract.py",
+    "hardware/ecad/h2_review_hwfw_consolidated.py",
+    "hardware/ecad/h2_acceptance_package.py",
+)
 
 
 def run(repo: Path, relative: str, *arguments: str) -> None:
@@ -68,6 +87,7 @@ def regenerate(sync_firmware: bool) -> None:
         run(REPO, generator, "--write")
     for generator in IMPLEMENTED_CHILD_GENERATORS:
         run(REPO, generator, "--write")
+    run(REPO, SYMBOL_LIBRARY_GENERATOR, "--write")
     for generator in ROOT_GENERATORS:
         run(REPO, generator, "--write")
     run(REPO, ARCHITECTURE_GENERATOR, "--write")
@@ -75,6 +95,10 @@ def regenerate(sync_firmware: bool) -> None:
         if not FIRMWARE_REPO.is_dir():
             raise FileNotFoundError(f"firmware sibling not found: {FIRMWARE_REPO}")
         run(FIRMWARE_REPO, "tools/import_hardware_contract.py", "--write")
+        run(FIRMWARE_REPO, "tools/import_hardware_contract.py", "--check")
+    for generator in REVIEW_GENERATORS:
+        run(REPO, generator, "--write")
+    if sync_firmware:
         run(FIRMWARE_REPO, "tools/import_hardware_contract.py", "--check")
 
 
@@ -85,6 +109,9 @@ def verify(kicad_check: bool, sync_firmware: bool) -> None:
     for generator in ROOT_GENERATORS:
         run(REPO, generator, "--check")
     for generator in IMPLEMENTED_CHILD_GENERATORS:
+        run(REPO, generator, "--check")
+    run(REPO, SYMBOL_LIBRARY_GENERATOR, "--check")
+    for generator in REVIEW_GENERATORS:
         run(REPO, generator, "--check")
     if kicad_check:
         for generator in ROOT_GENERATORS:

@@ -347,7 +347,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
                 child["summary"]["schematic_symbols"]
                 for child in implemented_children.values()
             ),
-            "known_generated_library_copy_warnings": sum(
+            "suppressed_generated_library_copy_checks": sum(
                 child["summary"]["schematic_symbols"]
                 for child in implemented_children.values()
             ),
@@ -368,14 +368,14 @@ def outputs() -> tuple[dict[Path, str], dict]:
             "no_no_connect_aggregation": True,
             "root_is_component_free": True,
             "implemented_children_are_preserved": sorted(implemented_children),
-            "generated_library_copy_warning_proof": "the controlled and embedded symbol definitions are generated from one object; validation requires one lib_symbol_mismatch per generated symbol and rejects every other mismatch/finding",
+            "generated_library_copy_check_policy": "KiCad's lib_symbol_mismatch rule is disabled because every controlled symbol is generated locally; h2_symbol_library.py independently requires the shared library to equal the union of all embedded definitions",
         },
         "review_boundary": {
             "complete": [
                 "all nine UI child sheets instantiated by the KiCad root",
                 "all 95 derived cross-sheet nets represented by 232 explicit named pins and child labels",
                 "one direct root rail joins only sheet pins carrying the same reviewed net name",
-                "native KiCad parser accepts the complete UI hierarchy; exact remaining child stubs and generated-library copy warnings are machine-accounted",
+                "native KiCad ERC is empty; the disabled generated-library comparison is replaced by an exact independent shared-versus-embedded symbol check",
             ],
             "deferred": [
                 "RF/power-board functional circuit symbols and exact electrical sheet-pin directions in H2.3",
@@ -447,45 +447,27 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
             for net in row["interfaces"]
             if net not in implemented_nets
         }
-        expected_mismatch_uuids = {
-            instance["symbol_uuid"]
-            for path in IMPLEMENTED_CHILD_MANIFESTS.values()
-            if path.is_file()
-            for child in [json.loads(path.read_text(encoding="utf-8"))]
-            if child.get("status") == IMPLEMENTED_CHILD_STATUSES.get(child.get("sheet"))
-            for instance in child["instances"]
-        }
         actual_label_uuids = {
             violation["items"][0]["uuid"]
             for violation in violations
             if violation.get("type") == "label_dangling"
             and len(violation.get("items", [])) == 1
         }
-        actual_mismatch_uuids = {
-            violation["items"][0]["uuid"]
-            for violation in violations
-            if violation.get("type") == "lib_symbol_mismatch"
-            and len(violation.get("items", [])) == 1
-        }
         if (
-            len(violations) != len(expected_label_uuids) + len(expected_mismatch_uuids)
+            len(violations) != len(expected_label_uuids)
             or actual_label_uuids != expected_label_uuids
-            or actual_mismatch_uuids != expected_mismatch_uuids
         ):
             raise RuntimeError(
                 "UI ERC differs from the exact reviewed finding sets: "
-                f"violations={len(violations)}, expected-stubs={len(expected_label_uuids)}, "
-                f"expected-generated-symbol-warnings={len(expected_mismatch_uuids)}"
+                f"violations={len(violations)}, expected-stubs={len(expected_label_uuids)}"
             )
     if manifest["summary"]["known_child_stub_erc_violations"]:
         print(
-            "ok: KiCad parsed the live UI hierarchy; only exact unimplemented child "
-            "stubs and generated-library copy warnings remain"
+            "ok: KiCad parsed the live UI hierarchy; only exact unimplemented child stubs remain"
         )
     else:
         print(
-            "ok: KiCad parsed the complete UI hierarchy with no unimplemented child "
-            "stubs; only exact generated-library copy warnings remain"
+            "ok: KiCad parsed the complete UI hierarchy with an empty native ERC report"
         )
 
 
@@ -519,7 +501,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "known_child_stub_erc_violations": 0,
         "implemented_child_sheet_count": 9,
         "circuit_symbols_placed": 387,
-        "known_generated_library_copy_warnings": 387,
+        "suppressed_generated_library_copy_checks": 387,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")

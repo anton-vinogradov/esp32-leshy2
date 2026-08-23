@@ -1,0 +1,754 @@
+{
+  "schema_version": 1,
+  "stage": "H2.5.4",
+  "status": "reviewed_reset_safe_quiet_state_and_isolation",
+  "method": "complete KiCad netlist control-membership checks plus exact instantiated isolation evidence for every required quiet contract",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+  },
+  "hierarchy_exports": {
+    "LESHY2-RF": {
+      "component_count": 678,
+      "unique_reference_count": 678,
+      "duplicate_references": [],
+      "net_count": 538,
+      "annotation_warnings": 0
+    },
+    "LESHY2-UI": {
+      "component_count": 387,
+      "unique_reference_count": 387,
+      "duplicate_references": [],
+      "net_count": 338,
+      "annotation_warnings": 0
+    }
+  },
+  "corrected_findings": [
+    {
+      "id": "H2.5.4-F01",
+      "severity": "contract_traceability",
+      "finding": "VOICE_QUIET and VOICE_INTERFACE_QUIET retained obsolete abstract VOICE_PTT_N and VOICE_DOMAIN_EN names",
+      "correction": "the contracts now name the implemented request, safety-gated and module-side PTT nets plus request and safe domain-enable nets",
+      "evidence": "all five voice request/safe/module control nets are present with the required hardware members in the complete RF hierarchy"
+    }
+  ],
+  "default_state": "QUIET",
+  "signal_group_policy": {
+    "default_group": "NONE",
+    "exclusive": true,
+    "internal_full_mix_exception": [
+      "SG-N24"
+    ]
+  },
+  "reviewed_contract_count": 13,
+  "reviewed_contracts": [
+    {
+      "id": "N24_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-RF",
+      "isolation_class": "rail_off_plus_bidirectional_signal_isolation",
+      "inactive_state": "pre-off CE low and CSN deasserted; then common rail off, all signal paths isolated/high-Z and PIO/DMA stopped",
+      "control": "RP.GPIO15 NRF_GROUP_PWR_EN with off-safe pull plus exact switched-domain I/O isolation",
+      "checked_nets": [
+        {
+          "net": "NRF_GROUP_PWR_EN",
+          "required_members": [
+            "rp",
+            "safe_gate_a"
+          ]
+        },
+        {
+          "net": "NRF_GROUP_PWR_EN_SAFE",
+          "required_members": [
+            "nrf_power_on_pulldown",
+            "nrf_power_switch",
+            "safe_gate_a"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "nrf_power_switch",
+          "reference": "U31013",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "nrf_power_on_pulldown",
+          "reference": "R31001",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "safe_gate_a",
+          "reference": "U50010",
+          "mpn": "SN74LVC08APWR"
+        },
+        {
+          "instance": "nrf0_host_buffer",
+          "reference": "U31004",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "nrf1_host_buffer",
+          "reference": "U31007",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "nrf2_host_buffer",
+          "reference": "U31010",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "nrf0_return_buffer",
+          "reference": "U31005",
+          "mpn": "Nexperia 74LVC2G126DC,125"
+        },
+        {
+          "instance": "nrf1_return_buffer",
+          "reference": "U31008",
+          "mpn": "Nexperia 74LVC2G126DC,125"
+        },
+        {
+          "instance": "nrf2_return_buffer",
+          "reference": "U31011",
+          "mpn": "Nexperia 74LVC2G126DC,125"
+        }
+      ]
+    },
+    {
+      "id": "CC_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-RF",
+      "isolation_class": "rail_off_plus_bidirectional_signal_isolation",
+      "inactive_state": "pre-off IDLE/power-down and CSN deasserted; then rail off, SPI/GDO isolated/high-Z and PIO/DMA stopped",
+      "control": "RP.GPIO23 CC_PWR_EN with off-safe pull plus exact switched-domain I/O isolation",
+      "checked_nets": [
+        {
+          "net": "CC_PWR_EN",
+          "required_members": [
+            "rp",
+            "safe_gate_b"
+          ]
+        },
+        {
+          "net": "CC_PWR_EN_SAFE",
+          "required_members": [
+            "cc_power_on_pulldown",
+            "cc_power_switch",
+            "safe_gate_b"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "cc_power_switch",
+          "reference": "U32017",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "cc_power_on_pulldown",
+          "reference": "R32001",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "safe_gate_b",
+          "reference": "U50011",
+          "mpn": "SN74LVC08APWR"
+        },
+        {
+          "instance": "cc_host_buffer",
+          "reference": "U32002",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "cc_return_buffer",
+          "reference": "U32003",
+          "mpn": "Nexperia 74LVC126APW,118"
+        }
+      ]
+    },
+    {
+      "id": "U214_CAP_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-RF",
+      "isolation_class": "reverse_blocked_rail_off_plus_eleven_signal_isolation",
+      "inactive_state": "U214 branch eFuse off and discharged; all nine SPI/UART/control paths and both I2C paths isolated/high-Z; RP PIO/UART/I2C activity stopped",
+      "control": "slow_io.P17 U214_5V_REQ through FAULT_KILL-dominant shared-buck and branch gates, TPS259470LRPWR, TPS3808G33DBVR, three 74LVC126APW,118 and TCA4307DGKR",
+      "checked_nets": [
+        {
+          "net": "U214_5V_REQ",
+          "required_members": [
+            "ext_branch_gate",
+            "m1_rf_receptacle",
+            "u214_req_pulldown"
+          ]
+        },
+        {
+          "net": "U214_5V_EN_SAFE",
+          "required_members": [
+            "ext_branch_gate",
+            "ext_efuse",
+            "u214_supervisor"
+          ]
+        },
+        {
+          "net": "U214_READY",
+          "required_members": [
+            "u214_host_buffer_a",
+            "u214_host_buffer_b",
+            "u214_i2c_iso",
+            "u214_return_buffer",
+            "u214_supervisor"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "ext_efuse",
+          "reference": "U3008",
+          "mpn": "Texas Instruments TPS259470LRPWR"
+        },
+        {
+          "instance": "u214_req_pulldown",
+          "reference": "R34012",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "ext_branch_gate",
+          "reference": "U3002",
+          "mpn": "Texas Instruments SN74LVC2G08DCUR"
+        },
+        {
+          "instance": "u214_supervisor",
+          "reference": "U34008",
+          "mpn": "TPS3808G33DBVR"
+        },
+        {
+          "instance": "u214_host_buffer_a",
+          "reference": "U34002",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "u214_host_buffer_b",
+          "reference": "U34003",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "u214_return_buffer",
+          "reference": "U34004",
+          "mpn": "Nexperia 74LVC126APW,118"
+        },
+        {
+          "instance": "u214_i2c_iso",
+          "reference": "U34001",
+          "mpn": "TCA4307DGKR"
+        }
+      ]
+    },
+    {
+      "id": "UNIT_PORT_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-RF",
+      "isolation_class": "reverse_blocked_rail_off_plus_two_signal_isolation",
+      "inactive_state": "native Unit branch eFuse off and discharged; both configurable signals isolated/high-Z and no profile polling",
+      "control": "slow_io.P05 UNIT_5V_REQ through FAULT_KILL-dominant shared-buck and branch gates, separate TPS259470LRPWR, TPS3808G33DBVR and TXS0102DCUR OE",
+      "checked_nets": [
+        {
+          "net": "UNIT_5V_REQ",
+          "required_members": [
+            "ext_branch_gate",
+            "m1_rf_receptacle",
+            "unit_req_pulldown"
+          ]
+        },
+        {
+          "net": "UNIT_5V_EN_SAFE",
+          "required_members": [
+            "ext_branch_gate",
+            "unit_efuse",
+            "unit_supervisor"
+          ]
+        },
+        {
+          "net": "UNIT_READY",
+          "required_members": [
+            "unit_signal_iso",
+            "unit_signal_iso_oe_pulldown",
+            "unit_supervisor"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "unit_efuse",
+          "reference": "U34009",
+          "mpn": "Texas Instruments TPS259470LRPWR"
+        },
+        {
+          "instance": "unit_req_pulldown",
+          "reference": "R34013",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "ext_branch_gate",
+          "reference": "U3002",
+          "mpn": "Texas Instruments SN74LVC2G08DCUR"
+        },
+        {
+          "instance": "unit_supervisor",
+          "reference": "U34010",
+          "mpn": "TPS3808G33DBVR"
+        },
+        {
+          "instance": "unit_signal_iso",
+          "reference": "U34011",
+          "mpn": "Texas Instruments TXS0102DCUR"
+        },
+        {
+          "instance": "unit_signal_iso_oe_pulldown",
+          "reference": "R34024",
+          "mpn": "Yageo RC0402FR-0710KL"
+        }
+      ]
+    },
+    {
+      "id": "VOICE_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-RF",
+      "isolation_class": "rail_off_plus_hardware_ptt_off",
+      "inactive_state": "PTT hardware-off; module power-down; qualified 4 V rail off",
+      "control": "VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; VOICE_DOMAIN_REQ -> VOICE_DOMAIN_EN_SAFE; both paths are KILL/FAULT_KILL-dominant",
+      "checked_nets": [
+        {
+          "net": "VOICE_DOMAIN_REQ",
+          "required_members": [
+            "m1_rf_receptacle",
+            "safe_gate_b"
+          ]
+        },
+        {
+          "net": "VOICE_DOMAIN_EN_SAFE",
+          "required_members": [
+            "safe_gate_b",
+            "voice_buck",
+            "voice_en_pulldown",
+            "voice_supervisor"
+          ]
+        },
+        {
+          "net": "VOICE_PTT_REQ_N",
+          "required_members": [
+            "rp",
+            "safe_ptt_or"
+          ]
+        },
+        {
+          "net": "VOICE_PTT_SAFE_N",
+          "required_members": [
+            "safe_ptt_or",
+            "voice_ptt_iso"
+          ]
+        },
+        {
+          "net": "VOICE_PTT_MODULE_N",
+          "required_members": [
+            "voice",
+            "voice_ptt_iso",
+            "voice_ptt_pullup"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "voice_buck",
+          "reference": "U32015",
+          "mpn": "Texas Instruments TPS564252DRLR"
+        },
+        {
+          "instance": "voice_en_pulldown",
+          "reference": "R32040",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "voice_efuse",
+          "reference": "U32016",
+          "mpn": "Texas Instruments TPS25974LRPWR"
+        },
+        {
+          "instance": "safe_gate_b",
+          "reference": "U50011",
+          "mpn": "SN74LVC08APWR"
+        },
+        {
+          "instance": "safe_ptt_or",
+          "reference": "U50012",
+          "mpn": "74LVC1G32GV,125"
+        },
+        {
+          "instance": "voice_ptt_iso",
+          "reference": "U32011",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "voice_ptt_pullup",
+          "reference": "R32028",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "voice_supervisor",
+          "reference": "U32009",
+          "mpn": "TPS3808G33DBVR"
+        }
+      ]
+    },
+    {
+      "id": "RECEIVER_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "rail_off_reset_asserted_and_control_isolated",
+      "inactive_state": "receiver rail discharged, reset asserted, I2C isolated and both audio outputs passive while the protected receive-only antenna inputs remain harmless",
+      "control": "slow_io.P15 RX_DOMAIN_EN plus exact TPS22919DCKR, supervisor and I2C isolation",
+      "checked_nets": [
+        {
+          "net": "RX_DOMAIN_EN",
+          "required_members": [
+            "receiver_power_on_pulldown",
+            "receiver_power_switch",
+            "slow_io"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "receiver_power_switch",
+          "reference": "U21005",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "receiver_power_on_pulldown",
+          "reference": "R21004",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "receiver_supervisor",
+          "reference": "U21002",
+          "mpn": "Texas Instruments TPS3839K33DBZR"
+        },
+        {
+          "instance": "receiver_i2c_iso",
+          "reference": "U21003",
+          "mpn": "Texas Instruments SN74LVC2G66DCUR"
+        },
+        {
+          "instance": "receiver_irq_iso",
+          "reference": "U21004",
+          "mpn": "SN74LVC1G07DCKR"
+        }
+      ]
+    },
+    {
+      "id": "CODEC_AUDIO_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "rail_off_plus_i2c_i2s_and_audio_output_isolation",
+      "inactive_state": "AUDIO_ARM low, capture/playback selectors at reset defaults, PAM8302A off, codec rail discharged with I2C/I2S isolated and I2S clock/DMA stopped",
+      "control": "direct S3.GPIO6 AUDIO_ARM with pull-down plus slow_io P01/P10 and exact supervisors/isolators",
+      "checked_nets": [
+        {
+          "net": "AUDIO_ARM",
+          "required_members": [
+            "audio_arm_pulldown",
+            "audio_safe_gate",
+            "s3"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "codec_power_switch",
+          "reference": "U13017",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "codec_power_on_pulldown",
+          "reference": "R13038",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "codec_supervisor",
+          "reference": "U13010",
+          "mpn": "Texas Instruments TPS3839K33DBZR"
+        },
+        {
+          "instance": "codec_i2c_iso",
+          "reference": "U13011",
+          "mpn": "Texas Instruments SN74LVC2G66DCUR"
+        },
+        {
+          "instance": "codec_i2s_bclk_iso",
+          "reference": "U13012",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "codec_i2s_ws_iso",
+          "reference": "U13013",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "codec_i2s_din_iso",
+          "reference": "U13015",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "codec_i2s_dout_iso",
+          "reference": "U13014",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "audio_safe_gate",
+          "reference": "U13007",
+          "mpn": "Texas Instruments SN74LVC2G08DCUR"
+        },
+        {
+          "instance": "audio_arm_pulldown",
+          "reference": "R13019",
+          "mpn": "Yageo RC0402FR-0710KL"
+        }
+      ]
+    },
+    {
+      "id": "VOICE_INTERFACE_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-RF",
+      "isolation_class": "switched_io_rail_plus_digital_and_analog_isolation",
+      "inactive_state": "PTT remains hardware-off, UART and analog paths isolated, MIC_IN injection disconnected and H/L at its safe low-or-open default",
+      "control": "VOICE_PTT_REQ_N -> VOICE_PTT_SAFE_N -> isolated VOICE_PTT_MODULE_N; slow_io P13/P14/P27 and exact switched-domain digital/analog isolation",
+      "checked_nets": [
+        {
+          "net": "VOICE_PTT_SAFE_N",
+          "required_members": [
+            "safe_ptt_or",
+            "voice_ptt_iso"
+          ]
+        },
+        {
+          "net": "VOICE_PTT_MODULE_N",
+          "required_members": [
+            "voice",
+            "voice_ptt_iso"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "voice_io_power_switch",
+          "reference": "U32010",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "voice_uart_tx_iso",
+          "reference": "U32012",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "voice_audio_iso",
+          "reference": "U32014",
+          "mpn": "Texas Instruments SN74LVC2G66DCUR"
+        },
+        {
+          "instance": "voice_ptt_iso",
+          "reference": "U32011",
+          "mpn": "Texas Instruments SN74LVC1G126DCKR"
+        },
+        {
+          "instance": "voice_hl_driver",
+          "reference": "U32013",
+          "mpn": "SN74LVC1G07DCKR"
+        }
+      ]
+    },
+    {
+      "id": "IR_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "receiver_rail_off_plus_fault_dominant_emitter_gate",
+      "inactive_state": "TPS22919 receive rail discharged through QOD; Ioff return buffer high-Z with C5 inputs idle-high; RMT stopped and pins parked; VSMY14940 gate pulled low behind FAULT_KILL",
+      "control": "C5.GPIO4 IR_FRONTEND_PWR_EN plus UI-local SN74LVC1G08DCKR RUN_PERMIT gate, 100-Ohm gate resistor and 10-kOhm DMN2056U-7 gate pull-down",
+      "checked_nets": [
+        {
+          "net": "IR_FRONTEND_PWR_EN",
+          "required_members": [
+            "c5",
+            "ir_power_on_pulldown",
+            "ir_power_switch"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "ir_power_switch",
+          "reference": "U20003",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "ir_power_on_pulldown",
+          "reference": "R20004",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "ir_return_buffer",
+          "reference": "U20006",
+          "mpn": "Nexperia 74LVC2G126DC,125"
+        },
+        {
+          "instance": "ir_safe_gate",
+          "reference": "U20008",
+          "mpn": "SN74LVC1G08DCKR"
+        },
+        {
+          "instance": "ir_tx_mosfet",
+          "reference": "Q20001",
+          "mpn": "Diodes Incorporated DMN2056U-7"
+        },
+        {
+          "instance": "ir_tx_gate_pulldown",
+          "reference": "R20014",
+          "mpn": "Yageo RC0402FR-0710KL"
+        }
+      ]
+    },
+    {
+      "id": "S3_RF_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "native_rf_block_off_cpu_remains_alive",
+      "inactive_state": "protocols/scans/advertising stopped and native RF block off while S3 CPU/UI remains alive",
+      "control": "native RF power state plus S3_RF_TX_EVIDENCE",
+      "checked_nets": [],
+      "critical_parts": [
+        {
+          "instance": "s3",
+          "reference": "U10001",
+          "mpn": "ESP32-S3-WROOM-1U-N16R8"
+        },
+        {
+          "instance": "s3_evidence_output_pullup",
+          "reference": "R50008",
+          "mpn": "Yageo RC0402FR-0710KL"
+        }
+      ]
+    },
+    {
+      "id": "C5_RF_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "native_rf_block_off_cpu_remains_alive",
+      "inactive_state": "protocols stopped and native RF block off while C5 may remain alive for IR/recovery",
+      "control": "native RF power state plus C5_RF_TX_EVIDENCE",
+      "checked_nets": [],
+      "critical_parts": [
+        {
+          "instance": "c5",
+          "reference": "U20001",
+          "mpn": "ESP32-C5-WROOM-1U-N8R8"
+        },
+        {
+          "instance": "c5_evidence_output_pullup",
+          "reference": "R50012",
+          "mpn": "Yageo RC0402FR-0710KL"
+        }
+      ]
+    },
+    {
+      "id": "STORAGE_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "bounded_flush_then_rail_off_and_bus_static",
+      "inactive_state": "bounded flush then controller static and rail off when no storage session",
+      "control": "slow_io.P20 SD_PWR_EN",
+      "checked_nets": [
+        {
+          "net": "SD_PWR_EN",
+          "required_members": [
+            "sd_on_pulldown",
+            "sd_power_switch",
+            "slow_io"
+          ]
+        }
+      ],
+      "critical_parts": [
+        {
+          "instance": "sd_power_switch",
+          "reference": "U11009",
+          "mpn": "Texas Instruments TPS22919DCKR"
+        },
+        {
+          "instance": "sd_on_pulldown",
+          "reference": "R11009",
+          "mpn": "Yageo RC0402FR-0710KL"
+        },
+        {
+          "instance": "sd_host_buffer",
+          "reference": "U11005",
+          "mpn": "SN74LVC3G34DCUR"
+        },
+        {
+          "instance": "sd_miso_buffer",
+          "reference": "U11006",
+          "mpn": "Texas Instruments SN74LVC1G125DCKR"
+        }
+      ]
+    },
+    {
+      "id": "SERVICE_IPC_QUIET",
+      "status": "reviewed",
+      "project": "LESHY2-UI",
+      "isolation_class": "bounded_transaction_then_controller_clock_and_dma_stop",
+      "inactive_state": "detached/suspended or static idle; clocks run only for bounded required transactions",
+      "control": "per-controller clock/DMA gates; physical recovery contacts remain available",
+      "checked_nets": [],
+      "critical_parts": [
+        {
+          "instance": "c5_service_usb_switch",
+          "reference": "U20007",
+          "mpn": "onsemi FSUSB42MUX"
+        },
+        {
+          "instance": "s3",
+          "reference": "U10001",
+          "mpn": "ESP32-S3-WROOM-1U-N16R8"
+        },
+        {
+          "instance": "c5",
+          "reference": "U20001",
+          "mpn": "ESP32-C5-WROOM-1U-N8R8"
+        },
+        {
+          "instance": "display_connector",
+          "reference": "J11002",
+          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)"
+        }
+      ]
+    }
+  ],
+  "invariants": [
+    "boot and reset default to no active signal group",
+    "only the three nRF24 paths may operate as one internally simultaneous full-mix group",
+    "switched peripherals have off-safe pulls and an explicit power or signal-isolation boundary",
+    "S3/C5 native radios use vendor RF-block-off states because their CPUs remain alive for UI, IR and recovery",
+    "display, USB and processor IPC clocks run only for bounded transactions and remain static otherwise",
+    "paper review does not claim radiated quietness; current, discharge, spectrum and desense remain measured HIL gates"
+  ],
+  "review_boundary": {
+    "complete": [
+      "all 13 required quiet contracts map to exact fitted MPNs and complete-hierarchy control nets",
+      "reset defaults, off-safe pulls, switched rails and isolation devices are explicit",
+      "the native-radio and bounded-transaction exceptions are explicit rather than represented as nonexistent load switches"
+    ],
+    "deferred": [
+      "powered-off leakage and rail-discharge timing in H3/H8",
+      "no-carrier/no-optical-output and active-receiver desense HIL in H8",
+      "DMA/clock spectral measurements and simultaneous SG-N24 full-mix proof in firmware F3/H8"
+    ]
+  }
+}

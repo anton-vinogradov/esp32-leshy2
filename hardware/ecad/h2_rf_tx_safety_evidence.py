@@ -14,6 +14,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import (
@@ -157,7 +158,7 @@ def build() -> tuple[dict[Path, str], dict]:
     )
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         prefix = reference_prefix(row["instance"], row["device_key"])
         ref_counts[prefix] += 1
@@ -330,7 +331,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     summary = manifest["summary"]
     expected = {
         "ledger_instances": 97, "schematic_symbols": 97,
-        "board_fitted_symbols": 97, "hierarchical_interfaces": 70,
+        "board_fitted_symbols": 97, "hierarchical_interfaces": 74,
         "physical_contacts": 369, "rf_detector_channels": 5,
         "comparator_channels": 5, "independent_watchdogs": 2,
         "tx_gate_packages": 3, "evidence_mask_inputs": 9,
@@ -342,7 +343,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 97:
         raise ValueError("RF50 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 70:
+    if schematic.count("\n\t(hierarchical_label \"") != 74:
         raise ValueError("RF50 hierarchy interface accounting mismatch")
     for row in manifest["instances"]:
         if not row["footprint"]:

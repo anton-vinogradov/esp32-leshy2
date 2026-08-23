@@ -657,7 +657,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e9aba113-50f3-5b7d-9ef7-93daaf88e5f9")
-		(property "Reference" "TP1"
+		(property "Reference" "TP60001"
 			(at 60.96 40.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -696,7 +696,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP1")
+					(reference "TP60001")
 					(unit 1)
 				)
 			)
@@ -717,7 +717,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7b9a1932-8e22-593c-93a2-50b4b1ddf5ac")
-		(property "Reference" "TP2"
+		(property "Reference" "TP60002"
 			(at 162.56 40.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -756,7 +756,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP2")
+					(reference "TP60002")
 					(unit 1)
 				)
 			)
@@ -777,7 +777,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2fea6a66-c384-5c57-a354-bef01acfdfcd")
-		(property "Reference" "TP3"
+		(property "Reference" "TP60003"
 			(at 264.16 40.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -816,7 +816,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP3")
+					(reference "TP60003")
 					(unit 1)
 				)
 			)
@@ -837,7 +837,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "82d5a1f7-f3b5-554a-ab84-01b65a5ab8f7")
-		(property "Reference" "TP4"
+		(property "Reference" "TP60004"
 			(at 60.96 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -876,7 +876,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP4")
+					(reference "TP60004")
 					(unit 1)
 				)
 			)
@@ -897,7 +897,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c368f04d-8ac9-5a21-9f3e-4af3ab519f1d")
-		(property "Reference" "TP5"
+		(property "Reference" "TP60005"
 			(at 162.56 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -936,7 +936,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP5")
+					(reference "TP60005")
 					(unit 1)
 				)
 			)
@@ -957,7 +957,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9dd245be-3f21-56a7-9e1a-ccb4a1d6d6f8")
-		(property "Reference" "TP6"
+		(property "Reference" "TP60006"
 			(at 264.16 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -996,7 +996,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP6")
+					(reference "TP60006")
 					(unit 1)
 				)
 			)
@@ -1017,7 +1017,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0acbcde7-ac62-5996-8fe7-68490be3ef4d")
-		(property "Reference" "TP7"
+		(property "Reference" "TP60007"
 			(at 60.96 132.08 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1056,7 +1056,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP7")
+					(reference "TP60007")
 					(unit 1)
 				)
 			)
@@ -1077,7 +1077,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9f41994f-84fd-5978-b245-9a9c4a9305ed")
-		(property "Reference" "TP8"
+		(property "Reference" "TP60008"
 			(at 162.56 132.08 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1116,7 +1116,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP8")
+					(reference "TP60008")
 					(unit 1)
 				)
 			)
@@ -1137,7 +1137,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b770442e-47e4-5e8e-bf14-51b1f3a990e7")
-		(property "Reference" "TP9"
+		(property "Reference" "TP60009"
 			(at 264.16 132.08 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1176,7 +1176,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP9")
+					(reference "TP60009")
 					(unit 1)
 				)
 			)
@@ -1197,7 +1197,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a684e8ba-2731-5fde-a098-4ec6625ea438")
-		(property "Reference" "TP10"
+		(property "Reference" "TP60010"
 			(at 60.96 177.80 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1236,7 +1236,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP10")
+					(reference "TP60010")
 					(unit 1)
 				)
 			)
@@ -1257,7 +1257,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "11b399a7-d20a-58dd-bde8-f913c092bf03")
-		(property "Reference" "TP11"
+		(property "Reference" "TP60011"
 			(at 162.56 177.80 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1296,7 +1296,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/65f116c6-cf21-5e71-ad4e-c9698d9f768e"
-					(reference "TP11")
+					(reference "TP60011")
 					(unit 1)
 				)
 			)

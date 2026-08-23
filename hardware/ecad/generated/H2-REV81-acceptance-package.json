@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "stage": "H2.8.1",
+  "status": "reviewed_acceptance_package_ready_user_decision_pending",
+  "source_hashes": {
+    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "08e1f4f17283eebcf3b0450592e76e087a9ba010c25ef86f20af8838cc9d4db6",
+    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "72a52b2a8237f816ca8188931d6f8c84f19b8eb9114c933662a2bd94d14c37a8",
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "b3a3d1262b26ebe9f2d2b9641d82a748a48ef19cd0df0c2fb5f3b6fcc6d0280c"
+  },
+  "reviewed_prerequisites": [
+    {
+      "stage": "H2.5.6",
+      "artifact": "hardware/ecad/generated/H2-REV56-safety-consolidated.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.6.4",
+      "artifact": "hardware/ecad/generated/H2-REV64-erc-consolidated.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.7.5",
+      "artifact": "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json",
+      "status": "reviewed"
+    }
+  ],
+  "acceptance_meaning": "accept the complete H2 production schematic as the immutable starting input for H3; later findings reopen affected gates",
+  "acceptance_does_not_authorize": [
+    "PCB placement/routing",
+    "purchasing",
+    "fabrication",
+    "claim of physical prototype validation"
+  ],
+  "deferred_gates": [
+    {
+      "gate": "H3",
+      "scope": "worst-case DC, startup/shutdown, handover, fault, transient, digital timing and pre-layout RF simulation"
+    },
+    {
+      "gate": "firmware F3",
+      "scope": "target skeleton builds, size/rollback checks and available emulator execution before fabrication"
+    },
+    {
+      "gate": "H5",
+      "scope": "received-part dimensional, drawing, lifecycle, connector and land-fit evidence"
+    },
+    {
+      "gate": "H6",
+      "scope": "PCB placement, stack-up, impedance, copper, thermal layout and complete DRC"
+    },
+    {
+      "gate": "H8",
+      "scope": "prototype bring-up, HIL, RF coexistence, power/fault injection, thermals and long-duration operation"
+    }
+  ],
+  "open_h2_technical_findings": [],
+  "decision": {
+    "stage": "H2.8.2",
+    "status": "waiting_for_explicit_user_acceptance"
+  }
+}

@@ -1,0 +1,848 @@
+{
+  "schema_version": 1,
+  "stage": "H2.5.2",
+  "status": "reviewed_reset_boot_service_and_recovery_paths",
+  "method": "fresh complete KiCad netlists compared with collapsed architecture endpoints and explicit fixture pads",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "35314f37fdde39fdadfa6cb9bca0039274d7cd92e60aa744f6a8ec4cadae4e7e",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "d955608e84d27556f4e7be69d53f86e1f8e297355ad1e0171b9c294b6cdd8aff",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+  },
+  "hierarchy_exports": {
+    "LESHY2-UI": {
+      "component_count": 387,
+      "unique_reference_count": 387,
+      "duplicate_references": [],
+      "net_count": 338,
+      "annotation_warnings": 0
+    },
+    "LESHY2-RF": {
+      "component_count": 678,
+      "unique_reference_count": 678,
+      "duplicate_references": [],
+      "net_count": 538,
+      "annotation_warnings": 0
+    }
+  },
+  "corrected_findings": [
+    {
+      "id": "H2.5.2-F01",
+      "severity": "recovery_blocking",
+      "finding": "the reviewed service contract promised PD target-bus and direct EEPROM recovery pads, but RF60 did not instantiate them",
+      "correction": "six BOM-free 1.0-mm internal copper pads now expose SYS_I2C_SDA/SCL/SYS_INT_N and PD_LOCAL_I2C_SDA/SCL/PD_EEPROM_WP",
+      "evidence": "the complete RF hierarchy contains 36 physical test pads, including 13 programming/recovery pads"
+    }
+  ],
+  "service_scope": "permanent independent programming, recovery and diagnostics for S3, C5 and RP2354B without permitting a service cable or fixture to power the product or bypass RUN/KILL, watchdog or FAULT_KILL",
+  "targets": [
+    {
+      "target": "ESP32-S3",
+      "primary": "protected product USB-C (native USB Serial/JTAG)",
+      "fallback": "internal keyed DBG10 UART0 + RESET/BOOT; two recessed side switches",
+      "project": "LESHY2-UI + LESHY2-RF"
+    },
+    {
+      "target": "ESP32-C5",
+      "primary": "dedicated data-only USB-C through FSUSB42MUX",
+      "fallback": "internal keyed DBG10 UART0 + RESET/BOOT; two recessed side switches",
+      "project": "LESHY2-UI"
+    },
+    {
+      "target": "RP2354B",
+      "primary": "dedicated data-only USB-C through FSUSB42MUX",
+      "fallback": "internal keyed DBG10 SWD + RUN/USB_BOOT; two recessed side switches",
+      "project": "LESHY2-RF"
+    },
+    {
+      "target": "pack-admission MSPM0",
+      "primary": "internal current-limited fixture VDD/GND + UART + SWD + NRST pads",
+      "fallback": "none required; permanent SWD and UART are both present",
+      "project": "LESHY2-RF"
+    },
+    {
+      "target": "AON safety MSPM0",
+      "primary": "internal AON-powered UART + SWD + NRST pads",
+      "fallback": "recovery cannot release RUN_PERMIT or clear hardware FAULT_KILL",
+      "project": "LESHY2-RF"
+    },
+    {
+      "target": "TPS25751D + configuration EEPROM",
+      "primary": "SYS_I2C target pads plus direct local SDA/SCL/WP pads",
+      "fallback": "pre-programmed loose EEPROM or current-limited raw-VBUS fixture",
+      "project": "LESHY2-RF"
+    },
+    {
+      "target": "MAX17320 pack gauge",
+      "primary": "internal protected local I2C and fault/hold observation",
+      "fallback": "image checksum and override readback before energized cell installation",
+      "project": "LESHY2-RF"
+    },
+    {
+      "target": "SA518 voice module",
+      "primary": "internal UPDATE pad plus permanent UART and hardware PD",
+      "fallback": "UPDATE stays inhibited until module-revision timing is qualified",
+      "project": "LESHY2-RF"
+    }
+  ],
+  "reviewed_net_count": 61,
+  "reviewed_nets": [
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_RESET_N",
+      "status": "reviewed",
+      "instances": [
+        "TP_S3_RUN",
+        "s3",
+        "s3_dbg_reset_series",
+        "s3_reset_delay_cap",
+        "s3_reset_pullup",
+        "safe_reset_sink_a",
+        "ui_matrix_io"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "I2S_DIN",
+      "status": "reviewed",
+      "instances": [
+        "codec_i2s_din_iso",
+        "s3",
+        "s3_boot_pullup",
+        "s3_dbg_boot_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_UART_SERVICE_TX",
+      "status": "reviewed",
+      "instances": [
+        "s3",
+        "s3_dbg0_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_UART_SERVICE_RX",
+      "status": "reviewed",
+      "instances": [
+        "s3",
+        "s3_dbg1_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_USB_DP_LOCAL",
+      "status": "reviewed",
+      "instances": [
+        "product_usb_dp_series",
+        "s3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_USB_DM_LOCAL",
+      "status": "reviewed",
+      "instances": [
+        "product_usb_dm_series",
+        "s3"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_DBG_RESET_CONNECTOR_N",
+      "status": "reviewed",
+      "instances": [
+        "s3_dbg_esd",
+        "s3_dbg_header",
+        "s3_dbg_reset_series",
+        "s3_reset_button"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_DBG_BOOT_CONNECTOR_N",
+      "status": "reviewed",
+      "instances": [
+        "s3_boot_button",
+        "s3_dbg_boot_series",
+        "s3_dbg_esd",
+        "s3_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_DBG0_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "s3_dbg0_series",
+        "s3_dbg_esd",
+        "s3_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "S3_DBG1_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "s3_dbg1_series",
+        "s3_dbg_esd",
+        "s3_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_RESET_N",
+      "status": "reviewed",
+      "instances": [
+        "TP_C5_RUN",
+        "c5",
+        "c5_dbg_reset_series",
+        "c5_reset_pullup",
+        "safe_reset_sink_a"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_BOOT_N",
+      "status": "reviewed",
+      "instances": [
+        "c5",
+        "c5_boot_pullup",
+        "c5_dbg_boot_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_UART_SERVICE_TX",
+      "status": "reviewed",
+      "instances": [
+        "c5",
+        "c5_dbg0_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_UART_SERVICE_RX",
+      "status": "reviewed",
+      "instances": [
+        "c5",
+        "c5_dbg1_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_USB_DP",
+      "status": "reviewed",
+      "instances": [
+        "c5",
+        "c5_service_usb_dp_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_USB_DM",
+      "status": "reviewed",
+      "instances": [
+        "c5",
+        "c5_service_usb_dm_series"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_GPIO27_FIXED_HIGH",
+      "status": "reviewed",
+      "instances": [
+        "TP_C5_GPIO27_FIXED_HIGH",
+        "c5",
+        "c5_gpio27_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_DBG_RESET_CONNECTOR_N",
+      "status": "reviewed",
+      "instances": [
+        "c5_dbg_esd",
+        "c5_dbg_header",
+        "c5_dbg_reset_series",
+        "c5_reset_button"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_DBG_BOOT_CONNECTOR_N",
+      "status": "reviewed",
+      "instances": [
+        "c5_boot_button",
+        "c5_dbg_boot_series",
+        "c5_dbg_esd",
+        "c5_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_DBG0_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "c5_dbg0_series",
+        "c5_dbg_esd",
+        "c5_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_DBG1_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "c5_dbg1_series",
+        "c5_dbg_esd",
+        "c5_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "USB2_DP_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "product_usb_connector",
+        "product_usb_protector"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "USB2_DM_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "product_usb_connector",
+        "product_usb_protector"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "S3_USB_DP",
+      "status": "reviewed",
+      "instances": [
+        "m1_rf_receptacle",
+        "product_usb_protector"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "S3_USB_DM",
+      "status": "reviewed",
+      "instances": [
+        "m1_rf_receptacle",
+        "product_usb_protector"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_RESET_N",
+      "status": "reviewed",
+      "instances": [
+        "TP_RP_RESET_N",
+        "rp",
+        "rp_dbg_reset_series",
+        "rp_reset_pullup",
+        "safe_reset_sink_b"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_USB_BOOT_N",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "rp_boot_pullup",
+        "rp_dbg_boot_series"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_SWDIO",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "rp_dbg0_series"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_SWCLK",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "rp_dbg1_series"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_USB_DP",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "rp_service_usb_dp_series"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_USB_DM",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "rp_service_usb_dm_series"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_DBG_RESET_CONNECTOR_N",
+      "status": "reviewed",
+      "instances": [
+        "rp_dbg_esd",
+        "rp_dbg_header",
+        "rp_dbg_reset_series",
+        "rp_reset_button"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_DBG_BOOT_CONNECTOR_N",
+      "status": "reviewed",
+      "instances": [
+        "rp_boot_button",
+        "rp_dbg_boot_series",
+        "rp_dbg_esd",
+        "rp_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_DBG0_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "rp_dbg0_series",
+        "rp_dbg_esd",
+        "rp_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_DBG1_CONNECTOR",
+      "status": "reviewed",
+      "instances": [
+        "rp_dbg1_series",
+        "rp_dbg_esd",
+        "rp_dbg_header"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_FIXTURE_3V3",
+      "status": "reviewed",
+      "instances": [
+        "TP_PACK_FIXTURE_3V3",
+        "pack_supply_or"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_ADMISSION_NRST_N",
+      "status": "reviewed",
+      "instances": [
+        "TP_PACK_NRST",
+        "pack_admission",
+        "pack_admission_reset_cap",
+        "pack_admission_reset_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_ADMISSION_UART_TX",
+      "status": "reviewed",
+      "instances": [
+        "TP_PACK_UART_TX",
+        "pack_admission"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_ADMISSION_UART_RX",
+      "status": "reviewed",
+      "instances": [
+        "TP_PACK_UART_RX",
+        "pack_admission"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_ADMISSION_SWDIO",
+      "status": "reviewed",
+      "instances": [
+        "TP_PACK_SWDIO",
+        "pack_admission"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_ADMISSION_SWCLK",
+      "status": "reviewed",
+      "instances": [
+        "TP_PACK_SWCLK",
+        "pack_admission"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_GAUGE_I2C_SDA",
+      "status": "reviewed",
+      "instances": [
+        "pack_admission",
+        "pack_gauge",
+        "pack_gauge_sda_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_GAUGE_I2C_SCL",
+      "status": "reviewed",
+      "instances": [
+        "pack_admission",
+        "pack_gauge",
+        "pack_gauge_scl_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_FET_OVERRIDE_N",
+      "status": "reviewed",
+      "instances": [
+        "pack_alrt_pullup",
+        "pack_gauge",
+        "pack_hold"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PACK_PFAIL_RAW",
+      "status": "reviewed",
+      "instances": [
+        "pack_gauge",
+        "pack_status_buffer"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFETY_CONTROLLER_NRST_N",
+      "status": "reviewed",
+      "instances": [
+        "TP_SAFETY_NRST",
+        "safety_controller",
+        "safety_controller_reset_cap",
+        "safety_controller_reset_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFETY_SERVICE_UART_TX",
+      "status": "reviewed",
+      "instances": [
+        "TP_SAFETY_UART_TX",
+        "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFETY_SERVICE_UART_RX",
+      "status": "reviewed",
+      "instances": [
+        "TP_SAFETY_UART_RX",
+        "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFETY_SWDIO",
+      "status": "reviewed",
+      "instances": [
+        "TP_SAFETY_SWDIO",
+        "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SAFETY_SWCLK",
+      "status": "reviewed",
+      "instances": [
+        "TP_SAFETY_SWCLK",
+        "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SYS_I2C_SDA",
+      "status": "reviewed",
+      "instances": [
+        "TP_SYS_I2C_SDA",
+        "m1_rf_receptacle",
+        "pack_admission",
+        "pd_controller",
+        "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SYS_I2C_SCL",
+      "status": "reviewed",
+      "instances": [
+        "TP_SYS_I2C_SCL",
+        "m1_rf_receptacle",
+        "pack_admission",
+        "pd_controller",
+        "safety_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "SYS_INT_N",
+      "status": "reviewed",
+      "instances": [
+        "TP_SYS_INT_N",
+        "m1_rf_receptacle",
+        "pack_status_buffer",
+        "pd_controller"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PD_LOCAL_I2C_SDA",
+      "status": "reviewed",
+      "instances": [
+        "TP_PD_LOCAL_I2C_SDA",
+        "nvdc_charger",
+        "pd_config_eeprom",
+        "pd_controller",
+        "pd_local_sda_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PD_LOCAL_I2C_SCL",
+      "status": "reviewed",
+      "instances": [
+        "TP_PD_LOCAL_I2C_SCL",
+        "nvdc_charger",
+        "pd_config_eeprom",
+        "pd_controller",
+        "pd_local_scl_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "PD_EEPROM_WP",
+      "status": "reviewed",
+      "instances": [
+        "TP_PD_EEPROM_WP",
+        "pd_config_eeprom",
+        "pd_controller",
+        "pd_eeprom_wp_pullup"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "VOICE_UPDATE_FIXTURE",
+      "status": "reviewed",
+      "instances": [
+        "TP_VOICE_UPDATE",
+        "voice"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "VOICE_UART_TX",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "voice_uart_tx_iso"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "VOICE_UART_RX",
+      "status": "reviewed",
+      "instances": [
+        "rp",
+        "voice",
+        "voice_uart_tx_pulldown"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "VOICE_READY",
+      "status": "reviewed",
+      "instances": [
+        "voice",
+        "voice_audio_iso",
+        "voice_io_power_switch",
+        "voice_ptt_iso",
+        "voice_supervisor",
+        "voice_supervisor_pullup",
+        "voice_uart_tx_iso"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_SERVICE_VBUS_SENSE_ONLY",
+      "status": "reviewed",
+      "instances": [
+        "TP_RP_SERVICE_VBUS_SENSE",
+        "rp_service_usb_connector",
+        "rp_service_usb_vbus_bleeder"
+      ]
+    }
+  ],
+  "critical_components": [
+    {
+      "instance": "product_usb_connector",
+      "reference": "J1001",
+      "mpn": "JAE DX07S016JA1R1500",
+      "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500"
+    },
+    {
+      "instance": "s3_dbg_header",
+      "reference": "J10003",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR"
+    },
+    {
+      "instance": "s3_reset_button",
+      "reference": "SW10001",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+    },
+    {
+      "instance": "s3_boot_button",
+      "reference": "SW10002",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+    },
+    {
+      "instance": "c5_service_usb_connector",
+      "reference": "J20003",
+      "mpn": "GCT USB4105-GF-A",
+      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"
+    },
+    {
+      "instance": "c5_service_usb_switch",
+      "reference": "U20007",
+      "mpn": "onsemi FSUSB42MUX",
+      "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm"
+    },
+    {
+      "instance": "c5_dbg_header",
+      "reference": "J20004",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR"
+    },
+    {
+      "instance": "c5_reset_button",
+      "reference": "SW20001",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+    },
+    {
+      "instance": "c5_boot_button",
+      "reference": "SW20002",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+    },
+    {
+      "instance": "rp_service_usb_connector",
+      "reference": "J30001",
+      "mpn": "GCT USB4105-GF-A",
+      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"
+    },
+    {
+      "instance": "rp_service_usb_switch",
+      "reference": "U30002",
+      "mpn": "onsemi FSUSB42MUX",
+      "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm"
+    },
+    {
+      "instance": "rp_dbg_header",
+      "reference": "J30002",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR"
+    },
+    {
+      "instance": "rp_reset_button",
+      "reference": "SW30001",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+    },
+    {
+      "instance": "rp_boot_button",
+      "reference": "SW30002",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010"
+    },
+    {
+      "instance": "pack_admission",
+      "reference": "U2002",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "footprint": "Package_SO:Texas_DGS0020A_TSSOP-20_3x5.1mm_P0.5mm"
+    },
+    {
+      "instance": "safety_controller",
+      "reference": "U50002",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "footprint": "Package_SO:Texas_DGS0020A_TSSOP-20_3x5.1mm_P0.5mm"
+    },
+    {
+      "instance": "pd_controller",
+      "reference": "U1002",
+      "mpn": "Texas Instruments TPS25751DREFR",
+      "footprint": "Package_DFN_QFN:Texas_REF0038A_WQFN-38-2EP_6x4mm_P0.4"
+    },
+    {
+      "instance": "pd_config_eeprom",
+      "reference": "U1003",
+      "mpn": "onsemi CAT24C512WI-GT3",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    },
+    {
+      "instance": "pack_gauge",
+      "reference": "U2001",
+      "mpn": "Analog Devices MAX17320G20+T",
+      "footprint": "Package_DFN_QFN:TQFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm"
+    },
+    {
+      "instance": "voice",
+      "reference": "U32008",
+      "mpn": "NiceRF SA518",
+      "footprint": "Leshy2:NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE"
+    }
+  ],
+  "invariants": [
+    "S3, C5 and RP2354B each retain independent USB plus an independent keyed DBG10 fallback",
+    "all six RESET/BOOT controls are distinct recessed side switches and can only assert low",
+    "both MSPM0 domains retain UART, SWD and reset even with S3/C5/RP firmware absent",
+    "PD/EEPROM first programming no longer depends on an undocumented fixture contact",
+    "service paths do not authorize RF re-arm, RUN_PERMIT release or FAULT_KILL clearing"
+  ],
+  "review_boundary": {
+    "complete": [
+      "every selected reset, boot, USB, UART, SWD, PD and vendor-update net is present with exact reviewed membership in exported KiCad netlists",
+      "all purchased connectors, switches and active recovery devices have exact MPNs and footprints",
+      "every promised fixture-only contact is represented by real PCB copper"
+    ],
+    "deferred": [
+      "powered-off USB and fixture backfeed proof in H2.5.3",
+      "reset-safe inactive-interface proof in H2.5.4",
+      "USB signal-integrity and corrupted-image recovery execution in H3/H7/H8",
+      "test-pad placement and fixture pitch in H6"
+    ]
+  }
+}

@@ -54,7 +54,7 @@
       "UI_00_ROOT": "hierarchy and named sheet interfaces only",
       "UI_60_TESTPOINTS_MANUFACTURING": "eleven reviewed physical PCB-copper test-point symbols terminate exact implemented nets in H2.2.10",
       "RF_00_ROOT": "hierarchy and named sheet interfaces only",
-      "RF_60_TESTPOINTS_MANUFACTURING": "thirty reviewed physical PCB-copper test-point symbols terminate exact implemented nets in H2.3.13"
+      "RF_60_TESTPOINTS_MANUFACTURING": "fifty-two reviewed physical PCB-copper test-point symbols terminate exact implemented nets through H2.5.5"
     },
     "rule": "Every inventory row has exactly one project, physical-board disposition and owning functional sheet; alternative LoRa modules are distinct assembly variants, not simultaneously fitted parts."
   },
@@ -132,6 +132,13 @@
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_SWDIO","net":"PACK_ADMISSION_SWDIO","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller SWD data and recovery"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_SWCLK","net":"PACK_ADMISSION_SWCLK","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller SWD clock and recovery"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PACK_NRST","net":"PACK_ADMISSION_NRST_N","owner_sheet":"RF_02_PACK_SAFETY_AON","purpose":"pack-admission controller reset assertion and recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SYS_I2C_SDA","net":"SYS_I2C_SDA","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"protected fixture data access to the PD target interface with the S3 inactive"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SYS_I2C_SCL","net":"SYS_I2C_SCL","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"protected fixture clock access to the PD target interface with the S3 inactive"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_SYS_INT_N","net":"SYS_INT_N","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"PD ReadyForPatch and shared interrupt observation during recovery"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PD_LOCAL_I2C_SDA","net":"PD_LOCAL_I2C_SDA","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"direct TPS EEPROM and charger local-bus recovery data"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PD_LOCAL_I2C_SCL","net":"PD_LOCAL_I2C_SCL","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"direct TPS EEPROM and charger local-bus recovery clock"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_PD_EEPROM_WP","net":"PD_EEPROM_WP","owner_sheet":"RF_01_USB_PD_CHARGE","purpose":"direct EEPROM write-protect control during current-limited first programming"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RP_SERVICE_VBUS_SENSE","net":"RP_SERVICE_VBUS_SENSE_ONLY","owner_sheet":"RF_30_RP2354_CORE_SERVICE","purpose":"high-impedance service-cable attach diagnosis without a product power path"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_MAIN_RAW_PG_N","net":"MAIN_RAW_3V3_PG_N","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"raw main-converter power-good diagnosis"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_UPDATE","net":"VOICE_UPDATE_FIXTURE","owner_sheet":"RF_32_SUBGHZ_VOICE","purpose":"voice-module controlled update fixture signal"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_RAW_PG_N","net":"VOICE_RAW_4V_PG_N","owner_sheet":"RF_32_SUBGHZ_VOICE","purpose":"raw voice-converter power-good diagnosis"},
@@ -155,7 +162,22 @@
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_POWER_FAULT_N","net":"POWER_FAULT_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"qualified aggregate power-fault diagnosis"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_POWER_GROUND","net":"POWER_GROUND","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"fixture power-ground reference"},
     {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_AON_SAFE_3V3","net":"AON_SAFE_3V3","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"always-on safety-rail voltage diagnosis"},
-    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_3V3_MAIN","net":"3V3_MAIN","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"main 3.3-V rail voltage diagnosis"}
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_3V3_MAIN","net":"3V3_MAIN","owner_sheet":"RF_03_MAIN_RAILS_DOMAIN_GATES","purpose":"main 3.3-V rail voltage diagnosis"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RUN_LOOP_RAW","net":"RUN_LOOP_RAW","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"physical RUN/KILL conductor continuity and fault-injection observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RUN_EDGE","net":"RUN_EDGE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"conditioned physical KILL-to-RUN edge observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_FAULT_ASSERT_N","net":"FAULT_ASSERT_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"wired asynchronous fault plane observation including watchdog WDO_N"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_WDI","net":"SAFETY_WATCHDOG_WDI","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"independent watchdog heartbeat timing observation and injection"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_POR_N","net":"POR_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"always-on supervisor reset and genuine-restart observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_FAULT_LATCH_SENSE_AON","net":"FAULT_LATCH_SENSE_AON","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"latched FAULT_KILL state observation on the always-on plane"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_NRF0_CE_SAFE","net":"NRF0_CE_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24-0 hardware-gated CE observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_NRF1_CE_SAFE","net":"NRF1_CE_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24-1 hardware-gated CE observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_NRF2_CE_SAFE","net":"NRF2_CE_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24-2 hardware-gated CE observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_NRF_RAIL_EN_SAFE","net":"NRF_GROUP_PWR_EN_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"nRF24 group hardware-gated rail-enable observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_CC_RAIL_EN_SAFE","net":"CC_PWR_EN_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"CC1101 hardware-gated rail-enable observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_RAIL_EN_SAFE","net":"VOICE_DOMAIN_EN_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"voice-module hardware-gated rail-enable observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_VOICE_PTT_SAFE_N","net":"VOICE_PTT_SAFE_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"voice-module hardware-gated PTT-safe observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_EXT_5V_EN_SAFE","net":"EXT_ANY_5V_EN_SAFE","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"shared external 5-V hardware-gated enable observation"},
+    {"project":"LESHY2-RF","test_sheet":"RF_60_TESTPOINTS_MANUFACTURING","id":"TP_RP_ANY_TX_N","net":"RP_ANY_TX_N","owner_sheet":"RF_50_TX_SAFETY_EVIDENCE","purpose":"main-domain isolated aggregate TX diagnostic observation"}
   ],
   "cross_project_contracts": [
     {

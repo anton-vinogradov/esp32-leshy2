@@ -11,7 +11,7 @@ import subprocess
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
-from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, stable_uuid
+from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, scoped_reference, stable_uuid
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -62,6 +62,7 @@ def build() -> tuple[dict[Path, str], dict]:
         True, True, True, SYMBOL_NAMESPACE,
     )
     x, y = 165.10, 132.08
+    reference = scoped_reference(SHEET_ID, "J1")
     lines = [
         "(kicad_sch", "\t(version 20250114)", '\t(generator "eeschema")',
         '\t(generator_version "10.0")', f'\t(uuid "{stable_uuid(f"sheet:{SHEET_ID}")}")',
@@ -69,7 +70,7 @@ def build() -> tuple[dict[Path, str], dict]:
         '\t\t(title "Leshy2 — exact UI-side 80-contact M1 plug")',
         '\t\t(rev "H2.2.8")', "\t)", "\t(lib_symbols", library, "\t)",
         schematic_symbol(
-            "m1_ui_plug", pins, "J1", device["mpn"], FOOTPRINT, rows[0]["role"],
+            "m1_ui_plug", pins, reference, device["mpn"], FOOTPRINT, rows[0]["role"],
             x, y, coords, True, True, SYMBOL_NAMESPACE, PROJECT_ID, SHEET_ID,
         ),
     ]
@@ -129,7 +130,7 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "instances": [{
             "instance": "m1_ui_plug", "symbol_uuid": stable_uuid("symbol:m1_ui_plug"),
-            "reference": "J1", "mpn": device["mpn"], "footprint": FOOTPRINT,
+            "reference": reference, "mpn": device["mpn"], "footprint": FOOTPRINT,
             "pin_count": len(pins), "board_fitted": True,
         }],
         "contacts": contact_rows,

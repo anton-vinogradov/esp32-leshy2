@@ -16,7 +16,7 @@ import subprocess
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
-from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, stable_uuid
+from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, scoped_reference, stable_uuid
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -71,7 +71,7 @@ def build() -> tuple[dict[Path, str], dict]:
         definitions.append(definition)
         column = (index - 1) % 3
         row = (index - 1) // 3
-        placements.append((point, f"TP{index}", 60.96 + column * 101.60, 45.72 + row * 45.72, coords))
+        placements.append((point, scoped_reference(SHEET_ID, f"TP{index}"), 60.96 + column * 101.60, 45.72 + row * 45.72, coords))
 
     lines = [
         "(kicad_sch", "\t(version 20250114)", '\t(generator "eeschema")',

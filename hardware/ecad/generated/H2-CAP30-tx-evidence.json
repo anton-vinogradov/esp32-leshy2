@@ -6,9 +6,9 @@
   "sheet": "CAP_30_TX_EVIDENCE",
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "b775f6eaa0cb645e85cf59718a9cfeede037af93afd5d9ada3ec89bba5bd177c"
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "27292856ae51c6930019f0c1b3a2eb3b6dee76f1b53d81764d05c64e07cd99ad"
   },
   "summary": {
     "ledger_instances": 11,
@@ -25,7 +25,7 @@
     {
       "instance": "evidence_comparator",
       "symbol_uuid": "b0824033-e4ab-5f1e-a36f-3bb308618308",
-      "reference": "U1",
+      "reference": "U30001",
       "mpn": "TLV1821DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "pin_count": 5,
@@ -34,7 +34,7 @@
     {
       "instance": "evidence_threshold_top",
       "symbol_uuid": "d06cfd7f-b63d-5aca-b14e-72cc3c50d1cb",
-      "reference": "R1",
+      "reference": "R30001",
       "mpn": "Yageo RC0402FR-07220KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -43,7 +43,7 @@
     {
       "instance": "evidence_threshold_bottom",
       "symbol_uuid": "6753d4fe-0955-5938-9351-91388c40a95a",
-      "reference": "R2",
+      "reference": "R30002",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -52,7 +52,7 @@
     {
       "instance": "evidence_comparator_pullup",
       "symbol_uuid": "ef887139-846c-5e12-bcd7-3c03c632cc3e",
-      "reference": "R3",
+      "reference": "R30003",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -61,7 +61,7 @@
     {
       "instance": "evidence_comparator_bypass",
       "symbol_uuid": "c25ef07a-8caa-57ff-8341-08e72a9a8c37",
-      "reference": "C1",
+      "reference": "C30001",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -70,7 +70,7 @@
     {
       "instance": "evidence_monostable",
       "symbol_uuid": "ac8edf13-5f2a-56f2-bde8-0485a5612278",
-      "reference": "U2",
+      "reference": "U30002",
       "mpn": "SN74LVC1G123DCTR",
       "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
       "pin_count": 8,
@@ -79,7 +79,7 @@
     {
       "instance": "evidence_timing_resistor",
       "symbol_uuid": "60d17508-eec9-5c12-9660-f1bdd360f9a5",
-      "reference": "R4",
+      "reference": "R30004",
       "mpn": "Yageo RC0402FR-07133KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -88,7 +88,7 @@
     {
       "instance": "evidence_timing_capacitor",
       "symbol_uuid": "310fa7cf-1843-574a-ae16-9105cbe6bfc3",
-      "reference": "C2",
+      "reference": "C30002",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -97,7 +97,7 @@
     {
       "instance": "evidence_monostable_bypass",
       "symbol_uuid": "8701e360-467d-5528-8ead-2632c2e1c4e2",
-      "reference": "C3",
+      "reference": "C30003",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -106,7 +106,7 @@
     {
       "instance": "evidence_driver",
       "symbol_uuid": "08a1d0e9-93dd-5637-8371-7cf3b6e5ca98",
-      "reference": "U3",
+      "reference": "U30003",
       "mpn": "Texas Instruments SN74LVC1G06DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "pin_count": 5,
@@ -115,7 +115,7 @@
     {
       "instance": "evidence_driver_bypass",
       "symbol_uuid": "28488cc8-8f11-5de2-8f10-9da844d3be6d",
-      "reference": "C4",
+      "reference": "C30004",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,

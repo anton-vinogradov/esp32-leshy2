@@ -14,6 +14,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import (
     FOOTPRINT_DIR,
@@ -197,7 +198,7 @@ def build() -> tuple[dict[Path, str], dict]:
         raise ValueError(f"CAP10 interface drifted: {sorted(interfaces)}")
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in [item for item in rows if item["instance"] != "variant_module"]:
         prefix = reference_prefix(row["instance"], row["device_key"])
         ref_counts[prefix] += 1

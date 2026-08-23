@@ -2,7 +2,11 @@
   "board": {},
   "boards": [],
   "cvpcb": {},
-  "erc": {},
+  "erc": {
+    "rule_severities": {
+      "lib_symbol_mismatch": "ignore"
+    }
+  },
   "libraries": {},
   "meta": {
     "filename": "L2-DISP-ADP-001-A.kicad_pro",

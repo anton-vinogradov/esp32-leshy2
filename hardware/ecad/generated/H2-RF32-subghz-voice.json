@@ -5,10 +5,10 @@
   "project": "LESHY2-RF",
   "sheet": "RF_32_SUBGHZ_VOICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "5671ccb8124364aa46173c4759832a45ffa541658063b94db06cd342d3ec1cd0"
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "d955608e84d27556f4e7be69d53f86e1f8e297355ad1e0171b9c294b6cdd8aff"
   },
   "summary": {
     "ledger_instances": 116,
@@ -28,7 +28,7 @@
     {
       "instance": "cc_external_sma",
       "symbol_uuid": "559123ed-9427-5b56-8301-66aeabc1cc90",
-      "reference": "J1",
+      "reference": "J32001",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -38,7 +38,7 @@
     {
       "instance": "voice_external_sma",
       "symbol_uuid": "ff8a720f-ed3b-58ed-8359-eb6fb002d0d2",
-      "reference": "J2",
+      "reference": "J32002",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -48,7 +48,7 @@
     {
       "instance": "cc",
       "symbol_uuid": "8a4d430d-d542-5ffe-bf60-245ade73cc42",
-      "reference": "U1",
+      "reference": "U32001",
       "mpn": "CC1101RGPR",
       "footprint": "Package_DFN_QFN:Texas_RGP0020D_VQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -58,7 +58,7 @@
     {
       "instance": "cc_host_buffer",
       "symbol_uuid": "5c52ced2-a158-5095-bc9c-f5a107042ca4",
-      "reference": "U2",
+      "reference": "U32002",
       "mpn": "Nexperia 74LVC126APW,118",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -68,7 +68,7 @@
     {
       "instance": "cc_return_buffer",
       "symbol_uuid": "2f54e513-1152-5223-828e-0b210dd6ae71",
-      "reference": "U3",
+      "reference": "U32003",
       "mpn": "Nexperia 74LVC126APW,118",
       "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -78,7 +78,7 @@
     {
       "instance": "cc_band_buffer",
       "symbol_uuid": "8bbb8f06-b5ea-542a-b16d-6d8f662f3fa1",
-      "reference": "U4",
+      "reference": "U32004",
       "mpn": "Nexperia 74LVC2G126DC,125",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -88,7 +88,7 @@
     {
       "instance": "cc_host_buffer_bypass",
       "symbol_uuid": "50285bde-2064-568e-837a-1aaa02cf4429",
-      "reference": "C1",
+      "reference": "C32001",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -98,7 +98,7 @@
     {
       "instance": "cc_return_buffer_bypass",
       "symbol_uuid": "950d390f-5a9c-5842-b2ee-ed5d2d46988c",
-      "reference": "C2",
+      "reference": "C32002",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -108,7 +108,7 @@
     {
       "instance": "cc_band_buffer_bypass",
       "symbol_uuid": "2664fa73-bb64-5e95-9533-150fadb07312",
-      "reference": "C3",
+      "reference": "C32003",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -118,7 +118,7 @@
     {
       "instance": "cc_power_input_cap",
       "symbol_uuid": "a47118cb-abd4-5d59-8279-2f163e291edc",
-      "reference": "C4",
+      "reference": "C32004",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -128,7 +128,7 @@
     {
       "instance": "cc_local_bulk_cap",
       "symbol_uuid": "8941ba49-41dd-56a2-b3d7-c87cd91bd569",
-      "reference": "C5",
+      "reference": "C32005",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -138,7 +138,7 @@
     {
       "instance": "cc_power_on_pulldown",
       "symbol_uuid": "d331bfc7-91be-536d-bc9e-26150c20d7a5",
-      "reference": "R1",
+      "reference": "R32001",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -148,7 +148,7 @@
     {
       "instance": "cc_dvdd_bypass",
       "symbol_uuid": "869e9d59-b367-5c2e-a41d-d707bca8d208",
-      "reference": "C6",
+      "reference": "C32006",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -158,7 +158,7 @@
     {
       "instance": "cc_avdd9_bypass",
       "symbol_uuid": "30692979-8d40-5ff1-9074-ab0a08b87e7c",
-      "reference": "C7",
+      "reference": "C32007",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -168,7 +168,7 @@
     {
       "instance": "cc_avdd11_bypass",
       "symbol_uuid": "95d9e5f7-3654-5eae-89b9-16b8b7386933",
-      "reference": "C8",
+      "reference": "C32008",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -178,7 +178,7 @@
     {
       "instance": "cc_avdd14_bypass",
       "symbol_uuid": "1fd10413-7f8b-589b-9709-9ae8495b9382",
-      "reference": "C9",
+      "reference": "C32009",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -188,7 +188,7 @@
     {
       "instance": "cc_avdd15_bypass",
       "symbol_uuid": "ca77f971-c959-52a6-b937-1ad6079b5bba",
-      "reference": "C10",
+      "reference": "C32010",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -198,7 +198,7 @@
     {
       "instance": "cc_dcoupl_cap",
       "symbol_uuid": "67741f26-69fc-52a9-aa0b-82b6f06d47bd",
-      "reference": "C11",
+      "reference": "C32011",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -208,7 +208,7 @@
     {
       "instance": "cc_rbias_res",
       "symbol_uuid": "7589ad7f-3948-5afc-81f2-4e4d959f4f0c",
-      "reference": "R2",
+      "reference": "R32002",
       "mpn": "Yageo RC0402FR-0756KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -218,7 +218,7 @@
     {
       "instance": "cc_crystal",
       "symbol_uuid": "9ac7bdea-394e-549b-a0fd-33fa64620996",
-      "reference": "Y1",
+      "reference": "Y32001",
       "mpn": "Abracon ABM8-26.000MHZ-10-D-1-G-T",
       "footprint": "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -228,7 +228,7 @@
     {
       "instance": "cc_crystal_load_q1",
       "symbol_uuid": "3d23eb76-27bc-58ad-bb5d-05f318159be4",
-      "reference": "C12",
+      "reference": "C32012",
       "mpn": "Murata GJM1555C1H150JB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -238,7 +238,7 @@
     {
       "instance": "cc_crystal_load_q2",
       "symbol_uuid": "4870f730-7b9f-5fe3-aced-f3bbfe970eba",
-      "reference": "C13",
+      "reference": "C32013",
       "mpn": "Murata GJM1555C1H150JB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -248,7 +248,7 @@
     {
       "instance": "cc_sclk_series",
       "symbol_uuid": "15fb4235-299a-5482-b04f-b0b598f53b04",
-      "reference": "R3",
+      "reference": "R32003",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -258,7 +258,7 @@
     {
       "instance": "cc_si_series",
       "symbol_uuid": "bd9e04f2-099d-56e4-a631-01d3d157a0c9",
-      "reference": "R4",
+      "reference": "R32004",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -268,7 +268,7 @@
     {
       "instance": "cc_csn_series",
       "symbol_uuid": "6e3884de-261b-52cf-ad50-bf56ae084e79",
-      "reference": "R5",
+      "reference": "R32005",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -278,7 +278,7 @@
     {
       "instance": "cc_so_series",
       "symbol_uuid": "22861f85-b445-57db-9017-78783d56a6c7",
-      "reference": "R6",
+      "reference": "R32006",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -288,7 +288,7 @@
     {
       "instance": "cc_gdo0_series",
       "symbol_uuid": "a87e94ae-dd44-5476-9807-f79e70c18c85",
-      "reference": "R7",
+      "reference": "R32007",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -298,7 +298,7 @@
     {
       "instance": "cc_gdo2_series",
       "symbol_uuid": "b73a78c2-6449-5feb-8694-3cf496f99b18",
-      "reference": "R8",
+      "reference": "R32008",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -308,7 +308,7 @@
     {
       "instance": "cc_band_v1_series",
       "symbol_uuid": "a64910e9-6c6c-5400-925d-f9d4a2193e04",
-      "reference": "R9",
+      "reference": "R32009",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -318,7 +318,7 @@
     {
       "instance": "cc_band_v2_series",
       "symbol_uuid": "a3ec5654-4376-5036-a3a2-6d90e3ad76e4",
-      "reference": "R10",
+      "reference": "R32010",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -328,7 +328,7 @@
     {
       "instance": "cc_host_sclk_pulldown",
       "symbol_uuid": "581921f4-6224-59bb-b214-cabb211aaeed",
-      "reference": "R11",
+      "reference": "R32011",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -338,7 +338,7 @@
     {
       "instance": "cc_host_si_pulldown",
       "symbol_uuid": "b1e2dd98-00ed-5e9e-904c-5134663a4d66",
-      "reference": "R12",
+      "reference": "R32012",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -348,7 +348,7 @@
     {
       "instance": "cc_host_csn_pullup",
       "symbol_uuid": "f7542ffd-4b87-5a7d-bafb-d5db17002f2c",
-      "reference": "R13",
+      "reference": "R32013",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -358,7 +358,7 @@
     {
       "instance": "cc_host_so_pulldown",
       "symbol_uuid": "0d3c2b57-7318-5eee-8e00-5ddebb5271cf",
-      "reference": "R14",
+      "reference": "R32014",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -368,7 +368,7 @@
     {
       "instance": "cc_host_gdo0_pulldown",
       "symbol_uuid": "64c2932d-6b4c-565a-bf3d-87f6c14a944f",
-      "reference": "R15",
+      "reference": "R32015",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -378,7 +378,7 @@
     {
       "instance": "cc_host_gdo2_pulldown",
       "symbol_uuid": "83e21a03-4fc3-5c73-979c-1d32bec62ea3",
-      "reference": "R16",
+      "reference": "R32016",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -388,7 +388,7 @@
     {
       "instance": "cc_band_v1_host_pulldown",
       "symbol_uuid": "3439add9-ee77-5a8c-99cd-94a67c5ce488",
-      "reference": "R17",
+      "reference": "R32017",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -398,7 +398,7 @@
     {
       "instance": "cc_band_v2_host_pulldown",
       "symbol_uuid": "e990494d-3620-513a-bd4f-6e3ee3fd8d90",
-      "reference": "R18",
+      "reference": "R32018",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -408,7 +408,7 @@
     {
       "instance": "cc_switch_a_v1_pulldown",
       "symbol_uuid": "9e9d04c7-b231-5cdb-b184-34f6307c2b94",
-      "reference": "R19",
+      "reference": "R32019",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -418,7 +418,7 @@
     {
       "instance": "cc_switch_a_v2_pulldown",
       "symbol_uuid": "8573ec8d-d5f1-5893-a9eb-8fef51a50921",
-      "reference": "R20",
+      "reference": "R32020",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -428,7 +428,7 @@
     {
       "instance": "cc_switch_b_v1_pulldown",
       "symbol_uuid": "8d7e9937-9e2f-599d-b6c1-d5ed536266f3",
-      "reference": "R21",
+      "reference": "R32021",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -438,7 +438,7 @@
     {
       "instance": "cc_switch_b_v2_pulldown",
       "symbol_uuid": "b671d7ea-be42-51a3-9fd1-5005ec26fe82",
-      "reference": "R22",
+      "reference": "R32022",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -448,7 +448,7 @@
     {
       "instance": "cc_rf_p_dc_block",
       "symbol_uuid": "cfb151ac-6a14-58e2-ab94-054fd979a3f0",
-      "reference": "C14",
+      "reference": "C32014",
       "mpn": "Murata GJM1555C1H101JB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -458,7 +458,7 @@
     {
       "instance": "cc_rf_n_dc_block",
       "symbol_uuid": "51f7b869-6d1b-53a1-b529-69de75301473",
-      "reference": "C15",
+      "reference": "C32015",
       "mpn": "Murata GJM1555C1H101JB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -468,7 +468,7 @@
     {
       "instance": "cc_rf_diff_cap",
       "symbol_uuid": "74b7b566-9394-5d3e-a0b9-9dd698923f5f",
-      "reference": "C16",
+      "reference": "C32016",
       "mpn": "Murata GJM1555C1HR60BB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -478,7 +478,7 @@
     {
       "instance": "cc_balun",
       "symbol_uuid": "3290b634-7165-5023-9cf7-f6173259fd71",
-      "reference": "U5",
+      "reference": "U32005",
       "mpn": "TTM Technologies B0310J50100AHF",
       "footprint": "Leshy2:B0310J50100AHF",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -488,7 +488,7 @@
     {
       "instance": "cc_match_l3n3",
       "symbol_uuid": "975f28a1-d4c9-526e-9ff4-fb7d4c17665e",
-      "reference": "L1",
+      "reference": "L32001",
       "mpn": "Murata LQG15HS3N3S02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -498,7 +498,7 @@
     {
       "instance": "cc_match_c1p2",
       "symbol_uuid": "9eba2c3e-30d1-5e92-8df6-d8eb82df98fd",
-      "reference": "C17",
+      "reference": "C32017",
       "mpn": "Murata GJM1555C1H1R2BB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -508,7 +508,7 @@
     {
       "instance": "cc_match_l6n8",
       "symbol_uuid": "f8389ce8-8e82-5fcc-8216-89b10a455266",
-      "reference": "L2",
+      "reference": "L32002",
       "mpn": "Murata LQG15HS6N8J02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -518,7 +518,7 @@
     {
       "instance": "cc_switch_a",
       "symbol_uuid": "96063e03-c9a1-5370-80d2-7a8012bc472b",
-      "reference": "U6",
+      "reference": "U32006",
       "mpn": "Infineon BGS13SN8E6327XTSA1",
       "footprint": "Leshy2:Infineon-PG-TSNP-8-1",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -528,7 +528,7 @@
     {
       "instance": "cc_switch_b",
       "symbol_uuid": "1991ac5a-a448-5a81-8562-d096adc23cc2",
-      "reference": "U7",
+      "reference": "U32007",
       "mpn": "Infineon BGS13SN8E6327XTSA1",
       "footprint": "Leshy2:Infineon-PG-TSNP-8-1",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -538,7 +538,7 @@
     {
       "instance": "cc_315_l10_in",
       "symbol_uuid": "f6a23845-67fe-5400-b328-e54ab0cce952",
-      "reference": "L3",
+      "reference": "L32003",
       "mpn": "Murata LQG15HS10NJ02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -548,7 +548,7 @@
     {
       "instance": "cc_315_shunt_l3n6",
       "symbol_uuid": "92d9ee82-39c5-5235-804c-207713bb9d71",
-      "reference": "L4",
+      "reference": "L32004",
       "mpn": "Murata LQG15HS3N6S02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -558,7 +558,7 @@
     {
       "instance": "cc_315_shunt_c8p",
       "symbol_uuid": "e86fe178-0042-56e5-a612-484925a80b46",
-      "reference": "C18",
+      "reference": "C32018",
       "mpn": "Murata GJM1555C1H8R0DB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -568,7 +568,7 @@
     {
       "instance": "cc_315_l10_out",
       "symbol_uuid": "7e0bf1fc-2802-547a-b923-86ed315aa49b",
-      "reference": "L5",
+      "reference": "L32005",
       "mpn": "Murata LQG15HS10NJ02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -578,7 +578,7 @@
     {
       "instance": "cc_433_shunt_c10p",
       "symbol_uuid": "dae236a2-9b07-5e1e-b2ad-166422a06e7b",
-      "reference": "C19",
+      "reference": "C32019",
       "mpn": "Murata GJM1555C1H100JB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -588,7 +588,7 @@
     {
       "instance": "cc_433_l15",
       "symbol_uuid": "cd02a470-33a4-5b37-9e86-16390e94f99e",
-      "reference": "L6",
+      "reference": "L32006",
       "mpn": "Murata LQG15HS15NJ02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -598,7 +598,7 @@
     {
       "instance": "cc_433_shunt_c6p2",
       "symbol_uuid": "86bcc5d8-eda6-52e8-9865-61b253e3fabd",
-      "reference": "C20",
+      "reference": "C32020",
       "mpn": "Murata GJM1555C1H6R2DB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -608,7 +608,7 @@
     {
       "instance": "cc_868_915_l10",
       "symbol_uuid": "e87c8753-b5aa-5aaf-adf4-4fd86d714fde",
-      "reference": "L7",
+      "reference": "L32007",
       "mpn": "Murata LQG15HS10NJ02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -618,7 +618,7 @@
     {
       "instance": "cc_output_l2n2",
       "symbol_uuid": "f56ccef0-bfb2-5115-89d4-1445dc4046ec",
-      "reference": "L8",
+      "reference": "L32008",
       "mpn": "Murata LQG15HS2N2S02D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -628,7 +628,7 @@
     {
       "instance": "cc_rf_esd",
       "symbol_uuid": "f231c910-ecc0-5139-9eba-e43d054bd6cc",
-      "reference": "D1",
+      "reference": "D32001",
       "mpn": "Littelfuse SESD0402X1UN-0020-090",
       "footprint": "Diode_SMD:D_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -638,7 +638,7 @@
     {
       "instance": "cc_detector_tap_cap",
       "symbol_uuid": "7d57c3f9-5651-57ef-8346-5d17a8c34fea",
-      "reference": "C21",
+      "reference": "C32021",
       "mpn": "Murata GJM1555C1HR47BB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -648,7 +648,7 @@
     {
       "instance": "cc_detector_filter",
       "symbol_uuid": "a795858c-f1cd-54de-993a-b9e8744d578e",
-      "reference": "C22",
+      "reference": "C32022",
       "mpn": "Murata GRM1555C1H121JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -658,7 +658,7 @@
     {
       "instance": "cc_detector_bypass",
       "symbol_uuid": "d141aa64-e025-5b40-802a-fe313cb3c4e7",
-      "reference": "C23",
+      "reference": "C32023",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -668,7 +668,7 @@
     {
       "instance": "voice",
       "symbol_uuid": "3cdcfd55-f507-5324-85c0-c05eaf238677",
-      "reference": "U8",
+      "reference": "U32008",
       "mpn": "NiceRF SA518",
       "footprint": "Leshy2:NiceRF-SA518-Rev1.1-H5-CONTACT-AXIS-RESERVE",
       "footprint_status": "h5_received_module_land_fit_required",
@@ -678,7 +678,7 @@
     {
       "instance": "voice_rf_esd",
       "symbol_uuid": "92615c69-c7a2-5888-a098-210f1ede933e",
-      "reference": "D2",
+      "reference": "D32002",
       "mpn": "Nexperia PESD24VY1BSF",
       "footprint": "Diode_SMD:Nexperia_DSN0603-2_0.6x0.3mm_P0.4mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -688,7 +688,7 @@
     {
       "instance": "voice_detector_series_attenuator",
       "symbol_uuid": "260c5e18-4751-53aa-86e4-a6342fa0cd60",
-      "reference": "R23",
+      "reference": "R32023",
       "mpn": "Yageo RC0402FR-075K1L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -698,7 +698,7 @@
     {
       "instance": "voice_detector_match",
       "symbol_uuid": "872f35ff-5eef-5a5b-afee-4b8b81641cc1",
-      "reference": "R24",
+      "reference": "R32024",
       "mpn": "Yageo RC0402FR-0752R3L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -708,7 +708,7 @@
     {
       "instance": "voice_detector_filter",
       "symbol_uuid": "6c9a795b-cec1-512b-a787-04e19c9860d3",
-      "reference": "C24",
+      "reference": "C32024",
       "mpn": "Murata GRM1555C1H121JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -718,7 +718,7 @@
     {
       "instance": "voice_detector_bypass",
       "symbol_uuid": "b5d4de13-856e-57b3-ab64-01660bb60a07",
-      "reference": "C25",
+      "reference": "C32025",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -728,7 +728,7 @@
     {
       "instance": "voice_mic_coupling",
       "symbol_uuid": "7d8bafd1-dec0-5367-b419-7d268995c7fa",
-      "reference": "C26",
+      "reference": "C32026",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -738,7 +738,7 @@
     {
       "instance": "voice_supervisor",
       "symbol_uuid": "6409b78a-ce4e-507f-9795-65a94fdbbc0a",
-      "reference": "U9",
+      "reference": "U32009",
       "mpn": "TPS3808G33DBVR",
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -748,7 +748,7 @@
     {
       "instance": "voice_supervisor_bypass",
       "symbol_uuid": "826968c2-d3b2-5207-a012-22dfa290a779",
-      "reference": "C27",
+      "reference": "C32027",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -758,7 +758,7 @@
     {
       "instance": "voice_supervisor_sense_top",
       "symbol_uuid": "f8df6ed3-390b-5e70-98fe-6015da8873a1",
-      "reference": "R25",
+      "reference": "R32025",
       "mpn": "Yageo RC0402FR-0747KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -768,7 +768,7 @@
     {
       "instance": "voice_supervisor_sense_bottom",
       "symbol_uuid": "12da77c3-e24c-58ff-83f6-1b4efcb831d5",
-      "reference": "R26",
+      "reference": "R32026",
       "mpn": "Yageo RC0402FR-07220KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -778,7 +778,7 @@
     {
       "instance": "voice_supervisor_ct",
       "symbol_uuid": "0da1d6a2-df08-5d09-b987-5cfb69f5f6ff",
-      "reference": "C28",
+      "reference": "C32028",
       "mpn": "Murata GRM155R71H103KA88D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -788,7 +788,7 @@
     {
       "instance": "voice_supervisor_pullup",
       "symbol_uuid": "58f95da3-1dd1-5250-beef-5742200ffbcf",
-      "reference": "R27",
+      "reference": "R32027",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -798,7 +798,7 @@
     {
       "instance": "voice_io_power_switch",
       "symbol_uuid": "3d4ee5af-728f-5e4c-b78d-3a6d734e6766",
-      "reference": "U10",
+      "reference": "U32010",
       "mpn": "Texas Instruments TPS22919DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -808,7 +808,7 @@
     {
       "instance": "voice_io_power_input_cap",
       "symbol_uuid": "ce933d0c-d97c-5a74-b1de-378b8c628a09",
-      "reference": "C29",
+      "reference": "C32029",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -818,7 +818,7 @@
     {
       "instance": "voice_io_power_output_cap",
       "symbol_uuid": "45768636-88f4-50a0-a38d-24e313778889",
-      "reference": "C30",
+      "reference": "C32030",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -828,7 +828,7 @@
     {
       "instance": "voice_ptt_iso",
       "symbol_uuid": "01d5492f-e260-5fa6-992b-7f0084e3709b",
-      "reference": "U11",
+      "reference": "U32011",
       "mpn": "Texas Instruments SN74LVC1G126DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -838,7 +838,7 @@
     {
       "instance": "voice_ptt_iso_bypass",
       "symbol_uuid": "432437eb-7a80-513f-a6ee-f97ef78d0b06",
-      "reference": "C31",
+      "reference": "C32031",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -848,7 +848,7 @@
     {
       "instance": "voice_ptt_pullup",
       "symbol_uuid": "17253384-c67a-5e63-ad8d-424890a1142a",
-      "reference": "R28",
+      "reference": "R32028",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -858,7 +858,7 @@
     {
       "instance": "voice_uart_tx_iso",
       "symbol_uuid": "1c33dd00-9704-5c92-b9d8-b4809c64d1d9",
-      "reference": "U12",
+      "reference": "U32012",
       "mpn": "Texas Instruments SN74LVC1G126DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -868,7 +868,7 @@
     {
       "instance": "voice_uart_tx_iso_bypass",
       "symbol_uuid": "af9c1044-0dd3-56f9-a37a-b14634b8e0d5",
-      "reference": "C32",
+      "reference": "C32032",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -878,7 +878,7 @@
     {
       "instance": "voice_uart_rx_pulldown",
       "symbol_uuid": "22b59879-0499-5559-aa34-f9464dbb14f6",
-      "reference": "R29",
+      "reference": "R32029",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -888,7 +888,7 @@
     {
       "instance": "voice_uart_tx_pulldown",
       "symbol_uuid": "a97f88aa-1b94-5db9-8c71-3e0e6e01a68b",
-      "reference": "R30",
+      "reference": "R32030",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -898,7 +898,7 @@
     {
       "instance": "voice_hl_driver",
       "symbol_uuid": "2366df35-d018-5805-9386-2602cab95495",
-      "reference": "U13",
+      "reference": "U32013",
       "mpn": "SN74LVC1G07DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -908,7 +908,7 @@
     {
       "instance": "voice_hl_driver_bypass",
       "symbol_uuid": "b5f3c328-3572-5037-bc67-f5b1c6c44d99",
-      "reference": "C33",
+      "reference": "C32033",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -918,7 +918,7 @@
     {
       "instance": "voice_hl_req_pulldown",
       "symbol_uuid": "addf9c61-78cc-578f-9346-598bfe3911a0",
-      "reference": "R31",
+      "reference": "R32031",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -928,7 +928,7 @@
     {
       "instance": "voice_audio_iso",
       "symbol_uuid": "ab5cbf65-8c33-5994-9649-6dfde95cb90f",
-      "reference": "U14",
+      "reference": "U32014",
       "mpn": "Texas Instruments SN74LVC2G66DCUR",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -938,7 +938,7 @@
     {
       "instance": "voice_audio_iso_bypass",
       "symbol_uuid": "243dce1f-96c3-5eaa-99d6-ee8e6727e924",
-      "reference": "C34",
+      "reference": "C32034",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -948,7 +948,7 @@
     {
       "instance": "voice_audio_on_pulldown",
       "symbol_uuid": "98ab3ec8-548d-5e01-b427-9f2f54d361c1",
-      "reference": "R32",
+      "reference": "R32032",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -958,7 +958,7 @@
     {
       "instance": "voice_buck",
       "symbol_uuid": "cea9f790-901c-57a4-a847-36dcff90f222",
-      "reference": "U15",
+      "reference": "U32015",
       "mpn": "Texas Instruments TPS564252DRLR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -968,7 +968,7 @@
     {
       "instance": "voice_inductor",
       "symbol_uuid": "f64ea06c-83f6-56a9-a961-428f050523d6",
-      "reference": "L9",
+      "reference": "L32009",
       "mpn": "Sunlord MWSA0503S-3R3MT",
       "footprint": "Inductor_SMD:L_Sunlord_MWSA0503S",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -978,7 +978,7 @@
     {
       "instance": "voice_input_cap",
       "symbol_uuid": "aaefe7eb-6765-5d80-8bdc-89453123ff91",
-      "reference": "C35",
+      "reference": "C32035",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -988,7 +988,7 @@
     {
       "instance": "voice_hf_input_cap",
       "symbol_uuid": "634857e6-14e1-5979-b63a-172a6c621e82",
-      "reference": "C36",
+      "reference": "C32036",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -998,7 +998,7 @@
     {
       "instance": "voice_fb_top",
       "symbol_uuid": "7cb6e8f8-07eb-50d1-983e-8fd5d4c3dcf4",
-      "reference": "R33",
+      "reference": "R32033",
       "mpn": "Yageo RC0402FR-0768KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1008,7 +1008,7 @@
     {
       "instance": "voice_fb_bottom",
       "symbol_uuid": "8d7b9521-44b8-510c-aac6-3a27e7e15395",
-      "reference": "R34",
+      "reference": "R32034",
       "mpn": "Yageo RC0402FR-0712KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1018,7 +1018,7 @@
     {
       "instance": "voice_ff_cap",
       "symbol_uuid": "1d6f2f41-7214-5b90-92a1-baf2117632ca",
-      "reference": "C37",
+      "reference": "C32037",
       "mpn": "KEMET C0402C330J5GACTU",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1028,7 +1028,7 @@
     {
       "instance": "voice_output_cap0",
       "symbol_uuid": "0c55c7cb-0c6f-5e27-b87e-3add227176c0",
-      "reference": "C38",
+      "reference": "C32038",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1038,7 +1038,7 @@
     {
       "instance": "voice_output_cap1",
       "symbol_uuid": "02b48549-94b4-5c15-88eb-b3390ae6c372",
-      "reference": "C39",
+      "reference": "C32039",
       "mpn": "Murata GRM32ER71E226KE15L",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1048,7 +1048,7 @@
     {
       "instance": "voice_efuse",
       "symbol_uuid": "3001bf78-02e0-5ce4-ac47-889142e01dcb",
-      "reference": "U16",
+      "reference": "U32016",
       "mpn": "Texas Instruments TPS25974LRPWR",
       "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1058,7 +1058,7 @@
     {
       "instance": "voice_efuse_rilm",
       "symbol_uuid": "ed7c4635-006f-5f96-ab92-c3b8bd3e1214",
-      "reference": "R35",
+      "reference": "R32035",
       "mpn": "Yageo RC0402FR-073K32L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1068,7 +1068,7 @@
     {
       "instance": "voice_efuse_dvdt_cap",
       "symbol_uuid": "ce9127d6-b633-5edd-ad17-249fa947657f",
-      "reference": "C40",
+      "reference": "C32040",
       "mpn": "Murata GRM155R71H472KA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1078,7 +1078,7 @@
     {
       "instance": "voice_efuse_itimer_cap",
       "symbol_uuid": "b015442a-fbf9-547c-8d56-bbf7b280d97f",
-      "reference": "C41",
+      "reference": "C32041",
       "mpn": "Murata GRM1555C1H121JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1088,7 +1088,7 @@
     {
       "instance": "voice_efuse_ovlo_top",
       "symbol_uuid": "68549235-4d02-53c2-94b0-1a4bb8cc979a",
-      "reference": "R36",
+      "reference": "R32036",
       "mpn": "Yageo RC0402FR-07270KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1098,7 +1098,7 @@
     {
       "instance": "voice_efuse_ovlo_bottom",
       "symbol_uuid": "a0e4ae80-1aab-5ae6-a81b-e7dea2d3b3ad",
-      "reference": "R37",
+      "reference": "R32037",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1108,7 +1108,7 @@
     {
       "instance": "voice_efuse_pg_top",
       "symbol_uuid": "7d8f43ef-0d1c-5a13-baab-15a8dfec80e9",
-      "reference": "R38",
+      "reference": "R32038",
       "mpn": "Yageo RC0402FR-0768KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1118,7 +1118,7 @@
     {
       "instance": "voice_efuse_pg_bottom",
       "symbol_uuid": "0aa37eaa-20df-5266-8f6b-bcb1a58ba884",
-      "reference": "R39",
+      "reference": "R32039",
       "mpn": "Yageo RC0402FR-0733KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1128,7 +1128,7 @@
     {
       "instance": "voice_efuse_output_cap",
       "symbol_uuid": "2bd0946d-e444-5fe8-adc8-bf256995b6f1",
-      "reference": "C42",
+      "reference": "C32042",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1138,7 +1138,7 @@
     {
       "instance": "voice_en_pulldown",
       "symbol_uuid": "b701174b-b25a-591a-a1b0-baff188f6c30",
-      "reference": "R40",
+      "reference": "R32040",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1148,7 +1148,7 @@
     {
       "instance": "voice_pg_pullup",
       "symbol_uuid": "60656ce3-04cf-59d0-b7fe-85184f00ae53",
-      "reference": "R41",
+      "reference": "R32041",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1158,7 +1158,7 @@
     {
       "instance": "voice_pg_base_res",
       "symbol_uuid": "24139dd0-8132-50ee-875f-68a2ea930d7d",
-      "reference": "R42",
+      "reference": "R32042",
       "mpn": "Yageo RC0402FR-0768KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1168,7 +1168,7 @@
     {
       "instance": "voice_pg_qualifier",
       "symbol_uuid": "abcc8998-92e2-5028-a747-e6533eef14ef",
-      "reference": "Q1",
+      "reference": "Q32001",
       "mpn": "Diodes Incorporated MMBT3904-7-F",
       "footprint": "Package_TO_SOT_SMD:SOT-23",
       "footprint_status": "manufacturer_or_kicad_exact_package",
@@ -1178,7 +1178,7 @@
     {
       "instance": "cc_power_switch",
       "symbol_uuid": "38f6f5dc-43af-573f-b388-3f6525c4d67b",
-      "reference": "U17",
+      "reference": "U32017",
       "mpn": "Texas Instruments TPS22919DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
       "footprint_status": "manufacturer_or_kicad_exact_package",

@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_40_INTERBOARD_M1",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "c387625ab7fb9eaf3168d14d5de32708a98c52c85fa3f12c0d14e47a38054fba"
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "35314f37fdde39fdadfa6cb9bca0039274d7cd92e60aa744f6a8ec4cadae4e7e"
   },
   "summary": {
     "ledger_instances": 1,
@@ -27,7 +27,7 @@
     {
       "instance": "m1_ui_plug",
       "symbol_uuid": "a61130fc-21f0-593f-b440-d4e9cf6cf201",
-      "reference": "J1",
+      "reference": "J40001",
       "mpn": "Hirose FX8C-80P-SV1(92)",
       "footprint": "Connector_Hirose_FX8:Hirose_FX8-80P-SV_2x40_P0.6mm",
       "pin_count": 80,

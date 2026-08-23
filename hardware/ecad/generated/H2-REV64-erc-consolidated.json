@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "stage": "H2.6.4",
+  "status": "reviewed_h2_6_erc_and_no_connect_closure",
+  "source_hashes": {
+    "hardware/ecad/generated/H2-REV61-native-erc.json": "8f2882337e5afeb296fbe29a8529b0c2e1fafe7f8f2b02a622d6445f446d3caf",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "ce7f33ca875bfb9cc03ace3dcddd6755c6b4e0ef884884d0d1ef048e7f3696b5",
+    "hardware/ecad/generated/H2-REV63-erc-clean.json": "5616eb1666d119af03579c36fa2680786e3e1882a236722dd8becd6692c3b6bd"
+  },
+  "subreviews": [
+    {
+      "stage": "H2.6.1",
+      "artifact": "hardware/ecad/generated/H2-REV61-native-erc.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.6.2",
+      "artifact": "hardware/ecad/generated/H2-REV62-no-connects.json",
+      "status": "reviewed"
+    },
+    {
+      "stage": "H2.6.3",
+      "artifact": "hardware/ecad/generated/H2-REV63-erc-clean.json",
+      "status": "reviewed"
+    }
+  ],
+  "corrected_findings": [
+    {
+      "stage": "H2.6.1",
+      "id": "H2.6.1-F01",
+      "finding": "raw ERC was obscured by one lib_symbol_mismatch warning per locally generated component",
+      "correction": "all four projects now suppress only that rule while h2_symbol_library.py independently proves exact shared/embedded symbol equality"
+    },
+    {
+      "stage": "H2.6.2",
+      "id": "H2.6.2-F01",
+      "finding": "UI10 counted seven NC contacts but did not publish their exact endpoint names",
+      "correction": "UI10 now emits the same explicit intentional_no_connect_endpoints register as every other populated sheet"
+    },
+    {
+      "stage": "H2.6.3",
+      "id": "H2.6.3-F01",
+      "finding": "the root native checks previously treated locally generated symbol-copy diagnostics as expected visible warnings",
+      "correction": "root checks now require empty native ERC and the exact library-copy invariant is enforced outside ERC"
+    }
+  ],
+  "closure": {
+    "projects": 4,
+    "native_errors_or_warnings": 0,
+    "intentional_no_connects": 189,
+    "generated_symbol_definitions": 1094,
+    "missing_contacts_markers_or_rationales": 0,
+    "unexplained_findings": 0,
+    "next_substep": "H2.7 — reconcile schematic contacts/nets with H1, pin ledger, M1 and firmware F2"
+  },
+  "open_findings": []
+}

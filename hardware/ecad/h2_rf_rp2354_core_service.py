@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import (
@@ -126,7 +127,7 @@ def build() -> tuple[dict[Path, str], dict]:
     )
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         prefix = reference_prefix(row["instance"], row["device_key"])
         ref_counts[prefix] += 1
@@ -307,7 +308,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "ledger_instances": 48,
         "schematic_symbols": 48,
         "board_fitted_symbols": 48,
-        "hierarchical_interfaces": 51,
+        "hierarchical_interfaces": 52,
         "physical_package_contacts": 219,
         "rp2354_package_contacts": 81,
         "dedicated_100nf_supply_bypasses": 14,
@@ -321,7 +322,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 48:
         raise ValueError("RF30 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 51:
+    if schematic.count("\n\t(hierarchical_label \"") != 52:
         raise ValueError("RF30 hierarchy accounting mismatch")
     expected_nc = {
         "rp.QSPI_SD3", "rp.QSPI_SCLK", "rp.QSPI_SD0", "rp.QSPI_SD2", "rp.QSPI_SD1",

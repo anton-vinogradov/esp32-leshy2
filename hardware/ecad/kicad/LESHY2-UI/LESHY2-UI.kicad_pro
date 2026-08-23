@@ -2,7 +2,11 @@
   "board": {},
   "boards": [],
   "cvpcb": {},
-  "erc": {},
+  "erc": {
+    "rule_severities": {
+      "lib_symbol_mismatch": "ignore"
+    }
+  },
   "libraries": {},
   "meta": {
     "filename": "LESHY2-UI.kicad_pro",

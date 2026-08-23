@@ -19,6 +19,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_display_touch_storage import endpoint_nets
 from h2_ui_s3_core import (
     FOOTPRINT_DIR,
@@ -133,7 +134,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     nets = contact_map(candidate)
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         instance = row["instance"]
         device = devices[row["device_key"]]
@@ -372,15 +373,9 @@ def kicad_check(generated: dict[Path, str], manifest: dict) -> None:
             violation for sheet in erc.get("sheets", [])
             for violation in sheet.get("violations", [])
         ]
-        expected_symbol_uuids = {row["symbol_uuid"] for row in manifest["instances"]}
-        actual_symbol_uuids = {
-            violation["items"][0]["uuid"]
-            for violation in violations
-            if violation.get("type") == "lib_symbol_mismatch" and len(violation.get("items", [])) == 1
-        }
-        if len(violations) != len(expected_symbol_uuids) or actual_symbol_uuids != expected_symbol_uuids:
-            raise RuntimeError(f"adapter ERC differs from exact generated-symbol warnings: {violations}")
-    print("ok: KiCad parsed H2.4.1 display adapter and exact FH34 footprint")
+        if violations:
+            raise RuntimeError(f"display-adapter ERC is not empty: {violations}")
+    print("ok: KiCad parsed H2.4.1 display adapter with an empty native ERC report")
 
 
 def main() -> int:

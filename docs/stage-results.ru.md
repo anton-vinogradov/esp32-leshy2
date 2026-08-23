@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.5.1`.
+**Статус:** ▶️ сейчас, точный маркер `H2.8.2`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,9 +43,31 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB, всех двенадцати RF/power child-листов
-  пассивного display-adapter, корневого и radio/control-листов LoRa Cap;
-  текущий — power/identity-лист аксессуара.
+- [Архитектура питания](power-architecture.ru.md) — итоговые источники,
+  аккумуляторный тракт и все формируемые шины; H2.5.1 проведено ревью по
+  полной KiCad-netlist.
+- [Прошивка и восстановление](service-recovery.ru.md) — независимые USB,
+  DBG10, SWD/UART и fixture-пути; H2.5.2 проведено ревью по 61 цепи.
+- [Изоляция внешних интерфейсов](interface-isolation.ru.md) — три USB,
+  межплатная граница и две expansion-ветви; H2.5.3 проведено ревью.
+- [Тихое состояние](quiet-state.ru.md) — все 13 неактивных групп и их
+  аппаратные границы; H2.5.4 проведено ревью.
+- [Аварийное отключение](fault-shutdown.ru.md) — watchdog, три thermal-зоны,
+  девять TX-evidence каналов и аппаратный latch; H2.5.5 проведено ревью.
+- [Итог safety-ревью](safety-review.ru.md) — H2.5 закрыт, пять findings
+  исправлены, открытых paper/ECAD findings нет.
+- [ERC и NC-ревью](erc-review.ru.md) — все четыре проекта дают ноль native
+  errors/warnings, все 189 физических NC обоснованы.
+- [Полный реестр NC](no-connects.ru.md) — точный symbol, pin и причина для
+  каждого намеренно открытого контакта.
+- [Сквозная HW/FW-сверка](hwfw-reconciliation.ru.md) — H1, 1 026
+  электрических identities, 266 root nets, все контакты M1 и firmware F2 совпадают.
+- [Пакет приёмки H2](h2-acceptance.ru.md) — завершённая область и все
+  deferred H3/F3/H5/H6/H8 gates; осталась только явная пользовательская приёмка.
+- Проведено ревью всей UI/control PCB, всех двенадцати RF/power child-листов,
+  пассивного display-adapter и всех листов LoRa Cap. Закрыты quiet state,
+  fault shutdown, native ERC/NC и сквозная H1/M1/F2-сверка. Осталась формальная
+  пользовательская приёмка H2.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -88,9 +110,9 @@
   watchdog/latch/reset и пять каналов физического RF evidence; native KiCad
   проходит с 22 точными намеренными NC.
 - [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch)
-  выводит 30 точных медных площадок 1,0 мм без покупного MPN и BOM-
+  выводит 52 точных медных площадки 1,0 мм без покупного MPN и BOM-
   строк. [Машинное ревью](../hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json)
-  покрывает 7 recovery-путей, 6 RF-evidence каналов, thermal, RUN/FAULT и
+  покрывает 13 recovery-путей, 6 RF-evidence каналов, thermal, RUN/FAULT и
   rail references; native KiCad принимает полную RF-иерархию без child stub и
   отложенных fixture labels.
 

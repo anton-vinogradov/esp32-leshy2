@@ -16,7 +16,7 @@ import subprocess
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
-from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, stable_uuid
+from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, scoped_reference, stable_uuid
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -32,7 +32,13 @@ OUTPUT_MANIFEST = ECAD / "generated/H2-RF60-testpoints-manufacturing.json"
 SYMBOL_LIBRARY = ECAD / "libraries/leshy2.kicad_sym"
 FOOTPRINT = "TestPoint:TestPoint_Pad_D1.0mm"
 SYMBOL_NAMESPACE = "RF60"
-EXPECTED_POINT_COUNT = 30
+EXPECTED_POINT_COUNT = 52
+PROGRAMMING_RECOVERY_NETS = {
+    "PACK_ADMISSION_SWDIO", "PACK_ADMISSION_SWCLK", "PACK_ADMISSION_NRST_N",
+    "SAFETY_SWDIO", "SAFETY_SWCLK", "SAFETY_CONTROLLER_NRST_N", "RP_RESET_N",
+    "SYS_I2C_SDA", "SYS_I2C_SCL", "SYS_INT_N",
+    "PD_LOCAL_I2C_SDA", "PD_LOCAL_I2C_SCL", "PD_EEPROM_WP",
+}
 
 
 def sha256(path: Path) -> str:
@@ -75,7 +81,7 @@ def build() -> tuple[dict[Path, str], dict]:
         column = (index - 1) % 5
         row = (index - 1) // 5
         placements.append((
-            point, f"TP{index}", 45.72 + column * 76.20,
+            point, scoped_reference(SHEET_ID, f"TP{index}"), 45.72 + column * 76.20,
             40.64 + row * 40.64, coords,
         ))
 
@@ -132,8 +138,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "physical_test_pads": len(points),
             "hierarchical_interfaces": len(interfaces),
             "programming_recovery_pads": sum(
-                point["net"].endswith(("SWDIO", "SWCLK", "NRST_N", "RESET_N"))
-                for point in points
+                point["net"] in PROGRAMMING_RECOVERY_NETS for point in points
             ),
             "rf_evidence_pads": sum(point["net"].startswith("EV_N") for point in points),
             "intentional_no_connect_pins": 0,
@@ -164,8 +169,9 @@ def build() -> tuple[dict[Path, str], dict]:
         },
         "review_boundary": {
             "complete": [
-                "all thirty selected RF/power manufacturing nets terminate on one physical 1.0-mm pad each",
+                "all fifty-two selected RF/power manufacturing nets terminate on one physical 1.0-mm pad each",
                 "both MSPM0 domains expose independent UART, SWD and reset recovery paths",
+                "TPS25751D target I2C and direct local EEPROM/charger I2C plus EEPROM WP are fixture-accessible",
                 "all six RF evidence nets plus the always-on aggregate and both thermal channels are fixture-observable",
                 "every pad has a stable reference, purpose, owning functional sheet and exact hierarchy net",
                 "all pads are excluded from BOM and purchasing while remaining real board features",
@@ -188,7 +194,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "board_fitted_symbols": EXPECTED_POINT_COUNT, "bom_symbols": 0,
         "physical_test_pads": EXPECTED_POINT_COUNT,
         "hierarchical_interfaces": EXPECTED_POINT_COUNT,
-        "programming_recovery_pads": 7, "rf_evidence_pads": 6,
+        "programming_recovery_pads": 13, "rf_evidence_pads": 6,
         "intentional_no_connect_pins": 0, "pcb_files_created": 0,
     }
     if manifest["summary"] != expected:

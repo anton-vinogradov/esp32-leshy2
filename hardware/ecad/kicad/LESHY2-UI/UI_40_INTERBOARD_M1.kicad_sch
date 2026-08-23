@@ -551,7 +551,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a61130fc-21f0-593f-b440-d4e9cf6cf201")
-		(property "Reference" "J1"
+		(property "Reference" "J40001"
 			(at 165.10 76.08 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -827,7 +827,7 @@
 		(instances
 			(project "LESHY2-UI"
 				(path "/d200dfe6-1a3a-53e5-9a6e-136dec8498dd"
-					(reference "J1")
+					(reference "J40001")
 					(unit 1)
 				)
 			)

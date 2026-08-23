@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, stable_uuid
@@ -149,7 +150,7 @@ def build() -> tuple[dict[Path, str], dict]:
     )
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         prefix = reference_prefix(row["instance"], row["device_key"])
         ref_counts[prefix] += 1
@@ -288,7 +289,7 @@ def build() -> tuple[dict[Path, str], dict]:
                 "TPD4S201 uses its manufacturer-approved USB2-capable channels while SBU and Alt Mode remain unsupported",
                 "BQ25798 has a physical 8.2-kohm 2S/750-kHz strap, matching 2.2-uH inductor and complete bypass/bootstrap network",
                 "the local PD controller bus owns charger configuration while system I2C remains a separate target interface",
-                "all nine hierarchy interfaces and ten intentional no-connect pins are explicit",
+                "all twelve hierarchy interfaces and ten intentional no-connect pins are explicit",
             ],
             "deferred": [
                 "TPS25751 configuration image, EEPROM programming and negotiated power policy verification in firmware/virtual/HIL phases",
@@ -305,7 +306,7 @@ def build() -> tuple[dict[Path, str], dict]:
 def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     expected = {
         "ledger_instances": 52, "schematic_symbols": 52,
-        "board_fitted_symbols": 52, "hierarchical_interfaces": 9,
+        "board_fitted_symbols": 52, "hierarchical_interfaces": 12,
         "physical_package_pads": 208, "usb_c_electrical_contacts": 17,
         "usb_port_protector_pads": 21, "pd_controller_copper_contacts": 34,
         "vbus_tvs_package_pads": 7, "charger_package_pads": 29,
@@ -317,7 +318,7 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     schematic = generated[OUTPUT_SCH]
     if schematic.count("\n\t(symbol\n") != 52:
         raise ValueError("RF01 symbol accounting mismatch")
-    if schematic.count("\n\t(hierarchical_label \"") != 9:
+    if schematic.count("\n\t(hierarchical_label \"") != 12:
         raise ValueError("RF01 hierarchy interface accounting mismatch")
     expected_nc = {
         "nvdc_charger.D_MINUS", "nvdc_charger.D_PLUS", "nvdc_charger.QON",

@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "c387625ab7fb9eaf3168d14d5de32708a98c52c85fa3f12c0d14e47a38054fba"
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "35314f37fdde39fdadfa6cb9bca0039274d7cd92e60aa744f6a8ec4cadae4e7e"
   },
   "summary": {
     "ledger_instances": 32,
@@ -68,6 +68,15 @@
       "41": "EPAD_GND"
     }
   },
+  "intentional_no_connect_endpoints": [
+    "s3.NC_PSRAM_GPIO35",
+    "s3.NC_PSRAM_GPIO36",
+    "s3.NC_PSRAM_GPIO37",
+    "s3_dbg_esd.NC_10",
+    "s3_dbg_esd.NC_6",
+    "s3_dbg_esd.NC_7",
+    "s3_dbg_esd.NC_9"
+  ],
   "non_pcb_interfaces": {
     "ANT": "factory-fitted on-module first-generation micro-coax receptacle; never represented as a carrier-PCB pad"
   },
@@ -75,7 +84,7 @@
     {
       "instance": "s3",
       "symbol_uuid": "8bb93fa8-bc3a-5be3-8bec-f7794e9f0842",
-      "reference": "U1",
+      "reference": "U10001",
       "mpn": "ESP32-S3-WROOM-1U-N16R8",
       "footprint": "RF_Module:ESP32-S3-WROOM-1U",
       "pin_count": 41,
@@ -84,7 +93,7 @@
     {
       "instance": "s3_external_rp_sma",
       "symbol_uuid": "411079bc-ea4f-5ee3-983b-c5363097b296",
-      "reference": "J1",
+      "reference": "J10001",
       "mpn": "GCT RFPC-SMA32-FN-175-A",
       "footprint": "Leshy2:RFPC-SMA32-FN-175-A",
       "pin_count": 5,
@@ -93,7 +102,7 @@
     {
       "instance": "s3_rf_jumper",
       "symbol_uuid": "c77607c3-f452-5b67-b078-1bad600d7502",
-      "reference": "W1",
+      "reference": "W10001",
       "mpn": "TE Connectivity 2118651-2",
       "footprint": null,
       "pin_count": 2,
@@ -102,7 +111,7 @@
     {
       "instance": "s3_rf_board_connector",
       "symbol_uuid": "f6c53017-5b9c-5bcb-81ea-65a62225ed9e",
-      "reference": "J2",
+      "reference": "J10002",
       "mpn": "Hirose U.FL-R-SMT-1(10)",
       "footprint": "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical",
       "pin_count": 2,
@@ -111,7 +120,7 @@
     {
       "instance": "s3_rf_coupler",
       "symbol_uuid": "3cc0d809-8110-5d41-945c-69c940e24771",
-      "reference": "U2",
+      "reference": "U10002",
       "mpn": "KYOCERA AVX CP0603Q5425ENTR",
       "footprint": "Leshy2:CP0603Q5425ENTR",
       "pin_count": 4,
@@ -120,7 +129,7 @@
     {
       "instance": "s3_rf_coupler_termination",
       "symbol_uuid": "f6d9fbf3-4a9e-5070-aaa5-9d17d2a3193c",
-      "reference": "R1",
+      "reference": "R10001",
       "mpn": "Yageo RC0402FR-0749R9L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -129,7 +138,7 @@
     {
       "instance": "s3_detector_input_cap",
       "symbol_uuid": "eae7baf7-ec7d-58ef-bb37-f6db4923fb74",
-      "reference": "C1",
+      "reference": "C10001",
       "mpn": "Murata GRM1555C1H390JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -138,7 +147,7 @@
     {
       "instance": "s3_detector_feedback_res",
       "symbol_uuid": "a7358eb9-002a-5e6d-9e56-69165901611f",
-      "reference": "R2",
+      "reference": "R10002",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -147,7 +156,7 @@
     {
       "instance": "s3_detector_ground_res",
       "symbol_uuid": "b2a6b5af-38d7-51e2-a1a4-41f8acc4f5a0",
-      "reference": "R3",
+      "reference": "R10003",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -156,7 +165,7 @@
     {
       "instance": "s3_detector_output_cap",
       "symbol_uuid": "c5f5641e-4881-5079-ba04-f7ed671fe587",
-      "reference": "C2",
+      "reference": "C10002",
       "mpn": "KEMET C0402C330J5GACTU",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -165,7 +174,7 @@
     {
       "instance": "s3_detector_bypass",
       "symbol_uuid": "2f68bb44-7184-5996-84a7-2767baa115b4",
-      "reference": "C3",
+      "reference": "C10003",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -174,7 +183,7 @@
     {
       "instance": "product_usb_dp_series",
       "symbol_uuid": "43f10353-678f-5f76-b25c-7cebfda97d41",
-      "reference": "R4",
+      "reference": "R10004",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -183,7 +192,7 @@
     {
       "instance": "product_usb_dm_series",
       "symbol_uuid": "4df987fd-4421-5586-a18a-46820667c32a",
-      "reference": "R5",
+      "reference": "R10005",
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -192,7 +201,7 @@
     {
       "instance": "sys_i2c_scl_pullup",
       "symbol_uuid": "7ee38f98-06b5-5a46-af67-227b29e7609e",
-      "reference": "R6",
+      "reference": "R10006",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -201,7 +210,7 @@
     {
       "instance": "sys_i2c_sda_pullup",
       "symbol_uuid": "ebf2cca7-180d-5056-b066-7dc671ff481c",
-      "reference": "R7",
+      "reference": "R10007",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -210,7 +219,7 @@
     {
       "instance": "sys_int_pullup",
       "symbol_uuid": "d3d81d47-2162-5bc5-8057-ad9247049695",
-      "reference": "R8",
+      "reference": "R10008",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -219,7 +228,7 @@
     {
       "instance": "s3_dbg_header",
       "symbol_uuid": "9077d2af-0464-53c3-bb44-63567a3cd71e",
-      "reference": "J3",
+      "reference": "J10003",
       "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
       "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR",
       "pin_count": 10,
@@ -228,7 +237,7 @@
     {
       "instance": "s3_dbg_esd",
       "symbol_uuid": "ece9096c-f30a-5bd3-9112-2444476c61bd",
-      "reference": "U3",
+      "reference": "U10003",
       "mpn": "Texas Instruments TPD4E05U06DQAR",
       "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
       "pin_count": 10,
@@ -237,7 +246,7 @@
     {
       "instance": "s3_reset_button",
       "symbol_uuid": "6f71d5f2-0a55-5be2-aaea-0eb3a2776927",
-      "reference": "SW1",
+      "reference": "SW10001",
       "mpn": "Alps Alpine SKRTLAE010",
       "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
       "pin_count": 3,
@@ -246,7 +255,7 @@
     {
       "instance": "s3_boot_button",
       "symbol_uuid": "b094bfa2-0c90-5273-8381-642f1bd06d34",
-      "reference": "SW2",
+      "reference": "SW10002",
       "mpn": "Alps Alpine SKRTLAE010",
       "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
       "pin_count": 3,
@@ -255,7 +264,7 @@
     {
       "instance": "s3_dbg_vtref_series",
       "symbol_uuid": "8fef9704-2b10-5cb0-b056-cd3e2c2f9169",
-      "reference": "R9",
+      "reference": "R10009",
       "mpn": "Yageo RC0402FR-071KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -264,7 +273,7 @@
     {
       "instance": "s3_dbg_reset_series",
       "symbol_uuid": "0b871390-c0b5-5bca-9a79-8c541786f963",
-      "reference": "R10",
+      "reference": "R10010",
       "mpn": "Yageo RC0402FR-071KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -273,7 +282,7 @@
     {
       "instance": "s3_dbg_boot_series",
       "symbol_uuid": "5a2d82b4-2f2f-51a5-8924-8e84c44c5ee6",
-      "reference": "R11",
+      "reference": "R10011",
       "mpn": "Yageo RC0402FR-071KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -282,7 +291,7 @@
     {
       "instance": "s3_dbg0_series",
       "symbol_uuid": "a91d8b2f-20f7-5b7a-a6ec-eba80e2016d3",
-      "reference": "R12",
+      "reference": "R10012",
       "mpn": "Yageo RC0402FR-07470RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -291,7 +300,7 @@
     {
       "instance": "s3_dbg1_series",
       "symbol_uuid": "e05b1385-c151-5609-b833-66fcfe824547",
-      "reference": "R13",
+      "reference": "R10013",
       "mpn": "Yageo RC0402FR-07470RL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -300,7 +309,7 @@
     {
       "instance": "s3_dbg_id0_strap",
       "symbol_uuid": "0b3891da-023c-5060-b9b3-3948b55ffd16",
-      "reference": "R14",
+      "reference": "R10014",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -309,7 +318,7 @@
     {
       "instance": "s3_dbg_id1_strap",
       "symbol_uuid": "6f33c81d-4b52-547a-97f1-6b7e3de36b1d",
-      "reference": "R15",
+      "reference": "R10015",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -318,7 +327,7 @@
     {
       "instance": "s3_boot_pullup",
       "symbol_uuid": "a2fb2c29-c652-5633-95f6-508c54487238",
-      "reference": "R16",
+      "reference": "R10016",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -327,7 +336,7 @@
     {
       "instance": "s3_supply_bulk",
       "symbol_uuid": "cd29bff4-5825-5308-b39d-4e27b2fc3130",
-      "reference": "U4",
+      "reference": "U10004",
       "mpn": "Murata GRM21BR60J226ME39L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -336,7 +345,7 @@
     {
       "instance": "s3_supply_bypass",
       "symbol_uuid": "441befe9-d8fa-51fc-a6be-dc5fd6f893fc",
-      "reference": "C4",
+      "reference": "C10004",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -345,7 +354,7 @@
     {
       "instance": "s3_reset_delay_cap",
       "symbol_uuid": "5d990215-d537-5c6b-974d-8cf2d1870de6",
-      "reference": "C5",
+      "reference": "C10005",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -354,7 +363,7 @@
     {
       "instance": "s3_reset_pullup",
       "symbol_uuid": "9cc04932-2828-5cc2-bf00-7badc27de723",
-      "reference": "R17",
+      "reference": "R10017",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -363,7 +372,7 @@
     {
       "instance": "s3_factory_ant",
       "symbol_uuid": "ccc69487-b644-5c0d-bed7-7a0311a5f0d2",
-      "reference": "X1",
+      "reference": "X10001",
       "mpn": "ESP32-S3-WROOM-1U-N16R8 factory U.FL",
       "footprint": null,
       "pin_count": 1,

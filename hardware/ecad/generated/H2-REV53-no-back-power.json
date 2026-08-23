@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "stage": "H2.5.3",
+  "status": "reviewed_no_back_power_boundaries",
+  "method": "fresh complete KiCad netlists plus exact USB, M1 and expansion-boundary membership checks",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "16eb933fb64fc4931ccc492c3621f2fb7946f2ba2bc668dc02f6561a91eb49a2",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "047f5656773010aadf4c9b61e6ecf051464ee2196ac1a681257c408cc9a372bd",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01"
+  },
+  "hierarchy_exports": {
+    "LESHY2-UI": {
+      "component_count": 387,
+      "unique_reference_count": 387,
+      "duplicate_references": [],
+      "net_count": 338,
+      "annotation_warnings": 0
+    },
+    "LESHY2-RF": {
+      "component_count": 678,
+      "unique_reference_count": 678,
+      "duplicate_references": [],
+      "net_count": 538,
+      "annotation_warnings": 0
+    }
+  },
+  "corrected_findings": [
+    {
+      "id": "H2.5.3-F01",
+      "severity": "recovery_observability",
+      "finding": "C5 service VBUS had a physical sense pad while the equivalent RP VBUS observation existed only in the abstract service contract",
+      "correction": "one BOM-free TP_RP_SERVICE_VBUS_SENSE copper pad now completes the symmetric data-only USB boundary",
+      "evidence": "each service VBUS net now contains exactly its connector, 1-MOhm bleeder and one read-only test pad"
+    }
+  ],
+  "reviewed_nets": [
+    {
+      "project": "LESHY2-UI",
+      "net": "C5_SERVICE_VBUS_SENSE_ONLY",
+      "status": "reviewed",
+      "instances": [
+        "TP_C5_SERVICE_VBUS_SENSE",
+        "c5_service_usb_connector",
+        "c5_service_usb_vbus_bleeder"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "RP_SERVICE_VBUS_SENSE_ONLY",
+      "status": "reviewed",
+      "instances": [
+        "TP_RP_SERVICE_VBUS_SENSE",
+        "rp_service_usb_connector",
+        "rp_service_usb_vbus_bleeder"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "USB_C_VBUS_RAW",
+      "status": "reviewed",
+      "instances": [
+        "pd_controller",
+        "pd_vbus_cap",
+        "pd_vbus_tvs",
+        "product_usb_connector"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "5V_EXT_PREPROTECT",
+      "status": "reviewed",
+      "instances": [
+        "ext_buck_fb_top",
+        "ext_buck_ff_cap",
+        "ext_buck_output_cap0",
+        "ext_buck_output_cap1",
+        "ext_efuse",
+        "ext_inductor",
+        "ext_input_cap",
+        "ext_ovlo_top",
+        "unit_efuse",
+        "unit_input_cap",
+        "unit_ovlo_top"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "5V_U214_PROTECTED",
+      "status": "reviewed",
+      "instances": [
+        "ext_bleeder",
+        "ext_efuse",
+        "ext_output_cap",
+        "u214",
+        "u214_connector",
+        "u214_supervisor_sense_top"
+      ]
+    },
+    {
+      "project": "LESHY2-RF",
+      "net": "5V_UNIT_PROTECTED",
+      "status": "reviewed",
+      "instances": [
+        "unit_bleeder",
+        "unit_connector",
+        "unit_efuse",
+        "unit_output_cap",
+        "unit_supervisor_sense_top"
+      ]
+    }
+  ],
+  "m1": {
+    "contacts": 80,
+    "power_and_return_contacts": {
+      "3V3_MAIN": 7,
+      "AON_SAFE_3V3": 2,
+      "POWER_GROUND": 20,
+      "AUDIO_GROUND": 3,
+      "SAFETY_GROUND": 2
+    },
+    "forbidden_raw_or_exposed_rails": [],
+    "ui_rf_maps_identical": true
+  },
+  "critical_components": [
+    {
+      "instance": "c5_service_usb_switch",
+      "reference": "U20007",
+      "mpn": "onsemi FSUSB42MUX",
+      "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm"
+    },
+    {
+      "instance": "rp_service_usb_switch",
+      "reference": "U30002",
+      "mpn": "onsemi FSUSB42MUX",
+      "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm"
+    },
+    {
+      "instance": "ext_efuse",
+      "reference": "U3008",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
+    },
+    {
+      "instance": "unit_efuse",
+      "reference": "U34009",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
+    },
+    {
+      "instance": "u214_i2c_iso",
+      "reference": "U34001",
+      "mpn": "TCA4307DGKR",
+      "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm"
+    },
+    {
+      "instance": "u214_host_buffer_a",
+      "reference": "U34002",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+    },
+    {
+      "instance": "u214_host_buffer_b",
+      "reference": "U34003",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+    },
+    {
+      "instance": "u214_return_buffer",
+      "reference": "U34004",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
+    },
+    {
+      "instance": "unit_signal_iso",
+      "reference": "U34011",
+      "mpn": "Texas Instruments TXS0102DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+    }
+  ],
+  "invariants": [
+    "C5 and RP service USB-C VBUS cannot power any product rail; each ends at a bleeder and test pad",
+    "both FSUSB42MUX paths are board-powered power-off-protected data boundaries",
+    "the sole product USB-C is sink-only and USB_C_VBUS_RAW reaches the PD front end, not M1 or a service connector",
+    "M1 carries only seven 3V3_MAIN and two AON_SAFE_3V3 source contacts; no raw USB, battery, NVDC or exposed 5-V rail crosses it",
+    "U214 and native M5 Unit use independent true-reverse-blocking eFuses and cannot feed their common buck or one another",
+    "U214 I2C/SPI/UART/control and native Unit signals stay behind separately enabled isolation devices"
+  ],
+  "review_boundary": {
+    "complete": [
+      "paper topology and actual KiCad membership of all three USB VBUS boundaries",
+      "identical 80-contact M1 maps and absence of every forbidden raw/high-energy rail",
+      "separate expansion branch power nets, exact reverse-blocking eFuses and signal isolators"
+    ],
+    "deferred": [
+      "powered-off leakage/current measurement with one and three USB hosts in H8",
+      "external-source and wrong-accessory fault injection in H8",
+      "USB edge/eye, hot-plug transients and expansion brownout simulation in H3/H8"
+    ]
+  }
+}

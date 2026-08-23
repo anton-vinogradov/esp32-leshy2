@@ -1,0 +1,1077 @@
+{
+  "schema_version": 1,
+  "stage": "H2.7.4",
+  "status": "reviewed_zero_hwfw_contract_drift",
+  "method": "fresh native KiCad pin-to-net lookup for every allocation plus byte-identical hardware export and firmware import",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/ecad/generated/H2-hwfw-contract.json": "306c6c8b35ff22af1568ecc07eddc4d19652f6e116826feb32c1a9fa8a4054eb",
+    "firmware/config/hardware_bsp_contract.json": "306c6c8b35ff22af1568ecc07eddc4d19652f6e116826feb32c1a9fa8a4054eb",
+    "firmware/config/hardware_integration_contract.json": "4f0c9be2cf020dfc21bb90c2d5be0efc8e52815340f681d5481e197dd627760f",
+    "firmware/tools/import_hardware_contract.py": "aaa38e7f16db7d8b2032322a66ef4ccda871bbf8a3bf5b403a91a44c329d1602",
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "bc7b161b95347362ad9b6e4a56e6a205bc8a7563fc84d67fa13f226455330404",
+    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "68e34a8c1b65e678a559cdcd685017b9b4a3bbbbae4cd580c586d5449b160b98",
+    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "bc6ef86b6bcde5d221390f3f1093b0ae3a65160b4745570896573c1b44fc23bd",
+    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "6598d4f329d05a1c1c9cffcfbc6d2919d77a551cdfa8790be4f412c164565dcf",
+    "hardware/ecad/generated/H2-UI10-S3-core.json": "4ab9b248292005082a32e87c0137ec943d8cd90b9dc87a2274403903cb1a2873",
+    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "ae347b54d8522ad77a9d2b3ee6b57a29726c90a4365233af83e46f41526339ca"
+  },
+  "summary": {
+    "architecture_allocations": 130,
+    "firmware_bsp_contacts": 125,
+    "hardware_configured_pd_contacts": 5,
+    "physical_pin_or_net_mismatches": 0,
+    "firmware_import_drift": 0,
+    "temporary_pin_assignments_allowed": false
+  },
+  "allocations": [
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO1",
+      "net": "SYS_I2C_SDA",
+      "direction": "io",
+      "controller": "I2C0",
+      "physical_pin": "39"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO2",
+      "net": "SYS_I2C_SCL",
+      "direction": "o",
+      "controller": "I2C0",
+      "physical_pin": "38"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO3",
+      "net": "RP_ALERT_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "15"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO4",
+      "net": "DISPLAY_SD_SPI_D1",
+      "direction": "io",
+      "controller": "SPI2",
+      "physical_pin": "4"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO5",
+      "net": "SD_SPI_CS_N",
+      "direction": "o",
+      "controller": "SPI2",
+      "physical_pin": "5"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO6",
+      "net": "AUDIO_ARM",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "6"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO7",
+      "net": "UNIT_HOST_SIG0",
+      "direction": "io",
+      "controller": "I2C1_OR_UART1_OR_GPIO",
+      "physical_pin": "7"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO8",
+      "net": "UNIT_HOST_SIG1",
+      "direction": "io",
+      "controller": "I2C1_OR_UART1_OR_GPIO",
+      "physical_pin": "12"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO9",
+      "net": "S3_RP_IPC_CS_N",
+      "direction": "o",
+      "controller": "SPI3",
+      "physical_pin": "17"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO10",
+      "net": "S3_C5_SDIO_CLK",
+      "direction": "o",
+      "controller": "SDMMC_SLOT1_1BIT",
+      "physical_pin": "18"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO11",
+      "net": "S3_C5_SDIO_CMD",
+      "direction": "io",
+      "controller": "SDMMC_SLOT1_1BIT",
+      "physical_pin": "19"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO12",
+      "net": "S3_C5_SDIO_D0",
+      "direction": "io",
+      "controller": "SDMMC_SLOT1_1BIT",
+      "physical_pin": "20"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO13",
+      "net": "S3_C5_SDIO_D1_IRQ",
+      "direction": "io",
+      "controller": "SDMMC_SLOT1_1BIT",
+      "physical_pin": "21"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO14",
+      "net": "S3_RP_IPC_MISO",
+      "direction": "i",
+      "controller": "SPI3",
+      "physical_pin": "22"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO15",
+      "net": "I2S_BCLK",
+      "direction": "o",
+      "controller": "I2S0",
+      "physical_pin": "8"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO16",
+      "net": "I2S_WS",
+      "direction": "o",
+      "controller": "I2S0",
+      "physical_pin": "9"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO17",
+      "net": "I2S_DOUT",
+      "direction": "o",
+      "controller": "I2S0",
+      "physical_pin": "10"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO18",
+      "net": "DISPLAY_SD_SPI_SCK",
+      "direction": "o",
+      "controller": "SPI2",
+      "physical_pin": "11"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO19",
+      "net": "S3_USB_DM_LOCAL",
+      "direction": "io",
+      "controller": "USB_SERIAL_JTAG",
+      "physical_pin": "13"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO20",
+      "net": "S3_USB_DP_LOCAL",
+      "direction": "io",
+      "controller": "USB_SERIAL_JTAG",
+      "physical_pin": "14"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO21",
+      "net": "S3_RP_IPC_MOSI",
+      "direction": "o",
+      "controller": "SPI3",
+      "physical_pin": "23"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO0",
+      "net": "I2S_DIN",
+      "direction": "i",
+      "controller": "I2S0",
+      "physical_pin": "27"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO45",
+      "net": "SYS_INT_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "26"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO46",
+      "net": "DISPLAY_SD_SPI_D0",
+      "direction": "o",
+      "controller": "SPI2",
+      "physical_pin": "16"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO38",
+      "net": "LCD_CS_N",
+      "direction": "o",
+      "controller": "SPI2",
+      "physical_pin": "31"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO39",
+      "net": "ENCODER_A",
+      "direction": "i",
+      "controller": "PCNT0",
+      "physical_pin": "32"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO40",
+      "net": "LCD_BL_PWM",
+      "direction": "o",
+      "controller": "LEDC",
+      "physical_pin": "33"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO41",
+      "net": "LCD_QSPI_D2",
+      "direction": "o",
+      "controller": "SPI2",
+      "physical_pin": "34"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO42",
+      "net": "LCD_QSPI_D3",
+      "direction": "o",
+      "controller": "SPI2",
+      "physical_pin": "35"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO43",
+      "net": "S3_UART_SERVICE_TX",
+      "direction": "o",
+      "controller": "UART0",
+      "physical_pin": "37"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO44",
+      "net": "S3_UART_SERVICE_RX",
+      "direction": "i",
+      "controller": "UART0",
+      "physical_pin": "36"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO47",
+      "net": "ENCODER_B",
+      "direction": "i",
+      "controller": "PCNT0",
+      "physical_pin": "24"
+    },
+    {
+      "domain": "S3",
+      "endpoint": "s3.GPIO48",
+      "net": "S3_RP_IPC_SCK",
+      "direction": "o",
+      "controller": "SPI3",
+      "physical_pin": "25"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO0",
+      "net": "IR_RX_DEMOD",
+      "direction": "i",
+      "controller": "RMT_RX0",
+      "physical_pin": "6"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO1",
+      "net": "IR_RX_CARRIER",
+      "direction": "i",
+      "controller": "RMT_RX1",
+      "physical_pin": "7"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO4",
+      "net": "IR_FRONTEND_PWR_EN",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "17"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO6",
+      "net": "IR_TX_CARRIER",
+      "direction": "o",
+      "controller": "RMT_TX0",
+      "physical_pin": "8"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO7",
+      "net": "S3_C5_SDIO_D1_IRQ",
+      "direction": "io",
+      "controller": "SDIO_SLAVE",
+      "physical_pin": "9"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO8",
+      "net": "S3_C5_SDIO_D0",
+      "direction": "io",
+      "controller": "SDIO_SLAVE",
+      "physical_pin": "10"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO9",
+      "net": "S3_C5_SDIO_CLK",
+      "direction": "i",
+      "controller": "SDIO_SLAVE",
+      "physical_pin": "11"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO10",
+      "net": "S3_C5_SDIO_CMD",
+      "direction": "io",
+      "controller": "SDIO_SLAVE",
+      "physical_pin": "12"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO11",
+      "net": "C5_UART_SERVICE_TX",
+      "direction": "o",
+      "controller": "UART0",
+      "physical_pin": "25"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO12",
+      "net": "C5_UART_SERVICE_RX",
+      "direction": "i",
+      "controller": "UART0",
+      "physical_pin": "24"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO13",
+      "net": "C5_USB_DM",
+      "direction": "io",
+      "controller": "USB_SERIAL_JTAG",
+      "physical_pin": "13"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO14",
+      "net": "C5_USB_DP",
+      "direction": "io",
+      "controller": "USB_SERIAL_JTAG",
+      "physical_pin": "14"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO23",
+      "net": "C5_RF_TX_EVIDENCE_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "21"
+    },
+    {
+      "domain": "C5",
+      "endpoint": "c5.GPIO24",
+      "net": "IR_TX_EVIDENCE_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "23"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO0",
+      "net": "NRF0_CSN_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "77"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO1",
+      "net": "NRF0_CE_REQ",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "78"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO2",
+      "net": "NRF0_IRQ_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "79"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO3",
+      "net": "NRF1_CSN_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "80"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO4",
+      "net": "NRF1_CE_REQ",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "1"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO5",
+      "net": "NRF1_IRQ_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "2"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO6",
+      "net": "NRF2_CSN_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "3"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO7",
+      "net": "NRF2_CE_REQ",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "4"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO8",
+      "net": "NRF2_IRQ_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "6"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO9",
+      "net": "CC_CSN_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "7"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO10",
+      "net": "CC_GDO0",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "8"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO11",
+      "net": "CC_GDO2",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "9"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO12",
+      "net": "U214_HOST_BUSY",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "11"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO13",
+      "net": "U214_HOST_IRQ",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "12"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO14",
+      "net": "U214_HOST_RST_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "13"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO15",
+      "net": "NRF_GROUP_PWR_EN",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "14"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO16",
+      "net": "VOICE_UART_TX",
+      "direction": "o",
+      "controller": "UART0",
+      "physical_pin": "16"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO17",
+      "net": "VOICE_UART_RX",
+      "direction": "i",
+      "controller": "UART0",
+      "physical_pin": "17"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO18",
+      "net": "VOICE_PTT_REQ_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "18"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO19",
+      "net": "RP_ALERT_N",
+      "direction": "od",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "19"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO20",
+      "net": "VOICE_AUDIO_ON_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "20"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO21",
+      "net": "PTT_BUTTON_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "21"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO22",
+      "net": "RP_ANY_TX_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "22"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO23",
+      "net": "CC_PWR_EN",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "23"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO24",
+      "net": "S3_RP_IPC_MOSI",
+      "direction": "i",
+      "controller": "SPI1_IPC",
+      "physical_pin": "25"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO25",
+      "net": "S3_RP_IPC_CS_N",
+      "direction": "i",
+      "controller": "SPI1_IPC",
+      "physical_pin": "26"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO26",
+      "net": "S3_RP_IPC_SCK",
+      "direction": "i",
+      "controller": "SPI1_IPC",
+      "physical_pin": "27"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO27",
+      "net": "S3_RP_IPC_MISO",
+      "direction": "o",
+      "controller": "SPI1_IPC",
+      "physical_pin": "28"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO28",
+      "net": "U214_I2C_SDA_IN",
+      "direction": "io",
+      "controller": "I2C0_EXT",
+      "physical_pin": "36"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO29",
+      "net": "U214_I2C_SCL_IN",
+      "direction": "o",
+      "controller": "I2C0_EXT",
+      "physical_pin": "37"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO30",
+      "net": "NRF0_MISO",
+      "direction": "i",
+      "controller": "PIO0_SM0_RF_SPI",
+      "physical_pin": "38"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO31",
+      "net": "NRF0_SCK",
+      "direction": "o",
+      "controller": "PIO0_SM0_RF_SPI",
+      "physical_pin": "39"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO32",
+      "net": "NRF0_MOSI",
+      "direction": "o",
+      "controller": "PIO0_SM0_RF_SPI",
+      "physical_pin": "40"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO33",
+      "net": "NRF1_MISO",
+      "direction": "i",
+      "controller": "PIO0_SM1_RF_SPI",
+      "physical_pin": "42"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO34",
+      "net": "NRF1_SCK",
+      "direction": "o",
+      "controller": "PIO0_SM1_RF_SPI",
+      "physical_pin": "43"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO35",
+      "net": "NRF1_MOSI",
+      "direction": "o",
+      "controller": "PIO0_SM1_RF_SPI",
+      "physical_pin": "44"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO36",
+      "net": "NRF2_MISO",
+      "direction": "i",
+      "controller": "PIO0_SM2_RF_SPI",
+      "physical_pin": "45"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO37",
+      "net": "NRF2_SCK",
+      "direction": "o",
+      "controller": "PIO0_SM2_RF_SPI",
+      "physical_pin": "46"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO38",
+      "net": "NRF2_MOSI",
+      "direction": "o",
+      "controller": "PIO0_SM2_RF_SPI",
+      "physical_pin": "47"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO39",
+      "net": "CC_MISO",
+      "direction": "i",
+      "controller": "PIO0_SM3_RF_SPI",
+      "physical_pin": "48"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO40",
+      "net": "U214_HOST_GPS_TX",
+      "direction": "o",
+      "controller": "UART1",
+      "physical_pin": "49"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO41",
+      "net": "U214_HOST_GPS_RX",
+      "direction": "i",
+      "controller": "UART1",
+      "physical_pin": "52"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO42",
+      "net": "CC_SCK",
+      "direction": "o",
+      "controller": "PIO0_SM3_RF_SPI",
+      "physical_pin": "53"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO43",
+      "net": "CC_MOSI",
+      "direction": "o",
+      "controller": "PIO0_SM3_RF_SPI",
+      "physical_pin": "54"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO44",
+      "net": "U214_HOST_MISO",
+      "direction": "i",
+      "controller": "PIO1_SM0_EXT_SPI",
+      "physical_pin": "55"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO45",
+      "net": "U214_HOST_SCK",
+      "direction": "o",
+      "controller": "PIO1_SM0_EXT_SPI",
+      "physical_pin": "56"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO46",
+      "net": "U214_HOST_MOSI",
+      "direction": "o",
+      "controller": "PIO1_SM0_EXT_SPI",
+      "physical_pin": "57"
+    },
+    {
+      "domain": "RP",
+      "endpoint": "rp.GPIO47",
+      "net": "U214_HOST_NSS_N",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "58"
+    },
+    {
+      "domain": "PD_CONFIG",
+      "endpoint": "pd_controller.I2Ct_SDA",
+      "net": "SYS_I2C_SDA",
+      "direction": "io",
+      "controller": "I2C_TARGET",
+      "physical_pin": "8"
+    },
+    {
+      "domain": "PD_CONFIG",
+      "endpoint": "pd_controller.I2Ct_SCL",
+      "net": "SYS_I2C_SCL",
+      "direction": "i",
+      "controller": "I2C_TARGET",
+      "physical_pin": "9"
+    },
+    {
+      "domain": "PD_CONFIG",
+      "endpoint": "pd_controller.I2Ct_IRQ",
+      "net": "SYS_INT_N",
+      "direction": "od",
+      "controller": "I2C_TARGET",
+      "physical_pin": "10"
+    },
+    {
+      "domain": "PD_CONFIG",
+      "endpoint": "pd_controller.GPIO0",
+      "net": "PD_EEPROM_WP",
+      "direction": "od",
+      "controller": "GPIO",
+      "physical_pin": "5"
+    },
+    {
+      "domain": "PD_CONFIG",
+      "endpoint": "pd_controller.GPIO1",
+      "net": "CHARGE_EN_N",
+      "direction": "od",
+      "controller": "GPIO",
+      "physical_pin": "6"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA0",
+      "net": "SYS_I2C_SDA",
+      "direction": "io",
+      "controller": "I2C_TARGET",
+      "physical_pin": "4"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA2",
+      "net": "PACK_GAUGE_I2C_SCL",
+      "direction": "io",
+      "controller": "BITBANG_I2C",
+      "physical_pin": "8"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA4",
+      "net": "PACK_GAUGE_I2C_SDA",
+      "direction": "io",
+      "controller": "BITBANG_I2C",
+      "physical_pin": "9"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA6",
+      "net": "PACK_FET_HOLD_RELEASE",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "10"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA11",
+      "net": "SYS_I2C_SCL",
+      "direction": "i",
+      "controller": "I2C_TARGET",
+      "physical_pin": "11"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA16",
+      "net": "PACK_PFAIL_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "12"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA17",
+      "net": "PACK_ADMISSION_UART_TX",
+      "direction": "o",
+      "controller": "UART1",
+      "physical_pin": "13"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA18",
+      "net": "PACK_ADMISSION_UART_RX",
+      "direction": "i",
+      "controller": "UART1",
+      "physical_pin": "14"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA22",
+      "net": "PACK_DIAG_TRIGGER",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "17"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA23",
+      "net": "PACK_SYS_INT_REQ",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "18"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA24",
+      "net": "POWER_COMMAND_OFF_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "19"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA25",
+      "net": "PACK_CELL0_ADC",
+      "direction": "i",
+      "controller": "ADC",
+      "physical_pin": "20"
+    },
+    {
+      "domain": "PACK",
+      "endpoint": "pack_admission.PA26",
+      "net": "PACK_STACK_ADC",
+      "direction": "i",
+      "controller": "ADC",
+      "physical_pin": "1"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA0",
+      "net": "SYS_I2C_SDA",
+      "direction": "io",
+      "controller": "I2C_TARGET",
+      "physical_pin": "4"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA2",
+      "net": "SAFETY_EVIDENCE_I2C_SCL",
+      "direction": "io",
+      "controller": "BITBANG_I2C",
+      "physical_pin": "8"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA4",
+      "net": "SAFETY_EVIDENCE_I2C_SDA",
+      "direction": "io",
+      "controller": "BITBANG_I2C",
+      "physical_pin": "9"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA6",
+      "net": "SAFETY_WATCHDOG_WDI",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "10"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA11",
+      "net": "SYS_I2C_SCL",
+      "direction": "i",
+      "controller": "I2C_TARGET",
+      "physical_pin": "11"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA30",
+      "net": "POWER_FAULT_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "3"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA17",
+      "net": "SAFETY_SERVICE_UART_TX",
+      "direction": "o",
+      "controller": "UART1",
+      "physical_pin": "13"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA18",
+      "net": "SAFETY_SERVICE_UART_RX",
+      "direction": "i",
+      "controller": "UART1",
+      "physical_pin": "14"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA19_SWDIO",
+      "net": "SAFETY_SWDIO",
+      "direction": "io",
+      "controller": "SWD",
+      "physical_pin": "15"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA20_SWCLK",
+      "net": "SAFETY_SWCLK",
+      "direction": "i",
+      "controller": "SWD",
+      "physical_pin": "16"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA22",
+      "net": "ANY_TX_AON_N",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "17"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA23",
+      "net": "S3_FAULT_RESET_REQUEST",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "18"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA24",
+      "net": "RUN_EDGE",
+      "direction": "i",
+      "controller": "GPIO_IRQ",
+      "physical_pin": "19"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA25",
+      "net": "SAFETY_FAULT_REQUEST",
+      "direction": "o",
+      "controller": "GPIO",
+      "physical_pin": "20"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA26",
+      "net": "POWER_ZONE_TEMP_ADC",
+      "direction": "i",
+      "controller": "ADC",
+      "physical_pin": "1"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA27",
+      "net": "RF_ZONE_TEMP_ADC",
+      "direction": "i",
+      "controller": "ADC",
+      "physical_pin": "2"
+    },
+    {
+      "domain": "SAFETY",
+      "endpoint": "safety_controller.PA16",
+      "net": "UI_ZONE_TEMP_ADC",
+      "direction": "i",
+      "controller": "ADC",
+      "physical_pin": "12"
+    }
+  ],
+  "corrected_findings": [
+    {
+      "id": "H2.7.4-F01",
+      "finding": "PACK UART allocations used PACK_SERVICE_UART_TX/RX while KiCad, fixture pads and fixed routes used PACK_ADMISSION_UART_TX/RX",
+      "correction": "the two allocation/F2 names now use the established PACK_ADMISSION_UART_TX/RX canonical nets"
+    }
+  ],
+  "open_findings": []
+}

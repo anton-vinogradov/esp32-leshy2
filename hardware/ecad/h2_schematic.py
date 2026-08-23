@@ -46,6 +46,17 @@ FIRMWARE_DOMAINS = {
 }
 
 
+def contact_counts(device: dict) -> tuple[int, int]:
+    """Return logical functions and actual carrier/package lands separately."""
+    logical = len(device.get("contacts", []))
+    physical = device.get("pcb_pad_contract", {}).get(
+        "pad_count", device.get("physical_pcb_contact_count", logical)
+    )
+    if not isinstance(physical, int) or physical < 0:
+        raise ValueError(f"invalid physical PCB contact count for {device.get('mpn')}: {physical}")
+    return logical, physical
+
+
 def sheet_for(instance: str, frame: str) -> str:
     if frame == "display-adapter":
         return "ADP_00_DISPLAY_ADAPTER"
@@ -307,6 +318,7 @@ def build() -> dict:
         sheet = sheet_for(instance, frame)
         project, sheet_board = project_and_board_for_sheet(sheet)
         contacts = device.get("contacts", [])
+        logical_contacts, physical_contacts = contact_counts(device)
         disposition = disposition_for(instance)
         board = (
             "external-mating-product"
@@ -331,7 +343,9 @@ def build() -> dict:
                 "physical_registration": (
                     "h1_dimensioned_body" if physical else "schematic_only_body"
                 ),
-                "contact_count": len(contacts),
+                "contact_count": physical_contacts,
+                "logical_contact_count": logical_contacts,
+                "physical_pcb_contact_count": physical_contacts,
                 "contact_evidence_status": (
                     "registered_exact_contact_map" if contacts else "no_device_contact_map"
                 ),
@@ -360,6 +374,7 @@ def build() -> dict:
 
     for instance, device_key in lora_cap["common_instances"].items():
         device = devices[device_key]
+        logical_contacts, physical_contacts = contact_counts(device)
         sheet = cap_sheet_for(instance)
         project, board = project_and_board_for_sheet(sheet)
         rows.append(
@@ -375,7 +390,9 @@ def build() -> dict:
                 "sheet": sheet,
                 "electrical_disposition": "board_fitted_component",
                 "physical_registration": "accessory_schematic_body",
-                "contact_count": len(device.get("contacts", [])),
+                "contact_count": physical_contacts,
+                "logical_contact_count": logical_contacts,
+                "physical_pcb_contact_count": physical_contacts,
                 "contact_evidence_status": "registered_exact_contact_map",
                 "symbol_source_status": "exact_symbol_mapping_required_during_h2_4",
                 "footprint_source_status": "exact_footprint_mapping_required_during_h2_4",
@@ -390,6 +407,7 @@ def build() -> dict:
     for variant, variant_data in lora_cap["variants"].items():
         device_key = variant_data["module"]
         device = devices[device_key]
+        logical_contacts, physical_contacts = contact_counts(device)
         sheet = cap_sheet_for("variant_module")
         project, board = project_and_board_for_sheet(sheet)
         rows.append(
@@ -405,7 +423,9 @@ def build() -> dict:
                 "sheet": sheet,
                 "electrical_disposition": "board_fitted_component_alternative",
                 "physical_registration": "accessory_variant_schematic_body",
-                "contact_count": len(device.get("contacts", [])),
+                "contact_count": physical_contacts,
+                "logical_contact_count": logical_contacts,
+                "physical_pcb_contact_count": physical_contacts,
                 "contact_evidence_status": "registered_exact_contact_map",
                 "symbol_source_status": "exact_symbol_mapping_required_during_h2_4",
                 "footprint_source_status": "exact_footprint_mapping_required_during_h2_4",

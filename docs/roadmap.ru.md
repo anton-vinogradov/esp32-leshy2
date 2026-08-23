@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.4: схемы display-adapter и опционального LoRa Cap; все RF/power-листы прошли ревью |
+| Актуальная production ECAD-схема | ▶️ H2.8.2: полный проверенный пакет H2 ожидает явной пользовательской приёмки перед H3 |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.5.1 -->
+<!-- current-substep: H2.8.2 -->
 
-**Точный маркер: `H2.5.1`** — независимо проследить каждый источник питания,
-допуск аккумуляторов, зарядку и каждую формируемую шину.
+**Точный маркер: `H2.8.2`** — зафиксировать явную пользовательскую приёмку
+полного пакета H2 либо повторно открыть конкретное замечание перед H3.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -163,12 +163,12 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     test-площадок 1,0 мм, каждая на одной проверенной цепи, без ложного BOM/MPN;
     полная UI-иерархия прошла native KiCad review.
 - ✅ `H2.3` — все листы RF/power PCB реализованы и прошли ревью.
-  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 заполненных дочерних листов, 149 точных
-    межлистовых цепей и 351 явный pin/label; native KiCad принимает
+  - ✅ `H2.3.1` — `RF_00_ROOT`: 12 заполненных дочерних листов, 152 точных
+    межлистовых цепи и 360 явных pin/label; native KiCad принимает
     иерархию без child stub и отложенных fixture labels.
   - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE`: 52 точных компонента, 208 физических
     контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка,
-    девять hierarchy-интерфейсов и десять объяснённых NC; native KiCad пройден.
+    12 hierarchy-интерфейсов и десять объяснённых NC; native KiCad пройден.
   - ✅ `H2.3.3` — `RF_02_PACK_SAFETY_AON`: 61 точный symbol, 198 физических
     контактов корпусов/интерфейсов, полный fail-closed допуск 2S pack, четырнадцать
     hierarchy-интерфейсов и шесть объяснённых NC; native KiCad пройден.
@@ -199,8 +199,8 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 компонентов, 369
     контактов, явные AON supply/bypass, watchdog/latch/reset и пять каналов
     физического RF evidence; native KiCad review пройдено.
-  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 физических test-
-    площадок 1,0 мм, 7 recovery-путей и 6 RF-evidence каналов;
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 52 физических test-
+    площадок 1,0 мм, 13 recovery-путей и 6 RF-evidence каналов;
     полная RF/power-иерархия проходит native KiCad без stub и отложенных fixture labels.
 - `H2.4` — реализовать и проверить схемы display-adapter и LoRa Cap.
   - ✅ `H2.4.1` — `ADP_00_DISPLAY_ADAPTER`: два серийных разъёма, 40 точных
@@ -215,16 +215,26 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     identity EEPROM и pull-up; native KiCad review пройдено.
   - ✅ `H2.4.5` — `CAP_30_TX_EVIDENCE`: comparator, pulse extender и
     active-low open-drain evidence-выход; native KiCad review пройдено.
-- ▶️ **`H2.5` — сейчас:** независимое ревью safety-критичных трактов.
-  - ▶️ **`H2.5.1` — сейчас:** источники, допуск аккумуляторов, зарядка и шины.
-  - ⏳ `H2.5.2` — reset, boot, service и recovery всех процессоров.
-  - ⏳ `H2.5.3` — no-back-power на USB, межплатной и expansion-границах.
-  - ⏳ `H2.5.4` — reset-safe quiet state и изоляция неактивных интерфейсов.
-  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`.
-  - ⏳ `H2.5.6` — сводка findings и закрытие ревью.
-- ⏳ `H2.6` — закрыть ERC и объяснить каждый намеренный no-connect.
-- ⏳ `H2.7` — сверить контакты и цепи схемы с H1, M1 и firmware F2.
-- 🔒 `H2.8` — формальная финальная пользовательская приёмка перед H3.
+- ✅ **`H2.5` — проведено ревью:** независимое ревью safety-критичных трактов.
+  - ✅ `H2.5.1` — источники, допуск аккумуляторов, зарядка и все шины:
+    [проведено ревью](power-architecture.ru.md), включая исправление
+    глобальной аннотации трёх полных KiCad-иерархий.
+  - ✅ `H2.5.2` — reset, boot, service и recovery всех программируемых
+    доменов: [проведено ревью](service-recovery.ru.md), исправлены отсутствовавшие
+    fixture-площадки PD/EEPROM.
+  - ✅ `H2.5.3` — no-back-power на USB, межплатной и expansion-границах:
+    [проведено ревью](interface-isolation.ru.md).
+  - ✅ `H2.5.4` — reset-safe quiet state и изоляция неактивных интерфейсов:
+    [проведено ревью](quiet-state.ru.md).
+  - ✅ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`:
+    [проведено ревью](fault-shutdown.ru.md).
+  - ✅ `H2.5.6` — [сводка findings и закрытие ревью](safety-review.ru.md).
+- ✅ `H2.6` — [native ERC и все намеренные NC проведены ревью](erc-review.ru.md):
+  четыре чистых проекта, 189 физических NC и ни одного пропущенного обоснования.
+- ✅ `H2.7` — [сверка physical, net, M1 и firmware F2 закрыта](hwfw-reconciliation.ru.md).
+- ▶️ **`H2.8` — сейчас:** формальная финальная пользовательская приёмка перед H3.
+  - ✅ `H2.8.1` — [область приёмки и все deferred gates опубликованы](h2-acceptance.ru.md).
+  - ▶️ **`H2.8.2` — сейчас:** зафиксировать явную приёмку либо конкретное замечание.
 
 Машиночитаемый план выполнения —
 [`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Закрытие

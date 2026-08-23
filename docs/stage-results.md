@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.5.1`.
+**Status:** ▶️ current, exact marker `H2.8.2`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -43,9 +43,30 @@ are satisfied.
   content and status.
 - [Complete instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- The complete UI/control PCB, all twelve RF/power child sheets and the passive
-  display adapter, LoRa-Cap root and Cap radio/control sheet are reviewed; the
-  Cap power/identity sheet is current.
+- [Power architecture](power-architecture.md) — final sources, pack path and
+  generated rails; H2.5.1 is reviewed against the complete KiCad netlist.
+- [Programming and recovery](service-recovery.md) — independent USB, DBG10,
+  SWD/UART and fixture paths; H2.5.2 is reviewed across 61 nets.
+- [External-interface isolation](interface-isolation.md) — three USB ports,
+  the interboard boundary and two expansion branches; H2.5.3 is reviewed.
+- [Quiet state](quiet-state.md) — all 13 inactive groups and their hardware
+  boundaries; H2.5.4 is reviewed.
+- [Fault shutdown](fault-shutdown.md) — watchdog, three thermal zones, nine
+  TX-evidence channels and the hardware latch; H2.5.5 is reviewed.
+- [Consolidated safety review](safety-review.md) — H2.5 is closed, five
+  findings are corrected and no paper/ECAD finding remains open.
+- [ERC and NC review](erc-review.md) — all four projects have zero native
+  errors/warnings and all 189 physical NC contacts are justified.
+- [Complete NC register](no-connects.md) — exact symbol, pin and rationale for
+  every deliberately open contact.
+- [End-to-end HW/FW reconciliation](hwfw-reconciliation.md) — H1, 1,026
+  electrical identities, 266 root nets, all M1 contacts and firmware F2 agree.
+- [H2 acceptance package](h2-acceptance.md) — completed scope and every
+  deferred H3/F3/H5/H6/H8 verification gate; only explicit user acceptance remains.
+- The complete UI/control PCB, all twelve RF/power child sheets, the passive
+  display adapter and every LoRa Cap sheet are reviewed. Reset-safe quiet
+  state, fault shutdown, native ERC/NC and end-to-end H1/M1/F2 reconciliation
+  are reviewed. The exact remaining H2 action is formal user acceptance.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   contains 48 exact components, all 81 SC1512-A4 package contacts, the official
   core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit
@@ -88,9 +109,9 @@ are satisfied.
   watchdog/latch/reset and five physical-RF evidence channels; native KiCad
   passes with 22 exact intentional NCs.
 - [`RF_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch)
-  exposes 30 exact 1.0-mm copper pads with no purchased MPN or BOM line. Its
+  exposes 52 exact 1.0-mm copper pads with no purchased MPN or BOM line. Its
   [machine review](../hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json)
-  covers 7 recovery paths, 6 RF-evidence channels, thermal, RUN/FAULT and rail
+  covers 13 recovery paths, 6 RF-evidence channels, thermal, RUN/FAULT and rail
   references; native KiCad passes the complete RF hierarchy with no child
   stubs or deferred fixture labels.
 

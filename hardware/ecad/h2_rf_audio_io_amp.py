@@ -19,6 +19,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import (
@@ -199,7 +200,7 @@ def build() -> tuple[dict[Path, str], dict]:
     )
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         prefix = reference_prefix(row["instance"], row["device_key"])
         ref_counts[prefix] += 1

@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "stage": "H2.5.6",
+  "status": "reviewed_h2_5_independent_safety_paths_closed",
+  "method": "consolidation of five independently regenerated, machine-checkable complete-hierarchy review artifacts",
+  "source_hashes": {
+    "hardware/ecad/generated/H2-REV51-power-paths.json": "1c797f413a7a61d1b8d8870d3edd219d0a1e99eb3231d96739a997cdda885150",
+    "hardware/ecad/generated/H2-REV52-recovery-paths.json": "5fcdcf1e1a7105c6036e3d4a6857eba174cd795665e3086790010435d0218aee",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "eaad252a34918c621c9d35053c3eb25be42e92da470ae801609ff622e0d53a9c",
+    "hardware/ecad/generated/H2-REV54-quiet-state.json": "3e796c0599f95fe3a1cd2bdd3dd06f091b55be3a569aa46331b29e459d3cdaaa",
+    "hardware/ecad/generated/H2-REV55-fault-kill.json": "fe47110708ffe54fed08dfb0bdf6e38be7c81deeefef027f8230de06a23658f7"
+  },
+  "subreviews": [
+    {
+      "stage": "H2.5.1",
+      "scope": "power sources, admission, charging and rails",
+      "artifact": "hardware/ecad/generated/H2-REV51-power-paths.json",
+      "status": "reviewed",
+      "corrected_finding_count": 1
+    },
+    {
+      "stage": "H2.5.2",
+      "scope": "reset, boot, service and recovery",
+      "artifact": "hardware/ecad/generated/H2-REV52-recovery-paths.json",
+      "status": "reviewed",
+      "corrected_finding_count": 1
+    },
+    {
+      "stage": "H2.5.3",
+      "scope": "no-back-power boundaries",
+      "artifact": "hardware/ecad/generated/H2-REV53-no-back-power.json",
+      "status": "reviewed",
+      "corrected_finding_count": 1
+    },
+    {
+      "stage": "H2.5.4",
+      "scope": "quiet state and unused-interface isolation",
+      "artifact": "hardware/ecad/generated/H2-REV54-quiet-state.json",
+      "status": "reviewed",
+      "corrected_finding_count": 1
+    },
+    {
+      "stage": "H2.5.5",
+      "scope": "watchdog, thermal faults and hardware shutdown",
+      "artifact": "hardware/ecad/generated/H2-REV55-fault-kill.json",
+      "status": "reviewed",
+      "corrected_finding_count": 1
+    }
+  ],
+  "corrected_findings": [
+    {
+      "stage": "H2.5.1",
+      "id": "H2.5.1-F01",
+      "severity": "fabrication_blocking",
+      "finding": "child sheets reused local R1/C1/U1-style references, making whole-project flat netlists ambiguous",
+      "correction": "deterministic sheet-scoped reference blocks now produce globally unique references in all three projects",
+      "evidence": "all complete KiCad exports have zero duplicate references and zero annotation warnings"
+    },
+    {
+      "stage": "H2.5.2",
+      "id": "H2.5.2-F01",
+      "severity": "recovery_blocking",
+      "finding": "the reviewed service contract promised PD target-bus and direct EEPROM recovery pads, but RF60 did not instantiate them",
+      "correction": "six BOM-free 1.0-mm internal copper pads now expose SYS_I2C_SDA/SCL/SYS_INT_N and PD_LOCAL_I2C_SDA/SCL/PD_EEPROM_WP",
+      "evidence": "the complete RF hierarchy contains 36 physical test pads, including 13 programming/recovery pads"
+    },
+    {
+      "stage": "H2.5.3",
+      "id": "H2.5.3-F01",
+      "severity": "recovery_observability",
+      "finding": "C5 service VBUS had a physical sense pad while the equivalent RP VBUS observation existed only in the abstract service contract",
+      "correction": "one BOM-free TP_RP_SERVICE_VBUS_SENSE copper pad now completes the symmetric data-only USB boundary",
+      "evidence": "each service VBUS net now contains exactly its connector, 1-MOhm bleeder and one read-only test pad"
+    },
+    {
+      "stage": "H2.5.4",
+      "id": "H2.5.4-F01",
+      "severity": "contract_traceability",
+      "finding": "VOICE_QUIET and VOICE_INTERFACE_QUIET retained obsolete abstract VOICE_PTT_N and VOICE_DOMAIN_EN names",
+      "correction": "the contracts now name the implemented request, safety-gated and module-side PTT nets plus request and safe domain-enable nets",
+      "evidence": "all five voice request/safe/module control nets are present with the required hardware members in the complete RF hierarchy"
+    },
+    {
+      "stage": "H2.5.5",
+      "id": "H2.5.5-F01",
+      "severity": "hil_blocking",
+      "finding": "the safety contract promised watchdog, latch and safe-gate observation points but 15 distinct electrical nodes had no physical copper pad",
+      "correction": "RF60 now contains 52 BOM-free pads; WDO_N uses the shared FAULT_ASSERT_N pad, FAULT_KILL uses its implemented FAULT_LATCH_SENSE_AON name and RP reset uses TP_RP_RESET_N",
+      "evidence": "every normalized safety_contract.test_points identifier is instantiated on UI60 or RF60 and every selected safety net matches the complete KiCad hierarchy"
+    }
+  ],
+  "open_paper_or_ecad_findings": [],
+  "deferred_measured_gates": [
+    {
+      "stage": "H2.5.1",
+      "item": "component-value tolerance, startup/handover and transient simulation in H3"
+    },
+    {
+      "stage": "H2.5.1",
+      "item": "placement, copper current density, thermal spreading and routing in H6"
+    },
+    {
+      "stage": "H2.5.1",
+      "item": "received-cell/holder continuity and physical power HIL in H5/H7/H8"
+    },
+    {
+      "stage": "H2.5.2",
+      "item": "powered-off USB and fixture backfeed proof in H2.5.3"
+    },
+    {
+      "stage": "H2.5.2",
+      "item": "reset-safe inactive-interface proof in H2.5.4"
+    },
+    {
+      "stage": "H2.5.2",
+      "item": "USB signal-integrity and corrupted-image recovery execution in H3/H7/H8"
+    },
+    {
+      "stage": "H2.5.2",
+      "item": "test-pad placement and fixture pitch in H6"
+    },
+    {
+      "stage": "H2.5.3",
+      "item": "powered-off leakage/current measurement with one and three USB hosts in H8"
+    },
+    {
+      "stage": "H2.5.3",
+      "item": "external-source and wrong-accessory fault injection in H8"
+    },
+    {
+      "stage": "H2.5.3",
+      "item": "USB edge/eye, hot-plug transients and expansion brownout simulation in H3/H8"
+    },
+    {
+      "stage": "H2.5.4",
+      "item": "powered-off leakage and rail-discharge timing in H3/H8"
+    },
+    {
+      "stage": "H2.5.4",
+      "item": "no-carrier/no-optical-output and active-receiver desense HIL in H8"
+    },
+    {
+      "stage": "H2.5.4",
+      "item": "DMA/clock spectral measurements and simultaneous SG-N24 full-mix proof in firmware F3/H8"
+    },
+    {
+      "stage": "H2.5.5",
+      "item": "watchdog timing, NTC thresholds/placement and rail-fall timing simulation in H3"
+    },
+    {
+      "stage": "H2.5.5",
+      "item": "fault-only renderer, retained record and lease state-machine execution in firmware F3"
+    },
+    {
+      "stage": "H2.5.5",
+      "item": "open/short/stuck/high-temperature/unauthorized-TX fault injection and visible-screen behavior in H8"
+    }
+  ],
+  "closure": {
+    "result": "H2.5 reviewed",
+    "meaning": "the paper architecture and complete native KiCad hierarchy agree for the selected safety-critical paths",
+    "does_not_mean": "simulation, PCB layout, prototype HIL or production release is complete",
+    "next_substep": "H2.6 — close native ERC and account every intentional no-connect"
+  }
+}

@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, stable_uuid
 
 
@@ -128,7 +129,7 @@ def build() -> tuple[dict[Path, str], dict]:
     endpoints = endpoint_nets(accessory, local_instances)
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     all_contacts = set()
     for row in rows:
         pins = pins_for(row["instance"], devices[row["device_key"]])

@@ -1,0 +1,1576 @@
+{
+  "schema_version": 1,
+  "stage": "H2.6.2",
+  "status": "reviewed_every_intentional_no_connect",
+  "method": "manifest-to-symbol-to-physical-pin-to-coordinate NC-marker reconciliation plus one written rationale per endpoint",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
+    "hardware/ecad/generated/H2-ADP00-display-adapter.json": "c2a2bbe9f348970c7a564f2600e1cb25c5f6a38a30040e20217bf20716ee9024",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "27292856ae51c6930019f0c1b3a2eb3b6dee76f1b53d81764d05c64e07cd99ad",
+    "hardware/ecad/generated/H2-CAP10-radio-control.json": "2efac2984cb41dfdfdaec0d42201f2e0ee870ca12fdcd8360a51a7cebeb682c8",
+    "hardware/ecad/generated/H2-CAP20-power-bus.json": "fafac00c28aaa7e97baff6fb891a1433d46a914bb8779322f1c86de828bf45ae",
+    "hardware/ecad/generated/H2-CAP30-tx-evidence.json": "1920201d779f0f69f3c23b51b3c3ab949326dd02f6192dc701fc0bebe8eee7a6",
+    "hardware/ecad/generated/H2-RF01-usb-pd-charge.json": "bc7b161b95347362ad9b6e4a56e6a205bc8a7563fc84d67fa13f226455330404",
+    "hardware/ecad/generated/H2-RF02-pack-safety-aon.json": "68e34a8c1b65e678a559cdcd685017b9b4a3bbbbae4cd580c586d5449b160b98",
+    "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json": "d98a1db17077eebb001a33b155be857eb4c6ec293e33ffb366053b87542c7638",
+    "hardware/ecad/generated/H2-RF30-rp2354-core-service.json": "bc6ef86b6bcde5d221390f3f1093b0ae3a65160b4745570896573c1b44fc23bd",
+    "hardware/ecad/generated/H2-RF31-nrf24-x3.json": "823c5def2b118bc67aa9b21d06408b9ba049f5c18995388d6b2c801535df4032",
+    "hardware/ecad/generated/H2-RF32-subghz-voice.json": "4df252f979e89bd1da0b71e4b07eef7f0e11611d2bc925c7b5664dbdaa0ede65",
+    "hardware/ecad/generated/H2-RF34-u214-m5-ext.json": "ff0ec1e4fd42e5a82fe9d394a797f0fe5a6c7b02cd49bb51ade63ae8f3253615",
+    "hardware/ecad/generated/H2-RF35-rear-controls.json": "6314223ee8a96a836f80cd0c5483777abdf09c3845fbcc1d1d15f8de5b139c2a",
+    "hardware/ecad/generated/H2-RF36-audio-io-amp.json": "5a48ab982c43581f35de5e50ed363851246e97576db3d49c23c8125855ef3ccb",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "047f5656773010aadf4c9b61e6ecf051464ee2196ac1a681257c408cc9a372bd",
+    "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json": "6598d4f329d05a1c1c9cffcfbc6d2919d77a551cdfa8790be4f412c164565dcf",
+    "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json": "04fd298f97f63b0bb14cf8c52f178e31128cd04aecb1e4ee65f514d9160a6950",
+    "hardware/ecad/generated/H2-UI10-S3-core.json": "4ab9b248292005082a32e87c0137ec943d8cd90b9dc87a2274403903cb1a2873",
+    "hardware/ecad/generated/H2-UI11-display-touch-storage.json": "07375f92da0ede4c018d6d283425dcf4c71b6970c8395b4a13dc352098cc54f4",
+    "hardware/ecad/generated/H2-UI12-controls-indicators.json": "c5e3b4782a6de93725d72e7b5060e88afa76098d69af29c9dfba6de4c6f23b9a",
+    "hardware/ecad/generated/H2-UI13-audio-codec-headset.json": "184d6e157bf6fb5fc34d333a2386bcb95c3b8def7acf988592477deee6a3a9e3",
+    "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json": "ae347b54d8522ad77a9d2b3ee6b57a29726c90a4365233af83e46f41526339ca",
+    "hardware/ecad/generated/H2-UI21-fm-am-receiver.json": "ec3106d7aefdf8bd2309e9d233138bc7f119cb24717330455ae23365e65b2c9f",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "16eb933fb64fc4931ccc492c3621f2fb7946f2ba2bc668dc02f6561a91eb49a2",
+    "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json": "210fef316cfd6fffe553dea78816ec8781dfb9f823371c629143f5da11e36017",
+    "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json": "fd6bc2d333935d64615863f124b27999a35ecb0ebdde3f85abb600e8cbdb730e"
+  },
+  "summary": {
+    "reviewed_sheet_manifests": 26,
+    "nonzero_nc_sheets": 22,
+    "zero_nc_sheets": 4,
+    "intentional_no_connects": 189,
+    "missing_physical_contacts": 0,
+    "missing_kicad_markers": 0,
+    "missing_rationales": 0
+  },
+  "corrected_findings": [
+    {
+      "id": "H2.6.2-F01",
+      "finding": "UI10 counted seven NC contacts but did not publish their exact endpoint names",
+      "correction": "UI10 now emits the same explicit intentional_no_connect_endpoints register as every other populated sheet"
+    }
+  ],
+  "sheets": [
+    {
+      "artifact": "hardware/ecad/generated/H2-ADP00-display-adapter.json",
+      "schematic": "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch",
+      "sheet": "ADP_00_DISPLAY_ADAPTER",
+      "count": 2,
+      "endpoints": [
+        {
+          "endpoint": "display_panel_connector.FITTING_1",
+          "physical_pin": "MP1",
+          "symbol": "ADP00_DISPLAY_PANEL_CONNECTOR",
+          "marker": "present",
+          "rationale": "mechanical hold-down contact has no electrical function"
+        },
+        {
+          "endpoint": "display_panel_connector.FITTING_2",
+          "physical_pin": "MP2",
+          "symbol": "ADP00_DISPLAY_PANEL_CONNECTOR",
+          "marker": "present",
+          "rationale": "mechanical hold-down contact has no electrical function"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-CAP00-root-interface.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch",
+      "sheet": "CAP_00_ROOT",
+      "count": 2,
+      "endpoints": [
+        {
+          "endpoint": "cap_header.PIN_1",
+          "physical_pin": "1",
+          "symbol": "CAP00_CAP_HEADER",
+          "marker": "present",
+          "rationale": "stock U214 GNSS UART contact is deliberately unused by the radio-only Leshy Cap"
+        },
+        {
+          "endpoint": "cap_header.PIN_2",
+          "physical_pin": "2",
+          "symbol": "CAP00_CAP_HEADER",
+          "marker": "present",
+          "rationale": "stock U214 GNSS UART contact is deliberately unused by the radio-only Leshy Cap"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-CAP10-radio-control.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch",
+      "sheet": "CAP_10_RADIO_CONTROL",
+      "count": 6,
+      "endpoints": [
+        {
+          "endpoint": "rf_detector.FLTR",
+          "physical_pin": "4",
+          "symbol": "CAP10_RF_DETECTOR",
+          "marker": "present",
+          "rationale": "optional detector filter pin is left open for the selected fast envelope response"
+        },
+        {
+          "endpoint": "rf_detector.V_DN",
+          "physical_pin": "7",
+          "symbol": "CAP10_RF_DETECTOR",
+          "marker": "present",
+          "rationale": "optional detector output-divider pin is unused for the selected full-scale output"
+        },
+        {
+          "endpoint": "variant_module.DIO3_TCXO",
+          "physical_pin": "11",
+          "symbol": "CAP10_VARIANT_MODULE",
+          "marker": "present",
+          "rationale": "the selected module owns TCXO control internally; the host leaves DIO3 open"
+        },
+        {
+          "endpoint": "variant_module.NC_12",
+          "physical_pin": "12",
+          "symbol": "CAP10_VARIANT_MODULE",
+          "marker": "present",
+          "rationale": "manufacturer NC module pad remains open"
+        },
+        {
+          "endpoint": "variant_module.NC_14",
+          "physical_pin": "14",
+          "symbol": "CAP10_VARIANT_MODULE",
+          "marker": "present",
+          "rationale": "manufacturer NC module pad remains open"
+        },
+        {
+          "endpoint": "variant_module.NC_7",
+          "physical_pin": "7",
+          "symbol": "CAP10_VARIANT_MODULE",
+          "marker": "present",
+          "rationale": "manufacturer NC module pad remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-CAP20-power-bus.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_20_POWER_BUS.kicad_sch",
+      "sheet": "CAP_20_POWER_BUS",
+      "count": 2,
+      "endpoints": [
+        {
+          "endpoint": "identity.NC",
+          "physical_pin": "5",
+          "symbol": "CAP20_IDENTITY",
+          "marker": "present",
+          "rationale": "manufacturer NC package pad remains open"
+        },
+        {
+          "endpoint": "local_regulator.NC",
+          "physical_pin": "4",
+          "symbol": "CAP20_LOCAL_REGULATOR",
+          "marker": "present",
+          "rationale": "manufacturer NC package pad remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-CAP30-tx-evidence.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_30_TX_EVIDENCE.kicad_sch",
+      "sheet": "CAP_30_TX_EVIDENCE",
+      "count": 1,
+      "endpoints": [
+        {
+          "endpoint": "evidence_driver.NC",
+          "physical_pin": "1",
+          "symbol": "CAP30_EVIDENCE_DRIVER",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the open-drain evidence driver remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch",
+      "sheet": "RF_01_USB_PD_CHARGE",
+      "count": 10,
+      "endpoints": [
+        {
+          "endpoint": "nvdc_charger.D_MINUS",
+          "physical_pin": "7",
+          "symbol": "RF01_NVDC_CHARGER",
+          "marker": "present",
+          "rationale": "BQ DPDM detection is disabled and isolated from the protected native S3 USB2 data pair"
+        },
+        {
+          "endpoint": "nvdc_charger.D_PLUS",
+          "physical_pin": "6",
+          "symbol": "RF01_NVDC_CHARGER",
+          "marker": "present",
+          "rationale": "BQ DPDM detection is disabled and isolated from the protected native S3 USB2 data pair"
+        },
+        {
+          "endpoint": "nvdc_charger.QON",
+          "physical_pin": "12",
+          "symbol": "RF01_NVDC_CHARGER",
+          "marker": "present",
+          "rationale": "QON uses its specified internal pull-up; no external system-reset or ship-FET function is claimed"
+        },
+        {
+          "endpoint": "nvdc_charger.STAT",
+          "physical_pin": "1",
+          "symbol": "RF01_NVDC_CHARGER",
+          "marker": "present",
+          "rationale": "unused open-drain STAT is disabled in the charger image; status and faults use INT/I2C"
+        },
+        {
+          "endpoint": "product_usb_connector.A8_SBU1",
+          "physical_pin": "A8",
+          "symbol": "RF01_PRODUCT_USB_CONNECTOR",
+          "marker": "present",
+          "rationale": "the base product implements no Type-C Alt Mode or SBU accessory path"
+        },
+        {
+          "endpoint": "product_usb_connector.B8_SBU2",
+          "physical_pin": "B8",
+          "symbol": "RF01_PRODUCT_USB_CONNECTOR",
+          "marker": "present",
+          "rationale": "the base product implements no Type-C Alt Mode or SBU accessory path"
+        },
+        {
+          "endpoint": "product_usb_protector.NC_16",
+          "physical_pin": "16",
+          "symbol": "RF01_PRODUCT_USB_PROTECTOR",
+          "marker": "present",
+          "rationale": "datasheet NC remains physically unconnected"
+        },
+        {
+          "endpoint": "product_usb_protector.NC_17",
+          "physical_pin": "17",
+          "symbol": "RF01_PRODUCT_USB_PROTECTOR",
+          "marker": "present",
+          "rationale": "datasheet NC remains physically unconnected"
+        },
+        {
+          "endpoint": "product_usb_protector.NC_19",
+          "physical_pin": "19",
+          "symbol": "RF01_PRODUCT_USB_PROTECTOR",
+          "marker": "present",
+          "rationale": "datasheet NC remains physically unconnected"
+        },
+        {
+          "endpoint": "product_usb_protector.NC_20",
+          "physical_pin": "20",
+          "symbol": "RF01_PRODUCT_USB_PROTECTOR",
+          "marker": "present",
+          "rationale": "datasheet NC remains physically unconnected"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch",
+      "sheet": "RF_02_PACK_SAFETY_AON",
+      "count": 6,
+      "endpoints": [
+        {
+          "endpoint": "pack_admission.PA27",
+          "physical_pin": "2",
+          "symbol": "RF02_PACK_ADMISSION",
+          "marker": "present",
+          "rationale": "unused physical DGS20 pin 2 is intentionally open and remains recorded as free GPIO"
+        },
+        {
+          "endpoint": "pack_admission.PA30",
+          "physical_pin": "3",
+          "symbol": "RF02_PACK_ADMISSION",
+          "marker": "present",
+          "rationale": "unused physical DGS20 pin 3 is intentionally open and remains recorded as free GPIO"
+        },
+        {
+          "endpoint": "pack_diag_timer.CH1_Q_N",
+          "physical_pin": "4",
+          "symbol": "RF02_PACK_DIAG_TIMER",
+          "marker": "present",
+          "rationale": "unused push-pull complementary channel-1 output is left open as required"
+        },
+        {
+          "endpoint": "pack_diag_timer.CH2_Q",
+          "physical_pin": "5",
+          "symbol": "RF02_PACK_DIAG_TIMER",
+          "marker": "present",
+          "rationale": "unused push-pull active-high channel-2 output is left open as required"
+        },
+        {
+          "endpoint": "pack_gauge.ZVC",
+          "physical_pin": "5",
+          "symbol": "RF02_PACK_GAUGE",
+          "marker": "present",
+          "rationale": "The product does not implement in-device zero-volt recovery; the datasheet requires ZVC open when unused"
+        },
+        {
+          "endpoint": "pack_system_diode.NC",
+          "physical_pin": "2",
+          "symbol": "RF02_PACK_SYSTEM_DIODE",
+          "marker": "present",
+          "rationale": "the BAT54 SOT-23 center pin is physically not connected and remains explicitly open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch",
+      "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
+      "count": 3,
+      "endpoints": [
+        {
+          "endpoint": "aon_buck.FB_VSET",
+          "physical_pin": "1",
+          "symbol": "RF03_AON_BUCK",
+          "marker": "present",
+          "rationale": "FB/VSET is deliberately left open; the datasheet decodes open or at least 249 kOhm as fixed 3.3 V"
+        },
+        {
+          "endpoint": "ext_efuse.AUXOFF",
+          "physical_pin": "3",
+          "symbol": "RF03_EXT_EFUSE",
+          "marker": "present",
+          "rationale": "unused TPS259470 open-drain auxiliary-output contact is left open; it must never be shorted to ground"
+        },
+        {
+          "endpoint": "ext_evidence_buffer.NC",
+          "physical_pin": "1",
+          "symbol": "RF03_EXT_EVIDENCE_BUFFER",
+          "marker": "present",
+          "rationale": "datasheet no-connect remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch",
+      "sheet": "RF_30_RP2354_CORE_SERVICE",
+      "count": 13,
+      "endpoints": [
+        {
+          "endpoint": "rp.QSPI_SCLK",
+          "physical_pin": "71",
+          "symbol": "RF30_RP",
+          "marker": "present",
+          "rationale": "stacked-flash clock remains package-visible but no secondary external flash is populated"
+        },
+        {
+          "endpoint": "rp.QSPI_SD0",
+          "physical_pin": "72",
+          "symbol": "RF30_RP",
+          "marker": "present",
+          "rationale": "stacked-flash bus remains package-visible but no secondary external flash is populated"
+        },
+        {
+          "endpoint": "rp.QSPI_SD1",
+          "physical_pin": "74",
+          "symbol": "RF30_RP",
+          "marker": "present",
+          "rationale": "stacked-flash bus remains package-visible but no secondary external flash is populated"
+        },
+        {
+          "endpoint": "rp.QSPI_SD2",
+          "physical_pin": "73",
+          "symbol": "RF30_RP",
+          "marker": "present",
+          "rationale": "stacked-flash bus remains package-visible but no secondary external flash is populated"
+        },
+        {
+          "endpoint": "rp.QSPI_SD3",
+          "physical_pin": "70",
+          "symbol": "RF30_RP",
+          "marker": "present",
+          "rationale": "stacked-flash bus remains package-visible but no secondary external flash is populated"
+        },
+        {
+          "endpoint": "rp_dbg_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF30_RP_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "rp_dbg_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF30_RP_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "rp_dbg_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF30_RP_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "rp_dbg_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF30_RP_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "rp_service_usb_connector.A8_SBU1",
+          "physical_pin": "A8",
+          "symbol": "RF30_RP_SERVICE_USB_CONNECTOR",
+          "marker": "present",
+          "rationale": "service port implements no Alt Mode"
+        },
+        {
+          "endpoint": "rp_service_usb_connector.B8_SBU2",
+          "physical_pin": "B8",
+          "symbol": "RF30_RP_SERVICE_USB_CONNECTOR",
+          "marker": "present",
+          "rationale": "service port implements no Alt Mode"
+        },
+        {
+          "endpoint": "rp_service_usb_switch.HSD2_MINUS",
+          "physical_pin": "8",
+          "symbol": "RF30_RP_SERVICE_USB_SWITCH",
+          "marker": "present",
+          "rationale": "no hidden second data destination"
+        },
+        {
+          "endpoint": "rp_service_usb_switch.HSD2_PLUS",
+          "physical_pin": "9",
+          "symbol": "RF30_RP_SERVICE_USB_SWITCH",
+          "marker": "present",
+          "rationale": "no hidden second data destination"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch",
+      "sheet": "RF_31_NRF24_X3",
+      "count": 2,
+      "endpoints": [
+        {
+          "endpoint": "nrf_evidence_hold_diode.NC",
+          "physical_pin": "2",
+          "symbol": "RF31_NRF_EVIDENCE_HOLD_DIODE",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "nrf_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "RF31_NRF_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "SC70 pin 4 is left floating as required"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch",
+      "sheet": "RF_32_SUBGHZ_VOICE",
+      "count": 11,
+      "endpoints": [
+        {
+          "endpoint": "cc_balun.DNC_5",
+          "physical_pin": "5",
+          "symbol": "RF32_CC_BALUN",
+          "marker": "present",
+          "rationale": "datasheet do-not-connect contact remains isolated"
+        },
+        {
+          "endpoint": "cc_balun.DNC_6",
+          "physical_pin": "6",
+          "symbol": "RF32_CC_BALUN",
+          "marker": "present",
+          "rationale": "datasheet do-not-connect contact remains isolated"
+        },
+        {
+          "endpoint": "cc_host_buffer.4Y",
+          "physical_pin": "11",
+          "symbol": "RF32_CC_HOST_BUFFER",
+          "marker": "present",
+          "rationale": "disabled spare output is unconnected"
+        },
+        {
+          "endpoint": "cc_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "RF32_CC_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "SC70 pin 4 is left floating as required"
+        },
+        {
+          "endpoint": "cc_return_buffer.4Y",
+          "physical_pin": "11",
+          "symbol": "RF32_CC_RETURN_BUFFER",
+          "marker": "present",
+          "rationale": "disabled spare output is unconnected"
+        },
+        {
+          "endpoint": "voice.NC_15",
+          "physical_pin": "15",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "module reserved contact remains open"
+        },
+        {
+          "endpoint": "voice.NC_5",
+          "physical_pin": "5",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "module reserved contact remains open"
+        },
+        {
+          "endpoint": "voice.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "module reserved contact remains open"
+        },
+        {
+          "endpoint": "voice.VOXEN",
+          "physical_pin": "4",
+          "symbol": "RF32_VOICE",
+          "marker": "present",
+          "rationale": "standard SA518 leaves VOXEN without function; host-side authorized VOX uses the exact microphone capture path and preserves data TX"
+        },
+        {
+          "endpoint": "voice_hl_driver.NC",
+          "physical_pin": "1",
+          "symbol": "RF32_VOICE_HL_DRIVER",
+          "marker": "present",
+          "rationale": "SC70 no-connect remains open"
+        },
+        {
+          "endpoint": "voice_io_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "RF32_VOICE_IO_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "TPS22919 physical pin 4 remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch",
+      "sheet": "RF_34_U214_M5_EXT",
+      "count": 22,
+      "endpoints": [
+        {
+          "endpoint": "u214_esd_a.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF34_U214_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_a.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF34_U214_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_a.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF34_U214_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_a.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF34_U214_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_b.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF34_U214_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_b.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF34_U214_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_b.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF34_U214_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_b.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF34_U214_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_c.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF34_U214_ESD_C",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_c.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF34_U214_ESD_C",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_c.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF34_U214_ESD_C",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_esd_c.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF34_U214_ESD_C",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "u214_host_buffer_b.2Y",
+          "physical_pin": "6",
+          "symbol": "RF34_U214_HOST_BUFFER_B",
+          "marker": "present",
+          "rationale": "disabled output unconnected"
+        },
+        {
+          "endpoint": "u214_host_buffer_b.3Y",
+          "physical_pin": "8",
+          "symbol": "RF34_U214_HOST_BUFFER_B",
+          "marker": "present",
+          "rationale": "disabled output unconnected"
+        },
+        {
+          "endpoint": "u214_host_buffer_b.4Y",
+          "physical_pin": "11",
+          "symbol": "RF34_U214_HOST_BUFFER_B",
+          "marker": "present",
+          "rationale": "disabled output unconnected"
+        },
+        {
+          "endpoint": "unit_efuse.AUXOFF",
+          "physical_pin": "3",
+          "symbol": "RF34_UNIT_EFUSE",
+          "marker": "present",
+          "rationale": "unused TPS259470 open-drain auxiliary-output contact is left open; it must never be shorted to ground"
+        },
+        {
+          "endpoint": "unit_esd.D2_MINUS",
+          "physical_pin": "5",
+          "symbol": "RF34_UNIT_ESD",
+          "marker": "present",
+          "rationale": "unused ESD channel is not tied to a connector contact"
+        },
+        {
+          "endpoint": "unit_esd.D2_PLUS",
+          "physical_pin": "4",
+          "symbol": "RF34_UNIT_ESD",
+          "marker": "present",
+          "rationale": "unused ESD channel is not tied to a connector contact"
+        },
+        {
+          "endpoint": "unit_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF34_UNIT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "unit_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF34_UNIT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "unit_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF34_UNIT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        },
+        {
+          "endpoint": "unit_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF34_UNIT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the fitted ESD protector remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF35-rear-controls.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch",
+      "sheet": "RF_35_REAR_CONTROLS",
+      "count": 12,
+      "endpoints": [
+        {
+          "endpoint": "encoder_ptt_esd.D2_MINUS",
+          "physical_pin": "5",
+          "symbol": "RF35_ENCODER_PTT_ESD",
+          "marker": "present",
+          "rationale": "fourth ESD signal channel is intentionally unused"
+        },
+        {
+          "endpoint": "encoder_ptt_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF35_ENCODER_PTT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "encoder_ptt_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF35_ENCODER_PTT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "encoder_ptt_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF35_ENCODER_PTT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "encoder_ptt_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF35_ENCODER_PTT_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "rear_control_esd.D1_MINUS",
+          "physical_pin": "2",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "second rear-control ESD channel is intentionally unused"
+        },
+        {
+          "endpoint": "rear_control_esd.D2_MINUS",
+          "physical_pin": "5",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "fourth rear-control ESD channel is intentionally unused"
+        },
+        {
+          "endpoint": "rear_control_esd.D2_PLUS",
+          "physical_pin": "4",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "third rear-control ESD channel is intentionally unused"
+        },
+        {
+          "endpoint": "rear_control_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "rear_control_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "rear_control_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "rear_control_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF35_REAR_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch",
+      "sheet": "RF_36_AUDIO_IO_AMP",
+      "count": 1,
+      "endpoints": [
+        {
+          "endpoint": "speaker_amp.NC",
+          "physical_pin": "2",
+          "symbol": "RF36_SPEAKER_AMP",
+          "marker": "present",
+          "rationale": "U-DFN physical pin 2 remains open; the unnumbered central thermal pad remains electrically unassigned per the manufacturer drawing"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "count": 22,
+      "endpoints": [
+        {
+          "endpoint": "cc_evidence_hold_diode.NC",
+          "physical_pin": "2",
+          "symbol": "RF50_CC_EVIDENCE_HOLD_DIODE",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "det_cc.V_DN",
+          "physical_pin": "7",
+          "symbol": "RF50_DET_CC",
+          "marker": "present",
+          "rationale": "unused controller output remains unconnected"
+        },
+        {
+          "endpoint": "det_nrf0.V_DN",
+          "physical_pin": "7",
+          "symbol": "RF50_DET_NRF0",
+          "marker": "present",
+          "rationale": "controller-mode falling output is intentionally unused"
+        },
+        {
+          "endpoint": "det_nrf1.V_DN",
+          "physical_pin": "7",
+          "symbol": "RF50_DET_NRF1",
+          "marker": "present",
+          "rationale": "controller-mode falling output is intentionally unused"
+        },
+        {
+          "endpoint": "det_nrf2.V_DN",
+          "physical_pin": "7",
+          "symbol": "RF50_DET_NRF2",
+          "marker": "present",
+          "rationale": "controller-mode falling output is intentionally unused"
+        },
+        {
+          "endpoint": "det_voice.V_DN",
+          "physical_pin": "7",
+          "symbol": "RF50_DET_VOICE",
+          "marker": "present",
+          "rationale": "unused controller output remains unconnected"
+        },
+        {
+          "endpoint": "evidence_or_4.K2",
+          "physical_pin": "2",
+          "symbol": "RF50_EVIDENCE_OR_4",
+          "marker": "present",
+          "rationale": "unused second cathode remains open and cannot create a false source"
+        },
+        {
+          "endpoint": "safe_gate_b.3Y",
+          "physical_pin": "8",
+          "symbol": "RF50_SAFE_GATE_B",
+          "marker": "present",
+          "rationale": "unused rear quad-gate output remains unconnected"
+        },
+        {
+          "endpoint": "safe_reset_buffer.NC",
+          "physical_pin": "1",
+          "symbol": "RF50_SAFE_RESET_BUFFER",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safe_reset_sink_b.D2",
+          "physical_pin": "1",
+          "symbol": "RF50_SAFE_RESET_SINK_B",
+          "marker": "present",
+          "rationale": "unused fourth FET drain remains open"
+        },
+        {
+          "endpoint": "safe_run_fault_iso.NC",
+          "physical_pin": "1",
+          "symbol": "RF50_SAFE_RUN_FAULT_ISO",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safe_supervisor.CT",
+          "physical_pin": "4",
+          "symbol": "RF50_SAFE_SUPERVISOR",
+          "marker": "present",
+          "rationale": "open CT selects the documented fixed reset delay; the open contact is explicit rather than omitted"
+        },
+        {
+          "endpoint": "safety_control_esd.D1_MINUS",
+          "physical_pin": "2",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "unused safety-domain ESD channel remains unconnected"
+        },
+        {
+          "endpoint": "safety_control_esd.D2_MINUS",
+          "physical_pin": "5",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "unused safety-domain ESD channel remains unconnected"
+        },
+        {
+          "endpoint": "safety_control_esd.D2_PLUS",
+          "physical_pin": "4",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "unused safety-domain ESD channel remains unconnected"
+        },
+        {
+          "endpoint": "safety_control_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safety_control_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safety_control_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safety_control_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "RF50_SAFETY_CONTROL_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safety_fault_request_iso.NC",
+          "physical_pin": "1",
+          "symbol": "RF50_SAFETY_FAULT_REQUEST_ISO",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "safety_s3_reset_iso.NC",
+          "physical_pin": "1",
+          "symbol": "RF50_SAFETY_S3_RESET_ISO",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "voice_evidence_hold_diode.NC",
+          "physical_pin": "2",
+          "symbol": "RF50_VOICE_EVIDENCE_HOLD_DIODE",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI10-S3-core.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch",
+      "sheet": "UI_10_S3_CORE_MEMORY_BOOT",
+      "count": 7,
+      "endpoints": [
+        {
+          "endpoint": "s3.NC_PSRAM_GPIO35",
+          "physical_pin": "28",
+          "symbol": "UI10_S3",
+          "marker": "present",
+          "rationale": "N16R8 octal PSRAM consumes this package-visible carrier pad internally"
+        },
+        {
+          "endpoint": "s3.NC_PSRAM_GPIO36",
+          "physical_pin": "29",
+          "symbol": "UI10_S3",
+          "marker": "present",
+          "rationale": "N16R8 octal PSRAM consumes this package-visible carrier pad internally"
+        },
+        {
+          "endpoint": "s3.NC_PSRAM_GPIO37",
+          "physical_pin": "30",
+          "symbol": "UI10_S3",
+          "marker": "present",
+          "rationale": "N16R8 octal PSRAM consumes this package-visible carrier pad internally"
+        },
+        {
+          "endpoint": "s3_dbg_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "UI10_S3_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "s3_dbg_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "UI10_S3_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "s3_dbg_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "UI10_S3_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "s3_dbg_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "UI10_S3_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch",
+      "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
+      "count": 33,
+      "endpoints": [
+        {
+          "endpoint": "display.NC_14",
+          "physical_pin": "14",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_25",
+          "physical_pin": "25",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_26",
+          "physical_pin": "26",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_27",
+          "physical_pin": "27",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_28",
+          "physical_pin": "28",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_29",
+          "physical_pin": "29",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_30",
+          "physical_pin": "30",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_31",
+          "physical_pin": "31",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.NC_32",
+          "physical_pin": "32",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "display assembly identifies this physical tail contact as no-connect"
+        },
+        {
+          "endpoint": "display.RD_UNUSED",
+          "physical_pin": "12",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "the selected direct-QSPI display path is write-only and needs no parallel read strobe"
+        },
+        {
+          "endpoint": "display.TE",
+          "physical_pin": "8",
+          "symbol": "UI11_DISPLAY",
+          "marker": "present",
+          "rationale": "tearing-effect output is not required by the bounded direct-QSPI update contract"
+        },
+        {
+          "endpoint": "display_connector.PIN_12",
+          "physical_pin": "12",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_14",
+          "physical_pin": "14",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_25",
+          "physical_pin": "25",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_26",
+          "physical_pin": "26",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_27",
+          "physical_pin": "27",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_28",
+          "physical_pin": "28",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_29",
+          "physical_pin": "29",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_30",
+          "physical_pin": "30",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_31",
+          "physical_pin": "31",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_32",
+          "physical_pin": "32",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open"
+        },
+        {
+          "endpoint": "display_connector.PIN_8",
+          "physical_pin": "8",
+          "symbol": "UI11_DISPLAY_CONNECTOR",
+          "marker": "present",
+          "rationale": "board-side contact deliberately open; S3 GPIO43 remains service UART TX"
+        },
+        {
+          "endpoint": "display_touch_controller.TE",
+          "physical_pin": "TE",
+          "symbol": "UI11_DISPLAY_TOUCH_CONTROLLER",
+          "marker": "present",
+          "rationale": "tearing-effect output is not required by the bounded direct-QSPI update contract"
+        },
+        {
+          "endpoint": "sd_esd_a.NC_10",
+          "physical_pin": "10",
+          "symbol": "UI11_SD_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_a.NC_6",
+          "physical_pin": "6",
+          "symbol": "UI11_SD_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_a.NC_7",
+          "physical_pin": "7",
+          "symbol": "UI11_SD_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_a.NC_9",
+          "physical_pin": "9",
+          "symbol": "UI11_SD_ESD_A",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_b.NC_10",
+          "physical_pin": "10",
+          "symbol": "UI11_SD_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_b.NC_6",
+          "physical_pin": "6",
+          "symbol": "UI11_SD_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_b.NC_7",
+          "physical_pin": "7",
+          "symbol": "UI11_SD_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_esd_b.NC_9",
+          "physical_pin": "9",
+          "symbol": "UI11_SD_ESD_B",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "sd_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "UI11_SD_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "SC70 pin 4 is left floating as required"
+        },
+        {
+          "endpoint": "touch_irq_buffer.NC",
+          "physical_pin": "1",
+          "symbol": "UI11_TOUCH_IRQ_BUFFER",
+          "marker": "present",
+          "rationale": "SC70 pin 1 is intentionally unconnected"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch",
+      "sheet": "UI_12_CONTROLS_INDICATORS",
+      "count": 3,
+      "endpoints": [
+        {
+          "endpoint": "front_function_esd.IO8",
+          "physical_pin": "8",
+          "symbol": "UI12_FRONT_FUNCTION_ESD",
+          "marker": "present",
+          "rationale": "eighth function-key ESD channel is intentionally unused"
+        },
+        {
+          "endpoint": "slow_io_fault_sense_iso.NC",
+          "physical_pin": "1",
+          "symbol": "UI12_SLOW_IO_FAULT_SENSE_ISO",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the selected isolation device remains open"
+        },
+        {
+          "endpoint": "slow_io_s3_evidence_iso.NC",
+          "physical_pin": "1",
+          "symbol": "UI12_SLOW_IO_S3_EVIDENCE_ISO",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the selected isolation device remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch",
+      "sheet": "UI_13_AUDIO_CODEC_HEADSET",
+      "count": 8,
+      "endpoints": [
+        {
+          "endpoint": "codec.MCLK",
+          "physical_pin": "2",
+          "symbol": "UI13_CODEC",
+          "marker": "present",
+          "rationale": "reviewed BCLK-derived-clock mode consumes no hidden S3 contact"
+        },
+        {
+          "endpoint": "codec_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "UI13_CODEC_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "SC70 pin 4 is left floating as required"
+        },
+        {
+          "endpoint": "headphone_esd.D2_MINUS",
+          "physical_pin": "5",
+          "symbol": "UI13_HEADPHONE_ESD",
+          "marker": "present",
+          "rationale": "the fourth independent ESD channel remains an intentional no-connect"
+        },
+        {
+          "endpoint": "headphone_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "UI13_HEADPHONE_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "headphone_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "UI13_HEADPHONE_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "headphone_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "UI13_HEADPHONE_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "headphone_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "UI13_HEADPHONE_ESD",
+          "marker": "present",
+          "rationale": "manufacturer no-connect remains open"
+        },
+        {
+          "endpoint": "headphone_jack.RING1_SWITCH",
+          "physical_pin": "6",
+          "symbol": "UI13_HEADPHONE_JACK",
+          "marker": "present",
+          "rationale": "unused second internal switch remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch",
+      "sheet": "UI_20_C5_RADIO_IR_SERVICE",
+      "count": 18,
+      "endpoints": [
+        {
+          "endpoint": "c5.ANT2",
+          "physical_pin": "31",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "secondary RF pad remains default-disabled and is not a second baseline antenna"
+        },
+        {
+          "endpoint": "c5.GPIO2",
+          "physical_pin": "4",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "unallocated physical C5 GPIO remains open and has no hidden product role"
+        },
+        {
+          "endpoint": "c5.GPIO25",
+          "physical_pin": "26",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "unallocated physical C5 GPIO remains open and has no hidden product role"
+        },
+        {
+          "endpoint": "c5.GPIO26",
+          "physical_pin": "27",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "unallocated physical C5 GPIO remains open and has no hidden product role"
+        },
+        {
+          "endpoint": "c5.GPIO3",
+          "physical_pin": "5",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "unallocated physical C5 GPIO remains open and has no hidden product role"
+        },
+        {
+          "endpoint": "c5.GPIO5",
+          "physical_pin": "16",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "unallocated physical C5 GPIO remains open and has no hidden product role"
+        },
+        {
+          "endpoint": "c5.NC_20",
+          "physical_pin": "20",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "module/package contract marks this physical C5 contact unavailable or no-connect"
+        },
+        {
+          "endpoint": "c5.NC_22",
+          "physical_pin": "22",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "module/package contract marks this physical C5 contact unavailable or no-connect"
+        },
+        {
+          "endpoint": "c5.NC_PSRAM_GPIO15",
+          "physical_pin": "19",
+          "symbol": "UI20_C5",
+          "marker": "present",
+          "rationale": "module/package contract marks this physical C5 contact unavailable or no-connect"
+        },
+        {
+          "endpoint": "c5_dbg_esd.NC_10",
+          "physical_pin": "10",
+          "symbol": "UI20_C5_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "c5_dbg_esd.NC_6",
+          "physical_pin": "6",
+          "symbol": "UI20_C5_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "c5_dbg_esd.NC_7",
+          "physical_pin": "7",
+          "symbol": "UI20_C5_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "c5_dbg_esd.NC_9",
+          "physical_pin": "9",
+          "symbol": "UI20_C5_DBG_ESD",
+          "marker": "present",
+          "rationale": "manufacturer NC remains open"
+        },
+        {
+          "endpoint": "c5_service_usb_connector.A8_SBU1",
+          "physical_pin": "A8_SBU1",
+          "symbol": "UI20_C5_SERVICE_USB_CONNECTOR",
+          "marker": "present",
+          "rationale": "service port implements no Alt Mode"
+        },
+        {
+          "endpoint": "c5_service_usb_connector.B8_SBU2",
+          "physical_pin": "B8_SBU2",
+          "symbol": "UI20_C5_SERVICE_USB_CONNECTOR",
+          "marker": "present",
+          "rationale": "service port implements no Alt Mode"
+        },
+        {
+          "endpoint": "c5_service_usb_switch.HSD2_MINUS",
+          "physical_pin": "8",
+          "symbol": "UI20_C5_SERVICE_USB_SWITCH",
+          "marker": "present",
+          "rationale": "no hidden second data destination"
+        },
+        {
+          "endpoint": "c5_service_usb_switch.HSD2_PLUS",
+          "physical_pin": "9",
+          "symbol": "UI20_C5_SERVICE_USB_SWITCH",
+          "marker": "present",
+          "rationale": "no hidden second data destination"
+        },
+        {
+          "endpoint": "ir_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "UI20_IR_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "manufacturer NC pad of the IR load switch remains open"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch",
+      "sheet": "UI_21_FM_AM_RECEIVER",
+      "count": 4,
+      "endpoints": [
+        {
+          "endpoint": "receiver.GPO1",
+          "physical_pin": "4",
+          "symbol": "UI21_RECEIVER",
+          "marker": "present",
+          "rationale": "unused multifunction output remains open"
+        },
+        {
+          "endpoint": "receiver.NC",
+          "physical_pin": "5",
+          "symbol": "UI21_RECEIVER",
+          "marker": "present",
+          "rationale": "SOIC physical pin 5 remains open"
+        },
+        {
+          "endpoint": "receiver_irq_iso.NC",
+          "physical_pin": "1",
+          "symbol": "UI21_RECEIVER_IRQ_ISO",
+          "marker": "present",
+          "rationale": "SC70 no-connect remains open"
+        },
+        {
+          "endpoint": "receiver_power_switch.NC",
+          "physical_pin": "4",
+          "symbol": "UI21_RECEIVER_POWER_SWITCH",
+          "marker": "present",
+          "rationale": "SC70 pin 4 is left floating as required"
+        }
+      ]
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
+      "schematic": "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch",
+      "sheet": "UI_50_TX_SAFETY_EVIDENCE",
+      "count": 1,
+      "endpoints": [
+        {
+          "endpoint": "evidence_cmp_a.OUT4",
+          "physical_pin": "13",
+          "symbol": "UI50_EVIDENCE_CMP_A",
+          "marker": "present",
+          "rationale": "unused UI comparator open-drain output remains unconnected"
+        }
+      ]
+    }
+  ],
+  "zero_nc_sheet_manifests": [
+    {
+      "artifact": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
+      "sheet": "RF_40_INTERBOARD_M1",
+      "count": 0
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json",
+      "sheet": "RF_60_TESTPOINTS_MANUFACTURING",
+      "count": 0
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
+      "sheet": "UI_40_INTERBOARD_M1",
+      "count": 0
+    },
+    {
+      "artifact": "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json",
+      "sheet": "UI_60_TESTPOINTS_MANUFACTURING",
+      "count": 0
+    }
+  ],
+  "open_findings": []
+}

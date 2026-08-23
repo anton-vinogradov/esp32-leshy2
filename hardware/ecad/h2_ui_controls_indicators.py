@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter
 from h2_ui_display_touch_storage import endpoint_nets, pin_net
 from h2_ui_s3_core import (
     FOOTPRINT_DIR,
@@ -182,7 +183,7 @@ def build() -> tuple[dict[Path, str], dict]:
     endpoints, aliases, no_connect_nets = endpoint_nets(candidate, local_instances)
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         instance = row["instance"]
         device = devices[row["device_key"]]

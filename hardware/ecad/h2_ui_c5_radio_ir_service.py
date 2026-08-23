@@ -20,6 +20,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h2_symbol_library import build as build_symbol_library
+from h2_ui_s3_core import ScopedReferenceCounter, scoped_reference
 from h2_ui_audio_codec_headset import endpoint_nets
 from h2_ui_display_touch_storage import pin_net
 from h2_ui_s3_core import (
@@ -216,7 +217,7 @@ def build() -> tuple[dict[Path, str], dict]:
     endpoints[("c5_factory_ant1", "ANT1")] = "C5_MODULE_RF_50R"
 
     specs = []
-    ref_counts: Counter[str] = Counter()
+    ref_counts: Counter[str] = ScopedReferenceCounter(SHEET_ID)
     for row in rows:
         prefix = reference_prefix(row["instance"], row["device_key"])
         ref_counts[prefix] += 1
@@ -238,7 +239,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "mpn": "ESP32-C5-WROOM-1U-N8R8 factory ANT1 U.FL",
         "role": "non-PCB factory micro-coax assembly boundary",
         "pins": pins_for("c5_factory_ant1", devices["esp32_c5_wroom_1u_n8r8"]),
-        "reference": "X1",
+        "reference": scoped_reference(SHEET_ID, "X1"),
         "footprint": "",
         "on_board": False,
         "in_bom": False,

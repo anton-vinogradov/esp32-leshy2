@@ -1,0 +1,690 @@
+{
+  "schema_version": 1,
+  "stage": "H2.7.3",
+  "status": "reviewed_named_nets_and_m1",
+  "method": "fresh native KiCad XML netlists compared with all root hierarchy names and both physical M1 connector pin maps",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "35314f37fdde39fdadfa6cb9bca0039274d7cd92e60aa744f6a8ec4cadae4e7e",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "d955608e84d27556f4e7be69d53f86e1f8e297355ad1e0171b9c294b6cdd8aff",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "27292856ae51c6930019f0c1b3a2eb3b6dee76f1b53d81764d05c64e07cd99ad",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "16eb933fb64fc4931ccc492c3621f2fb7946f2ba2bc668dc02f6561a91eb49a2",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "047f5656773010aadf4c9b61e6ecf051464ee2196ac1a681257c408cc9a372bd",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"
+  },
+  "summary": {
+    "projects_exported": 3,
+    "root_named_nets": 266,
+    "missing_root_nets": 0,
+    "m1_physical_contacts": 80,
+    "m1_unique_nets": 51,
+    "m1_contact_mismatches": 0,
+    "hidden_ui_rf_crossings": 0
+  },
+  "root_projects": [
+    {
+      "project": "LESHY2-UI",
+      "root_named_nets": 95,
+      "native_netlist_nets": 338,
+      "missing_root_nets": 0
+    },
+    {
+      "project": "LESHY2-RF",
+      "root_named_nets": 157,
+      "native_netlist_nets": 538,
+      "missing_root_nets": 0
+    },
+    {
+      "project": "LESHY2-LORA-CAP-01",
+      "root_named_nets": 14,
+      "native_netlist_nets": 34,
+      "missing_root_nets": 0
+    }
+  ],
+  "m1_contacts": [
+    {
+      "contact": 1,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 2,
+      "net": "RP_ALERT_N",
+      "direction": "RF→UI",
+      "signal_class": "ipc_high_speed",
+      "ui": "RP_ALERT_N",
+      "rf": "RP_ALERT_N"
+    },
+    {
+      "contact": 3,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 4,
+      "net": "S3_RP_IPC_CS_N",
+      "direction": "UI→RF",
+      "signal_class": "ipc_high_speed",
+      "ui": "S3_RP_IPC_CS_N",
+      "rf": "S3_RP_IPC_CS_N"
+    },
+    {
+      "contact": 5,
+      "net": "S3_RP_IPC_SCK",
+      "direction": "UI→RF",
+      "signal_class": "ipc_high_speed",
+      "ui": "S3_RP_IPC_SCK",
+      "rf": "S3_RP_IPC_SCK"
+    },
+    {
+      "contact": 6,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 7,
+      "net": "S3_RP_IPC_MOSI",
+      "direction": "UI→RF",
+      "signal_class": "ipc_high_speed",
+      "ui": "S3_RP_IPC_MOSI",
+      "rf": "S3_RP_IPC_MOSI"
+    },
+    {
+      "contact": 8,
+      "net": "S3_RP_IPC_MISO",
+      "direction": "RF→UI",
+      "signal_class": "ipc_high_speed",
+      "ui": "S3_RP_IPC_MISO",
+      "rf": "S3_RP_IPC_MISO"
+    },
+    {
+      "contact": 9,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 10,
+      "net": "S3_USB_DM",
+      "direction": "bidirectional",
+      "signal_class": "usb2_high_speed",
+      "ui": "S3_USB_DM",
+      "rf": "S3_USB_DM"
+    },
+    {
+      "contact": 11,
+      "net": "S3_USB_DP",
+      "direction": "bidirectional",
+      "signal_class": "usb2_high_speed",
+      "ui": "S3_USB_DP",
+      "rf": "S3_USB_DP"
+    },
+    {
+      "contact": 12,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 13,
+      "net": "SYS_I2C_SDA",
+      "direction": "bidirectional",
+      "signal_class": "control",
+      "ui": "SYS_I2C_SDA",
+      "rf": "SYS_I2C_SDA"
+    },
+    {
+      "contact": 14,
+      "net": "SYS_I2C_SCL",
+      "direction": "bidirectional",
+      "signal_class": "control",
+      "ui": "SYS_I2C_SCL",
+      "rf": "SYS_I2C_SCL"
+    },
+    {
+      "contact": 15,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 16,
+      "net": "SYS_INT_N",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "SYS_INT_N",
+      "rf": "SYS_INT_N"
+    },
+    {
+      "contact": 17,
+      "net": "CC_BAND_V1_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "CC_BAND_V1_REQ",
+      "rf": "CC_BAND_V1_REQ"
+    },
+    {
+      "contact": 18,
+      "net": "CC_BAND_V2_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "CC_BAND_V2_REQ",
+      "rf": "CC_BAND_V2_REQ"
+    },
+    {
+      "contact": 19,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 20,
+      "net": "U214_I2C_READY",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "U214_I2C_READY",
+      "rf": "U214_I2C_READY"
+    },
+    {
+      "contact": 21,
+      "net": "VOICE_DOMAIN_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "VOICE_DOMAIN_REQ",
+      "rf": "VOICE_DOMAIN_REQ"
+    },
+    {
+      "contact": 22,
+      "net": "VOICE_HL_RELEASE_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "VOICE_HL_RELEASE_REQ",
+      "rf": "VOICE_HL_RELEASE_REQ"
+    },
+    {
+      "contact": 23,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 24,
+      "net": "U214_5V_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "U214_5V_REQ",
+      "rf": "U214_5V_REQ"
+    },
+    {
+      "contact": 25,
+      "net": "UNIT_5V_REQ",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "UNIT_5V_REQ",
+      "rf": "UNIT_5V_REQ"
+    },
+    {
+      "contact": 26,
+      "net": "POWER_FAULT_N",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "POWER_FAULT_N",
+      "rf": "POWER_FAULT_N"
+    },
+    {
+      "contact": 27,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 28,
+      "net": "UNIT_READY",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "UNIT_READY",
+      "rf": "UNIT_READY"
+    },
+    {
+      "contact": 29,
+      "net": "EV_N2_NRF0",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N2_NRF0",
+      "rf": "EV_N2_NRF0"
+    },
+    {
+      "contact": 30,
+      "net": "EV_N3_NRF1",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N3_NRF1",
+      "rf": "EV_N3_NRF1"
+    },
+    {
+      "contact": 31,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 32,
+      "net": "RUN_PERMIT",
+      "direction": "RF→UI",
+      "signal_class": "safety",
+      "ui": "RUN_PERMIT",
+      "rf": "RUN_PERMIT"
+    },
+    {
+      "contact": 33,
+      "net": "EV_N4_NRF2",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N4_NRF2",
+      "rf": "EV_N4_NRF2"
+    },
+    {
+      "contact": 34,
+      "net": "RF_RESET_KILL_GATE",
+      "direction": "RF→UI",
+      "signal_class": "safety",
+      "ui": "RF_RESET_KILL_GATE",
+      "rf": "RF_RESET_KILL_GATE"
+    },
+    {
+      "contact": 35,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 36,
+      "net": "EV_N0_S3",
+      "direction": "UI→RF",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N0_S3",
+      "rf": "EV_N0_S3"
+    },
+    {
+      "contact": 37,
+      "net": "EV_N1_C5",
+      "direction": "UI→RF",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N1_C5",
+      "rf": "EV_N1_C5"
+    },
+    {
+      "contact": 38,
+      "net": "EV_N7_IR",
+      "direction": "UI→RF",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N7_IR",
+      "rf": "EV_N7_IR"
+    },
+    {
+      "contact": 39,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 40,
+      "net": "C5_RF_TX_EVIDENCE_N",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "C5_RF_TX_EVIDENCE_N",
+      "rf": "C5_RF_TX_EVIDENCE_N"
+    },
+    {
+      "contact": 41,
+      "net": "IR_TX_EVIDENCE_N",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "IR_TX_EVIDENCE_N",
+      "rf": "IR_TX_EVIDENCE_N"
+    },
+    {
+      "contact": 42,
+      "net": "RX_SA518_AFOUT_ISOLATED",
+      "direction": "RF→UI",
+      "signal_class": "audio",
+      "ui": "RX_SA518_AFOUT_ISOLATED",
+      "rf": "RX_SA518_AFOUT_ISOLATED"
+    },
+    {
+      "contact": 43,
+      "net": "AUDIO_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "AUDIO_GROUND",
+      "rf": "AUDIO_GROUND"
+    },
+    {
+      "contact": 44,
+      "net": "VOICE_MIC_SELECTED_MAIN",
+      "direction": "UI→RF",
+      "signal_class": "audio",
+      "ui": "VOICE_MIC_SELECTED_MAIN",
+      "rf": "VOICE_MIC_SELECTED_MAIN"
+    },
+    {
+      "contact": 45,
+      "net": "AUDIO_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "AUDIO_GROUND",
+      "rf": "AUDIO_GROUND"
+    },
+    {
+      "contact": 46,
+      "net": "SPEAKER_SELECTED_P",
+      "direction": "UI→RF",
+      "signal_class": "audio",
+      "ui": "SPEAKER_SELECTED_P",
+      "rf": "SPEAKER_SELECTED_P"
+    },
+    {
+      "contact": 47,
+      "net": "SPEAKER_SELECTED_N",
+      "direction": "UI→RF",
+      "signal_class": "audio",
+      "ui": "SPEAKER_SELECTED_N",
+      "rf": "SPEAKER_SELECTED_N"
+    },
+    {
+      "contact": 48,
+      "net": "MIC_RAW",
+      "direction": "RF→UI",
+      "signal_class": "audio",
+      "ui": "MIC_RAW",
+      "rf": "MIC_RAW"
+    },
+    {
+      "contact": 49,
+      "net": "AUDIO_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "AUDIO_GROUND",
+      "rf": "AUDIO_GROUND"
+    },
+    {
+      "contact": 50,
+      "net": "UI_ENCODER_PUSH_N",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "UI_ENCODER_PUSH_N",
+      "rf": "UI_ENCODER_PUSH_N"
+    },
+    {
+      "contact": 51,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 52,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 53,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 54,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 55,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 56,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 57,
+      "net": "3V3_MAIN",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "3V3_MAIN",
+      "rf": "3V3_MAIN"
+    },
+    {
+      "contact": 58,
+      "net": "EV_N5_CC",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N5_CC",
+      "rf": "EV_N5_CC"
+    },
+    {
+      "contact": 59,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 60,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 61,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 62,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 63,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 64,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 65,
+      "net": "AON_SAFE_3V3",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "AON_SAFE_3V3",
+      "rf": "AON_SAFE_3V3"
+    },
+    {
+      "contact": 66,
+      "net": "AON_SAFE_3V3",
+      "direction": "rail",
+      "signal_class": "power",
+      "ui": "AON_SAFE_3V3",
+      "rf": "AON_SAFE_3V3"
+    },
+    {
+      "contact": 67,
+      "net": "SAFETY_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "SAFETY_GROUND",
+      "rf": "SAFETY_GROUND"
+    },
+    {
+      "contact": 68,
+      "net": "SAFETY_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "SAFETY_GROUND",
+      "rf": "SAFETY_GROUND"
+    },
+    {
+      "contact": 69,
+      "net": "UNIT_HOST_SIG0",
+      "direction": "bidirectional",
+      "signal_class": "unit_configurable",
+      "ui": "UNIT_HOST_SIG0",
+      "rf": "UNIT_HOST_SIG0"
+    },
+    {
+      "contact": 70,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 71,
+      "net": "UNIT_HOST_SIG1",
+      "direction": "bidirectional",
+      "signal_class": "unit_configurable",
+      "ui": "UNIT_HOST_SIG1",
+      "rf": "UNIT_HOST_SIG1"
+    },
+    {
+      "contact": 72,
+      "net": "POWER_GROUND",
+      "direction": "return",
+      "signal_class": "return",
+      "ui": "POWER_GROUND",
+      "rf": "POWER_GROUND"
+    },
+    {
+      "contact": 73,
+      "net": "ENCODER_A",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "ENCODER_A",
+      "rf": "ENCODER_A"
+    },
+    {
+      "contact": 74,
+      "net": "ENCODER_B",
+      "direction": "RF→UI",
+      "signal_class": "control",
+      "ui": "ENCODER_B",
+      "rf": "ENCODER_B"
+    },
+    {
+      "contact": 75,
+      "net": "S3_RESET_KILL_GATE",
+      "direction": "RF→UI",
+      "signal_class": "safety",
+      "ui": "S3_RESET_KILL_GATE",
+      "rf": "S3_RESET_KILL_GATE"
+    },
+    {
+      "contact": 76,
+      "net": "UI_ZONE_TEMP_ADC",
+      "direction": "UI→RF",
+      "signal_class": "analog",
+      "ui": "UI_ZONE_TEMP_ADC",
+      "rf": "UI_ZONE_TEMP_ADC"
+    },
+    {
+      "contact": 77,
+      "net": "FAULT_LATCH_SENSE_AON",
+      "direction": "RF→UI",
+      "signal_class": "safety",
+      "ui": "FAULT_LATCH_SENSE_AON",
+      "rf": "FAULT_LATCH_SENSE_AON"
+    },
+    {
+      "contact": 78,
+      "net": "SPEAKER_AMP_EN",
+      "direction": "UI→RF",
+      "signal_class": "control",
+      "ui": "SPEAKER_AMP_EN",
+      "rf": "SPEAKER_AMP_EN"
+    },
+    {
+      "contact": 79,
+      "net": "EV_N6_VOICE",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N6_VOICE",
+      "rf": "EV_N6_VOICE"
+    },
+    {
+      "contact": 80,
+      "net": "EV_N8_LORA_EXT",
+      "direction": "RF→UI",
+      "signal_class": "tx_evidence",
+      "ui": "EV_N8_LORA_EXT",
+      "rf": "EV_N8_LORA_EXT"
+    }
+  ],
+  "corrected_findings": [],
+  "open_findings": []
+}

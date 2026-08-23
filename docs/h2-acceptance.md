@@ -1,0 +1,25 @@
+# H2 production ECAD acceptance package
+
+[Русский](h2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Schematics](schematics.md)
+
+H2 is ready for formal user acceptance as the H3 input. Acceptance means agreement with the production-schematic contract, not authorization for KiCad layout, purchasing or fabrication.
+
+## Completed
+
+- four complete native KiCad hierarchies: UI, RF/power, display adapter and LoRa Cap
+- independent power/recovery/isolation/quiet-state/fault-shutdown review
+- zero native ERC findings and 189 physically reconciled intentional NCs
+- 1,028 ledger rows, 1,026 electrical identities, 266 root nets and 80 M1 contacts reconciled
+- 130 controller allocations agree with KiCad; 125 MCU contacts are byte-identical in firmware F2
+
+## Deliberately outside H2
+
+- `H3` — virtual worst-case and timing/transient verification
+- `firmware F3` — build and emulator execution before ordering
+- `H5` — received-sample and land-fit checks
+- `H6` — placement/routing/DRC
+- `H8` — physical bring-up and HIL
+
+**Current marker:** `H2.8.2` — the user must accept H2 as the H3 input or return it with a specific finding.
+
+[Machine package](../hardware/ecad/generated/H2-REV81-acceptance-package.json).

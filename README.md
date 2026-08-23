@@ -118,10 +118,10 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.5.1 -->
+<!-- current-substep: H2.8.2 -->
 
-**Exact marker: `H2.5.1`** — independently trace every power source,
-pack-admission, charge and generated-rail path.
+**Exact marker: `H2.8.2`** — record explicit user acceptance of the complete
+H2 package or reopen a concrete finding before H3.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -151,8 +151,8 @@ pack-admission, charge and generated-rail path.
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 components and 369
     contacts, explicit AON power/bypass, hardware watchdog/latch/reset and five
     independent physical-RF evidence channels; reviewed.
-  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 physical test pads,
-    7 recovery paths and 6 RF-evidence channels; no purchased parts, child
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 52 physical test pads,
+    13 recovery paths and 6 RF-evidence channels; no purchased parts, child
     stubs or deferred fixture labels; reviewed.
 - `H2.4` — display-adapter and LoRa Cap schematics.
   - ✅ `H2.4.1` — passive display adapter: both exact serial connectors, all
@@ -166,16 +166,27 @@ pack-admission, charge and generated-rail path.
     components, 22 contacts and all five interfaces pass native KiCad review.
   - ✅ `H2.4.5` — independent physical-TX evidence: 11 serial components,
     34 contacts and a nominal 13.3-ms hardware pulse; native KiCad review passed.
-- ▶️ **`H2.5` — current:** independent safety-path review.
-  - ▶️ **`H2.5.1` — current:** all power sources, pack admission, charging and rails.
-  - ⏳ `H2.5.2` — reset, boot, service and recovery for all processors.
-  - ⏳ `H2.5.3` — no-back-power across USB, interboard and expansions.
-  - ⏳ `H2.5.4` — reset-safe quiet state and isolation of unused interfaces.
-  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`.
-  - ⏳ `H2.5.6` — consolidate findings and close the review.
-- ⏳ `H2.6` — close ERC and every intentional NC.
-- ⏳ `H2.7` — reconcile schematic contacts with H1, M1 and firmware F2.
-- 🔒 `H2.8` — formal final user acceptance before H3.
+- ✅ **`H2.5` — reviewed:** independent safety-path review.
+  - ✅ `H2.5.1` — all sources, pack admission, charging and generated rails:
+    [reviewed](docs/power-architecture.md).
+  - ✅ `H2.5.2` — reset, boot, service and recovery:
+    [reviewed](docs/service-recovery.md).
+  - ✅ `H2.5.3` — no-back-power across USB, interboard and expansions:
+    [reviewed](docs/interface-isolation.md).
+  - ✅ `H2.5.4` — reset-safe quiet state and isolation of unused interfaces:
+    [reviewed](docs/quiet-state.md).
+  - ✅ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`:
+    [reviewed](docs/fault-shutdown.md).
+  - ✅ `H2.5.6` — [consolidated findings and closed review](docs/safety-review.md).
+- ✅ `H2.6` — [native ERC and all 189 intentional NCs reviewed](docs/erc-review.md):
+  four projects report zero native errors/warnings and every NC has a physical
+  pin, exact marker and written rationale.
+- ✅ `H2.7` — [H1, physical contacts, nets, M1 and firmware F2 reconciled](docs/hwfw-reconciliation.md):
+  1,026 electrical identities, 266 root nets, 80 M1 contacts and 130
+  controller allocations have zero remaining mismatch.
+- ▶️ **`H2.8` — current:** formal final user acceptance before H3.
+  - ✅ `H2.8.1` — [acceptance package and deferred gates prepared](docs/h2-acceptance.md).
+  - ▶️ **`H2.8.2` — current:** record explicit user acceptance or a specific finding.
 
 The exact machine-readable plan is
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Closing each

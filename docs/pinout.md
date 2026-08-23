@@ -146,8 +146,8 @@ This page is generated from the same device and net map used by the electrical c
 | `PA6` | `PACK_FET_HOLD_RELEASE` | `o` | `GPIO` | pack_hold.G2<br>pack_hold_release_pulldown.END_1 |
 | `PA11` | `SYS_I2C_SCL` | `i` | `I2C_TARGET` | s3.GPIO2 |
 | `PA16` | `PACK_PFAIL_N` | `i` | `GPIO_IRQ` | pack_status_buffer.D1<br>pack_pfail_pullup.END_2 |
-| `PA17` | `PACK_SERVICE_UART_TX` | `o` | `UART1` | abstract:pack service fixture |
-| `PA18` | `PACK_SERVICE_UART_RX` | `i` | `UART1` | abstract:pack service fixture |
+| `PA17` | `PACK_ADMISSION_UART_TX` | `o` | `UART1` | abstract:pack service fixture |
+| `PA18` | `PACK_ADMISSION_UART_RX` | `i` | `UART1` | abstract:pack service fixture |
 | `PA22` | `PACK_DIAG_TRIGGER` | `o` | `GPIO` | pack_diag_timer.CH1_T<br>pack_diag_trigger_pulldown.END_1 |
 | `PA23` | `PACK_SYS_INT_REQ` | `o` | `GPIO` | pack_status_buffer.G2<br>pack_irq_gate_pulldown.END_1 |
 | `PA24` | `POWER_COMMAND_OFF_N` | `i` | `GPIO_IRQ` | power_command_pullup.END_2<br>power_command_filter.END_1<br>power_command_switch.THROW_B |

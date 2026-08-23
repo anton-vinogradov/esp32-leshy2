@@ -1,0 +1,567 @@
+{
+  "schema_version": 1,
+  "stage": "H2.5.1",
+  "status": "reviewed_power_sources_admission_charge_and_rails",
+  "method": "fresh KiCad XML netlist export of every complete hierarchy plus exact RF power-net membership comparison",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"
+  },
+  "hierarchy_exports": {
+    "LESHY2-UI": {
+      "component_count": 387,
+      "unique_reference_count": 387,
+      "duplicate_references": [],
+      "net_count": 338,
+      "annotation_warnings": 0
+    },
+    "LESHY2-RF": {
+      "component_count": 678,
+      "unique_reference_count": 678,
+      "duplicate_references": [],
+      "net_count": 538,
+      "annotation_warnings": 0
+    },
+    "LESHY2-LORA-CAP-01": {
+      "component_count": 27,
+      "unique_reference_count": 27,
+      "duplicate_references": [],
+      "net_count": 34,
+      "annotation_warnings": 0
+    }
+  },
+  "corrected_findings": [
+    {
+      "id": "H2.5.1-F01",
+      "severity": "fabrication_blocking",
+      "finding": "child sheets reused local R1/C1/U1-style references, making whole-project flat netlists ambiguous",
+      "correction": "deterministic sheet-scoped reference blocks now produce globally unique references in all three projects",
+      "evidence": "all complete KiCad exports have zero duplicate references and zero annotation warnings"
+    }
+  ],
+  "reviewed_nets": [
+    {
+      "net": "USB_C_VBUS_RAW",
+      "status": "reviewed",
+      "component_count": 4,
+      "instances": [
+        "pd_controller",
+        "pd_vbus_cap",
+        "pd_vbus_tvs",
+        "product_usb_connector"
+      ]
+    },
+    {
+      "net": "PD_NEGOTIATED_VBUS",
+      "status": "reviewed",
+      "component_count": 9,
+      "instances": [
+        "charger_vbus_cap0",
+        "charger_vbus_cap1",
+        "charger_vbus_hf_cap",
+        "nvdc_charger",
+        "pd_controller",
+        "pd_pphv_cap0",
+        "pd_pphv_cap1",
+        "pd_pphv_cap2",
+        "pd_pphv_cap3"
+      ]
+    },
+    {
+      "net": "PACK_SLOT0_POSITIVE_RAW",
+      "status": "reviewed",
+      "component_count": 3,
+      "instances": [
+        "pack_cell0",
+        "pack_fuse0",
+        "pack_holder"
+      ]
+    },
+    {
+      "net": "PACK_SLOT1_POSITIVE_RAW",
+      "status": "reviewed",
+      "component_count": 3,
+      "instances": [
+        "pack_cell1",
+        "pack_fuse1",
+        "pack_holder"
+      ]
+    },
+    {
+      "net": "PACK_2S_MIDPOINT",
+      "status": "reviewed",
+      "component_count": 5,
+      "instances": [
+        "pack_cell1",
+        "pack_cell1_rbal",
+        "pack_fuse0",
+        "pack_holder",
+        "pack_mid_adc_top0"
+      ]
+    },
+    {
+      "net": "BATTERY_STACK_POSITIVE",
+      "status": "reviewed",
+      "component_count": 8,
+      "instances": [
+        "pack_batts_rbal",
+        "pack_chg_gate_cap",
+        "pack_diag_res0",
+        "pack_diag_res1",
+        "pack_fuse1",
+        "pack_in_res",
+        "pack_power_fet",
+        "pack_stack_adc_top0"
+      ]
+    },
+    {
+      "net": "PROTECTED_PACK_POSITIVE",
+      "status": "reviewed",
+      "component_count": 7,
+      "instances": [
+        "charger_bat_cap0",
+        "charger_bat_cap1",
+        "charger_batp_res",
+        "nvdc_charger",
+        "pack_dis_gate_cap",
+        "pack_pckp_res",
+        "pack_power_fet"
+      ]
+    },
+    {
+      "net": "NVDC_SYS",
+      "status": "reviewed",
+      "component_count": 18,
+      "instances": [
+        "aon_buck",
+        "aon_input_cap",
+        "charger_sys_cap0",
+        "charger_sys_cap1",
+        "charger_sys_cap2",
+        "charger_sys_cap3",
+        "charger_sys_cap4",
+        "charger_sys_hf_cap",
+        "ext_buck",
+        "ext_buck_hf_input_cap",
+        "ext_buck_input_cap",
+        "main_buck",
+        "main_hf_input_cap",
+        "main_input_cap",
+        "nvdc_charger",
+        "voice_buck",
+        "voice_hf_input_cap",
+        "voice_input_cap"
+      ]
+    },
+    {
+      "net": "AON_RAW_3V3",
+      "status": "reviewed",
+      "component_count": 6,
+      "instances": [
+        "aon_buck",
+        "aon_efuse",
+        "aon_efuse_input_cap",
+        "aon_efuse_ovlo_top",
+        "aon_inductor",
+        "aon_output_cap"
+      ]
+    },
+    {
+      "net": "AON_SAFE_3V3",
+      "status": "reviewed",
+      "component_count": 86,
+      "instances": [
+        "TP_AON_SAFE_3V3",
+        "any_tx_aon_pullup",
+        "aon_efuse",
+        "aon_efuse_output_cap",
+        "aon_pg_pullup",
+        "cc_detector_bypass",
+        "cc_evidence_output_pullup",
+        "cc_evidence_threshold_top",
+        "det_cc",
+        "det_nrf0",
+        "det_nrf1",
+        "det_nrf2",
+        "det_voice",
+        "evidence_cmp_b",
+        "evidence_cmp_b_bypass",
+        "evidence_cmp_voice",
+        "evidence_cmp_voice_bypass",
+        "evidence_main_isolator",
+        "evidence_main_isolator_bypass",
+        "evidence_mask",
+        "evidence_mask_bypass",
+        "evidence_mask_scl_pullup",
+        "evidence_mask_sda_pullup",
+        "ext_branch_gate",
+        "ext_branch_gate_bypass",
+        "ext_evidence_buffer",
+        "ext_evidence_buffer_bypass",
+        "ext_evidence_input_pullup",
+        "ext_evidence_output_pullup",
+        "ext_request_or",
+        "ext_request_or_bypass",
+        "fault_assert_pullup",
+        "m1_rf_receptacle",
+        "nrf0_detector_bypass",
+        "nrf0_evidence_output_pullup",
+        "nrf0_evidence_threshold_top",
+        "nrf1_detector_bypass",
+        "nrf1_evidence_output_pullup",
+        "nrf1_evidence_threshold_top",
+        "nrf2_detector_bypass",
+        "nrf2_evidence_output_pullup",
+        "nrf2_evidence_threshold_top",
+        "pd_controller",
+        "pd_vin_cap",
+        "power_zone_temp_pullup",
+        "rf_zone_temp_pullup",
+        "run_loop_pullup",
+        "safe_conditioner",
+        "safe_conditioner_bypass",
+        "safe_gate_a",
+        "safe_gate_a_bypass",
+        "safe_gate_b",
+        "safe_gate_b_bypass",
+        "safe_latch",
+        "safe_latch_bypass",
+        "safe_por_pullup",
+        "safe_ptt_or",
+        "safe_ptt_or_bypass",
+        "safe_reset_buffer",
+        "safe_reset_buffer_bypass",
+        "safe_run_fault_iso",
+        "safe_run_fault_iso_bypass",
+        "safe_supervisor",
+        "safe_supervisor_bypass",
+        "safety_controller",
+        "safety_controller_bulk",
+        "safety_controller_bypass",
+        "safety_controller_reset_pullup",
+        "safety_fault_request_iso",
+        "safety_fault_request_iso_bypass",
+        "safety_s3_reset_iso",
+        "safety_s3_reset_iso_bypass",
+        "safety_watchdog",
+        "safety_watchdog_bypass",
+        "safety_watchdog_mr_pullup",
+        "safety_watchdog_wdo_pullup",
+        "u214_supervisor",
+        "u214_supervisor_bypass",
+        "unit_supervisor",
+        "unit_supervisor_bypass",
+        "voice_detector_bypass",
+        "voice_evidence_output_pullup",
+        "voice_evidence_threshold_top",
+        "voice_supervisor",
+        "voice_supervisor_bypass",
+        "voice_supervisor_pullup"
+      ]
+    },
+    {
+      "net": "MAIN_RAW_3V3",
+      "status": "reviewed",
+      "component_count": 7,
+      "instances": [
+        "main_efuse",
+        "main_efuse_ovlo_top",
+        "main_fb_top",
+        "main_ff_cap",
+        "main_inductor",
+        "main_output_cap0",
+        "main_output_cap1"
+      ]
+    },
+    {
+      "net": "3V3_MAIN",
+      "status": "reviewed",
+      "component_count": 65,
+      "instances": [
+        "TP_3V3_MAIN",
+        "cc_host_csn_pullup",
+        "cc_power_input_cap",
+        "cc_power_switch",
+        "ext_pg_pullup",
+        "m1_rf_receptacle",
+        "main_efuse",
+        "main_efuse_output_cap",
+        "main_efuse_pg_top",
+        "nrf0_host_csn_pullup",
+        "nrf0_host_irq_pullup",
+        "nrf1_host_csn_pullup",
+        "nrf1_host_irq_pullup",
+        "nrf2_host_csn_pullup",
+        "nrf2_host_irq_pullup",
+        "nrf_power_input_cap",
+        "nrf_power_switch",
+        "pack_system_diode",
+        "power_fault_pullup",
+        "ptt_pullup",
+        "rp",
+        "rp_adc_avdd_bypass",
+        "rp_any_tx_main_pullup",
+        "rp_boot_pullup",
+        "rp_dbg_id1_strap",
+        "rp_dbg_vtref_series",
+        "rp_iovdd15_bypass",
+        "rp_iovdd24_bypass",
+        "rp_iovdd29_bypass",
+        "rp_iovdd41_bypass",
+        "rp_iovdd50_bypass",
+        "rp_iovdd5_bypass",
+        "rp_iovdd60_bypass",
+        "rp_iovdd76_bypass",
+        "rp_qspi_iovdd_bypass",
+        "rp_reset_pullup",
+        "rp_service_usb_switch",
+        "rp_service_usb_switch_bypass",
+        "rp_usb_otp_vdd_bypass",
+        "rp_vreg_avdd_filter_res",
+        "rp_vreg_vin_bulk",
+        "safe_reset_gate_pullup",
+        "speaker_amp",
+        "speaker_amp_bulk_cap",
+        "speaker_amp_input_cap",
+        "u214_host_buffer_a",
+        "u214_host_buffer_a_bypass",
+        "u214_host_buffer_b",
+        "u214_host_buffer_b_bypass",
+        "u214_i2c_host_scl_pullup",
+        "u214_i2c_host_sda_pullup",
+        "u214_i2c_iso",
+        "u214_i2c_iso_bypass",
+        "u214_return_buffer",
+        "u214_return_buffer_bypass",
+        "u214_supervisor_pullup",
+        "unit_signal_iso",
+        "unit_signal_iso_vcca_bypass",
+        "unit_signal_iso_vccb_bypass",
+        "unit_supervisor_pullup",
+        "voice_hl_driver",
+        "voice_hl_driver_bypass",
+        "voice_io_power_input_cap",
+        "voice_io_power_switch",
+        "voice_pg_pullup"
+      ]
+    },
+    {
+      "net": "VVOICE_RAW_4V",
+      "status": "reviewed",
+      "component_count": 7,
+      "instances": [
+        "voice_efuse",
+        "voice_efuse_ovlo_top",
+        "voice_fb_top",
+        "voice_ff_cap",
+        "voice_inductor",
+        "voice_output_cap0",
+        "voice_output_cap1"
+      ]
+    },
+    {
+      "net": "VVOICE_4V",
+      "status": "reviewed",
+      "component_count": 5,
+      "instances": [
+        "voice",
+        "voice_efuse",
+        "voice_efuse_output_cap",
+        "voice_efuse_pg_top",
+        "voice_supervisor_sense_top"
+      ]
+    },
+    {
+      "net": "5V_EXT_PREPROTECT",
+      "status": "reviewed",
+      "component_count": 11,
+      "instances": [
+        "ext_buck_fb_top",
+        "ext_buck_ff_cap",
+        "ext_buck_output_cap0",
+        "ext_buck_output_cap1",
+        "ext_efuse",
+        "ext_inductor",
+        "ext_input_cap",
+        "ext_ovlo_top",
+        "unit_efuse",
+        "unit_input_cap",
+        "unit_ovlo_top"
+      ]
+    },
+    {
+      "net": "5V_U214_PROTECTED",
+      "status": "reviewed",
+      "component_count": 6,
+      "instances": [
+        "ext_bleeder",
+        "ext_efuse",
+        "ext_output_cap",
+        "u214",
+        "u214_connector",
+        "u214_supervisor_sense_top"
+      ]
+    },
+    {
+      "net": "5V_UNIT_PROTECTED",
+      "status": "reviewed",
+      "component_count": 5,
+      "instances": [
+        "unit_bleeder",
+        "unit_connector",
+        "unit_efuse",
+        "unit_output_cap",
+        "unit_supervisor_sense_top"
+      ]
+    }
+  ],
+  "critical_components": [
+    {
+      "instance": "product_usb_connector",
+      "reference": "J1001",
+      "mpn": "JAE DX07S016JA1R1500",
+      "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500"
+    },
+    {
+      "instance": "product_usb_protector",
+      "reference": "U1001",
+      "mpn": "Texas Instruments TPD4S201RUKR",
+      "footprint": "Package_DFN_QFN:Texas_RUK0020B_WQFN-20-1EP_3x3mm_P0.4mm_EP1.7x1.7mm"
+    },
+    {
+      "instance": "pd_controller",
+      "reference": "U1002",
+      "mpn": "Texas Instruments TPS25751DREFR",
+      "footprint": "Package_DFN_QFN:Texas_REF0038A_WQFN-38-2EP_6x4mm_P0.4"
+    },
+    {
+      "instance": "nvdc_charger",
+      "reference": "U1004",
+      "mpn": "Texas Instruments BQ25798RQMR",
+      "footprint": "Package_DFN_QFN:Texas_RQM0029A_VQFN-29_4x4mm_P0.4mm"
+    },
+    {
+      "instance": "pack_holder",
+      "reference": "BT2001",
+      "mpn": "Keystone Electronics 1048P",
+      "footprint": "Leshy2:Keystone-1048P"
+    },
+    {
+      "instance": "pack_fuse0",
+      "reference": "F2001",
+      "mpn": "Littelfuse 0451005.MRL",
+      "footprint": "Leshy2:0451005.MRL"
+    },
+    {
+      "instance": "pack_fuse1",
+      "reference": "F2002",
+      "mpn": "Littelfuse 0451005.MRL",
+      "footprint": "Leshy2:0451005.MRL"
+    },
+    {
+      "instance": "pack_gauge",
+      "reference": "U2001",
+      "mpn": "Analog Devices MAX17320G20+T",
+      "footprint": "Package_DFN_QFN:TQFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm"
+    },
+    {
+      "instance": "pack_admission",
+      "reference": "U2002",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "footprint": "Package_SO:Texas_DGS0020A_TSSOP-20_3x5.1mm_P0.5mm"
+    },
+    {
+      "instance": "pack_power_fet",
+      "reference": "U2003",
+      "mpn": "Texas Instruments CSD87313DMST",
+      "footprint": "Leshy2:CSD87313DMST"
+    },
+    {
+      "instance": "pack_shunt",
+      "reference": "R2001",
+      "mpn": "Vishay WSL25125L000FEA",
+      "footprint": "Resistor_SMD:R_2512_6332Metric"
+    },
+    {
+      "instance": "aon_buck",
+      "reference": "U3003",
+      "mpn": "Texas Instruments TPS629203DRLR",
+      "footprint": "Leshy2:TI-DRL0008A-SOT-5X3-8"
+    },
+    {
+      "instance": "aon_efuse",
+      "reference": "U3004",
+      "mpn": "Texas Instruments TPS25961DRVR",
+      "footprint": "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm"
+    },
+    {
+      "instance": "main_buck",
+      "reference": "U3005",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6"
+    },
+    {
+      "instance": "main_efuse",
+      "reference": "U3006",
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
+    },
+    {
+      "instance": "voice_buck",
+      "reference": "U32015",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6"
+    },
+    {
+      "instance": "voice_efuse",
+      "reference": "U32016",
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
+    },
+    {
+      "instance": "ext_buck",
+      "reference": "U3007",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-N6_DRL-6"
+    },
+    {
+      "instance": "ext_efuse",
+      "reference": "U3008",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
+    },
+    {
+      "instance": "unit_efuse",
+      "reference": "U34009",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10"
+    }
+  ],
+  "power_contract": {
+    "input": "one sink-only S3 USB-C port; 5 V fallback, 9 V/3 A and 15 V/2 A; 30 W maximum",
+    "battery": "two individually removable protected 18650 cells in supervised 2S; 6.0–8.4 V",
+    "charge_path": "USB_C_VBUS_RAW -> TPS25751D PPHV -> BQ25798 -> NVDC_SYS / protected 2S pack",
+    "pack_path": "two fused cell slots -> MAX17320 + MSPM0 admission -> back-to-back FET -> PROTECTED_PACK_POSITIVE",
+    "rails": [
+      "NVDC_SYS -> TPS629203 -> TPS25961 -> AON_SAFE_3V3",
+      "NVDC_SYS -> TPS564252 -> TPS25974 -> 3V3_MAIN",
+      "NVDC_SYS -> TPS564252 -> TPS25974 -> VVOICE_4V",
+      "NVDC_SYS -> TPS564252 -> two independent TPS259470 branches -> protected U214 and M5 Unit 5 V"
+    ]
+  },
+  "review_boundary": {
+    "complete": [
+      "all three complete hierarchies export without duplicate or unannotated references",
+      "the USB sink, negotiated input, charger, 2S pack and every raw/protected rail are traced in the actual RF netlist",
+      "every critical active/protection component has an exact MPN and footprint"
+    ],
+    "deferred": [
+      "component-value tolerance, startup/handover and transient simulation in H3",
+      "placement, copper current density, thermal spreading and routing in H6",
+      "received-cell/holder continuity and physical power HIL in H5/H7/H8"
+    ]
+  }
+}

@@ -10,10 +10,10 @@
     "hardware/ecad/H2-sheet-contract.json"
   ],
   "source_sha256": {
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
-    "hardware/ecad/H2-sheet-contract.json": "6adabe1a49ae9bcc7171a46e1de11cf68e240dd4e13226f0896998c6ae8fc60a"
+    "hardware/ecad/H2-sheet-contract.json": "3253e27a7303ee58625ba87b0f2d84627c169535d2589dc530ea5197ccc2d9ad"
   },
   "integration_contract": {
     "schema": 2,
@@ -1560,7 +1560,7 @@
           {
             "instance": "pack_admission",
             "contact": "PA17",
-            "net": "PACK_SERVICE_UART_TX",
+            "net": "PACK_ADMISSION_UART_TX",
             "direction": "o",
             "controller": "UART1",
             "peers": [
@@ -1570,7 +1570,7 @@
           {
             "instance": "pack_admission",
             "contact": "PA18",
-            "net": "PACK_SERVICE_UART_RX",
+            "net": "PACK_ADMISSION_UART_RX",
             "direction": "i",
             "controller": "UART1",
             "peers": [

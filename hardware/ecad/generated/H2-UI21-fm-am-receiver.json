@@ -5,10 +5,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_21_FM_AM_RECEIVER",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "b839030e93bc26dc9fbf40875c9bb16d57580c426ccc4f44d318b938550fd6c2",
-    "hardware/architecture/devices.json": "c3d7163ccaf66f1cfe90f66b862bcd6c351161bd0281143493cbf99831e163ff",
-    "hardware/ecad/generated/H2-instance-ledger.json": "58afac96a0bc52fce8a51182d78590e075b771573be6cea1a47e1ddb4adf3a65",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "c387625ab7fb9eaf3168d14d5de32708a98c52c85fa3f12c0d14e47a38054fba"
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/architecture/devices.json": "ea502da54810fa8ad6135216f6c9aae45b3bb21eda7fbde6a9f27ab5c05a2e20",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "35314f37fdde39fdadfa6cb9bca0039274d7cd92e60aa744f6a8ec4cadae4e7e"
   },
   "summary": {
     "ledger_instances": 32,
@@ -25,7 +25,7 @@
     {
       "instance": "receiver_fmsw_external_sma",
       "symbol_uuid": "afb696cc-eb5d-5aec-8281-cb14fb519330",
-      "reference": "J1",
+      "reference": "J21001",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
       "pin_count": 5,
@@ -34,7 +34,7 @@
     {
       "instance": "receiver_amlw_external_sma",
       "symbol_uuid": "c1d4d1b5-713f-550d-9419-61b0ff31db94",
-      "reference": "J2",
+      "reference": "J21002",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "footprint": "Leshy2:RFPC-SMA31-FN-175-A",
       "pin_count": 5,
@@ -43,7 +43,7 @@
     {
       "instance": "receiver",
       "symbol_uuid": "fa732f1e-51cb-5e46-a615-396d45358f40",
-      "reference": "U1",
+      "reference": "U21001",
       "mpn": "Si4732-A10-GSR",
       "footprint": "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm",
       "pin_count": 16,
@@ -52,7 +52,7 @@
     {
       "instance": "si_audio_l_coupling",
       "symbol_uuid": "db172187-55e1-58f9-8287-c41462275c74",
-      "reference": "C1",
+      "reference": "C21001",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -61,7 +61,7 @@
     {
       "instance": "si_audio_r_coupling",
       "symbol_uuid": "6d4d7f23-a22e-5c38-9305-d6486fc8b125",
-      "reference": "C2",
+      "reference": "C21002",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -70,7 +70,7 @@
     {
       "instance": "si_audio_l_sum",
       "symbol_uuid": "4a6258ad-122e-508c-9884-bbe36e802427",
-      "reference": "R1",
+      "reference": "R21001",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -79,7 +79,7 @@
     {
       "instance": "si_audio_r_sum",
       "symbol_uuid": "41bc0962-24ce-5b0d-8f8e-e4f470b41db2",
-      "reference": "R2",
+      "reference": "R21002",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -88,7 +88,7 @@
     {
       "instance": "si_audio_sum_bias",
       "symbol_uuid": "2f9a53d5-482f-5271-a653-d32d17dd9cb9",
-      "reference": "R3",
+      "reference": "R21003",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -97,7 +97,7 @@
     {
       "instance": "receiver_power_input_cap",
       "symbol_uuid": "405695d7-ec46-59b4-ad69-6cca8bf613d9",
-      "reference": "C3",
+      "reference": "C21003",
       "mpn": "TDK C1608X7R1C105K080AC",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -106,7 +106,7 @@
     {
       "instance": "receiver_power_output_cap",
       "symbol_uuid": "58f418d2-cb72-59bd-ac62-b71c98eb2c5e",
-      "reference": "C4",
+      "reference": "C21004",
       "mpn": "Murata GRM188R60J106ME47D",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "pin_count": 2,
@@ -115,7 +115,7 @@
     {
       "instance": "receiver_power_on_pulldown",
       "symbol_uuid": "ffe6d430-ed72-51ba-abf7-422aad3ab030",
-      "reference": "R4",
+      "reference": "R21004",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -124,7 +124,7 @@
     {
       "instance": "receiver_supervisor",
       "symbol_uuid": "2f96c3d5-9c29-529a-bd1c-a63a6ee22a40",
-      "reference": "U2",
+      "reference": "U21002",
       "mpn": "Texas Instruments TPS3839K33DBZR",
       "footprint": "Package_TO_SOT_SMD:SOT-23",
       "pin_count": 3,
@@ -133,7 +133,7 @@
     {
       "instance": "receiver_supervisor_bypass",
       "symbol_uuid": "9a01d7ef-c2d7-56df-849e-b149c78e4a90",
-      "reference": "C5",
+      "reference": "C21005",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -142,7 +142,7 @@
     {
       "instance": "receiver_ready_pulldown",
       "symbol_uuid": "c7b42a5c-6829-56ba-93e4-8b7cca9f0c54",
-      "reference": "R5",
+      "reference": "R21005",
       "mpn": "Yageo RC0402FR-07100KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -151,7 +151,7 @@
     {
       "instance": "receiver_i2c_iso",
       "symbol_uuid": "0fb1f3bd-dfec-532b-a4fe-e13946949498",
-      "reference": "U3",
+      "reference": "U21003",
       "mpn": "Texas Instruments SN74LVC2G66DCUR",
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
       "pin_count": 8,
@@ -160,7 +160,7 @@
     {
       "instance": "receiver_i2c_iso_bypass",
       "symbol_uuid": "c69ddd41-bf12-5bd2-bef8-a46c4fc10304",
-      "reference": "C6",
+      "reference": "C21006",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -169,7 +169,7 @@
     {
       "instance": "receiver_i2c_scl_pullup",
       "symbol_uuid": "e9a33ffe-cbb4-58b5-889a-979515c044ac",
-      "reference": "R6",
+      "reference": "R21006",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -178,7 +178,7 @@
     {
       "instance": "receiver_i2c_sda_pullup",
       "symbol_uuid": "a8dec165-d815-5482-823e-e9f80290a025",
-      "reference": "R7",
+      "reference": "R21007",
       "mpn": "Yageo RC0402FR-072K2L",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -187,7 +187,7 @@
     {
       "instance": "receiver_irq_iso",
       "symbol_uuid": "d5083027-cc39-5589-805d-df8c3609126b",
-      "reference": "U4",
+      "reference": "U21004",
       "mpn": "SN74LVC1G07DCKR",
       "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
       "pin_count": 5,
@@ -196,7 +196,7 @@
     {
       "instance": "receiver_irq_iso_bypass",
       "symbol_uuid": "7fe4627f-9129-552c-87c4-a36fe1db3018",
-      "reference": "C7",
+      "reference": "C21007",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -205,7 +205,7 @@
     {
       "instance": "receiver_irq_pullup",
       "symbol_uuid": "43cde9d7-6fd4-5f17-9d6d-9e896d0941cb",
-      "reference": "R8",
+      "reference": "R21008",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -214,7 +214,7 @@
     {
       "instance": "receiver_vdd_bypass",
       "symbol_uuid": "0fdf16c4-fbcd-5af3-92c0-070975201546",
-      "reference": "C8",
+      "reference": "C21008",
       "mpn": "TDK C1005X7R1H104K050BB",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -223,7 +223,7 @@
     {
       "instance": "receiver_clock",
       "symbol_uuid": "5403a3a8-a7a0-5d1e-9468-2dbe6d8ed793",
-      "reference": "Y1",
+      "reference": "Y21001",
       "mpn": "Seiko Epson Q13FC13500005",
       "footprint": "Leshy2:FC-135-Q13FC13500005",
       "pin_count": 2,
@@ -232,7 +232,7 @@
     {
       "instance": "receiver_clock_cap_rclk",
       "symbol_uuid": "516d034e-9173-59dc-86a4-b766224d7619",
-      "reference": "C9",
+      "reference": "C21009",
       "mpn": "Murata GRM1555C1H220JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -241,7 +241,7 @@
     {
       "instance": "receiver_clock_cap_gpo3",
       "symbol_uuid": "53b18756-4778-5421-8070-241af92ee356",
-      "reference": "C10",
+      "reference": "C21010",
       "mpn": "Murata GRM1555C1H220JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -250,7 +250,7 @@
     {
       "instance": "receiver_senb_pulldown",
       "symbol_uuid": "de2c7c87-0367-5f38-97aa-18585a0a934a",
-      "reference": "R9",
+      "reference": "R21009",
       "mpn": "Yageo RC0402FR-0710KL",
       "footprint": "Resistor_SMD:R_0402_1005Metric",
       "pin_count": 2,
@@ -259,7 +259,7 @@
     {
       "instance": "receiver_fmi_esd",
       "symbol_uuid": "23999db9-84f2-5920-957c-87155e88e389",
-      "reference": "D1",
+      "reference": "D21001",
       "mpn": "Littelfuse SESD0402X1UN-0020-090",
       "footprint": "Diode_SMD:D_0402_1005Metric",
       "pin_count": 2,
@@ -268,7 +268,7 @@
     {
       "instance": "receiver_fmi_match_inductor",
       "symbol_uuid": "deab1913-03de-5c33-a002-374bbb5c0615",
-      "reference": "L1",
+      "reference": "L21001",
       "mpn": "Murata LQW15AN56NJ00D",
       "footprint": "Inductor_SMD:L_0402_1005Metric",
       "pin_count": 2,
@@ -277,7 +277,7 @@
     {
       "instance": "receiver_fmi_coupling_cap",
       "symbol_uuid": "33c47927-2dfe-5384-89e5-2bf4e439331d",
-      "reference": "C11",
+      "reference": "C21011",
       "mpn": "Murata GRM1555C1H102JA01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -286,7 +286,7 @@
     {
       "instance": "receiver_ami_esd",
       "symbol_uuid": "220e2593-1d2c-5661-8cd8-b133f5e5aece",
-      "reference": "D2",
+      "reference": "D21002",
       "mpn": "Littelfuse SESD0402X1UN-0020-090",
       "footprint": "Diode_SMD:D_0402_1005Metric",
       "pin_count": 2,
@@ -295,7 +295,7 @@
     {
       "instance": "receiver_ami_coupling_cap",
       "symbol_uuid": "fd08e4b5-52ca-5c6d-9687-5f3eb85ea61d",
-      "reference": "C12",
+      "reference": "C21012",
       "mpn": "Murata GRM155R71A474KE01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
@@ -304,7 +304,7 @@
     {
       "instance": "receiver_power_switch",
       "symbol_uuid": "2d79e051-262e-5cc6-b7de-3bfebe6c8db1",
-      "reference": "U5",
+      "reference": "U21005",
       "mpn": "Texas Instruments TPS22919DCKR",
       "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
       "pin_count": 6,

@@ -3179,6 +3179,7 @@
     },
     "ebyte_e01_ml01ipx": {
       "mpn": "Ebyte E01-ML01IPX",
+      "physical_pcb_contact_count": 8,
       "kind": "smd_radio_module",
       "qualification": "verified_reference",
       "lifecycle": "nrf24_family_not_recommended_for_new_designs",
@@ -5474,6 +5475,7 @@
     },
     "ti_bq25798_rqmr": {
       "mpn": "Texas Instruments BQ25798RQMR",
+      "physical_pcb_contact_count": 29,
       "kind": "one_to_four_cell_5a_nvdc_buck_boost_charger",
       "qualification": "verified_candidate",
       "lifecycle": "active",
@@ -6092,6 +6094,7 @@
     },
     "ti_tpul2g223_bqbr": {
       "mpn": "Texas Instruments TPUL2G223BQBR",
+      "physical_pcb_contact_count": 17,
       "kind": "dual_rc_timed_non_retriggerable_diagnostic_load_one_shot",
       "qualification": "verified_candidate",
       "lifecycle": "active_production",
@@ -7012,6 +7015,7 @@
     },
     "ti_csd87313dmst": {
       "mpn": "Texas Instruments CSD87313DMST",
+      "physical_pcb_contact_count": 9,
       "kind": "dual_common_drain_30v_nmos_battery_protection",
       "qualification": "verified_candidate",
       "lifecycle": "active",
@@ -7447,6 +7451,7 @@
     },
     "ti_tvs2200_drvr": {
       "mpn": "Texas Instruments TVS2200DRVR",
+      "physical_pcb_contact_count": 7,
       "kind": "22v_flat_clamp_vbus_tvs",
       "qualification": "verified_candidate",
       "lifecycle": "active",

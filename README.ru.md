@@ -119,10 +119,10 @@ target/emulator gate ещё не закрыты, ни один заказ не �
 <details open>
 <summary><strong>Текущая фаза H2 — точная детальная позиция</strong></summary>
 
-<!-- current-substep: H2.5.1 -->
+<!-- current-substep: H2.8.2 -->
 
-**Точный маркер: `H2.5.1`** — независимо проследить каждый источник питания,
-допуск аккумуляторов, зарядку и каждую формируемую шину.
+**Точный маркер: `H2.8.2`** — зафиксировать явную пользовательскую приёмку
+полного пакета H2 либо повторно открыть конкретное замечание перед H3.
 
 - ✅ `H1.8` — полный физический дизайн принят 23 августа 2026 года.
 - ✅ `H2.0.1` — проверен полный реестр из 1 028 схемных строк.
@@ -152,8 +152,8 @@ target/emulator gate ещё не закрыты, ни один заказ не �
   - ✅ `H2.3.12` — `RF_50_TX_SAFETY_EVIDENCE`: 97 компонентов и 369
     контактов, явные AON power/bypass, аппаратные watchdog/latch/reset и пять
     независимых каналов физического RF evidence; проведено ревью.
-  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 30 физических
-    test-площадок, 7 recovery-путей и 6 RF-evidence каналов;
+  - ✅ `H2.3.13` — `RF_60_TESTPOINTS_MANUFACTURING`: 52 физических
+    test-площадок, 13 recovery-путей и 6 RF-evidence каналов;
     без покупных деталей, stub и отложенных fixture labels; проведено ревью.
 - `H2.4` — схемы display-adapter и LoRa Cap.
   - ✅ `H2.4.1` — пассивный display-adapter: оба точных серийных разъёма,
@@ -168,16 +168,27 @@ target/emulator gate ещё не закрыты, ни один заказ не �
     компонентов, 22 контакта и все пять интерфейсов прошли native KiCad review.
   - ✅ `H2.4.5` — независимый physical-TX evidence: 11 серийных компонентов,
     34 контакта и аппаратный импульс около 13,3 мс; native KiCad review пройдено.
-- ▶️ **`H2.5` — сейчас:** независимое ревью safety-трактов.
-  - ▶️ **`H2.5.1` — сейчас:** источники, допуск аккумуляторов, зарядка и шины.
-  - ⏳ `H2.5.2` — reset, boot, service и recovery всех процессоров.
-  - ⏳ `H2.5.3` — no-back-power на USB, межплатной и expansion-границах.
-  - ⏳ `H2.5.4` — reset-safe quiet state и изоляция неактивных интерфейсов.
-  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`.
-  - ⏳ `H2.5.6` — сводка findings и закрытие ревью.
-- ⏳ `H2.6` — закрытие ERC и всех намеренных NC.
-- ⏳ `H2.7` — сверка схемы с H1, M1 и firmware F2.
-- 🔒 `H2.8` — формальная финальная пользовательская приёмка перед H3.
+- ✅ **`H2.5` — проведено ревью:** независимое ревью safety-трактов.
+  - ✅ `H2.5.1` — источники, допуск аккумуляторов, зарядка и все шины:
+    [проведено ревью](docs/power-architecture.ru.md).
+  - ✅ `H2.5.2` — reset, boot, service и recovery:
+    [проведено ревью](docs/service-recovery.ru.md).
+  - ✅ `H2.5.3` — no-back-power на USB, межплатной и expansion-границах:
+    [проведено ревью](docs/interface-isolation.ru.md).
+  - ✅ `H2.5.4` — reset-safe quiet state и изоляция неактивных интерфейсов:
+    [проведено ревью](docs/quiet-state.ru.md).
+  - ✅ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`:
+    [проведено ревью](docs/fault-shutdown.ru.md).
+  - ✅ `H2.5.6` — [сводка findings и закрытие ревью](docs/safety-review.ru.md).
+- ✅ `H2.6` — [native ERC и все 189 намеренных NC проведены ревью](docs/erc-review.ru.md):
+  четыре проекта дают ноль native errors/warnings, у каждого NC есть физический
+  pin, точный marker и письменное обоснование.
+- ✅ `H2.7` — [H1, физические контакты, nets, M1 и firmware F2 сверены](docs/hwfw-reconciliation.ru.md):
+  1 026 электрических identities, 266 root nets, 80 контактов M1 и 130
+  controller allocations не имеют оставшихся несоответствий.
+- ▶️ **`H2.8` — сейчас:** формальная финальная пользовательская приёмка перед H3.
+  - ✅ `H2.8.1` — [пакет приёмки и deferred gates подготовлены](docs/h2-acceptance.ru.md).
+  - ▶️ **`H2.8.2` — сейчас:** зафиксировать явную приёмку либо конкретное замечание.
 
 Точный машиночитаемый план —
 [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Закрытие
