@@ -16,7 +16,12 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 ECAD = REPO / "hardware/ecad"
-PROJECT_DIR = ECAD / "kicad/LESHY2-UI"
+PROJECT_DIRS = (
+    ECAD / "kicad/LESHY2-UI",
+    ECAD / "kicad/LESHY2-RF",
+    ECAD / "kicad/L2-DISP-ADP-001-A",
+    ECAD / "kicad/LESHY2-LORA-CAP-01",
+)
 OUTPUT = ECAD / "libraries/leshy2.kicad_sym"
 
 
@@ -71,7 +76,15 @@ def embedded_symbols(text: str) -> list[tuple[str, str]]:
 
 def build(replacements: dict[Path, str] | None = None) -> str:
     replacements = replacements or {}
-    paths = sorted(set(PROJECT_DIR.glob("UI_*.kicad_sch")) | set(replacements))
+    paths = sorted(
+        {
+            path
+            for project_dir in PROJECT_DIRS
+            for path in project_dir.glob("*.kicad_sch")
+            if path.name != f"{project_dir.name}.kicad_sch"
+        }
+        | set(replacements)
+    )
     definitions: dict[str, str] = {}
     for path in paths:
         if path in replacements:

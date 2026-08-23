@@ -1889,7 +1889,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn(("ext_efuse.ITIMER", "ext_itimer_cap.END_1", "EXT_EFUSE_ITIMER"), routes)
         self.assertIn(("ext_efuse.OUT", "ext_bleeder.END_1", "5V_U214_PROTECTED"), routes)
         self.assertIn(("aon_buck.MODE_SCONF", "aon_mode_res.END_1", "AON_MODE_SET"), routes)
-        self.assertIn(("nvdc_charger.SYS", "aon_buck.EN", "AON_BUCK_EN"), routes)
+        self.assertIn(("nvdc_charger.SYS", "aon_buck.EN", "NVDC_SYS"), routes)
         self.assertIn(("aon_pg_pullup.END_2", "aon_buck.PG", "AON_PG_N"), routes)
         self.assertIn(("main_fb_top.END_2", "main_buck.FB", "MAIN_3V3_FB"), routes)
         self.assertIn(("voice_fb_top.END_2", "voice_buck.FB", "VOICE_4V_FB"), routes)

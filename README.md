@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.3.2 -->
+<!-- current-substep: H2.3.3 -->
 
-**Exact marker: `H2.3.2`** — implement and review USB-PD input and dual-cell
-charging on `RF_01_USB_PD_CHARGE`.
+**Exact marker: `H2.3.3`** — implement and review pack admission, always-on
+safety and independent supervision on `RF_02_PACK_SAFETY_AON`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -71,11 +71,13 @@ charging on `RF_01_USB_PD_CHARGE`.
   - ✅ `H2.2.10` — reviewed 11 exact physical 1.0-mm manufacturing/test pads;
     each has one real net, stable fixture identity and no false BOM/MPN entry.
 - ▶️ `H2.3` — implement and review RF/power PCB sheets.
-  - ✅ `H2.3.1` — `RF_00_ROOT` reviewed: 12 child sheets, 134 exact
-    cross-sheet nets and 303 explicit pins/labels; all 303 current ERC findings
+  - ✅ `H2.3.1` — `RF_00_ROOT` reviewed: 12 child sheets, 133 exact
+    cross-sheet nets and 301 explicit pins/labels; the current ERC findings
     are exactly accounted component-empty child stubs.
-  - ▶️ **`H2.3.2` — current:** USB-PD input and dual-cell charging.
-  - ⏳ `H2.3.3` — pack admission and always-on safety.
+  - ✅ `H2.3.2` — `RF_01_USB_PD_CHARGE` reviewed: 52 exact components,
+    208 physical package pads, protected sink-only USB-PD, 2S/750-kHz NVDC
+    charging, nine hierarchy interfaces and ten explained NC contacts.
+  - ▶️ **`H2.3.3` — current:** pack admission and always-on safety.
   - ⏳ `H2.3.4` — main rails and quietable domain gates.
   - ⏳ `H2.3.5` — RP2354 core, flash and service access.
   - ⏳ `H2.3.6` — three independent full-function nRF24 paths.

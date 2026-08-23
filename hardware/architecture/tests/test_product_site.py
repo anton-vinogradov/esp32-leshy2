@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.3.2"}, set(markers.values()))
+        self.assertEqual({"H2.3.3"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.3.2", plan["current_substep"])
+        self.assertEqual("H2.3.3", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -204,11 +204,12 @@ class ProductSiteTests(unittest.TestCase):
             [item["id"] for item in plan["substeps"][3]["children"]],
         )
         self.assertEqual("reviewed", plan["substeps"][3]["children"][0]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][1]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][1]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][2]["status"])
         self.assertTrue(
             all(
                 item["status"] == "waiting"
-                for item in plan["substeps"][3]["children"][2:]
+                for item in plan["substeps"][3]["children"][3:]
             )
         )
         sheet_contract = json.loads(
@@ -397,22 +398,22 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(
             {
                 "child_sheet_count": 12,
-                "cross_sheet_net_count": 134,
-                "root_hierarchical_pin_count": 303,
-                "child_hierarchical_label_count": 303,
-                "known_child_stub_erc_violations": 303,
-                "implemented_child_sheet_count": 0,
-                "circuit_symbols_placed": 0,
-                "known_generated_library_copy_warnings": 0,
+                "cross_sheet_net_count": 133,
+                "root_hierarchical_pin_count": 301,
+                "child_hierarchical_label_count": 301,
+                "known_child_stub_erc_violations": 263,
+                "implemented_child_sheet_count": 1,
+                "circuit_symbols_placed": 52,
+                "known_generated_library_copy_warnings": 52,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
         )
         root = self.read("hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch")
         self.assertEqual(12, root.count("\n\t(sheet\n"))
-        self.assertEqual(303, root.count("\n\t\t(pin \""))
-        self.assertEqual(437, root.count("\n\t(wire\n"))
-        self.assertEqual(303, root.count("\n\t(junction "))
+        self.assertEqual(301, root.count("\n\t\t(pin \""))
+        self.assertEqual(434, root.count("\n\t(wire\n"))
+        self.assertEqual(301, root.count("\n\t(junction "))
         self.assertIn('\t(paper "A0" portrait)', root)
         for row in manifest["sheets"]:
             child = self.read(
@@ -424,6 +425,65 @@ class ProductSiteTests(unittest.TestCase):
             )
         m1 = next(row for row in manifest["sheets"] if row["id"] == "RF_40_INTERBOARD_M1")
         self.assertEqual(51, m1["interface_count"])
+
+    def test_h2_3_2_exact_usb_pd_charge_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_rf_usb_pd_charge.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check", "--kicad-check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-RF01-usb-pd-charge.json")
+        )
+        self.assertEqual("H2.3.2", manifest["stage"])
+        self.assertEqual("reviewed_exact_usb_pd_charge_sheet", manifest["status"])
+        self.assertEqual(
+            {
+                "ledger_instances": 52,
+                "schematic_symbols": 52,
+                "board_fitted_symbols": 52,
+                "hierarchical_interfaces": 9,
+                "physical_package_pads": 208,
+                "usb_c_electrical_contacts": 17,
+                "usb_port_protector_pads": 21,
+                "pd_controller_copper_contacts": 34,
+                "vbus_tvs_package_pads": 7,
+                "charger_package_pads": 29,
+                "configured_cell_count": 2,
+                "switching_frequency_khz": 750,
+                "intentional_no_connect_pins": 10,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            {
+                "nvdc_charger.D_MINUS",
+                "nvdc_charger.D_PLUS",
+                "nvdc_charger.QON",
+                "nvdc_charger.STAT",
+                "product_usb_connector.A8_SBU1",
+                "product_usb_connector.B8_SBU2",
+                "product_usb_protector.NC_16",
+                "product_usb_protector.NC_17",
+                "product_usb_protector.NC_19",
+                "product_usb_protector.NC_20",
+            },
+            set(manifest["intentional_no_connect_endpoints"]),
+        )
+        sheet = self.read(
+            "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch"
+        )
+        self.assertEqual(52, sheet.count("\n\t(symbol\n"))
+        self.assertEqual(9, sheet.count("\n\t(hierarchical_label \""))
+        self.assertEqual(10, sheet.count("\n\t(no_connect "))
+        self.assertTrue(all(row["footprint"] for row in manifest["instances"]))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json
