@@ -38,6 +38,7 @@ IMPLEMENTED_CHILD_GENERATORS = (
     "hardware/ecad/h2_rf_pack_safety_aon.py",
     "hardware/ecad/h2_rf_main_rails_domain_gates.py",
     "hardware/ecad/h2_rf_rp2354_core_service.py",
+    "hardware/ecad/h2_rf_nrf24_x3.py",
 )
 
 

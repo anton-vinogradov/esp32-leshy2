@@ -2585,6 +2585,8 @@ def render_public_schematics(
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | точный ECAD | 52 компонента, 208 физических контактов корпусов, защищённый sink-only USB-PD, 2S/750-кГц NVDC-зарядка, 9 интерфейсов и 10 объяснённых NC |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | точный ECAD | 61 symbol, 198 физических контактов корпусов/интерфейсов, fail-closed допуск 2S pack, 8 интерфейсов и 6 объяснённых NC |
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | точный ECAD | 69 компонентов, 186 физических контактов, независимые AON/main/accessory rails, eFuse и domain gates, 20 интерфейсов и 3 объяснённых NC |
+| [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | точный ECAD | 48 компонентов, все 81 контакта SC1512-A4, референсные regulator/clock, USB/recovery, 51 интерфейс и 13 объяснённых NC |
+| [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | точный ECAD | 105 компонентов ledger плюс 3 границы заводских IPEX, 311 физических контактов, 3 независимых PIO SPI/RF-тракта, 33 интерфейса и 2 объяснённых NC |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2599,7 +2601,9 @@ def render_public_schematics(
 [RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json) и
 [RF USB-PD/charging](../hardware/ecad/generated/H2-RF01-usb-pd-charge.json) и
 [RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json) и
-[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json).
+[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json),
+[ядро/service RP2354](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json) и
+[три nRF24-тракта](../hardware/ecad/generated/H2-RF31-nrf24-x3.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2634,6 +2638,8 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | exact ECAD | 52 components, 208 physical package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, 9 interfaces and 10 explained NCs |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | exact ECAD | 61 symbols, 198 physical package/interface contacts, fail-closed 2S pack admission, 8 interfaces and 6 explained NCs |
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | exact ECAD | 69 components, 186 physical contacts, independent AON/main/accessory rails, eFuses and domain gates, 20 interfaces and 3 explained NCs |
+| [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | exact ECAD | 48 components, all 81 SC1512-A4 contacts, official regulator/clock circuits, USB/recovery, 51 interfaces and 13 explained NCs |
+| [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | exact ECAD | 105 ledger components plus 3 factory-IPEX boundaries, 311 physical contacts, 3 independent PIO SPI/RF paths, 33 interfaces and 2 explained NCs |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2648,7 +2654,9 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json), and
 [RF USB-PD/charging](../hardware/ecad/generated/H2-RF01-usb-pd-charge.json), and
 [RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json), and
-[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json).
+[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json),
+[RP2354 core/service](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json), and
+[three nRF24 paths](../hardware/ecad/generated/H2-RF31-nrf24-x3.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"

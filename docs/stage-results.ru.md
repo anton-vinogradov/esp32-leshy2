@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.3.6`.
+**Статус:** ▶️ сейчас, точный маркер `H2.3.7`.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -43,13 +43,18 @@
   подзадач.
 - [Полный instance ledger](../hardware/ecad/generated/H2-instance-ledger.json).
 - [HW↔FW export](../hardware/ecad/generated/H2-hwfw-contract.json).
-- Проведено ревью всей UI/control PCB и первых пяти RF/power-листов.
+- Проведено ревью всей UI/control PCB и первых шести RF/power-листов.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
   явных NC; [машинное ревью](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json)
   проходит native KiCad.
-- Текущая работа — три независимых полнофункциональных nRF24-тракта.
+- [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch)
+  содержит 105 точных компонентов ledger плюс три границы заводских IPEX, 311
+  физических контактов, три независимых PIO SPI- и RF-тракта и два явных NC;
+  [машинное ревью](../hardware/ecad/generated/H2-RF31-nrf24-x3.json) проходит
+  native KiCad.
+- Текущая работа — независимые тракты Sub-GHz data и VHF/UHF voice.
 
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка

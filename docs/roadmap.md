@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.3.6: three independent full-function nRF24 paths; H2.3.5 exact RP2354B core/service is reviewed |
+| Current production ECAD schematic | ▶️ H2.3.7: independent Sub-GHz data and VHF/UHF voice paths; H2.3.6 three-radio nRF24 sheet is reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.3.6 -->
+<!-- current-substep: H2.3.7 -->
 
-**Exact marker: `H2.3.6`** — implement and review three independent,
-full-function nRF24 RX/TX/mix paths on `RF_31_NRF24_X3`.
+**Exact marker: `H2.3.7`** — implement and review the independent Sub-GHz
+data and VHF/UHF voice paths on `RF_32_SUBGHZ_VOICE`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -176,8 +176,10 @@ Current H2 execution:
     all 81 SC1512-A4 contacts and 219 total physical contacts, official
     RP2350 regulator/clock circuits, 51 interfaces and 13 explained NCs;
     native KiCad review passed.
-  - ▶️ **`H2.3.6` — current:** `RF_31_NRF24_X3`.
-  - ⏳ `H2.3.7` — `RF_32_SUBGHZ_VOICE`.
+  - ✅ `H2.3.6` — `RF_31_NRF24_X3`: 105 exact ledger components plus three
+    factory-IPEX boundaries, 311 physical contacts, three independent PIO SPI
+    and RF paths, 33 interfaces and two explained NCs; native KiCad passed.
+  - ▶️ **`H2.3.7` — current:** `RF_32_SUBGHZ_VOICE`.
   - ⏳ `H2.3.8` — `RF_34_U214_M5_EXT`.
   - ⏳ `H2.3.9` — `RF_35_REAR_CONTROLS`.
   - ⏳ `H2.3.10` — `RF_36_AUDIO_IO_AMP`.

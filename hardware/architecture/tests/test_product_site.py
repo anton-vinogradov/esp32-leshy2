@@ -140,7 +140,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.3.6"}, set(markers.values()))
+        self.assertEqual({"H2.3.7"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -167,7 +167,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.3.6", plan["current_substep"])
+        self.assertEqual("H2.3.7", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -210,11 +210,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][3]["children"][2]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][3]["status"])
         self.assertEqual("reviewed", plan["substeps"][3]["children"][4]["status"])
-        self.assertEqual("current", plan["substeps"][3]["children"][5]["status"])
+        self.assertEqual("reviewed", plan["substeps"][3]["children"][5]["status"])
+        self.assertEqual("current", plan["substeps"][3]["children"][6]["status"])
         self.assertTrue(
             all(
                 item["status"] == "waiting"
-                for item in plan["substeps"][3]["children"][6:]
+                for item in plan["substeps"][3]["children"][7:]
             )
         )
         sheet_contract = json.loads(
@@ -406,10 +407,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 133,
                 "root_hierarchical_pin_count": 305,
                 "child_hierarchical_label_count": 305,
-                "known_child_stub_erc_violations": 113,
-                "implemented_child_sheet_count": 4,
-                "circuit_symbols_placed": 230,
-                "known_generated_library_copy_warnings": 230,
+                "known_child_stub_erc_violations": 85,
+                "implemented_child_sheet_count": 5,
+                "circuit_symbols_placed": 338,
+                "known_generated_library_copy_warnings": 338,
                 "known_deferred_fixture_erc_violations": 6,
                 "pcb_files_created": 0,
             },
@@ -674,6 +675,67 @@ class ProductSiteTests(unittest.TestCase):
         rp = next(row for row in manifest["instances"] if row["instance"] == "rp")
         self.assertEqual(81, rp["pin_count"])
         self.assertTrue(all(row["footprint"] for row in manifest["instances"]))
+
+    def test_h2_3_6_exact_three_nrf24_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_rf_nrf24_x3.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check", "--kicad-check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-RF31-nrf24-x3.json")
+        )
+        self.assertEqual("H2.3.6", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_three_nrf24_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 105,
+                "schematic_symbols": 108,
+                "board_fitted_symbols": 102,
+                "hierarchical_interfaces": 33,
+                "physical_package_contacts": 311,
+                "nrf_carrier_pads": 24,
+                "factory_rf_assembly_boundaries": 3,
+                "independent_spi_paths": 3,
+                "independent_rf_paths": 3,
+                "intentional_no_connect_pins": 2,
+                "custom_footprints": 3,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            {"nrf_evidence_hold_diode.NC", "nrf_power_switch.NC"},
+            set(manifest["intentional_no_connect_endpoints"]),
+        )
+        sheet = self.read(
+            "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch"
+        )
+        self.assertEqual(108, sheet.count("\n\t(symbol\n"))
+        self.assertEqual(33, sheet.count("\n\t(hierarchical_label \""))
+        self.assertEqual(2, sheet.count("\n\t(no_connect "))
+        for radio in ("nrf0", "nrf1", "nrf2"):
+            module = next(
+                row for row in manifest["instances"] if row["instance"] == radio
+            )
+            boundary = next(
+                row for row in manifest["instances"]
+                if row["instance"] == f"{radio}_factory_ipex"
+            )
+            self.assertEqual(8, module["pin_count"])
+            self.assertTrue(module["footprint"])
+            self.assertFalse(boundary["board_fitted"])
+            self.assertFalse(boundary["ledger_component"])
+        self.assertIn("RF_31_NRF24_X3", self.read("docs/schematics.md"))
+        self.assertIn("RF_31_NRF24_X3", self.read("docs/schematics.ru.md"))
 
     def test_h2_2_2_exact_s3_core_sheet_is_reviewed_and_current(self):
         import json

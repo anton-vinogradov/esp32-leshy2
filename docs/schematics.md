@@ -27,6 +27,8 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`RF_01_USB_PD_CHARGE`](../hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch) | exact ECAD | 52 components, 208 physical package pads, protected sink-only USB-PD, 2S/750-kHz NVDC charging, 9 interfaces and 10 explained NCs |
 | [`RF_02_PACK_SAFETY_AON`](../hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch) | exact ECAD | 61 symbols, 198 physical package/interface contacts, fail-closed 2S pack admission, 8 interfaces and 6 explained NCs |
 | [`RF_03_MAIN_RAILS_DOMAIN_GATES`](../hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch) | exact ECAD | 69 components, 186 physical contacts, independent AON/main/accessory rails, eFuses and domain gates, 20 interfaces and 3 explained NCs |
+| [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch) | exact ECAD | 48 components, all 81 SC1512-A4 contacts, official regulator/clock circuits, USB/recovery, 51 interfaces and 13 explained NCs |
+| [`RF_31_NRF24_X3`](../hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch) | exact ECAD | 105 ledger components plus 3 factory-IPEX boundaries, 311 physical contacts, 3 independent PIO SPI/RF paths, 33 interfaces and 2 explained NCs |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -41,7 +43,9 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json), and
 [RF USB-PD/charging](../hardware/ecad/generated/H2-RF01-usb-pd-charge.json), and
 [RF pack safety/admission](../hardware/ecad/generated/H2-RF02-pack-safety-aon.json), and
-[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json).
+[RF main rails/domain gates](../hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json),
+[RP2354 core/service](../hardware/ecad/generated/H2-RF30-rp2354-core-service.json), and
+[three nRF24 paths](../hardware/ecad/generated/H2-RF31-nrf24-x3.json).
 These sheets do not yet authorize PCB placement, routing or fabrication.
 
 Read the architecture from its three compute owners, not from the USB port.

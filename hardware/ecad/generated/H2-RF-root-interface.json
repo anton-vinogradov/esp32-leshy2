@@ -14,10 +14,10 @@
     "cross_sheet_net_count": 133,
     "root_hierarchical_pin_count": 305,
     "child_hierarchical_label_count": 305,
-    "known_child_stub_erc_violations": 113,
-    "implemented_child_sheet_count": 4,
-    "circuit_symbols_placed": 230,
-    "known_generated_library_copy_warnings": 230,
+    "known_child_stub_erc_violations": 85,
+    "implemented_child_sheet_count": 5,
+    "circuit_symbols_placed": 338,
+    "known_generated_library_copy_warnings": 338,
     "known_deferred_fixture_erc_violations": 6,
     "pcb_files_created": 0
   },
@@ -1382,7 +1382,8 @@
       "RF_01_USB_PD_CHARGE",
       "RF_02_PACK_SAFETY_AON",
       "RF_03_MAIN_RAILS_DOMAIN_GATES",
-      "RF_30_RP2354_CORE_SERVICE"
+      "RF_30_RP2354_CORE_SERVICE",
+      "RF_31_NRF24_X3"
     ]
   },
   "review_boundary": {
