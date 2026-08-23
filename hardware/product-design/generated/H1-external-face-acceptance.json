@@ -20,7 +20,8 @@
     "silkscreen_unobscured": true,
     "silkscreen_labels_nonoverlapping": true,
     "external_interface_directions_present": true,
-    "both_antenna_banks_on_outward_faces": true
+    "both_antenna_banks_on_outward_faces": true,
+    "function_key_columns_clear_display_and_mounting_keepouts": true
   },
   "front": {
     "board_outline_mm": [
@@ -42,6 +43,30 @@
         320,
         480
       ]
+    },
+    "function_key_columns": {
+      "mpn": "OMRON B3S-1100P",
+      "button_envelope_mm": [
+        6.6,
+        6.0
+      ],
+      "left": [
+        "F1",
+        "F2",
+        "F3",
+        "F4"
+      ],
+      "right": [
+        "F5",
+        "F6",
+        "F7",
+        "F8"
+      ],
+      "vertical_pitch_mm": 13.5,
+      "board_edge_clearance_mm": 1.8,
+      "display_clearance_mm": 1.85,
+      "top_mounting_keepout_clearance_mm": 4.5,
+      "free_expander_inputs_after_placement": 0
     },
     "antenna_ports": [
       {
@@ -196,6 +221,110 @@
       }
     ],
     "controls": [
+      {
+        "instance": "ui_switch_f1",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-left function F1",
+        "position_mm": [
+          1.8,
+          19.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f2",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-left function F2",
+        "position_mm": [
+          1.8,
+          33.0
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f3",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-left function F3",
+        "position_mm": [
+          1.8,
+          46.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f4",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-left function F4",
+        "position_mm": [
+          1.8,
+          60.0
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f5",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-right function F5",
+        "position_mm": [
+          66.6,
+          19.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f6",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-right function F6",
+        "position_mm": [
+          66.6,
+          33.0
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f7",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-right function F7",
+        "position_mm": [
+          66.6,
+          46.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f8",
+        "mpn": "OMRON B3S-1100P",
+        "role": "front-right function F8",
+        "position_mm": [
+          66.6,
+          60.0
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
       {
         "instance": "ui_switch_back",
         "mpn": "OMRON B3S-1100P",
@@ -414,7 +543,7 @@
       {
         "instance": "encoder",
         "mpn": "Alps Alpine EC11E18244AU",
-        "role": "rear encoder above F1/F2",
+        "role": "rear encoder",
         "position_mm": [
           2.5,
           45.0
@@ -422,32 +551,6 @@
         "envelope_mm": [
           11.0,
           11.0
-        ]
-      },
-      {
-        "instance": "ui_switch_f1",
-        "mpn": "OMRON B3S-1100P",
-        "role": "rear F1",
-        "position_mm": [
-          4.2,
-          63.5
-        ],
-        "envelope_mm": [
-          6.6,
-          6.0
-        ]
-      },
-      {
-        "instance": "ui_switch_f2",
-        "mpn": "OMRON B3S-1100P",
-        "role": "rear F2",
-        "position_mm": [
-          4.2,
-          78.5
-        ],
-        "envelope_mm": [
-          6.6,
-          6.0
         ]
       },
       {

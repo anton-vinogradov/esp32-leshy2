@@ -71,7 +71,7 @@
     {
       "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
       "disposition": "h5_received_sample_gate",
-      "affected_instances": ["ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2", "ptt_switch"],
+      "affected_instances": ["ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2", "ui_switch_f3", "ui_switch_f4", "ui_switch_f5", "ui_switch_f6", "ui_switch_f7", "ui_switch_f8", "ptt_switch"],
       "evidence_boundary": "The exact B3S-1100P body, 3.3-mm plunger and height/tolerance are manufacturer-dimensioned; no speculative cap is used.",
       "unknown": "PCB/enclosure press feel, accidental-press margin and endurance.",
       "closure": "Received control coupon passes travel, force, accessibility and endurance tests in H5.",

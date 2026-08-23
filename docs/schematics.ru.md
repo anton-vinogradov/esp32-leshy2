@@ -90,8 +90,14 @@ UI_DPAD_RIGHT["OMRON B3S-1100P<br/>отдельная кнопка навига�
 UI_DPAD_OK["OMRON B3S-1100P<br/>отдельная кнопка подтверждения OK"]
 UI_SWITCH_BACK["OMRON B3S-1100P<br/>кнопка BACK"]
 UI_SWITCH_OPT["OMRON B3S-1100P<br/>кнопка OPT"]
-UI_SWITCH_F1["OMRON B3S-1100P<br/>задняя функциональная кнопка F1"]
-UI_SWITCH_F2["OMRON B3S-1100P<br/>задняя функциональная кнопка F2"]
+UI_SWITCH_F1["OMRON B3S-1100P<br/>левая кнопка у экрана F1"]
+UI_SWITCH_F2["OMRON B3S-1100P<br/>левая кнопка у экрана F2"]
+UI_SWITCH_F3["OMRON B3S-1100P<br/>левая кнопка у экрана F3"]
+UI_SWITCH_F4["OMRON B3S-1100P<br/>левая кнопка у экрана F4"]
+UI_SWITCH_F5["OMRON B3S-1100P<br/>правая кнопка у экрана F5"]
+UI_SWITCH_F6["OMRON B3S-1100P<br/>правая кнопка у экрана F6"]
+UI_SWITCH_F7["OMRON B3S-1100P<br/>правая кнопка у экрана F7"]
+UI_SWITCH_F8["OMRON B3S-1100P<br/>правая кнопка у экрана F8"]
 ENCODER["Alps Alpine EC11E18244AU<br/>задний энкодер с нажатием"]
 PTT_SWITCH["OMRON B3S-1100P<br/>независимая задняя кнопка PTT"]
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>единственный малотоковый переключатель RUN/KILL"]
@@ -106,9 +112,15 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL
   UI_DPAD_OK -->|"direct P04"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
-  UI_SWITCH_F1 -->|"direct P10 across M1"| UI_MATRIX_IO
-  UI_SWITCH_F2 -->|"direct P11 across M1"| UI_MATRIX_IO
+  UI_SWITCH_F3 -->|"direct P07"| UI_MATRIX_IO
+  UI_SWITCH_F1 -->|"direct P10"| UI_MATRIX_IO
+  UI_SWITCH_F2 -->|"direct P11"| UI_MATRIX_IO
   ENCODER -->|"push P12 across M1"| UI_MATRIX_IO
+  UI_SWITCH_F4 -->|"direct P13"| UI_MATRIX_IO
+  UI_SWITCH_F5 -->|"direct P14"| UI_MATRIX_IO
+  UI_SWITCH_F6 -->|"direct P15"| UI_MATRIX_IO
+  UI_SWITCH_F7 -->|"direct P16"| UI_MATRIX_IO
+  UI_SWITCH_F8 -->|"direct P17"| UI_MATRIX_IO
   UI_MATRIX_IO -->|"I²C0 + IRQ"| S3
   ENCODER -->|"A/B direct PCNT"| S3
   PTT_SWITCH -->|"direct active-low PTT"| RP

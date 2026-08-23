@@ -366,7 +366,18 @@ RF_INNER = (
     Placement("pd_vbus_tvs", 26.0, 134.5, "raw VBUS flat-clamp TVS"),
 )
 
-FRONT_CONTROLS = (
+SIDE_FUNCTION_CONTROLS = (
+    Placement("ui_switch_f1", 1.8, 19.5, "front-left function F1"),
+    Placement("ui_switch_f2", 1.8, 33.0, "front-left function F2"),
+    Placement("ui_switch_f3", 1.8, 46.5, "front-left function F3"),
+    Placement("ui_switch_f4", 1.8, 60.0, "front-left function F4"),
+    Placement("ui_switch_f5", 66.6, 19.5, "front-right function F5"),
+    Placement("ui_switch_f6", 66.6, 33.0, "front-right function F6"),
+    Placement("ui_switch_f7", 66.6, 46.5, "front-right function F7"),
+    Placement("ui_switch_f8", 66.6, 60.0, "front-right function F8"),
+)
+
+BOTTOM_NAV_CONTROLS = (
     Placement("ui_switch_back", 11.0, 129.4, "direct-press BACK"),
     Placement("ui_dpad_up", 34.2, 120.4, "direct-press navigation UP"),
     Placement("ui_dpad_down", 34.2, 138.4, "direct-press navigation DOWN"),
@@ -376,18 +387,16 @@ FRONT_CONTROLS = (
     Placement("ui_switch_opt", 57.4, 129.4, "direct-press OPT"),
 )
 
+FRONT_CONTROLS = SIDE_FUNCTION_CONTROLS + BOTTOM_NAV_CONTROLS
+
 DIRECT_PRESS_FRONT_CONTROLS = {item.instance for item in FRONT_CONTROLS}
 
 REAR_CONTROLS = (
-    Placement("encoder", 2.5, 45.0, "rear encoder above F1/F2"),
-    Placement("ui_switch_f1", 4.2, 63.5, "rear F1"),
-    Placement("ui_switch_f2", 4.2, 78.5, "rear F2"),
+    Placement("encoder", 2.5, 45.0, "rear encoder"),
     Placement("ptt_switch", 64.2, 63.5, "rear independent PTT"),
 )
 
-DIRECT_PRESS_REAR_CONTROLS = {
-    "ui_switch_f1", "ui_switch_f2", "ptt_switch"
-}
+DIRECT_PRESS_REAR_CONTROLS = {"ptt_switch"}
 
 FRONT_CAP_RESERVES = ()
 
@@ -1082,7 +1091,9 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         "u214", "u214_connector",
         "ui_dpad_up", "ui_dpad_down", "ui_dpad_left", "ui_dpad_right", "ui_dpad_ok",
         "voice", "encoder", "encoder_knob", "power_command_switch",
-        "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2", "ptt_switch",
+        "ui_switch_back", "ui_switch_opt", "ui_switch_f1", "ui_switch_f2",
+        "ui_switch_f3", "ui_switch_f4", "ui_switch_f5", "ui_switch_f6",
+        "ui_switch_f7", "ui_switch_f8", "ptt_switch",
         "unit_connector", "pack_holder", "pack_cell0", "pack_cell1",
         "s3_rf_jumper", "c5_rf_jumper", "s3_rf_board_connector", "c5_rf_board_connector",
         "speaker", "microphone",
@@ -1796,6 +1807,10 @@ def validate() -> list[str]:
     if len(TX_RF_PATHS) != 7 or not TX_RF_PATHS <= drawn_paths:
         errors.append("seven transmitting RF paths must retain individual TX indicators")
     display_box = (display.x, display.y, *placement_size(display, devices, instances))
+    for control in SIDE_FUNCTION_CONTROLS:
+        control_box = (control.x, control.y, *placement_size(control, devices, instances))
+        if overlaps(control_box, display_box, 0.7):
+            errors.append(f"front: {control.instance} lacks 0.7-mm display clearance")
     for bank_name, bank in (("front", FRONT_RF), ("rear", REAR_RF)):
         bodies = [(centre - RF_BODY_W / 2, 0.0, RF_BODY_W, RF_BODY_D) for centre, _, _ in bank]
         for index, (centre, _, _) in enumerate(bank):
@@ -1864,7 +1879,7 @@ def validate() -> list[str]:
         errors.append("external interface labels must be unique")
 
     control_roles = {item.role for item in REAR_CONTROLS}
-    for role in ("rear independent PTT", "rear F1", "rear F2"):
+    for role in ("rear independent PTT",):
         if role not in control_roles:
             errors.append(f"rear controls omit {role}")
     rear_exact_boxes = []
@@ -2134,6 +2149,14 @@ def render_external(devices, instances):
                 label, 5.0, "bold", "middle", "#4c1d95",
             )
         )
+    for index, control in enumerate(SIDE_FUNCTION_CONTROLS, 1):
+        width, height = placement_size(control, devices, instances)
+        out.append(
+            silk_text(
+                sx(front, control.x + width / 2), sy(front, control.y + height + 2.8),
+                f"F{index}", 4.2, "bold", "middle", "#4c1d95",
+            )
+        )
 
     # Every side/bottom interface is projected onto the external face even
     # when its physical body is mounted on the inward PCB side.
@@ -2180,8 +2203,7 @@ def render_external(devices, instances):
         )
         out.append(text(sx(rear,cell_x), sy(rear,86), "18650", 7, "bold", "middle", "#166534"))
 
-    # F1/F2/PTT are complete, directly pressed switches on the exposed PCB.
-    # They therefore render as selected solid parts, not speculative caps.
+    # PTT is a complete, directly pressed switch on the exposed rear PCB.
     for control in REAR_CONTROLS:
         if control.instance not in DIRECT_PRESS_REAR_CONTROLS:
             continue
@@ -2213,10 +2235,7 @@ def render_external(devices, instances):
     )
     for reserve in REAR_CAP_RESERVES:
         out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
-    for x, y, label in (
-        (7.5, 61.5, "ENC"), (7.5, 74.0, "F1"), (7.5, 89.0, "F2"),
-        (67.5, 74.0, "PTT"),
-    ):
+    for x, y, label in ((7.5, 61.5, "ENC"), (67.5, 74.0, "PTT")):
         out.append(silk_text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#4c1d95"))
 
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
@@ -2275,7 +2294,7 @@ def render_external(devices, instances):
         text(note_x,653,"Dimensioned projection — not an enclosure release drawing.",11,"bold",colour="#b42318"),
         text(note_x,676,"Navigation is five exact OMRON B3S-1100P direct buttons; no custom cap or actuator.",11),
         text(note_x,699,"Davies 1227-J is the exact encoder knob; only its fit HIL remains.",11),
-        text(note_x,722,"UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1/F2/PTT are serial direct buttons.",11,"bold"),
+        text(note_x,722,"UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.",11,"bold"),
         text(note_x,745,"The side C&K JS102011SCQN is the sole RUN/KILL and source-command control.",11),
     ]
     out.append("</svg>")
@@ -2587,8 +2606,8 @@ def render_rear_face(devices, instances):
         '</g>',
     ]
 
-    # F1/F2/PTT are exact directly pressed switch bodies; RUN/KILL is side-facing.
-    out.append('<g id="rear-controls" data-direct-press="F1-F2-PTT" data-actuator-reserves="none" data-enclosure-reserves="none">')
+    # PTT is an exact directly pressed switch body; RUN/KILL is side-facing.
+    out.append('<g id="rear-controls" data-direct-press="PTT" data-actuator-reserves="none" data-enclosure-reserves="none">')
     for control in REAR_CONTROLS:
         control_w, control_h = placement_size(control, devices, instances)
         fill = "#e2e8f0"
@@ -2607,8 +2626,6 @@ def render_rear_face(devices, instances):
         out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
     for label_x, label_y, label, colour in (
         (8.0, 61.5, "ENC", "#4c1d95"),
-        (7.5, 74.0, "F1", "#4c1d95"),
-        (7.5, 89.0, "F2", "#4c1d95"),
         (67.5, 74.0, "PTT", "#4c1d95"),
     ):
         out.append(t(x(label_x), y(label_y), label, 7.0, "bold", "middle", colour))
@@ -2639,7 +2656,7 @@ def render_rear_face(devices, instances):
         t(note_x, 403, f"{socket_mpn} · vertical 2×7 host socket", 11, "bold", colour="#075985"),
         t(note_x, 428, f"{holder_mpn} · rotated holder", 11, "bold", colour="#166534"),
         t(note_x, 474, "Rear controls shown to scale", 15, "bold"),
-        t(note_x, 502, "OMRON B3S-1100P · direct BACK/OPT/F1/F2/PTT", 11),
+        t(note_x, 502, "OMRON B3S-1100P · direct BACK/OPT/F1…F8/PTT", 11),
         t(note_x, 527, "C&K JS102011SCQN · side-facing RUN/KILL", 11),
         t(note_x, 552, "Alps EC11E18244AU + Davies 1227-J · exact encoder and knob", 11),
         t(note_x, 598, "Meaning of this view", 15, "bold"),
@@ -2915,13 +2932,11 @@ def render_sandwich(devices, instances):
             holder_x = 17.6
             holder_w = 39.8
             parts += [
-                f'<g id="section-battery" data-cut-y-mm="{cut_y:.0f}" data-contains="battery-controls-no-u214">',
+                f'<g id="section-battery" data-cut-y-mm="{cut_y:.0f}" data-contains="battery-no-u214">',
                 r(px(holder_x), pz(base_rear_z), holder_w*x_scale, holder_depth*z_scale, "#dcfce7", "#16a34a", rx=12, extra=' data-instance="pack-holder"'),
                 r(px(18.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
                 r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
                 t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
-                r(px(4.2), pz(base_rear_z), 6.6*x_scale, depth("ui_switch_f2")*z_scale, "#e2e8f0", "#64748b", rx=2, extra=' data-instance="F2"'),
-                t(px(7.5), pz(base_rear_z+2.7), "F2", 8, "bold", "middle", "#4c1d95"),
                 t(px(37.5), pz(battery_rear_z)+24, "No installed Cap appears: its Y=17…41-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 '</g>',
             ]
@@ -3112,7 +3127,7 @@ def render_navigation_cluster(design, devices, instances):
             f'<circle cx="{x(hx):.1f}" cy="{y(hy):.1f}" r="{MOUNT_HOLE_D*scale/2:.1f}" '
             'fill="#ffffff" stroke="#475467"/>'
         )
-    for item in FRONT_CONTROLS:
+    for item in BOTTOM_NAV_CONTROLS:
         width, height = placement_size(item, devices, instances)
         is_navigation = item.instance.startswith("ui_dpad_")
         out.append(
@@ -3368,6 +3383,21 @@ def build_unified_coordinate_table(source_table: dict, model: dict) -> dict:
 def build_external_face_acceptance(devices: dict, instances: dict, model: dict) -> dict:
     """Emit the exact H1.3 exterior package presented at the H1.3.1 user gate."""
     display = devices[instances["display"]]
+    function_button_w, function_button_h = placement_size(
+        SIDE_FUNCTION_CONTROLS[0], devices, instances
+    )
+    display_x = 10.25
+    display_right = display_x + float(display["dimensions_mm"][0])
+    left_display_clearance = display_x - (
+        SIDE_FUNCTION_CONTROLS[0].x + function_button_w
+    )
+    right_display_clearance = SIDE_FUNCTION_CONTROLS[4].x - display_right
+    top_mounting_keepout_clearance = min(
+        item.y - (hole_y + MOUNT_KEEPOUT_R)
+        for item in SIDE_FUNCTION_CONTROLS
+        for hole_x, hole_y in HOLES
+        if item.x <= hole_x <= item.x + function_button_w and hole_y < item.y
+    )
 
     def antenna_ports(bank):
         return [
@@ -3434,6 +3464,7 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
             "silkscreen_labels_nonoverlapping": True,
             "external_interface_directions_present": True,
             "both_antenna_banks_on_outward_faces": True,
+            "function_key_columns_clear_display_and_mounting_keepouts": True,
         },
         "front": {
             "board_outline_mm": [BOARD_W, BOARD_H],
@@ -3442,6 +3473,21 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
                 "body_mm": display["dimensions_mm"],
                 "active_area_mm": display["active_area_mm"],
                 "pixels": display["pixel_resolution"],
+            },
+            "function_key_columns": {
+                "mpn": devices[instances["ui_switch_f1"]]["mpn"],
+                "button_envelope_mm": [function_button_w, function_button_h],
+                "left": ["F1", "F2", "F3", "F4"],
+                "right": ["F5", "F6", "F7", "F8"],
+                "vertical_pitch_mm": 13.5,
+                "board_edge_clearance_mm": 1.8,
+                "display_clearance_mm": round(
+                    min(left_display_clearance, right_display_clearance), 6
+                ),
+                "top_mounting_keepout_clearance_mm": round(
+                    top_mounting_keepout_clearance, 6
+                ),
+                "free_expander_inputs_after_placement": 0,
             },
             "antenna_ports": antenna_ports(FRONT_RF),
             "tx_indicators": [

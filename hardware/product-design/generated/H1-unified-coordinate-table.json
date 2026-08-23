@@ -116,7 +116,7 @@
     "not_yet_locked": "wall thickness, ribs, seals, bezel, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently"
   },
-  "resolved_body_count": 142,
+  "resolved_body_count": 148,
   "rows": [
     {
       "instance": "aon_buck",
@@ -2609,41 +2609,155 @@
     },
     {
       "instance": "ui_switch_f1",
-      "source_frame": "rear-outer",
+      "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          64.2,
-          70.8
+          1.8,
+          8.4
         ],
         "y": [
-          63.5,
-          69.5
+          19.5,
+          25.5
         ],
         "z": [
-          17.4,
-          21.7
+          -1.1,
+          3.2
         ]
       },
-      "direction": "rear-normal outward actuation"
+      "direction": "front-normal outward actuation"
     },
     {
       "instance": "ui_switch_f2",
-      "source_frame": "rear-outer",
+      "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          64.2,
-          70.8
+          1.8,
+          8.4
         ],
         "y": [
-          78.5,
-          84.5
+          33.0,
+          39.0
         ],
         "z": [
-          17.4,
-          21.7
+          -1.1,
+          3.2
         ]
       },
-      "direction": "rear-normal outward actuation"
+      "direction": "front-normal outward actuation"
+    },
+    {
+      "instance": "ui_switch_f3",
+      "source_frame": "front-outer",
+      "world_bbox_mm": {
+        "x": [
+          1.8,
+          8.4
+        ],
+        "y": [
+          46.5,
+          52.5
+        ],
+        "z": [
+          -1.1,
+          3.2
+        ]
+      },
+      "direction": "front-normal outward actuation"
+    },
+    {
+      "instance": "ui_switch_f4",
+      "source_frame": "front-outer",
+      "world_bbox_mm": {
+        "x": [
+          1.8,
+          8.4
+        ],
+        "y": [
+          60.0,
+          66.0
+        ],
+        "z": [
+          -1.1,
+          3.2
+        ]
+      },
+      "direction": "front-normal outward actuation"
+    },
+    {
+      "instance": "ui_switch_f5",
+      "source_frame": "front-outer",
+      "world_bbox_mm": {
+        "x": [
+          66.6,
+          73.2
+        ],
+        "y": [
+          19.5,
+          25.5
+        ],
+        "z": [
+          -1.1,
+          3.2
+        ]
+      },
+      "direction": "front-normal outward actuation"
+    },
+    {
+      "instance": "ui_switch_f6",
+      "source_frame": "front-outer",
+      "world_bbox_mm": {
+        "x": [
+          66.6,
+          73.2
+        ],
+        "y": [
+          33.0,
+          39.0
+        ],
+        "z": [
+          -1.1,
+          3.2
+        ]
+      },
+      "direction": "front-normal outward actuation"
+    },
+    {
+      "instance": "ui_switch_f7",
+      "source_frame": "front-outer",
+      "world_bbox_mm": {
+        "x": [
+          66.6,
+          73.2
+        ],
+        "y": [
+          46.5,
+          52.5
+        ],
+        "z": [
+          -1.1,
+          3.2
+        ]
+      },
+      "direction": "front-normal outward actuation"
+    },
+    {
+      "instance": "ui_switch_f8",
+      "source_frame": "front-outer",
+      "world_bbox_mm": {
+        "x": [
+          66.6,
+          73.2
+        ],
+        "y": [
+          60.0,
+          66.0
+        ],
+        "z": [
+          -1.1,
+          3.2
+        ]
+      },
+      "direction": "front-normal outward actuation"
     },
     {
       "instance": "ui_switch_opt",

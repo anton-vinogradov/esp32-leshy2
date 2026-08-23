@@ -200,6 +200,14 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="ui_dpad_left" data-direct-press="true"',
             'data-instance="ui_dpad_right" data-direct-press="true"',
             'data-instance="ui_dpad_ok" data-direct-press="true"',
+            'data-instance="ui_switch_f1" data-direct-press="true"',
+            'data-instance="ui_switch_f2" data-direct-press="true"',
+            'data-instance="ui_switch_f3" data-direct-press="true"',
+            'data-instance="ui_switch_f4" data-direct-press="true"',
+            'data-instance="ui_switch_f5" data-direct-press="true"',
+            'data-instance="ui_switch_f6" data-direct-press="true"',
+            'data-instance="ui_switch_f7" data-direct-press="true"',
+            'data-instance="ui_switch_f8" data-direct-press="true"',
             "RUN",
             "KILL",
             "PTT",
@@ -262,8 +270,28 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual([75.0, 150.0], package["rear"]["board_outline_mm"])
         self.assertEqual([320, 480], package["front"]["display"]["pixels"])
         self.assertEqual([48.96, 73.44], package["front"]["display"]["active_area_mm"])
+        function_keys = package["front"]["function_key_columns"]
+        self.assertEqual("OMRON B3S-1100P", function_keys["mpn"])
+        self.assertEqual(["F1", "F2", "F3", "F4"], function_keys["left"])
+        self.assertEqual(["F5", "F6", "F7", "F8"], function_keys["right"])
+        self.assertEqual(1.85, function_keys["display_clearance_mm"])
+        self.assertEqual(4.5, function_keys["top_mounting_keepout_clearance_mm"])
+        self.assertEqual(0, function_keys["free_expander_inputs_after_placement"])
         self.assertEqual(4, len(package["front"]["antenna_ports"]))
         self.assertEqual(5, len(package["rear"]["antenna_ports"]))
+        self.assertEqual(15, len(package["front"]["controls"]))
+        self.assertEqual(2, len(package["rear"]["controls"]))
+        self.assertEqual(
+            {f"ui_switch_f{index}" for index in range(1, 9)},
+            {
+                item["instance"]
+                for item in package["front"]["controls"]
+                if item["instance"].startswith("ui_switch_f")
+            },
+        )
+        self.assertFalse(
+            any(item["instance"].startswith("ui_switch_f") for item in package["rear"]["controls"])
+        )
         indicators = package["front"]["tx_indicators"]
         self.assertEqual(10, len(indicators))
         self.assertEqual(
@@ -455,7 +483,7 @@ class ProductSiteTests(unittest.TestCase):
             "M5Stack U214",
             "Samtec HLE-107-02-G-DV-PE-LC",
             'id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery"',
-            'id="section-battery" data-cut-y-mm="82" data-contains="battery-controls-no-u214"',
+            'id="section-battery" data-cut-y-mm="82" data-contains="battery-no-u214"',
             "No battery appears",
             "No installed Cap appears",
             "Keystone Electronics 1048P + 2× 18650",

@@ -84,9 +84,9 @@ never substitutes for measured RF.
 | Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output; enclosure acoustic treatment is verified later |
 | Headphones | `Same Sky SJ1-3515-SMT-TR` | 3.5-mm connector with detect |
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
-| Control panel | `TCA9539PWR` | Ten independent active-low inputs for D-pad, BACK, OPT, F1, F2 and encoder push |
+| Control panel | `TCA9539PWR` | Sixteen independent active-low inputs for D-pad, BACK, OPT, F1…F8 and encoder push |
 | Navigation buttons | `5× OMRON B3S-1100P` | Independent direct-press UP, DOWN, LEFT, RIGHT and OK |
-| Other direct buttons | `5× OMRON B3S-1100P` | BACK, OPT, F1, F2 and PTT |
+| Other direct buttons | `11× OMRON B3S-1100P` | BACK, OPT, F1…F8 and PTT |
 | RUN/KILL | `C&K JS102011SCQN` | Sole side control for physical safety state and low-current source command |
 | Safety controller | `Texas Instruments MSPM0C1106SDGS20R` | Independent heartbeat, TX-lease, evidence and three-zone thermal supervisor |
 | Independent watchdog | `Texas Instruments TPS3435CAKAGDDFR` | 1.6-second AON timeout; directly latches FAULT_KILL |
@@ -94,25 +94,28 @@ never substitutes for measured RF.
 | Encoder knob | `Davies Molding 1227-J` | 15-mm soft-touch interference fit for the 6×4.5-mm D shaft |
 
 The front navigation cluster uses five independent, directly pressed
-`OMRON B3S-1100P` buttons for UP, DOWN, LEFT, RIGHT and `OK`. All ten ordinary
-controls use independent expander inputs, so simultaneous keys need no matrix
-scan or ghost-key reconstruction. `BACK`, `OPT`, `F1`, `F2` and `PTT` use the
-same series button; no control needs a custom cap or plunger. F1/F2 and the
-encoder sit to the rear battery's left; PTT sits to its right. The encoder
+`OMRON B3S-1100P` buttons for UP, DOWN, LEFT, RIGHT and `OK`. The fifteen
+front buttons plus encoder push use all sixteen independent expander inputs;
+PTT has its own direct RP line. Simultaneous keys therefore need no matrix
+scan or ghost-key reconstruction. `BACK`, `OPT`, `F1` through `F8` and `PTT`
+use the same series button; no control needs a custom cap or plunger. Four
+function keys sit in each display-side gutter: F1–F4 on the left and F5–F8 on
+the right. The rear face retains only the encoder on the left and PTT on the
+right. The encoder
 carries an exact `Davies Molding 1227-J` knob. The side-facing
 `C&K JS102011SCQN` is the sole `RUN/KILL` control; separate STOP and RE-ARM
 buttons are not fitted. A phone may provide occasional long-form text input but
 cannot confirm dangerous actions.
 
-The `TCA9539PWR` retains six unassigned inputs: `P07` and `P13…P17`. `P07`
-already has front-panel ESD protection; exposing the other five as user keys
-requires appropriate external-input protection. This is electrical capacity,
-not six pre-committed face buttons.
+All sixteen `TCA9539PWR` inputs are assigned. The two display-side key columns
+have local ESD protection, and F1/F2 no longer consume inter-board contacts.
+Adding another ordinary key now requires a second input expander or an explicit
+function trade.
 
 The battery holder and rear controls mount directly on the external face of the
 RF/power PCB. There is no continuous rear lid over the holder: cells insert
-directly into the open `Keystone 1048P`. `F1/F2` sit to the holder's left and
-`PTT` to its right, so their actuation axes do not cross the battery envelope.
+directly into the open `Keystone 1048P`. The encoder sits to the holder's left
+and `PTT` to its right, so their actuation axes do not cross the battery envelope.
 RUN/KILL faces the enclosure side and is labelled on that external edge.
 
 ## Expansion

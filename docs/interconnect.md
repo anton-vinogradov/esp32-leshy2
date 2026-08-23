@@ -7,7 +7,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 ## UI/control board
 
 - Compute: `ESP32-S3-WROOM-1U-N16R8` owns UI, display, storage and audio; `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio and IR.
-- Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, headphones, D-pad, BACK and OPT.
+- Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, headphones, D-pad, BACK, OPT and F1…F8.
 - Local safety: S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.
 - C5 service: a separate data-only `GCT USB4105-GF-A` USB-C receptacle.
 
@@ -17,7 +17,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 - External modules: removable `M5Stack U214 Cap LoRa-1262` on exact vertical `Samtec HLE-107-02-G-DV-PE-LC` of the raised rear rail and an independent M5 Unit port on exact `1125R-SMT-4P`.
 - Power and product USB-C: `JAE DX07S016JA1R1500`, `Texas Instruments TPD4S201RUKR` protection, `Texas Instruments TPS25751DREFR` USB-PD, charger, cells and every rail converter.
 - Rear-board audio: `Same Sky CMEJ-0413-42-SMT-TR` microphone with local bias, `Diodes Incorporated PAM8302AASCR` differential amplifier and `PUI Audio AS02404PO` speaker.
-- Rear controls: F1/F2, encoder and PTT; the single side RUN/KILL switch supplies both the safety state and low-current source command.
+- Rear controls: encoder and PTT; the single side RUN/KILL switch supplies both the safety state and low-current source command.
 - Local safety: `Texas Instruments MSPM0C1106SDGS20R`, `Texas Instruments TPS3435CAKAGDDFR`, FAULT_KILL latch, three thermal zones, hardware gates and physical transmit evidence.
 
 ## Why the split is arranged this way
@@ -27,11 +27,11 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 - the microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND before the UI-local capture and transmit selectors
 - S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board
 - RUN/KILL conditioning, the independent watchdog, safety controller and FAULT_KILL latch remain on the RF/power board; only digital RUN_PERMIT, split reset gates, UI temperature and read-only status cross M1
-- rear F1/F2 and encoder use five direct input/phase contacts across M1; PTT is local to the RP/voice domain and M1 retains two reserved no-connect contacts
+- only encoder push and phases cross M1; F1 through F8 are UI-local, PTT is local to the RP/voice domain, and M1 retains four reserved no-connect contacts
 
 ## Contact budget
 
-- 80 positions total; 2 reserved and no-connect.
+- 80 positions total; 4 reserved and no-connect.
 - 8 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
 - 22 power returns, 3 audio returns and 2 safety returns.
 - Raw VBUS/PD high voltage, battery current, analog TX-detector outputs, IR carrier and class-D speaker outputs do not cross M1.
@@ -68,11 +68,11 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 | `26` | `POWER_FAULT_N` | RF→UI | `control` |
 | `27` | `POWER_GROUND` | return | `return` |
 | `28` | `UNIT_READY` | RF→UI | `control` |
-| `29` | `UI_F1_N` | RF→UI | `control` |
+| `29` | `RESERVED_29` | reserved | `reserved` |
 | `30` | `POR_N` | RF→UI | `safety` |
 | `31` | `POWER_GROUND` | return | `return` |
 | `32` | `RUN_PERMIT` | RF→UI | `safety` |
-| `33` | `UI_F2_N` | RF→UI | `control` |
+| `33` | `RESERVED_33` | reserved | `reserved` |
 | `34` | `RF_RESET_KILL_GATE` | RF→UI | `safety` |
 | `35` | `POWER_GROUND` | return | `return` |
 | `36` | `EV_N0_S3` | UI→RF | `tx_evidence` |
@@ -121,4 +121,4 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 | `79` | `RESERVED_79` | reserved | `reserved` |
 | `80` | `RESERVED_80` | reserved | `reserved` |
 
-Eight paralleled `3V3_MAIN` contacts provide a 3.2-A nameplate ceiling, but finished-device current is accepted only after connector-temperature measurement under simultaneous load. Two reserve contacts remain physically unconnected.
+Eight paralleled `3V3_MAIN` contacts provide a 3.2-A nameplate ceiling, but finished-device current is accepted only after connector-temperature measurement under simultaneous load. Four reserve contacts remain physically unconnected.

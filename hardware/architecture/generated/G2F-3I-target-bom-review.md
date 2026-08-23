@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **941** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **940** supplied/costed placements collapse to **200** used exact-device/MPN lines.
+- **954** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **953** supplied/costed placements collapse to **200** used exact-device/MPN lines.
 - Current orderability evidence exists for **199/200** used lines; **1** need a current source check.
 - Machine-readable quantity-100 cost evidence exists for **189/200** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **923/940** supplied placements; their partial subtotals are `base_product` — USD 214.1710. These are coverage diagnostics, not product COGS.
+- Those priced lines cover **936/953** supplied placements; their partial subtotals are `base_product` — USD 218.7167. These are coverage diagnostics, not product COGS.
 - Machine-readable alternate/no-substitution evidence exists for **200/200** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 937 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 950 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -1042,7 +1042,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>OMRON B3S-1100P</code> — 10 × USD 0.6405 = USD 6.4050</summary>
+<details><summary><code>OMRON B3S-1100P</code> — 16 × USD 0.6405 = USD 10.2480</summary>
 
 - Device id: `omron_b3s_1100p`.
 - Scope: `base_product`.
@@ -1501,7 +1501,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments TPD8E003DQDR</code> — 1 × USD 0.6445 = USD 0.6445</summary>
+<details><summary><code>Texas Instruments TPD8E003DQDR</code> — 2 × USD 0.6445 = USD 1.2890</summary>
 
 - Device id: `ti_tpd8e003_dqdr`.
 - Scope: `base_product`.
@@ -1870,7 +1870,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-073K32L</code> — 8 × USD 0.0097 = USD 0.0776</summary>
+<details><summary><code>Yageo RC0402FR-073K32L</code> — 14 × USD 0.0097 = USD 0.1358</summary>
 
 - Device id: `yageo_rc0402fr_073k32l`.
 - Scope: `base_product`.

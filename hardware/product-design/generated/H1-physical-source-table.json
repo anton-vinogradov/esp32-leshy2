@@ -11,8 +11,8 @@
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
   "summary": {
-    "rendered_physical_instances": 171,
-    "exact_mpn_instances": 171,
+    "rendered_physical_instances": 177,
+    "exact_mpn_instances": 177,
     "explicit_mpn_tbd_instances": 0,
     "h1_blockers": 0,
     "h5_received_sample_gates": 13
@@ -1196,7 +1196,7 @@
       "instance": "encoder",
       "device_key": "alps_ec11e18244au",
       "mpn": "Alps Alpine EC11E18244AU",
-      "role": "rear encoder above F1/F2",
+      "role": "rear encoder",
       "frame": "rear-outer",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
@@ -4437,11 +4437,11 @@
       "instance": "ui_switch_f1",
       "device_key": "omron_b3s_1100p",
       "mpn": "OMRON B3S-1100P",
-      "role": "rear F1",
-      "frame": "rear-outer",
-      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "role": "front-left function F1",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
-      "direction": "rear-normal outward actuation",
+      "direction": "front-normal outward actuation",
       "envelope_mm": [
         6.6,
         6.0,
@@ -4461,19 +4461,19 @@
         }
       ],
       "position_mm": [
-        4.2,
-        63.5
+        1.8,
+        19.5
       ]
     },
     {
       "instance": "ui_switch_f2",
       "device_key": "omron_b3s_1100p",
       "mpn": "OMRON B3S-1100P",
-      "role": "rear F2",
-      "frame": "rear-outer",
-      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "role": "front-left function F2",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
-      "direction": "rear-normal outward actuation",
+      "direction": "front-normal outward actuation",
       "envelope_mm": [
         6.6,
         6.0,
@@ -4493,8 +4493,200 @@
         }
       ],
       "position_mm": [
-        4.2,
-        78.5
+        1.8,
+        33.0
+      ]
+    },
+    {
+      "instance": "ui_switch_f3",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "front-left function F3",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        1.8,
+        46.5
+      ]
+    },
+    {
+      "instance": "ui_switch_f4",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "front-left function F4",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        1.8,
+        60.0
+      ]
+    },
+    {
+      "instance": "ui_switch_f5",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "front-right function F5",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        66.6,
+        19.5
+      ]
+    },
+    {
+      "instance": "ui_switch_f6",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "front-right function F6",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        66.6,
+        33.0
+      ]
+    },
+    {
+      "instance": "ui_switch_f7",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "front-right function F7",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        66.6,
+        46.5
+      ]
+    },
+    {
+      "instance": "ui_switch_f8",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "front-right function F8",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        66.6,
+        60.0
       ]
     },
     {

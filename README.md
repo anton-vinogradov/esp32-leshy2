@@ -69,6 +69,9 @@ exterior generated from the unified coordinate source.
   from the unified source. Ten TX indicators form two aligned rows of five;
   the display distinguishes its 54.5×83.0-mm body from the exact
   48.96×73.44-mm 2:3 active area.
+  - ✅ `H1.3.0.1` — place exact serial F1–F4 and F5–F8 columns beside the
+    display, move F1/F2 off the rear face and M1, allocate all 16 direct-input
+    contacts and add local ESD protection without changing the display.
 - ▶️ **`H1.3.1` — current:** user review gate for the complete front and rear
   exterior, including labels, interface directions and control locations.
 - ⏳ `H1.4.0` — generate mirrored inner faces and the board-to-board stack.
@@ -251,8 +254,14 @@ UI_DPAD_RIGHT["OMRON B3S-1100P<br/>independent RIGHT navigation button"]
 UI_DPAD_OK["OMRON B3S-1100P<br/>independent OK confirmation button"]
 UI_SWITCH_BACK["OMRON B3S-1100P<br/>BACK button"]
 UI_SWITCH_OPT["OMRON B3S-1100P<br/>OPT button"]
-UI_SWITCH_F1["OMRON B3S-1100P<br/>rear F1 function button"]
-UI_SWITCH_F2["OMRON B3S-1100P<br/>rear F2 function button"]
+UI_SWITCH_F1["OMRON B3S-1100P<br/>left display-side F1 button"]
+UI_SWITCH_F2["OMRON B3S-1100P<br/>left display-side F2 button"]
+UI_SWITCH_F3["OMRON B3S-1100P<br/>left display-side F3 button"]
+UI_SWITCH_F4["OMRON B3S-1100P<br/>left display-side F4 button"]
+UI_SWITCH_F5["OMRON B3S-1100P<br/>right display-side F5 button"]
+UI_SWITCH_F6["OMRON B3S-1100P<br/>right display-side F6 button"]
+UI_SWITCH_F7["OMRON B3S-1100P<br/>right display-side F7 button"]
+UI_SWITCH_F8["OMRON B3S-1100P<br/>right display-side F8 button"]
 ENCODER["Alps Alpine EC11E18244AU<br/>rear rotary encoder with push"]
 PTT_SWITCH["OMRON B3S-1100P<br/>independent rear PTT button"]
 POWER_COMMAND_SWITCH["C&K JS102011SCQN<br/>single maintained low-current RUN/KILL switch"]
@@ -267,9 +276,15 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>asynchronous FAULT_KILL latch"]
   UI_DPAD_OK -->|"direct P04"| UI_MATRIX_IO
   UI_SWITCH_BACK -->|"direct P05"| UI_MATRIX_IO
   UI_SWITCH_OPT -->|"direct P06"| UI_MATRIX_IO
-  UI_SWITCH_F1 -->|"direct P10 across M1"| UI_MATRIX_IO
-  UI_SWITCH_F2 -->|"direct P11 across M1"| UI_MATRIX_IO
+  UI_SWITCH_F3 -->|"direct P07"| UI_MATRIX_IO
+  UI_SWITCH_F1 -->|"direct P10"| UI_MATRIX_IO
+  UI_SWITCH_F2 -->|"direct P11"| UI_MATRIX_IO
   ENCODER -->|"push P12 across M1"| UI_MATRIX_IO
+  UI_SWITCH_F4 -->|"direct P13"| UI_MATRIX_IO
+  UI_SWITCH_F5 -->|"direct P14"| UI_MATRIX_IO
+  UI_SWITCH_F6 -->|"direct P15"| UI_MATRIX_IO
+  UI_SWITCH_F7 -->|"direct P16"| UI_MATRIX_IO
+  UI_SWITCH_F8 -->|"direct P17"| UI_MATRIX_IO
   UI_MATRIX_IO -->|"I²C0 + IRQ"| S3
   ENCODER -->|"A/B direct PCNT"| S3
   PTT_SWITCH -->|"direct active-low PTT"| RP

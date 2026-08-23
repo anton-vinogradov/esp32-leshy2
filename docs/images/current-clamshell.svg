@@ -112,6 +112,14 @@
 <text data-layer="pcb-silkscreen" x="277.2" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">LORA/EXT</text>
 <rect x="332.7" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="any_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="5"/>
 <text data-layer="pcb-silkscreen" x="335.7" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">TX ACTIVE</text>
+<rect x="86.7" y="222.2" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f1" data-direct-press="true"/>
+<rect x="86.7" y="272.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f2" data-direct-press="true"/>
+<rect x="86.7" y="322.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f3" data-direct-press="true"/>
+<rect x="86.7" y="372.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f4" data-direct-press="true"/>
+<rect x="326.4" y="222.2" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f5" data-direct-press="true"/>
+<rect x="326.4" y="272.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f6" data-direct-press="true"/>
+<rect x="326.4" y="322.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f7" data-direct-press="true"/>
+<rect x="326.4" y="372.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f8" data-direct-press="true"/>
 <rect x="120.7" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
 <rect x="206.5" y="595.5" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_up" data-direct-press="true"/>
 <rect x="206.5" y="662.1" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_dpad_down" data-direct-press="true"/>
@@ -126,6 +134,14 @@
 <text data-layer="pcb-silkscreen" x="202.8" y="623.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
 <text data-layer="pcb-silkscreen" x="132.9" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
 <text data-layer="pcb-silkscreen" x="304.6" y="668.0" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
+<text data-layer="pcb-silkscreen" x="98.9" y="254.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
+<text data-layer="pcb-silkscreen" x="98.9" y="304.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
+<text data-layer="pcb-silkscreen" x="98.9" y="354.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F3</text>
+<text data-layer="pcb-silkscreen" x="98.9" y="404.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F4</text>
+<text data-layer="pcb-silkscreen" x="338.6" y="254.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F5</text>
+<text data-layer="pcb-silkscreen" x="338.6" y="304.7" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F6</text>
+<text data-layer="pcb-silkscreen" x="338.6" y="354.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F7</text>
+<text data-layer="pcb-silkscreen" x="338.6" y="404.6" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#4c1d95">F8</text>
 <path d="M80.0 433.1 L54.1 433.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="99.0" y="433.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR 38 kHz RX</text>
 <path d="M80.0 458.9 L54.1 458.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -146,14 +162,10 @@
 <text x="568.6" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
 <rect x="604.3" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell1" data-source-envelope="true"/>
 <text x="638.9" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
-<rect x="480.5" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f1" data-direct-press="true"/>
-<rect x="480.5" y="440.4" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_f2" data-direct-press="true"/>
 <rect x="702.5" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ptt_switch" data-direct-press="true"/>
 <circle cx="494.6" cy="336.9" r="27.8" fill="#dbe4ee" stroke="#475467" stroke-width="1.5" data-instance="encoder_knob" data-selected-part="true"/>
 <path d="M494.6 312.1 V321.1" stroke="#475467" stroke-width="2" data-part="knob-indicator-line"/>
 <text data-layer="pcb-silkscreen" x="492.8" y="377.6" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">ENC</text>
-<text data-layer="pcb-silkscreen" x="492.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F1</text>
-<text data-layer="pcb-silkscreen" x="492.8" y="479.3" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">F2</text>
 <text data-layer="pcb-silkscreen" x="714.8" y="423.8" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#4c1d95">PTT</text>
 <path d="M742.5 567.2 L768.4 567.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="724.0" y="562.4" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#ea580c">RUN</text>
@@ -196,6 +208,6 @@
 <text x="850.0" y="653.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Dimensioned projection — not an enclosure release drawing.</text>
 <text x="850.0" y="676.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Navigation is five exact OMRON B3S-1100P direct buttons; no custom cap or actuator.</text>
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
-<text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1/F2/PTT are serial direct buttons.</text>
+<text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
 </svg>
