@@ -11,11 +11,11 @@
   ],
   "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
   "summary": {
-    "rendered_physical_instances": 177,
-    "exact_mpn_instances": 177,
+    "rendered_physical_instances": 178,
+    "exact_mpn_instances": 178,
     "explicit_mpn_tbd_instances": 0,
     "h1_blockers": 0,
-    "h5_received_sample_gates": 13
+    "h5_received_sample_gates": 14
   },
   "rows": [
     {
@@ -1553,29 +1553,61 @@
     },
     {
       "instance": "headphone_jack",
-      "device_key": "same_sky_sj1_3515_smt_tr",
-      "mpn": "Same Sky SJ1-3515-SMT-TR",
-      "role": "3.5-mm headphone/line connector",
+      "device_key": "same_sky_sj_43504_smt_tr",
+      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "role": "3.5-mm CTIA headset TRRS mid-mount connector",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
       "direction": "front right enclosure exit",
       "envelope_mm": [
-        15.0,
-        9.5,
+        14.6,
+        7.5,
         5.0
       ],
       "qualification": "verified_candidate",
       "source": {
-        "document": "SJ1-351X-SMT Audio Jack datasheet",
-        "version": "Rev. 1.09, September 2024",
-        "url": "https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf",
+        "document": "SJ-43504-SMT-TR Audio Jack datasheet",
+        "version": "Rev. 1.06, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+        "checked": "2026-08-23"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-HEADSET-JACK",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        60.4,
+        76.0
+      ]
+    },
+    {
+      "instance": "headset_control_io",
+      "device_key": "ti_tca9534a_pwr",
+      "mpn": "TCA9534APWR",
+      "role": "dedicated 0x39 headset source controller and seven reserve I/O lines",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "Rev. C",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9534a.pdf",
         "checked": "2026-08-18"
       },
       "evidence_gates": [],
       "position_mm": [
-        60.0,
-        75.0
+        54.2,
+        77.0
       ]
     },
     {

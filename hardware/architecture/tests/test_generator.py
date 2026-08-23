@@ -252,8 +252,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(953, sum(line["quantity"] for line in lines))
-        self.assertEqual(200, len(lines))
+        self.assertEqual(967, sum(line["quantity"] for line in lines))
+        self.assertEqual(201, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -263,11 +263,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            189,
+            190,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            936,
+            950,
             sum(
                 line["quantity"]
                 for line in lines
@@ -343,13 +343,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**954** architecture instances", rendered)
-        self.assertIn("**953** supplied/costed placements", rendered)
-        self.assertIn("**199/200** used lines", rendered)
-        self.assertIn("**200/200** lines", rendered)
-        self.assertIn("**189/200** lines", rendered)
-        self.assertIn("**936/953** supplied placements", rendered)
-        self.assertIn("USD 218.7167", rendered)
+        self.assertIn("**968** architecture instances", rendered)
+        self.assertIn("**967** supplied/costed placements", rendered)
+        self.assertIn("**200/201** used lines", rendered)
+        self.assertIn("**201/201** lines", rendered)
+        self.assertIn("**190/201** lines", rendered)
+        self.assertIn("**950/967** supplied placements", rendered)
+        self.assertIn("USD 219.9333", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -395,7 +395,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             if endpoint.startswith("abstract:")
         ]
         self.assertEqual(40, policy["expected_unique_endpoint_count"])
-        self.assertEqual(1115, policy["expected_occurrence_count"])
+        self.assertEqual(1135, policy["expected_occurrence_count"])
         self.assertEqual(set(occurrences), classified)
         self.assertEqual([], audit["unresolved_owner_decisions"])
         self.assertNotIn(
@@ -467,8 +467,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             "SUB-GHz",
             "VHF/UHF",
             "TX ACTIVE",
-            "HEADPHONES",
-            "LINE OUT",
+            "HEADSET",
+            "CTIA",
             "SPEAKER",
             "MICROPHONE",
             "POWER",
@@ -513,7 +513,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="43"',
+            'data-opposing-pairs="36"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="9"',
@@ -3212,7 +3212,8 @@ class ArchitectureValidationTests(unittest.TestCase):
         for route in (
             ("slow_io.P00", "audio_capture_selector.IN", "AUDIO_CAPTURE_MIC_SEL"),
             ("slow_io.P01", "speaker_amp.SD", "SPEAKER_AMP_EN"),
-            ("headphone_jack.TIP_SWITCH", "slow_io.P02", "HEADPHONE_ABSENT"),
+            ("headset_detect_series.END_2", "slow_io.P02", "HEADSET_ABSENT"),
+            ("headset_control_io.P0", "headset_mic_selector.IN", "HEADSET_INTERNAL_MIC_SEL"),
             ("codec_supervisor.RESET_N", "codec_i2c_iso.1C", "CODEC_READY"),
             ("codec_supervisor.RESET_N", "codec_i2s_din_boot_gate.A", "CODEC_READY"),
             ("s3.GPIO6", "codec_i2s_din_boot_gate.B", "AUDIO_ARM"),
@@ -3226,6 +3227,42 @@ class ArchitectureValidationTests(unittest.TestCase):
             ("voice.VOXEN", "abstract:no-connect", "VOICE_VOXEN_NC"),
         ):
             self.assertIn(route, routes)
+
+        self.assertEqual(
+            "same_sky_sj_43504_smt_tr", candidate["instances"]["headphone_jack"]
+        )
+        self.assertEqual(
+            "ti_tca9534a_pwr", candidate["instances"]["headset_control_io"]
+        )
+        self.assertIn(
+            ("abstract:3V3_MAIN", "headset_control_io.A0", "HEADSET_IO_ADDR_A0_HIGH"),
+            routes,
+        )
+        self.assertIn(
+            ("headset_control_io.A1", "abstract:audio-ground", "HEADSET_IO_ADDR_A1_LOW"),
+            routes,
+        )
+        self.assertIn(
+            ("headset_control_io.A2", "abstract:audio-ground", "HEADSET_IO_ADDR_A2_LOW"),
+            routes,
+        )
+        for pin in range(1, 8):
+            self.assertIn(
+                (
+                    f"headset_control_io.P{pin}",
+                    f"headset_control_p{pin}_pulldown.END_1",
+                    f"HEADSET_IO_SPARE_P{pin}",
+                ),
+                routes,
+            )
+        self.assertFalse(
+            any(
+                route[0] == "slow_io.P02" and route[1] == "headset_mic_selector.IN"
+                for route in routes
+            )
+        )
+        self.assertIn("detect-only P02", contract["control_budget"])
+        self.assertIn("0x39", contract["control_budget"])
 
         self.assertFalse(
             any(

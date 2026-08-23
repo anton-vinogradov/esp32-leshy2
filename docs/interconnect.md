@@ -7,7 +7,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 ## UI/control board
 
 - Compute: `ESP32-S3-WROOM-1U-N16R8` owns UI, display, storage and audio; `ESP32-C5-WROOM-1U-N8R8` owns native 2.4/5-GHz radio and IR.
-- Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, headphones, D-pad, BACK, OPT and F1…F8.
+- Interfaces: `HMX035CTFT-001 (QDtech schematic assembly marking)`, microSD, `Everest Semiconductor ES8311`, `Si4732-A10-GSR`, CTIA headset, D-pad, BACK, OPT and F1…F8.
 - Local safety: S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.
 - C5 service: a separate data-only `GCT USB4105-GF-A` USB-C receptacle.
 
@@ -24,7 +24,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 - raw USB VBUS, CC, negotiated high voltage, charger and battery current remain entirely on the RF/power board
 - speaker class-D BTL switching remains on the RF/power board; only low-level differential audio crosses M1 with adjacent AUDIO_GROUND
-- the microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND before the UI-local capture and transmit selectors
+- the internal microphone body and bias/filter network remain on the RF/power board; MIC_RAW crosses M1 once beside AUDIO_GROUND to the UI-local internal/headset selector, after which one MIC_SELECTED_RAW source feeds both capture and transmit selectors
 - S3/C5/IR detector analog outputs and the IR carrier remain on the UI board; nRF/CC/voice detector analog outputs remain on the RF board
 - RUN/KILL conditioning, the independent watchdog, safety controller and FAULT_KILL latch remain on the RF/power board; only digital RUN_PERMIT, split reset gates, UI temperature and read-only status cross M1
 - only encoder push and phases cross M1; F1 through F8 are UI-local, PTT is local to the RP/voice domain, and M1 retains four reserved no-connect contacts
@@ -38,20 +38,9 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 ## Physical passage through the sandwich
 
-Every inter-board net listed below crosses only inside the single M1 body: the
-11-mm air channel contains no separate USB, IPC, I2C, audio, control or power
-cable. Their shared mechanical conflict with components is therefore checked
-once against the complete keep-out of the exact `FX8C-80P-SV1(92)` /
-`FX8C-80S-SV5(92)` pair. That pair is the one intentional mate and clears every
-unrelated body on both boards. The five RF microcoaxes, display adapter,
-pass-through U214 socket, nine antenna-connector tails and seven encoder
-through-board features are checked separately.
+Every inter-board net listed below crosses only inside the single M1 body: the 11-mm air channel contains no separate USB, IPC, I2C, audio, control or power cable. Their shared mechanical conflict with components is therefore checked once against the complete keep-out of the exact `FX8C-80P-SV1(92)` / `FX8C-80S-SV5(92)` pair. That pair is the one intentional mate and clears every unrelated body on both boards. The five RF microcoaxes, display adapter, pass-through U214 socket, nine antenna-connector tails and seven encoder through-board features are checked separately.
 
-This closes physical bodies and the inter-board air channel, not PCB routing.
-Fan-out from all 80 contacts, via fields, return paths, impedance and electrical
-clearances become proven only after ERC/DRC of the routed KiCad boards. Until
-then the map below is the accepted net assignment, not a claim that copper is
-already routed.
+This closes physical bodies and the inter-board air channel, not PCB routing. Fan-out from all 80 contacts, via fields, return paths, impedance and electrical clearances become proven only after ERC/DRC of the routed KiCad boards. Until then the map below is the accepted net assignment, not a claim that copper is already routed.
 
 ## Exact contact map
 

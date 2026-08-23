@@ -149,8 +149,8 @@
 <path d="M80.0 483.9 L54.1 483.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="99.0" y="483.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#d97706">IR TX</text>
 <path d="M357.5 445.1 L383.4 445.1" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="338.5" y="440.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">HEADPHONES</text>
-<text data-layer="pcb-silkscreen" x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">LINE OUT</text>
+<text data-layer="pcb-silkscreen" x="338.5" y="440.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">HEADSET</text>
+<text data-layer="pcb-silkscreen" x="338.5" y="449.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">CTIA</text>
 <path d="M196.4 705.0 L196.4 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="196.4" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>

@@ -130,6 +130,15 @@
       "unknown": "Enclosure acoustic treatment, cavity resonance, sealing, feedback, microphone response and vibration.",
       "closure": "Received acoustic stack passes level, response, feedback, sealing and vibration tests in H5.",
       "blocks": ["H8"]
+    },
+    {
+      "id": "H5-MECH-HEADSET-JACK",
+      "disposition": "h5_received_sample_gate",
+      "affected_instances": ["headphone_jack"],
+      "evidence_boundary": "The active and orderable Same Sky SJ-43504-SMT-TR manufacturer drawing fixes the shielded 14.6x7.5x5.0-mm mid-mount body, four CTIA-wired conductors, two internal switches and required PCB cutout. H1 places its opening on the right UI-board edge without increasing the interboard height or colliding with another body.",
+      "unknown": "Received cutout tolerance, shield and solder-tab fit, enclosure opening, plug insertion/withdrawal force, CTIA and three-pole TRS behavior, retention and unplug transient remain assembled-product properties.",
+      "closure": "The exact connector, board-cutout coupon and final enclosure opening pass dimensional, CTIA/TRS electrical, insertion, retention, detect, microphone-selection and endurance checks in H5.",
+      "blocks": ["H8"]
     }
   ]
 }

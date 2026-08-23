@@ -107,7 +107,7 @@ never substitutes for measured RF.
 | Audio codec | `Everest ES8311` | I²S capture and playback |
 | Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Rear RF/power board; faces the bottom edge |
 | Speaker | `PUI Audio AS02404PO` | Rear RF/power board; 4-ohm differential output; enclosure acoustic treatment is verified later |
-| Headphones | `Same Sky SJ1-3515-SMT-TR` | 3.5-mm connector with detect |
+| CTIA headset | `Same Sky SJ-43504-SMT-TR` | Shielded 3.5-mm TRRS mid-mount connector; stereo output, external-microphone input and insertion detect |
 | Main I/O expander | `TCA6424ARGJR` | Power, modes and slow signals |
 | Control panel | `TCA9539PWR` | Sixteen independent active-low inputs for D-pad, BACK, OPT, F1…F8 and encoder push |
 | Navigation buttons | `5× OMRON B3S-1100P` | Independent direct-press UP, DOWN, LEFT, RIGHT and OK |
@@ -136,6 +136,18 @@ All sixteen `TCA9539PWR` inputs are assigned. The two display-side key columns
 have local ESD protection, and F1/F2 no longer consume inter-board contacts.
 Adding another ordinary key now requires a second input expander or an explicit
 function trade.
+
+The headset connector follows CTIA/AHJ: tip is left, ring 1 is right, ring 2
+is audio ground and the sleeve is the biased microphone input. Insertion opens
+the jack's tip switch; protected slow-I/O P02 remains a detect-only input, so
+removal is observable continuously. Firmware silences the loudspeaker on
+insertion and uses dedicated P0 of an exact `TCA9534APWR` at non-conflicting
+I²C address `0x39` to choose the headset microphone or retain the internal
+microphone for an ordinary three-pole headphone plug. A physical pull-up makes
+the internal microphone the reset default. The new expander consumes no MCU
+GPIO and leaves seven pulled, interrupt-capable local I/O reserves. The three
+exposed audio conductors use separate channels of the existing low-capacitance
+ESD array.
 
 The battery holder and rear controls mount directly on the external face of the
 RF/power PCB. There is no continuous rear lid over the holder: cells insert
@@ -185,13 +197,13 @@ mounting holes.
 Every placed body on both inner faces must also have a manufacturer-backed body
 height. Maximum tolerance envelopes are used where the manufacturer publishes
 them. The generator mirrors the RF/power board into the UI-board physical datum
-datum. All 129 bodies on the two main inner faces are first checked individually
+datum. All 130 bodies on the two main inner faces are first checked individually
 against the opposite PCB plane: the tallest body is 8.95 mm and leaves 2.05 mm
 in the 11-mm channel. The two additional display-adapter connectors are checked
 as one complete 3.8-mm assembly; its five rear-board crossings retain at least
-6.00 mm, bringing the covered internal component count to 131. The audit then
-checks all 43 non-mating main-board pairs whose XY projections overlap. The
-current limiting pair—the headphone jack opposite a protected
+6.00 mm, bringing the covered internal component count to 132. The audit then
+checks all 36 non-mating main-board pairs whose XY projections overlap. The
+current limiting pair—the mid-mount headset jack opposite a protected
 pack fuse—retains a 3.31-mm Z gap, above the enforced 0.7-mm minimum. The aligned
 FX8C plug and receptacle are validated separately as the single intentional mate.
 The opposite-face bodies and tails of the nine external RF jacks and the exact
@@ -257,13 +269,13 @@ connector banks are mirrored onto the outward PCB faces: the faces are
 14.2 mm apart, their antenna centre planes are 20.55 mm apart, and no
 connector body enters the exact 11-mm interboard channel.
 
-![Dimensioned external layout](images/current-clamshell.svg?layout=15)
+![Dimensioned external layout](images/current-clamshell.svg?layout=16)
 
 ![Dimensioned series navigation cluster](images/navigation-cluster.svg?layout=1)
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=17)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=18)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

@@ -9,11 +9,11 @@ remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
 
 | Coverage | Result |
 |---|---:|
-| Rendered physical instances | 177 |
-| Exact-MPN instances | 177 |
+| Rendered physical instances | 178 |
+| Exact-MPN instances | 178 |
 | Explicit MPN TBD instances | 0 |
 | H1 geometry blockers | 0 |
-| H5 received-sample gates | 13 |
+| H5 received-sample gates | 14 |
 
 ## Coordinate frames
 
@@ -25,7 +25,7 @@ remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |
 | `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 100 |
 | `rf-inner-route` | RF/power PCB top-left, viewed from the rear/exterior | 3 |
-| `ui-inner` | UI PCB top-left, viewed from the front/exterior | 29 |
+| `ui-inner` | UI PCB top-left, viewed from the front/exterior | 30 |
 | `ui-inner-route` | UI PCB top-left, viewed from the front/exterior | 2 |
 
 The complete per-instance table is retained as

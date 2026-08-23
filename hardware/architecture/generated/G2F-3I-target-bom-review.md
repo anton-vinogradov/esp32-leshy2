@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **954** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **953** supplied/costed placements collapse to **200** used exact-device/MPN lines.
-- Current orderability evidence exists for **199/200** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **189/200** lines.
+- **968** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **967** supplied/costed placements collapse to **201** used exact-device/MPN lines.
+- Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **190/201** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **936/953** supplied placements; their partial subtotals are `base_product` — USD 218.7167. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **200/200** lines.
+- Those priced lines cover **950/967** supplied placements; their partial subtotals are `base_product` — USD 219.9333. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 950 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 964 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -197,7 +197,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 29 line(s)</summary>
+<details><summary><code>SUB-LOGIC-ANALOG</code> — Logic, interface, audio and analog signal ICs — 30 line(s)</summary>
 
 - Disposition: no drop-in by family name; exact pin/function/electrical equivalent requires owning-interface requalification.
 - Equivalence envelope:
@@ -230,6 +230,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `ti_sn74lvc2g66_dcur` — `Texas Instruments SN74LVC2G66DCUR`.
   - `ti_sn74lvc3g07_dcur` — `SN74LVC3G07DCUR`.
   - `ti_sn74lvc3g34_dcur` — `SN74LVC3G34DCUR`.
+  - `ti_tca9534a_pwr` — `TCA9534APWR`.
   - `ti_tca9535_pwr` — `TCA9535PWR`.
   - `ti_tca9539_pwr` — `TCA9539PWR`.
   - `ti_tlv1821_dckr` — `TLV1821DCKR`.
@@ -336,7 +337,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `pui_as02404po` — `PUI Audio AS02404PO`.
   - `qdtech_hmx035ctft_001` — `HMX035CTFT-001 (QDtech schematic assembly marking)`.
   - `same_sky_cmej_0413_42_smt_tr` — `Same Sky CMEJ-0413-42-SMT-TR`.
-  - `same_sky_sj1_3515_smt_tr` — `Same Sky SJ1-3515-SMT-TR`.
+  - `same_sky_sj_43504_smt_tr` — `Same Sky SJ-43504-SMT-TR`.
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
   - `samtec_hle_107_02_g_dv_pe_lc` — `Samtec HLE-107-02-G-DV-PE-LC`.
   - `seeed_1125r_smt_4p` — `1125R-SMT-4P`.
@@ -1141,12 +1142,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Same Sky SJ1-3515-SMT-TR</code> — 1 × USD 1.1166 = USD 1.1166</summary>
+<details><summary><code>Same Sky SJ-43504-SMT-TR</code> — 1 × USD 0.9304 = USD 0.9304</summary>
 
-- Device id: `same_sky_sj1_3515_smt_tr`.
+- Device id: `same_sky_sj_43504_smt_tr`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/SJ1-3515-SMT-TR/659917).
+- Comparable basis: DigiKey cut-tape quantity-100 tier; 7,349 units shown in stock; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/SJ-43504-SMT-TR/2625173).
 
 </details>
 
@@ -1240,7 +1241,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TDK C1005X7R1H104K050BB</code> — 113 × USD 0.0258 = USD 2.9154</summary>
+<details><summary><code>TDK C1005X7R1H104K050BB</code> — 115 × USD 0.0258 = USD 2.9670</summary>
 
 - Device id: `tdk_c1005x7r1h104k050bb`.
 - Scope: `base_product`.
@@ -1417,6 +1418,15 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC3G34DCUR/484593).
+
+</details>
+
+<details><summary><code>TCA9534APWR</code> — 1 × USD 1.0212 = USD 1.0212</summary>
+
+- Device id: `ti_tca9534a_pwr`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/texas-instruments/TCA9534APWR/5004965).
 
 </details>
 
@@ -1609,7 +1619,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Texas Instruments TS5A63157DCKR</code> — 2 × USD 0.2330 = USD 0.4660</summary>
+<details><summary><code>Texas Instruments TS5A63157DCKR</code> — 3 × USD 0.2330 = USD 0.6990</summary>
 
 - Device id: `ti_ts5a63157_dckr`.
 - Scope: `base_product`.
@@ -1690,7 +1700,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-07100KL</code> — 28 × USD 0.0097 = USD 0.2716</summary>
+<details><summary><code>Yageo RC0402FR-07100KL</code> — 36 × USD 0.0097 = USD 0.3492</summary>
 
 - Device id: `yageo_rc0402fr_07100kl`.
 - Scope: `base_product`.
@@ -1708,7 +1718,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-0710KL</code> — 189 × USD 0.0097 = USD 1.8333</summary>
+<details><summary><code>Yageo RC0402FR-0710KL</code> — 190 × USD 0.0097 = USD 1.8430</summary>
 
 - Device id: `yageo_rc0402fr_0710kl`.
 - Scope: `base_product`.
@@ -1834,7 +1844,7 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Yageo RC0402FR-072K2L</code> — 23 × USD 0.0097 = USD 0.2231</summary>
+<details><summary><code>Yageo RC0402FR-072K2L</code> — 24 × USD 0.0097 = USD 0.2328</summary>
 
 - Device id: `yageo_rc0402fr_072k2l`.
 - Scope: `base_product`.

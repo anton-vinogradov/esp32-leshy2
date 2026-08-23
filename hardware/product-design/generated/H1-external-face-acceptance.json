@@ -445,7 +445,7 @@
         "instance": "headphone_jack",
         "edge": "right",
         "coordinate_mm": 79.75,
-        "silkscreen": "HEADPHONES / LINE"
+        "silkscreen": "HEADSET / CTIA"
       },
       {
         "instance": "c5_service_usb_connector",

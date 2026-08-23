@@ -10,11 +10,11 @@
 
 | Покрытие | Результат |
 |---|---:|
-| Отрисованных физических экземпляров | 177 |
-| Экземпляров с точным MPN | 177 |
+| Отрисованных физических экземпляров | 178 |
+| Экземпляров с точным MPN | 178 |
 | Экземпляров с явным MPN TBD | 0 |
 | Blocker геометрии H1 | 0 |
-| Received-sample gate H5 | 13 |
+| Received-sample gate H5 | 14 |
 
 ## Системы координат
 
@@ -26,7 +26,7 @@
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |
 | `rf-inner` | RF/power PCB top-left, viewed from the rear/exterior | 100 |
 | `rf-inner-route` | RF/power PCB top-left, viewed from the rear/exterior | 3 |
-| `ui-inner` | UI PCB top-left, viewed from the front/exterior | 29 |
+| `ui-inner` | UI PCB top-left, viewed from the front/exterior | 30 |
 | `ui-inner-route` | UI PCB top-left, viewed from the front/exterior | 2 |
 
 Полная таблица по каждому экземпляру хранится в

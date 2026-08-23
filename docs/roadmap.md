@@ -88,6 +88,9 @@ exterior generated from the unified coordinate source.
   - ✅ `H1.3.0.1` — place exact serial F1–F4 and F5–F8 columns beside the
     display, move F1/F2 off the rear face and M1, allocate all 16 direct-input
     contacts and add local ESD protection without changing the display.
+  - ✅ `H1.3.0.2` — replace the headphone-only socket with exact CTIA
+    `SJ-43504-SMT-TR`, preserve continuous plug detection, add clean dedicated
+    microphone selection and seven pulled local I/O reserves at I²C `0x39`.
 - ▶️ **`H1.3.1` — current:** **user review gate:** accept the complete front
   and rear exterior, including labels, interface directions and control
   locations.

@@ -116,7 +116,7 @@
 | `rp2354a_a4` | `RP2354A A4 (exact order code required before BOM freeze)` | `verified_candidate` | `active` | [RP2350 Datasheet; RP2354A uses the same A-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
 | `rp2354b_a4` | `SC1512-A4` | `verified_exact_rp2354b0a4_7inch_reel_order_code` | `active_orderable` | [RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash build-date 2025-02-20](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf) | same primary source |
 | `same_sky_cmej_0413_42_smt_tr` | `Same Sky CMEJ-0413-42-SMT-TR` | `verified_candidate` | `active_orderable` | [CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet Rev. 1.04, September 2024](https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf) | same primary source |
-| `same_sky_sj1_3515_smt_tr` | `Same Sky SJ1-3515-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ1-351X-SMT Audio Jack datasheet Rev. 1.09, September 2024](https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf) | same primary source |
+| `same_sky_sj_43504_smt_tr` | `Same Sky SJ-43504-SMT-TR` | `verified_candidate` | `active_orderable` | [SJ-43504-SMT-TR Audio Jack datasheet Rev. 1.06, September 2024](https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf) | same primary source |
 | `samtec_ftsh_105_01_l_dv_k_p_tr` | `Samtec FTSH-105-01-L-DV-K-P-TR` | `verified_exact_three_domain_dbg10_header` | `active_orderable` | [Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint drawing revision FX; -105/-01/-L/-DV/-K/-P configuration](https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf) | same primary source |
 | `samtec_hle_107_02_g_dv_pe_lc` | `Samtec HLE-107-02-G-DV-PE-LC` | `verified_bounded_paper_fit_received_u214_mating_hil_open` | `active Extended Life Product; 138 exact parts shown as ships-tomorrow stock` | [Samtec exact HLE product page, series print and HLE catalog HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT](https://www.samtec.com/products/hle-107-02-g-dv-pe-lc) | same primary source |
 | `seeed_1125r_smt_4p` | `1125R-SMT-4P` | `verified_exact_paper_fit_received_cable_hil_open` | `active in Seeed Open Parts Library as PCBA SKU 320110032` | [Seeed 1125R-SMT-4P official manufacturer drawing NS-1125-W00010 Rev.A](https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf) | same primary source |
@@ -151,6 +151,7 @@
 | `ti_sn74lvc2g66_dcur` | `Texas Instruments SN74LVC2G66DCUR` | `verified_candidate` | `active` | [SN74LVC2G66 Dual Bilateral Analog Switch datasheet SCES325N, July 2001, revised August 2018](https://www.ti.com/lit/ds/symlink/sn74lvc2g66.pdf) | same primary source |
 | `ti_sn74lvc3g07_dcur` | `SN74LVC3G07DCUR` | `verified_exact_aon_to_main_open_drain_isolator` | `active_orderable` | [SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet Rev. R](https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf) | same primary source |
 | `ti_sn74lvc3g34_dcur` | `SN74LVC3G34DCUR` | `verified_candidate` | `active` | [SN74LVC3G34 Triple Buffer Gate datasheet Rev. L](https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf) | same primary source |
+| `ti_tca9534a_pwr` | `TCA9534APWR` | `verified_candidate` | `active` | [TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9534a.pdf) | same primary source |
 | `ti_tca9535_pwr` | `TCA9535PWR` | `verified_exact_aon_evidence_mask_expander` | `active_orderable` | [TCA9535 Low-Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tca9535.pdf) | same primary source |
 | `ti_tca9539_pwr` | `TCA9539PWR` | `verified_exact_direct_control_input_expander` | `active_orderable` | [TCA9539 Low Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet Rev. C](https://www.ti.com/lit/ds/symlink/tca9539.pdf) | same primary source |
 | `ti_tlv1821_dckr` | `TLV1821DCKR` | `verified_exact_local_voice_evidence_comparator` | `active_orderable` | [TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet Rev. E](https://www.ti.com/lit/ds/symlink/tlv1821.pdf) | same primary source |
@@ -538,8 +539,8 @@ Decision `DEC-0046`; default `QUIET`.
 | Contact | Physical pad | Net | Dir | Controller | Exact/abstract peers | Strap/reset proof |
 |---|---:|---|---|---|---|---|
 | `GPIO0` | 27 | `I2S_DIN` | `i` | `I2S0` | `codec_i2s_din_iso.Y`, `s3_boot_pullup.END_2`, `s3_dbg_boot_series.END_2` | the exact 10-kOhm pull-up preserves normal boot; CODEC_READY is ANDed with reset-low AUDIO_ARM before the DIN buffer can drive, so GPIO0 remains fixture-controllable throughout ROM strap sampling; the 1-kOhm service path bounds accidental runtime contention |
-| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0`, `safety_controller.PA0` | — |
-| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11`, `safety_controller.PA11` | — |
+| `GPIO1` | 39 | `SYS_I2C_SDA` | `io` | `I2C0` | `slow_io.SDA`, `ui_matrix_io.SDA`, `headset_control_io.SDA`, `receiver_i2c_iso.1A`, `display_connector.PIN_2`, `codec_i2c_iso.1A`, `pd_controller.I2Ct_SDA`, `pack_admission.PA0`, `safety_controller.PA0` | — |
+| `GPIO2` | 38 | `SYS_I2C_SCL` | `o` | `I2C0` | `slow_io.SCL`, `ui_matrix_io.SCL`, `headset_control_io.SCL`, `receiver_i2c_iso.2A`, `display_connector.PIN_1`, `codec_i2c_iso.2A`, `pd_controller.I2Ct_SCL`, `pack_admission.PA11`, `safety_controller.PA11` | — |
 | `GPIO3` | 15 | `RP_ALERT_N` | `i` | `GPIO_IRQ` | `rp.GPIO19` | RP is held reset/high-Z through S3 strap sampling; an external pull fixes the accepted S3 boot state |
 | `GPIO4` | 4 | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | `sd_miso_series.END_2`, `sd_host_d1_pullup.END_1`, `display_connector.PIN_10` | — |
 | `GPIO5` | 5 | `SD_SPI_CS_N` | `o` | `SPI2` | `sd_host_buffer.3A`, `sd_miso_buffer.OE_N`, `sd_host_cs_pullup.END_1` | — |
@@ -566,7 +567,7 @@ Decision `DEC-0046`; default `QUIET`.
 | `GPIO42` | 35 | `LCD_QSPI_D3` | `o` | `SPI2` | `display_connector.PIN_18` | — |
 | `GPIO43` | 37 | `S3_UART_SERVICE_TX` | `o` | `UART0` | `s3_dbg0_series.END_2` | — |
 | `GPIO44` | 36 | `S3_UART_SERVICE_RX` | `i` | `UART0` | `s3_dbg1_series.END_2` | — |
-| `GPIO45` | 26 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `pack_status_buffer.D2` | the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling |
+| `GPIO45` | 26 | `SYS_INT_N` | `i` | `GPIO_IRQ` | `slow_io.INT`, `ui_matrix_io.INT_N`, `headset_control_io.INT_N`, `pd_controller.I2Ct_IRQ`, `touch_irq_buffer.Y`, `pack_status_buffer.D2` | the exact N16R8 module fixes 3.3-V VDD_SPI by eFuse, so the external interrupt pull-up cannot alter memory voltage during strap sampling |
 | `GPIO46` | 16 | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | `sd_host_buffer.2A`, `sd_host_d0_pulldown.END_1`, `display_connector.PIN_13` | one physical 10-kOhm pull-down holds GPIO46 low through ROM sampling, including joint-download entry, then becomes only a weak defined idle load on the push-pull QSPI D0 output |
 | `GPIO47` | 24 | `ENCODER_B` | `i` | `PCNT0` | `encoder.B`, `encoder_b_pullup.END_1` | — |
 | `GPIO48` | 25 | `S3_RP_IPC_SCK` | `o` | `SPI3` | `rp.GPIO26` | — |
@@ -2514,6 +2515,41 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `microphone_bias_res.END_1` | exact 2.2-kOhm load targets the microphone's 2-V operating point |
 | `MIC_RAW` | `microphone_bias_res.END_2` | `microphone.OUT_PLUS` | one exact Same Sky electret is the shared acoustic source |
 | `AUDIO_GROUND` | `microphone.GND_MINUS` | `abstract:audio-ground` | electret shell/input return is local and short |
+| `MIC_BIAS_FILTERED` | `microphone_bias_filter_res.END_2` | `headset_mic_bias_res.END_1` | the CTIA sleeve receives the same quiet microphone supply through its own exact bias resistor |
+| `HEADSET_MIC_RAW` | `headset_mic_bias_res.END_2` | `headphone_jack.SLEEVE` | exact 2.2-kOhm bias supports an ordinary CTIA electret capsule and bounds a shorted TRS sleeve |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector.VCC` | microphone source selection remains available independently of codec and voice-domain power |
+| `AUDIO_GROUND` | `headset_mic_selector.GND` | `abstract:audio-ground` | headset selector quiet return |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_selector_bypass.END_1` | exact 100-nF headset-selector bypass |
+| `AUDIO_GROUND` | `headset_mic_selector_bypass.END_2` | `abstract:audio-ground` | headset-selector bypass return |
+| `MIC_INTERNAL_RAW` | `microphone.OUT_PLUS` | `headset_mic_selector.NO` | logic-high/no-plug selection preserves the internal electret |
+| `HEADSET_MIC_RAW` | `headphone_jack.SLEEVE` | `headset_mic_selector.NC` | logic-low/plugged selection admits only the protected CTIA sleeve microphone |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_control_io.VCC` | dedicated headset control remains in the same protected host domain as SYS_I2C |
+| `AUDIO_GROUND` | `headset_control_io.GND` | `abstract:audio-ground` | headset control return joins the quiet audio-entry region |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_control_io_bypass.END_1` | exact 100-nF local TCA9534A bypass |
+| `AUDIO_GROUND` | `headset_control_io_bypass.END_2` | `abstract:audio-ground` | headset-control bypass return remains local |
+| `SYS_I2C_SCL` | `s3.GPIO2` | `headset_control_io.SCL` | exact 0x39 headset expander uses bounded 400-kHz SYS_I2C transactions |
+| `SYS_I2C_SDA` | `s3.GPIO1` | `headset_control_io.SDA` | the existing host pull-ups serve the same powered domain |
+| `SYS_INT_N` | `headset_control_io.INT_N` | `s3.GPIO45` | open-drain interrupt shares the existing wired-low source-identification path |
+| `HEADSET_IO_ADDR_A0_HIGH` | `abstract:3V3_MAIN` | `headset_control_io.A0` | A0 high with A2/A1 low selects exact 7-bit address 0x39 and avoids the ST77922 touch address 0x38 |
+| `HEADSET_IO_ADDR_A1_LOW` | `headset_control_io.A1` | `abstract:audio-ground` | direct low address strap |
+| `HEADSET_IO_ADDR_A2_LOW` | `headset_control_io.A2` | `abstract:audio-ground` | direct low address strap |
+| `HEADSET_INTERNAL_MIC_SEL` | `headset_control_io.P0` | `headset_mic_selector.IN` | dedicated output selects the internal microphone high or the CTIA microphone low without ever driving the mechanical detect contact |
+| `3V3_MAIN` | `abstract:3V3_MAIN` | `headset_mic_select_pullup.END_1` | exact 100-kOhm pull-up defines the safe internal-microphone reset default |
+| `HEADSET_INTERNAL_MIC_SEL` | `headset_mic_select_pullup.END_2` | `headset_control_io.P0` | the TCA9534A reset-input state cannot leave microphone selection floating |
+| `HEADSET_IO_SPARE_P1` | `headset_control_io.P1` | `headset_control_p1_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p1_pulldown.END_2` | `abstract:audio-ground` | spare P1 reset bias |
+| `HEADSET_IO_SPARE_P2` | `headset_control_io.P2` | `headset_control_p2_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p2_pulldown.END_2` | `abstract:audio-ground` | spare P2 reset bias |
+| `HEADSET_IO_SPARE_P3` | `headset_control_io.P3` | `headset_control_p3_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p3_pulldown.END_2` | `abstract:audio-ground` | spare P3 reset bias |
+| `HEADSET_IO_SPARE_P4` | `headset_control_io.P4` | `headset_control_p4_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p4_pulldown.END_2` | `abstract:audio-ground` | spare P4 reset bias |
+| `HEADSET_IO_SPARE_P5` | `headset_control_io.P5` | `headset_control_p5_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p5_pulldown.END_2` | `abstract:audio-ground` | spare P5 reset bias |
+| `HEADSET_IO_SPARE_P6` | `headset_control_io.P6` | `headset_control_p6_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p6_pulldown.END_2` | `abstract:audio-ground` | spare P6 reset bias |
+| `HEADSET_IO_SPARE_P7` | `headset_control_io.P7` | `headset_control_p7_pulldown.END_1` | 100-kOhm prevents a floating reset input while preserving one future local I/O |
+| `AUDIO_GROUND` | `headset_control_p7_pulldown.END_2` | `abstract:audio-ground` | spare P7 reset bias |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_capture_selector.VCC` | capture source can be selected before codec power admission |
 | `AUDIO_GROUND` | `audio_capture_selector.GND` | `abstract:audio-ground` | capture-selector return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_capture_selector_bypass.END_1` | exact 100-nF capture-selector bypass |
@@ -2525,7 +2561,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `CAPTURE_RX_BIASED` | `audio_capture_rx_coupling.END_2` | `audio_capture_selector.NC` | logic-low TS5A63157 path selects RX |
 | `CAPTURE_RX_BIASED` | `audio_capture_rx_coupling.END_2` | `audio_capture_rx_bias.END_1` | 100-kOhm source bias limits capture loading |
 | `AUDIO_VMID_MAIN` | `audio_capture_rx_bias.END_2` | `audio_vmid_top.END_2` | RX capture branch uses main midpoint |
-| `MIC_RAW` | `microphone.OUT_PLUS` | `audio_capture_mic_coupling.END_1` | microphone capture has its own AC branch independent of transmitter audio |
+| `MIC_SELECTED_RAW` | `headset_mic_selector.COM` | `audio_capture_mic_coupling.END_1` | selected internal or headset microphone capture has its own AC branch independent of transmitter audio |
 | `CAPTURE_MIC_BIASED` | `audio_capture_mic_coupling.END_2` | `audio_capture_selector.NO` | logic-high path selects local electret |
 | `CAPTURE_MIC_BIASED` | `audio_capture_mic_coupling.END_2` | `audio_capture_mic_bias.END_1` | 100-kOhm source bias limits electret loading |
 | `AUDIO_VMID_MAIN` | `audio_capture_mic_bias.END_2` | `audio_vmid_top.END_2` | microphone capture branch uses main midpoint |
@@ -2582,34 +2618,35 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `CODEC_HP_L_RAW` | `codec.OUTP` | `headphone_l_coupling1.END_1` | second physical 22-uF capacitor is parallel, not hidden inside one diagram block |
 | `HEADPHONE_L_AC` | `headphone_l_coupling0.END_2` | `headphone_l_series.END_1` | parallel bank provides about 44 uF before exact series damping |
 | `HEADPHONE_L_AC` | `headphone_l_coupling1.END_2` | `headphone_l_series.END_1` | both left capacitors join only after their separate bodies |
-| `HEADPHONE_TIP` | `headphone_l_series.END_2` | `headphone_jack.TIP` | exact 22-Ohm resistor limits transient and cable loading |
+| `HEADPHONE_LEFT_TIP` | `headphone_l_series.END_2` | `headphone_jack.TIP` | exact 22-Ohm resistor limits transient and cable loading on the CTIA left channel |
 | `CODEC_HP_R_RAW` | `codec.OUTN` | `headphone_r_coupling0.END_1` | first exact 22-uF right coupling capacitor |
 | `CODEC_HP_R_RAW` | `codec.OUTN` | `headphone_r_coupling1.END_1` | second separate exact 22-uF right coupling capacitor |
 | `HEADPHONE_R_AC` | `headphone_r_coupling0.END_2` | `headphone_r_series.END_1` | right parallel bank provides about 44 uF |
 | `HEADPHONE_R_AC` | `headphone_r_coupling1.END_2` | `headphone_r_series.END_1` | both right capacitors are physically accounted |
-| `HEADPHONE_RING` | `headphone_r_series.END_2` | `headphone_jack.RING` | exact 22-Ohm right series resistor |
-| `HEADPHONE_SLEEVE` | `headphone_jack.SLEEVE` | `abstract:audio-ground` | headphone sleeve returns at the protected audio entry, not a class-D output |
-| `HEADPHONE_TIP` | `headphone_jack.TIP` | `headphone_esd.D1_PLUS` | first side of a flow-through ESD channel reaches the exact jack tip |
-| `HEADPHONE_TIP` | `headphone_jack.TIP` | `headphone_esd.D1_MINUS` | second side is the same tip conductor in flow-through placement |
-| `HEADPHONE_RING` | `headphone_jack.RING` | `headphone_esd.D2_PLUS` | first side of the second ESD channel reaches ring |
-| `HEADPHONE_RING` | `headphone_jack.RING` | `headphone_esd.D2_MINUS` | second side is the same ring conductor |
+| `HEADPHONE_RIGHT_RING1` | `headphone_r_series.END_2` | `headphone_jack.RING1` | exact 22-Ohm right series resistor feeds the CTIA ring1 contact |
+| `HEADSET_RING2_GROUND` | `headphone_jack.RING2` | `abstract:audio-ground` | CTIA ring2 returns at the protected audio entry, never at a class-D output |
+| `HEADPHONE_LEFT_TIP` | `headphone_jack.TIP` | `headphone_esd.D1_PLUS` | one independent low-capacitance ESD channel protects the CTIA left output |
+| `HEADPHONE_RIGHT_RING1` | `headphone_jack.RING1` | `headphone_esd.D1_MINUS` | a second independent low-capacitance ESD channel protects the CTIA right output |
+| `HEADSET_MIC_RAW` | `headphone_jack.SLEEVE` | `headphone_esd.D2_PLUS` | a third independent low-capacitance ESD channel protects the exposed CTIA microphone sleeve |
+| `HEADSET_ESD_SPARE` | `headphone_esd.D2_MINUS` | `abstract:no-connect` | the fourth independent ESD channel remains an intentional no-connect |
 | `HEADPHONE_ESD_GROUND` | `headphone_esd.GND_3` | `abstract:power-ground-dedicated-via` | first array ground has a shortest-path local via |
 | `HEADPHONE_ESD_GROUND` | `headphone_esd.GND_8` | `abstract:power-ground-dedicated-via` | second array ground has its own local via |
-| `HEADPHONE_ESD_NC6` | `headphone_esd.NC_6` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `HEADPHONE_ESD_NC7` | `headphone_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `HEADPHONE_ESD_NC9` | `headphone_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `HEADPHONE_ESD_NC10` | `headphone_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADSET_ESD_NC6` | `headphone_esd.NC_6` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADSET_ESD_NC7` | `headphone_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADSET_ESD_NC9` | `headphone_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
+| `HEADSET_ESD_NC10` | `headphone_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `headphone_tip_detect_pullup.END_1` | 10-kOhm pull-up reaches the DC-isolated tip only for plug detection |
-| `HEADPHONE_TIP_DETECT_SOURCE` | `headphone_tip_detect_pullup.END_2` | `headphone_jack.TIP` | 32-Ohm headphones clamp this source harmlessly while coupling capacitors block codec DC |
-| `HEADPHONE_ABSENT` | `headphone_jack.TIP_SWITCH` | `slow_io.P02` | closed no-plug contact reads high; insertion opens it and forces speaker shutdown in firmware |
-| `HEADPHONE_ABSENT` | `slow_io.P02` | `headphone_absent_pulldown.END_1` | 100-kOhm makes inserted, open-wire and reset state low |
-| `AUDIO_GROUND` | `headphone_absent_pulldown.END_2` | `abstract:audio-ground` | jack-detect default is deterministic |
-| `HEADPHONE_RING_SWITCH_NC` | `headphone_jack.RING_SWITCH` | `abstract:no-connect` | unused second internal switch remains open |
+| `HEADSET_TIP_DETECT_SOURCE` | `headphone_tip_detect_pullup.END_2` | `headphone_jack.TIP` | headphones clamp this source harmlessly while coupling capacitors block codec DC |
+| `HEADSET_SWITCH_STATE` | `headphone_jack.TIP_SWITCH` | `headset_detect_series.END_1` | closed no-plug contact receives the tip-side 10-kOhm detection source; insertion opens it |
+| `HEADSET_ABSENT` | `headset_detect_series.END_2` | `slow_io.P02` | exact 10-kOhm series protection keeps P02 a permanent high-impedance detect input and bounds any accidental output misconfiguration |
+| `HEADSET_ABSENT` | `slow_io.P02` | `headset_absent_pulldown.END_1` | 100-kOhm makes inserted, open-wire and reset state low; firmware never drives this detect-only line |
+| `AUDIO_GROUND` | `headset_absent_pulldown.END_2` | `abstract:audio-ground` | jack-detect default is deterministic |
+| `HEADSET_RING1_SWITCH_NC` | `headphone_jack.RING1_SWITCH` | `abstract:no-connect` | unused second internal switch remains open |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_tx_selector.VCC` | transmit-audio selector stays deterministic independently of codec power |
 | `AUDIO_GROUND` | `audio_tx_selector.GND` | `abstract:audio-ground` | TX selector quiet return |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `audio_tx_selector_bypass.END_1` | exact 100-nF TX-selector bypass |
 | `AUDIO_GROUND` | `audio_tx_selector_bypass.END_2` | `abstract:audio-ground` | TX-selector bypass return |
-| `MIC_RAW` | `microphone.OUT_PLUS` | `mic_tx_coupling.END_1` | ordinary voice path uses its own AC branch |
+| `MIC_SELECTED_RAW` | `headset_mic_selector.COM` | `mic_tx_coupling.END_1` | ordinary voice path follows the same selected internal or headset microphone through its own AC branch |
 | `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `audio_tx_selector.NC` | logic-low/default TS5A63157 path preserves direct microphone operation |
 | `VOICE_ELECTRET_DEFAULT` | `mic_tx_coupling.END_2` | `mic_tx_bias.END_1` | 100-kOhm midpoint bias defines the selector input |
 | `AUDIO_VMID_MAIN` | `mic_tx_bias.END_2` | `audio_vmid_top.END_2` | ordinary TX audio uses main midpoint |
@@ -3420,7 +3457,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `DISPLAY_SD_SPI` | `s3` | `display`, `sd` | scheduled; separate CS and per-device modes/clocks; display non-preemptible SPI2 occupancy <=1 ms with byte quantum derived from measured datasheet-valid payload rate; QSPI only while SD CS is high; bounded SD command/data chunks; critical UI priority | critical/menu first visible response <=100 ms and qualified storage >=4.0 MB/s while all radios capture; no radio FIFO or IPC deadline is placed here | HMX035CTFT-001 direct-QSPI dirty/tiled display, CS-high high-Z/contention proof, 1.5 MB/s record and 250 ms card-stall HIL |
 | `S3_RP_IPC` | `s3` | `rp` | dedicated | 20 MHz SPI raw 2.5 MB/s and qualified framed payload >=1.5 MB/s; no display/storage or C5 controller ownership | SPI3 load, alert-to-read <=250 us and aggregate-radio stress HIL |
 | `S3_C5_IPC` | `s3` | `c5` | dedicated | 1-bit SDIO at 20 MHz raw 2.5 MB/s with qualified framed payload >=1.5 MB/s, admitted occupancy <=70% and control RTT <=2 ms; no microSD, RP or display controller ownership | received ESP32-C5 silicon identity must be revision v1.0 or later because Espressif marks revision v0.1 SDIO unsupported; single-slot 1-bit SDMMC/SDIO throughput, control-priority, reset recovery and simultaneous Wi-Fi/802.15.4 load HIL; 4-bit fallback only if this gate fails |
-| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `display_touch_controller`, `codec`, `codec_i2c_iso`, `receiver`, `receiver_i2c_iso`, `pd_controller`, `pack_admission`, `safety_controller` | scheduled; bounded transactions; both expanders, PD, pack, safety and touch interrupts only wake the service loop; safety heartbeat and lease writes have bounded priority but never carry radio FIFO data; one TCA9539 input-register read returns all sixteen independent controls without row drive, matrix scan or ghost-key reconstruction; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including exact TCA6424A 0x22, firmware-fixed pack target 0x2A, firmware-fixed safety target 0x2B, exact ST77922 touch 0x38, exact UI TCA9539 0x74, TPS25751D 0x20 and codec ES8311 at 0x19; Si4732 firmware probes both public strap outcomes 0x11/0x63 until specimen HIL freezes the physical identity. HIL also proves reset/recovery, isolator-off no-backfeed, touch and direct-input interrupt behavior, wired-low source identification, shortest pulse, debounce, multi-key semantics and fault latency |
+| `S3_INTERNAL_I2C` | `s3` | `slow_io`, `ui_matrix_io`, `headset_control_io`, `display_touch_controller`, `codec`, `codec_i2c_iso`, `receiver`, `receiver_i2c_iso`, `pd_controller`, `pack_admission`, `safety_controller` | scheduled; bounded transactions; all three expanders, PD, pack, safety and touch interrupts only wake the service loop; safety heartbeat and lease writes have bounded priority but never carry radio FIFO data; one TCA9539 input-register read returns all sixteen independent controls without row drive, matrix scan or ghost-key reconstruction; direct PCNT captures encoder phases independently | ordinary UI/control first visible response <=100 ms; PD/pack/fault status is read after shared IRQ, and no radio FIFO, encoder-edge or PTT deadline is placed here | complete physical address scan including exact TCA6424A 0x22, firmware-fixed pack target 0x2A, firmware-fixed safety target 0x2B, exact ST77922 touch 0x38, exact headset TCA9534A 0x39, exact UI TCA9539 0x74, TPS25751D 0x20 and codec ES8311 at 0x19; Si4732 firmware probes both public strap outcomes 0x11/0x63 until specimen HIL freezes the physical identity. HIL also proves reset/recovery, isolator-off no-backfeed, touch, headset and direct-input interrupt behavior, wired-low source identification, shortest pulse, debounce, multi-key semantics and fault latency |
 | `S3_ENCODER_PCNT` | `s3` | `encoder` | dedicated; PCNT0 owns GPIO39=A and GPIO47=B as dedicated inputs; the I2C expander carries only encoder push and never phase edges | no lost or invented detents while display dirty-region, storage and the active signal group run at their qualified worst case | phase polarity, valid Gray transitions, full-detent semantics, contact chatter, fastest manual rotation, temperature, EMI and concurrent-load HIL |
 | `PD_LOCAL_I2C` | `pd_controller` | `pd_config_eeprom`, `nvdc_charger` | scheduled; TPS25751D owns the local bus; EEPROM address 0x50 and exact charger address are collision-checked; factory access is permitted only while the product controller is held inactive | boot image completes before high-voltage negotiation or charge enable; charger faults propagate without depending on display/storage/radio buses | blank/valid/corrupt dual-region EEPROM boots, charger-IRQ latency and signed-update rollback HIL |
 | `PACK_LOCAL_I2C` | `pack_admission` | `pack_gauge` | dedicated | gauge identity, protected-NVM checksum, cell/temperature/protection state and diagnostic-pulse samples complete locally before any FET-hold release; S3 availability is irrelevant | bit-banged I2C electrical timing, both MAX17320 address paths, blank/wrong NVM, stuck bus, watchdog/reset and fixture-handover HIL |
@@ -3712,6 +3749,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `microphone` lifecycle: `active_orderable`.
 - `microphone_bias_filter_res` lifecycle: `active_orderable`.
 - `headphone_jack` lifecycle: `active_orderable`.
+- `headset_mic_selector` uses `Texas Instruments TS5A63157DCKR` as `reference_only`, not an accepted production choice.
 - `codec_power_input_cap` lifecycle: `active_production`.
 - `codec_i2s_din_boot_gate` uses `SN74LVC1G08DCKR` as `verified_exact_partial_power_down_and_gate`, not an accepted production choice.
 - `codec_i2s_din_boot_gate` lifecycle: `active_orderable`.
@@ -3923,7 +3961,7 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - DEC-0045 prohibits cross-group simultaneous signal operation but requires all three SG-N24 radios concurrently active in every independent PTX/PRX mix; DEC-0047 selects a qualified internal envelope; N24H-0001 L0 DIV-DIV is pre-HIL only and T1 TARGET must prove exact channel/power/sensitivity points
 - SG-N24 3PTX is a real accepted load case, so the exact module choice and packet-rail design must prove simultaneous TX peak/average current, droop, thermal, coupling and KILL/FAULT_KILL behavior at the qualified power profile; an RX-only budget is insufficient
 - DEC-0046 consumes RP GPIO15/GPIO23 and C5 GPIO4 for group-level power gates. DEC-0090 closes the exact audio/receiver/voice switches, isolation, discharge and no-back-power sequence; DEC-0091 through DEC-0096 close every separate base RF/IR paper endpoint. Whole-device quiet-state EMI, conducted/OTA/optical coexistence and no-stall HIL remain I6 gates, leaving no free direct RP GPIO
-- DEC-0090 supersedes the abstract DEC-0054 endpoint with exact ES8311, Si4732-A10, SA518, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR microphone, PUI AS02404PO speaker, SJ1-3515-SMT-TR jack and all first-pass passive values. Paper contacts, power, common mode, gain, reset-off behavior and no-backfeed are closed; specimen identity, acoustic gain/noise, pop/click, RF immunity and concurrent-load evidence remain explicit HIL gates before schematic/BOM freeze
+- DEC-0090 supersedes the abstract DEC-0054 endpoint with exact ES8311, Si4732-A10, SA518, source selectors, buffers, four I2S isolators, power supervisors/switches, PAM8302A, Same Sky CMEJ-0413-42-SMT-TR internal microphone, PUI AS02404PO speaker and the CTIA-wired shielded SJ-43504-SMT-TR headset jack. The later headset update leaves P02 detect-only and adds exact TS5A63157DCKR plus a dedicated TCA9534APWR at non-conflicting address 0x39; P0 selects the microphone cleanly and P1-P7 remain pulled interrupt-capable local reserves. Existing resistor/capacitor SKUs provide bias, reset default, protection and bypass without consuming another MCU GPIO. Paper contacts, power, common mode, gain, reset-off behavior and no-backfeed are closed; received cutout, accessory behavior, acoustic gain/noise, pop/click, RF immunity and concurrent-load evidence remain explicit HIL gates before schematic/BOM freeze
 - The sink-only 30-W USB-PD/NVDC path uses TPS25751DREFR, BQ25798RQMR, CAT24C512WI-GT3 and TVS2200DRVR. MAX17320G20+T plus MSPM0C1106SDGS20R form the fail-closed 2S manager pair, and in-device deep-cell recovery stays disabled. Independent fixed TPS629203/TPS564252 rails, protected post-buck eFuses, threshold/timer networks, a <=50-ms pre-admission cutoff, exact charger energy parts, polarized Keystone 1048P contacts and three NTC roles are fully instantiated on paper. Two XTAR 18650 4000mAh protected button-top cells are the first qualification target with a 2-A charge ceiling. The protected product USB endpoint, direct multi-via shell bond, internal-service-only display FPC and isolated microSD endpoint are also instantiated. Exact-cell droop, specimen fit, continuity/thermal/hot-copper/source handover, connector integrity and destructive fault HIL remain implementation gates
 - HMX035CTFT-001 exact contacts, power/reset/backlight/first-mate paper circuit and the isolated DM3AT-SF-PEJM5 storage circuit are instantiated, but display/storage production qualification, physical integration and electrical HIL remain open. The independent RUN/KILL, watchdog, evidence and every RF/IR endpoint are paper-reviewed; RFPC-SMA31-FN-175-A/RFPC-SMA32-FN-175-A bodies are selected, while antenna/pod lots, placement, sensitivity, audio/noise, optical, conducted/OTA and coexistence HIL remain implementation gates
 

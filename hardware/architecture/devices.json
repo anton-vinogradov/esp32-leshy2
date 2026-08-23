@@ -2431,6 +2431,54 @@
         "RING_SWITCH": {"physical": "11", "role": "signal"}
       }
     },
+    "same_sky_sj_43504_smt_tr": {
+      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "kind": "3_5mm_ctia_trrs_mid_mount_jack_two_internal_switches",
+      "qualification": "verified_candidate",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [14.6, 7.5, 5.0],
+      "source": {
+        "document": "SJ-43504-SMT-TR Audio Jack datasheet",
+        "version": "Rev. 1.06, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "SJ-43504-SMT-TR current manufacturer product page",
+        "url": "https://www.sameskydevices.com/product/interconnect/connectors/audio-connectors/jacks/sj-43504-smt-tr",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.9304,
+        "price_break": "DigiKey cut-tape quantity-100 tier; 7,349 units shown in stock",
+        "source": {"document": "DigiKey exact-MPN published stock and price table", "url": "https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/SJ-43504-SMT-TR/2625173", "checked": "2026-08-23"}
+      },
+      "mechanical_contract": {
+        "mounting": "right-angle mid-mount SMT with PCB cutout",
+        "shielded": true,
+        "mating_diameter_mm": 3.5,
+        "mating_plug_length_mm": 14.0,
+        "life_cycles": 5000,
+        "received_part_gate": "H5 cutout, insertion, retention and enclosure-opening coupon"
+      },
+      "electrical_contract": {
+        "product_wiring_standard": "CTIA/AHJ",
+        "tip": "left headphone",
+        "ring1": "right headphone",
+        "ring2": "audio ground",
+        "sleeve": "headset microphone plus bias",
+        "internal_switch_use": "tip switch provides plug state; ring1 switch remains no-connect"
+      },
+      "programmable": false,
+      "contacts": {
+        "SLEEVE": {"physical": "1", "role": "analog"},
+        "TIP": {"physical": "2", "role": "analog"},
+        "RING1": {"physical": "3", "role": "analog"},
+        "RING2": {"physical": "4", "role": "power"},
+        "TIP_SWITCH": {"physical": "5", "role": "signal"},
+        "RING1_SWITCH": {"physical": "6", "role": "signal"}
+      }
+    },
     "pui_as02404po": {
       "mpn": "PUI Audio AS02404PO",
       "kind": "24x12mm_4ohm_2w_loudspeaker",
@@ -4713,9 +4761,10 @@
       "electrical_contract": {
         "supply_range_v": [1.65, 5.5],
         "power_on_default": "all P0 through P7 are inputs",
-        "evidence_mask_supply": "AON_SAFE_3V3 with one exact 100-nF local bypass",
-        "evidence_mask_address": "A2/A1/A0 tied directly to safety ground selects 0x38",
-        "evidence_mask_bus": "RP local I2C0; the existing controller-side 2.2-kOhm pull-ups are on 3V3_MAIN, which cannot remain present without AON_SAFE_3V3"
+        "address_range_7bit": ["0x38", "0x3F"],
+        "i2c_clock_hz_max": 400000,
+        "interrupt": "active-low open-drain input-change indication",
+        "local_bypass": "one exact 100-nF capacitor at VCC"
       },
       "programmable": false,
       "i2c_7bit_address_by_a2a1a0": {

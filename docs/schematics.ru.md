@@ -135,9 +135,12 @@ SAFE_LATCH["SN74LVC1G74DCUR<br/>асинхронная защёлка FAULT_KILL
 ```mermaid
 flowchart TD
 S3["ESP32-S3-WROOM-1U-N16R8<br/>приложение, UI, экран, storage, audio, BLE/Wi-Fi"]
+SLOW_IO["TCA6424ARGJR<br/>24-линейный slow-control expander"]
 RECEIVER["Si4732-A10-GSR<br/>приёмник FM/AM/SW/LW"]
 VOICE["NiceRF SA518<br/>аналоговый VHF/UHF voice transceiver"]
 MICROPHONE["Same Sky CMEJ-0413-42-SMT-TR<br/>внутренний электретный микрофон"]
+HEADSET_CONTROL_IO["TCA9534APWR<br/>выделенное управление гарнитурой и 7 резервных I/O"]
+HEADSET_MIC_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор встроенного/гарнитурного микрофона"]
 AUDIO_RX_MUX["Texas Instruments SN74LVC1G3157DBVR<br/>выбор источника принимаемого звука"]
 AUDIO_CAPTURE_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/RX для записи"]
 AUDIO_CAPTURE_BUFFER["Texas Instruments TLV9061IDBVR<br/>буфер АЦП кодека"]
@@ -149,11 +152,16 @@ AUDIO_SPEAKER_SELECTOR["Texas Instruments TMUX1136DGSR<br/>выбор RX-bypass/
 AUDIO_TX_SELECTOR["Texas Instruments TS5A63157DCKR<br/>выбор microphone/codec для voice TX"]
 SPEAKER_AMP["Diodes Incorporated PAM8302AASCR<br/>дифференциальный усилитель динамика"]
 SPEAKER["PUI Audio AS02404PO<br/>внутренний 4-Ом динамик"]
-HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>выход наушников 3,5 мм с detect"]
+HEADPHONE_JACK["Same Sky SJ-43504-SMT-TR<br/>гарнитурный разъём 3,5 мм CTIA с detect"]
   RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX
   VOICE -->|"received AF"| AUDIO_RX_MUX
   AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR
-  MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR
+  MICROPHONE -->|"guarded internal MIC_RAW across M1"| HEADSET_MIC_SELECTOR
+  HEADPHONE_JACK -->|"CTIA sleeve microphone"| HEADSET_MIC_SELECTOR
+  HEADPHONE_JACK -->|"detect-only tip switch"| SLOW_IO
+  S3 -->|"I²C0 · address 0x39"| HEADSET_CONTROL_IO
+  HEADSET_CONTROL_IO -->|"dedicated P0 source select"| HEADSET_MIC_SELECTOR
+  HEADSET_MIC_SELECTOR -->|"selected microphone"| AUDIO_CAPTURE_SELECTOR
   AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC
   S3 -->|"I²S0 outputs + I²C0 control"| CODEC
   CODEC -->|"ASDOUT capture"| CODEC_I2S_DIN_ISO -->|"I²S DIN on GPIO0"| S3
@@ -164,8 +172,8 @@ HEADPHONE_JACK["Same Sky SJ1-3515-SMT-TR<br/>выход наушников 3,5 �
   CODEC -->|"differential playback"| AUDIO_SPEAKER_SELECTOR
   AUDIO_SPEAKER_SELECTOR -->|"differential low-level across M1"| SPEAKER_AMP
   SPEAKER_AMP -->|"filtered BTL"| SPEAKER
-  CODEC -->|"stereo output + detect"| HEADPHONE_JACK
-  MICROPHONE -->|"ordinary voice source"| AUDIO_TX_SELECTOR
+  CODEC -->|"stereo CTIA tip/ring1"| HEADPHONE_JACK
+  HEADSET_MIC_SELECTOR -->|"internal/headset voice source"| AUDIO_TX_SELECTOR
   CODEC -->|"generated/processed voice source"| AUDIO_TX_SELECTOR
   AUDIO_TX_SELECTOR -->|"isolated microphone input"| VOICE
 ```

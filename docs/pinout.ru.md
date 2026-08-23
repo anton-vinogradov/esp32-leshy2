@@ -13,8 +13,8 @@
 | Контакт | Сеть | Направление | Периферия | Подключение |
 |---|---|---|---|---|
 | `GPIO0` | `I2S_DIN` | `i` | `I2S0` | codec_i2s_din_iso.Y<br>s3_boot_pullup.END_2<br>s3_dbg_boot_series.END_2 |
-| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
-| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
+| `GPIO1` | `SYS_I2C_SDA` | `io` | `I2C0` | slow_io.SDA<br>ui_matrix_io.SDA<br>headset_control_io.SDA<br>receiver_i2c_iso.1A<br>display_connector.PIN_2<br>codec_i2c_iso.1A<br>pd_controller.I2Ct_SDA<br>pack_admission.PA0<br>safety_controller.PA0 |
+| `GPIO2` | `SYS_I2C_SCL` | `o` | `I2C0` | slow_io.SCL<br>ui_matrix_io.SCL<br>headset_control_io.SCL<br>receiver_i2c_iso.2A<br>display_connector.PIN_1<br>codec_i2c_iso.2A<br>pd_controller.I2Ct_SCL<br>pack_admission.PA11<br>safety_controller.PA11 |
 | `GPIO3` | `RP_ALERT_N` | `i` | `GPIO_IRQ` | rp.GPIO19 |
 | `GPIO4` | `DISPLAY_SD_SPI_D1` | `io` | `SPI2` | sd_miso_series.END_2<br>sd_host_d1_pullup.END_1<br>display_connector.PIN_10 |
 | `GPIO5` | `SD_SPI_CS_N` | `o` | `SPI2` | sd_host_buffer.3A<br>sd_miso_buffer.OE_N<br>sd_host_cs_pullup.END_1 |
@@ -41,7 +41,7 @@
 | `GPIO42` | `LCD_QSPI_D3` | `o` | `SPI2` | display_connector.PIN_18 |
 | `GPIO43` | `S3_UART_SERVICE_TX` | `o` | `UART0` | s3_dbg0_series.END_2 |
 | `GPIO44` | `S3_UART_SERVICE_RX` | `i` | `UART0` | s3_dbg1_series.END_2 |
-| `GPIO45` | `SYS_INT_N` | `i` | `GPIO_IRQ` | slow_io.INT<br>ui_matrix_io.INT_N<br>pd_controller.I2Ct_IRQ<br>touch_irq_buffer.Y<br>pack_status_buffer.D2 |
+| `GPIO45` | `SYS_INT_N` | `i` | `GPIO_IRQ` | slow_io.INT<br>ui_matrix_io.INT_N<br>headset_control_io.INT_N<br>pd_controller.I2Ct_IRQ<br>touch_irq_buffer.Y<br>pack_status_buffer.D2 |
 | `GPIO46` | `DISPLAY_SD_SPI_D0` | `o` | `SPI2` | sd_host_buffer.2A<br>sd_host_d0_pulldown.END_1<br>display_connector.PIN_13 |
 | `GPIO47` | `ENCODER_B` | `i` | `PCNT0` | encoder.B<br>encoder_b_pullup.END_1 |
 | `GPIO48` | `S3_RP_IPC_SCK` | `o` | `SPI3` | rp.GPIO26 |

@@ -161,7 +161,7 @@ EDGE_INTERFACES = (
     ("ir_demod", "front", "left", 76.5, "IR 38 kHz RX"),
     ("ir_carrier", "front", "left", 83.5, "IR raw RX"),
     ("ir_emitter", "front", "left", 90.255, "IR TX"),
-    ("headphone_jack", "front", "right", 79.75, "HEADPHONES / LINE"),
+    ("headphone_jack", "front", "right", 79.75, "HEADSET / CTIA"),
     ("c5_service_usb_connector", "front", "bottom", 31.47, "C5 SERVICE USB"),
     ("sd", "front", "bottom", 55.975, "microSD"),
     ("power_command_switch", "rear", "right", 112.75, "RUN / KILL"),
@@ -185,7 +185,7 @@ SIDE_INTERFACE_LABEL_LINES = {
     "ir_demod": ("IR 38 kHz RX",),
     "ir_carrier": ("IR RAW RX",),
     "ir_emitter": ("IR TX",),
-    "headphone_jack": ("HEADPHONES", "LINE OUT"),
+    "headphone_jack": ("HEADSET", "CTIA"),
     "power_command_switch": ("RUN", "KILL"),
 }
 
@@ -285,7 +285,8 @@ UI_INNER = (
     Placement("evidence_cmp_a", 8.0, 82.0, "UI-local S3/C5/IR TX evidence comparator"),
     Placement("ui_zone_ntc", 12.0, 75.0, "UI/display hotspot safety sensor"),
     Placement("codec_i2s_din_boot_gate", 18.0, 75.0, "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0"),
-    Placement("headphone_jack", 60.0, 75.0, "3.5-mm headphone/line connector"),
+    Placement("headphone_jack", 60.4, 76.0, "3.5-mm CTIA headset TRRS mid-mount connector"),
+    Placement("headset_control_io", 54.2, 77.0, "dedicated 0x39 headset source controller and seven reserve I/O lines"),
     Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
     Placement("sd", 48.0, 136.15, "bottom-access push-push microSD", 90),
@@ -1577,7 +1578,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         "ui_switch_f7", "ui_switch_f8", "ptt_switch",
         "unit_connector", "pack_holder", "pack_cell0", "pack_cell1",
         "s3_rf_jumper", "c5_rf_jumper", "s3_rf_board_connector", "c5_rf_board_connector",
-        "speaker", "microphone",
+        "speaker", "microphone", "headphone_jack",
     }
     if not required_open_instances <= covered:
         errors.append(
@@ -3172,7 +3173,24 @@ def render_internal(devices, instances, display_adapter_design):
                 fill, stroke = "#ccfbf1", "#0f766e"
             else:
                 fill, stroke = "#eef2f6", "#667085"
-            out.append(rect(origin, view_x, item.y, w, h, fill, stroke, rx=2))
+            mounting = (
+                ' data-mounting="mid-mount-board-cutout" data-cutout-evidence="H5-open"'
+                if item.instance == "headphone_jack"
+                else ""
+            )
+            out.append(
+                rect(
+                    origin,
+                    view_x,
+                    item.y,
+                    w,
+                    h,
+                    fill,
+                    stroke,
+                    rx=2,
+                    extra=f' data-instance="{item.instance}"{mounting}',
+                )
+            )
             component_number = str(numbers[item.instance])
             if item.instance == "speaker":
                 component_number += " · SPK"

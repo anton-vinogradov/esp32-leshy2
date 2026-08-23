@@ -245,8 +245,8 @@ class ProductSiteTests(unittest.TestCase):
             "SUB-GHz",
             "VHF/UHF",
             "TX ACTIVE",
-            "HEADPHONES",
-            "LINE OUT",
+            "HEADSET",
+            "CTIA",
             "C5 SERVICE USB",
             "MICROPHONE",
             "SPEAKER",
@@ -461,12 +461,12 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="s3_rf_jumper" data-projected-chord-mm="14.78" data-assembly-length-mm="30.00" data-unprojected-slack-mm="15.22"',
             'data-instance="c5_rf_jumper" data-projected-chord-mm="15.50" data-assembly-length-mm="30.00" data-unprojected-slack-mm="14.50"',
             " · SPK",
-            'data-inner-body-count="129"',
+            'data-inner-body-count="130"',
             'data-max-inner-height-mm="8.95"',
             'data-min-single-body-clearance-mm="2.05"',
             'data-display-adapter-opposing-pairs="5"',
             'data-min-display-adapter-clearance-mm="6.00"',
-            'data-opposing-pairs="43"',
+            'data-opposing-pairs="36"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
@@ -499,13 +499,14 @@ class ProductSiteTests(unittest.TestCase):
             'data-medium="controlled-50-ohm-pcb"',
             "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL",
             "outward RP-SMA · antenna screws on here",
-            "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
+            "all 130 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
             "complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm",
-            "opposing inner faces: 43 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "opposing inner faces: 36 non-mating XY pairs checked; minimum Z gap 3.31 mm",
             "RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
             "nRF reserve crossings: 5; minimum Z gap 5.20 mm",
             "EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm",
-            "limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0",
+            "limiting pair: 20 3.5-mm CTIA headset TRRS mid-mount connector / 119 protected-pack branch fuse #0",
+            "TCA9534APWR",
         ):
             self.assertIn(token, layout)
         self.assertIn('data-view="mirrored-x"', layout)
@@ -532,9 +533,9 @@ class ProductSiteTests(unittest.TestCase):
             "README.md", "README.ru.md", "docs/hardware.md", "docs/hardware.ru.md"
         ):
             page = self.read(path)
-            self.assertIn("current-clamshell.svg?layout=15", page)
+            self.assertIn("current-clamshell.svg?layout=16", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=17", page)
+            self.assertIn("internal-board-layout.svg?layout=18", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -552,23 +553,23 @@ class ProductSiteTests(unittest.TestCase):
         )
         audit = coordinate_table["interboard_fit_audit"]
         self.assertEqual("paper_geometry_passed", audit["result"])
-        self.assertEqual(129, audit["inner_body_count"])
-        self.assertEqual(131, audit["total_inner_component_count_including_adapter"])
+        self.assertEqual(130, audit["inner_body_count"])
+        self.assertEqual(132, audit["total_inner_component_count_including_adapter"])
         self.assertTrue(audit["all_inner_bodies_have_sourced_positive_height"])
         self.assertTrue(audit["no_inner_body_exceeds_gap"])
         self.assertTrue(audit["no_inner_body_violates_minimum_clearance"])
         self.assertEqual(8.95, audit["tallest_inner_body"]["height_mm"])
         self.assertEqual(2.05, audit["tallest_inner_body"]["remaining_to_opposite_pcb_plane_mm"])
-        self.assertEqual(129, len(audit["individual_body_clearances"]))
+        self.assertEqual(130, len(audit["individual_body_clearances"]))
         self.assertTrue(
             all(
                 row["remaining_to_opposite_pcb_plane_mm"] >= 0.7
                 for row in audit["individual_body_clearances"]
             )
         )
-        self.assertEqual(43, audit["opposing_non_mating_pair_count"])
+        self.assertEqual(36, audit["opposing_non_mating_pair_count"])
         self.assertEqual(3.31, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
-        self.assertEqual(43, len(audit["opposing_non_mating_pairs"]))
+        self.assertEqual(36, len(audit["opposing_non_mating_pairs"]))
         self.assertTrue(
             all(
                 row["remaining_z_clearance_mm"] >= 0.7

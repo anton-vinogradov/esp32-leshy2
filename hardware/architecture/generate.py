@@ -2047,7 +2047,9 @@ def render_target_principled_section(
             "speaker_amp": "дифференциальный усилитель динамика",
             "speaker": "внутренний 4-Ом динамик",
             "microphone": "внутренний электретный микрофон",
-            "headphone_jack": "выход наушников 3,5 мм с detect",
+            "headphone_jack": "гарнитурный разъём 3,5 мм CTIA с detect",
+            "headset_mic_selector": "выбор встроенного/гарнитурного микрофона",
+            "headset_control_io": "выделенное управление гарнитурой и 7 резервных I/O",
             "ir_demod": "демодулирующий IR-приёмник 38 кГц",
             "ir_carrier": "IR-приёмник обучения несущей",
             "ir_emitter": "IR-передатчик 940 нм",
@@ -2181,7 +2183,9 @@ def render_target_principled_section(
             "speaker_amp": "differential speaker amplifier",
             "speaker": "internal 4-Ohm speaker",
             "microphone": "internal electret microphone",
-            "headphone_jack": "3.5-mm headphone output with detect",
+            "headphone_jack": "3.5-mm CTIA headset jack with detect",
+            "headset_mic_selector": "internal/headset microphone selector",
+            "headset_control_io": "dedicated headset control and 7 reserve I/O lines",
             "ir_demod": "38-kHz demodulating IR receiver",
             "ir_carrier": "carrier-learning IR receiver",
             "ir_emitter": "940-nm IR transmitter",
@@ -2349,8 +2353,9 @@ def render_target_principled_section(
         (
             labels["audio"],
             [
-                node("s3"), node("receiver"), node("voice"),
-                node("microphone"), node("audio_rx_mux"),
+                node("s3"), node("slow_io"), node("receiver"), node("voice"),
+                node("microphone"), node("headset_control_io"),
+                node("headset_mic_selector"), node("audio_rx_mux"),
                 node("audio_capture_selector"), node("audio_capture_buffer"),
                 node("codec"), node("codec_supervisor"),
                 node("codec_i2s_din_boot_gate"), node("codec_i2s_din_iso"),
@@ -2362,7 +2367,12 @@ def render_target_principled_section(
                 '  RECEIVER -->|"FM/AM/SW/LW audio"| AUDIO_RX_MUX',
                 '  VOICE -->|"received AF"| AUDIO_RX_MUX',
                 '  AUDIO_RX_MUX -->|"selected RX"| AUDIO_CAPTURE_SELECTOR',
-                '  MICROPHONE -->|"guarded MIC_RAW across M1"| AUDIO_CAPTURE_SELECTOR',
+                '  MICROPHONE -->|"guarded internal MIC_RAW across M1"| HEADSET_MIC_SELECTOR',
+                '  HEADPHONE_JACK -->|"CTIA sleeve microphone"| HEADSET_MIC_SELECTOR',
+                '  HEADPHONE_JACK -->|"detect-only tip switch"| SLOW_IO',
+                '  S3 -->|"I²C0 · address 0x39"| HEADSET_CONTROL_IO',
+                '  HEADSET_CONTROL_IO -->|"dedicated P0 source select"| HEADSET_MIC_SELECTOR',
+                '  HEADSET_MIC_SELECTOR -->|"selected microphone"| AUDIO_CAPTURE_SELECTOR',
                 '  AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_BUFFER --> CODEC',
                 '  S3 -->|"I²S0 outputs + I²C0 control"| CODEC',
                 '  CODEC -->|"ASDOUT capture"| CODEC_I2S_DIN_ISO -->|"I²S DIN on GPIO0"| S3',
@@ -2373,8 +2383,8 @@ def render_target_principled_section(
                 '  CODEC -->|"differential playback"| AUDIO_SPEAKER_SELECTOR',
                 '  AUDIO_SPEAKER_SELECTOR -->|"differential low-level across M1"| SPEAKER_AMP',
                 '  SPEAKER_AMP -->|"filtered BTL"| SPEAKER',
-                '  CODEC -->|"stereo output + detect"| HEADPHONE_JACK',
-                '  MICROPHONE -->|"ordinary voice source"| AUDIO_TX_SELECTOR',
+                '  CODEC -->|"stereo CTIA tip/ring1"| HEADPHONE_JACK',
+                '  HEADSET_MIC_SELECTOR -->|"internal/headset voice source"| AUDIO_TX_SELECTOR',
                 '  CODEC -->|"generated/processed voice source"| AUDIO_TX_SELECTOR',
                 '  AUDIO_TX_SELECTOR -->|"isolated microphone input"| VOICE',
             ],
@@ -2626,6 +2636,23 @@ def render_public_interconnect(
         rf_label = "RF/power-плата"
         principles = "Почему такое разделение"
         budget = "Бюджет контактов"
+        passage_heading = "Физический проход через бутерброд"
+        passage_paragraphs = (
+            "Все перечисленные ниже межплатные цепи проходят только внутри единого "
+            "корпуса M1: в воздушном 11-мм канале нет отдельных шлейфов или проводов "
+            "для USB, IPC, I2C, аудио, управления либо питания. Поэтому их общий "
+            "механический конфликт с компонентами проверяется один раз полным keep-out "
+            "точной пары `FX8C-80P-SV1(92)` / `FX8C-80S-SV5(92)`. Пара совмещена "
+            "намеренно и не пересекается с посторонними корпусами на обеих платах. "
+            "Отдельно проверены пять RF-коаксиалов, переходник дисплея, проходная "
+            "розетка U214, девять выводов антенных разъёмов и семь сквозных выводов "
+            "энкодера.",
+            "Эта проверка закрывает объёмы деталей и межплатный воздушный канал, но не "
+            "подменяет трассировку: fan-out всех 80 контактов, via fields, возвратные "
+            "пути, импеданс и электрические зазоры будут доказаны только ERC/DRC "
+            "готовых плат в KiCad. До этого карта ниже является утверждённой картой "
+            "цепей, а не заявлением, что медь уже разведена.",
+        )
         table_heading = "Точная карта контактов"
         columns = ("Контакт", "Цепь", "Направление", "Класс")
         footer = (
@@ -2636,7 +2663,7 @@ def render_public_interconnect(
         )
         ui_groups = (
             f"Вычислители: `{mpn('s3')}` управляет UI, экраном, картой памяти и аудио; `{mpn('c5')}` — собственными диапазонами 2,4/5 ГГц и IR.",
-            f"Интерфейсы: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, наушники, D-pad, BACK, OPT и F1…F8.",
+            f"Интерфейсы: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, CTIA-гарнитура, D-pad, BACK, OPT и F1…F8.",
             "Локальная безопасность: аппаратный сброс S3/C5, IR-гейт и аналоговое подтверждение передачи S3/C5/IR.",
             f"Обслуживание C5: отдельный data-only USB-C `{mpn('c5_service_usb_connector')}`.",
         )
@@ -2663,6 +2690,23 @@ def render_public_interconnect(
         rf_label = "RF/power board"
         principles = "Why the split is arranged this way"
         budget = "Contact budget"
+        passage_heading = "Physical passage through the sandwich"
+        passage_paragraphs = (
+            "Every inter-board net listed below crosses only inside the single M1 body: "
+            "the 11-mm air channel contains no separate USB, IPC, I2C, audio, control "
+            "or power cable. Their shared mechanical conflict with components is "
+            "therefore checked once against the complete keep-out of the exact "
+            "`FX8C-80P-SV1(92)` / `FX8C-80S-SV5(92)` pair. That pair is the one "
+            "intentional mate and clears every unrelated body on both boards. The five "
+            "RF microcoaxes, display adapter, pass-through U214 socket, nine "
+            "antenna-connector tails and seven encoder through-board features are "
+            "checked separately.",
+            "This closes physical bodies and the inter-board air channel, not PCB "
+            "routing. Fan-out from all 80 contacts, via fields, return paths, impedance "
+            "and electrical clearances become proven only after ERC/DRC of the routed "
+            "KiCad boards. Until then the map below is the accepted net assignment, "
+            "not a claim that copper is already routed.",
+        )
         table_heading = "Exact contact map"
         columns = ("Contact", "Net", "Direction", "Class")
         footer = (
@@ -2673,7 +2717,7 @@ def render_public_interconnect(
         )
         ui_groups = (
             f"Compute: `{mpn('s3')}` owns UI, display, storage and audio; `{mpn('c5')}` owns native 2.4/5-GHz radio and IR.",
-            f"Interfaces: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, headphones, D-pad, BACK, OPT and F1…F8.",
+            f"Interfaces: `{mpn('display')}`, microSD, `{mpn('codec')}`, `{mpn('receiver')}`, CTIA headset, D-pad, BACK, OPT and F1…F8.",
             "Local safety: S3/C5 hardware reset, IR gate and analog S3/C5/IR transmit evidence.",
             f"C5 service: a separate data-only `{mpn('c5_service_usb_connector')}` USB-C receptacle.",
         )
@@ -2722,6 +2766,12 @@ def render_public_interconnect(
         f"## {budget}",
         "",
         *budget_lines,
+        "",
+        f"## {passage_heading}",
+        "",
+        passage_paragraphs[0],
+        "",
+        passage_paragraphs[1],
         "",
         f"## {table_heading}",
         "",
@@ -2814,7 +2864,7 @@ def _render_principled_pinout_bundle(
         for instance in candidate["instances"]
         if (
             instance in {"codec", "receiver", "voice", "microphone", "speaker", "headphone_jack", "headphone_esd"}
-            or instance.startswith(("audio_", "si_audio_", "speaker_", "headphone_", "codec_", "receiver_", "voice_", "mic_tx_", "microphone_"))
+            or instance.startswith(("audio_", "si_audio_", "speaker_", "headphone_", "headset_", "codec_", "receiver_", "voice_", "mic_tx_", "microphone_"))
         )
         and instance not in audio_excluded
     )
@@ -2824,8 +2874,15 @@ def _render_principled_pinout_bundle(
         "voice": "VHF/UHF analog voice transceiver",
         "microphone": "top-port analog electret microphone",
         "speaker": "24-by-12-mm 4-Ohm internal loudspeaker",
-        "headphone_jack": "3.5-mm stereo headphone jack with insertion switches",
-        "headphone_esd": "headphone tip/ring IEC-ESD array",
+        "headphone_jack": "shielded 3.5-mm CTIA TRRS headset jack with insertion switches",
+        "headphone_esd": "independent left/right/headset-microphone IEC-ESD array",
+        "headset_mic_selector": "controlled internal/CTIA-headset microphone selector",
+        "headset_mic_selector_bypass": "headset-microphone selector bypass capacitor",
+        "headset_mic_bias_res": "separate 2.2-kOhm CTIA microphone-bias resistor",
+        "headset_control_io": "0x39 microphone-source controller with seven pulled reserve I/O lines",
+        "headset_control_io_bypass": "headset-controller bypass capacitor",
+        "headset_mic_select_pullup": "internal-microphone reset-default pull-up",
+        "headset_detect_series": "10-kOhm plug-detect input protection",
         "audio_rx_mux": "Si4732/SA518 receive-audio source selector",
         "audio_capture_selector": "RX/microphone recording-source selector",
         "audio_capture_buffer": "active high-impedance capture buffer",
@@ -3814,7 +3871,7 @@ def _render_principled_pinout_bundle(
         "  UI_SWITCH_F2 ~~~ UI_SWITCH_F3 ~~~ UI_SWITCH_F4 ~~~ UI_SWITCH_F5 ~~~ UI_SWITCH_F6 ~~~ UI_SWITCH_F7 ~~~ UI_SWITCH_F8 ~~~ ENCODER ~~~ ENCODER_A_PULLUP ~~~ ENCODER_B_PULLUP",
         "  ENCODER_B_PULLUP ~~~ ENCODER_PTT_ESD ~~~ PTT_PULLUP ~~~ PTT_SERIES ~~~ PTT_FILTER_CAP ~~~ PTT_RAW ~~~ TOUCH_IRQ_PULLUP ~~~ TOUCH_IRQ_RAW ~~~ TOUCH_IRQ_BUFFER ~~~ TOUCH_IRQ_BUFFER_BYPASS",
         "  TOUCH_IRQ_BUFFER_BYPASS ~~~ AUDIO_SAFE_GATE ~~~ RECEIVER ~~~ AUDIO_RX_MUX ~~~ AUDIO_CAPTURE_BUFFER ~~~ CODEC",
-        "  CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER ~~~ MICROPHONE ~~~ AUDIO_TX_SELECTOR ~~~ DISPLAY_CONNECTOR ~~~ DISPLAY_ADAPTER_PLUG ~~~ DISPLAY_PANEL_CONNECTOR ~~~ DISPLAY ~~~ DISPLAY_TOUCH_CONTROLLER ~~~ DISPLAY_LOGIC_BULK_CAP ~~~ DISPLAY_LOGIC_HF_CAP",
+        "  CODEC ~~~ AUDIO_SPEAKER_SELECTOR ~~~ SPEAKER_AMP ~~~ SPEAKER ~~~ MICROPHONE ~~~ HEADSET_MIC_SELECTOR ~~~ HEADSET_MIC_SELECTOR_BYPASS ~~~ HEADSET_MIC_BIAS_RES ~~~ AUDIO_TX_SELECTOR ~~~ DISPLAY_CONNECTOR ~~~ DISPLAY_ADAPTER_PLUG ~~~ DISPLAY_PANEL_CONNECTOR ~~~ DISPLAY ~~~ DISPLAY_TOUCH_CONTROLLER ~~~ DISPLAY_LOGIC_BULK_CAP ~~~ DISPLAY_LOGIC_HF_CAP",
         "  DISPLAY_LOGIC_HF_CAP ~~~ DISPLAY_RESET_PULLDOWN ~~~ TOUCH_RESET_PULLDOWN ~~~ BACKLIGHT_EFUSE ~~~ BACKLIGHT_EFUSE_ILIM ~~~ BACKLIGHT_EFUSE_INPUT_CAP ~~~ BACKLIGHT_EFUSE_OUTPUT_BULK ~~~ BACKLIGHT_EFUSE_OUTPUT_HF",
         "  BACKLIGHT_EFUSE_OUTPUT_HF ~~~ BACKLIGHT_FAULT_PULLUP ~~~ BACKLIGHT_SERIES_RESISTOR ~~~ BACKLIGHT_MOSFET ~~~ BACKLIGHT_GATE_SERIES ~~~ BACKLIGHT_GATE_PULLDOWN ~~~ SD ~~~ SD_HOST_BUFFER ~~~ SD_MISO_BUFFER ~~~ SD_ESD_A ~~~ SD_ESD_B",
         "  SD_ESD_B ~~~ SD_POWER_INPUT_CAP ~~~ SD_POWER_BULK_CAP ~~~ SD_POWER_HF_CAP ~~~ SD_HOST_BUFFER_BYPASS ~~~ SD_MISO_BUFFER_BYPASS ~~~ SD_ON_PULLDOWN ~~~ SD_HOST_SCK_PULLDOWN ~~~ SD_HOST_D0_PULLDOWN ~~~ SD_HOST_D1_PULLUP",
@@ -4201,7 +4258,11 @@ def _render_principled_pinout_bundle(
         "  SLOW_IO -->|\"P27 source request\"| AUDIO_RX_MUX",
         "  AUDIO_RX_MUX -->|\"analog bypass\"| AUDIO_SPEAKER_SELECTOR",
         "  AUDIO_RX_MUX --> AUDIO_CAPTURE_RX_COUPLING --> AUDIO_CAPTURE_SELECTOR",
-        "  MICROPHONE --> AUDIO_CAPTURE_MIC_COUPLING --> AUDIO_CAPTURE_SELECTOR",
+        "  MICROPHONE --> HEADSET_MIC_SELECTOR",
+        "  HEADPHONE_JACK -->|\"CTIA sleeve microphone\"| HEADSET_MIC_SELECTOR",
+        "  HEADSET_MIC_BIAS_RES --> HEADPHONE_JACK",
+        "  SLOW_IO -->|\"P02 plug state / inserted-only override\"| HEADSET_MIC_SELECTOR",
+        "  HEADSET_MIC_SELECTOR --> AUDIO_CAPTURE_MIC_COUPLING --> AUDIO_CAPTURE_SELECTOR",
         "  SLOW_IO -->|\"P00 RX/microphone capture select\"| AUDIO_CAPTURE_SELECTOR",
         "  AUDIO_CAPTURE_SELECTOR --> AUDIO_CAPTURE_INPUT_COUPLING --> AUDIO_CAPTURE_BUFFER --> CODEC_ADC_P_COUPLING --> CODEC",
         "  CODEC -->|\"OUTP/OUTN\"| AUDIO_SPEAKER_SELECTOR",
@@ -4215,7 +4276,7 @@ def _render_principled_pinout_bundle(
         "  HEADPHONE_JACK --> HEADPHONE_ESD",
         "  HEADPHONE_JACK -->|\"P02 insertion state\"| SLOW_IO",
         "  CODEC --> CODEC_TX_COUPLING --> CODEC_TX_ATTEN_TOP --> AUDIO_TX_SELECTOR",
-        "  MICROPHONE --> MIC_TX_COUPLING --> AUDIO_TX_SELECTOR",
+        "  HEADSET_MIC_SELECTOR --> MIC_TX_COUPLING --> AUDIO_TX_SELECTOR",
         "  AUDIO_TX_SELECTOR --> VOICE_AUDIO_ISO -->|\"MIC_IN\"| VOICE",
         "  SLOW_IO -->|\"P11/P12 requests\"| AUDIO_SAFE_GATE",
         "  S3 -->|\"GPIO6 AUDIO_ARM\"| AUDIO_SAFE_GATE",
