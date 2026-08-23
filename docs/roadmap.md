@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.2.8: UI side of 80-contact M1; UI root and H2.2.2–H2.2.7 are reviewed |
+| Current production ECAD schematic | ▶️ H2.2.9: UI-side TX safety/evidence; UI root and H2.2.2–H2.2.8 are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.2.8 -->
+<!-- current-substep: H2.2.9 -->
 
-**Exact marker: `H2.2.8`** — implement and review the exact UI side of the
-80-contact inter-board contract on `UI_40_INTERBOARD_M1`.
+**Exact marker: `H2.2.9`** — implement and review UI-side hardware TX safety
+and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -151,9 +151,10 @@ Current H2 execution:
   - ✅ `H2.2.7` — `UI_21_FM_AM_RECEIVER`: 32 exact components, separate
     FM/SW and AM/LW antenna ports, complete Si4732 power/control/clock/audio,
     eight interfaces and four explained NCs; native KiCad review passed.
-  - ▶️ **`H2.2.8` — current:** `UI_40_INTERBOARD_M1`.
-  - ⏳ `H2.2.8` — `UI_40_INTERBOARD_M1`.
-  - ⏳ `H2.2.9` — `UI_50_TX_SAFETY_EVIDENCE`.
+  - ✅ `H2.2.8` — `UI_40_INTERBOARD_M1`: one exact FX8C plug, all 80
+    physical contacts and 51 interfaces; 20 `POWER_GROUND` contacts, seven
+    `3V3_MAIN`, no reserve or NC; native KiCad review passed.
+  - ▶️ **`H2.2.9` — current:** `UI_50_TX_SAFETY_EVIDENCE`.
   - ⏳ `H2.2.10` — `UI_60_TESTPOINTS_MANUFACTURING`.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.

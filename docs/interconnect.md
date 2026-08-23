@@ -34,7 +34,7 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 
 - 80 positions total; 0 reserved and no-connect.
 - 7 × `3V3_MAIN`, 2 × `AON_SAFE_3V3`.
-- 22 power returns, 3 audio returns and 2 safety returns.
+- 20 power returns, 3 audio returns and 2 safety returns.
 - Raw VBUS/PD high voltage, battery current, analog TX-detector outputs, IR carrier and class-D speaker outputs do not cross M1.
 
 ## Physical passage through the sandwich

@@ -136,6 +136,19 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in pin_map])
         self.assertEqual(7, sum(row["net"] == "3V3_MAIN" for row in pin_map))
         self.assertEqual(0, sum(row["signal_class"] == "reserved" for row in pin_map))
+        accounting = contract["accounting"]
+        self.assertEqual(
+            accounting["power_ground_contacts"],
+            sum(row["net"] == "POWER_GROUND" for row in pin_map),
+        )
+        self.assertEqual(
+            accounting["audio_ground_contacts"],
+            sum(row["net"] == "AUDIO_GROUND" for row in pin_map),
+        )
+        self.assertEqual(
+            accounting["safety_ground_contacts"],
+            sum(row["net"] == "SAFETY_GROUND" for row in pin_map),
+        )
         mapped = {row["net"] for row in pin_map}
         self.assertTrue(
             {

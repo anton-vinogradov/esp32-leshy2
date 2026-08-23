@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.8"}, set(markers.values()))
+        self.assertEqual({"H2.2.9"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.8", plan["current_substep"])
+        self.assertEqual("H2.2.9", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -194,7 +194,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", plan["substeps"][2]["children"][4]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][5]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][6]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][7]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][7]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][8]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
@@ -260,10 +261,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 91,
                 "root_hierarchical_pin_count": 218,
                 "child_hierarchical_label_count": 218,
-                "known_child_stub_erc_violations": 4,
-                "implemented_child_sheet_count": 6,
-                "circuit_symbols_placed": 347,
-                "known_generated_library_copy_warnings": 347,
+                "known_child_stub_erc_violations": 0,
+                "implemented_child_sheet_count": 7,
+                "circuit_symbols_placed": 348,
+                "known_generated_library_copy_warnings": 348,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -647,6 +648,48 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertIn('(pad "1" smd roundrect (at -1.250 0.000)', crystal)
         self.assertIn('(pad "2" smd roundrect (at 1.250 0.000)', crystal)
+
+    def test_h2_2_8_exact_ui_interboard_m1_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_interboard_m1.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI40-interboard-m1.json")
+        )
+        self.assertEqual("H2.2.8", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_ui_interboard_m1_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 1,
+                "schematic_symbols": 1,
+                "board_fitted_symbols": 1,
+                "physical_contacts": 80,
+                "unique_nets": 51,
+                "hierarchical_interfaces": 51,
+                "power_ground_contacts": 20,
+                "main_3v3_contacts": 7,
+                "reserved_contacts": 0,
+                "intentional_no_connect_pins": 0,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(list(range(1, 81)), [row["contact"] for row in manifest["contacts"]])
+        self.assertEqual(80, len({row["symbol_pin"] for row in manifest["contacts"]}))
+        self.assertEqual(
+            "Connector_Hirose_FX8:Hirose_FX8-80P-SV_2x40_P0.6mm",
+            manifest["instances"][0]["footprint"],
+        )
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json

@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.8 -->
+<!-- current-substep: H2.2.9 -->
 
-**Exact marker: `H2.2.8`** — implement and review the exact UI side of the
-80-contact inter-board contract on `UI_40_INTERBOARD_M1`.
+**Exact marker: `H2.2.9`** — implement and review UI-side hardware TX safety
+and independent evidence on `UI_50_TX_SAFETY_EVIDENCE`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -63,9 +63,10 @@ PCB layout or target-emulator run, and no order is authorized.
   - ✅ `H2.2.7` — reviewed 32 exact FM/AM/SW/LW receiver components: two
     distinct antenna ports, full Si4732 power/control/clock/audio circuitry,
     eight hierarchy interfaces and four explained NC pins.
-  - ▶️ **`H2.2.8` — current:** UI side of the 80-contact M1 contract.
-  - ⏳ `H2.2.9–H2.2.10` — TX safety;
-    manufacturing/test points, in that order.
+  - ✅ `H2.2.8` — exact UI-side M1 reviewed: all 80 physical contacts,
+    51 hierarchy interfaces, 20 actual power returns, no reserves or NCs.
+  - ▶️ **`H2.2.9` — current:** UI-side TX safety/evidence.
+  - ⏳ `H2.2.10` — manufacturing/test points.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.
 - ⏳ `H2.5` — independently review power, boot, recovery, quiet-state and

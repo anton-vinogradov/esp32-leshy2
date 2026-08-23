@@ -1302,7 +1302,7 @@
       "reserved": 0,
       "main_3v3_contacts": 7,
       "aon_contacts": 2,
-      "power_ground_contacts": 22,
+      "power_ground_contacts": 20,
       "audio_ground_contacts": 3,
       "safety_ground_contacts": 2,
       "maximum_nominal_main_contact_capacity_a": 2.8
