@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "current_stage": "H3",
+  "current_substep": "H3.0.2",
+  "stages": [
+    {"id": "H0", "status": "reviewed"},
+    {"id": "H1", "status": "reviewed"},
+    {"id": "H2", "status": "reviewed", "accepted_by_user": "2026-08-24"},
+    {"id": "H3", "status": "current"},
+    {"id": "H4", "status": "waiting"},
+    {"id": "H5", "status": "waiting"},
+    {"id": "H6", "status": "waiting"},
+    {"id": "H7", "status": "waiting"},
+    {"id": "H8", "status": "waiting"},
+    {"id": "H9", "status": "waiting"}
+  ]
+}

@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.8.2`.
+**Status:** ✅ reviewed and accepted by the user on 24 August 2026.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.
@@ -61,12 +61,12 @@ are satisfied.
   every deliberately open contact.
 - [End-to-end HW/FW reconciliation](hwfw-reconciliation.md) — H1, 1,026
   electrical identities, 266 root nets, all M1 contacts and firmware F2 agree.
-- [H2 acceptance package](h2-acceptance.md) — completed scope and every
-  deferred H3/F3/H5/H6/H8 verification gate; only explicit user acceptance remains.
+- [H2 acceptance package](h2-acceptance.md) — completed scope, accepted
+  baseline commits and every deferred H3/F3/H5/H6/H8 verification gate.
 - The complete UI/control PCB, all twelve RF/power child sheets, the passive
   display adapter and every LoRa Cap sheet are reviewed. Reset-safe quiet
   state, fault shutdown, native ERC/NC and end-to-end H1/M1/F2 reconciliation
-  are reviewed. The exact remaining H2 action is formal user acceptance.
+  are reviewed. H2.8.2 records the explicit user acceptance.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   contains 48 exact components, all 81 SC1512-A4 package contacts, the official
   core-regulator and 12-MHz clock circuits, native USB/recovery and 13 explicit
@@ -118,12 +118,18 @@ are satisfied.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ⏳ waiting for H2.
+**Status:** ▶️ current, exact marker `H3.0.2`.
 
-Outputs will include worst-case DC budget, startup/shutdown and handover
-simulation, fault tree, thermal/power/transient evidence, digital timing/levels
-and RF pre-layout constraints. Layout remains blocked while a virtually
-testable blocker exists.
+- [Current virtual-verification page](virtual-verification.md).
+- [Machine execution plan](../hardware/verification/h3-verification-plan.json).
+- [Accepted-input freeze and 16-domain matrix](../hardware/verification/generated/H3-VRF01-input-freeze.json).
+- [Parameter and model register](parameter-model-register.md) — 1,028
+  instances, 213 used device types and their primary sources.
+- [H3.0.2 machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
+
+`H3.0.1` is reviewed. The `H3.0.2` register is complete with no missing
+sources; closure waits for the `H3-NRF24-LIFECYCLE` gate. Layout
+remains blocked while that blocker exists.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate

@@ -12,8 +12,8 @@
 
 </div>
 
-> **Now: H2 · production ECAD schematic.** H1 physical design is accepted.
-> PCB routing, purchasing and fabrication remain blocked.
+> **Now: H3 · virtual electrical verification.** Production ECAD H2 is
+> accepted; PCB routing, purchasing and fabrication remain blocked.
 
 <div align="center">
 
@@ -103,8 +103,8 @@ drawings, schematics, contracts and checks.
 |---|---|---|
 | H0 · Product requirements and functional architecture | ✅ Reviewed | [Open H0](docs/stage-results.md#h0) |
 | H1 · Physical product design | ✅ Reviewed | [Open H1](docs/stage-results.md#h1) |
-| **H2 · Production ECAD schematic** | **▶️ Current** | [Current H2 results](docs/stage-results.md#h2) |
-| H3 · Virtual electrical verification | ⏳ Waiting for H2 | [H3 plan](docs/stage-results.md#h3) |
+| H2 · Production ECAD schematic | ✅ Reviewed and accepted | [H2 results](docs/stage-results.md#h2) |
+| **H3 · Virtual electrical verification** | **▶️ Current** | [Current H3 results](docs/stage-results.md#h3) |
 | H4 · Joined pre-layout gate | 🔒 Waiting for H1–H3 and firmware F3 | [H4 plan](docs/stage-results.md#h4) |
 | H5 · Component evidence samples | 🔒 Waiting for H4 and cost approval | [H5 plan](docs/stage-results.md#h5) |
 | H6 · PCB placement and routing | 🔒 Waiting for H5 | [H6 plan](docs/stage-results.md#h6) |
@@ -112,16 +112,18 @@ drawings, schematics, contracts and checks.
 | H8 · Physical qualification | 🔒 Waiting for H7 | [H8 plan](docs/stage-results.md#h8) |
 | H9 · Manufacturing release | 🔒 Waiting for H8 and firmware F11 | [H9 plan](docs/stage-results.md#h9) |
 
-**Hardware is at H2.** The production schematic is being created; PCB layout
-and the full target/emulator gate are not closed, and no order is authorized.
+**Hardware is at H3.** The accepted production schematic is undergoing virtual
+electrical verification; PCB layout, target/emulator gate and every order
+remain unauthorized.
 
 <details open>
-<summary><strong>Current H2 phase — exact detailed position</strong></summary>
+<summary><strong>Current H3 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.8.2 -->
+<!-- current-substep: H3.0.2 -->
 
-**Exact marker: `H2.8.2`** — record explicit user acceptance of the complete
-H2 package or reopen a concrete finding before H3.
+**Exact marker: `H3.0.2`** — the [213-type parameter and model
+register](docs/parameter-model-register.md) is complete with no missing
+sources; nRF24 lifecycle gate `H3-NRF24-LIFECYCLE` is pending.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -184,13 +186,21 @@ H2 package or reopen a concrete finding before H3.
 - ✅ `H2.7` — [H1, physical contacts, nets, M1 and firmware F2 reconciled](docs/hwfw-reconciliation.md):
   1,026 electrical identities, 266 root nets, 80 M1 contacts and 130
   controller allocations have zero remaining mismatch.
-- ▶️ **`H2.8` — current:** formal final user acceptance before H3.
+- ✅ **`H2.8` — reviewed:** formal final user acceptance before H3.
   - ✅ `H2.8.1` — [acceptance package and deferred gates prepared](docs/h2-acceptance.md).
-  - ▶️ **`H2.8.2` — current:** record explicit user acceptance or a specific finding.
+  - ✅ `H2.8.2` — accepted by the user on 24 August 2026 at hardware
+    `25d9ee2` / firmware `900bb2b`.
+- ▶️ **`H3.0` — current:** freeze reproducible virtual-verification inputs and methods.
+  - ✅ `H3.0.1` — [accepted H2 input and all 16 verification domains frozen](docs/virtual-verification.md).
+  - ▶️ **`H3.0.2` — current:** the [parameter and model register is
+    complete](docs/parameter-model-register.md); nRF24 decision
+    `H3-NRF24-LIFECYCLE` is pending.
+  - ⏳ `H3.0.3` — freeze tools and pass/fail rules after H3.0.2.
 
-The exact machine-readable plan is
-[`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json). Closing each
-subtask changes this marker and both roadmap pages in the same commit.
+The reviewed H2 plan is [`h2-schematic-plan.json`](hardware/ecad/h2-schematic-plan.json).
+The current machine-readable plan is
+[`h3-verification-plan.json`](hardware/verification/h3-verification-plan.json).
+Closing each subtask changes this marker and both roadmap pages in the same commit.
 
 </details>
 

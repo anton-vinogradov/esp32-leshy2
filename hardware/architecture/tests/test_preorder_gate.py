@@ -16,21 +16,18 @@ class PreorderGateTests(unittest.TestCase):
     def test_gate_reports_actual_unfinished_state(self):
         self.assertEqual("LESHY2-PREORDER-1", self.contract["contract_id"])
         truth = self.contract["current_truth"]
-        self.assertIn("not an approved industrial design", truth["mechanical_projection"])
-        self.assertIn("absent", truth["current_ecad"])
+        self.assertIn("H1 accepted", truth["mechanical_projection"])
+        self.assertIn("H2 production schematics accepted", truth["current_ecad"])
         self.assertIn("reviewed portable C safety, L2IP, update", truth["executable_firmware"])
         self.assertIn("all five target images remain open", truth["executable_firmware"])
         self.assertEqual("not run", truth["physical_hil"])
 
         gates = {gate["id"]: gate for gate in self.contract["gates"]}
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
-        for gate_id in (
-            "P1_MECHANICAL_DESIGN",
-            "P2_CURRENT_SCHEMATIC",
-            "P3_VIRTUAL_ELECTRICAL",
-            "P5_TARGET_BUILDS_EMULATION",
-        ):
-            self.assertNotEqual("reviewed", gates[gate_id]["status"])
+        self.assertEqual("reviewed", gates["P1_MECHANICAL_DESIGN"]["status"])
+        self.assertEqual("reviewed", gates["P2_CURRENT_SCHEMATIC"]["status"])
+        self.assertEqual("in_progress_h3_0_2", gates["P3_VIRTUAL_ELECTRICAL"]["status"])
+        self.assertNotEqual("reviewed", gates["P5_TARGET_BUILDS_EMULATION"]["status"])
         self.assertEqual("reviewed", gates["P4_EXECUTABLE_FIRMWARE_MODEL"]["status"])
         self.assertEqual("not_authorized", gates["P7_ENGINEERING_SAMPLE_ORDER"]["status"])
         self.assertEqual("not_authorized", gates["P8_KICAD_LAYOUT_AND_PROTOTYPE_PCB"]["status"])

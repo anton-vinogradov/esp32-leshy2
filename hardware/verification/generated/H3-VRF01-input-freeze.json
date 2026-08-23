@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "stage": "H3.0.1",
+  "status": "reviewed_accepted_h2_inputs_and_complete_verification_matrix_frozen",
+  "accepted_baseline": {
+    "date": "2026-08-24",
+    "hardware_commit": "25d9ee2",
+    "firmware_commit": "900bb2b"
+  },
+  "source_hashes": {
+    "hardware/ecad/h2-schematic-plan.json": "145e2c9a027c94279ee1878fcdfdb49394853a609edb073f37782a4d571adf8a",
+    "hardware/ecad/generated/H2-REV81-acceptance-package.json": "25c9a9cd6f95a66329aaaa45768dc411ea2422d550cd688dd507ad0583deb7a4",
+    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "08e1f4f17283eebcf3b0450592e76e087a9ba010c25ef86f20af8838cc9d4db6",
+    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "72a52b2a8237f816ca8188931d6f8c84f19b8eb9114c933662a2bd94d14c37a8",
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "b3a3d1262b26ebe9f2d2b9641d82a748a48ef19cd0df0c2fb5f3b6fcc6d0280c",
+    "hardware/ecad/generated/H2-hwfw-contract.json": "306c6c8b35ff22af1568ecc07eddc4d19652f6e116826feb32c1a9fa8a4054eb",
+    "hardware/ecad/generated/H2-instance-ledger.json": "ef6c2c7b5f732435a39976a09b897fc9b3b1ca689523c885de334b135857d30f",
+    "hardware/product-design/generated/H1-physical-source-table.json": "e3210a812c5084cc8e428d15b62a68f8de73f185879c8cb3adf394e634f2d7d2",
+    "hardware/product-design/generated/H1-unified-coordinate-table.json": "dc30ba38d0faeefaa36cd38fad3521a886ccacfaa7d6fb0427999fd99217de42",
+    "hardware/architecture/candidates/G2F-3I.json": "5ec50f5100a608a337430782ae4a12e8af75cd68b7c074cb990146cddf537e62",
+    "hardware/accessories/leshy2-lora-cap-01.json": "aea57801c58d9f255774bc58ecf51aff7238d9e8557d0ae25da6f81145ff5301",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_10_RADIO_CONTROL.kicad_sch": "ea71ce96852afce595971244cf7ebda11afe2ec482d483f490bce03a6cead6b4",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_20_POWER_BUS.kicad_sch": "97cf38639e29ff75e7f2ea2c4459d0efcb2dfe023eab6219a764cd53f457a883",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/CAP_30_TX_EVIDENCE.kicad_sch": "ed8af8e0d9073eb790f88a3e866f75a8365485df9aef0f870a549839e4890774",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "a6c2c093be78a34effe13c4ef2db44c82e555ec4a51b398d495fe1721c7bdf01",
+    "hardware/ecad/kicad/LESHY2-RF/RF_01_USB_PD_CHARGE.kicad_sch": "6d8ff093ffafe32630cfdf94a26baea5cac5d7c6b0eccfe1a63ea8df598cd0c0",
+    "hardware/ecad/kicad/LESHY2-RF/RF_02_PACK_SAFETY_AON.kicad_sch": "7ab060f920c464bb2586b741b39e99fdfef175754ec7f24243a28ed335714086",
+    "hardware/ecad/kicad/LESHY2-RF/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "dfe74e7c4cce872459d589d4677778585fc173c56c4e633acf7049d764402ae8",
+    "hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch": "560096616cfc22bafb2f71164d39ee331c320957640fff571e03b95a3ef10129",
+    "hardware/ecad/kicad/LESHY2-RF/RF_31_NRF24_X3.kicad_sch": "c1de12da7032903bf3220af6069fb59d2b8374bab694fce58642a40172381e49",
+    "hardware/ecad/kicad/LESHY2-RF/RF_32_SUBGHZ_VOICE.kicad_sch": "01256125b98a12de0be33527caf7ddc2f5ab244919b58788843c36bf409155cb",
+    "hardware/ecad/kicad/LESHY2-RF/RF_34_U214_M5_EXT.kicad_sch": "1a7536796df33b46423cee35608739ab67defb88f5884d00a44fd8cd6b11caf6",
+    "hardware/ecad/kicad/LESHY2-RF/RF_35_REAR_CONTROLS.kicad_sch": "e4141665bd8e84ca2fabfcda26580b94c8633ce8bb87f547c88860363da896a9",
+    "hardware/ecad/kicad/LESHY2-RF/RF_36_AUDIO_IO_AMP.kicad_sch": "db5b66ff82b001fdb529a529c914190d2034834d9094781e0ec00aabae314615",
+    "hardware/ecad/kicad/LESHY2-RF/RF_40_INTERBOARD_M1.kicad_sch": "70b83ba7ada784e2d569be24b49835a8a03b7cc1fba0704abd925b0c07268e5b",
+    "hardware/ecad/kicad/LESHY2-RF/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "dd724245804b9573cb672a1a94255dfa61910e9bb916ee4d7402c2e0ddc5639a",
+    "hardware/ecad/kicad/LESHY2-RF/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch": "e699a1589ea81f6e0c44989ddad9fd8d97b48d31a83c2dd07b73ca15bfe9b585",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "6eaf2046d986892a560351c2fcb98eddd92c32fd75ab804f02394a86eb4d7847",
+    "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch": "fada4565940c8b67dd240679eddf3427baa6204a5161b7b4c6ca8654170555e4",
+    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "8266a54568c290ebf89715bb0be60d2eb546a80f7c9b70b373531761f5323e19",
+    "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "eb43e17113fda9f8daebe0a7c7edcb6d38576a19c6ab01a5e00f18d82db1ca15",
+    "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "b7da025d96f79aba0b23220c265340fb54bdeda6524392edff1159ef23049fc8",
+    "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "71623157620e9856b4fa7b09bb3e1ebde4a5f3b83f1e6e1204157f3c6cab2b17",
+    "hardware/ecad/kicad/LESHY2-UI/UI_21_FM_AM_RECEIVER.kicad_sch": "8d3a9c3cb2e54d240715f33a1921274cb63309ef6f7bc069fd8b1c8c51d97031",
+    "hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch": "ae7ce70fbdbf27b374154315dfe094ee35b5727cfd58ce490dc14e9dce32db3e",
+    "hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch": "262795238b9be8df92ecf92dd92c439ed60007b0d0e8948edc0fa25b6b0a23b1",
+    "hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "a7546175ef1faa02458a553ab23a94fd9aa55cb82989a36f3c95347ab59b9088",
+    "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
+    "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_pro": "4d391970b8b6b6bf1e14c0d7826284a6160577a62a2dad55c8e3817019169291",
+    "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_pro": "08e872b4c8416b22f2b5b185179d580e04d6c3aaf851cfc833ddc51b00aaf790",
+    "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_pro": "8d6db426a22f3adc2ab52b66429dbc5de928a3708e4b70212ab409a74b796fe3"
+  },
+  "verification_matrix": [
+    {
+      "stage": "H3.1",
+      "area": "steady_state_power",
+      "method": "analytic_envelope",
+      "h3_output": "rail/source/load/charge margin tables",
+      "physical_evidence": "H8 measured current and temperature"
+    },
+    {
+      "stage": "H3.2",
+      "area": "power_transitions",
+      "method": "equation_and_circuit_simulation",
+      "h3_output": "startup/shutdown/handover/brownout/load-step traces",
+      "physical_evidence": "H8 oscilloscope traces"
+    },
+    {
+      "stage": "H3.2",
+      "area": "safety_loop_dynamics",
+      "method": "timed_state_and_fault_injection",
+      "h3_output": "watchdog/latch/FAULT_KILL timing evidence",
+      "physical_evidence": "H8 injected-fault timing"
+    },
+    {
+      "stage": "H3.3",
+      "area": "display_and_backlight",
+      "method": "worst_case_corner_analysis",
+      "h3_output": "supply/current/timing/thermal margins",
+      "physical_evidence": "H5 received-panel identity and H8 optical/current checks"
+    },
+    {
+      "stage": "H3.3",
+      "area": "audio",
+      "method": "small_signal_power_and_corner_analysis",
+      "h3_output": "gain/noise/clipping/load/thermal margins",
+      "physical_evidence": "H8 acoustic and EMI measurements"
+    },
+    {
+      "stage": "H3.3",
+      "area": "infrared",
+      "method": "pulse_current_threshold_and_thermal_analysis",
+      "h3_output": "TX/RX/duty-cycle envelopes",
+      "physical_evidence": "H8 range and temperature measurements"
+    },
+    {
+      "stage": "H3.3",
+      "area": "battery_analog",
+      "method": "tolerance_and_threshold_analysis",
+      "h3_output": "sense/thermistor/fault threshold margins",
+      "physical_evidence": "H8 calibrated threshold tests"
+    },
+    {
+      "stage": "H3.4",
+      "area": "digital_levels_and_defaults",
+      "method": "static_interface_proof",
+      "h3_output": "levels/pulls/reset/no-back-power matrix",
+      "physical_evidence": "H8 pin-state measurements"
+    },
+    {
+      "stage": "H3.4",
+      "area": "digital_timing_and_bandwidth",
+      "method": "timing_and_occupancy_budget",
+      "h3_output": "display/storage/audio/radio bus margins",
+      "physical_evidence": "firmware F3 target/emulator traces and H8 logic-analyzer traces"
+    },
+    {
+      "stage": "H3.4",
+      "area": "interboard_and_expansion",
+      "method": "loading_and_boundary_analysis",
+      "h3_output": "M1/U214/M5/service loading margins",
+      "physical_evidence": "H5 mating evidence and H8 signal-integrity measurements"
+    },
+    {
+      "stage": "H3.5",
+      "area": "rf_feeds",
+      "method": "transmission_line_and_loss_budget",
+      "h3_output": "50-ohm/matching/connector/loss constraints",
+      "physical_evidence": "H6 field-solver/layout evidence and H8 VNA"
+    },
+    {
+      "stage": "H3.5",
+      "area": "rf_returns_and_corridors",
+      "method": "prelayout_geometry_constraint_analysis",
+      "h3_output": "keepouts/reference-plane/return-current rules",
+      "physical_evidence": "H6 routed-board review"
+    },
+    {
+      "stage": "H3.5",
+      "area": "rf_coexistence",
+      "method": "state_space_and_isolation_budget",
+      "h3_output": "one-active-group and 3x-nRF24 concurrency constraints",
+      "physical_evidence": "H8 coexistence and spectrum tests"
+    },
+    {
+      "stage": "H3.6",
+      "area": "thermal",
+      "method": "lumped_worst_case_thermal_model",
+      "h3_output": "board/battery/enclosure temperature bounds",
+      "physical_evidence": "H8 thermocouple/thermal-camera validation"
+    },
+    {
+      "stage": "H3.6",
+      "area": "single_fault_tree",
+      "method": "fault_tree_and_fmea",
+      "h3_output": "independent shutdown and recovery coverage",
+      "physical_evidence": "H8 safe fault injection"
+    },
+    {
+      "stage": "H3.6",
+      "area": "unattended_operation",
+      "method": "bounded_energy_and_state_analysis",
+      "h3_output": "24-to-48-hour operating envelope",
+      "physical_evidence": "H8 endurance run"
+    }
+  ],
+  "summary": {
+    "frozen_files": 43,
+    "verification_domains": 16,
+    "unassigned_virtual_checks": 0,
+    "unassigned_physical_checks": 0
+  },
+  "open_findings": []
+}

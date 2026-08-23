@@ -35,7 +35,7 @@
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD-схема
 
-**Статус:** ▶️ сейчас, точный маркер `H2.8.2`.
+**Статус:** ✅ проведено ревью и принято пользователем 24 августа 2026 года.
 
 - [Публичная страница схем](schematics.ru.md) — принципиальные диаграммы и
   ссылки на текущие native KiCad-листы.
@@ -62,12 +62,12 @@
   каждого намеренно открытого контакта.
 - [Сквозная HW/FW-сверка](hwfw-reconciliation.ru.md) — H1, 1 026
   электрических identities, 266 root nets, все контакты M1 и firmware F2 совпадают.
-- [Пакет приёмки H2](h2-acceptance.ru.md) — завершённая область и все
-  deferred H3/F3/H5/H6/H8 gates; осталась только явная пользовательская приёмка.
+- [Пакет приёмки H2](h2-acceptance.ru.md) — завершённая область, принятые
+  baseline commits и все deferred H3/F3/H5/H6/H8 gates.
 - Проведено ревью всей UI/control PCB, всех двенадцати RF/power child-листов,
   пассивного display-adapter и всех листов LoRa Cap. Закрыты quiet state,
-  fault shutdown, native ERC/NC и сквозная H1/M1/F2-сверка. Осталась формальная
-  пользовательская приёмка H2.
+  fault shutdown, native ERC/NC и сквозная H1/M1/F2-сверка. H2.8.2 фиксирует
+  явную пользовательскую приёмку.
 - [`RF_30_RP2354_CORE_SERVICE`](../hardware/ecad/kicad/LESHY2-RF/RF_30_RP2354_CORE_SERVICE.kicad_sch)
   содержит 48 точных компонентов, все 81 контакта корпуса SC1512-A4,
   референсные цепи core regulator и кварца 12 МГц, native USB/recovery и 13
@@ -119,12 +119,18 @@
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ⏳ ожидает H2.
+**Статус:** ▶️ сейчас, точный маркер `H3.0.2`.
 
-Результатом станут worst-case DC budget, startup/shutdown и handover simulation,
-fault tree, thermal/power/transient evidence, digital timing/levels и RF
-pre-layout constraints. До закрытия виртуально проверяемого blocker переход к
-layout запрещён.
+- [Текущая страница виртуальной проверки](virtual-verification.ru.md).
+- [Машиночитаемый план](../hardware/verification/h3-verification-plan.json).
+- [Freeze принятого H2 и матрица из 16 областей](../hardware/verification/generated/H3-VRF01-input-freeze.json).
+- [Реестр параметров и моделей](parameter-model-register.ru.md) — 1 028
+  экземпляров, 213 используемых типов и их первичные источники.
+- [Машинный реестр H3.0.2](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
+
+`H3.0.1` проведено ревью. Реестр `H3.0.2` собран без пропущенных источников;
+его закрытие ожидает выбор `H3-NRF24-LIFECYCLE` по жизненному циклу nRF24.
+Пока существует blocker, переход к layout запрещён.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate

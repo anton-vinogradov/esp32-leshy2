@@ -1,11 +1,12 @@
 {
   "schema_version": 1,
   "stage": "H2.8.1",
-  "status": "reviewed_acceptance_package_ready_user_decision_pending",
+  "status": "reviewed_h2_user_accepted",
   "source_hashes": {
     "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "08e1f4f17283eebcf3b0450592e76e087a9ba010c25ef86f20af8838cc9d4db6",
     "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "72a52b2a8237f816ca8188931d6f8c84f19b8eb9114c933662a2bd94d14c37a8",
-    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "b3a3d1262b26ebe9f2d2b9641d82a748a48ef19cd0df0c2fb5f3b6fcc6d0280c"
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "b3a3d1262b26ebe9f2d2b9641d82a748a48ef19cd0df0c2fb5f3b6fcc6d0280c",
+    "hardware/ecad/h2-schematic-plan.json": "145e2c9a027c94279ee1878fcdfdb49394853a609edb073f37782a4d571adf8a"
   },
   "reviewed_prerequisites": [
     {
@@ -56,6 +57,9 @@
   "open_h2_technical_findings": [],
   "decision": {
     "stage": "H2.8.2",
-    "status": "waiting_for_explicit_user_acceptance"
+    "status": "accepted_by_user",
+    "date": "2026-08-24",
+    "accepted_hardware_commit": "25d9ee2",
+    "accepted_firmware_commit": "900bb2b"
   }
 }

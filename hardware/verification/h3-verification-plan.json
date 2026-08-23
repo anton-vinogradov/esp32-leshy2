@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "stage": "H3",
+  "status": "in_progress",
+  "current_substep": "H3.0.2",
+  "accepted_input": {
+    "stage": "H2.8.2",
+    "status": "accepted_by_user",
+    "date": "2026-08-24",
+    "hardware_commit": "25d9ee2",
+    "firmware_commit": "900bb2b"
+  },
+  "authorization": {
+    "analytical_verification": true,
+    "circuit_simulation": true,
+    "firmware_target_or_emulator_work": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false,
+    "purchasing": false
+  },
+  "substeps": [
+    {
+      "id": "H3.0",
+      "title": "Freeze inputs, methods and reproducibility contract",
+      "status": "current",
+      "children": [
+        {"id": "H3.0.1", "title": "Freeze accepted H2 artifacts and the complete H3 verification matrix", "status": "reviewed", "evidence": "generated/H3-VRF01-input-freeze.json"},
+        {"id": "H3.0.2", "title": "Inventory authoritative electrical parameters, models, provenance and missing evidence", "status": "current", "evidence": "generated/H3-VRF02-parameter-inventory.json", "blocker": "H3-NRF24-LIFECYCLE user choice"},
+        {"id": "H3.0.3", "title": "Freeze reproducible calculation/simulation toolchain, tolerances and pass/fail rules", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.1",
+      "title": "Worst-case steady-state power and source budget",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.1.1", "title": "Enumerate legal USB, battery, charge and operating states", "status": "waiting"},
+        {"id": "H3.1.2", "title": "Calculate worst-case load and margin for every rail and domain", "status": "waiting"},
+        {"id": "H3.1.3", "title": "Check charge, discharge and steady thermal operating envelopes", "status": "waiting"},
+        {"id": "H3.1.4", "title": "Consolidate the DC budget and correct every failed margin", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.2",
+      "title": "Power transitions and safety-loop dynamics",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.2.1", "title": "Model startup, orderly shutdown and hard FAULT_KILL shutdown", "status": "waiting"},
+        {"id": "H3.2.2", "title": "Model USB-to-battery handover, charger interaction and brownout", "status": "waiting"},
+        {"id": "H3.2.3", "title": "Model eFuse, load-switch, inrush and worst-case load steps", "status": "waiting"},
+        {"id": "H3.2.4", "title": "Verify watchdog, latch and retained fault-display timing", "status": "waiting"},
+        {"id": "H3.2.5", "title": "Consolidate transient and shutdown evidence", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.3",
+      "title": "Analog peripheral corner verification",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.3.1", "title": "Verify display supply, backlight and direct-QSPI electrical corners", "status": "waiting"},
+        {"id": "H3.3.2", "title": "Verify codec, microphone, headset and speaker gain/noise/power corners", "status": "waiting"},
+        {"id": "H3.3.3", "title": "Verify IR drive, receive thresholds and thermal duty limits", "status": "waiting"},
+        {"id": "H3.3.4", "title": "Verify battery sensing, thermistors and analog fault thresholds", "status": "waiting"},
+        {"id": "H3.3.5", "title": "Consolidate analog-corner evidence", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.4",
+      "title": "Digital interface, timing and level verification",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.4.1", "title": "Check voltage levels, pulls, reset defaults and no-back-power at every interface", "status": "waiting"},
+        {"id": "H3.4.2", "title": "Check bandwidth, latency and timing for display, storage, audio and radio buses", "status": "waiting"},
+        {"id": "H3.4.3", "title": "Check M1, U214, M5 Unit and service-boundary loading", "status": "waiting"},
+        {"id": "H3.4.4", "title": "Consolidate digital timing and level evidence", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.5",
+      "title": "RF pre-layout constraints and coexistence model",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.5.1", "title": "Derive 50-ohm feed, connector, matching and loss constraints for every antenna path", "status": "waiting"},
+        {"id": "H3.5.2", "title": "Derive RF corridors, keepouts, reference-plane and return-current constraints", "status": "waiting"},
+        {"id": "H3.5.3", "title": "Verify one-active-group isolation, quiet-state and full 3x nRF24 concurrency assumptions", "status": "waiting"},
+        {"id": "H3.5.4", "title": "Consolidate RF pre-layout rules and physical-only measurements", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.6",
+      "title": "Thermal, fault-tree and unattended-operation verification",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.6.1", "title": "Build worst-case board, battery and enclosure thermal model", "status": "waiting"},
+        {"id": "H3.6.2", "title": "Trace single faults through independent hardware shutdown and recovery", "status": "waiting"},
+        {"id": "H3.6.3", "title": "Verify the bounded 24-to-48-hour unattended operating envelope", "status": "waiting"},
+        {"id": "H3.6.4", "title": "Consolidate thermal and fault evidence", "status": "waiting"}
+      ]
+    },
+    {
+      "id": "H3.7",
+      "title": "Final virtual-verification closure",
+      "status": "waiting",
+      "children": [
+        {"id": "H3.7.1", "title": "Cross-check every H3 result against H2 and downstream layout/bring-up consumers", "status": "waiting"},
+        {"id": "H3.7.2", "title": "Publish every residual physical-only uncertainty and required H5/H6/H8 evidence", "status": "waiting"},
+        {"id": "H3.7.3", "title": "Prepare formal H3 acceptance package", "status": "waiting"},
+        {"id": "H3.7.4", "title": "Record explicit user acceptance before H4", "status": "waiting"}
+      ]
+    }
+  ],
+  "exit_criteria": [
+    "Every H2 electrical claim that can be checked without fabricated hardware has reproducible evidence.",
+    "Every failed margin is corrected in its source artifact and all affected evidence is regenerated.",
+    "Every model input has authoritative provenance, tolerance and applicability limits.",
+    "Every remaining uncertainty is demonstrably physical-only and assigned to H5, H6 or H8.",
+    "No H3 result authorizes purchasing, PCB layout or fabrication."
+  ]
+}

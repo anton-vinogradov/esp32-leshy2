@@ -54,6 +54,10 @@ class ProductSiteTests(unittest.TestCase):
         "docs/hwfw-reconciliation.ru.md",
         "docs/h2-acceptance.md",
         "docs/h2-acceptance.ru.md",
+        "docs/virtual-verification.md",
+        "docs/virtual-verification.ru.md",
+        "docs/parameter-model-register.md",
+        "docs/parameter-model-register.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -79,13 +83,13 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware stage: H2", "H1 accepted",
+                "Current hardware stage: H3", "H1 accepted",
                 "F3 target boot/emulation is not closed",
                 "H2.2.5",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущий аппаратный этап: H2", "H1 принят",
+                "Текущий аппаратный этап: H3", "H1 принят",
                 "F3 не закрыт", "H2.2.5",
                 "H9. Производственный release",
                 "Production ECAD",
@@ -101,8 +105,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Hardware is at H2", "printing/fabrication"),
-            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H2", "печать/на фабрику"),
+            "README.md": ("Roadmap and current position", "Hardware is at H3", "printing/fabrication"),
+            "README.ru.md": ("Роадмап и текущая позиция", "Железо находится на H3", "печать/на фабрику"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -138,6 +142,12 @@ class ProductSiteTests(unittest.TestCase):
                 self.assertIn(token, page, f"{name}: {token}")
 
     def test_hardware_stages_are_strictly_sequential(self):
+        import json
+
+        state = json.loads(
+            self.read("hardware/verification/hardware-roadmap-state.json")
+        )
+        expected = {int(row["id"][1:]): row["status"] for row in state["stages"]}
         for name, reviewed in (
             ("README.md", "Reviewed"),
             ("README.ru.md", "Проведено ревью"),
@@ -150,11 +160,17 @@ class ProductSiteTests(unittest.TestCase):
                 )
             }
             self.assertEqual(set(range(10)), set(rows), name)
-            self.assertIn(reviewed, rows[0], name)
-            self.assertIn(reviewed, rows[1], name)
-            self.assertIn("Current" if name == "README.md" else "Сейчас", rows[2], name)
-            for stage in range(3, 10):
-                self.assertNotIn(reviewed, rows[stage], f"{name}: H{stage}")
+            for stage, status in expected.items():
+                if status == "reviewed":
+                    self.assertIn(reviewed, rows[stage], f"{name}: H{stage}")
+                elif status == "current":
+                    self.assertIn(
+                        "Current" if name == "README.md" else "Сейчас",
+                        rows[stage],
+                        f"{name}: H{stage}",
+                    )
+                else:
+                    self.assertNotIn(reviewed, rows[stage], f"{name}: H{stage}")
 
     def test_interconnect_page_distinguishes_mechanical_fit_from_ecad(self):
         expectations = {
@@ -178,8 +194,10 @@ class ProductSiteTests(unittest.TestCase):
         import json
 
         pages = ("README.md", "README.ru.md", "docs/roadmap.md", "docs/roadmap.ru.md")
-        plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
-        current_substep = plan["current_substep"]
+        state = json.loads(
+            self.read("hardware/verification/hardware-roadmap-state.json")
+        )
+        current_substep = state["current_substep"]
         markers = {}
         for name in pages:
             page = self.read(name)
@@ -221,7 +239,10 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.8.2", plan["current_substep"])
+        self.assertEqual("reviewed", plan["status"])
+        self.assertIsNone(plan["current_substep"])
+        self.assertEqual("H2.8.2", plan["completed_substep"])
+        self.assertEqual("accepted_by_user", plan["acceptance"]["status"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -282,26 +303,15 @@ class ProductSiteTests(unittest.TestCase):
         self.assertTrue(
             all(item["status"] == "reviewed" for item in plan["substeps"][4]["children"])
         )
-        current = []
-        for substep in plan["substeps"]:
-            current.extend(
-                child["id"]
-                for child in substep.get("children", [])
-                if child["status"] == "current"
-            )
-        self.assertEqual([plan["current_substep"]], current)
-        current_major = next(
-            substep
-            for substep in plan["substeps"]
-            if any(
-                child["id"] == plan["current_substep"]
-                for child in substep.get("children", [])
-            )
-        )
-        self.assertEqual("current", current_major["status"])
-        current_index = plan["substeps"].index(current_major)
         self.assertTrue(
-            all(item["status"] == "reviewed" for item in plan["substeps"][:current_index])
+            all(item["status"] == "reviewed" for item in plan["substeps"])
+        )
+        self.assertTrue(
+            all(
+                child["status"] == "reviewed"
+                for item in plan["substeps"]
+                for child in item.get("children", [])
+            )
         )
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
@@ -321,6 +331,46 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(4, len(binding["intentionally_component_empty_sheets"]))
         self.assertEqual(24, len(binding["sheet_row_counts"]))
         self.assertEqual(1028, sum(binding["sheet_row_counts"].values()))
+
+    def test_h3_plan_and_accepted_input_freeze_are_current(self):
+        import hashlib
+        import json
+
+        plan = json.loads(
+            self.read("hardware/verification/h3-verification-plan.json")
+        )
+        state = json.loads(
+            self.read("hardware/verification/hardware-roadmap-state.json")
+        )
+        freeze = json.loads(
+            self.read("hardware/verification/generated/H3-VRF01-input-freeze.json")
+        )
+        inventory = json.loads(
+            self.read("hardware/verification/generated/H3-VRF02-parameter-inventory.json")
+        )
+        self.assertEqual("H3", plan["stage"])
+        self.assertEqual("H3.0.2", plan["current_substep"])
+        self.assertEqual(plan["current_substep"], state["current_substep"])
+        self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
+        self.assertEqual("current", plan["substeps"][0]["children"][1]["status"])
+        self.assertEqual(16, freeze["summary"]["verification_domains"])
+        self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
+        self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
+        self.assertEqual(1028, inventory["summary"]["registered_instances"])
+        self.assertEqual(213, inventory["summary"]["used_device_types"])
+        self.assertEqual(0, inventory["summary"]["source_missing"])
+        self.assertEqual(64, inventory["summary"]["used_types_with_structured_electrical_contract"])
+        self.assertEqual(149, inventory["summary"]["used_types_requiring_parameter_extraction"])
+        self.assertEqual(2, inventory["summary"]["official_h3_source_overrides"])
+        self.assertEqual(1, inventory["summary"]["lifecycle_decisions"])
+        self.assertEqual("H3-NRF24-LIFECYCLE", inventory["open_decisions"][0]["id"])
+        self.assertEqual("user_decision_required", inventory["open_decisions"][0]["status"])
+        for relative, expected in freeze["source_hashes"].items():
+            actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
+            self.assertEqual(expected, actual, relative)
+        self.assertFalse(plan["authorization"]["pcb_placement_and_routing"])
+        self.assertFalse(plan["authorization"]["fabrication"])
+        self.assertFalse(plan["authorization"]["purchasing"])
 
     def test_h2_1_kicad_scaffold_is_complete_and_contains_no_pcb(self):
         import json

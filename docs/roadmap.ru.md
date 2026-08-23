@@ -3,10 +3,10 @@
 [English](roadmap.md) · [На главную](../README.ru.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶️ Текущий аппаратный этап: H2 — production ECAD-схема.** H0 и H1 прошли
-> ревью. Работа над схемой начата; PCB layout и разрешённого заказа пока нет.
+> **▶️ Текущий аппаратный этап: H3 — виртуальная электрическая проверка.**
+> H0–H2 прошли ревью, H2 явно принят. PCB layout и разрешённого заказа пока нет.
 
-Последняя сверка статуса: **23 августа 2026 года**. Это собственный
+Последняя сверка статуса: **24 августа 2026 года**. Это собственный
 последовательный роадмап hardware-репозитория. У прошивки есть отдельные этапы
 `F0–F11`; здесь они появляются только как пререквизиты аппаратных gates.
 
@@ -25,10 +25,10 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.8.2: полный проверенный пакет H2 ожидает явной пользовательской приёмки перед H3 |
-| Электрические и переходные evidence | ⏳ H3: не получены |
+| Production ECAD-схема | ✅ H2 принят на hardware `25d9ee2`; firmware F2 синхронизирован на `900bb2b` |
+| Электрические и переходные evidence | ▶️ H3.0.2: реестр собран, ожидается решение по nRF24 |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
-| Работа над KiCad-схемой | ▶️ H2: разрешена |
+| Работа над KiCad-схемой | ✅ H2 проведено ревью; позднее несоответствие повторно откроет затронутые листы |
 | KiCad placement и PCB routing | 🔒 H6: не начаты и не разрешены |
 | Физические образцы и HIL | 🔒 Не заказывались и не проводились |
 | Заказ прототипных PCB | 🔒 Запрещён до H7 |
@@ -39,12 +39,13 @@
 footprints и ERC evidence. PCB placement и routing начинаются лишь после
 закрытия предшествующих gates.
 
-## Завершённая H1 и детальный состав текущей H2
+## Завершённые H1/H2 и детальный состав текущей H3
 
-<!-- current-substep: H2.8.2 -->
+<!-- current-substep: H3.0.2 -->
 
-**Точный маркер: `H2.8.2`** — зафиксировать явную пользовательскую приёмку
-полного пакета H2 либо повторно открыть конкретное замечание перед H3.
+**Точный маркер: `H3.0.2`** — [реестр параметров и моделей
+собран](parameter-model-register.ru.md) без пропущенных первичных источников;
+ожидается выбор `H3-NRF24-LIFECYCLE` по жизненному циклу nRF24.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -232,14 +233,29 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 - ✅ `H2.6` — [native ERC и все намеренные NC проведены ревью](erc-review.ru.md):
   четыре чистых проекта, 189 физических NC и ни одного пропущенного обоснования.
 - ✅ `H2.7` — [сверка physical, net, M1 и firmware F2 закрыта](hwfw-reconciliation.ru.md).
-- ▶️ **`H2.8` — сейчас:** формальная финальная пользовательская приёмка перед H3.
+- ✅ **`H2.8` — проведено ревью:** формальная финальная пользовательская приёмка перед H3.
   - ✅ `H2.8.1` — [область приёмки и все deferred gates опубликованы](h2-acceptance.ru.md).
-  - ▶️ **`H2.8.2` — сейчас:** зафиксировать явную приёмку либо конкретное замечание.
+  - ✅ `H2.8.2` — принято пользователем 24 августа 2026 года на hardware
+    `25d9ee2` / firmware `900bb2b`.
+- ▶️ **`H3.0` — сейчас:** зафиксировать входы, методы и воспроизводимость виртуальной проверки.
+  - ✅ `H3.0.1` — [принятый H2 и полная матрица из 16 областей заморожены](virtual-verification.ru.md).
+  - ▶️ **`H3.0.2` — сейчас:** [реестр 213 используемых типов
+    собран](parameter-model-register.ru.md); ожидается решение
+    `H3-NRF24-LIFECYCLE`.
+  - ⏳ `H3.0.3` — зафиксировать инструменты расчёта/симуляции и pass/fail.
+- ⏳ `H3.1` — worst-case steady-state budget источников, шин, зарядки и thermal.
+- ⏳ `H3.2` — startup/shutdown, handover, brownout, inrush, watchdog и `FAULT_KILL`.
+- ⏳ `H3.3` — corners дисплея/backlight, audio, IR и battery analog.
+- ⏳ `H3.4` — digital levels/defaults, bandwidth, timing и expansion loading.
+- ⏳ `H3.5` — RF feed, return-path, corridors и coexistence.
+- ⏳ `H3.6` — thermal model, single-fault tree и unattended 24–48 часов.
+- ⏳ `H3.7` — сквозная сверка, physical-only остатки и формальная приёмка H3.
 
-Машиночитаемый план выполнения —
-[`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Закрытие
-любой подзадачи меняет точный маркер на стартовой странице и в роадмапе в том
-же commit. Поздняя правка повторно открывает затронутые gates и их зависимости.
+Проверенный план H2 —
+[`h2-schematic-plan.json`](../hardware/ecad/h2-schematic-plan.json). Активный
+план — [`h3-verification-plan.json`](../hardware/verification/h3-verification-plan.json).
+Закрытие любой подзадачи меняет точный маркер на стартовой странице и в
+роадмапе в том же commit. Поздняя правка повторно открывает затронутые gates.
 
 ## Аппаратная последовательность и пересечения с прошивкой
 
@@ -248,8 +264,8 @@ flowchart TD
   subgraph HW["Аппаратный роадмап — последовательно"]
     H0["✅ H0<br/>требования и функциональная архитектура"]
     H1["✅ H1<br/>физический дизайн устройства"]
-    H2["▶️ H2<br/>production ECAD-схема"]
-    H3["H3<br/>виртуальная электрическая проверка"]
+    H2["✅ H2<br/>production ECAD-схема"]
+    H3["▶️ H3<br/>виртуальная электрическая проверка"]
     H4["H4<br/>объединённый pre-layout gate"]
     H5["H5<br/>образцы компонентов"]
     H6["H6<br/>PCB placement и routing"]
@@ -290,8 +306,8 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 |---|---|---|---|
 | **H0. Требования продукта и функциональная архитектура** | ✅ Проведено ревью | Полные границы возможностей, пять вычислительных доменов, владельцы радио/интерфейсов, классы интерфейсов, одна активная signal group, полноценные 3×nRF24 и safety boundaries | Проверки требований и архитектуры проходят; у каждой обязательной функции есть владелец и определённая аппаратная граница |
 | **H1. Физический дизайн устройства** | ✅ Проведено ревью | Согласованные внешние и внутренние стороны, настоящий вид от антенного торца, разрезы, порядок сборки, envelopes выбранных деталей и сходящаяся pin/resource раскладка | Размеры основаны на выбранных MPN; нет коллизий деталей, крепежа, шелкографии, антенн и аксессуаров; доступны органы управления, батарея, U214, порты, микрофон и динамик; resource budget сходится; пользователь принял мокап |
-| **H2. Production ECAD-схема** | ▶️ Сейчас | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
-| **H3. Виртуальная электрическая проверка** | ⏳ Ожидает H2 | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; display/backlight, audio и IR corners; timing/levels; RF corridors, returns и pre-layout constraints |
+| **H2. Production ECAD-схема** | ✅ Проведено ревью и принято | Новая актуальная схема на читаемых листах и machine-readable HW↔FW contract | Точные symbol/footprint/pin/net/value; объяснены NC; ERC без необъяснённых ошибок; отдельно проверены reset, boot, recovery, no-back-power, quiet state и `FAULT_KILL`; firmware F2 использует контракт без выдуманных pins |
+| **H3. Виртуальная электрическая проверка** | ▶️ Сейчас · `H3.0.2` | Расчёты и симуляции до дорогой физики | Проходят worst-case DC budget; startup/shutdown, USB↔battery handover, brownout, watchdog, eFuse и load-step; thermal/fault tree; display/backlight, audio и IR corners; timing/levels; RF corridors, returns и pre-layout constraints |
 | **H4. Объединённый pre-layout gate** | 🔒 Ожидает H1–H3 и firmware F3 | Единое ревью механики, production ECAD, электрических evidence и видимых target-прошивке контрактов | Нет открытого виртуально проверяемого blocker; target skeletons используют реальный контракт; у каждой остаточной физической неопределённости есть измерение и bring-up test |
 | **H5. Образцы компонентов** | 🔒 Ожидает H4 и отдельное одобрение стоимости | Минимальная доказательная закупка, а не production basket | Полученные display, U214, connectors и radios идентифицированы и измерены; доказаны mating и критический stack-up; raw records сохранены; расхождение повторно открывает исходный этап |
 | **H6. PCB placement и routing** | 🔒 Ожидает H5 | Две реальные платы, реализующие принятую схему и механику | Пройдены placement review обеих сторон, DRC, impedance и return-current review, RF isolation, antenna feeds, thermal copper, creepage, test points, assembly и manufacturability; fab package принят отдельно |
@@ -317,5 +333,5 @@ size/rollback gates, доступный S3 QEMU и portable/host-модели д
 
 ## Что происходит следующим
 
-Текущая работа — H2: создать точную production-схему и HW↔FW-контракт из
-принятого H1. PCB placement/routing и закупка остаются заблокированы.
+Текущая работа — H3: исчерпать расчётные и симуляционные electrical evidence
+из принятого H2. PCB placement/routing и закупка остаются заблокированы.

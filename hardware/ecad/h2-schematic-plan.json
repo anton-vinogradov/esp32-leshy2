@@ -1,8 +1,16 @@
 {
   "schema_version": 1,
   "stage": "H2",
-  "status": "in_progress",
-  "current_substep": "H2.8.2",
+  "status": "reviewed",
+  "current_substep": null,
+  "completed_substep": "H2.8.2",
+  "acceptance": {
+    "status": "accepted_by_user",
+    "date": "2026-08-24",
+    "accepted_hardware_commit": "25d9ee2",
+    "accepted_firmware_commit": "900bb2b",
+    "meaning": "immutable starting input for H3; later findings reopen affected gates"
+  },
   "accepted_input": {
     "physical_design_gate": "H1.8",
     "status": "accepted",
@@ -155,10 +163,10 @@
     {
       "id": "H2.8",
       "title": "Formal final user acceptance of H2 before virtual electrical verification H3",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H2.8.1", "title": "Prepare the complete H2 acceptance package and enumerate every deferred verification gate", "status": "reviewed", "evidence": "generated/H2-REV81-acceptance-package.json"},
-        {"id": "H2.8.2", "title": "Record explicit user acceptance of H2 as the immutable starting input for H3", "status": "current"}
+        {"id": "H2.8.2", "title": "Record explicit user acceptance of H2 as the immutable starting input for H3", "status": "reviewed", "evidence": "generated/H2-REV81-acceptance-package.json"}
       ]
     }
   ],

@@ -2,7 +2,7 @@
 
 [Русский](h2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Schematics](schematics.md)
 
-H2 is ready for formal user acceptance as the H3 input. Acceptance means agreement with the production-schematic contract, not authorization for KiCad layout, purchasing or fabrication.
+H2 was accepted by the user as the immutable H3 input. Acceptance means agreement with the production-schematic contract, not authorization for KiCad layout, purchasing or fabrication; a later mismatch reopens the affected gate.
 
 ## Completed
 
@@ -20,6 +20,6 @@ H2 is ready for formal user acceptance as the H3 input. Acceptance means agreeme
 - `H6` — placement/routing/DRC
 - `H8` — physical bring-up and HIL
 
-**Current marker:** `H2.8.2` — the user must accept H2 as the H3 input or return it with a specific finding.
+**Result:** ✅ `H2.8.2` was accepted by the user on 24 August 2026 at hardware commit `25d9ee2` and firmware commit `900bb2b`. The next hardware marker is `H3.0.1`.
 
 [Machine package](../hardware/ecad/generated/H2-REV81-acceptance-package.json).
