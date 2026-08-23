@@ -1661,6 +1661,7 @@ class ProductSiteTests(unittest.TestCase):
             "Keystone 1048P",
             "Леший",
             "ESP32-LESHY2",
+            "github.com/anton-vinogradov/esp32-leshy2",
             'data-instance="ui_dpad_up" data-direct-press="true"',
             'data-instance="ui_dpad_down" data-direct-press="true"',
             'data-instance="ui_dpad_left" data-direct-press="true"',
@@ -1813,6 +1814,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(
             {"text": "ESP32-LESHY2", "position_mm": [37.5, 136.0], "font_size_px_at_drawing_scale": 7.5},
             package["rear"]["product_silkscreen"],
+        )
+        self.assertEqual(
+            {
+                "text": "github.com/anton-vinogradov/esp32-leshy2",
+                "position_mm": [37.5, 142.0],
+                "font_size_px_at_drawing_scale": 5.0,
+            },
+            package["rear"]["project_url_silkscreen"],
         )
         self.assertEqual([320, 480], package["front"]["display"]["pixels"])
         self.assertEqual([48.96, 73.44], package["front"]["display"]["active_area_mm"])

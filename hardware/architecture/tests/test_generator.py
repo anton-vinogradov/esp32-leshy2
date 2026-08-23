@@ -507,6 +507,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "C5 BOOT",
             "RP RST",
             "RP BOOT",
+            "github.com/anton-vinogradov/esp32-leshy2",
         ):
             self.assertIn(token, rendered)
         self.assertNotIn("SPEAKER / GRILLE", rendered)

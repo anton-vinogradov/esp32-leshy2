@@ -574,6 +574,14 @@
       ],
       "font_size_px_at_drawing_scale": 7.5
     },
+    "project_url_silkscreen": {
+      "text": "github.com/anton-vinogradov/esp32-leshy2",
+      "position_mm": [
+        37.5,
+        142.0
+      ],
+      "font_size_px_at_drawing_scale": 5.0
+    },
     "antenna_ports": [
       {
         "path": "N24-0",

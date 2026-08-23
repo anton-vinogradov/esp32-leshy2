@@ -156,9 +156,11 @@ FRONT_FACE_INDICATORS = (
     ("ext_tx_led", "LORA/EXT", 52.5, 111.0),
     ("fault_led", "FAULT", 68.3, 111.0),
 )
+PROJECT_REPOSITORY_URL = "github.com/anton-vinogradov/esp32-leshy2"
 OUTER_FACE_PRODUCT_MARKS = (
     ("front", "Леший", 37.5, 99.5, 10.5),
     ("rear", "ESP32-LESHY2", 37.5, 136.0, 7.5),
+    ("rear", PROJECT_REPOSITORY_URL, 37.5, 142.0, 5.0),
 )
 
 # Every directional interface that crosses the enclosure is rendered here.
@@ -5147,6 +5149,15 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
                 }
                 for face, value, x, y, size in OUTER_FACE_PRODUCT_MARKS
                 if face == "rear"
+            ),
+            "project_url_silkscreen": next(
+                {
+                    "text": value,
+                    "position_mm": [x, y],
+                    "font_size_px_at_drawing_scale": size,
+                }
+                for face, value, x, y, size in OUTER_FACE_PRODUCT_MARKS
+                if face == "rear" and value == PROJECT_REPOSITORY_URL
             ),
             "antenna_ports": antenna_ports(REAR_RF),
             "u214": {
