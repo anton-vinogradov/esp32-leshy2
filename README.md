@@ -30,10 +30,10 @@ target-emulator run, and no order is authorized.
 
 ### Current phase H1 — detailed position
 
-<!-- current-substep: H1.3.0 -->
+<!-- current-substep: H1.3.1 -->
 
-**Exact marker: `H1.3.0`** — generate the final external faces from the unified
-coordinate source before the `H1.3.1` user gate.
+**Exact marker: `H1.3.1`** — user review of the complete front and rear
+exterior generated from the unified coordinate source.
 
 - ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
 - `H1.1` — build the physical-source register.
@@ -65,12 +65,12 @@ coordinate source before the `H1.3.1` user gate.
       - ✅ `H1.1.3.3.4` — not required; the sample plan remains parked.
   - ✅ `H1.1.4` — freeze the renderer source table.
 - ✅ `H1.2` — create one coordinate model for both boards and the enclosure.
-- ▶️ **`H1.3.0` — current:** generate outer faces, controls, arrows and readable silkscreen
-  from the unified source.
-  - ✅ Latest provisional correction: ten TX indicators are aligned as two
-    rows of five, the front controls are raised 5 mm, and the display now
-    separates its 54.5×83.0-mm body from the exact 48.96×73.44-mm 2:3 active area.
-- 🔒 `H1.3.1` — user review gate for the complete front and rear exterior.
+- ✅ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
+  from the unified source. Ten TX indicators form two aligned rows of five;
+  the display distinguishes its 54.5×83.0-mm body from the exact
+  48.96×73.44-mm 2:3 active area.
+- ▶️ **`H1.3.1` — current:** user review gate for the complete front and rear
+  exterior, including labels, interface directions and control locations.
 - ⏳ `H1.4.0` — generate mirrored inner faces and the board-to-board stack.
 - 🔒 `H1.4.1` — user review gate for both internal board faces and sandwich.
 - ⏳ `H1.5.0` — generate the real antenna-edge top view, sections, U214 and

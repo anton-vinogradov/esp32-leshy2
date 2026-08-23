@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "stage": "H1.3.0",
+  "status": "awaiting_user_review",
+  "review_gate": "H1.3.1",
+  "artifact": "docs/images/current-clamshell.svg",
+  "coordinate_model": "L2-ASM-COORD-001-A",
+  "review_scope": "Complete outward front and rear PCB faces: physical envelopes, controls, user silkscreen and interface directions.",
+  "explicitly_out_of_scope": [
+    "inner-board placement and sandwich relationship (H1.4.1)",
+    "antenna-edge and sectional service geometry (H1.5.1)",
+    "production ECAD placement, routing and enclosure release"
+  ],
+  "machine_checks": {
+    "same_board_outline_and_scale": true,
+    "unified_coordinate_source": true,
+    "registered_physical_envelopes": true,
+    "mounting_keepouts_clear": true,
+    "silkscreen_inside_outer_faces": true,
+    "silkscreen_unobscured": true,
+    "silkscreen_labels_nonoverlapping": true,
+    "external_interface_directions_present": true,
+    "both_antenna_banks_on_outward_faces": true
+  },
+  "front": {
+    "board_outline_mm": [
+      75.0,
+      150.0
+    ],
+    "display": {
+      "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+      "body_mm": [
+        54.5,
+        83.0,
+        3.2
+      ],
+      "active_area_mm": [
+        48.96,
+        73.44
+      ],
+      "pixels": [
+        320,
+        480
+      ]
+    },
+    "antenna_ports": [
+      {
+        "path": "S3-2G4",
+        "user_label": [
+          "WI-FI/BLE",
+          "2.4 GHz RP-SMA"
+        ],
+        "connector_type": "RP-SMA",
+        "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
+        "x_center_mm": 16.0
+      },
+      {
+        "path": "RX-FM/SW",
+        "user_label": [
+          "FM/SW RX",
+          "SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 30.0
+      },
+      {
+        "path": "RX-AM/LW",
+        "user_label": [
+          "AM/LW LOOP",
+          "SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 45.0
+      },
+      {
+        "path": "C5-2G4/5",
+        "user_label": [
+          "WI-FI/15.4",
+          "2.4/5 GHz RP-SMA"
+        ],
+        "connector_type": "RP-SMA",
+        "connector_mpn": "GCT RFPC-SMA32-FN-175-A",
+        "x_center_mm": 59.0
+      }
+    ],
+    "tx_indicators": [
+      {
+        "instance": "s3_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "WI-FI/BLE",
+        "position_mm": [
+          5.1,
+          104.5
+        ],
+        "row": 1,
+        "column": 1
+      },
+      {
+        "instance": "c5_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "WI-FI/15.4",
+        "position_mm": [
+          20.9,
+          104.5
+        ],
+        "row": 1,
+        "column": 2
+      },
+      {
+        "instance": "nrf0_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "nRF24-1",
+        "position_mm": [
+          36.7,
+          104.5
+        ],
+        "row": 1,
+        "column": 3
+      },
+      {
+        "instance": "nrf1_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "nRF24-2",
+        "position_mm": [
+          52.5,
+          104.5
+        ],
+        "row": 1,
+        "column": 4
+      },
+      {
+        "instance": "nrf2_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "nRF24-3",
+        "position_mm": [
+          68.3,
+          104.5
+        ],
+        "row": 1,
+        "column": 5
+      },
+      {
+        "instance": "cc_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "SUB-GHz",
+        "position_mm": [
+          5.1,
+          111.0
+        ],
+        "row": 2,
+        "column": 1
+      },
+      {
+        "instance": "voice_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "VHF/UHF",
+        "position_mm": [
+          20.9,
+          111.0
+        ],
+        "row": 2,
+        "column": 2
+      },
+      {
+        "instance": "ir_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "IR",
+        "position_mm": [
+          36.7,
+          111.0
+        ],
+        "row": 2,
+        "column": 3
+      },
+      {
+        "instance": "ext_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "LORA/EXT",
+        "position_mm": [
+          52.5,
+          111.0
+        ],
+        "row": 2,
+        "column": 4
+      },
+      {
+        "instance": "any_tx_led",
+        "mpn": "LTST-C190KRKT",
+        "silkscreen": "TX ACTIVE",
+        "position_mm": [
+          68.3,
+          111.0
+        ],
+        "row": 2,
+        "column": 5
+      }
+    ],
+    "controls": [
+      {
+        "instance": "ui_switch_back",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press BACK",
+        "position_mm": [
+          16.8,
+          129.4
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_dpad_switch",
+        "mpn": "Alps Alpine SKRHADE010",
+        "role": "four directions plus center push",
+        "position_mm": [
+          32.21,
+          127.11
+        ],
+        "envelope_mm": [
+          10.571246,
+          10.571246
+        ]
+      },
+      {
+        "instance": "ui_switch_opt",
+        "mpn": "OMRON B3S-1100P",
+        "role": "direct-press OPT",
+        "position_mm": [
+          51.6,
+          129.4
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      }
+    ],
+    "dpad_actuator": "L2-DPAD-001-A",
+    "edge_interfaces": [
+      {
+        "instance": "ir_demod",
+        "edge": "left",
+        "coordinate_mm": 76.5,
+        "silkscreen": "IR 38 kHz RX"
+      },
+      {
+        "instance": "ir_carrier",
+        "edge": "left",
+        "coordinate_mm": 83.5,
+        "silkscreen": "IR raw RX"
+      },
+      {
+        "instance": "ir_emitter",
+        "edge": "left",
+        "coordinate_mm": 90.255,
+        "silkscreen": "IR TX"
+      },
+      {
+        "instance": "headphone_jack",
+        "edge": "right",
+        "coordinate_mm": 79.75,
+        "silkscreen": "HEADPHONES / LINE"
+      },
+      {
+        "instance": "c5_service_usb_connector",
+        "edge": "bottom",
+        "coordinate_mm": 31.47,
+        "silkscreen": "C5 SERVICE USB"
+      },
+      {
+        "instance": "sd",
+        "edge": "bottom",
+        "coordinate_mm": 55.975,
+        "silkscreen": "microSD"
+      }
+    ]
+  },
+  "rear": {
+    "board_outline_mm": [
+      75.0,
+      150.0
+    ],
+    "antenna_ports": [
+      {
+        "path": "N24-0",
+        "user_label": [
+          "nRF24-1",
+          "2.4 GHz SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 13.5
+      },
+      {
+        "path": "CC-SUB",
+        "user_label": [
+          "SUB-GHz",
+          "SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 25.5
+      },
+      {
+        "path": "N24-1",
+        "user_label": [
+          "nRF24-2",
+          "2.4 GHz SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 37.5
+      },
+      {
+        "path": "VOICE-V/U",
+        "user_label": [
+          "VHF/UHF",
+          "SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 49.5
+      },
+      {
+        "path": "N24-2",
+        "user_label": [
+          "nRF24-3",
+          "2.4 GHz SMA"
+        ],
+        "connector_type": "SMA",
+        "connector_mpn": "GCT RFPC-SMA31-FN-175-A",
+        "x_center_mm": 61.5
+      }
+    ],
+    "u214": {
+      "mpn": "M5Stack U214 Cap LoRa-1262",
+      "installed_envelope_mm": [
+        84.0,
+        24.0
+      ],
+      "position_mm": [
+        -4.5,
+        17.0
+      ]
+    },
+    "battery_holder": {
+      "mpn": "Keystone Electronics 1048P",
+      "position_mm": [
+        17.6,
+        42.0
+      ],
+      "orientation_deg": 90,
+      "cells": [
+        "pack_cell0",
+        "pack_cell1"
+      ]
+    },
+    "controls": [
+      {
+        "instance": "encoder",
+        "mpn": "Alps Alpine EC11E18244AU",
+        "role": "rear encoder above F1/F2",
+        "position_mm": [
+          2.5,
+          45.0
+        ],
+        "envelope_mm": [
+          11.0,
+          11.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f1",
+        "mpn": "OMRON B3S-1100P",
+        "role": "rear F1",
+        "position_mm": [
+          4.2,
+          63.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ui_switch_f2",
+        "mpn": "OMRON B3S-1100P",
+        "role": "rear F2",
+        "position_mm": [
+          4.2,
+          78.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      },
+      {
+        "instance": "ptt_switch",
+        "mpn": "OMRON B3S-1100P",
+        "role": "rear independent PTT",
+        "position_mm": [
+          64.2,
+          63.5
+        ],
+        "envelope_mm": [
+          6.6,
+          6.0
+        ]
+      }
+    ],
+    "encoder_actuator_mpn": "Davies Molding 1227-J",
+    "edge_interfaces": [
+      {
+        "instance": "power_command_switch",
+        "edge": "right",
+        "coordinate_mm": 112.75,
+        "silkscreen": "RUN / KILL"
+      },
+      {
+        "instance": "product_usb_connector",
+        "edge": "bottom",
+        "coordinate_mm": 16.47,
+        "silkscreen": "USB / POWER"
+      },
+      {
+        "instance": "rp_service_usb_connector",
+        "edge": "bottom",
+        "coordinate_mm": 37.47,
+        "silkscreen": "RP SERVICE USB"
+      },
+      {
+        "instance": "unit_connector",
+        "edge": "bottom",
+        "coordinate_mm": 57.0,
+        "silkscreen": "M5 UNIT"
+      }
+    ],
+    "acoustic_openings": [
+      {
+        "instance": "speaker",
+        "edge": "right",
+        "coordinate_mm": 133.0,
+        "silkscreen": "SPEAKER / GRILLE"
+      },
+      {
+        "instance": "microphone",
+        "edge": "bottom",
+        "coordinate_mm": 47.0,
+        "silkscreen": "MICROPHONE"
+      }
+    ]
+  }
+}

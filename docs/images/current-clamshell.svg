@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790">
+<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1.3.1" data-review-status="awaiting-user">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — dimensioned external layout</text>
-<text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Text outside component outlines is intended PCB silkscreen; text inside is drawing annotation.</text>
+<text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Text on a PCB face but outside component outlines is intended silkscreen; text outside PCB faces or inside outlines is drawing annotation.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
-<rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5"/>
+<rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
 <circle cx="98.5" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="98.5" cy="190.7" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="339.0" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
@@ -14,7 +14,7 @@
 <circle cx="339.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="339.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <text x="465.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Rear / battery and expansion face</text>
-<rect x="465.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5"/>
+<rect x="465.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="rear-outer" data-board-mm="75x150"/>
 <circle cx="483.5" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="483.5" cy="190.7" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="724.0" cy="190.7" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
@@ -96,25 +96,25 @@
 <text data-layer="pcb-silkscreen" x="298.3" y="178.9" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">WI-FI/15.4</text>
 <text data-layer="pcb-silkscreen" x="298.3" y="186.3" font-family="sans-serif" font-size="3.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">2.4/5 GHz RP-SMA</text>
 </g>
-<rect x="98.9" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="98.9" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="s3_tx_led" data-role="actual-tx-indicator" data-row="1" data-column="1"/>
 <text data-layer="pcb-silkscreen" x="101.8" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/BLE</text>
-<rect x="157.3" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="157.3" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="c5_tx_led" data-role="actual-tx-indicator" data-row="1" data-column="2"/>
 <text data-layer="pcb-silkscreen" x="160.3" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">WI-FI/15.4</text>
-<rect x="215.8" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="215.8" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="nrf0_tx_led" data-role="actual-tx-indicator" data-row="1" data-column="3"/>
 <text data-layer="pcb-silkscreen" x="218.8" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-1</text>
-<rect x="274.2" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="274.2" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="nrf1_tx_led" data-role="actual-tx-indicator" data-row="1" data-column="4"/>
 <text data-layer="pcb-silkscreen" x="277.2" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-2</text>
-<rect x="332.7" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="332.7" y="536.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="nrf2_tx_led" data-role="actual-tx-indicator" data-row="1" data-column="5"/>
 <text data-layer="pcb-silkscreen" x="335.7" y="546.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">nRF24-3</text>
-<rect x="98.9" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="98.9" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="cc_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="1"/>
 <text data-layer="pcb-silkscreen" x="101.8" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">SUB-GHz</text>
-<rect x="157.3" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="157.3" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="voice_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="2"/>
 <text data-layer="pcb-silkscreen" x="160.3" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">VHF/UHF</text>
-<rect x="215.8" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="215.8" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="ir_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="3"/>
 <text data-layer="pcb-silkscreen" x="218.8" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">IR</text>
-<rect x="274.2" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="274.2" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="ext_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="4"/>
 <text data-layer="pcb-silkscreen" x="277.2" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">LORA/EXT</text>
-<rect x="332.7" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+<rect x="332.7" y="560.7" width="5.9" height="3.0" rx="1" fill="#ef4444" stroke="#991b1b" stroke-width="1.5" data-instance="any_tx_led" data-role="actual-tx-indicator" data-row="2" data-column="5"/>
 <text data-layer="pcb-silkscreen" x="335.7" y="570.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#991b1b">TX ACTIVE</text>
 <rect x="142.2" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-direct-press="true"/>
 <rect x="270.9" y="628.8" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-direct-press="true"/>

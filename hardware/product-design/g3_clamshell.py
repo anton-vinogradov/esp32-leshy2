@@ -29,6 +29,7 @@ DISPLAY_ADAPTER_OUTPUT = REPO / "docs/images/display-adapter.svg"
 SOURCE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 SOURCE_REGISTER_OUTPUT = REPO / "docs/physical-source-register.md"
 UNIFIED_COORDINATE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-unified-coordinate-table.json"
+EXTERNAL_ACCEPTANCE_OUTPUT = REPO / "hardware/product-design/generated/H1-external-face-acceptance.json"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -1040,7 +1041,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H1.3.0":
+    if constraint.get("current_step") != "H1.3.1":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
@@ -1100,7 +1101,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.3.0":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.3.1":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1923,6 +1924,36 @@ def validate() -> list[str]:
         if overlaps(rectangle, u214_box, 0.7):
             errors.append(f"rear: {instance} lacks 0.7-mm clearance to U214")
     external_svg = render_external(devices, instances, dpad_design)
+    external_root = ET.fromstring(external_svg)
+    if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
+        errors.append("external layout must identify the unified coordinate model")
+    if (
+        external_root.attrib.get("data-review-gate") != "H1.3.1"
+        or external_root.attrib.get("data-review-status") != "awaiting-user"
+    ):
+        errors.append("external layout must identify the pending H1.3.1 user gate")
+    face_nodes = {
+        element.attrib.get("data-face"): element
+        for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
+        if element.attrib.get("data-face")
+    }
+    if set(face_nodes) != {"front-outer", "rear-outer"} or any(
+        node.attrib.get("data-board-mm") != "75x150" for node in face_nodes.values()
+    ):
+        errors.append("external layout must retain both exact 75x150-mm outward PCB faces")
+    tx_nodes = [
+        element
+        for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
+        if element.attrib.get("data-role") == "actual-tx-indicator"
+    ]
+    if len(tx_nodes) != 10 or {element.attrib.get("data-instance") for element in tx_nodes} != {
+        instance for instance, _, _, _ in FRONT_TX_INDICATORS
+    }:
+        errors.append("external layout must render all ten exact actual-TX indicators")
+    if sorted((element.attrib.get("data-row"), element.attrib.get("data-column")) for element in tx_nodes) != [
+        (str(row), str(column)) for row in (1, 2) for column in range(1, 6)
+    ]:
+        errors.append("external layout must identify the two aligned five-indicator rows")
     for token in (
         'id="front-outer-rf-bank" data-mount-face="ui-pcb-outer"',
         'id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer"',
@@ -1963,10 +1994,10 @@ def helpers(scale: float):
     return sx, sy, text, rect
 
 
-def board(origin, title, scale, sx, sy, text, rect):
+def board(origin, title, scale, sx, sy, text, rect, extra=""):
     rows = [
         text(origin[0], origin[1] - RF_BARREL_OUT*scale - 22, title, 15, "bold"),
-        rect(origin, 0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=5),
+        rect(origin, 0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=5, extra=extra),
     ]
     for hx, hy in HOLES:
         rows.append(
@@ -2066,14 +2097,20 @@ def render_external(devices, instances, dpad_design):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1.3.1" data-review-status="awaiting-user">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
-        text(30, 56, "Text outside component outlines is intended PCB silkscreen; text inside is drawing annotation.", 11, colour="#526076"),
+        text(30, 56, "Text on a PCB face but outside component outlines is intended silkscreen; text outside PCB faces or inside outlines is drawing annotation.", 11, colour="#526076"),
     ]
-    out += board(front, "Front / UI face", scale, sx, sy, text, rect)
-    out += board(rear, "Rear / battery and expansion face", scale, sx, sy, text, rect)
+    out += board(
+        front, "Front / UI face", scale, sx, sy, text, rect,
+        ' data-face="front-outer" data-board-mm="75x150"',
+    )
+    out += board(
+        rear, "Rear / battery and expansion face", scale, sx, sy, text, rect,
+        ' data-face="rear-outer" data-board-mm="75x150"',
+    )
 
     # The raised rail occupies the same plan band as the installed Cap.  The
     # exact vertical socket is hidden beneath the Cap in the assembled view.
@@ -2123,8 +2160,14 @@ def render_external(devices, instances, dpad_design):
     out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
     out.append('</g>')
 
-    for instance, label, x, y in FRONT_TX_INDICATORS:
-        out.append(rect(front, x, y, TX_LED_W, TX_LED_H, "#ef4444", "#991b1b", rx=1))
+    for index, (instance, label, x, y) in enumerate(FRONT_TX_INDICATORS):
+        out.append(
+            rect(front, x, y, TX_LED_W, TX_LED_H, "#ef4444", "#991b1b", rx=1).replace(
+                "/>",
+                f' data-instance="{instance}" data-role="actual-tx-indicator" '
+                f'data-row="{index // 5 + 1}" data-column="{index % 5 + 1}"/>',
+            )
+        )
         out.append(silk_text(sx(front,x + TX_LED_W/2), sy(front,y + 2.6), label, 4.2, "bold", "middle", "#991b1b"))
 
     for control in FRONT_CONTROLS:
@@ -3432,6 +3475,122 @@ def build_unified_coordinate_table(source_table: dict, model: dict) -> dict:
     }
 
 
+def build_external_face_acceptance(devices: dict, instances: dict, model: dict) -> dict:
+    """Emit the exact H1.3 exterior package presented at the H1.3.1 user gate."""
+    display = devices[instances["display"]]
+
+    def antenna_ports(bank):
+        return [
+            {
+                "path": path,
+                "user_label": list(RF_USER_LABEL_LINES[path]),
+                "connector_type": polarity,
+                "connector_mpn": devices[instances[RF_INSTANCE_BY_PATH[path]]]["mpn"],
+                "x_center_mm": centre,
+            }
+            for centre, path, polarity in bank
+        ]
+
+    def controls(items):
+        rows = []
+        for item in items:
+            width, height = placement_size(item, devices, instances)
+            rows.append(
+                {
+                    "instance": item.instance,
+                    "mpn": devices[instances[item.instance]]["mpn"],
+                    "role": item.role,
+                    "position_mm": [item.x, item.y],
+                    "envelope_mm": [round(width, 6), round(height, 6)],
+                }
+            )
+        return rows
+
+    front_edges = [
+        {"instance": instance, "edge": side, "coordinate_mm": coordinate, "silkscreen": label}
+        for instance, face, side, coordinate, label in EDGE_INTERFACES
+        if face == "front"
+    ]
+    rear_edges = [
+        {"instance": instance, "edge": side, "coordinate_mm": coordinate, "silkscreen": label}
+        for instance, face, side, coordinate, label in EDGE_INTERFACES
+        if face == "rear"
+    ]
+    rear_acoustics = [
+        {"instance": instance, "edge": side, "coordinate_mm": coordinate, "silkscreen": label}
+        for instance, face, side, coordinate, label in ACOUSTIC_OPENINGS
+        if face == "rear"
+    ]
+    return {
+        "schema_version": 1,
+        "stage": "H1.3.0",
+        "status": "awaiting_user_review",
+        "review_gate": "H1.3.1",
+        "artifact": str(EXTERNAL_OUTPUT.relative_to(REPO)),
+        "coordinate_model": model["model_id"],
+        "review_scope": "Complete outward front and rear PCB faces: physical envelopes, controls, user silkscreen and interface directions.",
+        "explicitly_out_of_scope": [
+            "inner-board placement and sandwich relationship (H1.4.1)",
+            "antenna-edge and sectional service geometry (H1.5.1)",
+            "production ECAD placement, routing and enclosure release",
+        ],
+        "machine_checks": {
+            "same_board_outline_and_scale": True,
+            "unified_coordinate_source": True,
+            "registered_physical_envelopes": True,
+            "mounting_keepouts_clear": True,
+            "silkscreen_inside_outer_faces": True,
+            "silkscreen_unobscured": True,
+            "silkscreen_labels_nonoverlapping": True,
+            "external_interface_directions_present": True,
+            "both_antenna_banks_on_outward_faces": True,
+        },
+        "front": {
+            "board_outline_mm": [BOARD_W, BOARD_H],
+            "display": {
+                "mpn": display["mpn"],
+                "body_mm": display["dimensions_mm"],
+                "active_area_mm": display["active_area_mm"],
+                "pixels": display["pixel_resolution"],
+            },
+            "antenna_ports": antenna_ports(FRONT_RF),
+            "tx_indicators": [
+                {
+                    "instance": instance,
+                    "mpn": devices[instances[instance]]["mpn"],
+                    "silkscreen": label,
+                    "position_mm": [x, y],
+                    "row": index // 5 + 1,
+                    "column": index % 5 + 1,
+                }
+                for index, (instance, label, x, y) in enumerate(FRONT_TX_INDICATORS)
+            ],
+            "controls": controls(FRONT_CONTROLS),
+            "dpad_actuator": "L2-DPAD-001-A",
+            "edge_interfaces": front_edges,
+        },
+        "rear": {
+            "board_outline_mm": [BOARD_W, BOARD_H],
+            "antenna_ports": antenna_ports(REAR_RF),
+            "u214": {
+                "mpn": devices[instances["u214"]]["mpn"],
+                "installed_envelope_mm": [U214_W, U214_H],
+                "position_mm": [U214_X, U214_Y],
+            },
+            "battery_holder": {
+                "mpn": devices[instances["pack_holder"]]["mpn"],
+                "position_mm": [17.6, 42.0],
+                "orientation_deg": 90,
+                "cells": ["pack_cell0", "pack_cell1"],
+            },
+            "controls": controls(REAR_CONTROLS),
+            "encoder_actuator_mpn": devices[instances["encoder_knob"]]["mpn"],
+            "edge_interfaces": rear_edges,
+            "acoustic_openings": rear_acoustics,
+        },
+    }
+
+
 def render_physical_source_register(source_table: dict) -> str:
     """Expose the final physical-source result without project-history clutter."""
     summary = source_table["summary"]
@@ -3536,6 +3695,9 @@ def main() -> int:
     unified_coordinate_table = build_unified_coordinate_table(
         source_table, assembly_coordinate_model
     )
+    external_face_acceptance = build_external_face_acceptance(
+        devices, instances, assembly_coordinate_model
+    )
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances, dpad_design),
         INTERNAL_OUTPUT: render_internal(devices, instances),
@@ -3546,6 +3708,9 @@ def main() -> int:
         SOURCE_TABLE_OUTPUT: json.dumps(source_table, ensure_ascii=False, indent=2) + "\n",
         UNIFIED_COORDINATE_TABLE_OUTPUT: json.dumps(
             unified_coordinate_table, ensure_ascii=False, indent=2
+        ) + "\n",
+        EXTERNAL_ACCEPTANCE_OUTPUT: json.dumps(
+            external_face_acceptance, ensure_ascii=False, indent=2
         ) + "\n",
         SOURCE_REGISTER_OUTPUT: render_physical_source_register(source_table),
         REPO / "docs/physical-source-register.ru.md": render_physical_source_register_ru(source_table),

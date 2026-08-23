@@ -117,7 +117,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H1.3.0"}, set(markers.values()))
+        self.assertEqual({"H1.3.1"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.0", "H1.1.1", "H1.1.2", "H1.1.3", "H1.8"):
@@ -182,7 +182,11 @@ class ProductSiteTests(unittest.TestCase):
         layout = self.read("docs/images/current-clamshell.svg")
         for token in (
             "Leshy2 — dimensioned external layout",
-            "Text outside component outlines is intended PCB silkscreen",
+            "Text on a PCB face but outside component outlines is intended silkscreen",
+            'data-coordinate-model="L2-ASM-COORD-001-A"',
+            'data-review-gate="H1.3.1" data-review-status="awaiting-user"',
+            'data-face="front-outer" data-board-mm="75x150"',
+            'data-face="rear-outer" data-board-mm="75x150"',
             'data-layer="pcb-silkscreen"',
             "HMX035CTFT-001",
             "ACTIVE 48.96×73.44 mm · 320×480 · 2:3",
@@ -238,6 +242,30 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("Davies 1227-J is the exact encoder knob", layout)
         self.assertNotIn("STOP actuator", layout)
         self.assertNotIn("RE-ARM", layout)
+
+    def test_external_face_acceptance_package_is_complete(self):
+        import json
+
+        package = json.loads(
+            self.read("hardware/product-design/generated/H1-external-face-acceptance.json")
+        )
+        self.assertEqual("H1.3.0", package["stage"])
+        self.assertEqual("H1.3.1", package["review_gate"])
+        self.assertEqual("awaiting_user_review", package["status"])
+        self.assertEqual("L2-ASM-COORD-001-A", package["coordinate_model"])
+        self.assertEqual([75.0, 150.0], package["front"]["board_outline_mm"])
+        self.assertEqual([75.0, 150.0], package["rear"]["board_outline_mm"])
+        self.assertEqual([320, 480], package["front"]["display"]["pixels"])
+        self.assertEqual([48.96, 73.44], package["front"]["display"]["active_area_mm"])
+        self.assertEqual(4, len(package["front"]["antenna_ports"]))
+        self.assertEqual(5, len(package["rear"]["antenna_ports"]))
+        indicators = package["front"]["tx_indicators"]
+        self.assertEqual(10, len(indicators))
+        self.assertEqual(
+            {(row, column) for row in (1, 2) for column in range(1, 6)},
+            {(item["row"], item["column"]) for item in indicators},
+        )
+        self.assertTrue(all(package["machine_checks"].values()))
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
