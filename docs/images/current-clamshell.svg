@@ -178,8 +178,7 @@
 <path d="M253.9 705.0 L253.9 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="253.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<text x="603.8" y="453.4" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#166534">Keystone 1048P</text>
-<text x="603.8" y="471.9" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#166534">86×39.8-mm rotated holder</text>
+<text x="603.8" y="616.2" font-family="sans-serif" font-size="6.5" font-weight="bold" text-anchor="middle" fill="#166534">Keystone 1048P · 86×39.8 mm</text>
 <rect x="534.0" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell0" data-source-envelope="true"/>
 <text x="568.6" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
 <rect x="604.3" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell1" data-source-envelope="true"/>

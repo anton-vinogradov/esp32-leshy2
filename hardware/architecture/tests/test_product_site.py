@@ -598,6 +598,56 @@ class ProductSiteTests(unittest.TestCase):
         self.assertNotIn("STOP actuator", layout)
         self.assertNotIn("RE-ARM", layout)
 
+    def test_mockup_text_regions_do_not_regress_into_known_collisions(self):
+        import xml.etree.ElementTree as ET
+
+        namespace = "{http://www.w3.org/2000/svg}"
+
+        service = ET.fromstring(self.read("docs/images/service-access.svg"))
+        self.assertEqual("0 0 1300 690", service.attrib["viewBox"])
+        rear = next(
+            node
+            for node in service.iter(f"{namespace}rect")
+            if node.attrib.get("data-face") == "rear-outer"
+        )
+        rear_right = float(rear.attrib["x"]) + float(rear.attrib["width"])
+        note_text = {
+            node.text: float(node.attrib["x"])
+            for node in service.iter(f"{namespace}text")
+            if node.text in {"S3", "C5", "RP", "Port roles", "Inside after opening"}
+        }
+        self.assertEqual(5, len(note_text))
+        self.assertGreaterEqual(min(note_text.values()) - rear_right, 40.0)
+
+        internal = ET.fromstring(self.read("docs/images/internal-board-layout.svg"))
+        internal_text = list(internal.iter(f"{namespace}text"))
+        inner_title = next(
+            node
+            for node in internal_text
+            if node.text == "Front/display PCB — inner side (not user-facing)"
+        )
+        self.assertGreaterEqual(float(inner_title.attrib["y"]), 100.0)
+        for number in ("34", "35", "36"):
+            self.assertEqual(1, sum(node.text == number for node in internal_text))
+
+        adapter = ET.fromstring(self.read("docs/images/display-adapter.svg"))
+        display_fpc = next(
+            node
+            for node in adapter.iter(f"{namespace}text")
+            if node.text == "DISPLAY FPC"
+        )
+        self.assertEqual("end", display_fpc.attrib["text-anchor"])
+        self.assertGreaterEqual(float(display_fpc.attrib["x"]), 80.0)
+
+        external = ET.fromstring(self.read("docs/images/current-clamshell.svg"))
+        holder_labels = [
+            node
+            for node in external.iter(f"{namespace}text")
+            if node.text and node.text.startswith("Keystone 1048P")
+        ]
+        self.assertEqual(1, len(holder_labels))
+        self.assertGreaterEqual(float(holder_labels[0].attrib["y"]), 610.0)
+
     def test_external_face_acceptance_package_is_complete(self):
         import json
 

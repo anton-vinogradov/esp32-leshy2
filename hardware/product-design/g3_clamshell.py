@@ -2881,8 +2881,7 @@ def render_external(devices, instances):
     holder = Placement("pack_holder", 17.6, 42.0, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
     out.append(rect(rear, holder.x, holder.y, hw, hh, "#dcfce7", "#16a34a", rx=10))
-    out.append(text(sx(rear,37.5), sy(rear,82), "Keystone 1048P", 9, "bold", "middle", "#166534"))
-    out.append(text(sx(rear,37.5), sy(rear,87), "86×39.8-mm rotated holder", 6.5, anchor="middle", colour="#166534"))
+    out.append(text(sx(rear,37.5), sy(rear,126), "Keystone 1048P · 86×39.8 mm", 6.5, "bold", "middle", "#166534"))
     for cell_instance, cell_x in (("pack_cell0", 28.0), ("pack_cell1", 47.0)):
         cell = Placement(cell_instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
@@ -3012,11 +3011,20 @@ def render_service_access(devices, instances):
 
     front = (190.0, 150.0)
     rear = (700.0, 150.0)
+    canvas_width = 1300.0
+    note_left = 950.0
+    note_width = 300.0
+    note_centre = note_left + note_width / 2
+    rear_right = rear[0] + BOARD_W * scale
+    if note_left - rear_right < 40.0:
+        raise ValueError("service-access notes require at least 40 px clearance from the rear board")
+    if note_left + note_width > canvas_width:
+        raise ValueError("service-access notes exceed the SVG canvas")
     edge_placements = {item.instance: item for item in UI_INNER + RF_INNER}
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" '
-        'viewBox="0 0 1200 690" data-coordinate-model="L2-ASM-COORD-001-A" '
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{canvas_width:.0f}" height="690" '
+        f'viewBox="0 0 {canvas_width:.0f} 690" data-coordinate-model="L2-ASM-COORD-001-A" '
         'data-view="external-service-access">',
         '<defs><marker id="service-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
@@ -3108,23 +3116,22 @@ def render_service_access(devices, instances):
     usb_port(rear, "product_usb_connector", 16.47, "USB / POWER", "S3 native USB + power/charge", 47)
     usb_port(rear, "rp_service_usb_connector", 37.47, "RP SERVICE USB", "data only · no device power", 65)
 
-    note_x = 965
     out += [
-        text(note_x, 120, "External recovery map", 16, "bold", "middle"),
-        text(870, 160, "S3", 13, "bold", colour="#5b21b6"),
-        text(910, 160, "USB / POWER + RST + BOOT", 11),
-        text(870, 195, "C5", 13, "bold", colour="#5b21b6"),
-        text(910, 195, "SERVICE USB + RST + BOOT", 11),
-        text(870, 230, "RP", 13, "bold", colour="#5b21b6"),
-        text(910, 230, "SERVICE USB + RST + BOOT", 11),
-        text(870, 280, "Port roles", 15, "bold"),
-        text(870, 310, "• USB / POWER is the sole powered USB port", 10),
-        text(870, 336, "• C5/RP service VBUS is sense-only", 10),
-        text(870, 362, "• every RST/BOOT switch is recessed yet independently reachable", 10),
-        text(870, 412, "Inside after opening", 15, "bold"),
-        text(870, 442, "3× keyed DBG10 fallback headers", 10),
-        text(870, 466, "S3/C5: UART0 · RESET · BOOT", 10),
-        text(870, 490, "RP: SWD · RUN · USB_BOOT", 10),
+        text(note_centre, 120, "External recovery map", 16, "bold", "middle"),
+        text(note_left, 160, "S3", 13, "bold", colour="#5b21b6"),
+        text(note_left + 40, 160, "USB / POWER + RST + BOOT", 11),
+        text(note_left, 195, "C5", 13, "bold", colour="#5b21b6"),
+        text(note_left + 40, 195, "SERVICE USB + RST + BOOT", 11),
+        text(note_left, 230, "RP", 13, "bold", colour="#5b21b6"),
+        text(note_left + 40, 230, "SERVICE USB + RST + BOOT", 11),
+        text(note_left, 280, "Port roles", 15, "bold"),
+        text(note_left, 310, "• USB / POWER is the sole powered USB port", 10),
+        text(note_left, 336, "• C5/RP service VBUS is sense-only", 10),
+        text(note_left, 362, "• every RST/BOOT switch is recessed yet independently reachable", 10),
+        text(note_left, 412, "Inside after opening", 15, "bold"),
+        text(note_left, 442, "3× keyed DBG10 fallback headers", 10),
+        text(note_left, 466, "S3/C5: UART0 · RESET · BOOT", 10),
+        text(note_left, 490, "RP: SWD · RUN · USB_BOOT", 10),
     ]
     out.append("</svg>")
     return "\n".join(out) + "\n"
@@ -3134,7 +3141,7 @@ def render_internal(devices, instances, display_adapter_design):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
 
-    ui, rf = (80.0, 150.0), (465.0, 150.0)
+    ui, rf = (80.0, 165.0), (465.0, 165.0)
     ui_items = UI_INNER + UI_RF_CABLES
     rf_items = RF_INNER + RF_NRF_CABLE_RESERVES
     all_items = ui_items + rf_items
@@ -3461,10 +3468,14 @@ def render_internal(devices, instances, display_adapter_design):
                     extra=f' data-instance="{item.instance}"{mounting}',
                 )
             )
-            component_number = str(numbers[item.instance])
-            if item.instance == "speaker":
-                component_number += " · SPK"
-            out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
+            # RF cable-to-trace handoffs get one numbered U.FL badge below;
+            # repeating the number inside the tiny connector body makes both
+            # annotations unreadable.
+            if item.instance not in BOARD_RF_CABLE_TO_TRACE_HANDOFFS:
+                component_number = str(numbers[item.instance])
+                if item.instance == "speaker":
+                    component_number += " · SPK"
+                out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
 
     def ufl_symbol(
         origin: tuple[float, float],
@@ -4330,7 +4341,7 @@ def render_display_adapter(design):
     board = design["board"]
     components = {row["instance"]: row for row in design["components"]}
     scale = 14.0
-    ox, oy = 65.0, 135.0
+    ox, oy = 130.0, 135.0
     bw = float(board["width_mm"]) * scale
     bh = float(board["height_mm"]) * scale
 
