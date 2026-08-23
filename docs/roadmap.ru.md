@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.4.5 -->
+<!-- current-substep: H2.5.1 -->
 
-**Точный маркер: `H2.4.5`** — реализовать независимый physical-TX evidence
-для LoRa Cap.
+**Точный маркер: `H2.5.1`** — независимо проследить каждый источник питания,
+допуск аккумуляторов, зарядку и каждую формируемую шину.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -213,9 +213,15 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
     native KiCad review пройдено.
   - ✅ `H2.4.4` — `CAP_20_POWER_BUS`: защищённые фиксированные 3,3 В,
     identity EEPROM и pull-up; native KiCad review пройдено.
-  - ▶️ **`H2.4.5` — сейчас:** `CAP_30_TX_EVIDENCE`.
-- ⏳ `H2.5` — независимо проверить питание, reset, boot, recovery,
-  no-back-power, quiet-state и `FAULT_KILL`.
+  - ✅ `H2.4.5` — `CAP_30_TX_EVIDENCE`: comparator, pulse extender и
+    active-low open-drain evidence-выход; native KiCad review пройдено.
+- ▶️ **`H2.5` — сейчас:** независимое ревью safety-критичных трактов.
+  - ▶️ **`H2.5.1` — сейчас:** источники, допуск аккумуляторов, зарядка и шины.
+  - ⏳ `H2.5.2` — reset, boot, service и recovery всех процессоров.
+  - ⏳ `H2.5.3` — no-back-power на USB, межплатной и expansion-границах.
+  - ⏳ `H2.5.4` — reset-safe quiet state и изоляция неактивных интерфейсов.
+  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision и `FAULT_KILL`.
+  - ⏳ `H2.5.6` — сводка findings и закрытие ревью.
 - ⏳ `H2.6` — закрыть ERC и объяснить каждый намеренный no-connect.
 - ⏳ `H2.7` — сверить контакты и цепи схемы с H1, M1 и firmware F2.
 - 🔒 `H2.8` — формальная финальная пользовательская приёмка перед H3.

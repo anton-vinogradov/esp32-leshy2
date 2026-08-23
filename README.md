@@ -118,9 +118,10 @@ and the full target/emulator gate are not closed, and no order is authorized.
 <details open>
 <summary><strong>Current H2 phase — exact detailed position</strong></summary>
 
-<!-- current-substep: H2.4.5 -->
+<!-- current-substep: H2.5.1 -->
 
-**Exact marker: `H2.4.5`** — implement independent physical-TX evidence for LoRa Cap.
+**Exact marker: `H2.5.1`** — independently trace every power source,
+pack-admission, charge and generated-rail path.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - ✅ `H2.0.1` — complete 1,028-row circuit inventory reviewed.
@@ -163,8 +164,15 @@ and the full target/emulator gate are not closed, and no order is authorized.
     RF path, directional coupler, SMA and forward-power detector; reviewed.
   - ✅ `H2.4.4` — protected 3.3-V power and identity bus; eight serial
     components, 22 contacts and all five interfaces pass native KiCad review.
-  - ▶️ **`H2.4.5` — current:** independent physical-TX evidence.
-- ⏳ `H2.5` — independent power/boot/recovery/quiet-state/`FAULT_KILL` review.
+  - ✅ `H2.4.5` — independent physical-TX evidence: 11 serial components,
+    34 contacts and a nominal 13.3-ms hardware pulse; native KiCad review passed.
+- ▶️ **`H2.5` — current:** independent safety-path review.
+  - ▶️ **`H2.5.1` — current:** all power sources, pack admission, charging and rails.
+  - ⏳ `H2.5.2` — reset, boot, service and recovery for all processors.
+  - ⏳ `H2.5.3` — no-back-power across USB, interboard and expansions.
+  - ⏳ `H2.5.4` — reset-safe quiet state and isolation of unused interfaces.
+  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`.
+  - ⏳ `H2.5.6` — consolidate findings and close the review.
 - ⏳ `H2.6` — close ERC and every intentional NC.
 - ⏳ `H2.7` — reconcile schematic contacts with H1, M1 and firmware F2.
 - 🔒 `H2.8` — formal final user acceptance before H3.

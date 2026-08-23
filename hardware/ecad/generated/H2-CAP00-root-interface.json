@@ -20,9 +20,9 @@
     "host_physical_contacts": 14,
     "host_connected_contacts": 12,
     "host_reserved_no_connects": 2,
-    "implemented_child_sheet_count": 2,
+    "implemented_child_sheet_count": 3,
     "known_child_stub_erc_violations": 0,
-    "known_generated_library_copy_warnings": 16,
+    "known_generated_library_copy_warnings": 27,
     "pcb_files_created": 0
   },
   "host_connector": {
@@ -300,7 +300,8 @@
     "root_owns_only_physical_host_connector": true,
     "implemented_children_are_preserved": [
       "CAP_10_RADIO_CONTROL",
-      "CAP_20_POWER_BUS"
+      "CAP_20_POWER_BUS",
+      "CAP_30_TX_EVIDENCE"
     ],
     "selected_header_footprint_matches": "2x7 rows, 2.54-mm pitch and 0.635-mm square through-hole posts"
   },
@@ -336,10 +337,9 @@
       "the exact 14-contact custom-Cap map is fixed to J1 pins 1..14 and matches the host-side contract",
       "reserved stock-GPS contacts J1.1/J1.2 are explicit no-connects rather than invented functions",
       "all twelve used host contacts and both Cap-local cross-sheet nets join children through visible root wires",
-      "native KiCad parses the root hierarchy with only exact unimplemented-child and generated-symbol findings"
+      "native KiCad parses the complete root hierarchy with only exact generated-symbol copy findings"
     ],
     "deferred": [
-      "radio/control, power/identity and physical-TX evidence circuits in H2.4.3-H2.4.5",
       "connector placement, drill tolerances, routing, retention-hole clearance and DRC in H6",
       "installed-Cap mating, power, identity, RF and evidence HIL in H8"
     ]

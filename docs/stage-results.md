@@ -35,7 +35,7 @@ are satisfied.
 <a id="h2"></a>
 ## ⭐ H2 · Production ECAD schematic
 
-**Status:** ▶️ current, exact marker `H2.4.5`.
+**Status:** ▶️ current, exact marker `H2.5.1`.
 
 - [Public schematics](schematics.md) — principle diagrams and current native
   KiCad sheet links.

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "H2",
   "status": "in_progress",
-  "current_substep": "H2.4.5",
+  "current_substep": "H2.5.1",
   "accepted_input": {
     "physical_design_gate": "H1.8",
     "status": "accepted",
@@ -107,19 +107,27 @@
     {
       "id": "H2.4",
       "title": "Implement and review display-adapter and optional LoRa-Cap sheets",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {"id": "H2.4.1", "title": "Implement the passive one-to-one display adapter", "sheet": "ADP_00_DISPLAY_ADAPTER", "status": "reviewed"},
         {"id": "H2.4.2", "title": "Implement the LoRa Cap project root and exact 14-contact host interface", "sheet": "CAP_00_ROOT", "status": "reviewed"},
         {"id": "H2.4.3", "title": "Implement LoRa radio, control and RF path", "sheet": "CAP_10_RADIO_CONTROL", "status": "reviewed"},
         {"id": "H2.4.4", "title": "Implement protected power and identity bus", "sheet": "CAP_20_POWER_BUS", "status": "reviewed"},
-        {"id": "H2.4.5", "title": "Implement independent physical-TX evidence", "sheet": "CAP_30_TX_EVIDENCE", "status": "current"}
+        {"id": "H2.4.5", "title": "Implement independent physical-TX evidence", "sheet": "CAP_30_TX_EVIDENCE", "status": "reviewed"}
       ]
     },
     {
       "id": "H2.5",
       "title": "Independently review power, reset, boot, recovery, no-back-power, quiet-state and FAULT_KILL paths",
-      "status": "waiting"
+      "status": "current",
+      "children": [
+        {"id": "H2.5.1", "title": "Trace every power source, pack-admission, charge and generated-rail path", "status": "current"},
+        {"id": "H2.5.2", "title": "Trace independent reset, boot, service and recovery paths for all processors", "status": "waiting"},
+        {"id": "H2.5.3", "title": "Prove no-back-power behavior for USB, interboard and expansion boundaries", "status": "waiting"},
+        {"id": "H2.5.4", "title": "Prove reset-safe quiet state and isolation for every unused radio and interface", "status": "waiting"},
+        {"id": "H2.5.5", "title": "Trace watchdog, thermal/fault supervision and hardware FAULT_KILL shutdown", "status": "waiting"},
+        {"id": "H2.5.6", "title": "Consolidate findings and close the independent safety-path review", "status": "waiting"}
+      ]
     },
     {
       "id": "H2.6",

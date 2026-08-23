@@ -324,10 +324,9 @@ def outputs() -> tuple[dict[Path, str], dict]:
                 "the exact 14-contact custom-Cap map is fixed to J1 pins 1..14 and matches the host-side contract",
                 "reserved stock-GPS contacts J1.1/J1.2 are explicit no-connects rather than invented functions",
                 "all twelve used host contacts and both Cap-local cross-sheet nets join children through visible root wires",
-                "native KiCad parses the root hierarchy with only exact unimplemented-child and generated-symbol findings",
+                "native KiCad parses the complete root hierarchy with only exact generated-symbol copy findings",
             ],
             "deferred": [
-                "radio/control, power/identity and physical-TX evidence circuits in H2.4.3-H2.4.5",
                 "connector placement, drill tolerances, routing, retention-hole clearance and DRC in H6",
                 "installed-Cap mating, power, identity, RF and evidence HIL in H8",
             ],

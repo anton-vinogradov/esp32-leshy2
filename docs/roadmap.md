@@ -41,9 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.4.5 -->
+<!-- current-substep: H2.5.1 -->
 
-**Exact marker: `H2.4.5`** — implement independent physical-TX evidence for LoRa Cap.
+**Exact marker: `H2.5.1`** — independently trace every power source,
+pack-admission, charge and generated-rail path.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -209,9 +210,15 @@ Current H2 execution:
     native KiCad review passed.
   - ✅ `H2.4.4` — `CAP_20_POWER_BUS`: protected fixed 3.3-V supply,
     identity EEPROM and pull-ups; native KiCad review passed.
-  - ▶️ **`H2.4.5` — current:** `CAP_30_TX_EVIDENCE`.
-- ⏳ `H2.5` — independently review power, reset, boot, recovery,
-  no-back-power, quiet-state and `FAULT_KILL` paths.
+  - ✅ `H2.4.5` — `CAP_30_TX_EVIDENCE`: comparator, pulse extender and
+    active-low open-drain evidence output; native KiCad review passed.
+- ▶️ **`H2.5` — current:** independently review safety-critical paths.
+  - ▶️ **`H2.5.1` — current:** power sources, pack admission, charging and rails.
+  - ⏳ `H2.5.2` — reset, boot, service and recovery for all processors.
+  - ⏳ `H2.5.3` — no-back-power across USB, interboard and expansions.
+  - ⏳ `H2.5.4` — reset-safe quiet state and unused-interface isolation.
+  - ⏳ `H2.5.5` — watchdog, thermal/fault supervision and `FAULT_KILL`.
+  - ⏳ `H2.5.6` — consolidate findings and close the review.
 - ⏳ `H2.6` — close ERC and justify every intentional no-connect.
 - ⏳ `H2.7` — reconcile schematic contacts and nets with H1, M1 and firmware F2.
 - 🔒 `H2.8` — formal final user acceptance before H3.

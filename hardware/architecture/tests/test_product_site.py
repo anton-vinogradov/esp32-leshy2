@@ -166,7 +166,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.4.5"}, set(markers.values()))
+        self.assertEqual({"H2.5.1"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -193,7 +193,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.4.5", plan["current_substep"])
+        self.assertEqual("H2.5.1", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -250,7 +250,15 @@ class ProductSiteTests(unittest.TestCase):
                 for item in plan["substeps"][3]["children"][12:]
             )
         )
-        self.assertEqual("current", plan["substeps"][4]["status"])
+        self.assertEqual("reviewed", plan["substeps"][4]["status"])
+        self.assertTrue(
+            all(item["status"] == "reviewed" for item in plan["substeps"][4]["children"])
+        )
+        self.assertEqual("current", plan["substeps"][5]["status"])
+        self.assertEqual("current", plan["substeps"][5]["children"][0]["status"])
+        self.assertTrue(
+            all(item["status"] == "waiting" for item in plan["substeps"][5]["children"][1:])
+        )
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
