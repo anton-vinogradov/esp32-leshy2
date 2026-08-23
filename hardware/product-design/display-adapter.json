@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "design_id": "L2-DISP-ADP-001-A",
+  "stage": "H1.1.3.3.3",
+  "status": "dimensioned_paper_design_complete_received_tail_fit_h5",
+  "purpose": "Keep the main UI PCB and enclosure independent of the undocumented HMX035CTFT-001 flex details by moving the panel mate onto a small replaceable 40-to-40 adapter.",
+  "board": {
+    "width_mm": 25.5,
+    "height_mm": 12.0,
+    "thickness_mm": 0.8,
+    "ui_inner_position_mm": [24.75, 90.5],
+    "datum": "top-left in the UI-inner placement frame"
+  },
+  "components": [
+    {
+      "instance": "display_connector",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "mount": "UI PCB",
+      "ui_inner_position_mm": [32.2, 96.0],
+      "envelope_mm": [10.6, 3.38, 1.95],
+      "role": "fixed 40-contact main-board receptacle"
+    },
+    {
+      "instance": "display_adapter_plug",
+      "mpn": "Hirose DF40C-40DP-0.4V(51)",
+      "mount": "adapter underside",
+      "adapter_position_mm": [7.99, 5.705],
+      "envelope_mm": [9.52, 2.97, 1.14],
+      "role": "exact plug for the selected 2.0-mm stack"
+    },
+    {
+      "instance": "display_panel_connector",
+      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "mount": "adapter top",
+      "adapter_position_mm": [1.75, 0.8],
+      "envelope_mm": [22.0, 3.8, 1.0],
+      "role": "dual-contact ZIF for either exposed-contact orientation"
+    }
+  ],
+  "stack": {
+    "df40_mated_height_mm": 2.0,
+    "adapter_pcb_mm": 0.8,
+    "panel_connector_height_mm": 1.0,
+    "ui_board_to_panel_connector_top_mm": 3.8,
+    "available_interboard_gap_mm": 11.0,
+    "minimum_reserved_clearance_mm": 0.7
+  },
+  "electrical": {
+    "mapping": "PIN_n on the UI receptacle maps to PIN_n on the adapter plug and PIN_n on the panel ZIF for n=1..40",
+    "position_count": 40,
+    "main_interface_pitch_mm": 0.4,
+    "panel_interface_pitch_mm": 0.5,
+    "added_active_devices": 0,
+    "signal_contract": "all display power, ground, QSPI, I2C, reset, backlight and strap contacts are preserved one-to-one"
+  },
+  "paper_checks": {
+    "board_within_ui_outline": true,
+    "main_receptacle_within_adapter_projection": true,
+    "connector_height_within_interboard_gap": true,
+    "minimum_same_face_clearance_mm": 0.7,
+    "incremental_connector_cost_usd_at_100": 1.6904,
+    "incremental_adapter_pcb_cost": "factory RFQ required; no purchase authorized"
+  },
+  "evidence": [
+    {
+      "source": "https://www.lcdwiki.com/res/ES3C35P/",
+      "finding": "QDtech controls the donor assembly envelope and publishes the exact HMX035CTFT-001 electrical reference package."
+    },
+    {
+      "source": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+      "finding": "FH34SRJ-40S-0.5SH(99) is an active 40-position 0.5-mm dual-contact ZIF with a controlled 22.0x3.8x1.0-mm body."
+    },
+    {
+      "source": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+      "finding": "DF40C(2.0)-40DS-0.4V(58) controls the fixed 2.0-mm main-board receptacle stack."
+    },
+    {
+      "source": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+      "finding": "DF40C-40DP-0.4V(51) is the exact 40-position mating plug."
+    }
+  ],
+  "release_boundary": "H1 freezes the main-board bay, exact DF40 mate and one-to-one electrical map. H5 incoming inspection measures the current HMX035CTFT-001 tail outline, thickness, stiffener and bend path; a mismatch may revise only this adapter PCB and its panel-side connector, not the UI PCB or enclosure datum."
+}

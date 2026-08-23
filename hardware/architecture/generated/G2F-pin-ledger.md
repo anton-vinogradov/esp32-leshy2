@@ -44,8 +44,10 @@
 | `gct_rfpc_sma31_fn_175_a` | `GCT RFPC-SMA31-FN-175-A` | `verified_exact_external_standard_sma_body` | `active` | [GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing drawing dated 2025-04-07](https://gct.co/connector/rfpc-sma31-fn) | same primary source |
 | `gct_rfpc_sma32_fn_175_a` | `GCT RFPC-SMA32-FN-175-A` | `verified_exact_external_reverse_polarity_sma_body` | `active` | [GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing RFPC-SMA31/SMA32 IP67 edge-launch family](https://gct.co/connector/rfpc-sma32-fn) | same primary source |
 | `gct_usb4105_gf_a` | `GCT USB4105-GF-A` | `verified_exact_service_usb_receptacle` | `active_orderable` | [USB4105 USB Type-C receptacle drawing and product specification drawing revision B4 dated 2023-12-18; specification revision 2.2](https://gct.co/files/drawings/usb4105.pdf) | same primary source |
+| `hirose_df40c_2_0_40ds_0_4v_58` | `Hirose DF40C(2.0)-40DS-0.4V(58)` | `verified_exact_display_adapter_main_board_receptacle` | `active and authorized-distributor-stocked` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4042-5-58; detailed specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0684-4042-5-58) | same primary source |
+| `hirose_df40c_40dp_0_4v_51` | `Hirose DF40C-40DP-0.4V(51)` | `verified_exact_display_adapter_daughter_board_plug` | `active and authorized-distributor-stocked` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4013-7-51; detailed specifications updated 2026-08-05](https://www.hirose.com/en/product/p/CL0684-4013-7-51) | same primary source |
 | `hirose_dm3at_sf_pejm5` | `Hirose DM3AT-SF-PEJM5` | `verified_candidate` | `active` | [DM3 Series microSD Card Connectors catalog 2026-05-01 current catalog and exact product page](https://www.hirose.com/product/p/CL0609-0031-0-00) | same primary source |
-| `hirose_fh12_40s_0_5sh_55` | `Hirose FH12-40S-0.5SH(55)` | `verified_first_fit_candidate` | `active; exact HMX035CTFT-001 tail thickness, exposed-contact side, stiffener and insertion fit remain specimen HIL` | [Hirose FH12-40S-0.5SH(55) product page and 2D drawing CL0586-0527-7-55; drawing updated 2026-07-01](https://www.hirose.com/product/p/CL0586-0527-7-55?lang=en) | same primary source |
+| `hirose_fh34srj_40s_0_5sh_99` | `Hirose FH34SRJ-40S-0.5SH(99)` | `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open` | `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5` | [Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing CL0580-1260-6-99; detailed specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0580-1260-6-99) | same primary source |
 | `hirose_fx8c_80p_sv1_92` | `Hirose FX8C-80P-SV1(92)` | `verified_exact_m1_11mm_plug` | `active` | [Hirose FX8C-80P-SV1(92) official product data, 2D drawing and FX8C mating table product specifications updated 2026-02-07](https://www.hirose.com/product/p/CL0578-0523-1-92) | same primary source |
 | `hirose_fx8c_80s_sv5_92` | `Hirose FX8C-80S-SV5(92)` | `verified_exact_m1_11mm_receptacle` | `active` | [Hirose FX8C-80S-SV5(92) official product data, 2D drawing and FX8C mating table product specifications updated 2026-02-07](https://www.hirose.com/en/product/p/CL0578-0823-5-92) | same primary source |
 | `hirose_ufl_r_smt_1_10` | `Hirose U.FL-R-SMT-1(10)` | `verified_exact_native_rf_board_mate` | `active_orderable` | [Hirose U.FL Series connector catalog current catalog](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf) | same primary source |
@@ -2200,11 +2202,91 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `ENCODER_PTT_ESD_NC7` | `encoder_ptt_esd.NC_7` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `ENCODER_PTT_ESD_NC9` | `encoder_ptt_esd.NC_9` | `abstract:no-connect` | manufacturer no-connect remains open |
 | `ENCODER_PTT_ESD_NC10` | `encoder_ptt_esd.NC_10` | `abstract:no-connect` | manufacturer no-connect remains open |
-| `SYS_I2C_SCL` | `display_connector.PIN_1` | `display.TP_I2C_SCL` | logical contact 1 maps one-to-one; physical tail orientation remains specimen HIL |
+| `SYS_I2C_SCL` | `display_connector.PIN_1` | `display_adapter_plug.PIN_1` | exact DF40 board-to-board mate preserves contact 1 |
+| `SYS_I2C_SCL` | `display_adapter_plug.PIN_1` | `display_panel_connector.PIN_1` | adapter copper is a direct one-to-one contact map |
+| `SYS_I2C_SDA` | `display_connector.PIN_2` | `display_adapter_plug.PIN_2` | exact DF40 board-to-board mate preserves contact 2 |
+| `SYS_I2C_SDA` | `display_adapter_plug.PIN_2` | `display_panel_connector.PIN_2` | adapter copper is a direct one-to-one contact map |
+| `LCD_TOUCH_INT_RAW_N` | `display_connector.PIN_3` | `display_adapter_plug.PIN_3` | exact DF40 board-to-board mate preserves contact 3 |
+| `LCD_TOUCH_INT_RAW_N` | `display_adapter_plug.PIN_3` | `display_panel_connector.PIN_3` | adapter copper is a direct one-to-one contact map |
+| `TOUCH_RST_N` | `display_connector.PIN_4` | `display_adapter_plug.PIN_4` | exact DF40 board-to-board mate preserves contact 4 |
+| `TOUCH_RST_N` | `display_adapter_plug.PIN_4` | `display_panel_connector.PIN_4` | adapter copper is a direct one-to-one contact map |
+| `POWER_GROUND` | `display_connector.PIN_5` | `display_adapter_plug.PIN_5` | exact DF40 board-to-board mate preserves contact 5 |
+| `POWER_GROUND` | `display_adapter_plug.PIN_5` | `display_panel_connector.PIN_5` | adapter copper is a direct one-to-one contact map |
+| `LCD_VDDI_3V3` | `display_connector.PIN_6` | `display_adapter_plug.PIN_6` | exact DF40 board-to-board mate preserves contact 6 |
+| `LCD_VDDI_3V3` | `display_adapter_plug.PIN_6` | `display_panel_connector.PIN_6` | adapter copper is a direct one-to-one contact map |
+| `LCD_VDD_3V3` | `display_connector.PIN_7` | `display_adapter_plug.PIN_7` | exact DF40 board-to-board mate preserves contact 7 |
+| `LCD_VDD_3V3` | `display_adapter_plug.PIN_7` | `display_panel_connector.PIN_7` | adapter copper is a direct one-to-one contact map |
+| `LCD_TE_NC` | `display_connector.PIN_8` | `display_adapter_plug.PIN_8` | exact DF40 board-to-board mate preserves contact 8 |
+| `LCD_TE_NC` | `display_adapter_plug.PIN_8` | `display_panel_connector.PIN_8` | adapter copper is a direct one-to-one contact map |
+| `LCD_CS_N` | `display_connector.PIN_9` | `display_adapter_plug.PIN_9` | exact DF40 board-to-board mate preserves contact 9 |
+| `LCD_CS_N` | `display_adapter_plug.PIN_9` | `display_panel_connector.PIN_9` | adapter copper is a direct one-to-one contact map |
+| `DISPLAY_SD_SPI_D1` | `display_connector.PIN_10` | `display_adapter_plug.PIN_10` | exact DF40 board-to-board mate preserves contact 10 |
+| `DISPLAY_SD_SPI_D1` | `display_adapter_plug.PIN_10` | `display_panel_connector.PIN_10` | adapter copper is a direct one-to-one contact map |
+| `DISPLAY_SD_SPI_SCK` | `display_connector.PIN_11` | `display_adapter_plug.PIN_11` | exact DF40 board-to-board mate preserves contact 11 |
+| `DISPLAY_SD_SPI_SCK` | `display_adapter_plug.PIN_11` | `display_panel_connector.PIN_11` | adapter copper is a direct one-to-one contact map |
+| `LCD_RD_NC` | `display_connector.PIN_12` | `display_adapter_plug.PIN_12` | exact DF40 board-to-board mate preserves contact 12 |
+| `LCD_RD_NC` | `display_adapter_plug.PIN_12` | `display_panel_connector.PIN_12` | adapter copper is a direct one-to-one contact map |
+| `DISPLAY_SD_SPI_D0` | `display_connector.PIN_13` | `display_adapter_plug.PIN_13` | exact DF40 board-to-board mate preserves contact 13 |
+| `DISPLAY_SD_SPI_D0` | `display_adapter_plug.PIN_13` | `display_panel_connector.PIN_13` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_14` | `display_connector.PIN_14` | `display_adapter_plug.PIN_14` | exact DF40 board-to-board mate preserves contact 14 |
+| `LCD_NC_14` | `display_adapter_plug.PIN_14` | `display_panel_connector.PIN_14` | adapter copper is a direct one-to-one contact map |
+| `LCD_RST_N` | `display_connector.PIN_15` | `display_adapter_plug.PIN_15` | exact DF40 board-to-board mate preserves contact 15 |
+| `LCD_RST_N` | `display_adapter_plug.PIN_15` | `display_panel_connector.PIN_15` | adapter copper is a direct one-to-one contact map |
+| `POWER_GROUND` | `display_connector.PIN_16` | `display_adapter_plug.PIN_16` | exact DF40 board-to-board mate preserves contact 16 |
+| `POWER_GROUND` | `display_adapter_plug.PIN_16` | `display_panel_connector.PIN_16` | adapter copper is a direct one-to-one contact map |
+| `LCD_QSPI_D2` | `display_connector.PIN_17` | `display_adapter_plug.PIN_17` | exact DF40 board-to-board mate preserves contact 17 |
+| `LCD_QSPI_D2` | `display_adapter_plug.PIN_17` | `display_panel_connector.PIN_17` | adapter copper is a direct one-to-one contact map |
+| `LCD_QSPI_D3` | `display_connector.PIN_18` | `display_adapter_plug.PIN_18` | exact DF40 board-to-board mate preserves contact 18 |
+| `LCD_QSPI_D3` | `display_adapter_plug.PIN_18` | `display_panel_connector.PIN_18` | adapter copper is a direct one-to-one contact map |
+| `LCD_DB2_LOW` | `display_connector.PIN_19` | `display_adapter_plug.PIN_19` | exact DF40 board-to-board mate preserves contact 19 |
+| `LCD_DB2_LOW` | `display_adapter_plug.PIN_19` | `display_panel_connector.PIN_19` | adapter copper is a direct one-to-one contact map |
+| `LCD_DB3_LOW` | `display_connector.PIN_20` | `display_adapter_plug.PIN_20` | exact DF40 board-to-board mate preserves contact 20 |
+| `LCD_DB3_LOW` | `display_adapter_plug.PIN_20` | `display_panel_connector.PIN_20` | adapter copper is a direct one-to-one contact map |
+| `LCD_DB4_LOW` | `display_connector.PIN_21` | `display_adapter_plug.PIN_21` | exact DF40 board-to-board mate preserves contact 21 |
+| `LCD_DB4_LOW` | `display_adapter_plug.PIN_21` | `display_panel_connector.PIN_21` | adapter copper is a direct one-to-one contact map |
+| `LCD_DB5_LOW` | `display_connector.PIN_22` | `display_adapter_plug.PIN_22` | exact DF40 board-to-board mate preserves contact 22 |
+| `LCD_DB5_LOW` | `display_adapter_plug.PIN_22` | `display_panel_connector.PIN_22` | adapter copper is a direct one-to-one contact map |
+| `LCD_DB6_LOW` | `display_connector.PIN_23` | `display_adapter_plug.PIN_23` | exact DF40 board-to-board mate preserves contact 23 |
+| `LCD_DB6_LOW` | `display_adapter_plug.PIN_23` | `display_panel_connector.PIN_23` | adapter copper is a direct one-to-one contact map |
+| `LCD_DB7_LOW` | `display_connector.PIN_24` | `display_adapter_plug.PIN_24` | exact DF40 board-to-board mate preserves contact 24 |
+| `LCD_DB7_LOW` | `display_adapter_plug.PIN_24` | `display_panel_connector.PIN_24` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_25` | `display_connector.PIN_25` | `display_adapter_plug.PIN_25` | exact DF40 board-to-board mate preserves contact 25 |
+| `LCD_NC_25` | `display_adapter_plug.PIN_25` | `display_panel_connector.PIN_25` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_26` | `display_connector.PIN_26` | `display_adapter_plug.PIN_26` | exact DF40 board-to-board mate preserves contact 26 |
+| `LCD_NC_26` | `display_adapter_plug.PIN_26` | `display_panel_connector.PIN_26` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_27` | `display_connector.PIN_27` | `display_adapter_plug.PIN_27` | exact DF40 board-to-board mate preserves contact 27 |
+| `LCD_NC_27` | `display_adapter_plug.PIN_27` | `display_panel_connector.PIN_27` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_28` | `display_connector.PIN_28` | `display_adapter_plug.PIN_28` | exact DF40 board-to-board mate preserves contact 28 |
+| `LCD_NC_28` | `display_adapter_plug.PIN_28` | `display_panel_connector.PIN_28` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_29` | `display_connector.PIN_29` | `display_adapter_plug.PIN_29` | exact DF40 board-to-board mate preserves contact 29 |
+| `LCD_NC_29` | `display_adapter_plug.PIN_29` | `display_panel_connector.PIN_29` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_30` | `display_connector.PIN_30` | `display_adapter_plug.PIN_30` | exact DF40 board-to-board mate preserves contact 30 |
+| `LCD_NC_30` | `display_adapter_plug.PIN_30` | `display_panel_connector.PIN_30` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_31` | `display_connector.PIN_31` | `display_adapter_plug.PIN_31` | exact DF40 board-to-board mate preserves contact 31 |
+| `LCD_NC_31` | `display_adapter_plug.PIN_31` | `display_panel_connector.PIN_31` | adapter copper is a direct one-to-one contact map |
+| `LCD_NC_32` | `display_connector.PIN_32` | `display_adapter_plug.PIN_32` | exact DF40 board-to-board mate preserves contact 32 |
+| `LCD_NC_32` | `display_adapter_plug.PIN_32` | `display_panel_connector.PIN_32` | adapter copper is a direct one-to-one contact map |
+| `LCD_LEDA_PROTECTED` | `display_connector.PIN_33` | `display_adapter_plug.PIN_33` | exact DF40 board-to-board mate preserves contact 33 |
+| `LCD_LEDA_PROTECTED` | `display_adapter_plug.PIN_33` | `display_panel_connector.PIN_33` | adapter copper is a direct one-to-one contact map |
+| `LCD_LEDK` | `display_connector.PIN_34` | `display_adapter_plug.PIN_34` | exact DF40 board-to-board mate preserves contact 34 |
+| `LCD_LEDK` | `display_adapter_plug.PIN_34` | `display_panel_connector.PIN_34` | adapter copper is a direct one-to-one contact map |
+| `LCD_LEDK` | `display_connector.PIN_35` | `display_adapter_plug.PIN_35` | exact DF40 board-to-board mate preserves contact 35 |
+| `LCD_LEDK` | `display_adapter_plug.PIN_35` | `display_panel_connector.PIN_35` | adapter copper is a direct one-to-one contact map |
+| `LCD_LEDK` | `display_connector.PIN_36` | `display_adapter_plug.PIN_36` | exact DF40 board-to-board mate preserves contact 36 |
+| `LCD_LEDK` | `display_adapter_plug.PIN_36` | `display_panel_connector.PIN_36` | adapter copper is a direct one-to-one contact map |
+| `POWER_GROUND` | `display_connector.PIN_37` | `display_adapter_plug.PIN_37` | exact DF40 board-to-board mate preserves contact 37 |
+| `POWER_GROUND` | `display_adapter_plug.PIN_37` | `display_panel_connector.PIN_37` | adapter copper is a direct one-to-one contact map |
+| `LCD_IM0_LOW` | `display_connector.PIN_38` | `display_adapter_plug.PIN_38` | exact DF40 board-to-board mate preserves contact 38 |
+| `LCD_IM0_LOW` | `display_adapter_plug.PIN_38` | `display_panel_connector.PIN_38` | adapter copper is a direct one-to-one contact map |
+| `LCD_IM1_HIGH` | `display_connector.PIN_39` | `display_adapter_plug.PIN_39` | exact DF40 board-to-board mate preserves contact 39 |
+| `LCD_IM1_HIGH` | `display_adapter_plug.PIN_39` | `display_panel_connector.PIN_39` | adapter copper is a direct one-to-one contact map |
+| `LCD_IM2_LOW` | `display_connector.PIN_40` | `display_adapter_plug.PIN_40` | exact DF40 board-to-board mate preserves contact 40 |
+| `LCD_IM2_LOW` | `display_adapter_plug.PIN_40` | `display_panel_connector.PIN_40` | adapter copper is a direct one-to-one contact map |
+| `SYS_I2C_SCL` | `display_panel_connector.PIN_1` | `display.TP_I2C_SCL` | replaceable adapter contact 1 maps one-to-one; physical tail fit remains received-lot HIL |
 | `SYS_I2C_SCL` | `display.TP_I2C_SCL` | `display_touch_controller.TP_I2C_SCL` | exact assembly contact terminates on ST77922 die pad 28; touch supports up to 400-kHz I2C |
-| `SYS_I2C_SDA` | `display_connector.PIN_2` | `display.TP_I2C_SDA` | one existing exact 2.2-kOhm host pull-up pair serves the complete bus; no duplicate panel pull-ups |
+| `SYS_I2C_SDA` | `display_panel_connector.PIN_2` | `display.TP_I2C_SDA` | one existing exact 2.2-kOhm host pull-up pair serves the complete bus; no duplicate panel pull-ups |
 | `SYS_I2C_SDA` | `display.TP_I2C_SDA` | `display_touch_controller.TP_I2C_SDA` | exact assembly contact terminates on ST77922 die pad 29 at published 7-bit address 0x38 |
-| `LCD_TOUCH_INT_RAW_N` | `display_connector.PIN_3` | `display.TP_INT` | the exact assembly specification defines low during a touch event |
+| `LCD_TOUCH_INT_RAW_N` | `display_panel_connector.PIN_3` | `display.TP_INT` | the exact assembly specification defines low during a touch event |
 | `LCD_TOUCH_INT_RAW_N` | `display.TP_INT` | `display_touch_controller.TP_INT` | exact assembly contact terminates on ST77922 die pad 31 |
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `touch_irq_pullup.END_1` | a physical raw-line pull-up makes either push-pull or open-drain panel output deterministic |
 | `LCD_TOUCH_INT_RAW_N` | `touch_irq_pullup.END_2` | `display_connector.PIN_3` | exact 10-kOhm pull-up removes the former electrical-type dependency without loading an active-low output materially |
@@ -2216,70 +2298,70 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `3V3_MAIN` | `abstract:3V3_MAIN` | `touch_irq_buffer_bypass.END_1` | 100-nF local buffer bypass |
 | `POWER_GROUND` | `touch_irq_buffer_bypass.END_2` | `abstract:power-ground` | short local bypass return |
 | `TOUCH_RST_N` | `slow_io.P07` | `display_connector.PIN_4` | TP_RESXP is held low by a physical pull-down and released only after display power is stable |
-| `TOUCH_RST_N` | `display_connector.PIN_4` | `display.TP_RESET` | official ST77922 timing requires a reset pulse of at least 10 us and at least 100 ms after release before touch operation |
+| `TOUCH_RST_N` | `display_panel_connector.PIN_4` | `display.TP_RESET` | official ST77922 timing requires a reset pulse of at least 10 us and at least 100 ms after release before touch operation |
 | `TOUCH_RST_N` | `display.TP_RESET` | `display_touch_controller.TP_RESXP` | exact assembly contact terminates on ST77922 die pad 49 |
 | `TOUCH_RST_N` | `display_connector.PIN_4` | `touch_reset_pulldown.END_1` | separate physical reset-default resistor remains effective while the slow-I/O output is high-impedance |
 | `POWER_GROUND` | `touch_reset_pulldown.END_2` | `abstract:power-ground` | 10-kOhm exact pull-down makes touch reset assert by default |
-| `POWER_GROUND` | `display_connector.PIN_5` | `display.GND_5` | first panel return contact |
+| `POWER_GROUND` | `display_panel_connector.PIN_5` | `display.GND_5` | first panel return contact |
 | `POWER_GROUND` | `display.GND_5` | `display_touch_controller.GND` | first assembly return reaches the documented ST77922 ground-pad group |
 | `POWER_GROUND` | `display_connector.PIN_5` | `abstract:power-ground` | short local return at the connector |
 | `LCD_VDDI_3V3` | `abstract:3V3_MAIN` | `display_connector.PIN_6` | protected common main rail avoids back-power through live QSPI/I2C when a separate display switch would trip |
-| `LCD_VDDI_3V3` | `display_connector.PIN_6` | `display.VDDI` | ST77922 VDDI accepts the protected 3.3-V rail |
+| `LCD_VDDI_3V3` | `display_panel_connector.PIN_6` | `display.VDDI` | ST77922 VDDI accepts the protected 3.3-V rail |
 | `LCD_VDDI_3V3` | `display.VDDI` | `display_touch_controller.VDDI` | assembly VDDI reaches the exact documented ST77922 VDDI die-pad group |
 | `LCD_VDD_3V3` | `abstract:3V3_MAIN` | `display_connector.PIN_7` | VDD and VDDI may be applied in either order; both are one protected source here |
-| `LCD_VDD_3V3` | `display_connector.PIN_7` | `display.VDD` | ST77922 VDD accepts the protected 3.3-V rail |
+| `LCD_VDD_3V3` | `display_panel_connector.PIN_7` | `display.VDD` | ST77922 VDD accepts the protected 3.3-V rail |
 | `LCD_VDD_3V3` | `display.VDD` | `display_touch_controller.VDD` | assembly VDD reaches the exact documented ST77922 VDD die-pad group |
 | `LCD_LOGIC_3V3` | `abstract:3V3_MAIN` | `display_logic_bulk_cap.END_1` | exact 10-uF local bulk target at the connector |
 | `POWER_GROUND` | `display_logic_bulk_cap.END_2` | `abstract:power-ground` | display logic bulk return stays local |
 | `LCD_LOGIC_3V3` | `abstract:3V3_MAIN` | `display_logic_hf_cap.END_1` | exact 100-nF high-frequency bypass at the connector |
 | `POWER_GROUND` | `display_logic_hf_cap.END_2` | `abstract:power-ground` | display logic high-frequency return stays local |
-| `LCD_TE_NC` | `display_connector.PIN_8` | `display.TE` | tearing-effect output is not required by the bounded dirty-region renderer |
+| `LCD_TE_NC` | `display_panel_connector.PIN_8` | `display.TE` | tearing-effect output is not required by the bounded dirty-region renderer |
 | `LCD_TE_NC` | `display.TE` | `display_touch_controller.TE` | assembly TE is exact ST77922 die pad 148 and remains deliberately unconnected at the board |
 | `LCD_TE_NC` | `display_connector.PIN_8` | `abstract:no-connect` | board-side contact deliberately open; S3 GPIO43 remains service UART TX |
-| `LCD_CS_N` | `display_connector.PIN_9` | `display.QSPI_CS` | dedicated panel chip select; CS-high high-Z remains shared-bus HIL |
+| `LCD_CS_N` | `display_panel_connector.PIN_9` | `display.QSPI_CS` | dedicated panel chip select; CS-high high-Z remains shared-bus HIL |
 | `LCD_CS_N` | `display.QSPI_CS` | `display_touch_controller.CSX` | assembly CS reaches exact ST77922 die pad 140 |
-| `DISPLAY_SD_SPI_D1` | `display_connector.PIN_10` | `display.QSPI_D1` | direct QSPI data lane; source-series/DNP tuning footprint is reserved but not populated before HIL |
+| `DISPLAY_SD_SPI_D1` | `display_panel_connector.PIN_10` | `display.QSPI_D1` | direct QSPI data lane; source-series/DNP tuning footprint is reserved but not populated before HIL |
 | `DISPLAY_SD_SPI_D1` | `display.QSPI_D1` | `display_touch_controller.QSPI_D1_DCX` | assembly QSPI D1 reaches exact ST77922 die pad 128 |
-| `DISPLAY_SD_SPI_SCK` | `display_connector.PIN_11` | `display.QSPI_CLK` | direct QSPI clock; source-series/DNP tuning footprint is reserved but not populated before HIL |
+| `DISPLAY_SD_SPI_SCK` | `display_panel_connector.PIN_11` | `display.QSPI_CLK` | direct QSPI clock; source-series/DNP tuning footprint is reserved but not populated before HIL |
 | `DISPLAY_SD_SPI_SCK` | `display.QSPI_CLK` | `display_touch_controller.QSPI_SCL_RDX` | assembly QSPI clock reaches exact ST77922 die pad 139 |
-| `LCD_RD_NC` | `display_connector.PIN_12` | `display.RD_UNUSED` | RD is unused in the selected QSPI strap |
+| `LCD_RD_NC` | `display_panel_connector.PIN_12` | `display.RD_UNUSED` | RD is unused in the selected QSPI strap |
 | `LCD_RD_NC` | `display_connector.PIN_12` | `abstract:no-connect` | board-side contact deliberately open |
-| `DISPLAY_SD_SPI_D0` | `display_connector.PIN_13` | `display.QSPI_D0` | direct QSPI data lane; source-series/DNP tuning footprint is reserved but not populated before HIL |
+| `DISPLAY_SD_SPI_D0` | `display_panel_connector.PIN_13` | `display.QSPI_D0` | direct QSPI data lane; source-series/DNP tuning footprint is reserved but not populated before HIL |
 | `DISPLAY_SD_SPI_D0` | `display.QSPI_D0` | `display_touch_controller.QSPI_D0_SDA` | assembly QSPI D0 reaches exact ST77922 die pad 129 |
-| `LCD_NC_14` | `display_connector.PIN_14` | `display.NC_14` | manufacturer-declared no-connect remains open |
+| `LCD_NC_14` | `display_panel_connector.PIN_14` | `display.NC_14` | manufacturer-declared no-connect remains open |
 | `LCD_NC_14` | `display_connector.PIN_14` | `abstract:no-connect` | board-side contact deliberately open |
 | `LCD_RST_N` | `slow_io.P06` | `display_connector.PIN_15` | RESX is held low by a physical pull-down and released only after the protected rail is stable |
-| `LCD_RST_N` | `display_connector.PIN_15` | `display.RESET` | official ST77922 timing requires at least 10-us reset pulse and at least 120 ms before Sleep Out after release |
+| `LCD_RST_N` | `display_panel_connector.PIN_15` | `display.RESET` | official ST77922 timing requires at least 10-us reset pulse and at least 120 ms before Sleep Out after release |
 | `LCD_RST_N` | `display.RESET` | `display_touch_controller.RESX` | assembly display reset reaches exact ST77922 die pad 127 |
 | `LCD_RST_N` | `display_connector.PIN_15` | `display_reset_pulldown.END_1` | separate physical reset-default resistor remains effective while the slow-I/O output is high-impedance |
 | `POWER_GROUND` | `display_reset_pulldown.END_2` | `abstract:power-ground` | 10-kOhm exact pull-down makes display reset assert by default |
-| `POWER_GROUND` | `display_connector.PIN_16` | `display.GND_16` | second panel return contact |
+| `POWER_GROUND` | `display_panel_connector.PIN_16` | `display.GND_16` | second panel return contact |
 | `POWER_GROUND` | `display.GND_16` | `display_touch_controller.GND` | second assembly return reaches the documented ST77922 ground-pad group |
 | `POWER_GROUND` | `display_connector.PIN_16` | `abstract:power-ground` | short local return at the connector |
-| `LCD_QSPI_D2` | `display_connector.PIN_17` | `display.QSPI_D2` | direct fourth-lane QSPI contact |
+| `LCD_QSPI_D2` | `display_panel_connector.PIN_17` | `display.QSPI_D2` | direct fourth-lane QSPI contact |
 | `LCD_QSPI_D2` | `display.QSPI_D2` | `display_touch_controller.QSPI_D2_D0` | assembly QSPI D2 reaches exact ST77922 die pad 130 |
-| `LCD_QSPI_D3` | `display_connector.PIN_18` | `display.QSPI_D3` | direct fourth-lane QSPI contact |
+| `LCD_QSPI_D3` | `display_panel_connector.PIN_18` | `display.QSPI_D3` | direct fourth-lane QSPI contact |
 | `LCD_QSPI_D3` | `display.QSPI_D3` | `display_touch_controller.QSPI_D3_D1` | assembly QSPI D3 reaches exact ST77922 die pad 131 |
-| `LCD_DB2_LOW` | `display_connector.PIN_19` | `display.DB2_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
-| `LCD_DB3_LOW` | `display_connector.PIN_20` | `display.DB3_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
-| `LCD_DB4_LOW` | `display_connector.PIN_21` | `display.DB4_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
-| `LCD_DB5_LOW` | `display_connector.PIN_22` | `display.DB5_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
-| `LCD_DB6_LOW` | `display_connector.PIN_23` | `display.DB6_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
-| `LCD_DB7_LOW` | `display_connector.PIN_24` | `display.DB7_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
+| `LCD_DB2_LOW` | `display_panel_connector.PIN_19` | `display.DB2_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
+| `LCD_DB3_LOW` | `display_panel_connector.PIN_20` | `display.DB3_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
+| `LCD_DB4_LOW` | `display_panel_connector.PIN_21` | `display.DB4_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
+| `LCD_DB5_LOW` | `display_panel_connector.PIN_22` | `display.DB5_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
+| `LCD_DB6_LOW` | `display_panel_connector.PIN_23` | `display.DB6_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
+| `LCD_DB7_LOW` | `display_panel_connector.PIN_24` | `display.DB7_STRAP` | unused parallel-data contact tied low for the selected QSPI interface |
 | `LCD_DB2_LOW` | `display_connector.PIN_19` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `LCD_DB3_LOW` | `display_connector.PIN_20` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `LCD_DB4_LOW` | `display_connector.PIN_21` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `LCD_DB5_LOW` | `display_connector.PIN_22` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `LCD_DB6_LOW` | `display_connector.PIN_23` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `LCD_DB7_LOW` | `display_connector.PIN_24` | `abstract:power-ground` | short fixed board-side QSPI strap |
-| `LCD_NC_25` | `display_connector.PIN_25` | `display.NC_25` | manufacturer-declared no-connect remains open |
-| `LCD_NC_26` | `display_connector.PIN_26` | `display.NC_26` | manufacturer-declared no-connect remains open |
-| `LCD_NC_27` | `display_connector.PIN_27` | `display.NC_27` | manufacturer-declared no-connect remains open |
-| `LCD_NC_28` | `display_connector.PIN_28` | `display.NC_28` | manufacturer-declared no-connect remains open |
-| `LCD_NC_29` | `display_connector.PIN_29` | `display.NC_29` | manufacturer-declared no-connect remains open |
-| `LCD_NC_30` | `display_connector.PIN_30` | `display.NC_30` | manufacturer-declared no-connect remains open |
-| `LCD_NC_31` | `display_connector.PIN_31` | `display.NC_31` | manufacturer-declared no-connect remains open |
-| `LCD_NC_32` | `display_connector.PIN_32` | `display.NC_32` | manufacturer-declared no-connect remains open |
+| `LCD_NC_25` | `display_panel_connector.PIN_25` | `display.NC_25` | manufacturer-declared no-connect remains open |
+| `LCD_NC_26` | `display_panel_connector.PIN_26` | `display.NC_26` | manufacturer-declared no-connect remains open |
+| `LCD_NC_27` | `display_panel_connector.PIN_27` | `display.NC_27` | manufacturer-declared no-connect remains open |
+| `LCD_NC_28` | `display_panel_connector.PIN_28` | `display.NC_28` | manufacturer-declared no-connect remains open |
+| `LCD_NC_29` | `display_panel_connector.PIN_29` | `display.NC_29` | manufacturer-declared no-connect remains open |
+| `LCD_NC_30` | `display_panel_connector.PIN_30` | `display.NC_30` | manufacturer-declared no-connect remains open |
+| `LCD_NC_31` | `display_panel_connector.PIN_31` | `display.NC_31` | manufacturer-declared no-connect remains open |
+| `LCD_NC_32` | `display_panel_connector.PIN_32` | `display.NC_32` | manufacturer-declared no-connect remains open |
 | `LCD_NC_25` | `display_connector.PIN_25` | `abstract:no-connect` | board-side contact deliberately open |
 | `LCD_NC_26` | `display_connector.PIN_26` | `abstract:no-connect` | board-side contact deliberately open |
 | `LCD_NC_27` | `display_connector.PIN_27` | `abstract:no-connect` | board-side contact deliberately open |
@@ -2300,14 +2382,14 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `LCD_BACKLIGHT_FAULT_N` | `backlight_fault_pullup.END_2` | `backlight_efuse.FAULT_N` | fixture-visible only; no scarce S3 GPIO is consumed |
 | `LCD_BACKLIGHT_FAULT_N` | `backlight_efuse.FAULT_N` | `abstract:TP_LCD_BACKLIGHT_FAULT_N` | latched-fault diagnostic test point |
 | `LCD_LEDA_PROTECTED` | `backlight_efuse.OUT` | `display_connector.PIN_33` | reverse-blocking latch-off source protects the 120-mA reference backlight branch |
-| `LCD_LEDA_PROTECTED` | `display_connector.PIN_33` | `display.LEDA` | exact panel anode contact |
+| `LCD_LEDA_PROTECTED` | `display_panel_connector.PIN_33` | `display.LEDA` | exact panel anode contact |
 | `LCD_LEDA_PROTECTED` | `backlight_efuse.OUT` | `backlight_efuse_output_bulk.END_1` | exact 10-uF local output bulk supports PWM current edges |
 | `POWER_GROUND` | `backlight_efuse_output_bulk.END_2` | `abstract:power-ground` | backlight bulk return stays beside the connector and switch |
 | `LCD_LEDA_PROTECTED` | `backlight_efuse.OUT` | `backlight_efuse_output_hf.END_1` | exact 100-nF high-frequency output bypass |
 | `POWER_GROUND` | `backlight_efuse_output_hf.END_2` | `abstract:power-ground` | backlight high-frequency return stays local |
-| `LCD_LEDK` | `display_connector.PIN_34` | `display.LEDK_1` | first cathode contact shares the qualified low-side sink |
-| `LCD_LEDK` | `display_connector.PIN_35` | `display.LEDK_2` | second cathode contact shares the qualified low-side sink |
-| `LCD_LEDK` | `display_connector.PIN_36` | `display.LEDK_3` | third cathode contact shares the qualified low-side sink |
+| `LCD_LEDK` | `display_panel_connector.PIN_34` | `display.LEDK_1` | first cathode contact shares the qualified low-side sink |
+| `LCD_LEDK` | `display_panel_connector.PIN_35` | `display.LEDK_2` | second cathode contact shares the qualified low-side sink |
+| `LCD_LEDK` | `display_panel_connector.PIN_36` | `display.LEDK_3` | third cathode contact shares the qualified low-side sink |
 | `LCD_LEDK` | `display_connector.PIN_34` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
 | `LCD_LEDK` | `display_connector.PIN_35` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
 | `LCD_LEDK` | `display_connector.PIN_36` | `backlight_series_resistor.END_1` | all three cathodes join before the exact reference-equivalent 10-Ohm pulse-rated resistor |
@@ -2316,16 +2398,16 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 | `LCD_BACKLIGHT_GATE` | `backlight_gate_series.END_2` | `backlight_mosfet.G` | exact 100-Ohm gate resistor limits edge current and ringing |
 | `LCD_BACKLIGHT_GATE` | `backlight_mosfet.G` | `backlight_gate_pulldown.END_1` | gate is forced low before S3 configures GPIO40 |
 | `POWER_GROUND` | `backlight_gate_pulldown.END_2` | `abstract:power-ground` | exact 10-kOhm reset-off default |
-| `POWER_GROUND` | `display_connector.PIN_37` | `display.GND_37` | third panel return contact |
+| `POWER_GROUND` | `display_panel_connector.PIN_37` | `display.GND_37` | third panel return contact |
 | `POWER_GROUND` | `display.GND_37` | `display_touch_controller.GND` | third assembly return reaches the documented ST77922 ground-pad group |
 | `POWER_GROUND` | `display_connector.PIN_37` | `abstract:power-ground` | short local return at the connector |
-| `LCD_IM0_LOW` | `display_connector.PIN_38` | `display.IM0` | fixed QSPI interface strap |
+| `LCD_IM0_LOW` | `display_panel_connector.PIN_38` | `display.IM0` | fixed QSPI interface strap |
 | `LCD_IM0_LOW` | `display.IM0` | `display_touch_controller.IM0P` | assembly IM0 reaches exact ST77922 die pad 146 |
 | `LCD_IM0_LOW` | `display_connector.PIN_38` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `LCD_IM1_HIGH` | `abstract:3V3_MAIN` | `display_connector.PIN_39` | fixed QSPI interface strap |
-| `LCD_IM1_HIGH` | `display_connector.PIN_39` | `display.IM1` | fixed QSPI interface strap |
+| `LCD_IM1_HIGH` | `display_panel_connector.PIN_39` | `display.IM1` | fixed QSPI interface strap |
 | `LCD_IM1_HIGH` | `display.IM1` | `display_touch_controller.IM1P` | assembly IM1 reaches exact ST77922 die pad 145 |
-| `LCD_IM2_LOW` | `display_connector.PIN_40` | `display.IM2` | fixed QSPI interface strap |
+| `LCD_IM2_LOW` | `display_panel_connector.PIN_40` | `display.IM2` | fixed QSPI interface strap |
 | `LCD_IM2_LOW` | `display.IM2` | `display_touch_controller.IM2P` | assembly IM2 reaches exact ST77922 die pad 144 |
 | `LCD_IM2_LOW` | `display_connector.PIN_40` | `abstract:power-ground` | short fixed board-side QSPI strap |
 | `CODEC_PWR_EN` | `slow_io.P10` | `codec_power_switch.ON` | off-safe exact TPS22919 switch; ES8311 CE remains only its 0x19 address strap |
@@ -3514,8 +3596,12 @@ Reserved: `PA19_SWDIO`, `PA1_NRST`, `PA20_SWCLK`. Free: none.
 - `display_touch_controller` lifecycle: `active manufacturer-catalog TDDI; sourced only inside a qualified display assembly`.
 - `touch_irq_buffer` uses `SN74LVC1G07DCKR` as `verified_exact_open_drain_partial_power_buffer`, not an accepted production choice.
 - `display` lifecycle: `assembly_marking_and_contacts_disclosed_in_official_reference_schematic; standalone_orderability_drawing_and_lifecycle_unverified`.
-- `display_connector` uses `Hirose FH12-40S-0.5SH(55)` as `verified_first_fit_candidate`, not an accepted production choice.
-- `display_connector` lifecycle: `active; exact HMX035CTFT-001 tail thickness, exposed-contact side, stiffener and insertion fit remain specimen HIL`.
+- `display_connector` uses `Hirose DF40C(2.0)-40DS-0.4V(58)` as `verified_exact_display_adapter_main_board_receptacle`, not an accepted production choice.
+- `display_connector` lifecycle: `active and authorized-distributor-stocked`.
+- `display_adapter_plug` uses `Hirose DF40C-40DP-0.4V(51)` as `verified_exact_display_adapter_daughter_board_plug`, not an accepted production choice.
+- `display_adapter_plug` lifecycle: `active and authorized-distributor-stocked`.
+- `display_panel_connector` uses `Hirose FH34SRJ-40S-0.5SH(99)` as `verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open`, not an accepted production choice.
+- `display_panel_connector` lifecycle: `active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5`.
 - `sd_power_input_cap` lifecycle: `active_production`.
 - `codec` lifecycle: `current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open`.
 - `audio_rx_mux` uses `Texas Instruments SN74LVC1G3157DBVR` as `verified_reference`, not an accepted production choice.

@@ -28,6 +28,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/lora-cap.ru.md",
         "docs/roadmap.md",
         "docs/roadmap.ru.md",
+        "docs/physical-source-register.md",
+        "docs/physical-source-register.ru.md",
     )
 
     def read(self, relative: str) -> str:
@@ -115,7 +117,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H1.1.3.3.3"}, set(markers.values()))
+        self.assertEqual({"H1.2"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.0", "H1.1.1", "H1.1.2", "H1.1.3", "H1.8"):
@@ -356,7 +358,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-instance="s3_rf_jumper" data-centreline-mm="30.01"',
             'data-instance="c5_rf_jumper" data-centreline-mm="30.03"',
             " · SPK",
-            'data-opposing-pairs="43"',
+            'data-opposing-pairs="42"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
@@ -364,7 +366,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
             'data-voice-rf-route-mm="33.00"',
-            "opposing inner faces: 43 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "opposing inner faces: 42 non-mating XY pairs checked; minimum Z gap 3.31 mm",
             "native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm",
             "limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0",
         ):
@@ -524,6 +526,7 @@ class ProductSiteTests(unittest.TestCase):
             for image in (
                 "docs/images/current-clamshell.svg",
                 "docs/images/dpad-actuator.svg",
+                "docs/images/display-adapter.svg",
                 "docs/images/internal-board-layout.svg",
                 "docs/images/sandwich-section.svg",
                 "docs/images/top-edge-view.svg",

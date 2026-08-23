@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **935** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **934** supplied/costed placements collapse to **199** used exact-device/MPN lines.
-- Current orderability evidence exists for **198/199** used lines; **1** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **188/199** lines.
+- **937** architecture instances include **1** explicit assembly-internal evidence node.
+- After excluding those non-purchase nodes, **936** supplied/costed placements collapse to **201** used exact-device/MPN lines.
+- Current orderability evidence exists for **200/201** used lines; **1** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **190/201** lines.
 - Of the remaining **11** unpriced lines, **11** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **917/934** supplied placements; their partial subtotals are `base_product` — USD 211.7081. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **199/199** lines.
+- Those priced lines cover **919/936** supplied placements; their partial subtotals are `base_product` — USD 213.3985. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **201/201** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 931 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 933 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -304,7 +304,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 25 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 27 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and environmental qualification required.
 - Equivalence envelope:
@@ -324,8 +324,10 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
+  - `hirose_df40c_2_0_40ds_0_4v_58` — `Hirose DF40C(2.0)-40DS-0.4V(58)`.
+  - `hirose_df40c_40dp_0_4v_51` — `Hirose DF40C-40DP-0.4V(51)`.
   - `hirose_dm3at_sf_pejm5` — `Hirose DM3AT-SF-PEJM5`.
-  - `hirose_fh12_40s_0_5sh_55` — `Hirose FH12-40S-0.5SH(55)`.
+  - `hirose_fh34srj_40s_0_5sh_99` — `Hirose FH34SRJ-40S-0.5SH(99)`.
   - `hirose_fx8c_80p_sv1_92` — `Hirose FX8C-80P-SV1(92)`.
   - `hirose_fx8c_80s_sv5_92` — `Hirose FX8C-80S-SV5(92)`.
   - `hirose_ufl_r_smt_1_10` — `Hirose U.FL-R-SMT-1(10)`.
@@ -555,6 +557,24 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
+<details><summary><code>Hirose DF40C(2.0)-40DS-0.4V(58)</code> — 1 × USD 1.0700 = USD 1.0700</summary>
+
+- Device id: `hirose_df40c_2_0_40ds_0_4v_58`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D).
+
+</details>
+
+<details><summary><code>Hirose DF40C-40DP-0.4V(51)</code> — 1 × USD 0.7260 = USD 0.7260</summary>
+
+- Device id: `hirose_df40c_40dp_0_4v_51`.
+- Scope: `base_product`.
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51?qs=eDUdFcBPps3ody6AX5VRNA%3D%3D).
+
+</details>
+
 <details><summary><code>Hirose DM3AT-SF-PEJM5</code> — 1 × USD 2.5656 = USD 2.5656</summary>
 
 - Device id: `hirose_dm3at_sf_pejm5`.
@@ -564,12 +584,12 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>Hirose FH12-40S-0.5SH(55)</code> — 1 × USD 2.5656 = USD 2.5656</summary>
+<details><summary><code>Hirose FH34SRJ-40S-0.5SH(99)</code> — 1 × USD 2.4600 = USD 2.4600</summary>
 
-- Device id: `hirose_fh12_40s_0_5sh_55`.
+- Device id: `hirose_fh34srj_40s_0_5sh_99`.
 - Scope: `base_product`.
-- Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-22`; [published source](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328).
+- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
+- Checked: `2026-08-23`; [published source](https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99?qs=vcbW%252B4%252BSTIq%252BjF2my2YV5Q%3D%3D).
 
 </details>
 

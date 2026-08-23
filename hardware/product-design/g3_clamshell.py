@@ -18,11 +18,15 @@ CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 MECHANICAL_GATES_PATH = REPO / "hardware/product-design/mechanical-evidence-gates.json"
 SOURCE_RESEARCH_PATH = REPO / "hardware/product-design/h1-source-research.json"
 DPAD_DESIGN_PATH = REPO / "hardware/product-design/dpad-actuator.json"
+DISPLAY_ADAPTER_DESIGN_PATH = REPO / "hardware/product-design/display-adapter.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
 INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
 TOP_EDGE_OUTPUT = REPO / "docs/images/top-edge-view.svg"
 DPAD_OUTPUT = REPO / "docs/images/dpad-actuator.svg"
+DISPLAY_ADAPTER_OUTPUT = REPO / "docs/images/display-adapter.svg"
+SOURCE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
+SOURCE_REGISTER_OUTPUT = REPO / "docs/physical-source-register.md"
 
 BOARD_W = 75.0
 BOARD_H = 150.0
@@ -206,7 +210,7 @@ UI_INNER = (
     Placement("c5_rf_board_connector", 57.5, 9.0, "C5 30-mm jumper board receptacle"),
     Placement("s3", 6.0, 22.0, "UI, display, storage and audio owner"),
     Placement("c5", 51.0, 22.0, "native 2.4/5-GHz and IR owner"),
-    Placement("display_connector", 25.0, 43.0, "40-contact display FPC mate"),
+    Placement("display_connector", 32.2, 96.0, "40-contact fixed receptacle for the replaceable display adapter"),
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
     Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
@@ -409,7 +413,9 @@ INTERNAL_ZONE_ALLOWED_INSTANCES = {
 
 # Bodies that are mechanically accounted for by a dedicated assembly or
 # exterior projection rather than by one of the two inner-face placement maps.
-MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {"display_touch_controller"}
+MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {
+    "display_touch_controller", "display_adapter_plug", "display_panel_connector",
+}
 MECHANICAL_EXTERIOR_INSTANCES = {
     "display", "u214", "pack_holder", "pack_cell0", "pack_cell1",
     *RF_INSTANCE_BY_PATH.values(),
@@ -440,6 +446,7 @@ MECHANICAL_PROJECTION_FRAMES = {
     "ui-inner-route": "UI PCB top-left, viewed from the front/exterior",
     "rf-inner-route": "RF/power PCB top-left, viewed from the rear/exterior",
     "display-assembly": "HMX035CTFT-001 screen-body top-left, front view",
+    "display-adapter": "L2-DISP-ADP-001-A top-left, viewed from its panel-facing side",
 }
 
 PLACEMENT_PROJECTION_GROUPS = (
@@ -452,7 +459,9 @@ PLACEMENT_PROJECTION_GROUPS = (
 )
 
 INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
-    "display_connector": "FPC insertion in the UI-inner plane; received-tail fit remains a named sample gate",
+    "display_connector": "normal to the UI-inner face toward the replaceable adapter plug",
+    "display_adapter_plug": "normal to the adapter underside toward the UI-board receptacle",
+    "display_panel_connector": "horizontal FPC insertion in the adapter plane; dual-contact orientation; received-tail thickness remains H5 evidence",
     "s3_rf_board_connector": "normal to the UI-inner face toward the cable plug",
     "c5_rf_board_connector": "normal to the UI-inner face toward the cable plug",
     "nrf0_rf_board_connector": "normal to the RF-inner face toward the Gen1 cable plug",
@@ -538,14 +547,27 @@ EXTERIOR_BODY_CONTRACTS = (
         0,
         "embedded in HMX035CTFT-001; no separate mechanical interface",
     ),
+    BodyProjectionContract(
+        "display_adapter_plug",
+        "display-adapter",
+        0,
+        "normal to the adapter underside toward the UI-board receptacle",
+    ),
+    BodyProjectionContract(
+        "display_panel_connector",
+        "display-adapter",
+        0,
+        "horizontal FPC insertion in the adapter plane; dual-contact orientation; received-tail thickness remains H5 evidence",
+    ),
 )
 
 
-def load() -> tuple[dict, dict, dict, dict]:
+def load() -> tuple[dict, dict, dict, dict, dict]:
     devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
     dpad_design = json.loads(DPAD_DESIGN_PATH.read_text(encoding="utf-8"))
-    return devices, candidate, candidate["instances"], dpad_design
+    display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
+    return devices, candidate, candidate["instances"], dpad_design, display_adapter_design
 
 
 def placement_size(item: Placement, devices: dict, instances: dict) -> tuple[float, float]:
@@ -1012,16 +1034,14 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H1.1.3.3.3":
+    if constraint.get("current_step") != "H1.2":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
     identifiers = [gate.get("id") for gate in gates]
     if len(identifiers) != len(set(identifiers)) or any(not item for item in identifiers):
         errors.append("mechanical-gates: gate IDs must be present and unique")
-    required_h1 = {
-        "H1-MECH-DISPLAY-TAIL",
-    }
+    required_h1: set[str] = set()
     actual_h1 = {
         gate["id"] for gate in gates if gate.get("disposition") == "h1_blocker"
     }
@@ -1048,7 +1068,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
             errors.append(f"mechanical-gates: {gate.get('id')} must block H8")
 
     required_open_instances = {
-        "display", "display_connector",
+        "display", "display_connector", "display_adapter_plug", "display_panel_connector",
         "nrf0", "nrf1", "nrf2",
         "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper",
         "nrf0_rf_board_connector", "nrf1_rf_board_connector", "nrf2_rf_board_connector",
@@ -1074,7 +1094,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("current_substep") != "H1.1.3.3.3":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1.2":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1085,8 +1105,8 @@ def validate_source_research() -> list[str]:
     expected = [
         ("H1.1.3.3.1", "reviewed"),
         ("H1.1.3.3.2", "reviewed"),
-        ("H1.1.3.3.3", "current"),
-        ("H1.1.3.3.4", "blocked"),
+        ("H1.1.3.3.3", "reviewed"),
+        ("H1.1.3.3.4", "not_required"),
     ]
     actual = [(row.get("id"), row.get("status")) for row in sequence]
     if actual != expected:
@@ -1225,8 +1245,115 @@ def validate_dpad_design(design: dict, switch: dict) -> list[str]:
     return errors
 
 
+def validate_display_adapter_design(
+    design: dict, devices: dict, candidate: dict, instances: dict
+) -> list[str]:
+    """Keep the replaceable 40-to-40 display interface dimensionally honest."""
+    errors: list[str] = []
+    if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-ADP-001-A":
+        errors.append("display-adapter: schema/design identity mismatch")
+    if design.get("stage") != "H1.1.3.3.3":
+        errors.append("display-adapter: exact source-research stage drifted")
+    board = design.get("board", {})
+    board_w = float(board.get("width_mm", 0))
+    board_h = float(board.get("height_mm", 0))
+    board_t = float(board.get("thickness_mm", 0))
+    board_x, board_y = map(float, board.get("ui_inner_position_mm", [0, 0]))
+    if (board_w, board_h, board_t) != (25.5, 12.0, 0.8):
+        errors.append("display-adapter: controlled 25.5x12.0x0.8-mm PCB envelope drifted")
+    if board_x < 0 or board_y < 0 or board_x + board_w > BOARD_W or board_y + board_h > BOARD_H:
+        errors.append("display-adapter: adapter PCB leaves the UI-board projection")
+    if any(hits_hole((board_x, board_y, board_w, board_h), hole) for hole in HOLES):
+        errors.append("display-adapter: adapter PCB enters a mounting-hole keep-out")
+
+    expected_mpns = {
+        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+        "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
+        "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
+    }
+    rows = {row.get("instance"): row for row in design.get("components", [])}
+    if set(rows) != set(expected_mpns):
+        errors.append("display-adapter: exact three-connector mechanical set drifted")
+    for instance, expected_mpn in expected_mpns.items():
+        if instance not in instances or instance not in rows:
+            continue
+        device = devices[instances[instance]]
+        if device.get("mpn") != expected_mpn or rows[instance].get("mpn") != expected_mpn:
+            errors.append(f"display-adapter: {instance} exact MPN drifted")
+        if [float(value) for value in rows[instance].get("envelope_mm", [])] != [
+            float(value) for value in device.get("dimensions_mm", [])
+        ]:
+            errors.append(f"display-adapter: {instance} envelope disagrees with device register")
+
+    main = rows.get("display_connector", {})
+    main_x, main_y = map(float, main.get("ui_inner_position_mm", [0, 0]))
+    main_w, main_h, _ = map(float, main.get("envelope_mm", [0, 0, 0]))
+    if not (
+        board_x <= main_x
+        and board_y <= main_y
+        and main_x + main_w <= board_x + board_w
+        and main_y + main_h <= board_y + board_h
+    ):
+        errors.append("display-adapter: main receptacle leaves the adapter projection")
+    ui_connector = next((item for item in UI_INNER if item.instance == "display_connector"), None)
+    if ui_connector is None or (ui_connector.x, ui_connector.y) != (main_x, main_y):
+        errors.append("display-adapter: main-receptacle coordinate disagrees with UI-inner placement")
+
+    adapter_plug = rows.get("display_adapter_plug", {})
+    plug_x, plug_y = map(float, adapter_plug.get("adapter_position_mm", [0, 0]))
+    plug_w, plug_h, _ = map(float, adapter_plug.get("envelope_mm", [0, 0, 0]))
+    panel_mate = rows.get("display_panel_connector", {})
+    panel_x, panel_y = map(float, panel_mate.get("adapter_position_mm", [0, 0]))
+    panel_w, panel_h, _ = map(float, panel_mate.get("envelope_mm", [0, 0, 0]))
+    for name, x, y, w, h in (
+        ("adapter plug", plug_x, plug_y, plug_w, plug_h),
+        ("panel connector", panel_x, panel_y, panel_w, panel_h),
+    ):
+        if x < 0 or y < 0 or x + w > board_w or y + h > board_h:
+            errors.append(f"display-adapter: {name} leaves the adapter PCB")
+    if not math.isclose(main_x + main_w / 2, board_x + plug_x + plug_w / 2, abs_tol=0.01):
+        errors.append("display-adapter: DF40 plug/receptacle X axes do not coincide")
+    if not math.isclose(main_y + main_h / 2, board_y + plug_y + plug_h / 2, abs_tol=0.01):
+        errors.append("display-adapter: DF40 plug/receptacle Y axes do not coincide")
+
+    stack = design.get("stack", {})
+    derived_height = (
+        float(stack.get("df40_mated_height_mm", 0))
+        + board_t
+        + float(stack.get("panel_connector_height_mm", 0))
+    )
+    if not math.isclose(derived_height, float(stack.get("ui_board_to_panel_connector_top_mm", -1)), abs_tol=1e-9):
+        errors.append("display-adapter: stored Z stack is stale")
+    if derived_height + float(stack.get("minimum_reserved_clearance_mm", 0)) > INTERBOARD_GAP_MM:
+        errors.append("display-adapter: connector stack exceeds the interboard gap")
+
+    routes = candidate.get("fixed_routes", [])
+    route_pairs = {(row.get("from"), row.get("to"), row.get("net")) for row in routes}
+    panel_nets: dict[int, str] = {}
+    for row in routes:
+        endpoint = row.get("from", "")
+        if endpoint.startswith("display_panel_connector.PIN_") and str(row.get("to", "")).startswith("display."):
+            panel_nets[int(endpoint.rsplit("_", 1)[1])] = row.get("net")
+    if set(panel_nets) != set(range(1, 41)):
+        errors.append("display-adapter: panel-side exact 40-contact map is incomplete")
+    for pin, net in panel_nets.items():
+        if (
+            f"display_connector.PIN_{pin}",
+            f"display_adapter_plug.PIN_{pin}",
+            net,
+        ) not in route_pairs or (
+            f"display_adapter_plug.PIN_{pin}",
+            f"display_panel_connector.PIN_{pin}",
+            net,
+        ) not in route_pairs:
+            errors.append(f"display-adapter: PIN_{pin} is not one-to-one through both mates")
+    if "H5" not in design.get("release_boundary", ""):
+        errors.append("display-adapter: received-tail fit must remain an H5 gate")
+    return errors
+
+
 def validate() -> list[str]:
-    devices, candidate, instances, dpad_design = load()
+    devices, candidate, instances, dpad_design, display_adapter_design = load()
     errors: list[str] = []
     required = {
         "s3": "ESP32-S3-WROOM-1U-N16R8",
@@ -1239,6 +1366,9 @@ def validate() -> list[str]:
         "unit_connector": "1125R-SMT-4P",
         "encoder_knob": "Davies Molding 1227-J",
         "ui_dpad_switch": "Alps Alpine SKRHADE010",
+        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+        "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
+        "display_panel_connector": "Hirose FH34SRJ-40S-0.5SH(99)",
     }
     for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
@@ -1252,6 +1382,9 @@ def validate() -> list[str]:
     errors += validate_mechanical_evidence_gates(instances, mechanically_accounted)
     errors += validate_source_research()
     errors += validate_dpad_design(dpad_design, devices[instances["ui_dpad_switch"]])
+    errors += validate_display_adapter_design(
+        display_adapter_design, devices, candidate, instances
+    )
     for instance, device_key in instances.items():
         device = devices[device_key]
         dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
@@ -2987,6 +3120,240 @@ def render_dpad_detail(design):
     return "\n".join(out) + "\n"
 
 
+def render_display_adapter(design):
+    """Render the fixed main-board mate and replaceable display-tail adapter."""
+    board = design["board"]
+    components = {row["instance"]: row for row in design["components"]}
+    scale = 14.0
+    ox, oy = 65.0, 135.0
+    bw = float(board["width_mm"]) * scale
+    bh = float(board["height_mm"]) * scale
+
+    def tx(value: float) -> float:
+        return ox + value * scale
+
+    def ty(value: float) -> float:
+        return oy + value * scale
+
+    def label(x, y, value, size=11, weight="normal", anchor="start", colour="#172033"):
+        return (
+            f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" '
+            f'font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(str(value))}</text>'
+        )
+
+    def component_box(row, fill, stroke):
+        x, y = map(float, row["adapter_position_mm"])
+        w, h, _ = map(float, row["envelope_mm"])
+        return (
+            f'<rect x="{tx(x):.1f}" y="{ty(y):.1f}" width="{w*scale:.1f}" height="{h*scale:.1f}" '
+            f'rx="3" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
+        )
+
+    plug = components["display_adapter_plug"]
+    panel = components["display_panel_connector"]
+    stack = design["stack"]
+    out = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">',
+        '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
+        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        label(40, 42, "Leshy2 — replaceable 40-to-40 display adapter", 22, "bold"),
+        label(40, 68, "L2-DISP-ADP-001-A · exact connector bodies and one-to-one electrical map", 11, colour="#526076"),
+        label(ox, 112, "Panel-facing adapter side · millimetre scale", 14, "bold", colour="#1d4ed8"),
+        f'<rect x="{ox:.1f}" y="{oy:.1f}" width="{bw:.1f}" height="{bh:.1f}" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="2"/>',
+        component_box(panel, "#dbeafe", "#2563eb"),
+        component_box(plug, "#ede9fe", "#7c3aed"),
+        label(tx(12.75), ty(2.9), "FH34SRJ-40S-0.5SH(99)", 9.5, "bold", "middle", "#1d4ed8"),
+        label(tx(12.75), ty(7.65), "DF40C-40DP-0.4V(51) · underside", 8.5, "bold", "middle", "#6d28d9"),
+        f'<path d="M{tx(1.75):.1f} {ty(2.7):.1f} L{tx(-2.5):.1f} {ty(2.7):.1f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
+        label(tx(-2.9), ty(2.25), "DISPLAY FPC", 8.8, "bold", "end", "#b42318"),
+        label(ox + bw/2, oy + bh + 26, "25.5 × 12.0 × 0.8 mm adapter PCB", 11, "bold", "middle"),
+        label(545, 112, "Front-to-rear stack", 14, "bold", colour="#166534"),
+    ]
+
+    sx0 = 555.0
+    base_y = 325.0
+    z_scale = 38.0
+    main_h = 1.95 * z_scale
+    mate_h = float(stack["df40_mated_height_mm"]) * z_scale
+    pcb_h = float(board["thickness_mm"]) * z_scale
+    panel_h = float(stack["panel_connector_height_mm"]) * z_scale
+    out += [
+        f'<rect x="{sx0:.1f}" y="{base_y:.1f}" width="235" height="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
+        label(sx0 + 245, base_y + 13, "UI/control PCB", 10, "bold"),
+        f'<rect x="{sx0+55:.1f}" y="{base_y-main_h:.1f}" width="125" height="{main_h:.1f}" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>',
+        label(sx0 + 117.5, base_y-main_h/2+4, "DF40C(2.0)-40DS-0.4V(58)", 8.5, "bold", "middle"),
+        f'<rect x="{sx0+62:.1f}" y="{base_y-mate_h:.1f}" width="111" height="{1.14*z_scale:.1f}" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>',
+        f'<rect x="{sx0+15:.1f}" y="{base_y-mate_h-pcb_h:.1f}" width="205" height="{pcb_h:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>',
+        label(sx0 + 230, base_y-mate_h-pcb_h/2+4, "0.8-mm adapter", 10, "bold"),
+        f'<rect x="{sx0+25:.1f}" y="{base_y-mate_h-pcb_h-panel_h:.1f}" width="185" height="{panel_h:.1f}" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        label(sx0 + 117.5, base_y-mate_h-pcb_h-panel_h/2+4, "FH34SRJ-40S-0.5SH(99)", 8.8, "bold", "middle"),
+        label(555, 390, f"Selected height to panel-connector top: {stack['ui_board_to_panel_connector_top_mm']:.1f} mm", 11, "bold"),
+        label(555, 413, f"Available inner gap: {stack['available_interboard_gap_mm']:.1f} mm", 11),
+        label(555, 455, "Electrical contract", 14, "bold"),
+        label(555, 480, "UI PIN_n ↔ adapter PIN_n ↔ panel PIN_n, n = 1…40", 11, "bold", colour="#166534"),
+        label(555, 503, "No active device and no pin remapping on the adapter.", 10.5),
+        label(555, 526, "Dual-contact ZIF removes exposed-contact-side dependence.", 10.5),
+        label(555, 549, "Tail thickness/outline remains a received-display H5 fit check.", 10.5, "bold", colour="#b42318"),
+        label(40, 590, "H1 result", 14, "bold", colour="#166534"),
+        label(140, 590, "main UI PCB bay, exact DF40 mate and 40-contact mapping are fixed without buying a display", 11, "bold", colour="#166534"),
+        label(40, 620, "H5 boundary", 14, "bold", colour="#b42318"),
+        label(140, 620, "a received tail may revise only this small adapter and its panel-side connector", 11, colour="#b42318"),
+        '</svg>',
+    ]
+    return "\n".join(out) + "\n"
+
+
+def build_physical_source_table(devices: dict, instances: dict) -> dict:
+    """Freeze the exact H1.1.4 source row used by every mechanical projection."""
+    contracts, errors = mechanical_body_contracts()
+    if errors:
+        raise ValueError("; ".join(errors))
+    placements = {
+        item.instance: item
+        for _, items in PLACEMENT_PROJECTION_GROUPS
+        for item in items
+    }
+    cable_routes = {route.instance: route for route in UI_RF_CABLES}
+    gates = json.loads(MECHANICAL_GATES_PATH.read_text(encoding="utf-8"))["gates"]
+    gate_by_instance: dict[str, list[dict]] = {}
+    for gate in gates:
+        for instance in gate["affected_instances"]:
+            gate_by_instance.setdefault(instance, []).append(
+                {"id": gate["id"], "disposition": gate["disposition"]}
+            )
+    rows = []
+    for instance, contract in sorted(contracts.items()):
+        device_key = instances[instance]
+        device = devices[device_key]
+        source = device.get("mechanical_source", device.get("source", {}))
+        dimensions = device.get("maximum_dimensions_mm", device.get("dimensions_mm"))
+        row = {
+            "instance": instance,
+            "device_key": device_key,
+            "mpn": device["mpn"],
+            "role": placements[instance].role if instance in placements else device.get("kind", "physical body"),
+            "frame": contract.frame,
+            "frame_datum": MECHANICAL_PROJECTION_FRAMES[contract.frame],
+            "rotation_deg": contract.rotation,
+            "direction": contract.direction,
+            "envelope_mm": dimensions[:3],
+            "qualification": device["qualification"],
+            "source": {
+                field: source[field]
+                for field in ("document", "version", "url", "checked")
+                if field in source
+            },
+            "evidence_gates": gate_by_instance.get(instance, []),
+        }
+        if instance in placements:
+            row["position_mm"] = [placements[instance].x, placements[instance].y]
+        if instance in cable_routes:
+            row["route_points_mm"] = [list(point) for point in cable_routes[instance].points]
+        rows.append(row)
+    return {
+        "schema_version": 1,
+        "stage": "H1.1.4",
+        "status": "reviewed",
+        "generated_from": [
+            str(DEVICES_PATH.relative_to(REPO)),
+            str(CANDIDATE_PATH.relative_to(REPO)),
+            str(MECHANICAL_GATES_PATH.relative_to(REPO)),
+            str(Path(__file__).resolve().relative_to(REPO)),
+        ],
+        "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
+        "summary": {
+            "rendered_physical_instances": len(rows),
+            "exact_mpn_instances": sum("TBD" not in row["mpn"] for row in rows),
+            "explicit_mpn_tbd_instances": sum("TBD" in row["mpn"] for row in rows),
+            "h1_blockers": sum(gate["disposition"] == "h1_blocker" for gate in gates),
+            "h5_received_sample_gates": sum(gate["disposition"] == "h5_received_sample_gate" for gate in gates),
+        },
+        "rows": rows,
+    }
+
+
+def render_physical_source_register(source_table: dict) -> str:
+    """Expose the final physical-source result without project-history clutter."""
+    summary = source_table["summary"]
+    frame_counts: dict[str, int] = {}
+    for row in source_table["rows"]:
+        frame_counts[row["frame"]] = frame_counts.get(row["frame"], 0) + 1
+    lines = [
+        "# Physical source register",
+        "",
+        "[Hardware](hardware.md) · [Roadmap](roadmap.md) · [Русский](physical-source-register.ru.md)",
+        "",
+        "Every body drawn in the product views is generated from one machine row with",
+        "an exact selected MPN (or an explicit TBD), manufacturer-backed envelope, named",
+        "coordinate frame, orientation and interface direction. No H1 geometry blocker",
+        "remains; received fit, RF, acoustic, thermal and endurance checks stay in H5.",
+        "",
+        "| Coverage | Result |",
+        "|---|---:|",
+        f"| Rendered physical instances | {summary['rendered_physical_instances']} |",
+        f"| Exact-MPN instances | {summary['exact_mpn_instances']} |",
+        f"| Explicit MPN TBD instances | {summary['explicit_mpn_tbd_instances']} |",
+        f"| H1 geometry blockers | {summary['h1_blockers']} |",
+        f"| H5 received-sample gates | {summary['h5_received_sample_gates']} |",
+        "",
+        "## Coordinate frames",
+        "",
+        "| Frame | Datum | Bodies |",
+        "|---|---|---:|",
+    ]
+    for frame, count in sorted(frame_counts.items()):
+        lines.append(f"| `{frame}` | {MECHANICAL_PROJECTION_FRAMES[frame]} | {count} |")
+    lines += [
+        "",
+        "The complete per-instance table is retained as",
+        "[`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)",
+        "for deterministic rendering, review and later ECAD transfer.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def render_physical_source_register_ru(source_table: dict) -> str:
+    summary = source_table["summary"]
+    frame_counts: dict[str, int] = {}
+    for row in source_table["rows"]:
+        frame_counts[row["frame"]] = frame_counts.get(row["frame"], 0) + 1
+    lines = [
+        "# Реестр физических первоисточников",
+        "",
+        "[Железо](hardware.ru.md) · [Роадмап](roadmap.ru.md) · [English](physical-source-register.md)",
+        "",
+        "Каждый корпус на продуктовых видах генерируется из одной machine-строки:",
+        "точный выбранный MPN (или явный TBD), подтверждённый производителем габарит,",
+        "именованная система координат, ориентация и направление интерфейса. Blocker",
+        "геометрии H1 не осталось; проверка посадки, RF, акустики, тепла и ресурса",
+        "реальных деталей остаётся на H5.",
+        "",
+        "| Покрытие | Результат |",
+        "|---|---:|",
+        f"| Отрисованных физических экземпляров | {summary['rendered_physical_instances']} |",
+        f"| Экземпляров с точным MPN | {summary['exact_mpn_instances']} |",
+        f"| Экземпляров с явным MPN TBD | {summary['explicit_mpn_tbd_instances']} |",
+        f"| Blocker геометрии H1 | {summary['h1_blockers']} |",
+        f"| Received-sample gate H5 | {summary['h5_received_sample_gates']} |",
+        "",
+        "## Системы координат",
+        "",
+        "| Система | Datum | Корпусов |",
+        "|---|---|---:|",
+    ]
+    for frame, count in sorted(frame_counts.items()):
+        lines.append(f"| `{frame}` | {MECHANICAL_PROJECTION_FRAMES[frame]} | {count} |")
+    lines += [
+        "",
+        "Полная таблица по каждому экземпляру хранится в",
+        "[`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)",
+        "и является детерминированным входом для отрисовки, ревью и переноса в ECAD.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true")
@@ -2997,13 +3364,18 @@ def main() -> int:
         for error in errors:
             print(f"error: {error}")
         return 1
-    devices, _, instances, dpad_design = load()
+    devices, _, instances, dpad_design, display_adapter_design = load()
+    source_table = build_physical_source_table(devices, instances)
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances, dpad_design),
         INTERNAL_OUTPUT: render_internal(devices, instances),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
         TOP_EDGE_OUTPUT: render_top_edge(devices, instances),
         DPAD_OUTPUT: render_dpad_detail(dpad_design),
+        DISPLAY_ADAPTER_OUTPUT: render_display_adapter(display_adapter_design),
+        SOURCE_TABLE_OUTPUT: json.dumps(source_table, ensure_ascii=False, indent=2) + "\n",
+        SOURCE_REGISTER_OUTPUT: render_physical_source_register(source_table),
+        REPO / "docs/physical-source-register.ru.md": render_physical_source_register_ru(source_table),
     }
     if args.write:
         for path, content in outputs.items():
@@ -3016,7 +3388,7 @@ def main() -> int:
             for path in stale:
                 print(f"error: stale {path}")
             return 1
-        print("ok: external, internal, top-edge, section and D-pad mechanical projections are valid and current")
+        print("ok: external, internal, top-edge, section, D-pad and display-adapter mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0

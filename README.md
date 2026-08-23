@@ -30,12 +30,11 @@ target-emulator run, and no order is authorized.
 
 ### Current phase H1 — detailed position
 
-<!-- current-substep: H1.1.3.3.3 -->
+<!-- current-substep: H1.2 -->
 
-**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display and
-U214 data from their manufacturers without placing an order. Public-source
-research and replacement review are complete; no sample order is authorized.
-Existing rendered views remain provisional outputs.
+**Exact marker: `H1.2`** — place both boards, enclosure, fasteners, external
+organs and accessory keep-outs in one coordinate model. Later views remain
+provisional outputs.
 
 - ✅ `H1.0` — project H0 requirements into the mechanical acceptance list.
 - `H1.1` — build the physical-source register.
@@ -52,18 +51,21 @@ Existing rendered views remain provisional outputs.
         current lifecycle/stock evidence.
       - ✅ `H1.1.3.3.2` — compare fully documented replacements without
         degrading an accepted function.
-      - ▶️ **`H1.1.3.3.3` — current:** request any still-missing controlled data
-        from the manufacturer without placing an order.
+      - ✅ `H1.1.3.3.3` — close remaining controlled data without an order or
+        bound its effect with a documented replaceable design.
         - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
           three exact `2118651-2` jumpers and three exact
           `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
         - ✅ D-pad paper design closed: `L2-DPAD-001-A` defines the 14-mm
           cross, split stem socket, square anti-rotation guide, panel aperture
           and positive worst-case movement margins; received fit moved to H5.
-      - 🔒 `H1.1.3.3.4` — only if all prior routes fail, prepare a smallest
-        evidence-sample proposal for separate user approval.
-  - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
-- ⏳ `H1.2` — create one coordinate model for both boards and the enclosure.
+        - ✅ U214 closed with exact pass-through
+          `HLE-107-02-G-DV-PE-LC`; unknown post length cannot change the dock.
+        - ✅ Display closed with replaceable `L2-DISP-ADP-001-A`: an exact
+          DF40 pair and dual-contact ZIF preserve all 40 contacts one-to-one.
+      - ✅ `H1.1.3.3.4` — not required; the sample plan remains parked.
+  - ✅ `H1.1.4` — freeze the renderer source table.
+- ▶️ **`H1.2` — current:** create one coordinate model for both boards and the enclosure.
 - ⏳ `H1.3.0` — generate outer faces, controls, arrows and readable silkscreen
   from the unified source.
   - ✅ Latest provisional correction: ten TX indicators are aligned as two
@@ -135,6 +137,8 @@ The custom `L2-DPAD-001-A` cross and its enclosure aperture have a separate
 machine-checked movement and tolerance drawing.
 
 ![Leshy2 D-pad actuator](docs/images/dpad-actuator.svg?layout=3)
+
+![Leshy2 replaceable display adapter](docs/images/display-adapter.svg?layout=1)
 
 The first projection shows only the outward, user-facing PCB sides: display,
 controls, labelled RF ports, indicators and side interfaces. The second shows

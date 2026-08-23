@@ -40,13 +40,11 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Current H1 breakdown
 
-<!-- current-substep: H1.1.3.3.3 -->
+<!-- current-substep: H1.2 -->
 
-**Exact marker: `H1.1.3.3.3`** — obtain the remaining controlled display and
-U214 data from their manufacturers without placing an order. Public-source
-research and replacement review are complete; no sample order is authorized.
-Later views already exist as provisional projections, but none is a reviewed
-later substep while this source-data gate is open.
+**Exact marker: `H1.2`** — place both boards, enclosure, fasteners, external
+organs and accessory keep-outs in one coordinate model. The H1.1 register is
+frozen; later views remain provisional and are not reviewed substeps.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -65,18 +63,23 @@ later substep while this source-data gate is open.
         current lifecycle/stock evidence.
       - ✅ `H1.1.3.3.2` — compare fully documented replacements without
         degrading an accepted function.
-      - ▶️ **`H1.1.3.3.3` — current:** request any still-missing controlled data
-        from the manufacturer without placing an order.
+      - ✅ `H1.1.3.3.3` — request remaining controlled data without an order or
+        bound its effect with a documented replaceable design.
         - ✅ nRF paper path closed without a purchase: Ebyte Gen1 evidence,
           three exact `2118651-2` jumpers and three exact
           `U.FL-R-SMT-1(10)` board mates; received-lot fit moved to H5.
         - ✅ D-pad paper design closed: `L2-DPAD-001-A` defines the 14-mm
           cross, split stem socket, square anti-rotation guide, panel aperture
           and positive worst-case movement margins; received fit moved to H5.
-      - 🔒 `H1.1.3.3.4` — only if all prior routes fail, prepare a smallest
-        evidence-sample proposal for separate user approval.
-  - 🔒 `H1.1.4` — waits for H1.1.3.3, then freezes the renderer source table.
-- ⏳ `H1.2` — one coordinate model for both boards, enclosure, fasteners and
+        - ✅ U214 closed with exact pass-through
+          `HLE-107-02-G-DV-PE-LC`; unknown post length no longer changes the dock.
+        - ✅ Display closed with replaceable `L2-DISP-ADP-001-A`: an exact
+          40-position DF40 mate and dual-contact ZIF preserve the 1→1 map while
+          the undocumented tail cannot change the main UI PCB or enclosure.
+      - ✅ `H1.1.3.3.4` — not required; the minimum sample plan remains a
+        parked H5 artifact and authorizes no purchase.
+  - ✅ `H1.1.4` — freeze the renderer source table.
+- ▶️ **`H1.2` — current:** one coordinate model for both boards, enclosure, fasteners and
   accessory keep-outs; existing independent projections are inputs only.
 - ⏳ `H1.3.0` — generate the outer faces from the unified source: screen,
   D-pad, keys, encoder, LEDs, arrows, external interfaces and visible,

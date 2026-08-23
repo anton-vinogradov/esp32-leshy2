@@ -33,13 +33,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "HMX035CTFT-001",
             "M5Stack `U214` | 1",
             "Samtec `HLE-107-02-G-DV-PE-LC` | 5",
-            "Hirose `FH12-40S-0.5SH(55)` | 5",
+            "Hirose `FH34SRJ-40S-0.5SH(99)` | 5",
+            "Hirose `DF40C(2.0)-40DS-0.4V(58)` | 5",
+            "Hirose `DF40C-40DP-0.4V(51)` | 5",
             "Ebyte `E01-ML01IPX` | 4",
             "NiceRF `SA518` | 2",
             "KiCad remains unauthorized",
         ):
             self.assertIn(token, plan)
-        self.assertIn("$153.44", plan)
+        self.assertIn("$164.54", plan)
         self.assertIn("not a finished-product page", plan)
         self.assertIn("Purchasing is the\nlast resort", plan)
 
@@ -248,8 +250,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(934, sum(line["quantity"] for line in lines))
-        self.assertEqual(199, len(lines))
+        self.assertEqual(936, sum(line["quantity"] for line in lines))
+        self.assertEqual(201, len(lines))
         self.assertEqual(
             1,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -259,11 +261,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            188,
+            190,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            917,
+            919,
             sum(
                 line["quantity"]
                 for line in lines
@@ -339,13 +341,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
-        self.assertIn("**935** architecture instances", rendered)
-        self.assertIn("**934** supplied/costed placements", rendered)
-        self.assertIn("**198/199** used lines", rendered)
-        self.assertIn("**199/199** lines", rendered)
-        self.assertIn("**188/199** lines", rendered)
-        self.assertIn("**917/934** supplied placements", rendered)
-        self.assertIn("USD 211.7081", rendered)
+        self.assertIn("**937** architecture instances", rendered)
+        self.assertIn("**936** supplied/costed placements", rendered)
+        self.assertIn("**200/201** used lines", rendered)
+        self.assertIn("**201/201** lines", rendered)
+        self.assertIn("**190/201** lines", rendered)
+        self.assertIn("**919/936** supplied placements", rendered)
+        self.assertIn("USD 213.3985", rendered)
         self.assertIn("11", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -503,7 +505,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
             'data-route="SA518.7-to-VOICE-V/U"',
-            'data-opposing-pairs="43"',
+            'data-opposing-pairs="42"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="3"',
             'data-voice-rf-route-mm="33.00"',
@@ -2785,7 +2787,13 @@ class ArchitectureValidationTests(unittest.TestCase):
         candidate = next(c for c in self.candidates if c["id"] == "G2F-3I")
         self.assertEqual("qdtech_hmx035ctft_001", candidate["instances"]["display"])
         self.assertEqual(
-            "hirose_fh12_40s_0_5sh_55", candidate["instances"]["display_connector"]
+            "hirose_df40c_2_0_40ds_0_4v_58", candidate["instances"]["display_connector"]
+        )
+        self.assertEqual(
+            "hirose_df40c_40dp_0_4v_51", candidate["instances"]["display_adapter_plug"]
+        )
+        self.assertEqual(
+            "hirose_fh34srj_40s_0_5sh_99", candidate["instances"]["display_panel_connector"]
         )
         self.assertEqual("ti_tps2553drvr_1", candidate["instances"]["backlight_efuse"])
         self.assertEqual(

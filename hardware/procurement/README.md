@@ -14,7 +14,7 @@ review come first.
 
 | Gate | Prepared artifact | Current state | Closure condition |
 |---|---|---|---|
-| standalone display production identity | [`HMX035CTFT-001-display-rfq.md`](HMX035CTFT-001-display-rfq.md) | no-order technical request ready | controlled approval drawing and standalone lifecycle identity; commercial/sample work stays deferred |
+| standalone display production identity | [`HMX035CTFT-001-display-rfq.md`](HMX035CTFT-001-display-rfq.md) | H1 main-board geometry closed by replaceable `L2-DISP-ADP-001-A`; optional no-order identity request retained | controlled standalone lifecycle identity plus received-tail fit on an adapter revision in H5; commercial/sample work stays deferred |
 | exact nRF miniature RF mate | [`E01-ML01IPX-data-request.md`](E01-ML01IPX-data-request.md) | H1 paper path closed as Gen1; optional no-order lot confirmation retained | received lot proves Gen1 fit/retention and complete-feed RF performance in H5 |
 | exact U214 mating stack | [`U214-mating-data-request.md`](U214-mating-data-request.md) | H1 paper geometry closed with pass-through `HLE-107-02-G-DV-PE-LC`; optional manufacturer confirmation retained | received U214 passes insertion/withdrawal, continuity, repeated-cycle and retention checks in H5 |
 | exact SA518 geometry, variant and supply | [`SA518-sample-rfq.md`](SA518-sample-rfq.md) | ready to send; price and inventory are RFQ-only | controlled land pattern + resolved UPDATE/H-L semantics + two received modules pass incoming/HIL |

@@ -19,15 +19,18 @@ excluded from totals.
 
 | Exact item | Qty | Public reference | Why this quantity is the minimum useful lot | Gate closed by receipt |
 |---|---:|---:|---|---|
-| Elecrow `DLE06235B` / QDtech `ES3C35P` complete display donor containing `HMX035CTFT-001` | 5 | $20.90 each; $104.50 material | one intact reference, three independently measured display flexes and one handling/HIL spare | actual display/flex envelope, markings, FPC contact side/thickness/stiffener, first `FH12` mate and electrical HIL |
+| Elecrow `DLE06235B` / QDtech `ES3C35P` complete display donor containing `HMX035CTFT-001` | 5 | $20.90 each; $104.50 material | one intact reference, three independently measured display flexes and one handling/HIL spare | H5 actual display/flex envelope, markings, thickness/stiffener, adapter fit and electrical HIL |
 | M5Stack `U214` | 1 | $14.50 | the same non-destructive specimen can close geometry, pin section, bottoming, retention and functional Cap-Bus checks | received-Cap envelope and exact host-socket mating stack |
 | Samtec `HLE-107-02-G-DV-PE-LC` | 5 | $3.338 manufacturer q1 reference; $16.69 reference material | one dock specimen plus four fit/alignment/repeated-mating coupons; exact part is stocked by Samtec | pass-through footprint/body/tail truth, received-U214 insertion force and retention |
-| Hirose `FH12-40S-0.5SH(55)` | 5 | $3.55 DigiKey q1 reference; $17.75 material | one connector per received display flex, so a damaged latch or extraction does not collapse the evidence set | exact flex insertion, contact orientation and repeatability |
+| Hirose `FH34SRJ-40S-0.5SH(99)` | 5 | $3.40 Mouser q1 reference; $17.00 material | one dual-contact ZIF per received display flex, so a damaged latch or extraction does not collapse the H5 evidence set | exact flex thickness, insertion, retention and repeatability |
+| Hirose `DF40C(2.0)-40DS-0.4V(58)` | 5 | $1.36 Mouser q1 reference; $6.80 material | one exact fixed receptacle per display-adapter coupon | exact 2.0-mm stack, alignment and repeated mating |
+| Hirose `DF40C-40DP-0.4V(51)` | 5 | $1.01 Mouser q1 reference; $5.05 material | one exact adapter plug per display-adapter coupon | exact 40-contact mate, continuity and repeated mating |
 | Ebyte `E01-ML01IPX` | 4 | $2.02 official-store reference; availability confirmation required | three simultaneous full-function nRF24 paths plus one untouched identity/connector/spare specimen | module envelope, exact `IPX` mating family, pigtail choice and three-radio HIL setup |
 | NiceRF `SA518` | 2 | RFQ | one installed RF/thermal specimen and one retained comparison/spare specimen | exact contact-7 geometry, land pattern, short antenna-feed corridor and first RF/thermal HIL |
 
-The currently computable reference material is **$153.44**, covering the
-display donors, U214, five Samtec sockets and five Hirose connectors. The Ebyte
+The currently computable reference material is **$164.54**, covering the
+display donors, U214, five Samtec sockets and five copies of each selected
+Hirose display-interface connector. The Ebyte
 store price would add **$8.08** if exact stock is confirmed. No complete-lot
 total is stated until NiceRF quotes `SA518` and Ebyte resolves the contradictory
 in-stock/pre-order state; shipping and taxes also remain destination-dependent.
@@ -37,7 +40,9 @@ Ordering references:
 - [Elecrow display donor](https://www.elecrow.com/3-5-esp32-s3-display-320x480-capacitive-ips-touchscreen-with-speaker-mic-bat-interface-supports-ai-voice-chat.html);
 - [M5Stack U214 at DigiKey](https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/U214/29291633);
 - [exact Samtec pass-through socket](https://www.samtec.com/products/hle-107-02-g-dv-pe-lc);
-- [exact Hirose connector at DigiKey](https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328);
+- [exact dual-contact Hirose panel ZIF](https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99?qs=vcbW%252B4%252BSTIq%252BjF2my2YV5Q%3D%3D);
+- [exact Hirose 2.0-mm main-board receptacle](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D);
+- [exact Hirose adapter-board plug](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51?qs=eDUdFcBPps3ody6AX5VRNA%3D%3D);
 - [Ebyte E01-ML01IPX official store page](https://ebyteiot.com/products/ebyte-e01-ml01ipx-nrf24l01p-rf-2-4g-smd-wireless-transceiver-module-iot-electronic-components-ebyte-e01-ml01ipx-spi-interface-antenna-ipex-smd);
 - [NiceRF SA518 manufacturer/RFQ page](https://www.nicerf.com/walkie-talkie-module/sa518-uv-dual-frequency-walkie-talkie-module.html).
 

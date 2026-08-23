@@ -1,0 +1,4676 @@
+{
+  "schema_version": 1,
+  "stage": "H1.1.4",
+  "status": "reviewed",
+  "generated_from": [
+    "hardware/architecture/devices.json",
+    "hardware/architecture/candidates/G2F-3I.json",
+    "hardware/product-design/mechanical-evidence-gates.json",
+    "hardware/product-design/g3_clamshell.py"
+  ],
+  "policy": "Every mechanically rendered body has one exact instance, MPN or explicit TBD, sourced envelope, datum, orientation and interface direction.",
+  "summary": {
+    "rendered_physical_instances": 167,
+    "exact_mpn_instances": 167,
+    "explicit_mpn_tbd_instances": 0,
+    "h1_blockers": 0,
+    "h5_received_sample_gates": 13
+  },
+  "rows": [
+    {
+      "instance": "aon_buck",
+      "device_key": "ti_tps629203_drlr",
+      "mpn": "Texas Instruments TPS629203DRLR",
+      "role": "always-on 3.3-V converter",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        1.6,
+        0.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPS629203 300-mA, 3-V to 17-V low-IQ buck converter datasheet",
+        "version": "SLVSGE2, March 2022",
+        "url": "https://www.ti.com/lit/ds/symlink/tps629203.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        43.0,
+        61.0
+      ]
+    },
+    {
+      "instance": "aon_inductor",
+      "device_key": "sunlord_wpn201612h2r2mt",
+      "mpn": "Sunlord WPN201612H2R2MT",
+      "role": "always-on 3.3-V 2.2-uH switching inductor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.6,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Sunlord WPN series wire-wound SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20221122/WPN%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        46.0,
+        64.0
+      ]
+    },
+    {
+      "instance": "aon_input_cap",
+      "device_key": "tdk_cga5l1x7r1e475k160ac",
+      "mpn": "TDK CGA5L1X7R1E475K160AC",
+      "role": "always-on 3.3-V input capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TDK CGA5L1X7R1E475K160AC product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        42.0,
+        64.0
+      ]
+    },
+    {
+      "instance": "aon_output_cap",
+      "device_key": "murata_grm31cr71a226ke15l",
+      "mpn": "Murata GRM31CR71A226KE15L",
+      "role": "always-on 3.3-V output capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71A226KE15 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM31CR71A226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        42.0,
+        66.3
+      ]
+    },
+    {
+      "instance": "audio_speaker_selector",
+      "device_key": "ti_tmux1136_dgsr",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "role": "active differential speaker-path selector",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        5.05,
+        1.1
+      ],
+      "qualification": "reference_only",
+      "source": {
+        "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
+        "version": "SCDS402B, June 2019, revised February 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        42.0,
+        62.0
+      ]
+    },
+    {
+      "instance": "c5",
+      "device_key": "esp32_c5_wroom_1u_n8r8",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "role": "native 2.4/5-GHz and IR owner",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        18.0,
+        21.2,
+        3.3
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet",
+        "version": "v1.2",
+        "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        51.0,
+        22.0
+      ]
+    },
+    {
+      "instance": "c5_boot_button",
+      "device_key": "alps_skqgade010",
+      "mpn": "Alps Alpine SKQGADE010",
+      "role": "C5 technological BOOT",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "envelope_mm": [
+        6.4,
+        5.2,
+        1.5
+      ],
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        66.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "c5_dbg_header",
+      "device_key": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "role": "keyed C5 UART0/RESET/BOOT header",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "envelope_mm": [
+        9.65,
+        5.84,
+        5.56
+      ],
+      "qualification": "verified_exact_three_domain_dbg10_header",
+      "source": {
+        "document": "Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint",
+        "version": "drawing revision FX; -105/-01/-L/-DV/-K/-P configuration",
+        "url": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        47.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "c5_external_rp_sma",
+      "device_key": "gct_rfpc_sma32_fn_175_a",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "role": "6ghz_ip67_reverse_polarity_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_reverse_polarity_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing",
+        "version": "RFPC-SMA31/SMA32 IP67 edge-launch family",
+        "url": "https://gct.co/connector/rfpc-sma32-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "c5_reset_button",
+      "device_key": "alps_skqgade010",
+      "mpn": "Alps Alpine SKQGADE010",
+      "role": "C5 technological RESET",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "envelope_mm": [
+        6.4,
+        5.2,
+        1.5
+      ],
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        58.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "c5_rf_board_connector",
+      "device_key": "hirose_ufl_r_smt_1_10",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "role": "C5 30-mm jumper board receptacle",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face toward the cable plug",
+      "envelope_mm": [
+        3.0,
+        3.1,
+        2.4
+      ],
+      "qualification": "verified_exact_native_rf_board_mate",
+      "source": {
+        "document": "Hirose U.FL Series connector catalog",
+        "version": "current catalog",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NATIVE-RF-JUMPERS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        57.5,
+        9.0
+      ]
+    },
+    {
+      "instance": "c5_rf_coupler",
+      "device_key": "kyocera_avx_cp0603q5425entr",
+      "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+      "role": "C5 dual-band forward-power coupler beside the outward RP-SMA",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        0.84,
+        0.6
+      ],
+      "qualification": "verified_exact_native_rf_forward_coupler",
+      "source": {
+        "document": "CP0302/CP0402/CP0603 High Directivity Directional Couplers for WiFi Bands",
+        "version": "TDS-RFM-0055 Rev. 2",
+        "url": "https://datasheets.kyocera-avx.com/cp0302.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        58.2,
+        6.2
+      ]
+    },
+    {
+      "instance": "c5_rf_jumper",
+      "device_key": "te_2118651_2",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "frame": "ui-inner-route",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "module-to-board RF cable path",
+      "envelope_mm": [
+        30.0,
+        1.13,
+        2.5
+      ],
+      "qualification": "verified_exact_native_rf_jumper",
+      "source": {
+        "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+        "version": "ENG_CD_2118651_C5; live exact-product record",
+        "url": "https://www.te.com/en/product-2118651-2.html",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NATIVE-RF-JUMPERS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "route_points_mm": [
+        [
+          66.0,
+          24.38
+        ],
+        [
+          66.0,
+          18.0
+        ],
+        [
+          59.4,
+          18.0
+        ],
+        [
+          59.4,
+          13.0
+        ],
+        [
+          64.0,
+          13.0
+        ],
+        [
+          64.0,
+          10.55
+        ],
+        [
+          59.0,
+          10.55
+        ]
+      ]
+    },
+    {
+      "instance": "c5_service_usb_connector",
+      "device_key": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
+      "role": "C5 data-only service USB",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front bottom enclosure exit",
+      "envelope_mm": [
+        8.94,
+        7.35,
+        3.31
+      ],
+      "qualification": "verified_exact_service_usb_receptacle",
+      "source": {
+        "document": "USB4105 USB Type-C receptacle drawing and product specification",
+        "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
+        "url": "https://gct.co/files/drawings/usb4105.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        27.0,
+        142.65
+      ]
+    },
+    {
+      "instance": "c5_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "cc",
+      "device_key": "cc1101rgpr",
+      "mpn": "CC1101RGPR",
+      "role": "multi-band sub-GHz transceiver inside its local reference RF zone",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        4.0,
+        4.0,
+        1.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet",
+        "version": "SWRS061I",
+        "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        24.0,
+        8.3
+      ]
+    },
+    {
+      "instance": "cc_band_buffer",
+      "device_key": "nexperia_74lvc2g126dc_125",
+      "mpn": "Nexperia 74LVC2G126DC,125",
+      "role": "CC1101 band-select buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.3,
+        2.0,
+        1.0
+      ],
+      "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
+      "source": {
+        "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
+        "version": "Rev. 16, 17 August 2023",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        67.1,
+        58.0
+      ]
+    },
+    {
+      "instance": "cc_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "cc_host_buffer",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "CC1101 host-command buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        55.3,
+        58.0
+      ]
+    },
+    {
+      "instance": "cc_return_buffer",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "CC1101 return-path buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        61.2,
+        58.0
+      ]
+    },
+    {
+      "instance": "cc_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "charger_bat_cap0",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 BAT bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        8.8,
+        73.6
+      ]
+    },
+    {
+      "instance": "charger_bat_cap1",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 BAT bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        12.7,
+        73.6
+      ]
+    },
+    {
+      "instance": "charger_inductor",
+      "device_key": "sunlord_mwsa0503s_2r2mt",
+      "mpn": "Sunlord MWSA0503S-2R2MT",
+      "role": "BQ25798 2.2-uH switching inductor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.4,
+        5.2,
+        3.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        6.0,
+        62.4
+      ]
+    },
+    {
+      "instance": "charger_pmid_cap0",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 PMID bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        8.8,
+        69.0
+      ]
+    },
+    {
+      "instance": "charger_pmid_cap1",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 PMID bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        12.7,
+        69.0
+      ]
+    },
+    {
+      "instance": "charger_pmid_cap2",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 PMID bulk capacitor #2",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        71.3
+      ]
+    },
+    {
+      "instance": "charger_regn_cap",
+      "device_key": "tdk_cga5l1x7r1e475k160ac",
+      "mpn": "TDK CGA5L1X7R1E475K160AC",
+      "role": "BQ25798 REGN local capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TDK CGA5L1X7R1E475K160AC product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        75.9
+      ]
+    },
+    {
+      "instance": "charger_sys_cap0",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 SYS bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        4.9,
+        71.3
+      ]
+    },
+    {
+      "instance": "charger_sys_cap1",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 SYS bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        8.8,
+        71.3
+      ]
+    },
+    {
+      "instance": "charger_sys_cap2",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 SYS bulk capacitor #2",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        12.7,
+        71.3
+      ]
+    },
+    {
+      "instance": "charger_sys_cap3",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 SYS bulk capacitor #3",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        73.6
+      ]
+    },
+    {
+      "instance": "charger_sys_cap4",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 SYS bulk capacitor #4",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        4.9,
+        73.6
+      ]
+    },
+    {
+      "instance": "charger_vbus_cap0",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 VBUS bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        69.0
+      ]
+    },
+    {
+      "instance": "charger_vbus_cap1",
+      "device_key": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "role": "BQ25798 VBUS bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM31CR71E106MA12 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GRM31CR71E106MA12L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        4.9,
+        69.0
+      ]
+    },
+    {
+      "instance": "codec",
+      "device_key": "everest_es8311_qfn20",
+      "mpn": "Everest Semiconductor ES8311",
+      "role": "audio capture and playback codec",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.0,
+        3.0,
+        0.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "ES8311 Low Power Mono Audio CODEC Product Brief",
+        "version": "Revision 17.0, February 2026",
+        "url": "https://www.everest-semi.com/pdf/ES8311%20PB.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        42.0,
+        55.0
+      ]
+    },
+    {
+      "instance": "codec_i2s_din_boot_gate",
+      "device_key": "ti_sn74lvc1g08_dckr",
+      "mpn": "SN74LVC1G08DCKR",
+      "role": "CODEC_READY and AUDIO_ARM gate protecting S3 boot GPIO0",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_partial_power_down_and_gate",
+      "source": {
+        "document": "SN74LVC1G08 Single 2-Input Positive-AND Gate datasheet",
+        "version": "Rev. AA",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        18.0,
+        75.0
+      ]
+    },
+    {
+      "instance": "display",
+      "device_key": "qdtech_hmx035ctft_001",
+      "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+      "role": "raw_display_touch_assembly_with_integrated_sitronix_st77922_tddi",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward view/touch",
+      "envelope_mm": [
+        54.5,
+        83.0,
+        3.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "QDtech ES3C35P 3.5-inch IPS ESP32-S3 Display Module Specification",
+        "version": "V1.0; outline drawing dated 2025-07-24",
+        "url": "https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf",
+        "checked": "2026-08-22"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DISPLAY-TAIL",
+          "disposition": "h5_received_sample_gate"
+        },
+        {
+          "id": "H5-MECH-DISPLAY-PERFORMANCE",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "display_adapter_plug",
+      "device_key": "hirose_df40c_40dp_0_4v_51",
+      "mpn": "Hirose DF40C-40DP-0.4V(51)",
+      "role": "40_position_0_4mm_vertical_board_to_board_plug",
+      "frame": "display-adapter",
+      "frame_datum": "L2-DISP-ADP-001-A top-left, viewed from its panel-facing side",
+      "rotation_deg": 0,
+      "direction": "normal to the adapter underside toward the UI-board receptacle",
+      "envelope_mm": [
+        9.52,
+        2.97,
+        1.14
+      ],
+      "qualification": "verified_exact_display_adapter_daughter_board_plug",
+      "source": {
+        "document": "Hirose exact product page, 2D drawing and specification sheet",
+        "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+        "checked": "2026-08-23"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DISPLAY-TAIL",
+          "disposition": "h5_received_sample_gate"
+        },
+        {
+          "id": "H5-MECH-DISPLAY-PERFORMANCE",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "display_connector",
+      "device_key": "hirose_df40c_2_0_40ds_0_4v_58",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "role": "40-contact fixed receptacle for the replaceable display adapter",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face toward the replaceable adapter plug",
+      "envelope_mm": [
+        10.6,
+        3.38,
+        1.95
+      ],
+      "qualification": "verified_exact_display_adapter_main_board_receptacle",
+      "source": {
+        "document": "Hirose exact product page, 2D drawing and specification sheet",
+        "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+        "checked": "2026-08-23"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DISPLAY-TAIL",
+          "disposition": "h5_received_sample_gate"
+        },
+        {
+          "id": "H5-MECH-DISPLAY-PERFORMANCE",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        32.2,
+        96.0
+      ]
+    },
+    {
+      "instance": "display_panel_connector",
+      "device_key": "hirose_fh34srj_40s_0_5sh_99",
+      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "role": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+      "frame": "display-adapter",
+      "frame_datum": "L2-DISP-ADP-001-A top-left, viewed from its panel-facing side",
+      "rotation_deg": 0,
+      "direction": "horizontal FPC insertion in the adapter plane; dual-contact orientation; received-tail thickness remains H5 evidence",
+      "envelope_mm": [
+        22.0,
+        3.8,
+        1.0
+      ],
+      "qualification": "verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open",
+      "source": {
+        "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
+        "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+        "checked": "2026-08-23"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DISPLAY-TAIL",
+          "disposition": "h5_received_sample_gate"
+        },
+        {
+          "id": "H5-MECH-DISPLAY-PERFORMANCE",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "display_touch_controller",
+      "device_key": "sitronix_st77922",
+      "mpn": "Sitronix ST77922",
+      "role": "single_chip_tft_controller_driver_and_capacitive_touch_tddi_cog",
+      "frame": "display-assembly",
+      "frame_datum": "HMX035CTFT-001 screen-body top-left, front view",
+      "rotation_deg": 0,
+      "direction": "embedded in HMX035CTFT-001; no separate mechanical interface",
+      "envelope_mm": [
+        13.46,
+        0.97,
+        0.2
+      ],
+      "qualification": "verified_exact_controller_inside_hmx035ctft_001",
+      "source": {
+        "document": "ST77922 Single-Chip TFT Controller/Driver/Touch datasheet",
+        "version": "Preliminary 0.1, 2023-06",
+        "url": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "encoder",
+      "device_key": "alps_ec11e18244au",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "role": "rear encoder above F1/F2",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal outward actuation",
+      "envelope_mm": [
+        11.0,
+        11.0,
+        20.0
+      ],
+      "qualification": "verified_first_target_mechanical_fit_hil_open",
+      "source": {
+        "document": "EC11E Series Incremental Encoder catalog and product specification",
+        "version": "catalog update 2510",
+        "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-ENCODER-KNOB",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        2.5,
+        45.0
+      ]
+    },
+    {
+      "instance": "encoder_knob",
+      "device_key": "davies_1227_j",
+      "mpn": "Davies Molding 1227-J",
+      "role": "exact soft-touch knob over rear encoder",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal outward actuation",
+      "envelope_mm": [
+        15.0,
+        15.0,
+        21.0
+      ],
+      "qualification": "verified_exact_shaft_and_plan_fit_hil_open",
+      "source": {
+        "document": "Davies Molding 1227-J official product page and drawing table",
+        "version": "live product page",
+        "url": "https://daviesmolding.com/catalog/series/knobs/control/1227-j/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-ENCODER-KNOB",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        0.5,
+        43.0
+      ]
+    },
+    {
+      "instance": "evidence_cmp_a",
+      "device_key": "ti_tlv1824_pwr",
+      "mpn": "TLV1824PWR",
+      "role": "UI-local S3/C5/IR TX evidence comparator",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        8.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "evidence_cmp_b",
+      "device_key": "ti_tlv1824_pwr",
+      "mpn": "TLV1824PWR",
+      "role": "RF-local nRF/CC TX evidence comparator",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1824.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        58.0,
+        88.0
+      ]
+    },
+    {
+      "instance": "evidence_cmp_voice",
+      "device_key": "ti_tlv1821_dckr",
+      "mpn": "TLV1821DCKR",
+      "role": "RF-local voice TX evidence comparator",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_local_voice_evidence_comparator",
+      "source": {
+        "document": "TLV181x and TLV182x 40V Rail-to-Rail Comparator datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1821.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        66.0,
+        88.0
+      ]
+    },
+    {
+      "instance": "evidence_mask",
+      "device_key": "ti_tca9535_pwr",
+      "mpn": "TCA9535PWR",
+      "role": "AON evidence-source mask expander",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        7.8,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_exact_aon_evidence_mask_expander",
+      "source": {
+        "document": "TCA9535 Low-Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet",
+        "version": "Rev. E",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9535.pdf",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        50.0,
+        67.0
+      ]
+    },
+    {
+      "instance": "ext_buck",
+      "device_key": "ti_tps564252_drlr",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "role": "accessory 5.0-V converter",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        1.6,
+        0.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet",
+        "version": "SLUSEQ6A, December 2022, revised May 2023",
+        "url": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        36.0,
+        61.0
+      ]
+    },
+    {
+      "instance": "ext_buck_input_cap",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "accessory 5.0-V input bulk capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        35.0,
+        70.0
+      ]
+    },
+    {
+      "instance": "ext_buck_output_cap0",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "accessory 5.0-V output bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        39.0,
+        70.0
+      ]
+    },
+    {
+      "instance": "ext_buck_output_cap1",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "accessory 5.0-V output bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        35.0,
+        73.2
+      ]
+    },
+    {
+      "instance": "ext_inductor",
+      "device_key": "sunlord_mwsa0503s_4r7mt",
+      "mpn": "Sunlord MWSA0503S-4R7MT",
+      "role": "accessory 5.0-V 4.7-uH switching inductor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.4,
+        5.2,
+        3.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        35.0,
+        64.0
+      ]
+    },
+    {
+      "instance": "headphone_jack",
+      "device_key": "same_sky_sj1_3515_smt_tr",
+      "mpn": "Same Sky SJ1-3515-SMT-TR",
+      "role": "3.5-mm headphone/line connector",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front right enclosure exit",
+      "envelope_mm": [
+        15.0,
+        9.5,
+        5.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "SJ1-351X-SMT Audio Jack datasheet",
+        "version": "Rev. 1.09, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/sj1-351x-smt.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        60.0,
+        75.0
+      ]
+    },
+    {
+      "instance": "ir_carrier",
+      "device_key": "vishay_tsmp95000tt",
+      "mpn": "Vishay TSMP95000TT",
+      "role": "carrier-learning IR receiver",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front left enclosure exit",
+      "envelope_mm": [
+        6.8,
+        3.0,
+        3.2
+      ],
+      "qualification": "verified_exact_carrier_learning_ir_receiver",
+      "source": {
+        "document": "TSMP95000 IR sensor module datasheet",
+        "version": "Rev. 1.0, 20-Oct-2022",
+        "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        0.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "ir_demod",
+      "device_key": "vishay_tsop95238tt",
+      "mpn": "Vishay TSOP95238TT",
+      "role": "38-kHz IR receiver",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front left enclosure exit",
+      "envelope_mm": [
+        6.8,
+        3.0,
+        3.2
+      ],
+      "qualification": "verified_exact_robust_ir_receiver",
+      "source": {
+        "document": "TSOP952/TSOP954 IR receiver modules datasheet",
+        "version": "Rev. 1.2, 13-Apr-2022",
+        "url": "https://www.vishay.com/docs/82837/tsop952.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        0.0,
+        75.0
+      ]
+    },
+    {
+      "instance": "ir_emitter",
+      "device_key": "vishay_vsmy14940",
+      "mpn": "Vishay VSMY14940",
+      "role": "940-nm IR transmitter",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front left enclosure exit",
+      "envelope_mm": [
+        3.0,
+        2.51,
+        1.2
+      ],
+      "qualification": "verified_exact_consumer_ir_transmit_emitter",
+      "source": {
+        "document": "VSMY14940 high-speed infrared emitter datasheet",
+        "version": "Rev. 1.6, 22-Sep-2017",
+        "url": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        0.0,
+        89.0
+      ]
+    },
+    {
+      "instance": "ir_safe_gate",
+      "device_key": "ti_sn74lvc1g08_dckr",
+      "mpn": "SN74LVC1G08DCKR",
+      "role": "UI-local FAULT_KILL-qualified IR carrier gate",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_partial_power_down_and_gate",
+      "source": {
+        "document": "SN74LVC1G08 Single 2-Input Positive-AND Gate datasheet",
+        "version": "Rev. AA",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        8.0,
+        75.0
+      ]
+    },
+    {
+      "instance": "m1_rf_receptacle",
+      "device_key": "hirose_fx8c_80s_sv5_92",
+      "mpn": "Hirose FX8C-80S-SV5(92)",
+      "role": "80-contact M1 receptacle; 11-mm board stack",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face toward the UI board",
+      "envelope_mm": [
+        30.6,
+        7,
+        8.95
+      ],
+      "qualification": "verified_exact_m1_11mm_receptacle",
+      "source": {
+        "document": "Hirose FX8C-80S-SV5(92) official product data, 2D drawing and FX8C mating table",
+        "version": "product specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0578-0823-5-92",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        22.2,
+        119.0
+      ]
+    },
+    {
+      "instance": "m1_ui_plug",
+      "device_key": "hirose_fx8c_80p_sv1_92",
+      "mpn": "Hirose FX8C-80P-SV1(92)",
+      "role": "80-contact M1 plug; 11-mm board stack",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face toward the RF/power board",
+      "envelope_mm": [
+        30.6,
+        6.5,
+        5.85
+      ],
+      "qualification": "verified_exact_m1_11mm_plug",
+      "source": {
+        "document": "Hirose FX8C-80P-SV1(92) official product data, 2D drawing and FX8C mating table",
+        "version": "product specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/product/p/CL0578-0523-1-92",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        22.2,
+        119.0
+      ]
+    },
+    {
+      "instance": "main_buck",
+      "device_key": "ti_tps564252_drlr",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "role": "main 3.3-V converter",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        1.6,
+        0.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet",
+        "version": "SLUSEQ6A, December 2022, revised May 2023",
+        "url": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        20.0,
+        61.0
+      ]
+    },
+    {
+      "instance": "main_inductor",
+      "device_key": "sunlord_mwsa0503s_3r3mt",
+      "mpn": "Sunlord MWSA0503S-3R3MT",
+      "role": "main 3.3-V 3.3-uH switching inductor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.4,
+        5.2,
+        3.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        19.0,
+        64.0
+      ]
+    },
+    {
+      "instance": "main_input_cap",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "main 3.3-V input bulk capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        19.0,
+        70.0
+      ]
+    },
+    {
+      "instance": "main_output_cap0",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "main 3.3-V output bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        22.9,
+        70.0
+      ]
+    },
+    {
+      "instance": "main_output_cap1",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "main 3.3-V output bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        19.0,
+        73.2
+      ]
+    },
+    {
+      "instance": "microphone",
+      "device_key": "same_sky_cmej_0413_42_smt_tr",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "role": "rear bottom microphone port",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear bottom acoustic opening",
+      "envelope_mm": [
+        4.0,
+        4.0,
+        1.3
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet",
+        "version": "Rev. 1.04, September 2024",
+        "url": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-ACOUSTIC-PATHS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        45.0,
+        146.0
+      ]
+    },
+    {
+      "instance": "nrf0",
+      "device_key": "ebyte_e01_ml01ipx",
+      "mpn": "Ebyte E01-ML01IPX",
+      "role": "full-function nRF24 radio #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
+      "envelope_mm": [
+        12.1,
+        19.1,
+        2.1
+      ],
+      "qualification": "verified_reference",
+      "source": {
+        "document": "E01-ML01IPX product specification",
+        "version": "2025-01-16",
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        10.0,
+        7.5
+      ]
+    },
+    {
+      "instance": "nrf0_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "nrf0_host_buffer",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "nRF24 #0 host-command buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        0.0,
+        44.0
+      ]
+    },
+    {
+      "instance": "nrf0_return_buffer",
+      "device_key": "nexperia_74lvc2g126dc_125",
+      "mpn": "Nexperia 74LVC2G126DC,125",
+      "role": "nRF24 #0 return-path buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.3,
+        2.0,
+        1.0
+      ],
+      "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
+      "source": {
+        "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
+        "version": "Rev. 16, 17 August 2023",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        6.0,
+        44.0
+      ]
+    },
+    {
+      "instance": "nrf0_rf_board_connector",
+      "device_key": "hirose_ufl_r_smt_1_10",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "role": "nRF24 #0 Gen1 jumper board receptacle",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face toward the Gen1 cable plug",
+      "envelope_mm": [
+        3.0,
+        3.1,
+        2.4
+      ],
+      "qualification": "verified_exact_native_rf_board_mate",
+      "source": {
+        "document": "Hirose U.FL Series connector catalog",
+        "version": "current catalog",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        23.0,
+        28.0
+      ]
+    },
+    {
+      "instance": "nrf0_rf_jumper",
+      "device_key": "te_2118651_2",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "frame": "rf-inner-route",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+      "envelope_mm": [
+        30.0,
+        1.13,
+        2.5
+      ],
+      "qualification": "verified_exact_native_rf_jumper",
+      "source": {
+        "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+        "version": "ENG_CD_2118651_C5; live exact-product record",
+        "url": "https://www.te.com/en/product-2118651-2.html",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "nrf0_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "nrf1",
+      "device_key": "ebyte_e01_ml01ipx",
+      "mpn": "Ebyte E01-ML01IPX",
+      "role": "full-function nRF24 radio #1; rotated for U214 tail clearance",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 90,
+      "direction": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
+      "envelope_mm": [
+        12.1,
+        19.1,
+        2.1
+      ],
+      "qualification": "verified_reference",
+      "source": {
+        "document": "E01-ML01IPX product specification",
+        "version": "2025-01-16",
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        31.5,
+        7.5
+      ]
+    },
+    {
+      "instance": "nrf1_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "nrf1_host_buffer",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "nRF24 #1 host-command buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        55.3,
+        34.0
+      ]
+    },
+    {
+      "instance": "nrf1_return_buffer",
+      "device_key": "nexperia_74lvc2g126dc_125",
+      "mpn": "Nexperia 74LVC2G126DC,125",
+      "role": "nRF24 #1 return-path buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.3,
+        2.0,
+        1.0
+      ],
+      "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
+      "source": {
+        "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
+        "version": "Rev. 16, 17 August 2023",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        61.2,
+        34.0
+      ]
+    },
+    {
+      "instance": "nrf1_rf_board_connector",
+      "device_key": "hirose_ufl_r_smt_1_10",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "role": "nRF24 #1 Gen1 jumper board receptacle",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face toward the Gen1 cable plug",
+      "envelope_mm": [
+        3.0,
+        3.1,
+        2.4
+      ],
+      "qualification": "verified_exact_native_rf_board_mate",
+      "source": {
+        "document": "Hirose U.FL Series connector catalog",
+        "version": "current catalog",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        50.0,
+        28.0
+      ]
+    },
+    {
+      "instance": "nrf1_rf_jumper",
+      "device_key": "te_2118651_2",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "frame": "rf-inner-route",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+      "envelope_mm": [
+        30.0,
+        1.13,
+        2.5
+      ],
+      "qualification": "verified_exact_native_rf_jumper",
+      "source": {
+        "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+        "version": "ENG_CD_2118651_C5; live exact-product record",
+        "url": "https://www.te.com/en/product-2118651-2.html",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "nrf1_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "nrf2",
+      "device_key": "ebyte_e01_ml01ipx",
+      "mpn": "Ebyte E01-ML01IPX",
+      "role": "full-function nRF24 radio #2",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
+      "envelope_mm": [
+        12.1,
+        19.1,
+        2.1
+      ],
+      "qualification": "verified_reference",
+      "source": {
+        "document": "E01-ML01IPX product specification",
+        "version": "2025-01-16",
+        "url": "https://www.ebyte.com/Uploadfiles/Files/2025-1-16/2025116152734216.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        52.9,
+        7.5
+      ]
+    },
+    {
+      "instance": "nrf2_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "nrf2_host_buffer",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "nRF24 #2 host-command buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        55.3,
+        40.0
+      ]
+    },
+    {
+      "instance": "nrf2_return_buffer",
+      "device_key": "nexperia_74lvc2g126dc_125",
+      "mpn": "Nexperia 74LVC2G126DC,125",
+      "role": "nRF24 #2 return-path buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.3,
+        2.0,
+        1.0
+      ],
+      "qualification": "verified_exact_nrf_switched_to_host_domain_isolator",
+      "source": {
+        "document": "74LVC2G126 dual bus buffer/line driver product data sheet",
+        "version": "Rev. 16, 17 August 2023",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        61.2,
+        40.0
+      ]
+    },
+    {
+      "instance": "nrf2_rf_board_connector",
+      "device_key": "hirose_ufl_r_smt_1_10",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "role": "nRF24 #2 Gen1 jumper board receptacle",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face toward the Gen1 cable plug",
+      "envelope_mm": [
+        3.0,
+        3.1,
+        2.4
+      ],
+      "qualification": "verified_exact_native_rf_board_mate",
+      "source": {
+        "document": "Hirose U.FL Series connector catalog",
+        "version": "current catalog",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        70.0,
+        22.0
+      ]
+    },
+    {
+      "instance": "nrf2_rf_jumper",
+      "device_key": "te_2118651_2",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "frame": "rf-inner-route",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
+      "envelope_mm": [
+        30.0,
+        1.13,
+        2.5
+      ],
+      "qualification": "verified_exact_native_rf_jumper",
+      "source": {
+        "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+        "version": "ENG_CD_2118651_C5; live exact-product record",
+        "url": "https://www.te.com/en/product-2118651-2.html",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NRF-GEN1-FEEDS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "nrf2_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "nvdc_charger",
+      "device_key": "ti_bq25798_rqmr",
+      "mpn": "Texas Instruments BQ25798RQMR",
+      "role": "2S charger and NVDC power path",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        4.0,
+        4.0,
+        1.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "BQ25798 1-to-4-cell 5-A buck-boost charger datasheet",
+        "version": "SLUSDV2C, May 2020, revised June 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        63.0
+      ]
+    },
+    {
+      "instance": "pack_admission",
+      "device_key": "ti_mspm0c1106_sdgs20r",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "role": "fail-closed battery admission MCU",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.9,
+        1.1
+      ],
+      "qualification": "verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate",
+      "source": {
+        "document": "MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet",
+        "version": "SLASFJ6B, revised January 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        5.7,
+        84.0
+      ]
+    },
+    {
+      "instance": "pack_cell0",
+      "device_key": "xtar_18650_4000mah_protected",
+      "mpn": "XTAR 18650 4000mAh",
+      "role": "protected_button_top_18650_liion_4000mah_10a_cell",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 90,
+      "direction": "rear-normal cell insertion/removal",
+      "envelope_mm": [
+        69.7,
+        18.7,
+        18.7
+      ],
+      "qualification": "selected_qualification_target",
+      "source": {
+        "document": "XTAR 18650 4000mAh official two-page battery datasheet",
+        "version": "official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18",
+        "url": "https://www.xtar.cc/download/18650-4000mah-data-sheet",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-CELL-HOLDER-FIT",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "pack_cell1",
+      "device_key": "xtar_18650_4000mah_protected",
+      "mpn": "XTAR 18650 4000mAh",
+      "role": "protected_button_top_18650_liion_4000mah_10a_cell",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 90,
+      "direction": "rear-normal cell insertion/removal",
+      "envelope_mm": [
+        69.7,
+        18.7,
+        18.7
+      ],
+      "qualification": "selected_qualification_target",
+      "source": {
+        "document": "XTAR 18650 4000mAh official two-page battery datasheet",
+        "version": "official download page last updated 2026-07-06; exact PDF content rechecked 2026-08-18",
+        "url": "https://www.xtar.cc/download/18650-4000mah-data-sheet",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-CELL-HOLDER-FIT",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "pack_diag_res0",
+      "device_key": "bourns_crm2512_fx_20r0elf",
+      "mpn": "Bourns CRM2512-FX-20R0ELF",
+      "role": "pack diagnostic pulse resistor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        6.3,
+        3.1,
+        0.9
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Bourns CRM2512 high-power resistor datasheet with pulse-load curve",
+        "version": "Rev. 08/21; current product data checked 2026-08-18",
+        "url": "https://www.bourns.com/docs/product-datasheets/CRM.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        11.5,
+        84.0
+      ]
+    },
+    {
+      "instance": "pack_diag_res1",
+      "device_key": "bourns_crm2512_fx_20r0elf",
+      "mpn": "Bourns CRM2512-FX-20R0ELF",
+      "role": "pack diagnostic pulse resistor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        6.3,
+        3.1,
+        0.9
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Bourns CRM2512 high-power resistor datasheet with pulse-load curve",
+        "version": "Rev. 08/21; current product data checked 2026-08-18",
+        "url": "https://www.bourns.com/docs/product-datasheets/CRM.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        18.5,
+        84.0
+      ]
+    },
+    {
+      "instance": "pack_fuse0",
+      "device_key": "littelfuse_0451005_mrl",
+      "mpn": "Littelfuse 0451005.MRL",
+      "role": "protected-pack branch fuse #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        6.1,
+        2.69,
+        2.69
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "451/453 Nano2 surface-mount fuse datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        80.0
+      ]
+    },
+    {
+      "instance": "pack_fuse1",
+      "device_key": "littelfuse_0451005_mrl",
+      "mpn": "Littelfuse 0451005.MRL",
+      "role": "protected-pack branch fuse #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        6.1,
+        2.69,
+        2.69
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "451/453 Nano2 surface-mount fuse datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-451-453-datasheet?assetguid=3dce64db-5f0f-4b52-bbf2-f879dd216803",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        7.8,
+        80.0
+      ]
+    },
+    {
+      "instance": "pack_gauge",
+      "device_key": "adi_max17320_g20_t",
+      "mpn": "Analog Devices MAX17320G20+T",
+      "role": "2S protection and fuel gauge",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        4.0,
+        4.0,
+        0.75
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet",
+        "version": "Rev. 12, July 2025",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        84.0
+      ]
+    },
+    {
+      "instance": "pack_holder",
+      "device_key": "keystone_1048p",
+      "mpn": "Keystone Electronics 1048P",
+      "role": "dual_18650_smt_polarized_open_holder",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 90,
+      "direction": "rear-normal open-cell access",
+      "envelope_mm": [
+        86.0,
+        39.8,
+        14.86
+      ],
+      "qualification": "verified_mechanical_reference",
+      "source": {
+        "document": "Keystone 1048P exact product page and 18650 holder drawing",
+        "version": "current product page and catalog M65 p27 checked 2026-08-18",
+        "url": "https://www.keyelco.com/product.cfm/product_id/13959",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-CELL-HOLDER-FIT",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "pack_power_fet",
+      "device_key": "ti_csd87313dmst",
+      "mpn": "Texas Instruments CSD87313DMST",
+      "role": "back-to-back pack admission FET",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.3,
+        3.3,
+        1.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet",
+        "version": "SLPS659, April 2017; package addendum updated 2025-10-17",
+        "url": "https://www.ti.com/lit/ds/symlink/csd87313dms.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        21.7,
+        80.0
+      ]
+    },
+    {
+      "instance": "pack_shunt",
+      "device_key": "vishay_wsl25125l000fea",
+      "mpn": "Vishay WSL25125L000FEA",
+      "role": "Kelvin pack-current shunt",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        6.35,
+        3.18,
+        0.635
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "WSL power metal strip resistor datasheet",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.vishay.com/docs/30108/wsl.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        14.6,
+        80.0
+      ]
+    },
+    {
+      "instance": "pd_config_eeprom",
+      "device_key": "onsemi_cat24c512wi_gt3",
+      "mpn": "onsemi CAT24C512WI-GT3",
+      "role": "TPS25751 configuration EEPROM",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        4.9,
+        3.9,
+        1.75
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "CAT24C512 512-kb I2C serial EEPROM datasheet",
+        "version": "Rev. 9",
+        "url": "https://www.onsemi.com/pdf/datasheet/cat24c512-d.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        16.3,
+        134.5
+      ]
+    },
+    {
+      "instance": "pd_controller",
+      "device_key": "ti_tps25751d_refr",
+      "mpn": "Texas Instruments TPS25751DREFR",
+      "role": "sink-only USB-PD controller",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        4.0,
+        6.0,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPS25751 USB Type-C and USB PD Controller datasheet",
+        "version": "SLVSH93A, October 2023, revised March 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tps25751.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        11.5,
+        134.5
+      ]
+    },
+    {
+      "instance": "pd_pphv_cap0",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "USB-PD high-voltage bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        1.0,
+        127.0
+      ]
+    },
+    {
+      "instance": "pd_pphv_cap1",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "USB-PD high-voltage bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        4.9,
+        127.0
+      ]
+    },
+    {
+      "instance": "pd_pphv_cap2",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "USB-PD high-voltage bulk capacitor #2",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        8.8,
+        127.0
+      ]
+    },
+    {
+      "instance": "pd_pphv_cap3",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "USB-PD high-voltage bulk capacitor #3",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        12.7,
+        127.0
+      ]
+    },
+    {
+      "instance": "pd_vbus_cap",
+      "device_key": "tdk_cga5l1x7r1e475k160ac",
+      "mpn": "TDK CGA5L1X7R1E475K160AC",
+      "role": "raw VBUS local capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        1.6,
+        1.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TDK CGA5L1X7R1E475K160AC product data and characteristic models",
+        "version": "production status checked 2026-08-18",
+        "url": "https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        22.0,
+        134.5
+      ]
+    },
+    {
+      "instance": "pd_vbus_tvs",
+      "device_key": "ti_tvs2200_drvr",
+      "mpn": "Texas Instruments TVS2200DRVR",
+      "role": "raw VBUS flat-clamp TVS",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        2.0,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TVS2200 22-V flat-clamp surge-protection datasheet",
+        "version": "SLVSED5C, December 2017, revised August 2023; orderable addendum 2025-11-09",
+        "url": "https://www.ti.com/lit/ds/symlink/tvs2200.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        26.0,
+        134.5
+      ]
+    },
+    {
+      "instance": "power_command_switch",
+      "device_key": "ck_js102011scqn",
+      "mpn": "C&K JS102011SCQN",
+      "role": "single low-current RUN/KILL; charging remains available in KILL",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear right enclosure exit",
+      "envelope_mm": [
+        8.5,
+        3.5,
+        3.6
+      ],
+      "qualification": "verified_exact_low_current_power_command_switch_mechanical_hil_open",
+      "source": {
+        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
+        "version": "VL 01/14/26",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-RUN-KILL",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        65.8,
+        111.0
+      ]
+    },
+    {
+      "instance": "power_zone_ntc",
+      "device_key": "tdk_b57332v5103f360",
+      "mpn": "TDK B57332V5103F360",
+      "role": "power-conversion hotspot safety sensor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.9
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "B57 V5 automotive SMD NTC datasheet and exact product page",
+        "version": "PPD ML PD 2025-10-30",
+        "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        25.5,
+        84.0
+      ]
+    },
+    {
+      "instance": "product_usb_connector",
+      "device_key": "jae_dx07s016ja1r1500",
+      "mpn": "JAE DX07S016JA1R1500",
+      "role": "product USB-C data and sink",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear bottom enclosure exit",
+      "envelope_mm": [
+        8.94,
+        6.9,
+        3.16
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "JAE DX07 16-position receptacle product brochure",
+        "version": "MB-0350E, August 2025",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        12.0,
+        143.1
+      ]
+    },
+    {
+      "instance": "product_usb_protector",
+      "device_key": "ti_tpd4s201_rukr",
+      "mpn": "Texas Instruments TPD4S201RUKR",
+      "role": "product USB CC/USB2 protector",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.0,
+        3.0,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPD4S201 USB Type-C port-protection datasheet",
+        "version": "SLVSIF2, July 2025",
+        "url": "https://www.ti.com/lit/gpn/TPD4S201",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        7.5,
+        135.0
+      ]
+    },
+    {
+      "instance": "ptt_switch",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "rear independent PTT",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        64.2,
+        63.5
+      ]
+    },
+    {
+      "instance": "receiver",
+      "device_key": "skyworks_si4732_a10_gsr",
+      "mpn": "Si4732-A10-GSR",
+      "role": "FM/AM/SW/LW receiver",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        9.9,
+        6.0,
+        1.75
+      ],
+      "qualification": "verified_exact_production_candidate",
+      "source": {
+        "document": "Si4732-A10 Broadcast AM/FM/SW/LW/RDS Radio Receiver data short",
+        "version": "2021-09-13",
+        "url": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        51.0,
+        54.0
+      ]
+    },
+    {
+      "instance": "receiver_amlw_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "receiver_fmsw_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "rf_zone_ntc",
+      "device_key": "tdk_b57332v5103f360",
+      "mpn": "TDK B57332V5103F360",
+      "role": "RF/voice hotspot safety sensor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.9
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "B57 V5 automotive SMD NTC datasheet and exact product page",
+        "version": "PPD ML PD 2025-10-30",
+        "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        72.0,
+        56.0
+      ]
+    },
+    {
+      "instance": "rp",
+      "device_key": "rp2354b_a4",
+      "mpn": "SC1512-A4",
+      "role": "deterministic radio owner",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        10.0,
+        10.0,
+        0.9
+      ],
+      "qualification": "verified_exact_rp2354b0a4_7inch_reel_order_code",
+      "source": {
+        "document": "RP2350 Datasheet; RP2354B uses the same B-package pinout and stacked 2 MB flash",
+        "version": "build-date 2025-02-20",
+        "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        0.0,
+        33.0
+      ]
+    },
+    {
+      "instance": "rp_boot_button",
+      "device_key": "alps_skqgade010",
+      "mpn": "Alps Alpine SKQGADE010",
+      "role": "RP technological USB_BOOT",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face; enclosure-open service only",
+      "envelope_mm": [
+        6.4,
+        5.2,
+        1.5
+      ],
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        59.5,
+        104.0
+      ]
+    },
+    {
+      "instance": "rp_dbg_header",
+      "device_key": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "role": "keyed RP SWD/RUN/USB_BOOT header",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face; enclosure-open service only",
+      "envelope_mm": [
+        9.65,
+        5.84,
+        5.56
+      ],
+      "qualification": "verified_exact_three_domain_dbg10_header",
+      "source": {
+        "document": "Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint",
+        "version": "drawing revision FX; -105/-01/-L/-DV/-K/-P configuration",
+        "url": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        40.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "rp_reset_button",
+      "device_key": "alps_skqgade010",
+      "mpn": "Alps Alpine SKQGADE010",
+      "role": "RP technological RUN/RESET",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the RF-inner face; enclosure-open service only",
+      "envelope_mm": [
+        6.4,
+        5.2,
+        1.5
+      ],
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        51.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "rp_service_usb_connector",
+      "device_key": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
+      "role": "RP data-only service USB",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear bottom enclosure exit",
+      "envelope_mm": [
+        8.94,
+        7.35,
+        3.31
+      ],
+      "qualification": "verified_exact_service_usb_receptacle",
+      "source": {
+        "document": "USB4105 USB Type-C receptacle drawing and product specification",
+        "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
+        "url": "https://gct.co/files/drawings/usb4105.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        33.0,
+        142.65
+      ]
+    },
+    {
+      "instance": "s3",
+      "device_key": "esp32_s3_wroom_1u_n16r8",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "role": "UI, display, storage and audio owner",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        18.0,
+        19.2,
+        3.2
+      ],
+      "qualification": "verified_exact_16mb_flash_8mb_octal_psram_external_antenna",
+      "source": {
+        "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
+        "version": "v1.8",
+        "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        6.0,
+        22.0
+      ]
+    },
+    {
+      "instance": "s3_boot_button",
+      "device_key": "alps_skqgade010",
+      "mpn": "Alps Alpine SKQGADE010",
+      "role": "S3 technological BOOT",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "envelope_mm": [
+        6.4,
+        5.2,
+        1.5
+      ],
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        24.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "s3_dbg_header",
+      "device_key": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "role": "keyed S3 UART0/RESET/BOOT header",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "envelope_mm": [
+        9.65,
+        5.84,
+        5.56
+      ],
+      "qualification": "verified_exact_three_domain_dbg10_header",
+      "source": {
+        "document": "Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint",
+        "version": "drawing revision FX; -105/-01/-L/-DV/-K/-P configuration",
+        "url": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        5.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "s3_external_rp_sma",
+      "device_key": "gct_rfpc_sma32_fn_175_a",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "role": "6ghz_ip67_reverse_polarity_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_reverse_polarity_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA32-FN official product page and matching 1.6-mm product drawing",
+        "version": "RFPC-SMA31/SMA32 IP67 edge-launch family",
+        "url": "https://gct.co/connector/rfpc-sma32-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "s3_reset_button",
+      "device_key": "alps_skqgade010",
+      "mpn": "Alps Alpine SKQGADE010",
+      "role": "S3 technological RESET",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face; enclosure-open service only",
+      "envelope_mm": [
+        6.4,
+        5.2,
+        1.5
+      ],
+      "qualification": "verified_exact_service_boot_reset_switch",
+      "source": {
+        "document": "SKQGADE010 product page, product specification and official land-pattern images",
+        "version": "October 2025 product specification",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKQGADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        16.0,
+        104.0
+      ]
+    },
+    {
+      "instance": "s3_rf_board_connector",
+      "device_key": "hirose_ufl_r_smt_1_10",
+      "mpn": "Hirose U.FL-R-SMT-1(10)",
+      "role": "S3 30-mm jumper board receptacle",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "normal to the UI-inner face toward the cable plug",
+      "envelope_mm": [
+        3.0,
+        3.1,
+        2.4
+      ],
+      "qualification": "verified_exact_native_rf_board_mate",
+      "source": {
+        "document": "Hirose U.FL Series connector catalog",
+        "version": "current catalog",
+        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NATIVE-RF-JUMPERS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        14.5,
+        9.0
+      ]
+    },
+    {
+      "instance": "s3_rf_coupler",
+      "device_key": "kyocera_avx_cp0603q5425entr",
+      "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+      "role": "S3 forward-power coupler beside the outward RP-SMA",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        0.84,
+        0.6
+      ],
+      "qualification": "verified_exact_native_rf_forward_coupler",
+      "source": {
+        "document": "CP0302/CP0402/CP0603 High Directivity Directional Couplers for WiFi Bands",
+        "version": "TDS-RFM-0055 Rev. 2",
+        "url": "https://datasheets.kyocera-avx.com/cp0302.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        15.2,
+        6.2
+      ]
+    },
+    {
+      "instance": "s3_rf_jumper",
+      "device_key": "te_2118651_2",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "frame": "ui-inner-route",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "module-to-board RF cable path",
+      "envelope_mm": [
+        30.0,
+        1.13,
+        2.5
+      ],
+      "qualification": "verified_exact_native_rf_jumper",
+      "source": {
+        "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
+        "version": "ENG_CD_2118651_C5; live exact-product record",
+        "url": "https://www.te.com/en/product-2118651-2.html",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-NATIVE-RF-JUMPERS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "route_points_mm": [
+        [
+          21.0,
+          24.46
+        ],
+        [
+          26.0,
+          24.46
+        ],
+        [
+          26.0,
+          14.0
+        ],
+        [
+          15.45,
+          14.0
+        ],
+        [
+          15.45,
+          10.55
+        ],
+        [
+          16.0,
+          10.55
+        ]
+      ]
+    },
+    {
+      "instance": "s3_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "safe_conditioner",
+      "device_key": "nexperia_74lvc2g14gw_125",
+      "mpn": "74LVC2G14GW,125",
+      "role": "RUN and S3 fault-reset conditioner",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "74LVC2G14 Dual inverting Schmitt trigger datasheet",
+        "version": "2023-08-18",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        42.0,
+        94.0
+      ]
+    },
+    {
+      "instance": "safe_gate_a",
+      "device_key": "ti_sn74lvc08a_pwr",
+      "mpn": "SN74LVC08APWR",
+      "role": "nRF-domain transmit safety gates",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet",
+        "version": "Rev. W",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        49.0,
+        94.0
+      ]
+    },
+    {
+      "instance": "safe_gate_b",
+      "device_key": "ti_sn74lvc08a_pwr",
+      "mpn": "SN74LVC08APWR",
+      "role": "rear-domain transmit safety gates",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet",
+        "version": "Rev. W",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        49.0,
+        88.0
+      ]
+    },
+    {
+      "instance": "safe_latch",
+      "device_key": "ti_sn74lvc1g74_dcur",
+      "mpn": "SN74LVC1G74DCUR",
+      "role": "asynchronous FAULT_KILL latch",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        2.0,
+        1.1
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
+        "version": "Rev. G",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        37.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_ptt_or",
+      "device_key": "nexperia_74lvc1g32gv_125",
+      "mpn": "74LVC1G32GV,125",
+      "role": "FAULT_KILL-dominant voice PTT gate",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.9,
+        1.5,
+        1.1
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "74LVC1G32 Single 2-input OR gate datasheet",
+        "version": "2024-09-03",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        59.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_reset_buffer",
+      "device_key": "ti_sn74lvc1g06_dckr",
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "role": "C5/RP fault-reset buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_exact_fail_low_reset_gate_driver",
+      "source": {
+        "document": "SN74LVC1G06 single inverter with open-drain output datasheet",
+        "version": "Rev. AB",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        41.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_reset_sink_a",
+      "device_key": "diodes_2n7002dw_7_f",
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "role": "S3/C5 passive-drain reset sinks",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "2N7002DW dual N-channel MOSFET datasheet",
+        "version": "DS30120 Rev. 22-2, October 2021",
+        "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        44.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_reset_sink_b",
+      "device_key": "diodes_2n7002dw_7_f",
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "role": "RP reset sink",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.0,
+        1.25,
+        1.1
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "2N7002DW dual N-channel MOSFET datasheet",
+        "version": "DS30120 Rev. 22-2, October 2021",
+        "url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        55.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safe_supervisor",
+      "device_key": "ti_tps3808g33_dbvr",
+      "mpn": "TPS3808G33DBVR",
+      "role": "always-on safety supervisor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.9,
+        1.6,
+        1.45
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
+        "version": "Rev. M",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        49.0,
+        82.0
+      ]
+    },
+    {
+      "instance": "safety_controller",
+      "device_key": "ti_mspm0c1106_sdgs20r",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "role": "independent watchdog, thermal and TX-lease controller",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.9,
+        1.1
+      ],
+      "qualification": "verified_exact_64kb_flash_8kb_sram_hybrid_bsl_candidate",
+      "source": {
+        "document": "MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet",
+        "version": "SLASFJ6B, revised January 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        36.0,
+        87.0
+      ]
+    },
+    {
+      "instance": "safety_watchdog",
+      "device_key": "ti_tps3435cakagddfr",
+      "mpn": "Texas Instruments TPS3435CAKAGDDFR",
+      "role": "independent 1.6-s timeout watchdog",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        2.9,
+        1.6,
+        1.0
+      ],
+      "qualification": "verified_exact_independent_aon_watchdog",
+      "source": {
+        "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
+        "version": "SNVSCF7A, revised August 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+        "checked": "2026-08-20"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        37.0,
+        94.0
+      ]
+    },
+    {
+      "instance": "sd",
+      "device_key": "hirose_dm3at_sf_pejm5",
+      "mpn": "Hirose DM3AT-SF-PEJM5",
+      "role": "bottom-access push-push microSD",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 90,
+      "direction": "front bottom enclosure exit",
+      "envelope_mm": [
+        13.85,
+        15.95,
+        1.68
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "DM3 Series microSD Card Connectors catalog",
+        "version": "2026-05-01 current catalog and exact product page",
+        "url": "https://www.hirose.com/product/p/CL0609-0031-0-00",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        48.0,
+        136.15
+      ]
+    },
+    {
+      "instance": "slow_io",
+      "device_key": "tca6424argjr",
+      "mpn": "TCA6424ARGJR",
+      "role": "24-line slow-control expander",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.0,
+        5.0,
+        0.6
+      ],
+      "qualification": "verified_exact_main_slow_io_core",
+      "source": {
+        "document": "TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet",
+        "version": "SCPS193D",
+        "url": "https://www.ti.com/lit/ds/symlink/tca6424a.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        24.0,
+        55.0
+      ]
+    },
+    {
+      "instance": "speaker",
+      "device_key": "pui_as02404po",
+      "mpn": "PUI Audio AS02404PO",
+      "role": "internal 4-Ohm differential speaker",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear right acoustic opening",
+      "envelope_mm": [
+        24.0,
+        12.0,
+        4.5
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "AS02404PO Speaker datasheet",
+        "version": "2024 current datasheet checked 2026-08-18",
+        "url": "https://api.puiaudio.com/filename/AS02404PO.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-ACOUSTIC-PATHS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        50.0,
+        127.0
+      ]
+    },
+    {
+      "instance": "speaker_amp",
+      "device_key": "diodes_pam8302a_ascr",
+      "mpn": "Diodes Incorporated PAM8302AASCR",
+      "role": "rear-local differential speaker amplifier",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.0,
+        3.0,
+        0.63
+      ],
+      "qualification": "verified_reference",
+      "source": {
+        "document": "PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet",
+        "version": "DS41333 Rev. 6-2, May 2021",
+        "url": "https://www.diodes.com/datasheet/download/PAM8302A.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        31.0,
+        87.0
+      ]
+    },
+    {
+      "instance": "u214",
+      "device_key": "m5_u214",
+      "mpn": "M5Stack U214 Cap LoRa-1262",
+      "role": "external_cap",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal dock mating/removal",
+      "envelope_mm": [
+        84.0,
+        24.0,
+        15.287
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "M5Stack Cap LoRa-1262 product documentation and official model-size drawing",
+        "version": "live product page / U214-00 dimension drawing",
+        "url": "https://docs.m5stack.com/en/cap/Cap_LoRa-1262",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-U214-MATING-STACK",
+          "disposition": "h5_received_sample_gate"
+        }
+      ]
+    },
+    {
+      "instance": "u214_connector",
+      "device_key": "samtec_hle_107_02_g_dv_pe_lc",
+      "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+      "role": "vertical host socket on the raised rear Cap-Bus rail",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal outward mating into the removable Cap",
+      "envelope_mm": [
+        17.78,
+        5.08,
+        7.62
+      ],
+      "qualification": "verified_bounded_paper_fit_received_u214_mating_hil_open",
+      "source": {
+        "document": "Samtec exact HLE product page, series print and HLE catalog",
+        "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
+        "url": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+        "checked": "2026-08-23"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-U214-MATING-STACK",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        28.61,
+        26.46
+      ]
+    },
+    {
+      "instance": "u214_host_buffer_a",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "U214 host-command buffer A",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        55.3,
+        27.3
+      ]
+    },
+    {
+      "instance": "u214_host_buffer_b",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "U214 host-command buffer B",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        61.2,
+        27.3
+      ]
+    },
+    {
+      "instance": "u214_i2c_iso",
+      "device_key": "tca4307dgkr",
+      "mpn": "TCA4307DGKR",
+      "role": "U214 hot-swap I2C isolation and stuck-bus recovery",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.1,
+        5.05,
+        1.1
+      ],
+      "qualification": "verified_exact_u214_i2c_hot_swap_boundary",
+      "source": {
+        "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
+        "version": "SCPS270B",
+        "url": "https://www.ti.com/lit/ds/symlink/tca4307.pdf",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        67.1,
+        34.0
+      ]
+    },
+    {
+      "instance": "u214_return_buffer",
+      "device_key": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "role": "U214 return-path buffer",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.1,
+        4.5,
+        1.1
+      ],
+      "qualification": "verified_exact_nrf_host_to_switched_domain_isolator",
+      "source": {
+        "document": "74LVC126A quad buffer/line driver product data sheet",
+        "version": "Rev. 14, 12 June 2025",
+        "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        67.1,
+        27.3
+      ]
+    },
+    {
+      "instance": "ui_dpad_switch",
+      "device_key": "alps_skrhade010",
+      "mpn": "Alps Alpine SKRHADE010",
+      "role": "four directions plus center push",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 45,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        7.45,
+        7.5,
+        1.85
+      ],
+      "qualification": "verified_exact_navigation_switch_custom_cross_fit_hil_open",
+      "source": {
+        "document": "SKRH Series 4-direction with center-push catalogue and exact product page",
+        "version": "Update 2510",
+        "url": "https://tech.alpsalpine.com/e/products/detail/SKRHADE010/",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DPAD-ACTUATOR-FIT",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        32.21,
+        127.11
+      ]
+    },
+    {
+      "instance": "ui_matrix_io",
+      "device_key": "ti_tca9539_pwr",
+      "mpn": "TCA9539PWR",
+      "role": "sixteen-line direct-control input expander",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        7.8,
+        4.4,
+        1.2
+      ],
+      "qualification": "verified_exact_direct_control_input_expander",
+      "source": {
+        "document": "TCA9539 Low Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet",
+        "version": "Rev. C",
+        "url": "https://www.ti.com/lit/ds/symlink/tca9539.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        33.0,
+        55.0
+      ]
+    },
+    {
+      "instance": "ui_switch_back",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press BACK",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        16.8,
+        129.4
+      ]
+    },
+    {
+      "instance": "ui_switch_f1",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "rear F1",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        4.2,
+        63.5
+      ]
+    },
+    {
+      "instance": "ui_switch_f2",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "rear F2",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        4.2,
+        78.5
+      ]
+    },
+    {
+      "instance": "ui_switch_opt",
+      "device_key": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "role": "direct-press OPT",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal outward actuation",
+      "envelope_mm": [
+        6.6,
+        6.0,
+        4.3
+      ],
+      "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
+      "source": {
+        "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
+        "version": "A204-E1",
+        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-DIRECT-PRESS-CONTROLS",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        51.6,
+        129.4
+      ]
+    },
+    {
+      "instance": "ui_zone_ntc",
+      "device_key": "tdk_b57332v5103f360",
+      "mpn": "TDK B57332V5103F360",
+      "role": "UI/display hotspot safety sensor",
+      "frame": "ui-inner",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.9
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "B57 V5 automotive SMD NTC datasheet and exact product page",
+        "version": "PPD ML PD 2025-10-30",
+        "url": "https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        12.0,
+        75.0
+      ]
+    },
+    {
+      "instance": "unit_connector",
+      "device_key": "seeed_1125r_smt_4p",
+      "mpn": "1125R-SMT-4P",
+      "role": "native M5 Unit HY2.0-4P edge receptacle",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "rear bottom enclosure exit",
+      "envelope_mm": [
+        12.0,
+        9.1,
+        5.1
+      ],
+      "qualification": "verified_exact_paper_fit_received_cable_hil_open",
+      "source": {
+        "document": "Seeed 1125R-SMT-4P official manufacturer drawing",
+        "version": "NS-1125-W00010 Rev.A",
+        "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-M5-UNIT-MATE",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        51.0,
+        140.9
+      ]
+    },
+    {
+      "instance": "voice",
+      "device_key": "nicerf_sa518_v11",
+      "mpn": "NiceRF SA518",
+      "role": "VHF/UHF voice transceiver; contact 7 faces its SMA",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 180,
+      "direction": "contact 7 faces the antenna edge along the straight VHF/UHF corridor",
+      "envelope_mm": [
+        40.0,
+        24.5,
+        3.25
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
+        "version": "1.1 / 2026-05",
+        "url": "https://www.nicerf.com/pdf/sa518-1w-uv-dual-frequency-walkie-talkie-module-v1.1.pdf",
+        "checked": "2026-08-22"
+      },
+      "evidence_gates": [
+        {
+          "id": "H5-MECH-SA518-LAND-FIT",
+          "disposition": "h5_received_sample_gate"
+        }
+      ],
+      "position_mm": [
+        12.0,
+        33.0
+      ]
+    },
+    {
+      "instance": "voice_buck",
+      "device_key": "ti_tps564252_drlr",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "role": "voice 4.0-V converter",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        1.6,
+        1.6,
+        0.6
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "TPS56425x 3-V to 17-V input, 4-A synchronous buck converter datasheet",
+        "version": "SLUSEQ6A, December 2022, revised May 2023",
+        "url": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        28.0,
+        61.0
+      ]
+    },
+    {
+      "instance": "voice_external_sma",
+      "device_key": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "role": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "frame": "rear-outer",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "toward the antenna edge along board -Y",
+      "envelope_mm": [
+        15.2,
+        10.2,
+        3.9
+      ],
+      "qualification": "verified_exact_external_standard_sma_body",
+      "source": {
+        "document": "GCT RFPC-SMA31-FN official product page and rev-1.5 product drawing",
+        "version": "drawing dated 2025-04-07",
+        "url": "https://gct.co/connector/rfpc-sma31-fn",
+        "checked": "2026-08-19"
+      },
+      "evidence_gates": []
+    },
+    {
+      "instance": "voice_inductor",
+      "device_key": "sunlord_mwsa0503s_3r3mt",
+      "mpn": "Sunlord MWSA0503S-3R3MT",
+      "role": "voice 4.0-V 3.3-uH switching inductor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        5.4,
+        5.2,
+        3.0
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
+        "version": "current table checked 2026-08-18",
+        "url": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        27.0,
+        64.0
+      ]
+    },
+    {
+      "instance": "voice_input_cap",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "voice 4.0-V input bulk capacitor",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        27.0,
+        70.0
+      ]
+    },
+    {
+      "instance": "voice_output_cap0",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "voice 4.0-V output bulk capacitor #0",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        30.9,
+        70.0
+      ]
+    },
+    {
+      "instance": "voice_output_cap1",
+      "device_key": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "role": "voice 4.0-V output bulk capacitor #1",
+      "frame": "rf-inner",
+      "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
+      "rotation_deg": 0,
+      "direction": "not applicable",
+      "envelope_mm": [
+        3.2,
+        2.5,
+        2.7
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L",
+        "checked": "2026-08-18"
+      },
+      "evidence_gates": [],
+      "position_mm": [
+        27.0,
+        73.2
+      ]
+    },
+    {
+      "instance": "voice_tx_led",
+      "device_key": "liteon_ltst_c190krkt",
+      "mpn": "LTST-C190KRKT",
+      "role": "0603_red_status_led",
+      "frame": "front-outer",
+      "frame_datum": "UI PCB top-left, viewed from the front/exterior",
+      "rotation_deg": 0,
+      "direction": "front-normal optical emission",
+      "envelope_mm": [
+        1.6,
+        0.8,
+        0.8
+      ],
+      "qualification": "verified_candidate",
+      "source": {
+        "document": "LTST-C190KRKT SMD LED datasheet",
+        "version": "BNS-OD-C131/A4",
+        "url": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+        "checked": "2026-08-17"
+      },
+      "evidence_gates": []
+    }
+  ]
+}

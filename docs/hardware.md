@@ -75,7 +75,9 @@ never substitutes for measured RF.
 | Device | MPN | Implementation |
 |---|---|---|
 | Display | `HMX035CTFT-001` | 3.5-inch `320×480` IPS, direct QSPI, capacitive touch; proven 54.5×83.0×3.2-mm LCD/CTP body and 48.96×73.44-mm 2:3 active area |
-| FPC mate | `Hirose FH12-40S-0.5SH(55)` | 40 contacts, 0.5-mm pitch |
+| Main-board display mate | `Hirose DF40C(2.0)-40DS-0.4V(58)` | Fixed 40-contact receptacle; exact 2.0-mm stack |
+| Adapter-board mate | `Hirose DF40C-40DP-0.4V(51)` | Exact 40-contact plug; all contacts map one-to-one |
+| Panel ZIF | `Hirose FH34SRJ-40S-0.5SH(99)` | 40 contacts, 0.5-mm pitch, top-and-bottom contact |
 | microSD | `Hirose DM3AT-SF-PEJM5` | Push-push; independently powered and isolated |
 | Audio codec | `Everest ES8311` | I²S capture and playback |
 | Microphone | `Same Sky CMEJ-0413-42-SMT-TR` | Rear RF/power board; bottom acoustic port |
@@ -132,10 +134,13 @@ RUN/KILL faces the enclosure side and is labelled on that external edge.
 Solid component outlines use dimensions from the part-number register. The
 display uses the published `54.5×83.0×3.2 mm` LCD/CTP screen-body envelope,
 not the complete ES3C35P donor-board envelope of `54.5×101.5×≈10 mm`. The
-published 3.2-mm depth excludes the flex and adhesive. The integral
-40-contact tail geometry and its exact fit in
-`FH12-40S-0.5SH(55)` remain gated on a supplier approval drawing and a real
-specimen; the mockup does not present them as already proven. The violet
+published 3.2-mm depth excludes the flex and adhesive. Replaceable adapter
+`L2-DISP-ADP-001-A` decouples that unknown tail from the main UI PCB: exact
+`DF40C(2.0)-40DS-0.4V(58)` and `DF40C-40DP-0.4V(51)` form the fixed 40-contact
+2-mm mate, while dual-contact `FH34SRJ-40S-0.5SH(99)` accepts either exposed-
+contact orientation. All 40 contacts map one-to-one. Received-tail thickness,
+outline, stiffener and bend clearance remain H5 checks and may revise only
+the small adapter, not the main PCB or enclosure datum. The violet
 D-pad cross is custom part `L2-DPAD-001-A` over the exact rotated
 `Alps Alpine SKRHADE010`. Its 14.0-mm cross uses a four-jaw split socket on the
 round 3-mm stem and a separate square guide: the enclosure aperture, rather
@@ -179,6 +184,8 @@ connector body enters the exact 11-mm interboard channel.
 ![Dimensioned external layout](images/current-clamshell.svg?layout=15)
 
 ![Dimensioned D-pad actuator design](images/dpad-actuator.svg?layout=3)
+
+![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
 ![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=11)
 

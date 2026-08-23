@@ -1379,35 +1379,44 @@
         "SIG1": {"physical": "rightmost contact in M5 mating view; white cable", "role": "signal"}
       }
     },
-    "hirose_fh12_40s_0_5sh_55": {
-      "mpn": "Hirose FH12-40S-0.5SH(55)",
-      "kind": "40_position_0_5mm_bottom_contact_zif_fpc_receptacle",
-      "qualification": "verified_first_fit_candidate",
-      "lifecycle": "active; exact HMX035CTFT-001 tail thickness, exposed-contact side, stiffener and insertion fit remain specimen HIL",
-      "dimensions_mm": [24.1, 6.4, 2.0],
+    "hirose_fh34srj_40s_0_5sh_99": {
+      "mpn": "Hirose FH34SRJ-40S-0.5SH(99)",
+      "kind": "40_position_0_5mm_top_and_bottom_contact_zif_fpc_receptacle",
+      "qualification": "verified_dual_contact_adapter_panel_connector_received_tail_thickness_h5_open",
+      "lifecycle": "active and authorized-distributor-stocked; exact HMX035CTFT-001 tail thickness and insertion fit remain H5",
+      "dimensions_mm": [22.0, 3.8, 1.0],
       "source": {
-        "document": "Hirose FH12-40S-0.5SH(55) product page and 2D drawing",
-        "version": "CL0586-0527-7-55; drawing updated 2026-07-01",
-        "url": "https://www.hirose.com/product/p/CL0586-0527-7-55?lang=en",
-        "checked": "2026-08-18"
+        "document": "Hirose FH34SRJ-40S-0.5SH(99) product page and controlled 2D drawing",
+        "version": "CL0580-1260-6-99; detailed specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0580-1260-6-99",
+        "checked": "2026-08-23"
       },
       "orderable_source": {
-        "document": "FH12-40S-0.5SH(55) active authorized-distributor stock page",
-        "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328",
-        "checked": "2026-08-22"
+        "document": "Mouser exact-MPN page; 384 shown in immediate stock",
+        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99?qs=vcbW%252B4%252BSTIq%252BjF2my2YV5Q%3D%3D",
+        "checked": "2026-08-23"
       },
       "cost": {
         "currency": "USD",
         "target_quantity": 100,
-        "unit_price_usd": 2.5656,
-        "price_break": "DigiKey cut-tape quantity-100 tier",
+        "unit_price_usd": 2.46,
+        "price_break": "Mouser cut-tape quantity-100 tier",
         "source": {
-          "document": "DigiKey exact-MPN published price table",
-          "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-40S-0-5SH-55/1110328",
-          "checked": "2026-08-22"
+          "document": "Mouser exact-MPN published price table",
+          "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/FH34SRJ-40S-0.5SH99?qs=vcbW%252B4%252BSTIq%252BjF2my2YV5Q%3D%3D",
+          "checked": "2026-08-23"
         }
       },
       "programmable": false,
+      "mechanical_contract": {
+        "positions": 40,
+        "pitch_mm": 0.5,
+        "applicable_fpc_thickness_mm": 0.3,
+        "contact_orientation": "top_and_bottom",
+        "insertion_direction": "horizontal",
+        "mating_cycles": 20,
+        "adapter_role": "panel-facing connector on replaceable L2-DISP-ADP-001-A; a different received tail thickness changes only this small adapter revision"
+      },
       "contacts": {
         "PIN_1": {"physical": "1", "role": "signal"},
         "PIN_2": {"physical": "2", "role": "signal"},
@@ -1451,6 +1460,80 @@
         "PIN_40": {"physical": "40", "role": "strap"},
         "FITTING_1": {"physical": "left solder hold-down", "role": "mechanical"},
         "FITTING_2": {"physical": "right solder hold-down", "role": "mechanical"}
+      }
+    },
+    "hirose_df40c_2_0_40ds_0_4v_58": {
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "kind": "40_position_0_4mm_2mm_stack_vertical_board_to_board_receptacle",
+      "qualification": "verified_exact_display_adapter_main_board_receptacle",
+      "lifecycle": "active and authorized-distributor-stocked",
+      "dimensions_mm": [10.6, 3.38, 1.95],
+      "source": {
+        "document": "Hirose exact product page, 2D drawing and specification sheet",
+        "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "Mouser exact-MPN page; 262 shown in immediate stock",
+        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.07,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C2.0-40DS-0.4V58?qs=Gufeu08L%2Fl2S31N%2Fy6Rjyw%3D%3D", "checked": "2026-08-23"}
+      },
+      "programmable": false,
+      "mechanical_contract": {"positions": 40, "pitch_mm": 0.4, "mated_height_mm": 2.0, "rated_current_per_contact_a": 0.3, "rated_data_rate_gbps": 20.0, "mating_cycles": 30, "exact_mate": "Hirose DF40C-40DP-0.4V(51)"},
+      "contacts": {
+        "PIN_1": {"physical":"1","role":"passive"}, "PIN_2": {"physical":"2","role":"passive"}, "PIN_3": {"physical":"3","role":"passive"}, "PIN_4": {"physical":"4","role":"passive"},
+        "PIN_5": {"physical":"5","role":"passive"}, "PIN_6": {"physical":"6","role":"passive"}, "PIN_7": {"physical":"7","role":"passive"}, "PIN_8": {"physical":"8","role":"passive"},
+        "PIN_9": {"physical":"9","role":"passive"}, "PIN_10": {"physical":"10","role":"passive"}, "PIN_11": {"physical":"11","role":"passive"}, "PIN_12": {"physical":"12","role":"passive"},
+        "PIN_13": {"physical":"13","role":"passive"}, "PIN_14": {"physical":"14","role":"passive"}, "PIN_15": {"physical":"15","role":"passive"}, "PIN_16": {"physical":"16","role":"passive"},
+        "PIN_17": {"physical":"17","role":"passive"}, "PIN_18": {"physical":"18","role":"passive"}, "PIN_19": {"physical":"19","role":"passive"}, "PIN_20": {"physical":"20","role":"passive"},
+        "PIN_21": {"physical":"21","role":"passive"}, "PIN_22": {"physical":"22","role":"passive"}, "PIN_23": {"physical":"23","role":"passive"}, "PIN_24": {"physical":"24","role":"passive"},
+        "PIN_25": {"physical":"25","role":"passive"}, "PIN_26": {"physical":"26","role":"passive"}, "PIN_27": {"physical":"27","role":"passive"}, "PIN_28": {"physical":"28","role":"passive"},
+        "PIN_29": {"physical":"29","role":"passive"}, "PIN_30": {"physical":"30","role":"passive"}, "PIN_31": {"physical":"31","role":"passive"}, "PIN_32": {"physical":"32","role":"passive"},
+        "PIN_33": {"physical":"33","role":"passive"}, "PIN_34": {"physical":"34","role":"passive"}, "PIN_35": {"physical":"35","role":"passive"}, "PIN_36": {"physical":"36","role":"passive"},
+        "PIN_37": {"physical":"37","role":"passive"}, "PIN_38": {"physical":"38","role":"passive"}, "PIN_39": {"physical":"39","role":"passive"}, "PIN_40": {"physical":"40","role":"passive"}
+      }
+    },
+    "hirose_df40c_40dp_0_4v_51": {
+      "mpn": "Hirose DF40C-40DP-0.4V(51)",
+      "kind": "40_position_0_4mm_vertical_board_to_board_plug",
+      "qualification": "verified_exact_display_adapter_daughter_board_plug",
+      "lifecycle": "active and authorized-distributor-stocked",
+      "dimensions_mm": [9.52, 2.97, 1.14],
+      "source": {
+        "document": "Hirose exact product page, 2D drawing and specification sheet",
+        "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
+        "checked": "2026-08-23"
+      },
+      "orderable_source": {
+        "document": "Mouser exact-MPN page; 57,603 shown in immediate stock",
+        "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51?qs=eDUdFcBPps3ody6AX5VRNA%3D%3D",
+        "checked": "2026-08-23"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.726,
+        "price_break": "Mouser cut-tape quantity-100 tier",
+        "source": {"document": "Mouser exact-MPN published price table", "url": "https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51?qs=eDUdFcBPps3ody6AX5VRNA%3D%3D", "checked": "2026-08-23"}
+      },
+      "programmable": false,
+      "mechanical_contract": {"positions": 40, "pitch_mm": 0.4, "selected_mated_height_mm": 2.0, "rated_current_per_contact_a": 0.3, "rated_data_rate_gbps": 20.0, "mating_cycles": 30, "exact_mate": "Hirose DF40C(2.0)-40DS-0.4V(58)"},
+      "contacts": {
+        "PIN_1": {"physical":"1","role":"passive"}, "PIN_2": {"physical":"2","role":"passive"}, "PIN_3": {"physical":"3","role":"passive"}, "PIN_4": {"physical":"4","role":"passive"},
+        "PIN_5": {"physical":"5","role":"passive"}, "PIN_6": {"physical":"6","role":"passive"}, "PIN_7": {"physical":"7","role":"passive"}, "PIN_8": {"physical":"8","role":"passive"},
+        "PIN_9": {"physical":"9","role":"passive"}, "PIN_10": {"physical":"10","role":"passive"}, "PIN_11": {"physical":"11","role":"passive"}, "PIN_12": {"physical":"12","role":"passive"},
+        "PIN_13": {"physical":"13","role":"passive"}, "PIN_14": {"physical":"14","role":"passive"}, "PIN_15": {"physical":"15","role":"passive"}, "PIN_16": {"physical":"16","role":"passive"},
+        "PIN_17": {"physical":"17","role":"passive"}, "PIN_18": {"physical":"18","role":"passive"}, "PIN_19": {"physical":"19","role":"passive"}, "PIN_20": {"physical":"20","role":"passive"},
+        "PIN_21": {"physical":"21","role":"passive"}, "PIN_22": {"physical":"22","role":"passive"}, "PIN_23": {"physical":"23","role":"passive"}, "PIN_24": {"physical":"24","role":"passive"},
+        "PIN_25": {"physical":"25","role":"passive"}, "PIN_26": {"physical":"26","role":"passive"}, "PIN_27": {"physical":"27","role":"passive"}, "PIN_28": {"physical":"28","role":"passive"},
+        "PIN_29": {"physical":"29","role":"passive"}, "PIN_30": {"physical":"30","role":"passive"}, "PIN_31": {"physical":"31","role":"passive"}, "PIN_32": {"physical":"32","role":"passive"},
+        "PIN_33": {"physical":"33","role":"passive"}, "PIN_34": {"physical":"34","role":"passive"}, "PIN_35": {"physical":"35","role":"passive"}, "PIN_36": {"physical":"36","role":"passive"},
+        "PIN_37": {"physical":"37","role":"passive"}, "PIN_38": {"physical":"38","role":"passive"}, "PIN_39": {"physical":"39","role":"passive"}, "PIN_40": {"physical":"40","role":"passive"}
       }
     },
     "ti_tps2553drvr_1": {
