@@ -84,7 +84,7 @@ REAR_RF = (
     (49.5, "VOICE-V/U", "SMA"),
     (61.5, "N24-2", "SMA"),
 )
-VOICE_RF_CORRIDOR = ((49.5, 0.0), (49.5, 33.0))
+VOICE_RF_CORRIDOR = ((49.5, 0.0), (53.3, 32.7))
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 RF_INSTANCE_BY_PATH = {
     "S3-2G4": "s3_external_rp_sma",
@@ -187,6 +187,31 @@ class CableRoute:
 
 
 @dataclass(frozen=True)
+class CableReserve:
+    """Conservative cable space when the exact module connector axis is H5 evidence."""
+
+    instance: str
+    module_instance: str
+    board_connector_instance: str
+    escape_points: tuple[tuple[float, float], ...]
+    role: str
+
+
+@dataclass(frozen=True)
+class ThroughBoardFeature:
+    """One pin/tab envelope that protrudes from an outer-face part into the gap."""
+
+    assembly_instance: str
+    feature: str
+    x: float
+    y: float
+    w: float
+    h: float
+    inner_height: float
+    role: str
+
+
+@dataclass(frozen=True)
 class BodyProjectionContract:
     """Mechanical meaning of one rendered body outside the placement maps."""
 
@@ -260,11 +285,11 @@ RF_INNER = (
     Placement("nrf0_rf_board_connector", 23.0, 28.0, "nRF24 #0 Gen1 jumper board receptacle"),
     Placement("nrf1_rf_board_connector", 50.0, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
     Placement("nrf2_rf_board_connector", 70.0, 22.0, "nRF24 #2 Gen1 jumper board receptacle"),
-    Placement("rp", 0.0, 33.0, "deterministic radio owner"),
+    Placement("rp", 0.0, 32.2, "deterministic radio owner"),
     Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
     Placement("nrf1", 31.5, 7.5, "full-function nRF24 radio #1; rotated for U214 tail clearance", 90),
     Placement("nrf2", 52.9, 7.5, "full-function nRF24 radio #2"),
-    Placement("voice", 12.0, 33.0, "VHF/UHF voice transceiver; contact 7 faces its SMA", 180),
+    Placement("voice", 15.8, 32.7, "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA", 180),
     Placement("cc", 24.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
     Placement("nvdc_charger", 1.0, 63.0, "2S charger and NVDC power path"),
     Placement("pack_gauge", 1.0, 84.0, "2S protection and fuel gauge"),
@@ -302,19 +327,19 @@ RF_INNER = (
     Placement("rp_boot_button", 59.5, 104.0, "RP technological USB_BOOT"),
     Placement("power_command_switch", 65.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
 
-    Placement("u214_host_buffer_a", 55.3, 27.3, "U214 host-command buffer A"),
-    Placement("u214_host_buffer_b", 61.2, 27.3, "U214 host-command buffer B"),
-    Placement("u214_return_buffer", 67.1, 27.3, "U214 return-path buffer"),
-    Placement("u214_i2c_iso", 67.1, 34.0, "U214 hot-swap I2C isolation and stuck-bus recovery"),
-    Placement("nrf0_host_buffer", 0.0, 44.0, "nRF24 #0 host-command buffer"),
-    Placement("nrf0_return_buffer", 6.0, 44.0, "nRF24 #0 return-path buffer"),
-    Placement("nrf1_host_buffer", 55.3, 34.0, "nRF24 #1 host-command buffer"),
-    Placement("nrf1_return_buffer", 61.2, 34.0, "nRF24 #1 return-path buffer"),
-    Placement("nrf2_host_buffer", 55.3, 40.0, "nRF24 #2 host-command buffer"),
-    Placement("nrf2_return_buffer", 61.2, 40.0, "nRF24 #2 return-path buffer"),
-    Placement("cc_host_buffer", 55.3, 58.0, "CC1101 host-command buffer"),
-    Placement("cc_return_buffer", 61.2, 58.0, "CC1101 return-path buffer"),
-    Placement("cc_band_buffer", 67.1, 58.0, "CC1101 band-select buffer"),
+    Placement("u214_host_buffer_a", 56.5, 27.3, "U214 host-command buffer A"),
+    Placement("u214_host_buffer_b", 62.4, 27.3, "U214 host-command buffer B"),
+    Placement("u214_return_buffer", 68.3, 27.3, "U214 return-path buffer"),
+    Placement("u214_i2c_iso", 68.3, 34.0, "U214 hot-swap I2C isolation and stuck-bus recovery"),
+    Placement("nrf0_host_buffer", 0.0, 26.8, "nRF24 #0 host-command buffer"),
+    Placement("nrf0_return_buffer", 6.0, 26.8, "nRF24 #0 return-path buffer"),
+    Placement("nrf1_host_buffer", 56.5, 34.0, "nRF24 #1 host-command buffer"),
+    Placement("nrf1_return_buffer", 62.4, 34.0, "nRF24 #1 return-path buffer"),
+    Placement("nrf2_host_buffer", 56.5, 40.0, "nRF24 #2 host-command buffer"),
+    Placement("nrf2_return_buffer", 62.4, 40.0, "nRF24 #2 return-path buffer"),
+    Placement("cc_host_buffer", 56.5, 58.0, "CC1101 host-command buffer"),
+    Placement("cc_return_buffer", 62.4, 58.0, "CC1101 return-path buffer"),
+    Placement("cc_band_buffer", 68.3, 58.0, "CC1101 band-select buffer"),
 
     # High-profile and high-current support parts are explicit physical bodies,
     # not hidden inside a generic power-zone rectangle.
@@ -366,6 +391,34 @@ RF_INNER = (
     Placement("pd_vbus_tvs", 26.0, 134.5, "raw VBUS flat-clamp TVS"),
 )
 
+# Ebyte publishes the module and land-pattern envelope but not the current-lot
+# Gen1 receptacle axis.  The complete module face therefore remains a legal
+# cable-head zone; only the short escape to the exact board receptacle is fixed.
+# Cable slack stays above that face, while bend/retention closes on the H5 coupon.
+RF_NRF_CABLE_RESERVES = (
+    CableReserve(
+        "nrf0_rf_jumper",
+        "nrf0",
+        "nrf0_rf_board_connector",
+        ((22.1, 25.0), (24.5, 25.0), (24.5, 29.55)),
+        "30-mm nRF24 #0 module-face reserve and board-receptacle escape",
+    ),
+    CableReserve(
+        "nrf1_rf_jumper",
+        "nrf1",
+        "nrf1_rf_board_connector",
+        ((49.0, 19.6), (51.5, 19.6), (51.5, 29.55)),
+        "30-mm nRF24 #1 module-face reserve and board-receptacle escape",
+    ),
+    CableReserve(
+        "nrf2_rf_jumper",
+        "nrf2",
+        "nrf2_rf_board_connector",
+        ((65.0, 23.55), (71.5, 23.55)),
+        "30-mm nRF24 #2 module-face reserve and board-receptacle escape",
+    ),
+)
+
 SIDE_FUNCTION_CONTROLS = (
     Placement("ui_switch_f1", 1.8, 19.5, "front-left function F1"),
     Placement("ui_switch_f2", 1.8, 33.0, "front-left function F2"),
@@ -392,7 +445,7 @@ FRONT_CONTROLS = SIDE_FUNCTION_CONTROLS + BOTTOM_NAV_CONTROLS
 DIRECT_PRESS_FRONT_CONTROLS = {item.instance for item in FRONT_CONTROLS}
 
 REAR_CONTROLS = (
-    Placement("encoder", 2.5, 45.0, "rear encoder"),
+    Placement("encoder", 2.15, 44.5, "rear through-hole encoder"),
     Placement("ptt_switch", 64.2, 63.5, "rear independent PTT"),
 )
 
@@ -432,7 +485,7 @@ MECHANICAL_EXTERIOR_INSTANCES = {
     *RF_INSTANCE_BY_PATH.values(),
     *TX_LED_INSTANCES.values(),
     *(route.instance for route in UI_RF_CABLES),
-    "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper",
+    *(reserve.instance for reserve in RF_NRF_CABLE_RESERVES),
 }
 
 REAR_OUTER = (
@@ -492,7 +545,7 @@ INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
     "nrf0": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "nrf1": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
     "nrf2": "normal to the RF-inner face inside the bounded module-face Gen1 endpoint zone; exact axis remains H5 evidence",
-    "voice": "contact 7 faces the antenna edge along the straight VHF/UHF corridor",
+    "voice": "contact 7 faces the antenna edge along the controlled VHF/UHF corridor",
 }
 
 DIRECTIONAL_BODY_DIRECTIONS = {
@@ -546,12 +599,12 @@ EXTERIOR_BODY_CONTRACTS = (
     ),
     *(
         BodyProjectionContract(
-            instance,
+            reserve.instance,
             "rf-inner-route",
             0,
             "bounded module-face zone to fixed Gen1 board receptacle; exact axis closes in H5",
         )
-        for instance in ("nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper")
+        for reserve in RF_NRF_CABLE_RESERVES
     ),
     BodyProjectionContract(
         "display_touch_controller",
@@ -609,6 +662,59 @@ def placement_height(item: Placement, devices: dict, instances: dict) -> float:
     if height <= 0:
         raise ValueError(f"{item.instance}: package height must be positive")
     return height
+
+
+def encoder_through_board_features(
+    devices: dict,
+    instances: dict,
+) -> tuple[ThroughBoardFeature, ...]:
+    """Project the exact EC11E mounting tabs and five terminals into the gap."""
+    encoder = next(item for item in REAR_CONTROLS if item.instance == "encoder")
+    if encoder.rotation != 0:
+        raise ValueError("encoder through-board feature map currently requires drawing orientation 0")
+    width, height = placement_size(encoder, devices, instances)
+    center_x = encoder.x + width / 2
+    center_y = encoder.y + height / 2
+    contract = devices[instances["encoder"]]["mechanical_contract"]
+    inner_height = float(contract["inner_terminal_projection_mm"])
+    dummy_w, dummy_h = map(float, contract["maximum_dummy_terminal_hole_mm"])
+    pin_d = float(contract["maximum_signal_terminal_hole_diameter_mm"])
+    rows: list[ThroughBoardFeature] = []
+    for index, (dx, dy) in enumerate(contract["dummy_terminal_centres_mm"], 1):
+        rows.append(
+            ThroughBoardFeature(
+                "encoder", f"dummy_terminal_{index}",
+                center_x + float(dx) - dummy_w / 2,
+                center_y + float(dy) - dummy_h / 2,
+                dummy_w, dummy_h, inner_height,
+                "EC11E mechanical terminal and maximum mounting-hole envelope",
+            )
+        )
+    for names, key in (
+        (("D", "E"), "switch_terminal_centres_mm"),
+        (("A", "C", "B"), "encoder_terminal_centres_mm"),
+    ):
+        for name, (dx, dy) in zip(names, contract[key]):
+            rows.append(
+                ThroughBoardFeature(
+                    "encoder", f"contact_{name}",
+                    center_x + float(dx) - pin_d / 2,
+                    center_y + float(dy) - pin_d / 2,
+                    pin_d, pin_d, inner_height,
+                    "EC11E electrical terminal and maximum plated-hole envelope",
+                )
+            )
+    return tuple(rows)
+
+
+def nrf_cable_reserve_module_box(
+    reserve: CableReserve,
+    devices: dict,
+    instances: dict,
+) -> tuple[float, float, float, float]:
+    module = next(item for item in RF_INNER if item.instance == reserve.module_instance)
+    width, height = placement_size(module, devices, instances)
+    return module.x, module.y, width, height
 
 
 def interboard_individual_clearances(
@@ -773,6 +879,61 @@ def cable_interboard_clearance_pairs(
                 )
                 pairs.append((clearance, route, rf_item))
     return sorted(pairs, key=lambda row: (row[0], row[1].instance, row[2].instance))
+
+
+def nrf_cable_reserve_opposing_pairs(
+    devices: dict,
+    instances: dict,
+) -> list[tuple[float, CableReserve, Placement]]:
+    """Check the three conservative RF-inner cable reserves against UI bodies."""
+    pairs: list[tuple[float, CableReserve, Placement]] = []
+    for reserve in RF_NRF_CABLE_RESERVES:
+        cable = devices[instances[reserve.instance]]
+        radius = float(cable["electrical_contract"]["cable_outer_diameter_mm"]) / 2
+        occupied_height = max(
+            float(cable["mechanical_contract"]["maximum_mated_height_mm"]),
+            placement_height(
+                next(item for item in RF_INNER if item.instance == reserve.module_instance),
+                devices,
+                instances,
+            ),
+        )
+        module_box = nrf_cable_reserve_module_box(reserve, devices, instances)
+        for ui_item in UI_INNER:
+            ui_w, ui_h = placement_size(ui_item, devices, instances)
+            ui_box = (mirrored_x(ui_item.x, ui_w), ui_item.y, ui_w, ui_h)
+            if overlaps(module_box, ui_box) or any(
+                axis_aligned_segment_hits_box(start, end, ui_box, radius)
+                for start, end in zip(reserve.escape_points, reserve.escape_points[1:])
+            ):
+                clearance = (
+                    INTERBOARD_GAP_MM
+                    - occupied_height
+                    - placement_height(ui_item, devices, instances)
+                )
+                pairs.append((clearance, reserve, ui_item))
+    return sorted(pairs, key=lambda row: (row[0], row[1].instance, row[2].instance))
+
+
+def through_board_opposing_pairs(
+    devices: dict,
+    instances: dict,
+) -> list[tuple[float, ThroughBoardFeature, Placement]]:
+    """Check exterior THT terminals protruding into the gap against UI bodies."""
+    pairs: list[tuple[float, ThroughBoardFeature, Placement]] = []
+    for feature in encoder_through_board_features(devices, instances):
+        feature_box = (feature.x, feature.y, feature.w, feature.h)
+        for ui_item in UI_INNER:
+            ui_w, ui_h = placement_size(ui_item, devices, instances)
+            ui_box = (mirrored_x(ui_item.x, ui_w), ui_item.y, ui_w, ui_h)
+            if overlaps(feature_box, ui_box):
+                clearance = (
+                    INTERBOARD_GAP_MM
+                    - feature.inner_height
+                    - placement_height(ui_item, devices, instances)
+                )
+                pairs.append((clearance, feature, ui_item))
+    return sorted(pairs, key=lambda row: (row[0], row[1].feature, row[2].instance))
 
 
 def text_bounds_px(element: ET.Element) -> tuple[float, float, float, float]:
@@ -974,6 +1135,132 @@ def validate_cable_routes(devices: dict, instances: dict) -> list[str]:
         if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
             errors.append(
                 f"native-rf-cable: {route.instance}/{rf_item.instance} leaves only "
+                f"{clearance:.2f} mm across the interboard channel"
+            )
+    return errors
+
+
+def validate_nrf_cable_reserves(devices: dict, instances: dict) -> list[str]:
+    """Validate the conservative module-face reserves for the three nRF jumpers."""
+    errors: list[str] = []
+    rf_by_instance = {item.instance: item for item in RF_INNER}
+    expected = {f"nrf{index}_rf_jumper" for index in range(3)}
+    if {reserve.instance for reserve in RF_NRF_CABLE_RESERVES} != expected:
+        errors.append("nrf-rf-cable: all three conservative jumper reserves must be present")
+    for reserve in RF_NRF_CABLE_RESERVES:
+        cable = devices[instances[reserve.instance]]
+        contract = cable["electrical_contract"]
+        mechanical = cable["mechanical_contract"]
+        exact_length = float(contract["cable_length_mm"])
+        cable_radius = float(contract["cable_outer_diameter_mm"]) / 2
+        plug_plan = list(map(float, mechanical.get("maximum_plug_plan_envelope_mm", [])))
+        if len(plug_plan) != 2 or plug_plan != [3.0, 3.1]:
+            errors.append(f"nrf-rf-cable: {reserve.instance} lacks the exact Gen1 plug plan envelope")
+        escape_length = polyline_length(reserve.escape_points)
+        if not 0 < escape_length < exact_length:
+            errors.append(f"nrf-rf-cable: {reserve.instance} escape cannot retain 30-mm cable slack")
+        module = rf_by_instance[reserve.module_instance]
+        connector = rf_by_instance[reserve.board_connector_instance]
+        module_box = nrf_cable_reserve_module_box(reserve, devices, instances)
+        module_x, module_y, module_w, module_h = module_box
+        first_x, first_y = reserve.escape_points[0]
+        on_module_edge = (
+            module_x - 0.01 <= first_x <= module_x + module_w + 0.01
+            and module_y - 0.01 <= first_y <= module_y + module_h + 0.01
+            and (
+                abs(first_x - module_x) <= 0.01
+                or abs(first_x - (module_x + module_w)) <= 0.01
+                or abs(first_y - module_y) <= 0.01
+                or abs(first_y - (module_y + module_h)) <= 0.01
+            )
+        )
+        if not on_module_edge:
+            errors.append(f"nrf-rf-cable: {reserve.instance} escape does not start on its module face")
+        connector_w, connector_h = placement_size(connector, devices, instances)
+        expected_end = (connector.x + connector_w / 2, connector.y + connector_h / 2)
+        if any(abs(a - b) > 0.01 for a, b in zip(reserve.escape_points[-1], expected_end)):
+            errors.append(f"nrf-rf-cable: {reserve.instance} escape misses its exact board receptacle")
+        allowed = {reserve.module_instance, reserve.board_connector_instance}
+        for segment in zip(reserve.escape_points, reserve.escape_points[1:]):
+            try:
+                axis_aligned_segment_hits_box(*segment, (0.0, 0.0, 0.0, 0.0))
+            except ValueError as error:
+                errors.append(f"nrf-rf-cable: {reserve.instance}: {error}")
+                continue
+            for hole in HOLES:
+                if point_segment_distance(hole, *segment) < MOUNT_KEEPOUT_R + cable_radius:
+                    errors.append(f"nrf-rf-cable: {reserve.instance} enters the M2.5 keep-out at {hole}")
+            for item in RF_INNER:
+                if item.instance in allowed:
+                    continue
+                item_w, item_h = placement_size(item, devices, instances)
+                if axis_aligned_segment_hits_box(
+                    *segment,
+                    (item.x, item.y, item_w, item_h),
+                    cable_radius + MIN_INTERBOARD_Z_CLEARANCE_MM,
+                ):
+                    errors.append(
+                        f"nrf-rf-cable: {reserve.instance} escape lacks "
+                        f"{MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm clearance to {item.instance}"
+                    )
+        for point in reserve.escape_points:
+            if not (
+                cable_radius <= point[0] <= BOARD_W - cable_radius
+                and cable_radius <= point[1] <= BOARD_H - cable_radius
+            ):
+                errors.append(f"nrf-rf-cable: {reserve.instance} escape leaves the PCB plan at {point}")
+        # The unknown current-lot axis may be anywhere in the module face.  The
+        # controlled plug footprint is reserved inside that complete face; its
+        # actual axis, bend and retention remain the already-declared H5 gate.
+        if module_w < max(plug_plan or [999]) or module_h < max(plug_plan or [999]):
+            errors.append(f"nrf-rf-cable: {reserve.instance} module face cannot contain its plug")
+    for clearance, reserve, ui_item in nrf_cable_reserve_opposing_pairs(devices, instances):
+        if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
+            errors.append(
+                f"nrf-rf-cable: {reserve.instance}/{ui_item.instance} leaves only "
+                f"{clearance:.2f} mm across the interboard channel"
+            )
+    return errors
+
+
+def validate_through_board_features(devices: dict, instances: dict) -> list[str]:
+    """Validate THT tails that enter the gap from an externally mounted part."""
+    errors: list[str] = []
+    features = encoder_through_board_features(devices, instances)
+    if len(features) != 7:
+        errors.append("through-board: EC11E must expose two tabs and five terminal tails")
+    for feature in features:
+        feature_box = (feature.x, feature.y, feature.w, feature.h)
+        if (
+            feature.x < 0
+            or feature.y < 0
+            or feature.x + feature.w > BOARD_W
+            or feature.y + feature.h > BOARD_H
+        ):
+            errors.append(f"through-board: encoder {feature.feature} leaves the PCB plan")
+        if feature.inner_height + MIN_INTERBOARD_Z_CLEARANCE_MM > INTERBOARD_GAP_MM:
+            errors.append(f"through-board: encoder {feature.feature} exceeds the 11-mm channel")
+        for item in RF_INNER:
+            item_w, item_h = placement_size(item, devices, instances)
+            if overlaps(
+                feature_box,
+                (item.x, item.y, item_w, item_h),
+                MIN_INTERBOARD_Z_CLEARANCE_MM,
+            ):
+                errors.append(
+                    f"through-board: encoder {feature.feature} conflicts with {item.instance}"
+                )
+        for zone in INTERNAL_RESERVES:
+            if overlaps(
+                feature_box,
+                (zone.x, zone.y, zone.w, zone.h),
+                MIN_INTERBOARD_Z_CLEARANCE_MM,
+            ):
+                errors.append(f"through-board: encoder {feature.feature} conflicts with {zone.name}")
+    for clearance, feature, ui_item in through_board_opposing_pairs(devices, instances):
+        if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
+            errors.append(
+                f"through-board: encoder {feature.feature}/{ui_item.instance} leaves only "
                 f"{clearance:.2f} mm across the interboard channel"
             )
     return errors
@@ -1534,7 +1821,9 @@ def validate() -> list[str]:
 
     errors += validate_items("ui-inner", UI_INNER, devices, instances)
     errors += validate_cable_routes(devices, instances)
+    errors += validate_nrf_cable_reserves(devices, instances)
     errors += validate_items("rf-inner", RF_INNER, devices, instances)
+    errors += validate_through_board_features(devices, instances)
     inner_height_errors = []
     for item in UI_INNER + RF_INNER:
         try:
@@ -1618,10 +1907,13 @@ def validate() -> list[str]:
         voice_ant_x = voice.x + voice_nominal_w - float(voice_contact_xy[0])
         voice_ant_y = voice.y + voice_nominal_h - float(voice_contact_xy[1])
         voice_port_x = next(centre for centre, path, _ in REAR_RF if path == "VOICE-V/U")
-        if abs(voice_ant_x - voice_port_x) > 0.01 or abs(voice_ant_y - VOICE_RF_CORRIDOR[1][1]) > 0.01:
-            errors.append("SA518 contact 7 must remain nominally aligned to the VHF/UHF RF corridor")
-        if VOICE_RF_CORRIDOR != ((voice_port_x, 0.0), (voice_ant_x, voice_ant_y)):
-            errors.append("SA518 RF corridor must remain a straight controlled path to the VHF/UHF SMA")
+        if VOICE_RF_CORRIDOR[0] != (voice_port_x, 0.0) or any(
+            abs(a - b) > 0.01
+            for a, b in zip(VOICE_RF_CORRIDOR[-1], (voice_ant_x, voice_ant_y))
+        ):
+            errors.append("SA518 contact 7 must retain the controlled VHF/UHF corridor endpoints")
+        if polyline_length(VOICE_RF_CORRIDOR) > 40.0:
+            errors.append("SA518 RF corridor exceeds the 40-mm paper routing allowance")
 
     cc_zone = next(zone for zone in INTERNAL_RESERVES if zone.name == "cc-reference-rf-network")
     cc_port_x = next(centre for centre, path, _ in REAR_RF if path == "CC-SUB")
@@ -2385,12 +2677,13 @@ def render_internal(devices, instances, display_adapter_design):
 
     ui, rf = (80.0, 150.0), (465.0, 150.0)
     ui_items = UI_INNER + UI_RF_CABLES
-    all_items = ui_items + RF_INNER
+    rf_items = RF_INNER + RF_NRF_CABLE_RESERVES
+    all_items = ui_items + rf_items
     numbers = {item.instance: index for index, item in enumerate(all_items, 1)}
     legend_first_y = 795
     legend_row_height = 21
     rf_legend_columns = 3
-    rf_legend_rows = math.ceil(len(RF_INNER) / rf_legend_columns)
+    rf_legend_rows = math.ceil(len(rf_items) / rf_legend_columns)
     legend_bottom = legend_first_y + (max(len(ui_items), rf_legend_rows) - 1) * legend_row_height + 9
     notes_top = max(560, legend_bottom + 35)
     clearance_pairs = interboard_clearance_pairs(devices, instances)
@@ -2399,15 +2692,22 @@ def render_internal(devices, instances, display_adapter_design):
         display_adapter_design, devices, instances
     )
     cable_clearance_pairs = cable_interboard_clearance_pairs(devices, instances)
+    nrf_reserve_clearance_pairs = nrf_cable_reserve_opposing_pairs(devices, instances)
+    through_board_clearance_pairs = through_board_opposing_pairs(devices, instances)
     maximum_cable_od = max(
         float(devices[instances[route.instance]]["electrical_contract"]["cable_outer_diameter_mm"])
-        for route in UI_RF_CABLES
+        for route in UI_RF_CABLES + tuple(
+            CableRoute(reserve.instance, reserve.escape_points, reserve.role)
+            for reserve in RF_NRF_CABLE_RESERVES
+        )
     )
     minimum_clearance, minimum_ui, minimum_rf = clearance_pairs[0]
     minimum_individual_clearance, tallest_item = individual_clearances[0]
     minimum_adapter_clearance, minimum_adapter_body = adapter_clearance_pairs[0]
+    minimum_nrf_reserve_clearance, _, _ = nrf_reserve_clearance_pairs[0]
+    minimum_through_board_clearance, _, _ = through_board_clearance_pairs[0]
     tallest_height = placement_height(tallest_item, devices, instances)
-    svg_height = notes_top + 359
+    svg_height = notes_top + 430
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1510" height="{svg_height}" viewBox="0 0 1510 {svg_height}" data-view="mirrored-x" data-inner-silkscreen="none">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
@@ -2446,14 +2746,20 @@ def render_internal(devices, instances, display_adapter_design):
         )
         out.append(text(sx(rf,view_x+zone.w/2), sy(rf,zone.y+zone.h/2)+2, "CC RF REF", 5.2, "bold", "middle", "#9a3412"))
 
-    voice_route_points = " ".join(
-        f"{sx(rf,mirrored_x(x)):.1f},{sy(rf,y):.1f}"
-        for x, y in VOICE_RF_CORRIDOR
-    )
+    # Only the two physical endpoints are known before ECAD. A connecting
+    # polyline would look like proven copper and can visually cross component
+    # bodies even though the final trace may change layer or route around them.
     out.append(
-        f'<polyline points="{voice_route_points}" fill="none" stroke="#0f766e" stroke-width="2.2" '
-        f'data-route="SA518.7-to-VOICE-V/U" data-centreline-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}"/>'
+        f'<g id="voice-rf-endpoints" data-route="SA518.7-to-VOICE-V/U" '
+        f'data-route-state="pre-ecad-endpoints-only" '
+        f'data-straight-line-distance-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">'
     )
+    for x, y in VOICE_RF_CORRIDOR:
+        out.append(
+            f'<circle cx="{sx(rf,mirrored_x(x)):.1f}" cy="{sy(rf,y):.1f}" r="3.5" '
+            f'fill="none" stroke="#0f766e" stroke-width="1.3" stroke-dasharray="2 2"/>'
+        )
+    out.append('</g>')
 
     out.append('<g id="exact-native-rf-jumpers" data-route-units="mm" data-bend-state="coupon-open">')
     for route in UI_RF_CABLES:
@@ -2478,6 +2784,66 @@ def render_internal(devices, instances, display_adapter_design):
             text(
                 sx(ui,mirrored_x(annotation_x)), sy(ui,annotation_y)-5,
                 str(numbers[route.instance]), 6.8, "bold", "middle", "#115e59"
+            )
+        )
+    out.append('</g>')
+
+    out.append('<g id="nrf-module-face-cable-reserves" data-axis-state="H5-open" data-route-units="mm">')
+    for reserve in RF_NRF_CABLE_RESERVES:
+        module_x, module_y, module_w, module_h = nrf_cable_reserve_module_box(
+            reserve, devices, instances
+        )
+        out.append(
+            rect(
+                rf,
+                mirrored_x(module_x, module_w),
+                module_y,
+                module_w,
+                module_h,
+                "none",
+                "#0891b2",
+                "4 3",
+                2,
+                f' data-instance="{reserve.instance}" data-reserve="module-face"',
+            )
+        )
+        points = " ".join(
+            f"{sx(rf,mirrored_x(x)):.1f},{sy(rf,y):.1f}"
+            for x, y in reserve.escape_points
+        )
+        cable_od = float(
+            devices[instances[reserve.instance]]["electrical_contract"][
+                "cable_outer_diameter_mm"
+            ]
+        )
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="#0891b2" '
+            f'stroke-width="{cable_od*scale:.2f}" stroke-linecap="round" stroke-linejoin="round" '
+            f'data-instance="{reserve.instance}" data-reserve="escape"/>'
+        )
+        annotation_x, annotation_y = reserve.escape_points[-2]
+        out.append(
+            text(
+                sx(rf,mirrored_x(annotation_x)), sy(rf,annotation_y)-4,
+                str(numbers[reserve.instance]), 6.8, "bold", "middle", "#0e7490"
+            )
+        )
+    out.append('</g>')
+
+    out.append('<g id="encoder-through-board-features" data-source-face="rear-outer" data-inner-projection-mm="3.5">')
+    for feature in encoder_through_board_features(devices, instances):
+        out.append(
+            rect(
+                rf,
+                mirrored_x(feature.x, feature.w),
+                feature.y,
+                feature.w,
+                feature.h,
+                "#fdf2f8",
+                "#be185d",
+                "2 2",
+                1,
+                f' data-feature="{feature.feature}"',
             )
         )
     out.append('</g>')
@@ -2538,7 +2904,7 @@ def render_internal(devices, instances, display_adapter_design):
             )
         )
         y = legend_first_y
-        for item in RF_INNER[first:last]:
+        for item in rf_items[first:last]:
             mpn = devices[instances[item.instance]]["mpn"]
             out.append(text(column_x,y,f"{numbers[item.instance]:02d}  {mpn}",8.1,"bold"))
             out.append(text(column_x+26,y+9,item.role,7.2,colour="#526076"))
@@ -2552,25 +2918,31 @@ def render_internal(devices, instances, display_adapter_design):
         f'data-min-display-adapter-clearance-mm="{minimum_adapter_clearance:.2f}" '
         f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
         f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
+        f'data-nrf-cable-reserves="{len(RF_NRF_CABLE_RESERVES)}" '
         f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}" '
-        f'data-functional-zones="{len(INTERNAL_RESERVES)}" data-voice-rf-route-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">',
+        f'data-nrf-reserve-opposing-pairs="{len(nrf_reserve_clearance_pairs)}" '
+        f'data-encoder-through-features="{len(encoder_through_board_features(devices, instances))}" '
+        f'data-functional-zones="{len(INTERNAL_RESERVES)}" data-voice-rf-endpoint-distance-mm="{polyline_length(VOICE_RF_CORRIDOR):.2f}">',
         text(note_x,notes_top,"Validated clearances",14,"bold"),
         text(note_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
         text(note_x,notes_top+45,f"• all {len(individual_clearances)} inner bodies checked individually; tallest {tallest_height:.2f} mm; opposite-plane remainder {minimum_individual_clearance:.2f} mm",10),
         text(note_x,notes_top+66,f"• complete 3.80-mm display adapter: {len(adapter_clearance_pairs)} opposing crossings; minimum Z gap {minimum_adapter_clearance:.2f} mm to {minimum_adapter_body.instance}",10),
         text(note_x,notes_top+87,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
         text(note_x,notes_top+108,f"• outward connector / through-hole tail clearance on the opposite face: ≥{OPPOSITE_FACE_CLEARANCE_MM:.1f} mm",10),
-        text(note_x,notes_top+129,f"• native RF coax: {len(UI_RF_CABLES)} routes checked; {len(cable_clearance_pairs)} opposing-body crossings; maximum OD {maximum_cable_od:.2f} mm",10),
+        text(note_x,notes_top+129,f"• RF coax: {len(UI_RF_CABLES)} exact routes + {len(RF_NRF_CABLE_RESERVES)} nRF module-face reserves; all five 30-mm assemblies accounted",10),
         text(note_x,notes_top+150,f"• limiting pair: {numbers[minimum_ui.instance]:02d} {minimum_ui.role} / {numbers[minimum_rf.instance]:02d} {minimum_rf.role}",10),
         text(note_x,notes_top+171,"• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair",10),
         text(note_x,notes_top+192,"• M2.5 hole/head keep-out: 4.0-mm radius",10),
         text(note_x,notes_top+213,"• both inner views are horizontally mirrored from their external faces",10),
-        text(note_x,notes_top+234,f"• outer antenna bodies are absent; the {polyline_length(VOICE_RF_CORRIDOR):.2f}-mm SA518.7 copper corridor is shown",10),
-        text(note_x,notes_top+255,"• orange dashed boundary is a placement zone, not one combined device",10),
-        text(note_x,notes_top+276,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
-        text(note_x,notes_top+296,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
-        text(note_x,notes_top+322,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
-        text(note_x,notes_top+343,"Placement projection; all mechanically significant bodies are accounted; only small passives and unshown copper are omitted.",9.2,colour="#526076"),
+        text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; exact module axes close in H5",10),
+        text(note_x,notes_top+255,f"• EC11E through-board features: 7 checked; {len(through_board_clearance_pairs)} opposing crossings; minimum Z gap {minimum_through_board_clearance:.2f} mm",10),
+        text(note_x,notes_top+276,f"• outer antenna bodies are absent; SA518.7 endpoints are {polyline_length(VOICE_RF_CORRIDOR):.2f} mm apart; no pre-ECAD copper route is drawn",10),
+        text(note_x,notes_top+297,"• orange dashed boundary is a placement zone, not one combined device",10),
+        text(note_x,notes_top+318,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
+        text(note_x,notes_top+338,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
+        text(note_x,notes_top+364,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
+        text(note_x,notes_top+385,"Physical keep-outs pass; display-tail evidence and final PCB copper/via DRC remain open.",9.2,"bold",colour="#b42318"),
+        text(note_x,notes_top+406,"Placement projection; all mechanically significant bodies are accounted; small passives and production copper remain ECAD work.",9.2,colour="#526076"),
         "</g>",
     ]
     out.append("</svg>")
@@ -3359,6 +3731,7 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
         for item in items
     }
     cable_routes = {route.instance: route for route in UI_RF_CABLES}
+    cable_reserves = {reserve.instance: reserve for reserve in RF_NRF_CABLE_RESERVES}
     gates = json.loads(MECHANICAL_GATES_PATH.read_text(encoding="utf-8"))["gates"]
     gate_by_instance: dict[str, list[dict]] = {}
     for gate in gates:
@@ -3376,7 +3749,15 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
             "instance": instance,
             "device_key": device_key,
             "mpn": device["mpn"],
-            "role": placements[instance].role if instance in placements else device.get("kind", "physical body"),
+            "role": (
+                placements[instance].role
+                if instance in placements
+                else cable_routes[instance].role
+                if instance in cable_routes
+                else cable_reserves[instance].role
+                if instance in cable_reserves
+                else device.get("kind", "physical body")
+            ),
             "frame": contract.frame,
             "frame_datum": MECHANICAL_PROJECTION_FRAMES[contract.frame],
             "rotation_deg": contract.rotation,
@@ -3394,6 +3775,24 @@ def build_physical_source_table(devices: dict, instances: dict) -> dict:
             row["position_mm"] = [placements[instance].x, placements[instance].y]
         if instance in cable_routes:
             row["route_points_mm"] = [list(point) for point in cable_routes[instance].points]
+        if instance in cable_reserves:
+            reserve = cable_reserves[instance]
+            module_box = nrf_cable_reserve_module_box(reserve, devices, instances)
+            row["module_face_reserve_mm"] = {
+                "x": [module_box[0], module_box[0] + module_box[2]],
+                "y": [module_box[1], module_box[1] + module_box[3]],
+            }
+            row["escape_points_mm"] = [list(point) for point in reserve.escape_points]
+            row["exact_axis_status"] = "H5 received-module evidence"
+        if instance == "encoder":
+            row["through_board_features"] = [
+                {
+                    "feature": feature.feature,
+                    "plan_bbox_mm": [feature.x, feature.y, feature.w, feature.h],
+                    "inner_projection_mm": feature.inner_height,
+                }
+                for feature in encoder_through_board_features(devices, instances)
+            ]
         rows.append(row)
     return {
         "schema_version": 1,
@@ -3466,12 +3865,20 @@ def build_unified_coordinate_table(
     individual_clearances = interboard_individual_clearances(devices, instances)
     opposing_pairs = interboard_clearance_pairs(devices, instances)
     cable_pairs = cable_interboard_clearance_pairs(devices, instances)
+    nrf_reserve_pairs = nrf_cable_reserve_opposing_pairs(devices, instances)
+    through_board_pairs = through_board_opposing_pairs(devices, instances)
     adapter_pairs = display_adapter_opposing_clearance_pairs(
         display_adapter_design, devices, instances
     )
     minimum_individual_clearance, tallest_item = individual_clearances[0]
     minimum_pair_clearance, minimum_ui, minimum_rf = opposing_pairs[0]
     minimum_cable_clearance, minimum_cable, minimum_cable_body = cable_pairs[0]
+    minimum_nrf_reserve_clearance, minimum_nrf_reserve, minimum_nrf_reserve_body = (
+        nrf_reserve_pairs[0]
+    )
+    minimum_through_clearance, minimum_through_feature, minimum_through_body = (
+        through_board_pairs[0]
+    )
     minimum_adapter_clearance, minimum_adapter_body = adapter_pairs[0]
     mate_instances = {
         instance
@@ -3604,6 +4011,113 @@ def build_unified_coordinate_table(
                 for clearance, cable, rf_item in cable_pairs
             ],
             "remaining_gate": "Final PCB, assembly and enclosure tolerance stack plus assembled HIL remain required before production release.",
+        },
+        "physical_interconnect_clearance_audit": {
+            "result": "paper_keepouts_passed_final_ecad_and_h5_open",
+            "scope": "Every physical item entering or occupying the 11-mm interboard channel; PCB copper is intentionally a later ECAD/DRC proof.",
+            "m1_interboard_connector": {
+                "contact_count": 80,
+                "intentional_mated_height_mm": INTERBOARD_GAP_MM,
+                "same_face_body_keepouts_passed": True,
+                "opposing_body_treatment": "one intentional exact mate",
+            },
+            "rf_microcoax": {
+                "exact_polyline_route_count": len(UI_RF_CABLES),
+                "conservative_nrf_module_face_reserve_count": len(RF_NRF_CABLE_RESERVES),
+                "all_five_feed_assemblies_accounted": (
+                    len(UI_RF_CABLES) + len(RF_NRF_CABLE_RESERVES) == 5
+                ),
+                "exact_jumper_mpn": devices[instances["s3_rf_jumper"]]["mpn"],
+                "same_face_keepouts_passed": True,
+                "exact_route_opposing_crossing_count": len(cable_pairs),
+                "minimum_exact_route_opposing_z_clearance_mm": round(
+                    minimum_cable_clearance, 6
+                ),
+                "nrf_reserve_opposing_crossing_count": len(nrf_reserve_pairs),
+                "minimum_nrf_reserve_opposing_crossing": {
+                    "cable_instance": minimum_nrf_reserve.instance,
+                    "ui_instance": minimum_nrf_reserve_body.instance,
+                    "remaining_z_clearance_mm": round(minimum_nrf_reserve_clearance, 6),
+                },
+                "nrf_reserves": [
+                    {
+                        "cable_instance": reserve.instance,
+                        "module_instance": reserve.module_instance,
+                        "board_connector_instance": reserve.board_connector_instance,
+                        "module_face_reserve_mm": [
+                            round(value, 6)
+                            for value in nrf_cable_reserve_module_box(
+                                reserve, devices, instances
+                            )
+                        ],
+                        "escape_points_mm": [list(point) for point in reserve.escape_points],
+                        "escape_length_mm": round(polyline_length(reserve.escape_points), 6),
+                        "uncommitted_slack_mm": round(
+                            float(
+                                devices[instances[reserve.instance]]["electrical_contract"][
+                                    "cable_length_mm"
+                                ]
+                            )
+                            - polyline_length(reserve.escape_points),
+                            6,
+                        ),
+                        "axis_status": "H5 received-module evidence",
+                    }
+                    for reserve in RF_NRF_CABLE_RESERVES
+                ],
+            },
+            "display_bus": {
+                "main_board_and_adapter_stack_result": "paper_geometry_passed",
+                "complete_adapter_height_mm": float(
+                    display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]
+                ),
+                "minimum_opposing_z_clearance_mm": round(minimum_adapter_clearance, 6),
+                "received_panel_tail_result": "H5_open",
+                "open_evidence": "current-lot FPC outline, stiffener, thickness and bend path",
+            },
+            "outer_face_through_board_features": {
+                "encoder_feature_count": len(
+                    encoder_through_board_features(devices, instances)
+                ),
+                "encoder_inner_projection_mm": float(
+                    devices[instances["encoder"]]["mechanical_contract"][
+                        "inner_terminal_projection_mm"
+                    ]
+                ),
+                "encoder_same_face_keepouts_passed": True,
+                "encoder_opposing_crossing_count": len(through_board_pairs),
+                "minimum_encoder_opposing_crossing": {
+                    "feature": minimum_through_feature.feature,
+                    "ui_instance": minimum_through_body.instance,
+                    "remaining_z_clearance_mm": round(minimum_through_clearance, 6),
+                },
+                "u214_socket": {
+                    "mpn": devices[instances["u214_connector"]]["mpn"],
+                    "tail_plan_keepout_mm": [
+                        U214_CONNECTOR_PTH_KEEPOUT_W,
+                        U214_CONNECTOR_PTH_KEEPOUT_D,
+                    ],
+                    "minimum_inner_plan_clearance_mm": OPPOSITE_FACE_CLEARANCE_MM,
+                    "result": "paper_geometry_passed_H5_mating_fit_open",
+                },
+                "outward_rf_connector_count": len(FRONT_RF + REAR_RF),
+                "outward_rf_tail_minimum_inner_plan_clearance_mm": OPPOSITE_FACE_CLEARANCE_MM,
+            },
+            "pcb_copper_and_vias": {
+                "result": "not_yet_proven_pre_kicad",
+                "reason": "logical pin and net maps do not prove escape routing, return paths, via fields or DRC clearance through real footprints",
+                "voice_rf_endpoint_distance_mm": round(
+                    polyline_length(VOICE_RF_CORRIDOR), 6
+                ),
+                "voice_rf_route_rendering": "endpoints_only_no_claimed_copper_path",
+                "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review",
+            },
+            "remaining_gates": [
+                "H5 received E01-ML01IPX connector axes and cable bend/retention coupons",
+                "H5 received HMX035CTFT-001 FPC tail and bend path",
+                "KiCad footprint-level copper/via routing and DRC",
+                "assembled tolerance stack and HIL",
+            ],
         },
         "resolved_body_count": len(rows),
         "rows": rows,

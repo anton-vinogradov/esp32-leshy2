@@ -145,9 +145,12 @@ machine-checked placement drawing.
 The first projection shows only the outward, user-facing PCB sides: display,
 controls, labelled RF ports, indicators and side interfaces. The second shows
 the two mirrored inner faces and the exact devices inside the sandwich. A
-number inside a component outline maps to the adjacent exact MPN and role.
+number inside a component outline maps to the adjacent exact MPN and role. The
+same drawing also shows all five RF cable routes/reserves and the seven encoder
+terminals that enter the interboard channel; final PCB copper remains a KiCad
+DRC gate.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=12)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=13)
 
 ### Top view from the antenna edge
 

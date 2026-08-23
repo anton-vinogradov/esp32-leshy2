@@ -105,6 +105,24 @@ class ProductSiteTests(unittest.TestCase):
             for stage in range(2, 10):
                 self.assertNotIn(reviewed, rows[stage], f"{name}: H{stage}")
 
+    def test_interconnect_page_distinguishes_mechanical_fit_from_ecad(self):
+        expectations = {
+            "docs/interconnect.md": (
+                "Every inter-board net listed below crosses only inside the single M1 body",
+                "The five RF microcoaxes",
+                "not a claim that copper is already routed",
+            ),
+            "docs/interconnect.ru.md": (
+                "Все перечисленные ниже межплатные цепи проходят только внутри единого корпуса",
+                "Отдельно проверены пять RF-коаксиалов",
+                "не заявлением, что медь уже разведена",
+            ),
+        }
+        for name, tokens in expectations.items():
+            page = " ".join(self.read(name).split())
+            for token in tokens:
+                self.assertIn(token, page, f"{name}: {token}")
+
     def test_current_hardware_substep_is_visible_and_synchronized(self):
         pages = ("README.md", "README.ru.md", "docs/roadmap.md", "docs/roadmap.ru.md")
         markers = {}
@@ -448,18 +466,24 @@ class ProductSiteTests(unittest.TestCase):
             'data-min-single-body-clearance-mm="2.05"',
             'data-display-adapter-opposing-pairs="5"',
             'data-min-display-adapter-clearance-mm="6.00"',
-            'data-opposing-pairs="42"',
+            'data-opposing-pairs="43"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
+            'data-nrf-cable-reserves="3"',
             'data-opposing-cable-pairs="3"',
+            'data-nrf-reserve-opposing-pairs="5"',
+            'data-encoder-through-features="7"',
             'data-cable-od-max-mm="1.13"',
             'data-functional-zones="1"',
-            'data-voice-rf-route-mm="33.00"',
+            'data-voice-rf-endpoint-distance-mm="32.92"',
+            'data-route-state="pre-ecad-endpoints-only"',
             "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
             "complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm",
-            "opposing inner faces: 42 non-mating XY pairs checked; minimum Z gap 3.31 mm",
-            "native RF coax: 2 routes checked; 3 opposing-body crossings; maximum OD 1.13 mm",
+            "opposing inner faces: 43 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "RF coax: 2 exact routes + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
+            "nRF reserve crossings: 5; minimum Z gap 5.20 mm",
+            "EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm",
             "limiting pair: 20 3.5-mm headphone/line connector / 118 protected-pack branch fuse #0",
         ):
             self.assertIn(token, layout)
@@ -489,7 +513,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=12", page)
+            self.assertIn("internal-board-layout.svg?layout=13", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -521,9 +545,9 @@ class ProductSiteTests(unittest.TestCase):
                 for row in audit["individual_body_clearances"]
             )
         )
-        self.assertEqual(42, audit["opposing_non_mating_pair_count"])
+        self.assertEqual(43, audit["opposing_non_mating_pair_count"])
         self.assertEqual(3.31, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
-        self.assertEqual(42, len(audit["opposing_non_mating_pairs"]))
+        self.assertEqual(43, len(audit["opposing_non_mating_pairs"]))
         self.assertTrue(
             all(
                 row["remaining_z_clearance_mm"] >= 0.7
@@ -536,6 +560,20 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(6.0, audit["display_adapter_assembly"]["minimum_opposing_z_clearance_mm"])
         self.assertEqual(7.77, audit["minimum_native_rf_cable_crossing"]["remaining_z_clearance_mm"])
         self.assertEqual(3, len(audit["native_rf_cable_crossings"]))
+        interconnect = coordinate_table["physical_interconnect_clearance_audit"]
+        self.assertEqual(
+            "paper_keepouts_passed_final_ecad_and_h5_open", interconnect["result"]
+        )
+        self.assertEqual(80, interconnect["m1_interboard_connector"]["contact_count"])
+        coax = interconnect["rf_microcoax"]
+        self.assertEqual(2, coax["exact_polyline_route_count"])
+        self.assertEqual(3, coax["conservative_nrf_module_face_reserve_count"])
+        self.assertTrue(coax["all_five_feed_assemblies_accounted"])
+        self.assertEqual(5.2, coax["minimum_nrf_reserve_opposing_crossing"]["remaining_z_clearance_mm"])
+        through = interconnect["outer_face_through_board_features"]
+        self.assertEqual(7, through["encoder_feature_count"])
+        self.assertEqual(4.2, through["minimum_encoder_opposing_crossing"]["remaining_z_clearance_mm"])
+        self.assertEqual("not_yet_proven_pre_kicad", interconnect["pcb_copper_and_vias"]["result"])
 
     def test_sandwich_section_uses_registered_component_depths(self):
         layout = self.read("docs/images/sandwich-section.svg")

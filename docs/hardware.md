@@ -172,21 +172,39 @@ against the opposite PCB plane: the tallest body is 8.95 mm and leaves 2.05 mm
 in the 11-mm channel. The two additional display-adapter connectors are checked
 as one complete 3.8-mm assembly; its five rear-board crossings retain at least
 6.00 mm, bringing the covered internal component count to 131. The audit then
-checks all 42 non-mating main-board pairs whose XY projections overlap. The
+checks all 43 non-mating main-board pairs whose XY projections overlap. The
 current limiting pair—the headphone jack opposite a protected
 pack fuse—retains a 3.31-mm Z gap, above the enforced 0.7-mm minimum. The aligned
 FX8C plug and receptacle are validated separately as the single intentional mate.
-The opposite-face bodies and through-hole tails of the external RF jacks and U214
-socket retain at least 1.5 mm of plan clearance from inner components. The
-central nRF24 module is rotated 90 degrees to clear the U214 tails; the SA518
-contact 7 is aligned to a straight 33-mm VHF/UHF corridor; and the CC1101 plus
-its reference matching network occupy a dedicated dashed RF zone at the
-`SUB-GHz` jack. Both exact 30-mm native RF coax routes are checked against
-same-face bodies, screw keep-outs and all opposing bodies. Their three opposing
-XY crossings retain 7.77 mm of Z clearance. All mechanically significant
-bodies—including power inductors, bulk capacitors, pack protection, interface
-buffers and audio selectors—must appear in a physical projection. Only small
-passives, unshown copper and manufacturing tolerances remain for ECAD closure.
+The opposite-face bodies and tails of the nine external RF jacks and the exact
+pass-through U214 socket retain at least 1.5 mm of plan clearance from inner
+components. All five 30-mm `TE Connectivity 2118651-2` RF feeds are now in the
+mechanical audit. S3 and C5 use exact axis-to-axis polylines; their three
+opposing XY crossings retain 7.77 mm of Z clearance. The three Ebyte feeds use
+the complete module face as a conservative cable-head reserve plus a fixed
+escape to the exact board receptacle. Their five opposing crossings retain at
+least 5.20 mm; the current-lot module connector axes and cable bends remain an
+explicit H5 received-part gate rather than invented geometry.
+
+The externally mounted `Alps Alpine EC11E18244AU` is treated as a through-board
+part, not just an outer 11-mm class body. Its two mounting tabs and five signal
+terminals project 3.5 mm into the channel. Their exact seven keep-outs forced a
+small paper-layout correction: the RP2354 and nRF0 buffers moved upward, while
+the SA518 and the right-hand buffer columns moved right. No component, net or
+function changed. The seven features clear every RF-side body by at least the
+enforced 0.7 mm; their two opposing UI-body crossings retain 4.20 mm of Z
+clearance. Only the real SA518 contact-7 and unchanged VHF/UHF-connector
+endpoints are now shown, 32.92 mm apart: an invented pre-KiCad copper line no
+longer crosses component bodies in the drawing or masquerades as a routed trace.
+
+The exact 80-contact M1 body and the complete 3.8-mm display-adapter stack also
+pass the physical keep-out audit. This result deliberately does not claim that
+PCB copper is routed: escape routing, return paths, via fields, controlled
+impedance and footprint-level clearance close only after both boards pass KiCad
+ERC/DRC and an independent layout review. The received display FPC outline and
+bend path remain H5 evidence. All mechanically significant bodies—including
+power inductors, bulk capacitors, pack protection, interface buffers and audio
+selectors—must appear in a physical projection.
 
 In two aligned rows of five below the display, user-facing actual-transmit labels cover
 `WI-FI/BLE`, `WI-FI/15.4`, `nRF24-1`, `nRF24-2`, `nRF24-3`, `SUB-GHz`,
@@ -204,7 +222,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=12)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=13)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

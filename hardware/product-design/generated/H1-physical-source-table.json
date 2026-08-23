@@ -347,7 +347,7 @@
       "instance": "c5_rf_jumper",
       "device_key": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "role": "exact 30-mm C5 UMCC Gen1 jumper corridor",
       "frame": "ui-inner-route",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -501,7 +501,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        67.1,
+        68.3,
         58.0
       ]
     },
@@ -551,7 +551,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        55.3,
+        56.5,
         58.0
       ]
     },
@@ -578,7 +578,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        61.2,
+        62.4,
         58.0
       ]
     },
@@ -1196,14 +1196,14 @@
       "instance": "encoder",
       "device_key": "alps_ec11e18244au",
       "mpn": "Alps Alpine EC11E18244AU",
-      "role": "rear encoder",
+      "role": "rear through-hole encoder",
       "frame": "rear-outer",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
       "direction": "rear-normal outward actuation",
       "envelope_mm": [
-        11.0,
-        11.0,
+        11.7,
+        12.0,
         20.0
       ],
       "qualification": "verified_first_target_mechanical_fit_hil_open",
@@ -1220,8 +1220,80 @@
         }
       ],
       "position_mm": [
-        2.5,
-        45.0
+        2.15,
+        44.5
+      ],
+      "through_board_features": [
+        {
+          "feature": "dummy_terminal_1",
+          "plan_bbox_mm": [
+            0.95,
+            49.15,
+            1.6,
+            2.7
+          ],
+          "inner_projection_mm": 3.5
+        },
+        {
+          "feature": "dummy_terminal_2",
+          "plan_bbox_mm": [
+            13.45,
+            49.15,
+            1.6,
+            2.7
+          ],
+          "inner_projection_mm": 3.5
+        },
+        {
+          "feature": "contact_D",
+          "plan_bbox_mm": [
+            4.95,
+            42.95,
+            1.1,
+            1.1
+          ],
+          "inner_projection_mm": 3.5
+        },
+        {
+          "feature": "contact_E",
+          "plan_bbox_mm": [
+            9.95,
+            42.95,
+            1.1,
+            1.1
+          ],
+          "inner_projection_mm": 3.5
+        },
+        {
+          "feature": "contact_A",
+          "plan_bbox_mm": [
+            4.95,
+            57.45,
+            1.1,
+            1.1
+          ],
+          "inner_projection_mm": 3.5
+        },
+        {
+          "feature": "contact_C",
+          "plan_bbox_mm": [
+            7.45,
+            57.45,
+            1.1,
+            1.1
+          ],
+          "inner_projection_mm": 3.5
+        },
+        {
+          "feature": "contact_B",
+          "plan_bbox_mm": [
+            9.95,
+            57.45,
+            1.1,
+            1.1
+          ],
+          "inner_projection_mm": 3.5
+        }
       ]
     },
     {
@@ -1939,7 +2011,7 @@
       "evidence_gates": [],
       "position_mm": [
         0.0,
-        44.0
+        26.8
       ]
     },
     {
@@ -1966,7 +2038,7 @@
       "evidence_gates": [],
       "position_mm": [
         6.0,
-        44.0
+        26.8
       ]
     },
     {
@@ -2005,7 +2077,7 @@
       "instance": "nrf0_rf_jumper",
       "device_key": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "role": "30-mm nRF24 #0 module-face reserve and board-receptacle escape",
       "frame": "rf-inner-route",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
@@ -2027,7 +2099,32 @@
           "id": "H5-MECH-NRF-GEN1-FEEDS",
           "disposition": "h5_received_sample_gate"
         }
-      ]
+      ],
+      "module_face_reserve_mm": {
+        "x": [
+          10.0,
+          22.1
+        ],
+        "y": [
+          7.5,
+          26.6
+        ]
+      },
+      "escape_points_mm": [
+        [
+          22.1,
+          25.0
+        ],
+        [
+          24.5,
+          25.0
+        ],
+        [
+          24.5,
+          29.55
+        ]
+      ],
+      "exact_axis_status": "H5 received-module evidence"
     },
     {
       "instance": "nrf0_tx_led",
@@ -2135,7 +2232,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        55.3,
+        56.5,
         34.0
       ]
     },
@@ -2162,7 +2259,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        61.2,
+        62.4,
         34.0
       ]
     },
@@ -2202,7 +2299,7 @@
       "instance": "nrf1_rf_jumper",
       "device_key": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "role": "30-mm nRF24 #1 module-face reserve and board-receptacle escape",
       "frame": "rf-inner-route",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
@@ -2224,7 +2321,32 @@
           "id": "H5-MECH-NRF-GEN1-FEEDS",
           "disposition": "h5_received_sample_gate"
         }
-      ]
+      ],
+      "module_face_reserve_mm": {
+        "x": [
+          31.5,
+          50.6
+        ],
+        "y": [
+          7.5,
+          19.6
+        ]
+      },
+      "escape_points_mm": [
+        [
+          49.0,
+          19.6
+        ],
+        [
+          51.5,
+          19.6
+        ],
+        [
+          51.5,
+          29.55
+        ]
+      ],
+      "exact_axis_status": "H5 received-module evidence"
     },
     {
       "instance": "nrf1_tx_led",
@@ -2332,7 +2454,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        55.3,
+        56.5,
         40.0
       ]
     },
@@ -2359,7 +2481,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        61.2,
+        62.4,
         40.0
       ]
     },
@@ -2399,7 +2521,7 @@
       "instance": "nrf2_rf_jumper",
       "device_key": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "role": "30-mm nRF24 #2 module-face reserve and board-receptacle escape",
       "frame": "rf-inner-route",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 0,
@@ -2421,7 +2543,28 @@
           "id": "H5-MECH-NRF-GEN1-FEEDS",
           "disposition": "h5_received_sample_gate"
         }
-      ]
+      ],
+      "module_face_reserve_mm": {
+        "x": [
+          52.9,
+          65.0
+        ],
+        "y": [
+          7.5,
+          26.6
+        ]
+      },
+      "escape_points_mm": [
+        [
+          65.0,
+          23.55
+        ],
+        [
+          71.5,
+          23.55
+        ]
+      ],
+      "exact_axis_status": "H5 received-module evidence"
     },
     {
       "instance": "nrf2_tx_led",
@@ -3258,7 +3401,7 @@
       "evidence_gates": [],
       "position_mm": [
         0.0,
-        33.0
+        32.2
       ]
     },
     {
@@ -3563,7 +3706,7 @@
       "instance": "s3_rf_jumper",
       "device_key": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "role": "double_ended_umcc_gen1_microcoax_jumper",
+      "role": "exact 30-mm S3 UMCC Gen1 jumper corridor",
       "frame": "ui-inner-route",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -4129,7 +4272,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        55.3,
+        56.5,
         27.3
       ]
     },
@@ -4156,7 +4299,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        61.2,
+        62.4,
         27.3
       ]
     },
@@ -4183,7 +4326,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        67.1,
+        68.3,
         34.0
       ]
     },
@@ -4210,7 +4353,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        67.1,
+        68.3,
         27.3
       ]
     },
@@ -4784,11 +4927,11 @@
       "instance": "voice",
       "device_key": "nicerf_sa518_v11",
       "mpn": "NiceRF SA518",
-      "role": "VHF/UHF voice transceiver; contact 7 faces its SMA",
+      "role": "VHF/UHF voice transceiver; contact 7 uses a short controlled jog to its SMA",
       "frame": "rf-inner",
       "frame_datum": "RF/power PCB top-left, viewed from the rear/exterior",
       "rotation_deg": 180,
-      "direction": "contact 7 faces the antenna edge along the straight VHF/UHF corridor",
+      "direction": "contact 7 faces the antenna edge along the controlled VHF/UHF corridor",
       "envelope_mm": [
         40.0,
         24.5,
@@ -4808,8 +4951,8 @@
         }
       ],
       "position_mm": [
-        12.0,
-        33.0
+        15.8,
+        32.7
       ]
     },
     {

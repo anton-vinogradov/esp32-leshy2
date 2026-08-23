@@ -549,14 +549,14 @@
       {
         "instance": "encoder",
         "mpn": "Alps Alpine EC11E18244AU",
-        "role": "rear encoder",
+        "role": "rear through-hole encoder",
         "position_mm": [
-          2.5,
-          45.0
+          2.15,
+          44.5
         ],
         "envelope_mm": [
-          11.0,
-          11.0
+          11.7,
+          12.0
         ]
       },
       {

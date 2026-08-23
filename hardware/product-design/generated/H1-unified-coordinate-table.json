@@ -1042,7 +1042,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.4
       }
     ],
-    "opposing_non_mating_pair_count": 42,
+    "opposing_non_mating_pair_count": 43,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -1275,6 +1275,13 @@
       },
       {
         "ui_instance": "c5",
+        "rf_instance": "nrf0_return_buffer",
+        "ui_height_mm": 3.3,
+        "rf_height_mm": 1.0,
+        "remaining_z_clearance_mm": 6.7
+      },
+      {
+        "ui_instance": "c5",
         "rf_instance": "rp",
         "ui_height_mm": 3.3,
         "rf_height_mm": 0.9,
@@ -1420,6 +1427,155 @@
       }
     ],
     "remaining_gate": "Final PCB, assembly and enclosure tolerance stack plus assembled HIL remain required before production release."
+  },
+  "physical_interconnect_clearance_audit": {
+    "result": "paper_keepouts_passed_final_ecad_and_h5_open",
+    "scope": "Every physical item entering or occupying the 11-mm interboard channel; PCB copper is intentionally a later ECAD/DRC proof.",
+    "m1_interboard_connector": {
+      "contact_count": 80,
+      "intentional_mated_height_mm": 11.0,
+      "same_face_body_keepouts_passed": true,
+      "opposing_body_treatment": "one intentional exact mate"
+    },
+    "rf_microcoax": {
+      "exact_polyline_route_count": 2,
+      "conservative_nrf_module_face_reserve_count": 3,
+      "all_five_feed_assemblies_accounted": true,
+      "exact_jumper_mpn": "TE Connectivity 2118651-2",
+      "same_face_keepouts_passed": true,
+      "exact_route_opposing_crossing_count": 3,
+      "minimum_exact_route_opposing_z_clearance_mm": 7.77,
+      "nrf_reserve_opposing_crossing_count": 5,
+      "minimum_nrf_reserve_opposing_crossing": {
+        "cable_instance": "nrf0_rf_jumper",
+        "ui_instance": "c5",
+        "remaining_z_clearance_mm": 5.2
+      },
+      "nrf_reserves": [
+        {
+          "cable_instance": "nrf0_rf_jumper",
+          "module_instance": "nrf0",
+          "board_connector_instance": "nrf0_rf_board_connector",
+          "module_face_reserve_mm": [
+            10.0,
+            7.5,
+            12.1,
+            19.1
+          ],
+          "escape_points_mm": [
+            [
+              22.1,
+              25.0
+            ],
+            [
+              24.5,
+              25.0
+            ],
+            [
+              24.5,
+              29.55
+            ]
+          ],
+          "escape_length_mm": 6.95,
+          "uncommitted_slack_mm": 23.05,
+          "axis_status": "H5 received-module evidence"
+        },
+        {
+          "cable_instance": "nrf1_rf_jumper",
+          "module_instance": "nrf1",
+          "board_connector_instance": "nrf1_rf_board_connector",
+          "module_face_reserve_mm": [
+            31.5,
+            7.5,
+            19.1,
+            12.1
+          ],
+          "escape_points_mm": [
+            [
+              49.0,
+              19.6
+            ],
+            [
+              51.5,
+              19.6
+            ],
+            [
+              51.5,
+              29.55
+            ]
+          ],
+          "escape_length_mm": 12.45,
+          "uncommitted_slack_mm": 17.55,
+          "axis_status": "H5 received-module evidence"
+        },
+        {
+          "cable_instance": "nrf2_rf_jumper",
+          "module_instance": "nrf2",
+          "board_connector_instance": "nrf2_rf_board_connector",
+          "module_face_reserve_mm": [
+            52.9,
+            7.5,
+            12.1,
+            19.1
+          ],
+          "escape_points_mm": [
+            [
+              65.0,
+              23.55
+            ],
+            [
+              71.5,
+              23.55
+            ]
+          ],
+          "escape_length_mm": 6.5,
+          "uncommitted_slack_mm": 23.5,
+          "axis_status": "H5 received-module evidence"
+        }
+      ]
+    },
+    "display_bus": {
+      "main_board_and_adapter_stack_result": "paper_geometry_passed",
+      "complete_adapter_height_mm": 3.8,
+      "minimum_opposing_z_clearance_mm": 6.0,
+      "received_panel_tail_result": "H5_open",
+      "open_evidence": "current-lot FPC outline, stiffener, thickness and bend path"
+    },
+    "outer_face_through_board_features": {
+      "encoder_feature_count": 7,
+      "encoder_inner_projection_mm": 3.5,
+      "encoder_same_face_keepouts_passed": true,
+      "encoder_opposing_crossing_count": 2,
+      "minimum_encoder_opposing_crossing": {
+        "feature": "contact_D",
+        "ui_instance": "c5",
+        "remaining_z_clearance_mm": 4.2
+      },
+      "u214_socket": {
+        "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+        "tail_plan_keepout_mm": [
+          17.78,
+          3.81
+        ],
+        "minimum_inner_plan_clearance_mm": 1.5,
+        "result": "paper_geometry_passed_H5_mating_fit_open"
+      },
+      "outward_rf_connector_count": 9,
+      "outward_rf_tail_minimum_inner_plan_clearance_mm": 1.5
+    },
+    "pcb_copper_and_vias": {
+      "result": "not_yet_proven_pre_kicad",
+      "reason": "logical pin and net maps do not prove escape routing, return paths, via fields or DRC clearance through real footprints",
+      "voice_rf_endpoint_distance_mm": 32.920055,
+      "voice_rf_route_rendering": "endpoints_only_no_claimed_copper_path",
+      "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review"
+    },
+    "remaining_gates": [
+      "H5 received E01-ML01IPX connector axes and cable bend/retention coupons",
+      "H5 received HMX035CTFT-001 FPC tail and bend path",
+      "KiCad footprint-level copper/via routing and DRC",
+      "assembled tolerance stack and HIL"
+    ]
   },
   "resolved_body_count": 148,
   "rows": [
@@ -1675,8 +1831,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          5.6,
-          7.9
+          4.4,
+          6.7
         ],
         "y": [
           58.0,
@@ -1694,8 +1850,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.6,
-          19.7
+          13.4,
+          18.5
         ],
         "y": [
           58.0,
@@ -1713,8 +1869,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          8.7,
-          13.8
+          7.5,
+          12.6
         ],
         "y": [
           58.0,
@@ -2055,12 +2211,12 @@
       "source_frame": "rear-outer",
       "world_bbox_mm": {
         "x": [
-          61.5,
-          72.5
+          61.15,
+          72.85
         ],
         "y": [
-          45.0,
-          56.0
+          44.5,
+          56.5
         ],
         "z": [
           17.4,
@@ -2534,8 +2690,8 @@
           75.0
         ],
         "y": [
-          44.0,
-          48.5
+          26.8,
+          31.3
         ],
         "z": [
           14.7,
@@ -2553,8 +2709,8 @@
           69.0
         ],
         "y": [
-          44.0,
-          46.0
+          26.8,
+          28.8
         ],
         "z": [
           14.8,
@@ -2606,8 +2762,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.6,
-          19.7
+          13.4,
+          18.5
         ],
         "y": [
           34.0,
@@ -2625,8 +2781,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          11.5,
-          13.8
+          10.3,
+          12.6
         ],
         "y": [
           34.0,
@@ -2682,8 +2838,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.6,
-          19.7
+          13.4,
+          18.5
         ],
         "y": [
           40.0,
@@ -2701,8 +2857,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          11.5,
-          13.8
+          10.3,
+          12.6
         ],
         "y": [
           40.0,
@@ -3199,8 +3355,8 @@
           75.0
         ],
         "y": [
-          33.0,
-          43.0
+          32.2,
+          42.2
         ],
         "z": [
           14.9,
@@ -3708,8 +3864,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.6,
-          19.7
+          13.4,
+          18.5
         ],
         "y": [
           27.3,
@@ -3727,8 +3883,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          8.7,
-          13.8
+          7.5,
+          12.6
         ],
         "y": [
           27.3,
@@ -3746,8 +3902,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          4.8,
-          7.9
+          3.6,
+          6.7
         ],
         "y": [
           34.0,
@@ -3765,8 +3921,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          2.8,
-          7.9
+          1.6,
+          6.7
         ],
         "y": [
           27.3,
@@ -4126,19 +4282,19 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          23.0,
-          63.0
+          19.2,
+          59.2
         ],
         "y": [
-          33.0,
-          57.5
+          32.7,
+          57.2
         ],
         "z": [
           12.55,
           15.8
         ]
       },
-      "direction": "contact 7 faces the antenna edge along the straight VHF/UHF corridor"
+      "direction": "contact 7 faces the antenna edge along the controlled VHF/UHF corridor"
     },
     {
       "instance": "voice_buck",

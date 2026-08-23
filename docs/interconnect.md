@@ -36,6 +36,23 @@ The two boards use one exact 80-contact pair at the working 11-mm board spacing:
 - 22 power returns, 3 audio returns and 2 safety returns.
 - Raw VBUS/PD high voltage, battery current, analog TX-detector outputs, IR carrier and class-D speaker outputs do not cross M1.
 
+## Physical passage through the sandwich
+
+Every inter-board net listed below crosses only inside the single M1 body: the
+11-mm air channel contains no separate USB, IPC, I2C, audio, control or power
+cable. Their shared mechanical conflict with components is therefore checked
+once against the complete keep-out of the exact `FX8C-80P-SV1(92)` /
+`FX8C-80S-SV5(92)` pair. That pair is the one intentional mate and clears every
+unrelated body on both boards. The five RF microcoaxes, display adapter,
+pass-through U214 socket, nine antenna-connector tails and seven encoder
+through-board features are checked separately.
+
+This closes physical bodies and the inter-board air channel, not PCB routing.
+Fan-out from all 80 contacts, via fields, return paths, impedance and electrical
+clearances become proven only after ERC/DRC of the routed KiCad boards. Until
+then the map below is the accepted net assignment, not a claim that copper is
+already routed.
+
 ## Exact contact map
 
 | Contact | Net | Direction | Class |

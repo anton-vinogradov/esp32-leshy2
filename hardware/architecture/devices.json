@@ -3519,7 +3519,7 @@
           "nominal_center_from_illustrated_top_left_mm": [2.0, 24.0],
           "coordinate_qualification": "manufacturer-dimensioned nominal: Rev 1.1 page 9 shows the end castellated-pad axis 2.00±0.10 mm from the board edge; received land-pattern and solder-fit qualification remains H5"
         },
-        "placement_rule": "rotate 180 degrees so contact 7 faces the VHF/UHF SMA and retains a short straight RF corridor"
+        "placement_rule": "rotate 180 degrees so contact 7 faces the VHF/UHF SMA through the shortest pre-ECAD controlled corridor that clears the encoder through-board keep-out"
       },
       "source": {
         "document": "SA518 UV Dual Frequency Walkie-talkie Module Product Specification",
@@ -3982,6 +3982,11 @@
         11.0,
         20.0
       ],
+      "maximum_dimensions_mm": [
+        11.7,
+        12.0,
+        20.0
+      ],
       "source": {
         "document": "EC11E Series Incremental Encoder catalog and product specification",
         "version": "catalog update 2510",
@@ -4003,6 +4008,17 @@
           "url": "https://www.digikey.com/en/products/detail/alps-alpine/EC11E18244AU/19529126",
           "checked": "2026-08-19"
         }
+      },
+      "mechanical_contract": {
+        "installed_outer_height_mm": 20.0,
+        "inner_terminal_projection_mm": 3.5,
+        "mounting_side_origin": "shaft axis; manufacturer mounting-hole view",
+        "maximum_dummy_terminal_hole_mm": [1.6, 2.7],
+        "maximum_signal_terminal_hole_diameter_mm": 1.1,
+        "dummy_terminal_centres_mm": [[-6.25, 0.0], [6.25, 0.0]],
+        "switch_terminal_centres_mm": [[-2.5, -7.0], [2.5, -7.0]],
+        "encoder_terminal_centres_mm": [[-2.5, 7.5], [0.0, 7.5], [2.5, 7.5]],
+        "drawing_basis": "Alps Alpine EC11E Series catalog update 2510, Drawing No.2 for EC11E18244AU"
       },
       "programmable": false,
       "contacts": {
@@ -4561,6 +4577,8 @@
       },
       "mechanical_contract": {
         "maximum_mated_height_mm": 2.5,
+        "maximum_plug_plan_envelope_mm": [3.0, 3.1],
+        "plug_plan_basis": "TE exact 2118651-2 customer drawing and 3D customer-view model, bounded by the controlled first-generation U.FL receptacle plan envelope",
         "route_rule": "the generated 30-mm centreline is a placement corridor; production bend radii and strain relief remain verified by the complete feed coupon",
         "service_rule": "use the proper vertical extraction tool and keep within the documented 30-cycle connector life"
       },
