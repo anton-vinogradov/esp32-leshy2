@@ -147,7 +147,7 @@ EDGE_INTERFACES = (
     ("power_command_switch", "rear", "right", 112.75, "RUN / KILL"),
     ("product_usb_connector", "rear", "bottom", 16.47, "USB / POWER"),
     ("rp_service_usb_connector", "rear", "bottom", 37.47, "RP SERVICE USB"),
-    ("microphone", "rear", "bottom", 47.0, "MICROPHONE"),
+    ("microphone", "front", "bottom", 47.0, "MICROPHONE"),
     ("unit_connector", "rear", "bottom", 57.0, "M5 UNIT"),
 )
 
@@ -508,6 +508,7 @@ DIRECTIONAL_BODY_DIRECTIONS = {
     **{item.instance: "front-normal outward actuation" for item in FRONT_CONTROLS},
     **{item.instance: "rear-normal outward actuation" for item in REAR_CONTROLS},
     **{item.instance: "rear-normal outward actuation" for item in REAR_SELECTED_ACTUATORS},
+    "microphone": "bottom enclosure exit; physical body on RF-inner; user silkscreen on front-outer",
     "u214_connector": "rear-normal outward mating into the removable Cap",
 }
 
@@ -1597,10 +1598,10 @@ def validate() -> list[str]:
     rf_instances = {item.instance for item in RF_INNER}
     if "microphone" in ui_instances or "microphone" not in rf_instances:
         errors.append("microphone must remain on the RF/power PCB inner side")
-    if ("microphone", "rear", "bottom") not in {
+    if ("microphone", "front", "bottom") not in {
         (instance, face, side) for instance, face, side, _, _ in EDGE_INTERFACES
     }:
-        errors.append("microphone must retain its labelled downward external direction")
+        errors.append("microphone must retain its front-face silkscreen and downward external direction")
     if {(instance, face, side) for instance, face, side, _, _ in EXTERNAL_COMPONENT_LABELS} != {
         ("speaker", "rear", "right"),
     }:
@@ -2274,7 +2275,7 @@ def render_external(devices, instances):
         text(note_x,245,"Interface direction",15,"bold"),
         text(note_x,273,"↑ / ↓ / ← / →  interface faces through that enclosure edge",11),
         text(note_x,296,"⊗ / ⊙  press toward / remove away from the viewed face",11),
-        text(note_x,319,"MICROPHONE uses the ordinary downward interface arrow; SPEAKER is a component label.",11),
+        text(note_x,319,"MICROPHONE is front-face silkscreen with a downward arrow; its body remains on the rear PCB.",11),
         text(note_x,347,"TX indication",15,"bold"),
         '<circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>',
         text(875,374,"physical actual-TX evidence for each built-in transmitting path",11),
@@ -2417,8 +2418,11 @@ def render_internal(devices, instances):
                 component_number += " · SPK"
             out.append(text(sx(origin,view_x+w/2), sy(origin,item.y+h/2)+3, component_number, 7.5 if item.instance != "microphone" else 5.2, "bold", "middle"))
     arrows = []
-    for _, face, side, coordinate, _ in EDGE_INTERFACES:
-        origin = ui if face == "front" else rf
+    ui_inner_instances = {item.instance for item in UI_INNER}
+    for instance, _face, side, coordinate, _ in EDGE_INTERFACES:
+        # The exterior label face and the physical source PCB are independent:
+        # MICROPHONE is printed on the front, while its body remains on RF-inner.
+        origin = ui if instance in ui_inner_instances else rf
         if side == "left":
             arrows.append((origin, 0.0, coordinate, -10.0, coordinate))
         elif side == "right":

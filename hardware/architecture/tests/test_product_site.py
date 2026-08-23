@@ -292,6 +292,18 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(
             any(item["instance"].startswith("ui_switch_f") for item in package["rear"]["controls"])
         )
+        self.assertTrue(
+            any(
+                item["instance"] == "microphone" and item["edge"] == "bottom"
+                for item in package["front"]["edge_interfaces"]
+            )
+        )
+        self.assertFalse(
+            any(
+                item["instance"] == "microphone"
+                for item in package["rear"]["edge_interfaces"]
+            )
+        )
         indicators = package["front"]["tx_indicators"]
         self.assertEqual(10, len(indicators))
         self.assertEqual(

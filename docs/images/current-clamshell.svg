@@ -155,6 +155,8 @@
 <text data-layer="pcb-silkscreen" x="196.4" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">C5 SERVICE USB</text>
 <path d="M287.1 705.0 L287.1 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="287.1" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
+<path d="M253.9 705.0 L253.9 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="253.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <rect x="530.1" y="305.4" width="147.3" height="318.2" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <text x="603.8" y="453.4" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#166534">Keystone 1048P</text>
 <text x="603.8" y="471.9" font-family="sans-serif" font-size="6.5" font-weight="normal" text-anchor="middle" fill="#166534">86×39.8-mm rotated holder</text>
@@ -174,8 +176,6 @@
 <text data-layer="pcb-silkscreen" x="525.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">USB / POWER</text>
 <path d="M603.6 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="603.6" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">RP SERVICE USB</text>
-<path d="M638.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="638.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
 <path d="M675.9 705.0 V730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="675.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">M5 UNIT</text>
 <text data-layer="pcb-silkscreen" x="716.6" y="646.5" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">SPEAKER</text>
@@ -188,7 +188,7 @@
 <text x="850.0" y="245.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Interface direction</text>
 <text x="850.0" y="273.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">↑ / ↓ / ← / →  interface faces through that enclosure edge</text>
 <text x="850.0" y="296.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">⊗ / ⊙  press toward / remove away from the viewed face</text>
-<text x="850.0" y="319.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">MICROPHONE uses the ordinary downward interface arrow; SPEAKER is a component label.</text>
+<text x="850.0" y="319.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">MICROPHONE is front-face silkscreen with a downward arrow; its body remains on the rear PCB.</text>
 <text x="850.0" y="347.0" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">TX indication</text>
 <circle cx="858" cy="370" r="5" fill="#ef4444" stroke="#991b1b"/>
 <text x="875.0" y="374.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">physical actual-TX evidence for each built-in transmitting path</text>

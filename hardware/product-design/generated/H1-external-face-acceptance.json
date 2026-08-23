@@ -458,6 +458,12 @@
         "edge": "bottom",
         "coordinate_mm": 55.975,
         "silkscreen": "microSD"
+      },
+      {
+        "instance": "microphone",
+        "edge": "bottom",
+        "coordinate_mm": 47.0,
+        "silkscreen": "MICROPHONE"
       }
     ]
   },
@@ -586,12 +592,6 @@
         "edge": "bottom",
         "coordinate_mm": 37.47,
         "silkscreen": "RP SERVICE USB"
-      },
-      {
-        "instance": "microphone",
-        "edge": "bottom",
-        "coordinate_mm": 47.0,
-        "silkscreen": "MICROPHONE"
       },
       {
         "instance": "unit_connector",
