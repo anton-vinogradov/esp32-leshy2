@@ -1,0 +1,1397 @@
+{
+  "schema_version": 1,
+  "stage": "H2.3.1",
+  "status": "reviewed_rf_power_root_hierarchy",
+  "project": "LESHY2-RF",
+  "root_sheet": "RF_00_ROOT",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "e1ca648053a5f54c1face3b71ada224864508d0f280144f3f3b87a6bf9153bcf",
+    "hardware/ecad/generated/H2-instance-ledger.json": "e281b908195dfac7cf47782c638379638a99bc58b06057770f5cf076e865b6b7",
+    "hardware/ecad/H2-sheet-contract.json": "bc126f32dadd73fb0ec68b64ae9917f4083bbd0d45a8bcaf3c419574d2516a42"
+  },
+  "summary": {
+    "child_sheet_count": 12,
+    "cross_sheet_net_count": 134,
+    "root_hierarchical_pin_count": 303,
+    "child_hierarchical_label_count": 303,
+    "known_child_stub_erc_violations": 303,
+    "implemented_child_sheet_count": 0,
+    "circuit_symbols_placed": 0,
+    "known_generated_library_copy_warnings": 0,
+    "pcb_files_created": 0
+  },
+  "sheets": [
+    {
+      "id": "RF_01_USB_PD_CHARGE",
+      "interface_count": 10,
+      "interfaces": [
+        "AON_BUCK_EN",
+        "AON_SAFE_3V3",
+        "NVDC_SYS",
+        "POWER_GROUND",
+        "PROTECTED_PACK_POSITIVE",
+        "S3_USB_DM",
+        "S3_USB_DP",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N"
+      ]
+    },
+    {
+      "id": "RF_02_PACK_SAFETY_AON",
+      "interface_count": 7,
+      "interfaces": [
+        "PACK_ADMISSION_VDD",
+        "POWER_COMMAND_OFF_N",
+        "POWER_GROUND",
+        "PROTECTED_PACK_POSITIVE",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N"
+      ]
+    },
+    {
+      "id": "RF_03_MAIN_RAILS_DOMAIN_GATES",
+      "interface_count": 20,
+      "interfaces": [
+        "3V3_MAIN",
+        "5V_EXT_PREPROTECT",
+        "5V_U214_PROTECTED",
+        "AON_BUCK_EN",
+        "AON_PG_N",
+        "AON_SAFE_3V3",
+        "EV_N8_LORA_EXT",
+        "EXT_ANY_5V_EN_SAFE",
+        "EXT_ANY_5V_REQ",
+        "NVDC_SYS",
+        "POR_N",
+        "POWER_GROUND",
+        "POWER_ZONE_TEMP_ADC",
+        "RF_ZONE_TEMP_ADC",
+        "SAFETY_GROUND",
+        "U214_5V_EN_SAFE",
+        "U214_5V_REQ",
+        "U214_PIN5_PROFILE",
+        "UNIT_5V_EN_SAFE",
+        "UNIT_5V_REQ"
+      ]
+    },
+    {
+      "id": "RF_30_RP2354_CORE_SERVICE",
+      "interface_count": 51,
+      "interfaces": [
+        "3V3_MAIN",
+        "CC_CSN_N",
+        "CC_GDO0",
+        "CC_GDO2",
+        "CC_MISO",
+        "CC_MOSI",
+        "CC_PWR_EN",
+        "CC_SCK",
+        "NRF0_CE_REQ",
+        "NRF0_CSN_N",
+        "NRF0_IRQ_N",
+        "NRF0_MISO",
+        "NRF0_MOSI",
+        "NRF0_SCK",
+        "NRF1_CE_REQ",
+        "NRF1_CSN_N",
+        "NRF1_IRQ_N",
+        "NRF1_MISO",
+        "NRF1_MOSI",
+        "NRF1_SCK",
+        "NRF2_CE_REQ",
+        "NRF2_CSN_N",
+        "NRF2_IRQ_N",
+        "NRF2_MISO",
+        "NRF2_MOSI",
+        "NRF2_SCK",
+        "NRF_GROUP_PWR_EN",
+        "POWER_GROUND",
+        "PTT_BUTTON_N",
+        "RP_ALERT_N",
+        "RP_ANY_TX_N",
+        "RP_RESET_N",
+        "S3_RP_IPC_CS_N",
+        "S3_RP_IPC_MISO",
+        "S3_RP_IPC_MOSI",
+        "S3_RP_IPC_SCK",
+        "U214_HOST_BUSY",
+        "U214_HOST_GPS_RX",
+        "U214_HOST_GPS_TX",
+        "U214_HOST_IRQ",
+        "U214_HOST_MISO",
+        "U214_HOST_MOSI",
+        "U214_HOST_NSS_N",
+        "U214_HOST_RST_N",
+        "U214_HOST_SCK",
+        "U214_I2C_SCL_IN",
+        "U214_I2C_SDA_IN",
+        "VOICE_AUDIO_ON_N",
+        "VOICE_PTT_REQ_N",
+        "VOICE_UART_RX",
+        "VOICE_UART_TX"
+      ]
+    },
+    {
+      "id": "RF_31_NRF24_X3",
+      "interface_count": 33,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "NRF0_CE_SAFE",
+        "NRF0_CSN_N",
+        "NRF0_DETECT_FILTER",
+        "NRF0_DETECT_V",
+        "NRF0_FORWARD_RF_SAMPLE",
+        "NRF0_IRQ_N",
+        "NRF0_MISO",
+        "NRF0_MOSI",
+        "NRF0_SCK",
+        "NRF1_CE_SAFE",
+        "NRF1_CSN_N",
+        "NRF1_DETECT_FILTER",
+        "NRF1_DETECT_V",
+        "NRF1_FORWARD_RF_SAMPLE",
+        "NRF1_IRQ_N",
+        "NRF1_MISO",
+        "NRF1_MOSI",
+        "NRF1_SCK",
+        "NRF2_CE_SAFE",
+        "NRF2_CSN_N",
+        "NRF2_DETECT_FILTER",
+        "NRF2_DETECT_V",
+        "NRF2_FORWARD_RF_SAMPLE",
+        "NRF2_IRQ_N",
+        "NRF2_MISO",
+        "NRF2_MOSI",
+        "NRF2_SCK",
+        "NRF_EVIDENCE_HOLD",
+        "NRF_GROUP_PWR_EN_SAFE",
+        "POWER_GROUND",
+        "SAFETY_GROUND"
+      ]
+    },
+    {
+      "id": "RF_32_SUBGHZ_VOICE",
+      "interface_count": 29,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "AUDIO_GROUND",
+        "CC_BAND_V1_REQ",
+        "CC_BAND_V2_REQ",
+        "CC_CSN_N",
+        "CC_DETECT_FILTER",
+        "CC_DETECT_V",
+        "CC_GDO0",
+        "CC_GDO2",
+        "CC_MISO",
+        "CC_MOSI",
+        "CC_PWR_EN_SAFE",
+        "CC_RF_SAMPLE",
+        "CC_SCK",
+        "NVDC_SYS",
+        "POWER_GROUND",
+        "RX_SA518_AFOUT_ISOLATED",
+        "SAFETY_GROUND",
+        "VOICE_AUDIO_ON_N",
+        "VOICE_DETECT_FILTER",
+        "VOICE_DETECT_V",
+        "VOICE_DOMAIN_EN_SAFE",
+        "VOICE_HL_RELEASE_REQ",
+        "VOICE_MIC_SELECTED_MAIN",
+        "VOICE_PTT_SAFE_N",
+        "VOICE_RF_SAMPLE",
+        "VOICE_UART_RX",
+        "VOICE_UART_TX"
+      ]
+    },
+    {
+      "id": "RF_34_U214_M5_EXT",
+      "interface_count": 26,
+      "interfaces": [
+        "3V3_MAIN",
+        "5V_EXT_PREPROTECT",
+        "5V_U214_PROTECTED",
+        "AON_SAFE_3V3",
+        "POWER_GROUND",
+        "SAFETY_GROUND",
+        "U214_5V_EN_SAFE",
+        "U214_5V_REQ",
+        "U214_HOST_BUSY",
+        "U214_HOST_GPS_RX",
+        "U214_HOST_GPS_TX",
+        "U214_HOST_IRQ",
+        "U214_HOST_MISO",
+        "U214_HOST_MOSI",
+        "U214_HOST_NSS_N",
+        "U214_HOST_RST_N",
+        "U214_HOST_SCK",
+        "U214_I2C_READY",
+        "U214_I2C_SCL_IN",
+        "U214_I2C_SDA_IN",
+        "U214_PIN5_PROFILE",
+        "UNIT_5V_EN_SAFE",
+        "UNIT_5V_REQ",
+        "UNIT_HOST_SIG0",
+        "UNIT_HOST_SIG1",
+        "UNIT_READY"
+      ]
+    },
+    {
+      "id": "RF_35_REAR_CONTROLS",
+      "interface_count": 6,
+      "interfaces": [
+        "3V3_MAIN",
+        "ENCODER_A",
+        "ENCODER_B",
+        "POWER_GROUND",
+        "PTT_BUTTON_N",
+        "UI_ENCODER_PUSH_N"
+      ]
+    },
+    {
+      "id": "RF_36_AUDIO_IO_AMP",
+      "interface_count": 7,
+      "interfaces": [
+        "3V3_MAIN",
+        "AUDIO_GROUND",
+        "MIC_RAW",
+        "POWER_GROUND",
+        "SPEAKER_AMP_EN",
+        "SPEAKER_SELECTED_N",
+        "SPEAKER_SELECTED_P"
+      ]
+    },
+    {
+      "id": "RF_40_INTERBOARD_M1",
+      "interface_count": 51,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_SAFE_3V3",
+        "AUDIO_GROUND",
+        "C5_RF_TX_EVIDENCE_N",
+        "CC_BAND_V1_REQ",
+        "CC_BAND_V2_REQ",
+        "ENCODER_A",
+        "ENCODER_B",
+        "EV_N0_S3",
+        "EV_N1_C5",
+        "EV_N2_NRF0",
+        "EV_N3_NRF1",
+        "EV_N4_NRF2",
+        "EV_N5_CC",
+        "EV_N6_VOICE",
+        "EV_N7_IR",
+        "EV_N8_LORA_EXT",
+        "FAULT_LATCH_SENSE_AON",
+        "IR_TX_EVIDENCE_N",
+        "MIC_RAW",
+        "POWER_FAULT_N",
+        "POWER_GROUND",
+        "RF_RESET_KILL_GATE",
+        "RP_ALERT_N",
+        "RUN_PERMIT",
+        "RX_SA518_AFOUT_ISOLATED",
+        "S3_RESET_KILL_GATE",
+        "S3_RP_IPC_CS_N",
+        "S3_RP_IPC_MISO",
+        "S3_RP_IPC_MOSI",
+        "S3_RP_IPC_SCK",
+        "S3_USB_DM",
+        "S3_USB_DP",
+        "SAFETY_GROUND",
+        "SPEAKER_AMP_EN",
+        "SPEAKER_SELECTED_N",
+        "SPEAKER_SELECTED_P",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "SYS_INT_N",
+        "U214_5V_REQ",
+        "U214_I2C_READY",
+        "UI_ENCODER_PUSH_N",
+        "UI_ZONE_TEMP_ADC",
+        "UNIT_5V_REQ",
+        "UNIT_HOST_SIG0",
+        "UNIT_HOST_SIG1",
+        "UNIT_READY",
+        "VOICE_DOMAIN_REQ",
+        "VOICE_HL_RELEASE_REQ",
+        "VOICE_MIC_SELECTED_MAIN"
+      ]
+    },
+    {
+      "id": "RF_50_TX_SAFETY_EVIDENCE",
+      "interface_count": 63,
+      "interfaces": [
+        "3V3_MAIN",
+        "AON_PG_N",
+        "AON_SAFE_3V3",
+        "C5_RF_TX_EVIDENCE_N",
+        "CC_DETECT_FILTER",
+        "CC_DETECT_V",
+        "CC_PWR_EN",
+        "CC_PWR_EN_SAFE",
+        "CC_RF_SAMPLE",
+        "EV_N0_S3",
+        "EV_N1_C5",
+        "EV_N2_NRF0",
+        "EV_N3_NRF1",
+        "EV_N4_NRF2",
+        "EV_N5_CC",
+        "EV_N6_VOICE",
+        "EV_N7_IR",
+        "EV_N8_LORA_EXT",
+        "EXT_ANY_5V_EN_SAFE",
+        "EXT_ANY_5V_REQ",
+        "FAULT_LATCH_SENSE_AON",
+        "IR_TX_EVIDENCE_N",
+        "NRF0_CE_REQ",
+        "NRF0_CE_SAFE",
+        "NRF0_DETECT_FILTER",
+        "NRF0_DETECT_V",
+        "NRF0_FORWARD_RF_SAMPLE",
+        "NRF1_CE_REQ",
+        "NRF1_CE_SAFE",
+        "NRF1_DETECT_FILTER",
+        "NRF1_DETECT_V",
+        "NRF1_FORWARD_RF_SAMPLE",
+        "NRF2_CE_REQ",
+        "NRF2_CE_SAFE",
+        "NRF2_DETECT_FILTER",
+        "NRF2_DETECT_V",
+        "NRF2_FORWARD_RF_SAMPLE",
+        "NRF_EVIDENCE_HOLD",
+        "NRF_GROUP_PWR_EN",
+        "NRF_GROUP_PWR_EN_SAFE",
+        "PACK_ADMISSION_VDD",
+        "POR_N",
+        "POWER_COMMAND_OFF_N",
+        "POWER_FAULT_N",
+        "POWER_GROUND",
+        "POWER_ZONE_TEMP_ADC",
+        "RF_RESET_KILL_GATE",
+        "RF_ZONE_TEMP_ADC",
+        "RP_ANY_TX_N",
+        "RP_RESET_N",
+        "RUN_PERMIT",
+        "S3_RESET_KILL_GATE",
+        "SAFETY_GROUND",
+        "SYS_I2C_SCL",
+        "SYS_I2C_SDA",
+        "UI_ZONE_TEMP_ADC",
+        "VOICE_DETECT_FILTER",
+        "VOICE_DETECT_V",
+        "VOICE_DOMAIN_EN_SAFE",
+        "VOICE_DOMAIN_REQ",
+        "VOICE_PTT_REQ_N",
+        "VOICE_PTT_SAFE_N",
+        "VOICE_RF_SAMPLE"
+      ]
+    },
+    {
+      "id": "RF_60_TESTPOINTS_MANUFACTURING",
+      "interface_count": 0,
+      "interfaces": []
+    }
+  ],
+  "nets": [
+    {
+      "name": "3V3_MAIN",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_34_U214_M5_EXT",
+        "RF_35_REAR_CONTROLS",
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "5V_EXT_PREPROTECT",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "5V_U214_PROTECTED",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "AON_BUCK_EN",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ]
+    },
+    {
+      "name": "AON_PG_N",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "AON_SAFE_3V3",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "AUDIO_GROUND",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "C5_RF_TX_EVIDENCE_N",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_BAND_V1_REQ",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "CC_BAND_V2_REQ",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "CC_CSN_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "CC_DETECT_FILTER",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_DETECT_V",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_GDO0",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "CC_GDO2",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "CC_MISO",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "CC_MOSI",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "CC_PWR_EN",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_PWR_EN_SAFE",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_RF_SAMPLE",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "CC_SCK",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "ENCODER_A",
+      "sheets": [
+        "RF_35_REAR_CONTROLS",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "ENCODER_B",
+      "sheets": [
+        "RF_35_REAR_CONTROLS",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "EV_N0_S3",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N1_C5",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N2_NRF0",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N3_NRF1",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N4_NRF2",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N5_CC",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N6_VOICE",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N7_IR",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EV_N8_LORA_EXT",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EXT_ANY_5V_EN_SAFE",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "EXT_ANY_5V_REQ",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "FAULT_LATCH_SENSE_AON",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "IR_TX_EVIDENCE_N",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "MIC_RAW",
+      "sheets": [
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "NRF0_CE_REQ",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF0_CE_SAFE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF0_CSN_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF0_DETECT_FILTER",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF0_DETECT_V",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF0_FORWARD_RF_SAMPLE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF0_IRQ_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF0_MISO",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF0_MOSI",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF0_SCK",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF1_CE_REQ",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF1_CE_SAFE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF1_CSN_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF1_DETECT_FILTER",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF1_DETECT_V",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF1_FORWARD_RF_SAMPLE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF1_IRQ_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF1_MISO",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF1_MOSI",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF1_SCK",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF2_CE_REQ",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF2_CE_SAFE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF2_CSN_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF2_DETECT_FILTER",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF2_DETECT_V",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF2_FORWARD_RF_SAMPLE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF2_IRQ_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF2_MISO",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF2_MOSI",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF2_SCK",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3"
+      ]
+    },
+    {
+      "name": "NRF_EVIDENCE_HOLD",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF_GROUP_PWR_EN",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NRF_GROUP_PWR_EN_SAFE",
+      "sheets": [
+        "RF_31_NRF24_X3",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "NVDC_SYS",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "PACK_ADMISSION_VDD",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "POR_N",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "POWER_COMMAND_OFF_N",
+      "sheets": [
+        "RF_02_PACK_SAFETY_AON",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "POWER_FAULT_N",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "POWER_GROUND",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON",
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_34_U214_M5_EXT",
+        "RF_35_REAR_CONTROLS",
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "POWER_ZONE_TEMP_ADC",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "PROTECTED_PACK_POSITIVE",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON"
+      ]
+    },
+    {
+      "name": "PTT_BUTTON_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_35_REAR_CONTROLS"
+      ]
+    },
+    {
+      "name": "RF_RESET_KILL_GATE",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RF_ZONE_TEMP_ADC",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RP_ALERT_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "RP_ANY_TX_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RP_RESET_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RUN_PERMIT",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "RX_SA518_AFOUT_ISOLATED",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RESET_KILL_GATE",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_CS_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_MISO",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_MOSI",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_RP_IPC_SCK",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_USB_DM",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "S3_USB_DP",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SAFETY_GROUND",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_31_NRF24_X3",
+        "RF_32_SUBGHZ_VOICE",
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "SPEAKER_AMP_EN",
+      "sheets": [
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SPEAKER_SELECTED_N",
+      "sheets": [
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SPEAKER_SELECTED_P",
+      "sheets": [
+        "RF_36_AUDIO_IO_AMP",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "SYS_I2C_SCL",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "SYS_I2C_SDA",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON",
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "SYS_INT_N",
+      "sheets": [
+        "RF_01_USB_PD_CHARGE",
+        "RF_02_PACK_SAFETY_AON",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "U214_5V_EN_SAFE",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_5V_REQ",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "U214_HOST_BUSY",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_GPS_RX",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_GPS_TX",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_IRQ",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_MISO",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_MOSI",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_NSS_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_RST_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_HOST_SCK",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_I2C_READY",
+      "sheets": [
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "U214_I2C_SCL_IN",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_I2C_SDA_IN",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "U214_PIN5_PROFILE",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "UI_ENCODER_PUSH_N",
+      "sheets": [
+        "RF_35_REAR_CONTROLS",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UI_ZONE_TEMP_ADC",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "UNIT_5V_EN_SAFE",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT"
+      ]
+    },
+    {
+      "name": "UNIT_5V_REQ",
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UNIT_HOST_SIG0",
+      "sheets": [
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UNIT_HOST_SIG1",
+      "sheets": [
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "UNIT_READY",
+      "sheets": [
+        "RF_34_U214_M5_EXT",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "VOICE_AUDIO_ON_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "VOICE_DETECT_FILTER",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_DETECT_V",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_DOMAIN_EN_SAFE",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_DOMAIN_REQ",
+      "sheets": [
+        "RF_40_INTERBOARD_M1",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_HL_RELEASE_REQ",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "VOICE_MIC_SELECTED_MAIN",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_40_INTERBOARD_M1"
+      ]
+    },
+    {
+      "name": "VOICE_PTT_REQ_N",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_PTT_SAFE_N",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_RF_SAMPLE",
+      "sheets": [
+        "RF_32_SUBGHZ_VOICE",
+        "RF_50_TX_SAFETY_EVIDENCE"
+      ]
+    },
+    {
+      "name": "VOICE_UART_RX",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    },
+    {
+      "name": "VOICE_UART_TX",
+      "sheets": [
+        "RF_30_RP2354_CORE_SERVICE",
+        "RF_32_SUBGHZ_VOICE"
+      ]
+    }
+  ],
+  "rules": {
+    "derivation": "RF/power fixed-route endpoints, allocated contacts and exact M1 contact membership",
+    "pin_type": "bidirectional at H2.3.1; exact electrical pin types close with each functional sheet",
+    "no_hidden_cross_sheet_globals": true,
+    "no_no_connect_aggregation": true,
+    "root_is_component_free": true,
+    "root_page": "A0 portrait; all sheet bodies and 134 net rails remain inside the page"
+  },
+  "review_boundary": {
+    "complete": [
+      "all twelve RF/power child sheets are instantiated by the KiCad root",
+      "all 134 derived cross-sheet nets are represented by 303 explicit named pins and child labels",
+      "one direct root rail joins only sheet pins carrying the same reviewed net name",
+      "the 51-net RF/power side of M1 is represented without reserves or implicit globals",
+      "native KiCad accepts the hierarchy with the exact component-empty child-stub set"
+    ],
+    "deferred": [
+      "functional circuit symbols and exact electrical sheet-pin directions in H2.3.2-H2.3.13",
+      "each exact child-stub finding disappears as its functional circuit sheet is placed",
+      "final full-project ERC closure in H2.6",
+      "all PCB placement, routing, fabrication and purchasing"
+    ]
+  }
+}

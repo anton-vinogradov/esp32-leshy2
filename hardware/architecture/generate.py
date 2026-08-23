@@ -2581,6 +2581,7 @@ def render_public_schematics(
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | точный ECAD | один FX8C plug, 80 отдельных физических контактов, 51 интерфейс, 20 `POWER_GROUND`, 7 `3V3_MAIN`, без резервов и NC |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | точный ECAD | 28 компонентов, два RF detector, физический optical IR sensor, четыре comparator-канала, два reset-sink, 18 интерфейсов и один NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | точный ECAD | 11 физических test-площадок 1,0 мм на точных цепях; PCB copper без покупного MPN/BOM |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | точный ECAD | 12 дочерних листов, 134 межлистовые цепи и 303 явных pins/labels; функциональные child-листы заполняются последовательно |
 
 Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
@@ -2591,7 +2592,8 @@ def render_public_schematics(
 [FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json) и
 [UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json) и
 [UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json) и
-[UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json).
+[UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json) и
+[RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json).
 PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
@@ -2622,6 +2624,7 @@ no-connects; fabricated test pads are explicitly excluded from the BOM.
 | [`UI_40_INTERBOARD_M1`](../hardware/ecad/kicad/LESHY2-UI/UI_40_INTERBOARD_M1.kicad_sch) | exact ECAD | one FX8C plug, 80 separate physical contacts, 51 interfaces, 20 `POWER_GROUND`, 7 `3V3_MAIN`, no reserves or NCs |
 | [`UI_50_TX_SAFETY_EVIDENCE`](../hardware/ecad/kicad/LESHY2-UI/UI_50_TX_SAFETY_EVIDENCE.kicad_sch) | exact ECAD | 28 components, two RF detectors, a physical optical IR sensor, four comparator channels, two reset sinks, 18 interfaces and one NC |
 | [`UI_60_TESTPOINTS_MANUFACTURING`](../hardware/ecad/kicad/LESHY2-UI/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch) | exact ECAD | 11 physical 1.0-mm test pads on exact nets; fabricated PCB copper with no purchased MPN/BOM |
+| [`RF_00_ROOT`](../hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch) | exact ECAD | 12 child sheets, 134 cross-sheet nets and 303 explicit pins/labels; functional child sheets are populated sequentially |
 
 Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
 [S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
@@ -2632,7 +2635,8 @@ Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json)
 [FM/AM/SW/LW receiver](../hardware/ecad/generated/H2-UI21-fm-am-receiver.json), and
 [UI-side M1](../hardware/ecad/generated/H2-UI40-interboard-m1.json), and
 [UI-side TX safety/evidence](../hardware/ecad/generated/H2-UI50-tx-safety-evidence.json), and
-[UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json).
+[UI manufacturing/test points](../hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json), and
+[RF/power root](../hardware/ecad/generated/H2-RF-root-interface.json).
 These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
     return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"
