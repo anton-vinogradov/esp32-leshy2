@@ -470,6 +470,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
+            'data-rf-pcb-topology-guides="2"',
+            'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
             'data-opposing-cable-pairs="3"',
             'data-nrf-reserve-opposing-pairs="5"',
@@ -478,6 +480,9 @@ class ProductSiteTests(unittest.TestCase):
             'data-functional-zones="1"',
             'data-voice-rf-endpoint-distance-mm="32.92"',
             'data-route-state="pre-ecad-endpoints-only"',
+            "What the green lines mean",
+            "PCB receptacle · the green cable ends here",
+            "outward RP-SMA · antenna screws on here",
             "all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
             "complete 3.80-mm display adapter: 5 opposing crossings; minimum Z gap 6.00 mm",
             "opposing inner faces: 43 non-mating XY pairs checked; minimum Z gap 3.31 mm",
@@ -513,7 +518,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(path)
             self.assertIn("current-clamshell.svg?layout=15", page)
             self.assertIn("navigation-cluster.svg?layout=1", page)
-            self.assertIn("internal-board-layout.svg?layout=13", page)
+            self.assertIn("internal-board-layout.svg?layout=14", page)
             self.assertIn("sandwich-section.svg?layout=10", page)
             self.assertIn("top-edge-view.svg?layout=4", page)
             self.assertLess(
@@ -570,6 +575,15 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(3, coax["conservative_nrf_module_face_reserve_count"])
         self.assertTrue(coax["all_five_feed_assemblies_accounted"])
         self.assertEqual(5.2, coax["minimum_nrf_reserve_opposing_crossing"]["remaining_z_clearance_mm"])
+        native_chains = coax["native_feed_chain_after_green_cable"]
+        self.assertEqual(["s3", "c5"], [row["owner"] for row in native_chains])
+        self.assertTrue(
+            all(
+                row["green_cable_ends_at"] == "Hirose U.FL-R-SMT-1(10)"
+                and row["user_antenna_connector_mpn"] == "GCT RFPC-SMA32-FN-175-A"
+                for row in native_chains
+            )
+        )
         through = interconnect["outer_face_through_board_features"]
         self.assertEqual(7, through["encoder_feature_count"])
         self.assertEqual(4.2, through["minimum_encoder_opposing_crossing"]["remaining_z_clearance_mm"])

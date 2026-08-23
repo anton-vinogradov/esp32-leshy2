@@ -149,8 +149,11 @@ number inside a component outline maps to the adjacent exact MPN and role. The
 same drawing also shows all five RF cable routes/reserves and the seven encoder
 terminals that enter the interboard channel; final PCB copper remains a KiCad
 DRC gate.
+On the UI board, a solid green line is only the removable 30-mm cable from a
+module's built-in U.FL to the board U.FL receptacle; its dashed blue continuation
+shows the future 50-ohm PCB mainline through the TX coupler to the outward RP-SMA.
 
-![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=13)
+![Leshy2 inner board faces](docs/images/internal-board-layout.svg?layout=14)
 
 ### Top view from the antenna edge
 

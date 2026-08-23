@@ -186,6 +186,16 @@ escape to the exact board receptacle. Their five opposing crossings retain at
 least 5.20 mm; the current-lot module connector axes and cable bends remain an
 explicit H5 received-part gate rather than invented geometry.
 
+The solid green lines on the UI board have one bounded meaning. Each starts at
+the built-in U.FL of the S3 or C5 radio module and represents one removable
+30-mm `TE Connectivity 2118651-2` cable. Its other end snaps onto a
+UI-board-mounted `Hirose U.FL-R-SMT-1(10)` receptacle, where the green line
+ends. There is no further loose cable: the signal continues on a future 50-ohm
+PCB mainline through its own `KYOCERA AVX CP0603Q5425ENTR`, which takes a small
+forward sample for the TX detector, and then reaches the outward
+`GCT RFPC-SMA32-FN-175-A` RP-SMA. Dashed blue lines show only that topology;
+their final geometry is created and verified in KiCad.
+
 The externally mounted `Alps Alpine EC11E18244AU` is treated as a through-board
 part, not just an outer 11-mm class body. Its two mounting tabs and five signal
 terminals project 3.5 mm into the channel. Their exact seven keep-outs forced a
@@ -222,7 +232,7 @@ connector body enters the exact 11-mm interboard channel.
 
 ![Dimensioned replaceable display adapter](images/display-adapter.svg?layout=1)
 
-![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=13)
+![Dimensioned internal-board layout](images/internal-board-layout.svg?layout=14)
 
 ![Dimensioned top view from the antenna edge](images/top-edge-view.svg?layout=4)
 

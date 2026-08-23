@@ -281,6 +281,23 @@ UI_RF_CABLES = (
     ),
 )
 
+# These are topology guides, not routed copper.  They continue the two visible
+# microcoax cables from the board-mounted U.FL receptacle, through the
+# forward-power coupler, to the matching outward RP-SMA datum.  KiCad owns the
+# final controlled-impedance geometry and may change layers or add bends.
+UI_NATIVE_RF_PCB_GUIDES = (
+    (
+        "s3_native_rf_pcb_guide",
+        ((16.0, 10.55), (16.0, 6.62), (16.0, 0.0)),
+        "S3 board U.FL through forward coupler to outward S3 RP-SMA",
+    ),
+    (
+        "c5_native_rf_pcb_guide",
+        ((59.0, 10.55), (59.0, 6.62), (59.0, 0.0)),
+        "C5 board U.FL through forward coupler to outward C5 RP-SMA",
+    ),
+)
+
 RF_INNER = (
     Placement("nrf0_rf_board_connector", 23.0, 28.0, "nRF24 #0 Gen1 jumper board receptacle"),
     Placement("nrf1_rf_board_connector", 50.0, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
@@ -2728,6 +2745,84 @@ def render_internal(devices, instances, display_adapter_design):
     out += rf_bank(rf, REAR_RF, scale, sx, sy, text, rect, False, mirror=True, show_annotations=False, show_connector=False)
     out.append('</g>')
 
+    out.append(
+        '<g id="native-rf-pcb-topology-guides" '
+        'data-route-state="pre-ecad-topology-only" data-medium="controlled-50-ohm-pcb">'
+    )
+    for guide_instance, guide_points, guide_role in UI_NATIVE_RF_PCB_GUIDES:
+        points = " ".join(
+            f"{sx(ui,mirrored_x(x)):.1f},{sy(ui,y):.1f}"
+            for x, y in guide_points
+        )
+        out.append(
+            f'<polyline points="{points}" fill="none" stroke="#2563eb" '
+            f'stroke-width="1.6" stroke-dasharray="4 3" '
+            f'data-instance="{guide_instance}" data-role="{html.escape(guide_role)}"/>'
+        )
+    out.append('</g>')
+
+    def rf_feed_path_callout(
+        x: float,
+        heading: str,
+        module_mpn: str,
+        path_id: str,
+    ) -> list[str]:
+        rows = [
+            (module_mpn, "radio module · built-in U.FL antenna port", "#eef2ff", "#4f46e5"),
+            ("TE Connectivity 2118651-2", "removable 30-mm microcoax cable", "#ecfdf5", "#0f766e"),
+            ("Hirose U.FL-R-SMT-1(10)", "PCB receptacle · the green cable ends here", "#ecfdf5", "#0f766e"),
+            ("KYOCERA AVX CP0603Q5425ENTR", "PCB 50 Ω mainline · forward TX sample", "#eff6ff", "#2563eb"),
+            ("GCT RFPC-SMA32-FN-175-A", "outward RP-SMA · antenna screws on here", "#fff7ed", "#ea580c"),
+        ]
+        top = 166.0
+        width = 300.0
+        height = 46.0
+        gap = 18.0
+        cx = x + width / 2
+        rendered = [
+            f'<g data-rf-feed-path="{path_id}" data-duplicate-hardware="false">',
+            text(x, 142, heading, 13, "bold", colour="#172033"),
+        ]
+        for index, (mpn, role, fill, stroke) in enumerate(rows):
+            y = top + index * (height + gap)
+            rendered.append(
+                f'<rect x="{x:.1f}" y="{y:.1f}" width="{width:.1f}" height="{height:.1f}" '
+                f'rx="5" fill="{fill}" stroke="{stroke}" stroke-width="1.4"/>'
+            )
+            rendered.append(text(cx, y + 18, mpn, 9.0, "bold", "middle"))
+            rendered.append(text(cx, y + 34, role, 8.1, anchor="middle", colour="#526076"))
+            if index < len(rows) - 1:
+                line_y1 = y + height
+                line_y2 = y + height + gap
+                cable_segment = index < 2
+                colour = "#0f766e" if cable_segment else "#2563eb"
+                dash = "" if cable_segment else ' stroke-dasharray="4 3"'
+                rendered.append(
+                    f'<path d="M{cx:.1f} {line_y1:.1f} V{line_y2:.1f}" '
+                    f'stroke="{colour}" stroke-width="3"{dash}/>'
+                )
+        rendered.append('</g>')
+        return rendered
+
+    out += [
+        text(820, 102, "What the green lines mean", 17, "bold"),
+        text(820, 122, "Drawing explanation — not PCB silkscreen.", 9.5, colour="#526076"),
+        text(820, 562, "solid green = physical 30-mm cable · dashed blue = future 50 Ω PCB mainline", 10, "bold", colour="#344054"),
+        text(820, 581, "The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.", 9.2, colour="#526076"),
+    ]
+    out += rf_feed_path_callout(
+        820.0,
+        "S3 native antenna path",
+        devices[instances["s3"]]["mpn"],
+        "s3",
+    )
+    out += rf_feed_path_callout(
+        1160.0,
+        "C5 native antenna path",
+        devices[instances["c5"]]["mpn"],
+        "c5",
+    )
+
     for zone in INTERNAL_RESERVES:
         view_x = mirrored_x(zone.x, zone.w)
         out.append(
@@ -2895,7 +2990,7 @@ def render_internal(devices, instances, display_adapter_design):
         y += legend_row_height
     for column_index, column_x in enumerate(rf_legend_x):
         first = column_index * rf_legend_rows
-        last = min(first + rf_legend_rows, len(RF_INNER))
+        last = min(first + rf_legend_rows, len(rf_items))
         out.append(
             text(
                 column_x, 775,
@@ -2918,6 +3013,7 @@ def render_internal(devices, instances, display_adapter_design):
         f'data-min-display-adapter-clearance-mm="{minimum_adapter_clearance:.2f}" '
         f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
         f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
+        f'data-rf-pcb-topology-guides="{len(UI_NATIVE_RF_PCB_GUIDES)}" '
         f'data-nrf-cable-reserves="{len(RF_NRF_CABLE_RESERVES)}" '
         f'data-opposing-cable-pairs="{len(cable_clearance_pairs)}" data-cable-od-max-mm="{maximum_cable_od:.2f}" '
         f'data-nrf-reserve-opposing-pairs="{len(nrf_reserve_clearance_pairs)}" '
@@ -2936,7 +3032,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(note_x,notes_top+213,"• both inner views are horizontally mirrored from their external faces",10),
         text(note_x,notes_top+234,f"• nRF reserve crossings: {len(nrf_reserve_clearance_pairs)}; minimum Z gap {minimum_nrf_reserve_clearance:.2f} mm; exact module axes close in H5",10),
         text(note_x,notes_top+255,f"• EC11E through-board features: 7 checked; {len(through_board_clearance_pairs)} opposing crossings; minimum Z gap {minimum_through_board_clearance:.2f} mm",10),
-        text(note_x,notes_top+276,f"• outer antenna bodies are absent; SA518.7 endpoints are {polyline_length(VOICE_RF_CORRIDOR):.2f} mm apart; no pre-ECAD copper route is drawn",10),
+        text(note_x,notes_top+276,f"• S3/C5 green cables end at board U.FL; {len(UI_NATIVE_RF_PCB_GUIDES)} dashed blue topology guides continue through couplers to outward RP-SMA",10),
         text(note_x,notes_top+297,"• orange dashed boundary is a placement zone, not one combined device",10),
         text(note_x,notes_top+318,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+338,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
@@ -4064,6 +4160,24 @@ def build_unified_coordinate_table(
                         "axis_status": "H5 received-module evidence",
                     }
                     for reserve in RF_NRF_CABLE_RESERVES
+                ],
+                "native_feed_chain_after_green_cable": [
+                    {
+                        "owner": owner,
+                        "module_mpn": devices[instances[owner]]["mpn"],
+                        "green_cable_mpn": devices[instances[f"{owner}_rf_jumper"]]["mpn"],
+                        "green_cable_ends_at": devices[
+                            instances[f"{owner}_rf_board_connector"]
+                        ]["mpn"],
+                        "then_medium": "controlled_50_ohm_pcb_mainline_final_route_open_in_kicad",
+                        "forward_coupler_mpn": devices[
+                            instances[f"{owner}_rf_coupler"]
+                        ]["mpn"],
+                        "user_antenna_connector_mpn": devices[
+                            instances[f"{owner}_external_rp_sma"]
+                        ]["mpn"],
+                    }
+                    for owner in ("s3", "c5")
                 ],
             },
             "display_bus": {

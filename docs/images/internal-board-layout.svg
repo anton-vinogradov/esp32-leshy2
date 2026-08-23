@@ -37,6 +37,58 @@
 <path d="M559.4 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M515.0 148.0 V134.0" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 </g>
+<g id="native-rf-pcb-topology-guides" data-route-state="pre-ecad-topology-only" data-medium="controlled-50-ohm-pcb">
+<polyline points="298.3,189.0 298.3,174.5 298.3,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="s3_native_rf_pcb_guide" data-role="S3 board U.FL through forward coupler to outward S3 RP-SMA"/>
+<polyline points="139.2,189.0 139.2,174.5 139.2,150.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="c5_native_rf_pcb_guide" data-role="C5 board U.FL through forward coupler to outward C5 RP-SMA"/>
+</g>
+<text x="820.0" y="102.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">What the green lines mean</text>
+<text x="820.0" y="122.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#526076">Drawing explanation — not PCB silkscreen.</text>
+<text x="820.0" y="562.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#344054">solid green = physical 30-mm cable · dashed blue = future 50 Ω PCB mainline</text>
+<text x="820.0" y="581.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">The coupler also sends a small forward-power sample to the TX detector; the antenna path remains independent.</text>
+<g data-rf-feed-path="s3" data-duplicate-hardware="false">
+<text x="820.0" y="142.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#172033">S3 native antenna path</text>
+<rect x="820.0" y="166.0" width="300.0" height="46.0" rx="5" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.4"/>
+<text x="970.0" y="184.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-S3-WROOM-1U-N16R8</text>
+<text x="970.0" y="200.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">radio module · built-in U.FL antenna port</text>
+<path d="M970.0 212.0 V230.0" stroke="#0f766e" stroke-width="3"/>
+<rect x="820.0" y="230.0" width="300.0" height="46.0" rx="5" fill="#ecfdf5" stroke="#0f766e" stroke-width="1.4"/>
+<text x="970.0" y="248.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">TE Connectivity 2118651-2</text>
+<text x="970.0" y="264.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">removable 30-mm microcoax cable</text>
+<path d="M970.0 276.0 V294.0" stroke="#0f766e" stroke-width="3"/>
+<rect x="820.0" y="294.0" width="300.0" height="46.0" rx="5" fill="#ecfdf5" stroke="#0f766e" stroke-width="1.4"/>
+<text x="970.0" y="312.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">Hirose U.FL-R-SMT-1(10)</text>
+<text x="970.0" y="328.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">PCB receptacle · the green cable ends here</text>
+<path d="M970.0 340.0 V358.0" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3"/>
+<rect x="820.0" y="358.0" width="300.0" height="46.0" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="970.0" y="376.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">KYOCERA AVX CP0603Q5425ENTR</text>
+<text x="970.0" y="392.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">PCB 50 Ω mainline · forward TX sample</text>
+<path d="M970.0 404.0 V422.0" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3"/>
+<rect x="820.0" y="422.0" width="300.0" height="46.0" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.4"/>
+<text x="970.0" y="440.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">GCT RFPC-SMA32-FN-175-A</text>
+<text x="970.0" y="456.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">outward RP-SMA · antenna screws on here</text>
+</g>
+<g data-rf-feed-path="c5" data-duplicate-hardware="false">
+<text x="1160.0" y="142.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#172033">C5 native antenna path</text>
+<rect x="1160.0" y="166.0" width="300.0" height="46.0" rx="5" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.4"/>
+<text x="1310.0" y="184.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-C5-WROOM-1U-N8R8</text>
+<text x="1310.0" y="200.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">radio module · built-in U.FL antenna port</text>
+<path d="M1310.0 212.0 V230.0" stroke="#0f766e" stroke-width="3"/>
+<rect x="1160.0" y="230.0" width="300.0" height="46.0" rx="5" fill="#ecfdf5" stroke="#0f766e" stroke-width="1.4"/>
+<text x="1310.0" y="248.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">TE Connectivity 2118651-2</text>
+<text x="1310.0" y="264.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">removable 30-mm microcoax cable</text>
+<path d="M1310.0 276.0 V294.0" stroke="#0f766e" stroke-width="3"/>
+<rect x="1160.0" y="294.0" width="300.0" height="46.0" rx="5" fill="#ecfdf5" stroke="#0f766e" stroke-width="1.4"/>
+<text x="1310.0" y="312.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">Hirose U.FL-R-SMT-1(10)</text>
+<text x="1310.0" y="328.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">PCB receptacle · the green cable ends here</text>
+<path d="M1310.0 340.0 V358.0" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3"/>
+<rect x="1160.0" y="358.0" width="300.0" height="46.0" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>
+<text x="1310.0" y="376.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">KYOCERA AVX CP0603Q5425ENTR</text>
+<text x="1310.0" y="392.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">PCB 50 Ω mainline · forward TX sample</text>
+<path d="M1310.0 404.0 V422.0" stroke="#2563eb" stroke-width="3" stroke-dasharray="4 3"/>
+<rect x="1160.0" y="422.0" width="300.0" height="46.0" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.4"/>
+<text x="1310.0" y="440.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">GCT RFPC-SMA32-FN-175-A</text>
+<text x="1310.0" y="456.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">outward RP-SMA · antenna screws on here</text>
+</g>
 <rect x="628.5" y="177.8" width="29.2" height="64.8" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3" data-zone-kind="selected_support_placement_zone" data-zone="cc-reference-rf-network"/>
 <text x="643.2" y="212.1" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#9a3412">CC RF REF</text>
 <g id="voice-rf-endpoints" data-route="SA518.7-to-VOICE-V/U" data-route-state="pre-ecad-endpoints-only" data-straight-line-distance-mm="32.92">
@@ -609,7 +661,13 @@
 <text x="1166.0" y="1392.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">raw VBUS local capacitor</text>
 <text x="1140.0" y="1404.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">131  Texas Instruments TVS2200DRVR</text>
 <text x="1166.0" y="1413.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">raw VBUS flat-clamp TVS</text>
-<g id="validated-clearances" data-legend-bottom="1518" data-top="1553" data-inner-body-count="129" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="5" data-min-display-adapter-clearance-mm="6.00" data-opposing-pairs="43" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-nrf-cable-reserves="3" data-opposing-cable-pairs="3" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="5" data-encoder-through-features="7" data-functional-zones="1" data-voice-rf-endpoint-distance-mm="32.92">
+<text x="1140.0" y="1425.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">132  TE Connectivity 2118651-2</text>
+<text x="1166.0" y="1434.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">30-mm nRF24 #0 module-face reserve and board-receptacle escape</text>
+<text x="1140.0" y="1446.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">133  TE Connectivity 2118651-2</text>
+<text x="1166.0" y="1455.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">30-mm nRF24 #1 module-face reserve and board-receptacle escape</text>
+<text x="1140.0" y="1467.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">134  TE Connectivity 2118651-2</text>
+<text x="1166.0" y="1476.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">30-mm nRF24 #2 module-face reserve and board-receptacle escape</text>
+<g id="validated-clearances" data-legend-bottom="1518" data-top="1553" data-inner-body-count="129" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="5" data-min-display-adapter-clearance-mm="6.00" data-opposing-pairs="43" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="2" data-nrf-cable-reserves="3" data-opposing-cable-pairs="3" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="5" data-encoder-through-features="7" data-functional-zones="1" data-voice-rf-endpoint-distance-mm="32.92">
 <text x="30.0" y="1553.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
 <text x="30.0" y="1577.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
 <text x="30.0" y="1598.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 129 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm</text>
@@ -623,7 +681,7 @@
 <text x="30.0" y="1766.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
 <text x="30.0" y="1787.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 5; minimum Z gap 5.20 mm; exact module axes close in H5</text>
 <text x="30.0" y="1808.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm</text>
-<text x="30.0" y="1829.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outer antenna bodies are absent; SA518.7 endpoints are 32.92 mm apart; no pre-ECAD copper route is drawn</text>
+<text x="30.0" y="1829.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• S3/C5 green cables end at board U.FL; 2 dashed blue topology guides continue through couplers to outward RP-SMA</text>
 <text x="30.0" y="1850.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>
 <text x="30.0" y="1871.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
 <text x="30.0" y="1891.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
