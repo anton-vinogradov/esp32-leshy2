@@ -4,6 +4,24 @@
 
 Схемы ниже показывают конечное устройство по функциональным доменам. Точные контакты, направления сигналов и электрические связи находятся в [публичной таблице распиновки](pinout.ru.md). Полный состав устройства — в [машинном BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). Отдельные принципиальные схемы съёмного передающего аксессуара находятся на странице [Leshy LoRa Cap](lora-cap.ru.md).
 
+## Актуальная production ECAD-схема
+
+Функциональные диаграммы ниже остаются обзорной картой готового продукта.
+Реализованные листы KiCad — точная электрическая схема: каждый компонент
+имеет MPN, физические контакты, footprint, цепи и явные no-connect.
+
+| Лист | Состояние | Замкнутая электрическая часть |
+|---|---|---|
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 91 межлистовая цепь, 218 явных pins/labels |
+| [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | точный ECAD | 32 компонента, 41 carrier-pad S3, boot/recovery/USB/RF и 39 интерфейсов |
+| [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | точный ECAD | 49 экземпляров, все 40 контактов display, все 11 контактов microSD, backlight/touch/isolation и 17 интерфейсов |
+| `UI_12_CONTROLS_INDICATORS` | заполняется | органы управления и индикаторы |
+
+Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
+[S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+PCB placement, routing и производство этими листами ещё не разрешены.
+
 Архитектура читается от трёх вычислительных владельцев, а не от USB-порта.
 Первая схема показывает только межпроцессорные связи; следующие схемы
 разворачивают устройства каждого владельца и отдельный тракт питания.

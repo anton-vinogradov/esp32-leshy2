@@ -59,12 +59,12 @@ class ProductSiteTests(unittest.TestCase):
             "docs/roadmap.md": (
                 "Current hardware stage: H2", "H1 accepted",
                 "F3 target boot/emulation is not closed",
-                "H2.2.3",
+                "H2.2.4",
                 "H9. Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
                 "Текущий аппаратный этап: H2", "H1 принят",
-                "F3 не закрыт", "H2.2.3",
+                "F3 не закрыт", "H2.2.4",
                 "H9. Производственный release",
                 "Production ECAD",
             ),
@@ -138,7 +138,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertEqual(1, page.count(f"▶️ **`{found[0]}`"), name)
             self.assertIn("commit", page, name)
 
-        self.assertEqual({"H2.2.3"}, set(markers.values()))
+        self.assertEqual({"H2.2.4"}, set(markers.values()))
         for name in ("README.md", "README.ru.md"):
             page = self.read(name)
             for substep in ("H1.8", "H2.0.1", "H2.0.2", "H2.0.3", "H2.8"):
@@ -165,7 +165,7 @@ class ProductSiteTests(unittest.TestCase):
 
         plan = json.loads(self.read("hardware/ecad/h2-schematic-plan.json"))
         self.assertEqual("H2", plan["stage"])
-        self.assertEqual("H2.2.3", plan["current_substep"])
+        self.assertEqual("H2.2.4", plan["current_substep"])
         self.assertEqual("accepted", plan["accepted_input"]["status"])
         self.assertEqual("H1.8", plan["accepted_input"]["physical_design_gate"])
         self.assertTrue(plan["authorization"]["production_schematic"])
@@ -189,7 +189,8 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("reviewed", plan["substeps"][2]["children"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][2]["children"][1]["status"])
-        self.assertEqual("current", plan["substeps"][2]["children"][2]["status"])
+        self.assertEqual("reviewed", plan["substeps"][2]["children"][2]["status"])
+        self.assertEqual("current", plan["substeps"][2]["children"][3]["status"])
         sheet_contract = json.loads(
             self.read("hardware/ecad/H2-sheet-contract.json")
         )
@@ -255,10 +256,10 @@ class ProductSiteTests(unittest.TestCase):
                 "cross_sheet_net_count": 91,
                 "root_hierarchical_pin_count": 218,
                 "child_hierarchical_label_count": 218,
-                "known_child_stub_erc_violations": 109,
-                "implemented_child_sheet_count": 1,
-                "circuit_symbols_placed": 33,
-                "known_generated_library_copy_warnings": 33,
+                "known_child_stub_erc_violations": 101,
+                "implemented_child_sheet_count": 2,
+                "circuit_symbols_placed": 82,
+                "known_generated_library_copy_warnings": 82,
                 "pcb_files_created": 0,
             },
             manifest["summary"],
@@ -399,6 +400,49 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(3, sma.count('(layers "F.Cu" "F.Paste" "F.Mask")'))
         self.assertEqual(2, sma.count('(layers "B.Cu" "B.Paste" "B.Mask")'))
+
+    def test_h2_2_3_exact_display_touch_storage_sheet_is_reviewed_and_current(self):
+        import json
+
+        script = REPO_ROOT / "hardware/ecad/h2_ui_display_touch_storage.py"
+        result = subprocess.run(
+            [sys.executable, str(script), "--check"],
+            cwd=REPO_ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+        manifest = json.loads(
+            self.read("hardware/ecad/generated/H2-UI11-display-touch-storage.json")
+        )
+        self.assertEqual("H2.2.3", manifest["stage"])
+        self.assertEqual(
+            "reviewed_exact_display_touch_storage_sheet", manifest["status"]
+        )
+        self.assertEqual(
+            {
+                "ledger_instances": 49,
+                "schematic_symbols": 49,
+                "board_fitted_symbols": 47,
+                "external_assembly_interface_symbols": 2,
+                "display_contacts": 40,
+                "microsd_socket_contacts": 11,
+                "hierarchical_interfaces": 17,
+                "intentional_no_connect_pins": 33,
+                "pcb_files_created": 0,
+            },
+            manifest["summary"],
+        )
+        self.assertEqual(
+            "3V3_MAIN", manifest["physical_net_aliases_collapsed"]["LCD_VDDI_3V3"]
+        )
+        self.assertEqual(
+            "POWER_GROUND", manifest["physical_net_aliases_collapsed"]["SD_SHIELD_GROUND"]
+        )
+        sd = next(row for row in manifest["instances"] if row["instance"] == "sd")
+        self.assertIn("DM3AT-SF-PEJM5", sd["footprint"])
+        self.assertEqual(49, len({row["symbol_uuid"] for row in manifest["instances"]}))
 
     def test_h2_hwfw_export_has_all_target_pins_and_service_boundaries(self):
         import json

@@ -30,10 +30,10 @@ PCB layout or target-emulator run, and no order is authorized.
 
 ### Current phase H2 — detailed position
 
-<!-- current-substep: H2.2.3 -->
+<!-- current-substep: H2.2.4 -->
 
-**Exact marker: `H2.2.3`** — implement and review the exact display, integrated
-touch and isolated microSD circuitry on `UI_11_DISPLAY_TOUCH_STORAGE`.
+**Exact marker: `H2.2.4`** — implement and review the exact user-control and
+indicator circuitry on `UI_12_CONTROLS_INDICATORS`.
 
 - ✅ `H1.8` — complete physical design accepted on 23 August 2026.
 - `H2.0` — freeze authoritative schematic inputs and project structure.
@@ -48,8 +48,11 @@ touch and isolated microSD circuitry on `UI_11_DISPLAY_TOUCH_STORAGE`.
     nets and 218 named pins/child labels; direct root rails parse in KiCad.
   - ✅ `H2.2.2` — S3 core reviewed: 32 exact ledger components plus the module
     U.FL assembly boundary, all 41 carrier pads and 39 hierarchy interfaces.
-  - ▶️ **`H2.2.3` — current:** display, integrated touch and isolated microSD.
-  - ⏳ `H2.2.4–H2.2.10` — controls; audio; C5/IR;
+  - ✅ `H2.2.3` — reviewed 49 exact display/touch/storage instances: the
+    40-contact panel, all 11 microSD contacts, protected backlight, data
+    isolation and all 17 hierarchy interfaces.
+  - ▶️ **`H2.2.4` — current:** user controls and indicators.
+  - ⏳ `H2.2.5–H2.2.10` — audio; C5/IR;
     receiver; M1; TX safety; manufacturing/test points, in that order.
 - ⏳ `H2.3` — implement and review RF/power PCB sheets.
 - ⏳ `H2.4` — implement and review display-adapter and LoRa-Cap sheets.

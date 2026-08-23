@@ -1554,7 +1554,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
         errors.append("mechanical-gates: research-first evidence policy must remain explicit")
     if constraint.get("order_authorized") is not False:
         errors.append("mechanical-gates: H1 evidence ordering must remain unauthorized")
-    if constraint.get("current_step") != "H2.2.3":
+    if constraint.get("current_step") != "H2.2.4":
         errors.append("mechanical-gates: exact evidence-research substep drifted")
 
     gates = data.get("gates", [])
@@ -1617,7 +1617,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H2.2.3":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H2.2.4":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:

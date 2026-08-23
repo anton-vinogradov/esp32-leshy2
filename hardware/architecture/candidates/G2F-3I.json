@@ -3473,7 +3473,7 @@
     {"from":"abstract:3V3_MAIN","to":"sd_power_switch.IN","net":"3V3_MAIN","safety":"controlled-rise self-protected switch isolates card inrush and hard shorts from the shared compute rail"},
     {"from":"sd_power_switch.GND","to":"abstract:power-ground","net":"POWER_GROUND","safety":"short local switch return"},
     {"from":"sd_power_switch.VOUT","to":"sd.VDD","net":"SD_CARD_3V3","safety":"card rail exists only during a bounded storage session"},
-    {"from":"sd_power_switch.QOD","to":"sd_power_switch.VOUT","net":"SD_QOD","safety":"direct internal 24-Ohm QOD discharges card, buffer and local bulk after a qualified flush/unmount sequence"},
+    {"from":"sd_power_switch.QOD","to":"sd_power_switch.VOUT","net":"SD_CARD_3V3","safety":"direct internal 24-Ohm QOD is physically tied to the switched card rail and discharges card, buffer and local bulk after a qualified flush/unmount sequence"},
     {"from":"sd_power_switch.VOUT","to":"sd_power_bulk_cap.END_1","net":"SD_CARD_3V3","safety":"exact 22-uF 6.3-V X5R local bulk supports card write-current transients"},
     {"from":"sd_power_bulk_cap.END_2","to":"abstract:power-ground","net":"POWER_GROUND","safety":"bulk return stays beside the socket and signal isolators"},
     {"from":"sd_power_switch.VOUT","to":"sd_power_hf_cap.END_1","net":"SD_CARD_3V3","safety":"exact 100-nF high-frequency card-rail bypass"},

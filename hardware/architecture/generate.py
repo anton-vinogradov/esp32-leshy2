@@ -2588,6 +2588,23 @@ def render_public_schematics(
             "Отдельные принципиальные схемы съёмного передающего аксессуара находятся "
             "на странице [Leshy LoRa Cap](lora-cap.ru.md)."
         )
+        ecad = """## Актуальная production ECAD-схема
+
+Функциональные диаграммы ниже остаются обзорной картой готового продукта.
+Реализованные листы KiCad — точная электрическая схема: каждый компонент
+имеет MPN, физические контакты, footprint, цепи и явные no-connect.
+
+| Лист | Состояние | Замкнутая электрическая часть |
+|---|---|---|
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | точный ECAD | 9 дочерних листов, 91 межлистовая цепь, 218 явных pins/labels |
+| [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | точный ECAD | 32 компонента, 41 carrier-pad S3, boot/recovery/USB/RF и 39 интерфейсов |
+| [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | точный ECAD | 49 экземпляров, все 40 контактов display, все 11 контактов microSD, backlight/touch/isolation и 17 интерфейсов |
+| `UI_12_CONTROLS_INDICATORS` | заполняется | органы управления и индикаторы |
+
+Машинные результаты: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
+[S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) и
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+PCB placement, routing и производство этими листами ещё не разрешены."""
     else:
         navigation = "[Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)"
         detail = (
@@ -2598,8 +2615,25 @@ def render_public_schematics(
             "The removable transmitting accessory has its own split principle diagrams "
             "on the [Leshy LoRa Cap](lora-cap.md) page."
         )
+        ecad = """## Current production ECAD schematic
+
+The functional diagrams below remain the overview of the finished product.
+The implemented KiCad sheets are the exact electrical schematic: every device
+has an MPN, physical contacts, footprint, nets and explicit no-connects.
+
+| Sheet | State | Closed electrical content |
+|---|---|---|
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 91 cross-sheet nets and 218 explicit pins/labels |
+| [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | exact ECAD | 32 components, 41 S3 carrier pads, boot/recovery/USB/RF and 39 interfaces |
+| [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 17 interfaces |
+| `UI_12_CONTROLS_INDICATORS` | being populated | controls and indicators |
+
+Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
+[S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+These sheets do not yet authorize PCB placement, routing or fabrication."""
     heading, remainder = section.split("\n", 1)
-    return f"{heading}\n\n{navigation}\n\n{detail}\n{remainder}"
+    return f"{heading}\n\n{navigation}\n\n{detail}\n\n{ecad}\n{remainder}"
 
 
 def render_readme_schematics(

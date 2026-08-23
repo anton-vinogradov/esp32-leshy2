@@ -25,7 +25,7 @@
 | Требования продукта и функциональная архитектура | ✅ H0: проведено ревью границ возможностей, доменов, владельцев, классов интерфейсов и safety rules |
 | Физический дизайн устройства | ✅ H1 принят: внешние/внутренние виды, разрезы, service paths и pin/resource fit пройдены |
 | Принципиальные диаграммы на сайте | Принятые входы H2; это не production ECAD |
-| Актуальная production ECAD-схема | ▶️ H2.2.3: точные display, встроенный touch и изолированная microSD; S3 core H2.2.2 проверен |
+| Актуальная production ECAD-схема | ▶️ H2.2.4: органы управления и индикаторы; S3 core H2.2.2 и display/touch/storage H2.2.3 проверены |
 | Электрические и переходные evidence | ⏳ H3: не получены |
 | Пересечение с прошивкой | Portable evidence firmware F1 существует, но target boot/emulation этапа F3 не закрыт |
 | Работа над KiCad-схемой | ▶️ H2: разрешена |
@@ -41,10 +41,10 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 
 ## Завершённая H1 и детальный состав текущей H2
 
-<!-- current-substep: H2.2.3 -->
+<!-- current-substep: H2.2.4 -->
 
-**Точный маркер: `H2.2.3`** — реализовать и проверить точные цепи display,
-встроенного touch и изолированной microSD на `UI_11_DISPLAY_TOUCH_STORAGE`.
+**Точный маркер: `H2.2.4`** — реализовать и проверить точные цепи органов
+управления и индикаторов на `UI_12_CONTROLS_INDICATORS`.
 
 - ✅ `H1.0` — перенести требования H0 в механический acceptance list.
 - `H1.1` — реестр физических первоисточников.
@@ -130,13 +130,16 @@ footprints и ERC evidence. PCB placement и routing начинаются лиш
 - `H2.2` — реализовать и проверить листы UI/control PCB.
   - ✅ `H2.2.1` — `UI_00_ROOT`: девять дочерних листов, 91 точная межлистовая
     цепь и 218 явных pins/labels; одна прямая root-rail на цепь, без скрытых
-    global labels, native parse KiCad пройден. После заполнения UI10 машинно
-    учтены 109 findings пустых child-stubs и 33 предупреждения о копиях символов.
+    global labels, native parse KiCad пройден. После заполнения UI10 и UI11
+    машинно учтены 101 finding пустых child-stubs и 82 предупреждения о копиях
+    сгенерированных символов.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 точных компонента реестра плюс
     символ границы встроенного U.FL модуля, все 41 carrier-контакт S3, 39 hierarchy-
     интерфейсов, семь намеренных no-connect и три проверенных custom-footprint.
-  - ▶️ **`H2.2.3` — сейчас:** `UI_11_DISPLAY_TOUCH_STORAGE`.
-  - ⏳ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`.
+  - ✅ `H2.2.3` — `UI_11_DISPLAY_TOUCH_STORAGE`: 49 экземпляров, 40 контактов
+    панели, 11 контактов microSD, 17 hierarchy-интерфейсов и 33 объяснённых
+    no-connect; native KiCad review пройден.
+  - ▶️ **`H2.2.4` — сейчас:** `UI_12_CONTROLS_INDICATORS`.
   - ⏳ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`.
   - ⏳ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`.
   - ⏳ `H2.2.7` — `UI_21_FM_AM_RECEIVER`.

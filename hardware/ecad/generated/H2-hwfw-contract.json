@@ -11,7 +11,7 @@
   ],
   "source_sha256": {
     "hardware/architecture/devices.json": "0a0be015c67d7fb49f09cc3e9a61c486cb20216bbd16072f851a67478588ae90",
-    "hardware/architecture/candidates/G2F-3I.json": "2fe699d4b171c98bfc17cef414d1ddd7d3b066832c02efaeb86274ecb320a752",
+    "hardware/architecture/candidates/G2F-3I.json": "57f4e9e6b38a7f8c05df20e1cdfe39d972be9425e51eedd553a8442b12515213",
     "hardware/architecture/target-integration-contract.json": "321b697f58fac56a65110462f419fe594c789d4113f54617b3ff36dd17072d36",
     "hardware/ecad/H2-sheet-contract.json": "a4465effc17f388b83029bbfccd205bfae5f0c62032d4bc6ba27645811005952"
   },

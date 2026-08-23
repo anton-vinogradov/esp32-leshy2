@@ -34,6 +34,11 @@ PROJECT_DIR = ROOT_PATH.parent
 OUTPUT = ECAD / "generated/H2-UI-root-interface.json"
 IMPLEMENTED_CHILD_MANIFESTS = {
     "UI_10_S3_CORE_MEMORY_BOOT": ECAD / "generated/H2-UI10-S3-core.json",
+    "UI_11_DISPLAY_TOUCH_STORAGE": ECAD / "generated/H2-UI11-display-touch-storage.json",
+}
+IMPLEMENTED_CHILD_STATUSES = {
+    "UI_10_S3_CORE_MEMORY_BOOT": "reviewed_exact_s3_core_sheet",
+    "UI_11_DISPLAY_TOUCH_STORAGE": "reviewed_exact_display_touch_storage_sheet",
 }
 NAMESPACE = uuid.UUID("4ed50bf6-dbd9-44f6-a71f-9f07341b4db6")
 
@@ -280,7 +285,7 @@ def outputs() -> tuple[dict[Path, str], dict]:
         if not manifest_path.is_file() or not sheet_path.is_file():
             continue
         child_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if child_manifest.get("status") != "reviewed_exact_s3_core_sheet":
+        if child_manifest.get("status") != IMPLEMENTED_CHILD_STATUSES[sheet]:
             continue
         implemented_children[sheet] = child_manifest
     generated = {ROOT_PATH: root_schematic(interfaces)}
@@ -429,7 +434,7 @@ def parse_check(generated: dict[Path, str], manifest: dict) -> None:
             for path in IMPLEMENTED_CHILD_MANIFESTS.values()
             if path.is_file()
             for child in [json.loads(path.read_text(encoding="utf-8"))]
-            if child.get("status") == "reviewed_exact_s3_core_sheet"
+            if child.get("status") == IMPLEMENTED_CHILD_STATUSES.get(child.get("sheet"))
             for instance in child["instances"]
         }
         actual_label_uuids = {
@@ -487,10 +492,10 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
         "cross_sheet_net_count": 91,
         "root_hierarchical_pin_count": 218,
         "child_hierarchical_label_count": 218,
-        "known_child_stub_erc_violations": 109,
-        "implemented_child_sheet_count": 1,
-        "circuit_symbols_placed": 33,
-        "known_generated_library_copy_warnings": 33,
+        "known_child_stub_erc_violations": 101,
+        "implemented_child_sheet_count": 2,
+        "circuit_symbols_placed": 82,
+        "known_generated_library_copy_warnings": 82,
         "pcb_files_created": 0,
     }:
         raise ValueError(f"reviewed H2.2.1 interface accounting drifted: {summary}")

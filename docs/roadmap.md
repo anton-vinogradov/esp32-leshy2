@@ -26,7 +26,7 @@ results appear here only where they are prerequisites of a hardware gate.
 | Product requirements and functional architecture | ✅ H0 reviewed: capability boundary, compute domains, owners, interface classes and safety rules |
 | Physical product design | ✅ H1 accepted: external/internal views, sections, service paths and pin/resource fit passed |
 | Principle diagrams on the site | Accepted inputs to H2; they are not production ECAD |
-| Current production ECAD schematic | ▶️ H2.2.3: exact display, integrated touch and isolated microSD; S3 core H2.2.2 is reviewed |
+| Current production ECAD schematic | ▶️ H2.2.4: user controls and indicators; S3 core H2.2.2 and display/touch/storage H2.2.3 are reviewed |
 | Electrical and transient evidence | ⏳ H3: not run |
 | Firmware interlock | Firmware F1 portable evidence exists, but F3 target boot/emulation is not closed |
 | KiCad schematic work | ▶️ H2: authorized |
@@ -41,10 +41,10 @@ evidence. PCB placement and routing begin only after the earlier gates close.
 
 ## Completed H1 and current H2 breakdown
 
-<!-- current-substep: H2.2.3 -->
+<!-- current-substep: H2.2.4 -->
 
-**Exact marker: `H2.2.3`** — implement and review exact display, integrated
-touch and isolated microSD circuitry on `UI_11_DISPLAY_TOUCH_STORAGE`.
+**Exact marker: `H2.2.4`** — implement and review exact user-control and
+indicator circuitry on `UI_12_CONTROLS_INDICATORS`.
 
 - ✅ `H1.0` — project H0 requirements into a mechanical acceptance list.
 - `H1.1` — physical-source register.
@@ -128,13 +128,16 @@ Current H2 execution:
 - `H2.2` — implement and review UI/control PCB sheets.
   - ✅ `H2.2.1` — `UI_00_ROOT`: nine child sheets, 91 exact cross-sheet nets
     and 218 explicit pins/labels; one direct root rail per net, no hidden global
-    labels, native KiCad parse passed. With UI10 populated, 109 exact empty-child
-    stub findings and 33 generated-library copy warnings are machine-accounted.
+    labels, native KiCad parse passed. With UI10 and UI11 populated, 101 exact
+    empty-child stub findings and 82 generated-symbol copy warnings are
+    machine-accounted.
   - ✅ `H2.2.2` — `UI_10_S3_CORE_MEMORY_BOOT`: 32 exact ledger components plus
     one module U.FL assembly-boundary symbol, all 41 S3 carrier pads, 39 hierarchy
     interfaces, seven intentional no-connects and three checked custom footprints.
-  - ▶️ **`H2.2.3` — current:** `UI_11_DISPLAY_TOUCH_STORAGE`.
-  - ⏳ `H2.2.4` — `UI_12_CONTROLS_INDICATORS`.
+  - ✅ `H2.2.3` — `UI_11_DISPLAY_TOUCH_STORAGE`: 49 instances, 40 panel
+    contacts, 11 microSD contacts, 17 hierarchy interfaces and 33 explained
+    no-connects; native KiCad review passed.
+  - ▶️ **`H2.2.4` — current:** `UI_12_CONTROLS_INDICATORS`.
   - ⏳ `H2.2.5` — `UI_13_AUDIO_CODEC_HEADSET`.
   - ⏳ `H2.2.6` — `UI_20_C5_RADIO_IR_SERVICE`.
   - ⏳ `H2.2.7` — `UI_21_FM_AM_RECEIVER`.

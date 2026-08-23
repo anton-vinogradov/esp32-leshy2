@@ -3004,7 +3004,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         for route in (
             ("abstract:3V3_MAIN", "sd_power_switch.IN", "3V3_MAIN"),
             ("sd_power_switch.VOUT", "sd.VDD", "SD_CARD_3V3"),
-            ("sd_power_switch.QOD", "sd_power_switch.VOUT", "SD_QOD"),
+            ("sd_power_switch.QOD", "sd_power_switch.VOUT", "SD_CARD_3V3"),
             ("sd_host_buffer.1Y", "sd_sck_series.END_1", "SD_CLK_BUFFERED"),
             ("sd_host_buffer.2Y", "sd_cmd_series.END_1", "SD_CMD_BUFFERED"),
             ("sd_host_buffer.3Y", "sd_cs_series.END_1", "SD_CS_BUFFERED_N"),

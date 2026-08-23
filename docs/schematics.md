@@ -4,6 +4,24 @@
 
 The diagrams below describe the finished device by functional domain. Exact contacts, signal directions and electrical connections are in the [public pin table](pinout.md). The complete device content is in the [machine-readable BOM](../hardware/architecture/generated/G2F-3I-target-bom.csv). The removable transmitting accessory has its own split principle diagrams on the [Leshy LoRa Cap](lora-cap.md) page.
 
+## Current production ECAD schematic
+
+The functional diagrams below remain the overview of the finished product.
+The implemented KiCad sheets are the exact electrical schematic: every device
+has an MPN, physical contacts, footprint, nets and explicit no-connects.
+
+| Sheet | State | Closed electrical content |
+|---|---|---|
+| [`UI_00_ROOT`](../hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch) | exact ECAD | 9 child sheets, 91 cross-sheet nets and 218 explicit pins/labels |
+| [`UI_10_S3_CORE_MEMORY_BOOT`](../hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch) | exact ECAD | 32 components, 41 S3 carrier pads, boot/recovery/USB/RF and 39 interfaces |
+| [`UI_11_DISPLAY_TOUCH_STORAGE`](../hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch) | exact ECAD | 49 instances, all 40 display contacts, all 11 microSD contacts, backlight/touch/isolation and 17 interfaces |
+| `UI_12_CONTROLS_INDICATORS` | being populated | controls and indicators |
+
+Machine outputs: [UI root](../hardware/ecad/generated/H2-UI-root-interface.json),
+[S3 core](../hardware/ecad/generated/H2-UI10-S3-core.json) and
+[display/touch/storage](../hardware/ecad/generated/H2-UI11-display-touch-storage.json).
+These sheets do not yet authorize PCB placement, routing or fabrication.
+
 Read the architecture from its three compute owners, not from the USB port.
 The first map shows only inter-processor links; the following maps expand
 each owner's devices and the independent power path. Every box is one

@@ -66,8 +66,8 @@ def effects(justify: str | None = None, hide: bool = False, size: float = 1.27) 
     return "(effects " + " ".join(parts) + ")"
 
 
-def symbol_name(instance: str) -> str:
-    return "UI10_" + re.sub(r"[^A-Za-z0-9_]", "_", instance).upper()
+def symbol_name(instance: str, namespace: str = "UI10") -> str:
+    return namespace + "_" + re.sub(r"[^A-Za-z0-9_]", "_", instance).upper()
 
 
 def pin_layout(pins: list[Pin]) -> tuple[dict[str, tuple[float, float, str]], float]:
@@ -106,8 +106,9 @@ def library_symbol(
     on_board: bool = True,
     in_bom: bool = True,
     embedded: bool = True,
+    namespace: str = "UI10",
 ) -> tuple[str, dict[str, tuple[float, float, str]], float]:
-    name = symbol_name(instance)
+    name = symbol_name(instance, namespace)
     lib_id = f"Leshy2:{name}" if embedded else name
     coords, height = pin_layout(pins)
     half_height = height / 2 - 2.54
@@ -161,11 +162,14 @@ def schematic_symbol(
     coords: dict[str, tuple[float, float, str]],
     on_board: bool = True,
     in_bom: bool = True,
+    namespace: str = "UI10",
+    project_id: str = PROJECT_ID,
+    sheet_id: str = SHEET_ID,
 ) -> str:
     symbol_uuid = stable_uuid(f"symbol:{instance}")
     lines = [
         "\t(symbol",
-        f'\t\t(lib_id "Leshy2:{symbol_name(instance)}")',
+        f'\t\t(lib_id "Leshy2:{symbol_name(instance, namespace)}")',
         f"\t\t(at {x:.2f} {y:.2f} 0)",
         "\t\t(unit 1)",
         "\t\t(exclude_from_sim no)",
@@ -187,8 +191,8 @@ def schematic_symbol(
         ]
     lines += [
         "\t\t(instances",
-        f'\t\t\t(project "{PROJECT_ID}"',
-        f'\t\t\t\t(path "/{stable_uuid(f"sheet:{SHEET_ID}")}"',
+        f'\t\t\t(project "{project_id}"',
+        f'\t\t\t\t(path "/{stable_uuid(f"sheet:{sheet_id}")}"',
         f'\t\t\t\t\t(reference "{reference}")',
         "\t\t\t\t\t(unit 1)",
         "\t\t\t\t)",
@@ -509,20 +513,12 @@ def build() -> tuple[dict[Path, str], dict]:
         ")",
         "",
     ]
-    symbol_library = "\n".join([
-        "(kicad_symbol_lib",
-        "\t(version 20251024)",
-        '\t(generator "leshy2-h2-ui10")',
-        '\t(generator_version "1.0")',
-        *library_file_defs,
-        ")",
-        "",
-    ])
     generated = {
         OUTPUT_SCH: "\n".join(lines),
-        SYMBOL_LIBRARY: symbol_library,
         **footprint_outputs(),
     }
+    from h2_symbol_library import build as build_symbol_library
+    generated[SYMBOL_LIBRARY] = build_symbol_library({OUTPUT_SCH: generated[OUTPUT_SCH]})
     s3_device = devices["esp32_s3_wroom_1u_n16r8"]
     manifest = {
         "schema_version": 1,

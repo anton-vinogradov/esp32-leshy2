@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "stage": "H2.2.3",
+  "status": "reviewed_exact_display_touch_storage_sheet",
+  "project": "LESHY2-UI",
+  "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "57f4e9e6b38a7f8c05df20e1cdfe39d972be9425e51eedd553a8442b12515213",
+    "hardware/architecture/devices.json": "0a0be015c67d7fb49f09cc3e9a61c486cb20216bbd16072f851a67478588ae90",
+    "hardware/ecad/generated/H2-instance-ledger.json": "b23cffc3ad4e06b89904e60dac80753760346674d49d1c839a59c049ce3bc7bf",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "24713cfadc18fa74d3ddda052dcaff968e6bf8923824f8920255b6a160b25f47"
+  },
+  "summary": {
+    "ledger_instances": 49,
+    "schematic_symbols": 49,
+    "board_fitted_symbols": 47,
+    "external_assembly_interface_symbols": 2,
+    "display_contacts": 40,
+    "microsd_socket_contacts": 11,
+    "hierarchical_interfaces": 17,
+    "intentional_no_connect_pins": 33,
+    "pcb_files_created": 0
+  },
+  "instances": [
+    {
+      "instance": "display_touch_controller",
+      "symbol_uuid": "59b7757a-c0e3-5cd8-9329-407f51ad6555",
+      "reference": "X1",
+      "mpn": "Sitronix ST77922",
+      "footprint": null,
+      "pin_count": 18,
+      "board_fitted": false
+    },
+    {
+      "instance": "touch_irq_buffer",
+      "symbol_uuid": "d10a80bd-741a-5efd-a442-693f9cdde40b",
+      "reference": "U1",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "touch_irq_pullup",
+      "symbol_uuid": "7408ccdc-1abe-597b-ae64-46fcf1c143cb",
+      "reference": "R1",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "touch_irq_buffer_bypass",
+      "symbol_uuid": "cdcd81c7-2705-56bd-84a7-f60b74f8b77f",
+      "reference": "C1",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd",
+      "symbol_uuid": "9e547ad6-02ce-522a-8bea-d09c62453fa2",
+      "reference": "J1",
+      "mpn": "Hirose DM3AT-SF-PEJM5",
+      "footprint": "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5",
+      "pin_count": 11,
+      "board_fitted": true
+    },
+    {
+      "instance": "display",
+      "symbol_uuid": "e7c07490-6617-505e-bf74-dd2d511f749b",
+      "reference": "X2",
+      "mpn": "HMX035CTFT-001 (QDtech schematic assembly marking)",
+      "footprint": null,
+      "pin_count": 40,
+      "board_fitted": false
+    },
+    {
+      "instance": "display_connector",
+      "symbol_uuid": "638eb925-58ee-5d2d-89da-84b32b1ef28e",
+      "reference": "J2",
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "footprint": "Connector_Hirose_DF40:Hirose_DF40C(2.0)-40DS-0.4V_2x20_P0.4mm",
+      "pin_count": 40,
+      "board_fitted": true
+    },
+    {
+      "instance": "display_logic_bulk_cap",
+      "symbol_uuid": "1fd2323a-40ea-5a84-9899-4ddd75126f80",
+      "reference": "C2",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "display_logic_hf_cap",
+      "symbol_uuid": "95c2b304-7113-5fa8-a63c-1e08e9c01224",
+      "reference": "C3",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "display_reset_pulldown",
+      "symbol_uuid": "ef9a0694-f3a1-5a3e-bbea-41706c0b8a1f",
+      "reference": "R2",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "touch_reset_pulldown",
+      "symbol_uuid": "98d3a974-d435-57d5-aaf1-fa0dc888f604",
+      "reference": "R3",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_efuse",
+      "symbol_uuid": "2e5b7fa9-2d78-5378-8dcc-b785e5ea974a",
+      "reference": "U2",
+      "mpn": "Texas Instruments TPS2553DRVR-1",
+      "footprint": "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm",
+      "pin_count": 7,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_efuse_ilim",
+      "symbol_uuid": "9dc8c127-ad32-5f69-8ce2-f825d24d95e5",
+      "reference": "R4",
+      "mpn": "Yageo RC0402FR-07133KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_efuse_input_cap",
+      "symbol_uuid": "8a6d469a-519a-5402-87e8-5f9bfb890827",
+      "reference": "C4",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_efuse_output_bulk",
+      "symbol_uuid": "7822fbf4-2432-57a3-9600-4cda6157f6d6",
+      "reference": "C5",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_efuse_output_hf",
+      "symbol_uuid": "5c0768cd-a2bd-557a-b77e-6c03464e59c2",
+      "reference": "U3",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_fault_pullup",
+      "symbol_uuid": "c4e38bce-33d3-5b57-a45d-700f0672d703",
+      "reference": "R5",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_series_resistor",
+      "symbol_uuid": "bd89705a-402d-559b-9f27-3327a6638f75",
+      "reference": "R6",
+      "mpn": "Panasonic ERJ-P08F10R0V",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_mosfet",
+      "symbol_uuid": "b7c769f6-de62-5686-8175-165a2513fc45",
+      "reference": "U4",
+      "mpn": "Diodes Incorporated DMN2056U-7",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pin_count": 3,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_gate_series",
+      "symbol_uuid": "54adad59-b689-5712-bf39-0ac058022d18",
+      "reference": "R7",
+      "mpn": "Yageo RC0402FR-07100RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "backlight_gate_pulldown",
+      "symbol_uuid": "42cd9697-9add-538e-a4e8-ac3c4cb1d28b",
+      "reference": "R8",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_host_buffer",
+      "symbol_uuid": "e0cd046b-d6e9-5571-83a2-147dd3473e16",
+      "reference": "U5",
+      "mpn": "SN74LVC3G34DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "pin_count": 8,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_miso_buffer",
+      "symbol_uuid": "8bb7fd3a-646e-5e46-bc8c-027daca1d3a5",
+      "reference": "U6",
+      "mpn": "Texas Instruments SN74LVC1G125DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_esd_a",
+      "symbol_uuid": "f96de7d4-ce3d-5c69-a9f1-e51bc1fa6978",
+      "reference": "U7",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_esd_b",
+      "symbol_uuid": "6ae6445a-a76b-5dc3-88d5-624fbc96c0cc",
+      "reference": "U8",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "pin_count": 10,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_power_input_cap",
+      "symbol_uuid": "cc738411-da22-5b74-a50d-bb1ae3bbf20c",
+      "reference": "C6",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_power_bulk_cap",
+      "symbol_uuid": "697ee80f-2e09-507d-b4b0-bebb7ee113d0",
+      "reference": "C7",
+      "mpn": "Murata GRM21BR60J226ME39L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_power_hf_cap",
+      "symbol_uuid": "920e553c-f3c2-5274-b10c-ed55d86c7aef",
+      "reference": "C8",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_host_buffer_bypass",
+      "symbol_uuid": "c541cd6b-0b35-5c74-bbbc-3586ffc2d2c3",
+      "reference": "C9",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_miso_buffer_bypass",
+      "symbol_uuid": "f2b7f328-e339-5c68-83e9-2cacd129b220",
+      "reference": "C10",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_on_pulldown",
+      "symbol_uuid": "4062a824-500e-5529-9bd1-43645e509c2d",
+      "reference": "R9",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_host_sck_pulldown",
+      "symbol_uuid": "ff740502-fe7e-59c2-aab7-e0b6c78150dd",
+      "reference": "R10",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_host_d0_pulldown",
+      "symbol_uuid": "29223b48-2645-5857-87f1-f77bcc1cb61e",
+      "reference": "R11",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_host_d1_pullup",
+      "symbol_uuid": "fb7a09df-bcb4-5574-9812-ccb6420a9f6c",
+      "reference": "R12",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_host_cs_pullup",
+      "symbol_uuid": "fbb73ad1-3111-581b-8077-95380b42bacb",
+      "reference": "R13",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "lcd_host_cs_pullup",
+      "symbol_uuid": "5b55d82f-9037-539a-84ec-ea0b464f7e26",
+      "reference": "R14",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_card_cmd_pullup",
+      "symbol_uuid": "721198ae-7194-5cda-b987-c0690b7f22f0",
+      "reference": "R15",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_card_dat0_pullup",
+      "symbol_uuid": "9415ecf2-6330-554f-afd4-56081841d83d",
+      "reference": "R16",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_card_dat1_pullup",
+      "symbol_uuid": "0d7a6faa-6b12-544a-a5cf-ddece0ab6bd2",
+      "reference": "R17",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_card_dat2_pullup",
+      "symbol_uuid": "f363871e-13d0-5a7c-8e41-e2e387b58d33",
+      "reference": "R18",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_card_dat3_pullup",
+      "symbol_uuid": "c9ec1f95-ced4-55a1-9aa8-c0222f288346",
+      "reference": "R19",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_sck_series",
+      "symbol_uuid": "5f6b60b0-3173-58e9-a7cc-a8c4e5312cf0",
+      "reference": "R20",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_cmd_series",
+      "symbol_uuid": "70fde2e4-806a-5ee3-bbae-e60c09c2e04b",
+      "reference": "R21",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_cs_series",
+      "symbol_uuid": "9114f18c-495a-568d-8ecc-ef96f745cabd",
+      "reference": "R22",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_miso_series",
+      "symbol_uuid": "c8d33f68-7276-50a5-9f3d-3b7054345a28",
+      "reference": "R23",
+      "mpn": "Panasonic ERJ-2RKF22R0X",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_detect_series",
+      "symbol_uuid": "7d01cad3-a155-503a-ba6b-b99502a2029a",
+      "reference": "R24",
+      "mpn": "Yageo RC0603FR-071KL",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_detect_pullup",
+      "symbol_uuid": "c7db7547-b1d6-59e2-a98a-0421625c61d3",
+      "reference": "R25",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_detect_cap",
+      "symbol_uuid": "01c72667-d39d-53d5-a8d4-dadf6d82756b",
+      "reference": "C11",
+      "mpn": "TDK C1005X7R1H104K050BB",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "board_fitted": true
+    },
+    {
+      "instance": "sd_power_switch",
+      "symbol_uuid": "a3d423e4-509e-5a8f-9d7c-2f28895c7133",
+      "reference": "U9",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "pin_count": 6,
+      "board_fitted": true
+    }
+  ],
+  "physical_net_aliases_collapsed": {
+    "LCD_BACKLIGHT_EFUSE_EN": "3V3_MAIN",
+    "LCD_DB2_LOW": "POWER_GROUND",
+    "LCD_DB3_LOW": "POWER_GROUND",
+    "LCD_DB4_LOW": "POWER_GROUND",
+    "LCD_DB5_LOW": "POWER_GROUND",
+    "LCD_DB6_LOW": "POWER_GROUND",
+    "LCD_DB7_LOW": "POWER_GROUND",
+    "LCD_IM0_LOW": "POWER_GROUND",
+    "LCD_IM1_HIGH": "3V3_MAIN",
+    "LCD_IM2_LOW": "POWER_GROUND",
+    "LCD_LOGIC_3V3": "3V3_MAIN",
+    "LCD_VDDI_3V3": "3V3_MAIN",
+    "LCD_VDD_3V3": "3V3_MAIN",
+    "SD_ESD_GROUND_A": "POWER_GROUND",
+    "SD_ESD_GROUND_B": "POWER_GROUND",
+    "SD_SHIELD_GROUND": "POWER_GROUND"
+  },
+  "intentional_no_connect_endpoints": [
+    "display.NC_14",
+    "display.NC_25",
+    "display.NC_26",
+    "display.NC_27",
+    "display.NC_28",
+    "display.NC_29",
+    "display.NC_30",
+    "display.NC_31",
+    "display.NC_32",
+    "display.RD_UNUSED",
+    "display.TE",
+    "display_connector.PIN_12",
+    "display_connector.PIN_14",
+    "display_connector.PIN_25",
+    "display_connector.PIN_26",
+    "display_connector.PIN_27",
+    "display_connector.PIN_28",
+    "display_connector.PIN_29",
+    "display_connector.PIN_30",
+    "display_connector.PIN_31",
+    "display_connector.PIN_32",
+    "display_connector.PIN_8",
+    "display_touch_controller.TE",
+    "sd_esd_a.NC_10",
+    "sd_esd_a.NC_6",
+    "sd_esd_a.NC_7",
+    "sd_esd_a.NC_9",
+    "sd_esd_b.NC_10",
+    "sd_esd_b.NC_6",
+    "sd_esd_b.NC_7",
+    "sd_esd_b.NC_9",
+    "sd_power_switch.NC",
+    "touch_irq_buffer.NC"
+  ],
+  "footprint_evidence": [
+    {
+      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
+      "footprint": "Connector_Hirose_DF40:Hirose_DF40C(2.0)-40DS-0.4V_2x20_P0.4mm",
+      "source": {
+        "document": "Hirose exact product page, 2D drawing and specification sheet",
+        "version": "CL0684-4042-5-58; detailed specifications updated 2026-02-07",
+        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
+        "checked": "2026-08-23"
+      }
+    },
+    {
+      "mpn": "Hirose DM3AT-SF-PEJM5",
+      "footprint": "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5",
+      "source": {
+        "document": "DM3 Series microSD Card Connectors catalog",
+        "version": "2026-05-01 current catalog and exact product page",
+        "url": "https://www.hirose.com/product/p/CL0609-0031-0-00",
+        "checked": "2026-08-18"
+      },
+      "pin_mapping": {
+        "card": "1..8",
+        "detect_A": "9",
+        "detect_B": "10",
+        "shield": "SH"
+      }
+    },
+    {
+      "mpn": "Texas Instruments SN74LVC3G34DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "source": {
+        "document": "SN74LVC3G34 Triple Buffer Gate datasheet",
+        "version": "Rev. L",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf",
+        "checked": "2026-08-17"
+      }
+    },
+    {
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "source": {
+        "document": "TPDxE05U06 1/4/6-channel ESD protection datasheet",
+        "version": "SLVSBO7O, revised 2024-08; exact order code checked 2026-08-18",
+        "url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf",
+        "checked": "2026-08-18"
+      }
+    },
+    {
+      "mpn": "Texas Instruments TPS2553DRVR-1",
+      "footprint": "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm",
+      "source": {
+        "document": "TPS2552/TPS2553 precision adjustable current-limited power-distribution switch datasheet",
+        "version": "SLVS841F and current exact-part page checked 2026-08-18",
+        "url": "https://www.ti.com/lit/gpn/TPS2553-1",
+        "checked": "2026-08-18"
+      },
+      "powerpad": "physical pad 7 tied to POWER_GROUND"
+    }
+  ],
+  "corrections_closed": [
+    "TPS22919 QOD and VOUT now share the one physical SD_CARD_3V3 net instead of two aliases on one pad",
+    "all direct 3V3_MAIN and POWER_GROUND branch aliases collapse to their physical conductor without invented net-tie parts",
+    "DM3AT detect contacts map explicitly to footprint pads 9/10 and all four shield lands share pad SH",
+    "display contacts 1..40 remain one-to-one through the exact DF40 adapter boundary",
+    "display logic stays powered while the independently protected LEDA branch is latched off on a backlight fault",
+    "microSD host outputs, return data, ESD, switched pull-ups, detect and QOD paths are all explicit"
+  ],
+  "review_boundary": {
+    "complete": [
+      "every H2 ledger instance owned by UI11 is placed once with exact MPN and contact map",
+      "every display, touch, backlight and microSD contact is connected or explicitly no-connect",
+      "every live UI11 hierarchy interface terminates on a real circuit pin",
+      "native KiCad parses the populated hierarchy with only exact machine-accounted findings"
+    ],
+    "deferred": [
+      "display-tail incoming inspection and adapter mating evidence in H5",
+      "QSPI/shared-SPI timing, card hot-plug, backlight current/thermal and ESD HIL",
+      "PCB placement, return geometry, impedance/ringing tuning and DRC in H6"
+    ]
+  }
+}
